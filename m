@@ -2,220 +2,715 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C1694C1879
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:22:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 738E84C189B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 17:32:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238553AbiBWQWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 11:22:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60482 "EHLO
+        id S236172AbiBWQct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 11:32:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240989AbiBWQWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:22:33 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5B6775C08
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 08:22:04 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id p9so40485485wra.12
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 08:22:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=3soeUz3Gxi2go8Buwh1sm4qJuSlmkJbGkcHtauPvNOw=;
-        b=ukTEz9n9ED5hmYtxHQ7QEwajoWikPgVDiqxvJs25fX/kKE4jq3t+tu39nTrnMufSTk
-         CbmIsESzXJ7V4t3JpWOLrixWi1rQ02gZMz1iSGknUK/8JoDDmDE8x3mwdgLOyT/9iepG
-         lfs4gAk++GU2fOV0xWwENclLflrFBm8UBDIasPOBIAQthAMelF3eErTUPyh+ii/pg+cO
-         9n/0Li/AHsTIEB7RIkjN3bOrcaqdnEWVimH6EtEK4s1FjQwGJHYYyvvgkimHYIORK4id
-         xYpebk7XjCwyr6kPqE0EM1IkhkrnTNmaSLvS9h8ZEi74HWygdSlze/r9s1Noxczem/30
-         Midg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3soeUz3Gxi2go8Buwh1sm4qJuSlmkJbGkcHtauPvNOw=;
-        b=pky1aogQ+RaGBtsmN87X0ZJ8MQKZQBJlxwcgvNitvqNmSM4tVIPZYR8/nheX7thhoK
-         CC857ROfN/WEuCZI2re9Sj8M+BcmRndXhAudeZVWgtI8M56MhbGZeJxa7+fsLWzrJdR4
-         fVhrlcAzLGDFShKNXXgRLyTKSMjzX5Pgib1+64U7HY0SJWySpx7e3tQqjUDmPc6kFKJs
-         rFd6GeAGM+N9c73wmb3cVJeZ3pcad1MAauO8qDcroj2dLAhORHdihEqXs93jC39DyjiB
-         MDuA4MwN+upoguGbRLW9PtqCkZR69YjOB/iGQxCXwuqD/t8xetz+LLSOltBXOXEdwKQ2
-         f1eg==
-X-Gm-Message-State: AOAM532KWX17YwdP+Op4Xd8mQb9hEIADGE2xg0pjyKdbOxybyGGhh5Ko
-        DPxWytHUc+Cn1tjx0SOacJDVyw==
-X-Google-Smtp-Source: ABdhPJzbKFPWSq+qdM1MYHg1l9ir8j/wbqyy37IoARqa7ZG2n6LAoYfI2LG+OEsp1aOar6Zstb166w==
-X-Received: by 2002:adf:f3c8:0:b0:1ed:9cd9:5bf with SMTP id g8-20020adff3c8000000b001ed9cd905bfmr311877wrp.380.1645633323192;
-        Wed, 23 Feb 2022 08:22:03 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id c17sm4736wmh.31.2022.02.23.08.22.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 08:22:02 -0800 (PST)
-Message-ID: <ee14c940-85c9-6c14-5738-e055801407ab@linaro.org>
-Date:   Wed, 23 Feb 2022 16:22:01 +0000
+        with ESMTP id S230215AbiBWQct (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 11:32:49 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E948245AC3;
+        Wed, 23 Feb 2022 08:32:18 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7B3B31C000B;
+        Wed, 23 Feb 2022 16:32:15 +0000 (UTC)
+Date:   Wed, 23 Feb 2022 17:32:13 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Eugen Hristev <eugen.hristev@microchip.com>
+Cc:     linux-media@vger.kernel.org, hverkuil-cisco@xs4all.nl,
+        nicolas.ferre@microchip.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        claudiu.beznea@microchip.com
+Subject: Re: [PATCH v5 04/13] media: atmel: atmel-isc: implement media
+ controller
+Message-ID: <20220223163213.rypgz2tzfq73mbtx@uno.localdomain>
+References: <20220217135645.1427466-1-eugen.hristev@microchip.com>
+ <20220217135645.1427466-5-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] soundwire: qcom: add wake up interrupt support
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        robh+dt@kernel.org, vkoul@kernel.org,
-        yung-chuan.liao@linux.intel.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, quic_srivasam@quicinc.com
-References: <20220221104127.15670-1-srinivas.kandagatla@linaro.org>
- <20220221104127.15670-4-srinivas.kandagatla@linaro.org>
- <5e050d4c-e3d2-35fb-ca49-7be53579bc31@linux.intel.com>
- <1cb4e02f-f040-23bd-44d0-0675429332bd@linaro.org>
- <49099bcb-35e9-0bea-9658-006caed3ab33@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <49099bcb-35e9-0bea-9658-006caed3ab33@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220217135645.1427466-5-eugen.hristev@microchip.com>
+X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,PDS_OTHER_BAD_TLD,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Eugen
 
+On Thu, Feb 17, 2022 at 03:56:36PM +0200, Eugen Hristev wrote:
+> Implement the support for media-controller.
+> This means that the capabilities of the driver have changed and now
+> it also advertises the IO_MC .
+> The driver will register it's media device, and add the video entity to this
 
-On 23/02/2022 00:31, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 2/22/22 16:52, Srinivas Kandagatla wrote:
->>
->>
->> On 22/02/2022 19:26, Pierre-Louis Bossart wrote:
->>>
->>>
->>>
->>>> +static irqreturn_t qcom_swrm_wake_irq_handler(int irq, void *dev_id)
->>>> +{
->>>> +    struct qcom_swrm_ctrl *swrm = dev_id;
->>>> +    int ret = IRQ_HANDLED;
->>>> +    struct sdw_slave *slave;
->>>> +
->>>> +    clk_prepare_enable(swrm->hclk);
->>>> +
->>>> +    if (swrm->wake_irq > 0) {
->>>> +        if (!irqd_irq_disabled(irq_get_irq_data(swrm->wake_irq)))
->>>> +            disable_irq_nosync(swrm->wake_irq);
->>>> +    }
->>>> +
->>>> +    /*
->>>> +     * resume all the slaves which must have potentially generated this
->>>> +     * interrupt, this should also wake the controller at the same
->>>> time.
->>>> +     * this is much safer than waking controller directly that will
->>>> deadlock!
->>>> +     */
->>> There should be no difference if you first resume the controller and
->>> then attached peripherals, or do a loop where you rely on the pm_runtime
->>> framework.
->>>
->>> The notion that there might be a dead-lock is surprising, you would need
->>> to elaborate here.Issue is, if wakeup interrupt resumes the controller
->>> first which can
->> trigger an slave pending interrupt (ex: Button press event) in the
->> middle of resume that will try to wake the slave device which in turn
->> will try to wake parent in the middle of resume resulting in a dead lock.
->>
->> This was the best way to avoid dead lock.
-> 
-> Not following, sorry. if you use pm_runtime functions and it so happens
-> that the resume already started, then those routines would wait for the
-> resume to complete.
-yes that is true,
+s/it's/its
 
-TBH, I was trying to reproduce the issue since morning to collect some 
-traces but no luck so far, I hit these issues pretty much rarely. Now 
-code has changed since few months back am unable to reproduce this 
-anymore. Or it might be just the state of code I had while writing this up.
+> media device. The subdevices are registered to the same media device.
+> The ISC will have a base entity which is auto-detected as atmel_isc_base.
+> It will also register a subdevice that allows cropping of the incoming frame
+> to the maximum frame size supported by the ISC.
+> The ISC will create a link between the subdevice that is asynchronously
+> registered and the atmel_isc_scaler entity.
+> Then, the atmel_isc_scaler and atmel_isc_base are connected through another
+> link.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+> Changes in v5:
+> - reworked s_fmt to pass the same format from sink to source
+> - simplified enum_mbus_code
+> - separated tgt and bounds to report correctly in g_sel
+>
+> Changes in v4:
+> As suggested by Jacopo:
+> - renamed atmel_isc_mc to atmel_isc_scaler.c
+> - moved init_mc/clean_mc to isc_base file
+>
+> Changes in v2:
+> - implement try formats
+>
+>  drivers/media/platform/atmel/Makefile         |   2 +-
+>  drivers/media/platform/atmel/atmel-isc-base.c |  73 ++++-
+>  .../media/platform/atmel/atmel-isc-scaler.c   | 261 ++++++++++++++++++
+>  drivers/media/platform/atmel/atmel-isc.h      |  40 +++
+>  .../media/platform/atmel/atmel-sama5d2-isc.c  |  14 +-
+>  .../media/platform/atmel/atmel-sama7g5-isc.c  |  12 +-
+>  6 files changed, 394 insertions(+), 8 deletions(-)
+>  create mode 100644 drivers/media/platform/atmel/atmel-isc-scaler.c
+>
+> diff --git a/drivers/media/platform/atmel/Makefile b/drivers/media/platform/atmel/Makefile
+> index 794e8f739287..f02d03df89d6 100644
+> --- a/drivers/media/platform/atmel/Makefile
+> +++ b/drivers/media/platform/atmel/Makefile
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  atmel-isc-objs = atmel-sama5d2-isc.o
+>  atmel-xisc-objs = atmel-sama7g5-isc.o
+> -atmel-isc-common-objs = atmel-isc-base.o atmel-isc-clk.o
+> +atmel-isc-common-objs = atmel-isc-base.o atmel-isc-clk.o atmel-isc-scaler.o
+>
+>  obj-$(CONFIG_VIDEO_ATMEL_ISI) += atmel-isi.o
+>  obj-$(CONFIG_VIDEO_ATMEL_ISC_BASE) += atmel-isc-common.o
+> diff --git a/drivers/media/platform/atmel/atmel-isc-base.c b/drivers/media/platform/atmel/atmel-isc-base.c
+> index 67b4a2323fed..74f575544e09 100644
+> --- a/drivers/media/platform/atmel/atmel-isc-base.c
+> +++ b/drivers/media/platform/atmel/atmel-isc-base.c
+> @@ -1712,6 +1712,7 @@ static int isc_async_bound(struct v4l2_async_notifier *notifier,
+>  					      struct isc_device, v4l2_dev);
+>  	struct isc_subdev_entity *subdev_entity =
+>  		container_of(notifier, struct isc_subdev_entity, notifier);
+> +	int pad;
+>
+>  	if (video_is_registered(&isc->video_dev)) {
+>  		v4l2_err(&isc->v4l2_dev, "only supports one sub-device.\n");
+> @@ -1720,6 +1721,16 @@ static int isc_async_bound(struct v4l2_async_notifier *notifier,
+>
+>  	subdev_entity->sd = subdev;
+>
+> +	pad = media_entity_get_fwnode_pad(&subdev->entity, asd->match.fwnode,
+> +					  MEDIA_PAD_FL_SOURCE);
+> +	if (pad < 0) {
+> +		v4l2_err(&isc->v4l2_dev, "failed to find pad for %s\n",
+> +			 subdev->name);
+> +		return pad;
+> +	}
+> +
+> +	isc->remote_pad = pad;
+> +
+>  	return 0;
+>  }
+>
+> @@ -1734,8 +1745,8 @@ static void isc_async_unbind(struct v4l2_async_notifier *notifier,
+>  	v4l2_ctrl_handler_free(&isc->ctrls.handler);
+>  }
+>
+> -static struct isc_format *find_format_by_code(struct isc_device *isc,
+> -					      unsigned int code, int *index)
+> +struct isc_format *isc_find_format_by_code(struct isc_device *isc,
+> +					   unsigned int code, int *index)
+>  {
+>  	struct isc_format *fmt = &isc->formats_list[0];
+>  	unsigned int i;
+> @@ -1751,6 +1762,7 @@ static struct isc_format *find_format_by_code(struct isc_device *isc,
+>
+>  	return NULL;
+>  }
+> +EXPORT_SYMBOL_GPL(isc_find_format_by_code);
+>
+>  static int isc_formats_init(struct isc_device *isc)
+>  {
+> @@ -1767,7 +1779,7 @@ static int isc_formats_init(struct isc_device *isc)
+>  	       NULL, &mbus_code)) {
+>  		mbus_code.index++;
+>
+> -		fmt = find_format_by_code(isc, mbus_code.code, &i);
+> +		fmt = isc_find_format_by_code(isc, mbus_code.code, &i);
+>  		if (!fmt) {
+>  			v4l2_warn(&isc->v4l2_dev, "Mbus code %x not supported\n",
+>  				  mbus_code.code);
+> @@ -1893,7 +1905,8 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  	vdev->queue		= q;
+>  	vdev->lock		= &isc->lock;
+>  	vdev->ctrl_handler	= &isc->ctrls.handler;
+> -	vdev->device_caps	= V4L2_CAP_STREAMING | V4L2_CAP_VIDEO_CAPTURE;
+> +	vdev->device_caps	= V4L2_CAP_STREAMING | V4L2_CAP_VIDEO_CAPTURE |
+> +				  V4L2_CAP_IO_MC;
+>  	video_set_drvdata(vdev, isc);
+>
+>  	ret = video_register_device(vdev, VFL_TYPE_VIDEO, -1);
+> @@ -1903,8 +1916,18 @@ static int isc_async_complete(struct v4l2_async_notifier *notifier)
+>  		goto isc_async_complete_err;
+>  	}
+>
+> +	ret = isc_scaler_link(isc);
+> +	if (ret < 0)
+> +		goto isc_async_complete_unregister_device;
+> +
+> +	ret = media_device_register(&isc->mdev);
+> +	if (ret < 0)
+> +		goto isc_async_complete_unregister_device;
 
-But when I hit the issue, this is how it looks like:
+Empty line ?
 
-1. IRQ Wake interrupt resume parent.
+Just one clarification, the media device is initialize by mc_init()
+which is called by the soc-specific code. Do all you platforms call
+it ?
 
-2. parent is in middle of resuming
+>  	return 0;
+>
+> +isc_async_complete_unregister_device:
+> +	video_unregister_device(vdev);
+> +
+>  isc_async_complete_err:
+>  	mutex_destroy(&isc->lock);
+>  	return ret;
+> @@ -1971,6 +1994,48 @@ int isc_pipeline_init(struct isc_device *isc)
+>  }
+>  EXPORT_SYMBOL_GPL(isc_pipeline_init);
+>
+> +int isc_mc_init(struct isc_device *isc, u32 ver)
+> +{
+> +	const struct of_device_id *match;
+> +	int ret;
+> +
+> +	isc->video_dev.entity.function = MEDIA_ENT_F_IO_V4L;
 
-3. Slave Pend interrupt in controller fired up
+It's weird very few drivers use this. It seems correct to me..
 
-4. because of (3) child resume is requested and then the parent resume 
-blocked on (2) to finish.
+> +	isc->video_dev.entity.flags = MEDIA_ENT_FL_DEFAULT;
+> +	isc->pads[ISC_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+> +
+> +	ret = media_entity_pads_init(&isc->video_dev.entity, ISC_PADS_NUM,
+> +				     isc->pads);
+> +	if (ret < 0) {
+> +		dev_err(isc->dev, "media entity init failed\n");
+> +		return ret;
+> +	}
+> +
+> +	isc->mdev.dev = isc->dev;
+> +
+> +	match = of_match_node(isc->dev->driver->of_match_table,
+> +			      isc->dev->of_node);
+> +
+> +	strscpy(isc->mdev.driver_name, KBUILD_MODNAME,
+> +		sizeof(isc->mdev.driver_name));
+> +	strscpy(isc->mdev.model, match->compatible, sizeof(isc->mdev.model));
+> +	snprintf(isc->mdev.bus_info, sizeof(isc->mdev.bus_info), "platform:%s",
+> +		 isc->v4l2_dev.name);
+> +	isc->mdev.hw_revision = ver;
+> +
+> +	media_device_init(&isc->mdev);
+> +
+> +	isc->v4l2_dev.mdev = &isc->mdev;
+> +
+> +	return isc_scaler_init(isc);
+> +}
+> +EXPORT_SYMBOL_GPL(isc_mc_init);
+> +
+> +void isc_mc_cleanup(struct isc_device *isc)
+> +{
+> +	media_entity_cleanup(&isc->video_dev.entity);
 
-5. from (2) we also trying to resume child.
+do you need to media_device_cleanup() ?
 
-6. (5) is blocked on (4) to finish which is blocked on (2) to finish
+> +}
+> +EXPORT_SYMBOL_GPL(isc_mc_cleanup);
+> +
+>  /* regmap configuration */
+>  #define ATMEL_ISC_REG_MAX    0xd5c
+>  const struct regmap_config isc_regmap_config = {
+> diff --git a/drivers/media/platform/atmel/atmel-isc-scaler.c b/drivers/media/platform/atmel/atmel-isc-scaler.c
+> new file mode 100644
+> index 000000000000..0c1f49db47b4
+> --- /dev/null
+> +++ b/drivers/media/platform/atmel/atmel-isc-scaler.c
+> @@ -0,0 +1,261 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Microchip Image Sensor Controller (ISC) Scaler entity support
+> + *
+> + * Copyright (C) 2022 Microchip Technology, Inc.
+> + *
+> + * Author: Eugen Hristev <eugen.hristev@microchip.com>
+> + *
+> + */
+> +
+> +#include <media/media-device.h>
+> +#include <media/media-entity.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-subdev.h>
+> +
+> +#include "atmel-isc-regs.h"
+> +#include "atmel-isc.h"
+> +
+> +static int isc_scaler_get_fmt(struct v4l2_subdev *sd,
+> +			      struct v4l2_subdev_state *sd_state,
+> +			      struct v4l2_subdev_format *format)
+> +{
+> +	struct isc_device *isc = container_of(sd, struct isc_device, scaler_sd);
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt;
+> +
+> +	if (format->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +		v4l2_try_fmt = v4l2_subdev_get_try_format(sd, sd_state,
+> +							  format->pad);
+> +		format->format = *v4l2_try_fmt;
+> +
+> +		return 0;
+> +	}
+> +
+> +	if (format->pad == ISC_SCALER_PAD_SOURCE)
+> +		format->format = isc->scaler_format_source;
+> +	else
+> +		format->format = isc->scaler_format_sink;
 
-we are dead locked. Only way for me to avoid dead lock was to wake the 
-child up after IRQ wake interrupts.
+Having an [] might make this nicer..
 
-here is the stack trace of blocked-tasks from sysrq
+> +
+> +	return 0;
+> +}
+> +
+> +static int isc_scaler_set_fmt(struct v4l2_subdev *sd,
+> +			      struct v4l2_subdev_state *sd_state,
+> +			      struct v4l2_subdev_format *req_fmt)
+> +{
+> +	struct isc_device *isc = container_of(sd, struct isc_device, scaler_sd);
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt;
+> +	struct isc_format *fmt;
+> +	unsigned int i;
+> +
+> +	/* Source format is fixed, we cannot change it */
+> +	if (req_fmt->pad == ISC_SCALER_PAD_SOURCE) {
+> +		req_fmt->format = isc->scaler_format_source;
+> +		return 0;
+> +	}
+> +
+> +	/* There is no limit on the frame size on the sink pad */
+> +	v4l_bound_align_image
+> +		(&req_fmt->format.width, 16, UINT_MAX, 0,
 
-root@linaro-gnome:~# [  182.327220] sysrq: Show Blocked State
-[  182.331063] task:irq/20-soundwir state:D stack:    0 pid:  445 ppid: 
-     2 flags:0x00000008
-[  182.339655] Call trace:
-[  182.342176]  __switch_to+0x168/0x1b8
-[  182.345864]  __schedule+0x2a8/0x880
-[  182.349459]  schedule+0x54/0xf0
-[  182.352700]  rpm_resume+0xc4/0x550
-[  182.356211]  rpm_resume+0x348/0x550
-[  182.359805]  rpm_resume+0x348/0x550
-[  182.363400]  __pm_runtime_resume+0x48/0xb8
-[  182.367616]  sdw_handle_slave_status+0x1f8/0xf80
-[  182.372371]  qcom_swrm_irq_handler+0x5c4/0x6f0
-[  182.376942]  irq_thread_fn+0x2c/0xa0
-[  182.380626]  irq_thread+0x16c/0x288
-[  182.384221]  kthread+0x11c/0x128
-[  182.387549]  ret_from_fork+0x10/0x20
-[  182.391231] task:irq/187-swr_wak state:D stack:    0 pid:  446 ppid: 
-     2 flags:0x00000008
-[  182.399819] Call trace:
-[  182.402339]  __switch_to+0x168/0x1b8
-[  182.406019]  __schedule+0x2a8/0x880
-[  182.409614]  schedule+0x54/0xf0
-[  182.412854]  rpm_resume+0xc4/0x550
-[  182.416363]  rpm_resume+0x348/0x550
-[  182.419957]  rpm_resume+0x348/0x550
-[  182.423552]  __pm_runtime_resume+0x48/0xb8
-[  182.427767]  swrm_runtime_resume+0x98/0x3d0
-[  182.432079]  pm_generic_runtime_resume+0x2c/0x48
-[  182.436832]  __rpm_callback+0x44/0x190
-[  182.440693]  rpm_callback+0x6c/0x78
-[  182.444289]  rpm_resume+0x2f0/0x550
-[  182.447883]  __pm_runtime_resume+0x48/0xb8
-[  182.452099]  qcom_swrm_wake_irq_handler+0x20/0x128
-[  182.457033]  irq_thread_fn+0x2c/0xa0
-[  182.460712]  irq_thread+0x16c/0x288
-[  182.464306]  kthread+0x11c/0x128
-[  182.467634]  ret_from_fork+0x10/0x20
+Fits on the previous line
 
+> +		 &req_fmt->format.height, 16, UINT_MAX, 0, 0);
+> +
+> +	req_fmt->format.colorspace = V4L2_COLORSPACE_SRGB;
+> +	req_fmt->format.field = V4L2_FIELD_NONE;
+> +	req_fmt->format.ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	req_fmt->format.quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	req_fmt->format.xfer_func = V4L2_XFER_FUNC_DEFAULT;
+> +
+> +	fmt = isc_find_format_by_code(isc, req_fmt->format.code, &i);
+> +
+> +	if (!fmt)
+> +		fmt = &isc->formats_list[0];
 
-As am unable to reproduce this issue anymore so I will remove the code 
-dealing with slaves directly for now till we are able to really 
-reproduce the issue.
+The
+        fmt = isc_find_format_by_code();
+        if (!fmt)
+		fmt = &isc->formats_list[0];
 
-> 
-> In other words, there can be multiple requests to resume, but only the
-> *first* request will trigger a transition and others will just increase
-> a refcount.
-> 
-> In addition, the pm_runtime framework guarantees that the peripheral
-> device can only start resuming when the parent controller device is
-> fully resumed.
-> 
-> While I am at it, one thing that kept us busy as well is the
-> relationship between system suspend and pm_runtime suspend. In the
-> generic case a system suspend will cause a pm_runtime resume before you
-> can actually start the system suspend, but you might be able to skip
-> this step. In the Intel case when the controller and its parent device
-> were suspended we had to pm_runtime resume everything because some
-> registers were no longer accessible.
-Interesting, thanks for the hints, will keep that in mind.
+pattern is repeated in a few places. Maybe isc_find_format_by_code()
+could default back to format_list[0] instead of returning NULL ?
 
---srini
-> 
-> 
+> +
+> +	req_fmt->format.code = fmt->mbus_code;
+> +
+> +	if (req_fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+> +		v4l2_try_fmt = v4l2_subdev_get_try_format(sd, sd_state,
+> +							  req_fmt->pad);
+> +		*v4l2_try_fmt = req_fmt->format;
+> +		/* Trying on the sink pad makes the source pad change too */
+> +		v4l2_try_fmt =
+> +			 v4l2_subdev_get_try_format(sd, sd_state,
+
+Fits on previous line ?
+
+> +						    ISC_SCALER_PAD_SOURCE);
+> +		*v4l2_try_fmt = req_fmt->format;
+> +
+> +		v4l_bound_align_image(&v4l2_try_fmt->width,
+> +				      16, isc->max_width, 0,
+> +				      &v4l2_try_fmt->height,
+> +				      16, isc->max_height, 0, 0);
+> +		/* if we are just trying, we are done */
+> +		return 0;
+> +	}
+> +
+> +	isc->scaler_format_sink = req_fmt->format;
+> +
+> +	/* The source pad is the same as the sink, but we have to crop it */
+> +	isc->scaler_format_source = isc->scaler_format_sink;
+> +	v4l_bound_align_image
+> +		(&isc->scaler_format_source.width, 16, isc->max_width, 0,
+> +		 &isc->scaler_format_source.height, 16, isc->max_height, 0, 0);
+> +
+> +	return 0;
+> +}
+> +
+> +static int isc_scaler_enum_mbus_code(struct v4l2_subdev *sd,
+> +				     struct v4l2_subdev_state *sd_state,
+> +				     struct v4l2_subdev_mbus_code_enum *code)
+> +{
+> +	struct isc_device *isc = container_of(sd, struct isc_device, scaler_sd);
+> +
+> +	/*
+> +	 * All formats supported by the ISC are supported by the scaler.
+> +	 * Advertise the formats which the ISC can take as input, as the scaler
+> +	 * entity cropping is part of the PFE module (parallel front end)
+> +	 */
+> +	if (code->index < isc->formats_list_size) {
+> +		code->code = isc->formats_list[code->index].mbus_code;
+> +		return 0;
+> +	}
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int isc_scaler_g_sel(struct v4l2_subdev *sd,
+> +			    struct v4l2_subdev_state *sd_state,
+> +			    struct v4l2_subdev_selection *sel)
+> +{
+> +	struct isc_device *isc = container_of(sd, struct isc_device, scaler_sd);
+> +
+> +	if (sel->pad == ISC_SCALER_PAD_SOURCE)
+> +		return -EINVAL;
+> +
+> +	if (sel->target == V4L2_SEL_TGT_CROP_BOUNDS) {
+> +		/* bounds are the input format received */
+> +		sel->r.height = isc->scaler_format_sink.height;
+> +		sel->r.width = isc->scaler_format_sink.width;
+> +		sel->r.left = 0;
+> +		sel->r.top = 0;
+> +	} else if (sel->target == V4L2_SEL_TGT_CROP) {
+> +		/*
+> +		 * crop is done to the output format,
+> +		 * limited by ISC maximum size
+> +		 */
+> +		sel->r.height = isc->scaler_format_source.height;
+> +		sel->r.width = isc->scaler_format_source.width;
+> +		sel->r.left = 0;
+> +		sel->r.top = 0;
+> +	} else {
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int isc_scaler_init_cfg(struct v4l2_subdev *sd,
+> +			       struct v4l2_subdev_state *sd_state)
+> +{
+> +	struct v4l2_mbus_framefmt *v4l2_try_fmt =
+> +		v4l2_subdev_get_try_format(sd, sd_state, 0);
+> +	struct isc_device *isc = container_of(sd, struct isc_device, scaler_sd);
+> +
+> +	*v4l2_try_fmt = isc->scaler_format_source;
+
+Try crop rectangles should be initialized too ?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_subdev_pad_ops isc_scaler_pad_ops = {
+> +	.enum_mbus_code = isc_scaler_enum_mbus_code,
+> +	.set_fmt = isc_scaler_set_fmt,
+> +	.get_fmt = isc_scaler_get_fmt,
+> +	.get_selection = isc_scaler_g_sel,
+> +	.init_cfg = isc_scaler_init_cfg,
+> +};
+> +
+> +static const struct v4l2_subdev_ops xisc_scaler_subdev_ops = {
+> +	.pad = &isc_scaler_pad_ops,
+> +};
+> +
+> +int isc_scaler_init(struct isc_device *isc)
+> +{
+> +	int ret;
+> +
+> +	v4l2_subdev_init(&isc->scaler_sd, &xisc_scaler_subdev_ops);
+> +
+> +	isc->scaler_sd.owner = THIS_MODULE;
+> +	isc->scaler_sd.dev = isc->dev;
+> +	snprintf(isc->scaler_sd.name, sizeof(isc->scaler_sd.name),
+> +		 "atmel_isc_scaler");
+> +
+> +	isc->scaler_sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
+> +	isc->scaler_sd.entity.function = MEDIA_ENT_F_PROC_VIDEO_SCALER;
+> +	isc->scaler_pads[ISC_SCALER_PAD_SINK].flags = MEDIA_PAD_FL_SINK;
+> +	isc->scaler_pads[ISC_SCALER_PAD_SOURCE].flags = MEDIA_PAD_FL_SOURCE;
+> +
+> +	isc->scaler_format_source.height = isc->max_height;
+> +	isc->scaler_format_source.width = isc->max_width;
+> +	isc->scaler_format_source.code = isc->formats_list[0].mbus_code;
+> +	isc->scaler_format_source.colorspace = V4L2_COLORSPACE_SRGB;
+> +	isc->scaler_format_source.field = V4L2_FIELD_NONE;
+> +	isc->scaler_format_source.ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
+> +	isc->scaler_format_source.quantization = V4L2_QUANTIZATION_DEFAULT;
+> +	isc->scaler_format_source.xfer_func = V4L2_XFER_FUNC_DEFAULT;
+
+Minor detail: you assign the field from colorspace on at s_ftm time
+too.
+
+Maybe if you define a static const default_fmt you can re-use it
+instead of assigning fields one by one ?
+
+> +
+> +	isc->scaler_format_sink = isc->scaler_format_source;
+> +
+> +	ret = media_entity_pads_init(&isc->scaler_sd.entity,
+> +				     ISC_SCALER_PADS_NUM,
+> +				     isc->scaler_pads);
+> +	if (ret < 0) {
+> +		dev_err(isc->dev, "scaler sd media entity init failed\n");
+> +		return ret;
+> +	}
+
+empty line ?
+
+> +	ret = v4l2_device_register_subdev(&isc->v4l2_dev, &isc->scaler_sd);
+> +	if (ret < 0) {
+> +		dev_err(isc->dev, "scaler sd failed to register subdev\n");
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(isc_scaler_init);
+> +
+> +int isc_scaler_link(struct isc_device *isc)
+> +{
+> +	int ret;
+> +
+> +	ret = media_create_pad_link(&isc->current_subdev->sd->entity,
+> +				    isc->remote_pad, &isc->scaler_sd.entity,
+> +				    ISC_SCALER_PAD_SINK,
+> +				    MEDIA_LNK_FL_ENABLED |
+> +				    MEDIA_LNK_FL_IMMUTABLE);
+> +
+> +	if (ret < 0) {
+> +		dev_err(isc->dev, "Failed to create pad link: %s to %s\n",
+> +			isc->current_subdev->sd->entity.name,
+> +			isc->scaler_sd.entity.name);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(isc->dev, "link with %s pad: %d\n",
+> +		isc->current_subdev->sd->name, isc->remote_pad);
+> +
+> +	ret = media_create_pad_link(&isc->scaler_sd.entity,
+> +				    ISC_SCALER_PAD_SOURCE,
+> +				    &isc->video_dev.entity, ISC_PAD_SINK,
+> +				    MEDIA_LNK_FL_ENABLED |
+> +				    MEDIA_LNK_FL_IMMUTABLE);
+> +
+> +	if (ret < 0) {
+> +		dev_err(isc->dev, "Failed to create pad link: %s to %s\n",
+> +			isc->scaler_sd.entity.name,
+> +			isc->video_dev.entity.name);
+> +		return ret;
+> +	}
+> +
+> +	dev_dbg(isc->dev, "link with %s pad: %d\n", isc->scaler_sd.name,
+> +		ISC_SCALER_PAD_SOURCE);
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(isc_scaler_link);
+> +
+> diff --git a/drivers/media/platform/atmel/atmel-isc.h b/drivers/media/platform/atmel/atmel-isc.h
+> index f9ad7ec6bd13..c1ca3916700e 100644
+> --- a/drivers/media/platform/atmel/atmel-isc.h
+> +++ b/drivers/media/platform/atmel/atmel-isc.h
+> @@ -183,6 +183,17 @@ struct isc_reg_offsets {
+>  	u32 his_entry;
+>  };
+>
+> +enum isc_mc_pads {
+> +	ISC_PAD_SINK	= 0,
+> +	ISC_PADS_NUM	= 1,
+> +};
+> +
+> +enum isc_scaler_pads {
+> +	ISC_SCALER_PAD_SINK	= 0,
+> +	ISC_SCALER_PAD_SOURCE	= 1,
+> +	ISC_SCALER_PADS_NUM	= 2,
+> +};
+> +
+>  /*
+>   * struct isc_device - ISC device driver data/config struct
+>   * @regmap:		Register map
+> @@ -258,6 +269,14 @@ struct isc_reg_offsets {
+>   *			be used as an input to the controller
+>   * @controller_formats_size:	size of controller_formats array
+>   * @formats_list_size:	size of formats_list array
+> + * @pads:		media controller pads for isc video entity
+> + * @mdev:		media device that is registered by the isc
+> + * @remote_pad:		remote pad on the connected subdevice
+> + * @scaler_sd:		subdevice for the scaler that isc registers
+> + * @scaler_pads:	media controller pads for the scaler subdevice
+> + * @scaler_format_sink:	current format for the scaler subdevice on the sink pad
+> + * @scaler_format_source:	current format for the scaler subdevice on the
+
+I'm still not super happy with the scaler configuration being part of
+the larger ISC base structure. But I understand this is fine with you.
+Please consider having an array for the scaler pads formats, but it's a minor
+detail.
+
+> + *			source pad
+>   */
+>  struct isc_device {
+>  	struct regmap		*regmap;
+> @@ -346,6 +365,20 @@ struct isc_device {
+>  	struct isc_format		*formats_list;
+>  	u32				controller_formats_size;
+>  	u32				formats_list_size;
+> +
+> +	struct {
+> +		struct media_pad		pads[ISC_PADS_NUM];
+> +		struct media_device		mdev;
+> +
+> +		u32				remote_pad;
+> +	};
+> +
+> +	struct {
+> +		struct v4l2_subdev		scaler_sd;
+> +		struct media_pad		scaler_pads[ISC_SCALER_PADS_NUM];
+> +		struct v4l2_mbus_framefmt	scaler_format_sink;
+> +		struct v4l2_mbus_framefmt	scaler_format_source;
+> +	};
+>  };
+>
+>  extern const struct regmap_config isc_regmap_config;
+> @@ -357,4 +390,11 @@ int isc_clk_init(struct isc_device *isc);
+>  void isc_subdev_cleanup(struct isc_device *isc);
+>  void isc_clk_cleanup(struct isc_device *isc);
+>
+> +int isc_scaler_link(struct isc_device *isc);
+> +int isc_scaler_init(struct isc_device *isc);
+> +int isc_mc_init(struct isc_device *isc, u32 ver);
+> +void isc_mc_cleanup(struct isc_device *isc);
+> +
+> +struct isc_format *isc_find_format_by_code(struct isc_device *isc,
+> +					   unsigned int code, int *index);
+>  #endif
+> diff --git a/drivers/media/platform/atmel/atmel-sama5d2-isc.c b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> index c5b9563e36cb..c244682ea22f 100644
+> --- a/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> +++ b/drivers/media/platform/atmel/atmel-sama5d2-isc.c
+> @@ -553,6 +553,12 @@ static int atmel_isc_probe(struct platform_device *pdev)
+>  			break;
+>  	}
+>
+> +	regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
+> +
+> +	ret = isc_mc_init(isc, ver);
+> +	if (ret < 0)
+> +		goto isc_probe_mc_init_err;
+> +
+>  	pm_runtime_set_active(dev);
+>  	pm_runtime_enable(dev);
+>  	pm_request_idle(dev);
+> @@ -562,7 +568,7 @@ static int atmel_isc_probe(struct platform_device *pdev)
+>  	ret = clk_prepare_enable(isc->ispck);
+>  	if (ret) {
+>  		dev_err(dev, "failed to enable ispck: %d\n", ret);
+> -		goto cleanup_subdev;
+> +		goto isc_probe_mc_init_err;
+>  	}
+>
+>  	/* ispck should be greater or equal to hclock */
+> @@ -572,7 +578,6 @@ static int atmel_isc_probe(struct platform_device *pdev)
+>  		goto unprepare_clk;
+>  	}
+>
+> -	regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
+>  	dev_info(dev, "Microchip ISC version %x\n", ver);
+>
+>  	return 0;
+> @@ -580,6 +585,9 @@ static int atmel_isc_probe(struct platform_device *pdev)
+>  unprepare_clk:
+>  	clk_disable_unprepare(isc->ispck);
+>
+> +isc_probe_mc_init_err:
+> +	isc_mc_cleanup(isc);
+> +
+>  cleanup_subdev:
+>  	isc_subdev_cleanup(isc);
+>
+> @@ -600,6 +608,8 @@ static int atmel_isc_remove(struct platform_device *pdev)
+>
+>  	pm_runtime_disable(&pdev->dev);
+>
+> +	isc_mc_cleanup(isc);
+> +
+>  	isc_subdev_cleanup(isc);
+>
+>  	v4l2_device_unregister(&isc->v4l2_dev);
+> diff --git a/drivers/media/platform/atmel/atmel-sama7g5-isc.c b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> index 07a80b08bc54..9dc75eed0098 100644
+> --- a/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> +++ b/drivers/media/platform/atmel/atmel-sama7g5-isc.c
+> @@ -547,15 +547,23 @@ static int microchip_xisc_probe(struct platform_device *pdev)
+>  			break;
+>  	}
+>
+> +	regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
+> +
+> +	ret = isc_mc_init(isc, ver);
+> +	if (ret < 0)
+> +		goto isc_probe_mc_init_err;
+> +
+>  	pm_runtime_set_active(dev);
+>  	pm_runtime_enable(dev);
+>  	pm_request_idle(dev);
+>
+> -	regmap_read(isc->regmap, ISC_VERSION + isc->offsets.version, &ver);
+>  	dev_info(dev, "Microchip XISC version %x\n", ver);
+>
+>  	return 0;
+>
+> +isc_probe_mc_init_err:
+> +	isc_mc_cleanup(isc);
+> +
+>  cleanup_subdev:
+>  	isc_subdev_cleanup(isc);
+>
+> @@ -576,6 +584,8 @@ static int microchip_xisc_remove(struct platform_device *pdev)
+>
+>  	pm_runtime_disable(&pdev->dev);
+>
+> +	isc_mc_cleanup(isc);
+> +
+>  	isc_subdev_cleanup(isc);
+>
+>  	v4l2_device_unregister(&isc->v4l2_dev);
+> --
+> 2.25.1
+>
