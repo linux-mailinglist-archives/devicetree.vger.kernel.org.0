@@ -2,61 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3644C0D35
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:25:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4114C0D54
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 08:33:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238677AbiBWHZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 02:25:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50076 "EHLO
+        id S237762AbiBWHeG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 02:34:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238693AbiBWHZQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:25:16 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C725570878;
-        Tue, 22 Feb 2022 23:24:37 -0800 (PST)
-X-UUID: 2ff794e87c794a37b6fee2fb7769465e-20220223
-X-UUID: 2ff794e87c794a37b6fee2fb7769465e-20220223
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 926593344; Wed, 23 Feb 2022 15:24:31 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 23 Feb 2022 15:24:30 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Feb 2022 15:24:28 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>
-CC:     Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, <anan.sun@mediatek.com>,
-        <xueqi.zhang@mediatek.com>, <yen-chang.chen@mediatek.com>,
-        "AngeloGioacchino Del Regno" 
-        <angelogioacchino.delregno@collabora.com>,
-        <mingyuan.ma@mediatek.com>, <yf.wang@mediatek.com>,
-        <libo.kang@mediatek.com>, <chengci.xu@mediatek.com>
-Subject: [PATCH v2 2/2] iommu/mediatek: Add mt8186 iommu support
-Date:   Wed, 23 Feb 2022 15:24:02 +0800
-Message-ID: <20220223072402.17518-3-yong.wu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220223072402.17518-1-yong.wu@mediatek.com>
-References: <20220223072402.17518-1-yong.wu@mediatek.com>
+        with ESMTP id S230206AbiBWHeF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 02:34:05 -0500
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48B6150470
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:33:37 -0800 (PST)
+Received: by mail-lf1-x132.google.com with SMTP id b11so29444959lfb.12
+        for <devicetree@vger.kernel.org>; Tue, 22 Feb 2022 23:33:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lDlvFrajDqrQchn6w54uabpCbRnHwQwOc/C3bGmlO0U=;
+        b=dPv5BYrzN39pPB63DQ2U4vLv0nOlr98gwht+Zo4QATaTg5q7prK52shXjsR/AXna6U
+         k71RPBMDx5GsG8mV17b87tTN3iAWOTahxvggmsaI0oMlsVgEiZoXtDR87rqcGCLj6DI5
+         Msk2/lY5YZo0wR4NNR2sUeLocDFc3Kpo8TpPo23Ye2kg3mFHuHr14max0+aI3TyZvlOF
+         8/MHL9x9RtHFgI1bjFWYygEWBld8kk8y3weK7HbCIlbe9QeLYfl/cWhrdhEiwzJh2s+d
+         gpokPBntHpV5rlru4h165pnoUlQhr32QsgOK4yvG8nWcE8dA1duH6MCTXNjLtpdQ1fOp
+         IODg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lDlvFrajDqrQchn6w54uabpCbRnHwQwOc/C3bGmlO0U=;
+        b=r1jpNnKtwqEibz6Z0L28e7h9CtFX3O+FwgP+80JV7MXvCEyoy/Dt0WlcnzUduIlxRS
+         SnikSl1M/WJDZLqPrbxZZ2aEV/tl5oDTer06mguInVn6ia1Y+gKj/nAYnOJeG13gRH1P
+         9cI0cxjYbt0GVUWJFmDIpJA3uuf2tiXB4RtYN7lRPKJzKYQmWn3bfOsjR79fI650qg8D
+         Y3SPPa6MRi1poDC8lcmRiITO3sHfcIrXqLOoIdrlv0Jkz+TRz6saB3ufiXPeiry7b1T+
+         kLgwqpjmym+c2p6wAGTE6FjX0o+8UrLMqrWAZ3WR0twjT7oWj4vpb2m00yJ+nhT8hqrM
+         ar2g==
+X-Gm-Message-State: AOAM53304AwRa05f14gUIsb9c7zdbuvKLh7szVkIHpArtgc52LNSiuQf
+        1ChwX9NSUhZZEvUMIWzeKrgIPFOezgIWrxvp2MmEIg==
+X-Google-Smtp-Source: ABdhPJw/GJqPBESH0NTsrjpQmSPMVgGSEkmdayQA8+Ukdar13GPBEALRgM9upMK7jU0EafwCI3f8KY3Ur+qVWLFe8VA=
+X-Received: by 2002:a05:6512:710:b0:443:7fb6:5223 with SMTP id
+ b16-20020a056512071000b004437fb65223mr19200205lfs.223.1645601615597; Tue, 22
+ Feb 2022 23:33:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+References: <cover.1642582832.git.zong.li@sifive.com> <mhng-ffd770d4-8f8a-417a-a589-f14d09f55282@palmer-ri-x1c9>
+ <CANXhq0pYHfsa4T1t=FK2=jM4OEfgXD=sDS5vVV4EKCpkwTz6og@mail.gmail.com> <20220218222339.9BF5CC340E9@smtp.kernel.org>
+In-Reply-To: <20220218222339.9BF5CC340E9@smtp.kernel.org>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Wed, 23 Feb 2022 15:33:24 +0800
+Message-ID: <CANXhq0qbjBpRPMP51cK9QsvQj-uvG_czPgLw+cjrWXhWEibcDw@mail.gmail.com>
+Subject: Re: [PATCH 0/4] Refactor the PRCI driver to reduce the complexity
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,56 +74,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add mt8186 iommu supports.
+On Sat, Feb 19, 2022 at 6:23 AM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Zong Li (2022-02-06 21:21:50)
+> > On Sat, Feb 5, 2022 at 2:56 AM Palmer Dabbelt <palmer@dabbelt.com> wrote:
+> > >
+> > > On Wed, 19 Jan 2022 01:28:37 PST (-0800), zong.li@sifive.com wrote:
+> > > > This patch set tries to improve the PRCI driver to reduce the
+> > > > complexity, we remove the SoCs C files by putting putting all stuff in
+> > > > each SoCs header file, and include these SoCs-specific header files in
+> > > > core of PRCI. It can also avoid the W=1 kernel build warnings about
+> > > > variable defined but not used [-Wunused-const-variable=], like 'commit
+> > > > 487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
+> > > > 'prci_clk_fu540' where it's used")' does.
+> > > >
+> > > > This patch set also contains the dt-bindings and dts change, because
+> > > > we change the macro name for fu540 and fu740 by adding the prefix
+> > > > respectively.
+> > > >
+> > > > Thanks all for your review and suggestions.
+> > > >
+> > > > Zong Li (4):
+> > > >   dt-bindings: change the macro name of prci in header files and example
+> > > >   riscv: dts: Change the macro name of prci in each device node
+> > > >   clk: sifive: Add SoCs prefix in each SoCs-dependent data
+> > >
+> > > IIUC these there aren't bisectable: the bindings change will break
+> > > builds of the DTs and drivers.  I'm not sure what's generally the way to
+> > > go with these, but I always try to avoid broken builds in the middle of
+> > > patch sets.
+> > >
+> > > Aside from that this generally looks good to me, but the DT and clock
+> > > folks are probably a better bet for a proper review here.  Happy to take
+> > > this through the RISC-V tree, but IMO it's a better candidate for the
+> > > clock tree so
+> > >
+> > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com> # aside from breaking bisect
+> > >
+> > > Thanks!
+> > >
+> >
+> > Many thanks for your review and reminding, and yes, it seems a bit
+> > hard there since the DT binding docs and includes need to be a
+> > separate patch.
+> >
+>
+> Why not add new defines with the same numbers in a different file? Then
+> a cycle or two later the conflicting defines can be removed? The driver
+> can include the new file with the new defines while the old defines can
+> be changed in parallel?
 
-Signed-off-by: Anan Sun <anan.sun@mediatek.com>
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
----
- drivers/iommu/mtk_iommu.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
-
-diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
-index d9ca9ffe404c..174a2f3bd68a 100644
---- a/drivers/iommu/mtk_iommu.c
-+++ b/drivers/iommu/mtk_iommu.c
-@@ -160,6 +160,7 @@ enum mtk_iommu_plat {
- 	M4U_MT8167,
- 	M4U_MT8173,
- 	M4U_MT8183,
-+	M4U_MT8186,
- 	M4U_MT8192,
- 	M4U_MT8195,
- };
-@@ -1438,6 +1439,21 @@ static const struct mtk_iommu_plat_data mt8183_data = {
- 	.larbid_remap = {{0}, {4}, {5}, {6}, {7}, {2}, {3}, {1}},
- };
- 
-+static const struct mtk_iommu_plat_data mt8186_data_mm = {
-+	.m4u_plat       = M4U_MT8186,
-+	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS | OUT_ORDER_WR_EN |
-+			  WR_THROT_EN | IOVA_34_EN | NOT_STD_AXI_MODE |
-+			  MTK_IOMMU_TYPE_MM,
-+	.larbid_remap   = {{0}, {1, MTK_INVALID_LARBID, 8}, {4}, {7}, {2}, {9, 11, 19, 20},
-+			   {MTK_INVALID_LARBID, 14, 16},
-+			   {MTK_INVALID_LARBID, 13, MTK_INVALID_LARBID, 17}},
-+	.inv_sel_reg    = REG_MMU_INV_SEL_GEN2,
-+	.banks_num      = 1,
-+	.banks_enable   = {true},
-+	.iova_region    = mt8192_multi_dom,
-+	.iova_region_nr = ARRAY_SIZE(mt8192_multi_dom),
-+};
-+
- static const struct mtk_iommu_plat_data mt8192_data = {
- 	.m4u_plat       = M4U_MT8192,
- 	.flags          = HAS_BCLK | HAS_SUB_COMM_2BITS | OUT_ORDER_WR_EN |
-@@ -1507,6 +1523,7 @@ static const struct of_device_id mtk_iommu_of_ids[] = {
- 	{ .compatible = "mediatek,mt8167-m4u", .data = &mt8167_data},
- 	{ .compatible = "mediatek,mt8173-m4u", .data = &mt8173_data},
- 	{ .compatible = "mediatek,mt8183-m4u", .data = &mt8183_data},
-+	{ .compatible = "mediatek,mt8186-iommu-mm",    .data = &mt8186_data_mm}, /* mm: m4u */
- 	{ .compatible = "mediatek,mt8192-m4u", .data = &mt8192_data},
- 	{ .compatible = "mediatek,mt8195-iommu-infra", .data = &mt8195_data_infra},
- 	{ .compatible = "mediatek,mt8195-iommu-vdo",   .data = &mt8195_data_vdo},
--- 
-2.18.0
-
+Hi Stephon, many thanks for your tips. I'm afraid that I don't
+completely understand, does it mean that I can create a new temporary
+file to define these numbers for the driver, and add a patch to remove
+this file in the same patch set. If I understand correctly, let me
+prepare the next version for doing that. Thanks.
