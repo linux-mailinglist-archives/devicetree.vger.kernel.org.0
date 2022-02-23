@@ -2,133 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 508AF4C14D8
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEFB04C153E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 15:18:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236507AbiBWN5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:57:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        id S241481AbiBWOSw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 09:18:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbiBWN5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:57:33 -0500
-Received: from loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9540636E14;
-        Wed, 23 Feb 2022 05:57:01 -0800 (PST)
-Received: by ajax-webmail-mail.loongson.cn (Coremail) ; Wed, 23 Feb 2022
- 21:56:12 +0800 (GMT+08:00)
-X-Originating-IP: [10.20.42.36]
-Date:   Wed, 23 Feb 2022 21:56:12 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From:   =?UTF-8?B?6ZqL5pmv5bOw?= <suijingfeng@loongson.cn>
-To:     "Rob Herring" <robh@kernel.org>
-Cc:     "Sui Jingfeng" <15330273260@189.cn>,
-        "Maxime Ripard" <mripard@kernel.org>,
-        "Thomas Zimmermann" <tzimmermann@suse.de>,
-        "Roland Scheidegger" <sroland@vmware.com>,
-        "Zack Rusin" <zackr@vmware.com>,
-        "Christian Gmeiner" <christian.gmeiner@gmail.com>,
-        "David Airlie" <airlied@linux.ie>,
-        "Daniel Vetter" <daniel@ffwll.ch>,
-        "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
-        "Dan Carpenter" <dan.carpenter@oracle.com>,
-        "Krzysztof Kozlowski" <krzk@kernel.org>,
-        "Andrey Zhizhikin" <andrey.zhizhikin@leica-geosystems.com>,
-        "Sam Ravnborg" <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Jiaxun Yang" <jiaxun.yang@flygoat.com>,
-        "Lucas Stach" <l.stach@pengutronix.de>,
-        "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        "Ilia Mirkin" <imirkin@alum.mit.edu>,
-        "Qing Zhang" <zhangqing@loongson.cn>, linux-mips@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: Re: [PATCH v10 2/4] Documentation/dt: Add descriptions for
- loongson display controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.10a build 20191018(4c4f6d15)
- Copyright (c) 2002-2022 www.mailtech.cn .loongson.cn
-In-Reply-To: <YhVrigEnXTiNgk67@robh.at.kernel.org>
-References: <20220220145554.117854-1-15330273260@189.cn>
- <20220220145554.117854-3-15330273260@189.cn>
- <YhVrigEnXTiNgk67@robh.at.kernel.org>
-Content-Transfer-Encoding: base64
-X-CM-CTRLDATA: jJgo1GZvb3Rlcl90eHQ9MjU4NTo2MTI=
-Content-Type: text/plain; charset=UTF-8
+        with ESMTP id S234631AbiBWOSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 09:18:51 -0500
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED66B0D0D;
+        Wed, 23 Feb 2022 06:18:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645625904; x=1677161904;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=crq1RQf8JYsNnbTFUCounwd1wHEYciMzKMAUGyE7U0E=;
+  b=nOam0reJjskYH6zRei5Ip4EGifKszNTAJXCBily/TCgZdd2CdipzgDed
+   ZlZEr6BNAXaC75gN1m8cei/yU8DPHJbLe/mOzmg279G/20CPRfYDQ+Cyh
+   3XkXJ6Pj0jOn0fR1ubtoU6AM55b0CIe3V8kZ8iRNXkJpKYwJ3pqAt1smd
+   Fdy1XMnbsRo6ew5XrlrfjOPgcJrL0eEmBiVwf976usNOTnRFhyz7Nvrs0
+   V0viGlZOuWs/GPxmzuN9p8eIMpDolLYDK9EActvYQ6HpZ90LbQi9alWyY
+   nZnzmPjQFcMfaSO0KYd7OgSxwMTTgcvcyTZ6v+8KkSY7LTBcGRAzdIp1n
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="276591593"
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
+   d="scan'208";a="276591593"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 06:18:24 -0800
+X-IronPort-AV: E=Sophos;i="5.88,391,1635231600"; 
+   d="scan'208";a="548266192"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 06:18:21 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id E6E1C201C2;
+        Wed, 23 Feb 2022 16:18:18 +0200 (EET)
+Date:   Wed, 23 Feb 2022 16:18:18 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     Michael Tretter <m.tretter@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
+        kernel@pengutronix.de, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, Marek Vasut <marex@denx.de>
+Subject: Re: [PATCH v10 2/2] media: i2c: isl7998x: Add driver for Intersil
+ ISL7998x
+Message-ID: <YhZCKsiUgyh3HodU@paasikivi.fi.intel.com>
+References: <20220217154407.2892822-1-m.tretter@pengutronix.de>
+ <20220217154407.2892822-3-m.tretter@pengutronix.de>
+ <2a2038bc-9f84-c451-deb3-1e807ac2f0d3@xs4all.nl>
+ <YhYlnEBAh0QtRXZ0@paasikivi.fi.intel.com>
+ <YhYuogHaHuyVPd2C@paasikivi.fi.intel.com>
+ <2c0b387c-d636-bc0c-74b1-f1eba3d89254@xs4all.nl>
 MIME-Version: 1.0
-Message-ID: <720f940e.5ac.17f26de3a5b.Coremail.suijingfeng@loongson.cn>
-X-Coremail-Locale: en_US
-X-CM-TRANSID: AQAAf9Dx_8v8PBZiZrgFAA--.3690W
-X-CM-SenderInfo: xvxlyxpqjiv03j6o00pqjv00gofq/1tbiAQAGC13QvO5TygABsL
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-        CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-        daVFxhVjvjDU=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2c0b387c-d636-bc0c-74b1-f1eba3d89254@xs4all.nl>
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-CgoKJmd0OyAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KJmd0OyBGcm9tOiAiUm9iIEhlcnJp
-bmciIDxyb2JoQGtlcm5lbC5vcmc+CiZndDsgU2VudCBUaW1lOiAyMDIyLTAyLTIzIDA3OjAyOjM0
-IChXZWRuZXNkYXkpCiZndDsgVG86ICJTdWkgSmluZ2ZlbmciICZsdDsxNTMzMDI3MzI2MEAxODku
-Y24mZ3Q7CiZndDsgQ2M6ICJNYXhpbWUgUmlwYXJkIiA8bXJpcGFyZEBrZXJuZWwub3JnPiwgIlRo
-b21hcyBaaW1tZXJtYW5uIiA8dHppbW1lcm1hbm5Ac3VzZS5kZT4sICJSb2xhbmQgU2NoZWlkZWdn
-ZXIiIDxzcm9sYW5kQHZtd2FyZS5jb20+LCAiWmFjayBSdXNpbiIgPHphY2tyQHZtd2FyZS5jb20+
-LCAiQ2hyaXN0aWFuIEdtZWluZXIiIDxjaHJpc3RpYW4uZ21laW5lckBnbWFpbC5jb20+LCAiRGF2
-aWQgQWlybGllIiA8YWlybGllZEBsaW51eC5pZT4sICJEYW5pZWwgVmV0dGVyIiA8ZGFuaWVsQGZm
-d2xsLmNoPiwgIlRob21hcyBCb2dlbmRvZXJmZXIiIDx0c2JvZ2VuZEBhbHBoYS5mcmFua2VuLmRl
-PiwgIkRhbiBDYXJwZW50ZXIiIDxkYW4uY2FycGVudGVyQG9yYWNsZS5jb20+LCAiS3J6eXN6dG9m
-IEtvemxvd3NraSIgPGtyemtAa2VybmVsLm9yZz4sICJBbmRyZXkgWmhpemhpa2luIiA8YW5kcmV5
-LnpoaXpoaWtpbkBsZWljYS1nZW9zeXN0ZW1zLmNvbT4sICJTYW0gUmF2bmJvcmciIDxzYW1AcmF2
-bmJvcmcub3JnPiwgIkRhdmlkIFMgLiBNaWxsZXIiIDxkYXZlbUBkYXZlbWxvZnQubmV0PiwgIkpp
-YXh1biBZYW5nIiA8amlheHVuLnlhbmdAZmx5Z29hdC5jb20+LCAiTHVjYXMgU3RhY2giIDxsLnN0
-YWNoQHBlbmd1dHJvbml4LmRlPiwgIk1hYXJ0ZW4gTGFua2hvcnN0IiA8bWFhcnRlbi5sYW5raG9y
-c3RAbGludXguaW50ZWwuY29tPiwgIklsaWEgTWlya2luIiA8aW1pcmtpbkBhbHVtLm1pdC5lZHU+
-LCAiUWluZyBaaGFuZyIgPHpoYW5ncWluZ0Bsb29uZ3Nvbi5jbj4sIHN1aWppbmdmZW5nIDxzdWlq
-aW5nZmVuZ0Bsb29uZ3Nvbi5jbj4sIGxpbnV4LW1pcHNAdmdlci5rZXJuZWwub3JnLCBsaW51eC1r
-ZXJuZWxAdmdlci5rZXJuZWwub3JnLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZywgZHJpLWRl
-dmVsQGxpc3RzLmZyZWVkZXNrdG9wLm9yZwomZ3Q7IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjEwIDIv
-NF0gRG9jdW1lbnRhdGlvbi9kdDogQWRkIGRlc2NyaXB0aW9ucyBmb3IgbG9vbmdzb24gZGlzcGxh
-eSBjb250cm9sbGVyCiZndDsgCiZndDsgT24gU3VuLCBGZWIgMjAsIDIwMjIgYXQgMTA6NTU6NTJQ
-TSArMDgwMCwgU3VpIEppbmdmZW5nIHdyb3RlOgomZ3Q7ICZndDsgRnJvbTogc3VpamluZ2Zlbmcg
-PHN1aWppbmdmZW5nQGxvb25nc29uLmNuPgomZ3Q7IAomZ3Q7IEZvbGxvdyB0aGUgY29udmVudGlv
-bnMgb2YgdGhlIHN1YnN5c3RlbSBmb3IgcGF0Y2ggc3ViamVjdHMuIEl0IHNob3VsZCBiZSAKJmd0
-OyBldmlkZW50IHdpdGggJ2dpdCBsb2cgLS1vbmVsaW5lIERvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9kaXNwbGF5Jy4KJmd0OyAKJmd0OyBTb21ldGhpbmcgbGlrZSB0aGlzOgomZ3Q7
-IAomZ3Q7IGR0LWJpbmRpbmdzOiBkaXNwbGF5OiBBZGQgTG9vbmdzb24gZGlzcGxheSBjb250cm9s
-bGVyCiZndDsgCgpIaSwgCgpXZSBhcmUgbm90IGEgcGxhdGZvcm0gZGV2aWNlIGRyaXZlciwgdGhl
-cmUgaXMgbm8Kb2ZfZGV2aWNlX2lkIGRlZmluZWQgaW4gbXkgZHJpdmVyLiBJbiBvdGhlciB3b3Jk
-LCAKbXkgZHJpdmVyIHdpbGwgbm90IGJpbmQgYWdhaW5zdCBkZXZpY2VzIHdob3NlIGNvbXBhdGli
-bGUKaXMgImxvb25nc29uLGxzN2ExMDAwLWRjIi4gV2UganVzdCBwYXJzZSB0aGUgZGV2aWNlIHRy
-ZWUKYWN0aXZlbHksIGZpbmQgbmVjZXNzYXJ5IGluZm9ybWF0aW9uIG9mIGludGVyZXN0LiAKSW4g
-dGhpcyBjYXNlLCBjYW4gSSB1c2UgdGhlIHdvcmQgImR0LWJpbmRpbmdzIiBpbiB0aGUgY29tbWl0
-IHRpdGxlPyAKCkkgd2FudCB0byBmb2xsb3cgdGhlIGNvbnZlbnRpb25zLCBidXQgZ2V0IHNvbWUg
-cHVzaCBiYWNrLApLcnp5c3p0b2Ygc2F5IHRoYXQgaGUgY2FuIG5vdCBzZWUgYW55IGJpbmRpbmdz
-LCB0aGVzZSBhcmUgbm90IGJpbmRpbmdzLjwvc3VpamluZ2ZlbmdAbG9vbmdzb24uY24+PC9zdWlq
-aW5nZmVuZ0Bsb29uZ3Nvbi5jbj48L3poYW5ncWluZ0Bsb29uZ3Nvbi5jbj48L2ltaXJraW5AYWx1
-bS5taXQuZWR1PjwvbWFhcnRlbi5sYW5raG9yc3RAbGludXguaW50ZWwuY29tPjwvbC5zdGFjaEBw
-ZW5ndXRyb25peC5kZT48L2ppYXh1bi55YW5nQGZseWdvYXQuY29tPjwvZGF2ZW1AZGF2ZW1sb2Z0
-Lm5ldD48L3NhbUByYXZuYm9yZy5vcmc+PC9hbmRyZXkuemhpemhpa2luQGxlaWNhLWdlb3N5c3Rl
-bXMuY29tPjwva3J6a0BrZXJuZWwub3JnPjwvZGFuLmNhcnBlbnRlckBvcmFjbGUuY29tPjwvdHNi
-b2dlbmRAYWxwaGEuZnJhbmtlbi5kZT48L2RhbmllbEBmZndsbC5jaD48L2FpcmxpZWRAbGludXgu
-aWU+PC9jaHJpc3RpYW4uZ21laW5lckBnbWFpbC5jb20+PC96YWNrckB2bXdhcmUuY29tPjwvc3Jv
-bGFuZEB2bXdhcmUuY29tPjwvdHppbW1lcm1hbm5Ac3VzZS5kZT48L21yaXBhcmRAa2VybmVsLm9y
-Zz48L3JvYmhAa2VybmVsLm9yZz4NCg0K5pys6YKu5Lu25Y+K5YW26ZmE5Lu25ZCr5pyJ6b6Z6Iqv
-5Lit56eR55qE5ZWG5Lia56eY5a+G5L+h5oGv77yM5LuF6ZmQ5LqO5Y+R6YCB57uZ5LiK6Z2i5Zyw
-5Z2A5Lit5YiX5Ye655qE5Liq5Lq65oiW576k57uE44CC56aB5q2i5Lu75L2V5YW25LuW5Lq65Lul
-5Lu75L2V5b2i5byP5L2/55So77yI5YyF5ous5L2G5LiN6ZmQ5LqO5YWo6YOo5oiW6YOo5YiG5Zyw
-5rOE6Zyy44CB5aSN5Yi25oiW5pWj5Y+R77yJ5pys6YKu5Lu25Y+K5YW26ZmE5Lu25Lit55qE5L+h
-5oGv44CC5aaC5p6c5oKo6ZSZ5pS25pys6YKu5Lu277yM6K+35oKo56uL5Y2z55S16K+d5oiW6YKu
-5Lu26YCa55+l5Y+R5Lu25Lq65bm25Yig6Zmk5pys6YKu5Lu244CCIA0KVGhpcyBlbWFpbCBhbmQg
-aXRzIGF0dGFjaG1lbnRzIGNvbnRhaW4gY29uZmlkZW50aWFsIGluZm9ybWF0aW9uIGZyb20gTG9v
-bmdzb24gVGVjaG5vbG9neSAsIHdoaWNoIGlzIGludGVuZGVkIG9ubHkgZm9yIHRoZSBwZXJzb24g
-b3IgZW50aXR5IHdob3NlIGFkZHJlc3MgaXMgbGlzdGVkIGFib3ZlLiBBbnkgdXNlIG9mIHRoZSBp
-bmZvcm1hdGlvbiBjb250YWluZWQgaGVyZWluIGluIGFueSB3YXkgKGluY2x1ZGluZywgYnV0IG5v
-dCBsaW1pdGVkIHRvLCB0b3RhbCBvciBwYXJ0aWFsIGRpc2Nsb3N1cmUsIHJlcHJvZHVjdGlvbiBv
-ciBkaXNzZW1pbmF0aW9uKSBieSBwZXJzb25zIG90aGVyIHRoYW4gdGhlIGludGVuZGVkIHJlY2lw
-aWVudChzKSBpcyBwcm9oaWJpdGVkLiBJZiB5b3UgcmVjZWl2ZSB0aGlzIGVtYWlsIGluIGVycm9y
-LCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYnkgcGhvbmUgb3IgZW1haWwgaW1tZWRpYXRlbHkg
-YW5kIGRlbGV0ZSBpdC4g
+On Wed, Feb 23, 2022 at 02:04:48PM +0100, Hans Verkuil wrote:
+> On 2/23/22 13:54, Sakari Ailus wrote:
+> > Hi Hans, Michael,
+> > 
+> > On Wed, Feb 23, 2022 at 02:16:28PM +0200, Sakari Ailus wrote:
+> >>>> +static int isl7998x_pre_streamon(struct v4l2_subdev *sd, u32 flags)
+> >>>> +{
+> >>>> +	struct i2c_client *client = v4l2_get_subdevdata(sd);
+> >>>> +	struct device *dev = &client->dev;
+> >>>> +
+> >>>> +	if (flags & V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP)
+> >>>> +		return pm_runtime_resume_and_get(dev);
+> >>>> +
+> >>>> +	return 0;
+> >>>
+> >>> This feels a bit scary: if V4L2_SUBDEV_PRE_STREAMON_FL_MANUAL_LP is NOT
+> >>> set, then pm_runtime_resume_and_get() isn't called, but this function
+> >>> still returns success...
+> >>
+> >> Good find.
+> >>
+> >> pm_runtime_resume_and_get() need to be called unconditionally.
+> >>
+> >> Alternatively, store what was done here, and put the PM use count
+> >> accordingly below. But I see no reason to do that.
+> > 
+> > But I think the driver is otherwise good to go.
+> > 
+> > Unless there are objections, I'll drop the check in the pre_streamon()
+> > callback and apply it into my tree.
+> > 
+> 
+> OK, with that change you can add my:
+> 
+> Acked-by: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+> 
+> to this patch. I'll delegate the series to you in patchwork.
+
+Thanks!
+
+-- 
+Sakari Ailus
