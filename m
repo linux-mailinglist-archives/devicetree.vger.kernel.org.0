@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7376F4C114F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:32:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A89C4C115D
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 12:35:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239846AbiBWLc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 06:32:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47514 "EHLO
+        id S239963AbiBWLfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 06:35:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239912AbiBWLcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:32:55 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F59333369
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:32:28 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        with ESMTP id S239992AbiBWLfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 06:35:30 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B73792D1F
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:34:59 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 632893F1BC
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 11:32:26 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 951593FCAB
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 11:34:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645615946;
-        bh=rHG+vfkPnctmAtn+BXrH4H+8gRXose5yQLu+rWYptLY=;
+        s=20210705; t=1645616097;
+        bh=HvxEgZTvOAS5E5aJCd0nq0jn+4aEfsidxtadlOakdCE=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=pLCREwA7JA2J0U/pXSqs9IwS7vmTJg+yF/sWWN4DUf8ytsM+gwThqYuyh4n+d7jwS
-         tvH8gW7RwXZkdpaVfat//gQIHSfzYj0wWxOJk3iIoVhiJa/KdHR349oQH3Az6GNoGJ
-         79qCYQRHootfn0kiLsBSVcN7wVM7Yxg4AjZY712/CComDX1eBZshpbdFpKHgYjmGU9
-         8xd44toB4ywLWiyBTsNF/2aXDCk6Lg/rsdAhcEwNDELOy8hvxpGYZLIAwSZ1jyYenk
-         LEaq8/arXmPml4aPA2YoFAuz/sloYgCar0iJ5KmhcU2FFOCLKjgM1YNwYIC+xWAnAs
-         lyKZiNOvWc/Pg==
-Received: by mail-ej1-f70.google.com with SMTP id qf24-20020a1709077f1800b006ce8c140d3dso6988875ejc.18
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:32:26 -0800 (PST)
+        b=eAwkmdfkKuY7oiZojTcDHLjePkoLo5i64Q1WGxCxiZ2R90/r/kEdZSRRRs90AyWXX
+         6Rd7inLigpMtf/i9W1KuS3va0Uv+eJ60DM8FrRL76ycBElISK6+KOIJJpl1ES1j/gH
+         L+G63DoeEkArT4cMuQBEaI+/ETMH/8u4fntWTsNXGkFylLc4VMxlewKJXpCAkj8mI7
+         stXqJdkdx3h8EGnYw1ieCEwZ8+urC0/41ou0gd+YrXPn80N9JELMY/NcG7bEhm4a4S
+         swEkCItC/IWPyLIhbCeIQSDBrMaN+l7Vq4HACeRmkuwPanZgN+dnOHRE0VJT8co7lO
+         nr+vIGNzIRj6g==
+Received: by mail-ed1-f69.google.com with SMTP id s7-20020a508dc7000000b0040f29ccd65aso13490617edh.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 03:34:57 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=rHG+vfkPnctmAtn+BXrH4H+8gRXose5yQLu+rWYptLY=;
-        b=22YFQ7AVVNgQEeWBUdLLc//TQV7uPhj3M7jhGyGOelGkfZxnRjTv2BYT5iqpWvgS5Y
-         DsQnduFLzknZ5Zb4WxGUbXcL6m9Xy6FD4jjYdT1UTz3K3D+BuVzfAoT6po7aQjyDtiMf
-         BoBgFgckdU1pLXsVAV+5plF2h89+oCdHKMXYq3h1WkhL8+npMOAuQht/jg489eft7qD2
-         /w3NgcvaRbxFEG6iPobOG4Td0OZtt6g3jxtIInV2xKLI1DObFMxxXIykRzIn83PzZJyy
-         dVLVEJ86BAgX6ZPQY/A2fOwaRngXOGw/KJJuY/RBBnn60g8fwwNszH9q7os0h756GuHa
-         SzjQ==
-X-Gm-Message-State: AOAM533HLFOcTxN6IQpWAVCpWBRE8OLDBZs41lP0/UU4VHCePU+X2xtz
-        OOuKAmQtPgkFe8QHRcwm8CRxxHGAszNtMP3wyzBNQZNx/6l8HYpotEqi1v5G9eO3aXKHncsAYeH
-        ybUz0IaB9CH36DwtQ+hI17WtslHzXy9UFI0TZoKE=
-X-Received: by 2002:a05:6402:5c9:b0:412:e7f8:81c3 with SMTP id n9-20020a05640205c900b00412e7f881c3mr19997673edx.386.1645615946003;
-        Wed, 23 Feb 2022 03:32:26 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy6S4sBvt3FBVGg7wH41ZDGhEOI/3APJRfTKFOVERInVX5l+0UyB25l+UO6lGLm6PNkjP0Ciw==
-X-Received: by 2002:a05:6402:5c9:b0:412:e7f8:81c3 with SMTP id n9-20020a05640205c900b00412e7f881c3mr19997661edx.386.1645615945843;
-        Wed, 23 Feb 2022 03:32:25 -0800 (PST)
+        bh=HvxEgZTvOAS5E5aJCd0nq0jn+4aEfsidxtadlOakdCE=;
+        b=6BscFH050fQqS9Qo1MtHWNSQb/gsgzq0AdNQB0agWZbEasPJ5ilHDKy+Of0ivBLEdA
+         JqsSvdmMxhD4wAHxsuw8NqH0j4jQGXBFXT3RqLLZMve9QskOcsiz2WqdrxJSSczp8USG
+         O38hO6o5xWvTBK4LcUluNqpsoHF+tjfBWNeKzjR2qhawdKLF0Qw0gxczZlcmJ6gDEppn
+         VrBj+NAMGjaggGzdzYtatbwkZzHN2o+VMU2yfSpchYZLrGuu8kYGyJIT7G/ww72beWD9
+         xAS4ih3EPMV1sD1oqAkvV4Y1GMiBT9nCyC8OMqg5IWmZPC1hyzJSejcZyaL4GdbYtm2C
+         hZLA==
+X-Gm-Message-State: AOAM530SOe65VJwYOzktA26VrBkuiT/7a5yrv4odk0snNKUJy7j5ik86
+        mwVhDBMl3vAUZvMoHPdn/xeqNWd+zIOQlSJ3+5+VbveCWYG5ukjcIcr9O8crHVcmkMzii0yqzm3
+        7xipWsvsxmd/ahWVqvOOTegu3U+R9x6wrIUjuD44=
+X-Received: by 2002:a05:6402:27c7:b0:412:80f9:18af with SMTP id c7-20020a05640227c700b0041280f918afmr30760030ede.127.1645616097320;
+        Wed, 23 Feb 2022 03:34:57 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy7tPZm6P8JOYR88/LLpFjG69g/bVWBdnsMBUAkSUmzYfftrQjVlV0mGSIV792d+yte+AmjwQ==
+X-Received: by 2002:a05:6402:27c7:b0:412:80f9:18af with SMTP id c7-20020a05640227c700b0041280f918afmr30760018ede.127.1645616097165;
+        Wed, 23 Feb 2022 03:34:57 -0800 (PST)
 Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id jz17sm7364998ejb.195.2022.02.23.03.32.24
+        by smtp.gmail.com with ESMTPSA id d25sm7386899ejz.4.2022.02.23.03.34.56
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 03:32:24 -0800 (PST)
-Message-ID: <96f7a28b-81b9-a05f-e8f5-a4fb377476fc@canonical.com>
-Date:   Wed, 23 Feb 2022 12:32:23 +0100
+        Wed, 23 Feb 2022 03:34:56 -0800 (PST)
+Message-ID: <498e89dd-c438-68dc-69b5-8de82045ffbd@canonical.com>
+Date:   Wed, 23 Feb 2022 12:34:55 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: arm: fsl: add IMX8MN DDR3L eval board
+Subject: Re: [PATCH v9 05/10] dt-bindings: clock: Add bindings for SP7021
+ clock driver
 Content-Language: en-US
-To:     Michael Walle <michael@walle.cc>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        linux-kernel@vger.kernel.org, heiko.thiery@gmail.com
-References: <20220222151357.1710503-1-michael@walle.cc>
+To:     Qin Jian <qinjian@cqplus1.com>, robh+dt@kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, tglx@linutronix.de,
+        maz@kernel.org, p.zabel@pengutronix.de, linux@armlinux.org.uk,
+        broonie@kernel.org, arnd@arndb.de, stefan.wahren@i2se.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        wells.lu@sunplus.com, Rob Herring <robh@kernel.org>
+References: <cover.1645413746.git.qinjian@cqplus1.com>
+ <2089471296584b527f1e08f51f5216d1e733741f.1645413746.git.qinjian@cqplus1.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220222151357.1710503-1-michael@walle.cc>
+In-Reply-To: <2089471296584b527f1e08f51f5216d1e733741f.1645413746.git.qinjian@cqplus1.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -83,29 +88,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/2022 16:13, Michael Walle wrote:
-> Add a new compatible string for that eval board. It features an IMX8MN
-> UltraLite and has DDR3L RAM. The product part number is 8MNANOD3L-EVK.
+On 21/02/2022 04:29, Qin Jian wrote:
+> Add documentation to describe Sunplus SP7021 clock driver bindings.
 > 
-> Signed-off-by: Michael Walle <michael@walle.cc>
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Qin Jian <qinjian@cqplus1.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/clock/sunplus,sp7021-clkc.yaml   |  52 ++++++++
+>  MAINTAINERS                                   |   2 +
+>  include/dt-bindings/clock/sp-sp7021.h         | 112 ++++++++++++++++++
+>  3 files changed, 166 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/sp-sp7021.h
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> index 23e678232451..e11ffaa8721e 100644
-> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> @@ -834,6 +834,7 @@ properties:
->                - bsh,imx8mn-bsh-smm-s2     # i.MX8MN BSH SystemMaster S2
->                - bsh,imx8mn-bsh-smm-s2pro  # i.MX8MN BSH SystemMaster S2 PRO
->                - fsl,imx8mn-ddr4-evk       # i.MX8MN DDR4 EVK Board
-> +              - fsl,imx8mn-ddr3l-evk      # i.MX8MN DDR3L EVK Board
+> diff --git a/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+> new file mode 100644
+> index 000000000..e6d098cf4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/sunplus,sp7021-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sunplus SP7021 SoC Clock Controller Binding
+> +
+> +maintainers:
+> +  - Qin Jian <qinjian@cqplus1.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: sunplus,sp7021-clkc
+> +
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: External oscillator clock
+> +      - description: System clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: extclk
+> +      - const: pllsys
+> +
+> +required:
+> +  - compatible
+> +  - "#clock-cells"
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    clkc: clock-controller@9c000000 {
+> +      compatible = "sunplus,sp7021-clkc";
+> +      #clock-cells = <1>;
+> +      reg = <0x9c000000 0x280>;
+> +      clocks = <&extclk>, <&clkc PLL_SYS>;
 
-Looks good, just please put it in alphabetical order, so before ddr4,
+Except the warning pointed out by Rob's bot, it looks like you feed this
+clock-controller with a clock from itself. Is there a point to express
+it in DTS at all?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
+> +      clock-names = "extclk", "pllsys";
+> +    };
 
 Best regards,
 Krzysztof
