@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF8364C140D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:22:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D084B4C1419
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 14:26:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235598AbiBWNXN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 08:23:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46422 "EHLO
+        id S240598AbiBWN0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 08:26:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236619AbiBWNXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:23:10 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A39DDAB44B;
-        Wed, 23 Feb 2022 05:22:42 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id i20so3363661wmc.3;
-        Wed, 23 Feb 2022 05:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vGb2ARjYKMt2Kvks9J2lDsUiX/tTNuHKRpCYsHVcRkI=;
-        b=kNKKfuaa00aoAnTcnnO+KZaAksC+0IILYIogAnyAAhwNrakLcAe5J7O0QAwR0RDN/1
-         Ze4OTeX6LbZ0Mpnq4ZeshG4K375CfLfFlr94dBoO5I+NX57CJ+PBkIWxoqfOOLCqvPnb
-         OqjkLE7Z3EwN4+TfHKj0tFwX/njk68Vbf54LslksMqjZDyofemE9KCUoT1qYQwih0hka
-         AVX+s7VJu6boMSoACspKaowjsJBZGTgEelCzkyXzLfZASWl70Img0zGWZZPF7EqkRLwd
-         w/Qe8lxpSAENYseOIGLVH1UTpggc0nnfA/VWoqHPCw2PGTOex2OaIHOMp47ad7zZOeNk
-         gnlw==
+        with ESMTP id S240466AbiBWN0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 08:26:36 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBFC8A9A7E
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:26:08 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2D2F43F1BC
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 13:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645622767;
+        bh=PtdI+8+uPiMKtPcTbYLUdwlTYloxTDVphk9EdUF2zm8=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=FYm3e9fOXdpK2m73LNkXkgZss861nTjQniJjXh/bI5KjAnoy14sgMMYqOVS9tLrhG
+         92LG88gZzkKZp8bAUcKxriEHeC6XLJxhGlfWgE1Hl8yVmubKLsJVhVN49nj1wAGRTr
+         hLDIehrvLrQvy+jQfvLbRAQFoHsi6RCcd0FvZ4KIbBSbWAGHqXFcN9ctW0or3EOgs+
+         rQp3RY3XHCq6NTTGcwz4OHR6/hyJALgWyDAWnuovePXubBochfgaF3G4s3CK0HKMv3
+         MZGQxmMWPOWIFb5kohrtu8WdYAkIrKJmkRYZItvskPf61HkQbT0CP4Kbdflyioo+uR
+         iW/IY1W3XvGfA==
+Received: by mail-ej1-f72.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so7041133ejw.9
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 05:26:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vGb2ARjYKMt2Kvks9J2lDsUiX/tTNuHKRpCYsHVcRkI=;
-        b=TXU6w9LasioNuUPzldTvyXTLeCARAhAByRBvLASVBNn2ZoVEmb22MtAlrvMErNC+WM
-         uTy9FLmOQ35H3sjDcu7VkL7uEvEy6PoE29Y0cyt6/4bzBIApffm5RZK0FHjntvxTL67N
-         FScEyeO7hc4C2AxGQuVCrGCb2MwTlZ9D60t0bxxB3UZotPW/SSe5lYHC07Dq2StIUYpP
-         +PZ8E8Zbck6Wi6uTogydWBO+P2V3KoRAHU2G2gNGMVPCD7nvpUNSVpN9Ue9Go+UNy7Wz
-         5yZOcDBJFkLIIxznCmjoWyFce38BC9OXUBa7haMwa2MQ/MWokGsO+gOb2JHMS9+PGt71
-         AyFw==
-X-Gm-Message-State: AOAM531PHxQ+5eVSQM2KeZ/8X3V2AUFxG1uhrw21YDUMa3GYLPRttM+y
-        Kc9PkT7HW8Z6NF8IPfGOP5QVypySKl8=
-X-Google-Smtp-Source: ABdhPJxBb9fVmzJnugIzRqLWFDZChGUnTqVK+AjpBU9JMUTg1LRe8IlxoBZPAE0QkkWoUccti5ECHQ==
-X-Received: by 2002:a05:600c:3d06:b0:37b:f831:2a98 with SMTP id bh6-20020a05600c3d0600b0037bf8312a98mr7411709wmb.36.1645622560974;
-        Wed, 23 Feb 2022 05:22:40 -0800 (PST)
-Received: from orome (p200300e41f0a6900000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f0a:6900::43a])
-        by smtp.gmail.com with ESMTPSA id c14-20020a7bc84e000000b0038100c9a593sm153072wml.45.2022.02.23.05.22.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 05:22:39 -0800 (PST)
-Date:   Wed, 23 Feb 2022 14:22:38 +0100
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sumit Gupta <sumitg@nvidia.com>,
-        linux-tegra <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Jon Hunter <jonathanh@nvidia.com>,
-        kbuild-all@lists.01.org, bbasu@nvidia.com, vsethi@nvidia.com,
-        jsequeira@nvidia.com, Thierry Reding <treding@nvidia.com>
-Subject: Re: [Patch v3 3/9] dt-bindings: arm: tegra: Add NVIDIA Tegra194
- axi2apb binding
-Message-ID: <YhY1Hhgz/O724oYL@orome>
-References: <20211221125117.6545-1-sumitg@nvidia.com>
- <20211221125117.6545-4-sumitg@nvidia.com>
- <YcNv7xm19sFTlfjW@robh.at.kernel.org>
- <226fd57c-2631-ec7a-fc48-d6547d557681@nvidia.com>
- <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PtdI+8+uPiMKtPcTbYLUdwlTYloxTDVphk9EdUF2zm8=;
+        b=ZoNPYaIJst4tbEJ5k9v/hIxbFJx4Wzttcf4S5jbvLdvkJHBslg49myUyfVebdOiF2W
+         g8CrKU4/2JfYKNIQ+8CNBXrkfPFxoTE58VEHlLyGQdnBf1lfok3+Nn32H0dHpgP5lyVH
+         6z66+s7AtvVxHzrCkNrSztHbMHuDqg+kYf/YP8e1e44UlspgCwEf7i5p4TfXR8RqV5U0
+         qDP8+7WHxOlOamBHDC05AhFKAVQTkGubjDhs09J7VE5VigMG2bcsdH7UXLFqrQ5Oa5oh
+         ZVYP2mw1mItgJyK3CMcM3AEueJ2UYfbBw+/KyfjqPrXQvDZqMxhs276NgHqnBrAWMTkJ
+         JwFg==
+X-Gm-Message-State: AOAM530YlPbJO270acD3pjJD3kEDYB8UvXzi/e64z41iCFd0JBa/4sSD
+        8G3ytkmjHGHByomdD0uvlI/gq/RWZXYbmnbH+6LBMva0e2fGBUbRipxG6O4XFj0obHNL1Qhd1/3
+        HkQV8o0uWUefb34nrYbg+OLHfJLAGAgZ7OHNchgc=
+X-Received: by 2002:a17:906:b04:b0:6bd:bf71:ed08 with SMTP id u4-20020a1709060b0400b006bdbf71ed08mr23405195ejg.585.1645622766591;
+        Wed, 23 Feb 2022 05:26:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxCfMw7qk7j/oxTgQsdqHA7i2FsSbGvByk1qfJ1Smy+/dKx4SJUHcvGGZFuCdaso8N1+cLGBQ==
+X-Received: by 2002:a17:906:b04:b0:6bd:bf71:ed08 with SMTP id u4-20020a1709060b0400b006bdbf71ed08mr23405179ejg.585.1645622766439;
+        Wed, 23 Feb 2022 05:26:06 -0800 (PST)
+Received: from [192.168.0.125] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id o17sm7714109edr.47.2022.02.23.05.26.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Feb 2022 05:26:05 -0800 (PST)
+Message-ID: <b591b26e-1a80-e17d-4525-989b357e97b1@canonical.com>
+Date:   Wed, 23 Feb 2022 14:26:05 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ek0gW7MJ0WaqCJOs"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
-User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: frequency: Add ADMV4420 doc
+Content-Language: en-US
+To:     Cristian Pop <cristian.pop@analog.com>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     jic23@kernel.org, devicetree@vger.kernel.org, robh+dt@kernel.org
+References: <20220223130808.13352-1-cristian.pop@analog.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220223130808.13352-1-cristian.pop@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,130 +82,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/02/2022 14:08, Cristian Pop wrote:
+> Add device tree bindings for the ADMV4420 K band downconverter.
+> 
+> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> ---
+> Changes in v7:
+>  - Fix commit message
 
---ek0gW7MJ0WaqCJOs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please include the tags accumulated in previous reviews.
 
-On Mon, Dec 27, 2021 at 11:41:10AM -0400, Rob Herring wrote:
-> On Thu, Dec 23, 2021 at 4:24 AM Sumit Gupta <sumitg@nvidia.com> wrote:
-> > > On Tue, Dec 21, 2021 at 06:21:11PM +0530, Sumit Gupta wrote:
-> > >> Add device-tree binding documentation to represent the axi2apb bridg=
-es
-> > >> used by Control Backbone (CBB) 1.0 in Tegra194 SOC. All errors for A=
-PB
-> > >> slaves are reported as slave error because APB bas single bit to rep=
-ort
-> > >> error. So, CBB driver needs to further check error status registers =
-of
-> > >> all the axi2apb bridges to find error type.
-> > >>
-> > >> Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
-> > >> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > >> ---
-> > >>   .../arm/tegra/nvidia,tegra194-axi2apb.yaml    | 40 +++++++++++++++=
-++++
-> > >>   1 file changed, 40 insertions(+)
-> > >>   create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvi=
-dia,tegra194-axi2apb.yaml
-> > >>
-> > >> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegr=
-a194-axi2apb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegr=
-a194-axi2apb.yaml
-> > >> new file mode 100644
-> > >> index 000000000000..788a13f8aa93
-> > >> --- /dev/null
-> > >> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-ax=
-i2apb.yaml
-> > >> @@ -0,0 +1,40 @@
-> > >> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > >> +%YAML 1.2
-> > >> +---
-> > >> +$id: "http://devicetree.org/schemas/arm/tegra/nvidia,tegra194-axi2a=
-pb.yaml#"
-> > >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > >> +
-> > >> +title: NVIDIA Tegra194 AXI2APB bridge
-> > >> +
-> > >> +maintainers:
-> > >> +  - Sumit Gupta <sumitg@nvidia.com>
-> > >> +
-> > >> +properties:
-> > >> +  $nodename:
-> > >> +    pattern: "^axi2apb@([0-9a-f]+)$"
-> > >> +
-> > >> +  compatible:
-> > >> +    enum:
-> > >> +      - nvidia,tegra194-axi2apb
-> > >> +
-> > >> +  reg:
-> > >> +    maxItems: 6
-> > >> +    description: Physical base address and length of registers for =
-all bridges
-> > >> +
-> > >> +additionalProperties: false
-> > >> +
-> > >> +required:
-> > >> +  - compatible
-> > >> +  - reg
-> > >> +
-> > >> +examples:
-> > >> +  - |
-> > >> +    axi2apb: axi2apb@2390000 {
-> > >
-> > > As axi2apb appears to be a bus, then all the child nodes (APB devices)
-> > > should be under this node.
-> >
-> > axi2apb is a bridge which coverts an AXI to APB interface and not a bus.
->=20
-> A bus and bridge node are pretty much one and the same in DT
-> representation. A PCI host bridge has a PCI bus beneath it for
-> example.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-Sorry for taking so long to reply, this fell through the cracks.
 
-These aren't really bridges as such. CBB (which we call /bus@0 in DT) is
-a sort of large container for all IP. Within that there are various shim
-layers that connect these "legacy" interfaces to CBB. I suppose you
-could call them bridges, but it's a bit of a stretch. From a software
-point of view there is no observable translation happening. The only
-reason why we need this is for improved error reporting.
-
-The TRM also doesn't make a distinction between the various bridges. The
-devices are all just mapped into a single address space via the CBB.
-
-My understanding is that this is also gone in newer chips, so matters
-become a bit simpler there.
-
-Reorganizing /bus@0 into multiple bridges and busses would be a lot of
-churn and likely confuse people that want to correlate what's in the TRM
-to what's in DT, so I don't think it's worth it.
-
-For newer chips we may want to keep this in mind so we structure the DT
-more accurately from the beginning, though as I said, things have been
-simplified a bit, so this may not be an issue anymore.
-
-Thierry
-
---ek0gW7MJ0WaqCJOs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIWNRsACgkQ3SOs138+
-s6FZOQ/+LbbpJ1EmeqjNCY26tK+hEL1Y8oOHW2uV65Aq9zQu/JVNRCaPVfasdvD9
-9blDOZNeaBBp0Ri0NJbjKyInvBKS3W2/G9RBR2HxUQkibabTvfNuovoS3gNorw4/
-EygTUAuWX6p2lAKu+mAN0JW4rnkQRrrnqbTXQiGa1nnfsBorzIil+MXY8MBb8mxV
-AN1tIdITQli7dByU2OA3g431h1yBB+CFc5q1kXhgVxrd24s/bqmHHofHvOCbiTX8
-8oXV2pEwUq+4IfCEZRl8J2LgV0jLqSTUYNheWfMaKhH5iS63XSzTTE1IjsV903y5
-8UJpLvj7x8h3pj4WTOOv7skc8AoWL0F7vsFXccJDtvTvGbUrL+pBn/6zxfgicV3n
-W2Qty4P+dL+RzukHXV6pMyXeZnSvAvrqkVrSwoaWddaaeIcQ3nQE08vQxLD5jWnD
-+KTn4/wWEefqqoh9x/gvWiJqcCyKejWgSlqIL2FXVSHVcQ/d7ZeL99NHnDb/H/iE
-osQl6tNezgI/FVTPkwTMgdJ6Qh9vy5yt8GyOEPe3H2tRb48hCgRF0VWwWfD8njun
-Noe9m9m8DPYpQ+4sAQtiWZTQgLozMzD5y4Rx0O5Hdo71TfVE9B2u5vqN5pbplLKp
-BkTOo8JyU415bhThgCa4K0F5XexhW1wjsamb78hccEWuP2+eWBg=
-=IRCr
------END PGP SIGNATURE-----
-
---ek0gW7MJ0WaqCJOs--
+Best regards,
+Krzysztof
