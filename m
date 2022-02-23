@@ -2,255 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B224C1D35
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:36:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B814C1D50
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 21:48:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241331AbiBWUgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 15:36:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60632 "EHLO
+        id S234283AbiBWUsu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 15:48:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48594 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240361AbiBWUgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:36:40 -0500
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC1D7457B7;
-        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
-Received: by mail-ot1-f47.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so8967946otp.13;
-        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
+        with ESMTP id S234184AbiBWUsu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 15:48:50 -0500
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CFC748E59
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:48:19 -0800 (PST)
+Received: by mail-wr1-x431.google.com with SMTP id d3so25946302wrf.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 12:48:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=conchuod-ie.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=RRu2PqFxs+FPxxXA+v25zzkAp1fkNpteo8XX4VMDfsI=;
+        b=7XOoxRqb9Tv8kkCqMFJc5EqMLpdohXL6zjfTgOd7rLqoL9hjhjxLHgwcjThSa2r4uE
+         cfhJDDfaXveX9Ng8Vdd47vyy4E3dPrskszcIFjovCrel9HtE+pXh0eqkbxQe7YrVSNwG
+         lWNWlEEpEhvRrQZ94lu3Asx3ml1g1Dnuvl/S7WL2WiKfJkce+t1aep9NmikFKC++i2cp
+         Bs3zVs+sFui9Fd+TA3gD2EPgFBykwjmGMXnsgOXu8WAJdM488/vNt/kBPuHmu9TZWYA1
+         WB8Et2mwrkrO7nwEOThETi3qqzLMbHymoOesRTkLa62cCJNtfhpkK3u8hCixOa51wyKN
+         7yrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=AtS1UhK3oifjJ90VCpSbRXxg8A7dCgkWJ8FEFysGrNE=;
-        b=CBPkKjgroBHtOSYBtixEUBb2xjmn7meWcCZu5FrElZ2RsVCOQ0FuT2IRa+zOw/QOe/
-         a4xpXyYfu9GJf1rnnrLN8nAYPtQwho3U7wZZrXhSMasl+TX2R7HkKEPcVc82LCDJSyvl
-         H1efaC+/IFhVn5+FjtBet3+aRBX0hgBcpMvWZ2XiTKZ4OlUg+U++yvggYOcync/Ms+jB
-         nLu7amStk9UMRp+xYoJOvvsHuJAwXBvED7Jd8k8G4z83KfgefmjcPcj9kN90qZKJryWy
-         S5x/c6fLMNHM9P6QS91FpI9JYAWUqPP46vJWpXYfiFIDKlDRrgvu9RMe0HjD55xnoeDg
-         AFQA==
-X-Gm-Message-State: AOAM5310tEIiZSsFXJfq3j5zq0vmT52iUUqcXyPqTsjKN4JK7M8P8jxM
-        tRh0BIHmB9PnXoHayjEKBRZmCw8sWQ==
-X-Google-Smtp-Source: ABdhPJz3ckJaYRybKmgJJ/q1yQDRwRp85ZQ09OgnYrUvPTy8PaiR7k8K4X4hzPGzUBOutazacMW3fw==
-X-Received: by 2002:a9d:452:0:b0:5a3:8357:f43 with SMTP id 76-20020a9d0452000000b005a383570f43mr524585otc.319.1645648570113;
-        Wed, 23 Feb 2022 12:36:10 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f16sm355550oae.6.2022.02.23.12.36.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 12:36:09 -0800 (PST)
-Received: (nullmailer pid 1426824 invoked by uid 1000);
-        Wed, 23 Feb 2022 20:36:08 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     devicetree@vger.kernel.org, svarbanov@mm-sol.com,
-        linux-kernel@vger.kernel.org, bjorn.andersson@linaro.org,
-        linux-pci@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        bhelgaas@google.com, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org
-In-Reply-To: <20220223192946.473172-3-bhupesh.sharma@linaro.org>
-References: <20220223192946.473172-1-bhupesh.sharma@linaro.org> <20220223192946.473172-3-bhupesh.sharma@linaro.org>
-Subject: Re: [PATCH 2/6] dt-bindings: phy: qcom,qmp: Add SM8150 PCIe PHY bindings
-Date:   Wed, 23 Feb 2022 14:36:08 -0600
-Message-Id: <1645648568.439634.1426821.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=RRu2PqFxs+FPxxXA+v25zzkAp1fkNpteo8XX4VMDfsI=;
+        b=52T/WrH5m8YmxKWwN9lqm1aPIw8GjwJjj6BxQM4KzD1b16CEotFC0XSZ/t3WEfLOV9
+         7SE6TJp34fFsc74baJHhCnkbiTiGitk0RomghX1aKWz/zpo96FZtZDCp+0J2OGJwpxMF
+         2L5gOfpdW0ycgKXBqMy1fYgihaPLPqu40r7rhyTabPUvfaXADZ/6kAsHoVq9PyDMi9Sj
+         PvLxTBuevQDMZjhCoLphZH09SL1qhtWKca1rB82si+y66ihKYaaBPpKUmgxaPLiYA7vc
+         VJx1DBqFiGSTZeqsR+/j2cUKPeb9XmsLKoOxCB4/akRdpHjfEOorJo9sbYXqCErO7O8S
+         VITg==
+X-Gm-Message-State: AOAM533AkKQwApzs+dQ0h1kGnun5g0RSWaSG/CTPns9kewCZ83W/C2cW
+        BvKFhVUmTkwwI08Zxc5ZsFRZ4A==
+X-Google-Smtp-Source: ABdhPJwTSd3fwnBHNPVLAxW9AId4se4ijwGgW4cX5Yfawa3jAXMdmq++0LpZ4WASwNLU9EfbO/Xqmw==
+X-Received: by 2002:adf:e54e:0:b0:1ea:9746:16d5 with SMTP id z14-20020adfe54e000000b001ea974616d5mr1030363wrm.186.1645649297584;
+        Wed, 23 Feb 2022 12:48:17 -0800 (PST)
+Received: from [192.168.2.116] ([109.76.226.172])
+        by smtp.gmail.com with ESMTPSA id f7sm578561wrz.40.2022.02.23.12.48.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Feb 2022 12:48:17 -0800 (PST)
+Message-ID: <c94f9c0a-6dbe-c1f4-daff-e4d29f3ace02@conchuod.ie>
+Date:   Wed, 23 Feb 2022 20:48:16 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 00/11] Update the Icicle Kit device tree
+Content-Language: en-US
+To:     palmer@dabbelt.com
+Cc:     lewis.hanly@microchip.com, daire.mcnamara@microchip.com,
+        ivan.griffin@microchip.com, atishp@rivosinc.com,
+        conor.dooley@microchip.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org, jassisinghbrar@gmail.com,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+References: <20220214135840.168236-1-conor.dooley@microchip.com>
+From:   Conor Dooley <mail@conchuod.ie>
+In-Reply-To: <20220214135840.168236-1-conor.dooley@microchip.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Feb 2022 00:59:42 +0530, Bhupesh Sharma wrote:
-> Add the following two PCIe PHYs found on SM8150, to the QMP binding:
+On 14/02/2022 13:58, conor.dooley@microchip.com wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> QMP GEN3x1 PHY - 1 lane
-> QMP GEN3x2 PHY - 2 lanes
+> This series updates the Microchip Icicle Kit device tree by adding a
+> host of peripherals, and some updates to the memory map. In addition,
+> the device tree has been split into a third part, which contains "soft"
+> peripherals that are in the fpga fabric.
 > 
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+> Several of the entries are for peripherals that have not get had their
+> drivers upstreamed, so in those cases the dt bindings are included where
+> appropriate in order to avoid the many "DT compatible string <x> appears
+> un-documented" errors.
 > 
+> Depends on mpfs clock driver binding (on clk/next) to provide
+> dt-bindings/clock/microchip,mpfs-clock.h for the device tree
+> and on the other changes to the icicle/mpfs device tree from geert
+> that are already in linux/riscv/for-next.
+> 
+> Additionally, the interrupt-extended warnings on the plic/clint are
+> cleared by [1] & [2].
+> 
+> [1] https://lore.kernel.org/linux-riscv/cover.1639744468.git.geert@linux-m68k.org/
+> [2] https://lore.kernel.org/linux-riscv/cover.1639744106.git.geert@linux-m68k.org/
 
-Running 'make dtbs_check' with the schema in this patch gives the
-following warnings. Consider if they are expected or the schema is
-incorrect. These may not be new warnings.
+Hey Palmer,
 
-Note that it is not yet a requirement to have 0 warnings for dtbs_check.
-This will change in the future.
+dt-bindings should be set now, so if you're still happy to take the 
+series via riscv, that'd be great. i2c, spi & usb patches ended going 
+via the sub-system trees (and have been dropped from the series), in 
+case those generate warnings for you.
 
-Full log is available here: https://patchwork.ozlabs.org/patch/1596890
-
-
-phy@1c06000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-
-phy@1c07000: '#clock-cells' is a required property
-	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
-
-phy@1c07000: 'lanes@1c06000' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-sdx55-t55.dt.yaml
-	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
-
-phy@1c0a000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-
-phy@1c0e000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-crd.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
-
-phy@1c0e000: 'lanes@1c0e200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sc7280-crd.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-herobrine.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
-	arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
-
-phy@1c16000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx203.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dt.yaml
-
-phy@1d87000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
-
-phy@1d87000: 'lanes@1d87400', 'vdda-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
-
-phy@1d87000: 'vdda-max-microamp', 'vdda-pll-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
-
-phy@1da7000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-oneplus-cheeseburger.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-oneplus-dumpling.dt.yaml
-
-phy@34000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-pmi8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-dora.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-kagura.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-sony-xperia-tone-keyaki.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
-
-phy@58000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
-
-phy@627000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-	arch/arm64/boot/dts/qcom/apq8096-ifc6640.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
-
-phy@627000: 'vdda-phy-max-microamp', 'vdda-pll-max-microamp', 'vddp-ref-clk-always-on', 'vddp-ref-clk-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
-
-phy@7410000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/apq8096-db820c.dt.yaml
-
-phy@78000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/ipq8074-hk01.dt.yaml
-
-phy@88e9000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-microsoft-surface-duo.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-bahamut.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-sony-xperia-kumano-griffin.dt.yaml
-
-phy@88eb000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/qrb5165-rb5.dt.yaml
-	arch/arm64/boot/dts/qcom/sa8155p-adp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r1.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r2.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-cheza-r3.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-db845c.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm845-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8150-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8250-mtp.dt.yaml
-
-phy@c010000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/msm8998-asus-novago-tp370ql.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-fxtec-pro1.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-hp-envy-x2.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-lilac.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-maple.dt.yaml
-	arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino-poplar.dt.yaml
-
-phy@ff6000: '#clock-cells' is a required property
-	arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml
-	arch/arm/boot/dts/qcom-sdx55-t55.dt.yaml
-	arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
-
-phy-wrapper@88e9000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
-
-phy-wrapper@88e9000: 'vdda-phy-supply' is a required property
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
-
-phy-wrapper@88e9000: 'vdda-pll-supply' is a required property
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx214.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml
-
-phy-wrapper@88eb000: '#clock-cells' is a required property
-	arch/arm64/boot/dts/qcom/sm8350-hdk.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-microsoft-surface-duo2.dt.yaml
-	arch/arm64/boot/dts/qcom/sm8350-mtp.dt.yaml
-
-ssphy@78000: 'lane@78200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-	arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml
-
+Thanks,
+Conor.
+> 
+> Changes from v6:
+> - Dropped i2c patch, as its in i2c-next
+> - Added ack on gpio, reviewed-by on rtc
+> - Dropped child nodes from sysctrl binding entirely, added a link to
+>    the online documenation for the services the system controller can
+>    provide
+> - Dropped the #pwm-cells and replaced with a ref, a la Krzysztof's
+>    series
+> 
+> Changes from v5:
+> - reworded the descriptions in the pwm binding to (hopefully) add
+>    clarity
+> - added -mask to the custom properties and made them 32 bit
+> - renamed the i2c binding to corei2c, since it is not mpfs specific
+> - removed the child nodes of the system controller in example/dts &
+>    will create them in the driver.
+>    @Rob, I assume keeping them documented is the correct thing to do?
+> - removed the dependancy on the clock binding from the examples
+> - reformatted rtc interrupts as per Rob's suggestion
+> 
+> Changes from v4:
+> - dont include icicle_kit_defconfig, accidentally added in v3
+> - drop prescaler from mpfs-rtc & calculate the value instead
+> - use corei2c as a fallback device for mpfs-i2c
+> - drop spi dt-binding (on spi-next)
+>    commit 2da187304e556ac59cf2dacb323cc78ded988169
+> - drop usb dt-binding (on usb-next)
+> 
+> Changes from v3:
+> - drop "mailbox: change mailbox-mpfs compatible string", already upstream:
+>    commit f10b1fc0161cd99e ("mailbox: change mailbox-mpfs compatible string")
+> - fix copy paste error in microchip,mpfs-mailbox dt-binding
+> - remove whitespace in syscontroller dt entry
+> 
+> Changes from v2:
+> - dropped plic int header & corresponding defines in dts{,i}
+> - use $ref to drmode in mpfs-musb binding
+> - split changes to dts{,i} again: functional changes to existing
+>    elements now are in a new patch
+> - drop num-cs property in mpfs-spi binding
+> - dont make the system controller a simple-mfd
+> - move the separate bindings for rng/generic system services into the
+>    system controller binding
+> - added an instance corei2c as i2c2 in the fabric dtsi
+> - add version numbering to corepwm and corei2c compat string (-rtl-vN)
+> 
+> Conor Dooley (11):
+>    dt-bindings: soc/microchip: update syscontroller compatibles
+>    dt-bindings: soc/microchip: add info about services to mpfs sysctrl
+>    dt-bindings: rtc: add bindings for microchip mpfs rtc
+>    dt-bindings: gpio: add bindings for microchip mpfs gpio
+>    dt-bindings: pwm: add microchip corepwm binding
+>    riscv: dts: microchip: use clk defines for icicle kit
+>    riscv: dts: microchip: add fpga fabric section to icicle kit
+>    riscv: dts: microchip: refactor icicle kit device tree
+>    riscv: dts: microchip: update peripherals in icicle kit device tree
+>    riscv: dts: microchip: add new peripherals to icicle kit device tree
+>    MAINTAINERS: update riscv/microchip entry
+> 
+>   .../bindings/gpio/microchip,mpfs-gpio.yaml    |  79 ++++++
+>   ...ilbox.yaml => microchip,mpfs-mailbox.yaml} |   6 +-
+>   .../bindings/pwm/microchip,corepwm.yaml       |  81 ++++++
+>   .../bindings/rtc/microchip,mfps-rtc.yaml      |  58 ++++
+>   .../microchip,mpfs-sys-controller.yaml        |  40 +++
+>   ...icrochip,polarfire-soc-sys-controller.yaml |  35 ---
+>   MAINTAINERS                                   |   2 +
+>   .../dts/microchip/microchip-mpfs-fabric.dtsi  |  25 ++
+>   .../microchip/microchip-mpfs-icicle-kit.dts   | 115 ++++++--
+>   .../boot/dts/microchip/microchip-mpfs.dtsi    | 254 ++++++++++++++----
+>   10 files changed, 591 insertions(+), 104 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
+>   rename Documentation/devicetree/bindings/mailbox/{microchip,polarfire-soc-mailbox.yaml => microchip,mpfs-mailbox.yaml} (82%)
+>   create mode 100644 Documentation/devicetree/bindings/pwm/microchip,corepwm.yaml
+>   create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+>   create mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-controller.yaml
+>   delete mode 100644 Documentation/devicetree/bindings/soc/microchip/microchip,polarfire-soc-sys-controller.yaml
+>   create mode 100644 arch/riscv/boot/dts/microchip/microchip-mpfs-fabric.dtsi
+> 
