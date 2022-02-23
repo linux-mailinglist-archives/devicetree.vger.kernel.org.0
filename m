@@ -2,52 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067124C0E3C
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:28:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D44174C0E49
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 09:32:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237992AbiBWI3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 03:29:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40226 "EHLO
+        id S238991AbiBWIdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 03:33:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234264AbiBWI3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 03:29:01 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C64349CA2;
-        Wed, 23 Feb 2022 00:28:29 -0800 (PST)
-X-UUID: 88666749a70d4908bd586b90ac9f7a38-20220223
-X-UUID: 88666749a70d4908bd586b90ac9f7a38-20220223
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 704011851; Wed, 23 Feb 2022 16:28:17 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 23 Feb 2022 16:28:15 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 23 Feb 2022 16:28:15 +0800
-Message-ID: <0e528e1649d49a04ae28590309307789563c6105.camel@mediatek.com>
-Subject: Re: [PATCH 1/4] mfd: Add support for the MediaTek MT6366 PMIC
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <broonie@kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 23 Feb 2022 16:28:15 +0800
-In-Reply-To: <Ygpbl/pxEVAug6jl@google.com>
-References: <20220106065407.16036-1-johnson.wang@mediatek.com>
-         <20220106065407.16036-2-johnson.wang@mediatek.com>
-         <Ygpbl/pxEVAug6jl@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234121AbiBWIdR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 03:33:17 -0500
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4D760063;
+        Wed, 23 Feb 2022 00:32:50 -0800 (PST)
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21N8WhqK129024;
+        Wed, 23 Feb 2022 02:32:43 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645605163;
+        bh=lh46FYVT+Lo32fpHsIFNA5RUB0DaCkN5upygRdPfs/M=;
+        h=From:To:CC:Subject:Date;
+        b=grQPZcU2pJ6EKKDSa78d5WnIwyDNWmrZmfT/P7cHT3x5USJWTfoap+bGz0IHcTQfF
+         6WMkTRii2reOLyI55l/w2FVFh5EvFK77OrnNzb7kFbC/AchjZUxcRYUnM1defJZ45A
+         xQAGYEBkb5I3oovJ0GGj1Eu/iZIL1lMsyo3betDo=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21N8WhRq122367
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Feb 2022 02:32:43 -0600
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Wed, 23
+ Feb 2022 02:32:43 -0600
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Wed, 23 Feb 2022 02:32:43 -0600
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21N8WdFI098129;
+        Wed, 23 Feb 2022 02:32:40 -0600
+From:   Aparna M <a-m1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
+        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <praneeth@ti.com>, <grygorii.strashko@ti.com>, <nikhil.nd@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-sk: Add DT entry for onboard LEDs
+Date:   Wed, 23 Feb 2022 14:02:29 +0530
+Message-ID: <20220223083229.8044-1-a-m1@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,42 +61,109 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-02-14 at 13:39 +0000, Lee Jones wrote:
-> On Thu, 06 Jan 2022, Johnson Wang wrote:
-> 
-> > This adds support for the MediaTek MT6366 PMIC. This is a
-> > multifunction device with the following sub modules:
-> > 
-> > - Regulator
-> > - RTC
-> > - Codec
-> > - Interrupt
-> > 
-> > It is interfaced to the host controller using SPI interface
-> > by a proprietary hardware called PMIC wrapper or pwrap.
-> > MT6366 MFD is a child device of the pwrap.
-> > 
-> > Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
-> > ---
-> >  drivers/mfd/mt6358-irq.c             | 1 +
-> >  include/linux/mfd/mt6358/registers.h | 7 +++++++
-> >  include/linux/mfd/mt6397/core.h      | 1 +
-> >  3 files changed, 9 insertions(+)
-> 
-> Applied, thanks.
-> 
+AM642 SK has 8 leds connected to tpic2810 onboard. Add support for these
+gpio leds.
 
-Hi Lee,
+Signed-off-by: Aparna M <a-m1@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts | 70 ++++++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
-Thank you for your review and response.
-
-However, it seems that my patches are not applied yet.
-Is it possible to merge my patches into mainline?
-
-If you have any concern, please let me know.
-
-Thanks.
-
-BRs,
-Johnson Wang
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 6b04745147be..31e45bafa49e 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -8,6 +8,7 @@
+ #include <dt-bindings/mux/ti-serdes.h>
+ #include <dt-bindings/phy/phy.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ #include <dt-bindings/net/ti-dp83867.h>
+ #include "k3-am642.dtsi"
+ 
+@@ -125,6 +126,67 @@
+ 		vin-supply = <&vcc_3v3_sys>;
+ 		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+ 	};
++
++	leds {
++		compatible = "gpio-leds";
++
++		led-0 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <1>;
++			gpios = <&exp2 0 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-1 {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <2>;
++			gpios = <&exp2 1 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-2 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <3>;
++			gpios = <&exp2 2 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-3 {
++			color = <LED_COLOR_ID_AMBER>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <4>;
++			gpios = <&exp2 3 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-4 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <5>;
++			gpios = <&exp2 4 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-5 {
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <6>;
++			gpios = <&exp2 5 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-6 {
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <7>;
++			gpios = <&exp2 6 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++		led-7 {
++			color = <LED_COLOR_ID_AMBER>;
++			function = LED_FUNCTION_INDICATOR;
++			function-enumerator = <8>;
++			linux,default-trigger = "heartbeat";
++			gpios = <&exp2 7 GPIO_ACTIVE_HIGH>;
++		};
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -274,6 +336,14 @@
+ 				  "VPP_LDO_EN", "RPI_PS_3V3_En",
+ 				  "RPI_PS_5V0_En", "RPI_HAT_DETECT";
+ 	};
++
++	exp2: gpio@60 {
++		compatible = "ti,tpic2810";
++		reg = <0x60>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-line-names = "LED1","LED2","LED3","LED4","LED5","LED6","LED7","LED8";
++	};
+ };
+ 
+ &main_i2c3 {
+-- 
+2.17.1
 
