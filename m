@@ -2,151 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E1C4C1642
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:14:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F172D4C1662
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 16:18:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240498AbiBWPOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 10:14:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50688 "EHLO
+        id S241632AbiBWPTK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 10:19:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232062AbiBWPOx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:14:53 -0500
-Received: from 189.cn (ptr.189.cn [183.61.185.102])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 50AE8B82DE;
-        Wed, 23 Feb 2022 07:14:23 -0800 (PST)
-HMM_SOURCE_IP: 10.64.8.31:44458.435332613
-HMM_ATTACHE_NUM: 0000
-HMM_SOURCE_TYPE: SMTP
-Received: from clientip-114.242.206.180 (unknown [10.64.8.31])
-        by 189.cn (HERMES) with SMTP id 30AE11001F7;
-        Wed, 23 Feb 2022 23:14:17 +0800 (CST)
-Received: from  ([114.242.206.180])
-        by gateway-151646-dep-b7fbf7d79-bwdqx with ESMTP id 90e95b07aa22426594cd3a88c70e7830 for maxime@cerno.tech;
-        Wed, 23 Feb 2022 23:14:21 CST
-X-Transaction-ID: 90e95b07aa22426594cd3a88c70e7830
-X-Real-From: 15330273260@189.cn
-X-Receive-IP: 114.242.206.180
-X-MEDUSA-Status: 0
-Sender: 15330273260@189.cn
-Message-ID: <0d4a75c4-78bb-4aed-0fa8-88e9cc165896@189.cn>
-Date:   Wed, 23 Feb 2022 23:14:12 +0800
+        with ESMTP id S238535AbiBWPTH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 10:19:07 -0500
+X-Greylist: delayed 66724 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 23 Feb 2022 07:18:38 PST
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4559039B9C;
+        Wed, 23 Feb 2022 07:18:38 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id E89AAC000A;
+        Wed, 23 Feb 2022 15:18:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645629516;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=L8WJ1C1Tx3aKKa3O4w4oElLz8XE2ctzr9MgK1/YUoCU=;
+        b=oc+Jes6pQdZo1kzhSYkAkXsvE4s+RVTUPbPWDmF1a35hrX82st5TluCAV2C15w0eMkA6I5
+        nP4Q+Q12KrmS/7Sss8FFkJroL31r78SoKt2sw/bLzZGFDhtudEOtKMfhmDS+/0qjJ+B7yL
+        J2/IS+Z4W/TYryGG1X8Dz/Y49ypWY9CsE22lqqkz4jV2WVnpyPb9JDrEiHzzf2yyFa3jOd
+        R0ubzG96gMcXnRbrpvcpOyppNxeAFUVC0LPXkmZwmq0wqfUPITlJbx8HtOmcK+ntjSCVm5
+        lVxdfAzaWpUBonEOa73WxiVLJABsIPWjte8zqb/7KK1JEox5Lbi/c0jsv1EyAw==
+Date:   Wed, 23 Feb 2022 16:18:30 +0100
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Conor.Dooley@microchip.com
+Cc:     a.zummo@towertech.it, Lewis.Hanly@microchip.com,
+        Daire.McNamara@microchip.com, Ivan.Griffin@microchip.com,
+        atishp@rivosinc.com, palmer@rivosinc.com, robh@kernel.org,
+        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
+        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, geert@linux-m68k.org,
+        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v7 03/11] dt-bindings: rtc: add bindings for microchip
+ mpfs rtc
+Message-ID: <YhZQRqHib2+GR7Ma@piout.net>
+References: <20220214135840.168236-1-conor.dooley@microchip.com>
+ <20220214135840.168236-4-conor.dooley@microchip.com>
+ <5b0681a0-ff46-7eb4-3644-0d1173c1f0d4@microchip.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v10 3/4] drm/lsdc: add drm driver for loongson display
- controller
-Content-Language: en-US
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     Thomas Zimmermann <tzimmermann@suse.de>,
-        Roland Scheidegger <sroland@vmware.com>,
-        Zack Rusin <zackr@vmware.com>,
-        Christian Gmeiner <christian.gmeiner@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Andrey Zhizhikin <andrey.zhizhikin@leica-geosystems.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Qing Zhang <zhangqing@loongson.cn>,
-        suijingfeng <suijingfeng@loongson.cn>,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Randy Dunlap <rdunlap@infradead.org>,
-        kernel test robot <lkp@intel.com>
-References: <20220220145554.117854-1-15330273260@189.cn>
- <20220220145554.117854-4-15330273260@189.cn>
- <20220222082747.66otrkc4zwvhem7w@houat>
- <54ea69d7-2fac-74dc-2ef6-843a666cff85@189.cn>
- <20220223143912.m727fie3vtdkvklo@houat>
-From:   Sui Jingfeng <15330273260@189.cn>
-In-Reply-To: <20220223143912.m727fie3vtdkvklo@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5b0681a0-ff46-7eb4-3644-0d1173c1f0d4@microchip.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23/02/2022 07:41:27+0000, Conor.Dooley@microchip.com wrote:
+> Hi Alessandro, Alexandre,
+> If one of you could take a look at this, that'd be great.
 
-On 2022/2/23 22:39, Maxime Ripard wrote:
-> On Tue, Feb 22, 2022 at 10:46:35PM +0800, Sui Jingfeng wrote:
->> On 2022/2/22 16:27, Maxime Ripard wrote:
->>>> +	if (!of_device_is_available(output)) {
->>>> +		of_node_put(output);
->>>> +		drm_info(ddev, "connector%d is not available\n", index);
->>>> +		return NULL;
->>>> +	}
->>>> +
->>>> +	disp_tims_np = of_get_child_by_name(output, "display-timings");
->>>> +	if (disp_tims_np) {
->>>> +		lsdc_get_display_timings_from_dtb(output, &lconn->disp_tim);
->>>> +		lconn->has_disp_tim = true;
->>>> +		of_node_put(disp_tims_np);
->>>> +		drm_info(ddev, "Found display timings provided by connector%d\n", index);
->>>> +	}
->>>> +
->>>> +	connector_type = lsdc_get_connector_type(ddev, output, index);
->>>> +
->>>> +	if (output) {
->>>> +		of_node_put(output);
->>>> +		output = NULL;
->>>> +	}
->>>> +
->>>> +DT_SKIPED:
->>>> +
->>>> +	/* Only create the i2c channel if display timing is not provided */
->>>> +	if (!lconn->has_disp_tim) {
->>>> +		const struct lsdc_chip_desc * const desc = ldev->desc;
->>>> +
->>>> +		if (desc->have_builtin_i2c)
->>>> +			lconn->ddc = lsdc_create_i2c_chan(ddev, index);
->>>> +		else
->>>> +			lconn->ddc = lsdc_get_i2c_adapter(ddev, index);
->>> This looks weird: the connector bindings have a property to store the
->>> i2c controller connected to the DDC lines, so you should use that
->>> instead.
->>>
->> This is not  weird,  ast, mgag200, hibmc do the same thing.
-> And none of them have DT support.
->
-> Maxime
+I actually expected someone else to apply this, what is your plan?
 
-You are wrong, ast driver have dt support. See ast_detect_config_mode() 
-in drm/ast/ast_main.c
+> Thanks,
+> Conor.
+> 
+> On 14/02/2022 13:58, conor.dooley@microchip.com wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> > 
+> > Add device tree bindings for the real time clock on
+> > the Microchip PolarFire SoC.
+> > 
+> > Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   .../bindings/rtc/microchip,mfps-rtc.yaml      | 58 +++++++++++++++++++
+> >   1 file changed, 58 insertions(+)
+> >   create mode 100644 Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> > new file mode 100644
+> > index 000000000000..a2e984ea3553
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> > @@ -0,0 +1,58 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml#
+> > +
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Microchip PolarFire Soc (MPFS) RTC Device Tree Bindings
+> > +
+> > +allOf:
+> > +  - $ref: rtc.yaml#
+> > +
+> > +maintainers:
+> > +  - Daire McNamara <daire.mcnamara@microchip.com>
+> > +  - Lewis Hanly <lewis.hanly@microchip.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - microchip,mpfs-rtc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: |
+> > +          RTC_WAKEUP interrupt
+> > +      - description: |
+> > +          RTC_MATCH, asserted when the content of the Alarm register is equal
+> > +          to that of the RTC's count register.
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: rtc
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    rtc@20124000 {
+> > +        compatible = "microchip,mpfs-rtc";
+> > +        reg = <0x20124000 0x1000>;
+> > +        clocks = <&clkcfg 21>;
+> > +        clock-names = "rtc";
+> > +        interrupts = <80>, <81>;
+> > +    };
+> > +...
+> 
 
-static void ast_detect_config_mode(struct drm_device *dev, u32 *scu_rev)
-{
-     struct device_node *np = dev->dev->of_node;
-     struct ast_private *ast = to_ast_private(dev);
-     struct pci_dev *pdev = to_pci_dev(dev->dev);
-     uint32_t data, jregd0, jregd1;
-
-     /* Defaults */
-     ast->config_mode = ast_use_defaults;
-     *scu_rev = 0xffffffff;
-
-     /* Check if we have device-tree properties */
-     if (np && !of_property_read_u32(np, "aspeed,scu-revision-id",
-                     scu_rev)) {
-         /* We do, disable P2A access */
-         ast->config_mode = ast_use_dt;
-         drm_info(dev, "Using device-tree for configuration\n");
-         return;
-     }
-
-  ....
-
-}
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
