@@ -2,263 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB72B4C1310
-	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:46:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 354CF4C131B
+	for <lists+devicetree@lfdr.de>; Wed, 23 Feb 2022 13:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236289AbiBWMqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 07:46:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32866 "EHLO
+        id S240200AbiBWMsD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 07:48:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235284AbiBWMqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:46:53 -0500
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4A00A4199;
-        Wed, 23 Feb 2022 04:46:25 -0800 (PST)
-Received: by mail-vs1-f42.google.com with SMTP id u10so2973694vsu.13;
-        Wed, 23 Feb 2022 04:46:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WN9HXFy4O8MWRcFXOM81Swa8FNpMoMf+B3dPA0jmkFc=;
-        b=u+J0CFZOItMTqtP8TTb5gx/dVX+uopXobhJuPDK2rYaKeXqxrAsxwyZvpiyT4AwdFp
-         2ODg3VB6vTI7oO2WjMEwI3pFBlAn8vV6GourXfcypW+SpCFja3rz4NfW5+E7dlHWI3MR
-         PqtQKfIXr5KcUzlPlB2gjfDgNwsTTurW5Klz+lkNqpO07lRrK70fGLTNE5PbkU7GVqlC
-         /5BjvqPgAA3tkcD0fKPi+dyFdmGm3T88/rsRiBkS/DCWjneC9mSm0MoihiiP2Wekbfu/
-         aI4AWwzaQbLjoO28y7KeyCMhsDADBjOQYTACmrekkdt2BPcbO00ig/Obm5FNapv1kDq9
-         sC4A==
-X-Gm-Message-State: AOAM531y0kZ0LfAaReIsgy2sOMcRC4FT42VJE2TuZRX+Vz2QUhh8M4V6
-        JwjlwMG8H8HSiBjEUjplgBJo3awn0M1/kA==
-X-Google-Smtp-Source: ABdhPJyjm7PS+aBMQ/D6GrSN77qYkt0Az0DkUu/yySTZ5n2T3/yJidVJuflNI8V1U70dfxwAoqLpAg==
-X-Received: by 2002:a67:d90b:0:b0:31b:77ac:6eb5 with SMTP id t11-20020a67d90b000000b0031b77ac6eb5mr11376086vsj.22.1645620384692;
-        Wed, 23 Feb 2022 04:46:24 -0800 (PST)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id u6sm8543114vku.15.2022.02.23.04.46.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Feb 2022 04:46:24 -0800 (PST)
-Received: by mail-ua1-f47.google.com with SMTP id 110so1369164uak.4;
-        Wed, 23 Feb 2022 04:46:23 -0800 (PST)
-X-Received: by 2002:a9f:360f:0:b0:341:8a12:8218 with SMTP id
- r15-20020a9f360f000000b003418a128218mr10583982uad.14.1645620383537; Wed, 23
- Feb 2022 04:46:23 -0800 (PST)
+        with ESMTP id S234236AbiBWMsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 07:48:03 -0500
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2886A4A3EF;
+        Wed, 23 Feb 2022 04:47:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645620455; x=1677156455;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oqju8IXdyV7NCCHhUut3vmqr4DdqWtFCCvY5rooimh0=;
+  b=fpCAjUPoeG1ddRqNywzQBvLQ9R0XGls9ZJ/tqm6sFLF6yVRj/s8/FyZO
+   UDfzAvwasJs/Wllyf2I0Lzi/mX9o9hIyl9A/iGm5IUv/Q9CzymC5VKwOk
+   bWeu9MsujROwepMjcVxa7JqwmeWLbhODPtXb9rD4FOs4Sf4p2LvFWBp1k
+   SPvTArN0es4hRgxUVm29QgnVb1hKaLUpSTP1FNHleFPxQWgfMwxRioijm
+   B1Y6t0+xssWgEnKLzoWciCKP95wodIonOTynZvQp50MVkGcrpXfNhLNhf
+   JlB27lMVeowMQDHa1J7ceVGF9GPgwOi3x3MiLqrigeD1HA7RRM2y9xmHU
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10266"; a="231927545"
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="231927545"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 23 Feb 2022 04:47:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.88,390,1635231600"; 
+   d="scan'208";a="639294376"
+Received: from lkp-server01.sh.intel.com (HELO 788b1cd46f0d) ([10.239.97.150])
+  by orsmga004.jf.intel.com with ESMTP; 23 Feb 2022 04:47:30 -0800
+Received: from kbuild by 788b1cd46f0d with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nMr3J-0001Oi-VB; Wed, 23 Feb 2022 12:47:29 +0000
+Date:   Wed, 23 Feb 2022 20:46:55 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>, broonie@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com,
+        linux-spi@vger.kernel.org, linux-tegra@vger.kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        skomatineni@nvidia.com, ldewangan@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Subject: Re: [PATCH v2 5/5] spi: tegra210-quad: combined sequence mode
+Message-ID: <202202231856.T049n8gm-lkp@intel.com>
+References: <20220222175611.58051-6-kyarlagadda@nvidia.com>
 MIME-Version: 1.0
-References: <20220222103437.194779-1-miquel.raynal@bootlin.com> <20220222103437.194779-5-miquel.raynal@bootlin.com>
-In-Reply-To: <20220222103437.194779-5-miquel.raynal@bootlin.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 23 Feb 2022 13:46:11 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
-Message-ID: <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/8] dma: dmamux: Introduce RZN1 DMA router support
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220222175611.58051-6-kyarlagadda@nvidia.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
+Hi Krishna,
 
-On Tue, Feb 22, 2022 at 11:35 AM Miquel Raynal
-<miquel.raynal@bootlin.com> wrote:
-> The Renesas RZN1 DMA IP is a based on a DW core, with eg. an additional
-> dmamux register located in the system control area which can take up to
-> 32 requests (16 per DMA controller). Each DMA channel can be wired to
-> two different peripherals.
->
-> We need two additional information from the 'dmas' property: the channel
-> (bit in the dmamux register) that must be accessed and the value of the
-> mux for this channel.
->
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Thank you for the patch! Perhaps something to improve:
 
-Thanks for your patch!
+[auto build test WARNING on broonie-spi/for-next]
+[also build test WARNING on v5.17-rc5 next-20220222]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-> --- /dev/null
-> +++ b/drivers/dma/dw/dmamux.c
+url:    https://github.com/0day-ci/linux/commits/Krishna-Yarlagadda/Tegra-QUAD-SPI-combined-sequence-mode/20220223-015906
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+config: riscv-randconfig-r042-20220221 (https://download.01.org/0day-ci/archive/20220223/202202231856.T049n8gm-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/0day-ci/linux/commit/3b852b330b0b8332a67fd7b183ae798031c7a207
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Krishna-Yarlagadda/Tegra-QUAD-SPI-combined-sequence-mode/20220223-015906
+        git checkout 3b852b330b0b8332a67fd7b183ae798031c7a207
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/spi/
 
-rzn1-dmamux.c?
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (C) 2022 Schneider-Electric
-> + * Author: Miquel Raynal <miquel.raynal@bootlin.com
-> + * Based on TI crossbar driver written by Peter Ujfalusi <peter.ujfalusi@ti.com>
-> + */
-> +#include <linux/slab.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/list.h>
-> +#include <linux/io.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_dma.h>
-> +#include <linux/soc/renesas/r9a06g032-sysctrl.h>
-> +
-> +#define RZN1_DMAMUX_LINES      64
+All warnings (new ones prefixed by >>):
 
-Unused. But using it wouldn't hurt, I guess?
+>> drivers/spi/spi-tegra210-quad.c:1044:20: warning: variable 'len' set but not used [-Wunused-but-set-variable]
+           u8 cmd_value = 0, len = 0, val = 0;
+                             ^
+>> drivers/spi/spi-tegra210-quad.c:1140:3: warning: variable 'ret' is used uninitialized whenever switch default is taken [-Wsometimes-uninitialized]
+                   default:
+                   ^~~~~~~
+   drivers/spi/spi-tegra210-quad.c:1148:16: note: uninitialized use occurs here
+           msg->status = ret;
+                         ^~~
+>> drivers/spi/spi-tegra210-quad.c:1051:2: warning: variable 'ret' is used uninitialized whenever 'for' loop exits because its condition is false [-Wsometimes-uninitialized]
+           list_for_each_entry(xfer, &msg->transfers, transfer_list) {
+           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/list.h:639:7: note: expanded from macro 'list_for_each_entry'
+                !list_entry_is_head(pos, head, member);                    \
+                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/spi/spi-tegra210-quad.c:1148:16: note: uninitialized use occurs here
+           msg->status = ret;
+                         ^~~
+   drivers/spi/spi-tegra210-quad.c:1051:2: note: remove the condition if it is always true
+           list_for_each_entry(xfer, &msg->transfers, transfer_list) {
+           ^
+   include/linux/list.h:639:7: note: expanded from macro 'list_for_each_entry'
+                !list_entry_is_head(pos, head, member);                    \
+                ^
+   drivers/spi/spi-tegra210-quad.c:1041:9: note: initialize the variable 'ret' to silence this warning
+           int ret;
+                  ^
+                   = 0
+>> drivers/spi/spi-tegra210-quad.c:1140:3: warning: unannotated fall-through between switch labels [-Wimplicit-fallthrough]
+                   default:
+                   ^
+   drivers/spi/spi-tegra210-quad.c:1140:3: note: insert '__attribute__((fallthrough));' to silence this warning
+                   default:
+                   ^
+                   __attribute__((fallthrough)); 
+   drivers/spi/spi-tegra210-quad.c:1140:3: note: insert 'break;' to avoid fall-through
+                   default:
+                   ^
+                   break; 
+   4 warnings generated.
 
-> +static void *rzn1_dmamux_route_allocate(struct of_phandle_args *dma_spec,
-> +                                       struct of_dma *ofdma)
-> +{
-> +       struct platform_device *pdev = of_find_device_by_node(ofdma->of_node);
-> +       struct rzn1_dmamux_data *dmamux = platform_get_drvdata(pdev);
-> +       struct rzn1_dmamux_map *map;
-> +       unsigned int master, chan, val;
-> +       u32 mask;
-> +       int ret;
-> +
-> +       map = kzalloc(sizeof(*map), GFP_KERNEL);
-> +       if (!map)
-> +               return ERR_PTR(-ENOMEM);
-> +
-> +       if (dma_spec->args_count != 6)
-> +               return ERR_PTR(-EINVAL);
-> +
-> +       chan = dma_spec->args[0];
-> +       map->req_idx = dma_spec->args[4];
-> +       val = dma_spec->args[5];
-> +       dma_spec->args_count -= 2;
-> +
-> +       if (chan >= dmamux->dmac_requests) {
-> +               dev_err(&pdev->dev, "Invalid DMA request line: %d\n", chan);
 
-%u
+vim +/len +1044 drivers/spi/spi-tegra210-quad.c
 
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       if (map->req_idx >= dmamux->dmamux_requests ||
-> +           map->req_idx % dmamux->dmac_requests != chan) {
+  1032	
+  1033	static int tegra_qspi_combined_seq_xfer(struct tegra_qspi *tqspi,
+  1034						struct spi_message *msg)
+  1035	{
+  1036		bool is_first_msg = true;
+  1037		struct spi_transfer *xfer;
+  1038		struct spi_device *spi = msg->spi;
+  1039		u8 transfer_phase = 0;
+  1040		u32 cmd1 = 0, dma_ctl = 0;
+> 1041		int ret;
+  1042		u32 address_value = 0;
+  1043		u32 cmd_config = 0, addr_config = 0;
+> 1044		u8 cmd_value = 0, len = 0, val = 0;
+  1045	
+  1046		/* Enable Combined sequence mode */
+  1047		val = tegra_qspi_readl(tqspi, QSPI_GLOBAL_CONFIG);
+  1048		val |= QSPI_CMB_SEQ_EN;
+  1049		tegra_qspi_writel(tqspi, val, QSPI_GLOBAL_CONFIG);
+  1050		/* Process individual transfer list */
+> 1051		list_for_each_entry(xfer, &msg->transfers, transfer_list) {
+  1052			switch (transfer_phase) {
+  1053			case CMD_TRANSFER:
+  1054				/* X1 SDR mode */
+  1055				cmd_config = tegra_qspi_cmd_config(false, 0,
+  1056								   xfer->len);
+  1057				cmd_value = *((const u8 *)(xfer->tx_buf));
+  1058				break;
+  1059			case ADDR_TRANSFER:
+  1060				len = xfer->len;
+  1061				/* X1 SDR mode */
+  1062				addr_config = tegra_qspi_addr_config(false, 0,
+  1063								     xfer->len);
+  1064				address_value = *((const u32 *)(xfer->tx_buf));
+  1065				break;
+  1066			case DATA_TRANSFER:
+  1067				/* Program Command, Address value in register */
+  1068				tegra_qspi_writel(tqspi, cmd_value, QSPI_CMB_SEQ_CMD);
+  1069				tegra_qspi_writel(tqspi, address_value,
+  1070						  QSPI_CMB_SEQ_ADDR);
+  1071				/* Program Command and Address config in register */
+  1072				tegra_qspi_writel(tqspi, cmd_config,
+  1073						  QSPI_CMB_SEQ_CMD_CFG);
+  1074				tegra_qspi_writel(tqspi, addr_config,
+  1075						  QSPI_CMB_SEQ_ADDR_CFG);
+  1076	
+  1077				reinit_completion(&tqspi->xfer_completion);
+  1078				cmd1 = tegra_qspi_setup_transfer_one(spi, xfer,
+  1079								     is_first_msg);
+  1080				ret = tegra_qspi_start_transfer_one(spi, xfer,
+  1081								    cmd1);
+  1082	
+  1083				if (ret < 0) {
+  1084					dev_err(tqspi->dev, "Failed to start transfer-one: %d\n",
+  1085						ret);
+  1086					return ret;
+  1087				}
+  1088	
+  1089				is_first_msg = false;
+  1090				ret = wait_for_completion_timeout
+  1091						(&tqspi->xfer_completion,
+  1092						QSPI_DMA_TIMEOUT);
+  1093	
+  1094				if (WARN_ON(ret == 0)) {
+  1095					dev_err(tqspi->dev, "QSPI Transfer failed with timeout: %d\n",
+  1096						ret);
+  1097					if (tqspi->is_curr_dma_xfer &&
+  1098					    (tqspi->cur_direction & DATA_DIR_TX))
+  1099						dmaengine_terminate_all
+  1100							(tqspi->tx_dma_chan);
+  1101	
+  1102					if (tqspi->is_curr_dma_xfer &&
+  1103					    (tqspi->cur_direction & DATA_DIR_RX))
+  1104						dmaengine_terminate_all
+  1105							(tqspi->rx_dma_chan);
+  1106	
+  1107					/* Abort transfer by resetting pio/dma bit */
+  1108					if (!tqspi->is_curr_dma_xfer) {
+  1109						cmd1 = tegra_qspi_readl
+  1110								(tqspi,
+  1111								 QSPI_COMMAND1);
+  1112						cmd1 &= ~QSPI_PIO;
+  1113						tegra_qspi_writel
+  1114								(tqspi, cmd1,
+  1115								 QSPI_COMMAND1);
+  1116					} else {
+  1117						dma_ctl = tegra_qspi_readl
+  1118								(tqspi,
+  1119								 QSPI_DMA_CTL);
+  1120						dma_ctl &= ~QSPI_DMA_EN;
+  1121						tegra_qspi_writel(tqspi, dma_ctl,
+  1122								  QSPI_DMA_CTL);
+  1123					}
+  1124	
+  1125					/* Reset controller if timeout happens */
+  1126					if (device_reset(tqspi->dev) < 0)
+  1127						dev_warn_once(tqspi->dev,
+  1128							      "device reset failed\n");
+  1129					ret = -EIO;
+  1130					goto exit;
+  1131				}
+  1132	
+  1133				if (tqspi->tx_status ||  tqspi->rx_status) {
+  1134					dev_err(tqspi->dev, "QSPI Transfer failed\n");
+  1135					tqspi->tx_status = 0;
+  1136					tqspi->rx_status = 0;
+  1137					ret = -EIO;
+  1138					goto exit;
+  1139				}
+> 1140			default:
+  1141				goto exit;
+  1142			}
+  1143			msg->actual_length += xfer->len;
+  1144			transfer_phase++;
+  1145		}
+  1146	
+  1147	exit:
+  1148		msg->status = ret;
+  1149	
+  1150		return ret;
+  1151	}
+  1152	
 
-The reliance on .dmac_requests (i.e. "dma-requests" in the parent
-DMA controller DT node) looks fragile to me.  Currently there are two
-masters, each providing 16 channels, hence using all 2 x 16 =
-32 bits in the DMAMUX register.
-What if a variant used the same mux, and the same 16/16 split, but
-the parent DMACs don't have all channels available?
-I think it would be safer to hardcode this as 16 (using a #define, ofc).
-
-> +               dev_err(&pdev->dev, "Invalid MUX request line: %d\n", map->req_idx);
-
-%u
-
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       /* The of_node_put() will be done in the core for the node */
-> +       master = map->req_idx >= dmamux->dmac_requests ? 1 : 0;
-
-The name "master" confused me: initially I thought it was used as a
-boolean flag, but it really is the index of the parent DMAC.
-
-> +       dma_spec->np = of_parse_phandle(ofdma->of_node, "dma-masters", master);
-> +       if (!dma_spec->np) {
-> +               dev_err(&pdev->dev, "Can't get DMA master\n");
-> +               return ERR_PTR(-EINVAL);
-> +       }
-> +
-> +       dev_dbg(&pdev->dev, "Mapping DMAMUX request %u to DMAC%u request %u\n",
-> +               map->req_idx, master, chan);
-> +
-> +       mask = BIT(map->req_idx);
-> +       mutex_lock(&dmamux->lock);
-> +       dmamux->used_chans |= mask;
-> +       ret = r9a06g032_sysctrl_set_dmamux(mask, val ? mask : 0);
-> +       mutex_unlock(&dmamux->lock);
-> +       if (ret) {
-> +               rzn1_dmamux_free(&pdev->dev, map);
-> +               return ERR_PTR(ret);
-> +       }
-> +
-> +       return map;
-> +}
-> +
-> +static const struct of_device_id rzn1_dmac_match[] __maybe_unused = {
-> +       { .compatible = "renesas,rzn1-dma" },
-> +       {},
-> +};
-> +
-> +static int rzn1_dmamux_probe(struct platform_device *pdev)
-> +{
-> +       struct device_node *mux_node = pdev->dev.of_node;
-> +       const struct of_device_id *match;
-> +       struct device_node *dmac_node;
-> +       struct rzn1_dmamux_data *dmamux;
-> +
-> +       dmamux = devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KERNEL);
-> +       if (!dmamux)
-> +               return -ENOMEM;
-> +
-> +       mutex_init(&dmamux->lock);
-> +
-> +       dmac_node = of_parse_phandle(mux_node, "dma-masters", 0);
-> +       if (!dmac_node)
-> +               return dev_err_probe(&pdev->dev, -ENODEV, "Can't get DMA master node\n");
-> +
-> +       match = of_match_node(rzn1_dmac_match, dmac_node);
-> +       if (!match) {
-> +               of_node_put(dmac_node);
-> +               return dev_err_probe(&pdev->dev, -EINVAL, "DMA master is not supported\n");
-> +       }
-> +
-> +       if (of_property_read_u32(dmac_node, "dma-requests", &dmamux->dmac_requests)) {
-> +               of_node_put(dmac_node);
-> +               return dev_err_probe(&pdev->dev, -EINVAL, "Missing DMAC requests information\n");
-> +       }
-> +
-> +       of_node_put(dmac_node);
-
-When hardcoding dmac_requests to 16, I guess the whole dmac_node
-handling can be removed?
-
-> +
-> +       if (of_property_read_u32(mux_node, "dma-requests", &dmamux->dmamux_requests)) {
-
-Don't obtain from DT, but fix to 32?
-
-> +               return dev_err_probe(&pdev->dev, -EINVAL, "Missing mux requests information\n");
-> +       }
-> +
-> +       dmamux->dmarouter.dev = &pdev->dev;
-> +       dmamux->dmarouter.route_free = rzn1_dmamux_free;
-> +
-> +       platform_set_drvdata(pdev, dmamux);
-> +
-> +       return of_dma_router_register(mux_node, rzn1_dmamux_route_allocate,
-> +                                     &dmamux->dmarouter);
-> +}
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
