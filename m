@@ -2,120 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 735474C3699
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:11:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8E84C369D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:11:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234244AbiBXULP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 15:11:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
+        id S234252AbiBXUMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:12:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233607AbiBXULP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:11:15 -0500
-Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658B327792F
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:10:44 -0800 (PST)
-Received: by mail-oi1-x22f.google.com with SMTP id j2so4672326oie.7
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:10:44 -0800 (PST)
+        with ESMTP id S234257AbiBXUMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:12:08 -0500
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85785193CB;
+        Thu, 24 Feb 2022 12:11:36 -0800 (PST)
+Received: by mail-ed1-x534.google.com with SMTP id s24so4469412edr.5;
+        Thu, 24 Feb 2022 12:11:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tp/pxUAsN1dsuv2WMgFOFlatJS81kJvAhFMGsLib+Ik=;
-        b=QD5DoxG2HFUYczwhvfPpKRZtnIME+v8s7w+BMnIyEY0/+LA6uzKnzx48TQFLyCi7F0
-         ZXnFA/+CXBjbSFYOtS/HtPQdxpoqKQCikgKMJ5nqywsutlOh215hj+5w2XnG7hcGhqfP
-         ettNPp5G8VpeUXSppkEJD7y/PNFkQQpjRzdLxM5Tk2YLpzBQRCJaMqG6jpW6LUISA0MG
-         v0BXQJ9gVeL2EVPR1q60Ac2A9Or1s6tbjQPqawwfA3VHvUv9z2gYfs1VgaS4+kIcdWyl
-         KckZ6LmxFupOpCf7p0rOAYnEGLcZDBB1clh3kSO+0qp2AO0mGbovLAP+k1RJ+ejdlYn7
-         YEKg==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=e5NyuFcM6LQ6ck24zC5Lh3fqt3x4cs5RkTNn8b8l2Vk=;
+        b=WW8m6ltpaXjzsUeL8mbZAG+qShtaE0rRC0oJsgH8l16Cgy1HBjPK4SjOi6cc9YXKLY
+         FUJfNFr4zzbeWHGgcbrVYOkyb359yLsSYLIrICroCc8Dfz4N/OTVGEFeAQkxOPu1f4fW
+         PdpD74HRc1Mh9mlT8MkTomiwLIow77sUEE7l5bCUAs1MTdH8+GjcMaAHlm/i3oW9N6lW
+         Si0W3p3tf3bl4ssdMwkdDn6imwemZIgV1yNF8z8s2AjajQPK0btKxnLUyZkCK8p8XCxF
+         Pw8OXgy/8d/mAVufBvqg3c7mwsawDB35XWDB57W2ZxP9rBvOon7fcgYsVtfbpk58Rlmf
+         OfHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tp/pxUAsN1dsuv2WMgFOFlatJS81kJvAhFMGsLib+Ik=;
-        b=CtSZHfqhwMGLzo/3PGyGyf7/LuCLens0lId2zSB/Uz4PBIlJxD8B/jAc7sWTi4Zg1X
-         Gwbio1wMAV33XwVKQFkuFLxhKXRdgtCAphPtirjoiF5S2aZ85pPnjgahtS//6KmFz4dH
-         ATeoMJZCBQMAetlYX8ryq9H+q/rZbTL9rdP9RFSgm4aKFUFp/caZb3Wgkgqgd4Uj94j1
-         6dmvGXOuCUCoKwIC0RTN++WZsMEIFrgyKdQqog7b+1mQI5t8OQvsb4r0tq0tkxvgrHBA
-         PnbdrJUGDeX7DrWA1A7H/dU5kUMfwXnmp5tkDSPPbk4nGcVOl8KnoXYWzEqEwBrpI48X
-         xlHw==
-X-Gm-Message-State: AOAM533VvjlFZC4aLTgyZqvCsu8X9MizotedtfKzc7+YQ58NBCqp+XY6
-        MsAPoRNbNOlnm+gNEUsSP/BuhQ==
-X-Google-Smtp-Source: ABdhPJyN1tJXc2OmNxcbayjctonbYe7XOluBMlLa7fjoRQREv6clqrbNE7J3VS7gOJPpy7RKF/DD4A==
-X-Received: by 2002:a05:6870:6014:b0:d6:ca51:2108 with SMTP id t20-20020a056870601400b000d6ca512108mr2044865oaa.47.1645733443809;
-        Thu, 24 Feb 2022 12:10:43 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id p16-20020a05680811d000b002d72ec3a921sm249592oiv.21.2022.02.24.12.10.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 12:10:43 -0800 (PST)
-Date:   Thu, 24 Feb 2022 14:10:40 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Thara Gopinath <thara.gopinath@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 02/10] dt-bindings: thermal: tsens: Add msm8953
- compatible
-Message-ID: <YhfmQFFCmb74dOvV@builder.lan>
-References: <20220220201909.445468-1-luca@z3ntu.xyz>
- <20220220201909.445468-3-luca@z3ntu.xyz>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=e5NyuFcM6LQ6ck24zC5Lh3fqt3x4cs5RkTNn8b8l2Vk=;
+        b=RIk080JzsCivaXVCpL2QwnYI5RKM0+TMy7ytPE5dlYTa8VOHkq5idH6ezoauTauxYT
+         cn7co+PA35KWz0Dp3A2g8ZpQM29OtZqdwwf1oRT5KGaIfPQ9Lf800+VIdrOKlth/352d
+         04rz4xYgGHaBFnkvOVWi9Rcq3J0jurLhxEwWmmNnZzRhOuWpO3sErfQOndsjZi5iJn3E
+         H6RHg96+LlUeDOivwaVSuAAJegLFSYzwnRFJplmY9s5HMHVqvyIfZNTMJLJ15ADcUGCk
+         Xqxc+l/WGY8v4iYFUTjsB2d4bvkoWDSbVEVeVjAD7rJo5IrGVrFvZnSOhlRKr2wuWRW+
+         2gEw==
+X-Gm-Message-State: AOAM530YCb9WlgtVOcApkScbjQ1S8IQnrQPK93l6gE83cCAzvfUZXbYQ
+        mrFRT6S+iiMQQP2hHoScs4w3joRdSXE=
+X-Google-Smtp-Source: ABdhPJzgq2waSqW60Mpej34aIb3d1OVbopNz58VxC3hrhDTV4U4+trNRV9CIxszo/Xe4sDO01llm9A==
+X-Received: by 2002:a05:6402:c90:b0:410:a0a7:ca5b with SMTP id cm16-20020a0564020c9000b00410a0a7ca5bmr3812607edb.417.1645733495020;
+        Thu, 24 Feb 2022 12:11:35 -0800 (PST)
+Received: from ?IPV6:2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd? (p200300ea8f4d2b0070ade6bd1cea7edd.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd])
+        by smtp.googlemail.com with ESMTPSA id b7-20020a50e787000000b00412d6970125sm229061edn.104.2022.02.24.12.11.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Feb 2022 12:11:34 -0800 (PST)
+Message-ID: <0cd06b4a-026b-5705-b36b-1914e63bbf0b@gmail.com>
+Date:   Thu, 24 Feb 2022 21:11:16 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220220201909.445468-3-luca@z3ntu.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: [PATCH v4 6/6] MAINTAINERS: Add entry for tm1628 auxdisplay driver
+Content-Language: en-US
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
+In-Reply-To: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 20 Feb 14:18 CST 2022, Luca Weiss wrote:
+Add maintainer entry for tm1628 7-segment LED display driver.
 
-> Document the compatible string for tsens found in msm8953.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Acked-by: Amit Kucheria <amitk@kernel.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+---
+ MAINTAINERS | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-Daniel, can you please pick this patch through your tree?
+diff --git a/MAINTAINERS b/MAINTAINERS
+index eb321d82f..d66da447d 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -19672,6 +19672,13 @@ W:	http://sourceforge.net/projects/tlan/
+ F:	Documentation/networking/device_drivers/ethernet/ti/tlan.rst
+ F:	drivers/net/ethernet/ti/tlan.*
+ 
++TM1628 LED CONTROLLER DRIVER
++M:	Heiner Kallweit <hkallweit1@gmail.com>
++S:	Maintained
++F:	Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
++F:	Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
++F:	drivers/auxdisplay/tm1628.c
++
+ TM6000 VIDEO4LINUX DRIVER
+ M:	Mauro Carvalho Chehab <mchehab@kernel.org>
+ L:	linux-media@vger.kernel.org
+-- 
+2.35.1
 
-Thanks,
-Bjorn
 
-> ---
-> Changes in v2:
-> - no changes
-> 
->  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> index d3b9e9b600a2..b6406bcc683f 100644
-> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -43,6 +43,7 @@ properties:
->        - description: v2 of TSENS
->          items:
->            - enum:
-> +              - qcom,msm8953-tsens
->                - qcom,msm8996-tsens
->                - qcom,msm8998-tsens
->                - qcom,sc7180-tsens
-> -- 
-> 2.35.1
-> 
