@@ -2,183 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCD1F4C280C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:27:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3BF4C281D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232728AbiBXJ2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 04:28:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50764 "EHLO
+        id S232716AbiBXJdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 04:33:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232127AbiBXJ2B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:28:01 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08125F11A7;
-        Thu, 24 Feb 2022 01:27:29 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 879A1FF805;
-        Thu, 24 Feb 2022 09:27:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1645694848;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=CLJ/bcLItCv9HjSRiDqArmyxNKrFb+RrjF79qRknBBY=;
-        b=dQhyx59jLotHyUcmVYOrndZCuFPzEuiNVjUTMbwCQxa2NhF40NpfOT/DNqNtXbAEy7B31A
-        /TanbRcuOWhA8hSvLYp0yhw0qV0oCq6Uu51UojcCpDbjeBhxpHNqfH8X8+SV2NpAbc/9mp
-        qb5SEme/Js9C8rzNOCaqT9CZpSqkmhGg+S0r0t8Np8vNJN3r5PqwY883FpJZgeL37z8eQH
-        jPPTD0w4MgqOfAi+lWBv1XE2C9Jdry9e4050AGohJF/pmGojTX6MJObNI+EGCsfokxujsR
-        JX2tQ7Q7JXrq+R5IX5Ra3lgmUkgsANvRdn/5YmRCS0m6ILhLGj0VS4k+yUqkOA==
-Date:   Thu, 24 Feb 2022 10:27:24 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Subject: Re: [PATCH v2 4/8] dma: dmamux: Introduce RZN1 DMA router support
-Message-ID: <20220224102724.74e2c406@xps13>
-In-Reply-To: <CAMuHMdVr4tiicEn-BbBnCd-zP6ncr=zKd-eDvPYoYKNWUKsOBw@mail.gmail.com>
-References: <20220222103437.194779-1-miquel.raynal@bootlin.com>
-        <20220222103437.194779-5-miquel.raynal@bootlin.com>
-        <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
-        <20220223174902.3a9b85ea@xps13>
-        <CAMuHMdVr4tiicEn-BbBnCd-zP6ncr=zKd-eDvPYoYKNWUKsOBw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S232683AbiBXJdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:33:09 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7C3A220A953;
+        Thu, 24 Feb 2022 01:32:39 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A8F3ED1;
+        Thu, 24 Feb 2022 01:32:39 -0800 (PST)
+Received: from e120937-lin (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F3593F70D;
+        Thu, 24 Feb 2022 01:32:38 -0800 (PST)
+Date:   Thu, 24 Feb 2022 09:32:32 +0000
+From:   Cristian Marussi <cristian.marussi@arm.com>
+To:     Stefano Stabellini <sstabellini@kernel.org>
+Cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+Message-ID: <20220224093232.GA12053@e120937-lin>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
+ <2546477f-4190-e838-3095-f47b31802445@kernel.org>
+ <20220221213932.GA164964@EPUAKYIW015D>
+ <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
+ <20220222161440.xadrgjftdyxenxgo@bogus>
+ <20220222173458.GA2310133@EPUAKYIW015D>
+ <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Wed, Feb 23, 2022 at 06:51:59PM -0800, Stefano Stabellini wrote:
+> On Tue, 22 Feb 2022, Oleksii Moisieiev wrote:
+> > On Tue, Feb 22, 2022 at 04:14:40PM +0000, Sudeep Holla wrote:
+> > > On Tue, Feb 22, 2022 at 09:06:25AM +0100, Krzysztof Kozlowski wrote:
+> > > > On 21/02/2022 22:39, Oleksii Moisieiev wrote:
+> > > > > Hi Krzysztof,
+> > > > > 
 
-geert@linux-m68k.org wrote on Thu, 24 Feb 2022 10:14:48 +0100:
+Hi Stefano,
 
-> Hi Miquel,
->=20
-> On Wed, Feb 23, 2022 at 5:49 PM Miquel Raynal <miquel.raynal@bootlin.com>=
- wrote:
-> > geert@linux-m68k.org wrote on Wed, 23 Feb 2022 13:46:11 +0100: =20
-> > > On Tue, Feb 22, 2022 at 11:35 AM Miquel Raynal
-> > > <miquel.raynal@bootlin.com> wrote: =20
-> > > > The Renesas RZN1 DMA IP is a based on a DW core, with eg. an additi=
-onal
-> > > > dmamux register located in the system control area which can take u=
-p to
-> > > > 32 requests (16 per DMA controller). Each DMA channel can be wired =
-to
-> > > > two different peripherals.
-> > > >
-> > > > We need two additional information from the 'dmas' property: the ch=
-annel
-> > > > (bit in the dmamux register) that must be accessed and the value of=
- the
-> > > > mux for this channel.
-> > > >
-> > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com> =20
-> > >
-> > > Thanks for your patch!
-> > > =20
-> > > > --- /dev/null
-> > > > +++ b/drivers/dma/dw/dmamux.c =20
->=20
-> > > > +static int rzn1_dmamux_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +       struct device_node *mux_node =3D pdev->dev.of_node;
-> > > > +       const struct of_device_id *match;
-> > > > +       struct device_node *dmac_node;
-> > > > +       struct rzn1_dmamux_data *dmamux;
-> > > > +
-> > > > +       dmamux =3D devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KE=
-RNEL);
-> > > > +       if (!dmamux)
-> > > > +               return -ENOMEM;
-> > > > +
-> > > > +       mutex_init(&dmamux->lock);
-> > > > +
-> > > > +       dmac_node =3D of_parse_phandle(mux_node, "dma-masters", 0);
-> > > > +       if (!dmac_node)
-> > > > +               return dev_err_probe(&pdev->dev, -ENODEV, "Can't ge=
-t DMA master node\n");
-> > > > +
-> > > > +       match =3D of_match_node(rzn1_dmac_match, dmac_node);
-> > > > +       if (!match) {
-> > > > +               of_node_put(dmac_node);
-> > > > +               return dev_err_probe(&pdev->dev, -EINVAL, "DMA mast=
-er is not supported\n");
-> > > > +       }
-> > > > +
-> > > > +       if (of_property_read_u32(dmac_node, "dma-requests", &dmamux=
-->dmac_requests)) {
-> > > > +               of_node_put(dmac_node);
-> > > > +               return dev_err_probe(&pdev->dev, -EINVAL, "Missing =
-DMAC requests information\n");
-> > > > +       }
-> > > > +
-> > > > +       of_node_put(dmac_node); =20
-> > >
-> > > When hardcoding dmac_requests to 16, I guess the whole dmac_node
-> > > handling can be removed? =20
-> >
-> > Not really, I think the following checks are still valid and fortunate,
-> > and they need some of_ handling to work properly:
-> > - verify that the chan requested is within the range of dmac_requests
-> >   in the _route_allocate() callback
-> > - ensure the dmamux is wired to a supported DMAC in the DT (this
-> >   condition might be loosen in the future if needed or dropped entirely
-> >   if considered useless)
-> > - I would like to add a check against the number of requests supported
-> >   by the dmamux and the dmac (not done yet).
-> > For the record, I've taken inspiration to write these lines on the other
-> > dma router driver from TI.
-> >
-> > Unless, and I know some people think like that, we do not try to
-> > validate the DT and if the DT is wrong that is none of our business.
-> > =20
-> > > =20
-> > > > +
-> > > > +       if (of_property_read_u32(mux_node, "dma-requests", &dmamux-=
->dmamux_requests)) { =20
-> > >
-> > > Don't obtain from DT, but fix to 32? =20
-> >
-> > I believe the answer to the previous question should give me a clue
-> > about why you would prefer hardcoding than reading from the DT such
-> > an information. Perhaps I should mention that all these properties are
-> > already part of the bindings, and are not specific to the driver, the
-> > information will be in the DT anyway. =20
->=20
-> The 32 is a property of the hardware (32 bits in DMAMUX register).
-> So IMHO it falls under the "differentiate by compatible value,
-> not by property" rule.
+> > > > > On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
+> > > > >> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
+> > > > >>> Introducing new parameter called scmi_devid to the device-tree bindings.
+> > > > >>> This parameter should be set for the device nodes, which has
+> > > > >>> clocks/power-domains/resets working through SCMI.
+> > > > >>> Given parameter should set the device_id, needed to set device
+> > > > >>> permissions in the Firmware. This feature will be extremely useful for
+> > > > >>> the virtualized systems, which has more that one Guests running on the
+> > > > >>> system at the same time or for the syestems, which require several
+> > > > >>> agents with different permissions. Trusted agent will use scmi_devid to
+> > > > >>> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
+> > > > >>> for details).
+> > > > >>> Agents concept is described in Section 4.2.1 [0].
+> > > > >>>
+> > > > >>> scmi_devid in Device-tree node example:
+> > > > >>> usb@e6590000
+> > > > >>> {
+> > > > >>>     scmi_devid = <19>;
+> > > > >>>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
+> > > > >>>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
+> > > > >>>     power-domains = <&scmi_power 0>;
+> > > > >>> };
+> > > > >>
+> > > > >> And how do you prevent DT overlay adding such devid to any other node
+> > > > >> thus allowing any other device to send requests with given devid?
+> > > > >>
+> > > > > Thank you for the quick response.
+> > > > > scmi_devid value will be used only by Trusted Agent when the device
+> > > > > permissions are set. Non-trusted agents, which in our case are
+> > > > > represented as Guest OS are using scmi drivers, already present in linux
+> > > > > kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_reset
+> > > > > nodes to access to SCMI protocol.
+> > > > 
+> > > > Ah, ok.
+> > > > 
+> > > > > 
+> > > > >> Plus few technicalities:
+> > > > >> 1. Hyphen, not underscore in property name, so scmi-devid.
+> > > > > 
+> > > > > Thanks for the tip, I will change that in v2.
+> > > > 
+> > > > Few more thoughts:
+> > > > 1. This looks specific to ARM SCMI, so you also need vendor prefix, so
+> > > > something like:
+> > > > arm,scmi-devid
+> > > > arm,scmi-device-id
+> > > > 
+> > > 
+> > > Keeping the other discussion separate, I wanted to comment on this.
+> > > I agree with Krzysztof on having vendor specific prefix if we decide to add
+> > > this device id thing. However, I prefer not to use "arm,scmi-" here.
+> > > It can be "xen,scmi-" as we had plans to introduce some concepts in SCMI
+> > > spec that may use looks like this device-id. I would just like to avoid
+> > > conflicting with that in the future. It may happen to be same in the future
+> > > (i.e. this xen device-id matches 100% with definition of device-id we might
+> > > introduce in the spec, but I want to make assumption otherwise and leave
+> > > scope for divergence however small/little it can be). No issues even if
+> > > they converge and match 100% later in the far future.
+> > > 
+> > 
+> > xem,scmi- works for me. What do other thinks?
+>   ^ xen,scmi-
+> 
+> If this problem was Xen specific, then it would be fine to use xen,scmi-
+> As Xen developer, it solves my problem and I am fine with it.
+> 
+> However, from a device tree and SCMI point of view, it looks like this
+> problem is generic and it just happens that Xen is the first
+> implementation to encounter it.
+> 
+> Cristian wrote: "The SCMI spec does not indeed cover the discovery of
+> such devices and the related associated resources: it indeed delegates
+> such description to FDT/ACPI as of now." How is that supposed to happen
+> today with the current DT definitions, regardless of Xen? Is it a gap in
+> the current device tree binding?
 
-I agree this is a property of the hardware and feels redundant here.
+What I meant is that in fact SCMI device IDs are NOT needed in the Linux
+Kernel DT, in fact also this series does not add any code using it and
+there is no code as of now in Kernel to issue BASE_SET_DEVICE_PERMISSIONS
+commands; Linux Guest OS in the above scenario is a Non-Trusted agent and
+doesn't need to know SCMI DevIDs and must NOT have access to those IDs for
+security reasons too (as Sudeep was saying): the Trusted Agent (XEN here)
+and the SCMI platform server are the only ones required to share the
+knowledge of such Device IDs (and how the related resources are grouped)
+via some HW description scheme as you are doing indeed in XEN.
 
-What about the checks below, do you agree with the fact that I should
-keep them or do you prefer dropping them (all? partially?)?
-
+So, while on one side such device IDs discovery is delegated by the spec
+to the HW description mechanisms, it seems just not needed in Kernel DT
+given the kind or role it has as an SCMI agent in this context: as said
+in fact there won't be any use as of now in Linux of such DT entries as
+of now.
 
 Thanks,
-Miqu=C3=A8l
+Cristian
+
+
