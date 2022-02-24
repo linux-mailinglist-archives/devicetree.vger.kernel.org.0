@@ -2,114 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5AE4C365C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:59:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D61B4C3667
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:59:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbiBXT7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:59:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37330 "EHLO
+        id S233890AbiBXUAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:00:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37760 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230023AbiBXT7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:59:24 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC3A618FAD3
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:58:53 -0800 (PST)
-Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 0AFF883CB7;
-        Thu, 24 Feb 2022 20:58:51 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645732731;
-        bh=AkY0KH54MhGTDZTKwGecoPl4iLb/pqWTmjJxoHyApwo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JM2M85unuplj3uAxG4Vqaj5IIsvDrGpMoG8GojW6glNfgav20csiK8qjAtH4KgvtE
-         CSXOCZPtbP2fc9Hs4NE0+661XTcpmUEsdpOdtl7Vh5wodIXU2gejU6u94443cEOgP1
-         eZff69bYUMMdrBTIHW10x6/r5ThLDHr3JWi1R8zOg9dK56cBfNTMa+luPYENWCQNwY
-         IRXWf8ykCFRmy06Ser8volNf36P1Pka6etl3dTtPBvrBprOUWULHYQvMLCdLq77Nu3
-         0g3vjSclC8Gs5eGXJag1yzoQoJRgxzJ3SeFIkyHA4dPYC1o+7HufqOCuCI5ilFwwhv
-         5mDqQH9SOcK9w==
-From:   Marek Vasut <marex@denx.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Marek Vasut <marex@denx.de>, Jonas Karlman <jonas@kwiboo.se>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
-Subject: [PATCH V3 02/12] dt-bindings: display: bridge: tc358867: Document DSI data-lanes property
-Date:   Thu, 24 Feb 2022 20:58:07 +0100
-Message-Id: <20220224195817.68504-3-marex@denx.de>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220224195817.68504-1-marex@denx.de>
-References: <20220224195817.68504-1-marex@denx.de>
+        with ESMTP id S233420AbiBXUAM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:00:12 -0500
+Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4D2C2763F7
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:59:41 -0800 (PST)
+Received: by mail-oi1-x22c.google.com with SMTP id x193so4687617oix.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:59:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HBUQkf1c18D3IhqFKKwGMruvkg+pP4vMasYemb3Ge/g=;
+        b=cPb4xYwq2xRZS+pSueX4DQu6ZCDCLqP2zEW/h7owqO6uHVQvOrk1zoIh8Q1RdX66Qh
+         UhdMCHKoc+l6RL0gUHi2lJybdQa0+l+lOLGjDnsAT5lHaP+4HBKT1rlAzaGhHG4Z2ghY
+         TxnimbdvqiPMQABvzhR7jfiurKiOHqdg6HGzGpzfzTXyjPd1x1INf91bmhVlq8uCMp3K
+         LIxxahS79FRl4FMaUlNBEsgXQgq9fRfD4RhET4p6G1xG0tPxUxsRY4bgxnOoNE7aNzuC
+         18damqu6g9V8qVAkTVXzRO8LJfvD77VHUTqgCFd2mDt0R7UtU9F6YDh4t7uDieeiWIH6
+         3pwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=HBUQkf1c18D3IhqFKKwGMruvkg+pP4vMasYemb3Ge/g=;
+        b=BONlHkbxvvkaeOw9ScPJfKrKzeZOmW4NgLZR3J8MROwgHYcIIMze28xbMQ0oQPH8MN
+         kbd80KEGy3vkJT7OxhR2qF/uyHHZpXB/p1QHE3/eQ5b8jgK8Skic2VVJiJ+qUROQDm6G
+         +BY20615aRR48jaNU82mjHQA2IOb76Ll0bI/yhHujqR8U96FDS01tHbYuVYirNy9Ik0m
+         oV/VAT2I9Syis82AqLU95DnlmejN4FKsDHBny1PAb7UnDkEu/OuKFWmLYAXulF6hwbvq
+         nllDoC4TrOj+7HooDztNu31gTPfzBH6Bur9gzpVDc3Y5qWcNnf2+4Q/s3Lc6XqSZCmYc
+         l3ig==
+X-Gm-Message-State: AOAM530A7/MDXFZkCnETfQFh9rQCPK4ZSJ+EAOaWYGbZX9spNcIC1goL
+        36SV7ZMpykpHWI3PrSv9omU6qA==
+X-Google-Smtp-Source: ABdhPJygt08vCBVo/UgfpVMiox5duayX+DsGCbmNeAge1yQH/WLLoKbK6XrUt+uABY6Q/U/7ApF/Uw==
+X-Received: by 2002:a05:6808:56b:b0:2d4:5f04:f2fa with SMTP id j11-20020a056808056b00b002d45f04f2famr8135225oig.96.1645732781147;
+        Thu, 24 Feb 2022 11:59:41 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id bf39-20020a056808192700b002d51f615f1csm235794oib.34.2022.02.24.11.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 11:59:40 -0800 (PST)
+Date:   Thu, 24 Feb 2022 13:59:38 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <quic_sibis@quicinc.com>
+Cc:     robh+dt@kernel.org, ohad@wizery.com, agross@kernel.org,
+        mathieu.poirier@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org, mka@chromium.org,
+        krzysztof.kozlowski@canonical.com
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sc7280: Add proxy interconnect
+ requirements for modem
+Message-ID: <YhfjqsrHhbU36OqH@builder.lan>
+References: <1644813252-12897-1-git-send-email-quic_sibis@quicinc.com>
+ <1644813252-12897-4-git-send-email-quic_sibis@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1644813252-12897-4-git-send-email-quic_sibis@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It is necessary to specify the number of connected/used DSI data lanes when
-using the DSI input port of this bridge. Document the 'data-lanes' property
-of the DSI input port.
+On Sun 13 Feb 22:34 CST 2022, Sibi Sankar wrote:
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Jonas Karlman <jonas@kwiboo.se>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc: Maxime Ripard <maxime@cerno.tech>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: devicetree@vger.kernel.org
-To: dri-devel@lists.freedesktop.org
----
-V3: - New patch
----
- .../display/bridge/toshiba,tc358767.yaml       | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
+> Add interconnects that are required to be proxy voted upon during modem
+> bootup on SC7280 SoCs.
+> 
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-index 5cfda6f2ba69c..ed280053ec62b 100644
---- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
-@@ -53,11 +53,27 @@ properties:
- 
-     properties:
-       port@0:
--        $ref: /schemas/graph.yaml#/properties/port
-+        $ref: /schemas/graph.yaml#/$defs/port-base
-+        unevaluatedProperties: false
-         description: |
-             DSI input port. The remote endpoint phandle should be a
-             reference to a valid DSI output endpoint node
- 
-+        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
-+
-+            properties:
-+              data-lanes:
-+                description: array of physical DSI data lane indexes.
-+                minItems: 1
-+                items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-       port@1:
-         $ref: /schemas/graph.yaml#/properties/port
-         description: |
--- 
-2.34.1
+Looked at this again, and it makes me wonder why do we need to vote on
+the path LLCC -> EBI1 and why do we call that path "imem"?
 
+Regards,
+Bjorn
+
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> index 9f4a9c263c35..1969f4cf59fe 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-chrome-common.dtsi
+> @@ -89,6 +89,8 @@
+>  	compatible = "qcom,sc7280-mss-pil";
+>  	iommus = <&apps_smmu 0x124 0x0>, <&apps_smmu 0x488 0x7>;
+>  	memory-region = <&mba_mem>, <&mpss_mem>;
+> +	interconnects = <&mc_virt MASTER_LLCC 0 &mc_virt SLAVE_EBI1 0>;
+> +	interconnect-names = "imem";
+>  };
+>  
+>  /* Increase the size from 2.5MB to 8MB */
+> -- 
+> 2.7.4
+> 
