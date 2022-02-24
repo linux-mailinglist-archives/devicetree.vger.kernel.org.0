@@ -2,56 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C1E94C3936
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:51:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BD2C4C3941
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:58:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbiBXWwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 17:52:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
+        id S231698AbiBXW5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 17:57:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235465AbiBXWwS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:52:18 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41363286EB;
-        Thu, 24 Feb 2022 14:51:46 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ED2FEB829B0;
-        Thu, 24 Feb 2022 22:51:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31E15C340E9;
-        Thu, 24 Feb 2022 22:51:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645743103;
-        bh=P9qcOemBY8u888uY/b/Wuuv4yBCQnVd4boIuuS7cnNA=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=oO1DeX5QvOxenx0MYZgsizhTiYOeT5Wpi8TK6AkK7Ze6EbkDamOHOoyVhnmV4Cpbj
-         RATgZ9nG4pWwD2RnmW9IxNVU/+Tt+kS+Y7/aug4aQhK0fv+Wutcsli9JUb25Pi+Rt/
-         mFvj+YFI2Pxy9Q6gT0HYtIVc5xt3u2LGl6NpNWw1wEbjkGDz0HLrnCxHNvaft+wKNr
-         i9SLt7UWF+T79G3gk9IxQcb2zNiwFFp5IgjvYMz4MwHcxZnOSg8l5G5hECmwLsoGep
-         QR4BbV+HjlEBBJ3swzVgd2zlArUN1jcfQW0F+YWpxLCYyAFAMxV6688dnjgD3mhqFE
-         jVdUcYOLDdRWQ==
-Date:   Thu, 24 Feb 2022 14:51:42 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Sudeep Holla <sudeep.holla@arm.com>
-cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-In-Reply-To: <20220224115443.fwhczfvm3cfwoim7@bogus>
-Message-ID: <alpine.DEB.2.22.394.2202241424110.239973@ubuntu-linux-20-04-desktop>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com> <20220222110003.GC21915@e120937-lin> <20220222160637.yn6pru4nfgwih23j@bogus> <20220222171549.GA2194063@EPUAKYIW015D> <20220224115443.fwhczfvm3cfwoim7@bogus>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S230335AbiBXW53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:57:29 -0500
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC20458831;
+        Thu, 24 Feb 2022 14:56:58 -0800 (PST)
+Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 21OL80RZ018478;
+        Thu, 24 Feb 2022 22:56:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=hLMUQDq0hZU27/WUqn+x3uojwC5HLelaS3pmkFmruhI=;
+ b=VZdGmlWPt18YeT0z01npFX4CM7OrJo8BcshOeKt7bk8akb9UcRb/ecV0TAgEyhZtV5jb
+ 1wUbf4jjUiVCmAbvnEGkaCVL+K6j7bc5zqnF6cDu376Y5YIJ3yehzrk8sZPcFJyctpz/
+ MMx0+xJfc2etZIrWcijYHkNcABNbDgzyaa6p/qnHs3PIGaThlg1TuFjoZiMrlI546EwM
+ 6ljlsIg1A0ejVWD5PLNBI5L24Zn515TptgI4OTc1JH5pCv2nG/Z5EMlP6NNW6f0FE/qa
+ SG/maEs4jmnSBUus2SNShFbpNiWTKtQKBymOVb0ttEO3C8aJYTjTAnsRcx4X5G2rodtK 3A== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3edpjvq48p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Feb 2022 22:56:53 +0000
+Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.43/8.16.0.43) with SMTP id 21OMk7EL005856;
+        Thu, 24 Feb 2022 22:56:52 GMT
+Received: from ppma02wdc.us.ibm.com (aa.5b.37a9.ip4.static.sl-reverse.com [169.55.91.170])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3edpjvq48f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Feb 2022 22:56:52 +0000
+Received: from pps.filterd (ppma02wdc.us.ibm.com [127.0.0.1])
+        by ppma02wdc.us.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 21OMqHhj006768;
+        Thu, 24 Feb 2022 22:56:51 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma02wdc.us.ibm.com with ESMTP id 3ear6bcc84-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Feb 2022 22:56:51 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 21OMuoud12517692
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Thu, 24 Feb 2022 22:56:50 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id AE23D7805E;
+        Thu, 24 Feb 2022 22:56:50 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 53BC87805C;
+        Thu, 24 Feb 2022 22:56:50 +0000 (GMT)
+Received: from v0005c16.aus.stglabs.ibm.com (unknown [9.163.20.50])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Thu, 24 Feb 2022 22:56:50 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmitry.torokhov@gmail.com, robh+dt@kernel.org, joel@jms.id.au,
+        Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v4 0/2] input: misc: Add IBM Operation Panel driver
+Date:   Thu, 24 Feb 2022 16:56:33 -0600
+Message-Id: <20220224225635.40538-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-ORIG-GUID: dIrw9o-CDiqPA5-TMBpr-Eo3BFp-hDOb
+X-Proofpoint-GUID: 1W8dCxWg2opM4B2REmJnKuM6Ydk2YrWI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-02-24_05,2022-02-24_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 suspectscore=0 adultscore=0 clxscore=1011 mlxscore=0
+ malwarescore=0 bulkscore=0 spamscore=0 phishscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2201110000 definitions=main-2202240123
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,92 +88,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Feb 2022, Sudeep Holla wrote:
-> On Tue, Feb 22, 2022 at 05:15:49PM +0000, Oleksii Moisieiev wrote:
-> > Hi Sudeep,
-> > 
-> > On Tue, Feb 22, 2022 at 04:06:37PM +0000, Sudeep Holla wrote:
-> > > Hi Oleksii,
-> > > 
-> > > My initial feedback on this. And thanks Cristian for making it so easy as
-> > > you have covered most of the things in depth(which I might have not done
-> > > myself that well)
-> > > 
-> > > On Tue, Feb 22, 2022 at 11:00:03AM +0000, Cristian Marussi wrote:
-> > > > On Mon, Feb 21, 2022 at 05:26:46PM +0000, Oleksii Moisieiev wrote:
-> > > > > Introducing new parameter called scmi_devid to the device-tree bindings.
-> > > > > This parameter should be set for the device nodes, which has
-> > > > > clocks/power-domains/resets working through SCMI.
-> > > 
-> > > I prefer you had given more details on your usage model here instead of
-> > > pointing to the other Xen thread as it helps for someone without much
-> > > background on Xen or your use-case to review this.
-> > > 
-> > Let me describe the process in few words:
-> > We implemented a new feature, called SCI-mediator in Xen.
-> > The proposed implementation allows Guests to communicate with the Firmware using SCMI
-> > protocol with SMC as a transport. Other implementation are also
-> > possible, such as SCMI-Mailbox, SCPI-mailbox etc.
-> > 
-> > In this feature Xen is the Trusted Agent, which receives the following
-> > information in Xen device-tree:
-> > 1) All channels should be described, each channel defined as
-> > arm,scmi-shmem node;
-> > 2) Scmi node arm,scmi-smc with protocols description;
-> 
-> Sounds good so far.
-> 
-> > 3) scmi-devid should be set in nodes, which works through SCMI.
-> >
-> 
-> Why is this needed for Guest OS, you need not populate this if Guest OS
-> is not required to use it, right ? If it is needed just by Xen hypervisor,
-> lets talk about that and why it is bad idea to mix that with general
-> SCMI bindings.
+This series adds support for input from the IBM Operation Panel, which is
+a simple controller with three buttons and an LCD display meant for
+interacting with a server. It's connected over I2C, typically to a service
+processor. This series only supports the input from the panel, in which the
+panel masters the I2C bus and sends data to the host system when someone
+presses a button on the controller.
 
-I'll try to help Oleksii by answering here, I hope I am not off the mark
-:-)
+Changes since v3:
+ - Document linux,keycodes property
+ - Use linux,keycodes property to map the buttons
+ - Put the checksumming in a seperate function
+ - Don't do unneccessary input_unregister calls
+ - Minor cleanup and add debug data to dev_dbg calls
 
-I think Sudeep is right, scmi-devid is not needed by the guest OS.
+Changes since v2:
+ - Add "additionalProperties: false" to dts doc
+ - Refactor switch statement in the input driver; check command size and call
+   the processing function within the STOP case
+ - Use a different definition name for Aspeed interrupt status mask
 
-The host device tree is a more interesting discussion. As the host
-device tree is meant to be generic and not tied to a specific version of
-Linux, it should fully describe the SCMI interface available. If the
-device tree is provided to a Trusted Agent, then it should also have the
-scmi-devid information, right?
+Changes since v1:
+ - Redo DTS documentation example to use I2C_OWN_SLAVE_ADDRESS
+ - Reject commands received in the input driver that are too long
+ - Add a definition for the interrupt status mask in the Aspeed I2C driver
+ - Use I2C_OWN_SLAVE_ADDRESS for both dts additions
 
+Eddie James (2):
+  dt-bindings: input: Add documentation for IBM Operation Panel
+  input: misc: Add IBM Operation Panel driver
 
-> > On start Xen inits itself as trusted agent and requests agent
-> > configuration by using BASE_DISCOVER_AGENT message. This message is sent
-> > to each configured channel to get agent_id
-> > 
-> > On Domain creation stage Xen will do the following steps:
-> > 1) Assign channel to the Guest and map channel address to the Domain
-> > address. For the Domain this address should be the same;
-> > 2) Generate arm,scmi-shmem and arm,scmi-smc nodes if needed for Guest
-> > device-tree (the device-tree which should be passed to the Guest);
-> > 3) Process devices, which are passed through to this Guest and set
-> > BASE_SET_DEVICE_PERMISSIONS for the scmi-devid, received from the
-> > device-node;
-> >
-> 
-> I am confused here. So the Xen knows which devices are assigned to each
-> Guest OS but doesn't know device ID for them, but relies on the device
-> tree node ?
+ .../bindings/input/ibm,op-panel.yaml          |  49 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/input/misc/Kconfig                    |  18 ++
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/ibm-panel.c                | 198 ++++++++++++++++++
+ 5 files changed, 273 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+ create mode 100644 drivers/input/misc/ibm-panel.c
 
-Which devices go to which guest OS is a user-provided configuration. For
-instance, a user can say: "assing /amba/ethernet@ff0e0000 to dom1". This
-is normal and not related to SCMI: when a user configures a static
-partitioning system, they decide which resources belong to which domain.
+-- 
+2.27.0
 
-So Xen is told that /amba/ethernet@ff0e0000 is supposed to go to dom1.
-Xen proceeds to map memory and interrupts corresponding to
-/amba/ethernet@ff0e0000 to dom1. So far so good. What about SCMI?
-
-In Oleksii's design, Xen is going to assign one of the available SCMI
-channels to dom1 and restrict its permission to only
-/amba/ethernet@ff0e0000. To do that, Xen needs to know the scmi-devid of
-/amba/ethernet@ff0e0000. As far as I can tell there is nothing
-Xen-specific in this activitity, that's why I asked Oleksii to reach out
-to the upstream device tree community to improve the generic bindings
-for everyone's benefits.
