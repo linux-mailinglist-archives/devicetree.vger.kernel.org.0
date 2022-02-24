@@ -2,67 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BAD04C2C21
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:50:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A79E64C2C27
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:52:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233348AbiBXMux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 07:50:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46474 "EHLO
+        id S234566AbiBXMwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 07:52:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232152AbiBXMuw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:50:52 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C73D51E2FEB
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 04:50:21 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNDZX-0003vB-8N; Thu, 24 Feb 2022 13:50:15 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNDZT-0001tx-Fl; Thu, 24 Feb 2022 13:50:11 +0100
-Date:   Thu, 24 Feb 2022 13:50:11 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        dri-devel@lists.freedesktop.org,
+        with ESMTP id S234542AbiBXMwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:52:32 -0500
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B77D720C193
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 04:52:01 -0800 (PST)
+Received: by mail-wm1-x32f.google.com with SMTP id o62-20020a1ca541000000b00380e3cc26b7so1224826wme.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 04:52:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1y26t3z5KmogzVzaRXh0xZ8+wk/glRrMhjsYhZ6NNpI=;
+        b=l2A1dmVsQ69rlhJLpwmjB2fa5bCE62/fs+1myFe5KswaVzqgXHDHZY7BxwuN52LfTn
+         ymTtWt2+ah81VG9+r5VUl5lNt2WVOVR6Tq11NsK8KqEpv9JqtUt2MDK5I/tWDCl9RnPj
+         vdgtWMbOrNX+Mmjry8sGIgAq5kCtZ+cnHNaZTQXMvjzd5SYbmelX7LpVgIgWahuqvk4D
+         RHlYhGzcC/oZ/IaL80XYnes0EJhMDujLWZPB1eKIAS4TjUxGK9P8pOwIMdElCbMzRA0k
+         ZFCpcCz0AgM4QtJKVREFOeObRlFPS6X3vG+EaQs7fne0jrOwx6In2PQ01gHTP9i4ro4X
+         /FrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1y26t3z5KmogzVzaRXh0xZ8+wk/glRrMhjsYhZ6NNpI=;
+        b=RXZtNF6Y6wCxG+jl6tqYHMQTvNjIEQrO5RW/EB+vI1VW2gLQUgjBR1LDzIJRB9EHD+
+         O2s3ig2LL62OKDtR86TzkCMMLOCB+jhgS51c2RgAlOQfl2tQFs1ssPq/eaEMAozcETQF
+         sp+Wc3O8hZ4qTDq+V2fLRrcgv12RHc4MPRuQ448aGawMVLIrcHSQGgUUStNdwreQFvlW
+         8ra1NjRD1xgg3HZKzB9OpsdlcRR91b9ibWw8klXdXolhHtqMFJwmzaTinh1lpxTLKVRv
+         zbB7WByiW+yOfzG8Qnjo+AJUb9oQqQ+HjHjrIG5Z6H/SFivAO3Hr3r1YUcvPR/x26VM5
+         lfkw==
+X-Gm-Message-State: AOAM531yceRTD0hIk7RoEAVCiZV+PQYmhOg7oulCb8i2mFZ7XVcA/MYg
+        Op2vMlAXdC38612eQXMNbiBJpw==
+X-Google-Smtp-Source: ABdhPJxx0eBVNp8nFphGUFZsIuvZMVUId0v9AZP4IrgzocOtHXpv/ScIaresc8g3bEGwUO/d7+aBPg==
+X-Received: by 2002:a05:600c:4f83:b0:37c:d057:3efe with SMTP id n3-20020a05600c4f8300b0037cd0573efemr11320753wmq.143.1645707120272;
+        Thu, 24 Feb 2022 04:52:00 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id c6sm2538733wmb.25.2022.02.24.04.51.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 04:51:59 -0800 (PST)
+Date:   Thu, 24 Feb 2022 12:51:57 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Douglas Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v6 21/23] drm: rockchip: Add VOP2 driver
-Message-ID: <20220224125011.GU9136@pengutronix.de>
-References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
- <e1eb945b-d7da-f21c-ee19-e19f7f1d9b04@rock-chips.com>
- <20220217135823.GR18637@pengutronix.de>
- <6072461.kR79ftKOrO@diego>
- <8c0b1d1e-6787-8edc-c1fd-e1b68b92e60e@rock-chips.com>
- <20220218080024.GU18637@pengutronix.de>
- <8a386dbf-645b-8054-368b-535ded778d71@rock-chips.com>
- <20220224081909.GS9136@pengutronix.de>
- <39f8f014-8d69-47e7-9004-b401ebb17e29@rock-chips.com>
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: pwm: google,cros-ec: include generic
+ pwm schema
+Message-ID: <Yhd/bXqehm98C/Jo@google.com>
+References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
+ <20220214081916.162014-2-krzysztof.kozlowski@canonical.com>
+ <Yhd9CjAbI7MJu56L@orome>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <39f8f014-8d69-47e7-9004-b401ebb17e29@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 13:44:30 up 75 days, 21:30, 89 users,  load average: 0.18, 0.25,
- 0.30
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+In-Reply-To: <Yhd9CjAbI7MJu56L@orome>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,95 +88,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 24, 2022 at 06:54:35PM +0800, Andy Yan wrote:
-> Hi Sascha:
-> 
-> On 2/24/22 16:19, Sascha Hauer wrote:
-> > On Sat, Feb 19, 2022 at 03:35:12PM +0800, Andy Yan wrote:
-> > > Hi Sascha:
-> > > 
-> > > On 2/18/22 16:00, Sascha Hauer wrote:
-> > > > On Fri, Feb 18, 2022 at 11:50:32AM +0800, Andy Yan wrote:
-> > > > > Hi Sascha:
-> > > > > 
-> > > > > On 2/17/22 22:06, Heiko St�bner wrote:
-> > > > > > Am Donnerstag, 17. Februar 2022, 14:58:23 CET schrieb Sascha Hauer:
-> > > > > > > Hi Andy,
-> > > > > > > 
-> > > > > > > Please trim the context in your answers to the relevant parts, it makes
-> > > > > > > it easier to find the things you said.
-> > > > > > > 
-> > > > > > > On Thu, Feb 17, 2022 at 08:00:11PM +0800, Andy Yan wrote:
-> > > > > > > > Hi Sascha:
-> > > > > > > > 
-> > > > > > > > > +
-> > > > > > > > > +	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
-> > > > > > > > > +		struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
-> > > > > > > > > +		struct device_node *node, *parent;
-> > > > > > > > > +
-> > > > > > > > > +		parent = of_get_parent(rkencoder->port);
-> > > > > > > > > +
-> > > > > > > > > +		for_each_endpoint_of_node(parent, node) {
-> > > > > > > > Is there any hurt directly use our downstream vendor kernel method here: use
-> > > > > > > > vcstate->output_if set by encoder driver to get which interface we should
-> > > > > > > > enable here?
-> > > > > > > There is no vcstate->output_if in mainline currently. Ok, we could add
-> > > > > > > that. The other thing is that there are multiple HDMI interfaces and
-> > > > > > > the id of the HDMI encoder is encoded into output_if. Downstream kernel
-> > > > > > > adds OF aliases to the HDMI ports. I didn't want to go that route
-> > > > > > > because it doesn't seem to be very elegant to me.
-> > > > > aliases is a very comm strategy in device tree world.
-> > > > Yes, but not for retrieving bit offsets into registers. Normally aliases
-> > > > can be changed at board level without confusing drivers.
-> > > > 
-> > > > > And your method also
-> > > > > add need additional dt binds to define RK3568_VOP2_EP_xxx
-> > > > > > > > You method is ok with device tree,  but it tied up this driver to device
-> > > > > > > > tree, we are now tring to extend vop2 driver work with ACPI, so we hope this
-> > > > > > > > driver can be much more flexible.
-> > > > > > > The current rockchip drm driver seems to be pretty much tied to device
-> > > > > > > tree. There are probably many other places that need parallel paths for
-> > > > > > > ACPI support, I think we can delay this particular part until we see the
-> > > > > > > whole picture. In the end we can still retrieve the output_if
-> > > > > > > information differently with ACPI while still retrieving the information
-> > > > > > > from the device tree the way we are doing currently.
-> > > > > The current driver only reference device thee at driver initial, we not wrap
-> > > > > 
-> > > > > device tree related things in other parts, so if we extend it to support
-> > > > > ACPI,
-> > > > > 
-> > > > > we just need modify the initial code, this make things easier.
-> > > > The device tree parsing could be moved out of vop2_crtc_atomic_enable()
-> > > > into some initialisation path. In the end it's static information,
-> > > > there's no need to do it repeatedly in atomic_enable.
-> > > This could be one solution, the repeatedly parsing device tree in
-> > > atomic_enable is also my concern.
-> > > 
-> > > In addition, there are 2 HDMI, 2 eDP, 2 MIPI on the coming rk3588, so it's
-> > > better to consider give position
-> > > 
-> > > for HDMI1, EDP1, in� include/dt-bindings/soc/rockchip,vop2.h
-> > The defines are rk3568 specific. rk3588 would use a set of rk3588
-> > specific defines along with a rk3588_set_intf_mux().
-> 
-> 
-> Why not try to share these RK3568_VOP2_EP_XXX across all vop2 even vop based
-> rockchip socs?
-> 
-> If make these definition RK3568 specific, we need copy all of it and change
-> 3568 to 3588 than add HDMI1, HDMI0, EDP1,EDP0
-> 
-> when rk3588 coming, if there is another rk35xx, we need to the same thing
-> again.... but they share same code logic and number,
+On Thu, 24 Feb 2022, Thierry Reding wrote:
 
-I can make the defines RK3568 agnostic and use ROCKCHIP_ as prefix. The
-actual numbers don't matter much, so we can add new interfaces or
-instances thereof at the end with the next free number.
+> On Mon, Feb 14, 2022 at 09:19:13AM +0100, Krzysztof Kozlowski wrote:
+> > Include generic pwm.yaml schema, which enforces PWM node naming.  Keep
+> > the old name in bindings as deprecated.
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml    | 4 ++++
+> >  .../devicetree/bindings/pwm/google,cros-ec-pwm.yaml          | 5 ++++-
+> >  2 files changed, 8 insertions(+), 1 deletion(-)
+> 
+> Applied, thanks.
 
-Sascha
+Super, thanks T.
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
