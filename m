@@ -2,108 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF27E4C349D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 19:23:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A26A34C34A5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 19:24:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232839AbiBXSXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 13:23:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47444 "EHLO
+        id S230052AbiBXSYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 13:24:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbiBXSWu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 13:22:50 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF16191405;
-        Thu, 24 Feb 2022 10:22:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 659C9B82423;
-        Thu, 24 Feb 2022 18:22:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD85C340E9;
-        Thu, 24 Feb 2022 18:22:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645726938;
-        bh=1v8i4Usg2NZhQW/sf9Ue9s+VQpGM0wf62sj9FcuUiCo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c5HtBT8xRekoXQ9TFILItsIyY5OZbGan9Gf0sw92TzJ+YxT0Ej6xTuC1G/QWQxEym
-         svCNfPjA1CSlA1o68nGuAKlOovsj3yLllwSSKOotyQ0NfJiosGnLXSYv6Pt2GZG+FP
-         MyOfjeqj7lhtqpeVl3tEYI/qPOPW+JZjCalkGDMwHh5fJ8r3rIv1VCqzWKAG+7CNT7
-         Lqe5AjcPJmbiruhnyw4Q33BxD5OnIISnaFgZK1IVBJUgVjyatF838ptBSgiIYfAo0S
-         //UDM+ctqsmVzHn9UCndE8juMdvtNgKg/pB7EK3q0WpMtxVgJjgMRFOjKZQMXblFam
-         A+Wd+V28yPEgQ==
-Date:   Thu, 24 Feb 2022 18:22:12 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: Re: [PATCH v2 4/5] spi: tegra210-quad: add acpi support
-Message-ID: <YhfM1DO8vmvHah+f@sirena.org.uk>
-References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
- <20220222175611.58051-5-kyarlagadda@nvidia.com>
- <YhUtQ/8Kgcx4OY4S@sirena.org.uk>
- <DM4PR12MB57693F28A727964ED67BBEB4C33C9@DM4PR12MB5769.namprd12.prod.outlook.com>
+        with ESMTP id S229853AbiBXSYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 13:24:16 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AA525317D;
+        Thu, 24 Feb 2022 10:23:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1645727026; x=1677263026;
+  h=message-id:date:mime-version:subject:from:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=nB30B/2Cq7Khl08NUdbourrgXm8MBEepU1mDXjaveQ0=;
+  b=F68xIsyIyKwlquGzQRRpbfqi1AQ5xjdzqX6NEALc/cu1tiPB/TKWN9D1
+   6I3JzGO0B5yaH9Z+U1iamtJNWFuDx5QLdTkT1uA0OzklNAXqCHD/yX4rT
+   XhcRs6/0Lyec7xVqA96z0XuhhV/lnxmodSoHhKL/6wSdZ2nweuXmto2Tc
+   z9fClHw2qfNzkuDpxlFNaIzsD4G3L7dmasF2dgQDdzBU0ZMsZ3SPGiY6D
+   6CpHBHElrGcobIYqGOqcZMZI1cVmYhVPyOwqJv1dDtRw1ttq29xhq3wo6
+   +UVbn8rkZmyO/Mt5S4UUwBqqR95V6+SoE9BpNn7vMkre0jLoBHr3Zsg/+
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,134,1643698800"; 
+   d="scan'208";a="154800783"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Feb 2022 11:23:45 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 24 Feb 2022 11:23:45 -0700
+Received: from [10.12.73.51] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 24 Feb 2022 11:23:43 -0700
+Message-ID: <2e2a265c-8d6c-59a3-e38a-28dc9f37fe94@microchip.com>
+Date:   Thu, 24 Feb 2022 19:23:42 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NN31DYzJ28edf/nu"
-Content-Disposition: inline
-In-Reply-To: <DM4PR12MB57693F28A727964ED67BBEB4C33C9@DM4PR12MB5769.namprd12.prod.outlook.com>
-X-Cookie: I smell a wumpus.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 6/8] ARM: dts: at91: sama7g5: add opps
+Content-Language: en-US
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211216141338.35144-1-claudiu.beznea@microchip.com>
+ <20211216141338.35144-7-claudiu.beznea@microchip.com>
+ <d0c4262c-097d-18da-cb51-5409f6e02b61@microchip.com>
+Organization: microchip
+In-Reply-To: <d0c4262c-097d-18da-cb51-5409f6e02b61@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/02/2022 at 15:59, Nicolas Ferre wrote:
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> 
+> On 16/12/2021 at 15:13, Claudiu Beznea wrote:
+>> Add OPPs for SAMA7G5 along with clock for CPU.
+>>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> 
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> Queued in at91-dt branch.
 
---NN31DYzJ28edf/nu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+FYI: I took v2 series of DT changes.
 
-On Wed, Feb 23, 2022 at 06:32:56AM +0000, Krishna Yarlagadda wrote:
+> 
+> Regards,
+>     Nicolas
+> 
+>> ---
+>>    arch/arm/boot/dts/sama7g5.dtsi | 37 ++++++++++++++++++++++++++++++++++
+>>    1 file changed, 37 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+>> index 7039311bf678..22352ef5bc72 100644
+>> --- a/arch/arm/boot/dts/sama7g5.dtsi
+>> +++ b/arch/arm/boot/dts/sama7g5.dtsi
+>> @@ -30,6 +30,43 @@ cpu0: cpu@0 {
+>>                        device_type = "cpu";
+>>                        compatible = "arm,cortex-a7";
+>>                        reg = <0x0>;
+>> +                     clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
+>> +                     clock-names = "cpu";
+>> +                     operating-points-v2 = <&cpu_opp_table>;
+>> +             };
+>> +     };
+>> +
+>> +     cpu_opp_table: opp-table {
+>> +             compatible = "operating-points-v2";
+>> +
+>> +             opp-90000000 {
+>> +                     opp-hz = /bits/ 64 <90000000>;
+>> +                     opp-microvolt = <1050000 1050000 1225000>;
+>> +                     clock-latency-ns = <320000>;
+>> +             };
+>> +
+>> +             opp-250000000 {
+>> +                     opp-hz = /bits/ 64 <250000000>;
+>> +                     opp-microvolt = <1050000 1050000 1225000>;
+>> +                     clock-latency-ns = <320000>;
+>> +             };
+>> +
+>> +             opp-600000000 {
+>> +                     opp-hz = /bits/ 64 <600000000>;
+>> +                     opp-microvolt = <1050000 1050000 1225000>;
+>> +                     clock-latency-ns = <320000>;
+>> +             };
+>> +
+>> +             opp-800000000 {
+>> +                     opp-hz = /bits/ 64 <800000000>;
+>> +                     opp-microvolt = <1150000 1125000 1225000>;
+>> +                     clock-latency-ns = <320000>;
+>> +             };
+>> +
+>> +             opp-1000000002 {
+>> +                     opp-hz = /bits/ 64 <1000000002>;
+>> +                     opp-microvolt = <1250000 1225000 1300000>;
+>> +                     clock-latency-ns = <320000>;
+>>                };
+>>        };
+>>
+> 
+> 
+> --
+> Nicolas Ferre
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
 
-> > > +	if (has_acpi_companion(tqspi->dev))
-> > > +		return 0;
-> > >  	/* flush all write which are in PPSB queue by reading back */
-> > >  	tegra_qspi_readl(tqspi, QSPI_COMMAND1);
 
-> > As well as clock stuff this is also skipping flushing of pending writes
-> > - is that intentional?  It's not called out in the changelog and seems like
-> > something that could cause issues if someone runs on a system where
-> > the firmware does implement runtime suspend.
-
-> Runtime suspend is not enabled with ACPI firmware. Converted compiler flag in v1 to runtime check.
-> We must add more changes like setting DPM flags for runtime pm support with ACPI.
-> Can take this as part of a different series.
-
-It at least needs to be clearer what's going on here, the changelog
-doesn't match the code and it's not obvious from the code that ACPI
-won't kick in and power manage the device as things stand.
-
---NN31DYzJ28edf/nu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIXzNMACgkQJNaLcl1U
-h9DJyAf9Hrv8ZOPOazKwh+GeTMwE1UXZSJtI+PhEMyvmN762w6PZV/oFVg3ZBx9E
-rTMUjp7KwLQ810g+62lvBwu3Qqqhq3q50DXXLLtMStFHB1m+S9KaNlnWSAQyXjF2
-A9388F0TTvnpOOzHufONVxNKqUCl3my8vvAFNYL24IHD/7af4ZGJGwMvTC7o6LtI
-4Cjfm8BgQAaDcxBW2928tC1/NIZ5Qsep35p12FFL1dtHzlr30+Nlr44L8PZqIPDv
-0Fv9hAi5Lg2LaA6bTZPmBh+cLIdL8BEOiw1gxFprahc+EKqkxIUN1KC+ZQDnMQhD
-/G9CuHYJgIah4Oa9LBiDsQIDJc/xYA==
-=Nx2b
------END PGP SIGNATURE-----
-
---NN31DYzJ28edf/nu--
+-- 
+Nicolas Ferre
