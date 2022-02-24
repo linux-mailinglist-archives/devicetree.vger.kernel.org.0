@@ -2,61 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A25E4C3880
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:11:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 777094C387E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:11:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235203AbiBXWL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 17:11:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58278 "EHLO
+        id S235286AbiBXWLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 17:11:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235093AbiBXWL0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:11:26 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F27128D3B5;
-        Thu, 24 Feb 2022 14:10:56 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id j2so5322487oie.7;
-        Thu, 24 Feb 2022 14:10:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7jPRav2CBDz3bnsE92/TjinGeDQiDfreC+VSHQD3Hp4=;
-        b=yGMUXrRivbpk5ms8Ulrem9amcPgeZDiSn96i96QJwLxI1dASGbrm9Rc6o6OVVZmS4c
-         sYv/UuNDCYh6xObGILiuxomo/HSBu+lxEkOdJ1W526gP/1ToqCFY9GjUHaO+HIsiibgW
-         xcX08ycOyj96pVCf+qvntvIRHhx2/TAuFgAU3GsT+q7+SzagDuSHifKbl7BJtCBCVUGl
-         fic7xgkSiwmm/vDqguqRHad9nVbjyy6fe/TXdSUL1MlqLcusUk8iBLGfXFXvqg0ueiX5
-         +BgWuMDyNZ9EiLYf1ijmNvG48OYbGK5QEJNfsMD8Nwp/A5uV8jwl+9d/0jCM0ImjHzPN
-         iByA==
-X-Gm-Message-State: AOAM530KxSMxYKh2WgVDJI5RkojBKjH9hq1KM6xuq/rRuV2y/RzBzqq4
-        uwSwVxUER1+nG8k1Dvb8Hg==
-X-Google-Smtp-Source: ABdhPJznW56jFcCUmuEQYwGk6nU6rHrA/vbhYqbxHRVKPXvFamDlaVIiItC6QsjgrLyazIV5oHQaxw==
-X-Received: by 2002:a05:6808:bc9:b0:2d7:3078:d98d with SMTP id o9-20020a0568080bc900b002d73078d98dmr127686oik.196.1645740654999;
-        Thu, 24 Feb 2022 14:10:54 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bl26-20020a056808309a00b002d4f48e3799sm464399oib.12.2022.02.24.14.10.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 14:10:53 -0800 (PST)
-Received: (nullmailer pid 3679049 invoked by uid 1000);
-        Thu, 24 Feb 2022 22:10:53 -0000
-Date:   Thu, 24 Feb 2022 16:10:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     broonie@kernel.org, kuninori.morimoto.gx@renesas.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH V2 1/2] ASoC: dt-bindings: audio-graph-port: Add
- dai-tdm-slot-width-map
-Message-ID: <YhgCbKzfPXEVauwW@robh.at.kernel.org>
-References: <20220217134835.282389-1-rf@opensource.cirrus.com>
- <20220217134835.282389-2-rf@opensource.cirrus.com>
+        with ESMTP id S232144AbiBXWLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:11:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCFAF28F97C;
+        Thu, 24 Feb 2022 14:11:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A4F3C61AF6;
+        Thu, 24 Feb 2022 22:11:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02187C340F4;
+        Thu, 24 Feb 2022 22:11:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645740672;
+        bh=MvBJLsVT0xCdWImaYGVAhN1RTfBfMzlH+FYSHHqmVSM=;
+        h=In-Reply-To:References:Subject:From:To:Date:From;
+        b=Tde1OnNqvBh0vf6eGS05RI9ikn/uKyQGBPJPwpMMkK8X87dAv3B67jivijheE1yxd
+         j3s0Wyfw50gmQPx2fxNbobT66eYdXx/uVygbhXOlER5e1DYSD8+P9LVD91xbiPdtmu
+         shs0XHGO1xWlCW/64ZTpwI9pb1Q/YOTTEXCZapfwjeEYKgX8RmEoogEwITFJN4iREG
+         hT8IFJt69JahJb98cKI1EXtVAuhTvtW1p5V9JLRTtBN2NoHB1xltoOcqGakt3/6UyC
+         6F6XlUEGPzFI1ZQ7x6JE9nmYJAqJD1DVxqJ5BbQLw3xWpDy6ldSwYjrRIGUmjLvQpc
+         yemWb2IMeU6pQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220217134835.282389-2-rf@opensource.cirrus.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220224164831.21475-10-ansuelsmth@gmail.com>
+References: <20220224164831.21475-1-ansuelsmth@gmail.com> <20220224164831.21475-10-ansuelsmth@gmail.com>
+Subject: Re: [PATCH v5 09/15] clk: qcom: clk-rcg: add clk_rcg_floor_ops ops
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     Andy Gross <agross@kernel.org>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Date:   Thu, 24 Feb 2022 14:11:10 -0800
+User-Agent: alot/0.10
+Message-Id: <20220224221112.02187C340F4@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,46 +60,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 01:48:34PM +0000, Richard Fitzgerald wrote:
-> Some audio hardware cannot support a fixed slot width or a slot width
-> equal to the sample width in all cases. This is usually due either to
-> limitations of the audio serial port or system clocking restrictions.
-> 
-> This property allows setting a mapping of sample widths and the
-> corresponding tdm slot widths.
-> 
-> Signed-off-by: Richard Fitzgerald <rf@opensource.cirrus.com>
+Quoting Ansuel Smith (2022-02-24 08:48:25)
+> Add clk_rcg_floor_ops for clock that can't provide a stable freq and
+> require to use a floor freq to provide the requested frequency.
+>=20
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  .../devicetree/bindings/sound/audio-graph-port.yaml        | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> index 476dcb49ece6..420adad49382 100644
-> --- a/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> +++ b/Documentation/devicetree/bindings/sound/audio-graph-port.yaml
-> @@ -71,4 +71,11 @@ patternProperties:
->          description: CPU to Codec rate channels.
->          $ref: /schemas/types.yaml#/definitions/uint32
->  
-> +      dai-tdm-slot-width-map:
-> +        description: Mapping of sample widths to slot widths. For hardware that
-> +          cannot support a fixed slot width or a slot width equal to sample
 
-A variable slot width sounds like a feature, not a limitation.
-
-> +          width. An array containing one or more pairs of values. Each pair
-> +          of values is a sample_width and the corresponding slot_width.
-
-That sounds like a matrix, not an array. N entries of 2 cells each. 
-
-> +        $ref: /schemas/types.yaml#/definitions/uint32-array
-> +
-
-I'd think there are some constraints on the values? Slots should be at 
-least 8 bits, right? A max of 2x32 bits or is there more 
-than stereo within a slot? In any case, it's for sure no where near 2^32 
-max.
-
-Is there a need for specifying where in the slot the data is?
-
-Rob
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
