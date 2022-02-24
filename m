@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DC84C2274
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 04:39:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1DF4C227B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 04:42:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229600AbiBXDjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 22:39:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40520 "EHLO
+        id S229623AbiBXDlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 22:41:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229591AbiBXDjW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 22:39:22 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96D4C251E7C
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:38:52 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id s5so1181104oic.10
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:38:52 -0800 (PST)
+        with ESMTP id S229617AbiBXDln (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 22:41:43 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 458E325457D
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:41:14 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso1708173ooi.1
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:41:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=BxZQsI9Ur9IiwZjtiMx8X36wZnIDnwb/WkHly+HDiJ0=;
-        b=Rbt5kRB9jY34xgGOun2ec/5vxnlaxjSDv/VEnPbfJXnK23qcSZHzdzPKJ6bj7KYNjq
-         agHsYvSPUYBTX4uU3LIsBm9GsUpdviPDbKjuxIylmDkG7c0aE+qwsL5GxJtJpL1Ipmnt
-         ViRt5M5yr9aW02T81YhiJ4yZvevufWJ9TT2XPa0IMROh0GaqO0V3lyp1GmkQSSzgsw+t
-         /nvW3mq1RiF3UdzoKzE8G9VIawHhYJQVBYHpaPUbk3k3YzvYuVvUzOqhrFwUqx48nHyz
-         +BRlzQFPqVJvUMfC0pEgXPS9GCZN2JHXAFBQC01S8pFlxtFICxvUZP/68f1CzYNW7jcx
-         ByCg==
+        bh=1/RXdJI28RFFfrct1eEO2dTy0z09/hfX9S1ASQxzYlE=;
+        b=U59eyb7C1/7TJGt/fALmeHrWycuoSh9IdVf81Lf84r0a9dSP1LT9IzBc9XpHaqaJvM
+         9C6o5nfXnH60qNSq8x4bRnQN9lfmJucaEhs+qgstakq4XGFDtGYDvaCgRChJ7xSv7Y5J
+         vBwfgATsq2g6wKR/ii+RQ6hwI3UXI5IjpU+JmwJ1dZJZ7ZY85bGr5dnpMFz2MGjdzAvA
+         SVSRIFyPcALAqaCW/qBp+B94q79PDUkvZ0ApRt6G5Q8eOMpr668iytWcHpDo7VjJuTiB
+         zg0aDFevfFt1EQCCkiM9ki5u4ojkENF1SDQSQLWsZaOluOjMQTGEFt/WX1GsMNYFQqW6
+         fp7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=BxZQsI9Ur9IiwZjtiMx8X36wZnIDnwb/WkHly+HDiJ0=;
-        b=RPYQBurg1jT5fmDR3aWxJxPdKQ/JzqnlWuaIf1oQPQMy1KzPpanBJa9kfRKbjXCDWt
-         zuBDKPtICPkKWxv+Hhi84xNd/myxHfPE8B9aJPyORCmrwTSF4edKg6/OGjx5jkVLVBLG
-         t+tk9/GeZh1DPEUBA9nsntCgWxo0In8KhGSusnAZc4tOuHvR9Um9sFj5uj+L2KHBb97P
-         d6wDGi7+CdoIfJ8hXsGeEAIuTdJ0kJ0DfSs2XAjDHyAZkPQB1LhPgWVEJKjQCBWCTt0z
-         MFscZTms+oYC6ios87zLnhlJ7Ns9W1kbtadraan2eAM4yBj0m3JhqwcJnLGxE9VB1xl6
-         NMqQ==
-X-Gm-Message-State: AOAM532TLgL9ih/DSGw3DS3ZWn07V/1QhD3F4ANffguUtIbXt4QLVmFs
-        /u4j/5qKQTH2CbYVaP88eNadpQ==
-X-Google-Smtp-Source: ABdhPJx/a05kDy7ptP7NFqPsOLT7fdqL4YQxuTTF/e/43UwH3umPwSZ4jPFdksemYz4YuVIi15TVKA==
-X-Received: by 2002:aca:aa07:0:b0:2d4:4386:a195 with SMTP id t7-20020acaaa07000000b002d44386a195mr6126653oie.107.1645673931738;
-        Wed, 23 Feb 2022 19:38:51 -0800 (PST)
+        bh=1/RXdJI28RFFfrct1eEO2dTy0z09/hfX9S1ASQxzYlE=;
+        b=VEJYp1PdTXBxn699k//EDHg4jyxvlki3glCQRYE7yJTrXkAT9FEhRGWpipjmvhh1Ol
+         hsTw0IX/FQ1Hvnpqmw9LPpZ0KEr1EIRHO9IkfY70dINek4CxBQ6iFS2qwC7Me9knKibX
+         M1U6ExNwBqOZTAZZ13ZTxIyjqercMdoEjQekISttb3s0Ye4UpSWH3hC3o2mQWrKJSV31
+         VJnI25YDH0FHX3Qka9Q+/WiGwWuFCjk+jxK6Ze2sojiktGROBjcpnpMsFs2Ybk/iR6e0
+         7VBBnVSP4V2fQVGQKFB5S+gqVn/io1Piw0WPhtkibrZ0LeOmH57lYZOHSVy6/Nq7o1Qd
+         z5VQ==
+X-Gm-Message-State: AOAM533hagg32S+YCzaFroAwOzv7XihPaYm+1i7sWaWJKvJQp4ddNMnZ
+        T6gg8dfVUmHmINXeot+SD+N3MA==
+X-Google-Smtp-Source: ABdhPJxKC57ZOtQmQu+EDBxTb6J5JEj+EL9JxS2Ju1nlaWdtq6zl//bjTlQXwau+ypkbGYEclJcFAg==
+X-Received: by 2002:a05:6870:d3cc:b0:c4:7dc0:d72f with SMTP id l12-20020a056870d3cc00b000c47dc0d72fmr339660oag.258.1645674073556;
+        Wed, 23 Feb 2022 19:41:13 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id q16sm779705oiv.16.2022.02.23.19.38.50
+        by smtp.gmail.com with ESMTPSA id d14sm604460ooh.44.2022.02.23.19.41.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 19:38:51 -0800 (PST)
-Date:   Wed, 23 Feb 2022 21:38:49 -0600
+        Wed, 23 Feb 2022 19:41:13 -0800 (PST)
+Date:   Wed, 23 Feb 2022 21:41:11 -0600
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Ansuel Smith <ansuelsmth@gmail.com>
 Cc:     Andy Gross <agross@kernel.org>,
@@ -58,15 +58,15 @@ Cc:     Andy Gross <agross@kernel.org>,
         Taniya Das <tdas@codeaurora.org>,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 01/16] dt-bindings: clock: split qcom,gcc.yaml to
- common and specific schema
-Message-ID: <Yhb9yeQqTy6UVeiC@builder.lan>
+Subject: Re: [PATCH v4 02/16] dt-bindings: clock: simplify qcom,gcc-apq8064
+ Documentation
+Message-ID: <Yhb+V4ttu3jJwc55@builder.lan>
 References: <20220217235703.26641-1-ansuelsmth@gmail.com>
- <20220217235703.26641-2-ansuelsmth@gmail.com>
+ <20220217235703.26641-3-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220217235703.26641-2-ansuelsmth@gmail.com>
+In-Reply-To: <20220217235703.26641-3-ansuelsmth@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -79,211 +79,105 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu 17 Feb 17:56 CST 2022, Ansuel Smith wrote:
 
-> Split qcom,gcc.yaml to common and specific schema to use it as a
-> template for schema that needs to use the gcc bindings and require
-> to add additional bindings.
+> Simplify qcon,gcc-apq8064 Documentation by using qcom,gcc-common.yaml as a
+
+Drop "-common" here.
+
+Regards,
+Bjorn
+
+> template and remove the compatible from qcom,gcc.yaml
 > 
 > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
->  .../bindings/clock/qcom,gcc-other.yaml        | 76 +++++++++++++++++++
->  .../devicetree/bindings/clock/qcom,gcc.yaml   | 63 ++-------------
->  2 files changed, 82 insertions(+), 57 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+>  .../bindings/clock/qcom,gcc-apq8064.yaml      | 29 +++++--------------
+>  .../bindings/clock/qcom,gcc-other.yaml        |  3 --
+>  2 files changed, 7 insertions(+), 25 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> new file mode 100644
-> index 000000000000..824d80530683
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-
-This work for me.
-
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc.yaml#
-
-But shouldn't this be qcom,gcc-other.yaml then?
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Global Clock & Reset Controller Binding
-> +
-> +maintainers:
-> +  - Stephen Boyd <sboyd@kernel.org>
-> +  - Taniya Das <tdas@codeaurora.org>
-> +
-> +description:
-> +  Qualcomm global clock control module which supports the clocks, resets and
-> +  power domains.
-> +
-> +  See also:
-> +  - dt-bindings/clock/qcom,gcc-apq8084.h
-> +  - dt-bindings/reset/qcom,gcc-apq8084.h
-> +  - dt-bindings/clock/qcom,gcc-ipq4019.h
-> +  - dt-bindings/clock/qcom,gcc-ipq6018.h
-> +  - dt-bindings/reset/qcom,gcc-ipq6018.h
-> +  - dt-bindings/clock/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> +  - dt-bindings/reset/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> +  - dt-bindings/clock/qcom,gcc-msm8939.h
-> +  - dt-bindings/clock/qcom,gcc-msm8953.h
-> +  - dt-bindings/reset/qcom,gcc-msm8939.h
-> +  - dt-bindings/clock/qcom,gcc-msm8660.h
-> +  - dt-bindings/reset/qcom,gcc-msm8660.h
-> +  - dt-bindings/clock/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> +  - dt-bindings/reset/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> +  - dt-bindings/clock/qcom,gcc-mdm9607.h
-> +  - dt-bindings/clock/qcom,gcc-mdm9615.h
-> +  - dt-bindings/reset/qcom,gcc-mdm9615.h
-> +  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
-> +
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> index 8e2eac6cbfb9..97936411b6b4 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-apq8064.yaml
+> @@ -6,6 +6,9 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+>  title: Qualcomm Global Clock & Reset Controller Binding for APQ8064
+>  
 > +allOf:
-> +  - $ref: "qcom,gcc.yaml#"
+> +  - $ref: qcom,gcc.yaml#
 > +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,gcc-apq8084
-> +      - qcom,gcc-ipq4019
-> +      - qcom,gcc-ipq6018
-> +      - qcom,gcc-ipq8064
-> +      - qcom,gcc-mdm9607
-> +      - qcom,gcc-msm8226
-> +      - qcom,gcc-msm8660
-> +      - qcom,gcc-msm8916
-> +      - qcom,gcc-msm8939
-> +      - qcom,gcc-msm8953
-> +      - qcom,gcc-msm8960
-> +      - qcom,gcc-msm8974
-> +      - qcom,gcc-msm8974pro
-> +      - qcom,gcc-msm8974pro-ac
-> +      - qcom,gcc-mdm9615
-> +      - qcom,gcc-sdm630
-> +      - qcom,gcc-sdm660
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  # Example for GCC for MSM8960:
-> +  - |
-> +    clock-controller@900000 {
-> +      compatible = "qcom,gcc-msm8960";
-> +      reg = <0x900000 0x4000>;
-> +      #clock-cells = <1>;
-> +      #reset-cells = <1>;
-> +      #power-domain-cells = <1>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> index f66d703bd913..ea1dd94d8bf1 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc.yaml
-> @@ -1,60 +1,20 @@
-> -# SPDX-License-Identifier: GPL-2.0-only
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-
-We would need to double check with existing copyright holders. My
-suggestion is that we change that separately.
-
->  %YAML 1.2
->  ---
-> -$id: http://devicetree.org/schemas/clock/qcom,gcc.yaml#
-> +$id: http://devicetree.org/schemas/clock/qcom,gcc-common.yaml#
-
-You forgot to change this back to just gcc.yaml.
-
-With those two things this looks good to me.
-
-Regards,
-Bjron
-
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->  
-> -title: Qualcomm Global Clock & Reset Controller Binding
-> +title: Qualcomm Global Clock & Reset Controller Binding Common Bindings
->  
 >  maintainers:
 >    - Stephen Boyd <sboyd@kernel.org>
 >    - Taniya Das <tdas@codeaurora.org>
->  
->  description: |
-> -  Qualcomm global clock control module which supports the clocks, resets and
-> -  power domains.
-> -
-> -  See also:
-> -  - dt-bindings/clock/qcom,gcc-apq8084.h
-> -  - dt-bindings/reset/qcom,gcc-apq8084.h
-> -  - dt-bindings/clock/qcom,gcc-ipq4019.h
-> -  - dt-bindings/clock/qcom,gcc-ipq6018.h
-> -  - dt-bindings/reset/qcom,gcc-ipq6018.h
-> -  - dt-bindings/clock/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> -  - dt-bindings/reset/qcom,gcc-ipq806x.h (qcom,gcc-ipq8064)
-> -  - dt-bindings/clock/qcom,gcc-msm8939.h
-> -  - dt-bindings/clock/qcom,gcc-msm8953.h
-> -  - dt-bindings/reset/qcom,gcc-msm8939.h
-> -  - dt-bindings/clock/qcom,gcc-msm8660.h
-> -  - dt-bindings/reset/qcom,gcc-msm8660.h
-> -  - dt-bindings/clock/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> -  - dt-bindings/reset/qcom,gcc-msm8974.h (qcom,gcc-msm8226 and qcom,gcc-msm8974)
-> -  - dt-bindings/clock/qcom,gcc-mdm9607.h
-> -  - dt-bindings/clock/qcom,gcc-mdm9615.h
-> -  - dt-bindings/reset/qcom,gcc-mdm9615.h
-> -  - dt-bindings/clock/qcom,gcc-sdm660.h  (qcom,gcc-sdm630 and qcom,gcc-sdm660)
-> +  Common bindings for Qualcomm global clock control module which supports
-> +  the clocks, resets and power domains.
+> @@ -17,22 +20,12 @@ description: |
+>    See also:
+>    - dt-bindings/clock/qcom,gcc-msm8960.h
+>    - dt-bindings/reset/qcom,gcc-msm8960.h
+> +  - dt-bindings/clock/qcom,gcc-apq8084.h
+> +  - dt-bindings/reset/qcom,gcc-apq8084.h
 >  
 >  properties:
-> -  compatible:
-> -    enum:
-> -      - qcom,gcc-apq8084
-> -      - qcom,gcc-ipq4019
-> -      - qcom,gcc-ipq6018
-> -      - qcom,gcc-ipq8064
-> -      - qcom,gcc-mdm9607
-> -      - qcom,gcc-msm8226
-> -      - qcom,gcc-msm8660
-> -      - qcom,gcc-msm8916
-> -      - qcom,gcc-msm8939
-> -      - qcom,gcc-msm8953
-> -      - qcom,gcc-msm8960
-> -      - qcom,gcc-msm8974
-> -      - qcom,gcc-msm8974pro
-> -      - qcom,gcc-msm8974pro-ac
-> -      - qcom,gcc-mdm9615
-> -      - qcom,gcc-sdm630
-> -      - qcom,gcc-sdm660
+>    compatible:
+> -    const: qcom,gcc-apq8064
 > -
->    '#clock-cells':
+> -  '#clock-cells':
+> -    const: 1
+> -
+> -  '#reset-cells':
+> -    const: 1
+> -
+> -  '#power-domain-cells':
+> -    const: 1
+> -
+> -  reg:
+> -    maxItems: 1
+> +    const: qcom,gcc-apq8084
+>  
+>    nvmem-cells:
+>      minItems: 1
+> @@ -53,21 +46,13 @@ properties:
+>    '#thermal-sensor-cells':
 >      const: 1
 >  
-> @@ -72,22 +32,11 @@ properties:
->        Protected clock specifier list as per common clock binding.
->  
+> -  protected-clocks:
+> -    description:
+> -      Protected clock specifier list as per common clock binding.
+> -
 >  required:
-> -  - compatible
->    - reg
->    - '#clock-cells'
->    - '#reset-cells'
->    - '#power-domain-cells'
+>    - compatible
+> -  - reg
+> -  - '#clock-cells'
+> -  - '#reset-cells'
+> -  - '#power-domain-cells'
+>    - nvmem-cells
+>    - nvmem-cell-names
+>    - '#thermal-sensor-cells'
 >  
 > -additionalProperties: false
-> +additionalProperties: true
+> +unevaluatedProperties: false
 >  
-> -examples:
-> -  # Example for GCC for MSM8960:
-> -  - |
-> -    clock-controller@900000 {
-> -      compatible = "qcom,gcc-msm8960";
-> -      reg = <0x900000 0x4000>;
-> -      #clock-cells = <1>;
-> -      #reset-cells = <1>;
-> -      #power-domain-cells = <1>;
-> -    };
->  ...
+>  examples:
+>    - |
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> index 824d80530683..2703b53150d8 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> +++ b/Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
+> @@ -15,8 +15,6 @@ description:
+>    power domains.
+>  
+>    See also:
+> -  - dt-bindings/clock/qcom,gcc-apq8084.h
+> -  - dt-bindings/reset/qcom,gcc-apq8084.h
+>    - dt-bindings/clock/qcom,gcc-ipq4019.h
+>    - dt-bindings/clock/qcom,gcc-ipq6018.h
+>    - dt-bindings/reset/qcom,gcc-ipq6018.h
+> @@ -40,7 +38,6 @@ allOf:
+>  properties:
+>    compatible:
+>      enum:
+> -      - qcom,gcc-apq8084
+>        - qcom,gcc-ipq4019
+>        - qcom,gcc-ipq6018
+>        - qcom,gcc-ipq8064
 > -- 
 > 2.34.1
 > 
