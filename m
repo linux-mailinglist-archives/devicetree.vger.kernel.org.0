@@ -2,42 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28C5E4C2FA3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 16:28:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D13B84C2FA8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 16:28:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235753AbiBXP2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 10:28:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
+        id S233404AbiBXP2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 10:28:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236456AbiBXP2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 10:28:09 -0500
+        with ESMTP id S236452AbiBXP2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 10:28:08 -0500
 Received: from asav22.altibox.net (asav22.altibox.net [109.247.116.9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBF31BA14F
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498011BA14B
         for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 07:27:36 -0800 (PST)
 Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
         (Authenticated sender: noralf.tronnes@ebnett.no)
-        by asav22.altibox.net (Postfix) with ESMTPSA id E077523B79;
-        Thu, 24 Feb 2022 16:27:33 +0100 (CET)
+        by asav22.altibox.net (Postfix) with ESMTPSA id D273523B7A;
+        Thu, 24 Feb 2022 16:27:34 +0100 (CET)
 From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
 To:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org
 Cc:     sam@ravnborg.org, maxime@cerno.tech,
         dave.stevenson@raspberrypi.com, david@lechnology.com,
         devicetree@vger.kernel.org, thierry.reding@gmail.com,
         =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
-Subject: [PATCH v5 0/5] drm/tiny: Add MIPI DBI compatible SPI driver
-Date:   Thu, 24 Feb 2022 16:27:03 +0100
-Message-Id: <20220224152708.14459-1-noralf@tronnes.org>
+Subject: [PATCH v5 1/5] dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+Date:   Thu, 24 Feb 2022 16:27:04 +0100
+Message-Id: <20220224152708.14459-2-noralf@tronnes.org>
 X-Mailer: git-send-email 2.33.0
+In-Reply-To: <20220224152708.14459-1-noralf@tronnes.org>
+References: <20220224152708.14459-1-noralf@tronnes.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-CMAE-Score: 0
 X-CMAE-Analysis: v=2.3 cv=KbX8TzQD c=1 sm=1 tr=0
         a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
-        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8
-        a=XqjdhIIK1VNfZnpq3w4A:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=7gkXJVJtAAAA:8 a=SJz97ENfAAAA:8
+        a=gEfo2CItAAAA:8 a=vgGnKq9jBRVFvr_v-DwA:9 a=7Zwj6sZBwVKJAoWSPKxL6X1jA+E=:19
+        a=QEXdDO2ut3YA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=vFet0B0WnEQeilDPIY6i:22
+        a=sptkURWiP4Gy88Gu7hUp:22
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
@@ -47,77 +51,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add binding for MIPI DBI compatible SPI panels.
 
-This patchset adds a driver that will work with most MIPI DBI compatible
-SPI panels out there.
-
-It can replace the SPI interface support in these drivers:
-
-$ grep -lr MIPI_DCS drivers/staging/fbtft/ | grep -v "-" | uniq | sort
-drivers/staging/fbtft/fb_hx8340bn.c
-drivers/staging/fbtft/fb_hx8353d.c
-drivers/staging/fbtft/fb_hx8357d.c
-drivers/staging/fbtft/fb_ili9163.c
-drivers/staging/fbtft/fb_ili9340.c
-drivers/staging/fbtft/fb_ili9341.c
-drivers/staging/fbtft/fb_ili9481.c
-drivers/staging/fbtft/fb_ili9486.c
-drivers/staging/fbtft/fb_s6d02a1.c
-drivers/staging/fbtft/fb_st7735r.c
-drivers/staging/fbtft/fb_st7789v.c
-drivers/staging/fbtft/fb_tinylcd.c
-
-Note that the MIPI DBI parallel interface supported by fbtft does not
-yet exist in DRM.
-
-Maxime gave[1] a good overview of the situation with these displays and
-proposed to make a driver that works with all MIPI DBI compatible
-controllers and use a firmware file to provide the controller setup for
-a particular panel.
-
-Changes since version 4:
+v5:
 - Add sainsmart18 to compatible items (Rob)
 - Expand write-only description (Sam)
-- kconfig: s/DRM_KMS_CMA_HELPER/DRM_GEM_CMA_HELPER/ (Sam)
-- kconfig: Add select VIDEOMODE_HELPERS (Sam)
-- kconfig: Add wiki url in the description (Sam)
-- Split out and use of_get_drm_panel_display_mode()(Sam)
-- Only use the first compatible to look for a firmware file since the
-  binding mandates 2 compatibles.
-- Make having a firmware file mandatory so we can print an error
-  message if it's missing to improve the user experience. It's very
-  unlikely that a controller doesn't need to be initialized and if
-  it doesn't, it's possible to have a firmware file containing only
-  a DCS NOP.
 
-See wiki[2] for a script to make command firmware files.
+v4:
+- There should only be two compatible (Maxime)
+- s/panel-dbi-spi/panel-mipi-dbi-spi/in compatible
 
-Noralf.
+v3:
+- Move properties to Device Tree (Maxime)
+- Use contains for compatible (Maxime)
+- Add backlight property to example
+- Flesh out description
 
-[1] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
-[2] https://github.com/notro/panel-mipi-dbi/wiki
+v2:
+- Fix path for panel-common.yaml
+- Use unevaluatedProperties
+- Drop properties which are in the allOf section
+- Drop model property (Rob)
 
-
-Noralf Trønnes (5):
-  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
-  drm/modes: Remove trailing whitespace
-  drm/modes: Add of_get_drm_panel_display_mode()
-  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
-  drm/tiny: Add MIPI DBI compatible SPI driver
-
- .../display/panel/panel-mipi-dbi-spi.yaml     | 127 ++++++
- MAINTAINERS                                   |   8 +
- drivers/gpu/drm/drm_modes.c                   |  51 ++-
- drivers/gpu/drm/tiny/Kconfig                  |  15 +
- drivers/gpu/drm/tiny/Makefile                 |   1 +
- drivers/gpu/drm/tiny/panel-mipi-dbi.c         | 398 ++++++++++++++++++
- include/drm/drm_mipi_dbi.h                    |   8 +
- include/drm/drm_modes.h                       |   8 +
- 8 files changed, 615 insertions(+), 1 deletion(-)
+Acked-by: Maxime Ripard <maxime@cerno.tech>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
+Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
+---
+ .../display/panel/panel-mipi-dbi-spi.yaml     | 127 ++++++++++++++++++
+ 1 file changed, 127 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
- create mode 100644 drivers/gpu/drm/tiny/panel-mipi-dbi.c
 
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+new file mode 100644
+index 000000000000..a054f65435ce
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+@@ -0,0 +1,127 @@
++# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/panel-mipi-dbi-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MIPI DBI SPI Panel
++
++maintainers:
++  - Noralf Trønnes <noralf@tronnes.org>
++
++description: |
++  This binding is for display panels using a MIPI DBI compatible controller
++  in SPI mode.
++
++  The MIPI Alliance Standard for Display Bus Interface defines the electrical
++  and logical interfaces for display controllers historically used in mobile
++  phones. The standard defines 4 display architecture types and this binding is
++  for type 1 which has full frame memory. There are 3 interface types in the
++  standard and type C is the serial interface.
++
++  The standard defines the following interface signals for type C:
++  - Power:
++    - Vdd: Power supply for display module
++    - Vddi: Logic level supply for interface signals
++    Combined into one in this binding called: power-supply
++  - Interface:
++    - CSx: Chip select
++    - SCL: Serial clock
++    - Dout: Serial out
++    - Din: Serial in
++    - SDA: Bidrectional in/out
++    - D/CX: Data/command selection, high=data, low=command
++      Called dc-gpios in this binding.
++    - RESX: Reset when low
++      Called reset-gpios in this binding.
++
++  The type C interface has 3 options:
++
++    - Option 1: 9-bit mode and D/CX as the 9th bit
++      |              Command              |  the next command or following data  |
++      |<0><D7><D6><D5><D4><D3><D2><D1><D0>|<D/CX><D7><D6><D5><D4><D3><D2><D1><D0>|
++
++    - Option 2: 16-bit mode and D/CX as a 9th bit
++      |              Command or data                              |
++      |<X><X><X><X><X><X><X><D/CX><D7><D6><D5><D4><D3><D2><D1><D0>|
++
++    - Option 3: 8-bit mode and D/CX as a separate interface line
++      |        Command or data         |
++      |<D7><D6><D5><D4><D3><D2><D1><D0>|
++
++  The panel resolution is specified using the panel-timing node properties
++  hactive (width) and vactive (height). The other mandatory panel-timing
++  properties should be set to zero except clock-frequency which can be
++  optionally set to inform about the actual pixel clock frequency.
++
++  If the panel is wired to the controller at an offset specify this using
++  hback-porch (x-offset) and vback-porch (y-offset).
++
++allOf:
++  - $ref: panel-common.yaml#
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - sainsmart18
++      - const: panel-mipi-dbi-spi
++
++  write-only:
++    type: boolean
++    description:
++      Controller is not readable (ie. Din (MISO on the SPI interface) is not
++      wired up).
++
++  dc-gpios:
++    maxItems: 1
++    description: |
++      Controller data/command selection (D/CX) in 4-line SPI mode.
++      If not set, the controller is in 3-line SPI mode.
++
++required:
++  - compatible
++  - reg
++  - panel-timing
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            display@0{
++                    compatible = "sainsmart18", "panel-mipi-dbi-spi";
++                    reg = <0>;
++                    spi-max-frequency = <40000000>;
++
++                    dc-gpios = <&gpio 24 GPIO_ACTIVE_HIGH>;
++                    reset-gpios = <&gpio 25 GPIO_ACTIVE_HIGH>;
++                    write-only;
++
++                    backlight = <&backlight>;
++
++                    width-mm = <35>;
++                    height-mm = <28>;
++
++                    panel-timing {
++                        hactive = <160>;
++                        vactive = <128>;
++                        hback-porch = <0>;
++                        vback-porch = <0>;
++
++                        clock-frequency = <0>;
++                        hfront-porch = <0>;
++                        hsync-len = <0>;
++                        vfront-porch = <0>;
++                        vsync-len = <0>;
++                    };
++            };
++    };
++
++...
 -- 
 2.33.0
 
