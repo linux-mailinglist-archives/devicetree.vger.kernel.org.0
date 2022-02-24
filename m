@@ -2,98 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2ABB74C332E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 18:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9776B4C3340
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 18:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229662AbiBXRIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 12:08:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
+        id S229953AbiBXRKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 12:10:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbiBXRIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 12:08:16 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AE9413AA05;
-        Thu, 24 Feb 2022 09:07:46 -0800 (PST)
-Received: from [IPV6:2a01:e0a:169:7140:ce74:6df2:4b76:b230] (unknown [IPv6:2a01:e0a:169:7140:ce74:6df2:4b76:b230])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1BA3BDD;
-        Thu, 24 Feb 2022 18:07:44 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645722464;
-        bh=D2a93rPWkVKoG+sE648U0MWSh1vgQGn4Uo4Xu0sEm3c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=jBNuK1nmNYi/KC7/e63HfnZG1cDRE3nntQC7BVbabJbb++KCDv9Gaae8J3ZnlsDiZ
-         MyPYShK4RjDeWJuwx690bAj23fduA0nzl/tUAQ7ex4Hbl4ZopIySqDVqLHdUh0L/Bw
-         0l+hoVQ4956lGlMx7FyEO7BK912Dsr5tioUmg1yQ=
-Message-ID: <944bdedc-afbb-e427-bd1d-676f8ed21a48@ideasonboard.com>
-Date:   Thu, 24 Feb 2022 18:07:41 +0100
+        with ESMTP id S229974AbiBXRKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 12:10:44 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E970B208318;
+        Thu, 24 Feb 2022 09:10:14 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id 12so3490788oix.12;
+        Thu, 24 Feb 2022 09:10:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fgEt++oBYASgr9TfRFFi+SD8GpomMen+OR/8J8QIuRk=;
+        b=aEtgsn3D2hw4ubfcvUO1S7T3MDR8VuyIdtRpCou6fY3Dz5IUx2ID51fZzT2EnZcZGx
+         zDcQi20F10WvUxTk6375EulMzoQYPk52i+AwGnauA7Lvznh/9udfqS02BDWzMiLoFuoO
+         NbEwBbgEh+SR07YBBmGales/f4A5p4nhMntfjbhhSuHSEYzPQh+P7Ug/Lpm49D4myMbE
+         53wVwmXmFmCs7RQq6s2RIHlJNe8Jq122j+hLLnDrYAP9W3+I99JoI+I0I5/17Og3TQtN
+         a4mwqoq+jShtXDbur/Fr/OhpepOopw+04JhaKaPCTCZJgddMDRQxkwyrANuUlo55Ko4C
+         o7HA==
+X-Gm-Message-State: AOAM532l5MZ8oN76lWCo6g+SFsk9NFROr/hYckN6bappMiQKTxQ+1WkL
+        elOKL3c0vm4dqLSEW1lMMg==
+X-Google-Smtp-Source: ABdhPJyRCb0IydycIC22RD0Zq8josaATMxmz1k/6Q12W3pmTQheLOuZTOB6+D1STwrh453Q5f2LV5w==
+X-Received: by 2002:a05:6870:670e:b0:ce:c0c9:65e with SMTP id gb14-20020a056870670e00b000cec0c9065emr6854697oab.176.1645722614234;
+        Thu, 24 Feb 2022 09:10:14 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g3-20020a056870e1c300b000d0f502781esm65345oab.22.2022.02.24.09.10.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 09:10:12 -0800 (PST)
+Received: (nullmailer pid 3252581 invoked by uid 1000);
+        Thu, 24 Feb 2022 17:10:11 -0000
+Date:   Thu, 24 Feb 2022 11:10:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Guodong Liu <guodong.liu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sean Wang <sean.wang@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: pinctrl: mt8186: add pinctrl file
+ and binding document
+Message-ID: <Yhe7876iV+P+z5JM@robh.at.kernel.org>
+References: <20220216032124.28067-1-guodong.liu@mediatek.com>
+ <20220216032124.28067-2-guodong.liu@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5.1 2/2] ARM: dts: bcm2711: Add unicam CSI nodes
-Content-Language: en-US
-To:     Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-kernel@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com, sbranden@broadcom.com,
-        rjui@broadcom.com, f.fainelli@gmail.com, nsaenz@kernel.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        dave.stevenson@raspberrypi.com, naush@raspberrypi.com
-References: <20220208155027.891055-7-jeanmichel.hautbois@ideasonboard.com>
- <20220223143434.71853-1-jeanmichel.hautbois@ideasonboard.com>
- <20220223143434.71853-2-jeanmichel.hautbois@ideasonboard.com>
- <3fceae58-b43e-0034-19c2-078f18010001@i2se.com>
-From:   Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
-In-Reply-To: <3fceae58-b43e-0034-19c2-078f18010001@i2se.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220216032124.28067-2-guodong.liu@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Stefan,
-
-On 24/02/2022 18:03, Stefan Wahren wrote:
-> Hi Jean-Michel,
+On Wed, 16 Feb 2022 11:21:22 +0800, Guodong Liu wrote:
+> 1. This patch adds pinctrl file for mt8186.
+> 2. This patch adds mt8186 compatible node in binding document.
 > 
-> the version v5.1 is a little bit confusing, because it looks like to be
-> applied to stable linux-5.1, which is not intended.
-
-Sorry for the confusion, I don't want to send a full v6 now, as it will 
-need to be rebased on top of the multiplexed streams series in its v11 
-which is not yet posted on the ML :-).
-
+> Signed-off-by: Guodong Liu <guodong.liu@mediatek.com>
+> ---
+>  .../bindings/pinctrl/pinctrl-mt8186.yaml      |  297 +++++
+>  include/dt-bindings/pinctrl/mt8186-pinfunc.h  | 1174 +++++++++++++++++
+>  2 files changed, 1471 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/pinctrl-mt8186.yaml
+>  create mode 100644 include/dt-bindings/pinctrl/mt8186-pinfunc.h
 > 
-> Am 23.02.22 um 15:34 schrieb Jean-Michel Hautbois:
->> Add both MIPI CSI-2 nodes in the core bcm2711 tree. Use the 3-cells
->> interrupt declaration, corresponding clocks and default as disabled.
->>
->> Thanks to Stefan Wahren for his guidance on how to deal with different
->> RPi variants.
-> 
-> Can you please explain why you split these patches from the original series?
 
-Because the firmware clocks are independent from the csi nodes and so, 
-it sounded logical to split it in half ?
-
-> 
-> I didn't had the time to test, but applying these patches would
-> "disable" bcm2835-camera driver?
-
-Wasn't it already the case ? It is intended, we don't want those to be 
-"okay" by default ? Or do I miss your point maybe (probably :-)) ?
-
-Thanks,
-JM
-
-> 
-> Best regards
-> Stefan
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
