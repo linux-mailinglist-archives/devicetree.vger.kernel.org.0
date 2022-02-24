@@ -2,99 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D26C4C30B8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8558A4C30C1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:01:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230257AbiBXQBI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 11:01:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
+        id S230197AbiBXQCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 11:02:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbiBXQBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:01:07 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E7F817FD03
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 08:00:29 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1nNGXW-0002yf-Bc; Thu, 24 Feb 2022 17:00:22 +0100
-Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1nNGXV-0012fy-Pe; Thu, 24 Feb 2022 17:00:21 +0100
-Received: from mtr by dude03.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <mtr@pengutronix.de>)
-        id 1nNGXU-00B2ML-6g; Thu, 24 Feb 2022 17:00:20 +0100
-From:   Michael Tretter <m.tretter@pengutronix.de>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, Hans Verkuil <hverkuil@xs4all.nl>
-Subject: [PATCH] fixup! media: i2c: isl7998x: Add driver for Intersil ISL7998x
-Date:   Thu, 24 Feb 2022 17:00:20 +0100
-Message-Id: <20220224160020.2630632-1-m.tretter@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <YheUuCShBA6jvn8a@paasikivi.fi.intel.com>
-References: <YheUuCShBA6jvn8a@paasikivi.fi.intel.com>
+        with ESMTP id S229660AbiBXQCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:02:12 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F3CC193DE;
+        Thu, 24 Feb 2022 08:01:33 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id x15so352553wrg.8;
+        Thu, 24 Feb 2022 08:01:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=y05yvb52Nsp11oYlXTQ2W1T0axwKZmDa9In+lb+g4zo=;
+        b=GnV/17WEDbgkTXw5Szy0hHTJZKC90jXe/+zj3SQueTq7TBeyrs/8twssH/6UgvEWGu
+         pPgsabBuHeUszXbWvLXy/atvo+h9H0fC5fwuRWN62mYXf2UQfXT6VW3H4PLtmrjQGRSc
+         mAvEnyt2IQe7TWSx+uEwkT1FSFXGo+rvonqUhxnXQ7YK/ZBFeaOHR6pE+Bztb17HMaTY
+         33eY9IDdWby1GJpfZDib5RhuFyoG7lAiRK7+OsCBHiGr5ULBD5HHm+kw7qYUn9f5XhRx
+         5iCMR9Fu3kUjdY3/vnGgrvMpr+h2eP2jLs0UZhY79trzcbqYp3NLACDL19mS0FIvKWDa
+         8Cxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=y05yvb52Nsp11oYlXTQ2W1T0axwKZmDa9In+lb+g4zo=;
+        b=RoHFnikPONWlKmrINVZx1RZO+XhP/AFViV5Sn/tjofukfSSnFUs6CIfF2oVg7c9VY+
+         Jkp148Sjb1hwQtzFCSY6DxtHCYJqGCC5GtuemQNhm+OhJ+SY6E+e9WVogQWeZSwyrhsg
+         77zIB9xrj6OrXJ+a7APyK0GdZuz9Dy25rm6wKtuHefLXo8gVg98FLdUVkfspeyb0Trub
+         asxWDkMaI9ecweAXlhZC89YTebPksJOX0aFV/QeotdnU0CUt9CPC68Nz02gXuZC9mKRG
+         fZsYU7RIIMyukY/jrutIkxqWQpbdaCz9B+3NjfWVUWzCZaYPl/by0hhCPOWwF8zS+aHq
+         y4wg==
+X-Gm-Message-State: AOAM532CDcNgdn7gUQ+FFMd57IMnJKCcHhXL/ClVdtFslR3gwElnH/Do
+        WLOBkKF8jQlhQDAMzTQye3o=
+X-Google-Smtp-Source: ABdhPJwbEWyLUPKgPfJM8rbkKwDuyxaneNxCj7/Lstjc1QdxMEN0ykJ1Lu83MJZHWz7N7SoUgv2+Yw==
+X-Received: by 2002:a05:6000:8f:b0:1ed:bb0e:6cbe with SMTP id m15-20020a056000008f00b001edbb0e6cbemr2769902wrx.209.1645718491173;
+        Thu, 24 Feb 2022 08:01:31 -0800 (PST)
+Received: from Ansuel-xps.localdomain ([5.170.140.187])
+        by smtp.gmail.com with ESMTPSA id d13sm3704964wri.38.2022.02.24.08.01.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 08:01:30 -0800 (PST)
+Date:   Thu, 24 Feb 2022 17:01:27 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 12/16] dt-bindings: clock: add ipq8064 ce5 clk define
+Message-ID: <Yher1ybYkFCVLLVt@Ansuel-xps.localdomain>
+References: <20220217235703.26641-1-ansuelsmth@gmail.com>
+ <20220217235703.26641-13-ansuelsmth@gmail.com>
+ <YhcDCnMFRppk3Mo+@builder.lan>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mtr@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YhcDCnMFRppk3Mo+@builder.lan>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
----
- drivers/media/i2c/isl7998x.c | 12 +++++-------
- 1 file changed, 5 insertions(+), 7 deletions(-)
+On Wed, Feb 23, 2022 at 10:01:14PM -0600, Bjorn Andersson wrote:
+> On Thu 17 Feb 17:56 CST 2022, Ansuel Smith wrote:
+> 
+> > Add ipq8064 ce5 clk define needed for CryptoEngine in gcc driver.
+> > 
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  include/dt-bindings/clock/qcom,gcc-ipq806x.h | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/include/dt-bindings/clock/qcom,gcc-ipq806x.h b/include/dt-bindings/clock/qcom,gcc-ipq806x.h
+> > index 7deec14a6dee..02262d2ac899 100644
+> > --- a/include/dt-bindings/clock/qcom,gcc-ipq806x.h
+> > +++ b/include/dt-bindings/clock/qcom,gcc-ipq806x.h
+> > @@ -240,7 +240,7 @@
+> >  #define PLL14					232
+> >  #define PLL14_VOTE				233
+> >  #define PLL18					234
+> > -#define CE5_SRC					235
+> > +#define CE5_A_CLK				235
+> >  #define CE5_H_CLK				236
+> >  #define CE5_CORE_CLK				237
+> >  #define CE3_SLEEP_CLK				238
+> > @@ -283,5 +283,8 @@
+> >  #define EBI2_AON_CLK				281
+> >  #define NSSTCM_CLK_SRC				282
+> >  #define NSSTCM_CLK				283
+> 
+> You don't like 284?
+> 
+> Regards,
+> Bjorn
+>
 
-diff --git a/drivers/media/i2c/isl7998x.c b/drivers/media/i2c/isl7998x.c
-index df124a0b401c..67ff1f508717 100644
---- a/drivers/media/i2c/isl7998x.c
-+++ b/drivers/media/i2c/isl7998x.c
-@@ -551,12 +551,11 @@ static unsigned int isl7998x_norm_to_val(v4l2_std_id norm)
- {
- 	unsigned int i;
- 
--	if (norm == V4L2_STD_UNKNOWN)
--		return ISL7998X_REG_PX_DEC_SDT_STANDARD_UNKNOWN;
--
- 	for (i = 0; i < ARRAY_SIZE(isl7998x_std_res); i++)
- 		if (isl7998x_std_res[i].norm & norm)
- 			break;
-+	if (i == ARRAY_SIZE(isl7998x_std_res))
-+		return ISL7998X_REG_PX_DEC_SDT_STANDARD_UNKNOWN;
- 
- 	return isl7998x_std_res[i].id;
- }
-@@ -565,13 +564,12 @@ static const struct isl7998x_mode *isl7998x_norm_to_mode(v4l2_std_id norm)
- {
- 	unsigned int i;
- 
--	/* Use NTSC default resolution during standard detection */
--	if (norm == V4L2_STD_UNKNOWN)
--		return &supported_modes[1];
--
- 	for (i = 0; i < ARRAY_SIZE(isl7998x_std_res); i++)
- 		if (isl7998x_std_res[i].norm & norm)
- 			break;
-+	/* Use NTSC default resolution during standard detection */
-+	if (i == ARRAY_SIZE(isl7998x_std_res))
-+		return &supported_modes[1];
- 
- 	return isl7998x_std_res[i].mode;
- }
+In the QSDK 284 is used for a virtual clk used to scale the NSS core.
+I skipped that in case we will implement it and to keep these header
+similar across QSDK and linux.
+
+> > +#define CE5_A_CLK_SRC				285
+> > +#define CE5_H_CLK_SRC				286
+> > +#define CE5_CORE_CLK_SRC			287
+> >  
+> >  #endif
+> > -- 
+> > 2.34.1
+> > 
+
 -- 
-2.30.2
-
+	Ansuel
