@@ -2,68 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90B0B4C2D01
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 14:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 530F64C2D1C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 14:33:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234976AbiBXNcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 08:32:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47716 "EHLO
+        id S234591AbiBXNdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 08:33:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234988AbiBXNcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 08:32:16 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E5F62982F
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 05:31:45 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id d17so3045126wrc.9
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 05:31:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=eOe0YnAdLFHik7V4l++pHUQcqVB92bCJ4fKDKTqumAI=;
-        b=d3jWz7NM9/ixBCcxoiUKpPidsC8v0hfIQsWzpdfC+4pBY+imxCFSOqqq0RtNqsOIPm
-         bMjX1hp0/EPg3KY5TNxy3Srbo5ts/6mU9Pxpi1cLRuBajCRHjpBYDFtgRQ85nnLiRSOi
-         1+e5AYWvfQwTROpUGj6H+KIzBPwtSKv1DeU1KvZdnZgg7HBdtujX2ynmNE9fyZUv1Atp
-         hAWwtZziOokMcVvmZsIuOhVi4Q6zcu32p9XnrEMa4TAKgEtmfdBkk+wRJDYROvOHCU9C
-         yinaiGAAhxNInMFlwYjzRzvE/54mZ4aufUuu5coiwfiJSbzUmqtYphDBLHzpdGcU+WBj
-         U0Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=eOe0YnAdLFHik7V4l++pHUQcqVB92bCJ4fKDKTqumAI=;
-        b=HmfRf/Y5TLNDIY/NcyUoebUKRajY0sdNk/T0uo9IBCrYZJHPL9xBGzpjrW7i3gXhoK
-         kj5utKZnj6V/BNT4EKGFG38P0w6/O4jPFMnZJQBJ9N7T7J29U948k9MX65J4zk4YHMU8
-         PiZ0xZh2sTflYxuVJtq4kqrCE/sm96BYTT+JfUBPmur2qgpzlhlJxwFiSPOzYJ3OcfvF
-         BLRQOJzlhOexx2iwziJgQ3j3dtNq3NSjAi40rN1Ae5qWj3fibT7wnXdpE/BBNqPiRZ9n
-         yYlL5rCkTPUljFvVWTMKflhTltbWjz0SZv7Qmfz0ZlCToLtX5Klx1xq7Kfy3IVXR9W7g
-         ZRNQ==
-X-Gm-Message-State: AOAM532SeLeUPZpehzUVFvJ3cRRhmOZGnfK5yG0mTWMwTUBl39zEoLn5
-        loGpUnevptTypvkoB9RGAhCEcw==
-X-Google-Smtp-Source: ABdhPJyxZhsO/2C3JbMTC+G1EMu26FRFHXVbiK+TxK/F2Y5ihVCIuofd5+7GeozbNaaelrqIwQxNBA==
-X-Received: by 2002:a05:6000:8b:b0:1ee:1c9d:92a0 with SMTP id m11-20020a056000008b00b001ee1c9d92a0mr1414602wrx.677.1645709503861;
-        Thu, 24 Feb 2022 05:31:43 -0800 (PST)
-Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.gmail.com with ESMTPSA id e33-20020a05600c4ba100b003810c690ba2sm2019142wmp.3.2022.02.24.05.31.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 05:31:43 -0800 (PST)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     robh+dt@kernel.org, vkoul@kernel.org,
-        yung-chuan.liao@linux.intel.com
-Cc:     pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        quic_srivasam@quicinc.com,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 3/3] soundwire: qcom: add in-band wake up interrupt support
-Date:   Thu, 24 Feb 2022 13:31:25 +0000
-Message-Id: <20220224133125.6674-4-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20220224133125.6674-1-srinivas.kandagatla@linaro.org>
-References: <20220224133125.6674-1-srinivas.kandagatla@linaro.org>
+        with ESMTP id S235117AbiBXNdC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 08:33:02 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8F163D4B9;
+        Thu, 24 Feb 2022 05:32:32 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 1D7B6B81878;
+        Thu, 24 Feb 2022 13:32:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1B80C340EC;
+        Thu, 24 Feb 2022 13:32:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645709549;
+        bh=SgGMnecg09ErfQo6Q/uEdth6PBMve0iYq5uuAS6ZHec=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R32dRsAuPBg7Uhg5NEFR8h9XAqTdWzDOdgAkVtQiF4rWxCzfY81enVna8jwBN6cpo
+         XF3BfMPiU3nRJg8uWUlb2vGSPtsNSAms3F7fhEyGhkEJqTMsMAPmMtz36XwOcLN0oT
+         QCjLlQVNBSP48Vp0OlBLpZjludQd8DETTPybCHmoXiMnJyYSClaqVxky/85ZTBfIez
+         7jRXepjuLErrD7PtJFwMumrfly5VlSSEMP66jOZyWXjsZbZBCxIoNGbmYUEpBxhLHa
+         1qlCWyxskSTwYxjNLy9lfhMqkgkJSd9ZxWaK74+EptwiggV87RyNCL4PC1gv+8Bggk
+         8QT6sziDB3wSA==
+Received: by mail-ej1-f50.google.com with SMTP id lw4so4311526ejb.12;
+        Thu, 24 Feb 2022 05:32:29 -0800 (PST)
+X-Gm-Message-State: AOAM530O7TrH/YNBZoh0T/A3pEf96nEvRYSiGjWQ2QHJ1u0EMsHXpMv+
+        wj03PSLiin0ekLrNSO919jgqzLEl3jhNNt0XqA==
+X-Google-Smtp-Source: ABdhPJxaf0MKZ4M+LqN3z5YECxlhfw3GLarZPyG5domGJgD4pARWd/0ZP19xXsIyyHfbWq5bBwG8Q4xGGXnzV11I0y0=
+X-Received: by 2002:a17:906:f6d9:b0:6ce:e7d:5f3a with SMTP id
+ jo25-20020a170906f6d900b006ce0e7d5f3amr2260021ejb.20.1645709547978; Thu, 24
+ Feb 2022 05:32:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+References: <1640164346-26818-1-git-send-email-vincent.sunplus@gmail.com> <1640164346-26818-3-git-send-email-vincent.sunplus@gmail.com>
+In-Reply-To: <1640164346-26818-3-git-send-email-vincent.sunplus@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 24 Feb 2022 07:32:16 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJK2ka8H_RzjYfBW9UXn9Q9DCnZC3Mdo66XSsk4=ZcEzA@mail.gmail.com>
+Message-ID: <CAL_JsqJK2ka8H_RzjYfBW9UXn9Q9DCnZC3Mdo66XSsk4=ZcEzA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: nvmem: Add bindings doc for Sunplus
+ OCOTP driver
+To:     Vincent Shih <vincent.sunplus@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Vincent Shih <vincent.shih@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,115 +65,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some of the Qualcomm SoundWire Controller instances like the ones that are
-connected to RX path along with Headset connections support Waking up
-Controller from Low power clock stop state using SoundWire In-band interrupt.
-SoundWire Slave on the bus would intiate this by pulling the data line high,
-during clock stop condition.
+On Wed, Dec 22, 2021 at 3:12 AM Vincent Shih <vincent.sunplus@gmail.com> wrote:
+>
+> Add bindings doc for Sunplus OCOTP driver
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+> ---
+> Changes in v3
+>  - No change
+>
+>  .../bindings/nvmem/sunplus,sp7021-ocotp.yaml       | 86 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
 
-Add support to this wake up interrupt.
+This is now failing in linux-next:
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- drivers/soundwire/qcom.c | 50 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 50 insertions(+)
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.example.dt.yaml:
+spi@9C002D80: 'clocks-names' is a required property
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.example.dts:19:18:
+fatal error: dt-bindings/clock/sp-sp7021.h: No such file or directory
+   19 |         #include <dt-bindings/clock/sp-sp7021.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 2c763a9f088f..27cfe4e05206 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -14,6 +14,7 @@
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
- #include <linux/slab.h>
-+#include <linux/pm_wakeirq.h>
- #include <linux/slimbus.h>
- #include <linux/soundwire/sdw.h>
- #include <linux/soundwire/sdw_registers.h>
-@@ -154,6 +155,7 @@ struct qcom_swrm_ctrl {
- 	u8 rd_cmd_id;
- 	int irq;
- 	unsigned int version;
-+	int wake_irq;
- 	int num_din_ports;
- 	int num_dout_ports;
- 	int cols_index;
-@@ -503,6 +505,31 @@ static int qcom_swrm_enumerate(struct sdw_bus *bus)
- 	return 0;
- }
- 
-+static irqreturn_t qcom_swrm_wake_irq_handler(int irq, void *dev_id)
-+{
-+	struct qcom_swrm_ctrl *swrm = dev_id;
-+	int ret;
-+
-+	ret = pm_runtime_get_sync(swrm->dev);
-+	if (ret < 0 && ret != -EACCES) {
-+		dev_err_ratelimited(swrm->dev,
-+				    "pm_runtime_get_sync failed in %s, ret %d\n",
-+				    __func__, ret);
-+		pm_runtime_put_noidle(swrm->dev);
-+	}
-+
-+	if (swrm->wake_irq > 0) {
-+		if (!irqd_irq_disabled(irq_get_irq_data(swrm->wake_irq)))
-+			disable_irq_nosync(swrm->wake_irq);
-+	}
-+
-+	pm_runtime_mark_last_busy(swrm->dev);
-+	pm_runtime_put_autosuspend(swrm->dev);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+
- static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
- {
- 	struct qcom_swrm_ctrl *swrm = dev_id;
-@@ -1340,6 +1367,19 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 		goto err_clk;
- 	}
- 
-+	ctrl->wake_irq = of_irq_get(dev->of_node, 1);
-+	if (ctrl->wake_irq > 0) {
-+		ret = devm_request_threaded_irq(dev, ctrl->wake_irq, NULL,
-+						qcom_swrm_wake_irq_handler,
-+						IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-+						"swr_wake_irq", ctrl);
-+		if (ret) {
-+			dev_err(dev, "Failed to request soundwire wake irq\n");
-+			goto err_init;
-+		}
-+	}
-+
-+
- 	ret = sdw_bus_master_add(&ctrl->bus, dev, dev->fwnode);
- 	if (ret) {
- 		dev_err(dev, "Failed to register Soundwire controller (%d)\n",
-@@ -1424,6 +1464,11 @@ static int swrm_runtime_resume(struct device *dev)
- 	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dev);
- 	int ret;
- 
-+	if (ctrl->wake_irq > 0) {
-+		if (!irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
-+			disable_irq_nosync(ctrl->wake_irq);
-+	}
-+
- 	clk_prepare_enable(ctrl->hclk);
- 
- 	if (ctrl->clock_stop_not_supported) {
-@@ -1487,6 +1532,11 @@ static int __maybe_unused swrm_runtime_suspend(struct device *dev)
- 
- 	usleep_range(300, 305);
- 
-+	if (ctrl->wake_irq > 0) {
-+		if (irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
-+			enable_irq(ctrl->wake_irq);
-+	}
-+
- 	return 0;
- }
- 
--- 
-2.21.0
+Please send a fix ASAP.
 
+Rob
