@@ -2,53 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1D874C3950
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:00:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9385F4C3988
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:09:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235930AbiBXXAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 18:00:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42026 "EHLO
+        id S232087AbiBXXIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 18:08:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235920AbiBXXAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:00:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CA02177FC;
-        Thu, 24 Feb 2022 14:59:38 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S232266AbiBXXIu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:08:50 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E88167F9C
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:08:20 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id D4CCAB829EB;
-        Thu, 24 Feb 2022 22:59:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74E25C340EF;
-        Thu, 24 Feb 2022 22:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645743575;
-        bh=qE4XyM/mZdO91/dwF8RysGfMurvwkXipPfmnP9dak8w=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=dR3hi76re7kAtMsa+aJ7Ekrp3v5K2UbVEcjxAdiN7XhYIzNYrXKO1m1NJm3nYAKIU
-         AtHWIkO8jqFoyP/QgLY3aAntINce8+mf8mA3D6pDUpeodQug+3EgkduRkTz+5MIIAS
-         e/raYQB2aNNXY1KjR23Ug/C7R42CdvlR8Twpb7Bv3phXikIleWLfDIrHpo++uU1Q+n
-         N84RQqW6VM+nafp//BmyuJpadaCRKOX9/HZ1cAubSoyE5dcFH79iT7gBx3D15qxKMA
-         0E1zQiXAv+hJCGgVDCwzaH2Uu/uqbdiI9MWxixr/v2K+2z7Tuhk5YT8G1Djt2oAgQj
-         IdEyss2gmVj+A==
-From:   Mark Brown <broonie@kernel.org>
-To:     thierry.reding@gmail.com, jonathanh@nvidia.com,
-        linux-tegra@vger.kernel.org,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        linux-spi@vger.kernel.org
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, p.zabel@pengutronix.de,
-        skomatineni@nvidia.com, ldewangan@nvidia.com
-In-Reply-To: <20220222175611.58051-1-kyarlagadda@nvidia.com>
-References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
-Subject: Re: (subset) [PATCH v2 0/5] Tegra QUAD SPI combined sequence mode
-Message-Id: <164574357320.4024751.14439329373672289056.b4-ty@kernel.org>
-Date:   Thu, 24 Feb 2022 22:59:33 +0000
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id D6FD3836A3;
+        Fri, 25 Feb 2022 00:08:17 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645744098;
+        bh=jxEpPq37vAr/XSO9nV4JTqocXkdOm6aiLvihz73bXm8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=vOaBM5MVht2q2orlLJUY9/05QqA6aQYi+dcM6E7jrgjlV8bQXoxfWa5n22ItQG7HA
+         S+fqfgW5Bv/4ImPPc3GFn5d3jENuwL2Mu5+zMBb+vIzk1aMtZa06xAVmfu/kcB1dJV
+         2d3CKoymIa2Jj/ZhVR7vLYmJuN+lswDnNSaQEn7ea8mL7hCPsKdi3Sl4bakRLXFxt4
+         HG1vB4qgBzksZDJEIrqIgf07Oh0Buz2P9/AVHVYbwi9fqpGPFluYiCRUCE3CVFgqXz
+         td0ZYtcaXQjtxRnV68vh6bvFO8tNg0HJbtGeVpmaVW+sDsMcpiDyPp1H0nRs2QgsV5
+         ODgkjHamLRC4g==
+Message-ID: <1e4dc8c2-daa7-3cef-eaf5-76616b6230a3@denx.de>
+Date:   Fri, 25 Feb 2022 00:08:17 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2] dt-bindings: leds: Document mmc trigger
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+References: <20220217174357.13427-1-marex@denx.de>
+ <YhgHTrlxyn5QGdOM@robh.at.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <YhgHTrlxyn5QGdOM@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,45 +59,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Feb 2022 23:26:06 +0530, Krishna Yarlagadda wrote:
-> Add ACPI support for Tegra210 QUAD SPI driver and support
-> new Tegra194 feature, combined sequence mode.
+On 2/24/22 23:31, Rob Herring wrote:
+> On Thu, Feb 17, 2022 at 06:43:57PM +0100, Marek Vasut wrote:
+>> The mmc subsystem supports triggering leds on card activity, document
+>> the trigger value here. The value is a pattern in this case.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+>> Cc: Pavel Machek <pavel@ucw.cz>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: devicetree@vger.kernel.org
+>> To: linux-leds@vger.kernel.org
+>> ---
+>> V2: Rebase on next-20220217
 > 
-> v2 changes:
-> - use combined sequence mode as default
-> - remove property to switch transfer modes
-> - fix compilation warnings
-> 
-> [...]
+> Why? Nobody can apply patches to linux-next. Is there something in next
+> you are dependent on that you didn't tell us about?
 
-Applied to
+It is just a convenience really, it is where the commits for all the 
+mostly latest development exist in one place, so I can be reasonably 
+sure the maintainer won't have trouble applying the patch on their tree 
+due to some missing patch, and if I work also on driver stuff, I can be 
+sure those drivers are also up-to-date-ish.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/5] spi: tegra210-quad: use device_reset method
-      commit: ac982578e7d340dc4f4fd243f4a4b24787d28c3f
-[2/5] dt-bindings: spi: Tegra234 QUAD SPI compatible
-      commit: de2f678b11bdcbabb6d804c543f9a3325c0e83bf
-[3/5] spi: tegra210-quad: add new chips to compatible
-      commit: ea23f0e148b82e5bcbc6c814926f53133552f0f3
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+No, I don't think this patch specifically depends on anything in latest 
+next.
