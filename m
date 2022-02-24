@@ -2,56 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48B7F4C20B1
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 01:37:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DF1D24C20AD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 01:37:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiBXAfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 19:35:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35560 "EHLO
+        id S230063AbiBXAfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 19:35:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229715AbiBXAfN (ORCPT
+        with ESMTP id S229864AbiBXAfN (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 19:35:13 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F6D69E9CF
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:38 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id z4so294705pgh.12
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:38 -0800 (PST)
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13209EB93
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:39 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id f8so308285pgc.8
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jPSW45xiD/lnL8l3MDRyfU8xx/s58cubiThQsI6XrX0=;
-        b=F++swCaDvbA4mUrRyBn/jN5z/jb13PdEkgomsy8G3FS1BVM/llA1wdn80bdiZswOka
-         42feQGELkhXuNXvI5Ek00XyUy0MpQsOEd/SHRu9MuJy5Ovtb2Y/YlKZkJVHUtsCwsoU5
-         7HZtYzoxLzJbSO9CtcsQOB0S46A1U54LVHSPk=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=vG/5kA9N04CwQy4bX0Kb6i3wWo0eXRHeMpuwd4x5Q/c=;
+        b=jiBcPWY52X9e/uzNvYV2TiVy3I2p7YH1Aio3N86LL3F6hY5MTAQMANosqFD3oDYCbm
+         pgoTOF75+LpesRgDwHVx00c6vatB+Z2rNe1WdvV0OHVVZbQb/7k6LvYYt0J9mWxi5Ezv
+         iovAxNryPBhK2YpLzNMuk11LODuxTMATgAerI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jPSW45xiD/lnL8l3MDRyfU8xx/s58cubiThQsI6XrX0=;
-        b=3fGz6Cy/feyJKcG4hvQpKgaM3xzkgh+t8mTnuyPQ7rBhiAsN+3uG0nJgtJeO9AlAVG
-         Tlte8RSV4Ru3RnaeDQo1QLXFBA+0MJ0e/+7qQK7jDjdQfLH8epGo4/FwiXqDK2Q3bsaz
-         7yGmkrgbQjOKMxusIrYz1fmsCcoVUb/sSydtbvV9Te/XqT/o4dyAvYFWJJH//O+j9mke
-         kixo4LGECDrdorQmqya9Pkmkfamgm+DnigBxDnpqiAxzzf4C2AN66FJL6vk9IgwUBFy/
-         UUmGxUTy0cXxit7i5jXDDBCAMYlf5wT7hFn4Cc3cdI+OlggdxN//WmHgMTYJI46dmwYf
-         GCGg==
-X-Gm-Message-State: AOAM530EWhvcBn9W7j3DxcdPmtnEps11e8VoNDaq3GzfLXBWwjc+K3/d
-        nqn5gvXbFCzJs0Krp8Ox8DUMgQ==
-X-Google-Smtp-Source: ABdhPJxsX8Zp7RwiVfm9EjxPXZ6nxL/VAzG6WanMwp9dHPRSqVUcYDx1iZ6Rm4NP5NAIZj97PK/Llw==
-X-Received: by 2002:a63:f241:0:b0:365:948d:19bb with SMTP id d1-20020a63f241000000b00365948d19bbmr275254pgk.253.1645662878045;
-        Wed, 23 Feb 2022 16:34:38 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=vG/5kA9N04CwQy4bX0Kb6i3wWo0eXRHeMpuwd4x5Q/c=;
+        b=yTx6Jx7g/zSouz/yy3L08RYb2A/LNKA4S00Hx4lLxPfeJfotFhr5gwIMgaluTW1xPR
+         2ar/2rbgJH69nbQYG58FM+ud1u1D1A2Dq1YcNzp6mrAhtrC7zcZpRGq+Zxft8ksTZ173
+         w9hUgnyLqPAjj5tCP9SAMIB3i2mo/xhrdKdO8u0MZRO+5W7qEY/O/pCHKCVYwYUKrQtU
+         PthwuG6rjx3ZF/KN6A/ZgNz26kvOb2CHshELCgxGVy76nm/Io8viGYsTu8Rly6HRUGmC
+         CMQVO7twkV+Drq/CvhuKscdSqarvEbRukwstJ1QjMC9fwV1KX6ss8AGuYgCeJV9trby9
+         yOVQ==
+X-Gm-Message-State: AOAM5307oEB/TrQQtViZQJ7cx0oGWP0tJ17rBdACHyAll0XZRVyV/GoX
+        rfECkNsWjlMof/7Z6yXbZFWJDQ==
+X-Google-Smtp-Source: ABdhPJzB30yXUg/ww0v2ftOzZv01+PA4tr9dDxl1M4WmeEwfAF4LbeQR2yIc+HYO7spA6z9bda51cQ==
+X-Received: by 2002:a63:4d52:0:b0:343:8d41:eb12 with SMTP id n18-20020a634d52000000b003438d41eb12mr267178pgl.527.1645662879182;
+        Wed, 23 Feb 2022 16:34:39 -0800 (PST)
 Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:e321:1e1b:f71e:33c])
-        by smtp.gmail.com with ESMTPSA id ms7-20020a17090b234700b001bc7e6fc01csm4100344pjb.40.2022.02.23.16.34.36
+        by smtp.gmail.com with ESMTPSA id ms7-20020a17090b234700b001bc7e6fc01csm4100344pjb.40.2022.02.23.16.34.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 16:34:37 -0800 (PST)
+        Wed, 23 Feb 2022 16:34:38 -0800 (PST)
 From:   Julius Werner <jwerner@chromium.org>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 0/3] Update lpddr2 revision-id binding to match lpddr3
-Date:   Wed, 23 Feb 2022 16:34:18 -0800
-Message-Id: <20220224003421.3440124-1-jwerner@chromium.org>
+Subject: [PATCH v3 1/3] dt-bindings: memory: lpddr2: Adjust revision ID property to match lpddr3
+Date:   Wed, 23 Feb 2022 16:34:19 -0800
+Message-Id: <20220224003421.3440124-2-jwerner@chromium.org>
 X-Mailer: git-send-email 2.35.1.473.g83b2b277ed-goog
+In-Reply-To: <20220224003421.3440124-1-jwerner@chromium.org>
+References: <20220224003421.3440124-1-jwerner@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -64,22 +66,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series updates the device tree binding for "jedec,lpddr2" to
-encode the revision ID (mode registers 6 and 7) in the same way as they
-were already done for the "jedec,lpddr3" binding, and deprecates the old
-way.
+Commit 3539a2 (dt-bindings: memory: lpddr2: Add revision-id properties)
+added the properties `revision-id1` and `revision-id2` to the
+"jedec,lpddr2" binding. The "jedec,lpddr3" binding already had a single
+array property `revision-id` for the same purpose. For consistency
+between related memory types, this patch deprecates the LPDDR2
+properties and instead adds a property in the same style as for LPDDR3
+to that binding.
 
-Julius Werner (3):
-  dt-bindings: memory: lpddr2: Adjust revision ID property to match
-    lpddr3
-  memory: Update of_memory lpddr2 revision-id binding
-  ARM: dts: Update jedec,lpddr2 revision-id binding
+Signed-off-by: Julius Werner <jwerner@chromium.org>
+---
+ .../memory-controllers/ddr/jedec,lpddr2.yaml    | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
- .../memory-controllers/ddr/jedec,lpddr2.yaml  | 17 ++++++++++++--
- arch/arm/boot/dts/tegra20-asus-tf101.dts      |  2 +-
- drivers/memory/of_memory.c                    | 23 ++++++++++++-------
- 3 files changed, 31 insertions(+), 11 deletions(-)
+Changelog:
 
+- v2:
+  - Updated commit message to fill in commit reference to earlier patch
+- v3:
+  - Added `items` specification with `minimum` and `maximum` values to
+    `revision-id` binding
+  - Updated binding example to preserve previous revision ID values
+
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+index 25ed0266f6dd3d..e9d0936861b779 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
++++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr2.yaml
+@@ -30,12 +30,26 @@ properties:
+     maximum: 255
+     description: |
+       Revision 1 value of SDRAM chip. Obtained from device datasheet.
++      Property is deprecated, use revision-id instead.
++    deprecated: true
+ 
+   revision-id2:
+     $ref: /schemas/types.yaml#/definitions/uint32
+     maximum: 255
+     description: |
+       Revision 2 value of SDRAM chip. Obtained from device datasheet.
++      Property is deprecated, use revision-id instead.
++    deprecated: true
++
++  revision-id:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      Revision IDs read from Mode Register 6 and 7. One byte per uint32 cell (i.e. <MR6 MR7>).
++    minItems: 2
++    maxItems: 2
++    items:
++      minimum: 0
++      maximum: 255
+ 
+   density:
+     $ref: /schemas/types.yaml#/definitions/uint32
+@@ -164,8 +178,7 @@ examples:
+         compatible = "elpida,ECB240ABACN", "jedec,lpddr2-s4";
+         density = <2048>;
+         io-width = <32>;
+-        revision-id1 = <1>;
+-        revision-id2 = <0>;
++        revision-id = <1 0>;
+ 
+         tRPab-min-tck = <3>;
+         tRCD-min-tck = <3>;
 -- 
 2.31.0
 
