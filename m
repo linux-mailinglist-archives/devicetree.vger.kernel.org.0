@@ -2,174 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34FB84C369B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:11:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 735474C3699
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:11:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234254AbiBXUMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 15:12:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56824 "EHLO
+        id S234244AbiBXULP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:11:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234251AbiBXUMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:12:05 -0500
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2872CF25;
-        Thu, 24 Feb 2022 12:11:35 -0800 (PST)
-Received: by mail-ed1-x52e.google.com with SMTP id i11so4449788eda.9;
-        Thu, 24 Feb 2022 12:11:35 -0800 (PST)
+        with ESMTP id S233607AbiBXULP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:11:15 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658B327792F
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:10:44 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id j2so4672326oie.7
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:10:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language
-         :from:to:cc:references:in-reply-to:content-transfer-encoding;
-        bh=kKy0SIhSKIu0kr4V4JEIbxoglz4OmTrfglh5tt6nsYg=;
-        b=QdhW2DCKhmJB5VXGZFJfH7ZF47QkssFORrQn+dwi6ampYfc6DbEvRiB00HukSiD/Xx
-         xLmiCT2E+0K7MEAubTf+4e0pwdJIUhbpjdSNkBFiQM9oSLRRPyKxD+fJ9LpLvIGP0jHI
-         gVpuP4MOmdWQXm7hdJ0juO9V3caTWucEcmf7YJYjMDHOm8Zhon1+lFFhYdophwymy1/R
-         2tfuko9MQKHhISTAmDY4Pk8RjadWxJOiNCLxJo9RN+c5fGuwOjOYy1xD9HcZ7r34HmwW
-         1KPwI/Y/yU1HE1nMsY/2lMK7LLYb+XfJatje+2/IjL056fag2LcCeBtt1ebuE76P9/Hb
-         LxRA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tp/pxUAsN1dsuv2WMgFOFlatJS81kJvAhFMGsLib+Ik=;
+        b=QD5DoxG2HFUYczwhvfPpKRZtnIME+v8s7w+BMnIyEY0/+LA6uzKnzx48TQFLyCi7F0
+         ZXnFA/+CXBjbSFYOtS/HtPQdxpoqKQCikgKMJ5nqywsutlOh215hj+5w2XnG7hcGhqfP
+         ettNPp5G8VpeUXSppkEJD7y/PNFkQQpjRzdLxM5Tk2YLpzBQRCJaMqG6jpW6LUISA0MG
+         v0BXQJ9gVeL2EVPR1q60Ac2A9Or1s6tbjQPqawwfA3VHvUv9z2gYfs1VgaS4+kIcdWyl
+         KckZ6LmxFupOpCf7p0rOAYnEGLcZDBB1clh3kSO+0qp2AO0mGbovLAP+k1RJ+ejdlYn7
+         YEKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:from:to:cc:references:in-reply-to
-         :content-transfer-encoding;
-        bh=kKy0SIhSKIu0kr4V4JEIbxoglz4OmTrfglh5tt6nsYg=;
-        b=ugB0kRDwc5pFa63WUmE+TjebA3/auaE4lCnOtxlRgc30cObfpgzZ/3ZKBaQH/4tWfy
-         aqFb91fJYgFMWoG29DFhtRKbpcJ6oMQDXQvKKufCsC4cG0lKXKRyaIChxiCXWtDAX9Ja
-         2Lu2d54T8NGhVVodAIeUN0mGrkGtOZUE9GDAcR6KfDNep/D/g7pP1LzJORxDheYsndRd
-         +oJmrpCqF79q3wIn0QUp2xSHbdCj9nibq2DfeeWj6uDXcxl3DwRS4iKyN9j4h8+SfXNw
-         xWsrwKDGnTtSKNy8EPXU6yzlm8REbdeX0tWUrOeVl4JWHnfkspfqm99c6MuXb/W+fVwW
-         qxuA==
-X-Gm-Message-State: AOAM531ynbun2q0l3pevoGICy5GXvhweOwHsJieiSCHfyqkB7U6SG9yP
-        Ebv8QNxzcTmlwdi7rRiMXhM=
-X-Google-Smtp-Source: ABdhPJxCCcYxGn8Kcl7NsKJCzdQ4Vl6lcaApJwLzVwVutqb4KSaWgUcrjJg1sBfXDTuQvMAevfEsmA==
-X-Received: by 2002:a50:8e44:0:b0:40f:d71f:bdf5 with SMTP id 4-20020a508e44000000b0040fd71fbdf5mr4038143edx.166.1645733493712;
-        Thu, 24 Feb 2022 12:11:33 -0800 (PST)
-Received: from ?IPV6:2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd? (p200300ea8f4d2b0070ade6bd1cea7edd.dip0.t-ipconnect.de. [2003:ea:8f4d:2b00:70ad:e6bd:1cea:7edd])
-        by smtp.googlemail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm130234eji.67.2022.02.24.12.11.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Feb 2022 12:11:33 -0800 (PST)
-Message-ID: <a9db41fc-3409-7a5f-00b1-e9619b80ca5e@gmail.com>
-Date:   Thu, 24 Feb 2022 21:10:30 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: [PATCH v4 5/6] arm64: dts: meson-gxl-s905w-tx3-mini: add support for
- the 7 segment display
-Content-Language: en-US
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tp/pxUAsN1dsuv2WMgFOFlatJS81kJvAhFMGsLib+Ik=;
+        b=CtSZHfqhwMGLzo/3PGyGyf7/LuCLens0lId2zSB/Uz4PBIlJxD8B/jAc7sWTi4Zg1X
+         Gwbio1wMAV33XwVKQFkuFLxhKXRdgtCAphPtirjoiF5S2aZ85pPnjgahtS//6KmFz4dH
+         ATeoMJZCBQMAetlYX8ryq9H+q/rZbTL9rdP9RFSgm4aKFUFp/caZb3Wgkgqgd4Uj94j1
+         6dmvGXOuCUCoKwIC0RTN++WZsMEIFrgyKdQqog7b+1mQI5t8OQvsb4r0tq0tkxvgrHBA
+         PnbdrJUGDeX7DrWA1A7H/dU5kUMfwXnmp5tkDSPPbk4nGcVOl8KnoXYWzEqEwBrpI48X
+         xlHw==
+X-Gm-Message-State: AOAM533VvjlFZC4aLTgyZqvCsu8X9MizotedtfKzc7+YQ58NBCqp+XY6
+        MsAPoRNbNOlnm+gNEUsSP/BuhQ==
+X-Google-Smtp-Source: ABdhPJyN1tJXc2OmNxcbayjctonbYe7XOluBMlLa7fjoRQREv6clqrbNE7J3VS7gOJPpy7RKF/DD4A==
+X-Received: by 2002:a05:6870:6014:b0:d6:ca51:2108 with SMTP id t20-20020a056870601400b000d6ca512108mr2044865oaa.47.1645733443809;
+        Thu, 24 Feb 2022 12:10:43 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id p16-20020a05680811d000b002d72ec3a921sm249592oiv.21.2022.02.24.12.10.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 12:10:43 -0800 (PST)
+Date:   Thu, 24 Feb 2022 14:10:40 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Luca Weiss <luca@z3ntu.xyz>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Thara Gopinath <thara.gopinath@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
-In-Reply-To: <f911c7d3-a9c4-32ee-68a1-e30b478732c9@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/10] dt-bindings: thermal: tsens: Add msm8953
+ compatible
+Message-ID: <YhfmQFFCmb74dOvV@builder.lan>
+References: <20220220201909.445468-1-luca@z3ntu.xyz>
+ <20220220201909.445468-3-luca@z3ntu.xyz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220220201909.445468-3-luca@z3ntu.xyz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the 7 segment display of the device.
+On Sun 20 Feb 14:18 CST 2022, Luca Weiss wrote:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
+> Document the compatible string for tsens found in msm8953.
+> 
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
+> Acked-by: Amit Kucheria <amitk@kernel.org>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-index 6705c2082..20bbd931e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905w-tx3-mini.dts
-@@ -10,6 +10,7 @@
- 
- #include "meson-gxl-s905x.dtsi"
- #include "meson-gx-p23x-q20x.dtsi"
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	compatible = "oranth,tx3-mini", "amlogic,s905w", "amlogic,meson-gxl";
-@@ -19,6 +20,64 @@ memory@0 {
- 		device_type = "memory";
- 		reg = <0x0 0x0 0x0 0x40000000>; /* 1 GiB or 2 GiB */
- 	};
-+
-+	spi {
-+		compatible = "spi-gpio";
-+		sck-gpios = <&gpio GPIODV_27  GPIO_ACTIVE_HIGH>;
-+		mosi-gpios = <&gpio GPIODV_26 GPIO_ACTIVE_HIGH>;
-+		cs-gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_LOW>;
-+		num-chipselects = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		tm1628: led-controller@0 {
-+			compatible = "titanmec,tm1628";
-+			reg = <0>;
-+			spi-3wire;
-+			spi-lsb-first;
-+			spi-rx-delay-us = <1>;
-+			spi-max-frequency = <500000>;
-+			#address-cells = <2>;
-+			#size-cells = <0>;
-+
-+			segment-mapping = /bits/ 8 <4 5 6 1 2 3 7>;
-+			grid = /bits/ 8 <4 3 2 1>;
-+
-+			alarm@5,1 {
-+				reg = <5 1>;
-+				function = LED_FUNCTION_ALARM;
-+			};
-+
-+			usb@5,2 {
-+				reg = <5 2>;
-+				function = LED_FUNCTION_USB;
-+			};
-+			play@5,3 {
-+				reg = <5 3>;
-+				function = "play";
-+			};
-+
-+			pause@5,4 {
-+				reg = <5 4>;
-+				function = "pause";
-+			};
-+
-+			colon@5,5 {
-+				reg = <5 5>;
-+				function = "colon";
-+			};
-+
-+			lan@5,6 {
-+				reg = <5 6>;
-+				function = LED_FUNCTION_LAN;
-+			};
-+
-+			wlan@5,7 {
-+				reg = <5 7>;
-+				function = LED_FUNCTION_WLAN;
-+			};
-+		};
-+	};
- };
- 
- &ir {
--- 
-2.35.1
+Daniel, can you please pick this patch through your tree?
 
+Thanks,
+Bjorn
 
+> ---
+> Changes in v2:
+> - no changes
+> 
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index d3b9e9b600a2..b6406bcc683f 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -43,6 +43,7 @@ properties:
+>        - description: v2 of TSENS
+>          items:
+>            - enum:
+> +              - qcom,msm8953-tsens
+>                - qcom,msm8996-tsens
+>                - qcom,msm8998-tsens
+>                - qcom,sc7180-tsens
+> -- 
+> 2.35.1
+> 
