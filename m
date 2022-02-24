@@ -2,57 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B0C84C313B
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1FA74C31C3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:46:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229719AbiBXQ3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 11:29:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37222 "EHLO
+        id S230035AbiBXQqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 11:46:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229737AbiBXQ3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:29:06 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682D11965C4;
-        Thu, 24 Feb 2022 08:28:35 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id j24so3205356oii.11;
-        Thu, 24 Feb 2022 08:28:35 -0800 (PST)
+        with ESMTP id S229619AbiBXQqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:46:33 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6437D340D6;
+        Thu, 24 Feb 2022 08:46:03 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id l25so3315295oic.13;
+        Thu, 24 Feb 2022 08:46:03 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=9Hw+IXRYrnzmeFFNG8Nc9XPQ/h/ngGDlwqtlbBJf7gQ=;
-        b=Sh2QGzb683l2ieej21t4GkmLUpBtgnqaVjfpogjOvadOwHiZ8n8vsYYMBrF6OPZHXm
-         B2uxEUVAYMV/PDjX+g/6f5eSl96IDJwaUCAQZOL2KTtT/rf0GelfH2sOZMHnCg8gKa8t
-         gqzu9XJwKMqVjxfsSJlagv9oTzJ0kC/2EbI6mMAhJoaErENbgpVM8ZMZzc9RIUq5jI5K
-         Ps6rCYYLAO1WRpipIjIcaydl4SxgiNJRAuJPTtLn1qs1gzRnDfiJhCpYUajqYyXVvWJO
-         ltj3wKLM35bXEwKVcaPb2eMWRUKl5JtE7jUxn0BRG+D6/x2p075GZIJVxiv9mLvCLP16
-         3OYw==
-X-Gm-Message-State: AOAM530LRqDAybgoR6pzCfJCwDKerD97x0PybH8TCxEOks7SZddX5ZU/
-        Q3eITvaDixVF6jAaZZWWpBpsI39ltg==
-X-Google-Smtp-Source: ABdhPJyBSuL4dpeG7BPV2Y0QipvRylf1FyFsNnew64rw4tYkMJ1gXBOSoDp7AJ29P+p4sn9gv7D7Wg==
-X-Received: by 2002:aca:b9d5:0:b0:2ce:6ee7:2cde with SMTP id j204-20020acab9d5000000b002ce6ee72cdemr7756180oif.268.1645719063709;
-        Thu, 24 Feb 2022 08:11:03 -0800 (PST)
+        bh=zbkQNmRMiKw/pcrFZH62eSxRpSbb/s9oDkkz3K5wBJ4=;
+        b=6Zc1PZ+6yfLdHeGuod2Sbf8yG/0oDXC7uiwip5liAhFAKut8hWCCeuvbCd9jcCde70
+         FwCEeqrBzKxzNSwClZiPyIZSOffdf5gNEoFBXwvzMcI4OFLnx6ZjRZu/V5I9YyPPHnkF
+         pY05CusdxFnPmVciXK5dpi7NFZ97NelDHRIZevjQwWHrqhhvpNI5hURHOvBTfI9ykWtV
+         cGlwVlcpK7g5lgz1cKh2DF/H5ye85OBof1p7a/NSl55BDvQV47tJqnxRtZRN+nv78A3B
+         CdLK9jdYsFYAiyVuCWJUBKEe3vxbLHynkSZJ+zBTQUm6Djz1ti3v98A6jGuN938jld3z
+         8XUg==
+X-Gm-Message-State: AOAM530h6CXxzuExkE8XzzzXnbrmtoG5h/ZD+a+sVefrJ/fRAOHM3G8x
+        FSIN5MK+ofRLkMcAiSp+CpOJ39/+rg==
+X-Google-Smtp-Source: ABdhPJxUdvQQ74bDVPACbU46SgRLAo662OysqMgqfjKUa3F3TgTNZydiCsoVlSxthTdtiIVIFdbrsg==
+X-Received: by 2002:aca:5c89:0:b0:2d5:18eb:9e6 with SMTP id q131-20020aca5c89000000b002d518eb09e6mr1735362oib.58.1645719172925;
+        Thu, 24 Feb 2022 08:12:52 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id d60sm1352253otb.29.2022.02.24.08.11.02
+        by smtp.gmail.com with ESMTPSA id bc16sm1650906oib.26.2022.02.24.08.12.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 08:11:03 -0800 (PST)
-Received: (nullmailer pid 3169955 invoked by uid 1000);
-        Thu, 24 Feb 2022 16:11:02 -0000
-Date:   Thu, 24 Feb 2022 10:11:02 -0600
+        Thu, 24 Feb 2022 08:12:52 -0800 (PST)
+Received: (nullmailer pid 3173677 invoked by uid 1000);
+        Thu, 24 Feb 2022 16:12:50 -0000
+Date:   Thu, 24 Feb 2022 10:12:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-kernel@vger.kernel.org,
-        Agathe Porte <agathe.porte@nokia.com>,
-        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Adamski <krzysztof.adamski@nokia.com>,
-        devicetree@vger.kernel.org, Jean Delvare <jdelvare@suse.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: add tmp464.yaml
-Message-ID: <YheuFuVz38Rcy5Q1@robh.at.kernel.org>
-References: <20220222223610.23098-1-linux@roeck-us.net>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>, tzungbi@google.com,
+        cujomalainey@google.com,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        sound-open-firmware@alsa-project.org
+Subject: Re: [PATCH v17 1/2] dt-bindings: mailbox: mtk,adsp-mbox: add mtk
+ adsp-mbox document
+Message-ID: <YheugpFub9ArHDyT@robh.at.kernel.org>
+References: <20220224133045.23903-1-allen-kh.cheng@mediatek.com>
+ <20220224133045.23903-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220222223610.23098-1-linux@roeck-us.net>
+In-Reply-To: <20220224133045.23903-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,39 +81,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Feb 2022 14:36:09 -0800, Guenter Roeck wrote:
-> From: Agathe Porte <agathe.porte@nokia.com>
+On Thu, Feb 24, 2022 at 09:30:44PM +0800, Allen-KH Cheng wrote:
+> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 > 
-> Add basic description of the tmp464 driver DT bindings.
+> This patch adds document for mediatek adsp mbox
 > 
-> Signed-off-by: Agathe Porte <agathe.porte@nokia.com>
-> Cc: Krzysztof Adamski <krzysztof.adamski@nokia.com>
-> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> v7:
-> - No change
+>  .../bindings/mailbox/mtk,adsp-mbox.yaml       | 52 +++++++++++++++++++
+>  1 file changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
 > 
-> v6:
-> - Model ti,n-factor as int32 instead of int8.
-> 
-> v5:
-> - Dropped ti,n-factor from channel@0 example. Added additional
->   channel to examples to show positive ti,n-factor property.
-> 
-> v4:
-> - No changes
-> 
-> v3:
-> - Addedd support for TMP468.
-> - Changed number of channels from 0..3 (which was wrong anyway) to 0..8.
-> - Changed value range for ti,n-factor to int8, with an example for
->   a negative value.
-> - Added myself as driver maintainer.
-> 
->  .../devicetree/bindings/hwmon/ti,tmp464.yaml  | 114 ++++++++++++++++++
->  MAINTAINERS                                   |   7 ++
->  2 files changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/ti,tmp464.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
+> new file mode 100644
+> index 000000000000..25756837797f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
+> @@ -0,0 +1,52 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/mtk,adsp-mbox.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek ADSP mailbox
+> +
+> +maintainers:
+> +  - Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+> +
+> +description: |
+> +  The MTK ADSP mailbox Inter-Processor Communication (IPC) enables the SoC
+> +  to ommunicate with ADSP by passing messages through two mailbox channels.
+> +  The MTK ADSP mailbox IPC also provides the ability for one processor to
+> +  signal the other processor using interrupts.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: mediatek,mt8195-adsp-mbox
+> +
+> +  "#mbox-cells":
+> +    const: 0
+> +
+> +  reg:
+> +    description:
+> +      Physical address base for dsp mbox registers.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+That's fairly obvious. Drop.
+
+You need to define how many: 'maxItems: 1'
+
+> +
+> +  interrupts:
+> +    description:
+> +      adsp mbox interrupt
+
+Same here.
+
+> +
+> +required:
+> +  - compatible
+> +  - "#mbox-cells"
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    adsp_mailbox0:mailbox@10816000 {
+> +        compatible = "mediatek,mt8195-adsp-mbox";
+> +        #mbox-cells = <0>;
+> +        reg = <0x10816000 0x1000>;
+> +        interrupts = <GIC_SPI 702 IRQ_TYPE_LEVEL_HIGH 0>;
+> +    };
+> -- 
+> 2.18.0
+> 
+> 
