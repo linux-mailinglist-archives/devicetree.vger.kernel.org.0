@@ -2,467 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 340F94C30D2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0B24C3100
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:10:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231812AbiBXQDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 11:03:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45464 "EHLO
+        id S229567AbiBXQJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 11:09:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbiBXQD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:03:28 -0500
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89D251A58FE;
-        Thu, 24 Feb 2022 08:02:46 -0800 (PST)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 21OA7d9p026700;
-        Thu, 24 Feb 2022 17:02:14 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=8oVlSnAk/NjZGNKHpO7oHtw898Bfb3P+3D8GajB+OHk=;
- b=FQpKGl82KzqFJDlZ4pT4F4Oncxej7077uuylQDtsLhtmTeUjUTmjugcyikBj9Yzfr00R
- IlHmoubNNela00k8Z4vm0HGi7jFV4qBbnEOmf1V+ef5yp+/H+epmLXfV+ol0ZppFYZPK
- eAZHW8xtv4q8py8S9FqPJNkF8wNeeePJYRRYPZ/ljmQqP9T/S26GaALcqjwBQRdXb59N
- S+du4UImYFuMU2N+d/FD85XdaKdfQkFO7VwVR1jza4fyVK8HooCeByQdnW+ylEWSuTxZ
- ieF+Z33WYnz7zf0nzo6JzU/HbrX09G5yHCTo/9Trhnosv5QAywm1fU9XO9yz4M40IU5q PQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ee2sh47y2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 24 Feb 2022 17:02:14 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 334ED100038;
-        Thu, 24 Feb 2022 17:02:14 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 187F1233C61;
-        Thu, 24 Feb 2022 17:02:14 +0100 (CET)
-Received: from localhost (10.75.127.51) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 24 Feb 2022 17:02:13
- +0100
-From:   <gabriel.fernandez@foss.st.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 08/13] clk: stm32mp13: add all STM32MP13 peripheral clocks
-Date:   Thu, 24 Feb 2022 17:01:36 +0100
-Message-ID: <20220224160141.455881-9-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220224160141.455881-1-gabriel.fernandez@foss.st.com>
-References: <20220224160141.455881-1-gabriel.fernandez@foss.st.com>
+        with ESMTP id S229689AbiBXQJz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:09:55 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38730198D34;
+        Thu, 24 Feb 2022 08:09:15 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id s5so3073345oic.10;
+        Thu, 24 Feb 2022 08:09:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=uvLEO9/kZEQfHdrhfnopif7Jzot/9NUySUoyWbKmb+U=;
+        b=35LzIHZ6+KxkL1a6O6GyXneSqw5byotkvKG9Y7eqeQvb8KjvipzRDMSJCHupoHXQAL
+         D6EOOMxSWkASdV99qtS6kMupxIRcOeaw8pasYJMZz0sS+UqaqeUMIkQZMhIjqOJY7CTI
+         2KCnXnV4Y441qSvTQby1KIcdc7V84Y/pKANrljEmcKAxdKBf4ZeBQaBnH+K2yIW57Arh
+         rR6ToW0uHiF2qQzkny+ReTY+3AJ4yG56OCQLdP588LwG/GJlHi5dRjWXSK3+1tLckCwV
+         K+V/sSO2zCbaCPpEUSpYIkW8gi1DKc+4yJ1EQswN4VZVdP/QSU08dQsJjbuK+pOFlRBO
+         gajQ==
+X-Gm-Message-State: AOAM5314oXBokKlsHvDCx+rF5pPMeNqA8P0payjRt2njrpOlqN4c+bNW
+        lmuv8pHfh7k2e0nlP6THKvRflu22Iw==
+X-Google-Smtp-Source: ABdhPJwKFU27nQR8bl6CoParBjRWn3zniqHxXTGjB8UYFOCaCKNf3LRScbmUWpAqGdYpKOQqSLaEfQ==
+X-Received: by 2002:a05:6870:311a:b0:ce:c0c9:5ff with SMTP id v26-20020a056870311a00b000cec0c905ffmr6120512oaa.81.1645718876006;
+        Thu, 24 Feb 2022 08:07:56 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id d18sm1699134oiw.18.2022.02.24.08.07.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 08:07:55 -0800 (PST)
+Received: (nullmailer pid 3163849 invoked by uid 1000);
+        Thu, 24 Feb 2022 16:07:54 -0000
+Date:   Thu, 24 Feb 2022 10:07:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Daniel Kestrel <kestrelseventyfour@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: Add AVM WASP
+Message-ID: <YhetWlZ4m2vfB40e@robh.at.kernel.org>
+References: <20220221135351.GA7342@ubuntu>
+ <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.51]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-02-24_03,2022-02-24_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e1ee336-1c78-7719-826c-2a093a20ee8e@kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+On Mon, Feb 21, 2022 at 05:47:34PM +0100, Krzysztof Kozlowski wrote:
+> On 21/02/2022 14:53, Daniel Kestrel wrote:
+> > AVM Fritzbox router boards may contain an additional ATH79
+> > based SoC that has the wifi cards connected.
+> > This patch adds bindings for this remote processor.
+> > 
+> > Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
+> > ---
+> >  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 93 +++++++++++++++++++
+> >  1 file changed, 93 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> > new file mode 100644
+> > index 000000000000..21f3bbcc4202
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
+> > @@ -0,0 +1,93 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: AVM WASP processor controller bindings
+> > +
+> > +maintainers:
+> > +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
+> > +
+> > +description: |
+> > +  This document defines the bindings for the remoteproc component that loads and
+> > +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
+> > +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: avm,wasp
+> > +
+> > +  ath9k-firmware:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the ath9k eeprom that is to be loaded from
+> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> > +      The file should be located on the firmware search path.
+> 
+> Are you sure this is a property of hardware? It looks like runtime
+> configuration parameter.
 
-All peripheral clocks are mainly base on stm32_gate ckocks.
+The standardish name for this is 'firmware-name'.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- drivers/clk/stm32/clk-stm32mp13.c | 360 ++++++++++++++++++++++++++++++
- 1 file changed, 360 insertions(+)
+'name of the ath9k eeprom' is an odd description given there is no 
+eeprom in this case. Where it is loaded from exactly is outside the 
+scope of this binding.
 
-diff --git a/drivers/clk/stm32/clk-stm32mp13.c b/drivers/clk/stm32/clk-stm32mp13.c
-index 7e83204dd405..b2c0ac10270d 100644
---- a/drivers/clk/stm32/clk-stm32mp13.c
-+++ b/drivers/clk/stm32/clk-stm32mp13.c
-@@ -537,6 +537,303 @@ static const char * const mco2_src[] = {
- 	"ck_mpu", "ck_axi", "ck_mlahb", "pll4_p", "ck_hse", "ck_hsi"
- };
- 
-+/* Timer clocks */
-+static struct clk_stm32_gate tim2_k = {
-+	.gate_id = GATE_TIM2,
-+	.hw.init = CLK_HW_INIT("tim2_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim3_k = {
-+	.gate_id = GATE_TIM3,
-+	.hw.init = CLK_HW_INIT("tim3_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim4_k = {
-+	.gate_id = GATE_TIM4,
-+	.hw.init = CLK_HW_INIT("tim4_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim5_k = {
-+	.gate_id = GATE_TIM5,
-+	.hw.init = CLK_HW_INIT("tim5_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim6_k = {
-+	.gate_id = GATE_TIM6,
-+	.hw.init = CLK_HW_INIT("tim6_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim7_k = {
-+	.gate_id = GATE_TIM7,
-+	.hw.init = CLK_HW_INIT("tim7_k", "timg1_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim1_k = {
-+	.gate_id = GATE_TIM1,
-+	.hw.init = CLK_HW_INIT("tim1_k", "timg2_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim8_k = {
-+	.gate_id = GATE_TIM8,
-+	.hw.init = CLK_HW_INIT("tim8_k", "timg2_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim12_k = {
-+	.gate_id = GATE_TIM12,
-+	.hw.init = CLK_HW_INIT("tim12_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim13_k = {
-+	.gate_id = GATE_TIM13,
-+	.hw.init = CLK_HW_INIT("tim13_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim14_k = {
-+	.gate_id = GATE_TIM14,
-+	.hw.init = CLK_HW_INIT("tim14_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim15_k = {
-+	.gate_id = GATE_TIM15,
-+	.hw.init = CLK_HW_INIT("tim15_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim16_k = {
-+	.gate_id = GATE_TIM16,
-+	.hw.init = CLK_HW_INIT("tim16_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+static struct clk_stm32_gate tim17_k = {
-+	.gate_id = GATE_TIM17,
-+	.hw.init = CLK_HW_INIT("tim17_k", "timg3_ck", &clk_stm32_gate_ops, CLK_SET_RATE_PARENT),
-+};
-+
-+/* Peripheral clocks */
-+static struct clk_stm32_gate sai1 = {
-+	.gate_id = GATE_SAI1,
-+	.hw.init = CLK_HW_INIT("sai1", "pclk2", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate sai2 = {
-+	.gate_id = GATE_SAI2,
-+	.hw.init = CLK_HW_INIT("sai2", "pclk2", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate syscfg = {
-+	.gate_id = GATE_SYSCFG,
-+	.hw.init = CLK_HW_INIT("syscfg", "pclk3", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate vref = {
-+	.gate_id = GATE_VREF,
-+	.hw.init = CLK_HW_INIT("vref", "pclk3", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dts = {
-+	.gate_id = GATE_DTS,
-+	.hw.init = CLK_HW_INIT("dts", "pclk3", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate pmbctrl = {
-+	.gate_id = GATE_PMBCTRL,
-+	.hw.init = CLK_HW_INIT("pmbctrl", "pclk3", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate hdp = {
-+	.gate_id = GATE_HDP,
-+	.hw.init = CLK_HW_INIT("hdp", "pclk3", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate iwdg2 = {
-+	.gate_id = GATE_IWDG2APB,
-+	.hw.init = CLK_HW_INIT("iwdg2", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate stgenro = {
-+	.gate_id = GATE_STGENRO,
-+	.hw.init = CLK_HW_INIT("stgenro", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpioa = {
-+	.gate_id = GATE_GPIOA,
-+	.hw.init = CLK_HW_INIT("gpioa", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpiob = {
-+	.gate_id = GATE_GPIOB,
-+	.hw.init = CLK_HW_INIT("gpiob", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpioc = {
-+	.gate_id = GATE_GPIOC,
-+	.hw.init = CLK_HW_INIT("gpioc", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpiod = {
-+	.gate_id = GATE_GPIOD,
-+	.hw.init = CLK_HW_INIT("gpiod", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpioe = {
-+	.gate_id = GATE_GPIOE,
-+	.hw.init = CLK_HW_INIT("gpioe", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpiof = {
-+	.gate_id = GATE_GPIOF,
-+	.hw.init = CLK_HW_INIT("gpiof", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpiog = {
-+	.gate_id = GATE_GPIOG,
-+	.hw.init = CLK_HW_INIT("gpiog", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpioh = {
-+	.gate_id = GATE_GPIOH,
-+	.hw.init = CLK_HW_INIT("gpioh", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate gpioi = {
-+	.gate_id = GATE_GPIOI,
-+	.hw.init = CLK_HW_INIT("gpioi", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate tsc = {
-+	.gate_id = GATE_TSC,
-+	.hw.init = CLK_HW_INIT("tsc", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate ddrperfm = {
-+	.gate_id = GATE_DDRPERFM,
-+	.hw.init = CLK_HW_INIT("ddrperfm", "pclk4", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate tzpc = {
-+	.gate_id = GATE_TZC,
-+	.hw.init = CLK_HW_INIT("tzpc", "pclk5", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate iwdg1 = {
-+	.gate_id = GATE_IWDG1APB,
-+	.hw.init = CLK_HW_INIT("iwdg1", "pclk5", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate bsec = {
-+	.gate_id = GATE_BSEC,
-+	.hw.init = CLK_HW_INIT("bsec", "pclk5", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dma1 = {
-+	.gate_id = GATE_DMA1,
-+	.hw.init = CLK_HW_INIT("dma1", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dma2 = {
-+	.gate_id = GATE_DMA2,
-+	.hw.init = CLK_HW_INIT("dma2", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dmamux1 = {
-+	.gate_id = GATE_DMAMUX1,
-+	.hw.init = CLK_HW_INIT("dmamux1", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dma3 = {
-+	.gate_id = GATE_DMA3,
-+	.hw.init = CLK_HW_INIT("dma3", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate dmamux2 = {
-+	.gate_id = GATE_DMAMUX2,
-+	.hw.init = CLK_HW_INIT("dmamux2", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate adc1 = {
-+	.gate_id = GATE_ADC1,
-+	.hw.init = CLK_HW_INIT("adc1", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate adc2 = {
-+	.gate_id = GATE_ADC2,
-+	.hw.init = CLK_HW_INIT("adc2", "ck_mlahb", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate pka = {
-+	.gate_id = GATE_PKA,
-+	.hw.init = CLK_HW_INIT("pka", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate cryp1 = {
-+	.gate_id = GATE_CRYP1,
-+	.hw.init = CLK_HW_INIT("cryp1", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate hash1 = {
-+	.gate_id = GATE_HASH1,
-+	.hw.init = CLK_HW_INIT("hash1", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate bkpsram = {
-+	.gate_id = GATE_BKPSRAM,
-+	.hw.init = CLK_HW_INIT("bkpsram", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate mdma = {
-+	.gate_id = GATE_MDMA,
-+	.hw.init = CLK_HW_INIT("mdma", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth1tx = {
-+	.gate_id = GATE_ETH1TX,
-+	.hw.init = CLK_HW_INIT("eth1tx", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth1rx = {
-+	.gate_id = GATE_ETH1RX,
-+	.hw.init = CLK_HW_INIT("eth1rx", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth1mac = {
-+	.gate_id = GATE_ETH1MAC,
-+	.hw.init = CLK_HW_INIT("eth1mac", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth2tx = {
-+	.gate_id = GATE_ETH2TX,
-+	.hw.init = CLK_HW_INIT("eth2tx", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth2rx = {
-+	.gate_id = GATE_ETH2RX,
-+	.hw.init = CLK_HW_INIT("eth2rx", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth2mac = {
-+	.gate_id = GATE_ETH2MAC,
-+	.hw.init = CLK_HW_INIT("eth2mac", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate crc1 = {
-+	.gate_id = GATE_CRC1,
-+	.hw.init = CLK_HW_INIT("crc1", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate usbh = {
-+	.gate_id = GATE_USBH,
-+	.hw.init = CLK_HW_INIT("usbh", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth1stp = {
-+	.gate_id = GATE_ETH1STP,
-+	.hw.init = CLK_HW_INIT("eth1stp", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
-+static struct clk_stm32_gate eth2stp = {
-+	.gate_id = GATE_ETH2STP,
-+	.hw.init = CLK_HW_INIT("eth2stp", "ck_axi", &clk_stm32_gate_ops, 0),
-+};
-+
- static struct clk_stm32_mux ck_ker_eth1 = {
- 	.mux_id = MUX_ETH1,
- 	.hw.init = CLK_HW_INIT_PARENTS("ck_ker_eth1", eth12_src, &clk_stm32_mux_ops,
-@@ -573,6 +870,69 @@ static struct clk_stm32_composite ck_mco2 = {
- };
- 
- static const struct clock_config stm32mp13_clock_cfg[] = {
-+	/* Timer clocks */
-+	STM32_GATE_CFG(TIM2_K, tim2_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM3_K, tim3_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM4_K, tim4_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM5_K, tim5_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM6_K, tim6_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM7_K, tim7_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM1_K, tim1_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM8_K, tim8_k, SECF_NONE),
-+	STM32_GATE_CFG(TIM12_K, tim12_k, SECF_TIM12),
-+	STM32_GATE_CFG(TIM13_K, tim13_k, SECF_TIM13),
-+	STM32_GATE_CFG(TIM14_K, tim14_k, SECF_TIM14),
-+	STM32_GATE_CFG(TIM15_K, tim15_k, SECF_TIM15),
-+	STM32_GATE_CFG(TIM16_K, tim16_k, SECF_TIM16),
-+	STM32_GATE_CFG(TIM17_K, tim17_k, SECF_TIM17),
-+
-+	/* Peripheral clocks */
-+	STM32_GATE_CFG(SAI1, sai1, SECF_NONE),
-+	STM32_GATE_CFG(SAI2, sai2, SECF_NONE),
-+	STM32_GATE_CFG(SYSCFG, syscfg, SECF_NONE),
-+	STM32_GATE_CFG(VREF, vref, SECF_VREF),
-+	STM32_GATE_CFG(DTS, dts, SECF_NONE),
-+	STM32_GATE_CFG(PMBCTRL, pmbctrl, SECF_NONE),
-+	STM32_GATE_CFG(HDP, hdp, SECF_NONE),
-+	STM32_GATE_CFG(IWDG2, iwdg2, SECF_NONE),
-+	STM32_GATE_CFG(STGENRO, stgenro, SECF_STGENRO),
-+	STM32_GATE_CFG(TZPC, tzpc, SECF_TZC),
-+	STM32_GATE_CFG(IWDG1, iwdg1, SECF_IWDG1),
-+	STM32_GATE_CFG(BSEC, bsec, SECF_BSEC),
-+	STM32_GATE_CFG(DMA1, dma1, SECF_NONE),
-+	STM32_GATE_CFG(DMA2, dma2, SECF_NONE),
-+	STM32_GATE_CFG(DMAMUX1, dmamux1, SECF_NONE),
-+	STM32_GATE_CFG(DMA3, dma3, SECF_DMA3),
-+	STM32_GATE_CFG(DMAMUX2, dmamux2, SECF_DMAMUX2),
-+	STM32_GATE_CFG(ADC1, adc1, SECF_ADC1),
-+	STM32_GATE_CFG(ADC2, adc2, SECF_ADC2),
-+	STM32_GATE_CFG(GPIOA, gpioa, SECF_NONE),
-+	STM32_GATE_CFG(GPIOB, gpiob, SECF_NONE),
-+	STM32_GATE_CFG(GPIOC, gpioc, SECF_NONE),
-+	STM32_GATE_CFG(GPIOD, gpiod, SECF_NONE),
-+	STM32_GATE_CFG(GPIOE, gpioe, SECF_NONE),
-+	STM32_GATE_CFG(GPIOF, gpiof, SECF_NONE),
-+	STM32_GATE_CFG(GPIOG, gpiog, SECF_NONE),
-+	STM32_GATE_CFG(GPIOH, gpioh, SECF_NONE),
-+	STM32_GATE_CFG(GPIOI, gpioi, SECF_NONE),
-+	STM32_GATE_CFG(TSC, tsc, SECF_TZC),
-+	STM32_GATE_CFG(PKA, pka, SECF_PKA),
-+	STM32_GATE_CFG(CRYP1, cryp1, SECF_CRYP1),
-+	STM32_GATE_CFG(HASH1, hash1, SECF_HASH1),
-+	STM32_GATE_CFG(BKPSRAM, bkpsram, SECF_BKPSRAM),
-+	STM32_GATE_CFG(MDMA, mdma, SECF_NONE),
-+	STM32_GATE_CFG(ETH1TX, eth1tx, SECF_ETH1TX),
-+	STM32_GATE_CFG(ETH1RX, eth1rx, SECF_ETH1RX),
-+	STM32_GATE_CFG(ETH1MAC, eth1mac, SECF_ETH1MAC),
-+	STM32_GATE_CFG(ETH2TX, eth2tx, SECF_ETH2TX),
-+	STM32_GATE_CFG(ETH2RX, eth2rx, SECF_ETH2RX),
-+	STM32_GATE_CFG(ETH2MAC, eth2mac, SECF_ETH2MAC),
-+	STM32_GATE_CFG(CRC1, crc1, SECF_NONE),
-+	STM32_GATE_CFG(USBH, usbh, SECF_NONE),
-+	STM32_GATE_CFG(DDRPERFM, ddrperfm, SECF_NONE),
-+	STM32_GATE_CFG(ETH1STP, eth1stp, SECF_ETH1STP),
-+	STM32_GATE_CFG(ETH2STP, eth2stp, SECF_ETH2STP),
-+
- 	STM32_MUX_CFG(NO_ID, ck_ker_eth1, SECF_ETH1CK),
- 	STM32_GATE_CFG(ETH1CK_K, eth1ck_k, SECF_ETH1CK),
- 	STM32_DIV_CFG(ETH1PTP_K, eth1ptp_k, SECF_ETH1CK),
--- 
-2.25.1
+> 
+> > +
+> > +  ath10k-caldata:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the ath10k caldata that is to be loaded from
+> > +      the lantiq host flash. Wifi on the WASP SoC does not work without it.
+> > +      The file should be located on the firmware search path.
+> 
+> Same.
 
+Ideally, 'firmware-name' would cover both cases and just provide a base 
+name that the driver transforms into file names.
+
+> 
+> > +
+> > +  wasp-netboot-firmware:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the netboot firmware that is to be loaded
+> > +      and started on the WASP SoC using mdio in order to be able to load
+> > +      the initramfs image as a second stage.
+
+initramfs is a Linux detail and should not be in binding.
+
+> > +      The file should be located on the firmware search path.
+> 
+> Same.
+> 
+> > +
+> > +  wasp-netboot-mdio:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the Lantiq GSWIP switch mdio.
+> 
+> Vendor prefix.
+> 
+> > +
+> > +  wasp-initramfs-port:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: Reference to the network port, where the WASP SoC is connected to.
+> 
+> Vendor prefix.
+> 
+> > +
+> > +  wasp-initramfs-image:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: |
+> > +      Should contain the name of the initramfs linux image that is to be loaded
+> > +      and started on the WASP SoC.
+> > +      The file should be located on the firmware search path.
+> 
+> initramfs path looks even less like a property of hardware... If you
+> change initramfs from CPIO to initrd or GZ, hardware changes as well?
+
+And simply not how standard initramfs loading works. Boot menu files are 
+how one gives the bootloader a location of initramfs file and chosen is 
+how the kernel gets the memory location it was loaded to.
+
+Rob
