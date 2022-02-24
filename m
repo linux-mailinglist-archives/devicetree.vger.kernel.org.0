@@ -2,99 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77C914C2EBD
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 15:55:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9DFE4C2ED3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 16:00:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235669AbiBXOzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 09:55:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60820 "EHLO
+        id S235687AbiBXPAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 10:00:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235666AbiBXOzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 09:55:37 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D25E254557;
-        Thu, 24 Feb 2022 06:55:07 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 7222122236;
-        Thu, 24 Feb 2022 15:55:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1645714505;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=T+nj1LXBgfdrS//vBjhL1t/BXLWyCGMXuhBk/lp7Sdg=;
-        b=ZYnGOLI3clP5LcOWs885rEZZGnWxdvib1aqxw55IsYSY9PxQ7EQ3Bc22QVXlmPvWSnY6bU
-        llsZXULjwETbIUxvEhbQFNcjm3epozqWTzSQ/jzJsnrAuELy3ctqnHRWN/eTvVGvkQwcNg
-        vAykG5noDJl9oVC+mWgON4IU3bDxT5U=
+        with ESMTP id S234948AbiBXPAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 10:00:03 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D243426834C;
+        Thu, 24 Feb 2022 06:59:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1645714769; x=1677250769;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ORDMBlKCGSdSfHM8GA+311LvkiZtIfohu3XDDYVXTUo=;
+  b=avyvOQmmF4BPcZcaesDapZhEzVsXUXhtWe2l+KWfsHByG3VsWz/xiho9
+   orMS5UNJokPWBNN1qxwpmasgdMXkoH6EcnL3PlNCLCxppWsvDnCzJiAW1
+   7hMlI60fhpXPG1L7lT6TIfoIwxm3W7sjc9/fdhtK3ssUsHpjvrM3ErPA9
+   /nJAxxD7vdf9MHdnRAUScamy7Cd0wMQHccULa8hLsiyvjYKKUQ5gTAiK1
+   gPMhgBhbo+VqII3LS/ENTDXCQ0dy7NbhFskK8WzIecVmd0RaC2Oex7j3f
+   Xw7dIIiCPVdcf6G6Rs5r8hcQe1OILPdufaeX10/UXR5YNJ1Sw2lkNRUID
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,134,1643698800"; 
+   d="scan'208";a="154765321"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Feb 2022 07:59:29 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 24 Feb 2022 07:59:29 -0700
+Received: from [10.12.73.51] (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 24 Feb 2022 07:59:26 -0700
+Message-ID: <d0c4262c-097d-18da-cb51-5409f6e02b61@microchip.com>
+Date:   Thu, 24 Feb 2022 15:59:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 6/8] ARM: dts: at91: sama7g5: add opps
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20211216141338.35144-1-claudiu.beznea@microchip.com>
+ <20211216141338.35144-7-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20211216141338.35144-7-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Thu, 24 Feb 2022 15:55:05 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        arnd@arndb.de, alexandre.belloni@bootlin.com, olof@lixom.net,
-        soc@kernel.org, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Manohar.Puri@microchip.com
-Subject: Re: [PATCH v7] ARM: dts: add DT for lan966 SoC and 2-port board
- pcb8291
-In-Reply-To: <85566f97-dcfc-f477-1ebb-5cac955b791a@microchip.com>
-References: <20220221080858.14233-1-kavyasree.kotagiri@microchip.com>
- <3b4c56201a478876783e69243c901cd8@walle.cc>
- <85566f97-dcfc-f477-1ebb-5cac955b791a@microchip.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <413b29b8a2e7a73561f942d4b7c78b9b@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-Am 2022-02-24 15:51, schrieb Nicolas Ferre:
->>> +/ {
->>> +     model = "Microchip LAN966 family SoC";
->>> +     compatible = "microchip,lan966";
->> 
->> As mentioned earlier, this isn't a documented compatible string. So,
->> I guess without overwriting this in the board dts it will throw an
->> error with the dt schema validator. OTOH, there are many dtsi files
->> in arch/arm/boot/dts/ doing this. I don't know what is correct here.
+On 16/12/2021 at 15:13, Claudiu Beznea wrote:
+> Add OPPs for SAMA7G5 along with clock for CPU.
 > 
-> I see it documented here:
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/arm/atmel-at91.yaml#n165
-> 
-> Isn't it what is expected?
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
 
-That only documents
-   compatible = "microchip,lan9662-pcb8291", "microchip,lan9662", 
-"microchip,lan966";
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+Queued in at91-dt branch.
 
-But not the one above.
+Regards,
+   Nicolas
 
+> ---
+>   arch/arm/boot/dts/sama7g5.dtsi | 37 ++++++++++++++++++++++++++++++++++
+>   1 file changed, 37 insertions(+)
 > 
->> Everthing else looks good.
-> 
-> Thanks a lot for your reviews.
-> 
->> Reviewed-by: Michael Walle <michael@walle.cc>
-> 
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> I'm queuing it to at91-dt branch for reaching arm-soc in 5.18 merge 
-> window.
+> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+> index 7039311bf678..22352ef5bc72 100644
+> --- a/arch/arm/boot/dts/sama7g5.dtsi
+> +++ b/arch/arm/boot/dts/sama7g5.dtsi
+> @@ -30,6 +30,43 @@ cpu0: cpu@0 {
+>   			device_type = "cpu";
+>   			compatible = "arm,cortex-a7";
+>   			reg = <0x0>;
+> +			clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
+> +			clock-names = "cpu";
+> +			operating-points-v2 = <&cpu_opp_table>;
+> +		};
+> +	};
+> +
+> +	cpu_opp_table: opp-table {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-90000000 {
+> +			opp-hz = /bits/ 64 <90000000>;
+> +			opp-microvolt = <1050000 1050000 1225000>;
+> +			clock-latency-ns = <320000>;
+> +		};
+> +
+> +		opp-250000000 {
+> +			opp-hz = /bits/ 64 <250000000>;
+> +			opp-microvolt = <1050000 1050000 1225000>;
+> +			clock-latency-ns = <320000>;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <1050000 1050000 1225000>;
+> +			clock-latency-ns = <320000>;
+> +		};
+> +
+> +		opp-800000000 {
+> +			opp-hz = /bits/ 64 <800000000>;
+> +			opp-microvolt = <1150000 1125000 1225000>;
+> +			clock-latency-ns = <320000>;
+> +		};
+> +
+> +		opp-1000000002 {
+> +			opp-hz = /bits/ 64 <1000000002>;
+> +			opp-microvolt = <1250000 1225000 1300000>;
+> +			clock-latency-ns = <320000>;
+>   		};
+>   	};
+>   
 
-Nice, then I'm good to go for my patches on top of this :)
 
--michael
+-- 
+Nicolas Ferre
