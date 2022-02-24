@@ -2,57 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770874C38AB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:22:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEBEC4C38C0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235365AbiBXWXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 17:23:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53008 "EHLO
+        id S235467AbiBXW2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 17:28:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbiBXWXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:23:01 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 573FF1F6379;
-        Thu, 24 Feb 2022 14:22:30 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E891961B1D;
-        Thu, 24 Feb 2022 22:22:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9B62C340E9;
-        Thu, 24 Feb 2022 22:22:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645741349;
-        bh=UxMxEvfG8FtNiZ24bFbTag8u0+nLYjbUUydetdA6CbA=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=Daxs+iSjfMuGxnp8faDDRFDiHBP/NyvqTqbtoyXY3IloKURZ8+hgDbN+Rji6li356
-         F7FH4q2VMz0ryZDVuBh09CsQVfyLGzc4os9xpf3peUF5+GLMrAMDQce5XTagN2y8Ws
-         ItxrleLcIi1yWfoGqgK6j9IIZsDnNfpK+h88wq4I/xmROqvqGo9d3tlknWePz/h2RW
-         pH2YJNMypC5YV4gvAYBYILN9wBcslk0Up4ggdFGZwT9DI6eBQGTeVm2zr+slOdRik2
-         dmpojRhyKAZ8f67BS+M/6XyOBFs9AfvRJD1/3mNHFD3Yc64ETJM/jAvKxiP0/2whJ7
-         5XyIXU/9IbQgw==
-Date:   Thu, 24 Feb 2022 14:22:28 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Cristian Marussi <cristian.marussi@arm.com>
-cc:     Stefano Stabellini <sstabellini@kernel.org>,
-        Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-In-Reply-To: <20220224093232.GA12053@e120937-lin>
-Message-ID: <alpine.DEB.2.22.394.2202241415180.239973@ubuntu-linux-20-04-desktop>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com> <2546477f-4190-e838-3095-f47b31802445@kernel.org> <20220221213932.GA164964@EPUAKYIW015D> <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org> <20220222161440.xadrgjftdyxenxgo@bogus>
- <20220222173458.GA2310133@EPUAKYIW015D> <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop> <20220224093232.GA12053@e120937-lin>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S235479AbiBXW2Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:28:24 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E968F18647B;
+        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 12so5378068oix.12;
+        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/Q++PXwW9clpi7EmUird58cb/RjCfYTbDPWAmQD/krg=;
+        b=NSo23BsF2GcfnuiMY8/Bu9zL5r13ggcTQnCjF85JGFDk1UWLEgPIy68ELSPyxXSOuH
+         eCpbzINZ1A26MdgQX7svi0YMHWVsqSHgMtLwAxzyd8OYTg/vZo3p2P1EgTlwVu4ToueA
+         y4HxyIHJnQJSzDtb5YBNF0y+hLBPMUpqUmHGu9mV6l4x5hh5LyRVa+pAjYw4Y/yWUtpA
+         0mZqT9P+snQuzeakOI8k7LCmGBS1HMhULNM17/OTjD/+Hj0rsVELfxNXK9d4ioCXd0iv
+         Xc1j5WlTbMo8mLWjYXe/aSsKzqzIzxCx1U98jrtj1vJ4/qC5KJOZ/lhp6LPzSWHA9AYS
+         0BVQ==
+X-Gm-Message-State: AOAM5332E/hOu70RSLpCBcoSUYkNAanZLnT7ZgXaO9Zyw18+ycPe6e/B
+        NEhhnSTGSQdDdndZbpmY2Q==
+X-Google-Smtp-Source: ABdhPJwx1FD+9eKPTOob58IWuDiHkaicOqaAuTjSLNRT4GyVqROrjSgeyKYq9MX8Tmms8n9PZP6B/A==
+X-Received: by 2002:a05:6870:3121:b0:d2:8163:fd04 with SMTP id v33-20020a056870312100b000d28163fd04mr128825oaa.182.1645741673280;
+        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id l34-20020a9d1ca2000000b005acea92e8absm290399ota.42.2022.02.24.14.27.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 14:27:52 -0800 (PST)
+Received: (nullmailer pid 3704065 invoked by uid 1000);
+        Thu, 24 Feb 2022 22:27:51 -0000
+Date:   Thu, 24 Feb 2022 16:27:51 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add
+ report-rate
+Message-ID: <YhgGZylBoxlou9ka@robh.at.kernel.org>
+References: <20220217165559.313366-1-dario.binacchi@amarulasolutions.com>
+ <20220217165559.313366-2-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220217165559.313366-2-dario.binacchi@amarulasolutions.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,117 +66,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Feb 2022, Cristian Marussi wrote:
-> On Wed, Feb 23, 2022 at 06:51:59PM -0800, Stefano Stabellini wrote:
-> > On Tue, 22 Feb 2022, Oleksii Moisieiev wrote:
-> > > On Tue, Feb 22, 2022 at 04:14:40PM +0000, Sudeep Holla wrote:
-> > > > On Tue, Feb 22, 2022 at 09:06:25AM +0100, Krzysztof Kozlowski wrote:
-> > > > > On 21/02/2022 22:39, Oleksii Moisieiev wrote:
-> > > > > > Hi Krzysztof,
-> > > > > > 
+On Thu, Feb 17, 2022 at 05:55:53PM +0100, Dario Binacchi wrote:
+> It allows to change the M06/M12 default scan rate.
 > 
-> Hi Stefano,
+> Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
+> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
 > 
-> > > > > > On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
-> > > > > >> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
-> > > > > >>> Introducing new parameter called scmi_devid to the device-tree bindings.
-> > > > > >>> This parameter should be set for the device nodes, which has
-> > > > > >>> clocks/power-domains/resets working through SCMI.
-> > > > > >>> Given parameter should set the device_id, needed to set device
-> > > > > >>> permissions in the Firmware. This feature will be extremely useful for
-> > > > > >>> the virtualized systems, which has more that one Guests running on the
-> > > > > >>> system at the same time or for the syestems, which require several
-> > > > > >>> agents with different permissions. Trusted agent will use scmi_devid to
-> > > > > >>> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
-> > > > > >>> for details).
-> > > > > >>> Agents concept is described in Section 4.2.1 [0].
-> > > > > >>>
-> > > > > >>> scmi_devid in Device-tree node example:
-> > > > > >>> usb@e6590000
-> > > > > >>> {
-> > > > > >>>     scmi_devid = <19>;
-> > > > > >>>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
-> > > > > >>>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
-> > > > > >>>     power-domains = <&scmi_power 0>;
-> > > > > >>> };
-> > > > > >>
-> > > > > >> And how do you prevent DT overlay adding such devid to any other node
-> > > > > >> thus allowing any other device to send requests with given devid?
-> > > > > >>
-> > > > > > Thank you for the quick response.
-> > > > > > scmi_devid value will be used only by Trusted Agent when the device
-> > > > > > permissions are set. Non-trusted agents, which in our case are
-> > > > > > represented as Guest OS are using scmi drivers, already present in linux
-> > > > > > kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_reset
-> > > > > > nodes to access to SCMI protocol.
-> > > > > 
-> > > > > Ah, ok.
-> > > > > 
-> > > > > > 
-> > > > > >> Plus few technicalities:
-> > > > > >> 1. Hyphen, not underscore in property name, so scmi-devid.
-> > > > > > 
-> > > > > > Thanks for the tip, I will change that in v2.
-> > > > > 
-> > > > > Few more thoughts:
-> > > > > 1. This looks specific to ARM SCMI, so you also need vendor prefix, so
-> > > > > something like:
-> > > > > arm,scmi-devid
-> > > > > arm,scmi-device-id
-> > > > > 
-> > > > 
-> > > > Keeping the other discussion separate, I wanted to comment on this.
-> > > > I agree with Krzysztof on having vendor specific prefix if we decide to add
-> > > > this device id thing. However, I prefer not to use "arm,scmi-" here.
-> > > > It can be "xen,scmi-" as we had plans to introduce some concepts in SCMI
-> > > > spec that may use looks like this device-id. I would just like to avoid
-> > > > conflicting with that in the future. It may happen to be same in the future
-> > > > (i.e. this xen device-id matches 100% with definition of device-id we might
-> > > > introduce in the spec, but I want to make assumption otherwise and leave
-> > > > scope for divergence however small/little it can be). No issues even if
-> > > > they converge and match 100% later in the far future.
-> > > > 
-> > > 
-> > > xem,scmi- works for me. What do other thinks?
-> >   ^ xen,scmi-
-> > 
-> > If this problem was Xen specific, then it would be fine to use xen,scmi-
-> > As Xen developer, it solves my problem and I am fine with it.
-> > 
-> > However, from a device tree and SCMI point of view, it looks like this
-> > problem is generic and it just happens that Xen is the first
-> > implementation to encounter it.
-> > 
-> > Cristian wrote: "The SCMI spec does not indeed cover the discovery of
-> > such devices and the related associated resources: it indeed delegates
-> > such description to FDT/ACPI as of now." How is that supposed to happen
-> > today with the current DT definitions, regardless of Xen? Is it a gap in
-> > the current device tree binding?
+> (no changes since v1)
 > 
-> What I meant is that in fact SCMI device IDs are NOT needed in the Linux
-> Kernel DT, in fact also this series does not add any code using it and
-> there is no code as of now in Kernel to issue BASE_SET_DEVICE_PERMISSIONS
-> commands; Linux Guest OS in the above scenario is a Non-Trusted agent and
-> doesn't need to know SCMI DevIDs and must NOT have access to those IDs for
-> security reasons too (as Sudeep was saying): the Trusted Agent (XEN here)
-> and the SCMI platform server are the only ones required to share the
-> knowledge of such Device IDs (and how the related resources are grouped)
-> via some HW description scheme as you are doing indeed in XEN.
+>  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> So, while on one side such device IDs discovery is delegated by the spec
-> to the HW description mechanisms, it seems just not needed in Kernel DT
-> given the kind or role it has as an SCMI agent in this context: as said
-> in fact there won't be any use as of now in Linux of such DT entries as
-> of now.
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> index 2e8da7470513..aa8517c6f65b 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> @@ -85,6 +85,14 @@ properties:
+>      minimum: 0
+>      maximum: 80
+>  
+> +  report-rate:
 
-I see. This is one of those "difficult" cases where the device tree
-binding is needed but it is not used by the Linux kernel. (We have a few
-cases like this in system device tree and the more device tree gets
-adopted by other projects the more will see instances like this one.)
+Use property unit suffix: report-rate-hz
 
-In that case, I think it is OK to call it "xen,scmi-" if Rob also
-agrees.
+This should probably be moved to touchscreen.yaml as it seems common.
 
-After all, we are currently using in Xen a property called
-"linux,pci-domain". We might as well have Linux in the future use a
-property called "xen,scmi-devid" to even things out :-)
+> +    description: Allows setting the scan rate.
+> +                 M06 supports range from 3 (30 Hz) to 14 (140 Hz).
+
+You're using 3 or 30 in this case? Should be 30, but it's not clear. I'd 
+just list the range in Hz and leave the conversion detail to the driver.
+
+> +                 M12 supports range from 1 (1 Hz) to 255 (255 Hz).
+
+Use '|' if formatting (newline) is significant.
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 255
+> +
+>    touchscreen-size-x: true
+>    touchscreen-size-y: true
+>    touchscreen-fuzz-x: true
+> -- 
+> 2.32.0
+> 
+> 
