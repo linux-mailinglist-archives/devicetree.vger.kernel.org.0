@@ -2,102 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9634C2E49
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 15:23:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BE934C2E83
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 15:36:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235480AbiBXOXf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 09:23:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38214 "EHLO
+        id S232240AbiBXOhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 09:37:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235521AbiBXOXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 09:23:32 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EE441637F7;
-        Thu, 24 Feb 2022 06:22:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1645712574; x=1677248574;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=l5OF1IXQhbqMjYq2WY0GUytXWnUBqArVIXwdMsC7n4w=;
-  b=RoUPmzczCDXdBcG7a8NjQe0zSOvE3qqqJ1n1vkierN4hjQOryFs0vWF8
-   qFRMJOgYD3JxemsJXHQM+ZsRC6fS9i+OQdC2uiLNDF6oz6QtaLTwLNbnn
-   rBBQIcH1aLqCflbGuCKhbnNvUqbH6r5LL4V6praLO6T/jqHsD189uixM0
-   aDS8lvD0hZcm5sJcA4rDRta2BwxHgjotRzWor8e3kR1VDyGJ6cMN5G/E0
-   /Xf7Gq9OJuBfVRFJMr+FgKCALBFVuL41ULOpuBrzgvrTCB6hICwu3UnNx
-   QA4V9B43cGM7ZzyNq3eQf1Ob/QFNWdsikKkhGKd40v+aSwBS0+WH2hJFL
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10267"; a="252436831"
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; 
-   d="scan'208";a="252436831"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2022 06:22:54 -0800
-X-IronPort-AV: E=Sophos;i="5.90,134,1643702400"; 
-   d="scan'208";a="684289193"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2022 06:22:51 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 3933220212;
-        Thu, 24 Feb 2022 16:22:48 +0200 (EET)
-Date:   Thu, 24 Feb 2022 16:22:48 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Michael Tretter <m.tretter@pengutronix.de>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Marek Vasut <marex@denx.de>, Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        p.zabel@pengutronix.de, Ian Arkver <ian.arkver.dev@gmail.com>,
-        kernel@pengutronix.de, Hans Verkuil <hverkuil@xs4all.nl>
-Subject: Re: [PATCH v10 2/2] media: i2c: isl7998x: Add driver for Intersil
- ISL7998x
-Message-ID: <YheUuCShBA6jvn8a@paasikivi.fi.intel.com>
-References: <20220217154407.2892822-1-m.tretter@pengutronix.de>
- <20220217154407.2892822-3-m.tretter@pengutronix.de>
+        with ESMTP id S229478AbiBXOhF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 09:37:05 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FB40C03
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 06:36:34 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 22EA41F44EFF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645713392;
+        bh=a5HETx9RdGbA+U2GzdkhgfEme4Mq6cVTNkqDGzsr6CQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AmfM8svSLgBD0m64Hmxuea3hI/8v+A+wcJ/0920+h5sCWJuax6L7rG2cym4TEbQFj
+         +A4fHQmsSxWYBKrZRCJyv4Ahl8isE2+KeSE9wAKfBp5JFCJnGPxbR5vQNwt/2I4mxA
+         aL+7fwJKkCL9XLJwNitTHsT8vWirjEDHg4kdAX7SM2HN1OEisEJJJyG8KZRzHa1Nlm
+         MHqc37p3gGq5lNNPPNTjtJc02fkPpA9B/ZrI9G3snn6m/1WZV4IyCy5tNR6a0VZQYS
+         F5qg5nOgfvtJGMeO/DPdRTN7jwu/sgsj7j7iU0gxfIKa5E2jUaWrhUeK4MFp5oiUZV
+         ISNcUqkRGtNcg==
+Message-ID: <a6f2b4a8-b9f0-dd2b-2361-8ede766b8394@collabora.com>
+Date:   Thu, 24 Feb 2022 17:36:29 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220217154407.2892822-3-m.tretter@pengutronix.de>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 21/23] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
+ <20220217082954.2967889-22-s.hauer@pengutronix.de>
+ <b9b59c1d-5808-f348-62fb-257746df134d@collabora.com>
+ <20220224074750.GR9136@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220224074750.GR9136@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-On Thu, Feb 17, 2022 at 04:44:07PM +0100, Michael Tretter wrote:
-> From: Marek Vasut <marex@denx.de>
+On 2/24/22 10:47, Sascha Hauer wrote:
+> On Thu, Feb 17, 2022 at 04:24:29PM +0300, Dmitry Osipenko wrote:
+>> 17.02.2022 11:29, Sascha Hauer пишет:
+>>> @@ -28,6 +28,12 @@ config ROCKCHIP_VOP
+>>>  	  This selects support for the VOP driver. You should enable it
+>>>  	  on all older SoCs up to RK3399.
+>>>  
+>>> +config ROCKCHIP_VOP2
+>>> +	bool "Rockchip VOP2 driver"
+>>> +	help
+>>> +	  This selects support for the VOP2 driver. You should enable it
+>>> +	  on all newer SoCs beginning form RK3568.
+>>
+>> s/form/from/
+>>
+>> The ROCKCHIP_VOP option is "default y". Do you really want "default n"
+>> for the VOP2?
 > 
-> Add driver for the Intersil ISL7998x Analog to MIPI CSI-2/BT656 decoder.
-> This chip supports 1/2/4 analog video inputs and converts them into
-> 1/2/4 VCs in MIPI CSI2 stream.
-> 
-> This driver currently supports ISL79987 and both 720x480 and 720x576
-> resolutions, however as per specification, all inputs must use the
-> same resolution and standard. The only supported pixel format is now
-> YUYV/YUV422. The chip should support RGB565 on the CSI2 as well, but
-> this is currently unsupported.
-> 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> To: linux-media@vger.kernel.org
-> Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
+> ROCKCHIP_VOP is only default y to keep the VOP driver enabled for
+> existing defconfig that were generated before the introduction of
+> that symbol.
+> We don't have this problem for VOP2, so no need to make it default y.
 
-This gives (sparse or smatch presumably?):
-
-        ../drivers/media/i2c/isl7998x.c: ../drivers/media/i2c/isl7998x.c:561    
-isl7998x_norm_to_val() error: buffer overflow 'isl7998x_std_res' 9 <= 9         
-(assuming for loop doesn't break)                                               
-        ../drivers/media/i2c/isl7998x.c: ../drivers/media/i2c/isl7998x.c:576    
-isl7998x_norm_to_mode() error: buffer overflow 'isl7998x_std_res' 9 <= 9        
-(assuming for loop doesn't break)                                               
-
-Could you address that? I'll squash that to this patch.
-
--- 
-Sakari Ailus
+To me it will be more consistent of you'll have both defaulting to y,
+since both options are behind DRM_ROCKCHIP.
