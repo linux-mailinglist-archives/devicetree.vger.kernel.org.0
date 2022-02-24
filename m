@@ -2,83 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50CC34C322E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:51:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CA8F54C3318
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 18:04:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230517AbiBXQvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 11:51:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51866 "EHLO
+        id S232040AbiBXREO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 12:04:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53390 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229810AbiBXQvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:51:42 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FEA7F8BB9
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 08:51:10 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id ay7so3382164oib.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 08:51:10 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=N8RCTotc4cmUTmsRA5J7naJcJh1Q7sGDDwovYyQT86k=;
-        b=fg9hkYcI5u3dbEw84om3H3LjBjjbFYuyGuZzo+47DtuUpbVS1U4m45qC/FWjkCJ0Fq
-         Eve4HcWP9XH/q1aMs4G4ocbr+xm+z0OIssB4urMuHCRuI/h6X87iF+ZPNhLWVkMUAt0+
-         MTrapkTrtRJFqglGwZ0sh0i1pHqLXoEFoC9Fcl+8BV0ksyQ4oiITyBSys7yZZhX4vEnF
-         C27Xn8uPVBu11qhWxaVSvdAR46bqzbW+nttpUdMm5PDNRVqQKBQFEYPhyBtPGYCFsVZo
-         XmjrNqjO8pHZW7S7UelvdUQw+nGMK8Y3c7Q5UP6CqicM2vNVAoClaawvVilgXSWCOjPg
-         4YOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=N8RCTotc4cmUTmsRA5J7naJcJh1Q7sGDDwovYyQT86k=;
-        b=mnUXQlyM/YTzAdyNfT+aik1IIIsgDvir1i3qYmgsEWAW34ZuwwrpMshbaNhyLAxcSA
-         Rvjex2KI47YF3GLdnvR/G73YlSZD1Ic9n4GpGhcQImVcyJqgCePFiI14g+X/dQBMnzDy
-         RQ446RRDTdix8LORQVhShkUMCc6xV76b4JZLIbe+vRH+Di8evURsOl28Yp71TxB6Y8LR
-         lQygcfm5U03R1a3UABkNOd2BRIiQRy/J1C3/UsNDM963BHDgMEzDkC6DmapsjDP7DGI5
-         rOfDqgqSNTGFiWxyLLCyOF6vo0awGWBPPZVz+Oucjuob2501YlYIHovDRI+31CFAxsEF
-         CETg==
-X-Gm-Message-State: AOAM532kFRTqEgKFhB3rIta7etooMR9lE0fci0ipTrbVvUwa8YOXlsfc
-        xHf0p4rkWH8/bT7PZ4imRbxHuw==
-X-Google-Smtp-Source: ABdhPJyH21pu5ycMxU9OVqYiNC++pfYrdMu5u7iIlq5TKIHOHUPz7vUGqYR/Y3LCAml5DLdoA8oD4g==
-X-Received: by 2002:a05:6808:1801:b0:2d7:206e:36fd with SMTP id bh1-20020a056808180100b002d7206e36fdmr3705715oib.3.1645721469908;
-        Thu, 24 Feb 2022 08:51:09 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id lc4-20020a056871418400b000c8a240183csm33827oab.25.2022.02.24.08.51.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 08:51:09 -0800 (PST)
-Date:   Thu, 24 Feb 2022 10:51:07 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
+        with ESMTP id S232069AbiBXRCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 12:02:52 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE4A875627
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 08:59:58 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nNHSx-0002ML-Er; Thu, 24 Feb 2022 17:59:43 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nNHSv-00139d-Ma; Thu, 24 Feb 2022 17:59:40 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nNHSt-005Go7-SU; Thu, 24 Feb 2022 17:59:39 +0100
+Date:   Thu, 24 Feb 2022 17:59:39 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>, Wei Xu <xuwei5@hisilicon.com>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Jan Kotas <jank@cadence.com>, Li Wei <liwei213@huawei.com>,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        Yaniv Gardi <ygardi@codeaurora.org>,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 09/15] scsi: ufs: deprecate 'freq-table-hz' property
-Message-ID: <Yhe3e1coeUIGu+NB@builder.lan>
-References: <20220222145854.358646-1-krzysztof.kozlowski@canonical.com>
- <20220222145854.358646-10-krzysztof.kozlowski@canonical.com>
- <YhUodbzxx4wbr+gy@ripper>
- <455a8a87-63e7-7864-f765-142be18d1fa8@canonical.com>
+        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        Doug Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v13 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <20220224165939.4275x7mzp7qpl2kj@pengutronix.de>
+References: <20220218183116.2261770-1-bjorn.andersson@linaro.org>
+ <20220218183116.2261770-2-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vypeaeqkhphwiwzw"
 Content-Disposition: inline
-In-Reply-To: <455a8a87-63e7-7864-f765-142be18d1fa8@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220218183116.2261770-2-bjorn.andersson@linaro.org>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,64 +60,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 23 Feb 03:15 CST 2022, Krzysztof Kozlowski wrote:
 
-> On 22/02/2022 19:16, Bjorn Andersson wrote:
-> > On Tue 22 Feb 06:58 PST 2022, Krzysztof Kozlowski wrote:
-> > 
-> >> The 'freq-table-hz' is not correct in DT schema, because '-hz' suffix
-> >> defines uint32 type, not an array.  Therefore deprecate 'freq-table-hz'
-> >> and use 'freq-table' instead.
-> >>
-> > 
-> > Patch looks good in itself, but why don't we use opp-table to describe
-> > the performance states?
-> > 
-> > In particular looking at the two columns of frequencies for various
-> > Qualcomm boards they require different performance-states.
-> > 
-> > A concrete example is sm8350.dtsi, which specifies 75MHz and 300MHz as
-> > the first frequency pair. The lower level requires the VDD_CX power rail
-> > to be at least &rpmhpd_opp_low_svs, the higher frequency has a
-> > required-opps of &rpmhpd_opp_nom.
-> > 
-> > 
-> > As this isn't possible to express in the current binding we've just been
-> > forced to always run at a higher voltage level and kept this in the todo
-> > list.
-> > 
-> > But rather than migrating freq-table-hz to freq-table and then having to
-> > introduce an opp table to express the power constraints, could we
-> > perhaps skip the intermediate step?
-> > 
-> > Or would you have any other suggestion about how we can represent the
-> > required-opps level together with the freq-table (if that's what we want
-> > to stick with).
-> 
-> Usage of OPP tables is interesting solution. It would solve your problem
-> of power rail levels. This would need several opp-tables - one for each
-> clock, which is not a big problem.
-> 
+--vypeaeqkhphwiwzw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Ahh, so we can only have a single clock, but multiple regulators and
-interconnect paths tied to the opp table.
+On Fri, Feb 18, 2022 at 10:31:16AM -0800, Bjorn Andersson wrote:
+> The Light Pulse Generator (LPG) is a PWM-block found in a wide range of
+> PMICs from Qualcomm. These PMICs typically comes with 1-8 LPG instances,
+> with their output being routed to various other components, such as
+> current sinks or GPIOs.
+>=20
+> Each LPG instance can operate on fixed parameters or based on a shared
+> lookup-table, altering the duty cycle over time. This provides the means
+> for hardware assisted transitions of LED brightness.
+>=20
+> A typical use case for the fixed parameter mode is to drive a PWM
+> backlight control signal, the driver therefor allows each LPG instance
+> to be exposed to the kernel either through the LED framework or the PWM
+> framework.
+>=20
+> A typical use case for the LED configuration is to drive RGB LEDs in
+> smartphones etc, for which the driver supports multiple channels to be
+> ganged up to a MULTICOLOR LED. In this configuration the pattern
+> generators will be synchronized, to allow for multi-color patterns.
+>=20
+> The idea of modelling this as a LED driver ontop of a PWM driver was
+> considered, but setting the properties related to patterns does not fit
+> in the PWM API. Similarly the idea of just duplicating the lower bits in
+> a PWM and LED driver separately was considered, but this would not allow
+> the PWM channels and LEDs to be configured on a per-board basis. The
+> driver implements the more complex LED interface, and provides a PWM
+> interface on the side of that, in the same driver.
+>=20
+> Tested-by: Luca Weiss <luca@z3ntu.xyz>
+> Tested-by: Doug Anderson <dianders@chromium.org>
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
+> Changes since v12:
+> - Initialize ret in lpg_pwm_apply()
+>=20
+> Changes since v11:
+> - Extended commit message to cover decision to put pwm_chip in the LED dr=
+iver
+> - Added Documentation, in particular for the hw_pattern format
+> - Added a lock to synchronize requests from LED and PWM frameworks
+> - Turned out that the 9bit selector differs per channel in some PMICs, so
+>   replaced bitmask in lpg_data with lookup based on QPNP SUBTYPE
+> - Fixed kerneldoc for the struct device pointer in struct lpg
+> - Rewrote conditional in lut_free() to make it easier to read
+> - Corrected and deduplicated max_period expression in lpg_calc_freq()
+> - Extended nom/dom to numerator/denominator in lpg_calc_freq()
+> - Replaced 1 << 9 with LPG_RESOLUTION in one more place in lpg_calc_freq()
+> - Use FIELD_PREP() in lpg_apply_freq() as masks was introduced for readin=
+g the
+>   same in get_state()
+> - Cleaned up the pattern format, to allow specifying both low and high pa=
+use
+>   with and without pingpong mode.
+> - Only update frequency and pwm_value if PWM channel is enabled in lpg_pw=
+m_apply
+> - Make lpg_pwm_get_state() read the hardware state, in order to pick up e=
+=2Eg.
+>   bootloader backlight configuration
+> - Use devm_bitmap_zalloc() to allocate the lut_bitmap
+> - Use dev_err_probe() in lpg_probe()
+> - Extended Kconfig help text to mention module name and satisfy checkpatch
+>=20
+>  Documentation/leds/leds-qcom-lpg.rst |   76 ++
+>  drivers/leds/Kconfig                 |    3 +
+>  drivers/leds/Makefile                |    3 +
+>  drivers/leds/rgb/Kconfig             |   18 +
+>  drivers/leds/rgb/Makefile            |    3 +
+>  drivers/leds/rgb/leds-qcom-lpg.c     | 1401 ++++++++++++++++++++++++++
+>  6 files changed, 1504 insertions(+)
+>  create mode 100644 Documentation/leds/leds-qcom-lpg.rst
+>  create mode 100644 drivers/leds/rgb/Kconfig
+>  create mode 100644 drivers/leds/rgb/Makefile
+>  create mode 100644 drivers/leds/rgb/leds-qcom-lpg.c
+>=20
+> diff --git a/Documentation/leds/leds-qcom-lpg.rst b/Documentation/leds/le=
+ds-qcom-lpg.rst
+> new file mode 100644
+> index 000000000000..d4825a289888
+> --- /dev/null
+> +++ b/Documentation/leds/leds-qcom-lpg.rst
+> @@ -0,0 +1,76 @@
+> +.. SPDX-License-Identifier: GPL-2.0
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+> +Kernel driver for Qualcomm LPG
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+> +
+> +Description
+> +-----------
+> +
+> +The Qualcomm LPG can be found in a variety of Qualcomm PMICs and consist=
+s of a
+> +number of PWM channels, a programmable pattern lookup table and a RGB LED
+> +current sink.
+> +
+> +To facilitate the various use cases, the LPG channels can be exposed as
+> +individual LEDs, grouped together as RGB LEDs or otherwise be accessed a=
+s PWM
+> +channels. The output of each PWM channel is routed to other hardware
+> +blocks, such as the RGB current sink, GPIO pins etc.
+> +
+> +The each PWM channel can operate with a period between 27us and 384 seco=
+nds and
+> +has a 9 bit resolution of the duty cycle.
+> +
+> +In order to provide support for status notifications with the CPU subsys=
+tem in
+> +deeper idle states the LPG provides pattern support. This consists of a =
+shared
+> +lookup table of brightness values and per channel properties to select t=
+he
+> +range within the table to use, the rate and if the pattern should repeat.
+> +
+> +The pattern for a channel can be programmed using the "pattern" trigger,=
+ using
+> +the hw_pattern attribute.
+> +
+> +/sys/class/leds/<led>/hw_pattern
+> +--------------------------------
+> +
+> +Specify a hardware pattern for a Qualcomm LPG LED.
+> +
+> +The pattern is a series of brightness and hold-time pairs, with the hold=
+-time
+> +expressed in milliseconds. The hold time is a property of the pattern an=
+d must
+> +therefor be identical for each element in the pattern (except for the pa=
+uses
+> +described below).
+> +
+> +Simple pattern::
+> +
+> +    "255 500 0 500"
+> +
+> +        ^
+> +        |
+> +    255 +----+    +----+
+> +	|    |    |    |      ...
+> +      0 |    +----+    +----
+> +        +---------------------->
+> +	0    5   10   15     time (100ms)
 
-We have a couple of cases where it would have been nice to be able to
-key the opp-table off some index (e.g. the UFS gear or PCI Gen) and
-control multiple clocks. So I think we need to look into this further...
+you're mixing tabs and spaces here, I suggest to use spaces only. Not
+sure you want to respin for that.
 
-> The problem is that I do not have any UFS hardware (none of my Samsung
-> Exynos boards have UFS... I don't have even arm64 Exynos chips :( ), so
-> implementing it theoretically will be painful.
-> OTOH, I believe that having a working dtschema is very useful. Having
-> dtschema without errors/warnings is even worth some churn/intermediary work.
-> 
-> The intermediary work is also not that big. Once proper OPP is
-> implemented, we will have "just" two deprecated properties in the bindings.
-> 
+(I didn't look into the rest of the driver, but assume it's fine.)
 
-Fair enough, was just hoping to avoid the middle step. But that's fine,
-we'll continue to carry this on our todo list then.
+Best regards
+Uwe
 
-Thanks,
-Bjorn
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--vypeaeqkhphwiwzw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIXuXcACgkQwfwUeK3K
+7Ams5wf+MyshgmoyVbFd/VtoEJNG+8bLx/KFx6APd8Kl+8oj/EFWOfBDYU9GDKLw
+EsQrVAoJ0gQg/K6hMTUAsN/gwhInmrb4aDHy3Ot1GWBNMoTXiADdF84G6X9avKoF
+Qii16MnMTN95w6CbsDf41DIwjWv+RgIISVztXKjFBWvuL8EaLeMVgcpEIKw/j7JH
+/0BBSbAZmY0039nhyPeVSJhW8IAX0eAhlwN4pTHvbXZ99P5TIFSuOZu9mEROr2FV
+1VbQfq1KRCbxCpKwPiLyKKBsmVHve6nSH6EDOycwu+twmgAiJMk8u4wKpysRClFw
+eKlrJ+QUoNrzwBxmbDphCRvapeddng==
+=X7KB
+-----END PGP SIGNATURE-----
+
+--vypeaeqkhphwiwzw--
