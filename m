@@ -2,55 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9385F4C3988
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 54E4A4C39A1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:24:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232087AbiBXXIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 18:08:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41642 "EHLO
+        id S232650AbiBXXZ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 18:25:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232266AbiBXXIu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:08:50 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28E88167F9C
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:08:20 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id D6FD3836A3;
-        Fri, 25 Feb 2022 00:08:17 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1645744098;
-        bh=jxEpPq37vAr/XSO9nV4JTqocXkdOm6aiLvihz73bXm8=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=vOaBM5MVht2q2orlLJUY9/05QqA6aQYi+dcM6E7jrgjlV8bQXoxfWa5n22ItQG7HA
-         S+fqfgW5Bv/4ImPPc3GFn5d3jENuwL2Mu5+zMBb+vIzk1aMtZa06xAVmfu/kcB1dJV
-         2d3CKoymIa2Jj/ZhVR7vLYmJuN+lswDnNSaQEn7ea8mL7hCPsKdi3Sl4bakRLXFxt4
-         HG1vB4qgBzksZDJEIrqIgf07Oh0Buz2P9/AVHVYbwi9fqpGPFluYiCRUCE3CVFgqXz
-         td0ZYtcaXQjtxRnV68vh6bvFO8tNg0HJbtGeVpmaVW+sDsMcpiDyPp1H0nRs2QgsV5
-         ODgkjHamLRC4g==
-Message-ID: <1e4dc8c2-daa7-3cef-eaf5-76616b6230a3@denx.de>
-Date:   Fri, 25 Feb 2022 00:08:17 +0100
+        with ESMTP id S229914AbiBXXZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:25:27 -0500
+Received: from mail-oo1-xc33.google.com (mail-oo1-xc33.google.com [IPv6:2607:f8b0:4864:20::c33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A714275793
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:24:57 -0800 (PST)
+Received: by mail-oo1-xc33.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so4119779oob.8
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:24:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=ykl5+gmxA4yVeV9VmJK6ewapdNVNECzVgJJevXCRQuc=;
+        b=TqnUO6z4Q6nA3vvMK4mvsAFxAm2dn/5v+tTeKoc+l5Bx/GpmNS+0w9whrVtnIekxTU
+         Y8I0pVxPqJRS9yvOk8U+qh/lJUlnOu2zJ/2ALFyxMTPDBuazPTdITNufwlzT5F7g4qRB
+         PHeHFonNG6dDZgQ1E9it56/ppFnxJ2JeZDODU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=ykl5+gmxA4yVeV9VmJK6ewapdNVNECzVgJJevXCRQuc=;
+        b=RoNh+eXdJaQPq6KpVvfYlI4CpFXV8ftJcz4RmKSy38rwrgCSFYnj/M4kMnvfjDbNLy
+         dbMGX5CcRvMbWCMq+lcjeiA6g0gUfbq/M9hCBaPJaBChPEh/Ep/79WkC3IbVvdAg/Fes
+         Cd6Z9f88XKguMQ5NemS1z0saqt4G7TJmzNzxztclNu8sO2w0S0Ch3SaB9y+5GiP3+hbU
+         yNnUB0QZ5xApzzojSVK8RG8bcm8ZC6vP/GudhkZLvXOo1ZkiAj+oHMMLAvpqQSW50lbd
+         G3i/eWcemRLv+Fi1cAckJ4w6p1sQWvyc5Zpz7Qx1trroE/Z7B2H1YL1a8YQG1uPZ9D7t
+         LNaw==
+X-Gm-Message-State: AOAM530MNTcneXoB2wBZ1/uFslZLRgmeT+Ia4Dh6rOd7JZgAsBXFo+GX
+        dNDhj8UEBBq91ux+QKbchF3lLzsmwYPBe73cgIQ0Dg==
+X-Google-Smtp-Source: ABdhPJxPu46LL0CWhZZy8QN5RXliJtD35auxrUHD4Ow5T5vwfCuYokKQpnP4+gcm1fxEoLSBSOT66tZKar/j9/lM6lM=
+X-Received: by 2002:a05:6870:5829:b0:c8:9f42:f919 with SMTP id
+ r41-20020a056870582900b000c89f42f919mr233403oap.54.1645745096848; Thu, 24 Feb
+ 2022 15:24:56 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 24 Feb 2022 15:24:56 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v2] dt-bindings: leds: Document mmc trigger
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-References: <20220217174357.13427-1-marex@denx.de>
- <YhgHTrlxyn5QGdOM@robh.at.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <YhgHTrlxyn5QGdOM@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+In-Reply-To: <1645716828-15305-10-git-send-email-quic_srivasam@quicinc.com>
+References: <1645716828-15305-1-git-send-email-quic_srivasam@quicinc.com> <1645716828-15305-10-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 24 Feb 2022 15:24:56 -0800
+Message-ID: <CAE-0n51Lc8N=yfx0N=sSGYQLDSpUK_q3HEUkb6d4s1sdQ6W_3A@mail.gmail.com>
+Subject: Re: [PATCH v16 9/9] ASoC: qcom: lpass-sc7280: Add platform driver for
+ lpass audio
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,28 +73,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/24/22 23:31, Rob Herring wrote:
-> On Thu, Feb 17, 2022 at 06:43:57PM +0100, Marek Vasut wrote:
->> The mmc subsystem supports triggering leds on card activity, document
->> the trigger value here. The value is a pattern in this case.
->>
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
->> Cc: Pavel Machek <pavel@ucw.cz>
->> Cc: Rob Herring <robh+dt@kernel.org>
->> Cc: devicetree@vger.kernel.org
->> To: linux-leds@vger.kernel.org
->> ---
->> V2: Rebase on next-20220217
-> 
-> Why? Nobody can apply patches to linux-next. Is there something in next
-> you are dependent on that you didn't tell us about?
+Quoting Srinivasa Rao Mandadapu (2022-02-24 07:33:48)
+> diff --git a/sound/soc/qcom/lpass-sc7280.c b/sound/soc/qcom/lpass-sc7280.c
+> new file mode 100644
+> index 0000000..70c4df8
+> --- /dev/null
+> +++ b/sound/soc/qcom/lpass-sc7280.c
+> @@ -0,0 +1,438 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2020-2021, The Linux Foundation. All rights reserved.
+> + *
+> + * lpass-sc7180.c -- ALSA SoC platform-machine driver for QTi LPASS
 
-It is just a convenience really, it is where the commits for all the 
-mostly latest development exist in one place, so I can be reasonably 
-sure the maintainer won't have trouble applying the patch on their tree 
-due to some missing patch, and if I work also on driver stuff, I can be 
-sure those drivers are also up-to-date-ish.
+Should be sc7280, but really the filename should be removed entirely.
 
-No, I don't think this patch specifically depends on anything in latest 
-next.
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <sound/pcm.h>
+> +#include <sound/soc.h>
+> +#include <linux/pm_runtime.h>
+> +
+> +#include <dt-bindings/sound/sc7180-lpass.h>
+
+Is that right? Or is it supposed to be dt-bindings/sound/sc7280-lpass.h?
