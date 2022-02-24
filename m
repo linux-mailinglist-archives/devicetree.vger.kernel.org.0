@@ -2,35 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 631F14C2F8C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 16:25:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28C5E4C2FA3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 16:28:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236203AbiBXPZp convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 24 Feb 2022 10:25:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44584 "EHLO
+        id S235753AbiBXP2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 10:28:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236107AbiBXPZo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 10:25:44 -0500
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85D7322A284;
-        Thu, 24 Feb 2022 07:25:13 -0800 (PST)
-Date:   Thu, 24 Feb 2022 15:25:01 +0000
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 2/2] pwm: jz4740: Add support for X1000 SoC
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Aidan MacDonald <aidanmacdonald.0x0@gmail.com>, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <PTET7R.D6X3F4XL0K3E1@crapouillou.net>
-In-Reply-To: <YheK4+t9w5IeHiDT@orome>
-References: <20220209231141.20184-1-aidanmacdonald.0x0@gmail.com>
-        <20220209231141.20184-2-aidanmacdonald.0x0@gmail.com>
-        <2SMA7R.9OBQWV0ONR102@crapouillou.net> <YheK4+t9w5IeHiDT@orome>
+        with ESMTP id S236456AbiBXP2J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 10:28:09 -0500
+Received: from asav22.altibox.net (asav22.altibox.net [109.247.116.9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBF31BA14F
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 07:27:36 -0800 (PST)
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav22.altibox.net (Postfix) with ESMTPSA id E077523B79;
+        Thu, 24 Feb 2022 16:27:33 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH v5 0/5] drm/tiny: Add MIPI DBI compatible SPI driver
+Date:   Thu, 24 Feb 2022 16:27:03 +0100
+Message-Id: <20220224152708.14459-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=KbX8TzQD c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=VwQbUJbxAAAA:8 a=NEAV23lmAAAA:8
+        a=XqjdhIIK1VNfZnpq3w4A:9 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -40,33 +49,75 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi,
 
-Le jeu., févr. 24 2022 at 14:40:51 +0100, Thierry Reding 
-<thierry.reding@gmail.com> a écrit :
-> On Mon, Feb 14, 2022 at 12:02:26PM +0000, Paul Cercueil wrote:
->>  Hi Aidan,
->> 
->>  Le mer., févr. 9 2022 at 23:11:42 +0000, Aidan MacDonald
->>  <aidanmacdonald.0x0@gmail.com> a écrit :
->>  > The X1000 has the same TCU / PWM hardware as other Ingenic SoCs,
->>  > but it has only 5 channels.
->>  >
->>  > Signed-off-by: Aidan MacDonald <aidanmacdonald.0x0@gmail.com>
->>  > ---
->>  >  arch/mips/boot/dts/ingenic/x1000.dtsi | 13 +++++++++++++
->>  >  drivers/pwm/pwm-jz4740.c              |  5 +++++
->> 
->>  Please put the driver and device tree changes into separate patches.
-> 
-> Seemed a shame not to take this, so I've manually removed the DTS
-> changes and applied this to the PWM tree.
-> 
-> Aidan, probably best to resend the DTS snippet as a separate patch,
-> unless Paul also wants to apply this manually.
+This patchset adds a driver that will work with most MIPI DBI compatible
+SPI panels out there.
 
-I am not the arch/mips/ maintainer, so a separate patch would be needed 
-anyway, yes.
+It can replace the SPI interface support in these drivers:
 
-Cheers,
--Paul
+$ grep -lr MIPI_DCS drivers/staging/fbtft/ | grep -v "-" | uniq | sort
+drivers/staging/fbtft/fb_hx8340bn.c
+drivers/staging/fbtft/fb_hx8353d.c
+drivers/staging/fbtft/fb_hx8357d.c
+drivers/staging/fbtft/fb_ili9163.c
+drivers/staging/fbtft/fb_ili9340.c
+drivers/staging/fbtft/fb_ili9341.c
+drivers/staging/fbtft/fb_ili9481.c
+drivers/staging/fbtft/fb_ili9486.c
+drivers/staging/fbtft/fb_s6d02a1.c
+drivers/staging/fbtft/fb_st7735r.c
+drivers/staging/fbtft/fb_st7789v.c
+drivers/staging/fbtft/fb_tinylcd.c
 
+Note that the MIPI DBI parallel interface supported by fbtft does not
+yet exist in DRM.
+
+Maxime gave[1] a good overview of the situation with these displays and
+proposed to make a driver that works with all MIPI DBI compatible
+controllers and use a firmware file to provide the controller setup for
+a particular panel.
+
+Changes since version 4:
+- Add sainsmart18 to compatible items (Rob)
+- Expand write-only description (Sam)
+- kconfig: s/DRM_KMS_CMA_HELPER/DRM_GEM_CMA_HELPER/ (Sam)
+- kconfig: Add select VIDEOMODE_HELPERS (Sam)
+- kconfig: Add wiki url in the description (Sam)
+- Split out and use of_get_drm_panel_display_mode()(Sam)
+- Only use the first compatible to look for a firmware file since the
+  binding mandates 2 compatibles.
+- Make having a firmware file mandatory so we can print an error
+  message if it's missing to improve the user experience. It's very
+  unlikely that a controller doesn't need to be initialized and if
+  it doesn't, it's possible to have a firmware file containing only
+  a DCS NOP.
+
+See wiki[2] for a script to make command firmware files.
+
+Noralf.
+
+[1] https://lore.kernel.org/dri-devel/20211129093946.xhp22mvdut3m67sc@houat/
+[2] https://github.com/notro/panel-mipi-dbi/wiki
+
+
+Noralf TrÃ¸nnes (5):
+  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+  drm/modes: Remove trailing whitespace
+  drm/modes: Add of_get_drm_panel_display_mode()
+  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+  drm/tiny: Add MIPI DBI compatible SPI driver
+
+ .../display/panel/panel-mipi-dbi-spi.yaml     | 127 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/drm_modes.c                   |  51 ++-
+ drivers/gpu/drm/tiny/Kconfig                  |  15 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c         | 398 ++++++++++++++++++
+ include/drm/drm_mipi_dbi.h                    |   8 +
+ include/drm/drm_modes.h                       |   8 +
+ 8 files changed, 615 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ create mode 100644 drivers/gpu/drm/tiny/panel-mipi-dbi.c
+
+-- 
+2.33.0
 
