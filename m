@@ -2,58 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E2724C39B5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:34:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3E954C39C7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 00:41:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234223AbiBXXeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 18:34:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33040 "EHLO
+        id S235940AbiBXXla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 18:41:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234071AbiBXXeg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:34:36 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EBFD27908D;
-        Thu, 24 Feb 2022 15:34:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 05995B824F5;
-        Thu, 24 Feb 2022 23:34:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F1D6C340E9;
-        Thu, 24 Feb 2022 23:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645745642;
-        bh=4DD/wKDk+EjcpsvYN4izv/QnBJgdXR2WZ16yJQTy/tc=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=ijQutekGcAanlrMik4fqwX5IWpy1Ee/2P62wIKyZaWwrZ4NyEmnRYh8AuuWJjlS9J
-         ipuZIHZgm6lbYxBNh4NpMzDS9x2dJMx0kgjUk+UaR1JZ7Tniu3wTs3jvb/1FXBUq4v
-         4S38RrqJyUg3eV+QNkkGIX20fgwRl0daJIwipvzZ2qq4kLBQ+DmS1OLKcihtbtFLWT
-         ijro86aPyWJXHlLvnmVQB5O+EF+s0pV6lC+lUwqn2PfNUPC2bY3//Xb2VKC9Mtdjmt
-         1AkO8xXsO+tbHQnY0gsKj8isQZLjz2YqYvcrouw1tDsV4WHqtk+R5hOrUzAqagjrJf
-         /di5uJD8+dCvw==
-Date:   Thu, 24 Feb 2022 15:34:01 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Stefano Stabellini <sstabellini@kernel.org>
-cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-In-Reply-To: <alpine.DEB.2.22.394.2202241424110.239973@ubuntu-linux-20-04-desktop>
-Message-ID: <alpine.DEB.2.22.394.2202241531111.239973@ubuntu-linux-20-04-desktop>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com> <20220222110003.GC21915@e120937-lin> <20220222160637.yn6pru4nfgwih23j@bogus> <20220222171549.GA2194063@EPUAKYIW015D> <20220224115443.fwhczfvm3cfwoim7@bogus>
- <alpine.DEB.2.22.394.2202241424110.239973@ubuntu-linux-20-04-desktop>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S230507AbiBXXla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 18:41:30 -0500
+Received: from mail-oi1-x22f.google.com (mail-oi1-x22f.google.com [IPv6:2607:f8b0:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9C1428AD9B
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:40:58 -0800 (PST)
+Received: by mail-oi1-x22f.google.com with SMTP id y7so5617958oih.5
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 15:40:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=3fp5mLpKZ3zy5G2P4hCvH5DKhH0aCoOyoqp6jDCbikU=;
+        b=oMgM+eo6y7yBLKZtFIGN0z/xAVvy85Du3W+bVaDTEQ7kH7+wttbOMI58cXJtq3G41O
+         1HbUb2InAJpF42m2aTi46ts1vn4JHH77930E8gNdZDIWc7oNevFKR8OmCr9CRIIc498l
+         n7lVcjKE7QAknoybwZayw5Zqx7dXBNofkKUXE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=3fp5mLpKZ3zy5G2P4hCvH5DKhH0aCoOyoqp6jDCbikU=;
+        b=sjuwT2hry9uOyDK+p02B+7opMmw5mZVIIefPnPyTnazkynjFIb1rhgmxS56oBlTtRa
+         PffbmOu0vkeP5rgPXHi7cN7IwKwmBHsg+AhrLkthzepx5O8S3bPACw3p2diujlUbS5Lr
+         KzfMpHcD12f2eZNuSxxoX7dQz7K0s2tNxZ2hHeFIfFSu3z3AGqq4m6IuY98gsxzXfpbL
+         /28/X3oFxVvhXcM4wXNswhy749nwVlLylRXsk1zeRwduwlqBySZ0u7quK4lP2nvGLYhV
+         0uKrQKhin8/YqE+smfYXZesrtVqjfvKOce1uM8R6SHuLV/pJJz6gFlVhap5idMkpfni8
+         Pw7A==
+X-Gm-Message-State: AOAM533j1iaL2+IbW8dwp18oMZMj9w07yffhj/ua6xQXAFnDgdzlRTd5
+        CLetxQtGiWDGToyLBRih3YHjZ7LqZvkGmyn6ntMvzw==
+X-Google-Smtp-Source: ABdhPJwrQs5ORikoc8jsUMv2we/zgkuo7iGssiNXOFNYXobkeXGSbZXD/80AC9Xijdn7PmK1dC4RT/B6HvI+ck/5CdM=
+X-Received: by 2002:aca:df44:0:b0:2ce:285f:cb99 with SMTP id
+ w65-20020acadf44000000b002ce285fcb99mr294198oig.40.1645746057451; Thu, 24 Feb
+ 2022 15:40:57 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 24 Feb 2022 15:40:56 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <1645716828-15305-7-git-send-email-quic_srivasam@quicinc.com>
+References: <1645716828-15305-1-git-send-email-quic_srivasam@quicinc.com> <1645716828-15305-7-git-send-email-quic_srivasam@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 24 Feb 2022 15:40:56 -0800
+Message-ID: <CAE-0n53K3Em52tTFK4zmcsf_ZzFbX4uQQ00_uH9=pq44chwyeg@mail.gmail.com>
+Subject: Re: [PATCH v16 6/9] ASoC: qcom: Add support for codec dma driver
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        judyhsiao@chromium.org, lgirdwood@gmail.com,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        perex@perex.cz, quic_plai@quicinc.com, robh+dt@kernel.org,
+        rohitkr@codeaurora.org, srinivas.kandagatla@linaro.org,
+        tiwai@suse.com
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,98 +72,150 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Feb 2022, Stefano Stabellini wrote:
-> On Thu, 24 Feb 2022, Sudeep Holla wrote:
-> > On Tue, Feb 22, 2022 at 05:15:49PM +0000, Oleksii Moisieiev wrote:
-> > > Hi Sudeep,
-> > > 
-> > > On Tue, Feb 22, 2022 at 04:06:37PM +0000, Sudeep Holla wrote:
-> > > > Hi Oleksii,
-> > > > 
-> > > > My initial feedback on this. And thanks Cristian for making it so easy as
-> > > > you have covered most of the things in depth(which I might have not done
-> > > > myself that well)
-> > > > 
-> > > > On Tue, Feb 22, 2022 at 11:00:03AM +0000, Cristian Marussi wrote:
-> > > > > On Mon, Feb 21, 2022 at 05:26:46PM +0000, Oleksii Moisieiev wrote:
-> > > > > > Introducing new parameter called scmi_devid to the device-tree bindings.
-> > > > > > This parameter should be set for the device nodes, which has
-> > > > > > clocks/power-domains/resets working through SCMI.
-> > > > 
-> > > > I prefer you had given more details on your usage model here instead of
-> > > > pointing to the other Xen thread as it helps for someone without much
-> > > > background on Xen or your use-case to review this.
-> > > > 
-> > > Let me describe the process in few words:
-> > > We implemented a new feature, called SCI-mediator in Xen.
-> > > The proposed implementation allows Guests to communicate with the Firmware using SCMI
-> > > protocol with SMC as a transport. Other implementation are also
-> > > possible, such as SCMI-Mailbox, SCPI-mailbox etc.
-> > > 
-> > > In this feature Xen is the Trusted Agent, which receives the following
-> > > information in Xen device-tree:
-> > > 1) All channels should be described, each channel defined as
-> > > arm,scmi-shmem node;
-> > > 2) Scmi node arm,scmi-smc with protocols description;
-> > 
-> > Sounds good so far.
-> > 
-> > > 3) scmi-devid should be set in nodes, which works through SCMI.
-> > >
-> > 
-> > Why is this needed for Guest OS, you need not populate this if Guest OS
-> > is not required to use it, right ? If it is needed just by Xen hypervisor,
-> > lets talk about that and why it is bad idea to mix that with general
-> > SCMI bindings.
-> 
-> I'll try to help Oleksii by answering here, I hope I am not off the mark
-> :-)
-> 
-> I think Sudeep is right, scmi-devid is not needed by the guest OS.
-> 
-> The host device tree is a more interesting discussion. As the host
-> device tree is meant to be generic and not tied to a specific version of
-> Linux, it should fully describe the SCMI interface available. If the
-> device tree is provided to a Trusted Agent, then it should also have the
-> scmi-devid information, right?
-> 
-> 
-> > > On start Xen inits itself as trusted agent and requests agent
-> > > configuration by using BASE_DISCOVER_AGENT message. This message is sent
-> > > to each configured channel to get agent_id
-> > > 
-> > > On Domain creation stage Xen will do the following steps:
-> > > 1) Assign channel to the Guest and map channel address to the Domain
-> > > address. For the Domain this address should be the same;
-> > > 2) Generate arm,scmi-shmem and arm,scmi-smc nodes if needed for Guest
-> > > device-tree (the device-tree which should be passed to the Guest);
-> > > 3) Process devices, which are passed through to this Guest and set
-> > > BASE_SET_DEVICE_PERMISSIONS for the scmi-devid, received from the
-> > > device-node;
-> > >
-> > 
-> > I am confused here. So the Xen knows which devices are assigned to each
-> > Guest OS but doesn't know device ID for them, but relies on the device
-> > tree node ?
-> 
-> Which devices go to which guest OS is a user-provided configuration. For
-> instance, a user can say: "assing /amba/ethernet@ff0e0000 to dom1". This
-> is normal and not related to SCMI: when a user configures a static
-> partitioning system, they decide which resources belong to which domain.
-> 
-> So Xen is told that /amba/ethernet@ff0e0000 is supposed to go to dom1.
-> Xen proceeds to map memory and interrupts corresponding to
-> /amba/ethernet@ff0e0000 to dom1. So far so good. What about SCMI?
-> 
-> In Oleksii's design, Xen is going to assign one of the available SCMI
-> channels to dom1 and restrict its permission to only
-> /amba/ethernet@ff0e0000. To do that, Xen needs to know the scmi-devid of
-> /amba/ethernet@ff0e0000. As far as I can tell there is nothing
-> Xen-specific in this activitity, that's why I asked Oleksii to reach out
-> to the upstream device tree community to improve the generic bindings
-> for everyone's benefits.
+Quoting Srinivasa Rao Mandadapu (2022-02-24 07:33:45)
+> diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+> index 198f27c..b3af971 100644
+> --- a/sound/soc/qcom/lpass-platform.c
+> +++ b/sound/soc/qcom/lpass-platform.c
+> @@ -684,6 +953,17 @@ static irqreturn_t lpass_dma_interrupt_handler(
+>                 reg = LPAIF_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST);
+>                 val = 0;
+>         break;
+> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
+> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
+> +               map = drvdata->rxtx_lpaif_map;
+> +               reg = LPAIF_RXTX_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST);
+> +               val = 0;
+> +       break;
+> +       case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
+> +               map = drvdata->va_lpaif_map;
+> +               reg = LPAIF_VA_IRQCLEAR_REG(v, LPAIF_IRQ_PORT_HOST);
+> +               val = 0;
+> +       break;
 
-Let's leave Linux and Xen aside for the moment. What are other possible
-Trusted Agents? (Maybe TF-A?) How do they get the scmi-devid? It looks
-like it was supposed to come from device tree but nobody got around to
-adding it to the binding because it is not used by Linux?
+These breaks have the wrong indentation.
+
+>         default:
+>         dev_err(soc_runtime->dev, "%s: invalid  %d interface\n", __func__, dai_id);
+>         return -EINVAL;
+> @@ -791,16 +1071,115 @@ static irqreturn_t lpass_platform_hdmiif_irq(int irq, void *data)
+>                                 return rv;
+>                 }
+>         }
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t lpass_platform_rxtxif_irq(int irq, void *data)
+> +{
+> +       struct lpass_data *drvdata = data;
+> +       struct lpass_variant *v = drvdata->variant;
+> +       unsigned int irqs;
+> +       irqreturn_t rv;
+> +       int chan;
+> +
+> +       rv = regmap_read(drvdata->rxtx_lpaif_map,
+> +                       LPAIF_RXTX_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST), &irqs);
+> +
+> +       /* Handle per channel interrupts */
+> +       for (chan = 0; chan < LPASS_MAX_CDC_DMA_CHANNELS; chan++) {
+> +               if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->rxtx_substream[chan]) {
+> +                       rv = lpass_dma_interrupt_handler(
+> +                                               drvdata->rxtx_substream[chan],
+> +                                               drvdata, chan, irqs);
+> +                       if (rv != IRQ_HANDLED)
+> +                               return rv;
+> +               }
+> +       }
+> +
+> +       return IRQ_HANDLED;
+> +}
+> +
+> +static irqreturn_t lpass_platform_vaif_irq(int irq, void *data)
+> +{
+> +       struct lpass_data *drvdata = data;
+> +       struct lpass_variant *v = drvdata->variant;
+> +       unsigned int irqs;
+> +       irqreturn_t rv;
+> +       int chan;
+> +
+> +       rv = regmap_read(drvdata->va_lpaif_map,
+> +                       LPAIF_VA_IRQSTAT_REG(v, LPAIF_IRQ_PORT_HOST), &irqs);
+>
+> +       /* Handle per channel interrupts */
+> +       for (chan = 0; chan < LPASS_MAX_VA_CDC_DMA_CHANNELS; chan++) {
+> +               if (irqs & LPAIF_IRQ_ALL(chan) && drvdata->va_substream[chan]) {
+> +                       rv = lpass_dma_interrupt_handler(
+> +                                               drvdata->va_substream[chan],
+> +                                               drvdata, chan, irqs);
+> +                       if (rv != IRQ_HANDLED)
+> +                               return rv;
+> +               }
+> +       }
+>         return IRQ_HANDLED;
+>  }
+>
+> +static int lpass_platform_prealloc_cdc_dma_buffer(struct snd_soc_component *component,
+> +                                                 struct snd_pcm *pcm, int dai_id)
+> +{
+> +       struct lpass_data *drvdata = snd_soc_component_get_drvdata(component);
+> +       struct snd_pcm_substream *substream;
+> +       struct snd_dma_buffer *buf;
+> +
+> +       if (pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream)
+> +               substream = pcm->streams[SNDRV_PCM_STREAM_PLAYBACK].substream;
+> +       else
+> +               substream = pcm->streams[SNDRV_PCM_STREAM_CAPTURE].substream;
+> +
+> +       buf = &substream->dma_buffer;
+> +       buf->dev.dev = pcm->card->dev;
+> +       buf->private_data = NULL;
+> +
+> +       /* Assign Codec DMA buffer pointers */
+> +       buf->dev.type = SNDRV_DMA_TYPE_CONTINUOUS;
+> +
+> +       switch (dai_id) {
+> +       case LPASS_CDC_DMA_RX0 ... LPASS_CDC_DMA_RX9:
+> +               buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +               buf->addr = drvdata->rxtx_cdc_dma_lpm_buf;
+> +               break;
+> +       case LPASS_CDC_DMA_TX0 ... LPASS_CDC_DMA_TX8:
+> +               buf->bytes = lpass_platform_rxtx_hardware.buffer_bytes_max;
+> +               buf->addr = drvdata->rxtx_cdc_dma_lpm_buf + LPASS_RXTX_CDC_DMA_LPM_BUFF_SIZE;
+> +               break;
+> +       case LPASS_CDC_DMA_VA_TX0 ... LPASS_CDC_DMA_VA_TX8:
+> +               buf->bytes = lpass_platform_va_hardware.buffer_bytes_max;
+> +               buf->addr = drvdata->va_cdc_dma_lpm_buf;
+> +               break;
+> +       default:
+> +               break;
+> +       }
+> +
+> +       buf->area = (unsigned char * __force)memremap(buf->addr, buf->bytes, MEMREMAP_WT);
+
+What's the cast and __force for now? MEMREMAP_WT is almost never used so
+this looks wrong. Why can't MEMREMAP_WC be used? But if it's DMA then
+why isn't dma_map_resource() being used?
+
+> +
+> +       return 0;
+> +}
+> +
+>  static int lpass_platform_pcm_new(struct snd_soc_component *component,
+>                                   struct snd_soc_pcm_runtime *soc_runtime)
+>  {
+>         struct snd_pcm *pcm = soc_runtime->pcm;
+> +       struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(soc_runtime, 0);
+> +       unsigned int dai_id = cpu_dai->driver->id;
+> +
+>         size_t size = lpass_platform_pcm_hardware.buffer_bytes_max;
+>
+> +       /*
+> +        * Lpass codec dma can access only lpass lpm hardware memory.
+> +        * ioremap is for HLOS to access hardware memory.
+> +        */
+> +       if (is_cdc_dma_port(dai_id))
+> +               return lpass_platform_prealloc_cdc_dma_buffer(component, pcm, dai_id);
+> +
+>         return snd_pcm_set_fixed_buffer_all(pcm, SNDRV_DMA_TYPE_DEV,
+>                                             component->dev, size);
+>  }
