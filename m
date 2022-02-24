@@ -2,153 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A26A34C34A5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 19:24:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B06DF4C34BF
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 19:27:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbiBXSYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 13:24:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54028 "EHLO
+        id S229853AbiBXS1W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 13:27:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229853AbiBXSYQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 13:24:16 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68AA525317D;
-        Thu, 24 Feb 2022 10:23:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645727026; x=1677263026;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=nB30B/2Cq7Khl08NUdbourrgXm8MBEepU1mDXjaveQ0=;
-  b=F68xIsyIyKwlquGzQRRpbfqi1AQ5xjdzqX6NEALc/cu1tiPB/TKWN9D1
-   6I3JzGO0B5yaH9Z+U1iamtJNWFuDx5QLdTkT1uA0OzklNAXqCHD/yX4rT
-   XhcRs6/0Lyec7xVqA96z0XuhhV/lnxmodSoHhKL/6wSdZ2nweuXmto2Tc
-   z9fClHw2qfNzkuDpxlFNaIzsD4G3L7dmasF2dgQDdzBU0ZMsZ3SPGiY6D
-   6CpHBHElrGcobIYqGOqcZMZI1cVmYhVPyOwqJv1dDtRw1ttq29xhq3wo6
-   +UVbn8rkZmyO/Mt5S4UUwBqqR95V6+SoE9BpNn7vMkre0jLoBHr3Zsg/+
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,134,1643698800"; 
-   d="scan'208";a="154800783"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Feb 2022 11:23:45 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 24 Feb 2022 11:23:45 -0700
-Received: from [10.12.73.51] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 24 Feb 2022 11:23:43 -0700
-Message-ID: <2e2a265c-8d6c-59a3-e38a-28dc9f37fe94@microchip.com>
-Date:   Thu, 24 Feb 2022 19:23:42 +0100
+        with ESMTP id S230443AbiBXS1W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 13:27:22 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C106B3A709;
+        Thu, 24 Feb 2022 10:26:49 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D305B106F;
+        Thu, 24 Feb 2022 10:26:48 -0800 (PST)
+Received: from lakrids (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8292B3F70D;
+        Thu, 24 Feb 2022 10:26:47 -0800 (PST)
+Date:   Thu, 24 Feb 2022 18:26:41 +0000
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 0/7] irqchip/apple-aic: Add support for AICv2
+Message-ID: <YhfN4YtR+Nq5vmVr@lakrids>
+References: <20220224130741.63924-1-marcan@marcan.st>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 6/8] ARM: dts: at91: sama7g5: add opps
-Content-Language: en-US
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
-        <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20211216141338.35144-1-claudiu.beznea@microchip.com>
- <20211216141338.35144-7-claudiu.beznea@microchip.com>
- <d0c4262c-097d-18da-cb51-5409f6e02b61@microchip.com>
-Organization: microchip
-In-Reply-To: <d0c4262c-097d-18da-cb51-5409f6e02b61@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220224130741.63924-1-marcan@marcan.st>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2022 at 15:59, Nicolas Ferre wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> 
-> On 16/12/2021 at 15:13, Claudiu Beznea wrote:
->> Add OPPs for SAMA7G5 along with clock for CPU.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> 
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Queued in at91-dt branch.
+On Thu, Feb 24, 2022 at 10:07:34PM +0900, Hector Martin wrote:
+> Hi folks,
 
-FYI: I took v2 series of DT changes.
+Hi Hector,
 
+> In the t6000/t6001 (M1 Pro / Max) SoCs, Apple introduced a new version
+> of their interrupt controller. This is a significant departure from
+> AICv1 and seems designed to better scale to larger chips. This series
+> adds support for it to the existing AIC driver.
 > 
-> Regards,
->     Nicolas
-> 
->> ---
->>    arch/arm/boot/dts/sama7g5.dtsi | 37 ++++++++++++++++++++++++++++++++++
->>    1 file changed, 37 insertions(+)
->>
->> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
->> index 7039311bf678..22352ef5bc72 100644
->> --- a/arch/arm/boot/dts/sama7g5.dtsi
->> +++ b/arch/arm/boot/dts/sama7g5.dtsi
->> @@ -30,6 +30,43 @@ cpu0: cpu@0 {
->>                        device_type = "cpu";
->>                        compatible = "arm,cortex-a7";
->>                        reg = <0x0>;
->> +                     clocks = <&pmc PMC_TYPE_CORE PMC_CPUPLL>;
->> +                     clock-names = "cpu";
->> +                     operating-points-v2 = <&cpu_opp_table>;
->> +             };
->> +     };
->> +
->> +     cpu_opp_table: opp-table {
->> +             compatible = "operating-points-v2";
->> +
->> +             opp-90000000 {
->> +                     opp-hz = /bits/ 64 <90000000>;
->> +                     opp-microvolt = <1050000 1050000 1225000>;
->> +                     clock-latency-ns = <320000>;
->> +             };
->> +
->> +             opp-250000000 {
->> +                     opp-hz = /bits/ 64 <250000000>;
->> +                     opp-microvolt = <1050000 1050000 1225000>;
->> +                     clock-latency-ns = <320000>;
->> +             };
->> +
->> +             opp-600000000 {
->> +                     opp-hz = /bits/ 64 <600000000>;
->> +                     opp-microvolt = <1050000 1050000 1225000>;
->> +                     clock-latency-ns = <320000>;
->> +             };
->> +
->> +             opp-800000000 {
->> +                     opp-hz = /bits/ 64 <800000000>;
->> +                     opp-microvolt = <1150000 1125000 1225000>;
->> +                     clock-latency-ns = <320000>;
->> +             };
->> +
->> +             opp-1000000002 {
->> +                     opp-hz = /bits/ 64 <1000000002>;
->> +                     opp-microvolt = <1250000 1225000 1300000>;
->> +                     clock-latency-ns = <320000>;
->>                };
->>        };
->>
-> 
-> 
-> --
-> Nicolas Ferre
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> Gone are CPU affinities; instead there seems to be some kind of
+> "automagic" dispatch to willing CPU cores, and cores can also opt-out
+> via an IMP-DEF sysreg (!). Right now the bootloader just sets up all
+> cores to accept IRQs, and we ignore all this and let the magic
+> algorithm pick a CPU to accept the IRQ.
 
+Maybe that's ok for the set of peripherals attached, but in general that
+violates existing expectations regarding affinity, and I fear there'll
+be some subtle brokenness resulting from this automatic target
+selection.
 
--- 
-Nicolas Ferre
+For example, in the perf events subsystem there are PMU drivers (even
+those for "uncore" or "system" devices which are shared by many/all
+CPUs) which rely on a combination of interrupt affinity and local IRQ
+masking (without any other locking) to provide exclusion between a PMU's
+IRQ handler and any other management operations for that PMU (which are
+all handled from the same CPU).
+
+> In the future, we might start making use of these finer-grained
+> capabilities for e.g. better real-time guarantees (CPUs running RT
+> threads might opt out of IRQs).
+
+What mechanism does the HW have for affinity selection? The wording
+above makes it sound like each CPU has to opt-out rather than having a
+central affinity selection. Is there a mechanism to select a single
+target?
+
+Thanks,
+Mark.
+
+> Legacy IPI support is also gone, so this implements Fast IPI support.
+> Fast IPIs are implemented entirely in the CPU core complexes, using
+> FIQs and IMP-DEF sysregs. This is also supported on t8103/M1, so we
+> enable it there too, but we keep the legacy AIC IPI codepath in case
+> it is useful for backporting to older chips.
+> 
+> This also adds support for multi-die AIC2 controllers. While no
+> multi-die products exist yet, the AIC2 in t600x is built to support
+> up to 2 dies, and it's pretty clear how it works, so let's implement
+> it. If we're lucky, when multi-die products roll around, this will
+> let us support them with only DT changes. In order to support the
+> extra die dimension, this introduces a 4-argument IRQ phandle form
+> (3-argument is always supported and just implies die 0).
+> 
+> All register offsets are computed based on capability register values,
+> which should allow forward-compatibility with future AIC2 variants...
+> except for one. For some inexplicable reason, the number of actually
+> implemented die register sets is nowhere to be found (t600x has 2,
+> but claims 1 die in use and 8 dies max, neither of which is what we
+> need), and this is necessary to compute the event register offset,
+> which is page-aligned after the die register sets. We have no choice
+> but to stick this offset in the device tree... which is the same thing
+> Apple do in their ADT.
+> 
+> Changes since v1:
+> - Split off the DT binding
+> - Changed fast-ipi codepath selection to use a static key for performance
+> - Added fix for PCI driver to support the new 4-cell IRQ form
+> - Minor style / review feedback fixes
+> 
+> Hector Martin (7):
+>   PCI: apple: Change MSI handling to handle 4-cell AIC fwspec form
+>   dt-bindings: interrupt-controller: apple,aic2: New binding for AICv2
+>   irqchip/apple-aic: Add Fast IPI support
+>   irqchip/apple-aic: Switch to irq_domain_create_tree and sparse hwirqs
+>   irqchip/apple-aic: Dynamically compute register offsets
+>   irqchip/apple-aic: Support multiple dies
+>   irqchip/apple-aic: Add support for AICv2
+> 
+>  .../interrupt-controller/apple,aic2.yaml      |  99 ++++
+>  MAINTAINERS                                   |   2 +-
+>  drivers/irqchip/irq-apple-aic.c               | 432 +++++++++++++++---
+>  drivers/pci/controller/pcie-apple.c           |   2 +-
+>  4 files changed, 458 insertions(+), 77 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/apple,aic2.yaml
+> 
+> -- 
+> 2.33.0
+> 
