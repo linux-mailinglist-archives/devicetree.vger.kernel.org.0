@@ -2,96 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF32F4C2AF8
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 12:35:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 03CB54C2B02
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 12:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229678AbiBXLc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 06:32:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41504 "EHLO
+        id S229541AbiBXLg6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 06:36:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230093AbiBXLct (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 06:32:49 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A9DF10459C
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 03:32:18 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BEA093F1F3
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:32:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645702336;
-        bh=6QAB5G6wzlpUL0XVf4afDiAG1Yh+7YZL2RUHJwx8q4s=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=sg5N0qq9pjXmHo39o79rNRPGzZtuHSL3/+bpxHgc2srQxwXXNoe+EJOQeHJkOyaIp
-         13Npqza9hW+aBB6NgAXY0WvQHE+LykdePkCUCbmB0dMUpenQ2rg4GEeZe9Jum5x+fI
-         WYdZ93X11Me0+oACXohwMv/9dBP00WVlu3yhx0YyeaQ3YGsWbgqhJcK/4+J5S/xNKJ
-         O2vaTMtE+9HY28AcIP5t8LeC1zGA9AJHcaJj1OJ9B5Dyg4zDyu+PIPKqCF9jEdDgO1
-         I0Kt5hi0GncOLE2Bm0kAc9HSH84spDpZN1LECx/ZQaIAsJ6V8dB+FO81bNi8kdnYX7
-         /fSqi9S+cAD1w==
-Received: by mail-ej1-f72.google.com with SMTP id i20-20020a17090671d400b006d0ed9c68c1so1074784ejk.14
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 03:32:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6QAB5G6wzlpUL0XVf4afDiAG1Yh+7YZL2RUHJwx8q4s=;
-        b=p8a7LTiMkTPLkZCo4t+45pzmK9y+CiHO6Mhl/dienW/Yvm6CBlk6TFe2NhQxv6Jld2
-         x61PZiCjVTGQWM83lBc4qNITZsUsfawxlq13KcMjFuIyOeKGdH51/eIYb5r3BDuVxxJ6
-         PldzrtnsOI73oFXq0Obzl9lHP/uOS+rzMYAaUfZ4nGTBKUBrC1wVTmHU5obE7NIXF8qk
-         TvvnN9y5PdcOD+AKesa8vP3aIXS9FQ6n7veuViRPuacQF/jmOITVaTF7bxhW28y7QPFc
-         Vyra0x2hKhVWSeefFPRDAxbRAHyagYUg+0pDqVHRcSeYScXwXNN4BKxYJWu8Ura9NjYS
-         zKtA==
-X-Gm-Message-State: AOAM532dvJDt55s0MJZ6q7OkteC4/Q+ZX5WsurqWnm58aN0sz4kXyVjm
-        MkclSfcm0KNfF19kRJyLKtDqG+dEJE0U97lRA/9vxrWua5mb6PwpfiqBQVO/SA0B1G6KiVG/Z83
-        /XFO1eXN8nZ8fle2KfYs9Wa8IA+ihpH6FSu6aitc=
-X-Received: by 2002:a17:907:12d5:b0:6cf:bb0d:9b2f with SMTP id vp21-20020a17090712d500b006cfbb0d9b2fmr1956417ejb.138.1645702335155;
-        Thu, 24 Feb 2022 03:32:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwzCHcLPyCC1s3Ik7qr4TIxyXVnkkXqNSDejNUcwQH9N3LVSxYrf8XbZW/XmE73MCY/Ws4QGA==
-X-Received: by 2002:a17:907:12d5:b0:6cf:bb0d:9b2f with SMTP id vp21-20020a17090712d500b006cfbb0d9b2fmr1956410ejb.138.1645702334964;
-        Thu, 24 Feb 2022 03:32:14 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id v30sm1216688ejv.76.2022.02.24.03.32.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 03:32:14 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, pankaj.dubey@samsung.com,
-        linux-samsung-soc@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH] arm64: dts: fsd: Add the MCT support
-Date:   Thu, 24 Feb 2022 12:31:38 +0100
-Message-Id: <164570223367.241583.16227180262128695261.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220223171858.11384-1-alim.akhtar@samsung.com>
-References: <CGME20220223170727epcas5p20066f8455fa0ca98323ac286dabc90ec@epcas5p2.samsung.com> <20220223171858.11384-1-alim.akhtar@samsung.com>
+        with ESMTP id S232775AbiBXLg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 06:36:57 -0500
+Received: from relay11.mail.gandi.net (relay11.mail.gandi.net [IPv6:2001:4b98:dc4:8::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6A6C29A549;
+        Thu, 24 Feb 2022 03:36:25 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id B6E6F100004;
+        Thu, 24 Feb 2022 11:36:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645702584;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=BLhjYbXeZP/7sHaaf5jCo45XaOnT58BV5y0fnJ9Ge/Y=;
+        b=acHxcqFtwxrYxmnUU3d3kLDGXmnpAOTU+wLlurAFYvEsa35Xrjb2twvtTclOOUUuRzAdsi
+        OH7yYOB/eD4i/XmAH7tqZrIEQExI4hS5AyBBUK+uNtb+k4FFWDgVhx71lGhiqxGYGo4tje
+        xgQjIFPKWbyzKSXmdinLjQlCVqEG+t/6596HOcFuJPindVg6IaqwkSdOgZZi0YDTwyaoTj
+        O3hvQWal2/QzIFc2dnoLS5RqbgGJ0KuUgkorRWrG0BOT+sFHRkc+jcc8fXQDUijyMD94YN
+        DO+ETv2Hi64HoNn5RC/NzyUDo+2d5iquxRWRalBP/Q+3y1uB74ZhhyfcIo/4tQ==
+Date:   Thu, 24 Feb 2022 12:36:20 +0100
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>
+Subject: Re: [PATCH v2 4/8] dma: dmamux: Introduce RZN1 DMA router support
+Message-ID: <20220224123620.02740e8c@xps13>
+In-Reply-To: <CAMuHMdWtx5jnyZ0vhCVvM=nTv9H4tD7+g0YTWX8MALc_hR5x4g@mail.gmail.com>
+References: <20220222103437.194779-1-miquel.raynal@bootlin.com>
+        <20220222103437.194779-5-miquel.raynal@bootlin.com>
+        <CAMuHMdWd150q63Nr-=7tn34D3EyiBkAKyuXHm35MM6wci93KZw@mail.gmail.com>
+        <20220223174902.3a9b85ea@xps13>
+        <CAMuHMdVr4tiicEn-BbBnCd-zP6ncr=zKd-eDvPYoYKNWUKsOBw@mail.gmail.com>
+        <20220224102724.74e2c406@xps13>
+        <CAMuHMdWtx5jnyZ0vhCVvM=nTv9H4tD7+g0YTWX8MALc_hR5x4g@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Feb 2022 22:48:58 +0530, Alim Akhtar wrote:
-> Add node relevant to support MCT, which is used as
-> one of the system timer on this SoC.
+Hi Geert,
+
+> > > > > > +static int rzn1_dmamux_probe(struct platform_device *pdev)
+> > > > > > +{
+> > > > > > +       struct device_node *mux_node = pdev->dev.of_node;
+> > > > > > +       const struct of_device_id *match;
+> > > > > > +       struct device_node *dmac_node;
+> > > > > > +       struct rzn1_dmamux_data *dmamux;
+> > > > > > +
+> > > > > > +       dmamux = devm_kzalloc(&pdev->dev, sizeof(*dmamux), GFP_KERNEL);
+> > > > > > +       if (!dmamux)
+> > > > > > +               return -ENOMEM;
+> > > > > > +
+> > > > > > +       mutex_init(&dmamux->lock);
+> > > > > > +
+> > > > > > +       dmac_node = of_parse_phandle(mux_node, "dma-masters", 0);
+> > > > > > +       if (!dmac_node)
+> > > > > > +               return dev_err_probe(&pdev->dev, -ENODEV, "Can't get DMA master node\n");
+> > > > > > +
+> > > > > > +       match = of_match_node(rzn1_dmac_match, dmac_node);
+> > > > > > +       if (!match) {
+> > > > > > +               of_node_put(dmac_node);
+> > > > > > +               return dev_err_probe(&pdev->dev, -EINVAL, "DMA master is not supported\n");
+> > > > > > +       }
+> > > > > > +
+> > > > > > +       if (of_property_read_u32(dmac_node, "dma-requests", &dmamux->dmac_requests)) {
+> > > > > > +               of_node_put(dmac_node);
+> > > > > > +               return dev_err_probe(&pdev->dev, -EINVAL, "Missing DMAC requests information\n");
+> > > > > > +       }
+> > > > > > +
+> > > > > > +       of_node_put(dmac_node);  
+> > > > >
+> > > > > When hardcoding dmac_requests to 16, I guess the whole dmac_node
+> > > > > handling can be removed?  
+> > > >
+> > > > Not really, I think the following checks are still valid and fortunate,
+> > > > and they need some of_ handling to work properly:
+> > > > - verify that the chan requested is within the range of dmac_requests
+> > > >   in the _route_allocate() callback
+> > > > - ensure the dmamux is wired to a supported DMAC in the DT (this
+> > > >   condition might be loosen in the future if needed or dropped entirely
+> > > >   if considered useless)
+> > > > - I would like to add a check against the number of requests supported
+> > > >   by the dmamux and the dmac (not done yet).
+> > > > For the record, I've taken inspiration to write these lines on the other
+> > > > dma router driver from TI.
+
+        ^^^^^^^^^^^
+... these checks
+
+> > > >
+> > > > Unless, and I know some people think like that, we do not try to
+> > > > validate the DT and if the DT is wrong that is none of our business.
+> > > >  
+> > > > >  
+> > > > > > +
+> > > > > > +       if (of_property_read_u32(mux_node, "dma-requests", &dmamux->dmamux_requests)) {  
+> > > > >
+> > > > > Don't obtain from DT, but fix to 32?  
+> > > >
+> > > > I believe the answer to the previous question should give me a clue
+> > > > about why you would prefer hardcoding than reading from the DT such
+> > > > an information. Perhaps I should mention that all these properties are
+> > > > already part of the bindings, and are not specific to the driver, the
+> > > > information will be in the DT anyway.  
+> > >
+> > > The 32 is a property of the hardware (32 bits in DMAMUX register).
+> > > So IMHO it falls under the "differentiate by compatible value,
+> > > not by property" rule.  
+> >
+> > I agree this is a property of the hardware and feels redundant here.
+> >
+> > What about the checks below, do you agree with the fact that I should
+> > keep them or do you prefer dropping them (all? partially?)?  
 > 
+> There are no checks below?
+
+I meant above /o\ ...
+
+> /me confused.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
 > 
 
-Applied, thanks!
-
-[1/1] arm64: dts: fsd: Add the MCT support
-      commit: 272a253338f91a192defc124930030369b2a7fd4
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
