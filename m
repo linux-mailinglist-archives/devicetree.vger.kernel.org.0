@@ -2,86 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E00BC4C2B27
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 12:46:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C8F774C2B3B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 12:56:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234000AbiBXLpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 06:45:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50530 "EHLO
+        id S234129AbiBXL4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 06:56:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233989AbiBXLpD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 06:45:03 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D32813EB86
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 03:44:32 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id u1so2532354wrg.11
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 03:44:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=By0koPKvfxcMR4uami4q6nEo7H/plZ6B7hXdRpr9zos=;
-        b=i8qMcPf1Q3mE5GCDoGg5rN2z7KNR4v1QkWzdeaMyW3k3kXIOY/PIZZoO6jIzrS9GXf
-         N9J6MgxVHAl8cKqQeyfCQQDG4qPlkD5aYJCyfFSPkTwQNcaQ9gYSWj1kbxmzh8jUh+4o
-         WC4u08jO9c1zBuBLLsiQa8Spwvz7ssr2B3BAWulYxl4FnxeAYyvP13FtiYVEawCyqc0q
-         +yzoQlx6Y4aTL5/fh1nHkgZbx5plCCjmpVTf1t+MWsHwZBuivtQnySk8fM3G6A5NiXCZ
-         sXHHBvZ4aTdUjMWeM2AYEuCPcWqA5p7ojUQdIZHcKCaRG/P808wP/zP8G+Ji2NOxc4zc
-         g81g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=By0koPKvfxcMR4uami4q6nEo7H/plZ6B7hXdRpr9zos=;
-        b=RydS2zdF73PYtrpQju3+FhJiopXO9z2qam39mblpeZoGqg/6D6z3DOCWfy8vidbY61
-         2VyfvNzyeTuiLKRdSgX8g06rI7qiJ1nG3iIv8k4dcJHqGNdX8gYeyIdWdAEXRoT93cuB
-         KS88kQml2D1qChRxVIWSiFFW7tgXH/6VweA6nTywMT/Mh8neR5bQqSHCw7r9LAvDGEqe
-         Vsx4WsutiNWPGnRuyReSRA/N5h5ebJOTjyrfNcc7lBGyssOZx4P96DeeFZXWPxWRMsBX
-         LkUTBwjmBnQZkPN1q4qscx5+2iIr7essWetRAteH+PK8ClIueLhYPYxkPA8+1XMioq+E
-         gBxg==
-X-Gm-Message-State: AOAM530HPZuydiSpaC4rhRy/r5zOcHEZvI2FAXY8mONN7d2FSBDzdAWt
-        IzSTZDwBoII2aTwKj8s5ftrRRA==
-X-Google-Smtp-Source: ABdhPJxFyXliu42yySrAeEXNzyWqVzug0J0Iti33/VcWEhV2LbIEmmE4MOW6ths5lINZk21h7SfROw==
-X-Received: by 2002:a05:6000:186d:b0:1ea:8e14:21c5 with SMTP id d13-20020a056000186d00b001ea8e1421c5mr1880571wri.635.1645703071405;
-        Thu, 24 Feb 2022 03:44:31 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id u14sm3164913wmq.41.2022.02.24.03.44.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 03:44:31 -0800 (PST)
-Date:   Thu, 24 Feb 2022 11:44:28 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: pwm: google,cros-ec: include generic
- pwm schema
-Message-ID: <YhdvnCnXbzFz63ys@google.com>
-References: <20220214081916.162014-1-krzysztof.kozlowski@canonical.com>
- <3248917.W5uN0jUHDo@phil>
- <YhdXyBvAbdHzc4gH@google.com>
- <1817486.VeUe9BSz9F@phil>
- <ad6e347b-a25b-5309-2a6a-8fd3faba256c@canonical.com>
+        with ESMTP id S231176AbiBXL4G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 06:56:06 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D1B64254550;
+        Thu, 24 Feb 2022 03:55:35 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 72513106F;
+        Thu, 24 Feb 2022 03:55:35 -0800 (PST)
+Received: from bogus (unknown [10.57.3.206])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 654C83F66F;
+        Thu, 24 Feb 2022 03:55:33 -0800 (PST)
+Date:   Thu, 24 Feb 2022 11:54:43 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+Cc:     Cristian Marussi <cristian.marussi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+Message-ID: <20220224115443.fwhczfvm3cfwoim7@bogus>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
+ <20220222110003.GC21915@e120937-lin>
+ <20220222160637.yn6pru4nfgwih23j@bogus>
+ <20220222171549.GA2194063@EPUAKYIW015D>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ad6e347b-a25b-5309-2a6a-8fd3faba256c@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220222171549.GA2194063@EPUAKYIW015D>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,58 +50,207 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Feb 2022, Krzysztof Kozlowski wrote:
-
-> On 24/02/2022 11:06, Heiko Stuebner wrote:
-> > Am Donnerstag, 24. Februar 2022, 11:02:48 CET schrieb Lee Jones:
-> >> On Wed, 23 Feb 2022, Heiko Stuebner wrote:
-> >>
-> >>> Hi Lee,
-> >>>
-> >>> Am Mittwoch, 23. Februar 2022, 10:16:01 CET schrieb Lee Jones:
-> >>>> On Mon, 14 Feb 2022, Krzysztof Kozlowski wrote:
-> >>>>
-> >>>>> Include generic pwm.yaml schema, which enforces PWM node naming.  Keep
-> >>>>> the old name in bindings as deprecated.
-> >>>>>
-> >>>>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> >>>>> ---
-> >>>>>  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml    | 4 ++++
-> >>>>
-> >>>> Acked-by: Lee Jones <lee.jones@linaro.org>
-> >>>
-> >>> what is your expectation regarding this patch?
-> >>>
-> >>> Are you planning to merge it or are you expecting this to go through
-> >>> some other tree?
-> >>>
-> >>> The binding-change here is backward-comaptible in that the old
-> >>> node-name is still in it, only marked as deprecated, so in theory
-> >>> this patch should be able to be applied on its own without
-> >>> causing defects.
-> >>
-> >> In an ideal world, it would be broken up and I would take the MFD
-> >> part.   Is that possible or are there dependencies?
-> > 
-> > That is also what Krzysztof had in mind - see his reply to patch4.
-> > Binding going through the MFD tree and soc maintainers applying
-> > the individual dts patches.
-> > 
-> > As written the binding change is backward compatible, so no harm.
-> > 
-> > I was just confused by the "Acked-by" and wanted to clarify how you
-> > see it ;-)
-> >
+On Tue, Feb 22, 2022 at 05:15:49PM +0000, Oleksii Moisieiev wrote:
+> Hi Sudeep,
 > 
-> The bindings patch should not be split more, but itself can be taken
-> alone. DTS patches can go via SoC maintainer trees.
+> On Tue, Feb 22, 2022 at 04:06:37PM +0000, Sudeep Holla wrote:
+> > Hi Oleksii,
+> > 
+> > My initial feedback on this. And thanks Cristian for making it so easy as
+> > you have covered most of the things in depth(which I might have not done
+> > myself that well)
+> > 
+> > On Tue, Feb 22, 2022 at 11:00:03AM +0000, Cristian Marussi wrote:
+> > > On Mon, Feb 21, 2022 at 05:26:46PM +0000, Oleksii Moisieiev wrote:
+> > > > Introducing new parameter called scmi_devid to the device-tree bindings.
+> > > > This parameter should be set for the device nodes, which has
+> > > > clocks/power-domains/resets working through SCMI.
+> > 
+> > I prefer you had given more details on your usage model here instead of
+> > pointing to the other Xen thread as it helps for someone without much
+> > background on Xen or your use-case to review this.
+> > 
+> Let me describe the process in few words:
+> We implemented a new feature, called SCI-mediator in Xen.
+> The proposed implementation allows Guests to communicate with the Firmware using SCMI
+> protocol with SMC as a transport. Other implementation are also
+> possible, such as SCMI-Mailbox, SCPI-mailbox etc.
+> 
+> In this feature Xen is the Trusted Agent, which receives the following
+> information in Xen device-tree:
+> 1) All channels should be described, each channel defined as
+> arm,scmi-shmem node;
+> 2) Scmi node arm,scmi-smc with protocols description;
 
-So in answer to Heiko's question, either Thierry, Rob or I can take
-the patch.  I'm not overly fussed which.  If I am to take it, I need
-Thierry's go-ahead and info on whether he requires a PR or not.
+Sounds good so far.
+
+> 3) scmi-devid should be set in nodes, which works through SCMI.
+>
+
+Why is this needed for Guest OS, you need not populate this if Guest OS
+is not required to use it, right ? If it is needed just by Xen hypervisor,
+lets talk about that and why it is bad idea to mix that with general
+SCMI bindings.
+
+> On start Xen inits itself as trusted agent and requests agent
+> configuration by using BASE_DISCOVER_AGENT message. This message is sent
+> to each configured channel to get agent_id
+> 
+> On Domain creation stage Xen will do the following steps:
+> 1) Assign channel to the Guest and map channel address to the Domain
+> address. For the Domain this address should be the same;
+> 2) Generate arm,scmi-shmem and arm,scmi-smc nodes if needed for Guest
+> device-tree (the device-tree which should be passed to the Guest);
+> 3) Process devices, which are passed through to this Guest and set
+> BASE_SET_DEVICE_PERMISSIONS for the scmi-devid, received from the
+> device-node;
+>
+
+I am confused here. So the Xen knows which devices are assigned to each
+Guest OS but doesn't know device ID for them, but relies on the device
+tree node ?
+
+> Guest OS will receive non-trusted channel and ignore scmi-devid fields
+> in the device-nodes.
+>
+
+Then no need to pass it. It keeps the SCMI agent binding clean.
+
+> IMPORTANT: Guest OS is non-trusted Agent. Xen is the only trusted agent
+> in the system. Guest OS uses standart scmi drivers without any xen
+> related changes. So Guest OS doesn't know it works through mediator.
+>
+
+Good.
+
+> The main question is - how Firmware will know what agent sent SMC
+> message and what channel_id should be used? I couldn't find clear
+> explanation in spec.
+
+1. So the hypervisor forwards all the messages from different guests without
+   any marshalling ?
+2. If Xen is just acting as pass through, why does firmware care about the
+   origin of the message.
+
+> That's why I end up with the following approaches:
+> 1) Current implemenation: Guest OS send SMC request, Xen intercept this
+> request and set channel ID to SMC Client_ID field (reg7), then resend
+> SMC message to Firmware. Firmware parses SMC Client ID to get channel_id
+> to work with.
+
+As asked above, why is this information important to the firmware.
+
+> 2) Another approach is to generate unique FuncID for each GuestOS. In
+> this case no interception from Xen is needed - Guest OS can work
+> directly with Firmware.
+>
+
+I think that is the only way today to support multiple channels with
+SMC/HVC. The reason for that is since the SMC FID is custom, we can't take
+custom parameters and write a generic SCMI smc transport driver. This was
+discussed and we decided to go for different FID, otherwise we would have
+to standardise parameters to the custom FID which is insane IMO.
+
+> I hope you'll be able to help me with that.
+>
+
+Thanks for details. It definitely provided more information though not yet
+complete as you can guess with my questions here.
+
+> > > > Given parameter should set the device_id, needed to set device
+> > > > permissions in the Firmware. This feature will be extremely useful for
+> > > > the virtualized systems, which has more that one Guests running on the
+> > > > system at the same time or for the syestems, which require several
+> > > > agents with different permissions. Trusted agent will use scmi_devid to
+> > > > set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
+> > > > for details).
+> > 
+> > I am bit confused here, so you expecting a non-secure/non-trusted entity
+> > to supply this device-id to the Trusted agent ? Is that not the breach of
+> > trust as any non-trusted entity can supply any agent-id and get the permission
+> > to access the associated resource in this way ? Or am I missing something
+> > totally here.
+> > 
+> 
+> No, Device-id will be used only by trusted agents, which is Xen in our
+> case. Please see above.
+>
+
+Understood now, and I will assert guest OS must not have it in its DT.
+
+
+[...]
+
+> > >
+> > > So in all of this, I don't get why you need this DT definition aggregating SCMI
+> > > resources to SCMI device IDs in the Guest OS, which is an SCMI agent that does not
+> > > need to now anything about SCMI device IDs (at least with the current spec): this
+> > > would make sense only if the Linux Kernel was the TrustedAgent in charge of
+> > > configuring the devices permissions via BASE_SET_DEVICE_PERMISSIONS.
+> > > (in fact you said you won't provide any code to manage this scmi_devid
+> > > in the kernel since those guests are not trusted agents and the won't be
+> > > allowed to set device permissions...)
+> > >
+> > 
+> > +1 (again)
+> > 
+> > > The only tricky part I can see in all of the above is agent identification, since
+> > > the agents are assigned an ID by the SCMI platform (which can be queried) and they
+> > > have a set of dedicated channels to use, so basically the platform really identifies
+> > > the Agents looking at the channel from which a request is coming from and AgentID is
+> > > not carried inside the message as a source and cannot be spoofed.
+> > >
+> > 
+> > IIUC, the physical/virtual transport and associated transport chosen
+> > identifies the agent for the SCMI platform.
+> 
+> Could you please clarify what do you mean under "physical/virtual
+> transport"?
+
+I was speculating some design in Xen on how it present virtual channels to
+guests. Ignore that as I now understand you are using SMC.
+
+> For now yes - Firmware should get information for the channel from
+> transport.
+
+Indeed, with SMC/HVC, you will need different FID for reasons stated above.
+
+> > 
+> > > > Given example shows the configuration of the hsusb node, which is using
+> > > > scmi to contol clocks, resets and power-domains. scmi_devid is set
+> > > > equals to 19, which should match defined id for usb in the Firmware.
+> > > >
+> > > > Trusted agent will use scmi_devid to set the device permissions for
+> > > > the Agents. Guest OS should not have an access to the permissions
+> > > > settings, so no code to process scmi_devid was presented in Linux
+> > > > kernel.
+> > > >
+> > > > We are currently contributing changes to Xen, which are intended to
+> > > > mediate SCMI access from Guests to the Firmware. Xen uses scmi_devid to set
+> > > > the permissions for the devices. See [1] thread for details.
+> > > >
+> > > > [0] https://urldefense.com/v3/__https://developer.arm.com/documentation/den0056/latest__;!!GF_29dbcQIUBPA!mGggDzmp0B8cSdGJdH4utz6sx7g5PMXq05mXf91dU8XgkJaCuEpHdARZCdl-g1BnrduL$ [developer[.]arm[.]com]
+> > > > [1] https://urldefense.com/v3/__https://xen.markmail.org/message/mmi4fpb4qr6e3kad__;!!GF_29dbcQIUBPA!mGggDzmp0B8cSdGJdH4utz6sx7g5PMXq05mXf91dU8XgkJaCuEpHdARZCdl-g-bWzzb5$ [xen[.]markmail[.]org]
+> > >
+> > > IMHO, but I could be wrong, looking at the current SCMI spec you cannot just
+> > > gather messages from a set of GuestOs talking via different SCMI channels and
+> > > then pipe/route them through a single channel to the backend server,
+> > > attaching/spoofing some sort of Agent source ID to each message like you seem to
+> > > be doing in the Xen series
+> > >
+> > 
+> > I haven't looked at the other series, but it is hard to say the spec prohibits
+> > this. I don't understand that spoofing part, but Xen hyp can arbitrate the
+> > requests across guests I believe. But the devil is in details so I can't
+> > comment on what is done. What I can say is this Agent ID is in each message is
+> > not compliant to spec.
+> > 
+> 
+> In our implementation XEN do not copy any data from shared memory. The
+> only thing it does is letting Firmware know which channel it should use.
+
+OK.
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sudeep
