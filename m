@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D080B4C370A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:50:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 687E04C3714
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:54:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234381AbiBXUuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 15:50:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51090 "EHLO
+        id S234391AbiBXUyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:54:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234348AbiBXUt7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:49:59 -0500
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 317471C8855;
-        Thu, 24 Feb 2022 12:49:29 -0800 (PST)
-Received: by mail-oi1-f173.google.com with SMTP id ay7so4891051oib.8;
-        Thu, 24 Feb 2022 12:49:29 -0800 (PST)
+        with ESMTP id S231350AbiBXUyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:54:43 -0500
+Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1850B1C6EDC
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:13 -0800 (PST)
+Received: by mail-ot1-x32f.google.com with SMTP id j8-20020a056830014800b005ad00ef6d5dso2239840otp.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=/N1WrL28Utrh8BfXfn+pcRHI8/UBv9HnnB4a8HQcyiw=;
+        b=zEWcpsx4YK1p6lsZYtNPdZ/Oe4+gXRXMusfIP437eLHzQ7CCfoDc2Lm7PcpnUvFi5R
+         yNvWUDEFzEqIRAXVAOb+I24Sd2lpGQU2BC2f6I7Q8lrAT3xBBT+g+F+YWWPE2iKJXzFP
+         2/uWLSJKfFyXLVwnxEFF2eUJa8oitfk7ZG+s3c0pnOxSjFNZ++6AX+tf/gvvW2ej1PGt
+         /cI1ddKQSmwpwJOAThJDRL0N4bYiBoL+eIWaazIbh31FGrp1175sOC/rDLCC2Hn1D0/S
+         0Hv4Eoq+1AkZdNGlSR5NxwsTEyX5t/aERagrouAr5+b0S4h88saQk1X5AJwtgirETPNS
+         2M9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ad4J5+9RdUyS+Z6nJ1tSy2gtAoNHPdi9y1eK0/M4fGc=;
-        b=hueGmrjpnWW93evKE/Xa7TQSfDXpsAf2Vc/JrweL/Ixuei02ExugflrTQ/5IsUz5D9
-         72aUFDAkDUkGcRREC+AuXS7nAfbdNnuVrjbxbXK2+IlbSeW6X3338ZOj+OW5OrSdWC+E
-         IjhUAIHdyyDxUx0LzZWsQ74lBAe6WWTGOgkD4zSDXrXXBbxWY8CD1gTXbqBfVfongafY
-         bTr0jA2V2mc2BSKwGpJNDiKqDoEHGQ15nJpiZxxyW7uOaGokOU5kcXmDPha/s7Hx7pLU
-         +Q5UkK9C4I7lvA7HmWDvZW2qelFQ5jCnPAiOUW7vsB+zuH3YZtg7klwDzZ/VVVoy60OO
-         vnag==
-X-Gm-Message-State: AOAM533x4NGEFwmeJXdKH92P9m8TIwilQDtloPHq1LSMEP0ERwXcF29Z
-        B4tk7ePx9d4lqXgdr6DTCg==
-X-Google-Smtp-Source: ABdhPJyNOaa8f2/SMomPS8HIDN+rN46ER7uWdTBb9aUTc5PuznLNa1TL+sk5tH4Dr49CjtvFltA65w==
-X-Received: by 2002:a05:6808:2213:b0:2d4:f6a4:cc99 with SMTP id bd19-20020a056808221300b002d4f6a4cc99mr2401266oib.195.1645735768488;
-        Thu, 24 Feb 2022 12:49:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id i11-20020a056830402b00b005af1411565bsm174855ots.78.2022.02.24.12.49.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=/N1WrL28Utrh8BfXfn+pcRHI8/UBv9HnnB4a8HQcyiw=;
+        b=FACJH49oHenhM9tZXCY/qlu3EkQHnBx4yT6QyXr+06kcc2fx7doLji33r743l4Wg3m
+         T+orUi55Fx0Kj0ImQZf1e380yZWosVWLanwdOBRhLV0VClZKxFz24KeWv4fgSSw+/2W6
+         QLZCYY3aXWc5Y+Ilce4TvnivrT6wWgqoynS5xr4bMnwc9eFNL1ekUTP+Ty8a2WqINsWR
+         18If4pjZcdxa7sqMx0NYGN6349PnI/7E4dwLIeI9JH4J2xsbbMAzrvQM8NDBaOswJuc8
+         H1Nojkj95nckQupGVUp8AsT1lDjO83NGcSc6MK56i0B6GcJavr/p1yqkLlVkglFWPkxl
+         CJvw==
+X-Gm-Message-State: AOAM531uAuAYXQKs4GjyO99A0VOHsowiffZVPb1EYj4tkkVJxNzOXQQR
+        urPfBMZCh1UoKxVji3TYhh5aeg==
+X-Google-Smtp-Source: ABdhPJxeAhHUZN7EK8ykF7DhK96G6gvD71eTymo8p6+778tRD/eZ3mqu8lZX3c23p1LuyQtrYnFMLQ==
+X-Received: by 2002:a05:6830:4119:b0:5af:143c:76ad with SMTP id w25-20020a056830411900b005af143c76admr1649645ott.183.1645736052418;
+        Thu, 24 Feb 2022 12:54:12 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id c8-20020a4ad788000000b0031ce69b1640sm191259oou.10.2022.02.24.12.54.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 12:49:27 -0800 (PST)
-Received: (nullmailer pid 3560757 invoked by uid 1000);
-        Thu, 24 Feb 2022 20:49:26 -0000
-Date:   Thu, 24 Feb 2022 14:49:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     "xinlei.lee" <xinlei.lee@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org, thierry.reding@gmail.com,
-        lee.jones@linaro.org, linux-pwm@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
-        jitao.shi@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, allen-kh.cheng@mediatek.com,
-        u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
-        Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-Subject: Re: [v2,1/4] dt-bindings: pwm: Convert pwm-mtk-disp.txt to
- mediatek,pwm-disp.yaml format
-Message-ID: <YhfvVmtX9hj6E6KQ@robh.at.kernel.org>
-References: <1645003971-16908-1-git-send-email-xinlei.lee@mediatek.com>
- <1645003971-16908-2-git-send-email-xinlei.lee@mediatek.com>
- <1645051913.078742.1825836.nullmailer@robh.at.kernel.org>
- <0f8c014c077d0fc75c8552e457482d9daf68d73b.camel@mediatek.com>
+        Thu, 24 Feb 2022 12:54:11 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/5] sdm845 and msm8996 clock updates
+Date:   Thu, 24 Feb 2022 14:53:59 -0600
+Message-Id: <164573604161.1471031.18366594019169463270.b4-ty@linaro.org>
+X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
+References: <20220215201539.3970459-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0f8c014c077d0fc75c8552e457482d9daf68d73b.camel@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,103 +74,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 08:35:58PM +0800, xinlei.lee wrote:
-> On Wed, 2022-02-16 at 16:51 -0600, Rob Herring wrote:
-> > On Wed, 16 Feb 2022 17:32:48 +0800, xinlei.lee@mediatek.com wrote:
-> > > From: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-> > > 
-> > > Convert pwm-mtk-disp.txt to mediatek,pwm-disp.yaml format as
-> > > suggested by maintainer
-> > > 
-> > > Signed-off-by: Xinlei Lee <
-> > > xinlei.lee@mediatek.corp-partner.google.com>
-> > > ---
-> > >  .../bindings/pwm/mediatek,pwm-disp.yaml       | 71
-> > > +++++++++++++++++++
-> > >  .../devicetree/bindings/pwm/pwm-mtk-disp.txt  | 44 ------------
-> > >  2 files changed, 71 insertions(+), 44 deletions(-)
-> > >  create mode 100755
-> > > Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> > >  delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-mtk-
-> > > disp.txt
-> > > 
-> > 
-> > Running 'make dtbs_check' with the schema in this patch gives the
-> > following warnings. Consider if they are expected or the schema is
-> > incorrect. These may not be new warnings.
-> > 
-> > Note that it is not yet a requirement to have 0 warnings for
-> > dtbs_check.
-> > This will change in the future.
-> > 
-> > Full log is available here: 
-> > https://patchwork.ozlabs.org/patch/1593550
-> > 
-> > 
-> > pwm@1400a000: compatible:0: 'mediatek,mt7623-disp-pwm' is not one of
-> > ['mediatek,mt2701-disp-pwm', 'mediatek,mt6595-disp-pwm',
-> > 'mediatek,mt8173-disp-pwm', 'mediatek,mt8183-disp-pwm']
-> > 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-> > 
-> > pwm@1400a000: compatible: ['mediatek,mt7623-disp-pwm',
-> > 'mediatek,mt2701-disp-pwm'] is too long
-> > 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-> > 
-> > pwm@1400a000: 'oneOf' conditional failed, one must be fixed:
-> > 	arch/arm/boot/dts/mt2701-evb.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-> > 
-> > pwm@1400a000: 'power-domains' is a required property
-> > 	arch/arm/boot/dts/mt2701-evb.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dt.yaml
-> > 	arch/arm/boot/dts/mt7623n-rfb-emmc.dt.yaml
-> > 
-> > pwm@1401e000: compatible: ['mediatek,mt8173-disp-pwm',
-> > 'mediatek,mt6595-disp-pwm'] is too long
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-> > 
-> > pwm@1401e000: 'oneOf' conditional failed, one must be fixed:
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-> > 
-> > pwm@1401e000: 'power-domains' is a required property
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-> > 
-> > pwm@1401f000: compatible: ['mediatek,mt8173-disp-pwm',
-> > 'mediatek,mt6595-disp-pwm'] is too long
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-elm-hana-rev7.dt.yaml
-> > 	arch/arm64/boot/dts/mediatek/mt8173-evb.dt.yaml
-> > 
-> Hi Rob:
+On Tue, 15 Feb 2022 23:15:34 +0300, Dmitry Baryshkov wrote:
+> This is a dts (and bindings) counterpart for the
+> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=601612
 > 
-> Thanks for your review. I'm trying to modify the dtbs_check warning you
-> mentioned. I would like to ask what cmd I can use to test the modified
-> dtbs_check locally.
+> sdm845.dtsi (camcc) and msm8996.dtsi (gcc) are updated to
+> use DT clock bindings rather than global clock output names.
+> 
+> Dmitry Baryshkov (5):
+>   dt-bindings: clocks: convert SDM845 Camera CC bindings to YAML
+>   dt-bindings: clocks: qcom,sdm845-camcc: add clocks/clock-names
+>   arm64: dts: qcom: sdm845: add bi_tcxo to camcc
+>   arm64: dts: qcom: msm8996: add cxo and sleep-clk to gcc node
+>   arm64: dts: qcom: msm8996: convert xo_board to RPM_SMD_BB_CLK1
+> 
+> [...]
 
-# Enable building all dtbs
-make allmodconfig
+Applied, thanks!
 
-make dtbs_check DT_SCHEMA_FILES=path/to/schema.yaml
+[1/5] dt-bindings: clocks: convert SDM845 Camera CC bindings to YAML
+      commit: a0d61d02c102d93e8c8f653cbfdc3bf485d45aaf
+[2/5] dt-bindings: clocks: qcom,sdm845-camcc: add clocks/clock-names
+      commit: 2564aa7544f493c64b397e02a2b477591016aa24
 
-> Also for WARNING: DT binding docs and includes should be a separate
-> patch. I've also made some attempts including splitting the delete .txt
-> and create .yaml files into two patches, but the warning doesn't
-> resolve. Do you have any suggestions for the results of checkpatch
-> ?This will help a lot with the next edition I send out.
-
-Ignore it for conversion patches.
-
-Rob
+Best regards,
+-- 
+Bjorn Andersson <bjorn.andersson@linaro.org>
