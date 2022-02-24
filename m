@@ -2,66 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B5284C358D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:16:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3EB4C35A5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:18:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233444AbiBXTQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:16:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
+        id S233514AbiBXTSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 14:18:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233449AbiBXTQq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:16:46 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38F5622C6C2;
-        Thu, 24 Feb 2022 11:16:16 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id q5so4351398oij.6;
-        Thu, 24 Feb 2022 11:16:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CIZ8l9ggHI+ksF9ySGra6oc3DHVzkCgMYu8j36TV9TY=;
-        b=V1oPulW0uWMcspy/r6BqCt7k8/DIqWeMrZ6i4gF6Di9jeANNXqZW3dMBTEXVChxlET
-         sG9WTxKweaP2tbClGbSbDd/gE74s8QdWievEbT01C4jQQmaAb6l8HN5bkeiR4nCb8UVA
-         mSvPfRywBZPiu1Pa4GOP5O6jw6zfCMUB9UUoTf3nbHaKrs9it8+BmHTSZFI0pU8j8vvB
-         01eXZdvgA1LZ1h1J5eUNDTDAGvmLqAqRuY/r8xp8H0k+HHPia/dgWvUJPIAeWwXCLsIK
-         Zr4+ITj65WTjhFLTLlUdAf2xpugKqAtXk0FqkMXQBsyLVgxRrZF1GwdX07L7RYnauNez
-         Je+w==
-X-Gm-Message-State: AOAM533C8pvp7+kwD6fa8CMIYnPkf5Ji4i7UFsnVuc8jEX6ETR+hdjHv
-        izdg+DqNF2y4zmrY0bLIoQ==
-X-Google-Smtp-Source: ABdhPJwxUu9mkz92flMo29/vSvMvRas73bEu7/GHucHHjC7qW5h3B9JoZfONOkccBnWTGnjHJiY6/g==
-X-Received: by 2002:aca:6083:0:b0:2cb:5570:7564 with SMTP id u125-20020aca6083000000b002cb55707564mr8499482oib.57.1645730175518;
-        Thu, 24 Feb 2022 11:16:15 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 9-20020a9d0c09000000b005afabd759cfsm80036otr.65.2022.02.24.11.16.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 11:16:14 -0800 (PST)
-Received: (nullmailer pid 3428805 invoked by uid 1000);
-        Thu, 24 Feb 2022 19:16:13 -0000
-Date:   Thu, 24 Feb 2022 13:16:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, p.zabel@pengutronix.de,
-        hsinyi@chromium.org, devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        yongqiang.niu@mediatek.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, fparent@baylibre.com, daniel@ffwll.ch,
-        airlied@linux.ie, jassisinghbrar@gmail.com, chunkuang.hu@kernel.org
-Subject: Re: [PATCH v4,1/5] dt-bindings: arm: mediatek: mmsys: add support
- for MT8186
-Message-ID: <YhfZff2KIPdOm53H@robh.at.kernel.org>
-References: <20220222052803.3570-1-rex-bc.chen@mediatek.com>
- <20220222052803.3570-2-rex-bc.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220222052803.3570-2-rex-bc.chen@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S233565AbiBXTSs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:18:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA6C0B2D60;
+        Thu, 24 Feb 2022 11:18:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8716261675;
+        Thu, 24 Feb 2022 19:18:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id E723AC340F2;
+        Thu, 24 Feb 2022 19:18:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645730297;
+        bh=bvJuOGgcV0Fdc1Qx5ON/8sJfaSUvZC0OjbxexBKrqls=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=QS1tESOCJZ4rkmg9Ut/jk1Wnt9ILhLx+c45eIzb5b9XMOd+mpLBkUD7R2QLZ6La47
+         xRAHsKCkTOFEU6n0DaLKdeX8rsHb56SHK6AVOpsydOJlkk5AU3uie1F2XeuXIVsGAv
+         1dJYFVzq6L4m1bTHRex5NDPEqvK8KKHtdvuI+bXnFGSQpgvq9q9QWUlgYpwSyb/ZQ3
+         pm6IlawEkmsj6UdVZM/gMgEdKl+06mqnEpGWBZ89va6z6qs7l2hHGSJlIgu5DltxMZ
+         uSIQxuKnTpY2NVDSvMH9BNfad+kaTzWl8PKDhw6JjE1bYkpgynCmJ3oUKe+oPV6pqZ
+         hNqP7ppfOxyYw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id D3FC2EAC081;
+        Thu, 24 Feb 2022 19:18:16 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v5.17, take 2
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <Yha/383yJgJFHqPR@robh.at.kernel.org>
+References: <Yha/383yJgJFHqPR@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <Yha/383yJgJFHqPR@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-2
+X-PR-Tracked-Commit-Id: 0c0822bcb73f154d96ee648644ec5a8628e3b864
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 91318b29a81cf51451ecf1c0054898f67dc26d87
+Message-Id: <164573029686.2860.6703762335601163588.pr-tracker-bot@kernel.org>
+Date:   Thu, 24 Feb 2022 19:18:16 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,13 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Feb 2022 13:27:59 +0800, Rex-BC Chen wrote:
-> Add "mediatek,mt8186-mmsys" to binding document.
-> 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml         | 1 +
->  1 file changed, 1 insertion(+)
-> 
+The pull request you sent on Wed, 23 Feb 2022 17:14:39 -0600:
 
-Acked-by: Rob Herring <robh@kernel.org>
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-2
+
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/91318b29a81cf51451ecf1c0054898f67dc26d87
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
