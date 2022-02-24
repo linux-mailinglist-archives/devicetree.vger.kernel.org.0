@@ -2,88 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 164304C27AE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:13:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEDBD4C27C4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:15:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230474AbiBXJLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 04:11:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56744 "EHLO
+        id S231446AbiBXJOS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 04:14:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232755AbiBXJLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:11:14 -0500
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6899D1B3722;
-        Thu, 24 Feb 2022 01:10:39 -0800 (PST)
-Received: by mail-ua1-f42.google.com with SMTP id b37so559992uad.12;
-        Thu, 24 Feb 2022 01:10:39 -0800 (PST)
+        with ESMTP id S230180AbiBXJOS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:14:18 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28A7A199E28
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 01:13:49 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id cp23-20020a17090afb9700b001bbfe0fbe94so1481896pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 01:13:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=SEB2HcIZlaGJONkY26HdM82R7VoeFOHxdC+7YcIMHpk=;
+        b=BozESD3z7jrdcobIG336ckDeZAT5h9x7FcX4J+gwosdJzTR8yZqS1S/PUUodNTnmxn
+         dyxz8PwnhXIC+ujervLPrq18f+p3TtMW8TTtbQOjJHKoOJuoQzkcflu7DNBZq5iFQzPK
+         21szHHPjvyarIuX6e6MuWTJ00EeARxT4k4tHBLoGVwGW556uS4lR8abVXCW0hfnwf4d8
+         mg2XW1gQst95Dh0Le4fb6ToJ24EQhK/nlPQ0wdSGMKk4SlQMcDWN4pb4Og5Rc1h/0mQ4
+         M53vftWWm0vTX2c7e7odMBjVUKc6mhkcTioASNMGsBCUtDADfM/p+PZfL6LwCGFIi3ci
+         97MA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LbWtTNbTjOWP+Sl6jm6eOO1czwhuya4IeIpU5Bfy+cw=;
-        b=F9dCvrR637cZOJg19doiyaA7lvf6dqlzNv/1TzYmmSKS61/w7M6pSgt14Nl2Uybfi8
-         cXxi+lREiKMwXXFA9fPGmzRK/v42Y/Sig878tA5zhUB9uhDP9Xo3K2mAnM+wNVLVp2ty
-         aPCjYUfLmRW9Lo2SRjL897S1cUkvaEc25IuSoi34SWI/m4jtbbyMatgLmbABqle0tcqt
-         Sn5Y/+mFInqEupBxHu8S3hhPN/RW36LcpBfG8/eqdgRn9PMgY0FREu4PohzsM2X9zP9Y
-         +rX1tf29Cl+TSzPyl3OfQpEAPoxNtbkFGWz5pekmtn3L4cUvcLr0M5U1M9GILovirQRs
-         KJ/A==
-X-Gm-Message-State: AOAM5337rWqcCORqr7xJTzJEm+PnMgEOoAF/iqOlUIZ89eToBuohwP8f
-        ERB/M+U/1BbchMHy3zP34btmWG3qfnzb6w==
-X-Google-Smtp-Source: ABdhPJyVHcpOaqQaWiBsiCJO9Q3e5gDmaIHFmKJScc7tGnrMGBng629ACAEXwCKC8ZxUP62Ffdk/yg==
-X-Received: by 2002:ab0:3c4:0:b0:341:ef97:dc24 with SMTP id 62-20020ab003c4000000b00341ef97dc24mr698935uau.141.1645693838378;
-        Thu, 24 Feb 2022 01:10:38 -0800 (PST)
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com. [209.85.217.53])
-        by smtp.gmail.com with ESMTPSA id s25sm312268vkm.21.2022.02.24.01.10.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Feb 2022 01:10:38 -0800 (PST)
-Received: by mail-vs1-f53.google.com with SMTP id d26so1470117vsh.0;
-        Thu, 24 Feb 2022 01:10:37 -0800 (PST)
-X-Received: by 2002:a05:6102:4411:b0:31b:6df1:3b80 with SMTP id
- df17-20020a056102441100b0031b6df13b80mr714234vsb.5.1645693837468; Thu, 24 Feb
- 2022 01:10:37 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=SEB2HcIZlaGJONkY26HdM82R7VoeFOHxdC+7YcIMHpk=;
+        b=l2dRhIuDd6tI+xdpwkVGy/QnYg1l85nNtB/QEDwrrNj6ZilEmzqmHiLk0VEbbOsO6V
+         Uj7GCbFujpXX4qnqHfq1bAOteZuUQL6MiEgkF0e8UoMki8ha/9UCyj9gn7KjizQkQGX3
+         eN2vNlbOzFWY8zYPhazs4Pbp/iQGPCPTB+xeROqSDRK3LNvuR8uUnvNOOVR5BllQcIa8
+         +0VizvI8NuquajWsdmD4uNVi+gOwRkVsyWEVFg6vnuYyUs1ty1Wepmd8e+hUMx+5fe5W
+         VRNi7RxhUmxF7H7lfbHVySilsHO5ea4uSdVN+Rdss5/nCnwmQTv9ZBqk4lHWuF6+hAnz
+         vdSA==
+X-Gm-Message-State: AOAM533JqYichsnw2aNBr0rS102G8Sekvs42PoubRmvpRK0ELtS3xq7t
+        6JEnB+FPNUIwS7PWjJh/GtJosA==
+X-Google-Smtp-Source: ABdhPJzJ0XhbfmmZjCWBnzEZ/9O3RcQUX+ygX8jRUUsuH0fqSmXlcsrJDkdhqfym7YwV5f4zR6L2Ww==
+X-Received: by 2002:a17:903:1252:b0:14d:ca16:2b8 with SMTP id u18-20020a170903125200b0014dca1602b8mr1759819plh.142.1645694028619;
+        Thu, 24 Feb 2022 01:13:48 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id s3-20020a17090a5d0300b001bc2b469051sm5406635pji.29.2022.02.24.01.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 01:13:47 -0800 (PST)
+Date:   Thu, 24 Feb 2022 14:43:46 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 3/4] OPP: Add support of "opp-microwatt" for advanced
+ EM registration
+Message-ID: <20220224091346.xmnpj27vllpa4cuy@vireshk-i7>
+References: <20220224081131.27282-1-lukasz.luba@arm.com>
+ <20220224081131.27282-4-lukasz.luba@arm.com>
 MIME-Version: 1.0
-References: <20220223165813.24833-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20220223165813.24833-1-biju.das.jz@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 24 Feb 2022 10:10:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV0CBj-uf5pdyzu8+o3Q3uy5aLz0G_y4xwi4rRLrOWWKg@mail.gmail.com>
-Message-ID: <CAMuHMdV0CBj-uf5pdyzu8+o3Q3uy5aLz0G_y4xwi4rRLrOWWKg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: rzg2lc-smarc-som: Enable watchdog
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220224081131.27282-4-lukasz.luba@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 5:58 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> Enable watchdog{0, 1, 2} interfaces on RZ/G2LC SMARC EVK.
->
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 24-02-22, 08:11, Lukasz Luba wrote:
+> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+>  
+> +/*
+> + * Callback function provided to the Energy Model framework upon registration.
+> + * It provides the power used by @dev at @kHz if it is the frequency of an
+> + * existing OPP, or at the frequency of the first OPP above @kHz otherwise
+> + * (see dev_pm_opp_find_freq_ceil()). This function updates @kHz to the ceiled
+> + * frequency and @mW to the associated power.
+> + *
+> + * Returns 0 on success or a proper -EINVAL value in case of error.
+> + */
+> +static int __maybe_unused
+> +_get_opp_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.18.
+Lets call it _get_dt_opp_power() or _get_dt_power() ?
 
-Gr{oetje,eeting}s,
+> +{
+> +	struct dev_pm_opp *opp;
+> +	unsigned long opp_freq, opp_power;
+> +
+> +	/* Find the right frequency and related OPP */
+> +	opp_freq = *kHz * 1000;
+> +	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
+> +	if (IS_ERR(opp))
+> +		return -EINVAL;
+> +
+> +	opp_power = dev_pm_opp_get_power(opp);
 
-                        Geert
+As I said in 2/4, this should really give the total instead.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +	dev_pm_opp_put(opp);
+> +	if (!opp_power)
+> +		return -EINVAL;
+> +
+> +	*kHz = opp_freq / 1000;
+> +	*mW = opp_power / 1000;
+> +
+> +	return 0;
+> +}
+> +
+>  /*
+>   * Callback function provided to the Energy Model framework upon registration.
+>   * This computes the power estimated by @dev at @kHz if it is the frequency
+> @@ -1488,6 +1520,24 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
+>  	return 0;
+>  }
+>  
+> +static bool _of_has_opp_microwatt_property(struct device *dev)
+> +{
+> +	unsigned long power, freq = 0;
+> +	struct dev_pm_opp *opp;
+> +
+> +	/* Check if at least one OPP has needed property */
+> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
+> +	if (IS_ERR(opp))
+> +		return false;
+> +
+> +	power = dev_pm_opp_get_power(opp);
+> +	dev_pm_opp_put(opp);
+> +	if (!power)
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+What if this particular frequency has 0 power mentioned for some
+reason :)
+
+Instead of this heavy stuff, just pick the first OPP from the opp
+table and see its power-value.
+
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  /**
+>   * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
+>   * @dev		: Device for which an Energy Model has to be registered
+> @@ -1517,6 +1567,14 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>  		goto failed;
+>  	}
+>  
+> +	/* First, try to find more precised Energy Model in DT */
+> +	if (_of_has_opp_microwatt_property(dev)) {
+> +		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_opp_power);
+> +
+> +		return em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb,
+> +						   cpus, true);
+> +	}
+> +
+
+We have another em_dev_register_perf_domain() down the line, lets keep
+only one such call and get it a callback that should be set in an
+if/else loop.
+
+>  	np = of_node_get(dev->of_node);
+>  	if (!np) {
+>  		ret = -EINVAL;
+> -- 
+> 2.17.1
+
+-- 
+viresh
