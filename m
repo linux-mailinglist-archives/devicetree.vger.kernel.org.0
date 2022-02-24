@@ -2,107 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C96C94C3651
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B39F74C365B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:59:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234146AbiBXT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:58:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59246 "EHLO
+        id S231812AbiBXT7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 14:59:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233387AbiBXT6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:58:05 -0500
-Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2173415FC82
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:57:35 -0800 (PST)
-Received: by mail-oi1-x231.google.com with SMTP id s5so4582968oic.10
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:57:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=uRmLZfQHkYzc7u6LM3Bmygv1wthncLvGRmNglYSkNqo=;
-        b=DkLVMhs9NzFgLjcSvs/jJ22SRT6eQNzgccJ0Itt5s8Pc790Ehnmyq9abxjBU4SXfXa
-         5KxPkqiUURFHLee8AIoP5wsjfNRBW27eJ0wznWxNpFBvljZoII/17nFWntUb4qpvQXoB
-         u+vAEjYN53x3PyOZIojVzKBiZwZ0jgiMUDJMDXk/v2SQE+VFrZdWca1ABk+83GasELJ6
-         R79poDVtv62uxo1ogqphaKAlk2EkmR9MiWSD6OcrnSZfOqGTcXvcTgWA+SD1E3/MQAJG
-         fj9cmBu3lZVSYe1PKlOD1ej4oMiunyqVx+oWAgkWCpp+l1Leb/fO1xrYRVGl85hqw2Ck
-         5cdw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uRmLZfQHkYzc7u6LM3Bmygv1wthncLvGRmNglYSkNqo=;
-        b=nPPI3iG4Rkq47pCPm/d27kQaHnjGstK/5Sk83IJJwfQ4id/XfvJrCApqoTtnb62/gb
-         oQhoKJoK2E9lNpGv1wjUyt3UpdMaxzUDgUksQsn5U/04uwA3EStH0Ygvmx4yJsQcHmCS
-         IjVc71WAnPDf712ztI3jMisG+wRaUO/UY5SGpBJEQq8hH1/W+Z3NqctPwxJmEYCOcdlI
-         BWH9kUJG6iMBZxQ13npK8ShSNC/XL3SNykMtEz4R+F1SrtnxrZoHfI7ANMbJ6oRXSs/R
-         GYcxSauxSoj0tF8GP0YkNzTtdr5uZKuKpMZSf1WYENi/iJecdRDvATPYxXtxeBNLPEf7
-         WB/g==
-X-Gm-Message-State: AOAM531BVbfgesIvPATlDfPX2T/sQ6BeNr2bUQaWlnXnvCU2SzasS7Xk
-        kzqqLz9PH6xQ49eUn7n5O6Ldqg==
-X-Google-Smtp-Source: ABdhPJySDMCKKL+4aV2cblIdnPtj+AQytyxzcFkG7LPcP+u4BgmCi1Pye8INN6Dn8EDDIyOF+uVWyA==
-X-Received: by 2002:aca:3e56:0:b0:2d4:c902:b851 with SMTP id l83-20020aca3e56000000b002d4c902b851mr8091956oia.114.1645732654500;
-        Thu, 24 Feb 2022 11:57:34 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id d35-20020a9d2926000000b005ad1fa8da87sm141701otb.53.2022.02.24.11.57.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 11:57:34 -0800 (PST)
-Date:   Thu, 24 Feb 2022 13:57:32 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Kathiravan T <quic_kathirav@quicinc.com>
-Cc:     agross@kernel.org, robh+dt@kernel.org, varada@codeaurora.org,
-        mraghava@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: fix the sleep clock frequency
-Message-ID: <YhfjLNHCZeK4hYKa@builder.lan>
-References: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
+        with ESMTP id S230052AbiBXT7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:59:24 -0500
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4A918FAD7
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:58:53 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 8C74183CB1;
+        Thu, 24 Feb 2022 20:58:50 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645732730;
+        bh=ZbwMhucBkgQqEIzzvqYjhggVxojt0EnMd2sm67HLyEM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=ZUcDpk4CQ1AvMuwzhUMYOiTPbZ21JJgLHe5nsHoSgluX40uty9CN+XTYRqzom/yAq
+         +HTbx1vRRyT+WvQaqh1py1y+MFgmPNxirz7cjfuf/tbJrg3FE7fx5EZaYsz8gSqG0n
+         Xxmnt7W44hhR7M8P+WIRijqCpMWlXefJVoOdmx1rHv1ao8KtKdxdIHAnvDG7rpzMzL
+         lnBEoR4BBs2XaanNRqwm4HvtVphYi3LteYHog/AZBAMiXkfibA9SkCmj/HXZhJ5BQi
+         hbgo7z1rztvj4RVoqxbeX3dAG8MQQlxSAcjLR0kD1vIDBnCk3Na0cPOCT7Y6abv7mS
+         SaGn/datZJ0QA==
+From:   Marek Vasut <marex@denx.de>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Marek Vasut <marex@denx.de>, Jonas Karlman <jonas@kwiboo.se>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Subject: [PATCH V3 01/12] dt-bindings: display: bridge: tc358867: Document DPI output support
+Date:   Thu, 24 Feb 2022 20:58:06 +0100
+Message-Id: <20220224195817.68504-2-marex@denx.de>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220224195817.68504-1-marex@denx.de>
+References: <20220224195817.68504-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 11 Feb 06:14 CST 2022, Kathiravan T wrote:
+The TC358767/TC358867/TC9595 are all capable of operating in multiple
+modes, DPI-to-(e)DP, DSI-to-(e)DP, DSI-to-DPI. Document support for the
+DPI output port, which can now be connected both as input and output.
 
-> Sleep clock frequency should be 32768Hz. Lets fix it.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 41dac73e243d ("arm64: dts: Add ipq8074 SoC and HK01 board support")
-> Link: https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
-> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Jonas Karlman <jonas@kwiboo.se>
+Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Cc: Maxime Ripard <maxime@cerno.tech>
+Cc: Neil Armstrong <narmstrong@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sam Ravnborg <sam@ravnborg.org>
+Cc: devicetree@vger.kernel.org
+To: dri-devel@lists.freedesktop.org
+---
+V2: - Rebase on next-20220217
+V3: - No change
+---
+ .../devicetree/bindings/display/bridge/toshiba,tc358767.yaml  | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Can you please confirm this? The documentation for GCC says that the
-incoming sleep clock is 32000Hz.
+diff --git a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+index f1541cc052977..5cfda6f2ba69c 100644
+--- a/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/toshiba,tc358767.yaml
+@@ -61,8 +61,8 @@ properties:
+       port@1:
+         $ref: /schemas/graph.yaml#/properties/port
+         description: |
+-            DPI input port. The remote endpoint phandle should be a
+-            reference to a valid DPI output endpoint node
++            DPI input/output port. The remote endpoint phandle should be a
++            reference to a valid DPI output or input endpoint node.
+ 
+       port@2:
+         $ref: /schemas/graph.yaml#/properties/port
+-- 
+2.34.1
 
-Regards,
-Bjorn
-
-> ---
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> index 26ba7ce9222c..b6287355ad08 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
-> @@ -13,7 +13,7 @@
->  	clocks {
->  		sleep_clk: sleep_clk {
->  			compatible = "fixed-clock";
-> -			clock-frequency = <32000>;
-> +			clock-frequency = <32768>;
->  			#clock-cells = <0>;
->  		};
->  
-> -- 
-> 2.7.4
-> 
