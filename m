@@ -2,168 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 638064C2BD6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:36:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA6A4C2BE1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:39:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232685AbiBXMeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 07:34:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55808 "EHLO
+        id S230417AbiBXMiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 07:38:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234421AbiBXMeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:34:19 -0500
-Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2A6A28572C
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 04:33:44 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:598d:7788:288b:e4f])
-        by xavier.telenet-ops.be with bizsmtp
-        id z0Zi2600a0fvPgN010Zi4S; Thu, 24 Feb 2022 13:33:43 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nNDJW-001jKC-I3; Thu, 24 Feb 2022 13:33:42 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nNDJV-00CPLc-HA; Thu, 24 Feb 2022 13:33:41 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] arm64: dts: renesas: Align GPIO hog names with dtschema
-Date:   Thu, 24 Feb 2022 13:33:40 +0100
-Message-Id: <baee4b9980576ffbab24122fce7147c9cbc2ea59.1645705998.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S234426AbiBXMix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:38:53 -0500
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E7B19E71C;
+        Thu, 24 Feb 2022 04:38:23 -0800 (PST)
+Received: by mail-lj1-x230.google.com with SMTP id f11so2602801ljq.11;
+        Thu, 24 Feb 2022 04:38:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YTBia43ww2BpFzmoJ0cJeExRHMVTq6qsE5DA8fpwhGk=;
+        b=bZnSSWo0O6ywYIPw3PSgJNmqA1t4zCw88y+wSC1loGKWU4l0MJLOAAaAScezJw2Gz3
+         T4dQzU3rlLniO0pqxNoy7i4iDvipOrXW7/9f/8mLGbYWgTI0MoeGw/j1PGx76kwHY8ec
+         KnWrkWf5YetKqrOm/Zr08ZI1/re8sklh9hqslg16ZGdqLr5L/x6FfnbJyVO525YFC/2w
+         4nRql6wGBGxEI6a67at+3ztbEHTkCd5xpK1TRqduBMWFaf+TLZUx0wwcr8WfL7a0pVFq
+         ZqPr5guZQufLJHQd0NUIq/vUieLHfiuk4IOXW+N4j/0I9mb6ohmfJm1e2GwFudcXjyMm
+         kpzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YTBia43ww2BpFzmoJ0cJeExRHMVTq6qsE5DA8fpwhGk=;
+        b=Ck5pLPwUqEaPF+72lwWND++O6EQ0gylEymTAmg09CbHA6L4xoMHaN5V2cdcgwhE+mD
+         mlCrvRVN9BJa/Je6l0BdfN6g4+hqGiHH+1wAvFU1SmlV6NyouS6IoRgnO6/IzU1qhelb
+         xP6OJ4zb803nIOTfZpHEvjRwynqngUw0qt4kwaGfA1l2sGOUh0Xln/3W0P0U6ai6GdQZ
+         PoJmgQcdjzK/0y9d7ZdvbNCBt0+kvmXEyiiDf5fFmWwtVyxYw97aFjZCb/yiQR15PLng
+         r6g1aBsOJDeQZ1EcfLKPidxuihr4nRemKfkqyZ2aKZt6WA5UjuJA11oT+nkg0z+6wQEv
+         YcrA==
+X-Gm-Message-State: AOAM530MPQJHHjbpu/NE7vjqMZ1/6GVRakLRh4IhPbPKFBbuRUXEb7s8
+        mqA3h2yk7pVhMFs8yy6V4BE=
+X-Google-Smtp-Source: ABdhPJwignEIbwikb1ZfQLmHLENOGH+okHSbzNNPd7lMH3hjRuVM2pjvj+0FJN+uZYnba4DecqC0Zw==
+X-Received: by 2002:a2e:9c82:0:b0:246:20c:d62d with SMTP id x2-20020a2e9c82000000b00246020cd62dmr1769885lji.39.1645706301325;
+        Thu, 24 Feb 2022 04:38:21 -0800 (PST)
+Received: from orome (p200300e41f0a6900000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f0a:6900::43a])
+        by smtp.gmail.com with ESMTPSA id 25sm341778lju.70.2022.02.24.04.38.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 04:38:20 -0800 (PST)
+Date:   Thu, 24 Feb 2022 13:38:18 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Julius Werner <jwerner@chromium.org>,
+        Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>
+Subject: Re: [PATCH 3/3] ARM: dts: Update jedec,lpddr2 revision-id binding
+Message-ID: <Yhd8OoJQer86kTZ8@orome>
+References: <20220224003421.3440124-1-jwerner@chromium.org>
+ <20220224003421.3440124-4-jwerner@chromium.org>
+ <ec0c90b9-58a9-669f-fe4a-73e60df335d5@canonical.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="WI3zOMv/g7nKQzbJ"
+Content-Disposition: inline
+In-Reply-To: <ec0c90b9-58a9-669f-fe4a-73e60df335d5@canonical.com>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dtschema expects GPIO hogs to end with a "hog" suffix.
-Also, the convention for node names is to use hyphens, not underscores.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-To be queued in renesas-devel for v5.18.
----
- arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi       | 2 +-
- arch/arm64/boot/dts/renesas/hihope-common.dtsi            | 2 +-
- arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi      | 2 +-
- arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts         | 4 ++--
- arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi  | 4 ++--
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 2 +-
- 7 files changed, 9 insertions(+), 9 deletions(-)
+--WI3zOMv/g7nKQzbJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-index 17d5c4501bbe184c..877d076ffcc9bf92 100644
---- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-+++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-@@ -77,7 +77,7 @@ &extalr_clk {
- };
- 
- &gpio6 {
--	usb_hub_reset {
-+	usb-hub-reset-hog {
- 		gpio-hog;
- 		gpios = <10 GPIO_ACTIVE_HIGH>;
- 		output-high;
-diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-index 0c7e6f79059020ff..935d06515aa6130b 100644
---- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-@@ -140,7 +140,7 @@ &extalr_clk {
- };
- 
- &gpio6 {
--	usb1-reset {
-+	usb1-reset-hog {
- 		gpio-hog;
- 		gpios = <10 GPIO_ACTIVE_LOW>;
- 		output-low;
-diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
-index 40c5e8d6d8418910..d66d17e34694c871 100644
---- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex-lvds.dtsi
-@@ -20,7 +20,7 @@ &gpio1 {
- 	 * When GP1_20 is LOW LVDS0 is connected to the LVDS connector
- 	 * When GP1_20 is HIGH LVDS0 is connected to the LT8918L
- 	 */
--	lvds-connector-en-gpio {
-+	lvds-connector-en-hog {
- 		gpio-hog;
- 		gpios = <20 GPIO_ACTIVE_HIGH>;
- 		output-low;
-diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
-index a7b27d09f6c25fa1..c1812d1ef06a302a 100644
---- a/arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
-@@ -68,7 +68,7 @@ &gpio0 {
- 	 * When GP0_17 is low LVDS[01] are connected to the LVDS connector
- 	 * When GP0_17 is high LVDS[01] are connected to the LT8918L
- 	 */
--	lvds-connector-en-gpio{
-+	lvds-connector-en-hog {
- 		gpio-hog;
- 		gpios = <17 GPIO_ACTIVE_HIGH>;
- 		output-low;
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-index 49d141db53f7af37..fc334b4c2aa422ee 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
-@@ -18,8 +18,8 @@ / {
- };
- 
- &pinctrl {
--	/delete-node/ can0-stb;
--	/delete-node/ can1-stb;
-+	/delete-node/ can0-stb-hog;
-+	/delete-node/ can1-stb-hog;
- 	/delete-node/ gpio-sd0-pwr-en-hog;
- 	/delete-node/ sd0-dev-sel-hog;
- 	/delete-node/ sd1-pwr-en-hog;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
-index 2ef217445f72dae0..9085d8c76ce15452 100644
---- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
-@@ -18,7 +18,7 @@ can0_pins: can0 {
- 	};
- 
- 	/* SW7 should be at position 2->3 so that GPIO8_CAN0_STB line is activated */
--	can0-stb {
-+	can0-stb-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(42, 2) GPIO_ACTIVE_HIGH>;
- 		output-low;
-@@ -31,7 +31,7 @@ can1_pins: can1 {
- 	};
- 
- 	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
--	can1-stb {
-+	can1-stb-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(42, 3) GPIO_ACTIVE_HIGH>;
- 		output-low;
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index bff56d69693667f1..37ff2091582ec966 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -34,7 +34,7 @@ scif1_pins: scif1 {
- 
- #if SW_RSPI_CAN
- 	/* SW8 should be at position 2->3 so that GPIO9_CAN1_STB line is activated */
--	can1-stb {
-+	can1-stb-hog {
- 		gpio-hog;
- 		gpios = <RZG2L_GPIO(44, 3) GPIO_ACTIVE_HIGH>;
- 		output-low;
--- 
-2.25.1
+On Thu, Feb 24, 2022 at 08:29:27AM +0100, Krzysztof Kozlowski wrote:
+> On 24/02/2022 01:34, Julius Werner wrote:
+> > This patch updates the tegra20-asus-tf101 device tree to replace the
+> > deprecated `revision-id1` binding with the new `revision-id` binding in
+> > its "jedec,lpddr2"-compatible node. This was the only DTS in the tree
+> > using this binding.
+> >=20
+> > The revision-id2 (mode register 7) of this memory chip was not given in
+> > the existing device tree, so let's assume 0 for now until it becomes
+> > relevant.
+> >=20
+> > Signed-off-by: Julius Werner <jwerner@chromium.org>
+> > ---
+> >  arch/arm/boot/dts/tegra20-asus-tf101.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> Please use scripts/get_maintainer.pl to get the list of people/lists to
+> CC. You skipped here Tegra maintainers, so no one would pick up this patc=
+h.
+>=20
+> I bounced the mail to Jonathan, Thierry and linux-tegra (+Cc), so
+> hopefully they will get it. If not, series might need resend with proper
+> addresses.
 
+Thanks for the bounce. Applied.
+
+Thierry
+
+--WI3zOMv/g7nKQzbJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmIXfDkACgkQ3SOs138+
+s6G+ORAAg/sBMMlJ0fFhz4VQL1VHXYPddtDio0E2a0Fxz1brLxvze1tEIhtar5FE
+YLxPRjHrqCHovvmnvwLcp3daPAV/V9vD3t+YUMwn/ivLyBtWm9YoVXs+adB0zewE
+S3/8SQZp7/OUjNLyKDYTRkYdytYbKBS1qivB9Ar6fnZcBeGBv/IC4xTiA3uNV8iT
+GZdflbyjjHwhrQYdJPJZdh4gWFk7SMTjw33U7TtvfFyim1Iw4bYUBK0KpH5W2Rdk
+OcNdC98r3JI1YQuwcTG8ODGAXA+86a+qF254/+ImVo11N9aSJoxepXrBxRx2SuPJ
+p8+rYSwSK0BSO7P7gc6qMh9BFovWBwOWfjLcAWQrBXtAWnwLVa55eZJpV1oT138X
+/uyMxjr9387K+7zzx5QXYJH5KVjLCBfVmjNHB6GYr3VFUsJAcU35cOySPjrUbCkr
+QRQc6VxUzth5KcxNUzAtesswUfiaoRsabBxe8wkbqdJpd5jV2tDwCp0muDT5xtdI
+dSfh3wk14xitPzs4FGVt77ZLRzaWqPA4jc6UYE89H1A7TCDFeT1G/4601Z2lBjn0
+sXqh+zNNZmGMbVAk34G/ysMQZD8hBGJlKiCDtoqNv4bDZc4ol96RgD/zDN7TAR5W
+MmPXSiCwUAOtlhUu0PMnOIAgzUGLVmdYyBzB6RWHGUqCWGmuRqo=
+=foIM
+-----END PGP SIGNATURE-----
+
+--WI3zOMv/g7nKQzbJ--
