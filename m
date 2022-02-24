@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520DD4C35D5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C03D4C35E5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbiBXTZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:25:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40566 "EHLO
+        id S229845AbiBXTam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 14:30:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231326AbiBXTZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:25:49 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F93824CCD2;
-        Thu, 24 Feb 2022 11:25:19 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso2024840ots.7;
-        Thu, 24 Feb 2022 11:25:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=CbzwLEAWru/8T3swz8gX9A5NfjeetCsfXd107oDjvrw=;
-        b=DQUrWGwa+ZECQ2uvhhkPPNxZbUIs32JbaLwRcdIVUmf8RIFiDVbCBEdWxo71SVKQHC
-         R1//pswsYNQmBX+E9zFMrAvLuGJDPTO2KqCNP+IA9pnElrjCpVxjA7sMqQGPBv+lFuRU
-         geEB9X//+VPBFlWX2B2IDE0ZQI2E99JuG7dM6yqJ53Tzih3qrl61PQl9o9cCyK+sFcpX
-         BRex2wFLOTG4mt6NOVVagZprXYma/ne2Nbk9OVCD3zDniZVQFGiyfy7Liick7ZuLdwlX
-         5SaB8Nh5uGOZO6qW64/0JwSgrSd+4pSHeQWPzYFW9C9SyNeJrpJV434RsRR5zsawghPD
-         26gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to;
-        bh=CbzwLEAWru/8T3swz8gX9A5NfjeetCsfXd107oDjvrw=;
-        b=s7YWJoBg8gePcLW7r0qf14G8Erx5/+1DwLt+mqXZ2eeepwRNG4zTDwhkujFsEwYsYa
-         1PwMEmaOW3qUwwZFsfgCrLbq4+SKv65xk+ohgYH4Ntwy6yrL59MK6E34/77hqhEFUIql
-         DT7CcST/t3Zm+hMA1mk1f2MicBNU2iYLg4LuHMnRwJt7Y9z24o+x+Cz2BgbnlPWkpbbo
-         7Xhl8Rd09hJKSHKdEcY03kdQMBOYYv7nJNbr0zHg8GKoqLOGLbGB9cg6QJJ19z38aaew
-         bbL7Z+t2i0Pv0ypb6rbWF7HdX4a0J4g7AWvx1hi6HZw5Zl0aPRj3vJ8Y7QCIzG6F+5jK
-         Gedg==
-X-Gm-Message-State: AOAM533tuhTbBMEkVrhnwkDAQNmS8yyYEnip785ON9qFTu2/U/Sv9JBw
-        MNTHXFfI7agzNhCrujBdu28=
-X-Google-Smtp-Source: ABdhPJwOMDsQ4/l6HLf3AcqW9hiu+SygICXgyeHsoMzzmBk/9HilTwXbowzJvzni+nyhmwBU6eNHuw==
-X-Received: by 2002:a9d:6e01:0:b0:5af:5d9d:4039 with SMTP id e1-20020a9d6e01000000b005af5d9d4039mr1470622otr.280.1645730718499;
-        Thu, 24 Feb 2022 11:25:18 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l26-20020a05683004ba00b005af665739e0sm124752otd.30.2022.02.24.11.25.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 11:25:18 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Thu, 24 Feb 2022 11:25:16 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Marcello Sylvester Bauer <sylv@sylv.io>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] dt-bindings:trivial-devices: Add pli1209bc
-Message-ID: <20220224192516.GA1942677@roeck-us.net>
-References: <cover.1645435888.git.sylv@sylv.io>
- <15a9fcfb5b9592c6d87f12c2a4c77fd069f5cfff.1645435888.git.sylv@sylv.io>
+        with ESMTP id S230453AbiBXTam (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:30:42 -0500
+Received: from mx2-1.smtp.larsendata.com (mx2-1.smtp.larsendata.com [91.221.196.218])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F04C420E782
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:30:09 -0800 (PST)
+Received: from mail01.mxhotel.dk (mail01.mxhotel.dk [91.221.196.236])
+        by mx2.smtp.larsendata.com (Halon) with ESMTPS
+        id 37e75c49-95a8-11ec-b2df-0050568cd888;
+        Thu, 24 Feb 2022 19:30:26 +0000 (UTC)
+Received: from ravnborg.org (80-162-45-141-cable.dk.customer.tdc.net [80.162.45.141])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: sam@ravnborg.org)
+        by mail01.mxhotel.dk (Postfix) with ESMTPSA id BDB88194B5A;
+        Thu, 24 Feb 2022 20:30:10 +0100 (CET)
+Date:   Thu, 24 Feb 2022 20:30:03 +0100
+X-Report-Abuse-To: abuse@mxhotel.dk
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
+        maxime@cerno.tech, dave.stevenson@raspberrypi.com,
+        david@lechnology.com, devicetree@vger.kernel.org,
+        thierry.reding@gmail.com
+Subject: Re: [PATCH v5 2/5] drm/modes: Remove trailing whitespace
+Message-ID: <Yhfcu44V5LO4qZ/9@ravnborg.org>
+References: <20220224152708.14459-1-noralf@tronnes.org>
+ <20220224152708.14459-3-noralf@tronnes.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <15a9fcfb5b9592c6d87f12c2a4c77fd069f5cfff.1645435888.git.sylv@sylv.io>
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220224152708.14459-3-noralf@tronnes.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,SCC_BODY_URI_ONLY,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 10:42:05AM +0100, Marcello Sylvester Bauer wrote:
-> Add trivial device entry for PLI1209BC Digital Supervisor from Vicor
-> Corporation.
+On Thu, Feb 24, 2022 at 04:27:05PM +0100, Noralf Trønnes wrote:
+> Remove trailing whitespace from a comment.
 > 
-> Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-> Acked-by: Rob Herring <robh@kernel.org>
-
-Applied to hwmon-next.
-
-Thanks,
-Guenter
-
+> Signed-off-by: Noralf Trønnes <noralf@tronnes.org>
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 > ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  drivers/gpu/drm/drm_modes.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 091792ba993e..d03d90360aa0 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -354,6 +354,8 @@ properties:
->            - ti,tps544c25
->              # Winbond/Nuvoton H/W Monitor
->            - winbond,w83793
-> +            # Vicor Corporation Digital Supervisor
-> +          - vicor,pli1209bc
->              # i2c trusted platform module (TPM)
->            - winbond,wpct301
->  
+> diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
+> index 96b13e36293c..77a4c8dd0bb8 100644
+> --- a/drivers/gpu/drm/drm_modes.c
+> +++ b/drivers/gpu/drm/drm_modes.c
+> @@ -127,7 +127,7 @@ EXPORT_SYMBOL(drm_mode_probed_add);
+>   * according to the hdisplay, vdisplay, vrefresh.
+>   * It is based from the VESA(TM) Coordinated Video Timing Generator by
+>   * Graham Loveridge April 9, 2003 available at
+> - * http://www.elo.utfsm.cl/~elo212/docs/CVTd6r1.xls 
+> + * http://www.elo.utfsm.cl/~elo212/docs/CVTd6r1.xls
+>   *
+>   * And it is copied from xf86CVTmode in xserver/hw/xfree86/modes/xf86cvt.c.
+>   * What I have done is to translate it by using integer calculation.
+> -- 
+> 2.33.0
