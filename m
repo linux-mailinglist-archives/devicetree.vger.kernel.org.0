@@ -2,152 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1BFE4C315F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:31:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E78B94C315D
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 17:31:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229713AbiBXQbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 11:31:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48808 "EHLO
+        id S229645AbiBXQa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 11:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbiBXQa7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:30:59 -0500
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2563E21D081;
+        with ESMTP id S229642AbiBXQa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 11:30:56 -0500
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7870C22A28C;
+        Thu, 24 Feb 2022 08:30:14 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id 12so3214079oix.12;
+        Thu, 24 Feb 2022 08:30:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=yr+sfuOfNHdQyG+q35zEWWVCyPCxhyS4l72NvjqQAQE=;
+        b=bwAKUYVov8LbtetHXZSv0kH+VGqDKZdpqDTq/AgpmL08Ruc76j5T+vli0Ih3LkhVwn
+         eYt6uajueNlKnok1TZm5ACptYL+aN9IDp7J1LT0uszXrhb9tQXzwkp0jKETUYslPKUmh
+         PIYEbpmVV793vhtGx3Hb7/eqoVBywDsgRGUiIqvloa53jeBYe9NSemdLqLUgRjBECUf3
+         1FWB5SRB6XPVS6QEzftwrWCz3QNu+WVvRw+jWgqHc77VhjRS+uZ2VFvE0Qvy/2r7PZqc
+         4njw6m2Q5ElMBPus0bQzJA1qhaVz6eOW3Fexa5j0KOjgCCmSQM/Y+AeA1AS4Upjz40Xs
+         mO5w==
+X-Gm-Message-State: AOAM532MsaakvSgyZNWPWFKZKBEsCJ4W6lX79/+pEGpRg/aymlzmN2JY
+        Dz5Ry6KmmOMK5Q3+OiMcoA==
+X-Google-Smtp-Source: ABdhPJw7DLgArsDvgzMYFWqb/H9wjopgHImxe6PfYCer1KVAkvm2HcsLHQOxN85iEdZE1mf6IU2LGQ==
+X-Received: by 2002:a05:6808:f93:b0:2d4:f855:aadd with SMTP id o19-20020a0568080f9300b002d4f855aaddmr1735874oiw.21.1645720213827;
         Thu, 24 Feb 2022 08:30:13 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id CF56AFF812;
-        Thu, 24 Feb 2022 16:30:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1645720212;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=s8oCo+M22Obem+506INwTsgvqAs+7mebrwhLClGvSIU=;
-        b=HYL5g4uq90MpMjhQtZcyHDOaPVs1DqGqdeGAqpBB3vSCe4p8FyfLaamnnyEgtwzm/HlSSX
-        N/DKOMqg9a74beNIoaY+ogN7WcXvfaxK//Hf0TX1/0doggy7vAQhff5Bs7YiQYpC1Auce3
-        4ocd9YlXd6Es4iItuz1iORjLC76OU1aWUgWNE9x9gsomrya73+IrDvCXkh5fbuLWaXmcBh
-        JETcQowot2tY1HMtWKUFVxl85NFAXsBRxPLucirlyu/9UkSZiLSi+i2ZNHUxzOSDacuqQ+
-        UqWcff2k0FoKFI52X8VZg8eA39icDrHOYoRZfu0ZKu1C1qr1nDRlBWigAUha+A==
-Date:   Thu, 24 Feb 2022 17:30:09 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>
-Subject: Re: [PATCH v2 5/8] dma: dw: Avoid partial transfers
-Message-ID: <20220224173009.0d37c12e@xps13>
-In-Reply-To: <YhY4PqqOgYTLgpKr@smile.fi.intel.com>
-References: <20220222103437.194779-1-miquel.raynal@bootlin.com>
-        <20220222103437.194779-6-miquel.raynal@bootlin.com>
-        <YhY4PqqOgYTLgpKr@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id w7sm1252982oou.13.2022.02.24.08.30.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 08:30:12 -0800 (PST)
+Received: (nullmailer pid 3197991 invoked by uid 1000);
+        Thu, 24 Feb 2022 16:30:11 -0000
+Date:   Thu, 24 Feb 2022 10:30:11 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Cristian Pop <cristian.pop@analog.com>
+Cc:     linux-kernel@vger.kernel.org, jic23@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: iio: frequency: Add ADMV4420 doc
+Message-ID: <Yheyk93a8fl5kFsp@robh.at.kernel.org>
+References: <20220223130808.13352-1-cristian.pop@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220223130808.13352-1-cristian.pop@analog.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy, Phil,
+On Wed, 23 Feb 2022 15:08:07 +0200, Cristian Pop wrote:
+> Add device tree bindings for the ADMV4420 K band downconverter.
+> 
+> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
+> ---
+> Changes in v7:
+>  - Fix commit message
+>  .../bindings/iio/frequency/adi,admv4420.yaml  | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/frequency/adi,admv4420.yaml
+> 
 
-andriy.shevchenko@linux.intel.com wrote on Wed, 23 Feb 2022 15:35:58
-+0200:
-
-> On Tue, Feb 22, 2022 at 11:34:34AM +0100, Miquel Raynal wrote:
-> > From: Phil Edworthy <phil.edworthy@renesas.com>
-> >=20
-> > Pausing a partial transfer only causes data to be written to memory that
-> > is a multiple of the memory width setting.
-> >=20
-> > However, when a DMA client driver finishes DMA early, e.g. due to UART
-> > char timeout interrupt, all data read from the device must be written to
-> > memory.
-> >=20
-> > Therefore, allow the slave to limit the memory width to ensure all data
-> > read from the device is written to memory when DMA is paused. =20
->=20
-> (I have only 2.17d and 2.21a datasheets, so below based on the latter)
->=20
-> It seems you are referring to the chapter 7.7 "Disabling a Channel Prior
-> to Transfer Completion" of the data sheet where it stays that it does not
-> guarantee to have last burst to be completed in case of
-> SRC_TR_WIDTH < DST_TR_WIDTH and the CH_SUSP bit is high, when the FIFO_EM=
-PTY
-> is asserted.
->=20
-> Okay, in iDMA 32-bit we have a specific bit (seems like a fix) that drains
-> FIFO, but still it doesn't drain the FIFO fully (in case of misalignment)
-> and the last piece of data (which is less than TR width) is lost when cha=
-nnel
-> gets disabled.
->=20
-> Now, if we look at the implementation of the serial8250_rx_dma_flush() we
-> may see that it does
->  1. Pause channel without draining FIFO
->  2. Moves data to TTY buffer
->  3. Terminates channel.
->=20
-> During termination it does pause channel again (with draining enabled),
-> followed by disabling channel and resuming it again.
->=20
-> According to the 7.7 the resuming channel allows to finish the transfer
-> normally.
->=20
-> It seems the logic in the ->terminate_all() is broken and we actually need
-> to resume channel first (possibly conditionally, if it was suspended), th=
-en
-> pause it and disable and resume again.
->=20
-> The problem with ->terminate_all() is that it has no knowledge if it has
-> been called on paused channel (that's why it has to pause channel itself).
-> The pause on termination is required due to some issues in early steppings
-> of iDMA 32-bit hardware implementations.
->=20
-> If my theory is correct, the above change should fix the issues you see.
-
-I don't have access to these datasheets so I will believe your words
-and try to apply Andy's solution. I ended up with the following fix,
-hopefully I got it right:
-
-diff --git a/drivers/dma/dw/core.c b/drivers/dma/dw/core.c
-index 48cdefe997f1..59822664d8ec 100644
---- a/drivers/dma/dw/core.c
-+++ b/drivers/dma/dw/core.c
-@@ -865,6 +865,10 @@ static int dwc_terminate_all(struct dma_chan *chan)
-=20
-        clear_bit(DW_DMA_IS_SOFT_LLP, &dwc->flags);
-=20
-+       /* Ensure the last byte(s) are drained before disabling the channel=
- */
-+       if (test_bit(DW_DMA_IS_PAUSED, &dwc->flags))
-+               dwc_chan_resume(dwc, true);
-+
-        dwc_chan_pause(dwc, true);
-=20
-        dwc_chan_disable(dw, dwc);
-
-Phil, I know it's been 3 years since you investigated this issue, but
-do you still have access to the script reproducing the issue? Even
-better, do you still have the hardware to test?
-
-Thanks,
-Miqu=C3=A8l
+Acked-by: Rob Herring <robh@kernel.org>
