@@ -2,97 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FB24C20B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 01:37:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E943C4C20D0
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 01:50:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229864AbiBXAfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 19:35:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
+        id S229761AbiBXAuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 19:50:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbiBXAfN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 19:35:13 -0500
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 608869F6C8
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:41 -0800 (PST)
-Received: by mail-pf1-x436.google.com with SMTP id i21so383547pfd.13
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 16:34:41 -0800 (PST)
+        with ESMTP id S229984AbiBXAuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 19:50:23 -0500
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37058F210E;
+        Wed, 23 Feb 2022 16:49:44 -0800 (PST)
+Received: by mail-ej1-x636.google.com with SMTP id vz16so1055619ejb.0;
+        Wed, 23 Feb 2022 16:49:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WjlQPejglQ4l0/ZVVSaNpSupfbDyFF7DpYFPDOdJqWE=;
-        b=c/jS859klS21fGUvkR4Gw/Q7uZQ4a3LJVJ6f4aao1Mo0O6PvBdAnTE6iW0WnKCyeg1
-         lXS33l3mNaqClERlEyP8fOm7LMKI00NHSoXibHRN0cFkTJujdovuJu5WHRMueex4O0vZ
-         MAjsmbSgavXKDi0bbSJIX17c/VxO1HObW+L3Y=
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=i55z3pOW9V6Bu0WaroA/XOCY0+AorvQDiheA/c25Gxg=;
+        b=lrreJxet9kc+GEpo9F4jktMaOeiwvvyc45FRfBb6zIssQ3F1Vj2LsRMKKQe8swMOEa
+         GVYUey1uv+8KueY6TfbLzKto9r5KJNeMuhquzFjFwf/a9fmHcHfm4NMRHiPY9lhs/vIT
+         85sp2CHhRl7GpPdG1M1NQhETMlkQT8kRjmp2BcvEl8yk8J3kOf2xroi+PL1XStKlay60
+         Yo6gqYw7aS2arvLnPWMMXpg0FqhEv/QPX+R+03cKQW5+JnW4qE3m9T4YUmV+4QQfo+0N
+         rAioGSEt1UHy85mdTRZ2Zconj4Cm6B9qkn58o5NZrUeFER6rsyL7ohGFR2HdTcBAGshp
+         sjbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WjlQPejglQ4l0/ZVVSaNpSupfbDyFF7DpYFPDOdJqWE=;
-        b=M/JySPEwzoneDbdNFnb9DfXygXg8mR72GHczuYAKEmEQw6AfCMBNeAhTzybylBH+Sk
-         ZfFpx4E1HasXl3JXjW48psnsnCJxwoTKsfaUzfH4s5XPevSqyDf9eXJ8e+9vk2IBWIxj
-         Wb+fDzHNeR78oSql10MA9isJHM49OsBJ96LgKDguSenKvP8w1iehw4ZS8jI3l1T9HycJ
-         5+RvnNSJ5lv9d8KeEdyh6RjjwPBVUqg441RQCnEmYN9csaFFuD0Z0OK/Pk1BJp88UMph
-         q0MIpRZlGr3DJ9hVwWYiCxiJlIBxoccRBkc7w7DAsRJ+Wj3YR1zKoJpTVKnJNYBAC2Si
-         ka0Q==
-X-Gm-Message-State: AOAM530GvO479gVnhK8AFGE+QlJga+IoOe5MymZGWXQoDSqpA176Ka6P
-        Y0cuoA+9dfBe2+o6GmYWSHhD5g==
-X-Google-Smtp-Source: ABdhPJwRH9RI9geNc69VQvb+Z2AsIzQqCH++UjnphZBy4Hyi/jD8hpHjdHngO6ZsCs9XInfCqjsMeQ==
-X-Received: by 2002:a63:5fd7:0:b0:338:9599:f098 with SMTP id t206-20020a635fd7000000b003389599f098mr291528pgb.226.1645662880866;
-        Wed, 23 Feb 2022 16:34:40 -0800 (PST)
-Received: from jwerner-p920.mtv.corp.google.com ([2620:15c:202:201:e321:1e1b:f71e:33c])
-        by smtp.gmail.com with ESMTPSA id ms7-20020a17090b234700b001bc7e6fc01csm4100344pjb.40.2022.02.23.16.34.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Feb 2022 16:34:40 -0800 (PST)
-From:   Julius Werner <jwerner@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Julius Werner <jwerner@chromium.org>
-Subject: [PATCH 3/3] ARM: dts: Update jedec,lpddr2 revision-id binding
-Date:   Wed, 23 Feb 2022 16:34:21 -0800
-Message-Id: <20220224003421.3440124-4-jwerner@chromium.org>
-X-Mailer: git-send-email 2.35.1.473.g83b2b277ed-goog
-In-Reply-To: <20220224003421.3440124-1-jwerner@chromium.org>
-References: <20220224003421.3440124-1-jwerner@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i55z3pOW9V6Bu0WaroA/XOCY0+AorvQDiheA/c25Gxg=;
+        b=lQyedV9+HC707kPQZU0iws8dMZ3tZLA3XyPILJBosGX9pdT0SBZq0OvhWKQj0V5F3T
+         OX+m8wPQvH0Bu7DSLeRMUhWmr3+D7crwXV8NKIOlQmLfKMSklYRL8kV1SJ2juzM5jadl
+         7DTZQOrZLqZDZt4b/kavCiZJRG4sTglEYJhU51EnV9lvfb41cW2K4OENRO4rPuMzv0L3
+         XG39yx0p//hj9kkMzB8Rx7wEWSgYv/03Y8iH490sHa9dPSCh+ZGWRqsYLcz+m3UAMOUV
+         CFu2QxCGSik4ihtIUOAxNJEH1VMGQvbo+b9wRgX0QxvGfTod3g40tbZLmCJhMxb0bzYO
+         C3Cw==
+X-Gm-Message-State: AOAM532FOU5Gm033BbL0xKXGS8dIcIK8HcVmob47J6/kvnWpjIzg/R0g
+        b2Pg2kbKgbn74S5XoejHu0z3cCA+n66g3ATCDUc=
+X-Google-Smtp-Source: ABdhPJx8zlivLeViTos7obPP26bYJDrPc9PrrP6klqoVBCJQlD3yP1us5OvN7wxyECzQTn7vQiLszYVvSBST9YGeppU=
+X-Received: by 2002:a17:906:5950:b0:6b3:65b7:82d3 with SMTP id
+ g16-20020a170906595000b006b365b782d3mr225501ejr.636.1645663677923; Wed, 23
+ Feb 2022 16:47:57 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220223163525.13399-1-jagathjog1996@gmail.com> <20220223163525.13399-6-jagathjog1996@gmail.com>
+In-Reply-To: <20220223163525.13399-6-jagathjog1996@gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 24 Feb 2022 02:46:34 +0200
+Message-ID: <CAHp75VcKvXi6oUm2Ysx_F+Myu6Dy9-Vxp9MwTcrT5si0Fe6c7w@mail.gmail.com>
+Subject: Re: [PATCH v5 5/7] iio: potentiometer: Add device specific read_raw function
+To:     Jagath Jog J <jagathjog1996@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch updates the tegra20-asus-tf101 device tree to replace the
-deprecated `revision-id1` binding with the new `revision-id` binding in
-its "jedec,lpddr2"-compatible node. This was the only DTS in the tree
-using this binding.
+On Wed, Feb 23, 2022 at 6:35 PM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+>
+> Added function pointer in the device specific structure to
+> call the appropriate device read_raw function, so that the
+> other type of devices with different read method can be
+> handled.
+>
+> Signed-off-by: Jagath Jog J <jagathjog1996@gmail.com>
+> ---
+>  drivers/iio/potentiometer/ds1803.c | 28 ++++++++++++++++++++++------
+>  1 file changed, 22 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/iio/potentiometer/ds1803.c b/drivers/iio/potentiometer/ds1803.c
+> index aeb74ee46fbc..878188351f8f 100644
+> --- a/drivers/iio/potentiometer/ds1803.c
+> +++ b/drivers/iio/potentiometer/ds1803.c
+> @@ -32,6 +32,8 @@ struct ds1803_cfg {
+>         int kohms;
+>         const struct iio_chan_spec *channels;
+>         u8 num_channels;
+> +       int (*read)(struct iio_dev *indio_dev,
+> +                   struct iio_chan_spec const *chan, int *val);
+>  };
+>
+>  struct ds1803_data {
+> @@ -55,6 +57,22 @@ static const struct iio_chan_spec ds1803_channels[] = {
+>         DS1803_CHANNEL(1, DS1803_WIPER_1),
+>  };
+>
+> +static int ds1803_read(struct iio_dev *indio_dev,
+> +                      struct iio_chan_spec const *chan,
+> +                      int *val)
+> +{
+> +       struct ds1803_data *data = iio_priv(indio_dev);
+> +       int ret;
+> +       u8 result[ARRAY_SIZE(ds1803_channels)];
+> +
+> +       ret = i2c_master_recv(data->client, result, indio_dev->num_channels);
+> +       if (ret < 0)
+> +               return ret;
+> +
+> +       *val = result[chan->channel];
+> +       return ret;
+> +}
+> +
+>  static const struct ds1803_cfg ds1803_cfg[] = {
+>         [DS1803_010] = {
+>           .wipers = 2,
+> @@ -62,6 +80,7 @@ static const struct ds1803_cfg ds1803_cfg[] = {
+>           .kohms =  10,
+>           .channels = ds1803_channels,
+>           .num_channels = ARRAY_SIZE(ds1803_channels),
+> +         .read = ds1803_read,
+>         },
+>         [DS1803_050] = {
+>           .wipers = 2,
+> @@ -69,6 +88,7 @@ static const struct ds1803_cfg ds1803_cfg[] = {
+>           .kohms =  50,
+>           .channels = ds1803_channels,
+>           .num_channels = ARRAY_SIZE(ds1803_channels),
+> +         .read = ds1803_read,
+>         },
+>         [DS1803_100] = {
+>           .wipers = 2,
+> @@ -76,6 +96,7 @@ static const struct ds1803_cfg ds1803_cfg[] = {
+>           .kohms = 100,
+>           .channels = ds1803_channels,
+>           .num_channels = ARRAY_SIZE(ds1803_channels),
+> +         .read = ds1803_read,
+>         },
+>  };
+>
+> @@ -84,20 +105,15 @@ static int ds1803_read_raw(struct iio_dev *indio_dev,
+>                            int *val, int *val2, long mask)
+>  {
+>         struct ds1803_data *data = iio_priv(indio_dev);
+> -       int pot = chan->channel;
+>         int ret;
+> -       u8 result[ARRAY_SIZE(ds1803_channels)];
+>
+>         switch (mask) {
+>         case IIO_CHAN_INFO_RAW:
+> -               ret = i2c_master_recv(data->client, result,
+> -                                     indio_dev->num_channels);
+> +               ret = data->cfg->read(indio_dev, chan, val);
+>                 if (ret < 0)
+>                         return ret;
+>
+> -               *val = result[pot];
+>                 return IIO_VAL_INT;
 
-The revision-id2 (mode register 7) of this memory chip was not given in
-the existing device tree, so let's assume 0 for now until it becomes
-relevant.
+> -
 
-Signed-off-by: Julius Werner <jwerner@chromium.org>
----
- arch/arm/boot/dts/tegra20-asus-tf101.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Seems like a stray change. Up to Jonathan to decide what to do (no
+need for resend b/c of this).
 
-diff --git a/arch/arm/boot/dts/tegra20-asus-tf101.dts b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-index 020172ee7340ec..c700f80e2a366e 100644
---- a/arch/arm/boot/dts/tegra20-asus-tf101.dts
-+++ b/arch/arm/boot/dts/tegra20-asus-tf101.dts
-@@ -756,7 +756,7 @@ emc-tables@3 {
- 
- 			lpddr2 {
- 				compatible = "elpida,B8132B2PB-6D-F", "jedec,lpddr2-s4";
--				revision-id1 = <1>;
-+				revision-id = <1 0>;
- 				density = <2048>;
- 				io-width = <16>;
- 			};
+>         case IIO_CHAN_INFO_SCALE:
+>                 *val = 1000 * data->cfg->kohms;
+>                 *val2 = data->cfg->avail[2]; /* Max wiper position */
+> --
+> 2.17.1
+>
+
+
 -- 
-2.31.0
-
+With Best Regards,
+Andy Shevchenko
