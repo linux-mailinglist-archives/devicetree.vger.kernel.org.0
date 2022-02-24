@@ -2,159 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3BF4C281D
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:33:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00CDD4C282E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:36:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbiBXJdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 04:33:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45846 "EHLO
+        id S230096AbiBXJdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 04:33:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232683AbiBXJdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:33:09 -0500
+        with ESMTP id S232769AbiBXJdv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 04:33:51 -0500
 Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7C3A220A953;
-        Thu, 24 Feb 2022 01:32:39 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8633C26A3AC;
+        Thu, 24 Feb 2022 01:33:21 -0800 (PST)
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4A8F3ED1;
-        Thu, 24 Feb 2022 01:32:39 -0800 (PST)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3F3593F70D;
-        Thu, 24 Feb 2022 01:32:38 -0800 (PST)
-Date:   Thu, 24 Feb 2022 09:32:32 +0000
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-Message-ID: <20220224093232.GA12053@e120937-lin>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
- <2546477f-4190-e838-3095-f47b31802445@kernel.org>
- <20220221213932.GA164964@EPUAKYIW015D>
- <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
- <20220222161440.xadrgjftdyxenxgo@bogus>
- <20220222173458.GA2310133@EPUAKYIW015D>
- <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop>
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 52667ED1;
+        Thu, 24 Feb 2022 01:33:21 -0800 (PST)
+Received: from [10.57.8.211] (unknown [10.57.8.211])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5F7F13F70D;
+        Thu, 24 Feb 2022 01:33:19 -0800 (PST)
+Message-ID: <9c8f15a3-563f-3bed-61a4-2f72b0c20e89@arm.com>
+Date:   Thu, 24 Feb 2022 09:33:18 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 3/4] OPP: Add support of "opp-microwatt" for advanced
+ EM registration
+Content-Language: en-US
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20220224081131.27282-1-lukasz.luba@arm.com>
+ <20220224081131.27282-4-lukasz.luba@arm.com>
+ <20220224091346.xmnpj27vllpa4cuy@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20220224091346.xmnpj27vllpa4cuy@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 06:51:59PM -0800, Stefano Stabellini wrote:
-> On Tue, 22 Feb 2022, Oleksii Moisieiev wrote:
-> > On Tue, Feb 22, 2022 at 04:14:40PM +0000, Sudeep Holla wrote:
-> > > On Tue, Feb 22, 2022 at 09:06:25AM +0100, Krzysztof Kozlowski wrote:
-> > > > On 21/02/2022 22:39, Oleksii Moisieiev wrote:
-> > > > > Hi Krzysztof,
-> > > > > 
 
-Hi Stefano,
 
-> > > > > On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
-> > > > >> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
-> > > > >>> Introducing new parameter called scmi_devid to the device-tree bindings.
-> > > > >>> This parameter should be set for the device nodes, which has
-> > > > >>> clocks/power-domains/resets working through SCMI.
-> > > > >>> Given parameter should set the device_id, needed to set device
-> > > > >>> permissions in the Firmware. This feature will be extremely useful for
-> > > > >>> the virtualized systems, which has more that one Guests running on the
-> > > > >>> system at the same time or for the syestems, which require several
-> > > > >>> agents with different permissions. Trusted agent will use scmi_devid to
-> > > > >>> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
-> > > > >>> for details).
-> > > > >>> Agents concept is described in Section 4.2.1 [0].
-> > > > >>>
-> > > > >>> scmi_devid in Device-tree node example:
-> > > > >>> usb@e6590000
-> > > > >>> {
-> > > > >>>     scmi_devid = <19>;
-> > > > >>>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
-> > > > >>>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
-> > > > >>>     power-domains = <&scmi_power 0>;
-> > > > >>> };
-> > > > >>
-> > > > >> And how do you prevent DT overlay adding such devid to any other node
-> > > > >> thus allowing any other device to send requests with given devid?
-> > > > >>
-> > > > > Thank you for the quick response.
-> > > > > scmi_devid value will be used only by Trusted Agent when the device
-> > > > > permissions are set. Non-trusted agents, which in our case are
-> > > > > represented as Guest OS are using scmi drivers, already present in linux
-> > > > > kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_reset
-> > > > > nodes to access to SCMI protocol.
-> > > > 
-> > > > Ah, ok.
-> > > > 
-> > > > > 
-> > > > >> Plus few technicalities:
-> > > > >> 1. Hyphen, not underscore in property name, so scmi-devid.
-> > > > > 
-> > > > > Thanks for the tip, I will change that in v2.
-> > > > 
-> > > > Few more thoughts:
-> > > > 1. This looks specific to ARM SCMI, so you also need vendor prefix, so
-> > > > something like:
-> > > > arm,scmi-devid
-> > > > arm,scmi-device-id
-> > > > 
-> > > 
-> > > Keeping the other discussion separate, I wanted to comment on this.
-> > > I agree with Krzysztof on having vendor specific prefix if we decide to add
-> > > this device id thing. However, I prefer not to use "arm,scmi-" here.
-> > > It can be "xen,scmi-" as we had plans to introduce some concepts in SCMI
-> > > spec that may use looks like this device-id. I would just like to avoid
-> > > conflicting with that in the future. It may happen to be same in the future
-> > > (i.e. this xen device-id matches 100% with definition of device-id we might
-> > > introduce in the spec, but I want to make assumption otherwise and leave
-> > > scope for divergence however small/little it can be). No issues even if
-> > > they converge and match 100% later in the far future.
-> > > 
-> > 
-> > xem,scmi- works for me. What do other thinks?
->   ^ xen,scmi-
+On 2/24/22 09:13, Viresh Kumar wrote:
+> On 24-02-22, 08:11, Lukasz Luba wrote:
+>> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+>>   
+>> +/*
+>> + * Callback function provided to the Energy Model framework upon registration.
+>> + * It provides the power used by @dev at @kHz if it is the frequency of an
+>> + * existing OPP, or at the frequency of the first OPP above @kHz otherwise
+>> + * (see dev_pm_opp_find_freq_ceil()). This function updates @kHz to the ceiled
+>> + * frequency and @mW to the associated power.
+>> + *
+>> + * Returns 0 on success or a proper -EINVAL value in case of error.
+>> + */
+>> +static int __maybe_unused
+>> +_get_opp_power(unsigned long *mW, unsigned long *kHz, struct device *dev)
 > 
-> If this problem was Xen specific, then it would be fine to use xen,scmi-
-> As Xen developer, it solves my problem and I am fine with it.
+> Lets call it _get_dt_opp_power() or _get_dt_power() ?
+
+OK, I'll return to _get_dt_power()
+
 > 
-> However, from a device tree and SCMI point of view, it looks like this
-> problem is generic and it just happens that Xen is the first
-> implementation to encounter it.
+>> +{
+>> +	struct dev_pm_opp *opp;
+>> +	unsigned long opp_freq, opp_power;
+>> +
+>> +	/* Find the right frequency and related OPP */
+>> +	opp_freq = *kHz * 1000;
+>> +	opp = dev_pm_opp_find_freq_ceil(dev, &opp_freq);
+>> +	if (IS_ERR(opp))
+>> +		return -EINVAL;
+>> +
+>> +	opp_power = dev_pm_opp_get_power(opp);
 > 
-> Cristian wrote: "The SCMI spec does not indeed cover the discovery of
-> such devices and the related associated resources: it indeed delegates
-> such description to FDT/ACPI as of now." How is that supposed to happen
-> today with the current DT definitions, regardless of Xen? Is it a gap in
-> the current device tree binding?
+> As I said in 2/4, this should really give the total instead.
 
-What I meant is that in fact SCMI device IDs are NOT needed in the Linux
-Kernel DT, in fact also this series does not add any code using it and
-there is no code as of now in Kernel to issue BASE_SET_DEVICE_PERMISSIONS
-commands; Linux Guest OS in the above scenario is a Non-Trusted agent and
-doesn't need to know SCMI DevIDs and must NOT have access to those IDs for
-security reasons too (as Sudeep was saying): the Trusted Agent (XEN here)
-and the SCMI platform server are the only ones required to share the
-knowledge of such Device IDs (and how the related resources are grouped)
-via some HW description scheme as you are doing indeed in XEN.
+make sense
 
-So, while on one side such device IDs discovery is delegated by the spec
-to the HW description mechanisms, it seems just not needed in Kernel DT
-given the kind or role it has as an SCMI agent in this context: as said
-in fact there won't be any use as of now in Linux of such DT entries as
-of now.
+> 
+>> +	dev_pm_opp_put(opp);
+>> +	if (!opp_power)
+>> +		return -EINVAL;
+>> +
+>> +	*kHz = opp_freq / 1000;
+>> +	*mW = opp_power / 1000;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   /*
+>>    * Callback function provided to the Energy Model framework upon registration.
+>>    * This computes the power estimated by @dev at @kHz if it is the frequency
+>> @@ -1488,6 +1520,24 @@ static int __maybe_unused _get_power(unsigned long *mW, unsigned long *kHz,
+>>   	return 0;
+>>   }
+>>   
+>> +static bool _of_has_opp_microwatt_property(struct device *dev)
+>> +{
+>> +	unsigned long power, freq = 0;
+>> +	struct dev_pm_opp *opp;
+>> +
+>> +	/* Check if at least one OPP has needed property */
+>> +	opp = dev_pm_opp_find_freq_ceil(dev, &freq);
+>> +	if (IS_ERR(opp))
+>> +		return false;
+>> +
+>> +	power = dev_pm_opp_get_power(opp);
+>> +	dev_pm_opp_put(opp);
+>> +	if (!power)
+> 
+> What if this particular frequency has 0 power mentioned for some
+> reason :)
 
-Thanks,
-Cristian
+If that power 0 would be allowed here, then in next step when EM
+calls active_power() we check !power and report dev_err().
+IPA design would also not accept the power=0
 
+> 
+> Instead of this heavy stuff, just pick the first OPP from the opp
+> table and see its power-value.
 
+It is the first opp: freq=0.
+You mean by parsing the the DT node instead, like I had in v2 version?
+
+> 
+>> +		return false;
+>> +
+>> +	return true;
+>> +}
+>> +
+>>   /**
+>>    * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
+>>    * @dev		: Device for which an Energy Model has to be registered
+>> @@ -1517,6 +1567,14 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>>   		goto failed;
+>>   	}
+>>   
+>> +	/* First, try to find more precised Energy Model in DT */
+>> +	if (_of_has_opp_microwatt_property(dev)) {
+>> +		struct em_data_callback em_dt_cb = EM_DATA_CB(_get_opp_power);
+>> +
+>> +		return em_dev_register_perf_domain(dev, nr_opp, &em_dt_cb,
+>> +						   cpus, true);
+>> +	}
+>> +
+> 
+> We have another em_dev_register_perf_domain() down the line, lets keep
+> only one such call and get it a callback that should be set in an
+> if/else loop.
+
+OK
