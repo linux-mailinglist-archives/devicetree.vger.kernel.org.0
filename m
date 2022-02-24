@@ -2,62 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C204C4C38FC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:47:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C1E94C3936
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:51:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234091AbiBXWr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 17:47:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55178 "EHLO
+        id S231190AbiBXWwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 17:52:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235733AbiBXWr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:47:27 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4A31115D;
-        Thu, 24 Feb 2022 14:46:55 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id x193so5555381oix.0;
-        Thu, 24 Feb 2022 14:46:55 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=T8rxC4SYHootntoGkG1lgl7SL9cYYjf8RJoTjRMEDOI=;
-        b=HfUFT8wUQ9+QBqCePpvEvGYUmUfF1ikxa1SBS9qxqoBxZzOLfWWKkMHOKZ3vFg/IjR
-         LLdF3qYIWEwx4x0/t7QLx8iC1yUW4g2hL3zTBD/E+HzHjeYp/ijoZbm6g0jm6LtuDPtR
-         gdZPA8TXzW1J/iemdqlF4C+MyI7vX/qc9jJOyz3u8adMJLPj2LC3PpRf/w+E3AaxVddF
-         gxBexkUm7gAR0cyFF1F2s90IFEI2WXhuUouX7bzXGE+MrI3h9yo5P5eUW8DkCcZ8QHw4
-         3gJEbf5ZFFghlrWJat/OD34UIr14h/HF4KmaAStG/36GSq+OJ2EHsVcllBqW7XxbAB1c
-         2TPg==
-X-Gm-Message-State: AOAM5321TNMiEAjq/bXs+UgODlBOC9XmrhmoVTeWEfMNSaGhe2wyvYd1
-        AzScKO+H9NSFyPSMjvX8bXcy49lWHA==
-X-Google-Smtp-Source: ABdhPJxNyNx9W4NeO27WuCMbSEimeKORw2pmahAu2YqpfRZNb1uTcdHLEdw16iIx9VR+kpyZjiuf8A==
-X-Received: by 2002:a05:6808:bd0:b0:2d7:2a9f:368 with SMTP id o16-20020a0568080bd000b002d72a9f0368mr187554oik.304.1645742814813;
-        Thu, 24 Feb 2022 14:46:54 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l19-20020a056830239300b005adc1d88a0fsm292749ots.79.2022.02.24.14.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 14:46:54 -0800 (PST)
-Received: (nullmailer pid 3735288 invoked by uid 1000);
-        Thu, 24 Feb 2022 22:46:53 -0000
-Date:   Thu, 24 Feb 2022 16:46:53 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add ti,tmp125 temperature sensor
- binding
-Message-ID: <YhgK3X79u8I2RbTS@robh.at.kernel.org>
-References: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
+        with ESMTP id S235465AbiBXWwS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:52:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41363286EB;
+        Thu, 24 Feb 2022 14:51:46 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id ED2FEB829B0;
+        Thu, 24 Feb 2022 22:51:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31E15C340E9;
+        Thu, 24 Feb 2022 22:51:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645743103;
+        bh=P9qcOemBY8u888uY/b/Wuuv4yBCQnVd4boIuuS7cnNA=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=oO1DeX5QvOxenx0MYZgsizhTiYOeT5Wpi8TK6AkK7Ze6EbkDamOHOoyVhnmV4Cpbj
+         RATgZ9nG4pWwD2RnmW9IxNVU/+Tt+kS+Y7/aug4aQhK0fv+Wutcsli9JUb25Pi+Rt/
+         mFvj+YFI2Pxy9Q6gT0HYtIVc5xt3u2LGl6NpNWw1wEbjkGDz0HLrnCxHNvaft+wKNr
+         i9SLt7UWF+T79G3gk9IxQcb2zNiwFFp5IgjvYMz4MwHcxZnOSg8l5G5hECmwLsoGep
+         QR4BbV+HjlEBBJ3swzVgd2zlArUN1jcfQW0F+YWpxLCYyAFAMxV6688dnjgD3mhqFE
+         jVdUcYOLDdRWQ==
+Date:   Thu, 24 Feb 2022 14:51:42 -0800 (PST)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
+To:     Sudeep Holla <sudeep.holla@arm.com>
+cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+In-Reply-To: <20220224115443.fwhczfvm3cfwoim7@bogus>
+Message-ID: <alpine.DEB.2.22.394.2202241424110.239973@ubuntu-linux-20-04-desktop>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com> <20220222110003.GC21915@e120937-lin> <20220222160637.yn6pru4nfgwih23j@bogus> <20220222171549.GA2194063@EPUAKYIW015D> <20220224115443.fwhczfvm3cfwoim7@bogus>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d3538ba9beededfe3a9ad5dab4903a6a01834822.1645175187.git.chunkeey@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,21 +60,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 10:06:42AM +0100, Christian Lamparter wrote:
-> From the freely available Texas Instruments' TMP125 datasheet:
+On Thu, 24 Feb 2022, Sudeep Holla wrote:
+> On Tue, Feb 22, 2022 at 05:15:49PM +0000, Oleksii Moisieiev wrote:
+> > Hi Sudeep,
+> > 
+> > On Tue, Feb 22, 2022 at 04:06:37PM +0000, Sudeep Holla wrote:
+> > > Hi Oleksii,
+> > > 
+> > > My initial feedback on this. And thanks Cristian for making it so easy as
+> > > you have covered most of the things in depth(which I might have not done
+> > > myself that well)
+> > > 
+> > > On Tue, Feb 22, 2022 at 11:00:03AM +0000, Cristian Marussi wrote:
+> > > > On Mon, Feb 21, 2022 at 05:26:46PM +0000, Oleksii Moisieiev wrote:
+> > > > > Introducing new parameter called scmi_devid to the device-tree bindings.
+> > > > > This parameter should be set for the device nodes, which has
+> > > > > clocks/power-domains/resets working through SCMI.
+> > > 
+> > > I prefer you had given more details on your usage model here instead of
+> > > pointing to the other Xen thread as it helps for someone without much
+> > > background on Xen or your use-case to review this.
+> > > 
+> > Let me describe the process in few words:
+> > We implemented a new feature, called SCI-mediator in Xen.
+> > The proposed implementation allows Guests to communicate with the Firmware using SCMI
+> > protocol with SMC as a transport. Other implementation are also
+> > possible, such as SCMI-Mailbox, SCPI-mailbox etc.
+> > 
+> > In this feature Xen is the Trusted Agent, which receives the following
+> > information in Xen device-tree:
+> > 1) All channels should be described, each channel defined as
+> > arm,scmi-shmem node;
+> > 2) Scmi node arm,scmi-smc with protocols description;
 > 
-> "The TMP125 is an SPI-compatible temperature sensor available in the
-> tiny SOT23-6 package. Requiring no external components, the TMP125
-> is capable of measuring temperatures within 2 degree C of accuracy
-> over a temperature range of −25 degree C to +85 degree C and
-> 2.5 degree C of accuracy over −40 degree C to +125 degree C."
+> Sounds good so far.
 > 
-> The TMP125 is very similar to the TMP121/TMP122 series of familiar
-> chips.
+> > 3) scmi-devid should be set in nodes, which works through SCMI.
+> >
 > 
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Why is this needed for Guest OS, you need not populate this if Guest OS
+> is not required to use it, right ? If it is needed just by Xen hypervisor,
+> lets talk about that and why it is bad idea to mix that with general
+> SCMI bindings.
 
-Acked-by: Rob Herring <robh@kernel.org>
+I'll try to help Oleksii by answering here, I hope I am not off the mark
+:-)
+
+I think Sudeep is right, scmi-devid is not needed by the guest OS.
+
+The host device tree is a more interesting discussion. As the host
+device tree is meant to be generic and not tied to a specific version of
+Linux, it should fully describe the SCMI interface available. If the
+device tree is provided to a Trusted Agent, then it should also have the
+scmi-devid information, right?
+
+
+> > On start Xen inits itself as trusted agent and requests agent
+> > configuration by using BASE_DISCOVER_AGENT message. This message is sent
+> > to each configured channel to get agent_id
+> > 
+> > On Domain creation stage Xen will do the following steps:
+> > 1) Assign channel to the Guest and map channel address to the Domain
+> > address. For the Domain this address should be the same;
+> > 2) Generate arm,scmi-shmem and arm,scmi-smc nodes if needed for Guest
+> > device-tree (the device-tree which should be passed to the Guest);
+> > 3) Process devices, which are passed through to this Guest and set
+> > BASE_SET_DEVICE_PERMISSIONS for the scmi-devid, received from the
+> > device-node;
+> >
+> 
+> I am confused here. So the Xen knows which devices are assigned to each
+> Guest OS but doesn't know device ID for them, but relies on the device
+> tree node ?
+
+Which devices go to which guest OS is a user-provided configuration. For
+instance, a user can say: "assing /amba/ethernet@ff0e0000 to dom1". This
+is normal and not related to SCMI: when a user configures a static
+partitioning system, they decide which resources belong to which domain.
+
+So Xen is told that /amba/ethernet@ff0e0000 is supposed to go to dom1.
+Xen proceeds to map memory and interrupts corresponding to
+/amba/ethernet@ff0e0000 to dom1. So far so good. What about SCMI?
+
+In Oleksii's design, Xen is going to assign one of the available SCMI
+channels to dom1 and restrict its permission to only
+/amba/ethernet@ff0e0000. To do that, Xen needs to know the scmi-devid of
+/amba/ethernet@ff0e0000. As far as I can tell there is nothing
+Xen-specific in this activitity, that's why I asked Oleksii to reach out
+to the upstream device tree community to improve the generic bindings
+for everyone's benefits.
