@@ -2,210 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDEE34C361E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:49:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C524C361F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:49:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231497AbiBXTt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:49:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46232 "EHLO
+        id S233733AbiBXTtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 14:49:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233235AbiBXTt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:49:26 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AE33254544
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:48:54 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id j2so4538067oie.7
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:48:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=YpCPN12fmyvtZ3VxGfCIknwO/QSMW1ppj6lyaT35Vx4=;
-        b=pK19w9BTReh2iS/hVdIV2GaNUrOGpjc4L69qtRJOPPfr/BiDh2FLe64nCxdJqhA8Wu
-         3/Adks73h/3ybVh6pMLtOj5Rlt5pkOUUj3YA1vj2HGImylA0gbGBg5aPYXJFKqQo6yun
-         EMrxE65v/RHEZ0fOMJa8J2HlmBFKD9hSfbe46xWK13a69K2oRfMQGCAeTWXl57MqXn/p
-         A6BVUdxy++vBh04rxe72suQaBVkTEM04uVxQoZUGmXKWA+Y49Q6YHXt5g8DhGAyMUgFi
-         D/Vayc8QHg4BCz24ntf1vLT+/aaHIj68xC1KNZq99Z3CaklVCKLNNfwOnFXlc+4jmfln
-         J9bg==
+        with ESMTP id S234007AbiBXTtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:49:36 -0500
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49CED254545;
+        Thu, 24 Feb 2022 11:49:04 -0800 (PST)
+Received: by mail-ot1-f45.google.com with SMTP id l25-20020a9d7a99000000b005af173a2875so2084529otn.2;
+        Thu, 24 Feb 2022 11:49:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YpCPN12fmyvtZ3VxGfCIknwO/QSMW1ppj6lyaT35Vx4=;
-        b=EbBws+IekGYunCy9a5C+28jeyfiRva8aauGZZ7IJGoreNYAEJKVfbIiO3xeQwEza6d
-         jivReNwC9vmR15ZfqFQ7msY3b0QG+ACRlxGJTPOpiLfzOTN8KI7pQY1lZvezhRSMV9zb
-         lIqhI/lqdfTwAiHaLb4AsTVNG47Yj7tnVk8Bl+kKb4pVKJg4Gdur+DXbBpexPUnSwrSn
-         hfVY4DgPWNWB0skUDvXPvEZT1eOUaAms6dWnTwigr79zlj/CmlG1gDTh9B8MdQfkH7eT
-         /6DqZVGrW2ahmF1lIbojQstEceWSQzEZb4KZG+lDlCA7VT1Sz4iOs3psy8r6ElXBRlCm
-         atow==
-X-Gm-Message-State: AOAM531ImsxyDQKFMT1dbkoyBeMldCVGw1Q7IS4mFMyPCAgKFIR5n7ks
-        N0jS6raCO4oxa6R7NFlrfABspg==
-X-Google-Smtp-Source: ABdhPJzKeCMq10+IjJPvyVIa2uOMWEU2rndAS06yEdTPF6U16PF6kORu+SzOAcMwVifHKbtDyUiFTA==
-X-Received: by 2002:a05:6870:2418:b0:d3:1052:aac0 with SMTP id n24-20020a056870241800b000d31052aac0mr1919223oap.80.1645732133566;
-        Thu, 24 Feb 2022 11:48:53 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id bl16-20020a056808309000b002d43b28a8bdsm241679oib.14.2022.02.24.11.48.52
+         :mime-version:content-disposition:in-reply-to;
+        bh=vEMkaLmcYjI09xvx6jYK1M/q56ooly5OYLZnEhsDSRo=;
+        b=CSZCjHypl16wcR9w4o54hBTW82A2Qsgt9xgP8s8VLo+WsFUpHwLuUKPjohEV5y63Ci
+         AsSslVMYvQiXKf5W+qNjSYgveXkAYy6wJTC808TN7PRSiFTbRSlsIf4QPHkX8gRAnKEE
+         5QDcgvj4bj+b5/TDBrWxiBa+1ov4kMgOlWYqskbPaEePO8WcdVjlJ3bZAZWTfTk6z4y+
+         uctL9PDp51kdpXLL1bZIHb31eCoa+symkT068MZoUJz7nMzOFRm4/9Vh06FdmCfD0ya8
+         fygn4fuHzWmULh8RqTZtqCUpYavpJjp7s8I4gSIJXGy9ouBPeopJYInM507YLbeOWmPY
+         lAjw==
+X-Gm-Message-State: AOAM533bqLeHVU6yvq939qmbFmoeO+e5oNn88hm+WR65rs1ZDrXQYAeZ
+        Dlpul9dtfk0wb27s1v8cKA==
+X-Google-Smtp-Source: ABdhPJypgynPujP0cdPUrnNUKBeJNnGl3BBCJkagr3tusQSqPPDDWnHi4y3UQXDbmLAkglzENGbn9A==
+X-Received: by 2002:a4a:8507:0:b0:319:4719:27f6 with SMTP id k7-20020a4a8507000000b00319471927f6mr1532083ooh.84.1645732143607;
+        Thu, 24 Feb 2022 11:49:03 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id j25-20020a4ad199000000b003171dfeb5bfsm121557oor.15.2022.02.24.11.49.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 11:48:53 -0800 (PST)
-Date:   Thu, 24 Feb 2022 13:48:51 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Baruch Siach <baruch.siach@siklu.com>,
-        Balaji Prakash J <bjagadee@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Kathiravan T <kathirav@codeaurora.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] dt-bindings: pwm: add IPQ6018 binding
-Message-ID: <YhfhIyRKwl1bJObC@builder.lan>
-References: <17dd231f496d09ed8502bdd505eaa77bb6637e4b.1644226245.git.baruch@tkos.co.il>
- <dee024e7add1b2c919b23472c90391239a0a2572.1644226245.git.baruch@tkos.co.il>
+        Thu, 24 Feb 2022 11:49:02 -0800 (PST)
+Received: (nullmailer pid 3475137 invoked by uid 1000);
+        Thu, 24 Feb 2022 19:49:01 -0000
+Date:   Thu, 24 Feb 2022 13:49:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     long.cheng@mediatek.com, linux-mediatek@lists.infradead.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sean.wang@mediatek.com,
+        krzysztof.kozlowski@canonical.com,
+        linux-arm-kernel@lists.infradead.org, vkoul@kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Subject: Re: [PATCH v3] dt-bindings: dma: Convert mtk-uart-apdma to DT schema
+Message-ID: <YhfhLWdVKLqHHFyv@robh.at.kernel.org>
+References: <20220217095242.13761-1-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dee024e7add1b2c919b23472c90391239a0a2572.1644226245.git.baruch@tkos.co.il>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220217095242.13761-1-angelogioacchino.delregno@collabora.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 07 Feb 03:30 CST 2022, Baruch Siach wrote:
-
-> From: Baruch Siach <baruch.siach@siklu.com>
+On Thu, 17 Feb 2022 10:52:42 +0100, AngeloGioacchino Del Regno wrote:
+> Convert the MediaTek UART APDMA Controller binding to DT schema.
 > 
-> DT binding for the PWM block in Qualcomm IPQ6018 SoC.
-> 
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-Regards,
-Bjorn
-
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
-> This series does not convert the TCSR binding documentation to YAML. As
-> a result, this commit adds a new dt_binding_check warning:
+> v3: Removed anyOf condition
+> v2: Fixed interrupt maxItems to 16, added interrupts/reg maxItems constraint
+>     to 8 when the dma-requests property is not present
 > 
-> /example-0/syscon@1937000: failed to match any schema with compatible: ['qcom,tcsr-ipq 6018', 'syscon', 'simple-mfd']
+>  .../bindings/dma/mediatek,uart-dma.yaml       | 122 ++++++++++++++++++
+>  .../bindings/dma/mtk-uart-apdma.txt           |  56 --------
+>  2 files changed, 122 insertions(+), 56 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/dma/mtk-uart-apdma.txt
 > 
-> If that is a blocker to IPQ6018 PWM support, so be it. Patches will wait
-> for someone else to push them further.
-> 
-> v10:
-> 
->   No change
-> 
-> v9:
-> 
->   Add 'ranges' property to example (Rob)
-> 
->   Drop label in example (Rob)
-> 
-> v8:
-> 
->   Add size cell to 'reg' (Rob)
-> 
-> v7:
-> 
->   Use 'reg' instead of 'offset' (Rob)
-> 
->   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-> 
->   Use single cell address/size in example node (Bjorn)
-> 
->   Move '#pwm-cells' lower in example node (Bjorn)
-> 
->   List 'reg' as required
-> 
-> v6:
-> 
->   Device node is child of TCSR; remove phandle (Rob Herring)
-> 
->   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->     Andersson, Kathiravan T)
-> 
-> v4: Update the binding example node as well (Rob Herring's bot)
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
-> v2: Make #pwm-cells const (Rob Herring)
-> ---
->  .../devicetree/bindings/pwm/ipq-pwm.yaml      | 53 +++++++++++++++++++
->  1 file changed, 53 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> new file mode 100644
-> index 000000000000..857086ad539e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/ipq-pwm.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/ipq-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm IPQ6018 PWM controller
-> +
-> +maintainers:
-> +  - Baruch Siach <baruch@tkos.co.il>
-> +
-> +properties:
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +  compatible:
-> +    const: qcom,ipq6018-pwm
-> +
-> +  reg:
-> +    description: Offset of PWM register in the TCSR block.
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - "#pwm-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,gcc-ipq6018.h>
-> +
-> +    syscon@1937000 {
-> +        compatible = "qcom,tcsr-ipq6018", "syscon", "simple-mfd";
-> +        reg = <0x01937000 0x21000>;
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +        ranges = <0 0x1937000 0x21000>;
-> +
-> +        pwm: pwm@a010 {
-> +            compatible = "qcom,ipq6018-pwm";
-> +            reg = <0xa010 0x20>;
-> +            clocks = <&gcc GCC_ADSS_PWM_CLK>;
-> +            assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-> +            assigned-clock-rates = <100000000>;
-> +            #pwm-cells = <2>;
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
+
+Acked-by: Rob Herring <robh@kernel.org>
