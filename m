@@ -2,109 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D604C3644
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:56:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C96C94C3651
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 20:57:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233995AbiBXT4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 14:56:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55646 "EHLO
+        id S234146AbiBXT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 14:58:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234063AbiBXT4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:56:40 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0E7C425D6F2
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:56:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1645732569;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=1qNwgK/uABbR31RJ+c5U+2VE5X9fztouz4y0ZP2I2dA=;
-        b=TA95xsvR1CwRJjLvlrNd/Pfb6ENrB/MeanR2s9UHLn4aWRKr+FNhmbmWvdmg9w30I2DA/9
-        t0cP/ZufmYQapHkio71bYyASzR+ACzHknwuzbHSKilxuDsRyHRf0x3qcgzO/P0Sg4hGx+O
-        PyN/MuwDVNVRotQAxFsizXa7sYWeUpo=
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
- [209.85.160.199]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-629-HYvLm-fcMo-iccdVJDGncg-1; Thu, 24 Feb 2022 14:56:08 -0500
-X-MC-Unique: HYvLm-fcMo-iccdVJDGncg-1
-Received: by mail-qt1-f199.google.com with SMTP id o19-20020a05622a045300b002dd26442ed0so412025qtx.20
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:56:07 -0800 (PST)
+        with ESMTP id S233387AbiBXT6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 14:58:05 -0500
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2173415FC82
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:57:35 -0800 (PST)
+Received: by mail-oi1-x231.google.com with SMTP id s5so4582968oic.10
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 11:57:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=uRmLZfQHkYzc7u6LM3Bmygv1wthncLvGRmNglYSkNqo=;
+        b=DkLVMhs9NzFgLjcSvs/jJ22SRT6eQNzgccJ0Itt5s8Pc790Ehnmyq9abxjBU4SXfXa
+         5KxPkqiUURFHLee8AIoP5wsjfNRBW27eJ0wznWxNpFBvljZoII/17nFWntUb4qpvQXoB
+         u+vAEjYN53x3PyOZIojVzKBiZwZ0jgiMUDJMDXk/v2SQE+VFrZdWca1ABk+83GasELJ6
+         R79poDVtv62uxo1ogqphaKAlk2EkmR9MiWSD6OcrnSZfOqGTcXvcTgWA+SD1E3/MQAJG
+         fj9cmBu3lZVSYe1PKlOD1ej4oMiunyqVx+oWAgkWCpp+l1Leb/fO1xrYRVGl85hqw2Ck
+         5cdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1qNwgK/uABbR31RJ+c5U+2VE5X9fztouz4y0ZP2I2dA=;
-        b=o5KNE72uPOAjiYt5DOKPUWxS+bh4V9qkQGap3KYz0W09EMWnE/TndpHe7pLxMPzo/g
-         A9DJffSW8l/cn8OXsm+DIQ2un3h+YblIKYW6+EpKQTKtmNTKoKgsh8aiqKfQb0I0iiaX
-         4BFQd003gqTjfaloIrqeUlvBrH/g1y2Ebb/ETL0Fbhq+/Qfq9DFQ2mJSeovdGgSl2RD0
-         OnTiNCEgDH0VJcPGZoSc6en8Vg73MoQo8qATms8js7o5YVi/scjLw2slAIdpux+0HEdC
-         K3u/0uEpm+2hO8GwIN13Ex2BVo3sNn1BhWrMoJ5GIQOyzv3Yl2aRLGSF2SDgyfMg0Y1M
-         Q2BQ==
-X-Gm-Message-State: AOAM532TE/y0BiZpfg7TLRH1TBfZuRlnXnUuYyevJnFlAf9j6RKaDZw5
-        6nFH9fcvvJeNDyvD8m1nwJ9Oc3O1rl54DgI7Byd8XyhuxWp0jBZi320FD6rzw9NwsMreMXlH1Pq
-        ZBIO1Qexk/+E56LUYoShc1g==
-X-Received: by 2002:a05:622a:1794:b0:2de:697:e565 with SMTP id s20-20020a05622a179400b002de0697e565mr3854570qtk.563.1645732567562;
-        Thu, 24 Feb 2022 11:56:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyieQkBq6bdToT4b9k6NP7ftnGGYeZ5NthEMufE6USKb5SeS/kX9bX/y6DutdnEf+GSAvQ1gA==
-X-Received: by 2002:a05:622a:1794:b0:2de:697:e565 with SMTP id s20-20020a05622a179400b002de0697e565mr3854553qtk.563.1645732567344;
-        Thu, 24 Feb 2022 11:56:07 -0800 (PST)
-Received: from fedora (modemcable200.11-22-96.mc.videotron.ca. [96.22.11.200])
-        by smtp.gmail.com with ESMTPSA id g1-20020ac87d01000000b002d5c8226f17sm183732qtb.7.2022.02.24.11.56.06
+        bh=uRmLZfQHkYzc7u6LM3Bmygv1wthncLvGRmNglYSkNqo=;
+        b=nPPI3iG4Rkq47pCPm/d27kQaHnjGstK/5Sk83IJJwfQ4id/XfvJrCApqoTtnb62/gb
+         oQhoKJoK2E9lNpGv1wjUyt3UpdMaxzUDgUksQsn5U/04uwA3EStH0Ygvmx4yJsQcHmCS
+         IjVc71WAnPDf712ztI3jMisG+wRaUO/UY5SGpBJEQq8hH1/W+Z3NqctPwxJmEYCOcdlI
+         BWH9kUJG6iMBZxQ13npK8ShSNC/XL3SNykMtEz4R+F1SrtnxrZoHfI7ANMbJ6oRXSs/R
+         GYcxSauxSoj0tF8GP0YkNzTtdr5uZKuKpMZSf1WYENi/iJecdRDvATPYxXtxeBNLPEf7
+         WB/g==
+X-Gm-Message-State: AOAM531BVbfgesIvPATlDfPX2T/sQ6BeNr2bUQaWlnXnvCU2SzasS7Xk
+        kzqqLz9PH6xQ49eUn7n5O6Ldqg==
+X-Google-Smtp-Source: ABdhPJySDMCKKL+4aV2cblIdnPtj+AQytyxzcFkG7LPcP+u4BgmCi1Pye8INN6Dn8EDDIyOF+uVWyA==
+X-Received: by 2002:aca:3e56:0:b0:2d4:c902:b851 with SMTP id l83-20020aca3e56000000b002d4c902b851mr8091956oia.114.1645732654500;
+        Thu, 24 Feb 2022 11:57:34 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id d35-20020a9d2926000000b005ad1fa8da87sm141701otb.53.2022.02.24.11.57.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 11:56:07 -0800 (PST)
-Date:   Thu, 24 Feb 2022 14:56:04 -0500
-From:   Adrien Thierry <athierry@redhat.com>
-To:     Peter Robinson <pbrobinson@gmail.com>
-Cc:     Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Emma Anholt <emma@anholt.net>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Russell King <linux@armlinux.org.uk>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Subject: Re: [PATCH v4 12/15] drm/v3d: Add support for bcm2711
-Message-ID: <Yhfi1DdlHPXzWAGc@fedora>
-References: <20220213225646.67761-1-pbrobinson@gmail.com>
- <20220213225646.67761-13-pbrobinson@gmail.com>
+        Thu, 24 Feb 2022 11:57:34 -0800 (PST)
+Date:   Thu, 24 Feb 2022 13:57:32 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Kathiravan T <quic_kathirav@quicinc.com>
+Cc:     agross@kernel.org, robh+dt@kernel.org, varada@codeaurora.org,
+        mraghava@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: fix the sleep clock frequency
+Message-ID: <YhfjLNHCZeK4hYKa@builder.lan>
+References: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220213225646.67761-13-pbrobinson@gmail.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri 11 Feb 06:14 CST 2022, Kathiravan T wrote:
 
-> @@ -193,6 +193,7 @@ static const struct drm_driver v3d_drm_driver = {
->  static const struct of_device_id v3d_of_match[] = {
->  	{ .compatible = "brcm,7268-v3d" },
->  	{ .compatible = "brcm,7278-v3d" },
-> +	{ .compatible = "brcm,bcm2711-v3d" },
->  	{},
->  };
+> Sleep clock frequency should be 32768Hz. Lets fix it.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 41dac73e243d ("arm64: dts: Add ipq8074 SoC and HK01 board support")
+> Link: https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 
-The downstream tree [1] uses 'brcm,2711-v3d'. Is there a reason for not
-using the same compatible string ? Having the same string would allow
-using downstream dtbs (and overlays) with the upstream kernel.
+Can you please confirm this? The documentation for GCC says that the
+incoming sleep clock is 32000Hz.
 
-Adrien
+Regards,
+Bjorn
 
-[1] https://github.com/raspberrypi/linux/blob/rpi-5.15.y/drivers/gpu/drm/v3d/v3d_drv.c
-
+> ---
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> index 26ba7ce9222c..b6287355ad08 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+> @@ -13,7 +13,7 @@
+>  	clocks {
+>  		sleep_clk: sleep_clk {
+>  			compatible = "fixed-clock";
+> -			clock-frequency = <32000>;
+> +			clock-frequency = <32768>;
+>  			#clock-cells = <0>;
+>  		};
+>  
+> -- 
+> 2.7.4
+> 
