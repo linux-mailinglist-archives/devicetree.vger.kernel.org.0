@@ -2,56 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE944C2B6F
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:10:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FC894C2B73
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 13:11:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230080AbiBXMKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 07:10:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42814 "EHLO
+        id S233794AbiBXMLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 07:11:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229838AbiBXMKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:10:14 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5E315F347;
-        Thu, 24 Feb 2022 04:09:44 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id s13so2681929wrb.6;
-        Thu, 24 Feb 2022 04:09:44 -0800 (PST)
+        with ESMTP id S233558AbiBXMLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 07:11:35 -0500
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEE9015F35E;
+        Thu, 24 Feb 2022 04:11:05 -0800 (PST)
+Received: by mail-wr1-x42a.google.com with SMTP id u1so2651857wrg.11;
+        Thu, 24 Feb 2022 04:11:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ryt2IYjdNSmFLI6a3vnNM5EwFNVjdetPyVDqd/aUZeg=;
-        b=D6vR6F2TXmpD1+UFCX8/J45nksM0voDBDyKbu5n1LNr1+wppAD0zyDcENlMVfqmii7
-         BuTLLq0BL0y5mO5yu9m4ktr8rV4ovbhXhVp9IlmNKKjbEktMaMmojnWIqgVIgdYSyPdu
-         aJ8YL5FVF6VLA1AZszcXBwQIB8jhWo0kJh2UiztMeSKsS8bdMOAS3vUGJJfNy7uK7X6l
-         yUrloHTy+IHNLYCZ16bL2MLz+Y54F5+gMtXtLSZ7mj2pcuPOAgFvo35/VTDvSxAlRGFH
-         1zhHW4cmhroVIuI3Vx+m6gXAo6COHCrdvEvzkI5X3fCzJ7YSh2IpNEOPPO8gbtQX9cHZ
-         TJSw==
+        bh=udUzQTx8uQbEn65wZkZ2LtdPlXauImFTreIuyYxFBvY=;
+        b=d/ATDiRWsZIy62QldnaN2uraeOFMFI01rHXphEG2OOVtRSlMNE0Da0GtjJvc+0rInG
+         LdzApld8xzsUg7ViCxXA2I6p02eYiyPfo6N/dMaUB3KhCG/Hd2cLV2+PcGFUy7qEGUaS
+         1qbNT3r+v0ssqlIPgfjvaE8Ul/uiONV0Ij+aIQaKRaaajTOmzzDEG+mNNX3QXUIY6XNl
+         ohYky5I2Jz+fNuKUwbL3fxrCZejUVoVe2qG4p/oQq75CnAkRzQwCtAwFgF+wJDIbQHzg
+         OMNNptjMbK21Z5yc6BFT1cr6gwauDg6Xndcip0GYOBCt2WgKgSsBSiCpApiKDX9lnNTs
+         Ps9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ryt2IYjdNSmFLI6a3vnNM5EwFNVjdetPyVDqd/aUZeg=;
-        b=K9T288SeQ0pZ5HiYchXnb8i5z2Y79lAzqdN/rSAbQQusRdkezX+YlZlX9tDM8vkT2S
-         Rfol/0rYUJLhZby7tMRchfYiafm+pp2qXKsFsEkTI09TVVoFmtOPZ+5VOLig5GeQz+zs
-         5zwTDylU/F0Ezi+D5Pccjng8s4+eQmtaaBM06peOJI66wDCKK8o1zgv8e6LSEgodSvZB
-         H3Wky3dk3bE/h7fJsxvUHTaWRtqkIGAPhDZhTSgtDxCCiDfncR6W7Ib6+afGZlnrZdwx
-         tQ66JnPYkiEh7VJkE5ld7FjzHZR6QPV+ABJEQcpZvjLeFG5OdrmKA0ofp11kZxrMQB0d
-         iOxA==
-X-Gm-Message-State: AOAM531ekKwJKIBbyYbGBg/1sRys/BGqUmPx/Rq7ysMnwtKYV6DkA7/W
-        Tgq9GY1NxwtK/YMDAlCAWALBQ+b28hD50kmU7uI=
-X-Google-Smtp-Source: ABdhPJzKeTdhqWFtGflp/xcTtkiyTROqljqNG8nFw2113ZyvHBY7rTQF77YYb10eBX5RZULi20EbGlwm7JdHzAWN3+Y=
-X-Received: by 2002:adf:f691:0:b0:1ed:f546:bd81 with SMTP id
- v17-20020adff691000000b001edf546bd81mr1726324wrp.542.1645704582892; Thu, 24
- Feb 2022 04:09:42 -0800 (PST)
+        bh=udUzQTx8uQbEn65wZkZ2LtdPlXauImFTreIuyYxFBvY=;
+        b=OalehnXnv7R/tXz4+pZtg50D9r40AXewMagn5+n1rnD7/CJEQZKTxbteyN1a/gDOXM
+         VBZJaR0gRwtWgN/ksPRDWbZ3dO+Ieb3oUzs7DvEBg1ZQivgu4IBvOfiOkWeA7zewza0o
+         1p0j3/6iASNyGdxY7KtnmABZOj3Cy7x9G9PX4fPrmZkqq8kVVv3UgB6PwVi4uOPveHF/
+         a5mHe1b7Ga1w29EH5Km/MrKA5QSgRtLzirp8NS9SI0ihI6WC6MR8+0/+mZVwTtRTbtn3
+         7IQa0vjORsiwEEOksh28OFlHFNQnCWoR5aazemqPo1aDOz4l6iqpp3msnT2WEULcetcV
+         3rYA==
+X-Gm-Message-State: AOAM531yv6TKvCYzgwwPjaz4+CY+X34sHDR5YnqkH/v0bWV+aub0N+tu
+        ODHLR0+W/LRZePdkxdh8Sxpdcq9Qc5FEXuVl3RY=
+X-Google-Smtp-Source: ABdhPJyGHVy5G41dXsjJAzXd+4XE/D+KPzCpc4wJ3QNJT7bfYHzoSkj4YsLW5b6DinkojUs2K41l86hnicpruaupk9w=
+X-Received: by 2002:a5d:64ac:0:b0:1e7:1415:2548 with SMTP id
+ m12-20020a5d64ac000000b001e714152548mr2041092wrp.267.1645704664217; Thu, 24
+ Feb 2022 04:11:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20220224103030.2040048-1-michael@walle.cc> <20220224103030.2040048-2-michael@walle.cc>
-In-Reply-To: <20220224103030.2040048-2-michael@walle.cc>
+References: <20220224103030.2040048-1-michael@walle.cc>
+In-Reply-To: <20220224103030.2040048-1-michael@walle.cc>
 From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Thu, 24 Feb 2022 13:09:31 +0100
-Message-ID: <CAEyMn7ZU8EQCUWYDTyC5m0j7x-6NEyuG95czjL4P98MMpCDL9g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mn-evk: fix the min/max voltages
- of the PMIC
+Date:   Thu, 24 Feb 2022 13:10:52 +0100
+Message-ID: <CAEyMn7ZqypVn14dEa8eWWuUthRqwHqXg35X6hhFE9v7vRkCTxA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mn-evk: use proper names for PMIC outputs
 To:     Michael Walle <michael@walle.cc>
 Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -72,127 +71,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+HI,
 
 Am Do., 24. Feb. 2022 um 11:30 Uhr schrieb Michael Walle <michael@walle.cc>:
 >
-> Use the proper voltages as supported by the board instead of the ones
-> supported by the PMIC. The voltages were taken from both the schematic
-> of the 8MNANOLPD4-EVK eval board and the datasheet of the IMX8MN SoC.
+> Use the power signal names as given in the schematics of the reference
+> board.
 >
 > Signed-off-by: Michael Walle <michael@walle.cc>
 
 Reviewed-by: Heiko Thiery <heiko.thiery@gmail.com>
 
 > ---
-> Please help review and test this. This was never tested on the actual
-> 8MNANOLPD4-EVK because I don't have that board! Instead it is a
-> "byproduct" of the development of an devicetree for the 8MNANOD3L-EVK
-> which is quite similar except for the DDR voltage and the buck2
-> converter.
->
 > Changes since v1:
 >  - swap buck1 and buck2
 >
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 34 ++++++++++----------
->  1 file changed, 17 insertions(+), 17 deletions(-)
+>  arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 20 ++++++++++----------
+>  1 file changed, 10 insertions(+), 10 deletions(-)
 >
 > diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-> index 2b685c0c7eeb..4eb467df5ba7 100644
+> index b4225cfcb6d9..2b685c0c7eeb 100644
 > --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
 > +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-> @@ -42,8 +42,8 @@ pmic: pmic@25 {
+> @@ -41,7 +41,7 @@ pmic: pmic@25 {
+>
 >                 regulators {
 >                         buck1: BUCK1{
->                                 regulator-name = "VDD_SOC";
-> -                               regulator-min-microvolt = <600000>;
-> -                               regulator-max-microvolt = <2187500>;
-> +                               regulator-min-microvolt = <850000>;
-> +                               regulator-max-microvolt = <950000>;
+> -                               regulator-name = "BUCK1";
+> +                               regulator-name = "VDD_SOC";
+>                                 regulator-min-microvolt = <600000>;
+>                                 regulator-max-microvolt = <2187500>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
->                                 regulator-ramp-delay = <3125>;
-> @@ -51,8 +51,8 @@ buck1: BUCK1{
+> @@ -50,7 +50,7 @@ buck1: BUCK1{
+>                         };
 >
 >                         buck2: BUCK2 {
->                                 regulator-name = "VDD_ARM_0V9";
-> -                               regulator-min-microvolt = <600000>;
-> -                               regulator-max-microvolt = <2187500>;
-> +                               regulator-min-microvolt = <850000>;
-> +                               regulator-max-microvolt = <1000000>;
+> -                               regulator-name = "BUCK2";
+> +                               regulator-name = "VDD_ARM_0V9";
+>                                 regulator-min-microvolt = <600000>;
+>                                 regulator-max-microvolt = <2187500>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
->                                 regulator-ramp-delay = <3125>;
-> @@ -62,32 +62,32 @@ buck2: BUCK2 {
+> @@ -61,7 +61,7 @@ buck2: BUCK2 {
+>                         };
 >
 >                         buck4: BUCK4{
->                                 regulator-name = "VDD_3V3";
-> -                               regulator-min-microvolt = <600000>;
-> -                               regulator-max-microvolt = <3400000>;
-> +                               regulator-min-microvolt = <3300000>;
-> +                               regulator-max-microvolt = <3300000>;
+> -                               regulator-name = "BUCK4";
+> +                               regulator-name = "VDD_3V3";
+>                                 regulator-min-microvolt = <600000>;
+>                                 regulator-max-microvolt = <3400000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -69,7 +69,7 @@ buck4: BUCK4{
 >                         };
 >
 >                         buck5: BUCK5{
->                                 regulator-name = "VDD_1V8";
-> -                               regulator-min-microvolt = <600000>;
-> -                               regulator-max-microvolt = <3400000>;
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <1800000>;
+> -                               regulator-name = "BUCK5";
+> +                               regulator-name = "VDD_1V8";
+>                                 regulator-min-microvolt = <600000>;
+>                                 regulator-max-microvolt = <3400000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -77,7 +77,7 @@ buck5: BUCK5{
 >                         };
 >
 >                         buck6: BUCK6 {
->                                 regulator-name = "NVCC_DRAM_1V1";
-> -                               regulator-min-microvolt = <600000>;
-> -                               regulator-max-microvolt = <3400000>;
-> +                               regulator-min-microvolt = <1100000>;
-> +                               regulator-max-microvolt = <1100000>;
+> -                               regulator-name = "BUCK6";
+> +                               regulator-name = "NVCC_DRAM_1V1";
+>                                 regulator-min-microvolt = <600000>;
+>                                 regulator-max-microvolt = <3400000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -85,7 +85,7 @@ buck6: BUCK6 {
 >                         };
 >
 >                         ldo1: LDO1 {
->                                 regulator-name = "NVCC_SNVS_1V8";
-> -                               regulator-min-microvolt = <1600000>;
-> -                               regulator-max-microvolt = <3300000>;
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <1800000>;
+> -                               regulator-name = "LDO1";
+> +                               regulator-name = "NVCC_SNVS_1V8";
+>                                 regulator-min-microvolt = <1600000>;
+>                                 regulator-max-microvolt = <3300000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -93,7 +93,7 @@ ldo1: LDO1 {
 >                         };
-> @@ -95,23 +95,23 @@ ldo1: LDO1 {
+>
 >                         ldo2: LDO2 {
->                                 regulator-name = "VDD_SNVS_0V8";
+> -                               regulator-name = "LDO2";
+> +                               regulator-name = "VDD_SNVS_0V8";
 >                                 regulator-min-microvolt = <800000>;
-> -                               regulator-max-microvolt = <1150000>;
-> +                               regulator-max-microvolt = <800000>;
+>                                 regulator-max-microvolt = <1150000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -101,7 +101,7 @@ ldo2: LDO2 {
 >                         };
 >
 >                         ldo3: LDO3 {
->                                 regulator-name = "VDDA_1V8";
-> -                               regulator-min-microvolt = <800000>;
-> -                               regulator-max-microvolt = <3300000>;
-> +                               regulator-min-microvolt = <1800000>;
-> +                               regulator-max-microvolt = <1800000>;
+> -                               regulator-name = "LDO3";
+> +                               regulator-name = "VDDA_1V8";
+>                                 regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <3300000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -109,7 +109,7 @@ ldo3: LDO3 {
 >                         };
 >
 >                         ldo4: LDO4 {
->                                 regulator-name = "VDD_PHY_1V2";
-> -                               regulator-min-microvolt = <800000>;
-> -                               regulator-max-microvolt = <3300000>;
-> +                               regulator-min-microvolt = <1200000>;
-> +                               regulator-max-microvolt = <1200000>;
+> -                               regulator-name = "LDO4";
+> +                               regulator-name = "VDD_PHY_1V2";
+>                                 regulator-min-microvolt = <800000>;
+>                                 regulator-max-microvolt = <3300000>;
 >                                 regulator-boot-on;
->                                 regulator-always-on;
+> @@ -117,7 +117,7 @@ ldo4: LDO4 {
 >                         };
+>
+>                         ldo5: LDO5 {
+> -                               regulator-name = "LDO5";
+> +                               regulator-name = "NVCC_SD2";
+>                                 regulator-min-microvolt = <1800000>;
+>                                 regulator-max-microvolt = <3300000>;
+>                                 regulator-boot-on;
 > --
 > 2.30.2
 >
