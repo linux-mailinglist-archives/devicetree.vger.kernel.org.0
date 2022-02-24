@@ -2,76 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CEE84C36A5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:12:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AE84C36A9
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:12:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234269AbiBXUMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 15:12:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57670 "EHLO
+        id S234272AbiBXUMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:12:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234257AbiBXUMW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:12:22 -0500
-Received: from mail-oi1-x22c.google.com (mail-oi1-x22c.google.com [IPv6:2607:f8b0:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8D9762100
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:11:50 -0800 (PST)
-Received: by mail-oi1-x22c.google.com with SMTP id i5so4715345oih.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:11:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ekJG5G8qOYobu4hy5MdAQ+syegNXxA4HGg+ZP3ZwyeQ=;
-        b=iN+ib84jcK+deSXePxRnEvpZGPxfXggqQq/303xDtJuX1Ju46TszoyPnm0Xsppey3w
-         WFz7ih93fSMwHn5aXXMfJa411lHGkQYmMil7aEWRgMd4HDSuXL/4VcipdU64RyKTiOZ0
-         g1jl2cr06zHBOqxKLL3lEdLpSPPzBGSQGhSPEM/rWUXdbecD+MhUWvERG4pQiQhD97z+
-         EbDi9nfF3DHgq5VhkgOaSPEbnKBWXteUCKblQ+7UZ+iGZkXrym0FH2+pwKvPZnyIlBBb
-         9bliCQcvHSTkochiwiFgvQHGpfii2MXpNtv2lB2S+tofG7unEBBy8I4DEhXnZ0+1TeVB
-         AbnA==
+        with ESMTP id S234261AbiBXUM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:12:28 -0500
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A9EA64BE8;
+        Thu, 24 Feb 2022 12:11:58 -0800 (PST)
+Received: by mail-oi1-f182.google.com with SMTP id i5so4716122oih.1;
+        Thu, 24 Feb 2022 12:11:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ekJG5G8qOYobu4hy5MdAQ+syegNXxA4HGg+ZP3ZwyeQ=;
-        b=fKdyVBpizgpB+fZNxRt/1U38OPyw7JOc9Bm+LBqxeoee5cz/U6DyhwV2z/WPjNrQox
-         mVKfLBqPJ6383JlrjluRuyd+rTmQW5ftp22HTiGR9GdFJIe4OUK4cSrKmzJo1CgqLupn
-         vQHu4KkilC/Pbvfz1++F87Cxr0D//m3AWWcPA3WhqTsMExSUJibIcACv7sC//j5g1b3D
-         EK4Xsuj/NJICbcn1QlUnbW2vG6W1h08uUff63aOFBfNr7+kooV4+kJUfPoELPtvcVJOt
-         N6yWMLu1vUXKQMFglo5o8FpJIcmS6s4r0vyYX/zCfT1bNzz706G8O2mSIYRHitVr+Ani
-         Y9jA==
-X-Gm-Message-State: AOAM531qZ4AWam3Bx03zNu/hYaRS8/qyexCcAdZbyCc5HDCZUFe8kPj5
-        9i1JwjAFVuyncLO5YdL9s27ZUQ==
-X-Google-Smtp-Source: ABdhPJxxfBYAXQE4a4MShIJEhHE9ZwowoSa5/DZAC6IXOvyO1dx/+N2+rRF67FGwId7kao1AxTBGfA==
-X-Received: by 2002:aca:b688:0:b0:2d3:5411:9bc0 with SMTP id g130-20020acab688000000b002d354119bc0mr8152354oif.192.1645733509883;
-        Thu, 24 Feb 2022 12:11:49 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id q4-20020a056808200400b002d51db97398sm229191oiw.24.2022.02.24.12.11.48
+        bh=aQCXZh1IKYsJrJlH9qSfBMOC7gefnG0eIRo2Y5BDw6U=;
+        b=L3amgSLPtXTffEsbYyEY8TjXbAzN14aV8ggmJlX+U4yHhaHyVYRGgF7Q/LIx+/wnNz
+         sS/DDsmTo7Hw4YXoKEXLpYY8QVlP+HVHvOM+rhfGFNIZkjFBa2feu689cq2RPhszFPAr
+         jsC9XMUtBbWt6xsXFKUTQ0uhSiCSpK7Na9heuYQUUdXkpdUA8lCLEiE4H6ZIp5Ui8NKe
+         zHyQuLIYbFTjMy5y2ma4vQPhGAsJnNeUfVPS/5ExWHqXW8IerMqnjDRPpTtnUtRMVpoy
+         CYORFeD5jTwpHQfz+zQfckcPMjrd5Kyox5rY0/nT4vFReGLfr6or070by3/b0MT6sjOy
+         asVA==
+X-Gm-Message-State: AOAM533xxtyDiQ5Kz60Te1JHhP+j+HKciVbu5lVpY0or/A9oU+Jpr7Lz
+        +6hCYAdL4Ld6krpF/iTkernfBodO2Q==
+X-Google-Smtp-Source: ABdhPJwvMZHY/FLycuXsvTliMXXvMJHWr+Okbvm13l+P5zpggtPXh+pUyu2crnYPzL4MDhzq1BIxUw==
+X-Received: by 2002:a05:6808:d4b:b0:2d7:e4b:bb53 with SMTP id w11-20020a0568080d4b00b002d70e4bbb53mr2344451oik.198.1645733517741;
+        Thu, 24 Feb 2022 12:11:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id be40-20020a05680821a800b002d06df28063sm304990oib.5.2022.02.24.12.11.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 12:11:49 -0800 (PST)
-Date:   Thu, 24 Feb 2022 14:11:46 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Luca Weiss <luca@z3ntu.xyz>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Thu, 24 Feb 2022 12:11:56 -0800 (PST)
+Received: (nullmailer pid 3508003 invoked by uid 1000);
+        Thu, 24 Feb 2022 20:11:55 -0000
+Date:   Thu, 24 Feb 2022 14:11:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, netdev@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] dt-bindings: usb: qcom,dwc3: Add msm8953
- compatible
-Message-ID: <Yhfmgm2i5h7zEuvA@builder.lan>
-References: <20220220201909.445468-1-luca@z3ntu.xyz>
- <20220220201909.445468-4-luca@z3ntu.xyz>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: dsa: add new mdio property
+Message-ID: <Yhfmi2Mn6e0NMXh3@robh.at.kernel.org>
+References: <20220221200102.6290-1-luizluca@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220220201909.445468-4-luca@z3ntu.xyz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <20220221200102.6290-1-luizluca@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,38 +70,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 20 Feb 14:18 CST 2022, Luca Weiss wrote:
-
-> Document the compatible string for the DWC3 controller in msm8953.
+On Mon, Feb 21, 2022 at 05:01:02PM -0300, Luiz Angelo Daros de Luca wrote:
+> The optional mdio property will be used by dsa switch to configure
+> slave_mii_bus when the driver does not allocate it during setup.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> Acked-by: Konrad Dybcio <konrad.dybcio@somainline.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+> Some drivers already offer/require a similar property but, in some
+> cases, they rely on a compatible string to identify the mdio bus node.
 
-Greg, can you please pick this patch through the USB tree.
+That case will fail with this change. It precludes any binding 
+referencing dsa.yaml from defining a 'mdio' node with properties other 
+than what mdio.yaml defines.
 
-Thanks,
-Bjorn
+The rule is becoming any common schema should not define more than one 
+level of nodes if those levels can be extended.
 
+> Each subdriver might decide to keep existing approach or migrate to this
+> new common property.
+> 
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
 > ---
-> Changes in v2:
-> - no changes
+>  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
->  Documentation/devicetree/bindings/usb/qcom,dwc3.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index 2d23a4ff702f..ce252db2aab3 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -16,6 +16,7 @@ properties:
->            - qcom,ipq4019-dwc3
->            - qcom,ipq6018-dwc3
->            - qcom,ipq8064-dwc3
-> +          - qcom,msm8953-dwc3
->            - qcom,msm8996-dwc3
->            - qcom,msm8998-dwc3
->            - qcom,sc7180-dwc3
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> index b9d48e357e77..f9aa09052785 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> @@ -32,6 +32,12 @@ properties:
+>        (single device hanging off a CPU port) must not specify this property
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>  
+> +  mdio:
+> +    unevaluatedProperties: false
+> +    description:
+> +      Container of PHY and devices on the switches MDIO bus.
+> +    $ref: /schemas/net/mdio.yaml#
+> +
+>  patternProperties:
+>    "^(ethernet-)?ports$":
+>      type: object
 > -- 
 > 2.35.1
+> 
 > 
