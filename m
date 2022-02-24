@@ -2,60 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A00C4C2665
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 09:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 225144C26FD
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 10:01:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231642AbiBXIiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 03:38:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51030 "EHLO
+        id S232152AbiBXIys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 03:54:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231863AbiBXIiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 03:38:21 -0500
-X-Greylist: delayed 452 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 24 Feb 2022 00:37:51 PST
-Received: from mail.postform.pl (mail.postform.pl [195.231.64.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFCD5160437
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 00:37:51 -0800 (PST)
-Received: by mail.postform.pl (Postfix, from userid 1001)
-        id 0D265A5D73; Thu, 24 Feb 2022 08:30:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=postform.pl; s=mail;
-        t=1645691442; bh=Cp7iEcBs6UYsUZoqwaSKv66JiG6VJnuY7Lx3D9vYwU4=;
-        h=Date:From:To:Subject:From;
-        b=Sk/xIFOG7AkgoSWj58q4TbsXk5ceegtPUpBvHD2godWwZ58EOrbZVSoa5wODPeYl/
-         P/QOYRpfq+/S41qWs4myakYSz4DkZbe3JYqazuSqLSjjdiXYzu2k9TOksTR6OdN/Ya
-         lDn9kW1d9tGBwTynaDulHaNND59wV+nZFkyep2e2P8G7P44QJrA2/lImmv/zsVP3V3
-         XOQSG0RulH6VYzg3LOlQbxoeSb2QaBEkfV9Bi+JeGnSdpceYNt9wiSPhoenMf1Onye
-         Tvu8zV4c5551mUVXLtYES50IlmS9s7YWK7sWg7ad0KRcyvLOg3dsle/tSHxnwHzSeq
-         M4u05FdrmQJuw==
-Received: by mail.postform.pl for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 08:30:30 GMT
-Message-ID: <20220224074502-0.1.12.b3p6.0.gwsp4agw08@postform.pl>
-Date:   Thu, 24 Feb 2022 08:30:30 GMT
-From:   "Norbert Karecki" <norbert.karecki@postform.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Wycena paneli fotowoltaicznych
-X-Mailer: mail.postform.pl
+        with ESMTP id S232062AbiBXIyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 03:54:47 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 497E4163062;
+        Thu, 24 Feb 2022 00:54:18 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id C1FB122239;
+        Thu, 24 Feb 2022 09:54:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1645692856;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZvkcoUKllQj2T4+MNV6kXQ3nLOUi8Q7r2MLGcdGUqmY=;
+        b=RBInsJPHuWavYhtDil26uHxuu1hhkXEIy8BK9iZ7Gqbb0NEctvhoVGEPGErHLnVGbznh6m
+        CCB2eo37CSiFwVfhtG/l4bHYj8aczvSJLIAgxX1PlM+kXD4C/xywD/5II4iBMgUbotl7Sq
+        eKne8tpz6DqzFLwtJ43OtBoLdquy9E4=
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_20,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 24 Feb 2022 09:54:15 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Heiko Thiery <heiko.thiery@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mn-evk: use proper names for PMIC
+ outputs
+In-Reply-To: <CAEyMn7aVWK7NBH5+FpcK-gr9LPqb8MwsiOOTVJqo+PZJ+_naSw@mail.gmail.com>
+References: <20220223210559.1999209-1-michael@walle.cc>
+ <CAEyMn7aVWK7NBH5+FpcK-gr9LPqb8MwsiOOTVJqo+PZJ+_naSw@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <b3f0b5ee57b144c2e0487fb104ae92da@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
+Am 2022-02-24 08:29, schrieb Heiko Thiery:
+> Hi,
+> 
+> Am Mi., 23. Feb. 2022 um 22:06 Uhr schrieb Michael Walle 
+> <michael@walle.cc>:
+>> 
+>> Use the power signal names as given in the schematics of the reference
+>> board.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>>  arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 20 
+>> ++++++++++----------
+>>  1 file changed, 10 insertions(+), 10 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts 
+>> b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+>> index b4225cfcb6d9..eaa06f49aef5 100644
+>> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+>> @@ -41,7 +41,7 @@ pmic: pmic@25 {
+>> 
+>>                 regulators {
+>>                         buck1: BUCK1{
+>> -                               regulator-name = "BUCK1";
+>> +                               regulator-name = "VDD_ARM_0V9";
+> 
+> I think BUCK1 and BUCK2 are twisted here. This should be "VDD_SOC".
+> 
+>>                                 regulator-min-microvolt = <600000>;
+>>                                 regulator-max-microvolt = <2187500>;
+>>                                 regulator-boot-on;
+>> @@ -50,7 +50,7 @@ buck1: BUCK1{
+>>                         };
+>> 
+>>                         buck2: BUCK2 {
+>> -                               regulator-name = "BUCK2";
+>> +                               regulator-name = "VDD_SOC";
+> 
+> And this should be "VDD_ARM_0V9".
 
-dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
-irm=C4=85.
+You are absolutely right. I noticed it on the 8MNANOD3L-EVK but
+forgot to update these.
 
-=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
-ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
-
-Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
-ropozycji?
-
-
-Pozdrawiam
-Norbert Karecki
+-michael
