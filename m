@@ -2,72 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E4B54C22B0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 04:52:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76FC34C22BA
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 04:56:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229617AbiBXDwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Feb 2022 22:52:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33022 "EHLO
+        id S229789AbiBXDzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Feb 2022 22:55:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229536AbiBXDwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 22:52:31 -0500
-Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72E3B14344D
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:52:00 -0800 (PST)
-Received: by mail-yb1-xb31.google.com with SMTP id e140so1356180ybh.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:52:00 -0800 (PST)
+        with ESMTP id S229458AbiBXDzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Feb 2022 22:55:48 -0500
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED1A725A95F
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:55:19 -0800 (PST)
+Received: by mail-oo1-xc29.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so1630886oop.13
+        for <devicetree@vger.kernel.org>; Wed, 23 Feb 2022 19:55:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=C3V/dtxV15Mn7k63x16wvKI7YuLTRLAtDoW+UZHVNSQ=;
-        b=JpTyQ9fwmnCkQTdb4pTZ4OG7pAZVm7gwL2969nPUypAx3k22so+gM3I0W2ci/jvCA5
-         BDPZMmcHgO3YLsB+3wl8ORdfR8CU0QCz0p728ige4gFTPcamGc/2PpHz7ciUiyqBI3Tu
-         X9cjP50jWu0UKjTUkHmEzjal1OhvJNpAH3BzU=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ajP0nNbv/lY2RjaMzeZma7fHPb0CL6iW0Eaau4Kq0yc=;
+        b=mYpgMlnXgiymLh+rrNxgaVG4lEFGLxJy9cg5bKJhj926cDrGiHcLxfHC2fFLtKYN5J
+         JNxR2IGJdIRv0DUCsmciRUD3/WuZacEPBHw/k+k3DJ1xKUdxJ3bvGrh+6r2nKcRAqkEf
+         rHz4LGxi8yAry8msa9geOq8x1CVa7jG/wl54DZLcKWDgT4oaqMh7R2+yde1aw4jWWOqq
+         bYFxRu2/BZAYZqtqarh0+/40AJ7lUDmAHn2BeGbUU0ek1jXTwxTVhhCFq6zTTc/9cUUB
+         AQmTmXyfpdlXKGkHyjmU/tMgXzviJUIz4B0yKySg4q1Ki48xp/BG+A/cSy4CNqOZK/kl
+         woCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=C3V/dtxV15Mn7k63x16wvKI7YuLTRLAtDoW+UZHVNSQ=;
-        b=PIpRONISZHXTe4uJ6UFU6xyMSx4sytOfs555xwldVEQ4AFafuUElk49Yw6nE3dFRw6
-         ZeFWKImuR7uZW9StImYfOR/6/7a2nOnant+QZpquiic7ddYQy192u3hUdO4AjxqVeUBA
-         DZ5kxLjP+MLq6vxuhWW05eC6g27JcWBI2PBv/ckbZ/rhGYnSoAL39GkmtMd3XCY9+Xsn
-         vAYKBrVq+iDYSh+NroJP/W8iTMLEv01GBFqou+gcoG4t3iYQzwvxMZnGqI4VVQP/7//B
-         Offmq29n8Z+y/sRdlYxeJcdpmeTlNQlmWNovNM6dc8RXZPr/RFi2XVYwbF9hWw8/6riP
-         9Dmg==
-X-Gm-Message-State: AOAM532J1pr1IQE5PAXnBMu30Z3Pr1mv+qdx0+Uf3k37RYpt9Qis9KKL
-        DHxBbD6T3lfjc/tnh/T5qfUUESLW7x3swtSsWD+95Q==
-X-Google-Smtp-Source: ABdhPJyiaPY/OEbo9lDvhKxowTvqVlkhYSSAXktn3qviviBrH2qstZAw3K9LBrLE61G6q3rwWoSQxKBMDVgyXk0nark=
-X-Received: by 2002:a25:a486:0:b0:61d:a523:acd0 with SMTP id
- g6-20020a25a486000000b0061da523acd0mr753461ybi.203.1645674719716; Wed, 23 Feb
- 2022 19:51:59 -0800 (PST)
-MIME-Version: 1.0
-References: <20220201174643.843102-1-nfraprado@collabora.com>
-In-Reply-To: <20220201174643.843102-1-nfraprado@collabora.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 24 Feb 2022 11:51:48 +0800
-Message-ID: <CAGXv+5HbBroWkR4gLA2EXOcki4wgZ6XahO1J-VOctgKX5K9k7w@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8183: jacuzzi: Fix bus properties in
- anx's DSI endpoint
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Robert Foss <robert.foss@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ajP0nNbv/lY2RjaMzeZma7fHPb0CL6iW0Eaau4Kq0yc=;
+        b=ekvsIcucmVX7ZGMblz9c7WZ+Rah8ESmmNlEikP1aq7RvXg+mRtSesmGJAIa0MIlc1V
+         qw9hQnIQxVaJQ3UiLI5xtjQvcPxJZauuUgVfQLwVMXDngJvJyAHqjd1cBO7Wob6XblXC
+         Xt7/lo57wxrGrnHL9Hq8ueIM987FEWmSI1cxnL/xpVWqPc6RsoLobro+LMTvHragzXWm
+         jN5niGGTSvMkBSYFeC3CVn/BD2/AStYn9cG1iCWyseMd2T4rIdjf2xKgn3ge9cyaQ7P6
+         sIi8nImGp8UeUQwMSXR42mE2hX/KWGbBcC2MKN3tEn51sA+HX/fhNF02Ov37KZREr0+2
+         IVow==
+X-Gm-Message-State: AOAM533GrHcToYIvSGE7RXbqTxy6O3lrZ1plGZ628JIduHNjYrSgBfkF
+        SOWRU8UID1Ui+TiwO3CPmdUNpw==
+X-Google-Smtp-Source: ABdhPJzUBXDkQzu1i/26Sjhn+mnlOEBwWEXhUKalWDKyryJROBtbxATXkrjyCP+SUh5VmMhs5flAWQ==
+X-Received: by 2002:a4a:3545:0:b0:2c5:e0f2:53b7 with SMTP id w5-20020a4a3545000000b002c5e0f253b7mr277036oog.27.1645674919211;
+        Wed, 23 Feb 2022 19:55:19 -0800 (PST)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id d18sm792721oiw.18.2022.02.23.19.55.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Feb 2022 19:55:18 -0800 (PST)
+Date:   Wed, 23 Feb 2022 21:55:16 -0600
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Xin Ji <xji@analogixsemi.com>, kernel@collabora.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 08/16] clk: qcom: gcc-ipq806x: add additional freq nss
+ cores
+Message-ID: <YhcBpBflfTd5/BNF@builder.lan>
+References: <20220217235703.26641-1-ansuelsmth@gmail.com>
+ <20220217235703.26641-9-ansuelsmth@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220217235703.26641-9-ansuelsmth@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,69 +77,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Thu 17 Feb 17:56 CST 2022, Ansuel Smith wrote:
 
-(CC-ed DRM bridge maintainers and the dri-devel ML)
+> Ipq8065 SoC (an evolution of ipq8064 SoC) contains nss cores that can be
+> clocked to 800MHz. Add these missing freq to the gcc driver.
+> 
 
-On Wed, Feb 2, 2022 at 1:47 AM N=C3=ADcolas F. R. A. Prado
-<nfraprado@collabora.com> wrote:
->
-> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
-> its DSI host. However, after commit fd0310b6fe7d ("drm/bridge: anx7625:
-> add MIPI DPI input feature"), a bus-type property started being required
-> in the endpoint node by the driver to indicate whether it is DSI or DPI.
->
-> Add the missing bus-type property and set it to 5
-> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
-> configured to DSI and the display pipeline can probe correctly.
+Do we somehow need to ensure that these new frequencies are only
+available on 8065?
 
-Don't people find it odd that this is setting the bus-type to "parallel"
-(5) for the device to use DSI? Instead of "MIPI CSI-2 D-PHY" (4) or even
-"MIPI CSI-2 C-PHY" (1) which is specified in the binding? It's completely
-backwards.
+Regards,
+Bjorn
 
-Would it be possible to fix the binding and driver at this point?
-
-
-Thanks
-ChenYu
-
-> While at it, also set the data-lanes property that was also introduced
-> in that same commit, so that we don't rely on the default value.
->
-> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
-> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
->
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
-> v1: https://lore.kernel.org/all/20220120224204.773117-1-nfraprado@collabo=
-ra.com
->
-> Changes in v2:
-> - (thanks Rob) Use proper format when refering to commit in commit
->   message as pointed out by checkpatch
->
->  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arc=
-h/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 8f7bf33f607d..e8f133dc96b9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -171,6 +171,8 @@ port@0 {
->
->                         anx7625_in: endpoint {
->                                 remote-endpoint =3D <&dsi_out>;
-> +                               bus-type =3D <5>;
-> +                               data-lanes =3D <0 1 2 3>;
->                         };
->                 };
->
-> --
-> 2.35.1
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+>  drivers/clk/qcom/gcc-ipq806x.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/clk/qcom/gcc-ipq806x.c b/drivers/clk/qcom/gcc-ipq806x.c
+> index a4bf78fe8678..53a61860063d 100644
+> --- a/drivers/clk/qcom/gcc-ipq806x.c
+> +++ b/drivers/clk/qcom/gcc-ipq806x.c
+> @@ -232,7 +232,9 @@ static struct clk_regmap pll14_vote = {
+>  
+>  static struct pll_freq_tbl pll18_freq_tbl[] = {
+>  	NSS_PLL_RATE(550000000, 44, 0, 1, 0x01495625),
+> +	NSS_PLL_RATE(600000000, 48, 0, 1, 0x01495625),
+>  	NSS_PLL_RATE(733000000, 58, 16, 25, 0x014b5625),
+> +	NSS_PLL_RATE(800000000, 64, 0, 1, 0x01495625),
+>  };
+>  
+>  static struct clk_pll pll18 = {
+> @@ -2702,7 +2704,9 @@ static const struct freq_tbl clk_tbl_nss[] = {
+>  	{ 110000000, P_PLL18, 1, 1, 5 },
+>  	{ 275000000, P_PLL18, 2, 0, 0 },
+>  	{ 550000000, P_PLL18, 1, 0, 0 },
+> +	{ 600000000, P_PLL18, 1, 0, 0 },
+>  	{ 733000000, P_PLL18, 1, 0, 0 },
+> +	{ 800000000, P_PLL18, 1, 0, 0 },
+>  	{ }
+>  };
+>  
+> -- 
+> 2.34.1
+> 
