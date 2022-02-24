@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEBEC4C38C0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:29:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EAD94C38CE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 23:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235467AbiBXW2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 17:28:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
+        id S232184AbiBXWcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 17:32:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235479AbiBXW2Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:28:24 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E968F18647B;
-        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id 12so5378068oix.12;
-        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
+        with ESMTP id S231328AbiBXWcP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 17:32:15 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF2820F4B
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 14:31:44 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso2385172ots.7
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 14:31:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/Q++PXwW9clpi7EmUird58cb/RjCfYTbDPWAmQD/krg=;
-        b=NSo23BsF2GcfnuiMY8/Bu9zL5r13ggcTQnCjF85JGFDk1UWLEgPIy68ELSPyxXSOuH
-         eCpbzINZ1A26MdgQX7svi0YMHWVsqSHgMtLwAxzyd8OYTg/vZo3p2P1EgTlwVu4ToueA
-         y4HxyIHJnQJSzDtb5YBNF0y+hLBPMUpqUmHGu9mV6l4x5hh5LyRVa+pAjYw4Y/yWUtpA
-         0mZqT9P+snQuzeakOI8k7LCmGBS1HMhULNM17/OTjD/+Hj0rsVELfxNXK9d4ioCXd0iv
-         Xc1j5WlTbMo8mLWjYXe/aSsKzqzIzxCx1U98jrtj1vJ4/qC5KJOZ/lhp6LPzSWHA9AYS
-         0BVQ==
-X-Gm-Message-State: AOAM5332E/hOu70RSLpCBcoSUYkNAanZLnT7ZgXaO9Zyw18+ycPe6e/B
-        NEhhnSTGSQdDdndZbpmY2Q==
-X-Google-Smtp-Source: ABdhPJwx1FD+9eKPTOob58IWuDiHkaicOqaAuTjSLNRT4GyVqROrjSgeyKYq9MX8Tmms8n9PZP6B/A==
-X-Received: by 2002:a05:6870:3121:b0:d2:8163:fd04 with SMTP id v33-20020a056870312100b000d28163fd04mr128825oaa.182.1645741673280;
-        Thu, 24 Feb 2022 14:27:53 -0800 (PST)
+        bh=wXlQzhyPFC/AGCJwViirLuviXa5NBx6l96k7Lfve6aw=;
+        b=XTKP6iMtyXM1+0EVgsnEowyAWukDg7GjLUDzBV3CsuexXBkzc9D6P/9Imz2obHIPA8
+         OU/KVljNQA/t9rokdyS4DcaBBhYbn67+zBzyb3/n7dsY8glSH0rVQDAGN8zdbklesx/n
+         /w9IAnfosoiuFR0i3Us1DyNcqMXGNfTbX6YpGZXLA3hsNbFLHLnXlXkvNWK8HrMGHk3L
+         ABEwS3cXyuXJ/62wqj8DYzzZr2NZmhhkYrYmL8yiRjc8CbYdpM6+O8I+xF96OXjBAfPD
+         JEPPPqGnwkA9+4BAcjsz5YPUCUhojOVTlZpoAAE+8O27wOWqJEU0YdTGzUoZoJc/m8Z1
+         At1Q==
+X-Gm-Message-State: AOAM530d38IeG+cRhcxizJTg6ip7KfiqvQd7o2f1hAw5c6hkr6hsDjhf
+        C3CSP+YYtaNU+7SrDxs8BDTzrm/j4g==
+X-Google-Smtp-Source: ABdhPJwjqtbyor+Up0XtlkhJU1p4iVqSjKcHr80cgFwHgoQTxOtO8tJ8d1fKql+p29EtRJCFdDlzBA==
+X-Received: by 2002:a05:6830:4095:b0:5af:140b:7797 with SMTP id x21-20020a056830409500b005af140b7797mr1783149ott.17.1645741904153;
+        Thu, 24 Feb 2022 14:31:44 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l34-20020a9d1ca2000000b005acea92e8absm290399ota.42.2022.02.24.14.27.52
+        by smtp.gmail.com with ESMTPSA id 16-20020a9d0490000000b005ad3c83e927sm290339otm.60.2022.02.24.14.31.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 14:27:52 -0800 (PST)
-Received: (nullmailer pid 3704065 invoked by uid 1000);
-        Thu, 24 Feb 2022 22:27:51 -0000
-Date:   Thu, 24 Feb 2022 16:27:51 -0600
+        Thu, 24 Feb 2022 14:31:43 -0800 (PST)
+Received: (nullmailer pid 3710149 invoked by uid 1000);
+        Thu, 24 Feb 2022 22:31:42 -0000
+Date:   Thu, 24 Feb 2022 16:31:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        devicetree@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add
- report-rate
-Message-ID: <YhgGZylBoxlou9ka@robh.at.kernel.org>
-References: <20220217165559.313366-1-dario.binacchi@amarulasolutions.com>
- <20220217165559.313366-2-dario.binacchi@amarulasolutions.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH v2] dt-bindings: leds: Document mmc trigger
+Message-ID: <YhgHTrlxyn5QGdOM@robh.at.kernel.org>
+References: <20220217174357.13427-1-marex@denx.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220217165559.313366-2-dario.binacchi@amarulasolutions.com>
+In-Reply-To: <20220217174357.13427-1-marex@denx.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 05:55:53PM +0100, Dario Binacchi wrote:
-> It allows to change the M06/M12 default scan rate.
+On Thu, Feb 17, 2022 at 06:43:57PM +0100, Marek Vasut wrote:
+> The mmc subsystem supports triggering leds on card activity, document
+> the trigger value here. The value is a pattern in this case.
 > 
-> Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-> Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> To: linux-leds@vger.kernel.org
 > ---
+> V2: Rebase on next-20220217
+
+Why? Nobody can apply patches to linux-next. Is there something in next 
+you are dependent on that you didn't tell us about?
+
+> ---
+>  .../devicetree/bindings/leds/common.yaml      | 39 ++++++++++---------
+>  1 file changed, 21 insertions(+), 18 deletions(-)
 > 
-> (no changes since v1)
-> 
->  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-> index 2e8da7470513..aa8517c6f65b 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
-> @@ -85,6 +85,14 @@ properties:
->      minimum: 0
->      maximum: 80
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index 328952d7acbbc..3c14a98430e19 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -79,24 +79,27 @@ properties:
+>        the LED.
+>      $ref: /schemas/types.yaml#/definitions/string
 >  
-> +  report-rate:
-
-Use property unit suffix: report-rate-hz
-
-This should probably be moved to touchscreen.yaml as it seems common.
-
-> +    description: Allows setting the scan rate.
-> +                 M06 supports range from 3 (30 Hz) to 14 (140 Hz).
-
-You're using 3 or 30 in this case? Should be 30, but it's not clear. I'd 
-just list the range in Hz and leave the conversion detail to the driver.
-
-> +                 M12 supports range from 1 (1 Hz) to 255 (255 Hz).
-
-Use '|' if formatting (newline) is significant.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 255
-> +
->    touchscreen-size-x: true
->    touchscreen-size-y: true
->    touchscreen-fuzz-x: true
+> -    enum:
+> -        # LED will act as a back-light, controlled by the framebuffer system
+> -      - backlight
+> -        # LED will turn on (but for leds-gpio see "default-state" property in
+> -        # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> -      - default-on
+> -        # LED "double" flashes at a load average based rate
+> -      - heartbeat
+> -        # LED indicates disk activity
+> -      - disk-activity
+> -        # LED indicates IDE disk activity (deprecated), in new implementations
+> -        # use "disk-activity"
+> -      - ide-disk
+> -        # LED flashes at a fixed, configurable rate
+> -      - timer
+> -        # LED alters the brightness for the specified duration with one software
+> -        # timer (requires "led-pattern" property)
+> -      - pattern
+> +    oneOf:
+> +      - enum:
+> +            # LED will act as a back-light, controlled by the framebuffer system
+> +          - backlight
+> +            # LED will turn on (but for leds-gpio see "default-state" property in
+> +            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> +          - default-on
+> +            # LED "double" flashes at a load average based rate
+> +          - heartbeat
+> +            # LED indicates disk activity
+> +          - disk-activity
+> +            # LED indicates IDE disk activity (deprecated), in new implementations
+> +            # use "disk-activity"
+> +          - ide-disk
+> +            # LED flashes at a fixed, configurable rate
+> +          - timer
+> +            # LED alters the brightness for the specified duration with one software
+> +            # timer (requires "led-pattern" property)
+> +          - pattern
+> +        # LED is triggered by SD/MMC activity
+> +      - pattern: "^mmc[0-9]+$"
+>  
+>    led-pattern:
+>      description: |
 > -- 
-> 2.32.0
+> 2.34.1
 > 
 > 
