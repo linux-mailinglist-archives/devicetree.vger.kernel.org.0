@@ -2,68 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 286F44C33F0
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 18:44:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B9894C3400
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 18:49:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232265AbiBXRo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 12:44:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56020 "EHLO
+        id S231703AbiBXRtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 12:49:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231496AbiBXRoz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 12:44:55 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D707279469;
-        Thu, 24 Feb 2022 09:44:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645724664; x=1677260664;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=w+eRayVZZcZOJSIf26OxbCM047bckFwiqON3Og5Kb5w=;
-  b=l93MDrxZaaQywVFEOtdygINYOb4u3CdEi0uXBNxZkAMFcoRvNCEwSBy1
-   /jPEOtk7VllViDjj38BS6cOAprPUkI+fP1FJ8oXIBYpaRUQmS1+G6aNbc
-   NmNMvx4gZPOBx2RUNsadlqIzoZQq0LGN0XCTxhEfm1ecXPXTHyHOUES/T
-   +yutEER08+oJwwpCv2cRfH96V1otOsRM2gE1WUxvYCvQxK+WDtmZ83Cl8
-   jaoZC6DAYM6m0ERbCUpM6wqQPPEWNOjpMmdmOluPr29Cv8/SRhtrZSUWi
-   XYtgbeLVOW2qwFoq/0zxKliJCesiw7WPvsTsW+Wg+/Fm0wXPzjZnfs8On
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,134,1643698800"; 
-   d="scan'208";a="154300078"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 24 Feb 2022 10:44:23 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Thu, 24 Feb 2022 10:44:22 -0700
-Received: from [10.12.73.51] (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Thu, 24 Feb 2022 10:44:20 -0700
-Message-ID: <3cd1fd6b-d3a4-5ac5-22fa-c854e2f25a65@microchip.com>
-Date:   Thu, 24 Feb 2022 18:44:19 +0100
+        with ESMTP id S229851AbiBXRtr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 12:49:47 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C23941A8065;
+        Thu, 24 Feb 2022 09:49:16 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id d28so855586wra.4;
+        Thu, 24 Feb 2022 09:49:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1GZ2b1dF2u/vr/4Ra313vIsIJHF22oWuYEwPmLamH0s=;
+        b=UpalDvLpYcRfVbv9pRe5oXuMrynsRohvwQDcNb/fMMMAXYLtlSNPtzKwOMfzgVwg62
+         WdpZKa/s/juBUvlqPhZGMLf0wnrVsYxZcd5rRb8H2nlxKzek4kJZ8TUxO2h9R7TPhcrh
+         EhV8X+Off6uEF9tp1kcaFF5n/p9vJ2oDgEgzPeBc1z76bnocMGN46uwnoMPJgOt+fs/r
+         KrauRIE/5N8vgdblZrNHZMf6HJ/ofbDTPbHMHczr1aCBABTOw0TbzQTjKLWa5r5X2sjb
+         ocdrSJJiCy3jHm4gqBabNFATZY1KMSUfsJWZVXDccRoBRSkbCEF093bK6FKn1dkgQ9qu
+         BiMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1GZ2b1dF2u/vr/4Ra313vIsIJHF22oWuYEwPmLamH0s=;
+        b=NhnPU+zx/x6/uHkQaGqRcgv++vL5NtYhgGO8Rdbeg7nzawaQabb/ToMOB1GNeEtgsA
+         4AdmhO8/xPUNQ7r9WUltiENMX80g3a48bktqlUnlNSTLB6kd4+QMgcQ66N96xgyilF0Y
+         zLOzUWnpBVP+qxypOFoltWVW34yc11/xw2EulDdu/7Fsivxk+EufHb9e2fckAMaakTi1
+         iR32noA4jNt4He0QCtDighj+geidsHs36ePNPHzKM6rGLUtwm+ZektO6XoDXAheoJ73i
+         86Ky7tNL231GH9FPYF/AvnWOkY64nsDtwlKUt47lxblDybugkgHnVJJkoJEDFgQe/c3R
+         AZEA==
+X-Gm-Message-State: AOAM531yIHGHPJRnwbUW/LtFQVO4Dah1NaCGdiv0w+84sIZrY2E7K8iL
+        qU2s5aBSSmH894UZbAqxpDk=
+X-Google-Smtp-Source: ABdhPJyDfevX/ISTuZmLojJ4HbhwSOGsG9B7xHR1sqNEQoF5J6in58XqR1f4DsD0tgZ+fpge4/qAJQ==
+X-Received: by 2002:a05:6000:1546:b0:1e8:7b68:4f4e with SMTP id 6-20020a056000154600b001e87b684f4emr3150182wry.30.1645724954964;
+        Thu, 24 Feb 2022 09:49:14 -0800 (PST)
+Received: from Ansuel-xps.localdomain ([5.170.140.187])
+        by smtp.gmail.com with ESMTPSA id g6sm3319816wrq.97.2022.02.24.09.49.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 09:49:14 -0800 (PST)
+Date:   Thu, 24 Feb 2022 18:49:12 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Jonathan McDowell <noodles@earth.li>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 10/18] ARM: dts: qcom: add saw for l2 cache and
+ kraitcc for ipq8064
+Message-ID: <YhfFGIXF80wIfhNV@Ansuel-xps.localdomain>
+References: <20220218002956.6590-1-ansuelsmth@gmail.com>
+ <20220218002956.6590-11-ansuelsmth@gmail.com>
+ <YhVBJaPR7a/E9n1B@earth.li>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] ARM: dts: at91: sama7g5: Add NAND support
-Content-Language: en-US
-To:     Tudor Ambarus - M18064 <Tudor.Ambarus@microchip.com>
-CC:     "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "Ludovic Desroches - M43218" <Ludovic.Desroches@microchip.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20220111130556.905978-1-tudor.ambarus@microchip.com>
- <2fa34fae-7736-670a-1d31-7928fbcf95bd@microchip.com>
- <c708f761-aad4-a2f2-9255-01bcb6ad73de@microchip.com>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <c708f761-aad4-a2f2-9255-01bcb6ad73de@microchip.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YhVBJaPR7a/E9n1B@earth.li>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,42 +75,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tudor,
-
-On 24/02/2022 at 16:49, Tudor Ambarus - M18064 wrote:
-> On 2/24/22 17:04, Nicolas Ferre wrote:
->> On 11/01/2022 at 14:05, Tudor Ambarus wrote:
->>> Add NAND support. The sama7g5's SMC IP is the same as sama5d2's with
->>> a slightly change: it provides a synchronous clock output (SMC clock)
->>> that is dedicated to FPGA usage. Since this doesn't interfere with the SMC
->>> NAND configuration, thus code will not be added in the current nand driver
->>> to address the FPGA usage, use the sama5d2's compatible and choose not to
->>> introduce dedicated compatibles for sama7g5.
->>> Tested with Micron MT29F4G08ABAEAWP NAND flash.
->>>
->>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
->>
->> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
->>
->>> ---
->>> The patch depends on the following patch:
->>> https://lore.kernel.org/linux-clk/20220111125310.902856-1-tudor.ambarus@microchip.com/T/#u
->>
->> Patch seems taken, so I add this one to at91-dt branch for 5.18 merge window.
->>
+On Tue, Feb 22, 2022 at 08:01:41PM +0000, Jonathan McDowell wrote:
+> On Fri, Feb 18, 2022 at 01:29:48AM +0100, Ansuel Smith wrote:
+> > Add saw compatible for l2 cache and kraitcc node for ipq8064 dtsi.
+> > Also declare clock-output-names for acc0 and acc1 and qsb fixed clock
+> > for the secondary mux.
+> > 
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 34 +++++++++++++++++++++++++++--
+> >  1 file changed, 32 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > index c579fb09e768..7df1c1482220 100644
+> > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
+> > @@ -298,6 +298,12 @@ smem: smem@41000000 {
+> >  	};
+> >  
+> >  	clocks {
+> > +		qsb: qsb {
+> > +			compatible = "fixed-clock";
+> > +			clock-frequency = <384000000>;
+> > +			#clock-cells = <0>;
+> > +		};
+> > +
+> >  		cxo_board {
+> >  			compatible = "fixed-clock";
+> >  			#clock-cells = <0>;
+> > @@ -504,11 +510,19 @@ IRQ_TYPE_EDGE_RISING)>,
+> >  		acc0: clock-controller@2088000 {
+> >  			compatible = "qcom,kpss-acc-v1";
+> >  			reg = <0x02088000 0x1000>, <0x02008000 0x1000>;
+> > +			clock-output-names = "acpu0_aux";
+> > +			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
 > 
-> I think it depends on who gets to next first. If at91 gets before clk,
-> there will be a build error, isn't it?
+> You need to add the pxo_board: label to the clock above or we get:
+> 
+> arch/arm/boot/dts/qcom-ipq8064.dtsi:645.34-652.5: ERROR (phandle_references): /soc/clock-controller@2088000: Reference to non-existent node or label "pxo_board"
+> 
+> arch/arm/boot/dts/qcom-ipq8064.dtsi:654.34-661.5: ERROR (phandle_references): /soc/clock-controller@2098000: Reference to non-existent node or label "pxo_board"
+>
 
-Clk patch is already in linux-next, so no worries.
-Moreover, I don't get why there could be a build error as there is no 
-build dependency between DT changes and C changes.
-Sorry but I'm puzzled... Or I'm not looking at the right patch.
+There is another series that introduce the label. Ideally it should be
+merged before this. It's almost all reviewed so we should be good.
 
-Regards,
-   Nicolas
-
-
+> > +			clock-names = "pll8_vote", "pxo";
+> > +			#clock-cells = <0>;
+> >  		};
+> >  
+> >  		acc1: clock-controller@2098000 {
+> >  			compatible = "qcom,kpss-acc-v1";
+> >  			reg = <0x02098000 0x1000>, <0x02008000 0x1000>;
+> > +			clock-output-names = "acpu1_aux";
+> > +			clocks = <&gcc PLL8_VOTE>, <&pxo_board>;
+> > +			clock-names = "pll8_vote", "pxo";
+> > +			#clock-cells = <0>;
+> >  		};
+> >  
+> >  		adm_dma: dma-controller@18300000 {
+> > @@ -532,17 +546,23 @@ adm_dma: dma-controller@18300000 {
+> >  		};
+> >  
+> >  		saw0: regulator@2089000 {
+> > -			compatible = "qcom,saw2";
+> > +			compatible = "qcom,saw2", "qcom,apq8064-saw2-v1.1-cpu", "syscon";
+> >  			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
+> >  			regulator;
+> >  		};
+> >  
+> >  		saw1: regulator@2099000 {
+> > -			compatible = "qcom,saw2";
+> > +			compatible = "qcom,saw2", "qcom,apq8064-saw2-v1.1-cpu", "syscon";
+> >  			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
+> >  			regulator;
+> >  		};
+> >  
+> > +		saw_l2: regulator@02012000 {
+> > +			compatible = "qcom,saw2", "syscon";
+> > +			reg = <0x02012000 0x1000>;
+> > +			regulator;
+> > +		};
+> > +
+> >  		gsbi2: gsbi@12480000 {
+> >  			compatible = "qcom,gsbi-v1.0.0";
+> >  			cell-index = <2>;
+> > @@ -899,6 +919,16 @@ l2cc: clock-controller@2011000 {
+> >  			clock-output-names = "acpu_l2_aux";
+> >  		};
+> >  
+> > +		kraitcc: clock-controller {
+> > +			compatible = "qcom,krait-cc-v1";
+> > +			clocks = <&gcc PLL9>, <&gcc PLL10>, <&gcc PLL12>,
+> > +				 <&acc0>, <&acc1>, <&l2cc>, <&qsb>;
+> > +			clock-names = "hfpll0", "hfpll1", "hfpll_l2",
+> > +				      "acpu0_aux", "acpu1_aux", "acpu_l2_aux",
+> > +				      "qsb";
+> > +			#clock-cells = <1>;
+> > +		};
+> > +
+> >  		lcc: clock-controller@28000000 {
+> >  			compatible = "qcom,lcc-ipq8064";
+> >  			reg = <0x28000000 0x1000>;
+> > -- 
+> > 2.34.1
+> > 
+> 
+> J.
+> 
+> -- 
+>       Hats off to the insane.      |  .''`.  Debian GNU/Linux Developer
+>                                    | : :' :  Happy to accept PGP signed
+>                                    | `. `'   or encrypted mail - RSA
+>                                    |   `-    key on the keyservers.
 
 -- 
-Nicolas Ferre
+	Ansuel
