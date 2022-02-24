@@ -2,38 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7164D4C2591
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 09:13:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D6694C25CE
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 09:23:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231709AbiBXINe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 03:13:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
+        id S229653AbiBXITt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 03:19:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231779AbiBXIM2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 03:12:28 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 804731662D9;
-        Thu, 24 Feb 2022 00:11:50 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4B5D21063;
-        Thu, 24 Feb 2022 00:11:50 -0800 (PST)
-Received: from e123648.arm.com (unknown [10.57.8.211])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 185F23F70D;
-        Thu, 24 Feb 2022 00:11:47 -0800 (PST)
-From:   Lukasz Luba <lukasz.luba@arm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     lukasz.luba@arm.com, dietmar.eggemann@arm.com,
-        viresh.kumar@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
-        mka@chromium.org, dianders@chromium.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [PATCH v3 4/4] Documentation: EM: Describe new registration method using DT
-Date:   Thu, 24 Feb 2022 08:11:31 +0000
-Message-Id: <20220224081131.27282-5-lukasz.luba@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220224081131.27282-1-lukasz.luba@arm.com>
-References: <20220224081131.27282-1-lukasz.luba@arm.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        with ESMTP id S229631AbiBXITt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 03:19:49 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61709251E79
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 00:19:19 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nN9LE-0002PW-7K; Thu, 24 Feb 2022 09:19:12 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nN9LB-0008OP-Fk; Thu, 24 Feb 2022 09:19:09 +0100
+Date:   Thu, 24 Feb 2022 09:19:09 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v6 21/23] drm: rockchip: Add VOP2 driver
+Message-ID: <20220224081909.GS9136@pengutronix.de>
+References: <20220217082954.2967889-1-s.hauer@pengutronix.de>
+ <e1eb945b-d7da-f21c-ee19-e19f7f1d9b04@rock-chips.com>
+ <20220217135823.GR18637@pengutronix.de>
+ <6072461.kR79ftKOrO@diego>
+ <8c0b1d1e-6787-8edc-c1fd-e1b68b92e60e@rock-chips.com>
+ <20220218080024.GU18637@pengutronix.de>
+ <8a386dbf-645b-8054-368b-535ded778d71@rock-chips.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8a386dbf-645b-8054-368b-535ded778d71@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:12:47 up 75 days, 16:58, 82 users,  load average: 0.12, 0.25,
+ 0.28
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -42,37 +69,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The new registration method allows to get power values from the DT OPP
-definition. The new OPP entry property "opp-microwatt" contains total
-power expressed in micro-Watts. Align the EM documentation with this
-new possible registration method of 'advanced' EM.
+On Sat, Feb 19, 2022 at 03:35:12PM +0800, Andy Yan wrote:
+> Hi Sascha:
+> 
+> On 2/18/22 16:00, Sascha Hauer wrote:
+> > On Fri, Feb 18, 2022 at 11:50:32AM +0800, Andy Yan wrote:
+> > > Hi Sascha:
+> > > 
+> > > On 2/17/22 22:06, Heiko Stübner wrote:
+> > > > Am Donnerstag, 17. Februar 2022, 14:58:23 CET schrieb Sascha Hauer:
+> > > > > Hi Andy,
+> > > > > 
+> > > > > Please trim the context in your answers to the relevant parts, it makes
+> > > > > it easier to find the things you said.
+> > > > > 
+> > > > > On Thu, Feb 17, 2022 at 08:00:11PM +0800, Andy Yan wrote:
+> > > > > > Hi Sascha:
+> > > > > > 
+> > > > > > > +
+> > > > > > > +	drm_for_each_encoder_mask(encoder, crtc->dev, crtc_state->encoder_mask) {
+> > > > > > > +		struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+> > > > > > > +		struct device_node *node, *parent;
+> > > > > > > +
+> > > > > > > +		parent = of_get_parent(rkencoder->port);
+> > > > > > > +
+> > > > > > > +		for_each_endpoint_of_node(parent, node) {
+> > > > > > Is there any hurt directly use our downstream vendor kernel method here: use
+> > > > > > vcstate->output_if set by encoder driver to get which interface we should
+> > > > > > enable here?
+> > > > > There is no vcstate->output_if in mainline currently. Ok, we could add
+> > > > > that. The other thing is that there are multiple HDMI interfaces and
+> > > > > the id of the HDMI encoder is encoded into output_if. Downstream kernel
+> > > > > adds OF aliases to the HDMI ports. I didn't want to go that route
+> > > > > because it doesn't seem to be very elegant to me.
+> > > aliases is a very comm strategy in device tree world.
+> > Yes, but not for retrieving bit offsets into registers. Normally aliases
+> > can be changed at board level without confusing drivers.
+> > 
+> > > And your method also
+> > > add need additional dt binds to define RK3568_VOP2_EP_xxx
+> > > > > > You method is ok with device tree,  but it tied up this driver to device
+> > > > > > tree, we are now tring to extend vop2 driver work with ACPI, so we hope this
+> > > > > > driver can be much more flexible.
+> > > > > The current rockchip drm driver seems to be pretty much tied to device
+> > > > > tree. There are probably many other places that need parallel paths for
+> > > > > ACPI support, I think we can delay this particular part until we see the
+> > > > > whole picture. In the end we can still retrieve the output_if
+> > > > > information differently with ACPI while still retrieving the information
+> > > > > from the device tree the way we are doing currently.
+> > > The current driver only reference device thee at driver initial, we not wrap
+> > > 
+> > > device tree related things in other parts, so if we extend it to support
+> > > ACPI,
+> > > 
+> > > we just need modify the initial code, this make things easier.
+> > The device tree parsing could be moved out of vop2_crtc_atomic_enable()
+> > into some initialisation path. In the end it's static information,
+> > there's no need to do it repeatedly in atomic_enable.
+> 
+> This could be one solution, the repeatedly parsing device tree in
+> atomic_enable is also my concern.
+> 
+> In addition, there are 2 HDMI, 2 eDP, 2 MIPI on the coming rk3588, so it's
+> better to consider give position
+> 
+> for HDMI1, EDP1, in  include/dt-bindings/soc/rockchip,vop2.h
 
-Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
----
- Documentation/power/energy-model.rst | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+The defines are rk3568 specific. rk3588 would use a set of rk3588
+specific defines along with a rk3588_set_intf_mux().
 
-diff --git a/Documentation/power/energy-model.rst b/Documentation/power/energy-model.rst
-index 5ac62a7b4b7c..719253fd5215 100644
---- a/Documentation/power/energy-model.rst
-+++ b/Documentation/power/energy-model.rst
-@@ -113,6 +113,16 @@ to: return warning/error, stop working or panic.
- See Section 3. for an example of driver implementing this
- callback, or Section 2.4 for further documentation on this API
- 
-+Registration of 'advanced' EM using DT
-+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-+
-+The 'advanced' EM can also be registered using OPP framework and information
-+in DT "operating-points-v2". Each OPP entry in DT can be extended with a
-+property "opp-microwatt" containing micro-Watts power value. This OPP DT
-+property allows a platform to register EM power values which are reflecting
-+total power (static + dynamic). These power values might be coming directly
-+from experiments and measurements.
-+
- Registration of 'simple' EM
- ~~~~~~~~~~~~~~~~~~~~~~~~~~~
- 
+Sascha
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
