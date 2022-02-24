@@ -2,64 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A69EE4C3737
-	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:54:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 079BB4C372E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Feb 2022 21:54:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234473AbiBXUzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 15:55:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36102 "EHLO
+        id S234594AbiBXUzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 15:55:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234502AbiBXUzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:55:03 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2F982255A5
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:21 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id k22-20020a9d4b96000000b005ad5211bd5aso2202989otf.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:21 -0800 (PST)
+        with ESMTP id S234525AbiBXUzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 15:55:04 -0500
+Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE155279471
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:24 -0800 (PST)
+Received: by mail-ot1-x334.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so2190439otp.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 12:54:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YfJFTU/SisfAPs9JKDHMGgPqhCwNHsIGV8L1A8XDLlU=;
-        b=OMHLyMTq5+u9d9yoBScCGhM0BMPqB37McuH7aXNiL4K0QOIXtqW0+i/rd191UaHlR0
-         XeoPHj4uww9/n9rn7V3FC00ZfBFaZp3PT2qk+DXEIwUqTwNtspKi7yvSYDzxtvDIg5LC
-         lENwFIRMwvmKgLy4X00RmM2WaMXvrnOc8mAIQkGVF8hQsz1eoOac7xXoAID53s/HMp41
-         tdpI7xj2dBDIxEdFgsv2onYcaLyDt4UiyQN2fht+cex1EVpmQP1OaY3ayG6PP3eynjp1
-         3RLSXPYRun0c+c3Z0XROaHjgAhUQQrgq4lTDV+3+AhYSogmxb7vFxfh80XyYopz1DC4B
-         86ew==
+        bh=IrvVABFS5etqsO4Q23dKzvCPtJmOIF0hBvQ4gEirm3A=;
+        b=C6rrrzpeYz5W+MIX0MI3q9wlQzxpqGWNMehFQTXHj8AWDqrUHbkvK9oquxHx6Hf/Zo
+         DcGFdoF34Jaj1KKdlQ/dDfaLsuKc5y0DrXX7DqytHRqZ3ai0XMEDqG95Pn1hdsPQQ3EK
+         WMHgWKsYLN98tj4WX26pfwIViV6Kaeyry6Ti+NIEeX2YXQ6+8JaLw0BDIGdC36Db7nTx
+         /uP+8iez3FbZrcS6NGOgV6Fkr3uUT4ll2lq64g2vCkjUoypstu7JsM2xsjt6lSacbvBz
+         m1B1inWDwzheHVMHDJ5MKvCD2hpOFQiOJv3EP3jfWjC3db6r6HaKstmjlH1MEvmaXBSC
+         jxbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YfJFTU/SisfAPs9JKDHMGgPqhCwNHsIGV8L1A8XDLlU=;
-        b=uPSr/6GxNNZtrJ6c4J4FsxTE+sgNTieXnbFlGBgJlVpOHqNxwD2gFTERBCSBiy8OL9
-         ogUInAhS4sBqnkmQeB1j44E7oJwBHxLa2vlX6YuHBgog3+xNUQOcC/b5KF2OcIA5cw3U
-         nfKZEdPqVXXGyVtNRqbECT3/F7X+sxo0rZfd96u8shM+7k2NALg6I0ssq0izdl9Bxolo
-         ZczuPqT+Lfw5niPlic2U5PUpTc0staptjOMYMo2k4SYUQLI/1SWWegETBtQeqRH7MSYr
-         jCW31GCEfTyUKkOHPqOCkpBb91TAUz4XMXkiZ2E2UlvsdGPviORXGiXBaDrrfy5IBhjy
-         pW6A==
-X-Gm-Message-State: AOAM533gZWwkseNo/4319gdF4kOmo9snd1ZyVAD1PFBEeM15/Kn5k1uP
-        mgADg67eaUhQ1WyVErr85atUaA==
-X-Google-Smtp-Source: ABdhPJyrRmbj+mSeiaX+91lpDoKZG7xScJ0qAqLMuj1UY/gOm6vTRI8pWT6D58WwacbQQoADffwrdQ==
-X-Received: by 2002:a9d:730b:0:b0:5af:3058:b962 with SMTP id e11-20020a9d730b000000b005af3058b962mr1615926otk.135.1645736061326;
-        Thu, 24 Feb 2022 12:54:21 -0800 (PST)
+        bh=IrvVABFS5etqsO4Q23dKzvCPtJmOIF0hBvQ4gEirm3A=;
+        b=kp/n2OnJECLxYNisL2QHKdGaaRqQPe41VlUE3nCWWGuzGHQdojz4Oa1GTkng7kxL8U
+         wsS9Z0AaPlX2jY/UT6Jj/P9kOwbZVwD/GF/Md+ybdTmweq8RvTqDNZMsYCeTom2uvBPF
+         ntp4NywaEuKoCMnq2GGFOMZ/sFSNuot4OUBVrMxomuYxbqe5wdEGidcQ7OMGFnCc7xKx
+         9hJTjXhHiv0m+BJOgZ3itBH0xAo0yB2v3hghH+YkALB+1SM6ej9JpqRA8S7TDAaxcFSN
+         wVL0R+hBlJ9H9Pp4AW+kZlKY74Sehi5io6sITzCHCuSdHCSOa7L0+8En1JwIJdHBVoZA
+         8ahQ==
+X-Gm-Message-State: AOAM533OkmflafysJSCyfL5IFiddZK/1BcgZHvzz/Iw15Sc4JFIB1U9e
+        nWpWLuGLDkhX8VOx05gS8KOJyjTW5pqhLQ==
+X-Google-Smtp-Source: ABdhPJx+u47Sk8oCQnFYol8UefPcr8VrTzgUlUSNfHJ1i52MIm71NluXd/Few0A3W7gFMV80UZkLaA==
+X-Received: by 2002:a05:6830:4126:b0:5af:b9dd:14be with SMTP id w38-20020a056830412600b005afb9dd14bemr1365286ott.366.1645736064217;
+        Thu, 24 Feb 2022 12:54:24 -0800 (PST)
 Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id c8-20020a4ad788000000b0031ce69b1640sm191259oou.10.2022.02.24.12.54.19
+        by smtp.gmail.com with ESMTPSA id c8-20020a4ad788000000b0031ce69b1640sm191259oou.10.2022.02.24.12.54.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 12:54:20 -0800 (PST)
+        Thu, 24 Feb 2022 12:54:23 -0800 (PST)
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     mka@chromium.org, dianders@chromium.org,
-        Sibi Sankar <quic_sibis@quicinc.com>
-Cc:     rjw@rjwysocki.net, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, agross@kernel.org,
-        linux-pm@vger.kernel.org, sboyd@kernel.org,
-        linux-arm-msm@vger.kernel.org, viresh.kumar@linaro.org
-Subject: Re: (subset) [PATCH v4] arm64: dts: qcom: sc7280: Add cpu OPP tables
-Date:   Thu, 24 Feb 2022 14:54:06 -0600
-Message-Id: <164573604161.1471031.14236592247266780650.b4-ty@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: sdm845: Add gsi dma node
+Date:   Thu, 24 Feb 2022 14:54:08 -0600
+Message-Id: <164573604161.1471031.18375061694907696431.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.32.0
-In-Reply-To: <1644428757-25575-1-git-send-email-quic_sibis@quicinc.com>
-References: <1644428757-25575-1-git-send-email-quic_sibis@quicinc.com>
+In-Reply-To: <20220222041951.1185186-1-vkoul@kernel.org>
+References: <20220222041951.1185186-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -73,15 +71,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Feb 2022 23:15:57 +0530, Sibi Sankar wrote:
-> Add OPP tables required to scale DDR/L3 per freq-domain on SC7280 SoCs.
+On Tue, 22 Feb 2022 09:49:50 +0530, Vinod Koul wrote:
+> This add the device node for gsi dma0 instances found in sdm845.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: sc7280: Add cpu OPP tables
-      commit: 1e8853c698276d20cdee99a8019f9f5e54c5c0a1
+[1/2] arm64: dts: qcom: sdm845: Add gsi dma node
+      commit: 29aed4b4eb992966f6f29a6a9885fe4357d604da
+[2/2] arm64: dts: qcom: sdm845: enable dma for spi
+      commit: 8f6e20adaaf34cfe1101f1b1bc9d2af01d05ee1f
 
 Best regards,
 -- 
