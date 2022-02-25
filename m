@@ -2,166 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 13A7F4C4D39
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 19:05:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E2A384C4D42
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 19:06:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232220AbiBYSFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 13:05:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32822 "EHLO
+        id S232711AbiBYSGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 13:06:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232720AbiBYSFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:05:13 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9526B1E6E91;
-        Fri, 25 Feb 2022 10:04:22 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id y189so7429840ybe.4;
-        Fri, 25 Feb 2022 10:04:22 -0800 (PST)
+        with ESMTP id S231825AbiBYSGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:06:48 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9791E6E98
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:06:16 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so7286681oos.9
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:06:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KojlstE2lgoa7NRwY6/3wf4IDjFuyhSCMnLIbiB/VXw=;
-        b=YsJOaByGxkVsWmlo3S060z6DNQE5Lpo0T52+WHe1QFVq1Np/PzH3I0i2xuV7aTMy/u
-         Q1kmPlvlBiL69lnqJu3XUV9IHW/Y6GcTXKhgAM1qqT6wqsIj5rTBMmRmp21nuQFG5MpD
-         iNDjQwEKh+b1yixh5b2jucpDw07D4LnYEuF4EtPK1iwjS7YEAgim+pnTWQT4rzvu5NL8
-         bCGymTsqjS6dXsUCatOsKzhYDnZN9c/0eSSoQEMulK5c5H8EhwhsC1SKteesQcz9uWMN
-         vazLu5uvqbP7OcmwtOu9xS+UARj3g9EIIvGU+mCXuoaLWkhMFQXOoBhGr1GnHmDWLZHl
-         qXwg==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=I6MkJlQQ4hU61fN5YrqAtX/5cqN/fcZrZGOgyZvO0uI=;
+        b=OX3tyht/4LSsOvRcTrgfeXkyb76HiSQ7W8pI7J/RTBbroR/+j4T5kvlW2WmKmUzG/H
+         xu2NViAASbIERVgMW/VanajirDvxVwf0ERZWB7p3LhGVPmT1IPo1TuayrNHhrLPZUOdz
+         XJcFu2aCb6m5c3GwxNFlRaO8UGW/64pJTguBs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KojlstE2lgoa7NRwY6/3wf4IDjFuyhSCMnLIbiB/VXw=;
-        b=kQLUpWTLKrkj92oFTMuFEFdeISYTIlNu1Vl+XDDEPMoKHj6iJoRxeVig54iq9qM9Um
-         5TxXq6CiFtL8mtPYs4B271rDpQj48wDVBIKxx5MsevNrmIiigVAwbKQfB77LfF7pPehK
-         cdUDcPvCO83EG4SDyifZ8cBV9k/aI/LfVpLdXrPU7TYz7n9vjo12yfAZ7daclHSAh9d9
-         DnpjD5pGqy/t5WTf10sIcsr68NbnDO1mRl2NSCo/Wb2JDSTQZCwQrDbIL1oPNhb1bGi9
-         nfwD9j8yTs21gyemfRM/qZ6TfKOD9x1+sArdQJwjNTjjN8T2gpHfjtw5nOxD1Cu1XU5C
-         qKMg==
-X-Gm-Message-State: AOAM532kpGQmDYS8sGmBN4PX7m4FGBygpNbfHwLWI5f2k0wS4ynz9IHd
-        MWj/HL4C3MofEHKwBdw0+9ApRfH7LzTqkF14Pck=
-X-Google-Smtp-Source: ABdhPJyqs/M2Em3/HU+NEY5CE3n65PJxyF06pbxASaTFZx+ohua2HRsbXo6S+rdEcQ6h3e4hUCuCMghFj0B5Kj/71MA=
-X-Received: by 2002:a25:5d0:0:b0:61d:932b:6fc0 with SMTP id
- 199-20020a2505d0000000b0061d932b6fc0mr8506142ybf.585.1645812261673; Fri, 25
- Feb 2022 10:04:21 -0800 (PST)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=I6MkJlQQ4hU61fN5YrqAtX/5cqN/fcZrZGOgyZvO0uI=;
+        b=zq/7mh+/mcm9JNWdxHt/YbdPXz+2Q6qK7xptNL/xMEpXSwx92oxLM5+nbrnEGpYQ8I
+         KpUVxJyMPkoRwrJxnKHUqwwLSvyviIAGl3mP6nhJ9P2Vq1sVhCuySM58dWpWbXIejebv
+         ZzT67xmCdj4dgkiZVxDNzqXktX03T7r11P6ycfHHt58kJ09zr0vnKGuufkqP43IXuAoM
+         6xT+16DGz0fn/fF5noy4vteesRG90T0pl77naiRnvu1gKy5xMdpAX7VdIPbVXgY+W8kH
+         WdVB95JVyUQw73LQvK/QNxyZu1pYXGLnP1Fe/u+Wpdn2RPEMZpOX6rBNsdPDF3zis/F6
+         fyZw==
+X-Gm-Message-State: AOAM5310EJrMuWc9FPdDZO6loogTsZTEKOZGGk7kxILSS0svx+UNPjfS
+        W02dZ6yngVjeaxwtXYQuSdW3kig/mnD8Pvvq2ciyKw==
+X-Google-Smtp-Source: ABdhPJwRntMGqiM80NVcK8YfATn8ptbQGr+zoLTrJsgW0P2rhsjH5L4rwRJB1IJxViwSIqXbAU1GJUTof7bUMNm0RH8=
+X-Received: by 2002:a05:6870:5829:b0:c8:9f42:f919 with SMTP id
+ r41-20020a056870582900b000c89f42f919mr2012649oap.54.1645812375839; Fri, 25
+ Feb 2022 10:06:15 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Feb 2022 10:06:15 -0800
 MIME-Version: 1.0
-References: <20220225145432.422130-1-pgwipeout@gmail.com> <20220225145432.422130-3-pgwipeout@gmail.com>
- <5cca79dc-619c-a162-e850-b3efd4dc746d@gmail.com>
-In-Reply-To: <5cca79dc-619c-a162-e850-b3efd4dc746d@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 25 Feb 2022 13:04:10 -0500
-Message-ID: <CAMdYzYo81L5YnLr=whBbqde--e_DSuSwSPaXuDwtzeXN7pLMwQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/8] dt-bindings: usb: dwc3: add description for rk3568
-To:     Johan Jonker <jbx6244@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-usb@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Michael Riesch <michael.riesch@wolfvision.net>
+In-Reply-To: <1645804670-21898-2-git-send-email-quic_vpolimer@quicinc.com>
+References: <1645804670-21898-1-git-send-email-quic_vpolimer@quicinc.com> <1645804670-21898-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 25 Feb 2022 10:06:15 -0800
+Message-ID: <CAE-0n52OPUEMO4iXP_6LuRcN5r+v-9oZoRwij_y+bwnUBC3ohw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64/dts/qcom/sc7280: remove assigned-clock-rate
+ property for mdp clk
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, quic_kalyant@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 11:07 AM Johan Jonker <jbx6244@gmail.com> wrote:
+Quoting Vinod Polimera (2022-02-25 07:57:49)
+> Kernel clock driver assumes that initial rate is the
+> max rate for that clock and was not allowing it to scale
+> beyond the assigned clock value.
 >
-> Hi Peter,
+> drop the assigned clock rate property and set it
+> during resume sequence with max value in the opp table.
 >
-> Lots of USB series all of a sudden.
-> Combine possible?
+> Fixes: 62fbdce91("arm64: dts: qcom: sc7280: add display dt nodes")
 >
-> On 2/25/22 15:54, Peter Geis wrote:
-> > The rk3568 dwc3 controllers are backwards compatible with the rk3399.
-> > Add the device tree description for it.
-> >
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 7 ++++++-
-> >  1 file changed, 6 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > index 04077f2d7faf..e3044e81cc72 100644
-> > --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> > @@ -30,6 +30,7 @@ select:
-> >          enum:
-> >            - rockchip,rk3328-dwc3
-> >            - rockchip,rk3399-dwc3
-> > +          - rockchip,rk3568-dwc3
-> >    required:
-> >      - compatible
-> >
-> > @@ -39,6 +40,7 @@ properties:
-> >        - enum:
-> >            - rockchip,rk3328-dwc3
-> >            - rockchip,rk3399-dwc3
-> > +          - rockchip,rk3568-dwc3
-> >        - const: snps,dwc3
-> >
-> >    reg:
-> > @@ -75,7 +77,10 @@ properties:
-> >      maxItems: 1
-> >
-> he
-> >    reset-names:
-> > -    const: usb3-otg
-> > +    items:
-> > +      - enum:
-> > +          - usb3-otg
-> > +          - usb3-host
->
-> The use of reset-names is "sort of" only related to the rk3399 legacy
-> node. Still using this sub node DT to not to break older existing boot
-> loaders.
->
-> https://github.com/torvalds/linux/search?q=usb3-otg
->
-> It's only mentioned as comment in dwc3-of-simple.c but not used:
->
->         simple->resets = of_reset_control_array_get(np, false, true,
->                                                     true);
-> core.c uses something similar.
->
->         dwc->reset = devm_reset_control_array_get_optional_shared(dev);
->         if (IS_ERR(dwc->reset))
->                 return PTR_ERR(dwc->reset);
->
->
-> Up to the maintainers, but I wouldn't add another variant/name for the
-> same thing as it also optional(= not required) and no longer needed.
 
-I left these named separately since they are different reset signals,
-but if it isn't an issue I don't mind having them both be usb3-otg.
+There shouldn't be a newline here. The fixes tag should be directly
+attached to the SoB area.
 
->
-> Johan
->
-> ===
->
-> Maybe drop PCLK_PIPE as well to reduce notifications.
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 ++-------
 
-I'll be conducting testing to determine if we need PCLK_PIPE here, and
-as long as it isn't working simply because it's enabled by someone
-else I'll drop it.
-Ideally, it would be nice to have a proper clock map for these chips,
-but currently that's not in the TRM.
+Can you also update sc7180.dtsi? Are there others SoCs that need an
+update because they're using an OPP table?
 
->
-> See example:
-> https://lore.kernel.org/linux-rockchip/20220225131602.2283499-4-michael.riesch@wolfvision.net/T/#u
->
-> >
-> >  unevaluatedProperties: false
-> >
-
-Thanks for the review!
+Doesn't this need to come after the driver change?
