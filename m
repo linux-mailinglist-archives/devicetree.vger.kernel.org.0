@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D8274C4284
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E41AD4C4291
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:41:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237991AbiBYKjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:39:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48330 "EHLO
+        id S239754AbiBYKlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:41:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239694AbiBYKjd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:39:33 -0500
-Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7408A1CABC2;
-        Fri, 25 Feb 2022 02:38:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
-         s=20160729; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
-        Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=+Xn6FzCuUazJGXD67KTYniSd2lGAAlj38VcC1aa/bc0=; b=Ro+pJpQZ9JcDZevJIMLxTuad/H
-        Sseks3nrleSAy9xs9huspJ4b/Va+W2jw5nIxBRBQJK5CniSMzg4xetI5pqiAmXHKZsDFbgZg8TraO
-        jsVL4wsp73Yvo10CQSSyCZuq9xU9EeQkzUDkf3LntOrH8yygtcWk4wDMBbwkklrgtbAM=;
-Received: from p200300daa7204f00f847964d075b2b3d.dip0.t-ipconnect.de ([2003:da:a720:4f00:f847:964d:75b:2b3d] helo=nf.local)
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <nbd@nbd.name>)
-        id 1nNXzs-00088g-S6; Fri, 25 Feb 2022 11:38:48 +0100
-Message-ID: <18408826-3af1-a80a-181d-25f46b4920fb@nbd.name>
-Date:   Fri, 25 Feb 2022 11:38:48 +0100
+        with ESMTP id S239738AbiBYKlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:41:15 -0500
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9B768FBD
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:40:37 -0800 (PST)
+Received: by mail-oi1-x236.google.com with SMTP id ay7so6883170oib.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:40:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=XmHgx7i/9vNrhvW/myAVOgnrCLxN2TVncbf1coqXilo=;
+        b=JShMinXGneeNUXr6MBtvLnsdFzLyYYPtsUCiR1SgKcXep3GIi8/lspMh7qpTsNS+4P
+         IQU+sI8epCbEo+wm4GebX17uOpKZdhmwAdbT807V0RgLDlEvibQSQWM7XdjGnZCNmPIa
+         6hKDByDP3wolEPSOkSdLIyX3nQsPCK5Vfy5L+waT20TTaKawHhkeTmNSPEte2FmrceFe
+         v+6xcrbAgcBLra+7OTyLfY9V1z4JRO1vrdf5TwzAdbXW5ZbXl+1QiUYQJ4nnqrmbgfhV
+         rKN3RIc45tWwJoHgB8Zony4h91g7IoWebGN/osaLBTHRi4zLm2FgRV7TzjbfNPcVFxB6
+         LA2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=XmHgx7i/9vNrhvW/myAVOgnrCLxN2TVncbf1coqXilo=;
+        b=InRczcQZdhAcBKEOI6qLIXsZqfGW3YRSvfjqVSZ3vo/ZGbRARNPx8omFbrUBsUBjba
+         avYBGqeIzZA175OtnXsmkaqb28tRvghMNdHoSTP50JIhnjOPBDikZ4eigMQXxM2wxY41
+         a6Udwp4eFizH03GjmFPd3jzyTm/GShB3M2boxM6DcDcRMOqVlJ4+a0QaEZUJ9LybJAMP
+         yPjIpjBETmJ7uzplwec3G8sy77q2fux9ZiX2YQiYTUabZhYw5TDHUy02QHQxapKHf0qm
+         +7asr4XCEp01lR0U/KhWZb0NIAKDp20XFW0zPHw//ZS2NyPcyY+g51gKrE7Qe/tUA9a4
+         JO5Q==
+X-Gm-Message-State: AOAM5331SCSy3PQhlv+zxc0/HnFmd13GtD/7kKv9f2lC2SLZz4rn/17U
+        qVmQWjTYygKwq9el+R/UwUO9w3kqKV8JbNUV/RjJ8g==
+X-Google-Smtp-Source: ABdhPJx9aAd/x8lOBAlC3AOKrKYl71PZj1ZJrbUXQn++GPnT4jD/17UUadhTANVxEvJPL5JqOpZ6gLbTAqxp4YOXaXo=
+X-Received: by 2002:a05:6808:114e:b0:2d5:4101:844e with SMTP id
+ u14-20020a056808114e00b002d54101844emr1162908oiu.169.1645785637242; Fri, 25
+ Feb 2022 02:40:37 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Feb 2022 02:40:36 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
- Gecko/20100101 Thunderbird/91.6.1
-Subject: Re: [PATCH 02/11] arm64: dts: mediatek: mt7622: add support for
- coherent DMA
-Content-Language: en-US
-From:   Felix Fietkau <nbd@nbd.name>
-To:     netdev@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220225101811.72103-1-nbd@nbd.name>
- <20220225101811.72103-3-nbd@nbd.name>
-In-Reply-To: <20220225101811.72103-3-nbd@nbd.name>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+In-Reply-To: <1c791b60-935c-1e8e-dd1b-4b18fc273c1b@collabora.com>
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-5-granquet@baylibre.com>
+ <1c791b60-935c-1e8e-dd1b-4b18fc273c1b@collabora.com>
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: alot/0.10
+Date:   Fri, 25 Feb 2022 02:40:36 -0800
+Message-ID: <CABnWg9uoDNbA6ZYGdEgkyySBW0pfY1+3Zrnh51XjadNU8_+U9A@mail.gmail.com>
+Subject: Re: [PATCH v8 04/19] video/hdmi: Add audio_infoframe packing for DP
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, airlied@linux.ie,
+        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
+        jitao.shi@mediatek.com, kishon@ti.com,
+        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+        mripard@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
+        tzimmermann@suse.de, vkoul@kernel.org
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,11 +79,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.02.22 11:18, Felix Fietkau wrote:
-> It improves performance by eliminating the need for a cache flush on rx and tx
-> 
-> Signed-off-by: Felix Fietkau <nbd@nbd.name>
-Sorry, I accidentally left out the dt-bindings patches. They will be 
-included in v2.
+Quoting AngeloGioacchino Del Regno (2022-02-22 16:16:48)
+> Il 18/02/22 15:54, Guillaume Ranquet ha scritto:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> >
+> > Similar to HDMI, DP uses audio infoframes as well which are structured
+> > very similar to the HDMI ones.
+> >
+> > This patch adds a helper function to pack the HDMI audio infoframe for
+> > DP, called hdmi_audio_infoframe_pack_for_dp().
+> > hdmi_audio_infoframe_pack_only() is split into two parts. One of them
+> > packs the payload only and can be used for HDMI and DP.
+> >
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+>
+> Hello Guillaume,
+>
+> I've just noticed that this patch will not apply against the latest linux-next,
+> as the include/drm/drm_dp_helper.h header was moved to
+> include/drm/dp/drm_dp_helper.h
+>
+> Can you please rebase for v9?
+>
+> Thanks,
+> Angelo
+>
 
-- Felix
+I'm sorry, I'm a bit of a noob, I rebased this series against 5.17-rc4 ...
+I'll rebase v9 against linux-next.
+
+Thx,
+Guillaume.
+
+> > ---
+> >   drivers/video/hdmi.c        | 83 ++++++++++++++++++++++++++++---------
+> >   include/drm/drm_dp_helper.h |  2 +
+> >   include/linux/hdmi.h        |  7 +++-
+> >   3 files changed, 72 insertions(+), 20 deletions(-)
+> >
