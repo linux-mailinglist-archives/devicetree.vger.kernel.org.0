@@ -2,278 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9474C4D1B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 18:59:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A62964C4D28
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 19:03:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230456AbiBYSAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 13:00:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52274 "EHLO
+        id S229993AbiBYSEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 13:04:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229984AbiBYSAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:00:11 -0500
-Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE8F21EBBF;
-        Fri, 25 Feb 2022 09:59:38 -0800 (PST)
-Received: by mail-yb1-xb2d.google.com with SMTP id p19so7392558ybc.6;
-        Fri, 25 Feb 2022 09:59:38 -0800 (PST)
+        with ESMTP id S230332AbiBYSEB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:04:01 -0500
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAC32255AE
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:03:29 -0800 (PST)
+Received: by mail-wr1-x42e.google.com with SMTP id b5so5727376wrr.2
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:03:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8kz9NZiBiYRGALk1m6Ovqtpeje/s73CVTmwpIkcwCPk=;
-        b=hfTP4XLAu13JbblnqvqrPPBprgC2sJvvAMS82h4kde46sTUPoP2znvX9fVRePJkvJC
-         mS98ljMkDQl9zM7EXXrk8OftTVLzhNiZ8H6guVcGqbYEXulJv4hAb3UKv69TW6lRt1Ef
-         eclAa9DjvURNdF0K1eWL7BLQYivkIB3Xo9FgfgsMdrMneY/ncss9JPA1psd72UpxHImw
-         grdvsKAl/7uwdFGso5zFtdKEhTgkXuPUHAtfZDaOySBL/jzfyfqcZXMK/pKk9/Js5CYn
-         pH621ABn/mLic79WR+Fbd9EgSKAX2zL4ZMdBDIpHgcrtUP6ALzD3PetJS5DB3cILAiPP
-         tPGg==
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=myxelBqy30bTcJ8ZX5UhYCHIKBHFqSW0CcEE1Z58khk=;
+        b=jOi89ia8H2rFcP3T7+wURDQtxvvySEXht1DO13PIwFY9RJIC/QiSqLOm1dtVkdAyaf
+         AbYh/oSAOyApE9Q1Kn/SpPICp4CNncqYnBYGAUyAGspr1g1GvGGFqLdM7rgD91v4+oxu
+         PWhLDigQFqAdiLhHI/JPrvGC+Rv/YYNnLlA2yzJVwr5dfMs7NQkqFay3wPrgTRyqGr0y
+         RosJil9OVqTiq+9ABreNkg2ZbxVtQefuRQwZhgN+VwviRBOoLfunc9ocRyUzinV0JAqi
+         VyCJrUSUMQH+F3MGkSN1QVb2Czn2J3jI73XkYiBHEI5aCts8fyqgVSGdE5ov+B7vV6UQ
+         Q+RQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8kz9NZiBiYRGALk1m6Ovqtpeje/s73CVTmwpIkcwCPk=;
-        b=qxYWUV5SBghQx9KBPndR6OdvWxo6u47O69ozTSuvDXjReN2RN55h4f7EEBTEHxmwdN
-         f3OlSKP+3yHrdJjW5SPCQvIPJWC5wWDgKwwLixBgMZE0X7eXEQmC4qHTGUwJCPfM+o0g
-         oeu57Mp0gyCJKZsJainRzJZX4oKtdMUb6jV1+US87DhcgGDkStWZktVJKGyuOU6sCHi2
-         1Xx2bl7+zZRNagP6NzuRT4nNrdvOqBS2qJBHrK3yCTyXd8npqpDMA1yNMjgagBKl9KhO
-         6j0IWFvHs4OLJro5JdnpqBL9tjwBiF1j23HkrhRedKZD7xIYlpDN8t3eWm1B+Ykdiq6t
-         ZS+Q==
-X-Gm-Message-State: AOAM53027zyq9Vt8mKGe8eMww5pxXhLwl+NAqxFwhcX+S5fFB7v5CwZt
-        bPo0hE/sfKCKB8gHjOeSI3E6A1utzIf0DQ8ID/w=
-X-Google-Smtp-Source: ABdhPJwN67LxqhBHaYtXPLv7XV+GoM49N48Yf33dmmVit7EySdc2NF93LIYx/FOayyAsdbW85jFSjza7i7o2pXzqYjE=
-X-Received: by 2002:a25:c752:0:b0:624:71ee:65d7 with SMTP id
- w79-20020a25c752000000b0062471ee65d7mr8379627ybe.366.1645811977842; Fri, 25
- Feb 2022 09:59:37 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=myxelBqy30bTcJ8ZX5UhYCHIKBHFqSW0CcEE1Z58khk=;
+        b=yqjeb6N6qHIQbCZ57q7l6s6+mE1JDNbTztuEkH2WjJSYuLeXFrrlMaU6F5sjIrSaoc
+         RcNFQW5DO1nw3qEsOGzoZOtwFzhg0eMmtWz9RKbxysl1aI6qR1WkBl0NMQuYOSpcDBLL
+         E+j2ENzNOKKVvUD35wfdKjxeRz3RggLJcIrpzfC8AabvtfQswveuBIh/TknC0Jnisi+I
+         QYV/FmEIR2CMa7Dyc1x3bpcNnk8tKljDNFt7OpJLEvK1jfemrQ7OsHILxoZVht47jB1P
+         ZKQLRI38LlmzA+oWTQ9KrIyKNnakLW87e4gHAvJm+wk/dFjG+3yjL24iNE+0t9bvzOF0
+         bx4A==
+X-Gm-Message-State: AOAM531fVOJfC6U4EOdIFq0Zk/jKaYlStXRXt4SkkvBqqyeo1Mo80WEY
+        dftW5gc9mrYE1LG0pu7DHfHfPA==
+X-Google-Smtp-Source: ABdhPJxjMNMdYhsq1gDFcmAYq8MGRlkuy47ls/d6GXdHncZa9U6DNBLuj8UsSq1feDuCyGWhxSUoJg==
+X-Received: by 2002:a5d:5245:0:b0:1ed:9eca:cf3d with SMTP id k5-20020a5d5245000000b001ed9ecacf3dmr6811167wrc.666.1645812207584;
+        Fri, 25 Feb 2022 10:03:27 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id s3-20020adfbc03000000b001e4b0e4a7fdsm2918057wrg.93.2022.02.25.10.03.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 10:03:26 -0800 (PST)
+Message-ID: <4811be6f-7e86-2a62-94cf-98504d5e64e7@linaro.org>
+Date:   Fri, 25 Feb 2022 18:03:25 +0000
 MIME-Version: 1.0
-References: <20220225145432.422130-1-pgwipeout@gmail.com> <20220225145432.422130-8-pgwipeout@gmail.com>
- <2f1f09c0-9b7e-5145-fb25-a5f1fe4d0ab4@wolfvision.net>
-In-Reply-To: <2f1f09c0-9b7e-5145-fb25-a5f1fe4d0ab4@wolfvision.net>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Fri, 25 Feb 2022 12:59:26 -0500
-Message-ID: <CAMdYzYqRsOji3PfxK_FgOUbg4KomC+LnWgkTXS7=YRKTuPYVow@mail.gmail.com>
-Subject: Re: [PATCH v1 7/8] arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
-To:     Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2] soundwire: qcom: remove redundant wait for completion
+Content-Language: en-US
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, yung-chuan.liao@linux.intel.com,
+        sanyog.r.kale@intel.com
+Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1645800257-27025-1-git-send-email-quic_srivasam@quicinc.com>
+ <a99a59eb-cd59-f566-b98d-486c94f32eec@linaro.org>
+ <06650d56-eed3-73ad-d6b4-6b56a5a70669@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <06650d56-eed3-73ad-d6b4-6b56a5a70669@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 12:01 PM Michael Riesch
-<michael.riesch@wolfvision.net> wrote:
->
-> Hi Peter,
->
-> (It should be noted that there was a slight mishap in communications
-> between the two of us resulting in two series with the same goal. Now
-> let's clean up the mess :-)
->
-> Thanks for your series. Seeing that it contains more patches than mine
-> it probably makes sense to use your series as basis. Please Cc: me in
-> future iterations of this patch series and consider my comments below.
 
-Will do.
-If you'd like I can also pull your enablement patch.
 
->
-> On 2/25/22 15:54, Peter Geis wrote:
-> > Add the dwc3 device nodes to the rk356x device trees.
-> > The rk3566 has one usb2 capable dwc3 otg controller and one usb3 capable
-> > dwc3 host controller.
-> > The rk3568 has one usb3 capable dwc3 otg controller and one usb3 capable
-> > dwc3 host controller.
-> >
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3566.dtsi | 12 +++++++
-> >  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  9 +++++
-> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 45 +++++++++++++++++++++++-
-> >  3 files changed, 65 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> > index 3839eef5e4f7..8e8b52f58f44 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> > @@ -6,6 +6,10 @@ / {
-> >       compatible = "rockchip,rk3566";
-> >  };
-> >
-> > +&pipegrf {
-> > +     compatible = "rockchip,rk3566-pipe-grf", "syscon";
-> > +};
-> > +
-> >  &power {
-> >       power-domain@RK3568_PD_PIPE {
-> >               reg = <RK3568_PD_PIPE>;
-> > @@ -18,3 +22,11 @@ power-domain@RK3568_PD_PIPE {
-> >               #power-domain-cells = <0>;
-> >       };
-> >  };
-> > +
-> > +&usbdrd30 {
->
-> I would really love to have some alignment with the other USB controllers
->
-> usb_host{0,1}_{e,o}hci
->
-> here. I am aware that older SoCs and the SDK are using these names and
-> it might be painful to have different versions to maintain at the
-> moment, but can we please agree on
->
-> usb_host0_xhci
-> usb_host1_xhci
->
-> or something like that?
+On 25/02/2022 15:43, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 2/25/22 08:45, Srinivas Kandagatla wrote:
+>>
+>>
+>> On 25/02/2022 14:44, Srinivasa Rao Mandadapu wrote:
+>>> Remove wait_for_completion_timeout from soundwire probe as it seems
+>>> unnecessary and device enumeration is anyway not happening here,
+>>> hence this api is blocking till it completes max wait time.
+>>> Also, as device enumeration event is dependent on wcd938x probe to be
+>>> completed, its of no use waiting here.
+>>> Waiting here increasing the boot time almost 4 seconds and impacting
+>>> other modules like touch screen.
+>>>
+>>> Fixes: 06dd96738d618 ("soundwire: qcom: wait for enumeration to be
+>>> complete in probe")
+>>>
+>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>>
+>> LGTM,
+>>
+>> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> 
+> I don't get the idea, sorry.
+> 
+> If you look at the code, these are the cases where this 'struct
+> completion' is used
+> 
+> 	struct completion enumeration;
+> 	complete(&ctrl->enumeration);
+> 	/* Enable Auto enumeration */
+> 	init_completion(&ctrl->enumeration);
+> 	wait_for_completion_timeout(&ctrl->enumeration,
+> 
+> 
+> so if you remove the wait_for_completeion, then you might just as well
+> remove the whole thing and revert 06dd96738d618
+> 
+> what am I missing?
+Yes, that makes more sense to revert it, as it is the only user of this 
+completion.
+We could add it back when we really need this again in pm runtime setup 
+if required.
 
-I agree, I like your naming better.
-
->
-> > +     phys = <&usb2phy0_otg>;
-> > +     phy-names = "usb2-phy";
-> > +     extcon = <&usb2phy0>;
-> > +     maximum-speed = "high-speed";
-> > +     snps,dis_u2_susphy_quirk;
-> > +};
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > index 5b0f528d6818..77c044cbaaad 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> > @@ -99,6 +99,10 @@ opp-1992000000 {
-> >       };
-> >  };
-> >
-> > +&pipegrf {
-> > +     compatible = "rockchip,rk3568-pipe-grf", "syscon";
-> > +};
-> > +
-> >  &power {
-> >       power-domain@RK3568_PD_PIPE {
-> >               reg = <RK3568_PD_PIPE>;
-> > @@ -114,3 +118,8 @@ power-domain@RK3568_PD_PIPE {
-> >               #power-domain-cells = <0>;
-> >       };
-> >  };
-> > +
-> > +&usbdrd30 {
-> > +     phys = <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
-> > +     phy-names = "usb2-phy", "usb3-phy";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > index 84d5d607e693..4fae5b3b326e 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > @@ -230,6 +230,50 @@ scmi_shmem: sram@0 {
-> >               };
-> >       };
-> >
-> > +     usbdrd30: usbdrd@fcc00000 {
-> > +             compatible = "rockchip,rk3568-dwc3", "snps,dwc3";
-> > +             reg = <0x0 0xfcc00000 0x0 0x400000>;
-> > +             interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
-> > +             clocks = <&cru CLK_USB3OTG0_REF>, <&cru CLK_USB3OTG0_SUSPEND>,
-> > +                      <&cru ACLK_USB3OTG0>, <&cru PCLK_PIPE>;
-> > +             clock-names = "ref_clk", "suspend_clk",
-> > +                           "bus_clk", "grf_clk";
->
-> Please consider Johan's comments on my first series. In my tests
-> removing the PCLK_PIPE clock did not make any difference.
-
-I'd like to test that this isn't being used, or isn't just working
-because it's enabled elsewhere.
-If both of those are false, then I'll be happy to drop this.
-
->
-> > +             dr_mode = "host";
->
-> Based on the description in the commit message above it should be "otg",
-> right? Boards are free to overrule this, of course.
-
-Currently the usb2phy does not support OTG mode correctly.
-There are patches in the works for this, but at the moment it's safer
-to default to host.
-
->
-> > +             phy_type = "utmi_wide";
-> > +             power-domains = <&power RK3568_PD_PIPE>;
-> > +             resets = <&cru SRST_USB3OTG0>;
-> > +             reset-names = "usb3-otg";
-> > +             snps,dis_enblslpm_quirk;
-> > +             snps,dis-u2-freeclk-exists-quirk;
-> > +             snps,dis-del-phy-power-chg-quirk;
-> > +             snps,dis-tx-ipgap-linecheck-quirk;
-> > +             snps,xhci-trb-ent-quirk;
->
-> In my first version I had all those quirks as well, but are they
-> actually necessary? I decided to remove them all to have a fresh start
-> (also activating them did not seem to affect my test setup).
-
-I'm now curious about this, can someone weigh in on valid ways of
-testing each one of these in a way that is definite?
-
->
-> > +             status = "disabled";
-> > +     };
-> > +
-> > +     usbhost30: usbhost@fd000000 {
->
-> Please reconsider the this name as well.
->
-> > +             compatible = "rockchip,rk3568-dwc3", "snps,dwc3";
-> > +             reg = <0x0 0xfd000000 0x0 0x400000>;
-> > +             interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
-> > +             clocks = <&cru CLK_USB3OTG1_REF>, <&cru CLK_USB3OTG1_SUSPEND>,
-> > +                      <&cru ACLK_USB3OTG1>, <&cru PCLK_PIPE>;
-> > +             clock-names = "ref_clk", "suspend_clk",
-> > +                           "bus_clk", "grf_clk";
-> > +             dr_mode = "host";
->
-> Here "host" clearly makes sense, as this controller is not capable of otg.
->
-> > +             phys = <&usb2phy0_host>, <&combphy1 PHY_TYPE_USB3>;
-> > +             phy-names = "usb2-phy", "usb3-phy";
-> > +             phy_type = "utmi_wide";
-> > +             power-domains = <&power RK3568_PD_PIPE>;
-> > +             resets = <&cru SRST_USB3OTG1>;
-> > +             reset-names = "usb3-host";
-> > +             snps,dis_enblslpm_quirk;
-> > +             snps,dis-u2-freeclk-exists-quirk;
-> > +             snps,dis_u2_susphy_quirk;
-> > +             snps,dis-del-phy-power-chg-quirk;
-> > +             snps,dis-tx-ipgap-linecheck-quirk;
->
-> What was said about quirks above holds here as well (although one quirk
-> not documented in the bindings is missing here).
-
-Same thing here, I'd like absolute testing to determine that these are
-not necessary, since downstream (the oem) felt they were.
-
->
-> Best regards,
-> Michael
->
-> > +             status = "disabled";
-> > +     };
-> > +
-> >       gic: interrupt-controller@fd400000 {
-> >               compatible = "arm,gic-v3";
-> >               reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
-> > @@ -297,7 +341,6 @@ pmu_io_domains: io-domains {
-> >       };
-> >
-> >       pipegrf: syscon@fdc50000 {
-> > -             compatible = "rockchip,rk3568-pipe-grf", "syscon";
-> >               reg = <0x0 0xfdc50000 0x0 0x1000>;
-> >       };
-> >
+--srini
+> 
+> 
+>>> ---
+>>>    drivers/soundwire/qcom.c | 2 --
+>>>    1 file changed, 2 deletions(-)
+>>>
+>>> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+>>> index 5481341..9a32a24 100644
+>>> --- a/drivers/soundwire/qcom.c
+>>> +++ b/drivers/soundwire/qcom.c
+>>> @@ -1309,8 +1309,6 @@ static int qcom_swrm_probe(struct
+>>> platform_device *pdev)
+>>>        }
+>>>          qcom_swrm_init(ctrl);
+>>> -    wait_for_completion_timeout(&ctrl->enumeration,
+>>> -                    msecs_to_jiffies(TIMEOUT_MS));
+>>>        ret = qcom_swrm_register_dais(ctrl);
+>>>        if (ret)
+>>>            goto err_master_add;
