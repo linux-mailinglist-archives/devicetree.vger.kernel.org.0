@@ -2,112 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 899B24C3F02
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:27:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F46F4C3F0B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:31:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238130AbiBYH17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 02:27:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42128 "EHLO
+        id S234027AbiBYHbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 02:31:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237358AbiBYH17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:27:59 -0500
-Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF0F192C8D
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:27:27 -0800 (PST)
-Received: by mail-pg1-x532.google.com with SMTP id o23so3875277pgk.13
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:27:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pZld643HuW0/07Bu4DSXyfjcKpraUhym1XI5gyrgNOk=;
-        b=cuj/O6w4RHklkvb7BlBFffzE0inrWWOX0/PjEwewBYlkyZ+Xb7qs8hjGv/fNqGuRev
-         tDWWhu0+q0fYtxyRueNE17EzLHL4FZn+Ei9+T7TxRzwxdaRfaNN13c/Wa/o30giD/OVW
-         fhWbdFOJ+uawSxrMvwmKj7+3q0tyFg8kIa38NqZ6h81PVqeSCo4scYjutj8Ri/tbA2IY
-         Wybrc7TGiwoZSkDvp6ovwMyz5Z/VUgfL7+xUF7lxRrtX9Mz6Q2cdmhU9mecBOTCluqq6
-         vN8SpTGnCIp1/2KQs9lBue5k4ibFtzcdBi9x4/zOQGYsN/3OJHBCeSSj+0CsN1miXr9l
-         bmZw==
+        with ESMTP id S231272AbiBYHby (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:31:54 -0500
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9043725D6F3;
+        Thu, 24 Feb 2022 23:31:22 -0800 (PST)
+Received: by mail-ej1-f44.google.com with SMTP id r13so9117124ejd.5;
+        Thu, 24 Feb 2022 23:31:22 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pZld643HuW0/07Bu4DSXyfjcKpraUhym1XI5gyrgNOk=;
-        b=sPX6lqyFHsTmfp6FzY01DP/dW04vbGizuNsmBIXY3hTAvZ0SxEiUtZYO4zKmcvX44y
-         BeYMl98ulSVQcUbKVF9pa1PZmX2TDBMdDQmgXuNVHp4r4B2jSFMXg+c06FYqM6TZrjsI
-         aq8nPkJ4BccNp0CBghq4YMC09CJe7NxAchOCN32D+DqkRQ7aSDE8ZGqNAlEaEJklxpoF
-         MGYgq6SGL+6DheFIDEDzSqhSYxqddudsaSY9wrfLipO+uUJzeEEagdT6X71X0+BhsYG6
-         MbKO+V6lBwma6gPuwKarUqK9xl9tmkDBgMAnaqCKB9Fv7vofb0E5jZff9Uv9kZ+QTZ7T
-         lX1A==
-X-Gm-Message-State: AOAM532Jh4cXu2YhXPiMahjfPQlDyq0yJdDHNYwWicSdfBLJRmve6cLS
-        VXufLKUHZfyeAofQaRnyrDda
-X-Google-Smtp-Source: ABdhPJwFdPzXdeQZMtrt4sI0MD3SfbXz3OURh87Nc9aslImgzfiD/6+gpcAjiZGQiadInU/X1o/0GA==
-X-Received: by 2002:a05:6a00:88e:b0:4d2:4829:156c with SMTP id q14-20020a056a00088e00b004d24829156cmr6500246pfj.47.1645774047427;
-        Thu, 24 Feb 2022 23:27:27 -0800 (PST)
-Received: from thinkpad ([220.158.159.240])
-        by smtp.gmail.com with ESMTPSA id p28-20020a056a000a1c00b004f3b355dcb1sm1959980pfh.58.2022.02.24.23.27.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 23:27:27 -0800 (PST)
-Date:   Fri, 25 Feb 2022 12:57:21 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 5/5] clk: qcom: Add SDX65 APCS clock controller support
-Message-ID: <20220225072721.GE274289@thinkpad>
-References: <1645505785-2271-1-git-send-email-quic_rohiagar@quicinc.com>
- <1645505785-2271-6-git-send-email-quic_rohiagar@quicinc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=8s/sEEcezqOxjPo1IRls593HXMXJluYQRZTRz8WXcj8=;
+        b=Jd+WEwcsLf9IpHmWlG9ySEMdGpPs+3onyuscGmGbKmdhMheleGyTL9Cm9ALua0Q9YH
+         /ju3VD/q63kgKX4Mbo8t5adzCIT3trHUFM/TvGsnx9qEHGk/Iys989IMOTvzechAw1Em
+         ufYmqqNZNo0wUl7PC+rSgzqe+A3VUNFSlRW9+AfPIZ77BhnI5uYKFmK1bRGly64DhRDP
+         svTsahuO7E7fp8yH3Ar4o6+OLdDifCR2hSPuuhzRcn0XurBaw4O/EFalRhSZL9MDwRH0
+         Zd3ayxDHA26g6dyZA7GZgaynwbN6gXfi7vCvWwV5wQMkNSTRLoXxmMqCM6f8SigXM4aG
+         ZIJQ==
+X-Gm-Message-State: AOAM530jabgEoy8eHIflTTVBT24WRsPqN2r8BXtAvUVGTVyDBb1xQSpK
+        zcDpABpzK7VKUeTx4pgKGYc=
+X-Google-Smtp-Source: ABdhPJxD3DA6d3nPM0aMoQKdrjnBr7p9a+RYfT0msZEO4qIv24OP6aPqyshDjRat48CbBH1nxv5LkQ==
+X-Received: by 2002:a17:906:7e52:b0:6b6:bc81:eae9 with SMTP id z18-20020a1709067e5200b006b6bc81eae9mr5119912ejr.273.1645774280890;
+        Thu, 24 Feb 2022 23:31:20 -0800 (PST)
+Received: from [192.168.0.128] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id bx1-20020a0564020b4100b00410f01a91f0sm934477edb.73.2022.02.24.23.31.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Feb 2022 23:31:19 -0800 (PST)
+Message-ID: <b527a418-b807-7afa-9ed0-2ac4271ff79e@kernel.org>
+Date:   Fri, 25 Feb 2022 08:31:18 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1645505785-2271-6-git-send-email-quic_rohiagar@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: Add sample averaging property
+ for ADM1275
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Potin Lai <potin.lai@quantatw.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220224154329.9755-1-potin.lai@quantatw.com>
+ <20220224154329.9755-3-potin.lai@quantatw.com>
+ <c6607953-927e-4d85-21cb-72e01a121453@kernel.org>
+In-Reply-To: <c6607953-927e-4d85-21cb-72e01a121453@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 10:26:25AM +0530, Rohit Agarwal wrote:
-> Update APCS Kconfig to reflect support for SDX65
-> APCS clock controller.
+On 25/02/2022 08:06, Krzysztof Kozlowski wrote:
+> On 24/02/2022 16:43, Potin Lai wrote:
+>> Add new properties for binding sample averaging in PMON_CONFIG register
+>>
+>> - adi,volt-curr-sample-average
+>> - adi,power-sample-average
+>>
+>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+>> ---
+>>  .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
+>>  1 file changed, 44 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> index 223393d7cafd..325f6827648f 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> @@ -37,6 +37,48 @@ properties:
+>>      description:
+>>        Shunt resistor value in micro-Ohm.
+>>  
+>> +  adi,volt-curr-sample-average:
+>> +    description: |
+>> +      A value to configure VI_AVG in PMON_CONFIG register to indicate a
+>> +      number of samples to be used to report voltage and currentvalues.
 > 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
->  drivers/clk/qcom/Kconfig | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> missing space after current.
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 5159a1d..1a641d4 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -55,13 +55,13 @@ config QCOM_CLK_APCC_MSM8996
->  	  drivers for dynamic power management.
->  
->  config QCOM_CLK_APCS_SDX55
-> -	tristate "SDX55 APCS Clock Controller"
-> +	tristate "SDX55 and SDX65 APCS Clock Controller"
->  	depends on QCOM_APCS_IPC || COMPILE_TEST
->  	help
-> -	  Support for the APCS Clock Controller on SDX55 platform. The
-> +	  Support for the APCS Clock Controller on SDX55, SDX65 platforms. The
->  	  APCS is managing the mux and divider which feeds the CPUs.
->  	  Say Y if you want to support CPU frequency scaling on devices
-> -	  such as SDX55.
-> +	  such as SDX55, SDX65.
->  
->  config QCOM_CLK_RPM
->  	tristate "RPM based Clock Controller"
-> -- 
-> 2.7.4
+>> +      If set to 7, the 128 samples averaging would be used.
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint8
 > 
+> Make it a uint32.
+> 
+> The previous usage of this field was more appropriate. Instead of
+> keeping register values in DT, it's better to keep logical value. What
+> if in next cheap the register values have calculation method?
+> 
+> This should be like in v1 - enum for number of samples to take in averaging.
+> 
+
+One more thought: this field could also stay in current approach if you
+change the meaning from "value to configure VI_AVG" to something like
+"the exponent used to determine the number of samples, where the base is 2".
+
+This approach would allow you to skip the "ilog" in the code. It sill
+won't be that easily scalable if another chip comes with different
+formula, but I think that's unlikely.
+
+Best regards,
+Krzysztof
