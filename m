@@ -2,169 +2,346 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCB384C3D00
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 05:21:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E041B4C3D12
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 05:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237315AbiBYEUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 23:20:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36034 "EHLO
+        id S237336AbiBYEZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 23:25:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiBYEUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 23:20:22 -0500
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam07on2071.outbound.protection.outlook.com [40.107.95.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62A6127579D;
-        Thu, 24 Feb 2022 20:19:51 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ar9pWuzJKIPlTBdcCVzKXPU+aTBFLknTCNR8iBpSPuYkXedkownY8MnwMc4fLbcPBFmfwmHhUcJnedb1s/YIFpoOACK6NWsPBUnV1N66i7qY2L4+Ywkk823u98DPHTPCBHWefRBOAv2mVWCsyZVKbYEoipyTlVSNQf0lBFI4UxVeo+EZNIW3l6UPZqIEMPWuSS+xqJmEdApMKcTNU0zrYT12DjVEGR47P8WT+Ha+u7J7ft2phGaHbJHl3ePmPKoTOrK4BKar3ICeg4ejK8NC72i3NiNTq5yegl7dngyiG7L95Mmud2uWLTsuH2dn1stsCx18Z9QDjrU0+jz0TmrnGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BqXH1MBRtNt+n6NCeBoUpzEeGmCk4xVnR7RXEIUTHeI=;
- b=OHwSizii0Agn4u6zFLRNYf4zhHF/RQw4BUZsarI/FlY2z/QeHb1wDsVGBaEEaPVcIiENDi+ziGU0JY3TUKXeEuD4dKW+SoCUNJhKOX2g8k02PoTt/qoHltzpALrl35CwtwpGvn/aBvpgnt/SSN6j9X+Oa8/8S6X5fz6X86E7CRgmZanHp3ISQp0roMNHHYJuueHVhFigQ+tX+njMjfFPUlHgu/cT4aaGsgSKR+OAp0qhcRfPawTYij7Oe13J2GNjhgdPK9rPU+8rUyUi4k+liGMtyrkWbD9frCvx2NijI2F3n2mVEBmzKxcxhwhIzCk2WESMs+grcA3YhhSI2byVnQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BqXH1MBRtNt+n6NCeBoUpzEeGmCk4xVnR7RXEIUTHeI=;
- b=uuHusxzRhTraajHHGubzmFNRW+gA4/kHauRDr1jUKJQ11mhGhZ+nHZoD2pq9//i8tPURnqZSEN1FYXeX0mJQeSuPjzJQfWtIuxeoCQiB/id78jNAsqq2th+XYZDBbVGBlYnewbsBHGaZ4TU9MXQrSKJWFqQU0xwbJAZ9ICZSvig5XcALDYy4ck/Va5QwlbxN7MpbSY2+DknWd94EACAh8IASGxegJOc94FpcdFPnist/+eiGHl38yj/8wGQMopr+w0f1sHtmVd0JaRfCnJ+zJ3D9+HQnFpP3U919G8uFC6dG5K4CqYyrZcnHL3HRXt99J0YoNAMsHkdBoK97dUL3dQ==
-Received: from DM4PR12MB5769.namprd12.prod.outlook.com (2603:10b6:8:60::6) by
- BN6PR1201MB2498.namprd12.prod.outlook.com (2603:10b6:404:ae::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23; Fri, 25 Feb
- 2022 04:19:49 +0000
-Received: from DM4PR12MB5769.namprd12.prod.outlook.com
- ([fe80::d91c:c44d:f621:18b6]) by DM4PR12MB5769.namprd12.prod.outlook.com
- ([fe80::d91c:c44d:f621:18b6%3]) with mapi id 15.20.5017.024; Fri, 25 Feb 2022
- 04:19:49 +0000
-From:   Krishna Yarlagadda <kyarlagadda@nvidia.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Laxman Dewangan <ldewangan@nvidia.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-Subject: RE: [PATCH v2 4/5] spi: tegra210-quad: add acpi support
-Thread-Topic: [PATCH v2 4/5] spi: tegra210-quad: add acpi support
-Thread-Index: AQHYKBWa+O2JqvcM5kOPguoIZ3KOyqyf5iWAgADIESCAAliAAIAApvfQ
-Date:   Fri, 25 Feb 2022 04:19:49 +0000
-Message-ID: <DM4PR12MB5769C42A0DFD716508CD737CC33E9@DM4PR12MB5769.namprd12.prod.outlook.com>
-References: <20220222175611.58051-1-kyarlagadda@nvidia.com>
- <20220222175611.58051-5-kyarlagadda@nvidia.com>
- <YhUtQ/8Kgcx4OY4S@sirena.org.uk>
- <DM4PR12MB57693F28A727964ED67BBEB4C33C9@DM4PR12MB5769.namprd12.prod.outlook.com>
- <YhfM1DO8vmvHah+f@sirena.org.uk>
-In-Reply-To: <YhfM1DO8vmvHah+f@sirena.org.uk>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6920da16-e5b5-423d-9f8f-08d9f8161056
-x-ms-traffictypediagnostic: BN6PR1201MB2498:EE_
-x-microsoft-antispam-prvs: <BN6PR1201MB2498B7515E900F5EBDF1B8B5C33E9@BN6PR1201MB2498.namprd12.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: T7cxQ3z+qIA5qKiBNjtUuDNqz6TA9C/ZTMXwrwxiaoP4YmV2l7hTuZ1xF90hjks7XXF0XA78l6ywn2856OM1it55DntH8yv2LhQEJ6OWuhnQ4V8zXuEj5kyuaLhLXOjJwUvzaUrsssKa8lHE3CuU/p5go9lya9SitGARDOFrac7lz4iPhVe/HD6YDz0KsRKwOrpdljrJEBWsN+S+nU0QydIvswmSgCTiDA1kTG3OZWBwo16wHYXPFIh5H8hQyDRc99TRomt4VGu7JogTTwCTKWFmwsUvrohyrs4iUx3fVChojAkWQvfd0A0hWFy5+1guNoTV+VWfCgQ/yJemdbb1TOpHpiZsI5v7Qfa8+OCCidMrgow+En+41tiydEvO4jqlW/nyguD9Dw2eBX8HK2MOXDBTTjZFTB0YPPjzFhRJA+Rch6Kfila3B2bpv1I9q6vziI0o4Kw6gM846jNnQk6SPM3JOqIHI7dX6AWu7wo0Vzeer7ia9nIlZFwhmJepx0yfOQ5bM4mdR1eYrWNiDaYt+UNbFdjkKwK+/NThY/vd1zsFp1fThcwug3RAYet109CfJL8NgvheFyu8IuijpyEsxNKrBOmdn3XVkl5rZ2igOxivX/Huqn5mcEF/NNXGQRPdsYq+ssHYKdPWV2lbrRx4E4LwS2wCwdj3+UiNVReCKC0CjCQmCBOKYSKnZ4ccpXORkjIQz1dRn8c+E3ofeipwMg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB5769.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(55016003)(508600001)(122000001)(38070700005)(71200400001)(83380400001)(33656002)(2906002)(316002)(6916009)(4326008)(64756008)(8676002)(186003)(38100700002)(66946007)(54906003)(66476007)(66556008)(76116006)(7696005)(6506007)(53546011)(9686003)(8936002)(66446008)(52536014)(5660300002)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?d1tqiEns7HotNNiVMwFlAVFPXCa+71u37Qss92Zgp0bIpg453C3bTaA/SZO/?=
- =?us-ascii?Q?2tYmB6iVTq4UfreDsW+62k2WfEDNUJzLpALxgSuUjZtj5HJyojDkLSBf+BmD?=
- =?us-ascii?Q?aBtMZG1B1kKJYqBg6zwupsD/yMwj2HiJrT64QpUtZAQYd4n0e9UV+66Tfg1B?=
- =?us-ascii?Q?T6Z3IBI0sH8232ZaWqvKucdGk0rFcaTQABIucYFvdCI1wImBxllG+oVIoATQ?=
- =?us-ascii?Q?O1CqtnBJgwiBZaCvt1b+LvVBGtPuhQERHw92ODD4SEhHljwM61WFZ6HSPUvO?=
- =?us-ascii?Q?QPMbYX37FUxP35bXCDUt6dBJ35oN1V2YKo3SHgeue6ZxOpnr3aBWEE+RVdaN?=
- =?us-ascii?Q?2GW5sIL73yZsmYNwHx0jdFaUtuLSRhd0nej/oq8Iex2w5H9a/okS0BBeBhmb?=
- =?us-ascii?Q?kyBSzRueQu69M8mrSZtQjsFJoJ8u2ijyCeHvs3wl1vY/uncJppd9SJ25lXkP?=
- =?us-ascii?Q?8bbsm194DeeXZk9fHDfyhNtuqS6SSaLZEpkYYxuYep0RHJX05FKuzlb6oBNx?=
- =?us-ascii?Q?VqGDAFf/LNMHjFK+c3mm6Uo7tFXZbCmNhk2IT5F5iavcQOC2M0NyYYuAyB+8?=
- =?us-ascii?Q?fKXA0Ip0RDQYBE7y0kYV8rJnN2zUl5g7JQSaKn3kscQUcAMAhMTHmx9gJ4gh?=
- =?us-ascii?Q?ry1HsjERybbxTlmmyodEHx+cOMPc5u7HxtM/6I5w0PAS2Atb67FA2C6BXLJC?=
- =?us-ascii?Q?nVT2weEnUt4drvNt4irOwOOUX7N3HATjfTTMGr673jSaF3h30loib+kOTdfq?=
- =?us-ascii?Q?8spVHsqTICYxEgrt1YPdm0PVfruVec3Q+/BlaL/DUn1AGngD+27Ks2jxfia+?=
- =?us-ascii?Q?9If0qasu1ozRY/AnerXxickJcfPhhtBZEc8a3XR+vxcV/ZlniOKrKtOR6hzB?=
- =?us-ascii?Q?9cKQ/ZTdTVnWvNJsE5wMMXIlYSqRXl5RRRQZKVJKj/Co+qnPqu3C9cLFY0Pj?=
- =?us-ascii?Q?QRajpVBBIL3Ix/SJMHrzVfAA6OIeUdXO2hXmcCkTatdZWlIQ4rX7LI/hzlcz?=
- =?us-ascii?Q?LJQaRBJAw5OM9AabdlqBIi78s9BBYdWewRnfZhAVcIrTKCc6BeixvJousZ+/?=
- =?us-ascii?Q?E11s8zmRE08hi/rbHBunX+bU0Oaf9VHYT+EUVcZ2QRE2riIo4ZrRaxJOKTjX?=
- =?us-ascii?Q?Aiqv9xIDb47BfQ6YNX4QTQjAOdN9H5LT68Qq1ouN0iFuRVBxlwZxsGhGr9o9?=
- =?us-ascii?Q?gso3JLWLttMyrSXV8nsnJNfFDUcufzbZXHmAW9+5IUfsLXWYVbUBV5luUYez?=
- =?us-ascii?Q?zuIpWzFrQUw7bv7NpNQYLY/EVk/k8DC6js9nQG7cnroKk7sWztmX7kevbl0U?=
- =?us-ascii?Q?GeY1yV+u4CTP2Rh8fcjY8orBgdGhJHY/f6qLi7CrFt0wc1oUAgsI3OZwLoM5?=
- =?us-ascii?Q?bPXz1EzzJFN+hOGtTET9JCHWMMxFYbEhoPZ32GTx3kcONkb5i6ki318ziRkK?=
- =?us-ascii?Q?4BkKlN+Ik1QDomnl7BlIXbBAPgxFyDVbJVcHqVfJFjJzivIT+hu1vTvSm6Id?=
- =?us-ascii?Q?DeE2fg5sd8rwJIGRLIuFx7FhAa7tri4xDum2zzixau42rE3XQWF2NmdaOdEb?=
- =?us-ascii?Q?6RMq/GLziw0+zkOQFqWBJi/c75c1ANzss78IIx3h9dQohYSSeKgGcf58CSam?=
- =?us-ascii?Q?N38sKeBlzm7G/TC61FW6HhR+nDdcNLlA5vshWWASniH+J2nYWVUYGwAJIBXP?=
- =?us-ascii?Q?/dvNITuqTVP4AcYvrBlSGLMBg4s=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S229702AbiBYEZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 23:25:44 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37070F542B
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:25:13 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id i6-20020a4ac506000000b0031c5ac6c078so4829287ooq.6
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:25:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zNovte8k+fKInt1EfC9FuFbkCt88vhM4T3Olgo+uHaw=;
+        b=dTZbjARIqCRmn7+D69I8pv8ry/u4p9kBePa43s7UYFYlhPPUf9eYlvFAyIlZjWOySl
+         t2YVp8jLnFzLC0NRbhPYVHBOT6tds1enFqlsXZRck/tiIUx5DRFCA148P2LOXI00A1DF
+         n2oTTPk2A7J7Ww3IBouz3styUPz6+JRMaj9h/s1IgsDXe0M+eTzNHjZGI76NE8+KfEro
+         GW3q8ZCkEhCIgFWmMLbqkap3YdT/UNiuO2yIzFvMUDIsR6zgLBftCAE+Iz52PmGQIrjo
+         2NDYnu62uQMXK1UJwsuocdthw3Q4gMG4b7wkcFygNGq4dVJ96yNOtxxKIPuwpiqEu4Wu
+         9z2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zNovte8k+fKInt1EfC9FuFbkCt88vhM4T3Olgo+uHaw=;
+        b=x0BjGZO25yqKeAkDOc+BEM4vxLdzw3iocWRC478YP9lWMEhG3GPgpFjQWm1bCQBJII
+         tAoUL2g35YeGcMzB6z4GwdChIojdJlOOJ6a11wfOCdkgRV8CD6iErl2XvMQ0lpnY/odM
+         Jh+N8t7gkJ2RbQC7/mQKHX8U1VFKFPcc8oWwnJxrVqGpFA3i2XGffDu8W2MktkiWDDP+
+         jCS2i3MTCyZAkSEoQQRhVEzolCmgDofOM56A/9EDPgWCUk1+E8aYg8scsU8ABLED8vnx
+         n5WFHZ3P1TnXHsMOJ1bEWDcGbfCzZlJsUasx1uhzywgTCHXqsHcBk8LQkSWvrnJMHbuy
+         7jCw==
+X-Gm-Message-State: AOAM533bbaPCjEpY5OPhb+3zeDQZZWKnJ1a+4/wEaov55PSVM/CEFyls
+        u/BLx1XpkKNjRVBMGq85f78eVg==
+X-Google-Smtp-Source: ABdhPJzFu820Oyf6cYPU20OPKwReXxNuEXnhfjdC7tDX7U2sCoFX4kQvVnS29VYgNy30OP+pOIFs1g==
+X-Received: by 2002:a05:6870:3654:b0:ce:c0c9:67a with SMTP id v20-20020a056870365400b000cec0c9067amr608705oak.204.1645763112507;
+        Thu, 24 Feb 2022 20:25:12 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id s18-20020a0568301e1200b005af20e61469sm602013otr.18.2022.02.24.20.25.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 20:25:11 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Odelu Kukatla <okukatla@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: interconnect: qcom: Add sc8280xp binding
+Date:   Thu, 24 Feb 2022 20:27:09 -0800
+Message-Id: <20220225042710.2317732-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5769.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6920da16-e5b5-423d-9f8f-08d9f8161056
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Feb 2022 04:19:49.5936
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TrDVw0jy3ukSctAF/84+tNtN8XKvaZYh9ebzqK2CDaHh6pGN53DEoE0kudihKk4z8gRa+quvP2LxJwnxCs/FDA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR1201MB2498
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Mark Brown <broonie@kernel.org>
-> Sent: 24 February 2022 23:52
-> To: Krishna Yarlagadda <kyarlagadda@nvidia.com>
-> Cc: thierry.reding@gmail.com; Jonathan Hunter <jonathanh@nvidia.com>; lin=
-ux-spi@vger.kernel.org; linux-tegra@vger.kernel.org;
-> Sowjanya Komatineni <skomatineni@nvidia.com>; Laxman Dewangan <ldewangan@=
-nvidia.com>; robh+dt@kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; p.zabel@pengutr=
-onix.de
-> Subject: Re: [PATCH v2 4/5] spi: tegra210-quad: add acpi support
->=20
-> On Wed, Feb 23, 2022 at 06:32:56AM +0000, Krishna Yarlagadda wrote:
->=20
-> > > > +	if (has_acpi_companion(tqspi->dev))
-> > > > +		return 0;
-> > > >  	/* flush all write which are in PPSB queue by reading back */
-> > > >  	tegra_qspi_readl(tqspi, QSPI_COMMAND1);
->=20
-> > > As well as clock stuff this is also skipping flushing of pending writ=
-es
-> > > - is that intentional?  It's not called out in the changelog and seem=
-s like
-> > > something that could cause issues if someone runs on a system where
-> > > the firmware does implement runtime suspend.
->=20
-> > Runtime suspend is not enabled with ACPI firmware. Converted compiler f=
-lag in v1 to runtime check.
-> > We must add more changes like setting DPM flags for runtime pm support =
-with ACPI.
-> > Can take this as part of a different series.
->=20
-> It at least needs to be clearer what's going on here, the changelog
-> doesn't match the code and it's not obvious from the code that ACPI
-> won't kick in and power manage the device as things stand.
-Understood Mark. I will add comments to make it clear.
-Also update change log indicating runtime suspend does not work
-with ACPI.
+The Qualcomm SC8280XP platform has the usual set of busses, add a
+binding for these interconnect providers and port definitions to allow
+interconnect paths to be expressed in the sc8280xp DeviceTree.
+
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ .../bindings/interconnect/qcom,rpmh.yaml      |  12 +
+ .../dt-bindings/interconnect/qcom,sc8280xp.h  | 232 ++++++++++++++++++
+ 2 files changed, 244 insertions(+)
+ create mode 100644 include/dt-bindings/interconnect/qcom,sc8280xp.h
+
+diff --git a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+index 5a911be0c2ea..64f4925e298c 100644
+--- a/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
++++ b/Documentation/devicetree/bindings/interconnect/qcom,rpmh.yaml
+@@ -60,6 +60,18 @@ properties:
+       - qcom,sc8180x-mc-virt
+       - qcom,sc8180x-mmss-noc
+       - qcom,sc8180x-system-noc
++      - qcom,sc8280xp-aggre1_noc
++      - qcom,sc8280xp-aggre2_noc
++      - qcom,sc8280xp-clk_virt
++      - qcom,sc8280xp-config_noc
++      - qcom,sc8280xp-dc_noc
++      - qcom,sc8280xp-gem_noc
++      - qcom,sc8280xp-lpass_ag_noc
++      - qcom,sc8280xp-mc_virt
++      - qcom,sc8280xp-mmss_noc
++      - qcom,sc8280xp-nspa_noc
++      - qcom,sc8280xp-nspb_noc
++      - qcom,sc8280xp-system_noc_main
+       - qcom,sdm845-aggre1-noc
+       - qcom,sdm845-aggre2-noc
+       - qcom,sdm845-config-noc
+diff --git a/include/dt-bindings/interconnect/qcom,sc8280xp.h b/include/dt-bindings/interconnect/qcom,sc8280xp.h
+new file mode 100644
+index 000000000000..77d23b3da22f
+--- /dev/null
++++ b/include/dt-bindings/interconnect/qcom,sc8280xp.h
+@@ -0,0 +1,232 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2022, Linaro Ltd.
++ */
++
++#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_SC8280XP_H
++#define __DT_BINDINGS_INTERCONNECT_QCOM_SC8280XP_H
++
++/* aggre1_noc */
++#define MASTER_QSPI_0			0
++#define MASTER_QUP_1			1
++#define MASTER_QUP_2			2
++#define MASTER_A1NOC_CFG		3
++#define MASTER_IPA			4
++#define MASTER_EMAC_1			5
++#define MASTER_SDCC_4			6
++#define MASTER_UFS_MEM			7
++#define MASTER_USB3_0			8
++#define MASTER_USB3_1			9
++#define MASTER_USB3_MP			10
++#define MASTER_USB4_0			11
++#define MASTER_USB4_1			12
++#define SLAVE_A1NOC_SNOC		13
++#define SLAVE_USB_NOC_SNOC		14
++#define SLAVE_SERVICE_A1NOC		15
++
++/* aggre2_noc */
++#define MASTER_QDSS_BAM			0
++#define MASTER_QUP_0			1
++#define MASTER_A2NOC_CFG		2
++#define MASTER_CRYPTO			3
++#define MASTER_SENSORS_PROC		4
++#define MASTER_SP			5
++#define MASTER_EMAC			6
++#define MASTER_PCIE_0			7
++#define MASTER_PCIE_1			8
++#define MASTER_PCIE_2A			9
++#define MASTER_PCIE_2B			10
++#define MASTER_PCIE_3A			11
++#define MASTER_PCIE_3B			12
++#define MASTER_PCIE_4			13
++#define MASTER_QDSS_ETR			14
++#define MASTER_SDCC_2			15
++#define MASTER_UFS_CARD			16
++#define SLAVE_A2NOC_SNOC		17
++#define SLAVE_ANOC_PCIE_GEM_NOC		18
++#define SLAVE_SERVICE_A2NOC		19
++
++/* clk_virt */
++#define MASTER_IPA_CORE			0
++#define MASTER_QUP_CORE_0		1
++#define MASTER_QUP_CORE_1		2
++#define MASTER_QUP_CORE_2		3
++#define SLAVE_IPA_CORE			4
++#define SLAVE_QUP_CORE_0		5
++#define SLAVE_QUP_CORE_1		6
++#define SLAVE_QUP_CORE_2		7
++
++/* config_noc */
++#define MASTER_GEM_NOC_CNOC		0
++#define MASTER_GEM_NOC_PCIE_SNOC	1
++#define SLAVE_AHB2PHY_0			2
++#define SLAVE_AHB2PHY_1			3
++#define SLAVE_AHB2PHY_2			4
++#define SLAVE_AOSS			5
++#define SLAVE_APPSS			6
++#define SLAVE_CAMERA_CFG		7
++#define SLAVE_CLK_CTL			8
++#define SLAVE_CDSP_CFG			9
++#define SLAVE_CDSP1_CFG			10
++#define SLAVE_RBCPR_CX_CFG		11
++#define SLAVE_RBCPR_MMCX_CFG		12
++#define SLAVE_RBCPR_MX_CFG		13
++#define SLAVE_CPR_NSPCX			14
++#define SLAVE_CRYPTO_0_CFG		15
++#define SLAVE_CX_RDPM			16
++#define SLAVE_DCC_CFG			17
++#define SLAVE_DISPLAY_CFG		18
++#define SLAVE_DISPLAY1_CFG		19
++#define SLAVE_EMAC_CFG			20
++#define SLAVE_EMAC1_CFG			21
++#define SLAVE_GFX3D_CFG			22
++#define SLAVE_HWKM			23
++#define SLAVE_IMEM_CFG			24
++#define SLAVE_IPA_CFG			25
++#define SLAVE_IPC_ROUTER_CFG		26
++#define SLAVE_LPASS			27
++#define SLAVE_MX_RDPM			28
++#define SLAVE_MXC_RDPM			29
++#define SLAVE_PCIE_0_CFG		30
++#define SLAVE_PCIE_1_CFG		31
++#define SLAVE_PCIE_2A_CFG		32
++#define SLAVE_PCIE_2B_CFG		33
++#define SLAVE_PCIE_3A_CFG		34
++#define SLAVE_PCIE_3B_CFG		35
++#define SLAVE_PCIE_4_CFG		36
++#define SLAVE_PCIE_RSC_CFG		37
++#define SLAVE_PDM			38
++#define SLAVE_PIMEM_CFG			39
++#define SLAVE_PKA_WRAPPER_CFG		40
++#define SLAVE_PMU_WRAPPER_CFG		41
++#define SLAVE_QDSS_CFG			42
++#define SLAVE_QSPI_0			43
++#define SLAVE_QUP_0			44
++#define SLAVE_QUP_1			45
++#define SLAVE_QUP_2			46
++#define SLAVE_SDCC_2			47
++#define SLAVE_SDCC_4			48
++#define SLAVE_SECURITY			49
++#define SLAVE_SMMUV3_CFG		50
++#define SLAVE_SMSS_CFG			51
++#define SLAVE_SPSS_CFG			52
++#define SLAVE_TCSR			53
++#define SLAVE_TLMM			54
++#define SLAVE_UFS_CARD_CFG		55
++#define SLAVE_UFS_MEM_CFG		56
++#define SLAVE_USB3_0			57
++#define SLAVE_USB3_1			58
++#define SLAVE_USB3_MP			59
++#define SLAVE_USB4_0			60
++#define SLAVE_USB4_1			61
++#define SLAVE_VENUS_CFG			62
++#define SLAVE_VSENSE_CTRL_CFG		63
++#define SLAVE_VSENSE_CTRL_R_CFG		64
++#define SLAVE_A1NOC_CFG			65
++#define SLAVE_A2NOC_CFG			66
++#define SLAVE_ANOC_PCIE_BRIDGE_CFG	67
++#define SLAVE_DDRSS_CFG			68
++#define SLAVE_CNOC_MNOC_CFG		69
++#define SLAVE_SNOC_CFG			70
++#define SLAVE_SNOC_SF_BRIDGE_CFG	71
++#define SLAVE_IMEM			72
++#define SLAVE_PIMEM			73
++#define SLAVE_SERVICE_CNOC		74
++#define SLAVE_PCIE_0			75
++#define SLAVE_PCIE_1			76
++#define SLAVE_PCIE_2A			77
++#define SLAVE_PCIE_2B			78
++#define SLAVE_PCIE_3A			79
++#define SLAVE_PCIE_3B			80
++#define SLAVE_PCIE_4			81
++#define SLAVE_QDSS_STM			82
++#define SLAVE_SMSS			83
++#define SLAVE_TCU			84
++
++/* dc_noc */
++#define MASTER_CNOC_DC_NOC		0
++#define SLAVE_LLCC_CFG			1
++#define SLAVE_GEM_NOC_CFG		2
++
++/* gem_noc */
++#define MASTER_GPU_TCU			0
++#define MASTER_PCIE_TCU			1
++#define MASTER_SYS_TCU			2
++#define MASTER_APPSS_PROC		3
++#define MASTER_COMPUTE_NOC		4
++#define MASTER_COMPUTE_NOC_1		5
++#define MASTER_GEM_NOC_CFG		6
++#define MASTER_GFX3D			7
++#define MASTER_MNOC_HF_MEM_NOC		8
++#define MASTER_MNOC_SF_MEM_NOC		9
++#define MASTER_ANOC_PCIE_GEM_NOC	10
++#define MASTER_SNOC_GC_MEM_NOC		11
++#define MASTER_SNOC_SF_MEM_NOC		12
++#define SLAVE_GEM_NOC_CNOC		13
++#define SLAVE_LLCC			14
++#define SLAVE_GEM_NOC_PCIE_CNOC		15
++#define SLAVE_SERVICE_GEM_NOC_1		16
++#define SLAVE_SERVICE_GEM_NOC_2		17
++#define SLAVE_SERVICE_GEM_NOC		18
++
++/* lpass_ag_noc */
++#define MASTER_CNOC_LPASS_AG_NOC	0
++#define MASTER_LPASS_PROC		1
++#define SLAVE_LPASS_CORE_CFG		2
++#define SLAVE_LPASS_LPI_CFG		3
++#define SLAVE_LPASS_MPU_CFG		4
++#define SLAVE_LPASS_TOP_CFG		5
++#define SLAVE_LPASS_SNOC		6
++#define SLAVE_SERVICES_LPASS_AML_NOC	7
++#define SLAVE_SERVICE_LPASS_AG_NOC	8
++
++/* mc_virt */
++#define MASTER_LLCC			0
++#define SLAVE_EBI1			1
++
++/*mmss_noc */
++#define MASTER_CAMNOC_HF		0
++#define MASTER_MDP0			1
++#define MASTER_MDP1			2
++#define MASTER_MDP_CORE1_0		3
++#define MASTER_MDP_CORE1_1		4
++#define MASTER_CNOC_MNOC_CFG		5
++#define MASTER_ROTATOR			6
++#define MASTER_ROTATOR_1		7
++#define MASTER_VIDEO_P0			8
++#define MASTER_VIDEO_P1			9
++#define MASTER_VIDEO_PROC		10
++#define MASTER_CAMNOC_ICP		11
++#define MASTER_CAMNOC_SF		12
++#define SLAVE_MNOC_HF_MEM_NOC		13
++#define SLAVE_MNOC_SF_MEM_NOC		14
++#define SLAVE_SERVICE_MNOC		15
++
++/* nspa_noc */
++#define MASTER_CDSP_NOC_CFG		0
++#define MASTER_CDSP_PROC		1
++#define SLAVE_CDSP_MEM_NOC		2
++#define SLAVE_NSP_XFR			3
++#define SLAVE_SERVICE_NSP_NOC		4
++
++/* nspb_noc */
++#define MASTER_CDSPB_NOC_CFG		0
++#define MASTER_CDSP_PROC_B		1
++#define SLAVE_CDSPB_MEM_NOC		2
++#define SLAVE_NSPB_XFR			3
++#define SLAVE_SERVICE_NSPB_NOC		4
++
++/* system_noc */
++#define MASTER_A1NOC_SNOC		0
++#define MASTER_A2NOC_SNOC		1
++#define MASTER_USB_NOC_SNOC		2
++#define MASTER_LPASS_ANOC		3
++#define MASTER_SNOC_CFG			4
++#define MASTER_PIMEM			5
++#define MASTER_GIC			6
++#define SLAVE_SNOC_GEM_NOC_GC		7
++#define SLAVE_SNOC_GEM_NOC_SF		8
++#define SLAVE_SERVICE_SNOC		9
++
++#endif
+-- 
+2.33.1
+
