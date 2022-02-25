@@ -2,176 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C1D34C4318
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:10:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 402434C4320
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:11:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239888AbiBYLKi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 06:10:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44874 "EHLO
+        id S239911AbiBYLLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 06:11:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229903AbiBYLKh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:10:37 -0500
-Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32C1B197B51
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:05 -0800 (PST)
-Received: by mail-oo1-xc36.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso5819038ooi.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:05 -0800 (PST)
+        with ESMTP id S238967AbiBYLLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:11:31 -0500
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232EA197B51
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:59 -0800 (PST)
+Received: by mail-lj1-x236.google.com with SMTP id p20so6969459ljo.0
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc:content-transfer-encoding;
-        bh=uCe/+8iKUxzMUiuInd3yAhEeQs4vdxnzQkm5bIEbNEw=;
-        b=3quStgJE4CNplUYYKndunJnY4NULD271ISTymr6In2H9wvWQ46ynTFUwPSh3NKVoKO
-         XO4uix0XDRtyEYj7qkgyNbao0VNsn/v9DyTp5E6MeOCrYZ7UHnrZSG25ljWcwzNZXWtM
-         CK25RXGKu7gtNKH69yAXi2/cmw/9laIfo+AIvEyQXQO0M+yNR7o7LR3kCYQ0GhecodX3
-         0Yf39evCS/HIrNRyUizqYBNSZK0dgtE8NmgJi1WqVMQsdFuWPWRcekxxZDZoDZzegsrZ
-         eGdZk0yx/7/PS7SJ3+IWqErs4rB+57192rbUR/75nCEiwVLsRQAgfLPhmb5NU7fcOvcj
-         rAqQ==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=yfHDVChMIt79P8PwPVg3ITAsqmLO2xEVeCJUOEsGqTU=;
+        b=YYiU90jPEjbBPpGtGlks3J6ji5Nd3R7OXrhwxviCnTFNqQpKJJnJtC5ehaLTKgPv6d
+         kytOZEuiglne9JU2KDODLNAk3kSnVaXhENvmnBtvrBbuGp/LmYESK1W3L2pDk+iUYmTq
+         KqWJVFd1YncInr0mcJoJcA0/NgWltTcKtQEvETZRIPWbMYnZwgIomPPWFTh/GwaEQ0w/
+         /q92mKU79F4TZmLhSIed3q5bfj8I0MJ7jU8M5FhdAjmYQ/xwPXK9nq/oM1z1t6IqlZOS
+         5Fktm2+KaIZ1bj+8igJ/PSK5VWx+/oGbmra2Gr9CrvDH4UL45bEStlNRKgE6PNXEv63N
+         5b/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=uCe/+8iKUxzMUiuInd3yAhEeQs4vdxnzQkm5bIEbNEw=;
-        b=5KeM5W263j5xkIGOPGeiAEkFF5jUcnm1mAZgcjMKsL3ozJh70WYEX6UErWM73RlYrp
-         DBw9pf0AIRok0+NqI2QHGZ9OufsGpnmExYo4PodmeAt6lOj8zvkSwrP17hyyvB6VZMWT
-         /5v8BPgFXxBSyV7u8wrHxT/6jR5kQAEVLDPVDCIzWWPfs4bLoxaZVREu4AnpXWhKH+TF
-         wXWY9gBWWcEsFD7oOrTeEUwG0Z44CVfiXJ2onooVavSFJgS2TybKunYnSZqCR8vXvsQP
-         vJSsyV39Wm1ZjRgjULoRwRkUPYJAabU4kna0J5r0393XFDLAXtsctaZhjh2x6jhPtB4d
-         Q29A==
-X-Gm-Message-State: AOAM530+1CaR2gw50ybxO4fRS+9hA+f6h/JSPVaL099ZNmCXW4xQUEh4
-        ShVr5gpj9/3tlaK+kjRxzwtFkf2Wmx59IZ0RWRFWwA==
-X-Google-Smtp-Source: ABdhPJxQVXm0aOfETMn/jYI9liemPaFUC9qpKMV22X3YKscJ2KB1O1xhKAWhMyhOXCXayIJus//3i7D2cxvCV3+EqA4=
-X-Received: by 2002:a05:6870:3112:b0:ce:c0c9:62b with SMTP id
- v18-20020a056870311200b000cec0c9062bmr1047419oaa.125.1645787404480; Fri, 25
- Feb 2022 03:10:04 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 25 Feb 2022 03:10:03 -0800
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=yfHDVChMIt79P8PwPVg3ITAsqmLO2xEVeCJUOEsGqTU=;
+        b=3Ilv4NM7eC+TLXV6j0AhVyJh5mmePicOKo5RRAweJGF4lNS3F5zDllScxIrAnOuwKw
+         co79rwyB+GB1Vpb1+qMs8IIRBaAVZMYHma2VQopiYXZWG3U4PI9uEX6pCCfB3ZfsX4Sk
+         ifUA6OjTrmcR4GomWOvg/XSBmMWB/nuP6AxAinaelDykmPatOLvigtX/oALpcrLZDYKq
+         Q6X8sCp50CdAvg4ULnO6tsF6O7DeaSVHf5nwbFspPS70alKb8ROdclJUX8a3gcyOGHfo
+         btMv5lsttMKXNmUFCgm+7tJeAQkrLuItmDSaTKhliwkv0BMXpADJuQEOwHvPh8ET1HwG
+         6R2A==
+X-Gm-Message-State: AOAM5309e0hJ+QKulXSIEwnPO5HC1X6ViYB9VfDwzBrXOEu6fsPWdBsF
+        k9VidHQG6wZfOtwjFK1ob1+9ENqVsIo=
+X-Google-Smtp-Source: ABdhPJy3g0VW5PnDPjeFJlNBTjarbzOJxXYBGGvfVSZkpGhwP0uSgOx0oKsnOg7b8V6oGQav6wtkcA==
+X-Received: by 2002:a2e:7218:0:b0:246:4772:1fa0 with SMTP id n24-20020a2e7218000000b0024647721fa0mr4972875ljc.125.1645787457313;
+        Fri, 25 Feb 2022 03:10:57 -0800 (PST)
+Received: from [192.168.2.145] (109-252-137-194.dynamic.spd-mgts.ru. [109.252.137.194])
+        by smtp.googlemail.com with ESMTPSA id u17-20020a056512095100b0044381f00805sm174550lft.139.2022.02.25.03.10.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 03:10:56 -0800 (PST)
+Message-ID: <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+Date:   Fri, 25 Feb 2022 14:10:55 +0300
 MIME-Version: 1.0
-In-Reply-To: <CAAOTY_9cOLJnTK0tSqfzyK4tUn_LUAywRPa+z7tTCOSien2j1Q@mail.gmail.com>
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-11-granquet@baylibre.com>
- <CAAOTY_9cOLJnTK0tSqfzyK4tUn_LUAywRPa+z7tTCOSien2j1Q@mail.gmail.com>
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: alot/0.10
-Date:   Fri, 25 Feb 2022 03:10:03 -0800
-Message-ID: <CABnWg9secW5CO=wfo68mA9Z+v=iB50uZRUQGjm=jrGiS379nJA@mail.gmail.com>
-Subject: Re: [PATCH v8 10/19] drm/mediatek: dpi: move swap_shift to board config
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
-        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220225104924.GC19585@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Chun-Kuang Hu (2022-02-21 04:24:32)
-> Hi, Guillaume:
->
-> Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=
-=8818=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >
-> > Add flexibility by moving the swap shift value to board config
-> >
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 8 +++++++-
-> >  1 file changed, 7 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/media=
-tek/mtk_dpi.c
-> > index 0d3acd08ea358..ec221e24e0fee 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -131,6 +131,7 @@ struct mtk_dpi_conf {
-> >         u32 dimension_mask;
-> >         // Mask used for HSIZE and VSIZE (no shift)
-> >         u32 hvsize_mask;
-> > +       u32 channel_swap_shift;
-> >         const struct mtk_dpi_yc_limit *limit;
-> >  };
-> >
-> > @@ -349,7 +350,8 @@ static void mtk_dpi_config_channel_swap(struct mtk_=
-dpi *dpi,
-> >                 break;
-> >         }
-> >
-> > -       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, val << CH_SWAP, CH_SWAP_M=
-ASK);
-> > +       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, val << CH_SWAP,
-> > +                    CH_SWAP_MASK << dpi->conf->channel_swap_shift);
->
-> This may be wrong because of these definition:
->
-> #define DPINTF_CH_SWAP BIT(1)
-> #define DPINTF_CH_SWAP_MASK (0x7 << 1)
->
-> Regards,
-> Chun-Kuang.
->
+25.02.2022 13:49, Sascha Hauer пишет:
+> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+>> 25.02.2022 10:51, Sascha Hauer пишет:
+>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+>>> HDMI controller to work. The purpose of that clock is not clear. It is
+>>> named "hclk" in the downstream driver, so use the same name.
+>>>
+>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>> ---
+>>>
+>>> Notes:
+>>>     Changes since v5:
+>>>     - Use devm_clk_get_optional rather than devm_clk_get
+>>>
+>>>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>> index fe4f9556239ac..c6c00e8779ab5 100644
+>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+>>>  	const struct rockchip_hdmi_chip_data *chip_data;
+>>>  	struct clk *ref_clk;
+>>>  	struct clk *grf_clk;
+>>> +	struct clk *hclk_clk;
+>>>  	struct dw_hdmi *hdmi;
+>>>  	struct regulator *avdd_0v9;
+>>>  	struct regulator *avdd_1v8;
+>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>  		return PTR_ERR(hdmi->grf_clk);
+>>>  	}
+>>>  
+>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+>>
+>> Have you tried to investigate the hclk? I'm still thinking that's not
+>> only HDMI that needs this clock and then the hardware description
+>> doesn't look correct.
+> 
+> I am still not sure what you mean. Yes, it's not only the HDMI that
+> needs this clock. The VOP2 needs it as well and the driver handles that.
 
-You are right, DPINTF_CH_SWAP_MASK is unused, which is wrong on multiple le=
-vels.
-
-> >  }
-> >
-> >  static void mtk_dpi_config_yuv422_enable(struct mtk_dpi *dpi, bool ena=
-ble)
-> > @@ -821,6 +823,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
-> >         .swap_input_support =3D true,
-> >         .dimension_mask =3D HPW_MASK,
-> >         .hvsize_mask =3D HSIZE_MASK,
-> > +       .channel_swap_shift =3D CH_SWAP,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -835,6 +838,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
-> >         .swap_input_support =3D true,
-> >         .dimension_mask =3D HPW_MASK,
-> >         .hvsize_mask =3D HSIZE_MASK,
-> > +       .channel_swap_shift =3D CH_SWAP,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -848,6 +852,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
-> >         .swap_input_support =3D true,
-> >         .dimension_mask =3D HPW_MASK,
-> >         .hvsize_mask =3D HSIZE_MASK,
-> > +       .channel_swap_shift =3D CH_SWAP,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -861,6 +866,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
-> >         .swap_input_support =3D true,
-> >         .dimension_mask =3D HPW_MASK,
-> >         .hvsize_mask =3D HSIZE_MASK,
-> > +       .channel_swap_shift =3D CH_SWAP,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > --
-> > 2.34.1
-> >
+I'm curious whether DSI/DP also need that clock to be enabled. If they
+do, then you aren't modeling h/w properly AFAICS.
