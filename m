@@ -2,57 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3855F4C42BB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:49:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CCC04C42CB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:52:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239557AbiBYKuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:50:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56868 "EHLO
+        id S238284AbiBYKwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:52:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233863AbiBYKuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:50:00 -0500
+        with ESMTP id S233510AbiBYKwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:52:50 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6F3235315
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:49:28 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD4C17FD32
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:17 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNYAA-0001c6-I2; Fri, 25 Feb 2022 11:49:26 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNYA8-00082k-B5; Fri, 25 Feb 2022 11:49:24 +0100
-Date:   Fri, 25 Feb 2022 11:49:24 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Message-ID: <20220225104924.GC19585@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nNYCm-0002In-DE; Fri, 25 Feb 2022 11:52:08 +0100
+Message-ID: <ed1877dfb66159f1fe45f840a52a0a55f8be4054.camel@pengutronix.de>
+Subject: Re: [PATCH v2 6/9] soc: imx: add i.MX8MP HSIO blk-ctrl
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        patchwork-lst@pengutronix.de
+Date:   Fri, 25 Feb 2022 11:52:06 +0100
+In-Reply-To: <YhN3sEZKGFgkdNab@pendragon.ideasonboard.com>
+References: <20220207192547.1997549-1-l.stach@pengutronix.de>
+         <20220207192547.1997549-6-l.stach@pengutronix.de>
+         <YhN3sEZKGFgkdNab@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:47:47 up 76 days, 19:33, 91 users,  load average: 0.18, 0.18,
- 0.23
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
@@ -64,52 +51,529 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
-> 25.02.2022 10:51, Sascha Hauer пишет:
-> > The rk3568 HDMI has an additional clock that needs to be enabled for the
-> > HDMI controller to work. The purpose of that clock is not clear. It is
-> > named "hclk" in the downstream driver, so use the same name.
-> > 
-> > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > ---
-> > 
-> > Notes:
-> >     Changes since v5:
-> >     - Use devm_clk_get_optional rather than devm_clk_get
-> > 
-> >  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > index fe4f9556239ac..c6c00e8779ab5 100644
-> > --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > @@ -76,6 +76,7 @@ struct rockchip_hdmi {
-> >  	const struct rockchip_hdmi_chip_data *chip_data;
-> >  	struct clk *ref_clk;
-> >  	struct clk *grf_clk;
-> > +	struct clk *hclk_clk;
-> >  	struct dw_hdmi *hdmi;
-> >  	struct regulator *avdd_0v9;
-> >  	struct regulator *avdd_1v8;
-> > @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
-> >  		return PTR_ERR(hdmi->grf_clk);
-> >  	}
-> >  
-> > +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
-> > +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+Am Montag, dem 21.02.2022 um 13:29 +0200 schrieb Laurent Pinchart:
+> Hi Lucas,
 > 
-> Have you tried to investigate the hclk? I'm still thinking that's not
-> only HDMI that needs this clock and then the hardware description
-> doesn't look correct.
+> Thank you for the patch.
+> 
+> On Mon, Feb 07, 2022 at 08:25:44PM +0100, Lucas Stach wrote:
+> > The i.MX8MP added some blk-ctrl peripherals that don't follow the regular
+> > structure of the blk-ctrls in the previous SoCs. Add a new file for those
+> > with currently only the HSIO blk-ctrl being supported. Others will be added
+> > later on.
+> > 
+> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+> > ---
+> >  drivers/soc/imx/Makefile          |   1 +
+> >  drivers/soc/imx/imx8mp-blk-ctrl.c | 444 ++++++++++++++++++++++++++++++
+> >  2 files changed, 445 insertions(+)
+> >  create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
+> > 
+> > diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
+> > index 8a707077914c..63cd29f6d4d2 100644
+> > --- a/drivers/soc/imx/Makefile
+> > +++ b/drivers/soc/imx/Makefile
+> > @@ -6,3 +6,4 @@ obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
+> >  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
+> >  obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
+> >  obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
+> > +obj-$(CONFIG_SOC_IMX8M) += imx8mp-blk-ctrl.o
+> > diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
+> > new file mode 100644
+> > index 000000000000..7f4e1a151d2b
+> > --- /dev/null
+> > +++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
+> > @@ -0,0 +1,444 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +
+> > +/*
+> > + * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_domain.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/clk.h>
+> 
+> clk.h should go first in alphabetical order.
+> 
+> > +
+> > +#include <dt-bindings/power/imx8mp-power.h>
+> > +
+> > +#define GPR_REG0		0x0
+> > +#define  PCIE_CLOCK_MODULE_EN	BIT(0)
+> > +#define  USB_CLOCK_MODULE_EN	BIT(1)
+> > +
+> > +struct imx8mp_hsio_blk_ctrl_domain;
+> > +
+> > +struct imx8mp_hsio_blk_ctrl {
+> > +	struct device *dev;
+> > +	struct notifier_block power_nb;
+> > +	struct device *bus_power_dev;
+> > +	struct regmap *regmap;
+> > +	struct imx8mp_hsio_blk_ctrl_domain *domains;
+> > +	struct genpd_onecell_data onecell_data;
+> > +};
+> > +
+> > +struct imx8mp_hsio_blk_ctrl_domain_data {
+> > +	const char *name;
+> > +	const char *clk_name;
+> > +	const char *gpc_name;
+> > +};
+> > +
+> > +struct imx8mp_hsio_blk_ctrl_domain {
+> > +	struct generic_pm_domain genpd;
+> > +	struct clk *clk;
+> > +	struct device *power_dev;
+> > +	struct imx8mp_hsio_blk_ctrl *bc;
+> > +	int id;
+> > +};
+> > +
+> > +static inline struct imx8mp_hsio_blk_ctrl_domain *
+> > +to_imx8mp_hsio_blk_ctrl_domain(struct generic_pm_domain *genpd)
+> > +{
+> > +	return container_of(genpd, struct imx8mp_hsio_blk_ctrl_domain, genpd);
+> > +}
+> > +
+> > +static int imx8mp_hsio_blk_ctrl_power_on(struct generic_pm_domain *genpd)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl_domain *domain =
+> > +			to_imx8mp_hsio_blk_ctrl_domain(genpd);
+> > +	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
+> > +	int ret;
+> > +
+> > +	/* make sure bus domain is awake */
+> > +	ret = pm_runtime_get_sync(bc->bus_power_dev);
+> > +	if (ret < 0) {
+> > +		pm_runtime_put_noidle(bc->bus_power_dev);
+> > +		dev_err(bc->dev, "failed to power up bus domain\n");
+> > +		return ret;
+> > +	}
+> 
+> 	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
+> 	if (ret < 0) {
+> 		dev_err(bc->dev, "failed to power up bus domain\n");
+> 		return ret;
+> 	}
+> 
+> Same below and in two locations in imx8mp_hsio_blk_ctrl_suspend().
+> 
+> > +
+> > +	/* enable upstream and blk-ctrl clocks */
+> > +	ret = clk_prepare_enable(domain->clk);
+> > +	if (ret) {
+> > +		dev_err(bc->dev, "failed to enable clocks\n");
+> > +		goto bus_put;
+> > +	}
+> > +
+> > +	switch (domain->id) {
+> > +	case IMX8MP_HSIOBLK_PD_USB:
+> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
+> > +		break;
+> > +	case IMX8MP_HSIOBLK_PD_PCIE:
+> > +		regmap_set_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +
+> > +	/* power up upstream GPC domain */
+> > +	ret = pm_runtime_get_sync(domain->power_dev);
+> > +	if (ret < 0) {
+> 
+> This would be missing pm_runtime_put_noidle() if you didn't switch to
+> pm_runtime_resume_and_get().
+> 
+> > +		dev_err(bc->dev, "failed to power up peripheral domain\n");
+> > +		goto clk_disable;
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +clk_disable:
+> > +	clk_disable_unprepare(domain->clk);
+> > +bus_put:
+> > +	pm_runtime_put(bc->bus_power_dev);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx8mp_hsio_blk_ctrl_power_off(struct generic_pm_domain *genpd)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl_domain *domain =
+> > +			to_imx8mp_hsio_blk_ctrl_domain(genpd);
+> > +	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
+> > +
+> > +	/* disable clocks */
+> > +	switch (domain->id) {
+> > +	case IMX8MP_HSIOBLK_PD_USB:
+> > +		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
+> > +		break;
+> > +	case IMX8MP_HSIOBLK_PD_PCIE:
+> > +		regmap_clear_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +
+> > +	clk_disable_unprepare(domain->clk);
+> > +
+> > +	/* power down upstream GPC domain */
+> > +	pm_runtime_put(domain->power_dev);
+> > +
+> > +	/* allow bus domain to suspend */
+> > +	pm_runtime_put(bc->bus_power_dev);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static struct generic_pm_domain *
+> > +imx8m_blk_ctrl_xlate(struct of_phandle_args *args, void *data)
+> > +{
+> > +	struct genpd_onecell_data *onecell_data = data;
+> > +	unsigned int index = args->args[0];
+> > +
+> > +	if (args->args_count != 1 ||
+> > +	    index >= onecell_data->num_domains)
+> > +		return ERR_PTR(-EINVAL);
+> > +
+> > +	return onecell_data->domains[index];
+> > +}
+> > +
+> > +static struct lock_class_key blk_ctrl_genpd_lock_class;
+> > +
+> > +static const struct imx8mp_hsio_blk_ctrl_domain_data imx8mp_hsio_domain_data[] = {
+> > +	[IMX8MP_HSIOBLK_PD_USB] = {
+> > +		.name = "hsioblk-usb",
+> > +		.clk_name = "usb",
+> > +		.gpc_name = "usb",
+> > +	},
+> > +	[IMX8MP_HSIOBLK_PD_USB_PHY1] = {
+> > +		.name = "hsioblk-ubs-phy1",
+> > +		.gpc_name = "usb-phy1",
+> > +	},
+> > +	[IMX8MP_HSIOBLK_PD_USB_PHY2] = {
+> > +		.name = "hsioblk-ubs-phy2",
+> > +		.gpc_name = "usb-phy2",
+> > +	},
+> > +	[IMX8MP_HSIOBLK_PD_PCIE] = {
+> > +		.name = "hsioblk-pcie",
+> > +		.clk_name = "pcie",
+> > +		.gpc_name = "pcie",
+> > +	},
+> > +	[IMX8MP_HSIOBLK_PD_PCIE_PHY] = {
+> > +		.name = "hsioblk-pcie-phy",
+> > +		.gpc_name = "pcie-phy",
+> > +	},
+> > +};
+> > +
+> > +static int imx8mp_hsio_power_notifier(struct notifier_block *nb,
+> > +				      unsigned long action, void *data)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl *bc = container_of(nb, struct imx8mp_hsio_blk_ctrl,
+> > +						 power_nb);
+> > +	struct clk *usb_clk = bc->domains[IMX8MP_HSIOBLK_PD_USB].clk;
+> > +	int ret;
+> > +
+> > +	switch (action) {
+> > +	case GENPD_NOTIFY_ON:
+> > +		/*
+> > +		 * enable USB clock for a moment for the power-on ADB handshake
+> > +		 * to proceed
+> > +		 */
+> > +		ret = clk_prepare_enable(usb_clk);
+> > +		if (ret)
+> > +			return NOTIFY_BAD;
+> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
+> > +
+> > +		udelay(5);
+> > +
+> > +		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
+> > +		clk_disable_unprepare(usb_clk);
+> > +		break;
+> > +	case GENPD_NOTIFY_PRE_OFF:
+> > +		/* enable USB clock for the power-down ADB handshake to work */
+> > +		ret = clk_prepare_enable(usb_clk);
+> > +		if (ret)
+> > +			return NOTIFY_BAD;
+> > +
+> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
+> > +		break;
+> > +	case GENPD_NOTIFY_OFF:
+> 
+> No need to clear USB_CLOCK_MODULE_EN here ?
 
-I am still not sure what you mean. Yes, it's not only the HDMI that
-needs this clock. The VOP2 needs it as well and the driver handles that.
+Nope, at this point power to the domain is already collapsed and the
+driver must not touch the blk-ctrl anymore. The blk-ctrl is reset
+anyway when power is restored in the next runtime PM cycle, so there is
+no point in disabling this secondary clock gate.
 
-Sascha
+Regards,
+Lucas
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> 
+> > +		clk_disable_unprepare(usb_clk);
+> > +		break;
+> > +	default:
+> > +		break;
+> > +	}
+> > +
+> > +	return NOTIFY_OK;
+> > +}
+> > +
+> > +static int imx8mp_hsio_blk_ctrl_probe(struct platform_device *pdev)
+> > +{
+> > +	int num_domains = ARRAY_SIZE(imx8mp_hsio_domain_data);
+> > +	struct device *dev = &pdev->dev;
+> > +	struct imx8mp_hsio_blk_ctrl *bc;
+> > +	void __iomem *base;
+> > +	int i, ret;
+> > +
+> > +	struct regmap_config regmap_config = {
+> 
+> This can be static const
+> 
+> > +		.reg_bits	= 32,
+> > +		.val_bits	= 32,
+> > +		.reg_stride	= 4,
+> > +		.max_register	= 0x24,
+> > +	};
+> > +
+> > +	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
+> > +	if (!bc)
+> > +		return -ENOMEM;
+> > +
+> > +	bc->dev = dev;
+> > +
+> > +	base = devm_platform_ioremap_resource(pdev, 0);
+> > +	if (IS_ERR(base))
+> > +		return PTR_ERR(base);
+> > +
+> > +	bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
+> > +	if (IS_ERR(bc->regmap))
+> > +		return dev_err_probe(dev, PTR_ERR(bc->regmap),
+> > +				     "failed to init regmap\n");
+> > +
+> > +	bc->domains = devm_kcalloc(dev, num_domains,
+> > +				   sizeof(struct imx8mp_hsio_blk_ctrl_domain),
+> 
+> sizeof(*bc->domains) ? Up to you.
+> 
+> > +				   GFP_KERNEL);
+> > +	if (!bc->domains)
+> > +		return -ENOMEM;
+> > +
+> > +	bc->onecell_data.num_domains = num_domains;
+> > +	bc->onecell_data.xlate = imx8m_blk_ctrl_xlate;
+> > +	bc->onecell_data.domains =
+> > +		devm_kcalloc(dev, num_domains,
+> > +			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
+> > +	if (!bc->onecell_data.domains)
+> > +		return -ENOMEM;
+> > +
+> > +	bc->bus_power_dev = genpd_dev_pm_attach_by_name(dev, "bus");
+> > +	if (IS_ERR(bc->bus_power_dev))
+> > +		return dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
+> > +				     "failed to attach power domain\n");
+> 
+> s/attach power domain/attach bus power domain/
+> 
+> > +
+> > +	for (i = 0; i < num_domains; i++) {
+> > +		const struct imx8mp_hsio_blk_ctrl_domain_data *data =
+> > +				&imx8mp_hsio_domain_data[i];
+> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
+> > +
+> > +		if (data->clk_name) {
+> > +			domain->clk = devm_clk_get(dev, data->clk_name);
+> > +			if (IS_ERR(domain->clk)) {
+> > +				ret = PTR_ERR(domain->clk);
+> > +				dev_err_probe(dev, ret, "failed to get clock\n");
+> 
+> "failed to get clock %s\n", data->clk_name
+> 
+> could help debugging issues. Same for the gpc_name below.
+> 
+> With those small issues fixed,
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> 
+> > +				goto cleanup_pds;
+> > +			}
+> > +		}
+> > +
+> > +		domain->power_dev =
+> > +			dev_pm_domain_attach_by_name(dev, data->gpc_name);
+> > +		if (IS_ERR(domain->power_dev)) {
+> > +			dev_err_probe(dev, PTR_ERR(domain->power_dev),
+> > +				      "failed to attach power domain\n");
+> > +			ret = PTR_ERR(domain->power_dev);
+> > +			goto cleanup_pds;
+> > +		}
+> > +
+> > +		domain->genpd.name = data->name;
+> > +		domain->genpd.power_on = imx8mp_hsio_blk_ctrl_power_on;
+> > +		domain->genpd.power_off = imx8mp_hsio_blk_ctrl_power_off;
+> > +		domain->bc = bc;
+> > +		domain->id = i;
+> > +
+> > +		ret = pm_genpd_init(&domain->genpd, NULL, true);
+> > +		if (ret) {
+> > +			dev_err_probe(dev, ret, "failed to init power domain\n");
+> > +			dev_pm_domain_detach(domain->power_dev, true);
+> > +			goto cleanup_pds;
+> > +		}
+> > +
+> > +		/*
+> > +		 * We use runtime PM to trigger power on/off of the upstream GPC
+> > +		 * domain, as a strict hierarchical parent/child power domain
+> > +		 * setup doesn't allow us to meet the sequencing requirements.
+> > +		 * This means we have nested locking of genpd locks, without the
+> > +		 * nesting being visible at the genpd level, so we need a
+> > +		 * separate lock class to make lockdep aware of the fact that
+> > +		 * this are separate domain locks that can be nested without a
+> > +		 * self-deadlock.
+> > +		 */
+> > +		lockdep_set_class(&domain->genpd.mlock,
+> > +				  &blk_ctrl_genpd_lock_class);
+> > +
+> > +		bc->onecell_data.domains[i] = &domain->genpd;
+> > +	}
+> > +
+> > +	ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "failed to add power domain provider\n");
+> > +		goto cleanup_pds;
+> > +	}
+> > +
+> > +	bc->power_nb.notifier_call = imx8mp_hsio_power_notifier;
+> > +	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
+> > +	if (ret) {
+> > +		dev_err_probe(dev, ret, "failed to add power notifier\n");
+> > +		goto cleanup_provider;
+> > +	}
+> > +
+> > +	dev_set_drvdata(dev, bc);
+> > +
+> > +	return 0;
+> > +
+> > +cleanup_provider:
+> > +	of_genpd_del_provider(dev->of_node);
+> > +cleanup_pds:
+> > +	for (i--; i >= 0; i--) {
+> > +		pm_genpd_remove(&bc->domains[i].genpd);
+> > +		dev_pm_domain_detach(bc->domains[i].power_dev, true);
+> > +	}
+> > +
+> > +	dev_pm_domain_detach(bc->bus_power_dev, true);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx8mp_hsio_blk_ctrl_remove(struct platform_device *pdev)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(&pdev->dev);
+> > +	int i;
+> > +
+> > +	of_genpd_del_provider(pdev->dev.of_node);
+> > +
+> > +	for (i = 0; bc->onecell_data.num_domains; i++) {
+> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
+> > +
+> > +		pm_genpd_remove(&domain->genpd);
+> > +		dev_pm_domain_detach(domain->power_dev, true);
+> > +	}
+> > +
+> > +	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
+> > +
+> > +	dev_pm_domain_detach(bc->bus_power_dev, true);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +#ifdef CONFIG_PM_SLEEP
+> > +static int imx8mp_hsio_blk_ctrl_suspend(struct device *dev)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
+> > +	int ret, i;
+> > +
+> > +	/*
+> > +	 * This may look strange, but is done so the generic PM_SLEEP code
+> > +	 * can power down our domains and more importantly power them up again
+> > +	 * after resume, without tripping over our usage of runtime PM to
+> > +	 * control the upstream GPC domains. Things happen in the right order
+> > +	 * in the system suspend/resume paths due to the device parent/child
+> > +	 * hierarchy.
+> > +	 */
+> > +	ret = pm_runtime_get_sync(bc->bus_power_dev);
+> > +	if (ret < 0) {
+> > +		pm_runtime_put_noidle(bc->bus_power_dev);
+> > +		return ret;
+> > +	}
+> > +
+> > +	for (i = 0; i < bc->onecell_data.num_domains; i++) {
+> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
+> > +
+> > +		ret = pm_runtime_get_sync(domain->power_dev);
+> > +		if (ret < 0) {
+> > +			pm_runtime_put_noidle(domain->power_dev);
+> > +			goto out_fail;
+> > +		}
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +out_fail:
+> > +	for (i--; i >= 0; i--)
+> > +		pm_runtime_put(bc->domains[i].power_dev);
+> > +
+> > +	pm_runtime_put(bc->bus_power_dev);
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx8mp_hsio_blk_ctrl_resume(struct device *dev)
+> > +{
+> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
+> > +	int i;
+> > +
+> > +	for (i = 0; i < bc->onecell_data.num_domains; i++)
+> > +		pm_runtime_put(bc->domains[i].power_dev);
+> > +
+> > +	pm_runtime_put(bc->bus_power_dev);
+> > +
+> > +	return 0;
+> > +}
+> > +#endif
+> > +
+> > +static const struct dev_pm_ops imx8mp_hsio_blk_ctrl_pm_ops = {
+> > +	SET_SYSTEM_SLEEP_PM_OPS(imx8mp_hsio_blk_ctrl_suspend,
+> > +				imx8mp_hsio_blk_ctrl_resume)
+> > +};
+> > +
+> > +static const struct of_device_id imx8mp_hsio_blk_ctrl_of_match[] = {
+> > +	{
+> > +		.compatible = "fsl,imx8mp-hsio-blk-ctrl",
+> > +	}, {
+> > +		/* Sentinel */
+> > +	}
+> > +};
+> > +MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
+> > +
+> > +static struct platform_driver imx8mp_hsio_blk_ctrl_driver = {
+> > +	.probe = imx8mp_hsio_blk_ctrl_probe,
+> > +	.remove = imx8mp_hsio_blk_ctrl_remove,
+> > +	.driver = {
+> > +		.name = "imx8mp-hsio-blk-ctrl",
+> > +		.pm = &imx8mp_hsio_blk_ctrl_pm_ops,
+> > +		.of_match_table = imx8mp_hsio_blk_ctrl_of_match,
+> > +	},
+> > +};
+> > +module_platform_driver(imx8mp_hsio_blk_ctrl_driver);
+> 
+
+
