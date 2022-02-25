@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D4124C51DC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 23:59:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 75E7B4C51E9
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 00:06:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239076AbiBYXAT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 18:00:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
+        id S233704AbiBYXHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 18:07:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239081AbiBYXAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 18:00:18 -0500
+        with ESMTP id S233602AbiBYXHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 18:07:13 -0500
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891CA1B84F0;
-        Fri, 25 Feb 2022 14:59:45 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1652177F0;
+        Fri, 25 Feb 2022 15:06:41 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: nfraprado)
-        with ESMTPSA id 100231F46808
+        with ESMTPSA id B78DB1F46802
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645829984;
-        bh=qY7g+EkArzTfdSMsa9x3xIBuajRepERJP4O9V2Lj82Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TDi+OJ5/TIg5zuBS22T/Vv9UsG1dEkQNLnps4DxdHeiWpgWxZkuNOF8f72+kWb/7g
-         GZNQNlYCtIsRXnJG87wUTktx8ycjFyX2fdV0hELqwKuZYV8gbPvHlPOIfX3T4F4+Xi
-         PX13JZoH1aAeLLmVfL8Wh/8MViGfXcWYlN0tPX1d20eoJD3LzHe2E/MGPIWYKDOnLT
-         YzE3pE+aykhxV57oKreGBBZZa0UT/8JTSaA+ChMNVHsR6FGGoNtrv6UYGIGVYOtbxN
-         a6XEksawKVcl+qc7TBEhiDVGoQjW/vVZhQxzt8txAgDW0WvS2p7pJn6nHbbipFKR1F
-         cCt8z3UCYpJZw==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        s=mail; t=1645830400;
+        bh=58x7jynVJtBpgB4TfuRcpKnHM5IK4vhp6DiWw95AlxU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=K4v22sPr+SGzmsKBtZMST66vqQ51BjGlJy8G8Wr2TJG0kiOPLdZXhKc9ssdCgV3H1
+         /BKf7fXASO8Shq97WxREXdvmy2wn7ytKqykGlpQ19eXgcHstqyHyC7zZG2m3TmA8Ap
+         tjAqPMnNM6iv59cUoFG21lXC2cIyJ5YZFcoKySholAm/voWW+ErG4hGEo3wQsIq3RU
+         e8YUNOL1ttw7/h7ZF8DjQW8hmc1Vxg+YjVXogpLf9f9XxtiBz7TucdogJB0H13hFiQ
+         xRfDuLIvkuKUnL9XJPXQ9pAskskiPTMFZ1/ns5nmbIRUXPl54Xe4oOjYHqWRP9veiB
+         U2ziB7iFOPIaA==
+Date:   Fri, 25 Feb 2022 18:06:34 -0500
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
         <nfraprado@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v1 3/3] media: dt-bindings: mtk-vcodec-encoder: Add power-domains property
-Date:   Fri, 25 Feb 2022 17:58:54 -0500
-Message-Id: <20220225225854.81038-4-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220225225854.81038-1-nfraprado@collabora.com>
-References: <20220225225854.81038-1-nfraprado@collabora.com>
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v2 15/23] arm64: dts: mt8192: Add m4u and smi nodes
+Message-ID: <20220225230634.bqmezldkzraa6v6o@notapiano>
+References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
+ <20220218091633.9368-16-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220218091633.9368-16-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
@@ -60,29 +60,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The encoder node may be dependent on a power-domain. Add a property for
-it.
+Hi Allen,
 
-Signed-off-by: NÃ­colas F. R. A. Prado <nfraprado@collabora.com>
----
+actually there's one other thing, please see below.
 
- .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml     | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, Feb 18, 2022 at 05:16:25PM +0800, Allen-KH Cheng wrote:
+> +		iommu0: m4u@1401d000 {
+> +			compatible = "mediatek,mt8192-m4u";
+> +			reg = <0 0x1401d000 0 0x1000>;
+> +			mediatek,larbs = <&larb0 &larb1 &larb2
+> +					  &larb4 &larb5 &larb7
+> +					  &larb9 &larb11 &larb13
+> +					  &larb14 &larb16 &larb17
+> +					  &larb18 &larb19 &larb20>;
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-index e7b65a91c92c..c288913e5666 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder.yaml
-@@ -65,6 +65,9 @@ properties:
-     description:
-       Describes point to scp.
- 
-+  power-domains:
-+    maxItems: 1
-+
- required:
-   - compatible
-   - reg
--- 
-2.35.1
+I just sent a patch [1] fixing the formatting of the mediatek,larbs properties
+on other Mediatek Devicetrees. So please do the same here so we can avoid
+introducing a new warning in dtbs_check.
 
+Thanks,
+Nícolas
+
+[1] https://lore.kernel.org/all/20220225225315.80220-1-nfraprado@collabora.com/
