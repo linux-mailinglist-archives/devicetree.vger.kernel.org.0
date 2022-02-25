@@ -2,296 +2,538 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EAAAD4C4397
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:26:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E3A4C43B2
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:34:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238878AbiBYL07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 06:26:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48392 "EHLO
+        id S240146AbiBYLek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 06:34:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240171AbiBYL0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:26:48 -0500
-Received: from mail-ot1-x332.google.com (mail-ot1-x332.google.com [IPv6:2607:f8b0:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB881DBABD
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:25:57 -0800 (PST)
-Received: by mail-ot1-x332.google.com with SMTP id l20-20020a0568302b1400b005af8c95bbe4so3400087otv.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:25:57 -0800 (PST)
+        with ESMTP id S236989AbiBYLek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:34:40 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100511DD0FF;
+        Fri, 25 Feb 2022 03:34:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=j9eyYj+TimaALQqMan/85f4JKhFDdx91y1LEUa+DlHQ=;
-        b=2v+GTA0YCk6bKgTKJZj9HZtCDJ2vR1Fc3EAyl9SVBsGbEDfBdrmqjXMUIBIC+60reL
-         54YtDEgu3l/Dwznnnt+ATKFLQvco/+ZmIASsBmYI58IKO+wfI0z+IW5ncd1QR0Op/i7R
-         EEJLdjfp/hsJxoHxKfEZDfxKo95UHZV02Zhs5lhmY1REgGdN+UT/XFgJ/eJTR4zOTXcx
-         HKlMI1EhOsdl9iwtZdew+TtkbnaJJLeeoAf/jMMtNTAPGd3PbzM5NE37KXr+iMKBSnVJ
-         NXwWHUWqXdfmVjIT+SeRlErTlpDX21mZXJd+8oUwkvHxIWCJNDEw2xFHwppA0Qe8Xop4
-         KtMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=j9eyYj+TimaALQqMan/85f4JKhFDdx91y1LEUa+DlHQ=;
-        b=nalG+T3U2S5Z47zuCaTdHJYf2FFW1cwTBqJ9j7YLFtkEnHRffhLox5I10lP8laM8p/
-         XPeeP0EcezVugGHkbqusUe/ICs7vOnbIffRnNunyEhpNt+ywKBrXnnnSWXDPhr4miT90
-         DJNlM3FjQ3KGU02UinOM2pUypJI5XazHq8Glqe9B//i8Lbs4dKiQi+Gjko4zQ7he0PrC
-         AeWuIfUK6D/aTRwPETKg/v8xURmLt5JlkRxALXT1WMb79K8EaI4vYZFgQyM3b7hGDFtD
-         UclwhfELZlIQiaD7u+JNdOsWaEJPaIyi0kUup959BuBnUz3TCHeFTQSobIMqLIYgoAxv
-         k1eg==
-X-Gm-Message-State: AOAM533JOk4AKQsCCOFFJWgN+vOkUwuw7whUSdufbP1jkZjd7XiGaIe5
-        LEgUtr8bgnThkkgovV7S3kPEQoeZTaLBvkMW9rcIAw==
-X-Google-Smtp-Source: ABdhPJwNw2wtPy0KHL3PQiqYEhiPmCxk6rAq4qGFNwnWtoy0ePuAtjLH/96gTq6wUc67Tr53dh5BA2lPIP17pn6Z4AM=
-X-Received: by 2002:a05:6830:3113:b0:5af:4eec:6132 with SMTP id
- b19-20020a056830311300b005af4eec6132mr2557082ots.6.1645788356151; Fri, 25 Feb
- 2022 03:25:56 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 25 Feb 2022 03:25:55 -0800
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645788848; x=1677324848;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=BdrGyltJtUlZ5LIwA5cwkZigYOj/ztYa0eMdV+3luBM=;
+  b=Ogj/ei0aujMNe7ZWLOn0GUrs2MRi8yN6j+6vxOpJQnsJCWnuDMm6XOj3
+   t319453ewDdUe1DCyV5ZQKGx2bGxuI1jbrAZQs1addK577bAuP6FkcIs6
+   0bUUg6gtBFMW2EkoArUZbc+GJ2qDKpAVFnYsFQessVs+WxnxRJj76z5Gm
+   M=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 25 Feb 2022 03:34:08 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2022 03:34:07 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Fri, 25 Feb 2022 03:34:07 -0800
+Received: from [10.216.32.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Fri, 25 Feb
+ 2022 03:34:04 -0800
+Message-ID: <678de1cc-9756-ef27-e071-d8c1d3a55d45@quicinc.com>
+Date:   Fri, 25 Feb 2022 17:04:00 +0530
 MIME-Version: 1.0
-In-Reply-To: <20220221094420.5oqsydyjvub7d7h3@houat>
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-14-granquet@baylibre.com>
- <20220221094420.5oqsydyjvub7d7h3@houat>
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: alot/0.10
-Date:   Fri, 25 Feb 2022 03:25:55 -0800
-Message-ID: <CABnWg9uq_b2=UsVaDD2HzBwD0ep8CWaH-EjGd1Uud29o1gQO1w@mail.gmail.com>
-Subject: Re: [PATCH v8 13/19] drm/mediatek: dpi: Add dpintf support
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, tzimmermann@suse.de,
-        matthias.bgg@gmail.com, chunfeng.yun@mediatek.com, kishon@ti.com,
-        vkoul@kernel.org, deller@gmx.de, ck.hu@mediatek.com,
-        jitao.shi@mediatek.com, angelogioacchino.delregno@collabora.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 19/19] dt: bindings: net: add bindings of WCN6750 for
+ ath11k
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+ <1642337235-8618-20-git-send-email-quic_mpubbise@quicinc.com>
+ <YgGZcB2HYNiTaiSG@robh.at.kernel.org>
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <YgGZcB2HYNiTaiSG@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maxime Ripard (2022-02-21 10:44:20)
-> Hi
->
-> (Now I remember your series ;)
-Hi,
-
-I'm not sure this is a good thing though :)
-
->
-> On Fri, Feb 18, 2022 at 03:54:31PM +0100, Guillaume Ranquet wrote:
-> > dpintf is the displayport interface hardware unit. This unit is similar
-> > to dpi and can reuse most of the code.
-> >
-> > This patch adds support for mt8195-dpintf to this dpi driver. Main
-> > differences are:
-> >  - Some features/functional components are not available for dpintf
-> >    which are now excluded from code execution once is_dpintf is set
-> >  - dpintf can and needs to choose between different clockdividers based
-> >    on the clockspeed. This is done by choosing a different clock parent.
-> >  - There are two additional clocks that need to be managed. These are
-> >    only set for dpintf and will be set to NULL if not supplied. The
-> >    clk_* calls handle these as normal clocks then.
-> >  - Some register contents differ slightly between the two components. To
-> >    work around this I added register bits/masks with a DPINTF_ prefix
-> >    and use them where different.
-> >
-> > Based on a separate driver for dpintf created by
-> > Jason-JH.Lin <jason-jh.lin@mediatek.com>.
-> >
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c          | 164 +++++++++++++++++---
-> >  drivers/gpu/drm/mediatek/mtk_dpi_regs.h     |  38 +++++
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |   8 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |   1 +
-> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c      |   5 +-
-> >  include/linux/soc/mediatek/mtk-mmsys.h      |   2 +
-> >  6 files changed, 198 insertions(+), 20 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > index be99399faf1bb..c5639ada868f8 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -63,6 +63,14 @@ enum mtk_dpi_out_color_format {
-> >       MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL
-> >  };
-> >
-> > +enum TVDPLL_CLK {
-> > +     TVDPLL_PLL = 0,
-> > +     TVDPLL_D2 = 2,
-> > +     TVDPLL_D4 = 4,
-> > +     TVDPLL_D8 = 8,
-> > +     TVDPLL_D16 = 16,
-> > +};
-> > +
-> >  struct mtk_dpi {
-> >       struct drm_encoder encoder;
-> >       struct drm_bridge bridge;
-> > @@ -71,8 +79,10 @@ struct mtk_dpi {
-> >       void __iomem *regs;
-> >       struct device *dev;
-> >       struct clk *engine_clk;
-> > +     struct clk *dpi_ck_cg;
-> >       struct clk *pixel_clk;
-> >       struct clk *tvd_clk;
-> > +     struct clk *pclk_src[5];
-> >       int irq;
-> >       struct drm_display_mode mode;
-> >       const struct mtk_dpi_conf *conf;
-> > @@ -126,6 +136,7 @@ struct mtk_dpi_conf {
-> >       const u32 *output_fmts;
-> >       u32 num_output_fmts;
-> >       bool is_ck_de_pol;
-> > +     bool is_dpintf;
-> >       bool swap_input_support;
-> >       // Mask used for HWIDTH, HPORCH, VSYNC_WIDTH and VSYNC_PORCH (no shift)
-> >       u32 dimension_mask;
-> > @@ -384,6 +395,25 @@ static void mtk_dpi_config_disable_edge(struct mtk_dpi *dpi)
-> >               mtk_dpi_mask(dpi, dpi->conf->reg_h_fre_con, 0, EDGE_SEL_EN);
-> >  }
-> >
-> > +static void mtk_dpi_matrix_sel(struct mtk_dpi *dpi, enum mtk_dpi_out_color_format format)
-> > +{
-> > +     u32 matrix_sel = 0;
-> > +
-> > +     switch (format) {
-> > +     case MTK_DPI_COLOR_FORMAT_YCBCR_422:
-> > +     case MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL:
-> > +     case MTK_DPI_COLOR_FORMAT_YCBCR_444:
-> > +     case MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL:
-> > +     case MTK_DPI_COLOR_FORMAT_XV_YCC:
-> > +             if (dpi->mode.hdisplay <= 720)
-> > +                     matrix_sel = 0x2;
-> > +             break;
-> > +     default:
-> > +             break;
-> > +     }
-> > +     mtk_dpi_mask(dpi, DPI_MATRIX_SET, matrix_sel, INT_MATRIX_SEL_MASK);
-> > +}
-> > +
-> >  static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
-> >                                       enum mtk_dpi_out_color_format format)
-> >  {
-> > @@ -391,6 +421,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
-> >           (format == MTK_DPI_COLOR_FORMAT_YCBCR_444_FULL)) {
-> >               mtk_dpi_config_yuv422_enable(dpi, false);
-> >               mtk_dpi_config_csc_enable(dpi, true);
-> > +             mtk_dpi_matrix_sel(dpi, format);
-> >               if (dpi->conf->swap_input_support)
-> >                       mtk_dpi_config_swap_input(dpi, false);
-> >               mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_BGR);
-> > @@ -398,6 +429,7 @@ static void mtk_dpi_config_color_format(struct mtk_dpi *dpi,
-> >                  (format == MTK_DPI_COLOR_FORMAT_YCBCR_422_FULL)) {
-> >               mtk_dpi_config_yuv422_enable(dpi, true);
-> >               mtk_dpi_config_csc_enable(dpi, true);
-> > +             mtk_dpi_matrix_sel(dpi, format);
-> >               if (dpi->conf->swap_input_support)
-> >                       mtk_dpi_config_swap_input(dpi, true);
-> >               mtk_dpi_config_channel_swap(dpi, MTK_DPI_OUT_CHANNEL_SWAP_RGB);
-> > @@ -438,6 +470,8 @@ static void mtk_dpi_power_off(struct mtk_dpi *dpi)
-> >       mtk_dpi_disable(dpi);
-> >       clk_disable_unprepare(dpi->pixel_clk);
-> >       clk_disable_unprepare(dpi->engine_clk);
-> > +     clk_disable_unprepare(dpi->dpi_ck_cg);
-> > +     clk_disable_unprepare(dpi->tvd_clk);
-> >  }
-> >
-> >  static int mtk_dpi_power_on(struct mtk_dpi *dpi)
-> > @@ -447,12 +481,24 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
-> >       if (++dpi->refcount != 1)
-> >               return 0;
-> >
-> > +     ret = clk_prepare_enable(dpi->tvd_clk);
-> > +     if (ret) {
-> > +             dev_err(dpi->dev, "Failed to enable tvd pll: %d\n", ret);
-> > +             goto err_pixel;
-> > +     }
-> > +
-> >       ret = clk_prepare_enable(dpi->engine_clk);
-> >       if (ret) {
-> >               dev_err(dpi->dev, "Failed to enable engine clock: %d\n", ret);
-> >               goto err_refcount;
-> >       }
-> >
-> > +     ret = clk_prepare_enable(dpi->dpi_ck_cg);
-> > +     if (ret) {
-> > +             dev_err(dpi->dev, "Failed to enable dpi_ck_cg clock: %d\n", ret);
-> > +             goto err_ck_cg;
-> > +     }
-> > +
-> >       ret = clk_prepare_enable(dpi->pixel_clk);
-> >       if (ret) {
-> >               dev_err(dpi->dev, "Failed to enable pixel clock: %d\n", ret);
-> > @@ -462,10 +508,11 @@ static int mtk_dpi_power_on(struct mtk_dpi *dpi)
-> >       if (dpi->pinctrl && dpi->pins_dpi)
-> >               pinctrl_select_state(dpi->pinctrl, dpi->pins_dpi);
-> >
-> > -     mtk_dpi_enable(dpi);
-> >       return 0;
-> >
-> >  err_pixel:
-> > +     clk_disable_unprepare(dpi->dpi_ck_cg);
-> > +err_ck_cg:
-> >       clk_disable_unprepare(dpi->engine_clk);
-> >  err_refcount:
-> >       dpi->refcount--;
-> > @@ -497,12 +544,21 @@ static int mtk_dpi_set_display_mode(struct mtk_dpi *dpi,
-> >       pll_rate = clk_get_rate(dpi->tvd_clk);
-> >
-> >       vm.pixelclock = pll_rate / factor;
-> > -     if ((dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_LE) ||
-> > -         (dpi->output_fmt == MEDIA_BUS_FMT_RGB888_2X12_BE))
-> > +     if (dpi->conf->is_dpintf) {
-> > +             if (factor == 1)
-> > +                     clk_set_parent(dpi->pixel_clk, dpi->pclk_src[2]);
-> > +             else if (factor == 2)
-> > +                     clk_set_parent(dpi->pixel_clk, dpi->pclk_src[3]);
-> > +             else if (factor == 4)
-> > +                     clk_set_parent(dpi->pixel_clk, dpi->pclk_src[4]);
-> > +             else
-> > +                     clk_set_parent(dpi->pixel_clk, dpi->pclk_src[2]);
->
-> You get a reference to these clocks using:
-> >
-> > +     dpi->pclk_src[1] = devm_clk_get(dev, "TVDPLL_D2");
-> > +     dpi->pclk_src[2] = devm_clk_get(dev, "TVDPLL_D4");
-> > +     dpi->pclk_src[3] = devm_clk_get(dev, "TVDPLL_D8");
-> > +     dpi->pclk_src[4] = devm_clk_get(dev, "TVDPLL_D16");
-> > +
->
-> So if the clock isn't there, you'll get an error pointer, won't check
-> it, but will dereference it.
->
-> If the clock is optional, you should use clk_get_optional, otherwise you
-> should check the error returned.
->
-> That clock setup is weird though. I don't have any knowledge about your
-> platform, but either the clock should be a single one if it has multiple
-> dividers, or the pixel_clk clock should behave as a mux and just pick
-> the best parent for the rate it's given.
->
-> Maxime
-
-You're right about the error management... but even worse, those clocks
-were removed in an earlier version of the patch [1]
-I have reintroduced that bit of code in v7 by mistake when I applied
-fixes coming from mediatek engineers.
-
-I don't know anything about dp/dpi or display in general, but the design
-posted by markus in v1 [2] seemed closed to what you are suggesting.
 
 
-Thx,
-Guillaume.
+On 2/8/2022 3:43 AM, Rob Herring wrote:
+> On Sun, Jan 16, 2022 at 06:17:15PM +0530, Manikanta Pubbisetty wrote:
+>> Add WCN6750 wireless driver support, its based on ath11k driver.
+> 
+> As mentioned, provide a better commit message answering 'why'?
+> 
+>>
+>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+>> ---
+>>   .../bindings/net/wireless/qcom,ath11k.yaml         | 365 +++++++++++++++------
+>>   1 file changed, 257 insertions(+), 108 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> index cdf7b87..dba1434 100644
+>> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml
+>> @@ -20,120 +20,21 @@ properties:
+>>       enum:
+>>         - qcom,ipq8074-wifi
+>>         - qcom,ipq6018-wifi
+>> +      - qcom,wcn6750-wifi
+>>   
+>>     reg:
+>>       maxItems: 1
+>>   
+>> -  interrupts:
+>> -    items:
+>> -      - description: misc-pulse1 interrupt events
+>> -      - description: misc-latch interrupt events
+>> -      - description: sw exception interrupt events
+>> -      - description: watchdog interrupt events
+>> -      - description: interrupt event for ring CE0
+>> -      - description: interrupt event for ring CE1
+>> -      - description: interrupt event for ring CE2
+>> -      - description: interrupt event for ring CE3
+>> -      - description: interrupt event for ring CE4
+>> -      - description: interrupt event for ring CE5
+>> -      - description: interrupt event for ring CE6
+>> -      - description: interrupt event for ring CE7
+>> -      - description: interrupt event for ring CE8
+>> -      - description: interrupt event for ring CE9
+>> -      - description: interrupt event for ring CE10
+>> -      - description: interrupt event for ring CE11
+>> -      - description: interrupt event for ring host2wbm-desc-feed
+>> -      - description: interrupt event for ring host2reo-re-injection
+>> -      - description: interrupt event for ring host2reo-command
+>> -      - description: interrupt event for ring host2rxdma-monitor-ring3
+>> -      - description: interrupt event for ring host2rxdma-monitor-ring2
+>> -      - description: interrupt event for ring host2rxdma-monitor-ring1
+>> -      - description: interrupt event for ring reo2ost-exception
+>> -      - description: interrupt event for ring wbm2host-rx-release
+>> -      - description: interrupt event for ring reo2host-status
+>> -      - description: interrupt event for ring reo2host-destination-ring4
+>> -      - description: interrupt event for ring reo2host-destination-ring3
+>> -      - description: interrupt event for ring reo2host-destination-ring2
+>> -      - description: interrupt event for ring reo2host-destination-ring1
+>> -      - description: interrupt event for ring rxdma2host-monitor-destination-mac3
+>> -      - description: interrupt event for ring rxdma2host-monitor-destination-mac2
+>> -      - description: interrupt event for ring rxdma2host-monitor-destination-mac1
+>> -      - description: interrupt event for ring ppdu-end-interrupts-mac3
+>> -      - description: interrupt event for ring ppdu-end-interrupts-mac2
+>> -      - description: interrupt event for ring ppdu-end-interrupts-mac1
+>> -      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac3
+>> -      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac2
+>> -      - description: interrupt event for ring rxdma2host-monitor-status-ring-mac1
+>> -      - description: interrupt event for ring host2rxdma-host-buf-ring-mac3
+>> -      - description: interrupt event for ring host2rxdma-host-buf-ring-mac2
+>> -      - description: interrupt event for ring host2rxdma-host-buf-ring-mac1
+>> -      - description: interrupt event for ring rxdma2host-destination-ring-mac3
+>> -      - description: interrupt event for ring rxdma2host-destination-ring-mac2
+>> -      - description: interrupt event for ring rxdma2host-destination-ring-mac1
+>> -      - description: interrupt event for ring host2tcl-input-ring4
+>> -      - description: interrupt event for ring host2tcl-input-ring3
+>> -      - description: interrupt event for ring host2tcl-input-ring2
+>> -      - description: interrupt event for ring host2tcl-input-ring1
+>> -      - description: interrupt event for ring wbm2host-tx-completions-ring3
+>> -      - description: interrupt event for ring wbm2host-tx-completions-ring2
+>> -      - description: interrupt event for ring wbm2host-tx-completions-ring1
+>> -      - description: interrupt event for ring tcl2host-status-ring
+>> +  reg-names:
+>> +    maxItems: 1
+> 
+> Need to define the names though for 1 entry, -names is kind of
+> pointless.
 
-[1] https://patchwork.kernel.org/project/linux-mediatek/patch/20210816192523.1739365-3-msp@baylibre.com/#24384971
-[2] https://patchwork.kernel.org/project/linux-mediatek/patch/20210906193529.718845-6-msp@baylibre.com/
+Makes sense, I'll remove this in the next revision.
+
+> 
+>>   
+>> +  interrupts:
+>> +    minItems: 32
+>> +    maxItems: 52
+>>   
+>>     interrupt-names:
+>> -    items:
+>> -      - const: misc-pulse1
+>> -      - const: misc-latch
+>> -      - const: sw-exception
+>> -      - const: watchdog
+>> -      - const: ce0
+>> -      - const: ce1
+>> -      - const: ce2
+>> -      - const: ce3
+>> -      - const: ce4
+>> -      - const: ce5
+>> -      - const: ce6
+>> -      - const: ce7
+>> -      - const: ce8
+>> -      - const: ce9
+>> -      - const: ce10
+>> -      - const: ce11
+>> -      - const: host2wbm-desc-feed
+>> -      - const: host2reo-re-injection
+>> -      - const: host2reo-command
+>> -      - const: host2rxdma-monitor-ring3
+>> -      - const: host2rxdma-monitor-ring2
+>> -      - const: host2rxdma-monitor-ring1
+>> -      - const: reo2ost-exception
+>> -      - const: wbm2host-rx-release
+>> -      - const: reo2host-status
+>> -      - const: reo2host-destination-ring4
+>> -      - const: reo2host-destination-ring3
+>> -      - const: reo2host-destination-ring2
+>> -      - const: reo2host-destination-ring1
+>> -      - const: rxdma2host-monitor-destination-mac3
+>> -      - const: rxdma2host-monitor-destination-mac2
+>> -      - const: rxdma2host-monitor-destination-mac1
+>> -      - const: ppdu-end-interrupts-mac3
+>> -      - const: ppdu-end-interrupts-mac2
+>> -      - const: ppdu-end-interrupts-mac1
+>> -      - const: rxdma2host-monitor-status-ring-mac3
+>> -      - const: rxdma2host-monitor-status-ring-mac2
+>> -      - const: rxdma2host-monitor-status-ring-mac1
+>> -      - const: host2rxdma-host-buf-ring-mac3
+>> -      - const: host2rxdma-host-buf-ring-mac2
+>> -      - const: host2rxdma-host-buf-ring-mac1
+>> -      - const: rxdma2host-destination-ring-mac3
+>> -      - const: rxdma2host-destination-ring-mac2
+>> -      - const: rxdma2host-destination-ring-mac1
+>> -      - const: host2tcl-input-ring4
+>> -      - const: host2tcl-input-ring3
+>> -      - const: host2tcl-input-ring2
+>> -      - const: host2tcl-input-ring1
+>> -      - const: wbm2host-tx-completions-ring3
+>> -      - const: wbm2host-tx-completions-ring2
+>> -      - const: wbm2host-tx-completions-ring1
+>> -      - const: tcl2host-status-ring
+>> +    minItems: 32
+>> +    maxItems: 52
+> 
+> But you didn't define any names for the new chip.
+> 
+
+In the case of new chip, interrupts are not tied for a specific purpose 
+unlike the case of IPQ8074/IPQ6018 where the driver searches an IRQ 
+based on name. That is the reason why interrupt-names are omitted for 
+the new chip.
+
+>>   
+>>     qcom,rproc:
+>>       $ref: /schemas/types.yaml#/definitions/phandle
+>> @@ -156,15 +57,201 @@ properties:
+>>         phandle to a node describing reserved memory (System RAM memory)
+>>         used by ath11k firmware (see bindings/reserved-memory/reserved-memory.txt)
+>>   
+>> +  iommus:
+>> +    maxItems: 1
+>> +
+>> +  wifi-firmware:
+>> +    type: object
+>> +    description: |
+>> +      WCN6750 wifi node can contain one optional firmware subnode.
+>> +      Firmware subnode is needed when the platform does not have TustZone.
+> 
+> Trustzone
+> 
+
+I'll change it.
+
+>> +    properties:
+>> +      iommus:
+>> +        maxItems: 1
+> 
+> If this is the only property, then just make parent 'iommus' 1 or 2
+> entries.
+> 
+
+You mean something like this shown below?
+
+   iommus:
+     minItems: 1
+     maxItems: 2
+
+   wifi-firmware:
+     type: object
+     description: |
+       WCN6750 wifi node can contain one optional firmware subnode.
+       Firmware subnode is needed when the platform does not have 
+Tustzone.
+     required:
+       - iommus
+
+>> +    required:
+>> +      - iommus
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>>     - interrupts
+>> -  - interrupt-names
+>>     - qcom,rproc
+>>   
+>>   additionalProperties: false
+>>   
+>> +allOf:
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,ipq8074-wifi
+>> +              - qcom,ipq6018-wifi
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          items:
+>> +            - description: misc-pulse1 interrupt events
+>> +            - description: misc-latch interrupt events
+>> +            - description: sw exception interrupt events
+>> +            - description: watchdog interrupt events
+>> +            - description: interrupt event for ring CE0
+>> +            - description: interrupt event for ring CE1
+>> +            - description: interrupt event for ring CE2
+>> +            - description: interrupt event for ring CE3
+>> +            - description: interrupt event for ring CE4
+>> +            - description: interrupt event for ring CE5
+>> +            - description: interrupt event for ring CE6
+>> +            - description: interrupt event for ring CE7
+>> +            - description: interrupt event for ring CE8
+>> +            - description: interrupt event for ring CE9
+>> +            - description: interrupt event for ring CE10
+>> +            - description: interrupt event for ring CE11
+>> +            - description: interrupt event for ring host2wbm-desc-feed
+>> +            - description: interrupt event for ring host2reo-re-injection
+>> +            - description: interrupt event for ring host2reo-command
+>> +            - description: interrupt event for ring host2rxdma-monitor-ring3
+>> +            - description: interrupt event for ring host2rxdma-monitor-ring2
+>> +            - description: interrupt event for ring host2rxdma-monitor-ring1
+>> +            - description: interrupt event for ring reo2ost-exception
+>> +            - description: interrupt event for ring wbm2host-rx-release
+>> +            - description: interrupt event for ring reo2host-status
+>> +            - description: interrupt event for ring reo2host-destination-ring4
+>> +            - description: interrupt event for ring reo2host-destination-ring3
+>> +            - description: interrupt event for ring reo2host-destination-ring2
+>> +            - description: interrupt event for ring reo2host-destination-ring1
+>> +            - description: interrupt event for ring rxdma2host-monitor-destination-mac3
+>> +            - description: interrupt event for ring rxdma2host-monitor-destination-mac2
+>> +            - description: interrupt event for ring rxdma2host-monitor-destination-mac1
+>> +            - description: interrupt event for ring ppdu-end-interrupts-mac3
+>> +            - description: interrupt event for ring ppdu-end-interrupts-mac2
+>> +            - description: interrupt event for ring ppdu-end-interrupts-mac1
+>> +            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac3
+>> +            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac2
+>> +            - description: interrupt event for ring rxdma2host-monitor-status-ring-mac1
+>> +            - description: interrupt event for ring host2rxdma-host-buf-ring-mac3
+>> +            - description: interrupt event for ring host2rxdma-host-buf-ring-mac2
+>> +            - description: interrupt event for ring host2rxdma-host-buf-ring-mac1
+>> +            - description: interrupt event for ring rxdma2host-destination-ring-mac3
+>> +            - description: interrupt event for ring rxdma2host-destination-ring-mac2
+>> +            - description: interrupt event for ring rxdma2host-destination-ring-mac1
+>> +            - description: interrupt event for ring host2tcl-input-ring4
+>> +            - description: interrupt event for ring host2tcl-input-ring3
+>> +            - description: interrupt event for ring host2tcl-input-ring2
+>> +            - description: interrupt event for ring host2tcl-input-ring1
+>> +            - description: interrupt event for ring wbm2host-tx-completions-ring3
+>> +            - description: interrupt event for ring wbm2host-tx-completions-ring2
+>> +            - description: interrupt event for ring wbm2host-tx-completions-ring1
+>> +            - description: interrupt event for ring tcl2host-status-ring
+>> +        interrupt-names:
+>> +          items:
+>> +            - const: misc-pulse1
+>> +            - const: misc-latch
+>> +            - const: sw-exception
+>> +            - const: watchdog
+>> +            - const: ce0
+>> +            - const: ce1
+>> +            - const: ce2
+>> +            - const: ce3
+>> +            - const: ce4
+>> +            - const: ce5
+>> +            - const: ce6
+>> +            - const: ce7
+>> +            - const: ce8
+>> +            - const: ce9
+>> +            - const: ce10
+>> +            - const: ce11
+>> +            - const: host2wbm-desc-feed
+>> +            - const: host2reo-re-injection
+>> +            - const: host2reo-command
+>> +            - const: host2rxdma-monitor-ring3
+>> +            - const: host2rxdma-monitor-ring2
+>> +            - const: host2rxdma-monitor-ring1
+>> +            - const: reo2ost-exception
+>> +            - const: wbm2host-rx-release
+>> +            - const: reo2host-status
+>> +            - const: reo2host-destination-ring4
+>> +            - const: reo2host-destination-ring3
+>> +            - const: reo2host-destination-ring2
+>> +            - const: reo2host-destination-ring1
+>> +            - const: rxdma2host-monitor-destination-mac3
+>> +            - const: rxdma2host-monitor-destination-mac2
+>> +            - const: rxdma2host-monitor-destination-mac1
+>> +            - const: ppdu-end-interrupts-mac3
+>> +            - const: ppdu-end-interrupts-mac2
+>> +            - const: ppdu-end-interrupts-mac1
+>> +            - const: rxdma2host-monitor-status-ring-mac3
+>> +            - const: rxdma2host-monitor-status-ring-mac2
+>> +            - const: rxdma2host-monitor-status-ring-mac1
+>> +            - const: host2rxdma-host-buf-ring-mac3
+>> +            - const: host2rxdma-host-buf-ring-mac2
+>> +            - const: host2rxdma-host-buf-ring-mac1
+>> +            - const: rxdma2host-destination-ring-mac3
+>> +            - const: rxdma2host-destination-ring-mac2
+>> +            - const: rxdma2host-destination-ring-mac1
+>> +            - const: host2tcl-input-ring4
+>> +            - const: host2tcl-input-ring3
+>> +            - const: host2tcl-input-ring2
+>> +            - const: host2tcl-input-ring1
+>> +            - const: wbm2host-tx-completions-ring3
+>> +            - const: wbm2host-tx-completions-ring2
+>> +            - const: wbm2host-tx-completions-ring1
+>> +            - const: tcl2host-status-ring
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,ipq8074-wifi
+>> +              - qcom,ipq6018-wifi
+>> +    then:
+>> +      required:
+>> +        - interrupt-names
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,wcn6750-wifi
+>> +    then:
+>> +      properties:
+>> +        interrupts:
+>> +          items:
+>> +            - description: interrupt event for ring CE1
+>> +            - description: interrupt event for ring CE2
+>> +            - description: interrupt event for ring CE3
+>> +            - description: interrupt event for ring CE4
+>> +            - description: interrupt event for ring CE5
+>> +            - description: interrupt event for ring CE6
+>> +            - description: interrupt event for ring CE7
+>> +            - description: interrupt event for ring CE8
+>> +            - description: interrupt event for ring CE9
+>> +            - description: interrupt event for ring CE10
+>> +            - description: interrupt event for ring DP1
+>> +            - description: interrupt event for ring DP2
+>> +            - description: interrupt event for ring DP3
+>> +            - description: interrupt event for ring DP4
+>> +            - description: interrupt event for ring DP5
+>> +            - description: interrupt event for ring DP6
+>> +            - description: interrupt event for ring DP7
+>> +            - description: interrupt event for ring DP8
+>> +            - description: interrupt event for ring DP9
+>> +            - description: interrupt event for ring DP10
+>> +            - description: interrupt event for ring DP11
+>> +            - description: interrupt event for ring DP12
+>> +            - description: interrupt event for ring DP13
+>> +            - description: interrupt event for ring DP14
+>> +            - description: interrupt event for ring DP15
+>> +            - description: interrupt event for ring DP16
+>> +            - description: interrupt event for ring DP17
+>> +            - description: interrupt event for ring DP18
+>> +            - description: interrupt event for ring DP19
+>> +            - description: interrupt event for ring DP20
+>> +            - description: interrupt event for ring DP21
+>> +            - description: interrupt event for ring DP22
+>> +
+>>   examples:
+>>     - |
+>>   
+>> @@ -309,3 +396,65 @@ examples:
+>>               };
+>>           };
+>>       };
+>> +
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +
+>> +    reserved-memory {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        wlan_ce_mem: wlan_ce_mem@4cd000 {
+>> +            no-map;
+>> +            reg = <0x0 0x4cd000 0x0 0x1000>;
+>> +        };
+>> +
+>> +        wlan_fw_mem: wlan_fw_mem@80c00000 {
+>> +            no-map;
+>> +            reg = <0x0 0x80c00000 0x0 0xc00000>;
+>> +        };
+>> +    };
+>> +
+>> +    wifi: wifi@17a10040 {
+>> +        compatible = "qcom,wcn6750-wifi";
+>> +        reg = <0x17A10040 0x0>;
+>> +        reg-names = "msi_addr";
+>> +        iommus = <&apps_smmu 0x1C00 0x1>;
+>> +        interrupts = <GIC_SPI 768 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 769 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 770 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 771 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 772 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 773 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 774 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 775 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 776 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 777 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 778 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 779 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 780 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 781 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 782 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 783 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 784 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 785 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 786 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 787 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 788 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 789 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 790 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 791 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 792 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 793 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 794 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 795 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 796 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 797 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 798 IRQ_TYPE_EDGE_RISING>,
+>> +                     <GIC_SPI 799 IRQ_TYPE_EDGE_RISING>;
+>> +        qcom,rproc = <&remoteproc_wpss>;
+>> +        memory-region = <&wlan_fw_mem &wlan_ce_mem>;
+> 
+> memory-region = <&wlan_fw_mem>, <&wlan_ce_mem>;
+>
+
+Okay.
+
+
+>> +        wifi-firmware {
+>> +                iommus = <&apps_smmu 0x1C02 0x1>;
+>> +        };
+>> +    };
+>> -- 
+>> 2.7.4
+>>
+>>
