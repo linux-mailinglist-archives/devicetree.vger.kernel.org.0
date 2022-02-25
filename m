@@ -2,58 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFAF54C4E41
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:03:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D2E664C4E46
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:05:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233908AbiBYTEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 14:04:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44236 "EHLO
+        id S233612AbiBYTF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 14:05:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233836AbiBYTEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:04:20 -0500
-Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEF77187B9A;
-        Fri, 25 Feb 2022 11:03:46 -0800 (PST)
-Received: by mail-oo1-f50.google.com with SMTP id w10-20020a4ae08a000000b0031bdf7a6d76so7444215oos.10;
-        Fri, 25 Feb 2022 11:03:46 -0800 (PST)
+        with ESMTP id S233574AbiBYTF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:05:57 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1793A1BAF23;
+        Fri, 25 Feb 2022 11:05:25 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so7471893oop.13;
+        Fri, 25 Feb 2022 11:05:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=W0Val0Ukv5fc/tGMu5TCj12Uoxf42dXInoyYE17+MPc=;
-        b=C25gahPzRh+9JeejZUdSM0CUHge2nlMIB//3uNER0MDKCcHCJlJ4Gz7sCPyBLYO0pm
-         VcVUIMIGhoHc0KWcQv11lqkz40Ap0Z1ex1U598hZDvqxqkeOCkTS4Czj9GdTl//9uZ35
-         Zn7ZYcU590B2RtfFXe9R+6jtJqco8c99x2g+EdSdsSNacyHYmp4cTOHjmjXFiVCx1lIY
-         8GVF8pexZ0/F/+BaYbX4DHsCf0IOqOzKOIafdjeLaESVFiFyyCGtGpFc/UdrYarHgdP3
-         6oi0ZwUfXVPYB75KWp+NidU0911/vrjEvpaKo3stjMckkxze/DXD6SH31ks2V4+JJGjC
-         BxUg==
-X-Gm-Message-State: AOAM531dkGP0Z0u2v+CeXvX2dU1ZnoKrm1Ow66RqSS+9mz9RpK/tyM/r
-        WL52A7UyVeh56x9ZFsm3oA==
-X-Google-Smtp-Source: ABdhPJybIyDkpZ+VSbdLMj5yQB/PISufEfhnfVZJOC1EGYTqNwHN37uTAm7DrRhyXdvzgCvwBXnpjw==
-X-Received: by 2002:a05:6870:ed48:b0:d2:40f0:1c02 with SMTP id ex8-20020a056870ed4800b000d240f01c02mr2018986oab.45.1645815826146;
-        Fri, 25 Feb 2022 11:03:46 -0800 (PST)
+        bh=bxoKGbf6vF/lV9nY2TDkVMRZlhV7O8uXJXx29UCJNNs=;
+        b=zDCSQAMKWDkdp6/U/qqFBzWL4LNxJ6Hi6kXLAZ7C8tI+B9v2m0a1sAkov7wyw+v5+Q
+         tZQIif+BgiQPdl0Ph9+7aneSp8optQTtsxmZKPfke49FGWlK11dw6NDj3Orq7PPkeS+0
+         pfNJf79aY02bkhVCf0cTu6AiVs5h7UmT4sV7jgy8PwoGen4QlOQnoym8h0frU2HdQ7mv
+         ZqSWDPUpxIBP5QbjOdjxJmfq8sMGNfQ0zFy1MmP47ggLZd6n2cdQJvj6XEqS8MpOcU8F
+         DDwjxIJ4ZgbE1jWd1w3PlrkVhPuw95Iv8DuXiPBQRoFpU6yhRSURYldVZd4vbZj+4Dtu
+         GAXg==
+X-Gm-Message-State: AOAM5311JwAedzceS3dPJRieXiOOin1h5XsQzugkbrd/Q1rRPQam3zXG
+        T64qbWSCDo7OlBbqrxNOsnUREXctcw==
+X-Google-Smtp-Source: ABdhPJwI9PTTpT49sFPl7TvZzUWhRlPepGrYrV5eyT14EcFjy1pOyRNdC4dafTEaBSpriqY1Igo4Cw==
+X-Received: by 2002:a05:6870:5d88:b0:d3:112c:3e2e with SMTP id fu8-20020a0568705d8800b000d3112c3e2emr2020872oab.230.1645815924368;
+        Fri, 25 Feb 2022 11:05:24 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056830200700b005a09222e268sm1539747otp.7.2022.02.25.11.03.45
+        by smtp.gmail.com with ESMTPSA id s14-20020a05680810ce00b002ca4eddde1esm1950500ois.11.2022.02.25.11.05.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 11:03:45 -0800 (PST)
-Received: (nullmailer pid 1255800 invoked by uid 1000);
-        Fri, 25 Feb 2022 19:03:44 -0000
-Date:   Fri, 25 Feb 2022 13:03:44 -0600
+        Fri, 25 Feb 2022 11:05:23 -0800 (PST)
+Received: (nullmailer pid 1257992 invoked by uid 1000);
+        Fri, 25 Feb 2022 19:05:22 -0000
+Date:   Fri, 25 Feb 2022 13:05:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Leilk Liu <leilk.liu@mediatek.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH V2 5/6] dt-bindings: spi: support spi-hclk
-Message-ID: <YhkoEJiLMs8jfUAm@robh.at.kernel.org>
-References: <20220221040717.3729-1-leilk.liu@mediatek.com>
- <20220221040717.3729-6-leilk.liu@mediatek.com>
+To:     CF Li <cfli0@nuvoton.com>
+Cc:     krzysztof.kozlowski@canonical.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] clk: nuvoton: Add dt-bindings header for ma35d1
+Message-ID: <Yhkocqu/44ne3QLE@robh.at.kernel.org>
+References: <20220221104134.6300-1-cfli0@nuvoton.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220221040717.3729-6-leilk.liu@mediatek.com>
+In-Reply-To: <20220221104134.6300-1-cfli0@nuvoton.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -65,41 +61,293 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 12:07:16PM +0800, Leilk Liu wrote:
-> this patch support spi-hclk.
+On Mon, Feb 21, 2022 at 06:41:34PM +0800, CF Li wrote:
+> Add dt-bindings header with clock definitions for the ma35d1.
+
+Is there a corresponding binding schema? They'd normally be together.
+
 > 
-> Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
+> Signed-off-by: CF Li <cfli0@nuvoton.com>
 > ---
->  Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 262 ++++++++++++++++++
+>  1 file changed, 262 insertions(+)
+>  create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> index 241c0f5880d3..6920ced5451e 100644
-> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> @@ -55,12 +55,14 @@ properties:
->        - description: clock used for the parent clock
->        - description: clock used for the muxes clock
->        - description: clock used for the clock gate
-> +      - description: clock used for the AHB bus, this clock is optional
+> diff --git a/include/dt-bindings/clock/nuvoton,ma35d1-clk.h b/include/dt-bindings/clock/nuvoton,ma35d1-clk.h
+> new file mode 100644
+> index 000000000000..b8bbc7f9903f
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/nuvoton,ma35d1-clk.h
+> @@ -0,0 +1,262 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
 
-Not optional unless you have minItems.
+Dual license please.
 
->  
->    clock-names:
-
-       minItems: 3
-
-
->      items:
->        - const: parent-clk
->        - const: sel-clk
->        - const: spi-clk
-> +      - const: spi-hclk
->  
->    mediatek,pad-select:
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -- 
-> 2.25.1
+> +/*
+> + * Copyright (C) 2022 Nuvoton Technology Corporation.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_MA35D1_CLK_H
+> +#define _DT_BINDINGS_MA35D1_CLK_H
+> +
+> +/* Clock Sources */
+> +/* External and Internal oscillator clocks */
+> +#define        HXT                             0
+> +#define        HXT_GATE                        1
+> +#define        LXT                             2
+> +#define        LXT_GATE                        3
+> +#define        HIRC                            4
+> +#define        HIRC_GATE                       5
+> +#define        LIRC                            6
+> +#define        LIRC_GATE                       7
+> +
+> +/* PLLs */
+> +#define        CAPLL                           8
+> +#define        SYSPLL                          9
+> +#define        DDRPLL                          10
+> +#define        APLL                            11
+> +#define        EPLL                            12
+> +#define        VPLL                            13
+> +
+> +/* EPLL Divider */
+> +#define        EPLL_DIV2                       14
+> +#define        EPLL_DIV4                       15
+> +#define        EPLL_DIV8                       16
+> +
+> +/* CA35 CPU Clock, System Clock, AXI, HCLK and PCLK */
+> +#define        CA35CLK_MUX                     17
+> +#define        AXICLK_DIV2                     18
+> +#define        AXICLK_DIV4                     19
+> +#define        AXICLK_MUX                      20
+> +#define        SYSCLK0_MUX                     21
+> +#define        SYSCLK1_MUX                     22
+> +#define        SYSCLK1_DIV2                    23
+> +#define        HCLK0                           24
+> +#define        HCLK1                           25
+> +#define        HCLK2                           26
+> +#define        PCLK0                           27
+> +#define        PCLK1                           28
+> +#define        PCLK2                           29
+> +#define        HCLK3                           30
+> +#define        PCLK3                           31
+> +#define        PCLK4                           32
+> +
+> +/* Peripheral clocks */
+> +/* AXI and AHB Clocks */
+> +#define        USBPHY0                         33
+> +#define        USBPHY1                         34
+> +#define        DDR0_GATE                       35
+> +#define        DDR6_GATE                       36
+> +#define        CAN0_MUX                        37
+> +#define        CAN0_DIV                        38
+> +#define        CAN0_GATE                       39
+> +#define        CAN1_MUX                        40
+> +#define        CAN1_DIV                        41
+> +#define        CAN1_GATE                       42
+> +#define        CAN2_MUX                        43
+> +#define        CAN2_DIV                        44
+> +#define        CAN2_GATE                       45
+> +#define        CAN3_MUX                        46
+> +#define        CAN3_DIV                        47
+> +#define        CAN3_GATE                       48
+> +#define        SDH0_MUX                        49
+> +#define        SDH0_GATE                       50
+> +#define        SDH1_MUX                        51
+> +#define        SDH1_GATE                       52
+> +#define        NAND_GATE                       53
+> +#define        USBD_GATE                       54
+> +#define        USBH_GATE                       55
+> +#define        HUSBH0_GATE                     56
+> +#define        HUSBH1_GATE                     57
+> +#define        GFX_MUX                         58
+> +#define        GFX_GATE                        59
+> +#define        VC8K_GATE                       60
+> +#define        DCU_MUX                         61
+> +#define        DCU_GATE                        62
+> +#define        DCUP_DIV                        63
+> +#define        EMAC0_GATE                      64
+> +#define        EMAC1_GATE                      65
+> +#define        CCAP0_MUX                       66
+> +#define        CCAP0_DIV                       67
+> +#define        CCAP0_GATE                      68
+> +#define        CCAP1_MUX                       69
+> +#define        CCAP1_DIV                       70
+> +#define        CCAP1_GATE                      71
+> +#define        PDMA0_GATE                      72
+> +#define        PDMA1_GATE                      73
+> +#define        PDMA2_GATE                      74
+> +#define        PDMA3_GATE                      75
+> +#define        WH0_GATE                        76
+> +#define        WH1_GATE                        77
+> +#define        HWS_GATE                        78
+> +#define        EBI_GATE                        79
+> +#define        SRAM0_GATE                      80
+> +#define        SRAM1_GATE                      81
+> +#define        ROM_GATE                        82
+> +#define        TRA_GATE                        83
+> +#define        DBG_MUX                         84
+> +#define        DBG_GATE                        85
+> +#define        CKO_MUX                         86
+> +#define        CKO_DIV                         87
+> +#define        CKO_GATE                        88
+> +#define        GTMR_GATE                       89
+> +#define        GPA_GATE                        90
+> +#define        GPB_GATE                        91
+> +#define        GPC_GATE                        92
+> +#define        GPD_GATE                        93
+> +#define        GPE_GATE                        94
+> +#define        GPF_GATE                        95
+> +#define        GPG_GATE                        96
+> +#define        GPH_GATE                        97
+> +#define        GPI_GATE                        98
+> +#define        GPJ_GATE                        99
+> +#define        GPK_GATE                        100
+> +#define        GPL_GATE                        101
+> +#define        GPM_GATE                        102
+> +#define        GPN_GATE                        103
+> +
+> +/* APB Clocks */
+> +#define        TMR0_MUX                        104
+> +#define        TMR0_GATE                       105
+> +#define        TMR1_MUX                        106
+> +#define        TMR1_GATE                       107
+> +#define        TMR2_MUX                        108
+> +#define        TMR2_GATE                       109
+> +#define        TMR3_MUX                        110
+> +#define        TMR3_GATE                       111
+> +#define        TMR4_MUX                        112
+> +#define        TMR4_GATE                       113
+> +#define        TMR5_MUX                        114
+> +#define        TMR5_GATE                       115
+> +#define        TMR6_MUX                        116
+> +#define        TMR6_GATE                       117
+> +#define        TMR7_MUX                        118
+> +#define        TMR7_GATE                       119
+> +#define        TMR8_MUX                        120
+> +#define        TMR8_GATE                       121
+> +#define        TMR9_MUX                        122
+> +#define        TMR9_GATE                       123
+> +#define        TMR10_MUX                       124
+> +#define        TMR10_GATE                      125
+> +#define        TMR11_MUX                       126
+> +#define        TMR11_GATE                      127
+> +#define        UART0_MUX                       128
+> +#define        UART0_DIV                       129
+> +#define        UART0_GATE                      130
+> +#define        UART1_MUX                       131
+> +#define        UART1_DIV                       132
+> +#define        UART1_GATE                      133
+> +#define        UART2_MUX                       134
+> +#define        UART2_DIV                       135
+> +#define        UART2_GATE                      136
+> +#define        UART3_MUX                       137
+> +#define        UART3_DIV                       138
+> +#define        UART3_GATE                      139
+> +#define        UART4_MUX                       140
+> +#define        UART4_DIV                       141
+> +#define        UART4_GATE                      142
+> +#define        UART5_MUX                       143
+> +#define        UART5_DIV                       144
+> +#define        UART5_GATE                      145
+> +#define        UART6_MUX                       146
+> +#define        UART6_DIV                       147
+> +#define        UART6_GATE                      148
+> +#define        UART7_MUX                       149
+> +#define        UART7_DIV                       150
+> +#define        UART7_GATE                      151
+> +#define        UART8_MUX                       152
+> +#define        UART8_DIV                       153
+> +#define        UART8_GATE                      154
+> +#define        UART9_MUX                       155
+> +#define        UART9_DIV                       156
+> +#define        UART9_GATE                      157
+> +#define        UART10_MUX                      158
+> +#define        UART10_DIV                      159
+> +#define        UART10_GATE                     160
+> +#define        UART11_MUX                      161
+> +#define        UART11_DIV                      162
+> +#define        UART11_GATE                     163
+> +#define        UART12_MUX                      164
+> +#define        UART12_DIV                      165
+> +#define        UART12_GATE                     166
+> +#define        UART13_MUX                      167
+> +#define        UART13_DIV                      168
+> +#define        UART13_GATE                     169
+> +#define        UART14_MUX                      170
+> +#define        UART14_DIV                      171
+> +#define        UART14_GATE                     172
+> +#define        UART15_MUX                      173
+> +#define        UART15_DIV                      174
+> +#define        UART15_GATE                     175
+> +#define        UART16_MUX                      176
+> +#define        UART16_DIV                      177
+> +#define        UART16_GATE                     178
+> +#define        RTC_GATE                        179
+> +#define        DDR_GATE                        180
+> +#define        KPI_MUX                         181
+> +#define        KPI_DIV                         182
+> +#define        KPI_GATE                        183
+> +#define        I2C0_GATE                       184
+> +#define        I2C1_GATE                       185
+> +#define        I2C2_GATE                       186
+> +#define        I2C3_GATE                       187
+> +#define        I2C4_GATE                       188
+> +#define        I2C5_GATE                       189
+> +#define        QSPI0_MUX                       190
+> +#define        QSPI0_GATE                      191
+> +#define        QSPI1_MUX                       192
+> +#define        QSPI1_GATE                      193
+> +#define        SMC0_MUX                        194
+> +#define        SMC0_DIV                        195
+> +#define        SMC0_GATE                       196
+> +#define        SMC1_MUX                        197
+> +#define        SMC1_DIV                        198
+> +#define        SMC1_GATE                       199
+> +#define        WDT0_MUX                        200
+> +#define        WDT0_GATE                       201
+> +#define        WDT1_MUX                        202
+> +#define        WDT1_GATE                       203
+> +#define        WDT2_MUX                        204
+> +#define        WDT2_GATE                       205
+> +#define        WWDT0_MUX                       206
+> +#define        WWDT1_MUX                       207
+> +#define        WWDT2_MUX                       208
+> +#define        EPWM0_GATE                      209
+> +#define        EPWM1_GATE                      210
+> +#define        EPWM2_GATE                      211
+> +#define        I2S0_MUX                        212
+> +#define        I2S0_GATE                       213
+> +#define        I2S1_MUX                        214
+> +#define        I2S1_GATE                       215
+> +#define        SSMCC_GATE                      216
+> +#define        SSPCC_GATE                      217
+> +#define        SPI0_MUX                        218
+> +#define        SPI0_GATE                       219
+> +#define        SPI1_MUX                        220
+> +#define        SPI1_GATE                       221
+> +#define        SPI2_MUX                        222
+> +#define        SPI2_GATE                       223
+> +#define        SPI3_MUX                        224
+> +#define        SPI3_GATE                       225
+> +#define        ECAP0_GATE                      226
+> +#define        ECAP1_GATE                      227
+> +#define        ECAP2_GATE                      228
+> +#define        QEI0_GATE                       229
+> +#define        QEI1_GATE                       230
+> +#define        QEI2_GATE                       231
+> +#define        ADC_DIV                         232
+> +#define        ADC_GATE                        233
+> +#define        EADC_DIV                        234
+> +#define        EADC_GATE                       235
+> +
+> +#define        CLK_MAX                         236
+> +#define        MA35D1_CLK_MAX_IDX              236
+> +
+> +#endif/*_DT_BINDINGS_MA35D1_CLK_H*/
+> --
+> 2.17.1
 > 
+> ________________________________
+> ________________________________
+>  The privileged confidential information contained in this email is intended for use only by the addressees as indicated by the original sender of this email. If you are not the addressee indicated in this email or are not responsible for delivery of the email to such a person, please kindly reply to the sender indicating this fact and delete all copies of it from your computer and network server immediately. Your cooperation is highly appreciated. It is advised that any unauthorized use of confidential information of Nuvoton is strictly prohibited; and any information in this email irrelevant to the official business of Nuvoton shall be deemed as neither given nor endorsed by Nuvoton.
 > 
