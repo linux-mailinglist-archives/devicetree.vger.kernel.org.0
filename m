@@ -2,128 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 402434C4320
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:11:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC73D4C4341
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239911AbiBYLLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 06:11:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45534 "EHLO
+        id S240014AbiBYLYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 06:24:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46164 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238967AbiBYLLb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:11:31 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232EA197B51
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:59 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id p20so6969459ljo.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:10:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=yfHDVChMIt79P8PwPVg3ITAsqmLO2xEVeCJUOEsGqTU=;
-        b=YYiU90jPEjbBPpGtGlks3J6ji5Nd3R7OXrhwxviCnTFNqQpKJJnJtC5ehaLTKgPv6d
-         kytOZEuiglne9JU2KDODLNAk3kSnVaXhENvmnBtvrBbuGp/LmYESK1W3L2pDk+iUYmTq
-         KqWJVFd1YncInr0mcJoJcA0/NgWltTcKtQEvETZRIPWbMYnZwgIomPPWFTh/GwaEQ0w/
-         /q92mKU79F4TZmLhSIed3q5bfj8I0MJ7jU8M5FhdAjmYQ/xwPXK9nq/oM1z1t6IqlZOS
-         5Fktm2+KaIZ1bj+8igJ/PSK5VWx+/oGbmra2Gr9CrvDH4UL45bEStlNRKgE6PNXEv63N
-         5b/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=yfHDVChMIt79P8PwPVg3ITAsqmLO2xEVeCJUOEsGqTU=;
-        b=3Ilv4NM7eC+TLXV6j0AhVyJh5mmePicOKo5RRAweJGF4lNS3F5zDllScxIrAnOuwKw
-         co79rwyB+GB1Vpb1+qMs8IIRBaAVZMYHma2VQopiYXZWG3U4PI9uEX6pCCfB3ZfsX4Sk
-         ifUA6OjTrmcR4GomWOvg/XSBmMWB/nuP6AxAinaelDykmPatOLvigtX/oALpcrLZDYKq
-         Q6X8sCp50CdAvg4ULnO6tsF6O7DeaSVHf5nwbFspPS70alKb8ROdclJUX8a3gcyOGHfo
-         btMv5lsttMKXNmUFCgm+7tJeAQkrLuItmDSaTKhliwkv0BMXpADJuQEOwHvPh8ET1HwG
-         6R2A==
-X-Gm-Message-State: AOAM5309e0hJ+QKulXSIEwnPO5HC1X6ViYB9VfDwzBrXOEu6fsPWdBsF
-        k9VidHQG6wZfOtwjFK1ob1+9ENqVsIo=
-X-Google-Smtp-Source: ABdhPJy3g0VW5PnDPjeFJlNBTjarbzOJxXYBGGvfVSZkpGhwP0uSgOx0oKsnOg7b8V6oGQav6wtkcA==
-X-Received: by 2002:a2e:7218:0:b0:246:4772:1fa0 with SMTP id n24-20020a2e7218000000b0024647721fa0mr4972875ljc.125.1645787457313;
-        Fri, 25 Feb 2022 03:10:57 -0800 (PST)
-Received: from [192.168.2.145] (109-252-137-194.dynamic.spd-mgts.ru. [109.252.137.194])
-        by smtp.googlemail.com with ESMTPSA id u17-20020a056512095100b0044381f00805sm174550lft.139.2022.02.25.03.10.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 03:10:56 -0800 (PST)
-Message-ID: <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
-Date:   Fri, 25 Feb 2022 14:10:55 +0300
+        with ESMTP id S237386AbiBYLYk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:24:40 -0500
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC8921EBBF;
+        Fri, 25 Feb 2022 03:24:07 -0800 (PST)
+Received: (Authenticated sender: miquel.raynal@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 92075FF80A;
+        Fri, 25 Feb 2022 11:24:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1645788245;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=BojsKi1ruriqiFypw1qe5SRshGJ6mnVKS+raZKmEv4g=;
+        b=fpyF6FVw5omwB31iIRERcbtM2pRALzfiS8UDs1nEQWzOUOUqr/0qrrzJBWvtgB/r4Efn/A
+        dUrg25JBQ415iE4uxNu1rsXZR6jmtFRrDekWtn/UiyW/Y7+iNa6G6Za6abS3OLiIl+OHrB
+        pBPsZA1A31UjN3yUa2gJn4BBKlZLvd4h5ocgh0visIFcfQ6r2S0l5On5F4kzkbF75F+51D
+        hgRDGhvtPHE/ROwD0OO6lYinqotSF7F4wcMTwM1VaelAeTRBippl8HtXFESsPdC/n0UKb8
+        6GvPqDEf5p/31GYtJd7bXOb4OA2OrrtDY6IspNe6CC/Z3RaMYqdYT+NxnxgB7w==
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk@vger.kernel.org,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        Jimmy Lalande <jimmy.lalande@se.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v3 0/7] RZN1 DMA support
+Date:   Fri, 25 Feb 2022 12:23:55 +0100
+Message-Id: <20220225112403.505562-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
- <20220225104924.GC19585@pengutronix.de>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220225104924.GC19585@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-25.02.2022 13:49, Sascha Hauer пишет:
-> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
->> 25.02.2022 10:51, Sascha Hauer пишет:
->>> The rk3568 HDMI has an additional clock that needs to be enabled for the
->>> HDMI controller to work. The purpose of that clock is not clear. It is
->>> named "hclk" in the downstream driver, so use the same name.
->>>
->>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->>> ---
->>>
->>> Notes:
->>>     Changes since v5:
->>>     - Use devm_clk_get_optional rather than devm_clk_get
->>>
->>>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>> index fe4f9556239ac..c6c00e8779ab5 100644
->>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
->>>  	const struct rockchip_hdmi_chip_data *chip_data;
->>>  	struct clk *ref_clk;
->>>  	struct clk *grf_clk;
->>> +	struct clk *hclk_clk;
->>>  	struct dw_hdmi *hdmi;
->>>  	struct regulator *avdd_0v9;
->>>  	struct regulator *avdd_1v8;
->>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
->>>  		return PTR_ERR(hdmi->grf_clk);
->>>  	}
->>>  
->>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
->>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
->>
->> Have you tried to investigate the hclk? I'm still thinking that's not
->> only HDMI that needs this clock and then the hardware description
->> doesn't look correct.
-> 
-> I am still not sure what you mean. Yes, it's not only the HDMI that
-> needs this clock. The VOP2 needs it as well and the driver handles that.
+Hello,
 
-I'm curious whether DSI/DP also need that clock to be enabled. If they
-do, then you aren't modeling h/w properly AFAICS.
+Here is a first series bringing DMA support to RZN1 platforms. I'm not a
+DMA expert at all so criticism is welcome.
+
+Soon a second series will come with changes made to the UART controller
+driver, in order to interact with the RZN1 DMA controller.
+
+Cheers,
+Miquèl
+
+Changes in v3:
+* Added Reviewed-by tags.
+* Exported the set_dmamux* symbol properly.
+* Dropped a useless check in the probe and moved the sysctrl_priv
+  assignation to the end of the probe.
+* Renamed the dmamux driver
+* Added a couple of missing MODULE_ macros in the dmamux driver.
+* Decided to use a regular platform init call instead of the
+  arch_initcall() initially proposed.
+* s/%d/%u/ in printk's when appropriate.
+* Used a hardcoded value instead of dmamux->dmac_requests when
+  appropriate.
+* Changed the variable name "master" to "dmac_idx" to be more
+  descriptive.
+* Dropped most of the of_* calls in favor of #define's.
+* Fixed a typo.
+* Exported two symbols from 8250_dma.c.
+
+Changes in v2:
+* Clarified that the 'fix' regarding non aligned reads would only apply
+  to the DEV_TO_MEM case.
+* Fix the DMA controller compatible string (copy-paste error).
+* s/syscon/sysctrl/ as advised by Geert.
+* Disabled irqs when taking the spinlock from the clocks driver.
+* Moved the DMAMUX offset inside the driver.
+* Removed extra commas.
+* Improved the style as suggested by Andy.
+* Removed a dupplicated check against the device node presence.
+* Reduced the number of lines of code by using dev_err_probe().
+* Created a Kconfig symbol for DMAMUX to fix the two robot reports
+  received and be sure there was no useless overhead with other
+  platforms.
+* Exported the serial8250_{tx,rx}_dma() symbols.
+
+Miquel Raynal (7):
+  dt-bindings: dma: Introduce RZN1 dmamux bindings
+  dt-bindings: dma: Introduce RZN1 DMA compatible
+  soc: renesas: rzn1-sysc: Export function to set dmamux
+  dma: dmamux: Introduce RZN1 DMA router support
+  dma: dw: Add RZN1 compatible
+  ARM: dts: r9a06g032: Add the two DMA nodes
+  ARM: dts: r9a06g032: Describe the DMA router
+
+ .../bindings/dma/renesas,rzn1-dmamux.yaml     |  42 +++++
+ .../bindings/dma/snps,dma-spear1340.yaml      |   8 +-
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/r9a06g032.dtsi              |  37 +++++
+ drivers/clk/renesas/r9a06g032-clocks.c        |  35 +++-
+ drivers/dma/dw/Kconfig                        |   8 +
+ drivers/dma/dw/Makefile                       |   2 +
+ drivers/dma/dw/platform.c                     |   1 +
+ drivers/dma/dw/rzn1-dmamux.c                  | 152 ++++++++++++++++++
+ include/linux/soc/renesas/r9a06g032-sysctrl.h |  11 ++
+ 10 files changed, 295 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
+ create mode 100644 drivers/dma/dw/rzn1-dmamux.c
+ create mode 100644 include/linux/soc/renesas/r9a06g032-sysctrl.h
+
+-- 
+2.27.0
+
