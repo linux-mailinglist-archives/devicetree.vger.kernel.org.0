@@ -2,87 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEC5D4C4E67
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:12:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 030A24C4E6A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234299AbiBYTMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 14:12:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35922 "EHLO
+        id S234324AbiBYTNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 14:13:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234296AbiBYTMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:12:44 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E3320C18B;
-        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so7592021oob.8;
-        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
+        with ESMTP id S234316AbiBYTNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:13:34 -0500
+Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6A031B84D6;
+        Fri, 25 Feb 2022 11:12:59 -0800 (PST)
+Received: by mail-oi1-f169.google.com with SMTP id q5so8334735oij.6;
+        Fri, 25 Feb 2022 11:12:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=K5x+EtF2eS5+RTFJ+8H7Za6pww+kwgng4S5CGgR/3fE=;
-        b=kTgLghEcG0YSHlGbjgsr/L5PqvsfxsBFTrdnOFsXUCFPsK2h3XLV5M0L6+dTZztwKg
-         uyPByZlQtRU4kJpIaIv6jJ3I6ChIiKRUx8FtiRc6tPc9PtKf6bwXnrjf55d9g7eftqxJ
-         X0lGCXw1zsRZR1CAuRQaYE2ysUBwOxF+ixaaa/DcB2GNsRBzCX82o8YO8Si/cEBOSeoh
-         qcLUjZkCChN3iMsvTefP7FpVLwqi1JS7lyM40wpHbgMB6pGqZEmA93Iv38prIbmlJXwz
-         VjKBplpXBlDz21zJQX7ILB7lbDFkTu1OFhBA782y6hpUNSVZSjyO/D20oBR6W2wwZvlq
-         WsNQ==
-X-Gm-Message-State: AOAM531h4UscuGCgACrBWjDRTJnHINlbXCz2nBDdWzciseyBAlAulWcv
-        l9QtCCzTgXZ2klyCrNhOMQ==
-X-Google-Smtp-Source: ABdhPJz6nk8h5SeBNIqDSG38xu0Ws/3K828zx2f/U2XOt6ULYKegBUh57ljwkgVc/UOmWIJjP+96IQ==
-X-Received: by 2002:a05:6870:b7b4:b0:d6:e56e:b85c with SMTP id ed52-20020a056870b7b400b000d6e56eb85cmr1855618oab.327.1645816331027;
-        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
+        bh=hsWKgvGzJx8KQAPzg/ZffFICmo2pX0WAshALYxArcSI=;
+        b=LZUVj5oVYrHLDtWYRQq/7vZUFRaEa2grzeMKH0ntWgjojI0mSEeiPN8JVi9HfY7cUr
+         vJfFlnNX5er5LJXPRzjvV4N3+YxGzM2yYTPLgHkSfl0JUuhvigP8oByl16WHnKCvJRo6
+         e8dx9gOcMPPgNF3BlUSP8nZzMUEyZIiMpiTWusqxbiMS0MzXqempEW4QKCaYXA5kSrR7
+         +z6WcyJqwlWgUAO0QPog0ELic3DMoFAdqnKcvl64vyuGU3X90019LtMBX3cZ6/PNbHNI
+         sFYznk6u+TfqfQ122HLYgXX8UjtIOcFrJtahbu536PAcLbWhhEJl/TOwrWypZTdchJhm
+         t9fg==
+X-Gm-Message-State: AOAM533RYiBVCYyfzX2GsJY6kK2oxR2U8EBlq3JJzkvnPRo8TbPlWjbl
+        L6GYhVBNRyW8JnPYB7679Q==
+X-Google-Smtp-Source: ABdhPJxAfyFyZ2XrI1If28g1kdo6xoiQ8gbvJxdOs/yznvvzU7zyAqG9LZ2xK7FYlP9QNMTM7bhFzQ==
+X-Received: by 2002:a05:6808:309e:b0:2d5:35e5:e1ac with SMTP id bl30-20020a056808309e00b002d535e5e1acmr595013oib.86.1645816379136;
+        Fri, 25 Feb 2022 11:12:59 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id bn8-20020a056820180800b0031ca56292bbsm1380681oob.46.2022.02.25.11.12.09
+        by smtp.gmail.com with ESMTPSA id a12-20020a9d5c8c000000b005ad51592bd8sm1533901oti.49.2022.02.25.11.12.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 11:12:10 -0800 (PST)
-Received: (nullmailer pid 1268098 invoked by uid 1000);
-        Fri, 25 Feb 2022 19:12:09 -0000
-Date:   Fri, 25 Feb 2022 13:12:09 -0600
+        Fri, 25 Feb 2022 11:12:58 -0800 (PST)
+Received: (nullmailer pid 1269280 invoked by uid 1000);
+        Fri, 25 Feb 2022 19:12:57 -0000
+Date:   Fri, 25 Feb 2022 13:12:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     LUU HOAI <hoai.luu.ub@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     marijn.suijten@somainline.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        martin.botka@somainline.org, linux-arm-msm@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-clk@vger.kernel.org, jamipkettunen@somainline.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
         Rob Herring <robh+dt@kernel.org>,
-        linux-renesas-soc@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v2 01/12] dt-bindings: pinctrl: renesas,pfc: Document
- r8a779f0 support
-Message-ID: <YhkqCaiPhCjnO8qB@robh.at.kernel.org>
-References: <cover.1645457792.git.geert+renesas@glider.be>
- <d51828853396773be2d6837f3301ac9da8b6f29e.1645457792.git.geert+renesas@glider.be>
+        angelogioacchino.delregno@somainline.org
+Subject: Re: [PATCH 1/4] dt-bindings: clock: add QCOM SM6350 display clock
+ bindings
+Message-ID: <YhkqOe2rP20qUb2W@robh.at.kernel.org>
+References: <20220222011534.3502-1-konrad.dybcio@somainline.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d51828853396773be2d6837f3301ac9da8b6f29e.1645457792.git.geert+renesas@glider.be>
+In-Reply-To: <20220222011534.3502-1-konrad.dybcio@somainline.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 16:43:36 +0100, Geert Uytterhoeven wrote:
-> From: LUU HOAI <hoai.luu.ub@renesas.com>
+On Tue, 22 Feb 2022 02:15:28 +0100, Konrad Dybcio wrote:
+> Add device tree bindings for display clock controller for
+> Qualcomm Technology Inc's SM6350 SoC.
 > 
-> Document Pin Function Controller (PFC) support for the Renesas R-Car
-> S4-8 (R8A779F0) SoC.
-> 
-> Signed-off-by: LUU HOAI <hoai.luu.ub@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@somainline.org>
 > ---
-> v2:
->   - Add Reviewed-by.
-> ---
->  Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/clock/qcom,dispcc-sm6350.yaml    | 86 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,dispcc-sm6350.h    | 48 +++++++++++
+>  2 files changed, 134 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6350.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6350.h
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
