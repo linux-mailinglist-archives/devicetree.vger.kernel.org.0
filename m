@@ -2,126 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B50A4C43BC
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:37:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ABF44C43C0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 12:39:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240102AbiBYLiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 06:38:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53696 "EHLO
+        id S240150AbiBYLja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 06:39:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239111AbiBYLiT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:38:19 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 364CD3CA6F
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 03:37:47 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNYuv-0007w3-I2; Fri, 25 Feb 2022 12:37:45 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNYur-0003KO-LI; Fri, 25 Feb 2022 12:37:41 +0100
-Date:   Fri, 25 Feb 2022 12:37:41 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Message-ID: <20220225113741.GD19585@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
- <20220225104924.GC19585@pengutronix.de>
- <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+        with ESMTP id S239111AbiBYLj3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 06:39:29 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CC0779392;
+        Fri, 25 Feb 2022 03:38:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1645789137; x=1677325137;
+  h=message-id:date:mime-version:from:subject:to:cc:
+   references:in-reply-to:content-transfer-encoding;
+  bh=t7if2FYhN7GqDQjX0QAaX0PLfbz36m7PFHZKJqreYdw=;
+  b=mBBIgpSuJTCcWpQ8D9M8pmeLmh5nOqHgB0wBhC3MQAiz7vtPX02R+Y/M
+   qpzWouQZ/fVDBw2SJxTBPYbJe1Zk1DvE/NczBKCReJczhlLa3xvv6wxsy
+   AM3k8CD0sTnJerwg0Qq8yfDjwoTfnPRlI46Q6x/x3maDrsQKorNyLCHJ7
+   PvRM0WIJ5oPIDiMRr3D9rp5gUBS06hkHjkPC5J1UHa2Vx8CskF2wrLFAv
+   ohR6Q91e6nXHr6F3z5aKrjOW8wIK/Jv1KHq+rwZL/E8Vd+n3PYmShxo4T
+   ox9e6oFQlVpFAV6BlBBYzsGa3ngg5PHsaIXC2a20eunhkyYAA2oaTELy2
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,136,1643698800"; 
+   d="scan'208";a="154404885"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Feb 2022 04:38:55 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 25 Feb 2022 04:38:54 -0700
+Received: from [10.12.72.56] (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 25 Feb 2022 04:38:52 -0700
+Message-ID: <05ebd7e2-2c68-1837-1028-de6cb82d235e@microchip.com>
+Date:   Fri, 25 Feb 2022 12:38:51 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:34:14 up 76 days, 20:19, 89 users,  load average: 0.27, 0.21,
- 0.17
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Subject: Re: [PATCH v2 00/10] ARM: at91: add cpu idle and cpufreq opps for
+ sama7g5
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        <robh+dt@kernel.org>, <linux@armlinux.org.uk>, <sboyd@kernel.org>,
+        <mturquette@baylibre.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20220113144900.906370-1-claudiu.beznea@microchip.com>
+Content-Language: en-US
+Organization: microchip
+In-Reply-To: <20220113144900.906370-1-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 02:10:55PM +0300, Dmitry Osipenko wrote:
-> 25.02.2022 13:49, Sascha Hauer пишет:
-> > On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
-> >> 25.02.2022 10:51, Sascha Hauer пишет:
-> >>> The rk3568 HDMI has an additional clock that needs to be enabled for the
-> >>> HDMI controller to work. The purpose of that clock is not clear. It is
-> >>> named "hclk" in the downstream driver, so use the same name.
-> >>>
-> >>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> >>> ---
-> >>>
-> >>> Notes:
-> >>>     Changes since v5:
-> >>>     - Use devm_clk_get_optional rather than devm_clk_get
-> >>>
-> >>>  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
-> >>>  1 file changed, 16 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>> index fe4f9556239ac..c6c00e8779ab5 100644
-> >>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
-> >>>  	const struct rockchip_hdmi_chip_data *chip_data;
-> >>>  	struct clk *ref_clk;
-> >>>  	struct clk *grf_clk;
-> >>> +	struct clk *hclk_clk;
-> >>>  	struct dw_hdmi *hdmi;
-> >>>  	struct regulator *avdd_0v9;
-> >>>  	struct regulator *avdd_1v8;
-> >>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
-> >>>  		return PTR_ERR(hdmi->grf_clk);
-> >>>  	}
-> >>>  
-> >>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
-> >>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
-> >>
-> >> Have you tried to investigate the hclk? I'm still thinking that's not
-> >> only HDMI that needs this clock and then the hardware description
-> >> doesn't look correct.
-> > 
-> > I am still not sure what you mean. Yes, it's not only the HDMI that
-> > needs this clock. The VOP2 needs it as well and the driver handles that.
+On 13/01/2022 at 15:48, Claudiu Beznea wrote:
 > 
-> I'm curious whether DSI/DP also need that clock to be enabled. If they
-> do, then you aren't modeling h/w properly AFAICS.
+> Hi,
+> 
+> This series adds CPU idle support for SAMA7G5. Along with this the
+> CPUFreq OPPs for SAMA7G5 and proper config has been added.
+> 
+> Thank you,
+> Claudiu Beznea
 
-Indeed I can confirm that DSI and DP need that clock enabled for
-register access as well. Do you think these devices should be under an
-additional bus layer in the device tree which drives the clock? Or
-should HCLK_VOP be enabled as part of the RK3568_PD_VO power domain?
+For whole series:
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Sascha
+Patches queued in at91 tree for 5.18 (via arm-soc):
+- 1-5 in at91-soc
+- 6-8 in at91-dt
+- 9, 10 in at91-defconfig
+
+Best regards,
+    Nicolas
+
+> Changes in v2:
+> - collected tags
+> - add "opp-suspend" to 600MHz OPP on patch "ARM: dts: at91: sama7g5: add opps"
+> - add patches:
+> 	ARM: dts: at91: fix low limit for CPU regulator
+> 	ARM: dts: at91: sama7g5ek: set regulator voltages for standby state
+> 
+> Claudiu Beznea (10):
+>    ARM: at91: ddr: remove CONFIG_SOC_SAMA7 dependency
+>    ARM: at91: ddr: align macro definitions
+>    ARM: at91: ddr: fix typo to align with datasheet naming
+>    ARM: at91: PM: add cpu idle support for sama7g5
+>    ARM: at91: Kconfig: select PM_OPP
+>    ARM: dts: at91: fix low limit for CPU regulator
+>    ARM: dts: at91: sama7g5ek: set regulator voltages for standby state
+>    ARM: dts: at91: sama7g5: add opps
+>    ARM: configs: at91: sama7: enable cpu idle
+>    ARM: configs: at91: sama7: add config for cpufreq
+> 
+>   arch/arm/boot/dts/at91-sama7g5ek.dts |  7 ++++-
+>   arch/arm/boot/dts/sama7g5.dtsi       | 38 ++++++++++++++++++++++++++++
+>   arch/arm/configs/sama7_defconfig     |  9 ++++++-
+>   arch/arm/mach-at91/Kconfig           |  1 +
+>   arch/arm/mach-at91/pm.c              | 27 +++++++++++++++++++-
+>   arch/arm/mach-at91/pm_suspend.S      |  4 +--
+>   include/linux/clk/at91_pmc.h         |  4 +++
+>   include/soc/at91/sama7-ddr.h         | 15 +++++------
+>   8 files changed, 91 insertions(+), 14 deletions(-)
+> 
+
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Nicolas Ferre
