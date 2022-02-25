@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F62C4C3A77
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 01:47:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0574E4C3A78
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 01:47:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234860AbiBYArb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 19:47:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59678 "EHLO
+        id S234656AbiBYAsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 19:48:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiBYArb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 19:47:31 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFD5AB0D3E;
-        Thu, 24 Feb 2022 16:47:00 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id m22so3472175pja.0;
-        Thu, 24 Feb 2022 16:47:00 -0800 (PST)
+        with ESMTP id S229923AbiBYAsE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 19:48:04 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D68184B75;
+        Thu, 24 Feb 2022 16:47:29 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id o26so2537653pgb.8;
+        Thu, 24 Feb 2022 16:47:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=F/A/cGaE9iJpO7MzsZwsfVpgVALQOLZDXv2Hta+qdjU=;
-        b=CHQ3Pk/LkDlUBOs/imc1IqGIy9zfoRTtz3s2NbMWMAirnb+Af3fhbjzcJRzu6tkdDq
-         YDC+e6toDyhrr3nsPnMaaF2uxuvD3kqAqLDX32rBLKc84mGa1NG/GV3QpIOfFT4TSJdH
-         GsokHChScReEUxDg1uB4RQR0ljZan4tV6FWCPbyXppwDsqWDWC6Gi2QYxjosQ3h+ZTUc
-         gc7f57sk2NhEWBbXOsQTWFbmT60URyT8h5+uvKO4YaZbUM9aH8KL/EXkcwRtDnTZGyhn
-         2ep6Mf6TLmMbqWOHYPt0R5VG0dTRXwdYTxxWY3c94GWMIMo3snQ/rLBKveuUQrrzeiUq
-         jpDw==
+        bh=r049N3OXReoTi1PN3pmujCqBPamtnbVP08zrxtd4YRU=;
+        b=lYEf6uCzPLcn7lSAGnRuEhK/d3/33Jdm/N4uG9Sii4JX7fY0jqjlEJIx7klm/+a4O9
+         QtUy8CNhRQ3WUvKgz6/SfL7ZMCfu3Hi8NqRNPn3/GbRmgLY1ztpJfFaDS+nmCXIfW8c2
+         5LYEkIlG9IN+Wing+nPGuXJY011WD2bS5t2bWuVHwpV9iu34bBGVDSUVH/wYtSBcMXs+
+         6DXNq/Fix4fBBJsOSeSFU9IecKUAtorD4k9M1ymykvDtK5EZnEqtFhRLTtN33eG4iy/f
+         3vNgchqet0A66Zb3Tv7i2TcRKbZ4pC77I2J9LUpAltBeuajfbIYYF4AiUww9omqEkEVi
+         AgdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=F/A/cGaE9iJpO7MzsZwsfVpgVALQOLZDXv2Hta+qdjU=;
-        b=i+PeN0mnR+pASDS++ul3VZv6sLkksFzMcNkoi0AHTmCUvvlv9FXO5Ct7Qhp183boCL
-         eUAeO7x5SsOhHlAtPGWRXJjqbVchJEjIuPgUl4dJ+74fNbXdiLtj2I6uZQiBDjprPp+n
-         ghCqSAISkNUssG79yzYg6WRslkvbiTK8nkqW4lAjEmLrRrJKVqWTnzOptGEO31ElvmPG
-         17TWC+J4+eE1YEMpBCD0DuIm0UQOGhllvHa1Qfqu4ELEOeFDgL0hAExFN/jTMRCNqGVL
-         wZxRPJsjUfXXGtLfZ9FDw5925YcMDR2UpLiTuGp6qtwyaykAdEnOQqnb1Bni1VURt5hU
-         jUHg==
-X-Gm-Message-State: AOAM530NRWs75VY/bzUyMB56C2iWeFVuREd30vSWwwVAdRYtcr60OZjh
-        6qm+YnAumkBzZ/+jZPkOTk4=
-X-Google-Smtp-Source: ABdhPJwofCBBB09soCCRYTJK4a+6u+7lORLUI4juxBEiyRkcqmsy4s3p1KVmcsoTwsSfuzkIIHH5jQ==
-X-Received: by 2002:a17:903:408d:b0:14f:b4c0:2ad2 with SMTP id z13-20020a170903408d00b0014fb4c02ad2mr4899229plc.162.1645750020208;
-        Thu, 24 Feb 2022 16:47:00 -0800 (PST)
+        bh=r049N3OXReoTi1PN3pmujCqBPamtnbVP08zrxtd4YRU=;
+        b=0iA8IhVYPKNWVnu5A2R6dhxebinlLP5lUAZOI+f7gjQf8KF19YjwL9El50KdWeUcwE
+         jwrlsgP2PIFAHw+YhJGf6XUI7OdALtfdRk6PtOg5Z4d6IVaSDlnmYx8p+7B1UcEG1ndE
+         wu8nwuNX8R4R73de3ITN/KXnwNc5WJo6AAdXTrZNVPO9h98bEsGhKyQvkfLU5mmIfXnD
+         UZgt3TB3lLL+alP/bDAUjJO+K61K4tb37u+3Pqhm8XWxVTdbiIZ7TGKcMXjCp6g3VnT8
+         bCJRDVoL0ztmKDMXoPiK+r2tNFDBTemIX7k/siijzzBuUQMHyEjXdyUKkz+AmwtsF7cS
+         aGSw==
+X-Gm-Message-State: AOAM530IBXeZosOGRfdmZZgKmxpRrK/bhZseqliJ17TjEWHUwC+6VczS
+        6PteafmnOB/XGoXekvx8Zcw=
+X-Google-Smtp-Source: ABdhPJzeq1bq6OfkXN4sJx+s//+0osI0JJunO5rtJFaOzukQtFKdftmXdPhY5Hl4kdnSgbyDN/p6nQ==
+X-Received: by 2002:a63:1405:0:b0:344:3b39:fd27 with SMTP id u5-20020a631405000000b003443b39fd27mr4196271pgl.488.1645750048836;
+        Thu, 24 Feb 2022 16:47:28 -0800 (PST)
 Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id f16-20020a623810000000b004e1b132bc9esm711235pfa.149.2022.02.24.16.46.58
+        by smtp.gmail.com with ESMTPSA id f13-20020a056a001acd00b004f0f9a967basm683706pfv.100.2022.02.24.16.47.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 16:46:59 -0800 (PST)
+        Thu, 24 Feb 2022 16:47:28 -0800 (PST)
 From:   Florian Fainelli <f.fainelli@gmail.com>
 To:     bcm-kernel-feedback-list@broadcom.com,
         Matthew Hagan <mnhagan88@gmail.com>
@@ -54,12 +54,12 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
         Scott Branden <sbranden@broadcom.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RESUBMIT 1/2] ARM: dts: NSP: MX6X: get mac-address from eeprom
-Date:   Thu, 24 Feb 2022 16:46:57 -0800
-Message-Id: <20220225004657.1106499-1-f.fainelli@gmail.com>
+Subject: Re: [PATCH 2/2] ARM: dts: NSP: MX6X: correct LED function types
+Date:   Thu, 24 Feb 2022 16:47:26 -0800
+Message-Id: <20220225004726.1106616-1-f.fainelli@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220223235041.2542331-1-mnhagan88@gmail.com>
-References: <20220223235041.2542331-1-mnhagan88@gmail.com>
+In-Reply-To: <20220223235041.2542331-2-mnhagan88@gmail.com>
+References: <20220223235041.2542331-1-mnhagan88@gmail.com> <20220223235041.2542331-2-mnhagan88@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -72,11 +72,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Feb 2022 23:50:39 +0000, Matthew Hagan <mnhagan88@gmail.com> wrote:
-> The MAC address on the MX64/MX65 series is located on the AT24 EEPROM.
-> This is the same as other Meraki devices such as the MR32 [1].
+On Wed, 23 Feb 2022 23:50:40 +0000, Matthew Hagan <mnhagan88@gmail.com> wrote:
+> Currently, the amber LED will remain always on. This is due to a
+> misinterpretation of the LED sub-node properties, where-by "default-state"
+> was used to indicate the initial state when powering on the device. When in
+> use, however, this resulted in the amber LED always being on. Instead change
+> this to only indicate a fault state.
 > 
-> [1] https://lore.kernel.org/linux-arm-kernel/fa8271d02ef74a687f365cebe5c55ec846963ab7.1631986106.git.chunkeey@gmail.com/
+> Assign LED_FUNCTION_POWER to the green PWM LED.
+> 
+> These changes bring the MX64/65 in line with the MR32's devicetree.
 > 
 > Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
 > ---
