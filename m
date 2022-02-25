@@ -2,119 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E41AD4C4291
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:41:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4DC74C42AB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:45:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239754AbiBYKlR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:41:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
+        id S239587AbiBYKpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:45:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239738AbiBYKlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:41:15 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9B768FBD
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:40:37 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id ay7so6883170oib.8
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:40:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=XmHgx7i/9vNrhvW/myAVOgnrCLxN2TVncbf1coqXilo=;
-        b=JShMinXGneeNUXr6MBtvLnsdFzLyYYPtsUCiR1SgKcXep3GIi8/lspMh7qpTsNS+4P
-         IQU+sI8epCbEo+wm4GebX17uOpKZdhmwAdbT807V0RgLDlEvibQSQWM7XdjGnZCNmPIa
-         6hKDByDP3wolEPSOkSdLIyX3nQsPCK5Vfy5L+waT20TTaKawHhkeTmNSPEte2FmrceFe
-         v+6xcrbAgcBLra+7OTyLfY9V1z4JRO1vrdf5TwzAdbXW5ZbXl+1QiUYQJ4nnqrmbgfhV
-         rKN3RIc45tWwJoHgB8Zony4h91g7IoWebGN/osaLBTHRi4zLm2FgRV7TzjbfNPcVFxB6
-         LA2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=XmHgx7i/9vNrhvW/myAVOgnrCLxN2TVncbf1coqXilo=;
-        b=InRczcQZdhAcBKEOI6qLIXsZqfGW3YRSvfjqVSZ3vo/ZGbRARNPx8omFbrUBsUBjba
-         avYBGqeIzZA175OtnXsmkaqb28tRvghMNdHoSTP50JIhnjOPBDikZ4eigMQXxM2wxY41
-         a6Udwp4eFizH03GjmFPd3jzyTm/GShB3M2boxM6DcDcRMOqVlJ4+a0QaEZUJ9LybJAMP
-         yPjIpjBETmJ7uzplwec3G8sy77q2fux9ZiX2YQiYTUabZhYw5TDHUy02QHQxapKHf0qm
-         +7asr4XCEp01lR0U/KhWZb0NIAKDp20XFW0zPHw//ZS2NyPcyY+g51gKrE7Qe/tUA9a4
-         JO5Q==
-X-Gm-Message-State: AOAM5331SCSy3PQhlv+zxc0/HnFmd13GtD/7kKv9f2lC2SLZz4rn/17U
-        qVmQWjTYygKwq9el+R/UwUO9w3kqKV8JbNUV/RjJ8g==
-X-Google-Smtp-Source: ABdhPJx9aAd/x8lOBAlC3AOKrKYl71PZj1ZJrbUXQn++GPnT4jD/17UUadhTANVxEvJPL5JqOpZ6gLbTAqxp4YOXaXo=
-X-Received: by 2002:a05:6808:114e:b0:2d5:4101:844e with SMTP id
- u14-20020a056808114e00b002d54101844emr1162908oiu.169.1645785637242; Fri, 25
- Feb 2022 02:40:37 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 25 Feb 2022 02:40:36 -0800
+        with ESMTP id S236827AbiBYKpd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:45:33 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5F20C1F6368
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:45:01 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0C47D106F;
+        Fri, 25 Feb 2022 02:45:01 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5F2A03F70D;
+        Fri, 25 Feb 2022 02:44:59 -0800 (PST)
+Message-ID: <6ba1c897-a932-915e-1415-1bb685754305@arm.com>
+Date:   Fri, 25 Feb 2022 10:44:55 +0000
 MIME-Version: 1.0
-In-Reply-To: <1c791b60-935c-1e8e-dd1b-4b18fc273c1b@collabora.com>
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-5-granquet@baylibre.com>
- <1c791b60-935c-1e8e-dd1b-4b18fc273c1b@collabora.com>
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: alot/0.10
-Date:   Fri, 25 Feb 2022 02:40:36 -0800
-Message-ID: <CABnWg9uoDNbA6ZYGdEgkyySBW0pfY1+3Zrnh51XjadNU8_+U9A@mail.gmail.com>
-Subject: Re: [PATCH v8 04/19] video/hdmi: Add audio_infoframe packing for DP
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, airlied@linux.ie,
-        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
-        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
-        jitao.shi@mediatek.com, kishon@ti.com,
-        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
-        mripard@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
-        tzimmermann@suse.de, vkoul@kernel.org
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v3] dt-bindings: mfd: rk808: Convert bindings to yaml
+Content-Language: en-GB
+To:     Rob Herring <robh@kernel.org>
+Cc:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org,
+        lee.jones@linaro.org, heiko@sntech.de, zyw@rock-chips.com,
+        zhangqing@rock-chips.com, linux-rockchip@lists.infradead.org,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220215211548.31940-1-macroalpha82@gmail.com>
+ <9142ff41-4e95-3d52-bbe3-4f638b7d0fb2@arm.com>
+ <YhfcxaaQgO7eDOXH@robh.at.kernel.org>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <YhfcxaaQgO7eDOXH@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting AngeloGioacchino Del Regno (2022-02-22 16:16:48)
-> Il 18/02/22 15:54, Guillaume Ranquet ha scritto:
-> > From: Markus Schneider-Pargmann <msp@baylibre.com>
-> >
-> > Similar to HDMI, DP uses audio infoframes as well which are structured
-> > very similar to the HDMI ones.
-> >
-> > This patch adds a helper function to pack the HDMI audio infoframe for
-> > DP, called hdmi_audio_infoframe_pack_for_dp().
-> > hdmi_audio_infoframe_pack_only() is split into two parts. One of them
-> > packs the payload only and can be used for HDMI and DP.
-> >
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
->
-> Hello Guillaume,
->
-> I've just noticed that this patch will not apply against the latest linux-next,
-> as the include/drm/drm_dp_helper.h header was moved to
-> include/drm/dp/drm_dp_helper.h
->
-> Can you please rebase for v9?
->
-> Thanks,
-> Angelo
->
+On 2022-02-24 19:30, Rob Herring wrote:
+[...]
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - "#clock-cells"
+>>
+>> Is this actually required (ditto elsewhere)? Technically it's only necessary
+>> if there are any clock consumers targeting this node, so arguably it should
+>> be the clock binding's responsibility to validate that.
+>>
+>> It wouldn't make much sense for a dedicated clock controller to omit
+>> #clock-cells such that it couldn't have any consumers, but given that these
+>> things are primarily PMICs I think it's reasonable to allow a board not to
+>> care about the clocks at all if it doesn't use them. I know that the
+>> original binding claimed it was required, but if we're already relaxing that
+>> for RK805 here then we may as well relax it entirely.
+> 
+> Fair enough. However, if the consumer could be in an overlay, then I
+> think we want it to be required and not make the overlay add the
+> property. Properties just appearing within nodes at runtime is likely
+> not well supported in OSs.
 
-I'm sorry, I'm a bit of a noob, I rebased this series against 5.17-rc4 ...
-I'll rebase v9 against linux-next.
+Ah yes, that's an angle I hadn't considered, and I reckon it clearly 
+answers my original question in the affirmative :)
 
-Thx,
-Guillaume.
+Indeed these clock outputs are often hooked up to SDIO WiFi modules, and 
+I'm sure I *have* seen boards which put such modules on pluggable 
+daughterboards in a manner which could reasonably use overlays, so in 
+principle it does seem like a realistic concern. I'm happy with setting 
+a general principle that if a clock output is exposed on a physical pin, 
+then at the DTS level we can't know for sure that it *won't* be consumed 
+(even if the original board design didn't intend it), therefore the 
+device is always a potential clock controller and "#clock-cells" should 
+be required. In that case, the consistency argument would fall the other 
+way, to enforcing it for RK805 as well.
 
-> > ---
-> >   drivers/video/hdmi.c        | 83 ++++++++++++++++++++++++++++---------
-> >   include/drm/drm_dp_helper.h |  2 +
-> >   include/linux/hdmi.h        |  7 +++-
-> >   3 files changed, 72 insertions(+), 20 deletions(-)
-> >
+Cheers,
+Robin.
