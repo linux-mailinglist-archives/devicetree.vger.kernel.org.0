@@ -2,143 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F41C54C3F39
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:45:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A8474C3F3D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:46:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238218AbiBYHow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 02:44:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47642 "EHLO
+        id S235972AbiBYHr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 02:47:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234273AbiBYHow (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:44:52 -0500
-Received: from mail-pg1-x536.google.com (mail-pg1-x536.google.com [IPv6:2607:f8b0:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA202272CF
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:44:20 -0800 (PST)
-Received: by mail-pg1-x536.google.com with SMTP id o26so3274805pgb.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:44:20 -0800 (PST)
+        with ESMTP id S238236AbiBYHrZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:47:25 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E01B7149
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:46:51 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id s13so3124689wrb.6
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:46:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=pebQAfXF6XweYjs0eGI3bFR9spMrRG1FqYYUkNhfn+E=;
-        b=Kl/dwA7J9l0gxrWs8kMoBqr+lcMx8XxtSxViisuumNbHcyG2PUWuPy3+a5v+k4wPxW
-         Hv0eHcxH9z1uv+5779eWO9UV65SXJflq3eRoH531R/3kG35qboZIhDdFJhvGkg5hh+Rw
-         oMYmH/tYn66ot8W98dH0/liRAWSshqbU7RjtWMIcg7vQDIB5zlDRsLYwJJpVSvE65WH2
-         /BqanM+9joXU9QGK6FPHIIOBtuw2CqmFaWdT36d/R3FEt45+8uLFzltsKshoQ3ofxO+o
-         sXAfLGSrU79VemMHEXTCZVyYq6CSWkZRQdUZtFY/pWonsuew09I1qG3gb5k8MD3rwUoa
-         WYNA==
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=oKlddMOdoBQpHXORVm/dprXUDfrOkRgmeBsrcJHm1bw=;
+        b=m2RaanlztnHpMkrKbTVH4cK8XTyZDBISo1kMKyf9MDpdwNDKeGoIAB/DzRaX99gM2t
+         O+PlMP+fcc1TawEsM38iZgp654X0Wa2mQlW6b2g78ro4Blf65NCjB5JH06cFrU9r7SwM
+         IWVVC8hPd5AG6n1hqKlW6hwtFUA7dYe3bgfPVQGvPjXVg8zULslMhrZU+sJB4w3JStME
+         3P/fWZD1kVJwuIhH5hEnlZtTziYi1F+xBgumtdhufVA7HdfpyhM0hPUNDDJASG+oK+vG
+         Bq3GAMwG95X2fdTheyLubB65xJqysSaY+cnuqW+LTy4fePMaDUozEZ4WndiWNrP7G0av
+         dGRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=pebQAfXF6XweYjs0eGI3bFR9spMrRG1FqYYUkNhfn+E=;
-        b=tGQ3sFNqLV3V4N22Y1NRM6c9PcTSrA1fOid0VGkTHBW2zEPIb+l4Z9Va3aJGkbl1dK
-         pikSd0GSEX9dgx1nKcKbjOWNtDwJSl+7mGNf2HsV9fyHC8guGwPfqzz84VeZOpct4a9H
-         ZyNIGZQkWMAswQ9stQNtAQ+bETaTTIx6K80rsW7KwOaKw52wXZFzjq3pl0tXPMV7N8gz
-         vSMlIbtc37+2QTDWD1bHMCixoYUh7JfEAYf+hVbXUOzwvP+crBidogMxXuiFtetS8ug5
-         erEqivo6OdeVf3tSbp7sG725yTF5Zk6NEkx4pBvP9lZp6izuSbydqiYKLOSCp6za+gBr
-         pL8Q==
-X-Gm-Message-State: AOAM530YDxdnxeMx+R3ZTJCcPFBBko5b72H3ZfdJTNl31SQDBYKz96x0
-        1s0qyHaUHxUnYQ6XMv8b70lT
-X-Google-Smtp-Source: ABdhPJysLEw5Fe2Qq+cY1LBZd0c6mBCnomaQ6NxvOIVAGyd6cEKU6O+Dheso6fSjReAysM8+HH2yIA==
-X-Received: by 2002:a63:ba5e:0:b0:372:9bb2:c12d with SMTP id l30-20020a63ba5e000000b003729bb2c12dmr5253196pgu.380.1645775060237;
-        Thu, 24 Feb 2022 23:44:20 -0800 (PST)
-Received: from thinkpad ([220.158.159.240])
-        by smtp.gmail.com with ESMTPSA id nn17-20020a17090b38d100b001bc5a705fb2sm1480029pjb.26.2022.02.24.23.44.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 23:44:19 -0800 (PST)
-Date:   Fri, 25 Feb 2022 13:14:15 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>, agross@kernel.org,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: qcom: Add chosen node information for SDX65.
-Message-ID: <20220225074415.GF274289@thinkpad>
-References: <1644574845-23248-1-git-send-email-quic_rohiagar@quicinc.com>
- <YhfgAL8z6rO+zU3w@builder.lan>
- <b9205016-1f33-74fd-c314-c307412bfca3@quicinc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=oKlddMOdoBQpHXORVm/dprXUDfrOkRgmeBsrcJHm1bw=;
+        b=3gCj9yKAzWa14dxrIwNt3Sfog8d19Mtx1iqRVvR0rvrWuX49hasyvSlqQGZTsCUUgR
+         IgbXSv+3avXF/MyS/30f64Lm/1rhERzGwf+pfc4Kwz5NcGPJlJKDyPJUwxDWZQuvFdF1
+         ewghHYT0xxABCVzc2KlFx0bf3Pwl0kUyaL3l3Rm+QBSgWYuZm0jYmIqQpIlvbfyRai9R
+         PLDji82q5gNYy6V+7Xl5S/fI1jy9C+jIKjkY6r2mmf1Jv+fwUIc+5l3JDba90VNjmaqF
+         gIz2bqcqmRdYFKZlGsWJhmHwaypj8ERj7BUXzLVyeFZC1xqL4S9E+PFktkUgfhdRug5M
+         zcCA==
+X-Gm-Message-State: AOAM531lVk8qpQ4s6hNr2mLiNp6Umcw9dUho9RVBnjlH55T5eMnpa5HJ
+        lGh6W6BC/WK7spZrnvwkq4wB4w==
+X-Google-Smtp-Source: ABdhPJwWKlGDm8gsTQCIae+e+5zK2D2UI0JFQX/0+5DWZfLMtz1nTxwmfso/Qihyewj5DILPqcJNzQ==
+X-Received: by 2002:adf:bbc4:0:b0:1ee:f2d4:2f75 with SMTP id z4-20020adfbbc4000000b001eef2d42f75mr3458910wrg.701.1645775210360;
+        Thu, 24 Feb 2022 23:46:50 -0800 (PST)
+Received: from ?IPV6:2001:861:44c0:66c0:5e3f:6e2c:a7c1:38f1? ([2001:861:44c0:66c0:5e3f:6e2c:a7c1:38f1])
+        by smtp.gmail.com with ESMTPSA id n9-20020a05600c294900b00380f8be8ceesm4841753wmd.20.2022.02.24.23.46.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Feb 2022 23:46:49 -0800 (PST)
+Message-ID: <905e3d32-43dc-7073-36ce-ab39bf7c6f0a@baylibre.com>
+Date:   Fri, 25 Feb 2022 08:46:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b9205016-1f33-74fd-c314-c307412bfca3@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V4 1/2] dt-bindings: power: add Amlogic s4 power domains
+ bindings
+Content-Language: en-US
+To:     Shunzhou Jiang <shunzhou.jiang@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     khilman@baylibre.com, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220225064455.1369197-1-shunzhou.jiang@amlogic.com>
+ <20220225064455.1369197-2-shunzhou.jiang@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220225064455.1369197-2-shunzhou.jiang@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 12:46:26PM +0530, Rohit Agarwal wrote:
-> 
-> On 2/25/2022 1:14 AM, Bjorn Andersson wrote:
-> > On Fri 11 Feb 04:20 CST 2022, Rohit Agarwal wrote:
-> > 
-> > > Add chosen node in the base dtsi file of SDX65.
-> > > 
-> > While this happens to be the same on most boards, it is still a
-> > board-specific decision which UART is the debug uart, or if there is one
-> > at all...
-> > 
-> > So this property should remain in the dts.
-> > 
-> > Thanks,
-> > Bjorn
-> 
-> Without the chosen node in base dtsi, the device is not booting up.
-> Can we have an empty chosen node in the base dtsi and the board-specific
-> details
-> updated in the respective dts file. The device boots up with this.
-> 
+Hi,
 
-I believe this is something to do with bootloader. But still I don't understand
-how this matters at all since the bootloader finally parses the "dtb" only.
-
-Is the bootloader picking up correct dtb?
-
-Thanks,
-Mani
-
-> Thanks,
-> Rohit
+On 25/02/2022 07:44, Shunzhou Jiang wrote:
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
 > 
-> > > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> > > ---
-> > >   arch/arm/boot/dts/qcom-sdx65-mtp.dts | 4 ----
-> > >   arch/arm/boot/dts/qcom-sdx65.dtsi    | 4 ++++
-> > >   2 files changed, 4 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/arch/arm/boot/dts/qcom-sdx65-mtp.dts b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> > > index 59457da..3a75c21 100644
-> > > --- a/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> > > +++ b/arch/arm/boot/dts/qcom-sdx65-mtp.dts
-> > > @@ -14,10 +14,6 @@
-> > >   	aliases {
-> > >   		serial0 = &blsp1_uart3;
-> > >   	};
-> > > -
-> > > -	chosen {
-> > > -		stdout-path = "serial0:115200n8";
-> > > -	};
-> > >   };
-> > >   &blsp1_uart3 {
-> > > diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> > > index 796641d..653df15 100644
-> > > --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
-> > > +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> > > @@ -17,6 +17,10 @@
-> > >   	qcom,msm-id = <458 0x10000>, <483 0x10000>, <509 0x10000>;
-> > >   	interrupt-parent = <&intc>;
-> > > +	chosen {
-> > > +		stdout-path = "serial0:115200n8";
-> > > +	};
-> > > +
-> > >   	memory {
-> > >   		device_type = "memory";
-> > >   		reg = <0 0>;
-> > > -- 
-> > > 2.7.4
-> > > 
+> The bindings targets the Amlogic s4, in which the power domains registers
+> are in secure world.
+> 
+> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+
+Please keep along revisions the Reviewed-by/Acked-by/Tested-by from previous reviews like the one from https://lore.kernel.org/r/CAFBinCBN-QoA-e9JzfUq-Wc4Chu=x6cVoP2SYf=q-GrnLdLGKg@mail.gmail.com
+
+And please CC devicetree@vger.kernel.org to have a proper review from the Rob Herring, without a proper review from Rob I can't take it.
+
+Neil
+
+> ---
+>   .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
+>   include/dt-bindings/power/meson-s4-power.h    | 19 +++++++++++++++++++
+>   2 files changed, 21 insertions(+), 1 deletion(-)
+>   create mode 100644 include/dt-bindings/power/meson-s4-power.h
+> 
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> index 5dae04d2936c..7657721a4e96 100644
+> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -12,13 +12,14 @@ maintainers:
+>     - Jianxin Pan <jianxin.pan@amlogic.com>
+>   
+>   description: |+
+> -  Secure Power Domains used in Meson A1/C1 SoCs, and should be the child node
+> +  Secure Power Domains used in Meson A1/C1/S4 SoCs, and should be the child node
+>     of secure-monitor.
+>   
+>   properties:
+>     compatible:
+>       enum:
+>         - amlogic,meson-a1-pwrc
+> +      - amlogic,meson-s4-pwrc
+>   
+>     "#power-domain-cells":
+>       const: 1
+> diff --git a/include/dt-bindings/power/meson-s4-power.h b/include/dt-bindings/power/meson-s4-power.h
+> new file mode 100644
+> index 000000000000..462dd2cb938b
+> --- /dev/null
+> +++ b/include/dt-bindings/power/meson-s4-power.h
+> @@ -0,0 +1,19 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc.
+> + * Author: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_MESON_S4_POWER_H
+> +#define _DT_BINDINGS_MESON_S4_POWER_H
+> +
+> +#define PWRC_S4_DOS_HEVC_ID	0
+> +#define PWRC_S4_DOS_VDEC_ID	1
+> +#define PWRC_S4_VPU_HDMI_ID	2
+> +#define PWRC_S4_USB_COMB_ID	3
+> +#define PWRC_S4_GE2D_ID		4
+> +#define PWRC_S4_ETH_ID		5
+> +#define PWRC_S4_DEMOD_ID	6
+> +#define PWRC_S4_AUDIO_ID	7
+> +
+> +#endif
+
