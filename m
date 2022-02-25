@@ -2,101 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 094234C4254
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:32:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 40ED34C4264
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:35:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239418AbiBYKcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:32:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49266 "EHLO
+        id S239536AbiBYKgG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:36:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230500AbiBYKcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:32:15 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4EF87658;
-        Fri, 25 Feb 2022 02:31:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1645785101; x=1677321101;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=KQD7n9IlWz2cK2vL5gVsYXD/voNOuf0gAg5CPXpfExk=;
-  b=w5GrchaIn/OgyJZO0spkAwFNSkKOFz16hUA/ywcL8N5wCXQRAVl1YbQT
-   NXaNMOs0wWxmUbjpQ6ddSyzwBM08xn8WrhCAH/q9Z8JQNmiRgmNF32Ze5
-   eCW9tYTvBLtpKLyA+zHCJ+J90w6Hd+iqorf4rCCIXrztTyjr4AW8hfhnK
-   q2MvTPhjoiF7B/MvfQvOG9wj1O/IbalsDg+kc88mfYfhzml8qJ7Ie4b8O
-   7Z40XPi1G9ps4XwKNENfhmHJXvHt7w40UNYLGwMugt6U9y3N5GxL1Go9G
-   s5UZVGgy9GOzpJVsG7HPqliv9/1Ozo0n7m7UXX2fls99gbSEY/Vwyse+/
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,136,1643698800"; 
-   d="scan'208";a="163635846"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Feb 2022 03:31:40 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 25 Feb 2022 03:31:40 -0700
-Received: from [10.12.72.56] (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 25 Feb 2022 03:31:38 -0700
-Message-ID: <deb6ace6-adfc-bbaa-d31f-16d02a5f762b@microchip.com>
-Date:   Fri, 25 Feb 2022 11:31:37 +0100
+        with ESMTP id S239511AbiBYKgF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:36:05 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A67E235300
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:35:33 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id z7so6885560oid.4
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:35:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=26Nq0o7hW5EZ+8zlie26/Pg6VPaTLwAo76Sjggh2s9k=;
+        b=zKx334hk9YYZQLmFcJLwy/bhLPL4nd88z46U1TvpNH4CBaimEjqyFvqFfe0+pvoisT
+         a8rTK8wQIa1WIjCsLWQFtQEk4jHTxlGn4MlHcRlLanlTSoYtz0GyRx3nyxnKVQ+b3eLt
+         iWH/c1s/R3dNimGvEnt6n54r/jamln3WVqxzN0bUrCG4pIj2t4RnvFbZeJSI7AIuRaGW
+         zh5ty2BYi47FyZEKCGSGEF0YtYUsfjMUVZuss/Etk47hdydFLY6R6rYPBZyQ8CZblE/r
+         orrOWIZ+WFwBeyj6Lt1OrNz3IFe8fzfZy4tqkve08O0PMzSaGBTSyrbSW8LDg9YBgMuh
+         w90w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=26Nq0o7hW5EZ+8zlie26/Pg6VPaTLwAo76Sjggh2s9k=;
+        b=k0/hUQG5azULpy6RVvtVa67WFK0nrvDIyOsBRwsaA9k/QIIbzdQ8OjL5g9dBfKQPK+
+         QH5ec0LuPiPns7OahVTXZGqdlXcSpEYRe0y4Fm8BQ2HdIOUIqO0AaKx9j2tgyO0HnkVu
+         UAksXApsenA0pxigKcUDhOFy5r7u1WWIHNsAnoLVNYcREGbK1o0GPO0CrBndGA0fJJbM
+         0QWLnVQUh+Eu1PSwArtqg9gKEP5xslhxmlaGa4jWJg+QKEVMSPru8ZEMwmVMBMNA1O+X
+         7SM0XMHZUUXVK656l6kvR6O3Ia57KIutmLh7LfUpvstEaXPoRxETvl/ho6O0/KyXXuXG
+         IgEQ==
+X-Gm-Message-State: AOAM532twgYeZC3ppGQ3hQcKkTka0i8kQ3QSi2WjXGphOCTCR3bFjvP3
+        n5JvokihCAS6XI467KHBLlqPk1vL8/VRXw9wLUY8Aw==
+X-Google-Smtp-Source: ABdhPJwdkXioRfNt7+rdkdBWZGF6zg1vz8KD9b676zdXSu/0Gu8LknuEXMmkdSaXJIsGyK/aLaQ+addZ9GDQQLiMdjc=
+X-Received: by 2002:a05:6808:114e:b0:2d5:4101:844e with SMTP id
+ u14-20020a056808114e00b002d54101844emr1154232oiu.169.1645785332453; Fri, 25
+ Feb 2022 02:35:32 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Feb 2022 02:35:31 -0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] clk: at91: sama7g5: Allow MCK1 to be exported and
- referenced in DT
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        <claudiu.beznea@microchip.com>, <mturquette@baylibre.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
-CC:     <alexandre.belloni@bootlin.com>, <robh+dt@kernel.org>,
-        <rdunlap@infradead.org>, <unixbhaskar@gmail.com>,
-        <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20220111125310.902856-1-tudor.ambarus@microchip.com>
- <20220125010554.BB92BC340E4@smtp.kernel.org>
-From:   Nicolas Ferre <nicolas.ferre@microchip.com>
-Organization: microchip
-In-Reply-To: <20220125010554.BB92BC340E4@smtp.kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <c5a83b5f-91cc-61f9-a570-fafb5672de9f@collabora.com>
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-4-granquet@baylibre.com>
+ <c5a83b5f-91cc-61f9-a570-fafb5672de9f@collabora.com>
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: alot/0.10
+Date:   Fri, 25 Feb 2022 02:35:31 -0800
+Message-ID: <CABnWg9t0nW8NRkiLHvWRoavfUbOKL5wG00dbuY8qZW=WeTHxMw@mail.gmail.com>
+Subject: Re: [PATCH v8 03/19] drm/edid: Add cea_sad helpers for freq/length
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, airlied@linux.ie,
+        chunfeng.yun@mediatek.com, chunkuang.hu@kernel.org,
+        ck.hu@mediatek.com, daniel@ffwll.ch, deller@gmx.de,
+        jitao.shi@mediatek.com, kishon@ti.com,
+        maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
+        mripard@kernel.org, p.zabel@pengutronix.de, robh+dt@kernel.org,
+        tzimmermann@suse.de, vkoul@kernel.org
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/01/2022 at 02:05, Stephen Boyd wrote:
-> Quoting Tudor Ambarus (2022-01-11 04:53:10)
->> MCK1 feeds the External Bus Interface (EBI). EBI's clock rate is used
->> to translate EBI's timmings to SMC timings, thus we need to handle MCK1
->> in the EBI driver. Allow MCK1 to be referenced as a PMC_TYPE_CORE clock
->> from phandle in DT.
->>
->> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
->> ---
-> 
-> Applied to clk-next
+Quoting AngeloGioacchino Del Regno (2022-02-21 15:30:04)
+> Il 18/02/22 15:54, Guillaume Ranquet ha scritto:
+> > From: Markus Schneider-Pargmann <msp@baylibre.com>
+> >
+> > This patch adds two helper functions that extract the frequency and word
+> > length from a struct cea_sad.
+> >
+> > For these helper functions new defines are added that help translate the
+> > 'freq' and 'byte2' fields into real numbers.
+> >
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> > ---
+> >   drivers/gpu/drm/drm_edid.c | 74 ++++++++++++++++++++++++++++++++++++++
+> >   include/drm/drm_edid.h     | 18 ++++++++--
+> >   2 files changed, 90 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+> > index 12893e7be89bb..500279a82167a 100644
+> > --- a/drivers/gpu/drm/drm_edid.c
+> > +++ b/drivers/gpu/drm/drm_edid.c
+> > @@ -4747,6 +4747,80 @@ int drm_edid_to_speaker_allocation(struct edid *edid, u8 **sadb)
+> >   }
+> >   EXPORT_SYMBOL(drm_edid_to_speaker_allocation);
+> >
+> > +/**
+> > + * drm_cea_sad_get_sample_rate - Extract the sample rate from cea_sad
+> > + * @sad: Pointer to the cea_sad struct
+> > + *
+> > + * Extracts the cea_sad frequency field and returns the sample rate in Hz.
+> > + *
+> > + * Return: Sample rate in Hz or a negative errno if parsing failed.
+> > + */
+> > +int drm_cea_sad_get_sample_rate(const struct cea_sad *sad)
+> > +{
+> > +     switch (sad->freq) {
+> > +     case DRM_CEA_SAD_FREQ_32KHZ:
+> > +             return 32000;
+> > +     case DRM_CEA_SAD_FREQ_44KHZ:
+> > +             return 44100;
+> > +     case DRM_CEA_SAD_FREQ_48KHZ:
+> > +             return 48000;
+> > +     case DRM_CEA_SAD_FREQ_88KHZ:
+> > +             return 88200;
+> > +     case DRM_CEA_SAD_FREQ_96KHZ:
+> > +             return 96000;
+> > +     case DRM_CEA_SAD_FREQ_176KHZ:
+> > +             return 176400;
+> > +     case DRM_CEA_SAD_FREQ_192KHZ:
+> > +             return 192000;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +EXPORT_SYMBOL(drm_cea_sad_get_sample_rate);
+> > +
+> > +static bool drm_cea_sad_is_uncompressed(const struct cea_sad *sad)
+> > +{
+> > +     switch (sad->format) {
+> > +     case HDMI_AUDIO_CODING_TYPE_STREAM:
+> > +     case HDMI_AUDIO_CODING_TYPE_PCM:
+> > +             return true;
+> > +     default:
+> > +             return false;
+> > +     }
+> > +}
+> > +
+> > +/**
+> > + * drm_cea_sad_get_uncompressed_word_length - Extract word length
+> > + * @sad: Pointer to the cea_sad struct
+> > + *
+> > + * Extracts the cea_sad byte2 field and returns the word length for an
+> > + * uncompressed stream.
+> > + *
+> > + * Note: This function may only be called for uncompressed audio.
+> > + *
+> > + * Return: Word length in bits or a negative errno if parsing failed.
+> > + */
+> > +int drm_cea_sad_get_uncompressed_word_length(const struct cea_sad *sad)
+> > +{
+> > +     if (!drm_cea_sad_is_uncompressed(sad)) {
+> > +             DRM_WARN("Unable to get the uncompressed word length for a compressed format: %u\n",
+> > +                      sad->format);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     switch (sad->byte2) {
+> > +     case DRM_CEA_SAD_UNCOMPRESSED_WORD_16BIT:
+> > +             return 16;
+> > +     case DRM_CEA_SAD_UNCOMPRESSED_WORD_20BIT:
+> > +             return 20;
+> > +     case DRM_CEA_SAD_UNCOMPRESSED_WORD_24BIT:
+> > +             return 24;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +}
+> > +EXPORT_SYMBOL(drm_cea_sad_get_uncompressed_word_length);
+> > +
+> >   /**
+> >    * drm_av_sync_delay - compute the HDMI/DP sink audio-video sync delay
+> >    * @connector: connector associated with the HDMI/DP sink
+> > diff --git a/include/drm/drm_edid.h b/include/drm/drm_edid.h
+> > index 18f6c700f6d02..a30452b313979 100644
+> > --- a/include/drm/drm_edid.h
+> > +++ b/include/drm/drm_edid.h
+> > @@ -361,12 +361,24 @@ struct edid {
+> >
+> >   /* Short Audio Descriptor */
+> >   struct cea_sad {
+> > -     u8 format;
+> > +     u8 format; /* See HDMI_AUDIO_CODING_TYPE_* */
+>
+> Hello Guillaume,
+>
+> since you're adding comments to all the rest of the struct members,
+> I think that a small effort to instead convert this to kerneldoc is
+> totally worth it.
+> Can you please do that?
+>
+> Thanks,
+> Angelo
+>
+Hello Angelo,
 
-Hi Stephen,
+Sure, that's a good suggestion.
 
-I depend on the PMC_MCK1 definition for some of the DT patches that I 
-must queue for my pull request to arm-soc, for 5.18.
-
-Would you mind doing an immutable branch for me to pull from, so that 
-the build doesn't crash while the clock tree is not integrated yet with 
-my patches?
-
-Tell me if there's a better way, as well.
-
-Thanks, best regards,
-   Nicolas
-
--- 
-Nicolas Ferre
+Thx,
+Guillaume.
+> >       u8 channels; /* max number of channels - 1 */
+> > -     u8 freq;
+> > +     u8 freq; /* See CEA_SAD_FREQ_* */
+> >       u8 byte2; /* meaning depends on format */
+> >   };
+> >
+> > +#define DRM_CEA_SAD_FREQ_32KHZ  BIT(0)
+> > +#define DRM_CEA_SAD_FREQ_44KHZ  BIT(1)
+> > +#define DRM_CEA_SAD_FREQ_48KHZ  BIT(2)
+> > +#define DRM_CEA_SAD_FREQ_88KHZ  BIT(3)
+> > +#define DRM_CEA_SAD_FREQ_96KHZ  BIT(4)
+> > +#define DRM_CEA_SAD_FREQ_176KHZ BIT(5)
+> > +#define DRM_CEA_SAD_FREQ_192KHZ BIT(6)
+> > +
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_16BIT BIT(0)
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_20BIT BIT(1)
+> > +#define DRM_CEA_SAD_UNCOMPRESSED_WORD_24BIT BIT(2)
+> > +
+> >   struct drm_encoder;
+> >   struct drm_connector;
+> >   struct drm_connector_state;
+> > @@ -374,6 +386,8 @@ struct drm_display_mode;
+> >
+> >   int drm_edid_to_sad(struct edid *edid, struct cea_sad **sads);
+> >   int drm_edid_to_speaker_allocation(struct edid *edid, u8 **sadb);
+> > +int drm_cea_sad_get_sample_rate(const struct cea_sad *sad);
+> > +int drm_cea_sad_get_uncompressed_word_length(const struct cea_sad *sad);
+> >   int drm_av_sync_delay(struct drm_connector *connector,
+> >                     const struct drm_display_mode *mode);
+> >
+>
+>
