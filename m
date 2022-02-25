@@ -2,103 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C02B74C4160
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 10:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 976AB4C4162
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 10:26:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239085AbiBYJZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 04:25:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54612 "EHLO
+        id S235507AbiBYJ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 04:26:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239083AbiBYJZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 04:25:14 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67895182D87;
-        Fri, 25 Feb 2022 01:24:23 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id EF4A81F45AF2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645781062;
-        bh=u9idag57rvmc8+kE2xwXHO4QSmwf2cUfuVZYpVWwzno=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HHWrpRKDWWODvpKgHH2FJgoYRczWBTVoDmcsJ+U2u8Xqo6LJt2XZnraOXJYYETihN
-         hg3T7TC/JSIXJjq1Z314B3P/rZ/SkucOhzZtf3qRY4kVe6BOebMcswRYwEsD5oKJGb
-         SUlO7LNPCnyG/O1XvC9dESgyC1ZcYSXHF1vM0piUlEGYLVFjWub+tOFcqqilkm1CWL
-         yqsipCrQwrnh3Icd1weux1eKwl5VO7wKVc1uIhcdfU00QzeoFbT6S3bMGUyCRiOSoD
-         QOr0dW+2w6ppmynj2Qhb4dkptB4Sj6YEGP2Lxf2VC6/uj6wVnhObM1FwrS/FG2ziV7
-         R2W5gl8OWHw6g==
-Message-ID: <5d87e367-4ca8-9f61-bc17-e1998be0ed6c@collabora.com>
-Date:   Fri, 25 Feb 2022 10:24:18 +0100
+        with ESMTP id S233276AbiBYJ03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 04:26:29 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A9FC182D89
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 01:25:57 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0A4BF3FCA8
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 09:25:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645781156;
+        bh=u3BiR+sSk8E/BV+I3I6ftChtPOWoeeNyFGRFGGOpa64=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=rYQbm1PbEIiadAGKAam2nsDAySUxlzfJ7nGqmdFsd3CTOdKKzT/YYG72mXZb3luJJ
+         svB6MRJdnDAG/6dCGeRtiU1lYCPc2V9ticYz1iKPgfmtQqq0nZkl/HY5jP0wL6y+BI
+         Nu2syPfecDPpXCmAex7r0iS+iHGL1OlNzUVJpzEnMnZlwQIqHctB3Bk8MLA/wp3aP/
+         7isJUsqhsAGCzdhP08PE+twe2Rq/q00W/p0EWSMItAAWxbZd6h+8IUIjDrYapw+KOu
+         nK4WVgBya65D6AbJFYimjRdnw0DVcaBtLZM/nccLrILqtBb2JMl4NdDL5UGsx2GLx1
+         HDGmmHkhXefHA==
+Received: by mail-ed1-f69.google.com with SMTP id y13-20020aa7c24d000000b00411925b7829so2029199edo.22
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 01:25:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=u3BiR+sSk8E/BV+I3I6ftChtPOWoeeNyFGRFGGOpa64=;
+        b=TNUcWUW9DzffAlgp33Irvk/rXTstLuIQA9XFJ+Rk1R9rYqpME3P13IxX8joPumdoDT
+         FuWFzfoEj2FlJhOQbu7SoDj6iKV9w6Z+OJS/WvXixh6PIODmnPu9WlcX1C/nuEBrm+ym
+         PozfA73uKYFK850NPldRHqKGtLFh0epAc0CvqdX+y/CrrNPecmXDXSSVDKmy5+Myeh59
+         vpT4l59C+SGPsGE+1/Uc0Nv9XhE293eeIlyMK8Mwda0kq8mwPAVBHByVZB+nEqMJHaP8
+         MXNyZ+mbMk8zfLjhb42HMaziQ76u9cn9Ibk1m/zmfa2ai8s3GOkxxgGjsvHKK/xJJSPU
+         vjeg==
+X-Gm-Message-State: AOAM533jMdbvR8bQnAAPiGC3x41UgPo0UJAeybIYHVgtFgX6lgV8+6oW
+        ioPxl5eJeMH+ai6BBSGKOUSMhY5knYFgFku8T4rJU0CYZ5q50yMe0YVWuryp29RU9iWN9JkYIUN
+        gorYsSk8PhoLOLafWcTCCdoDzBQRBTHWvreX6fmc=
+X-Received: by 2002:a50:fe14:0:b0:410:8621:6e0c with SMTP id f20-20020a50fe14000000b0041086216e0cmr6128262edt.356.1645781155713;
+        Fri, 25 Feb 2022 01:25:55 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx/RAHRHmxO306I0azib6Jyq/W0/GSgjv7dozaF7qDQqAcFJcfFq3x0jrM69GeMCTbpnIYaWA==
+X-Received: by 2002:a50:fe14:0:b0:410:8621:6e0c with SMTP id f20-20020a50fe14000000b0041086216e0cmr6128244edt.356.1645781155556;
+        Fri, 25 Feb 2022 01:25:55 -0800 (PST)
+Received: from [192.168.0.130] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id g11-20020a170906538b00b006ae38eb0561sm764572ejo.195.2022.02.25.01.25.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 01:25:54 -0800 (PST)
+Message-ID: <5784ee6b-1957-32a0-3406-cabbfed86832@canonical.com>
+Date:   Fri, 25 Feb 2022 10:25:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v7, 11/15] media: mtk-vcodec: record capture queue format
- type
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: iio: adc: renesas,rzg2l-adc: Document
+ RZ/V2L SoC
 Content-Language: en-US
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
- <20220223034008.15781-12-yunfei.dong@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220223034008.15781-12-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220224125843.29733-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220224125843.29733-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220224125843.29733-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 23/02/22 04:40, Yunfei Dong ha scritto:
-> Capture queue format type is difference for different platform,
-> need to calculate capture buffer size according to capture queue
-> format type in scp.
+On 24/02/2022 13:58, Lad Prabhakar wrote:
+> Document RZ/V2L ADC bindings. RZ/V2L ADC block is identical to one found
+> on the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-adc" will be used as a fallback.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+>  .../devicetree/bindings/iio/adc/renesas,rzg2l-adc.yaml         | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
 
-This change is ok, but the commit message should be changed to advertise
-that this is preparation for the new stateless H264 decoding driver.
-Besides, I suggest to reorder the commits sequence, so that this commit
-goes in between "Extract H264 common code" and
-"support stateless H.264 decoding for mt8192", as this last one is
-the actual real user of this change.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
-Anyway, this is my commit message proposal:
-
-The capture queue format type may be differ depending on platform:
-for stateless decoder drivers, we need to calculate the capture buffer
-size according to the capture queue format type in SCP.
-
-As a preparation for introducing drivers for stateless decoding, save
-the current capture queue type on a per vcodec context basis.
-
-After fixing,
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Best regards,
+Krzysztof
