@@ -2,69 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A41D64C3E00
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:42:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB3094C3E0C
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237598AbiBYFmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 00:42:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55822 "EHLO
+        id S236456AbiBYFvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 00:51:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237603AbiBYFmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:42:20 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA8930F78
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 21:41:48 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id y7so6306187oih.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 21:41:48 -0800 (PST)
+        with ESMTP id S230100AbiBYFvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:51:17 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22564B820E;
+        Thu, 24 Feb 2022 21:50:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=U4r1xpGpcEW5aqEcjdiRX7MWjToKanTSLY+a7BjOYQE=;
-        b=a5wKsdc+0BgDLsPcUcnjEh6GDmf//Br+CbPGT9FWbULtu5ZiUd9GUJNMeBny9J2tW3
-         kpw8cCMi8KdTPIlem9TppVy/iiGChQyV/dtYAFwI3mUYCtYAFWXCEnk7Fu2ibG83WfX3
-         M1bGyKzUgxOUdGqkwBUeKs3p1Y1SqvQuF0jNDqkmusoyNIjLrGf+2D5Eb4CkY3PD01DW
-         2FDaLHwNP8eRv6XEvRiVV/ABiQpXdjDGuKFsa3hDjQC3VfPTyrl+Z2MNZg4oVF25EJ0r
-         PO+cZ+JQDaSpP+JpZtJxUSSjch4vHp5RfAESEpYMIZvFCsKVA8eW9mozZ7KO0pqcgPAP
-         xvXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=U4r1xpGpcEW5aqEcjdiRX7MWjToKanTSLY+a7BjOYQE=;
-        b=cyN7E/0GLEK5h/cIOfeKQXefPCplcsmIti8Euvahhb6Hmch0dZbIl+gmJ4OIuA0is+
-         eMd+sRbgrDYMRLGuLUO6VgpRP0bj1vgtf8h9t2L6lFCcIwfVSa423SNU+L9SuNRPo30u
-         GAI3hUrrHhLO5M7J2HqbzDHksHIr2GpXbe8l5IN5CDCee47ladSeojUzmr2n+TG1B5Np
-         /pCG0M3HvlIjtOG5Ea2xbUoPL07MD1vHCBoC95+Pq14n+zuEGubt83GTMjiapMP09Hhf
-         pNIS2TyLjMFiFaCCilPGqHZJ/g22o7a26dzEjUMHY4lPZtqLnB8hi+JNpjMXh5D1gaw0
-         A6pA==
-X-Gm-Message-State: AOAM532xxl1dAZCJYOTmKwPAKzchz60QCVBzGQecDpca+lOfLlGYsdrN
-        qZxEZ8r0Z7tgOBUGnnfEjZETGw==
-X-Google-Smtp-Source: ABdhPJwkQbMMCQqC8NG8eWBYr4df3Didrs47x3vRIEk+hCzs/JLlGTKIPh8tbTo1473zemwNA2FkoQ==
-X-Received: by 2002:a05:6808:118d:b0:2cc:ef90:3812 with SMTP id j13-20020a056808118d00b002ccef903812mr782943oil.48.1645767707961;
-        Thu, 24 Feb 2022 21:41:47 -0800 (PST)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id bd32-20020a056870d7a000b000d43d4d2de1sm863567oab.5.2022.02.24.21.41.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 21:41:47 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RESEND 2/2] soc: qcom: rpmhpd: add sc8280xp rpmh power-domains
-Date:   Thu, 24 Feb 2022 21:43:45 -0800
-Message-Id: <20220225054345.2479565-2-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220225054345.2479565-1-bjorn.andersson@linaro.org>
-References: <20220225054345.2479565-1-bjorn.andersson@linaro.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645768246; x=1677304246;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ym6OTnxseorW8cS3VLj8xkqARTJwvANZ11x0wPsNmEs=;
+  b=gR5olCKUODUSFitF1MRxsEZpVjmhH1GeigASK168HC8IOqgPfqxD80rp
+   N1jFHtG4uL6wQyCTMrfo0/plJOt/MsYznBSGJsFeb5579tFy/8rFlWSDg
+   irYmJqBlqPIhsMGQaNnXi+Q+s+5V7LODwOkqwXVPBp51HIpo5QFLy2X9G
+   k=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 24 Feb 2022 21:50:45 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2022 21:50:44 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 24 Feb 2022 21:50:44 -0800
+Received: from [10.216.32.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Thu, 24 Feb
+ 2022 21:50:41 -0800
+Message-ID: <41f8fd92-70e4-def6-0bd1-c764b1445d68@quicinc.com>
+Date:   Fri, 25 Feb 2022 11:20:37 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
+ devices
+Content-Language: en-US
+To:     Kalle Valo <kvalo@kernel.org>
+CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh@kernel.org>
+References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
+ <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
+ <87ee4sgo7l.fsf@kernel.org>
+From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+In-Reply-To: <87ee4sgo7l.fsf@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,62 +68,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Qualcomm sc8280xp platform has 8 power-domains. Add these, and their
-relevant active-only variants, to the RPMh power-domain driver.
+On 1/28/2022 3:46 PM, Kalle Valo wrote:
+> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
+> 
+>> Unlike other ATH11K PCIe devices which are enumerated by APSS
+>> processor (Application Processor SubSystem), WCN6750 gets
+>> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
+>> In simple terms, though WCN6750 is PCIe device, it is not attached
+>> to the APSS processor, APSS will not know of such a device being
+>> present in the system and therefore WCN6750 will be registered as
+>> a platform device to the kernel core like other supported AHB
+>> devices.
+>>
+>> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
+>> AHB APIs for device probe/boot and PCI APIs for device setup
+>> and register accesses; Because of this nature, it is referred
+>> as a hybrid bus device.
+>>
+>> Refactor PCI code to support hybrid bus devices like WCN6750.
+>>
+>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
+>> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
+>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
+>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
+>>
+>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
+> 
+> [...]
+> 
+>> --- a/drivers/net/wireless/ath/ath11k/Makefile
+>> +++ b/drivers/net/wireless/ath/ath11k/Makefile
+>> @@ -29,7 +29,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
+>>   ath11k_ahb-y += ahb.o
+>>   
+>>   obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
+>> -ath11k_pci-y += mhi.o pci.o
+>> +ath11k_pci-y += mhi.o pci.o pci_cmn.o
+> 
+> So the end result looks like this:
+> 
+> obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
+> ath11k_ahb-y += ahb.o pci_cmn.o
+> 
+> obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
+> ath11k_pci-y += mhi.o pci.o pci_cmn.o
+> 
+> Linking pci_cmn.o to both ath11k_pci.ko and ath11k_ahb.ko looks wrong.
+> Does that even compile if ath11k is linked to the kernel, eg. with
+> allyesconfig?
+> 
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/soc/qcom/rpmhpd.c | 26 ++++++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
+I did try compiling the kernel with allyesconfig after your comment, 
+compilation went through without any hiccups.
 
-diff --git a/drivers/soc/qcom/rpmhpd.c b/drivers/soc/qcom/rpmhpd.c
-index 58f1dc9b9cb7..71602eb824f7 100644
---- a/drivers/soc/qcom/rpmhpd.c
-+++ b/drivers/soc/qcom/rpmhpd.c
-@@ -180,6 +180,11 @@ static struct rpmhpd mxc_ao = {
- 	.res_name = "mxc.lvl",
- };
- 
-+static struct rpmhpd nsp = {
-+	.pd = { .name = "nsp", },
-+	.res_name = "nsp.lvl",
-+};
-+
- /* SDM845 RPMH powerdomains */
- static struct rpmhpd *sdm845_rpmhpds[] = {
- 	[SDM845_CX] = &cx_w_mx_parent,
-@@ -363,10 +368,31 @@ static const struct rpmhpd_desc sc8180x_desc = {
- 	.num_pds = ARRAY_SIZE(sc8180x_rpmhpds),
- };
- 
-+/* SC8280xp RPMH powerdomains */
-+static struct rpmhpd *sc8280xp_rpmhpds[] = {
-+	[SC8280XP_CX] = &cx,
-+	[SC8280XP_CX_AO] = &cx_ao,
-+	[SC8280XP_MX] = &mx,
-+	[SC8280XP_MX_AO] = &mx_ao,
-+	[SC8280XP_EBI] = &ebi,
-+	[SC8280XP_LCX] = &lcx,
-+	[SC8280XP_LMX] = &lmx,
-+	[SC8280XP_GFX] = &gfx,
-+	[SC8280XP_MMCX] = &mmcx,
-+	[SC8280XP_MMCX_AO] = &mmcx_ao,
-+	[SC8280XP_NSP] = &nsp,
-+};
-+
-+static const struct rpmhpd_desc sc8280xp_desc = {
-+	.rpmhpds = sc8280xp_rpmhpds,
-+	.num_pds = ARRAY_SIZE(sc8280xp_rpmhpds),
-+};
-+
- static const struct of_device_id rpmhpd_match_table[] = {
- 	{ .compatible = "qcom,sc7180-rpmhpd", .data = &sc7180_desc },
- 	{ .compatible = "qcom,sc7280-rpmhpd", .data = &sc7280_desc },
- 	{ .compatible = "qcom,sc8180x-rpmhpd", .data = &sc8180x_desc },
-+	{ .compatible = "qcom,sc8280xp-rpmhpd", .data = &sc8280xp_desc },
- 	{ .compatible = "qcom,sdm845-rpmhpd", .data = &sdm845_desc },
- 	{ .compatible = "qcom,sdx55-rpmhpd", .data = &sdx55_desc},
- 	{ .compatible = "qcom,sm6350-rpmhpd", .data = &sm6350_desc },
--- 
-2.33.1
+> One way to solve is to link pci_cmn.o to ath11k.ko. But for another
+> approach, for a long time I have been thinking about what's the point to
+> have separate ath11k_pci.ko and ath11k_ahb.ko modules?,They are very
+> small anyway compared to ath11k.ko. So my ideais that should we have
+> just one ath11k.ko module, it contains all AHB and PCI code as well, and
+> ath11k_pci.ko and ath11k_ahb.ko would not be created anymore. It would
+> simplify things a bit, especially here.
+> 
+> Thoughts?
+> 
 
+I see some concerns going with single module combining both AHB and PCI 
+modules into ath11k.ko
+
+1) AHB and PCI drivers make use of completely different kernel 
+frameworks, for example AHB driver needs remoteproc APIs for booting and 
+require CONFIG_REMOTEPROC to be compiled in to the kernel. Similarly, 
+PCI driver needs MHI APIs and also dependent on CONFIG_PCI. Both MHI and 
+PCI bus frameworks need to be compiled for PCI to work. If we club all 
+of this into single module, I see that unnecessarily additional modules 
+will be compiled into the kernel which IMO is not so good idea.
+
+
+2) Secondly, there is high chance of writing bad code all over the 
+driver. For example, there are chances that developers put AHB/PCI 
+specific code all over the driver creating a big mess.
+Though this can be avoided with stringent code review, but why to
+give the chance.
+
+Though AHB and PCI drivers are smaller in size, IMHO let AHB and PCI be 
+independent drivers, code looks cleaner and properly segregated by 
+keeping them as it is today.
+
+Regarding the compilation of PCI common code, shall we move it into 
+ath11k.ko? What is your opinion on this.
+
+Thanks,
+Manikanta
