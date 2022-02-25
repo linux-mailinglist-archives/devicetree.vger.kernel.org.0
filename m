@@ -2,97 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B521D4C4AC7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:31:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EDF74C4AD7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:33:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238322AbiBYQbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 11:31:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59750 "EHLO
+        id S243032AbiBYQdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 11:33:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235397AbiBYQbC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:31:02 -0500
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 141131D86D4;
-        Fri, 25 Feb 2022 08:30:30 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so6880199ooi.2;
-        Fri, 25 Feb 2022 08:30:30 -0800 (PST)
+        with ESMTP id S243031AbiBYQdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:33:40 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3844FDF37;
+        Fri, 25 Feb 2022 08:33:08 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id 12so7943163oix.12;
+        Fri, 25 Feb 2022 08:33:08 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1wkrFjytm/bfyZ688DRYD5WIyjqQECAVw3q7pHsvHsw=;
-        b=MllEvRIEOPpQjMAQkTCnf0JgePCze6KRNgyFbRr394q0l3s0UEP2pSg2E9jlfSg2m4
-         B+wOcO31J+JXtBpoNYgJH8ggZtfhdkzxAl/IeLGHkjCTXfHxB1z8GaUKxQnAtnqXs7RT
-         HIyHJlqyYcCNwvtswUGQLcdCYXk/LvsKhNzwykJPkLKV9rlgDkatG+BohTKZYqc5r/dd
-         vfCnOzW+kdpK4oFLPJeWD4Fll+2a9j/iZbIGEBInohIXF9cacoLsD3vB11MiMM2aTCP4
-         HO5EvSEa7eJL7Rna0QS4h1SXMnWXooyLXpTbaGSQWmS2G6ROlxZGtuJtUwBGxCjyDa9T
-         9ukw==
-X-Gm-Message-State: AOAM532RrZAYV10YSJNrpYoYknp5NhSzxoUvG/QBDHLf1fbaA9BecS62
-        UJSklaPvypQCSmupTymNvw==
-X-Google-Smtp-Source: ABdhPJxHnQhONryFwpvuU3O9cL+TRRiq/RY06mE2+ZgOVfuaaBUkDTiEOsd6KQFZQO00sR87pj5RBQ==
-X-Received: by 2002:a05:6870:a552:b0:b5:6c53:b96b with SMTP id p18-20020a056870a55200b000b56c53b96bmr1705102oal.124.1645806629409;
-        Fri, 25 Feb 2022 08:30:29 -0800 (PST)
+        bh=XXg+FEt5mLgbXsRsErmFUwdBh6AYb/1xe2xli27bLXI=;
+        b=N3FhshSlBEsiMneBb2hZsccEVODFNHo+sGaOlXljnJ6DDawAvToI0GdlImhwwwiSp4
+         SJbruQs862Trojv3fpIoDg83A0E8Q5Z7+9v7NQEhGWN319vJ9zWnh8pHtkBQrhxYLfTh
+         VAxexv3yXUg/LpuF6hkuim/rwdLydY4XyAYuPyu+QVxgz7swnshmkRaXM/tjsCKmw817
+         /y61kM9YHcGKimfM35upbwBElIl4R6Z+DeV6KCZ3/+DQBJIUTnCfqhJR1ORNARBaW9ka
+         mckyCyP9rflKA0JdvXl48+PyHDevi8Dp5BPrsot+njVi+dDeFNwvRHSLMpoZNHcVJhT1
+         SB+w==
+X-Gm-Message-State: AOAM533FiLmpcsLprpm8zyKWOM/fur5/MFwh0b8GDulr4BHmLRn5m6/h
+        VTRYUSxvK4/68EDGhR9dmA==
+X-Google-Smtp-Source: ABdhPJwn+VcYtq5OlnrynM+W03vZrYxW/uTx27PrtmXIyIxm11wkdwZr1zX97le62iz5C30DDwkEtQ==
+X-Received: by 2002:aca:3e56:0:b0:2d4:c902:b851 with SMTP id l83-20020aca3e56000000b002d4c902b851mr2037230oia.114.1645806787497;
+        Fri, 25 Feb 2022 08:33:07 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l20-20020a056820031400b0031cf5913126sm1241648ooe.36.2022.02.25.08.30.27
+        by smtp.gmail.com with ESMTPSA id c8-20020a4ad788000000b0031ce69b1640sm1227099oou.10.2022.02.25.08.33.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 08:30:28 -0800 (PST)
-Received: (nullmailer pid 1045540 invoked by uid 1000);
-        Fri, 25 Feb 2022 16:30:26 -0000
-Date:   Fri, 25 Feb 2022 10:30:26 -0600
+        Fri, 25 Feb 2022 08:33:06 -0800 (PST)
+Received: (nullmailer pid 1049444 invoked by uid 1000);
+        Fri, 25 Feb 2022 16:33:05 -0000
+Date:   Fri, 25 Feb 2022 10:33:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>
-Cc:     Fritz Koenig <frkoenig@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        linux-media@vger.kernel.org,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Irui Wang <irui.wang@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Steve Cho <stevecho@chromium.org>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        srv_heupstream@mediatek.com, George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        linux-mediatek@lists.infradead.org, Tomasz Figa <tfiga@google.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v3, 1/7] dt-bindings: media: mtk-vcodec: Adds decoder
- dt-bindings for lat soc
-Message-ID: <YhkEIr/Jlky+5CZY@robh.at.kernel.org>
-References: <20220217075758.11369-1-yunfei.dong@mediatek.com>
- <20220217075758.11369-2-yunfei.dong@mediatek.com>
+To:     Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, Sriram Dash <sriram.dash@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH net-next] dt-binding: can: m_can: fix indention of table
+ in bosch,mram-cfg description
+Message-ID: <YhkEwTaduIc5Dd5W@robh.at.kernel.org>
+References: <20220217101111.2291151-1-mkl@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220217075758.11369-2-yunfei.dong@mediatek.com>
+In-Reply-To: <20220217101111.2291151-1-mkl@pengutronix.de>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Feb 2022 15:57:52 +0800, Yunfei Dong wrote:
-> Adds decoder dt-bindings for compatible "mediatek,mtk-vcodec-lat-soc".
+On Thu, 17 Feb 2022 11:11:11 +0100, Marc Kleine-Budde wrote:
+> This patch fixes the indention of the table in the description of the
+> bosch,mram-cfg property.
 > 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Cc: Sriram Dash <sriram.dash@samsung.com>
+> Cc: Benjamin Gaignard <benjamin.gaignard@st.com>
+> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 > ---
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 51 +++++++++++++------
->  1 file changed, 35 insertions(+), 16 deletions(-)
+>  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
