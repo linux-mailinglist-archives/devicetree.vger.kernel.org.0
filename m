@@ -2,134 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 078C64C40BA
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 09:54:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D314C40C1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 09:56:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238820AbiBYIy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 03:54:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55816 "EHLO
+        id S235938AbiBYI4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 03:56:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238822AbiBYIyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 03:54:49 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12ECC225013;
-        Fri, 25 Feb 2022 00:54:16 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id AA523B82BAA;
-        Fri, 25 Feb 2022 08:54:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31D09C340E7;
-        Fri, 25 Feb 2022 08:54:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645779253;
-        bh=qDoHRAR0vvt/ZOgxnKgt3lhWxvnrIion7K3HBk+YVgk=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=KYzzVltmm5KxJGNhO3xtIbnoMqZ00TL9l7j9vGQUcukoE65EhBB7jbSswWNYflDDa
-         UJ3Vezwm3/28LBomN8KcuIiNKBFdX3rquABxCk5Juur3dkVQdrf+U88Hiup2AZuBee
-         kDenJRgqW0Xf4TCldYRIBnzB13PJqihMKKIiIXS4lW9iB0zfYebP0XJQjjkA8+DbqJ
-         p3xFo5uFvo2c9K8CFsV4ZJZ9CMibOFDZCgdhhBwyWX6mSntijigViaz1yjjFEMdJS6
-         eHl2rxXnQ8fwFMsbFhuf0zNhEuzXArFw6ABZV3X5ulb96VzfuD7VzO4GCANuTeEtMF
-         6xhLQNBdy/2bg==
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nNWMc-00ASxv-Or; Fri, 25 Feb 2022 08:54:10 +0000
+        with ESMTP id S232659AbiBYI4j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 03:56:39 -0500
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48435225002;
+        Fri, 25 Feb 2022 00:56:08 -0800 (PST)
+Received: by mail-ed1-f41.google.com with SMTP id m3so6390530eda.10;
+        Fri, 25 Feb 2022 00:56:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=S27aJRS83juI73kqWU0BxLGP8P3u79JStBDKAuIXFhk=;
+        b=BUSEpEhuOkhpppOXNXT+BdPEpe0kBH3iNchfYBbsC6y9Tkl5wzy7/5bmyTC81UCd3w
+         k/H7U2PPBCOWOV1rjRa+4TtBG7TOFNRbqveJQJD8tf++JN+msReM1iWfeuTbxy2Agvgy
+         LTcb6gY93DtI1wzO+FgJnxlu9eTSqPYkOC1bSKSpkjhb2qNkr8QM2mzTGfybW2Ojm5qW
+         3f5GoDePgPJIgMlTTlUEhl97WvMJEwUC5/AeqA/QY1Np1a/Z9eXe+sct40rS/ycrNdA1
+         z99y7ARB9cfh3D5HiciUPZsuphghzs0W/S3JAXaDNQYzcYoj7ypg3eTk2faNETy63g7Y
+         fHKg==
+X-Gm-Message-State: AOAM531sTq3c3YlZMy6BxwaBoRN8NpMZftXm1LrA03m6kXnmSCpg/AU8
+        dEh5YKsKYsdpITaohIi5IpeiMs/3bPQ=
+X-Google-Smtp-Source: ABdhPJyoLJT8Or8rEnWPT56mqaT7iWjipB/VQRiQnuSeper/ezx7KtfhXCBHPXRwKEykdvb/PXvTsg==
+X-Received: by 2002:a05:6402:438e:b0:410:a8bd:fee0 with SMTP id o14-20020a056402438e00b00410a8bdfee0mr6084025edc.426.1645779366594;
+        Fri, 25 Feb 2022 00:56:06 -0800 (PST)
+Received: from [192.168.0.130] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id gb11-20020a170907960b00b006d20acf7e36sm763580ejc.144.2022.02.25.00.56.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 00:56:05 -0800 (PST)
+Message-ID: <82d76824-ef5b-23f9-149e-2c5d9f88e94a@kernel.org>
+Date:   Fri, 25 Feb 2022 09:56:04 +0100
 MIME-Version: 1.0
-Date:   Fri, 25 Feb 2022 08:54:10 +0000
-From:   Marc Zyngier <maz@kernel.org>
-To:     Shawn Guo <shawn.guo@linaro.org>
-Cc:     kernel test robot <lkp@intel.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>, kbuild-all@lists.01.org,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 3/3] irqchip: Add Qualcomm MPM controller driver
-In-Reply-To: <20220224021017.GA269879@dragon>
-References: <20220223125536.230224-4-shawn.guo@linaro.org>
- <202202240730.8ES2LbM6-lkp@intel.com> <20220224021017.GA269879@dragon>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <8eff0caf8a8a10f0e8bf99bc9f949c5d@kernel.org>
-X-Sender: maz@kernel.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: hwmon: Add sample averaging property
+ for ADM1275
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Potin Lai <potin.lai@quantatw.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220224154329.9755-1-potin.lai@quantatw.com>
+ <20220224154329.9755-3-potin.lai@quantatw.com>
+ <c6607953-927e-4d85-21cb-72e01a121453@kernel.org>
+ <b527a418-b807-7afa-9ed0-2ac4271ff79e@kernel.org>
+ <91e35667-5203-271b-8a0e-b9ddf71561d6@roeck-us.net>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <91e35667-5203-271b-8a0e-b9ddf71561d6@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, lkp@intel.com, rafael@kernel.org, kbuild-all@lists.01.org, valentin.schneider@arm.com, bigeasy@linutronix.de, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, sudeep.holla@arm.com, ulf.hansson@linaro.org, daniel.lezcano@linaro.org, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-24 02:10, Shawn Guo wrote:
-> On Thu, Feb 24, 2022 at 07:43:21AM +0800, kernel test robot wrote:
->> Hi Shawn,
->> 
->> I love your patch! Perhaps something to improve:
->> 
->> [auto build test WARNING on tip/irq/core]
->> [also build test WARNING on robh/for-next linus/master v5.17-rc5 
->> next-20220222]
->> [If your patch is applied to the wrong git tree, kindly drop us a 
->> note.
->> And when submitting patch, we suggest to use '--base' as documented in
->> https://git-scm.com/docs/git-format-patch]
->> 
->> url:    
->> https://github.com/0day-ci/linux/commits/Shawn-Guo/Add-Qualcomm-MPM-irqchip-driver-support/20220223-210123
->> base:   https://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git 
->> d2206fcabdfaff3958ab67cc5b8f63257e57b889
->> config: arm64-allyesconfig 
->> (https://download.01.org/0day-ci/archive/20220224/202202240730.8ES2LbM6-lkp@intel.com/config)
->> compiler: aarch64-linux-gcc (GCC) 11.2.0
->> reproduce (this is a W=1 build):
->>         wget 
->> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross 
->> -O ~/bin/make.cross
->>         chmod +x ~/bin/make.cross
->>         # 
->> https://github.com/0day-ci/linux/commit/17f8a23f57bf6d0177f6ef6f78237b37bd853e8d
->>         git remote add linux-review https://github.com/0day-ci/linux
->>         git fetch --no-tags linux-review 
->> Shawn-Guo/Add-Qualcomm-MPM-irqchip-driver-support/20220223-210123
->>         git checkout 17f8a23f57bf6d0177f6ef6f78237b37bd853e8d
->>         # save the config file to linux build tree
->>         mkdir build_dir
->>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 
->> make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/irqchip/
->> 
->> If you fix the issue, kindly add following tag as appropriate
->> Reported-by: kernel test robot <lkp@intel.com>
->> 
->> All warnings (new ones prefixed by >>):
->> 
->> >> drivers/irqchip/qcom-mpm.c:210:21: warning: no previous prototype for 'get_mpm_gic_map' [-Wmissing-prototypes]
->>      210 | struct mpm_gic_map *get_mpm_gic_map(struct qcom_mpm_priv 
->> *priv, int pin)
->>          |                     ^~~~~~~~~~~~~~~
+On 25/02/2022 09:41, Guenter Roeck wrote:
+> On 2/24/22 23:31, Krzysztof Kozlowski wrote:
+>> On 25/02/2022 08:06, Krzysztof Kozlowski wrote:
+>>> On 24/02/2022 16:43, Potin Lai wrote:
+>>>> Add new properties for binding sample averaging in PMON_CONFIG register
+>>>>
+>>>> - adi,volt-curr-sample-average
+>>>> - adi,power-sample-average
+>>>>
+>>>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+>>>> ---
+>>>>   .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
+>>>>   1 file changed, 44 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> index 223393d7cafd..325f6827648f 100644
+>>>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> @@ -37,6 +37,48 @@ properties:
+>>>>       description:
+>>>>         Shunt resistor value in micro-Ohm.
+>>>>   
+>>>> +  adi,volt-curr-sample-average:
+>>>> +    description: |
+>>>> +      A value to configure VI_AVG in PMON_CONFIG register to indicate a
+>>>> +      number of samples to be used to report voltage and currentvalues.
+>>>
+>>> missing space after current.
+>>>
+>>>> +      If set to 7, the 128 samples averaging would be used.
+>>>> +
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint8
+>>>
+>>> Make it a uint32.
+>>>
+>>> The previous usage of this field was more appropriate. Instead of
+>>> keeping register values in DT, it's better to keep logical value. What
+>>> if in next cheap the register values have calculation method?
+>>>
+>>> This should be like in v1 - enum for number of samples to take in averaging.
+>>>
+>>
+>> One more thought: this field could also stay in current approach if you
+>> change the meaning from "value to configure VI_AVG" to something like
+>> "the exponent used to determine the number of samples, where the base is 2".
+>>
+>> This approach would allow you to skip the "ilog" in the code. It sill
+>> won't be that easily scalable if another chip comes with different
+>> formula, but I think that's unlikely.
+>>
 > 
-> Oops!  The 'static' declaration got lost.  Will fix in the next 
-> version.
+> The standard hwmon ABI expects the number of samples, it isn't always a
+> power of 2, and the driver already implements it (with ilog2) as sysfs
+> attribute. I don't really see the point of "optimizing" something
+> like this to be chip specific just to avoid some error checking.
 
-While you're at it, please rename this driver to irq-qcom-mpm.c
-in order to match the rest of the drivers. I have no idea
-why the QC stuff is named differently...
+Thanks for confirming. +1
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+
+
+Best regards,
+Krzysztof
