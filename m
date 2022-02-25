@@ -2,150 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8474C3F3D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:46:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42BE84C3F4D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:50:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235972AbiBYHr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 02:47:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49854 "EHLO
+        id S233827AbiBYHvV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 02:51:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238236AbiBYHrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:47:25 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00E01B7149
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:46:51 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id s13so3124689wrb.6
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:46:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=oKlddMOdoBQpHXORVm/dprXUDfrOkRgmeBsrcJHm1bw=;
-        b=m2RaanlztnHpMkrKbTVH4cK8XTyZDBISo1kMKyf9MDpdwNDKeGoIAB/DzRaX99gM2t
-         O+PlMP+fcc1TawEsM38iZgp654X0Wa2mQlW6b2g78ro4Blf65NCjB5JH06cFrU9r7SwM
-         IWVVC8hPd5AG6n1hqKlW6hwtFUA7dYe3bgfPVQGvPjXVg8zULslMhrZU+sJB4w3JStME
-         3P/fWZD1kVJwuIhH5hEnlZtTziYi1F+xBgumtdhufVA7HdfpyhM0hPUNDDJASG+oK+vG
-         Bq3GAMwG95X2fdTheyLubB65xJqysSaY+cnuqW+LTy4fePMaDUozEZ4WndiWNrP7G0av
-         dGRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=oKlddMOdoBQpHXORVm/dprXUDfrOkRgmeBsrcJHm1bw=;
-        b=3gCj9yKAzWa14dxrIwNt3Sfog8d19Mtx1iqRVvR0rvrWuX49hasyvSlqQGZTsCUUgR
-         IgbXSv+3avXF/MyS/30f64Lm/1rhERzGwf+pfc4Kwz5NcGPJlJKDyPJUwxDWZQuvFdF1
-         ewghHYT0xxABCVzc2KlFx0bf3Pwl0kUyaL3l3Rm+QBSgWYuZm0jYmIqQpIlvbfyRai9R
-         PLDji82q5gNYy6V+7Xl5S/fI1jy9C+jIKjkY6r2mmf1Jv+fwUIc+5l3JDba90VNjmaqF
-         gIz2bqcqmRdYFKZlGsWJhmHwaypj8ERj7BUXzLVyeFZC1xqL4S9E+PFktkUgfhdRug5M
-         zcCA==
-X-Gm-Message-State: AOAM531lVk8qpQ4s6hNr2mLiNp6Umcw9dUho9RVBnjlH55T5eMnpa5HJ
-        lGh6W6BC/WK7spZrnvwkq4wB4w==
-X-Google-Smtp-Source: ABdhPJwWKlGDm8gsTQCIae+e+5zK2D2UI0JFQX/0+5DWZfLMtz1nTxwmfso/Qihyewj5DILPqcJNzQ==
-X-Received: by 2002:adf:bbc4:0:b0:1ee:f2d4:2f75 with SMTP id z4-20020adfbbc4000000b001eef2d42f75mr3458910wrg.701.1645775210360;
-        Thu, 24 Feb 2022 23:46:50 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:5e3f:6e2c:a7c1:38f1? ([2001:861:44c0:66c0:5e3f:6e2c:a7c1:38f1])
-        by smtp.gmail.com with ESMTPSA id n9-20020a05600c294900b00380f8be8ceesm4841753wmd.20.2022.02.24.23.46.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Feb 2022 23:46:49 -0800 (PST)
-Message-ID: <905e3d32-43dc-7073-36ce-ab39bf7c6f0a@baylibre.com>
-Date:   Fri, 25 Feb 2022 08:46:49 +0100
+        with ESMTP id S233813AbiBYHvU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:51:20 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19FE91AAFCF;
+        Thu, 24 Feb 2022 23:50:48 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21P7oArn092127;
+        Fri, 25 Feb 2022 01:50:10 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1645775410;
+        bh=EE1HknnGs341fweb74p5Qo4hBGv3hC8wo+SMvmEQFYk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=H6LMFX+QWdtSUd9VvRoMYXp26qbIWJ9Tggb5Zbkp7PLFAQKbI0xYk2cEzbkKNE651
+         FLs/Vx3F5JAB5l+hTbumoFTuxAYP+T5CQ+rBxUiCsZbNcfpRkib5z9/AQK6mwJdEVG
+         qz4KCVtYvxXIQDVkaL8TYT4lfSxkAFQE9h6xF8sk=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21P7o9pQ032657
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 25 Feb 2022 01:50:10 -0600
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Fri, 25
+ Feb 2022 01:50:08 -0600
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Fri, 25 Feb 2022 01:50:08 -0600
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21P7o7Ew043530;
+        Fri, 25 Feb 2022 01:50:08 -0600
+Date:   Fri, 25 Feb 2022 13:20:07 +0530
+From:   Pratyush Yadav <p.yadav@ti.com>
+To:     =?utf-8?Q?C=C3=A9dric?= Le Goater <clg@kaod.org>
+CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 03/10] spi: spi-mem: Add driver for Aspeed SMC controllers
+Message-ID: <20220225075007.73xypamm3zbjnkg6@ti.com>
+References: <20220214094231.3753686-1-clg@kaod.org>
+ <20220214094231.3753686-4-clg@kaod.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V4 1/2] dt-bindings: power: add Amlogic s4 power domains
- bindings
-Content-Language: en-US
-To:     Shunzhou Jiang <shunzhou.jiang@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     khilman@baylibre.com, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, jianxin.pan@amlogic.com,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220225064455.1369197-1-shunzhou.jiang@amlogic.com>
- <20220225064455.1369197-2-shunzhou.jiang@amlogic.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220225064455.1369197-2-shunzhou.jiang@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220214094231.3753686-4-clg@kaod.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 25/02/2022 07:44, Shunzhou Jiang wrote:
-> Add the bindings for the Amlogic Secure power domains, controlling the
-> secure power domains.
+On 14/02/22 10:42AM, Cédric Le Goater wrote:
+> This SPI driver adds support for the Aspeed static memory controllers
+> of the AST2600, AST2500 and AST2400 SoCs using the spi-mem interface.
 > 
-> The bindings targets the Amlogic s4, in which the power domains registers
-> are in secure world.
+>  * AST2600 Firmware SPI Memory Controller (FMC)
+>    . BMC firmware
+>    . 3 chip select pins (CE0 ~ CE2)
+>    . Only supports SPI type flash memory
+>    . different segment register interface
+>    . single, dual and quad mode.
 > 
-> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-
-Please keep along revisions the Reviewed-by/Acked-by/Tested-by from previous reviews like the one from https://lore.kernel.org/r/CAFBinCBN-QoA-e9JzfUq-Wc4Chu=x6cVoP2SYf=q-GrnLdLGKg@mail.gmail.com
-
-And please CC devicetree@vger.kernel.org to have a proper review from the Rob Herring, without a proper review from Rob I can't take it.
-
-Neil
-
+>  * AST2600 SPI Flash Controller (SPI1 and SPI2)
+>    . host firmware
+>    . 2 chip select pins (CE0 ~ CE1)
+>    . different segment register interface
+>    . single, dual and quad mode.
+> 
+>  * AST2500 Firmware SPI Memory Controller (FMC)
+>    . BMC firmware
+>    . 3 chip select pins (CE0 ~ CE2)
+>    . supports SPI type flash memory (CE0-CE1)
+>    . CE2 can be of NOR type flash but this is not supported by the driver
+>    . single, dual mode.
+> 
+>  * AST2500 SPI Flash Controller (SPI1 and SPI2)
+>    . host firmware
+>    . 2 chip select pins (CE0 ~ CE1)
+>    . single, dual mode.
+> 
+>  * AST2400 New Static Memory Controller (also referred as FMC)
+>    . BMC firmware
+>    . New register set
+>    . 5 chip select pins (CE0 ∼ CE4)
+>    . supports NOR flash, NAND flash and SPI flash memory.
+>    . single, dual and quad mode.
+> 
+> Each controller has a memory range on which flash devices contents are
+> mapped. Each device is assigned a window that can be changed at bootime
+> with the Segment Address Registers.
+> 
+> Each SPI flash device can then be accessed in two modes: Command and
+> User. When in User mode, SPI transfers are initiated with accesses to
+> the memory segment of a device. When in Command mode, memory
+> operations on the memory segment of a device generate SPI commands
+> automatically using a Control Register for the settings.
+> 
+> This initial patch adds support for User mode. Command mode needs a little
+> more work to check that the memory window on the AHB bus fits the device
+> size. It will come later when support for direct mapping is added.
+> 
+> Single and dual mode RX transfers are supported. Other types than SPI
+> are not supported.
+> 
+> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+> Signed-off-by: Cédric Le Goater <clg@kaod.org>
 > ---
->   .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
->   include/dt-bindings/power/meson-s4-power.h    | 19 +++++++++++++++++++
->   2 files changed, 21 insertions(+), 1 deletion(-)
->   create mode 100644 include/dt-bindings/power/meson-s4-power.h
+>  drivers/spi/spi-aspeed-smc.c            | 766 ++++++++++++++++++++++++
+>  drivers/mtd/spi-nor/controllers/Kconfig |   2 +-
+>  drivers/spi/Kconfig                     |  11 +
+>  drivers/spi/Makefile                    |   1 +
+>  4 files changed, 779 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/spi/spi-aspeed-smc.c
 > 
-> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-> index 5dae04d2936c..7657721a4e96 100644
-> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
-> @@ -12,13 +12,14 @@ maintainers:
->     - Jianxin Pan <jianxin.pan@amlogic.com>
->   
->   description: |+
-> -  Secure Power Domains used in Meson A1/C1 SoCs, and should be the child node
-> +  Secure Power Domains used in Meson A1/C1/S4 SoCs, and should be the child node
->     of secure-monitor.
->   
->   properties:
->     compatible:
->       enum:
->         - amlogic,meson-a1-pwrc
-> +      - amlogic,meson-s4-pwrc
->   
->     "#power-domain-cells":
->       const: 1
-> diff --git a/include/dt-bindings/power/meson-s4-power.h b/include/dt-bindings/power/meson-s4-power.h
-> new file mode 100644
-> index 000000000000..462dd2cb938b
-> --- /dev/null
-> +++ b/include/dt-bindings/power/meson-s4-power.h
-> @@ -0,0 +1,19 @@
-> +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-> +/*
-> + * Copyright (c) 2021 Amlogic, Inc.
-> + * Author: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-> + */
+[...]
 > +
-> +#ifndef _DT_BINDINGS_MESON_S4_POWER_H
-> +#define _DT_BINDINGS_MESON_S4_POWER_H
+> +/* support for 1-1-1, 1-1-2 or 1-1-4 */
+> +static bool aspeed_spi_supports_op(struct spi_mem *mem, const struct spi_mem_op *op)
+> +{
+> +	if (op->cmd.buswidth > 1)
+> +		return false;
 > +
-> +#define PWRC_S4_DOS_HEVC_ID	0
-> +#define PWRC_S4_DOS_VDEC_ID	1
-> +#define PWRC_S4_VPU_HDMI_ID	2
-> +#define PWRC_S4_USB_COMB_ID	3
-> +#define PWRC_S4_GE2D_ID		4
-> +#define PWRC_S4_ETH_ID		5
-> +#define PWRC_S4_DEMOD_ID	6
-> +#define PWRC_S4_AUDIO_ID	7
+> +	if (op->addr.nbytes != 0) {
+> +		if (op->addr.buswidth > 1 || op->addr.nbytes > 4)
+> +			return false;
+> +	}
 > +
-> +#endif
+> +	if (op->dummy.nbytes != 0) {
+> +		if (op->dummy.buswidth > 1 || op->dummy.nbytes > 7)
+> +			return false;
+> +	}
+> +
+> +	if (op->data.nbytes != 0 && op->data.buswidth > 4)
+> +		return false;
+> +
+> +	if (!spi_mem_default_supports_op(mem, op))
+> +		return false;
+> +
+> +	return true;
 
+Nitpick: You can just do return spi_mem_default_supports_op(mem, op);
+
+> +}
+> +
+[...]
+> +
+> +static int aspeed_spi_init_devices(struct platform_device *pdev, struct aspeed_spi *aspi)
+> +{
+> +	struct device_node *np;
+> +	unsigned int cs;
+> +	int ret;
+> +
+> +	for_each_available_child_of_node(aspi->dev->of_node, np) {
+> +		struct aspeed_spi_chip *chip;
+> +
+> +		if (!of_device_is_compatible(np, "jedec,spi-nor"))
+> +			continue;
+> +
+> +		ret = of_property_read_u32(np, "reg", &cs);
+> +		if (ret) {
+> +			dev_err(aspi->dev, "Couldn't not read chip select.\n");
+> +			of_node_put(np);
+> +			return ret;
+> +		}
+> +
+> +		if (cs > aspi->data->max_cs) {
+> +			dev_err(aspi->dev, "Chip select %d out of range.\n", cs);
+> +			of_node_put(np);
+> +			return -ERANGE;
+> +		}
+> +
+> +		chip = &aspi->chips[cs];
+> +		chip->aspi = aspi;
+> +		chip->cs = cs;
+> +
+> +		ret = aspeed_spi_chip_init(chip);
+> +		if (ret) {
+> +			of_node_put(np);
+> +			return ret;
+> +		}
+> +
+> +		if (of_property_read_u32(np, "spi-max-frequency", &chip->clk_freq))
+> +			chip->clk_freq = ASPEED_SPI_DEFAULT_FREQ;
+> +
+> +		aspi->num_cs++;
+> +	}
+
+SPI MEM already gives you all this information. Get it from there, don't 
+parse it yourself.
+
+You can get Chip Select via spi_mem->spi->chip_select.
+You can get clock frequency via spi_mem->spi->max_speed_hz.
+
+With these comments fixed,
+
+Acked-by: Pratyush Yadav <p.yadav@ti.com>
+
+> +
+> +	return 0;
+> +}
+> +
+[...]
+
+-- 
+Regards,
+Pratyush Yadav
+Texas Instruments Inc.
