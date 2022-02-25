@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64EEA4C4651
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 14:29:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A2504C4660
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 14:30:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241298AbiBYN2l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 08:28:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47218 "EHLO
+        id S239764AbiBYNbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 08:31:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241330AbiBYN2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 08:28:39 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38351CC7C3;
-        Fri, 25 Feb 2022 05:28:07 -0800 (PST)
+        with ESMTP id S236354AbiBYNbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 08:31:06 -0500
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC342028B5
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 05:30:34 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id n14so4524913wrq.7
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 05:30:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645795688; x=1677331688;
-  h=from:to:cc:subject:date:message-id:mime-version;
-  bh=E2ShHUOrtOZLWXAXYu6EW8hVXUIjgHz04oYFBI5vdm0=;
-  b=bu6WDsCuH0zyq8gA2ZGm/LGcAT8WzIJIEFBqQ2g4ceGti9ZHjo9gnbTj
-   EUVSPQeinrJVt48tO6eaT0uBoka6CbTh3yQLxiJg5gYAx6ou8GyyOXbgA
-   nGFvg4hfMSjI6SXiDq2YMuUER66TglM8mLN2NELEQDEl/6d0fZGDS2Ffn
-   k=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 25 Feb 2022 05:28:07 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Feb 2022 05:28:06 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 25 Feb 2022 05:28:06 -0800
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Fri, 25 Feb 2022 05:27:59 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>, <koul@kernel.org>,
-        <yung-chuan.liao@linux.intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH] soundwire: qcom: remove redundant wait for completion
-Date:   Fri, 25 Feb 2022 18:57:47 +0530
-Message-ID: <1645795667-20176-1-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=lA2TP6CXnlLRSiUK4WuPdeporQ2L4M6GD5lx0NO6PQU=;
+        b=jfcbeqL8MF74iesJD4f9WkENFN6gHWlm5NRnNSy21oLv68q42M+RM/g03RLJjftCrY
+         1MnsGFGR1/702EbAVX4qSUm6vWKPZsA9jrzGxZ2sKXX2is/EeWroS9K7/nNqTzWFbuGt
+         5NNE/EubRjt4a1OBZmHQBrqYx/nnuubo8pJsvQJ6LWmBkgskqKPFIrDALXkXeA13f/e3
+         fKWU6p1OFJUFqTNr/ogZCTXcVCSSokEBTKmjeSTjg07p1weFw1gRhHyAcobWNzcLyuvD
+         GxfBLnzh7Y6Vw7+3NN6zpyc425TGczN4SyXmOsuhFg0utykQ7UctTb/v0LKcWE1v7o7N
+         JBug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lA2TP6CXnlLRSiUK4WuPdeporQ2L4M6GD5lx0NO6PQU=;
+        b=F9+k2pyhL+YdFs0bSsImi0aZTy6kQ5uWo3YUhbQxKklC44G2p0TzvV2AnBplSJt5pM
+         OkpZQVNpnFGtGucVsAPQcWVYeCxYnrBeX79VoJ3ng9+LPkiey5xTer/U9NsyIHX0MaFI
+         kcY3beNbu/QxEqzz08+UK0XRcOq6+vVZguc7lGCOxfSux9myiRK4jMT7eE7lxZSPQh06
+         XWnpnPzQJ1GMxsCLA4lIFwsaRC7B5c+APFIE2RzbxJ+d0wtSFbDDx57L17qQlTY0/8we
+         ARfcIkMTSsW2iZSNd5Cms55gx7nbe4TkKMj8t1ZejJJ69TrvojjkFjhv98ERWNjnYz2G
+         NUCg==
+X-Gm-Message-State: AOAM531f5zHJP5teK+INRh6kf1VYG6feyvf/M3TWitFi35fL6biZN+lI
+        kfipPWiWHEw87wl384AuyTtzrVWAb8MckA==
+X-Google-Smtp-Source: ABdhPJwT0WUHtuYGjF9O8jhr71xo+SAK8uWisAaVd6Ax6WpsUVRXWcgZytTdKjc+kPLjyT4akwwsXA==
+X-Received: by 2002:adf:914f:0:b0:1ed:bb92:d0cc with SMTP id j73-20020adf914f000000b001edbb92d0ccmr6209493wrj.297.1645795832576;
+        Fri, 25 Feb 2022 05:30:32 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id g7-20020a5d5407000000b001e2628b6490sm2365250wrv.17.2022.02.25.05.30.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 05:30:32 -0800 (PST)
+Message-ID: <888120c8-f45c-ce4a-56e7-7b68c2014a68@linaro.org>
+Date:   Fri, 25 Feb 2022 13:30:30 +0000
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V3 1/3] dt-bindings: nvmem: make "reg" property optional
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+References: <20220124160300.25131-1-zajec5@gmail.com>
+ <20220218070729.3256-1-zajec5@gmail.com>
+ <20220218070729.3256-2-zajec5@gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <20220218070729.3256-2-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove wait_for_completion_timeout from soundwire probe
-as it seems unnecessary and device enumeration is anyway not
-happening here.
-Also, as device enumeration event is dependent on wcd938x probe to be
-completed, its of no use waiting here.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- drivers/soundwire/qcom.c | 2 --
- 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 5481341..9a32a24 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -1309,8 +1309,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
- 	}
- 
- 	qcom_swrm_init(ctrl);
--	wait_for_completion_timeout(&ctrl->enumeration,
--				    msecs_to_jiffies(TIMEOUT_MS));
- 	ret = qcom_swrm_register_dais(ctrl);
- 	if (ret)
- 		goto err_master_add;
--- 
-2.7.4
+On 18/02/2022 07:07, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Most NVMEM providers have cells at hardcoded addresses however there are
+> some exceptions. Some devices store cells layout in internal structs
+> using custom formats.
+> 
+> It's important to allow NVMEM consumers to still reference such NVMEM
+> cells. Making "reg" optional allows defining NVMEM cells by their names
+> only and using them with phandles.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
+
+Applied thanks,
+
+--srini
+> ---
+>   Documentation/devicetree/bindings/nvmem/nvmem.yaml | 3 ---
+>   1 file changed, 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> index 43ed7e32e5ac..3bb349c634cb 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -60,9 +60,6 @@ patternProperties:
+>               description:
+>                 Size in bit within the address range specified by reg.
+>   
+> -    required:
+> -      - reg
+> -
+>   additionalProperties: true
+>   
+>   examples:
