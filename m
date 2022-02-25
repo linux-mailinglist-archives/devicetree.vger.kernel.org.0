@@ -2,153 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A62964C4D28
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 19:03:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 13A7F4C4D39
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 19:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229993AbiBYSEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 13:04:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59326 "EHLO
+        id S232220AbiBYSFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 13:05:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230332AbiBYSEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:04:01 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DAC32255AE
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:03:29 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id b5so5727376wrr.2
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 10:03:28 -0800 (PST)
+        with ESMTP id S232720AbiBYSFN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 13:05:13 -0500
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9526B1E6E91;
+        Fri, 25 Feb 2022 10:04:22 -0800 (PST)
+Received: by mail-yb1-xb2d.google.com with SMTP id y189so7429840ybe.4;
+        Fri, 25 Feb 2022 10:04:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=myxelBqy30bTcJ8ZX5UhYCHIKBHFqSW0CcEE1Z58khk=;
-        b=jOi89ia8H2rFcP3T7+wURDQtxvvySEXht1DO13PIwFY9RJIC/QiSqLOm1dtVkdAyaf
-         AbYh/oSAOyApE9Q1Kn/SpPICp4CNncqYnBYGAUyAGspr1g1GvGGFqLdM7rgD91v4+oxu
-         PWhLDigQFqAdiLhHI/JPrvGC+Rv/YYNnLlA2yzJVwr5dfMs7NQkqFay3wPrgTRyqGr0y
-         RosJil9OVqTiq+9ABreNkg2ZbxVtQefuRQwZhgN+VwviRBOoLfunc9ocRyUzinV0JAqi
-         VyCJrUSUMQH+F3MGkSN1QVb2Czn2J3jI73XkYiBHEI5aCts8fyqgVSGdE5ov+B7vV6UQ
-         Q+RQ==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KojlstE2lgoa7NRwY6/3wf4IDjFuyhSCMnLIbiB/VXw=;
+        b=YsJOaByGxkVsWmlo3S060z6DNQE5Lpo0T52+WHe1QFVq1Np/PzH3I0i2xuV7aTMy/u
+         Q1kmPlvlBiL69lnqJu3XUV9IHW/Y6GcTXKhgAM1qqT6wqsIj5rTBMmRmp21nuQFG5MpD
+         iNDjQwEKh+b1yixh5b2jucpDw07D4LnYEuF4EtPK1iwjS7YEAgim+pnTWQT4rzvu5NL8
+         bCGymTsqjS6dXsUCatOsKzhYDnZN9c/0eSSoQEMulK5c5H8EhwhsC1SKteesQcz9uWMN
+         vazLu5uvqbP7OcmwtOu9xS+UARj3g9EIIvGU+mCXuoaLWkhMFQXOoBhGr1GnHmDWLZHl
+         qXwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=myxelBqy30bTcJ8ZX5UhYCHIKBHFqSW0CcEE1Z58khk=;
-        b=yqjeb6N6qHIQbCZ57q7l6s6+mE1JDNbTztuEkH2WjJSYuLeXFrrlMaU6F5sjIrSaoc
-         RcNFQW5DO1nw3qEsOGzoZOtwFzhg0eMmtWz9RKbxysl1aI6qR1WkBl0NMQuYOSpcDBLL
-         E+j2ENzNOKKVvUD35wfdKjxeRz3RggLJcIrpzfC8AabvtfQswveuBIh/TknC0Jnisi+I
-         QYV/FmEIR2CMa7Dyc1x3bpcNnk8tKljDNFt7OpJLEvK1jfemrQ7OsHILxoZVht47jB1P
-         ZKQLRI38LlmzA+oWTQ9KrIyKNnakLW87e4gHAvJm+wk/dFjG+3yjL24iNE+0t9bvzOF0
-         bx4A==
-X-Gm-Message-State: AOAM531fVOJfC6U4EOdIFq0Zk/jKaYlStXRXt4SkkvBqqyeo1Mo80WEY
-        dftW5gc9mrYE1LG0pu7DHfHfPA==
-X-Google-Smtp-Source: ABdhPJxjMNMdYhsq1gDFcmAYq8MGRlkuy47ls/d6GXdHncZa9U6DNBLuj8UsSq1feDuCyGWhxSUoJg==
-X-Received: by 2002:a5d:5245:0:b0:1ed:9eca:cf3d with SMTP id k5-20020a5d5245000000b001ed9ecacf3dmr6811167wrc.666.1645812207584;
-        Fri, 25 Feb 2022 10:03:27 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id s3-20020adfbc03000000b001e4b0e4a7fdsm2918057wrg.93.2022.02.25.10.03.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 10:03:26 -0800 (PST)
-Message-ID: <4811be6f-7e86-2a62-94cf-98504d5e64e7@linaro.org>
-Date:   Fri, 25 Feb 2022 18:03:25 +0000
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KojlstE2lgoa7NRwY6/3wf4IDjFuyhSCMnLIbiB/VXw=;
+        b=kQLUpWTLKrkj92oFTMuFEFdeISYTIlNu1Vl+XDDEPMoKHj6iJoRxeVig54iq9qM9Um
+         5TxXq6CiFtL8mtPYs4B271rDpQj48wDVBIKxx5MsevNrmIiigVAwbKQfB77LfF7pPehK
+         cdUDcPvCO83EG4SDyifZ8cBV9k/aI/LfVpLdXrPU7TYz7n9vjo12yfAZ7daclHSAh9d9
+         DnpjD5pGqy/t5WTf10sIcsr68NbnDO1mRl2NSCo/Wb2JDSTQZCwQrDbIL1oPNhb1bGi9
+         nfwD9j8yTs21gyemfRM/qZ6TfKOD9x1+sArdQJwjNTjjN8T2gpHfjtw5nOxD1Cu1XU5C
+         qKMg==
+X-Gm-Message-State: AOAM532kpGQmDYS8sGmBN4PX7m4FGBygpNbfHwLWI5f2k0wS4ynz9IHd
+        MWj/HL4C3MofEHKwBdw0+9ApRfH7LzTqkF14Pck=
+X-Google-Smtp-Source: ABdhPJyqs/M2Em3/HU+NEY5CE3n65PJxyF06pbxASaTFZx+ohua2HRsbXo6S+rdEcQ6h3e4hUCuCMghFj0B5Kj/71MA=
+X-Received: by 2002:a25:5d0:0:b0:61d:932b:6fc0 with SMTP id
+ 199-20020a2505d0000000b0061d932b6fc0mr8506142ybf.585.1645812261673; Fri, 25
+ Feb 2022 10:04:21 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2] soundwire: qcom: remove redundant wait for completion
-Content-Language: en-US
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, quic_plai@quicinc.com,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, yung-chuan.liao@linux.intel.com,
-        sanyog.r.kale@intel.com
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1645800257-27025-1-git-send-email-quic_srivasam@quicinc.com>
- <a99a59eb-cd59-f566-b98d-486c94f32eec@linaro.org>
- <06650d56-eed3-73ad-d6b4-6b56a5a70669@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <06650d56-eed3-73ad-d6b4-6b56a5a70669@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20220225145432.422130-1-pgwipeout@gmail.com> <20220225145432.422130-3-pgwipeout@gmail.com>
+ <5cca79dc-619c-a162-e850-b3efd4dc746d@gmail.com>
+In-Reply-To: <5cca79dc-619c-a162-e850-b3efd4dc746d@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Fri, 25 Feb 2022 13:04:10 -0500
+Message-ID: <CAMdYzYo81L5YnLr=whBbqde--e_DSuSwSPaXuDwtzeXN7pLMwQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/8] dt-bindings: usb: dwc3: add description for rk3568
+To:     Johan Jonker <jbx6244@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Heiko Stuebner <heiko@sntech.de>, linux-usb@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Feb 25, 2022 at 11:07 AM Johan Jonker <jbx6244@gmail.com> wrote:
+>
+> Hi Peter,
+>
+> Lots of USB series all of a sudden.
+> Combine possible?
+>
+> On 2/25/22 15:54, Peter Geis wrote:
+> > The rk3568 dwc3 controllers are backwards compatible with the rk3399.
+> > Add the device tree description for it.
+> >
+> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 7 ++++++-
+> >  1 file changed, 6 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > index 04077f2d7faf..e3044e81cc72 100644
+> > --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
+> > @@ -30,6 +30,7 @@ select:
+> >          enum:
+> >            - rockchip,rk3328-dwc3
+> >            - rockchip,rk3399-dwc3
+> > +          - rockchip,rk3568-dwc3
+> >    required:
+> >      - compatible
+> >
+> > @@ -39,6 +40,7 @@ properties:
+> >        - enum:
+> >            - rockchip,rk3328-dwc3
+> >            - rockchip,rk3399-dwc3
+> > +          - rockchip,rk3568-dwc3
+> >        - const: snps,dwc3
+> >
+> >    reg:
+> > @@ -75,7 +77,10 @@ properties:
+> >      maxItems: 1
+> >
+> he
+> >    reset-names:
+> > -    const: usb3-otg
+> > +    items:
+> > +      - enum:
+> > +          - usb3-otg
+> > +          - usb3-host
+>
+> The use of reset-names is "sort of" only related to the rk3399 legacy
+> node. Still using this sub node DT to not to break older existing boot
+> loaders.
+>
+> https://github.com/torvalds/linux/search?q=usb3-otg
+>
+> It's only mentioned as comment in dwc3-of-simple.c but not used:
+>
+>         simple->resets = of_reset_control_array_get(np, false, true,
+>                                                     true);
+> core.c uses something similar.
+>
+>         dwc->reset = devm_reset_control_array_get_optional_shared(dev);
+>         if (IS_ERR(dwc->reset))
+>                 return PTR_ERR(dwc->reset);
+>
+>
+> Up to the maintainers, but I wouldn't add another variant/name for the
+> same thing as it also optional(= not required) and no longer needed.
 
+I left these named separately since they are different reset signals,
+but if it isn't an issue I don't mind having them both be usb3-otg.
 
-On 25/02/2022 15:43, Pierre-Louis Bossart wrote:
-> 
-> 
-> On 2/25/22 08:45, Srinivas Kandagatla wrote:
->>
->>
->> On 25/02/2022 14:44, Srinivasa Rao Mandadapu wrote:
->>> Remove wait_for_completion_timeout from soundwire probe as it seems
->>> unnecessary and device enumeration is anyway not happening here,
->>> hence this api is blocking till it completes max wait time.
->>> Also, as device enumeration event is dependent on wcd938x probe to be
->>> completed, its of no use waiting here.
->>> Waiting here increasing the boot time almost 4 seconds and impacting
->>> other modules like touch screen.
->>>
->>> Fixes: 06dd96738d618 ("soundwire: qcom: wait for enumeration to be
->>> complete in probe")
->>>
->>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->>
->> LGTM,
->>
->> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> 
-> I don't get the idea, sorry.
-> 
-> If you look at the code, these are the cases where this 'struct
-> completion' is used
-> 
-> 	struct completion enumeration;
-> 	complete(&ctrl->enumeration);
-> 	/* Enable Auto enumeration */
-> 	init_completion(&ctrl->enumeration);
-> 	wait_for_completion_timeout(&ctrl->enumeration,
-> 
-> 
-> so if you remove the wait_for_completeion, then you might just as well
-> remove the whole thing and revert 06dd96738d618
-> 
-> what am I missing?
-Yes, that makes more sense to revert it, as it is the only user of this 
-completion.
-We could add it back when we really need this again in pm runtime setup 
-if required.
+>
+> Johan
+>
+> ===
+>
+> Maybe drop PCLK_PIPE as well to reduce notifications.
 
---srini
-> 
-> 
->>> ---
->>>    drivers/soundwire/qcom.c | 2 --
->>>    1 file changed, 2 deletions(-)
->>>
->>> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->>> index 5481341..9a32a24 100644
->>> --- a/drivers/soundwire/qcom.c
->>> +++ b/drivers/soundwire/qcom.c
->>> @@ -1309,8 +1309,6 @@ static int qcom_swrm_probe(struct
->>> platform_device *pdev)
->>>        }
->>>          qcom_swrm_init(ctrl);
->>> -    wait_for_completion_timeout(&ctrl->enumeration,
->>> -                    msecs_to_jiffies(TIMEOUT_MS));
->>>        ret = qcom_swrm_register_dais(ctrl);
->>>        if (ret)
->>>            goto err_master_add;
+I'll be conducting testing to determine if we need PCLK_PIPE here, and
+as long as it isn't working simply because it's enabled by someone
+else I'll drop it.
+Ideally, it would be nice to have a proper clock map for these chips,
+but currently that's not in the TRM.
+
+>
+> See example:
+> https://lore.kernel.org/linux-rockchip/20220225131602.2283499-4-michael.riesch@wolfvision.net/T/#u
+>
+> >
+> >  unevaluatedProperties: false
+> >
+
+Thanks for the review!
