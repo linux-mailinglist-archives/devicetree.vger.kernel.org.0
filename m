@@ -2,169 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7674D4C3D83
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:07:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 22AC04C3DE0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:32:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237454AbiBYFII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 00:08:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
+        id S237534AbiBYFbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 00:31:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57724 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230443AbiBYFIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:08:07 -0500
-Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C343186470;
-        Thu, 24 Feb 2022 21:07:36 -0800 (PST)
-Received: by mail-pl1-x629.google.com with SMTP id m11so3840349pls.5;
-        Thu, 24 Feb 2022 21:07:36 -0800 (PST)
+        with ESMTP id S230470AbiBYFbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:31:31 -0500
+Received: from mail-ot1-x32e.google.com (mail-ot1-x32e.google.com [IPv6:2607:f8b0:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64E4B2692C4
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 21:31:00 -0800 (PST)
+Received: by mail-ot1-x32e.google.com with SMTP id l25-20020a9d7a99000000b005af173a2875so2938950otn.2
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 21:31:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rOW73EZAvnc1wsgXbVE6ciQzvh8WW+Bk4gV7FTSwz4k=;
-        b=TJuoQsjLE/gkBrX6QQKV7hC8q85Sw0yUl19d6iUB/LG06z2SBEruBtgpCyoEPn2SRW
-         KciGQWF+2S71LboIWyg2TvFBV+jNvwhyTzyorTqMdFtWmndB+cjOicyfTLn/dk2G6Ttp
-         doNA1X0Qi48/dI+2jHxtWGnQjcB+HewuruUkDDJ2nmn25foBjF9q+fOAipuqLS4zQSBf
-         6LMCEQkGfwU5/pqmuC0FKnbS8IShlgxdQ+vMvYn0ERQ3uGD9zbnnzabe5pnNR+O/3ewp
-         4uDCbwAovLu9QULmXOndg+F7GksHEdADOzxLZf1S3+li5icvaKW1IzwwD1QOXJkgj8ZG
-         cjTw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HRtPNSZKQI7bpMca2A9QDVsOc/ZETx07EAg1FIwVxRw=;
+        b=ey1AszojHGdk6ElmDks4JQxAmGWpwbsn1snjMYN2uIlr31hNGL9IPcMgzwrhn8e+lM
+         YB/KpoLDA/V5rftxgyFs/Vjl7rwz4rHQLN10i6aNTTfILknRP/XbIrIxCqtDp+PAfPH8
+         SGWy5Hkdp0T3Wc9aSLsy9P0RLwghUc0AxjQU494QJUpE8Sj86nso6vumTNmWeEgA3aLV
+         3NDTN1aRlIbbZCLGnP77xZxH7k2m27/4+SuL3rX0EnzCbgOMcKFG+5hG1lAsgiXEDmsH
+         nn37zuCYbkBKl2hnmQ1yVk+8+taasBOaUDPUF31W5oDHJ1F9x0ZleouXOpJ2jXbcPl72
+         1wPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rOW73EZAvnc1wsgXbVE6ciQzvh8WW+Bk4gV7FTSwz4k=;
-        b=P1UaN1ibjsDpMYhj4PMMZ+/GIAhzqEAdenXQATIpbq0kbweobb4eyVaf7uv8hWukVg
-         2u/G5jErxaGzCWEkV7iv+Svg9aObHe9f0gE9uo4TG5xUIUPYTyK6eAo9JQrGzggo7bB1
-         +yaqpzwsnUucmH+Uu/5Ibkuqae+q0qBVNF4RbwGhjE5cvNs3zAXMHwbTBu9/2F5hDmTP
-         /TRuTrIEAKrXDQMzSQLMXLInB8oWrnW+mlsZU0hOJl1z95WnUt5UCCxMzCq6ch2f5a9I
-         zob/d1QIBL/YTWiJ4oOJndrWRRk3KW1nMAaMNEhs11h4vjAzQfNuZDg+V4tWymrNYiZK
-         w10A==
-X-Gm-Message-State: AOAM533ZTOJ1Dw3YryYAPmergXaxS79ZhRkmdmp51W8NwYCQgtl0i8hF
-        7aeZMIDgFKLcx1+57Od2pFnFZULD7aQw26IgMfQ=
-X-Google-Smtp-Source: ABdhPJw4XoxTyIWPFOHFfASSDY+FM8Pa4x0uPk5lChh8GWhsRtm9K2jbuWBDIVnWbdcpkETseChzQPhVsEkoM/QWFyY=
-X-Received: by 2002:a17:90a:1d04:b0:1bc:98ca:5e6f with SMTP id
- c4-20020a17090a1d0400b001bc98ca5e6fmr1559118pjd.32.1645765655621; Thu, 24 Feb
- 2022 21:07:35 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=HRtPNSZKQI7bpMca2A9QDVsOc/ZETx07EAg1FIwVxRw=;
+        b=piaw9PGkLRbLSsMYb/6VOCYUVvVVmlacIhCbloX1zpCkGZl9i73NpI73yCCOuC5uLs
+         PUAViJ3D6jqiyzpYOEi0wAJo2YFNF4O7htU/jYDQfJloEoaU+iXyRICta3wwASBKjX4x
+         jwC6/hvj8w+6LeDgNDjG3eiUuVUhXOEBHtwKpzvk3kuEuLzeuvGHyfnLu+tfEzcIJ/Mh
+         RIJL0z2dA4cjspOI2fgNvZ89SwvJ5ULftSzRSGPDR3wZlgfvOX/yW0cP7ITLCIb07NxG
+         rfIVJ6BivogqrE6A7EWJvfcBr6r3Ja7J76Krf79hegSNi13i+mUURsAt90dsLL9UwFvO
+         PtdQ==
+X-Gm-Message-State: AOAM533YoUY7S9+betNP0lkf8CnD3j5JWkJ6/zyM9Dc5zj4/Mue/x4NY
+        H/WDmwcLnmTBytKBF0e+4zzp1Q==
+X-Google-Smtp-Source: ABdhPJx7KHcnf0maHZp12bzMaaJY6bovqf/blb/HwIu60QT2OTlaX5YXyn9G2uSqbkDsjJPVBX8hCA==
+X-Received: by 2002:a05:6830:b92:b0:5af:44c9:f115 with SMTP id a18-20020a0568300b9200b005af44c9f115mr2265651otv.24.1645767059704;
+        Thu, 24 Feb 2022 21:30:59 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id hj9-20020a056870c90900b000d3d15ecd18sm830823oab.8.2022.02.24.21.30.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 21:30:59 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add sc8280xp TLMM binding
+Date:   Thu, 24 Feb 2022 21:32:56 -0800
+Message-Id: <20220225053257.2479279-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-References: <20220221200102.6290-1-luizluca@gmail.com> <Yhfmi2Mn6e0NMXh3@robh.at.kernel.org>
-In-Reply-To: <Yhfmi2Mn6e0NMXh3@robh.at.kernel.org>
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Date:   Fri, 25 Feb 2022 02:07:24 -0300
-Message-ID: <CAJq09z7mNzV-Kg90KsM_E33ZByLLNTk9TZgF0LcfUL630zwEBw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: dsa: add new mdio property
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Vladimir Oltean <olteanv@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Mon, Feb 21, 2022 at 05:01:02PM -0300, Luiz Angelo Daros de Luca wrote:
-> > The optional mdio property will be used by dsa switch to configure
-> > slave_mii_bus when the driver does not allocate it during setup.
-> >
-> > Some drivers already offer/require a similar property but, in some
-> > cases, they rely on a compatible string to identify the mdio bus node.
->
-> That case will fail with this change. It precludes any binding
-> referencing dsa.yaml from defining a 'mdio' node with properties other
-> than what mdio.yaml defines.
+The Qualcomm SC8280XP platform contains a single block of registers
+for the TLMM block. This provides pinconf and pinmux for 228 GPIOs, 2
+UFS_RESET pins and one SDC interface.
 
-Thanks Rob.
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ .../pinctrl/qcom,sc8280xp-pinctrl.yaml        | 153 ++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
 
-I believe any DSA drivers mdio subnodes will reference mdio.yaml. It
-doesn't make sense to not to. So, it is fine to restrict that from
-dsa.yaml. Are you saying that it will also prevent extra properties
-inside that mdio, either declared in dsa.yaml or in any other dsa
-driver yaml?
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
+new file mode 100644
+index 000000000000..4199dfe992e0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc8280xp-pinctrl.yaml
+@@ -0,0 +1,153 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/qcom,sc8280xp-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Qualcomm Technologies, Inc. SC8280XP TLMM block
++
++maintainers:
++  - Bjorn Andersson <bjorn.andersson@linaro.org>
++
++description: |
++  This binding describes the Top Level Mode Multiplexer block found in the
++  SC8280XP platform.
++
++allOf:
++  - $ref: "pinctrl.yaml#"
++  - $ref: /schemas/pinctrl/qcom,tlmm-common.yaml#
++
++properties:
++  compatible:
++    const: qcom,sc8280xp-tlmm
++
++  reg:
++    maxItems: 1
++
++  interrupts: true
++  interrupt-controller: true
++  '#interrupt-cells': true
++  gpio-controller: true
++  gpio-reserved-ranges: true
++  '#gpio-cells': true
++  gpio-ranges: true
++  wakeup-parent: true
++
++required:
++  - compatible
++  - reg
++  - reg-names
++
++additionalProperties: false
++
++patternProperties:
++  '-state$':
++    oneOf:
++      - $ref: "#/$defs/qcom-sc8280xp-tlmm-state"
++      - patternProperties:
++          ".*":
++            $ref: "#/$defs/qcom-sc8280xp-tlmm-state"
++
++'$defs':
++  qcom-sc8280xp-tlmm-state:
++    type: object
++    description:
++      Pinctrl node's client devices use subnodes for desired pin configuration.
++      Client device subnodes use below standard properties.
++    $ref: "qcom,tlmm-common.yaml#/$defs/qcom-tlmm-state"
++
++    properties:
++      pins:
++        description:
++          List of gpio pins affected by the properties specified in this
++          subnode.
++        items:
++          oneOf:
++            - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-1][0-9]|22[0-7])$"
++            - enum: [ sdc2_clk, sdc2_cmd, sdc2_data, ufs_reset, ufs1_reset ]
++        minItems: 1
++        maxItems: 16
++
++      function:
++        description:
++          Specify the alternative function to be configured for the specified
++          pins.
++
++        enum: [ atest_char, atest_usb, audio_ref, cam_mclk, cci_async, cci_i2c,
++                cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
++                cci_timer5, cci_timer6, cci_timer7, cci_timer8, cci_timer9,
++                cmu_rng, cri_trng, cri_trng0, cri_trng1, dbg_out, ddr_bist,
++                ddr_pxi0, ddr_pxi1, ddr_pxi2, ddr_pxi3, ddr_pxi4, ddr_pxi5,
++                ddr_pxi6, ddr_pxi7, dp2_hot, dp3_hot, edp0_lcd, edp1_lcd,
++                edp2_lcd, edp3_lcd, edp_hot, emac0_dll, emac0_mcg0, emac0_mcg1,
++                emac0_mcg2, emac0_mcg3, emac0_phy, emac0_ptp, emac1_dll0,
++                emac1_dll1, emac1_mcg0, emac1_mcg1, emac1_mcg2, emac1_mcg3,
++                emac1_phy, emac1_ptp, gcc_gp1, gcc_gp2, gcc_gp3, gcc_gp4,
++                gcc_gp5, gpio, hs1_mi2s, hs2_mi2s, hs3_mi2s, ibi_i3c,
++                jitter_bist, lpass_slimbus, mdp0_vsync0, mdp0_vsync1,
++                mdp0_vsync2, mdp0_vsync3, mdp0_vsync4, mdp0_vsync5,
++                mdp0_vsync6, mdp0_vsync7, mdp0_vsync8, mdp1_vsync0,
++                mdp1_vsync1, mdp1_vsync2, mdp1_vsync3, mdp1_vsync4,
++                mdp1_vsync5, mdp1_vsync6, mdp1_vsync7, mdp1_vsync8, mdp_vsync,
++                mi2s0_data0, mi2s0_data1, mi2s0_sck, mi2s0_ws, mi2s1_data0,
++                mi2s1_data1, mi2s1_sck, mi2s1_ws, mi2s2_data0, mi2s2_data1,
++                mi2s2_sck, mi2s2_ws, mi2s_mclk1, mi2s_mclk2, pcie2a_clkreq,
++                pcie2b_clkreq, pcie3a_clkreq, pcie3b_clkreq, pcie4_clkreq,
++                phase_flag, pll_bist, pll_clk, prng_rosc0, prng_rosc1,
++                prng_rosc2, prng_rosc3, qdss_cti, qdss_gpio, qspi, qspi_clk,
++                qspi_cs, qup0, qup1, qup2, qup3, qup4, qup5, qup6, qup7, qup8,
++                qup9, qup10, qup11, qup12, qup13, qup14, qup15, qup16, qup17,
++                qup18, qup19, qup20, qup21, qup22, qup23, rgmii_0, rgmii_1,
++                sd_write, sdc40, sdc42, sdc43, sdc4_clk, sdc4_cmd, tb_trig,
++                tgu, tsense_pwm1, tsense_pwm2, tsense_pwm3, tsense_pwm4,
++                usb0_dp, usb0_phy, usb0_sbrx, usb0_sbtx, usb0_usb4, usb1_dp,
++                usb1_phy, usb1_sbrx, usb1_sbtx, usb1_usb4, usb2phy_ac,
++                vsense_trigger ]
++
++      bias-disable: true
++      bias-pull-down: true
++      bias-pull-up: true
++      drive-strength: true
++      input-enable: true
++      output-high: true
++      output-low: true
++
++    required:
++      - pins
++      - function
++
++    additionalProperties: false
++
++examples:
++  - |
++        #include <dt-bindings/interrupt-controller/arm-gic.h>
++        pinctrl@3100000 {
++                compatible = "qcom,sc8280x-tlmm";
++                reg = <0x0f100000 0x300000>;
++                interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++                gpio-controller;
++                #gpio-cells = <2>;
++                interrupt-controller;
++                #interrupt-cells = <2>;
++                gpio-ranges = <&tlmm 0 0 230>;
++
++                gpio-wo-subnode-state {
++                        pins = "gpio1";
++                        function = "gpio";
++                };
++
++                uart-w-subnodes-state {
++                        rx {
++                                pins = "gpio4";
++                                function = "qup14";
++                                bias-pull-up;
++                        };
++
++                        tx {
++                                pins = "gpio5";
++                                function = "qup14";
++                                bias-disable;
++                        };
++                };
++        };
++...
+-- 
+2.33.1
 
-During my tests, it looks like both "mdio", from dsa.yaml or the
-<driver>.yaml are validated independently. I can include a new
-property or even a "required" on either level and the checks seem to
-work fine. I didn't try it harder but I believe I cannot negate/drop a
-property or a requirement declared in one YAML file using the other
-YAML. But, in this case, dsa.yaml mdio is only referencing mdio.yaml,
-just like any dsa driver would do.
-
-And about the compatibile string usage, it is more about code than
-schema. I did checked every driver and got these results:
-
-These already uses mdio name:
-- drivers/net/dsa/qca8k.c:
-of_get_child_by_name(priv->dev->of_node, "mdio");
-- drivers/net/dsa/mv88e6xxx/chip.c:         of_get_child_by_name(np, "mdio");
-- drivers/net/dsa/qca/ar9331.c:             of_get_child_by_name(np, "mdio")
-
-This one creates a new mdios container for its two mdio nodes. So,
-they are at a different level:
-- drivers/net/dsa/sja1105/sja1105_mdio.c:
-of_get_compatible_child(mdio_node, "nxp,sja1110-base-tx-mdio");
-- drivers/net/dsa/sja1105/sja1105_mdio.c:
-of_get_compatible_child(mdio_node, "nxp,sja1110-base-t1-mdio");
-
-realtek-smi, even before yaml conversion required a mdio node
-(although code only looks for the compatible strings),
-- drivers/net/dsa/realtek/realtek-smi.c
-of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
-
-This one is the most problematic one. It only has a TXT that does not
-mention an "mdio" node name, although examples do use it.
-- drivers/net/dsa/lantiq_gswip.c:
-of_get_compatible_child(dev->of_node, "lantiq,xrx200-mdio");
-
-I still don't get why the compatible string is in use when there is a
-finite number of (or only one) mdio nodes. Wouldn't it be easier to
-use of_get_child_by_name? Anyway, all of them might not collide with
-dsa mdio definition.
-
-> The rule is becoming any common schema should not define more than one
-> level of nodes if those levels can be extended.
-
-Sorry but I didn't understand what you are suggesting. Should I simply
-drop the dsa/mdio doc?
-
-> > Each subdriver might decide to keep existing approach or migrate to this
-> > new common property.
-> >
-> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > index b9d48e357e77..f9aa09052785 100644
-> > --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
-> > @@ -32,6 +32,12 @@ properties:
-> >        (single device hanging off a CPU port) must not specify this property
-> >      $ref: /schemas/types.yaml#/definitions/uint32-array
-> >
-> > +  mdio:
-> > +    unevaluatedProperties: false
-> > +    description:
-> > +      Container of PHY and devices on the switches MDIO bus.
-> > +    $ref: /schemas/net/mdio.yaml#
-> > +
-> >  patternProperties:
-> >    "^(ethernet-)?ports$":
-> >      type: object
-> > --
-> > 2.35.1
-> >
-> >
