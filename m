@@ -2,214 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1294C3FBD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 09:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E8C574C3FC9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 09:10:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238357AbiBYIFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 03:05:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41698 "EHLO
+        id S235925AbiBYIK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 03:10:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55368 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229905AbiBYIFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 03:05:02 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FA961DB891
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 00:04:31 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNVaX-0003Un-Aq; Fri, 25 Feb 2022 09:04:29 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nNVaV-0005A0-Hw; Fri, 25 Feb 2022 09:04:27 +0100
-Date:   Fri, 25 Feb 2022 09:04:27 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 17/24] arm64: dts: rockchip: rk356x: Add VOP2 nodes
-Message-ID: <20220225080427.GB19585@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-18-s.hauer@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220225075150.2729401-18-s.hauer@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:53:41 up 76 days, 16:39, 83 users,  load average: 0.77, 0.60,
- 0.35
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S237038AbiBYIK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 03:10:26 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BA1B82D1D;
+        Fri, 25 Feb 2022 00:09:55 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id ev16-20020a17090aead000b001bc3835fea8so4212723pjb.0;
+        Fri, 25 Feb 2022 00:09:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=snzyDKm112X/dWlK/fWF6GVa+OsY1ecejjP+ijC4oRo=;
+        b=LYCElDOg+CjHvRx2onDZfelCxF3NqVxw/wLpV2HojqgUVMuXCR6cVGdLxCH/EiMvy8
+         HpcX9DQiDPYSgD+NbhXW3EAi4N2Ha0zkQ4nFs0ajmb7piR6J5lUYqIunshbqT7ucSjp5
+         dSJp3XhbI8qn3npc0k7GrGFqGspAtn/6a4ddaxjygNinwpsors46AIXcO4kt+6vSpTPW
+         OG6GUXhrKGE4Wb50L4y064hek3dkjo4zayWlftyMqboqxiBYcUevs4zXPu2wHFDoPAi2
+         Xism414+yid+EJjDIwF5v25Yzgv/YS/x/vJQKW6pM7of8oUu4qTVVepqYgO+cHbqFfGq
+         zw7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=snzyDKm112X/dWlK/fWF6GVa+OsY1ecejjP+ijC4oRo=;
+        b=DyH9K+QIDnQFqy/AO8OLzdxEHQQdUEjE9aQ/sXXA01GMPzoUKvbxLfLlMpnNXXO9Cz
+         PUAlwWYIUAR+hyMzSRajKbpYKROTIp2TEB+jAtc6p6M+yZcpSy5NiEXs11bu/6eBBh6o
+         H05ZEWhnrjMvD/B0HNrbD5vwT5RnVpSUa0ueuqYbmgNiDZEoU9eJdAriG4GNuAOAVBSe
+         swiyVeKvyNXc+qyDMFE4GzK+gMgyU+zb5w+PFeSmVvvdIcLxHZ29cJFME+wGE1YfuOVy
+         l3XS+ZI3VrTFu971iaJ9q85C+Gl7vJE3YpJW2Qz2ZnAXUZ3opASLbZRo3aSL5ApFrGLE
+         rkKA==
+X-Gm-Message-State: AOAM5330tI7uHOMHb8mSdy4E51f3C2NFaUIRhlrF85XCQ9Ddo3ZMESXT
+        PxcHKoo5DxgpiF746xhaGcE=
+X-Google-Smtp-Source: ABdhPJyyQYodb2UX4wEGXZ3YjgNxFGD9h/tsvLdKC1Bqw3QjW4+ZViuLybZsmo6z6bq1fQMHCMO0Kg==
+X-Received: by 2002:a17:90a:a385:b0:1b9:cfb8:de07 with SMTP id x5-20020a17090aa38500b001b9cfb8de07mr2018872pjp.162.1645776594794;
+        Fri, 25 Feb 2022 00:09:54 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id pf15-20020a17090b1d8f00b001bc9d6a0f15sm1652842pjb.36.2022.02.25.00.09.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 25 Feb 2022 00:09:54 -0800 (PST)
+From:   Vincent Shih <vincent.sunplus@gmail.com>
+To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com
+Cc:     Vincent Shih <vincent.sunplus@gmail.com>
+Subject: [PATCH] nvmem: dt-bindings: Fix the error of dt-bindings check
+Date:   Fri, 25 Feb 2022 16:10:11 +0800
+Message-Id: <1645776611-24774-1-git-send-email-vincent.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 08:51:43AM +0100, Sascha Hauer wrote:
-> The VOP2 is the display output controller on the RK3568. Add the node
-> for it to the dtsi file along with the required display-subsystem node
-> and the iommu node.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> Notes:
->     Changes since v4:
->     - Add Robs Ack
->     
->     Changes since v3:
->     - Bring back gamma_lut regs
->     - Drop redundant _vop suffix from clock names
-> 
->  arch/arm64/boot/dts/rockchip/rk3566.dtsi |  4 ++
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  4 ++
->  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 51 ++++++++++++++++++++++++
->  include/dt-bindings/soc/rockchip,vop2.h  | 14 +++++++
->  4 files changed, 73 insertions(+)
->  create mode 100644 include/dt-bindings/soc/rockchip,vop2.h
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> index 3839eef5e4f76..595fa2562cb8e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> @@ -18,3 +18,7 @@ power-domain@RK3568_PD_PIPE {
->  		#power-domain-cells = <0>;
->  	};
->  };
-> +
-> +&vop {
-> +	compatible = "rockchip,rk3566-vop";
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> index 2fd313a295f8a..1e55efb6fcfde 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -95,3 +95,7 @@ power-domain@RK3568_PD_PIPE {
->  		#power-domain-cells = <0>;
->  	};
->  };
-> +
-> +&vop {
-> +	compatible = "rockchip,rk3568-vop";
-> +};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> index a68033a239750..19d8e67c4698b 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> @@ -129,6 +129,11 @@ opp-1800000000 {
->  		};
->  	};
->  
-> +	display_subsystem: display-subsystem {
-> +		compatible = "rockchip,display-subsystem";
-> +		ports = <&vop_out>;
-> +	};
-> +
->  	firmware {
->  		scmi: scmi {
->  			compatible = "arm,scmi-smc";
-> @@ -451,6 +456,52 @@ gmac1_mtl_tx_setup: tx-queues-config {
->  		};
->  	};
->  
-> +	vop: vop@fe040000 {
-> +		reg = <0x0 0xfe040000 0x0 0x3000>, <0x0 0xfe044000 0x0 0x1000>;
-> +		reg-names = "regs", "gamma_lut";
-> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>, <&cru DCLK_VOP0>,
-> +			 <&cru DCLK_VOP1>, <&cru DCLK_VOP2>;
-> +		clock-names = "aclk", "hclk", "dclk_vp0", "dclk_vp1", "dclk_vp2";
-> +		iommus = <&vop_mmu>;
-> +		power-domains = <&power RK3568_PD_VO>;
-> +		rockchip,grf = <&grf>;
-> +		status = "disabled";
-> +
-> +		vop_out: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			vp0: port@0 {
-> +				reg = <0>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			vp1: port@1 {
-> +				reg = <1>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +
-> +			vp2: port@2 {
-> +				reg = <2>;
-> +				#address-cells = <1>;
-> +				#size-cells = <0>;
-> +			};
-> +		};
-> +	};
-> +
-> +	vop_mmu: iommu@fe043e00 {
-> +		compatible = "rockchip,rk3568-iommu";
-> +		reg = <0x0 0xfe043e00 0x0 0x100>, <0x0 0xfe043f00 0x0 0x100>;
-> +		interrupts = <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-> +		clocks = <&cru ACLK_VOP>, <&cru HCLK_VOP>;
-> +		clock-names = "aclk", "iface";
-> +		#iommu-cells = <0>;
-> +		status = "disabled";
-> +	};
-> +
->  	qos_gpu: qos@fe128000 {
->  		compatible = "rockchip,rk3568-qos", "syscon";
->  		reg = <0x0 0xfe128000 0x0 0x20>;
-> diff --git a/include/dt-bindings/soc/rockchip,vop2.h b/include/dt-bindings/soc/rockchip,vop2.h
-> new file mode 100644
-> index 0000000000000..6e66a802b96a5
-> --- /dev/null
-> +++ b/include/dt-bindings/soc/rockchip,vop2.h
-> @@ -0,0 +1,14 @@
-> +/* SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause */
-> +
-> +#ifndef __DT_BINDINGS_ROCKCHIP_VOP2_H
-> +#define __DT_BINDINGS_ROCKCHIP_VOP2_H
-> +
-> +#define ROCKCHIP_VOP2_EP_RGB0	1
-> +#define ROCKCHIP_VOP2_EP_HDMI0	2
-> +#define ROCKCHIP_VOP2_EP_EDP0	3
-> +#define ROCKCHIP_VOP2_EP_MIPI0	4
-> +#define ROCKCHIP_VOP2_EP_LVDS0	5
-> +#define ROCKCHIP_VOP2_EP_MIPI1	6
-> +#define ROCKCHIP_VOP2_EP_LVDS1	7
+1. Remove the unnecessary header file for dt-binding check
+2. Replace OTPRX with 0x15 since it is not defined here.
+3. Modify the name of the node of the clock driver.
 
-One thing I missed to log in the changelog: These defines now have a
-ROCKCHIP_ prefix rather than a RK3568_ prefix so that they can be reused
-by future SoCs. Also I start counting from one now so that a zero
-initialized variable becomes an invalid value.
+Fixes: e15d2e3fd7("nvmem: Fix the compilation error for SP7021")
 
-Sascha
+Reported-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+---
+ Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-
+diff --git a/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+index 4b28f37..a7644eb 100644
+--- a/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
++++ b/Documentation/devicetree/bindings/nvmem/sunplus,sp7021-ocotp.yaml
+@@ -60,13 +60,11 @@ unevaluatedProperties: false
+ 
+ examples:
+   - |
+-    #include <dt-bindings/clock/sp-sp7021.h>
+-
+     otp: otp@9c00af00 {
+         compatible = "sunplus,sp7021-ocotp";
+         reg = <0x9c00af00 0x34>, <0x9c00af80 0x58>;
+         reg-names = "hb_gpio", "otprx";
+-        clocks = <&clks OTPRX>;
++        clocks = <&clkc 0x15>;
+ 
+         #address-cells = <1>;
+         #size-cells = <1>;
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.7.4
+
