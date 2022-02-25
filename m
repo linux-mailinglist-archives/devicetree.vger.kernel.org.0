@@ -2,146 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8622C4C3E64
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 07:27:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6516A4C3E68
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 07:31:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbiBYG1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 01:27:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59114 "EHLO
+        id S237838AbiBYGcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 01:32:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237828AbiBYG1R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 01:27:17 -0500
-Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 423EA5AA5E
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 22:26:41 -0800 (PST)
-Received: by mail-yb1-xb33.google.com with SMTP id y189so3986931ybe.4
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 22:26:41 -0800 (PST)
+        with ESMTP id S235199AbiBYGcJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 01:32:09 -0500
+Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1030C1AF38;
+        Thu, 24 Feb 2022 22:31:36 -0800 (PST)
+Received: by mail-pg1-x535.google.com with SMTP id e6so2403731pgn.2;
+        Thu, 24 Feb 2022 22:31:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=i96uVXtc7Gbe59waddx08SBjdR5CvigFhdRWPMIgdY4=;
-        b=Y12PIxBfKQDwbCSwXhwJHVwuCArkVHivkLlK9P6d741rbUzrnempaOmOPH3Y2DDWfo
-         8qaPEKh05mJa2ZzuU8O6edTsM0K2bCqYLNcYHdfQFTlWYFvrSfgAmWDHNxI1mFiKJwNb
-         1lsBtU+HunZAxaBrG4gfrxY+cFe6euQieRiCo=
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=iKmbb5ucbZp5K7dfHQDKEihiAqkn6WCzt4BOscJ3yD4=;
+        b=kjuQjICBQ7dzWL0H/JHSeBz9vXXK+N2w6OIQWMZYKn728gA+JsM9ImX+xK4fv67CHU
+         w1FbkB/Are/1QZY/DC0fOkz6oDA1I6pn45aKA+DCxkDKbX9tsPrbJ5mD6b2E1ZPmghlS
+         z7Ypk5R5jGI2Jc9Hm8xp5Lf3FeGxa5VEVSjg1gTzviJdVCsg/qBJ1uj6yRnkVmTXX0aV
+         hOOXhR+EL4Zq8Kbc8yA9aorJ/Pkih9IIuLbmjRLeKcB0NQTBiOkyHagK7nq4Fm0b1AGf
+         P0LrEUpXlUjYYbQOMh0v1rHFXIe/qbO1bbhcIihio65jXmlSpnuOETYW2A4wRUbnlwES
+         Eo8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i96uVXtc7Gbe59waddx08SBjdR5CvigFhdRWPMIgdY4=;
-        b=2qwSaW4kLMz34wuH6kdR4VBDLhQ70rEWBL9puboDAD4Xa8riVUsdkcmYHcn0opLUYE
-         laaNK48t/CsnJZEFF+15qXARRiPGStN6FnyWRHXYHYBGSxCMcqQHY31fWfQGdCLJTBMh
-         WZgnOyj8XI+KCmKXKSC9yeqk5GDFx/Mp7+jTF2dJ6R7cXcD5AXEd2cRFegX5O8ENeff1
-         WaO//5TXQsoC132MDkaoZF2n6LgobWvu4t4MWMqdGfutlbZ42EY1lSdCJ/Isi/Dinte2
-         vITNnI8E0R4dPhsHnJoF2OQPSVLAUGuU4AaN0scHwIqVpGWZmuCyOBbfk1BMq13Bizmx
-         1oEA==
-X-Gm-Message-State: AOAM533/xR6ferC4DZY6igO9tLtbqI26Bw/or032yseFEpwFSgZE5nRa
-        c/17xZ4nHvs+xReAEsJvvXZcxA+aIz+qfKOwGS1n6Q==
-X-Google-Smtp-Source: ABdhPJxBJxJLBZm12OiXQxR0PDxPQgFWAe+OlfhS1iFlzOvXA/o8PHVctkEv+Wr6WPdkOXZcwSZH2ZegKV57K+2dQvc=
-X-Received: by 2002:a25:d314:0:b0:624:6c1a:6f2d with SMTP id
- e20-20020a25d314000000b006246c1a6f2dmr5933837ybf.189.1645770400525; Thu, 24
- Feb 2022 22:26:40 -0800 (PST)
-MIME-Version: 1.0
-References: <1645003971-16908-1-git-send-email-xinlei.lee@mediatek.com>
- <1645003971-16908-5-git-send-email-xinlei.lee@mediatek.com>
- <Yhf2a/h6H1/9sN6b@robh.at.kernel.org> <acc635f9e6d4f6f278ac334b13e96ce30c8c8b1d.camel@mediatek.com>
-In-Reply-To: <acc635f9e6d4f6f278ac334b13e96ce30c8c8b1d.camel@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Fri, 25 Feb 2022 14:26:29 +0800
-Message-ID: <CAGXv+5GWJOFjePKJ5ABnYP2eXeU0PM6Yo3b3vYmErUnDY4=ZQQ@mail.gmail.com>
-Subject: Re: [v2,4/4] dt-bindings: pwm: Add compatible for MediaTek MT8186
-To:     "xinlei.lee" <xinlei.lee@mediatek.com>
-Cc:     Rob Herring <robh@kernel.org>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        matthias.bgg@gmail.com, jitao.shi@mediatek.com,
-        allen-kh.cheng@mediatek.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=iKmbb5ucbZp5K7dfHQDKEihiAqkn6WCzt4BOscJ3yD4=;
+        b=svg2oTuMq2Z/Ro5YrPeyHbW6C7Oep4n5FKopoZX9tA7TG4mYHqXyOAD7LUhk6dmF9m
+         pKtg9nI+mjXYhDWEY73la2jeOvTxcdNl85c9WzFZNqBpcxswRRDYezJkf/mCJ+QWQ+vr
+         xL6ocZwf9r7ZB0DGHcsmvXOqsFcZP1dSaMMhX6BdclFYRrXyHLTLvYle4wKa/4PIElQa
+         3GUO0x6ZciAKXgKmrVcVVn4C3vqJPJrUm8ASPMMHeIptYj1ckBtoF170H5qR9Uocmzwa
+         p6wEi/CUTw6yF01p8p8FNkzvwCOGqDRJzqMtQPtbD2c8kn3YwjoWYsAKPrdgp5ZrR7KL
+         wzgw==
+X-Gm-Message-State: AOAM5313Ft1XhomV68vzv7+isw9/nPAAqPLikm1C44Tc0ctXBoKp3dMR
+        WV5Lpl37Vcs4cT1RfRcMTGc=
+X-Google-Smtp-Source: ABdhPJxJNKzhvpVLd0yf5JAP3wYExfPs1r7+3tbNJ5EuzHC0v6If/KgvuR9ngHo98GPGUOn+O520sA==
+X-Received: by 2002:aa7:81c3:0:b0:4f2:6d3f:6158 with SMTP id c3-20020aa781c3000000b004f26d3f6158mr6366120pfn.82.1645770695471;
+        Thu, 24 Feb 2022 22:31:35 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id f18-20020a056a001ad200b004bf321765dfsm1647472pfv.95.2022.02.24.22.31.33
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 24 Feb 2022 22:31:35 -0800 (PST)
+From:   Li-hao Kuo <lhjeff911@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com,
+        Li-hao Kuo <lhjeff911@gmail.com>
+Subject: [PATCH] spi: dt-bindings: remove unused required property
+Date:   Fri, 25 Feb 2022 14:31:53 +0800
+Message-Id: <097bbc8b703b17e8fb3e3f6f6d2f97fe668bd5c5.1645770648.git.lhjeff911@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 2:18 PM xinlei.lee <xinlei.lee@mediatek.com> wrote:
->
-> On Thu, 2022-02-24 at 15:19 -0600, Rob Herring wrote:
-> > On Wed, Feb 16, 2022 at 05:32:51PM +0800, xinlei.lee@mediatek.com
-> > wrote:
-> > > From: Xinlei Lee <xinlei.lee@mediatek.corp-partner.google.com>
-> > >
-> > > Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
-> > >
-> > > Signed-off-by: Xinlei Lee <
-> > > xinlei.lee@mediatek.corp-partner.google.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-
-> > > disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-
-> > > disp.yaml
-> > > index 768ab04d3764..1f45b1b8c3d4 100755
-> > > --- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> > > +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-> > > @@ -17,6 +17,7 @@ properties:
-> > >        - mediatek,mt6595-disp-pwm
-> > >        - mediatek,mt8173-disp-pwm
-> > >        - mediatek,mt8183-disp-pwm
-> > > +      - mediatek,mt8186-disp-pwm
-> > >        - mediatek,mt8192-disp-pwm
-> > >        - mediatek,mt8195-disp-pwm
-> >
-> > It seems unlikely that every SoC has a different version of h/w for
-> > something as simple as a PWM. There's not an appropriate fallback?
-> > The
-> > first version from an SoC that has all the features and would work
-> > with
-> > existing driver unchanged?
-> >
-> > Rob
->
-> Hi Rob:
->
-> Thanks for your suggestion,I agree with your point of view.
-> If I want to show that different socs are using this disp_pwm, can I
-> use oneOf with items to achieve this, and reuse the compatiable that is
-> currently included in the pwm_mtk_disp.c file.
-> E.g:
-> - items:
->        - enum:
->            -mediatek,mt8186-disp-pwm
->        - enum:
->            -mediatek,mt8183-disp-pwm
-> What's your suggestion for this program?
+fix issue
+/builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.example.dt.yaml:
+spi@9C002D80: 'clocks-names' is a required property
+From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+delete unused required(clock-name)
 
-Using Documentation/devicetree/bindings/mmc/mtk-sd.yaml as a reference,
-you would have:
-  compatible:
-    oneOf:
-      - enum:
-        - mediatek,mt6595-disp-pwm
-        - mediatek,mt8173-disp-pwm
-        - mediatek,mt8183-disp-pwm
-      - items:
-        - const: mediatek,mt8186-disp-pwm
-        - const: mediatek,mt8183-disp-pwm
-      ...
+Fixes: 3b8ab4da34 ("spi: Fix test error for sp7021")
 
-ChenYu
+Reported-by: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Li-hao Kuo <lhjeff911@gmail.com>
+---
+ Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml | 1 -
+ 1 file changed, 1 deletion(-)
 
+diff --git a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+index 298eac2..3a58cf0 100644
+--- a/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+@@ -50,7 +50,6 @@ required:
+   - interrupts
+   - interrupt-names
+   - clocks
+-  - clocks-names
+   - resets
+   - pinctrl-names
+   - pinctrl-0
+-- 
+2.7.4
 
-> Best Regards!
-> xinlei
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
