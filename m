@@ -2,116 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 65E894C44B0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:38:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 660FF4C44BB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231127AbiBYMjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 07:39:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
+        id S235397AbiBYMmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 07:42:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230229AbiBYMjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:39:11 -0500
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565DB1BD041;
-        Fri, 25 Feb 2022 04:38:39 -0800 (PST)
-Received: by mail-vs1-f50.google.com with SMTP id y26so5365065vsq.8;
-        Fri, 25 Feb 2022 04:38:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lpsl70NeniIbkyLwhbPQj1WNfq7vaiwdbXuyeg+ajGk=;
-        b=U3kVykAzLVwZtbsmKPLmQuxjeCS5wesLwhA6Bns16oQ+0BHtQtweJ2UVIaWulmf96A
-         1hyE3O4B5FkBOchzHI/Jn69pWC1Waj/KYrYl1OAiC5n13LncUoYrXTXqD4jJo5H8CZS2
-         bhkCn1mX4YOQW4ArlLLc3xJQyejBaOEFOlcIzhs1mO5+PYu8mxFcjzjqz85ykCV21PiN
-         ++9snGN4ZotSe9sqL/Rbn808Wi3eT7MVCxA8KmPhBfzC/I3serV1gWmRruX4hNmkAF9T
-         6IQJZ+TZw+A9zYIXZKUtKBu6rScVumRjh2xQ5kry7CsftEdOK0u5OfS4PS5oGgSBve0P
-         ONrg==
-X-Gm-Message-State: AOAM531BpI2tOS8JNfR1uQu7SIpququAD/4IInJuBnkQHp7/w1EH6jp/
-        dbkoWrCRIMdCkqDnlw9mpYdgklxyiCuO6g==
-X-Google-Smtp-Source: ABdhPJwzCDN8CpKAO5oema4pmHx/NV71lLKDSzCCJYVBQM50FdCa0AceE/hvVqtJh6JQkXcesYpOQA==
-X-Received: by 2002:a67:d50a:0:b0:31b:9be2:8aa0 with SMTP id l10-20020a67d50a000000b0031b9be28aa0mr3286421vsj.76.1645792718388;
-        Fri, 25 Feb 2022 04:38:38 -0800 (PST)
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
-        by smtp.gmail.com with ESMTPSA id n22-20020a1fa416000000b0031e658fd080sm318400vke.43.2022.02.25.04.38.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 04:38:38 -0800 (PST)
-Received: by mail-vs1-f42.google.com with SMTP id j3so5373059vsi.7;
-        Fri, 25 Feb 2022 04:38:37 -0800 (PST)
-X-Received: by 2002:a67:b00e:0:b0:30d:dc98:6024 with SMTP id
- z14-20020a67b00e000000b0030ddc986024mr3408170vse.57.1645792717609; Fri, 25
- Feb 2022 04:38:37 -0800 (PST)
+        with ESMTP id S230513AbiBYMmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:42:01 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B67EF1E4821
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 04:41:29 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7F785ED1;
+        Fri, 25 Feb 2022 04:41:29 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AE4753F5A1;
+        Fri, 25 Feb 2022 04:41:27 -0800 (PST)
+Message-ID: <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
+Date:   Fri, 25 Feb 2022 12:41:23 +0000
 MIME-Version: 1.0
-References: <cover.1645457792.git.geert+renesas@glider.be> <fd8201da404b7b0897130b254380ffc97f437266.1645457792.git.geert+renesas@glider.be>
- <TYBPR01MB5341194E803AB92109AA3ECCD83E9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYBPR01MB5341194E803AB92109AA3ECCD83E9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 25 Feb 2022 13:38:26 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdW=oomYfT_SbYgApUt+3z9N4io7fU+_PERn8hArEhs8Yw@mail.gmail.com>
-Message-ID: <CAMuHMdW=oomYfT_SbYgApUt+3z9N4io7fU+_PERn8hArEhs8Yw@mail.gmail.com>
-Subject: Re: [PATCH v2 03/12] pinctrl: renesas: Initial R8A779F0 PFC support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Hoai Luu <hoai.luu.ub@renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Content-Language: en-GB
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+ <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+On 2022-02-25 11:10, Dmitry Osipenko wrote:
+> 25.02.2022 13:49, Sascha Hauer пишет:
+>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+>>> 25.02.2022 10:51, Sascha Hauer пишет:
+>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+>>>> HDMI controller to work. The purpose of that clock is not clear. It is
+>>>> named "hclk" in the downstream driver, so use the same name.
+>>>>
+>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>> ---
+>>>>
+>>>> Notes:
+>>>>      Changes since v5:
+>>>>      - Use devm_clk_get_optional rather than devm_clk_get
+>>>>
+>>>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+>>>>   1 file changed, 16 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> index fe4f9556239ac..c6c00e8779ab5 100644
+>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+>>>>   	const struct rockchip_hdmi_chip_data *chip_data;
+>>>>   	struct clk *ref_clk;
+>>>>   	struct clk *grf_clk;
+>>>> +	struct clk *hclk_clk;
+>>>>   	struct dw_hdmi *hdmi;
+>>>>   	struct regulator *avdd_0v9;
+>>>>   	struct regulator *avdd_1v8;
+>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>>   		return PTR_ERR(hdmi->grf_clk);
+>>>>   	}
+>>>>   
+>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+>>>
+>>> Have you tried to investigate the hclk? I'm still thinking that's not
+>>> only HDMI that needs this clock and then the hardware description
+>>> doesn't look correct.
+>>
+>> I am still not sure what you mean. Yes, it's not only the HDMI that
+>> needs this clock. The VOP2 needs it as well and the driver handles that.
+> 
+> I'm curious whether DSI/DP also need that clock to be enabled. If they
+> do, then you aren't modeling h/w properly AFAICS.
 
-On Fri, Feb 25, 2022 at 1:07 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> > From: Geert Uytterhoeven, Sent: Tuesday, February 22, 2022 12:44 AM
-> >
-> > Add initial Pin Function Controller (PFC) support for the Renesas R-Car
-> > S4-8 (R8A779F0) SoC, including bias, drive strength and voltage control.
-> >
-> > Based on a larger patch in the BSP by LUU HOAI.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> <snip>
-> > diff --git a/drivers/pinctrl/renesas/pfc-r8a779f0.c b/drivers/pinctrl/renesas/pfc-r8a779f0.c
-> > new file mode 100644
-> > index 0000000000000000..2f3fbb794eb635c1
-> > --- /dev/null
-> > +++ b/drivers/pinctrl/renesas/pfc-r8a779f0.c
-> > @@ -0,0 +1,1024 @@
-> <snip>
-> > +static const struct pinmux_ioctrl_reg pinmux_ioctrl_regs[] = {
-> > +     [POC0] = { 0xe60500a0, },
-> > +     [POC1] = { 0xe60508a0, },
-> > +     [POC2] = { 0xe60510a0, },
-> > +     [POC3] = { 0xe60518a0, },
-> > +     [TD0SEL1] = { 0xe6058120, },
->
-> TD0SEL1 should be 0xe6050920 (0xe6050800 + 0x120).
->
-> After fixed it,
->
-> Acked-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Assuming nobody at Rockchip decided to make things needlessly 
+inconsistent with previous SoCs, HCLK_VOP should be the clock for the 
+VOP's AHB slave interface. Usually, if that affected anything other than 
+accessing VOP registers, indeed it would smell of something being wrong 
+in the clock tree, but in this case I'd also be suspicious of whether it 
+might have ended up clocking related GRF registers as well (either 
+directly, or indirectly via some gate that the clock driver hasn't 
+modelled yet).
 
-Thank you, will fix while applying.
+If the symptom of not claiming HCLK_VOP is hanging on some register 
+access in the HDMI driver while the VOP is idle, then it should be 
+relatively straightforward to narrow down with some logging, and see if 
+it looks like this is really just another "grf" clock. If not, then 
+we're back to suspecting something more insidiously wrong elsewhere.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Robin.
