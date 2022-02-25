@@ -2,44 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339BA4C51C2
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 23:54:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 406F14C51D4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 23:59:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238781AbiBYWyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 17:54:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35242 "EHLO
+        id S238958AbiBYXAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 18:00:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbiBYWye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 17:54:34 -0500
+        with ESMTP id S229885AbiBYXAN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 18:00:13 -0500
 Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A2C81EF352;
-        Fri, 25 Feb 2022 14:54:01 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75981AAFC5;
+        Fri, 25 Feb 2022 14:59:40 -0800 (PST)
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: nfraprado)
-        with ESMTPSA id 849FC1F467FD
+        with ESMTPSA id 8E83F1F467FD
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645829639;
-        bh=z3qh2ebyqlz3f5zcWAVAwa251mEJPQcuQVDkYC5qazU=;
+        s=mail; t=1645829979;
+        bh=5/cbXG/0jty+bdChTJn7AE0JyJhsUQJkq1UGkqKxjAw=;
         h=From:To:Cc:Subject:Date:From;
-        b=i0+fdRVLpSihQ9Lvk2+OUwe0bzCpQVBUI58Me8jDXbOtH9eXiyBl1rziYfbZf4yCR
-         o/M7+WbaZvC4zgKGsXAiskg27Xjxq6hGL5VPcNbbC3w3n0dRuSbtJxHYEm9Hux5D0+
-         kV18GKHZNKhptAbyCY0rOImIA0VNVz4Kne6l1l977yO3Imt6jbrvJNtuaiGTj4ps0Y
-         JCxhH7xJLDdfrF6TiSK/VUnO1Dc3YuPfvcSnyHJahCpxMOOwKSqTdVoFSG6fGrCWvg
-         p9RmKQkXoK5SmJ4pFCXPYJgiasDrCaCkJ3GSgbrwi1Iv7YyE9ALeYOjrwntt+m/vFk
-         IN72WIcx5b4NA==
+        b=T4wnPFhH210ovR8105MIZoT/yV/bB+jd6nxy9AE3kGprtoXa1BSuJ6MCxRFsJmT5g
+         JhWsJmv3/8R82KXFXFPiQhqF23/YufhERkmCfRDECgySYyrQrXlorM3mrWEPfOIF/a
+         QUDNwhK/lTIOHx4gpqzVal3uO4ZZ2t0j3oUA1hL2sp8L/Ovc3L5Hq4v4CMVMpFlQgm
+         cwrQBnjE+hsjvmq/zTmgyJ2LncrM0M3Vls5BrSmTuYRXDgNepxPfQwmcw/3mjH2lz3
+         4xsS0NGfysoh1gszQpTAb60P+BgHmffTyGp2lh1YHsOxRLyiZzZlZggN8764nQgYyq
+         upAxn/I9+RAMQ==
 From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
         <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     kernel@collabora.com, Rob Herring <robh+dt@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
         =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v1] arm/arm64: dts: mediatek: Format mediatek,larbs as an array of phandles
-Date:   Fri, 25 Feb 2022 17:53:15 -0500
-Message-Id: <20220225225315.80220-1-nfraprado@collabora.com>
+        <nfraprado@collabora.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org
+Subject: [PATCH v1 0/3] Fixes for Mediatek dt-bindings
+Date:   Fri, 25 Feb 2022 17:58:51 -0500
+Message-Id: <20220225225854.81038-1-nfraprado@collabora.com>
 X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -54,121 +64,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit 39bd2b6a3783 ("dt-bindings: Improve phandle-array schemas")
-updated the mediatek,larbs property in the mediatek,iommu.yaml
-dt-binding to make it clearer that the phandles passed to the property
-are independent, rather than subsequent arguments to the first phandle.
 
-Update the mediatek,larbs property in the Devicetrees to use the same
-formatting. This change doesn't impact any behavior: the compiled dtb is
-exactly the same. It does however fix the warnings generated by
-dtbs_check.
+This series has some fixes for Mediatek dt-bindings. It solves some
+warnings printed by dtbs_check, both for already merged Devicetrees, as
+well as some that would be introduced by the changes to mt8192.dtsi in
+[1].
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+[1] https://lore.kernel.org/all/20220218091633.9368-1-allen-kh.cheng@mediatek.com/
 
----
 
- arch/arm/boot/dts/mt2701.dtsi             | 2 +-
- arch/arm/boot/dts/mt7623n.dtsi            | 2 +-
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 6 +++---
- arch/arm64/boot/dts/mediatek/mt8167.dtsi  | 2 +-
- arch/arm64/boot/dts/mediatek/mt8173.dtsi  | 4 ++--
- arch/arm64/boot/dts/mediatek/mt8183.dtsi  | 4 ++--
- 6 files changed, 10 insertions(+), 10 deletions(-)
+Nícolas F. R. A. Prado (3):
+  dt-bindings: remoteproc: mediatek: Add interrupts property to mtk,scp
+  dt-bindings: usb: mtk-xhci: Allow wakeup interrupt-names to be
+    optional
+  media: dt-bindings: mtk-vcodec-encoder: Add power-domains property
 
-diff --git a/arch/arm/boot/dts/mt2701.dtsi b/arch/arm/boot/dts/mt2701.dtsi
-index 4776f85d6d5b..64722285228c 100644
---- a/arch/arm/boot/dts/mt2701.dtsi
-+++ b/arch/arm/boot/dts/mt2701.dtsi
-@@ -222,7 +222,7 @@ iommu: mmsys_iommu@10205000 {
- 		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
--		mediatek,larbs = <&larb0 &larb1 &larb2>;
-+		mediatek,larbs = <&larb0>, <&larb1>, <&larb2>;
- 		#iommu-cells = <1>;
- 	};
- 
-diff --git a/arch/arm/boot/dts/mt7623n.dtsi b/arch/arm/boot/dts/mt7623n.dtsi
-index bcb0846e29fd..f9e031621c80 100644
---- a/arch/arm/boot/dts/mt7623n.dtsi
-+++ b/arch/arm/boot/dts/mt7623n.dtsi
-@@ -107,7 +107,7 @@ iommu: mmsys_iommu@10205000 {
- 		interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
--		mediatek,larbs = <&larb0 &larb1 &larb2>;
-+		mediatek,larbs = <&larb0>, <&larb1>, <&larb2>;
- 		#iommu-cells = <1>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index de16c0d80c30..973c9beade0c 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -329,8 +329,8 @@ iommu0: iommu@10205000 {
- 		interrupts = <GIC_SPI 147 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
--		mediatek,larbs = <&larb0 &larb1 &larb2
--				  &larb3 &larb6>;
-+		mediatek,larbs = <&larb0>, <&larb1>, <&larb2>,
-+				 <&larb3>, <&larb6>;
- 		#iommu-cells = <1>;
- 	};
- 
-@@ -346,7 +346,7 @@ iommu1: iommu@1020a000 {
- 		interrupts = <GIC_SPI 145 IRQ_TYPE_LEVEL_LOW>;
- 		clocks = <&infracfg CLK_INFRA_M4U>;
- 		clock-names = "bclk";
--		mediatek,larbs = <&larb4 &larb5 &larb7>;
-+		mediatek,larbs = <&larb4>, <&larb5>, <&larb7>;
- 		#iommu-cells = <1>;
- 	};
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8167.dtsi b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-index 9029051624a6..54655f2feb04 100644
---- a/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8167.dtsi
-@@ -174,7 +174,7 @@ larb2: larb@16010000 {
- 		iommu: m4u@10203000 {
- 			compatible = "mediatek,mt8167-m4u";
- 			reg = <0 0x10203000 0 0x1000>;
--			mediatek,larbs = <&larb0 &larb1 &larb2>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>;
- 			interrupts = <GIC_SPI 121 IRQ_TYPE_LEVEL_LOW>;
- 			#iommu-cells = <1>;
- 		};
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 2b7d331a4588..042feaedda4a 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -588,8 +588,8 @@ iommu: iommu@10205000 {
- 			interrupts = <GIC_SPI 139 IRQ_TYPE_LEVEL_LOW>;
- 			clocks = <&infracfg CLK_INFRA_M4U>;
- 			clock-names = "bclk";
--			mediatek,larbs = <&larb0 &larb1 &larb2
--					  &larb3 &larb4 &larb5>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>,
-+					 <&larb3>, <&larb4>, <&larb5>;
- 			#iommu-cells = <1>;
- 		};
- 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 00f2ddd245e1..523741150968 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -682,8 +682,8 @@ iommu: iommu@10205000 {
- 			compatible = "mediatek,mt8183-m4u";
- 			reg = <0 0x10205000 0 0x1000>;
- 			interrupts = <GIC_SPI 166 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larbs = <&larb0 &larb1 &larb2 &larb3
--					  &larb4 &larb5 &larb6>;
-+			mediatek,larbs = <&larb0>, <&larb1>, <&larb2>, <&larb3>,
-+					 <&larb4>, <&larb5>, <&larb6>;
- 			#iommu-cells = <1>;
- 		};
- 
+ .../devicetree/bindings/media/mediatek,vcodec-encoder.yaml     | 3 +++
+ Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml      | 3 +++
+ Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.yaml   | 1 +
+ 3 files changed, 7 insertions(+)
+
 -- 
 2.35.1
 
