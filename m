@@ -2,90 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 871F04C5009
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 21:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A738F4C505A
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 22:09:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233441AbiBYUty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 15:49:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35070 "EHLO
+        id S237880AbiBYVJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 16:09:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237924AbiBYUru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 15:47:50 -0500
-Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C7D22502E;
-        Fri, 25 Feb 2022 12:47:17 -0800 (PST)
-Received: from g550jk.localnet (ip-213-127-118-180.ip.prioritytelecom.net [213.127.118.180])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 21F40C85A1;
-        Fri, 25 Feb 2022 20:47:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1645822036; bh=DPMNliML3ukNNsPck65ZNcLxh30N28NKU6yWkFqvS2Y=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Prss4QVVwnNIJUOR/RLiPzTLs5wIOGNLszoBL6kxYRbqzxUYMQdukkVbcpOEds7Yj
-         ZpwsAnV2LwHqwbn61bFDe1Ka5xQLotocuoSheyROECiUJqy2VoKZYqIIONrZV0Ym59
-         XuvbR6YdMgsatLAzZXJrLKHG1vuXIMmaGWdwd6/A=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        marcel@holtmann.org, "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: bluetooth: broadcom: add BCM43430A0 & BCM43430A1
-Date:   Fri, 25 Feb 2022 21:47:15 +0100
-Message-ID: <4690803.GXAFRqVoOG@g550jk>
-In-Reply-To: <20220225204138.935022-1-luca@z3ntu.xyz>
-References: <20220225204138.935022-1-luca@z3ntu.xyz>
+        with ESMTP id S237866AbiBYVJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 16:09:52 -0500
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D892186465;
+        Fri, 25 Feb 2022 13:09:19 -0800 (PST)
+Received: by mail-ed1-x52a.google.com with SMTP id g20so9105580edw.6;
+        Fri, 25 Feb 2022 13:09:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:from:subject:to:cc
+         :content-language:content-transfer-encoding;
+        bh=r+q3BnS/yso16BsfWpj6w5rHbh3h6hD4bXPBdy/jvnw=;
+        b=SQL4BzgeZziN33zoc6V/odBjyMQxLclakUGEpkl/6UCYpqfkMIREM07lR4PB83NC93
+         1SX+v7FtmA9tMGYAeC06LGaulgvP43oncv6HMhI1e5YZN0fTVwXtNZ1Ed0QkKBkdRkrR
+         U2aKy61UxG0yaWWyYOX/XfoQvyR2WMNJMtqGZOsvryyVl3uokTqWnct5m478wtKG13mI
+         velXDoyOrmafbDCUejXxUUVtRgR13jQmi813xhv4hIjlXKPy1ZmU26YKC9GkP7gredi5
+         0VHzs7zthOKrXh2CRmKIXmuBMhSRQzdUAZPQxTcdT3dXAJOV7WnYkg+sQ6ZNgeKDAQL8
+         qmfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:to:cc:content-language:content-transfer-encoding;
+        bh=r+q3BnS/yso16BsfWpj6w5rHbh3h6hD4bXPBdy/jvnw=;
+        b=kjEnjh6aWOL3qP64WhJ5Cc4vH5yqMUK907PGLohSnfagF/IAYU7H8B6BrFQYqTMnCt
+         zbHK7YHGc9i67vH35tTVrIWL2uHnIG8pJg3OyWZ5jQF4D71NYtuyaVtw2goKmApFplg2
+         rhli2oa8TVQJWrCc/zJyYQ7QC/JsWTweKpz/lSiLd8NUsia3wehdu1Ji1aJZOaHN4GRe
+         yUzlAVF7PXdScOj8hv4rgF9R0bkkFcVLJqEpweJnZVghMnRKq9RFjAASkjCxBrymg7Gx
+         AuqQypu7VsGwiYNxNIoAoBqtcVm7hsubaGkqkcIVPz6DeP1h3l7mnifIIft+4NBWBdVi
+         E4vw==
+X-Gm-Message-State: AOAM530tjUY9V6IEBlQcjggt7Tei2DchJ6qv0Wse03lTzAWp6RmRUD57
+        rcrZlsbl0gWjV0jH09vut8w=
+X-Google-Smtp-Source: ABdhPJydKnvqx3rNZJ9qOOIWYHnadxaIIv4GvoIfoNio5jMICEuJlGcgOaL1GudECWijxYd8LzIKrg==
+X-Received: by 2002:a05:6402:50cb:b0:412:ab6d:c807 with SMTP id h11-20020a05640250cb00b00412ab6dc807mr8879863edb.382.1645823357711;
+        Fri, 25 Feb 2022 13:09:17 -0800 (PST)
+Received: from ?IPV6:2a01:c22:7326:e100:c9d3:3c62:2c99:d44b? (dynamic-2a01-0c22-7326-e100-c9d3-3c62-2c99-d44b.c22.pool.telefonica.de. [2a01:c22:7326:e100:c9d3:3c62:2c99:d44b])
+        by smtp.googlemail.com with ESMTPSA id r3-20020aa7cb83000000b0040decce18bdsm1838499edt.99.2022.02.25.13.09.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 13:09:17 -0800 (PST)
+Message-ID: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+Date:   Fri, 25 Feb 2022 22:09:10 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
-        PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Freitag, 25. Februar 2022 21:41:37 CET Luca Weiss wrote:
-> Document the compatible string for BCM43430A0 bluetooth used in lg-lenok
-> and BCM43430A1 used in asus-sparrow.
-> 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+This series adds support for the Titanmec TM1628 7 segment display
+controller. It's based on previous RFC work from Andreas Färber.
+The RFC version placed the driver in the LED subsystem, but this was
+NAK'ed by the LED maintainer. Therefore I moved the driver to
+/drivers/auxdisplay what seems most reasonable to me.
 
-The previous version with just BCM43430A0 the patch collected the following 
-tags:
+Further changes to the RFC version:
+- Driver can be built also w/o LED class support, for displays that
+  don't have any symbols to be exposed as LED's.
+- Simplified the code and rewrote a lot of it.
+- Driver is now kind of a MVP, but functionality should be sufficient
+  for most use cases.
+- Use the existing 7 segment support in uapi/linux/map_to_7segment.h
+  as suggested by Geert Uytterhoeven.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
+Note: There's a number of chips from other manufacturers that are
+      almost identical, e.g. FD628, SM1628. Only difference I saw so
+      far is that they partially support other display modes.
+      TM1628: 6x12, 7x11
+      SM1628C: 4x13, 5x12, 6x11, 7x10
+      For typical displays on devices using these chips this
+      difference shouldn't matter.
 
-Not sure if with the changes I can keep them.
+Successfully tested on a TX3 Mini TV box that has an SM1628C and a
+display with 4 digits and 7 symbols.
 
-> ---
-> Changes in v2:
-> - add bcm43430a1 too, adjust commit message to reflect that
-> 
->  Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml index
-> 5aac094fd217..dd035ca639d4 100644
-> --- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> +++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
-> @@ -19,6 +19,8 @@ properties:
->        - brcm,bcm4329-bt
->        - brcm,bcm4330-bt
->        - brcm,bcm4334-bt
-> +      - brcm,bcm43430a0-bt
-> +      - brcm,bcm43430a1-bt
->        - brcm,bcm43438-bt
->        - brcm,bcm4345c5
->        - brcm,bcm43540-bt
+v2:
+- (re-)add Andreas' SoB to two patches
+- fix YAML issues
+- include ctype.h explicitly
+- add info message in probe()
 
+v3:
+- remove patch 1 because it has been applied via the SPI tree already
+- fix remaining YAML issues in patch 2
+- follow Miguel's suggestion on usage of Co-Developed-by
 
+v4:
+- add patch for MAINTAINERS entry
+- incorporate Miguel's review comments
+- Replace Co-Developed-by with Co-developed-by (checkpatch)
+v5:
+- add vendor prefix to driver-specific dt properties
 
+Andreas Färber (1):
+  dt-bindings: vendor-prefixes: Add Titan Micro Electronics
+
+Heiner Kallweit (5):
+  dt-bindings: auxdisplay: Add Titan Micro Electronics TM1628
+  docs: ABI: document tm1628 attribute display-text
+  auxdisplay: add support for Titanmec TM1628 7 segment display
+    controller
+  arm64: dts: meson-gxl-s905w-tx3-mini: add support for the 7 segment
+    display
+  MAINTAINERS: Add entry for tm1628 auxdisplay driver
+
+ .../testing/sysfs-devices-auxdisplay-tm1628   |   7 +
+ .../bindings/auxdisplay/titanmec,tm1628.yaml  |  92 +++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |   7 +
+ .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  |  59 +++
+ drivers/auxdisplay/Kconfig                    |  11 +
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/tm1628.c                   | 376 ++++++++++++++++++
+ 8 files changed, 555 insertions(+)
+ create mode 100644 Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+ create mode 100644 drivers/auxdisplay/tm1628.c
+
+-- 
+2.35.1
 
