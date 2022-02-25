@@ -2,211 +2,300 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8A5B4C42CF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:52:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCAD4C42D5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239716AbiBYKxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:53:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
+        id S236539AbiBYKyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:54:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236261AbiBYKxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:53:23 -0500
-Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294E117FD32
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:51 -0800 (PST)
-Received: by mail-oi1-x22e.google.com with SMTP id i5so6946451oih.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:51 -0800 (PST)
+        with ESMTP id S234854AbiBYKyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:54:10 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764BC1B5112;
+        Fri, 25 Feb 2022 02:53:38 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id qk11so10101521ejb.2;
+        Fri, 25 Feb 2022 02:53:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc:content-transfer-encoding;
-        bh=lCjS17RFbyRJS2Db4IElIeJl8aSxBOeolv8L7WEpzG0=;
-        b=ZxA07RL3mMl2OYCEdKyZ7YMkP6PPrkqbudpFP/Xwrvm3gMcx3tUnhRYv8Yk3mK4v3d
-         sc3DR0IdZD37Ua+cviUedxfolPE/qnsdmnqgBHPEpZC1+PgWDASxreISF1P1Ly2Uc/pI
-         wggbKGlXSnIWxZJSha4EF2De/dnO0fCLvkz6P5M18Y1PdanigCXjdE+5vkwPuaUO+0B5
-         i8GwmlHQgP4H8uSsxRwGBexOwkl/yUqMpcrbIrwN/4uQIhUr84KMQgf0PZk1BG66U7Jy
-         YRXGtmHxLmxy1pPqCe3Dtw8ydk2F6cu08Bbhkq7CFcvZxkCQ/X+xb7KWbb1WGerxvfvP
-         FsVA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=h/VZhFSee9mby4Ks5QygzWK3m4ma36DDzYBH8cRSTg0=;
+        b=GZfzCCgfBL2/cDdgRS599HRF7Vb27NDzxhC13Y62NhZecbpSIgfw6+ck6mVJyMf8nR
+         URiPWRVb7GUBXE+i0J0XeXb3Lsjk/CJitki8vj6Lj58paq4edRxugt9F0ueyOhHGMd8M
+         Dtt5OE7AHbE+nzXK+9IMAPURTDT+l8ia8DMMLen+YJq4CEu2BFfsnbIUXW/eIUKn07hy
+         e/YEENu+dqkFeT9WmoNdzN7noA6tKvlJptd6OdcLpksLAURTPeeA6gaBxbmi7dptm6fj
+         W/mAf2LSNTx13hDZ9ZeOU3nb5U1O6+rj7OTcFr7JvBruYAjgCgA7m3ItgkUw6M8WDa71
+         SdEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=lCjS17RFbyRJS2Db4IElIeJl8aSxBOeolv8L7WEpzG0=;
-        b=e7FqhKTC13KDecPlEWsbc3XFLoMCMUfpMHIY1ulGmo64IeIpl90umhHq4qj3+/gl7O
-         8xYZgnS4UkoWWIsdCIODT//AyDEDrP/kgGP9T61L+/G9QtLMupDeOnH7XgvZxIoM0P4b
-         p87+870/GYc7tu0HeVs0f8vTBZiSEdHrBzPuo/Ez4gQ8VJVrimd+sg1RyLH8LOjyiVl6
-         jBM/0RFqKSBMHN7e+vUs7Yei5f7Hiw2d+GtrqV0ngqYjyGV7fy0U7uOqzNqAgjQfYHeA
-         EPU9vLpyagNQpllK5vMzDN+8ZnTCrKhMDrTiaw+G9Y1L7gNInUHJXJaysh+IqtlWRKWh
-         uq0A==
-X-Gm-Message-State: AOAM531HCMXYhnx+k04LliINbcv98lSnC9Lu4IRDUsfhzb/gnLXJH+ad
-        OSazYuhfxv48R3zzHnXuYMTvvTNyKK7aLmfnQCaZPQ==
-X-Google-Smtp-Source: ABdhPJyteHJVXwqtREl4MhJz0dVR/k/rAMxVv+BnqtMnsqQSFUKqWOGlNhrZlPQ9P1vmHV6UVPKJuCBvnsGagSVbgHg=
-X-Received: by 2002:aca:1b13:0:b0:2d4:b033:450 with SMTP id
- b19-20020aca1b13000000b002d4b0330450mr1231170oib.214.1645786370409; Fri, 25
- Feb 2022 02:52:50 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 25 Feb 2022 02:52:49 -0800
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h/VZhFSee9mby4Ks5QygzWK3m4ma36DDzYBH8cRSTg0=;
+        b=yGaQ8s9bARMWsACDfeioqG5nq0xk2ZZzkl9/YBsLCN4DOlPpLt0N00dO7QJTN35LCv
+         bffbEP4Li8p687SIk/vyYjEVY8P6GzJSvG3CIrgkALkzoW4gf8RHsHayKO61VmaALpyp
+         fDHUSDpoves8nWwJFQzVl3TJNwEM3qNWnDQfJbLbacH8TNvohkpUApNUEdjMYLeUew7B
+         9GbgkWP65zHOyHY5ILuTo+gd7vifJguA/0rjDGvpUuVgfSkVzhWNC27La50CBDkD0C2y
+         D+1hLPcWrxfOXoCPYmgLUMkbliVyk76Os4DCdvh0lY8V9Y0quq+4t6+3iZF6ktcQGTFh
+         k61g==
+X-Gm-Message-State: AOAM531JkdoQrBJrTLJ5RG5C5Z/mYyuH7pFAj3DsFQRaF1SNEF8XeTGz
+        6N91KfZXnyh2pBIXeHLQbRw9EL1UMj5K2g==
+X-Google-Smtp-Source: ABdhPJzokaQUIJjp3/0KAXV1pCNfs8zYTdoTpw2qYxda0pYYtBz7Cj7MKeszPpFl+5iO7sm+nNcgsg==
+X-Received: by 2002:a17:907:8a04:b0:6b4:e098:741a with SMTP id sc4-20020a1709078a0400b006b4e098741amr5615965ejc.550.1645786416760;
+        Fri, 25 Feb 2022 02:53:36 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id b15-20020a50cccf000000b0040f74c6abedsm1188548edj.77.2022.02.25.02.53.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 02:53:36 -0800 (PST)
+Message-ID: <3e3d0e25-cea4-5b1a-e181-15e793ecba91@gmail.com>
+Date:   Fri, 25 Feb 2022 11:53:34 +0100
 MIME-Version: 1.0
-In-Reply-To: <CAAOTY__AgD_Rc_5TS4v+sBDeN-nd0DbwuERhW=OsvsbMWSsxsA@mail.gmail.com>
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-7-granquet@baylibre.com>
- <CAAOTY__AgD_Rc_5TS4v+sBDeN-nd0DbwuERhW=OsvsbMWSsxsA@mail.gmail.com>
-From:   Guillaume Ranquet <granquet@baylibre.com>
-User-Agent: alot/0.10
-Date:   Fri, 25 Feb 2022 02:52:49 -0800
-Message-ID: <CABnWg9uUDH7Vo-=HTSjS7HRfdo=SQPk43ujT=jh5Q+VhAA2Hag@mail.gmail.com>
-Subject: Re: [PATCH v8 06/19] drm/mediatek: dpi: implement a CK/DE pol toggle
- in board config
-To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
-        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        "ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: add the usb3 nodes to rk356x
+Content-Language: en-US
+To:     Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Liang Chen <cl@rock-chips.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+References: <20220225100943.2115933-1-michael.riesch@wolfvision.net>
+ <20220225100943.2115933-2-michael.riesch@wolfvision.net>
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <20220225100943.2115933-2-michael.riesch@wolfvision.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Chun-Kuang Hu (2022-02-21 03:14:02)
-> HI, Guillaume:
->
-> Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=
-=8818=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >
-> > Adds a bit of flexibility to support boards without CK/DE pol support
->
-> I'm not sure what the term 'board' mean. Do you mean different board
-> with different panel but all with mt8195-dpintf? If so, you should get
-> CK/DE support from panel driver not fix this information in dpi
-> driver.
->
-> Regards,
-> Chun-Kuang.
->
+Hi Michael,
 
-Hi Chun-Kuang,
+On 2/25/22 11:09, Michael Riesch wrote:
+> The Rockchip RK3566 and RK3568 feature two USB 3.0 xHCI controllers,
+> one of them with Dual Role Device (DRD) capability.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  5 ++
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 58 ++++++++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> index 91a0b798b857..0cd4ef36066a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> @@ -116,3 +116,8 @@ power-domain@RK3568_PD_PIPE {
+>  		#power-domain-cells = <0>;
+>  	};
+>  };
+> +
+> +&usb_host0_dwc3 {
+> +	phys = <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
+> +	phy-names = "usb2-phy", "usb3-phy";
+> +};
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 8b9fae3d348a..b46794486037 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -230,6 +230,64 @@ scmi_shmem: sram@0 {
+>  		};
+>  	};
+>  
+> +	usb_host0_xhci: usb@fcc00000 {
 
-The correct term (as pointed by Angelo) would be 'SoC' instead of
-'board' I guess.
-My understanding is that every SoC might have or might not have CK/DE suppo=
-rt.
+> +		compatible = "rockchip,rk3399-dwc3";
+
+Add string to rockchip,dwc3.yaml
+and check with dtsb_check
+
+compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
+
+> +		#address-cells = <2>;
+
+remove
+
+> +		clocks = <&cru CLK_USB3OTG0_REF>, <&cru CLK_USB3OTG0_SUSPEND>,
+
+> +			 <&cru ACLK_USB3OTG0>, <&cru PCLK_PIPE>;
+
+PCLK_PIPE part of an other node, probably only to enable PD_PIPE.
+
+	combphy1: phy@fe830000 {
+		compatible = "rockchip,rk3568-naneng-combphy";
+		reg = <0x0 0xfe830000 0x0 0x100>;
+		clocks = <&pmucru CLK_PCIEPHY1_REF>,
+			 <&cru PCLK_PIPEPHY1>,
+			 <&cru PCLK_PIPE>;
+		clock-names = "ref", "apb", "pipe";
+		assigned-clocks = <&pmucru CLK_PCIEPHY1_REF>;
+		assigned-clock-rates = <100000000>;
+		resets = <&cru SRST_PIPEPHY1>;
+		rockchip,pipe-grf = <&pipegrf>;
+		rockchip,pipe-phy-grf = <&pipe_phy_grf1>;
+		#phy-cells = <1>;
+		status = "disabled";
+	};
+
+Rockchip RK3568 TRM Part1 V1.0-20210111.pdf
+page 475
+
+PD_PIPE:
+
+BIU_PIPE
+USB3OTG
+PCIE20
+PCIE30
+SATA
+XPCS
+
+PCIE, SATA USB clocks are child of aclk_pipe
+Yet PCLK_PIPE is the only clock that enables RK3568_PD_PIPE.
 
 
-I'll try to dig into the documentation I have to understand exactly
-where this support
-is coming from.
+	COMPOSITE_NOMUX(PCLK_PIPE, "pclk_pipe", "aclk_pipe", 0,
+			RK3568_CLKSEL_CON(29), 4, 4, DFLAGS,
+			RK3568_CLKGATE_CON(10), 1, GFLAGS),
 
-Thx,
-Guillaume.
+&power {
+	power-domain@RK3568_PD_PIPE {
+		reg = <RK3568_PD_PIPE>;
 
-> >
-> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
-> > ---
-> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 22 +++++++++++++++++-----
-> >  1 file changed, 17 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/media=
-tek/mtk_dpi.c
-> > index 4746eb3425674..545a1337cc899 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
-> > @@ -125,6 +125,7 @@ struct mtk_dpi_conf {
-> >         bool edge_sel_en;
-> >         const u32 *output_fmts;
-> >         u32 num_output_fmts;
-> > +       bool is_ck_de_pol;
-> >         const struct mtk_dpi_yc_limit *limit;
-> >  };
-> >
-> > @@ -211,13 +212,20 @@ static void mtk_dpi_config_pol(struct mtk_dpi *dp=
-i,
-> >                                struct mtk_dpi_polarities *dpi_pol)
-> >  {
-> >         unsigned int pol;
-> > +       unsigned int mask;
-> >
-> > -       pol =3D (dpi_pol->ck_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : C=
-K_POL) |
-> > -             (dpi_pol->de_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : DE_=
-POL) |
-> > -             (dpi_pol->hsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : =
-HSYNC_POL) |
-> > +       mask =3D HSYNC_POL | VSYNC_POL;
-> > +       pol =3D (dpi_pol->hsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 =
-: HSYNC_POL) |
-> >               (dpi_pol->vsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : =
-VSYNC_POL);
-> > -       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol,
-> > -                    CK_POL | DE_POL | HSYNC_POL | VSYNC_POL);
-> > +       if (dpi->conf->is_ck_de_pol) {
-> > +               mask |=3D CK_POL | DE_POL;
-> > +               pol |=3D (dpi_pol->ck_pol =3D=3D MTK_DPI_POLARITY_RISIN=
-G ?
-> > +                       0 : CK_POL) |
-> > +                      (dpi_pol->de_pol =3D=3D MTK_DPI_POLARITY_RISING =
-?
-> > +                       0 : DE_POL);
-> > +       }
-> > +
-> > +       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol, mask);
-> >  }
-> >
-> >  static void mtk_dpi_config_3d(struct mtk_dpi *dpi, bool en_3d)
-> > @@ -799,6 +807,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
-> >         .max_clock_khz =3D 300000,
-> >         .output_fmts =3D mt8173_output_fmts,
-> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
-> > +       .is_ck_de_pol =3D true,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -809,6 +818,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
-> >         .max_clock_khz =3D 150000,
-> >         .output_fmts =3D mt8173_output_fmts,
-> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
-> > +       .is_ck_de_pol =3D true,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -818,6 +828,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
-> >         .max_clock_khz =3D 100000,
-> >         .output_fmts =3D mt8183_output_fmts,
-> >         .num_output_fmts =3D ARRAY_SIZE(mt8183_output_fmts),
-> > +       .is_ck_de_pol =3D true,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > @@ -827,6 +838,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
-> >         .max_clock_khz =3D 150000,
-> >         .output_fmts =3D mt8173_output_fmts,
-> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
-> > +       .is_ck_de_pol =3D true,
-> >         .limit =3D &mtk_dpi_limit,
-> >  };
-> >
-> > --
-> > 2.34.1
-> >
+		clocks = <&cru PCLK_PIPE>;
+
+Do we need more clocks here for USB for example?
+
+		pm_qos = <&qos_pcie2x1>,
+			 <&qos_pcie3x1>,
+			 <&qos_pcie3x2>,
+			 <&qos_sata0>,
+			 <&qos_sata1>,
+			 <&qos_sata2>,
+			 <&qos_usb3_0>,
+			 <&qos_usb3_1>;
+		#power-domain-cells = <0>;
+	};
+};
+
+> +		clock-names = "ref_clk", "suspend_clk", "bus_clk", "grf_clk";
+
+grf_clk only related to rk3399 ACLK_USB3_GRF and not to PCLK_PIPE.
+
+> +		ranges;
+> +		#size-cells = <2>;
+
+remove
+
+> +		status = "disabled";
+> +
+> +		usb_host0_dwc3: usb@fcc00000 {
+
+No subnode for "snps,dwc3"
+No more subdriver like rk3399.
+Use dwc core only and fix things/quirks there.
+
+> +			compatible = "snps,dwc3";
+> +			reg = <0x0 0xfcc00000 0x0 0x400000>;
+> +			interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> +			dr_mode = "otg";
+> +			phy_type = "utmi_wide";
+> +			power-domains = <&power RK3568_PD_PIPE>;
+> +			resets = <&cru SRST_USB3OTG0>;
+> +			reset-names = "usb3-otg";
+> +			snps,dis-del-phy-power-chg-quirk;
+> +			snps,dis_enblslpm_quirk;
+> +			snps,dis_rxdet_inp3_quirk;
+> +			snps,dis-tx-ipgap-linecheck-quirk;
+> +			snps,dis-u2-freeclk-exists-quirk;
+
+> +			snps,xhci-trb-ent-quirk;
+
+Not in mainline.
+See snps,dwc3.yaml
+
+> +		};
+> +	};
+> +
+> +	usb_host1_xhci: usb@fd000000 {
+> +		compatible = "rockchip,rk3399-dwc3";
+> +		#address-cells = <2>;
+> +		clocks = <&cru CLK_USB3OTG1_REF>, <&cru CLK_USB3OTG1_SUSPEND>,
+> +			 <&cru ACLK_USB3OTG1>, <&cru PCLK_PIPE>;
+> +		clock-names = "ref_clk", "suspend_clk", "bus_clk", "grf_clk";
+> +		ranges;
+> +		#size-cells = <2>;
+> +		status = "disabled";
+> +
+> +		usb_host1_dwc3: usb@fd000000 {
+> +			compatible = "snps,dwc3";
+> +			reg = <0x0 0xfd000000 0x0 0x400000>;
+> +			interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+> +			dr_mode = "host";
+> +			phy_type = "utmi_wide";
+> +			phys = <&usb2phy0_host>, <&combphy1 PHY_TYPE_USB3>;
+> +			phy-names = "usb2-phy", "usb3-phy";
+> +			power-domains = <&power RK3568_PD_PIPE>;
+> +			resets = <&cru SRST_USB3OTG1>;
+
+> +			reset-names = "usb3-host";
+
+  reset-names:
+    const: usb3-otg
+
+Fix binding or DT ??
+
+> +			snps,dis-del-phy-power-chg-quirk;
+> +			snps,dis_enblslpm_quirk;
+> +			snps,dis_rxdet_inp3_quirk;
+> +			snps,dis-tx-ipgap-linecheck-quirk;
+> +			snps,dis-u2-freeclk-exists-quirk;
+
+> +			snps,xhci-trb-ent-quirk;
+
+Not in mainline ??
+
+> +		};
+> +	};
+> +
+
+
+	usbdrd3_1: usb@fd000000 {
+		compatible = "rockchip,rk3399-dwc3", "snps,dwc3";
+		reg = <0x0 0xfd000000 0x0 0x400000>;
+		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+		clocks = <&cru CLK_USB3OTG1_REF>,
+			 <&cru CLK_USB3OTG1_SUSPEND>,
+			 <&cru ACLK_USB3OTG1>;
+		clock-names = "ref_clk", "suspend_clk", "bus_clk";
+		dr_mode = "host";
+		phy_type = "utmi_wide";
+		phys = <&usb2phy0_host>, <&combphy1 PHY_TYPE_USB3>;
+		phy-names = "usb2-phy", "usb3-phy";
+		power-domains = <&power RK3568_PD_PIPE>;
+		resets = <&cru SRST_USB3OTG1>;
+		reset-names = "usb3-otg";
+		snps,dis-del-phy-power-chg-quirk;
+		snps,dis_enblslpm_quirk;
+		snps,dis_rxdet_inp3_quirk;
+		snps,dis-tx-ipgap-linecheck-quirk;
+		snps,dis-u2-freeclk-exists-quirk;
+		status = "disabled";
+	};
+
+
+>  	gic: interrupt-controller@fd400000 {
+>  		compatible = "arm,gic-v3";
+>  		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
