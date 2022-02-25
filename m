@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24EC54C3EF7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7792B4C3EFF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 08:27:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238112AbiBYH1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 02:27:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39726 "EHLO
+        id S238123AbiBYH1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 02:27:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238060AbiBYH1N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:27:13 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DBCDB7DF
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:26:41 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id gl14-20020a17090b120e00b001bc2182c3d5so6965728pjb.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:26:41 -0800 (PST)
+        with ESMTP id S235345AbiBYH1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 02:27:38 -0500
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443F9ECC47
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:27:06 -0800 (PST)
+Received: by mail-pf1-x432.google.com with SMTP id w2so3977476pfu.11
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 23:27:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=CQB6vXrkENn/yTnxHJkeSSrw5TkI9BMFoKBxvUoIBfI=;
-        b=zAcZyI1/7PMktYmGwmPp87KhO+hu/j5psZQUmRRPaHxlag0TbhViPUCc/t3SEHWBUO
-         vUi4WwO39oVXaZVaEVvUSBdRntR7D4jE421Ikn9tVW5nDLDUgEdSSUBEVFP8NIgsI/py
-         0Wbs56l/3ErksqXxyFpFPBFr/eGM96IrPRWZHM/GP1+JvEaAPG3IlwiAi4+VKCabNoji
-         iSIUSk6M4GPPjr8t4u5uZr6CmmpJqGs0VCzjSXt+2y+93dCP6CXOznFsbRE2WtV5tHQ6
-         dT27Diqi3J5BPkaOTH3IQJ9xtY84/rkgEfblL5ijzs9/A89UtBKeXxaWzGU31TNZuP8o
-         rAUg==
+        bh=/EJDPZRyJrLUyYjmcHsD92/llft00F0XDI+OboyiE0k=;
+        b=A/DIi8DryiplGseepJFYonOSdU+a9rytJ1hnRk6LHHKWgxNXAk4+7qhUn69/dVlCWj
+         pIta1sp6sFd7PbLKRcxzfAcVyBM5IBI4vNrRtkzuzXtqpzwFMHbQxBR3YH/Et5Q0oiuS
+         RXrGnnZw4+Otl9W0BpdWQkAI1JspNdcAvvYTeCsdPjQPVw2d4+T8xqE+zOd7AEfp9O8/
+         P9Gv/7Qe0CMjLGpToawSBaZUgCQ9Oa9fQgK/d3jSaQ0WR4GMCyZlsWPTZWBIIJKjnX6n
+         n8cMCJ9V/fTzoPqsPGu5EHb7dyCygFus23R7xJeEA28rFVwFeggGsOkdDDrgIrhSvDco
+         OSNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CQB6vXrkENn/yTnxHJkeSSrw5TkI9BMFoKBxvUoIBfI=;
-        b=DQhRbMfvwxkM0D6ig/xUUhHDZQCK2iM/DuCHIWlzWC7dfQ7cxvllNZiVpFdqR4bFlX
-         14iVZXF/emiB6k/qKLq2+81I2PzsTZ5/JCdvAw4c+wczbuLZbfREUqNzmzZCCUlMmBNJ
-         +Q2Af/DhEgddr9CUuR2KPPtq2SC1ReZekqhVrMfECd0uX+HKoHa8aXzd2JtvP45vMZ6J
-         Sit1qvy+yZfgmVaIf6kxM86k0tYmcca91J+zyXeXF8ZhPDbpwYh4FvNxWwhh4DuzT8aK
-         v+hC8WrVoPlMF75+k1XETuAo01MQg6MFszZMlQJAqX5Cl39RcQWebgjNdkkCfIUixyze
-         DB5Q==
-X-Gm-Message-State: AOAM533KhWwHIUpTShXKMFqes0GO+BsSXHzl0NlES/JqpFbpzxaY8og+
-        uKjU805d3+/4pNIu8qX/M+1Z
-X-Google-Smtp-Source: ABdhPJycwXjskOfGGP1fRfS3gNZQ71n5J6k5lsRXeLsN/Rku6U/S2v2ikj8zlW686W7ki0HPYAuBYg==
-X-Received: by 2002:a17:902:7c0e:b0:14d:3a2d:3a01 with SMTP id x14-20020a1709027c0e00b0014d3a2d3a01mr6484893pll.34.1645774000569;
-        Thu, 24 Feb 2022 23:26:40 -0800 (PST)
+        bh=/EJDPZRyJrLUyYjmcHsD92/llft00F0XDI+OboyiE0k=;
+        b=YP92LkHxMBvmA/PykgdhR17BSJYldxPgR9rzMacsIVuxvtBxG34n1duVsv+YqXuNJR
+         VD9+12TRi3hu1oQjyPgSMNhJoFbxWVGb60MHEYTLdxHi6M3huxpMu81MsV0AR9tLYaHg
+         VgtDmWYlXkUI5XFU8wAyVTWsGI+GooJUDP2OS1dLv9rk2vcfc2CtXyRoAH2ZixWMx6OO
+         d48QPpSB8lLhu2eOaTzsyJYXLAvJq0NvUlTPVJKy7dRpIzISFkkZPzCc4kWjiwxHqHH6
+         uf+0l38I3oMibuopp1buLi+l11fS7KF0hTSVlOmmCr4gvQfz2nAjB1nOAEA3fY+nKvqq
+         /Ljw==
+X-Gm-Message-State: AOAM533NZAexiBNurTRBCuXAOg2m2x0FgFDYKhOEC6DC2ptPXLgRbout
+        3Pd1R9a492bAdnu7swf1HdgBqNwGMwTjaDM=
+X-Google-Smtp-Source: ABdhPJxvLSiLEaYc56xVY4d/jDRBFxFxauVrOYn64Ab3+ev1wXxI5whdwbWwxrhNCmmzfwTrldviIA==
+X-Received: by 2002:a62:3085:0:b0:4e0:1218:6d03 with SMTP id w127-20020a623085000000b004e012186d03mr6378679pfw.19.1645774025767;
+        Thu, 24 Feb 2022 23:27:05 -0800 (PST)
 Received: from thinkpad ([220.158.159.240])
-        by smtp.gmail.com with ESMTPSA id d5-20020a056a0010c500b004e1b283a072sm1914163pfu.76.2022.02.24.23.26.36
+        by smtp.gmail.com with ESMTPSA id z16-20020a056a00241000b004f3a647ae89sm1883328pfh.174.2022.02.24.23.27.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 23:26:40 -0800 (PST)
-Date:   Fri, 25 Feb 2022 12:56:34 +0530
+        Thu, 24 Feb 2022 23:27:05 -0800 (PST)
+Date:   Fri, 25 Feb 2022 12:56:59 +0530
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     Rohit Agarwal <quic_rohiagar@quicinc.com>
 Cc:     bjorn.andersson@linaro.org, agross@kernel.org,
         mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] ARM: dts: qcom: sdx65: Add support for A7 PLL
- clock
-Message-ID: <20220225072634.GC274289@thinkpad>
+Subject: Re: [PATCH v4 4/5] ARM: dts: qcom: sdx65: Add support for APCS block
+Message-ID: <20220225072659.GD274289@thinkpad>
 References: <1645505785-2271-1-git-send-email-quic_rohiagar@quicinc.com>
- <1645505785-2271-4-git-send-email-quic_rohiagar@quicinc.com>
+ <1645505785-2271-5-git-send-email-quic_rohiagar@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1645505785-2271-4-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1645505785-2271-5-git-send-email-quic_rohiagar@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,9 +72,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Feb 22, 2022 at 10:26:23AM +0530, Rohit Agarwal wrote:
-> On SDX65 there is a separate A7 PLL which is used to provide high
-> frequency clock to the Cortex A7 CPU via a MUX.
+On Tue, Feb 22, 2022 at 10:26:24AM +0530, Rohit Agarwal wrote:
+> The APCS block on SDX65 acts as a mailbox controller and also provides
+> clock output for the Cortex A7 CPU.
 > 
 > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
 
@@ -85,22 +84,23 @@ Thanks,
 Mani
 
 > ---
->  arch/arm/boot/dts/qcom-sdx65.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  arch/arm/boot/dts/qcom-sdx65.dtsi | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
 > diff --git a/arch/arm/boot/dts/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> index 653df15..ec80266 100644
+> index ec80266..af7453a 100644
 > --- a/arch/arm/boot/dts/qcom-sdx65.dtsi
 > +++ b/arch/arm/boot/dts/qcom-sdx65.dtsi
-> @@ -125,6 +125,14 @@
->  			      <0x17802000 0x1000>;
+> @@ -133,6 +133,15 @@
+>  			#clock-cells = <0>;
 >  		};
 >  
-> +		a7pll: clock@17808000 {
-> +			compatible = "qcom,sdx55-a7pll";
-> +			reg = <0x17808000 0x1000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "bi_tcxo";
+> +		apcs: mailbox@17810000 {
+> +			compatible = "qcom,sdx55-apcs-gcc", "syscon";
+> +			reg = <0x17810000 0x2000>;
+> +			#mbox-cells = <1>;
+> +			clocks = <&rpmhcc RPMH_CXO_CLK>, <&a7pll>, <&gcc GPLL0>;
+> +			clock-names = "ref", "pll", "aux";
 > +			#clock-cells = <0>;
 > +		};
 > +
