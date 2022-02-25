@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82F0E4C4E4F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:08:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15C0B4C4E63
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:11:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234158AbiBYTJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 14:09:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56176 "EHLO
+        id S234172AbiBYTMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 14:12:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232633AbiBYTI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:08:59 -0500
-Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A6D7194149;
-        Fri, 25 Feb 2022 11:08:26 -0800 (PST)
-Received: by mail-oo1-f42.google.com with SMTP id p206-20020a4a2fd7000000b0031bfec11983so7485797oop.13;
-        Fri, 25 Feb 2022 11:08:26 -0800 (PST)
+        with ESMTP id S234344AbiBYTMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:12:23 -0500
+Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48E420D537;
+        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
+Received: by mail-oo1-f47.google.com with SMTP id x6-20020a4a4106000000b003193022319cso7626859ooa.4;
+        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gLaPPylCSRSRt4wztREpwI4m1e+FOfbTqnD+bNNy18I=;
-        b=kL9NxMiS1LVbbdKX+GR0T/uG7CddPaelVkJGwB4iBIygLacZTv6DKPxnzPXGyBobRs
-         dzftPpYXo2shLcjXVn2nrl63dP35xidAOsXu07HFMtHpGrFQyssADaQ+28uTIEdDrUTG
-         IMhxAuxXRz3k6SRkomOcvRZDgCECY1vlFl2esG9iOPJOG8Nt25HbCtIVAewZEBfXJely
-         bRQnYi0y7sJgaNafyPiKH7/9Vzr3wFFW1kRugBX35pVQbTn/tPkiLBQ7JU9HWlveMvwb
-         HCEniL1TxKhOjdxqaz1/lejXP2Hff7LacMRMqsj3DSoX2HVK/5uqeIvJP2Ul+BxtVpbk
-         TccA==
-X-Gm-Message-State: AOAM533wqrijLKKuGkvVQBcxDOr4fLzde+QCn4GtUuZyNm7sABWfczkP
-        gdYjTwiJKUs5bElMaEXDbOU1sdv0pw==
-X-Google-Smtp-Source: ABdhPJwjQqWTZ60aOvX3GXryd3E9kdB2g5bch4rI35l6Axo2X1+NCXqYiukhpG/7sn59PDrE+LlA5Q==
-X-Received: by 2002:a05:6870:5b9e:b0:cf:f6de:3e89 with SMTP id em30-20020a0568705b9e00b000cff6de3e89mr1919572oab.94.1645816105917;
-        Fri, 25 Feb 2022 11:08:25 -0800 (PST)
+        bh=ptG46z6H5ifEKTx2dBnfEYgkcUc6HPFhRtrAbm9h2S0=;
+        b=S8siLbfa+uUxbstKleeGY35T4+KCDWGjThdtV2DNSH16L3ct5xGs18RsoEecyu9dke
+         3lTLGCE2Vyhy+kuS11S6uvkhzmW+yLzhQLiEPfSzwwMVLeHg8ZuZo6fcKu5bZUNFkfj4
+         MQKP43FgWnEcr1FmfVolZyoICX3F4sCoFPEGmwPNiXln4Mm6XJ/zXEkycABMMuWL2AHR
+         rQX6fseW+Y4kI9id/39CF4WkxpMUXIyyt92N8PYg6xO2WPrJGvbEl0+US7Rcx3LhibwR
+         e1vo2nrXdbWSH1paDh3rCyEr8G+1aA3JF+oyAkUC/cZBa8UkI0ACh1NazyUAKIUncpFi
+         wNdQ==
+X-Gm-Message-State: AOAM533TTQrWrefv/kbsfLG5s5DCxWc7/9YPaEAA5J/DIjoE2bXSfH+F
+        2a8j1sPzzxZuOaVVuqH/j67ZTBOTXg==
+X-Google-Smtp-Source: ABdhPJzWcs65ePV5falZWYBKART4XIExLG7Jl4rNz0RlRKlhWRGox/P8effT9Lz52v++C+k7FNY9wQ==
+X-Received: by 2002:a05:6870:70a8:b0:d3:e21:8545 with SMTP id v40-20020a05687070a800b000d30e218545mr2101513oae.321.1645816310209;
+        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id 23-20020a9d0b97000000b005ad33994e93sm1495550oth.31.2022.02.25.11.08.24
+        by smtp.gmail.com with ESMTPSA id u12-20020a056808114c00b002d72b6e5676sm1887530oiu.29.2022.02.25.11.11.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 11:08:25 -0800 (PST)
-Received: (nullmailer pid 1262255 invoked by uid 1000);
-        Fri, 25 Feb 2022 19:08:24 -0000
-Date:   Fri, 25 Feb 2022 13:08:24 -0600
+        Fri, 25 Feb 2022 11:11:49 -0800 (PST)
+Received: (nullmailer pid 1267526 invoked by uid 1000);
+        Fri, 25 Feb 2022 19:11:48 -0000
+Date:   Fri, 25 Feb 2022 13:11:48 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add AVM
-Message-ID: <YhkpKI7scFKaqAqC@robh.at.kernel.org>
-References: <20220221135259.GA7306@ubuntu>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Baruch Siach <baruch.siach@siklu.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq6018: Add mdio bus description
+Message-ID: <Yhkp9CH0SpBKKlzZ@robh.at.kernel.org>
+References: <a4b1ad7b15c13f368b637efdb903da143b830a88.1645454002.git.baruch@tkos.co.il>
+ <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220221135259.GA7306@ubuntu>
+In-Reply-To: <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -64,13 +67,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 14:52:59 +0100, Daniel Kestrel wrote:
-> Add vendor prefix for AVM Computersysteme Vertriebs GmbH (http://www.avm.de/en)
+On Mon, Feb 21, 2022 at 04:33:22PM +0200, Baruch Siach wrote:
+> From: Baruch Siach <baruch.siach@siklu.com>
 > 
-> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
+> The IPQ60xx has the same MDIO bug block as IPQ4019. Add IO range and
+> clock resources description.
+> 
+> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
+> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> index 5eb7dc9cc231..093011d18ca6 100644
+> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> @@ -635,6 +635,16 @@ qrtr_requests {
+>  			};
+>  		};
+>  
+> +		mdio: mdio@90000 {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			compatible = "qcom,ipq6018-mdio", "qcom,ipq4019-mdio";
 
-Acked-by: Rob Herring <robh@kernel.org>
+This looks correct with the fallback based on your description, but it
+doesn't match the schema.
+
+You tested this with the schemas, right? That's why we have them.
+
+> +			reg = <0x0 0x90000 0x0 0x64>;
+> +			clocks = <&gcc GCC_MDIO_AHB_CLK>;
+> +			clock-names = "gcc_mdio_ahb_clk";
+> +			status = "disabled";
+> +		};
+> +
+>  		qusb_phy_1: qusb@59000 {
+>  			compatible = "qcom,ipq6018-qusb2-phy";
+>  			reg = <0x0 0x059000 0x0 0x180>;
+> -- 
+> 2.34.1
+> 
+> 
