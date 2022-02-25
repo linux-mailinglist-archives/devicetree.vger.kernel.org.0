@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 893AB4C4151
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 10:24:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BFACB4C4156
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 10:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239023AbiBYJYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 04:24:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49136 "EHLO
+        id S239031AbiBYJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 04:24:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239036AbiBYJYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 04:24:10 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 470C51B8FE2
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 01:23:28 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id d14-20020a05600c34ce00b0037bf4d14dc7so1281458wmq.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 01:23:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=CN3ckV7V7XY2Z/PXd5eMoT2Xt0bXtTULBgiFUcwvDV0=;
-        b=yyqeERueu3u0ZjNKrABkQFIPOEykZ2OzixnO1rjGXau8PrMSZR5lW8ygRfvU8TnJny
-         8aNSGSoLZpIwXEIGxGb5Np4UI4xrLwAqSenS9p51hVApZAC7mQ4w4cIEDUjP1pSOrEa9
-         IKFi/hknh+h36u6E9khuzeiT3M5T/Nn9db1jir2HltEroWypBB9TwAYyLtbZ1K7PV3/V
-         qusC7kyGVwa66ScnE9EKgMUxL0SkEIQyO/VFQTZ+Y1pAV6H8WXm9h5UARlBXIIh1q6bq
-         95SIfOiBigkTZx1apW3F61LD004ww3e6l+ktm45ubrC3ELcz9br9iszrBKS/RfIHwSQI
-         3Hlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=CN3ckV7V7XY2Z/PXd5eMoT2Xt0bXtTULBgiFUcwvDV0=;
-        b=6ExRjde0xeHEkEAoZegRxzatnePYmeMfh4HkWeYdL+SAJea9l3zndHAJFXqqJ+Upay
-         Hr32fNhbAp7w8GLMKmzwJoThNmEHL8tBgQM5HZfRMxnXCgdwtCcXI84HOWdsIsVQfbHb
-         DGnOAqQWrkrSEJLH2IKD4XFMumNj0ONNC9AjQ0eNv0jQTLvXBBA1Wws+CAsa77KkaFTY
-         1iuEwUien8mdly/oqN6S7oPxv1SVmxI/tIyP/nz4CVdXDJIi6wiHvXPYsLAf62n2BFgl
-         XSHcoyM1uoJoWoSFO9bEdLFOjDR1KK8QziQk4z7yEgi+t3g5j4jQUrM/qyFPn0br/mvo
-         uWcQ==
-X-Gm-Message-State: AOAM532FHyK8Kgne9bYF204XpHSClzypResaNj7G2Uf1JpyoZiKJZuj7
-        T4IO2xtNc4Iel5306yNxrOsRIw==
-X-Google-Smtp-Source: ABdhPJzk67cSQJnn5+JKcm3bvir6uAjLX4KqIrLecspN4qJsRTg7viCmegRw8hkil1HaYQPmAghpsw==
-X-Received: by 2002:a7b:c347:0:b0:37e:68e6:d85c with SMTP id l7-20020a7bc347000000b0037e68e6d85cmr1844984wmj.176.1645781006811;
-        Fri, 25 Feb 2022 01:23:26 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id g16-20020a7bc4d0000000b0037bbe255339sm5209340wmk.15.2022.02.25.01.23.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 01:23:26 -0800 (PST)
-Date:   Fri, 25 Feb 2022 09:23:24 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Dan Carpenter <dan.carpenter@oracle.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v8 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Message-ID: <YhigDPC6r7dTJUXd@google.com>
-References: <20220221220743.541704-1-caleb.connolly@linaro.org>
- <20220221220743.541704-3-caleb.connolly@linaro.org>
- <Yhft4zNcbD3ojN6i@builder.lan>
- <YhiYY/sXMvQ4VCZd@google.com>
- <20220225090452.GP3943@kadam>
+        with ESMTP id S239033AbiBYJYd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 04:24:33 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33A1E2614B0;
+        Fri, 25 Feb 2022 01:24:01 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 37C3C1F45AF1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1645781039;
+        bh=SWrJfJ7PskotUKYhO/j7/0MGwDwG0Y2IytOY3Y6T/yQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=YYWQbzR1n5nXyP58/+zadQkqg+hNL4GsYRsXaPRpG0rfFCFcgdwnTZHVg2nQqw1K2
+         E+dlNDR5JO7+k7dsGJ9HQaNyv3SDYrz2legTree2PBVch6m1lyw0ac/xIzKz4fTtqq
+         BFugGaWhL3iI66DkjurSBKONT95MdEK4l9/VBuUwAjNwa7evjO/ivR9OXmY6LRXvBb
+         NA8oPzXpX3CAPFPyxXYa0TmBXmDashDpnf/UG9odG6AtoxTfMR1YI+2PslXzBMg8rX
+         PaEBwg7rftw6V3MUc5scQkL7FftztzE9vnIgYhabQidMY2gBsi3if8q8A6jZFrAieF
+         Qu0d7KqilV6uw==
+Message-ID: <14a8adf3-7f26-e6ca-ddd3-dbbc15f3e61e@collabora.com>
+Date:   Fri, 25 Feb 2022 10:23:56 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220225090452.GP3943@kadam>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v7, 01/15] media: mtk-vcodec: Add vdec enable/disable
+ hardware helpers
+Content-Language: en-US
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
+ <20220223034008.15781-2-yunfei.dong@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220223034008.15781-2-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,65 +75,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Feb 2022, Dan Carpenter wrote:
-
-> On Fri, Feb 25, 2022 at 08:50:43AM +0000, Lee Jones wrote:
-> > On Thu, 24 Feb 2022, Bjorn Andersson wrote:
-> > 
-> > > On Mon 21 Feb 16:07 CST 2022, Caleb Connolly wrote:
-> > > 
-> > > > Some PMIC functions such as the RRADC need to be aware of the PMIC
-> > > > chip revision information to implement errata or otherwise adjust
-> > > > behaviour, export the PMIC information to enable this.
-> > > > 
-> > > > This is specifically required to enable the RRADC to adjust
-> > > > coefficients based on which chip fab the PMIC was produced in,
-> > > > this can vary per unique device and therefore has to be read at
-> > > > runtime.
-> > > > 
-> > > > [bugs in previous revision]
-> > > > Reported-by: kernel test robot <lkp@intel.com>
-> > > > Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> > > 
-> > > This says is that "kernel test robot" and Dan reported that something
-> > > needed to be fixed and this patch is the fix for this.
-> > > 
-> > > So even though their emails asks for you to give them credit like this
-> > > you can't do it for new patches.
-> > 
-> > Right, or else you'd have to give credit to anyone who provided you
-> > with a review.  This could potentially grow to quite a long list.
-> > 
+Il 23/02/22 04:39, Yunfei Dong ha scritto:
+> Lock, power and clock are highly coupled operations. Adds vdec
+> enable/disable hardware helpers and uses them.
 > 
-> I always feel like people who find crashing bugs should get credit but
-> no credit for complaining about style.  It's like we reward people for
-> reporting bugs after it gets merged but not before.
-> 
-> We've had this debate before and people don't agree with me or they say
-> that it's fine to just include the Reported-by kbuild tags and let
-> people figure out from the context that probably kbuild didn't tell
-> people to write a new driver.
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: Tzung-Bi Shih<tzungbi@google.com>
 
-Reviews will often consist of both style and logic recommendations.
-If not spotted and remedied, the latter of which would likely result
-in undesired behaviour a.k.a. bugs.  So at what point, or what type of
-bug would warrant a tag?
-
-If people insist on providing tags for spotting bugs, at least place
-them chronologically with a little info.
-
-Signed-off-by: Author <author@example.com>
-Reported-by: Bug Blaster <b.b@kernel.org> # off-by-one in .probe()
-Signed-off-by: Maintainer <maintainer@kernel.org>
-
-> Also I think that counting Reviewed-by/Acked-by tags should be
-> discouraged.  It's useful as a communication between maintainers but it
-> shouldn't be rewarded.
-
-100%
-
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
