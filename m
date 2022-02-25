@@ -2,48 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F33C04C3D16
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 05:27:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D6B74C3D44
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 05:33:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235697AbiBYE2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 23:28:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52804 "EHLO
+        id S234254AbiBYEdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 23:33:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229702AbiBYE2L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 23:28:11 -0500
-X-Greylist: delayed 55157 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 24 Feb 2022 20:27:38 PST
-Received: from mail.marcansoft.com (marcansoft.com [212.63.210.85])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71348B82C2;
-        Thu, 24 Feb 2022 20:27:38 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: marcan@marcan.st)
-        by mail.marcansoft.com (Postfix) with ESMTPSA id C043E41EA7;
-        Fri, 25 Feb 2022 04:27:33 +0000 (UTC)
-To:     Marc Zyngier <maz@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sven Peter <sven@svenpeter.dev>,
-        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-        Mark Kettenis <mark.kettenis@xs4all.nl>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220224130741.63924-1-marcan@marcan.st>
- <YhfN4YtR+Nq5vmVr@lakrids> <87r17s2ifv.wl-maz@kernel.org>
-From:   Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 0/7] irqchip/apple-aic: Add support for AICv2
-Message-ID: <678cdea0-a717-633f-4612-ce50453057cb@marcan.st>
-Date:   Fri, 25 Feb 2022 13:27:29 +0900
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.13.0
+        with ESMTP id S231801AbiBYEdy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 23:33:54 -0500
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF35A1A1C74
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:33:19 -0800 (PST)
+Received: by mail-pg1-x531.google.com with SMTP id 12so3635247pgd.0
+        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:33:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VZkOlRt88Na/YIqisqjyj2BrBEh3KUo347ybRf+z+Ic=;
+        b=un52FzTjhgh2y02vmXU26Y6/z8V7sSU6RB9y+jOPuoyHleqbjRwuf65CsiH54Ll7NC
+         S8+s8bVzT9LB31pMGqlaLLIOQBf5iGoAg/1VOqY6QdSTE/L0Z7+ufXEUL90Bl9ubog74
+         ow0grIYR6bfy2WeDnOCovJNmmeXz4x2fWhhM9wqwW90gZGERdv9bJtNS44Aziu5WuVgr
+         Y22yRh3oqL6n4arLU9Fp9lAA+MHZ6/rEP3bXTijArNmRIfi9p/ehXLDAqzGQ4KlA3Zbh
+         1cboCiGwxbLF7fy56/Ow07LdVDP+Sj7lQGgqhzXqH+NVuYHtk9bFC0ylBZ4U049Oq51g
+         ko8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VZkOlRt88Na/YIqisqjyj2BrBEh3KUo347ybRf+z+Ic=;
+        b=unU6R6YERGCKBmJx3dtwmDGWT2UtFq4BAFwmiT6wURWCqMkIrpwz8tA+yvMa6fjQsA
+         0NQBBhkRa33YkOJ6sTOWma/dRzzzfXGOrzLRQvFP/Z37bUj7plLttPEnd/PONMijamp/
+         UKxcQ2RdQR/NotPRp1ck7FKyHwk8opaDrKzFsb5aK6DRMVNqJbPoNbFsop8SuDh9T+iH
+         nbG5ivlN2U3T3yThcsG2vdIT7ioloboYm3R6XZohrZ49V/A8bYGSzG9TS3SlxTLKPtf6
+         SAmKKUOQMGn6oSxSqwhy76JQ/KjswqQOqXazAxb7CKktUKhfqeNz7R9ucOmvzWLqwNIH
+         7uxA==
+X-Gm-Message-State: AOAM532rkslPNhO/OLC1H7a+X0Wr9ubtLqNOf5P/AQUd2NUvUa2Phtl1
+        2kA9LRT9kwZpAzuBTXXAi3O60g==
+X-Google-Smtp-Source: ABdhPJy1eCKA21boP2GiNKnr8q1vQhvyXy9+Jh/H8EknNNz2D2K0yH8OGWHIP7FvjI4etf0gwweLSQ==
+X-Received: by 2002:a63:3d5:0:b0:373:6b1:8e65 with SMTP id 204-20020a6303d5000000b0037306b18e65mr4671440pgd.408.1645763599113;
+        Thu, 24 Feb 2022 20:33:19 -0800 (PST)
+Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
+        by smtp.gmail.com with ESMTPSA id s22-20020a056a0008d600b004f0eaa735f2sm1103505pfu.57.2022.02.24.20.33.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Feb 2022 20:33:18 -0800 (PST)
+Date:   Fri, 25 Feb 2022 12:33:11 +0800
+From:   Shawn Guo <shawn.guo@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Marc Zyngier <maz@kernel.org>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Valentin Schneider <valentin.schneider@arm.com>,
+        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] PM: cpu: Add CPU_LAST_PM_ENTER and
+ CPU_FIRST_PM_EXIT support
+Message-ID: <20220225043311.GB269879@dragon>
+References: <20220223125536.230224-1-shawn.guo@linaro.org>
+ <20220223125536.230224-2-shawn.guo@linaro.org>
+ <20220223193050.y7parhlmnspcyom3@bogus>
 MIME-Version: 1.0
-In-Reply-To: <87r17s2ifv.wl-maz@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220223193050.y7parhlmnspcyom3@bogus>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -52,105 +81,174 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/02/2022 04.06, Marc Zyngier wrote:
-> On Thu, 24 Feb 2022 18:26:41 +0000,
-> Mark Rutland <mark.rutland@arm.com> wrote:
->>
->> On Thu, Feb 24, 2022 at 10:07:34PM +0900, Hector Martin wrote:
->>> Hi folks,
->>
->> Hi Hector,
->>
->>> In the t6000/t6001 (M1 Pro / Max) SoCs, Apple introduced a new version
->>> of their interrupt controller. This is a significant departure from
->>> AICv1 and seems designed to better scale to larger chips. This series
->>> adds support for it to the existing AIC driver.
->>>
->>> Gone are CPU affinities; instead there seems to be some kind of
->>> "automagic" dispatch to willing CPU cores, and cores can also opt-out
->>> via an IMP-DEF sysreg (!). Right now the bootloader just sets up all
->>> cores to accept IRQs, and we ignore all this and let the magic
->>> algorithm pick a CPU to accept the IRQ.
->>
->> Maybe that's ok for the set of peripherals attached, but in general that
->> violates existing expectations regarding affinity, and I fear there'll
->> be some subtle brokenness resulting from this automatic target
->> selection.
->>
->> For example, in the perf events subsystem there are PMU drivers (even
->> those for "uncore" or "system" devices which are shared by many/all
->> CPUs) which rely on a combination of interrupt affinity and local IRQ
->> masking (without any other locking) to provide exclusion between a PMU's
->> IRQ handler and any other management operations for that PMU (which are
->> all handled from the same CPU).
+On Wed, Feb 23, 2022 at 07:30:50PM +0000, Sudeep Holla wrote:
+> On Wed, Feb 23, 2022 at 08:55:34PM +0800, Shawn Guo wrote:
+> > It becomes a common situation on some platforms that certain hardware
+> > setup needs to be done on the last standing cpu, and rpmh-rsc[1] is such
+> > an existing example.  As figuring out the last standing cpu is really
+> > something generic, it adds CPU_LAST_PM_ENTER (and CPU_FIRST_PM_EXIT)
+> > event support to cpu_pm helper, so that individual driver can be
+> > notified when the last standing cpu is about to enter low power state.
 > 
-> It will definitely break anything that relies on managed interrupts,
-> where the kernel expects to allocate interrupts that have a strict
-> affinity. Drivers using this feature can legitimately expect that they
-> can keep their state in per-CPU pointers, and that obviously breaks.
+> Sorry for not getting back on the previous email thread.
+> When I meant I didn't want to use CPU_CLUSTER_PM_{ENTER,EXIT}, I wasn't
+> thinking new ones to be added as alternative. With this OSI cpuidle, we
+> have introduces the concept of power domains and I was check if we can
+> associate these requirements to them rather than introducing the first
+> and last cpu notion. The power domains already identify them in order
+> to turn on or off. Not sure if there is any notification mechanism in
+> genpd/power domains. I really don't like this addition. It is disintegrating
+> all the solutions for OSI and makes it hard to understand.
 > 
-> This may affect any PCIe device with more than a couple of queues.
-> Maybe users of this HW do not care (yet), but we'll have to find a way
-> to tell drivers of the limitation.
+> One solution I can think of(not sure if others like or if that is feasible)
+> is to create a parent power domain that encloses all the last level CPU
+> power domains, which means when the last one is getting powered off, you
+> will be asked to power off and you can take whatever action you want.
 
-Yes, we already had a brief discussion about this in the v1 thread:
+Thanks Sudeep for the input!  Yes, it works for me (if I understand your
+suggestion correctly).  So the needed changes on top of the current
+version would be:
 
-https://lore.kernel.org/linux-arm-kernel/4a83dfb1-3188-8b09-fc60-d3083230fb54@marcan.st/
+1) Declare MPM as a PD (power domain) provider and have it be the
+   parent PD of cpu cluster (the platform has only one cluster including
+   4 cpus).
 
-TL;DR there is no explicit per-IRQ affinity control, nor does an unknown
-one seem possible, since there just aren't enough bits for it in per-IRQ
-registers. AICv1 had that, but AICv2 got rid of it in favor of heuristic
-magic and global per-CPU controls.
+diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+index 5bc5ce0b5d77..0cd0a9722ec5 100644
+--- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
+@@ -240,6 +240,7 @@ CPU_PD3: cpu3 {
+ 
+                CLUSTER_PD: cpu-cluster0 {
+                        #power-domain-cells = <0>;
++                       power-domains = <&mpm>;
+                        domain-idle-states = <&CLUSTER_SLEEP_0>;
+                };
+        };
+@@ -490,6 +491,7 @@ mpm: interrupt-controller@45f01b8 {
+                        interrupt-controller;
+                        interrupt-parent = <&intc>;
+                        #interrupt-cells = <2>;
++                       #power-domain-cells = <0>;
+                        qcom,mpm-pin-count = <96>;
+                        qcom,mpm-pin-map = <2 275>,     /* tsens0_tsens_upper_lower_int */
+                                           <5 296>,     /* lpass_irq_out_sdc */
 
-This hasn't actually been fully tested yet, but current hypothesis is
-the mapping goes:
 
-1 IRQ -> group (0-7) -> priority (0-3?) -> 1 CPU (local priority threshold)
+2) Add PD in MPM driver and call qcom_mpm_enter_sleep() from .power_off
+   hook of the PD.
 
-This is based on the fact that the per-IRQ group field is 3 bits, and
-the per-CPU mask IMP-DEF sysreg is 2 bits. There may or may not be
-per-IRQ cluster controls. But that still leaves all IRQs funnelled into,
-at most, 3-4 classes per CPU cluster, and 8 groups globally, so there's
-no way to implement proper per-IRQ affinity (since we have 10 CPUs on
-these platforms).
+diff --git a/drivers/irqchip/qcom-mpm.c b/drivers/irqchip/qcom-mpm.c
+index d3d8251e57e4..f4409c169a3a 100644
+--- a/drivers/irqchip/qcom-mpm.c
++++ b/drivers/irqchip/qcom-mpm.c
+@@ -4,7 +4,6 @@
+  * Copyright (c) 2010-2020, The Linux Foundation. All rights reserved.
+  */
+ 
+-#include <linux/cpu_pm.h>
+ #include <linux/delay.h>
+ #include <linux/err.h>
+ #include <linux/init.h>
+@@ -18,6 +17,7 @@
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
++#include <linux/pm_domain.h>
+ #include <linux/slab.h>
+ #include <linux/soc/qcom/irq.h>
+ #include <linux/spinlock.h>
+@@ -84,7 +84,7 @@ struct qcom_mpm_priv {
+ 	unsigned int map_cnt;
+ 	unsigned int reg_stride;
+ 	struct irq_domain *domain;
+-	struct notifier_block pm_nb;
++	struct generic_pm_domain genpd;
+ };
+ 
+ static u32 qcom_mpm_read(struct qcom_mpm_priv *priv, unsigned int reg,
+@@ -312,23 +312,12 @@ static int qcom_mpm_enter_sleep(struct qcom_mpm_priv *priv)
+ 	return 0;
+ }
+ 
+-static int qcom_mpm_cpu_pm_callback(struct notifier_block *nb,
+-				    unsigned long action, void *data)
++static int mpm_pd_power_off(struct generic_pm_domain *genpd)
+ {
+-	struct qcom_mpm_priv *priv = container_of(nb, struct qcom_mpm_priv,
+-						  pm_nb);
+-	int ret = NOTIFY_OK;
+-
+-	switch (action) {
+-	case CPU_LAST_PM_ENTER:
+-		if (qcom_mpm_enter_sleep(priv))
+-			ret = NOTIFY_BAD;
+-		break;
+-	default:
+-		ret = NOTIFY_DONE;
+-	}
++	struct qcom_mpm_priv *priv = container_of(genpd, struct qcom_mpm_priv,
++						  genpd);
+ 
+-	return ret;
++	return qcom_mpm_enter_sleep(priv);
+ }
+ 
+ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+@@ -336,6 +325,7 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+ 	struct platform_device *pdev = of_find_device_by_node(np);
+ 	struct device *dev = &pdev->dev;
+ 	struct irq_domain *parent_domain;
++	struct generic_pm_domain *genpd;
+ 	struct qcom_mpm_priv *priv;
+ 	unsigned int pin_cnt;
+ 	int i, irq;
+@@ -387,6 +377,26 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+ 	if (irq < 0)
+ 		return irq;
+ 
++	genpd = &priv->genpd;
++	genpd->flags = GENPD_FLAG_IRQ_SAFE;
++	genpd->power_off = mpm_pd_power_off;
++
++	genpd->name = devm_kasprintf(dev, GFP_KERNEL, "%s", dev_name(dev));
++	if (!genpd->name)
++		return -ENOMEM;
++
++	ret = pm_genpd_init(genpd, NULL, false);
++	if (ret) {
++		dev_err(dev, "failed to init genpd: %d\n", ret);
++		return ret;
++	}
++
++	ret = of_genpd_add_provider_simple(np, genpd);
++	if (ret) {
++		dev_err(dev, "failed to add genpd provider: %d\n", ret);
++		goto remove_genpd;
++	}
++
+ 	priv->mbox_client.dev = dev;
+ 	priv->mbox_chan = mbox_request_channel(&priv->mbox_client, 0);
+ 	if (IS_ERR(priv->mbox_chan)) {
+@@ -420,15 +430,14 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
+ 		goto remove_domain;
+ 	}
+ 
+-	priv->pm_nb.notifier_call = qcom_mpm_cpu_pm_callback;
+-	cpu_pm_register_notifier(&priv->pm_nb);
+-
+ 	return 0;
+ 
+ remove_domain:
+ 	irq_domain_remove(priv->domain);
+ free_mbox:
+ 	mbox_free_channel(priv->mbox_chan);
++remove_genpd:
++	pm_genpd_remove(genpd);
+ 	return ret;
+ }
+ 
 
-My guess is Apple has bet on heuristic magic to optimize IRQ delivery to
-avoid waking up (deep?-)sleeping CPUs on low-priority events and
-optimize for power, and forgone strict per-CPU queues which are how many
-drivers optimize for performance. This makes some sense, since these are
-largely consumer/prosumer platforms, many of them battery-powered, not
-128-CPU datacenter monsters with multiple 10GbE interfaces. They can
-probably get away without hard multiqueue stuff.
+Let's me know if this is what you are asking for, thanks!
 
-This won't be an issue for PMU interrupts (including the uncore PMU),
-since those do not go through AIC per se but rather the FIQ path (which
-is inherently per-CPU), same as the local timers. Marc's PMU support
-patch set already takes care of adding support for those FIQ sources.
-But it will indeed break some PCIe drivers for devices that users might
-have arbitrarily attached through Thunderbolt.
-
-Since we do not support Thunderbolt yet, I suggest we kick this can down
-the road until we have test cases for how this breaks and how to fix it :-)
-
-There are also other fun things to be done with the local CPU masking,
-e.g. directing low-priority IRQs away from CPUs running real-time
-threads. I definitely want to take a look in more detail at the controls
-we *do* have, especially since I have a personal interest in RT for
-audio production (and these platforms have no SMM/TEE, no latency
-spikes, and fast cpufreq, woo!). But for now this works and brings up
-the platform, so that yak is probably best shaved in the future. Let me
-know if you're interested in having more discussions about RT-centric
-features, though. I suspect we'll need some new kernel
-mechanisms/interfaces to handle e.g. the CPU IMPDEF mask/prio stuff...
-
-Aside, I wonder how they'll handle multi-die devices... for a single
-die, you can probably well get away with no CPU pinning, but for
-multi-die, are they going to do NUMA? If so, they'd want at least die
-controls to avoid bouncing cache lines between dies too much... though
-for some reason, I'm getting the feeling they're just going to
-interleave memory and pretend it's UMA. Good chance we find out next
-month...
-
--- 
-Hector Martin (marcan@marcan.st)
-Public Key: https://mrcn.st/pub
+Shawn
