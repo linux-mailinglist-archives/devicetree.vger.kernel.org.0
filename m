@@ -2,158 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 322954C4A1A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 121114C4AA5
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:25:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241817AbiBYQIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 11:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40742 "EHLO
+        id S242861AbiBYQZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 11:25:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242673AbiBYQH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:07:57 -0500
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A4DB40931;
-        Fri, 25 Feb 2022 08:07:24 -0800 (PST)
-Received: by mail-ej1-x629.google.com with SMTP id vz16so11881669ejb.0;
-        Fri, 25 Feb 2022 08:07:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ts+FkTbShV4Wpp+wSNsd+uKmnjaetMFa029W72HjYZs=;
-        b=hRJtnxCADcNU3McONXvS4XWl7ATSSCg+T4M+vqVitzVmwhCTl6UxDXVwSfiDMTQbby
-         EH3CSYEa8Nklkze+TivabDlc+a6no0MmW8K5IMHF0u0qP3GrNbKpnXwH2G/2/Lbi4W48
-         NixueKemw0g/HvdGUfVCPXDA5J2P0cYf4YG1/Rraa8Ai2ltQ/gmLwZd2WWI9WmRmcqmF
-         nD6LnRE+MEyoBHgyS9RCkPbRkc5F2V+eKLqspIwdoDa36llbSKDVNtIM7hZMn6J+u4MZ
-         gS6kyR5GklbmcnkKEV2ANMOleSJ+7BO5ahwkhcP9zTOwqx9RE2N/f+6jNqntSz66Dpd1
-         b95w==
+        with ESMTP id S234454AbiBYQZa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:25:30 -0500
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79FD1B8BE5;
+        Fri, 25 Feb 2022 08:24:58 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id y15-20020a4a650f000000b0031c19e9fe9dso6766801ooc.12;
+        Fri, 25 Feb 2022 08:24:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ts+FkTbShV4Wpp+wSNsd+uKmnjaetMFa029W72HjYZs=;
-        b=bfpbtWMmy1CZCm7FtZhbtTzwl0El+ebOw9j8eNGlEP7+zhHd132Dc6L0oOCpyPU0pP
-         cWGa7cpK7qV07d+8rrGLsg29G0HRkSrU7VJgM/8YbY3NjcsV/vjgmebCED9dcJfrFRav
-         ldZefWKwu7SGIU0GA+il68e5wnxLXTZOolfAn8h/1954KEpYvXdjpAl58pudKGJUB338
-         0bwlxLbjwaJWXo0ezfaN6UzRnWwg41au39SJkyjUSvVecMhr97ReBGyOqmZ60PZ4ZVD+
-         /xkESFUCiUBauCevk1LMcQra1nshCx7RKETNSDV56z8ag2xFEJsSxhESAl8HovkJnr2b
-         RbgA==
-X-Gm-Message-State: AOAM531y/hQLaxBUQZ/D4fjnBfNZpnK9YcH1f1LDvwT6WJ9r1zoowrAB
-        ReCwnFPhFYtW1aPMAJjSgHo=
-X-Google-Smtp-Source: ABdhPJy9Rv6QkaL/cuO5EzUsXPf5Sxhe48gGqhncSPETom7hz7UYhj/+YcJrExMr8MC2rYnKRker8A==
-X-Received: by 2002:a17:906:a046:b0:6b9:20c:47c1 with SMTP id bg6-20020a170906a04600b006b9020c47c1mr6459495ejb.615.1645805242584;
-        Fri, 25 Feb 2022 08:07:22 -0800 (PST)
-Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
-        by smtp.gmail.com with ESMTPSA id q10-20020aa7cc0a000000b0040f826f09fdsm1506921edt.81.2022.02.25.08.07.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 08:07:22 -0800 (PST)
-Message-ID: <5cca79dc-619c-a162-e850-b3efd4dc746d@gmail.com>
-Date:   Fri, 25 Feb 2022 17:07:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v1 2/8] dt-bindings: usb: dwc3: add description for rk3568
-Content-Language: en-US
-To:     Peter Geis <pgwipeout@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=G0wL1tv9YDLjyJO0SII7J8zFNPKMiKxbobcDr5uPVqY=;
+        b=M2REpp3SfMvAMrDKYiOBCry8M8admoWwncmyYmaEUIUrFFW1jz4ay7gMUNsTWsVCdm
+         LC3phwaK7XKo+gU1/33OUKrtrTGEiKrjK1byx9WjtePD33h4qEFNCvGxX4tJYS7AGggd
+         UHjKtrq28qTajF9vBezIRu9TKW2hco5VOqOEjX1kOyoHshawRYboAT7kHtn9BhE2u8w0
+         gQj6eFpqR+U70BtT0wSl13SSdJ1txp0Aek/fnFgDy5+6LXx8vDbgEPmPfKIt+LzfGsLW
+         5B/3CypoS6MqxPCYGfXro1MZg/lP9p5zJ9GkQ4cRGa8Qgihn++PBDeOArRXcHdsvV+/3
+         8bxA==
+X-Gm-Message-State: AOAM532v01h7AiptHZmSLm7zR+C5FCKd3SHE5h81nZyTnG/PJVaMmsKo
+        MuB/8TF5JNUIENl1RsQ6OgGUs8QFhw==
+X-Google-Smtp-Source: ABdhPJx4x+GM9t3AVElZNRESE/E8edNaWjEH6rKwJcyOKoE4Rl4sXZh8pp0Ur1ZaT4jMhHpksSu1NA==
+X-Received: by 2002:a05:6870:4396:b0:d0:feba:c243 with SMTP id r22-20020a056870439600b000d0febac243mr1772969oah.34.1645806298214;
+        Fri, 25 Feb 2022 08:24:58 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bf39-20020a056808192700b002d51f615f1csm1511394oib.34.2022.02.25.08.24.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Feb 2022 08:24:57 -0800 (PST)
+Received: (nullmailer pid 1036935 invoked by uid 1000);
+        Fri, 25 Feb 2022 16:24:55 -0000
+Date:   Fri, 25 Feb 2022 10:24:55 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-watchdog@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-References: <20220225145432.422130-1-pgwipeout@gmail.com>
- <20220225145432.422130-3-pgwipeout@gmail.com>
-From:   Johan Jonker <jbx6244@gmail.com>
-In-Reply-To: <20220225145432.422130-3-pgwipeout@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux@roeck-us.net, linux-mediatek@lists.infradead.org,
+        runyang.chen@mediatek.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, wim@linux-watchdog.org
+Subject: Re: [PATCH 1/4] dt-bindings: watchdog: Add compatible for MediaTek
+ MT8186
+Message-ID: <YhkC17tHJbd5Sd6J@robh.at.kernel.org>
+References: <20220216014505.28428-1-rex-bc.chen@mediatek.com>
+ <20220216014505.28428-2-rex-bc.chen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220216014505.28428-2-rex-bc.chen@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
-
-Lots of USB series all of a sudden.
-Combine possible?
-
-On 2/25/22 15:54, Peter Geis wrote:
-> The rk3568 dwc3 controllers are backwards compatible with the rk3399.
-> Add the device tree description for it.
+On Wed, 16 Feb 2022 09:45:02 +0800, Rex-BC Chen wrote:
+> Add dt-binding documentation of watchdog for MediaTek MT8186 SoC.
 > 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/watchdog/mtk-wdt.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> index 04077f2d7faf..e3044e81cc72 100644
-> --- a/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml
-> @@ -30,6 +30,7 @@ select:
->          enum:
->            - rockchip,rk3328-dwc3
->            - rockchip,rk3399-dwc3
-> +          - rockchip,rk3568-dwc3
->    required:
->      - compatible
->  
-> @@ -39,6 +40,7 @@ properties:
->        - enum:
->            - rockchip,rk3328-dwc3
->            - rockchip,rk3399-dwc3
-> +          - rockchip,rk3568-dwc3
->        - const: snps,dwc3
->  
->    reg:
-> @@ -75,7 +77,10 @@ properties:
->      maxItems: 1
->  
-he
->    reset-names:
-> -    const: usb3-otg
-> +    items:
-> +      - enum:
-> +          - usb3-otg
-> +          - usb3-host
 
-The use of reset-names is "sort of" only related to the rk3399 legacy
-node. Still using this sub node DT to not to break older existing boot
-loaders.
-
-https://github.com/torvalds/linux/search?q=usb3-otg
-
-It's only mentioned as comment in dwc3-of-simple.c but not used:
-
- 	simple->resets = of_reset_control_array_get(np, false, true,
-						    true);
-core.c uses something similar.
-
-	dwc->reset = devm_reset_control_array_get_optional_shared(dev);
-	if (IS_ERR(dwc->reset))
-		return PTR_ERR(dwc->reset);
-
-
-Up to the maintainers, but I wouldn't add another variant/name for the
-same thing as it also optional(= not required) and no longer needed.
-
-Johan
-
-===
-
-Maybe drop PCLK_PIPE as well to reduce notifications.
-
-See example:
-https://lore.kernel.org/linux-rockchip/20220225131602.2283499-4-michael.riesch@wolfvision.net/T/#u
-
->  
->  unevaluatedProperties: false
->  
+Acked-by: Rob Herring <robh@kernel.org>
