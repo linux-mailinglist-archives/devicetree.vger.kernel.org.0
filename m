@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15C0B4C4E63
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:11:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEC5D4C4E67
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 20:12:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234172AbiBYTMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 14:12:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
+        id S234299AbiBYTMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 14:12:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234344AbiBYTMX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:12:23 -0500
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D48E420D537;
-        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
-Received: by mail-oo1-f47.google.com with SMTP id x6-20020a4a4106000000b003193022319cso7626859ooa.4;
-        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
+        with ESMTP id S234296AbiBYTMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 14:12:44 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E3320C18B;
+        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id d134-20020a4a528c000000b00319244f4b04so7592021oob.8;
+        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ptG46z6H5ifEKTx2dBnfEYgkcUc6HPFhRtrAbm9h2S0=;
-        b=S8siLbfa+uUxbstKleeGY35T4+KCDWGjThdtV2DNSH16L3ct5xGs18RsoEecyu9dke
-         3lTLGCE2Vyhy+kuS11S6uvkhzmW+yLzhQLiEPfSzwwMVLeHg8ZuZo6fcKu5bZUNFkfj4
-         MQKP43FgWnEcr1FmfVolZyoICX3F4sCoFPEGmwPNiXln4Mm6XJ/zXEkycABMMuWL2AHR
-         rQX6fseW+Y4kI9id/39CF4WkxpMUXIyyt92N8PYg6xO2WPrJGvbEl0+US7Rcx3LhibwR
-         e1vo2nrXdbWSH1paDh3rCyEr8G+1aA3JF+oyAkUC/cZBa8UkI0ACh1NazyUAKIUncpFi
-         wNdQ==
-X-Gm-Message-State: AOAM533TTQrWrefv/kbsfLG5s5DCxWc7/9YPaEAA5J/DIjoE2bXSfH+F
-        2a8j1sPzzxZuOaVVuqH/j67ZTBOTXg==
-X-Google-Smtp-Source: ABdhPJzWcs65ePV5falZWYBKART4XIExLG7Jl4rNz0RlRKlhWRGox/P8effT9Lz52v++C+k7FNY9wQ==
-X-Received: by 2002:a05:6870:70a8:b0:d3:e21:8545 with SMTP id v40-20020a05687070a800b000d30e218545mr2101513oae.321.1645816310209;
-        Fri, 25 Feb 2022 11:11:50 -0800 (PST)
+        bh=K5x+EtF2eS5+RTFJ+8H7Za6pww+kwgng4S5CGgR/3fE=;
+        b=kTgLghEcG0YSHlGbjgsr/L5PqvsfxsBFTrdnOFsXUCFPsK2h3XLV5M0L6+dTZztwKg
+         uyPByZlQtRU4kJpIaIv6jJ3I6ChIiKRUx8FtiRc6tPc9PtKf6bwXnrjf55d9g7eftqxJ
+         X0lGCXw1zsRZR1CAuRQaYE2ysUBwOxF+ixaaa/DcB2GNsRBzCX82o8YO8Si/cEBOSeoh
+         qcLUjZkCChN3iMsvTefP7FpVLwqi1JS7lyM40wpHbgMB6pGqZEmA93Iv38prIbmlJXwz
+         VjKBplpXBlDz21zJQX7ILB7lbDFkTu1OFhBA782y6hpUNSVZSjyO/D20oBR6W2wwZvlq
+         WsNQ==
+X-Gm-Message-State: AOAM531h4UscuGCgACrBWjDRTJnHINlbXCz2nBDdWzciseyBAlAulWcv
+        l9QtCCzTgXZ2klyCrNhOMQ==
+X-Google-Smtp-Source: ABdhPJz6nk8h5SeBNIqDSG38xu0Ws/3K828zx2f/U2XOt6ULYKegBUh57ljwkgVc/UOmWIJjP+96IQ==
+X-Received: by 2002:a05:6870:b7b4:b0:d6:e56e:b85c with SMTP id ed52-20020a056870b7b400b000d6e56eb85cmr1855618oab.327.1645816331027;
+        Fri, 25 Feb 2022 11:12:11 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u12-20020a056808114c00b002d72b6e5676sm1887530oiu.29.2022.02.25.11.11.49
+        by smtp.gmail.com with ESMTPSA id bn8-20020a056820180800b0031ca56292bbsm1380681oob.46.2022.02.25.11.12.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 11:11:49 -0800 (PST)
-Received: (nullmailer pid 1267526 invoked by uid 1000);
-        Fri, 25 Feb 2022 19:11:48 -0000
-Date:   Fri, 25 Feb 2022 13:11:48 -0600
+        Fri, 25 Feb 2022 11:12:10 -0800 (PST)
+Received: (nullmailer pid 1268098 invoked by uid 1000);
+        Fri, 25 Feb 2022 19:12:09 -0000
+Date:   Fri, 25 Feb 2022 13:12:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Baruch Siach <baruch.siach@siklu.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: ipq6018: Add mdio bus description
-Message-ID: <Yhkp9CH0SpBKKlzZ@robh.at.kernel.org>
-References: <a4b1ad7b15c13f368b637efdb903da143b830a88.1645454002.git.baruch@tkos.co.il>
- <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     LUU HOAI <hoai.luu.ub@renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: Re: [PATCH v2 01/12] dt-bindings: pinctrl: renesas,pfc: Document
+ r8a779f0 support
+Message-ID: <YhkqCaiPhCjnO8qB@robh.at.kernel.org>
+References: <cover.1645457792.git.geert+renesas@glider.be>
+ <d51828853396773be2d6837f3301ac9da8b6f29e.1645457792.git.geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5e7e06e0cb189bab4586646470894bbda572785d.1645454002.git.baruch@tkos.co.il>
+In-Reply-To: <d51828853396773be2d6837f3301ac9da8b6f29e.1645457792.git.geert+renesas@glider.be>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -67,45 +68,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 21, 2022 at 04:33:22PM +0200, Baruch Siach wrote:
-> From: Baruch Siach <baruch.siach@siklu.com>
+On Mon, 21 Feb 2022 16:43:36 +0100, Geert Uytterhoeven wrote:
+> From: LUU HOAI <hoai.luu.ub@renesas.com>
 > 
-> The IPQ60xx has the same MDIO bug block as IPQ4019. Add IO range and
-> clock resources description.
+> Document Pin Function Controller (PFC) support for the Renesas R-Car
+> S4-8 (R8A779F0) SoC.
 > 
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+> Signed-off-by: LUU HOAI <hoai.luu.ub@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 > ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> v2:
+>   - Add Reviewed-by.
+> ---
+>  Documentation/devicetree/bindings/pinctrl/renesas,pfc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 5eb7dc9cc231..093011d18ca6 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -635,6 +635,16 @@ qrtr_requests {
->  			};
->  		};
->  
-> +		mdio: mdio@90000 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			compatible = "qcom,ipq6018-mdio", "qcom,ipq4019-mdio";
 
-This looks correct with the fallback based on your description, but it
-doesn't match the schema.
-
-You tested this with the schemas, right? That's why we have them.
-
-> +			reg = <0x0 0x90000 0x0 0x64>;
-> +			clocks = <&gcc GCC_MDIO_AHB_CLK>;
-> +			clock-names = "gcc_mdio_ahb_clk";
-> +			status = "disabled";
-> +		};
-> +
->  		qusb_phy_1: qusb@59000 {
->  			compatible = "qcom,ipq6018-qusb2-phy";
->  			reg = <0x0 0x059000 0x0 0x180>;
-> -- 
-> 2.34.1
-> 
-> 
+Acked-by: Rob Herring <robh@kernel.org>
