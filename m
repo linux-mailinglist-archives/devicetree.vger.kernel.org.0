@@ -2,50 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DA1A4C4C69
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 18:36:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 754754C4C7D
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 18:36:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243797AbiBYRg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 12:36:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37458 "EHLO
+        id S238515AbiBYRgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 12:36:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243803AbiBYRg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 12:36:26 -0500
+        with ESMTP id S243832AbiBYRgn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 12:36:43 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB4971CDDD8;
-        Fri, 25 Feb 2022 09:35:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290B01DF853;
+        Fri, 25 Feb 2022 09:36:11 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 737F6B832D7;
-        Fri, 25 Feb 2022 17:35:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4110C340E7;
-        Fri, 25 Feb 2022 17:35:47 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B6DBCB832CB;
+        Fri, 25 Feb 2022 17:36:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06304C340E7;
+        Fri, 25 Feb 2022 17:36:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645810551;
-        bh=yn+4QGgrb+hRdHd7URm2rvtm9OKXT+OZKFqIplXZbrg=;
+        s=k20201202; t=1645810568;
+        bh=QPiQ0/Y3PgpODkPwCxa8qFsECGEgnhU38/p/hdBcPNs=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=A/t86dbFxRwK/irOOihhpq+yEV02CjMZ05GfgR2oppe70ni7L+m0vCmyEMSrb6BaF
-         vLkbUGvwZQMX5hPnIp0lXgwiY5sM8rMUkw/y7Gm3QtJCoe3tU61jPwvcN0rUNDcMIr
-         3fBEb2KseT2hBANbJUQb6a9LnigH3AipRorE50vWOZeeYnrPhbMNZmNnZHlKCjuTxe
-         NN2caP1MgF+n2LSAsmN9HB4FLFcWFk5qQDDnmJMiySfh3ITliOutmsHiNohPt5Y25t
-         TxHDwIgFaj5OFw5GafqC4pk5kKhLGfT86/LM0VlTmtq6FRnddQKl/NMVVPzv+/1Yt4
-         wn6eZCLx77eYg==
+        b=d3j+jLgkWmnUiY2e7rDCPZH5HeVPykaBRziJwuA/tAYyUvC0wk2XsslZDFX1aPUkQ
+         mEfvfV/imwvCB6G20ZmD9OskZ2ZQJBC2l7EYJRtQpPKDDS9yLZytKZktWiL0I8zqY8
+         RK4brKxEJfUhlD6UeRG51cUBlvljYK2+szZhGtMES7/9zeMCHVZV/p+KxSxFMSzFOV
+         ebrsbzfApyrmgCjV821thZFxopup27Eskm5Q8EBdj77DRX3PwEpXrdNKw4vEhMJR1K
+         krY7NFweAE5uwisyTvwTFDPoTGpYtMjPIJZA3H9VaT5MiUL22ao9LinC1Wrgj0iESy
+         B/fNJpe9UllGQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, quic_plai@quicinc.com, robh+dt@kernel.org,
-        perex@perex.cz, linux-arm-msm@vger.kernel.org,
-        srinivas.kandagatla@linaro.org, devicetree@vger.kernel.org,
-        tiwai@suse.com, linux-kernel@vger.kernel.org,
-        bjorn.andersson@linaro.org, agross@kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, rohitkr@codeaurora.org,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        alsa-devel@alsa-project.org, bgoswami@codeaurora.org
-Cc:     Venkata Prasad Potturu <quic_potturu@quicinc.com>
-In-Reply-To: <1645792943-24845-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1645792943-24845-1-git-send-email-quic_srivasam@quicinc.com>
-Subject: Re: [PATCH] ASoC: qcom: lpass-platform: Update warning print to control excess logging
-Message-Id: <164581054746.2548431.12085357818762890090.b4-ty@kernel.org>
-Date:   Fri, 25 Feb 2022 17:35:47 +0000
+To:     linux-spi@vger.kernel.org, Li-hao Kuo <lhjeff911@gmail.com>,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, lh.kuo@sunplus.com
+In-Reply-To: <097bbc8b703b17e8fb3e3f6f6d2f97fe668bd5c5.1645770648.git.lhjeff911@gmail.com>
+References: <097bbc8b703b17e8fb3e3f6f6d2f97fe668bd5c5.1645770648.git.lhjeff911@gmail.com>
+Subject: Re: [PATCH] spi: dt-bindings: remove unused required property
+Message-Id: <164581056673.2562676.17852885347289085467.b4-ty@kernel.org>
+Date:   Fri, 25 Feb 2022 17:36:06 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,20 +54,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Feb 2022 18:12:23 +0530, Srinivasa Rao Mandadapu wrote:
-> Update dev_warn to dev_warn_ratelimit to control excess xrun logging
-> in lpass platform driver.
+On Fri, 25 Feb 2022 14:31:53 +0800, Li-hao Kuo wrote:
+> fix issue
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.example.dt.yaml:
+> spi@9C002D80: 'clocks-names' is a required property
+> From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/spi/spi-sunplus-sp7021.yaml
+> delete unused required(clock-name)
 > 
+> Fixes: 3b8ab4da34 ("spi: Fix test error for sp7021")
 > 
+> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] ASoC: qcom: lpass-platform: Update warning print to control excess logging
-      commit: 5a5d2316a5292222383d4e3589b8f5144f7c9b49
+[1/1] spi: dt-bindings: remove unused required property
+      commit: 83854c231262d2ad43c4fb32414ba25304f925d8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
