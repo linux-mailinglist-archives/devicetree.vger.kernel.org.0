@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0574E4C3A78
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 01:47:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 15A094C3A90
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 01:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234656AbiBYAsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 19:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33212 "EHLO
+        id S233873AbiBYAze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Feb 2022 19:55:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229923AbiBYAsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 19:48:04 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D68184B75;
-        Thu, 24 Feb 2022 16:47:29 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id o26so2537653pgb.8;
-        Thu, 24 Feb 2022 16:47:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=r049N3OXReoTi1PN3pmujCqBPamtnbVP08zrxtd4YRU=;
-        b=lYEf6uCzPLcn7lSAGnRuEhK/d3/33Jdm/N4uG9Sii4JX7fY0jqjlEJIx7klm/+a4O9
-         QtUy8CNhRQ3WUvKgz6/SfL7ZMCfu3Hi8NqRNPn3/GbRmgLY1ztpJfFaDS+nmCXIfW8c2
-         5LYEkIlG9IN+Wing+nPGuXJY011WD2bS5t2bWuVHwpV9iu34bBGVDSUVH/wYtSBcMXs+
-         6DXNq/Fix4fBBJsOSeSFU9IecKUAtorD4k9M1ymykvDtK5EZnEqtFhRLTtN33eG4iy/f
-         3vNgchqet0A66Zb3Tv7i2TcRKbZ4pC77I2J9LUpAltBeuajfbIYYF4AiUww9omqEkEVi
-         AgdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=r049N3OXReoTi1PN3pmujCqBPamtnbVP08zrxtd4YRU=;
-        b=0iA8IhVYPKNWVnu5A2R6dhxebinlLP5lUAZOI+f7gjQf8KF19YjwL9El50KdWeUcwE
-         jwrlsgP2PIFAHw+YhJGf6XUI7OdALtfdRk6PtOg5Z4d6IVaSDlnmYx8p+7B1UcEG1ndE
-         wu8nwuNX8R4R73de3ITN/KXnwNc5WJo6AAdXTrZNVPO9h98bEsGhKyQvkfLU5mmIfXnD
-         UZgt3TB3lLL+alP/bDAUjJO+K61K4tb37u+3Pqhm8XWxVTdbiIZ7TGKcMXjCp6g3VnT8
-         bCJRDVoL0ztmKDMXoPiK+r2tNFDBTemIX7k/siijzzBuUQMHyEjXdyUKkz+AmwtsF7cS
-         aGSw==
-X-Gm-Message-State: AOAM530IBXeZosOGRfdmZZgKmxpRrK/bhZseqliJ17TjEWHUwC+6VczS
-        6PteafmnOB/XGoXekvx8Zcw=
-X-Google-Smtp-Source: ABdhPJzeq1bq6OfkXN4sJx+s//+0osI0JJunO5rtJFaOzukQtFKdftmXdPhY5Hl4kdnSgbyDN/p6nQ==
-X-Received: by 2002:a63:1405:0:b0:344:3b39:fd27 with SMTP id u5-20020a631405000000b003443b39fd27mr4196271pgl.488.1645750048836;
-        Thu, 24 Feb 2022 16:47:28 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id f13-20020a056a001acd00b004f0f9a967basm683706pfv.100.2022.02.24.16.47.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 16:47:28 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        Matthew Hagan <mnhagan88@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: NSP: MX6X: correct LED function types
-Date:   Thu, 24 Feb 2022 16:47:26 -0800
-Message-Id: <20220225004726.1106616-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220223235041.2542331-2-mnhagan88@gmail.com>
-References: <20220223235041.2542331-1-mnhagan88@gmail.com> <20220223235041.2542331-2-mnhagan88@gmail.com>
+        with ESMTP id S231524AbiBYAzd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 19:55:33 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014DA1DFDDE;
+        Thu, 24 Feb 2022 16:55:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9879A61D2A;
+        Fri, 25 Feb 2022 00:55:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E83EFC340E9;
+        Fri, 25 Feb 2022 00:55:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645750502;
+        bh=m2a9gv/y1JadmYnquzrpWqHyqdS8KQdTGa1Zi5eG/bE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=dAzGlRvuMUyQPpRy3MwW/nhkky5D9Tk5wLVzwa7hg+BS0xDU3N/KTX21n9DYcyBg0
+         q+qyCIA7KUiMgxAxIVNuTjpJ9lYMbouTMUCYa5r+wIVpXvd2hifJlTbh6Yzl10ijlt
+         esQXgOAD4jjNnBi4T17gPcx2fvC9YENmjnSQJOgD/2imhUxnUuWhOV7dOzg55jS7M9
+         AshIX0de+1zYqLAISvwZ/YVPh759t23V3D8ttGiWqFd6OSJWrXgGduF0/k3Q1nF3q7
+         FH5b8dwFohaeI6g/u+z/0CSoHRNpfeczzn/ErcC1BhVtVkdigdqHdvpWVxDDpdjAKU
+         5CfcxisMELUlQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220220212034.9152-2-michael.srba@seznam.cz>
+References: <20220220212034.9152-1-michael.srba@seznam.cz> <20220220212034.9152-2-michael.srba@seznam.cz>
+Subject: Re: [PATCH v8 2/5] clk: qcom: gcc-msm8998: add SSC-related clocks
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Saravana Kannan <saravanak@google.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, Michael Srba <Michael.Srba@seznam.cz>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, michael.srba@seznam.cz
+Date:   Thu, 24 Feb 2022 16:55:00 -0800
+User-Agent: alot/0.10
+Message-Id: <20220225005501.E83EFC340E9@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Feb 2022 23:50:40 +0000, Matthew Hagan <mnhagan88@gmail.com> wrote:
-> Currently, the amber LED will remain always on. This is due to a
-> misinterpretation of the LED sub-node properties, where-by "default-state"
-> was used to indicate the initial state when powering on the device. When in
-> use, however, this resulted in the amber LED always being on. Instead change
-> this to only indicate a fault state.
-> 
-> Assign LED_FUNCTION_POWER to the green PWM LED.
-> 
-> These changes bring the MX64/65 in line with the MR32's devicetree.
-> 
-> Signed-off-by: Matthew Hagan <mnhagan88@gmail.com>
+Quoting michael.srba@seznam.cz (2022-02-20 13:20:31)
+> From: Michael Srba <Michael.Srba@seznam.cz>
+>=20
+> Add four clocks which need to be manipulated in order to initialize the A=
+HB
+> bus which exposes the SCC block in the global address space.
+>=20
+> If a device is known to be configured such that writing to these
+> registers from Linux is not permitted, the 'protected-clocks'
+> device tree property must be used to denote that fact.
+>=20
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
 > ---
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
