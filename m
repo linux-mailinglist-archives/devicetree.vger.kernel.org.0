@@ -2,80 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CEB04C49CD
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 16:57:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A3564C49D6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 16:58:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235531AbiBYP6I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 10:58:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42576 "EHLO
+        id S242511AbiBYP67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 10:58:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242585AbiBYP6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 10:58:02 -0500
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7803A5AA47;
-        Fri, 25 Feb 2022 07:57:30 -0800 (PST)
-Received: by mail-oo1-f43.google.com with SMTP id u47-20020a4a9732000000b00316d0257de0so6727157ooi.7;
-        Fri, 25 Feb 2022 07:57:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=hK1faAZYddl8pmB2/voy3xPMUXCWPdg9Bm9+NsKrySI=;
-        b=F5xkvRTiFnlSlNbGap7H9PRravdXO3m91S4b3HWEx0ZE40OwiqeIC0xsO8EIVFRgTs
-         OvNh1tAL5s2AevWcU9WecYti+56kTGQ1hOBrgB3Cr5o3LKX2NUzF1w+9vjWz9tjcStC5
-         EWh5Chlo9lMhdB+TV0mZuHLSXWkY1ZUihdHPasiVYfi/vL1WskhV9GkaBbORvuVFZQEJ
-         5Ms6KE+tvHgozgc9ILyuGMw3lqnQ1WHs4LSjwXo+RrK+Lu99jsrYDsWDMZg8tA3cV9VL
-         JuD3gC+go0cDz9b51VrxYZ+NPHhUizcrVL4xE+KwxKDWU013g8PZdf3DnMrluTp80Q84
-         Y/tA==
-X-Gm-Message-State: AOAM53141d9P650rMmNI7wbXa0qHdrnF2fKJiTqFzxbj6J5wYSYmicnu
-        fu0oKXKNINMdoyqoXA33oA==
-X-Google-Smtp-Source: ABdhPJwrgcW8uLcZCNKBfHjc5LV76NJKYvicXJSrUlEvUWVLu2T6GCcj5k/JJKNvhVHwkkmIWmDxYQ==
-X-Received: by 2002:a05:6870:91c4:b0:d6:cd13:cac6 with SMTP id c4-20020a05687091c400b000d6cd13cac6mr1488969oaf.301.1645804649824;
-        Fri, 25 Feb 2022 07:57:29 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l34-20020a9d1ca2000000b005acea92e8absm1280869ota.42.2022.02.25.07.57.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 07:57:29 -0800 (PST)
-Received: (nullmailer pid 998780 invoked by uid 1000);
-        Fri, 25 Feb 2022 15:57:27 -0000
-Date:   Fri, 25 Feb 2022 09:57:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        festevam@gmail.com, linux-watchdog@vger.kernel.org,
-        linux-kernel@vger.kernel.org, shawnguo@kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: watchdog: imx7ulp-wdt: Add imx93 compatible
- string
-Message-ID: <Yhj8Z+dtsu8a+VQP@robh.at.kernel.org>
-References: <20220215081202.787853-1-peng.fan@oss.nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220215081202.787853-1-peng.fan@oss.nxp.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S242502AbiBYP66 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 10:58:58 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C12186439;
+        Fri, 25 Feb 2022 07:58:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645804704; x=1677340704;
+  h=from:to:cc:subject:date:message-id;
+  bh=E4XxBpQBXLuj4MbZ3LD7ymC2c81X3fk/VbDiDUlgP90=;
+  b=vhylmUz39F98+rg2AfpkJx/3WWFsy7Gsn58rzShRABI9QaGBdIdrp1q0
+   bSeOUViwlhcdXGrcULpBYcddhDCHrpsUtCl9chOEp2aK4l5VaNHZoRuOM
+   bjhPbvL9ISf9qCwKaqQyAOXbe5bzPW0NjNrLQelc84OQTXWEMW/aTC7Bp
+   Y=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 25 Feb 2022 07:58:24 -0800
+X-QCInternal: smtphost
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 25 Feb 2022 07:58:22 -0800
+X-QCInternal: smtphost
+Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 25 Feb 2022 21:28:10 +0530
+Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
+        id 3FD9D53E9; Fri, 25 Feb 2022 21:28:09 +0530 (IST)
+From:   Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, swboyd@chromium.org,
+        quic_kalyant@quicinc.com
+Subject: [PATCH v2 0/2] Update mdp clk to max supported value to support higher refresh rates
+Date:   Fri, 25 Feb 2022 21:27:48 +0530
+Message-Id: <1645804670-21898-1-git-send-email-quic_vpolimer@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Feb 2022 16:12:02 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> The wdog on i.MX93 is modified from i.MX8ULP with some changes,
-> it uses one compatible string, so add i.MX93 support.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+*** BLURB HERE ***
 
-Acked-by: Rob Herring <robh@kernel.org>
+Vinod Polimera (2):
+  arm64/dts/qcom/sc7280: remove assigned-clock-rate property for mdp clk
+  drm/msm/disp/dpu1: set mdp clk to the maximum frequency in opp table
+
+ arch/arm64/boot/dts/qcom/sc7280.dtsi    | 9 ++-------
+ drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 3 +++
+ 2 files changed, 5 insertions(+), 7 deletions(-)
+
+-- 
+2.7.4
+
