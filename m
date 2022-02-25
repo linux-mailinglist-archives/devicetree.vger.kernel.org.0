@@ -2,160 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB3094C3E0C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:52:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0816F4C3E34
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 07:07:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236456AbiBYFvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 00:51:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55306 "EHLO
+        id S237718AbiBYGHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 01:07:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230100AbiBYFvR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:51:17 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22564B820E;
-        Thu, 24 Feb 2022 21:50:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1645768246; x=1677304246;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=ym6OTnxseorW8cS3VLj8xkqARTJwvANZ11x0wPsNmEs=;
-  b=gR5olCKUODUSFitF1MRxsEZpVjmhH1GeigASK168HC8IOqgPfqxD80rp
-   N1jFHtG4uL6wQyCTMrfo0/plJOt/MsYznBSGJsFeb5579tFy/8rFlWSDg
-   irYmJqBlqPIhsMGQaNnXi+Q+s+5V7LODwOkqwXVPBp51HIpo5QFLy2X9G
-   k=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 24 Feb 2022 21:50:45 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Feb 2022 21:50:44 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 24 Feb 2022 21:50:44 -0800
-Received: from [10.216.32.247] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Thu, 24 Feb
- 2022 21:50:41 -0800
-Message-ID: <41f8fd92-70e4-def6-0bd1-c764b1445d68@quicinc.com>
-Date:   Fri, 25 Feb 2022 11:20:37 +0530
+        with ESMTP id S237738AbiBYGHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 01:07:49 -0500
+X-Greylist: delayed 905 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 24 Feb 2022 22:07:17 PST
+Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 645D37C796;
+        Thu, 24 Feb 2022 22:07:16 -0800 (PST)
+Received: from droid09-sz.software.amlogic (10.28.8.19) by mail-sz.amlogic.com
+ (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 25 Feb 2022
+ 13:52:08 +0800
+From:   Qianggui Song <qianggui.song@amlogic.com>
+To:     Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>
+CC:     Qianggui Song <qianggui.song@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v3 0/4] irqchip/meson-gpio: Add support for Meson-S4 SoC
+Date:   Fri, 25 Feb 2022 13:52:02 +0800
+Message-ID: <20220225055207.1048-1-qianggui.song@amlogic.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
- devices
-Content-Language: en-US
-To:     Kalle Valo <kvalo@kernel.org>
-CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
- <87ee4sgo7l.fsf@kernel.org>
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-In-Reply-To: <87ee4sgo7l.fsf@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.28.8.19]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 1/28/2022 3:46 PM, Kalle Valo wrote:
-> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
-> 
->> Unlike other ATH11K PCIe devices which are enumerated by APSS
->> processor (Application Processor SubSystem), WCN6750 gets
->> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
->> In simple terms, though WCN6750 is PCIe device, it is not attached
->> to the APSS processor, APSS will not know of such a device being
->> present in the system and therefore WCN6750 will be registered as
->> a platform device to the kernel core like other supported AHB
->> devices.
->>
->> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
->> AHB APIs for device probe/boot and PCI APIs for device setup
->> and register accesses; Because of this nature, it is referred
->> as a hybrid bus device.
->>
->> Refactor PCI code to support hybrid bus devices like WCN6750.
->>
->> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->> Tested-on: WCN6855 hw2.0 PCI WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>
->> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-> 
-> [...]
-> 
->> --- a/drivers/net/wireless/ath/ath11k/Makefile
->> +++ b/drivers/net/wireless/ath/ath11k/Makefile
->> @@ -29,7 +29,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->>   ath11k_ahb-y += ahb.o
->>   
->>   obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
->> -ath11k_pci-y += mhi.o pci.o
->> +ath11k_pci-y += mhi.o pci.o pci_cmn.o
-> 
-> So the end result looks like this:
-> 
-> obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
-> ath11k_ahb-y += ahb.o pci_cmn.o
-> 
-> obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
-> ath11k_pci-y += mhi.o pci.o pci_cmn.o
-> 
-> Linking pci_cmn.o to both ath11k_pci.ko and ath11k_ahb.ko looks wrong.
-> Does that even compile if ath11k is linked to the kernel, eg. with
-> allyesconfig?
-> 
+This patchset add support for GPIO interrupt controller of Meson-S4 SoC
+Which has something different with current other meson chips. To
+support the new chips, current gpio irqchip driver need to rework as
+below:
+1. support more than 8 gpio irq lines.
+2. add a set trigger type callback function.
 
-I did try compiling the kernel with allyesconfig after your comment, 
-compilation went through without any hiccups.
+With above work, add support for S4 gpio irqchip
 
-> One way to solve is to link pci_cmn.o to ath11k.ko. But for another
-> approach, for a long time I have been thinking about what's the point to
-> have separate ath11k_pci.ko and ath11k_ahb.ko modules?,They are very
-> small anyway compared to ath11k.ko. So my ideais that should we have
-> just one ath11k.ko module, it contains all AHB and PCI code as well, and
-> ath11k_pci.ko and ath11k_ahb.ko would not be created anymore. It would
-> simplify things a bit, especially here.
-> 
-> Thoughts?
-> 
+Changes since v2 at [1]:
+- rework nr channels allocations
+- move old controller set_type to a callback
 
-I see some concerns going with single module combining both AHB and PCI 
-modules into ath11k.ko
+Changes since v1 at [0]:
+- fix leaking issue
+- fix some typos
+- change implementation of new feature.
 
-1) AHB and PCI drivers make use of completely different kernel 
-frameworks, for example AHB driver needs remoteproc APIs for booting and 
-require CONFIG_REMOTEPROC to be compiled in to the kernel. Similarly, 
-PCI driver needs MHI APIs and also dependent on CONFIG_PCI. Both MHI and 
-PCI bus frameworks need to be compiled for PCI to work. If we club all 
-of this into single module, I see that unnecessarily additional modules 
-will be compiled into the kernel which IMO is not so good idea.
+[0] https://lore.kernel.org/linux-amlogic/20220108084218.31877-1-qianggui.song@amlogic.com/
+[1] https://lore.kernel.org/linux-amlogic/20220119070809.15563-1-qianggui.song@amlogic.com/
 
+Qianggui Song (4):
+  dt-bindings: interrupt-controller: New binding for Meson-S4 SoCs
+  irqchip/meson-gpio: support more than 8 channels gpio irq
+  irqchip/meson-gpio: add select trigger type callback
+  irqchip/meson-gpio: Add support for meson s4 SoCs
 
-2) Secondly, there is high chance of writing bad code all over the 
-driver. For example, there are chances that developers put AHB/PCI 
-specific code all over the driver creating a big mess.
-Though this can be avoided with stringent code review, but why to
-give the chance.
+ .../amlogic,meson-gpio-intc.txt               |   1 +
+ drivers/irqchip/irq-meson-gpio.c              | 108 +++++++++++++++---
+ 2 files changed, 93 insertions(+), 16 deletions(-)
 
-Though AHB and PCI drivers are smaller in size, IMHO let AHB and PCI be 
-independent drivers, code looks cleaner and properly segregated by 
-keeping them as it is today.
+-- 
+2.34.1
 
-Regarding the compilation of PCI common code, shall we move it into 
-ath11k.ko? What is your opinion on this.
-
-Thanks,
-Manikanta
