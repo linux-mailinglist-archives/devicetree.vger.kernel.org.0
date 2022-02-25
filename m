@@ -2,253 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D6B74C3D44
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 05:33:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7674D4C3D83
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 06:07:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234254AbiBYEdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Feb 2022 23:33:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41104 "EHLO
+        id S237454AbiBYFII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 00:08:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231801AbiBYEdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Feb 2022 23:33:54 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF35A1A1C74
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:33:19 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id 12so3635247pgd.0
-        for <devicetree@vger.kernel.org>; Thu, 24 Feb 2022 20:33:19 -0800 (PST)
+        with ESMTP id S230443AbiBYFIH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 00:08:07 -0500
+Received: from mail-pl1-x629.google.com (mail-pl1-x629.google.com [IPv6:2607:f8b0:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C343186470;
+        Thu, 24 Feb 2022 21:07:36 -0800 (PST)
+Received: by mail-pl1-x629.google.com with SMTP id m11so3840349pls.5;
+        Thu, 24 Feb 2022 21:07:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=VZkOlRt88Na/YIqisqjyj2BrBEh3KUo347ybRf+z+Ic=;
-        b=un52FzTjhgh2y02vmXU26Y6/z8V7sSU6RB9y+jOPuoyHleqbjRwuf65CsiH54Ll7NC
-         S8+s8bVzT9LB31pMGqlaLLIOQBf5iGoAg/1VOqY6QdSTE/L0Z7+ufXEUL90Bl9ubog74
-         ow0grIYR6bfy2WeDnOCovJNmmeXz4x2fWhhM9wqwW90gZGERdv9bJtNS44Aziu5WuVgr
-         Y22yRh3oqL6n4arLU9Fp9lAA+MHZ6/rEP3bXTijArNmRIfi9p/ehXLDAqzGQ4KlA3Zbh
-         1cboCiGwxbLF7fy56/Ow07LdVDP+Sj7lQGgqhzXqH+NVuYHtk9bFC0ylBZ4U049Oq51g
-         ko8Q==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rOW73EZAvnc1wsgXbVE6ciQzvh8WW+Bk4gV7FTSwz4k=;
+        b=TJuoQsjLE/gkBrX6QQKV7hC8q85Sw0yUl19d6iUB/LG06z2SBEruBtgpCyoEPn2SRW
+         KciGQWF+2S71LboIWyg2TvFBV+jNvwhyTzyorTqMdFtWmndB+cjOicyfTLn/dk2G6Ttp
+         doNA1X0Qi48/dI+2jHxtWGnQjcB+HewuruUkDDJ2nmn25foBjF9q+fOAipuqLS4zQSBf
+         6LMCEQkGfwU5/pqmuC0FKnbS8IShlgxdQ+vMvYn0ERQ3uGD9zbnnzabe5pnNR+O/3ewp
+         4uDCbwAovLu9QULmXOndg+F7GksHEdADOzxLZf1S3+li5icvaKW1IzwwD1QOXJkgj8ZG
+         cjTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=VZkOlRt88Na/YIqisqjyj2BrBEh3KUo347ybRf+z+Ic=;
-        b=unU6R6YERGCKBmJx3dtwmDGWT2UtFq4BAFwmiT6wURWCqMkIrpwz8tA+yvMa6fjQsA
-         0NQBBhkRa33YkOJ6sTOWma/dRzzzfXGOrzLRQvFP/Z37bUj7plLttPEnd/PONMijamp/
-         UKxcQ2RdQR/NotPRp1ck7FKyHwk8opaDrKzFsb5aK6DRMVNqJbPoNbFsop8SuDh9T+iH
-         nbG5ivlN2U3T3yThcsG2vdIT7ioloboYm3R6XZohrZ49V/A8bYGSzG9TS3SlxTLKPtf6
-         SAmKKUOQMGn6oSxSqwhy76JQ/KjswqQOqXazAxb7CKktUKhfqeNz7R9ucOmvzWLqwNIH
-         7uxA==
-X-Gm-Message-State: AOAM532rkslPNhO/OLC1H7a+X0Wr9ubtLqNOf5P/AQUd2NUvUa2Phtl1
-        2kA9LRT9kwZpAzuBTXXAi3O60g==
-X-Google-Smtp-Source: ABdhPJy1eCKA21boP2GiNKnr8q1vQhvyXy9+Jh/H8EknNNz2D2K0yH8OGWHIP7FvjI4etf0gwweLSQ==
-X-Received: by 2002:a63:3d5:0:b0:373:6b1:8e65 with SMTP id 204-20020a6303d5000000b0037306b18e65mr4671440pgd.408.1645763599113;
-        Thu, 24 Feb 2022 20:33:19 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id s22-20020a056a0008d600b004f0eaa735f2sm1103505pfu.57.2022.02.24.20.33.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Feb 2022 20:33:18 -0800 (PST)
-Date:   Fri, 25 Feb 2022 12:33:11 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Valentin Schneider <valentin.schneider@arm.com>,
-        Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] PM: cpu: Add CPU_LAST_PM_ENTER and
- CPU_FIRST_PM_EXIT support
-Message-ID: <20220225043311.GB269879@dragon>
-References: <20220223125536.230224-1-shawn.guo@linaro.org>
- <20220223125536.230224-2-shawn.guo@linaro.org>
- <20220223193050.y7parhlmnspcyom3@bogus>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rOW73EZAvnc1wsgXbVE6ciQzvh8WW+Bk4gV7FTSwz4k=;
+        b=P1UaN1ibjsDpMYhj4PMMZ+/GIAhzqEAdenXQATIpbq0kbweobb4eyVaf7uv8hWukVg
+         2u/G5jErxaGzCWEkV7iv+Svg9aObHe9f0gE9uo4TG5xUIUPYTyK6eAo9JQrGzggo7bB1
+         +yaqpzwsnUucmH+Uu/5Ibkuqae+q0qBVNF4RbwGhjE5cvNs3zAXMHwbTBu9/2F5hDmTP
+         /TRuTrIEAKrXDQMzSQLMXLInB8oWrnW+mlsZU0hOJl1z95WnUt5UCCxMzCq6ch2f5a9I
+         zob/d1QIBL/YTWiJ4oOJndrWRRk3KW1nMAaMNEhs11h4vjAzQfNuZDg+V4tWymrNYiZK
+         w10A==
+X-Gm-Message-State: AOAM533ZTOJ1Dw3YryYAPmergXaxS79ZhRkmdmp51W8NwYCQgtl0i8hF
+        7aeZMIDgFKLcx1+57Od2pFnFZULD7aQw26IgMfQ=
+X-Google-Smtp-Source: ABdhPJw4XoxTyIWPFOHFfASSDY+FM8Pa4x0uPk5lChh8GWhsRtm9K2jbuWBDIVnWbdcpkETseChzQPhVsEkoM/QWFyY=
+X-Received: by 2002:a17:90a:1d04:b0:1bc:98ca:5e6f with SMTP id
+ c4-20020a17090a1d0400b001bc98ca5e6fmr1559118pjd.32.1645765655621; Thu, 24 Feb
+ 2022 21:07:35 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220223193050.y7parhlmnspcyom3@bogus>
+References: <20220221200102.6290-1-luizluca@gmail.com> <Yhfmi2Mn6e0NMXh3@robh.at.kernel.org>
+In-Reply-To: <Yhfmi2Mn6e0NMXh3@robh.at.kernel.org>
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Date:   Fri, 25 Feb 2022 02:07:24 -0300
+Message-ID: <CAJq09z7mNzV-Kg90KsM_E33ZByLLNTk9TZgF0LcfUL630zwEBw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: dsa: add new mdio property
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Vladimir Oltean <olteanv@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 23, 2022 at 07:30:50PM +0000, Sudeep Holla wrote:
-> On Wed, Feb 23, 2022 at 08:55:34PM +0800, Shawn Guo wrote:
-> > It becomes a common situation on some platforms that certain hardware
-> > setup needs to be done on the last standing cpu, and rpmh-rsc[1] is such
-> > an existing example.  As figuring out the last standing cpu is really
-> > something generic, it adds CPU_LAST_PM_ENTER (and CPU_FIRST_PM_EXIT)
-> > event support to cpu_pm helper, so that individual driver can be
-> > notified when the last standing cpu is about to enter low power state.
-> 
-> Sorry for not getting back on the previous email thread.
-> When I meant I didn't want to use CPU_CLUSTER_PM_{ENTER,EXIT}, I wasn't
-> thinking new ones to be added as alternative. With this OSI cpuidle, we
-> have introduces the concept of power domains and I was check if we can
-> associate these requirements to them rather than introducing the first
-> and last cpu notion. The power domains already identify them in order
-> to turn on or off. Not sure if there is any notification mechanism in
-> genpd/power domains. I really don't like this addition. It is disintegrating
-> all the solutions for OSI and makes it hard to understand.
-> 
-> One solution I can think of(not sure if others like or if that is feasible)
-> is to create a parent power domain that encloses all the last level CPU
-> power domains, which means when the last one is getting powered off, you
-> will be asked to power off and you can take whatever action you want.
+> On Mon, Feb 21, 2022 at 05:01:02PM -0300, Luiz Angelo Daros de Luca wrote:
+> > The optional mdio property will be used by dsa switch to configure
+> > slave_mii_bus when the driver does not allocate it during setup.
+> >
+> > Some drivers already offer/require a similar property but, in some
+> > cases, they rely on a compatible string to identify the mdio bus node.
+>
+> That case will fail with this change. It precludes any binding
+> referencing dsa.yaml from defining a 'mdio' node with properties other
+> than what mdio.yaml defines.
 
-Thanks Sudeep for the input!  Yes, it works for me (if I understand your
-suggestion correctly).  So the needed changes on top of the current
-version would be:
+Thanks Rob.
 
-1) Declare MPM as a PD (power domain) provider and have it be the
-   parent PD of cpu cluster (the platform has only one cluster including
-   4 cpus).
+I believe any DSA drivers mdio subnodes will reference mdio.yaml. It
+doesn't make sense to not to. So, it is fine to restrict that from
+dsa.yaml. Are you saying that it will also prevent extra properties
+inside that mdio, either declared in dsa.yaml or in any other dsa
+driver yaml?
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 5bc5ce0b5d77..0cd0a9722ec5 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -240,6 +240,7 @@ CPU_PD3: cpu3 {
- 
-                CLUSTER_PD: cpu-cluster0 {
-                        #power-domain-cells = <0>;
-+                       power-domains = <&mpm>;
-                        domain-idle-states = <&CLUSTER_SLEEP_0>;
-                };
-        };
-@@ -490,6 +491,7 @@ mpm: interrupt-controller@45f01b8 {
-                        interrupt-controller;
-                        interrupt-parent = <&intc>;
-                        #interrupt-cells = <2>;
-+                       #power-domain-cells = <0>;
-                        qcom,mpm-pin-count = <96>;
-                        qcom,mpm-pin-map = <2 275>,     /* tsens0_tsens_upper_lower_int */
-                                           <5 296>,     /* lpass_irq_out_sdc */
+During my tests, it looks like both "mdio", from dsa.yaml or the
+<driver>.yaml are validated independently. I can include a new
+property or even a "required" on either level and the checks seem to
+work fine. I didn't try it harder but I believe I cannot negate/drop a
+property or a requirement declared in one YAML file using the other
+YAML. But, in this case, dsa.yaml mdio is only referencing mdio.yaml,
+just like any dsa driver would do.
 
+And about the compatibile string usage, it is more about code than
+schema. I did checked every driver and got these results:
 
-2) Add PD in MPM driver and call qcom_mpm_enter_sleep() from .power_off
-   hook of the PD.
+These already uses mdio name:
+- drivers/net/dsa/qca8k.c:
+of_get_child_by_name(priv->dev->of_node, "mdio");
+- drivers/net/dsa/mv88e6xxx/chip.c:         of_get_child_by_name(np, "mdio");
+- drivers/net/dsa/qca/ar9331.c:             of_get_child_by_name(np, "mdio")
 
-diff --git a/drivers/irqchip/qcom-mpm.c b/drivers/irqchip/qcom-mpm.c
-index d3d8251e57e4..f4409c169a3a 100644
---- a/drivers/irqchip/qcom-mpm.c
-+++ b/drivers/irqchip/qcom-mpm.c
-@@ -4,7 +4,6 @@
-  * Copyright (c) 2010-2020, The Linux Foundation. All rights reserved.
-  */
- 
--#include <linux/cpu_pm.h>
- #include <linux/delay.h>
- #include <linux/err.h>
- #include <linux/init.h>
-@@ -18,6 +17,7 @@
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
- #include <linux/slab.h>
- #include <linux/soc/qcom/irq.h>
- #include <linux/spinlock.h>
-@@ -84,7 +84,7 @@ struct qcom_mpm_priv {
- 	unsigned int map_cnt;
- 	unsigned int reg_stride;
- 	struct irq_domain *domain;
--	struct notifier_block pm_nb;
-+	struct generic_pm_domain genpd;
- };
- 
- static u32 qcom_mpm_read(struct qcom_mpm_priv *priv, unsigned int reg,
-@@ -312,23 +312,12 @@ static int qcom_mpm_enter_sleep(struct qcom_mpm_priv *priv)
- 	return 0;
- }
- 
--static int qcom_mpm_cpu_pm_callback(struct notifier_block *nb,
--				    unsigned long action, void *data)
-+static int mpm_pd_power_off(struct generic_pm_domain *genpd)
- {
--	struct qcom_mpm_priv *priv = container_of(nb, struct qcom_mpm_priv,
--						  pm_nb);
--	int ret = NOTIFY_OK;
--
--	switch (action) {
--	case CPU_LAST_PM_ENTER:
--		if (qcom_mpm_enter_sleep(priv))
--			ret = NOTIFY_BAD;
--		break;
--	default:
--		ret = NOTIFY_DONE;
--	}
-+	struct qcom_mpm_priv *priv = container_of(genpd, struct qcom_mpm_priv,
-+						  genpd);
- 
--	return ret;
-+	return qcom_mpm_enter_sleep(priv);
- }
- 
- static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
-@@ -336,6 +325,7 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
- 	struct platform_device *pdev = of_find_device_by_node(np);
- 	struct device *dev = &pdev->dev;
- 	struct irq_domain *parent_domain;
-+	struct generic_pm_domain *genpd;
- 	struct qcom_mpm_priv *priv;
- 	unsigned int pin_cnt;
- 	int i, irq;
-@@ -387,6 +377,26 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
- 	if (irq < 0)
- 		return irq;
- 
-+	genpd = &priv->genpd;
-+	genpd->flags = GENPD_FLAG_IRQ_SAFE;
-+	genpd->power_off = mpm_pd_power_off;
-+
-+	genpd->name = devm_kasprintf(dev, GFP_KERNEL, "%s", dev_name(dev));
-+	if (!genpd->name)
-+		return -ENOMEM;
-+
-+	ret = pm_genpd_init(genpd, NULL, false);
-+	if (ret) {
-+		dev_err(dev, "failed to init genpd: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_genpd_add_provider_simple(np, genpd);
-+	if (ret) {
-+		dev_err(dev, "failed to add genpd provider: %d\n", ret);
-+		goto remove_genpd;
-+	}
-+
- 	priv->mbox_client.dev = dev;
- 	priv->mbox_chan = mbox_request_channel(&priv->mbox_client, 0);
- 	if (IS_ERR(priv->mbox_chan)) {
-@@ -420,15 +430,14 @@ static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
- 		goto remove_domain;
- 	}
- 
--	priv->pm_nb.notifier_call = qcom_mpm_cpu_pm_callback;
--	cpu_pm_register_notifier(&priv->pm_nb);
--
- 	return 0;
- 
- remove_domain:
- 	irq_domain_remove(priv->domain);
- free_mbox:
- 	mbox_free_channel(priv->mbox_chan);
-+remove_genpd:
-+	pm_genpd_remove(genpd);
- 	return ret;
- }
- 
+This one creates a new mdios container for its two mdio nodes. So,
+they are at a different level:
+- drivers/net/dsa/sja1105/sja1105_mdio.c:
+of_get_compatible_child(mdio_node, "nxp,sja1110-base-tx-mdio");
+- drivers/net/dsa/sja1105/sja1105_mdio.c:
+of_get_compatible_child(mdio_node, "nxp,sja1110-base-t1-mdio");
 
-Let's me know if this is what you are asking for, thanks!
+realtek-smi, even before yaml conversion required a mdio node
+(although code only looks for the compatible strings),
+- drivers/net/dsa/realtek/realtek-smi.c
+of_get_compatible_child(priv->dev->of_node, "realtek,smi-mdio");
 
-Shawn
+This one is the most problematic one. It only has a TXT that does not
+mention an "mdio" node name, although examples do use it.
+- drivers/net/dsa/lantiq_gswip.c:
+of_get_compatible_child(dev->of_node, "lantiq,xrx200-mdio");
+
+I still don't get why the compatible string is in use when there is a
+finite number of (or only one) mdio nodes. Wouldn't it be easier to
+use of_get_child_by_name? Anyway, all of them might not collide with
+dsa mdio definition.
+
+> The rule is becoming any common schema should not define more than one
+> level of nodes if those levels can be extended.
+
+Sorry but I didn't understand what you are suggesting. Should I simply
+drop the dsa/mdio doc?
+
+> > Each subdriver might decide to keep existing approach or migrate to this
+> > new common property.
+> >
+> > Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/net/dsa/dsa.yaml | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/dsa/dsa.yaml b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > index b9d48e357e77..f9aa09052785 100644
+> > --- a/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > +++ b/Documentation/devicetree/bindings/net/dsa/dsa.yaml
+> > @@ -32,6 +32,12 @@ properties:
+> >        (single device hanging off a CPU port) must not specify this property
+> >      $ref: /schemas/types.yaml#/definitions/uint32-array
+> >
+> > +  mdio:
+> > +    unevaluatedProperties: false
+> > +    description:
+> > +      Container of PHY and devices on the switches MDIO bus.
+> > +    $ref: /schemas/net/mdio.yaml#
+> > +
+> >  patternProperties:
+> >    "^(ethernet-)?ports$":
+> >      type: object
+> > --
+> > 2.35.1
+> >
+> >
