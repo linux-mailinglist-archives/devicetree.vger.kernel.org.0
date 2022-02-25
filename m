@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 549A24C4AAB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:26:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A11A04C4AB1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 17:28:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231629AbiBYQ1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 11:27:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45708 "EHLO
+        id S238232AbiBYQ2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 11:28:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242974AbiBYQ1M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:27:12 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAA061CF098;
-        Fri, 25 Feb 2022 08:26:39 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so6833757oot.11;
-        Fri, 25 Feb 2022 08:26:39 -0800 (PST)
+        with ESMTP id S235397AbiBYQ2M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 11:28:12 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A7A1DEA7
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 08:27:38 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id p15so7988767oip.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 08:27:38 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=X+JqfUsqraXHT66jiXxwdmiSs8aXoZzc7qj34oZ5zw0=;
-        b=anUy5naoZFfCvjPIj07QLnMDQq55ZURQjRjWedrUrZZdhYraLoXDaet4FMJvZAVM6P
-         CPepwoxeZ26+5yR2iPOhoMguyF995dVjUM+iD6sNkRq3DI14ULgvLs38oKyi1zEcTSCc
-         U/ghgefqlE9GNxbpyWi6vjoWmoq+V4ntWKUT+uY8sMTtY9VER5e1+SZbzzzgym+cKVvy
-         +qDwOGyMT+srp/ST9bofydPopG+Iyh29WHi1kJMlbC+DjCjBMSBQcH44asGGd2fiYF0m
-         2eMUl4oPVCahJI8N85koBEqB1P4ArlvCXS20lKx4Ry2YoeLmfhBz+0qr01Uslxr5s2Cb
-         XzBA==
-X-Gm-Message-State: AOAM530bgWHwVIrQNnEExjhz2ml8FRqK5XtRUweau/FlfDZ7Sj8siiXw
-        ZnCdhJWl55zru/0q4QLdaaH8xz2RJw==
-X-Google-Smtp-Source: ABdhPJw/vcrFI/CjF4cimyIVyp6KlPE/kC0dGCY0QDWKVaSEMQmUHALL39y0AM6WyQ4p/4kwWTKUHQ==
-X-Received: by 2002:a05:6870:88b:b0:d6:eac9:56d9 with SMTP id fx11-20020a056870088b00b000d6eac956d9mr1000147oab.56.1645806399005;
-        Fri, 25 Feb 2022 08:26:39 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=b6mqfRniL+r9ZpfUJSShReJE7UNxaIRMnvl0KB1bI/8=;
+        b=HXueraECKjcW+6LmzrbiNEwp0mCSONauddY4b/0vemlZ13GklvQlB+EWvWfWqNGix/
+         NAw2PHkv0wEV+myMUxlD2EStVYzPYZKqkxDdeA/9NIrwE0d2ldwMdXAdsw0tPU1eBUP0
+         m49zHGpHPCzXid3wm5H3l1XghPlaq9M/7K9svl4PQEIjx7ogTVO0wMfb6qKOJ3AUh0ib
+         Lp1AcvEVLZMpP5PjkSSWSNUCXvz1paZ0yL6Rfsnl/AIsQ6XKPwDvRdhyI3RpHLWtNrSr
+         K6d7WBG7ksWDbYlZyDLSyauM2wp9GFxtjeCYbkatK5m+dLRGAqfmEM4lLS6FD5xj47ej
+         LDzQ==
+X-Gm-Message-State: AOAM532T3ZBVT6LR2gd9EP+abPrOcbvyo0C3eORQfoxqmGBKf6vVkUNa
+        7f6l4tzcrj2FGXr4MNfeYg==
+X-Google-Smtp-Source: ABdhPJxYB88wiXpqrYy/re0vBGeWP38Ml9w47xUbbgBDbaP3bcnxEAiC4IXzF8XzZuh29hI+Zbp2wg==
+X-Received: by 2002:a05:6808:202a:b0:2d4:df36:68a4 with SMTP id q42-20020a056808202a00b002d4df3668a4mr2012574oiw.16.1645806457796;
+        Fri, 25 Feb 2022 08:27:37 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id f8-20020a4ab648000000b0031d1cf9aef6sm789502ooo.48.2022.02.25.08.26.37
+        by smtp.gmail.com with ESMTPSA id x12-20020a056830244c00b005ad233e0ba3sm1304298otr.48.2022.02.25.08.27.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 08:26:38 -0800 (PST)
-Received: (nullmailer pid 1039466 invoked by uid 1000);
-        Fri, 25 Feb 2022 16:26:37 -0000
-Date:   Fri, 25 Feb 2022 10:26:37 -0600
+        Fri, 25 Feb 2022 08:27:37 -0800 (PST)
+Received: (nullmailer pid 1040968 invoked by uid 1000);
+        Fri, 25 Feb 2022 16:27:35 -0000
+Date:   Fri, 25 Feb 2022 10:27:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, runyang.chen@mediatek.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [3/4] dt-bindings: reset: mt8186: add DSI reset bit for MMSYS
-Message-ID: <YhkDPe3KuaRW6b2Y@robh.at.kernel.org>
-References: <20220216014505.28428-1-rex-bc.chen@mediatek.com>
- <20220216014505.28428-4-rex-bc.chen@mediatek.com>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Richard Weinberger <richard@nod.at>,
+        devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-mtd@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mtd: partitions: convert BCM47xx to the
+ json-schema
+Message-ID: <YhkDd2CF3VhTkn9W@robh.at.kernel.org>
+References: <20220216104135.31307-1-zajec5@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220216014505.28428-4-rex-bc.chen@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220216104135.31307-1-zajec5@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Feb 16, 2022 at 09:45:04AM +0800, Rex-BC Chen wrote:
-> Add DSI software reset bit which is controlled by MMSYS for MT8186.
+On Wed, 16 Feb 2022 11:41:35 +0100, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
 > 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> This helps validating DTS files.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 > ---
->  include/dt-bindings/reset/mt8186-resets.h | 3 +++
->  1 file changed, 3 insertions(+)
+>  .../brcm,bcm947xx-cfe-partitions.txt          | 42 ----------------
+>  .../brcm,bcm947xx-cfe-partitions.yaml         | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,bcm947xx-cfe-partitions.txt
+>  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/brcm,bcm947xx-cfe-partitions.yaml
 > 
-> diff --git a/include/dt-bindings/reset/mt8186-resets.h b/include/dt-bindings/reset/mt8186-resets.h
-> index 36e5764e2e6c..5f850370c42c 100644
-> --- a/include/dt-bindings/reset/mt8186-resets.h
-> +++ b/include/dt-bindings/reset/mt8186-resets.h
-> @@ -30,4 +30,7 @@
->  #define MT8186_TOPRGU_IMG2_SW_RST				22
->  #define MT8186_TOPRGU_SW_RST_NUM				23
->  
-> +/* MMSYS resets */
-> +#define MT8186_MMSYS_SW0_RST_B_DISP_DSI0			19
 
-This can just be squashed into the previous patch.
-
-> +
->  #endif  /* _DT_BINDINGS_RESET_CONTROLLER_MT8186 */
-> -- 
-> 2.18.0
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
