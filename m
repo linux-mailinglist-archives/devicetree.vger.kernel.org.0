@@ -2,78 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C735C4C4243
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6934C424F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:30:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235039AbiBYK0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:26:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33808 "EHLO
+        id S234268AbiBYK3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:29:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbiBYK0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:26:49 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07F41DEAA6
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:26:17 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id bn33so6746282ljb.6
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:26:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=wWkiKPp0yU51YIZBOYra9GP4j4G9QYqwO5yPBvcytuI=;
-        b=OTdlbCcloAhlN/v+ZbSF/fydVTwpPRXxMmlE+7+s30HFgGm03WAAt8twDvEuaEJfn9
-         Zv6QWe9jnaaCK0tnQef0t4rf8BQfUIM0jFQOEWN23hi79xzUW5zyO7IEyv2jn2QkD+9V
-         AEMNKmVJYNXZU9Hwxha2va+GuXP/qBuuDksEhhg+oih08RmH/MPZ2WU6GEsoaX2gBLsR
-         bLKlYfAj2TcDpg4HHOZwROkP1jIk2TsrsD2VyvMQmr/YYMg/MvEFeKtRs69uqthR+n+/
-         vjnq3+21i1tAq8irdoG045HCbslBM2GlsbPy57MPZi2LpCEgEiUIXrSq3U1QmlsBUVqZ
-         94Rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=wWkiKPp0yU51YIZBOYra9GP4j4G9QYqwO5yPBvcytuI=;
-        b=fTSzLPB3CkBpFsiq88t5erOqeueVSfsV0FFIiESrIjtsajpsSxOvU/gTKeS0s8G/7S
-         wVMHAURzUPMNsW1aKJyQmFKNr4rATLEFeRdJUlT+z4F2cdNBzT/0gJ5g/BlKog8FP8Xf
-         5Pc2bfVz2ihGzTneg5ajWrSGZwcm70uiNS6Gg4/gI74P+3+U8jGTS9YfmdeLSUvM0YaZ
-         94cna5XAfg86JyUJXuTMUtGmetLz4gECHesuVaeqcsiRb0fRQN5w76vHPnMeM54clkxc
-         v0ttI97pbkvdWmHqMRB7tx7G4B1TzhyjGpR7iTtvjxqkZ9r9bk0Ubezo3o6e7xjHjXCv
-         yWuQ==
-X-Gm-Message-State: AOAM5305Z9nAgaRi8M7JirJCr7tx9jGVKcGTcsAwF8XjaPYF2M1LjXkQ
-        Dnzz5DqI7E852vS3FwQTxO0=
-X-Google-Smtp-Source: ABdhPJxS32kW61bz2PV5TVfzLTeGimkAktcHo9OysUKyXqkNxifBz36DVjPV0ZnKaOzpknqaSHhfXA==
-X-Received: by 2002:a2e:9f02:0:b0:244:8e4b:5aaa with SMTP id u2-20020a2e9f02000000b002448e4b5aaamr4993707ljk.249.1645784775907;
-        Fri, 25 Feb 2022 02:26:15 -0800 (PST)
-Received: from [192.168.2.145] (109-252-137-194.dynamic.spd-mgts.ru. [109.252.137.194])
-        by smtp.googlemail.com with ESMTPSA id w9-20020a05651203c900b0044399c17e58sm163232lfp.224.2022.02.25.02.26.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 02:26:15 -0800 (PST)
-Message-ID: <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
-Date:   Fri, 25 Feb 2022 13:26:14 +0300
+        with ESMTP id S236331AbiBYK3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:29:19 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 492371C46AA;
+        Fri, 25 Feb 2022 02:28:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1645784928; x=1677320928;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=Sxit2uIg39ogJ/fuDzwyVE9TzutAZmAGpVm4AVaajUY=;
+  b=AIA8BkRNA2aRjIBS9fnBxw+8S4ETSisxuCt99pmgfTXgmIDCXr6+/W4W
+   pX8BfomiLwi8PoSvrWOD3cK4Te4I2Pf0ZmbI6okf38zDRJ/8LfKPrnTGq
+   2XzsgrJq5z6xbamGaX1YP6xY+b5SKW42lQiG2b4gDax/hjRkDJDW9uMLi
+   eJGBm4OQD24QSFgTizkqX6WmsweHjiMCveiTCqWINUu97lyDqlfyyUI8b
+   3Dvk+KgunmpoKcrGZP8kEv+H22erNTg01WkcVnLa946jKaTf21JRVojbE
+   X9SmUwMgI68msV+82z9p7GgXDtEZb2TCoHMjFUKMd988lnvBk/bEveWIF
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,136,1643698800"; 
+   d="scan'208";a="154890553"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 25 Feb 2022 03:28:47 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 25 Feb 2022 03:28:47 -0700
+Received: from [10.12.72.56] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 25 Feb 2022 03:28:46 -0700
+Message-ID: <3cc35822-cbfb-28e5-5fdb-76ceb1eebd27@microchip.com>
+Date:   Fri, 25 Feb 2022 11:28:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Subject: Re: [PATCH] ARM: dts: at91: sama7g5: Add NAND support
 Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220225075150.2729401-11-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+To:     Tudor Ambarus - M18064 <Tudor.Ambarus@microchip.com>
+CC:     "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "Ludovic Desroches - M43218" <Ludovic.Desroches@microchip.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220111130556.905978-1-tudor.ambarus@microchip.com>
+ <2fa34fae-7736-670a-1d31-7928fbcf95bd@microchip.com>
+ <c708f761-aad4-a2f2-9255-01bcb6ad73de@microchip.com>
+ <3cd1fd6b-d3a4-5ac5-22fa-c854e2f25a65@microchip.com>
+ <647e801b-88d3-6169-0354-ba1cdff8d807@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <647e801b-88d3-6169-0354-ba1cdff8d807@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,40 +73,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-25.02.2022 10:51, Sascha Hauer пишет:
-> The rk3568 HDMI has an additional clock that needs to be enabled for the
-> HDMI controller to work. The purpose of that clock is not clear. It is
-> named "hclk" in the downstream driver, so use the same name.
+On 24/02/2022 at 19:26, Tudor Ambarus - M18064 wrote:
+> On 2/24/22 19:44, Nicolas Ferre wrote:
+>> Hi Tudor,
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
+> Hi,
 > 
-> Notes:
->     Changes since v5:
->     - Use devm_clk_get_optional rather than devm_clk_get
+>>
+>> On 24/02/2022 at 16:49, Tudor Ambarus - M18064 wrote:
+>>> On 2/24/22 17:04, Nicolas Ferre wrote:
+>>>> On 11/01/2022 at 14:05, Tudor Ambarus wrote:
+>>>>> Add NAND support. The sama7g5's SMC IP is the same as sama5d2's with
+>>>>> a slightly change: it provides a synchronous clock output (SMC clock)
+>>>>> that is dedicated to FPGA usage. Since this doesn't interfere with the SMC
+>>>>> NAND configuration, thus code will not be added in the current nand driver
+>>>>> to address the FPGA usage, use the sama5d2's compatible and choose not to
+>>>>> introduce dedicated compatibles for sama7g5.
+>>>>> Tested with Micron MT29F4G08ABAEAWP NAND flash.
+>>>>>
+>>>>> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
+>>>>
+>>>> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>>>
+>>>>> ---
+>>>>> The patch depends on the following patch:
+>>>>> https://lore.kernel.org/linux-clk/20220111125310.902856-1-tudor.ambarus@microchip.com/T/#u
+>>>>
+>>>> Patch seems taken, so I add this one to at91-dt branch for 5.18 merge window.
+>>>>
+>>>
+>>> I think it depends on who gets to next first. If at91 gets before clk,
+>>> there will be a build error, isn't it?
+>>
 > 
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> Sorry, not linux-next, but whose PR gets first applied by Linus.
 > 
-> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> index fe4f9556239ac..c6c00e8779ab5 100644
-> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
->  	const struct rockchip_hdmi_chip_data *chip_data;
->  	struct clk *ref_clk;
->  	struct clk *grf_clk;
-> +	struct clk *hclk_clk;
->  	struct dw_hdmi *hdmi;
->  	struct regulator *avdd_0v9;
->  	struct regulator *avdd_1v8;
-> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
->  		return PTR_ERR(hdmi->grf_clk);
->  	}
->  
-> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
-> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+>> Clk patch is already in linux-next, so no worries.
+>> Moreover, I don't get why there could be a build error as there is no build dependency between DT changes and C changes.
+>> Sorry but I'm puzzled... Or I'm not looking at the right patch.
+>>
+> 
+> You would see this kind of error:
+> Error: arch/arm/boot/dts/sama7g5.dtsi:102.21-22 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:346: arch/arm/boot/dts/at91-sama7g5ek.dtb] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1385: dtbs] Error 2
+> make: *** Waiting for unfinished jobs....
+> 
+> This patch uses "PMC_MCK1" which is defined in:
+> https://lore.kernel.org/linux-clk/20220111125310.902856-1-tudor.ambarus@microchip.com/T/#u
+> 
+> If Linus applies the arm-soc PR before the clk PR, it will see the same error, no?
 
-Have you tried to investigate the hclk? I'm still thinking that's not
-only HDMI that needs this clock and then the hardware description
-doesn't look correct.
+Yes, absolutely.
+So I need to have an immutable branch from Stephen then. I'm removing 
+the patch from the at91-dt branch for now.
+
+Thanks for the insight and sorry not having overlooked at that crucial 
+piece of header file ;-)
+
+Best regards,
+   Nicolas
+
+-- 
+Nicolas Ferre
