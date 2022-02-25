@@ -2,94 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0270A4C4FC0
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 21:40:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F10344C4FCF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 21:42:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236664AbiBYUkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 15:40:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46996 "EHLO
+        id S236741AbiBYUmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 15:42:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231500AbiBYUkj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 15:40:39 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABA6D20B38C;
-        Fri, 25 Feb 2022 12:40:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4AD1D619B0;
-        Fri, 25 Feb 2022 20:40:06 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0684FC340E7;
-        Fri, 25 Feb 2022 20:40:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645821605;
-        bh=zxDATE5T4nAxC32Whq1+k2Ts5ipceAvf6DKKgR9mfUQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hrpQ7YwSeh5sscihYcV+TYDt1O1t3NgWkx5jOWu+WSlXp+Glrz/YlfV/x9AGEUQg6
-         KW9W50yPmmkhpl2dCQJ0UDYT7ii7otMq7bmriBAqifVREs7SPVMS23+SEdHRrtZje3
-         z9M2gTLBRQM8x7BKzkHa0SNpLuxLbHVHOp2TplWn22MqP2g5SVymEik2ZlDYeeaVWU
-         Q7aIfqk04dAzRpjaf0i4035gtcx9EXtZF4e8pC0GxOyG57/2iwlZMdTioq4R+5bOOx
-         JquN1ANWyZ5kGRSBF5Co235A8oZWLEDB+br1bEpCLNuZzPbjenRGpAOyp44sFk89Xr
-         YzoaR6mZz0L4A==
-Date:   Fri, 25 Feb 2022 20:40:00 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     Rob Herring <robh@kernel.org>, kuninori.morimoto.gx@renesas.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH V2 1/2] ASoC: dt-bindings: audio-graph-port: Add
- dai-tdm-slot-width-map
-Message-ID: <Yhk+oFJBMAqYNc6r@sirena.org.uk>
-References: <20220217134835.282389-1-rf@opensource.cirrus.com>
- <20220217134835.282389-2-rf@opensource.cirrus.com>
- <YhgCbKzfPXEVauwW@robh.at.kernel.org>
- <7d11f36e-4b56-8c17-a114-d024f76f3b9e@opensource.cirrus.com>
+        with ESMTP id S236724AbiBYUmf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 15:42:35 -0500
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80C4120B38C;
+        Fri, 25 Feb 2022 12:42:02 -0800 (PST)
+Received: from localhost.localdomain (ip-213-127-118-180.ip.prioritytelecom.net [213.127.118.180])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id BD49FC85A1;
+        Fri, 25 Feb 2022 20:42:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1645821721; bh=j4YPX1CJ6VNZFXbZ5LbV8+gDCRq7x3CH1YNtj2VgEro=;
+        h=From:To:Cc:Subject:Date;
+        b=X+VvD8y+TkjSA2jNk+cTB3Q39mXsDUYM4FyNXTtc2PQ1HyLZkqPIlhT8v/in7+c2r
+         uj+0SM2p+/YLkJ9TbXHkQwoePKuZ64v+ahyBZRjaNRz/QF+qaXL0+uMYEsU6Mp9Uf/
+         T/KgujMZL8ry0oQqzETbmAbO872aEsmPNhG1l7VA=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        marcel@holtmann.org, Luca Weiss <luca@z3ntu.xyz>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: bluetooth: broadcom: add BCM43430A0 & BCM43430A1
+Date:   Fri, 25 Feb 2022 21:41:37 +0100
+Message-Id: <20220225204138.935022-1-luca@z3ntu.xyz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="/T0XV2S4I1DB6qKN"
-Content-Disposition: inline
-In-Reply-To: <7d11f36e-4b56-8c17-a114-d024f76f3b9e@opensource.cirrus.com>
-X-Cookie: I smell a wumpus.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=2.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FROM_SUSPICIOUS_NTLD,
+        FROM_SUSPICIOUS_NTLD_FP,PDS_OTHER_BAD_TLD,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: **
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the compatible string for BCM43430A0 bluetooth used in lg-lenok
+and BCM43430A1 used in asus-sparrow.
 
---/T0XV2S4I1DB6qKN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+---
+Changes in v2:
+- add bcm43430a1 too, adjust commit message to reflect that
 
-On Fri, Feb 25, 2022 at 12:08:00PM +0000, Richard Fitzgerald wrote:
-> On 24/02/2022 22:10, Rob Herring wrote:
+ Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> > Is there a need for specifying where in the slot the data is?
+diff --git a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+index 5aac094fd217..dd035ca639d4 100644
+--- a/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
++++ b/Documentation/devicetree/bindings/net/broadcom-bluetooth.yaml
+@@ -19,6 +19,8 @@ properties:
+       - brcm,bcm4329-bt
+       - brcm,bcm4330-bt
+       - brcm,bcm4334-bt
++      - brcm,bcm43430a0-bt
++      - brcm,bcm43430a1-bt
+       - brcm,bcm43438-bt
+       - brcm,bcm4345c5
+       - brcm,bcm43540-bt
+-- 
+2.35.1
 
-> I don't believe so, all the protocols I know of have the data bits
-> transmitted first followed by padding. There's no harm adding a
-> reserved field to allow for this info if it is ever needed, but it would
-> be unused at present as there's no kernel API to do this.
-
-It's part of the general format for the bus I'd say.
-
---/T0XV2S4I1DB6qKN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIZPqAACgkQJNaLcl1U
-h9Ajhwf+J82kl/TOlVA+wFKSsRgst+nXorJvUGgpk40srNqnLsDbtFdEl0VhpVMb
-9dQGF5YwjfvOI52ERTvwRrlYrAcUZom76BY2nCDuPclvHmpKkL1WF9CVPfLPszpc
-NOcd8gYtM3M52wSSgroFI2crtlFuY6G+qCsrp9+p/7oMyzALrt4kjmrksAAmb4lv
-92Q974Uc2MX9t0meFmZFKUqYuJFsn7FzNlVjuFZbpPEM8i4GVbdjEfkMr3cMrQMy
-JaZmgPVoEdsM609PprJ4LxbUHwNrEVIXMecDZ1L/GU/SMVYYC6gKlxUEeJs3Arcv
-gfInPtVf4G9xCM6SdPWqFtTGzIcmtQ==
-=/qfj
------END PGP SIGNATURE-----
-
---/T0XV2S4I1DB6qKN--
