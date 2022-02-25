@@ -2,578 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CCC04C42CB
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:52:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B8A5B4C42CF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 11:52:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238284AbiBYKwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 05:52:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60848 "EHLO
+        id S239716AbiBYKxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 05:53:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233510AbiBYKwu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:52:50 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADD4C17FD32
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:17 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nNYCm-0002In-DE; Fri, 25 Feb 2022 11:52:08 +0100
-Message-ID: <ed1877dfb66159f1fe45f840a52a0a55f8be4054.camel@pengutronix.de>
-Subject: Re: [PATCH v2 6/9] soc: imx: add i.MX8MP HSIO blk-ctrl
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Date:   Fri, 25 Feb 2022 11:52:06 +0100
-In-Reply-To: <YhN3sEZKGFgkdNab@pendragon.ideasonboard.com>
-References: <20220207192547.1997549-1-l.stach@pengutronix.de>
-         <20220207192547.1997549-6-l.stach@pengutronix.de>
-         <YhN3sEZKGFgkdNab@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S236261AbiBYKxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 05:53:23 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 294E117FD32
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:51 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id i5so6946451oih.1
+        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 02:52:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=lCjS17RFbyRJS2Db4IElIeJl8aSxBOeolv8L7WEpzG0=;
+        b=ZxA07RL3mMl2OYCEdKyZ7YMkP6PPrkqbudpFP/Xwrvm3gMcx3tUnhRYv8Yk3mK4v3d
+         sc3DR0IdZD37Ua+cviUedxfolPE/qnsdmnqgBHPEpZC1+PgWDASxreISF1P1Ly2Uc/pI
+         wggbKGlXSnIWxZJSha4EF2De/dnO0fCLvkz6P5M18Y1PdanigCXjdE+5vkwPuaUO+0B5
+         i8GwmlHQgP4H8uSsxRwGBexOwkl/yUqMpcrbIrwN/4uQIhUr84KMQgf0PZk1BG66U7Jy
+         YRXGtmHxLmxy1pPqCe3Dtw8ydk2F6cu08Bbhkq7CFcvZxkCQ/X+xb7KWbb1WGerxvfvP
+         FsVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=lCjS17RFbyRJS2Db4IElIeJl8aSxBOeolv8L7WEpzG0=;
+        b=e7FqhKTC13KDecPlEWsbc3XFLoMCMUfpMHIY1ulGmo64IeIpl90umhHq4qj3+/gl7O
+         8xYZgnS4UkoWWIsdCIODT//AyDEDrP/kgGP9T61L+/G9QtLMupDeOnH7XgvZxIoM0P4b
+         p87+870/GYc7tu0HeVs0f8vTBZiSEdHrBzPuo/Ez4gQ8VJVrimd+sg1RyLH8LOjyiVl6
+         jBM/0RFqKSBMHN7e+vUs7Yei5f7Hiw2d+GtrqV0ngqYjyGV7fy0U7uOqzNqAgjQfYHeA
+         EPU9vLpyagNQpllK5vMzDN+8ZnTCrKhMDrTiaw+G9Y1L7gNInUHJXJaysh+IqtlWRKWh
+         uq0A==
+X-Gm-Message-State: AOAM531HCMXYhnx+k04LliINbcv98lSnC9Lu4IRDUsfhzb/gnLXJH+ad
+        OSazYuhfxv48R3zzHnXuYMTvvTNyKK7aLmfnQCaZPQ==
+X-Google-Smtp-Source: ABdhPJyteHJVXwqtREl4MhJz0dVR/k/rAMxVv+BnqtMnsqQSFUKqWOGlNhrZlPQ9P1vmHV6UVPKJuCBvnsGagSVbgHg=
+X-Received: by 2002:aca:1b13:0:b0:2d4:b033:450 with SMTP id
+ b19-20020aca1b13000000b002d4b0330450mr1231170oib.214.1645786370409; Fri, 25
+ Feb 2022 02:52:50 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 25 Feb 2022 02:52:49 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <CAAOTY__AgD_Rc_5TS4v+sBDeN-nd0DbwuERhW=OsvsbMWSsxsA@mail.gmail.com>
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-7-granquet@baylibre.com>
+ <CAAOTY__AgD_Rc_5TS4v+sBDeN-nd0DbwuERhW=OsvsbMWSsxsA@mail.gmail.com>
+From:   Guillaume Ranquet <granquet@baylibre.com>
+User-Agent: alot/0.10
+Date:   Fri, 25 Feb 2022 02:52:49 -0800
+Message-ID: <CABnWg9uUDH7Vo-=HTSjS7HRfdo=SQPk43ujT=jh5Q+VhAA2Hag@mail.gmail.com>
+Subject: Re: [PATCH v8 06/19] drm/mediatek: dpi: implement a CK/DE pol toggle
+ in board config
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, deller@gmx.de,
+        CK Hu <ck.hu@mediatek.com>, Jitao Shi <jitao.shi@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, dem 21.02.2022 um 13:29 +0200 schrieb Laurent Pinchart:
-> Hi Lucas,
-> 
-> Thank you for the patch.
-> 
-> On Mon, Feb 07, 2022 at 08:25:44PM +0100, Lucas Stach wrote:
-> > The i.MX8MP added some blk-ctrl peripherals that don't follow the regular
-> > structure of the blk-ctrls in the previous SoCs. Add a new file for those
-> > with currently only the HSIO blk-ctrl being supported. Others will be added
-> > later on.
-> > 
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Quoting Chun-Kuang Hu (2022-02-21 03:14:02)
+> HI, Guillaume:
+>
+> Guillaume Ranquet <granquet@baylibre.com> =E6=96=BC 2022=E5=B9=B42=E6=9C=
+=8818=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8810:56=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> >
+> > Adds a bit of flexibility to support boards without CK/DE pol support
+>
+> I'm not sure what the term 'board' mean. Do you mean different board
+> with different panel but all with mt8195-dpintf? If so, you should get
+> CK/DE support from panel driver not fix this information in dpi
+> driver.
+>
+> Regards,
+> Chun-Kuang.
+>
+
+Hi Chun-Kuang,
+
+The correct term (as pointed by Angelo) would be 'SoC' instead of
+'board' I guess.
+My understanding is that every SoC might have or might not have CK/DE suppo=
+rt.
+
+
+I'll try to dig into the documentation I have to understand exactly
+where this support
+is coming from.
+
+Thx,
+Guillaume.
+
+> >
+> > Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 > > ---
-> >  drivers/soc/imx/Makefile          |   1 +
-> >  drivers/soc/imx/imx8mp-blk-ctrl.c | 444 ++++++++++++++++++++++++++++++
-> >  2 files changed, 445 insertions(+)
-> >  create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
-> > 
-> > diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
-> > index 8a707077914c..63cd29f6d4d2 100644
-> > --- a/drivers/soc/imx/Makefile
-> > +++ b/drivers/soc/imx/Makefile
-> > @@ -6,3 +6,4 @@ obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
-> >  obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
-> >  obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
-> >  obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
-> > +obj-$(CONFIG_SOC_IMX8M) += imx8mp-blk-ctrl.o
-> > diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
-> > new file mode 100644
-> > index 000000000000..7f4e1a151d2b
-> > --- /dev/null
-> > +++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
-> > @@ -0,0 +1,444 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +
-> > +/*
-> > + * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_domain.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/clk.h>
-> 
-> clk.h should go first in alphabetical order.
-> 
-> > +
-> > +#include <dt-bindings/power/imx8mp-power.h>
-> > +
-> > +#define GPR_REG0		0x0
-> > +#define  PCIE_CLOCK_MODULE_EN	BIT(0)
-> > +#define  USB_CLOCK_MODULE_EN	BIT(1)
-> > +
-> > +struct imx8mp_hsio_blk_ctrl_domain;
-> > +
-> > +struct imx8mp_hsio_blk_ctrl {
-> > +	struct device *dev;
-> > +	struct notifier_block power_nb;
-> > +	struct device *bus_power_dev;
-> > +	struct regmap *regmap;
-> > +	struct imx8mp_hsio_blk_ctrl_domain *domains;
-> > +	struct genpd_onecell_data onecell_data;
-> > +};
-> > +
-> > +struct imx8mp_hsio_blk_ctrl_domain_data {
-> > +	const char *name;
-> > +	const char *clk_name;
-> > +	const char *gpc_name;
-> > +};
-> > +
-> > +struct imx8mp_hsio_blk_ctrl_domain {
-> > +	struct generic_pm_domain genpd;
-> > +	struct clk *clk;
-> > +	struct device *power_dev;
-> > +	struct imx8mp_hsio_blk_ctrl *bc;
-> > +	int id;
-> > +};
-> > +
-> > +static inline struct imx8mp_hsio_blk_ctrl_domain *
-> > +to_imx8mp_hsio_blk_ctrl_domain(struct generic_pm_domain *genpd)
-> > +{
-> > +	return container_of(genpd, struct imx8mp_hsio_blk_ctrl_domain, genpd);
-> > +}
-> > +
-> > +static int imx8mp_hsio_blk_ctrl_power_on(struct generic_pm_domain *genpd)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl_domain *domain =
-> > +			to_imx8mp_hsio_blk_ctrl_domain(genpd);
-> > +	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
-> > +	int ret;
-> > +
-> > +	/* make sure bus domain is awake */
-> > +	ret = pm_runtime_get_sync(bc->bus_power_dev);
-> > +	if (ret < 0) {
-> > +		pm_runtime_put_noidle(bc->bus_power_dev);
-> > +		dev_err(bc->dev, "failed to power up bus domain\n");
-> > +		return ret;
-> > +	}
-> 
-> 	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
-> 	if (ret < 0) {
-> 		dev_err(bc->dev, "failed to power up bus domain\n");
-> 		return ret;
-> 	}
-> 
-> Same below and in two locations in imx8mp_hsio_blk_ctrl_suspend().
-> 
-> > +
-> > +	/* enable upstream and blk-ctrl clocks */
-> > +	ret = clk_prepare_enable(domain->clk);
-> > +	if (ret) {
-> > +		dev_err(bc->dev, "failed to enable clocks\n");
-> > +		goto bus_put;
-> > +	}
-> > +
-> > +	switch (domain->id) {
-> > +	case IMX8MP_HSIOBLK_PD_USB:
-> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
-> > +		break;
-> > +	case IMX8MP_HSIOBLK_PD_PCIE:
-> > +		regmap_set_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	/* power up upstream GPC domain */
-> > +	ret = pm_runtime_get_sync(domain->power_dev);
-> > +	if (ret < 0) {
-> 
-> This would be missing pm_runtime_put_noidle() if you didn't switch to
-> pm_runtime_resume_and_get().
-> 
-> > +		dev_err(bc->dev, "failed to power up peripheral domain\n");
-> > +		goto clk_disable;
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +clk_disable:
-> > +	clk_disable_unprepare(domain->clk);
-> > +bus_put:
-> > +	pm_runtime_put(bc->bus_power_dev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int imx8mp_hsio_blk_ctrl_power_off(struct generic_pm_domain *genpd)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl_domain *domain =
-> > +			to_imx8mp_hsio_blk_ctrl_domain(genpd);
-> > +	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
-> > +
-> > +	/* disable clocks */
-> > +	switch (domain->id) {
-> > +	case IMX8MP_HSIOBLK_PD_USB:
-> > +		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
-> > +		break;
-> > +	case IMX8MP_HSIOBLK_PD_PCIE:
-> > +		regmap_clear_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	clk_disable_unprepare(domain->clk);
-> > +
-> > +	/* power down upstream GPC domain */
-> > +	pm_runtime_put(domain->power_dev);
-> > +
-> > +	/* allow bus domain to suspend */
-> > +	pm_runtime_put(bc->bus_power_dev);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static struct generic_pm_domain *
-> > +imx8m_blk_ctrl_xlate(struct of_phandle_args *args, void *data)
-> > +{
-> > +	struct genpd_onecell_data *onecell_data = data;
-> > +	unsigned int index = args->args[0];
-> > +
-> > +	if (args->args_count != 1 ||
-> > +	    index >= onecell_data->num_domains)
-> > +		return ERR_PTR(-EINVAL);
-> > +
-> > +	return onecell_data->domains[index];
-> > +}
-> > +
-> > +static struct lock_class_key blk_ctrl_genpd_lock_class;
-> > +
-> > +static const struct imx8mp_hsio_blk_ctrl_domain_data imx8mp_hsio_domain_data[] = {
-> > +	[IMX8MP_HSIOBLK_PD_USB] = {
-> > +		.name = "hsioblk-usb",
-> > +		.clk_name = "usb",
-> > +		.gpc_name = "usb",
-> > +	},
-> > +	[IMX8MP_HSIOBLK_PD_USB_PHY1] = {
-> > +		.name = "hsioblk-ubs-phy1",
-> > +		.gpc_name = "usb-phy1",
-> > +	},
-> > +	[IMX8MP_HSIOBLK_PD_USB_PHY2] = {
-> > +		.name = "hsioblk-ubs-phy2",
-> > +		.gpc_name = "usb-phy2",
-> > +	},
-> > +	[IMX8MP_HSIOBLK_PD_PCIE] = {
-> > +		.name = "hsioblk-pcie",
-> > +		.clk_name = "pcie",
-> > +		.gpc_name = "pcie",
-> > +	},
-> > +	[IMX8MP_HSIOBLK_PD_PCIE_PHY] = {
-> > +		.name = "hsioblk-pcie-phy",
-> > +		.gpc_name = "pcie-phy",
-> > +	},
-> > +};
-> > +
-> > +static int imx8mp_hsio_power_notifier(struct notifier_block *nb,
-> > +				      unsigned long action, void *data)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl *bc = container_of(nb, struct imx8mp_hsio_blk_ctrl,
-> > +						 power_nb);
-> > +	struct clk *usb_clk = bc->domains[IMX8MP_HSIOBLK_PD_USB].clk;
-> > +	int ret;
-> > +
-> > +	switch (action) {
-> > +	case GENPD_NOTIFY_ON:
-> > +		/*
-> > +		 * enable USB clock for a moment for the power-on ADB handshake
-> > +		 * to proceed
-> > +		 */
-> > +		ret = clk_prepare_enable(usb_clk);
-> > +		if (ret)
-> > +			return NOTIFY_BAD;
-> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
-> > +
-> > +		udelay(5);
-> > +
-> > +		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
-> > +		clk_disable_unprepare(usb_clk);
-> > +		break;
-> > +	case GENPD_NOTIFY_PRE_OFF:
-> > +		/* enable USB clock for the power-down ADB handshake to work */
-> > +		ret = clk_prepare_enable(usb_clk);
-> > +		if (ret)
-> > +			return NOTIFY_BAD;
-> > +
-> > +		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
-> > +		break;
-> > +	case GENPD_NOTIFY_OFF:
-> 
-> No need to clear USB_CLOCK_MODULE_EN here ?
-
-Nope, at this point power to the domain is already collapsed and the
-driver must not touch the blk-ctrl anymore. The blk-ctrl is reset
-anyway when power is restored in the next runtime PM cycle, so there is
-no point in disabling this secondary clock gate.
-
-Regards,
-Lucas
-
-> 
-> > +		clk_disable_unprepare(usb_clk);
-> > +		break;
-> > +	default:
-> > +		break;
-> > +	}
-> > +
-> > +	return NOTIFY_OK;
-> > +}
-> > +
-> > +static int imx8mp_hsio_blk_ctrl_probe(struct platform_device *pdev)
-> > +{
-> > +	int num_domains = ARRAY_SIZE(imx8mp_hsio_domain_data);
-> > +	struct device *dev = &pdev->dev;
-> > +	struct imx8mp_hsio_blk_ctrl *bc;
-> > +	void __iomem *base;
-> > +	int i, ret;
-> > +
-> > +	struct regmap_config regmap_config = {
-> 
-> This can be static const
-> 
-> > +		.reg_bits	= 32,
-> > +		.val_bits	= 32,
-> > +		.reg_stride	= 4,
-> > +		.max_register	= 0x24,
-> > +	};
-> > +
-> > +	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
-> > +	if (!bc)
-> > +		return -ENOMEM;
-> > +
-> > +	bc->dev = dev;
-> > +
-> > +	base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(base))
-> > +		return PTR_ERR(base);
-> > +
-> > +	bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
-> > +	if (IS_ERR(bc->regmap))
-> > +		return dev_err_probe(dev, PTR_ERR(bc->regmap),
-> > +				     "failed to init regmap\n");
-> > +
-> > +	bc->domains = devm_kcalloc(dev, num_domains,
-> > +				   sizeof(struct imx8mp_hsio_blk_ctrl_domain),
-> 
-> sizeof(*bc->domains) ? Up to you.
-> 
-> > +				   GFP_KERNEL);
-> > +	if (!bc->domains)
-> > +		return -ENOMEM;
-> > +
-> > +	bc->onecell_data.num_domains = num_domains;
-> > +	bc->onecell_data.xlate = imx8m_blk_ctrl_xlate;
-> > +	bc->onecell_data.domains =
-> > +		devm_kcalloc(dev, num_domains,
-> > +			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
-> > +	if (!bc->onecell_data.domains)
-> > +		return -ENOMEM;
-> > +
-> > +	bc->bus_power_dev = genpd_dev_pm_attach_by_name(dev, "bus");
-> > +	if (IS_ERR(bc->bus_power_dev))
-> > +		return dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
-> > +				     "failed to attach power domain\n");
-> 
-> s/attach power domain/attach bus power domain/
-> 
-> > +
-> > +	for (i = 0; i < num_domains; i++) {
-> > +		const struct imx8mp_hsio_blk_ctrl_domain_data *data =
-> > +				&imx8mp_hsio_domain_data[i];
-> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
-> > +
-> > +		if (data->clk_name) {
-> > +			domain->clk = devm_clk_get(dev, data->clk_name);
-> > +			if (IS_ERR(domain->clk)) {
-> > +				ret = PTR_ERR(domain->clk);
-> > +				dev_err_probe(dev, ret, "failed to get clock\n");
-> 
-> "failed to get clock %s\n", data->clk_name
-> 
-> could help debugging issues. Same for the gpc_name below.
-> 
-> With those small issues fixed,
-> 
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> 
-> > +				goto cleanup_pds;
-> > +			}
-> > +		}
-> > +
-> > +		domain->power_dev =
-> > +			dev_pm_domain_attach_by_name(dev, data->gpc_name);
-> > +		if (IS_ERR(domain->power_dev)) {
-> > +			dev_err_probe(dev, PTR_ERR(domain->power_dev),
-> > +				      "failed to attach power domain\n");
-> > +			ret = PTR_ERR(domain->power_dev);
-> > +			goto cleanup_pds;
-> > +		}
-> > +
-> > +		domain->genpd.name = data->name;
-> > +		domain->genpd.power_on = imx8mp_hsio_blk_ctrl_power_on;
-> > +		domain->genpd.power_off = imx8mp_hsio_blk_ctrl_power_off;
-> > +		domain->bc = bc;
-> > +		domain->id = i;
-> > +
-> > +		ret = pm_genpd_init(&domain->genpd, NULL, true);
-> > +		if (ret) {
-> > +			dev_err_probe(dev, ret, "failed to init power domain\n");
-> > +			dev_pm_domain_detach(domain->power_dev, true);
-> > +			goto cleanup_pds;
-> > +		}
-> > +
-> > +		/*
-> > +		 * We use runtime PM to trigger power on/off of the upstream GPC
-> > +		 * domain, as a strict hierarchical parent/child power domain
-> > +		 * setup doesn't allow us to meet the sequencing requirements.
-> > +		 * This means we have nested locking of genpd locks, without the
-> > +		 * nesting being visible at the genpd level, so we need a
-> > +		 * separate lock class to make lockdep aware of the fact that
-> > +		 * this are separate domain locks that can be nested without a
-> > +		 * self-deadlock.
-> > +		 */
-> > +		lockdep_set_class(&domain->genpd.mlock,
-> > +				  &blk_ctrl_genpd_lock_class);
-> > +
-> > +		bc->onecell_data.domains[i] = &domain->genpd;
-> > +	}
-> > +
-> > +	ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
-> > +	if (ret) {
-> > +		dev_err_probe(dev, ret, "failed to add power domain provider\n");
-> > +		goto cleanup_pds;
-> > +	}
-> > +
-> > +	bc->power_nb.notifier_call = imx8mp_hsio_power_notifier;
-> > +	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
-> > +	if (ret) {
-> > +		dev_err_probe(dev, ret, "failed to add power notifier\n");
-> > +		goto cleanup_provider;
-> > +	}
-> > +
-> > +	dev_set_drvdata(dev, bc);
-> > +
-> > +	return 0;
-> > +
-> > +cleanup_provider:
-> > +	of_genpd_del_provider(dev->of_node);
-> > +cleanup_pds:
-> > +	for (i--; i >= 0; i--) {
-> > +		pm_genpd_remove(&bc->domains[i].genpd);
-> > +		dev_pm_domain_detach(bc->domains[i].power_dev, true);
-> > +	}
-> > +
-> > +	dev_pm_domain_detach(bc->bus_power_dev, true);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int imx8mp_hsio_blk_ctrl_remove(struct platform_device *pdev)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(&pdev->dev);
-> > +	int i;
-> > +
-> > +	of_genpd_del_provider(pdev->dev.of_node);
-> > +
-> > +	for (i = 0; bc->onecell_data.num_domains; i++) {
-> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
-> > +
-> > +		pm_genpd_remove(&domain->genpd);
-> > +		dev_pm_domain_detach(domain->power_dev, true);
-> > +	}
-> > +
-> > +	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
-> > +
-> > +	dev_pm_domain_detach(bc->bus_power_dev, true);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +#ifdef CONFIG_PM_SLEEP
-> > +static int imx8mp_hsio_blk_ctrl_suspend(struct device *dev)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
-> > +	int ret, i;
-> > +
-> > +	/*
-> > +	 * This may look strange, but is done so the generic PM_SLEEP code
-> > +	 * can power down our domains and more importantly power them up again
-> > +	 * after resume, without tripping over our usage of runtime PM to
-> > +	 * control the upstream GPC domains. Things happen in the right order
-> > +	 * in the system suspend/resume paths due to the device parent/child
-> > +	 * hierarchy.
-> > +	 */
-> > +	ret = pm_runtime_get_sync(bc->bus_power_dev);
-> > +	if (ret < 0) {
-> > +		pm_runtime_put_noidle(bc->bus_power_dev);
-> > +		return ret;
-> > +	}
-> > +
-> > +	for (i = 0; i < bc->onecell_data.num_domains; i++) {
-> > +		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
-> > +
-> > +		ret = pm_runtime_get_sync(domain->power_dev);
-> > +		if (ret < 0) {
-> > +			pm_runtime_put_noidle(domain->power_dev);
-> > +			goto out_fail;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +
-> > +out_fail:
-> > +	for (i--; i >= 0; i--)
-> > +		pm_runtime_put(bc->domains[i].power_dev);
-> > +
-> > +	pm_runtime_put(bc->bus_power_dev);
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int imx8mp_hsio_blk_ctrl_resume(struct device *dev)
-> > +{
-> > +	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
-> > +	int i;
-> > +
-> > +	for (i = 0; i < bc->onecell_data.num_domains; i++)
-> > +		pm_runtime_put(bc->domains[i].power_dev);
-> > +
-> > +	pm_runtime_put(bc->bus_power_dev);
-> > +
-> > +	return 0;
-> > +}
-> > +#endif
-> > +
-> > +static const struct dev_pm_ops imx8mp_hsio_blk_ctrl_pm_ops = {
-> > +	SET_SYSTEM_SLEEP_PM_OPS(imx8mp_hsio_blk_ctrl_suspend,
-> > +				imx8mp_hsio_blk_ctrl_resume)
-> > +};
-> > +
-> > +static const struct of_device_id imx8mp_hsio_blk_ctrl_of_match[] = {
-> > +	{
-> > +		.compatible = "fsl,imx8mp-hsio-blk-ctrl",
-> > +	}, {
-> > +		/* Sentinel */
-> > +	}
-> > +};
-> > +MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
-> > +
-> > +static struct platform_driver imx8mp_hsio_blk_ctrl_driver = {
-> > +	.probe = imx8mp_hsio_blk_ctrl_probe,
-> > +	.remove = imx8mp_hsio_blk_ctrl_remove,
-> > +	.driver = {
-> > +		.name = "imx8mp-hsio-blk-ctrl",
-> > +		.pm = &imx8mp_hsio_blk_ctrl_pm_ops,
-> > +		.of_match_table = imx8mp_hsio_blk_ctrl_of_match,
-> > +	},
-> > +};
-> > +module_platform_driver(imx8mp_hsio_blk_ctrl_driver);
-> 
-
-
+> >  drivers/gpu/drm/mediatek/mtk_dpi.c | 22 +++++++++++++++++-----
+> >  1 file changed, 17 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_dpi.c b/drivers/gpu/drm/media=
+tek/mtk_dpi.c
+> > index 4746eb3425674..545a1337cc899 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_dpi.c
+> > @@ -125,6 +125,7 @@ struct mtk_dpi_conf {
+> >         bool edge_sel_en;
+> >         const u32 *output_fmts;
+> >         u32 num_output_fmts;
+> > +       bool is_ck_de_pol;
+> >         const struct mtk_dpi_yc_limit *limit;
+> >  };
+> >
+> > @@ -211,13 +212,20 @@ static void mtk_dpi_config_pol(struct mtk_dpi *dp=
+i,
+> >                                struct mtk_dpi_polarities *dpi_pol)
+> >  {
+> >         unsigned int pol;
+> > +       unsigned int mask;
+> >
+> > -       pol =3D (dpi_pol->ck_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : C=
+K_POL) |
+> > -             (dpi_pol->de_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : DE_=
+POL) |
+> > -             (dpi_pol->hsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : =
+HSYNC_POL) |
+> > +       mask =3D HSYNC_POL | VSYNC_POL;
+> > +       pol =3D (dpi_pol->hsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 =
+: HSYNC_POL) |
+> >               (dpi_pol->vsync_pol =3D=3D MTK_DPI_POLARITY_RISING ? 0 : =
+VSYNC_POL);
+> > -       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol,
+> > -                    CK_POL | DE_POL | HSYNC_POL | VSYNC_POL);
+> > +       if (dpi->conf->is_ck_de_pol) {
+> > +               mask |=3D CK_POL | DE_POL;
+> > +               pol |=3D (dpi_pol->ck_pol =3D=3D MTK_DPI_POLARITY_RISIN=
+G ?
+> > +                       0 : CK_POL) |
+> > +                      (dpi_pol->de_pol =3D=3D MTK_DPI_POLARITY_RISING =
+?
+> > +                       0 : DE_POL);
+> > +       }
+> > +
+> > +       mtk_dpi_mask(dpi, DPI_OUTPUT_SETTING, pol, mask);
+> >  }
+> >
+> >  static void mtk_dpi_config_3d(struct mtk_dpi *dpi, bool en_3d)
+> > @@ -799,6 +807,7 @@ static const struct mtk_dpi_conf mt8173_conf =3D {
+> >         .max_clock_khz =3D 300000,
+> >         .output_fmts =3D mt8173_output_fmts,
+> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+> > +       .is_ck_de_pol =3D true,
+> >         .limit =3D &mtk_dpi_limit,
+> >  };
+> >
+> > @@ -809,6 +818,7 @@ static const struct mtk_dpi_conf mt2701_conf =3D {
+> >         .max_clock_khz =3D 150000,
+> >         .output_fmts =3D mt8173_output_fmts,
+> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+> > +       .is_ck_de_pol =3D true,
+> >         .limit =3D &mtk_dpi_limit,
+> >  };
+> >
+> > @@ -818,6 +828,7 @@ static const struct mtk_dpi_conf mt8183_conf =3D {
+> >         .max_clock_khz =3D 100000,
+> >         .output_fmts =3D mt8183_output_fmts,
+> >         .num_output_fmts =3D ARRAY_SIZE(mt8183_output_fmts),
+> > +       .is_ck_de_pol =3D true,
+> >         .limit =3D &mtk_dpi_limit,
+> >  };
+> >
+> > @@ -827,6 +838,7 @@ static const struct mtk_dpi_conf mt8192_conf =3D {
+> >         .max_clock_khz =3D 150000,
+> >         .output_fmts =3D mt8173_output_fmts,
+> >         .num_output_fmts =3D ARRAY_SIZE(mt8173_output_fmts),
+> > +       .is_ck_de_pol =3D true,
+> >         .limit =3D &mtk_dpi_limit,
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
