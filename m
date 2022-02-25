@@ -2,162 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61FA04C4461
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:11:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A84B4C4492
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:24:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240535AbiBYMLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 07:11:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39434 "EHLO
+        id S240035AbiBYMZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 07:25:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236278AbiBYMLW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:11:22 -0500
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93FBB227580
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 04:10:47 -0800 (PST)
-Received: by mail-wr1-x435.google.com with SMTP id n14so4167795wrq.7
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 04:10:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XgZMeUwkhBpG4y/EWJsD1b8rX3LaUvWYgAU7slfNGsk=;
-        b=QcYK4/zOuAsBgjPCe0h9vhuqr0Gtz84iQyT+epjgPL/8/+6Ivcp0LEz+JXhuHqPUnp
-         j3Wy6IvUJFRz2f6XsvMjBcyPtEFd1WDzVrz+zEcS7UKhpns7+nMBHQy5CQk/tVVVe0+q
-         1y8o2xh7OrVDaq48IyLGgEEdE54VRlBhGqWHRh7ezDbxiCNoWO+JjQajacCfeTKDjc+b
-         Vhu7kYOEhSdqlep6aKOTa2JX3B/+UgAKX3ENAt1j9kPN2pYtLmQDLfQO5jjxUAzyH8AV
-         Mb2y+jkdtPRdLH3lZm1SUcOiUXrROWoQ+hiOLL4+ugmSQCXdc1IQhGRc2+aErdwQfTby
-         Kadg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XgZMeUwkhBpG4y/EWJsD1b8rX3LaUvWYgAU7slfNGsk=;
-        b=mrHZN8c6sTfFdyqfT3TLVP7F8p1GaUE3O3SRjXts/uMYjZ1K0HuS3fwirpY/YyTNUz
-         mLGtbw9/V92GnWOJsfdekhlyiwskHyAeZkhP56iNftxL7arSzPQgTmqzmnJXxkJBBWyR
-         0eZxAAhKZVzYEMdEEwHwTRJzoKpMF53F8FQkoclojzmmmQNNi48HBnXowI6g9mZ05240
-         iJSlCd/FSINtjkNT3cuy8WpSypAPs5GLv8yjDwbMWGIIFtOYvLoplB8VgZY5Bj/JYJTd
-         57B4y88TqotgHeuyHGvBAjOXeMryYhA0Afhp2EiBiASVfY/aX+qda0OZylbdXVFTSweR
-         rxYA==
-X-Gm-Message-State: AOAM531Ff16aenbrGgy20S1OIyZrifn9UDJbMuBPRhQcVz0HjxTbz9Hx
-        gohTB5pBFL4NZBBb22uuHl1dCg==
-X-Google-Smtp-Source: ABdhPJw/Mn6t9b+CBZfglGDHLIBBHSA2KYHMl6hzSorc5kJF8JmlIURyv8XlQTazMcQAYPabkgW7Eg==
-X-Received: by 2002:adf:de0b:0:b0:1ed:c0ae:cf76 with SMTP id b11-20020adfde0b000000b001edc0aecf76mr5892416wrm.501.1645791045869;
-        Fri, 25 Feb 2022 04:10:45 -0800 (PST)
-Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
-        by smtp.googlemail.com with ESMTPSA id x2-20020a7bc762000000b00380fd1ba4ebsm8417651wmk.9.2022.02.25.04.10.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Feb 2022 04:10:45 -0800 (PST)
-Message-ID: <45015436-cc46-a239-e73c-db23e2c161a8@linaro.org>
-Date:   Fri, 25 Feb 2022 12:10:44 +0000
+        with ESMTP id S238094AbiBYMZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:25:10 -0500
+X-Greylist: delayed 561 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 25 Feb 2022 04:24:37 PST
+Received: from ni.piap.pl (ni.piap.pl [195.187.100.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E729E20DB34;
+        Fri, 25 Feb 2022 04:24:37 -0800 (PST)
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        by ni.piap.pl (Postfix) with ESMTPSA id 69F00C3EEAFF;
+        Fri, 25 Feb 2022 13:15:11 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 69F00C3EEAFF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1645791312; bh=uznWO2E4e4XX8oTlSGFj0SCiL5sa3KQXgvli76Fp7YM=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=oeplpv2oO2fh5hpfY9o2jQkQhruDFE66OIcT2R/QNxtZAlqgWf7YhijwO83OSQ20L
+         r+iLlqiaCkJRzUKxMGX0kiJ3jmZbXJYaw50ahnnrqrDKx+xzEM/vx+AGy6TGiG+Jy5
+         FUyX70Md8zLIdlz57RY2wwAojCJRec1Ph8uQt/+c=
+From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Joe Perches <joe@perches.com>
+Subject: Re: [PATCH v7 2/2] Driver for ON Semi AR0521 camera sensor
+References: <m3czl9eylt.fsf@t19.piap.pl> <m34k6leyb1.fsf@t19.piap.pl>
+        <20220109153439.bfnfigocaeeeghmp@uno.localdomain>
+Sender: khalasa@piap.pl
+Date:   Fri, 25 Feb 2022 13:15:11 +0100
+In-Reply-To: <20220109153439.bfnfigocaeeeghmp@uno.localdomain> (Jacopo Mondi's
+        message of "Sun, 9 Jan 2022 16:34:39 +0100")
+Message-ID: <m35yp387n4.fsf@t19.piap.pl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V3 3/3] nvmem: core: add cell name based matching of DT
- cell nodes
-Content-Language: en-US
-To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220124160300.25131-1-zajec5@gmail.com>
- <20220218070729.3256-1-zajec5@gmail.com>
- <20220218070729.3256-4-zajec5@gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <20220218070729.3256-4-zajec5@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 3
+X-KLMS-Message-Action: skipped
+X-KLMS-AntiSpam-Status: not scanned, whitelist
+X-KLMS-AntiPhishing: not scanned, whitelist
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rafał
+Hi Jacopo,
 
-On 18/02/2022 07:07, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> When adding NVMEM cells defined by driver it's important to match them
-> with DT nodes that specify matching names. That way other bindings &
-> drivers can reference such "dynamic" NVMEM cells.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->   drivers/nvmem/core.c | 27 +++++++++++++++++++++++++++
->   1 file changed, 27 insertions(+)
-> 
-> diff --git a/drivers/nvmem/core.c b/drivers/nvmem/core.c
-> index 53a43d843743..a891449c52f1 100644
-> --- a/drivers/nvmem/core.c
-> +++ b/drivers/nvmem/core.c
-> @@ -499,6 +499,31 @@ static int nvmem_cell_info_to_nvmem_cell_entry(struct nvmem_device *nvmem,
->   	return 0;
->   }
->   
-> +/**
-> + * nvmem_find_cell_of_node() - Find DT node matching nvmem cell
-> + *
-> + * @nvmem: nvmem provider
-> + * @name: nvmem cell name
-> + *
-> + * Runtime created nvmem cells (those not coming from DT) may still need to be
-> + * referenced in DT. This function allows finding DT node referencing nvmem cell
-> + * by its name. Such a DT node can be then used by nvmem consumers.
-> + *
-> + * Return: NULL or pointer to DT node
-> + */
-> +static struct device_node *nvmem_find_cell_of_node(struct nvmem_device *nvmem,
-> +						   const char *name)
-> +{
-> +	struct device_node *child;
-> +
-> +	for_each_child_of_node(nvmem->dev.of_node, child) {
-> +		if (!strcmp(child->name, name))
-> +			return child;
-> +	}
+Sorry it took that long. Unfortunately I no longer have much time to
+work on this, thus the delays.
 
-Isn't this just
+Jacopo Mondi <jacopo@jmondi.org> writes:
 
-	return of_get_child_by_name(nvmem->dev.of_node, name);
+>> +static int ar0521_s_ctrl(struct v4l2_ctrl *ctrl)
+>> +{
+>> +	struct v4l2_subdev *sd =3D ctrl_to_sd(ctrl);
+>> +	struct ar0521_dev *sensor =3D to_ar0521_dev(sd);
+>> +	int ret;
+>> +
+>> +	/* v4l2_ctrl_lock() locks our own mutex */
+>> +
+>> +	dev_dbg(&sensor->i2c_client->dev, "%s(0x%X)\n", __func__, ctrl->id);
+>> +
+>> +	switch (ctrl->id) {
+>> +	case V4L2_CID_HBLANK:
+>> +	case V4L2_CID_VBLANK:
+>> +		sensor->total_width =3D sensor->fmt.width +
+>> +			sensor->ctrls.hblank->val;
+>> +		sensor->total_height =3D sensor->fmt.width +
+>> +			sensor->ctrls.vblank->val;
+>> +		break;
+>> +	default:
+>> +		ret =3D -EINVAL;
+>> +		break;
+>> +	}
+>> +
+>> +	// access the sensor only if it's powered up
+>> +	if (!pm_runtime_get_if_in_use(&sensor->i2c_client->dev))
+>
+> As you correctly do not access the chip's registers if it's powered
+> off, you have to call __v4l2_ctrl_handler_setup() at power on time to
+> make sure controls are actually set.
 
+These registers are also written in ar0521_set_stream(), isn't it
+enough?
 
-> +
-> +	return NULL;
-> +}
-> +
->   /**
->    * nvmem_add_cells() - Add cell information to an nvmem device
->    *
-> @@ -532,6 +557,8 @@ static int nvmem_add_cells(struct nvmem_device *nvmem,
->   			goto err;
->   		}
->   
-> +		cells[i]->np = nvmem_find_cell_of_node(nvmem, cells[i]->name);
+>> +	ctrls->hblank =3D v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HBLANK,
+>> +					  AR0521_WIDTH_BLANKING_MIN, 4094, 1,
+>> +					  AR0521_WIDTH_BLANKING_MIN);
+>> +	ctrls->vblank =3D v4l2_ctrl_new_std(hdl, ops, V4L2_CID_VBLANK,
+>> +					  AR0521_HEIGHT_BLANKING_MIN, 4094, 2,
+>> +					  AR0521_HEIGHT_BLANKING_MIN);
+>> +	v4l2_ctrl_cluster(2, &ctrls->hblank);
+>
+> Is it intended to have vblank and hblank as cluster, can't they change
+> independently ?
 
+They can. It appears, though, that clusters aren't about controls which
+can't change independently. Both of the two are written to the hardware
+at the same time, which appears to be a valid reason to combine them
+into a cluster.
+This is similar to the gain/balance controls, and BTW the use of
+clusters there was suggested by you.
 
-This is really assuming that node name will be same as name passed in 
-nvmem_cell_info which might not be always true.
+Please correct me if I'm wrong.
 
-This seems be very specific with brcm and this code does not belong in 
-nvmem core.
+>> +	/* Read-only */
+>> +	ctrls->pixrate =3D v4l2_ctrl_new_std(hdl, ops, V4L2_CID_PIXEL_RATE,
+>> +					   AR0521_PIXEL_CLOCK_MIN,
+>> +					   AR0521_PIXEL_CLOCK_MAX, 1,
+>> +					   AR0521_PIXEL_CLOCK_RATE);
+>
+> so you have to mark it as read-only
 
-How about adding device_node to struct nvmem_cell_info and update this 
-of_node as part of brcm_nvram_parse()?
+Oh, I'd be happy for this control to be R/W. Unfortunately the core
+media core enforces R/O. This is only a comment about what the core code
+does, currently at least.
 
+>> +	dev_dbg(dev, "%s()\n", __func__);
+>
+> Rather useless, please drop. Same for all other debug functions that
+> just print the current function name in other parts of the driver.
+> While maybe useful when developing, they're mostly noise for users
+> imo.
 
---srini
+Fine, will drop the rest of the debug. In fact, I already dropped the
+most useful parts (I2C register access debugging).
 
+>> +	endpoint =3D fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
+>> +						   FWNODE_GRAPH_ENDPOINT_NEXT);
+>
+> The drivers supports a single endpoint right ? Then
+> fwnode_graph_get_next_enpoint() can be used
 
-> +
->   		nvmem_cell_entry_add(cells[i]);
->   	}
->   
+Well, I originally used
+fwnode_graph_get_next_endpoint(of_fwnode_handle(dev->of_node), NULL).
+Sakari suggested I should use the above
+fwnode_graph_get_endpoint_by_id().
+It could be a good idea to agree on this. Not sure about the difference.
+
+>> +	for (cnt =3D 0; cnt < ARRAY_SIZE(ar0521_supply_names); cnt++) {
+>> +		struct regulator *supply =3D devm_regulator_get(dev,
+>> +						ar0521_supply_names[cnt]);
+>> +
+>> +		if (IS_ERR(supply)) {
+>> +			dev_info(dev, "no %s regulator found: %li\n",
+>> +				 ar0521_supply_names[cnt], PTR_ERR(supply));
+>> +			return PTR_ERR(supply);
+>> +		}
+>> +		sensor->supplies[cnt] =3D supply;
+>> +	}
+>
+> Using the regulator bulk api would simplify this.
+> See drivers/media/i2c/ccs/ccs-core.c
+
+The bulk API doesn't allow for delays between individual supplies, does it?
+The delays are mandated by the manufacturer.
+
+>> +
+>> +	mutex_init(&sensor->lock);
+>> +
+>> +	ret =3D ar0521_init_controls(sensor);
+>> +	if (ret)
+>> +		goto entity_cleanup;
+>> +
+>> +	ar0521_adj_fmt(&sensor->fmt);
+>
+> Called already here above.
+
+Right, I will remove the first one.
+
+>> +	ret =3D v4l2_async_register_subdev(&sensor->sd);
+>> +	if (ret)
+>> +		goto free_ctrls;
+>> +
+>> +	/* Turn on the device and enable runtime PM */
+>> +	ret =3D ar0521_power_on(&client->dev);
+>> +	if (ret)
+>> +		goto disable;
+>
+> Does the device stay powered all the time ?
+
+Depends on the hw, but the power could be disabled, yes.
+
+> Doesn't your resume callback call power_on() already ?
+
+It does, when the PM is enabled.
+
+Should the above code be changed?
+
+>> +static struct i2c_driver ar0521_i2c_driver =3D {
+>> +	.driver =3D {
+>> +		.name  =3D "ar0521",
+>> +		.pm =3D &ar0521_pm_ops,
+>> +		.of_match_table	=3D ar0521_dt_ids,
+>> +	},
+>> +	.probe    =3D ar0521_probe,
+>
+> You could use probe_new and drop the "const struct i2c_device_id *id"
+> argument to probe()
+
+You are right again.
+
+That said, I wonder if it would be better (like easier) to have this
+driver added to the staging area instead.
+--=20
+Krzysztof "Chris" Ha=C5=82asa
+
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
