@@ -2,106 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 931D14C44AF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:38:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E894C44B0
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 13:38:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbiBYMij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 07:38:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39546 "EHLO
+        id S231127AbiBYMjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 07:39:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbiBYMij (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:38:39 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6BDB18E3D0
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 04:38:06 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 89B243F1B6
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 12:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645792685;
-        bh=9eC16w0KRE+2yvJrpb1nSJBb3vk6hCAAmoSgEiZhoQs=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version:Content-Type;
-        b=laoq14YVYtvNIjFEdrIZALHLEj42Exm4YLI4O5SVuaiQ1Xff5ClrXffz0PJHxTYur
-         i0dycWFVMeuLhmwOx730P68hNlujaDtPi74LYC0y0aZi+hopLtArZ5S3uF0F3yfJe7
-         GZnqnKxPJaL8nXicw3XVJgCQcCRVxy+b6AWikVO65Dc2UNg7Vum0oMpAZm/+0oUaMZ
-         pP/T5PI2yWtmsVnTEGNi3pWKl+xmSVnTANVQd6hASat9Fj8VocuzA13xQpRt9SJulL
-         DTIxZ/NO7jTOIX2BsuqL/kxufY1oBfsbqXrHL/CNjQm/QiDmV1Q0Bx6iDtR6455XXF
-         dojW4J82QxAPQ==
-Received: by mail-ej1-f71.google.com with SMTP id r18-20020a17090609d200b006a6e943d09eso2603621eje.20
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 04:38:05 -0800 (PST)
+        with ESMTP id S230229AbiBYMjL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 07:39:11 -0500
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 565DB1BD041;
+        Fri, 25 Feb 2022 04:38:39 -0800 (PST)
+Received: by mail-vs1-f50.google.com with SMTP id y26so5365065vsq.8;
+        Fri, 25 Feb 2022 04:38:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9eC16w0KRE+2yvJrpb1nSJBb3vk6hCAAmoSgEiZhoQs=;
-        b=oDDp3ZhWQE8HZ6Qm465k1QMHRj/2ub1HRhDKiswrrwEhAt2dmqBct7ewYaWJd0EHdP
-         OP+qCgXH5plFMmcR1m49FCev0IyrjQopQ9ArNbn+MLv7OmNzRGBtZfBIB0MvApEF2Yxi
-         fUcg5frgavWAmpd+PLQatFlEfSkx5v3J5D/z/D5FEelfclyIK4ZD8m+kDEqik60TVFmj
-         Oj2w54L/SjXTwwC+OK4ufmp5eXJjFwZ9f8e+vTKTkknoGHgZSH65VWQg1qNYGy7H8P7W
-         FQJLGwc2UNJzNl1Y92eQGtPWcvCBryJVC4ZfBY0ufDeNJGJYZDGXHjK7YE6uLDSSTxAu
-         FIXQ==
-X-Gm-Message-State: AOAM5314ZgmDzmVA+RMQTdyNCeql1eHA2EWY8DJUia6zYuVqGn7CZ61L
-        iN+TvA5BiCVz0Mx0+pvTvu6/OYgncXMS0GtKgoQ7Z4YYhp/Ra3EGh+tQfWYZfohzG3u4avjHy9G
-        4zgx/cvRHviaVzrcaH/Bnp1o3DLNPyPodicmRr/0=
-X-Received: by 2002:a05:6402:5242:b0:40f:6a4f:ff33 with SMTP id t2-20020a056402524200b0040f6a4fff33mr7043598edd.30.1645792684181;
-        Fri, 25 Feb 2022 04:38:04 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxmWM9zne9h4DES6Tv7ynAO/XZUfU2hSXW7BbeOG6cPsrvgRU72gLrcjZtXnDIhtiqtPgBpJg==
-X-Received: by 2002:a05:6402:5242:b0:40f:6a4f:ff33 with SMTP id t2-20020a056402524200b0040f6a4fff33mr7043584edd.30.1645792684016;
-        Fri, 25 Feb 2022 04:38:04 -0800 (PST)
-Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id co19-20020a0564020c1300b00412879e4645sm1236911edb.55.2022.02.25.04.38.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 04:38:02 -0800 (PST)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Julius Werner <jwerner@chromium.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, Dmitry Osipenko <digetx@gmail.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Update lpddr2 revision-id binding to match lpddr3
-Date:   Fri, 25 Feb 2022 13:37:59 +0100
-Message-Id: <164579264189.173354.7844029461278884866.b4-ty@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220224003421.3440124-1-jwerner@chromium.org>
-References: <20220224003421.3440124-1-jwerner@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lpsl70NeniIbkyLwhbPQj1WNfq7vaiwdbXuyeg+ajGk=;
+        b=U3kVykAzLVwZtbsmKPLmQuxjeCS5wesLwhA6Bns16oQ+0BHtQtweJ2UVIaWulmf96A
+         1hyE3O4B5FkBOchzHI/Jn69pWC1Waj/KYrYl1OAiC5n13LncUoYrXTXqD4jJo5H8CZS2
+         bhkCn1mX4YOQW4ArlLLc3xJQyejBaOEFOlcIzhs1mO5+PYu8mxFcjzjqz85ykCV21PiN
+         ++9snGN4ZotSe9sqL/Rbn808Wi3eT7MVCxA8KmPhBfzC/I3serV1gWmRruX4hNmkAF9T
+         6IQJZ+TZw+A9zYIXZKUtKBu6rScVumRjh2xQ5kry7CsftEdOK0u5OfS4PS5oGgSBve0P
+         ONrg==
+X-Gm-Message-State: AOAM531BpI2tOS8JNfR1uQu7SIpququAD/4IInJuBnkQHp7/w1EH6jp/
+        dbkoWrCRIMdCkqDnlw9mpYdgklxyiCuO6g==
+X-Google-Smtp-Source: ABdhPJwzCDN8CpKAO5oema4pmHx/NV71lLKDSzCCJYVBQM50FdCa0AceE/hvVqtJh6JQkXcesYpOQA==
+X-Received: by 2002:a67:d50a:0:b0:31b:9be2:8aa0 with SMTP id l10-20020a67d50a000000b0031b9be28aa0mr3286421vsj.76.1645792718388;
+        Fri, 25 Feb 2022 04:38:38 -0800 (PST)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id n22-20020a1fa416000000b0031e658fd080sm318400vke.43.2022.02.25.04.38.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Feb 2022 04:38:38 -0800 (PST)
+Received: by mail-vs1-f42.google.com with SMTP id j3so5373059vsi.7;
+        Fri, 25 Feb 2022 04:38:37 -0800 (PST)
+X-Received: by 2002:a67:b00e:0:b0:30d:dc98:6024 with SMTP id
+ z14-20020a67b00e000000b0030ddc986024mr3408170vse.57.1645792717609; Fri, 25
+ Feb 2022 04:38:37 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <cover.1645457792.git.geert+renesas@glider.be> <fd8201da404b7b0897130b254380ffc97f437266.1645457792.git.geert+renesas@glider.be>
+ <TYBPR01MB5341194E803AB92109AA3ECCD83E9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB5341194E803AB92109AA3ECCD83E9@TYBPR01MB5341.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 25 Feb 2022 13:38:26 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW=oomYfT_SbYgApUt+3z9N4io7fU+_PERn8hArEhs8Yw@mail.gmail.com>
+Message-ID: <CAMuHMdW=oomYfT_SbYgApUt+3z9N4io7fU+_PERn8hArEhs8Yw@mail.gmail.com>
+Subject: Re: [PATCH v2 03/12] pinctrl: renesas: Initial R8A779F0 PFC support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Hoai Luu <hoai.luu.ub@renesas.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Feb 2022 16:34:18 -0800, Julius Werner wrote:
-> This patch series updates the device tree binding for "jedec,lpddr2" to
-> encode the revision ID (mode registers 6 and 7) in the same way as they
-> were already done for the "jedec,lpddr3" binding, and deprecates the old
-> way.
-> 
-> Julius Werner (3):
->   dt-bindings: memory: lpddr2: Adjust revision ID property to match
->     lpddr3
->   memory: Update of_memory lpddr2 revision-id binding
->   ARM: dts: Update jedec,lpddr2 revision-id binding
-> 
-> [...]
+Hi Shimoda-san,
 
-Applied, thanks!
+On Fri, Feb 25, 2022 at 1:07 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Tuesday, February 22, 2022 12:44 AM
+> >
+> > Add initial Pin Function Controller (PFC) support for the Renesas R-Car
+> > S4-8 (R8A779F0) SoC, including bias, drive strength and voltage control.
+> >
+> > Based on a larger patch in the BSP by LUU HOAI.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> <snip>
+> > diff --git a/drivers/pinctrl/renesas/pfc-r8a779f0.c b/drivers/pinctrl/renesas/pfc-r8a779f0.c
+> > new file mode 100644
+> > index 0000000000000000..2f3fbb794eb635c1
+> > --- /dev/null
+> > +++ b/drivers/pinctrl/renesas/pfc-r8a779f0.c
+> > @@ -0,0 +1,1024 @@
+> <snip>
+> > +static const struct pinmux_ioctrl_reg pinmux_ioctrl_regs[] = {
+> > +     [POC0] = { 0xe60500a0, },
+> > +     [POC1] = { 0xe60508a0, },
+> > +     [POC2] = { 0xe60510a0, },
+> > +     [POC3] = { 0xe60518a0, },
+> > +     [TD0SEL1] = { 0xe6058120, },
+>
+> TD0SEL1 should be 0xe6050920 (0xe6050800 + 0x120).
+>
+> After fixed it,
+>
+> Acked-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-[1/3] dt-bindings: memory: lpddr2: Adjust revision ID property to match lpddr3
-      commit: 80ce91730d3283f10810245db2605498d794fa29
-[2/3] memory: Update of_memory lpddr2 revision-id binding
-      commit: a06bf59d07f45a0a6ab4ab8ac69c1d708d3fadcb
+Thank you, will fix while applying.
 
+Gr{oetje,eeting}s,
 
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
