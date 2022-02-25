@@ -2,79 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 979734C518B
-	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 23:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3E74C51BA
+	for <lists+devicetree@lfdr.de>; Fri, 25 Feb 2022 23:47:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237539AbiBYWbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 17:31:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45526 "EHLO
+        id S238615AbiBYWsL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 17:48:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237912AbiBYWbi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 17:31:38 -0500
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A21ED21045C
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 14:31:04 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so8408201oos.9
-        for <devicetree@vger.kernel.org>; Fri, 25 Feb 2022 14:31:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=6stLPZaGS6nvvDwpshyXkfYQ31q2L27yLoTEa6odkug=;
-        b=BVADKUGIFH+Bz3Dro3Gs/TYsaEH+nA+XwmrpLfL+vrZos9iYY47ifY/dqQ/HNuqq5M
-         1V2JXPmwcOBXBafqjVqLfIfeVznzTYtRZMx1OJ5gHDNqyX4N5uCLun6jUbGkE9nvVpZ/
-         YVUc7bOvJdesdT/U/GIxu1EIJdxZgZpfBpbSk8QQ3Z3/SB3d6J1Fr6bqvqwlOfHvMj7b
-         23rycgAIRL2evFaiSMc65U9f6MZLzHAr25lKIswG2bMpnbOSqVDd1mfLu2W43p71OFFQ
-         Z9Dqp9y7hfC8andTVv6qj1r1QRPpUEPt60+Q6DAzDVYha740SVdY4+f0+hdJRjCEo2t2
-         Z4bQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6stLPZaGS6nvvDwpshyXkfYQ31q2L27yLoTEa6odkug=;
-        b=QCLKbmXjp14YVzZ0OL7XuJD4lKgTTOsI1FvhgP2NoCXC0Mh1r82DZd9M8aKgwTK+A6
-         9RpUihMrkkTy3je46q7VSgByXCuSZddl4AbndoJwgnPNj6Oxs7SgxFeMBHl2BbnbLEG2
-         YpI2briJRrHA0MKDSnq73d2I5nWKpzeX1CIUZdaujAMIDgw9nTht9uLnnmeCc3OeLXFa
-         fxGX9UochTZoJxURB/GzUudJHD6lSwDF1WbuCrKjl2Sn7jDcyaS6CvLxcC5eQXTyUpKd
-         pXHdB+McKMIKabvRiz+6D0Xc4inDIP2kHCVgJxTg36WikQhOgM2u+eE8PH9Ty5YB/ENI
-         QILQ==
-X-Gm-Message-State: AOAM532EV4pag1dFFEkpOowWEM0rwdni4IxAshcm7vKknAhcQfkHNXh+
-        hHdH1fUwcWuMBkrXwxIPkRH6Hw==
-X-Google-Smtp-Source: ABdhPJyJ618LE128s4aGt50PcKa9gGTGS6OS3+AvbniRvT1Q1aLS/G5jaqcOrZ8I2fWH+kBdeS94+Q==
-X-Received: by 2002:a05:6870:b9b:b0:d0:effc:7620 with SMTP id lg27-20020a0568700b9b00b000d0effc7620mr2371117oab.56.1645828263696;
-        Fri, 25 Feb 2022 14:31:03 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id w11-20020a056808140b00b002c0966d9521sm2165316oiv.10.2022.02.25.14.31.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Feb 2022 14:31:02 -0800 (PST)
-Date:   Fri, 25 Feb 2022 14:32:59 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dan Carpenter <dan.carpenter@oracle.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v8 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Message-ID: <YhlZG6xJ75ieskyT@ripper>
-References: <20220221220743.541704-1-caleb.connolly@linaro.org>
- <20220221220743.541704-3-caleb.connolly@linaro.org>
- <Yhft4zNcbD3ojN6i@builder.lan>
- <YhiYY/sXMvQ4VCZd@google.com>
- <20220225090452.GP3943@kadam>
+        with ESMTP id S229885AbiBYWsK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 17:48:10 -0500
+Received: from sin.source.kernel.org (sin.source.kernel.org [IPv6:2604:1380:40e1:4800::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFC5563BCF;
+        Fri, 25 Feb 2022 14:47:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id 380C7CE2738;
+        Fri, 25 Feb 2022 22:47:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63E24C340E7;
+        Fri, 25 Feb 2022 22:47:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645829252;
+        bh=ZWAUhBJxg8NCTwiRaWSx+UQdJz9T7y5h3/hdV7NXs9U=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=YIAkmATeuQzv7tkGWIScYHZZ6X2DrOIsvq4GuH4oBPUhEMCaj+zPL7ocfOhL/Fwxf
+         WnUOhkOkjTpC7oq++3Nb/TEkpy0mqSx75efEjSp8pJDoUHcIs+ZN1tq1htO5HJ/XBM
+         dofFrC4gabTV2DBBZ1CsOFovnCV1DDEFbxAILwbiHNEobym+SIVb50rH6BLVgCMjzs
+         XvQo+z8+GyqgL20Z9BnSWHQ43PoPs98NmRYyPPe52JU6y/bavi0eUU3RSdiF5xUC84
+         D20TAWbZm5vvIwE4pjzkjaBZwZ8j5+C+g3sJ4l5QLyaiFQ6zuS72k75CdbcqcCxPeX
+         o2TF/UsZBmsiQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220225090452.GP3943@kadam>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220222082140.2073629-1-abel.vesa@nxp.com>
+References: <20220222082140.2073629-1-abel.vesa@nxp.com>
+Subject: Re: [PATCH] dt-bindings: fsl: scu: add imx8dxl scu clock support
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>, linux-clk@vger.kernel.org
+To:     Abel Vesa <abel.vesa@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>,
+        Rob Herring <robh@kernel.org>
+Date:   Fri, 25 Feb 2022 14:47:30 -0800
+User-Agent: alot/0.10
+Message-Id: <20220225224732.63E24C340E7@smtp.kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,70 +56,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 25 Feb 01:04 PST 2022, Dan Carpenter wrote:
+Quoting Abel Vesa (2022-02-22 00:21:40)
+> Add imx8dxl scu clock support.
+>=20
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+> ---
 
-> On Fri, Feb 25, 2022 at 08:50:43AM +0000, Lee Jones wrote:
-> > On Thu, 24 Feb 2022, Bjorn Andersson wrote:
-> > 
-> > > On Mon 21 Feb 16:07 CST 2022, Caleb Connolly wrote:
-> > > 
-> > > > Some PMIC functions such as the RRADC need to be aware of the PMIC
-> > > > chip revision information to implement errata or otherwise adjust
-> > > > behaviour, export the PMIC information to enable this.
-> > > > 
-> > > > This is specifically required to enable the RRADC to adjust
-> > > > coefficients based on which chip fab the PMIC was produced in,
-> > > > this can vary per unique device and therefore has to be read at
-> > > > runtime.
-> > > > 
-> > > > [bugs in previous revision]
-> > > > Reported-by: kernel test robot <lkp@intel.com>
-> > > > Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> > > 
-> > > This says is that "kernel test robot" and Dan reported that something
-> > > needed to be fixed and this patch is the fix for this.
-> > > 
-> > > So even though their emails asks for you to give them credit like this
-> > > you can't do it for new patches.
-> > 
-> > Right, or else you'd have to give credit to anyone who provided you
-> > with a review.  This could potentially grow to quite a long list.
-> > 
-> 
-> I always feel like people who find crashing bugs should get credit but
-> no credit for complaining about style.  It's like we reward people for
-> reporting bugs after it gets merged but not before.
-> 
-> We've had this debate before and people don't agree with me or they say
-> that it's fine to just include the Reported-by kbuild tags and let
-> people figure out from the context that probably kbuild didn't tell
-> people to write a new driver.
-> 
-
-I certainly would like to be able to recognize any form of review effort
-going into the evolution of a patch, but if we use Reported-by for that
-purpose we're loosing the ability to credit the effort to find the
-regressions in the kernel.
-
-
-And while it's clear that Reported-by could mean that you spotted a bug
-in a previous revision of the patch, should this then be used to denote
-anyone that came with any sort of feedback?
-
-Do we want to "repurpose" Reported-by to be a list of anyone providing
-any input to any previous revision of the patches? (Reported-by doesn't
-sound like the right tag for that to me)
-
-> Also I think that counting Reviewed-by/Acked-by tags should be
-> discouraged.  It's useful as a communication between maintainers but it
-> shouldn't be rewarded.
-> 
-
-For acked-by I definitely agree. At least in my subsystems I see a quite
-good flow of Reviewed-bys from community members and am very happy about
-that. It communicates that people approves of the patch, in contrast to
-the more common case of no one dissaproving the patch and it's merged
-just with my S-o-b...
-
-Regards,
-Bjorn
+Acked-by: Stephen Boyd <sboyd@kernel.org>
