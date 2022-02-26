@@ -2,98 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B67584C57A9
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 19:43:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7AA74C5785
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 19:34:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbiBZSmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 13:42:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35416 "EHLO
+        id S231137AbiBZSfO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 13:35:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232746AbiBZSmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 13:42:33 -0500
-Received: from mail-qv1-xf2e.google.com (mail-qv1-xf2e.google.com [IPv6:2607:f8b0:4864:20::f2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C5DF27EC2C;
-        Sat, 26 Feb 2022 10:41:57 -0800 (PST)
-Received: by mail-qv1-xf2e.google.com with SMTP id 8so9353260qvf.2;
-        Sat, 26 Feb 2022 10:41:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=gwYHMhbRHXQxrol3Z4onOOebIeXrEkEaF8cW1M7ix2U=;
-        b=WOcKHnbvL/6tTiONrnrCInXreCNOmGUPPUCeG8xCoJngLTZSx8KaDLkpFstbgxp50g
-         vERfAg+nbs2oBLM/SWE29rZj+26fK+xXUp2yo9543VtG7nXF/DAxqqWLqmhVvu72TP9P
-         AbnYqadsloMHD4aXmAGfj2sHYFNm6BahjCUlAelOYQqG+4peZJ8955iu6ksLyByRVhaZ
-         kHM35JgQVfRzm1QM6mfU/nk0UOmElSDK72NNjKY3sfhoHZQZ6GE1ACPT8kjDyDooMkOm
-         4ls6mh9hayYhG91IQWAaPVgStnDUwlHOoLEe6Q772DmsQVaalf8DdYKPaGl4pV8gtaU8
-         ae9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=gwYHMhbRHXQxrol3Z4onOOebIeXrEkEaF8cW1M7ix2U=;
-        b=a0WaFjXd5onBsF56t1+5sJF4STF86PeCDIMMS0PgeKhPqw8tDNuz+nDUresYuNUf34
-         qXx09ZI/lL0HfWmQTMcnElMCWbtwT3gkAzE7xkfmN6EG5IIEq3JjnES57aiO9Mvc4yMH
-         Z0MJqD+NhA1a43sB7Drpn9fDWuggvLpP5GkrlNfLFXXz8GuLF0fJAyJ5E/HXR2d0QcBd
-         sUCv8RJAU+AmAXDddEO/hbywb7bnbCalZhgkAag5Dy+rVhCVA+2nbuSVRIz3XO85oRGU
-         +cQwyA3osbnolbfs84tp8t2CpL/ZKGB6jZetYykrqPIzLABjo3NuRd1aYVQr0kQAveEj
-         n+IQ==
-X-Gm-Message-State: AOAM531HSohcWZte7aINm/UWYnQaUaCt6eNylUSV0yiCFGc4m4HZcyQY
-        q1Z9e+WEaHtYU7aD8U0Gtio=
-X-Google-Smtp-Source: ABdhPJwoouE/r333Mn111gg36xlXBSMHIg5VNS79zI8Z5qqJ9+iTNUUcocIFiU9lWVufrDHnNWvFHw==
-X-Received: by 2002:a05:6214:5284:b0:42c:8d98:53ee with SMTP id kj4-20020a056214528400b0042c8d9853eemr9621526qvb.114.1645900916577;
-        Sat, 26 Feb 2022 10:41:56 -0800 (PST)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id p68-20020a378d47000000b006491d2d1450sm2891983qkd.10.2022.02.26.10.41.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Feb 2022 10:41:56 -0800 (PST)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
-        Peter Geis <pgwipeout@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 02/11] dt-bindings: soc: grf: add rk3566-pipe-grf compatible
-Date:   Sat, 26 Feb 2022 13:41:38 -0500
-Message-Id: <20220226184147.769964-3-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220226184147.769964-1-pgwipeout@gmail.com>
-References: <20220226184147.769964-1-pgwipeout@gmail.com>
+        with ESMTP id S230402AbiBZSfO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 13:35:14 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D72D1D67C9;
+        Sat, 26 Feb 2022 10:34:39 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DD83B60DB9;
+        Sat, 26 Feb 2022 18:34:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68A96C340E8;
+        Sat, 26 Feb 2022 18:34:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1645900478;
+        bh=jOQp5rolbAGTkVLkpiD3PsedHXrZMFFhZBI4e6pxSxE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=LAZi+ZaPQIcotuQpYoGzdlIPunsYr4tPLB0zr9XfZtalzGU/o6JjHzUVh9opkNXuf
+         nUKa3L0fq/nNE2Ua+4tc5WoDO6bnINg6stK7EWW44bsxFNA7kFURjoQb2LZZrLGSG3
+         YF1HUujUewnoUoGBU6lV9Dq7ggoFb/JW09IMmpb0CRy1WwDJ2luxr8jJWXZ4f0hFxA
+         VhBt40aFK8fGPzmk77q8hUTj+KGS1g/BvAoDi7ix2OqoW9f5d+gjBk8pca2ZZspKwC
+         uk/s/G0YIyP8talav55Ou/EyvVBIelA6ioBoiEvF027GSxKf1ot5e9xRIKcCi93ps2
+         zSk7Qsqmg4bUg==
+Date:   Sat, 26 Feb 2022 18:41:39 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Jagath Jog J <jagathjog1996@gmail.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Slawomir Stepien <sst@poczta.fm>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-iio <linux-iio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v5 0/7] iio: potentiometer: Add support for DS3502
+Message-ID: <20220226184139.1744830f@jic23-huawei>
+In-Reply-To: <CAHp75VfKtU9qjSYQmc78T_O8tjuGDamWpsULyeW1fD-sd-dP5Q@mail.gmail.com>
+References: <20220223163525.13399-1-jagathjog1996@gmail.com>
+        <CAHp75VfKtU9qjSYQmc78T_O8tjuGDamWpsULyeW1fD-sd-dP5Q@mail.gmail.com>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rk3566 requires special handling for the dwc3-otg clock in order for
-the port to function correctly.
-Add a binding for the rk3566-pipe-grf so we can handle setup with the
-grf driver.
+On Thu, 24 Feb 2022 02:47:53 +0200
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> On Wed, Feb 23, 2022 at 6:35 PM Jagath Jog J <jagathjog1996@gmail.com> wrote:
+> >
+> > Add dt-bindings and support for Maxim DS3502 into existing ds1803 driver.
+> > DS3502 is a 7 bit Nonvolatile Digital Potentiometer.  
+> 
+> LGTM, thanks!
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> for the entire series,
 
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-index 5079e9d24af6..75a2b8bb25fb 100644
---- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-+++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
-@@ -15,6 +15,7 @@ properties:
-       - items:
-           - enum:
-               - rockchip,rk3288-sgrf
-+              - rockchip,rk3566-pipe-grf
-               - rockchip,rk3568-pipe-grf
-               - rockchip,rk3568-pipe-phy-grf
-               - rockchip,rk3568-usb2phy-grf
--- 
-2.25.1
+Applied to the togreg branch of iio.git with the various tweaks I mentioned
+in reply to individual patches.
+
+Pushed out initially as testing to let 0-day run it's much more comprehensive
+set of build tests against it than I run locally.
+
+Thanks,
+
+Jonathan
+
+> 
+> > Changes since v4:
+> > 1. Included property.h header which has device_get_match_data()
+> >    function prototype.
+> > 2. Removed blank space in tag block of the commit message.
+> > 3. Style changes for ds1803_cfg structure.
+> >
+> > Changes since v3:
+> > 1. Dropped the chip type switch statement in read_raw function.
+> > 2. Added device specific read function pointer in their structure.
+> > 3. Added two separate functions to read values from two different types
+> >    of devices.
+> >
+> > Changes since v2:
+> > 1. Addressed Andy Shevchenko comments.
+> > 2. Adding device name in Kconfig file.
+> > 3. Spliting up of patch into 3 patches.
+> > 4. Adding channel info into ds1803_cfg in separate patch.
+> > 5. Dropping the use of enum in firmware data instead using previous
+> >    pointer method for accessing device specific data.
+> > 6. Separate patch for using firmware provided data instead of
+> >    id->driver_data.
+> > 7. Adding DS3502 support in separate patch.
+> >
+> > Changes since v1:
+> > 1. Fixes the alignment to match the open parenthesis in separate patch.
+> > 2. Adding available functionality for ds1803 driver in separate patch.
+> > 3. Moving maxim_potentiometer members into ds1803_cfg structure.
+> > 4. Droping of the INFO_ENABLE channel type.
+> > 5. Firmware entry with data is used instead of id->driver_data to
+> >    to retrieve the chip specific data.
+> >
+> > Jagath Jog J (7):
+> >   iio: potentiometer: Alignment to match the open parenthesis
+> >   iio: potentiometer: Add available functionality
+> >   iio: potentiometer: Add channel information in device data
+> >   iio: potentiometer: Change to firmware provided data
+> >   iio: potentiometer: Add device specific read_raw function
+> >   iio: potentiometer: Add support for Maxim DS3502
+> >   dt-bindings: iio: potentiometer: Add Maxim DS3502 in trivial-devices
+> >
+> >  .../devicetree/bindings/trivial-devices.yaml  |   2 +
+> >  drivers/iio/potentiometer/Kconfig             |   6 +-
+> >  drivers/iio/potentiometer/ds1803.c            | 170 ++++++++++++++----
+> >  3 files changed, 138 insertions(+), 40 deletions(-)
+> >
+> > --
+> > 2.17.1
+> >  
+> 
+> 
 
