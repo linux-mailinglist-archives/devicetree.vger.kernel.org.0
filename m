@@ -2,83 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E7B4C51E9
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 00:06:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 549D34C5386
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 04:14:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233704AbiBYXHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 18:07:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57440 "EHLO
+        id S229455AbiBZDPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 22:15:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233602AbiBYXHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 18:07:13 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C1652177F0;
-        Fri, 25 Feb 2022 15:06:41 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id B78DB1F46802
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1645830400;
-        bh=58x7jynVJtBpgB4TfuRcpKnHM5IK4vhp6DiWw95AlxU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K4v22sPr+SGzmsKBtZMST66vqQ51BjGlJy8G8Wr2TJG0kiOPLdZXhKc9ssdCgV3H1
-         /BKf7fXASO8Shq97WxREXdvmy2wn7ytKqykGlpQ19eXgcHstqyHyC7zZG2m3TmA8Ap
-         tjAqPMnNM6iv59cUoFG21lXC2cIyJ5YZFcoKySholAm/voWW+ErG4hGEo3wQsIq3RU
-         e8YUNOL1ttw7/h7ZF8DjQW8hmc1Vxg+YjVXogpLf9f9XxtiBz7TucdogJB0H13hFiQ
-         xRfDuLIvkuKUnL9XJPXQ9pAskskiPTMFZ1/ns5nmbIRUXPl54Xe4oOjYHqWRP9veiB
-         U2ziB7iFOPIaA==
-Date:   Fri, 25 Feb 2022 18:06:34 -0500
-From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
-        <nfraprado@collabora.com>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        --to=Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v2 15/23] arm64: dts: mt8192: Add m4u and smi nodes
-Message-ID: <20220225230634.bqmezldkzraa6v6o@notapiano>
-References: <20220218091633.9368-1-allen-kh.cheng@mediatek.com>
- <20220218091633.9368-16-allen-kh.cheng@mediatek.com>
+        with ESMTP id S229490AbiBZDPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 22:15:20 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8ED274862;
+        Fri, 25 Feb 2022 19:14:42 -0800 (PST)
+X-UUID: e21475f7b4c549fc9a0f10ba516aafd6-20220226
+X-UUID: e21475f7b4c549fc9a0f10ba516aafd6-20220226
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 196907578; Sat, 26 Feb 2022 11:14:36 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 26 Feb 2022 11:14:35 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 26 Feb
+ 2022 11:14:35 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 26 Feb 2022 11:14:34 +0800
+Message-ID: <f879ce25aab1d7e4a413455cb2a2454930cc9164.camel@mediatek.com>
+Subject: Re: [PATCH V2 5/6] dt-bindings: spi: support spi-hclk
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Date:   Sat, 26 Feb 2022 11:14:34 +0800
+In-Reply-To: <YhkoEJiLMs8jfUAm@robh.at.kernel.org>
+References: <20220221040717.3729-1-leilk.liu@mediatek.com>
+         <20220221040717.3729-6-leilk.liu@mediatek.com>
+         <YhkoEJiLMs8jfUAm@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220218091633.9368-16-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Allen,
+On Fri, 2022-02-25 at 13:03 -0600, Rob Herring wrote:
+> On Mon, Feb 21, 2022 at 12:07:16PM +0800, Leilk Liu wrote:
+> > this patch support spi-hclk.
+> > 
+> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
+> > ---
+> >  Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 2
+> > ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-
+> > mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-
+> > mt65xx.yaml
+> > index 241c0f5880d3..6920ced5451e 100644
+> > --- a/Documentation/devicetree/bindings/spi/mediatek,spi-
+> > mt65xx.yaml
+> > +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-
+> > mt65xx.yaml
+> > @@ -55,12 +55,14 @@ properties:
+> >        - description: clock used for the parent clock
+> >        - description: clock used for the muxes clock
+> >        - description: clock used for the clock gate
+> > +      - description: clock used for the AHB bus, this clock is
+> > optional
+> 
+> Not optional unless you have minItems.
+> 
+OK, I'll add minItems,thanks for your comment.
 
-actually there's one other thing, please see below.
+> >  
+> >    clock-names:
+> 
+>        minItems: 3
+> 
+Got it, thanks
 
-On Fri, Feb 18, 2022 at 05:16:25PM +0800, Allen-KH Cheng wrote:
-> +		iommu0: m4u@1401d000 {
-> +			compatible = "mediatek,mt8192-m4u";
-> +			reg = <0 0x1401d000 0 0x1000>;
-> +			mediatek,larbs = <&larb0 &larb1 &larb2
-> +					  &larb4 &larb5 &larb7
-> +					  &larb9 &larb11 &larb13
-> +					  &larb14 &larb16 &larb17
-> +					  &larb18 &larb19 &larb20>;
+> 
+> >      items:
+> >        - const: parent-clk
+> >        - const: sel-clk
+> >        - const: spi-clk
+> > +      - const: spi-hclk
+> >  
+> >    mediatek,pad-select:
+> >      $ref: /schemas/types.yaml#/definitions/uint32-array
+> > -- 
+> > 2.25.1
+> > 
+> > 
 
-I just sent a patch [1] fixing the formatting of the mediatek,larbs properties
-on other Mediatek Devicetrees. So please do the same here so we can avoid
-introducing a new warning in dtbs_check.
-
-Thanks,
-Nícolas
-
-[1] https://lore.kernel.org/all/20220225225315.80220-1-nfraprado@collabora.com/
