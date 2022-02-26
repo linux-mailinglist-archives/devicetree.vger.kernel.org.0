@@ -2,114 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61E924C538C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 04:24:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6857D4C53A2
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 05:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbiBZDZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Feb 2022 22:25:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33496 "EHLO
+        id S229821AbiBZEI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Feb 2022 23:08:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbiBZDZ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 22:25:26 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B3922A66FA;
-        Fri, 25 Feb 2022 19:24:51 -0800 (PST)
-X-UUID: 4e154502a2f54f34b9485a1a52a4924e-20220226
-X-UUID: 4e154502a2f54f34b9485a1a52a4924e-20220226
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 354081521; Sat, 26 Feb 2022 11:24:48 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sat, 26 Feb 2022 11:24:46 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 26 Feb 2022 11:24:46 +0800
-Message-ID: <55a65e5aa412f101e02c81ddb5fa38c128743db2.camel@mediatek.com>
-Subject: Re: [PATCH V2 3/6] dt-bindings: spi: Add compatible for Mediatek
- IPM IP with quad mode
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-Date:   Sat, 26 Feb 2022 11:24:46 +0800
-In-Reply-To: <YhknmEtjpN7Lmoru@robh.at.kernel.org>
-References: <20220221040717.3729-1-leilk.liu@mediatek.com>
-         <20220221040717.3729-4-leilk.liu@mediatek.com>
-         <YhknmEtjpN7Lmoru@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S229823AbiBZEIY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Feb 2022 23:08:24 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 619C021E12;
+        Fri, 25 Feb 2022 20:07:48 -0800 (PST)
+Received: from tr.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2757F83689;
+        Sat, 26 Feb 2022 05:07:46 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1645848466;
+        bh=RT2E+/lmY4jYfdqLjdRXVz/2Z4pIFj8V+WNHI4rZ7SI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=0N84ZXYhNIbnZ7qFwQ0//9H/JoC2sat8Sx+8MGHrAdthOCu/PFSLhqsyuOr8opwGQ
+         WxRyDgpYwJ3HvDLwaydSQy02Hb2Ml+bwhxa16j+jdcblqt6BTC+2jB7+Ax4XstJAAY
+         hZtE3Js02tGcd93YDQtU8EBiLe3irSsFuCkjwjNcB2Ey9JzjcIU8f09M+Benoeh7NZ
+         Sq8t7Vk4pgwNXRo6Y1sB6LwK4n+PmrDrbRfTU1nxdOEvhHew8a0UHTztvtuykxlRpC
+         mg2QcOLMg9Yu4MVL5MioyYOQBhTbN9LTybOk6XRK1OXVa+fRh3Bp/BFLJDoqmyWsRn
+         PXxhIfqY7zFHg==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-clk@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v3 1/3] dt-bindings: clk: rs9: Add Renesas 9-series I2C PCIe clock generator
+Date:   Sat, 26 Feb 2022 05:07:21 +0100
+Message-Id: <20220226040723.143705-1-marex@denx.de>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-25 at 13:01 -0600, Rob Herring wrote:
-> On Mon, Feb 21, 2022 at 12:07:14PM +0800, Leilk Liu wrote:
-> > This patch adds dt-binding documentation for Mediatek SPI IPM IP
-> > with
-> > quad mode.
-> > 
-> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 1
-> > +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-
-> > mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-
-> > mt65xx.yaml
-> > index 0a2fc0404cb3..241c0f5880d3 100644
-> > --- a/Documentation/devicetree/bindings/spi/mediatek,spi-
-> > mt65xx.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-
-> > mt65xx.yaml
-> > @@ -42,6 +42,7 @@ properties:
-> >                - mediatek,mt8173-spi
-> >                - mediatek,mt8183-spi
-> >                - mediatek,ipm-spi-single
-> > +              - mediatek,ipm-spi-quad
-> 
-> Can't you use the existing width properties to distinguish? Or is
-> the 
-> programming not a superset?
-> 
-"mediatek,ipm-spi-quad" include the feature of "mediatek,ipm-spi-
-single".
+Add binding for Renesas 9-series PCIe clock generators. This binding
+is designed to support 9FGV/9DBV/9DMV/9FGL/9DML/9QXL/9SQ series I2C
+PCIe clock generators, currently the only tested and supported chip
+is 9FGV0241.
 
-> Is 'ipm' an SoC? If not, these need to be SoC specific.
-> 
-IPM is an version of SPI ip, we use this IP with ICs now.
-So I define a compatible strings "mediatek,ipm-spi-xxx", then I can
-reuse this strings with many ICs.
-Currently, we plan to upstream MT7986 IC, this IC has two spi
-controller ports, one support single mode only, the other support
-single & quad mode both.
-for example:
-spi0 {
-  ...
-  compatible = "mediatek,ipm-spi-single";
-  ...
-}
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org
+To: linux-clk@vger.kernel.org
+---
+V2: - Drop clock consumer from the binding example
+    - Make clocks, i.e. xtal, mandatory
+V3: - Rename renesas,out-amplitude to renesas,out-amplitude-microvolt
+    - Drop type ref: from renesas,out-amplitude-microvolt property
+    - Explain 'pcm' in description text as 1/1000 of percent
+    - Add newlines
+---
+ .../bindings/clock/renesas,9series.yaml       | 97 +++++++++++++++++++
+ 1 file changed, 97 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/renesas,9series.yaml
 
-spi1 {
-  ...
-  compatible = "mediatek,ipm-spi-quad";
-  ...
-}
-
-
-> Rob
+diff --git a/Documentation/devicetree/bindings/clock/renesas,9series.yaml b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+new file mode 100644
+index 0000000000000..102eb95cb3fcd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/renesas,9series.yaml
+@@ -0,0 +1,97 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/renesas,9series.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for Renesas 9-series I2C PCIe clock generators
++
++description: |
++  The Renesas 9-series are I2C PCIe clock generators providing
++  from 1 to 20 output clocks.
++
++  When referencing the provided clock in the DT using phandle
++  and clock specifier, the following mapping applies:
++
++  - 9FGV0241:
++    0 -- DIF0
++    1 -- DIF1
++
++maintainers:
++  - Marek Vasut <marex@denx.de>
++
++properties:
++  compatible:
++    enum:
++      - renesas,9fgv0241
++
++  reg:
++    description: I2C device address
++    enum: [ 0x68, 0x6a ]
++
++  '#clock-cells':
++    const: 1
++
++  clocks:
++    items:
++      - description: XTal input clock
++
++  renesas,out-amplitude-microvolt:
++    enum: [ 600000, 700000, 800000, 900000 ]
++    description: Output clock signal amplitude
++
++  renesas,out-spread-spectrum:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [ 100000, 99750, 99500 ]
++    description: Output clock down spread in pcm (1/1000 of percent)
++
++patternProperties:
++  "^DIF[0-19]$":
++    type: object
++    description:
++      Description of one of the outputs (DIF0..DIF19).
++
++    properties:
++      renesas,slew-rate:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [ 2000000, 3000000 ]
++        description: Output clock slew rate select in V/ns
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    /* 25MHz reference crystal */
++    ref25: ref25m {
++        compatible = "fixed-clock";
++        #clock-cells = <0>;
++        clock-frequency = <25000000>;
++    };
++
++    i2c@0 {
++        reg = <0x0 0x100>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        rs9: clock-generator@6a {
++            compatible = "renesas,9fgv0241";
++            reg = <0x6a>;
++            #clock-cells = <1>;
++
++            clocks = <&ref25m>;
++
++            DIF0 {
++                renesas,slew-rate = <3000000>;
++            };
++        };
++    };
++
++...
+-- 
+2.34.1
 
