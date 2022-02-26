@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AAAE24C581D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 21:57:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 860764C5823
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 21:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229635AbiBZUvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 15:51:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55506 "EHLO
+        id S229649AbiBZUvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 15:51:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229649AbiBZUvQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 15:51:16 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5DD2622B0
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 12:50:41 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id t13so3093105lfd.9
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 12:50:41 -0800 (PST)
+        with ESMTP id S229659AbiBZUvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 15:51:17 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27BAC2668D3
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 12:50:42 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id j15so15056156lfe.11
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 12:50:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=lfQnvVbFnRT7eimkarqJQ8hVcsrxx9J9cGgDkN62cmM=;
-        b=uWUtYRWsgMgb+yVtou0c5UVgl7UqX02e68cNKPHvWSqieX3hDlJ9lz1oZzF52myq3Y
-         JQABLzXNjfb9PoYlUWfTCi7sNGrf6Qi4I5YZ2THQJhb1dFV/gi2uksxsa22n0B4yokcB
-         LntOaip20nPqPrZAmyaf25fd4BIYM/etR8poXfvPVVnPupYMFPmK3TH7e6Nuk6wSJAZe
-         Q/LJ5W6oueUVMRPvu2f2ksvS2hPdWnNHm5XYhWkuOToiYGVUoIxwEjjM/E8pVkZFWNHZ
-         RqmWotlORqEgXLmBLBKQiCOikx7zT0ZFimxwKLSZmjeS3id4Z9/y45kAVGctbHCsCtjV
-         Nsfw==
+        bh=gQA4GH1Z+azqMfPO7LkvbFbqC2W7I0+yeJzjbt7tPBg=;
+        b=hwUD4Oh5QslDM8dDOaIBQdxGBjhz0qmYBmvVqSWeB+XYKVHeyXdqLbapAKQ/6svlAz
+         zD8n61ojhKwIRemvHDg3o/G4mTtw9iVHt1zsU/w8BFqfLKG5/povIzfrJsafXtThZI2Q
+         c2sW576aYSgM9LCS2QkOkscONy/88s5zVO8Yr42OW96ERKoGjNK5iQ6O4AWUd/k+muuZ
+         FfMcf3DFwFphE4YUsrazUCKIny9mmv81waVTdc5CngIosF6F+guIOAAuwe4eVlozpBLb
+         5iuLnIA+DXgmcjMR672tFjHnzUhAO1H+Smupyp3IlSsHUJusWYms/tvIf7Y5uMy6bzIv
+         0WuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lfQnvVbFnRT7eimkarqJQ8hVcsrxx9J9cGgDkN62cmM=;
-        b=Pbs7oGyGrVTb512jzMUGmQ8gpKWkRACLCTt43KKZJAdYoFfnXQqA1zuqRUzY/iTUnp
-         bUdi4OOeEUxGxhftjdfqH/YGBTt+Buxfdo/YgivExB//w/79XXPmaARe/AAoFCAtIbUY
-         2//4dD0s0dqzYAjo2rYWMqWy+N9vIs5OQF3qCUcBiVt6dRJWjiPJeHfgZL14BHj5+ckO
-         hD8lybOYvDE/vzMaiN+zD+wHCDL8VI4Xk067+elEFU3eJbdZ7DuYp/gDtxR+H/t4TYb3
-         kWY4QwUN/7g1JrHR+koBqQDA+RIppT3lph9j7zWml7BPhImmxNrNXMJclxboOhuKh7e3
-         jGrQ==
-X-Gm-Message-State: AOAM5305a5SVZSQSqA44DcVA6ztz/WmFXhVEL5E5tx6SpLNW9xHFdzOw
-        o/zpdZD4FFQGqLLIu02LYeIroc2CfrraWA==
-X-Google-Smtp-Source: ABdhPJwJ5Qr0WdSPVKETLgcEfs9PsPYSxeYxNOqRSFkHfyd0S54W2xy3SEIL8w0bmEpN6bSKMPKJEw==
-X-Received: by 2002:a05:6512:1194:b0:43e:8e84:4eca with SMTP id g20-20020a056512119400b0043e8e844ecamr8445765lfr.611.1645908639779;
-        Sat, 26 Feb 2022 12:50:39 -0800 (PST)
+        bh=gQA4GH1Z+azqMfPO7LkvbFbqC2W7I0+yeJzjbt7tPBg=;
+        b=XvEsRKRcbVgWU32N5Sn0bfba8gXykDFWr/f2AUYWBrr0VnDHQ7kYMds3ak4BqfC/1R
+         wlUMg4/3S+pzx3xdBCT6zWydji5yBGcNYNDwBBMT/nnqMvQEUYWUgLTLLN7x59HqVzoL
+         TDEExoB8Oevw7Wb2Wl2KKnPxoYCJWxFt1WqunIaIguwD4MM2dpRnyF0SzFsrlKybzS5h
+         I21Eues3gd6jQvZh10a8zW865jDW5xEqYzrlTZyceBX8Uer6/wpXaSfI+8gnFk8hYVp4
+         cbEPGVyUnKuConq5krtShsS7MQVQxHWdEG337AQvSxt/R4rVUCgqVW74BqotebMbHjUZ
+         CHSg==
+X-Gm-Message-State: AOAM532KZ6jW6GIMCZ0i/0FOxJRvfMgY1SKhGC0FP2IuXBpLrMq90wb3
+        OkAkEBfIC2Pl4In1gO/mvhCS2A==
+X-Google-Smtp-Source: ABdhPJyon5+KMKU+Y2OMUMkIoy6AYTU+bsbGu9xNOWIO6WHWa5ER+9SAZ5hEQEZUtGP8ZYG91NfeOw==
+X-Received: by 2002:ac2:4c56:0:b0:443:efbe:4349 with SMTP id o22-20020ac24c56000000b00443efbe4349mr8517738lfk.77.1645908640501;
+        Sat, 26 Feb 2022 12:50:40 -0800 (PST)
 Received: from umbar.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id m27-20020ac24adb000000b004433bbaa3fdsm527162lfp.174.2022.02.26.12.50.38
+        by smtp.gmail.com with ESMTPSA id m27-20020ac24adb000000b004433bbaa3fdsm527162lfp.174.2022.02.26.12.50.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Feb 2022 12:50:39 -0800 (PST)
+        Sat, 26 Feb 2022 12:50:40 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 4/7] arm64: dts: qcom: pm8350c: stop depending on thermal_zones label
-Date:   Sat, 26 Feb 2022 23:50:32 +0300
-Message-Id: <20220226205035.1826360-5-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 5/7] arm64: dts: qcom: pmr735a: stop depending on thermal_zones label
+Date:   Sat, 26 Feb 2022 23:50:33 +0300
+Message-Id: <20220226205035.1826360-6-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220226205035.1826360-1-dmitry.baryshkov@linaro.org>
 References: <20220226205035.1826360-1-dmitry.baryshkov@linaro.org>
@@ -62,7 +62,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,50 +73,50 @@ X-Mailing-List: devicetree@vger.kernel.org
 Most of SoC device trees do not provide the thermal_zones label. Thus
 stop depending on it and use the full path to the thermal zones nodes.
 
-Fixes: 3795fe7d497b ("arm64: dts: qcom: pm8350c: Add temp-alarm support")
+Fixes: 7a3544e5d4e8 ("arm64: dts: qcom: pmr735a: Add temp-alarm support")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pm8350c.dtsi | 32 ++++++++++++++-------------
+ arch/arm64/boot/dts/qcom/pmr735a.dtsi | 32 ++++++++++++++-------------
  1 file changed, 17 insertions(+), 15 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8350c.dtsi b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-index e1b75ae0a823..9bc6464477bd 100644
---- a/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8350c.dtsi
-@@ -32,23 +32,25 @@ pm8350c_gpios: gpio@8800 {
+diff --git a/arch/arm64/boot/dts/qcom/pmr735a.dtsi b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+index b4b6ba24f845..febda50779f9 100644
+--- a/arch/arm64/boot/dts/qcom/pmr735a.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmr735a.dtsi
+@@ -32,23 +32,25 @@ pmr735a_gpios: gpio@8800 {
  	};
  };
  
 -&thermal_zones {
--	pm8350c_thermal: pm8350c-thermal {
+-	pmr735a_thermal: pmr735a-thermal {
 -		polling-delay-passive = <100>;
 -		polling-delay = <0>;
--		thermal-sensors = <&pm8350c_temp_alarm>;
+-		thermal-sensors = <&pmr735a_temp_alarm>;
 +/ {
 +	thermal-zones {
-+		pm8350c_thermal: pm8350c-thermal {
++		pmr735a_thermal: pmr735a-thermal {
 +			polling-delay-passive = <100>;
 +			polling-delay = <0>;
-+			thermal-sensors = <&pm8350c_temp_alarm>;
++			thermal-sensors = <&pmr735a_temp_alarm>;
  
 -		trips {
--			pm8350c_trip0: trip0 {
+-			pmr735a_trip0: trip0 {
 -				temperature = <95000>;
 -				hysteresis = <0>;
 -				type = "passive";
 -			};
 +			trips {
-+				pm8350c_trip0: trip0 {
++				pmr735a_trip0: trip0 {
 +					temperature = <95000>;
 +					hysteresis = <0>;
 +					type = "passive";
 +				};
  
--			pm8350c_crit: pm8350c-crit {
+-			pmr735a_crit: pmr735a-crit {
 -				temperature = <115000>;
 -				hysteresis = <0>;
 -				type = "critical";
-+				pm8350c_crit: pm8350c-crit {
++				pmr735a_crit: pmr735a-crit {
 +					temperature = <115000>;
 +					hysteresis = <0>;
 +					type = "critical";
