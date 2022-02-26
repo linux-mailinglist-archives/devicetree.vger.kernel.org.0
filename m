@@ -2,418 +2,265 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 236FF4C56F0
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 18:05:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 042FA4C5715
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 18:18:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231722AbiBZRFf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 12:05:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50664 "EHLO
+        id S231204AbiBZRTM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 26 Feb 2022 12:19:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229924AbiBZRFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 12:05:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 107FD106B04;
-        Sat, 26 Feb 2022 09:05:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 99F8E60C86;
-        Sat, 26 Feb 2022 17:04:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FA92C340E8;
-        Sat, 26 Feb 2022 17:04:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645895099;
-        bh=g7yo3fMuqJTQ1SHGCREG0ls4yeOh0MQ0TqRbYe1i/cw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=BxzDkYNYu3oh4WTcVLbiqWNDxHytoQ2IcMez4PIDiSC9Wz4JJUg1yO9Wj3sGC5ERh
-         JgQH7VCKCIWKBGf2Y+HRw3oqPbh+aJdtrRigZOULUQ/3IIpUARy6YNfdrP74QE+Vkc
-         e5/H8YTpKCynsDt/bm4QaVONsEXCFXfbNPkYag3sii9UYNSsqp+cfngOIsJSrMGNqn
-         7+gcBcY9mFiMB2RqMuEvO39L3JtM+PDReeCUJe1CAfxUlvfA9JkoNUU+caFe90i+DJ
-         jVq6QFt6B4s6zco4LHxn9hcVmG2jzCnKnl1/PHLbJGAhWOPtudSGfx5pI3yiroG/Ve
-         0fzvSGYsYSUrA==
-Date:   Sat, 26 Feb 2022 17:11:58 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org, kernel test robot <lkp@intel.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>
-Subject: Re: [PATCH v8 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-Message-ID: <20220226171158.4ced99d7@jic23-huawei>
-In-Reply-To: <20220221220743.541704-3-caleb.connolly@linaro.org>
-References: <20220221220743.541704-1-caleb.connolly@linaro.org>
-        <20220221220743.541704-3-caleb.connolly@linaro.org>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        with ESMTP id S230160AbiBZRTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 12:19:11 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80203195336;
+        Sat, 26 Feb 2022 09:18:34 -0800 (PST)
+Received: from [192.168.1.107] ([37.4.249.169]) by mrelayeu.kundenserver.de
+ (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MIMXC-1nTUtQ0m60-00EM7k; Sat, 26 Feb 2022 18:18:16 +0100
+Subject: Re: [PATCH v5 00/11] Add support for BCM2835 camera interface
+ (unicam)
+To:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+Cc:     dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, laurent.pinchart@ideasonboard.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        lukasz@jany.st, mchehab@kernel.org, naush@raspberrypi.com,
+        robh@kernel.org, tomi.valkeinen@ideasonboard.com,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
+ <a7a6f1fe-c2f0-f545-1da3-a7685fdb63d5@i2se.com>
+ <fc3abf5b-64c7-82c6-ec9c-5c3659c55b49@ideasonboard.com>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+Autocrypt: addr=stefan.wahren@i2se.com; keydata=
+ LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tClZlcnNpb246IEdudVBHIHYy
+ CgptUUlOQkZ0NmdCTUJFQUN1Yi9wQmV2SHhidkplZnlaRzMySklObW4yYnNFUFgyNVY2ZmVq
+ bXlZd21DR0tqRnRMCi9Eb1VNRVZIRHhDSjQ3Qk1YbzM0NGZIVjFDM0FudWRnTjFCZWhMb0J0
+ TEh4bW5lQ3pnSDNLY1B0V1c3cHRqNEcKdEp2OUNRRFp5MjdTS29FUHh5YUk4Q0YweWdSeEpj
+ NzJNOUk5d21zUFo1YlVIc0x1WVdNcVE3SmNSbVBzNkQ4ZwpCa2srOC95bmdFeU5FeHd4SnBS
+ MXlsajVianhXREh5WVF2dUo1THpaS3VPOUxCM2xYVnNjNGJxWEVqYzZWRnVaCkZDQ2svc3lp
+ by9ZaHNlOE4rUXN4N01RYWd6NHdLVWtRUWJmWGcxVnFrVG5BaXZYczQyVm5Ja211NWd6SXcv
+ MHQKUkp2NTBGUmhIaHhweUtBSThCOG5oTjhRdng3TVZrUGM1dkRmZDN1R1lXNDdKUGhWUUJj
+ VXdKd05rLzQ5RjllQQp2ZzJtdE1QRm5GT1JrV1VSdlArRzZGSmZtNitDdk92N1lmUDF1ZXdB
+ aTRsbitKTzFnK2dqVklXbC9XSnB5MG5UCmlwZGZlSDlkSGtnU2lmUXVuWWN1Y2lzTXlvUmJG
+ OTU1dENna0VZOUVNRWRZMXQ4aUdEaUNnWDZzNTBMSGJpM2sKNDUzdWFjcHhmUVhTYUF3UGtz
+ bDhNa0NPc3YyZUVyNElOQ0hZUUR5WmljbEJ1dUNnOEVOYlI2QUdWdFpTUGNRYgplbnpTektS
+ Wm9POUNhcUlEK2ZhdkxpQi9kaHptSEErOWJnSWhtWGZ2WFJMRFp6ZThwbzFkeXQzRTFzaFhp
+ ZGRaClBBOE51SlZ6RUl0MmxtSTZWOHBaRHBuMjIxcmZLaml2UlFpYW9zNTRUZ1pqak1ZSTdu
+ bko3ZTZ4endBUkFRQUIKdENCVGRHVm1ZVzRnVjJGb2NtVnVJRHgzWVdoeVpXNXpkRUJuYlhn
+ dWJtVjBQb2tDTndRVEFRZ0FJUVVDWElkYwo0Z0liQXdVTENRZ0hBZ1lWQ0FrS0N3SUVGZ0lE
+ QVFJZUFRSVhnQUFLQ1JDVWdld1BFWkR5MjFPVEQvOUdpWkxkCnRSWWNteVJKZ2x0aVFRekFp
+ UWRjSUQ3OGxHb1dwL3grci92Y1U2YjZqdVl1ZVR3Z1Iwclc3djdsMklSQnlEN24KSEp4YSt0
+ SVNvUVpCZ2hvbE1JZmI5TXRoR09KTENZNzdrL1FoQWhuMzJOR1prZWp3OXR6a3MvNDBtclpT
+ VVQ4NApaeWJzUVhyTE0vSFI2VElJL0RlUEIwbktEM0ppcHBzMlVIUUQ5cUQySWpFd1NRUGxI
+ akNPckVaaDQ1UFo3bTkrClo5M0x6aVRlc1dabFlRdUxpSndzNHJLcHRIVzFkL3dSZWxzaG1t
+ NlFxY0wybDRDL2U0MGVEQjlncTRkU1poOVgKUEVZbGxpeU5RaDdhMkxTZHVtRTFyK2NTd0lq
+ RS91ZHRSdmRPOWFLb0psT2JVSzVkTmpTUEg3d0tUYndkWGRZRApHUHdEaFhkNThOQXdyK1BY
+ QmxQajB0STFMQ3ErTEJ4ZUt6aFdYK0dWcTlEb2pWanlVREV4Rk5Ga1h1b0M3ZzhtClY5VDB0
+ ZUJpdVpSbm91WEt3VjJGcHRaT0hIN0JVRVd0a0t0aGgxZXRmT1dwaWdCemtVN2JQc2ZJWVQr
+ cnk5dGIKMW9KK3Y0MVBOYXFaRW1QVXBKeHZmek5UN3Ayd01lRDdaajlmMHJ1YlJQdExBSjJR
+ R2pyRkhzdVh3QU9xcHl6ZQoxOEVidHNZazBOMHp1SEVoY2orUEJJQmZoMFlJWWQ1MW9mNkdJ
+ aU95UjlxMFhYdHBsVUo3VDIvSDF1UXFrWGxwCitnVzRWa2lmc2NJckl1eWZueFpXMTJlSXZq
+ NnlicVdMN2FZS0dZbVQ2aUxDUGJIWXlZY2F5bDRFa0ZjckNGN0UKZTBXVC9zY1ZNaE8vNVgv
+ SGFOQTVIQngvcjUycGdMY3Y0aTlNeExRbVUzUmxabUZ1SUZkaGFISmxiaUE4YzNSbApabUZ1
+ TG5kaGFISmxia0JwTW5ObExtTnZiVDZKQWpnRUV3RUNBQ0lGQWx0NmdCTUNHd01HQ3drSUJ3
+ TUNCaFVJCkFna0tDd1FXQWdNQkFoNEJBaGVBQUFvSkVKU0I3QThSa1BMYmpic1AvamdqYVNz
+ NUh0bGtBSXZXUytGcm15N2MKaG5jT0F4TFRWL0Q2UkV3SU95R0poRkt3d29pck55UTJnOXZV
+ YTNZQ1lDZjFmSjh3RWhhS09COWQwTHBNUm5MNApkRVQ4ZDgyMzhFL3BLK0hxTktpSXNKaHM2
+ SnNLOFpnalZRR3JtbWZua0dyWisxdjBIQnV4ZGljZ0duUC9XdHVBClVsOGw2Mi9BTGJheXlq
+ KzYxQ2xyc0V0UklhcU82N0xJWXdQaVBEUkkrWGlNek5pR3pIRi8xUTZHUjAyUkg2YTMKRjg5
+ ejhhUHhjSGkxWnZDdDJ5a3o2VUVjaHpQMHI1Z3FGSisvTC9VcHU4ME1YaVk0djVlSWFCNTJn
+ VlBnaXlNQQpsTDJkRHMxbUladm5yUkxSWTJ0YjNtQVlOa1Y1QjVJRFQzcGtXeTZrS281T0Nn
+ SytZZFlPUjhGTloyb04ydDhPCnJLK1ZudGFLN01NU0tIbG1ZL3NPd3RSbEVoMU9CbXJjQ3dH
+ d21wLzA1R2tSNDZmL0lzaFJWZUZPUmF3K0dBcXQKUDIrQ0ZhMkNOQS9JSG5aTm95aWtsRHpQ
+ UUhVVUdzck5wcERyaFg5Sm1oQm1nMXYyeXdIMU5YdTFpRGZQMUJBdwpLZ29rdDVmNVVhUkY5
+ c0FBNTN2V0V2YlVVTjllZXNGR0x6UFdkSkdRNWhwZC9WSDVJUXk5U0JyaC93SWNla3E1Cm4w
+ a042cGJUSHhHRTUyU2kvTVZJa05UdURaM2FwbjJqbERaNHBPdHBCWEkydlAzYlBPK05pcUJa
+ anNVM3R4TGkKV2R2MkZqeXp6NlhMUndlV1JZVkw1SGE2TER0eG9yMnZ1NlVQMDdwOXh6MXhS
+ WmFPRFczb1lsSEZ6WXBhNFc1ZwpMSGIybEVrSXVVZlNjaWNHYmpqQXRDbFRkR1ZtWVc0Z1Yy
+ Rm9jbVZ1SUR4emRHVm1ZVzR1ZDJGb2NtVnVRR2x1CkxYUmxZMmd1WTI5dFBva0NOd1FUQVFn
+ QUlRVUNYSWRlaHdJYkF3VUxDUWdIQWdZVkNBa0tDd0lFRmdJREFRSWUKQVFJWGdBQUtDUkNV
+ Z2V3UEVaRHkyeUhURC85VUY3UWxEa0d4elE3QWFDSTZOOTVpUWY4LzFvU1VhRE51Mlk2SQpL
+ K0R6UXBiMVRiVE9yM1ZKd3dZOGEzT1d6NU5MU09MTVdlVnh0K29zTW1sUUlHdWJEM09EWko4
+ aXpQbEcvSnJOCnQ1elNkbU41SUE1ZjNlc1dXUVZLdmdoWkFnVERxZHB2K1pIVzJFbXhuQUox
+ dUxGWFhlUWQzVVpjQzVyMy9nL3YKU2FNbzl4ZWszSjVtTnVEbTcxbEVXc0FzL0JBY0ZjK3lu
+ TGh4d0JXQld3c3Z3UjhiSHRKNURPTVd2YUt1RHNrcApJR0ZVZS9LYjJCK2pyYXZRM1RuNnMv
+ SHFKTTBjZXhTSHo1cGUrMHNHdlArdDlKNzIzNEJGUXdlRkV4cmlleThVCkl4T3I0WEFiYWFi
+ U3J5WW5VL3pWSDlVMWkyQUlRWk1XSkFldkN2VmdRL1UrTmVSaFh1ZGU5WVVtRE1EbzJzQjIK
+ VkFGRUFxaUYyUVVIUEEybThhN0VPM3lmTDRyTWswaUh6TElLdmg2L3JIOFFDWThpM1h4VE5M
+ OWlDTHpCV3UvTgpPbkNBYlMremx2TFphaVNNaDVFZnV4VHR2NFBsVmRFamY2MlArWkhJRDE2
+ Z1VEd0VtYXpMQU1yeDY2NmpINWt1ClVDVFZ5bWJMMFR2Qis2TDZBUmw4QU55TTRBRG1rV2tw
+ eU0yMmtDdUlTWUFFZlFSM3VXWFo5WWd4YVBNcWJWK3cKQnJoSmc0SGFONkM2eFRxR3YzcjRC
+ MmFxYjc3L0NWb1JKMVo5Y3BIQ3dpT3pJYUFtdnl6UFU2TXhDRFhaOEZnWQpsVDR2MjNHNWlt
+ SlAyemdYNXMrRjZBQ1VKOVVRUEQwdVRmK0o5RGEycitza2gvc1dPbloreWNvSE5CUXZvY1pF
+ Ck5BSFFmN2tDRFFSYmVvQVRBUkFBMkhkMGZzRFZLNzJSTFNESGJ5ME9oZ0RjRGxWQk0yTSto
+ WVlwTzNmWDFyKysKc2hpcVBLQ0hWQXNRNWJ4ZTdIbUppbUhhNEtLWXMya3YvbWx0L0NhdUNK
+ Ly9wbWN5Y0JNN0d2d25Lem11WHp1QQpHbVZUWkM2V1I1TGtha0ZydEhPelZtc0VHcE52NVJj
+ OWw2SFlGcExrYlNrVmk1U1BRWkp5K0VNZ01DRmdqclpmClZGNnlvdHdFMWFmN0hOdE1oTlBh
+ TEROMW9VS0Y1aitSeVJnNWl3SnVDRGtuSGp3QlFWNHBndzIvNXZTOEE3WlEKdjJNYlcvVExF
+ eXBLWGlmNzhJaGdBelh0RTJYck0xbi9vNlpINzFvUkZGS096NDJsRmR6ZHJTWDBZc3FYZ0hD
+ WAo1Z0l0TGZxemoxcHNNYTlvMWVpTlRFbTFkVlFyVHFueXMwbDE4b2FsUk5zd1lsUW1uWUJ3
+ cHdDa2FUSExNSHdLCmZHQmJvNWRMUEVzaHRWb3dJNm5zZ3FMVHlRSG1xSFlxVVpZSXBpZ21t
+ QzNTd0JXWTFWNmZmVUVta3FwQUFDRW4KTDQvZ1Vnbjd5US81ZDBzZXFuQXEycFNCSE1VVW9D
+ Y1R6RVFVV1ZraUR2M1JrN2hURm1oVHNNcTc4eHYyWFJzWApNUjZ5UWhTVFBGWkNZRFVFeEVs
+ RXNTbzlGV0hXcjZ6SHlZY2M4cURMRnZHOUZQaG1RdVQyczlCbHg2Z0kzMjNHCm5FcTFsd1dQ
+ SlZ6UDRqUWtKS0lBWHdGcHYrVzhDV0xxekRXT3ZkbHJEYVRhVk1zY0ZUZUg1VzZVcHJsNjVq
+ cUYKUUdNcGNSR0NzOEdDVVcxM0gwSXlPdFF0d1dYQTRueStTTDgxcHZpQW1hU1hVOGxhS2FS
+ dTkxVk9WYUY5ZjRzQQpFUUVBQVlrQ0h3UVlBUUlBQ1FVQ1czcUFFd0liREFBS0NSQ1VnZXdQ
+ RVpEeTIrb1hELzljSEhSa0JaT2ZrbVNxCjE0U3Z4MDYyUHRVMEtWNDcwVFNucC9qV29ZSm5L
+ SXczRzBtWElSZ3J0SDJkUHdwSWdWanNZeVJTVk1LbVNwdDUKWnJEZjlOdFRiTldnazhWb0xl
+ WnpZRW8rSjNvUHFGclRNczNhWVl2N2U0K0pLNjk1WW5tUSttT0Q5bmlhOTE1dApyNUFaajk1
+ VWZTVGx5VW15aWMxZDhvdnNmMWZQN1hDVVZSRmNSamZOZkRGMW9ML3BEZ01QNUdaMk93YVRl
+ am15CkN1SGpNOElSMUNpYXZCcFlEbUJuVFlrN1B0aHk2YXRXdllsMGZ5L0NxYWpUS3N4Nytw
+ OXh6aXU4WmZWWCtpS0IKQ2MrSGUrRURFZEdJRGh2TlovSVFIZk9CMlBVWFdHUytzOUZOVHhy
+ L0E2bkxHWG5BOVk2dzkzaVBkWUl3eFM3SwpYTG9LSmVlMTBEamx6c1lzUmZsRk9XMFpPaVNp
+ aElDWGlRVjF1cU02dHpGRzlndFJjaXVzNVVBdGhXYU8xT3dVClNDUW1mQ09tNGZ2TUlKSUE5
+ cnh0b1M2T3FSUWNpRjNjcm1vMHJKQ3ROMmF3WmZnaThYRWlmN2Q2aGp2MEVLTTkKWFpvaUFa
+ WVpEKy9pTG01VGFLV042b0dJdGkwVmpKdjhaWk9aT2ZDYjZ2cUZJa0pXK2FPdTRvclRMRk16
+ MjhhbwpVM1F5V3BOQzhGRm1kWXNWdWE4czZnTjFOSWE2eTNxYS9aQjhiQS9pa3k1OUFFejRp
+ RElScmdVek1FZzhBazdUCmZtMUtpWWVpVHRCRENvMjVCdlhqYnFzeXhrUUQxbmtSbTZGQVZ6
+ RXVPUEllOEp1cVcyeEQ5aXhHWXZqVTVoa1IKZ0pwM2dQNWIrY25HM0xQcXF1UTJFNmdvS1VN
+ TEFia0NEUVJiZmw5REFSQUFzRExjYStMbFAydm5mdEVHaHBjQQpCR1ZOUUVGbkdQckNhdVU2
+ SGhOODA1V3RQVHRtc1JPdUp6cWdVVDBtcHFXSWZacTZzTXd5dkhLOVRzL0tIM0paClVWYlJD
+ M3oyaDNLZmhIL0RhZjk1cGQ2bVBjL2g5dkYvT3kzK2VUV2hnR25QNmNBNWtsUitmTzFXaEc4
+ VnJpWHYKck5lUkcyMHN6emplSG9jblNJY1Q1WHVaUjB1REhPaUd4T2l6MXNNUkZUR3h6R095
+ MTlSOXJ2dTYzdGlJM2Q3dgpnYzc1T0NBZGtlQi9TZUNFbGFSdzBUZjdMWmJQampzRjI2M0JZ
+ bk1mNGtrTkVLdnFXY1UyaWNNcCtxZXpqeW5CCnB2ZXVlMHJDVFFCWUFRbG9GQ1ZUR0hyV1dB
+ NkQ0VzVPMkFmSWRJYzF1MUpDWnAyZjVMV1ZvVUZUVklyUW5RUVUKU0hDaWZyOU1aeExUdFBK
+ ZFU1Mm9TUHczZGs0aExQOGlKSUx1dnYvYXZhakNzUVlIRXR3WXNiZUZaeGl1TGdscApBN1lj
+ Sk5ObXBnQ3BNRDR3VWh2bEN0QUtOQlFXeXIyOTc2OThFUVRuNDZlQmVVNkttMkNpaFhrZ3dD
+ eWY4ZXlLCkxFM3NYZXdhcTVrZ1pXdk5xNml1NXFZSVJCOXl3K2NYYzYwZE9aRE9scTkzWDVT
+ QVJZemFvZXBrSHo0cmtMa1AKUG8rdENIeUhRUHNHblBYYzlXVDgwREM5Tm5KR2R2VWx5NXJk
+ TUk0eHBaeWdlb2tqd293VlFsUFV1Y1M2TXluNwpmOHc4Y2dmQjdDMklBSWNEeDJwUC9IendY
+ dmtDT1FOQTdtVjFsTTA4bitnVmtUcnpweGlwNURicTRDSW9ZeDJNCkpaVDhiR1JINlhqY1VE
+ S2EwOVFoeVpzQUVRRUFBWWtFUkFRWUFRZ0FEd1VDVzM1ZlF3SWJBZ1VKQThKbkFBSXAKQ1JD
+ VWdld1BFWkR5MjhGZElBUVpBUWdBQmdVQ1czNWZRd0FLQ1JCVnhETFBjVk1NamNkc0QvMFJo
+ QXN1UVlPeQpyMTNCbDNOaFhrWUFaR3AyWkZER3VrZTdPU2tWOG9qT09UZFR5ei9jT1JHQ2J5
+ ZEQrRGd2cUZ5VmRuT1hLZ08wCmxKbUd3ckdlTGRnZ0F2aDBpaHJwNU8wWVVKOWJCU1htR01t
+ UVRZSC9BbUxUR2FkYnVqQ1dqNWZGVWtDeXd4aW0KSHV5MFBiMjRwelR2UzUwR1k1WStxSDBG
+ SE5haWdka2tpV04zcnVnN0haRXUvQ3lsUFpqT1h6K0QxUVBNckV4dwo3ZC9NS2FiVis5YU5i
+ UVlabGRJajk4UXd2VUYxS1N6YThqbFVJdnBoUnEyN0FUOGZER1lHUGZERU1nMmNCT2FlCkty
+ N29uUXM0YjdhV082aWZEbHhRVHB6c3pvK0FuODA3Tk1TdFZFRmYrczNBaFZEM2U3bmY4SkJh
+ dmJWckFlMGsKb20yNm96elBubnh6K2xxVlZ0dzZVazRYTUl6dGl4L0h3SFl3dUNuY1VYWndL
+ MEkzeUFKd2pZd29vck9DaEozUwpFVWJKUVB0R3NneFJERXhWQkZlNk5MUC82MnhQOU82dGFj
+ d09kYjBNbVAxYjM5cFJBVEM3YmdkMWxkVUxpNzVaCmxKckowL1NpVkVyb3FOWXk3OXRmbWdB
+ WjJVeFptczlTckV5Nm85UVNmc24xYVh2K01QTDlKYUNHbWtQNnpiTFEKTm5kajBKY2FRbmtD
+ MHZneWRPMUJtNk11OTZQOXVmbEtaY0FTNndtTE01SWRIT3lqTDg4d0h3anVjakFPQnRjdwpw
+ MG9HVG5WT25Sc05ZU084VzhZWi9LZGJ1Nzg1ZGF6TXFKMmlOakFEdUJiZG02TjRqNUVkTW5r
+ TG4wQklmUEpwCmRnbTR2bDJVcExqd1JHci9NM3dtbTVwdnMrNnVCN2hrL0ZKaUQvNGxsRU5Q
+ NGVNMWg3U200aitWcTZOMSt6VEIKSVhKQWViSXFhc0RwNXlaUzdYcnk0STM2bjg1WEVZZkcw
+ MWx0QXlob05WMkRPOFNJUlFwdWkydHErOVJQM1JLMQpKREJ4eEVKWTJFTzVKWjhNeGFQSFEw
+ RFQwNWxSRmpLMkFsaGRFSXRqTGpwSjNmVW05c3FMeE1XeHpQNlV6M2lpCjJ1YTR1bnJ0Nk9D
+ VHFRd2lqRi8zYlRXaXd2VkFBSG5NRlVpb1hzaEhhb2hWRGNWZm5lSU1mVjBiUUNYWWkzTnAK
+ WTB2MFp3Y2lGSCtnU0M3cUQ2WE51aHBWR1NMNElpbGlGeS9TemNhSkV6QUhlTERTaFpQMkNX
+ ZG5DNHZnbDM3dApocHg4aDU1WWhKbjZIU3VVelBnaGFLdFZCMmsrajdaZXlaK1NGeHA3SXVi
+ SEN3TEhsUWhUNzVSd1EzaUF4S242CjBxajUxY1lUbnF4ZFpYVzZmSDNQa3VNellVNUdwcVIv
+ MU9sNWMvd2ZJNmc2QW04eUtXLzBFVUx0K0tuNExGc1MKbTdZM201SDV2MTJVNkpCWXZWK3Ix
+ M2paaW9zNEVFREU5M0Q1c05IMk1JeVJ6Q0RxMXpkZHQ0WHV5S0ZqUEtXMQo5aWJaRGZGVjdL
+ dUNzdnVMMjNzQmMxc0NNb3ArRTFtVC9ReE9JQTZvRFQxTVFzdHdPVnVReURDdi9PdktTZ2Z6
+ CjhGWEdMNkFQY2xqQ3FqOEFKaHhReXN4ZG9pUVA4bS92dStialdHR3Z4dzVzMWxncGlSRFRS
+ VVBnY0pKTmFHWTIKVklEclpRaTROU2lOUTBOSWkrZGp1NGZOTW1DcFFxZzh0YkMzY0FhNnl3
+ bTZvUUIxU0JobURYMmUxMWdSbGx1SQpPblRHUEUwSFRvM2w3MmxoYmc9PQo9cVpNVgotLS0t
+ LUVORCBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCg==
+Message-ID: <6d5fe1fc-1126-9764-5f72-836369f7874c@i2se.com>
+Date:   Sat, 26 Feb 2022 18:18:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <fc3abf5b-64c7-82c6-ec9c-5c3659c55b49@ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+Content-Language: en-US
+X-Provags-ID: V03:K1:g8Nr2WGrm7dkQbal7eYhVTMrhUp4UV57bZO1Kz5qWkPL8aNfNC0
+ xEczhuFmgMa5ibMBvzILgnr5GRNKplmoWXo3bonMAYe31zK6VolZ6UPfNrQSKeQz7C8Xt0h
+ WYIbSq98/57q/d0vqaBwiZb4Fm4jAbiw89icWb4NMHS+X85NW0JfLMqFwbFWST2VuYsuc7Z
+ Ji9z/wUACCtNJgEWAg/9g==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:RfJvNBhKyKQ=:8Gi54Ym/m2vW/b2eCJVaCT
+ yLucV+HoYKnZV+EhUlqB+GWaRl42/8rf1zu/8J3JsNDCeF1h08wdGb8m/HCXOSb4ClngtS7Mg
+ n2UROauZH8fqC2Ky8HvCIi3yLpO+pwZGFkN0RQ3TgbW7+K9blX/p/m4L6eQL5wTVyEQ1LM3Bw
+ Oeutw0q/UzhY+Xha0atrVZlWuhFTxAyQTVx0/yxoJzzKQ9zEPbn+CYiZHyGdp9l13RIT7H2RB
+ vALBx2H4uEoKQqfrBqEm4iYolEa0ePBWB+G7szURrajNc1xiJNnA0NgoVI+Dn8oahvMcKFKkL
+ tfVDFNrfoe76NxVcqaQW9NNUzMqE/aOUgY46CA8KaiIe6EdImZAPNZ2q4YnJQ8wz6K8/O7I5G
+ eBR+Vw2IcMaNFO0OBoMS+BH2pm6DZUBtc1Fgl819Nl2+XL9KSz2aYwDRflfo3TJZuwrJyIuH9
+ O/JcFcM5/sL2KTtuDSg31QhAeUx/85fMH1QJg7BHLlRDH36P1h/b8utK0kEAlP4EbSQDEDa9r
+ /j8Ko4cih7hBk6+LV2fn/MG3HOBc0xUxYXTChssYSxAMubj1JdFbpp4Lpy9vxN3sV96UJbuj3
+ 6hOTB+VRWziv4JwWZwZgmV9q5jlnbhufqDxH2dZCLhdxe/YLT9S4Ls9Rf22LdhXCYdSPfmdhW
+ Rud0gTeN7W6zgE0G59VnWyPyp4v6298e3825bPA5EuqX/PG6j0N6RSLcICYKrtv3XFqR8i/wK
+ 6PpRxo4y2PrZwkWR
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Feb 2022 22:07:36 +0000
-Caleb Connolly <caleb.connolly@linaro.org> wrote:
+Hi Jean-Michel,
 
-> Some PMIC functions such as the RRADC need to be aware of the PMIC
-> chip revision information to implement errata or otherwise adjust
-> behaviour, export the PMIC information to enable this.
-> 
-> This is specifically required to enable the RRADC to adjust
-> coefficients based on which chip fab the PMIC was produced in,
-> this can vary per unique device and therefore has to be read at
-> runtime.
-> 
-> [bugs in previous revision]
-> Reported-by: kernel test robot <lkp@intel.com>
-> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+Am 20.02.22 um 15:30 schrieb Jean-Michel Hautbois:
+> Hi Stefan,
+>
+> On 16/02/2022 21:57, Stefan Wahren wrote:
+>> Hi Jean-Michel,
+>>
+>> Am 08.02.22 um 16:50 schrieb Jean-Michel Hautbois:
+>>> Hello !
+>>>
+>>> ...
+>>>
+>>> In order to properly configure the media pipeline, it is needed to call
+>>> the usual ioctls, and configure routing in order to send the embedded
+>>> data from the sensor to the "unicam-embedded" device node :
+>>>
+>>> ```
+>>> media=0
+>>> media-ctl -d${media} -l "'imx219 2-0010':0->'unicam-subdev':0 [1]"
+>>> media-ctl -d${media} -l "'unicam-subdev':1->'unicam-image':0 [1]"
+>>> media-ctl -d${media} -v -R "'unicam-subdev' [0/0->1/0[1],0/1->2/0[1]]"
+>>> media-ctl -d${media} -V "'imx219 2-0010':0/0
+>>> [fmt:SRGGB10_1X10/3280x2464 field:none]"
+>>> v4l2-ctl -d0 --set-fmt-video
+>>> width=3280,height=2464,pixelformat='pRAA',field=none
+>>> media-ctl -d${media} -v -V "'imx219 2-0010':0/1
+>>> [fmt:METADATA_8/16384x1 field:none]"
+>>> media-ctl -d${media} -p
+>>> ```
+>>
+>> i tried to test the unicam driver on a Raspberry Pi 4 with the imx219
+>> camera (based on 5.17-rc4). The unicam & imx219 driver probes and
+>> /dev/video0 is created.
+>>
+>> If a execute the first media-ctl command, it complains with invalid
+>> argument 22. Is there a more fool-proof variant to configure this (a
+>> script or something else)? I never used the unicam driver before.
+>>
+>> Here is the output of
+>>
+>> $ mediactl -d0 -p
+>>
+>
+> Based on your output, I suppose the issue is the naming of the imx219
+> media entity ('imx219 2-0010' vs 'imx219 5-0010').
+> You could add a '-v' in the line to help you I suppose.
+>
+> A more bullet-proof version of the commands is certainly doable, not
+> sure how though as I would not like to rewrite a libcamera-like
+> command ;-).
 
-Hi Caleb,
+Today i had a little bit time and manage to get the commands working.
 
-One trivial question about a comment below.
+After running the yavta command, the kernel put the following:
 
-Otherwise, looking for mfd ack from Lee.
+[  405.908674] cma: cma_alloc: linux,cma: alloc failed, req-size: 2484
+pages, ret: -12
+[  405.908695] unicam fe801000.csi: dma alloc of size 10174464 failed
 
-Is anyone actively maintaining mfd/qcom-spmi-pmic.c?
-If some one at least familiar with that code (Bjorn or Stephen maybe?)
-could take a quick look that would also be great.
+As per default the CMA size with mainline DTB is 64 MB. After that i
+increase the value to 256 MB and the issue disappeared. Maybe this is
+something which could be integrated into the overlay. But at least a
+note about this in the cover letter of the next version of this series
+would be nice.
 
-Thanks,
+Best regards
 
-Jonathan
-
-
-> ---
->  drivers/mfd/qcom-spmi-pmic.c      | 174 ++++++++++++++++++++----------
->  include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++++++
->  2 files changed, 178 insertions(+), 56 deletions(-)
->  create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
-> 
-> diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-> index 1cacc00aa6c9..1ef426a1513b 100644
-> --- a/drivers/mfd/qcom-spmi-pmic.c
-> +++ b/drivers/mfd/qcom-spmi-pmic.c
-> @@ -3,11 +3,16 @@
->   * Copyright (c) 2014, The Linux Foundation. All rights reserved.
->   */
->  
-> +#include <linux/device.h>
-> +#include <linux/errno.h>
-> +#include <linux/gfp.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/spmi.h>
-> +#include <linux/types.h>
->  #include <linux/regmap.h>
->  #include <linux/of_platform.h>
-> +#include <soc/qcom/qcom-spmi-pmic.h>
->  
->  #define PMIC_REV2		0x101
->  #define PMIC_REV3		0x102
-> @@ -17,37 +22,6 @@
->  
->  #define PMIC_TYPE_VALUE		0x51
->  
-> -#define COMMON_SUBTYPE		0x00
-> -#define PM8941_SUBTYPE		0x01
-> -#define PM8841_SUBTYPE		0x02
-> -#define PM8019_SUBTYPE		0x03
-> -#define PM8226_SUBTYPE		0x04
-> -#define PM8110_SUBTYPE		0x05
-> -#define PMA8084_SUBTYPE		0x06
-> -#define PMI8962_SUBTYPE		0x07
-> -#define PMD9635_SUBTYPE		0x08
-> -#define PM8994_SUBTYPE		0x09
-> -#define PMI8994_SUBTYPE		0x0a
-> -#define PM8916_SUBTYPE		0x0b
-> -#define PM8004_SUBTYPE		0x0c
-> -#define PM8909_SUBTYPE		0x0d
-> -#define PM8028_SUBTYPE		0x0e
-> -#define PM8901_SUBTYPE		0x0f
-> -#define PM8950_SUBTYPE		0x10
-> -#define PMI8950_SUBTYPE		0x11
-> -#define PM8998_SUBTYPE		0x14
-> -#define PMI8998_SUBTYPE		0x15
-> -#define PM8005_SUBTYPE		0x18
-> -#define PM660L_SUBTYPE		0x1A
-> -#define PM660_SUBTYPE		0x1B
-> -#define PM8150_SUBTYPE		0x1E
-> -#define PM8150L_SUBTYPE		0x1f
-> -#define PM8150B_SUBTYPE		0x20
-> -#define PMK8002_SUBTYPE		0x21
-> -#define PM8009_SUBTYPE		0x24
-> -#define PM8150C_SUBTYPE		0x26
-> -#define SMB2351_SUBTYPE		0x29
-> -
->  static const struct of_device_id pmic_spmi_id_table[] = {
->  	{ .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
->  	{ .compatible = "qcom,pm660l",    .data = (void *)PM660L_SUBTYPE },
-> @@ -81,42 +55,118 @@ static const struct of_device_id pmic_spmi_id_table[] = {
->  	{ }
->  };
->  
-> -static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
-> +/**
-> + * qcom_pmic_get() - Get a pointer to the base PMIC device
-> + *
-> + * @dev: the pmic function device
-> + * @return: the struct qcom_spmi_pmic* pointer associated with the function device
-> + *
-> + * A PMIC can be represented by multiple SPMI devices, but
-> + * only the base PMIC device will contain a reference to
-> + * the revision information.
-> + *
-> + * This function takes a pointer to a function device and
-> + * returns a pointer to the base PMIC device.
-> + */
-> +const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev)
-> +{
-> +	struct spmi_device *sdev;
-> +	struct device_node *spmi_bus;
-> +	struct device_node *other_usid = NULL;
-> +	int function_parent_usid, ret;
-> +	u32 reg[2];
-> +
-> +	if (!of_match_device(pmic_spmi_id_table, dev->parent))
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	sdev = to_spmi_device(dev->parent);
-> +	if (!sdev)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	/*
-> +	 * Quick return if the function device is already in the right
-> +	 * USID
-> +	 */
-> +	if (sdev->usid % 2 == 0)
-> +		return spmi_device_get_drvdata(sdev);
-> +
-> +	function_parent_usid = sdev->usid;
-> +
-> +	/*
-> +	 * Walk through the list of PMICs until we find the sibling USID.
-> +	 * The goal is the find to previous sibling. Assuming there is no
-
-Probably:  The goal is to find the previous sibling. ?
-
-> +	 * PMIC with more than 2 USIDs. We know that function_parent_usid
-> +	 * is one greater than the base USID.
-> +	 */
-> +	spmi_bus = of_get_parent(sdev->dev.parent->of_node);
-> +	do {
-> +		other_usid = of_get_next_child(spmi_bus, other_usid);
-> +		ret = of_property_read_u32_array(other_usid, "reg", reg, 2);
-> +		if (ret)
-> +			return ERR_PTR(ret);
-> +		sdev = spmi_device_from_of(other_usid);
-> +		if (sdev == NULL) {
-> +			/*
-> +			 * If the base USID for this PMIC hasn't probed yet
-> +			 * but the secondary USID has, then we need to defer
-> +			 * the function driver so that it will attempt to
-> +			 * probe again when the base USID is ready.
-> +			 */
-> +			if (reg[0] == function_parent_usid - 1)
-> +				return ERR_PTR(-EPROBE_DEFER);
-> +
-> +			continue;
-> +		}
-> +
-> +		if (reg[0] == function_parent_usid - 1)
-> +			return spmi_device_get_drvdata(sdev);
-> +	} while (other_usid->sibling);
-> +
-> +	return ERR_PTR(-ENODATA);
-> +}
-> +EXPORT_SYMBOL(qcom_pmic_get);
-> +
-> +static inline void pmic_print_info(struct device *dev, struct qcom_spmi_pmic *pmic)
-> +{
-> +	dev_dbg(dev, "%x: %s v%d.%d\n",
-> +		pmic->subtype, pmic->name, pmic->major, pmic->minor);
-> +}
-> +
-> +static int pmic_spmi_load_revid(struct regmap *map, struct device *dev,
-> +				 struct qcom_spmi_pmic *pmic)
->  {
-> -	unsigned int rev2, minor, major, type, subtype;
-> -	const char *name = "unknown";
->  	int ret, i;
->  
-> -	ret = regmap_read(map, PMIC_TYPE, &type);
-> +	ret = regmap_read(map, PMIC_TYPE, &pmic->type);
->  	if (ret < 0)
-> -		return;
-> +		return ret;
->  
-> -	if (type != PMIC_TYPE_VALUE)
-> -		return;
-> +	if (pmic->type != PMIC_TYPE_VALUE)
-> +		return ret;
->  
-> -	ret = regmap_read(map, PMIC_SUBTYPE, &subtype);
-> +	ret = regmap_read(map, PMIC_SUBTYPE, &pmic->subtype);
->  	if (ret < 0)
-> -		return;
-> +		return ret;
->  
->  	for (i = 0; i < ARRAY_SIZE(pmic_spmi_id_table); i++) {
-> -		if (subtype == (unsigned long)pmic_spmi_id_table[i].data)
-> +		if (pmic->subtype == (unsigned long)pmic_spmi_id_table[i].data)
->  			break;
->  	}
->  
->  	if (i != ARRAY_SIZE(pmic_spmi_id_table))
-> -		name = pmic_spmi_id_table[i].compatible;
-> +		pmic->name = devm_kstrdup_const(dev, pmic_spmi_id_table[i].compatible, GFP_KERNEL);
->  
-> -	ret = regmap_read(map, PMIC_REV2, &rev2);
-> +	ret = regmap_read(map, PMIC_REV2, &pmic->rev2);
->  	if (ret < 0)
-> -		return;
-> +		return ret;
->  
-> -	ret = regmap_read(map, PMIC_REV3, &minor);
-> +	ret = regmap_read(map, PMIC_REV3, &pmic->minor);
->  	if (ret < 0)
-> -		return;
-> +		return ret;
->  
-> -	ret = regmap_read(map, PMIC_REV4, &major);
-> +	ret = regmap_read(map, PMIC_REV4, &pmic->major);
->  	if (ret < 0)
-> -		return;
-> +		return ret;
->  
->  	/*
->  	 * In early versions of PM8941 and PM8226, the major revision number
-> @@ -124,14 +174,16 @@ static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
->  	 * Increment the major revision number here if the chip is an early
->  	 * version of PM8941 or PM8226.
->  	 */
-> -	if ((subtype == PM8941_SUBTYPE || subtype == PM8226_SUBTYPE) &&
-> -	    major < 0x02)
-> -		major++;
-> +	if ((pmic->subtype == PM8941_SUBTYPE || pmic->subtype == PM8226_SUBTYPE) &&
-> +	    pmic->major < 0x02)
-> +		pmic->major++;
-> +
-> +	if (pmic->subtype == PM8110_SUBTYPE)
-> +		pmic->minor = pmic->rev2;
->  
-> -	if (subtype == PM8110_SUBTYPE)
-> -		minor = rev2;
-> +	pmic_print_info(dev, pmic);
->  
-> -	dev_dbg(dev, "%x: %s v%d.%d\n", subtype, name, major, minor);
-> +	return 0;
->  }
->  
->  static const struct regmap_config spmi_regmap_config = {
-> @@ -144,14 +196,24 @@ static const struct regmap_config spmi_regmap_config = {
->  static int pmic_spmi_probe(struct spmi_device *sdev)
->  {
->  	struct regmap *regmap;
-> +	struct qcom_spmi_pmic *pmic;
-> +	int ret;
->  
->  	regmap = devm_regmap_init_spmi_ext(sdev, &spmi_regmap_config);
->  	if (IS_ERR(regmap))
->  		return PTR_ERR(regmap);
->  
-> +	pmic = devm_kzalloc(&sdev->dev, sizeof(*pmic), GFP_KERNEL);
-> +	if (!pmic)
-> +		return -ENOMEM;
-> +
->  	/* Only the first slave id for a PMIC contains this information */
-> -	if (sdev->usid % 2 == 0)
-> -		pmic_spmi_show_revid(regmap, &sdev->dev);
-> +	if (sdev->usid % 2 == 0) {
-> +		ret = pmic_spmi_load_revid(regmap, &sdev->dev, pmic);
-> +		if (ret < 0)
-> +			return ret;
-> +		spmi_device_set_drvdata(sdev, pmic);
-> +	}
->  
->  	return devm_of_platform_populate(&sdev->dev);
->  }
-> diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
-> new file mode 100644
-> index 000000000000..a8a77be22cfc
-> --- /dev/null
-> +++ b/include/soc/qcom/qcom-spmi-pmic.h
-> @@ -0,0 +1,60 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/* Copyright (c) 2021 Linaro. All rights reserved.
-> + * Copyright (c) 2021 Caleb Connolly <caleb.connolly@linaro.org>
-> + */
-> +
-> +#ifndef __QCOM_PMIC_H__
-> +#define __QCOM_PMIC_H__
-> +
-> +#define COMMON_SUBTYPE		0x00
-> +#define PM8941_SUBTYPE		0x01
-> +#define PM8841_SUBTYPE		0x02
-> +#define PM8019_SUBTYPE		0x03
-> +#define PM8226_SUBTYPE		0x04
-> +#define PM8110_SUBTYPE		0x05
-> +#define PMA8084_SUBTYPE		0x06
-> +#define PMI8962_SUBTYPE		0x07
-> +#define PMD9635_SUBTYPE		0x08
-> +#define PM8994_SUBTYPE		0x09
-> +#define PMI8994_SUBTYPE		0x0a
-> +#define PM8916_SUBTYPE		0x0b
-> +#define PM8004_SUBTYPE		0x0c
-> +#define PM8909_SUBTYPE		0x0d
-> +#define PM8028_SUBTYPE		0x0e
-> +#define PM8901_SUBTYPE		0x0f
-> +#define PM8950_SUBTYPE		0x10
-> +#define PMI8950_SUBTYPE		0x11
-> +#define PM8998_SUBTYPE		0x14
-> +#define PMI8998_SUBTYPE		0x15
-> +#define PM8005_SUBTYPE		0x18
-> +#define PM660L_SUBTYPE		0x1A
-> +#define PM660_SUBTYPE		0x1B
-> +#define PM8150_SUBTYPE		0x1E
-> +#define PM8150L_SUBTYPE		0x1f
-> +#define PM8150B_SUBTYPE		0x20
-> +#define PMK8002_SUBTYPE		0x21
-> +#define PM8009_SUBTYPE		0x24
-> +#define PM8150C_SUBTYPE		0x26
-> +#define SMB2351_SUBTYPE		0x29
-> +
-> +#define PMI8998_FAB_ID_SMIC	0x11
-> +#define PMI8998_FAB_ID_GF	0x30
-> +
-> +#define PM660_FAB_ID_GF		0x0
-> +#define PM660_FAB_ID_TSMC	0x2
-> +#define PM660_FAB_ID_MX		0x3
-> +
-> +struct qcom_spmi_pmic {
-> +	unsigned int type;
-> +	unsigned int subtype;
-> +	unsigned int major;
-> +	unsigned int minor;
-> +	unsigned int rev2;
-> +	const char *name;
-> +};
-> +
-> +struct device;
-> +
-> +const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev);
-> +
-> +#endif /* __QCOM_PMIC_H__ */
 
