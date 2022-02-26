@@ -2,66 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A930F4C572C
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 18:54:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11F754C5740
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 19:09:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231847AbiBZRy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 12:54:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39636 "EHLO
+        id S232173AbiBZSJl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 13:09:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbiBZRy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 12:54:56 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA9F0A418C;
-        Sat, 26 Feb 2022 09:54:21 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21QHs4T8043234;
-        Sat, 26 Feb 2022 11:54:04 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1645898044;
-        bh=UKCTPlYKasxptxjrQksvRLGUZwS0Va2B1Law47HK7OE=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=bzixc0s1f6RzzuZuZ6i9AlkyosF4POyZb9NzhAOZ3L27lUROaCzfUhfoaowabzPJX
-         iV6XxqcYLZi01j4GkJwOwmik51TaAq/E/6T0lFbMWLK4LCGOjF4FTK5FmsUwK7F5QZ
-         Ornzni2M/wENOi7Hx0LpGGTW7Vo+tLPgdbEfzeE0=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21QHs3Fn071536
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 26 Feb 2022 11:54:04 -0600
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Sat, 26
- Feb 2022 11:54:03 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Sat, 26 Feb 2022 11:54:03 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21QHs3l4031275;
-        Sat, 26 Feb 2022 11:54:03 -0600
-Date:   Sat, 26 Feb 2022 11:54:03 -0600
-From:   Bryan Brattlof <bb@ti.com>
-To:     Vignesh Raghavendra <vigneshr@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        with ESMTP id S230391AbiBZSJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 13:09:41 -0500
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC2493EB9D;
+        Sat, 26 Feb 2022 10:09:04 -0800 (PST)
+Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1nO1Ux-0008U9-7Z; Sat, 26 Feb 2022 19:08:51 +0100
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     linux-rockchip@lists.infradead.org,
+        Frank Wunderlich <linux@fw-web.de>
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Marc Zyngier <maz@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/5] arm64: Initial support for Texas Instruments AM62
- Platform
-Message-ID: <20220226175403.ewufgirmnbmjxz3j@bryanbrattlof.com>
-References: <20220225120239.1303821-1-vigneshr@ti.com>
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: rockchip: Add sata2 node to rk356x
+Date:   Sat, 26 Feb 2022 19:08:50 +0100
+Message-ID: <2815432.3mA4caTK8C@diego>
+In-Reply-To: <20220226135724.61516-1-linux@fw-web.de>
+References: <20220226135724.61516-1-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20220225120239.1303821-1-vigneshr@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,27 +46,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh
+Hi Frank,
 
-On February 25, 2022, thus sayeth Vignesh Raghavendra:
-> This adds AM62 SoC support.
+Am Samstag, 26. Februar 2022, 14:57:24 CET schrieb Frank Wunderlich:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> The AM62 SoC family is the follow on AM335x built on K3 Multicore SoC
-> architecture platform, providing ultra-low-power modes, dual display,
-> multi-sensor edge compute, security and other BOM-saving integration.
-> The AM62 SoC targets broad market to enable applications such as
-> Industrial HMI, PLC/CNC/Robot control, Medical Equipment, Building
-> Automation, Appliances and more.
+> RK356x supports up to 3 sata controllers which were compatible with the
+> existing snps,dwc-ahci binding.
 > 
-> More details can be found in the Technical Reference Manual:
-> https://www.ti.com/lit/pdf/spruiv7
+> My board has only sata2 connected to combphy2 so only add this one.
+
+how far does the added node diverge from the vendor kernel?
+
+If it's pretty much similar between both, we can assume the other nodes
+should work pretty well as well and therefore should all of them at once
+and hope for the best?
+
+Thanks
+Heiko
+
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> v3:
-> * Update DM firmware reserved region to at top of 512MB DDR region
+> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> index 7cdef800cb3c..7b6c8a0c8b84 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> @@ -230,6 +230,21 @@ scmi_shmem: sram@0 {
+>  		};
+>  	};
+>  
+> +	sata2: sata@fc800000 {
+> +		compatible = "snps,dwc-ahci";
+> +		reg = <0 0xfc800000 0 0x1000>;
+> +		clocks = <&cru ACLK_SATA2>, <&cru CLK_SATA2_PMALIVE>,
+> +			 <&cru CLK_SATA2_RXOOB>;
+> +		clock-names = "sata", "pmalive", "rxoob";
+> +		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "hostc";
+> +		phys = <&combphy2 PHY_TYPE_SATA>;
+> +		phy-names = "sata-phy";
+> +		ports-implemented = <0x1>;
+> +		power-domains = <&power RK3568_PD_PIPE>;
+> +		status = "disabled";
+> +	};
+> +
+>  	gic: interrupt-controller@fd400000 {
+>  		compatible = "arm,gic-v3";
+>  		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+> 
 
-the patches look good to me :)
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
 
-have a great weekend
-~Bryan
+
