@@ -2,105 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE3CB4C5539
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 11:43:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7404C55DC
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 13:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231164AbiBZKnr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 05:43:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48864 "EHLO
+        id S231657AbiBZMqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 07:46:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231143AbiBZKnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 05:43:45 -0500
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C25AB192C92
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 02:43:11 -0800 (PST)
-Received: by mail-lf1-x12f.google.com with SMTP id bu29so13590582lfb.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 02:43:11 -0800 (PST)
+        with ESMTP id S230311AbiBZMqP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 07:46:15 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADE9E1E4838;
+        Sat, 26 Feb 2022 04:45:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=lLG88JCPgF7Yhflf4FNi4GQedsSNMbwmPtgneUr9Mu0=;
-        b=YoUK01TmiEsBUHhYRUMOPQJYt8lJJXxv/J3wmab8N4Qhe3M7OGibTul1xW6QqLlKoj
-         pvJJjME+aMgmwUAkbTy0U0RFJ0LJjvSpZ1Tf8eVcyCa7txsyLq7dgrSZ/Fs3UlEcxHmX
-         BOh8rhelS9N917nM1WmVYc+cvxOYv4Y7PiaYbYsKCXqGRn+HDon31tZrMSyxynBgRVAD
-         T8l6lVZ8COrXjSniU7uHtA+x5Kf+I2lJomrL+j4DNw7OrJ/yruezO3Z1bOjUF9zpuwFL
-         EZI0H3kOeteVEBCOnrAuEYMEEsJbc3dVWFOVMmHnAjk7Y/LKb6DehVLtE+Uvx64NvU1L
-         x7Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=lLG88JCPgF7Yhflf4FNi4GQedsSNMbwmPtgneUr9Mu0=;
-        b=fVCQOe9fFhzzHHomXp+Lfg9twU2RL33SecBORynn91Xy0IhhsBa2EPjM4H1sHjPKO4
-         ZSsB0jZgDPxAjPpt6IynKiIjYfVm6nrUmC+Mf8SxHJ/PX81uvYDjuTfiEhfFS+5+x8Bj
-         ReTkr6u1uQqy0ghosQ1OV7dpn4+EDqNP24Hh571bbt6InoJ1hcxLrw5e7BnGIVr5M9h5
-         iLhHqD3YKDwtghPi500gC2PdQeQ1sSrHvdnzmAksB+4Zp+YhtPbnSv37beW/r6ipqI/n
-         PaylEQk38ttZ/0E+nfJ9iqIQe+VwCsyOGXDSIQIJXoe9HvqU/TjUtAtk+/i3nt9LwJZN
-         K6Wg==
-X-Gm-Message-State: AOAM531gFbMO6gDrXC6TCcVr7YD/VvlIhgzeZ4e9Q+YLNWfRAKwuwwyB
-        X1ttJBf6/OJSxzeJvjcmFGlNnyQk2KKjI59Frkc=
-X-Google-Smtp-Source: ABdhPJyfPd7pv6UL/usmWhIwH6tV2LmfkF/EMQ1p/4KqoGpODGNHE6mk13SfZzwWGGmzGEcr+K3QfHSVAuTAD8ZBFhk=
-X-Received: by 2002:a19:f80e:0:b0:443:7eba:1b89 with SMTP id
- a14-20020a19f80e000000b004437eba1b89mr7553605lff.446.1645872190195; Sat, 26
- Feb 2022 02:43:10 -0800 (PST)
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1645879541; x=1677415541;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=4iZ92ymE7jSNJuadElFGgWcrZRahUwKuEPZoUCSBzrA=;
+  b=OPKSjnl/k6XWvo4dFJ5fI26zVxREM8vXmIJJ8ivmnlJB32/bS6YjOMjz
+   bf3KpjpHgM5lsd1fJPxI4pGkOhDv42o1nL2OosxKzWyVbwRirsMiU0SSr
+   a5pKb109BxUBZNynDnlE55AjuvplglSIrgPP0gnC7YxcHuSFwmKvYVRgh
+   I=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 26 Feb 2022 04:45:40 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Feb 2022 04:45:39 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sat, 26 Feb 2022 04:45:39 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Sat, 26 Feb 2022 04:45:33 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <yung-chuan.liao@linux.intel.com>,
+        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
+Subject: [PATCH] "soundwire: qcom: revert wait for enumeration to be complete in probe"
+Date:   Sat, 26 Feb 2022 18:15:18 +0530
+Message-ID: <1645879518-14658-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Received: by 2002:a05:6520:402a:b0:199:feb0:3ce7 with HTTP; Sat, 26 Feb 2022
- 02:43:09 -0800 (PST)
-Reply-To: clmloans9@gmail.com
-From:   MR ANTHONY EDWARD <nillapep@gmail.com>
-Date:   Sat, 26 Feb 2022 11:43:09 +0100
-Message-ID: <CAHJCGRisacumTE-itWsVPYaJXjJrcPhOSB9_f3MbW63BaFsPfQ@mail.gmail.com>
-Subject: SICHERES KREDITANGEBOT BEI 2%
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: Yes, score=5.8 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FREEMAIL_REPLYTO,
-        FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        SUBJ_ALL_CAPS,T_HK_NAME_FM_MR_MRS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM
-        autolearn=no autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:12f listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.5 SUBJ_ALL_CAPS Subject is all capitals
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [clmloans9[at]gmail.com]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [nillapep[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        *  0.0 T_HK_NAME_FM_MR_MRS No description available.
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  3.5 UNDISC_FREEM Undisclosed recipients + freemail reply-to
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-X-Spam-Level: *****
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Ben=C3=B6tigen Sie ein Gesch=C3=A4ftsdarlehen oder ein Darlehen jeglicher A=
-rt?
-Wenn ja, kontaktieren Sie uns
+Revert wait for enumeration from soundwire probe as it seems
+unnecessary and device enumeration is anyway not happening here,
+hence this api is blocking till it completes max wait time.
+Also, as device enumeration event is dependent on wcd938x probe to be
+completed, its of no use waiting here.
+Waiting here increasing the boot time almost 4 seconds and impacting
+other modules like touch screen.
 
-*Vollst=C3=A4ndiger Name:
-* Ben=C3=B6tigte Menge:
-*Leihdauer:
-*Mobiltelefon:
-*Land:
+Revert: commit 06dd96738d618 ("soundwire: qcom: wait for enumeration to be complete in probe")
+
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+---
+ drivers/soundwire/qcom.c | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+index 5481341..9eb31ba 100644
+--- a/drivers/soundwire/qcom.c
++++ b/drivers/soundwire/qcom.c
+@@ -133,7 +133,6 @@ struct qcom_swrm_ctrl {
+ 	struct dentry *debugfs;
+ #endif
+ 	struct completion broadcast;
+-	struct completion enumeration;
+ 	struct work_struct slave_work;
+ 	/* Port alloc/free lock */
+ 	struct mutex port_lock;
+@@ -486,7 +485,6 @@ static int qcom_swrm_enumerate(struct sdw_bus *bus)
+ 		}
+ 	}
+ 
+-	complete(&ctrl->enumeration);
+ 	return 0;
+ }
+ 
+@@ -1262,7 +1260,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+ 	dev_set_drvdata(&pdev->dev, ctrl);
+ 	mutex_init(&ctrl->port_lock);
+ 	init_completion(&ctrl->broadcast);
+-	init_completion(&ctrl->enumeration);
+ 
+ 	ctrl->bus.ops = &qcom_swrm_ops;
+ 	ctrl->bus.port_ops = &qcom_swrm_port_ops;
+@@ -1309,8 +1306,6 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	qcom_swrm_init(ctrl);
+-	wait_for_completion_timeout(&ctrl->enumeration,
+-				    msecs_to_jiffies(TIMEOUT_MS));
+ 	ret = qcom_swrm_register_dais(ctrl);
+ 	if (ret)
+ 		goto err_master_add;
+-- 
+2.7.4
+
