@@ -2,175 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C99BC4C57AC
-	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 19:43:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 677B14C57D9
+	for <lists+devicetree@lfdr.de>; Sat, 26 Feb 2022 20:45:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232756AbiBZSm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 13:42:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35548 "EHLO
+        id S229495AbiBZTqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 14:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232821AbiBZSmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 13:42:43 -0500
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F12B61E64FD;
-        Sat, 26 Feb 2022 10:42:05 -0800 (PST)
-Received: by mail-qt1-x832.google.com with SMTP id s15so5512870qtk.10;
-        Sat, 26 Feb 2022 10:42:05 -0800 (PST)
+        with ESMTP id S229481AbiBZTqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 14:46:22 -0500
+Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E97961D2B64
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 11:45:46 -0800 (PST)
+Received: by mail-oi1-x22b.google.com with SMTP id z7so10253427oid.4
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 11:45:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OHIHH7LBjO7n3w0TkyTvZ+CHhZPHMYRUZ96K/VbT0E0=;
-        b=aIKmXmXT0X3QGneIFAV3GhqKa4LgEhGVof8di7S4VZTO3vixTBvQ18ZxWjDRJJJn7d
-         L3kouKub8Vu8dxjHqk+L4g4vIN30KNoaIxOu5RZH75NLsvfkpzNtrLzXmvXNNwnYKpGh
-         nZcn8AP5Gn9bSm3UlB6HfQCWMKxmz7YrxTH6pJVewCZs4rmS5SoW/vOgbgF63siaUj1q
-         NJp5hQIe9XrYcGX32A8i+uuVqc5qVyrsc0Kk4ERlPHNJb82AcdcQ0DkFxMQMUoUZycLy
-         ca1MGC8AtLvQlJzYz17WoUWa/oQ/7BjiZtGxmgiH1jDDbdMKTTjSKDXpRnzRZ2Xeh2V2
-         HQGQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=G0LikWpQrgCEVAd/hghIBEOt7qAlJsmKHlkOI041WVQ=;
+        b=JuziWhM42LSaP7+BUHxkNfGKuKIjZDXDNL1XEpuTYTW7oe2SdnYhEU0AySdOvp6JMC
+         ruIMP3EnxeWKVeiJF+4C9E8b/sAAsGTa3Oy/IMwWkHspp0cDRtARxb08FKXZMybX95fe
+         AO2pfTGQdRJG7iji+fehbHt+8VBIN7sg4Q4PdXx7LCI1s6ww1CVjKTrbRb/M2A09mR2I
+         M1/kBcqgCHCHKFGdiT+Bw63M6cXy+LZFLGqgZCIbeKa+WqwTF9QVblH7TKam/B1/davv
+         p3hVBhOnqkBeYQqPRelTIxY8gj45/QYX24Uy4U4euZLcab7xtVyoG55tl4IRv2yhB9nt
+         kBsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OHIHH7LBjO7n3w0TkyTvZ+CHhZPHMYRUZ96K/VbT0E0=;
-        b=FnDrvVutfQf6cGUZSDAM7kZ0Xuf9utTfL+ykAkEpB2jtStGBrJ9JymyiCF8+ws/58n
-         zsWUgVRgSGj8W0gBeb2K1vMvM/osr1cy8WJgnKZwTW0s1AWYhnXRsh1f6hx34F86Iyye
-         svvHfrKT2+WdSsTJA49oh5PElGDBSJ59LbV1l4QdLDQXWretCCOh/1rdXOQlwICjdX6e
-         EHkAimNZqpqyYBsYPbLqeTBbSKegGMBc0M3stDqHZdQu/i7SPz82+CWOYOdfZp9BmICS
-         yOWZMyZP+CTzjQOIpzBQg67v4+P2ugaZ6Hupd7LkHCY419mHB/z0wqDlaBKF9IOQotZT
-         nX0g==
-X-Gm-Message-State: AOAM532sP5qBq5i6S9TVzj4wk+q9LEXyphzBcPEvCIDRFcZCzmValu5u
-        nfHTMKbuKIbttvYmZx0ur3w=
-X-Google-Smtp-Source: ABdhPJxlMcbNkkrusXkql9nwS+Wn/Z9sD2cs8nqKgPu+C8cCCHwwYoC2LCrMmNBJLLog7nn4qwdHmg==
-X-Received: by 2002:a05:622a:1187:b0:2de:6ffc:19f8 with SMTP id m7-20020a05622a118700b002de6ffc19f8mr11440373qtk.453.1645900925094;
-        Sat, 26 Feb 2022 10:42:05 -0800 (PST)
-Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
-        by smtp.gmail.com with ESMTPSA id p68-20020a378d47000000b006491d2d1450sm2891983qkd.10.2022.02.26.10.42.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Feb 2022 10:42:04 -0800 (PST)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     linux-rockchip@lists.infradead.org, michael.riesch@wolfvision.net,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 11/11] arm64: dts: rockchip: add usb3 support to rk3568-evb1-v10
-Date:   Sat, 26 Feb 2022 13:41:47 -0500
-Message-Id: <20220226184147.769964-12-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220226184147.769964-1-pgwipeout@gmail.com>
-References: <20220226184147.769964-1-pgwipeout@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=G0LikWpQrgCEVAd/hghIBEOt7qAlJsmKHlkOI041WVQ=;
+        b=2PSgSF1i7lqBsTOd5Uxwyfhd+LwUAVRP1PEJN7VjqqbUck2i1O5jrUgVLaWtyfYc3B
+         prPbbwISQE07/OnOvj6JOkG5rwl2+zJ5sVdZg1FtvxClKeVd66v+Uq5EQh9pRHrPlZuV
+         Hu8qgjNTRm/Kv1zbx6lVI48J4LH5CgiZ4/PspEofB8FJ2UK575MJVW8nmDyqMQP/tmAF
+         HkCtV6xZZyOd1rZJDamvWtidzyeIimw5lw2XHd2vQNWqQOusHHC9lmCJC10B/eoTd4wW
+         FgRIj46LVe69B0Lr24Dw/i9MfcLfL/OEKvpOIOKb/Faz4reRtCgelNH+P+2T6lFM59wl
+         jSXA==
+X-Gm-Message-State: AOAM530tn0hxUrFIXJV1q2yPVl5cDBf7cv8PaRMdGPCU4YRK95Ih7AfP
+        kBvKYLLpT04ElFudUYIGZ2BsWQVKBJ9KYAjzirOY0Q==
+X-Google-Smtp-Source: ABdhPJz786dnCnXNbTmV4p7Lmn17CQKnslbaJbIHJHc3Hu4lN30zOMD6daZAI1f/AcIyRbYaTykSNVg2TOhmALI/MYY=
+X-Received: by 2002:a54:4494:0:b0:2d7:652b:287 with SMTP id
+ v20-20020a544494000000b002d7652b0287mr3117288oiv.126.1645904746192; Sat, 26
+ Feb 2022 11:45:46 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20220224123248.67073-1-bhupesh.sharma@linaro.org>
+ <20220224123248.67073-2-bhupesh.sharma@linaro.org> <1645711159.080022.2923124.nullmailer@robh.at.kernel.org>
+ <Yhk3NYfTlGqBJiz7@robh.at.kernel.org>
+In-Reply-To: <Yhk3NYfTlGqBJiz7@robh.at.kernel.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 27 Feb 2022 01:15:35 +0530
+Message-ID: <CAH=2Ntzyd3=fh5PDhHDrUAFTX9GJ6NtNubdPFHqddo3PzyY4xA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: qcom,qmp: Describe
+ 'vdda-max-microamp' & 'vdda-pll-max-microamp' properties
+To:     Rob Herring <robh@kernel.org>
+Cc:     agross@kernel.org, bhupesh.linux@gmail.com,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Riesch <michael.riesch@wolfvision.net>
+Hi Rob,
 
-The Rockchip RK3568 EVB1 features one USB 3.0 device-only
-(USB 2.0 OTG) port and one USB 3.0 host-only port.
-Activate the USB 3.0 controller nodes and phy nodes in the
-device tree.
+On Sat, 26 Feb 2022 at 01:38, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Feb 24, 2022 at 07:59:19AM -0600, Rob Herring wrote:
+> > On Thu, 24 Feb 2022 18:02:48 +0530, Bhupesh Sharma wrote:
+> > > Since a few boards based on QCoM qmp phy use the
+> > > 'vdda-max-microamp' & 'vdda-pll-max-microamp' properties to
+> > > describe the ufs phy nodes, add them to the dt-bindings doc as well.
+> > >
+> > > This fixes the following '$ make dtbs_check' warning(s):
+> > >
+> > > sm8350-microsoft-surface-duo2.dt.yaml: phy@1d87000:
+> > >   'vdda-max-microamp', 'vdda-pll-max-microamp' do not match any of
+> > >    the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> > >
+> > > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > Cc: Vinod Koul <vkoul@kernel.org>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 8 ++++++++
+> > >  1 file changed, 8 insertions(+)
+> > >
+> >
+> > Running 'make dtbs_check' with the schema in this patch gives the
+> > following warnings. Consider if they are expected or the schema is
+> > incorrect. These may not be new warnings.
+> >
+> > Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> > This will change in the future.
+> >
+> > Full log is available here: https://patchwork.ozlabs.org/patch/1597137
+> >
+> >
+> > phy@1c07000: 'lanes@1c06000' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >       arch/arm/boot/dts/qcom-sdx55-mtp.dt.yaml
+> >       arch/arm/boot/dts/qcom-sdx55-t55.dt.yaml
+> >       arch/arm/boot/dts/qcom-sdx55-telit-fn980-tlb.dt.yaml
+> >
+> > phy@1c0e000: 'lanes@1c0e200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >       arch/arm64/boot/dts/qcom/sc7280-crd.dt.yaml
+> >       arch/arm64/boot/dts/qcom/sc7280-herobrine.dt.yaml
+> >       arch/arm64/boot/dts/qcom/sc7280-idp2.dt.yaml
+> >       arch/arm64/boot/dts/qcom/sc7280-idp.dt.yaml
+> >
+> > phy@1d87000: 'lanes@1d87400' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >       arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml
+> >
+> > phy@627000: 'vdda-phy-max-microamp', 'vddp-ref-clk-always-on', 'vddp-ref-clk-max-microamp' do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >       arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml
+> >       arch/arm64/boot/dts/qcom/msm8996-xiaomi-scorpio.dt.yaml
+>
+> I'm curious why these are not fixed too?
 
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
----
- .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 46 +++++++++++++++++++
- 1 file changed, 46 insertions(+)
+Seems I missed this one. Will fix this in v2.
+Thanks for pointing it out.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-index a794a0ea5c70..622be8be9813 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts
-@@ -103,6 +103,18 @@ vcc5v0_usb_host: vcc5v0-usb-host {
- 		vin-supply = <&vcc5v0_usb>;
- 	};
- 
-+	vcc5v0_usb_otg: vcc5v0-usb-otg {
-+		compatible = "regulator-fixed";
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc5v0_usb_otg_en>;
-+		regulator-name = "vcc5v0_usb_otg";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&vcc5v0_usb>;
-+	};
-+
- 	vcc3v3_lcd0_n: vcc3v3-lcd0-n {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc3v3_lcd0_n";
-@@ -136,6 +148,14 @@ regulator-state-mem {
- 	};
- };
- 
-+&combphy0 {
-+	status = "okay";
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
- &cpu0 {
- 	cpu-supply = <&vdd_cpu>;
- };
-@@ -507,6 +527,9 @@ usb {
- 		vcc5v0_usb_host_en: vcc5v0_usb_host_en {
- 			rockchip,pins = <0 RK_PA6 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
-+		vcc5v0_usb_otg_en: vcc5v0_usb_otg_en {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
- 	};
- };
- 
-@@ -568,6 +591,11 @@ &usb_host0_ohci {
- 	status = "okay";
- };
- 
-+&usb_host0_xhci {
-+	extcon = <&usb2phy0>;
-+	status = "okay";
-+};
-+
- &usb_host1_ehci {
- 	status = "okay";
- };
-@@ -576,6 +604,24 @@ &usb_host1_ohci {
- 	status = "okay";
- };
- 
-+&usb_host1_xhci {
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_usb_host>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	vbus-supply = <&vcc5v0_usb_otg>;
-+	status = "okay";
-+};
-+
- &usb2phy1 {
- 	status = "okay";
- };
--- 
-2.25.1
-
+Regards,
+Bhupesh
