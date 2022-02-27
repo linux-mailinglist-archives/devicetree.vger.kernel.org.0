@@ -2,179 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C3F44C5A93
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 12:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C724C5AC0
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 12:58:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbiB0LDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 06:03:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
+        id S230303AbiB0L6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 06:58:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbiB0LDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 06:03:14 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2895512AB6
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 03:02:37 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2F9573FCAC
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 11:02:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645959755;
-        bh=RXUmSRm1O1VoA9wS7MAMGWoCbD7WOkk+zqEQ16+dydg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=l6WSRCryKsOmT77rOjXQSiMoDDR8OTmBNyXErp93OEsHZHMdqHAqTF/CI8vG1Wh7h
-         f4HH5OsH1lltbbvWPZOdmnsMa2WQVgtbyVWEgQfSJOqc21SJmqYCsGZUffMmmmwdQh
-         umnPckaaMDsvCBL6Eh5NZVVlbQ4QJAfSed8zqNj92umzprSKAg36VaZKs01cVqXXd9
-         fSbDEEEqqM+cgqupXN1MItg/VH15ihaAVSmVtmKrQXQtqUB645EgIG3b4KggT+Ogqc
-         m13hTlk1KFSpEuWH6CAv+f7U+J/IclVVRT3avc7DH8AgPMK0nta3Fk7jkd54yWGUTf
-         bdOSSPd1kp7nA==
-Received: by mail-ej1-f69.google.com with SMTP id m4-20020a170906160400b006be3f85906eso4346868ejd.23
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 03:02:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=RXUmSRm1O1VoA9wS7MAMGWoCbD7WOkk+zqEQ16+dydg=;
-        b=vB15RxxTGrJxDjsRup2Ur/nZkwVqLxoKaVZDPS0hMbq7g5hRIXvL/gDJV7F633p76/
-         o4nqZLUL+AN5gFtzP/HUQaarbC6iWYP9ApDI9egethuqPQQqS2l7MtAWuz+BcoSzGfxe
-         k/a6bx8RPdOS8F513NyrxhlXEamSVHnZcePoEXoih5irGV976N5M5ekkQ3gvu4r+VgId
-         0Jf6eCG0eU9KK+Eq4i5aDwMRpG0so9h3g06YFHk/J/FLeuN89OTQvjhsSWw2Y6LdyJCz
-         eCP2iW3eGMHVOvs28ZO9yUaTDKyi5Kv/Xiz+WDHy7oGgEgXupIBQ61qb4AsWd+4zUGeY
-         qXcA==
-X-Gm-Message-State: AOAM530H8PnQIWssqWvC4LYi0Sv4tiCe7SM7XkM5SI6R0QH0z+PA1lbU
-        8UB0aT68Zf3HiKJMwKJHEugFFDrB0EDvd0D/uflA8BLutMlBaV/SobjAmWpu8G/lzyBynL204h5
-        sg2UfnIwtBnyyA1H1tmrwz2npW0RDoPYxn+ptURo=
-X-Received: by 2002:a05:6402:2790:b0:412:8379:f248 with SMTP id b16-20020a056402279000b004128379f248mr14812885ede.285.1645959754636;
-        Sun, 27 Feb 2022 03:02:34 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyOM38cLX4uJ8ipUpfRHTzICOBLEWeXU+W9FDRpLDjRd8H4IszimlckdjrXsnhAtzX8cIRIrQ==
-X-Received: by 2002:a05:6402:2790:b0:412:8379:f248 with SMTP id b16-20020a056402279000b004128379f248mr14812867ede.285.1645959754460;
-        Sun, 27 Feb 2022 03:02:34 -0800 (PST)
-Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id lx9-20020a170906af0900b006d0d3179e11sm3245068ejb.105.2022.02.27.03.02.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Feb 2022 03:02:33 -0800 (PST)
-Message-ID: <1924a900-20db-93b5-4f9b-37a56467f7e8@canonical.com>
-Date:   Sun, 27 Feb 2022 12:02:32 +0100
+        with ESMTP id S229797AbiB0L6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 06:58:36 -0500
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com [64.147.123.21])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29541A827;
+        Sun, 27 Feb 2022 03:57:57 -0800 (PST)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.west.internal (Postfix) with ESMTP id 230403200D78;
+        Sun, 27 Feb 2022 06:57:54 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Sun, 27 Feb 2022 06:57:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-transfer-encoding:date:date:from:from
+        :in-reply-to:message-id:mime-version:reply-to:sender:subject
+        :subject:to:to; s=fm3; bh=JMgt1OmqAlyRfHsJvlGYeUhTKzD1mdKFnFYq89
+        SzjJ8=; b=lqR9SiAO7VglTKNL4jRvpYwRiE+3XtIiFrSeZiHWUgz76m4+Xqca60
+        uC6MHJuNOGlLsntnU2cVhs8stxB6+ulwORd8ll4JP0yMHQYlzi8WyEKe+2iYTZ+M
+        g3PlG4yGQaqIKV8PdcKzGtJezOxPkHDusGhowiow4jUpOCaTjhaB45AJrLDjpD0p
+        uOlIaFBRQ8teBEcrKgvEcuMaufbs19K5ZnrhTPWTpDHQh59oMgpAo1461vcvBneJ
+        QCognpvT7YvidFHjTexElNXQyQ5g9JxufN4wsOo+F4tUt6YO3coyYxt89qj0iL4U
+        769Uo2xqmIdO0prx9HqYwBfk5W/dUInA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
+        :from:from:in-reply-to:message-id:mime-version:reply-to:sender
+        :subject:subject:to:to:x-me-proxy:x-me-proxy:x-me-sender
+        :x-me-sender:x-sasl-enc; s=fm2; bh=JMgt1OmqAlyRfHsJvlGYeUhTKzD1m
+        dKFnFYq89SzjJ8=; b=hVFuO1c4kDTHtaj8/Eu31VkidR03N7/0X5O+v4d744gPT
+        hWz3vyinBLSgRHc7TjE48l4zhoimJtpgvh6BRGqbm2RmWP9fDb3sIO0xSnZ5VFK4
+        YoMsnUQye0SetYrFsK10faDw5sySp4x9i5O2q0sAmwb160G3HaTdc7PE9Ep+MDVn
+        4ZDtCAZ+9HxAInoKB4ne5DaXbKeCjP9eDUBgGlAZcpOujZhnSLXWw4T6pDPm4yjn
+        ek5/ogslQkVLXxMxbA2YPFSp+7iK/Rd/P4FGC+FIMk3nAPmPGIobHX3uBFo/qvth
+        Q31MAAts7ZSou5hl9d2gJtg59OfbtIoqyCNxBkoLw==
+X-ME-Sender: <xms:QWcbYjXbtjRTkn6UEzesWTlyLdPAfRsHDTepL3_hhBRV1krRQQ58Zg>
+    <xme:QWcbYrkPnw0MwbAdj40ihoKVvkoK_pW6ub3eTZgSqb9bzgLows8XZykBa7uIJeoWT
+    mvk2AFG3Cl98nuVG7Q>
+X-ME-Received: <xmr:QWcbYvY_xpj4co0JCNfH-eLZ8ChpgfSLoyBAh3a49MfedgeiOBC710I3zwO8UTHJbn3N19Wf_KisxTUeEv2Q5rirPGojUeBT0xMlF7X-kRqF7Ig6RtiQnYJEVEYPa3k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrleekgdeffecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefhvffufffkofgggfestdekredtredttdenucfhrhhomhepufhvvghnucfrvght
+    vghruceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrghtthgvrhhnpe
+    duffejkeevlefggfekkeevjeffgeekjedtjedtfeethfeludehkeehgfeuteekhfenucff
+    ohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:QWcbYuWri7l9Nvt6nCkFOHYd1kgbqC91YFT9AD0EAXMuSOyFw8FLYA>
+    <xmx:QWcbYtmyR8bHU_mDVJxa4USZQIUsIGBJaqjVmh5qZs3XbTHhTvKfYA>
+    <xmx:QWcbYre4KGbdWtWKmilbHbHo7A29UjB-_i7n3Ut0dmeL7dVOnpE-wQ>
+    <xmx:QWcbYjX6vyV_pmiFtbjAiBOpd4FtAiBJqUyRMBFfQ4hUeORkXYkskQ>
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
+ 27 Feb 2022 06:57:51 -0500 (EST)
+From:   Sven Peter <sven@svenpeter.dev>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Sven Peter <sven@svenpeter.dev>, Hector Martin <marcan@marcan.st>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Mark Kettenis <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: nvmem: Add apple,efuses
+Date:   Sun, 27 Feb 2022 12:57:42 +0100
+Message-Id: <20220227115743.69059-1-sven@svenpeter.dev>
+X-Mailer: git-send-email 2.30.1 (Apple Git-130)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: edac: npcm-edac.yaml
-Content-Language: en-US
-To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
-        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
-        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com
-Cc:     linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Medad CChien <ctcchien@nuvoton.com>
-References: <20220224074729.5206-1-ctcchien@nuvoton.com>
- <20220224074729.5206-3-ctcchien@nuvoton.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220224074729.5206-3-ctcchien@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/02/2022 08:47, Medad CChien wrote:
-> Add the device tree bindings for the EDAC driver npcm-edac.
-> 
-> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> ---
->  .../devicetree/bindings/edac/npcm-edac.yaml   | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/npcm-edac.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/edac/npcm-edac.yaml b/Documentation/devicetree/bindings/edac/npcm-edac.yaml
-> new file mode 100644
-> index 000000000000..228ace1025dc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/npcm-edac.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/edac/npcm-edac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NPCM Memory Controller EDAC
-> +
-> +maintainers:
-> +  - Medad CChien <ctcchien@nuvoton.com>
-> +
-> +description: |
-> +  EDAC node is defined to describe on-chip error detection and correction for
-> +  Nuvoton NPCM Memory Controller.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,npcm8xx-edac
-> +      - nuvoton,npcm7xx-edac
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
+Apple SoCs come with eFuses used to store factory-programmed data
+such as calibration settings for the PCIe and Type-C PHY.
 
-Why do you need it? There are no children nodes allowed.
+Signed-off-by: Sven Peter <sven@svenpeter.dev>
+---
+ .../bindings/nvmem/apple,efuses.yaml          | 50 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 51 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
 
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    items:
-> +      - description: uncorrectable error interrupt
-> +      - description: correctable error interrupt
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    items:
-> +      - const: ue
-> +      - const: ce
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    ahb {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +        mc: memory-controller@f0824000 {
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            reg = <0x0 0xf0824000 0x0 0x1000>;
-> +            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> +            compatible = "nuvoton,npcm7xx-edac";
+diff --git a/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml b/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+new file mode 100644
+index 000000000000..a735d54856ae
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/apple,efuses.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Apple SoC eFuse-based NVMEM
++
++description: |
++  Apple SoCs such as the M1 contain factory-programmed eFuses used to e.g. store
++  calibration data for the PCIe and the Type-C PHY or unique chip identifiers such
++  as the ECID.
++
++maintainers:
++  - Sven Peter <sven@svenpeter.dev>
++
++allOf:
++  - $ref: "nvmem.yaml#"
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - apple,t8103-efuses
++          - apple,t6000-efuses
++      - const: apple,efuses
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@3d2bc000 {
++        compatible = "apple,t8103-efuses", "apple,efuses";
++        reg = <0x3d2bc000 0x1000>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++
++        ecid: efuse@500 {
++              reg = <0x500 0x8>;
++        };
++    };
++
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2524b75763cd..1bc57af09c80 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -1771,6 +1771,7 @@ F:	Documentation/devicetree/bindings/arm/apple/*
+ F:	Documentation/devicetree/bindings/i2c/apple,i2c.yaml
+ F:	Documentation/devicetree/bindings/interrupt-controller/apple,aic.yaml
+ F:	Documentation/devicetree/bindings/mailbox/apple,mailbox.yaml
++F:	Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+ F:	Documentation/devicetree/bindings/pci/apple,pcie.yaml
+ F:	Documentation/devicetree/bindings/pinctrl/apple,pinctrl.yaml
+ F:	Documentation/devicetree/bindings/power/apple*
+-- 
+2.25.1
 
-First compatible, then reg, then the rest, please.
-
-> +        };
-> +    };
-> +
-
-
-Best regards,
-Krzysztof
