@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E2F64C5A89
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 11:58:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C3F44C5A93
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 12:02:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229985AbiB0K7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 05:59:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56838 "EHLO
+        id S229982AbiB0LDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 06:03:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229614AbiB0K7P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 05:59:15 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A4F54DF49
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:58:39 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        with ESMTP id S229928AbiB0LDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 06:03:14 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2895512AB6
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 03:02:37 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 69EF43F1DD
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 10:58:38 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2F9573FCAC
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 11:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645959518;
-        bh=2bOCiusGq2ul/MWsE8cSC2kGM7wquiIO9nYKtCZH63I=;
+        s=20210705; t=1645959755;
+        bh=RXUmSRm1O1VoA9wS7MAMGWoCbD7WOkk+zqEQ16+dydg=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=bATA61xMq9rLGkt6t5BC9H4jpR6EW41nnCA5E1ZX4+Tck4E70nDedfeDVvq6Izoiq
-         kc/Wl7VbUNH6FpGc24aO4SUfNaKVYRAsGwwhIAIPwsg1hV5nc33lAIKDD0ZOnd4Vc6
-         c14Bp0VE5/wPE5lvRX/EWTBqynxB0ntgN1gMgOmb8eGyXCF1Yuijms4M64o9Dni8MB
-         pNdkb2MdJwhjPMa+1DMNtOelJIjPpP5foMh5Otwg4GhxxwQ+rdw7b5e9pnm00Jv2ch
-         tkjSMXQtUrBnopJbUfbVyytzVmyWMsMP91DgTxdAPDPMPNhG4pp4JubUSr+nEPQI2G
-         t2AhGb9NRCeIA==
-Received: by mail-ed1-f71.google.com with SMTP id s7-20020a508dc7000000b0040f29ccd65aso4107541edh.1
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:58:38 -0800 (PST)
+        b=l6WSRCryKsOmT77rOjXQSiMoDDR8OTmBNyXErp93OEsHZHMdqHAqTF/CI8vG1Wh7h
+         f4HH5OsH1lltbbvWPZOdmnsMa2WQVgtbyVWEgQfSJOqc21SJmqYCsGZUffMmmmwdQh
+         umnPckaaMDsvCBL6Eh5NZVVlbQ4QJAfSed8zqNj92umzprSKAg36VaZKs01cVqXXd9
+         fSbDEEEqqM+cgqupXN1MItg/VH15ihaAVSmVtmKrQXQtqUB645EgIG3b4KggT+Ogqc
+         m13hTlk1KFSpEuWH6CAv+f7U+J/IclVVRT3avc7DH8AgPMK0nta3Fk7jkd54yWGUTf
+         bdOSSPd1kp7nA==
+Received: by mail-ej1-f69.google.com with SMTP id m4-20020a170906160400b006be3f85906eso4346868ejd.23
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 03:02:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=2bOCiusGq2ul/MWsE8cSC2kGM7wquiIO9nYKtCZH63I=;
-        b=MkXV8feJZltdgLdQHt7+IZW4XkDQNPAoTXxVfe+ckHbCYy4uPtTpOkt2oP6psKutRk
-         NFCfFl67/PGVJTqzUOn6NzjQ4lw8uzW92R6NqTeFyTmwI9fQf5EQ3qBmzTBfX1F1dgNd
-         p8uxcmpRMMORD2U0eLwGNDHmynYOKThRV9jfolbGlQU37OgzXqPkjxFiQRLNoJHEhWJC
-         FUo0O5/YgBWm72QP2dia75l3Rkxa8D/GG8zKUysPENcnTcD77AixzX8XfcrWpYB5p+fe
-         AmKNkLHdXmolBGR1axLDYkYQNCmjWzUumKgg+M0ScZUmapkRp0V2niyyE9xAfZURXv9h
-         cNiw==
-X-Gm-Message-State: AOAM532ObDeSR/eTYGslI+QuSVZv5lIikPdR+OrEUJq4UucUbTO7fCgL
-        ehYITtxS4PYOOtxgy+sL8NUik6e+HPQkB8U6KKw1ZuWB8+v8wrLJSh08kNPrj9p0SCOc/XqoWzB
-        T2KCVY3A+KsSbzGG5n4lnfSg/1dW01KNmKSWVy6k=
-X-Received: by 2002:a05:6402:350d:b0:410:b608:ff4f with SMTP id b13-20020a056402350d00b00410b608ff4fmr14922907edd.89.1645959518000;
-        Sun, 27 Feb 2022 02:58:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxoFbq1X2KP1qKbtNx82/SCmsEevJmYxZ2Bf2LLbkURS/vDpov5C3QYi0mxgeV/lId9Uap8Sg==
-X-Received: by 2002:a05:6402:350d:b0:410:b608:ff4f with SMTP id b13-20020a056402350d00b00410b608ff4fmr14922898edd.89.1645959517865;
-        Sun, 27 Feb 2022 02:58:37 -0800 (PST)
+        bh=RXUmSRm1O1VoA9wS7MAMGWoCbD7WOkk+zqEQ16+dydg=;
+        b=vB15RxxTGrJxDjsRup2Ur/nZkwVqLxoKaVZDPS0hMbq7g5hRIXvL/gDJV7F633p76/
+         o4nqZLUL+AN5gFtzP/HUQaarbC6iWYP9ApDI9egethuqPQQqS2l7MtAWuz+BcoSzGfxe
+         k/a6bx8RPdOS8F513NyrxhlXEamSVHnZcePoEXoih5irGV976N5M5ekkQ3gvu4r+VgId
+         0Jf6eCG0eU9KK+Eq4i5aDwMRpG0so9h3g06YFHk/J/FLeuN89OTQvjhsSWw2Y6LdyJCz
+         eCP2iW3eGMHVOvs28ZO9yUaTDKyi5Kv/Xiz+WDHy7oGgEgXupIBQ61qb4AsWd+4zUGeY
+         qXcA==
+X-Gm-Message-State: AOAM530H8PnQIWssqWvC4LYi0Sv4tiCe7SM7XkM5SI6R0QH0z+PA1lbU
+        8UB0aT68Zf3HiKJMwKJHEugFFDrB0EDvd0D/uflA8BLutMlBaV/SobjAmWpu8G/lzyBynL204h5
+        sg2UfnIwtBnyyA1H1tmrwz2npW0RDoPYxn+ptURo=
+X-Received: by 2002:a05:6402:2790:b0:412:8379:f248 with SMTP id b16-20020a056402279000b004128379f248mr14812885ede.285.1645959754636;
+        Sun, 27 Feb 2022 03:02:34 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyOM38cLX4uJ8ipUpfRHTzICOBLEWeXU+W9FDRpLDjRd8H4IszimlckdjrXsnhAtzX8cIRIrQ==
+X-Received: by 2002:a05:6402:2790:b0:412:8379:f248 with SMTP id b16-20020a056402279000b004128379f248mr14812867ede.285.1645959754460;
+        Sun, 27 Feb 2022 03:02:34 -0800 (PST)
 Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id t2-20020aa7db02000000b00412cd5d5148sm4403973eds.47.2022.02.27.02.58.36
+        by smtp.gmail.com with ESMTPSA id lx9-20020a170906af0900b006d0d3179e11sm3245068ejb.105.2022.02.27.03.02.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Feb 2022 02:58:37 -0800 (PST)
-Message-ID: <e6f3ceb8-7b02-020a-7b2c-07520f6d9661@canonical.com>
-Date:   Sun, 27 Feb 2022 11:58:36 +0100
+        Sun, 27 Feb 2022 03:02:33 -0800 (PST)
+Message-ID: <1924a900-20db-93b5-4f9b-37a56467f7e8@canonical.com>
+Date:   Sun, 27 Feb 2022 12:02:32 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 4/5] dt-bindings: hwmon: Add nuvoton,nct6775
+Subject: Re: [PATCH v1 2/3] dt-bindings: edac: npcm-edac.yaml
 Content-Language: en-US
-To:     Zev Weiss <zev@bewilderbeest.net>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>
-Cc:     Renze Nicolai <renze@rnplus.nl>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-References: <20220226133047.6226-1-zev@bewilderbeest.net>
- <20220226133047.6226-5-zev@bewilderbeest.net>
+To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
+        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com
+Cc:     linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Medad CChien <ctcchien@nuvoton.com>
+References: <20220224074729.5206-1-ctcchien@nuvoton.com>
+ <20220224074729.5206-3-ctcchien@nuvoton.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220226133047.6226-5-zev@bewilderbeest.net>
+In-Reply-To: <20220224074729.5206-3-ctcchien@nuvoton.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -86,21 +89,91 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/02/2022 14:30, Zev Weiss wrote:
-> These Super I/O chips have an i2c interface that some systems expose
-> to a BMC; the BMC's device tree can now describe that via this
-> binding.
+On 24/02/2022 08:47, Medad CChien wrote:
+> Add the device tree bindings for the EDAC driver npcm-edac.
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
 > ---
->  .../bindings/hwmon/nuvoton,nct6775.yaml       | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+>  .../devicetree/bindings/edac/npcm-edac.yaml   | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/npcm-edac.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/edac/npcm-edac.yaml b/Documentation/devicetree/bindings/edac/npcm-edac.yaml
+> new file mode 100644
+> index 000000000000..228ace1025dc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/edac/npcm-edac.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/edac/npcm-edac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton NPCM Memory Controller EDAC
+> +
+> +maintainers:
+> +  - Medad CChien <ctcchien@nuvoton.com>
+> +
+> +description: |
+> +  EDAC node is defined to describe on-chip error detection and correction for
+> +  Nuvoton NPCM Memory Controller.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,npcm8xx-edac
+> +      - nuvoton,npcm7xx-edac
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
 
-Bindings should be the first patch in a series.
+Why do you need it? There are no children nodes allowed.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: uncorrectable error interrupt
+> +      - description: correctable error interrupt
+> +
+> +  interrupt-names:
+> +    minItems: 1
+> +    items:
+> +      - const: ue
+> +      - const: ce
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    ahb {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        mc: memory-controller@f0824000 {
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            reg = <0x0 0xf0824000 0x0 0x1000>;
+> +            interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +            compatible = "nuvoton,npcm7xx-edac";
+
+First compatible, then reg, then the rest, please.
+
+> +        };
+> +    };
+> +
 
 
 Best regards,
