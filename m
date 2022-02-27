@@ -2,98 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EBD74C5933
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 05:00:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 927C44C593B
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 05:19:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229928AbiB0EAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 23:00:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52970 "EHLO
+        id S229906AbiB0EUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Feb 2022 23:20:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229776AbiB0EAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 23:00:32 -0500
-Received: from mail-oi1-x230.google.com (mail-oi1-x230.google.com [IPv6:2607:f8b0:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5430A1DAC79;
-        Sat, 26 Feb 2022 19:59:57 -0800 (PST)
-Received: by mail-oi1-x230.google.com with SMTP id ay7so10711219oib.8;
-        Sat, 26 Feb 2022 19:59:57 -0800 (PST)
+        with ESMTP id S229909AbiB0EUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 23:20:19 -0500
+Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92844DD7
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 20:19:43 -0800 (PST)
+Received: by mail-oo1-xc2d.google.com with SMTP id r41-20020a4a966c000000b0031bf85a4124so13415987ooi.0
+        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 20:19:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Yc4Md8uQ1K2PiNkAhQu02D29TgOkrggKvXdUOlqcNUY=;
-        b=EWJKvI4iumVT90vWtS4NE38dV9ZdJY048t8Yz4gL4QEpH+fZ1CTS5EKgrDDoQEr8h3
-         NObBs2YwTCk9eTOVndOmtWVSA2T7XgSzkKXCHZu5TLRxDmZDnuAWo7lcOH/cYUZQUzMm
-         b5Qot4L5cvoXc4FkpdELazj3I3yRYOZFS1RADQ58Cyq/wO2sVkjtSSIzKemHI3Ccow8S
-         W3u3EA5JnN0WKOP3hbBR2M5hrWUH0K+w/eAM1nrdXG836ajSCrMe2n122p0LBDTYnxwx
-         Oa0qJr9vrt3lyvsMhbw+AMZvqT9YvAlmtak+9CiBzN1N3gBhJRzz02/BdR4xa9Nz0EJ9
-         YdNA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DOWQCle1yWXb74A6NwPdy7M5JNT4HpDC3FQ0vyWPTag=;
+        b=IeylE/7EPIwORvE0KS/7Ameqd+Ni1fvuGcTyhvl9Q+CBocq+kWqmhUOzDExwG+binD
+         b9NOZrJNqg8PSGZTql6noit2xRsPQlDHlz2uEkbZfPnkpQPgohVAEbkaulVLzCgms9aY
+         mEMavWAD1EwN9ULfjmyBqjYWuob6fPjV9j0Xi9zyvLdCkbe649ctm4rO+ougQiWPqKQq
+         TWZ0UYDBIL8HXreHEWovO+gTBa/jFnU8FvJ/jGr5lxO6qr80PzxK7DmeDtFSqBaugTx2
+         Igm6D4I9aQ9VS4Z/qLMgBpDCSW6nsLnhMIRg662la8bTYY36QaOI6/l/mg3DTU0Jzttq
+         7aQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Yc4Md8uQ1K2PiNkAhQu02D29TgOkrggKvXdUOlqcNUY=;
-        b=SwdQdVtKSW2VUGrXCbqns/pl7Sr/DF29k/JW7cBOV/o/Mx3JPzn9rDJlG7Cq3XWzWl
-         RA/u4oFOeLCaug6ePEKyxz9uSaUuhc80WVZoFFKbRXLJ4KRpiod+M+6vMXdxJZcHodka
-         faHuCK3MjOQdF2Dh2LGQvgCoGXU3MvKJ+mqrjcYiZjth8/IBiat2hyLqzk5f49aHEJtK
-         pZY/xe/wUHhkySuuC5sghQnxzJQ6BkqkCJJFdkN+mZU/ApoJlVW44qXF+hIrR+IjbyW9
-         5FlyZ1w80wIFZm0A9SaFYoGzux1YBzZOkvhfSchrZGznBYDP0RKQHVz8VEf3bLd5AebS
-         Dvdw==
-X-Gm-Message-State: AOAM530DlBYQ93vshVgKi988UKyx/KCELcOG7Z4OV0Lwv0S1wjLzHul4
-        pEctvA3n5HezNWm0ALiOCeI2MOCkMZqbdA==
-X-Google-Smtp-Source: ABdhPJzRUl2SRB8VMrdQodk0yhOgjS/Z/YjbMR1DbovTQb921A8A5jp04IvONZcF1GIBMY+/521BPg==
-X-Received: by 2002:a05:6808:1385:b0:2cf:491e:157d with SMTP id c5-20020a056808138500b002cf491e157dmr6585067oiw.12.1645934396531;
-        Sat, 26 Feb 2022 19:59:56 -0800 (PST)
-Received: from tresc043793.tre-sc.gov.br ([187.94.103.218])
-        by smtp.gmail.com with ESMTPSA id t9-20020a056871054900b000c53354f98esm3010285oal.13.2022.02.26.19.59.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Feb 2022 19:59:56 -0800 (PST)
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-To:     netdev@vger.kernel.org
-Cc:     linus.walleij@linaro.org, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, alsi@bang-olufsen.dk, arinc.unal@arinc9.com,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next v4 1/3] dt-bindings: net: dsa: add rtl8_4 and rtl8_4t
-Date:   Sun, 27 Feb 2022 00:59:18 -0300
-Message-Id: <20220227035920.19101-2-luizluca@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220227035920.19101-1-luizluca@gmail.com>
-References: <20220227035920.19101-1-luizluca@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DOWQCle1yWXb74A6NwPdy7M5JNT4HpDC3FQ0vyWPTag=;
+        b=tEUiRp+Sv+pc2gj7Y9mFwFdgOqEZdLRsJxptk3t88M1Eoh5cejOgXaLINcw2tL3HxB
+         vvEhVMohqA67pU2S8TiXnzvPhUMb6InRLwjtMPyPsMKOoUpR3CN7Du31b7L9XaMMS5ff
+         mwjQB0LlJTmDHnJ4ke18zCeOookrRAkGxSGAblKMCKlPuOIFuzdeP/SbVb+ina12lalc
+         sNzWJkIj5WU4zwnurfmbMPX9KoEZBtHOIc57LWw2mfsfFvelzEzsaGpif9i80gtCgoGs
+         T8rxJ/mz2ROYH//oaQIL82lSRfkpn6/teH/R51JyojVhLFXnov2PYH+9a6XWTbiqy/v3
+         bWRg==
+X-Gm-Message-State: AOAM531EnFLS7SzXg09HNr/JDyhPYAd3Y7LNHxWxhVqvtPmEq2CTedbi
+        oyFZHuRQEo16VR4CNZ46hQG+yiZmmu2P2AwpeE9Q8A==
+X-Google-Smtp-Source: ABdhPJzIp2ckX/5Fmg/5ZskGI2KaKSC4oRyfJHOpnu/S5EGTP1fU2fyV7LXsE25qAb1bhAdDLKuJeW4Nln8qhWSEhBA=
+X-Received: by 2002:a4a:301c:0:b0:2dc:dcf1:8a62 with SMTP id
+ q28-20020a4a301c000000b002dcdcf18a62mr6116378oof.7.1645935582815; Sat, 26 Feb
+ 2022 20:19:42 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FROM_FMBLA_NEWDOM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220224123248.67073-1-bhupesh.sharma@linaro.org>
+ <CAA8EJprRgsZRSXBQumveAn029j+w6xO8K2kZUO4rzZaefuYe7Q@mail.gmail.com>
+ <CAH=2NtxQBS=c0W0cpX5EdNi12PrqiKEuzyvEtF8WrVE6nsU_rg@mail.gmail.com> <a6d28a2e-69fc-9bdf-da0d-28be35d9bfc2@linaro.org>
+In-Reply-To: <a6d28a2e-69fc-9bdf-da0d-28be35d9bfc2@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 27 Feb 2022 09:49:31 +0530
+Message-ID: <CAH=2NtwveafJxjNAY_2eRE1sKhEL2wKJhcF7a1THsJW_QiwSpQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Mark '#clock-cells' as a
+ 'optional' property
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
+        robh+dt@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Realtek rtl8365mb DSA driver can use and switch between these two tag
-types.
+On Sun, 27 Feb 2022 at 05:08, Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
+>
+> On 25/02/2022 12:16, Bhupesh Sharma wrote:
+> > Hi Dmitry,
+> >
+> > Thanks for your review comments.
+> >
+> > On Thu, 24 Feb 2022 at 20:22, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> >>
+> >> On Thu, 24 Feb 2022 at 15:33, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
+> >>>
+> >>> Since '#clock-cells' is not a required property for several
+> >>> QCoM boards supporting qmp-phy(s) (for e.g. sm8150, sm8250 or sm8350 SoC
+> >>> based boards), mark it as an optional property instead.
+> >>
+> >> I believe the description is not correct. the clock-cells should not
+> >> be used at all, so it should be removed from the root node.
+> >
+> > Hmm.. 'clock-cells' is still used for describing qmp phy pcie nodes for certain
+> > devices like 'msm8996.dtsi'. I am not sure if removing it would impact existing
+> > dts files. But let me try cleaning them up in v2.
+>
+> Checked. Unless I'm mistaken, msm8996.dtsi doesn't use #clock-cells in
+> root QMP PHY nodes.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
----
- Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Indeed. I meant that we made some cleanups already via
+82d61e19fccb ("arm64: dts: qcom: msm8996: Move '#clock-cells' to QMP
+PHY child node"),
+but it seems a few dts still need to be cleaned up to move the
+'#clock-cells' to QMP PHY child node instead of the root node.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-index 702df848a71d..2e3f29c61cf2 100644
---- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-@@ -52,6 +52,8 @@ properties:
-       - ocelot
-       - ocelot-8021q
-       - seville
-+      - rtl8_4
-+      - rtl8_4t
- 
-   phy-handle: true
- 
--- 
-2.35.1
+I will send a fixed version in v2 :)
 
+Regards,
+Bhupesh
