@@ -2,110 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 837EE4C5BE4
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 15:09:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 128FC4C5C87
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 16:30:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230105AbiB0OJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 09:09:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53972 "EHLO
+        id S230331AbiB0Pa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 10:30:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbiB0OJ7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 09:09:59 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 179063A19C;
-        Sun, 27 Feb 2022 06:09:18 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id F00EB240002;
-        Sun, 27 Feb 2022 14:09:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1645970957;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8yqwbpyEfeZqCICFZlrGuTav01fic0WcbFUBWtOFHXU=;
-        b=oKpg4XtmYF/rBm3kv52LWXCiGC1apIakuu2yLEpncZqHPaoNfHDSE57tc1TYTsaP3Fe0bX
-        n37oIKqrnR+MbnTke72oMNAO6O5MSMXvXi0gZWn529c5zPSaRXpPbAkOU6gVCGu+EEf0tl
-        /U/A7owcCXEqpUot/Ky3afa/dXImv9N0W/IZtdqoMZHuFKc/jT5qOtf6PFWsXIIZlzoKar
-        SGjkJM79xhatvX/RoSQeIcAC3MfgOtYnPOJtdciQfdt++cc51+XsmFbYfoQn7pDMKZ1+vZ
-        M3zbMdO1eNIN+bSTIm8ZFk9qKg3SJvwgjAHPfy+PYYy7P6lo6iQ+wBBVcDPt6w==
-Date:   Sun, 27 Feb 2022 15:09:13 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Laetitia MARIOTTINI <laetitia.mariottini@se.com>
-Subject: Re: [PATCH 3/8] soc: renesas: rzn1-sysc: Export function to set
- dmamux
-Message-ID: <20220227150913.5b998b2f@xps13>
-In-Reply-To: <Yhkg06bqnU8bpaxe@robh.at.kernel.org>
-References: <20220218181226.431098-1-miquel.raynal@bootlin.com>
-        <20220218181226.431098-4-miquel.raynal@bootlin.com>
-        <Yhkg06bqnU8bpaxe@robh.at.kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S229569AbiB0Pa4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 10:30:56 -0500
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 169253F30F;
+        Sun, 27 Feb 2022 07:30:20 -0800 (PST)
+Received: by mail-qt1-x831.google.com with SMTP id w1so6952844qtj.2;
+        Sun, 27 Feb 2022 07:30:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/TEGCkRqpaHfUe0Va3lineYBUjZGOmcm0IcjSbaRtdA=;
+        b=KiM3Xnw7SOE+OtXgZRFN18B4TcD4Tfdvn/cB+wEvZsnQa+qA1bqfDK1LKA6pRECGYF
+         2OiYFso3H6YtcjfP1EW4umvIb4UOIgjc6vTILTVCbQMe9yjGiOaQUN2TOoRCHsNi7BtJ
+         fTPlWAR+hW7dkl0maPKNZtDOUk8Nj9zMU4HK6q0QHDnBo4VF3JBotvOsTORnjRJ7OXX1
+         vdKb0KrtMM/xqVeQDKdrq9ETngR3mdTgBqL/WkWdzE5DPSw/jplTmcy/K28LcH1N/oFf
+         SIs5oVY5FVCP4xVjxrODW189/Eu4pbOztaksIwtrvNOqLBl11WI+xrK3sJM55oqksTYh
+         X92g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/TEGCkRqpaHfUe0Va3lineYBUjZGOmcm0IcjSbaRtdA=;
+        b=xmXyD4ASnC6kZs/z2BFogyDWbaIgiFfoC1N7MAQkiZsEHqrnZoPUsOhj/QsMiSn65d
+         Bh33BEHHXdEHMtIURAhf4mcM81eVn9GZje/TV7RZ391AwSuj+7WYdwD/RNjMXSnjKuW2
+         r/ZcQZ5Ws8wyYCLC2hPW4rb4UqHzguWS8iI7VYh+o+WxGrkRUQCmB8EwGxnJpC4idPh4
+         8pALTFEGAbJ3JIQaJYdiq80ii1c/E1ZZJozhSgPr7eZGLXUoz/ibYAPYDa4m35nnyo1I
+         eI1AYHCzO5UM/FLCRxhf+jCA7prcWVa/oHv2jC4gATwLnJQR/oWj3wzFwRg+EzmpRGYQ
+         seuQ==
+X-Gm-Message-State: AOAM532ap5QBeasWVR1UMir4L/eOzZBzk5fuZ2Z+9ey/6m/sDs3anJPX
+        ipxlwtV/RtHdjj//iqaL1yk=
+X-Google-Smtp-Source: ABdhPJxdSkPSXhT6LalNn4z7oCximUdTIqvXNTTKjd9ZvCBIH3GNHkKOHSp3xJC+M2fqvDzLlKYc7Q==
+X-Received: by 2002:a05:622a:1a81:b0:2ce:7959:d9a2 with SMTP id s1-20020a05622a1a8100b002ce7959d9a2mr13293685qtc.135.1645975818820;
+        Sun, 27 Feb 2022 07:30:18 -0800 (PST)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id s10-20020a05620a080a00b0062ce6f3f5d7sm3845767qks.16.2022.02.27.07.30.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Feb 2022 07:30:18 -0800 (PST)
+From:   Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        michael.riesch@wolfvision.net, jbx6244@gmail.com,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH v3 0/7] enable usb support on rk356x
+Date:   Sun, 27 Feb 2022 10:30:09 -0500
+Message-Id: <20220227153016.950473-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Good Morning,
 
-robh@kernel.org wrote on Fri, 25 Feb 2022 12:32:51 -0600:
+This is my patch series that I have maintained out of tree until the
+combophy driver landed.
 
-> On Fri, Feb 18, 2022 at 07:12:21PM +0100, Miquel Raynal wrote:
-> > The dmamux register is located within the system controller.
-> >=20
-> > Without syscon, we need an extra helper in order to give write access to
-> > this register to a dmamux driver.
-> >=20
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  drivers/clk/renesas/r9a06g032-clocks.c        | 27 +++++++++++++++++++
-> >  include/dt-bindings/clock/r9a06g032-sysctrl.h |  2 ++
-> >  include/linux/soc/renesas/r9a06g032-syscon.h  | 11 ++++++++
-> >  3 files changed, 40 insertions(+)
-> >  create mode 100644 include/linux/soc/renesas/r9a06g032-syscon.h =20
->=20
-> > diff --git a/include/dt-bindings/clock/r9a06g032-sysctrl.h b/include/dt=
--bindings/clock/r9a06g032-sysctrl.h
-> > index 90c0f3dc1ba1..609e7fe8fcb1 100644
-> > --- a/include/dt-bindings/clock/r9a06g032-sysctrl.h
-> > +++ b/include/dt-bindings/clock/r9a06g032-sysctrl.h
-> > @@ -145,4 +145,6 @@
-> >  #define R9A06G032_CLK_UART6		152
-> >  #define R9A06G032_CLK_UART7		153
-> > =20
-> > +#define R9A06G032_SYSCON_DMAMUX		0xA0 =20
->=20
-> That looks like a register offset? We generally don't put register=20
-> offsets in DT.
+Patch 1 fixes the grf dt binding from the combophy merge.
+Patch 2 adds the dt bindings for the grf changes necessary.
+Patch 3 adds support to the grf driver to set the rk3566 otg clock
+source.
+Patch 4 is a downstream patch ported forward to shut down the usb3 clock
+when the controller is operating in usb2 mode.
+Patch 5 adds the dwc3 nodes to the rk356x device tree includes.
+Patch 6 enables the dwc3 nodes on the Quartz64 Model A.
+Patch 7 enables the dwc3 nodes on the rk3568-evb.
 
-This is a leftover, the offset is defined somewhere else now, I will
-fix this.
+Note, there are functional changes from previous versions.
 
->=20
-> > +
-> >  #endif /* __DT_BINDINGS_R9A06G032_SYSCTRL_H__ */ =20
+Please review and apply.
+
+Very Respectfully,
+Peter Geis
+
+Changelog:
+v3:
+- Drop the dwc-of-simple method in favor of using dwc core.
+- Drop all quirks except snps,dis_u2_susphy_quirk, which is necessary to
+  prevent device detection failures in some states.
+- Drop the reset-names.
+
+v2:
+- Add a dt-bindings fix for grf.yaml
+- Unify the reset names.
+- Constrain the force usb2 clock dwc3 patch to only supported variants of
+the ip.
+- Change dwc3-of-simple to support of-match-data.
+- Drop the PCLK-PIPE clk.
+- Rename the usb nodes to be more friendly.
+- Add the rk3568-evb enable patch.
 
 
-Thanks,
-Miqu=C3=A8l
+Bin Yang (1):
+  usb: dwc3: core: do not use 3.0 clock when operating in 2.0 mode
+
+Michael Riesch (1):
+  arm64: dts: rockchip: add usb3 support to rk3568-evb1-v10
+
+Peter Geis (5):
+  dt-bindings: soc: grf: fix rk3568 usb definitions
+  dt-bindings: soc: grf: add rk3566-pipe-grf compatible
+  soc: rockchip: set dwc3 clock for rk3566
+  arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
+  arm64: dts: rockchip: enable dwc3 on quartz64-a
+
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  5 +-
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 37 +++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 11 +++++
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 46 +++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  9 ++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 35 +++++++++++++-
+ drivers/soc/rockchip/grf.c                    | 17 +++++++
+ drivers/usb/dwc3/core.c                       |  5 ++
+ drivers/usb/dwc3/core.h                       |  1 +
+ 9 files changed, 163 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
