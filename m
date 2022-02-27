@@ -2,126 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F144C5A5C
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 11:01:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1743B4C5A66
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 11:04:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbiB0KBk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 05:01:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47770 "EHLO
+        id S229991AbiB0KEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 05:04:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229503AbiB0KBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 05:01:39 -0500
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C1B75B898;
-        Sun, 27 Feb 2022 02:01:03 -0800 (PST)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-        by localhost (Postfix) with ESMTP id 4K5zY44n28z9sSG;
-        Sun, 27 Feb 2022 11:00:56 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id jcT6yo0T7hlH; Sun, 27 Feb 2022 11:00:56 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase2.c-s.fr (Postfix) with ESMTP id 4K5zY25gj6z9sSf;
-        Sun, 27 Feb 2022 11:00:54 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id DEA6B8B774;
-        Sun, 27 Feb 2022 11:00:53 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id XCJvHrToxK_C; Sun, 27 Feb 2022 11:00:53 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.232.62])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9B70A8B76E;
-        Sun, 27 Feb 2022 11:00:53 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 21RA0kvx262875
-        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-        Sun, 27 Feb 2022 11:00:46 +0100
-Received: (from chleroy@localhost)
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 21RA0kI3262874;
-        Sun, 27 Feb 2022 11:00:46 +0100
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to christophe.leroy@csgroup.eu using -f
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1 2/2] spi: fsl-spi: Implement trailing clock mode
-Date:   Sun, 27 Feb 2022 11:00:35 +0100
-Message-Id: <f66ae24b31f10f7c3a999a77a6cfab7b2d073c6a.1645950971.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1645950971.git.christophe.leroy@csgroup.eu>
-References: <cover.1645950971.git.christophe.leroy@csgroup.eu>
+        with ESMTP id S229680AbiB0KEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 05:04:33 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC665C37B
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:03:57 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 234533FCA9
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 10:03:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1645956235;
+        bh=IfVXPHlKvsF/IugNOxJ2nfDin24YI7mhh0WDRsHK5Xo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=P/mAev3ks6m/REqgAqjHXLVl9KPAHGZ/Ncc2NMJUUfNrHvhPodopMyItXyCVR180W
+         RaROqczYBdlKDPapvQL+s5nO/FXH/omMkqLBvDXnFURGRraBCv65VYYIySPd5EUJXr
+         9E2xNPoWZCEnZkFkWlCgPqDk81sEcTU74++b+0kAIw3WQ36k910aLmrQ/bc4BnwoGK
+         mNjn79OR/LX4TRMXYtbnZiYUvp1Q3xtJVru0dBrWGm3YPOurcud1eFdn2BRDa2xAOE
+         IJmgEHPPSJUbD5c46bFl90Y1FZS0e8vQgoYmLV8/CkOe/F+M7M/afvvfhEo7XmRXXL
+         Fzzf408yO0ebg==
+Received: by mail-ed1-f69.google.com with SMTP id l3-20020a50cbc3000000b0041083c11173so4050915edi.4
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:03:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=IfVXPHlKvsF/IugNOxJ2nfDin24YI7mhh0WDRsHK5Xo=;
+        b=ku8bRSlk8tbMghBvx79G9IJVOqNkKz5zviMNNycJdo4a52rNIOMN18SIYhNEeYM4P5
+         uy4fl774IKSXfjczyh8ch9U/vYiEQSG9YV149JpIaDAFqngCvvqBElFAvhzIKVM10t6P
+         2AP8XdstjaiY6KV3P4uWkmEA1e6vwUP6YlwUCwAjLcTXsQ/XRn+nBW3OejEsKOcR2d2O
+         mTgB6g8k++8KLULmJMQK5Wt9OJDMf4NZ/JOO9bO7/tjzhPXAegX5IMcuKq+DUpYQb/RE
+         MBX2bM33SwBS14SAhyp+dNEO/45xFdYX6AEn6OFbVEtIwMiglBvV8g5lWNPRMtSyMWgs
+         W9BA==
+X-Gm-Message-State: AOAM532vGWGh06l8Xgnoac9ovPCQ84U6Fx8dZFgpZcwVA6yWa8pcBEPU
+        Jdf+Vzt4Ucy8zXK35L8uKyRNxcyaKCvtJaOxMl+EJWFUGWOik+3fiIhCxbclvtU465gmP5+WzHg
+        m3VYniYgODDp8FYXi7SyOlxyRzC4D1vWI3otoelQ=
+X-Received: by 2002:a17:906:6d09:b0:6b9:2e0e:5bdd with SMTP id m9-20020a1709066d0900b006b92e0e5bddmr11270618ejr.246.1645956234703;
+        Sun, 27 Feb 2022 02:03:54 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwPviELBAb3YlJF3dqApYWhzkERExWKru4Uij+RIvAJZ8xES86UbS47+QTJNfsojvKwn0q7ag==
+X-Received: by 2002:a17:906:6d09:b0:6b9:2e0e:5bdd with SMTP id m9-20020a1709066d0900b006b92e0e5bddmr11270607ejr.246.1645956234415;
+        Sun, 27 Feb 2022 02:03:54 -0800 (PST)
+Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id ee21-20020a056402291500b00410d4261313sm4211234edb.24.2022.02.27.02.03.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Feb 2022 02:03:53 -0800 (PST)
+Message-ID: <ea5d34c6-fe75-c096-d5b2-6a327c9d0ae5@canonical.com>
+Date:   Sun, 27 Feb 2022 11:03:52 +0100
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1645956034; l=1641; s=20211009; h=from:subject:message-id; bh=+/edlFsipl1R0bA5PHoJ/lea+KiQ9syUn/TTp9M1b1Y=; b=Pkged1be6SnqRV4Kv1E8B7mE0+6VpfL/P2ti9pyN5c9goG1XAy5+eB1ruUfz9J96BQlB94rE8TWf beWCdbvLAVWGoC1kFFrkyaFRRU8PLMBEUkDxTVt24FuiygFOaxmf
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM6125 display clock
+ bindings
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220226200911.230030-1-marijn.suijten@somainline.org>
+ <20220226200911.230030-3-marijn.suijten@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220226200911.230030-3-marijn.suijten@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to support IDT 801034 QUAD PCM CODEC, implement the
-trailing clock mode.
+On 26/02/2022 21:09, Marijn Suijten wrote:
+> From: Martin Botka <martin.botka@somainline.org>
+> 
+> Add device tree bindings for display clock controller for
+> Qualcomm Technology Inc's SM6125 SoC.
+> 
+> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> ---
+>  .../bindings/clock/qcom,dispcc-sm6125.yaml    | 87 +++++++++++++++++++
+>  .../dt-bindings/clock/qcom,dispcc-sm6125.h    | 41 +++++++++
+>  2 files changed, 128 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6125.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+> new file mode 100644
+> index 000000000000..3465042d0d9f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm6125.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Display Clock Controller Binding for SM6125
+> +
+> +maintainers:
+> +  - Martin Botka <martin.botka@somainline.org>
+> +
+> +description: |
+> +  Qualcomm display clock control module which supports the clocks and
+> +  power domains on SM6125.
+> +
+> +  See also:
+> +    dt-bindings/clock/qcom,dispcc-sm6125.h
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,sm6125-dispcc
+> +
+> +  clocks:
+> +    items:
+> +      - description: Board XO source
+> +      - description: Byte clock from DSI PHY0
+> +      - description: Pixel clock from DSI PHY0
+> +      - description: Pixel clock from DSI PHY1
+> +      - description: Link clock from DP PHY
+> +      - description: VCO DIV clock from DP PHY
+> +      - description: AHB config clock from GCC
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bi_tcxo
+> +      - const: dsi0_phy_pll_out_byteclk
+> +      - const: dsi0_phy_pll_out_dsiclk
+> +      - const: dsi1_phy_pll_out_dsiclk
+> +      - const: dp_phy_pll_link_clk
+> +      - const: dp_phy_pll_vco_div_clk
+> +      - const: cfg_ahb_clk
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#power-domain-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
+> +  - '#power-domain-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,rpmcc.h>
+> +    #include <dt-bindings/clock/qcom,gcc-sm6125.h>
+> +    clock-controller@5f00000 {
+> +      compatible = "qcom,sm6125-dispcc";
+> +      reg = <0x5f00000 0x20000>;
+> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +               <&dsi0_phy 0>,
+> +               <&dsi0_phy 1>,
+> +               <0>,
 
-On fsl SPI, the minimum we can implement is a 4 bits shot.
+This does not look like a valid phandle. This clock is required, isn't it?
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- drivers/spi/spi-fsl-lib.c |  2 +-
- drivers/spi/spi-fsl-spi.c | 15 +++++++++++++--
- 2 files changed, 14 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/spi/spi-fsl-lib.c b/drivers/spi/spi-fsl-lib.c
-index 76e1192eb025..a13f3b4db55f 100644
---- a/drivers/spi/spi-fsl-lib.c
-+++ b/drivers/spi/spi-fsl-lib.c
-@@ -88,7 +88,7 @@ void mpc8xxx_spi_probe(struct device *dev, struct resource *mem,
- 
- 	/* the spi->mode bits understood by this driver: */
- 	master->mode_bits = SPI_CPOL | SPI_CPHA | SPI_CS_HIGH
--			| SPI_LSB_FIRST | SPI_LOOP;
-+			| SPI_LSB_FIRST | SPI_LOOP | SPI_TRAILING;
- 
- 	master->dev.of_node = dev->of_node;
- 
-diff --git a/drivers/spi/spi-fsl-spi.c b/drivers/spi/spi-fsl-spi.c
-index bdf94cc7be1a..6a52955d9051 100644
---- a/drivers/spi/spi-fsl-spi.c
-+++ b/drivers/spi/spi-fsl-spi.c
-@@ -424,13 +424,24 @@ static int fsl_spi_do_one_msg(struct spi_master *master,
- 		}
- 	}
- 
--	m->status = status;
--
- 	if (status || !cs_change) {
- 		ndelay(nsecs);
- 		fsl_spi_chipselect(spi, BITBANG_CS_INACTIVE);
- 	}
- 
-+	if (!status && spi->mode & SPI_TRAILING) {
-+		struct spi_transfer t = {
-+			.len = 1,
-+			.tx_buf = "",
-+			.bits_per_word = 4
-+		};
-+
-+		status = fsl_spi_setup_transfer(spi, &t);
-+		if (!status)
-+			status = fsl_spi_bufs(spi, &t, 0);
-+	}
-+	m->status = status;
-+
- 	fsl_spi_setup_transfer(spi, NULL);
- 	spi_finalize_current_message(master);
- 	return 0;
--- 
-2.34.1
-
+Best regards,
+Krzysztof
