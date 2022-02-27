@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABA284C5B10
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 13:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 318C54C5B37
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 13:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229503AbiB0McE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 07:32:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49642 "EHLO
+        id S229959AbiB0MsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 07:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbiB0McE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 07:32:04 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 236C15D66C;
-        Sun, 27 Feb 2022 04:31:26 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S230303AbiB0MsU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 07:48:20 -0500
+Received: from asav21.altibox.net (asav21.altibox.net [109.247.116.8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02CCDAE73
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 04:47:41 -0800 (PST)
+Received: from localhost.localdomain (211.81-166-168.customer.lyse.net [81.166.168.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B346AB80C6E;
-        Sun, 27 Feb 2022 12:31:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF8BFC340E9;
-        Sun, 27 Feb 2022 12:31:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1645965083;
-        bh=NEoxQP7btFmqwLHAz4vA91rqiHkME2xrzGjWQgylmBI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=L+UWhSNd8Je3t6CUiFry7+mPRnfAUnLiUBV8ytOWYuRiqr0IEpqdfGwoWUwUdIbHb
-         7K9pS+w8zDXoSRMNFuju+bpBuk20GNFY5DMlCu4av2ogASMXiSwqXnJEfksoU+SpdB
-         Tnpi3B71ORH0wLJn3d/DeZjkJKBuBNkd+k05wFh9Ijg0jDO01DdBKGGQvrgk2QIAtf
-         SUwRuPnSKnGCdHpWIXXuudfwuQV49yLbGoQtjnf+vHSarxWjtqMXoXGb3ev3EYn8PD
-         AXLC0scLY31Su0BPFsxuVZhfqrxZOx16fnnv2VgssZt7XgD1LaDTkTC2L0tXC0W2Rc
-         UKiZMwYwiwlag==
-Date:   Sun, 27 Feb 2022 12:38:25 +0000
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
-Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v4 1/3] iio: dac: add support for ltc2688
-Message-ID: <20220227123825.3555f44f@jic23-huawei>
-In-Reply-To: <20220225130129.69-2-nuno.sa@analog.com>
-References: <20220225130129.69-1-nuno.sa@analog.com>
-        <20220225130129.69-2-nuno.sa@analog.com>
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
+        (Authenticated sender: noralf.tronnes@ebnett.no)
+        by asav21.altibox.net (Postfix) with ESMTPSA id 59C7C80057;
+        Sun, 27 Feb 2022 13:47:37 +0100 (CET)
+From:   =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+To:     robh+dt@kernel.org, dri-devel@lists.freedesktop.org
+Cc:     sam@ravnborg.org, maxime@cerno.tech,
+        dave.stevenson@raspberrypi.com, david@lechnology.com,
+        devicetree@vger.kernel.org, thierry.reding@gmail.com,
+        =?UTF-8?q?Noralf=20Tr=C3=B8nnes?= <noralf@tronnes.org>
+Subject: [PATCH v6 0/5] drm/tiny: Add MIPI DBI compatible SPI driver
+Date:   Sun, 27 Feb 2022 13:47:08 +0100
+Message-Id: <20220227124713.39766-1-noralf@tronnes.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=Adef4UfG c=1 sm=1 tr=0
+        a=OYZzhG0JTxDrWp/F2OJbnw==:117 a=OYZzhG0JTxDrWp/F2OJbnw==:17
+        a=IkcTkHD0fZMA:10 a=M51BFTxLslgA:10 a=RFe_aE2YmaUHG6hxem0A:9
+        a=QEXdDO2ut3YA:10
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Feb 2022 14:01:27 +0100
-Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+Hi,
 
-> The LTC2688 is a 16 channel, 16 bit, +-15V DAC with an integrated
-> precision reference. It is guaranteed monotonic and has built in
-> rail-to-rail output buffers that can source or sink up to 20 mA.
->=20
-> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+This patchset adds a driver that will work with most MIPI DBI compatible
+SPI panels out there.
 
-Just one comment below - not a suggestion to change anything at this
-stage though, just something that might come up in future.
+One change this time: Fix indentation in the DT binding.
 
+All patches are reviewed now so I will apply this after Rob's bot have
+looked at the binding.
 
-...
+Thanks for reviewing!
 
-> +static const char * const ltc2688_dither_phase[] =3D {
-> +	"0", "1.5708", "3.14159", "4.71239",
-> +};
-> +
-
-It if turns out we have in kernel users for this in the long run
-we may need to change these over to numeric values, but we
-can do that without changing the userspace ABI, so this is fine for
-now.
-
-...
+Noralf.
 
 
-Thanks,
+Noralf Trønnes (5):
+  dt-bindings: display: add bindings for MIPI DBI compatible SPI panels
+  drm/modes: Remove trailing whitespace
+  drm/modes: Add of_get_drm_panel_display_mode()
+  drm/mipi-dbi: Add driver_private member to struct mipi_dbi_dev
+  drm/tiny: Add MIPI DBI compatible SPI driver
 
-Jonathan
+ .../display/panel/panel-mipi-dbi-spi.yaml     | 126 ++++++
+ MAINTAINERS                                   |   8 +
+ drivers/gpu/drm/drm_modes.c                   |  51 ++-
+ drivers/gpu/drm/tiny/Kconfig                  |  15 +
+ drivers/gpu/drm/tiny/Makefile                 |   1 +
+ drivers/gpu/drm/tiny/panel-mipi-dbi.c         | 398 ++++++++++++++++++
+ include/drm/drm_mipi_dbi.h                    |   8 +
+ include/drm/drm_modes.h                       |   8 +
+ 8 files changed, 614 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-mipi-dbi-spi.yaml
+ create mode 100644 drivers/gpu/drm/tiny/panel-mipi-dbi.c
+
+-- 
+2.33.0
+
