@@ -2,132 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF404C5F01
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:16:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CDF464C5F0A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:23:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230261AbiB0VRT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 16:17:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
+        id S230340AbiB0VYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 16:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiB0VRS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:17:18 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9868154FA6;
-        Sun, 27 Feb 2022 13:16:41 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 85C64478;
-        Sun, 27 Feb 2022 22:16:39 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645996599;
-        bh=2aKZBadYFJVtbrkVPJGHjuZik/GZIzErTWIDXZkTzb8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Evw2a9V/RZSu8QMlzm8XwVbUntBzP63MEo6saOgow4pQiWuBR+T/PMGDR/BzQ29XG
-         qX23e55cDceq/Msdirfu3DweQG/hglB2LzuEwTCnqlYIR0seoQbwxlbRmUibCDr630
-         N3lQ2KCOoTw5nKewk4vjy1Hr0FDUkNZ0XgummOyg=
-Date:   Sun, 27 Feb 2022 23:16:28 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S230260AbiB0VYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:24:24 -0500
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F1C3F434AB;
+        Sun, 27 Feb 2022 13:23:46 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.90,142,1643641200"; 
+   d="scan'208";a="111721264"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 28 Feb 2022 06:23:46 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 20BA440E33A5;
+        Mon, 28 Feb 2022 06:23:43 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Subject: Re: [PATCH 1/2] dt-bindings: media: Add macros for video interface
- bus types
-Message-ID: <YhvqLL0LYWt2ryaE@pendragon.ideasonboard.com>
-References: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
- <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
- <YhvoC0aXpJUTslnC@paasikivi.fi.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YhvoC0aXpJUTslnC@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/V2L SoC
+Date:   Sun, 27 Feb 2022 21:23:30 +0000
+Message-Id: <20220227212330.22262-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Document RZ/V2L SDHI bindings. RZ/V2L SDHI is almost identical to one
+found on the R-Car Gen3. No driver changes are required as generic
+compatible string "renesas,rcar-gen3-sdhi" will be used as a fallback.
 
-On Sun, Feb 27, 2022 at 11:07:23PM +0200, Sakari Ailus wrote:
-> On Sun, Feb 27, 2022 at 10:33:51PM +0200, Laurent Pinchart wrote:
-> > Add a new dt-bindings/media/video-interfaces.h header that defines
-> > macros corresponding to the bus types from media/video-interfaces.yaml.
-> > This allows avoiding hardcoded constants in device tree sources.
-> > 
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
-> >  1 file changed, 16 insertions(+)
-> >  create mode 100644 include/dt-bindings/media/video-interfaces.h
-> > 
-> > diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
-> > new file mode 100644
-> > index 000000000000..e38058e1cca7
-> > --- /dev/null
-> > +++ b/include/dt-bindings/media/video-interfaces.h
-> > @@ -0,0 +1,16 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only */
-> > +/*
-> > + * Copyright (C) 2022 Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > + */
-> > +
-> > +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
-> > +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
-> > +
-> > +#define MEDIA_BUS_TYPE_CSI2_CPHY		1
-> > +#define MEDIA_BUS_TYPE_CSI1			2
-> > +#define MEDIA_BUS_TYPE_CCP2			3
-> > +#define MEDIA_BUS_TYPE_CSI2_DPHY		4
-> > +#define MEDIA_BUS_TYPE_PARALLEL			5
-> 
-> I've been long thinkin of renaming "PARALLEL" as "BT.601" which it really
-> is. I don't mind postponing that, but I think you could as well start here.
-> Up to you.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+DTSi changes have been posted [0].
 
-I think it's a good idea, but we then need to decide what to do with
-other types of parallel buses. Let's start this discussion now, and
-implement it in a patch on top of this series.
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220227203744.18355-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-> Should this be somehow visible in video-interfaces.yaml?
-
-I wish we could use macros in .yaml files instead of numerical values,
-but I don't think that's possible. I can do this:
-
-   bus-type:
-     $ref: /schemas/types.yaml#/definitions/uint32
-     enum:
--      - 1 # MIPI CSI-2 C-PHY
--      - 2 # MIPI CSI1
--      - 3 # CCP2
--      - 4 # MIPI CSI-2 D-PHY
--      - 5 # Parallel
--      - 6 # BT.656
-+      - 1 # MIPI CSI-2 C-PHY (MEDIA_BUS_TYPE_CSI2_CPHY)
-+      - 2 # MIPI CSI1 (MEDIA_BUS_TYPE_CSI1)
-+      - 3 # CCP2 (MEDIA_BUS_TYPE_CCP2)
-+      - 4 # MIPI CSI-2 D-PHY (MEDIA_BUS_TYPE_CSI2_DPHY)
-+      - 5 # Parallel (MEDIA_BUS_TYPE_PARALLEL)
-+      - 6 # BT.656 (MEDIA_BUS_TYPE_BT656)
-     description:
--      Data bus type.
-+      Data bus type. Use the macros listed above (defined in
-+      dt-bindings/video-interfaces.h) instead of numerical values.
-
-Any better proposal ?
-
-> > +#define MEDIA_BUS_TYPE_BT656			6
-> > +
-> > +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
-
+diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+index 9ce6e06c19db..3b191fb89cf1 100644
+--- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
++++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
+@@ -58,6 +58,7 @@ properties:
+               - renesas,sdhi-r8a77995  # R-Car D3
+               - renesas,sdhi-r8a779a0  # R-Car V3U
+               - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
++              - renesas,sdhi-r9a07g054 # RZ/V2L
+           - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
+ 
+   reg:
+@@ -107,7 +108,9 @@ allOf:
+       properties:
+         compatible:
+           contains:
+-            const: renesas,sdhi-r9a07g044
++            enum:
++              - renesas,sdhi-r9a07g044
++              - renesas,sdhi-r9a07g054
+     then:
+       properties:
+         clocks:
 -- 
-Regards,
+2.17.1
 
-Laurent Pinchart
