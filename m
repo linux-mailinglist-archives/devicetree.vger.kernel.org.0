@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1743B4C5A66
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 11:04:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F3384C5A6A
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 11:08:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbiB0KEf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 05:04:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56332 "EHLO
+        id S229964AbiB0KIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 05:08:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbiB0KEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 05:04:33 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CC665C37B
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:03:57 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        with ESMTP id S229901AbiB0KIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 05:08:44 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBC765DE64
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:08:06 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 234533FCA9
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 10:03:55 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 59C833FCA5
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 10:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1645956235;
-        bh=IfVXPHlKvsF/IugNOxJ2nfDin24YI7mhh0WDRsHK5Xo=;
+        s=20210705; t=1645956485;
+        bh=t39kLNlFZ66vLOwNBorCd7lyGkkC23z5r0vz3N8AmfQ=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=P/mAev3ks6m/REqgAqjHXLVl9KPAHGZ/Ncc2NMJUUfNrHvhPodopMyItXyCVR180W
-         RaROqczYBdlKDPapvQL+s5nO/FXH/omMkqLBvDXnFURGRraBCv65VYYIySPd5EUJXr
-         9E2xNPoWZCEnZkFkWlCgPqDk81sEcTU74++b+0kAIw3WQ36k910aLmrQ/bc4BnwoGK
-         mNjn79OR/LX4TRMXYtbnZiYUvp1Q3xtJVru0dBrWGm3YPOurcud1eFdn2BRDa2xAOE
-         IJmgEHPPSJUbD5c46bFl90Y1FZS0e8vQgoYmLV8/CkOe/F+M7M/afvvfhEo7XmRXXL
-         Fzzf408yO0ebg==
-Received: by mail-ed1-f69.google.com with SMTP id l3-20020a50cbc3000000b0041083c11173so4050915edi.4
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:03:55 -0800 (PST)
+        b=N2WJGxsACitGVbP+ojjbWwdvIqgN0adt4oICV4Ji8sDou9rhsVKsTJzlbyTdJvQTp
+         DSfFHTZ3+WkhSoItWvoZCCqBFnXM+MQFbK1ojlg1Q0eDFZiRBO/FlC60XGTIBAOyhX
+         FDn2OcW4Q6jM0AMAeEl5bfz2ulQEtjzceD+/3M8ujoM4a7u5/AyOhiPnXBayiOxZfR
+         sW9uccK/eZlABBxT5Q2PRa36EdLpa3u1VCbNtEXza/+8Q6jrcoQNQ2f9ICTMuDkr+q
+         N6CAzWQZ3Z0Ya/UnjMobVDIaVMGvxdzey4s4K7E90BVbIYQ0+0O523qbEAu/mn50fG
+         R7SeY05DEz3Qw==
+Received: by mail-ed1-f70.google.com with SMTP id cm27-20020a0564020c9b00b004137effc24bso2218779edb.10
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 02:08:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IfVXPHlKvsF/IugNOxJ2nfDin24YI7mhh0WDRsHK5Xo=;
-        b=ku8bRSlk8tbMghBvx79G9IJVOqNkKz5zviMNNycJdo4a52rNIOMN18SIYhNEeYM4P5
-         uy4fl774IKSXfjczyh8ch9U/vYiEQSG9YV149JpIaDAFqngCvvqBElFAvhzIKVM10t6P
-         2AP8XdstjaiY6KV3P4uWkmEA1e6vwUP6YlwUCwAjLcTXsQ/XRn+nBW3OejEsKOcR2d2O
-         mTgB6g8k++8KLULmJMQK5Wt9OJDMf4NZ/JOO9bO7/tjzhPXAegX5IMcuKq+DUpYQb/RE
-         MBX2bM33SwBS14SAhyp+dNEO/45xFdYX6AEn6OFbVEtIwMiglBvV8g5lWNPRMtSyMWgs
-         W9BA==
-X-Gm-Message-State: AOAM532vGWGh06l8Xgnoac9ovPCQ84U6Fx8dZFgpZcwVA6yWa8pcBEPU
-        Jdf+Vzt4Ucy8zXK35L8uKyRNxcyaKCvtJaOxMl+EJWFUGWOik+3fiIhCxbclvtU465gmP5+WzHg
-        m3VYniYgODDp8FYXi7SyOlxyRzC4D1vWI3otoelQ=
-X-Received: by 2002:a17:906:6d09:b0:6b9:2e0e:5bdd with SMTP id m9-20020a1709066d0900b006b92e0e5bddmr11270618ejr.246.1645956234703;
-        Sun, 27 Feb 2022 02:03:54 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwPviELBAb3YlJF3dqApYWhzkERExWKru4Uij+RIvAJZ8xES86UbS47+QTJNfsojvKwn0q7ag==
-X-Received: by 2002:a17:906:6d09:b0:6b9:2e0e:5bdd with SMTP id m9-20020a1709066d0900b006b92e0e5bddmr11270607ejr.246.1645956234415;
-        Sun, 27 Feb 2022 02:03:54 -0800 (PST)
+        bh=t39kLNlFZ66vLOwNBorCd7lyGkkC23z5r0vz3N8AmfQ=;
+        b=JjpGqxNTysr8cGmxx9/AIHFMkCVh+Sr+Y40serpzFShE6EUEVGjUc+q9RZ7FwfwZm7
+         Xnm4dk/mT4UYaiKULc6KSErl9f+H56u0JIdlf5GRTyGcwF8LXgM6I8MODyGNUS6u2w3W
+         Bp+AfQqfIhDPZHU4f0TWsm4gJ9ZfSqIofCMI+r4VhGmhDTKoAM+VsPQtMaJxFs7m1bDU
+         0ya2UkLeBY2CfdOwzdAtlQIqXzfiV6vFMh2o4uky1UFyKvGsTqEA2rkVURjLxdOybBGX
+         QfmaQn7/UQCssmh1yS9YmbZn/9egUXz8uPcYeNp8YhiWvTQ7ig4UgauumbwKy/R3Lt1+
+         HPdA==
+X-Gm-Message-State: AOAM533vHf0TLYjAecDseeaBfE4kSfQmUffUvA92NYpkEjjsu54LHHP0
+        yIsNvz4drGAy3wGUb//oy4wQqozab3BPDjDYPbH3EVk/0+2Vp3mqWbbnxFqU3Sd954xGWaUXAEo
+        aC2wbag2QicjHZupHdNtxnJH1toCMIosAcRZKGUs=
+X-Received: by 2002:a05:6402:3549:b0:412:b31c:5509 with SMTP id f9-20020a056402354900b00412b31c5509mr14865081edd.224.1645956484765;
+        Sun, 27 Feb 2022 02:08:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyQAnvtCXE0xO0XRte1z2S3jF4ZnFOgFimpWcSv/fQckmAOJ3pVtCTn5WpkGMmHECl8gicPlQ==
+X-Received: by 2002:a05:6402:3549:b0:412:b31c:5509 with SMTP id f9-20020a056402354900b00412b31c5509mr14865061edd.224.1645956484614;
+        Sun, 27 Feb 2022 02:08:04 -0800 (PST)
 Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id ee21-20020a056402291500b00410d4261313sm4211234edb.24.2022.02.27.02.03.52
+        by smtp.gmail.com with ESMTPSA id dn14-20020a05640222ee00b00410b88abd6fsm4324340edb.45.2022.02.27.02.08.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Feb 2022 02:03:53 -0800 (PST)
-Message-ID: <ea5d34c6-fe75-c096-d5b2-6a327c9d0ae5@canonical.com>
-Date:   Sun, 27 Feb 2022 11:03:52 +0100
+        Sun, 27 Feb 2022 02:08:04 -0800 (PST)
+Message-ID: <530d4625-8f31-32ca-b770-d75b6514343e@canonical.com>
+Date:   Sun, 27 Feb 2022 11:08:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM6125 display clock
- bindings
+Subject: Re: [PATCH] dt-bindings: timer: Convert rda,8810pl-timer to YAML
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220226200911.230030-1-marijn.suijten@somainline.org>
- <20220226200911.230030-3-marijn.suijten@somainline.org>
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-unisoc@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220225173734.GA7573@standask-GA-A55M-S2HP>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220226200911.230030-3-marijn.suijten@somainline.org>
+In-Reply-To: <20220225173734.GA7573@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -97,101 +86,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/02/2022 21:09, Marijn Suijten wrote:
-> From: Martin Botka <martin.botka@somainline.org>
+On 25/02/2022 18:37, Stanislav Jakubek wrote:
+> Convert RDA Micro Timer bindings to DT schema format.
 > 
-> Add device tree bindings for display clock controller for
-> Qualcomm Technology Inc's SM6125 SoC.
-> 
-> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
 > ---
->  .../bindings/clock/qcom,dispcc-sm6125.yaml    | 87 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,dispcc-sm6125.h    | 41 +++++++++
->  2 files changed, 128 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6125.h
+>  .../bindings/timer/rda,8810pl-timer.txt       | 20 --------
+>  .../bindings/timer/rda,8810pl-timer.yaml      | 47 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 48 insertions(+), 21 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
-> new file mode 100644
-> index 000000000000..3465042d0d9f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm6125.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Display Clock Controller Binding for SM6125
-> +
-> +maintainers:
-> +  - Martin Botka <martin.botka@somainline.org>
-> +
-> +description: |
-> +  Qualcomm display clock control module which supports the clocks and
-> +  power domains on SM6125.
-> +
-> +  See also:
-> +    dt-bindings/clock/qcom,dispcc-sm6125.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,sm6125-dispcc
-> +
-> +  clocks:
-> +    items:
-> +      - description: Board XO source
-> +      - description: Byte clock from DSI PHY0
-> +      - description: Pixel clock from DSI PHY0
-> +      - description: Pixel clock from DSI PHY1
-> +      - description: Link clock from DP PHY
-> +      - description: VCO DIV clock from DP PHY
-> +      - description: AHB config clock from GCC
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bi_tcxo
-> +      - const: dsi0_phy_pll_out_byteclk
-> +      - const: dsi0_phy_pll_out_dsiclk
-> +      - const: dsi1_phy_pll_out_dsiclk
-> +      - const: dp_phy_pll_link_clk
-> +      - const: dp_phy_pll_vco_div_clk
-> +      - const: cfg_ahb_clk
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#power-domain-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - '#clock-cells'
-> +  - '#power-domain-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmcc.h>
-> +    #include <dt-bindings/clock/qcom,gcc-sm6125.h>
-> +    clock-controller@5f00000 {
-> +      compatible = "qcom,sm6125-dispcc";
-> +      reg = <0x5f00000 0x20000>;
-> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> +               <&dsi0_phy 0>,
-> +               <&dsi0_phy 1>,
-> +               <0>,
 
-This does not look like a valid phandle. This clock is required, isn't it?
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
 Best regards,
