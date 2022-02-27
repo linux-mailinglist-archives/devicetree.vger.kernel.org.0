@@ -2,100 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5FE4C5F1D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:38:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4BC4C5F24
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:43:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230008AbiB0VjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 16:39:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
+        id S231908AbiB0VoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 16:44:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229549AbiB0VjR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:39:17 -0500
-Received: from vulcan.natalenko.name (vulcan.natalenko.name [IPv6:2001:19f0:6c00:8846:5400:ff:fe0c:dfa0])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE7F44BFF4;
-        Sun, 27 Feb 2022 13:38:35 -0800 (PST)
-Received: from spock.localnet (unknown [83.148.33.151])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vulcan.natalenko.name (Postfix) with ESMTPSA id 1EF44DF7491;
-        Sun, 27 Feb 2022 22:38:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=natalenko.name;
-        s=dkim-20170712; t=1645997913;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=auuyEhFvI9O6E7K0eY+/3pvXha2pZMkC/DntTyWHWHY=;
-        b=DDQ+6xSh7odwZlp+syE+bHr9FuZmMlX3tbJ1AZvewGDaiDeGgV8ouwsBt9ykPM5e/XyqsR
-        Z2UVkHJd3PFAtTuycKSjfXpU1SFBSnCWPItkTWvGf8PkFWPU+u3yU1O09OEN8vti4/8axe
-        zZ4KQy3G2OEbXqnU/yDPiN13ORLeA2E=
-From:   Oleksandr Natalenko <oleksandr@natalenko.name>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, Renze Nicolai <renze@rnplus.nl>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/5] hwmon: (nct6775) Add i2c support
-Date:   Sun, 27 Feb 2022 22:38:31 +0100
-Message-ID: <4719747.31r3eYUQgx@natalenko.name>
-In-Reply-To: <YhrFizhgOpZbi3dE@hatter.bewilderbeest.net>
-References: <20220226133047.6226-1-zev@bewilderbeest.net> <2620147.mvXUDI8C0e@natalenko.name> <YhrFizhgOpZbi3dE@hatter.bewilderbeest.net>
+        with ESMTP id S229549AbiB0VoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:44:04 -0500
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4769C13F62
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 13:43:26 -0800 (PST)
+Received: by mail-lf1-x136.google.com with SMTP id d23so18173784lfv.13
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 13:43:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=T1vSvmNg6Xz8pPNgIHTjo8uuE4HsvwCe3dsH/3t/F18=;
+        b=YrS8I+x3EB1al65yr/YylJ0lknWBnEEo1dNTBC4Zy3sii79LWKqHj43q6FASmOuCJV
+         ZSJ+GHg3V9qKg1JEjfikbvrOmpEhZAdeJDNGEyyLelH4fmYe1Yyyr2959arXKCGxd68v
+         +4xootihHRmE3aza0EHuT3d9mMfi9zhh6wSgraKCCza77aCeG6h1tJc2uy9akqOmkGtt
+         UFc2N3qP3hhXZ8U1YejNDQX07vZ3Aso2Lx96VxwapuuRt/EYOwwukEQJM4aXyr8Nz2MW
+         Un7SdwJBJJchnvz6cbL29jB+CRQpXXqpeT5Suuyocr1sBJTD3qkbcRT8LLWQCVgbWMIk
+         pf+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=T1vSvmNg6Xz8pPNgIHTjo8uuE4HsvwCe3dsH/3t/F18=;
+        b=GO1hEz2vcEohWzsdQhcZtOwDPJxZT6hlc4nJWv790jl0j1fX7JXo+UEhEytHq7q0RD
+         yLs4XQ7u2rOM7GK5MuLt6Xfe8TGjQxhBYEv87w0lfX72OSEDTSgJIlnVEJ2Hei4Og+ZE
+         UcH8PgGpW3TZ5sV+4dxKPqyksE6ZPiaPEfW67J4WJIoKyq4p1frBhLJP/8FCnFrcjdaS
+         YdmCqX/0gC+2s/i6supWU90E23WQe3PTIve3W8ohZNmMtcEExApbUsK0WicSDylU3ey9
+         /DCR2lsMERg1kU+apJx5qK/TenOaZnbdyJQC7SMMlaRVJJ9zyY6rz8AyBXW33ZzO/3Mi
+         89eQ==
+X-Gm-Message-State: AOAM530zqi1H3oodqa7RytKfH/2rHD3Y84oUfPZqoZ0K0V5L4efwxC7q
+        cY08FVdHFvRtR9l+1e9GBHVFrA==
+X-Google-Smtp-Source: ABdhPJxmS5muCyiKPYrs1CKo4idnR6DRkHB8f2wt5pbSkKyhvqd/kQ3NiPj/ol1DnnNz00q0NwBIXA==
+X-Received: by 2002:a05:6512:208d:b0:443:1833:7473 with SMTP id t13-20020a056512208d00b0044318337473mr10681503lfr.651.1645998204627;
+        Sun, 27 Feb 2022 13:43:24 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id e10-20020ac24e0a000000b00443145afc25sm740873lfr.126.2022.02.27.13.43.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Feb 2022 13:43:24 -0800 (PST)
+Message-ID: <62ebb074-b8de-0dc3-2bbc-e43dca9d2ced@linaro.org>
+Date:   Mon, 28 Feb 2022 00:43:23 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM6125 display clock
+ bindings
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        phone-devel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Pavel Dubrova <pashadubrova@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220226200911.230030-1-marijn.suijten@somainline.org>
+ <20220226200911.230030-3-marijn.suijten@somainline.org>
+ <ea5d34c6-fe75-c096-d5b2-6a327c9d0ae5@canonical.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <ea5d34c6-fe75-c096-d5b2-6a327c9d0ae5@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello.
+On 27/02/2022 13:03, Krzysztof Kozlowski wrote:
+> On 26/02/2022 21:09, Marijn Suijten wrote:
+>> From: Martin Botka <martin.botka@somainline.org>
+>>
+>> Add device tree bindings for display clock controller for
+>> Qualcomm Technology Inc's SM6125 SoC.
+>>
+>> Signed-off-by: Martin Botka <martin.botka@somainline.org>
+>> ---
+>>   .../bindings/clock/qcom,dispcc-sm6125.yaml    | 87 +++++++++++++++++++
+>>   .../dt-bindings/clock/qcom,dispcc-sm6125.h    | 41 +++++++++
+>>   2 files changed, 128 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+>>   create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6125.h
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+>> new file mode 100644
+>> index 000000000000..3465042d0d9f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
+>> @@ -0,0 +1,87 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm6125.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Display Clock Controller Binding for SM6125
+>> +
+>> +maintainers:
+>> +  - Martin Botka <martin.botka@somainline.org>
+>> +
+>> +description: |
+>> +  Qualcomm display clock control module which supports the clocks and
+>> +  power domains on SM6125.
+>> +
+>> +  See also:
+>> +    dt-bindings/clock/qcom,dispcc-sm6125.h
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,sm6125-dispcc
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: Board XO source
+>> +      - description: Byte clock from DSI PHY0
+>> +      - description: Pixel clock from DSI PHY0
+>> +      - description: Pixel clock from DSI PHY1
+>> +      - description: Link clock from DP PHY
+>> +      - description: VCO DIV clock from DP PHY
+>> +      - description: AHB config clock from GCC
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: bi_tcxo
+>> +      - const: dsi0_phy_pll_out_byteclk
+>> +      - const: dsi0_phy_pll_out_dsiclk
+>> +      - const: dsi1_phy_pll_out_dsiclk
+>> +      - const: dp_phy_pll_link_clk
+>> +      - const: dp_phy_pll_vco_div_clk
+>> +      - const: cfg_ahb_clk
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  '#power-domain-cells':
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - '#clock-cells'
+>> +  - '#power-domain-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/qcom,rpmcc.h>
+>> +    #include <dt-bindings/clock/qcom,gcc-sm6125.h>
+>> +    clock-controller@5f00000 {
+>> +      compatible = "qcom,sm6125-dispcc";
+>> +      reg = <0x5f00000 0x20000>;
+>> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+>> +               <&dsi0_phy 0>,
+>> +               <&dsi0_phy 1>,
+>> +               <0>,
+> 
+> This does not look like a valid phandle. This clock is required, isn't it?
 
-On ned=C4=9Ble 27. =C3=BAnora 2022 1:27:55 CET Zev Weiss wrote:
-> On Sat, Feb 26, 2022 at 04:14:12PM PST, Oleksandr Natalenko wrote:
-> >Hello.
-> >
-> >On sobota 26. =C3=BAnora 2022 14:30:42 CET Zev Weiss wrote:
-> >> Hello,
-> >>
-> >> This patch series augments the existing nct6775 driver with support
-> >> for the hardware's i2c interface.
-> >
-> >Is it something I can test on my ASUS Pro WS X570-ACE board as an ordina=
-ry user, and if so, how?
-> >
->=20
-> You could certainly test that the nct6775-platform driver still works as=
-=20
-> it did previously, which would be good to confirm -- you'll need to=20
-> enable CONFIG_SENSORS_NCT6775_PLATFORM now to build it.
+Not, it's not required for general dispcc support.
+dispcc uses DSI and DP PHY clocks to provide respective pixel/byte/etc 
+clocks. However if support for DP is not enabled, the dispcc can work 
+w/o DP phy clock. Thus we typically add 0 phandles as placeholders for 
+DSI/DP clock sources and populate them as support for respective 
+interfaces gets implemented.
 
-Ack.
-
->  From what I've been able to find about that board though it looks like=20
-> it doesn't have a BMC, so testing the i2c driver on it probably isn't=20
-> going to be possible.  (Even if it does in fact have a BMC, it would=20
-> require at least a partial port of OpenBMC or similar, and re-flashing=20
-> your BMC firmware with that, and is hence a non-trivial undertaking.)
-
-It should have, the BMC is based on RTL8117, although I have no idea if it =
-is something that can be called true IPMI as I've never enabled/used it.
-
-Thanks.
-
->=20
->=20
-> Zev
->=20
->=20
+> 
+> 
+> Best regards,
+> Krzysztof
 
 
-=2D-=20
-Oleksandr Natalenko (post-factum)
-
-
+-- 
+With best wishes
+Dmitry
