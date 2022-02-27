@@ -2,199 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3054C5EA6
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 21:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E23264C5EAA
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 21:38:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229615AbiB0Ueu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 15:34:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55290 "EHLO
+        id S231643AbiB0Uif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 15:38:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbiB0Ueu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 15:34:50 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D19FD5BE50;
-        Sun, 27 Feb 2022 12:34:12 -0800 (PST)
-Received: from pendragon.lan (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 788F5993;
-        Sun, 27 Feb 2022 21:34:08 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1645994049;
-        bh=3/kab66CzJbqHUmCUBv5VTquRogvdLAl6WZl739Fjw4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JIRSjrat9of2ikiLJWFRRWBiUGCnkawlMKpnVEEUECHgJStTjuQzKnKSmp7N8cTMt
-         BjlJLt+6T2MD6hvGWjNt/wYCCvS1Okz6LCSxiclexKJLOuw8bd+zHFuzSQzfZsnd85
-         NwySiNlU3uvgmaeAloqouVVTJ65R+vOV0CW9p2Gk=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
+        with ESMTP id S229671AbiB0Uif (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 15:38:35 -0500
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0129733359;
+        Sun, 27 Feb 2022 12:37:56 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.90,141,1643641200"; 
+   d="scan'208";a="111718863"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 28 Feb 2022 05:37:55 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 684D940175FE;
+        Mon, 28 Feb 2022 05:37:53 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Subject: [PATCH 2/2] dt-bindings: Use new video interface bus type macros in examples
-Date:   Sun, 27 Feb 2022 22:33:52 +0200
-Message-Id: <20220227203352.17314-3-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
-References: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: [PATCH 00/12] Renesas RZ/V2L add support for SDHI/CANFD/I2C/OSTM/USB2/SBC/RSPI/WDT/SSI
+Date:   Sun, 27 Feb 2022 20:37:32 +0000
+Message-Id: <20220227203744.18355-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that a header exists with macros for the media interface bus-type
-values, replace hardcoding numerical constants with the corresponding
-macros in the DT binding examples.
+Hi All,
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../devicetree/bindings/display/bridge/analogix,anx7625.yaml  | 3 ++-
- Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml     | 3 ++-
- Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml  | 3 ++-
- .../devicetree/bindings/media/marvell,mmp2-ccic.yaml          | 3 ++-
- Documentation/devicetree/bindings/media/microchip,xisc.yaml   | 3 ++-
- Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml    | 4 +++-
- 6 files changed, 13 insertions(+), 6 deletions(-)
+This patch series adds support for below IP blocks to Renesas RZ/V2L SoC:
+* SDHI
+* CANFD
+* I2C
+* OSTM
+* WDT
+* SSI
+* USB2
+* RPC-IF (SBC)
+* RSPI
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-index 1d3e88daca04..0e6c43a29491 100644
---- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -130,6 +130,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
- 
-     i2c0 {
-         #address-cells = <1>;
-@@ -155,7 +156,7 @@ examples:
-                     reg = <0>;
-                     anx7625_in: endpoint {
-                         remote-endpoint = <&mipi_dsi>;
--                        bus-type = <5>;
-+                        bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-                         data-lanes = <0 1 2 3>;
-                     };
-                 };
-diff --git a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-index 39395ea8c318..edde4201116f 100644
---- a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
-@@ -104,6 +104,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
- 
-     i2c2 {
-         #address-cells = <1>;
-@@ -124,7 +125,7 @@ examples:
-                     remote-endpoint = <&csi2a_ep>;
-                     link-frequencies = /bits/ 64 <199200000 210000000
-                                                   499200000>;
--                    bus-type = <4>;
-+                    bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-                 };
-             };
-         };
-diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-index 44529425ce3a..161e6d598e1c 100644
---- a/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-+++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov772x.yaml
-@@ -105,6 +105,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/media/video-interfaces.h>
- 
-     i2c0 {
-         #address-cells = <1>;
-@@ -118,7 +119,7 @@ examples:
- 
-             port {
-                 ov772x_0: endpoint {
--                    bus-type = <5>;
-+                    bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-                     vsync-active = <0>;
-                     hsync-active = <0>;
-                     pclk-sample = <0>;
-diff --git a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-index b39b84c5f012..0e3478551e13 100644
---- a/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-+++ b/Documentation/devicetree/bindings/media/marvell,mmp2-ccic.yaml
-@@ -68,6 +68,7 @@ additionalProperties: false
- examples:
-   - |
-     #include <dt-bindings/clock/marvell,mmp2.h>
-+    #include <dt-bindings/media/video-interfaces.h>
-     #include <dt-bindings/power/marvell,mmp2.h>
- 
-     camera@d420a000 {
-@@ -83,7 +84,7 @@ examples:
-       port {
-         camera0_0: endpoint {
-           remote-endpoint = <&ov7670_0>;
--          bus-type = <5>;      /* Parallel */
-+          bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-           hsync-active = <1>;  /* Active high */
-           vsync-active = <1>;  /* Active high */
-           pclk-sample = <0>;   /* Falling */
-diff --git a/Documentation/devicetree/bindings/media/microchip,xisc.yaml b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-index 086e1430af4f..d13d16c710e2 100644
---- a/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-+++ b/Documentation/devicetree/bindings/media/microchip,xisc.yaml
-@@ -106,6 +106,7 @@ examples:
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/clock/at91.h>
-     #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/media/video-interfaces.h>
- 
-     xisc: xisc@e1408000 {
-         compatible = "microchip,sama7g5-isc";
-@@ -118,7 +119,7 @@ examples:
- 
-         port {
-                 xisc_in: endpoint {
--                       bus-type = <5>; /* Parallel */
-+                       bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-                        remote-endpoint = <&csi2dc_out>;
-                        hsync-active = <1>;
-                        vsync-active = <1>;
-diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-index 9c1262a276b5..285c6075950a 100644
---- a/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-+++ b/Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml
-@@ -90,7 +90,9 @@ examples:
-   - |
-     #include <dt-bindings/interrupt-controller/arm-gic.h>
-     #include <dt-bindings/clock/stm32mp1-clks.h>
-+    #include <dt-bindings/media/video-interfaces.h>
-     #include <dt-bindings/reset/stm32mp1-resets.h>
-+    #
-     dcmi: dcmi@4c006000 {
-         compatible = "st,stm32-dcmi";
-         reg = <0x4c006000 0x400>;
-@@ -104,7 +106,7 @@ examples:
-         port {
-              dcmi_0: endpoint {
-                    remote-endpoint = <&ov5640_0>;
--                   bus-type = <5>;
-+                   bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-                    bus-width = <8>;
-                    hsync-active = <0>;
-                    vsync-active = <0>;
+The above peripherals can now be operational on Renesas RZ/V2L SMARC EVK
+with this series.
+
+Note:
+* Im just sending the DTS/I changes as separate series and shall post the
+binding doc changes individually to the corresponding subsystems.
+* Patch 05/12 depends on [0]
+* For OSTM/SSI/USB to work on RZ/V2L SoC ARCH_R9A07G044 needs to be
+enabled as the corresponding drivers have ARCH_R9A07G044 as dependency
+which I intend to change it to ARCH_RZG2L. This will be updated once patch
+[1] is part of -rc* cycle.
+* Patch series applies on top of [2].
+
+[0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220209232232.18461-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220224092114.25737-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+[2] https://patchwork.kernel.org/project/linux-renesas-soc/cover/
+20220224125843.29733-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (12):
+  arm64: dts: renesas: r9a07g054: Fillup the SDHI{0,1} stub nodes
+  arm64: dts: renesas: r9a07g054l2-smarc: Drop deleting gpio-hog pins
+    related to SDHI
+  arm64: dts: renesas: r9a07g054: Fillup the CANFD stub node
+  arm64: dts: renesas: r9a07g054l2-smarc: Drop deleting can{0,1}-stb-hog
+    nodes
+  arm64: dts: renesas: r9a07g054: Fillup the I2C{0,1,2,3} stub nodes
+  arm64: dts: renesas: r9a07g054: Fillup the sbc stub node
+  arm64: dts: renesas: r9a07g054: Fillup the OSTM{0,1,2} stub nodes
+  arm64: dts: renesas: r9a07g054: Fillup the WDT{0,1,2} stub nodes
+  arm64: dts: renesas: r9a07g054: Add SSI{1,2,3} nodes and fillup the
+    SSI0 stub node
+  arm64: dts: renesas: r9a07g054: Add USB2.0 phy and host support
+  arm64: dts: renesas: r9a07g054: Add USB2.0 device support
+  arm64: dts: renesas: r9a07g054: Add SPI{0,2} nodes and fillup SPI1
+    stub node
+
+ arch/arm64/boot/dts/renesas/r9a07g054.dtsi    | 413 +++++++++++++++++-
+ .../boot/dts/renesas/r9a07g054l2-smarc.dts    |   8 -
+ 2 files changed, 390 insertions(+), 31 deletions(-)
+
 -- 
-Regards,
-
-Laurent Pinchart
+2.17.1
 
