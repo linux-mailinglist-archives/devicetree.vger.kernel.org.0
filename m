@@ -2,197 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 841004C5EFC
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:13:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EDB4C5EF8
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 22:07:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbiB0VNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 16:13:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46456 "EHLO
+        id S230520AbiB0VIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 16:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59822 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230110AbiB0VNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:13:50 -0500
-Received: from 4.mo552.mail-out.ovh.net (4.mo552.mail-out.ovh.net [178.33.43.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F5722B1A
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 13:13:12 -0800 (PST)
-Received: from mxplan5.mail.ovh.net (unknown [10.108.16.105])
-        by mo552.mail-out.ovh.net (Postfix) with ESMTPS id 44B8422DC0;
-        Sun, 27 Feb 2022 21:06:46 +0000 (UTC)
-Received: from kaod.org (37.59.142.96) by DAG4EX1.mxp5.local (172.16.2.31)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Sun, 27 Feb
- 2022 22:06:45 +0100
-Authentication-Results: garm.ovh; auth=pass (GARM-96R00115e110f1-ecce-4d7f-bb2b-9bf0158c7309,
-                    3C1F276A0880C75D3AA0293DFE804433F7F83470) smtp.auth=clg@kaod.org
-X-OVh-ClientIp: 82.64.250.170
-Message-ID: <ceace047-6d07-1ca3-c1ae-7137456975c5@kaod.org>
-Date:   Sun, 27 Feb 2022 22:06:44 +0100
+        with ESMTP id S229519AbiB0VIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 16:08:06 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 354F0E0AD;
+        Sun, 27 Feb 2022 13:07:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1645996048; x=1677532048;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QGEyYRXfmhEm1Jg+uu+nYK/LNtHww3Unu43NxFRicgI=;
+  b=lHN2VhO34ydr9xDSTXVqO0aa1A39mUcEF1bHTSISr2I1a8MdXtyhI2Ns
+   YtwnkdewcqkeGF3TbRvm8xIx91IK06RRoSiLcCR7oLeYM1jcNFWnGyxkA
+   VP9YgDLlrS0AEbvq6OTSuJULNty+7ZYNEMIuZncCDHvNHeuE9uSORUhCW
+   zBrH+8ImKi/g+7T96nI7LWlXNMPwdAUSAwYUw4xyudDPJ8UPQu+o0fo8z
+   +LZ83N1Xvw2ELCDwJa2r+Vy7vJOOXA51Jsv8mtSHyfKMiAR4lDxl7miSe
+   Z4ZImkQcsUrgtzjjDrz128e1BhBUJuOb7on1CjPEKSsa0/8w7Oo0O9KD4
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10271"; a="236268210"
+X-IronPort-AV: E=Sophos;i="5.90,141,1643702400"; 
+   d="scan'208";a="236268210"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2022 13:07:27 -0800
+X-IronPort-AV: E=Sophos;i="5.90,141,1643702400"; 
+   d="scan'208";a="534204768"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2022 13:07:25 -0800
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id 285CD201C2;
+        Sun, 27 Feb 2022 23:07:23 +0200 (EET)
+Date:   Sun, 27 Feb 2022 23:07:23 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Subject: Re: [PATCH 1/2] dt-bindings: media: Add macros for video interface
+ bus types
+Message-ID: <YhvoC0aXpJUTslnC@paasikivi.fi.intel.com>
+References: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
+ <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 04/10] spi: aspeed: Add support for direct mapping
-Content-Language: en-US
-To:     Pratyush Yadav <p.yadav@ti.com>
-CC:     <linux-spi@vger.kernel.org>, <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        <linux-aspeed@lists.ozlabs.org>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20220214094231.3753686-1-clg@kaod.org>
- <20220214094231.3753686-5-clg@kaod.org>
- <20220225091219.bv62jm3nehg4e4z4@ti.com>
-From:   =?UTF-8?Q?C=c3=a9dric_Le_Goater?= <clg@kaod.org>
-In-Reply-To: <20220225091219.bv62jm3nehg4e4z4@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [37.59.142.96]
-X-ClientProxiedBy: DAG9EX2.mxp5.local (172.16.2.82) To DAG4EX1.mxp5.local
- (172.16.2.31)
-X-Ovh-Tracer-GUID: 0b4b9ae5-d348-4927-88b8-76128bb7f478
-X-Ovh-Tracer-Id: 16710043469378063236
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvvddrleekgddugeefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfuffvfhfhjggtgfhisehtkeertddtfeejnecuhfhrohhmpeevrogurhhitggpnfgvpgfiohgrthgvrhcuoegtlhhgsehkrghougdrohhrgheqnecuggftrfgrthhtvghrnhepkeeljeefveejheeihfegleegleduudeluedvffetudeigedvgfetveefteekteefnecuffhomhgrihhnpegsuhhfrdhinhenucfkpheptddrtddrtddrtddpfeejrdehledrudegvddrleeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopehmgihplhgrnhehrdhmrghilhdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomheptghlgheskhgrohgurdhorhhgpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqkhgvrhhnvghlsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/25/22 10:12, Pratyush Yadav wrote:
-> On 14/02/22 10:42AM, Cédric Le Goater wrote:
->> Use direct mapping to read the flash device contents. This operation
->> mode is called "Command mode" on Aspeed SoC SMC controllers. It uses a
->> Control Register for the settings to apply when a memory operation is
->> performed on the flash device mapping window.
->>
->> If the window is not big enough, fall back to the "User mode" to
->> perform the read.
->>
->> Direct mapping for writes will come later when validated.
->>
->> Signed-off-by: Cédric Le Goater <clg@kaod.org>
->> ---
->>   drivers/spi/spi-aspeed-smc.c | 67 ++++++++++++++++++++++++++++++++++--
->>   1 file changed, 65 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/spi/spi-aspeed-smc.c b/drivers/spi/spi-aspeed-smc.c
->> index 0aeff6f468af..8d33fcb7736a 100644
->> --- a/drivers/spi/spi-aspeed-smc.c
->> +++ b/drivers/spi/spi-aspeed-smc.c
->> @@ -345,8 +345,8 @@ static int do_aspeed_spi_exec_op(struct spi_mem *mem, const struct spi_mem_op *o
->>   		if (!op->addr.nbytes)
->>   			ret = aspeed_spi_read_reg(chip, op);
->>   		else
->> -			ret = aspeed_spi_read_user(chip, op, op->addr.val,
->> -						   op->data.nbytes, op->data.buf.in);
->> +			memcpy_fromio(op->data.buf.in, chip->ahb_base + op->addr.val,
->> +				      op->data.nbytes);
+Hi Laurent,
+
+Thanks for the set.
+
+On Sun, Feb 27, 2022 at 10:33:51PM +0200, Laurent Pinchart wrote:
+> Add a new dt-bindings/media/video-interfaces.h header that defines
+> macros corresponding to the bus types from media/video-interfaces.yaml.
+> This allows avoiding hardcoded constants in device tree sources.
 > 
-> Why change this? exec_op should be independent from dirmap APIs. And you
-> don't even do the ahb_window_size checks here.
-
-no indeed. Now that direct map is configured, all reads of flash contents
-should go through the direct map op. This is mostly for the RDSFDP command
-which has a different address space and uses 3B.
-
-Theoretically, we should be able to use memcpy_fromio() and memcpy_toio()
-for all commands but not all controllers (6 of them) support this mode.
-
-Thanks,
-
-C.
-
-
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+>  create mode 100644 include/dt-bindings/media/video-interfaces.h
 > 
->>   	} else {
->>   		if (!op->addr.nbytes)
->>   			ret = aspeed_spi_write_reg(chip, op);
->> @@ -426,10 +426,73 @@ static int aspeed_spi_chip_set_default_window(struct aspeed_spi_chip *chip)
->>   	return chip->ahb_window_size ? 0 : -1;
->>   }
->>   
->> +static int aspeed_spi_dirmap_create(struct spi_mem_dirmap_desc *desc)
->> +{
->> +	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
->> +	struct aspeed_spi_chip *chip = &aspi->chips[desc->mem->spi->chip_select];
->> +	struct spi_mem_op *op = &desc->info.op_tmpl;
->> +	u32 ctl_val;
->> +	int ret = 0;
->> +
->> +	chip->clk_freq = desc->mem->spi->max_speed_hz;
->> +
->> +	/* Only for reads */
->> +	if (op->data.dir != SPI_MEM_DATA_IN)
->> +		return -EOPNOTSUPP;
->> +
->> +	if (desc->info.length > chip->ahb_window_size)
->> +		dev_warn(aspi->dev, "CE%d window (%dMB) too small for mapping",
->> +			 chip->cs, chip->ahb_window_size >> 20);
->> +
->> +	/* Define the default IO read settings */
->> +	ctl_val = readl(chip->ctl) & ~CTRL_IO_CMD_MASK;
->> +	ctl_val |= aspeed_spi_get_io_mode(op) |
->> +		op->cmd.opcode << CTRL_COMMAND_SHIFT |
->> +		CTRL_IO_DUMMY_SET(op->dummy.nbytes / op->dummy.buswidth) |
->> +		CTRL_IO_MODE_READ;
->> +
->> +	/* Tune 4BYTE address mode */
->> +	if (op->addr.nbytes) {
->> +		u32 addr_mode = readl(aspi->regs + CE_CTRL_REG);
->> +
->> +		if (op->addr.nbytes == 4)
->> +			addr_mode |= (0x11 << chip->cs);
->> +		else
->> +			addr_mode &= ~(0x11 << chip->cs);
->> +		writel(addr_mode, aspi->regs + CE_CTRL_REG);
->> +	}
->> +
->> +	/* READ mode is the controller default setting */
->> +	chip->ctl_val[ASPEED_SPI_READ] = ctl_val;
->> +	writel(chip->ctl_val[ASPEED_SPI_READ], chip->ctl);
->> +
->> +	dev_info(aspi->dev, "CE%d read buswidth:%d [0x%08x]\n",
->> +		 chip->cs, op->data.buswidth, chip->ctl_val[ASPEED_SPI_READ]);
->> +
->> +	return ret;
->> +}
->> +
->> +static int aspeed_spi_dirmap_read(struct spi_mem_dirmap_desc *desc,
->> +				  u64 offset, size_t len, void *buf)
->> +{
->> +	struct aspeed_spi *aspi = spi_controller_get_devdata(desc->mem->spi->master);
->> +	struct aspeed_spi_chip *chip = &aspi->chips[desc->mem->spi->chip_select];
->> +
->> +	/* Switch to USER command mode if mapping window is too small */
->> +	if (chip->ahb_window_size < offset + len)
->> +		aspeed_spi_read_user(chip, &desc->info.op_tmpl, offset, len, buf);
->> +	else
->> +		memcpy_fromio(buf, chip->ahb_base + offset, len);
->> +
->> +	return len;
->> +}
->> +
->>   static const struct spi_controller_mem_ops aspeed_spi_mem_ops = {
->>   	.supports_op = aspeed_spi_supports_op,
->>   	.exec_op = aspeed_spi_exec_op,
->>   	.get_name = aspeed_spi_get_name,
->> +	.dirmap_create = aspeed_spi_dirmap_create,
->> +	.dirmap_read = aspeed_spi_dirmap_read,
->>   };
->>   
->>   static void aspeed_spi_chip_set_type(struct aspeed_spi_chip *chip, int type)
->> -- 
->> 2.34.1
->>
-> 
+> diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+> new file mode 100644
+> index 000000000000..e38058e1cca7
+> --- /dev/null
+> +++ b/include/dt-bindings/media/video-interfaces.h
+> @@ -0,0 +1,16 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2022 Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> + */
+> +
+> +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> +
+> +#define MEDIA_BUS_TYPE_CSI2_CPHY		1
+> +#define MEDIA_BUS_TYPE_CSI1			2
+> +#define MEDIA_BUS_TYPE_CCP2			3
+> +#define MEDIA_BUS_TYPE_CSI2_DPHY		4
+> +#define MEDIA_BUS_TYPE_PARALLEL			5
 
+I've been long thinkin of renaming "PARALLEL" as "BT.601" which it really
+is. I don't mind postponing that, but I think you could as well start here.
+Up to you.
+
+Should this be somehow visible in video-interfaces.yaml?
+
+> +#define MEDIA_BUS_TYPE_BT656			6
+> +
+> +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
+
+-- 
+Kind regards,
+
+Sakari Ailus
