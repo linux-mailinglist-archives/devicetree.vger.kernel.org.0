@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 927C44C593B
-	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 05:19:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A11A4C59F5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Feb 2022 09:14:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229906AbiB0EUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Feb 2022 23:20:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60280 "EHLO
+        id S230127AbiB0IOs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 03:14:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229909AbiB0EUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Feb 2022 23:20:19 -0500
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92844DD7
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 20:19:43 -0800 (PST)
-Received: by mail-oo1-xc2d.google.com with SMTP id r41-20020a4a966c000000b0031bf85a4124so13415987ooi.0
-        for <devicetree@vger.kernel.org>; Sat, 26 Feb 2022 20:19:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=DOWQCle1yWXb74A6NwPdy7M5JNT4HpDC3FQ0vyWPTag=;
-        b=IeylE/7EPIwORvE0KS/7Ameqd+Ni1fvuGcTyhvl9Q+CBocq+kWqmhUOzDExwG+binD
-         b9NOZrJNqg8PSGZTql6noit2xRsPQlDHlz2uEkbZfPnkpQPgohVAEbkaulVLzCgms9aY
-         mEMavWAD1EwN9ULfjmyBqjYWuob6fPjV9j0Xi9zyvLdCkbe649ctm4rO+ougQiWPqKQq
-         TWZ0UYDBIL8HXreHEWovO+gTBa/jFnU8FvJ/jGr5lxO6qr80PzxK7DmeDtFSqBaugTx2
-         Igm6D4I9aQ9VS4Z/qLMgBpDCSW6nsLnhMIRg662la8bTYY36QaOI6/l/mg3DTU0Jzttq
-         7aQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=DOWQCle1yWXb74A6NwPdy7M5JNT4HpDC3FQ0vyWPTag=;
-        b=tEUiRp+Sv+pc2gj7Y9mFwFdgOqEZdLRsJxptk3t88M1Eoh5cejOgXaLINcw2tL3HxB
-         vvEhVMohqA67pU2S8TiXnzvPhUMb6InRLwjtMPyPsMKOoUpR3CN7Du31b7L9XaMMS5ff
-         mwjQB0LlJTmDHnJ4ke18zCeOookrRAkGxSGAblKMCKlPuOIFuzdeP/SbVb+ina12lalc
-         sNzWJkIj5WU4zwnurfmbMPX9KoEZBtHOIc57LWw2mfsfFvelzEzsaGpif9i80gtCgoGs
-         T8rxJ/mz2ROYH//oaQIL82lSRfkpn6/teH/R51JyojVhLFXnov2PYH+9a6XWTbiqy/v3
-         bWRg==
-X-Gm-Message-State: AOAM531EnFLS7SzXg09HNr/JDyhPYAd3Y7LNHxWxhVqvtPmEq2CTedbi
-        oyFZHuRQEo16VR4CNZ46hQG+yiZmmu2P2AwpeE9Q8A==
-X-Google-Smtp-Source: ABdhPJzIp2ckX/5Fmg/5ZskGI2KaKSC4oRyfJHOpnu/S5EGTP1fU2fyV7LXsE25qAb1bhAdDLKuJeW4Nln8qhWSEhBA=
-X-Received: by 2002:a4a:301c:0:b0:2dc:dcf1:8a62 with SMTP id
- q28-20020a4a301c000000b002dcdcf18a62mr6116378oof.7.1645935582815; Sat, 26 Feb
- 2022 20:19:42 -0800 (PST)
+        with ESMTP id S229769AbiB0IOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 03:14:48 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2E7413EAE;
+        Sun, 27 Feb 2022 00:14:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1645949622;
+        bh=CBoV8ODIiZ4otV26RH+UDOxaWaSm2+1iqQDPLbFEFwU=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=V70pDzMIgOU0tK2UIyi2eQaG0NTXNjLjJCacIzwGD+7rUDKzcf76Zk8CCPRpWPJ64
+         ALB5yi6A0ZC3o/8dxOOT8ICH/lsCG1lCeXW0k+2koAlrgXKNm2SbGqksyIaezWc1Ii
+         IqbXVLXmzMUrHGpGahcGY7KGbt4TqWp9/JJ1Tt/E=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.245.76.205] ([80.245.76.205]) by web-mail.gmx.net
+ (3c-app-gmx-bs39.server.lan [172.19.170.91]) (via HTTP); Sun, 27 Feb 2022
+ 09:13:42 +0100
 MIME-Version: 1.0
-References: <20220224123248.67073-1-bhupesh.sharma@linaro.org>
- <CAA8EJprRgsZRSXBQumveAn029j+w6xO8K2kZUO4rzZaefuYe7Q@mail.gmail.com>
- <CAH=2NtxQBS=c0W0cpX5EdNi12PrqiKEuzyvEtF8WrVE6nsU_rg@mail.gmail.com> <a6d28a2e-69fc-9bdf-da0d-28be35d9bfc2@linaro.org>
-In-Reply-To: <a6d28a2e-69fc-9bdf-da0d-28be35d9bfc2@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Sun, 27 Feb 2022 09:49:31 +0530
-Message-ID: <CAH=2NtwveafJxjNAY_2eRE1sKhEL2wKJhcF7a1THsJW_QiwSpQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,qmp: Mark '#clock-cells' as a
- 'optional' property
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-phy@lists.infradead.org,
-        robh+dt@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Message-ID: <trinity-005e10e1-b6fd-4573-956d-3f474c3c9ae2-1645949622469@3c-app-gmx-bs39>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Frank Wunderlich <linux@fw-web.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Aw: Re: [PATCH v1] arm64: dts: rockchip: Add sata2 node to rk356x
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 27 Feb 2022 09:13:42 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <CAMdYzYro7r2nELu2O4TuxxtZLxNSv1e3iU5yBzjd7AQgHP+FPw@mail.gmail.com>
+References: <20220226135724.61516-1-linux@fw-web.de>
+ <2815432.3mA4caTK8C@diego>
+ <CAMdYzYro7r2nELu2O4TuxxtZLxNSv1e3iU5yBzjd7AQgHP+FPw@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:yI6VQbuHD0V179iz/NvKAtzuqEHuGyBQnL6Qz25j679nLrC9g2CpYQDahzgWxkjkPIYVj
+ MKgMgUXtXEgDEC7zjdjU+TcoX51Wdts+fwXqSSyJFipNXYh1COeCAwKMRlAP69AAUkAOOKp8/R/A
+ kAwgLCLKzhmU9b+HaXhebNSUJs2RbnZx2DEULv9FoXrdHxtiMm1IGybCPbqnV5fWiJwllcCgXxoI
+ t8al0OGjjsQgozRNZz46gGV79LGQ1zaf22vCwDi0PYX43i8a+bCiaolOkn/TtpScELlvnf75lsoj
+ 9o=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:UygpNT5sHHc=:T3eRL5nuQIRyis4orHoxYZ
+ aexhmE3dB2/0TZmn7PJMRroLvkI7tfXFVAXhhlBiQ0XKI8YH74WtSTp5JmzoaE3s8i6jXIEdQ
+ TdAoejdPSsGqFCkiTAXoHsQhyeFL7DTAfKpmaiUqYaw62KNxuTDvbnvoxk+EKz8ZTHz34L76W
+ XHSzjFwPtUI3+0nfFwmlSe73WN6isS+tSRNFNDfwDmWdakIHlfcduVNE2sciCRzTtXYrop4BL
+ MCBTvryA2sqUS1NAxiGitFsXs3qQWHAymjkAfERUcHSJ0fxg5OrUn7WHIJRchhyEMKpVdSy45
+ etyc98YIKVasiY1CFzDgDXKIl3CVTppwh4y/Bq7We4UnBmR5agOBcWOLXj5YGyia0QHHd54Ol
+ YsOpgxlYDTZaGomP02wlgvLitnS4aQbb/foNgwhkRGPdlgaGuRrDBzUzePGbHfT5DC7max75p
+ ODfdmhMe6V/Ea+pVhu2X6349eFBm5nYpenaDIkDFkCowqoxFLqA2Fcll3FbyB8wpDOTOU2IEX
+ 6PFqMVvZa2nPhwkKRcke7wkaXB2csvlRVO2nckd0yCUz56qkxR8GfzFfKQT4AqNZLIz8RxrjR
+ IQHMzCWnsdoWnXwfkwA8zFGBqtAi60gRV7ErxvydDFWPGW2Wl/2SrSujNYA0JHNn9TaaMgpQs
+ uJ53rlosnLwc0GXoafHBqY51I6iOLvB4+FfUJ4FXCQR8Nk2WgKq2ZM6cPSKxzzcBYZBDNVAfJ
+ b5giOUrfaUDruoXvVTISrF+X9Qfj+U5tiut/eKVYkh+AGElEuUL+Tjek2UOgwYUeHok4sfrM0
+ lm7SPqp
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,40 +78,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Feb 2022 at 05:08, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On 25/02/2022 12:16, Bhupesh Sharma wrote:
-> > Hi Dmitry,
-> >
-> > Thanks for your review comments.
-> >
-> > On Thu, 24 Feb 2022 at 20:22, Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >>
-> >> On Thu, 24 Feb 2022 at 15:33, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >>>
-> >>> Since '#clock-cells' is not a required property for several
-> >>> QCoM boards supporting qmp-phy(s) (for e.g. sm8150, sm8250 or sm8350 SoC
-> >>> based boards), mark it as an optional property instead.
-> >>
-> >> I believe the description is not correct. the clock-cells should not
-> >> be used at all, so it should be removed from the root node.
-> >
-> > Hmm.. 'clock-cells' is still used for describing qmp phy pcie nodes for certain
-> > devices like 'msm8996.dtsi'. I am not sure if removing it would impact existing
-> > dts files. But let me try cleaning them up in v2.
->
-> Checked. Unless I'm mistaken, msm8996.dtsi doesn't use #clock-cells in
-> root QMP PHY nodes.
+Hi
 
-Indeed. I meant that we made some cleanups already via
-82d61e19fccb ("arm64: dts: qcom: msm8996: Move '#clock-cells' to QMP
-PHY child node"),
-but it seems a few dts still need to be cleaned up to move the
-'#clock-cells' to QMP PHY child node instead of the root node.
+> Gesendet: Samstag, 26=2E Februar 2022 um 19:15 Uhr
+> Von: "Peter Geis" <pgwipeout@gmail=2Ecom>
+> On Sat, Feb 26, 2022 at 1:08 PM Heiko St=C3=BCbner <heiko@sntech=2Ede> w=
+rote:
+> >
+> > Hi Frank,
+> >
+> > Am Samstag, 26=2E Februar 2022, 14:57:24 CET schrieb Frank Wunderlich:
+> > > From: Frank Wunderlich <frank-w@public-files=2Ede>
+> > >
+> > > RK356x supports up to 3 sata controllers which were compatible with =
+the
+> > > existing snps,dwc-ahci binding=2E
+> > >
+> > > My board has only sata2 connected to combphy2 so only add this one=
+=2E
+> >
+> > how far does the added node diverge from the vendor kernel?
+> >
+> > If it's pretty much similar between both, we can assume the other node=
+s
+> > should work pretty well as well and therefore should all of them at on=
+ce
+> > and hope for the best?
+>=20
+> There's essentially zero divergence (minus the change due to combophy
+> changing), and likely won't be until the ahci-platform=2Etxt is
+> converted to yaml=2E
+>=20
+> I have tested both SATA1 and SATA2 successfully on the rk3566=2E
+> I don't have any rk3568 boards that are operational yet to test SATA0=2E
 
-I will send a fixed version in v2 :)
+Like Peter says, the sata-node(s) is basicly same as downstream, only comb=
+phy-label has changed=2E
+Sata1 from Peters tree [1] seems to have only this change=2E
+I'll send an followup containing all 3, but had only tested sata2=2E
 
-Regards,
-Bhupesh
+already sent a bindings-patch for the ahci-platform=2Etxt [2]
+
+regards Frank
+
+[1] https://gitlab=2Ecom/pgwipeout/linux-next/-/blob/main/arch/arm64/boot/=
+dts/rockchip/rk356x=2Edtsi#L238
+[2] https://lore=2Ekernel=2Eorg/lkml/20220226204404=2E109867-1-linux@fw-we=
+b=2Ede/T/
