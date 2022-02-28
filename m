@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2326B4C6FDC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:46:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD364C6FE0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:46:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237298AbiB1OrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:47:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33198 "EHLO
+        id S237327AbiB1Or3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:47:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237313AbiB1OrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:47:21 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 569317F6F1
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:46:42 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id w37so11570024pga.7
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:46:42 -0800 (PST)
+        with ESMTP id S237324AbiB1Or1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:47:27 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3516580207
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:46:47 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id u2so3350819ple.10
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:46:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=fpvy3jbctqZ3DaV3M3Ck+o/s7hQ6Jvb06GHLLBI2uuM=;
-        b=eUF6yIQhI7vVY2FFpMAxBEeuIuYzFBxyD0xw727eRJl/lmfV2nHlnwLa7GihnQiDU2
-         hmOziIEeft81BWXidU2iOelCPUoT2qsFDBV9vxoB+mv8dN+KRJwZPULag2o+4LrK7PQX
-         GXm5FsLp8zxYf565CuRaPw3JwncNcrN6AEeNUp89yragBpOVP4a6qsoEkKQxWcxiLQdn
-         iq60GAp3vZyZnImDWCEAYN3Fa2agc6n84zPZ7OuOUsPQ0ZWSO2UIxCZvPFsq6l9EVuuu
-         1Xv7Uwi3KruSqdVfsfRuTO3+XXOS1JM+QJ6YsQ48UwZWkB7EiIVphr8E356YXwXL/vKO
-         awig==
+        bh=OvbikKoAKho7Bpj5HDlLF47y32hMSGJasX39JrNGXFI=;
+        b=URmkyZsvYVruw8oMATM/SU6nj7nbkltFjJM1BBt12+QxuYj28G8pzr/DCx95mMbxil
+         IsWRSETMV0B0ur/ZPTJbDPgtN+hzn9G7wg1Q5VU9ZbjgasHSGttuSuo3kzzXZJADZUaY
+         gRTuNLWWiqLls8Dp0qjACh3WYIWLC8XWOj+q6e1e4nkK9G6EIfOyhQtMb0GwyaAJZo41
+         gwZvWMlA2pu1ZkGjaNbyBVHEfGf6vqobsT+suj6aFF8hH1va3f17S2nXgia7yea2dr1L
+         rvq8/VyU8+dYLJKFDjiW9NEx5OOhnb3idVwuScQPAs3/hkOJ/zfl5DKJD9XZxAIKXGz7
+         cFDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=fpvy3jbctqZ3DaV3M3Ck+o/s7hQ6Jvb06GHLLBI2uuM=;
-        b=LEtnfGIes/X+F1CnFRe/RcRy2I3ZGl66mDUGemwF6O5JI9Ew6COmQzQhhBSHZRMTPd
-         3whIsPbU9G5wyvQIFb5y5bWjsNIIoCj5r9gW9FxmtUcc91Pg8byijoBb1eKNlBwdQHyF
-         O/s1hL/PSPF4qCz+PEZ8Sgj4ye/FHWenUcjWqCGbLIm1jiCQv4VRgc2Eb1oB6oDwTmoc
-         5aeEL4ZLuwu8ZvggBs8EHgOagmFxht3KY3+eVVCfWhvPn+60E7tP3dKdv0rP8OcUXdVJ
-         Z3KWM0jGLzaF6TIWsKOhDZbrRKvZOiZm4VnsEKsfuIu/7myLwHIXrzs4hrqX/8Ik2ldi
-         tAfA==
-X-Gm-Message-State: AOAM531dnQHNTnf7oi58DaEA04qg/Vjl3eQ4Y5PeXCDV9/ib36vNW+Am
-        YltI5/K3st8PqQ0o2ro+fKNSqQ==
-X-Google-Smtp-Source: ABdhPJyLl6Xpu53tARTjusRFoH+Njs/u+LrL60/cEW5HL+5i0K/lhYwZMLQWkEpcbo+wu5OsXPxF8w==
-X-Received: by 2002:a63:ce48:0:b0:373:ac94:f489 with SMTP id r8-20020a63ce48000000b00373ac94f489mr17816304pgi.622.1646059601757;
-        Mon, 28 Feb 2022 06:46:41 -0800 (PST)
+        bh=OvbikKoAKho7Bpj5HDlLF47y32hMSGJasX39JrNGXFI=;
+        b=KdgEA0ocb25pc4t25V7ttu65Y90X1aiEYnyP50qIGxallPNWzeYwJsXa/90X+6AfTR
+         yLI7sk7JXYNgUSrpcvRz5XR8k//HR+x7dfZ5zFYKMcDYmDko7qfLmDLh8PXxpjhNXWSE
+         RRJapZIGtlL6HDxM7S4vS6e+SMeJEbzEYHT8H/DaEB7gBwn+6O9IAHzVTWMFjggPztYm
+         4vEmyGNwFnpNx1krxUbS/sD2v3biik6eCMooKBgGf96900hxze+rirlDrZjNEcQwdPuv
+         XFKZxFcgl72jh5DIQ4oqMmiScY+NC9UUqmbg9s0Dadq9OynxsZjNP94ftTqq1LwdmmZO
+         GA9g==
+X-Gm-Message-State: AOAM530KiaHhlLk1Um2wQNI8LauKIlQy8/ONZVX1ES8u2hLx1IXZBSfb
+        su1+VuTtvxFdgFd8XSn6VAMWGQ==
+X-Google-Smtp-Source: ABdhPJw1ppE/mHpMlz5oM76uYs/NB7A7jUShPr/59O8tKUhyzttPd5wuf2RPmpSNKSQvOqiZZvEmgA==
+X-Received: by 2002:a17:902:f242:b0:14f:e2d3:e251 with SMTP id j2-20020a170902f24200b0014fe2d3e251mr20581720plc.19.1646059606688;
+        Mon, 28 Feb 2022 06:46:46 -0800 (PST)
 Received: from localhost.localdomain ([223.179.136.225])
-        by smtp.gmail.com with ESMTPSA id lr2-20020a17090b4b8200b001bd6b5cce1dsm1736713pjb.36.2022.02.28.06.46.37
+        by smtp.gmail.com with ESMTPSA id lr2-20020a17090b4b8200b001bd6b5cce1dsm1736713pjb.36.2022.02.28.06.46.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 06:46:41 -0800 (PST)
+        Mon, 28 Feb 2022 06:46:46 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
@@ -54,10 +54,10 @@ Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
         mturquette@baylibre.com, linux-clk@vger.kernel.org,
         robh+dt@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>,
-        kernel test robot <lkp@intel.com>
-Subject: [PATCH v2 1/2] clk: qcom: gcc: Add UFS_CARD_GDSC and UFS_PHY_GDSC for SM8150
-Date:   Mon, 28 Feb 2022 20:16:06 +0530
-Message-Id: <20220228144607.456194-2-bhupesh.sharma@linaro.org>
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 2/2] arm64: dts: qcom: sm8150: Add ufs power-domain entries
+Date:   Mon, 28 Feb 2022 20:16:07 +0530
+Message-Id: <20220228144607.456194-3-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220228144607.456194-1-bhupesh.sharma@linaro.org>
 References: <20220228144607.456194-1-bhupesh.sharma@linaro.org>
@@ -73,30 +73,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the UFS_CARD_GDSC and UFS_PHY_GDSC defines for SM8150,
-so that dts files can use the same.
+Add power-domain entries for UFS controller & phy nodes
+in sm8150 dts.
 
-Cc: Stephen Boyd <sboyd@kernel.org>
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reported-by: kernel test robot <lkp@intel.com>
+Cc: Rob Herring <robh@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- include/dt-bindings/clock/qcom,gcc-sm8150.h | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/include/dt-bindings/clock/qcom,gcc-sm8150.h b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-index 3e1a91876610..1bd65cc581c3 100644
---- a/include/dt-bindings/clock/qcom,gcc-sm8150.h
-+++ b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-@@ -241,6 +241,8 @@
- #define GCC_USB_PHY_CFG_AHB2PHY_BCR				28
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 6012322a5984..7aa879eb24d7 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -1637,6 +1637,8 @@ ufs_mem_hc: ufshc@1d84000 {
+ 			phy-names = "ufsphy";
+ 			lanes-per-direction = <2>;
+ 			#reset-cells = <1>;
++
++			power-domains = <&gcc UFS_PHY_GDSC>;
+ 			resets = <&gcc GCC_UFS_PHY_BCR>;
+ 			reset-names = "rst";
  
- /* GCC GDSCRs */
-+#define UFS_CARD_GDSC                                          2
-+#define UFS_PHY_GDSC                                           3
- #define USB30_PRIM_GDSC                     4
- #define USB30_SEC_GDSC						5
+@@ -1687,6 +1689,9 @@ ufs_mem_phy: phy@1d87000 {
+ 			clocks = <&gcc GCC_UFS_MEM_CLKREF_CLK>,
+ 				 <&gcc GCC_UFS_PHY_PHY_AUX_CLK>;
  
++			power-domains = <&gcc UFS_CARD_GDSC>,
++					<&gcc UFS_PHY_GDSC>;
++			power-domain-names = "ufs_card_gdsc", "ufs_phy_gdsc";
+ 			resets = <&ufs_mem_hc 0>;
+ 			reset-names = "ufsphy";
+ 			status = "disabled";
 -- 
 2.35.1
 
