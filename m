@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 586B94C6C97
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:31:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E84A44C6C9D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236527AbiB1Mb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 07:31:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49888 "EHLO
+        id S232280AbiB1MfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 07:35:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236529AbiB1Mbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:31:55 -0500
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 536C375634
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:31:09 -0800 (PST)
-Received: by mail-pf1-x431.google.com with SMTP id k1so509539pfu.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:31:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=uiCgAku//7sIMuxqYHJc2X9D5M99OLU0HUtVfVHUJPY=;
-        b=Nh6OUoqsnLEtt283PlSYofT0UzjINAUBlvDTEtSbmjaMIILGxpKPijxKTImryL80pZ
-         DffhZKBm46nxZVmMorF1GE2psWugzuEJSnykI66Ww8RgRt8anmJWTTwulLfrPEwVf8UJ
-         9vvgtTgBfrqZnjHKzYBT7bKAaZSrg6izHygsmT3YQGI0bo4mpo6LEqtI5MOoQPY/Kupt
-         SQJjJOjHOCC6oLaO5JHkdPdsBY1JkA2vlIKFMd1/GtLVF8nPyJV6OmzVzZ2zf8PKIZYe
-         recM9diRzHH6Vh9oUuYEBxy+KPQOP+BHVWYYruQKB2WfVdljcZ/TxBjOPES527DN2yB4
-         wAAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=uiCgAku//7sIMuxqYHJc2X9D5M99OLU0HUtVfVHUJPY=;
-        b=z5832tIapfAql1A4scDNhEF3mjIoGjycWSsiFx1be8LiaEfhx1fYzgPyQWlH5urzh0
-         xgZqRfVgZLnNMFUyQwfO6rlDAIP7zqD4Je+xgutvdFi612+rMr1s/lLjFWqUVZAR0Jt3
-         HCC6ZWsogcUxlEcb/0mjVs4ujpvBNz9q9pT8S699U/7dh8p9gRuuiGJ+0DVSyPMbAuvG
-         lHb0fLGfvBLp2LlJG7+L+eI97oLSkoGuF8ak/orjfTBZdaN56Uam6muCHCdTXUYkQuCW
-         0KG9R8d6+fSN04w/wr11/Pet2KaDujyOKxB3IpSoAplAzPy0P1orb2afnh3Cfqm17suM
-         EKqg==
-X-Gm-Message-State: AOAM531PgGcn8K4rckNYdZpzylW69sUwArSuv8tGhWbE90HpM8QLdo8w
-        rsn+fbFtCSwH6lmCOyeMCPtePg==
-X-Google-Smtp-Source: ABdhPJzBpN1R+t/fGMdQfNiAYxIQ/GG3amctANAxG40D5LFiKQhC6nutcyeNhTgRbB1ZD3JHW7BAGg==
-X-Received: by 2002:a65:4549:0:b0:378:c0b0:c153 with SMTP id x9-20020a654549000000b00378c0b0c153mr1446757pgr.177.1646051468859;
-        Mon, 28 Feb 2022 04:31:08 -0800 (PST)
-Received: from localhost.localdomain ([223.179.136.225])
-        by smtp.gmail.com with ESMTPSA id f7-20020a056a0022c700b004f0e9d686dcsm13790001pfj.137.2022.02.28.04.31.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 04:31:08 -0800 (PST)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, shawn.guo@linaro.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org, robh+dt@kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 8/8] dt-bindings: phy: qcom,qmp: Mark 'vdda-pll-supply' & 'vdda-phy-supply' as optional
-Date:   Mon, 28 Feb 2022 18:00:19 +0530
-Message-Id: <20220228123019.382037-9-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
-References: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S232067AbiB1MfA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:35:00 -0500
+Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3345F40902;
+        Mon, 28 Feb 2022 04:34:20 -0800 (PST)
+Received: by theia.8bytes.org (Postfix, from userid 1000)
+        id 56FDE4B0; Mon, 28 Feb 2022 13:34:19 +0100 (CET)
+Date:   Mon, 28 Feb 2022 13:34:18 +0100
+From:   Joerg Roedel <joro@8bytes.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
+        yen-chang.chen@mediatek.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        mingyuan.ma@mediatek.com, yf.wang@mediatek.com,
+        libo.kang@mediatek.com, chengci.xu@mediatek.com
+Subject: Re: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
+Message-ID: <YhzBSsn/zUlGg5JE@8bytes.org>
+References: <20220217113453.13658-1-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220217113453.13658-1-yong.wu@mediatek.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the following 'make dtbs_check' warnings, by marking the
-'vdda-pll-supply' & 'vdda-phy-supply' properties as 'optional' in
-'qcom,qmp-phy' dt-binding:
+Hi Yong Wu,
 
-arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml:
- phy-wrapper@88e9000: 'vdda-phy-supply' is a required property
+On Thu, Feb 17, 2022 at 07:34:19PM +0800, Yong Wu wrote:
+> Yong Wu (34):
+>   dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+>   dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+>   iommu/mediatek: Fix 2 HW sharing pgtable issue
+>   iommu/mediatek: Add list_del in mtk_iommu_remove
+>   iommu/mediatek: Remove clk_disable in mtk_iommu_remove
+>   iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
+>   iommu/mediatek: Add mutex for data in the mtk_iommu_domain
+>   iommu/mediatek: Adapt sharing and non-sharing pgtable case
+>   iommu/mediatek: Add 12G~16G support for multi domains
+>   iommu/mediatek: Add a flag DCM_DISABLE
+>   iommu/mediatek: Add a flag NON_STD_AXI
+>   iommu/mediatek: Remove the granule in the tlb flush
+>   iommu/mediatek: Always enable output PA over 32bits in isr
+>   iommu/mediatek: Add SUB_COMMON_3BITS flag
+>   iommu/mediatek: Add IOMMU_TYPE flag
+>   iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
+>   iommu/mediatek: Adjust device link when it is sub-common
+>   iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
+>   iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
+>   iommu/mediatek: Add infra iommu support
+>   iommu/mediatek: Add PCIe support
+>   iommu/mediatek: Add mt8195 support
+>   iommu/mediatek: Only adjust code about register base
+>   iommu/mediatek: Just move code position in hw_init
+>   iommu/mediatek: Separate mtk_iommu_data for v1 and v2
+>   iommu/mediatek: Remove mtk_iommu.h
+>   iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
+>   iommu/mediatek: Add mtk_iommu_bank_data structure
+>   iommu/mediatek: Initialise bank HW for each a bank
+>   iommu/mediatek: Change the domid to iova_region_id
+>   iommu/mediatek: Get the proper bankid for multi banks
+>   iommu/mediatek: Initialise/Remove for multi bank dev
+>   iommu/mediatek: Backup/restore regsiters for multi banks
+>   iommu/mediatek: mt8195: Enable multi banks for infra iommu
 
-arch/arm64/boot/dts/qcom/sm8350-sony-xperia-sagami-pdx215.dt.yaml:
- phy-wrapper@88e9000: 'vdda-pll-supply' is a required property
+This doesn't apply cleanly, can you please send a version rebased to
+v5.17-rc4?
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Rob Herring <robh@kernel.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 3 ---
- 1 file changed, 3 deletions(-)
+Thanks,
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-index f8a43acd229a..82b102b7d42c 100644
---- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-@@ -436,9 +436,6 @@ allOf:
-           items:
-             - const: phy
-             - const: common
--      required:
--        - vdda-phy-supply
--        - vdda-pll-supply
-   - if:
-       properties:
-         compatible:
--- 
-2.35.1
-
+	Joerg
