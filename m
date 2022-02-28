@@ -2,64 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6137C4C7943
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 20:59:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AC4404C7A00
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:21:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229904AbiB1T6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 14:58:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58980 "EHLO
+        id S230049AbiB1ULy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 15:11:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230051AbiB1T6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 14:58:00 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C543A24F22;
-        Mon, 28 Feb 2022 11:57:20 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 7C10DB81640;
-        Mon, 28 Feb 2022 19:57:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25560C340F6;
-        Mon, 28 Feb 2022 19:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646078238;
-        bh=l5lLRt3vCYUiYaHyAaMI2kjZl93YQn92cFQDfwENYYc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=A+gHE8ynvFySBYElIx1otyPFay0rvpFhk4R1i6htEBIkpbViL67XeFlpxC7qfYbHC
-         adswbY2ndvA7R9wHtzVEWBSybHRfV5Q/ly9l/ZATgaJoT3A9sKgDm3SknViMkBoIJd
-         7/on6FPbfEWACJEm4mpTOM9DUpVHmapxKlWaNFvgDDO/L+ym4S6n/5jy4CWn6PkcbS
-         4nSNTijVu3T4ROd+izGeTRDoRluGibDsghw0N1qSo14dnoohCFcFtYM/bTm/AccsTF
-         GfP3q7gJfxJrQrZThcj9lDaRu3p7ka0wTNNYRQvyIZwQ/HXaTl1Seb8jWcRBhdOBmE
-         kj/WoGxs6rm3A==
-Received: by mail-ed1-f51.google.com with SMTP id s24so19156970edr.5;
-        Mon, 28 Feb 2022 11:57:18 -0800 (PST)
-X-Gm-Message-State: AOAM5319XaVM0A7f8sQn/HKx41xXNvQYbNFQDw7lg3hNK+qpygzmYrMK
-        ywT0kvqXlGMM4SzKTnfrvmvXgWtXQ4xIBx7GAg==
-X-Google-Smtp-Source: ABdhPJxu9XPcGWgUlPnfAVpPTPRsS8IAALKfEklJS+km7TveFGDFfTWE5+3j5LJ6ScmR5br0jvLWLJoTEZjDJKHIAzg=
-X-Received: by 2002:aa7:ce92:0:b0:40f:b89c:18fe with SMTP id
- y18-20020aa7ce92000000b0040fb89c18femr21239364edv.67.1646078236360; Mon, 28
- Feb 2022 11:57:16 -0800 (PST)
+        with ESMTP id S230035AbiB1ULy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:11:54 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6C7A8B6D7;
+        Mon, 28 Feb 2022 12:11:14 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id i5so14297950oih.1;
+        Mon, 28 Feb 2022 12:11:14 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6hMIoo9EljswHM/Y7Z+xyqfRgvaIQ0mLlekBXdfWYK8=;
+        b=0ZQrm0NVTc46h+wYZCnVXhWLZOIJ0oM9EPMwiBIOQL0bBGgBxQ4pip1W+2xLr33lE9
+         NNb9qRugsj956C1Q62Eq1HAbgUi8cs+BuxiPTzWzt875T7UfMVVMIRJR4sbXlGB/UzGw
+         WrKAGKo7wS5+pePdn2ze1WxRxCAqva6kO290kqlkBiZPBgsGDJSGGibTSxgTjS6shEr4
+         Ky1EiSCvnAhbJzz2qpkHZYm6pg1THGg5QoPU9rWQU/m3deoSxs+IwwgY52AgOUz2TTWI
+         FU7QCt4QafUYDeOSmee03SvMSp/VzWMECJceCr72RNZ9i0OBie3YZCE++s/AvVPNSj5t
+         OBmg==
+X-Gm-Message-State: AOAM532aUeoJZTb9UnlLRYGINiVs8HSXTi6TQNBKssT3cm15SKbevJX9
+        lV7Z0PvQYgnVfuywkXMiLA==
+X-Google-Smtp-Source: ABdhPJyDqdqLvu0ZD17elBE69Slnp7CCuMCIe8QXgSkJOli0RqA3pVoc9sRRlW0MC0BrSfqg1fDy8A==
+X-Received: by 2002:a05:6808:23cf:b0:2d7:1fca:4792 with SMTP id bq15-20020a05680823cf00b002d71fca4792mr10125707oib.5.1646079074027;
+        Mon, 28 Feb 2022 12:11:14 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id fq14-20020a0568710b0e00b000d4492531a2sm5115384oab.17.2022.02.28.12.11.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 12:11:13 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: kbuild: Support partial matches with DT_SCHEMA_FILES
+Date:   Mon, 28 Feb 2022 14:10:05 -0600
+Message-Id: <20220228201006.1484903-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-References: <cover.1643360652.git.geert@linux-m68k.org>
-In-Reply-To: <cover.1643360652.git.geert@linux-m68k.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 28 Feb 2022 13:57:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ=hikc1RAFkdV-uGWTVyHKp8z+=NEtTm-WZzc9h3Lxew@mail.gmail.com>
-Message-ID: <CAL_JsqJ=hikc1RAFkdV-uGWTVyHKp8z+=NEtTm-WZzc9h3Lxew@mail.gmail.com>
-Subject: Re: [PATCH v4 0/2] dt-bindings: timer: sifive, clint: Miscellaneous improvements
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Anup Patel <anup.patel@wdc.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,37 +57,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jan 28, 2022 at 3:07 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
->         Hi all,
->
-> This patch series contains two improvements for the SiFive CLINT DT
-> bindings.
->
-> Changes compared to v3[1]:
->   - Use architectural maximum instead of practical maximum of 10,
->   - Add Reviewed-by (this time for real ;-).
->
-> Changes compared to v2[2]:
->   - Add Acked-by, Reviewed-by.
->
-> Changes compared to v1[3]:
->   - Split in two patches,
->   - Improve patch description and document limit rationale.
->
-> Thanks!
->
-> [1] https://lore.kernel.org/r/cover.1639744468.git.geert@linux-m68k.org/
-> [2] https://lore.kernel.org/r/cover.1639662093.git.geert@linux-m68k.org
-> [3] https://lore.kernel.org/r/20211125152317.162958-1-geert@linux-m68k.org
->
-> Geert Uytterhoeven (2):
->   dt-bindings: timer: sifive,clint: Fix number of interrupts
->   dt-bindings: timer: sifive,clint: Group interrupt tuples
->
->  .../devicetree/bindings/timer/sifive,clint.yaml          | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+DT_SCHEMA_FILES is currently restricted to a list of exact files with
+the full source tree path (i.e. Documentation/devicetree/bindings/...).
+Loosen this requirement and let DT_SCHEMA_FILES be a partial match.
 
-As these have not been picked up yet, I've applied them.
+With this, checking all schema files in a directory is possible:
 
-Rob
+$ make DT_SCHEMA_FILES=/gpio/ dt_binding_check
+
+Or all schema files with 'qcom' in the path or filename:
+
+$ make DT_SCHEMA_FILES=qcom dt_binding_check
+
+Cc: Masahiro Yamada <masahiroy@kernel.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile        | 15 +++++----------
+ .../devicetree/bindings/writing-schema.rst        |  9 +++++----
+ 2 files changed, 10 insertions(+), 14 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 41c555181b6f..5138d10e0601 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -31,11 +31,8 @@ find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
+ 		-name 'processed-schema*' ! \
+ 		-name '*.example.dt.yaml' \)
+ 
+-ifeq ($(DT_SCHEMA_FILES),)
+-find_cmd = $(find_all_cmd)
+-else
+-find_cmd = echo $(addprefix $(srctree)/, $(DT_SCHEMA_FILES))
+-endif
++find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
++CHK_DT_DOCS := $(shell $(find_cmd))
+ 
+ quiet_cmd_yamllint = LINT    $(src)
+       cmd_yamllint = ($(find_cmd) | \
+@@ -83,22 +80,20 @@ ifeq ($(DT_SCHEMA_FILES),)
+ $(obj)/processed-schema.json: $(obj)/processed-schema-examples.json FORCE
+ 	$(call if_changed,copy)
+ 
+-DT_SCHEMA_FILES = $(DT_DOCS)
+-
+ else
+ 
+ # If DT_SCHEMA_FILES is specified, use it for processed-schema.json
+ 
+ $(obj)/processed-schema.json: DT_MK_SCHEMA_FLAGS := -u
+-$(obj)/processed-schema.json: $(DT_SCHEMA_FILES) check_dtschema_version FORCE
++$(obj)/processed-schema.json: $(CHK_DT_DOCS) check_dtschema_version FORCE
+ 	$(call if_changed,mk_schema)
+ 
+ endif
+ 
+ always-$(CHECK_DT_BINDING) += processed-schema-examples.json
+ always-$(CHECK_DTBS)       += processed-schema.json
+-always-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dts, $(DT_SCHEMA_FILES))
+-always-$(CHECK_DT_BINDING) += $(patsubst $(src)/%.yaml,%.example.dt.yaml, $(DT_SCHEMA_FILES))
++always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
++always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dt.yaml, $(CHK_DT_DOCS))
+ 
+ # Hack: avoid 'Argument list too long' error for 'make clean'. Remove most of
+ # build artifacts here before they are processed by scripts/Makefile.clean
+diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
+index 4004dd9209a6..3b00fe981494 100644
+--- a/Documentation/devicetree/bindings/writing-schema.rst
++++ b/Documentation/devicetree/bindings/writing-schema.rst
+@@ -157,13 +157,14 @@ It is possible to run both in a single command::
+ 
+     make dt_binding_check dtbs_check
+ 
+-It is also possible to run checks with a single schema file by setting the
+-``DT_SCHEMA_FILES`` variable to a specific schema file.
++It is also possible to run checks with a subset of matching schema files by
++setting the ``DT_SCHEMA_FILES`` variable to a specific schema file or pattern.
+ 
+ ::
+ 
+-    make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/trivial-devices.yaml
+-    make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/trivial-devices.yaml
++    make dt_binding_check DT_SCHEMA_FILES=trivial-devices.yaml
++    make dt_binding_check DT_SCHEMA_FILES=/gpio/
++    make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
+ 
+ 
+ json-schema Resources
+-- 
+2.32.0
+
