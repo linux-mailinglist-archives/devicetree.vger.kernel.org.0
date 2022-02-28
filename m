@@ -2,118 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4690D4C6DC3
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:18:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B8B34C6DBA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:17:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232573AbiB1NTa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 08:19:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50110 "EHLO
+        id S233699AbiB1NRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 08:17:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231997AbiB1NTa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:19:30 -0500
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06D022539;
-        Mon, 28 Feb 2022 05:18:49 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc25b.ng.seznam.cz (email-smtpc25b.ng.seznam.cz [10.23.18.35])
-        id 37d79cb56cd9c8dc367e50eb;
-        Mon, 28 Feb 2022 14:18:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1646054306; bh=oDtgTAZNEX6sxqah3WnhbDzpjQX36i3KJq9hlBQVBmE=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=kEAxtJqVUmT1ioh3Ov9o+7EOxCOUSfQVZ0Y0NSdG3ZcDyYn8M5BYL1OwwJGwZQqRf
-         Ig5/daO9B4wIbncBZCeLlEnLGIZdqGZEqJYIzs2y+JfzaoSg6Acr/KEKaRb2CwVRx7
-         8wPZCltjxM69KcxmEItArG6PingTzV3ZA1U8T640=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay10.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Mon, 28 Feb 2022 14:18:21 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Saravana Kannan <saravanak@google.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, Michael Srba <michael.srba@seznam.cz>,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH v9 5/5] arm64: dts: qcom: msm8998: reserve potentially inaccessible clocks
-Date:   Mon, 28 Feb 2022 14:14:35 +0100
-Message-Id: <20220228131435.29207-5-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220228131435.29207-1-michael.srba@seznam.cz>
-References: <20220228131435.29207-1-michael.srba@seznam.cz>
+        with ESMTP id S235438AbiB1NRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:17:30 -0500
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1685D7463D;
+        Mon, 28 Feb 2022 05:16:38 -0800 (PST)
+Received: by mail-ej1-x62d.google.com with SMTP id a8so24679754ejc.8;
+        Mon, 28 Feb 2022 05:16:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=gLyji2lXIIBrJ7pS+hjvr2Fre28Lj40SpMAVpenGsu8=;
+        b=NQivf7OXRQw+/i2egcr1EYrZDOZzyJNpvwK6BB9CNMapN0ed+78zUcES21XNm/6/15
+         d+cUKMhv164xKNmhA74yZgGrvzZ+TfV14EIToEsRkDR820pkFJppFqlpvs08WPqkTAvq
+         svdldf+LPmBq3dH78qbAfWRTiESmQ70EGMRzB3U1DhJQZughkbm7pMvrCgUVPNB0tNJP
+         dcRkPIjLqCNtOezB1lY++uK7dsceyM8uPGB3SM0CaeUTSkEN0bpLtLOw+enu1S5B6QvB
+         cUOxArA4suelgxAX/5FsZ0NvxYqDnmkQXmYp3VV/YzPoU1vMzKz+pzCd6WDqvUlUvZdY
+         qRYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=gLyji2lXIIBrJ7pS+hjvr2Fre28Lj40SpMAVpenGsu8=;
+        b=6GA9lzrxs28RWC9uIKew4O+mFPkAJL7OUsw3YF+2OCDWNR1GmQHzysJtac6vD/D3HZ
+         /VY7g6QI/rVfGey4jm7zFS0HRfU7eTmM63L83Elr97ZdUlh2C7Z1XmiuYesDM5Kuj1R1
+         VFDo5R84tGcUc3zKvheDP+pfGUViL5kW1JmODN6IGlemELNvS8SkilZMtsDsCY4NzfO5
+         f5ZxKgv4vdzfAZjf5TLUnFrgHtiSBC9Fc60yBM1euHHKscYDBLUGOeC8EG+W2X+0D4dO
+         XtAk4NYGLbdqJ+7FyQJeMYq5DNZvk1mOMu97AUJvt/gF3e8umExraoQozF2zzCnhEljp
+         IbLQ==
+X-Gm-Message-State: AOAM531hWbTEATcAxTo374zvukJp1W6qVzRfYX73mf+lFegqVYO2Ya//
+        9BCop5sO6qzxQziOuXg5mm8=
+X-Google-Smtp-Source: ABdhPJyeE6XZT50xZ7y3mqQRvl3/GTUleK/YA6H91A0QUoKL4Yy5/MFnFHsrJRca/gyd1Af+YZ1keg==
+X-Received: by 2002:a17:906:9509:b0:6d0:fbc5:eb4a with SMTP id u9-20020a170906950900b006d0fbc5eb4amr15101640ejx.228.1646054196450;
+        Mon, 28 Feb 2022 05:16:36 -0800 (PST)
+Received: from [192.168.2.1] (81-204-249-205.fixed.kpn.net. [81.204.249.205])
+        by smtp.gmail.com with ESMTPSA id ju22-20020a17090798b600b006ce70fa8e4fsm4337983ejc.187.2022.02.28.05.16.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Feb 2022 05:16:36 -0800 (PST)
+Message-ID: <ab72daa6-9b8b-a435-82c3-93a9018a0bfa@gmail.com>
+Date:   Mon, 28 Feb 2022 14:16:35 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <9a8ab012-0779-4360-ab42-c35c7be5fdd9>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 5/7] arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
+Content-Language: en-US
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220227153016.950473-1-pgwipeout@gmail.com>
+ <20220227153016.950473-6-pgwipeout@gmail.com>
+ <7b20fccd-4394-da3c-6556-4732d67cde3d@gmail.com>
+ <CAMdYzYp8x_mKffm1WkHD4D1Fx_tVJ8WdBc=u-j+j_zRbJmyaCQ@mail.gmail.com>
+ <3ac3cdf9-17c0-654f-b204-c5b4b0436c98@gmail.com>
+ <CAMdYzYrxQUhFNog1hvwme=V-3xptE6C9Se09FxEoEQm9bPdEEQ@mail.gmail.com>
+From:   Johan Jonker <jbx6244@gmail.com>
+In-Reply-To: <CAMdYzYrxQUhFNog1hvwme=V-3xptE6C9Se09FxEoEQm9bPdEEQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <michael.srba@seznam.cz>
 
-With the gcc driver now being more complete and describing clocks which
-might not always be write-accessible to the OS, conservatively specify
-all such clocks as protected in the SoC dts.
-The board dts - or even user-supplied dts - can override this property
-to reflect the actual configuration.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Reviewed-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
----
- CHANGES:
- - v2: add this patch
- - v3: fix missing Signed-off-by
- - v4: add a proper explanation as per review, (hopefully) fix the subject and commit message
- - v5: none
- - v6: none
- - v7: none
- - v8: none
- - v9: none
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+On 2/28/22 14:02, Peter Geis wrote:
+> On Mon, Feb 28, 2022 at 4:10 AM Johan Jonker <jbx6244@gmail.com> wrote:
+>>
+>>
+>>
+>> On 2/27/22 23:44, Peter Geis wrote:
+>>> On Sun, Feb 27, 2022 at 12:50 PM Johan Jonker <jbx6244@gmail.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 2/27/22 16:30, Peter Geis wrote:
+>>>>> Add the dwc3 device nodes to the rk356x device trees.
+>>>>> The rk3566 has one usb2 capable dwc3 otg controller and one usb3 capable
+>>>>> dwc3 host controller.
+>>>>> The rk3568 has one usb3 capable dwc3 otg controller and one usb3 capable
+>>>>> dwc3 host controller.
+>>>>>
+>>>>> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/rockchip/rk3566.dtsi | 11 ++++++++
+>>>>>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  9 ++++++
+>>>>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 35 +++++++++++++++++++++++-
+>>>>>  3 files changed, 54 insertions(+), 1 deletion(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>>> index 3839eef5e4f7..0b957068ff89 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
+>>>>> @@ -6,6 +6,10 @@ / {
+>>>>>       compatible = "rockchip,rk3566";
+>>>>>  };
+>>>>>
+>>>>> +&pipegrf {
+>>>>> +     compatible = "rockchip,rk3566-pipe-grf", "syscon";
+>>>>> +};
+>>>>> +
+>>>>>  &power {
+>>>>>       power-domain@RK3568_PD_PIPE {
+>>>>>               reg = <RK3568_PD_PIPE>;
+>>>>> @@ -18,3 +22,10 @@ power-domain@RK3568_PD_PIPE {
+>>>>>               #power-domain-cells = <0>;
+>>>>>       };
+>>>>>  };
+>>>>> +
+>>>>> +&usb_host0_xhci {
+>>>>> +     phys = <&usb2phy0_otg>;
+>>>>> +     phy-names = "usb2-phy";
+>>>>> +     extcon = <&usb2phy0>;
+>>>>> +     maximum-speed = "high-speed";
+>>>>> +};
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>>> index 5b0f528d6818..8ba9334f9753 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+>>>>> @@ -99,6 +99,10 @@ opp-1992000000 {
+>>>>>       };
+>>>>>  };
+>>>>>
+>>>>> +&pipegrf {
+>>>>> +     compatible = "rockchip,rk3568-pipe-grf", "syscon";
+>>>>> +};
+>>>>> +
+>>>>>  &power {
+>>>>>       power-domain@RK3568_PD_PIPE {
+>>>>>               reg = <RK3568_PD_PIPE>;
+>>>>> @@ -114,3 +118,8 @@ power-domain@RK3568_PD_PIPE {
+>>>>>               #power-domain-cells = <0>;
+>>>>>       };
+>>>>>  };
+>>>>> +
+>>>>> +&usb_host0_xhci {
+>>>>> +     phys = <&usb2phy0_otg>, <&combphy0 PHY_TYPE_USB3>;
+>>>>> +     phy-names = "usb2-phy", "usb3-phy";
+>>>>> +};
+>>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>>> index 7cdef800cb3c..072bb9080cd6 100644
+>>>>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>>>>> @@ -230,6 +230,40 @@ scmi_shmem: sram@0 {
+>>>>>               };
+>>>>>       };
+>>>>>
+>>>>> +     usb_host0_xhci: usb@fcc00000 {
+>>>>
+>>>>> +             compatible = "snps,dwc3";
+>>>>
+>>>> compatible = "rockchip,rk3568-dwc3", "snps,dwc3";
+>>>>
+>>>> compatible strings must be SoC orientated.
+>>>> Add binding like you did before.
+>>>
+>>> Okay, should this go in the core yaml, since it's not really handled
+>>> by of-simple?
+>>
+>> Nothing to change in core.c, because the fall back string does the
+>> trick, so we don't have to change the driver for every new SoC.
+>> Change the node compatible here and add the binding.
+>> That's it. The rest comes later if needed.
+> 
+> It's the binding I'm referring to here.
+> snps,dwc3.yaml seems the logical place, but I want to make sure you
+> concur first.
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f273bc1ff629..16dccf9d881e 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -863,6 +863,21 @@ gcc: clock-controller@100000 {
- 
- 			clock-names = "xo", "sleep_clk";
- 			clocks = <&xo>, <&sleep_clk>;
-+
-+			/*
-+			 * The hypervisor typically configures the memory region where these clocks
-+			 * reside as read-only for the HLOS. If the HLOS tried to enable or disable
-+			 * these clocks on a device with such configuration (e.g. because they are
-+			 * enabled but unused during boot-up), the device will most likely decide
-+			 * to reboot.
-+			 * In light of that, we are conservative here and we list all such clocks
-+			 * as protected. The board dts (or a user-supplied dts) can override the
-+			 * list of protected clocks if it differs from the norm, and it is in fact
-+			 * desired for the HLOS to manage these clocks
-+			 */
-+			protected-clocks = <AGGRE2_SNOC_NORTH_AXI>,
-+					   <SSC_XO>,
-+					   <SSC_CNOC_AHBS_CLK>;
- 		};
- 
- 		rpm_msg_ram: sram@778000 {
--- 
-2.34.1
+rockchip,dwc3.yaml is the place be!
+Hurry up!
 
+Use Michael's patch, because his commit message is better.(no reference
+to rk3399)
+
+https://lore.kernel.org/linux-rockchip/20220225131602.2283499-3-michael.riesch@wolfvision.net/
+
+vs.
+
+https://lore.kernel.org/linux-rockchip/20220226184147.769964-4-pgwipeout@gmail.com/
+
+> 
+>>
+>>> Also, should I add in the compatible for rk3328 as well?
+>>
+>> No, same story the fall back string does the trick in core.c
+> 
+> Same thing here, since I'm in snps,dwc3.yaml anyways I can add the
+> rk3328 binding in and silence that error in one go.
+
+It's been done already:
+
+[PATCH v5 6/8] dt-bindings: usb: dwc3: add description for rk3328
+
+https://lore.kernel.org/linux-rockchip/20210209192350.7130-6-jbx6244@gmail.com/
+
+
+> 
+>>
+>>
+>>>
+>>>>
+>>>>> +             reg = <0x0 0xfcc00000 0x0 0x400000>;
+>>>>> +             interrupts = <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+>>>>> +             clocks = <&cru CLK_USB3OTG0_REF>, <&cru CLK_USB3OTG0_SUSPEND>,
+>>>>> +                      <&cru ACLK_USB3OTG0>;
+>>>>> +             clock-names = "ref_clk", "suspend_clk",
+>>>>> +                           "bus_clk";
+>>>>> +             dr_mode = "host";
+>>>>> +             phy_type = "utmi_wide";
+>>>>> +             power-domains = <&power RK3568_PD_PIPE>;
+>>>>> +             resets = <&cru SRST_USB3OTG0>;
+>>>>> +             snps,dis_u2_susphy_quirk;
+>>>>> +             status = "disabled";
+>>>>> +     };
+>>>>> +
+>>>>> +     usb_host1_xhci: usb@fd000000 {
+>>>>
+>>>>> +             compatible = "snps,dwc3";
+>>>>
+>>>> compatible = "rockchip,rk3568-dwc3", "snps,dwc3";
+>>>>
+>>>>> +             reg = <0x0 0xfd000000 0x0 0x400000>;
+>>>>> +             interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_HIGH>;
+>>>>> +             clocks = <&cru CLK_USB3OTG1_REF>, <&cru CLK_USB3OTG1_SUSPEND>,
+>>>>> +                      <&cru ACLK_USB3OTG1>;
+>>>>> +             clock-names = "ref_clk", "suspend_clk",
+>>>>> +                           "bus_clk";
+>>>>> +             dr_mode = "host";
+>>>>> +             phys = <&usb2phy0_host>, <&combphy1 PHY_TYPE_USB3>;
+>>>>> +             phy-names = "usb2-phy", "usb3-phy";
+>>>>> +             phy_type = "utmi_wide";
+>>>>> +             power-domains = <&power RK3568_PD_PIPE>;
+>>>>> +             resets = <&cru SRST_USB3OTG1>;
+>>>>> +             snps,dis_u2_susphy_quirk;
+>>>>> +             status = "disabled";
+>>>>> +     };
+>>>>> +
+>>>>>       gic: interrupt-controller@fd400000 {
+>>>>>               compatible = "arm,gic-v3";
+>>>>>               reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
+>>>>> @@ -297,7 +331,6 @@ pmu_io_domains: io-domains {
+>>>>>       };
+>>>>>
+>>>>>       pipegrf: syscon@fdc50000 {
+>>>>> -             compatible = "rockchip,rk3568-pipe-grf", "syscon";
+>>>>>               reg = <0x0 0xfdc50000 0x0 0x1000>;
+>>>>>       };
+>>>>>
