@@ -2,127 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C968C4C6E97
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:50:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E3A074C6EA5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:57:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231820AbiB1NvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 08:51:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36940 "EHLO
+        id S236803AbiB1N5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 08:57:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230155AbiB1NvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:51:22 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737385130C;
-        Mon, 28 Feb 2022 05:50:43 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id C45121F438C6
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646056242;
-        bh=01LHGkJJ+DpNYyT1azd35ZIb6hFj6cZ6HVkPFWhLSpg=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EVphFN2nlSfP7QnVMQPprWeHY3LGcr4CNLIyJwc93JAON0XRrHPUEBxJtTps4YWN/
-         teZLX3YIek+zUtUDvBSoQrBSI/MMaewUqah04AgMl1Q2EoUcX49lKK3o3X3lDFTBeQ
-         Ciwc4QZJbinmesi65g4Cksnl/DPy8HmKBYR1dBf3CG73Y2GP3KeK5HTIkqXRSKZgHR
-         6g7KLIla/2XXP7PKHafiVilugVgEELIR4r3POzlUd375pz3+5AaS+yT3BOAkd7enBY
-         wLsHX+VBenM5SuXKynOeeyhdGojSDhCTFd+XPt7gt+38YBVce7LBPgpfWq7bQghohU
-         ob9f2ZHuNUTSg==
-Message-ID: <7ba0ee87-c193-9834-d0b4-ff3e06ced82b@collabora.com>
-Date:   Mon, 28 Feb 2022 14:50:37 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
-Content-Language: en-US
-To:     Joerg Roedel <joro@8bytes.org>, Yong Wu <yong.wu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
+        with ESMTP id S236805AbiB1N5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:57:47 -0500
+Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6757D016;
+        Mon, 28 Feb 2022 05:57:08 -0800 (PST)
+Received: by mail-qk1-x72d.google.com with SMTP id b13so10281920qkj.12;
+        Mon, 28 Feb 2022 05:57:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Q8rfAYWCPuCFZWUbMwuXl1w3LX/ZhxGllWhtuSRFCM=;
+        b=XmcfNyiUVum9tKD+wGJadl/B39imKzB11lORzzu1JLqYGEzZHtwIIKRS/L/robEZIk
+         Hedvm0IK0YoyRKLbu88OSmwQyvvkhqHFQ52EnVbNS4dY0cfI6CYRZ1YABxWCL3nCD/gU
+         c5BWQYU1MU3GBWP432jcEGTsaEToAC+QVQ+z/38DO4fdvdZfGBsgZ/XXbk86VXoZD7Ni
+         fCwxZPJvetv+wltkdg5bgcjM1w7Tah5ncE36d6cI0YggqJJ6mton4CwaviQFkuHl/dYQ
+         oQfGERMn/wWUAHXVn06CiMEQuEpPwGSEb1ymvAUrMKAmrZFwDNdJsH+ddIKPqQ0lcqs8
+         J9vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8Q8rfAYWCPuCFZWUbMwuXl1w3LX/ZhxGllWhtuSRFCM=;
+        b=3vkerWnsl72mXFwixZsm4JPI9pCYmw0ZqhtAb79s/MxMcniAM6/dLsh8VrNhSqokKr
+         7ahxJSXbxmCPaMfQTuttf5AavASD9whWtbLZPGJ+aNYetwS3GgGiz5FwaO3CPVJKLdje
+         pwCRgg306hSRvfmbNv5yzhPYCT4H2FcUrN1Z+LCD4f4QZe4CHwdRtNsClTE9UCkNRsO0
+         cJblCN9m0rIaCUlSm7/s07Qm1FwB2CSBoZKc9rDo5Sx0+zSXYJAhZtWvVs1IMG/QJbNe
+         iRL3CRwiswIaDHug9cto+khkcm4AYgnLqwSYOSY7VgY5LK858kCL5QP6XPqTZG4IAGRz
+         KZdQ==
+X-Gm-Message-State: AOAM532WBcyWqlYCrxPhv8Og/3yYIwQdMFAuioYntT5Jh/KjlWpMZSUY
+        qc6ZJ2kj1LBPS9gKvj/hG1c=
+X-Google-Smtp-Source: ABdhPJyTz57PuiLNW+lonT9pwGs9q/VaYGWFFnMuoqKJha0FF8v+OMU7hAd+MXRLdyY3f+G2SdDyPQ==
+X-Received: by 2002:a05:620a:2404:b0:508:b101:6f97 with SMTP id d4-20020a05620a240400b00508b1016f97mr2618410qkn.369.1646056627394;
+        Mon, 28 Feb 2022 05:57:07 -0800 (PST)
+Received: from master-x64.sparksnet ([2601:153:980:85b1::10])
+        by smtp.gmail.com with ESMTPSA id b8-20020a05620a088800b00648bfd00a41sm4932244qka.80.2022.02.28.05.57.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 05:57:07 -0800 (PST)
+From:   Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-rockchip@lists.infradead.org, heiko@sntech.de,
+        michael.riesch@wolfvision.net, jbx6244@gmail.com,
+        Peter Geis <pgwipeout@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
-        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20220217113453.13658-1-yong.wu@mediatek.com>
- <YhzBSsn/zUlGg5JE@8bytes.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <YhzBSsn/zUlGg5JE@8bytes.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+        Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: [PATCH v4 0/8]  enable usb support on rk356x
+Date:   Mon, 28 Feb 2022 08:56:51 -0500
+Message-Id: <20220228135700.1089526-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 28/02/22 13:34, Joerg Roedel ha scritto:
-> Hi Yong Wu,
-> 
-> On Thu, Feb 17, 2022 at 07:34:19PM +0800, Yong Wu wrote:
->> Yong Wu (34):
->>    dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
->>    dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
->>    iommu/mediatek: Fix 2 HW sharing pgtable issue
->>    iommu/mediatek: Add list_del in mtk_iommu_remove
->>    iommu/mediatek: Remove clk_disable in mtk_iommu_remove
->>    iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
->>    iommu/mediatek: Add mutex for data in the mtk_iommu_domain
->>    iommu/mediatek: Adapt sharing and non-sharing pgtable case
->>    iommu/mediatek: Add 12G~16G support for multi domains
->>    iommu/mediatek: Add a flag DCM_DISABLE
->>    iommu/mediatek: Add a flag NON_STD_AXI
->>    iommu/mediatek: Remove the granule in the tlb flush
->>    iommu/mediatek: Always enable output PA over 32bits in isr
->>    iommu/mediatek: Add SUB_COMMON_3BITS flag
->>    iommu/mediatek: Add IOMMU_TYPE flag
->>    iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
->>    iommu/mediatek: Adjust device link when it is sub-common
->>    iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
->>    iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
->>    iommu/mediatek: Add infra iommu support
->>    iommu/mediatek: Add PCIe support
->>    iommu/mediatek: Add mt8195 support
->>    iommu/mediatek: Only adjust code about register base
->>    iommu/mediatek: Just move code position in hw_init
->>    iommu/mediatek: Separate mtk_iommu_data for v1 and v2
->>    iommu/mediatek: Remove mtk_iommu.h
->>    iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
->>    iommu/mediatek: Add mtk_iommu_bank_data structure
->>    iommu/mediatek: Initialise bank HW for each a bank
->>    iommu/mediatek: Change the domid to iova_region_id
->>    iommu/mediatek: Get the proper bankid for multi banks
->>    iommu/mediatek: Initialise/Remove for multi bank dev
->>    iommu/mediatek: Backup/restore regsiters for multi banks
->>    iommu/mediatek: mt8195: Enable multi banks for infra iommu
-> 
-> This doesn't apply cleanly, can you please send a version rebased to
-> v5.17-rc4?
-> 
-> Thanks,
-> 
-> 	Joerg
+Good Morning,
 
-Hello Joerg,
+This is my patch series that I have maintained out of tree until the
+combophy driver landed.
 
-this series depends on the following series:
-https://patchwork.kernel.org/project/linux-mediatek/list/?series=592275
+Patch 1 fixes the grf dt binding from the combophy merge.
+Patch 2 adds the dt bindings for the grf changes necessary.
+Patch 3 adds the SoC specific binding.
+Patch 4 adds support to the grf driver to set the rk3566 otg clock
+source.
+Patch 5 is a downstream patch ported forward to shut down the usb3 clock
+when the controller is operating in usb2 mode.
+Patch 6 adds the dwc3 nodes to the rk356x device tree includes.
+Patch 7 enables the dwc3 nodes on the Quartz64 Model A.
+Patch 8 enables the dwc3 nodes on the rk3568-evb.
 
-...which is also well tested and ready to be merged in.
+Note, there are functional changes from previous versions.
 
-Applying Yong's series without the mentioned series from Dafna would not work.
+Please review and apply.
 
+Very Respectfully,
+Peter Geis
 
-Thanks,
-Angelo
+Changelog:
+v4:
+- Add SoC specific binding, fall back to core.
+ 
+v3:
+- Drop the dwc-of-simple method in favor of using dwc core.
+- Drop all quirks except snps,dis_u2_susphy_quirk, which is necessary to
+  prevent device detection failures in some states.
+- Drop the reset-names.
+
+v2:
+- Add a dt-bindings fix for grf.yaml
+- Unify the reset names.
+- Constrain the force usb2 clock dwc3 patch to only supported variants of
+the ip.
+- Change dwc3-of-simple to support of-match-data.
+- Drop the PCLK-PIPE clk.
+- Rename the usb nodes to be more friendly.
+- Add the rk3568-evb enable patch.
+
+Bin Yang (1):
+  usb: dwc3: core: do not use 3.0 clock when operating in 2.0 mode
+
+Michael Riesch (2):
+  dt-bindings: usb: add rk3568 compatible to rockchip, dwc3
+  arm64: dts: rockchip: add usb3 support to rk3568-evb1-v10
+
+Peter Geis (5):
+  dt-bindings: soc: grf: fix rk3568 usb definitions
+  dt-bindings: soc: grf: add rk3566-pipe-grf compatible
+  soc: rockchip: set dwc3 clock for rk3566
+  arm64: dts: rockchip: add rk356x dwc3 usb3 nodes
+  arm64: dts: rockchip: enable dwc3 on quartz64-a
+
+ .../devicetree/bindings/soc/rockchip/grf.yaml |  5 +-
+ .../bindings/usb/rockchip,dwc3.yaml           |  2 +
+ .../boot/dts/rockchip/rk3566-quartz64-a.dts   | 37 +++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 11 +++++
+ .../boot/dts/rockchip/rk3568-evb1-v10.dts     | 46 +++++++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  9 ++++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      | 35 +++++++++++++-
+ drivers/soc/rockchip/grf.c                    | 17 +++++++
+ drivers/usb/dwc3/core.c                       |  5 ++
+ drivers/usb/dwc3/core.h                       |  1 +
+ 10 files changed, 165 insertions(+), 3 deletions(-)
+
+-- 
+2.25.1
+
