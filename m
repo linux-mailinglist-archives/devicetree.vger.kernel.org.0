@@ -2,82 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56D5A4C66EF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:13:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 284B54C6716
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:31:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234701AbiB1KOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 05:14:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58438 "EHLO
+        id S232576AbiB1Kbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 05:31:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232130AbiB1KOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:14:22 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0308B3F88A;
-        Mon, 28 Feb 2022 02:13:44 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id p4so5366448wmg.1;
-        Mon, 28 Feb 2022 02:13:43 -0800 (PST)
+        with ESMTP id S231721AbiB1Kbf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:31:35 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3E855743;
+        Mon, 28 Feb 2022 02:30:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=iHjNxJBcliVXwUGTUuDrqJ48gN0ghqxi7GbNzI66nDg=;
-        b=B5yHEZ8nfvEze7BcpERA6IwTFyTFlXmEnHPj+qeY8Lr7ulvVFeEYomuTTmUnFkQZ4S
-         GbFdZ0I8BjI/gZ5NapYDLIPu/wShTItEkdLmz4MTEqBS0be7b2HpmiJgUaGNpftl6wdA
-         PLzQPyHLWR5q46ZkNawG0iDOUGMkCn1AjXA1GtHgRpGhzdu6ePw3dkcfTU4T/D7Yo0Pg
-         zbLoHBwJGXQtVjBqY6+oNS2i0XouHcl7q18ZdaMXDMyl9cVF35+SIHBeTd5N9kdHibfH
-         MgWz4ISkniTdGART+3Wxtjvs9S0G9QnFrEf8vD9qj6WsS9imSA87YlfPvSH4ts8trSy1
-         UcrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=iHjNxJBcliVXwUGTUuDrqJ48gN0ghqxi7GbNzI66nDg=;
-        b=HcFIVGHHZzbg9ZV9ffUGU2CRkVdphR8GhBrDH4EOpUHV0xgrm31/bjMAKa6MwGIlpU
-         Y29smiCHgDcfEaSeX01sIZqHh241w6OddqZofFkA+GWgIN9zcvl8Bq1X3q/JQu4GvR8h
-         VEYFXJfUMCXxsCX0DPittoaB91JTmxmx7dU2uiOb6vrf6816fMju4nWwMvgbg+W4t9kM
-         /+6kiHwX4oV2ML+Zhe9nM8qFWME73xzstyg23IQJZUcGMzlZlTH5NU1N7lL9ETJBTmOz
-         Wo+3Kj5IOnI3+ZcVhvVjONLp0Vs8GIMc/4iidCX59gIvdZSLaBsa20Uw3ezKW3UvbjQh
-         DL4w==
-X-Gm-Message-State: AOAM530tkdNop0CUlRXgc5ZnLdYdNNvl+GCYI3RWmrs9TenXnYz0JLel
-        QS3Q+Tr7yPpYrEbE7hdzCsBcekavizPPgA==
-X-Google-Smtp-Source: ABdhPJyGje3sKsCaHr2cgj08/7Go8LtXdFkBrvBDBbspnQWl1pFUFer6mzofM1fgi2HmJq6bZgkuNA==
-X-Received: by 2002:a05:600c:4e13:b0:37c:fd8e:28d7 with SMTP id b19-20020a05600c4e1300b0037cfd8e28d7mr13048794wmq.51.1646043222543;
-        Mon, 28 Feb 2022 02:13:42 -0800 (PST)
-Received: from [192.168.0.14] (static-63-182-85-188.ipcom.comunitel.net. [188.85.182.63])
-        by smtp.gmail.com with ESMTPSA id v14-20020a7bcb4e000000b0034492fa24c6sm10578772wmj.34.2022.02.28.02.13.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 02:13:42 -0800 (PST)
-Message-ID: <8a95a9fb-fede-b2e4-d616-e03c9e6778c8@gmail.com>
-Date:   Mon, 28 Feb 2022 11:13:40 +0100
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646044255; x=1677580255;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=b+78FRAJXZYzl+Y9IyY17fr3tqSyDnu1Vfd2nwZsqI4=;
+  b=ADHAmz5ZoHE4x2wPgvnFItq7N5tW8vmmTmAXdMxem277LYxBwUvpzplo
+   wNUdSGKueLy6Fg6wf5BS8LeT9r8inxmzOugmsFblazO8nzlHnlCYSxSAi
+   WGszyq+xYxooDaz4DLtaTB7JxTyRF57icnVYWf0GC45YNk4VIii6NU/HS
+   WrIERi1u7nhZ4MXqYfUJvAuxtHcHM6hZIIVoEv343Mo2SgTwliWDQoGRL
+   jil5jGL9bEfLAQ8Tp8ydP6PgaKC6N5n8dOBjc8qm+iWyegA5kSjMP1O7b
+   1WO0RNf0zhIGIoRUutAof4sX25Y8vznNmdPJUBOOTP6Qn0wCyGDi6TDmP
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,142,1643670000"; 
+   d="scan'208";a="22347755"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 28 Feb 2022 11:30:52 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 28 Feb 2022 11:30:53 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 28 Feb 2022 11:30:53 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646044253; x=1677580253;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=b+78FRAJXZYzl+Y9IyY17fr3tqSyDnu1Vfd2nwZsqI4=;
+  b=drl60c3M2hZ1JsyApj7b/J3NNsuyJx2l7VmECVLQS/Tf/QjBKp2M9Ifw
+   /i/OIfQfR9ADcRPleNljFyW9yUWvnoptEHSGSSVOIjZum9/e3RB4+VYVX
+   ePlD92B2152XpAoBPYlrecr4XnywkkqK984/I3seSZaukFrIlWm1XG27I
+   2Tpkxsq1GSAUaLbiSqU6YDc2q1EOQ2YF/Unsu8Y3u/N9RceqITRQxJuIz
+   lklF1nnsCeMwiE1kuj51yntelt7kh1BeIuvEE/VPqeDRvfA/GiHSKxk3q
+   L+snH9cH/3oVI5iiGXCZka975PPARx9b+41uiT0wbXLa1ge2QRxq8goNo
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,142,1643670000"; 
+   d="scan'208";a="22347754"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 28 Feb 2022 11:30:52 +0100
+Received: from schifferm-ubuntu (SCHIFFERM-M2.tq-net.de [10.121.201.138])
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id A7F5E280074;
+        Mon, 28 Feb 2022 11:30:52 +0100 (CET)
+Message-ID: <1356e93cd5b101c3d896e35250c66959ed631544.camel@ew.tq-group.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
+ peripherals by default
+From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
+Date:   Mon, 28 Feb 2022 11:30:50 +0100
+In-Reply-To: <YgJZbdOlazrde7O/@atomide.com>
+References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+         <20220204143108.653qk2ihnlhsr5aa@prior> <YgDCLaBHA3DDQAUd@atomide.com>
+         <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
+         <YgEBml9HvFzSl289@atomide.com>
+         <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
+         <YgJZbdOlazrde7O/@atomide.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.5-0ubuntu1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v11 2/3] dt-bindings: pinctrl: mt8195: Add
- mediatek,drive-strength-adv property
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
-References: <20220216113131.13145-1-tinghan.shen@mediatek.com>
- <20220216113131.13145-3-tinghan.shen@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220216113131.13145-3-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,73 +88,165 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
-
-On 16/02/2022 12:31, Tinghan Shen wrote:
-> Extend driving support for I2C pins on SoC mt8195.
-> This property is already documented in mediatek,mt8183-pinctrl.yaml.
+On Tue, 2022-02-08 at 13:52 +0200, Tony Lindgren wrote:
+> * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220208
+> 10:53]:
+> > On Mon, 2022-02-07 at 13:25 +0200, Tony Lindgren wrote:
+> > > * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220207
+> > > 08:45]:
+> > > > Generally I think that it's a bootloader's responsiblity to
+> > > > disable
+> > > > unneeded devices - the kernel may not even have a driver for
+> > > > some
+> > > > peripherals, leading to the same behaviour as a "disabled"
+> > > > status.
+> > > > For
+> > > > this reason I believe that it should always be okay to set
+> > > > unneeded
+> > > > devices to "disabled", and it should be considered a safe
+> > > > default.
+> > > 
+> > > Not possible, think kexec for example :) How would the previous
+> > > kernel
+> > > even know what to disable if Linux has no idea about the devices?
+> > 
+> > Well, optimally, bootloader and all kernels would agree on the
+> > devices
+> > that are actually available, but I get your point.
+> > 
+> > > If there are issues you're seeing, it's likely a bug in some of
+> > > the
+> > > device drivers for not checking for the necessary resources like
+> > > pinctrl for i2c lines.
+> > 
+> > I don't think it's common for individual drivers to care about
+> > pinctrl
+> > unless switching between different pin settings is required at
+> > runtime.
+> > Many drivers can be used on different hardware, some of which may
+> > require pinmuxing, while others don't.
 > 
-> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Yeah that's true, some configurations only do pin muxing in the
+> bootloader. So pins are not a good criteria for devicetree status
+> enabled
+> for when the device is operational.
+> 
+> Probably a better criteria for devicetree "operational" status is the
+> device can be clocked and configured or idled. Some devices like GPUs
+> can render to memory with no external pin configuration for example.
+> 
 
-Will you take this one through your tree or shall I take it. In the latter case 
-I'd need an Acked-by from you.
+I don't think any properties currently exist that could or should be
+used to decide whether a device is operational. Clocks etc. are usually
+internal to the SoC and thus already set in the SoC DTSI. Pins and
+power supplies may be specific to a mainboard, but can also be
+optional. Whether an I2C bus can be operational may solely depend on
+whether external pullups are connected to the pins or not.
+
+The idea of an "incomplete" status like you mention below sounds better
+to me. I also thought about adding something like a "probe_disabled()"
+that is called instead of probe() for "disabled" devices, but I assume
+that would cause a boot time penalty on systems that have many
+"disabled" devices and don't actually need this...
+
+
+> Following Linux running on a PC analogy.. If ACPI has some device
+> that
+> causes driver warnings on Linux boot, do we patch the ACPI table and
+> pretend the device does not exist? Or do we patch the device driver
+> to
+> deal with the random buggy bootloader state for the device? :)
+> 
+> > Also, what is the expected behavior of a driver that is probed for
+> > an
+> > unusable device? Wouldn't this require some as-of-yet nonexisting
+> > status between "okay" and "disabled" that conveys something like
+> > "probe
+> > this device, initialize (and disable) PM, but don't register
+> > anything",
+> > so no unusable devices become visible to userspace (and possibly
+> > other
+> > kernel drivers)?
+> 
+> I did some experimental patches several years ago to add devicetree
+> status for incomplete, but eventually came to the conclusion that it
+> was not really needed. Feel free to revisit that if you have the
+> spare cycles :)
+> 
+> Having the drivers check for the resources like clocks and then just
+> idle the device after probe solved the issues I was seeing for
+> warnings
+> and kexec. In some cases the device may need to be reset or at least
+> properly reconfigured in the probe as the state can be unknown from
+> the
+> bootloader. That's about all there is to it. Sure you could save some
+> memory with less instances for some devices, so maybe the status =
+> "incomplete" could be used to do the trick for that.
+
+I don't really care about memory usage. What I do care about is that
+incorrect userspace usage doesn't cause ugly kernel warnings (for
+example timeouts for i2cdetect on unmuxed bus) when we can avoid it,
+because such issues always lead to support requests.
+
+Not being able to hide non-operational devices from userspace feels
+like a regression from older hardware.
+
+> 
+> > > > I'm not sure what the consensus on these issues is. I'm more
+> > > > familiar
+> > > > with NXP's i.MX and Layerscape SoCs, where it's common to have
+> > > > all
+> > > > muxable peripherals set to "disabled" in the base DTSI, and a
+> > > > quick
+> > > > grep through a few dts directories gives me the impression that
+> > > > this is
+> > > > the case for most other vendors as well.
+> > > 
+> > > This approach only works for SoCs that don't need the kernel to
+> > > idle
+> > > devices for runtime PM.
+> > 
+> > I'm pretty sure that most modern SoCs I looked at have runtime PM,
+> > and
+> > it is simply expected that unusable devices are never enabled in
+> > the
+> > first place, so there is no need for the kernel to know about them.
+> 
+> Yeah well that assumption is the difference in getting runtime PM to
+> work in a sane way across multiple SoCs and devices :)
+> 
+> Devices tagged with status = "disabled" are completely ignored by the
+> kernel. Interconnect and bus related code may not know the details on
+> how to reset and idle the child devices. Relying on firmware to do
+> the
+> reset and idle of unused devices may be too generic, can be buggy,
+> and
+> probably depends on the firmware revision.
+
+Well, so far it seems like the `status = "disabled"` is just being
+pushed from the SoC DTSIs to the board DTSs on TI hardware. For the
+AM64 platform (which is fairly similar to the AM65), both mainboards
+that currently exist disable unused UARTs, I2C/SPI busses, PWMs, ...
+(Some of these might be disabled to make them usable from the R5/M4
+cores, but I don't think that the case for all of them - "reserved"
+would be more appropriate than "disabled" in these cases anyways)
+
+AFAICT, disabling non-operatational devices in the board DTS instead of
+the SoC DTSI is worse than the alternatives in every way:
+
+- Verbose board DTS: You have to think about all the devices that exist
+in the SoC, not just the ones you want to use
+- Adding new nodes without `status = "disabled" to SoC DTSI can
+potentially cause issues on dependent boards
+- It doesn't solve the issues that not having `status = "disabled"` in
+the DTSI is supposed to solve
 
 Regards,
 Matthias
 
-> ---
->   .../bindings/pinctrl/pinctrl-mt8195.yaml      | 35 +++++++++++++++++++
->   1 file changed, 35 insertions(+)
+
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> index 8299662c2c09..c5b755514c46 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
-> @@ -98,6 +98,32 @@ patternProperties:
->             drive-strength:
->               enum: [2, 4, 6, 8, 10, 12, 14, 16]
->   
-> +          mediatek,drive-strength-adv:
-> +            description: |
-> +              Describe the specific driving setup property.
-> +              For I2C pins, the existing generic driving setup can only support
-> +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
-> +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
-> +              driving setup, the existing generic setup will be disabled.
-> +              The specific driving setup is controlled by E1E0EN.
-> +              When E1=0/E0=0, the strength is 0.125mA.
-> +              When E1=0/E0=1, the strength is 0.25mA.
-> +              When E1=1/E0=0, the strength is 0.5mA.
-> +              When E1=1/E0=1, the strength is 1mA.
-> +              EN is used to enable or disable the specific driving setup.
-> +              Valid arguments are described as below:
-> +              0: (E1, E0, EN) = (0, 0, 0)
-> +              1: (E1, E0, EN) = (0, 0, 1)
-> +              2: (E1, E0, EN) = (0, 1, 0)
-> +              3: (E1, E0, EN) = (0, 1, 1)
-> +              4: (E1, E0, EN) = (1, 0, 0)
-> +              5: (E1, E0, EN) = (1, 0, 1)
-> +              6: (E1, E0, EN) = (1, 1, 0)
-> +              7: (E1, E0, EN) = (1, 1, 1)
-> +              So the valid arguments are from 0 to 7.
-> +            $ref: /schemas/types.yaml#/definitions/uint32
-> +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
-> +
->             bias-pull-down:
->               oneOf:
->                 - type: boolean
-> @@ -270,4 +296,13 @@ examples:
->             bias-pull-down;
->           };
->         };
-> +
-> +      i2c0-pins {
-> +        pins {
-> +          pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
-> +                   <PINMUX_GPIO9__FUNC_SCL0>;
-> +          bias-disable;
-> +          mediatek,drive-strength-adv = <7>;
-> +        };
-> +      };
->       };
+> Regards,
+> 
+> Tony
+
