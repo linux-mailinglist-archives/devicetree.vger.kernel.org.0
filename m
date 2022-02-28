@@ -2,71 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 319284C6A39
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 12:23:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 785124C6A54
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 12:26:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235095AbiB1LYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 06:24:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45100 "EHLO
+        id S229934AbiB1L1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 06:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231628AbiB1LYa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 06:24:30 -0500
+        with ESMTP id S229695AbiB1L1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 06:27:12 -0500
 Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 682DD40A11;
-        Mon, 28 Feb 2022 03:23:52 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id v21so14872140wrv.5;
-        Mon, 28 Feb 2022 03:23:52 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED5DA43ECF;
+        Mon, 28 Feb 2022 03:26:33 -0800 (PST)
+Received: by mail-wr1-x42f.google.com with SMTP id d17so14856118wrc.9;
+        Mon, 28 Feb 2022 03:26:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=message-id:date:mime-version:user-agent:subject:content-language:to
          :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=6Xad/Cm1Xa8M0hODEJ4dnGwbaNUheLGcG/djLON/KIs=;
-        b=DM0SjBIp2rOGaNtM39pEiIUszAfjIHUZMKGIcQjO3F+1g8JNd6oucb2caysFVNecr2
-         880kyAJYSq5XZxOuIqZVlZi1Vw8TL0FbK47XSiPDz5KswKn0nyFHW7kBKAmwBmyKd3j5
-         NGes1i6mVKRX6OjYj4nzZp36qCA3OOORYpQWLweWomp8mqdxkF6d7VR3jG5f9nU1wdJX
-         ronv6A3YVSIbPwdcWvlojPcE3AmUu/RFvNEZ6I5BZqU0843QctZrYqbQ3jQYeh4L6LfX
-         4p1h57jTGbcLfXpqYm/dmP1bT/oaYCkKOLVX7fBcovmV0389jDwOgTL6MgGimH1kevSJ
-         4pmg==
+        bh=0nOl9Gu2cS+40aKnl77MAdTBzkl+e2ajXLPqa1328c4=;
+        b=RF4z69yluICtYu1fuLZaU5ixtaQDPyAtJIV6s7TbYCPDKfko8sreM/MwfRn1VCiVB0
+         TSDCP5j9Bnpu2IOzh061GbVz6HMuZpuN1R0Vg3dYvBkElL2SqQ+XsqzJS/AaEkhVxfw8
+         wjb/fCMdjSlcZ3gLtLUiAjcGxqyIgkLiSdPfg+MVpcYvPygMabCcQirectYD9SNiQcC7
+         fB60JFiWqd2xEG7hLjg/wCYtRsDbH6QLwiQ9J5RvnUl6+lgM0nvbbnxwSaHUGPVp7fQK
+         56bQlW4K55lgpwfxgKyCGG7EdXEhk/UsWnq8TC5BCaqrtBDDWNQ6IyZV0/E/JCHjALLN
+         Qhig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=6Xad/Cm1Xa8M0hODEJ4dnGwbaNUheLGcG/djLON/KIs=;
-        b=xVkM8RKxMDvkWqLtLR8UVzu3FJaYc8bNzJszFTzqLlThuhHXB3SvHO8wJuLbJ1Yd7M
-         0j0uGOpIrod5aj9dd3yEspRjcTcbMmsFhHufCt+nQlCKr4k2ETNwOfYK0F2KvMb+8GCJ
-         1VzL6yILUL0wYfm+V6QZ3XQSIqWtVE0cLsXTKPpnCRc70hDXkM4SxHFvcqQcCtJ7erYR
-         rNnsAiGCKWoOV5+e/TOZbngYkpO09OTjJxD3hU4p00h06yCpuNIQr03s1jmMnBCjwm5X
-         8p4RFj/WHT34ZWVmgSki438ysrJFeuAbpDM9DCWV3n6hQSlHWOXs0DgJ+3P27rEzZ3CA
-         K8pA==
-X-Gm-Message-State: AOAM532DFNgAdE0T25M0z1lpF2sBtm/CNEtGlgaCsQwcIFhWm8H6u8ps
-        DWjwQEzE/gTjHjGXkjEkxdI=
-X-Google-Smtp-Source: ABdhPJzP+xqwrYyWQvMzSTg/Q1fH/gj9WcdWurTxPtGzl7RjAQC95IedNOQ1iLc69P0VmDAsZQferw==
-X-Received: by 2002:a5d:6148:0:b0:1ed:b74e:508a with SMTP id y8-20020a5d6148000000b001edb74e508amr14871735wrt.90.1646047430977;
-        Mon, 28 Feb 2022 03:23:50 -0800 (PST)
+        bh=0nOl9Gu2cS+40aKnl77MAdTBzkl+e2ajXLPqa1328c4=;
+        b=OQ6nHNInaNeEhA1OeT+jT8rX6pJrkTWX1/yI/HOpUtZ6KnQYFHRTjDNzQo3OOmeV0A
+         GHIrA+8tNCfJgJoir/Aifoyag3BlIGnv0+5LOPItWbIljH5K2fMOAWaAA9JfZ89ZvWUR
+         SmjYaZ/5T3iunaO1ZIvCn5o0JKY0hBxtAB84X/YLo79EKzvU/pj9Ca33vprLUMsKFlEU
+         ovGsq1/xm4t9SIEv4AnhW0IQUhBxd1inGPaUmPRXfsJZOxXMfSK96iSpvchoS0Wu4oOh
+         oYf4duIMPMtfwLIOQ/pxRUDH7p89uNAg0y9fJcmlJflTbRbTqUm4NJfrWBaRA6q6H718
+         +EJg==
+X-Gm-Message-State: AOAM530QV0klwOa0eu3ahINz8/R7sMDJD2c6HJo4RyqQEkVsrBq320Sw
+        JwvUCeCQS4BdpInXYmHzLI8=
+X-Google-Smtp-Source: ABdhPJyEN3IVhZ9CqchTTNuRDYhwp5BAWHwjBXE4AYXcGoAFKxxj9OkPswk656aj1zqS3OkJFo7PcQ==
+X-Received: by 2002:a05:6000:1c0b:b0:1ef:f0cc:6e53 with SMTP id ba11-20020a0560001c0b00b001eff0cc6e53mr1225544wrb.715.1646047592597;
+        Mon, 28 Feb 2022 03:26:32 -0800 (PST)
 Received: from [192.168.0.14] (static-63-182-85-188.ipcom.comunitel.net. [188.85.182.63])
-        by smtp.gmail.com with ESMTPSA id m34-20020a05600c3b2200b00380e3225af9sm11015593wms.0.2022.02.28.03.23.50
+        by smtp.gmail.com with ESMTPSA id z2-20020a056000110200b001e7140ddb44sm9847832wrw.49.2022.02.28.03.26.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 03:23:50 -0800 (PST)
-Message-ID: <4df2ddd0-2114-f874-d661-bb7020f56f72@gmail.com>
-Date:   Mon, 28 Feb 2022 12:23:49 +0100
+        Mon, 28 Feb 2022 03:26:31 -0800 (PST)
+Message-ID: <530f6169-afdb-8242-f4b4-54a54a73948b@gmail.com>
+Date:   Mon, 28 Feb 2022 12:26:30 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v3] arm64: dts: mt8183: jacuzzi: Fix bus properties in
- anx's DSI endpoint
+Subject: Re: [PATCH v3 1/7] dt-bindings: timer: Add compatible for Mediatek
+ MT8186
 Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Robert Foss <robert.foss@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
-Cc:     kernel@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20220214200507.2500693-1-nfraprado@collabora.com>
+To:     "allen-kh.cheng" <allen-kh.cheng@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     hsinyi@chromium.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-iio@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-spi@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20220128062050.23978-1-allen-kh.cheng@mediatek.com>
+ <20220128062050.23978-2-allen-kh.cheng@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220214200507.2500693-1-nfraprado@collabora.com>
+In-Reply-To: <20220128062050.23978-2-allen-kh.cheng@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -79,53 +91,29 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14/02/2022 21:05, Nícolas F. R. A. Prado wrote:
-> mt8183-kukui-jacuzzi has an anx7625 bridge connected to the output of
-> its DSI host. However, after commit fd0310b6fe7d ("drm/bridge: anx7625:
-> add MIPI DPI input feature"), a bus-type property started being required
-> in the endpoint node by the driver to indicate whether it is DSI or DPI.
+On 28/01/2022 07:20, allen-kh.cheng wrote:
+> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 > 
-> Add the missing bus-type property and set it to 5
-> (V4L2_FWNODE_BUS_TYPE_PARALLEL) so that the driver has its input
-> configured to DSI and the display pipeline can probe correctly.
+> This commit adds dt-binding documentation of timer for Mediatek MT8186 SoC
+> Platform.
 > 
-> While at it, also set the data-lanes property that was also introduced
-> in that same commit, so that we don't rely on the default value.
-> 
-> Fixes: fd0310b6fe7d ("drm/bridge: anx7625: add MIPI DPI input feature")
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> 
+> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 
-applied to to tree v5.17-fixes
-
-Thanks
-Matthias
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
 > ---
-> v2: https://lore.kernel.org/all/20220201174643.843102-1-nfraprado@collabora.com
-> v1: https://lore.kernel.org/all/20220120224204.773117-1-nfraprado@collabora.com
+>   Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> Changes in v3:
-> - Added missing Reviewed-by
-> 
-> Changes in v2:
-> - (thanks Rob) Use proper format when refering to commit in commit
->    message as pointed out by checkpatch
-> 
->   arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 ++
->   1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> index 8f7bf33f607d..e8f133dc96b9 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-> @@ -171,6 +171,8 @@ port@0 {
+> diff --git a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> index e5c57d6e0186..e0d20d6adf81 100644
+> --- a/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> +++ b/Documentation/devicetree/bindings/timer/mediatek,mtk-timer.txt
+> @@ -22,6 +22,7 @@ Required properties:
 >   
->   			anx7625_in: endpoint {
->   				remote-endpoint = <&dsi_out>;
-> +				bus-type = <5>;
-> +				data-lanes = <0 1 2 3>;
->   			};
->   		};
->   
+>   	For those SoCs that use SYST
+>   	* "mediatek,mt8183-timer" for MT8183 compatible timers (SYST)
+> +	* "mediatek,mt8186-timer" for MT8186 compatible timers (SYST)
+>   	* "mediatek,mt8192-timer" for MT8192 compatible timers (SYST)
+>   	* "mediatek,mt8195-timer" for MT8195 compatible timers (SYST)
+>   	* "mediatek,mt7629-timer" for MT7629 compatible timers (SYST)
