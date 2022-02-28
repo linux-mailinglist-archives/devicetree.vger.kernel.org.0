@@ -2,60 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 406634C7264
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 18:20:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFBE4C7279
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 18:25:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233023AbiB1RUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 12:20:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55884 "EHLO
+        id S233446AbiB1R0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 12:26:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232401AbiB1RUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 12:20:44 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DE0B7C16F;
-        Mon, 28 Feb 2022 09:20:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 630E4B81544;
-        Mon, 28 Feb 2022 17:20:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 426B3C340E7;
-        Mon, 28 Feb 2022 17:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646068803;
-        bh=QeFrGCNc89SJdYUWHflD+YlxmOKGYrXkXFoTkBy4vjc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aEHA3YO7T7ppz8EA4Eg7vscmAqI4yRmd/InzGzmCabLUpkbUMrs9pdWaapb0rKi/F
-         fSrD7fZtKSIkvlHjTSGIdcBu1MJU/TPER80troBGK/eS0GPARCA34461tSbpvPyu6r
-         pvmvvqCpfiJ55nRUyJnfmqRqdb6vV8GTQ+Uhm8/NAm5cZBn+dO637KZHoo8WoVErFz
-         nTChyG+BVqwJlsTSZqXn5NngNw/8N6eqhCGiUqo3smXkvZEf0kgxSI219EJWkpyGG3
-         w0qKO2itn47FK3RDebOcWD73VRMjV8DHLUDRyuZGb//oCW5IetaNp0gDtTCYLF6PcH
-         A3c/A+99NSsew==
-Date:   Mon, 28 Feb 2022 18:19:57 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>, Peter Rosin <peda@axentia.se>
-Cc:     Guenter Roeck <linux@roeck-us.net>, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] ic2: mux: pca9541: add delayed-release support
-Message-ID: <Yh0EPY/DXtBdScB+@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Zev Weiss <zev@bewilderbeest.net>, Peter Rosin <peda@axentia.se>,
-        Guenter Roeck <linux@roeck-us.net>, linux-i2c@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220201001810.19516-1-zev@bewilderbeest.net>
- <YhyLIRFbs226KTwA@hatter.bewilderbeest.net>
- <fbb305e3-73b3-7a2d-99cf-a7205b7344ff@roeck-us.net>
- <Yh0CUzBzGJc4zyTR@hatter.bewilderbeest.net>
+        with ESMTP id S231981AbiB1R0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 12:26:20 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EEC775E62
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 09:25:41 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id c18-20020a7bc852000000b003806ce86c6dso6136207wml.5
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 09:25:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=notYzvLapgrWxhvzTWLvUQkyjm1+ISszqSAt8pZdOYI=;
+        b=Zgqher2oa92fGjqwuNd7AvQQL/prMgpwurC/1I0Q2XMCq12BsIydAK7Xbt2y6WEZ3d
+         O83ghC4YWK0y7SASC9sfrraEmmCPIDC2yLy8LRMQ322ADA+msYp3dut1AKFazt1n85qG
+         XAcHAU8f3A2PHmucP8HfrHUQW3D26YfuYfqnTBpTXna39MTgxw8uW0RpMvyPk3xXbryw
+         OExK2vEy5eszJh4APgr2NWDP16vNXCINoVIVFMusBl66Q0sGeLGqCFl8uIwQ71XQCC/3
+         /DD5nsu5Rn4vrpuvTBGcOQmGgf9w0hHWRJaKPGWbh8cOuLN4O78lW+e/LjUsMid3Fkdm
+         JceQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=notYzvLapgrWxhvzTWLvUQkyjm1+ISszqSAt8pZdOYI=;
+        b=7yIdBqb4Tk3FLwzIX/Oey6h+BIcg9fkHNEh7J5ebNWEIHQdIYj8YC7MZi+dLkSvf5I
+         Jj6Rj3k5AvUFGRuCn7ziJUaFjr9lNBomi0zHY8yP7Pwm/HAcbIyCReuxY11fA5DC2R/9
+         65ClOsG4kmaXU5O+FXW65KQ3XLFEZdMBk5q1uv7L7okO/BJmYqDN7jBO/qckw2PKESDM
+         Vhn/CoMvPIYYMc+29zNf7rNQcfvzGA0A2iomoo61Lcyvfs1KbubLJyn3HzaC4f447BnL
+         UDdcQRwS4d3glTSbRgXKjr1TS3qrYUjj6QCIMBokRnse+8sk/iPnNTpWOl0FMQcWKZcE
+         DbIg==
+X-Gm-Message-State: AOAM532q17RfeTPYl0TovqS2yzKNDkYEX9Lh87zkvVZf5+qhzRnqVQrL
+        hS5NrCGPeW4QscUjO0ngyaFPwQ==
+X-Google-Smtp-Source: ABdhPJwJ+NcsdjBxdhB1UyDeneF5rEqwUWcp9CAfrUzldwkhCgyJIZBroO5q5TvmPYAd8SU7IOWwyw==
+X-Received: by 2002:a7b:cc15:0:b0:381:3fb8:5f93 with SMTP id f21-20020a7bcc15000000b003813fb85f93mr12592663wmh.106.1646069139944;
+        Mon, 28 Feb 2022 09:25:39 -0800 (PST)
+Received: from srini-hackbox.lan (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.gmail.com with ESMTPSA id f21-20020a7bcd15000000b0034efd01ee16sm11514124wmj.42.2022.02.28.09.25.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 09:25:39 -0800 (PST)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     robh+dt@kernel.org, vkoul@kernel.org,
+        yung-chuan.liao@linux.intel.com
+Cc:     pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        quic_srivasam@quicinc.com,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 0/3] soundwire: qcom: add pm runtime support
+Date:   Mon, 28 Feb 2022 17:25:25 +0000
+Message-Id: <20220228172528.3489-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PcOsCAVfvNqPfZDu"
-Content-Disposition: inline
-In-Reply-To: <Yh0CUzBzGJc4zyTR@hatter.bewilderbeest.net>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,37 +70,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds pm runtime support to Qualcomm SounWire Controller using
+SoundWire Clock Stop and Wake up using Headset events on supported instances and
+instances like WSA which do not support clock stop a soft reset of controller
+along with full rest of slaves is done to resume from a low power state.
 
---PcOsCAVfvNqPfZDu
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Tested it on SM8250 MTP and Dragon Board DB845c
 
+Changes since v2:
+ - update log as suggested by Pierre
+ - removing handling clk stop for cases where the controller is soft reset.
+ - add more error checks when calling  sdw_bus_prep_clk_stop
+ - update dt-bindings with wakeup-source and interrupt-names properties.
 
-> Ack, thanks.  In that case, what's the path forward on getting changes to
-> this driver merged?  I see sign-offs from Wolfram and Peter on the last few
-> commits that touched it -- any input from the i2c/i2c-mux maintainers?
+--srini
 
-For the i2c mux subsystem, I usually wait for Peter's review.
+Srinivas Kandagatla (3):
+  soundwire: qcom: add runtime pm support
+  dt-bindings: soundwire: qcom: document optional wake irq
+  soundwire: qcom: add in-band wake up interrupt support
 
+ .../bindings/soundwire/qcom,sdw.txt           |  14 +-
+ drivers/soundwire/qcom.c                      | 206 +++++++++++++++++-
+ 2 files changed, 218 insertions(+), 2 deletions(-)
 
---PcOsCAVfvNqPfZDu
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.21.0
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIdBD0ACgkQFA3kzBSg
-KbZqPBAAirMQ2+kLUEJHshiQxx+oqoXe3l4b+oevdW4j7PQZyoM71DBl0dkG9FDn
-vBYWm74HGKKbS0iB2IM8Z24YU1tO0bKphsc9rzZmsS9r49GYWeLTtoM07X0a2NsA
-hPRfxU8RJdzJL62T1NuxZcT8nrZPDXyYy7JFO9sR7O6ZE4tm3Yl4U4ywZwO0ukZ6
-lalIt7EQPSBTWR0gOOvOtikN7cZnTGAaFvKFN+UW/BgV7E00xrwddtC8rN71kPGw
-o/uljkVFZNy8DQYwSlbG6DAvk2TocSocKuWsUT8dpxsICA+9T7avF59AWf091axI
-DBtqJBwqxaLEAzTJTw9ZotuLN0GRPBIcIW5NQNa+PS1ii8PhuUY8vqQNLXBtHjsw
-KcLdCM1GrhnoUtyoshu6TiSirZ5Bdqk2tC7nXZ1XIvlzaGzml7uYg+DFExRdQ6wB
-6F2Ze1Gj35tNHxCwYnOxkkh3ZJ1vl8gsSxwVLBnCiODcR/jPFiJ44dp90VdH/Ud3
-gw1/gz0/rlsRo6n7ZIkRPtOWXtc+s8RCvpsG83qLN/LRDTLLPcDV6HiuYAik3rj+
-+Xugrks9xFw/a8RPrSZM/5kQnD9RJxYKP8V3mR98CMbhmbx3F6FI738eFZf1hKxf
-sRvnXYOOZZsgbzIPojr+OSja1/z+Xj+c2+MFZZXb+2Rx/Pliknw=
-=AoPe
------END PGP SIGNATURE-----
-
---PcOsCAVfvNqPfZDu--
