@@ -2,118 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7BAE4C7A77
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:32:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E02A34C7A85
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229559AbiB1Ucs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 15:32:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59246 "EHLO
+        id S229537AbiB1Ufv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 15:35:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229621AbiB1Uco (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:32:44 -0500
-Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC3413D7F
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:31:59 -0800 (PST)
-Received: by mail-oi1-x229.google.com with SMTP id 12so14293585oix.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:31:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=utrIpj5sGwbA9Y5s37XmpLzhGxUfS2xneQil5soYPOM=;
-        b=IJNTXhb8vKmca/sPG/5vUyGbk6U/5uSV4ApOSAlXFGmNSwgyan6DeTxcgzJiHwa6sp
-         NypjgIHkmQkkzpgLJ9502B4A1aijO507ETnJHHwo03ypRd85V0mZcil/a3UZYUEZMIdx
-         12FZxG2zLO9hKIqOHOOlAT2X8dgcls4RMqIe8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=utrIpj5sGwbA9Y5s37XmpLzhGxUfS2xneQil5soYPOM=;
-        b=TD80lE6SCIFZhaNjf80WAeiPMQ6C51xcOLKn1lV4hGfk88WJM4x4gH7GVK9ffEoEDP
-         yhyPrcv1ZtsvIq4ugr7ymYtlc/ku7EXAz/kFzl5CWPT5kYHUKb6C4G34FwczbhAz6aGC
-         AetpLUEaWj3TSGQwmO1HuyunArvjK+GbWqECIO+cK/ZM7tDlHdo72Of8BLnil+0oLR29
-         UNUaXfGZCqcqVrkFcOy+3qhkz2Kz/QJ8gFkWCzd1mMh7ovKav0X79xTKWqO/jC1N4axY
-         /gHPrSSRVP/L5KPf0EpxXEXuSKXoyFuBC2Ck38Kgdeh0nWaFdyLx0hCFOcsbhUU38mtc
-         W6sA==
-X-Gm-Message-State: AOAM530LQUXUCzSTaQopk91j6gvHUHbPtbTXsVV/jkd0vhkQ4mRb/H0Q
-        VNKgpk70qdvqpgsSP94tRE1J1DJDhsbM6MTN/xG+Dw==
-X-Google-Smtp-Source: ABdhPJxT2qNwI+x+MXRZ6vklFHt8jMreYUaB/MnFw7ql9KToFLQdHvgZr3G6P8pADPUBa+ZL0D2JlyDA+u4ZmUk0Cxk=
-X-Received: by 2002:a05:6808:1a28:b0:2d7:3c61:e0d6 with SMTP id
- bk40-20020a0568081a2800b002d73c61e0d6mr12145538oib.32.1646080318805; Mon, 28
- Feb 2022 12:31:58 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 28 Feb 2022 12:31:58 -0800
+        with ESMTP id S229471AbiB1Ufu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:35:50 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB98B192A9
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:35:10 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 22F67478;
+        Mon, 28 Feb 2022 21:35:08 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1646080508;
+        bh=XqczdUKN2o21VDGoO/DRCI5OlcVH0FAW3umJiWnsPNo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NtBu8iQ3006SFucNfUctqRZkKd5xvmwA0GuftWI8KElEiBQfyhdL1+CazRwIlmHCj
+         vNDtjEva+WhYo9k02lUl1KbTcukDuI6dIYQXQaRZoCes7bm0JXNtERHjDcPcF09Hwb
+         v4MArz5/eISP++TI/oJVet28sF04dvg5dU5Bzi3g=
+Date:   Mon, 28 Feb 2022 22:34:56 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
+Subject: Re: [PATCH v3 1/7] soc: imx: gpcv2: add PGC control register
+ indirection
+Message-ID: <Yh0x8K+UQKO44OF2@pendragon.ideasonboard.com>
+References: <20220228201731.3330192-1-l.stach@pengutronix.de>
+ <20220228201731.3330192-2-l.stach@pengutronix.de>
 MIME-Version: 1.0
-In-Reply-To: <05780d0a-bc9c-3a81-2676-ea92453d7303@quicinc.com>
-References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com>
- <1645182064-15843-2-git-send-email-quic_c_skakit@quicinc.com>
- <CAE-0n51X=LJMjDb9KS0rqQDqLR5srzxCOJCRS4oJgPSXbvaSiQ@mail.gmail.com> <05780d0a-bc9c-3a81-2676-ea92453d7303@quicinc.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Mon, 28 Feb 2022 12:31:58 -0800
-Message-ID: <CAE-0n517usy-DDEg+r1Q6oeer0i5bBiAqTugxf3GPcW+2gtQ9A@mail.gmail.com>
-Subject: Re: [PATCH V7 1/5] dt-bindings: mfd: pm8008: Add pm8008 regulators
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Das Srinagesh <gurus@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
-        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220228201731.3330192-2-l.stach@pengutronix.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Satya Priya Kakitapalli (Temp) (2022-02-28 06:14:56)
->
-> On 2/19/2022 7:09 AM, Stephen Boyd wrote:
-> > Quoting Satya Priya (2022-02-18 03:00:59)
-> >> Add regulators and their supply nodes. Add separate compatible
-> >> "qcom,pm8008-regulators" to differentiate between pm8008 infra
-> >> and pm8008 regulators mfd devices.
-> >>
-> >> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
-> >> ---
-> > Is the register layout compatible with SPMI regulators? The gpio node
-> > seems to be fully compatible and the same driver probes there for SPMI
-> > and i2c, so I wonder why we can't extend the existing SPMI gpio and
-> > regulator bindings to have the new compatible strings for pm8008. Is
-> > anything really different, or do we have the same device talking i2c
-> > instead of SPMI now? Possibly it's exposing the different hardware
-> > blocks inside the PMIC at different i2c addresses. It looks like the i2c
-> > address is 0x8 and then there's 16-bits of address space inside the i2c
-> > device to do things. 0x9 is the i2c address for the regulators and then
-> > each ldo is at some offset in there?
->
->
-> The register layout is not compatible with spmi regulators, I see some
-> differences w.r.t VOLTAGE_CTL, EN_CTL, MODE_CTL registers. Also, there
-> is no headroom related stuff in the spmi driver.
+Hi Lucas,
 
-It sounds like minor differences and/or improvements to the existing
-SPMI regulator hardware.
+Thank you for the patch.
 
-> >>           interrupt-parent = <&tlmm>;
-> >>           interrupts = <32 IRQ_TYPE_EDGE_RISING>;
-> > I still fail to see what this part of the diff has to do with
-> > regulators. Can it be split off to a different patch with a clear
-> > description of why interrupt-controller and #interrupt-cells is no
-> > longer required for qcom,pm8008?
->
->
-> This diff has nothing to do with regulators, I removed it to avoid yaml
-> errors during dtbs check.
->
-> I'll move this to a separate patch.
+On Mon, Feb 28, 2022 at 09:17:25PM +0100, Lucas Stach wrote:
+> The PGC control registers in the shared (not per-PGC) region of the
+> GPC address space have different offsets on i.MX8MP to make space for
+> additional interrupt control registers.
+> 
+> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 
-Ok, thanks!
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  drivers/soc/imx/gpcv2.c | 43 ++++++++++++++++++++++++++++++-----------
+>  1 file changed, 32 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
+> index 3e59d479d001..01f46b078df3 100644
+> --- a/drivers/soc/imx/gpcv2.c
+> +++ b/drivers/soc/imx/gpcv2.c
+> @@ -184,9 +184,17 @@
+>  
+>  #define GPC_PGC_CTRL_PCR		BIT(0)
+>  
+> +struct imx_pgc_regs {
+> +	u16 map;
+> +	u16 pup;
+> +	u16 pdn;
+> +	u16 hsk;
+> +};
+> +
+>  struct imx_pgc_domain {
+>  	struct generic_pm_domain genpd;
+>  	struct regmap *regmap;
+> +	const struct imx_pgc_regs *regs;
+>  	struct regulator *regulator;
+>  	struct reset_control *reset;
+>  	struct clk_bulk_data *clks;
+> @@ -210,6 +218,7 @@ struct imx_pgc_domain_data {
+>  	const struct imx_pgc_domain *domains;
+>  	size_t domains_num;
+>  	const struct regmap_access_table *reg_access_table;
+> +	const struct imx_pgc_regs *pgc_regs;
+>  };
+>  
+>  static inline struct imx_pgc_domain *
+> @@ -249,14 +258,14 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+>  
+>  	if (domain->bits.pxx) {
+>  		/* request the domain to power up */
+> -		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PUP_REQ,
+> +		regmap_update_bits(domain->regmap, domain->regs->pup,
+>  				   domain->bits.pxx, domain->bits.pxx);
+>  		/*
+>  		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+>  		 * for PUP_REQ/PDN_REQ bit to be cleared
+>  		 */
+>  		ret = regmap_read_poll_timeout(domain->regmap,
+> -					       GPC_PU_PGC_SW_PUP_REQ, reg_val,
+> +					       domain->regs->pup, reg_val,
+>  					       !(reg_val & domain->bits.pxx),
+>  					       0, USEC_PER_MSEC);
+>  		if (ret) {
+> @@ -278,11 +287,11 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+>  
+>  	/* request the ADB400 to power up */
+>  	if (domain->bits.hskreq) {
+> -		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
+> +		regmap_update_bits(domain->regmap, domain->regs->hsk,
+>  				   domain->bits.hskreq, domain->bits.hskreq);
+>  
+>  		/*
+> -		 * ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK, reg_val,
+> +		 * ret = regmap_read_poll_timeout(domain->regmap, domain->regs->hsk, reg_val,
+>  		 *				  (reg_val & domain->bits.hskack), 0,
+>  		 *				  USEC_PER_MSEC);
+>  		 * Technically we need the commented code to wait handshake. But that needs
+> @@ -329,10 +338,10 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
+>  
+>  	/* request the ADB400 to power down */
+>  	if (domain->bits.hskreq) {
+> -		regmap_clear_bits(domain->regmap, GPC_PU_PWRHSK,
+> +		regmap_clear_bits(domain->regmap, domain->regs->hsk,
+>  				  domain->bits.hskreq);
+>  
+> -		ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK,
+> +		ret = regmap_read_poll_timeout(domain->regmap, domain->regs->hsk,
+>  					       reg_val,
+>  					       !(reg_val & domain->bits.hskack),
+>  					       0, USEC_PER_MSEC);
+> @@ -350,14 +359,14 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
+>  		}
+>  
+>  		/* request the domain to power down */
+> -		regmap_update_bits(domain->regmap, GPC_PU_PGC_SW_PDN_REQ,
+> +		regmap_update_bits(domain->regmap, domain->regs->pdn,
+>  				   domain->bits.pxx, domain->bits.pxx);
+>  		/*
+>  		 * As per "5.5.9.4 Example Code 4" in IMX7DRM.pdf wait
+>  		 * for PUP_REQ/PDN_REQ bit to be cleared
+>  		 */
+>  		ret = regmap_read_poll_timeout(domain->regmap,
+> -					       GPC_PU_PGC_SW_PDN_REQ, reg_val,
+> +					       domain->regs->pdn, reg_val,
+>  					       !(reg_val & domain->bits.pxx),
+>  					       0, USEC_PER_MSEC);
+>  		if (ret) {
+> @@ -441,10 +450,18 @@ static const struct regmap_access_table imx7_access_table = {
+>  	.n_yes_ranges	= ARRAY_SIZE(imx7_yes_ranges),
+>  };
+>  
+> +static const struct imx_pgc_regs imx7_pgc_regs = {
+> +	.map = GPC_PGC_CPU_MAPPING,
+> +	.pup = GPC_PU_PGC_SW_PUP_REQ,
+> +	.pdn = GPC_PU_PGC_SW_PDN_REQ,
+> +	.hsk = GPC_PU_PWRHSK,
+> +};
+> +
+>  static const struct imx_pgc_domain_data imx7_pgc_domain_data = {
+>  	.domains = imx7_pgc_domains,
+>  	.domains_num = ARRAY_SIZE(imx7_pgc_domains),
+>  	.reg_access_table = &imx7_access_table,
+> +	.pgc_regs = &imx7_pgc_regs,
+>  };
+>  
+>  static const struct imx_pgc_domain imx8m_pgc_domains[] = {
+> @@ -613,6 +630,7 @@ static const struct imx_pgc_domain_data imx8m_pgc_domain_data = {
+>  	.domains = imx8m_pgc_domains,
+>  	.domains_num = ARRAY_SIZE(imx8m_pgc_domains),
+>  	.reg_access_table = &imx8m_access_table,
+> +	.pgc_regs = &imx7_pgc_regs,
+>  };
+>  
+>  static const struct imx_pgc_domain imx8mm_pgc_domains[] = {
+> @@ -803,6 +821,7 @@ static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
+>  	.domains = imx8mm_pgc_domains,
+>  	.domains_num = ARRAY_SIZE(imx8mm_pgc_domains),
+>  	.reg_access_table = &imx8mm_access_table,
+> +	.pgc_regs = &imx7_pgc_regs,
+>  };
+>  
+>  static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
+> @@ -894,6 +913,7 @@ static const struct imx_pgc_domain_data imx8mn_pgc_domain_data = {
+>  	.domains = imx8mn_pgc_domains,
+>  	.domains_num = ARRAY_SIZE(imx8mn_pgc_domains),
+>  	.reg_access_table = &imx8mn_access_table,
+> +	.pgc_regs = &imx7_pgc_regs,
+>  };
+>  
+>  static int imx_pgc_domain_probe(struct platform_device *pdev)
+> @@ -926,7 +946,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  	pm_runtime_enable(domain->dev);
+>  
+>  	if (domain->bits.map)
+> -		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +		regmap_update_bits(domain->regmap, domain->regs->map,
+>  				   domain->bits.map, domain->bits.map);
+>  
+>  	ret = pm_genpd_init(&domain->genpd, NULL, true);
+> @@ -952,7 +972,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+>  	pm_genpd_remove(&domain->genpd);
+>  out_domain_unmap:
+>  	if (domain->bits.map)
+> -		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +		regmap_update_bits(domain->regmap, domain->regs->map,
+>  				   domain->bits.map, 0);
+>  	pm_runtime_disable(domain->dev);
+>  
+> @@ -967,7 +987,7 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
+>  	pm_genpd_remove(&domain->genpd);
+>  
+>  	if (domain->bits.map)
+> -		regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+> +		regmap_update_bits(domain->regmap, domain->regs->map,
+>  				   domain->bits.map, 0);
+>  
+>  	pm_runtime_disable(domain->dev);
+> @@ -1098,6 +1118,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
+>  
+>  		domain = pd_pdev->dev.platform_data;
+>  		domain->regmap = regmap;
+> +		domain->regs = domain_data->pgc_regs;
+>  		domain->genpd.power_on  = imx_pgc_power_up;
+>  		domain->genpd.power_off = imx_pgc_power_down;
+>  
+
+-- 
+Regards,
+
+Laurent Pinchart
