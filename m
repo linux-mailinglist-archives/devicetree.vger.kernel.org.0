@@ -2,119 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 478604C7067
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:16:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 71AB04C7083
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:27:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237496AbiB1PQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 10:16:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36768 "EHLO
+        id S234118AbiB1P1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 10:27:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234688AbiB1PQr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:16:47 -0500
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1A3675C1B;
-        Mon, 28 Feb 2022 07:16:04 -0800 (PST)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-        by localhost (Postfix) with ESMTP id 4K6kVB6QSZz9sSL;
-        Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Fzavmv33hufI; Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase2.c-s.fr (Postfix) with ESMTP id 4K6kVB5XX2z9sS3;
-        Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 9CDCA8B773;
-        Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id blT9pc0ZQP4q; Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (unknown [192.168.232.66])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 5CB818B763;
-        Mon, 28 Feb 2022 16:16:02 +0100 (CET)
-Received: from PO20335.IDSI0.si.c-s.fr (localhost [127.0.0.1])
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.16.1) with ESMTPS id 21SFFteL354888
-        (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-        Mon, 28 Feb 2022 16:15:55 +0100
-Received: (from chleroy@localhost)
-        by PO20335.IDSI0.si.c-s.fr (8.17.1/8.17.1/Submit) id 21SFFt9J354887;
-        Mon, 28 Feb 2022 16:15:55 +0100
-X-Authentication-Warning: PO20335.IDSI0.si.c-s.fr: chleroy set sender to christophe.leroy@csgroup.eu using -f
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pratyush Yadav <p.yadav@ti.com>
-Cc:     Christophe Leroy <christophe.leroy@csgroup.eu>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] spi: fsl-spi: Implement trailing bits
-Date:   Mon, 28 Feb 2022 16:15:46 +0100
-Message-Id: <fe4a3946a66ede73f6d6871700f2aaf0171372a1.1646060734.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1646060734.git.christophe.leroy@csgroup.eu>
-References: <cover.1646060734.git.christophe.leroy@csgroup.eu>
-MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1646061343; l=1346; s=20211009; h=from:subject:message-id; bh=qCaXmMDXzweW6jL3WZK6Vn2roRlk3PB7M8Y/Eji0zEk=; b=41JKsiGTp/F8WyixBoVKFmKHZF87yBY9H3hqz+7s+U4wHyJ6oQODeX+E8/15H9n7+efsbQBjUKZm lyTQf3PfBWcVApZqr1fyGsypfGIl1nJPsCgL32NmzdFbHRr/nez0
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S232172AbiB1P1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:27:36 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F897EA1F;
+        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id l25so13455999oic.13;
+        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=I87Fjts+rpNlg39YY3+tnxuJdwSRLJLguMw++XeNFIg=;
+        b=pZQVk6Q1OsBDnd6jtsXO0GseRMyEuph5nFUMF55QSKOAqa/q8AU23THpojWsSw1wBe
+         fyEPYPBHOynzU4iBPtDdYOoGJfVpPR90DqCU3m4kV+IM7RAobIHpfOqwpMKUAXoIYHzg
+         lAeREwT33nC6pRNsL/Vj0O4sdta1HdGta5lOi20ERnJdmfTH8L04p+bAwr2BdnCEkfVx
+         QxxHFRy3delX+al5S6gKtkaaeXqjCNYhauuoCXtEh/WcOFegPHZ9tnVjUyguyCPBOYQL
+         8N0YvtM058ocf0mwDzuMtwDgjxN2nIaKujhIBSzH6GpczBeqgSw8UMxQAeIqhlU4hDSr
+         bMOw==
+X-Gm-Message-State: AOAM533yMwb7PzR4xZhWbuYdCmYzSI+9CU9sN/3jq/TWiMFh2DHRzuvt
+        7NFPf76Fg08CLRU6QJqC9w==
+X-Google-Smtp-Source: ABdhPJyW4S0Ic5zGxvFgmna5a0fy2EDagMuNav85rX4OIYGZLIrUok5+XAS/lrttQvtGHYh80ZPRYw==
+X-Received: by 2002:a05:6808:903:b0:2d4:8451:d651 with SMTP id w3-20020a056808090300b002d48451d651mr9173464oih.29.1646062017625;
+        Mon, 28 Feb 2022 07:26:57 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id c1-20020a056808138100b002d4b30ab04esm6534610oiw.32.2022.02.28.07.26.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 07:26:57 -0800 (PST)
+Received: (nullmailer pid 1049704 invoked by uid 1000);
+        Mon, 28 Feb 2022 15:26:56 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Potin Lai <potin.lai@quantatw.com>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
+In-Reply-To: <20220228103716.10774-3-potin.lai@quantatw.com>
+References: <20220228103716.10774-1-potin.lai@quantatw.com> <20220228103716.10774-3-potin.lai@quantatw.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: Add sample averaging properties for ADM1275
+Date:   Mon, 28 Feb 2022 09:26:56 -0600
+Message-Id: <1646062016.577370.1049703.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In order to support IDT 801034 QUAD PCM CODEC, implement
-trailing clock for the amount of requested bits.
+On Mon, 28 Feb 2022 18:37:16 +0800, Potin Lai wrote:
+> Add documentation of new properties for sample averaging in PMON_CONFIG
+> register.
+> 
+> New properties:
+> - adi,volt-curr-sample-average
+> - adi,power-sample-average
+> 
+> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+> 
+> doc
+> ---
+>  .../bindings/hwmon/adi,adm1275.yaml           | 39 +++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+> 
 
-On fsl SPI, the minimum we can implement is a 4 bits shot.
-If the requested number is greated than 8, use 16.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
- drivers/spi/spi-fsl-spi.c | 21 +++++++++++++++++++--
- 1 file changed, 19 insertions(+), 2 deletions(-)
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml:68:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
-diff --git a/drivers/spi/spi-fsl-spi.c b/drivers/spi/spi-fsl-spi.c
-index bdf94cc7be1a..aefaea439672 100644
---- a/drivers/spi/spi-fsl-spi.c
-+++ b/drivers/spi/spi-fsl-spi.c
-@@ -424,13 +424,30 @@ static int fsl_spi_do_one_msg(struct spi_master *master,
- 		}
- 	}
- 
--	m->status = status;
--
- 	if (status || !cs_change) {
- 		ndelay(nsecs);
- 		fsl_spi_chipselect(spi, BITBANG_CS_INACTIVE);
- 	}
- 
-+	if (!status && spi->trailing_bits) {
-+		struct spi_transfer t = {
-+			.len = 1,
-+			.tx_buf = empty_zero_page,
-+		};
-+
-+		if (spi->trailing_bits < 4)
-+			t.bits_per_word = 4;
-+		else if (spi->trailing_bits > 8)
-+			t.bits_per_word = 16;
-+		else
-+			t.bits_per_word = spi->trailing_bits;
-+
-+		status = fsl_spi_setup_transfer(spi, &t);
-+		if (!status)
-+			status = fsl_spi_bufs(spi, &t, 0);
-+	}
-+	m->status = status;
-+
- 	fsl_spi_setup_transfer(spi, NULL);
- 	spi_finalize_current_message(master);
- 	return 0;
--- 
-2.34.1
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1598637
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
 
