@@ -2,109 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F7F24C6379
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 08:00:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CD7F74C6370
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 08:00:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233487AbiB1G5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 01:57:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60944 "EHLO
+        id S233491AbiB1G7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 01:59:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233479AbiB1G5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 01:57:47 -0500
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D355B53E3C
-        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 22:57:08 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S232045AbiB1G7c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 01:59:32 -0500
+Received: from mx.tkos.co.il (guitar.tcltek.co.il [84.110.109.230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FB6A4B1C2;
+        Sun, 27 Feb 2022 22:58:53 -0800 (PST)
+Received: from tarshish.tkos.co.il (unknown [10.0.8.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 2565283BCC;
-        Mon, 28 Feb 2022 07:57:05 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1646031425;
-        bh=ueHy08uBf8B3Cafh+p6eow3aQ/02PK8YIUKF5lp4WTI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=y7R+IzHfStB1VPvW6SZRAQOrKJvU4qmdh26k40uw3lqps01x1V3BWHc1PT1bio7iq
-         jQ/Tt77MkW1PMbLM/JzPj8XExikKmTzJuHUGBmW6/Wk64EChDAyh25VXaCqjQZUmAo
-         BPl+63lzGE5qxA8dSmnyvk3wti9fFzj0pGJWWoekiIkLDf7PrbX0qZrYAFvZ9pdii+
-         ihd8q4RYJ3rAAdkd015BVpS6ZEESoZA1Kc860YETPsWb17YV+yze3lmlfwzx3Gglm7
-         Po5m3tUKolUM6WyrOIBh07Gnl4GObvLreG6pdodWDxl2VCh6EiBHsc/dmhpUDoOTt8
-         WjCJYzz+ZH/Bw==
-Message-ID: <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
-Date:   Mon, 28 Feb 2022 07:57:04 +0100
+        by mx.tkos.co.il (Postfix) with ESMTPS id 15452440870;
+        Mon, 28 Feb 2022 08:58:11 +0200 (IST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tkos.co.il;
+        s=default; t=1646031491;
+        bh=UzHRfBvg6y4IkbCIkI3SNnDjUBtpXSSAF8obp5wXLIc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IzEfQ8aL5rkycmm2Ngco9H+/lcKtjk/VEVA9LciyCIdf4ImNzuyOmKxlRKNPV87WY
+         ANAXHJeUq7PSleIR9ZEz5F1tNKQwn5vNUvaMzWKNal7QnNITUkKZI+kyUt5iHY5F1x
+         7NPEOlCOtlgNzYeHUN2H0Mt8e8hFB5WOQAMySJzw9i540Xteo8zXrRAK718Uq9jh7Z
+         v2DqD27jBet1YdnZMge0T2W75FmqgODMrwH80NGVSkY2Qh2VhIfpx8aACzecvxMU3V
+         icG9ABGVI4rkFFkToouCJv8JTEbKVQRUD17e3AA482Ds/0UQnlr0TUl2PhUqHkwEyu
+         7as/JDV1xDG0w==
+From:   Baruch Siach <baruch@tkos.co.il>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>
+Cc:     Baruch Siach <baruch.siach@siklu.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: net: ipq4019-mdio: Add ipq6018 compatible
+Date:   Mon, 28 Feb 2022 08:58:43 +0200
+Message-Id: <8de887697c90cd432b7ab5fe0d833c87fc17f0f1.1646031524.git.baruch@tkos.co.il>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-Content-Language: en-US
-To:     Liu Ying <victor.liu@oss.nxp.com>, dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>
-References: <20220228004605.367040-1-marex@denx.de>
- <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/28/22 07:37, Liu Ying wrote:
-> Hi Marek,
+From: Baruch Siach <baruch.siach@siklu.com>
 
-Hi,
+The IPQ60xx MDIO bus is the same as IPQ4019.
 
-> On Mon, 2022-02-28 at 01:45 +0100, Marek Vasut wrote:
->> Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
->> and is completely different from the LCDIFv3 found in i.MX23 in that it
-> 
-> In i.MX23 reference manual, there is no LCDIFv3 found, but only LCDIF.
+Update the schema to allow qcom,ipq4019-mdio compatible as fallback for
+newer IPQ series.
 
-See i.MX23 HW_LCDIF_VERSION MAJOR=0x3 , that's LCDIF V3 . MX28 has LCDIF 
-V4 .
+Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+---
 
->> has a completely scrambled register layout compared to all previous LCDIF
-> 
-> It looks like no single register of i.MX8MP LCDIFv3 overlaps with
-> registers in other i.MX2x/6x/7x/8x LCDIFs. The LCDIFv3 block diagram is
-> totally different from the LCDIF block diagram, according to the SoC
-> reference manuals. LCDIFv3 supports SHADOW_EN bit to update horizontal
-> and vertical size of graphic, position of graphic on the panel, address
-> of graphic in memory and color formats or color palettes, which is not
-> supported by LCDIF and impacts display driver control mechanism
-> considerably. LCDIF supports DOTCLK interface, MPU interface and VSYNC
-> interface, while LCDIFv3 only supports parallel output as a counterpart
-> of the DOTCLK interface.
-> 
-> Generally speaking, LCDIFv3 is just a new display IP which happens to
-> have the word 'LCDIF' in its name.  Although both of LCDIFv3 and LCDIF
-> are display controllers for scanning out frames onto display devices, I
-> don't think they are in one family.
-> 
-> So, LCDIFv3 deserves a new separate dt-binding, IMO.
+v3:
 
-It seems to me a lot of those bits just map to their previous 
-equivalents in older LCDIF, others were dropped, so this is some sort of 
-new LCDIF mutation, is it not ?
+  Correct the schema to fix yamllint failure (Rob's bot)
 
-I am aware NXP has a separate driver in its downstream, but I'm not 
-convinced the duplication of boilerplate code by introducing a separate 
-driver for what looks like another LCDIF variant is the right approach.
+v2:
 
->> variants. The new LCDIFv3 also supports 36bit address space. However,
->> except for the complete bit reshuffling, this is still LCDIF and it still
->> works like one.
+  Update the schema to allow fallback compatible (Rob Herring)
+---
+ .../devicetree/bindings/net/qcom,ipq4019-mdio.yaml     | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-[...]
+diff --git a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+index 2af304341772..dde8e6931ed3 100644
+--- a/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
++++ b/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml
+@@ -14,9 +14,13 @@ allOf:
+ 
+ properties:
+   compatible:
+-    enum:
+-      - qcom,ipq4019-mdio
+-      - qcom,ipq5018-mdio
++    oneOf:
++      - const: qcom,ipq4019-mdio
++      - items:
++          - enum:
++              - qcom,ipq5018-mdio
++              - qcom,ipq6018-mdio
++          - const: qcom,ipq4019-mdio
+ 
+   "#address-cells":
+     const: 1
+-- 
+2.34.1
+
