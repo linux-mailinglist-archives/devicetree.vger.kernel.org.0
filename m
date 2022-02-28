@@ -2,122 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4134C6F9A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:35:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F4AE4C6F9E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:36:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236217AbiB1Og2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:36:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58754 "EHLO
+        id S237202AbiB1OhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:37:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231896AbiB1OgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:36:25 -0500
-Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com [209.85.217.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2B55C355;
-        Mon, 28 Feb 2022 06:35:47 -0800 (PST)
-Received: by mail-vs1-f51.google.com with SMTP id w4so13190374vsq.1;
-        Mon, 28 Feb 2022 06:35:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4W2KAZr0aee0ddqrQkvXwCKjH8/N/IF9E6sKuTx6QWo=;
-        b=WZ0Srq2yjm6TWI53WpOX2kL98AV3P+95MEqgZatTTDa1qpnvbJ+Iks5OEF9kgiJYuy
-         quomm+1gkOsTgu18UOg81fdD7Yp6gcFQlBgdnK41vGmhVwr6ruaaT+DnpUCI/FZuTznZ
-         jIGyd/M+x2f9hb3WM2CWp88exurWAqNw4q2MWRyOPj0W3rgTTMiP9jB7fqEohtt0xV2E
-         lMpV6D9rE+h7nh5Ppg3VXJyaAQNRGW3mTJlGj63qdEqipvcGPF/bI8L3eY4utiLSs0lQ
-         p1uK4CdlDPR+x+lv/POyMpb0DqE4UnVlCMyRbVHoVvsjnwsipFzuGOlaE1ktoX22Uf7/
-         Nsvw==
-X-Gm-Message-State: AOAM533sMFCB7UpMPLsII6kFT9Cbpi5YuHzVV4LiZVGuA+91rV3ChJjO
-        U/X7prGuClyHes6+vp9aB+EiuNmnQCtx1A==
-X-Google-Smtp-Source: ABdhPJz44Q0aWzgG+Gli1HDq4Z+MRgEVa88GKww0p0I/iJpGa2R8u8VgP79WWQixv0qLtfWPuyJ9IQ==
-X-Received: by 2002:a67:ca9d:0:b0:30f:88c9:df83 with SMTP id a29-20020a67ca9d000000b0030f88c9df83mr7368744vsl.23.1646058946110;
-        Mon, 28 Feb 2022 06:35:46 -0800 (PST)
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com. [209.85.221.171])
-        by smtp.gmail.com with ESMTPSA id g7-20020a67ee47000000b0031ac5122f3dsm1326757vsp.10.2022.02.28.06.35.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 06:35:45 -0800 (PST)
-Received: by mail-vk1-f171.google.com with SMTP id x62so5255232vkg.6;
-        Mon, 28 Feb 2022 06:35:45 -0800 (PST)
-X-Received: by 2002:a05:6122:130d:b0:333:33a4:52a9 with SMTP id
- e13-20020a056122130d00b0033333a452a9mr2122971vkp.33.1646058945038; Mon, 28
- Feb 2022 06:35:45 -0800 (PST)
+        with ESMTP id S237201AbiB1OhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:37:04 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6BB137ED9C;
+        Mon, 28 Feb 2022 06:36:25 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 30E99D6E;
+        Mon, 28 Feb 2022 06:36:25 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC8653F73D;
+        Mon, 28 Feb 2022 06:36:23 -0800 (PST)
+Message-ID: <f22e9ddc-3103-2785-5504-fcc95d08cc8b@arm.com>
+Date:   Mon, 28 Feb 2022 14:36:23 +0000
 MIME-Version: 1.0
-References: <20220227230817.31094-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <TYBPR01MB5341A5DC3BBB4AA59668AF87D8019@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYBPR01MB5341A5DC3BBB4AA59668AF87D8019@TYBPR01MB5341.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 28 Feb 2022 15:35:33 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdX5yW3_3ydFXZBsOd+s-23-3dCfcgCxi8g_VEg0XPYnDA@mail.gmail.com>
-Message-ID: <CAMuHMdX5yW3_3ydFXZBsOd+s-23-3dCfcgCxi8g_VEg0XPYnDA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: phy: renesas,usb2-phy: Document RZ/V2L phy bindings
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 3/3] dt-bindings: spi: Add spiclk to clock-names property
+ in pl022
+Content-Language: en-GB
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
+ <20220228124345.99474-4-singh.kuldeep87k@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220228124345.99474-4-singh.kuldeep87k@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 3:18 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> > From: Lad Prabhakar, Sent: Monday, February 28, 2022 8:08 AM
-> >
-> > Document USB phy bindings for RZ/V2L SoC. RZ/V2L USB phy is identical to
-> > one found on the RZ/G2L SoC. No driver changes are required as generic
-> > compatible string "renesas,rzg2l-usb2-phy" will be used as a fallback.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > ---
-> >  Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > index 3a6e1165419c..4c475be413ef 100644
-> > --- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
-> > @@ -33,6 +33,7 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - renesas,usb2-phy-r9a07g044 # RZ/G2{L,LC}
-> > +              - renesas,usb2-phy-r9a07g054 # RZ/V2L
-> >            - const: renesas,rzg2l-usb2-phy  # RZ/G2L family
->
-> The "# RZ/G2L family" is not suitable now. I think removing
-> the comment is better like "renesas,rcar-gen3-usb2-phy".
+On 2022-02-28 12:43, Kuldeep Singh wrote:
+> Fix below dtc warning by making necessary addition of "spiclk" in
+> clock-names property.
+> 
+> arch/arm64/boot/dts/broadcom/stingray/bcm958742t.dt.yaml: spi@190000:
+> clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+>      From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dt.yaml: spi@66190000:
+> clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+>      From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
 
-Indeed.
+As before, what makes the binding at fault rather than that DT? The 
+PL022's actual input is named SSPCLK, not SPICLK, so why should a driver 
+which wants to look up that clock by name expect to look for "spiclk"?
 
-> I don't have the RZ/V2L- documentation. So, I cannot check
-> whether the RZ/V2L is the same specification with RZ/G2{L,LC}.
-> But I trust you. So, after the comment was removed,
+Robin.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> ---
+>   Documentation/devicetree/bindings/spi/spi-pl022.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> index 5f6926a58b15..fb3075a0c7fd 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> @@ -45,6 +45,7 @@ properties:
+>             - enum:
+>                 - sspclk
+>                 - SSPCLK
+> +              - spiclk
+>             - const: apb_pclk
+>   
+>     pl022,autosuspend-delay:
