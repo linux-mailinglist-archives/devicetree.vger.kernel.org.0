@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71AB04C7083
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:27:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 786CF4C7086
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:27:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234118AbiB1P1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 10:27:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38772 "EHLO
+        id S232172AbiB1P1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 10:27:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232172AbiB1P1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:27:36 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50F897EA1F;
-        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id l25so13455999oic.13;
-        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
+        with ESMTP id S237124AbiB1P1i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:27:38 -0500
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B92417EA1F;
+        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso9750662ots.7;
+        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=I87Fjts+rpNlg39YY3+tnxuJdwSRLJLguMw++XeNFIg=;
-        b=pZQVk6Q1OsBDnd6jtsXO0GseRMyEuph5nFUMF55QSKOAqa/q8AU23THpojWsSw1wBe
-         fyEPYPBHOynzU4iBPtDdYOoGJfVpPR90DqCU3m4kV+IM7RAobIHpfOqwpMKUAXoIYHzg
-         lAeREwT33nC6pRNsL/Vj0O4sdta1HdGta5lOi20ERnJdmfTH8L04p+bAwr2BdnCEkfVx
-         QxxHFRy3delX+al5S6gKtkaaeXqjCNYhauuoCXtEh/WcOFegPHZ9tnVjUyguyCPBOYQL
-         8N0YvtM058ocf0mwDzuMtwDgjxN2nIaKujhIBSzH6GpczBeqgSw8UMxQAeIqhlU4hDSr
-         bMOw==
-X-Gm-Message-State: AOAM533yMwb7PzR4xZhWbuYdCmYzSI+9CU9sN/3jq/TWiMFh2DHRzuvt
-        7NFPf76Fg08CLRU6QJqC9w==
-X-Google-Smtp-Source: ABdhPJyW4S0Ic5zGxvFgmna5a0fy2EDagMuNav85rX4OIYGZLIrUok5+XAS/lrttQvtGHYh80ZPRYw==
-X-Received: by 2002:a05:6808:903:b0:2d4:8451:d651 with SMTP id w3-20020a056808090300b002d48451d651mr9173464oih.29.1646062017625;
-        Mon, 28 Feb 2022 07:26:57 -0800 (PST)
+        bh=rp3jXo0jowUC07M1Ixk3RLOx4sQHBELJ5AB4vK2RiB0=;
+        b=NCzFGVTq9yoWwrJnaOzU3Jom6JqG35Oo51bf7+5y7XkznEGReD/sV3PIFy3rpBaGex
+         lOesXSHyqGBQW+Q16mDMMCuGfvuI1pGqq67d3ew+NltQFJp0HGdDa0rQbZ6IyEVI+Hoi
+         HuyHhFkPJhh05F1prnRIbTknPhtKPawD6qYswE4Qbd/DLwqG1HDRPYzb3+b2tIenyqJO
+         FGPq4nYCSV457HHQz8RWD/wYW+NYR2Kj4C736oBvSQWBgAQZTU2YJAq7uVrf8k00vl9T
+         pL3NWKAEZNS+2ZkxqTHTNbzKX/hh2ukZp3OwSu2wshDJwA7RTtxw1hacviE8yvDjDK+y
+         lHhA==
+X-Gm-Message-State: AOAM530JceXtB3tOIAPUUcbpULNx9Y25QYnvpVcCflSLEPJx6HF3kF09
+        /x64UCD4bi/NKuLmkQq/W+Rwq5W9jw==
+X-Google-Smtp-Source: ABdhPJzxNAQPBbD8i478ScZWaCVovchVyiuczqMyUQ+9KiVnrzkL5S4/6wCNr6VwhVqnrJvmXiaSxw==
+X-Received: by 2002:a9d:71de:0:b0:5ad:32a4:4a9b with SMTP id z30-20020a9d71de000000b005ad32a44a9bmr9296658otj.336.1646062019011;
+        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c1-20020a056808138100b002d4b30ab04esm6534610oiw.32.2022.02.28.07.26.56
+        by smtp.gmail.com with ESMTPSA id fq14-20020a0568710b0e00b000d4492531a2sm4805518oab.17.2022.02.28.07.26.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 07:26:57 -0800 (PST)
-Received: (nullmailer pid 1049704 invoked by uid 1000);
+        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
+Received: (nullmailer pid 1049707 invoked by uid 1000);
         Mon, 28 Feb 2022 15:26:56 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Potin Lai <potin.lai@quantatw.com>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>, linux-hwmon@vger.kernel.org
-In-Reply-To: <20220228103716.10774-3-potin.lai@quantatw.com>
-References: <20220228103716.10774-1-potin.lai@quantatw.com> <20220228103716.10774-3-potin.lai@quantatw.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: Add sample averaging properties for ADM1275
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+In-Reply-To: <20220228120258.997027-2-vladimir.zapolskiy@linaro.org>
+References: <20220228120258.997027-1-vladimir.zapolskiy@linaro.org> <20220228120258.997027-2-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: add QCOM SM8450 camera clock bindings
 Date:   Mon, 28 Feb 2022 09:26:56 -0600
-Message-Id: <1646062016.577370.1049703.nullmailer@robh.at.kernel.org>
+Message-Id: <1646062016.591692.1049706.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Feb 2022 18:37:16 +0800, Potin Lai wrote:
-> Add documentation of new properties for sample averaging in PMON_CONFIG
-> register.
+On Mon, 28 Feb 2022 14:02:57 +0200, Vladimir Zapolskiy wrote:
+> The change adds device tree bindings for camera clock controller
+> found on SM8450 SoC.
 > 
-> New properties:
-> - adi,volt-curr-sample-average
-> - adi,power-sample-average
-> 
-> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
-> 
-> doc
+> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
->  .../bindings/hwmon/adi,adm1275.yaml           | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
+>  .../bindings/clock/qcom,camcc-sm8450.yaml     |  87 ++++++++++
+>  include/dt-bindings/clock/qcom,camcc-sm8450.h | 159 ++++++++++++++++++
+>  2 files changed, 246 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8450.h
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
 on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
 yamllint warnings/errors:
-./Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml:68:11: [warning] wrong indentation: expected 12 but found 10 (indentation)
 
 dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.example.dts:28.34-35 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1598637
+See https://patchwork.ozlabs.org/patch/1598821
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
