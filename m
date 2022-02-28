@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53FD54C6C8D
+	by mail.lfdr.de (Postfix) with ESMTP id D2AFC4C6C91
 	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:31:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236491AbiB1Mbk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 07:31:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49296 "EHLO
+        id S236482AbiB1Mbj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 07:31:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49346 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236524AbiB1Mbe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:31:34 -0500
-Received: from mail-pl1-x631.google.com (mail-pl1-x631.google.com [IPv6:2607:f8b0:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4775C74DC4
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:30:55 -0800 (PST)
-Received: by mail-pl1-x631.google.com with SMTP id q11so10567739pln.11
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:30:55 -0800 (PST)
+        with ESMTP id S236519AbiB1Mbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:31:38 -0500
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D785774DDF
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:30:59 -0800 (PST)
+Received: by mail-pf1-x42b.google.com with SMTP id g1so11034632pfv.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:30:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=j3aWYND6Rah5MwBRKosGEcq2he6bs68uYcHr/zACh+Q=;
-        b=B8IPW5mdWip8zbN63uWgzsenAT++ZjK5Gzfd2G8hEShQnxQZU2uw4GUE+N5tGRjK7q
-         JdLLGD3gmOpS6X4Vvk5OaHgiCYtT5y9mx4kuMVvVpawFFnXyhUosdViFnIGfzdxjRZRl
-         DVy0iPbg0MpDRwBvrq1zxDWdMxeC4f4IrgoTaUL/Uuz9YOyul3k4Gqhu7gfY6Npjvm8o
-         GEYrgw1EWCTTkORX0gwcWVXJAnf4/DaRQYmqo3MQBcSRk3MV/gV/QAYJlpD6gqsbkhgt
-         2CBxzsdwv3+zRHjtK+1OMliIXfcjkzsl3DISJTg56FQ8G2oQ6+/vK7UZj9o/X5PdNC9F
-         6lOA==
+        bh=a/XNuiNwtu02wRy/TRgkyFviYDIYxqmuWsetEjULcyA=;
+        b=UQNYW2DOhP2WdiWZJWQx2ANfdBvGIp1SDU1WVliAYBh528aOBZFG7XtI+3d7+pWVFL
+         JfzUAJesEKOi+QYCPLoXHM7iStlS+JgLcrif0UZlgK9qfbD6m3H9wvz51VIbBpXGrHPn
+         P0ubW216hkIT0rtVPHMavwdWCRi2j8W6O8Ei3ojdEtQnWV/oTfXigkHd65oONNykU91I
+         /vkzz/a1ejmF4P7zYOBNTrh++xznalszt/kEJmrTN0/PS+Jdy1f6TB71Qhst7gaOkpzk
+         Ld935w5Suo/Gz1Q3Qeg5NcZL2NEWoWAXTc2a2b33wQH8HCOQPlTrQvBzD4hPcWHoee9B
+         VoRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=j3aWYND6Rah5MwBRKosGEcq2he6bs68uYcHr/zACh+Q=;
-        b=PdAK9RChqyNSKYfUg+thRx2PgrfmwUlpkiaJPy2RCtjqqLe4Ye/z+9Wl+nMKwWRMLM
-         NoxSr5alVEEpl8bbeYa1IIRsnWiMg3GhC9yDg8pBwbVgvlXBcosLH+pBl6EulR1lAx1o
-         XjMT2OWFVsW48iQ8XA1YGX2UZocjwlkrVcrNUKDFaqt7Xu7jb95uMsdsRrdAwj16B64f
-         7U5kyTWA/FMsqtKvPw2/cT7V1kIRugjBo9Nd4s2UJE/XZhnKS9rjuaLO8uMmsDY3FR4o
-         sK5abypVaIYERuBappXFYHLWWR5MulRUux4+Mf4tgWmIumKvnnfEtJDJlOAyTk/pEUIX
-         v4eQ==
-X-Gm-Message-State: AOAM5313/OMztf4xs62xvIj/q2/HbuJiT0SFrmzaHujeEZOTyWLKSLM6
-        ltxNeNXybCWWlG8lJRqH7aez8RHFJUePCQ==
-X-Google-Smtp-Source: ABdhPJxWcPHi467ng6xttXcLULyyw3GisHpRAFDT1q3PqYaIQQOlCff5blDsVc+bjTonIfz3jtrgvQ==
-X-Received: by 2002:a17:902:7c88:b0:151:6d4b:a27d with SMTP id y8-20020a1709027c8800b001516d4ba27dmr3526141pll.17.1646051454738;
-        Mon, 28 Feb 2022 04:30:54 -0800 (PST)
+        bh=a/XNuiNwtu02wRy/TRgkyFviYDIYxqmuWsetEjULcyA=;
+        b=e8upyCW/hr89GdSpyDaav42tabVso86ZbzVqz4E1PDlYEHCNOaULKPF+VVFrAIwhOx
+         bMVMX4qriAJfXswf61widLWVw4zuowncmSpbYs0QiSlIejQcYcWkBrGw6OdV97yi0OIH
+         EpAAtlrRb6NXXpbjpve393G8ARc42tCRGSPZIdmdETwFs3Xx6o1uubhHdT3jvcJCiJGB
+         +lLmRK6S4At69DlJwM84CBsyYPpEuyyVvb31Qsiia52FfKAnbA0MGyBBMOfF/NegLAPI
+         GllAxYxE3xGrnWlvmdu/cgPXGztnjAJOmpitV8fq5YzAKmkD7NOxE2K0YU6pUBkG4kKG
+         vNzw==
+X-Gm-Message-State: AOAM532UmJz7CAU/+vLtyXhxNU/r8kjwNdXSCElX7GWBBXQdX3grfzt6
+        mD2it3PqvWx5lWgegxM4P+hOiw==
+X-Google-Smtp-Source: ABdhPJw4ud5qguWt5MFUYQI9Ef4BnXs5p1195d0g+KmVLDjkH8eapfKBg2CmtI+UYIARcs9MLqHvfQ==
+X-Received: by 2002:a05:6a00:d4c:b0:4e0:27dd:37c1 with SMTP id n12-20020a056a000d4c00b004e027dd37c1mr21536386pfv.86.1646051459367;
+        Mon, 28 Feb 2022 04:30:59 -0800 (PST)
 Received: from localhost.localdomain ([223.179.136.225])
-        by smtp.gmail.com with ESMTPSA id f7-20020a056a0022c700b004f0e9d686dcsm13790001pfj.137.2022.02.28.04.30.50
+        by smtp.gmail.com with ESMTPSA id f7-20020a056a0022c700b004f0e9d686dcsm13790001pfj.137.2022.02.28.04.30.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 04:30:54 -0800 (PST)
+        Mon, 28 Feb 2022 04:30:59 -0800 (PST)
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
 To:     linux-arm-msm@vger.kernel.org
 Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
@@ -55,9 +55,9 @@ Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
         linux-phy@lists.infradead.org, robh+dt@kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 5/8] arm64: dts: qcom: sm8450: Fix qmp ufs phy node (use phy@ instead of lanes@)
-Date:   Mon, 28 Feb 2022 18:00:16 +0530
-Message-Id: <20220228123019.382037-6-bhupesh.sharma@linaro.org>
+Subject: [PATCH v2 6/8] arm64: dts: qcom: ipq6018: Fix qmp usb3 phy node
+Date:   Mon, 28 Feb 2022 18:00:17 +0530
+Message-Id: <20220228123019.382037-7-bhupesh.sharma@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
 References: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,31 +73,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix the 'make dtbs_check' warning:
+Fix the following 'make dtbs_check' warning(s) by
+using phy@ instead of lanes@ and by moving '#clock-names' to
+sub-node:
 
-arch/arm64/boot/dts/qcom/sm8450-qrd.dt.yaml: phy@1d87000:
- 'lanes@1d87400' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dt.yaml: ssphy@78000:
+ 'lane@78200' does not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc: Rob Herring <robh@kernel.org>
 Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/ipq6018.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 10c25ad2d0c7..68f7fe26f7b9 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -1049,7 +1049,7 @@ ufs_mem_phy: phy@1d87000 {
- 			reset-names = "ufsphy";
+diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+index 66ec5615651d..ad7914e49532 100644
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -674,7 +674,6 @@ ssphy_0: ssphy@78000 {
+ 			reg = <0x0 0x78000 0x0 0x1C4>;
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+-			#clock-cells = <1>;
+ 			ranges;
+ 
+ 			clocks = <&gcc GCC_USB0_AUX_CLK>,
+@@ -686,12 +685,13 @@ ssphy_0: ssphy@78000 {
+ 			reset-names = "phy","common";
  			status = "disabled";
  
--			ufs_mem_phy_lanes: lanes@1d87400 {
-+			ufs_mem_phy_lanes: phy@1d87400 {
- 				reg = <0 0x01d87400 0 0x108>,
- 				      <0 0x01d87600 0 0x1e0>,
- 				      <0 0x01d87c00 0 0x1dc>,
+-			usb0_ssphy: lane@78200 {
++			usb0_ssphy: phy@78200 {
+ 				reg = <0x0 0x00078200 0x0 0x130>, /* Tx */
+ 				      <0x0 0x00078400 0x0 0x200>, /* Rx */
+ 				      <0x0 0x00078800 0x0 0x1F8>, /* PCS */
+ 				      <0x0 0x00078600 0x0 0x044>; /* PCS misc */
+ 				#phy-cells = <0>;
++				#clock-cells = <1>;
+ 				clocks = <&gcc GCC_USB0_PIPE_CLK>;
+ 				clock-names = "pipe0";
+ 				clock-output-names = "gcc_usb0_pipe_clk_src";
 -- 
 2.35.1
 
