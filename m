@@ -2,112 +2,315 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A21484C6F80
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:30:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7257F4C6F98
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:35:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233555AbiB1Oa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:30:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42978 "EHLO
+        id S236039AbiB1Ofz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:35:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231190AbiB1Oa6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:30:58 -0500
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16877EB2E;
-        Mon, 28 Feb 2022 06:30:19 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id e5so13100702vsg.12;
-        Mon, 28 Feb 2022 06:30:19 -0800 (PST)
+        with ESMTP id S231896AbiB1Ofv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:35:51 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A31286F7
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:35:11 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 27A8C4003C
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 14:35:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646058910;
+        bh=cY+2Lb+cjTat47mxYF3hRVRAsG+Ud2T/F9b9vhwTP8I=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=UnZjphB7ycA6RvsV/9LQnQHjquqdlenyFhji5mrUk9zvokLg61o0pNbX7MzM1aFy1
+         lbTRhDlmmiL//6FLRUZ38mSmkUPiiG1MIqY6Qn1ntzWzOp8uWdIqKtrTMydawhlDJ/
+         fmLdxrT/y3+xkCGF93jGB666npSC2/5YxHdAuDLgPHPDXt+G7eE+MCoWtritQwkJ5e
+         qukivJ/kxwaP+n6XRvlxieWSOgjnq43RTQjB53wtUWAg/hhMwvXWwYwT+iH7xpHZI9
+         4Hsht4itnW8g71d469jmpBtET+wqsj/PpmK9OdOo+njsJurvHwAJbYlBXfrkAYTTNs
+         cZgwWZwbLIXcw==
+Received: by mail-ed1-f70.google.com with SMTP id h17-20020a05640250d100b004133863d836so6007053edb.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:35:10 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hLDg9b1GHF+fe9nzYW7P+voNdzuk8gxLdevvVVqMTeA=;
-        b=F9bUwdb9FGS8VzXIaDrcOoT1f5PnlnW+a6o/5esAAwoPIvw1eHupFMjcB6vvitODnU
-         L2RK3K63T0JtwTDurEHzSyXmun310qjeKK6qomiAHnE1BmRJwNyLiRxXlx12e5XkHTPZ
-         ZJEzpO6GWkODH1HlxJua2n2SLypOZjnqZoVxdg0/IaJkZHYCWVGfFThLZi9ZMkmnEE96
-         1kQbKfC0iOqJ2VbCKJMw/GZwbZ4wj2Zg2EfmY8gd1jK1+bImmm902VR/QG4RmSsU1und
-         kaWoh6Gbs3KwvI9ukeBtdcy0zpI2VeUrfnEyiRHQejgAZwgR6scLxXukFsFIelXRHb8P
-         aFGA==
-X-Gm-Message-State: AOAM530xq7pQfIXE5XlQCZu4ZWvBb/c0UkSfbvS/VP55s6ETIfDek5tF
-        lWuJV81l2FrIdklg61XPiXS6s8H6qQNy7A==
-X-Google-Smtp-Source: ABdhPJybWC/1NAsc24SK88u8C3rWhPmobnnbH2FLr9u1MmV06w/LWEB2rGyGZiJxyRk5XMcyA5X1WQ==
-X-Received: by 2002:a05:6102:14a8:b0:31c:1cd1:be56 with SMTP id d40-20020a05610214a800b0031c1cd1be56mr8020334vsv.7.1646058618810;
-        Mon, 28 Feb 2022 06:30:18 -0800 (PST)
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
-        by smtp.gmail.com with ESMTPSA id y5-20020a1f4b05000000b003314159259bsm1690241vka.3.2022.02.28.06.30.18
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=cY+2Lb+cjTat47mxYF3hRVRAsG+Ud2T/F9b9vhwTP8I=;
+        b=12LPJwdZTtu5nvXNcL/Q9Eoj02H0BWOnFNGQ14QOXte4xVC81AAh97qgqUTY3pk5V0
+         xoWRDIZspCZOjUClCSvrz3Nxwi74iOb2MEBQqI+D6rQY6PRFwKjXbf7f9iWF6xmxtXUa
+         0wd3avu6U+NVnjomanrjfl1ATvjcCVYiSGUEZ2bAuj6j3McjfqwkZIs1WEHOg73YImal
+         vb4KbsD8cd149qR5GA7Gc/vXm79J5XQJwn89+uf0XtAL/chGBRjBuS6LB85WF5n6G+XE
+         oGwkj5hfEnMO8QD4XM8pTzqO3nBLT1imZMBsmmVah4LwPGtdzNXVx9IV4d3l3JOGT0Bo
+         WoAw==
+X-Gm-Message-State: AOAM532Q1+DiretgU2JvHNw2OqpGKAO2DhpzE4l/Otilftux8oWyGOJw
+        eSsQLTGw3/GLqoH0b4oClk+u7ilIya4QR3hOcPiTLNpZQlmXIRDdzTRuCrSm7lbeg5uD18m3XeV
+        1/zeU7W/R2aHgdE4CmTUAWas7vp+ZrH5ZkL+pVk4=
+X-Received: by 2002:a05:6402:50d4:b0:413:2a27:6b56 with SMTP id h20-20020a05640250d400b004132a276b56mr20130566edb.228.1646058906406;
+        Mon, 28 Feb 2022 06:35:06 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxDY8R2MrubTXi50w56pdwC6DtPAk6AD2Vm2bz+yDKpsTw4K5OhCQsji/CEA8QLue8RhCTBgw==
+X-Received: by 2002:a05:6402:50d4:b0:413:2a27:6b56 with SMTP id h20-20020a05640250d400b004132a276b56mr20130333edb.228.1646058903378;
+        Mon, 28 Feb 2022 06:35:03 -0800 (PST)
+Received: from [192.168.0.135] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id n13-20020a170906724d00b006cedd6d7e24sm4416053ejk.119.2022.02.28.06.35.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 06:30:18 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id d11so13147694vsm.5;
-        Mon, 28 Feb 2022 06:30:18 -0800 (PST)
-X-Received: by 2002:a67:af08:0:b0:31b:9451:bc39 with SMTP id
- v8-20020a67af08000000b0031b9451bc39mr7624667vsl.68.1646058618146; Mon, 28 Feb
- 2022 06:30:18 -0800 (PST)
+        Mon, 28 Feb 2022 06:35:02 -0800 (PST)
+Message-ID: <ddd09f4f-782f-67e9-ec2f-dd5818ae26c5@canonical.com>
+Date:   Mon, 28 Feb 2022 15:35:01 +0100
 MIME-Version: 1.0
-References: <20220227215308.26135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220227215308.26135-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 28 Feb 2022 15:30:06 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXaPc0bPE1Rf33hHg7c3Mq0UfYAqFcc+_q-NLG2y8WcYQ@mail.gmail.com>
-Message-ID: <CAMuHMdXaPc0bPE1Rf33hHg7c3Mq0UfYAqFcc+_q-NLG2y8WcYQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/V2L SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: Aw: Re: Re: [PATCH v3 1/3] dt-bindings: Convert ahci-platform DT
+ bindings to yaml
+Content-Language: en-US
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220227182800.275572-1-linux@fw-web.de>
+ <20220227182800.275572-2-linux@fw-web.de>
+ <4c3303f5-7af5-9974-7bea-b7f0d6c7ef53@canonical.com>
+ <trinity-ac45bde6-392d-4810-8aad-9a06d2bcd85a-1646050780475@3c-app-gmx-bs53>
+ <8fbbce9e-4fd9-d420-43ef-953e846d29f1@canonical.com>
+ <trinity-f1b6ce3a-6f22-4cf8-bf51-a5e7f007dda7-1646057347735@3c-app-gmx-bs53>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <trinity-f1b6ce3a-6f22-4cf8-bf51-a5e7f007dda7-1646057347735@3c-app-gmx-bs53>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 27, 2022 at 10:53 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Document RZ/V2L RPC-IF bindings. RZ/V2L RPC-IF is identical to one found
-> on the RZ/G2L SoC. No driver changes are required as generic compatible
-> string "renesas,rzg2l-rpc-if" will be used as a fallback.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> DTSI changes have been posted as part of series [0].
->
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/
-> patch/20220227203744.18355-7-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> ---
->  .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> index 294f1036420d..f051ffb2a421 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
-> @@ -40,6 +40,7 @@ properties:
->        - items:
->            - enum:
->                - renesas,r9a07g044-rpc-if      # RZ/G2{L,LC}
-> +              - renesas,r9a07g054-rpc-if      # RZ/V2L
->            - const: renesas,rzg2l-rpc-if       # RZ/G2L family
+On 28/02/2022 15:09, Frank Wunderlich wrote:
+> Hi,
+> 
+> looks like i'm not the right person to convert the binding. I have not enough knowledge about yaml, bindings, drivers, ...
+> 
+> i will try you suggestions for me as a lerning-by-doing approach, but will drop it from the series, same for part2 as it depends on first.
+> 
+> 
+> 
+>> Gesendet: Montag, 28. Februar 2022 um 13:38 Uhr
+>> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>
+> 
+>> On 28/02/2022 13:19, Frank Wunderlich wrote:
+> 
+>>>> You converted the TXT bindings explicitly, but you missed the comment
+>>>> just below the 'reg' about generic-ahci. The generic-ahci never comes alone.
+>>>
+>>> How should this comment be added? description above/below the compatible-property?
+>>> Sorry for dumb questions...this is my first yaml ;)
+>>
+>> No, this has to be oneOf. See for example
+>> Documentation/devicetree/bindings/gpio/gpio-vf610.yaml or many other files.
+> 
+> Afaik the generic-ahci should be defined optional with one of the others needed, but afaik this will duplicate the list i had.
+> 
+> so i end up in a struct like this
+> 
+> compatible:
+>   oneOf:
+>     - enum:
+>       - brcm,iproc-ahci
+>       - cavium,octeon-7130-ahci
+>       - hisilicon,hisi-ahci
+>       - ibm,476gtr-ahci
+>       - marvell,armada-3700-ahci
+>       - marvell,armada-380-ahci
+>       - snps,dwc-ahci
+>       - snps,spear-ahci
+>     - items:
+>       - const: generic-ahci
+>       - enum:
+>         - brcm,iproc-ahci
+>         - cavium,octeon-7130-ahci
+>         - hisilicon,hisi-ahci
+>         - ibm,476gtr-ahci
+>         - marvell,armada-3700-ahci
+>         - marvell,armada-380-ahci
+>         - snps,dwc-ahci
+>         - snps,spear-ahci
 
-Please drop the comment on the previous line.
+That could be one way, but instead I propose to have only second part
+(so enum + generic-ahci) for all compatibles mentioned in
+ahci_platform.c, which do not customize the driver behavior for these
+compatibles..
 
-Gr{oetje,eeting}s,
 
-                        Geert
+> 
+> 
+>>>>> + interrupts:
+>>>>> + minItems: 1
+>>>>
+>>>> You mean maxItems?
+>>>
+>>> no, minItems, as interrupts suggests 1+ (same for phys)
+>>
+>> You cannot have infinite number of interrupts... What suggests "1+"?
+>> What does it mean "as interrupts suggests"? Do these hardware blocks
+>> really have many interrupt lines?
+>>
+>> The same for phys.
+> 
+> interrupts/phys is plural of interrupt/phy, so it suggests it can be more than 1.
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+There is no property named "interrupt" or "phy". There is only
+"interrupts", "phys", "gpios", "clocks" etc. regardless whether there is
+one or multiple items. This is not specific to bindings, but all DTS
+have this.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> as i said i do not know every driver with all possibilities, so i started with the min-items as we need at least 1 interrupt/phy, but yes if there are any limits then they should be added, but this needs extensive knowledge about the drivers/hardware, i don't have.
+
+But the sources of the driver and DTS are available, why not using them?
+
+> 
+>>>>> + ports-implemented:
+>>>>> + description:
+>>>>> + Mask that indicates which ports that the HBA supports
+>>>>> + are available for software to use. Useful if PORTS_IMPL
+>>>>> + is not programmed by the BIOS, which is true with
+>>>>> + some embedded SoCs.
+>>>>> + minItems: 1
+>>>>
+>>>> You need a type and maxItems.
+>>>
+>>> what will be the type of a mask?
+>>
+>> `git grep ports-implemented` gives pretty straightfoward answer. All DTS
+>> have u32 and driver also uses u32.
+> 
+> so type should be
+> 
+> $ref: '/schemas/types.yaml#/definitions/uint32'
+
+Yes. See example schema.
+
+> 
+> ?
+> 
+> it's the only one i've found with u32 looking like a type
+> 
+> found in Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml
+
+This part I do not understand.
+
+> 
+>>>
+>>>>> +
+>>>>> + resets:
+>>>>> + minItems: 1
+>>>>
+>>>> maxItems?
+>>>
+>>> if there is a known maximum....
+>>
+>> Must be. You cannot have infinite number of reset lines... Please check
+>> all DTS and drivers. If there is public documentation, it also might be
+>> useful.
+> 
+> "Please check all DTS and drivers." this is impossible for me as doing this as hobby with still limited time ;(
+
+I believe that information - how many resets - is in general findable
+via driver sources. In all bindings conversions, if we do not have such
+information, we need to try to look it up.
+
+>>>
+>>>>> +
+>>>>> + target-supply:
+>>>>> + description:
+>>>>> + regulator for SATA target power
+>>>>> +
+>>>>> +required:
+>>>>> + - compatible
+>>>>> + - reg
+>>>>> + - interrupts
+>>>>> +
+>>>>> +patternProperties:
+>>>>> + "^sata-port@[0-9]+$":
+>>>>
+>>>> You limit number of ports to 10. On purpose? What about 0xa? 0xb?
+>>>
+>>> oh, right, there can be hexadecimal...
+>>> thought this is only true for the main-node (address) and have only seen @0, @1 and @2
+>>>
+>>>>> + type: object
+>>>>> + description:
+>>>>> + Subnode with configuration of the Ports.
+>>>>> +
+>>>>> + properties:
+>>>>> + reg:
+>>>>> + maxItems: 1
+>>>>> +
+>>>>> + phys:
+>>>>> + minItems: 1
+>>>>
+>>>> maxItems? Why do you put everywhere minItems? Are several phys really
+>>>> expected?
+>>>
+>>> name suggests that it can be more than 1.
+>>
+>> What do you mean "name suggests"? Name of property? No, it does not
+>> suggest that. Name is standard. Please check example schema and other
+>> existing schema bindings to see how it is done. For example earlier
+>> gpio-vf610.yaml is not bad.
+> 
+>>> i know from usb subsystem (dwc3 usb3) that a device can have more than one phy, and because in the txt there are no ranges i set everywhere MinItems to 1 with open end as i do not know all possibilities. Anything else will be trial and error...for all properties
+>>
+>> The bindings need to be specific, so only properties which really,
+>> really can have many unknown elements we could keep here some high
+>> maxItems limit. In 99% of cases maxItems are clearly defined.
+> 
+> so i need to do try-and-error, setting maxItems to 1, make checks, if failing look in driver, increase, ...
+
+Why try-and-error? "git grep" works here...
+
+> 
+> but this is maybe not the right way to do as dts can contain errors which should not modify the binding.
+
+True, but having stricter limit, even if not fully correct, is better
+than having too loose limit. Stricter can be always loosened. Loose
+requirement cannot be made stricter.
+
+> 
+>>> these are the commands i used:
+>>>
+>>> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/ata/ahci-platform.yaml
+>>
+>> Install dependencies (libyaml-dev) and you will see first error:
+>> Documentation/devicetree/bindings/ata/ahci-platform.yaml:110:1:
+>> [warning] wrong indentation: expected 2 but found 0 (indentation)
+>>
+>> But the one I am thinking is indeed not visible by default. You would
+>> need to run it like Rob's boot is running, so add DT_CHECKER_FLAGS=-m.
+>> Then you see:
+>>
+>> Documentation/devicetree/bindings/ata/ahci-platform.example.dt.yaml:0:0:
+>> /example-1/sata@f7e90000: failed to match any schema with compatible:
+>> ['marvell,berlin2q-achi', 'generic-ahci']
+> 
+> i try this, but imho it's better to drop the Patch as i'm no expert in this, don't know the HW/drivers enough and this will delay the dts patch too much.
+> I thought i can help getting this (simple looking) txt converted to yaml.
+> Seems the binding needs to be done by someone who knows the drivers more than me.
+> 
+> regards Frank
+
+
+Best regards,
+Krzysztof
