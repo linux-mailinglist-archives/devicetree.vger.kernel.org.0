@@ -2,87 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B444F4C7BF5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 22:28:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E4F44C7C07
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 22:30:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbiB1V3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 16:29:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47716 "EHLO
+        id S230440AbiB1VaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 16:30:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229670AbiB1V3R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 16:29:17 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AE2312D90E
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 13:28:36 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id n15so9580304plf.4
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 13:28:36 -0800 (PST)
+        with ESMTP id S230395AbiB1VaD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 16:30:03 -0500
+Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59BC9131108
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 13:29:18 -0800 (PST)
+Received: by mail-qv1-xf35.google.com with SMTP id e22so14814661qvf.9
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 13:29:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ffsTHk0pMsdeLuBqbLV8zjkDH+jWRBszD35JzvsxObA=;
-        b=fVkhQN049gSUM3r2ANalllVvHPTi03qIYIVzd/cbFL8+4xg7yG6VEhatX3OpghAOg7
-         LKVQFArS/TIBWYhHQ+VPOno+ocFUPyPGjgxKm1ZcSAWFpUvprJ8ANyB/ZrH9AMxFdoSr
-         THTlTEdCRM8FQIWugHiwRhLgEiSOkxBLzy6DrBESm5FxRply9gvNFFrYAsmwgkAX+jl2
-         N+aFuU/f58QPv7AAxdGVbH1bLkNUNVu3qOhyHPrbHNjDPjvG0oxXVQ9JeqSFamdKvhWF
-         nGlrUE9Wn8T2FtnsNup2gO2oYJ/mZzXuRzt91OsqBzybz/hop8uj125hbVEuVJXVfG5w
-         3mwA==
+        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=D7XF/ydXKQe5CNfMxR56kkfmjRc3n07JxRNzL8ONVks=;
+        b=fauPbIptyTaVga2WDVneLHyQup6EjXBbjMvK+uf4GWa4cR/CgaNYMGlKJTC3Aqz/Tx
+         m3mp+p8Mztr5ToniJnQm97RXB3QJlwVnK1kcBzL6qBng4RvMwoMyXLjm6lIScPdadq2j
+         xdwO+Svi9Od6h9xeFMmiY36sYDZtKWIGlcibkUE9mCu92Mk/YUvHdGkjfCKV6EQ9LEtz
+         8gbZm3ip0KyNmj1GCgaGOpkEtYzgKuUAEvjMlfbQrmOfTPuqMw+mSMOKFmlmvvEpgIqX
+         pDLqxxutFZPNNY+rzu9mkVv9pKDGiZ+e907U4pYi3eOtjshxf0sYgES/iSokbzF8k7g2
+         G9IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ffsTHk0pMsdeLuBqbLV8zjkDH+jWRBszD35JzvsxObA=;
-        b=B5jmJRz2d5TlKV/L8GxewzPEZnY9wazji9Jvt9iykrLQxU8lOcUHxqN42qQ8VqJdx5
-         PkJrAoE301PTI/4egrNmsHO3C/RNdrCF6YqWmhSNFIE7hvnzlZPgilNF6OX5IszPTt1i
-         0XZlcx2nSo6ep6LQgrSpcGdDssz593Za06n/fOqdQiTC0ylX7QvKoOlQHe0qRVBbGekg
-         sMDfIeh5uWp8SygFaBVbDltpi/t6Mo25C7hOaWPIVBDyYmUae+ujxCncbRxpZb3w2miE
-         CiDdXxfX2+VMaRX5ltnIV9AUNur9eFiOst0xIexE/lom9zuGjlq9vYEFI9ADfUuDH3Oo
-         Foew==
-X-Gm-Message-State: AOAM530BCHqv95BrakFVRz6fxjWuQVxiTOC4mq6Kg0YCEbIxCC8G5IaC
-        fMoKf46OS2t8p3Yb9ghTGx4=
-X-Google-Smtp-Source: ABdhPJzyK+1GGd5w01NtCyo8ytKX7QqsrfsgfS3lf9pKr99mfNyn3vxNem03MxGUKMjsTKiIHXBbIA==
-X-Received: by 2002:a17:902:bcc2:b0:14f:23c6:c8c5 with SMTP id o2-20020a170902bcc200b0014f23c6c8c5mr21922658pls.131.1646083715892;
-        Mon, 28 Feb 2022 13:28:35 -0800 (PST)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id nh8-20020a17090b364800b001bc422b7b47sm266056pjb.15.2022.02.28.13.28.34
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=D7XF/ydXKQe5CNfMxR56kkfmjRc3n07JxRNzL8ONVks=;
+        b=lctxU1yGvnd41uaoabfqVT7LqFf4xNi/GBV3LFLRnPR9qxJHUMnqM8x+HYV5p81j0/
+         SGIdHRny1JC2Iu1FKc9j9L8pOnQdM9LB2KrT2dFpgTLgpAm/DHJi7zsHJ+Djus0e648T
+         YyKehEfLJKXEbZxm7J3OPg8P2jC/Cr3LYwYsqlPbEjA/IitqE1x/cZb41Ygp/1A506Lf
+         CKAZ+HGldpIA2p46gpbyVBhQ6Ztd53NKv8ssCPTpxGnuZbhfa/euUebtxv/2K7SsXZ9o
+         XfiIAb5107XCq48zwcedMl1yTFAhjDrC5lEVTJyK3EBkhjrMJGoWCE0xBc7ccjlSBMIX
+         tPkQ==
+X-Gm-Message-State: AOAM530WxfrEUBaiCXTfN2LDqBArEgiThWveauQrCoYgI5pWNUkGAlLu
+        psrTzfVIZu/v9US+UbTD6+n5Kg==
+X-Google-Smtp-Source: ABdhPJyWcexc084R4qQtKlB3l+HRBkObWo1df/YXmN1sBZh8GGvH9no/pxtZlogSJF0ZdzxHxikZXQ==
+X-Received: by 2002:a0c:9c01:0:b0:432:7630:263 with SMTP id v1-20020a0c9c01000000b0043276300263mr15169467qve.47.1646083757352;
+        Mon, 28 Feb 2022 13:29:17 -0800 (PST)
+Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
+        by smtp.gmail.com with ESMTPSA id p10-20020ae9f30a000000b00648e783ffbasm5604435qkg.135.2022.02.28.13.29.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 13:28:35 -0800 (PST)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     bcm-kernel-feedback-list@broadcom.com,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <zajec5@gmail.com>
-Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Mon, 28 Feb 2022 13:29:16 -0800 (PST)
+Message-ID: <cb7cf296bc7df7334f55cc51ef11b671572559ac.camel@ndufresne.ca>
+Subject: Re: [PATCH v7, 04/15] media: mtk-vcodec: Read max resolution from
+ dec_capability
+From:   Nicolas Dufresne <nicolas@ndufresne.ca>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        =?iso-8859-2?q?Rafa=B3_Mi=B3ecki?= <rafal@milecki.pl>
-Subject: Re: [PATCH] ARM: dts: BCM5301X: Add Ethernet MAC address to Luxul XWR-3150
-Date:   Mon, 28 Feb 2022 13:28:33 -0800
-Message-Id: <20220228212833.1961113-1-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220228095207.31821-1-zajec5@gmail.com>
-References: <20220228095207.31821-1-zajec5@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+Cc:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Mon, 28 Feb 2022 16:29:15 -0500
+In-Reply-To: <20220223034008.15781-5-yunfei.dong@mediatek.com>
+References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
+         <20220223034008.15781-5-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Feb 2022 10:52:07 +0100, Rafał Miłecki <zajec5@gmail.com> wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> Luxul XWR-3150 stores MAC as NVRAM variable. Add NVMEM cell for it and
-> reference it in the Ethernet interface node.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
+Hi Yunfei,
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/next, thanks!
---
-Florian
+this patch does not work unless userland calls enum_framesizes, which is
+completely optional. See comment and suggestion below.
+
+Le mercredi 23 février 2022 à 11:39 +0800, Yunfei Dong a écrit :
+> Supported max resolution for different platforms are not the same: 2K
+> or 4K, getting it according to dec_capability.
+> 
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> Reviewed-by: Tzung-Bi Shih<tzungbi@google.com>
+> ---
+>  .../platform/mtk-vcodec/mtk_vcodec_dec.c      | 29 +++++++++++--------
+>  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  4 +++
+>  2 files changed, 21 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
+> index 130ecef2e766..304f5afbd419 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
+> @@ -152,13 +152,15 @@ void mtk_vcodec_dec_set_default_params(struct mtk_vcodec_ctx *ctx)
+>  	q_data->coded_height = DFT_CFG_HEIGHT;
+>  	q_data->fmt = ctx->dev->vdec_pdata->default_cap_fmt;
+>  	q_data->field = V4L2_FIELD_NONE;
+> +	ctx->max_width = MTK_VDEC_MAX_W;
+> +	ctx->max_height = MTK_VDEC_MAX_H;
+>  
+>  	v4l_bound_align_image(&q_data->coded_width,
+>  				MTK_VDEC_MIN_W,
+> -				MTK_VDEC_MAX_W, 4,
+> +				ctx->max_width, 4,
+>  				&q_data->coded_height,
+>  				MTK_VDEC_MIN_H,
+> -				MTK_VDEC_MAX_H, 5, 6);
+> +				ctx->max_height, 5, 6);
+>  
+>  	q_data->sizeimage[0] = q_data->coded_width * q_data->coded_height;
+>  	q_data->bytesperline[0] = q_data->coded_width;
+> @@ -217,7 +219,7 @@ static int vidioc_vdec_subscribe_evt(struct v4l2_fh *fh,
+>  	}
+>  }
+>  
+> -static int vidioc_try_fmt(struct v4l2_format *f,
+> +static int vidioc_try_fmt(struct mtk_vcodec_ctx *ctx, struct v4l2_format *f,
+>  			  const struct mtk_video_fmt *fmt)
+>  {
+>  	struct v4l2_pix_format_mplane *pix_fmt_mp = &f->fmt.pix_mp;
+> @@ -225,9 +227,9 @@ static int vidioc_try_fmt(struct v4l2_format *f,
+>  	pix_fmt_mp->field = V4L2_FIELD_NONE;
+>  
+>  	pix_fmt_mp->width =
+> -		clamp(pix_fmt_mp->width, MTK_VDEC_MIN_W, MTK_VDEC_MAX_W);
+> +		clamp(pix_fmt_mp->width, MTK_VDEC_MIN_W, ctx->max_width);
+>  	pix_fmt_mp->height =
+> -		clamp(pix_fmt_mp->height, MTK_VDEC_MIN_H, MTK_VDEC_MAX_H);
+> +		clamp(pix_fmt_mp->height, MTK_VDEC_MIN_H, ctx->max_height);
+>  
+>  	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+>  		pix_fmt_mp->num_planes = 1;
+> @@ -245,16 +247,16 @@ static int vidioc_try_fmt(struct v4l2_format *f,
+>  		tmp_h = pix_fmt_mp->height;
+>  		v4l_bound_align_image(&pix_fmt_mp->width,
+>  					MTK_VDEC_MIN_W,
+> -					MTK_VDEC_MAX_W, 6,
+> +					ctx->max_width, 6,
+>  					&pix_fmt_mp->height,
+>  					MTK_VDEC_MIN_H,
+> -					MTK_VDEC_MAX_H, 6, 9);
+> +					ctx->max_height, 6, 9);
+>  
+>  		if (pix_fmt_mp->width < tmp_w &&
+> -			(pix_fmt_mp->width + 64) <= MTK_VDEC_MAX_W)
+> +			(pix_fmt_mp->width + 64) <= ctx->max_width)
+>  			pix_fmt_mp->width += 64;
+>  		if (pix_fmt_mp->height < tmp_h &&
+> -			(pix_fmt_mp->height + 64) <= MTK_VDEC_MAX_H)
+> +			(pix_fmt_mp->height + 64) <= ctx->max_height)
+>  			pix_fmt_mp->height += 64;
+>  
+>  		mtk_v4l2_debug(0,
+> @@ -294,7 +296,7 @@ static int vidioc_try_fmt_vid_cap_mplane(struct file *file, void *priv,
+>  		fmt = mtk_vdec_find_format(f, dec_pdata);
+>  	}
+>  
+> -	return vidioc_try_fmt(f, fmt);
+> +	return vidioc_try_fmt(ctx, f, fmt);
+>  }
+>  
+>  static int vidioc_try_fmt_vid_out_mplane(struct file *file, void *priv,
+> @@ -317,7 +319,7 @@ static int vidioc_try_fmt_vid_out_mplane(struct file *file, void *priv,
+>  		return -EINVAL;
+>  	}
+>  
+> -	return vidioc_try_fmt(f, fmt);
+> +	return vidioc_try_fmt(ctx, f, fmt);
+>  }
+>  
+>  static int vidioc_vdec_g_selection(struct file *file, void *priv,
+> @@ -445,7 +447,7 @@ static int vidioc_vdec_s_fmt(struct file *file, void *priv,
+>  		return -EINVAL;
+>  
+>  	q_data->fmt = fmt;
+> -	vidioc_try_fmt(f, q_data->fmt);
+> +	vidioc_try_fmt(ctx, f, q_data->fmt);
+>  	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+>  		q_data->sizeimage[0] = pix_mp->plane_fmt[0].sizeimage;
+>  		q_data->coded_width = pix_mp->width;
+> @@ -545,6 +547,9 @@ static int vidioc_enum_framesizes(struct file *file, void *priv,
+>  				fsize->stepwise.min_height,
+>  				fsize->stepwise.max_height,
+>  				fsize->stepwise.step_height);
+> +
+> +		ctx->max_width = fsize->stepwise.max_width;
+> +		ctx->max_height = fsize->stepwise.max_height;
+
+The spec does not require calling enum_fmt, so changing the maximum here is
+incorrect (and fail with GStreamer). If userland never enum the framesizes, the
+resolution get limited to 1080p.
+
+As this only depends and the OUTPUT format and the device being open()
+(condition being dev_capability being set and OUTPUT format being known / not
+VP8), you could initialize the cxt max inside s_fmt(OUTPUT) instead, which is a
+mandatory call. I have tested this change to verify this:
+
+
+diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
+index 044e3dfbdd8c..3e7c571526a4 100644
+--- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
++++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec.c
+@@ -484,6 +484,14 @@ static int vidioc_vdec_s_fmt(struct file *file, void *priv,
+ 	if (fmt == NULL)
+ 		return -EINVAL;
+ 
++	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE &&
++	    !(ctx->dev->dec_capability & VCODEC_CAPABILITY_4K_DISABLED) &&
++	    fmt->fourcc != V4L2_PIX_FMT_VP8_FRAME) {
++		mtk_v4l2_debug(3, "4K is enabled");
++		ctx->max_width = VCODEC_DEC_4K_CODED_WIDTH;
++		ctx->max_height = VCODEC_DEC_4K_CODED_HEIGHT;
++	}
++
+ 	q_data->fmt = fmt;
+ 	vidioc_try_fmt(ctx, f, q_data->fmt);
+ 	if (f->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE) {
+@@ -574,15 +582,9 @@ static int vidioc_enum_framesizes(struct file *file, void *priv,
+ 
+ 		fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
+ 		fsize->stepwise = dec_pdata->vdec_framesizes[i].stepwise;
+-		if (!(ctx->dev->dec_capability &
+-				VCODEC_CAPABILITY_4K_DISABLED) &&
+-				fsize->pixel_format != V4L2_PIX_FMT_VP8_FRAME) {
+-			mtk_v4l2_debug(3, "4K is enabled");
+-			fsize->stepwise.max_width =
+-					VCODEC_DEC_4K_CODED_WIDTH;
+-			fsize->stepwise.max_height =
+-					VCODEC_DEC_4K_CODED_HEIGHT;
+-		}
++		fsize->stepwise.max_width = ctx->max_width;
++		fsize->stepwise.max_height = ctx->max_height;
++
+ 		mtk_v4l2_debug(1, "%x, %d %d %d %d %d %d",
+ 				ctx->dev->dec_capability,
+ 				fsize->stepwise.min_width,
+@@ -592,8 +594,6 @@ static int vidioc_enum_framesizes(struct file *file, void *priv,
+ 				fsize->stepwise.max_height,
+ 				fsize->stepwise.step_height);
+ 
+-		ctx->max_width = fsize->stepwise.max_width;
+-		ctx->max_height = fsize->stepwise.max_height;
+ 		return 0;
+ 	}
+ 
+
+
+>  		return 0;
+>  	}
+>  
+> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> index bb7b8e914d24..6d27e4d41ede 100644
+> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
+> @@ -284,6 +284,8 @@ struct vdec_pic_info {
+>   *	  mtk_video_dec_buf.
+>   * @hw_id: hardware index used to identify different hardware.
+>   *
+> + * @max_width: hardware supported max width
+> + * @max_height: hardware supported max height
+>   * @msg_queue: msg queue used to store lat buffer information.
+>   */
+>  struct mtk_vcodec_ctx {
+> @@ -329,6 +331,8 @@ struct mtk_vcodec_ctx {
+>  	struct mutex lock;
+>  	int hw_id;
+>  
+> +	unsigned int max_width;
+> +	unsigned int max_height;
+>  	struct vdec_msg_queue msg_queue;
+>  };
+>  
+
