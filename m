@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F064C6E6D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:41:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C968C4C6E97
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235059AbiB1Nlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 08:41:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36914 "EHLO
+        id S231820AbiB1NvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 08:51:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36940 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233648AbiB1Nli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:41:38 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFAAA7CDC0;
-        Mon, 28 Feb 2022 05:40:59 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6A27E61387;
-        Mon, 28 Feb 2022 13:40:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6611C340E7;
-        Mon, 28 Feb 2022 13:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646055658;
-        bh=VA89CeUxKMxAiD5e2iQqCNZGN2aSPDh90kmOOEXOGeY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vHR0qat24ix1x9tEH+Xc54AYjZuVSLKMiH/fflbfGvXMcG4DuAJiJARPGOtP3uZmr
-         nCOuHHKREe40joEkERig1pzZRh7TKEX+qYLCHKlFZgkxqZ//zt0btI4DoDz0FCyT+Y
-         HgFSPe2B2L3ZnD4XIwUs7A2eikHWYoNGLY0ftWsKU16HuxdnFB2mIIJlkXNktBDnlj
-         +Kb6d+FD9xdbyS01jj/745en/anIT2Db2f3xGt17lpo07A7H/JLTtGCd39/xRfQaV9
-         YcApXpvsLLfBmrOGx/JYvoiMuYzyHfhDQTHsUVR504n/qfmV5r+3gvL9F9F8Ij6Suw
-         edMkZS3/bGR/A==
-Date:   Mon, 28 Feb 2022 13:40:51 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH] ASoC: qcom: soundwire: Add support for controlling audio
- CGCR from HLOS
-Message-ID: <YhzQ40svWd/ytyHE@sirena.org.uk>
-References: <1646035750-25635-1-git-send-email-quic_srivasam@quicinc.com>
- <YhzMeoNW7/OUJrMa@sirena.org.uk>
- <2de96a40-82c1-7ff2-a293-295267058fd3@quicinc.com>
+        with ESMTP id S230155AbiB1NvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:51:22 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 737385130C;
+        Mon, 28 Feb 2022 05:50:43 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id C45121F438C6
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646056242;
+        bh=01LHGkJJ+DpNYyT1azd35ZIb6hFj6cZ6HVkPFWhLSpg=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EVphFN2nlSfP7QnVMQPprWeHY3LGcr4CNLIyJwc93JAON0XRrHPUEBxJtTps4YWN/
+         teZLX3YIek+zUtUDvBSoQrBSI/MMaewUqah04AgMl1Q2EoUcX49lKK3o3X3lDFTBeQ
+         Ciwc4QZJbinmesi65g4Cksnl/DPy8HmKBYR1dBf3CG73Y2GP3KeK5HTIkqXRSKZgHR
+         6g7KLIla/2XXP7PKHafiVilugVgEELIR4r3POzlUd375pz3+5AaS+yT3BOAkd7enBY
+         wLsHX+VBenM5SuXKynOeeyhdGojSDhCTFd+XPt7gt+38YBVce7LBPgpfWq7bQghohU
+         ob9f2ZHuNUTSg==
+Message-ID: <7ba0ee87-c193-9834-d0b4-ff3e06ced82b@collabora.com>
+Date:   Mon, 28 Feb 2022 14:50:37 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UMh4YcLiIRHdmZcN"
-Content-Disposition: inline
-In-Reply-To: <2de96a40-82c1-7ff2-a293-295267058fd3@quicinc.com>
-X-Cookie: Killing turkeys causes winter.
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
+Content-Language: en-US
+To:     Joerg Roedel <joro@8bytes.org>, Yong Wu <yong.wu@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org,
+        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
+        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
+        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
+        yf.wang@mediatek.com, libo.kang@mediatek.com,
+        chengci.xu@mediatek.com
+References: <20220217113453.13658-1-yong.wu@mediatek.com>
+ <YhzBSsn/zUlGg5JE@8bytes.org>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <YhzBSsn/zUlGg5JE@8bytes.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,42 +67,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Il 28/02/22 13:34, Joerg Roedel ha scritto:
+> Hi Yong Wu,
+> 
+> On Thu, Feb 17, 2022 at 07:34:19PM +0800, Yong Wu wrote:
+>> Yong Wu (34):
+>>    dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+>>    dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+>>    iommu/mediatek: Fix 2 HW sharing pgtable issue
+>>    iommu/mediatek: Add list_del in mtk_iommu_remove
+>>    iommu/mediatek: Remove clk_disable in mtk_iommu_remove
+>>    iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
+>>    iommu/mediatek: Add mutex for data in the mtk_iommu_domain
+>>    iommu/mediatek: Adapt sharing and non-sharing pgtable case
+>>    iommu/mediatek: Add 12G~16G support for multi domains
+>>    iommu/mediatek: Add a flag DCM_DISABLE
+>>    iommu/mediatek: Add a flag NON_STD_AXI
+>>    iommu/mediatek: Remove the granule in the tlb flush
+>>    iommu/mediatek: Always enable output PA over 32bits in isr
+>>    iommu/mediatek: Add SUB_COMMON_3BITS flag
+>>    iommu/mediatek: Add IOMMU_TYPE flag
+>>    iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
+>>    iommu/mediatek: Adjust device link when it is sub-common
+>>    iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
+>>    iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
+>>    iommu/mediatek: Add infra iommu support
+>>    iommu/mediatek: Add PCIe support
+>>    iommu/mediatek: Add mt8195 support
+>>    iommu/mediatek: Only adjust code about register base
+>>    iommu/mediatek: Just move code position in hw_init
+>>    iommu/mediatek: Separate mtk_iommu_data for v1 and v2
+>>    iommu/mediatek: Remove mtk_iommu.h
+>>    iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
+>>    iommu/mediatek: Add mtk_iommu_bank_data structure
+>>    iommu/mediatek: Initialise bank HW for each a bank
+>>    iommu/mediatek: Change the domid to iova_region_id
+>>    iommu/mediatek: Get the proper bankid for multi banks
+>>    iommu/mediatek: Initialise/Remove for multi bank dev
+>>    iommu/mediatek: Backup/restore regsiters for multi banks
+>>    iommu/mediatek: mt8195: Enable multi banks for infra iommu
+> 
+> This doesn't apply cleanly, can you please send a version rebased to
+> v5.17-rc4?
+> 
+> Thanks,
+> 
+> 	Joerg
 
---UMh4YcLiIRHdmZcN
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Joerg,
 
-On Mon, Feb 28, 2022 at 06:57:55PM +0530, Srinivasa Rao Mandadapu wrote:
+this series depends on the following series:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=592275
 
-> DT binding included in another patch which was sent recently. As this pat=
-ch
-> depends on clock driver patches didn't=A0 mention the below dependence.
+...which is also well tested and ready to be merged in.
 
-> https://patchwork.kernel.org/project/alsa-devel/list/?series=3D618579
+Applying Yong's series without the mentioned series from Dafna would not work.
 
-This is all getting far too messy and complicated - you're sending lots
-of different versions of multiple patch serieses with various
-interdependencies and conflicts some of which you're forgetting to
-mention and some of which are against things that haven't even been
-posted yet.  Please slow down a bit here, take a bit more care and try
-to rate limit the amount of stuff you're sending out at once.  It'll
-make things a lot easier to manage and probably take less time and
-effort overall.
 
---UMh4YcLiIRHdmZcN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIc0OIACgkQJNaLcl1U
-h9D40Af+KP9WixHc82GfzMRI8RejCkjKeOju9FcCVKIAq9u9tzYSpuGab/lbjtK4
-Q98w68/Z3JqC1kzSw3WwR+fOy0DO0A7t+Skapwqc4WutGEFET4Z4SAeHZU9peiEV
-Hb/5pQtHVLhLEtnNdQKGJI6sojkbUiXZDDISeMEHsdjXiOikcxPfT13pgxLceC8a
-teDHRU530pcTiAIKNxdUu9NWTRNNQNd6Pe6FP+OIfngnCYqLgwlrt9wIHAUgYhWA
-uxDMFfdWTXBBbL5Uoc0B+c6jmaROn0O9XBMVnRBe4PUZ/k8rZtx6vS/snRKYyr/+
-ZQhj0ptzrE1kN9uoP6d3f8svSHp3tQ==
-=DeDG
------END PGP SIGNATURE-----
-
---UMh4YcLiIRHdmZcN--
+Thanks,
+Angelo
