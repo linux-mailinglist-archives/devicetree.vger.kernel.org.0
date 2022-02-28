@@ -2,50 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9889F4C6DE8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:20:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B71DB4C6DFF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 14:22:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235352AbiB1NVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 08:21:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57836 "EHLO
+        id S231887AbiB1NWt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 08:22:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235556AbiB1NVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:21:01 -0500
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC40F78074;
-        Mon, 28 Feb 2022 05:20:21 -0800 (PST)
+        with ESMTP id S235167AbiB1NWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 08:22:48 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F0EB79397;
+        Mon, 28 Feb 2022 05:22:10 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by sin.source.kernel.org (Postfix) with ESMTPS id 0A1E3CE13C2;
-        Mon, 28 Feb 2022 13:20:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF064C340F8;
-        Mon, 28 Feb 2022 13:20:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CD0A561331;
+        Mon, 28 Feb 2022 13:22:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D8BCC340E7;
+        Mon, 28 Feb 2022 13:22:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646054418;
-        bh=o/CvXx4X3p45ofJ1pzjZHgKPmpguRZfGlNKzR8f6Wg8=;
+        s=k20201202; t=1646054529;
+        bh=z8UlMYS9HM8W4/LUvFSvEhzPSuQv09Li2PxhJIdtSmI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jOCgrTzYxfN3PRYdBeY1pfySaOpypqEADWnAswRz6i4EysaTBmq/klKbpRh/xR/Cl
-         Wv2exoh0EMUDWNaNhpOVTmBGv6nVtbUKLMtNOXj2W9rxz29zxGNPrtOVyIbB6WO80C
-         rqBRzejL5iOgdgGsLeKZrbws5W0TiHbFqvWO9pcx0bGSq8R/0VjkPwanM5D5gVwgko
-         iSBaDHp1ETR28H7A7cqs69jhPVEGH4dYOkTLkaHwUH8P5sHJiqyiZ4qB6oLqfNjqVg
-         rytQbIppmX0DsxO3DCJua/ieak6JXn3iYRdJo27JDYRl3JLZ4iAgo52wDGsc+1qKO5
-         vSEPBPPf/x+ng==
-Date:   Mon, 28 Feb 2022 13:20:13 +0000
+        b=ABw/SJbTYZkDTZYNynoLLjkBDE0rUMGhKDO17cEPPQgsWHHlpRIzeX3LU9Ut+tzWC
+         /DRw7Ewhgdo1+rMNp3f2m+v3miQUA8KTgIpT1U47jHLTw6xT2Fi9+Vq7eor6JrttlN
+         JJ5lBoxtPhwT9JoMm4i9iSug41Vkxfmw6pC5VETJP/BTifpknYd7dADDbRONgdLHwz
+         7YVqR3tvjfSkEJkDGEGLGO9Fa+vLcapS8Gj6DSjrX5OJa2fLmT1u3Yss+BOS/GE8PS
+         ssuxrvVE5FHVPt+BQ9Otaz9BxpZM78a5TGkgBAxnX6Fnb8yL8bdSDLjvWpS3esH9p3
+         prxgA1Ykku92w==
+Date:   Mon, 28 Feb 2022 13:22:02 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] spi: fsl-spi: Implement trailing clock mode
-Message-ID: <YhzMDU5kz3QERByJ@sirena.org.uk>
-References: <cover.1645950971.git.christophe.leroy@csgroup.eu>
- <f66ae24b31f10f7c3a999a77a6cfab7b2d073c6a.1645950971.git.christophe.leroy@csgroup.eu>
+To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, swboyd@chromium.org,
+        judyhsiao@chromium.org, yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, sanyog.r.kale@intel.com,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Subject: Re: [PATCH] ASoC: qcom: soundwire: Add support for controlling audio
+ CGCR from HLOS
+Message-ID: <YhzMeoNW7/OUJrMa@sirena.org.uk>
+References: <1646035750-25635-1-git-send-email-quic_srivasam@quicinc.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="G9LOwKe7hVjk3Nvl"
+        protocol="application/pgp-signature"; boundary="kK4kZyJyOJ4RsEpU"
 Content-Disposition: inline
-In-Reply-To: <f66ae24b31f10f7c3a999a77a6cfab7b2d073c6a.1645950971.git.christophe.leroy@csgroup.eu>
+In-Reply-To: <1646035750-25635-1-git-send-email-quic_srivasam@quicinc.com>
 X-Cookie: Killing turkeys causes winter.
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -58,44 +64,31 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---G9LOwKe7hVjk3Nvl
+--kK4kZyJyOJ4RsEpU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Sun, Feb 27, 2022 at 11:00:35AM +0100, Christophe Leroy wrote:
+On Mon, Feb 28, 2022 at 01:39:10PM +0530, Srinivasa Rao Mandadapu wrote:
 
-> +	if (!status && spi->mode & SPI_TRAILING) {
-> +		struct spi_transfer t = {
-> +			.len = 1,
-> +			.tx_buf = "",
-> +			.bits_per_word = 4
-> +		};
-> +
-> +		status = fsl_spi_setup_transfer(spi, &t);
-> +		if (!status)
-> +			status = fsl_spi_bufs(spi, &t, 0);
-> +	}
-> +	m->status = status;
+> +	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
+> +	if (IS_ERR(ctrl->audio_cgcr))
+> +		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
 
-This seems to be begging for a generic implementation in the core rather
-than being driver specific - drivers would for the most part need
-updating to advertise less than 8 bit per word transfers but the basic
-operation isn't really device specific and it pretty much fits with the
-existing interfaces.
+Doesn't this need a DT binding update?
 
---G9LOwKe7hVjk3Nvl
+--kK4kZyJyOJ4RsEpU
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIczAwACgkQJNaLcl1U
-h9DioAf/XkajEKaFraLURr6txXU0HOAdW2tQn6oxElgs6zI8nyqHP8FgwzT4QadB
-upxIj0Zvs/Rjykn1pORMsVquc75dojQ7fz4KsM+ldYRRXJEnI6jDsoqKZlCmAVRs
-+3uA6xjRmEVh+GhHrsYFjrA9EZS1GYgXOVFx9V5HQ6xM5e5K1C3pDFIgu8qo3++R
-1YGlEr1F0MTTpQSv6EuFaXQmCd02u4ASeuqRsIa0PfnVX4qemsaRBWm6PIR3FxNf
-dJ393Fz4WNiFIDpx4M4h9FWzfAbKszLn1g2YlONdGjTfr6QEAogyJxXgealyQL8y
-O541q+NuNjAIsUrynwJ9HLFri3ds5w==
-=C/rm
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIczHkACgkQJNaLcl1U
+h9B0DQf/eqHBl2NodP/t4MJrv+UXLGpLCOMpY5mt7kVV4OLYSXYUpD5r/sAB/NmG
+Mrl9LHy1D/5nXyG0PiUtkjPMuJBlKJv5eaMV3dUDrXDF6oLot3eEDEpamF9pvPL8
+8um8g/HemA7ztGH7HXY1Gi8U5TJmt1IhGC/Bll19zCSyZAA5eH/f6WZ5CNJz+TzL
+5gSY0ye5Jsu1ybuQ3rMBs+KJW6+dR/6FeMFZUVY3KM5Dcu6IR25mx7wOcrw26XI/
+PupAgyOgXtO2uGAbnYYadNXdL262odddF/+2nrYKkOHi0mGqgxhV27IJM+zTOM+n
+/2jzjVSC6xmClBcZ44WRiI14PMP0JA==
+=flDI
 -----END PGP SIGNATURE-----
 
---G9LOwKe7hVjk3Nvl--
+--kK4kZyJyOJ4RsEpU--
