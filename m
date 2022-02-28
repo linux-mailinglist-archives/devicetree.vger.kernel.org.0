@@ -2,44 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0B24C7A0D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:21:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7BAE4C7A77
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:32:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbiB1USW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 15:18:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47516 "EHLO
+        id S229559AbiB1Ucs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 15:32:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229733AbiB1USW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:18:22 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F274B878
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:17:42 -0800 (PST)
-Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nOmSe-0003aH-OW; Mon, 28 Feb 2022 21:17:36 +0100
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        patchwork-lst@pengutronix.de
-Subject: [PATCH v3 7/7] arm64: dts: imx8mp: add GPU nodes
-Date:   Mon, 28 Feb 2022 21:17:31 +0100
-Message-Id: <20220228201731.3330192-8-l.stach@pengutronix.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220228201731.3330192-1-l.stach@pengutronix.de>
-References: <20220228201731.3330192-1-l.stach@pengutronix.de>
+        with ESMTP id S229621AbiB1Uco (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:32:44 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AC3413D7F
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:31:59 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id 12so14293585oix.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:31:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=utrIpj5sGwbA9Y5s37XmpLzhGxUfS2xneQil5soYPOM=;
+        b=IJNTXhb8vKmca/sPG/5vUyGbk6U/5uSV4ApOSAlXFGmNSwgyan6DeTxcgzJiHwa6sp
+         NypjgIHkmQkkzpgLJ9502B4A1aijO507ETnJHHwo03ypRd85V0mZcil/a3UZYUEZMIdx
+         12FZxG2zLO9hKIqOHOOlAT2X8dgcls4RMqIe8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=utrIpj5sGwbA9Y5s37XmpLzhGxUfS2xneQil5soYPOM=;
+        b=TD80lE6SCIFZhaNjf80WAeiPMQ6C51xcOLKn1lV4hGfk88WJM4x4gH7GVK9ffEoEDP
+         yhyPrcv1ZtsvIq4ugr7ymYtlc/ku7EXAz/kFzl5CWPT5kYHUKb6C4G34FwczbhAz6aGC
+         AetpLUEaWj3TSGQwmO1HuyunArvjK+GbWqECIO+cK/ZM7tDlHdo72Of8BLnil+0oLR29
+         UNUaXfGZCqcqVrkFcOy+3qhkz2Kz/QJ8gFkWCzd1mMh7ovKav0X79xTKWqO/jC1N4axY
+         /gHPrSSRVP/L5KPf0EpxXEXuSKXoyFuBC2Ck38Kgdeh0nWaFdyLx0hCFOcsbhUU38mtc
+         W6sA==
+X-Gm-Message-State: AOAM530LQUXUCzSTaQopk91j6gvHUHbPtbTXsVV/jkd0vhkQ4mRb/H0Q
+        VNKgpk70qdvqpgsSP94tRE1J1DJDhsbM6MTN/xG+Dw==
+X-Google-Smtp-Source: ABdhPJxT2qNwI+x+MXRZ6vklFHt8jMreYUaB/MnFw7ql9KToFLQdHvgZr3G6P8pADPUBa+ZL0D2JlyDA+u4ZmUk0Cxk=
+X-Received: by 2002:a05:6808:1a28:b0:2d7:3c61:e0d6 with SMTP id
+ bk40-20020a0568081a2800b002d73c61e0d6mr12145538oib.32.1646080318805; Mon, 28
+ Feb 2022 12:31:58 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Mon, 28 Feb 2022 12:31:58 -0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <05780d0a-bc9c-3a81-2676-ea92453d7303@quicinc.com>
+References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1645182064-15843-2-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n51X=LJMjDb9KS0rqQDqLR5srzxCOJCRS4oJgPSXbvaSiQ@mail.gmail.com> <05780d0a-bc9c-3a81-2676-ea92453d7303@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Mon, 28 Feb 2022 12:31:58 -0800
+Message-ID: <CAE-0n517usy-DDEg+r1Q6oeer0i5bBiAqTugxf3GPcW+2gtQ9A@mail.gmail.com>
+Subject: Re: [PATCH V7 1/5] dt-bindings: mfd: pm8008: Add pm8008 regulators
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Satya Priya Kakitapalli <quic_c_skakit@quicinc.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_collinsd@quicinc.com,
+        quic_subbaram@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -47,60 +74,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for both the 3D and 2D GPU cores found on the i.MX8MP.
+Quoting Satya Priya Kakitapalli (Temp) (2022-02-28 06:14:56)
+>
+> On 2/19/2022 7:09 AM, Stephen Boyd wrote:
+> > Quoting Satya Priya (2022-02-18 03:00:59)
+> >> Add regulators and their supply nodes. Add separate compatible
+> >> "qcom,pm8008-regulators" to differentiate between pm8008 infra
+> >> and pm8008 regulators mfd devices.
+> >>
+> >> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+> >> ---
+> > Is the register layout compatible with SPMI regulators? The gpio node
+> > seems to be fully compatible and the same driver probes there for SPMI
+> > and i2c, so I wonder why we can't extend the existing SPMI gpio and
+> > regulator bindings to have the new compatible strings for pm8008. Is
+> > anything really different, or do we have the same device talking i2c
+> > instead of SPMI now? Possibly it's exposing the different hardware
+> > blocks inside the PMIC at different i2c addresses. It looks like the i2c
+> > address is 0x8 and then there's 16-bits of address space inside the i2c
+> > device to do things. 0x9 is the i2c address for the regulators and then
+> > each ldo is at some offset in there?
+>
+>
+> The register layout is not compatible with spmi regulators, I see some
+> differences w.r.t VOLTAGE_CTL, EN_CTL, MODE_CTL registers. Also, there
+> is no headroom related stuff in the spmi driver.
 
-etnaviv-gpu 38000000.gpu: model: GC7000, revision: 6204
-etnaviv-gpu 38008000.gpu: model: GC520, revision: 5341
-[drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
+It sounds like minor differences and/or improvements to the existing
+SPMI regulator hardware.
 
-Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm64/boot/dts/freescale/imx8mp.dtsi | 31 +++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+> >>           interrupt-parent = <&tlmm>;
+> >>           interrupts = <32 IRQ_TYPE_EDGE_RISING>;
+> > I still fail to see what this part of the diff has to do with
+> > regulators. Can it be split off to a different patch with a clear
+> > description of why interrupt-controller and #interrupt-cells is no
+> > longer required for qcom,pm8008?
+>
+>
+> This diff has nothing to do with regulators, I removed it to avoid yaml
+> errors during dtbs check.
+>
+> I'll move this to a separate patch.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-index 9f2c335cc7a1..3ded7314c473 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-@@ -980,6 +980,37 @@ hsio_blk_ctrl: blk-ctrl@32f10000 {
- 			};
- 		};
- 
-+		gpu3d: gpu@38000000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38000000 0x8000>;
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MP_CLK_GPU3D_ROOT>,
-+				 <&clk IMX8MP_CLK_GPU3D_SHADER_CORE>,
-+				 <&clk IMX8MP_CLK_GPU_ROOT>,
-+				 <&clk IMX8MP_CLK_GPU_AHB>;
-+			clock-names = "core", "shader", "bus", "reg";
-+			assigned-clocks = <&clk IMX8MP_CLK_GPU3D_CORE>,
-+					  <&clk IMX8MP_CLK_GPU3D_SHADER_CORE>;
-+			assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>,
-+						 <&clk IMX8MP_SYS_PLL1_800M>;
-+			assigned-clock-rates = <800000000>, <800000000>;
-+			power-domains = <&pgc_gpu3d>;
-+		};
-+
-+		gpu2d: gpu@38008000 {
-+			compatible = "vivante,gc";
-+			reg = <0x38008000 0x8000>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&clk IMX8MP_CLK_GPU2D_ROOT>,
-+				 <&clk IMX8MP_CLK_GPU_ROOT>,
-+				 <&clk IMX8MP_CLK_GPU_AHB>;
-+			clock-names = "core", "bus", "reg";
-+			assigned-clocks = <&clk IMX8MP_CLK_GPU2D_CORE>;
-+			assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_800M>;
-+			assigned-clock-rates = <800000000>;
-+			power-domains = <&pgc_gpu2d>;
-+		};
-+
- 		gic: interrupt-controller@38800000 {
- 			compatible = "arm,gic-v3";
- 			reg = <0x38800000 0x10000>,
--- 
-2.30.2
-
+Ok, thanks!
