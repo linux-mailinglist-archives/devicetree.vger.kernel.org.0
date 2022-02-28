@@ -2,160 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6554C6006
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 01:03:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F21F24C6026
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 01:39:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232142AbiB1AEC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 19:04:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45372 "EHLO
+        id S231473AbiB1Ak2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 19:40:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231996AbiB1AD5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 19:03:57 -0500
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2126.outbound.protection.outlook.com [40.107.223.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD21931DEE;
-        Sun, 27 Feb 2022 16:03:19 -0800 (PST)
+        with ESMTP id S229662AbiB1Ak1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 19:40:27 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80078.outbound.protection.outlook.com [40.107.8.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CCBC41994;
+        Sun, 27 Feb 2022 16:39:49 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MSfOKkNEa1XLMehppxx5qAQVZnfDdTnI0IdbdOIc3Ha/yjSa/IhO9Hl10+oDsFRG5MfFrRirNgi7T7F5fcYzZyI8LOjakSBKSZ0lAIVKXDszOw1dVp9cLmg6bXtHEI1agply5ubLw6NLOL7LcQDCk5zeLdUwMv8UTMdnyS4xO8EmvEq/FyNvi/7DgEQb8GTadYg0H6A29AcWr/tnPETU2dZdQOHN5kgw0F7LMvQSmXP5Pchxrlsm1zoSTU3x6cEjS+ZPLXxibNti0f92OdiPlwyjvjP0zCP8auX8n6cIGNmWw44pHg5cUaoAJt7bZzzAsrd6ytEbTJe5W7RpbynTyw==
+ b=M59Sv+GNz7/TWLx2Aw91p3/y9gcguYlp9T0CrZyrSbqLr7C4WR2G/1asjVH71GgL6tnNR+Y5h3TaGRnXvdyB1K/Gk5pV7sEdgJKXIsD1gJrvAbWHZgvYgFizVmGLKqszjB5uSU7OoRAOdyWWMTcgAhPcszWdoeZKgTDadiI+XrrxrZdhOJGOlySNHgrrUV+TV4GWZcROsxNnLMvU9GXSDN8Mo1BiDG03aOxOMpCrRkICHjPgo/NGHvJT9pU1v1sNT4ERbPIFch6wOvKX4dbDOq7GAvUOpBh1lOBNyKb86Qx5PX3oB6mBHDXWg+1APm5QdJ8cdR7J0v7eWA8kyR2fSA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bxBHcP3EI1//yF/EZi96SVE0Lz9wdaxcLBrprHn/SKY=;
- b=EXwbKFnYo+AuwJsEyLSpNZqXCIuUkoJ3jGp4M7/0a5UtxjioxQjfaqt25sDC6eyqBg8WU7phYoyfHfaV7Z1MwspmnzR/k5SiMnKlnBVGohnioSlAsriUXjrWvNMr6b8YXzU0cdAemTkHIMlcus58td1WzPuSH00i0iuSWyg3XnB2/Tnn/EOOiA7per3ymWqBDNSxpHChDpMfU1pzMvqAKPl4IJM2c25lT3sPJCF+I17f6E8HfeFe5mpIGLxgounDpNrepRtERpNc87BLGA9zOsyo5kOtnbGu30YXorf/qA15RDFmLsvb3bI2aE1pepMnLBkcsJ5ppbVqr123IiNJ+g==
+ bh=XtHGyxuoJ3bZwBfJNXEZXsFVfA8xL7j6EinM79hhU3o=;
+ b=ighcCA5rFHzfvF4blIRM75GKmjrHTuJTBhGaunZEAuy4kevF1gwt4uCDZJ7SBT8lIn8ZicU1Eo7IqTFPLzJTqapm4o5jd8FHa8ob8w7eOpN5TTSqPW39Lva6utLsMbPT++th6V3XAI9Q+kW6Wy2b2jnxS1XLJGhn8tCb7XGZEZzvLPHcCAyPIs6CUo2BJu2zn4KdDA57jov8vy/9xQlTDaFCL+emrJTjQFqWWscceSHe9aLMjtBIoR8LOiEgGOw6LiABtF3yzbjjUmKmFBeN3AhulxECFTi0soeFxPU4KZF93KYa77SevssuOWDq3/vf6SGH7Fc9uMcE+yRwEvDqOw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=os.amperecomputing.com; dkim=pass
- header.d=os.amperecomputing.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=os.amperecomputing.com; s=selector2;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bxBHcP3EI1//yF/EZi96SVE0Lz9wdaxcLBrprHn/SKY=;
- b=TU25iR8eheUqwA6nlUrxb7i+dS7wDirmzLHkOg+jWBh07WoJsvSu3pc3VBuFHCAI60AQJYRftqBtxB44AgRpGUK3rw0EXOiAdCl2jUNGAEfjM7pW0syUUJlf3ckSUtT7k3Y11mzgIOPb6gDMXlf/mOA25DeJwyKk8BhjtdGS2PE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
-Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
- PH0PR01MB6184.prod.exchangelabs.com (2603:10b6:510:14::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5017.24; Mon, 28 Feb 2022 00:03:17 +0000
-Received: from SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::d9a2:2761:a4c0:1e1c]) by SJ0PR01MB7282.prod.exchangelabs.com
- ([fe80::d9a2:2761:a4c0:1e1c%4]) with mapi id 15.20.5017.026; Mon, 28 Feb 2022
- 00:03:17 +0000
-From:   Quan Nguyen <quan@os.amperecomputing.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Cc:     Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: [PATCH v1 5/5] ARM: dts: aspeed: mtjade: Move all adc sensors into iio-hwmon node
-Date:   Mon, 28 Feb 2022 07:02:42 +0700
-Message-Id: <20220228000242.1884-6-quan@os.amperecomputing.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20220228000242.1884-1-quan@os.amperecomputing.com>
-References: <20220228000242.1884-1-quan@os.amperecomputing.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: HK2P15301CA0011.APCP153.PROD.OUTLOOK.COM
- (2603:1096:202:1::21) To SJ0PR01MB7282.prod.exchangelabs.com
- (2603:10b6:a03:3f2::24)
+ bh=XtHGyxuoJ3bZwBfJNXEZXsFVfA8xL7j6EinM79hhU3o=;
+ b=G1LX7sp67hLGeoj1yO215ZlPzXAmfewPpKZP/QNIoS80ucrcBoRvVJAL2bSI6toEdiFzEOPQUB9kHaJTkIyOhYJhtLWUI4EGd9GgcB+ZCw1Xg0YpDPHD+orSKRizl7qfep/+jwpQHoIOch1SF9oS7QlaDjJvZZJIE2cR3ZqTOVs=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by VI1PR04MB4815.eurprd04.prod.outlook.com (2603:10a6:803:5d::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.25; Mon, 28 Feb
+ 2022 00:39:45 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::552c:ed46:26dc:77cc]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::552c:ed46:26dc:77cc%4]) with mapi id 15.20.4995.018; Mon, 28 Feb 2022
+ 00:39:45 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Abel Vesa <abel.vesa@nxp.com>,
+        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+CC:     "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 3/3] clk: imx8mp: remove SYS PLL 1/2 clock gates
+Thread-Topic: [PATCH 3/3] clk: imx8mp: remove SYS PLL 1/2 clock gates
+Thread-Index: AQHYKh/pjVRxh52TuUCry9PuZTCQ2qykVYuAgAPL2kA=
+Date:   Mon, 28 Feb 2022 00:39:45 +0000
+Message-ID: <DU0PR04MB9417D1BF8C068E5636C60F9E88019@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220225081733.2294166-1-peng.fan@oss.nxp.com>
+ <20220225081733.2294166-4-peng.fan@oss.nxp.com> <YhjpIbIVf7DQh/Ja@abelvesa>
+In-Reply-To: <YhjpIbIVf7DQh/Ja@abelvesa>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 07d462d8-5b51-4450-d986-08d9fa52d15b
+x-ms-traffictypediagnostic: VI1PR04MB4815:EE_
+x-microsoft-antispam-prvs: <VI1PR04MB4815E18A58E3EB992A67DCA588019@VI1PR04MB4815.eurprd04.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0Y0NnW2cmzZ377idCPxVA2JJCkXM2N7v0pTeFRoCBU3Wb8cYX6MhSaRosBe8L+T4PgAb9lqi//1SMpmNdKgcoqHs1ZTP9+/PVePUnxHTgRQgq8UEtLCrxSGw3ISUDsVtSOmaA93S9Ij4XTfrkLFzSRZUiNkXST3IQMRlqIws1Z2tHC4X/KXs5tnDUPqqETiXhUsiwURMrn0UY2ycqcvbflEUCXbx5TAv6S3F43XDGf/buJq4C0F50wkk2rlNICYhWIQdUQB/a2ND6iXdsD9WQZSIf3/CrMzRD7S6HIgQc69T8eow/VzjQCvEDxMsBcfR8lLgYwRRPeAzk30pW69dPJsJ64k7NcoGRsV/s4+ev8HsrFPJTHdHYLJ1bTANc6+KqQ8/35C9IqRUASLg//r/PbZGTZDeUFgrSGjE5KnQeatfEGNOP8BFQt6unOkfYW62qC5FirA5Q0kDNEqiPkpaJCf4SyvFzMo+iP+AJjAEOSyfptbabbuAT2AWWRGESnp+LOFyJa131INMogzYofP/Ltke8RZ4+feIdpodRjFMc58PBQwf9zJMypnUFB5x1LWK0b0WwCN23M8S8R1SO++Dt6OS2tq3hQwfBZQMLwTXmf2N23ix47b9+4sz+mtu8ddXYzG3tPbldRn+Lz5em0QY0BJMVQDj2QMHCY2hIZpHihC5haLmq7Kry7jF6Hlhg1itZJeLLGaHuilNBvb/uwUfzv3waJ1aN2p3yFLPenkXFjM=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(5660300002)(83380400001)(33656002)(38070700005)(122000001)(2906002)(6506007)(7696005)(9686003)(54906003)(110136005)(86362001)(508600001)(316002)(55016003)(76116006)(26005)(71200400001)(66946007)(7416002)(53546011)(66556008)(8936002)(66476007)(66446008)(64756008)(52536014)(8676002)(4326008)(44832011)(186003)(38100700002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?rxaO/yonOZLFR2FJcW0XpdDaAQLH4zfO1E2ZQG1pSYkGeGvyE38ZPEE/4MtW?=
+ =?us-ascii?Q?hAo2U9O0EfIQyYXkhqfmNA2H7u5OE3bgRwZxIh5BCsI/0JjTYI7vkMt+KtZE?=
+ =?us-ascii?Q?SGTMtMxBT01KR5VLq15TIo2BpKmbhwwBsgnrKdrPFy4cWWu9AXhY3qAxO47E?=
+ =?us-ascii?Q?jgnaDyfAcamMWF8BfXYV5DDm/VR1L68WbVhXmkSoYARCdlVyRI3meCdiZOP4?=
+ =?us-ascii?Q?r05zS/gVwFNGRhydV87o9pPLqwfF0npN3O5leU6u6SwrhgCxDeea1PQnoAK9?=
+ =?us-ascii?Q?KVMadiHwcI/03X0ecYQA4r5uqrUaDJx6ce1h+Qmf1xEv9pqDNmTr9Ap9Aj+Z?=
+ =?us-ascii?Q?grOjUEaMaXrafLb1hsRyU8fb2crcVNoUHqGN4GLJjzoNgOkTUvDiJHw2Tn/h?=
+ =?us-ascii?Q?wSjuqI2LEMo3WJnxdvBj1nnBQtL6RbyIO6qoNES8/mVajooFtQBDY5Dmq8ZZ?=
+ =?us-ascii?Q?6zpt3cNpuV+0wU6OETWZgJ43NUox9VlA6QzGw7RulN+59ApCD0GpabSJzfr5?=
+ =?us-ascii?Q?jZqsKUhJXoOjP+FZUCBIjCDZ0oAkMzk0zkWVsm/lAzf4o+KfcLTv2TJN7vuK?=
+ =?us-ascii?Q?/7XcxECZFOzqlri82ju1qG7ecyzTEQIICCGNd3TIMYbPUz0LAcRJThzwz9xw?=
+ =?us-ascii?Q?NLOv6LgVasIeS0bnFGGhsHde7hPaIlB0fiLpqImLCuBks/Tz+VryzaIeLMlH?=
+ =?us-ascii?Q?sSHn2Brxg0hJ5Gf4C2P5TyiUW6brHtZY0a3vEWs9LNSRsAcn8igCf1yYCmrh?=
+ =?us-ascii?Q?pq3vzTZ4ZIMRjPqABZ0q7bHuWpv2H10liQNlPHYWikkg4NBVhhO9gYeEp+UD?=
+ =?us-ascii?Q?tkyFkUCES2gx6obbRn/0DYMjnawB5STGcFrUHhq1zLSSa45QOx8BuPNCS88N?=
+ =?us-ascii?Q?AdQ68wO6H3V2m+YZMdJjW0PPAXix5uqNR+Mgv1eYBCZul5Eo12Qu63F07jVK?=
+ =?us-ascii?Q?osLH0ZuBu8OHte2+jK42BFp/XL2OrAfVbO80DPWNRxSU+q2EpWr5lb/J40v6?=
+ =?us-ascii?Q?WFe9w8zvXRQtcEbcJEM5yICqY1D3aKMJ2ROQ5MOg7oMePGfgUf73lhvMvW/i?=
+ =?us-ascii?Q?7/72kuPQDiK01v1JyyuQy4BIi2XziZUPIHgkd33JCmqU42UPF81MQOwHAOIS?=
+ =?us-ascii?Q?vR0P5UrGzL4RPaNJpwg0UEtZcGteuyuS6bz6mMQq1tKdCLgvrlsLAWOec1Wx?=
+ =?us-ascii?Q?I9XWV8bN7eKTK4YHudWk4iOS1uPV7asbGI/tKxdzLflPV4BKTwVaYnycK7wK?=
+ =?us-ascii?Q?PLlcpRNcrEhbKSE8tOhWdqB+dM/yEmHfScZZp9d4wBaqBUjD1aPTbg7c0BN4?=
+ =?us-ascii?Q?xJW8hv8STv4Cs1uHAf0yI50u7ECMyVUd8EuuKNqimDSNVtVn+uRNu+UdZKuY?=
+ =?us-ascii?Q?wgkpBMEjeqC/4BHmE4ZMtEY8FBQfafTSPyWknDKHR2BLNkMqVxABIkMjWVEi?=
+ =?us-ascii?Q?J+2t9Qd6MUM4Xf5dj7Xj1HpaJ894rbk1nbSQWGLLk0AFZ/ft2Y5g0Q0RhHva?=
+ =?us-ascii?Q?9haX3Y/Tv0h55chSgJfdR+vor3nkKovYWXyQl+J+5OndeBPIJKNkCqJXKh7B?=
+ =?us-ascii?Q?GIg1/0CHZuI0rZN5SQ6ZbWUnCk64O2FOGHHkOg4B1M7X0sX02d4ISqY7o1Ue?=
+ =?us-ascii?Q?MQ=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 261b7ede-8af2-4303-2793-08d9fa4db8e8
-X-MS-TrafficTypeDiagnostic: PH0PR01MB6184:EE_
-X-Microsoft-Antispam-PRVS: <PH0PR01MB618438FE78ED4E2710B1ABDBF2019@PH0PR01MB6184.prod.exchangelabs.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: JFhWVMa1dCnNTMvFGbe1iCIGCGcZnfW43fp/Jfaer/jNyCLUq+LM43DgNvDKqGIuH4mztdJv2e0uvCF7IZ8pNtkKuf8f0VsMP5CDhYyJffoiN4hmyiR+S/9YHWgZ6PK3stRjaGHr/9+TK2SRMukVS47dP9/8vC/HPD8vM2xCkAYWgCr87/AUDKMxvHCDtDqyGC81uMBkhmKlbNqqMxVnpDtJNvgdIeOlk0YbbfUpqv65xZkoh4b9jEkPjeoksTgKPxjllL1k+L772rc75F7CqoWlweIPqachDK4CE5wEKGtHnASLZ9hgE5Nm3NEQuDLcZhoAt5NBhCR7GnaME20z8N/kPQb17s3GXSJVqAep02HAxYhP3USux7sIhEX+OzDjW/8u0S7TL/k39BHgdKkbNg22Y0qBTHuBEEOPsSyV+aH4BradOLLjR+0mAp3eurzkGiFmHlvw9H1+3u7+LKK1vzaLgCU47XiulJ0xgysV2IQDYiq9zVtBPmKvBm/eNEDlfEYePoackzGe9WEsJV/xO/T4AsvztHCbnVcg8ZMtehTr2U1F0j1y9stjXNsNzpaa5b2aui0GJCi26V8W7io4Ve4sYIxtblNIG5st1VMTEJLDk2fI2c7KkNvFCHFjGY86ILs1KWY3ps+8rI8/XRa3528Bfn9rxASFXNbE5E4r/JQLjnEPyt8SuvTKsBK6/NV7HQtU3WsHIyzcteP/96YZZQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(83380400001)(66476007)(2906002)(6512007)(186003)(54906003)(26005)(38100700002)(38350700002)(110136005)(1076003)(107886003)(2616005)(8936002)(66946007)(52116002)(5660300002)(66556008)(6506007)(4326008)(6486002)(316002)(86362001)(508600001)(6666004)(8676002);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LBjGZ5WyQfuS/7B3WOe5PS/d/+cDXjQvH2dh/ihIBWuze3cPy6ymagaUa9I/?=
- =?us-ascii?Q?3QcSOyfBhlQwlC4t5ez3aK0IAAFOphfIIMcxcRrBYpoRTUdXp2gU0k/4uJrL?=
- =?us-ascii?Q?co1iO9hVN+QAzbzFDQ6E5d6622jqUws2J/QA12+bElCs/xpRX0RCFi/KciCy?=
- =?us-ascii?Q?+XzubdPKzs+7gvqknHN78Yo2fs4Hh3rfhVbUuEFFZCa5x+f5Xh00OaU+pt0D?=
- =?us-ascii?Q?JddPxyXBmGj2Srgk8YWNYVarsRFrJ/kNJckIXE9F6BT0VgSOZyYLFYAa7twn?=
- =?us-ascii?Q?3zhC+Vcj2uS8uhd8S/C3bHajjMLH2X/YCZepyBBVA9yGO0ZxoKpHjMdfVEt1?=
- =?us-ascii?Q?QkevSlS4MooyKn0s22m64KnLrm68CHWJ1zDuVwXj5S9BlS3Tyh/9auYJQSG5?=
- =?us-ascii?Q?CwlGwgB/yvysk9iiTqIlcEVEq5t7m2UMgj7Ym0Ea0WA3BHpOJWVjb2qswd7+?=
- =?us-ascii?Q?TfJERFAq4dZXrDdbbV9TRSMqr4K721hY2EzUkQpNpbNOBEwC9hvQDDxt/Ht/?=
- =?us-ascii?Q?WvSTGjSXhZfskoSLewoN/NJ9FdjJiIiLH7vIf3gif0gZ0Vhy8WH7bKDXdE9g?=
- =?us-ascii?Q?2/hnkeOdxTWPaOPGa7ISTrLyXprkTRhD0ZxVxFK/tS5bSrmGlsdD9ho1fb3Z?=
- =?us-ascii?Q?uRl+4B53HhHhyZvkUGHHmtVcz5SRfu8QavImlwR+Nfx5rZ6k3DTwUfzmQbwU?=
- =?us-ascii?Q?vOlrrkUWPKiGfL0oy3Hm2TFS9ZCz6E1nvzbizWGEilDFVxF1Wbqb079JgJLE?=
- =?us-ascii?Q?YFa79F0H2PnXUM1tG6N6pZatrKFXq7F2PPtcv7wMU+zNnP2HrWqUG+NRYks0?=
- =?us-ascii?Q?XMFvzTEvnebr3/OoYGQgWgs4zymTWdnTQU+HC7U2PiJdN0Tl2FRqgkOcQKNZ?=
- =?us-ascii?Q?JcHZWJNI/I651y1AjQR55p4DxIQFyC76EeSiAN+qN9aBPyhRIEh4s9LpNelp?=
- =?us-ascii?Q?lXck+XOnyq1ysVlQwTO6xTwNm/tYYc2gBYWt0hH3OrQZ1fQyucRyepFYSJ82?=
- =?us-ascii?Q?WS36CmfO/4TRDxRk/7/KMmGvBDVigbUlz4FE2dYFsMWvyvjFeTgRr5l5izPq?=
- =?us-ascii?Q?rO/AnZb6q0o2333PezQZdleqrJ8dLDbPhM0qnUP1QZp1R2tzTfVc2Bqpqh9/?=
- =?us-ascii?Q?iEMofRjck9kR0MNBfyb1Iv6j/x5TZT9aNtzFIbtxrZWX2/3XHuBkDLGZotXV?=
- =?us-ascii?Q?P9mNXcPhTH/4S+PlejT70RDy1/ARdVFDFnqj4QIhXSfNAq9QJol5NC8puchV?=
- =?us-ascii?Q?0HYVCRreaweWWSzLdLo2wU1zjG42Uc2VWICOS8BVgLGc2KTR89Gik82GpUfe?=
- =?us-ascii?Q?A2OFOjpdyaZeUDNjybLi2MJKjozLiPASORk5/TIOhelFRoucsMbq0EBomybE?=
- =?us-ascii?Q?XWSpHJWWtf7AmkohdZ/dXgBJr5MTiXqZvgfxUYnRyfohL3ZXBuwwiK6TvSBf?=
- =?us-ascii?Q?usmE5BYSlKGctq+wxRfF9aUySCc5y9WVz6GmtNkHzr1TafdKPFh3W9Y4dd5e?=
- =?us-ascii?Q?u5sxGyKrXP6mULb8Iz1D86Wp4ZDcZ1JAhYOq7QM66yjHUoxsXrRJOlx5jg8D?=
- =?us-ascii?Q?GQW0ONIepeIlfe+sUDUWm6MLO2E6q+oknsN2ofjI1K/G0e0HotGM3Q23U1gG?=
- =?us-ascii?Q?F70GNnCn+Q4XDKXekfuCQBf8rNaYRdk8zSZQfSi7T71pgmNmDh19lvFVzhqm?=
- =?us-ascii?Q?AnzGv6ZvvS3RcknXbGI5hFOSnDM=3D?=
-X-OriginatorOrg: os.amperecomputing.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 261b7ede-8af2-4303-2793-08d9fa4db8e8
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 00:03:17.5045
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07d462d8-5b51-4450-d986-08d9fa52d15b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2022 00:39:45.5262
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KM4WhP0v7fA9mahWs1h8zOseuyUKr7jP5x1cmSWluPeXQAZgLEjZ7r1hCQXTVHx+4A2dIXGb+g18muMalnVpolPIIs623Of+dj0wzH9vYXE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR01MB6184
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: JdDKQvgmwObnKSz1MnvfSWIXYbwya6/otjOX84hh9VPP7qHkIKTs5vKGUxxElvKGaeJlbbYM5QGVRH5U5ppCfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4815
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move adc14 and adc15 (battery sensor) into single iio-hwmon node to
-correct label to be read by single application for all adc sensors.
+Hi Abel,
 
-Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
-Signed-off-by: Thang Q. Nguyen <thang@os.amperecomputing.com>
----
- arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts | 13 ++-----------
- 1 file changed, 2 insertions(+), 11 deletions(-)
+> Subject: Re: [PATCH 3/3] clk: imx8mp: remove SYS PLL 1/2 clock gates
+>=20
+> On 22-02-25 16:17:33, Peng Fan (OSS) wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > Remove the PLL 1/2 gates as it make AMP clock management harder
+> > without obvious benifit.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  drivers/clk/imx/clk-imx8mp.c | 48
+> > ++++++++++++------------------------
+> >  1 file changed, 16 insertions(+), 32 deletions(-)
+> >
+> > diff --git a/drivers/clk/imx/clk-imx8mp.c
+> > b/drivers/clk/imx/clk-imx8mp.c index f23b92906d3b..18f5b7c3ca9d
+> 100644
+> > --- a/drivers/clk/imx/clk-imx8mp.c
+> > +++ b/drivers/clk/imx/clk-imx8mp.c
+> > @@ -480,44 +480,28 @@ static int imx8mp_clocks_probe(struct
+> platform_device *pdev)
+> >  	hws[IMX8MP_ARM_PLL_OUT] =3D imx_clk_hw_gate("arm_pll_out",
+> "arm_pll_bypass", anatop_base + 0x84, 11);
+> >  	hws[IMX8MP_SYS_PLL3_OUT] =3D imx_clk_hw_gate("sys_pll3_out",
+> > "sys_pll3_bypass", anatop_base + 0x114, 11);
+> >
+> > -	hws[IMX8MP_SYS_PLL1_40M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_40m_cg", "sys_pll1_bypass", anatop_base + 0x94,
+> 27);
+>=20
+> Hmm, isn't there a chance that u-boot might gate these? Then, in kernel y=
+ou
+> won't have a way to ungate them, leaving the consumers hanging.
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-index 60b0e650957a..1b2e7ad37566 100644
---- a/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-ampere-mtjade.dts
-@@ -339,17 +339,8 @@ iio-hwmon {
- 			<&adc10mux 0>, <&adc10mux 1>,
- 			<&adc11mux 0>, <&adc11mux 1>,
- 			<&adc12mux 0>, <&adc12mux 1>,
--			<&adc13mux 0>, <&adc13mux 1>;
--	};
--
--	iio-hwmon-adc14 {
--		compatible = "iio-hwmon";
--		io-channels = <&adc 14>;
--	};
--
--	iio-hwmon-battery {
--		compatible = "iio-hwmon";
--		io-channels = <&adc 15>;
-+			<&adc13mux 0>, <&adc13mux 1>,
-+			<&adc 14>, <&adc 15>;
- 	};
- };
- 
--- 
-2.28.0
+Both NXP and Upstream U-Boot not touch these bits. With the CG managed
+by Linux, it is hard to support AMP. This is same to Lucas's patch to
+clk-imx8mq.c to drop the gate.
 
+The other method to support AMP well, is to add the CGs clk in device tree =
+node
+for Mcore. But we still need a method to support M core booted in U-Boot, a=
+nd
+linux may gate off the clock.
+
+Thanks,
+Peng.
+
+>=20
+> > -	hws[IMX8MP_SYS_PLL1_80M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_80m_cg", "sys_pll1_bypass", anatop_base + 0x94,
+> 25);
+> > -	hws[IMX8MP_SYS_PLL1_100M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_100m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 23);
+> > -	hws[IMX8MP_SYS_PLL1_133M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_133m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 21);
+> > -	hws[IMX8MP_SYS_PLL1_160M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_160m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 19);
+> > -	hws[IMX8MP_SYS_PLL1_200M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_200m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 17);
+> > -	hws[IMX8MP_SYS_PLL1_266M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_266m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 15);
+> > -	hws[IMX8MP_SYS_PLL1_400M_CG] =3D
+> imx_clk_hw_gate("sys_pll1_400m_cg", "sys_pll1_bypass", anatop_base +
+> 0x94, 13);
+> >  	hws[IMX8MP_SYS_PLL1_OUT] =3D imx_clk_hw_gate("sys_pll1_out",
+> > "sys_pll1_bypass", anatop_base + 0x94, 11);
+> >
+> > -	hws[IMX8MP_SYS_PLL1_40M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_40m", "sys_pll1_40m_cg", 1, 20);
+> > -	hws[IMX8MP_SYS_PLL1_80M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_80m", "sys_pll1_80m_cg", 1, 10);
+> > -	hws[IMX8MP_SYS_PLL1_100M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_100m", "sys_pll1_100m_cg", 1, 8);
+> > -	hws[IMX8MP_SYS_PLL1_133M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_133m", "sys_pll1_133m_cg", 1, 6);
+> > -	hws[IMX8MP_SYS_PLL1_160M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_160m", "sys_pll1_160m_cg", 1, 5);
+> > -	hws[IMX8MP_SYS_PLL1_200M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_200m", "sys_pll1_200m_cg", 1, 4);
+> > -	hws[IMX8MP_SYS_PLL1_266M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_266m", "sys_pll1_266m_cg", 1, 3);
+> > -	hws[IMX8MP_SYS_PLL1_400M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_400m", "sys_pll1_400m_cg", 1, 2);
+> > +	hws[IMX8MP_SYS_PLL1_40M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_40m", "sys_pll1_out", 1, 20);
+> > +	hws[IMX8MP_SYS_PLL1_80M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_80m", "sys_pll1_out", 1, 10);
+> > +	hws[IMX8MP_SYS_PLL1_100M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_100m", "sys_pll1_out", 1, 8);
+> > +	hws[IMX8MP_SYS_PLL1_133M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_133m", "sys_pll1_out", 1, 6);
+> > +	hws[IMX8MP_SYS_PLL1_160M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_160m", "sys_pll1_out", 1, 5);
+> > +	hws[IMX8MP_SYS_PLL1_200M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_200m", "sys_pll1_out", 1, 4);
+> > +	hws[IMX8MP_SYS_PLL1_266M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_266m", "sys_pll1_out", 1, 3);
+> > +	hws[IMX8MP_SYS_PLL1_400M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_400m",
+> > +"sys_pll1_out", 1, 2);
+> >  	hws[IMX8MP_SYS_PLL1_800M] =3D
+> imx_clk_hw_fixed_factor("sys_pll1_800m",
+> > "sys_pll1_out", 1, 1);
+> >
+> > -	hws[IMX8MP_SYS_PLL2_50M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_50m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 27);
+> > -	hws[IMX8MP_SYS_PLL2_100M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_100m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 25);
+> > -	hws[IMX8MP_SYS_PLL2_125M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_125m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 23);
+> > -	hws[IMX8MP_SYS_PLL2_166M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_166m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 21);
+> > -	hws[IMX8MP_SYS_PLL2_200M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_200m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 19);
+> > -	hws[IMX8MP_SYS_PLL2_250M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_250m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 17);
+> > -	hws[IMX8MP_SYS_PLL2_333M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_333m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 15);
+> > -	hws[IMX8MP_SYS_PLL2_500M_CG] =3D
+> imx_clk_hw_gate("sys_pll2_500m_cg", "sys_pll2_bypass", anatop_base +
+> 0x104, 13);
+> >  	hws[IMX8MP_SYS_PLL2_OUT] =3D imx_clk_hw_gate("sys_pll2_out",
+> > "sys_pll2_bypass", anatop_base + 0x104, 11);
+> >
+> > -	hws[IMX8MP_SYS_PLL2_50M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_50m", "sys_pll2_50m_cg", 1, 20);
+> > -	hws[IMX8MP_SYS_PLL2_100M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_100m", "sys_pll2_100m_cg", 1, 10);
+> > -	hws[IMX8MP_SYS_PLL2_125M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_125m", "sys_pll2_125m_cg", 1, 8);
+> > -	hws[IMX8MP_SYS_PLL2_166M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_166m", "sys_pll2_166m_cg", 1, 6);
+> > -	hws[IMX8MP_SYS_PLL2_200M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_200m", "sys_pll2_200m_cg", 1, 5);
+> > -	hws[IMX8MP_SYS_PLL2_250M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_250m", "sys_pll2_250m_cg", 1, 4);
+> > -	hws[IMX8MP_SYS_PLL2_333M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_333m", "sys_pll2_333m_cg", 1, 3);
+> > -	hws[IMX8MP_SYS_PLL2_500M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_500m", "sys_pll2_500m_cg", 1, 2);
+> > +	hws[IMX8MP_SYS_PLL2_50M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_50m", "sys_pll2_out", 1, 20);
+> > +	hws[IMX8MP_SYS_PLL2_100M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_100m", "sys_pll2_out", 1, 10);
+> > +	hws[IMX8MP_SYS_PLL2_125M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_125m", "sys_pll2_out", 1, 8);
+> > +	hws[IMX8MP_SYS_PLL2_166M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_166m", "sys_pll2_out", 1, 6);
+> > +	hws[IMX8MP_SYS_PLL2_200M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_200m", "sys_pll2_out", 1, 5);
+> > +	hws[IMX8MP_SYS_PLL2_250M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_250m", "sys_pll2_out", 1, 4);
+> > +	hws[IMX8MP_SYS_PLL2_333M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_333m", "sys_pll2_out", 1, 3);
+> > +	hws[IMX8MP_SYS_PLL2_500M] =3D
+> imx_clk_hw_fixed_factor("sys_pll2_500m",
+> > +"sys_pll2_out", 1, 2);
+> >  	hws[IMX8MP_SYS_PLL2_1000M] =3D
+> > imx_clk_hw_fixed_factor("sys_pll2_1000m", "sys_pll2_out", 1, 1);
+> >
+> >  	hws[IMX8MP_CLK_A53_DIV] =3D
+> imx8m_clk_hw_composite_core("arm_a53_div",
+> > imx8mp_a53_sels, ccm_base + 0x8000);
+> > --
+> > 2.25.1
+> >
