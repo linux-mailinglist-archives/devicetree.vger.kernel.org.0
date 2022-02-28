@@ -2,114 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2FE74C7D0A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 23:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7C44C7D28
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 23:15:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230081AbiB1WKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 17:10:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46242 "EHLO
+        id S231289AbiB1WQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 17:16:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbiB1WKX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 17:10:23 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 738FCC681F;
-        Mon, 28 Feb 2022 14:09:43 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 39DA4B81698;
-        Mon, 28 Feb 2022 22:09:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D10FC340EE;
-        Mon, 28 Feb 2022 22:09:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646086180;
-        bh=C3m4pnnTAF+o+8Z+tsT22TMwOAoIvmDl7rQIHuiLdMA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=BdRbVBZNF8SyrlpXKAsHjo1A6k3f944Uzsh5hy2UmK5ywn8cPtoiWatoTWpomjQzc
-         x44Jv7/Wzxo8T+fSgsmyLRYgbKXOQkqEy86p/ln+HE5A679Zvs+XoyM7aJWc8wSHt6
-         ACqagutJzp7I7JrJGyMxpDRREGY/HUyTANKgF4FJ/99jkm+o2X+/pda0xDuvY8MbdY
-         Sv4Zfi/zQD1hFPf6GsOnP6lA5hiuplekt76UNCcR1YonNLI47HOJfCmRDkLAT1NcBE
-         yuQHyRRcOkNLJGUq9zBF6RREf+bF8FScygNYfOz5OBENPb041Vfalb0bt696k7uf4U
-         g+dDDXgOJFcHA==
-Date:   Mon, 28 Feb 2022 22:09:31 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        with ESMTP id S231214AbiB1WQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 17:16:35 -0500
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6366AE1B74;
+        Mon, 28 Feb 2022 14:15:55 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id i10-20020a4aab0a000000b002fccf890d5fso20406279oon.5;
+        Mon, 28 Feb 2022 14:15:55 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OEmvWFYcUlvLI2qOQZZbyye8qQFK9MgvtHyOAXPOp8U=;
+        b=McxFFoHj1F6birwbR/G2gJwMs0PBaVuXV4Or9FFpGHcFpVX5nMgUU/lKRpidfCALrc
+         jNDnSnjHShUodESImjwyrG6ceUEHhPKW+lEgJEC9wbozS4ZOc6KV9ASke925ljnPIHLV
+         Ft22CVrP1+Yer0ZAUhz6O2UjpC9Be+QMT9heKyjzbCeMbisk7Npnr9kDlbth4xUt7PHk
+         nRzpzFGCyivVliZ+RV20oM3qfCLNi0sfgmWsFY9stRSLKc0/dUyXM7cKilhclXCjefhm
+         laJRJu2Zs8AOtW/JHpUiW3jlzpNNJFcsv7WqIp0Ciw4b2I5ufhGAroNSeZ7WoYy07RdU
+         8R2Q==
+X-Gm-Message-State: AOAM531naWdDGpfUzE9ldGgU1jtA7imrpYygxkay/wMZn0kxof9d+CrA
+        b8YtKK7xR4Umtphg44Qj3w==
+X-Google-Smtp-Source: ABdhPJz03WhL44Cw8TDPnrAAhE5YNR7G6nXVzt9q331dU3Co2p6qYpvGwJfUqyb2mMaeRoSteXVOaw==
+X-Received: by 2002:a4a:db95:0:b0:31c:23c8:554d with SMTP id s21-20020a4adb95000000b0031c23c8554dmr10094963oou.64.1646086554672;
+        Mon, 28 Feb 2022 14:15:54 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id t1-20020a05687044c100b000cd7b642bedsm5027977oai.14.2022.02.28.14.15.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 14:15:54 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Lee Jones <lee.jones@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee.jones@linaro.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org,
-        linux-leds@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-pm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-spi@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Another pass removing cases of 'allOf'
- containing a '$ref'
-Message-ID: <Yh1IG9daOUOB52rf@sirena.org.uk>
-References: <20220228213802.1639658-1-robh@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH] dt-bindings: Add compatibles for undocumented trivial syscons
+Date:   Mon, 28 Feb 2022 16:15:37 -0600
+Message-Id: <20220228221537.1700071-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="xC2AwCckB4yHmCdp"
-Content-Disposition: inline
-In-Reply-To: <20220228213802.1639658-1-robh@kernel.org>
-X-Cookie: Killing turkeys causes winter.
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+'intel,lgm-syscon', 'marvell,armada-3700-usb2-host-misc',
+'mediatek,mt8135-pctl-a-syscfg', and 'mediatek,mt8135-pctl-b-syscfg' are
+all used in DT binding examples and/or dts files, but are not
+documented. Add them to syscon.yaml as they are all trivial cases.
 
---xC2AwCckB4yHmCdp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-On Mon, Feb 28, 2022 at 03:38:02PM -0600, Rob Herring wrote:
-> Another pass at removing unnecessary use of 'allOf' with a '$ref'.
->=20
-> json-schema versions draft7 and earlier have a weird behavior in that
-> any keywords combined with a '$ref' are ignored (silently). The correct
-> form was to put a '$ref' under an 'allOf'. This behavior is now changed
-> in the 2019-09 json-schema spec and '$ref' can be mixed with other
-> keywords.
+diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+index eeac1cbc5a17..29d4a97f7108 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+@@ -44,6 +44,10 @@ properties:
+               - hisilicon,hi6220-sramctrl
+               - hisilicon,pcie-sas-subctrl
+               - hisilicon,peri-subctrl
++              - intel,lgm-syscon
++              - marvell,armada-3700-usb2-host-misc
++              - mediatek,mt8135-pctl-a-syscfg
++              - mediatek,mt8135-pctl-b-syscfg
+               - microchip,sparx5-cpu-syscon
+               - mstar,msc313-pmsleep
+               - rockchip,px30-qos
+-- 
+2.32.0
 
-Acked-by: Mark Brown <broonie@kernel.org>
-
---xC2AwCckB4yHmCdp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIdSBoACgkQJNaLcl1U
-h9Brnwf9Gb7P9H3jku9OngoretGUxGN4DtDmr+0Bvk7ZZFkSIVQYVBROL0mmUfer
-wPLiKHS48VJM6irhxRMqHLa1CrIeAmJHZpkg0R1JH1Iw36fWPZiBTfrDG8qubOti
-l/cEx7Jmxoj2EtB8xcTpbYGqwOqSZtDkAz1smUIh3coKzArwCPjkAYE59GjQ28SS
-F+P6ze1awYqRh/vkZC5ge03hrBhxOKU1iVyqv4iRfWtwCXRxYM3aPTs4aLB/T0NW
-svINogVRgGsGVmY7gRufv1wI7bJle7+MP7byPwsqzx2AXthe0fYt3x457mV59wjc
-Ej2pLNgE/IiOKyZ8gmWU8kkWHOh2hQ==
-=Hxgn
------END PGP SIGNATURE-----
-
---xC2AwCckB4yHmCdp--
