@@ -2,103 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 786CF4C7086
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:27:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96BB84C708A
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:27:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232172AbiB1P1j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 10:27:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38784 "EHLO
+        id S229933AbiB1P2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 10:28:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237124AbiB1P1i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:27:38 -0500
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B92417EA1F;
-        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso9750662ots.7;
-        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=rp3jXo0jowUC07M1Ixk3RLOx4sQHBELJ5AB4vK2RiB0=;
-        b=NCzFGVTq9yoWwrJnaOzU3Jom6JqG35Oo51bf7+5y7XkznEGReD/sV3PIFy3rpBaGex
-         lOesXSHyqGBQW+Q16mDMMCuGfvuI1pGqq67d3ew+NltQFJp0HGdDa0rQbZ6IyEVI+Hoi
-         HuyHhFkPJhh05F1prnRIbTknPhtKPawD6qYswE4Qbd/DLwqG1HDRPYzb3+b2tIenyqJO
-         FGPq4nYCSV457HHQz8RWD/wYW+NYR2Kj4C736oBvSQWBgAQZTU2YJAq7uVrf8k00vl9T
-         pL3NWKAEZNS+2ZkxqTHTNbzKX/hh2ukZp3OwSu2wshDJwA7RTtxw1hacviE8yvDjDK+y
-         lHhA==
-X-Gm-Message-State: AOAM530JceXtB3tOIAPUUcbpULNx9Y25QYnvpVcCflSLEPJx6HF3kF09
-        /x64UCD4bi/NKuLmkQq/W+Rwq5W9jw==
-X-Google-Smtp-Source: ABdhPJzxNAQPBbD8i478ScZWaCVovchVyiuczqMyUQ+9KiVnrzkL5S4/6wCNr6VwhVqnrJvmXiaSxw==
-X-Received: by 2002:a9d:71de:0:b0:5ad:32a4:4a9b with SMTP id z30-20020a9d71de000000b005ad32a44a9bmr9296658otj.336.1646062019011;
-        Mon, 28 Feb 2022 07:26:59 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id fq14-20020a0568710b0e00b000d4492531a2sm4805518oab.17.2022.02.28.07.26.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 07:26:58 -0800 (PST)
-Received: (nullmailer pid 1049707 invoked by uid 1000);
-        Mon, 28 Feb 2022 15:26:56 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
+        with ESMTP id S237520AbiB1P1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:27:54 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D5687811AD;
+        Mon, 28 Feb 2022 07:27:15 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6F133ED1;
+        Mon, 28 Feb 2022 07:27:15 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 00FD03F73D;
+        Mon, 28 Feb 2022 07:27:13 -0800 (PST)
+Message-ID: <1763f668-2582-c05e-7ac8-d635bc84ef82@arm.com>
+Date:   Mon, 28 Feb 2022 15:27:08 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Update clocks property for ARM
+ pl022
+Content-Language: en-GB
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-In-Reply-To: <20220228120258.997027-2-vladimir.zapolskiy@linaro.org>
-References: <20220228120258.997027-1-vladimir.zapolskiy@linaro.org> <20220228120258.997027-2-vladimir.zapolskiy@linaro.org>
-Subject: Re: [PATCH 1/8] dt-bindings: clock: add QCOM SM8450 camera clock bindings
-Date:   Mon, 28 Feb 2022 09:26:56 -0600
-Message-Id: <1646062016.591692.1049706.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
+ <20220228124345.99474-2-singh.kuldeep87k@gmail.com>
+ <6e14bdd4-5924-dd58-41ef-5bdb5561913b@arm.com>
+ <YhzmHgV3L+3nmt+Y@sirena.org.uk>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <YhzmHgV3L+3nmt+Y@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Feb 2022 14:02:57 +0200, Vladimir Zapolskiy wrote:
-> The change adds device tree bindings for camera clock controller
-> found on SM8450 SoC.
+On 2022-02-28 15:11, Mark Brown wrote:
+> On Mon, Feb 28, 2022 at 02:26:12PM +0000, Robin Murphy wrote:
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  .../bindings/clock/qcom,camcc-sm8450.yaml     |  87 ++++++++++
->  include/dt-bindings/clock/qcom,camcc-sm8450.h | 159 ++++++++++++++++++
->  2 files changed, 246 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
->  create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8450.h
+>> Who says that minItems is missing? Looking at the PL022 TRM[1] it seems
+>> clear that SSPCLK is pretty fundamental to useful operation. If that DT ever
+>> worked, it must be that the same clock is wired to both inputs, and the fact
+>> that that's how the neighbouring PL011 is described is strongly suggestive.
 > 
+> Well, it could also be that the clock is wired to some other clock which
+> is always on (which I guess is why the driver allows this in the first
+> place, there's a lot of sloppy code around stuff like that in the tree).
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I wouldn't say the driver "allows" it, so much as it just blindly grabs 
+the first clock assuming it's SSPCLK per the binding, and thus it will 
+happen to work out if the underlying physical clock is the same as, or 
+equivalent to, the APB PCLK. Otherwise, it's already into some degree of 
+not working properly, by virtue of reading the wrong clock rate.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.example.dts:28.34-35 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1398: dt_binding_check] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1598821
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Robin.
