@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02A8E4C7A11
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:21:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 303A34C7A1E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 21:21:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbiB1USY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 15:18:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47560 "EHLO
+        id S229808AbiB1USZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 15:18:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229801AbiB1USX (ORCPT
+        with ESMTP id S229804AbiB1USX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 15:18:23 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0DFB4969C
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014174ECDB
         for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 12:17:42 -0800 (PST)
 Received: from dude03.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::39])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1nOmSb-0003aH-Tv; Mon, 28 Feb 2022 21:17:34 +0100
+        id 1nOmSc-0003aH-Ft; Mon, 28 Feb 2022 21:17:34 +0100
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -26,9 +26,9 @@ Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         patchwork-lst@pengutronix.de
-Subject: [PATCH v3 2/7] soc: imx: gpcv2: add support for i.MX8MP power domains
-Date:   Mon, 28 Feb 2022 21:17:26 +0100
-Message-Id: <20220228201731.3330192-3-l.stach@pengutronix.de>
+Subject: [PATCH v3 3/7] soc: imx: add i.MX8MP HSIO blk-ctrl
+Date:   Mon, 28 Feb 2022 21:17:27 +0100
+Message-Id: <20220228201731.3330192-4-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220228201731.3330192-1-l.stach@pengutronix.de>
 References: <20220228201731.3330192-1-l.stach@pengutronix.de>
@@ -39,489 +39,488 @@ X-SA-Exim-Mail-From: l.stach@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds driver support for all the GPC power domains found on
-the i.MX8MP SoC.
+The i.MX8MP added some blk-ctrl peripherals that don't follow the regular
+structure of the blk-ctrls in the previous SoCs. Add a new file for those
+with currently only the HSIO blk-ctrl being supported. Others will be added
+later on.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- drivers/soc/imx/gpcv2.c | 387 +++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 386 insertions(+), 1 deletion(-)
+ drivers/soc/imx/Makefile          |   1 +
+ drivers/soc/imx/imx8mp-blk-ctrl.c | 446 ++++++++++++++++++++++++++++++
+ 2 files changed, 447 insertions(+)
+ create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
 
-diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index 01f46b078df3..0bc3c00426e9 100644
---- a/drivers/soc/imx/gpcv2.c
-+++ b/drivers/soc/imx/gpcv2.c
-@@ -21,10 +21,12 @@
- #include <dt-bindings/power/imx8mq-power.h>
- #include <dt-bindings/power/imx8mm-power.h>
- #include <dt-bindings/power/imx8mn-power.h>
+diff --git a/drivers/soc/imx/Makefile b/drivers/soc/imx/Makefile
+index 8a707077914c..63cd29f6d4d2 100644
+--- a/drivers/soc/imx/Makefile
++++ b/drivers/soc/imx/Makefile
+@@ -6,3 +6,4 @@ obj-$(CONFIG_HAVE_IMX_GPC) += gpc.o
+ obj-$(CONFIG_IMX_GPCV2_PM_DOMAINS) += gpcv2.o
+ obj-$(CONFIG_SOC_IMX8M) += soc-imx8m.o
+ obj-$(CONFIG_SOC_IMX8M) += imx8m-blk-ctrl.o
++obj-$(CONFIG_SOC_IMX8M) += imx8mp-blk-ctrl.o
+diff --git a/drivers/soc/imx/imx8mp-blk-ctrl.c b/drivers/soc/imx/imx8mp-blk-ctrl.c
+new file mode 100644
+index 000000000000..e832c007b063
+--- /dev/null
++++ b/drivers/soc/imx/imx8mp-blk-ctrl.c
+@@ -0,0 +1,446 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++/*
++ * Copyright 2022 Pengutronix, Lucas Stach <kernel@pengutronix.de>
++ */
++
++#include <linux/clk.h>
++#include <linux/device.h>
++#include <linux/module.h>
++#include <linux/of_device.h>
++#include <linux/platform_device.h>
++#include <linux/pm_domain.h>
++#include <linux/pm_runtime.h>
++#include <linux/regmap.h>
++
 +#include <dt-bindings/power/imx8mp-power.h>
- 
- #define GPC_LPCR_A_CORE_BSC			0x000
- 
- #define GPC_PGC_CPU_MAPPING		0x0ec
-+#define IMX8MP_GPC_PGC_CPU_MAPPING	0x1cc
- 
- #define IMX7_USB_HSIC_PHY_A_CORE_DOMAIN		BIT(6)
- #define IMX7_USB_OTG2_PHY_A_CORE_DOMAIN		BIT(5)
-@@ -65,6 +67,29 @@
- #define IMX8MN_OTG1_A53_DOMAIN		BIT(4)
- #define IMX8MN_MIPI_A53_DOMAIN		BIT(2)
- 
-+#define IMX8MP_MEDIA_ISPDWP_A53_DOMAIN	BIT(20)
-+#define IMX8MP_HSIOMIX_A53_DOMAIN		BIT(19)
-+#define IMX8MP_MIPI_PHY2_A53_DOMAIN		BIT(18)
-+#define IMX8MP_HDMI_PHY_A53_DOMAIN		BIT(17)
-+#define IMX8MP_HDMIMIX_A53_DOMAIN		BIT(16)
-+#define IMX8MP_VPU_VC8000E_A53_DOMAIN		BIT(15)
-+#define IMX8MP_VPU_G2_A53_DOMAIN		BIT(14)
-+#define IMX8MP_VPU_G1_A53_DOMAIN		BIT(13)
-+#define IMX8MP_MEDIAMIX_A53_DOMAIN		BIT(12)
-+#define IMX8MP_GPU3D_A53_DOMAIN			BIT(11)
-+#define IMX8MP_VPUMIX_A53_DOMAIN		BIT(10)
-+#define IMX8MP_GPUMIX_A53_DOMAIN		BIT(9)
-+#define IMX8MP_GPU2D_A53_DOMAIN			BIT(8)
-+#define IMX8MP_AUDIOMIX_A53_DOMAIN		BIT(7)
-+#define IMX8MP_MLMIX_A53_DOMAIN			BIT(6)
-+#define IMX8MP_USB2_PHY_A53_DOMAIN		BIT(5)
-+#define IMX8MP_USB1_PHY_A53_DOMAIN		BIT(4)
-+#define IMX8MP_PCIE_PHY_A53_DOMAIN		BIT(3)
-+#define IMX8MP_MIPI_PHY1_A53_DOMAIN		BIT(2)
 +
-+#define IMX8MP_GPC_PU_PGC_SW_PUP_REQ	0x0d8
-+#define IMX8MP_GPC_PU_PGC_SW_PDN_REQ	0x0e4
++#define GPR_REG0		0x0
++#define  PCIE_CLOCK_MODULE_EN	BIT(0)
++#define  USB_CLOCK_MODULE_EN	BIT(1)
 +
- #define GPC_PU_PGC_SW_PUP_REQ		0x0f8
- #define GPC_PU_PGC_SW_PDN_REQ		0x104
- 
-@@ -107,8 +132,30 @@
- #define IMX8MN_OTG1_SW_Pxx_REQ		BIT(2)
- #define IMX8MN_MIPI_SW_Pxx_REQ		BIT(0)
- 
-+#define IMX8MP_DDRMIX_Pxx_REQ			BIT(19)
-+#define IMX8MP_MEDIA_ISP_DWP_Pxx_REQ		BIT(18)
-+#define IMX8MP_HSIOMIX_Pxx_REQ			BIT(17)
-+#define IMX8MP_MIPI_PHY2_Pxx_REQ		BIT(16)
-+#define IMX8MP_HDMI_PHY_Pxx_REQ			BIT(15)
-+#define IMX8MP_HDMIMIX_Pxx_REQ			BIT(14)
-+#define IMX8MP_VPU_VC8K_Pxx_REQ			BIT(13)
-+#define IMX8MP_VPU_G2_Pxx_REQ			BIT(12)
-+#define IMX8MP_VPU_G1_Pxx_REQ			BIT(11)
-+#define IMX8MP_MEDIMIX_Pxx_REQ			BIT(10)
-+#define IMX8MP_GPU_3D_Pxx_REQ			BIT(9)
-+#define IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ	BIT(8)
-+#define IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ		BIT(7)
-+#define IMX8MP_GPU_2D_Pxx_REQ			BIT(6)
-+#define IMX8MP_AUDIOMIX_Pxx_REQ			BIT(5)
-+#define IMX8MP_MLMIX_Pxx_REQ			BIT(4)
-+#define IMX8MP_USB2_PHY_Pxx_REQ			BIT(3)
-+#define IMX8MP_USB1_PHY_Pxx_REQ			BIT(2)
-+#define IMX8MP_PCIE_PHY_SW_Pxx_REQ		BIT(1)
-+#define IMX8MP_MIPI_PHY1_SW_Pxx_REQ		BIT(0)
++struct imx8mp_hsio_blk_ctrl_domain;
 +
- #define GPC_M4_PU_PDN_FLG		0x1bc
- 
-+#define IMX8MP_GPC_PU_PWRHSK		0x190
- #define GPC_PU_PWRHSK			0x1fc
- 
- #define IMX8M_GPU_HSK_PWRDNACKN			BIT(26)
-@@ -118,7 +165,6 @@
- #define IMX8M_VPU_HSK_PWRDNREQN			BIT(5)
- #define IMX8M_DISP_HSK_PWRDNREQN		BIT(4)
- 
--
- #define IMX8MM_GPUMIX_HSK_PWRDNACKN		BIT(29)
- #define IMX8MM_GPU_HSK_PWRDNACKN		(BIT(27) | BIT(28))
- #define IMX8MM_VPUMIX_HSK_PWRDNACKN		BIT(26)
-@@ -137,6 +183,21 @@
- #define IMX8MN_DISPMIX_HSK_PWRDNREQN		BIT(7)
- #define IMX8MN_HSIO_HSK_PWRDNREQN		BIT(5)
- 
-+#define IMX8MP_MEDIAMIX_PWRDNACKN		BIT(30)
-+#define IMX8MP_HDMIMIX_PWRDNACKN		BIT(29)
-+#define IMX8MP_HSIOMIX_PWRDNACKN		BIT(28)
-+#define IMX8MP_VPUMIX_PWRDNACKN			BIT(26)
-+#define IMX8MP_GPUMIX_PWRDNACKN			BIT(25)
-+#define IMX8MP_MLMIX_PWRDNACKN			(BIT(23) | BIT(24))
-+#define IMX8MP_AUDIOMIX_PWRDNACKN		(BIT(20) | BIT(31))
-+#define IMX8MP_MEDIAMIX_PWRDNREQN		BIT(14)
-+#define IMX8MP_HDMIMIX_PWRDNREQN		BIT(13)
-+#define IMX8MP_HSIOMIX_PWRDNREQN		BIT(12)
-+#define IMX8MP_VPUMIX_PWRDNREQN			BIT(10)
-+#define IMX8MP_GPUMIX_PWRDNREQN			BIT(9)
-+#define IMX8MP_MLMIX_PWRDNREQN			(BIT(7) | BIT(8))
-+#define IMX8MP_AUDIOMIX_PWRDNREQN		(BIT(4) | BIT(15))
++struct imx8mp_hsio_blk_ctrl {
++	struct device *dev;
++	struct notifier_block power_nb;
++	struct device *bus_power_dev;
++	struct regmap *regmap;
++	struct imx8mp_hsio_blk_ctrl_domain *domains;
++	struct genpd_onecell_data onecell_data;
++};
 +
- /*
-  * The PGC offset values in Reference Manual
-  * (Rev. 1, 01/2018 and the older ones) GPC chapter's
-@@ -179,6 +240,28 @@
- #define IMX8MN_PGC_GPUMIX		23
- #define IMX8MN_PGC_DISPMIX		26
- 
-+#define IMX8MP_PGC_NOC			9
-+#define IMX8MP_PGC_MIPI1		12
-+#define IMX8MP_PGC_PCIE			13
-+#define IMX8MP_PGC_USB1			14
-+#define IMX8MP_PGC_USB2			15
-+#define IMX8MP_PGC_MLMIX		16
-+#define IMX8MP_PGC_AUDIOMIX		17
-+#define IMX8MP_PGC_GPU2D		18
-+#define IMX8MP_PGC_GPUMIX		19
-+#define IMX8MP_PGC_VPUMIX		20
-+#define IMX8MP_PGC_GPU3D		21
-+#define IMX8MP_PGC_MEDIAMIX		22
-+#define IMX8MP_PGC_VPU_G1		23
-+#define IMX8MP_PGC_VPU_G2		24
-+#define IMX8MP_PGC_VPU_VC8000E		25
-+#define IMX8MP_PGC_HDMIMIX		26
-+#define IMX8MP_PGC_HDMI			27
-+#define IMX8MP_PGC_MIPI2		28
-+#define IMX8MP_PGC_HSIOMIX		29
-+#define IMX8MP_PGC_MEDIA_ISP_DWP	30
-+#define IMX8MP_PGC_DDRMIX		31
++struct imx8mp_hsio_blk_ctrl_domain_data {
++	const char *name;
++	const char *clk_name;
++	const char *gpc_name;
++};
 +
- #define GPC_PGC_CTRL(n)			(0x800 + (n) * 0x40)
- #define GPC_PGC_SR(n)			(GPC_PGC_CTRL(n) + 0xc)
- 
-@@ -212,6 +295,9 @@ struct imx_pgc_domain {
- 	const int voltage;
- 	const bool keep_clocks;
- 	struct device *dev;
++struct imx8mp_hsio_blk_ctrl_domain {
++	struct generic_pm_domain genpd;
++	struct clk *clk;
++	struct device *power_dev;
++	struct imx8mp_hsio_blk_ctrl *bc;
++	int id;
++};
 +
-+	unsigned int pgc_sw_pup_reg;
-+	unsigned int pgc_sw_pdn_reg;
- };
- 
- struct imx_pgc_domain_data {
-@@ -824,6 +910,303 @@ static const struct imx_pgc_domain_data imx8mm_pgc_domain_data = {
- 	.pgc_regs = &imx7_pgc_regs,
- };
- 
-+static const struct imx_pgc_domain imx8mp_pgc_domains[] = {
-+	[IMX8MP_POWER_DOMAIN_MIPI_PHY1] = {
-+		.genpd = {
-+			.name = "mipi-phy1",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_MIPI_PHY1_SW_Pxx_REQ,
-+			.map = IMX8MP_MIPI_PHY1_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_MIPI1),
++static inline struct imx8mp_hsio_blk_ctrl_domain *
++to_imx8mp_hsio_blk_ctrl_domain(struct generic_pm_domain *genpd)
++{
++	return container_of(genpd, struct imx8mp_hsio_blk_ctrl_domain, genpd);
++}
++
++static int imx8mp_hsio_blk_ctrl_power_on(struct generic_pm_domain *genpd)
++{
++	struct imx8mp_hsio_blk_ctrl_domain *domain =
++			to_imx8mp_hsio_blk_ctrl_domain(genpd);
++	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
++	int ret;
++
++	/* make sure bus domain is awake */
++	ret = pm_runtime_resume_and_get(bc->bus_power_dev);
++	if (ret < 0) {
++		dev_err(bc->dev, "failed to power up bus domain\n");
++		return ret;
++	}
++
++	/* enable upstream and blk-ctrl clocks */
++	ret = clk_prepare_enable(domain->clk);
++	if (ret) {
++		dev_err(bc->dev, "failed to enable clocks\n");
++		goto bus_put;
++	}
++
++	switch (domain->id) {
++	case IMX8MP_HSIOBLK_PD_USB:
++		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
++		break;
++	case IMX8MP_HSIOBLK_PD_PCIE:
++		regmap_set_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
++		break;
++	default:
++		break;
++	}
++
++	/* power up upstream GPC domain */
++	ret = pm_runtime_resume_and_get(domain->power_dev);
++	if (ret < 0) {
++		dev_err(bc->dev, "failed to power up peripheral domain\n");
++		goto clk_disable;
++	}
++
++	return 0;
++
++clk_disable:
++	clk_disable_unprepare(domain->clk);
++bus_put:
++	pm_runtime_put(bc->bus_power_dev);
++
++	return ret;
++}
++
++static int imx8mp_hsio_blk_ctrl_power_off(struct generic_pm_domain *genpd)
++{
++	struct imx8mp_hsio_blk_ctrl_domain *domain =
++			to_imx8mp_hsio_blk_ctrl_domain(genpd);
++	struct imx8mp_hsio_blk_ctrl *bc = domain->bc;
++
++	/* disable clocks */
++	switch (domain->id) {
++	case IMX8MP_HSIOBLK_PD_USB:
++		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
++		break;
++	case IMX8MP_HSIOBLK_PD_PCIE:
++		regmap_clear_bits(bc->regmap, GPR_REG0, PCIE_CLOCK_MODULE_EN);
++		break;
++	default:
++		break;
++	}
++
++	clk_disable_unprepare(domain->clk);
++
++	/* power down upstream GPC domain */
++	pm_runtime_put(domain->power_dev);
++
++	/* allow bus domain to suspend */
++	pm_runtime_put(bc->bus_power_dev);
++
++	return 0;
++}
++
++static struct generic_pm_domain *
++imx8m_blk_ctrl_xlate(struct of_phandle_args *args, void *data)
++{
++	struct genpd_onecell_data *onecell_data = data;
++	unsigned int index = args->args[0];
++
++	if (args->args_count != 1 ||
++	    index >= onecell_data->num_domains)
++		return ERR_PTR(-EINVAL);
++
++	return onecell_data->domains[index];
++}
++
++static struct lock_class_key blk_ctrl_genpd_lock_class;
++
++static const struct imx8mp_hsio_blk_ctrl_domain_data imx8mp_hsio_domain_data[] = {
++	[IMX8MP_HSIOBLK_PD_USB] = {
++		.name = "hsioblk-usb",
++		.clk_name = "usb",
++		.gpc_name = "usb",
 +	},
-+
-+	[IMX8MP_POWER_DOMAIN_PCIE_PHY] = {
-+		.genpd = {
-+			.name = "pcie-phy1",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_PCIE_PHY_SW_Pxx_REQ,
-+			.map = IMX8MP_PCIE_PHY_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_PCIE),
++	[IMX8MP_HSIOBLK_PD_USB_PHY1] = {
++		.name = "hsioblk-usb-phy1",
++		.gpc_name = "usb-phy1",
 +	},
-+
-+	[IMX8MP_POWER_DOMAIN_USB1_PHY] = {
-+		.genpd = {
-+			.name = "usb-otg1",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_USB1_PHY_Pxx_REQ,
-+			.map = IMX8MP_USB1_PHY_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_USB1),
++	[IMX8MP_HSIOBLK_PD_USB_PHY2] = {
++		.name = "hsioblk-usb-phy2",
++		.gpc_name = "usb-phy2",
 +	},
-+
-+	[IMX8MP_POWER_DOMAIN_USB2_PHY] = {
-+		.genpd = {
-+			.name = "usb-otg2",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_USB2_PHY_Pxx_REQ,
-+			.map = IMX8MP_USB2_PHY_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_USB2),
++	[IMX8MP_HSIOBLK_PD_PCIE] = {
++		.name = "hsioblk-pcie",
++		.clk_name = "pcie",
++		.gpc_name = "pcie",
 +	},
-+
-+	[IMX8MP_POWER_DOMAIN_MLMIX] = {
-+		.genpd = {
-+			.name = "mlmix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_MLMIX_Pxx_REQ,
-+			.map = IMX8MP_MLMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_MLMIX_PWRDNREQN,
-+			.hskack = IMX8MP_MLMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_MLMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_AUDIOMIX] = {
-+		.genpd = {
-+			.name = "audiomix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_AUDIOMIX_Pxx_REQ,
-+			.map = IMX8MP_AUDIOMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_AUDIOMIX_PWRDNREQN,
-+			.hskack = IMX8MP_AUDIOMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_AUDIOMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_GPU2D] = {
-+		.genpd = {
-+			.name = "gpu2d",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_GPU_2D_Pxx_REQ,
-+			.map = IMX8MP_GPU2D_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_GPU2D),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_GPUMIX] = {
-+		.genpd = {
-+			.name = "gpumix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_GPU_SHARE_LOGIC_Pxx_REQ,
-+			.map = IMX8MP_GPUMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_GPUMIX_PWRDNREQN,
-+			.hskack = IMX8MP_GPUMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_GPUMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_VPUMIX] = {
-+		.genpd = {
-+			.name = "vpumix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_VPU_MIX_SHARE_LOGIC_Pxx_REQ,
-+			.map = IMX8MP_VPUMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_VPUMIX_PWRDNREQN,
-+			.hskack = IMX8MP_VPUMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_VPUMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_GPU3D] = {
-+		.genpd = {
-+			.name = "gpu3d",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_GPU_3D_Pxx_REQ,
-+			.map = IMX8MP_GPU3D_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_GPU3D),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_MEDIAMIX] = {
-+		.genpd = {
-+			.name = "mediamix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_MEDIMIX_Pxx_REQ,
-+			.map = IMX8MP_MEDIAMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_MEDIAMIX_PWRDNREQN,
-+			.hskack = IMX8MP_MEDIAMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_MEDIAMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_VPU_G1] = {
-+		.genpd = {
-+			.name = "vpu-g1",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_VPU_G1_Pxx_REQ,
-+			.map = IMX8MP_VPU_G1_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_VPU_G1),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_VPU_G2] = {
-+		.genpd = {
-+			.name = "vpu-g2",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_VPU_G2_Pxx_REQ,
-+			.map = IMX8MP_VPU_G2_A53_DOMAIN
-+		},
-+		.pgc = BIT(IMX8MP_PGC_VPU_G2),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_VPU_VC8000E] = {
-+		.genpd = {
-+			.name = "vpu-h1",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_VPU_VC8K_Pxx_REQ,
-+			.map = IMX8MP_VPU_VC8000E_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_VPU_VC8000E),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_HDMIMIX] = {
-+		.genpd = {
-+			.name = "hdmimix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_HDMIMIX_Pxx_REQ,
-+			.map = IMX8MP_HDMIMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_HDMIMIX_PWRDNREQN,
-+			.hskack = IMX8MP_HDMIMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_HDMIMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_HDMI_PHY] = {
-+		.genpd = {
-+			.name = "hdmi-phy",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_HDMI_PHY_Pxx_REQ,
-+			.map = IMX8MP_HDMI_PHY_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_HDMI),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_MIPI_PHY2] = {
-+		.genpd = {
-+			.name = "mipi-phy2",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_MIPI_PHY2_Pxx_REQ,
-+			.map = IMX8MP_MIPI_PHY2_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_MIPI2),
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_HSIOMIX] = {
-+		.genpd = {
-+			.name = "hsiomix",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_HSIOMIX_Pxx_REQ,
-+			.map = IMX8MP_HSIOMIX_A53_DOMAIN,
-+			.hskreq = IMX8MP_HSIOMIX_PWRDNREQN,
-+			.hskack = IMX8MP_HSIOMIX_PWRDNACKN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_HSIOMIX),
-+		.keep_clocks = true,
-+	},
-+
-+	[IMX8MP_POWER_DOMAIN_MEDIAMIX_ISPDWP] = {
-+		.genpd = {
-+			.name = "mediamix-isp-dwp",
-+		},
-+		.bits = {
-+			.pxx = IMX8MP_MEDIA_ISP_DWP_Pxx_REQ,
-+			.map = IMX8MP_MEDIA_ISPDWP_A53_DOMAIN,
-+		},
-+		.pgc = BIT(IMX8MP_PGC_MEDIA_ISP_DWP),
++	[IMX8MP_HSIOBLK_PD_PCIE_PHY] = {
++		.name = "hsioblk-pcie-phy",
++		.gpc_name = "pcie-phy",
 +	},
 +};
 +
-+static const struct regmap_range imx8mp_yes_ranges[] = {
-+		regmap_reg_range(GPC_LPCR_A_CORE_BSC,
-+				 IMX8MP_GPC_PGC_CPU_MAPPING),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_NOC),
-+				 GPC_PGC_SR(IMX8MP_PGC_NOC)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI1),
-+				 GPC_PGC_SR(IMX8MP_PGC_MIPI1)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_PCIE),
-+				 GPC_PGC_SR(IMX8MP_PGC_PCIE)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB1),
-+				 GPC_PGC_SR(IMX8MP_PGC_USB1)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_USB2),
-+				 GPC_PGC_SR(IMX8MP_PGC_USB2)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MLMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_MLMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_AUDIOMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_AUDIOMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU2D),
-+				 GPC_PGC_SR(IMX8MP_PGC_GPU2D)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPUMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_GPUMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPUMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_VPUMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_GPU3D),
-+				 GPC_PGC_SR(IMX8MP_PGC_GPU3D)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIAMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_MEDIAMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G1),
-+				 GPC_PGC_SR(IMX8MP_PGC_VPU_G1)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_G2),
-+				 GPC_PGC_SR(IMX8MP_PGC_VPU_G2)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_VPU_VC8000E),
-+				 GPC_PGC_SR(IMX8MP_PGC_VPU_VC8000E)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMIMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_HDMIMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HDMI),
-+				 GPC_PGC_SR(IMX8MP_PGC_HDMI)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MIPI2),
-+				 GPC_PGC_SR(IMX8MP_PGC_MIPI2)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_HSIOMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_HSIOMIX)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_MEDIA_ISP_DWP),
-+				 GPC_PGC_SR(IMX8MP_PGC_MEDIA_ISP_DWP)),
-+		regmap_reg_range(GPC_PGC_CTRL(IMX8MP_PGC_DDRMIX),
-+				 GPC_PGC_SR(IMX8MP_PGC_DDRMIX)),
++static int imx8mp_hsio_power_notifier(struct notifier_block *nb,
++				      unsigned long action, void *data)
++{
++	struct imx8mp_hsio_blk_ctrl *bc = container_of(nb, struct imx8mp_hsio_blk_ctrl,
++						 power_nb);
++	struct clk *usb_clk = bc->domains[IMX8MP_HSIOBLK_PD_USB].clk;
++	int ret;
++
++	switch (action) {
++	case GENPD_NOTIFY_ON:
++		/*
++		 * enable USB clock for a moment for the power-on ADB handshake
++		 * to proceed
++		 */
++		ret = clk_prepare_enable(usb_clk);
++		if (ret)
++			return NOTIFY_BAD;
++		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
++
++		udelay(5);
++
++		regmap_clear_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
++		clk_disable_unprepare(usb_clk);
++		break;
++	case GENPD_NOTIFY_PRE_OFF:
++		/* enable USB clock for the power-down ADB handshake to work */
++		ret = clk_prepare_enable(usb_clk);
++		if (ret)
++			return NOTIFY_BAD;
++
++		regmap_set_bits(bc->regmap, GPR_REG0, USB_CLOCK_MODULE_EN);
++		break;
++	case GENPD_NOTIFY_OFF:
++		clk_disable_unprepare(usb_clk);
++		break;
++	default:
++		break;
++	}
++
++	return NOTIFY_OK;
++}
++
++static int imx8mp_hsio_blk_ctrl_probe(struct platform_device *pdev)
++{
++	int num_domains = ARRAY_SIZE(imx8mp_hsio_domain_data);
++	struct device *dev = &pdev->dev;
++	struct imx8mp_hsio_blk_ctrl *bc;
++	void __iomem *base;
++	int i, ret;
++
++	static const struct regmap_config regmap_config = {
++		.reg_bits	= 32,
++		.val_bits	= 32,
++		.reg_stride	= 4,
++		.max_register	= 0x24,
++	};
++
++	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
++	if (!bc)
++		return -ENOMEM;
++
++	bc->dev = dev;
++
++	base = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(base))
++		return PTR_ERR(base);
++
++	bc->regmap = devm_regmap_init_mmio(dev, base, &regmap_config);
++	if (IS_ERR(bc->regmap))
++		return dev_err_probe(dev, PTR_ERR(bc->regmap),
++				     "failed to init regmap\n");
++
++	bc->domains = devm_kcalloc(dev, num_domains,
++				   sizeof(struct imx8mp_hsio_blk_ctrl_domain),
++				   GFP_KERNEL);
++	if (!bc->domains)
++		return -ENOMEM;
++
++	bc->onecell_data.num_domains = num_domains;
++	bc->onecell_data.xlate = imx8m_blk_ctrl_xlate;
++	bc->onecell_data.domains =
++		devm_kcalloc(dev, num_domains,
++			     sizeof(struct generic_pm_domain *), GFP_KERNEL);
++	if (!bc->onecell_data.domains)
++		return -ENOMEM;
++
++	bc->bus_power_dev = genpd_dev_pm_attach_by_name(dev, "bus");
++	if (IS_ERR(bc->bus_power_dev))
++		return dev_err_probe(dev, PTR_ERR(bc->bus_power_dev),
++				     "failed to attach bus power domain\n");
++
++	for (i = 0; i < num_domains; i++) {
++		const struct imx8mp_hsio_blk_ctrl_domain_data *data =
++				&imx8mp_hsio_domain_data[i];
++		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
++
++		if (data->clk_name) {
++			domain->clk = devm_clk_get(dev, data->clk_name);
++			if (IS_ERR(domain->clk)) {
++				ret = PTR_ERR(domain->clk);
++				dev_err_probe(dev, ret,
++					      "failed to get clock %s\n",
++					      data->clk_name);
++				goto cleanup_pds;
++			}
++		}
++
++		domain->power_dev =
++			dev_pm_domain_attach_by_name(dev, data->gpc_name);
++		if (IS_ERR(domain->power_dev)) {
++			dev_err_probe(dev, PTR_ERR(domain->power_dev),
++				      "failed to attach power domain %s\n",
++				      data->gpc_name);
++			ret = PTR_ERR(domain->power_dev);
++			goto cleanup_pds;
++		}
++
++		domain->genpd.name = data->name;
++		domain->genpd.power_on = imx8mp_hsio_blk_ctrl_power_on;
++		domain->genpd.power_off = imx8mp_hsio_blk_ctrl_power_off;
++		domain->bc = bc;
++		domain->id = i;
++
++		ret = pm_genpd_init(&domain->genpd, NULL, true);
++		if (ret) {
++			dev_err_probe(dev, ret, "failed to init power domain\n");
++			dev_pm_domain_detach(domain->power_dev, true);
++			goto cleanup_pds;
++		}
++
++		/*
++		 * We use runtime PM to trigger power on/off of the upstream GPC
++		 * domain, as a strict hierarchical parent/child power domain
++		 * setup doesn't allow us to meet the sequencing requirements.
++		 * This means we have nested locking of genpd locks, without the
++		 * nesting being visible at the genpd level, so we need a
++		 * separate lock class to make lockdep aware of the fact that
++		 * this are separate domain locks that can be nested without a
++		 * self-deadlock.
++		 */
++		lockdep_set_class(&domain->genpd.mlock,
++				  &blk_ctrl_genpd_lock_class);
++
++		bc->onecell_data.domains[i] = &domain->genpd;
++	}
++
++	ret = of_genpd_add_provider_onecell(dev->of_node, &bc->onecell_data);
++	if (ret) {
++		dev_err_probe(dev, ret, "failed to add power domain provider\n");
++		goto cleanup_pds;
++	}
++
++	bc->power_nb.notifier_call = imx8mp_hsio_power_notifier;
++	ret = dev_pm_genpd_add_notifier(bc->bus_power_dev, &bc->power_nb);
++	if (ret) {
++		dev_err_probe(dev, ret, "failed to add power notifier\n");
++		goto cleanup_provider;
++	}
++
++	dev_set_drvdata(dev, bc);
++
++	return 0;
++
++cleanup_provider:
++	of_genpd_del_provider(dev->of_node);
++cleanup_pds:
++	for (i--; i >= 0; i--) {
++		pm_genpd_remove(&bc->domains[i].genpd);
++		dev_pm_domain_detach(bc->domains[i].power_dev, true);
++	}
++
++	dev_pm_domain_detach(bc->bus_power_dev, true);
++
++	return ret;
++}
++
++static int imx8mp_hsio_blk_ctrl_remove(struct platform_device *pdev)
++{
++	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(&pdev->dev);
++	int i;
++
++	of_genpd_del_provider(pdev->dev.of_node);
++
++	for (i = 0; bc->onecell_data.num_domains; i++) {
++		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
++
++		pm_genpd_remove(&domain->genpd);
++		dev_pm_domain_detach(domain->power_dev, true);
++	}
++
++	dev_pm_genpd_remove_notifier(bc->bus_power_dev);
++
++	dev_pm_domain_detach(bc->bus_power_dev, true);
++
++	return 0;
++}
++
++#ifdef CONFIG_PM_SLEEP
++static int imx8mp_hsio_blk_ctrl_suspend(struct device *dev)
++{
++	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
++	int ret, i;
++
++	/*
++	 * This may look strange, but is done so the generic PM_SLEEP code
++	 * can power down our domains and more importantly power them up again
++	 * after resume, without tripping over our usage of runtime PM to
++	 * control the upstream GPC domains. Things happen in the right order
++	 * in the system suspend/resume paths due to the device parent/child
++	 * hierarchy.
++	 */
++	ret = pm_runtime_get_sync(bc->bus_power_dev);
++	if (ret < 0) {
++		pm_runtime_put_noidle(bc->bus_power_dev);
++		return ret;
++	}
++
++	for (i = 0; i < bc->onecell_data.num_domains; i++) {
++		struct imx8mp_hsio_blk_ctrl_domain *domain = &bc->domains[i];
++
++		ret = pm_runtime_get_sync(domain->power_dev);
++		if (ret < 0) {
++			pm_runtime_put_noidle(domain->power_dev);
++			goto out_fail;
++		}
++	}
++
++	return 0;
++
++out_fail:
++	for (i--; i >= 0; i--)
++		pm_runtime_put(bc->domains[i].power_dev);
++
++	pm_runtime_put(bc->bus_power_dev);
++
++	return ret;
++}
++
++static int imx8mp_hsio_blk_ctrl_resume(struct device *dev)
++{
++	struct imx8mp_hsio_blk_ctrl *bc = dev_get_drvdata(dev);
++	int i;
++
++	for (i = 0; i < bc->onecell_data.num_domains; i++)
++		pm_runtime_put(bc->domains[i].power_dev);
++
++	pm_runtime_put(bc->bus_power_dev);
++
++	return 0;
++}
++#endif
++
++static const struct dev_pm_ops imx8mp_hsio_blk_ctrl_pm_ops = {
++	SET_SYSTEM_SLEEP_PM_OPS(imx8mp_hsio_blk_ctrl_suspend,
++				imx8mp_hsio_blk_ctrl_resume)
 +};
 +
-+static const struct regmap_access_table imx8mp_access_table = {
-+	.yes_ranges	= imx8mp_yes_ranges,
-+	.n_yes_ranges	= ARRAY_SIZE(imx8mp_yes_ranges),
++static const struct of_device_id imx8mp_hsio_blk_ctrl_of_match[] = {
++	{
++		.compatible = "fsl,imx8mp-hsio-blk-ctrl",
++	}, {
++		/* Sentinel */
++	}
 +};
++MODULE_DEVICE_TABLE(of, imx8m_blk_ctrl_of_match);
 +
-+static const struct imx_pgc_regs imx8mp_pgc_regs = {
-+	.map = IMX8MP_GPC_PGC_CPU_MAPPING,
-+	.pup = IMX8MP_GPC_PU_PGC_SW_PUP_REQ,
-+	.pdn = IMX8MP_GPC_PU_PGC_SW_PDN_REQ,
-+	.hsk = IMX8MP_GPC_PU_PWRHSK,
++static struct platform_driver imx8mp_hsio_blk_ctrl_driver = {
++	.probe = imx8mp_hsio_blk_ctrl_probe,
++	.remove = imx8mp_hsio_blk_ctrl_remove,
++	.driver = {
++		.name = "imx8mp-hsio-blk-ctrl",
++		.pm = &imx8mp_hsio_blk_ctrl_pm_ops,
++		.of_match_table = imx8mp_hsio_blk_ctrl_of_match,
++	},
 +};
-+static const struct imx_pgc_domain_data imx8mp_pgc_domain_data = {
-+	.domains = imx8mp_pgc_domains,
-+	.domains_num = ARRAY_SIZE(imx8mp_pgc_domains),
-+	.reg_access_table = &imx8mp_access_table,
-+	.pgc_regs = &imx8mp_pgc_regs,
-+};
-+
- static const struct imx_pgc_domain imx8mn_pgc_domains[] = {
- 	[IMX8MN_POWER_DOMAIN_HSIOMIX] = {
- 		.genpd = {
-@@ -1119,6 +1502,7 @@ static int imx_gpcv2_probe(struct platform_device *pdev)
- 		domain = pd_pdev->dev.platform_data;
- 		domain->regmap = regmap;
- 		domain->regs = domain_data->pgc_regs;
-+
- 		domain->genpd.power_on  = imx_pgc_power_up;
- 		domain->genpd.power_off = imx_pgc_power_down;
- 
-@@ -1140,6 +1524,7 @@ static const struct of_device_id imx_gpcv2_dt_ids[] = {
- 	{ .compatible = "fsl,imx7d-gpc", .data = &imx7_pgc_domain_data, },
- 	{ .compatible = "fsl,imx8mm-gpc", .data = &imx8mm_pgc_domain_data, },
- 	{ .compatible = "fsl,imx8mn-gpc", .data = &imx8mn_pgc_domain_data, },
-+	{ .compatible = "fsl,imx8mp-gpc", .data = &imx8mp_pgc_domain_data, },
- 	{ .compatible = "fsl,imx8mq-gpc", .data = &imx8m_pgc_domain_data, },
- 	{ }
- };
++module_platform_driver(imx8mp_hsio_blk_ctrl_driver);
 -- 
 2.30.2
 
