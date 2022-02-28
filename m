@@ -2,103 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB1E4C6411
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 08:49:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA0A74C6463
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 09:09:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231660AbiB1Huc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 02:50:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38186 "EHLO
+        id S231745AbiB1IKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 03:10:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233284AbiB1Huc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 02:50:32 -0500
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D79083D1EE;
-        Sun, 27 Feb 2022 23:49:53 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21S7nbJh072514;
-        Mon, 28 Feb 2022 01:49:37 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1646034577;
-        bh=Z18hRYXAm+IJkK76PuTXMrEXV6a7Mb+VwFaPYZ6wq+8=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=haPPXk6IvKcm74N8Gj2miqOBFJr+ay0IP+5GLu7vyLxJrCGriSFUcMB2LusncLj/+
-         seN6dYs89HvV/5pauPqyoKw1WXPXnBhMfMt1V1wgQxOxh3Z6RjZNavNZ9dpN3q+WX7
-         +VAFpjrZGqj36aHFbsNLLNHN75nrBrTjvwfSo6Ac=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21S7nbij119009
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 28 Feb 2022 01:49:37 -0600
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 28
- Feb 2022 01:49:36 -0600
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Mon, 28 Feb 2022 01:49:36 -0600
-Received: from [10.250.233.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21S7nYJX038372;
-        Mon, 28 Feb 2022 01:49:35 -0600
-Message-ID: <63a95660-2ded-1087-999f-57f5c68deda6@ti.com>
-Date:   Mon, 28 Feb 2022 13:19:04 +0530
+        with ESMTP id S231949AbiB1IKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 03:10:12 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DAA569480;
+        Mon, 28 Feb 2022 00:09:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646035774; x=1677571774;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=p9K9p80/Kt5ZYVZQzZ80bVW17pYGTl7pqRSVohlsFhU=;
+  b=PbVEwk8jZqlvFXcIDK4WxWUpVx5JLcvjPc3D8oMp2d286HzKksCvpbVK
+   N2gaDJCe9SBFNPBXYWMneMXaajaiankVBefIJIALWnI7AWgNypfozqqwn
+   iAnm2djIioGJ1KD2mF9QrK/gHf9PO29uIwxO2aEnJ6i1Tkaq+XkwV5HNL
+   A=;
+Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
+  by alexa-out.qualcomm.com with ESMTP; 28 Feb 2022 00:09:34 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 00:09:33 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 28 Feb 2022 00:09:32 -0800
+Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 28 Feb 2022 00:09:26 -0800
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <yung-chuan.liao@linux.intel.com>,
+        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>
+CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
+        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
+Subject: [PATCH] ASoC: qcom: soundwire: Add support for controlling audio CGCR from HLOS
+Date:   Mon, 28 Feb 2022 13:39:10 +0530
+Message-ID: <1646035750-25635-1-git-send-email-quic_srivasam@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v3 2/2] arm64: dts: ti: k3-am64-main: Add ELM (Error
- Location Module) node
-Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, <nm@ti.com>
-CC:     <kishon@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20220204111533.10787-1-rogerq@kernel.org>
- <20220204111533.10787-3-rogerq@kernel.org>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <20220204111533.10787-3-rogerq@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for controlling soundwire audio CGCR interface using clock framework
+to make hclk ungating with software.
+As per new hardware changes, software has to always ungate hclk if soundwire
+is operational and keep it running.
+This requirement is for latest LPASS chipsets for RX, TX and WSA path to work.
 
+Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+---
+This patch set depends on:
+	-- Clock driver patches with reset control support, yet to be posted.
 
-On 04/02/22 4:45 pm, Roger Quadros wrote:
-> The ELM module is used for GPMC NAND accesses for detecting
-> and correcting errors during reads due to NAND bitflips errors.
+ drivers/soundwire/qcom.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-[...]
+diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+index fb183bd..440aad8 100644
+--- a/drivers/soundwire/qcom.c
++++ b/drivers/soundwire/qcom.c
+@@ -12,6 +12,7 @@
+ #include <linux/of_irq.h>
+ #include <linux/of_device.h>
+ #include <linux/regmap.h>
++#include <linux/reset.h>
+ #include <linux/slab.h>
+ #include <linux/slimbus.h>
+ #include <linux/soundwire/sdw.h>
+@@ -129,6 +130,7 @@ struct qcom_swrm_ctrl {
+ 	struct device *dev;
+ 	struct regmap *regmap;
+ 	void __iomem *mmio;
++	struct reset_control *audio_cgcr;
+ #ifdef CONFIG_DEBUG_FS
+ 	struct dentry *debugfs;
+ #endif
+@@ -618,6 +620,8 @@ static int qcom_swrm_init(struct qcom_swrm_ctrl *ctrl)
+ 	val = FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_ROW_CTRL_BMSK, ctrl->rows_index);
+ 	val |= FIELD_PREP(SWRM_MCP_FRAME_CTRL_BANK_COL_CTRL_BMSK, ctrl->cols_index);
+ 
++	reset_control_reset(ctrl->audio_cgcr);
++
+ 	ctrl->reg_write(ctrl, SWRM_MCP_FRAME_CTRL_BANK_ADDR(0), val);
+ 
+ 	/* Enable Auto enumeration */
+@@ -1269,6 +1273,9 @@ static int qcom_swrm_probe(struct platform_device *pdev)
+ 	ctrl->bus.ops = &qcom_swrm_ops;
+ 	ctrl->bus.port_ops = &qcom_swrm_port_ops;
+ 	ctrl->bus.compute_params = &qcom_swrm_compute_params;
++	ctrl->audio_cgcr = devm_reset_control_get_exclusive(dev, "swr_audio_cgcr");
++	if (IS_ERR(ctrl->audio_cgcr))
++		dev_err(dev, "Failed to get audio_cgcr reset required for soundwire-v1.6.0\n");
+ 
+ 	ret = qcom_swrm_get_port_config(ctrl);
+ 	if (ret)
+-- 
+2.7.4
 
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> index 94ea5c304d73..b17620e999a5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am64-main.dtsi
-> @@ -1308,4 +1308,13 @@
->  		gpio-controller;
->  		#gpio-cells = <2>;
->  	};
-> +
-> +	elm0: ecc@25010000 {
-> +		compatible = "ti,am3352-elm";
-
-Sorry, this binding needs to move to YAML before patch can be applied.
-
-> +		reg = <0x00 0x25010000 0x00 0x2000>;
-> +		interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&k3_pds 54 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 54 0>;
-> +		clock-names = "fck";
-> +	};
->  };
-[...]
-
-
-Regards
-Vignesh
