@@ -2,96 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9CB44C615B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 03:44:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 629AA4C6167
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 03:48:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231627AbiB1CpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 21:45:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34646 "EHLO
+        id S231706AbiB1Css (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 21:48:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229985AbiB1CpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 21:45:12 -0500
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A030F1CB38;
-        Sun, 27 Feb 2022 18:44:34 -0800 (PST)
-Received: by mail-ot1-f45.google.com with SMTP id s1-20020a056830148100b005acfdcb1f4bso8438184otq.4;
-        Sun, 27 Feb 2022 18:44:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=/qRGHudNo2KzOCPZ3MYbWDMzFzdSswmrfq6gIYo21yQ=;
-        b=TRXEuHxDRkFL6ApO5eHM+/LaFUHCBKLC5Fy0Pw8lVaIagHNpclhmxgrBOkFg4oip7r
-         ys2WZqiVH2ixfbjW58CqtWQrVhJ7NGsTwOtKrxT4Tam+/yW9Cev5l2kPHWR/U8P56oUn
-         EKP/xUFFEKIyPddjoO2V8PiwVIeyZ82T+A8UmRpV8YYtGY6SJcyoJpHl8LH65Vvus4ap
-         27Wqokq9uiysWuuPJC++vIFmOuuMu7DoIYuPOQPOQe5GCLaA2GIXfvYWAHugWHMhHaYx
-         qjzEdht+qLcjwOsw1vSxctQPo3afOPSCwdcMaGvg4EIvoMBlSo8O1FB8YrMlUlcPjBcb
-         MbnQ==
-X-Gm-Message-State: AOAM533BFkaQ0OgDTg9KEnXrphMIdITVapT3l24NSbNKaLDnqvMBgvLs
-        2xRsSIsKiKU7lRzv4sghQ+b3W3vKzQ==
-X-Google-Smtp-Source: ABdhPJzzxKMlfVFaWHZYyKcYwPUmsSew02e4QthzvrfN5L5ZpZFS5NdKefUV6W/dmlX+O8Pf7AHhiA==
-X-Received: by 2002:a05:6830:1f56:b0:5af:a42e:fcb5 with SMTP id u22-20020a0568301f5600b005afa42efcb5mr8112423oth.85.1646016273915;
-        Sun, 27 Feb 2022 18:44:33 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id u3-20020a056808114300b002d51f9b3263sm5521775oiu.28.2022.02.27.18.44.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Feb 2022 18:44:33 -0800 (PST)
-Received: (nullmailer pid 47198 invoked by uid 1000);
-        Mon, 28 Feb 2022 02:44:30 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Vincent Shih <vincent.sunplus@gmail.com>
-Cc:     linux-usb@vger.kernel.org, p.zabel@pengutronix.de,
-        gregkh@linuxfoundation.org, wells.lu@sunplus.com,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        stern@rowland.harvard.edu, devicetree@vger.kernel.org
-In-Reply-To: <1645955441-6496-3-git-send-email-vincent.sunplus@gmail.com>
-References: <1645955441-6496-1-git-send-email-vincent.sunplus@gmail.com> <1645955441-6496-3-git-send-email-vincent.sunplus@gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: Add bindings doc for Sunplus EHCI driver
-Date:   Sun, 27 Feb 2022 20:44:30 -0600
-Message-Id: <1646016270.937444.47197.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S230419AbiB1Csr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 21:48:47 -0500
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [IPv6:2605:2700:0:5::4713:9cab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27C831A826;
+        Sun, 27 Feb 2022 18:48:08 -0800 (PST)
+Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: zev)
+        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 7B336516;
+        Sun, 27 Feb 2022 18:48:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+        s=thorn; t=1646016488;
+        bh=/iervmZzRL0Mt5kpC3j8ZiRbpDgGTMM0VaPpylf5tJA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DJjeBa0PqiIPgHj9xQr4Sl7aIEu8ufRb7o8PjRh9Zgo3XBWsk2SDHUB0UarokWdO1
+         dO0u2xCPJ76B3QJc8ropLkDBqt/9Xvkq98/Mr+tB5BgfydrmeQpumdUkI/RiTtiIxL
+         fkelbIxetoTFB86c5AF1TbWuRHDbIFJT3lHBXcRE=
+Date:   Sun, 27 Feb 2022 18:48:05 -0800
+From:   Zev Weiss <zev@bewilderbeest.net>
+To:     Oleksandr Natalenko <oleksandr@natalenko.name>
+Cc:     linux-hwmon@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org, Renze Nicolai <renze@rnplus.nl>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/5] hwmon: (nct6775) Add i2c support
+Message-ID: <Yhw35Wq5r5KiNWyM@hatter.bewilderbeest.net>
+References: <20220226133047.6226-1-zev@bewilderbeest.net>
+ <2620147.mvXUDI8C0e@natalenko.name>
+ <YhrFizhgOpZbi3dE@hatter.bewilderbeest.net>
+ <4719747.31r3eYUQgx@natalenko.name>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4719747.31r3eYUQgx@natalenko.name>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Feb 2022 17:50:41 +0800, Vincent Shih wrote:
-> Add bindings doc for Sunplus EHCI driver
-> 
-> Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
-> ---
->  .../bindings/usb/sunplus,sp7021-usb-ehci.yaml      | 97 ++++++++++++++++++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml
-> 
+On Sun, Feb 27, 2022 at 01:38:31PM PST, Oleksandr Natalenko wrote:
+>Hello.
+>
+>On neděle 27. února 2022 1:27:55 CET Zev Weiss wrote:
+>> On Sat, Feb 26, 2022 at 04:14:12PM PST, Oleksandr Natalenko wrote:
+>> >Hello.
+>> >
+>> >On sobota 26. února 2022 14:30:42 CET Zev Weiss wrote:
+>> >> Hello,
+>> >>
+>> >> This patch series augments the existing nct6775 driver with support
+>> >> for the hardware's i2c interface.
+>> >
+>> >Is it something I can test on my ASUS Pro WS X570-ACE board as an ordinary user, and if so, how?
+>> >
+>>
+>> You could certainly test that the nct6775-platform driver still works as
+>> it did previously, which would be good to confirm -- you'll need to
+>> enable CONFIG_SENSORS_NCT6775_PLATFORM now to build it.
+>
+>Ack.
+>
+>>  From what I've been able to find about that board though it looks like
+>> it doesn't have a BMC, so testing the i2c driver on it probably isn't
+>> going to be possible.  (Even if it does in fact have a BMC, it would
+>> require at least a partial port of OpenBMC or similar, and re-flashing
+>> your BMC firmware with that, and is hence a non-trivial undertaking.)
+>
+>It should have, the BMC is based on RTL8117, although I have no idea if it is something that can be called true IPMI as I've never enabled/used it.
+>
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Ah, interesting -- I hadn't heard of that chip before, and web searches 
+mostly seem to turn up discussions of that particular board (and sibling 
+models), so I guess it's probably not very widely used elsewhere.  It 
+does appear to run an OpenWRT-based firmware with source available 
+(https://gitlab.com/gplmirror/rtl8117), though apparently with a rather 
+old (4.4) kernel (and with added fun goodies like what looks to be a 
+partial implementation of an in-kernel VNC server??).
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml:62:18: [warning] too many spaces after colon (colons)
+So I guess in theory if you were feeling adventurous and wanted to 
+backport these patches to that kernel, recompile the firmware, and flash 
+the result onto your hardware you could *maybe* test out the i2c driver, 
+though it's probably a much deeper rabbit hole than is likely to be 
+worthwhile, and with significant risk of leaving your hardware in an 
+awkward (potentially bricked) state if things go awry, so it's not 
+something I'd recommend taking on casually.  There would also still be 
+the process of figuring out at what i2c bus/address the Super-I/O chip 
+lives for the rtl8117, if its i2c interface is even attached at all, 
+which I don't think is guaranteed -- the rtl8117 might not need it if 
+it's not in charge of thermal monitoring/fan control on that board, and 
+even if it is handling that it might have a direct connection to the TSI 
+interface instead of going through the Super-I/O chip as is done on the 
+ASRock boards I'm familiar with.
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.example.dt.yaml:0:0: /example-0/usb@9c102100: failed to match any schema with compatible: ['sunplus,sp7021-usb-ehci']
 
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1598222
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
+Zev
 
