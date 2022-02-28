@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C964C65D5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 10:42:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D934C65D8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 10:42:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234396AbiB1JnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 04:43:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42394 "EHLO
+        id S234423AbiB1Jnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 04:43:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234403AbiB1JnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 04:43:24 -0500
-Received: from mail-ot1-x329.google.com (mail-ot1-x329.google.com [IPv6:2607:f8b0:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F8446302
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:42:46 -0800 (PST)
-Received: by mail-ot1-x329.google.com with SMTP id l21-20020a056830239500b005afd2a7eaa2so6170553ots.9
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:42:46 -0800 (PST)
+        with ESMTP id S234409AbiB1Jn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 04:43:28 -0500
+Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1406B7C1
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:42:48 -0800 (PST)
+Received: by mail-oi1-x22a.google.com with SMTP id j24so12597484oii.11
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:42:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=ZOaq/RArOsIMDEytI6Sz1pnZYzBz3vUl5NUCRG67IW0=;
-        b=tCKMHUU8QAqKTHwdEi5K8/K7yjrn7fm6WB/AaoaEQI6tkUpy5tW0WXN0c+xY9Wi4eJ
-         x/2DwjrGbGUG4RKEmxOeEP4UJzXT31aFaGSjO3VDmZ41dPnA9lA4DvyCwFiroyue0Wus
-         MiQrRH9NTjxL2rZt9GcERXjF19Gsjh6UQp9jwYgjC9F/0Ph+2RIEYnGOFkDZYlmeZPcu
-         ZXWbxA09SAsx3NXpdUNxEaQvxuMSGUWI062WthWWaQnnZ4bBVaGfgClQmNDOGu9U6Dh/
-         GK7TtuNQPyPZV2nGKSASb82XI4sjsqO9G4g7dLQ3Xgp/+VRD49LbiOgfd+2V9amTc/kJ
-         2SwQ==
+        bh=nZwHRuTuQHHbyYlmVo+wQ56EPoPlbAZZW/TgYQjt6EQ=;
+        b=KxbNxI6daxarqDSPoYJrgu16gYJElhaFFKqjm0lQ+eTNJ5pyfjlXpLMB50fYeDtwww
+         NstSnpNuRFCiV+ymuW5x73HIl3hpt1IZKmviLs7TOxSVAlw67xkFc7ZCNpAgxhL8OD+K
+         qfWdvT8xdStfW/CIHFYW3d0hvFb8JwryRbocRJrzme+9qGlQhFslkXsfixPDdCy8Tk90
+         UBpC1ypuc9dxsasUJ0PMVaFw26CcB/VvAmIUhQMs+mvWnCymmgozneCHLJ8+SkDIlxop
+         EE/9sxjtQUbIk4pPv5DAipCk/vgo4T86nNGNrYjQnbcIA9qe0YodJk7C4++9wugV2Lvj
+         SBCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=ZOaq/RArOsIMDEytI6Sz1pnZYzBz3vUl5NUCRG67IW0=;
-        b=U7N3RYiZS/K5ZRe2gjw9dK+11ABPpQPKxyeFLCqlpiJb+k3eKmfeNQp+lZOgMUdWaj
-         lEzGb5F3pF/OzQP0dtHaZx56vAcq0Hm+qBe18h5EHlWnehFsnSv80Vo1zDVPFo3eFa0i
-         0nK1tJ7WHXg2GXECbGzVP+r4SdV9HiFShhnwioA03WN/7JQr73uPBb206EOQd2y4OPnr
-         tbxIPrR/a4DTraWHGfJ8bTR6HE0FikwIrtewHJPCFVT+MUqMeQX8fxLwzOZRSvBJWQCl
-         BsOXXMk1vxVtYrTc7uJZJRzs+DLBcKclkHCYXft7WOK0z49g92q+9V8UAQkomJMK1kPk
-         ZIMg==
-X-Gm-Message-State: AOAM530Hkv8Ep8T5J+dD5AQ8ZpKyJT3mjKOUFHv1sjFiIpo41gztg+Lz
-        Hh/1QpZKDfHOWFJQEYoekaPyKw==
-X-Google-Smtp-Source: ABdhPJxEMD3OsXSa/J6FmMVubYEnSdaZt/5m8UwSnv4J/cr7HnlImwQ9KxEgWcFI2v0cqErwRyFD0Q==
-X-Received: by 2002:a05:6830:1d92:b0:5af:4018:c8bf with SMTP id y18-20020a0568301d9200b005af4018c8bfmr8397412oti.349.1646041365638;
-        Mon, 28 Feb 2022 01:42:45 -0800 (PST)
+        bh=nZwHRuTuQHHbyYlmVo+wQ56EPoPlbAZZW/TgYQjt6EQ=;
+        b=qMijdC+194ebl+MuOV3lhn79wm89xGxQUdoLSMMzjHViShsutJLLYwuPVFIw60qsGd
+         0V91pg9aeCXVr4ZTmct2ImVaTpIyoZaDwvYdGdCFjVflJxJ+1QQGPkfVCyvZGI6i8Nfu
+         isiIEtq3QFmUTxFe169btbUkZ699UAEUpQB3jH5MSlTnxQzcW2b5IWZyd9ubgjADjHs2
+         dprlBv//06gh5w1I/q7YxKJ7SOuqBDhWs3+LrYvJ9tHRbjK4S9T3NIruTUzKFHCu8saZ
+         thSiUk2sPjKYUP2BeXhTGAbPVEC5Tv+N1msUyU2Tl+/FxJ6az8Q6wtnntISKnKRW9gzB
+         9d7w==
+X-Gm-Message-State: AOAM530YsxTFZcvN0hI8bps9GXQo17IZtbOOkb0pU/MdouHVXlthLDc4
+        ffFydgpGWR7AvvY50wQi4HT8FQ==
+X-Google-Smtp-Source: ABdhPJyLIFFgNymyuMZ2b8GlMCcdf2pTdM5RU1i0+xsx0tOzZUQL6nDHFWoz72TNTT3cndvEUXQqUg==
+X-Received: by 2002:a05:6808:208b:b0:2d3:a5cc:540 with SMTP id s11-20020a056808208b00b002d3a5cc0540mr7723881oiw.41.1646041367488;
+        Mon, 28 Feb 2022 01:42:47 -0800 (PST)
 Received: from rivos-atish.. (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id bx10-20020a0568081b0a00b002d70da1ac54sm5936852oib.19.2022.02.28.01.42.44
+        by smtp.gmail.com with ESMTPSA id bx10-20020a0568081b0a00b002d70da1ac54sm5936852oib.19.2022.02.28.01.42.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 01:42:45 -0800 (PST)
+        Mon, 28 Feb 2022 01:42:47 -0800 (PST)
 From:   Atish Patra <atishp@rivosinc.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Atish Patra <atishp@rivosinc.com>,
@@ -60,9 +60,9 @@ Cc:     Atish Patra <atishp@rivosinc.com>,
         Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: [RFC PATCH 2/6] RISC-V: Enable sstc extension parsing from DT
-Date:   Mon, 28 Feb 2022 01:42:29 -0800
-Message-Id: <20220228094234.3773153-3-atishp@rivosinc.com>
+Subject: [RFC PATCH 3/6] RISC-V: Prefer sstc extension if available
+Date:   Mon, 28 Feb 2022 01:42:30 -0800
+Message-Id: <20220228094234.3773153-4-atishp@rivosinc.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220228094234.3773153-1-atishp@rivosinc.com>
 References: <20220228094234.3773153-1-atishp@rivosinc.com>
@@ -77,58 +77,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ISA extension framework now allows parsing any multi-letter
-ISA extension.
-
-Enable that for sstc extension.
+RISC-V ISA has sstc extension which allows updating the next clock event
+via a CSR (stimecmp) instead of an SBI call. This should happen dynamically
+if sstc extension is available. Otherwise, it will fallback to SBI call
+to maintain backward compatibility.
 
 Signed-off-by: Atish Patra <atishp@rivosinc.com>
 ---
- arch/riscv/include/asm/hwcap.h | 1 +
- arch/riscv/kernel/cpu.c        | 1 +
- arch/riscv/kernel/cpufeature.c | 4 +++-
- 3 files changed, 5 insertions(+), 1 deletion(-)
+ arch/riscv/include/asm/timex.h    |  2 ++
+ drivers/clocksource/timer-riscv.c | 22 +++++++++++++++++++++-
+ 2 files changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 691fc9c8099b..7335e9138fb7 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -51,6 +51,7 @@ extern unsigned long elf_hwcap;
-  * available logical extension id.
-  */
- enum riscv_isa_ext_id {
-+	RISCV_ISA_EXT_SSTC = RISCV_ISA_EXT_BASE,
- 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
- };
+diff --git a/arch/riscv/include/asm/timex.h b/arch/riscv/include/asm/timex.h
+index 507cae273bc6..dc0ffed04ea1 100644
+--- a/arch/riscv/include/asm/timex.h
++++ b/arch/riscv/include/asm/timex.h
+@@ -48,6 +48,8 @@ static inline unsigned long random_get_entropy(void)
  
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 031ad15a059f..7568c7084a52 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -71,6 +71,7 @@ int riscv_of_parent_hartid(struct device_node *node)
- 	}
+ #else /* CONFIG_RISCV_M_MODE */
  
- static struct riscv_isa_ext_data isa_ext_arr[] = {
-+	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
- 	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
- };
++extern struct static_key_false cpu_sstc_available;
++#define cpu_sstc_ext_available static_branch_likely(&cpu_sstc_available)
+ static inline cycles_t get_cycles(void)
+ {
+ 	return csr_read(CSR_TIME);
+diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+index 1767f8bf2013..f032da8a4272 100644
+--- a/drivers/clocksource/timer-riscv.c
++++ b/drivers/clocksource/timer-riscv.c
+@@ -23,11 +23,25 @@
+ #include <asm/sbi.h>
+ #include <asm/timex.h>
  
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index f3a4b0619aa0..1d8a06575cea 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -192,8 +192,10 @@ void __init riscv_fill_hwcap(void)
- 			if (!ext_long) {
- 				this_hwcap |= isa2hwcap[(unsigned char)(*ext)];
- 				set_bit(*ext - 'a', this_isa);
--			}
-+			} else {
-+				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
- #undef SET_ISA_EXT_MAP
-+			}
- 		}
++DEFINE_STATIC_KEY_FALSE(cpu_sstc_available);
++EXPORT_SYMBOL(cpu_sstc_available);
++
+ static int riscv_clock_next_event(unsigned long delta,
+ 		struct clock_event_device *ce)
+ {
++	uint64_t next_tval = get_cycles64() + delta;
++
+ 	csr_set(CSR_IE, IE_TIE);
+-	sbi_set_timer(get_cycles64() + delta);
++	if (cpu_sstc_ext_available) {
++#if __riscv_xlen == 32
++		csr_write(CSR_STIMECMP, next_tval & 0xFFFFFFFF);
++		csr_write(CSR_STIMECMPH, next_tval >> 32);
++#else
++		csr_write(CSR_STIMECMP, get_cycles64() + delta);
++#endif
++	} else
++		sbi_set_timer(get_cycles64() + delta);
++
+ 	return 0;
+ }
  
- 		/*
+@@ -165,6 +179,12 @@ static int __init riscv_timer_init_dt(struct device_node *n)
+ 	if (error)
+ 		pr_err("cpu hp setup state failed for RISCV timer [%d]\n",
+ 		       error);
++
++	if (riscv_isa_extension_available(NULL, SSTC)) {
++		pr_info("S-mode timer interrupt mode is available via sstc extension\n");
++		static_branch_enable(&cpu_sstc_available);
++	}
++
+ 	return error;
+ }
+ 
 -- 
 2.30.2
 
