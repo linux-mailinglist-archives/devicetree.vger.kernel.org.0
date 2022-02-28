@@ -2,188 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE8874C64EF
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 09:38:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A0FA54C64F7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 09:40:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231602AbiB1IiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 03:38:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
+        id S231997AbiB1IlM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 03:41:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234028AbiB1IiE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 03:38:04 -0500
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDE2E1F
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 00:37:26 -0800 (PST)
-Received: by mail-pf1-x42a.google.com with SMTP id y11so10476999pfa.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 00:37:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ynGg2zlkHSS5uUPpWwSzbItTsNZH58rQZbqFZgztoM8=;
-        b=d6Jbu3CdNMQsazBWSswdFlX71jnvC2OzDQGnpcQZy4hY/VRq9htwILWHKHCRNwZlxb
-         QABfwFHLEdSErqzIA/52v8X7D3XrCb3BNY2JgUMD7Q6rx8gehHo+kCpq+XGvlK9QfL69
-         FiDE7h4eTRtJui+POeOn3ysa2z+AG2hfDQShJSUIQ3736J4/abxiIVRZrKH/D4Jb3V3Q
-         1zCYQ4dDurH/m/dGd8oKofgHpXCcIAAn4gVZOm6DEEzIXjFf4fvDu15pHOMKHE3FQNDr
-         hCxCdSm/1Hzciq3mJh5CbJdc3X25E7T4WvnLmAP/p9/fTCrUbb0SYThu+vVDTFwLxf76
-         iOCw==
+        with ESMTP id S229773AbiB1IlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 03:41:12 -0500
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B9E6621B;
+        Mon, 28 Feb 2022 00:40:33 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id i11so16440483eda.9;
+        Mon, 28 Feb 2022 00:40:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ynGg2zlkHSS5uUPpWwSzbItTsNZH58rQZbqFZgztoM8=;
-        b=1ULal4Uo7zQGnFzuuZmM9PSKDzqhtQQm4s9MzCGdSq6WI8MrgjdzL66KQs5ZBeGOuE
-         55t2R3TUIv52FSuSnGobq4AfxdIaQhBdGHNS5GPE7zCXCk1FFSD7+jMV0aXQgXuMR/ka
-         41/tNYPhJFjWmqzJs6uqNyEduZ/Fy7OYE2Lm6L559OQQgtu4CNhC5mn/U9y3eHq8LtAy
-         w2u7RQ+atL0Z7FTd8+asim3hsmZpDl/66lhjEQsp8VnmDaS5dgDLlJyBtenSz9UMmEvu
-         8jabC0Z6qOMeXeffHfDAcILiiA/AfX3IK4bu1kHryZvUUcCvXwJ/GG9QdsCuicUlKKxk
-         Tz1Q==
-X-Gm-Message-State: AOAM531xYmrFAIcuzierIUzBrwCQre2sPoYqTX2hGWIxtIoicChkB6BM
-        sMEfSwQQhNz68TBSa9Qaa1oq
-X-Google-Smtp-Source: ABdhPJxF+kaqGPpgvaKP8k/NA35bIq5wvbaZuNcwU5y8NraOPitDfJywFHd8kXd9QvuiAE9PG9faOw==
-X-Received: by 2002:aa7:8d08:0:b0:4e1:5fb5:b15 with SMTP id j8-20020aa78d08000000b004e15fb50b15mr20191752pfe.70.1646037445811;
-        Mon, 28 Feb 2022 00:37:25 -0800 (PST)
-Received: from workstation ([117.207.25.37])
-        by smtp.gmail.com with ESMTPSA id m6-20020a056a00080600b004e1bb196743sm13345953pfk.5.2022.02.28.00.37.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 28 Feb 2022 00:37:25 -0800 (PST)
-Date:   Mon, 28 Feb 2022 14:07:21 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-unisoc@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: Convert rda,8810pl-timer to YAML
-Message-ID: <20220228083721.GA12451@workstation>
-References: <20220225173734.GA7573@standask-GA-A55M-S2HP>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lU9U3y2H7TqVnOKr76UbIM5qDbprhU53RuO6iQcXBMM=;
+        b=KuRA/HCILOh35h1WjtNlZr12Xn1VpoPNsKsuCte7HiHc55pOeypTmQWcHmx1XRLKgB
+         i6WUEudncISh3tzzoy0iOdrjxyJ4UYr5igWy6FtFr9k2PYlKB3T34DYK4JtfHIZ05MLJ
+         F585x5WhLQs+t/bcnk8moVVPN9CSz/p55VVzKK/stB0LR1hXrtHUxy/jB+ninO6kDl52
+         RYmsEt5KGGG/B6159fjp3nKusVU4HV3yYq2XvJo8w3NOhk+ecj0Dx17sQa8N2TuGTwW9
+         nfdoIR42kPm6K4HdFf6b6UcMBC2peFE0OreB8nK9lEfw5+9PAOWMOn8eqr8Qv+upOMdA
+         0OrQ==
+X-Gm-Message-State: AOAM53255x1/hOdRr5+9EDsQbwRWikfCYv70W3DLu8yznupTv82X4FOi
+        0qUo3eOrOQSc1djk74l+iyg=
+X-Google-Smtp-Source: ABdhPJyts5/gqTTGMWCFC+e0qih7SB7RX2Oirk3XrA6slJNhiE6x/o/r+k1+mv+NqSeB5e5HpidKlw==
+X-Received: by 2002:a05:6402:524e:b0:410:dedd:ea37 with SMTP id t14-20020a056402524e00b00410deddea37mr806629edd.260.1646037632061;
+        Mon, 28 Feb 2022 00:40:32 -0800 (PST)
+Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id j7-20020a1709062a0700b006bc28a6b8f1sm4119215eje.222.2022.02.28.00.40.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Feb 2022 00:40:30 -0800 (PST)
+Message-ID: <d6031c8e-5a70-9561-f44e-0573594da34d@kernel.org>
+Date:   Mon, 28 Feb 2022 09:40:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220225173734.GA7573@standask-GA-A55M-S2HP>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v9 02/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
+Content-Language: en-US
+To:     =?UTF-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "stefan.wahren@i2se.com" <stefan.wahren@i2se.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Rob Herring <robh@kernel.org>
+References: <cover.1645413746.git.qinjian@cqplus1.com>
+ <87cc20bb3ef747c4da89f9e60c0847532bb0a679.1645413746.git.qinjian@cqplus1.com>
+ <141c1b3e-b116-a0eb-78ad-dd9263880e9d@kernel.org>
+ <fd66d0c1f8d5410ca676dd523bcde61b@cqplus1.com>
+ <8ce8a3db-0f42-0b30-6688-01c1ea905425@kernel.org>
+ <66b2710bc7c048a284fa3b6270ba7bc8@cqplus1.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <66b2710bc7c048a284fa3b6270ba7bc8@cqplus1.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 06:37:34PM +0100, Stanislav Jakubek wrote:
-> Convert RDA Micro Timer bindings to DT schema format.
+On 28/02/2022 08:05, qinjian[覃健] wrote:
 > 
-> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-Thanks,
-Mani
-
-> ---
->  .../bindings/timer/rda,8810pl-timer.txt       | 20 --------
->  .../bindings/timer/rda,8810pl-timer.yaml      | 47 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 48 insertions(+), 21 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
->  create mode 100644 Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
+>>>> This binding looks incomplete.
+>>>
+>>> Sunplus SP7021 is an ARM Cortex A7 based SoC.
+>>> The patch is for SP7021 SoC and SP7021 based boards.
+>>> Sorry, I don't understand your questions.
+>>> Could you explain more?
+>>
+>> You have there only one compatible but if I would expect at least two.
+>> One for SoC and one for board. Something like this:
+>> Documentation/devicetree/bindings/arm/rda.yaml
+>> but in your case enum would have only one entry.
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-> deleted file mode 100644
-> index 4db542c9a0fd..000000000000
-> --- a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-> +++ /dev/null
-> @@ -1,20 +0,0 @@
-> -RDA Micro RDA8810PL Timer
-> -
-> -Required properties:
-> -- compatible      :  "rda,8810pl-timer"
-> -- reg             :  Offset and length of the register set for the device.
-> -- interrupts      :  Should contain two interrupts.
-> -- interrupt-names :  Should be "hwtimer", "ostimer".
-> -
-> -Example:
-> -
-> -		apb@20900000 {
-> -			compatible = "simple-bus";
-> -			...
-> -			timer@10000 {
-> -				compatible = "rda,8810pl-timer";
-> -				reg = <0x10000 0x1000>;
-> -				interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
-> -					     <17 IRQ_TYPE_LEVEL_HIGH>;
-> -				interrupt-names = "hwtimer", "ostimer";
-> -			};
-> diff --git a/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
-> new file mode 100644
-> index 000000000000..f9043a4488d6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
-> @@ -0,0 +1,47 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/rda,8810pl-timer.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RDA Micro RDA8810PL Timer
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: rda,8810pl-timer
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: hwtimer
-> +      - const: ostimer
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - interrupt-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@20910000 {
-> +      compatible = "rda,8810pl-timer";
-> +      reg = <0x20910000 0x1000>;
-> +      interrupts = <16 IRQ_TYPE_LEVEL_HIGH>,
-> +                   <17 IRQ_TYPE_LEVEL_HIGH>;
-> +      interrupt-names = "hwtimer", "ostimer";
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6d5c2c035f82..cbf91f0ecbfb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2563,7 +2563,7 @@ F:	Documentation/devicetree/bindings/arm/rda.yaml
->  F:	Documentation/devicetree/bindings/gpio/gpio-rda.yaml
->  F:	Documentation/devicetree/bindings/interrupt-controller/rda,8810pl-intc.txt
->  F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.yaml
-> -F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-> +F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.yaml
->  F:	arch/arm/boot/dts/rda8810pl-*
->  F:	drivers/clocksource/timer-rda.c
->  F:	drivers/gpio/gpio-rda.c
-> -- 
-> 2.25.1
-> 
+> Currently, we only support one board. Maybe will support more boards in future.
+
+This is not the answer for my questions. I said I expect two compatibles:
+1. One for SoC,
+2. One for board.
+
+And you respond "we have only one board".
+
+Where is the SoC compatible?
+
+Best regards,
+Krzysztof
