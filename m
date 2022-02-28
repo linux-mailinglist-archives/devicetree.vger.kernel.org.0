@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 196464C700D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:51:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D0B4C701B
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:54:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236784AbiB1Ovw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:51:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50176 "EHLO
+        id S237397AbiB1Oyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:54:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234579AbiB1Ovw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:51:52 -0500
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7406D80926;
-        Mon, 28 Feb 2022 06:51:13 -0800 (PST)
-Received: by mail-vs1-f41.google.com with SMTP id i27so13165691vsr.10;
-        Mon, 28 Feb 2022 06:51:13 -0800 (PST)
+        with ESMTP id S232561AbiB1Oyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:54:43 -0500
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02379424A6;
+        Mon, 28 Feb 2022 06:54:05 -0800 (PST)
+Received: by mail-oo1-xc2e.google.com with SMTP id y15-20020a4a650f000000b0031c19e9fe9dso18941234ooc.12;
+        Mon, 28 Feb 2022 06:54:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=2NpcbtVausRghlc2AF5Qk8ViAeV3CmmMKoQv0S/ZKco=;
+        b=e4hQZRDoDSvjOTGyDC3NZH8J2agWHdGzO/Ys1xnWTiuprlAxF6MwS+woRFaG9MeigN
+         74c/cdJVK4s2CZfcgu9MFw9a9gaPcrL8kYRI8b2u2YBgzA8VSDGT2cOoqQCIFGZ/Zx+J
+         3ocQ22ZXwdjF69EQVwhDL5f+jD5T4hWUGtcxhk5OxuCOryzJWuB9tIuEV8qsW0FRUV+c
+         7kU7bUYmixGQAhcoOMyj9XhAzcyYrSEnxcdmyZDjULb4/ztsTAKP+IuuP8Y7AgZm8rHd
+         PE3Z8adfBcg19EdC6wETI5E+l3l5Bv1HG5/U0I0Hx9S9yKkP2VlXFfXQlhzxPDC78k65
+         Lv9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z0bDkx+pDmCFcIFIjnwbjmWEdCGXPTLvMWhZp/2Pct0=;
-        b=BnhKBZHRblCsZw11e/HoSIQTzpFoWSuPwCBf7hxv+ZHauSfiFgT3ao2JFHXr8LCwKG
-         jqnnN6zpMu65obooKiAZ45vGKyiZmV7CoqtV9CwIEdJ6J22sQtKBA29LDO2i/CYmuaop
-         nBGPj0Wh8LjK2kCNZu9BY6GwGhsfpZs4Oz020hpwOe7Dr+PCZ/bWYG9LXu9FAudgzzgq
-         ggqIgNDubdgHfiv35VsnfRdaZtgt2XwayzTF7Cp0amCe9kPcHCsoZBGHrgWaXVDwHDva
-         s3xXGKwtLTpNUx8+b+kXEP5kJ/IHtIJNuSeJC165PbxxYB9zddjn1wwcCCZR/cxPeowb
-         RQAg==
-X-Gm-Message-State: AOAM533Vtu0gHV4l1aZMs0h/1f06OCSQwOPGxo1xG62HaX4fxiJ2RGHL
-        vHRbk5XRlMCfKgnv759M11Nt6V2ujxVl5Q==
-X-Google-Smtp-Source: ABdhPJwpYyl7kS9QJRypMWwQ175w15s7TsYWoQeuD6LlOHnuaCubgcyrJ/ls1tP8lQUTCxz0YpiL0A==
-X-Received: by 2002:a67:6c81:0:b0:31b:9192:878a with SMTP id h123-20020a676c81000000b0031b9192878amr7208775vsc.35.1646059872435;
-        Mon, 28 Feb 2022 06:51:12 -0800 (PST)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id u27-20020a056122061b00b0032d93970a98sm1659984vkp.53.2022.02.28.06.51.11
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=2NpcbtVausRghlc2AF5Qk8ViAeV3CmmMKoQv0S/ZKco=;
+        b=4OG8VZ29oP1rZQQVyHM2CBDMT+mbKnBRjPUoRGWf+IgVk0F1KIPFrAGgTwrHMJ88eL
+         C1Q+WGCsRRHDfX02/ovQmXs4/ovtgEuDvC4JEcqTYLoq/aOIGVBzPZgc5Fh3rbd+0nPR
+         37NCUtZ4iHql0+YGStyG7LCQibsCgl9y0+p5R843Q487QyocfM24Z3xQ/Ior+wl/UTGg
+         IWnPfus7+HXbV0ardCrvgdITSMqAguC2M9Lr+LEK6VGCjMXhUBSFhnWvRd9A+izK/Y1e
+         A9Qf1/3/68DTxCt8gOXlW3sple5OMXDB9Qtna6ydodPyOdTiRd8zA4sR+OUvL6wyVWcw
+         099w==
+X-Gm-Message-State: AOAM533GL07UqZ2C1bnf3hGeiLTnD3mRvG0+Qk1TuHeT9WrlFAP7Mk6j
+        kHYbsuKnP3ClX/OtrUbvqtw=
+X-Google-Smtp-Source: ABdhPJw5p564wo1FNct20/m8JSOhTn/r/zg8QD5FiplZuhydA8Gvqhwc9cyDH8tncVS6Nt+1026Yuw==
+X-Received: by 2002:a05:6870:218a:b0:d7:3be1:b842 with SMTP id l10-20020a056870218a00b000d73be1b842mr1414568oae.0.1646060044314;
+        Mon, 28 Feb 2022 06:54:04 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id v24-20020a9d5a18000000b005ad458facbdsm5231148oth.27.2022.02.28.06.54.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 06:51:12 -0800 (PST)
-Received: by mail-vk1-f173.google.com with SMTP id k15so5238512vkn.13;
-        Mon, 28 Feb 2022 06:51:11 -0800 (PST)
-X-Received: by 2002:a05:6122:130d:b0:333:33a4:52a9 with SMTP id
- e13-20020a056122130d00b0033333a452a9mr2154956vkp.33.1646059871678; Mon, 28
- Feb 2022 06:51:11 -0800 (PST)
+        Mon, 28 Feb 2022 06:54:03 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <eb049c6f-f196-95de-265e-c3454fcb808a@roeck-us.net>
+Date:   Mon, 28 Feb 2022 06:54:01 -0800
 MIME-Version: 1.0
-References: <20220227203744.18355-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220227203744.18355-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 28 Feb 2022 15:51:00 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUQonLA73FeHaz5xR2q0qTHVwSACD2Hk4_b5i6vnFxx8Q@mail.gmail.com>
-Message-ID: <CAMuHMdUQonLA73FeHaz5xR2q0qTHVwSACD2Hk4_b5i6vnFxx8Q@mail.gmail.com>
-Subject: Re: [PATCH 00/12] Renesas RZ/V2L add support for SDHI/CANFD/I2C/OSTM/USB2/SBC/RSPI/WDT/SSI
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Potin Lai <potin.lai@quantatw.com>,
+        Jean Delvare <jdelvare@suse.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220228103716.10774-1-potin.lai@quantatw.com>
+ <20220228103716.10774-3-potin.lai@quantatw.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v3 2/2] dt-bindings: hwmon: Add sample averaging
+ properties for ADM1275
+In-Reply-To: <20220228103716.10774-3-potin.lai@quantatw.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,81 +80,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Prabhakar,
+On 2/28/22 02:37, Potin Lai wrote:
+> Add documentation of new properties for sample averaging in PMON_CONFIG
+> register.
+> 
+> New properties:
+> - adi,volt-curr-sample-average
+> - adi,power-sample-average
+> 
+> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+> 
+> doc
+> ---
+>   .../bindings/hwmon/adi,adm1275.yaml           | 39 +++++++++++++++++++
+>   1 file changed, 39 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> index 223393d7cafd..bc4206b257a8 100644
+> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+> @@ -37,6 +37,43 @@ properties:
+>       description:
+>         Shunt resistor value in micro-Ohm.
+>   
+> +  adi,volt-curr-sample-average:
+> +    description: |
+> +      Number of samples to be used to report voltage and current values.
+> +      If the configured value is not a power of 2, sample averaging number
+> +      will be configured with smaller and closest power of 2.
+> +
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 128
+> +    default: 1
+> +
+> +  adi,power-sample-average:
+> +    description: |
+> +      Number of samples to be used to report power values.
+> +      If the configured value is not a power of 2, sample averaging number
+> +      will be configured with smaller and closest power of 2.
+> +
 
-CC Wolfram
+Both properties should only accept 1, 2, 4, 8, 16, 32, 64, and 128.
 
-On Sun, Feb 27, 2022 at 9:38 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> This patch series adds support for below IP blocks to Renesas RZ/V2L SoC:
-> * SDHI
-> * CANFD
-> * I2C
-> * OSTM
-> * WDT
-> * SSI
-> * USB2
-> * RPC-IF (SBC)
-> * RSPI
->
-> The above peripherals can now be operational on Renesas RZ/V2L SMARC EVK
-> with this series.
+We accept non-exact numbers in sysfs attributes because we can not
+expect the end users to know permitted values, but devicetree authors
+should know what is acceptable. Valid values can be expressed here
+easily with something like
+	enum: [1, 2, 4, 8, 16, 32, 64, 128]
 
-Thanks for your series!
+This can also be easily tested in the code by ensuring that
+the devicetree property is in the range of 1..128 and has exactly
+one bit set, such as
+	if (!val || val > 128 || hweight32(val) != 1)
+or with something like
+	if (!val || val > 128 || BIT(__fls(val)) != val)
 
-> Note:
-> * Im just sending the DTS/I changes as separate series and shall post the
-> binding doc changes individually to the corresponding subsystems.
-> * Patch 05/12 depends on [0]
+Guenter
 
-Good to know. So I think it would be great if that patch would make
-v5.18-rc1, through the i2c tree.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 128
+> +    default: 1
+> +
+> +if:
+> +  not:
+> +    properties:
+> +      compatible:
+> +        contains:
+> +          enum:
+> +          - adi,adm1272
+> +          - adi,adm1278
+> +          - adi,adm1293
+> +          - adi,adm1294
+> +then:
+> +  properties:
+> +    adi,power-sample-average:
+> +      description: This property is not allowed.
+> +
+>   required:
+>     - compatible
+>     - reg
+> @@ -53,5 +90,7 @@ examples:
+>               compatible = "adi,adm1272";
+>               reg = <0x10>;
+>               shunt-resistor-micro-ohms = <500>;
+> +            adi,volt-curr-sample-average = <128>;
+> +            adi,power-sample-average = <128>;
+>           };
+>       };
 
-> * For OSTM/SSI/USB to work on RZ/V2L SoC ARCH_R9A07G044 needs to be
-> enabled as the corresponding drivers have ARCH_R9A07G044 as dependency
-> which I intend to change it to ARCH_RZG2L. This will be updated once patch
-> [1] is part of -rc* cycle.
-> * Patch series applies on top of [2].
->
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> 20220209232232.18461-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> [1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> 20220224092114.25737-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> [2] https://patchwork.kernel.org/project/linux-renesas-soc/cover/
-> 20220224125843.29733-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
->
-> Cheers,
-> Prabhakar
->
-> Lad Prabhakar (12):
->   arm64: dts: renesas: r9a07g054: Fillup the SDHI{0,1} stub nodes
->   arm64: dts: renesas: r9a07g054l2-smarc: Drop deleting gpio-hog pins
->     related to SDHI
->   arm64: dts: renesas: r9a07g054: Fillup the CANFD stub node
->   arm64: dts: renesas: r9a07g054l2-smarc: Drop deleting can{0,1}-stb-hog
->     nodes
->   arm64: dts: renesas: r9a07g054: Fillup the I2C{0,1,2,3} stub nodes
->   arm64: dts: renesas: r9a07g054: Fillup the sbc stub node
->   arm64: dts: renesas: r9a07g054: Fillup the OSTM{0,1,2} stub nodes
->   arm64: dts: renesas: r9a07g054: Fillup the WDT{0,1,2} stub nodes
->   arm64: dts: renesas: r9a07g054: Add SSI{1,2,3} nodes and fillup the
->     SSI0 stub node
->   arm64: dts: renesas: r9a07g054: Add USB2.0 phy and host support
->   arm64: dts: renesas: r9a07g054: Add USB2.0 device support
->   arm64: dts: renesas: r9a07g054: Add SPI{0,2} nodes and fillup SPI1
->     stub node
->
->  arch/arm64/boot/dts/renesas/r9a07g054.dtsi    | 413 +++++++++++++++++-
->  .../boot/dts/renesas/r9a07g054l2-smarc.dts    |   8 -
->  2 files changed, 390 insertions(+), 31 deletions(-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
