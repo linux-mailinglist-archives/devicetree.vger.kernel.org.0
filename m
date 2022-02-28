@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CAF94C6CDC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:44:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B7A4C6D2C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:51:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236585AbiB1Moj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 07:44:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58940 "EHLO
+        id S231563AbiB1Mvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 07:51:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236579AbiB1Moi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:44:38 -0500
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 256354755A;
-        Mon, 28 Feb 2022 04:44:00 -0800 (PST)
-Received: by mail-pg1-x52a.google.com with SMTP id e6so9866720pgn.2;
-        Mon, 28 Feb 2022 04:44:00 -0800 (PST)
+        with ESMTP id S229991AbiB1Mvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:51:51 -0500
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D03F710F9;
+        Mon, 28 Feb 2022 04:51:12 -0800 (PST)
+Received: by mail-ed1-x52b.google.com with SMTP id f8so5288664edf.10;
+        Mon, 28 Feb 2022 04:51:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=qP6HrvQPRvcyooG75RH7rCRDnFKMKhHlpTnOTmKWJ5E=;
-        b=TKQpbKejpJRp4QDPKI8yohmG5/EW4zPfAu2U/DpBuHKDZSxLIHAkqKLxAr+u4lWR4x
-         IMWlw2biisuqVqpmict5mhC7vd8xAtUurrB1EgIMmfVhLPDMymqDekJkytiIFz6cjyk4
-         xCSbLXVbgaU3vnM2FBJLZIfER7uDRbLnYoUdu8cAZeeeqrx44fSIvOWqC8AR4zht9nBN
-         eV27wl40nRq9lcd4TkDSv7tjMFodI7tSY8FMoAGdBe37vkoqR/kW5QZcnvLVSbjW4ALZ
-         PYp9kW6Ky5wTWYH8K8/NGb+w/PAMRaEG6mjNshefOq/kYBrCn9NaCktL05l8PMpo76Vw
-         uvnA==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=tvp6+/aDyKCIpbn6nOEqSF7Mhp5kWor08YlfstAh3xI=;
+        b=KXWOqwnHoiC3qOfGN74nt02GNRh/BSLorIidLX9BkZwHMO6C8A9S6oN8uCpV1yDmkQ
+         Y5SMVjRCYDr3okW+43h8IPg2KQMSg/Vwagez/DfKJX0goReZlQpHveN4uba+eZYjQj6U
+         qkdW8kiKBeaRNIldyVwmknCr+Fl44DqJjplr3J1gVng4gIHsRjAtl00JK0niOxkH/KhV
+         sXTxTTA8dmMMwQcg4yfOi0jqfV4JlJjNWFkHgbTmoQY3SIaa5UunzHOa4y/dhSbjopZF
+         KD8PulAVYh4k8eusxyDh7Nr+5UMNwntzLsNDiAFtkG1MLEul25NI7xdESS3ybpOJ3Klt
+         rK5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=qP6HrvQPRvcyooG75RH7rCRDnFKMKhHlpTnOTmKWJ5E=;
-        b=btENuZn6I+1TSv5A/IPQkcaf9T0hI2dVXlSTrjSwOslvHqH4Dps5Twgg96e6HYpp1+
-         T9NCRpvqFFRiR/fUJ4Es+ay7hvP8XMCWijpKcetBCPNrs5WIPNYtMvp8XjpbtqMk4wEW
-         N4NVGa8zJzGnXm8ziuIzEyS/Hi4n1mKQYC5uO2gy6T92Ww6ZlfHrLZrVFFTAm002gJW3
-         2PV78sGslYnAmOnJv/liylyC36OOD37xfT0sNpx/oMzhtRCUpR3NupO4BVkNsKe06iW+
-         IIM9izstVDNyJsZbkDMGQ6JJN8thpRcJs0RHYcR8BgyHXLNZx0IJJi05TLyJsJBgjbSx
-         gAFQ==
-X-Gm-Message-State: AOAM530s+3woFz9qE3ay9UlsgmD6RpYyVcLRkXTpuqfuv8ZIOn/wTWiI
-        5G12Bss4f/O6IvenFxMbSUkjMmobUFoJ3A==
-X-Google-Smtp-Source: ABdhPJzp96y/zE/eVlnUwluVho7ei6LG8OeQKtPLlwooDFfhvzVyToNALwKYpnUo1Q/PPW0Czl58Yg==
-X-Received: by 2002:a62:3085:0:b0:4e0:1218:6d03 with SMTP id w127-20020a623085000000b004e012186d03mr21101080pfw.19.1646052239644;
-        Mon, 28 Feb 2022 04:43:59 -0800 (PST)
-Received: from localhost.localdomain ([122.161.51.77])
-        by smtp.gmail.com with ESMTPSA id z23-20020aa79597000000b004e1bf2f5818sm14129214pfj.87.2022.02.28.04.43.57
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tvp6+/aDyKCIpbn6nOEqSF7Mhp5kWor08YlfstAh3xI=;
+        b=SEBSthqkqtHqiS5koloH6mj1WKJ01rVQBK3gtzcrCIG0ChVqodUr/iqBxCAj22H3bL
+         Y9Yl/0ZoD5SwXYsuDr0NAC0VsXJHqRT/k6ETTbMkWC8ub2XEen4QDfmGaLLk3329HA1n
+         TRkiguo8CaSW1CJg24W/MvRJKQX8HCCIwLSYLTnopqgTg/kznOuAqlN755hjO37DH2UE
+         3h9SVMbV42UHKmHyBcIlOB8ARJyUBMzv3/KCcqTgXrjr58QXketfGZ68auf/fKQTtT0k
+         F9RBQhFfaeDDOu7W3iSSqU5bN1Ttas5yaKJJEXE6cy0f/4Ga7Ubhd6iCDP2gvoqv2HGp
+         Uv9g==
+X-Gm-Message-State: AOAM532ZSDpZ+SOikEChG2T3LG8gYqrDAqpcAGnxQcFgJMV/3GDbWgn9
+        MDcIT3njJrwut6e3SIP0jVI=
+X-Google-Smtp-Source: ABdhPJx/9iT25SvqezNjKzcjA155mwrQPzSJMvAjJLgu4lAM6PtODgl6saWyldg3gixnl8FlWMam+Q==
+X-Received: by 2002:a05:6402:491:b0:413:6c2e:bb2c with SMTP id k17-20020a056402049100b004136c2ebb2cmr15461987edv.196.1646052670962;
+        Mon, 28 Feb 2022 04:51:10 -0800 (PST)
+Received: from skbuf ([188.25.231.156])
+        by smtp.gmail.com with ESMTPSA id q10-20020aa7cc0a000000b0040f826f09fdsm6093055edt.81.2022.02.28.04.51.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 04:43:59 -0800 (PST)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH 3/3] dt-bindings: spi: Add spiclk to clock-names property in pl022
-Date:   Mon, 28 Feb 2022 18:13:45 +0530
-Message-Id: <20220228124345.99474-4-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
-References: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
+        Mon, 28 Feb 2022 04:51:10 -0800 (PST)
+Date:   Mon, 28 Feb 2022 14:51:08 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, alsi@bang-olufsen.dk,
+        arinc.unal@arinc9.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: dsa: add rtl8_4 and
+ rtl8_4t
+Message-ID: <20220228125108.vuhwc4bganjwh5vv@skbuf>
+References: <20220227035920.19101-1-luizluca@gmail.com>
+ <20220227035920.19101-2-luizluca@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220227035920.19101-2-luizluca@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -71,33 +73,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix below dtc warning by making necessary addition of "spiclk" in
-clock-names property.
+On Sun, Feb 27, 2022 at 12:59:18AM -0300, Luiz Angelo Daros de Luca wrote:
+> Realtek rtl8365mb DSA driver can use and switch between these two tag
+> types.
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> index 702df848a71d..2e3f29c61cf2 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> @@ -52,6 +52,8 @@ properties:
+>        - ocelot
+>        - ocelot-8021q
+>        - seville
+> +      - rtl8_4
+> +      - rtl8_4t
 
-arch/arm64/boot/dts/broadcom/stingray/bcm958742t.dt.yaml: spi@190000:
-clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
-    From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
-arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dt.yaml: spi@66190000:
-clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
-    From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
+Alphabetic order please.
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
- Documentation/devicetree/bindings/spi/spi-pl022.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-index 5f6926a58b15..fb3075a0c7fd 100644
---- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-@@ -45,6 +45,7 @@ properties:
-           - enum:
-               - sspclk
-               - SSPCLK
-+              - spiclk
-           - const: apb_pclk
- 
-   pl022,autosuspend-delay:
--- 
-2.25.1
-
+>  
+>    phy-handle: true
+>  
+> -- 
+> 2.35.1
+> 
