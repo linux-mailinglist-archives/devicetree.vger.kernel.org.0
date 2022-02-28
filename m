@@ -2,251 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284B54C6716
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:31:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F1C04C6727
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:37:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232576AbiB1Kbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 05:31:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50726 "EHLO
+        id S232746AbiB1KiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 05:38:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbiB1Kbf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:31:35 -0500
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F3E855743;
-        Mon, 28 Feb 2022 02:30:55 -0800 (PST)
+        with ESMTP id S232142AbiB1KiU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:38:20 -0500
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2112.outbound.protection.outlook.com [40.107.255.112])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B42B2E099;
+        Mon, 28 Feb 2022 02:37:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cagVLRVeXMw/AhWBrPZ1GX6ic5J29yf3NM57oHM6aLlqhSh9mXZaVYl1sC510/GTNh6Bkbtr/6bXnJKSWbBu1jiznDGHmyl0jP9LpMrzSKIXo3buPOu3HDTg84KQKA8IFTII0GndCKDc6li94q6/t5CKaIzlWrEws4Sb0KBvPtSufLOEqzcnHqKBNZ1+OVyJwectxqhLEepBf8isF6xfiKqX9KZYPEfMO7VXQFqM3g/YCYBaS4H+V6ogpmG7Ygzk9l8jn0mGGVWT1FZz3uW0QR6U9kXjswr50wEjr+WoFJ3sHxthSZLEnNPLzMaUP6AH3mfYDYxRsmuYe6SxKYpULg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GCZI0v9jl9jFvLfhLftBhwwkTk+cc0vuC2t38F0OEqY=;
+ b=IKxuchAr3NQyxEoa7skZDgurdRnOBSEnt5eo8J1Q4jmviqFE4bDw/XVVowEKjlwnA21QZh+o+a8P3Rus0DWNSbmRxPvzzvlIB6ULhDDGFFdyXnrYXJjiBl4N9MFdzizX9Lw4GozEe+ynUH5uDjzbTX5WdJ/l08rGi/772g0VmQ9ww3HjC1G8y/9z6T9X1SlBY/taAXbTeKABVhJ5jRzLsxgg01nsxrnTheRNoUlT0ht655Ux+ujmI9UBo1vvGH4LO8XO1V7bb+SG1lg55B5cS82RkJEyWRx5EvBLkujeDya7NOJyz5npgqQEM9Bv4Zx8y4J6JeARq0nVA+rpKnJ0Qw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quantatw.com; dmarc=pass action=none header.from=quantatw.com;
+ dkim=pass header.d=quantatw.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1646044255; x=1677580255;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=b+78FRAJXZYzl+Y9IyY17fr3tqSyDnu1Vfd2nwZsqI4=;
-  b=ADHAmz5ZoHE4x2wPgvnFItq7N5tW8vmmTmAXdMxem277LYxBwUvpzplo
-   wNUdSGKueLy6Fg6wf5BS8LeT9r8inxmzOugmsFblazO8nzlHnlCYSxSAi
-   WGszyq+xYxooDaz4DLtaTB7JxTyRF57icnVYWf0GC45YNk4VIii6NU/HS
-   WrIERi1u7nhZ4MXqYfUJvAuxtHcHM6hZIIVoEv343Mo2SgTwliWDQoGRL
-   jil5jGL9bEfLAQ8Tp8ydP6PgaKC6N5n8dOBjc8qm+iWyegA5kSjMP1O7b
-   1WO0RNf0zhIGIoRUutAof4sX25Y8vznNmdPJUBOOTP6Qn0wCyGDi6TDmP
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,142,1643670000"; 
-   d="scan'208";a="22347755"
-Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
-  by mx1-pgp.tq-group.com with ESMTP; 28 Feb 2022 11:30:52 +0100
-Received: from mx1.tq-group.com ([192.168.6.7])
-  by tq-pgp-pr1.tq-net.de (PGP Universal service);
-  Mon, 28 Feb 2022 11:30:53 +0100
-X-PGP-Universal: processed;
-        by tq-pgp-pr1.tq-net.de on Mon, 28 Feb 2022 11:30:53 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1646044253; x=1677580253;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=b+78FRAJXZYzl+Y9IyY17fr3tqSyDnu1Vfd2nwZsqI4=;
-  b=drl60c3M2hZ1JsyApj7b/J3NNsuyJx2l7VmECVLQS/Tf/QjBKp2M9Ifw
-   /i/OIfQfR9ADcRPleNljFyW9yUWvnoptEHSGSSVOIjZum9/e3RB4+VYVX
-   ePlD92B2152XpAoBPYlrecr4XnywkkqK984/I3seSZaukFrIlWm1XG27I
-   2Tpkxsq1GSAUaLbiSqU6YDc2q1EOQ2YF/Unsu8Y3u/N9RceqITRQxJuIz
-   lklF1nnsCeMwiE1kuj51yntelt7kh1BeIuvEE/VPqeDRvfA/GiHSKxk3q
-   L+snH9cH/3oVI5iiGXCZka975PPARx9b+41uiT0wbXLa1ge2QRxq8goNo
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,142,1643670000"; 
-   d="scan'208";a="22347754"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 28 Feb 2022 11:30:52 +0100
-Received: from schifferm-ubuntu (SCHIFFERM-M2.tq-net.de [10.121.201.138])
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPA id A7F5E280074;
-        Mon, 28 Feb 2022 11:30:52 +0100 (CET)
-Message-ID: <1356e93cd5b101c3d896e35250c66959ed631544.camel@ew.tq-group.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
- peripherals by default
-From:   Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
-Date:   Mon, 28 Feb 2022 11:30:50 +0100
-In-Reply-To: <YgJZbdOlazrde7O/@atomide.com>
-References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
-         <20220204143108.653qk2ihnlhsr5aa@prior> <YgDCLaBHA3DDQAUd@atomide.com>
-         <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
-         <YgEBml9HvFzSl289@atomide.com>
-         <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
-         <YgJZbdOlazrde7O/@atomide.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.5-0ubuntu1 
+ d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GCZI0v9jl9jFvLfhLftBhwwkTk+cc0vuC2t38F0OEqY=;
+ b=iF0Db9vBWrOlvc2pR+q2C8iKfCFwvQxowT/D9Dd3Dp8gfG0CxxLBEJKTHFPFSCmeJVOazjq1EcRktzTG3ITh4GDlMYT7F5VkQSFXbYKoC8DOZNVbaFi3l1TR2DJDv+evyWLPZa5mySNEdNg+BYWvLfvj5lRfwkndB2v3IFk9w2g=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quantatw.com;
+Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
+ by SL2PR04MB3002.apcprd04.prod.outlook.com (2603:1096:100:3b::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.22; Mon, 28 Feb
+ 2022 10:37:36 +0000
+Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
+ ([fe80::b57e:962a:3820:eab]) by HK0PR04MB3282.apcprd04.prod.outlook.com
+ ([fe80::b57e:962a:3820:eab%3]) with mapi id 15.20.5017.026; Mon, 28 Feb 2022
+ 10:37:36 +0000
+From:   Potin Lai <potin.lai@quantatw.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Potin Lai <potin.lai@quantatw.com>
+Subject: [PATCH v3 0/2] hwmon: (adm1275) Add sample averaging binding support
+Date:   Mon, 28 Feb 2022 18:37:14 +0800
+Message-Id: <20220228103716.10774-1-potin.lai@quantatw.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: HK2PR02CA0131.apcprd02.prod.outlook.com
+ (2603:1096:202:16::15) To HK0PR04MB3282.apcprd04.prod.outlook.com
+ (2603:1096:203:89::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 97d5f75a-54aa-4701-7e31-08d9faa65591
+X-MS-TrafficTypeDiagnostic: SL2PR04MB3002:EE_
+X-Microsoft-Antispam-PRVS: <SL2PR04MB30023187316876B5E9E3609E8E019@SL2PR04MB3002.apcprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: NoD7i9Q3YQBW20n6ko1U6ypgIOFgn3g56UASqKY3ds2iJXhl+wtXMzNUOfeUoQxO175qqG21P1aoZB9EODdnJdFfxkmaozuBT8VSkYcbmy7kZek1lKlpqm+U63HKQh0b/P2QRTyR46bFUP3fZv+LxAZqWRoeRu+O06s5KFDORLEVokULMzCO1lhJ3ruMBcj/x3ZwFTS+mGr3cHj+H7hLhzOQkfwb9bwmGaGI6GlUXWHTPBGzlLt+bYrGKuD6K4RYkuyYci6ttatkq2rBIVKPwAw4ujG5Gpb4k1RVd190iJCSlqoCA4rp6PJw8kR2PyZNjwFxG/ezaOLfEAZWNAdCu8C/B4WN7BIi3lW6TXNtrZq4ZQ5yl0umEeInpXtGT0iTV3DcvfZrkFqoOJI52leDZSqc+xC1obBQyUYKGmuY84ZTLje2MINo7zDUNPiq9iZW+KtgnlK228qOhhJ/z9vIFJgc5oQmp3WvM2X4qJSoBfazwtEfNlYGIQKBwMAQoSNQeVEi6O9Vn3j1uFNZ00bgmK2ld+UU91MTuemQdVFCTWhbF/cxiVAScINYf5YuLVBnVnuO3Cbm5wooc2PaBP55HX2QrTPE3CfuK5nawdn9ka5uWsKj+GLziyCVMBURC28E8+j69bZiV6qroEbI3txEzLlrHcT7vqZfvf4OeG9qQNrqDTg9Qt8xKXULy5gjQ/1phVDuMcRkOlk+SeTFZZy4yAEZTCGgQUTJPlj1iWtGp+ySB2nkYCHVsXtZuStilsSfxn3J980gmEhaN2YZfGcheSxWiZIb36/y1eDGZw7wN4/mqFnsXMUkbVkmHzD1GMpcRfuEJhPEcpQhm+RrDAermw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8676002)(86362001)(83380400001)(316002)(36756003)(4326008)(54906003)(66476007)(66556008)(66946007)(110136005)(5660300002)(6512007)(6506007)(6666004)(52116002)(8936002)(508600001)(44832011)(966005)(107886003)(2906002)(26005)(186003)(1076003)(2616005)(6486002)(38350700002)(38100700002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UZ1lCh9Mls9jgAcBGTX0U6ehvKdWERgAuya+paSNrKKfPNH/M5DlHL9nuPPu?=
+ =?us-ascii?Q?X2fYBC/2icOR4IauDkp9RprMB7x4KfgD0vfrIjfFAxU+dMN3LUlo3yXg0aw0?=
+ =?us-ascii?Q?TpgVvEElOeoLQP8cIHmWWRxRSc4iEVuZtp7sygnlao0quMn9MaFNqkKWTsSZ?=
+ =?us-ascii?Q?ndEQlarGG44fQRZg64ziwJlD1xs59TyjFkqusQwPbARg6v1wM7wEmFxBiWIg?=
+ =?us-ascii?Q?p3grUwM6uR4pVajusLSIAJEYrNdUiJ9KoXakzn1ErudTyTFQiYGgvhMaTyNo?=
+ =?us-ascii?Q?DEqrM+E65ZvjqknrcIf8yGCSVvWx3vRsxtWdswLRaf2icv+2z4V0ejBlYYNj?=
+ =?us-ascii?Q?AadyrusFGaax0cpUrhNVeFBnLU+WIOg0MkJHAJ3D1vDo0Ku0YBEu6RORYWoy?=
+ =?us-ascii?Q?uz07MOkl4PhMawZxv2Kiz7UXzCvBKXO7KrjvTCKG/w1IKoN6WblCgdsnkNve?=
+ =?us-ascii?Q?ycGb7Ij9r+aa+J0Rwvq+H2u1VxJXsSyh3Kxc9KwSjCyS9l5sPSV4LobcRSCL?=
+ =?us-ascii?Q?HW/04yd21bY3BZGazGpf1RQfi5n7BNS3qN4sW0vca/UFSyUzlZ7Yohu3XK2B?=
+ =?us-ascii?Q?AQ8qwirK4f8kBHFlXzEWoxeoxM+Y9WROb15OsTzpAAvoEfS3uGwTEoakN6+V?=
+ =?us-ascii?Q?hi4pUuA0ucKMK3hfQ5GlN6WX5ye7VHPNIAo16EiQcKLDuj1LdEbHhlU6qGRE?=
+ =?us-ascii?Q?dkinMnsh4DjCh4y42+ZLZNUUtI4ptuOpiOmIflmkEMHcmekD4tRmRY7+fkTU?=
+ =?us-ascii?Q?WULgOYJFtKtGWjPQjITUATAepuVvbTyy9NmgvHbR4i1tisrJoNp/WJEPxY70?=
+ =?us-ascii?Q?5xZWq5pLe7vivS9lOol3rWSFftWGNkhtdVyqaSSDv463i1IZ98raMU5vhGvq?=
+ =?us-ascii?Q?yEazsKL03u8HPvuj4ulhoWXIVsrFS3F3SaIsvvexmsZb3nChU5cMu3hGG3PI?=
+ =?us-ascii?Q?VWQErMg+B86ayYuTJ5OiTbbsgNvJKnjrnw+vQ7dpqvyFtyB+O2mv2gmFQ2za?=
+ =?us-ascii?Q?qnbMfKDVaG0CCRh9CYPG3+g4vL05zq/7OWG3RhsPbokJaIqPtYzEVQk+Uxqb?=
+ =?us-ascii?Q?tavphdAjUL4gNwgnmNySEdoFvir9njbB0y4QlvnBshVkQ3ahxcaTwiJ5CRe0?=
+ =?us-ascii?Q?dbpljZ02A8RoXaMvGIuNftrCcq5MNfud1BI6p0RiY/ml8pDxWfOI039QWK8K?=
+ =?us-ascii?Q?ue2BhiHsfWdoDr39YlGhoX9lzrL1tRVdJzihkkkko93AbxR1UPUe8ubjxU7b?=
+ =?us-ascii?Q?d//4ZETs47bgPNkTTeyq9kCCaMRTNTvWD86CAMj+ZFN+a0Bvw+SJoyPuH1eo?=
+ =?us-ascii?Q?Cx5ssk9hDKGofu7vaG3UDu00tYeko0swD5FXgZfGED6uBiL/pdWk3NHLtBZu?=
+ =?us-ascii?Q?eNJoaAZzcKz2HkYzGp93Bwiat3esZHa+jkCX5nS+alBgotTwSmjzsUduQ6fn?=
+ =?us-ascii?Q?XEYkNnbDFHygw7NpqKm21QV0HVZAenP6GHUSgGyI/+hCuZ+niwHJEXZy4Om9?=
+ =?us-ascii?Q?66hJZIXkND1aUrmCTsVGCsZvVQ2RXB4KKn6+pVDfvoOFDBOfqCDIkYxWc+x6?=
+ =?us-ascii?Q?80R4vkcehI0JsxX0oevXlHLjVjXVYJQ93PPIb1fNTSuAJJFruseisp6cXfud?=
+ =?us-ascii?Q?mj3J5GUPvcaoNWNHdXLhn8Y=3D?=
+X-OriginatorOrg: quantatw.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97d5f75a-54aa-4701-7e31-08d9faa65591
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2022 10:37:35.9249
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tK9IR5zkH+08CH76OeMvu9EHIujkw5e+IOnHebu3hOv8ZpAFrTi6sFJKOjSM0PI0D+sGSCYkte6dJLG6/unqAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SL2PR04MB3002
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-02-08 at 13:52 +0200, Tony Lindgren wrote:
-> * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220208
-> 10:53]:
-> > On Mon, 2022-02-07 at 13:25 +0200, Tony Lindgren wrote:
-> > > * Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220207
-> > > 08:45]:
-> > > > Generally I think that it's a bootloader's responsiblity to
-> > > > disable
-> > > > unneeded devices - the kernel may not even have a driver for
-> > > > some
-> > > > peripherals, leading to the same behaviour as a "disabled"
-> > > > status.
-> > > > For
-> > > > this reason I believe that it should always be okay to set
-> > > > unneeded
-> > > > devices to "disabled", and it should be considered a safe
-> > > > default.
-> > > 
-> > > Not possible, think kexec for example :) How would the previous
-> > > kernel
-> > > even know what to disable if Linux has no idea about the devices?
-> > 
-> > Well, optimally, bootloader and all kernels would agree on the
-> > devices
-> > that are actually available, but I get your point.
-> > 
-> > > If there are issues you're seeing, it's likely a bug in some of
-> > > the
-> > > device drivers for not checking for the necessary resources like
-> > > pinctrl for i2c lines.
-> > 
-> > I don't think it's common for individual drivers to care about
-> > pinctrl
-> > unless switching between different pin settings is required at
-> > runtime.
-> > Many drivers can be used on different hardware, some of which may
-> > require pinmuxing, while others don't.
-> 
-> Yeah that's true, some configurations only do pin muxing in the
-> bootloader. So pins are not a good criteria for devicetree status
-> enabled
-> for when the device is operational.
-> 
-> Probably a better criteria for devicetree "operational" status is the
-> device can be clocked and configured or idled. Some devices like GPUs
-> can render to memory with no external pin configuration for example.
-> 
+This patch series allow user config PWR_AVG and VI_AVG in PMON_CONF
+register by adding properties in device tree.
 
-I don't think any properties currently exist that could or should be
-used to decide whether a device is operational. Clocks etc. are usually
-internal to the SoC and thus already set in the SoC DTSI. Pins and
-power supplies may be specific to a mainboard, but can also be
-optional. Whether an I2C bus can be operational may solely depend on
-whether external pullups are connected to the pins or not.
+Example:
+	adm1278@11 {
+		compatible = "adi,adm1278";
+		......
+		adi,volt-curr-sample-average = <128>;
+		adi,power-sample-average = <128>;
+	};
 
-The idea of an "incomplete" status like you mention below sounds better
-to me. I also thought about adding something like a "probe_disabled()"
-that is called instead of probe() for "disabled" devices, but I assume
-that would cause a boot time penalty on systems that have many
-"disabled" devices and don't actually need this...
+LINK: [v1] https://lore.kernel.org/all/20220223163817.30583-1-potin.lai@quantatw.com/
+LINK: [v2] https://lore.kernel.org/all/20220224154329.9755-1-potin.lai@quantatw.com/
 
+Changes v2 --> v3:
+- change property type back to u32, use logical value instead of register
+  value
+- fix typo in properties description
+- add if-block to descript "adi,power-sample-average" not alloed if
+  compatible not in the enum list
 
-> Following Linux running on a PC analogy.. If ACPI has some device
-> that
-> causes driver warnings on Linux boot, do we patch the ACPI table and
-> pretend the device does not exist? Or do we patch the device driver
-> to
-> deal with the random buggy bootloader state for the device? :)
-> 
-> > Also, what is the expected behavior of a driver that is probed for
-> > an
-> > unusable device? Wouldn't this require some as-of-yet nonexisting
-> > status between "okay" and "disabled" that conveys something like
-> > "probe
-> > this device, initialize (and disable) PM, but don't register
-> > anything",
-> > so no unusable devices become visible to userspace (and possibly
-> > other
-> > kernel drivers)?
-> 
-> I did some experimental patches several years ago to add devicetree
-> status for incomplete, but eventually came to the conclusion that it
-> was not really needed. Feel free to revisit that if you have the
-> spare cycles :)
-> 
-> Having the drivers check for the resources like clocks and then just
-> idle the device after probe solved the issues I was seeing for
-> warnings
-> and kexec. In some cases the device may need to be reset or at least
-> properly reconfigured in the probe as the state can be unknown from
-> the
-> bootloader. That's about all there is to it. Sure you could save some
-> memory with less instances for some devices, so maybe the status =
-> "incomplete" could be used to do the trick for that.
+Changes v1 --> v2:
+- use more descriptive property name
+- change property type from u32 to u8 
+- add property value check, valid range between 1 and 7
 
-I don't really care about memory usage. What I do care about is that
-incorrect userspace usage doesn't cause ugly kernel warnings (for
-example timeouts for i2cdetect on unmuxed bus) when we can avoid it,
-because such issues always lead to support requests.
+Potin Lai (2):
+  hwmon: (adm1275) Allow setting sample averaging
+  dt-bindings: hwmon: Add sample averaging properties for ADM1275
 
-Not being able to hide non-operational devices from userspace feels
-like a regression from older hardware.
+ .../bindings/hwmon/adi,adm1275.yaml           | 39 +++++++++++++++++++
+ drivers/hwmon/pmbus/adm1275.c                 | 36 +++++++++++++++++
+ 2 files changed, 75 insertions(+)
 
-> 
-> > > > I'm not sure what the consensus on these issues is. I'm more
-> > > > familiar
-> > > > with NXP's i.MX and Layerscape SoCs, where it's common to have
-> > > > all
-> > > > muxable peripherals set to "disabled" in the base DTSI, and a
-> > > > quick
-> > > > grep through a few dts directories gives me the impression that
-> > > > this is
-> > > > the case for most other vendors as well.
-> > > 
-> > > This approach only works for SoCs that don't need the kernel to
-> > > idle
-> > > devices for runtime PM.
-> > 
-> > I'm pretty sure that most modern SoCs I looked at have runtime PM,
-> > and
-> > it is simply expected that unusable devices are never enabled in
-> > the
-> > first place, so there is no need for the kernel to know about them.
-> 
-> Yeah well that assumption is the difference in getting runtime PM to
-> work in a sane way across multiple SoCs and devices :)
-> 
-> Devices tagged with status = "disabled" are completely ignored by the
-> kernel. Interconnect and bus related code may not know the details on
-> how to reset and idle the child devices. Relying on firmware to do
-> the
-> reset and idle of unused devices may be too generic, can be buggy,
-> and
-> probably depends on the firmware revision.
-
-Well, so far it seems like the `status = "disabled"` is just being
-pushed from the SoC DTSIs to the board DTSs on TI hardware. For the
-AM64 platform (which is fairly similar to the AM65), both mainboards
-that currently exist disable unused UARTs, I2C/SPI busses, PWMs, ...
-(Some of these might be disabled to make them usable from the R5/M4
-cores, but I don't think that the case for all of them - "reserved"
-would be more appropriate than "disabled" in these cases anyways)
-
-AFAICT, disabling non-operatational devices in the board DTS instead of
-the SoC DTSI is worse than the alternatives in every way:
-
-- Verbose board DTS: You have to think about all the devices that exist
-in the SoC, not just the ones you want to use
-- Adding new nodes without `status = "disabled" to SoC DTSI can
-potentially cause issues on dependent boards
-- It doesn't solve the issues that not having `status = "disabled"` in
-the DTSI is supposed to solve
-
-Regards,
-Matthias
-
-
-> 
-> Regards,
-> 
-> Tony
+-- 
+2.17.1
 
