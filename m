@@ -2,108 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0B54C633B
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 07:40:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 298CF4C6342
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 07:41:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233314AbiB1Gkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 01:40:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44180 "EHLO
+        id S229579AbiB1Glq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 01:41:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233335AbiB1Gkw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 01:40:52 -0500
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 626523CFFF;
-        Sun, 27 Feb 2022 22:40:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646030411; x=1677566411;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=bS9bdC9cgUN0ZMd9zmyc+OAsWWEL36/MhYU9UfQLxI4=;
-  b=czRoWifEq68tPg+0hMRFn3us5NceC5Jn2yhAf1bXcFeiobzt5bf7G5jt
-   8oMfphYgO+33DCydHU6IXnMh+uTFMOxaELtLaeii9xjASzLsBsEsHtPCL
-   xHw4/m2wvDiP5JM8biHPomIVLTKsDF7UBFLJIvYEwCNlnX7JbrGZVOUxr
-   Q=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 27 Feb 2022 22:40:11 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Feb 2022 22:40:09 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:40:09 -0800
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 27 Feb 2022 22:40:03 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <yung-chuan.liao@linux.intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v5 2/2] dt-bindings: soundwire: qcom: Add bindings for audio CSR reset control property
-Date:   Mon, 28 Feb 2022 12:09:37 +0530
-Message-ID: <1646030377-12092-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1646030377-12092-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1646030377-12092-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S233086AbiB1Glp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 01:41:45 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E499B673C4
+        for <devicetree@vger.kernel.org>; Sun, 27 Feb 2022 22:41:06 -0800 (PST)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A7CFB486;
+        Mon, 28 Feb 2022 07:41:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1646030463;
+        bh=edO0zZGShhP8jnTdxIT2KdVMZRlFPKdVXexWbZmjH8I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W80sQ5a/F+lzv3KFXp90NwYyXGegLiPguwkx3prMpNyQc6lLvngx05dvE/2wpcZPo
+         QYsndbZcSeQ8LEtSd7Gma/FaBhV5JrF6l0+dN213jhtcTkB7PpC+8Px3WM3Ui7y8aP
+         f932ODXnIeYbbLWCAwBLRoPbudsXA87mlNA8svVg=
+Date:   Mon, 28 Feb 2022 08:40:52 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marek Vasut <marex@denx.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Peng Fan <peng.fan@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Robby Cai <robby.cai@nxp.com>, Sam Ravnborg <sam@ravnborg.org>,
+        Stefan Agner <stefan@agner.ch>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
+Message-ID: <YhxudFK69MYzmcRz@pendragon.ideasonboard.com>
+References: <20220228004605.367040-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20220228004605.367040-1-marex@denx.de>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update description for audio CSR reset control property, which is
-required for latest chipsets to allow software enabling in CGCR HCLK register.
+Hi Marek,
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Thank you for the patch.
 
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-index b93a2b3..84c8f54 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-@@ -150,6 +150,18 @@ board specific bus parameters.
- 		    or applicable for the respective data port.
- 		    More info in MIPI Alliance SoundWire 1.0 Specifications.
- 
-+- reset:
-+	Usage: optional
-+	Value type: <prop-encoded-array>
-+	Definition: Should specify the SoundWire audio CSR reset controller interface,
-+		    which is required for SoundWire version 1.6.0 and above.
-+
-+- reset-names:
-+	Usage: optional
-+	Value type: <stringlist>
-+	Definition: should be "swr_audio_cgcr" for SoundWire audio CSR reset
-+		    controller interface.
-+
- Note:
- 	More Information on detail of encoding of these fields can be
- found in MIPI Alliance SoundWire 1.0 Specifications.
+On Mon, Feb 28, 2022 at 01:45:57AM +0100, Marek Vasut wrote:
+> Add compatible string for i.MX8MP LCDIF variant. This is called LCDIFv3
+> and is completely different from the LCDIFv3 found in i.MX23 in that it
+> has a completely scrambled register layout compared to all previous LCDIF
+> variants. The new LCDIFv3 also supports 36bit address space. However,
+> except for the complete bit reshuffling, this is still LCDIF and it still
+> works like one.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Peng Fan <peng.fan@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robby Cai <robby.cai@nxp.com>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Stefan Agner <stefan@agner.ch>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/display/fsl,lcdif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> index 900a56cae80e6..9831ab53a053d 100644
+> --- a/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> +++ b/Documentation/devicetree/bindings/display/fsl,lcdif.yaml
+> @@ -28,6 +28,7 @@ properties:
+>                - fsl,imx7d-lcdif
+>                - fsl,imx8mm-lcdif
+>                - fsl,imx8mn-lcdif
+> +              - fsl,imx8mp-lcdif
+
+As the hardware isn't backward-compatible with any other version, I
+think the new compatible string should go in the previous enum block,
+not in this one. We don't want the imx6sx fallback.
+
+>                - fsl,imx8mq-lcdif
+>            - const: fsl,imx6sx-lcdif
+>  
+
 -- 
-2.7.4
+Regards,
 
+Laurent Pinchart
