@@ -2,91 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F1E04C66E1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:08:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56D5A4C66EF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 11:13:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232336AbiB1KJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 05:09:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45552 "EHLO
+        id S234701AbiB1KOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 05:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232172AbiB1KJa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:09:30 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFFAA38D95
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 02:08:51 -0800 (PST)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 659013FCA5
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 10:08:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646042930;
-        bh=zeytxqj89B4wWgWM9iFuiNH1LQkDtmr7mVHFnE8qblM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=UTfzIoJuu3eXF9nUe7gK7DVDz1WMl2yhiKYqtFBAne9PHta8XPQEnGCFYxbFXwW3N
-         nwFgTs2EuonMoHaTFQBVGN5Ij9p9Ax7pMggJfAj8lMrw43/w28xN+SbHjFxeyCfKkK
-         vDtPjuguYJpP2yh02MmvUmlj0C9wG4EQWm9/jKHYxAIVvTPHEjloCMGchqi0or1Hk1
-         nwvGIM6YzNjU4Uqg5YkZfq9v7qADo68WIoVOdWfbHHfsEIEr4GqHDZI5sBbK28YwLV
-         n4Jtw1TPVa4BkS63rICAu80AmyAZxtWDm2kEIX+2PZ+VZ9rj/TGc8Vuj6KIgipLyxH
-         w7pJ19rU+jdRA==
-Received: by mail-wm1-f72.google.com with SMTP id m21-20020a7bcf35000000b00380e364b5d2so5862318wmg.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 02:08:50 -0800 (PST)
+        with ESMTP id S232130AbiB1KOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 05:14:22 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0308B3F88A;
+        Mon, 28 Feb 2022 02:13:44 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id p4so5366448wmg.1;
+        Mon, 28 Feb 2022 02:13:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=iHjNxJBcliVXwUGTUuDrqJ48gN0ghqxi7GbNzI66nDg=;
+        b=B5yHEZ8nfvEze7BcpERA6IwTFyTFlXmEnHPj+qeY8Lr7ulvVFeEYomuTTmUnFkQZ4S
+         GbFdZ0I8BjI/gZ5NapYDLIPu/wShTItEkdLmz4MTEqBS0be7b2HpmiJgUaGNpftl6wdA
+         PLzQPyHLWR5q46ZkNawG0iDOUGMkCn1AjXA1GtHgRpGhzdu6ePw3dkcfTU4T/D7Yo0Pg
+         zbLoHBwJGXQtVjBqY6+oNS2i0XouHcl7q18ZdaMXDMyl9cVF35+SIHBeTd5N9kdHibfH
+         MgWz4ISkniTdGART+3Wxtjvs9S0G9QnFrEf8vD9qj6WsS9imSA87YlfPvSH4ts8trSy1
+         UcrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=zeytxqj89B4wWgWM9iFuiNH1LQkDtmr7mVHFnE8qblM=;
-        b=tSQ0DQCzR2bmghq2Y6hpGz4YGLO8xVzBywD0Y4LLnFuS8bx0b3ci4/k1ro4kOdFrFD
-         AZ9T9BvT2eLr2m4oUHExoDYPedq/ZqbcMgdYhmYZl5qGrYwh3VotcgzWzEFUoGFY6Ixl
-         RT6eDWasumEJJOHeznFJsg9BpA+ionTOtEtwnCXLemUi89y2Dad+EdYOwndhzBx2xlfD
-         R4Jd6xN5zbY/EMT+1yE0R3hVVifg53RITEynAZTOQhMOC030REIqtY0/BMO/PPpcyQ1O
-         e5STPjdYqfq22h9QT+WUe2DOTKXoTZgquMFe5jUbULQF0c5esNHd0bt99dkNo/YIpyG2
-         5E+A==
-X-Gm-Message-State: AOAM533H3SESnT/Ks40xrqRzdkHYkVvUaudsNAfs2c4woFJY9WbYNMNX
-        phNeuLqfzAlTnS0U8CKxKqmDwzT6D0kXbdwYjk9lJK6O7ada/0R9Fg5syTkjcYD35PEo2YMiwci
-        ts7vG1RbIOcM+NkjuMaY8Je0YjKE38cMQ6zfr0/c=
-X-Received: by 2002:a05:600c:19c9:b0:352:d507:9e89 with SMTP id u9-20020a05600c19c900b00352d5079e89mr12512260wmq.92.1646042928861;
-        Mon, 28 Feb 2022 02:08:48 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxDBpSWwelPv9Dy4do6twFWKimpbqcHI9oqyUb42pYM64Ru1t6WTl+2so5CKxbC0zA9NYVF2Q==
-X-Received: by 2002:a05:600c:19c9:b0:352:d507:9e89 with SMTP id u9-20020a05600c19c900b00352d5079e89mr12512225wmq.92.1646042928544;
-        Mon, 28 Feb 2022 02:08:48 -0800 (PST)
-Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id s3-20020a5d4ec3000000b001ea95eba44dsm9842149wrv.109.2022.02.28.02.08.46
+        bh=iHjNxJBcliVXwUGTUuDrqJ48gN0ghqxi7GbNzI66nDg=;
+        b=HcFIVGHHZzbg9ZV9ffUGU2CRkVdphR8GhBrDH4EOpUHV0xgrm31/bjMAKa6MwGIlpU
+         Y29smiCHgDcfEaSeX01sIZqHh241w6OddqZofFkA+GWgIN9zcvl8Bq1X3q/JQu4GvR8h
+         VEYFXJfUMCXxsCX0DPittoaB91JTmxmx7dU2uiOb6vrf6816fMju4nWwMvgbg+W4t9kM
+         /+6kiHwX4oV2ML+Zhe9nM8qFWME73xzstyg23IQJZUcGMzlZlTH5NU1N7lL9ETJBTmOz
+         Wo+3Kj5IOnI3+ZcVhvVjONLp0Vs8GIMc/4iidCX59gIvdZSLaBsa20Uw3ezKW3UvbjQh
+         DL4w==
+X-Gm-Message-State: AOAM530tkdNop0CUlRXgc5ZnLdYdNNvl+GCYI3RWmrs9TenXnYz0JLel
+        QS3Q+Tr7yPpYrEbE7hdzCsBcekavizPPgA==
+X-Google-Smtp-Source: ABdhPJyGje3sKsCaHr2cgj08/7Go8LtXdFkBrvBDBbspnQWl1pFUFer6mzofM1fgi2HmJq6bZgkuNA==
+X-Received: by 2002:a05:600c:4e13:b0:37c:fd8e:28d7 with SMTP id b19-20020a05600c4e1300b0037cfd8e28d7mr13048794wmq.51.1646043222543;
+        Mon, 28 Feb 2022 02:13:42 -0800 (PST)
+Received: from [192.168.0.14] (static-63-182-85-188.ipcom.comunitel.net. [188.85.182.63])
+        by smtp.gmail.com with ESMTPSA id v14-20020a7bcb4e000000b0034492fa24c6sm10578772wmj.34.2022.02.28.02.13.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 02:08:47 -0800 (PST)
-Message-ID: <4c3303f5-7af5-9974-7bea-b7f0d6c7ef53@canonical.com>
-Date:   Mon, 28 Feb 2022 11:08:46 +0100
+        Mon, 28 Feb 2022 02:13:42 -0800 (PST)
+Message-ID: <8a95a9fb-fede-b2e4-d616-e03c9e6778c8@gmail.com>
+Date:   Mon, 28 Feb 2022 11:13:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: Convert ahci-platform DT bindings to
- yaml
+Subject: Re: [PATCH v11 2/3] dt-bindings: pinctrl: mt8195: Add
+ mediatek,drive-strength-adv property
 Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>,
-        "devicetree @ vger . kernel . org Damien Le Moal" 
-        <damien.lemoal@opensource.wdc.com>,
+To:     Tinghan Shen <tinghan.shen@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     Frank Wunderlich <frank-w@public-files.de>
-References: <20220227182800.275572-1-linux@fw-web.de>
- <20220227182800.275572-2-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220227182800.275572-2-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        ryder.lee@kernel.org, wenst@chromium.org, chunfeng.yun@mediatek.com
+References: <20220216113131.13145-1-tinghan.shen@mediatek.com>
+ <20220216113131.13145-3-tinghan.shen@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+In-Reply-To: <20220216113131.13145-3-tinghan.shen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,335 +85,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2022 19:27, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+Hi Linus,
+
+On 16/02/2022 12:31, Tinghan Shen wrote:
+> Extend driving support for I2C pins on SoC mt8195.
+> This property is already documented in mediatek,mt8183-pinctrl.yaml.
 > 
-> Create a yaml file for dtbs_check from the old txt binding.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Tinghan Shen <tinghan.shen@mediatek.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+
+Will you take this one through your tree or shall I take it. In the latter case 
+I'd need an Acked-by from you.
+
+Regards,
+Matthias
+
 > ---
-> v3:
->   - add conversion to sata-series
->   - fix some errors in dt_binding_check and dtbs_check
->   - move to unevaluated properties = false
-
-You missed devicetree mailing list (corrupted address).
-
+>   .../bindings/pinctrl/pinctrl-mt8195.yaml      | 35 +++++++++++++++++++
+>   1 file changed, 35 insertions(+)
 > 
-> ---
-> 
-> imho all errors should be fixed in the dts not in the yaml...
-> 
-> errors about the subitem requirement that was defined in txt but not fixed some marvell dts
-> 
-> some dts for Marvell SoC bring error
-> 'phys' is a required property
-> 'target-supply' is a required property
-> 
-> problem is in arch/arm64/boot/dts/marvell/armada-cp11x.dtsi:331
-> here the sata-port@0 is defined, but not overridden with phy/target-supply in any following dts
-> 
-> ====================================================================
-> 
-> arch/arm64/boot/dts/broadcom/northstar2
-> ns2-svk.dt.yaml:
-> ns2-xmc.dt.yaml:
->   ahci@663f2000:
->     $nodename:0: 'ahci@663f2000' does not match '^sata(@.*)?$'
-> 
->     Unevaluated properties are not allowed
->     ('reg-names', '#address-cells', '#size-cells' were unexpected)
-> ---
->  .../devicetree/bindings/ata/ahci-platform.txt |  79 ----------
->  .../bindings/ata/ahci-platform.yaml           | 140 ++++++++++++++++++
->  2 files changed, 140 insertions(+), 79 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
->  create mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.txt b/Documentation/devicetree/bindings/ata/ahci-platform.txt
-> deleted file mode 100644
-> index 77091a277642..000000000000
-> --- a/Documentation/devicetree/bindings/ata/ahci-platform.txt
-> +++ /dev/null
-> @@ -1,79 +0,0 @@
-> -* AHCI SATA Controller
-> -
-> -SATA nodes are defined to describe on-chip Serial ATA controllers.
-> -Each SATA controller should have its own node.
-> -
-> -It is possible, but not required, to represent each port as a sub-node.
-> -It allows to enable each port independently when dealing with multiple
-> -PHYs.
-> -
-> -Required properties:
-> -- compatible        : compatible string, one of:
-> -  - "brcm,iproc-ahci"
-> -  - "hisilicon,hisi-ahci"
-> -  - "cavium,octeon-7130-ahci"
-> -  - "ibm,476gtr-ahci"
-> -  - "marvell,armada-380-ahci"
-> -  - "marvell,armada-3700-ahci"
-> -  - "snps,dwc-ahci"
-> -  - "snps,spear-ahci"
-> -  - "generic-ahci"
-> -- interrupts        : <interrupt mapping for SATA IRQ>
-> -- reg               : <registers mapping>
-> -
-> -Please note that when using "generic-ahci" you must also specify a SoC specific
-> -compatible:
-> -	compatible = "manufacturer,soc-model-ahci", "generic-ahci";
-> -
-> -Optional properties:
-> -- dma-coherent      : Present if dma operations are coherent
-> -- clocks            : a list of phandle + clock specifier pairs
-> -- resets            : a list of phandle + reset specifier pairs
-> -- target-supply     : regulator for SATA target power
-> -- phy-supply        : regulator for PHY power
-> -- phys              : reference to the SATA PHY node
-> -- phy-names         : must be "sata-phy"
-> -- ahci-supply       : regulator for AHCI controller
-> -- ports-implemented : Mask that indicates which ports that the HBA supports
-> -		      are available for software to use. Useful if PORTS_IMPL
-> -		      is not programmed by the BIOS, which is true with
-> -		      some embedded SOC's.
-> -
-> -Required properties when using sub-nodes:
-> -- #address-cells    : number of cells to encode an address
-> -- #size-cells       : number of cells representing the size of an address
-> -
-> -Sub-nodes required properties:
-> -- reg		    : the port number
-> -And at least one of the following properties:
-> -- phys		    : reference to the SATA PHY node
-> -- target-supply     : regulator for SATA target power
-> -
-> -Examples:
-> -        sata@ffe08000 {
-> -		compatible = "snps,spear-ahci";
-> -		reg = <0xffe08000 0x1000>;
-> -		interrupts = <115>;
-> -        };
-> -
-> -With sub-nodes:
-> -	sata@f7e90000 {
-> -		compatible = "marvell,berlin2q-achi", "generic-ahci";
-> -		reg = <0xe90000 0x1000>;
-> -		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> -		clocks = <&chip CLKID_SATA>;
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		sata0: sata-port@0 {
-> -			reg = <0>;
-> -			phys = <&sata_phy 0>;
-> -			target-supply = <&reg_sata0>;
-> -		};
-> -
-> -		sata1: sata-port@1 {
-> -			reg = <1>;
-> -			phys = <&sata_phy 1>;
-> -			target-supply = <&reg_sata1>;;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> new file mode 100644
-> index 000000000000..cc246b312c59
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> @@ -0,0 +1,140 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> index 8299662c2c09..c5b755514c46 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8195.yaml
+> @@ -98,6 +98,32 @@ patternProperties:
+>             drive-strength:
+>               enum: [2, 4, 6, 8, 10, 12, 14, 16]
+>   
+> +          mediatek,drive-strength-adv:
+> +            description: |
+> +              Describe the specific driving setup property.
+> +              For I2C pins, the existing generic driving setup can only support
+> +              2/4/6/8/10/12/14/16mA driving. But in specific driving setup, they
+> +              can support 0.125/0.25/0.5/1mA adjustment. If we enable specific
+> +              driving setup, the existing generic setup will be disabled.
+> +              The specific driving setup is controlled by E1E0EN.
+> +              When E1=0/E0=0, the strength is 0.125mA.
+> +              When E1=0/E0=1, the strength is 0.25mA.
+> +              When E1=1/E0=0, the strength is 0.5mA.
+> +              When E1=1/E0=1, the strength is 1mA.
+> +              EN is used to enable or disable the specific driving setup.
+> +              Valid arguments are described as below:
+> +              0: (E1, E0, EN) = (0, 0, 0)
+> +              1: (E1, E0, EN) = (0, 0, 1)
+> +              2: (E1, E0, EN) = (0, 1, 0)
+> +              3: (E1, E0, EN) = (0, 1, 1)
+> +              4: (E1, E0, EN) = (1, 0, 0)
+> +              5: (E1, E0, EN) = (1, 0, 1)
+> +              6: (E1, E0, EN) = (1, 1, 0)
+> +              7: (E1, E0, EN) = (1, 1, 1)
+> +              So the valid arguments are from 0 to 7.
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            enum: [0, 1, 2, 3, 4, 5, 6, 7]
 > +
-> +title: AHCI SATA Controller
-> +description:
-> +  SATA nodes are defined to describe on-chip Serial ATA controllers.
-> +  Each SATA controller should have its own node.
+>             bias-pull-down:
+>               oneOf:
+>                 - type: boolean
+> @@ -270,4 +296,13 @@ examples:
+>             bias-pull-down;
+>           };
+>         };
 > +
-> +  It is possible, but not required, to represent each port as a sub-node.
-> +  It allows to enable each port independently when dealing with multiple
-> +  PHYs.
-> +
-> +maintainers:
-> +  - Hans de Goede <hdegoede@redhat.com>
-> +  - Jens Axboe <axboe@kernel.dk>
-> +
-> +properties:
-> +  compatible:
-> +    contains:
-> +      enum:
-> +        - brcm,iproc-ahci
-> +        - cavium,octeon-7130-ahci
-> +        - generic-ahci
-> +        - hisilicon,hisi-ahci
-> +        - ibm,476gtr-ahci
-> +        - marvell,armada-380-ahci
-> +        - marvell,armada-3700-ahci
-
-Order entries alphabetically.
-
-> +        - snps,dwc-ahci
-> +        - snps,spear-ahci
-
-You converted the TXT bindings explicitly, but you missed the comment
-just below the 'reg' about generic-ahci. The generic-ahci never comes alone.
-
-The snps,dwc-ahci could come, although history shows that Synapsys
-blocks are commonly re-used and they should have specific compatible.
-Current users still have single snps,dwc-ahci, so it could be fixed a
-bit later.
-
-On the other hand, I expect to fix all the DTS in the same series where
-the bindings are corrected.
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 3
-
-Items should be described. Next or this patch could add also clock-names.
-
-> +
-> +  interrupts:
-> +    minItems: 1
-
-You mean maxItems?
-
-> +
-> +  ahci-supply:
-> +    description:
-> +      regulator for AHCI controller
-> +
-> +  dma-coherent:
-> +    description:
-> +      Present if dma operations are coherent
-
-Skip description, it's obvious. Just 'true'.
-
-> +
-> +  phy-supply:
-> +    description:
-> +      regulator for PHY power
-> +
-> +  phys:
-> +    minItems: 1
-
-maxItems?
-> +
-> +  phy-names:
-> +    minItems: 1
-
-Describe the items.
-
-> +
-> +  ports-implemented:
-> +    description:
-> +      Mask that indicates which ports that the HBA supports
-> +      are available for software to use. Useful if PORTS_IMPL
-> +      is not programmed by the BIOS, which is true with
-> +      some embedded SoCs.
-> +    minItems: 1
-
-You need a type and maxItems.
-
-> +
-> +  resets:
-> +    minItems: 1
-
-maxItems?
-
-> +
-> +  target-supply:
-> +    description:
-> +      regulator for SATA target power
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +patternProperties:
-> +  "^sata-port@[0-9]+$":
-
-You limit number of ports to 10. On purpose? What about 0xa? 0xb?
-
-> +    type: object
-> +    description:
-> +      Subnode with configuration of the Ports.
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      phys:
-> +        minItems: 1
-
-maxItems? Why do you put everywhere minItems? Are several phys really
-expected?
-
-> +
-> +      target-supply:
-> +        description:
-> +          regulator for SATA target power
-> +
-> +    required:
-> +      - reg
-> +
-> +    anyOf:
-> +      - required: [ phys ]
-> +      - required: [ target-supply ]
-> +
-> +allOf:
-> +- $ref: "sata-common.yaml#"
-
-This goes before properties.
-
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +        sata@ffe08000 {
-
-Wrong indentation. It starts just below |
-
-> +               compatible = "snps,spear-ahci";
-> +               reg = <0xffe08000 0x1000>;
-> +               interrupts = <115>;
+> +      i2c0-pins {
+> +        pins {
+> +          pinmux = <PINMUX_GPIO8__FUNC_SDA0>,
+> +                   <PINMUX_GPIO9__FUNC_SCL0>;
+> +          bias-disable;
+> +          mediatek,drive-strength-adv = <7>;
 > +        };
-> +  - |
-> +        #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +        #include <dt-bindings/clock/berlin2q.h>
-> +        sata@f7e90000 {
-> +                compatible = "marvell,berlin2q-achi", "generic-ahci";
-
-This clearly won't pass your checks. I don't think you run
-dt_binding_check. You must test your bindings first.
-
-> +                reg = <0xe90000 0x1000>;
-> +                interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +                clocks = <&chip CLKID_SATA>;
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                sata0: sata-port@0 {
-> +                        reg = <0>;
-> +                        phys = <&sata_phy 0>;
-> +                        target-supply = <&reg_sata0>;
-> +                };
-> +
-> +                sata1: sata-port@1 {
-> +                        reg = <1>;
-> +                        phys = <&sata_phy 1>;
-> +                        target-supply = <&reg_sata1>;
-> +                };
-> +        };
-
-
-Best regards,
-Krzysztof
+> +      };
+>       };
