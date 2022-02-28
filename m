@@ -2,147 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 040A94C7776
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 19:20:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 333154C7794
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 19:24:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240143AbiB1SVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 13:21:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56652 "EHLO
+        id S238328AbiB1SYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 13:24:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240149AbiB1SVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 13:21:12 -0500
-Received: from relay-us1.mymailcheap.com (relay-us1.mymailcheap.com [51.81.35.219])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFED220D4;
-        Mon, 28 Feb 2022 09:58:24 -0800 (PST)
-Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.248.207])
-        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id 4A326201F1;
-        Mon, 28 Feb 2022 17:50:06 +0000 (UTC)
-Received: from relay4.mymailcheap.com (relay4.mymailcheap.com [137.74.80.156])
-        by relay5.mymailcheap.com (Postfix) with ESMTPS id 5886F267CE;
-        Mon, 28 Feb 2022 17:49:35 +0000 (UTC)
-Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
-        by relay4.mymailcheap.com (Postfix) with ESMTPS id D602E2000E;
-        Mon, 28 Feb 2022 17:49:04 +0000 (UTC)
-Received: from localhost (localhost [127.0.0.1])
-        by filter1.mymailcheap.com (Postfix) with ESMTP id 3E3B62A378;
-        Mon, 28 Feb 2022 17:49:04 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
-Received: from filter1.mymailcheap.com ([127.0.0.1])
-        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id c7fNPPvqKdGq; Mon, 28 Feb 2022 17:49:03 +0000 (UTC)
-Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
-        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by filter1.mymailcheap.com (Postfix) with ESMTPS;
-        Mon, 28 Feb 2022 17:49:02 +0000 (UTC)
-Received: from edelgard.icenowy.info (unknown [59.41.161.107])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 3A4FC405A4;
-        Mon, 28 Feb 2022 17:48:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
-        t=1646070542; bh=LULP0zQ1ZvfvYvSVqa6XKbmkljj5l8VtkKiZl1WBvIw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=j5krynj2l3oFWH2XX0+o56R6rdO4tC9K6Fet3VAyOm/KrYj/an3u2NQphq0BQyAqg
-         sJ+ACBugGcVBH/bRnFGq7uVbWOihxOty/50/A3U89qZSxYciouA2GhjTK6aT0tlhH4
-         kPhxodzy3jG6Q1IVetSpFjZR+rGyfCMyH0iI2WgA=
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Icenowy Zheng <icenowy@aosc.io>
-Subject: [PATCH 2/2] riscv: dts: sifive: add pwm leds for HiFive Unleashed
-Date:   Tue,  1 Mar 2022 01:48:37 +0800
-Message-Id: <20220228174837.602758-2-icenowy@aosc.io>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220228174837.602758-1-icenowy@aosc.io>
-References: <20220228174837.602758-1-icenowy@aosc.io>
+        with ESMTP id S240031AbiB1SYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 13:24:38 -0500
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F23F79C4D;
+        Mon, 28 Feb 2022 10:04:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646071480; x=1677607480;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=PhTJdotKJ2wTOUcIThvtagW0Hjoxa9a1PK57pi8jxnU=;
+  b=S+J5RBTdpwt3DsUiX/Rxysm2t6/Ha/sDhHIlv6H7T9/op/W6CgUz/E9J
+   UV0Dw0LwrSIZd0NjF0FEz0XSJbS76DG+4/7MnP62opSRg8k2r8P8Jqtlk
+   HLJq0EwMK2OgzlyjcrKRhcmjqqHRGiCI2JXinksRn9ZrfsdeZDxAGQLJV
+   MbWo2uwN0ENowBxDo7u+59wUER+L7+o9GmV2czCvsO92934yeDWsfulWD
+   5GRI3+N3U+hj5gTlyQM1fSi6pXaw1/tQb38mAUoCoyM1gPq9UdTj0rbi8
+   CKLRgGt7TKRwwezR1qTAuaBB0iB8kdCqUcA3tx4fXD/fCTDa4DNeXa4XQ
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="232919519"
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; 
+   d="scan'208";a="232919519"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 10:04:37 -0800
+X-IronPort-AV: E=Sophos;i="5.90,144,1643702400"; 
+   d="scan'208";a="510184837"
+Received: from ensymall-mobl.amr.corp.intel.com (HELO [10.212.116.28]) ([10.212.116.28])
+  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 10:04:35 -0800
+Message-ID: <28a7aa9b-8322-54df-1cfa-275805e2b044@linux.intel.com>
+Date:   Mon, 28 Feb 2022 12:01:21 -0600
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_SORBS_HTTP,
-        RCVD_IN_SORBS_SOCKS,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Firefox/91.0 Thunderbird/91.5.0
+Subject: Re: [PATCH v3 3/3] soundwire: qcom: add in-band wake up interrupt
+ support
+Content-Language: en-US
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        robh+dt@kernel.org, vkoul@kernel.org,
+        yung-chuan.liao@linux.intel.com
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, quic_srivasam@quicinc.com
+References: <20220228172528.3489-1-srinivas.kandagatla@linaro.org>
+ <20220228172528.3489-4-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+In-Reply-To: <20220228172528.3489-4-srinivas.kandagatla@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PWM0 controller of HiFive Unleashed's FU540-C000 chip is connected
-to 4 LEDs.
 
-Add them to the device tree, with function and default trigger set from
-the triggers used in old kernels done by SiFive.
+> @@ -1424,6 +1464,11 @@ static int swrm_runtime_resume(struct device *dev)
+>  	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dev);
+>  	int ret;
+>  
+> +	if (ctrl->wake_irq > 0) {
+> +		if (!irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
+> +			disable_irq_nosync(ctrl->wake_irq);
+> +	}
+> +
+>  	clk_prepare_enable(ctrl->hclk);
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
----
- .../boot/dts/sifive/hifive-unleashed-a00.dts  | 42 +++++++++++++++++++
- 1 file changed, 42 insertions(+)
+This one is quite interesting. If you disable the IRQ mechanism but
+haven't yet resumed the clock, that leaves a time window where the
+peripheral could attempt to drive the line high. what happens in that case?
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 44824d7e50ac7..2935719ca169e 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -3,6 +3,8 @@
- 
- #include "fu540-c000.dtsi"
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pwm/pwm.h>
- 
- /* Clock frequency (in Hz) of the PCB crystal for rtcclk */
- #define RTCCLK_FREQ		1000000
-@@ -32,6 +34,46 @@ hfclk: hfclk {
- 		clock-output-names = "hfclk";
- 	};
- 
-+	led-controller {
-+		compatible = "pwm-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			pwms = <&pwm0 0 10000000 PWM_POLARITY_INVERTED>;
-+			active-low;
-+			max-brightness = <255>;
-+			function = LED_FUNCTION_HEARTBEAT;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			pwms = <&pwm0 1 10000000 PWM_POLARITY_INVERTED>;
-+			active-low;
-+			max-brightness = <255>;
-+			function = LED_FUNCTION_MTD;
-+			linux,default-trigger = "mtd";
-+		};
-+
-+		led-2 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			pwms = <&pwm0 2 10000000 PWM_POLARITY_INVERTED>;
-+			active-low;
-+			max-brightness = <255>;
-+			function = LED_FUNCTION_LAN;
-+			linux,default-trigger = "netdev";
-+		};
-+
-+		led-3 {
-+			color = <LED_COLOR_ID_GREEN>;
-+			pwms = <&pwm0 3 10000000 PWM_POLARITY_INVERTED>;
-+			active-low;
-+			max-brightness = <255>;
-+			function = LED_FUNCTION_PANIC;
-+			linux,default-trigger = "panic";
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x2 0x00000000>;
--- 
-2.30.2
+>  
+>  	if (ctrl->clock_stop_not_supported) {
+> @@ -1491,6 +1536,11 @@ static int __maybe_unused swrm_runtime_suspend(struct device *dev)
+>  
+>  	usleep_range(300, 305);
+>  
+> +	if (ctrl->wake_irq > 0) {
+> +		if (irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
+> +			enable_irq(ctrl->wake_irq);
+> +	}
+> +
 
+and this one is similar, you could have a case where the peripheral
+signals a wake immediately after the ClockStopNow frame, but you may not
+yet have enabled the wake detection interrupt.
+
+Would that imply that the wake is missed?
+
+
+
+>  	return 0;
+>  }
+>  
