@@ -2,56 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C874C6160
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 03:44:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 259C34C6161
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 03:44:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbiB1CpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Feb 2022 21:45:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34554 "EHLO
+        id S232135AbiB1CpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Feb 2022 21:45:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiB1CpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 21:45:11 -0500
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AE841CB36;
-        Sun, 27 Feb 2022 18:44:33 -0800 (PST)
-Received: by mail-oo1-f52.google.com with SMTP id i6-20020a4ac506000000b0031c5ac6c078so16769945ooq.6;
-        Sun, 27 Feb 2022 18:44:33 -0800 (PST)
+        with ESMTP id S231338AbiB1CpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Feb 2022 21:45:13 -0500
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3129C1CB3C;
+        Sun, 27 Feb 2022 18:44:36 -0800 (PST)
+Received: by mail-oo1-f54.google.com with SMTP id n5-20020a4a9545000000b0031d45a442feso9221674ooi.3;
+        Sun, 27 Feb 2022 18:44:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
          :message-id;
-        bh=NCyRXTyGzECwRj32maNs2V1YROZGx+Yzpw7YRcxNO9I=;
-        b=ZjQ+G8PUYZmuYe5Zpj+Q/b8jZILTU6XXTg+wc3m89CStkMerA5DL87TCjx/JpzDSQF
-         GeArpRJLSptTrHrS9Dpax6KAN9ZCtUMDZ7l24gwA4tDsNehXILT/NW+GJbbUsG4Pz1w4
-         WGhokxsJ5LXjCqW6CwY6FPb8PEoWNRXWbHF1oQEtca+LSbtRAuGg+UKh4kgfPh21EG31
-         3zJG5CZ+M7gEUZ+XGylFftLmr0teGeF8Hf9BQRoz1fjDs89kDKyFTvVqOdU7ExiXTHHY
-         LLAiyKLyf13t2Qa6Jtm7lSxnLdIpZksALkyTGHJl7c4NWIqvDqcZuWVguNteItSpoUSj
-         gA6A==
-X-Gm-Message-State: AOAM530S/M8TYXTK7ToiS08Szakwe/PFYDX+10V5SXuekN6t4bJLZxk5
-        zh02PVtia+BVbQK9YlIqkdCsfNE2AA==
-X-Google-Smtp-Source: ABdhPJxTu83D0Cc53SqyH+LRyQtGVFFa1tlVAG4lz1axZ9Ar90koOUbbwKv6eYOhN9JLi8dNvYWW2A==
-X-Received: by 2002:a05:6870:c1c6:b0:d7:1b8:2ad3 with SMTP id i6-20020a056870c1c600b000d701b82ad3mr4715289oad.285.1646016272336;
-        Sun, 27 Feb 2022 18:44:32 -0800 (PST)
+        bh=VfrPv61tJMs17cwzq3IdLBicVTrNBBvHW2vQ3RosnQ8=;
+        b=mGdwEPzgg67xmz0CrHfmk2dUDLgKRooqVszg4d5zcgGLA+aH5c85jIkITiEsX+2/JD
+         iNk0RMRywoaHs98At54Q9DBOe4aiXx4rCjLCdyPrDsgr5t9y5zVkZKu2Z4lx6gqIRR5L
+         T9hex9c2B7u3pntWZ+AjvO13fOGGg2mWeDiyYc54Plv4EnaP1ydza7glYwl0bDh2LmNA
+         z2LNUZktIf5FAwa33jb4aKywow6DSwtaGkqCi9WKJyd0u/1E8O6vF+sRreZqMMNwqlQN
+         27asiuROD7Xkqoxx6MGk+ze8jhHTaj5WQ2cDTOd2LLNm/9Mh85iHOxNH0tlomAT0k5Sg
+         B7UA==
+X-Gm-Message-State: AOAM533liNoyq14Abv1a2R1JtdsI/R+tEBi1/g/wUrHviGAQXMl4tdff
+        Udj6MHh3S3w1u6cqECLyFxsEU+lqYg==
+X-Google-Smtp-Source: ABdhPJyjEdJjOZs+irJb+sLOhRe4AoYqvsKpDtVqAQHQBpJJ4Pn2lzC9wcUA19tmRtUhZ5JPU4peSQ==
+X-Received: by 2002:a05:6870:e0d4:b0:d7:2d7a:e942 with SMTP id a20-20020a056870e0d400b000d72d7ae942mr842478oab.148.1646016275498;
+        Sun, 27 Feb 2022 18:44:35 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id v5-20020a544d05000000b002d7652b3c52sm3454396oix.25.2022.02.27.18.44.31
+        by smtp.gmail.com with ESMTPSA id e25-20020a544f19000000b002d53ce2f979sm5302130oiy.38.2022.02.27.18.44.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Feb 2022 18:44:31 -0800 (PST)
-Received: (nullmailer pid 47195 invoked by uid 1000);
+        Sun, 27 Feb 2022 18:44:34 -0800 (PST)
+Received: (nullmailer pid 47200 invoked by uid 1000);
         Mon, 28 Feb 2022 02:44:30 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Baruch Siach <baruch.siach@siklu.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        linux-arm-msm@vger.kernel.org,
-        Robert Marko <robert.marko@sartura.hr>, netdev@vger.kernel.org
-In-Reply-To: <e96e06d3228d9bbd927da32379ba78d5b4b718a7.1645949914.git.baruch@tkos.co.il>
-References: <e96e06d3228d9bbd927da32379ba78d5b4b718a7.1645949914.git.baruch@tkos.co.il>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: ipq4019-mdio: Add ipq6018 compatible
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     linux-kernel@vger.kernel.org, dmitry.torokhov@gmail.com,
+        alistair23@gmail.com, andreas@kemnade.info,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, linux-input@vger.kernel.org,
+        linus.walleij@linaro.org, rydberg@bitmath.org
+In-Reply-To: <20220227123318.313009-3-alistair@alistair23.me>
+References: <20220227123318.313009-1-alistair@alistair23.me> <20220227123318.313009-3-alistair@alistair23.me>
+Subject: Re: [PATCH v6 2/4] dt-bindings: input: Add Cypress TT2100 touchscreen controller
 Date:   Sun, 27 Feb 2022 20:44:30 -0600
-Message-Id: <1646016270.923889.47194.nullmailer@robh.at.kernel.org>
+Message-Id: <1646016270.948219.47199.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -63,23 +61,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Feb 2022 10:18:33 +0200, Baruch Siach wrote:
-> From: Baruch Siach <baruch.siach@siklu.com>
+On Sun, 27 Feb 2022 22:33:16 +1000, Alistair Francis wrote:
+> Add the Cypress TrueTouch Generation 5 touchscreen device tree bindings
+> documentation. It can use I2C or SPI bus.
+> This touchscreen can handle some defined zone that are designed and
+> sent as button. To be able to customize the keycode sent, the
+> "linux,code" property in a "button" sub-node can be used.
 > 
-> The IPQ60xx MDIO bus is the same as IPQ4019.
-> 
-> Change 'enum' to 'items' list to allow fallback to older compatible
-> strings.
-> 
-> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> 
-> v2:
-> 
->   Update the schema to allow fallback compatible (Rob Herring)
-> ---
->  Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../input/touchscreen/cypress,tt21000.yaml    | 98 +++++++++++++++++++
+>  1 file changed, 98 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.yaml
 > 
 
 My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
@@ -88,18 +82,25 @@ on your patch (DT_CHECKER_FLAGS is new in v5.13):
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: properties:compatible:items: 'anyOf' conditional failed, one must be fixed:
-	['qcom,ipq4019-mdio', 'qcom,ipq5018-mdio', 'qcom,ipq6018-mdio'] is not of type 'object', 'boolean'
-	'qcom,ipq4019-mdio' is not of type 'object', 'boolean'
-	'qcom,ipq5018-mdio' is not of type 'object', 'boolean'
-	'qcom,ipq6018-mdio' is not of type 'object', 'boolean'
-	from schema $id: http://json-schema.org/draft-07/schema#
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.yaml: ignoring, error in schema: properties: compatible: items
-Documentation/devicetree/bindings/net/qcom,ipq4019-mdio.example.dt.yaml:0:0: /example-0/mdio@90000: failed to match any schema with compatible: ['qcom,ipq4019-mdio']
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:38.21-31: Warning (reg_format): /example-0/i2c/touchscreen@24/button@0:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:43.21-31: Warning (reg_format): /example-0/i2c/touchscreen@24/button@1:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:48.21-31: Warning (reg_format): /example-0/i2c/touchscreen@24/button@2:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:37.26-40.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@0: Relying on default #address-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:37.26-40.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@0: Relying on default #size-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:42.26-45.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@1: Relying on default #address-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:42.26-45.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@1: Relying on default #size-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:47.26-50.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@2: Relying on default #address-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dts:47.26-50.19: Warning (avoid_default_addr_size): /example-0/i2c/touchscreen@24/button@2: Relying on default #size-cells value
+Documentation/devicetree/bindings/input/touchscreen/cypress,tt21000.example.dt.yaml: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/patch/1598217
+See https://patchwork.ozlabs.org/patch/1598249
 
 This check can fail if there are any dependencies. The base for a patch
 series is generally the most recent rc1.
