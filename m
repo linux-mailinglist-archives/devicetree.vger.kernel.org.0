@@ -2,103 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B7A4C6D2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E11A4C6D42
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 13:57:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231563AbiB1Mvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 07:51:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57824 "EHLO
+        id S229903AbiB1M6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 07:58:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229991AbiB1Mvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:51:51 -0500
-Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D03F710F9;
-        Mon, 28 Feb 2022 04:51:12 -0800 (PST)
-Received: by mail-ed1-x52b.google.com with SMTP id f8so5288664edf.10;
-        Mon, 28 Feb 2022 04:51:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=tvp6+/aDyKCIpbn6nOEqSF7Mhp5kWor08YlfstAh3xI=;
-        b=KXWOqwnHoiC3qOfGN74nt02GNRh/BSLorIidLX9BkZwHMO6C8A9S6oN8uCpV1yDmkQ
-         Y5SMVjRCYDr3okW+43h8IPg2KQMSg/Vwagez/DfKJX0goReZlQpHveN4uba+eZYjQj6U
-         qkdW8kiKBeaRNIldyVwmknCr+Fl44DqJjplr3J1gVng4gIHsRjAtl00JK0niOxkH/KhV
-         sXTxTTA8dmMMwQcg4yfOi0jqfV4JlJjNWFkHgbTmoQY3SIaa5UunzHOa4y/dhSbjopZF
-         KD8PulAVYh4k8eusxyDh7Nr+5UMNwntzLsNDiAFtkG1MLEul25NI7xdESS3ybpOJ3Klt
-         rK5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=tvp6+/aDyKCIpbn6nOEqSF7Mhp5kWor08YlfstAh3xI=;
-        b=SEBSthqkqtHqiS5koloH6mj1WKJ01rVQBK3gtzcrCIG0ChVqodUr/iqBxCAj22H3bL
-         Y9Yl/0ZoD5SwXYsuDr0NAC0VsXJHqRT/k6ETTbMkWC8ub2XEen4QDfmGaLLk3329HA1n
-         TRkiguo8CaSW1CJg24W/MvRJKQX8HCCIwLSYLTnopqgTg/kznOuAqlN755hjO37DH2UE
-         3h9SVMbV42UHKmHyBcIlOB8ARJyUBMzv3/KCcqTgXrjr58QXketfGZ68auf/fKQTtT0k
-         F9RBQhFfaeDDOu7W3iSSqU5bN1Ttas5yaKJJEXE6cy0f/4Ga7Ubhd6iCDP2gvoqv2HGp
-         Uv9g==
-X-Gm-Message-State: AOAM532ZSDpZ+SOikEChG2T3LG8gYqrDAqpcAGnxQcFgJMV/3GDbWgn9
-        MDcIT3njJrwut6e3SIP0jVI=
-X-Google-Smtp-Source: ABdhPJx/9iT25SvqezNjKzcjA155mwrQPzSJMvAjJLgu4lAM6PtODgl6saWyldg3gixnl8FlWMam+Q==
-X-Received: by 2002:a05:6402:491:b0:413:6c2e:bb2c with SMTP id k17-20020a056402049100b004136c2ebb2cmr15461987edv.196.1646052670962;
-        Mon, 28 Feb 2022 04:51:10 -0800 (PST)
-Received: from skbuf ([188.25.231.156])
-        by smtp.gmail.com with ESMTPSA id q10-20020aa7cc0a000000b0040f826f09fdsm6093055edt.81.2022.02.28.04.51.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 04:51:10 -0800 (PST)
-Date:   Mon, 28 Feb 2022 14:51:08 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, alsi@bang-olufsen.dk,
-        arinc.unal@arinc9.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/3] dt-bindings: net: dsa: add rtl8_4 and
- rtl8_4t
-Message-ID: <20220228125108.vuhwc4bganjwh5vv@skbuf>
-References: <20220227035920.19101-1-luizluca@gmail.com>
- <20220227035920.19101-2-luizluca@gmail.com>
+        with ESMTP id S233168AbiB1M5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 07:57:55 -0500
+Received: from polaris.svanheule.net (polaris.svanheule.net [IPv6:2a00:c98:2060:a004:1::200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F0937804F
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 04:57:17 -0800 (PST)
+Received: from vanadium.ugent.be (vanadium.ugent.be [157.193.99.61])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sander@svanheule.net)
+        by polaris.svanheule.net (Postfix) with ESMTPSA id F17332A9DB5;
+        Mon, 28 Feb 2022 13:57:14 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svanheule.net;
+        s=mail1707; t=1646053035;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bapqjhLApcwzDEhybuGVU/3933XunfSW4IVKilZ7qD4=;
+        b=pv0ZTcwUvhCAo4vxv2igrSpgiecCPZyuDI4hMokJve/s2Gdp7QcZcXzj5UohqsBwM7ZAAA
+        eNzPSkxzaKOjLZv7DGoka7E+VKNpTHHGKC9F7+Hdagu30tmeQ4KgeCkDRLBDWQk5XnYUeI
+        Kit+3/QQ8BzKWgnbEP71BU/7x1GRzLGMgb5uWMt2XL7CL0LW15E+ekd/P7P6XJQYLaNFOg
+        vekTaj76LdctZmJ60lIbMjl1uhQdUpY+Qm3v2CKx0c6G6gIzcdc7Lei5D+oNAHa9DDqQh7
+        IoziqFLAMWxOiUJyyzseWZL1GYr1eH1qszF3viLsY/5vuvOuwXEVdEPD9kf6aA==
+Message-ID: <4a8dac0dc296920c6e58584d48d6eaf6644b0322.camel@svanheule.net>
+Subject: Re: [PATCH v5 0/4] Per-parent domains for realtek-rtl IRQ driver
+From:   Sander Vanheule <sander@svanheule.net>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>, linux-kernel@vger.kernel.org
+Date:   Mon, 28 Feb 2022 13:57:13 +0100
+In-Reply-To: <87czjo49ht.wl-maz@kernel.org>
+References: <cover.1644864700.git.sander@svanheule.net>
+         <87czjo49ht.wl-maz@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220227035920.19101-2-luizluca@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 27, 2022 at 12:59:18AM -0300, Luiz Angelo Daros de Luca wrote:
-> Realtek rtl8365mb DSA driver can use and switch between these two tag
-> types.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> ---
->  Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> index 702df848a71d..2e3f29c61cf2 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> @@ -52,6 +52,8 @@ properties:
->        - ocelot
->        - ocelot-8021q
->        - seville
-> +      - rtl8_4
-> +      - rtl8_4t
+Hi Marc,
 
-Alphabetic order please.
-
->  
->    phy-handle: true
->  
-> -- 
-> 2.35.1
+On Tue, 2022-02-15 at 12:09 +0000, Marc Zyngier wrote:
+> On Mon, 14 Feb 2022 18:56:57 +0000,
+> Sander Vanheule <sander@svanheule.net> wrote:
+> > 
+> > The original implementation for this interrupt controller/router used
+> > an interrupt-map parser to determine which parent interrupts were
+> > present. However, this controller is not transparent, so a list of
+> > parent interrupts seems more appropriate, while also getting rid of the
+> > assumed routing to parent interrupts.
+> > 
+> > Additionally, N real cascaded interrupts are implemented, instead of
+> > handling all input interrupts with one cascaded interrupt. Otherwise it
+> > is possible that the priority of the parent interrupts is not respected.
 > 
+> My original question[1] still stands. An old kernel breaks with a new
+> DT. I am not convinced that this is an acceptable outcome.
+> 
+>         M.
+> 
+> [1] https://lore.kernel.org/all/874k585efy.wl-maz@kernel.org
+
+
+My apologies for the delay in replying, although I suppose the lack of response
+from others perhaps indicates that there is little interest maintaining old
+kernel/new DT compatibility for this hardware. John has previously argued in
+favour of breaking compatibility [2].
+
+Chances of someone running a vanilla kernel build on this hardware are close to
+zero at this moment. The most important part, the internal ethernet switch, is
+only supported with out-of-tree patches. If patches can be included on an old
+(LTS) kernel to provide networking support, then patches can be included to be
+compatible with a new DT specification for the interrupts as well. OpenWrt does
+exactly this: use an old (5.10) kernel with new upstream features backported.
+
+The binding could be adjusted to allow (but deprecate) interrupt-map for the new
+two-part compatibles. This would require a new DT to both specify two-cell
+interrupt specifiers, and an equivalent interrupt-map definition to ensure
+perfect two-way compatibility. This duplicated info would need to be maintained
+for years however, as LTS kernels stay around for a long time. In my opinion,
+breaking compatibility with old kernels would allow us to move forward with a
+cleaner driver and binding.
+
+Best,
+Sander
+
+[2]
+https://lore.kernel.org/all/9c169aad-3c7b-2ffb-90a2-1ca791a3f411@phrozen.org/
