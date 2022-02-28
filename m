@@ -2,101 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AF9C4C70EB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1EA4C70EE
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 16:48:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232081AbiB1Pr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 10:47:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37182 "EHLO
+        id S231771AbiB1PtF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 10:49:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231673AbiB1Pr2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:47:28 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3930D7A985;
-        Mon, 28 Feb 2022 07:46:49 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id E3855B811C9;
-        Mon, 28 Feb 2022 15:46:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 810D8C340E7;
-        Mon, 28 Feb 2022 15:46:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646063206;
-        bh=zh6mvTHgv6lw8dZUkV2NkLSn/51hOyLeWJyliQ2KXLw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HNg3VtPwbqGxzPOoOwGjIVZcODgMtfwe2GjCNGAOIF+yAiwp/V1oSDK94NeMWCISh
-         2zKqmOMO52UUNJNqhf0ySuXIJWfI0aqOpYoN0o7ELy5sfK43fuLOAb46SnGJWb+v3E
-         JDnugjV/rD//WSv9HPiaKLwqKX9qolbP2W9PiKwYmOiguMWPJs7iLcXDs6H9NNDJDn
-         dq+2EYGL41Dqh9YLW7CdXz8KC6aQRWf8uvjt+yWx0xZXBSpkaRMh+2ZCer1GkvrRZa
-         r9C9ZQBmSnoXKCn+I2knGhxMBMebItWYj6EPpv95+K4Kmp96X8lC/IW8lsI/7iuVXy
-         arPXRg2b6Fb+g==
-Date:   Mon, 28 Feb 2022 15:46:41 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/3] dt-bindings: spi: Update clocks property for ARM
- pl022
-Message-ID: <YhzuYdB+Y/euzql4@sirena.org.uk>
-References: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
- <20220228124345.99474-2-singh.kuldeep87k@gmail.com>
- <6e14bdd4-5924-dd58-41ef-5bdb5561913b@arm.com>
- <YhzmHgV3L+3nmt+Y@sirena.org.uk>
- <1763f668-2582-c05e-7ac8-d635bc84ef82@arm.com>
+        with ESMTP id S231673AbiB1PtE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 10:49:04 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AFA836303
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 07:48:24 -0800 (PST)
+Received: from pyrite.rasen.tech (h175-177-042-148.catv02.itscom.jp [175.177.42.148])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B7E09478;
+        Mon, 28 Feb 2022 16:48:15 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1646063301;
+        bh=tpbylHIrigSnf/DD/+R4ZPtYn1ROIYJyi/07EoMfG/A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=wike9SuIU9w8Lwv4YvIB0WTxT0ZrCtIbFELnWNboJM+bnxfYJrntu4Vr7hz7NH0Wg
+         jt2rUpz6OZn4x2ASQzL9inVMLNX7MRJ+zGDa8JOSsEarGMJJiLLLf8dCpeM5df6M0F
+         9MosV1ujhHRtB1AdCBbfBosBEfiWllKO0XhalqmI=
+From:   Paul Elder <paul.elder@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Paul Elder <paul.elder@ideasonboard.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Marek Vasut <marex@denx.de>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
+        Jacky Bai <ping.bai@nxp.com>, Adam Ford <aford173@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/4] imx8mp: Add media block control
+Date:   Tue,  1 Mar 2022 00:47:57 +0900
+Message-Id: <20220228154801.1347487-1-paul.elder@ideasonboard.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="3sg9MoE27A1IvpMe"
-Content-Disposition: inline
-In-Reply-To: <1763f668-2582-c05e-7ac8-d635bc84ef82@arm.com>
-X-Cookie: Killing turkeys causes winter.
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series depends on v2 of the series "soc: imx: gpcv2: add PGC
+control register indirection" from Lucas Stach [1].
 
---3sg9MoE27A1IvpMe
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The i.MX8MP Media Block Control (MEDIA BLK_CTRL) is a top-level
+peripheral providing access to the NoC and ensuring proper power
+sequencing of the peripherals within the MEDIAMIX domain. This patch
+series adds DT bindings for it, and expands the imx8m-blk-ctrl driver to
+support the i.MX8MP's Media Block Control.
 
-On Mon, Feb 28, 2022 at 03:27:08PM +0000, Robin Murphy wrote:
-> On 2022-02-28 15:11, Mark Brown wrote:
+The patches have been tested with with ISI on the i.MX8MP. The ISI
+driver is still under development [2], and will be posted in the not too
+distant future.
 
-> > Well, it could also be that the clock is wired to some other clock which
-> > is always on (which I guess is why the driver allows this in the first
-> > place, there's a lot of sloppy code around stuff like that in the tree).
+[1] https://lore.kernel.org/all/20220207192547.1997549-1-l.stach@pengutronix.de/
+[2] https://gitlab.com/ideasonboard/nxp/linux/-/tree/pinchartl/v5.17/isi
 
-> I wouldn't say the driver "allows" it, so much as it just blindly grabs the
-> first clock assuming it's SSPCLK per the binding, and thus it will happen to
-> work out if the underlying physical clock is the same as, or equivalent to,
-> the APB PCLK. Otherwise, it's already into some degree of not working
-> properly, by virtue of reading the wrong clock rate.
+Laurent Pinchart (1):
+  arm64: dts: imx8mp: Add MEDIAMIX power domains
 
-Ah, the APB clock requirement is inherited from the AMBA implementation
-isn't it?  We really ought to be extending an AMBA binding here...
+Paul Elder (3):
+  dt-bindings: soc: Add i.MX8MP media block control DT bindings
+  soc: imx: imx8m-blk-ctrl: Add i.MX8MP media blk-ctrl
+  arm64: dts: imx8mp: Add MEDIA_BLK_CTRL
 
---3sg9MoE27A1IvpMe
-Content-Type: application/pgp-signature; name="signature.asc"
+ .../soc/imx/fsl,imx8mp-media-blk-ctrl.yaml    | 105 +++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  66 ++++++++++
+ drivers/soc/imx/imx8m-blk-ctrl.c              | 123 +++++++++++++++++-
+ include/dt-bindings/power/imx8mp-power.h      |  10 ++
+ 4 files changed, 302 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/imx/fsl,imx8mp-media-blk-ctrl.yaml
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIc7mAACgkQJNaLcl1U
-h9DH5AgAggtT3JHbzSG/s7i5V/nVQjzCepMhOVGYXIkPFY2O+9m8MuXqmcrn3qaN
-sUQijP+V8rxOWCaO8WHufgdvwfVr3+ESrLRLdmYDY7BakGG1p0dugXup8BtviPFh
-BIrgRB+RFl0RYjfP6TKXHfo7pSw2ZFinjsTgukZPEf6R3L4THydMuAv2EbVgng+D
-MSlywzM0Ax0aA2TOOGw9uYLPWgfZRh7zOYpXRljR1bz5v9wZ/T9cITmaNY6eiSVl
-LT3aprK+88es9aQJcs5XDN8r6f457S9Br1+0SPwqtT+WitZuM/1XC94oIYZmJz7B
-3RZSwvJJnF9+mMquDyJkY1ZXvBNnBA==
-=0w2x
------END PGP SIGNATURE-----
-
---3sg9MoE27A1IvpMe--
+-- 
+2.30.2
