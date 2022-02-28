@@ -2,65 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4384C624A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 06:00:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 308384C62BF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 07:07:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233048AbiB1FBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 00:01:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33062 "EHLO
+        id S233119AbiB1GHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 01:07:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233064AbiB1FBL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 00:01:11 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A5166FB7;
-        Sun, 27 Feb 2022 21:00:30 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id b13so9480676qkj.12;
-        Sun, 27 Feb 2022 21:00:30 -0800 (PST)
+        with ESMTP id S229767AbiB1GHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 01:07:54 -0500
+Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3DC25C36B;
+        Sun, 27 Feb 2022 22:07:13 -0800 (PST)
+Received: by mail-qt1-x82f.google.com with SMTP id t28so8091368qtc.7;
+        Sun, 27 Feb 2022 22:07:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dl5bImTp8P/vXmU2+b7NmzpeCyOGUJ3zCffquEOpd18=;
-        b=AEGH3S6nmgJiVduVsFiCTpBweUwAf7F44ifshZVPRWwe4Qv6YFIYoFJbINshT644jX
-         oYCZ9rXlkl7Z+fa4VZFs1j46PDj8ZYQlGehSOH7UuIfpnHf/Mabqno5Y/s3aOw5YzvIo
-         q4X3Zd0Yl5/tylayQOeuPJDtyFSxIzToeJA3o=
+         :cc:content-transfer-encoding;
+        bh=dX1IYuv+pKoE5RWQMebZf9zpCqSCm/Io5TiFn1oToxU=;
+        b=UJLrcu+KI8inQtMLqAneJSCusa/UZBrkhLT4UfuM574uAB9MAt84mJh8YJmOeo1pH2
+         fkeZvXwH8jtTmOzk/IQITotZ0akAy9IiDX/cFqmSi8zlPw8AdfG7hVTJAZG0cGaVnJ0Z
+         fDcaGovRGGCqNQcL3V8LQZjLAsWfeOL1Bs6XE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dl5bImTp8P/vXmU2+b7NmzpeCyOGUJ3zCffquEOpd18=;
-        b=pMtSzqz+wY4UeVqjZfg8vSBXmV6cnJhMLDZgLOs5OUwy0Ns9X3H45Ku4bQ2dibswIB
-         AfS6F5kl/ndgPTQ7F2qqIeYuxlNW5Pa0ftOcBvyqnN5QHsDMfuB43H2wHy6cmmIJ7FZh
-         uy1hh6ZB/ZwnlBSz0ZmLxx3f0bCMAHZhAygpxC1RLoVxe3r2aPcYL8UWDXPI/dnYcbEh
-         adJk1tFD67zxJBuHr25w2A5DxPtwzZs68LJH8luvwDY5f3LCRdepPKWv/NORzYxqLZUG
-         UiN8oPAw2CA0zsvMQ4D7NSIk5J0N1nZODnqfdjOSB39EXPpQ3BZBqIEPTLpaeAEZ4EtV
-         FM1g==
-X-Gm-Message-State: AOAM533iEt65g/Cyh5nTGtdoj/XZfdiCOFiOt28PUDGskpTwSxjfs8up
-        urrbNShBvv44fVdS9+uPpuXbmBOWXOc7bP4FPM8=
-X-Google-Smtp-Source: ABdhPJzD+ossvHaHQAKihwxTjH9fBc3NI+O+eeyw7Gb76LJbM2mhqZQ5/unoVcahDCD9C38J+XgCe0KCu1NuXULkWUg=
-X-Received: by 2002:a37:f903:0:b0:648:ca74:b7dc with SMTP id
- l3-20020a37f903000000b00648ca74b7dcmr10150792qkj.666.1646024429883; Sun, 27
- Feb 2022 21:00:29 -0800 (PST)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=dX1IYuv+pKoE5RWQMebZf9zpCqSCm/Io5TiFn1oToxU=;
+        b=f8l7G0zN0luwZR+vSYoxMiPRVJHZ07usxupVwNoF405BQizaxgIuTvHOp9/Jsu48m/
+         X6vrRWwdswNq3fY4e80Fl94qiVJCXdcSqCy8jF5eRdSCsonDAeL2Hk6bsegaw07WQy/s
+         A8A/Grp/HREco8qrMksqEIH9x28lSYNXiwpUzMcOY9i0cQtHAWEt6LuVdFfrXvvMp7bo
+         KzmWzGqOB8bjuWLWfmFsCjhuJNvfc166JE9gXzB7VsAAMYWlJgMI0SquElFtbpopke87
+         yE2WUZLhIuTgkJiKnRVcVkr+ksPQWPjEEJAWQMU7coSJXHX3PWRt+HeYd//rKurYMW7n
+         1tnQ==
+X-Gm-Message-State: AOAM532ToqAFcf0P5/gmif3Y8qUsD4yHlku4dodrCur8gm5tNYnebulw
+        Z3UbG0SiQMA3i0SiaX6njQT/+A61TPHlhbT52wyRxAAmfSpZCw==
+X-Google-Smtp-Source: ABdhPJwx6e/7afLlxfw9imZxLs7kaRmaUVuH7jsAW+iB4UW00tnsvFIFNSUOuVEkA/Ke6pPE4HgOwn0IBfi1momwe5k=
+X-Received: by 2002:a05:622a:283:b0:2de:b3a2:b52d with SMTP id
+ z3-20020a05622a028300b002deb3a2b52dmr11796494qtw.625.1646028432862; Sun, 27
+ Feb 2022 22:07:12 -0800 (PST)
 MIME-Version: 1.0
-References: <20220105101719.7093-1-zev@bewilderbeest.net> <CACPK8XeHyoo0D1vQm=L8m284kC5n-O+FEMp1HN+ROWJfx7qjhQ@mail.gmail.com>
- <Yd4rfi/iICQ5EjGh@hatter.bewilderbeest.net>
-In-Reply-To: <Yd4rfi/iICQ5EjGh@hatter.bewilderbeest.net>
+References: <20220214094231.3753686-1-clg@kaod.org> <20220214094231.3753686-2-clg@kaod.org>
+ <20220225073155.f2cxfhm7surf34d4@ti.com> <688b7a65-d4b6-682b-494a-1d4178699dba@kaod.org>
+In-Reply-To: <688b7a65-d4b6-682b-494a-1d4178699dba@kaod.org>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 28 Feb 2022 05:00:17 +0000
-Message-ID: <CACPK8XfGdTvznj90C7XFJ04QVU96NdwfXQX_Rj+bkCnov1Urpg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: aspeed: Add ASRock ROMED8HM3 BMC
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Date:   Mon, 28 Feb 2022 06:07:01 +0000
+Message-ID: <CACPK8XeCfLmEJSLV6q5BLpCVztzG3dZehCgqrjgrNr7LaOiReQ@mail.gmail.com>
+Subject: Re: [PATCH 01/10] mtd: spi-nor: aspeed: Rename Kconfig option
+To:     =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
+Cc:     Pratyush Yadav <p.yadav@ti.com>, linux-spi@vger.kernel.org,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Rob Herring <robh+dt@kernel.org>,
         Andrew Jeffery <andrew@aj.id.au>,
-        Neil Horman <neil.horman@privafy.com>,
-        Anthony Jenkins <anthony.jenkins@privafy.com>
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
@@ -72,51 +77,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Jan 2022 at 01:14, Zev Weiss <zev@bewilderbeest.net> wrote:
+On Sun, 27 Feb 2022 at 18:50, C=C3=A9dric Le Goater <clg@kaod.org> wrote:
 >
-> On Tue, Jan 11, 2022 at 02:59:28AM PST, Joel Stanley wrote:
-> >On Wed, 5 Jan 2022 at 23:10, Zev Weiss <zev@bewilderbeest.net> wrote:
-> >>
-> >> This is a half-width, single-socket Epyc server board with an AST2500
-> >> BMC.  This device tree is sufficient for basic OpenBMC functionality,
-> >> but we'll need to add a few more devices (as driver support becomes
-> >> available) before it's fully usable.
-> >>
-> >> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> On 2/25/22 08:31, Pratyush Yadav wrote:
+> > On 14/02/22 10:42AM, C=C3=A9dric Le Goater wrote:
+> >> To prepare transition to the new Aspeed SMC SPI controller driver usin=
+g
+> >> the spi-mem interface, change the kernel CONFIG option of the current
+> >> driver to reflect that the implementation uses the MTD SPI-NOR interfa=
+ce.
+> >> Once the new driver is sufficiently exposed, we should remove the old =
+one.
 > >
-> >Reviewed-by: Joel Stanley <joel@jms.id.au>
-> >
+> > I don't quite understand the reasoning behind this. Why keep the old
+> > driver around? Why not directly replace it with the new one? Does the
+> > new one have any limitations that this one doesn't?
 >
-> Thanks!
+> No. The old one has more limitations than the new one. The old one in
+> mainline is half baked since we could never merge the necessary bits
+> for training. We have been keeping a full version on the OpenBMC tree.
+>
+> Joel, could we simply drop the old driver in mainline and keep the old
+> one in the OpenBMC tree until we feel comfortable ? I guess we need
+> more testing.
 
-I've merged this for v5.18.
-
->
-> >Have you considered using the openbmc gpio naming scheme for the
-> >gpio-line-names?
-> >
->
-> I looked at it, but decided not to for a few reasons:
->
->   - For systems that are in the early stages of a porting effort (like
->     this one currently is), I'm still referring to hardware schematics
->     fairly often, and using the same identifiers in software that are
->     used in the schematics simplifies things by avoiding an extra
->     translation step between the two.
->
->   - Most of the GPIO-related userspace components (that I'm dealing with
->     anyway, e.g. x86-power-control and host-error-monitor) already have
->     their own GPIO line-name configuration/remapping mechanisms that need
->     to be set up anyway.
->
->   - There's a solid mix of GPIOs that would be covered by the naming
->     guidelines and others that aren't; having a mix of the two styles
->     seems a bit awkward to me.
->
-> That said, I sympathize with the motivation behind it and I'm not
-> vehemently opposed on the whole, so if there's a strong preference to
-> follow that scheme I could probably be talked into changing it.
->
->
-> Zev
->
+I would answer Pratyush's question with: the old one is well tested,
+and the new one is not. We would intend to keep the old one around for
+a release cycle or two, and once we're confident the new one is stable
+we would remove the old.
