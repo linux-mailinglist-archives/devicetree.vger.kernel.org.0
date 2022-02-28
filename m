@@ -2,107 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C219A4C65F7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 10:47:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EBE384C65FD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 10:47:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234310AbiB1Jro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 04:47:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58836 "EHLO
+        id S233898AbiB1JsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 04:48:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233786AbiB1Jro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 04:47:44 -0500
+        with ESMTP id S234452AbiB1JsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 04:48:23 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98EFF6A006
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:47:04 -0800 (PST)
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E7C5AE4D
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:47:45 -0800 (PST)
+Received: from mail-wr1-f72.google.com (mail-wr1-f72.google.com [209.85.221.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6F77D3FCA6
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 09:47:03 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 266113FCA9
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 09:47:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646041623;
-        bh=EpgoMOR6UC3l3nQ7gCKRaGHrh4PEexWfIMc6Exi5PTY=;
+        s=20210705; t=1646041664;
+        bh=0JbmlSAA0fNwnIooIgqlcG+0ARF2DXlxIL3bhnCTrKE=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=oy3Vmdxb5GAIsP79rJx7ozgGMITlUSQPJsw6Q/B6qY6A3Nl9ObBkEKyiivzvuH0lD
-         sSEpC7Wzs1q4GN/YHXftXY2iLo/HB2JNpmwvLRzUT9BNiuxE1bdrpmvCX0pjLUeGQw
-         F74gFHuFd56fbqhxen8UMJ98f1BnT68SokhGanu19+1UuLf3P7K/P/Pod+xg78j/I8
-         yepZThQU8+cqXAaer1wvHK1G+ypeLM5jpXyM2em+D1fSwfwRbtp1SngZ8cDnCdZM0e
-         UcjHS3LpjL2tFADllQmI68p4gtW1jbW0ncSCpCDjfT7uastRT05Oe3Yyhn1E+Ds7QJ
-         B6MzIwpW9sTXQ==
-Received: by mail-wm1-f71.google.com with SMTP id h206-20020a1c21d7000000b003552c13626cso6176710wmh.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:47:03 -0800 (PST)
+        b=PrrGRHzBMfHObCvYQqig8k+EJydyl3OkKyYtFAxhlxp9U0Ywv4gmoKSdGAZQwJswA
+         wUoPeIkulNudVxJUL6emfzWAAXHXW/W2EHmFI0onycKcqEsnDr1GSKSF23DysKAOIk
+         TpgGQDE/1FjTkf4pJpICekHkCezxYXnk86omqTpvhokiRMREGDdzBT9VK26IsYfMOe
+         bS7Oz3CDtRGNcAtaYUpxsNGJ5ishWXmIHTUVjdp9CzkfOLy49k7nC/CfsB2cmWIlwx
+         dikjMDTtgTPLpMEacOi62Rr5BXItt6eYBbzJJd6Z3aMAZAbbhpRnoU5nnm0Rd6qmNT
+         T5IQNnv/Ga7Yw==
+Received: by mail-wr1-f72.google.com with SMTP id f11-20020a5d664b000000b001ef8a2c2e1fso649433wrw.15
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 01:47:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=EpgoMOR6UC3l3nQ7gCKRaGHrh4PEexWfIMc6Exi5PTY=;
-        b=7ru7hV9jgLXpcbG836D5vxeIwMp4+I0c1UpSUznwP9ZYkZm8QWzhQ9KBIhbZvgnC9G
-         HOsGND1uHz73+bEZpI8DuPsJx1rl5Za9qbYybUGZ1SZZ3A6/AONd296mnHmA0cT2ralx
-         1y17A3l81+RRfw7t/NWzJ9EFQlkKS2WtVCI/OjplKlRiUjpk/ZYMA8OGbc8e+yLHSMGU
-         f/5BdD1wkDDDoMW8Vh6g7BDuTU1ftQXHveaK7IJY9qk71pmk6IFZw+lD+49zmw0oQ0zp
-         vA0nnxroEeqEEldH792e/qikdhjv3TY6Pya4iGLc2buNr97aMHezX48OEGWT+N27/sMu
-         AxAw==
-X-Gm-Message-State: AOAM530HRfirzSWLrhCkxjRUXfLEJdmvK4KWh/nvDYO2YpoJ/SbnZtOQ
-        S6nxXMHOr+D7EONc+8mNAomVt30fnINUUGT6Y9+gcxgV1EjjzYjU+IJ71PI7ipfI6LMvFkahrI9
-        /NMd509r7DzuSeD+yVCbepIIltRUsMdG4SglNk/w=
-X-Received: by 2002:adf:c188:0:b0:1e6:8ecb:ea5a with SMTP id x8-20020adfc188000000b001e68ecbea5amr14682248wre.711.1646041623218;
-        Mon, 28 Feb 2022 01:47:03 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy1MQrmxE/R+HSmU+JGaqJA8OjgOG3SQPiDIMSEoBZ6fjSsDIfcUwdI70YoFS/spyArSqyQFQ==
-X-Received: by 2002:adf:c188:0:b0:1e6:8ecb:ea5a with SMTP id x8-20020adfc188000000b001e68ecbea5amr14682238wre.711.1646041623070;
-        Mon, 28 Feb 2022 01:47:03 -0800 (PST)
+        bh=0JbmlSAA0fNwnIooIgqlcG+0ARF2DXlxIL3bhnCTrKE=;
+        b=x6mU9djkEKCmyoc+BzU7HWHfvikkeuV2HTfi++dxWRaeyq8yt21GxnbRtwbx5do1YG
+         kmlxuvo6SoeiGFlP2EmDNAu52GPpAbqOAGptscIL1saLDfFjFuFy82lldt0dQGOPB0OJ
+         M6UsTVGd3SrrAxHNvr9b+m5I0Fa8K7lE6Ien3+TvexvEwsOaDLzEO0RAuBpCNhHsRpt8
+         GY5NH8+dP0EFqgTwlpN/OrWjC//s4gziRGj8mwY2UttjEp5X399fxnjaXfydngvtEm6x
+         gIJNKgahu5N9rXU08KJIVYXJY1larHAsmG9xvZUjucMtzBUM6PH+aw6uZ6OFp539xlkQ
+         T63g==
+X-Gm-Message-State: AOAM531NA1+d1X+QH5gRsdFDLDJJbERYyd2dp1gzow6rSo3UTDOtd0Kv
+        IhDZigxf/sn+mZ7xNwFm5gNHHBRclkzM3ObzcQHOA1d1Bp6317U4xvE3aN38AaXDpXm5Eo8M+Cq
+        dC3biI20H/O2fhMy0slVMtyYICduyE++qdG7xnqw=
+X-Received: by 2002:a05:600c:4615:b0:381:c68:e8f8 with SMTP id m21-20020a05600c461500b003810c68e8f8mr12570748wmo.117.1646041663882;
+        Mon, 28 Feb 2022 01:47:43 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyYFWnSTQN2LNmgpLVDrQRcbyyaUOEPgYrj2AvMI2hTg1YmU0CB7RgwzVxUe1zibUvQepHT0w==
+X-Received: by 2002:a05:600c:4615:b0:381:c68:e8f8 with SMTP id m21-20020a05600c461500b003810c68e8f8mr12570736wmo.117.1646041663731;
+        Mon, 28 Feb 2022 01:47:43 -0800 (PST)
 Received: from [192.168.0.133] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id v5-20020adfe4c5000000b001edc1e5053esm9854945wrm.82.2022.02.28.01.47.01
+        by smtp.gmail.com with ESMTPSA id i6-20020adfaac6000000b001e7f9a9498asm10267833wrc.50.2022.02.28.01.47.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 01:47:01 -0800 (PST)
-Message-ID: <0d605f73-aa26-58dd-6bb4-674764baadb6@canonical.com>
-Date:   Mon, 28 Feb 2022 10:47:00 +0100
+        Mon, 28 Feb 2022 01:47:43 -0800 (PST)
+Message-ID: <b584b58f-a17a-e866-3054-64366dc7fec4@canonical.com>
+Date:   Mon, 28 Feb 2022 10:47:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: i2c: renesas,riic: Document RZ/V2L SoC
+Subject: Re: [PATCH] dt-bindings: timer: renesas: ostm: Document Renesas
+ RZ/V2L OSTM
 Content-Language: en-US
 To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
         Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Brandt <chris.brandt@renesas.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Chris Brandt <chris.brandt@renesas.com>
 Cc:     linux-kernel@vger.kernel.org,
         Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-References: <20220227214747.24819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20220227224845.27348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220227214747.24819-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20220227224845.27348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2022 22:47, Lad Prabhakar wrote:
-> Document RZ/V2L I2C bindings. RZ/V2L I2C is identical to one found on
-> the RZ/G2L SoC. No driver changes are required as RZ/G2L compatible
-> string "renesas,riic-rz" will be used as a fallback.
+On 27/02/2022 23:48, Lad Prabhakar wrote:
+> Document the General Timer Module(a.k.a OSTM) found on the RZ/V2L SoC.
+> OSTM module is identical to one found RZ/G2L SoC. No driver changes are
+> required as generic compatible string "renesas,ostm" will be used as a
+> fallback.
 > 
 > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
-> DTSI changes have been posted as part of series [0].
+> DTSI changes have been posted as part of series [0]
 > 
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/
-> patch/20220227203744.18355-6-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+> 20220227203744.18355-8-prabhakar.mahadev-lad.rj@bp.renesas.com/
 > ---
->  Documentation/devicetree/bindings/i2c/renesas,riic.yaml | 2 ++
+>  Documentation/devicetree/bindings/timer/renesas,ostm.yaml | 2 ++
 >  1 file changed, 2 insertions(+)
 > 
 
