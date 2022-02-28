@@ -2,58 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F6B14C693F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 12:00:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B6E44C6947
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 12:01:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232873AbiB1LAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 06:00:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41686 "EHLO
+        id S231766AbiB1LCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 06:02:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233471AbiB1LA3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 06:00:29 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0EAC2559B
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 02:59:50 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dmitry.osipenko)
-        with ESMTPSA id E91441F438DC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646045989;
-        bh=gFkF0Up+9NtOgOLNqe9lR243CToghyCTK5EY9eHmHzs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MJ8oRoRC8+rjgLECF5i6IhrMZzx/P7lN066bGYaNvM2pwNtfI/7W0OUur7hJWQhR0
-         CCtVjsT87MhjVFsBPHdsIZWkI77UAoagHwIbtwEzgZ9xL9BeyIkPXDzZp/1BcchcIG
-         BhSsZLqbnKAOu0ZpZ34ZZy4lyINvb6pmmzeoKe0kXTGv8hYJLkQ/OPOyiyiMl/hIRy
-         vXbePQkvpAHYPycy0hQqHFYZCYXJBKfUbbGy7Er2jJCkE2Pdc9/+mk7lQx+sdlb/9+
-         na7iJkOvpxzDEIdiPY9gWohTyDDSDd6n5Qg7fFxa+xqWGqrxQKZ0xwD2ylDTQ7BaYD
-         +y/9ykdyFCdXQ==
-Message-ID: <29ca1e0c-cb55-edcc-fed5-d60a122dc20b@collabora.com>
-Date:   Mon, 28 Feb 2022 13:59:46 +0300
+        with ESMTP id S230405AbiB1LCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 06:02:08 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEF605F48;
+        Mon, 28 Feb 2022 03:01:29 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 21SB1IsA049473;
+        Mon, 28 Feb 2022 05:01:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1646046078;
+        bh=e7GXnQtw9Hp7YCOAOLD/4wQvxSNf4wePlNbT2z/eA7w=;
+        h=From:To:CC:Subject:Date;
+        b=Jrgm9AimMcJAgfkKQazAgGYUvTpbwAacNSOZ+hvm6oxZn4uH/CDXzszfuV6WFyXtr
+         b/8kW8uFuxAeudkRcw6WOiFLT8sJSqTfeT/N4hsz/iCeHQh5k8xhtfJC8UvdzQuZvK
+         6WC2qUaq5u7UnjfqRQeDQRQp98ptU1yAQgURY2CY=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 21SB1HBV065830
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 28 Feb 2022 05:01:18 -0600
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Mon, 28
+ Feb 2022 05:01:17 -0600
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Mon, 28 Feb 2022 05:01:17 -0600
+Received: from swubn03.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 21SB1EVl042106;
+        Mon, 28 Feb 2022 05:01:14 -0600
+From:   Aparna M <a-m1@ti.com>
+To:     <nm@ti.com>, <vigneshr@ti.com>, <kishon@ti.com>,
+        <kristo@kernel.org>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <praneeth@ti.com>, <nikhil.nd@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-am642-sk: Enable WLAN connected to SDHCI0
+Date:   Mon, 28 Feb 2022 16:31:11 +0530
+Message-ID: <20220228110111.30637-1-a-m1@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v7 03/24] drm/rockchip: dw_hdmi: rename vpll clock to
- reference clock
-Content-Language: en-US
-To:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org
-Cc:     devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-4-s.hauer@pengutronix.de>
-From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
-In-Reply-To: <20220225075150.2729401-4-s.hauer@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,24 +62,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Kishon Vijay Abraham I <kishon@ti.com>
 
-On 2/25/22 10:51, Sascha Hauer wrote:
-> "vpll" is a misnomer. A clock input to a device should be named after
-> the usage in the device, not after the clock that drives it. On the
-> rk3568 the same clock is driven by the HPLL.
-> To fix that, this patch renames the vpll clock to ref clock. The clock
-> name "vpll" is left for compatibility to old device trees.
-> 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> ---
-> 
-> Notes:
->     Changes since v6:
->     - Simplify by using devm_clk_get_optional() instead of devm_clk_get()
-> 
->  drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 27 +++++++++++----------
->  1 file changed, 14 insertions(+), 13 deletions(-)
+WL1837 module is connected to SDHCI0 in AM642 SK. Enable it here.
+This will enable the WiFi functionaliy on the board.
 
-Looks nice now. Thank you!
+Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+Signed-off-by: Nikhil Devshatwar <nikhil.nd@ti.com>
+Signed-off-by: Aparna M <a-m1@ti.com>
+---
 
-Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+v2 -> v3: Use generic node names for the regulators as per DT Specs
+v1 -> v2: Add "From" tag in commit message
+
+ arch/arm64/boot/dts/ti/k3-am642-sk.dts | 62 ++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-sk.dts b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+index 6b04745147be..a6be747e5bf1 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-sk.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-sk.dts
+@@ -125,6 +125,31 @@
+ 		vin-supply = <&vcc_3v3_sys>;
+ 		gpio = <&exp1 3 GPIO_ACTIVE_HIGH>;
+ 	};
++
++	com8_ls_en: regulator-1 {
++		compatible = "regulator-fixed";
++		regulator-name = "com8_ls_en";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		regulator-boot-on;
++		pinctrl-0 = <&main_com8_ls_en_pins_default>;
++		pinctrl-names = "default";
++		gpio = <&main_gpio0 62 GPIO_ACTIVE_LOW>;
++	};
++
++	wlan_en: regulator-2 {
++		/* output of SN74AVC4T245RSVR */
++		compatible = "regulator-fixed";
++		regulator-name = "wlan_en";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		enable-active-high;
++		pinctrl-0 = <&main_wlan_en_pins_default>;
++		pinctrl-names = "default";
++		vin-supply = <&com8_ls_en>;
++		gpio = <&main_gpio0 48 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &main_pmx0 {
+@@ -216,6 +241,23 @@
+ 			AM64X_IOPAD(0x0270, PIN_INPUT, 0) /* (D18) ECAP0_IN_APWM_OUT */
+ 		>;
+ 	};
++	main_wlan_en_pins_default: main-wlan-en-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00c4, PIN_OUTPUT_PULLUP, 7) /* (V8) GPIO0_48 */
++		>;
++	};
++
++	main_com8_ls_en_pins_default: main-com8-ls-en-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00fc, PIN_OUTPUT, 7) /* (U7) PRG1_PRU0_GPO17.GPIO0_62 */
++		>;
++	};
++
++	main_wlan_pins_default: main-wlan-pins-default {
++		pinctrl-single,pins = <
++			AM64X_IOPAD(0x00bc, PIN_INPUT, 7) /* (U8) GPIO0_46 */
++		>;
++	};
+ };
+ 
+ &mcu_uart0 {
+@@ -293,6 +335,26 @@
+ 	status = "reserved";
+ };
+ 
++&sdhci0 {
++	vmmc-supply = <&wlan_en>;
++	bus-width = <4>;
++	non-removable;
++	cap-power-off-card;
++	keep-power-in-suspend;
++	ti,driver-strength-ohm = <50>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++	wlcore: wlcore@2 {
++		compatible = "ti,wl1837";
++		reg = <2>;
++		pinctrl-0 = <&main_wlan_pins_default>;
++		pinctrl-names = "default";
++		interrupt-parent = <&main_gpio0>;
++		interrupts = <46 IRQ_TYPE_EDGE_FALLING>;
++	};
++};
++
+ &sdhci1 {
+ 	/* SD/MMC */
+ 	vmmc-supply = <&vdd_mmc1>;
+-- 
+2.17.1
+
