@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E1584C7B62
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 22:11:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D489E4C7B9D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 22:15:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229795AbiB1VLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 16:11:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57212 "EHLO
+        id S229531AbiB1VPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 16:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229582AbiB1VLp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 16:11:45 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047E9289BC
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 13:11:04 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 675F1478;
-        Mon, 28 Feb 2022 22:11:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1646082662;
-        bh=pKKHesyOamud2XND2flxU2bgbNJiut9dvMdWNQyAMFU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=h/uIt4dnoenmaNmhq7XYy3c/0sSXUhDASbVKMcegPyhJiuByWiknqn9R/jLR7ZME+
-         LyI7+IQJGpaaF51fQTbhnvrRHbEFbfmnlgQp2nV7V4ligZVy0NHFIgKWiZcCrohs0B
-         wS79k9iSSy+FNAxFeDEDzWjASpVmpPLaePs66BdQ=
-Date:   Mon, 28 Feb 2022 23:10:50 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v3 0/7] i.MX8MP GPC and blk-ctrl
-Message-ID: <Yh06Wiw+cHtV4Jfl@pendragon.ideasonboard.com>
-References: <20220228201731.3330192-1-l.stach@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220228201731.3330192-1-l.stach@pengutronix.de>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230103AbiB1VPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 16:15:44 -0500
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A695DFD2;
+        Mon, 28 Feb 2022 13:15:04 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id l21-20020a056830239500b005afd2a7eaa2so7713541ots.9;
+        Mon, 28 Feb 2022 13:15:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=y6AzB2ljaq086U1SKhDMlS54EEVDwXoqAsbqXMIOXW4=;
+        b=5v3jmBu0ZJGvoJliCVepx6QAZOysofgvt/eXCdblQSltmeIYdJmuDlqC+M9cqMlb5G
+         dLlT6qVyV0HZLBXLRG13oJkr2SXjd5aBPVTZgTHf8zSEvyORkc5KZPpceKbl8KmZ8C0X
+         2LvFATNInZ69bm02By/7XVFxcFdKouD6Ln4GSVJ0Bl/3BhlLxdVyWHsqt6b07p9LU9yQ
+         bwAfeUEQVL8O+U30rOIzS4hH71O3sF2hDb69AZ9YhmUGrI3WzC/B/5RlWqngU0iS3WEH
+         mkV5qAW/tjWTnNozF4AvOLQrqG4OhIvXkmjpOOi3ycT/T7fSOrJGBO8ApediAsnaO6KH
+         XS9A==
+X-Gm-Message-State: AOAM533KwmWfeLMZy6JWqI9TPJkEb/9B7joILKfqE39y2AVoQ5ymyqJx
+        90nGQcdYPjSVz8sMKh84qg==
+X-Google-Smtp-Source: ABdhPJw7aBN9mUJo0g3AXWmCIIBdVBxbVetccP0NRASyfXWxAf1XCNcG3srYD3XgcUmcOM7JuPoVKw==
+X-Received: by 2002:a9d:4712:0:b0:5ad:f2a:6394 with SMTP id a18-20020a9d4712000000b005ad0f2a6394mr10507051otf.281.1646082903555;
+        Mon, 28 Feb 2022 13:15:03 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g7-20020a056870d20700b000d1614be328sm4994086oac.27.2022.02.28.13.15.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 13:15:02 -0800 (PST)
+Received: (nullmailer pid 1599409 invoked by uid 1000);
+        Mon, 28 Feb 2022 21:15:01 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     michael.srba@seznam.cz
+Cc:     Michael Srba <Michael.Srba@seznam.cz>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        linux-clk@vger.kernel.org, Saravana Kannan <saravanak@google.com>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220228131435.29207-3-michael.srba@seznam.cz>
+References: <20220228131435.29207-1-michael.srba@seznam.cz> <20220228131435.29207-3-michael.srba@seznam.cz>
+Subject: Re: [PATCH v9 3/5] dt-bindings: bus: add device tree bindings for qcom,ssc-block-bus
+Date:   Mon, 28 Feb 2022 15:15:01 -0600
+Message-Id: <1646082901.647733.1599408.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lucas,
-
-On Mon, Feb 28, 2022 at 09:17:24PM +0100, Lucas Stach wrote:
-> Hi all,
+On Mon, 28 Feb 2022 14:14:33 +0100, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
-> third and hopefully last revision of this patchset. The dt-binding
-> patches are dropped, as Shawn already picked them up. I fixed up all
-> the review comments received by Laurent and Marek.
-
-For patches 1/7 to 3/7 and 5/7 to 7/7,
-
-Tested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> Lucas Stach (7):
->   soc: imx: gpcv2: add PGC control register indirection
->   soc: imx: gpcv2: add support for i.MX8MP power domains
->   soc: imx: add i.MX8MP HSIO blk-ctrl
->   dt-bindings: usb: dwc3-imx8mp: add power domain property
->   arm64: dts: imx8mp: add HSIO power-domains
->   arm64: dts: imx8mp: add GPU power domains
->   arm64: dts: imx8mp: add GPU nodes
+> Adds bindings for the AHB bus which exposes the SSC block in the global
+> address space. This bus (and the SSC block itself) is present on certain
+> qcom SoCs.
 > 
->  .../bindings/usb/fsl,imx8mp-dwc3.yaml         |   6 +
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 129 ++++-
->  drivers/soc/imx/Makefile                      |   1 +
->  drivers/soc/imx/gpcv2.c                       | 430 ++++++++++++++++-
->  drivers/soc/imx/imx8mp-blk-ctrl.c             | 446 ++++++++++++++++++
->  5 files changed, 994 insertions(+), 18 deletions(-)
->  create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
+> In typical configuration, this bus (as some of the clocks and registers
+> that we need to manipulate) is not accessible to the OS, and the
+> resources on this bus are indirectly accessed by communicating with a
+> hexagon CPU core residing in the SSC block. In this configuration, the
+> hypervisor is the one performing the bus initialization for the purposes
+> of bringing the haxagon CPU core out of reset.
+> 
+> However, it is possible to change the configuration, in which case this
+> binding serves to allow the OS to initialize the bus.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  CHANGES:
+>  - v2: fix issues caught by by dt-schema
+>  - v3: none
+>  - v4: address the issues pointed out in the review
+>  - v5: clarify type of additional properties; remove ssc_tlmm node for now
+>  - v6: none
+>  - v7: fix indentation, use imperative in commit message
+>  - v8: none
+>  - v9: fix typo in commit description; explain what SSC is in the 'decription' section of the binding
+> ---
+>  .../bindings/bus/qcom,ssc-block-bus.yaml      | 147 ++++++++++++++++++
+>  1 file changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.yaml
+> 
 
--- 
-Regards,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Laurent Pinchart
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dts:39.32-33 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:378: Documentation/devicetree/bindings/bus/qcom,ssc-block-bus.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1398: dt_binding_check] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1598879
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
