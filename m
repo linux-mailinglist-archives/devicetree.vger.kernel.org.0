@@ -2,108 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C26E4C6F2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:18:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7BB4C6F2F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:19:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232531AbiB1OTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:19:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35698 "EHLO
+        id S230343AbiB1OTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:19:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236585AbiB1OTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:19:17 -0500
-Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C084B26557
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:18:38 -0800 (PST)
-Received: by mail-wr1-x430.google.com with SMTP id p9so15665460wra.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:18:38 -0800 (PST)
+        with ESMTP id S232248AbiB1OTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:19:38 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2679357B38;
+        Mon, 28 Feb 2022 06:19:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=0pWKGzc1QGnlWJ7r+DVlrppysa/FNwAKcHpfFi7QI+0=;
-        b=mWFC0RgVVVEnPrrnSOZ6rSduLtgN2AAjdqME+r3OuWaLryf4ZvjGIRhEuCuB3K2pbJ
-         UcE+xdZ6Asyj0UWqym7ZF+fEyTZYMJN/O0bnou1jLqmqRlE5CdYQXijZtps/wyBdtpMS
-         EhstuHJKDem74wrLsw3BF5ShaD3gdWZ7qqyhdsHhM50ZbBptpUttgBXODqWIfHhbpmIX
-         7/BZpaFhFYNnl2PoY+Tw4/tf9kRhDnScAAbSR0Izb5S8X/Pr73EkX+MWZnRKjeIwyueq
-         SBg1FHCjMoBv9TqjhMfdTV6vdRLkVbfsMBgvOzIWAaRUKHlejNVEIXknZQzBu1ULs+Rs
-         Hy1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=0pWKGzc1QGnlWJ7r+DVlrppysa/FNwAKcHpfFi7QI+0=;
-        b=ZT5BE8QgnwtRvL9qX6/aOp1PAUuIXa/TcV9++bsuaZ0aXY24mQbcJlUaRRNbDlpE+b
-         UcZcskvCYPzoowEP8+UoMyInWGdODn8Xkfx3TnXoqzEotnZhwRE9IVIU9GiS7piZ2pCk
-         om4OqeNyibH3X3uOa5F+9ldRSueKPdgaOBAgW3AgX46kti54cz9ipTEsuwKZbmWhEITX
-         ts2fMIEu/KZcY2MX3RNasq2JCbKVcrFawdD+AEZ2Y8nBZ4vutGiv3/vR2lshasjAHMb/
-         C549eC6yaHUHSk97cwIeFJQ8wIkXOuCPTWjzOXkOOUeMqG3w4VUYM77XXmLEXbnwO1B0
-         3ZbQ==
-X-Gm-Message-State: AOAM531zC1CkAGtzCAeGfEOM2oEGrdD99axU5z2egc+y6mDfe/qWGfsV
-        Ea51SCJo+0vqB9v1SMCSbLA+3Q==
-X-Google-Smtp-Source: ABdhPJz6CAiN5uoDI/GIMmfKhOZ9vlU5f8pyRnmCUdki+ZEhESDrFSf05c4PuXfRbM8VvRQcajoH5A==
-X-Received: by 2002:a05:6000:1e17:b0:1ef:d2b0:5624 with SMTP id bj23-20020a0560001e1700b001efd2b05624mr3920084wrb.598.1646057917250;
-        Mon, 28 Feb 2022 06:18:37 -0800 (PST)
-Received: from ?IPV6:2001:861:44c0:66c0:6431:1dc7:b58f:6282? ([2001:861:44c0:66c0:6431:1dc7:b58f:6282])
-        by smtp.gmail.com with ESMTPSA id m11-20020adff38b000000b001ef879a5930sm7224744wro.61.2022.02.28.06.18.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 06:18:36 -0800 (PST)
-Message-ID: <4fb2c485-a489-574e-9445-dbeede79d343@baylibre.com>
-Date:   Mon, 28 Feb 2022 15:18:36 +0100
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646057940; x=1677593940;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=mGXIJ14JDKVbQZzu2QsNGlPduFK+XcbT3JXR8kp0H60=;
+  b=uphcYOWAc0GuoS14pTaCKOdzWC6vhPfTQ1R2J6DVusU0gWFniws2/6oZ
+   OfGWP/9+jn2ZAfrukHu1m1mStP0GzKPRnERq5cUnFbSwLE7ZFIIY65HHf
+   PufhLyPZp18+UrgFZZMsbrGzFrDvMzIYX0cBawelm8Zofi/y4tXcV9cpy
+   U=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 28 Feb 2022 06:18:59 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 06:19:00 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 28 Feb 2022 06:18:59 -0800
+Received: from [10.216.7.106] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 28 Feb
+ 2022 06:18:54 -0800
+Subject: Re: [PATCH V7 4/5] arm64: dts: qcom: pm8008: Add base dts file
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Das Srinagesh <gurus@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+References: <1645182064-15843-1-git-send-email-quic_c_skakit@quicinc.com>
+ <1645182064-15843-5-git-send-email-quic_c_skakit@quicinc.com>
+ <CAE-0n53P1HZCjXUFWApEU8qG3_+Vv4XoZou5OwHsHvMJpqMe=g@mail.gmail.com>
+From:   "Satya Priya Kakitapalli (Temp)" <quic_c_skakit@quicinc.com>
+Message-ID: <c91d3226-d407-f574-f776-d29be08c892e@quicinc.com>
+Date:   Mon, 28 Feb 2022 19:48:51 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V5 0/2] Power: meson-s4: add s4 power domain driver
-Content-Language: en-US
-To:     Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        jianxin.pan@amlogic.com
-References: <20220228033542.3594861-1-shunzhou.jiang@amlogic.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220228033542.3594861-1-shunzhou.jiang@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+In-Reply-To: <CAE-0n53P1HZCjXUFWApEU8qG3_+Vv4XoZou5OwHsHvMJpqMe=g@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On 28/02/2022 04:35, Shunzhou Jiang wrote:
-> This patchset adds Power controller driver support for Meson-S4 SoC
-> Likes Meson-A1, the power domains register only can access in secure world
+On 2/19/2022 7:27 AM, Stephen Boyd wrote:
+> Quoting Satya Priya (2022-02-18 03:01:02)
+>> Add base DTS file for pm8008 with infra and regulator nodes.
+>>
+>> Signed-off-by: Satya Priya <quic_c_skakit@quicinc.com>
+>> ---
+>> Changes in V4:
+>>   - This is newly added in V4, to add all the pm8008 common stuff.
+>>
+>> Changes in V5:
+>>   - Changed the mfd node names from pm8008_chip to pm8008_infra and
+>>     pm8008_ldo to pm8008_regulators as they re more appropriate.
+>>   - Changed the compatible for pm8008@9 mfd node to differentiate from
+>>     pm8008@8 node in driver.
+>>   - Removed compatible for regulators node.
+>>   - Removed reg property for LDOs and added in driver.
+>>
+>> Changes in V6:
+>>   - Changed node names to small letters.
+>>
+>> Changes in V7:
+>>   - Removed intermediate regulators node.
+>>
+>>   arch/arm64/boot/dts/qcom/pm8008.dtsi | 44 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/qcom/pm8008.dtsi
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/pm8008.dtsi b/arch/arm64/boot/dts/qcom/pm8008.dtsi
+>> new file mode 100644
+>> index 0000000..0f48572
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/qcom/pm8008.dtsi
+>> @@ -0,0 +1,44 @@
+>> +// SPDX-License-Identifier: BSD-3-Clause
+>> +// Copyright (c) 2022, The Linux Foundation. All rights reserved.
+>> +
+>> +pm8008_infra: pm8008@8 {
+> Node name should be generic, pmic@8
 
-You sent another "v5" version of this same patchset at https://lore.kernel.org/r/20220228032803.3305649-1-shunzhou.jiang@amlogic.com
 
-Which one is the right "v5" ?
+Okay.
 
-Please also add the changelog (changes between your patchset version) in this cover letter,
-otherwise we can't track the changes VS the review comments of the different patchset versions.
 
-Thanks,
-Neil
+>> +       compatible = "qcom,pm8008";
+>> +       reg = <0x8>;
+>> +       #address-cells = <1>;
+>> +       #size-cells = <0>;
+>> +};
+>> +
+>> +pm8008_regulators: pm8008@9 {
+> Node name should be generic, pmic@9
 
-> 
-> Shunzhou Jiang (2):
->    dt-bindings: power: add Amlogic s4 power domains bindings
->    soc: s4: Add support for power domains controller
-> 
->   .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
->   drivers/soc/amlogic/meson-secure-pwrc.c       | 22 +++++++++++++++++++
->   include/dt-bindings/power/meson-s4-power.h    | 19 ++++++++++++++++
->   3 files changed, 43 insertions(+), 1 deletion(-)
->   create mode 100644 include/dt-bindings/power/meson-s4-power.h
-> 
-> 
-> base-commit: 3448a018ded03ccd4093d6675f4a39eb2d1a18ef
 
+Okay.
+
+
+>> +       compatible = "qcom,pm8008-regulators";
+>> +       reg = <0x9>;
+>> +       #address-cells = <1>;
+> Address cells is 0 too?
+
+
+Okay.
+
+
+>> +       #size-cells = <0>;
+>> +
+>> +       pm8008_l1: ldo1 {
+>> +               regulator-name = "pm8008_l1";
+>> +       };
+>> +
+>> +       pm8008_l2: ldo2 {
+>> +               regulator-name = "pm8008_l2";
+>> +       };
+>> +
+>> +       pm8008_l3: ldo3 {
+>> +               regulator-name = "pm8008_l3";
+>> +       };
+>> +
+>> +       pm8008_l4: ldo4 {
+>> +               regulator-name = "pm8008_l4";
+>> +       };
+>> +
+>> +       pm8008_l5: ldo5 {
+>> +               regulator-name = "pm8008_l5";
+>> +       };
+>> +
+>> +       pm8008_l6: ldo6 {
+>> +               regulator-name = "pm8008_l6";
+>> +       };
+>> +
+>> +       pm8008_l7: ldo7 {
+>> +               regulator-name = "pm8008_l7";
+>> +       };
+>>
