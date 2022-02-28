@@ -2,100 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E3744C6FBC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:43:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 26E044C6FC6
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 15:44:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237250AbiB1On5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 09:43:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S237272AbiB1Oom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 09:44:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232032AbiB1On5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:43:57 -0500
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB6F275CE;
-        Mon, 28 Feb 2022 06:43:18 -0800 (PST)
-Received: by mail-vs1-f43.google.com with SMTP id w4so13216446vsq.1;
-        Mon, 28 Feb 2022 06:43:18 -0800 (PST)
+        with ESMTP id S237271AbiB1Ool (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 09:44:41 -0500
+Received: from mail-oi1-x22e.google.com (mail-oi1-x22e.google.com [IPv6:2607:f8b0:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 018817EB0B
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:44:02 -0800 (PST)
+Received: by mail-oi1-x22e.google.com with SMTP id ay7so13362474oib.8
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 06:44:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TZ/FXIBb2l/zy0sgH24plAXGxKtl4xwqj/WVr29N3Qk=;
+        b=tCRb7/Hcvc+dlyPVTnTvzQyWLYC9lg7XGlfVWZYnLuLLUOnFln56ZGAc7+pl7FweuR
+         yjC8AY+uBTub+L8tzvx5Qtk0El48HFnMh41leniIVko5ULqWibi9tXISigX8Cnu6B0lP
+         nkbsHaYhUvr9KdnAKnquO61lfKSsZFfvM8Sn8QijLgX6vckVmvgr2Sny+mUJiK1UTHW9
+         0oOZTCcXnBxoJTk6MCvHifVRZKYrachekbhGleJNzNIE5z5ypvxNivmKn5Z+CHSwsVTx
+         0Z8UaxggoaE1Nu007HPW9MZTnwF5GwfuJHyZLySiEMmMdKTDKLrHdsBAL+re7F6zvltF
+         QGDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Ns+Arg4klDnlGygzEk76LpslXMQxYcezrQQdYtWZQRM=;
-        b=Az6a6ZZMru/1c4jIsr8cqU6QUs1OEHKHuC0MSNMgBLCLBhKbWBFW4aE9Mf02OHX9EY
-         56C4WFsPZT5Gpnkx3XSLAf6VVOWNfCQmGD8XNuA2Hr1crbqHr6FoUHowhMs5jR7W5tPN
-         zZ26HFNhGpQkgHP6Rao8WEM3Qc6iAcEA4S9WHqtubLXejrL79/sCPCsMS6SE6xrGELTR
-         Jng/N7hg6AncVZZGOLuyt4HvJNMiwPGGWgwJ0pFwsfP7PsqBf3IbIk+JOAgXZheTI/vF
-         37Q/ol+IC7zbi0SfB6u8SgBoTTvBkE+Wn/b09MAiaku8ckXnBnd1BzCdSbGCAIjUCKC4
-         CjCQ==
-X-Gm-Message-State: AOAM532P0eaac71Tg3jck8dxizXS8bkI4nStYXFj20RiWlgvwCrtFbzu
-        EiKiC8wGzMMIaUFbXiRvEp6Ks593JVBfjA==
-X-Google-Smtp-Source: ABdhPJxl52M6ZZgpP5yjBITdm43oaD1BGSuWXEGpgKo6MbTulYbr3mBtKg3xCFjSV++zHuj3t+JmQA==
-X-Received: by 2002:a05:6102:3a12:b0:31e:6646:b3d1 with SMTP id b18-20020a0561023a1200b0031e6646b3d1mr5199619vsu.51.1646059397136;
-        Mon, 28 Feb 2022 06:43:17 -0800 (PST)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id t123-20020a1f4681000000b00333ad3ec70dsm106433vka.42.2022.02.28.06.43.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 06:43:16 -0800 (PST)
-Received: by mail-vs1-f45.google.com with SMTP id w4so13216383vsq.1;
-        Mon, 28 Feb 2022 06:43:16 -0800 (PST)
-X-Received: by 2002:a67:af08:0:b0:31b:9451:bc39 with SMTP id
- v8-20020a67af08000000b0031b9451bc39mr7651662vsl.68.1646059396569; Mon, 28 Feb
- 2022 06:43:16 -0800 (PST)
+        bh=TZ/FXIBb2l/zy0sgH24plAXGxKtl4xwqj/WVr29N3Qk=;
+        b=d6ESmsB69weuMKDwwjd+1krfriH36/VlT3j0S8L+e6PWytyK0u8R34mZiO0r89/jks
+         gffUH+xA3i0rFHehN/04SytZTpA8DAI1XSE+L+I3GrRiFkCLN7DOoacyTQeQkn/SYqJ3
+         zfkasqu3ay9e7bnT37th0hEmD3i8/yS7wJhx67IFovCOPbLd4ZRhFCOMvxaS9j9tT6AT
+         Gd7HtpN1s/3zuyoisPUyRnD2XyiUx05K26A/eDhPVlPLOu1PGq+izs5Ngclm+jbvuvI3
+         MLcmMj8I5An+bbwTiPyhH+ruV6E2uAOu8cs54uax2aRO13UrvgrrtoJa27ac+vWvEn67
+         ahMQ==
+X-Gm-Message-State: AOAM531kfOiRp7e0jnl3IYrljG/1+HThl/ntqRHgDDsdIZfHek75G1Iw
+        F8Fln+1iXAsJMkyHJkWZKFByRHmFm40yLSGQrQr1Rgm4Mz0=
+X-Google-Smtp-Source: ABdhPJz7niURpiE1AeJoFUV1n7voTABOrHmI9eeeCZq79Wy5/nAu770WVZo3d54YCio1bzcP6/ZGF3XqSTAArrrfCPc=
+X-Received: by 2002:a05:6808:30a3:b0:2d5:2019:97ac with SMTP id
+ bl35-20020a05680830a300b002d5201997acmr9064256oib.40.1646059441336; Mon, 28
+ Feb 2022 06:44:01 -0800 (PST)
 MIME-Version: 1.0
-References: <20220227224845.27348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220227224845.27348-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 28 Feb 2022 15:43:05 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV+AFpiYwgPN6F1=nx6ivFAU3YYtM1xu4jwyKZh+VNQHQ@mail.gmail.com>
-Message-ID: <CAMuHMdV+AFpiYwgPN6F1=nx6ivFAU3YYtM1xu4jwyKZh+VNQHQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: timer: renesas: ostm: Document Renesas
- RZ/V2L OSTM
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20220120082803.15535-1-bhupesh.sharma@linaro.org> <22c14d50-7585-ced5-24e2-8c0b417fa0db@postmarketos.org>
+In-Reply-To: <22c14d50-7585-ced5-24e2-8c0b417fa0db@postmarketos.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Mon, 28 Feb 2022 20:13:50 +0530
+Message-ID: <CAH=2NtxNj=hYPV0cQUN-8Gwm92Mj8tOdN1iDKg8skd=5NzvFVg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: Add ufs power-domain entries
+To:     Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
+        Rob Herring <robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 27, 2022 at 11:49 PM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Document the General Timer Module(a.k.a OSTM) found on the RZ/V2L SoC.
-> OSTM module is identical to one found RZ/G2L SoC. No driver changes are
-> required as generic compatible string "renesas,ostm" will be used as a
-> fallback.
+Hi Alexey,
+
+On Fri, 28 Jan 2022 at 19:37, Alexey Minnekhanov
+<alexeymin@postmarketos.org> wrote:
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> At 20.01.2022 11:28, Bhupesh Sharma wrote:
+> > Add power-domain entries for UFS controller & phy nodes
+> > in sm8150 dts.
+> >
+> > ...
+> > +                     power-domains = <&gcc UFS_PHY_GDSC>;
+> >                       resets = <&gcc GCC_UFS_PHY_BCR>;
+> >                       reset-names = "rst";
+> > ...
+> > +                     power-domains = <&gcc UFS_CARD_GDSC>,
+> > +                                     <&gcc UFS_PHY_GDSC>;
+> > +                     power-domain-names = "ufs_card_gdsc", "ufs_phy_gdsc";
+>
+> Strange, but I don't see neither UFS_PHY_GDSC nor UFS_CARD_GDSC in
+> gcc-sm8150.c [1] (and accordingly not in
+> include/dt-bindings/clock/qcom,gcc-sm8150.h), but they are present in
+> corresponding files for sm8250 [2].
+>
+> By quick look at downstream sm8150-gdsc.dtsi addresses seem to be
+> similar to one used on sm8250, so I'm guessing gcc-sm8150 has to be
+> fixed first for this patch to work?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+You are right.
+I am sending a v2 shortly, which fixes this issue.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Bhupesh
