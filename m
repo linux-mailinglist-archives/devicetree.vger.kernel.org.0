@@ -2,477 +2,578 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E60CC4C7862
-	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 19:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ACB94C786D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Feb 2022 20:01:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237602AbiB1S6Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 13:58:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39264 "EHLO
+        id S229471AbiB1TCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 14:02:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236809AbiB1S6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 13:58:25 -0500
-Received: from mail-qk1-x72d.google.com (mail-qk1-x72d.google.com [IPv6:2607:f8b0:4864:20::72d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6F4C38D81
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 10:57:44 -0800 (PST)
-Received: by mail-qk1-x72d.google.com with SMTP id 185so11141673qkh.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 10:57:44 -0800 (PST)
+        with ESMTP id S229853AbiB1TCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 14:02:21 -0500
+Received: from mail-ot1-x32b.google.com (mail-ot1-x32b.google.com [IPv6:2607:f8b0:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1F8597BAA;
+        Mon, 28 Feb 2022 11:01:41 -0800 (PST)
+Received: by mail-ot1-x32b.google.com with SMTP id g6-20020a9d6486000000b005acf9a0b644so10253507otl.12;
+        Mon, 28 Feb 2022 11:01:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WTvWlBU8t86CUFsY5qIuFwI9DoZe/v5FrOpKK/cl25g=;
-        b=jwScNZ3uDeQDt+f5xLkfHfLgnQ0EN2elyJTw5IGDyfnvunFFEiWWprW8youWO96Pnr
-         zapZFOGqX/6RS5VS7CSf7jSnBWeuR13/lWgjtvdHn72d1+/UmU01o/gtuVZYy2LnZFEl
-         EhgWaE8qiLGjlqrc/6A4iV/kMDcBm/kF9UCPFNBv9fOuBYpCmt59aFKwBfPOW9yKyYyb
-         FbyvARpbh3kZb/hmmnkRED7yN340TbQknyfogjfQ96FaiW8jfOKKjD5JcP8SUmF9mHJB
-         xdrktTM/XZWKi35nnsa8wJlbC2Quy52L7HouIcryetGZm7kNUQ+A4xoo/KZSCc6nP6fx
-         uWsA==
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language
+         :from:to:cc:references:in-reply-to:content-transfer-encoding;
+        bh=Yu5GvhbEsk789CJlMzPewAkr+uhHwTdnW83yCtz5yB0=;
+        b=Yeu7t+2Nn3oIF9A3lF6FQNItl/KBCrtUfqzEDq2cv9/+YH5g4uTnyJUzgwEjWSPCUu
+         cXh8hOL0KnBQkzGXKc5+wj2RfNq5WKPXR0gXVRk88VlTK6SXf3l8CYmcagYTD8HZDA7D
+         FWfXH98jObIRVCPvTtwrhAMRdAyEiS44d9tpi9giMErS0jVK90iZlZR7bEI4jpyofIMJ
+         /FOy1YzYSHHdEcSpylOP22bd4XJ2la71X8fskZG9kqfr5oxE7UoVyNjajo8EzKgi8x0i
+         Z/utu4nvPT/V3dHy2IPTkJQ9vrLpeR07yk+naDluqKFJnJe/gL/RUXnR820gLZlFDQOW
+         RUfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WTvWlBU8t86CUFsY5qIuFwI9DoZe/v5FrOpKK/cl25g=;
-        b=N7MDuh6PwrdSsLkQsQHQtpRT23JAi//cjJAyE2u1fntHeT3i8yB0+Q85vn4zfSKmsr
-         aiEvgERR26KMsD4te7b6V8AFwSyOOsCRe9UhJKbUV0TV4cQHU5k94Kcn4QhTlShAuCgw
-         P0H/OsC3grMtzNGy6xZF6TKh79ZsF1LnvrrXVtDc+6a763MQ+srNwTKhzPlFBWVyxLCr
-         2O28q/wHJNVLEdAhnbH2MuqvNnyq6bq/RXs9kysBHpV7tbv6Gn+6rFNllv+ye60zyWa4
-         E5LN/TNHAr690X7gCxWb671eVxazLS8te47UU4PE9mdknFvjCdJ2FLs7cO2He8tvoUTT
-         uM2A==
-X-Gm-Message-State: AOAM531xanBHYdZG+NTOrgyEpdep48d9/G6/uu3pWan1TTS/PAHeXg1F
-        vCGGs+5rOML5uE73wAn3VALEKfs+PgLzHxl3FbzG3A==
-X-Google-Smtp-Source: ABdhPJxnEkFHktiK505nWekZ8EVOEAGMBDyFFGL1cs15PQP7ybb+7WLWjxcD9+oPrIBSH0sfEC7Rd38SbwivM3SKUag=
-X-Received: by 2002:a05:620a:1673:b0:62c:da57:aa32 with SMTP id
- d19-20020a05620a167300b0062cda57aa32mr12375025qko.203.1646074663499; Mon, 28
- Feb 2022 10:57:43 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:from:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=Yu5GvhbEsk789CJlMzPewAkr+uhHwTdnW83yCtz5yB0=;
+        b=LrbjMkMO/wyRoBQWgKXg5BbCa7pv7vubl4RV8EKuqcNRa5x+Xe2nzoKxkUlgmUSiLX
+         f8wmTwuQH3NbvK7bzepD3ibHFNneQvYRdQv2PHiG7KxHFLwYP363MD3PGiwhF2COAlMQ
+         Cm/Fua/7so187DhqdmWtIXtgthq4JkkNKUSinNLmWxhYY4MUu2qiNxSdMDo0rLa9GFHs
+         C47jV/uUYuVrK1omgKgyf6NVe/hUYx0/O5zwS7q8bBxF3LR1k+3+vWvKGj+Ebs3FNBKh
+         6ixSTqf3rzx9AvofL45gWWLCh0y0Hz2/C5fzRwsWDsFWUnI0mE6m0G9BM4zu5GGgZ6Kf
+         WSvA==
+X-Gm-Message-State: AOAM533a0kKPq1Z6N8Ade7mb0Azc3XaWcU2oEsHwDTYm42XSlWtNLbra
+        zYyMHmvgszupnx5dsamfsHTttqLwQXg=
+X-Google-Smtp-Source: ABdhPJxl4wXuLxf6hKq1W09PAy/T4OJO24Ao1mp8Fr4RZqiJFOxx4jBxo2FXW48fCtiIMzfqdYxUgw==
+X-Received: by 2002:a9d:7596:0:b0:5af:1779:5dc8 with SMTP id s22-20020a9d7596000000b005af17795dc8mr10152417otk.285.1646074901134;
+        Mon, 28 Feb 2022 11:01:41 -0800 (PST)
+Received: from ?IPV6:2600:1700:2442:6db0:ed66:faaa:6559:18c7? ([2600:1700:2442:6db0:ed66:faaa:6559:18c7])
+        by smtp.gmail.com with ESMTPSA id fo25-20020a0568709a1900b000d441d5fdc5sm5085748oab.9.2022.02.28.11.01.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Feb 2022 11:01:40 -0800 (PST)
+Message-ID: <3c56d148-1133-9371-330b-b2dd56846961@gmail.com>
+Date:   Mon, 28 Feb 2022 13:01:39 -0600
 MIME-Version: 1.0
-References: <20220221220743.541704-1-caleb.connolly@linaro.org>
- <20220221220743.541704-3-caleb.connolly@linaro.org> <CAA8EJpqmqZ00jdZiNkXzniQV4Q3fHw9x6KPgAwQp=uy1t0FZmg@mail.gmail.com>
- <dd0517fb-3650-830e-62e2-533b3b1a116e@linaro.org>
-In-Reply-To: <dd0517fb-3650-830e-62e2-533b3b1a116e@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 28 Feb 2022 21:57:32 +0300
-Message-ID: <CAA8EJppMuSN5NB8cdBSEZawNvxaASPD71Qb7nXkOnYc0fLPX1g@mail.gmail.com>
-Subject: Re: [PATCH v8 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
- information to clients
-To:     Caleb Connolly <caleb.connolly@linaro.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org, kernel test robot <lkp@intel.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/1] of: unittest: add program to process EXPECT messages
+Content-Language: en-US
+From:   Frank Rowand <frowand.list@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220201181413.2719955-1-frowand.list@gmail.com>
+In-Reply-To: <20220201181413.2719955-1-frowand.list@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Feb 2022 at 21:08, Caleb Connolly <caleb.connolly@linaro.org> wrote:
->
->
->
-> On 26/02/2022 18:09, Dmitry Baryshkov wrote:
-> > On Tue, 22 Feb 2022 at 01:08, Caleb Connolly <caleb.connolly@linaro.org> wrote:
-> >>
-> >> Some PMIC functions such as the RRADC need to be aware of the PMIC
-> >> chip revision information to implement errata or otherwise adjust
-> >> behaviour, export the PMIC information to enable this.
-> >>
-> >> This is specifically required to enable the RRADC to adjust
-> >> coefficients based on which chip fab the PMIC was produced in,
-> >> this can vary per unique device and therefore has to be read at
-> >> runtime.
-> >>
-> >> [bugs in previous revision]
-> >> Reported-by: kernel test robot <lkp@intel.com>
-> >> Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-> >> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> >> ---
-> >>   drivers/mfd/qcom-spmi-pmic.c      | 174 ++++++++++++++++++++----------
-> >>   include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++++++
-> >>   2 files changed, 178 insertions(+), 56 deletions(-)
-> >>   create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
-> >>
-> >> diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-> >> index 1cacc00aa6c9..1ef426a1513b 100644
-> >> --- a/drivers/mfd/qcom-spmi-pmic.c
-> >> +++ b/drivers/mfd/qcom-spmi-pmic.c
-> >> @@ -3,11 +3,16 @@
-> >>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
-> >>    */
-> >>
-> >> +#include <linux/device.h>
-> >> +#include <linux/errno.h>
-> >> +#include <linux/gfp.h>
-> >>   #include <linux/kernel.h>
-> >>   #include <linux/module.h>
-> >>   #include <linux/spmi.h>
-> >> +#include <linux/types.h>
-> >>   #include <linux/regmap.h>
-> >>   #include <linux/of_platform.h>
-> >> +#include <soc/qcom/qcom-spmi-pmic.h>
-> >>
-> >>   #define PMIC_REV2              0x101
-> >>   #define PMIC_REV3              0x102
-> >> @@ -17,37 +22,6 @@
-> >>
-> >>   #define PMIC_TYPE_VALUE                0x51
-> >>
-> >> -#define COMMON_SUBTYPE         0x00
-> >> -#define PM8941_SUBTYPE         0x01
-> >> -#define PM8841_SUBTYPE         0x02
-> >> -#define PM8019_SUBTYPE         0x03
-> >> -#define PM8226_SUBTYPE         0x04
-> >> -#define PM8110_SUBTYPE         0x05
-> >> -#define PMA8084_SUBTYPE                0x06
-> >> -#define PMI8962_SUBTYPE                0x07
-> >> -#define PMD9635_SUBTYPE                0x08
-> >> -#define PM8994_SUBTYPE         0x09
-> >> -#define PMI8994_SUBTYPE                0x0a
-> >> -#define PM8916_SUBTYPE         0x0b
-> >> -#define PM8004_SUBTYPE         0x0c
-> >> -#define PM8909_SUBTYPE         0x0d
-> >> -#define PM8028_SUBTYPE         0x0e
-> >> -#define PM8901_SUBTYPE         0x0f
-> >> -#define PM8950_SUBTYPE         0x10
-> >> -#define PMI8950_SUBTYPE                0x11
-> >> -#define PM8998_SUBTYPE         0x14
-> >> -#define PMI8998_SUBTYPE                0x15
-> >> -#define PM8005_SUBTYPE         0x18
-> >> -#define PM660L_SUBTYPE         0x1A
-> >> -#define PM660_SUBTYPE          0x1B
-> >> -#define PM8150_SUBTYPE         0x1E
-> >> -#define PM8150L_SUBTYPE                0x1f
-> >> -#define PM8150B_SUBTYPE                0x20
-> >> -#define PMK8002_SUBTYPE                0x21
-> >> -#define PM8009_SUBTYPE         0x24
-> >> -#define PM8150C_SUBTYPE                0x26
-> >> -#define SMB2351_SUBTYPE                0x29
-> >> -
-> >>   static const struct of_device_id pmic_spmi_id_table[] = {
-> >>          { .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
-> >>          { .compatible = "qcom,pm660l",    .data = (void *)PM660L_SUBTYPE },
-> >> @@ -81,42 +55,118 @@ static const struct of_device_id pmic_spmi_id_table[] = {
-> >>          { }
-> >>   };
-> >>
-> >> -static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
-> >> +/**
-> >> + * qcom_pmic_get() - Get a pointer to the base PMIC device
-> >> + *
-> >> + * @dev: the pmic function device
-> >> + * @return: the struct qcom_spmi_pmic* pointer associated with the function device
-> >> + *
-> >> + * A PMIC can be represented by multiple SPMI devices, but
-> >> + * only the base PMIC device will contain a reference to
-> >> + * the revision information.
-> >> + *
-> >> + * This function takes a pointer to a function device and
-> >> + * returns a pointer to the base PMIC device.
-> >> + */
-> >> +const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev)
-> >> +{
-> >> +       struct spmi_device *sdev;
-> >> +       struct device_node *spmi_bus;
-> >> +       struct device_node *other_usid = NULL;
-> >> +       int function_parent_usid, ret;
-> >> +       u32 reg[2];
-> >> +
-> >> +       if (!of_match_device(pmic_spmi_id_table, dev->parent))
-> >> +               return ERR_PTR(-EINVAL);
-> >> +
-> >> +       sdev = to_spmi_device(dev->parent);
-> >> +       if (!sdev)
-> >> +               return ERR_PTR(-EINVAL);
-> >> +
-> >> +       /*
-> >> +        * Quick return if the function device is already in the right
-> >> +        * USID
-> >> +        */
-> >> +       if (sdev->usid % 2 == 0)
-> >> +               return spmi_device_get_drvdata(sdev);
-> >
-> >> +
-> >> +       function_parent_usid = sdev->usid;
-> >> +
-> >> +       /*
-> >> +        * Walk through the list of PMICs until we find the sibling USID.
-> >> +        * The goal is the find to previous sibling. Assuming there is no
-> >> +        * PMIC with more than 2 USIDs. We know that function_parent_usid
-> >> +        * is one greater than the base USID.
-> >> +        */
-> >
-> Hi Dmitry,
-> > I think this is not correct for newer platforms. On SM8450 we have
-> > PMICs which do not share a pair of USIDs.
-> > For example on sm8450-qrd:
-> >
-> > PMK8350 @ 0
-> > PM8350 @ 1
-> > PM8350C @ 2
-> > PM8350B @ 3
-> > PMR735A @ 4
-> > PMR735B @ 5
-> > PM8450 @ 7
-> Huh alright, I see a few ways we can deal with this, as if this is the case then I think the existing logic in probe
-> (which only prints the PMIC information) would need to be fixed either way.
->
-> Could you clarify if these PMICs have only one USID, or if for example PM8350[ABC] is a PMIC with 4 USIDs?
+Hi Rob,
 
-They are different PMICs.
+Ping.
 
->
-> None of these PMICs seem to be referenced in the PMIC match table, they aren't in mainline yet?
+-Frank
 
-socinfo is added in this patch:
-https://lore.kernel.org/all/20220210051043.748275-1-bjorn.andersson@linaro.org/
+On 2/1/22 12:14, frowand.list@gmail.com wrote:
+> From: Frank Rowand <frank.rowand@sony.com>
+> 
+> If unittest detects a problem it will print a warning or error message
+> to the console.  Unittest also triggers warning and error messages from
+> other kernel code as a result of intentionally bad unittest data.  This
+> has led to confusion as to whether the triggered messages are an
+> expected result of a test or whether there is a real problem that is
+> independent of unittest.
+> 
+> EXPECT messages were added to unittest to report each triggered message
+> that is expected, resulting in verbose console output.
+> 
+> scripts/dtc/of_unittest is a new program that processes the EXPECT
+> messages to determine whether the triggered messages occurred and
+> also removes the excess verbosity of the EXPECT messages.  More
+> information is available from 'scripts/dtc/of_unittest_expect --help'.
+> 
+> Signed-off-by: Frank Rowand <frank.rowand@sony.com>
+> ---
+> permissions for scripts/dtc/of_unittest should be 770
+> 
+> I will reply to this message with the usage message from
+> 'scripts/dtc/of_unittest_expect --help'.
+> 
+> I will also reply with examples of raw and processed console logs.
+> 
+>  Documentation/devicetree/of_unittest.rst |  27 +-
+>  scripts/dtc/of_unittest_expect           | 408 +++++++++++++++++++++++
+>  2 files changed, 432 insertions(+), 3 deletions(-)
+>  create mode 100755 scripts/dtc/of_unittest_expect
+> 
+> diff --git a/Documentation/devicetree/of_unittest.rst b/Documentation/devicetree/of_unittest.rst
+> index 2afe41a37148..8864b52d1195 100644
+> --- a/Documentation/devicetree/of_unittest.rst
+> +++ b/Documentation/devicetree/of_unittest.rst
+> @@ -24,7 +24,28 @@ from the unflattened device tree data structure. This interface is used by
+>  most of the device drivers in various use cases.
+>  
+>  
+> -2. Test-data
+> +2. Verbose Output (EXPECT)
+> +==========================
+> +
+> +If unittest detects a problem it will print a warning or error message to
+> +the console.  Unittest also triggers warning and error messages from other
+> +kernel code as a result of intentionally bad unittest data.  This has led
+> +to confusion as to whether the triggered messages are an expected result
+> +of a test or whether there is a real problem that is independent of unittest.
+> +
+> +'EXPECT \ : text' (begin) and 'EXPECT / : text' (end) messages have been
+> +added to unittest to report that a warning or error is expected.  The
+> +begin is printed before triggering the warning or error, and the end is
+> +printed after triggering the warning or error.
+> +
+> +The EXPECT messages result in very noisy console messages that are difficult
+> +to read.  The script scripts/dtc/of_unittest_expect was created to filter
+> +this verbosity and highlight mismatches between triggered warnings and
+> +errors vs expected warnings and errors.  More information is available
+> +from 'scripts/dtc/of_unittest_expect --help'.
+> +
+> +
+> +3. Test-data
+>  ============
+>  
+>  The Device Tree Source file (drivers/of/unittest-data/testcases.dts) contains
+> @@ -56,7 +77,7 @@ The assembly file is compiled into an object file (testcases.dtb.o), and is
+>  linked into the kernel image.
+>  
+>  
+> -2.1. Adding the test data
+> +3.1. Adding the test data
+>  -------------------------
+>  
+>  Un-flattened device tree structure:
+> @@ -191,7 +212,7 @@ properties are updated to the live tree's node by calling the function
+>  update_node_properties().
+>  
+>  
+> -2.2. Removing the test data
+> +3.2. Removing the test data
+>  ---------------------------
+>  
+>  Once the test case execution is complete, selftest_data_remove is called in
+> diff --git a/scripts/dtc/of_unittest_expect b/scripts/dtc/of_unittest_expect
+> new file mode 100755
+> index 000000000000..96b12d9ea606
+> --- /dev/null
+> +++ b/scripts/dtc/of_unittest_expect
+> @@ -0,0 +1,408 @@
+> +#!/usr/bin/perl
+> +# SPDX-License-Identifier: GPL-2.0
+> +#
+> +# Copyright 2020, 2022 Sony Corporation
+> +#
+> +# Author: Frank Rowand
+> +
+> +# This program is meant to be an aid to reading the verbose output of
+> +# on the console log that results from executing the Linux kernel
+> +# devicetree unittest (drivers/of/unitest.c).
+> +
+> +$VUFX = "220201a";
+> +
+> +use strict 'refs';
+> +use strict subs;
+> +
+> +use Getopt::Long;
+> +use Text::Wrap;
+> +
+> +# strip off everything before final "/"
+> +(undef, $script_name) = split(/^.*\//, $0);
+> +
+> +# following /usr/include/sysexits.h
+> +$EX_OK=0;
+> +$EX_USAGE=64;
+> +
+> +
+> +#______________________________________________________________________________
+> +sub compare {
+> +	my ($expect, $got) = @_;
+> +	my $expect_next;
+> +	my $expect_next_lit;
+> +	my $got_next;
+> +	my $type;
+> +
+> +	while ($expect) {
+> +
+> +		($expect_next, $type) = split(/<</, $expect);
+> +		($type) = split(/>>/, $type);
+> +		$expect =~ s/^.*?>>//;	# '?' is non-greedy, minimal match
+> +
+> +		# literal, ignore all metacharacters when used in a regex
+> +		$expect_next_lit = quotemeta($expect_next);
+> +
+> +		$got_next = $got;
+> +		$got_next =~ s/^($expect_next_lit).*/\1/;
+> +		$got       =~ s/^$expect_next_lit//;
+> +
+> +		if ($expect_next ne $got_next) {
+> +			return 0;
+> +		}
+> +
+> +		if ($type eq "int") {
+> +			if ($got =~ /^[+-]*[0-9]+/) {
+> +				$got =~ s/^[+-]*[0-9]+//;
+> +			} else {
+> +				return 0;
+> +			}
+> +		} elsif ($type eq "hex") {
+> +			if ($got =~ /^(0x)*[0-9a-f]+/) {
+> +				$got =~ s/^(0x)*[0-9a-f]+//;
+> +			} else {
+> +				return 0;
+> +			}
+> +		} elsif ($type eq "") {
+> +			if ($expect_next ne $got_next) {
+> +				return 0;
+> +			} else {
+> +				return 1;
+> +			}
+> +		} else {
+> +			$internal_err++;
+> +			print "** ERROR: special pattern not recognized: <<$type>>, CONSOLE_LOG line: $.\n";
+> +			return 0;
+> +		}
+> +
+> +	}
+> +
+> +	# should not get here
+> +	$internal_err++;
+> +	print "** ERROR: $script_name internal error, at end of compare(), CONSOLE_LOG line: $.\n";
+> +
+> +	return 0;
+> +}
+> +
+> +
+> +#______________________________________________________________________________
+> +sub usage {
+> +
+> +# ***** when editing, be careful to not put tabs in the string printed:
+> +
+> +	print STDERR
+> +"
+> +usage:
+> +
+> +  $script_name CONSOLE_LOG
+> +
+> +     -h                print program usage
+> +    --help             print program usage
+> +    --hide-expect      suppress output of EXPECTed lines
+> +    --line-num         report line number of CONSOLE_LOG
+> +    --no-expect-stats  do not report EXPECT statistics
+> +    --no-strip-ts      do not strip leading console timestamps
+> +    --verbose          do not suppress EXPECT begin and end lines
+> +    --version          print program version and exit
+> +
+> +
+> +  Process a console log for EXPECTed test related messages to either
+> +  highlight expected devicetree unittest related messages or suppress
+> +  the messages.  Leading console timestamps will be stripped.
+> +
+> +  Various unittests may trigger kernel messages from outside the
+> +  unittest code.  The unittest annotates that it expects the message
+> +  to occur with an 'EXPECT \\ : text' (begin) before triggering the
+> +  message, and an 'EXPECT / : text' (end) after triggering the message.
+> +
+> +  If an expected message does not occur, that will be reported.
+> +
+> +  For each expected message, the 'EXPECT \\ : text' (begin) and
+> +  'EXPECT / : text' (end), 'text' will contain the message text.
+> +
+> +  If 'EXPECT \\' (begin) and 'EXPECT /' (end) lines do not contain
+> +  matching 'text', that will be reported.
+> +
+> +  If EXPECT lines are nested, 'EXPECT /' (end) lines must be in the
+> +  reverse order of the corresponding 'EXPECT \\' (begin) lines.
+> +
+> +  'EXPECT \\ : text' (begin) and 'EXPECT / : text' (end) lines can
+> +  contain special patterns in 'text':
+> +
+> +     <<int>> matches: [+-]*[0-9]+
+> +     <<hex>> matches: (0x)*[0-9a-f]+
+> +
+> +  'EXPECT \\' (begin) and 'EXPECT /' (end) lines are suppressed.
+> +
+> +  A prefix is added to every line of output:
+> +
+> +    'ok ' Line matches an enclosing EXPECT begin/end pair
+> +
+> +    '** ' Line reports $script_name warning or error
+> +
+> +    '-> ' Line reports start or end of the unittests
+> +
+> +    '>> ' Line reports a unittest test FAIL
+> +
+> +    '   ' Lines that are not otherwise prefixed
+> +
+> +  Issues detected in CONSOLE_LOG are reported to STDOUT, not to STDERR.
+> +
+> +  Known Issues:
+> +
+> +    --line-num causes the CONSOLE_LOG line number to be printed in 4 columns.
+> +       If CONSOLE_LOG contains more than 9999 lines then more columns will be
+> +       used to report the line number for lines greater than 9999 (eg for
+> +       lines 10000 - 99999, 5 columns will be used).
+> +";
+> +
+> +	return {};
+> +}
+> +
+> +#______________________________________________________________________________
+> +#______________________________________________________________________________
+> +
+> +if (!GetOptions(
+> +	"h"               => \$help,
+> +	"help"            => \$help,
+> +	"hide-expect"     => \$hide_expect,
+> +	"line-num"        => \$print_line_num,
+> +	"no-expect-stats" => \$no_expect_stats,
+> +	"no-strip-ts"     => \$no_strip_ts,
+> +	"verbose"         => \$verbose,
+> +	"version"         => \$version,
+> +	)) {
+> +	print STDERR "\n";
+> +	print STDERR "ERROR processing command line options\n";
+> +	print STDERR "\n";
+> +	print STDERR "For help, type '$script_name --help'\n";
+> +	print STDERR "\n";
+> +
+> +	exit $EX_OK;
+> +}
+> +
+> +
+> +if ($no_strip_ts) {
+> +	$strip_ts = 1;
+> +	$no_strip_ts = 0;
+> +} else {
+> +	$strip_ts = 0;
+> +	$no_strip_ts = 1;
+> +}
+> +
+> +
+> +# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+> +if ($help){
+> +
+> +	&usage;
+> +
+> +	exit $EX_OK;
+> +}
+> +
+> +
+> +# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+> +
+> +if ($version) {
+> +	print STDERR "\n$script_name  $VUFX\n\n";
+> +	print STDERR "\n";
+> +
+> +	exit $EX_OK;
+> +}
+> +
+> +
+> +# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+> +if ($#ARGV != 0) {
+> +
+> +	# Limit input files to exactly one.
+> +	#
+> +	# 'while ($line = <ARGV>) {' in the code below supports multiple file
+> +	# names on the command line, but the EXPECT statistics are reported
+> +	# once for all input - it is not an expected use case to generate one
+> +	# set of statistics for multiple input files.
+> +
+> +	print STDERR "\n";
+> +	print STDERR "Required arguments: CONSOLE_LOG\n";
+> +	print STDERR "\n";
+> +
+> +	exit $EX_USAGE;
+> +}
+> +
+> +
+> +#______________________________________________________________________________
+> +
+> +# Patterns to match 'EXPECT \ : ' (begin) and 'EXPECT / : ' (end)
+> +#
+> +# $exp_* are used as regex match patterns,
+> +# so '\\\\' in $exp_begin matches a single '\'
+> +# quotemeta() does not do the right thing in this case
+> +#
+> +# $pr_fmt is the prefix that unittest prints for every message
+> +
+> +$pr_fmt = "### dt-test ### ";
+> +$exp_begin = "${pr_fmt}EXPECT \\\\ : ";
+> +$exp_end   = "${pr_fmt}EXPECT / : ";
+> +
+> +
+> +$line_num = "";
+> +$timestamp = "";
+> +
+> +LINE:
+> +while ($line = <ARGV>) {
+> +
+> +	chomp $line;
+> +
+> +	$prefix = "  ";  ## 2 characters
+> +
+> +
+> +	if ($strip_ts) {
+> +
+> +		$timestamp = $line;
+> +
+> +		if ($timestamp =~ /^\[\s*[0-9]+\.[0-9]*\] /) {
+> +			($timestamp, $null) = split(/]/, $line);
+> +			$timestamp = $timestamp . "] ";
+> +
+> +		} else {
+> +			$timestamp = "";
+> +		}
+> +	}
+> +
+> +	$line =~ s/^\[\s*[0-9]+\.[0-9]*\] //;
+> +
+> +
+> +	# -----  find EXPECT begin
+> +
+> +	if ($line =~ /^\s*$exp_begin/) {
+> +		$data = $line;
+> +		$data =~ s/^\s*$exp_begin//;
+> +		push @begin, $data;
+> +
+> +		if ($verbose) {
+> +			if ($print_line_num) {
+> +				$line_num = sprintf("%4s ", $.);
+> +			}
+> +			printf "%s %s%s%s\n", $prefix, $line_num,  $timestamp, $line;
+> +		}
+> +
+> +		next LINE;
+> +	}
+> +
+> +
+> +	# -----  find EXPECT end
+> +
+> +	if ($line =~ /^\s*$exp_end/) {
+> +		$data = $line;
+> +		$data =~ s/^\s*$exp_end//;
+> +
+> +		if ($verbose) {
+> +			if ($print_line_num) {
+> +				$line_num = sprintf("%4s ", $.);
+> +			}
+> +			printf "%s %s%s%s\n", $prefix, $line_num,  $timestamp, $line;
+> +		}
+> +
+> +		$found = 0;
+> +		$no_begin = 0;
+> +		if (@found_or_begin > 0) {
+> +			$begin = pop @found_or_begin;
+> +			if (compare($data, $begin)) {
+> +				$found = 1;
+> +			}
+> +		} elsif (@begin > 0) {
+> +			$begin = pop @begin;
+> +		} else {
+> +			$no_begin = 1;
+> +		}
+> +
+> +		if ($no_begin) {
+> +
+> +			$expect_missing_begin++;
+> +			print "** ERROR: EXPECT end without any EXPECT begin:\n";
+> +			print "       end ---> $line\n";
+> +
+> +		} elsif (! $found) {
+> +
+> +			if ($print_line_num) {
+> +				$line_num = sprintf("%4s ", $.);
+> +			}
+> +
+> +			$expect_not_found++;
+> +			printf "** %s%s$script_name WARNING - not found ---> %s\n",
+> +					$line_num,  $timestamp, $data;
+> +
+> +		} elsif (! compare($data, $begin)) {
+> +
+> +			$expect_missing_end++;
+> +			print "** ERROR: EXPECT end does not match EXPECT begin:\n";
+> +			print "       begin -> $begin\n";
+> +			print "       end ---> $line\n";
+> +
+> +		} else {
+> +
+> +			$expect_found++;
+> +
+> +		}
+> +
+> +		next LINE;
+> +	}
+> +
+> +
+> +	# -----  not an EXPECT line
+> +
+> +	if (($line =~ /^${pr_fmt}start of unittest - you will see error messages$/) ||
+> +	    ($line =~ /^${pr_fmt}end of unittest - [0-9]+ passed, [0-9]+ failed$/ )   ) {
+> +		$prefix = "->"; # 2 characters
+> +	} elsif ($line =~ /^${pr_fmt}FAIL /) {
+> +		$unittest_fail++;
+> +		$prefix = ">>"; # 2 characters
+> +	}
+> +
+> +	$found = 0;
+> +	foreach $begin (@begin) {
+> +		if (compare($begin, $line)) {
+> +			$found = 1;
+> +			last;
+> +		}
+> +	}
+> +
+> +	if ($found) {
+> +		$begin = shift @begin;
+> +		while (! compare($begin, $line)) {
+> +			push @found_or_begin, $begin;
+> +			$begin = shift @begin;
+> +		}
+> +		push @found_or_begin, $line;
+> +
+> +		if ($hide_expect) {
+> +			$suppress_line = 1;
+> +			next LINE;
+> +		}
+> +		$prefix = "ok"; # 2 characters
+> +	}
+> +
+> +
+> +	if ($print_line_num) {
+> +		$line_num = sprintf("%4s ", $.);
+> +	}
+> +
+> +	printf "%s %s%s%s\n", $prefix, $line_num,  $timestamp, $line;
+> +}
+> +
+> +if (! $no_expect_stats) {
+> +	print  "\n";
+> +	print  "** EXPECT statistics:\n";
+> +	print  "**\n";
+> +	printf "**   EXPECT found          : %4i\n", $expect_found;
+> +	printf "**   EXPECT not found      : %4i\n", $expect_not_found;
+> +	printf "**   missing EXPECT begin  : %4i\n", $expect_missing_begin;
+> +	printf "**   missing EXPECT end    : %4i\n", $expect_missing_end;
+> +	printf "**   unittest FAIL         : %4i\n", $unittest_fail;
+> +	printf "**   internal error        : %4i\n", $internal_err;
+> +}
+> +
+> +if (@begin) {
+> +	print "** ERROR: EXPECT begin without any EXPECT end:\n";
+> +	print "          This list may be misleading.\n";
+> +	foreach $begin (@begin) {
+> +		print "       begin ---> $begin\n";
+> +	}
+> +}
 
-For the qcom-spmi-pmic driver they use the generic "qcom,spmi-pmic"
-compatibility string.
-
->
-> If I rework the logic to use shared compatible strings to find the base PMIC (by finding the matching USID with the
-> smallest address) maybe that would be an acceptable solution, although that would break if a device has more than one of
-> a single pmic...
->
-> Perhaps for now we could limit the logic to only run for pm(i)8998 and pm660 and return `-EINVAL` with a WARN for other
-> PMICs, as these two are the only ones with drivers that would use this functionality for now, and it can be fixed up for
-> newer PMICs in the future if needed.
-
-I suspect that the correct way would be to replace the match data with
-the struct describing whether the PMIC spans two USIDs or just one.
-I think we can drop current match data, it can be read from the PMIC
-itself. The single-USID pmics also can be removed from the match table
-provided the dts files use generic binding too.
-
->
-> Let me know what you think.>
-> >> +       spmi_bus = of_get_parent(sdev->dev.parent->of_node);
-> >> +       do {
-> >> +               other_usid = of_get_next_child(spmi_bus, other_usid);
-> >> +               ret = of_property_read_u32_array(other_usid, "reg", reg, 2);
-> >> +               if (ret)
-> >> +                       return ERR_PTR(ret);
-> >> +               sdev = spmi_device_from_of(other_usid);
-> >> +               if (sdev == NULL) {
-> >> +                       /*
-> >> +                        * If the base USID for this PMIC hasn't probed yet
-> >> +                        * but the secondary USID has, then we need to defer
-> >> +                        * the function driver so that it will attempt to
-> >> +                        * probe again when the base USID is ready.
-> >> +                        */
-> >> +                       if (reg[0] == function_parent_usid - 1)
-> >> +                               return ERR_PTR(-EPROBE_DEFER);
-> >> +
-> >> +                       continue;
-> >> +               }
-> >> +
-> >> +               if (reg[0] == function_parent_usid - 1)
-> >> +                       return spmi_device_get_drvdata(sdev);
-> >> +       } while (other_usid->sibling);
-> >> +
-> >> +       return ERR_PTR(-ENODATA);
-> >> +}
-> >> +EXPORT_SYMBOL(qcom_pmic_get);
-> >> +
-> >> +static inline void pmic_print_info(struct device *dev, struct qcom_spmi_pmic *pmic)
-> >> +{
-> >> +       dev_dbg(dev, "%x: %s v%d.%d\n",
-> >> +               pmic->subtype, pmic->name, pmic->major, pmic->minor);
-> >> +}
-> >> +
-> >> +static int pmic_spmi_load_revid(struct regmap *map, struct device *dev,
-> >> +                                struct qcom_spmi_pmic *pmic)
-> >>   {
-> >> -       unsigned int rev2, minor, major, type, subtype;
-> >> -       const char *name = "unknown";
-> >>          int ret, i;
-> >>
-> >> -       ret = regmap_read(map, PMIC_TYPE, &type);
-> >> +       ret = regmap_read(map, PMIC_TYPE, &pmic->type);
-> >>          if (ret < 0)
-> >> -               return;
-> >> +               return ret;
-> >>
-> >> -       if (type != PMIC_TYPE_VALUE)
-> >> -               return;
-> >> +       if (pmic->type != PMIC_TYPE_VALUE)
-> >> +               return ret;
-> >>
-> >> -       ret = regmap_read(map, PMIC_SUBTYPE, &subtype);
-> >> +       ret = regmap_read(map, PMIC_SUBTYPE, &pmic->subtype);
-> >>          if (ret < 0)
-> >> -               return;
-> >> +               return ret;
-> >>
-> >>          for (i = 0; i < ARRAY_SIZE(pmic_spmi_id_table); i++) {
-> >> -               if (subtype == (unsigned long)pmic_spmi_id_table[i].data)
-> >> +               if (pmic->subtype == (unsigned long)pmic_spmi_id_table[i].data)
-> >>                          break;
-> >>          }
-> >>
-> >>          if (i != ARRAY_SIZE(pmic_spmi_id_table))
-> >> -               name = pmic_spmi_id_table[i].compatible;
-> >> +               pmic->name = devm_kstrdup_const(dev, pmic_spmi_id_table[i].compatible, GFP_KERNEL);
-> >>
-> >> -       ret = regmap_read(map, PMIC_REV2, &rev2);
-> >> +       ret = regmap_read(map, PMIC_REV2, &pmic->rev2);
-> >>          if (ret < 0)
-> >> -               return;
-> >> +               return ret;
-> >>
-> >> -       ret = regmap_read(map, PMIC_REV3, &minor);
-> >> +       ret = regmap_read(map, PMIC_REV3, &pmic->minor);
-> >>          if (ret < 0)
-> >> -               return;
-> >> +               return ret;
-> >>
-> >> -       ret = regmap_read(map, PMIC_REV4, &major);
-> >> +       ret = regmap_read(map, PMIC_REV4, &pmic->major);
-> >>          if (ret < 0)
-> >> -               return;
-> >> +               return ret;
-> >>
-> >>          /*
-> >>           * In early versions of PM8941 and PM8226, the major revision number
-> >> @@ -124,14 +174,16 @@ static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
-> >>           * Increment the major revision number here if the chip is an early
-> >>           * version of PM8941 or PM8226.
-> >>           */
-> >> -       if ((subtype == PM8941_SUBTYPE || subtype == PM8226_SUBTYPE) &&
-> >> -           major < 0x02)
-> >> -               major++;
-> >> +       if ((pmic->subtype == PM8941_SUBTYPE || pmic->subtype == PM8226_SUBTYPE) &&
-> >> +           pmic->major < 0x02)
-> >> +               pmic->major++;
-> >> +
-> >> +       if (pmic->subtype == PM8110_SUBTYPE)
-> >> +               pmic->minor = pmic->rev2;
-> >>
-> >> -       if (subtype == PM8110_SUBTYPE)
-> >> -               minor = rev2;
-> >> +       pmic_print_info(dev, pmic);
-> >>
-> >> -       dev_dbg(dev, "%x: %s v%d.%d\n", subtype, name, major, minor);
-> >> +       return 0;
-> >>   }
-> >>
-> >>   static const struct regmap_config spmi_regmap_config = {
-> >> @@ -144,14 +196,24 @@ static const struct regmap_config spmi_regmap_config = {
-> >>   static int pmic_spmi_probe(struct spmi_device *sdev)
-> >>   {
-> >>          struct regmap *regmap;
-> >> +       struct qcom_spmi_pmic *pmic;
-> >> +       int ret;
-> >>
-> >>          regmap = devm_regmap_init_spmi_ext(sdev, &spmi_regmap_config);
-> >>          if (IS_ERR(regmap))
-> >>                  return PTR_ERR(regmap);
-> >>
-> >> +       pmic = devm_kzalloc(&sdev->dev, sizeof(*pmic), GFP_KERNEL);
-> >> +       if (!pmic)
-> >> +               return -ENOMEM;
-> >> +
-> >>          /* Only the first slave id for a PMIC contains this information */
-> >> -       if (sdev->usid % 2 == 0)
-> >> -               pmic_spmi_show_revid(regmap, &sdev->dev);
-> >> +       if (sdev->usid % 2 == 0) {
-> >> +               ret = pmic_spmi_load_revid(regmap, &sdev->dev, pmic);
-> >> +               if (ret < 0)
-> >> +                       return ret;
-> >> +               spmi_device_set_drvdata(sdev, pmic);
-> >> +       }
-> >>
-> >>          return devm_of_platform_populate(&sdev->dev);
-> >>   }
-> >> diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
-> >> new file mode 100644
-> >> index 000000000000..a8a77be22cfc
-> >> --- /dev/null
-> >> +++ b/include/soc/qcom/qcom-spmi-pmic.h
-> >> @@ -0,0 +1,60 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-only */
-> >> +/* Copyright (c) 2021 Linaro. All rights reserved.
-> >> + * Copyright (c) 2021 Caleb Connolly <caleb.connolly@linaro.org>
-> >> + */
-> >> +
-> >> +#ifndef __QCOM_PMIC_H__
-> >> +#define __QCOM_PMIC_H__
-> >> +
-> >> +#define COMMON_SUBTYPE         0x00
-> >> +#define PM8941_SUBTYPE         0x01
-> >> +#define PM8841_SUBTYPE         0x02
-> >> +#define PM8019_SUBTYPE         0x03
-> >> +#define PM8226_SUBTYPE         0x04
-> >> +#define PM8110_SUBTYPE         0x05
-> >> +#define PMA8084_SUBTYPE                0x06
-> >> +#define PMI8962_SUBTYPE                0x07
-> >> +#define PMD9635_SUBTYPE                0x08
-> >> +#define PM8994_SUBTYPE         0x09
-> >> +#define PMI8994_SUBTYPE                0x0a
-> >> +#define PM8916_SUBTYPE         0x0b
-> >> +#define PM8004_SUBTYPE         0x0c
-> >> +#define PM8909_SUBTYPE         0x0d
-> >> +#define PM8028_SUBTYPE         0x0e
-> >> +#define PM8901_SUBTYPE         0x0f
-> >> +#define PM8950_SUBTYPE         0x10
-> >> +#define PMI8950_SUBTYPE                0x11
-> >> +#define PM8998_SUBTYPE         0x14
-> >> +#define PMI8998_SUBTYPE                0x15
-> >> +#define PM8005_SUBTYPE         0x18
-> >> +#define PM660L_SUBTYPE         0x1A
-> >> +#define PM660_SUBTYPE          0x1B
-> >> +#define PM8150_SUBTYPE         0x1E
-> >> +#define PM8150L_SUBTYPE                0x1f
-> >> +#define PM8150B_SUBTYPE                0x20
-> >> +#define PMK8002_SUBTYPE                0x21
-> >> +#define PM8009_SUBTYPE         0x24
-> >> +#define PM8150C_SUBTYPE                0x26
-> >> +#define SMB2351_SUBTYPE                0x29
-> >> +
-> >> +#define PMI8998_FAB_ID_SMIC    0x11
-> >> +#define PMI8998_FAB_ID_GF      0x30
-> >> +
-> >> +#define PM660_FAB_ID_GF                0x0
-> >> +#define PM660_FAB_ID_TSMC      0x2
-> >> +#define PM660_FAB_ID_MX                0x3
-> >> +
-> >> +struct qcom_spmi_pmic {
-> >> +       unsigned int type;
-> >> +       unsigned int subtype;
-> >> +       unsigned int major;
-> >> +       unsigned int minor;
-> >> +       unsigned int rev2;
-> >> +       const char *name;
-> >> +};
-> >> +
-> >> +struct device;
-> >> +
-> >> +const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev);
-> >> +
-> >> +#endif /* __QCOM_PMIC_H__ */
-> >> --
-> >> 2.35.1
-> >>
-> >
-> >
->
-> --
-> Kind Regards,
-> Caleb (they/them)
-
-
-
--- 
-With best wishes
-Dmitry
