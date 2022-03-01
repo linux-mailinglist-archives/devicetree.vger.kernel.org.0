@@ -2,67 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F5DD4C990A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 00:16:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 635944C9944
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 00:24:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238364AbiCAXRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 18:17:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47308 "EHLO
+        id S235532AbiCAXYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 18:24:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237953AbiCAXRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 18:17:33 -0500
-Received: from mail-qv1-xf30.google.com (mail-qv1-xf30.google.com [IPv6:2607:f8b0:4864:20::f30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3399892D3B
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 15:16:51 -0800 (PST)
-Received: by mail-qv1-xf30.google.com with SMTP id b12so220142qvk.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 15:16:51 -0800 (PST)
+        with ESMTP id S234867AbiCAXYs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 18:24:48 -0500
+Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC6932071
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 15:24:06 -0800 (PST)
+Received: by mail-qv1-xf2a.google.com with SMTP id j11so260234qvy.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 15:24:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=6LEQhSD9kPhUFJhdm4QVnYBLxI6Q1dvUYGGtcoYTPY4=;
-        b=JXjc6V1oUSYysMCD8ROsxbutKaDtrNzAIhjxm/BHI8OwiUW+CLPoK75FJu0mlozoot
-         NoSY+sBH/f7W6JjAZWt4Ls19FaRwx56UEzv4i9tHRXLIgdg+ZTSdGcbgWPZiwt4QX2uW
-         ZMaZnOhbkHEziQvmynDZeAIyV7mWo5c4F0ujFx03MqmHCZoT55jQKVZkqIK2y+WuawiX
-         jMUGu0j8N/DZ5AnxsGH7Q9gTImSMm6zNogRE/4rozZgs26fUtTNksXyneSU/sb0TlyOi
-         MCaRZy8CVa8xIkjHl/l/4TcjyzGk8gizZl/hPKvZ6EeC2GIq5+GbKhWU5fsDveHnfSDr
-         j6Aw==
+        bh=OSsBX21NVNiSwRS2p6EfLvoeuH1E+LW1LIdRNsY4vkU=;
+        b=Ip5F3z+EsQE2X2jhyvGPCg0qooxL0cLhLEUtWQuSVJHNZhjaSf3bznFF9q1y7urVuO
+         ZqXiiVS2BCbCEpQ1PvYzPaP/grTWYp3cJrz2ltZy2W8SYhbAeqCmwTfinzoy0u75vCgR
+         qo+psCbS9smznMQRHHGdHfAguKcFpH9uwGbgzrMGM3H/Y6xblVNU51dMvy0I0cmnQlMe
+         V6m0y1F+dRZ8g+Gulcg+fuouJy7bsdp78c+wCa1NJULbnhwaIJr41/XSVDDz0VRByegz
+         GPuwFYf5q4VbocMB+uX6slZmOa2AB/ceQ+MxV21JKC3Uhg3e8Zer8PTXc9RZAdBl3dIy
+         KpaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6LEQhSD9kPhUFJhdm4QVnYBLxI6Q1dvUYGGtcoYTPY4=;
-        b=LKJJl8S5ldTeo/JrqmsfHImFvHwbwiYZaW5in+NPF8Xd3Qx2+7HhJnZvHMbB9f+tgi
-         c9WiGTvNm3zms+x0EV0+az48ARBOI0L04anI5optp2IzfdvzL+5QhjV2fsDlHTH/ZaFE
-         lWiD+j21P7mKJrKI3iKHsv20uAeLQVhnRSN7AYpXS3G6vD1C6Kr0bH14jr21HFE5nKnY
-         eP1jd1MIHsMdFRB8xWqreeTnQ+RobbzQ8RsXR4UbR6xl6lHyZqd718VBDu6Vhjb6xJbU
-         TXVnRiQWhdTn98yl9gvtVOmjyVxYsENXr4GrcK/ZITfBcI/R93nu2EkPmqkqqxYkFhUZ
-         gNjA==
-X-Gm-Message-State: AOAM531OUZISeJgUZGAvyiCXzB/ws1dMT+F4LlyZB5lRSakYbf2lRmHB
-        DY71cDMACBI8Qv5dimcrPE2G7lYNQuJ00ukhk0RdKA==
-X-Google-Smtp-Source: ABdhPJw25ridC2MDvo8XWVUeik7An6TOGY6ncUYKZQlZ5z1Gz2h5pIoUJpn/RtQ4xXAqZMGXxlEmL+3fbfu3FTJE3AU=
+        bh=OSsBX21NVNiSwRS2p6EfLvoeuH1E+LW1LIdRNsY4vkU=;
+        b=jy+SQqkGPV+23pdG0Kv7lNa7UGNaWUHG7jDvso4ArPY4I+JjZ6xg9UKQha0qf3wVD4
+         g63bb9xwVj2dtUki2EP3xvnSfhskv/d3P4KIGSvVphRf7biVsWS7YFSbI22dQ9qnjeQz
+         zCXI/4u4fP8Z8zj17b7RisektmYI4ZoBUKz3hszhgcCB9mdTAs5eR7F+wjWgy+xv6EDu
+         sIJP36WeWPxoMv672BQh7SNwlTz/xV0Fzt3Pcjt9iNVifygOG23ztzP8qKU4fAX/Apkh
+         zMjluPp3ShkBC6iatgHty2QiXzkIU/nx/AJKH09lYozni3l0p11gMibkWu0OUOhqxb1Q
+         t9oA==
+X-Gm-Message-State: AOAM530PTgixyVaRy5h+tX+k8hcOTdsRia2IWx04hCgKfyX4280ovzDJ
+        cgbf58jY/NSAWt2JhxQDO8piOYsHcwmwVuZr+Ao2WNhsIAbJCA==
+X-Google-Smtp-Source: ABdhPJxo6UiX3Xn1XQ6J/2PJeWZvf7DQmneQL+F9WZaIYeAoXL24XAGZpq5ExpvtMoKAaF7w482xqTsYXr7VK3rTP1A=
 X-Received: by 2002:ad4:53a4:0:b0:430:1d8c:18ea with SMTP id
- j4-20020ad453a4000000b004301d8c18eamr18928372qvv.115.1646176609345; Tue, 01
- Mar 2022 15:16:49 -0800 (PST)
+ j4-20020ad453a4000000b004301d8c18eamr18944909qvv.115.1646177045898; Tue, 01
+ Mar 2022 15:24:05 -0800 (PST)
 MIME-Version: 1.0
-References: <20220301210513.1855076-1-robh@kernel.org>
-In-Reply-To: <20220301210513.1855076-1-robh@kernel.org>
+References: <1644852547-10067-1-git-send-email-loic.poulain@linaro.org>
+ <1644852547-10067-2-git-send-email-loic.poulain@linaro.org> <CAL_JsqKg06h818-kMDrtROzHn8zPcjwgzWAE_q=egXPJHmg=-w@mail.gmail.com>
+In-Reply-To: <CAL_JsqKg06h818-kMDrtROzHn8zPcjwgzWAE_q=egXPJHmg=-w@mail.gmail.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 2 Mar 2022 02:16:38 +0300
-Message-ID: <CAA8EJppACmfoz1dgRXbrG2zw_Wa1oJf0zGRCB8utPDXNhLZftg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: display/msm: Drop bogus interrupt flags cell
- on MDSS nodes
+Date:   Wed, 2 Mar 2022 02:23:54 +0300
+Message-ID: <CAA8EJprnALcK8HObkNqkgW6t4gpLHf9LuS1-mEHJJqt6va=zxQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: msm: disp: add yaml schemas for
+ QCM2290 DPU bindings
 To:     Rob Herring <robh@kernel.org>
-Cc:     Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Del Regno <angelogioacchino.delregno@somainline.org>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+Cc:     Loic Poulain <loic.poulain@linaro.org>,
+        Rob Clark <robdclark@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -74,58 +71,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Mar 2022 at 00:05, Rob Herring <robh@kernel.org> wrote:
+On Tue, 1 Mar 2022 at 20:35, Rob Herring <robh@kernel.org> wrote:
 >
-> The MDSS interrupt provider is a single cell, so specifying interrupt flags
-> on the consumers is incorrect.
+> On Mon, Feb 14, 2022 at 9:29 AM Loic Poulain <loic.poulain@linaro.org> wrote:
+> >
+> > QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
+> > like DPU display controller, DSI etc. Add YAML schema for DPU device
+> > tree bindings
+> >
+> > Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
+> > ---
+> >  v2: no change
+> >  v3: no change (resent with reviewed-by + freedreno list)
+> >
+> >  .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
+> >  1 file changed, 214 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
 >
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> This is now failing in linux-next. Please fix or revert:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+I can not reproduce it here, with the linux-next from 20220301 and
+dtschema 2022.1
 
-> ---
->  .../devicetree/bindings/display/msm/dpu-msm8998.yaml          | 4 ++--
->  .../devicetree/bindings/display/msm/dpu-qcm2290.yaml          | 2 +-
->  2 files changed, 3 insertions(+), 3 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
-> index 167bc48748d7..2df64afb76e6 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu-msm8998.yaml
-> @@ -155,7 +155,7 @@ examples:
->      #include <dt-bindings/interrupt-controller/arm-gic.h>
->      #include <dt-bindings/power/qcom-rpmpd.h>
+> Error: Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dts:81.3-82.1
+> syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:386:
+> Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dt.yaml]
+> Error 1
 >
-> -    display-subsystem@c900000 {
-> +    mdss: display-subsystem@c900000 {
->          compatible = "qcom,msm8998-mdss";
->          reg = <0x0c900000 0x1000>;
->          reg-names = "mdss";
-> @@ -192,7 +192,7 @@ examples:
->              clock-names = "iface", "bus", "mnoc", "core", "vsync";
->
->              interrupt-parent = <&mdss>;
-> -            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupts = <0>;
->              operating-points-v2 = <&mdp_opp_table>;
->              power-domains = <&rpmpd MSM8998_VDDMX>;
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> index 8766b13f0c46..28617bc1d2ff 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> @@ -197,7 +197,7 @@ examples:
->                  power-domains = <&rpmpd QCM2290_VDDCX>;
->
->                  interrupt-parent = <&mdss>;
-> -                interrupts = <0 IRQ_TYPE_NONE>;
-> +                interrupts = <0>;
->
->                  ports {
->                          #address-cells = <1>;
-> --
-> 2.32.0
->
+> Rob
+
 
 
 -- 
