@@ -2,148 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 64C054C906B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:33:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECFD44C90B3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:47:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236227AbiCAQeI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 11:34:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42924 "EHLO
+        id S235955AbiCAQr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 11:47:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234481AbiCAQeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:34:07 -0500
-Received: from mail-pg1-x535.google.com (mail-pg1-x535.google.com [IPv6:2607:f8b0:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A2B45FF32
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 08:33:25 -0800 (PST)
-Received: by mail-pg1-x535.google.com with SMTP id 195so14796354pgc.6
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 08:33:25 -0800 (PST)
+        with ESMTP id S236417AbiCAQr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:47:56 -0500
+Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CD264665D;
+        Tue,  1 Mar 2022 08:47:15 -0800 (PST)
+Received: by mail-oo1-xc2e.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso23108592ooi.1;
+        Tue, 01 Mar 2022 08:47:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=peE7sO9c9bIwrLDEH+P5tPx9gsKQOC+ku7JdeqViooo=;
-        b=KoTASANrVf5duaFDYBHbeH/9TtHaMvz7i+kkj9juAMUtoR1T5pwMEm3RCMva1Azq0V
-         Csx3NzdZZZ/vw0LO/tP1TSd8FA8E1Ss55qaXRBI2my9o1cGn10jS9dADrlWZ0ES9Vjp3
-         1wOZJhSniaiD7fRGtnW9d/jgK9KKMD5YIiq0M=
+        d=gmail.com; s=20210112;
+        h=sender:message-id:date:mime-version:user-agent:content-language:to
+         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
+        bh=TJyhIr9uQwSC4Vsri+p7N794sJJ7eTPsgawQLVN8g34=;
+        b=jAPFaDS2K5ULsq1PG8vS4As2lLxVauB/3stdyl7zTknK9bYFJTKyAuGN/oyxHrfSgw
+         Lzmn+8L1wAgiyE/WfKfYB0GIL86iRnemCgOOLznFdl2kHl0uQ87dcwitBgQoddeDdhz7
+         j3sziGJC6IGC+3UxFZSM/YXUU2nsNTPNYCk8T4sVv+mjU3egKf1lKvUpn4U1v8LIjMQu
+         Nrz7u7mxwv2G6BYRjbm8lDQZkntQKYQwj8Bo0ffzbjeyNt1qKS1OzlWy6ondUdg4VGFe
+         zD3SZ4djKqGx7J/aK3N3lHDFnXaKpegB+q7qEKAbIiYUuz0ofQ1m0wMFKUUFizpfEPLa
+         Lw4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=peE7sO9c9bIwrLDEH+P5tPx9gsKQOC+ku7JdeqViooo=;
-        b=XTjNZHQ8kF4t4AoRUm2xMakGiZ60nU5ZbVqNwbqhEFb7Qe9tMILRWtpFqiHoDX/XLO
-         OEvW1ffrhCa9zcU8aulNT4F1gVDjSXysy/WAIujSXKgtCBWwW03bvfj87LvtlgLI6Emx
-         cBmuKKcnAP0dsrXSfFGtjxAkd8y8VpH0wm6MvdC7VBsS1DyR8PsoYez58XPADZIw5Hbl
-         kj1ZUkhQI0s+9RqYdOtYFWasJoK5/FyPxC/QeJaDqlNlVZrSryHfaCZ8jrQsH6uXJqza
-         SN3xIGvCS0cCszfblAgulGweuw3OzXxTfV6GImUOoxdHc8ScXyPG6KmiASxu3DTyDKDH
-         0KIA==
-X-Gm-Message-State: AOAM530FINXrotAn/nAuPt2dsqRyOGInQb42hvkAotHzhg8Sy0/lBz95
-        EPIQwQaPI0yquF/HtwEd0/wmtg==
-X-Google-Smtp-Source: ABdhPJzOsZaPH+JussBROy3HgQg618t7zVhdAt+Gn2HqVPRz1lT34TD61D6g5HEnQnaGXPoKXcyJdw==
-X-Received: by 2002:a63:d47:0:b0:373:598c:e0aa with SMTP id 7-20020a630d47000000b00373598ce0aamr22407736pgn.243.1646152404787;
-        Tue, 01 Mar 2022 08:33:24 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:77d:b927:44d6:c9f5])
-        by smtp.gmail.com with UTF8SMTPSA id y12-20020a056a00190c00b004f39e28fb87sm18721077pfi.98.2022.03.01.08.33.23
+        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
+         :content-language:to:cc:references:from:subject:in-reply-to
+         :content-transfer-encoding;
+        bh=TJyhIr9uQwSC4Vsri+p7N794sJJ7eTPsgawQLVN8g34=;
+        b=OIwMexZ5Rha8vzU7uX1gpspqvTgo9/kBmlg7qL889u4aN9+vkccl10gRMyQuzjOgA5
+         tcl3Y+g8jBqmdEwqk6f4JAYVJHinoKHirNcbYWITBQxTlpWD/H9hHVkqk1Z0TXI+iaKG
+         Ki6awEWqhiWLpbmrSIoRyUHxjpupch7kpALXDk7pdVUJN/EGmStLpsLGu6HTEuXbSIgA
+         sICRGxMaeQkj9BFJYuyoQWkBQhGABWWmvuGBSTYlmmNx5MP5LaCxzGtxRUkC+/jISyrw
+         1totJt6K+4izqbalRBpM8rT6blXnUdHfW0i9kZQzyiIyO44e8EwNaRIRDTruzuSM0QFZ
+         7ZwA==
+X-Gm-Message-State: AOAM531+sbY8g7ceyQmcXGR5htqL4HJHoa6IiChrPrCyqfIUPzclWUCr
+        PtNODcMhrvOdluI4T4ZDr2s=
+X-Google-Smtp-Source: ABdhPJxRlXCSXw5okfjbvGh+ENHHVpGOLCWC0P46271cFZLQm7p25NH4JHb13DPShvjaBP2+hLP/jw==
+X-Received: by 2002:a05:6870:600a:b0:d7:4895:75be with SMTP id t10-20020a056870600a00b000d7489575bemr4091771oaa.35.1646153234602;
+        Tue, 01 Mar 2022 08:47:14 -0800 (PST)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id q13-20020a0568080ecd00b002d44f01f1d7sm8292922oiv.40.2022.03.01.08.47.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 08:33:24 -0800 (PST)
-Date:   Tue, 1 Mar 2022 08:33:22 -0800
-From:   "mka@chromium.org" <mka@chromium.org>
-To:     "Linyu Yuan (QUIC)" <quic_linyyuan@quicinc.com>
-Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "Tao Wang (Consultant) (QUIC)" <quic_wat@quicinc.com>,
-        "balbi@kernel.org" <balbi@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        "frowand.list@gmail.com" <frowand.list@gmail.com>,
-        "hadess@hadess.net" <hadess@hadess.net>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "peter.chen@kernel.org" <peter.chen@kernel.org>,
-        "ravisadineni@chromium.org" <ravisadineni@chromium.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "rogerq@kernel.org" <rogerq@kernel.org>,
-        "stern@rowland.harvard.edu" <stern@rowland.harvard.edu>,
-        "swboyd@chromium.org" <swboyd@chromium.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOiDlm57lpI0=?= =?utf-8?Q?=3A?= Re: [PATCH v20
- 3/5] usb: misc: Add onboard_usb_hub driver
-Message-ID: <Yh5K0u3jp4jTXCPi@google.com>
-References: <SA1PR02MB86067ACF0C96F18B7306D208903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
- <SA1PR02MB860660B6F33011E5A97F7930903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
- <YhURQAksLKVuzU36@google.com>
- <SA1PR02MB860602E0AC4D9BD0BC4245B5903C9@SA1PR02MB8606.namprd02.prod.outlook.com>
- <YhXolQDwIMbTi/O2@kroah.com>
- <DM8PR02MB81988555CA6B66BB3FD5E488E3019@DM8PR02MB8198.namprd02.prod.outlook.com>
- <Yh0UZUU9/9Hd6Pc1@google.com>
- <DM8PR02MB8198F2BFE9E933CC8F2C148BE3029@DM8PR02MB8198.namprd02.prod.outlook.com>
+        Tue, 01 Mar 2022 08:47:13 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <39415d57-ec14-aab8-20fd-92d2a810f3fd@roeck-us.net>
+Date:   Tue, 1 Mar 2022 08:47:11 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        POTIN LAI <potin.lai@quantatw.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220301103900.12637-1-potin.lai@quantatw.com>
+ <20220301103900.12637-3-potin.lai@quantatw.com>
+ <da4ac970-9e7d-c9cb-eea3-e5ec8a1eef00@kernel.org>
+ <9bb56622-2859-1059-6f14-2242ab6a2427@quantatw.com>
+ <bf1fa181-d2a7-eab9-4045-cf53ae3ce2f2@kernel.org>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v4 2/2] dt-bindings: hwmon: Add sample averaging
+ properties for ADM1275
+In-Reply-To: <bf1fa181-d2a7-eab9-4045-cf53ae3ce2f2@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM8PR02MB8198F2BFE9E933CC8F2C148BE3029@DM8PR02MB8198.namprd02.prod.outlook.com>
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 01, 2022 at 02:30:00AM +0000, Linyu Yuan (QUIC) wrote:
-> > From: mka@chromium.org <mka@chromium.org>
-> > Sent: Tuesday, March 1, 2022 2:29 AM
-> > To: Linyu Yuan (QUIC) <quic_linyyuan@quicinc.com>
-> > Cc: gregkh@linuxfoundation.org; Tao Wang (Consultant) (QUIC)
-> > <quic_wat@quicinc.com>; balbi@kernel.org; devicetree@vger.kernel.org;
-> > dianders@chromium.org; frowand.list@gmail.com; hadess@hadess.net;
-> > krzk@kernel.org; linux-kernel@vger.kernel.org; linux-usb@vger.kernel.org;
-> > mathias.nyman@intel.com; michal.simek@xilinx.com;
-> > peter.chen@kernel.org; ravisadineni@chromium.org; robh+dt@kernel.org;
-> > rogerq@kernel.org; stern@rowland.harvard.edu; swboyd@chromium.org
-> > Subject: Re: 回复: 回复: Re: [PATCH v20 3/5] usb: misc: Add
-> > onboard_usb_hub driver
-> > 
-> > >
-> > > Hi Greg and mka,
-> > >
-> > > Let's make it clear that we are talking about once this driver is approved
-> > into usb tree,
-> > > If we use different USB HUB which have VID/PID not defined in this driver,
-> > > We need to update this driver.
-> > >
-> > > But if we defined VID/PID in device tree(for a specific board, manufacture
-> > should know VID/PID from HUB it used),
-> > > dynamic parsed by the driver,  then we don't need to change this driver
-> > (increase VID/PID table).
-> > 
-> > As per my earlier reply, the kernel/USB core uses the VID:PID reported
-> > by the USB device, the compatible string in the device tree is purely
-> > informational. That's not something that could be changed by this
-> > driver.
-> I can't fully understand this comment,  could you please share step if we want to add a new HUB support, what should we do ? nothing ?
-
-Add the VID:PID and compatible strings to onboard_usb_hub.c, analogous
-to those for the RTS5411 and RTS5414. More work will be needed if the
-hub needs a special power up or power down sequence (multiple regulators,
-GPIOs, ...)
-
-> If do nothing, can we remove id_table from  onboard_hub_usbdev_driver  ?
-> > 
-> > And even if the VID:PID from the device tree was used: how is the
-> > kernel supposed to know that the onboard_hub driver should be
-> > probed for a given VID:PID from the device tree, without listing
-> > the VID:PID (or compatible string) in the driver (which is what
-> > you seem to seek to avoid)?
-> In my opinion, if it need update VID/PID table in this driver to support a new HUB,
-> we can parse VID/PID from device tree and create dynamic VID/PID entry to id_table of onboard_hub_usbdev_driver.
+On 3/1/22 05:21, Krzysztof Kozlowski wrote:
+> On 01/03/2022 13:42, POTIN LAI wrote:
+>>
+>> Krzysztof Kozlowski 於 1/03/2022 7:16 pm 寫道:
+>>> On 01/03/2022 11:39, Potin Lai wrote:
+>>>> Add documentation of new properties for sample averaging in PMON_CONFIG
+>>>> register.
+>>>>
+>>>> New properties:
+>>>> - adi,volt-curr-sample-average
+>>>> - adi,power-sample-average
+>>>> - adi,power-sample-average-enable
+>>>>
+>>>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+>>>> ---
+>>>>   .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
+>>>>   1 file changed, 44 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> index 223393d7cafd..1b612dc06992 100644
+>>>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>>>> @@ -37,6 +37,47 @@ properties:
+>>>>       description:
+>>>>         Shunt resistor value in micro-Ohm.
+>>>>   
+>>>> +  adi,volt-curr-sample-average:
+>>>> +    description: |
+>>>> +      Number of samples to be used to report voltage and current values.
+>>>> +      If the configured value is not a power of 2, sample averaging number
+>>>> +      will be configured with smaller and closest power of 2.
+>>>> +
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>>>> +    default: 1
+>>>> +
+>>>> +  adi,power-sample-average:
+>>>> +    description: |
+>>>> +      Number of samples to be used to report power values.
+>>>> +      If the configured value is not a power of 2, sample averaging number
+>>>> +      will be configured with smaller and closest power of 2.
+>>>> +
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>>>> +    default: 1
+>>>> +
+>>>> +  adi,power-sample-average-enable:
+>>>> +    description: Enable sample averaging for power reading.
+>>>> +    type: boolean
+>>> Why do you need this property? Voltage/current sampling is enabled in
+>>> your driver with presence of adi,volt-curr-sample-average. Why power
+>>> sampling is different?
+>> For "adi,power-sample-average", adm1075, adm1275 & adm127 don't have config reg for power sample average, so I add boolean type property to enable it
+>> But for "adi,power-sample-average-enable", all chips have ability of configuring, so it doesn't need a property to enable or disable.
 > 
-> Hope you can understand what I said.
+> So the reason to add separate property is that this feature can be
+> disabled. Since your driver does not disable it, it seems it is a
+> default state to have it disabled and you have to enable it, right?
+> Where is the enable code? I see you only write the sample averaging
+> value with adm1275_write_pmon_config(). There is no enable...
+> 
+> But wait, the power averaging is being disabled by writing 0 to
+> register, which is not allowed by bindings. How one can disable it?
+> 
 
-Not really.
+Valid register values are 0..7, matching dt property values of
+BIT(x) or 1 .. 128. Setting the property value to 1 (= 1 sample)
+is equivalent to disabling sampling.
 
-I doubt that what you are suggesting would work. The easiest thing
-to convince people would probably be to send a patch (based on this
-one) with a working implementation of your idea.
+> I don't see any usage of "adi,power-sample-average-enable", neither in
+> driver nor in hardware. I also do not see the need for it, the purpose.
+> 
+> Then second part, you added default value of 1 to
+> adi,volt-curr-sample-average and adi,power-sample-average. If the
+> property is missing, then the default of 1 is applied, right? But
+> datasheet says that default is 128!
+> 
+> The bindings neither match hardware nor driver. They look entirely
+> independent. This is wrong. They should instead be strongly related to
+> the hardware, describe the hardware. Then the driver should implement
+> proper logic for it.
+> 
+
+Agreed.
+
+Guenter
