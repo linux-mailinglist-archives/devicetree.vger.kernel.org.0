@@ -2,108 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A6ADB4C8E7F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:03:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 912614C8E85
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:04:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234448AbiCAPD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 10:03:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44532 "EHLO
+        id S235518AbiCAPEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 10:04:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234347AbiCAPD6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:03:58 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7D22DD5A;
-        Tue,  1 Mar 2022 07:03:17 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B68E661635;
-        Tue,  1 Mar 2022 15:03:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6426C340EE;
-        Tue,  1 Mar 2022 15:03:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646146996;
-        bh=6VT7ZZJE4eWH69e6J3p5kOcPN+nEhh3aFJ++ueF3zUw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=S+tQe4FjIdeps0VYDJkSNfO5UCzixWi4v3DyOubRtW9YCDsH3GqxnWyoX2lh+1utd
-         hft8Lnmq2DuUL/j0knLDy6aIMrR+2dgDhdNIU0bOVoJ/t/0VkkNom29QiJVGC9Vtlw
-         pAEbl3bw8KC5RIpZIonko9Bp/mBDM2d9Xy7vrmczGQnO9s208Lax4exXNOGuS7Y+qH
-         j6AuS7rHwTyrWa15JXgFrNsGWHI+T5uk6WAubqnVO/nw+RHXXgxRTFGQTr1vwFEwfb
-         V9HuLLIf8XF3m8MRR2onuEHFux9AFTwIV2geLi/VHo7z52tq/7JxFdeYXB0dWd6NOL
-         6ffaV6uYIQWLg==
-Date:   Tue, 1 Mar 2022 16:03:12 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: i2c: microchip,corei2c: Fix indentation of
- compatible items
-Message-ID: <Yh41sLhyhxwxfH+l@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Daire McNamara <daire.mcnamara@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <365d32c63c2fe080866be60c32dddd0f3634d19d.1645705789.git.geert@linux-m68k.org>
+        with ESMTP id S234347AbiCAPEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:04:53 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98553BBD8;
+        Tue,  1 Mar 2022 07:04:12 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id i10-20020a4aab0a000000b002fccf890d5fso22728099oon.5;
+        Tue, 01 Mar 2022 07:04:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NhjIkBmRmWHn6hZKiPp3QI3ZApNmYTsHEcY+J44OE9c=;
+        b=G/ta3tJTZrsD2qMSsvHWDd0wOYTV5+sZaR13qMaSLGACEa6R+vviCAo79Osbqv5Eqk
+         gQyYt6be6cV67+wC4SE+H8+DfMsesN9yklMMgt+Gm12qCv6wwxEoc/dShox9afl+w11C
+         a3sZBdGE/1+dcVRwf33CoTOib4U0cDdi+1BZ1WeCkCzViaoXOXV8Dfupypl8XkYNLM2J
+         xQcmiXPM2Lidbz/XrS2Icd27AqizgdI27mjqAxS8oSfudCDwXC+9nMqVn6Nvadma1D6G
+         uaKrcv92uS6IUCbxU9vkmvflxRaW1XLCxFZUuA5DKKp+hRqLk/JivGsoR6X629AvoAec
+         GD+g==
+X-Gm-Message-State: AOAM533xqkXcxplMBi+SrjAXW50nqd9c1EeL+bgVktJbgXKCqqcj81cg
+        IjQ2hwzTXAwAybxRKuqfSA==
+X-Google-Smtp-Source: ABdhPJy7A8v8F+HtSBR12VZgXH/m9qLTLyWwHJy61CEzee5qeK2oioioloxMfwkgdMGKtQKMqrvOUQ==
+X-Received: by 2002:a05:6870:b88:b0:d7:7e6:7d52 with SMTP id lg8-20020a0568700b8800b000d707e67d52mr4104975oab.95.1646147051835;
+        Tue, 01 Mar 2022 07:04:11 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id 100-20020a9d0eed000000b005af73c6f792sm6700792otj.6.2022.03.01.07.04.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 07:04:11 -0800 (PST)
+Received: (nullmailer pid 1233554 invoked by uid 1000);
+        Tue, 01 Mar 2022 15:04:10 -0000
+Date:   Tue, 1 Mar 2022 09:04:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Eugen Hristev <eugen.hristev@microchip.com>,
+        Hugues Fruchet <hugues.fruchet@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Subject: Re: [PATCH 1/2] dt-bindings: media: Add macros for video interface
+ bus types
+Message-ID: <Yh416qrZr32PzMtJ@robh.at.kernel.org>
+References: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
+ <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
+ <YhvoC0aXpJUTslnC@paasikivi.fi.intel.com>
+ <YhvqLL0LYWt2ryaE@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BVBLWRpeC9NpsvkP"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <365d32c63c2fe080866be60c32dddd0f3634d19d.1645705789.git.geert@linux-m68k.org>
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YhvqLL0LYWt2ryaE@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Feb 27, 2022 at 11:16:28PM +0200, Laurent Pinchart wrote:
+> Hi Sakari,
+> 
+> On Sun, Feb 27, 2022 at 11:07:23PM +0200, Sakari Ailus wrote:
+> > On Sun, Feb 27, 2022 at 10:33:51PM +0200, Laurent Pinchart wrote:
+> > > Add a new dt-bindings/media/video-interfaces.h header that defines
+> > > macros corresponding to the bus types from media/video-interfaces.yaml.
+> > > This allows avoiding hardcoded constants in device tree sources.
+> > > 
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > >  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
+> > >  1 file changed, 16 insertions(+)
+> > >  create mode 100644 include/dt-bindings/media/video-interfaces.h
+> > > 
+> > > diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
+> > > new file mode 100644
+> > > index 000000000000..e38058e1cca7
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/media/video-interfaces.h
+> > > @@ -0,0 +1,16 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +/*
+> > > + * Copyright (C) 2022 Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > + */
+> > > +
+> > > +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> > > +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
+> > > +
+> > > +#define MEDIA_BUS_TYPE_CSI2_CPHY		1
+> > > +#define MEDIA_BUS_TYPE_CSI1			2
+> > > +#define MEDIA_BUS_TYPE_CCP2			3
+> > > +#define MEDIA_BUS_TYPE_CSI2_DPHY		4
+> > > +#define MEDIA_BUS_TYPE_PARALLEL			5
+> > 
+> > I've been long thinkin of renaming "PARALLEL" as "BT.601" which it really
+> > is. I don't mind postponing that, but I think you could as well start here.
+> > Up to you.
+> 
+> I think it's a good idea, but we then need to decide what to do with
+> other types of parallel buses. Let's start this discussion now, and
+> implement it in a patch on top of this series.
 
---BVBLWRpeC9NpsvkP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+5 and what it means is an ABI. If it is ambiguous and needs to be more 
+specific, then you need new numbers for all of those specific types.
 
-On Thu, Feb 24, 2022 at 01:31:21PM +0100, Geert Uytterhoeven wrote:
-> make dt_binding_check:
->=20
->     Documentation/devicetree/bindings/i2c/microchip,corei2c.yaml:19:9: [w=
-arning] wrong indentation: expected 10 but found 8 (indentation)
->=20
-> Fixes: f1bd6661946b20d1 ("dt-bindings: i2c: add bindings for microchip mp=
-fs i2c")
-> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
+If it is just a rename, I prefer it is done from the start.
 
-Applied to for-next, thanks!
+> > Should this be somehow visible in video-interfaces.yaml?
+> 
+> I wish we could use macros in .yaml files instead of numerical values,
+> but I don't think that's possible. I can do this:
+> 
+>    bus-type:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      enum:
+> -      - 1 # MIPI CSI-2 C-PHY
+> -      - 2 # MIPI CSI1
+> -      - 3 # CCP2
+> -      - 4 # MIPI CSI-2 D-PHY
+> -      - 5 # Parallel
+> -      - 6 # BT.656
+> +      - 1 # MIPI CSI-2 C-PHY (MEDIA_BUS_TYPE_CSI2_CPHY)
+> +      - 2 # MIPI CSI1 (MEDIA_BUS_TYPE_CSI1)
+> +      - 3 # CCP2 (MEDIA_BUS_TYPE_CCP2)
+> +      - 4 # MIPI CSI-2 D-PHY (MEDIA_BUS_TYPE_CSI2_DPHY)
+> +      - 5 # Parallel (MEDIA_BUS_TYPE_PARALLEL)
+> +      - 6 # BT.656 (MEDIA_BUS_TYPE_BT656)
 
+Seems a bit redundant to have both comment text and define. The only 
+part missing from the defines is 'MIPI'.
 
---BVBLWRpeC9NpsvkP
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIeNbAACgkQFA3kzBSg
-KbZpsw/+JLQL5ZthwQqog4jI4XxWkbADS4uk/hkQ4/BMRjORDB7JaZFLhOP+bFYw
-R2BipPuikXdVhVjZVN/JDkwWArBgPyB7p+QtKdtOCwmB4tdopasy6/nNVKWbXJt5
-8Ue3RUq6SRvNGAJPkNdKnORxI1DPXIRuYMoHWgG9AQ84zkVmxUiwtFNP1UcAnOjs
-cVEgbw17ZyfTCEWYy9E5BYycXcofb25LcOkLqtQAGZySW5phXXb4WHpdNPciCnQt
-zquFrKxTC0NB6faRrkDS2ijdjqlQ9y8nHXcvoqgyAmce98jjHUmT+puzxAM+rM8C
-G50R9dhLpdkR0fsZqO8k3NX5HZZvk8Q5oOV3mmiI1gNfIIoghFLfVo7/dG3XHGZT
-Qpev6wZiM1bHcqD8PFI4+7+W7mwMUB723cAjYv20q8HG64FtYtziwV5vs54sQh+q
-E1LfPKRuUM/IcoQ3zWdqZ3BNqL1crdfKaxwBTrEYIlkZHhNpqUotnh8FaSTUMNYp
-jp4lEBXludGP9CyFFry2f3RAPstPIntEH0+2UQyiWeYA9ZFpgIduupjumnA8SOj3
-P/9+S8dsWb+fFhs7JlDGCl6OkvXqeV+I6ENbu4apLHQMlPWMuS6VrziFrzBD42/U
-7pLMg/nvreUTjw2afUEv8rhw/2lhOF3Dmd32nDL9ickhr/et8dU=
-=1Gz3
------END PGP SIGNATURE-----
-
---BVBLWRpeC9NpsvkP--
+>      description:
+> -      Data bus type.
+> +      Data bus type. Use the macros listed above (defined in
+> +      dt-bindings/video-interfaces.h) instead of numerical values.
+> 
+> Any better proposal ?
+> 
+> > > +#define MEDIA_BUS_TYPE_BT656			6
+> > > +
+> > > +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
