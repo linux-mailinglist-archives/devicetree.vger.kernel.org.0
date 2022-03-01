@@ -2,135 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 180694C8AE4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 12:36:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A6194C8B0F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 12:44:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiCALgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 06:36:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57280 "EHLO
+        id S234634AbiCALoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 06:44:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiCALgn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 06:36:43 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC8A92D19
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 03:36:02 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2530F407C6
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:36:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646134560;
-        bh=FR+SbHRa0KC8qQpAb/sagwLABgKAHd7lv9qTbcr0XM0=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=Q8iO6kBWTS8gsLGw+O0aetXjEQItnmRenQdKR6JylMt9w/ghPdhMIdCaXJUk4PmHN
-         Bs0yAvcR8w6/ZpRBV0oQhVoZhQSARgvVti4oxUGRXr6psilKuvNlLl1cGNFHOVY1l3
-         kdmzj7O09W8DUMhfnYtAWQuqf5dZmM0QiOEhEKJDQxMm+bhn79g5sRBFgunYBSdz+e
-         jIcgi2zU+gFm6ZpKt59vL87RtDQ05i2tzmauukGnnDOIdsDYwYBgsNMWdIK45Uzmc0
-         GMeI7dOFHargywAvvONpFrvyH/O+GEAElsOAPWOQI9nuLN1JMn2TQWJRgo2WkVCiOu
-         b1TenU+3r6gow==
-Received: by mail-ej1-f71.google.com with SMTP id sa22-20020a1709076d1600b006ce78cacb85so6715190ejc.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 03:36:00 -0800 (PST)
+        with ESMTP id S234616AbiCALoi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 06:44:38 -0500
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A42CB58827
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 03:43:56 -0800 (PST)
+Received: by mail-lj1-x231.google.com with SMTP id o6so21498716ljp.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 03:43:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=SEk3in6d11xvs8mwQBocWYXf/yhdK/EMkyVlgK9A4i8=;
+        b=CswNEEJn4JADhLcX4CAe+MctkNkw32JX9FA1Ik86hWA1dPYwZ9UPTGZjDeXbWcI2y4
+         t84RoTdIrvN8SQtmHUCUMW7FGCVyQrYeG7XJNHyVUaChUmtmSYsVxraD2GbESM2fxGWs
+         PKaNXmLncNnprvELIXil4KzV9JS9W4dLniO3l8RmVVnVA7LDM1eBACs6JEH8jGEA2zJL
+         bl6Bw/Xv56PdiIiK7p3JfQoKUDYgnlIOTFjmxvKeGavoMrauovu37hv0Vf1HsWcNlmxT
+         5Is2TClhySG+Ruvd8WWxusQmWZGzY17UBq7/A2UihfoDDv79jwYIpiXC1s3i/hEaU6fw
+         +v3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=FR+SbHRa0KC8qQpAb/sagwLABgKAHd7lv9qTbcr0XM0=;
-        b=0KZZwRAmnpBQac/XWu1v20/nrK0O0oOvJacdcD7+uZ073gQk13aYX0J7sCAau4yGuD
-         wAaXYESjJ4h9dJO2/3uiP+xNn5WjSedTJbP2kWarfupDNrTCC80qfx6OkDUTmRMF/Qa1
-         UsbCHrmaxfTXvVOts27sEBsG2LU7U0VUg3MY5/86UiyNtJFK9gbsOXk3uU1MsrSwKFd7
-         yNAHcspuiaMvRB2FI8321UH3eYzISxoC9/AmcRlIbf7raU0Nl7Q+cZmOlud8Ky/eCJNX
-         rzP93iWpoVwZ5m3HzMHkvhQ0XCAzU8d0vWZ/TCmKeMwyJV4bRZBMQ1M2PRtp74DkCHQV
-         zVRw==
-X-Gm-Message-State: AOAM533fHae3+kM7I30kGqRZnIrjx51Y5URdGuTRZjWfOeXqlmJpUikr
-        SIRmIihkMAMRqB+RsajfgPlFP5sNaaT69aDqADjgUxzwTOQoym5P/mMrLRw+MrvlHH+MaVOLdZk
-        XhPkshwg9kD27HxmDXGPtlJfjCQr3UsdSoymVn1U=
-X-Received: by 2002:aa7:d2da:0:b0:410:b9f1:ff35 with SMTP id k26-20020aa7d2da000000b00410b9f1ff35mr24361354edr.217.1646134559805;
-        Tue, 01 Mar 2022 03:35:59 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxO1Re57fRymXGOQld9AekbmcAN8BBIo9RFZ7jtwa+7Mxv++/eT4zsN40e6JUE1cz8Fwj5FFQ==
-X-Received: by 2002:aa7:d2da:0:b0:410:b9f1:ff35 with SMTP id k26-20020aa7d2da000000b00410b9f1ff35mr24361344edr.217.1646134559639;
-        Tue, 01 Mar 2022 03:35:59 -0800 (PST)
-Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id gg38-20020a17090689a600b006ba4896f2d7sm5253927ejc.140.2022.03.01.03.35.58
+        bh=SEk3in6d11xvs8mwQBocWYXf/yhdK/EMkyVlgK9A4i8=;
+        b=M+0hh7UoXS+Q2XTTVj/MlZcgp62zQrc71ofYz6+9IaXCKmWdo9oUsqhxvRKnX+tsUx
+         xkzoe9sn2cDJyAvm61rU0srSBWc6FBRsoMjEYZrqdOkE8zYE3Ki/B8Oacy0kqMhGpf4Y
+         B1mretYkkvOyqPz+qeRU95eeXKRNdezA+c0dakcXnp7oTkfmbPezg6KWBzr7NHGR9ueR
+         3dZjrFIRZ+UnS13lV7UuIHHTihJsvTv6atrjZw9QqOqWAZydpkVmD0AJx2K5malWUKWk
+         TRqFGbM02kFvnSw6rpguxcYswpUztIdoLx1PlCK3+gpcKEJvpV+cCo4sZ9Iwe8FVCf9i
+         IiFg==
+X-Gm-Message-State: AOAM530YJWly27lDbUUh3Y5WZfkIn9a2+0lX0aPYieEtgV7alYgULw3Q
+        JeJZk0YJptkUHtalyf3ffnlEUw==
+X-Google-Smtp-Source: ABdhPJxS4NuiWgStxReQaqrCgjRgur8btsR+rcYdpUwTL+R6piVjHKBkqTSX3xRrZt2GL5n2A94dIQ==
+X-Received: by 2002:a2e:891a:0:b0:246:293f:875e with SMTP id d26-20020a2e891a000000b00246293f875emr16364977lji.204.1646135034865;
+        Tue, 01 Mar 2022 03:43:54 -0800 (PST)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id d11-20020ac25ecb000000b004433d2e6d22sm1443791lfq.132.2022.03.01.03.43.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 03:35:59 -0800 (PST)
-Message-ID: <02d97f5a-b711-6e7e-abd5-ab2387dc3bca@canonical.com>
-Date:   Tue, 1 Mar 2022 12:35:58 +0100
+        Tue, 01 Mar 2022 03:43:54 -0800 (PST)
+Message-ID: <d51717a2-0a50-f2fb-0d2d-e233c6e75d4b@linaro.org>
+Date:   Tue, 1 Mar 2022 14:43:50 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH V1] arm64: dts: qcom: sc7280: Add GCC hardware register dt
- entry
-Content-Language: en-US
-To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>,
-        adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
-Cc:     quic_asutoshd@quicinc.com, quic_rampraka@quicinc.com,
-        quic_pragalla@quicinc.com, quic_sartgarg@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_sayalil@quicinc.com,
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 5/7] PCI: qcom: Add SM8150 SoC support
+Content-Language: en-GB
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhupesh.linux@gmail.com, lorenzo.pieralisi@arm.com,
         agross@kernel.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1646133123-22256-1-git-send-email-quic_c_sbhanu@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1646133123-22256-1-git-send-email-quic_c_sbhanu@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
+        svarbanov@mm-sol.com, bhelgaas@google.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org, sboyd@kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+References: <20220301072511.117818-1-bhupesh.sharma@linaro.org>
+ <20220301072511.117818-6-bhupesh.sharma@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220301072511.117818-6-bhupesh.sharma@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/03/2022 12:12, Shaik Sajida Bhanu wrote:
-> Add GCC hardware register dt entry for eMMC and SD card.
-
-Aren't you adding reset, not a hardware register? The same in subject.
-
+On 01/03/2022 10:25, Bhupesh Sharma wrote:
+> The PCIe IP (rev 1.5.0) on SM8150 SoC is similar to the one used on
+> SM8250. Hence the support is added reusing the members of ops_2_7_0.
 > 
-> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
 > ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++++
->  1 file changed, 6 insertions(+)
+>   drivers/pci/controller/dwc/pcie-qcom.c | 16 ++++++++++++++++
+>   1 file changed, 16 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index c07765d..2b8461d 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -881,6 +881,9 @@
->  			mmc-hs400-1_8v;
->  			mmc-hs400-enhanced-strobe;
->  
-> +			/* Add dt entry for gcc hw reset */
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index c19cd506ed3f..66fbc0234888 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -1487,6 +1487,17 @@ static const struct qcom_pcie_ops ops_1_9_0 = {
+>   	.config_sid = qcom_pcie_config_sid_sm8250,
+>   };
+>   
+> +/* Qcom IP rev.: 1.5.0 */
+> +static const struct qcom_pcie_ops ops_1_5_0 = {
+> +	.get_resources = qcom_pcie_get_resources_2_7_0,
+> +	.init = qcom_pcie_init_2_7_0,
+> +	.deinit = qcom_pcie_deinit_2_7_0,
+> +	.ltssm_enable = qcom_pcie_2_3_2_ltssm_enable,
+> +	.post_init = qcom_pcie_post_init_2_7_0,
+> +	.post_deinit = qcom_pcie_post_deinit_2_7_0,
+> +	.config_sid = qcom_pcie_config_sid_sm8250,
+> +};
+> +
 
-This comment seems unrelated and duplicating commit msg. Basically you
-wrote same sentence four times: subject, commit msg and twice here...
+This duplicates the ops_1_9_0, doesn't it?
+I'd suggest to reuse 1.9.0 structure and add a comment that it's also 
+used for 1.5.0.
 
-> +			resets = <&gcc GCC_SDCC1_BCR>;
-> +			reset-names = "core_reset";
->  			sdhc1_opp_table: opp-table {
->  				compatible = "operating-points-v2";
->  
-> @@ -2686,6 +2689,9 @@
->  
->  			qcom,dll-config = <0x0007642c>;
->  
-> +			/* Add dt entry for gcc hw reset */
+>   static const struct qcom_pcie_cfg apq8084_cfg = {
+>   	.ops = &ops_1_0_0,
+>   };
+> @@ -1511,6 +1522,10 @@ static const struct qcom_pcie_cfg sdm845_cfg = {
+>   	.ops = &ops_2_7_0,
+>   };
+>   
+> +static const struct qcom_pcie_cfg sm8150_cfg = {
+> +	.ops = &ops_1_5_0,
+> +};
+> +
+>   static const struct qcom_pcie_cfg sm8250_cfg = {
+>   	.ops = &ops_1_9_0,
+>   };
+> @@ -1626,6 +1641,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>   	{ .compatible = "qcom,pcie-ipq4019", .data = &ipq4019_cfg },
+>   	{ .compatible = "qcom,pcie-qcs404", .data = &ipq4019_cfg },
+>   	{ .compatible = "qcom,pcie-sdm845", .data = &sdm845_cfg },
+> +	{ .compatible = "qcom,pcie-sm8150", .data = &sm8150_cfg },
+>   	{ .compatible = "qcom,pcie-sm8250", .data = &sm8250_cfg },
+>   	{ .compatible = "qcom,pcie-sc8180x", .data = &sm8250_cfg },
+>   	{ .compatible = "qcom,pcie-sc7280", .data = &sc7280_cfg },
 
-Ditto.
 
-> +			resets = <&gcc GCC_SDCC2_BCR>;
-> +			reset-names = "core_reset";
->  			sdhc2_opp_table: opp-table {
->  				compatible = "operating-points-v2";
->  
-
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
