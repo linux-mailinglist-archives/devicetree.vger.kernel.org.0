@@ -2,134 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABB194C856A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 08:44:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58A5B4C8579
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 08:49:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233089AbiCAHp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 02:45:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42894 "EHLO
+        id S233090AbiCAHuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 02:50:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233072AbiCAHpW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 02:45:22 -0500
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BF0C56760;
-        Mon, 28 Feb 2022 23:44:41 -0800 (PST)
-Received: by mail-wr1-x434.google.com with SMTP id v21so18993932wrv.5;
-        Mon, 28 Feb 2022 23:44:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9N9OiuGebRhfkNZJOLbrZK8yGd1uJ/RwgoMHb8+66t8=;
-        b=Bd+fGZjkwpi83khB3kaCW3TE7uA/n0ymRuN9QLFQQG4LrHj5rvdwgc1wEwX1Xxn6sq
-         DksXh6oU6CV9jSuMHBZvENgFiZud2pXFODfMSYUY6B24NNYWtSbHdkbY1C1b2koSfK8N
-         cWfgc47rnHia0nC6rcp7kmcPM2WaJBcMweTZJ73ldxsU5WkDvzbrwXdejlkplE1RXDrb
-         Ko3Ss7B4j3V6l0gIMXvvjcLhgknSGYPU0QV5Rry0O2dIp09EgT16VTg1/HM404dVNBJH
-         UGYDpiS8V3stQQI9uPZeejn4KCymYULGHOZDo4EB+H/EsNQxSDITLDXHNHEgD4ct5EnX
-         SkFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9N9OiuGebRhfkNZJOLbrZK8yGd1uJ/RwgoMHb8+66t8=;
-        b=JIxfXZCA52AIZ6+hRPo/40ZO8Gy3VFXOGaEi/Vz02wi4IiaQ6yUUnTGWl/z8tk+K5x
-         /a2cQ08EWbJ9lTundmx2oFVScjl9vmk4WWycfTPBsMML2FCEooAZqciQj4V8IId34dtK
-         Ds6gAc6Vl14bblBinblxYilUOVgNOIyn5C8I6ELovC2OXMr+Ok0U/3HhKn2rLBP+Ut+J
-         lyd+XOi3YbieheVgZnKza2RJ7AS/2/YWKZAnvTIhdfjZ2q5ZIIeGlcyxgSeOhKP9Zj69
-         YYNRLVW1zAjWcG1Z6Cf14LcH7lx9uWGQdJcrPX38YY5tvpftkSa85K3eaLU2sZSvu4Zf
-         3+yA==
-X-Gm-Message-State: AOAM532cc/v1ncTtATk9hCcHPLDs34Lk8WOEWxtq408ACTmt1lkKS/Zv
-        0tBfwlrhEj2tDYebamYtRDU=
-X-Google-Smtp-Source: ABdhPJxBUb5/MBYpZP4ycan/j5lwLp+Y/Q02GVioXh44+q0ranawE0HXM7MhI3mcgC5A8bu7SuyoOw==
-X-Received: by 2002:a5d:62c9:0:b0:1ea:940f:d929 with SMTP id o9-20020a5d62c9000000b001ea940fd929mr18519621wrv.164.1646120680070;
-        Mon, 28 Feb 2022 23:44:40 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id m34-20020a05600c3b2200b00380e3225af9sm1717859wms.0.2022.02.28.23.44.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 23:44:39 -0800 (PST)
-Message-ID: <ecb43ffc-48ff-97ab-c411-0597f356dd1a@gmail.com>
-Date:   Tue, 1 Mar 2022 08:44:38 +0100
+        with ESMTP id S231321AbiCAHuM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 02:50:12 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A28D43AE8;
+        Mon, 28 Feb 2022 23:49:26 -0800 (PST)
+X-UUID: 5ddf81f3816d4d73888bb7d609c8aac6-20220301
+X-UUID: 5ddf81f3816d4d73888bb7d609c8aac6-20220301
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 555010733; Tue, 01 Mar 2022 15:49:21 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 1 Mar 2022 15:49:20 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 1 Mar 2022 15:49:18 +0800
+Message-ID: <5ed9278fa0b72b993512cff2316218ab88cafe50.camel@mediatek.com>
+Subject: Re: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Joerg Roedel <joro@8bytes.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>, <youlin.pei@mediatek.com>,
+        <anan.sun@mediatek.com>, <xueqi.zhang@mediatek.com>,
+        <yen-chang.chen@mediatek.com>, <mingyuan.ma@mediatek.com>,
+        <yf.wang@mediatek.com>, <libo.kang@mediatek.com>,
+        <chengci.xu@mediatek.com>
+Date:   Tue, 1 Mar 2022 15:49:18 +0800
+In-Reply-To: <7ba0ee87-c193-9834-d0b4-ff3e06ced82b@collabora.com>
+References: <20220217113453.13658-1-yong.wu@mediatek.com>
+         <YhzBSsn/zUlGg5JE@8bytes.org>
+         <7ba0ee87-c193-9834-d0b4-ff3e06ced82b@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 4/4] arm64: dts: mt6358: add mt6358-keys node
-Content-Language: en-US
-To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>
-Cc:     Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220121140323.4080640-1-mkorpershoek@baylibre.com>
- <20220121140323.4080640-5-mkorpershoek@baylibre.com>
- <87v8xps705.fsf@baylibre.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <87v8xps705.fsf@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 2022-02-28 at 14:50 +0100, AngeloGioacchino Del Regno wrote:
+> Il 28/02/22 13:34, Joerg Roedel ha scritto:
+> > Hi Yong Wu,
+> > 
+> > On Thu, Feb 17, 2022 at 07:34:19PM +0800, Yong Wu wrote:
+> > > Yong Wu (34):
+> > >    dt-bindings: mediatek: mt8195: Add binding for MM IOMMU
+> > >    dt-bindings: mediatek: mt8195: Add binding for infra IOMMU
+> > >    iommu/mediatek: Fix 2 HW sharing pgtable issue
+> > >    iommu/mediatek: Add list_del in mtk_iommu_remove
+> > >    iommu/mediatek: Remove clk_disable in mtk_iommu_remove
+> > >    iommu/mediatek: Add mutex for m4u_group and m4u_dom in data
+> > >    iommu/mediatek: Add mutex for data in the mtk_iommu_domain
+> > >    iommu/mediatek: Adapt sharing and non-sharing pgtable case
+> > >    iommu/mediatek: Add 12G~16G support for multi domains
+> > >    iommu/mediatek: Add a flag DCM_DISABLE
+> > >    iommu/mediatek: Add a flag NON_STD_AXI
+> > >    iommu/mediatek: Remove the granule in the tlb flush
+> > >    iommu/mediatek: Always enable output PA over 32bits in isr
+> > >    iommu/mediatek: Add SUB_COMMON_3BITS flag
+> > >    iommu/mediatek: Add IOMMU_TYPE flag
+> > >    iommu/mediatek: Contain MM IOMMU flow with the MM TYPE
+> > >    iommu/mediatek: Adjust device link when it is sub-common
+> > >    iommu/mediatek: Allow IOMMU_DOMAIN_UNMANAGED for PCIe VFIO
+> > >    iommu/mediatek: Add a PM_CLK_AO flag for infra iommu
+> > >    iommu/mediatek: Add infra iommu support
+> > >    iommu/mediatek: Add PCIe support
+> > >    iommu/mediatek: Add mt8195 support
+> > >    iommu/mediatek: Only adjust code about register base
+> > >    iommu/mediatek: Just move code position in hw_init
+> > >    iommu/mediatek: Separate mtk_iommu_data for v1 and v2
+> > >    iommu/mediatek: Remove mtk_iommu.h
+> > >    iommu/mediatek-v1: Just rename mtk_iommu to mtk_iommu_v1
+> > >    iommu/mediatek: Add mtk_iommu_bank_data structure
+> > >    iommu/mediatek: Initialise bank HW for each a bank
+> > >    iommu/mediatek: Change the domid to iova_region_id
+> > >    iommu/mediatek: Get the proper bankid for multi banks
+> > >    iommu/mediatek: Initialise/Remove for multi bank dev
+> > >    iommu/mediatek: Backup/restore regsiters for multi banks
+> > >    iommu/mediatek: mt8195: Enable multi banks for infra iommu
+> > 
+> > This doesn't apply cleanly, can you please send a version rebased
+> > to
+> > v5.17-rc4?
 
+As in the cover letter, this patchset doesn't base on v5.17-rc4, it
+bases on next-20220216 which has contained [1] and Dafna's patchset
+below.
 
-On 08/02/2022 16:38, Mattijs Korpershoek wrote:
-> Hi Matthias,
-> 
-> On ven., janv. 21, 2022 at 15:03, Mattijs Korpershoek <mkorpershoek@baylibre.com> wrote:
-> 
->> This enables the power,home keys on MediaTek boards with a mt6358 pmic.
->>
->> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
-> Since the driver change has been merged [1], can we queue up the DT change?
-> Or should I resubmit this separately?
-> 
-> Thanks
+By the way, It still conflicts with the latest next-20220228 which has
+just contained[2].
 
-Applied, thanks!
+In this case, How should I do? Send a version base on the latest next?
+
+[1] 
+https://lore.kernel.org/linux-iommu/20220117070510.17642-1-yong.wu@mediatek.com/
+
+[2] 
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/log/?h=next-20220228&qt=grep&q=component_compare
+
+Thanks.
+
+> > 
+> > Thanks,
+> > 
+> > 	Joerg
+> 
+> Hello Joerg,
+> 
+> this series depends on the following series:
+> 
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=592275
+> 
+> ...which is also well tested and ready to be merged in.
+> 
+> Applying Yong's series without the mentioned series from Dafna would
+> not work.
+
+Yes. Thanks.
 
 > 
-> [1] https://lore.kernel.org/all/YgIE%2F806gDmRJYCn@google.com/
->> ---
->>   arch/arm64/boot/dts/mediatek/mt6358.dtsi | 12 ++++++++++++
->>   1 file changed, 12 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt6358.dtsi b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
->> index 95145076b7e6..98f3b0e0c9f6 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt6358.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt6358.dtsi
->> @@ -2,6 +2,7 @@
->>   /*
->>    * Copyright (c) 2020 MediaTek Inc.
->>    */
->> +#include <dt-bindings/input/input.h>
->>   
->>   &pwrap {
->>   	pmic: mt6358 {
->> @@ -357,5 +358,16 @@ mt6358_vsim2_reg: ldo_vsim2 {
->>   		mt6358rtc: mt6358rtc {
->>   			compatible = "mediatek,mt6358-rtc";
->>   		};
->> +
->> +		mt6358keys: mt6358keys {
->> +			compatible = "mediatek,mt6358-keys";
->> +			power {
->> +				linux,keycodes = <KEY_POWER>;
->> +				wakeup-source;
->> +			};
->> +			home {
->> +				linux,keycodes = <KEY_HOME>;
->> +			};
->> +		};
->>   	};
->>   };
->> -- 
->> 2.32.0
+> 
+> Thanks,
+> Angelo
+
