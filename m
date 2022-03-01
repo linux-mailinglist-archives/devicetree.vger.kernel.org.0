@@ -2,112 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FAFA4C8E39
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 15:50:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 56B744C8E44
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 15:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235385AbiCAOup (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 09:50:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41082 "EHLO
+        id S231687AbiCAOwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 09:52:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235396AbiCAOuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 09:50:44 -0500
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D342A8A31C;
-        Tue,  1 Mar 2022 06:50:02 -0800 (PST)
-Received: by mail-ot1-f50.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so12342849otp.13;
-        Tue, 01 Mar 2022 06:50:02 -0800 (PST)
+        with ESMTP id S233998AbiCAOwx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 09:52:53 -0500
+Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4499596808;
+        Tue,  1 Mar 2022 06:52:12 -0800 (PST)
+Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-2d07c4a0d06so146778967b3.13;
+        Tue, 01 Mar 2022 06:52:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=p6Qg573gQNt9jfmniDqk9TUY0R6tRZETMQPLMgu5ja0=;
+        b=MVzYKmbx2t7YMZV9Xu+2eR04C5rESan7pI1k2NW1iYgltGe4Mb7IYmeBqg2gA+t6MG
+         19DmTPhph79iYaEvmXnUGkuQOiv3Q80nP5y4TZZ1Ok2g1V+Zvyj/WwRldjuPZWv4INRi
+         GmfapsiSFKSnJ9UKK0+QxdmRLrzOuilB+dRkm7orz8EKBJ3FLi8f2hgUfu63BTWEbxAM
+         Gw1PfN9U3QqKRA5svNldODCwyLCWCAzyB9ORWAAw76IPRNZkrhe28RVRSDoVsJJYEA3l
+         Ugp9K89fWodTQTziL8XmaWk0Yv4gfZeG9DDTZbnlzCoeZcOYbpkI7jQ6bi/9u5P6IwSP
+         JOoA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=OaFHmyerJJh/M6Tk72Wi1b5MVxLH/+5WU1w7biEgdqA=;
-        b=UJHvngHok/lJDCaI2l0mqYH0xbCLCYBYVxTUUIos25lKVgxuJrmB/1hGYWezAKUkNi
-         UZxIxfK/KagC51Ob0hPq+ZRZ/VTW1NCPwMUnSe5QAV2QQzKdh8vvOoxiGmOnigNjYW7z
-         Si4nP8kb4vKU5ORCKntZ53q4ZrEOomzhMEWk1h+kSUWNIxscctG6fTdUGsY7K7tjqmlT
-         jkuxORM5oDxyAUKCjVYmOSeBbtkx7TUrL2Ptu/OZqOLa3EFR0AOjc2oXlvJqyLBx6iIX
-         pARoX1831LpDomO8zaT27D4b8x+z7wOCiNQ20oBkTokyg+xNBYocW8G6cpFKIh2JdiPv
-         fF8Q==
-X-Gm-Message-State: AOAM530vNg+4Bp4XI0VjK9SjVL37yMVU8xOAyTQpHIdswyYbK68zev80
-        xyBA6PjHiHh+iJ3aSKXCy1lcoxEn6A==
-X-Google-Smtp-Source: ABdhPJyZ5HnGot2bIP8abc4rccU0W391TLpaku0w/75bwaZRFMwHNLAtLoatkaNCo84aX+BgIOF3uQ==
-X-Received: by 2002:a05:6830:906:b0:5b0:34a4:3599 with SMTP id v6-20020a056830090600b005b034a43599mr1589727ott.358.1646146202089;
-        Tue, 01 Mar 2022 06:50:02 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id x10-20020a4a2a4a000000b0031bf0818df1sm6223216oox.4.2022.03.01.06.50.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 06:50:01 -0800 (PST)
-Received: (nullmailer pid 1210708 invoked by uid 1000);
-        Tue, 01 Mar 2022 14:50:00 -0000
-Date:   Tue, 1 Mar 2022 08:50:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Eugen Hristev <eugen.hristev@microchip.com>,
-        Hugues Fruchet <hugues.fruchet@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Subject: Re: [PATCH 1/2] dt-bindings: media: Add macros for video interface
- bus types
-Message-ID: <Yh4ymGzdh5SKJ7cQ@robh.at.kernel.org>
-References: <20220227203352.17314-1-laurent.pinchart@ideasonboard.com>
- <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p6Qg573gQNt9jfmniDqk9TUY0R6tRZETMQPLMgu5ja0=;
+        b=Qsnua7bwtLBYVjFGa4bOCj1QykROn1soaoYma+QVWIIOBVE82PHLVkpfXJ49dZ2xx7
+         9NVGKavpbux3zPZrj1EAxN6Drw6gJ43ofQxNRtXmvZCkre5IgEK6ppC3SVA1aSbfx+dA
+         VSBpGwR1SdWW4xZjfEhq52wTRZv3DA2Kq3e3/Zgmh5LUETu/3AygkNUP2seXcXAwDu9e
+         7LbQo8/6LWIEinCKiZU/gZgzGhemEN57T8FJ+cu+x90sNAN3ytKMioW2dpL9GTKQlpQS
+         MxbtWVdH7zmgF7rh2plnr0gXagBKHHBhBgDFHLEGGNgt9SzdshLJoHznYBgu5T5BPW+K
+         lIOA==
+X-Gm-Message-State: AOAM5335rMxRRbpwQd04qjBZL0oCgXirPTYxytQ98ONQN2KSFR0Wimcc
+        OcuNL7RHnDdp43tImY3ltR89a59syBgdcjn3lEc=
+X-Google-Smtp-Source: ABdhPJyysLGtnRH92oZtE9p17EhgqGO4pnLHjiquEF3VshCrVWSWx0aniFMT/paLW5OieVagmvOftjmUzRGi1FAxI8c=
+X-Received: by 2002:a05:690c:89:b0:2d7:fb7d:db7 with SMTP id
+ be9-20020a05690c008900b002d7fb7d0db7mr27255346ywb.219.1646146331471; Tue, 01
+ Mar 2022 06:52:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220227203352.17314-2-laurent.pinchart@ideasonboard.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220228135700.1089526-1-pgwipeout@gmail.com> <20220228135700.1089526-2-pgwipeout@gmail.com>
+In-Reply-To: <20220228135700.1089526-2-pgwipeout@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Tue, 1 Mar 2022 09:52:00 -0500
+Message-ID: <CAMdYzYqs=iRY6uNzVSkHrrhPYFixXdbZjtwSpPOjf-6f8TXutw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/8] dt-bindings: soc: grf: fix rk3568 usb definitions
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Vinod Koul <vkoul@kernel.org>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>
+Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Rob Herring <robh@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Feb 27, 2022 at 10:33:51PM +0200, Laurent Pinchart wrote:
-> Add a new dt-bindings/media/video-interfaces.h header that defines
-> macros corresponding to the bus types from media/video-interfaces.yaml.
-> This allows avoiding hardcoded constants in device tree sources.
-> 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Good Morning,
+
+Would it be possible to pull this patch individually, to fix the
+current error reported by Rob?
+
+Thanks,
+Peter
+
+On Mon, Feb 28, 2022 at 8:57 AM Peter Geis <pgwipeout@gmail.com> wrote:
+>
+> The rockchip,rk3568-pipe-grf and rockchip,rk3568-pipe-phy-grf
+> compatibles were incorrectly assigned to the syscon, simple-mfd
+> enumeration, vice only the syscon enumeration.
+> This leads a dtbs_check failure.
+>
+> Move these to the syscon enumeration.
+>
+> Fixes: b3df807e1fb0 ("dt-bindings: soc: grf: add naneng combo phy register compatible")
+>
+> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
 > ---
->  include/dt-bindings/media/video-interfaces.h | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644 include/dt-bindings/media/video-interfaces.h
-> 
-> diff --git a/include/dt-bindings/media/video-interfaces.h b/include/dt-bindings/media/video-interfaces.h
-> new file mode 100644
-> index 000000000000..e38058e1cca7
-> --- /dev/null
-> +++ b/include/dt-bindings/media/video-interfaces.h
-> @@ -0,0 +1,16 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-
-Dual-license please.
-
-> +/*
-> + * Copyright (C) 2022 Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> + */
-> +
-> +#ifndef __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
-> +#define __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__
-> +
-> +#define MEDIA_BUS_TYPE_CSI2_CPHY		1
-> +#define MEDIA_BUS_TYPE_CSI1			2
-> +#define MEDIA_BUS_TYPE_CCP2			3
-> +#define MEDIA_BUS_TYPE_CSI2_DPHY		4
-> +#define MEDIA_BUS_TYPE_PARALLEL			5
-> +#define MEDIA_BUS_TYPE_BT656			6
-> +
-> +#endif /* __DT_BINDINGS_MEDIA_VIDEO_INTERFACES_H__ */
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-> 
+>  Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> index 072318fcd57b..5079e9d24af6 100644
+> --- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> +++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+> @@ -15,6 +15,8 @@ properties:
+>        - items:
+>            - enum:
+>                - rockchip,rk3288-sgrf
+> +              - rockchip,rk3568-pipe-grf
+> +              - rockchip,rk3568-pipe-phy-grf
+>                - rockchip,rk3568-usb2phy-grf
+>                - rockchip,rv1108-usbgrf
+>            - const: syscon
+> @@ -39,8 +41,6 @@ properties:
+>                - rockchip,rk3399-grf
+>                - rockchip,rk3399-pmugrf
+>                - rockchip,rk3568-grf
+> -              - rockchip,rk3568-pipe-grf
+> -              - rockchip,rk3568-pipe-phy-grf
+>                - rockchip,rk3568-pmugrf
+>                - rockchip,rv1108-grf
+>                - rockchip,rv1108-pmugrf
+> --
+> 2.25.1
+>
