@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F67A4C83CA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 07:15:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 621624C83CD
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 07:15:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232539AbiCAGPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S232507AbiCAGPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 1 Mar 2022 01:15:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53200 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232537AbiCAGPr (ORCPT
+        with ESMTP id S232543AbiCAGPr (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 01:15:47 -0500
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AF16620E
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEC266203
         for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 22:15:06 -0800 (PST)
-Received: by mail-lf1-x132.google.com with SMTP id w27so25158331lfa.5
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 22:15:05 -0800 (PST)
+Received: by mail-lj1-x22b.google.com with SMTP id e8so20476938ljj.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 22:15:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=xxnvqMi7loFZg8YC55UooLLfc9/nJhoDzRCsB8Z5IYs=;
-        b=G8RGYkP6VH3YiXkI0EPv8kYUZKFQE71kxeMWHvf/C6Brv+B1ih+M0puIe1I/lT/QDL
-         AzRAK9UaLwSKuE9Wu2YUKOgHPV+DFfo3s3TU3VwcsFxJJKrPFVCJ39mEIqs5QLKymL6F
-         rh0nCiG1h81DcD622VFU4bC56j4ziqAGZfUiXrPOZ7pDsoq7Rq9I3wHodO1oG7zaQYgc
-         LQm5Odza9io1aYuBEn0+GjQUTyWSIWhiURi8cvoS8HcunYIK825iKvYpBU8Y4nC5/2dZ
-         uxonmoRAQgvoKhpxWFC+ZQWRT2G9Y90k7imrBN2nG+KD0CBOpWrpK3+s8j6vp9K9etbD
-         2YhA==
+        bh=kR1FSo4l6nTEPtqRd0Zv2Tsd9iGr+FvI1VCcXwr1D2M=;
+        b=UR5pfNzdGMav08pg3ws+tFN4l3nUBb27KUDrA7bJvjrP1DYc/TMo1KEWiNvDaqyhn8
+         tinmj3keVG+I/ENRExqPd4HtF2/LmuKXkIwX7/oTaZCmDTH6E4EE3L08dvhWaOmuo/Md
+         Acx7MDIuQa+PWU8tnrb6WjvVva11n42DzVJnF6SYfs9pNbMB53N6z9RHgB48L7oNt11t
+         4i3rZMWMh64ZyUaKws+9tZv6Fy1WobirOA4HdgXT/i4kd2KnCBpEBNa7ajHny+iBKlUO
+         buQcb3wHbdOc4FQ+q+7xL7m87FxagiOEsZo+mZUj2QiNGLXUGzGrZiqLuvAsHXj2FLJO
+         mrhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xxnvqMi7loFZg8YC55UooLLfc9/nJhoDzRCsB8Z5IYs=;
-        b=sYPC9mKinhDifbU5G5mHP5iah6rJOTsUNQunEPJUM7dDuRPWxpWZM2og3UjFGrEFMM
-         fHQKh4vAuaocj42P0e5qn/4F23pRDp72sAcWOkRmiv4ZP8SuCVrU/e9j7s5Z5oHA7RxN
-         vgs8nPFmfzgvTI4N28oIhDE8Ul87LHsrHFHF4l8o1Z8UeFwdxjFyolyzEkgsVrXTQh4S
-         lAAmEbBg5tfaYFbCd2qg5k6Iwz84IuiI7Ves+jTFPWaA7Ow3eXNpbnRT9jf77CwIFSzo
-         ub08kAS84D0nuUsrh6w7HMWwOjOiQChsDLZPIPSnMJjXj+trRDGafqETrjsZhdO3aDLE
-         G18w==
-X-Gm-Message-State: AOAM5336QuoCAVYu6DJkx6322pzNuFLOOR0XykWpgYI2v89dxopi8rx6
-        8im31cnd8fWjSMPmCBApJjW/Zw==
-X-Google-Smtp-Source: ABdhPJzoFgzGDk8n2z8bgKHYVVFv1HdTEbmxMKTzChuDWJ8vKPPdL2mi/EZXpNDCk9X+ZZrjv2ftzQ==
-X-Received: by 2002:a19:f011:0:b0:443:9d63:df20 with SMTP id p17-20020a19f011000000b004439d63df20mr14601776lfc.69.1646115304419;
-        Mon, 28 Feb 2022 22:15:04 -0800 (PST)
+        bh=kR1FSo4l6nTEPtqRd0Zv2Tsd9iGr+FvI1VCcXwr1D2M=;
+        b=PML3C/8kXpPHiE7InJ/NUESBOw27UMVTQ1Iz340kwPzY9UmZAN8Q7VhQ1RJtKpSUty
+         QXPovweDV1uDmJC6/uUkSzvaNPN9CIqPLHqDtuYpROT+wzz/seSO1lm4c9/xmI9rtEr1
+         PAjF+g7ipiEAiJYx5ngWIUFe427MYHJ30qHTibBVoki3MffpVncxBg3d8mklZz5Ghg6W
+         CmZrD+noUizwDd7cDusM4iBMCLQyZpztosl3dhF9NmvX1zUQY0e4/AlFyB39iBn0n1Xw
+         lRj+H2i2GJOwSkTbwlhp9H2SdKvWjGWMxTslJhxabgheAS9jdfWhQJPexhlABvI2E+/6
+         Hg1w==
+X-Gm-Message-State: AOAM5309c8VcanegpNIKoAV6vqVzieWe66tZeWOnuz8yuuIgzJq6MsQe
+        SZSzMmSG7BZqDzx/YA9aMl2yVQ==
+X-Google-Smtp-Source: ABdhPJyIp/fAiAFV69QXUJPEGu88qm68Ohkpe7ISTwcAubyMYm8THvO8CD9xhZcpyODaTvTnqtaG2Q==
+X-Received: by 2002:a05:651c:311:b0:246:1250:d6f with SMTP id a17-20020a05651c031100b0024612500d6fmr16354485ljp.455.1646115305201;
+        Mon, 28 Feb 2022 22:15:05 -0800 (PST)
 Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id f15-20020ac25ccf000000b004442220c67fsm1318898lfq.27.2022.02.28.22.15.03
+        by smtp.gmail.com with ESMTPSA id f15-20020ac25ccf000000b004442220c67fsm1318898lfq.27.2022.02.28.22.15.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 22:15:03 -0800 (PST)
+        Mon, 28 Feb 2022 22:15:04 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/7] arm64: dts: qcom: sm8450: add PCIe1 PHY node
-Date:   Tue,  1 Mar 2022 09:14:56 +0300
-Message-Id: <20220301061500.2110569-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/7] arm64: dts: qcom: sm8450: add PCIe1 root device
+Date:   Tue,  1 Mar 2022 09:14:57 +0300
+Message-Id: <20220301061500.2110569-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220301061500.2110569-1-dmitry.baryshkov@linaro.org>
 References: <20220301061500.2110569-1-dmitry.baryshkov@linaro.org>
@@ -71,73 +71,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree node for the second PCIe PHY device found on the Qualcomm
+Add device tree node for the second PCIe host found on the Qualcomm
 SM8450 platform.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 38 ++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 96 ++++++++++++++++++++++++++++
+ 1 file changed, 96 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 47db7759e543..45c0bf2b7fd2 100644
+index 45c0bf2b7fd2..0082f6a6b598 100644
 --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
 +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -685,9 +685,11 @@ gcc: clock-controller@100000 {
- 			#power-domain-cells = <1>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&pcie0_lane>,
-+				 <&pcie1_lane>,
- 				 <&sleep_clk>;
- 			clock-names = "bi_tcxo",
- 				      "pcie_0_pipe_clk",
-+				      "pcie_1_pipe_clk",
- 				      "sleep_clk";
- 		};
- 
-@@ -863,6 +865,42 @@ pcie0_lane: lanes@1c06200 {
+@@ -865,6 +865,79 @@ pcie0_lane: lanes@1c06200 {
  			};
  		};
  
-+		pcie1_phy: phy@1c0f000 {
-+			compatible = "qcom,sm8450-qmp-gen4x2-pcie-phy";
-+			reg = <0 0x01c0f000 0 0x200>;
-+			#address-cells = <2>;
++		pcie1: pci@1c08000 {
++			compatible = "qcom,pcie-sm8450-pcie1";
++			reg = <0 0x01c08000 0 0x3000>,
++			      <0 0x40000000 0 0xf1d>,
++			      <0 0x40000f20 0 0xa8>,
++			      <0 0x40001000 0 0x1000>,
++			      <0 0x40100000 0 0x100000>;
++			reg-names = "parf", "dbi", "elbi", "atu", "config";
++			device_type = "pci";
++			linux,pci-domain = <1>;
++			bus-range = <0x00 0xff>;
++			num-lanes = <2>;
++
++			#address-cells = <3>;
 +			#size-cells = <2>;
-+			ranges;
-+			clocks = <&gcc GCC_PCIE_1_PHY_AUX_CLK>,
++
++			ranges = <0x01000000 0x0 0x40200000 0 0x40200000 0x0 0x100000>,
++				 <0x02000000 0x0 0x40300000 0 0x40300000 0x0 0x1fd00000>;
++
++			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi";
++			#interrupt-cells = <1>;
++			interrupt-map-mask = <0 0 0 0x7>;
++			interrupt-map = <0 0 0 1 &intc 0 0 0 434 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
++					<0 0 0 2 &intc 0 0 0 435 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
++					<0 0 0 3 &intc 0 0 0 438 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
++					<0 0 0 4 &intc 0 0 0 439 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
++
++			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
++				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
++				 <&pcie1_lane>,
++				 <&rpmhcc RPMH_CXO_CLK>,
++				 <&gcc GCC_PCIE_1_AUX_CLK>,
 +				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
-+				 <&gcc GCC_PCIE_1_CLKREF_EN>,
-+				 <&gcc GCC_PCIE_1_PHY_RCHNG_CLK>;
-+			clock-names = "aux", "cfg_ahb", "ref", "refgen";
++				 <&gcc GCC_PCIE_1_MSTR_AXI_CLK>,
++				 <&gcc GCC_PCIE_1_SLV_AXI_CLK>,
++				 <&gcc GCC_PCIE_1_SLV_Q2A_AXI_CLK>,
++				 <&gcc GCC_DDRSS_PCIE_SF_TBU_CLK>,
++				 <&gcc GCC_AGGRE_NOC_PCIE_1_AXI_CLK>;
++			clock-names = "pipe",
++				      "pipe_mux",
++				      "phy_pipe",
++				      "ref",
++				      "aux",
++				      "cfg",
++				      "bus_master",
++				      "bus_slave",
++				      "slave_q2a",
++				      "ddrss_sf_tbu",
++				      "aggre1";
 +
-+			resets = <&gcc GCC_PCIE_1_PHY_BCR>;
-+			reset-names = "phy";
++			iommus = <&apps_smmu 0x1c80 0x7f>;
++			iommu-map = <0x0   &apps_smmu 0x1c80 0x1>,
++				    <0x100 &apps_smmu 0x1c81 0x1>;
 +
-+			assigned-clocks = <&gcc GCC_PCIE_1_PHY_RCHNG_CLK>;
-+			assigned-clock-rates = <100000000>;
++			resets = <&gcc GCC_PCIE_1_BCR>;
++			reset-names = "pci";
++
++			power-domains = <&gcc PCIE_1_GDSC>;
++			power-domain-names = "gdsc";
++
++			phys = <&pcie1_lane>;
++			phy-names = "pciephy";
++
++			perst-gpio = <&tlmm 97 GPIO_ACTIVE_LOW>;
++			enable-gpio = <&tlmm 99 GPIO_ACTIVE_HIGH>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&pcie1_default_state>;
 +
 +			status = "disabled";
-+
-+			pcie1_lane: lanes@1c0e000 {
-+				reg = <0 0x1c0e000 0 0x200>, /* tx */
-+				      <0 0x1c0e200 0 0x300>, /* rx */
-+				      <0 0x1c0f200 0 0x200>, /* pcs */
-+				      <0 0x1c0e800 0 0x200>, /* tx */
-+				      <0 0x1c0ea00 0 0x300>, /* rx */
-+				      <0 0x1c0f400 0 0xc00>; /* pcs_pcie */
-+				clocks = <&gcc GCC_PCIE_1_PIPE_CLK>;
-+				clock-names = "pipe0";
-+
-+				#clock-cells = <0>;
-+				#phy-cells = <0>;
-+				clock-output-names = "pcie_1_pipe_clk";
-+			};
 +		};
 +
- 		config_noc: interconnect@1500000 {
- 			compatible = "qcom,sm8450-config-noc";
- 			reg = <0 0x01500000 0 0x1c000>;
+ 		pcie1_phy: phy@1c0f000 {
+ 			compatible = "qcom,sm8450-qmp-gen4x2-pcie-phy";
+ 			reg = <0 0x01c0f000 0 0x200>;
+@@ -1225,6 +1298,29 @@ wake {
+ 				};
+ 			};
+ 
++			pcie1_default_state: pcie1-default-state {
++				perst {
++					pins = "gpio97";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-pull-down;
++				};
++
++				clkreq {
++					pins = "gpio98";
++					function = "pcie1_clkreqn";
++					drive-strength = <2>;
++					bias-pull-up;
++				};
++
++				wake {
++					pins = "gpio99";
++					function = "gpio";
++					drive-strength = <2>;
++					bias-pull-up;
++				};
++			};
++
+ 			qup_i2c13_data_clk: qup-i2c13-data-clk {
+ 				pins = "gpio48", "gpio49";
+ 				function = "qup13";
 -- 
 2.34.1
 
