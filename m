@@ -2,454 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1604C80CD
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 03:13:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED374C810A
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 03:30:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230414AbiCACOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 21:14:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44564 "EHLO
+        id S229963AbiCACao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 21:30:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbiCACOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 21:14:05 -0500
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (mail-eopbgr1300045.outbound.protection.outlook.com [40.107.130.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 718692BC7;
-        Mon, 28 Feb 2022 18:13:23 -0800 (PST)
+        with ESMTP id S229683AbiCACao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 21:30:44 -0500
+Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.142.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D601427DD;
+        Mon, 28 Feb 2022 18:30:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
+  t=1646101805; x=1646706605;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=TarhwZlDwtTiX4Zdkqz4NXCg9glKMtDyLfwyGEzc2Uc=;
+  b=dMd89Eh7bNw/aE60CKkXP1LsQmads38NAQPwyWhA/DZ0C6rMrz1CxbV8
+   ytzccn01pFv/ZEwIZKY/CH231i4mEfB7CrgkUrSj9bYn/S9RCF2CnNfgN
+   Sy2Y8tdk17cPT0ZMhX2qGzSz5rYfaByUKbyLyTf71TER2mlaRux77amau
+   M=;
+Received: from mail-mw2nam12lp2048.outbound.protection.outlook.com (HELO NAM12-MW2-obe.outbound.protection.outlook.com) ([104.47.66.48])
+  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 02:30:03 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JM79hbaPhmH6+LWARuaHo/uuV6liQi4aqaNFqoDuuTjcr4aDssEB3Nlfv3iZ/y83hQv3EC9igdMmlGHZ+0V3JirEsDQ4eT4OAdYFwBmm2hu1oPigRSPOGVgS1Bw9+htAHtQF+bUZf1ZojUnqF279dlINe6x8HRJJ8SRtsdrHRqPxMnOHSZAslMaxHdSQdQ7fw+4CNrcwojIr/zkaee6iI/xX9qCuQiPsGj8IrY8QPju5QGqzrVAPEnnnYfg02fe8+qgDQo4ZKE0ye3chsBLpnLaX20AI3WgTuLuSyr2j0cozL++DjutN/sIAI3mbw55fs4hdMre3ODCy0iGuQ4J2ng==
+ b=aSvtGDQkaUXAtEk6bbA3lUwj9iTfBZ1BzEmzdRZgSz+qrkD2R/39KNS4EKbUDuW8TRoq8CUEX53fGBQ5w6vgbrliRmyPORMjKnWcPbWNN+GslcOHYHB/CqX0kAGCZ/7hTe8QM+AAQGkhm/qrVM5fAHufI+K7IbhRapVl30sYKV7hUr3tVjgeBZpEeyu+cDz4F1oHh/v1dBeO9Ls4Xic+SyVwEFG0qKeK6Gizsx8u2sd8sMTLRyiV+mfOTLAiwRIVx4ePl7vvwWcGv1lzUmXvvf2IapblCa63WOQmJxhx9FkKrPN2fgXBtHt91G47lggB2dxWMoZf8mlQOLHJeFJq3Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aB9u4PgBnnSJ1xJSkoaeqmegpVBT+RvzKohZU+6Z890=;
- b=ateXl5pp5WYtjhRV1ZWpTPMRwQJes3zjGOjTF+xeeXum3MRb7TmxrVnLZ28kxztwhMmySDd3PDJAu5vfwo9MAkHqg1xFgj+8X+LdFHTGBrz4KnAyBIRXgg9mOsBcKC/I0FnO6CDVZ/omlT/IpAi87UU46VjCNk+T1mUEJ9rvJpHGUSzI9WYrvpW+stAFy9/WkPktD8ll3zW1DYPFI9eL+LzDHopnUFy3y8Wt4skgV42ICeILGXMN/vt8gXXOMIvHfGw7F3xrWbcKjO92Ay/EwXe3oetw6td/Oxjt0lIXebg0PbqRQ4NYhwV6DWF4ywAH4nvBurTxMeUIUwcsL6f0yQ==
+ bh=TarhwZlDwtTiX4Zdkqz4NXCg9glKMtDyLfwyGEzc2Uc=;
+ b=b6xPMUNEAYAYY9vEKeqywGZE63+jHwHkr6M/DvDbi1pXZ6vOJhCOwIsjfdJ4ssENdQnatTYGoFBWp6+sFSnwjRqPYgH1y5w6JIxVKEzAI02exHwbzaVv5UMytazzMlblpDce9k7Odid7XUyIjDrLbq/dx3VtFD7winWsnzxOvYmlkc073BxIO01O3bCpifOItMkPuIFJoIsX4PrWGa6m6Iw9m4imbrgzypMeo/nNJwx67bHrtEw9moUxgOhBUKmzgv//TeFMikOsS3c8u/Eu2Nku/xSR62pga3qW4VqyGxS5thRmpjsv1ABw3MzZTQeDwE10mVaKj1rqPQYiqxIKvg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
- dkim=pass header.d=nuvoton.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nuvoton.onmicrosoft.com; s=selector2-nuvoton-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aB9u4PgBnnSJ1xJSkoaeqmegpVBT+RvzKohZU+6Z890=;
- b=CsvdAAj0Am2jRqkzjdSkjUnHUJyX7UtjsIZ07W6g9H0tncyrWql2YkTTDF1Sa/wJiYy91WSXBGUBvqsxXMybvKOcBhroHlCd9eFhtBQVgK2IJsRGw46HO1VmBXo3PjbXIdSFy8Pu2YbDtH1DHNOG6W1J999Z3GiciBKRc3MFZJg=
-Received: from HK0PR03MB3937.apcprd03.prod.outlook.com (2603:1096:203:97::12)
- by SG2PR03MB4638.apcprd03.prod.outlook.com (2603:1096:4:da::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.9; Tue, 1 Mar
- 2022 02:13:17 +0000
-Received: from HK0PR03MB3937.apcprd03.prod.outlook.com
- ([fe80::d4cb:8c23:fd24:a205]) by HK0PR03MB3937.apcprd03.prod.outlook.com
- ([fe80::d4cb:8c23:fd24:a205%4]) with mapi id 15.20.5038.013; Tue, 1 Mar 2022
- 02:13:17 +0000
-From:   "CFLi0@nuvoton.com" <CFLi0@nuvoton.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
+ smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
+ dkim=pass header.d=quicinc.com; arc=none
+Received: from DM8PR02MB8198.namprd02.prod.outlook.com (2603:10b6:8:4::7) by
+ DM8PR02MB8293.namprd02.prod.outlook.com (2603:10b6:8:f::18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5017.22; Tue, 1 Mar 2022 02:30:00 +0000
+Received: from DM8PR02MB8198.namprd02.prod.outlook.com
+ ([fe80::a02f:fdb9:de98:d75c]) by DM8PR02MB8198.namprd02.prod.outlook.com
+ ([fe80::a02f:fdb9:de98:d75c%5]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
+ 02:30:00 +0000
+From:   "Linyu Yuan (QUIC)" <quic_linyyuan@quicinc.com>
+To:     "mka@chromium.org" <mka@chromium.org>,
+        "Linyu Yuan (QUIC)" <quic_linyyuan@quicinc.com>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Tao Wang (Consultant) (QUIC)" <quic_wat@quicinc.com>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dianders@chromium.org" <dianders@chromium.org>,
+        "frowand.list@gmail.com" <frowand.list@gmail.com>,
+        "hadess@hadess.net" <hadess@hadess.net>,
+        "krzk@kernel.org" <krzk@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH] clk: nuvoton: Add dt-bindings header for ma35d1
-Thread-Topic: [PATCH] clk: nuvoton: Add dt-bindings header for ma35d1
-Thread-Index: AQHYJw+eIAFbyMLQxUihf/UpImgagaykpycAgAUuB6A=
-Date:   Tue, 1 Mar 2022 02:13:17 +0000
-Message-ID: <HK0PR03MB39376D6401C2D094ACB5E77EF2029@HK0PR03MB3937.apcprd03.prod.outlook.com>
-References: <20220221104134.6300-1-cfli0@nuvoton.com>
- <Yhkocqu/44ne3QLE@robh.at.kernel.org>
-In-Reply-To: <Yhkocqu/44ne3QLE@robh.at.kernel.org>
-Accept-Language: en-US
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
+        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
+        "peter.chen@kernel.org" <peter.chen@kernel.org>,
+        "ravisadineni@chromium.org" <ravisadineni@chromium.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "rogerq@kernel.org" <rogerq@kernel.org>,
+        "stern@rowland.harvard.edu" <stern@rowland.harvard.edu>,
+        "swboyd@chromium.org" <swboyd@chromium.org>
+Subject: =?utf-8?B?UkU6IOWbnuWkjTog5Zue5aSNOiBSZTogW1BBVENIIHYyMCAzLzVdIHVzYjog?=
+ =?utf-8?B?bWlzYzogQWRkIG9uYm9hcmRfdXNiX2h1YiBkcml2ZXI=?=
+Thread-Topic: =?utf-8?B?5Zue5aSNOiDlm57lpI06IFJlOiBbUEFUQ0ggdjIwIDMvNV0gdXNiOiBtaXNj?=
+ =?utf-8?B?OiBBZGQgb25ib2FyZF91c2JfaHViIGRyaXZlcg==?=
+Thread-Index: Adgm6oYwULNX5ZnjSBCBUX6aFc31LAAADyHwAFiwVAAAH4sXgAAAiy2AAOBepDAAMTAMgAAAYDMQ
+Date:   Tue, 1 Mar 2022 02:30:00 +0000
+Message-ID: <DM8PR02MB8198F2BFE9E933CC8F2C148BE3029@DM8PR02MB8198.namprd02.prod.outlook.com>
+References: <SA1PR02MB86067ACF0C96F18B7306D208903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
+ <SA1PR02MB860660B6F33011E5A97F7930903A9@SA1PR02MB8606.namprd02.prod.outlook.com>
+ <YhURQAksLKVuzU36@google.com>
+ <SA1PR02MB860602E0AC4D9BD0BC4245B5903C9@SA1PR02MB8606.namprd02.prod.outlook.com>
+ <YhXolQDwIMbTi/O2@kroah.com>
+ <DM8PR02MB81988555CA6B66BB3FD5E488E3019@DM8PR02MB8198.namprd02.prod.outlook.com>
+ <Yh0UZUU9/9Hd6Pc1@google.com>
+In-Reply-To: <Yh0UZUU9/9Hd6Pc1@google.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nuvoton.com;
+ header.d=none;dmarc=none action=none header.from=quicinc.com;
+x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 38afd5fc-b040-49d4-8056-08d9fb290cc4
-x-ms-traffictypediagnostic: SG2PR03MB4638:EE_
-x-microsoft-antispam-prvs: <SG2PR03MB46383187B1E3988D69251397F2029@SG2PR03MB4638.apcprd03.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: 9312344e-2b1e-406d-927c-08d9fb2b62d0
+x-ms-traffictypediagnostic: DM8PR02MB8293:EE_
+x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
+x-microsoft-antispam-prvs: <DM8PR02MB8293287EA34E8C5C891E57B79F029@DM8PR02MB8293.namprd02.prod.outlook.com>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FyEcN/ViwGjjBT8ObPCa/lJGeI/r2k5HBfUETsjXcpck0Uk96f3dxIh+5TecGZoekRnKDWC120ijIv/kFKxjpFEAMr5k4RdaBQv6gJYQwg5C4jHCkMNmMrrgehmK1Q5gYe5BFFCghQuXj8knOiWafcuxHwzeccM2R0gvefxXte1ypWyZAbAQabRxhTO9uD6Thmrc3idm2tiPFW80lm+6yKqYm7ZMeRltuONGQfXAr/fyMbyxdfUSGjRfRU8CE9Rank28m4DDIOuGEBOB/oGeLXi/jKWtWd8UOhMXBBJoXrZoJP+KZWaPOuwjzK1TYlEXjSKoY1K72Jvj+qBBN4TYg4Mw7iYijX/vsUUmej3ldGR8GUx6kQttLj66MaQCtibBcBjwhbdOlEP/StdFMZiNaX8XdRrLKEAXI7a/y+lq8LYz9OtmdaFzHVGbyMdgNdUrakUf9aIn7lGeutU2zcTbjf4jDbEAAGEJpRwIBlmUhAJ5x8Eu9N8yhS1zmUG2NAVndluwM7dw4WvbT2WQsXYzrfKxbkNVRM/vfMvKnfX7ZZ5O4F/rI6bLLHDQlBuJp7/Ih2lgcTEiKTtMC/c3YKUAmVSDY5mLJnbjxILOaorEDi0OYWzFArEnXawfZqc8dLO3BmFYLKQA6+jb19H8xTisyR4SXeayhpH/pn51cZftzQUMXYt301IdooA15nuvp7cteBbCTu5zYiTM8fUamUBO48swHwfqsD7/hchb84NuCEVtUEf89SZWqm4ApR7Akdxd
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR03MB3937.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8676002)(55016003)(6506007)(66446008)(186003)(66476007)(64756008)(8936002)(4326008)(316002)(33656002)(54906003)(6916009)(7696005)(66946007)(122000001)(508600001)(9686003)(71200400001)(86362001)(53546011)(38100700002)(76116006)(38070700005)(52536014)(83380400001)(5660300002)(26005)(66556008)(2906002)(138113003);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: vn9tMHDeSKb6EmtGpg5nYLrrPnwJ0R1qDpFo6v/lw3oQK27B3fV/yDncnpxNYwNMioHx1pSZexAu9mbrnY5f3A6ybmJWN/YRqIyFtn8QcH1ecO+G10ChyMJmrCgO3nx+CHNj83itkT8YbPKgs/lpRwX1q9cgL33835gL/LU5im6YzxkP6e5itQGPM+01oJ4mvUvabIXaVBG4pgIx7EmkOFteQy19ZlctX+YU5RMdKm2U1wgYQFAm9VjecJfTHjfrMtWqGYFk9IvYYNgp1owA2AxAonwf5DxUoDdDepZRAA23QazRjSOyMqJsLeGhlnQ27WOdmipYd9lnBWdbR2t777nqeo4p/LZRbQwvZu3W2zB2zXlbgMcNuClrcz6sai7re7CQzCn4mh8r0pojy6DFpWJ7MzjVdA6zZ+tVLcXCj6VeEx49Wfla6dUnMOUYWXcYIcSuah18gum4q/t/hv6SwPkI+FRXUvGvoVKqB3dHe9Ez7ZK3XyTNCym8wknip3OHIOolz7ZIr6kEZ3HflAq7HmaW+AHsH+wXEB5NlZhfWqYW42LzkS489tXGLIgxxxIWRZcHXLK30AYpsw8ylIZkYq3svZBcuA/8wwOKSfz5ya5GzZtlWIIK+yqRtDyqZEiz36mHMTtXoSANTc6eO5vJVwqW6r+WPyzraLJH04ttNGbDsdF2V660IBTPeea4BaHkC5DiaLgupjk2PLyvcz/rBw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR02MB8198.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(186003)(83380400001)(38100700002)(2906002)(122000001)(33656002)(86362001)(38070700005)(26005)(4326008)(508600001)(66446008)(64756008)(66946007)(66556008)(66476007)(76116006)(110136005)(224303003)(316002)(53546011)(7696005)(9686003)(6506007)(54906003)(55016003)(5660300002)(7416002)(71200400001)(8936002)(52536014);DIR:OUT;SFP:1102;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lAbDYJuXYANmj+sYoBJDbcJdp8CZyVq4rj4wOE2d8kx9v3oLNHFqpapQdNuq?=
- =?us-ascii?Q?FSoaUQhvOPmlnGwhDCSxNSekOwBmV8/qVT+hVR7qbfJ05lAQlHaEwpmuFDJ2?=
- =?us-ascii?Q?J8KMwybw/Ng7HESDFHTC2jDfv5wP1Z+WcWwecjOsYaJ1mZ2P4dFbo9UEZgHu?=
- =?us-ascii?Q?+3FA2aIMrMbLP7tUgPso0Is31pINxShXrd9jql/kEU4XH7sYNq6w/VziV15b?=
- =?us-ascii?Q?u7JpJ0FqN1ki1zTQMxHoVut1yDjI4+hZ8LmoI/njvQ8krHmcKP1mKlCA6Q9e?=
- =?us-ascii?Q?XsS8LPhKfFSWWe4EAInao9ZFTGlsjjFP0Nm7bHsNIwx9me/kJ8tkZqF4S2Mp?=
- =?us-ascii?Q?SxBvZ4IvjhiAvF5CmIPbtCF0+3l0Z5yFcBWhS1u7B87GpCncRpSEDBpBCNdr?=
- =?us-ascii?Q?7hTi9ABRi3kWsx5gmjzZ6xOiLCg/YTq3j2irAqSonXDfVQ8hWdDGECAVFiJ2?=
- =?us-ascii?Q?Nx6Zr0pchNbDRWPMAKIAx4wflm4jkNL5Bze1JjxxN1j/er0Nc/ajYny0UH4g?=
- =?us-ascii?Q?vG1ijBVJ4WMHLA+i6d406Xh85jIOKfE8Mc01cJlUHzQ63r/kQB4yN5z9uC68?=
- =?us-ascii?Q?4+8sO5Kr65feuA8wyQTO9iV93TtVsv57n4/arqVU3Xy9AbXGVZQLnG4v6W6i?=
- =?us-ascii?Q?Dfn79eia1L4deHDEWGwueSW6nkHnHVatDwjITFyXKhMFvbd80pfnJbcckkwX?=
- =?us-ascii?Q?8xJoqLCKf5wVDy5ddf6BBF3qiQ3rCTo1s1zx66ltxEqApw+dN1KunW8h2Zir?=
- =?us-ascii?Q?FTDviHudvQx46n+i72D3Ksb46tLh65PLZehR8se5YAdRZAOgv/ioxWpI5ni2?=
- =?us-ascii?Q?8S7nVibDWz0evJSWXd6IPMnpJmfx3iAR7eMj+0GwjQY/acZTfM2YA3VzOHXz?=
- =?us-ascii?Q?vQTUnQfCdLhUtLzIpa3x7u3rBmb96OGqZjPFUHIiAQ3quTfILCldOAf4dxpy?=
- =?us-ascii?Q?MsrXcUKZedU9pP0NJSHuNEtLNTeZkIGUjoQ1y9xL4D2D7jeUWDkWGAZKwtHZ?=
- =?us-ascii?Q?52Nx4O9cTRd08kHmArMPqSQaKBq8VSBuuvN6TIV7fE8Ec48Pdxt9QpFIkXCG?=
- =?us-ascii?Q?55fb1JbpEFc0hQyd6WcO00C3GdYhOe30HpkjpPoo1OYWB9pUQrFc593c3KS5?=
- =?us-ascii?Q?r+YiOROMv38RU/Pf6bn3zPjv0myE+SDrzMaZJjc1dgAbCnMWTDpL4hqHqGIe?=
- =?us-ascii?Q?c3HdLA/g4dE4l7WjV6OL4ISPA6rlvCfgyQWMJGW6vCm4+hkTshv7FP7pQxUQ?=
- =?us-ascii?Q?36mIYO2dPhmpiOELA51ihtoXs25iOLny3DnPeWzCJrxtLnRonmLZXko3DLCH?=
- =?us-ascii?Q?lkTGZpLuSr1RbVcjSu1GLnJceeVNrg24o0TLaQS4piAdG84MH/k7TFopxuse?=
- =?us-ascii?Q?AC8kQ++UV9hp6/V83LGBE1nXLOHvTn+nCKbkkPtTblw3APKpvQKKvn/yl6ti?=
- =?us-ascii?Q?peTcteZ59lryo2ZCDZcSJdD16eJmedLd7Ien3OAlOnMP2hcpLsrr5njecGK8?=
- =?us-ascii?Q?/9M3ccmbAGEsb7Tod9G9eFY8py0F3LTQUCH4qKaKsnGTxk3wh0ZowV1IeoVm?=
- =?us-ascii?Q?sYAG6i4JUHD2V6SidQgNnd/s8fdWd1dsWJNFMNcRI4KMR+iXb725oLNQL3N0?=
- =?us-ascii?Q?gXPK1IjwT0basYksCwf4k34=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NllTd29xOVc5VlRoT2VZMW04WFFHRkh1NXgvaCsyaEdkb2pyZkxpeU1nbi9B?=
+ =?utf-8?B?UHhxNjFFUFhnalhORzV6SklLcG0zeEcrT3d5MmZxUkQ3UVozeEVHRXplY2Y2?=
+ =?utf-8?B?WlU4WDdHS01tOGRwRTVhZmJsWXplSVJ5UENNN3R5YUtQYWNZd0c0V3M1bExt?=
+ =?utf-8?B?cWJqS2MxZTBYSjgrSldqRWFiZklxbWF4SU1CUFZBOExzTmRsOTBLanE2ZjJ1?=
+ =?utf-8?B?ZmZSZDBTZG5CWGZnTldMVmdWZndaTTJ3YjFkZGNRNnNGQktadXNtcTMySUM5?=
+ =?utf-8?B?V2xrSTZrN0Q4NzYwbzkra3k3UEYxNmdPRFhDZWNWb0JjMS9UbDdFYlZYZVJp?=
+ =?utf-8?B?ZVN4dlBjNFJmaVhvZzhDbU9nWmFoRzIwK3lrY3JaUGkyVG82MS9xVnU0czhs?=
+ =?utf-8?B?cEFZYVlPeXhrOVdYMWlJWncyQ0lHMFJVM3RvdWRpdjhSclByaGw4ZXZVOWd0?=
+ =?utf-8?B?UDhwOHhRUTZTNFBEUzh5T01qVU0zSEY1NGVReWF0ZUdlek9KZGtobXk3bkxa?=
+ =?utf-8?B?YW9hVlZUVHI5S21PVmo2eFpZNHFyNGZydFp2MFBDclJvTVY1NFduUHU4WXB0?=
+ =?utf-8?B?TXNmUHBnRXlITkkzaTg4aysxUytjQWxHZzNYazc3TitEVHZUYU8zSmQzNDNy?=
+ =?utf-8?B?eXQzZTgyTTYzL2Q4NGl1amtQTzV0ZTMyV2hMT3FoZlQ5Ynh4b24rMWg5eWpu?=
+ =?utf-8?B?OENIYnZyQ0hBSEo1RjN1djdjOVcyVGh4ZS9HbmFwUmhiWWhiUXNxYnhOd2s5?=
+ =?utf-8?B?dXRaaVJrNlpjK3J1ZEgraWdLUUdXZDQ3T3RlOThtWkR4bHVlOEJhTWw2K1Nz?=
+ =?utf-8?B?SmM5clpOTzZBWCs0UndqU1ZVQ3llcHNnTENHWlYwblcxWEoyTG1vOXZyTFdH?=
+ =?utf-8?B?aHYxclcrS29sYjZMV1R1eGRaeG5xNWRKSWEveFcxZTI0YTkwYm5wcEVCZHcv?=
+ =?utf-8?B?U0lSV0NmNmFuZVZrWVVsKzVVRjEwbEQ4elZQbVBqdEoxdnJ2NmdZb3N5MmRp?=
+ =?utf-8?B?WVVLay94bTJlQWs1K3YxRGJXZUJYSHpvY1cxQlV3bWZ0UWtlWXZoUkVXUDVE?=
+ =?utf-8?B?WHFrWnJ1Qk8rK0tabU5qcGgrSFl6MGxOMWJaNlNkSzVLVCt1MTJWb0g5bWJM?=
+ =?utf-8?B?U0piS08yQzJsZElQWmpkdGxWV3RES0xvdVFqYkViNTZjMHJ3cHAvZkN5Ulpu?=
+ =?utf-8?B?SG9nZTZNRnRHUkpIdktsRkNVekpQdmdwcjBGYmpyTi9BOXB5cG1sVmFpaFNK?=
+ =?utf-8?B?M25sVjNnenNFbEpXSlVzRzgrS01reGx6SVlWY1QyelNXbjl3ZkFrS1U1ZjZ6?=
+ =?utf-8?B?QzhESnlqT0tUU2F6OG8wenRVbTFGcUEzbkIrSG9pT08wOW1ZdVRnUEQ2OGhP?=
+ =?utf-8?B?bnk5V0Zuc2syUGJsVzFKamRhekFjNlplTEtXSnJUSGxpWGxWeTdhR2xuOFhT?=
+ =?utf-8?B?NS9TNnRtdGZ3ZjlEdzgxM0ZsaFdJQ0JTMTcva3hTclFoYWpvS2c2TFRXNjZM?=
+ =?utf-8?B?UFVvbmRnc2YyaWV5QnBjOEJHNldOb21CdzNXNzBCY2RuK3FXK2Iyc2tHaUd0?=
+ =?utf-8?B?dnJSd0s4MUVrWVpGMmw4K3AzOW5ndUlRMXhuTU4xMW5qeGNXWUFQVzBYemNK?=
+ =?utf-8?B?ZUtZa2s2bmE2UStXNFVOOTJ0eFdiZU41MjU2VzI5bkVoMGlXT2NSZnhUUmJD?=
+ =?utf-8?B?Z0ZIV0RFZmpzdC9idGJlTW1uZEUrTTAxaG1sYi9NTk8xNHg5SEdOSGhqN0I1?=
+ =?utf-8?B?NDBOTmUyUGYycTNtM3Vtd3Zxb3dRUFNWVjd5dm5sNUJ3Qlh5djh3ZElWOEdK?=
+ =?utf-8?B?US9ZS2pZWGR4cGJaU2NxNEFXYTUxRk1IN2I0MzlaUkh5cWx4a0QrZFNKbnNW?=
+ =?utf-8?B?UFhqSUJJSlNsREh1bi9nOVZnZWZwMmxrM2lkWTdtVmdOMW8zbkJQWjJmV2Nn?=
+ =?utf-8?B?QWh4UDNGbG55MEdDcnNISk90bUNkSndhS01pUFdWeXh3NFF3U01QeXl1MFVW?=
+ =?utf-8?B?SmUrU3hkbzRVWjVodi9zWmlvRkZhS3B5L05KU2lTc1BRTnVUSUw3Y29jaVho?=
+ =?utf-8?B?ZTlWWVE0ZlRNSXR5Sno3cXpsNjNWUXNnM1l0ODhLL2RmSE5jaXVKVlNzUGFH?=
+ =?utf-8?B?N3hZL3BFVXBxYVFHTGJxaGxQMUFwRHBBd3ZmMUpPdHIxSUQyY3ZhZ29abU0y?=
+ =?utf-8?B?OGd4M2I5TWhPTzgyUEZlWGlTWDQ3VzZKd2NiKzJoUWxPWGJ2Y2kxdW42bXNw?=
+ =?utf-8?B?ZFFFd2JIL0xaRUcyYlh5NEZQRG9nPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: nuvoton.com
+X-OriginatorOrg: quicinc.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR03MB3937.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38afd5fc-b040-49d4-8056-08d9fb290cc4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2022 02:13:17.4821
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR02MB8198.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9312344e-2b1e-406d-927c-08d9fb2b62d0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2022 02:30:00.8387
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: JKD/5QJBAoKlzYjgBpbAuDEfNoxJB0wHAV4L4vbIONuXVmqklPnm6PA34+wF57mN9QSW9TjAXSRnKMe79pDozQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR03MB4638
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: SnsPUH8gGAwnFZLFBwLZ9EkXN0mFo+/N3FHB0eTgAGZecZguXi4BWGlKA+OgA1m4jHPsyBSHfLjm29LdsoTI3mrgqi35eq0Re2/NU7bxs8o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM8PR02MB8293
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your review and comments.
-We are going to submit a series of patches for ma35d1, an ARM Cortex-A35 du=
-al-core SOC.
-Please ignore this patch. I will submit again with the corresponding bindin=
-g schema and double license.
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Saturday, February 26, 2022 3:05 AM
-> To: MS10 CFLi0 <CFLi0@nuvoton.com>
-> Cc: krzysztof.kozlowski@canonical.com; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org
-> Subject: Re: [PATCH] clk: nuvoton: Add dt-bindings header for ma35d1
->
-> On Mon, Feb 21, 2022 at 06:41:34PM +0800, CF Li wrote:
-> > Add dt-bindings header with clock definitions for the ma35d1.
->
-> Is there a corresponding binding schema? They'd normally be together.
->
-> >
-> > Signed-off-by: CF Li <cfli0@nuvoton.com>
-> > ---
-> >  .../dt-bindings/clock/nuvoton,ma35d1-clk.h    | 262 ++++++++++++++++++
-> >  1 file changed, 262 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/nuvoton,ma35d1-clk.h
-> >
-> > diff --git a/include/dt-bindings/clock/nuvoton,ma35d1-clk.h b/include/d=
-t-
-> bindings/clock/nuvoton,ma35d1-clk.h
-> > new file mode 100644
-> > index 000000000000..b8bbc7f9903f
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/nuvoton,ma35d1-clk.h
-> > @@ -0,0 +1,262 @@
-> > +/* SPDX-License-Identifier: GPL-2.0 */
->
-> Dual license please.
->
-> > +/*
-> > + * Copyright (C) 2022 Nuvoton Technology Corporation.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_MA35D1_CLK_H
-> > +#define _DT_BINDINGS_MA35D1_CLK_H
-> > +
-> > +/* Clock Sources */
-> > +/* External and Internal oscillator clocks */
-> > +#define        HXT                             0
-> > +#define        HXT_GATE                        1
-> > +#define        LXT                             2
-> > +#define        LXT_GATE                        3
-> > +#define        HIRC                            4
-> > +#define        HIRC_GATE                       5
-> > +#define        LIRC                            6
-> > +#define        LIRC_GATE                       7
-> > +
-> > +/* PLLs */
-> > +#define        CAPLL                           8
-> > +#define        SYSPLL                          9
-> > +#define        DDRPLL                          10
-> > +#define        APLL                            11
-> > +#define        EPLL                            12
-> > +#define        VPLL                            13
-> > +
-> > +/* EPLL Divider */
-> > +#define        EPLL_DIV2                       14
-> > +#define        EPLL_DIV4                       15
-> > +#define        EPLL_DIV8                       16
-> > +
-> > +/* CA35 CPU Clock, System Clock, AXI, HCLK and PCLK */
-> > +#define        CA35CLK_MUX                     17
-> > +#define        AXICLK_DIV2                     18
-> > +#define        AXICLK_DIV4                     19
-> > +#define        AXICLK_MUX                      20
-> > +#define        SYSCLK0_MUX                     21
-> > +#define        SYSCLK1_MUX                     22
-> > +#define        SYSCLK1_DIV2                    23
-> > +#define        HCLK0                           24
-> > +#define        HCLK1                           25
-> > +#define        HCLK2                           26
-> > +#define        PCLK0                           27
-> > +#define        PCLK1                           28
-> > +#define        PCLK2                           29
-> > +#define        HCLK3                           30
-> > +#define        PCLK3                           31
-> > +#define        PCLK4                           32
-> > +
-> > +/* Peripheral clocks */
-> > +/* AXI and AHB Clocks */
-> > +#define        USBPHY0                         33
-> > +#define        USBPHY1                         34
-> > +#define        DDR0_GATE                       35
-> > +#define        DDR6_GATE                       36
-> > +#define        CAN0_MUX                        37
-> > +#define        CAN0_DIV                        38
-> > +#define        CAN0_GATE                       39
-> > +#define        CAN1_MUX                        40
-> > +#define        CAN1_DIV                        41
-> > +#define        CAN1_GATE                       42
-> > +#define        CAN2_MUX                        43
-> > +#define        CAN2_DIV                        44
-> > +#define        CAN2_GATE                       45
-> > +#define        CAN3_MUX                        46
-> > +#define        CAN3_DIV                        47
-> > +#define        CAN3_GATE                       48
-> > +#define        SDH0_MUX                        49
-> > +#define        SDH0_GATE                       50
-> > +#define        SDH1_MUX                        51
-> > +#define        SDH1_GATE                       52
-> > +#define        NAND_GATE                       53
-> > +#define        USBD_GATE                       54
-> > +#define        USBH_GATE                       55
-> > +#define        HUSBH0_GATE                     56
-> > +#define        HUSBH1_GATE                     57
-> > +#define        GFX_MUX                         58
-> > +#define        GFX_GATE                        59
-> > +#define        VC8K_GATE                       60
-> > +#define        DCU_MUX                         61
-> > +#define        DCU_GATE                        62
-> > +#define        DCUP_DIV                        63
-> > +#define        EMAC0_GATE                      64
-> > +#define        EMAC1_GATE                      65
-> > +#define        CCAP0_MUX                       66
-> > +#define        CCAP0_DIV                       67
-> > +#define        CCAP0_GATE                      68
-> > +#define        CCAP1_MUX                       69
-> > +#define        CCAP1_DIV                       70
-> > +#define        CCAP1_GATE                      71
-> > +#define        PDMA0_GATE                      72
-> > +#define        PDMA1_GATE                      73
-> > +#define        PDMA2_GATE                      74
-> > +#define        PDMA3_GATE                      75
-> > +#define        WH0_GATE                        76
-> > +#define        WH1_GATE                        77
-> > +#define        HWS_GATE                        78
-> > +#define        EBI_GATE                        79
-> > +#define        SRAM0_GATE                      80
-> > +#define        SRAM1_GATE                      81
-> > +#define        ROM_GATE                        82
-> > +#define        TRA_GATE                        83
-> > +#define        DBG_MUX                         84
-> > +#define        DBG_GATE                        85
-> > +#define        CKO_MUX                         86
-> > +#define        CKO_DIV                         87
-> > +#define        CKO_GATE                        88
-> > +#define        GTMR_GATE                       89
-> > +#define        GPA_GATE                        90
-> > +#define        GPB_GATE                        91
-> > +#define        GPC_GATE                        92
-> > +#define        GPD_GATE                        93
-> > +#define        GPE_GATE                        94
-> > +#define        GPF_GATE                        95
-> > +#define        GPG_GATE                        96
-> > +#define        GPH_GATE                        97
-> > +#define        GPI_GATE                        98
-> > +#define        GPJ_GATE                        99
-> > +#define        GPK_GATE                        100
-> > +#define        GPL_GATE                        101
-> > +#define        GPM_GATE                        102
-> > +#define        GPN_GATE                        103
-> > +
-> > +/* APB Clocks */
-> > +#define        TMR0_MUX                        104
-> > +#define        TMR0_GATE                       105
-> > +#define        TMR1_MUX                        106
-> > +#define        TMR1_GATE                       107
-> > +#define        TMR2_MUX                        108
-> > +#define        TMR2_GATE                       109
-> > +#define        TMR3_MUX                        110
-> > +#define        TMR3_GATE                       111
-> > +#define        TMR4_MUX                        112
-> > +#define        TMR4_GATE                       113
-> > +#define        TMR5_MUX                        114
-> > +#define        TMR5_GATE                       115
-> > +#define        TMR6_MUX                        116
-> > +#define        TMR6_GATE                       117
-> > +#define        TMR7_MUX                        118
-> > +#define        TMR7_GATE                       119
-> > +#define        TMR8_MUX                        120
-> > +#define        TMR8_GATE                       121
-> > +#define        TMR9_MUX                        122
-> > +#define        TMR9_GATE                       123
-> > +#define        TMR10_MUX                       124
-> > +#define        TMR10_GATE                      125
-> > +#define        TMR11_MUX                       126
-> > +#define        TMR11_GATE                      127
-> > +#define        UART0_MUX                       128
-> > +#define        UART0_DIV                       129
-> > +#define        UART0_GATE                      130
-> > +#define        UART1_MUX                       131
-> > +#define        UART1_DIV                       132
-> > +#define        UART1_GATE                      133
-> > +#define        UART2_MUX                       134
-> > +#define        UART2_DIV                       135
-> > +#define        UART2_GATE                      136
-> > +#define        UART3_MUX                       137
-> > +#define        UART3_DIV                       138
-> > +#define        UART3_GATE                      139
-> > +#define        UART4_MUX                       140
-> > +#define        UART4_DIV                       141
-> > +#define        UART4_GATE                      142
-> > +#define        UART5_MUX                       143
-> > +#define        UART5_DIV                       144
-> > +#define        UART5_GATE                      145
-> > +#define        UART6_MUX                       146
-> > +#define        UART6_DIV                       147
-> > +#define        UART6_GATE                      148
-> > +#define        UART7_MUX                       149
-> > +#define        UART7_DIV                       150
-> > +#define        UART7_GATE                      151
-> > +#define        UART8_MUX                       152
-> > +#define        UART8_DIV                       153
-> > +#define        UART8_GATE                      154
-> > +#define        UART9_MUX                       155
-> > +#define        UART9_DIV                       156
-> > +#define        UART9_GATE                      157
-> > +#define        UART10_MUX                      158
-> > +#define        UART10_DIV                      159
-> > +#define        UART10_GATE                     160
-> > +#define        UART11_MUX                      161
-> > +#define        UART11_DIV                      162
-> > +#define        UART11_GATE                     163
-> > +#define        UART12_MUX                      164
-> > +#define        UART12_DIV                      165
-> > +#define        UART12_GATE                     166
-> > +#define        UART13_MUX                      167
-> > +#define        UART13_DIV                      168
-> > +#define        UART13_GATE                     169
-> > +#define        UART14_MUX                      170
-> > +#define        UART14_DIV                      171
-> > +#define        UART14_GATE                     172
-> > +#define        UART15_MUX                      173
-> > +#define        UART15_DIV                      174
-> > +#define        UART15_GATE                     175
-> > +#define        UART16_MUX                      176
-> > +#define        UART16_DIV                      177
-> > +#define        UART16_GATE                     178
-> > +#define        RTC_GATE                        179
-> > +#define        DDR_GATE                        180
-> > +#define        KPI_MUX                         181
-> > +#define        KPI_DIV                         182
-> > +#define        KPI_GATE                        183
-> > +#define        I2C0_GATE                       184
-> > +#define        I2C1_GATE                       185
-> > +#define        I2C2_GATE                       186
-> > +#define        I2C3_GATE                       187
-> > +#define        I2C4_GATE                       188
-> > +#define        I2C5_GATE                       189
-> > +#define        QSPI0_MUX                       190
-> > +#define        QSPI0_GATE                      191
-> > +#define        QSPI1_MUX                       192
-> > +#define        QSPI1_GATE                      193
-> > +#define        SMC0_MUX                        194
-> > +#define        SMC0_DIV                        195
-> > +#define        SMC0_GATE                       196
-> > +#define        SMC1_MUX                        197
-> > +#define        SMC1_DIV                        198
-> > +#define        SMC1_GATE                       199
-> > +#define        WDT0_MUX                        200
-> > +#define        WDT0_GATE                       201
-> > +#define        WDT1_MUX                        202
-> > +#define        WDT1_GATE                       203
-> > +#define        WDT2_MUX                        204
-> > +#define        WDT2_GATE                       205
-> > +#define        WWDT0_MUX                       206
-> > +#define        WWDT1_MUX                       207
-> > +#define        WWDT2_MUX                       208
-> > +#define        EPWM0_GATE                      209
-> > +#define        EPWM1_GATE                      210
-> > +#define        EPWM2_GATE                      211
-> > +#define        I2S0_MUX                        212
-> > +#define        I2S0_GATE                       213
-> > +#define        I2S1_MUX                        214
-> > +#define        I2S1_GATE                       215
-> > +#define        SSMCC_GATE                      216
-> > +#define        SSPCC_GATE                      217
-> > +#define        SPI0_MUX                        218
-> > +#define        SPI0_GATE                       219
-> > +#define        SPI1_MUX                        220
-> > +#define        SPI1_GATE                       221
-> > +#define        SPI2_MUX                        222
-> > +#define        SPI2_GATE                       223
-> > +#define        SPI3_MUX                        224
-> > +#define        SPI3_GATE                       225
-> > +#define        ECAP0_GATE                      226
-> > +#define        ECAP1_GATE                      227
-> > +#define        ECAP2_GATE                      228
-> > +#define        QEI0_GATE                       229
-> > +#define        QEI1_GATE                       230
-> > +#define        QEI2_GATE                       231
-> > +#define        ADC_DIV                         232
-> > +#define        ADC_GATE                        233
-> > +#define        EADC_DIV                        234
-> > +#define        EADC_GATE                       235
-> > +
-> > +#define        CLK_MAX                         236
-> > +#define        MA35D1_CLK_MAX_IDX              236
-> > +
-> > +#endif/*_DT_BINDINGS_MA35D1_CLK_H*/
-> > --
-> > 2.17.1
-> >
-> > ________________________________
-> > ________________________________
-> >  The privileged confidential information contained in this email is int=
-ended
-> for use only by the addressees as indicated by the original sender of thi=
-s
-> email. If you are not the addressee indicated in this email or are not
-> responsible for delivery of the email to such a person, please kindly rep=
-ly to
-> the sender indicating this fact and delete all copies of it from your com=
-puter
-> and network server immediately. Your cooperation is highly appreciated. I=
-t is
-> advised that any unauthorized use of confidential information of Nuvoton =
-is
-> strictly prohibited; and any information in this email irrelevant to the =
-official
-> business of Nuvoton shall be deemed as neither given nor endorsed by
-> Nuvoton.
-> >
-________________________________
-________________________________
- The privileged confidential information contained in this email is intende=
-d for use only by the addressees as indicated by the original sender of thi=
-s email. If you are not the addressee indicated in this email or are not re=
-sponsible for delivery of the email to such a person, please kindly reply t=
-o the sender indicating this fact and delete all copies of it from your com=
-puter and network server immediately. Your cooperation is highly appreciate=
-d. It is advised that any unauthorized use of confidential information of N=
-uvoton is strictly prohibited; and any information in this email irrelevant=
- to the official business of Nuvoton shall be deemed as neither given nor e=
-ndorsed by Nuvoton.
+PiBGcm9tOiBta2FAY2hyb21pdW0ub3JnIDxta2FAY2hyb21pdW0ub3JnPg0KPiBTZW50OiBUdWVz
+ZGF5LCBNYXJjaCAxLCAyMDIyIDI6MjkgQU0NCj4gVG86IExpbnl1IFl1YW4gKFFVSUMpIDxxdWlj
+X2xpbnl5dWFuQHF1aWNpbmMuY29tPg0KPiBDYzogZ3JlZ2toQGxpbnV4Zm91bmRhdGlvbi5vcmc7
+IFRhbyBXYW5nIChDb25zdWx0YW50KSAoUVVJQykNCj4gPHF1aWNfd2F0QHF1aWNpbmMuY29tPjsg
+YmFsYmlAa2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGRpYW5kZXJz
+QGNocm9taXVtLm9yZzsgZnJvd2FuZC5saXN0QGdtYWlsLmNvbTsgaGFkZXNzQGhhZGVzcy5uZXQ7
+DQo+IGtyemtAa2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgt
+dXNiQHZnZXIua2VybmVsLm9yZzsNCj4gbWF0aGlhcy5ueW1hbkBpbnRlbC5jb207IG1pY2hhbC5z
+aW1la0B4aWxpbnguY29tOw0KPiBwZXRlci5jaGVuQGtlcm5lbC5vcmc7IHJhdmlzYWRpbmVuaUBj
+aHJvbWl1bS5vcmc7IHJvYmgrZHRAa2VybmVsLm9yZzsNCj4gcm9nZXJxQGtlcm5lbC5vcmc7IHN0
+ZXJuQHJvd2xhbmQuaGFydmFyZC5lZHU7IHN3Ym95ZEBjaHJvbWl1bS5vcmcNCj4gU3ViamVjdDog
+UmU6IOWbnuWkjTog5Zue5aSNOiBSZTogW1BBVENIIHYyMCAzLzVdIHVzYjogbWlzYzogQWRkDQo+
+IG9uYm9hcmRfdXNiX2h1YiBkcml2ZXINCj4gDQo+ID4NCj4gPiBIaSBHcmVnIGFuZCBta2EsDQo+
+ID4NCj4gPiBMZXQncyBtYWtlIGl0IGNsZWFyIHRoYXQgd2UgYXJlIHRhbGtpbmcgYWJvdXQgb25j
+ZSB0aGlzIGRyaXZlciBpcyBhcHByb3ZlZA0KPiBpbnRvIHVzYiB0cmVlLA0KPiA+IElmIHdlIHVz
+ZSBkaWZmZXJlbnQgVVNCIEhVQiB3aGljaCBoYXZlIFZJRC9QSUQgbm90IGRlZmluZWQgaW4gdGhp
+cyBkcml2ZXIsDQo+ID4gV2UgbmVlZCB0byB1cGRhdGUgdGhpcyBkcml2ZXIuDQo+ID4NCj4gPiBC
+dXQgaWYgd2UgZGVmaW5lZCBWSUQvUElEIGluIGRldmljZSB0cmVlKGZvciBhIHNwZWNpZmljIGJv
+YXJkLCBtYW51ZmFjdHVyZQ0KPiBzaG91bGQga25vdyBWSUQvUElEIGZyb20gSFVCIGl0IHVzZWQp
+LA0KPiA+IGR5bmFtaWMgcGFyc2VkIGJ5IHRoZSBkcml2ZXIsICB0aGVuIHdlIGRvbid0IG5lZWQg
+dG8gY2hhbmdlIHRoaXMgZHJpdmVyDQo+IChpbmNyZWFzZSBWSUQvUElEIHRhYmxlKS4NCj4gDQo+
+IEFzIHBlciBteSBlYXJsaWVyIHJlcGx5LCB0aGUga2VybmVsL1VTQiBjb3JlIHVzZXMgdGhlIFZJ
+RDpQSUQgcmVwb3J0ZWQNCj4gYnkgdGhlIFVTQiBkZXZpY2UsIHRoZSBjb21wYXRpYmxlIHN0cmlu
+ZyBpbiB0aGUgZGV2aWNlIHRyZWUgaXMgcHVyZWx5DQo+IGluZm9ybWF0aW9uYWwuIFRoYXQncyBu
+b3Qgc29tZXRoaW5nIHRoYXQgY291bGQgYmUgY2hhbmdlZCBieSB0aGlzDQo+IGRyaXZlci4NCkkg
+Y2FuJ3QgZnVsbHkgdW5kZXJzdGFuZCB0aGlzIGNvbW1lbnQsICBjb3VsZCB5b3UgcGxlYXNlIHNo
+YXJlIHN0ZXAgaWYgd2Ugd2FudCB0byBhZGQgYSBuZXcgSFVCIHN1cHBvcnQsIHdoYXQgc2hvdWxk
+IHdlIGRvID8gbm90aGluZyA/DQoNCklmIGRvIG5vdGhpbmcsIGNhbiB3ZSByZW1vdmUgaWRfdGFi
+bGUgZnJvbSAgb25ib2FyZF9odWJfdXNiZGV2X2RyaXZlciAgPw0KPiANCj4gQW5kIGV2ZW4gaWYg
+dGhlIFZJRDpQSUQgZnJvbSB0aGUgZGV2aWNlIHRyZWUgd2FzIHVzZWQ6IGhvdyBpcyB0aGUNCj4g
+a2VybmVsIHN1cHBvc2VkIHRvIGtub3cgdGhhdCB0aGUgb25ib2FyZF9odWIgZHJpdmVyIHNob3Vs
+ZCBiZQ0KPiBwcm9iZWQgZm9yIGEgZ2l2ZW4gVklEOlBJRCBmcm9tIHRoZSBkZXZpY2UgdHJlZSwg
+d2l0aG91dCBsaXN0aW5nDQo+IHRoZSBWSUQ6UElEIChvciBjb21wYXRpYmxlIHN0cmluZykgaW4g
+dGhlIGRyaXZlciAod2hpY2ggaXMgd2hhdA0KPiB5b3Ugc2VlbSB0byBzZWVrIHRvIGF2b2lkKT8N
+CkluIG15IG9waW5pb24sIGlmIGl0IG5lZWQgdXBkYXRlIFZJRC9QSUQgdGFibGUgaW4gdGhpcyBk
+cml2ZXIgdG8gc3VwcG9ydCBhIG5ldyBIVUIsDQp3ZSBjYW4gcGFyc2UgVklEL1BJRCBmcm9tIGRl
+dmljZSB0cmVlIGFuZCBjcmVhdGUgZHluYW1pYyBWSUQvUElEIGVudHJ5IHRvIGlkX3RhYmxlIG9m
+IG9uYm9hcmRfaHViX3VzYmRldl9kcml2ZXIuDQoNCkhvcGUgeW91IGNhbiB1bmRlcnN0YW5kIHdo
+YXQgSSBzYWlkLg0K
