@@ -2,65 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 635944C9944
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 00:24:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88FFA4C993B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 00:23:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235532AbiCAXYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 18:24:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38204 "EHLO
+        id S233970AbiCAXXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 18:23:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234867AbiCAXYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 18:24:48 -0500
-Received: from mail-qv1-xf2a.google.com (mail-qv1-xf2a.google.com [IPv6:2607:f8b0:4864:20::f2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDC6932071
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 15:24:06 -0800 (PST)
-Received: by mail-qv1-xf2a.google.com with SMTP id j11so260234qvy.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 15:24:06 -0800 (PST)
+        with ESMTP id S232607AbiCAXXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 18:23:48 -0500
+Received: from mail-oi1-x229.google.com (mail-oi1-x229.google.com [IPv6:2607:f8b0:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E37C2E6B4
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 15:23:04 -0800 (PST)
+Received: by mail-oi1-x229.google.com with SMTP id k2so241313oia.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 15:23:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OSsBX21NVNiSwRS2p6EfLvoeuH1E+LW1LIdRNsY4vkU=;
-        b=Ip5F3z+EsQE2X2jhyvGPCg0qooxL0cLhLEUtWQuSVJHNZhjaSf3bznFF9q1y7urVuO
-         ZqXiiVS2BCbCEpQ1PvYzPaP/grTWYp3cJrz2ltZy2W8SYhbAeqCmwTfinzoy0u75vCgR
-         qo+psCbS9smznMQRHHGdHfAguKcFpH9uwGbgzrMGM3H/Y6xblVNU51dMvy0I0cmnQlMe
-         V6m0y1F+dRZ8g+Gulcg+fuouJy7bsdp78c+wCa1NJULbnhwaIJr41/XSVDDz0VRByegz
-         GPuwFYf5q4VbocMB+uX6slZmOa2AB/ceQ+MxV21JKC3Uhg3e8Zer8PTXc9RZAdBl3dIy
-         KpaQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=B0gHl0FY6TKEqOe5dLt6k+4Sn54m7FTDQTv9BgJSJmY=;
+        b=w0vaAwCSOgyqV35VqOvdvCY5g5lLUapGsVPxGHCUGkyNVEZZ6/kdXXdorDxIWT537G
+         MUzstVRDZ3xYnf+Y9IFCbWdyvIkckOkma3wtDXYzlDYyytWeVjj9Odjlj5+D9r8fwvj2
+         HBlTjilOI+nEJdz3FhwuFG3VKC9KGwVOZ7O2hrV6heTO5iRov7z0PDXH3z4BPlRzYKTv
+         5/jrfCYiWgnu5huDJykK1R+/WVA38iPh2c4glxVQ1n0YucaZOGhzKvcC+t97UFVrBEib
+         t7csV3GYm681yeV9UhUvLQCbzuULjwq6xD1qPDdr/pvZDlEKMFcqLg3bq07rx6Y7Y6Ia
+         G1fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OSsBX21NVNiSwRS2p6EfLvoeuH1E+LW1LIdRNsY4vkU=;
-        b=jy+SQqkGPV+23pdG0Kv7lNa7UGNaWUHG7jDvso4ArPY4I+JjZ6xg9UKQha0qf3wVD4
-         g63bb9xwVj2dtUki2EP3xvnSfhskv/d3P4KIGSvVphRf7biVsWS7YFSbI22dQ9qnjeQz
-         zCXI/4u4fP8Z8zj17b7RisektmYI4ZoBUKz3hszhgcCB9mdTAs5eR7F+wjWgy+xv6EDu
-         sIJP36WeWPxoMv672BQh7SNwlTz/xV0Fzt3Pcjt9iNVifygOG23ztzP8qKU4fAX/Apkh
-         zMjluPp3ShkBC6iatgHty2QiXzkIU/nx/AJKH09lYozni3l0p11gMibkWu0OUOhqxb1Q
-         t9oA==
-X-Gm-Message-State: AOAM530PTgixyVaRy5h+tX+k8hcOTdsRia2IWx04hCgKfyX4280ovzDJ
-        cgbf58jY/NSAWt2JhxQDO8piOYsHcwmwVuZr+Ao2WNhsIAbJCA==
-X-Google-Smtp-Source: ABdhPJxo6UiX3Xn1XQ6J/2PJeWZvf7DQmneQL+F9WZaIYeAoXL24XAGZpq5ExpvtMoKAaF7w482xqTsYXr7VK3rTP1A=
-X-Received: by 2002:ad4:53a4:0:b0:430:1d8c:18ea with SMTP id
- j4-20020ad453a4000000b004301d8c18eamr18944909qvv.115.1646177045898; Tue, 01
- Mar 2022 15:24:05 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=B0gHl0FY6TKEqOe5dLt6k+4Sn54m7FTDQTv9BgJSJmY=;
+        b=Y8lUu11hYCXUnLOHYbYxhaqB4jZnrEbi2rryZNDiqJlm6L2fexEIfxJVHTXxO+iyd7
+         Sf6BELy3xZm+TKY3PPPIoJdy12vHCNHDvYVHsV7v52L/CV8Cz4CFWfaO3fcdEl1GrrWE
+         9anHcCk00tJ8weTLO1EVuPznXIJm7et7tPQE2s7B3oPxIAVfOUHHG5v6U5Kqn3MS585W
+         CkndURWGR43TZMbvGSqgwpxvI0uzYJzbmK+XtdbNgtCAI7WirvUz70ejclXLNwCgah39
+         8jj0J+1aasi0gOv+I3mDLHZ9kg4aZeXOB+6xvK5PjCKdJEpAsANKL2BeWHz9UXYSsrw/
+         YbYQ==
+X-Gm-Message-State: AOAM5313j3nCi6qB/m8Kj7gdx74vcOvDOPd2tnteRf8eyQC14pnedodY
+        HUjpbyYbqdQq6AO33V8eaRAteQ==
+X-Google-Smtp-Source: ABdhPJxEJ64Gn/cTmYTu3qBhsOi969AzEkmMsQpBT2a/tPl/ZeLLMLvf5SzTIPzDYBU8Q9JQ6K3z1w==
+X-Received: by 2002:a05:6808:1183:b0:2d4:5eeb:1ca3 with SMTP id j3-20020a056808118300b002d45eeb1ca3mr14925434oil.8.1646176983843;
+        Tue, 01 Mar 2022 15:23:03 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id 16-20020a9d0490000000b005ad3c83e927sm7091173otm.60.2022.03.01.15.23.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 15:23:03 -0800 (PST)
+Date:   Tue, 1 Mar 2022 15:24:54 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>,
+        Doug Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v13 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <Yh6rRuAcyiF6QnFi@ripper>
+References: <20220218183116.2261770-1-bjorn.andersson@linaro.org>
+ <20220218183116.2261770-2-bjorn.andersson@linaro.org>
+ <20220224165939.4275x7mzp7qpl2kj@pengutronix.de>
 MIME-Version: 1.0
-References: <1644852547-10067-1-git-send-email-loic.poulain@linaro.org>
- <1644852547-10067-2-git-send-email-loic.poulain@linaro.org> <CAL_JsqKg06h818-kMDrtROzHn8zPcjwgzWAE_q=egXPJHmg=-w@mail.gmail.com>
-In-Reply-To: <CAL_JsqKg06h818-kMDrtROzHn8zPcjwgzWAE_q=egXPJHmg=-w@mail.gmail.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 2 Mar 2022 02:23:54 +0300
-Message-ID: <CAA8EJprnALcK8HObkNqkgW6t4gpLHf9LuS1-mEHJJqt6va=zxQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: msm: disp: add yaml schemas for
- QCM2290 DPU bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Loic Poulain <loic.poulain@linaro.org>,
-        Rob Clark <robdclark@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220224165939.4275x7mzp7qpl2kj@pengutronix.de>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -71,40 +78,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Mar 2022 at 20:35, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Feb 14, 2022 at 9:29 AM Loic Poulain <loic.poulain@linaro.org> wrote:
-> >
-> > QCM2290 MSM Mobile Display Subsystem (MDSS) encapsulates sub-blocks
-> > like DPU display controller, DSI etc. Add YAML schema for DPU device
-> > tree bindings
-> >
-> > Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-> > ---
-> >  v2: no change
-> >  v3: no change (resent with reviewed-by + freedreno list)
-> >
-> >  .../bindings/display/msm/dpu-qcm2290.yaml          | 214 +++++++++++++++++++++
-> >  1 file changed, 214 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
->
-> This is now failing in linux-next. Please fix or revert:
+On Thu 24 Feb 08:59 PST 2022, Uwe Kleine-K?nig wrote:
+> On Fri, Feb 18, 2022 at 10:31:16AM -0800, Bjorn Andersson wrote:
+[..]
+> > diff --git a/Documentation/leds/leds-qcom-lpg.rst b/Documentation/leds/leds-qcom-lpg.rst
+[..]
+> > +Simple pattern::
+> > +
+> > +    "255 500 0 500"
+> > +
+> > +        ^
+> > +        |
+> > +    255 +----+    +----+
+> > +	|    |    |    |      ...
+> > +      0 |    +----+    +----
+> > +        +---------------------->
+> > +	0    5   10   15     time (100ms)
+> 
+> you're mixing tabs and spaces here, I suggest to use spaces only. Not
+> sure you want to respin for that.
+> 
+> (I didn't look into the rest of the driver, but assume it's fine.)
+> 
 
-I can not reproduce it here, with the linux-next from 20220301 and
-dtschema 2022.1
+Pavel, would yo like me to fix this up and send out v14 or would you be
+okay replacing the tab with spaces while applying the patches?
 
->
-> Error: Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dts:81.3-82.1
-> syntax error
-> FATAL ERROR: Unable to parse input tree
-> make[1]: *** [scripts/Makefile.lib:386:
-> Documentation/devicetree/bindings/display/msm/dpu-qcm2290.example.dt.yaml]
-> Error 1
->
-> Rob
+Do you see any other blockers for merging this?
 
-
-
--- 
-With best wishes
-Dmitry
+Thanks,
+Bjorn
