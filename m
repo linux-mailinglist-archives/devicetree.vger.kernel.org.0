@@ -2,191 +2,353 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97F4A4C8A1E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 11:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 090514C8A41
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 12:05:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231449AbiCAK50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 05:57:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
+        id S231932AbiCALFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 06:05:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229773AbiCAK5Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 05:57:25 -0500
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7A558D6A7;
-        Tue,  1 Mar 2022 02:56:44 -0800 (PST)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 221AuRaH097518;
-        Tue, 1 Mar 2022 04:56:27 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1646132187;
-        bh=zbZw6U1U+q/OqMykHu4syaDjok492zGJ/pzPQ7GdmIc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=UcIsJUv66SEzzErPBUmmhjSACZDy8Fxas9JTRe4ttpLwgcQu/7ifjQxmaH78Tu1QP
-         lsX/pIBmpzD1/CIeyRwjq1GXVRbi23Fhpcp0ZfaxDVAhqPtFesBUVidVj+gUIBve//
-         r/d075qIm14+AXlfk5pBNNkunZS3l8sGotW4Sudk=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 221AuQsY121867
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 1 Mar 2022 04:56:26 -0600
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 1
- Mar 2022 04:56:26 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 1 Mar 2022 04:56:26 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 221AuPja033887;
-        Tue, 1 Mar 2022 04:56:26 -0600
-Date:   Tue, 1 Mar 2022 16:26:25 +0530
-From:   Pratyush Yadav <p.yadav@ti.com>
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>
-Subject: Re: [PATCH v9 1/4] phy: cadence: Add Cadence D-PHY Rx driver
-Message-ID: <20220301105625.o7wlw6giqsw5nrvx@ti.com>
-References: <20220131173314.2073641-1-p.yadav@ti.com>
- <20220131173314.2073641-2-p.yadav@ti.com>
- <YhTu2ixdWBKU1Y8y@matsya>
+        with ESMTP id S231506AbiCALFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 06:05:47 -0500
+Received: from mail-qv1-xf33.google.com (mail-qv1-xf33.google.com [IPv6:2607:f8b0:4864:20::f33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3ACB7B57A;
+        Tue,  1 Mar 2022 03:05:05 -0800 (PST)
+Received: by mail-qv1-xf33.google.com with SMTP id w7so16375296qvr.3;
+        Tue, 01 Mar 2022 03:05:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eNwcCZs+3ecEfOTGDHb0yJb7mKFZMDv/GLNrupw/17E=;
+        b=JoYXmgVKIH9VUHvlFhkIw7PSpm8moOFoUhAVvm1VMVWi/ViQGl074+/ruZF4zyE66U
+         KdLLRQJfLEbHR+UhIoagz6d59NZLobhTVeOS7ng1PoYE136e3PBhv09DTyuPi2TSQWgL
+         /Kt/8hGTXRdJrU0xv3urnq4yTuuSh4lRIM6E0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eNwcCZs+3ecEfOTGDHb0yJb7mKFZMDv/GLNrupw/17E=;
+        b=3Xq6n+4/f3W74mALNBiBCQjw6F5MPDdI3Sd1NPOSh5jpdbL4HJAHtwEcfDz/x+7w3G
+         ZSZMop4OORs9j9W5gBwm1yS20TrcQNGlfJtwO9Po16dznYpJx+CiGxGJkX28ujvLf3KM
+         OxIX5T/8gVHShfayFLslGr2oZOoenTxNhmp26rUQUwc30AelkmumuvmMRnF+EPyPL5bz
+         w4Wy2O+9lslwOhGm9O3RJv8NaVvzVEo4qutI1EvoHfBMjf0di1baU+jH5tqWDv2/ngRS
+         eq1G4WjVNS9WbFK7rg6U/mG7QTe+e9rg/oX0bz7SqbvHexcZlpKCb64Yh/So5U23bx+m
+         sH4Q==
+X-Gm-Message-State: AOAM532EcObyXeB0Jz8NQZWuIt7R9a5VncpfPqXSSfObBNlQVS7Gwz0N
+        vkD2VLejuAmAVVFhDcd7U01vSObexh+VP88/e2g=
+X-Google-Smtp-Source: ABdhPJwDZ95OZcgGd7ihlsrgAQAioszvmBGbdKhq2Gm22rztIQG16pJLXF7C0pFz+/GW3luzlXIMKCey8L8RYjtDi8w=
+X-Received: by 2002:a05:6214:628:b0:432:c2db:94e3 with SMTP id
+ a8-20020a056214062800b00432c2db94e3mr12990477qvx.107.1646132704840; Tue, 01
+ Mar 2022 03:05:04 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <YhTu2ixdWBKU1Y8y@matsya>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20211208013337.13806-1-tommy_huang@aspeedtech.com>
+ <20211208013337.13806-6-tommy_huang@aspeedtech.com> <CACPK8XfA8Mz6tU2r=G+PxuVkvTZ5Nzw0g-V7EAoBhkKO-TOPfQ@mail.gmail.com>
+ <SG2PR06MB4818A370D5DDEC18D1B34FE6E1029@SG2PR06MB4818.apcprd06.prod.outlook.com>
+In-Reply-To: <SG2PR06MB4818A370D5DDEC18D1B34FE6E1029@SG2PR06MB4818.apcprd06.prod.outlook.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 1 Mar 2022 11:04:52 +0000
+Message-ID: <CACPK8Xdn8eqNieXhEKcCyFeuste_XKJneePwuZy9T7CAQZFocQ@mail.gmail.com>
+Subject: Re: [PATCH v5 5/7] drm/aspeed: Add reset and clock for AST2600
+To:     Tommy Huang <tommy_huang@aspeedtech.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        BMC-SW <BMC-SW@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/02/22 07:40PM, Vinod Koul wrote:
-> On 31-01-22, 23:03, Pratyush Yadav wrote:
-> > The Cadence D-PHY can be configured in Tx (DSI) mode or Rx (CSI) mode.
-> > Both modes have a different programming sequence and share little among
-> > them. In addition, a PHY configured in Tx mode cannot be used in Rx mode
-> > and vice versa. For this reason, create a separate driver for the Rx
-> > mode to make it easier to read and maintain.
-> > 
-> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > 
-> > ---
-> > 
-> > Changes in v9:
-> > - Use %ld instead of %d for printing PTR_ERR().
-> > 
-> > Changes in v8:
-> > - Move lanes check to start of configure sequence.
-> > - Change MODULE_LICENSE() to "GPL".
-> > - Add Laurent's R-by.
-> > 
-> > Changes in v7:
-> > - Add spaces after { and before } in the bands table.
-> > - Drop the wrapping around the for loop on cdns_dphy_rx_get_band_ctrl().
-> > - Make cdns_dphy_rx_wait_for_bit() inline.
-> > - Print an error message if registering PHY provider fails.
-> > 
-> > Changes in v6:
-> > - Move to a separate driver.
-> > 
-> > Changes in v5:
-> > - Use the new cdns_dphy_info to specify PHY ops.
-> > - Re-order include in alphabetical order.
-> > - Make bands const.
-> > - Drop num_bands.
-> > - Make i, lanes unsigned.
-> > - Drop the maximum check in cdns_dphy_rx_get_band_ctrl(). Let the loop
-> >   complete and return -EOPNOTSUPP when we reach the end.
-> > - Drop the "rate < bands[i].min_rate" check since the bands are in
-> >   ascending order.
-> > - Move data_lane_ctrl to start of function and make it static const.
-> > 
-> > Changes in v4:
-> > - Drop the submode parts. Use a different compatible for the Rx ops.
-> > - Make bands and num_bands static.
-> > 
-> > Changes in v3:
-> > - Use a table to select the band.
-> > - Use a table to poll the data lane ready bits.
-> > - Multiply the DPHY HS clock rate by 2 to get the bit rate since the
-> >   clock is DDR.
-> > 
-> >  drivers/phy/cadence/Kconfig        |   8 +
-> >  drivers/phy/cadence/Makefile       |   1 +
-> >  drivers/phy/cadence/cdns-dphy-rx.c | 255 +++++++++++++++++++++++++++++
-> >  3 files changed, 264 insertions(+)
-> >  create mode 100644 drivers/phy/cadence/cdns-dphy-rx.c
-> > 
-> > diff --git a/drivers/phy/cadence/Kconfig b/drivers/phy/cadence/Kconfig
-> > index a62910ff5591..1adde2d99ae7 100644
-> > --- a/drivers/phy/cadence/Kconfig
-> > +++ b/drivers/phy/cadence/Kconfig
-> > @@ -22,6 +22,14 @@ config PHY_CADENCE_DPHY
-> >  	  system. If M is selected, the module will be called
-> >  	  cdns-dphy.
-> >  
-> > +config PHY_CADENCE_DPHY_RX
-> > +	tristate "Cadence D-PHY Rx Support"
-> > +	depends on HAS_IOMEM && OF
-> > +	select GENERIC_PHY
-> > +	select GENERIC_PHY_MIPI_DPHY
-> > +	help
-> > +	  Support for Cadence D-PHY in Rx configuration.
-> > +
-> >  config PHY_CADENCE_SIERRA
-> >  	tristate "Cadence Sierra PHY Driver"
-> >  	depends on OF && HAS_IOMEM && RESET_CONTROLLER
-> > diff --git a/drivers/phy/cadence/Makefile b/drivers/phy/cadence/Makefile
-> > index 26e16bd34efe..e17f035ddece 100644
-> > --- a/drivers/phy/cadence/Makefile
-> > +++ b/drivers/phy/cadence/Makefile
-> > @@ -1,5 +1,6 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> >  obj-$(CONFIG_PHY_CADENCE_TORRENT)	+= phy-cadence-torrent.o
-> >  obj-$(CONFIG_PHY_CADENCE_DPHY)	+= cdns-dphy.o
-> > +obj-$(CONFIG_PHY_CADENCE_DPHY_RX)	+= cdns-dphy-rx.o
-> >  obj-$(CONFIG_PHY_CADENCE_SIERRA)	+= phy-cadence-sierra.o
-> >  obj-$(CONFIG_PHY_CADENCE_SALVO)	+= phy-cadence-salvo.o
-> > diff --git a/drivers/phy/cadence/cdns-dphy-rx.c b/drivers/phy/cadence/cdns-dphy-rx.c
-> > new file mode 100644
-> > index 000000000000..c9bb8c7f16f6
-> > --- /dev/null
-> > +++ b/drivers/phy/cadence/cdns-dphy-rx.c
-> > @@ -0,0 +1,255 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> 
-> GPL v2 and more...
-> 
-> > +/*
-> > + * Copyright (C) 2021 Texas Instruments Incorporated - https://www.ti.com/
-> 
-> this should say 2022 as well
-> 
-> > +MODULE_AUTHOR("Pratyush Yadav <p.yadav@ti.com>");
-> > +MODULE_DESCRIPTION("Cadence D-PHY Rx Driver");
-> > +MODULE_LICENSE("GPL");
-> 
-> This means GPL v2 only and does not match SPDX tag, pls update
+On Tue, 1 Mar 2022 at 07:00, Tommy Huang <tommy_huang@aspeedtech.com> wrote:
+>
+> Hi Joel,
+>
+>         It seems that the reset control could keep original code behavior.
+>         Just change the reset define in the .dtsi file from ASPEED_RESET_CRT1 into ASPEED_RESET_GRAPHICS.
 
-Will change SPDX to GPL-2.0-only.
+Right, because the ASPEED_RESET_CRT reset is released by the
+ASPEED_CLK_GATE_D1CLK line?
 
-> 
-> -- 
-> ~Vinod
+include/dt-bindings/clock/ast2600-clock.h:#define ASPEED_RESET_CRT
+         13
 
--- 
-Regards,
-Pratyush Yadav
-Texas Instruments Inc.
+drivers/clk/clk-ast2600.c:      /*
+clk rst  name               parent   flags */
+drivers/clk/clk-ast2600.c:      [ASPEED_CLK_GATE_D1CLK]         = {
+10, 13, "d1clk-gate",       "d1clk", 0 >
+
+
+
+>
+>         By the way, the HW controller states and FW programming register will be reset by CRT reset line.
+>         And another part HW controller states will be reset by engine reset line.
+
+Thanks. Can we include that in the commit message for the device tree change?
+
+>
+>         Thanks,
+>
+>         By Tommy
+>
+> > -----Original Message-----
+> > From: Joel Stanley <joel@jms.id.au>
+> > Sent: Monday, February 28, 2022 5:51 PM
+> > To: Tommy Huang <tommy_huang@aspeedtech.com>
+> > Cc: David Airlie <airlied@linux.ie>; Daniel Vetter <daniel@ffwll.ch>; Rob
+> > Herring <robh+dt@kernel.org>; Andrew Jeffery <andrew@aj.id.au>;
+> > linux-aspeed <linux-aspeed@lists.ozlabs.org>; open list:DRM DRIVERS
+> > <dri-devel@lists.freedesktop.org>; devicetree <devicetree@vger.kernel.org>;
+> > Linux ARM <linux-arm-kernel@lists.infradead.org>; Linux Kernel Mailing List
+> > <linux-kernel@vger.kernel.org>; BMC-SW <BMC-SW@aspeedtech.com>
+> > Subject: Re: [PATCH v5 5/7] drm/aspeed: Add reset and clock for AST2600
+> >
+> > On Wed, 8 Dec 2021 at 01:34, Tommy Haung
+> > <tommy_huang@aspeedtech.com> wrote:
+> > >
+> > > From: tommy-huang <tommy_huang@aspeedtech.com>
+> > >
+> > > Add more reset and clock select code for AST2600.
+> > > The gfx_flags parameter was added for chip caps idenified.
+> >
+> > Can you tell me a bit more about the two reset lines:
+> >
+> > What is the CRT reset line controlling?
+> >
+> > What does the engine reset line control?
+> >
+> > Can we use devm_reset_control_array_get() to get whichever are specified in
+> > the device tree, so we don't need to have different logic for the 2600 and
+> > earlier chips?
+> >
+> >
+> >
+> > >
+> > > Signed-off-by: tommy-huang <tommy_huang@aspeedtech.com>
+> > > ---
+> > >  drivers/gpu/drm/aspeed/aspeed_gfx.h      | 16 +++++++-
+> > >  drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c | 16 ++++++++
+> > > drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 50
+> > ++++++++++++++++++++++--
+> > >  3 files changed, 77 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> > > b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> > > index 4e6a442c3886..2c733225d3c7 100644
+> > > --- a/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> > > +++ b/drivers/gpu/drm/aspeed/aspeed_gfx.h
+> > > @@ -8,7 +8,8 @@ struct aspeed_gfx {
+> > >         struct drm_device               drm;
+> > >         void __iomem                    *base;
+> > >         struct clk                      *clk;
+> > > -       struct reset_control            *rst;
+> > > +       struct reset_control            *rst_crt;
+> > > +       struct reset_control            *rst_engine;
+> > >         struct regmap                   *scu;
+> > >
+> > >         u32                             dac_reg;
+> > > @@ -16,6 +17,7 @@ struct aspeed_gfx {
+> > >         u32                             vga_scratch_reg;
+> > >         u32                             throd_val;
+> > >         u32                             scan_line_max;
+> > > +       u32                             flags;
+> > >
+> > >         struct drm_simple_display_pipe  pipe;
+> > >         struct drm_connector            connector;
+> > > @@ -106,3 +108,15 @@ int aspeed_gfx_create_output(struct drm_device
+> > > *drm);
+> > >  /* CRT_THROD */
+> > >  #define CRT_THROD_LOW(x)               (x)
+> > >  #define CRT_THROD_HIGH(x)              ((x) << 8)
+> > > +
+> > > +/* SCU control */
+> > > +#define SCU_G6_CLK_COURCE              0x300
+> > > +
+> > > +/* GFX FLAGS */
+> > > +#define RESET_MASK                     BIT(0)
+> > > +#define RESET_G6                       BIT(0)
+> > > +#define CLK_MASK                       BIT(4)
+> > > +#define CLK_G6                         BIT(4)
+> > > +
+> > > +#define G6_CLK_MASK                    (BIT(8) | BIT(9) | BIT(10))
+> > > +#define G6_USB_40_CLK                  BIT(9)
+> > > diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> > > b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> > > index 827e62c1daba..e0975ecda92d 100644
+> > > --- a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> > > +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
+> > > @@ -77,6 +77,18 @@ static void aspeed_gfx_disable_controller(struct
+> > aspeed_gfx *priv)
+> > >         regmap_update_bits(priv->scu, priv->dac_reg, BIT(16), 0);  }
+> > >
+> > > +static void aspeed_gfx_set_clk(struct aspeed_gfx *priv) {
+> > > +       switch (priv->flags & CLK_MASK) {
+> > > +       case CLK_G6:
+> > > +               regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE,
+> > G6_CLK_MASK, 0x0);
+> > > +               regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE,
+> > G6_CLK_MASK, G6_USB_40_CLK);
+> > > +               break;
+> > > +       default:
+> > > +               break;
+> > > +       }
+> > > +}
+> > > +
+> > >  static void aspeed_gfx_crtc_mode_set_nofb(struct aspeed_gfx *priv)  {
+> > >         struct drm_display_mode *m =
+> > > &priv->pipe.crtc.state->adjusted_mode;
+> > > @@ -87,6 +99,8 @@ static void aspeed_gfx_crtc_mode_set_nofb(struct
+> > aspeed_gfx *priv)
+> > >         if (err)
+> > >                 return;
+> > >
+> > > +       aspeed_gfx_set_clk(priv);
+> > > +
+> > >  #if 0
+> > >         /* TODO: we have only been able to test with the 40MHz USB
+> > clock. The
+> > >          * clock is fixed, so we cannot adjust it here. */ @@ -193,6
+> > > +207,7 @@ static void aspeed_gfx_pipe_update(struct
+> > > drm_simple_display_pipe *pipe,  static int
+> > > aspeed_gfx_enable_vblank(struct drm_simple_display_pipe *pipe)  {
+> > >         struct aspeed_gfx *priv = drm_pipe_to_aspeed_gfx(pipe);
+> > > +
+> > >         u32 reg = readl(priv->base + CRT_CTRL1);
+> > >
+> > >         /* Clear pending VBLANK IRQ */ @@ -207,6 +222,7 @@ static int
+> > > aspeed_gfx_enable_vblank(struct drm_simple_display_pipe *pipe)  static
+> > > void aspeed_gfx_disable_vblank(struct drm_simple_display_pipe *pipe)
+> > > {
+> > >         struct aspeed_gfx *priv = drm_pipe_to_aspeed_gfx(pipe);
+> > > +
+> > >         u32 reg = readl(priv->base + CRT_CTRL1);
+> > >
+> > >         reg &= ~CRT_CTRL_VERTICAL_INTR_EN; diff --git
+> > > a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> > > b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> > > index d10246b1d1c2..59a0de92650f 100644
+> > > --- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> > > +++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
+> > > @@ -64,6 +64,7 @@ struct aspeed_gfx_config {
+> > >         u32 vga_scratch_reg;    /* VGA scratch register in SCU */
+> > >         u32 throd_val;          /* Default Threshold Seting */
+> > >         u32 scan_line_max;      /* Max memory size of one scan line */
+> > > +       u32 gfx_flags;          /* Flags for gfx chip caps */
+> > >  };
+> > >
+> > >  static const struct aspeed_gfx_config ast2400_config = { @@ -72,6
+> > > +73,7 @@ static const struct aspeed_gfx_config ast2400_config = {
+> > >         .vga_scratch_reg = 0x50,
+> > >         .throd_val = CRT_THROD_LOW(0x1e) | CRT_THROD_HIGH(0x12),
+> > >         .scan_line_max = 64,
+> > > +       .gfx_flags = 0,
+> > >  };
+> > >
+> > >  static const struct aspeed_gfx_config ast2500_config = { @@ -80,6
+> > > +82,7 @@ static const struct aspeed_gfx_config ast2500_config = {
+> > >         .vga_scratch_reg = 0x50,
+> > >         .throd_val = CRT_THROD_LOW(0x24) | CRT_THROD_HIGH(0x3c),
+> > >         .scan_line_max = 128,
+> > > +       .gfx_flags = 0,
+> > >  };
+> > >
+> > >  static const struct aspeed_gfx_config ast2600_config = { @@ -88,6
+> > > +91,7 @@ static const struct aspeed_gfx_config ast2600_config = {
+> > >         .vga_scratch_reg = 0x50,
+> > >         .throd_val = CRT_THROD_LOW(0x50) | CRT_THROD_HIGH(0x70),
+> > >         .scan_line_max = 128,
+> > > +       .gfx_flags = RESET_G6 | CLK_G6,
+> > >  };
+> > >
+> > >  static const struct of_device_id aspeed_gfx_match[] = { @@ -138,6
+> > > +142,44 @@ static irqreturn_t aspeed_gfx_irq_handler(int irq, void *data)
+> > >         return IRQ_NONE;
+> > >  }
+> > >
+> > > +static int aspeed_gfx_reset(struct drm_device *drm) {
+> > > +       struct platform_device *pdev = to_platform_device(drm->dev);
+> > > +       struct aspeed_gfx *priv = to_aspeed_gfx(drm);
+> > > +
+> > > +       switch (priv->flags & RESET_MASK) {
+> > > +       case RESET_G6:
+> > > +               priv->rst_crt = devm_reset_control_get(&pdev->dev,
+> > "crt");
+> > > +               if (IS_ERR(priv->rst_crt)) {
+> > > +                       dev_err(&pdev->dev,
+> > > +                               "missing or invalid crt reset controller
+> > device tree entry");
+> > > +                       return PTR_ERR(priv->rst_crt);
+> > > +               }
+> > > +               reset_control_deassert(priv->rst_crt);
+> > > +
+> > > +               priv->rst_engine = devm_reset_control_get(&pdev->dev,
+> > "engine");
+> > > +               if (IS_ERR(priv->rst_engine)) {
+> > > +                       dev_err(&pdev->dev,
+> > > +                               "missing or invalid engine reset
+> > controller device tree entry");
+> > > +                       return PTR_ERR(priv->rst_engine);
+> > > +               }
+> > > +               reset_control_deassert(priv->rst_engine);
+> > > +               break;
+> > > +
+> > > +       default:
+> > > +               priv->rst_crt =
+> > devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> > > +               if (IS_ERR(priv->rst_crt)) {
+> > > +                       dev_err(&pdev->dev,
+> > > +                               "missing or invalid reset controller
+> > device tree entry");
+> > > +                       return PTR_ERR(priv->rst_crt);
+> > > +               }
+> > > +               reset_control_deassert(priv->rst_crt);
+> > > +               break;
+> > > +       }
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > >  static int aspeed_gfx_load(struct drm_device *drm)  {
+> > >         struct platform_device *pdev = to_platform_device(drm->dev);
+> > > @@ -163,6 +205,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
+> > >         priv->vga_scratch_reg = config->vga_scratch_reg;
+> > >         priv->throd_val = config->throd_val;
+> > >         priv->scan_line_max = config->scan_line_max;
+> > > +       priv->flags = config->gfx_flags;
+> > >
+> > >         priv->scu = syscon_regmap_lookup_by_phandle(np, "syscon");
+> > >         if (IS_ERR(priv->scu)) {
+> > > @@ -186,13 +229,12 @@ static int aspeed_gfx_load(struct drm_device
+> > *drm)
+> > >                 return ret;
+> > >         }
+> > >
+> > > -       priv->rst = devm_reset_control_get_exclusive(&pdev->dev, NULL);
+> > > -       if (IS_ERR(priv->rst)) {
+> > > +       ret = aspeed_gfx_reset(drm);
+> > > +       if (ret) {
+> > >                 dev_err(&pdev->dev,
+> > >                         "missing or invalid reset controller device tree
+> > entry");
+> > > -               return PTR_ERR(priv->rst);
+> > > +               return ret;
+> > >         }
+> > > -       reset_control_deassert(priv->rst);
+> > >
+> > >         priv->clk = devm_clk_get(drm->dev, NULL);
+> > >         if (IS_ERR(priv->clk)) {
+> > > --
+> > > 2.17.1
+> > >
