@@ -2,115 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 311784C84BB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 08:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC5494C84EA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 08:25:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232749AbiCAHPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 02:15:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59716 "EHLO
+        id S231718AbiCAH0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 02:26:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229771AbiCAHPX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 02:15:23 -0500
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4170160D8C;
-        Mon, 28 Feb 2022 23:14:43 -0800 (PST)
-Received: by mail-wm1-x330.google.com with SMTP id k29-20020a05600c1c9d00b003817fdc0f00so776731wms.4;
-        Mon, 28 Feb 2022 23:14:43 -0800 (PST)
+        with ESMTP id S230498AbiCAH0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 02:26:11 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0266765839
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 23:25:30 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id ev16-20020a17090aead000b001bc3835fea8so1478207pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 23:25:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=dMkVK0banCGS1SiaiD3Pe8NqYzc2z8K/wyEPw+N+YvU=;
-        b=ib347cIt3ntK1P/QPyVbu2vUwQsRjZbNdUDSmPJeHxjB7RNf56VOiV6hjCN1rkVyrK
-         p7ixJLG8+O4nB1pc5s322BKZjlpyAL4EBxERgZdxRLIqOhhPjRdbsGhn0dEx0HP85PJJ
-         /1NFNhkVR3alsfWEMIZCE/wce81GRXXUpUuNb/pE442lUCTMQbLWPYW5vrXkfhhYHgy9
-         1opLYjWvXCNiAuHObmpW0m7XBx/tHm5fmgPLzPYz1q8v9N6k+OxKTt3K4w2ErvakWro0
-         uOHjAXwpLOeTWTxvrLcffHd3g1cXDrsH2Ztnixohp1uBM1dl8TMY07dQPMAO7MEV7/54
-         Li6A==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Fq9+hKXE2B25/q7SGHJTgmlpE5pNGMn67wmPQ/2AfFA=;
+        b=gw+AgpqERSMLyvVAkktbZBdBQAxCpln9+7y5E4lCT6UDIE8RSSZw3sHef0pgS+cDcP
+         0CSs/PdWEOtNhMq+K42nTRPmww08VKf9MHYaOwy7QRMoo5/yAZry4qWzXkJWuf86v9Fa
+         ZJPTuWFy5R4R0DZeqlZKsIAztbRIHQOgdOnTofkoNFQ7XQvrsW7xRPYnx5R72vMROM/B
+         oYE4pAxMVK1aCdg9OYq+zGOS9qXSQ429BqHYAbDf12OeRrwscs0AxHrzehBFOejwaDse
+         2xzfkpQf6u8PIIv5EYYaSi8iHkVBRzlwItd49jGo5CNE+HJEbiWgFC8J/HhCHU/T/kmo
+         XMOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=dMkVK0banCGS1SiaiD3Pe8NqYzc2z8K/wyEPw+N+YvU=;
-        b=gDD5BLbW1nYcaaEN9S31ALodYw+KG2aiXCHEQCz2L054F6y9USql130dy5zY0nH2ga
-         zL+yQAIl73+m1QmO1iUbnG/y3+Sv/2ULU/5bhvwjR9mdrjF66IBk9pCs2snKBXskN9S6
-         BoFqnepQuLbb/00B0tBeRtsmYSIxj224SQt6htKxWGY3ZKB/y4ptCcH7GXP8sgiEz6qD
-         9v8c+fsMbVt5aJfewOFTOvCWqPBoVmz9n7wjcEgl5PxGOm0E6AMN0/nTkZ0seN45zEEb
-         LIJkDUU4pJj5lKY75mnxiLqiFyULuLP8vYAqzvgwsSk2RuUFat+a4VL0jhEGO2hm7QTh
-         PFlA==
-X-Gm-Message-State: AOAM530/rfDNFAnvH2rVz2W9O29n4tEQtLvy0GaFbVnWz+LA08+CtvnB
-        JVgfwucN2Ds57Uah438jWSkybcpc/NM7Vw==
-X-Google-Smtp-Source: ABdhPJw86wvyFdv4N7Lgo+V4+RrPrPEo8SsZKzNeoYzKkuCc4Zz/khabOPClOAl/SG1YZ3AWJZW9+Q==
-X-Received: by 2002:a1c:4b17:0:b0:380:e44f:426e with SMTP id y23-20020a1c4b17000000b00380e44f426emr15843929wma.150.1646118881620;
-        Mon, 28 Feb 2022 23:14:41 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id i12-20020adfe48c000000b001ef6eab4c81sm12113858wrm.96.2022.02.28.23.14.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Feb 2022 23:14:41 -0800 (PST)
-Message-ID: <c5d61fe7-5238-58ae-c782-5e28531d9b2b@gmail.com>
-Date:   Tue, 1 Mar 2022 08:14:39 +0100
+        bh=Fq9+hKXE2B25/q7SGHJTgmlpE5pNGMn67wmPQ/2AfFA=;
+        b=6WFsU0O6kzYvC1uTTOXdl+f2JbtHilxPgpXXx8Bdk1Kchd7rgFX7SVz3X3wyabUaea
+         QqTWCvmWbW1IYU2wPKCzJ+waEM7JoRCy8giyOaUXswjBIt98Q2jri4+8DH9XaCkwgzFU
+         SwxJsl7LhGzjQ3DGny1FwKZa69OovTcH7lvwbdvp8j4zMMZ8EWnJerSpKBX2V4Ca/25o
+         GicmdaY3c9cUtShsaPHgBXA0Xm4wQkzY0N67S2AqKUEzeDYuCk1RrYqhARVt9CTOQWcc
+         p4O7LyxezLb0SHdRKCP08W4w7RLbAXk5YblS6yTRi21gBXpJk486DNexy41uC5aHChYC
+         h5UA==
+X-Gm-Message-State: AOAM531pJwsntu0/uP0m2pIiX9ec49i3dy26yUVcGZM6vxsqbOMICg/8
+        dt4hx8N1i3dgojgGCyyurYECxw==
+X-Google-Smtp-Source: ABdhPJyQpoHq58XxxDiH1vNEtJGyB3ROg2E9nRNb6DbulnTpMJjY+JTpp9jWTnRHJzb8qLKPuHtgwQ==
+X-Received: by 2002:a17:90a:9306:b0:1bc:9256:5477 with SMTP id p6-20020a17090a930600b001bc92565477mr20937679pjo.170.1646119529474;
+        Mon, 28 Feb 2022 23:25:29 -0800 (PST)
+Received: from localhost.localdomain ([223.179.136.225])
+        by smtp.gmail.com with ESMTPSA id m6-20020a62f206000000b004e152bc0527sm15680445pfh.153.2022.02.28.23.25.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 23:25:29 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        lorenzo.pieralisi@arm.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, svarbanov@mm-sol.com,
+        bhelgaas@google.com, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/7] Add PCIe support for SM8150 SoC
+Date:   Tue,  1 Mar 2022 12:55:04 +0530
+Message-Id: <20220301072511.117818-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: Add compatibles for undocumented trivial
- syscons
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20220228221537.1700071-1-robh@kernel.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220228221537.1700071-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Changes since v1:
+-----------------
+- v1 can be found here: https://lore.kernel.org/linux-arm-msm/20220223192946.473172-1-bhupesh.sharma@linaro.org/T/
+- Collected ACKs on [PATCH 1/7], [PATCH 2/7] and [PATCH 4/7] from Rob
+  and Dmitry.
+- Broke down another separately sent out PATCH (see [1]), into a 3 patches (one each for emac, pci
+  and ufs gdsc defines) - one of which is carried as [PATCH 3/7]
+  in this series, which fixes a compilation error.
+  The rest of the gdsc defines have been sent out as separate patch(es).
+[1]. https://patchwork.kernel.org/project/netdevbpf/patch/20220126221725.710167-4-bhupesh.sharma@linaro.org/
+- Rob's bot reported a number of 'dtbs_check' errors with the v1 series,
+  which are been fixed with a separate series now (see [2]), to ease the
+  review of this series.
+[2]. https://lore.kernel.org/linux-arm-msm/20220228123019.382037-1-bhupesh.sharma@linaro.org/T/
 
-On 28/02/2022 23:15, Rob Herring wrote:
-> 'intel,lgm-syscon', 'marvell,armada-3700-usb2-host-misc',
-> 'mediatek,mt8135-pctl-a-syscfg', and 'mediatek,mt8135-pctl-b-syscfg' are
-> all used in DT binding examples and/or dts files, but are not
-> documented. Add them to syscon.yaml as they are all trivial cases.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->   Documentation/devicetree/bindings/mfd/syscon.yaml | 4 ++++
->   1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> index eeac1cbc5a17..29d4a97f7108 100644
-> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-> @@ -44,6 +44,10 @@ properties:
->                 - hisilicon,hi6220-sramctrl
->                 - hisilicon,pcie-sas-subctrl
->                 - hisilicon,peri-subctrl
-> +              - intel,lgm-syscon
-> +              - marvell,armada-3700-usb2-host-misc
-> +              - mediatek,mt8135-pctl-a-syscfg
-> +              - mediatek,mt8135-pctl-b-syscfg
 
-Thanks for filling the gap. Would you mind to add as well:
-"mediatek,mt2701-pctl-a-syscfg"
-"mediatek,mt2712-pctl-a-syscfg"
-"mediatek,mt7623-pctl-a-syscfg"
-"mediatek,mt8173-pctl-a-syscfg
+This series adds PCIe support for Qualcomm SM8150 SoC with relevant PHYs.
+There are 2 PCIe instances on this SoC each with different PHYs. The PCIe
+controller and PHYs are mostly compatible with the ones found on SM8250
+SoC, hence the old drivers are modified to add the support.
 
-With that:
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+This series has been tested on SA8155p ADP board with QCA6696 chipset connected
+onboard.
 
->                 - microchip,sparx5-cpu-syscon
->                 - mstar,msc313-pmsleep
->                 - rockchip,px30-qos
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+
+Bhupesh Sharma (7):
+  dt-bindings: pci: qcom: Document PCIe bindings for SM8150 SoC
+  dt-bindings: phy: qcom,qmp: Add SM8150 PCIe PHY bindings
+  clk: qcom: gcc: Add PCIE_0_GDSC and PCIE_1_GDSC for SM8150
+  phy: qcom-qmp: Add SM8150 PCIe QMP PHYs
+  PCI: qcom: Add SM8150 SoC support
+  arm64: dts: qcom: sm8150: Add pcie nodes for SM8150
+  arm64: dts: qcom: sa8155: Enable pcie nodes
+
+ .../devicetree/bindings/pci/qcom,pcie.txt     |   5 +-
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml |   4 +
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts      |  42 +++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          | 243 ++++++++++++++++++
+ drivers/pci/controller/dwc/pcie-qcom.c        |  16 ++
+ drivers/phy/qualcomm/phy-qcom-qmp.c           |  90 +++++++
+ include/dt-bindings/clock/qcom,gcc-sm8150.h   |   2 +
+ 7 files changed, 400 insertions(+), 2 deletions(-)
+
+-- 
+2.35.1
+
