@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 502E74C9024
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:17:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6ADB4C8E7F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:03:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235262AbiCAQSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 11:18:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49184 "EHLO
+        id S234448AbiCAPD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 10:03:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44532 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234486AbiCAQSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:18:30 -0500
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEB725B3FE;
-        Tue,  1 Mar 2022 08:17:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646151469; x=1677687469;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=oW7rCjucB/FAM9m562SoKysdtSc96jMNqsGkSaAFJyc=;
-  b=huswXYlCt6OzR/mdF2ftO/wK3tzrZC4LEK/1F60nwtX/odL93YIuOjXG
-   UlbazkApYAGFNAMo5ZofHiqcN8EMCVTv4GTiTxwjvgLOl6gaU+hRq8ET3
-   h2vFMnybKQDHsaG8EmJlAmfMDBCq9a6rMtL6AVLpUx0S1+PKl1EiSDbam
-   id9uwldaBIjzj6rarg/VA4aJXUa3u0g6FUm1ex6FHHBd7+GtGS/E6Fjet
-   mzOhh714wdKEIf+FGsUgKYz9xqh06mixb/OqeVsDT+mlJNtwr6RGeaHCY
-   TmB3VtECprjGy3F4EUtYbSuXmbdM72YpqeCh4Sxfr2yacOZV7DhhTieYA
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10272"; a="339600547"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
-   d="scan'208";a="339600547"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 08:17:49 -0800
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
-   d="scan'208";a="545146496"
-Received: from rbrosius-mobl.amr.corp.intel.com (HELO [10.209.131.146]) ([10.209.131.146])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 08:17:48 -0800
-Message-ID: <a3240a03-2e14-35e6-4915-41f994e365fc@linux.intel.com>
-Date:   Tue, 1 Mar 2022 07:52:43 -0600
+        with ESMTP id S234347AbiCAPD6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:03:58 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A7D22DD5A;
+        Tue,  1 Mar 2022 07:03:17 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B68E661635;
+        Tue,  1 Mar 2022 15:03:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6426C340EE;
+        Tue,  1 Mar 2022 15:03:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646146996;
+        bh=6VT7ZZJE4eWH69e6J3p5kOcPN+nEhh3aFJ++ueF3zUw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S+tQe4FjIdeps0VYDJkSNfO5UCzixWi4v3DyOubRtW9YCDsH3GqxnWyoX2lh+1utd
+         hft8Lnmq2DuUL/j0knLDy6aIMrR+2dgDhdNIU0bOVoJ/t/0VkkNom29QiJVGC9Vtlw
+         pAEbl3bw8KC5RIpZIonko9Bp/mBDM2d9Xy7vrmczGQnO9s208Lax4exXNOGuS7Y+qH
+         j6AuS7rHwTyrWa15JXgFrNsGWHI+T5uk6WAubqnVO/nw+RHXXgxRTFGQTr1vwFEwfb
+         V9HuLLIf8XF3m8MRR2onuEHFux9AFTwIV2geLi/VHo7z52tq/7JxFdeYXB0dWd6NOL
+         6ffaV6uYIQWLg==
+Date:   Tue, 1 Mar 2022 16:03:12 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: microchip,corei2c: Fix indentation of
+ compatible items
+Message-ID: <Yh41sLhyhxwxfH+l@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara <daire.mcnamara@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <365d32c63c2fe080866be60c32dddd0f3634d19d.1645705789.git.geert@linux-m68k.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Firefox/91.0 Thunderbird/91.5.0
-Subject: Re: [PATCH v3 3/3] soundwire: qcom: add in-band wake up interrupt
- support
-Content-Language: en-US
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org, vkoul@kernel.org,
-        yung-chuan.liao@linux.intel.com
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, quic_srivasam@quicinc.com
-References: <20220228172528.3489-1-srinivas.kandagatla@linaro.org>
- <20220228172528.3489-4-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-In-Reply-To: <20220228172528.3489-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="BVBLWRpeC9NpsvkP"
+Content-Disposition: inline
+In-Reply-To: <365d32c63c2fe080866be60c32dddd0f3634d19d.1645705789.git.geert@linux-m68k.org>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,117 +68,42 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--BVBLWRpeC9NpsvkP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 2/28/22 11:25, Srinivas Kandagatla wrote:
-> Some of the Qualcomm SoundWire Controller instances like the ones that are
-> connected to RX path along with Headset connections support Waking up
-> Controller from Low power clock stop state using SoundWire In-band interrupt.
-> SoundWire Slave on the bus would initiate this by pulling the data line high,
-> while the clock is stopped.
-> 
-> Add support to this wake up interrupt.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+On Thu, Feb 24, 2022 at 01:31:21PM +0100, Geert Uytterhoeven wrote:
+> make dt_binding_check:
+>=20
+>     Documentation/devicetree/bindings/i2c/microchip,corei2c.yaml:19:9: [w=
+arning] wrong indentation: expected 10 but found 8 (indentation)
+>=20
+> Fixes: f1bd6661946b20d1 ("dt-bindings: i2c: add bindings for microchip mp=
+fs i2c")
+> Signed-off-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Applied to for-next, thanks!
 
-> ---
->  drivers/soundwire/qcom.c | 50 ++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 810232686196..e893aee1b057 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -14,6 +14,7 @@
->  #include <linux/pm_runtime.h>
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
-> +#include <linux/pm_wakeirq.h>
->  #include <linux/slimbus.h>
->  #include <linux/soundwire/sdw.h>
->  #include <linux/soundwire/sdw_registers.h>
-> @@ -154,6 +155,7 @@ struct qcom_swrm_ctrl {
->  	u8 rd_cmd_id;
->  	int irq;
->  	unsigned int version;
-> +	int wake_irq;
->  	int num_din_ports;
->  	int num_dout_ports;
->  	int cols_index;
-> @@ -503,6 +505,31 @@ static int qcom_swrm_enumerate(struct sdw_bus *bus)
->  	return 0;
->  }
->  
-> +static irqreturn_t qcom_swrm_wake_irq_handler(int irq, void *dev_id)
-> +{
-> +	struct qcom_swrm_ctrl *swrm = dev_id;
-> +	int ret;
-> +
-> +	ret = pm_runtime_get_sync(swrm->dev);
-> +	if (ret < 0 && ret != -EACCES) {
-> +		dev_err_ratelimited(swrm->dev,
-> +				    "pm_runtime_get_sync failed in %s, ret %d\n",
-> +				    __func__, ret);
-> +		pm_runtime_put_noidle(swrm->dev);
-> +	}
-> +
-> +	if (swrm->wake_irq > 0) {
-> +		if (!irqd_irq_disabled(irq_get_irq_data(swrm->wake_irq)))
-> +			disable_irq_nosync(swrm->wake_irq);
-> +	}
-> +
-> +	pm_runtime_mark_last_busy(swrm->dev);
-> +	pm_runtime_put_autosuspend(swrm->dev);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +
->  static irqreturn_t qcom_swrm_irq_handler(int irq, void *dev_id)
->  {
->  	struct qcom_swrm_ctrl *swrm = dev_id;
-> @@ -1340,6 +1367,19 @@ static int qcom_swrm_probe(struct platform_device *pdev)
->  		goto err_clk;
->  	}
->  
-> +	ctrl->wake_irq = of_irq_get(dev->of_node, 1);
-> +	if (ctrl->wake_irq > 0) {
-> +		ret = devm_request_threaded_irq(dev, ctrl->wake_irq, NULL,
-> +						qcom_swrm_wake_irq_handler,
-> +						IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-> +						"swr_wake_irq", ctrl);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to request soundwire wake irq\n");
-> +			goto err_init;
-> +		}
-> +	}
-> +
-> +
->  	ret = sdw_bus_master_add(&ctrl->bus, dev, dev->fwnode);
->  	if (ret) {
->  		dev_err(dev, "Failed to register Soundwire controller (%d)\n",
-> @@ -1424,6 +1464,11 @@ static int swrm_runtime_resume(struct device *dev)
->  	struct qcom_swrm_ctrl *ctrl = dev_get_drvdata(dev);
->  	int ret;
->  
-> +	if (ctrl->wake_irq > 0) {
-> +		if (!irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
-> +			disable_irq_nosync(ctrl->wake_irq);
-> +	}
-> +
->  	clk_prepare_enable(ctrl->hclk);
->  
->  	if (ctrl->clock_stop_not_supported) {
-> @@ -1491,6 +1536,11 @@ static int __maybe_unused swrm_runtime_suspend(struct device *dev)
->  
->  	usleep_range(300, 305);
->  
-> +	if (ctrl->wake_irq > 0) {
-> +		if (irqd_irq_disabled(irq_get_irq_data(ctrl->wake_irq)))
-> +			enable_irq(ctrl->wake_irq);
-> +	}
-> +
->  	return 0;
->  }
->  
+
+--BVBLWRpeC9NpsvkP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIeNbAACgkQFA3kzBSg
+KbZpsw/+JLQL5ZthwQqog4jI4XxWkbADS4uk/hkQ4/BMRjORDB7JaZFLhOP+bFYw
+R2BipPuikXdVhVjZVN/JDkwWArBgPyB7p+QtKdtOCwmB4tdopasy6/nNVKWbXJt5
+8Ue3RUq6SRvNGAJPkNdKnORxI1DPXIRuYMoHWgG9AQ84zkVmxUiwtFNP1UcAnOjs
+cVEgbw17ZyfTCEWYy9E5BYycXcofb25LcOkLqtQAGZySW5phXXb4WHpdNPciCnQt
+zquFrKxTC0NB6faRrkDS2ijdjqlQ9y8nHXcvoqgyAmce98jjHUmT+puzxAM+rM8C
+G50R9dhLpdkR0fsZqO8k3NX5HZZvk8Q5oOV3mmiI1gNfIIoghFLfVo7/dG3XHGZT
+Qpev6wZiM1bHcqD8PFI4+7+W7mwMUB723cAjYv20q8HG64FtYtziwV5vs54sQh+q
+E1LfPKRuUM/IcoQ3zWdqZ3BNqL1crdfKaxwBTrEYIlkZHhNpqUotnh8FaSTUMNYp
+jp4lEBXludGP9CyFFry2f3RAPstPIntEH0+2UQyiWeYA9ZFpgIduupjumnA8SOj3
+P/9+S8dsWb+fFhs7JlDGCl6OkvXqeV+I6ENbu4apLHQMlPWMuS6VrziFrzBD42/U
+7pLMg/nvreUTjw2afUEv8rhw/2lhOF3Dmd32nDL9ickhr/et8dU=
+=1Gz3
+-----END PGP SIGNATURE-----
+
+--BVBLWRpeC9NpsvkP--
