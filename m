@@ -2,243 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 783F84C8BD8
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:42:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE414C8BDA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:42:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234605AbiCAMmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 07:42:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45492 "EHLO
+        id S230414AbiCAMna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 07:43:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234755AbiCAMmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:42:51 -0500
-X-Greylist: delayed 49578 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 01 Mar 2022 04:42:09 PST
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF33498F75
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 04:42:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646138526;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=2KtJQ1RKQJblfXNU6efNM3rKLhsvuJUUsD0HH9WcNJ8=;
-    b=huZ+tCVmlmS9C8CoJga+fjSVPwAzigVsJf3GI5hTrrt2CIMouz+AAOT7A/Oe5UP88O
-    mEXdH87BMKCAa5TpiFEBiY7/2Gtlm8aLQGkc30oLTvjWe+nTlMFRx20Voz0ogI3wuIlT
-    ADA/bL32IbW7+SFsyUMjW0ZC9JgyurQcqlwuAQ1lAMNgRv6zX+1/YTF8g84euPMhHPc0
-    piDOqVktcAUZUIQP7iFVPy67hvrs2cV6dYe6WhqioeTFyOjgYyu9nEs7+fVKf7yJLXY+
-    t8bz37dCyVcZHtwBmWWlUUVUQ1bYQPyztSJ4WHRnsCQfDGNxzumiZ+OWtRoN1nNTSOfa
-    ENhA==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fiL2ZP6Q"
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.40.1 AUTH)
-    with ESMTPSA id kdc58dy21Cg5a4o
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 1 Mar 2022 13:42:05 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 2/2] ASoC: codecs: Add Awinic AW8738 audio amplifier driver
-Date:   Tue,  1 Mar 2022 13:37:42 +0100
-Message-Id: <20220301123742.72146-3-stephan@gerhold.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220301123742.72146-1-stephan@gerhold.net>
-References: <20220301123742.72146-1-stephan@gerhold.net>
-MIME-Version: 1.0
+        with ESMTP id S234028AbiCAMn2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:43:28 -0500
+Received: from APC01-HK2-obe.outbound.protection.outlook.com (mail-eopbgr1300122.outbound.protection.outlook.com [40.107.130.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 363A132ED6;
+        Tue,  1 Mar 2022 04:42:46 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gPBzsK7dt0jQSsnnRj7ci3TjPRfjk7En52+xt9neKJhVn1oCcQiMDjYIuc1fpC/6mTMx4NMHCSt6HIUEw4oLcCAm7sbyqVan/b+ptJovTYA1+yiJX+9bTLTPBr0WzyWXEYJOLe0tJLHN9xbm3E+uqGlTso666db8g9meyB/XY7NLOXLaPe3QmRsmU18p30CT/waMHVsZYbaAEd9Kf9eht3yPhh9IGCf4wvv/pWyAE7e8DVd/2xQcM4VPhmmvSI1ken7DiOLNCOra4sT870xsiqaavLn9BPDShzfZOkwvqdT5FJeCSwBvtqABWfeScfI2jG36FJFV4VYr6hXUbag7Ug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=b+icA7PhvM//zDaw4/TjZqIAUIagH3JKjLDXdWPvDKw=;
+ b=Z+7rwRHszMPCU2a6OjhZsI7Amroe2wnSzBGPHW5cxfcA7LU40ADT6CBmYcT1V1xkGQ16buHV1VDYwfqINz46gceVibkFbP+FmnYdTp7eKV/DUpMOOLB8QpMWbjPD85kpJAUgAtj4mSzrZ/WXR8v2onjm7PT2zyABV3rTt80ZjSDHCvFpQryhgBYHSojzNEawppnMQ1Ik4SknTpGhHmp081FO9rU95M5utTTFHF8wvqGlfLnYAiF2iHK9gkep948hioEhlNoW7j3+27c/61fUpVcCq8nGSyPzmgpSIcaVhSDk0Pe/vDT8zDWYcQ2oYYxeI/dCbDKqjhvkrKvWgJBt7A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=quantatw.com; dmarc=pass action=none header.from=quantatw.com;
+ dkim=pass header.d=quantatw.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=b+icA7PhvM//zDaw4/TjZqIAUIagH3JKjLDXdWPvDKw=;
+ b=PdKx48fZTvBti9DV8tsyyZMpkCTPgsRcgXgQRgMDaNMrKcpq75EYEk9966qUWOcrhqCrEYb6zvjqKjZcj20UYw7yV98PY0WS/oVl5ki/sLcslMDwuHTLZZ+6U+KBV5BXjsOHCquZLEk+TEeMXqwllgbuo5P47popiHs0U63SMvI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=quantatw.com;
+Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
+ by TYAPR04MB2493.apcprd04.prod.outlook.com (2603:1096:404:18::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.23; Tue, 1 Mar
+ 2022 12:42:41 +0000
+Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
+ ([fe80::b57e:962a:3820:eab]) by HK0PR04MB3282.apcprd04.prod.outlook.com
+ ([fe80::b57e:962a:3820:eab%3]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
+ 12:42:41 +0000
+Message-ID: <9bb56622-2859-1059-6f14-2242ab6a2427@quantatw.com>
+Date:   Tue, 1 Mar 2022 20:42:39 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v4 2/2] dt-bindings: hwmon: Add sample averaging
+ properties for ADM1275
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220301103900.12637-1-potin.lai@quantatw.com>
+ <20220301103900.12637-3-potin.lai@quantatw.com>
+ <da4ac970-9e7d-c9cb-eea3-e5ec8a1eef00@kernel.org>
+From:   POTIN LAI <potin.lai@quantatw.com>
+In-Reply-To: <da4ac970-9e7d-c9cb-eea3-e5ec8a1eef00@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-ClientProxiedBy: HK2P15301CA0008.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::18) To HK0PR04MB3282.apcprd04.prod.outlook.com
+ (2603:1096:203:89::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2198814e-56f3-4fcf-4657-08d9fb80f98b
+X-MS-TrafficTypeDiagnostic: TYAPR04MB2493:EE_
+X-Microsoft-Antispam-PRVS: <TYAPR04MB249313EF8467CA81C30A33FC8E029@TYAPR04MB2493.apcprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: uZGaS4oj/sG9dA0CGZoSlL3ypZtyYKxWVYxvE2SYBXAI7w8DsHfwy+rpUhv2+nem8RmUkCTYYr2Yb1a57sLC22HSWNmcEQP/kweoZFmBjItdPhnLB1+fc6UDtivaJfc5T/ZxaC4ixoMDLWOV306CerGUNSjQtQI9dHdVFsJ4CR18kbKsBqf4pCEOidetpiUOXMAsVGg2pymPiDlD5OuBgzBMmCKemY4vDipigYzf7qOcNdvh2/fkP7Y1NfI78ucFHjD+D8s3mQl+XfdyfYyhmA0hOUgmNvMaptodkYK1WpNw3KN4z+C6M+tV7cdX6pG443vuzbcIy6vrGdXcBUUx6Ya7K5Y46fG8MzPnv9/bxBzKvryPAFDEiBhFAseULlGMU33SVtcwLHr/74pGPfwVijh5fm23bqW4QzOymJYYrEB7xNdyHO9fnr7m6ne0cAo3kkyajRzU1hWOI5/MlIk/wVp3IMDHzs2Koz8mb5OGk2ivLlLIO5VhVWk92NL2TiOoqeR7pIAYuFPsP6Q1WDhNDA1ovnsNd2/YZuu5QLy0bipBqZYbyOwELsgbPwVAsMWO0HrB32lSUx3i9yHmxX/cMlPQh2vigkqjwinaKcJegFJZPYAUEyq6qtsdKJaP0hn30rtDj8F/Nj+lT/5wJSgOzGAiSrIaDXRywpJYqcCq/m6i3XQIQoc+LpoYLS1cbkMljcc6i0bdocioeaLTcs4UtN7MfcKkF0ZSkcCPraA5i7Hn7B8p3nH7st/pCYvKF6zVRaKpktslL/3JNpeY+ZuJbuBBlRj+hmeKTOTM8tyRzws=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(31686004)(508600001)(110136005)(38350700002)(2616005)(6486002)(2906002)(6512007)(26005)(36756003)(316002)(186003)(38100700002)(52116002)(53546011)(5660300002)(86362001)(66476007)(4326008)(8676002)(66556008)(6506007)(8936002)(83380400001)(31696002)(66946007)(11716005)(45980500001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WWhMQWhpeUU2Q1RlN1ZZT3NDUmZoU0loV3ZZREFqQkhnV0U2NEpTc01IbUoz?=
+ =?utf-8?B?dnc5MEtPd0cvWlFWN2R2Y0FUaXAwM0VTeUtlbnpnR01PcFQ4K3NjUmUxVXpn?=
+ =?utf-8?B?WTk0ZW4zMk1OR0R3QTNUK3lJbi8xZ01sNm5ackhVeEtjdkRPSkN3Rms2MDZz?=
+ =?utf-8?B?ZVlCalBjaHJiNm1NUkJBb1ZBdmFaejc3bWFBZEJBcHRVRnBPcUJ2dFpqR2to?=
+ =?utf-8?B?QXgxMjI0YVF0aVNHcU9Tc29DVW5aV1hURG5TY05USnpwMVcvbzh6SU9KUU9j?=
+ =?utf-8?B?OFI5N0o5ZHk2ckMwVi9mUmU1eWV5cm4xcTR0QVhjbnZVUVJaTDNNRHFLVmZv?=
+ =?utf-8?B?R3gwaTRMakhFc3BLQ0MwMEFTUDU5dEk2bFlrb0RhRktCcDNNWHFoK0g3UFRO?=
+ =?utf-8?B?RDI4K2xVbSt2Sy8rcDhHSTdTcFZhQmx1UVdHVHdzQ2lxNWZDMFlrN1FaVXY0?=
+ =?utf-8?B?UlpCWFhoeUdYYXRISHpacFlVSGxzcHdUL3Rpb3hybzZkLzgxeWlsZFlHMUU0?=
+ =?utf-8?B?aUxlU29JbTZ0Rjlsa0RZK2VNT3VOS05sUXkxdjZRT1RLcHFGclBVQlQrSDBE?=
+ =?utf-8?B?a3ZENHZQajl5RUpZVGw2ZkFybUY4Ylg0VVpadUZzenZML2Jkc2czZzcwQ1lv?=
+ =?utf-8?B?Q0lpUERNQnU3UGM2ZG4ySjBGSXExZHNWS0ZxUHpqMEZDQTJlM2RCdEdLeGNP?=
+ =?utf-8?B?bVpvaktlMEo5Wk9hbFpkWjNPSVRPd2o5M3k4dWgzdHlhRUI1eDh4TlltdFBT?=
+ =?utf-8?B?T1EvajBYdnNoU25rZUUybkpOUEJmbnJuUDNTNmIvRmE5cHBSS1QxdVJtZ1Vp?=
+ =?utf-8?B?dkt1N2ZKYTFrSGRLTlQzOW5YVGhCTk1KT3JuUGV6d0VWc0lzdEU1aXM3NFB2?=
+ =?utf-8?B?bnV6UXlIdm85RkJJdGdHUUlnWHpwb3pIK2FLSFc1dVFtTkZ5YkpmMmJMUnBI?=
+ =?utf-8?B?OHVEckxKelZIYmc1SXNYcVBYTk10UWRtTnhwQk9xSTZ2TkgzNWt0L3p2Nk5j?=
+ =?utf-8?B?aXRTZmJ5QWpMRk1oZ3U1ZUk2TXRwVGhqR0hHYTZCOHkzSHdmUmYwTmtkTDNx?=
+ =?utf-8?B?VWx2em5xMmVQbG9TREkxeURMbkhMUi9jN3ovWS9mUHV6T3VlUjY2TDA3N3Rx?=
+ =?utf-8?B?NGsvWWZudVQwbFBOVTlqbkVvREM2aDhPVngvMytJWVJBZVIyVXUrTHVpSFc5?=
+ =?utf-8?B?S2c0Q21RUm0wVTNMWHlKaEd1cTFLNFRWUk9tWTFRWXFNM1NKZEZSVFJUaWwz?=
+ =?utf-8?B?Rm5GOU5Dc0ZuM05pWWpqN3hSazhrQWg4V20ydGZhd1R5RHRlVFpSTTF6RmdF?=
+ =?utf-8?B?U0JFMTc0MzZ4aFhadXdkRmp4a29LcEJ0OHFQeS8wdi96UHNFbDRVMXJqMGhv?=
+ =?utf-8?B?RXBlUFVSWjZPVG5nczcvYXdIQkNiOE1hN3ZHQnE2TnlqWityNG9LQ3NlK0hy?=
+ =?utf-8?B?YkhubWhjZUVZK2pScXZyOHAwRC84V1o5dTcvR1dNaTFxR2hQb0JlbmxTSkh4?=
+ =?utf-8?B?L3hnQThiUFVLdmVRMjVkbFBoaTJjbHhyVThZQWRoMGV5eVQwNmRTeWFCblpO?=
+ =?utf-8?B?bGNjUUNoRXpFUXdzYjVxajZvN2Rma3lySlpsRUFhSXIrY2E0Yi9PSmpoeTdi?=
+ =?utf-8?B?TUZBaGJ6ZDc4YUdpS0h1V2htTTViWjMrVW5OL0wvVmtRUXUxelJMalYvZXlH?=
+ =?utf-8?B?ZHp2KzM0Y3c5K3MxcUNvUzAzRWpHSW01ZWFxdmVtZUZZQk1OZ2cwWkNKYXhG?=
+ =?utf-8?B?M29UQmsvMzhhaSswRE5TaEtyUEFGajJOU1BjSFNmYmVvd0ppTXlwTjVWL3Rw?=
+ =?utf-8?B?SUZvWG5lMXhVMXJTbHNoLzJKa3BQR1dwVG1zUFR5bG9XOWNseERsbSs5WFk4?=
+ =?utf-8?B?YmtoYjVGN0Y3bUlNYlhVRnoyZ25xT2xvaDA0Z3U1UExRM08raDN0STNZUFNi?=
+ =?utf-8?B?WmQwdkkvTkZRQXZ4ZjlwbFRJMGJmR0xLV3RSaWNZZFdIQ2JiUHJuOUk2TUwy?=
+ =?utf-8?B?TTJyV0R3Vk9qSDYvRVBVWTlQWWZLWTBIcEg5RTBBcDJpbTl6QUJQWUp4cWtO?=
+ =?utf-8?B?em1SSDZYZXRrTlVSM2tiOHpMWEwwV0ltNEZiRmZueGF1U05FQTF4NWo2anVY?=
+ =?utf-8?B?akgxbERoTFlDbHNMQlcvVzhqTjdNOVJhVE14Sjl0bFVlZmE0Lzk2ZGY3RGJw?=
+ =?utf-8?Q?7Kn3hi6Z6o8VL6a273X8AVI=3D?=
+X-OriginatorOrg: quantatw.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2198814e-56f3-4fcf-4657-08d9fb80f98b
+X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 12:42:41.3488
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6k4gH+AKuyilRK5hfo1dV3zkV+oUB5WqCf0N03osTH20iepFcLct/CRfRIcRKV0AwNAVZVY/lP5E5VTj7z8IhA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR04MB2493
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
 
-The Awinic AW8738 is a simple audio amplifier using an enable GPIO.
-The main difference to simple-amplifier is that there is a "one-wire
-pulse control" that allows configuring the amplifier to one of a few
-pre-defined modes.
+Krzysztof Kozlowski 於 1/03/2022 7:16 pm 寫道:
+> On 01/03/2022 11:39, Potin Lai wrote:
+>> Add documentation of new properties for sample averaging in PMON_CONFIG
+>> register.
+>>
+>> New properties:
+>> - adi,volt-curr-sample-average
+>> - adi,power-sample-average
+>> - adi,power-sample-average-enable
+>>
+>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+>> ---
+>>  .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
+>>  1 file changed, 44 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> index 223393d7cafd..1b612dc06992 100644
+>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
+>> @@ -37,6 +37,47 @@ properties:
+>>      description:
+>>        Shunt resistor value in micro-Ohm.
+>>  
+>> +  adi,volt-curr-sample-average:
+>> +    description: |
+>> +      Number of samples to be used to report voltage and current values.
+>> +      If the configured value is not a power of 2, sample averaging number
+>> +      will be configured with smaller and closest power of 2.
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>> +    default: 1
+>> +
+>> +  adi,power-sample-average:
+>> +    description: |
+>> +      Number of samples to be used to report power values.
+>> +      If the configured value is not a power of 2, sample averaging number
+>> +      will be configured with smaller and closest power of 2.
+>> +
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+>> +    default: 1
+>> +
+>> +  adi,power-sample-average-enable:
+>> +    description: Enable sample averaging for power reading.
+>> +    type: boolean
+> Why do you need this property? Voltage/current sampling is enabled in
+> your driver with presence of adi,volt-curr-sample-average. Why power
+> sampling is different?
+For "adi,power-sample-average", adm1075, adm1275 & adm127 don't have config reg for power sample average, so I add boolean type property to enable it
+But for "adi,power-sample-average-enable", all chips have ability of configuring, so it doesn't need a property to enable or disable.
 
-Add a simple driver that allows setting it up in the device tree
-with a specified mode number.
 
-Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
- sound/soc/codecs/Kconfig  |  10 ++++
- sound/soc/codecs/Makefile |   2 +
- sound/soc/codecs/aw8738.c | 104 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 116 insertions(+)
- create mode 100644 sound/soc/codecs/aw8738.c
+Does example means that I can set any type (not just boolean?) of property to false if not allowed?
+Could I write as below?
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 4de029ae377c..0e35d33f8590 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -53,6 +53,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_AK5558
- 	imply SND_SOC_ALC5623
- 	imply SND_SOC_ALC5632
-+	imply SND_SOC_AW8738
- 	imply SND_SOC_BT_SCO
- 	imply SND_SOC_BD28623
- 	imply SND_SOC_CQ0093VC
-@@ -579,6 +580,15 @@ config SND_SOC_ALC5632
- 	tristate
- 	depends on I2C
- 
-+config SND_SOC_AW8738
-+	tristate "Awinic AW8738 Audio Amplifier"
-+	select GPIOLIB
-+	help
-+	  Enable support for the Awinic AW8738 audio amplifier (or similar).
-+	  The driver supports simple audio amplifiers similar to
-+	  SND_SOC_SIMPLE_AMPLIFIER, but additionally allows setting the
-+	  amplifier mode using the Awinic-specific one-wire pulse control.
-+
- config SND_SOC_BD28623
- 	tristate "ROHM BD28623 CODEC"
- 	help
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index c3c6059a5f8a..8637e9e869e3 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -45,6 +45,7 @@ snd-soc-ak4671-objs := ak4671.o
- snd-soc-ak5386-objs := ak5386.o
- snd-soc-ak5558-objs := ak5558.o
- snd-soc-arizona-objs := arizona.o arizona-jack.o
-+snd-soc-aw8738-objs := aw8738.o
- snd-soc-bd28623-objs := bd28623.o
- snd-soc-bt-sco-objs := bt-sco.o
- snd-soc-cpcap-objs := cpcap.o
-@@ -388,6 +389,7 @@ obj-$(CONFIG_SND_SOC_AK5558)	+= snd-soc-ak5558.o
- obj-$(CONFIG_SND_SOC_ALC5623)    += snd-soc-alc5623.o
- obj-$(CONFIG_SND_SOC_ALC5632)	+= snd-soc-alc5632.o
- obj-$(CONFIG_SND_SOC_ARIZONA)	+= snd-soc-arizona.o
-+obj-$(CONFIG_SND_SOC_AW8738)	+= snd-soc-aw8738.o
- obj-$(CONFIG_SND_SOC_BD28623)	+= snd-soc-bd28623.o
- obj-$(CONFIG_SND_SOC_BT_SCO)	+= snd-soc-bt-sco.o
- obj-$(CONFIG_SND_SOC_CQ0093VC) += snd-soc-cq93vc.o
-diff --git a/sound/soc/codecs/aw8738.c b/sound/soc/codecs/aw8738.c
-new file mode 100644
-index 000000000000..b075c7c0efd0
---- /dev/null
-+++ b/sound/soc/codecs/aw8738.c
-@@ -0,0 +1,104 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+#include <sound/soc.h>
-+
-+struct aw8738_priv {
-+	struct gpio_desc *gpiod_enable;
-+	unsigned int mode;
-+};
-+
-+static int aw8738_drv_event(struct snd_soc_dapm_widget *w,
-+			    struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *c = snd_soc_dapm_to_component(w->dapm);
-+	struct aw8738_priv *aw = snd_soc_component_get_drvdata(c);
-+	int i;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		for (i = 0; i < aw->mode; i++) {
-+			gpiod_set_value_cansleep(aw->gpiod_enable, 0);
-+			udelay(2);
-+			gpiod_set_value_cansleep(aw->gpiod_enable, 1);
-+			udelay(2);
-+		}
-+		msleep(40);
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		gpiod_set_value_cansleep(aw->gpiod_enable, 0);
-+		usleep_range(1000, 2000);
-+		break;
-+	default:
-+		WARN(1, "Unexpected event");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget aw8738_dapm_widgets[] = {
-+	SND_SOC_DAPM_INPUT("IN"),
-+	SND_SOC_DAPM_OUT_DRV_E("DRV", SND_SOC_NOPM, 0, 0, NULL, 0, aw8738_drv_event,
-+			       SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route aw8738_dapm_routes[] = {
-+	{ "DRV", NULL, "IN" },
-+	{ "OUT", NULL, "DRV" },
-+};
-+
-+static const struct snd_soc_component_driver aw8738_component_driver = {
-+	.dapm_widgets = aw8738_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(aw8738_dapm_widgets),
-+	.dapm_routes = aw8738_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(aw8738_dapm_routes),
-+};
-+
-+static int aw8738_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct aw8738_priv *aw;
-+	int ret;
-+
-+	aw = devm_kzalloc(dev, sizeof(*aw), GFP_KERNEL);
-+	if (!aw)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, aw);
-+
-+	aw->gpiod_enable = devm_gpiod_get(dev, "enable", GPIOD_OUT_LOW);
-+	if (IS_ERR(aw->gpiod_enable))
-+		return dev_err_probe(dev, PTR_ERR(aw->gpiod_enable),
-+				     "Failed to get 'enable' gpio");
-+
-+	ret = device_property_read_u32(dev, "awinic,mode", &aw->mode);
-+	if (ret)
-+		return -EINVAL;
-+
-+	return devm_snd_soc_register_component(&pdev->dev,
-+					       &aw8738_component_driver,
-+					       NULL, 0);
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id aw8738_of_match[] = {
-+	{ .compatible = "awinic,aw8738" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, aw8738_of_match);
-+#endif
-+
-+static struct platform_driver aw8738_driver = {
-+	.probe	= aw8738_probe,
-+	.driver = {
-+		.name = "aw8738",
-+		.of_match_table = of_match_ptr(aw8738_of_match),
-+	},
-+};
-+module_platform_driver(aw8738_driver);
-+
-+MODULE_DESCRIPTION("Awinic AW8738 Amplifier Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.35.1
+allOf:
+  - if:
+      properties:
+        compatible:
+          contains:
+            enum:
+              - chips_not_support
+    then:
+      properties:
+        adi,power-sample-average: false
 
+Sorry, I am not quite understand the example of set property not allowed, if I still get it wrong, please advise more detailed, thank you.
+
+
+Potin
+>
+> Best regards,
+> Krzysztof
