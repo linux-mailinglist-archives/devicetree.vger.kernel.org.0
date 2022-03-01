@@ -2,170 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFD44C90B3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:47:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1A404C9103
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 18:00:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235955AbiCAQr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 11:47:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53094 "EHLO
+        id S235311AbiCARBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 12:01:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236417AbiCAQr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:47:56 -0500
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CD264665D;
-        Tue,  1 Mar 2022 08:47:15 -0800 (PST)
-Received: by mail-oo1-xc2e.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso23108592ooi.1;
-        Tue, 01 Mar 2022 08:47:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:message-id:date:mime-version:user-agent:content-language:to
-         :cc:references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=TJyhIr9uQwSC4Vsri+p7N794sJJ7eTPsgawQLVN8g34=;
-        b=jAPFaDS2K5ULsq1PG8vS4As2lLxVauB/3stdyl7zTknK9bYFJTKyAuGN/oyxHrfSgw
-         Lzmn+8L1wAgiyE/WfKfYB0GIL86iRnemCgOOLznFdl2kHl0uQ87dcwitBgQoddeDdhz7
-         j3sziGJC6IGC+3UxFZSM/YXUU2nsNTPNYCk8T4sVv+mjU3egKf1lKvUpn4U1v8LIjMQu
-         Nrz7u7mxwv2G6BYRjbm8lDQZkntQKYQwj8Bo0ffzbjeyNt1qKS1OzlWy6ondUdg4VGFe
-         zD3SZ4djKqGx7J/aK3N3lHDFnXaKpegB+q7qEKAbIiYUuz0ofQ1m0wMFKUUFizpfEPLa
-         Lw4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=TJyhIr9uQwSC4Vsri+p7N794sJJ7eTPsgawQLVN8g34=;
-        b=OIwMexZ5Rha8vzU7uX1gpspqvTgo9/kBmlg7qL889u4aN9+vkccl10gRMyQuzjOgA5
-         tcl3Y+g8jBqmdEwqk6f4JAYVJHinoKHirNcbYWITBQxTlpWD/H9hHVkqk1Z0TXI+iaKG
-         Ki6awEWqhiWLpbmrSIoRyUHxjpupch7kpALXDk7pdVUJN/EGmStLpsLGu6HTEuXbSIgA
-         sICRGxMaeQkj9BFJYuyoQWkBQhGABWWmvuGBSTYlmmNx5MP5LaCxzGtxRUkC+/jISyrw
-         1totJt6K+4izqbalRBpM8rT6blXnUdHfW0i9kZQzyiIyO44e8EwNaRIRDTruzuSM0QFZ
-         7ZwA==
-X-Gm-Message-State: AOAM531+sbY8g7ceyQmcXGR5htqL4HJHoa6IiChrPrCyqfIUPzclWUCr
-        PtNODcMhrvOdluI4T4ZDr2s=
-X-Google-Smtp-Source: ABdhPJxRlXCSXw5okfjbvGh+ENHHVpGOLCWC0P46271cFZLQm7p25NH4JHb13DPShvjaBP2+hLP/jw==
-X-Received: by 2002:a05:6870:600a:b0:d7:4895:75be with SMTP id t10-20020a056870600a00b000d7489575bemr4091771oaa.35.1646153234602;
-        Tue, 01 Mar 2022 08:47:14 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id q13-20020a0568080ecd00b002d44f01f1d7sm8292922oiv.40.2022.03.01.08.47.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 08:47:13 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <39415d57-ec14-aab8-20fd-92d2a810f3fd@roeck-us.net>
-Date:   Tue, 1 Mar 2022 08:47:11 -0800
+        with ESMTP id S235988AbiCARBE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 12:01:04 -0500
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 155C811A2E;
+        Tue,  1 Mar 2022 09:00:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646154023; x=1677690023;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=9VhC8QHxpiYe2QNMS+J1jnkfhl2jLLg1QePMyLDV5kI=;
+  b=GrKCJ3DLy+1bQN6QeQupAUj004X+H8QYin4dGF2f29kwQOEmSU12ViQC
+   vKKz7idbhD8jif5NZUdxXe9sug8QQgnWLYIG9IQxaSIRbds+iw/w4WMoB
+   tx07AG+jpqpOZDxqxNXZgTPwRuiY9BUwL5C2m9SzXSTW6ZtaGLTPB8dwX
+   8rcCmoB4BNI4Q5v27TOi7iC/6zC8FxTeXCD5lPBhRLZosoMefGrUVcoS2
+   WdCHpZZGtKRzabZBvzauhmLhQwnFdLAQ8fun1q468abh0d3/3oHU7N/KD
+   gb+OEq62Nh4t0Ty4Yz10EBVj4nkmwIBQXhpSDA3gn6Du+Pp6+sTL6tYdj
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="313901076"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
+   d="scan'208";a="313901076"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 08:58:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
+   d="scan'208";a="593661381"
+Received: from lkp-server01.sh.intel.com (HELO 2146afe809fb) ([10.239.97.150])
+  by fmsmga008.fm.intel.com with ESMTP; 01 Mar 2022 08:58:45 -0800
+Received: from kbuild by 2146afe809fb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nP5pk-0000lx-Pu; Tue, 01 Mar 2022 16:58:44 +0000
+Date:   Wed, 2 Mar 2022 00:58:06 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        =?utf-8?B?77+9aXByYWdh?= <alsi@bang-olufsen.dk>
+Cc:     kbuild-all@lists.01.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/4] usb: typec: add TUSB320xA driver
+Message-ID: <202203020056.igXsHYzi-lkp@intel.com>
+References: <20220301132010.115258-4-alvin@pqrs.dk>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        POTIN LAI <potin.lai@quantatw.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220301103900.12637-1-potin.lai@quantatw.com>
- <20220301103900.12637-3-potin.lai@quantatw.com>
- <da4ac970-9e7d-c9cb-eea3-e5ec8a1eef00@kernel.org>
- <9bb56622-2859-1059-6f14-2242ab6a2427@quantatw.com>
- <bf1fa181-d2a7-eab9-4045-cf53ae3ce2f2@kernel.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v4 2/2] dt-bindings: hwmon: Add sample averaging
- properties for ADM1275
-In-Reply-To: <bf1fa181-d2a7-eab9-4045-cf53ae3ce2f2@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220301132010.115258-4-alvin@pqrs.dk>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/1/22 05:21, Krzysztof Kozlowski wrote:
-> On 01/03/2022 13:42, POTIN LAI wrote:
->>
->> Krzysztof Kozlowski 於 1/03/2022 7:16 pm 寫道:
->>> On 01/03/2022 11:39, Potin Lai wrote:
->>>> Add documentation of new properties for sample averaging in PMON_CONFIG
->>>> register.
->>>>
->>>> New properties:
->>>> - adi,volt-curr-sample-average
->>>> - adi,power-sample-average
->>>> - adi,power-sample-average-enable
->>>>
->>>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
->>>> ---
->>>>   .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
->>>>   1 file changed, 44 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>>> index 223393d7cafd..1b612dc06992 100644
->>>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>>> @@ -37,6 +37,47 @@ properties:
->>>>       description:
->>>>         Shunt resistor value in micro-Ohm.
->>>>   
->>>> +  adi,volt-curr-sample-average:
->>>> +    description: |
->>>> +      Number of samples to be used to report voltage and current values.
->>>> +      If the configured value is not a power of 2, sample averaging number
->>>> +      will be configured with smaller and closest power of 2.
->>>> +
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
->>>> +    default: 1
->>>> +
->>>> +  adi,power-sample-average:
->>>> +    description: |
->>>> +      Number of samples to be used to report power values.
->>>> +      If the configured value is not a power of 2, sample averaging number
->>>> +      will be configured with smaller and closest power of 2.
->>>> +
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
->>>> +    default: 1
->>>> +
->>>> +  adi,power-sample-average-enable:
->>>> +    description: Enable sample averaging for power reading.
->>>> +    type: boolean
->>> Why do you need this property? Voltage/current sampling is enabled in
->>> your driver with presence of adi,volt-curr-sample-average. Why power
->>> sampling is different?
->> For "adi,power-sample-average", adm1075, adm1275 & adm127 don't have config reg for power sample average, so I add boolean type property to enable it
->> But for "adi,power-sample-average-enable", all chips have ability of configuring, so it doesn't need a property to enable or disable.
-> 
-> So the reason to add separate property is that this feature can be
-> disabled. Since your driver does not disable it, it seems it is a
-> default state to have it disabled and you have to enable it, right?
-> Where is the enable code? I see you only write the sample averaging
-> value with adm1275_write_pmon_config(). There is no enable...
-> 
-> But wait, the power averaging is being disabled by writing 0 to
-> register, which is not allowed by bindings. How one can disable it?
-> 
+Hi "Alvin,
 
-Valid register values are 0..7, matching dt property values of
-BIT(x) or 1 .. 128. Setting the property value to 1 (= 1 sample)
-is equivalent to disabling sampling.
+I love your patch! Perhaps something to improve:
 
-> I don't see any usage of "adi,power-sample-average-enable", neither in
-> driver nor in hardware. I also do not see the need for it, the purpose.
-> 
-> Then second part, you added default value of 1 to
-> adi,volt-curr-sample-average and adi,power-sample-average. If the
-> property is missing, then the default of 1 is applied, right? But
-> datasheet says that default is 128!
-> 
-> The bindings neither match hardware nor driver. They look entirely
-> independent. This is wrong. They should instead be strongly related to
-> the hardware, describe the hardware. Then the driver should implement
-> proper logic for it.
-> 
+[auto build test WARNING on usb/usb-testing]
+[also build test WARNING on robh/for-next v5.17-rc6 next-20220301]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Agreed.
+url:    https://github.com/0day-ci/linux/commits/Alvin-ipraga/usb-typec-add-drivers-for-TUSB320xA-and-TS5USBA224/20220301-212251
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git usb-testing
+config: arc-allyesconfig (https://download.01.org/0day-ci/archive/20220302/202203020056.igXsHYzi-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 11.2.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/c60eb902fdeaef99cf2c10e84e0369ee6787753a
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Alvin-ipraga/usb-typec-add-drivers-for-TUSB320xA-and-TS5USBA224/20220301-212251
+        git checkout c60eb902fdeaef99cf2c10e84e0369ee6787753a
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arc SHELL=/bin/bash drivers/usb/typec/
 
-Guenter
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/usb/typec/tusb320xa.c:407:6: warning: no previous prototype for 'tusb320xa_action_role_sw_put' [-Wmissing-prototypes]
+     407 | void tusb320xa_action_role_sw_put(void *data)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/usb/typec/tusb320xa.c:414:6: warning: no previous prototype for 'tusb320xa_action_unregister_port' [-Wmissing-prototypes]
+     414 | void tusb320xa_action_unregister_port(void *data)
+         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+vim +/tusb320xa_action_role_sw_put +407 drivers/usb/typec/tusb320xa.c
+
+   406	
+ > 407	void tusb320xa_action_role_sw_put(void *data)
+   408	{
+   409		struct usb_role_switch *role_sw = data;
+   410	
+   411		usb_role_switch_put(role_sw);
+   412	}
+   413	
+ > 414	void tusb320xa_action_unregister_port(void *data)
+   415	{
+   416		struct typec_port *port = data;
+   417	
+   418		typec_unregister_port(port);
+   419	}
+   420	
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
