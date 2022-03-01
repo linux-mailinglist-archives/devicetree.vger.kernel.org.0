@@ -2,54 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B64034C9278
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 19:01:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F13B4C929D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 19:12:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236773AbiCASCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 13:02:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
+        id S236847AbiCASM5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 13:12:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236771AbiCASCU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 13:02:20 -0500
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79E1C3F336;
-        Tue,  1 Mar 2022 10:01:39 -0800 (PST)
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:105:465:1:4:0])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4K7Q6n6nJqz9sV3;
-        Tue,  1 Mar 2022 19:01:37 +0100 (CET)
-From:   Marcello Sylvester Bauer <sylv@sylv.io>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
-        t=1646157696;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=p97zePmp9d+cmIP2kHmhFQpvfjnvmtO8AdQThs+dFK8=;
-        b=d4r/5BHJSFvayCukRPPSEHOCvNQOh70bHqFz7Lqh0cNdl08zR2gZjgdKhofzZhwjJfrSQD
-        UvT8TkO9R1jmGB27jGObWOFTKLEu3JBipdrF5Sau8uCaCf76pz+j3v+F+NXeeBjIs7rDru
-        ExCs7POuUUeZ3/X/EbQBAeiNoIixVV+FR7ddpmfrocfDid6evuHJ64NgfeIxu2KN06bEN9
-        w9VOyUsmxqwdqB+riv0/VG/1tbiCd97oxY91nJcduuubyscFIvoKJ+DQCQ3+pc+Ehgi0Ai
-        Fuj/GRcc4fUByfmw11FXlkeMiKxZZZ6sMkGAnOfEt5+HUpBLXXYwDYgUYa3VPg==
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>,
-        Marcello Sylvester Bauer <sylv@sylv.io>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v3 1/3] dt-bindings: trivial-devices: Add xdpe11280
-Date:   Tue,  1 Mar 2022 19:01:11 +0100
-Message-Id: <81c0523ba790965a371d267bb1944652d80f5f72.1646157237.git.sylv@sylv.io>
-In-Reply-To: <cover.1646157237.git.sylv@sylv.io>
-References: <cover.1646157237.git.sylv@sylv.io>
+        with ESMTP id S236846AbiCASM4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 13:12:56 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7E46764BD8;
+        Tue,  1 Mar 2022 10:12:15 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3931D1042;
+        Tue,  1 Mar 2022 10:12:15 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4019E3F73D;
+        Tue,  1 Mar 2022 10:12:12 -0800 (PST)
+Message-ID: <4a748c85-4fdb-0c10-19d8-0379b9e42ab5@arm.com>
+Date:   Tue, 1 Mar 2022 18:12:06 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v4 1/9] dt-bindings: host1x: Add iommu-map property
+Content-Language: en-GB
+To:     cyndis@kapsi.fi, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        joro@8bytes.org, will@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+References: <20220301161455.4037062-1-cyndis@kapsi.fi>
+ <20220301161455.4037062-2-cyndis@kapsi.fi>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220301161455.4037062-2-cyndis@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,27 +49,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Infineon Multi-phase Digital Controller XDPE11280.
+On 2022-03-01 16:14, cyndis@kapsi.fi wrote:
+> From: Mikko Perttunen <mperttunen@nvidia.com>
+> 
+> Add schema information for specifying context stream IDs. This uses
+> the standard iommu-map property.
+> 
+> Signed-off-by: Mikko Perttunen <mperttunen@nvidia.com>
+> ---
+> v3:
+> * New patch
+> v4:
+> * Remove memory-contexts subnode.
+> ---
+>   .../bindings/display/tegra/nvidia,tegra20-host1x.yaml        | 5 +++++
+>   1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> index 4fd513efb0f7..0adeb03b9e3a 100644
+> --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-host1x.yaml
+> @@ -144,6 +144,11 @@ allOf:
+>           reset-names:
+>             maxItems: 1
+>   
+> +        iommu-map:
+> +          description: Specification of stream IDs available for memory context device
+> +            use. Should be a mapping of IDs 0..n to IOMMU entries corresponding to
 
-Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+Nit: maybe "context IDs 0..n" for maximum possible clarity?
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 1c49bbc654ee..da929cb08463 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -137,6 +137,8 @@ properties:
-           - infineon,slb9645tt
-             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
-           - infineon,tlv493d-a1b6
-+            # Infineon Multi-phase Digital VR Controller xdpe11280
-+          - infineon,xdpe11280
-             # Infineon Multi-phase Digital VR Controller xdpe12254
-           - infineon,xdpe12254
-             # Infineon Multi-phase Digital VR Controller xdpe12284
--- 
-2.35.1
+Either way, though, I'm happy that if the simplest and most 
+straightforward approach works, then it's the best choice.
 
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+
+Cheers,
+Robin.
+
+> +            usable stream IDs.
+> +
+>         required:
+>           - reg-names
+>   
