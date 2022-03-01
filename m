@@ -2,113 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED51F4C80A1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 02:59:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6944C80C3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 03:10:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232139AbiCAB77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 20:59:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52358 "EHLO
+        id S231881AbiCACKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Feb 2022 21:10:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232052AbiCAB7w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 20:59:52 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E06D2D1C6;
-        Mon, 28 Feb 2022 17:59:02 -0800 (PST)
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Tue, 1 Mar 2022
- 09:58:55 +0800
-From:   Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-To:     <shunzhou.jiang@amlogic.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <narmstrong@baylibre.com>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        <jianxin.pan@amlogic.com>
-Subject: [PATCH V5 2/2] soc: s4: Add support for power domains controller
-Date:   Tue, 1 Mar 2022 09:58:49 +0800
-Message-ID: <20220301015849.827634-3-shunzhou.jiang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
-References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
+        with ESMTP id S232052AbiCACKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 21:10:49 -0500
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8DF5465CE
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 18:10:00 -0800 (PST)
+X-MailGates: (flag:1,DYNAMIC,RELAY,NOHOST,LAN:PASS)(compute_score:DELIVE
+        R,40,3)
+Received: from 172.27.96.203
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(26039:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Tue, 01 Mar 2022 10:08:16 +0800 (CST)
+Received: from CQEXMAIL01.cqplus1.com (172.27.96.203) by
+ CQEXMAIL01.cqplus1.com (172.27.96.203) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.18; Tue, 1 Mar 2022 10:08:37 +0800
+Received: from CQEXMAIL01.cqplus1.com ([::1]) by CQEXMAIL01.cqplus1.com
+ ([::1]) with mapi id 15.01.2375.018; Tue, 1 Mar 2022 10:08:37 +0800
+From:   =?utf-8?B?cWluamlhblvopoPlgaVd?= <qinjian@cqplus1.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "maz@kernel.org" <maz@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "stefan.wahren@i2se.com" <stefan.wahren@i2se.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Rob Herring <robh@kernel.org>
+Subject: RE: [PATCH v9 02/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
+Thread-Topic: [PATCH v9 02/10] dt-bindings: arm: sunplus: Add bindings for
+ Sunplus SP7021 SoC boards
+Thread-Index: AQHYJtRL7BpgMun7wkSEmTd5rYSoP6ydrKQAgAFsZ7D//5U0gIAJ5rig//+U8YCAAanw0A==
+Date:   Tue, 1 Mar 2022 02:08:37 +0000
+Message-ID: <3d7decc2cf9c4df4ae7f22d0ca671f34@cqplus1.com>
+References: <cover.1645413746.git.qinjian@cqplus1.com>
+ <87cc20bb3ef747c4da89f9e60c0847532bb0a679.1645413746.git.qinjian@cqplus1.com>
+ <141c1b3e-b116-a0eb-78ad-dd9263880e9d@kernel.org>
+ <fd66d0c1f8d5410ca676dd523bcde61b@cqplus1.com>
+ <8ce8a3db-0f42-0b30-6688-01c1ea905425@kernel.org>
+ <66b2710bc7c048a284fa3b6270ba7bc8@cqplus1.com>
+ <d6031c8e-5a70-9561-f44e-0573594da34d@kernel.org>
+In-Reply-To: <d6031c8e-5a70-9561-f44e-0573594da34d@kernel.org>
+Accept-Language: zh-CN, en-US
+Content-Language: zh-CN
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.110.18]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.98.11.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support s4 Power controller. In s4, power control
-registers are in secure domain, and should be accessed by smc.
-
-Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
----
-V1->V2: fix spelling error, patchset use cover-letter
-V2->V3: add power domain always on reason
-V3->V4: clear vpu and usb power domaon always on
-V4->V5: add reviewed owner in patchset
----
- drivers/soc/amlogic/meson-secure-pwrc.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
-
-diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-index 59bd195fa9c9..a10a417a87db 100644
---- a/drivers/soc/amlogic/meson-secure-pwrc.c
-+++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-@@ -11,6 +11,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/power/meson-s4-power.h>
- #include <linux/arm-smccc.h>
- #include <linux/firmware/meson/meson_sm.h>
- #include <linux/module.h>
-@@ -119,6 +120,18 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
- 	SEC_PD(RSA,	0),
- };
- 
-+static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
-+	SEC_PD(S4_DOS_HEVC,	0),
-+	SEC_PD(S4_DOS_VDEC,	0),
-+	SEC_PD(S4_VPU_HDMI,	0),
-+	SEC_PD(S4_USB_COMB,	0),
-+	SEC_PD(S4_GE2D,		0),
-+	/* ETH is for ethernet online wakeup, and should be always on */
-+	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(S4_DEMOD,	0),
-+	SEC_PD(S4_AUDIO,	0),
-+};
-+
- static int meson_secure_pwrc_probe(struct platform_device *pdev)
- {
- 	int i;
-@@ -187,11 +200,20 @@ static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
- 	.count = ARRAY_SIZE(a1_pwrc_domains),
- };
- 
-+static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
-+	.domains = s4_pwrc_domains,
-+	.count = ARRAY_SIZE(s4_pwrc_domains),
-+};
-+
- static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 	{
- 		.compatible = "amlogic,meson-a1-pwrc",
- 		.data = &meson_secure_a1_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-s4-pwrc",
-+		.data = &meson_secure_s4_pwrc_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
--- 
-2.34.1
-
+PiA+Pj4+IFRoaXMgYmluZGluZyBsb29rcyBpbmNvbXBsZXRlLg0KPiA+Pj4NCj4gPj4+IFN1bnBs
+dXMgU1A3MDIxIGlzIGFuIEFSTSBDb3J0ZXggQTcgYmFzZWQgU29DLg0KPiA+Pj4gVGhlIHBhdGNo
+IGlzIGZvciBTUDcwMjEgU29DIGFuZCBTUDcwMjEgYmFzZWQgYm9hcmRzLg0KPiA+Pj4gU29ycnks
+IEkgZG9uJ3QgdW5kZXJzdGFuZCB5b3VyIHF1ZXN0aW9ucy4NCj4gPj4+IENvdWxkIHlvdSBleHBs
+YWluIG1vcmU/DQo+ID4+DQo+ID4+IFlvdSBoYXZlIHRoZXJlIG9ubHkgb25lIGNvbXBhdGlibGUg
+YnV0IGlmIEkgd291bGQgZXhwZWN0IGF0IGxlYXN0IHR3by4NCj4gPj4gT25lIGZvciBTb0MgYW5k
+IG9uZSBmb3IgYm9hcmQuIFNvbWV0aGluZyBsaWtlIHRoaXM6DQo+ID4+IERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vcmRhLnlhbWwNCj4gPj4gYnV0IGluIHlvdXIgY2FzZSBl
+bnVtIHdvdWxkIGhhdmUgb25seSBvbmUgZW50cnkuDQo+ID4NCj4gPiBDdXJyZW50bHksIHdlIG9u
+bHkgc3VwcG9ydCBvbmUgYm9hcmQuIE1heWJlIHdpbGwgc3VwcG9ydCBtb3JlIGJvYXJkcyBpbiBm
+dXR1cmUuDQo+IA0KPiBUaGlzIGlzIG5vdCB0aGUgYW5zd2VyIGZvciBteSBxdWVzdGlvbnMuIEkg
+c2FpZCBJIGV4cGVjdCB0d28gY29tcGF0aWJsZXM6DQo+IDEuIE9uZSBmb3IgU29DLA0KPiAyLiBP
+bmUgZm9yIGJvYXJkLg0KPiANCj4gQW5kIHlvdSByZXNwb25kICJ3ZSBoYXZlIG9ubHkgb25lIGJv
+YXJkIi4NCj4gDQo+IFdoZXJlIGlzIHRoZSBTb0MgY29tcGF0aWJsZT8NCj4gDQoNCkdvdCBpdCwg
+dGhhbmtzIGZvciB5b3VyIGV4cGxhbmF0aW9uLg0KDQpJJ2xsIGFkZCB0aGUgU29DIGNvbXBhdGli
+bGUoc3VucGx1cyxzcDcwMjEpIGluIG5leHQgcGF0Y2guDQoNCiAgY29tcGF0aWJsZToNCiAgICBp
+dGVtczoNCiAgICAgIC0gZW51bToNCiAgICAgICAgICAtIHN1bnBsdXMsc3A3MDIxLWFjaGlwDQog
+ICAgICAtIGNvbnN0OiBzdW5wbHVzLHNwNzAyMQ0K
