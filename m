@@ -2,67 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CDC74C94AB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:44:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B654C94B1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:45:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232950AbiCATpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 14:45:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50092 "EHLO
+        id S236594AbiCATqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 14:46:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbiCATpR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:45:17 -0500
-Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B5F6BDEE
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:44:35 -0800 (PST)
-Received: by mail-oo1-xc34.google.com with SMTP id 6-20020a4a0906000000b0031d7eb98d31so8207469ooa.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 11:44:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1uzo2Ip3l9Z2WQS9kRS2aI5MRe3AqAqtHQ4fqs0dZqM=;
-        b=j+4eI4mL8Io4pIpAK1lB2FDt4unR4+dJaAUcY/Ewwp0MUPjXgCmMEWHzcv9mFI3hJV
-         vsBIhtV0uj3na59CjWp0U7657THTQVG6F/IOtlGEPGWk7V4axGAm0IHZGINRt4SsHJl2
-         9R3/Z2mavRX91oq19CYyBKM/yv2xNxpxlJCKKYrqbLchAcgcgcfWVaQPAMsjhN2ZP3tT
-         zDJsd4yJPLcClsEOnzBHhUSS/XiDkZRztOdmAdNZA2Ag+40kkSMVfMwriqEj745RH90V
-         9x3oA3nXFSRlaAkrDAEnhUQwYGXPVylQ9gzhT8be9YcvvUxEpxowei3QfMWFQT7MJRBe
-         qHkA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1uzo2Ip3l9Z2WQS9kRS2aI5MRe3AqAqtHQ4fqs0dZqM=;
-        b=jPg1sOYrdgurMy0Rwdv8obya6yWVjBap3J1N4pSADQgtnY+/tt5Fu/pcZV3RyEVeP4
-         dTm0o6KRep0L1fpWWzwtCuRqJdsGft7PM/LMC/opISTMsKYu+j96BJcvC5Fulm8RVr1L
-         CUcgRcue/SDf8UzSv4KHwCbrwS0p2vFZ7c93EIULMgmYMpnic7oC3fYHR4MgeQuE5wkK
-         A6w+nr0Eg1kv37At8xg3bZiH6NIu+tPAcwx+eIVQCp0GTgJU5okC8cAP28e5JtoxetxJ
-         Zti2hvpRJO5aoGfR7FBDiCPNFwDQpdddmOk4oOGDaxnq0Ab1NSNeDFwiT4XX/tvwOJHK
-         BU7w==
-X-Gm-Message-State: AOAM531GitUkLCbpMwO3JSioJH2u3S1E9ymczoh9IJ7ZYqZHdJudzOGg
-        mKnLmdabAEOnceu7jqQEGHKuviueG89JFcIwfOhptA==
-X-Google-Smtp-Source: ABdhPJyEUajenDJbWbNCZz42qYV3Igx3HUl6FSLFUPlIyhD+EGMYK6EzbuBvtIdRnbAST4QpaJIH5PqobnizZtwZDXI=
-X-Received: by 2002:a05:6870:434f:b0:bf:9f2a:26f0 with SMTP id
- x15-20020a056870434f00b000bf9f2a26f0mr5166687oah.40.1646163874720; Tue, 01
- Mar 2022 11:44:34 -0800 (PST)
+        with ESMTP id S237261AbiCATqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:46:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648096D182;
+        Tue,  1 Mar 2022 11:45:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0D3F0B81CB6;
+        Tue,  1 Mar 2022 19:45:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0303C340EE;
+        Tue,  1 Mar 2022 19:45:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646163949;
+        bh=TFMpz0Cc6VsyzxJzd5ZFpb3OuNzOkVyn05Sx0dNcIGw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FNr+IE5SdDf1bVYHRNpW2iGCJwTS6U3t1T/Cv+jDQdJzR+IPaauMFsRRf3dhMADh9
+         DC/Uj5WTJsPUMXmTvZC3EDLttaXsfz3ScmITAV068+6AC2DmnKaVPzg/TquS4u0m9R
+         nzK6CpUe/uPUPsiwytzl1Da+4vEmDtxJFRh/e5LiBHASSxfOd4lmFlL/CKcMQWs6sf
+         sarU/6MgR5i62e63aj38JxPVdwhVGCWDs1P5zDvLaz1IBUPBSD5i1V9jXJoANV0Syx
+         XifgWSYRrEsN058FteO2k7Oz8V6hhbuhFXbPjgXNFLe5BjJCabxIBOWVoJVh/as34b
+         1DZZyF/cXEdQg==
+Date:   Tue, 1 Mar 2022 20:45:46 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Tyrone Ting <warp5tw@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, semen.protsenko@linaro.org,
+        yangyicong@hisilicon.com, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious
+ interrupts
+Message-ID: <Yh536s/7bm6Xt6o3@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Tyrone Ting <warp5tw@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, semen.protsenko@linaro.org,
+        yangyicong@hisilicon.com, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220220035321.3870-1-warp5tw@gmail.com>
+ <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
+ <CACD3sJaXeWLu6=oLgxJcU9R+A1J+jB7xKaGcDFwYxof33yj17Q@mail.gmail.com>
+ <5ce0f6a6-4a5f-4f25-3cc6-ab0f24bf15cf@canonical.com>
+ <CACD3sJaWJMFgwzQgrHFV0KkkbJXzhgFx=umywxSrLszwP+hO2w@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220126221725.710167-1-bhupesh.sharma@linaro.org>
- <20220126221725.710167-9-bhupesh.sharma@linaro.org> <Yfh5Pjpw693ZMteC@builder.lan>
-In-Reply-To: <Yfh5Pjpw693ZMteC@builder.lan>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 2 Mar 2022 01:14:23 +0530
-Message-ID: <CAH=2Ntw7niiKSS-Nw6QKO+3JCGwvqv71ycZpCOb5fRjYh-dPmQ@mail.gmail.com>
-Subject: Re: [PATCH 8/8] clk: qcom: gcc-sm8150: Use PWRSTS_ON (only) as a
- workaround for emac gdsc
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, agross@kernel.org, sboyd@kernel.org,
-        tdas@codeaurora.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, davem@davemloft.net,
-        netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ZzqmmcLTueXK0WfW"
+Content-Disposition: inline
+In-Reply-To: <CACD3sJaWJMFgwzQgrHFV0KkkbJXzhgFx=umywxSrLszwP+hO2w@mail.gmail.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,86 +85,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
 
-On Tue, 1 Feb 2022 at 05:35, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> On Wed 26 Jan 16:17 CST 2022, Bhupesh Sharma wrote:
->
-> > EMAC GDSC currently has issues (seen on SA8155p-ADP) when its
-> > turn'ed ON, once its already in OFF state. So, use PWRSTS_ON
-> > state (only) as a workaround for now.
-> >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/clk/qcom/gcc-sm8150.c | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-> > index 2e71afed81fd..fd7e931d3c09 100644
-> > --- a/drivers/clk/qcom/gcc-sm8150.c
-> > +++ b/drivers/clk/qcom/gcc-sm8150.c
-> > @@ -3449,12 +3449,16 @@ static struct clk_branch gcc_video_xo_clk = {
-> >       },
-> >  };
-> >
-> > +/* To Do: EMAC GDSC currently has issues when its turn'ed ON, once
-> > + * its already in OFF state. So use PWRSTS_ON state (only) as a
-> > + * workaround for now.
->
-> So you're not able to turn on the GDSC after turning it off?
+--ZzqmmcLTueXK0WfW
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Indeed. On the SM8150 platform (SA8155p ADP board), what I am
-observing is that the
-ethernet interface CLKs (RGMII clock etc) cannot be turned on once the
-EMAC GDSC is moved
-from an OFF to ON state. This is because the EMAC GDSC cannot be
-properly turned ON once it is
-in the OFF state.
 
-So, basically if we leave the EMAC GDSC on from boot (which is default
-bootloader setting), the eth interface
-can always come up fine and it can also be used for traffic tx/rx.
+> I'll keep old code as fallback, if getting nuvoton,sys-mgr fails as
+> you point out.
 
-> > + */
-> >  static struct gdsc emac_gdsc = {
-> >       .gdscr = 0x6004,
-> >       .pd = {
-> >               .name = "emac_gdsc",
-> >       },
-> > -     .pwrsts = PWRSTS_OFF_ON,
-> > +     .pwrsts = PWRSTS_ON,
->
-> Doesn't this tell the gdsc driver that the only state supported is "on"
-> and hence prohibit you from turning it on in the first place?
+Yeah, fallback is much needed. And if you implement it, then you can
+also split the series into two. One for the DTS changes and one for the
+I2C changes. That would make upstreaming a lot easier.
 
-That's correct indeed.  Without this hack in place, the EMAC GDSC is not able to
-switch from an OFF to ON state, so when the 'eth' interface is turned
-up it fails (as RGMII CLK is unavailable):
 
-qcom-ethqos 20000.ethernet eth0: PHY [stmmac-0:07] driver [Micrel
-KSZ9031 Gigabit PHY] (irq=150)
-<..snip..>
-qcom-ethqos 20000.ethernet: Failed to reset the dma
-qcom-ethqos 20000.ethernet eth0: stmmac_hw_setup: DMA engine
-initialization failed
-qcom-ethqos 20000.ethernet eth0: stmmac_open: Hw setup failed
+--ZzqmmcLTueXK0WfW
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> >       .flags = POLL_CFG_GDSCR,
->
-> You could add ALWAYS_ON to .flags, but we need a better description of
-> the actual problem that you're working around.
+-----BEGIN PGP SIGNATURE-----
 
-I agree. Let me add the above 'stmmac dma reset' issue while
-describing the workaround in the next version of the patch.
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIed+oACgkQFA3kzBSg
+KbYcjRAAstcatZMriO8WYTkR7iql0Ykgsnc04dKlPRr6iwYtoyRTgOApX1Jp31Jr
+CbI0tKJgBjEwGrrXzkkVP02QIM9ojCZPXIrdV/ZmQ9dgAB3c0xfZ2uEeHAC+iv2p
+bx63ccy6tbX6UfFu2FeuS5qmYctOTNu4G0OghUErbqA3JlqSQHXaNIQEkFoL1iiw
+anPSYCvvBFJk0DELigsYqEMMuXVtfA+RrmfkMwmTjM1FDh9Q4EsiwEJTdu9Dajjt
+EYsNX0CTIZt/54jiBsgw1Y+9YYPOzk8vCsEn4dWYLYkb5aivX/jiuUupVwOI9Dsm
+FPQJB8CMf9kyD4awOGCzmjtUDDIlftz7+egbVr/P7ra1vkWiUWLuVtwLjIOmQ02N
+sekEy/RBJpmbPCY+1sMqWVkiz2Jzh0ZVNraPw84W9A/vImdz5eUO9zUiKYAmc5dk
+UqH4DNFXSUz1HXiQV0MFvMErR3BvnHo0aW2Yex0g41iEVVbt3NegzgVmCnQbvxWO
+8aqTaho3IMK6R9qprp+2m/F81hFYJmaLYG6axoMB6dRfYN0VJf7VY1fqOs4jxZVV
+poVwHHWgBvFFi27Oh3H/RZ+IaYwY52BOW+4953toW5pRMpXLj289svrTCIzToyGh
+f9P2fQeuCBeyiaplAlyxPbk2TdSjl8q2pcGcXzJdISRO8u4/In4=
+=ueuY
+-----END PGP SIGNATURE-----
 
-Regards,
-Bhupesh
-
-> >  };
-> >
-> > --
-> > 2.34.1
-> >
+--ZzqmmcLTueXK0WfW--
