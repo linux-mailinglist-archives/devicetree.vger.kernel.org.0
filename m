@@ -2,75 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3468D4C8C29
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:01:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA6B4C8C38
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:03:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234910AbiCANBj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:01:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48434 "EHLO
+        id S233972AbiCANEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:04:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234932AbiCANBi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:01:38 -0500
-Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A65CF9ADA1;
-        Tue,  1 Mar 2022 05:00:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=metanate.com; s=stronger; h=In-Reply-To:Content-Type:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description; bh=M542kUDYwYiNo5piJUcRV3k6x93s5dP3ia7BcMUvork=; b=M1Mzb
-        6+gUV25q8y5q9JN07VrgezVwW6vCHpnisrPaZpnl+tM6m6HILbmxTMZDd1+mgZ4yt8SSSNsfaGA2V
-        3AepluzHpoN4AEEdyFCSp6k3gemCgESJT8COZqL7Hby/MrWx7zDtQDB1uNE2k1iA/8cGZJ6pW4a0v
-        oirP+StqBTdtuqt1W/Z1HClzRmc9d+Pc2rP1eTWQQ30cnBLAjZeVsQpsGissorGUfAiDn6V4oKg5H
-        QGASjXN4Dynv1+eOH1ihM6ATCUIW8Go9RkhysUTg76ImfTsDkkkUc6TAMyqyOR5KTKhoUA6MSiHpJ
-        qmItrP0ATa0upTuWCke0vlt2zXzvA==;
-Received: from [81.174.171.191] (helo=donbot)
-        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <john@metanate.com>)
-        id 1nP27M-0007wi-D0; Tue, 01 Mar 2022 13:00:40 +0000
-Date:   Tue, 1 Mar 2022 13:00:39 +0000
-From:   John Keeping <john@metanate.com>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     heiko@sntech.de, herbert@gondor.apana.org.au,
-        krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 00/16] crypto: rockchip: permit to pass self-tests
-Message-ID: <Yh4Y99KCi+1lbrve@donbot>
-References: <20220228194037.1600509-1-clabbe@baylibre.com>
+        with ESMTP id S232757AbiCANEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:04:21 -0500
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6E360074
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:03:40 -0800 (PST)
+Received: by mail-ej1-x62e.google.com with SMTP id gb39so31369440ejc.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 05:03:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=54IDvufnRzrBfjaYnEXmgrUgjbov9TaKLRgPhl0wbI4=;
+        b=grH5RaAMgUAuzaEWZV+C3Lpkaew/wWpLX1709iyO5dfVCn62Tccc+o/WP8O25+YgP1
+         gh+Til9TZE2yyxeghRZ4m59caMPQj4Af1LWw36Lr6HMGY3/0H5hN8K3U2/uaqqqbp1fm
+         SpuBjalvJAZuaJYSktOf6hvKe8bnqcpIAZ66Y/meHFE9Rttl8Xjc1TuAa+S/xKT1CF//
+         JTDHa3hz3UYYuR06UhAf5IAb6ldKjmCV7n9XDunmzMPf0/SBnwQi+R/2iV20rbJhTs57
+         nD1aHNTr0SYmWKYVfJ1tSnUN4wAuvLc2sIQuPK8uo4sn16h7tlCXDUumdONeVQGI7QdL
+         s/9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=54IDvufnRzrBfjaYnEXmgrUgjbov9TaKLRgPhl0wbI4=;
+        b=iqMCfRfF4QUgra7TGK4ZX3toLwrbXf/3BJIfUZ8spNKpPVAkPPyXSjgqZnAv8sNlaW
+         vaffmipybmTaAfeoinJtmBEQQrbfKFQE3m2Qjyu79QfgmPWADC1DValGNJqgTd6neFpI
+         hQYnkXQo5irgyaPCSW4WklS0Tcd8OuQ5Kr02Zk4JLHtUFnp1OkCEZgDFCGJHn3oR2YCX
+         NZmv0VsrWL67eI0XuiMJfcv5edc8Ni1HN7xPVOp2n1GBmvMg3GEQYGAfSH9onArZ93ve
+         O3bNdsqeVj2T89o1hSKPw6cQx0+el2xQyJ0y92cH7PwzNDYIUngMeOLh52QJ0h1BDJAk
+         J9mg==
+X-Gm-Message-State: AOAM53299ohUhz8AhX+ILUNlEzx0MvaAEJYHhl3BnvIJ/Q8RmK0JumF1
+        l6Bwizyvdx+MRQyHE+ruzXN1GyIU5Cv96EiOIhI=
+X-Google-Smtp-Source: ABdhPJw0lEjtN3KvaKBtSodtm+IRjb8lAvIfaB2qQ9CSc7Z6xiPafAjJifuYh4hdsgizjTAKCACQL43ptW2+5DJIPfI=
+X-Received: by 2002:a17:907:1c8b:b0:6d7:129f:f543 with SMTP id
+ nb11-20020a1709071c8b00b006d7129ff543mr599207ejc.198.1646139818246; Tue, 01
+ Mar 2022 05:03:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220228194037.1600509-1-clabbe@baylibre.com>
-X-Authenticated: YES
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+References: <20220228004605.367040-1-marex@denx.de> <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+ <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de> <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+ <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de> <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+ <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+ <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de> <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+In-Reply-To: <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Tue, 1 Mar 2022 07:03:26 -0600
+Message-ID: <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
+To:     Lucas Stach <l.stach@pengutronix.de>
+Cc:     Marek Vasut <marex@denx.de>, Liu Ying <victor.liu@oss.nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 07:40:21PM +0000, Corentin Labbe wrote:
-> The rockchip crypto driver is broken and do not pass self-tests.
-> This serie's goal is to permit to become usable and pass self-tests.
-> 
-> This whole serie is tested on a rk3328-rock64 with selftests (with
-> CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y)
+On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+>
+> Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
+> > On 3/1/22 11:04, Lucas Stach wrote:
+> >
+> > Hi,
+> >
+> > [...]
+> >
+> > > > Given the two totally different IPs, I don't see bugs of IP control
+> > > > logics should be fixed for both drivers. Naturally, the two would
+> > > > diverge due to different HWs. Looking at Patch 9/9, it basically
+> > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
+> > > > 'if/else' checks(barely no common control code), which is hard to
+> > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
+> > > > and 'LCDIF'.
+> > >
+> > > I tend to agree with Liu here. Writing a DRM driver isn't that much
+> > > boilerplate anymore with all the helpers we have available in the
+> > > framework today.
+> >
+> > I did write a separate driver for this IP before I spent time merging
+> > them into single driver, that's when I realized a single driver is much
+> > better and discarded the separate driver idea.
+> >
+> > > The IP is so different from the currently supported LCDIF controllers
+> > > that I think trying to support this one in the existing driver actually
+> > > increases the chances to break something when modifying the driver in
+> > > the future. Not everyone is able to test all LCDIF versions. My vote is
+> > > on having a separate driver for the i.MX8MP LCDIF.
+> >
+> > If you look at both controllers, it is clear it is still the LCDIF
+> > behind, even the CSC that is bolted on would suggest that.
+>
+> Yes, but from a driver PoV what you care about is not really the
+> hardware blocks used to implement something, but the programming model,
+> i.e. the register interface exposed to software.
+>
+> >
+> > I am also not happy when I look at the amount of duplication a separate
+> > driver would create, it will be some 50% of the code that would be just
+> > duplicated.
+> >
+> Yea, the duplicated code is still significant, as the HW itself is so
+> simple. However, if you find yourself in the situation where basically
+> every actual register access in the driver ends up being in a "if (some
+> HW rev) ... " clause, i still think it would be better to have a
+> separate driver, as the programming interface is just different.
 
-I previously noticed this breakage on rk3288 but never got time to
-investigate (disabling the driver was quicker).
+I tend to agree with Marek on this one.  We have an instance where the
+blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+but different enough where each SoC has it's own set of tables and
+some checks.   Lucas created the framework, and others adapted it for
+various SoC's.  If there really is nearly 50% common code for the
+LCDIF, why not either leave the driver as one or split the common code
+into its own driver like lcdif-common and then have smaller drivers
+that handle their specific variations.
 
-This series fixes everything on rk3288 as well, thanks!
-
-I hit the same warnings as the kernel test robot as well as a missing
-new kconfig dependency (see separate reply to patch 10), but this is
-
-Tested-by: John Keeping <john@metanate.com>
-
-
-Regards,
-John
+adam
+>
+> Regards,
+> Lucas
+>
+>
