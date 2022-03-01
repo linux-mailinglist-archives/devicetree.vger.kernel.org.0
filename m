@@ -2,71 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F20184C8240
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 05:22:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C12144C8354
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 06:37:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231341AbiCAEXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Feb 2022 23:23:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53806 "EHLO
+        id S232458AbiCAFic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 00:38:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230221AbiCAEXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Feb 2022 23:23:10 -0500
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 023C9377F5
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 20:22:30 -0800 (PST)
-Received: by mail-pl1-x62f.google.com with SMTP id q11so12472072pln.11
-        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 20:22:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=er1+nF+4ONhOGnKGy9pN0cgSQ+ll2TiqgLcg/njPFr8=;
-        b=oipGy61VYoVU8qK0vDv+oTTQJDjlwLNQ/7BP7du86NT3zcCh8TcDtQC8K42swbDpum
-         I3E9IrpJcDKPhXuZ4X/Mwr93XJtS8XyTGZ1H4vDeAVyDDjBO4QFbUuycOCTvOTZifpFd
-         IR1NnYAESHnlLxwtrAEhmyiMV1FeFZnSHo1tcBvA6k2SgQ2W9JhcmpaOYn7IcFMdP7u8
-         IthW0hX1gh1wQ1UaLwKwcxtPh1YCnAY/In8ZCHWA3r1/ZKT+rtgiVb1o+wwdWWtEES/b
-         GOmADlQUigu87w7la849TIv8sMsQLW3K55M8Ttm0qEVJkZqdfJCGDCEvOeD4iVWXL1MG
-         14ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=er1+nF+4ONhOGnKGy9pN0cgSQ+ll2TiqgLcg/njPFr8=;
-        b=iGOQJMOr01IuvUugSkkEAznvc28042iM15H8AfFtmilYiGyvyGDG6BvxAQhltnWcbl
-         RjWmr2yAJpSKhvH9av9Yt9wvw3tPevAa3wCo4uJ/P6LO8s+sKko4et2mozlXD60HsAjR
-         Qu1BpIleeCKNhLZIyWb5cZ/N5axwz3bCU/1lhLdzddihtprDsf0eqWXBHHXKf2AYB2cv
-         OgW1wTgeXQ57ZFZh5GLamOtsUwLRP58v5G66KfsoaJ0QUJHkhKh8rpKr11LXFv8UaBXV
-         8pPFvl5RwLX4iGyGyDd8vzs5SG+Qh73ceyriKV2G+w8S6J6mKzz4ZExTsAgsYFl9b+PB
-         X5Yw==
-X-Gm-Message-State: AOAM531y9d+0pWN70e88v3gXnWzhVoFwzBnN8CVaQ5DKE7hPPesyKd9o
-        lZzWXH73IKExOu3EYpk0ZWQL5g==
-X-Google-Smtp-Source: ABdhPJz5ksmIRw0B3/MxjyFEI3mi/rvPVvfZBj5u1kfSb7EtS9xUAp83HI6xgpzP9yDKKSCwRJUq2g==
-X-Received: by 2002:a17:902:7892:b0:14e:c520:e47d with SMTP id q18-20020a170902789200b0014ec520e47dmr22953335pll.105.1646108549538;
-        Mon, 28 Feb 2022 20:22:29 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id y8-20020a056a00180800b004e156f7191esm14549503pfa.213.2022.02.28.20.22.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Feb 2022 20:22:28 -0800 (PST)
-Date:   Tue, 1 Mar 2022 12:22:23 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org, robh+dt@kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v2 3/8] arm64: dts: qcom: msm8996-xiaomi: Drop
- max-microamp and vddp-ref-clk properties from QMP PHY
-Message-ID: <20220301042223.GK269879@dragon>
-References: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
- <20220228123019.382037-4-bhupesh.sharma@linaro.org>
+        with ESMTP id S232468AbiCAFib (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 00:38:31 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3BF441F91;
+        Mon, 28 Feb 2022 21:37:47 -0800 (PST)
+X-UUID: e1987f8a3a934cd3aecc0c7d20582f6d-20220301
+X-UUID: e1987f8a3a934cd3aecc0c7d20582f6d-20220301
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 756417158; Tue, 01 Mar 2022 13:37:36 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 1 Mar 2022 13:37:34 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 1 Mar 2022 13:37:34 +0800
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <runyang.chen@mediatek.com>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Rex-BC Chen <rex-bc.chen@mediatek.com>
+Subject: [PATCH V2 0/3] Add watchdog support for MT8186 SoC
+Date:   Tue, 1 Mar 2022 13:37:30 +0800
+Message-ID: <20220301053733.24755-1-rex-bc.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220228123019.382037-4-bhupesh.sharma@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,51 +54,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 06:00:14PM +0530, Bhupesh Sharma wrote:
-> The following properties are not supported and causing dtbs_check
-> warnings.
-> 
->     - vdda-phy-max-microamp
->     - vdda-pll-max-microamp
->     - vddp-ref-clk-max-microamp
->     - vddp-ref-clk-always-on
-> 
-> arch/arm64/boot/dts/qcom/msm8996-xiaomi-gemini.dt.yaml: phy@627000:
->    'vdda-phy-max-microamp', 'vddp-ref-clk-always-on', 'vddp-ref-clk-max-microamp'
->     do not match any of the regexes: '^phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> 
-> Drop them from QMP PHY nodes for 'msm8996-xiaomi' dts.
-> 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 5 -----
->  1 file changed, 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> index 7a9fcbe9bb31..f6f6b2e89a36 100644
-> --- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-> @@ -337,12 +337,7 @@ &ufsphy {
->  	vdda-phy-supply = <&vreg_l28a_0p925>;
->  	vdda-pll-supply = <&vreg_l12a_1p8>;
->  
-> -	vdda-phy-max-microamp = <18380>;
-> -	vdda-pll-max-microamp = <9440>;
-> -
->  	vddp-ref-clk-supply = <&vreg_l25a_1p2>;
+v2:
+1. Squash [1] into [2] in v1.
+2. Add tags of acked-by and reviewed-by.
 
-I do not see this is supported by qmp-phy driver.  Maybe we should drop
-it from bindings and clean up from DTS as well?
+[1]: [3/4] dt-bindings: reset: mt8186: add DSI reset bit for MMSYS
+[2]: [2/4] dt-bindings: reset: mt8186: add toprgu reset-controller header file
 
-Shawn
+v1:
+1. Add mt8186-resets.h to define definition of reset bits.
+2. Add wdt compatible for MT8186.
 
-> -	vddp-ref-clk-max-microamp = <100>;
-> -	vddp-ref-clk-always-on;
->  };
->  
->  &venus {
-> -- 
-> 2.35.1
-> 
+Rex-BC Chen (1):
+  dt-bindings: watchdog: Add compatible for MediaTek MT8186
+
+Runyang Chen (2):
+  dt-bindings: reset: mt8186: add reset-controller header file
+  watchdog: mediatek: mt8186: add wdt support
+
+ .../devicetree/bindings/watchdog/mtk-wdt.txt  |  1 +
+ drivers/watchdog/mtk_wdt.c                    |  6 ++++
+ include/dt-bindings/reset/mt8186-resets.h     | 36 +++++++++++++++++++
+ 3 files changed, 43 insertions(+)
+ create mode 100644 include/dt-bindings/reset/mt8186-resets.h
+
+-- 
+2.18.0
+
