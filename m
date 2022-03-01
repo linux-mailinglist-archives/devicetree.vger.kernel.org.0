@@ -2,51 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB904C8377
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 06:44:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C5C34C83C4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 07:15:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbiCAFo7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 00:44:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54568 "EHLO
+        id S232263AbiCAGPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 01:15:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231841AbiCAFo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 00:44:56 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E8E456431;
-        Mon, 28 Feb 2022 21:44:15 -0800 (PST)
-X-UUID: 2b23fecc64984f08ba346fdde3f088c0-20220301
-X-UUID: 2b23fecc64984f08ba346fdde3f088c0-20220301
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 828773283; Tue, 01 Mar 2022 13:44:08 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 1 Mar 2022 13:44:07 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 1 Mar 2022 13:44:07 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
-        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>
-CC:     <runyang.chen@mediatek.com>, <linux-watchdog@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [RESEND V2 3/3] watchdog: mediatek: mt8186: add wdt support
-Date:   Tue, 1 Mar 2022 13:44:05 +0800
-Message-ID: <20220301054405.25021-4-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220301054405.25021-1-rex-bc.chen@mediatek.com>
-References: <20220301054405.25021-1-rex-bc.chen@mediatek.com>
+        with ESMTP id S232478AbiCAGPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 01:15:44 -0500
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1CE862136
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 22:15:03 -0800 (PST)
+Received: by mail-lf1-x131.google.com with SMTP id g39so25084089lfv.10
+        for <devicetree@vger.kernel.org>; Mon, 28 Feb 2022 22:15:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sU8qmTMKoXOI/8K1Qg71CzJ9WWwOfDi52Ddm0ZSLRcI=;
+        b=rNXZ4TbW1E/hhABdnuqFEuvQpUGKPo/pwp5FE2NW25Y2OGwxKKLL3GdRoqOZENMkz+
+         2Rc8LrSPOXk3mGbHiBLKn+fEEeRAXYteuBdJoKfD5fsfHr4aV3jL9IFN2Z12YymKMkG9
+         tIA9lZax34d+NUSvsKgqi6W0sYWIOIRx7+oYDUwA7GI3+j2x7aO3XrpySPfoE7Xvo5wU
+         PO07SvSiDqiEX1y8IQP1gfqJKIm6NZc4vEGY/YjPsPPs9VjLFtFBtZaruoQwV8DMkshs
+         7+5r2MvG7ezJ2pQklkGQaAtumgnLNWk0WZZHC+Ch4s38pomi9FGG5aYpzn3a+eYg8uX4
+         pweQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sU8qmTMKoXOI/8K1Qg71CzJ9WWwOfDi52Ddm0ZSLRcI=;
+        b=4pLpSLt+yhUrLJ9eAL8ip2rrMQlanYRnPqeEjefmrfhlsV6GCpUujJuS5HZ0bIstfU
+         x4GmAcPCvXy/lvjO5A3vaKnriMNjZug1d2Qj4jkm3Qhj0wmYq3txrAWfNRIXec0o4is2
+         8VcdlkCTshT2Pp3mmPD6v9Y8KpC5glsWv3Emx3NSbB59iEDhxjV/tLnMtEbfxN1kuXob
+         lbR3/i3dXMPxxDCOuNZAscn/K/IJ7OsztWjYVdstte3wjOXGHS21RADUFXjDqD9mzs3R
+         BjY/n66Mi8wHo5a7vXaQSORNENRAb32CQ0pV4YNm4yj0RlxMP1TXkPc+90Yy0FArBByL
+         oIkA==
+X-Gm-Message-State: AOAM532qSPGiJERBhRiZudfPnc/Ac8g5caprGUplc+dKAbqhohQo91lb
+        Q0s35KyQBuyOvCaHuxU7LeTPvRA3o7bNhg==
+X-Google-Smtp-Source: ABdhPJxLaSICjbnNXfBVYivUIl9Dfj4BXY86uV3Be4Z2ZKQuPsIjzb5VIOA/Tadwp43gEWCJ0S6jJA==
+X-Received: by 2002:a05:6512:481:b0:43d:f703:721e with SMTP id v1-20020a056512048100b0043df703721emr15055193lfq.55.1646115302007;
+        Mon, 28 Feb 2022 22:15:02 -0800 (PST)
+Received: from eriador.lan ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id f15-20020ac25ccf000000b004442220c67fsm1318898lfq.27.2022.02.28.22.15.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Feb 2022 22:15:01 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 0/7] arm64: dts: qcom: sm8450: add PCIe devices
+Date:   Tue,  1 Mar 2022 09:14:53 +0300
+Message-Id: <20220301061500.2110569-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -54,47 +69,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Runyang Chen <runyang.chen@mediatek.com>
+Add PCIe device tree nodes for Qualcomm SM8450. Enable PCIe devices on
+SM8450 HDK and QRD boards.
 
-Support MT8186 watchdog device.
+Changes since
+https://patchwork.kernel.org/project/linux-arm-msm/list/?series=599422:
 
-Signed-off-by: Runyang Chen <runyang.chen@mediatek.com>
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
----
- drivers/watchdog/mtk_wdt.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+- Split from the driver patchset
+- Remove interconnect nodes (will be added later in cooperation with
+  driver changes)
+- Add PCIe1 support
+- Add SM8450-HDK changes
 
-diff --git a/drivers/watchdog/mtk_wdt.c b/drivers/watchdog/mtk_wdt.c
-index 4577a76dd464..fe5a2ecba97a 100644
---- a/drivers/watchdog/mtk_wdt.c
-+++ b/drivers/watchdog/mtk_wdt.c
-@@ -11,6 +11,7 @@
- 
- #include <dt-bindings/reset/mt2712-resets.h>
- #include <dt-bindings/reset/mt8183-resets.h>
-+#include <dt-bindings/reset/mt8186-resets.h>
- #include <dt-bindings/reset/mt8192-resets.h>
- #include <dt-bindings/reset/mt8195-resets.h>
- #include <linux/delay.h>
-@@ -80,6 +81,10 @@ static const struct mtk_wdt_data mt8183_data = {
- 	.toprgu_sw_rst_num = MT8183_TOPRGU_SW_RST_NUM,
- };
- 
-+static const struct mtk_wdt_data mt8186_data = {
-+	.toprgu_sw_rst_num = MT8186_TOPRGU_SW_RST_NUM,
-+};
-+
- static const struct mtk_wdt_data mt8192_data = {
- 	.toprgu_sw_rst_num = MT8192_TOPRGU_SW_RST_NUM,
- };
-@@ -419,6 +424,7 @@ static const struct of_device_id mtk_wdt_dt_ids[] = {
- 	{ .compatible = "mediatek,mt2712-wdt", .data = &mt2712_data },
- 	{ .compatible = "mediatek,mt6589-wdt" },
- 	{ .compatible = "mediatek,mt8183-wdt", .data = &mt8183_data },
-+	{ .compatible = "mediatek,mt8186-wdt", .data = &mt8186_data },
- 	{ .compatible = "mediatek,mt8192-wdt", .data = &mt8192_data },
- 	{ .compatible = "mediatek,mt8195-wdt", .data = &mt8195_data },
- 	{ /* sentinel */ }
+
+Dmitry Baryshkov (7):
+  arm64: dts: qcom: sm8450: add PCIe0 PHY node
+  arm64: dts: qcom: sm8450: add PCIe0 RC device
+  arm64: dts: qcom: sm8450: add PCIe1 PHY node
+  arm64: dts: qcom: sm8450: add PCIe1 root device
+  arm64: dts: qcom: sm8450-qrd: enable PCIe0 PHY device
+  arm64: dts: qcom: sm8450-qrd: enable PCIe0 host
+  arm64: dts: qcom: sm8450-hdk: add pcie nodes
+
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts |  21 ++
+ arch/arm64/boot/dts/qcom/sm8450-qrd.dts |  10 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi    | 274 +++++++++++++++++++++++-
+ 3 files changed, 303 insertions(+), 2 deletions(-)
+
 -- 
-2.18.0
+2.34.1
 
