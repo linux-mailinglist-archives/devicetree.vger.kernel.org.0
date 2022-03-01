@@ -2,99 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0DA64C8BEA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:45:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 213A34C8BDE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:43:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234835AbiCAMpl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 07:45:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58232 "EHLO
+        id S231262AbiCAMn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 07:43:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234132AbiCAMpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:45:40 -0500
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09170985AF
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 04:44:59 -0800 (PST)
-Received: by mail-lf1-x134.google.com with SMTP id u20so26678439lff.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 04:44:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0tcocVIkOCPzGpdROFxsT753ixUhU49aJwL/lTfVMnE=;
-        b=w91vKAjBFIRcEvV6z4viPzJGw/HeDfSabkwGFg+aYoqHuXu+1EvckKwJJjX+csDTw0
-         yMg8Y9kvQ9RnAmLGH0hbmR7iLG6Qj1Xv7tG3mDrfT0mJT7QoCGlgpQ0H1cLL54tWTOOl
-         erJPikXXEXWEDk5XQGX8tonfaz3XOm4ZS+ZOijXQdO5QfghbnWyyR7AzCZ6uwBSltnor
-         wdGC26klIYokwRFcVrROlxBFQK+rlriQDjk4QzkgoTHccqVvPEitYH8qV/VgJG20YrD5
-         +CJpgK/hAR10EgRG3fJPDXODqgxPH9fOI27FhkJY5gomuz3sszVWKhnkzJMe1W7rqE+N
-         zQHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=0tcocVIkOCPzGpdROFxsT753ixUhU49aJwL/lTfVMnE=;
-        b=p+FV9Wb2wL138o78u5fqNEOin8xsGwXo+0WsbErSiTm3B2gV8qGeKZOcVhkYobK7Y5
-         EQGMSbYLnz6lKCJJFCUYIKMF6vDhqrrajgo+m+DPN+tpUgPNLfuES8nZDDh4rUWlzstQ
-         9QN+xOtkxSPYJX+e7+kjF7vBlSAd2Bt9nFgPF3ZU/8FscMEZ5cUBKZOsc4zxLxO7a7RO
-         GgZC8sXdDm1RavS19p1KIcFdvnLhpNPbHyzgtjGHrTyp7+jN5jbWLUoFHfwu5ZL/nF5F
-         PYrsG+AGeFIQVLBUI8MN65qeyWeJBvo3hoMlAJpkip7RFLDjFl6qreSgWxsL1X1Jja+U
-         UpXg==
-X-Gm-Message-State: AOAM531ShOyW/H7vwC/qrMyuiL9wR7GAcHd80tAXi8JRwZSnpishioSN
-        megDK0v2ViaI6i+kbxLKgZrysw==
-X-Google-Smtp-Source: ABdhPJxuR8BW7zJzU3NkoFvhDb41wtZFnU6P8ZHcbvkhrBRzoeuktbhrDPZs4FOuYq8nwc0PAT3JXQ==
-X-Received: by 2002:ac2:5492:0:b0:43f:1c2e:b04c with SMTP id t18-20020ac25492000000b0043f1c2eb04cmr16373479lfk.502.1646138697407;
-        Tue, 01 Mar 2022 04:44:57 -0800 (PST)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id g18-20020a19ee12000000b00443af3721f2sm1467944lfb.237.2022.03.01.04.44.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 04:44:57 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Marcus Cooper <codekipper@gmail.com>
-Cc:     linux-pm@vger.kernel.org,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: power: supply: ab8500_fg: Add line impedance
-Date:   Tue,  1 Mar 2022 13:42:53 +0100
-Message-Id: <20220301124254.2338270-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233222AbiCAMn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:43:57 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7CEC137AB8;
+        Tue,  1 Mar 2022 04:43:16 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.90,146,1643641200"; 
+   d="scan'208";a="112806374"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 01 Mar 2022 21:43:15 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 4FA5E400F7B5;
+        Tue,  1 Mar 2022 21:43:13 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-phy@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: phy: renesas,usb2-phy: Document RZ/V2L phy bindings
+Date:   Tue,  1 Mar 2022 12:42:55 +0000
+Message-Id: <20220301124255.16836-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-To improve the inner resistance measurement of the battery we need
-to account for the line impedance of the connector to the battery.
+Document USB phy bindings for RZ/V2L SoC. RZ/V2L USB phy is identical to
+one found on the RZ/G2L SoC. No driver changes are required as generic
+compatible string "renesas,rzg2l-usb2-phy" will be used as a fallback.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+While at it, drop the comment "RZ/G2L family" for "renesas,rzg2l-usb2-phy"
+compatible string as this will avoid changing the line for every new SoC
+addition.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Acked-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- .../bindings/power/supply/stericsson,ab8500-fg.yaml          | 5 +++++
- 1 file changed, 5 insertions(+)
+v1->v2
+* Included Ack and RB tags
+* Dropped the comment from generic string as suggested by Geert.
 
-diff --git a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-index 54ac42a9d354..2ce408a7c0ae 100644
---- a/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/stericsson,ab8500-fg.yaml
-@@ -25,6 +25,11 @@ properties:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     deprecated: true
+v1:
+https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+20220227230817.31094-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+index 3a6e1165419c..16807bbbdcb1 100644
+--- a/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/renesas,usb2-phy.yaml
+@@ -33,7 +33,8 @@ properties:
+       - items:
+           - enum:
+               - renesas,usb2-phy-r9a07g044 # RZ/G2{L,LC}
+-          - const: renesas,rzg2l-usb2-phy  # RZ/G2L family
++              - renesas,usb2-phy-r9a07g054 # RZ/V2L
++          - const: renesas,rzg2l-usb2-phy
  
-+  line-impedance-micro-ohms:
-+    description: The line impedance between the battery and the
-+      AB8500 inputs, to compensate for this when determining internal
-+      resistance.
-+
-   interrupts:
-     maxItems: 5
- 
+   reg:
+     maxItems: 1
 -- 
-2.34.1
+2.17.1
 
