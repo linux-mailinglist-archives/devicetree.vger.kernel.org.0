@@ -2,122 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B144C8CFB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:53:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2BB4C8CFE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:54:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235136AbiCANyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:54:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59990 "EHLO
+        id S232724AbiCANzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:55:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235133AbiCANyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:54:23 -0500
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA0B47078
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:53:41 -0800 (PST)
-Received: by mail-lf1-x12c.google.com with SMTP id b11so26933531lfb.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 05:53:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QpS3f8EZoX7R2KAuz/UX0/xqwonI23q4hXHZBWApjxE=;
-        b=YFJelA+ENY4EZJiP/YLHJkzoR5u7rW4E0VfzaZ8Q0qZfr9TB0HgZJOE/d1MySMcgPx
-         Jf+/ZYCNvUoklZvkkIO9N8lnHCWaTxSd8Q/pfuSrwkZ31qj3uG/pBlU9hdB+FzzO1Bqa
-         lmSYkKdaVatqRi/v1os1vNgdcFtMMHkJrbetMD5nmxughc6Duj/ZLysburORm04pujaU
-         KZ1c7AyHGaDdC2fiLVz2VW+6SuRKZ3aGBHWXCdBU4CixGrA1OgBDOh/0wyOh9VhPVWZH
-         Alx8GWnHSK7hg1IbTKx8yzgr5et49ZSuE6bwTPoZU9wBDc7ko43DeEneBxLzc4NHCR6U
-         DfSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QpS3f8EZoX7R2KAuz/UX0/xqwonI23q4hXHZBWApjxE=;
-        b=esCpzQPN7KiBYRVLlNAXXTec03vTHPyPjIOK/y7n4VZnLQoIaQctV1TaZ3JdJPuHqg
-         RdYnHHhMDzYwKvWp49GUxINu62lPqVnF1gxssXy3X/V7LOt+aW7QObEMI7Zk0r1ZiWWH
-         QRpVubGmdrJDgdiRFQH7V/LxYMkflyI41Dxa5jyqqq+W1urvZg8bhDmBkSCrOHqO3vov
-         3r2cCrUho0wG+KDYUk4Ef8qnCPwWn3CVyJbjfoDMZlLhJubLKy69L008fC778hmfiE3z
-         hxd7asaKYzr3MF5cNhCjWaeU9Zc/HU3NskGRuuZRMob7l1HWuPJprIzZWTNsnLNTISjk
-         sL+A==
-X-Gm-Message-State: AOAM532g93HraanpN5aP9rS2OdxuGnDwXe9DRD/7GN1qKA2tvWlX+nZF
-        NJFspCSslT/N2DCrZB9ptR813BoVFPeZYaEka+8ATg==
-X-Google-Smtp-Source: ABdhPJx0SoaiuulrB+NSo+UFoD6svkfCdOGBHeUCADEpXekaO/ti4K9CDSati5FTR+FCN4cJpmdhK9sgH1YngXvfez4=
-X-Received: by 2002:ac2:44c1:0:b0:444:18fc:8389 with SMTP id
- d1-20020ac244c1000000b0044418fc8389mr15500530lfm.167.1646142819499; Tue, 01
- Mar 2022 05:53:39 -0800 (PST)
+        with ESMTP id S232203AbiCANzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:55:01 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D1256C35
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:54:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646142854;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=TmUIce0RehdrBsMBMSjDW27iMqd2SdloTLhy5FDD8Qk=;
+    b=fyNcgpexTX1Y/j1QkIOCMKDgkD1RUb3tz4XdgX4TGJovdwY6WTvzx7ud9JRfOlh1zk
+    FJQBwA8CnvVILMusrW3Tj+KlvJTsh3tMa8IZlBGTJFhuIAyMurajI/4BMFR1WqAUuwdw
+    3oU/48QoebvFQZX8mA3/MZoE0H6T9m9n9DbA7MtVp3o+tZEbrw1kghxnBwAo5ey9Ys3x
+    hxr/X8Atuyo3Hj/XtvoXfbMK2+E8jFn+BoJUz+G180f59jZFIOCm3FMb5609ctjRHcUY
+    O+5q9vKH3tqGZgCOlJJIazv70N0DKS7lKEU6Gv5TASaeGSixpoPKtvCaXw7iyHAihv1Q
+    V/UQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u267FZF9PwpcNKLVrK86+6Y="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 47.40.1 AUTH)
+    with ESMTPSA id kdc58dy21DsCaVY
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Tue, 1 Mar 2022 14:54:12 +0100 (CET)
+Date:   Tue, 1 Mar 2022 14:54:06 +0100
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add schema for "awinic,aw8738"
+Message-ID: <Yh4lfjsDR4qqnc8Y@gerhold.net>
+References: <20220301123742.72146-1-stephan@gerhold.net>
+ <20220301123742.72146-2-stephan@gerhold.net>
+ <Yh4hYVJFZJBYp3d9@sirena.org.uk>
 MIME-Version: 1.0
-References: <20220227212330.22262-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20220227212330.22262-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 1 Mar 2022 14:53:03 +0100
-Message-ID: <CAPDyKFpgG-P8Gtb+ww3YeO8jyjuNhKtjk=bePz=3qcf-37fsvA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: renesas,sdhi: Document RZ/V2L SoC
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Yh4hYVJFZJBYp3d9@sirena.org.uk>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Feb 2022 at 22:23, Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->
-> Document RZ/V2L SDHI bindings. RZ/V2L SDHI is almost identical to one
-> found on the R-Car Gen3. No driver changes are required as generic
-> compatible string "renesas,rcar-gen3-sdhi" will be used as a fallback.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+On Tue, Mar 01, 2022 at 01:36:33PM +0000, Mark Brown wrote:
+> On Tue, Mar 01, 2022 at 01:37:41PM +0100, Stephan Gerhold wrote:
+> 
+> > +  awinic,mode:
+> > +    description: Amplifier mode (number of pulses for one-wire pulse control)
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 1
+> 
+> No maximum?
+> 
 
-Applied for next, thanks!
+I wasn't sure if we really want to maintain maxima for several different
+Awinic part numbers here. For the AW8738 the maximum is 7, for the
+AW87318 (note the additional 1 in the name) it would be 10. The driver
+part would be identical for both.
 
-Kind regards
-Uffe
+... But it's probably cleaner to have the schema check for the real
+maximum of the selected compatible. I will add a "maximum" in v2.
 
-> ---
-> DTSi changes have been posted [0].
->
-> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
-> 20220227203744.18355-2-prabhakar.mahadev-lad.rj@bp.renesas.com/
-> ---
->  Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> index 9ce6e06c19db..3b191fb89cf1 100644
-> --- a/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/renesas,sdhi.yaml
-> @@ -58,6 +58,7 @@ properties:
->                - renesas,sdhi-r8a77995  # R-Car D3
->                - renesas,sdhi-r8a779a0  # R-Car V3U
->                - renesas,sdhi-r9a07g044 # RZ/G2{L,LC}
-> +              - renesas,sdhi-r9a07g054 # RZ/V2L
->            - const: renesas,rcar-gen3-sdhi # R-Car Gen3 or RZ/G2
->
->    reg:
-> @@ -107,7 +108,9 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: renesas,sdhi-r9a07g044
-> +            enum:
-> +              - renesas,sdhi-r9a07g044
-> +              - renesas,sdhi-r9a07g054
->      then:
->        properties:
->          clocks:
-> --
-> 2.17.1
->
+> > +  sound-name-prefix: true
+> 
+> While it's very likely that someone will want to use this it shouldn't
+> be *mandatory* that they do so, there may be no other controls for it to
+> collide with (eg, if none of the other components in the audio path have
+> controls).
+
+This line just enables the "sound-name-prefix" from the included
+name-prefix.yaml. It's not listed in "required" so it's actually
+already optional.
+
+Thanks!
+Stephan
