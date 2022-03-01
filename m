@@ -2,138 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9CC4C8FCF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D647C4C900B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 17:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236037AbiCAQN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 11:13:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        id S233829AbiCAQQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 11:16:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42094 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236035AbiCAQN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:13:27 -0500
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 754E5381AB;
-        Tue,  1 Mar 2022 08:12:46 -0800 (PST)
-Received: by mail-wr1-x42a.google.com with SMTP id e10so3742339wro.13;
-        Tue, 01 Mar 2022 08:12:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cCu9DONguPVLG9KShu2urgawLVKj86g3lH15A0jHk78=;
-        b=Ht/F5O9IDN9+Y9LPlvZocbFNBP2xIyG7hL2sSDvBc3JinqPTnk8rZ6okvBFEt9jh7S
-         dBEsmahv1gj6yx/Amyam1GXt+k/zIUXicffnQijOKoJnqmShbJW4S1yGK+O8yr0rUD1z
-         pdMmxgoGGBN9tczYsRCOJ9XlcuE8/9bqD6u+Ow7oM6Y23lOFDiu4pbDgSdbXaEO0NfN3
-         9tzzvqaua+fhoqpkXTdElMHtH5OC266ueaksC7TGo3KMQuxT2q23NqcSmG8F509bfiyW
-         KlKodZ/l/6HIWfLs+k3ve/lKGINVMp3FvDby8n0xqdC/vTFPw9DnRH2HJCicgrz7gQFW
-         DgdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cCu9DONguPVLG9KShu2urgawLVKj86g3lH15A0jHk78=;
-        b=Bw8BjI5rpHsxnLMOkOCGMZJQrV1dKHYOAIHy9AylNLSnO+q8TA8vk9W4yj+dQbAOs0
-         Hk8wnqPPH1w4ZfhcQr52fLHlvKACfJiTJ+R9I3YCYiYVRWPiwGydmmefuTN6g2jCockR
-         FyNSoXTFFutZzRRMtuoce4ZYYIucWeWPWzv0WG7CKaJtiyQUEmkYNk6VNTn52gbQBcKM
-         0O4NNO1H27BjSV7qRbbmBOg4SN2tTCyWA39TNjFUAmdguz+KOVOJAWVz2XzIsla3NsM4
-         hPiVd+qgUnDsfkRxa/E61m/WcN45MLhOXPxulX4eURVfF0eD47F3CIf6UNW3gX6el+pm
-         NVdA==
-X-Gm-Message-State: AOAM532oww8Xek/2KwwAyOAD+Krx6PZr/q1193IcYkxBpU8/sFSniCde
-        Sx8v4R+zrfMi3CPE+ZWqqqIkWL1le/oO6JVz37M=
-X-Google-Smtp-Source: ABdhPJwLwDboy/fqrYPZ/JgOHB8oEAMqMilpm2ldz68+Nx9YmiJS2JkE5/sX29DL8EiP9ORlIZXovmMcBpgwhFG62D8=
-X-Received: by 2002:a5d:550d:0:b0:1ed:c155:6c2a with SMTP id
- b13-20020a5d550d000000b001edc1556c2amr19993743wrv.470.1646151164906; Tue, 01
- Mar 2022 08:12:44 -0800 (PST)
-MIME-Version: 1.0
-References: <20220228132523.2679099-1-michael@walle.cc>
-In-Reply-To: <20220228132523.2679099-1-michael@walle.cc>
-From:   Heiko Thiery <heiko.thiery@gmail.com>
-Date:   Tue, 1 Mar 2022 17:12:33 +0100
-Message-ID: <CAEyMn7aTKTguzEd-UNNb+-a30t5YBzkhXXBEKL360q10x-t9vg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn-evk: add QSPI flash
-To:     Michael Walle <michael@walle.cc>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        with ESMTP id S234513AbiCAQQT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 11:16:19 -0500
+Received: from mail.kapsi.fi (mail.kapsi.fi [IPv6:2001:67c:1be8::25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F160954A3;
+        Tue,  1 Mar 2022 08:15:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=kapsi.fi;
+         s=20161220; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Subject
+        :Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=VGbStSHHARqJktrOgniVFQ6u0YwBTQjRQ0LEmnlIFkk=; b=IGDQmo+alZXTaMgomNyLpt9hOp
+        RpRfQKGalr145FjoQqtQsOfL0gL723d/LvXjlKaftAggH2uEPmGCY8o1ZgSQDSlcd/oO8f9ouw8rl
+        e64D/b+z1RNubnT4aeNXTRH/kfN4GJ0voe5AkBq58ziumHy5WTyWnReXt5IwjGhoyn5o+gSYYZ1Ya
+        Jp9nIN17ohV73LcDbtqdW2jIf9x8w+yQhCxKbQmNSx0px19iOqreuBfln8TeGuPjV+DvejSaeeyqU
+        9ooN3s3wnAQ2qpLtJOMkLeyWf+8dG8dxtYVQLY5ub3XtuzaatMqVW8fy6m0hi11EMGTmX6rolKY8f
+        JBQ21oJA==;
+Received: from 91-158-25-70.elisa-laajakaista.fi ([91.158.25.70] helo=toshino.localdomain)
+        by mail.kapsi.fi with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <cyndis@kapsi.fi>)
+        id 1nP59q-0003Z8-EU; Tue, 01 Mar 2022 18:15:26 +0200
+From:   cyndis@kapsi.fi
+To:     thierry.reding@gmail.com, jonathanh@nvidia.com, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Mikko Perttunen <mperttunen@nvidia.com>
+Subject: [PATCH v4 0/9] Host1x context isolation support
+Date:   Tue,  1 Mar 2022 18:14:46 +0200
+Message-Id: <20220301161455.4037062-1-cyndis@kapsi.fi>
+X-Mailer: git-send-email 2.35.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 91.158.25.70
+X-SA-Exim-Mail-From: cyndis@kapsi.fi
+X-SA-Exim-Scanned: No (on mail.kapsi.fi); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael
+From: Mikko Perttunen <mperttunen@nvidia.com>
 
-Am Mo., 28. Feb. 2022 um 14:25 Uhr schrieb Michael Walle <michael@walle.cc>:
->
-> There is a 32MiB Micron MT25QU256ABA1 serial NOR flash on the EVK board.
-> Add a device tree node for it.
->
-> Tested on a 8MNANOD3L-EVK.
->
-> Signed-off-by: Michael Walle <michael@walle.cc>
+***
+New in v4:
 
-Tested-by: Heiko Thiery <heiko.thiery@gmail.com>
+Addressed review comments. See individual patches.
+***
 
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi | 27 +++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> index c3f15192b76c..dc75d6d13bb3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dtsi
-> @@ -110,6 +110,22 @@ vddio: vddio-regulator {
->         };
->  };
->
-> +&flexspi {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_flexspi>;
-> +       status = "okay";
-> +
-> +       flash0: flash@0 {
-> +               compatible = "jedec,spi-nor";
-> +               reg = <0>;
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               spi-max-frequency = <166000000>;
-> +               spi-tx-bus-width = <4>;
-> +               spi-rx-bus-width = <4>;
-> +       };
-> +};
-> +
->  &i2c1 {
->         clock-frequency = <400000>;
->         pinctrl-names = "default";
-> @@ -267,6 +283,17 @@ MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22   0x19
->                 >;
->         };
->
-> +       pinctrl_flexspi: flexspigrp {
-> +               fsl,pins = <
-> +                       MX8MN_IOMUXC_NAND_ALE_QSPI_A_SCLK               0x1c2
-> +                       MX8MN_IOMUXC_NAND_CE0_B_QSPI_A_SS0_B            0x82
-> +                       MX8MN_IOMUXC_NAND_DATA00_QSPI_A_DATA0           0x82
-> +                       MX8MN_IOMUXC_NAND_DATA01_QSPI_A_DATA1           0x82
-> +                       MX8MN_IOMUXC_NAND_DATA02_QSPI_A_DATA2           0x82
-> +                       MX8MN_IOMUXC_NAND_DATA03_QSPI_A_DATA3           0x82
-> +               >;
-> +       };
-> +
->         pinctrl_gpio_led: gpioledgrp {
->                 fsl,pins = <
->                         MX8MN_IOMUXC_NAND_READY_B_GPIO3_IO16    0x19
-> --
-> 2.30.2
->
+***
+New in v3:
+
+Added device tree bindings for new property.
+***
+
+***
+New in v2:
+
+Added support for Tegra194
+Use standard iommu-map property instead of custom mechanism
+***
+
+This series adds support for Host1x 'context isolation'. Since
+when programming engines through Host1x, userspace can program in
+any addresses it wants, we need some way to isolate the engines'
+memory spaces. Traditionally this has either been done imperfectly
+with a single shared IOMMU domain, or by copying and verifying the
+programming command stream at submit time (Host1x firewall).
+
+Since Tegra186 there is a privileged (only usable by kernel)
+Host1x opcode that allows setting the stream ID sent by the engine
+to the SMMU. So, by allocating a number of context banks and stream
+IDs for this purpose, and using this opcode at the beginning of
+each job, we can implement isolation. Due to the limited number of
+context banks only each process gets its own context, and not
+each channel.
+
+This feature also allows sharing engines among multiple VMs when
+used with Host1x's hardware virtualization support - up to 8 VMs
+can be configured with a subset of allowed stream IDs, enforced
+at hardware level.
+
+To implement this, this series adds a new host1x context bus, which
+will contain the 'struct device's corresponding to each context
+bank / stream ID, changes to device tree and SMMU code to allow
+registering the devices and using the bus, as well as the Host1x
+stream ID programming code and support in TegraDRM.
+
+-------------
+Merging notes
+-------------
+
+The changes to DT bindings should be applied on top of Thierry's patch
+'dt-bindings: display: tegra: Convert to json-schema'.
+
+Thanks,
+Mikko
+
+Mikko Perttunen (9):
+  dt-bindings: host1x: Add iommu-map property
+  gpu: host1x: Add context bus
+  gpu: host1x: Add context device management code
+  gpu: host1x: Program context stream ID on submission
+  iommu/arm-smmu: Attach to host1x context device bus
+  arm64: tegra: Add Host1x context stream IDs on Tegra186+
+  drm/tegra: falcon: Set DMACTX field on DMA transactions
+  drm/tegra: Support context isolation
+  drm/tegra: vic: Implement get_streamid_offset
+
+ .../display/tegra/nvidia,tegra20-host1x.yaml  |   5 +
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |  11 ++
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  11 ++
+ drivers/gpu/Makefile                          |   3 +-
+ drivers/gpu/drm/tegra/drm.h                   |   2 +
+ drivers/gpu/drm/tegra/falcon.c                |   8 +
+ drivers/gpu/drm/tegra/falcon.h                |   1 +
+ drivers/gpu/drm/tegra/submit.c                |  21 ++-
+ drivers/gpu/drm/tegra/uapi.c                  |  45 ++++-
+ drivers/gpu/drm/tegra/vic.c                   |  68 +++++++-
+ drivers/gpu/host1x/Kconfig                    |   5 +
+ drivers/gpu/host1x/Makefile                   |   2 +
+ drivers/gpu/host1x/context.c                  | 160 ++++++++++++++++++
+ drivers/gpu/host1x/context.h                  |  27 +++
+ drivers/gpu/host1x/context_bus.c              |  31 ++++
+ drivers/gpu/host1x/dev.c                      |  12 +-
+ drivers/gpu/host1x/dev.h                      |   2 +
+ drivers/gpu/host1x/hw/channel_hw.c            |  52 +++++-
+ drivers/gpu/host1x/hw/host1x06_hardware.h     |  10 ++
+ drivers/gpu/host1x/hw/host1x07_hardware.h     |  10 ++
+ drivers/iommu/arm/arm-smmu/arm-smmu.c         |  13 ++
+ include/linux/host1x.h                        |  22 +++
+ include/linux/host1x_context_bus.h            |  15 ++
+ 23 files changed, 518 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/host1x/context.c
+ create mode 100644 drivers/gpu/host1x/context.h
+ create mode 100644 drivers/gpu/host1x/context_bus.c
+ create mode 100644 include/linux/host1x_context_bus.h
+
+-- 
+2.35.0
+
