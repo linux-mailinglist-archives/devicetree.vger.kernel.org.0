@@ -2,59 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 255544C842A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 07:33:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D7114C843E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 07:42:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231590AbiCAGeK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 01:34:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58722 "EHLO
+        id S232323AbiCAGmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 01:42:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230384AbiCAGeJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 01:34:09 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64B096246;
-        Mon, 28 Feb 2022 22:33:28 -0800 (PST)
-X-UUID: b52c1b2a412a4aac830a5595c9cde0f7-20220301
-X-UUID: b52c1b2a412a4aac830a5595c9cde0f7-20220301
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 993912549; Tue, 01 Mar 2022 14:33:22 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 1 Mar 2022 14:33:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 1 Mar
- 2022 14:33:20 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 1 Mar 2022 14:33:20 +0800
-Message-ID: <c92342029f05748426df23d4d95ad178f7acc0f9.camel@mediatek.com>
-Subject: Re: [PATCH v4,2/5] dt-bindings: display: mediatek: add MT8186 SoC
- binding
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <p.zabel@pengutronix.de>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <jassisinghbrar@gmail.com>, <fparent@baylibre.com>,
-        <yongqiang.niu@mediatek.com>, <hsinyi@chromium.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Tue, 1 Mar 2022 14:33:20 +0800
-In-Reply-To: <YhfaSqWInwgsu30x@robh.at.kernel.org>
-References: <20220222052803.3570-1-rex-bc.chen@mediatek.com>
-         <20220222052803.3570-3-rex-bc.chen@mediatek.com>
-         <YhfaSqWInwgsu30x@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S232258AbiCAGmq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 01:42:46 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35B685B3D3;
+        Mon, 28 Feb 2022 22:42:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646116925; x=1677652925;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=+NdqiysR3P7r86QCWKa44zgmY0F6oK3UcxdyTMbyOhM=;
+  b=jD85c6IbEXbfpg5T1oNtVIMb1Bvg9feu2cMq7ueZ7iZvWhGTAtoy9Tzh
+   v4Vx1IIIO+mmXKf/cnOLV8J+AsDXRyoxWngU3/2QyhZBRxodBZXEpM3ej
+   cNDgyQHjj8jDOgVdDY6baZkOXIu7sULq7GTPGqH6EPkqSNZbrejiCDHcu
+   8=;
+Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 28 Feb 2022 22:42:04 -0800
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2022 22:42:04 -0800
+Received: from [10.216.49.101] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 28 Feb
+ 2022 22:41:59 -0800
+Message-ID: <3bc0461d-3a2e-f994-e712-dfc8be04c9b4@quicinc.com>
+Date:   Tue, 1 Mar 2022 12:12:06 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 03/11] clk: qcom: gdsc: add support for clocks tied to
+ the GDSC
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     Andy Gross <agross@kernel.org>,
+        Stanimir Varbanov <svarbanov@mm-sol.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Wilczy??ski <kw@linux.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Prasad Malisetty <pmaliset@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20220204144645.3016603-1-dmitry.baryshkov@linaro.org>
+ <20220204144645.3016603-4-dmitry.baryshkov@linaro.org>
+ <Yf2jRAf5UKYSMYxe@builder.lan>
+ <f521a273-7250-ddca-0e56-b1b27bd75117@linaro.org>
+From:   Prasad Malisetty <quic_pmaliset@quicinc.com>
+In-Reply-To: <f521a273-7250-ddca-0e56-b1b27bd75117@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,294 +76,168 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+++ Taniya
 
-Thanks for your review.
-I add comments below:
+Hi Dmitry,
 
-On Thu, 2022-02-24 at 13:19 -0600, Rob Herring wrote:
-> On Tue, Feb 22, 2022 at 01:28:00PM +0800, Rex-BC Chen wrote:
-> > Add MT8186 SoC binding to AAL, CCORR, COLOR, DITHER, GAMMA, MUTEX,
-> > OVL, POSTMASK and RDMA.
-> > 
-> > Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml | 7
-> > +++++++
-> >  .../bindings/display/mediatek/mediatek,ccorr.yaml          | 5
-> > +++++
-> >  .../bindings/display/mediatek/mediatek,color.yaml          | 1 +
-> >  .../bindings/display/mediatek/mediatek,dither.yaml         | 1 +
-> >  .../bindings/display/mediatek/mediatek,gamma.yaml          | 1 +
-> >  .../bindings/display/mediatek/mediatek,mutex.yaml          | 2 ++
-> >  .../bindings/display/mediatek/mediatek,ovl-2l.yaml         | 5
-> > +++++
-> >  .../devicetree/bindings/display/mediatek/mediatek,ovl.yaml | 5
-> > +++++
-> >  .../bindings/display/mediatek/mediatek,postmask.yaml       | 5
-> > +++++
-> >  .../bindings/display/mediatek/mediatek,rdma.yaml           | 1 +
-> >  10 files changed, 33 insertions(+)
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.y
-> > aml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.y
-> > aml
-> > index 225f9dd726d2..3a5416937293 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.y
-> > aml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.y
-> > aml
-> > @@ -23,6 +23,8 @@ properties:
-> >      oneOf:
-> >        - items:
-> >            - const: mediatek,mt8173-disp-aal
-> > +      - items:
-> > +          - const: mediatek,mt8183-disp-aal
-> 
-> This patch is for 8186...
+Greetings !!!
 
-I will split it to another commit in next version.
+I discussed with internal team. setting gcc_pcie_n_pipe_clk src in pcie 
+driver doesn't have any relation with gdsc.
 
-> 
-> >        - items:
-> >            - enum:
-> >                - mediatek,mt2712-disp-aal
-> > @@ -31,6 +33,11 @@ properties:
-> >                - mediatek,mt8195-disp-aal
-> >            - enum:
-> >                - mediatek,mt8173-disp-aal
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-disp-aal
-> > +          - enum:
-> > +              - mediatek,mt8183-disp-aal
-> 
-> There won't be more than 1 fallback, so use const rather than enum.
-> 
+But we are making sure that gcc_pcie_n_pipe_clk src is bi_tcxo before 
+enabling the clocks and switching to pipe_clk src after PHY is enalbe.
 
-I will modify it in next version.
+During suspend switching back to bi_tcxo as we enabling the clock as 
+part of resume.
 
-> >  
-> >    reg:
-> >      maxItems: 1
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr
-> > .yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr
-> > .yaml
-> > index 6894b6999412..8ac87b5896ac 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr
-> > .yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr
-> > .yaml
-> > @@ -30,6 +30,11 @@ properties:
-> >                - mediatek,mt8195-disp-ccorr
-> >            - enum:
-> >                - mediatek,mt8192-disp-ccorr
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-disp-ccorr
-> > +          - enum:
-> > +              - mediatek,mt8183-disp-ccorr
-> 
-> Same here.
+  Hi Taniya,
 
-I will modify it in next version.
+Please provide your inputs.
 
-> 
-> >  
-> >    reg:
-> >      maxItems: 1
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,color
-> > .yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,color
-> > .yaml
-> > index bc83155b3b4c..d0a4b9eb71fd 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,color
-> > .yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,color
-> > .yaml
-> > @@ -37,6 +37,7 @@ properties:
-> >        - items:
-> >            - enum:
-> >                - mediatek,mt8183-disp-color
-> > +              - mediatek,mt8186-disp-color
-> >                - mediatek,mt8192-disp-color
-> >                - mediatek,mt8195-disp-color
-> >            - enum:
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dithe
-> > r.yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dithe
-> > r.yaml
-> > index 9d89297f5f1d..9a08514ed909 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,dithe
-> > r.yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,dithe
-> > r.yaml
-> > @@ -26,6 +26,7 @@ properties:
-> >            - const: mediatek,mt8183-disp-dither
-> >        - items:
-> >            - enum:
-> > +              - mediatek,mt8186-disp-dither
-> >                - mediatek,mt8192-disp-dither
-> >                - mediatek,mt8195-disp-dither
-> >            - enum:
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma
-> > .yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma
-> > .yaml
-> > index 247baad147b3..6d96f6736d91 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma
-> > .yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma
-> > .yaml
-> > @@ -27,6 +27,7 @@ properties:
-> >            - const: mediatek,mt8183-disp-gamma
-> >        - items:
-> >            - enum:
-> > +              - mediatek,mt8186-disp-gamma
-> >                - mediatek,mt8192-disp-gamma
-> >                - mediatek,mt8195-disp-gamma
-> >            - enum:
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex
-> > .yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex
-> > .yaml
-> > index 6eca525eced0..55391b5c08c4 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex
-> > .yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,mutex
-> > .yaml
-> > @@ -34,6 +34,8 @@ properties:
-> >            - const: mediatek,mt8173-disp-mutex
-> >        - items:
-> >            - const: mediatek,mt8183-disp-mutex
-> > +      - items:
-> > +          - const: mediatek,mt8186-disp-mutex
-> >        - items:
-> >            - const: mediatek,mt8192-disp-mutex
-> 
-> All these single entry cases can be a single enum.
-> 
+Thanks
 
-I will modify it in next version.
-
-> >        - items:
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-
-> > 2l.yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-
-> > 2l.yaml
-> > index 611a2dbdefa4..f7f89485a5ae 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-
-> > 2l.yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-
-> > 2l.yaml
-> > @@ -25,6 +25,11 @@ properties:
-> >            - const: mediatek,mt8183-disp-ovl-2l
-> >        - items:
-> >            - const: mediatek,mt8192-disp-ovl-2l
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-disp-ovl-2l
-> > +          - enum:
-> > +              - mediatek,mt8192-disp-ovl-2l
-> >  
-> >    reg:
-> >      maxItems: 1
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.y
-> > aml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.y
-> > aml
-> > index e71f79bc2dee..110e6b2747bc 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.y
-> > aml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.y
-> > aml
-> > @@ -40,6 +40,11 @@ properties:
-> >                - mediatek,mt8195-disp-ovl
-> >            - enum:
-> >                - mediatek,mt8183-disp-ovl
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-disp-ovl
-> > +          - enum:
-> > +              - mediatek,mt8192-disp-ovl
-> >  
-> >    reg:
-> >      maxItems: 1
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,postm
-> > ask.yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,postm
-> > ask.yaml
-> > index 6ac1da2e8871..22c333d09465 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,postm
-> > ask.yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,postm
-> > ask.yaml
-> > @@ -23,6 +23,11 @@ properties:
-> >      oneOf:
-> >        - items:
-> >            - const: mediatek,mt8192-disp-postmask
-> > +      - items:
-> > +          - enum:
-> > +              - mediatek,mt8186-disp-postmask
-> > +          - enum:
-> > +              - mediatek,mt8192-disp-postmask
-> >  
-> >    reg:
-> >      maxItems: 1
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
-> > yaml
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
-> > yaml
-> > index 8ef821641672..4f1c935cdf70 100644
-> > ---
-> > a/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
-> > yaml
-> > +++
-> > b/Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.
-> > yaml
-> > @@ -39,6 +39,7 @@ properties:
-> >                - mediatek,mt2701-disp-rdma
-> >        - items:
-> >            - enum:
-> > +              - mediatek,mt8186-disp-rdma
-> >                - mediatek,mt8192-disp-rdma
-> >            - enum:
-> >                - mediatek,mt8183-disp-rdma
-> > -- 
-> > 2.18.0
-> > 
-> > 
-
-BRs,
-Rex
-
+-Prasad
+On 2/12/2022 1:22 AM, Dmitry Baryshkov wrote:
+> On 05/02/2022 01:05, Bjorn Andersson wrote:
+>> On Fri 04 Feb 08:46 CST 2022, Dmitry Baryshkov wrote:
+>>
+>>> On newer Qualcomm platforms GCC_PCIE_n_PIPE_CLK_SRC should be 
+>>> controlled
+>>> together with the PCIE_n_GDSC. The clock should be fed from the TCXO
+>>> before switching the GDSC off and can be fed from PCIE_n_PIPE_CLK once
+>>> the GDSC is on.
+>>>
+>>> Since commit aa9c0df98c29 ("PCI: qcom: Switch pcie_1_pipe_clk_src after
+>>> PHY init in SC7280") PCIe controller driver tries to manage this on 
+>>> it's
+>>> own, resulting in the non-optimal code. Furthermore, if the any of the
+>>> drivers will have the same requirements, the code would have to be
+>>> dupliacted there.
+>>>
+>>> Move handling of such clocks to the GDSC code, providing special GDSC
+>>> type.
+>>>
+>>
+>> As discussed on IRC, I'm inclined not to take this, because looks to me
+>> to be the same situation that we have with all GDSCs in SM8350 and
+>> onwards - that some clocks must be parked on a safe parent before the
+>> associated GDSC can be toggled.
+>>
+>> Prasad, please advice on what the actual requirements are wrt the
+>> gcc_pipe_clk_src. When does it need to provide a valid signal and when
+>> does it need to be parked?
+>
+> [Excuse me for the duplicate, Prasad's email was bouncing]
+>
+> Prasad, any comments?
+>
+>>
+>> Regards,
+>> Bjorn
+>>
+>>> Cc: Prasad Malisetty <pmaliset@codeaurora.org>
+>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>   drivers/clk/qcom/gdsc.c | 41 
+>>> +++++++++++++++++++++++++++++++++++++++++
+>>>   drivers/clk/qcom/gdsc.h | 14 ++++++++++++++
+>>>   2 files changed, 55 insertions(+)
+>>>
+>>> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+>>> index 7e1dd8ccfa38..9913d1b70947 100644
+>>> --- a/drivers/clk/qcom/gdsc.c
+>>> +++ b/drivers/clk/qcom/gdsc.c
+>>> @@ -45,6 +45,7 @@
+>>>   #define TIMEOUT_US        500
+>>>     #define domain_to_gdsc(domain) container_of(domain, struct gdsc, 
+>>> pd)
+>>> +#define domain_to_pipe_clk_gdsc(domain) container_of(domain, struct 
+>>> pipe_clk_gdsc, base.pd)
+>>>     enum gdsc_status {
+>>>       GDSC_OFF,
+>>> @@ -549,3 +550,43 @@ int gdsc_gx_do_nothing_enable(struct 
+>>> generic_pm_domain *domain)
+>>>       return 0;
+>>>   }
+>>>   EXPORT_SYMBOL_GPL(gdsc_gx_do_nothing_enable);
+>>> +
+>>> +/*
+>>> + * Special operations for GDSCs with attached pipe clocks.
+>>> + * The clock should be parked to safe source (tcxo) before turning 
+>>> off the GDSC
+>>> + * and can be switched on as soon as the GDSC is on.
+>>> + *
+>>> + * We remove respective clock sources from clocks map and handle 
+>>> them manually.
+>>> + */
+>>> +int gdsc_pipe_enable(struct generic_pm_domain *domain)
+>>> +{
+>>> +    struct pipe_clk_gdsc *sc = domain_to_pipe_clk_gdsc(domain);
+>>> +    int i, ret;
+>>> +
+>>> +    ret = gdsc_enable(domain);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    for (i = 0; i< sc->num_clocks; i++)
+>>> +        regmap_update_bits(sc->base.regmap, sc->clocks[i].reg,
+>>> +                BIT(sc->clocks[i].shift + sc->clocks[i].width) - 
+>>> BIT(sc->clocks[i].shift),
+>>> +                sc->clocks[i].on_value << sc->clocks[i].shift);
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(gdsc_pipe_enable);
+>>> +
+>>> +int gdsc_pipe_disable(struct generic_pm_domain *domain)
+>>> +{
+>>> +    struct pipe_clk_gdsc *sc = domain_to_pipe_clk_gdsc(domain);
+>>> +    int i;
+>>> +
+>>> +    for (i = sc->num_clocks - 1; i >= 0; i--)
+>>> +        regmap_update_bits(sc->base.regmap, sc->clocks[i].reg,
+>>> +                BIT(sc->clocks[i].shift + sc->clocks[i].width) - 
+>>> BIT(sc->clocks[i].shift),
+>>> +                sc->clocks[i].off_value << sc->clocks[i].shift);
+>>> +
+>>> +    /* In case of an error do not try turning the clocks again. We 
+>>> can not be sure about the GDSC state. */
+>>> +    return gdsc_disable(domain);
+>>> +}
+>>> +EXPORT_SYMBOL_GPL(gdsc_pipe_disable);
+>>> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
+>>> index d7cc4c21a9d4..b1a2f0abe41c 100644
+>>> --- a/drivers/clk/qcom/gdsc.h
+>>> +++ b/drivers/clk/qcom/gdsc.h
+>>> @@ -68,11 +68,25 @@ struct gdsc_desc {
+>>>       size_t num;
+>>>   };
+>>>   +struct pipe_clk_gdsc {
+>>> +    struct gdsc base;
+>>> +    int num_clocks;
+>>> +    struct {
+>>> +        u32 reg;
+>>> +        u32 shift;
+>>> +        u32 width;
+>>> +        u32 off_value;
+>>> +        u32 on_value;
+>>> +    } clocks[];
+>>> +};
+>>> +
+>>>   #ifdef CONFIG_QCOM_GDSC
+>>>   int gdsc_register(struct gdsc_desc *desc, struct 
+>>> reset_controller_dev *,
+>>>             struct regmap *);
+>>>   void gdsc_unregister(struct gdsc_desc *desc);
+>>>   int gdsc_gx_do_nothing_enable(struct generic_pm_domain *domain);
+>>> +int gdsc_pipe_enable(struct generic_pm_domain *domain);
+>>> +int gdsc_pipe_disable(struct generic_pm_domain *domain);
+>>>   #else
+>>>   static inline int gdsc_register(struct gdsc_desc *desc,
+>>>                   struct reset_controller_dev *rcdev,
+>>> -- 
+>>> 2.34.1
+>>>
+>
+>
