@@ -2,67 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1A714C8C82
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9637F4C8C87
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:22:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232845AbiCANWn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:22:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
+        id S233687AbiCANXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:23:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbiCANWm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:22:42 -0500
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EFAB9BB8A;
-        Tue,  1 Mar 2022 05:22:01 -0800 (PST)
-Received: by mail-ej1-f54.google.com with SMTP id a8so31454957ejc.8;
-        Tue, 01 Mar 2022 05:22:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=5Ra2I3hSMIC3yuqrkvmVSbWC/D8eEJ4Xrnz10p75G70=;
-        b=6rtA3t3TabidRKd39XlDDrulzZ8Zwtzh1JX8VQL5++jrdOBciLsIV6TkJB34jTN9Jz
-         DotlaQFy1fRtbKgcerc0lO+heifoeTGAOAnPc0hwIx1ae8ipO6k0Tjx+Af+c4+2VXFd1
-         N55AQE1EUtjzZv6AJNFUJ0ZRjfG2f0P3CzE/ji9IQV43nq0IfK7XLRa5IqIwfMZkRaHk
-         3CDTlqSLb3IARBfuh+bvpNxpORDvg3SJNsdU/+IO4odgx+ezMDkZJXsLfoZQkLQKJzaz
-         uHjsAYmAZRNEm4qgn6yxpc+uYQbFH0skHhEGuECcD9e/DJjMpsheFA4owB4A5BT5dvS5
-         rO8w==
-X-Gm-Message-State: AOAM532vA88qD1d4JQvP9xr0KcqFRL26t3utyUyf6bjaCHLnhuR/ptsw
-        I1+LoLoQTyIWcgER+x/Ywj8=
-X-Google-Smtp-Source: ABdhPJw0qQIcZTY5Qhv2NfeGU9Qhur56YMX3pUpgon42tZ6bx6AhyarSrHoB3HyJjbau7IvycERsgQ==
-X-Received: by 2002:a17:906:7d98:b0:6bb:b32b:d3bc with SMTP id v24-20020a1709067d9800b006bbb32bd3bcmr18424888ejo.126.1646140919854;
-        Tue, 01 Mar 2022 05:21:59 -0800 (PST)
-Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.googlemail.com with ESMTPSA id p14-20020a05640210ce00b00413211746d4sm7095390edu.51.2022.03.01.05.21.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 05:21:58 -0800 (PST)
-Message-ID: <bf1fa181-d2a7-eab9-4045-cf53ae3ce2f2@kernel.org>
-Date:   Tue, 1 Mar 2022 14:21:57 +0100
+        with ESMTP id S229773AbiCANXS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:23:18 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CF1B43481
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:22:34 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 109E01F446DE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646140953;
+        bh=Y1ZcuKJ0Zau/HIsKt4vKqxUdOcgsSxKQSFtgekT3HNA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LP1/jceRXtHkcrEgEDSqaUrK3PSPKZ5O48CLOFPPH4bxTrtqUrdGKKUY4nVXtgHh5
+         nf6zj9zKXzi6BhaEn7+Gj9P4D2DzTPNZOfY8h9G2Hk6we1xPa2mrg+4vzUek+JnxT5
+         za2FXYjWne/FWui7axJG0FFDGxZH6ge6ycs+OAsKIKlyMUReWa/D7thJYJU7jx6jC0
+         DQ2dV0x4vix6BH1GD8QVR1k14aZcejJjwu5nj1eafk7UxwQCfPdFD1ok/mN+aItJZN
+         oPmuwcr77FhhaceibuRGwVgyPNPATrNHBLFs1VX53AVRK2Ztd+v1PJs9S8S5sx3yh8
+         2HrbPymuEmfEw==
+Message-ID: <efed30ef-1fa6-3550-6979-fcbff10bfb16@collabora.com>
+Date:   Tue, 1 Mar 2022 16:22:29 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 2/2] dt-bindings: hwmon: Add sample averaging
- properties for ADM1275
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
 Content-Language: en-US
-To:     POTIN LAI <potin.lai@quantatw.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220301103900.12637-1-potin.lai@quantatw.com>
- <20220301103900.12637-3-potin.lai@quantatw.com>
- <da4ac970-9e7d-c9cb-eea3-e5ec8a1eef00@kernel.org>
- <9bb56622-2859-1059-6f14-2242ab6a2427@quantatw.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <9bb56622-2859-1059-6f14-2242ab6a2427@quantatw.com>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        kernel@pengutronix.de, Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+ <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+ <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
+ <20220225131154.GE19585@pengutronix.de>
+ <20220228141921.GN19585@pengutronix.de>
+ <43eb78d9-4252-938e-aaaa-8d353730314a@collabora.com>
+ <20220301083724.GO19585@pengutronix.de>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <20220301083724.GO19585@pengutronix.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,102 +69,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/03/2022 13:42, POTIN LAI wrote:
-> 
-> Krzysztof Kozlowski 於 1/03/2022 7:16 pm 寫道:
->> On 01/03/2022 11:39, Potin Lai wrote:
->>> Add documentation of new properties for sample averaging in PMON_CONFIG
->>> register.
+On 3/1/22 11:37, Sascha Hauer wrote:
+> On Tue, Mar 01, 2022 at 01:56:59AM +0300, Dmitry Osipenko wrote:
+>> On 2/28/22 17:19, Sascha Hauer wrote:
+>>> On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
+>>>> On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
+>>>>> On 2022-02-25 11:10, Dmitry Osipenko wrote:
+>>>>>> 25.02.2022 13:49, Sascha Hauer пишет:
+>>>>>>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+>>>>>>>> 25.02.2022 10:51, Sascha Hauer пишет:
+>>>>>>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+>>>>>>>>> HDMI controller to work. The purpose of that clock is not clear. It is
+>>>>>>>>> named "hclk" in the downstream driver, so use the same name.
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>>>>> ---
+>>>>>>>>>
+>>>>>>>>> Notes:
+>>>>>>>>>      Changes since v5:
+>>>>>>>>>      - Use devm_clk_get_optional rather than devm_clk_get
+>>>>>>>>>
+>>>>>>>>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+>>>>>>>>>   1 file changed, 16 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>>>> index fe4f9556239ac..c6c00e8779ab5 100644
+>>>>>>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+>>>>>>>>>   	const struct rockchip_hdmi_chip_data *chip_data;
+>>>>>>>>>   	struct clk *ref_clk;
+>>>>>>>>>   	struct clk *grf_clk;
+>>>>>>>>> +	struct clk *hclk_clk;
+>>>>>>>>>   	struct dw_hdmi *hdmi;
+>>>>>>>>>   	struct regulator *avdd_0v9;
+>>>>>>>>>   	struct regulator *avdd_1v8;
+>>>>>>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>>>>>>>   		return PTR_ERR(hdmi->grf_clk);
+>>>>>>>>>   	}
+>>>>>>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+>>>>>>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+>>>>>>>>
+>>>>>>>> Have you tried to investigate the hclk? I'm still thinking that's not
+>>>>>>>> only HDMI that needs this clock and then the hardware description
+>>>>>>>> doesn't look correct.
+>>>>>>>
+>>>>>>> I am still not sure what you mean. Yes, it's not only the HDMI that
+>>>>>>> needs this clock. The VOP2 needs it as well and the driver handles that.
+>>>>>>
+>>>>>> I'm curious whether DSI/DP also need that clock to be enabled. If they
+>>>>>> do, then you aren't modeling h/w properly AFAICS.
+>>>>>
+>>>>> Assuming nobody at Rockchip decided to make things needlessly inconsistent
+>>>>> with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
+>>>>> interface. Usually, if that affected anything other than accessing VOP
+>>>>> registers, indeed it would smell of something being wrong in the clock tree,
+>>>>> but in this case I'd also be suspicious of whether it might have ended up
+>>>>> clocking related GRF registers as well (either directly, or indirectly via
+>>>>> some gate that the clock driver hasn't modelled yet).
+>>>>
+>>>> Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
+>>>> hanging when HCLK_VOP is disabled by disabling that clock via sysfs
+>>>> using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
+>>>> of that units can't be accessed. However, when I disable HCLK_VOP by
+>>>> directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
+>>>> accessing VOP registers hangs, the other units stay functional.
+>>>> So it seems it must be the parent clock which must be enabled. The
+>>>> parent clock is hclk_vo. This clock should be handled as part of the
+>>>> RK3568_PD_VO power domain:
+>>>>
+>>>> 	power-domain@RK3568_PD_VO {
+>>>>                 reg = <RK3568_PD_VO>;
+>>>>                 clocks = <&cru HCLK_VO>,
+>>>>                          <&cru PCLK_VO>,
+>>>>                          <&cru ACLK_VOP_PRE>;
+>>>>                  pm_qos = <&qos_hdcp>,
+>>>>                           <&qos_vop_m0>,
+>>>>                           <&qos_vop_m1>;
+>>>>                  #power-domain-cells = <0>;
+>>>>         };
 >>>
->>> New properties:
->>> - adi,volt-curr-sample-average
->>> - adi,power-sample-average
->>> - adi,power-sample-average-enable
+>>> Forget this. The clocks in this node are only enabled during enabling or
+>>> disabling the power domain, they are disabled again immediately afterwards.
 >>>
->>> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
->>> ---
->>>  .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
->>>  1 file changed, 44 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>> index 223393d7cafd..1b612dc06992 100644
->>> --- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>> +++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
->>> @@ -37,6 +37,47 @@ properties:
->>>      description:
->>>        Shunt resistor value in micro-Ohm.
->>>  
->>> +  adi,volt-curr-sample-average:
->>> +    description: |
->>> +      Number of samples to be used to report voltage and current values.
->>> +      If the configured value is not a power of 2, sample averaging number
->>> +      will be configured with smaller and closest power of 2.
->>> +
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
->>> +    default: 1
->>> +
->>> +  adi,power-sample-average:
->>> +    description: |
->>> +      Number of samples to be used to report power values.
->>> +      If the configured value is not a power of 2, sample averaging number
->>> +      will be configured with smaller and closest power of 2.
->>> +
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
->>> +    default: 1
->>> +
->>> +  adi,power-sample-average-enable:
->>> +    description: Enable sample averaging for power reading.
->>> +    type: boolean
->> Why do you need this property? Voltage/current sampling is enabled in
->> your driver with presence of adi,volt-curr-sample-average. Why power
->> sampling is different?
-> For "adi,power-sample-average", adm1075, adm1275 & adm127 don't have config reg for power sample average, so I add boolean type property to enable it
-> But for "adi,power-sample-average-enable", all chips have ability of configuring, so it doesn't need a property to enable or disable.
-
-So the reason to add separate property is that this feature can be
-disabled. Since your driver does not disable it, it seems it is a
-default state to have it disabled and you have to enable it, right?
-Where is the enable code? I see you only write the sample averaging
-value with adm1275_write_pmon_config(). There is no enable...
-
-But wait, the power averaging is being disabled by writing 0 to
-register, which is not allowed by bindings. How one can disable it?
-
-I don't see any usage of "adi,power-sample-average-enable", neither in
-driver nor in hardware. I also do not see the need for it, the purpose.
-
-Then second part, you added default value of 1 to
-adi,volt-curr-sample-average and adi,power-sample-average. If the
-property is missing, then the default of 1 is applied, right? But
-datasheet says that default is 128!
-
-The bindings neither match hardware nor driver. They look entirely
-independent. This is wrong. They should instead be strongly related to
-the hardware, describe the hardware. Then the driver should implement
-proper logic for it.
-
-> Does example means that I can set any type (not just boolean?) of property to false if not allowed?
-> Could I write as below?
+>>> OK, I need HCLK_VO to access the HDMI registers. I verified that by
+>>> disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
+>>> HDMI registers become inaccessible then. This means I'll replace
+>>> HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
+>>
+>> The RK3568_PD_VO already has HCLK_VO and the domain should be
+>> auto-enabled before HDMI registers are accessed,
 > 
-> allOf:
->   - if:
->       properties:
->         compatible:
->           contains:
->             enum:
->               - chips_not_support
->     then:
->       properties:
->         adi,power-sample-average: false
+> As said, the clocks given in the power domain are only enabled during
+> the process of enabling/disabling the power domain and are disabled
+> again directly afterwards:
 > 
-> Sorry, I am not quite understand the example of set property not allowed, if I still get it wrong, please advise more detailed, thank you.
+>> 	if (rockchip_pmu_domain_is_on(pd) != power_on) {
+> 
+> They are enabled here:
+> 
+>> 		ret = clk_bulk_enable(pd->num_clks, pd->clks);
+>> 		if (ret < 0) {
+>> 			dev_err(pmu->dev, "failed to enable clocks\n");
+>> 			mutex_unlock(&pmu->mutex);
+>> 			return ret;
+>> 		}
+>>
+>> 		if (!power_on) {
+>> 			rockchip_pmu_save_qos(pd);
+>>
+>> 			/* if powering down, idle request to NIU first */
+>> 			rockchip_pmu_set_idle_request(pd, true);
+>> 		}
+>>
+> 
+> Then the power domain is switched:
+> 
+>> 		rockchip_do_pmu_set_power_domain(pd, power_on);
+>>
+>> 		if (power_on) {
+>> 			/* if powering up, leave idle mode */
+>> 			rockchip_pmu_set_idle_request(pd, false);
+>>
+>> 			rockchip_pmu_restore_qos(pd);
+>> 		}
+>>
+> 
+> And here the clocks are disabled again:
+> 
+>> 		clk_bulk_disable(pd->num_clks, pd->clks);
+>> 	}
+> 
+>> hence you should do the
+>> opposite and remove the HCLK_VO/P clock from the HDMI DT, not add it. If
+>> the HCLK_VO clock isn't enabled by the domain driver, then you need to
+>> check why. Or am I missing something?
+> 
+> What the power domain driver additionally does is: It does a of_clk_get()
+> on all the clocks found in the node of a power domains consumer. It then
+> does a pm_clk_add_clk() on the clocks and sets the GENPD_FLAG_PM_CLK
+> flag. This has the effect that all clocks of a device in a power domain
+> are enabled as long as the power domain itself is enabled. This means
+> when I just add HCLK_VO to the DSI node, then the power domain driver
+> will enable it, even when the clock is not touched in the DSI driver at
+> all. To me this looks really fishy because I think a device itself
+> should have control over its clocks. I don't know how many devices
+> really depend on the power domain driver controlling their clocks, but
+> everyone of them will stop working when the power domain driver is not
+> compiled in.
 
-I gave you the example:
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/example-schema.yaml?#n221
-and there is no boolean in this example. You have a compatible which
-does not allow some property, so you need "then:properties:foobar:false"
+This is a correct behaviour of the GENPD driver. Thank you for the
+clarification, I completely forgot that clocks should be kept disabled
+by GENPD after power-on.
 
-Best regards,
-Krzysztof
+Now I see why you want to add HCLK_VO to the HDMI node, it's good to me
+to add the HCLK_VO to the HDMI node. You may copy this clarification to
+the commit message of the HDMI DT patch in v8.
+
+I think it's okay that PD driver uses pm_clk_add_clk(). Shouldn't be a
+problem to change that later on if some specific driver will want to
+have an explicit control over clocks.
+
+But yes, CONFIG_ROCKCHIP_PM_DOMAINS must be enabled (auto-selected?). Is
+ARCH_ROCKCHIP available on ARM64 at all?
+
+>> What about DSI and DP? Don't they depend on RK3568_PD_VO as well?
+> 
+> Yes, they depend on that power domain as well.
+
+So DSI/DP bindings will require a similar HCLK_VO change. You're not
+using DP/DSI in this patchset, hence should be okay to postpone the
+DSI/DP changes if you don't want to touch them for now.
+
+Seems nothing holds back you now from making the v8.
