@@ -2,100 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBD944C8CCB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:39:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8369E4C8CD1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:39:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232955AbiCANjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:39:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53790 "EHLO
+        id S232544AbiCANkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:40:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229885AbiCANjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:39:52 -0500
-Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD7232052;
-        Tue,  1 Mar 2022 05:39:11 -0800 (PST)
-Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: sailus)
-        by meesny.iki.fi (Postfix) with ESMTPSA id 6566A20039;
-        Tue,  1 Mar 2022 15:39:09 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-        t=1646141949;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=PD/Gt8AEGoZfPCQ5uXtPnMbIOq13hkJVTYqaYQvMPtk=;
-        b=MIJkKbG4hMUGK5ygQW8/zJEL6jGZsp3QXXLGZ9ceZS4g4HC2jDwSmAuelQL92APxa69QQt
-        KS0uZZTwe+VlBTKjmQD4FWd0Q1UGzlbPOuKIvTuvcno5/GeLbfxAR7QUZcZO0zWNqV+k4k
-        hHUW6Cb2Cf3fOrU1Tse/xtqOpM5CPQk=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 818F5634C90;
-        Tue,  1 Mar 2022 15:39:08 +0200 (EET)
-Date:   Tue, 1 Mar 2022 15:39:08 +0200
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Joe Perches <joe@perches.com>
-Subject: Re: [PATCH v8 2/2] On Semi AR0521 sensor driver
-Message-ID: <Yh4h/HThZbXltN6G@valkosipuli.retiisi.eu>
-References: <m3pmn66pie.fsf@t19.piap.pl>
- <m3h78i6p4t.fsf@t19.piap.pl>
- <20220301093107.ihokyp4xptkzpbpc@uno.localdomain>
+        with ESMTP id S232902AbiCANkT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:40:19 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE81A46B14
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:39:37 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A5E3E1042;
+        Tue,  1 Mar 2022 05:39:37 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D14883F70D;
+        Tue,  1 Mar 2022 05:39:35 -0800 (PST)
+Message-ID: <5184ecf2-8734-3121-cbbc-5dcfcf0d02f8@arm.com>
+Date:   Tue, 1 Mar 2022 13:39:31 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220301093107.ihokyp4xptkzpbpc@uno.localdomain>
-ARC-Authentication-Results: i=1;
-        ORIGINATING;
-        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1646141949; a=rsa-sha256; cv=none;
-        b=WXdIwXkcF1sHLC3WY8URND6uEBkLkGRkOlNBSyw32YN3cLGOxECjwD6zanC6KDy80YiWbP
-        cnZVeOds/ttOsEa51ZLCcg7Ci5dqP/HejKq9/36n9JofOjvcNzuWT+toZHGwiiHN3dqBSz
-        w4qmzmUR4MqL16FriKdy1flngDkwf6Q=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-        s=meesny; t=1646141949;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=PD/Gt8AEGoZfPCQ5uXtPnMbIOq13hkJVTYqaYQvMPtk=;
-        b=P+2EWL2hEZiZZDi5S9kvRa+fb4o1H7O8v2R1bPzT21doYa/TZ6h2ec3uUz4dNhXVz+7gyo
-        K6LGT9gh9Io7AsjMlfBk7dXimiAOd+P2PRFilvoSRKXodlVtv72zjpVj+UrKtJy0NOvIrb
-        eRg7dzrpZTyU3T8GflsRMbofjAqXbrw=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Content-Language: en-GB
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+ <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+ <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
+ <20220225131154.GE19585@pengutronix.de>
+ <20220228141921.GN19585@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220228141921.GN19585@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On Tue, Mar 01, 2022 at 10:31:07AM +0100, Jacopo Mondi wrote:
-> Hi Krzysztof
+On 2022-02-28 14:19, Sascha Hauer wrote:
+> On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
+>> On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
+>>> On 2022-02-25 11:10, Dmitry Osipenko wrote:
+>>>> 25.02.2022 13:49, Sascha Hauer пишет:
+>>>>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+>>>>>> 25.02.2022 10:51, Sascha Hauer пишет:
+>>>>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+>>>>>>> HDMI controller to work. The purpose of that clock is not clear. It is
+>>>>>>> named "hclk" in the downstream driver, so use the same name.
+>>>>>>>
+>>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>>> ---
+>>>>>>>
+>>>>>>> Notes:
+>>>>>>>       Changes since v5:
+>>>>>>>       - Use devm_clk_get_optional rather than devm_clk_get
+>>>>>>>
+>>>>>>>    drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+>>>>>>>    1 file changed, 16 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>> index fe4f9556239ac..c6c00e8779ab5 100644
+>>>>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+>>>>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+>>>>>>>    	const struct rockchip_hdmi_chip_data *chip_data;
+>>>>>>>    	struct clk *ref_clk;
+>>>>>>>    	struct clk *grf_clk;
+>>>>>>> +	struct clk *hclk_clk;
+>>>>>>>    	struct dw_hdmi *hdmi;
+>>>>>>>    	struct regulator *avdd_0v9;
+>>>>>>>    	struct regulator *avdd_1v8;
+>>>>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+>>>>>>>    		return PTR_ERR(hdmi->grf_clk);
+>>>>>>>    	}
+>>>>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+>>>>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+>>>>>>
+>>>>>> Have you tried to investigate the hclk? I'm still thinking that's not
+>>>>>> only HDMI that needs this clock and then the hardware description
+>>>>>> doesn't look correct.
+>>>>>
+>>>>> I am still not sure what you mean. Yes, it's not only the HDMI that
+>>>>> needs this clock. The VOP2 needs it as well and the driver handles that.
+>>>>
+>>>> I'm curious whether DSI/DP also need that clock to be enabled. If they
+>>>> do, then you aren't modeling h/w properly AFAICS.
+>>>
+>>> Assuming nobody at Rockchip decided to make things needlessly inconsistent
+>>> with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
+>>> interface. Usually, if that affected anything other than accessing VOP
+>>> registers, indeed it would smell of something being wrong in the clock tree,
+>>> but in this case I'd also be suspicious of whether it might have ended up
+>>> clocking related GRF registers as well (either directly, or indirectly via
+>>> some gate that the clock driver hasn't modelled yet).
+>>
+>> Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
+>> hanging when HCLK_VOP is disabled by disabling that clock via sysfs
+>> using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
+>> of that units can't be accessed. However, when I disable HCLK_VOP by
+>> directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
+>> accessing VOP registers hangs, the other units stay functional.
+>> So it seems it must be the parent clock which must be enabled. The
+>> parent clock is hclk_vo. This clock should be handled as part of the
+>> RK3568_PD_VO power domain:
+>>
+>> 	power-domain@RK3568_PD_VO {
+>>                  reg = <RK3568_PD_VO>;
+>>                  clocks = <&cru HCLK_VO>,
+>>                           <&cru PCLK_VO>,
+>>                           <&cru ACLK_VOP_PRE>;
+>>                   pm_qos = <&qos_hdcp>,
+>>                            <&qos_vop_m0>,
+>>                            <&qos_vop_m1>;
+>>                   #power-domain-cells = <0>;
+>>          };
 > 
-> In subject
+> Forget this. The clocks in this node are only enabled during enabling or
+> disabling the power domain, they are disabled again immediately afterwards.
 > 
-> "media: i2c:"
-> 
-> Same for 1/2 where permutation of "media: dt-bindings: i2c:" are used
-> when adding bindings for media i2c drivers.
+> OK, I need HCLK_VO to access the HDMI registers. I verified that by
+> disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
+> HDMI registers become inaccessible then. This means I'll replace
+> HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
 
-Some i2c driver patches tend to have these, some don't. "media" is added by
-Mauro's scripts in any case.
+Well, it's still a mystery hack overall, and in some ways it seems even 
+more suspect to be claiming a whole branch of the clock tree rather than 
+a leaf gate with a specific purpose. I'm really starting to think that 
+the underlying issue here is a bug in the clock driver, or a hardware 
+mishap that should logically be worked around by the clock driver, 
+rather than individual the consumers.
 
--- 
-Kind regards,
+Does it work if you hack the clock driver to think that PCLK_VO is a 
+child of HCLK_VO? Even if that's not technically true, it would seem to 
+effectively match the observed behaviour (i.e. all 3 things whose 
+register access apparently *should* be enabled by a gate off PCLK_VO, 
+seem to also require HCLK_VO).
 
-Sakari Ailus
+Thanks,
+Robin.
