@@ -2,688 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 770E74C9835
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 23:15:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9855A4C9831
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 23:13:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237738AbiCAWQT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 17:16:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42560 "EHLO
+        id S231392AbiCAWOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 17:14:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231537AbiCAWQT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 17:16:19 -0500
-Received: from mail-qt1-x82f.google.com (mail-qt1-x82f.google.com [IPv6:2607:f8b0:4864:20::82f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50618424AA
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 14:15:36 -0800 (PST)
-Received: by mail-qt1-x82f.google.com with SMTP id bc10so11294788qtb.5
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 14:15:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=qOOuy04e25pxNj9gaNCiKAqWZJvXy7yJGzeRUluSavI=;
-        b=O/qZLhf5dvVf+X6vxCj51nKaDnKzOrXGdZT/LNkYwWcZGTJGtLMT6OpikQDBfFry+Q
-         3rE1hnZjkvBGo6gvVHwgPuTvZKWZ7sh2O8emQDZRhgCe7JOSF45tuLCYXzKD4ZFjtJzj
-         h/qSgFPVVVFAb/YJihrNBeoepObxQyeggbSyJs01ZG3XMwO0p995s9KNrIf2pWZooZoA
-         kgyWMvHaHaUIPaa/nyZTYYCy+3utENsj5tB33scf8ZkSJ8XOXkEww3iUdplEI1knDS8M
-         Q4Aw8ai5BqkR1EFmLU19B6CMebmqnUxWIiFGrzVGX8+rhAKC9MpjwiPkz5auJhCsUhGn
-         cItQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=qOOuy04e25pxNj9gaNCiKAqWZJvXy7yJGzeRUluSavI=;
-        b=OqEq6LjDOeztyIu0OLMgfQ0Srl8d9lVerdq5WvP+dQtHzeaQlrPcPeJtaDBy5QNBMs
-         Kay1399a4tS7HHROdR8gYmsbWoc3KjLNb5tnyT8u6Nk5pc7/FiQkeukfG7k/J6z56cbm
-         OhtzeN8L6RNYKTGf8pa1vBP2gtoY2ZOQlqKn1D/qxM/2YS7v7nh1swWXgnNWLR/Qtqfg
-         4Y6BQGYb3F7KWUuE5q57PeLMaJy6ZRhUtXH++oiTH4XuONVWHE1ZITirMWce68gviOBR
-         vXZBwCR2HgGSpnHVoQvoNIIvLySd4txYX03RU1v8jJKdRmcPHlQxeB5tz00NASDyGLRf
-         f2Pw==
-X-Gm-Message-State: AOAM532DJluodrHwE37u52ltc4nV+mavzSfS4Da5c8G6xD8vGyJ9iJeB
-        yuDzRjEBGdTB7ib8lmt2wX06EA==
-X-Google-Smtp-Source: ABdhPJwKe3F3PejW/7aienSHedj8q+TDIq5f1T6Znkv2foU3HAETYOBb8PepcyKEZkFW5W52rX9H+g==
-X-Received: by 2002:ac8:5a03:0:b0:2de:2d44:b2ee with SMTP id n3-20020ac85a03000000b002de2d44b2eemr22052032qta.363.1646172935328;
-        Tue, 01 Mar 2022 14:15:35 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id u12-20020ae9c00c000000b0047c98aa41casm7031955qkk.94.2022.03.01.14.15.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 14:15:34 -0800 (PST)
-Message-ID: <6cbaf7761e57bcf59b815bac906d9ecd00684255.camel@ndufresne.ca>
-Subject: Re: [PATCH v7, 14/15] media: mtk-vcodec: support stateless VP8
- decoding
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     Yunfei Dong <yunfei.dong@mediatek.com>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S232907AbiCAWN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 17:13:59 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0872B3F33B;
+        Tue,  1 Mar 2022 14:13:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 9BE3CB81E52;
+        Tue,  1 Mar 2022 22:13:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34917C340EE;
+        Tue,  1 Mar 2022 22:13:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646172786;
+        bh=RQzpIjRH1UzPMi0GzJDEchanURFcHgCpVXny/vDQnJE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jN3Dgl1C1b9BIcEVfPPT+vQsFXRq9tuoV1JPtIo6bnP3C0s0XAK3cWxMsEBwJFDer
+         lun4X3zwPtHZPq+z5dT4nCEpSPMAR1EwIIvepGDCDFZAp/5Q/8svpQX32QFunTmq9l
+         yRgWz0fJnT/M5Bgck9QCyCrJ6ogAalkJEgzeoM45e9X0pazibMh04aZ9YS2xfo5B6F
+         RxKyX5Mqx5oxsuGUKW2eSnhdZKz+xbsJLZo1Qh3/M9iwjG//E8G7NrhcrgLz54Rp29
+         DLigWGJKFRvVhHzidBssqbYeIkuOCvagCfT9rgFdKRCeSQvKDwwcfUH0YOIFOIuEaB
+         K5Uh4RMU8d4TQ==
+Date:   Tue, 1 Mar 2022 22:20:14 +0000
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-Cc:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Date:   Tue, 01 Mar 2022 17:15:32 -0500
-In-Reply-To: <20220223034008.15781-15-yunfei.dong@mediatek.com>
-References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
-         <20220223034008.15781-15-yunfei.dong@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>
+Subject: Re: [PATCH v4 0/3] Add support for LTC2688
+Message-ID: <20220301222014.6ec90d4e@jic23-huawei>
+In-Reply-To: <20220227124953.02ab01fc@jic23-huawei>
+References: <20220225130129.69-1-nuno.sa@analog.com>
+        <20220227124953.02ab01fc@jic23-huawei>
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for this work.
+On Sun, 27 Feb 2022 12:49:53 +0000
+Jonathan Cameron <jic23@kernel.org> wrote:
 
-Le mercredi 23 février 2022 à 11:40 +0800, Yunfei Dong a écrit :
-> Add support for VP8 decoding using the stateless API,
-> as supported by MT8192.
+> On Fri, 25 Feb 2022 14:01:26 +0100
+> Nuno S=C3=A1 <nuno.sa@analog.com> wrote:
+>=20
+> Hi Nuno,
+>=20
+> Given we are close to the end of this cycle and Andy has been heavily inv=
+olved
+> in review of this one so I want to give more time for Andy to potentially=
+ take
+> another look..
+>=20
+> Hence, I'm going to do something unusual and push out an extra-testing br=
+anch with this
+> on so we can get through the autobuilder tests in parallel with that extr=
+a time.
+>=20
+> So, applied to the new extra-testing branch of iio.git with the intent to=
+ apply
+> it to togreg later in a day or two subject to any last minute feedback.
 
-With the struct members naming made consistent, even though I would like your
-patch better if it was not duplicating so much code, I'll give you my:
+Given we may be very near to the cut off for the merge window (I aim to do =
+a pull
+request after linux-next is out tomorrow), I've applied this to the togreg
+branch of iio.git and pushed it out to be picked up for linux-next.
 
-Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+Thanks,
 
-> 
-> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-> ---
->  drivers/media/platform/mtk-vcodec/Makefile    |   1 +
->  .../mtk-vcodec/mtk_vcodec_dec_stateless.c     |  24 +-
->  .../platform/mtk-vcodec/mtk_vcodec_drv.h      |   1 +
->  .../mtk-vcodec/vdec/vdec_vp8_req_if.c         | 445 ++++++++++++++++++
->  .../media/platform/mtk-vcodec/vdec_drv_if.c   |   4 +
->  .../media/platform/mtk-vcodec/vdec_drv_if.h   |   1 +
->  6 files changed, 474 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
-> 
-> diff --git a/drivers/media/platform/mtk-vcodec/Makefile b/drivers/media/platform/mtk-vcodec/Makefile
-> index 22edb1c86598..b457daf2d196 100644
-> --- a/drivers/media/platform/mtk-vcodec/Makefile
-> +++ b/drivers/media/platform/mtk-vcodec/Makefile
-> @@ -7,6 +7,7 @@ obj-$(CONFIG_VIDEO_MEDIATEK_VCODEC) += mtk-vcodec-dec.o \
->  
->  mtk-vcodec-dec-y := vdec/vdec_h264_if.o \
->  		vdec/vdec_vp8_if.o \
-> +		vdec/vdec_vp8_req_if.o \
->  		vdec/vdec_vp9_if.o \
->  		vdec/vdec_h264_req_if.o \
->  		vdec/vdec_h264_req_common.o \
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
-> index 9333e3418b98..2a0164ddc708 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_dec_stateless.c
-> @@ -76,13 +76,28 @@ static const struct mtk_stateless_control mtk_stateless_controls[] = {
->  			.max = V4L2_STATELESS_H264_START_CODE_ANNEX_B,
->  		},
->  		.codec_type = V4L2_PIX_FMT_H264_SLICE,
-> +	},
-> +	{
-> +		.cfg = {
-> +			.id = V4L2_CID_STATELESS_VP8_FRAME,
-> +		},
-> +		.codec_type = V4L2_PIX_FMT_VP8_FRAME,
-> +	},
-> +	{
-> +		.cfg = {
-> +			.id = V4L2_CID_MPEG_VIDEO_VP8_PROFILE,
-> +			.min = V4L2_MPEG_VIDEO_VP8_PROFILE_0,
-> +			.def = V4L2_MPEG_VIDEO_VP8_PROFILE_0,
-> +			.max = V4L2_MPEG_VIDEO_VP8_PROFILE_3,
-> +		},
-> +		.codec_type = V4L2_PIX_FMT_VP8_FRAME,
->  	}
->  };
->  
->  #define NUM_CTRLS ARRAY_SIZE(mtk_stateless_controls)
->  
-> -static struct mtk_video_fmt mtk_video_formats[3];
-> -static struct mtk_codec_framesizes mtk_vdec_framesizes[1];
-> +static struct mtk_video_fmt mtk_video_formats[4];
-> +static struct mtk_codec_framesizes mtk_vdec_framesizes[2];
->  
->  static struct mtk_video_fmt default_out_format;
->  static struct mtk_video_fmt default_cap_format;
-> @@ -350,6 +365,7 @@ static void mtk_vcodec_add_formats(unsigned int fourcc,
->  
->  	switch (fourcc) {
->  	case V4L2_PIX_FMT_H264_SLICE:
-> +	case V4L2_PIX_FMT_VP8_FRAME:
->  		mtk_video_formats[count_formats].fourcc = fourcc;
->  		mtk_video_formats[count_formats].type = MTK_FMT_DEC;
->  		mtk_video_formats[count_formats].num_planes = 1;
-> @@ -393,6 +409,10 @@ static void mtk_vcodec_get_supported_formats(struct mtk_vcodec_ctx *ctx)
->  		mtk_vcodec_add_formats(V4L2_PIX_FMT_H264_SLICE, ctx);
->  		out_format_count++;
->  	}
-> +	if (ctx->dev->dec_capability & MTK_VDEC_FORMAT_VP8_FRAME) {
-> +		mtk_vcodec_add_formats(V4L2_PIX_FMT_VP8_FRAME, ctx);
-> +		out_format_count++;
-> +	}
->  
->  	if (cap_format_count)
->  		default_cap_format = mtk_video_formats[cap_format_count - 1];
-> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> index d60561065656..c68297db225e 100644
-> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
-> @@ -354,6 +354,7 @@ enum mtk_vdec_format_types {
->  	MTK_VDEC_FORMAT_MM21 = 0x20,
->  	MTK_VDEC_FORMAT_MT21C = 0x40,
->  	MTK_VDEC_FORMAT_H264_SLICE = 0x100,
-> +	MTK_VDEC_FORMAT_VP8_FRAME = 0x200,
->  };
->  
->  /**
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
-> new file mode 100644
-> index 000000000000..6bd4f2365826
-> --- /dev/null
-> +++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_vp8_req_if.c
-> @@ -0,0 +1,445 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2021 MediaTek Inc.
-> + * Author: Yunfei Dong <yunfei.dong@mediatek.com>
-> + */
-> +
-> +#include <linux/slab.h>
-> +#include <media/v4l2-mem2mem.h>
-> +#include <media/videobuf2-dma-contig.h>
-> +#include <uapi/linux/v4l2-controls.h>
-> +
-> +#include "../mtk_vcodec_util.h"
-> +#include "../mtk_vcodec_dec.h"
-> +#include "../mtk_vcodec_intr.h"
-> +#include "../vdec_drv_base.h"
-> +#include "../vdec_drv_if.h"
-> +#include "../vdec_vpu_if.h"
-> +
-> +/* Decoding picture buffer size (3 reference frames plus current frame) */
-> +#define VP8_DPB_SIZE 4
-> +
-> +/* HW working buffer size (bytes) */
-> +#define VP8_SEG_ID_SZ   SZ_256K
-> +#define VP8_PP_WRAPY_SZ SZ_64K
-> +#define VP8_PP_WRAPC_SZ SZ_64K
-> +#define VP8_VLD_PRED_SZ SZ_64K
-> +
-> +/**
-> + * struct vdec_vp8_slice_info - decode misc information
+Jonathan
 
-Same missing 
-
-> + * @vld_wrapper_dma   : vld wrapper dma address
-> + * @seg_id_buf_dma    : seg id dma address
-> + * @wrap_y_dma        : wrap y dma address
-> + * @wrap_c_dma        : wrap y dma address
-> + * @cur_y_fb_dma      : current plane Y frame buffer dma address
-> + * @cur_c_fb_dma      : current plane C frame buffer dma address
-> + * @bs_dma            : bitstream dma address
-> + * @bs_sz             : bitstream size
-> + * @resolution_changed: resolution change flag 1 - changed,  0 - not change
-> + * @frame_header_type : current frame header type
-> + * @wait_key_frame    : wait key frame coming
-> + * @crc               : used to check whether hardware's status is right
-> + * @reserved:         : reserved, currently unused
-> + */
-> +struct vdec_vp8_slice_info {
-> +	u64 vld_wrapper_dma;
-> +	u64 seg_id_buf_dma;
-> +	u64 wrap_y_dma;
-> +	u64 wrap_c_dma;
-> +	u64 cur_y_fb_dma;
-> +	u64 cur_c_fb_dma;
-> +	u64 bs_dma;
-> +	u32 bs_sz;
-> +	u32 resolution_changed;
-> +	u32 frame_header_type;
-> +	u32 crc[8];
-> +	u32 reserved;
-> +};
-> +
-> +/**
-> + * struct vdec_vp8_slice_dpb_info  - vp8 reference information
-> + * @y_dma_addr    : Y bitstream physical address
-> + * @c_dma_addr    : CbCr bitstream physical address
-> + * @reference_flag: reference picture flag
-> + * @reserved      : 64bit align
-> + */
-> +struct vdec_vp8_slice_dpb_info {
-> +	dma_addr_t y_dma_addr;
-> +	dma_addr_t c_dma_addr;
-> +	int reference_flag;
-> +	int reserved;
-> +};
-> +
-> +/**
-> + * struct vdec_vp8_slice_vsi - VPU shared information
-> + * @dec          : decoding information
-> + * @pic          : picture information
-> + * @vp8_dpb_info : reference buffer information
-> + */
-> +struct vdec_vp8_slice_vsi {
-> +	struct vdec_vp8_slice_info dec;
-> +	struct vdec_pic_info pic;
-
-This is not consistent, this is called picinfo in the H.264 implementation.
-
-> +	struct vdec_vp8_slice_dpb_info vp8_dpb_info[3];
-> +};
-> +
-> +/**
-> + * struct vdec_vp8_slice_inst - VP8 decoder instance
-> + * @seg_id_buf     : seg buffer
-> + * @wrap_y_buf     : wrapper y buffer
-> + * @wrap_c_buf     : wrapper c buffer
-> + * @vld_wrapper_buf: vld wrapper buffer
-> + * @ctx            : V4L2 context
-> + * @vpu            : VPU instance for decoder
-> + * @vsi            : VPU share information
-> + */
-> +struct vdec_vp8_slice_inst {
-> +	struct mtk_vcodec_mem seg_id_buf;
-> +	struct mtk_vcodec_mem wrap_y_buf;
-> +	struct mtk_vcodec_mem wrap_c_buf;
-> +	struct mtk_vcodec_mem vld_wrapper_buf;
-> +	struct mtk_vcodec_ctx *ctx;
-> +	struct vdec_vpu_inst vpu;
-> +	struct vdec_vp8_slice_vsi *vsi;
-> +};
-> +
-> +static void *vdec_vp8_slice_get_ctrl_ptr(struct mtk_vcodec_ctx *ctx, int id)
-> +{
-> +	struct v4l2_ctrl *ctrl = v4l2_ctrl_find(&ctx->ctrl_hdl, id);
-> +
-> +	if (!ctrl)
-> +		return ERR_PTR(-EINVAL);
-> +
-> +	return ctrl->p_cur.p;
-> +}
-> +
-> +static void vdec_vp8_slice_get_crop_info(struct vdec_vp8_slice_inst *inst,
-> +					 struct v4l2_rect *cr)
-> +{
-> +	cr->left = 0;
-> +	cr->top = 0;
-> +	cr->width = inst->vsi->pic.pic_w;
-> +	cr->height = inst->vsi->pic.pic_h;
-> +	mtk_vcodec_debug(inst, "get crop info l=%d, t=%d, w=%d, h=%d",
-> +			 cr->left, cr->top, cr->width, cr->height);
-> +}
-
-There is clearly room for improvement, this is line by line identical to the
-H.264 code. There is a lot in this file that looks like copy-paste with minor
-edits. Probably not a road block, but it would be really nice to try and clean
-these by making the common code common to avoid load of copy paste, which may
-lead to having to fix bugs in multiple places.
-
-> +
-> +static void vdec_vp8_slice_get_pic_info(struct vdec_vp8_slice_inst *inst)
-> +{
-> +	struct mtk_vcodec_ctx *ctx = inst->ctx;
-> +	unsigned int data[3];
-> +
-> +	data[0] = ctx->picinfo.pic_w;
-> +	data[1] = ctx->picinfo.pic_h;
-> +	data[2] = ctx->capture_fourcc;
-> +	vpu_dec_get_param(&inst->vpu, data, 3, GET_PARAM_PIC_INFO);
-> +
-> +	ctx->picinfo.buf_w = ALIGN(ctx->picinfo.pic_w, 64);
-> +	ctx->picinfo.buf_h = ALIGN(ctx->picinfo.pic_h, 64);
-> +	ctx->picinfo.fb_sz[0] = inst->vpu.fb_sz[0];
-> +	ctx->picinfo.fb_sz[1] = inst->vpu.fb_sz[1];
-> +
-> +	inst->vsi->pic.pic_w = ctx->picinfo.pic_w;
-> +	inst->vsi->pic.pic_h = ctx->picinfo.pic_h;
-> +	inst->vsi->pic.buf_w = ctx->picinfo.buf_w;
-> +	inst->vsi->pic.buf_h = ctx->picinfo.buf_h;
-> +	inst->vsi->pic.fb_sz[0] = ctx->picinfo.fb_sz[0];
-> +	inst->vsi->pic.fb_sz[1] = ctx->picinfo.fb_sz[1];
-> +	mtk_vcodec_debug(inst, "pic(%d, %d), buf(%d, %d)",
-> +			 ctx->picinfo.pic_w, ctx->picinfo.pic_h,
-> +			 ctx->picinfo.buf_w, ctx->picinfo.buf_h);
-> +	mtk_vcodec_debug(inst, "fb size: Y(%d), C(%d)",
-> +			 ctx->picinfo.fb_sz[0], ctx->picinfo.fb_sz[1]);
-> +}
-> +
-> +static int vdec_vp8_slice_alloc_working_buf(struct vdec_vp8_slice_inst *inst)
-> +{
-> +	int err;
-> +	struct mtk_vcodec_mem *mem;
-> +
-> +	mem = &inst->seg_id_buf;
-> +	mem->size = VP8_SEG_ID_SZ;
-> +	err = mtk_vcodec_mem_alloc(inst->ctx, mem);
-> +	if (err) {
-> +		mtk_vcodec_err(inst, "Cannot allocate working buffer");
-> +		return err;
-> +	}
-> +	inst->vsi->dec.seg_id_buf_dma = (u64)mem->dma_addr;
-> +
-> +	mem = &inst->wrap_y_buf;
-> +	mem->size = VP8_PP_WRAPY_SZ;
-> +	err = mtk_vcodec_mem_alloc(inst->ctx, mem);
-> +	if (err) {
-> +		mtk_vcodec_err(inst, "cannot allocate WRAP Y buffer");
-> +		return err;
-> +	}
-> +	inst->vsi->dec.wrap_y_dma = (u64)mem->dma_addr;
-> +
-> +	mem = &inst->wrap_c_buf;
-> +	mem->size = VP8_PP_WRAPC_SZ;
-> +	err = mtk_vcodec_mem_alloc(inst->ctx, mem);
-> +	if (err) {
-> +		mtk_vcodec_err(inst, "cannot allocate WRAP C buffer");
-> +		return err;
-> +	}
-> +	inst->vsi->dec.wrap_c_dma = (u64)mem->dma_addr;
-> +
-> +	mem = &inst->vld_wrapper_buf;
-> +	mem->size = VP8_VLD_PRED_SZ;
-> +	err = mtk_vcodec_mem_alloc(inst->ctx, mem);
-> +	if (err) {
-> +		mtk_vcodec_err(inst, "cannot allocate vld wrapper buffer");
-> +		return err;
-> +	}
-> +	inst->vsi->dec.vld_wrapper_dma = (u64)mem->dma_addr;
-> +
-> +	return 0;
-> +}
-> +
-> +static void vdec_vp8_slice_free_working_buf(struct vdec_vp8_slice_inst *inst)
-> +{
-> +	struct mtk_vcodec_mem *mem;
-> +
-> +	mem = &inst->seg_id_buf;
-> +	if (mem->va)
-> +		mtk_vcodec_mem_free(inst->ctx, mem);
-> +	inst->vsi->dec.seg_id_buf_dma = 0;
-> +
-> +	mem = &inst->wrap_y_buf;
-> +	if (mem->va)
-> +		mtk_vcodec_mem_free(inst->ctx, mem);
-> +	inst->vsi->dec.wrap_y_dma = 0;
-> +
-> +	mem = &inst->wrap_c_buf;
-> +	if (mem->va)
-> +		mtk_vcodec_mem_free(inst->ctx, mem);
-> +	inst->vsi->dec.wrap_c_dma = 0;
-> +
-> +	mem = &inst->vld_wrapper_buf;
-> +	if (mem->va)
-> +		mtk_vcodec_mem_free(inst->ctx, mem);
-> +	inst->vsi->dec.vld_wrapper_dma = 0;
-> +}
-> +
-> +static u64 vdec_vp8_slice_get_ref_by_ts(const struct v4l2_ctrl_vp8_frame *frame_header,
-> +					int index)
-> +{
-> +	switch (index) {
-> +	case 0:
-> +		return frame_header->last_frame_ts;
-> +	case 1:
-> +		return frame_header->golden_frame_ts;
-> +	case 2:
-> +		return frame_header->alt_frame_ts;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return -1;
-> +}
-> +
-> +static int vdec_vp8_slice_get_decode_parameters(struct vdec_vp8_slice_inst *inst)
-> +{
-> +	const struct v4l2_ctrl_vp8_frame *frame_header;
-> +	struct mtk_vcodec_ctx *ctx = inst->ctx;
-> +	struct vb2_queue *vq;
-> +	struct vb2_buffer *vb;
-> +	u64 referenct_ts;
-> +	int index, vb2_index;
-> +
-> +	frame_header = vdec_vp8_slice_get_ctrl_ptr(inst->ctx, V4L2_CID_STATELESS_VP8_FRAME);
-> +	if (IS_ERR(frame_header))
-> +		return PTR_ERR(frame_header);
-> +
-> +	vq = v4l2_m2m_get_vq(ctx->m2m_ctx, V4L2_BUF_TYPE_VIDEO_CAPTURE_MPLANE);
-> +	for (index = 0; index < 3; index++) {
-> +		referenct_ts = vdec_vp8_slice_get_ref_by_ts(frame_header, index);
-> +		vb2_index = vb2_find_timestamp(vq, referenct_ts, 0);
-> +		if (vb2_index < 0) {
-> +			if (!V4L2_VP8_FRAME_IS_KEY_FRAME(frame_header))
-> +				mtk_vcodec_err(inst, "reference invalid: index(%d) ts(%lld)",
-> +					       index, referenct_ts);
-> +			inst->vsi->vp8_dpb_info[index].reference_flag = 0;
-> +			continue;
-> +		}
-> +		inst->vsi->vp8_dpb_info[index].reference_flag = 1;
-> +
-> +		vb = vq->bufs[vb2_index];
-> +		inst->vsi->vp8_dpb_info[index].y_dma_addr =
-> +			vb2_dma_contig_plane_dma_addr(vb, 0);
-> +		if (ctx->q_data[MTK_Q_DATA_DST].fmt->num_planes == 2)
-> +			inst->vsi->vp8_dpb_info[index].c_dma_addr =
-> +				vb2_dma_contig_plane_dma_addr(vb, 1);
-> +		else
-> +			inst->vsi->vp8_dpb_info[index].c_dma_addr =
-> +				inst->vsi->vp8_dpb_info[index].y_dma_addr +
-> +				ctx->picinfo.fb_sz[0];
-> +	}
-> +
-> +	inst->vsi->dec.frame_header_type = frame_header->flags >> 1;
-> +
-> +	return 0;
-> +}
-> +
-> +static int vdec_vp8_slice_init(struct mtk_vcodec_ctx *ctx)
-> +{
-> +	struct vdec_vp8_slice_inst *inst;
-> +	int err;
-> +
-> +	inst = kzalloc(sizeof(*inst), GFP_KERNEL);
-> +	if (!inst)
-> +		return -ENOMEM;
-> +
-> +	inst->ctx = ctx;
-> +
-> +	inst->vpu.id = SCP_IPI_VDEC_LAT;
-> +	inst->vpu.core_id = SCP_IPI_VDEC_CORE;
-> +	inst->vpu.ctx = ctx;
-> +	inst->vpu.codec_type = ctx->current_codec;
-> +	inst->vpu.capture_type = ctx->capture_fourcc;
-> +
-> +	err = vpu_dec_init(&inst->vpu);
-> +	if (err) {
-> +		mtk_vcodec_err(inst, "vdec_vp8 init err=%d", err);
-> +		goto error_free_inst;
-> +	}
-> +
-> +	inst->vsi = inst->vpu.vsi;
-> +	err = vdec_vp8_slice_alloc_working_buf(inst);
-> +	if (err)
-> +		goto error_deinit;
-> +
-> +	mtk_vcodec_debug(inst, "vp8 struct size = %d vsi: %d\n",
-> +			 (int)sizeof(struct v4l2_ctrl_vp8_frame),
-> +			 (int)sizeof(struct vdec_vp8_slice_vsi));
-> +	mtk_vcodec_debug(inst, "vp8:%p, codec_type = 0x%x vsi: 0x%p",
-> +			 inst, inst->vpu.codec_type, inst->vpu.vsi);
-> +
-> +	ctx->drv_handle = inst;
-> +	return 0;
-> +
-> +error_deinit:
-> +	vpu_dec_deinit(&inst->vpu);
-> +error_free_inst:
-> +	kfree(inst);
-> +	return err;
-> +}
-> +
-> +static int vdec_vp8_slice_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
-> +				 struct vdec_fb *fb, bool *res_chg)
-> +{
-> +	struct vdec_vp8_slice_inst *inst = h_vdec;
-> +	struct vdec_vpu_inst *vpu = &inst->vpu;
-> +	struct mtk_video_dec_buf *src_buf_info, *dst_buf_info;
-> +	unsigned int data;
-> +	u64 y_fb_dma, c_fb_dma;
-> +	int err, timeout;
-> +
-> +	/* Resolution changes are never initiated by us */
-> +	*res_chg = false;
-> +
-> +	/* bs NULL means flush decoder */
-> +	if (!bs)
-> +		return vpu_dec_reset(vpu);
-> +
-> +	src_buf_info = container_of(bs, struct mtk_video_dec_buf, bs_buffer);
-> +
-> +	fb = inst->ctx->dev->vdec_pdata->get_cap_buffer(inst->ctx);
-> +	dst_buf_info = container_of(fb, struct mtk_video_dec_buf, frame_buffer);
-> +
-> +	y_fb_dma = fb ? (u64)fb->base_y.dma_addr : 0;
-> +	if (inst->ctx->q_data[MTK_Q_DATA_DST].fmt->num_planes == 1)
-> +		c_fb_dma = y_fb_dma +
-> +			inst->ctx->picinfo.buf_w * inst->ctx->picinfo.buf_h;
-> +	else
-> +		c_fb_dma = fb ? (u64)fb->base_c.dma_addr : 0;
-> +
-> +	inst->vsi->dec.bs_dma = (u64)bs->dma_addr;
-> +	inst->vsi->dec.bs_sz = bs->size;
-> +	inst->vsi->dec.cur_y_fb_dma = y_fb_dma;
-> +	inst->vsi->dec.cur_c_fb_dma = c_fb_dma;
-> +
-> +	mtk_vcodec_debug(inst, "frame[%d] bs(%zu 0x%llx) y/c(0x%llx 0x%llx)",
-> +			 inst->ctx->decoded_frame_cnt,
-> +			 bs->size, (u64)bs->dma_addr,
-> +			 y_fb_dma, c_fb_dma);
-> +
-> +	v4l2_m2m_buf_copy_metadata(&src_buf_info->m2m_buf.vb,
-> +				   &dst_buf_info->m2m_buf.vb, true);
-> +
-> +	err = vdec_vp8_slice_get_decode_parameters(inst);
-> +	if (err)
-> +		goto error;
-> +
-> +	err = vpu_dec_start(vpu, &data, 1);
-> +	if (err) {
-> +		mtk_vcodec_debug(inst, "vp8 dec start err!");
-> +		goto error;
-> +	}
-> +
-> +	if (inst->vsi->dec.resolution_changed) {
-> +		mtk_vcodec_debug(inst, "- resolution_changed -");
-> +		*res_chg = true;
-> +		return 0;
-> +	}
-> +
-> +	/* wait decode done interrupt */
-> +	timeout = mtk_vcodec_wait_for_done_ctx(inst->ctx, MTK_INST_IRQ_RECEIVED,
-> +					       50, MTK_VDEC_CORE);
-> +
-> +	err = vpu_dec_end(vpu);
-> +	if (err || timeout)
-> +		mtk_vcodec_debug(inst, "vp8 dec error timeout:%d err: %d pic_%d",
-> +				 timeout, err, inst->ctx->decoded_frame_cnt);
-> +
-> +	mtk_vcodec_debug(inst, "pic[%d] crc: 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x 0x%x",
-> +			 inst->ctx->decoded_frame_cnt,
-> +			 inst->vsi->dec.crc[0], inst->vsi->dec.crc[1],
-> +			 inst->vsi->dec.crc[2], inst->vsi->dec.crc[3],
-> +			 inst->vsi->dec.crc[4], inst->vsi->dec.crc[5],
-> +			 inst->vsi->dec.crc[6], inst->vsi->dec.crc[7]);
-> +
-> +	inst->ctx->decoded_frame_cnt++;
-> +error:
-> +	inst->ctx->dev->vdec_pdata->cap_to_disp(inst->ctx, fb, !!err);
-> +	return err;
-> +}
-> +
-> +static int vdec_vp8_slice_get_param(void *h_vdec, enum vdec_get_param_type type, void *out)
-> +{
-> +	struct vdec_vp8_slice_inst *inst = h_vdec;
-> +
-> +	switch (type) {
-> +	case GET_PARAM_PIC_INFO:
-> +		vdec_vp8_slice_get_pic_info(inst);
-> +		break;
-> +	case GET_PARAM_CROP_INFO:
-> +		vdec_vp8_slice_get_crop_info(inst, out);
-> +		break;
-> +	case GET_PARAM_DPB_SIZE:
-> +		*((unsigned int *)out) = VP8_DPB_SIZE;
-> +		break;
-> +	default:
-> +		mtk_vcodec_err(inst, "invalid get parameter type=%d", type);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void vdec_vp8_slice_deinit(void *h_vdec)
-> +{
-> +	struct vdec_vp8_slice_inst *inst = h_vdec;
-> +
-> +	mtk_vcodec_debug_enter(inst);
-> +
-> +	vpu_dec_deinit(&inst->vpu);
-> +	vdec_vp8_slice_free_working_buf(inst);
-> +	kfree(inst);
-> +}
-> +
-> +const struct vdec_common_if vdec_vp8_slice_if = {
-> +	.init		= vdec_vp8_slice_init,
-> +	.decode		= vdec_vp8_slice_decode,
-> +	.get_param	= vdec_vp8_slice_get_param,
-> +	.deinit		= vdec_vp8_slice_deinit,
-> +};
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_drv_if.c b/drivers/media/platform/mtk-vcodec/vdec_drv_if.c
-> index c17a7815e1bb..9db9a57da2c1 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_drv_if.c
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_drv_if.c
-> @@ -32,6 +32,10 @@ int vdec_if_init(struct mtk_vcodec_ctx *ctx, unsigned int fourcc)
->  		ctx->dec_if = &vdec_h264_if;
->  		ctx->hw_id = MTK_VDEC_CORE;
->  		break;
-> +	case V4L2_PIX_FMT_VP8_FRAME:
-> +		ctx->dec_if = &vdec_vp8_slice_if;
-> +		ctx->hw_id = MTK_VDEC_CORE;
-> +		break;
->  	case V4L2_PIX_FMT_VP8:
->  		ctx->dec_if = &vdec_vp8_if;
->  		ctx->hw_id = MTK_VDEC_CORE;
-> diff --git a/drivers/media/platform/mtk-vcodec/vdec_drv_if.h b/drivers/media/platform/mtk-vcodec/vdec_drv_if.h
-> index 6ce848e74167..e3adf8f36342 100644
-> --- a/drivers/media/platform/mtk-vcodec/vdec_drv_if.h
-> +++ b/drivers/media/platform/mtk-vcodec/vdec_drv_if.h
-> @@ -58,6 +58,7 @@ extern const struct vdec_common_if vdec_h264_if;
->  extern const struct vdec_common_if vdec_h264_slice_if;
->  extern const struct vdec_common_if vdec_h264_slice_lat_if;
->  extern const struct vdec_common_if vdec_vp8_if;
-> +extern const struct vdec_common_if vdec_vp8_slice_if;
->  extern const struct vdec_common_if vdec_vp9_if;
->  
->  /**
+>=20
+> Thanks,
+>=20
+> Jonathan
+>=20
+>=20
+> > The ABI defined for this driver has some subtleties that were previously
+> > discussed in this RFC [1]. This might not be the final state but,
+> > hopefully, we are close to it:
+> >=20
+> > toggle mode channels:
+> >=20
+> >  * out_voltageY_toggle_en
+> >  * out_voltageY_raw0
+> >  * out_voltageY_raw1
+> >  * out_voltageY_symbol
+> >=20
+> > dither mode channels:
+> >=20
+> >  * out_voltageY_dither_en
+> >  * out_voltageY_dither_raw
+> >  * out_voltageY_dither_raw_available
+> >  * out_voltageY_dither_offset
+> >  * out_voltageY_dither_frequency
+> >  * out_voltageY_dither_frequency_available
+> >  * out_voltageY_dither_phase
+> >  * out_voltageY_dither_phase_available
+> >=20
+> > Default channels won't have any of the above ABIs. A channel is toggle
+> > capable if the devicetree 'adi,toggle-mode' flag is set. For dither, the
+> > assumption is more silent. If 'adi,toggle-mode' is not given and a
+> > channel is associated with a TGPx pin through 'adi,toggle-dither-input',
+> > then the channel is assumed to be dither capable (there's no point in
+> > having a dither capable channel without an input clock).
+> >=20
+> > changes in v2:
+> >=20
+> >  ltc2688:
+> >   * Use local buffer for regmap read. Do not assume that reg is part of
+> > larger buffer;
+> >   * Renamed GPIO to "clr" so that is consistent with the datasheet;
+> >   * Renamed 'mask' and 'm' to info. 'mask' is a thing from the past;
+> >   * Removed 'LTC2688_CHAN_TOGGLE()' and defined to static ext_info arra=
+ys;
+> >   * Use 'regmap_set_bits' to set external ref;
+> >   * Use FIELD_{PREP|GET} for dither amplitude and channel calibbias whe=
+re
+> > only 13bits are used;
+> >   * Use 'regmap_write()' instead of update_bits for channels settings;
+> >   * Init 'val' at the beginning of the channel configuration loop
+> > (and drop mask);
+> >   * Comment 'ltc2688_reg_writable()' to account for the special conditi=
+on;
+> >   * Kmemdup default channels so that it can be safely changed per probed
+> > device;
+> >   * Replace extended info multiplexer functions by individual functions;
+> >   * Use raw0 ABI for toggle channels;
+> >   * Use dedicated offset ABI for dither channels;
+> >   * Misc changes (spell fixes, blank lines...);
+> >   * Have a clock property per channel. Note that we this I moved to OF
+> > since we now have to use 'devm_get_clk_from_child()' which is using
+> > device_node. Note that I could use 'to_of_node()' but mixing of.h and
+> > property.h does not feel like a good idea.
+> >=20
+> >  ABI:
+> >   * Added out_voltageY_raw0 ABI for toggle mode;
+> >   * Added out_voltageY_dither_offset.
+> >=20
+> >  Bindings:
+> >   * Use standard microvolt unit;
+> >   * Added constrains for adi,output-range-microvolt and removed negative
+> > values from the dts example;
+> >   * Moved clocks to the channel object;
+> >   * Dropped clock-names;
+> >   * Add a dependency between 'adi,toggle-dither-input' and 'clocks'.
+> >=20
+> > Changes in v3:
+> >=20
+> >  ltc2688:
+> >   * Fix mismatch between functions and function pointers detected by ke=
+rnel
+> > test bot;=20
+> >   * Always use if (ret) when ret > 0 has no meaning;
+> >   * Rename ltc2688_bulk_disable -> ltc2688_disable_regulators;
+> >   * Report dither phase in radians rather than degrees.
+> >=20
+> >  ABI:
+> >   * Specify units for dither_phase and dither_freqency;=20
+> >   * Say why its useful to have dither_en and toggle_en;
+> >   * Combine out_voltageY_raw0 and out_voltageY_raw1;
+> >   * Fix some description issues in out_voltageY_raw{0|1} and
+> > out_voltageY_symbol.
+> >=20
+> >  Bindings:
+> >   * Remove mentions to ABI (linux specifix);
+> >   * Slightly rephrased VREF and adi,toggle-dither-input properties and
+> > suggested.
+> >   =20
+> > changes in v4:
+> >=20
+> >  ltc2688:
+> >   * Use reg_size + val_size instead of plain 3 in regmap;
+> >   * Use out_unlock instead of unlock in goto labels;
+> >   * Add comma to LTC2688_CHANNEL(), ltc2688_regmap_bus and
+> > ltc2688_regmap_bus;
+> >   * Use __clear_bit() instead of clear_bit();
+> >   * Flip the logic in vref regulator so that error condition is handled
+> > first;
+> >   * Change to device API. With this, we need to_of_node()
+> > for devm_get_clk_from_child().
+> >=20
+> >  ABI:
+> >   * Update kernel version.
+> >=20
+> >  Bindings:
+> >   * Add Rob's Rb tag.
+> >=20
+> > [1]: https://marc.info/?l=3Dlinux-iio&m=3D163662843603265&w=3D2
+> >=20
+> > Nuno S=C3=A1 (3):
+> >   iio: dac: add support for ltc2688
+> >   iio: ABI: add ABI file for the LTC2688 DAC
+> >   dt-bindings: iio: Add ltc2688 documentation
+> >=20
+> >  .../ABI/testing/sysfs-bus-iio-dac-ltc2688     |   86 ++
+> >  .../bindings/iio/dac/adi,ltc2688.yaml         |  146 +++
+> >  MAINTAINERS                                   |    9 +
+> >  drivers/iio/dac/Kconfig                       |   11 +
+> >  drivers/iio/dac/Makefile                      |    1 +
+> >  drivers/iio/dac/ltc2688.c                     | 1071 +++++++++++++++++
+> >  6 files changed, 1324 insertions(+)
+> >  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-dac-ltc2688
+> >  create mode 100644 Documentation/devicetree/bindings/iio/dac/adi,ltc26=
+88.yaml
+> >  create mode 100644 drivers/iio/dac/ltc2688.c
+> >  =20
+>=20
 
