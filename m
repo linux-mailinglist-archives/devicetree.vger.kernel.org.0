@@ -2,233 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D434C869E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:37:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D01E4C86A1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:38:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231678AbiCAIiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 03:38:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42444 "EHLO
+        id S229909AbiCAIiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 03:38:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230273AbiCAIiM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:38:12 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6D529C81
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 00:37:30 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nOy0d-0005k9-41; Tue, 01 Mar 2022 09:37:27 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nOy0b-0003bu-0J; Tue, 01 Mar 2022 09:37:25 +0100
-Date:   Tue, 1 Mar 2022 09:37:24 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        kernel@pengutronix.de, Sandy Huang <hjc@rock-chips.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Message-ID: <20220301083724.GO19585@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
- <20220225104924.GC19585@pengutronix.de>
- <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
- <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
- <20220225131154.GE19585@pengutronix.de>
- <20220228141921.GN19585@pengutronix.de>
- <43eb78d9-4252-938e-aaaa-8d353730314a@collabora.com>
+        with ESMTP id S232461AbiCAIis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:38:48 -0500
+Received: from ni.piap.pl (ni.piap.pl [195.187.100.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94D73F304;
+        Tue,  1 Mar 2022 00:38:05 -0800 (PST)
+Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
+        by ni.piap.pl (Postfix) with ESMTPSA id 7D040C3F3EED;
+        Tue,  1 Mar 2022 09:38:04 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 7D040C3F3EED
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
+        t=1646123884; bh=eYKOkpEc/RKiHKA/7tuV+7Y94exN1jvqIyB0ysJtkiE=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=XppmdrmgdLYvx3+dnQuYy7EHWzTmRg/eWvghrtr/iQcItAWlqlY3CMrcdRvvmbTFL
+         EkcaDrFivIRyKu+6dVA1uQvQmIwzbnIBXa9KEMKKFQfoz5Mmi7ggD45vWLaweK2LBC
+         GABYkvpIAWmM1N/4LEWGsaLO7H7LbxnuyZ2cao9c=
+From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Jacopo Mondi <jacopo@jmondi.org>, Joe Perches <joe@perches.com>
+Subject: [PATCH v8 1/2] On Semi AR0521 sensor driver
+References: <m3pmn66pie.fsf@t19.piap.pl>
+Sender: khalasa@piap.pl
+Date:   Tue, 01 Mar 2022 09:38:04 +0100
+In-Reply-To: <m3pmn66pie.fsf@t19.piap.pl> ("Krzysztof =?utf-8?Q?Ha=C5=82as?=
+ =?utf-8?Q?a=22's?= message of
+        "Tue, 01 Mar 2022 09:33:29 +0100")
+Message-ID: <m3lexu6par.fsf@t19.piap.pl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <43eb78d9-4252-938e-aaaa-8d353730314a@collabora.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:05:08 up 80 days, 16:50, 82 users,  load average: 1.01, 0.82,
- 0.44
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-KLMS-Rule-ID: 3
+X-KLMS-Message-Action: skipped
+X-KLMS-AntiSpam-Status: not scanned, whitelist
+X-KLMS-AntiPhishing: not scanned, whitelist
+X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 01, 2022 at 01:56:59AM +0300, Dmitry Osipenko wrote:
-> On 2/28/22 17:19, Sascha Hauer wrote:
-> > On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
-> >> On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
-> >>> On 2022-02-25 11:10, Dmitry Osipenko wrote:
-> >>>> 25.02.2022 13:49, Sascha Hauer пишет:
-> >>>>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
-> >>>>>> 25.02.2022 10:51, Sascha Hauer пишет:
-> >>>>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
-> >>>>>>> HDMI controller to work. The purpose of that clock is not clear. It is
-> >>>>>>> named "hclk" in the downstream driver, so use the same name.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> >>>>>>> ---
-> >>>>>>>
-> >>>>>>> Notes:
-> >>>>>>>      Changes since v5:
-> >>>>>>>      - Use devm_clk_get_optional rather than devm_clk_get
-> >>>>>>>
-> >>>>>>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
-> >>>>>>>   1 file changed, 16 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>>>>>> index fe4f9556239ac..c6c00e8779ab5 100644
-> >>>>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>>>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> >>>>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
-> >>>>>>>   	const struct rockchip_hdmi_chip_data *chip_data;
-> >>>>>>>   	struct clk *ref_clk;
-> >>>>>>>   	struct clk *grf_clk;
-> >>>>>>> +	struct clk *hclk_clk;
-> >>>>>>>   	struct dw_hdmi *hdmi;
-> >>>>>>>   	struct regulator *avdd_0v9;
-> >>>>>>>   	struct regulator *avdd_1v8;
-> >>>>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
-> >>>>>>>   		return PTR_ERR(hdmi->grf_clk);
-> >>>>>>>   	}
-> >>>>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
-> >>>>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
-> >>>>>>
-> >>>>>> Have you tried to investigate the hclk? I'm still thinking that's not
-> >>>>>> only HDMI that needs this clock and then the hardware description
-> >>>>>> doesn't look correct.
-> >>>>>
-> >>>>> I am still not sure what you mean. Yes, it's not only the HDMI that
-> >>>>> needs this clock. The VOP2 needs it as well and the driver handles that.
-> >>>>
-> >>>> I'm curious whether DSI/DP also need that clock to be enabled. If they
-> >>>> do, then you aren't modeling h/w properly AFAICS.
-> >>>
-> >>> Assuming nobody at Rockchip decided to make things needlessly inconsistent
-> >>> with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
-> >>> interface. Usually, if that affected anything other than accessing VOP
-> >>> registers, indeed it would smell of something being wrong in the clock tree,
-> >>> but in this case I'd also be suspicious of whether it might have ended up
-> >>> clocking related GRF registers as well (either directly, or indirectly via
-> >>> some gate that the clock driver hasn't modelled yet).
-> >>
-> >> Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
-> >> hanging when HCLK_VOP is disabled by disabling that clock via sysfs
-> >> using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
-> >> of that units can't be accessed. However, when I disable HCLK_VOP by
-> >> directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
-> >> accessing VOP registers hangs, the other units stay functional.
-> >> So it seems it must be the parent clock which must be enabled. The
-> >> parent clock is hclk_vo. This clock should be handled as part of the
-> >> RK3568_PD_VO power domain:
-> >>
-> >> 	power-domain@RK3568_PD_VO {
-> >>                 reg = <RK3568_PD_VO>;
-> >>                 clocks = <&cru HCLK_VO>,
-> >>                          <&cru PCLK_VO>,
-> >>                          <&cru ACLK_VOP_PRE>;
-> >>                  pm_qos = <&qos_hdcp>,
-> >>                           <&qos_vop_m0>,
-> >>                           <&qos_vop_m1>;
-> >>                  #power-domain-cells = <0>;
-> >>         };
-> > 
-> > Forget this. The clocks in this node are only enabled during enabling or
-> > disabling the power domain, they are disabled again immediately afterwards.
-> > 
-> > OK, I need HCLK_VO to access the HDMI registers. I verified that by
-> > disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
-> > HDMI registers become inaccessible then. This means I'll replace
-> > HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
-> 
-> The RK3568_PD_VO already has HCLK_VO and the domain should be
-> auto-enabled before HDMI registers are accessed,
+This file documents DT bindings for the AR0521 camera sensor driver.
 
-As said, the clocks given in the power domain are only enabled during
-the process of enabling/disabling the power domain and are disabled
-again directly afterwards:
+Signed-off-by: Krzysztof Ha=C5=82asa <khalasa@piap.pl>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-> 	if (rockchip_pmu_domain_is_on(pd) != power_on) {
+diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
+/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+new file mode 100644
+index 0000000000000..b617cc5c6a9f4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
+@@ -0,0 +1,112 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ON Semiconductor AR0521 MIPI CSI-2 sensor
++
++maintainers:
++  - Krzysztof Ha=C5=82asa <khalasa@piap.pl>
++
++description: |-
++  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
++  I2C-compatible control interface.
++
++properties:
++  compatible:
++    const: onnn,ar0521
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: extclk
++
++  vaa-supply:
++    description:
++      Definition of the regulator used as analog (2.7 V) voltage supply.
++
++  vdd-supply:
++    description:
++      Definition of the regulator used as digital core (1.2 V) voltage sup=
+ply.
++
++  vdd_io-supply:
++    description:
++      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
+ly.
++
++  reset-gpios:
++    description: reset GPIO, usually active low
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    unevaluatedProperties: false
++    description: |
++      Video output port.
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          bus-type:
++            const: 4
++          data-lanes:
++            anyOf:
++              - items:
++                  - const: 1
++              - items:
++                  - const: 1
++                  - const: 2
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - vaa-supply
++  - vdd-supply
++  - vdd_io-supply
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/clock/imx6qdl-clock.h>
++
++    i2c {
++            #address-cells =3D <1>;
++            #size-cells =3D <0>;
++
++            ar0521: camera-sensor@36 {
++                    compatible =3D "onnn,ar0521";
++                    reg =3D <0x36>;
++                    pinctrl-names =3D "default";
++                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
++                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
++                    clock-names =3D "extclk";
++                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
++                    vaa-supply =3D <&reg_2p7v>;
++                    vdd-supply =3D <&reg_1p2v>;
++                    vdd_io-supply =3D <&reg_1p8v>;
++
++                    port {
++                           mipi_camera_to_mipi_csi2: endpoint {
++                                    remote-endpoint =3D <&mipi_csi2_in>;
++                                    data-lanes =3D <1 2 3 4>;
++                            };
++                    };
++            };
++    };
 
-They are enabled here:
+--=20
+Krzysztof "Chris" Ha=C5=82asa
 
-> 		ret = clk_bulk_enable(pd->num_clks, pd->clks);
-> 		if (ret < 0) {
-> 			dev_err(pmu->dev, "failed to enable clocks\n");
-> 			mutex_unlock(&pmu->mutex);
-> 			return ret;
-> 		}
-> 
-> 		if (!power_on) {
-> 			rockchip_pmu_save_qos(pd);
-> 
-> 			/* if powering down, idle request to NIU first */
-> 			rockchip_pmu_set_idle_request(pd, true);
-> 		}
->
-
-Then the power domain is switched:
-
-> 		rockchip_do_pmu_set_power_domain(pd, power_on);
-> 
-> 		if (power_on) {
-> 			/* if powering up, leave idle mode */
-> 			rockchip_pmu_set_idle_request(pd, false);
-> 
-> 			rockchip_pmu_restore_qos(pd);
-> 		}
-> 
-
-And here the clocks are disabled again:
-
-> 		clk_bulk_disable(pd->num_clks, pd->clks);
-> 	}
-
-> hence you should do the
-> opposite and remove the HCLK_VO/P clock from the HDMI DT, not add it. If
-> the HCLK_VO clock isn't enabled by the domain driver, then you need to
-> check why. Or am I missing something?
-
-What the power domain driver additionally does is: It does a of_clk_get()
-on all the clocks found in the node of a power domains consumer. It then
-does a pm_clk_add_clk() on the clocks and sets the GENPD_FLAG_PM_CLK
-flag. This has the effect that all clocks of a device in a power domain
-are enabled as long as the power domain itself is enabled. This means
-when I just add HCLK_VO to the DSI node, then the power domain driver
-will enable it, even when the clock is not touched in the DSI driver at
-all. To me this looks really fishy because I think a device itself
-should have control over its clocks. I don't know how many devices
-really depend on the power domain driver controlling their clocks, but
-everyone of them will stop working when the power domain driver is not
-compiled in.
-
-> 
-> What about DSI and DP? Don't they depend on RK3568_PD_VO as well?
-
-Yes, they depend on that power domain as well.
-
-Sascha
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Sie=C4=87 Badawcza =C5=81ukasiewicz
+Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
+Al. Jerozolimskie 202, 02-486 Warszawa
