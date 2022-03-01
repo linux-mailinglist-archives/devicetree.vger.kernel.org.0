@@ -2,160 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8369E4C8CD1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:39:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0404C8CD7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232544AbiCANkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:40:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55752 "EHLO
+        id S231405AbiCANnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:43:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232902AbiCANkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:40:19 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DE81A46B14
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:39:37 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A5E3E1042;
-        Tue,  1 Mar 2022 05:39:37 -0800 (PST)
-Received: from [10.57.39.47] (unknown [10.57.39.47])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D14883F70D;
-        Tue,  1 Mar 2022 05:39:35 -0800 (PST)
-Message-ID: <5184ecf2-8734-3121-cbbc-5dcfcf0d02f8@arm.com>
-Date:   Tue, 1 Mar 2022 13:39:31 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Content-Language: en-GB
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
- <20220225104924.GC19585@pengutronix.de>
- <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
- <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
- <20220225131154.GE19585@pengutronix.de>
- <20220228141921.GN19585@pengutronix.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220228141921.GN19585@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232244AbiCANnf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:43:35 -0500
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEB7348E45;
+        Tue,  1 Mar 2022 05:42:53 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="5.90,146,1643641200"; 
+   d="scan'208";a="112809852"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 01 Mar 2022 22:42:53 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id F2FDE43D5A80;
+        Tue,  1 Mar 2022 22:42:50 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-spi@vger.kernel.org
+Subject: [PATCH] spi: dt-bindings: renesas,rspi: Drop comment for generic compatible string
+Date:   Tue,  1 Mar 2022 13:42:43 +0000
+Message-Id: <20220301134244.20174-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-28 14:19, Sascha Hauer wrote:
-> On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
->> On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
->>> On 2022-02-25 11:10, Dmitry Osipenko wrote:
->>>> 25.02.2022 13:49, Sascha Hauer пишет:
->>>>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
->>>>>> 25.02.2022 10:51, Sascha Hauer пишет:
->>>>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
->>>>>>> HDMI controller to work. The purpose of that clock is not clear. It is
->>>>>>> named "hclk" in the downstream driver, so use the same name.
->>>>>>>
->>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
->>>>>>> ---
->>>>>>>
->>>>>>> Notes:
->>>>>>>       Changes since v5:
->>>>>>>       - Use devm_clk_get_optional rather than devm_clk_get
->>>>>>>
->>>>>>>    drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
->>>>>>>    1 file changed, 16 insertions(+)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>>>>>> index fe4f9556239ac..c6c00e8779ab5 100644
->>>>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>>>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
->>>>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
->>>>>>>    	const struct rockchip_hdmi_chip_data *chip_data;
->>>>>>>    	struct clk *ref_clk;
->>>>>>>    	struct clk *grf_clk;
->>>>>>> +	struct clk *hclk_clk;
->>>>>>>    	struct dw_hdmi *hdmi;
->>>>>>>    	struct regulator *avdd_0v9;
->>>>>>>    	struct regulator *avdd_1v8;
->>>>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
->>>>>>>    		return PTR_ERR(hdmi->grf_clk);
->>>>>>>    	}
->>>>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
->>>>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
->>>>>>
->>>>>> Have you tried to investigate the hclk? I'm still thinking that's not
->>>>>> only HDMI that needs this clock and then the hardware description
->>>>>> doesn't look correct.
->>>>>
->>>>> I am still not sure what you mean. Yes, it's not only the HDMI that
->>>>> needs this clock. The VOP2 needs it as well and the driver handles that.
->>>>
->>>> I'm curious whether DSI/DP also need that clock to be enabled. If they
->>>> do, then you aren't modeling h/w properly AFAICS.
->>>
->>> Assuming nobody at Rockchip decided to make things needlessly inconsistent
->>> with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
->>> interface. Usually, if that affected anything other than accessing VOP
->>> registers, indeed it would smell of something being wrong in the clock tree,
->>> but in this case I'd also be suspicious of whether it might have ended up
->>> clocking related GRF registers as well (either directly, or indirectly via
->>> some gate that the clock driver hasn't modelled yet).
->>
->> Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
->> hanging when HCLK_VOP is disabled by disabling that clock via sysfs
->> using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
->> of that units can't be accessed. However, when I disable HCLK_VOP by
->> directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
->> accessing VOP registers hangs, the other units stay functional.
->> So it seems it must be the parent clock which must be enabled. The
->> parent clock is hclk_vo. This clock should be handled as part of the
->> RK3568_PD_VO power domain:
->>
->> 	power-domain@RK3568_PD_VO {
->>                  reg = <RK3568_PD_VO>;
->>                  clocks = <&cru HCLK_VO>,
->>                           <&cru PCLK_VO>,
->>                           <&cru ACLK_VOP_PRE>;
->>                   pm_qos = <&qos_hdcp>,
->>                            <&qos_vop_m0>,
->>                            <&qos_vop_m1>;
->>                   #power-domain-cells = <0>;
->>          };
-> 
-> Forget this. The clocks in this node are only enabled during enabling or
-> disabling the power domain, they are disabled again immediately afterwards.
-> 
-> OK, I need HCLK_VO to access the HDMI registers. I verified that by
-> disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
-> HDMI registers become inaccessible then. This means I'll replace
-> HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
+Drop comment "# RZ/A and RZ/G2{L,LC}" for generic compatible string
+"renesas,rspi-rz" as this will avoid changing the line for every new SoC
+addition.
 
-Well, it's still a mystery hack overall, and in some ways it seems even 
-more suspect to be claiming a whole branch of the clock tree rather than 
-a leaf gate with a specific purpose. I'm really starting to think that 
-the underlying issue here is a bug in the clock driver, or a hardware 
-mishap that should logically be worked around by the clock driver, 
-rather than individual the consumers.
+Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ Documentation/devicetree/bindings/spi/renesas,rspi.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Does it work if you hack the clock driver to think that PCLK_VO is a 
-child of HCLK_VO? Even if that's not technically true, it would seem to 
-effectively match the observed behaviour (i.e. all 3 things whose 
-register access apparently *should* be enabled by a gate off PCLK_VO, 
-seem to also require HCLK_VO).
+diff --git a/Documentation/devicetree/bindings/spi/renesas,rspi.yaml b/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
+index a902f0ca2198..2c3c6bd6ec45 100644
+--- a/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
++++ b/Documentation/devicetree/bindings/spi/renesas,rspi.yaml
+@@ -23,7 +23,7 @@ properties:
+               - renesas,rspi-r7s9210   # RZ/A2
+               - renesas,r9a07g044-rspi # RZ/G2{L,LC}
+               - renesas,r9a07g054-rspi # RZ/V2L
+-          - const: renesas,rspi-rz     # RZ/A and RZ/G2{L,LC}
++          - const: renesas,rspi-rz
+ 
+       - items:
+           - enum:
 
-Thanks,
-Robin.
+base-commit: f16ed63e53c79070283d3c264de5309794272ae9
+-- 
+2.17.1
+
