@@ -2,52 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C7D4C8B86
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A564C8B93
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 13:29:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230386AbiCAMZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 07:25:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35022 "EHLO
+        id S232263AbiCAM3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 07:29:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229687AbiCAMZt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:25:49 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 067F84BB9B;
-        Tue,  1 Mar 2022 04:25:07 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B48BCED1;
-        Tue,  1 Mar 2022 04:25:06 -0800 (PST)
-Received: from [10.57.5.157] (unknown [10.57.5.157])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C8D213F70D;
-        Tue,  1 Mar 2022 04:25:04 -0800 (PST)
-Message-ID: <a2871e71-02af-198f-3944-d6565f3cd5f9@arm.com>
-Date:   Tue, 1 Mar 2022 12:23:54 +0000
+        with ESMTP id S231748AbiCAM3v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 07:29:51 -0500
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F3953ED13;
+        Tue,  1 Mar 2022 04:29:10 -0800 (PST)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-2d07ae0b1c0so142773347b3.2;
+        Tue, 01 Mar 2022 04:29:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GiuHzLDv+X4sDMr8N5eZFwdXrNoiDH/ZFPwIh03H038=;
+        b=ZyQuGRtyR5VPEx16eh6QmT+0y8HAEtO2jYX3l92mJneEZbmhvhmIIkkvphYZfzlCle
+         AMhH110sWQkByhSXcZAFUF5wfOjUoykJJLzG7V26pqt6w5rnWgVsWW+JldDr+IG04g8l
+         uWefsc+iAnzB0CxnHGMzByp3iY+YK4bSnpjUJZVPevSZR8oUYULwuhtoim83u0jAnxCJ
+         BcXPVRlALyG0OQJF1XO/6RDduHpXL7Z82FHi9MFl7lTJ9Qhfoxh2ZOv7i9GdEj3SaUgc
+         BALsKQdCdfdnBUlQiRWW9xzScDf2jGZ2tXDI6cnbdYsGl9lMBpfRxVWl5Agw07jBXVcR
+         VO9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GiuHzLDv+X4sDMr8N5eZFwdXrNoiDH/ZFPwIh03H038=;
+        b=hOPffzdkeF/6a/ueaTiT5h4DTQh6hfPNqPDjLCpojH8HQCucfi01kFPFpWYajk+sfk
+         7UkeySnjARuoFwA2Ear6IFDnbTb4LfEYVK7YdCAQFD+0+bEIdjuCwfQJpy0LVefyWjOt
+         ZkoU0TI5Ngguskug+Qpj1EogQCiRWn5Hvdj981492Ppo6sT1lVfiU9/RidpgmyKhjQHV
+         AkxrlTxO9BcOWAo9x5EyI30cqfigTsBHrfzlrKjBfYV+lsSXRUMJfDjIK+2NgNnW42I+
+         SoRNTpMSRebXlawdX9jkmkqnQBGXii7mxrDfCJIrGhLaPJb5xpi4GB7kAmyjRqGeSURA
+         Dbjg==
+X-Gm-Message-State: AOAM532ACtSTD/cz46w/0eSG6wNnlmrw/oe9q7UO6qAWh6l+2BnJtQcC
+        nnDQBBNzvNiNfSLV0gqG9bGJagiLrRbLJW4ZA30=
+X-Google-Smtp-Source: ABdhPJyHRepGC0zo6I2k03s1BI67N1QNj1B3QXK12Syk7PUxHgjq0CUK8r+1AMO+IToXZJLpF+FlVtmOuxKBiGyYSF0=
+X-Received: by 2002:a81:5597:0:b0:2d6:41f7:a00e with SMTP id
+ j145-20020a815597000000b002d641f7a00emr24282471ywb.413.1646137749152; Tue, 01
+ Mar 2022 04:29:09 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
- sp7021
-To:     =?UTF-8?B?RWR3aW4gQ2hpdSDpgrHlnoLls7A=?= <edwin.chiu@sunplus.com>
-Cc:     Edwin Chiu <edwinchiu0505tw@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
- <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
- <20220221105151.6rvyoqyvj6ehhtnj@bogus>
- <7b09a22cc178439aa41a752af936313d@sphcmbx02.sunplus.com.tw>
-Content-Language: en-US
-Organization: ARM
-In-Reply-To: <7b09a22cc178439aa41a752af936313d@sphcmbx02.sunplus.com.tw>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20220227215308.26135-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXaPc0bPE1Rf33hHg7c3Mq0UfYAqFcc+_q-NLG2y8WcYQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdXaPc0bPE1Rf33hHg7c3Mq0UfYAqFcc+_q-NLG2y8WcYQ@mail.gmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Tue, 1 Mar 2022 12:28:43 +0000
+Message-ID: <CA+V-a8se2LyrxGnwUU7_uUPWPPzbzuWdkQX4He=iJJRq=DhQBA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: memory: renesas,rpc-if: Document RZ/V2L SoC
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,39 +73,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 01, 2022 at 09:18:31AM +0000, Edwin Chiu 邱垂峰 wrote:
-> > 
-> > You really don't need a cpuidle driver to just WFI for any states.
-> > Add the driver when you have something non WFI in the suspend function.
+Hi Geert,
+
+Thank you for the review.
+
+On Mon, Feb 28, 2022 at 2:30 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>
+> On Sun, Feb 27, 2022 at 10:53 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > Document RZ/V2L RPC-IF bindings. RZ/V2L RPC-IF is identical to one found
+> > on the RZ/G2L SoC. No driver changes are required as generic compatible
+> > string "renesas,rzg2l-rpc-if" will be used as a fallback.
 > >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > ---
+> > DTSI changes have been posted as part of series [0].
+> >
+> > [0] https://patchwork.kernel.org/project/linux-renesas-soc/
+> > patch/20220227203744.18355-7-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> > ---
+> >  .../devicetree/bindings/memory-controllers/renesas,rpc-if.yaml   | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > index 294f1036420d..f051ffb2a421 100644
+> > --- a/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > +++ b/Documentation/devicetree/bindings/memory-controllers/renesas,rpc-if.yaml
+> > @@ -40,6 +40,7 @@ properties:
+> >        - items:
+> >            - enum:
+> >                - renesas,r9a07g044-rpc-if      # RZ/G2{L,LC}
+> > +              - renesas,r9a07g054-rpc-if      # RZ/V2L
+> >            - const: renesas,rzg2l-rpc-if       # RZ/G2L family
+>
+> Please drop the comment on the previous line.
+>
+OK, I will drop and send a v2 version.
 
-This is still valid and you haven't responded to this.
-
-> > > +static const struct of_device_id sp7021_idle_state_match[] = {
-> > > +	{ .compatible = "arm,idle-state", .data = sp7021_cpu_spc },
-> > > +	{ },
-> > > +};
-> > 
-> > This is better than adding new driver like you did in previous version.
-> > 
-> > I did a quick check but couldn't figure out. How do cpus get switched ON
-> > or OFF on this platform(for example during CPU hotplug) ?.
-> > 
-> 
-> In this patch, I just want to submit cpuidle function.
-> So there have no cpu hotplug function now.
-
-
-You need to document the binding now for both idle and hotplug. You
-can't mix and match. You can either use PSCI or custom "sunplus,sc-smp"
-for both cpu on/off and suspend. So you must document it now even if you
-don't plan to support hotplug now. And when you add later, you must use
-the same method.
-
-However, you still don't need this driver for just WFI, so please
-explain why you think otherwise. Until then, you still won't get ACK
-from my side.
-
--- 
-Regards,
-Sudeep
+Cheers,
+Prabhakar
