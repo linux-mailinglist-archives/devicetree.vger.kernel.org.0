@@ -2,55 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 469674C8C8C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:25:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 88A354C8C8F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 14:26:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232549AbiCAN0H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 08:26:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49408 "EHLO
+        id S231616AbiCAN1T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 08:27:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231247AbiCAN0G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:26:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 004274F463;
-        Tue,  1 Mar 2022 05:25:25 -0800 (PST)
+        with ESMTP id S230374AbiCAN1T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 08:27:19 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A313D9D044
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 05:26:38 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B0BC8B818F6;
-        Tue,  1 Mar 2022 13:25:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0D31C340EE;
-        Tue,  1 Mar 2022 13:25:21 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3F4B961416
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 13:26:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 112BAC340EE;
+        Tue,  1 Mar 2022 13:26:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646141123;
-        bh=fGz211pe0N4hyHlm5ps1Sr0ecSqu09vLb2sUW2Ygypw=;
+        s=k20201202; t=1646141197;
+        bh=1DTqbTc4ulkb0fviBXNsAj3qxd0r1QufWdpYuJIk+fg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TXUqAPpHc5mJtTLGkJ51l+Bmm/zQtdTknQzZXT8z/uv6Km7AH05nVGfqg0rgSb0AO
-         BEacJl8Zyb1mlYH7TfRz/WQksEWh4b2JRZhk5kM10pZilXoDDBZtLY1STg+DE0EEIn
-         nc7vDElSc5HMHgkROk231um8inriyX+/f2GxITTykQz7ket8ytOx5MjtTeywt7ChME
-         zQQTlzb1t6p1sHx6nSEf2EpOvkbnGcCOOshpNjApc7sufnhjO7rBGQ01U4VGvzytfl
-         c0oBfgF/qr69PwAMmMQHbJHLPlQ0cXX1fNEeaAZvTJos7/Cwn7Cekyz9LyzwnWiGT4
-         9c/eq5pEzXL+Q==
-Date:   Tue, 1 Mar 2022 13:25:18 +0000
+        b=IL/g5/Lr67CKCze983PhXU7r3WSgt/3c2FqN+IahHY7hEtjJbK3hmMVgRLQ+KYj9w
+         BuCvFcnm3kPOtbqxjdF5DeM3jQNiG96/76ZaQFYer74eMo7tyTt4GIdXTGW+mf6Tqa
+         BZJ1fWdmZz/jnqT+l0aUjiQgjYezIAUa18c3QsWMHw962VgLhALl2ixTbeNkmltYlS
+         AF6ZFg9g9UX9QmDI55cHs39F6clGu48KjisWDRIZ77UR7LUL2rMZu+Eqw2og0oJoer
+         L2UDAwWL89DJXt4faq1LXjUR95xrca7JF/eOryOfAqdt3qXZTDKWgUYgayABfo5Txs
+         lZTIFxTpdteWw==
+Date:   Tue, 1 Mar 2022 13:26:32 +0000
 From:   Mark Brown <broonie@kernel.org>
-To:     Christophe Leroy <christophe.leroy@csgroup.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pratyush Yadav <p.yadav@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] spi: fsl-spi: Implement trailing bits
-Message-ID: <Yh4evlYQXru8c++N@sirena.org.uk>
-References: <cover.1646060734.git.christophe.leroy@csgroup.eu>
- <fe4a3946a66ede73f6d6871700f2aaf0171372a1.1646060734.git.christophe.leroy@csgroup.eu>
- <YhzqbYW1q5bPNWXn@sirena.org.uk>
- <7afaab3d-50e0-4716-18d4-41eabc2a9cb9@csgroup.eu>
- <Yhz0/1kiAy7Mlgtv@sirena.org.uk>
- <fa51ac07-9cba-a8b5-89ed-c51a8a12d452@csgroup.eu>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH 2/2] ASoC: codecs: Add Awinic AW8738 audio amplifier
+ driver
+Message-ID: <Yh4fCAE41Sc5AjwL@sirena.org.uk>
+References: <20220301123742.72146-1-stephan@gerhold.net>
+ <20220301123742.72146-3-stephan@gerhold.net>
+ <Yh4VziYJ2M2aenjz@sirena.org.uk>
+ <Yh4XOC5+Uam9UMdJ@gerhold.net>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0U1od5J5OqUDXV6E"
+        protocol="application/pgp-signature"; boundary="OHqBp8PbVqqccFla"
 Content-Disposition: inline
-In-Reply-To: <fa51ac07-9cba-a8b5-89ed-c51a8a12d452@csgroup.eu>
+In-Reply-To: <Yh4XOC5+Uam9UMdJ@gerhold.net>
 X-Cookie: You have a message from the operator.
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
@@ -63,54 +62,35 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0U1od5J5OqUDXV6E
+--OHqBp8PbVqqccFla
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 01, 2022 at 12:53:58PM +0000, Christophe Leroy wrote:
+On Tue, Mar 01, 2022 at 01:53:12PM +0100, Stephan Gerhold wrote:
+> On Tue, Mar 01, 2022 at 12:47:10PM +0000, Mark Brown wrote:
 
-> My understanding today is that this trailing transfer with chipselect=20
-> OFF is to be added at the end of transfer_one_message().
+> > I only have this patch, nothing else from the rest of the series.
+> > What's the story with dependencies?
 
-Yes.
+> Hmm, I definitely sent the whole series to you. Let's wait a bit longer
+> to see if it will still arrive, otherwise let me know and I can try to
+> send it again.
 
-> It can be implemented in the core transfer_one_message() for drivers=20
-> implementing transfer_one(). For the other drivers not having=20
-> transfer_one() but having transfer_one_message(), it must be implemented=
-=20
-> in the driver's transfer_one_message().
+Yes, it's turned up OK now - wonder what delayed the earlier bits.
 
-> Am I right ?
-
-Yes.
-
-> fsl-spi driver is the one I need to support this new functionnality and=
-=20
-> it has its own transfer_one_message().
-
-> What would you expect ?
-
-Well, if the fsl-spi driver has a good reason for open coding
-transfer_message() it could continue to do it, however looking at the
-driver it seems like it's only the little bit at the start to optimise
-the trasfer width in CPU mode which looks like it could easily be moved
-to a prepare_message() callback and save a bunch of code so it'd be good
-to convert it.  I guess it shouldn't be strictly essential though.
-
---0U1od5J5OqUDXV6E
+--OHqBp8PbVqqccFla
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIeHr0ACgkQJNaLcl1U
-h9CdLwf+OjYGDExE28BCAFXXyZLYcQHLkDfa219TAYxNuE0upFLoAXBPlCeWYQtB
-2eCk0YJTARvPcwJXkNrv99HibRUA6Fjr0HpbGfTdmSKrwkHlx3XTYirMGj0cQyOL
-1qBOngx+onkeS2+t0p8uxwA4xE+bOci9zUP0OF7oQI60cdWJukl8jK6Bq5uOwULR
-/VuL1ACetClUtnCrJQxCGn9VNLJa+jkKc+PzF7pMWXYw8iWtd9qPnAkPRzvOCBnE
-N14RdzDR8bDyXgJNJp0FchRC83G+eA/c2c4n8QAGj9YkklGHKO2+0kMt7wpjVio+
-hFIp1TxpVQlIxJXsD26VO/hJrm+39Q==
-=bVV1
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIeHwgACgkQJNaLcl1U
+h9BWeAf/Yxb5JebNr2s6Zb7XhaUYHkIHB4qi6c5jEG/QHKrIYgGQJOmxMfXzJewU
+QPMY/0A0rgq598SpBrQQKeyWKy6T74kAbz8vW98zCGG4T3Xk82orhS2q8y5NLewQ
+pxFodkNSktD4XhgvzGjMhLmTSROF64Uo0JTIgKZ0VuKN0m4Mio2pH7mYWKxR/Qt0
+y9NACNV+PisVMsPSrsPCqABg8MstUBNzBsNkPGr8S3C0elXMusOwB+zcPp1PAbF4
+MqJhaqNiJ2Hsuoo+Vi2kcKoXeY9Y7Tqn/GuwR+TjjbRjhOCC6eQLgmC2yzlhp41X
+GjS4+8plJi3zJ5kuttHepVQGjPaF7A==
+=3Fav
 -----END PGP SIGNATURE-----
 
---0U1od5J5OqUDXV6E--
+--OHqBp8PbVqqccFla--
