@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF3774C9451
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 37DDA4C945D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:33:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232676AbiCATcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 14:32:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
+        id S235911AbiCATeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 14:34:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229663AbiCATcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:32:41 -0500
-Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AFE6A040
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:31:59 -0800 (PST)
-Received: by mail-oo1-xc32.google.com with SMTP id 6-20020a4a0906000000b0031d7eb98d31so8169126ooa.10
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 11:31:59 -0800 (PST)
+        with ESMTP id S235532AbiCATeD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:34:03 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A556517C9
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:33:21 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so23676939ooi.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 11:33:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=OhkKbjXQRtr8cgG2YtwNCXV0fM/H/tNTVmzFq7kxqEs=;
-        b=rsq0gRFmRYXhijTGz6DmP0W3Fl50LFrhfxPhGW5/J2n324ApNP84JmyO2FXFv/pKKt
-         hKaoZ3lVzP5KVhl6JieJVJkxnBtbVVpeV2rsjar0hijIZjLEjQpUjZrvOMwM+kAX711U
-         miIhetocVb6BLwE62lHjzVvBGeGgUixUD3tLSZ4su8TJtPlyKz8B/fCogV236DVvdYLO
-         BDBNii4S2qn/eF55CELY1cbueNrKCWUH2Ht77SFpd71xI9DWwmU8qucSop61abB185ke
-         VlwOGEeDV7mvsmMmaUlNE0fKFNVlCdpPnokx8Rlbvld0PFwwleqFdVDjXNF8LokCPMVX
-         XLDw==
+        bh=s09G3d2GZOsH48PQv3S0tWQ6hmH5JZ2SdoKpay6rqJk=;
+        b=yGFDknXS4dWn2kPPs0YZ8VbbVl2xu4WwKbWtmFZwNpzY+jQAwuvKvp4uLHvBrvVuEg
+         AlKf+kfvQOC4Rzn8CwYOFhbXgSU3kysY+DRRHlzgLiVlSVF1sZ0JDrv5gChtiTZ4BqnG
+         vvps1rxy/SoW6ruB6OiysBYvDt5ka0OFCU2v6sCCP4o+OumiZLJD+fCcFhBRWJk8B+0J
+         F9RScnKJ7Bj2uKeTP5Xjxy8ND8HAlQGEaBFaRcxnWZHm+HSv3kzH4Hz+v9w+Yr6VkA5C
+         CRbr5gxZJT95C1iyLZQN901rnnugXmgDVZ5wTJHOiGTcxE1Lzd8LLnkUtEpz9hPpTJ/E
+         FUqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=OhkKbjXQRtr8cgG2YtwNCXV0fM/H/tNTVmzFq7kxqEs=;
-        b=XCLWv2lPiHltFrhVgoIOOxF8Qa1K5fs2y1gKQt+zYjtW4RGW98n0dlKfZerhZqlgkE
-         fmCarQRr1TKlFFsAuGZf4qqV4znk89t5wgoTtICCPHYpRzaWEiYYj7zwqk5lCVvgTcQg
-         31KhF3CgadyBz2K7xb78tdEzEZke9Ro4wrCTNHH8eSrLmLkuERBlAl1ViqHJc05yFTjx
-         4P37Y8ZypwTvXkVTPGekNF7fH4J8fLfn5fqzp6IcmK5huP3tTHcP9tCNRa+yQqOPrPqI
-         xdrMkPQw7CkdxSwSrg5bak1TjeqAPO8tzVl6cceLWxPB/TijgjSrsBSisMab5BT0gmtx
-         4Qpw==
-X-Gm-Message-State: AOAM532vD7837FeO0vKWJ9YyL4ur+BI5pr5lo/fB+Ee9uySnq5LTVWXi
-        qnOc0vWGdSxB0Y8VPtVey8qpXrgebo0FBhkV26TdqA==
-X-Google-Smtp-Source: ABdhPJwnaa8BzyVfV18C2z53t5huHKOd/h4d/Z8gv3zm7mUkkA1bDOpI74xw0xVSz19DWMVQ7pSoGE/8vD/vOidmloE=
+        bh=s09G3d2GZOsH48PQv3S0tWQ6hmH5JZ2SdoKpay6rqJk=;
+        b=pXJHHBXwe62y3qH/Iob/jm8SXlS5JH9O74IXO6JVnDQuxwnQYIqWheXRPlZQfPZh4p
+         hm5oCnxxUMjG7eH3monAl6uQnHhsEh1S3dLii64/7esVF8Rg2cGrJme4Won9F2EQ0lda
+         Ko1gF4s1Mziz3Os+b3bTr8jO0poqH0ZURUVdoRp44yaoGku3O97q7vJt3GCmA2bOYyDq
+         WrBwG5YM5QSiZACgbM8IOYf0Dix8huYZuVXLoz87gtxNWEzIxkZ8NU7TL/thRj8InzV1
+         /kDFcM5xXijvhJPONhDpvYeou7LmiptjS40gsSrg1WVrldnlPxFiTCIx7ItYfFNYrStO
+         HPIw==
+X-Gm-Message-State: AOAM5324m0aKFhN8MQwNBzOwRHjz2WGtKq9T4Q0NF0kJB6Wh1e98t+/8
+        KHoartWupQ1CgR8oUlOaNhDhh5Tn/ISDAk69ruzeyA==
+X-Google-Smtp-Source: ABdhPJwmfh2OsG89bUC0V88Pv5V+OirryKxA4WtgkuShXLUTWTDEFELIRd0Zf5/QIovCeCns4PvvaTR8bV0kSRfkf3g=
 X-Received: by 2002:a05:6870:4508:b0:d7:162f:6682 with SMTP id
- e8-20020a056870450800b000d7162f6682mr8058828oao.126.1646163118705; Tue, 01
- Mar 2022 11:31:58 -0800 (PST)
+ e8-20020a056870450800b000d7162f6682mr8063116oao.126.1646163200654; Tue, 01
+ Mar 2022 11:33:20 -0800 (PST)
 MIME-Version: 1.0
 References: <20220126221725.710167-1-bhupesh.sharma@linaro.org>
- <20220126221725.710167-3-bhupesh.sharma@linaro.org> <Yfh5qrT2dAMpFk2s@builder.lan>
-In-Reply-To: <Yfh5qrT2dAMpFk2s@builder.lan>
+ <20220126221725.710167-4-bhupesh.sharma@linaro.org> <Yfh6RSTegg2n5xuy@builder.lan>
+In-Reply-To: <Yfh6RSTegg2n5xuy@builder.lan>
 From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 2 Mar 2022 01:01:47 +0530
-Message-ID: <CAH=2Ntz837KwreQX4JBf1E6J0SWnV0v-YqtRAn2nU-Dse+f3Gw@mail.gmail.com>
-Subject: Re: [PATCH 2/8] net: stmmac: Add support for SM8150
+Date:   Wed, 2 Mar 2022 01:03:09 +0530
+Message-ID: <CAH=2Ntzk0NJOy-8GD-8E+X2e2Rx9xOn_8uwU_m6VpE85_yVKNw@mail.gmail.com>
+Subject: Re: [PATCH 3/8] clk: qcom: gcc: Add PCIe, EMAC and UFS GDSCs for SM8150
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         robh+dt@kernel.org, agross@kernel.org, sboyd@kernel.org,
         tdas@codeaurora.org, mturquette@baylibre.com,
         linux-clk@vger.kernel.org, davem@davemloft.net,
-        netdev@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
+        netdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,70 +72,150 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Bjorn,
 
-Sorry for the late reply.
-
-On Tue, 1 Feb 2022 at 05:37, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+On Tue, 1 Feb 2022 at 05:39, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
 >
 > On Wed 26 Jan 16:17 CST 2022, Bhupesh Sharma wrote:
 >
-> > From: Vinod Koul <vkoul@kernel.org>
+> > This adds the PCIe, EMAC and UFS GDSC structures for
+> > SM8150. The GDSC will allow the respective system to be
+> > brought out of reset.
 > >
-> > This adds compatible, POR config & driver data for ethernet controller
-> > found in SM8150 SoC.
-> >
-> > Cc: David S. Miller <davem@davemloft.net>
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > [bhsharma: Massage the commit log and other cosmetic changes]
+> > Cc: Stephen Boyd <sboyd@kernel.org>
 > > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  drivers/clk/qcom/gcc-sm8150.c               | 74 +++++++++++++++++----
+> >  include/dt-bindings/clock/qcom,gcc-sm8150.h |  9 ++-
+> >  2 files changed, 69 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
+> > index 245794485719..ada755ad55f7 100644
+> > --- a/drivers/clk/qcom/gcc-sm8150.c
+> > +++ b/drivers/clk/qcom/gcc-sm8150.c
+> > @@ -3448,22 +3448,67 @@ static struct clk_branch gcc_video_xo_clk = {
+> >       },
+> >  };
+> >
+> > +static struct gdsc emac_gdsc = {
+> > +     .gdscr = 0x6004,
+> > +     .pd = {
+> > +             .name = "emac_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> > +};
+> > +
+> > +static struct gdsc pcie_0_gdsc = {
+> > +     .gdscr = 0x6b004,
+> > +     .pd = {
+> > +             .name = "pcie_0_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> > +};
+> > +
+> > +static struct gdsc pcie_1_gdsc = {
+> > +     .gdscr = 0x8d004,
+> > +     .pd = {
+> > +             .name = "pcie_1_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> > +};
+> > +
+> > +static struct gdsc ufs_card_gdsc = {
+> > +     .gdscr = 0x75004,
+> > +     .pd = {
+> > +             .name = "ufs_card_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> > +};
+> > +
+> > +static struct gdsc ufs_phy_gdsc = {
+> > +     .gdscr = 0x77004,
+> > +     .pd = {
+> > +             .name = "ufs_phy_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> > +};
+> > +
+> >  static struct gdsc usb30_prim_gdsc = {
+> > -             .gdscr = 0xf004,
+> > -             .pd = {
+> > -                     .name = "usb30_prim_gdsc",
+> > -             },
+> > -             .pwrsts = PWRSTS_OFF_ON,
+> > -             .flags = POLL_CFG_GDSCR,
+> > +     .gdscr = 0xf004,
+> > +     .pd = {
+> > +             .name = "usb30_prim_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> >  };
+> >
+> >  static struct gdsc usb30_sec_gdsc = {
+> > -             .gdscr = 0x10004,
+> > -             .pd = {
+> > -                     .name = "usb30_sec_gdsc",
+> > -             },
+> > -             .pwrsts = PWRSTS_OFF_ON,
+> > -             .flags = POLL_CFG_GDSCR,
+> > +     .gdscr = 0x10004,
+> > +     .pd = {
+> > +             .name = "usb30_sec_gdsc",
+> > +     },
+> > +     .pwrsts = PWRSTS_OFF_ON,
+> > +     .flags = POLL_CFG_GDSCR,
+> >  };
+> >
+> >  static struct clk_regmap *gcc_sm8150_clocks[] = {
+> > @@ -3714,6 +3759,11 @@ static const struct qcom_reset_map gcc_sm8150_resets[] = {
+> >  };
+> >
+> >  static struct gdsc *gcc_sm8150_gdscs[] = {
+> > +     [EMAC_GDSC] = &emac_gdsc,
+> > +     [PCIE_0_GDSC] = &pcie_0_gdsc,
+> > +     [PCIE_1_GDSC] = &pcie_1_gdsc,
+> > +     [UFS_CARD_GDSC] = &ufs_card_gdsc,
+> > +     [UFS_PHY_GDSC] = &ufs_phy_gdsc,
+> >       [USB30_PRIM_GDSC] = &usb30_prim_gdsc,
+> >       [USB30_SEC_GDSC] = &usb30_sec_gdsc,
+> >  };
+> > diff --git a/include/dt-bindings/clock/qcom,gcc-sm8150.h b/include/dt-bindings/clock/qcom,gcc-sm8150.h
+> > index 3e1a91876610..35d80ae411a0 100644
+> > --- a/include/dt-bindings/clock/qcom,gcc-sm8150.h
+> > +++ b/include/dt-bindings/clock/qcom,gcc-sm8150.h
+> > @@ -241,7 +241,12 @@
+> >  #define GCC_USB_PHY_CFG_AHB2PHY_BCR                          28
+> >
+> >  /* GCC GDSCRs */
+> > -#define USB30_PRIM_GDSC                     4
+> > -#define USB30_SEC_GDSC                                               5
 >
-> The series can be picked up by 3 different maintainers and e.g. the
-> network patches seems ready to be merged.
+> These constants goes into .dtb files as numbers (4 and 5), changing them
+> will cause annoying-to-debug bugs in the transition while people still
+> are testing a new kernel with last weeks dtb.
 >
-> Please facilitate this by sending it in 3 different series (you may
-> combine clock and dts in one series, as I merge both).
+> So please add the new constants without affecting these numbers.
+>
+> Rest looks good.
 
-Sure, I will send 3 different series in v2.
+Ack. I will fix this in v2.
 
 Regards,
 Bhupesh
 
-> > ---
-> >  .../ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c   | 15 +++++++++++++++
-> >  1 file changed, 15 insertions(+)
+> > +#define EMAC_GDSC                                            0
+> > +#define PCIE_0_GDSC                                          1
+> > +#define      PCIE_1_GDSC                                             2
+> > +#define UFS_CARD_GDSC                                                3
+> > +#define UFS_PHY_GDSC                                         4
+> > +#define USB30_PRIM_GDSC                                              5
+> > +#define USB30_SEC_GDSC                                               6
 > >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > index 2ffa0a11eea5..8cdba9d521ec 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-> > @@ -183,6 +183,20 @@ static const struct ethqos_emac_driver_data emac_v2_3_0_data = {
-> >       .num_por = ARRAY_SIZE(emac_v2_3_0_por),
-> >  };
-> >
-> > +static const struct ethqos_emac_por emac_v2_1_0_por[] = {
-> > +     { .offset = RGMII_IO_MACRO_CONFIG,      .value = 0x40C01343 },
-> > +     { .offset = SDCC_HC_REG_DLL_CONFIG,     .value = 0x2004642C },
-> > +     { .offset = SDCC_HC_REG_DDR_CONFIG,     .value = 0x00000000 },
-> > +     { .offset = SDCC_HC_REG_DLL_CONFIG2,    .value = 0x00200000 },
-> > +     { .offset = SDCC_USR_CTL,               .value = 0x00010800 },
-> > +     { .offset = RGMII_IO_MACRO_CONFIG2,     .value = 0x00002060 },
-> > +};
-> > +
-> > +static const struct ethqos_emac_driver_data emac_v2_1_0_data = {
-> > +     .por = emac_v2_1_0_por,
-> > +     .num_por = ARRAY_SIZE(emac_v2_1_0_por),
-> > +};
-> > +
-> >  static int ethqos_dll_configure(struct qcom_ethqos *ethqos)
-> >  {
-> >       unsigned int val;
-> > @@ -558,6 +572,7 @@ static int qcom_ethqos_remove(struct platform_device *pdev)
-> >
-> >  static const struct of_device_id qcom_ethqos_match[] = {
-> >       { .compatible = "qcom,qcs404-ethqos", .data = &emac_v2_3_0_data},
-> > +     { .compatible = "qcom,sm8150-ethqos", .data = &emac_v2_1_0_data},
-> >       { }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, qcom_ethqos_match);
+> >  #endif
 > > --
 > > 2.34.1
 > >
