@@ -2,54 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D01E4C86A1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:38:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 749A24C86A7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:39:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbiCAIiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 03:38:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44722 "EHLO
+        id S233441AbiCAIkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 03:40:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232461AbiCAIis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:38:48 -0500
-Received: from ni.piap.pl (ni.piap.pl [195.187.100.5])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D94D73F304;
-        Tue,  1 Mar 2022 00:38:05 -0800 (PST)
-Received: from t19.piap.pl (OSB1819.piap.pl [10.0.9.19])
-        by ni.piap.pl (Postfix) with ESMTPSA id 7D040C3F3EED;
-        Tue,  1 Mar 2022 09:38:04 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 ni.piap.pl 7D040C3F3EED
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=piap.pl; s=mail;
-        t=1646123884; bh=eYKOkpEc/RKiHKA/7tuV+7Y94exN1jvqIyB0ysJtkiE=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=XppmdrmgdLYvx3+dnQuYy7EHWzTmRg/eWvghrtr/iQcItAWlqlY3CMrcdRvvmbTFL
-         EkcaDrFivIRyKu+6dVA1uQvQmIwzbnIBXa9KEMKKFQfoz5Mmi7ggD45vWLaweK2LBC
-         GABYkvpIAWmM1N/4LEWGsaLO7H7LbxnuyZ2cao9c=
-From:   =?utf-8?Q?Krzysztof_Ha=C5=82asa?= <khalasa@piap.pl>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Jacopo Mondi <jacopo@jmondi.org>, Joe Perches <joe@perches.com>
-Subject: [PATCH v8 1/2] On Semi AR0521 sensor driver
-References: <m3pmn66pie.fsf@t19.piap.pl>
-Sender: khalasa@piap.pl
-Date:   Tue, 01 Mar 2022 09:38:04 +0100
-In-Reply-To: <m3pmn66pie.fsf@t19.piap.pl> ("Krzysztof =?utf-8?Q?Ha=C5=82as?=
- =?utf-8?Q?a=22's?= message of
-        "Tue, 01 Mar 2022 09:33:29 +0100")
-Message-ID: <m3lexu6par.fsf@t19.piap.pl>
+        with ESMTP id S233443AbiCAIkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:40:02 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8037888D5
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 00:39:21 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id p9so19184477wra.12
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 00:39:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=Ys5RUn00UTk4/HM+/VQ1d9YYoz2PP5VEAgLxVeBItuo=;
+        b=bsBXup8JXuMjq5m2R4LX5YZYwB4jv3c8gplZTEkaXEYlZDxabb+wInQkLSxBHDveUe
+         EftLA3G/0WpO65ThsVXgcKSeLo5Fau9t2AheK+c6CajAO2uphaVq4QP2TyILrolSyDE5
+         De18sMJRe1PnKmAsotxRKuLSdeDBYvhPkuunybLWLfnKhpec560dY78BjxUdj5Z4nFOG
+         KIUDDgZxwSgCyiG1PrQbEChQV0bnSts9xk8M8CeB8LWFT4s/6JCWLRIAMvcZAgLi0anQ
+         5B/OyXff9XWaQCMChL5HbyJaJG3YnDXNzxy1u9bmTaAhqjTZFVxfy0Mjtw5mBewuOjak
+         /UAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:organization:in-reply-to
+         :content-transfer-encoding;
+        bh=Ys5RUn00UTk4/HM+/VQ1d9YYoz2PP5VEAgLxVeBItuo=;
+        b=Q2DVCOHxcECcao32dS7wmUM0buqeRNgqU6NOK0Nq40Gq3f1LrHcLep/iZ01Y6hiG0K
+         LZScUKXvNSxSvHBBrrXByCVMoVDUwKD8C/PyOaTtvYlDHKtKoLsara/Nby7ZTtyJ3OzO
+         J/mfY4a73w5Tnj3qV7phBmP88R+o7dpLkzMBWaNJlGoAJdMZcmKRUxi2H5QGeDg+lhh1
+         0M8ZroYxPmgNMQe5OWjOalDbs+Jq3dFMu305rHfaMbK8mK1yA8uowr4qW+DGiNprUyXA
+         j74qyVDVK3VlLs3hfy4C8FdJQ/NYphVflmzZxguu1IIOdB9VQxf7cYag7TEnbA3T4a3o
+         MwOw==
+X-Gm-Message-State: AOAM532cXM4dy31TmDVvU4LpZ8FnHhRyVhQD/PRoUw6J6KYEZmH7HIXV
+        6kascE4eikBOpTGt4nwv+SXyls0BQj2Cxfp3
+X-Google-Smtp-Source: ABdhPJyHAAq6QqkvDXe+8kSp+Zv0Q+HGeMEuNrHEz11ZtnWxrAxvw7R+lXq+tS3APcaKgFuL9J/7jQ==
+X-Received: by 2002:a5d:6083:0:b0:1ef:761f:521f with SMTP id w3-20020a5d6083000000b001ef761f521fmr14275331wrt.238.1646123960395;
+        Tue, 01 Mar 2022 00:39:20 -0800 (PST)
+Received: from [10.1.3.188] (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id p190-20020a1c29c7000000b00381227166b2sm2488649wmp.41.2022.03.01.00.39.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Mar 2022 00:39:20 -0800 (PST)
+Message-ID: <9c35b653-6cf4-a13e-ce7b-b186cf4b68f4@baylibre.com>
+Date:   Tue, 1 Mar 2022 09:39:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-KLMS-Rule-ID: 3
-X-KLMS-Message-Action: skipped
-X-KLMS-AntiSpam-Status: not scanned, whitelist
-X-KLMS-AntiPhishing: not scanned, whitelist
-X-KLMS-AntiVirus: Kaspersky Security for Linux Mail Server, version 8.0.3.30, not scanned, whitelist
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V5 0/2] Power: meson-s4: add s4 power domain driver
+Content-Language: en-US
+To:     Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        jianxin.pan@amlogic.com
+References: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Organization: Baylibre
+In-Reply-To: <20220301015849.827634-1-shunzhou.jiang@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -57,137 +77,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This file documents DT bindings for the AR0521 camera sensor driver.
+Hi,
 
-Signed-off-by: Krzysztof Ha=C5=82asa <khalasa@piap.pl>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 01/03/2022 02:58, Shunzhou Jiang wrote:
+> This patchset adds Power controller driver support for Meson-S4 SoC
+> Likes Meson-A1, the power domains register only can access in secure world
+> 
+> Shunzhou Jiang (2):
+>    dt-bindings: power: add Amlogic s4 power domains bindings
+>    soc: s4: Add support for power domains controller
+> 
+>   .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
+>   drivers/soc/amlogic/meson-secure-pwrc.c       | 22 +++++++++++++++++++
+>   include/dt-bindings/power/meson-s4-power.h    | 19 ++++++++++++++++
+>   3 files changed, 43 insertions(+), 1 deletion(-)
+>   create mode 100644 include/dt-bindings/power/meson-s4-power.h
+> 
+> 
+> base-commit: 3448a018ded03ccd4093d6675f4a39eb2d1a18ef
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml b=
-/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-new file mode 100644
-index 0000000000000..b617cc5c6a9f4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/onnn,ar0521.yaml
-@@ -0,0 +1,112 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/onnn,ar0521.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ON Semiconductor AR0521 MIPI CSI-2 sensor
-+
-+maintainers:
-+  - Krzysztof Ha=C5=82asa <khalasa@piap.pl>
-+
-+description: |-
-+  The AR0521 is a raw CMOS image sensor with MIPI CSI-2 and
-+  I2C-compatible control interface.
-+
-+properties:
-+  compatible:
-+    const: onnn,ar0521
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    const: extclk
-+
-+  vaa-supply:
-+    description:
-+      Definition of the regulator used as analog (2.7 V) voltage supply.
-+
-+  vdd-supply:
-+    description:
-+      Definition of the regulator used as digital core (1.2 V) voltage sup=
-ply.
-+
-+  vdd_io-supply:
-+    description:
-+      Definition of the regulator used as digital I/O (1.8 V) voltage supp=
-ly.
-+
-+  reset-gpios:
-+    description: reset GPIO, usually active low
-+    maxItems: 1
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    unevaluatedProperties: false
-+    description: |
-+      Video output port.
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          bus-type:
-+            const: 4
-+          data-lanes:
-+            anyOf:
-+              - items:
-+                  - const: 1
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+              - items:
-+                  - const: 1
-+                  - const: 2
-+                  - const: 3
-+                  - const: 4
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - vaa-supply
-+  - vdd-supply
-+  - vdd_io-supply
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/clock/imx6qdl-clock.h>
-+
-+    i2c {
-+            #address-cells =3D <1>;
-+            #size-cells =3D <0>;
-+
-+            ar0521: camera-sensor@36 {
-+                    compatible =3D "onnn,ar0521";
-+                    reg =3D <0x36>;
-+                    pinctrl-names =3D "default";
-+                    pinctrl-0 =3D <&pinctrl_mipi_camera>;
-+                    clocks =3D <&clks IMX6QDL_CLK_CKO>;
-+                    clock-names =3D "extclk";
-+                    reset-gpios =3D <&gpio1 7 GPIO_ACTIVE_LOW>;
-+                    vaa-supply =3D <&reg_2p7v>;
-+                    vdd-supply =3D <&reg_1p2v>;
-+                    vdd_io-supply =3D <&reg_1p8v>;
-+
-+                    port {
-+                           mipi_camera_to_mipi_csi2: endpoint {
-+                                    remote-endpoint =3D <&mipi_csi2_in>;
-+                                    data-lanes =3D <1 2 3 4>;
-+                            };
-+                    };
-+            };
-+    };
+I think you have an issue with your mail setup, you sent 5 times the same "[PATCH V5 0/2] Power: meson-s4: add s4 power domain driver" patchset.
 
---=20
-Krzysztof "Chris" Ha=C5=82asa
+Please fix it and maker it doesn't happen again.
 
-Sie=C4=87 Badawcza =C5=81ukasiewicz
-Przemys=C5=82owy Instytut Automatyki i Pomiar=C3=B3w PIAP
-Al. Jerozolimskie 202, 02-486 Warszawa
+Thanks,
+Neil
