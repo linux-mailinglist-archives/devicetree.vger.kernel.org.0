@@ -2,43 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 524D34C8743
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 10:01:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D987D4C874D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 10:03:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233421AbiCAJCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 04:02:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42720 "EHLO
+        id S233089AbiCAJEe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 04:04:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiCAJCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 04:02:19 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C8C08A309;
-        Tue,  1 Mar 2022 01:01:38 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id C225D1C0010;
-        Tue,  1 Mar 2022 09:01:34 +0000 (UTC)
-Date:   Tue, 1 Mar 2022 10:01:32 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Joe Perches <joe@perches.com>
-Subject: Re: [PATCH v7 2/2] Driver for ON Semi AR0521 camera sensor
-Message-ID: <20220301090132.g5xsodoeotcm6h2q@uno.localdomain>
-References: <m3czl9eylt.fsf@t19.piap.pl>
- <m34k6leyb1.fsf@t19.piap.pl>
- <20220109153439.bfnfigocaeeeghmp@uno.localdomain>
- <m35yp387n4.fsf@t19.piap.pl>
+        with ESMTP id S229491AbiCAJEd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 04:04:33 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588607ED99;
+        Tue,  1 Mar 2022 01:03:52 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 16F3CB817F6;
+        Tue,  1 Mar 2022 09:03:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1186C340EE;
+        Tue,  1 Mar 2022 09:03:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646125429;
+        bh=1c14S9dVNVF1VyP3FFe0N65e9c5Jwxgr+ehoV6e9Nh4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gD5dXXhUeEpUdK7hh/LestsugNYQB0olqAMDGA85MmxmdxSbaa8ZXOIKWM/2ZswUK
+         xLf/XlReSOYTALDhEGkCR0pV6xgf7JEhKLhbjM7EKbXIALSoDeXUPTnV6Kp5bcUCAj
+         Pz9UtyP8vv8NGM+AM6IM0VTUdqn2iSoDw9OYSpBi+B52N4oDlTHdYAzBvDS0b+mjKp
+         Xd+5CA9Tugg4uwvHbkVQGI4iS4yFkYZb2cRkbPGwSZ1HOdjxyr/WRRvMuKUwgWri48
+         TVoO6bSS5lESM/u0uNGB/qSpd/iWw67aaIm9iqO04J6Quh83P17qIcnpFKP9V2Z4I6
+         dzEq5egneiLXQ==
+Date:   Tue, 1 Mar 2022 17:03:45 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        trevor.wu@mediatek.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+Subject: Re: [PATCH 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Message-ID: <Yh3hcQpLngg8Pnd4@google.com>
+References: <20220301072924.24814-1-jiaxin.yu@mediatek.com>
+ <20220301072924.24814-3-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <m35yp387n4.fsf@t19.piap.pl>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220301072924.24814-3-jiaxin.yu@mediatek.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -46,216 +58,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On Tue, Mar 01, 2022 at 03:29:24PM +0800, Jiaxin Yu wrote:
+> From: Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
 
-On Fri, Feb 25, 2022 at 01:15:11PM +0100, Krzysztof Hałasa wrote:
-> Hi Jacopo,
->
-> Sorry it took that long. Unfortunately I no longer have much time to
-> work on this, thus the delays.
->
+The environment didn't configure properly so that the header showed up.
+See [1].
 
-No worries! sorry it took me a few days to reply
+[1]: https://git-scm.com/docs/git-send-email#Documentation/git-send-email.txt---fromltaddressgt
 
-> Jacopo Mondi <jacopo@jmondi.org> writes:
->
-> >> +static int ar0521_s_ctrl(struct v4l2_ctrl *ctrl)
-> >> +{
-> >> +	struct v4l2_subdev *sd = ctrl_to_sd(ctrl);
-> >> +	struct ar0521_dev *sensor = to_ar0521_dev(sd);
-> >> +	int ret;
-> >> +
-> >> +	/* v4l2_ctrl_lock() locks our own mutex */
-> >> +
-> >> +	dev_dbg(&sensor->i2c_client->dev, "%s(0x%X)\n", __func__, ctrl->id);
-> >> +
-> >> +	switch (ctrl->id) {
-> >> +	case V4L2_CID_HBLANK:
-> >> +	case V4L2_CID_VBLANK:
-> >> +		sensor->total_width = sensor->fmt.width +
-> >> +			sensor->ctrls.hblank->val;
-> >> +		sensor->total_height = sensor->fmt.width +
-> >> +			sensor->ctrls.vblank->val;
-> >> +		break;
-> >> +	default:
-> >> +		ret = -EINVAL;
-> >> +		break;
-> >> +	}
-> >> +
-> >> +	// access the sensor only if it's powered up
-> >> +	if (!pm_runtime_get_if_in_use(&sensor->i2c_client->dev))
-> >
-> > As you correctly do not access the chip's registers if it's powered
-> > off, you have to call __v4l2_ctrl_handler_setup() at power on time to
-> > make sure controls are actually set.
->
-> These registers are also written in ar0521_set_stream(), isn't it
-> enough?
+> diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
+[...]
+> +static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682s_card = {
+> +	.name = "mt8192_mt6359_rt1015p_rt5682s",
+> +	.owner = THIS_MODULE,
+> +	.dai_link = mt8192_mt6359_dai_links,
+> +	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
+> +	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
+> +	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
+> +	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
+> +	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
+> +	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
+> +	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
+> +};
 
-Oh I see, set_stream() sets gains and then calls write_mode() which
-handles blankings, exposure and test pattern so yes, all controls seem
-to be covered. It's usually safer to go through the control handler
-to make sure that any control that is added later is not left behind.
-But for now it's all right!
+Are the two cards only different from names
+(mt8192_mt6359_rt1015p_rt5682_card vs. mt8192_mt6359_rt1015p_rt5682s_card)?
 
->
-> >> +	ctrls->hblank = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_HBLANK,
-> >> +					  AR0521_WIDTH_BLANKING_MIN, 4094, 1,
-> >> +					  AR0521_WIDTH_BLANKING_MIN);
-> >> +	ctrls->vblank = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_VBLANK,
-> >> +					  AR0521_HEIGHT_BLANKING_MIN, 4094, 2,
-> >> +					  AR0521_HEIGHT_BLANKING_MIN);
-> >> +	v4l2_ctrl_cluster(2, &ctrls->hblank);
-> >
-> > Is it intended to have vblank and hblank as cluster, can't they change
-> > independently ?
->
-> They can. It appears, though, that clusters aren't about controls which
-> can't change independently. Both of the two are written to the hardware
-> at the same time, which appears to be a valid reason to combine them
-> into a cluster.
+> @@ -1150,6 +1177,52 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
+>  				dai_link->num_platforms =
+>  					ARRAY_SIZE(i2s3_rt1015p_platforms);
+>  			}
+> +		} else if (strcmp(dai_link->name, "I2S8") == 0) {
+> +			if (card == &mt8192_mt6359_rt1015_rt5682_card ||
+> +			    card == &mt8192_mt6359_rt1015p_rt5682_card) {
+> +				dai_link->cpus = i2s8_rt5682_cpus;
+> +				dai_link->num_cpus =
+> +					ARRAY_SIZE(i2s8_rt5682_cpus);
+> +				dai_link->codecs = i2s8_rt5682_codecs;
+> +				dai_link->num_codecs =
+> +					ARRAY_SIZE(i2s8_rt5682_codecs);
+> +				dai_link->platforms = i2s8_rt5682_platforms;
+> +				dai_link->num_platforms =
+> +					ARRAY_SIZE(i2s8_rt5682_platforms);
+> +			} else if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
+> +				dai_link->cpus = i2s8_rt5682s_cpus;
+> +				dai_link->num_cpus =
+> +					ARRAY_SIZE(i2s8_rt5682s_cpus);
+> +				dai_link->codecs = i2s8_rt5682s_codecs;
+> +				dai_link->num_codecs =
+> +					ARRAY_SIZE(i2s8_rt5682s_codecs);
+> +				dai_link->platforms = i2s8_rt5682s_platforms;
+> +				dai_link->num_platforms =
+> +					ARRAY_SIZE(i2s8_rt5682s_platforms);
+> +			}
+> +		} else if (strcmp(dai_link->name, "I2S9") == 0) {
+> +			if (card == &mt8192_mt6359_rt1015_rt5682_card ||
+> +			    card == &mt8192_mt6359_rt1015p_rt5682_card) {
+> +				dai_link->cpus = i2s9_rt5682_cpus;
+> +				dai_link->num_cpus =
+> +					ARRAY_SIZE(i2s9_rt5682_cpus);
+> +				dai_link->codecs = i2s9_rt5682_codecs;
+> +				dai_link->num_codecs =
+> +					ARRAY_SIZE(i2s9_rt5682_codecs);
+> +				dai_link->platforms = i2s9_rt5682_platforms;
+> +				dai_link->num_platforms =
+> +					ARRAY_SIZE(i2s9_rt5682_platforms);
+> +			} else if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
+> +				dai_link->cpus = i2s9_rt5682s_cpus;
+> +				dai_link->num_cpus =
+> +					ARRAY_SIZE(i2s9_rt5682s_cpus);
+> +				dai_link->codecs = i2s9_rt5682s_codecs;
+> +				dai_link->num_codecs =
+> +					ARRAY_SIZE(i2s9_rt5682s_codecs);
+> +				dai_link->platforms = i2s9_rt5682s_platforms;
+> +				dai_link->num_platforms =
+> +					ARRAY_SIZE(i2s9_rt5682s_platforms);
+> +			}
 
-Is there a reason to write them to hw at the same time ? :)
+After seeing the code, I am starting to wonder if the reuse is overkill.  If
+they (RT5682 vs. RT5682S) only have some minor differences, probably it could
+reuse more by:
 
-> This is similar to the gain/balance controls, and BTW the use of
-> clusters there was suggested by you.
+SND_SOC_DAILINK_DEFS(i2s8, ...
+SND_SOC_DAILINK_DEFS(i2s9, ...
 
+...
 
->
-> Please correct me if I'm wrong.
+if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
+        i2s8_codecs.name = RT5682S_DEV0_NAME;
+        i2s8_codecs.dai_name = RT5682S_CODEC_DAI;
+        ...
+}
 
-I don't think it's strictly necessary to clusterize them, but
-defintely not a big deal
-
->
-> >> +	/* Read-only */
-> >> +	ctrls->pixrate = v4l2_ctrl_new_std(hdl, ops, V4L2_CID_PIXEL_RATE,
-> >> +					   AR0521_PIXEL_CLOCK_MIN,
-> >> +					   AR0521_PIXEL_CLOCK_MAX, 1,
-> >> +					   AR0521_PIXEL_CLOCK_RATE);
-> >
-> > so you have to mark it as read-only
->
-> Oh, I'd be happy for this control to be R/W. Unfortunately the core
-> media core enforces R/O. This is only a comment about what the core code
-> does, currently at least.
-
-You right, the core does that for you
-
->
-> >> +	dev_dbg(dev, "%s()\n", __func__);
-> >
-> > Rather useless, please drop. Same for all other debug functions that
-> > just print the current function name in other parts of the driver.
-> > While maybe useful when developing, they're mostly noise for users
-> > imo.
->
-> Fine, will drop the rest of the debug. In fact, I already dropped the
-> most useful parts (I2C register access debugging).
->
-> >> +	endpoint = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
-> >> +						   FWNODE_GRAPH_ENDPOINT_NEXT);
-> >
-> > The drivers supports a single endpoint right ? Then
-> > fwnode_graph_get_next_enpoint() can be used
->
-> Well, I originally used
-> fwnode_graph_get_next_endpoint(of_fwnode_handle(dev->of_node), NULL).
-> Sakari suggested I should use the above
-> fwnode_graph_get_endpoint_by_id().
-> It could be a good idea to agree on this. Not sure about the difference.
->
-
-Let's stick with what Sakari suggested.
-
-> >> +	for (cnt = 0; cnt < ARRAY_SIZE(ar0521_supply_names); cnt++) {
-> >> +		struct regulator *supply = devm_regulator_get(dev,
-> >> +						ar0521_supply_names[cnt]);
-> >> +
-> >> +		if (IS_ERR(supply)) {
-> >> +			dev_info(dev, "no %s regulator found: %li\n",
-> >> +				 ar0521_supply_names[cnt], PTR_ERR(supply));
-> >> +			return PTR_ERR(supply);
-> >> +		}
-> >> +		sensor->supplies[cnt] = supply;
-> >> +	}
-> >
-> > Using the regulator bulk api would simplify this.
-> > See drivers/media/i2c/ccs/ccs-core.c
->
-> The bulk API doesn't allow for delays between individual supplies, does it?
-> The delays are mandated by the manufacturer.
->
-
-Ack then, no bulk API
-
-> >> +
-> >> +	mutex_init(&sensor->lock);
-> >> +
-> >> +	ret = ar0521_init_controls(sensor);
-> >> +	if (ret)
-> >> +		goto entity_cleanup;
-> >> +
-> >> +	ar0521_adj_fmt(&sensor->fmt);
-> >
-> > Called already here above.
->
-> Right, I will remove the first one.
->
-> >> +	ret = v4l2_async_register_subdev(&sensor->sd);
-> >> +	if (ret)
-> >> +		goto free_ctrls;
-> >> +
-> >> +	/* Turn on the device and enable runtime PM */
-> >> +	ret = ar0521_power_on(&client->dev);
-> >> +	if (ret)
-> >> +		goto disable;
-> >
-> > Does the device stay powered all the time ?
->
-> Depends on the hw, but the power could be disabled, yes.
->
-> > Doesn't your resume callback call power_on() already ?
->
-> It does, when the PM is enabled.
->
-> Should the above code be changed?
->
-
-As it doesn't seem to me you access registers during probe (to
-identify the sensor in example) there's no need to power up the device
-during probe, but should be enough to let runtime_pm do so when
-requested.
-
-> >> +static struct i2c_driver ar0521_i2c_driver = {
-> >> +	.driver = {
-> >> +		.name  = "ar0521",
-> >> +		.pm = &ar0521_pm_ops,
-> >> +		.of_match_table	= ar0521_dt_ids,
-> >> +	},
-> >> +	.probe    = ar0521_probe,
-> >
-> > You could use probe_new and drop the "const struct i2c_device_id *id"
-> > argument to probe()
->
-> You are right again.
->
-> That said, I wonder if it would be better (like easier) to have this
-> driver added to the staging area instead.
-
-Personally I don't think this driver qualifies for staging, it can
-be accepted in this form and be eventually changed on top in
-drivers/media. Let's see what maintainers think.
-
-I'll review the last version and hope to see this merged soon.
-
-Thanks
-  j
-
-
-> --
-> Krzysztof "Chris" Hałasa
->
-> Sieć Badawcza Łukasiewicz
-> Przemysłowy Instytut Automatyki i Pomiarów PIAP
-> Al. Jerozolimskie 202, 02-486 Warszawa
+Or even uses of_device_is_compatible() if it would like to reuse the struct
+snd_soc_card.
