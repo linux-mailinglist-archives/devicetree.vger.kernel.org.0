@@ -2,98 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D74C44C8EE1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:24:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24B654C8EF0
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:24:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235660AbiCAPYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 10:24:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53098 "EHLO
+        id S235688AbiCAPZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 10:25:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235635AbiCAPYw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:24:52 -0500
-X-Greylist: delayed 316 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 01 Mar 2022 07:24:09 PST
-Received: from pokefinder.org (sauhun.de [88.99.104.3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AFCD18A6E9;
-        Tue,  1 Mar 2022 07:24:08 -0800 (PST)
-Received: from localhost (35-123-142-46.pool.kielnet.net [46.142.123.35])
-        by pokefinder.org (Postfix) with ESMTPSA id 9657B2C00BF;
-        Tue,  1 Mar 2022 16:18:52 +0100 (CET)
-Date:   Tue, 1 Mar 2022 16:18:52 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Kewei Xu <kewei.xu@mediatek.com>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        leilk.liu@mediatek.com, qii.wang@mediatek.com,
-        liguo.zhang@mediatek.com, caiyu.chen@mediatek.com,
-        housong.zhang@mediatek.com, yuhan.wei@mediatek.com,
-        ryan-jh.yu@mediatek.com, david-yh.chiu@mediatek.com
-Subject: Re: [PATCH v10,1/1] i2c: mediatek: modify bus speed calculation
- formula
-Message-ID: <Yh45XIAnC9mQNqyr@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>,
-        Kewei Xu <kewei.xu@mediatek.com>, matthias.bgg@gmail.com,
-        robh+dt@kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
-        qii.wang@mediatek.com, liguo.zhang@mediatek.com,
-        caiyu.chen@mediatek.com, housong.zhang@mediatek.com,
-        yuhan.wei@mediatek.com, ryan-jh.yu@mediatek.com,
-        david-yh.chiu@mediatek.com
-References: <1645100563-59441-1-git-send-email-kewei.xu@mediatek.com>
- <1645100563-59441-2-git-send-email-kewei.xu@mediatek.com>
+        with ESMTP id S235666AbiCAPZ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:25:28 -0500
+Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 846C58A6EA;
+        Tue,  1 Mar 2022 07:24:46 -0800 (PST)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout2.routing.net (Postfix) with ESMTP id 4F9195FD74;
+        Tue,  1 Mar 2022 15:24:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1646148284;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=EgKR4jh/nFy9Q8P9zxOcbItrMHn/g3ym5IeVT0hhCDk=;
+        b=KwlTPSe7/z2GJh18srISs5N8k+W2fGP9DM2Opuvtf3bK7Av4gXC+VQB88Q3dY7aI01IAQd
+        ckT6Nqc4KI8b08iKRH7jfrV/z5uYs3Fs4G7OCqrKjChCAynQeWRQ20NjWEiXz8f5vobSCu
+        PO5Bv3Bj6FlZab/+KlgygDzL85M6G6U=
+Received: from localhost.localdomain (fttx-pool-80.245.77.190.bambit.de [80.245.77.190])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id C46001005DD;
+        Tue,  1 Mar 2022 15:24:42 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     devicetree@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+Subject: [PATCH v4 0/5] Add sata nodes to rk356x
+Date:   Tue,  1 Mar 2022 16:24:16 +0100
+Message-Id: <20220301152421.57281-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GUdQBt0v2xcPs6AE"
-Content-Disposition: inline
-In-Reply-To: <1645100563-59441-2-git-send-email-kewei.xu@mediatek.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 638c7878-d4fe-4eb7-bd79-5d758478ea67
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Frank Wunderlich <frank-w@public-files.de>
 
---GUdQBt0v2xcPs6AE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This Series converts the binding for ahci-platform to yaml and adds
+sata nodes to rockchip rk356x device trees.
 
-On Thu, Feb 17, 2022 at 08:22:43PM +0800, Kewei Xu wrote:
-> When clock-div is 0 or greater than 1, the bus speed
-> calculated by the old speed calculation formula will be
-> larger than the target speed. So we update the formula.
->=20
-> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
+v4:
+  YAML binding:
+  - fix min vs. max
+  - fix indention of examples
+  - move up sata-common.yaml
+  - reorder compatible
+  - add descriptions/maxitems
+  - fix compatible-structure
+  - fix typo in example achi vs. ahci
+  - add clock-names and reg-names
+  DTS-Patches:
+  - drop newline in dts
+  - re-add clock-names
+  - add soc specific compatible
+  - fix sata nodename in arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+v3:
+  - add conversion to sata-series
+  - fix some errors in dt_binding_check and dtbs_check
+  - move to unevaluated properties = false
+  - add power-domain to yaml
+  - move sata0 to rk3568.dtsi
+  - drop clock-names and interrupt-names
 
-Applied to for-next, thanks!
+Frank Wunderlich (5):
+  dt-bindings: Convert ahci-platform DT bindings to yaml
+  arm64: dts: broadcom: Fix sata nodename
+  dt-bindings: Add power-domains property to ahci-platform
+  dt-bindings: Add rk3568-dwc3-ahci compatible
+  arm64: dts: rockchip: Add sata nodes to rk356x
 
+ .../devicetree/bindings/ata/ahci-platform.txt |  79 --------
+ .../bindings/ata/ahci-platform.yaml           | 169 ++++++++++++++++++
+ .../boot/dts/broadcom/northstar2/ns2.dtsi     |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  14 ++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  28 +++
+ 5 files changed, 212 insertions(+), 80 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
+ create mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.yaml
 
---GUdQBt0v2xcPs6AE
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIeOVwACgkQFA3kzBSg
-KbY+Ag/8DKZF6+5v+fhOkRi1ryNi19EnaO8Gxu81up/6Z0iJUqpNit5DTeWAa0r2
-j/HUbLyFI9eXU+UBTSPF0Bf6FClRQYyV2fATBGPz5THXgg+893RgcSvKKauFv19l
-u0SnOFaK9RbIAc3dwRbARNrfD9aaXOriLdbRHhYwmIImaIQLs4Z4yCI49HfvCGnW
-/duo+0aP+3TWbKKNJLJiV2UhepW0cUg5ksyo5myAHxafV6DgPplry1Tl5fCku3L3
-RGLmHG8b5IECvbj2NYVWGsss6zTE1zCCJAmF80hJvmprzwpnN+HSCCKmwRoRafPT
-lOUInQlQmGBxkbFYu8HeNM6EWUIONlto1H6ZAEer0gJVn1B9lzdTjuxBTsnO7IPH
-x2vYseUH1mKRcfPGMlJS/q40v4jF1Q5eU+gbptjxPcwF0q6KLYw9Wxfl0Kx/TQ2V
-Ne3uc/z8+MkjBebwSZkYCc9ZiL00cBADaEWd3J4F+MYuJeY8Dl/JMDQdup60khDE
-4x+RZoodR2t6KvgEz7GdnBFqE4dA9RXuamQxYZqP46vzC/ogJ7Xzfg3UiD+651M1
-HjL4LRCHbVXl3etzVvRxItNjEKP9CLM8xGZ5JDhI90qHPCz9gl8+9GHVLTiZdqZO
-HtDVW2SD8bihM92LKMcrxCibRJ3frQ9LbfyhYeo94tsLUCYALAk=
-=M8Mv
------END PGP SIGNATURE-----
-
---GUdQBt0v2xcPs6AE--
