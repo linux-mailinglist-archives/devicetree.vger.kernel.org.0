@@ -2,152 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 633B24C8EFA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:25:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AAB4C8F27
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 16:34:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235752AbiCAPZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 10:25:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58408 "EHLO
+        id S233724AbiCAPeo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 10:34:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235742AbiCAPZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:25:57 -0500
-Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBE768A6E9;
-        Tue,  1 Mar 2022 07:24:51 -0800 (PST)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout3.routing.net (Postfix) with ESMTP id 55CA1604D9;
-        Tue,  1 Mar 2022 15:24:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1646148289;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oeojDkbixb+3+AqcShTPnuHWz+1GrcPznWJUJt5Sy3k=;
-        b=mCD9IItZHz/nvNSw+9nUHqW7k4ury82ESpc+eia4AE3SjgYsDGOTXqNBNJCDoI++q0jcmL
-        pFOS+9nkJPmLxef1LhJfTfApHMkumNJ+3emH6O4B/x8/+bS5jOjgG7/nyyxud1fYDBIJoh
-        ajA9m00XiJaKcMBdHTvxXlzp4x5U3gw=
-Received: from localhost.localdomain (fttx-pool-80.245.77.190.bambit.de [80.245.77.190])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 50CC71005DD;
-        Tue,  1 Mar 2022 15:24:48 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     devicetree@vger.kernel.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231511AbiCAPen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 10:34:43 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583902B278;
+        Tue,  1 Mar 2022 07:34:02 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id s5so16509747oic.10;
+        Tue, 01 Mar 2022 07:34:02 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=DZMJhlazRxfiZZMLqWDvXZ/jU6J34RFBtjvG+CX9Qvo=;
+        b=m6PEbxOLQ93mW8Vz5txTJrg/wxUo0R/c+FsqdfRHmqgKvFZ9MGqnUu3ycWzfDXm5fy
+         ugbUrm/u8oiooMhF9PZIvOhs09eg4Pmxxgg7tO95pZKCW1GbGKYsb1jjITmO1jP5utVN
+         2ATBTKIVdJKp4NA0vpgWB9jmIIzmqjb6zrp/bd0fsmXiX/2UByYiMrMDcYInK/DaEFlD
+         SzmiLPIylB1rVVICSD4hJg6IKLWwh8e8NYbn3/uFOAX1ltXI5ubZwSe/JVYlsgyZ90M9
+         D7uQpn5lnAeBv87pmwZKh7CS2FgHOcyWrdQj5tRsLrqBchBBWrVVG5vDUJh79cbwaADd
+         a1aw==
+X-Gm-Message-State: AOAM531iI+yRRPvzNGN6qZMiM2M/sNoWBpRGW8Iwv19axxhI8Gk5pLe4
+        QBPIfTYXmbanMyoaQSjmdJcxuNqgug==
+X-Google-Smtp-Source: ABdhPJyX5GznUyW/6kq2K9kPRxLyMQ6vU2vmLih0ec/ihrobd/pIAkPZC2Ry2gH0Kl4Q+e2ptvmJTw==
+X-Received: by 2002:a05:6808:2211:b0:2d4:a1de:9c05 with SMTP id bd17-20020a056808221100b002d4a1de9c05mr13160764oib.137.1646148841596;
+        Tue, 01 Mar 2022 07:34:01 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id u12-20020a056808114c00b002d72b6e5676sm8528947oiu.29.2022.03.01.07.34.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 07:34:00 -0800 (PST)
+Received: (nullmailer pid 1286582 invoked by uid 1000);
+        Tue, 01 Mar 2022 15:33:59 -0000
+Date:   Tue, 1 Mar 2022 09:33:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com
-Subject: [PATCH v4 5/5] arm64: dts: rockchip: Add sata nodes to rk356x
-Date:   Tue,  1 Mar 2022 16:24:21 +0100
-Message-Id: <20220301152421.57281-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220301152421.57281-1-linux@fw-web.de>
-References: <20220301152421.57281-1-linux@fw-web.de>
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: net: can: renesas,rcar-canfd: Document
+ RZ/V2L SoC
+Message-ID: <Yh4855Np63fEUl4G@robh.at.kernel.org>
+References: <20220227213250.23637-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: ca1f5b53-0846-4b9d-9ef4-c9539ffd73ec
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220227213250.23637-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Sun, Feb 27, 2022 at 09:32:50PM +0000, Lad Prabhakar wrote:
+> Document RZ/V2L CANFD bindings. RZ/V2L CANFD is identical to one found on
+> the RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-canfd" will be used as a fallback.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> DTSI changes [0] have been posted as part of separate series.
+> 
+> [0] https://patchwork.kernel.org/project/linux-renesas-soc/patch/
+> 20220227203744.18355-4-prabhakar.mahadev-lad.rj@bp.renesas.com/
+> ---
+>  .../devicetree/bindings/net/can/renesas,rcar-canfd.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 
-RK356x supports up to 3 sata controllers which were compatible with the
-existing snps,dwc-ahci binding.
+The patch wouldn't apply, but I don't see the problem other than the 
+sha hashes are not from a known base. Please send patches against a 
+known rcX (rc1 is preferred) unless you have some other dependency. And 
+document that dependency.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-changes in v4:
- - drop newline in dts
- - re-add clock-names
- - add soc specific compatible
-changes in v3:
- - fix combphy error by moving sata0 to rk3568.dtsi
- - remove clock-names and interrupt-names
-changes in v2:
- - added sata0 + 1, but have only tested sata2
----
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 28 ++++++++++++++++++++++++
- 2 files changed, 42 insertions(+)
+Anyways, it is applied manually now.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 5b0f528d6818..3e07d9f6a2d1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,20 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	sata0: sata@fc000000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc000000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA0>, <&cru CLK_SATA0_PMALIVE>,
-+			 <&cru CLK_SATA0_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy0 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
- 	pipe_phy_grf0: syscon@fdc70000 {
- 		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
- 		reg = <0x0 0xfdc70000 0x0 0x1000>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 7cdef800cb3c..264dd030e703 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -230,6 +230,34 @@ scmi_shmem: sram@0 {
- 		};
- 	};
- 
-+	sata1: sata@fc400000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc400000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA1>, <&cru CLK_SATA1_PMALIVE>,
-+			 <&cru CLK_SATA1_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy1 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
-+	sata2: sata@fc800000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc800000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA2>, <&cru CLK_SATA2_PMALIVE>,
-+			 <&cru CLK_SATA2_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy2 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
- 	gic: interrupt-controller@fd400000 {
- 		compatible = "arm,gic-v3";
- 		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
--- 
-2.25.1
-
+Rob
