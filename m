@@ -2,79 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B654C94B1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:45:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCAF4C95AB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 21:15:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236594AbiCATqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 14:46:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51528 "EHLO
+        id S237695AbiCAUPe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 15:15:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237261AbiCATqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:46:34 -0500
+        with ESMTP id S237719AbiCAUP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 15:15:29 -0500
 Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 648096D182;
-        Tue,  1 Mar 2022 11:45:52 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD88C77A86;
+        Tue,  1 Mar 2022 12:14:44 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0D3F0B81CB6;
-        Tue,  1 Mar 2022 19:45:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0303C340EE;
-        Tue,  1 Mar 2022 19:45:48 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 518C9B81D0F;
+        Tue,  1 Mar 2022 20:14:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A39E3C340EF;
+        Tue,  1 Mar 2022 20:14:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646163949;
-        bh=TFMpz0Cc6VsyzxJzd5ZFpb3OuNzOkVyn05Sx0dNcIGw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FNr+IE5SdDf1bVYHRNpW2iGCJwTS6U3t1T/Cv+jDQdJzR+IPaauMFsRRf3dhMADh9
-         DC/Uj5WTJsPUMXmTvZC3EDLttaXsfz3ScmITAV068+6AC2DmnKaVPzg/TquS4u0m9R
-         nzK6CpUe/uPUPsiwytzl1Da+4vEmDtxJFRh/e5LiBHASSxfOd4lmFlL/CKcMQWs6sf
-         sarU/6MgR5i62e63aj38JxPVdwhVGCWDs1P5zDvLaz1IBUPBSD5i1V9jXJoANV0Syx
-         XifgWSYRrEsN058FteO2k7Oz8V6hhbuhFXbPjgXNFLe5BjJCabxIBOWVoJVh/as34b
-         1DZZyF/cXEdQg==
-Date:   Tue, 1 Mar 2022 20:45:46 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, jie.deng@intel.com, sven@svenpeter.dev,
-        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
-        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
-        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious
- interrupts
-Message-ID: <Yh536s/7bm6Xt6o3@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Tyrone Ting <warp5tw@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, semen.protsenko@linaro.org,
-        yangyicong@hisilicon.com, jie.deng@intel.com, sven@svenpeter.dev,
-        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
-        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
-        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220220035321.3870-1-warp5tw@gmail.com>
- <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
- <CACD3sJaXeWLu6=oLgxJcU9R+A1J+jB7xKaGcDFwYxof33yj17Q@mail.gmail.com>
- <5ce0f6a6-4a5f-4f25-3cc6-ab0f24bf15cf@canonical.com>
- <CACD3sJaWJMFgwzQgrHFV0KkkbJXzhgFx=umywxSrLszwP+hO2w@mail.gmail.com>
+        s=k20201202; t=1646165682;
+        bh=juecZkJ+lgMGyMxfnL3NZc+gJKSkICxxpn3nc4R/AEo=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=cQhEQHd9W9smJEGF6FPb9t6UYaSSmBPwYMCBnNmHoC/VpEemoM9KNYQgw1SG6X6+8
+         ydVYFi4K8FARW+wOA1HTA1UgaYBSAZW30ZT9xx8HouqTJeMiyCSinkk4jWTUFH5ERd
+         k2TVeAX04pjzppVyA2aG8OpNbAnFAepGS+rPvQc8/ehY32U61TLQFCuerBkC0Uqc5N
+         b2QoPrgurMYlxG35/kprINAMQTx1c6BN/j2TAFURVXxZTjc/w/YvPQypscTdWqqE08
+         TfC39grEITGunJgmLAvP1gv20jebzjT17Z9/Exy4TFYChCrp2pOS2ehUJCLqwxKuYc
+         2XsaCm2oGwGnw==
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Nikhil Gupta <nikhil.gupta@nxp.com>, Rob Herring <robh@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
+        frowand.list@gmail.com, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.16 11/28] of/fdt: move elfcorehdr reservation early for crash dump kernel
+Date:   Tue,  1 Mar 2022 15:13:16 -0500
+Message-Id: <20220301201344.18191-11-sashal@kernel.org>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220301201344.18191-1-sashal@kernel.org>
+References: <20220301201344.18191-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZzqmmcLTueXK0WfW"
-Content-Disposition: inline
-In-Reply-To: <CACD3sJaWJMFgwzQgrHFV0KkkbJXzhgFx=umywxSrLszwP+hO2w@mail.gmail.com>
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -85,38 +56,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Nikhil Gupta <nikhil.gupta@nxp.com>
 
---ZzqmmcLTueXK0WfW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+[ Upstream commit 132507ed04ce0c5559be04dd378fec4f3bbc00e8 ]
 
+elfcorehdr_addr is fixed address passed to Second kernel which may be conflicted
+with potential reserved memory in Second kernel,so fdt_reserve_elfcorehdr() ahead
+of fdt_init_reserved_mem() can relieve this situation.
 
-> I'll keep old code as fallback, if getting nuvoton,sys-mgr fails as
-> you point out.
+Signed-off-by: Nikhil Gupta <nikhil.gupta@nxp.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20220128042321.15228-1-nikhil.gupta@nxp.com
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/of/fdt.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Yeah, fallback is much needed. And if you implement it, then you can
-also split the series into two. One for the DTS changes and one for the
-I2C changes. That would make upstreaming a lot easier.
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 7e868e5995b7e..f66abb496ed16 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -644,8 +644,8 @@ void __init early_init_fdt_scan_reserved_mem(void)
+ 	}
+ 
+ 	fdt_scan_reserved_mem();
+-	fdt_init_reserved_mem();
+ 	fdt_reserve_elfcorehdr();
++	fdt_init_reserved_mem();
+ }
+ 
+ /**
+-- 
+2.34.1
 
-
---ZzqmmcLTueXK0WfW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIed+oACgkQFA3kzBSg
-KbYcjRAAstcatZMriO8WYTkR7iql0Ykgsnc04dKlPRr6iwYtoyRTgOApX1Jp31Jr
-CbI0tKJgBjEwGrrXzkkVP02QIM9ojCZPXIrdV/ZmQ9dgAB3c0xfZ2uEeHAC+iv2p
-bx63ccy6tbX6UfFu2FeuS5qmYctOTNu4G0OghUErbqA3JlqSQHXaNIQEkFoL1iiw
-anPSYCvvBFJk0DELigsYqEMMuXVtfA+RrmfkMwmTjM1FDh9Q4EsiwEJTdu9Dajjt
-EYsNX0CTIZt/54jiBsgw1Y+9YYPOzk8vCsEn4dWYLYkb5aivX/jiuUupVwOI9Dsm
-FPQJB8CMf9kyD4awOGCzmjtUDDIlftz7+egbVr/P7ra1vkWiUWLuVtwLjIOmQ02N
-sekEy/RBJpmbPCY+1sMqWVkiz2Jzh0ZVNraPw84W9A/vImdz5eUO9zUiKYAmc5dk
-UqH4DNFXSUz1HXiQV0MFvMErR3BvnHo0aW2Yex0g41iEVVbt3NegzgVmCnQbvxWO
-8aqTaho3IMK6R9qprp+2m/F81hFYJmaLYG6axoMB6dRfYN0VJf7VY1fqOs4jxZVV
-poVwHHWgBvFFi27Oh3H/RZ+IaYwY52BOW+4953toW5pRMpXLj289svrTCIzToyGh
-f9P2fQeuCBeyiaplAlyxPbk2TdSjl8q2pcGcXzJdISRO8u4/In4=
-=ueuY
------END PGP SIGNATURE-----
-
---ZzqmmcLTueXK0WfW--
