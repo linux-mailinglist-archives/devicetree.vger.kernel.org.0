@@ -2,65 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 767234C8D46
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 15:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 028B74C8D48
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 15:06:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234426AbiCAOGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 09:06:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42986 "EHLO
+        id S235113AbiCAOGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 09:06:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235112AbiCAOGd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 09:06:33 -0500
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB31B527D1
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 06:05:50 -0800 (PST)
-Received: by mail-ed1-x533.google.com with SMTP id g23so1163765edy.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 06:05:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=N005AwlH1PzA71NUEIY/vHtIRr35X9iAtVZVAl8AQhE=;
-        b=yWDpHn3ZxeTncAqWxOgXJB4+cv/Jq+56OLnG14Cng/rsrxC21XQcAZPqDGYJHfxzWG
-         kozfYM1TX7hdwZ/lThUShd8cCntctDLtIC8lUbCPvPBjeLZJmMjgYAnG7VTbsY0Ixcpl
-         BiRcxg+LaTMUbp/xP9RGkKnsE71iRYQOqVmZnvJtlQDmHs8P4wLRmUbaRYCtmqa0mtsI
-         PdNFc9Buor5nM7ZooyT9uVpudHpGXxTbphjliesyFIQg4NPS5iyJfZ4DNxy57OsCITBj
-         01nGMTW3g+/2OQPxuAyTHG5qEGdbdSQlPK7YEs0IqjXzQpQ+0c9kprfKIROOGiyTgny8
-         c1/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=N005AwlH1PzA71NUEIY/vHtIRr35X9iAtVZVAl8AQhE=;
-        b=A/gYg8p34gUqR111PexOL0jNz7ao30HT9XhL+JAaC+cB4UqUmdAkIDUPOX83PhdpZf
-         FBISVzainvYzihZHC/TH7b0WhDL7I7Fm81W5KWqbG18+yg1PapdfEO1QwsNRo0Omznaj
-         nlRWX4jsyc7RNj+pphjRiNc80BvRfNzSubPh4ShYun8HydyFdsL7Vx2YVMqcC7XPS+OT
-         djHhoOmOvXOxbtjEFngxUmyg6ImVUH+qUDNiwlG/56yzOoXzdmbGBblZOv0p4SPazEnI
-         +sSS+5bhiW+qI85VoxTNscUz5wOw2CvkqS5aMuSuuuo1fKktQZVOwUKdYC0xxqWL9QgS
-         JJ5Q==
-X-Gm-Message-State: AOAM530iW/d0eGEX+JUIPz4s/ex7mw4H/hmOAU7QxNWIGlkaO3JVNVza
-        /xSXfT0aT6y5oBoTqB1pK7l28qNyIkZ/ngcjvd7R4w==
-X-Google-Smtp-Source: ABdhPJx1S3eoIMz9zMH8opo26eotWUnGYPGCBix2/gr/tVzQp2i/MNdlRpn+y3CfRL8j9owXXlFDcYoS+raUA2nsDD8=
-X-Received: by 2002:aa7:d7da:0:b0:40f:f16f:dc25 with SMTP id
- e26-20020aa7d7da000000b0040ff16fdc25mr24119297eds.17.1646143549264; Tue, 01
- Mar 2022 06:05:49 -0800 (PST)
+        with ESMTP id S235158AbiCAOGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 09:06:44 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A06E3692A7
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 06:06:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D19F6152E
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 14:06:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06176C340EE;
+        Tue,  1 Mar 2022 14:05:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646143561;
+        bh=04NEQj+QzMV3JzBvJ4Q1nfcFLj9lFdSx3Ms0+VTMWb8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=j5Yf7zwlcGR/8sam7I9mKKloSaJlok3+aubkekyhbx1qytvA/fd0A+eJEg7INQ3Pz
+         3nc6/vrGBoqJKfnHQHOpOoCwrAn9xcwGk/JI0sLdxz4eF8waJ5r2yaO5Ws5ocyzWcn
+         8DhSQ5Hge5LSLZR3IC2453bL3kyQ6tEEodKlxNSxxf6vWF3ixD1AH/w+Lluj2+EMei
+         6vXIvc5etATJpPS+PFw1E37fgIz6unBNscOHYKwlIiNp3bJTrOg8h0+aHmPxuLYqQV
+         WFK831RYsEm5/VZPhKvYOZqY9I1ClaRAP9e6yNGJXeC4hCmIBReaSxX+Qq3Bx6O7Km
+         qHGBfKb5Qr3sg==
+Date:   Tue, 1 Mar 2022 14:05:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: dt-bindings: Add schema for "awinic,aw8738"
+Message-ID: <Yh4oRBb2uHf+NvXz@sirena.org.uk>
+References: <20220301123742.72146-1-stephan@gerhold.net>
+ <20220301123742.72146-2-stephan@gerhold.net>
+ <Yh4hYVJFZJBYp3d9@sirena.org.uk>
+ <Yh4lfjsDR4qqnc8Y@gerhold.net>
 MIME-Version: 1.0
-References: <20211028140009.23331-1-etienne.carriere@linaro.org> <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de>
-In-Reply-To: <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de>
-From:   Etienne Carriere <etienne.carriere@linaro.org>
-Date:   Tue, 1 Mar 2022 15:05:37 +0100
-Message-ID: <CAN5uoS_DQNkG8J0C-oT8aC-Xfozy9hgwAge_x2e4S-HOhSn5=w@mail.gmail.com>
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Rx93jjjGeYy76A0C"
+Content-Disposition: inline
+In-Reply-To: <Yh4lfjsDR4qqnc8Y@gerhold.net>
+X-Cookie: You have a message from the operator.
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,176 +60,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Ahmad,
 
-On Mon, 28 Feb 2022 at 17:01, Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
->
-> Hello Etienne,
->
-> On 28.10.21 16:00, Etienne Carriere wrote:
-> > Introduce compatible "linaro,scmi-optee" for SCMI transport channel
-> > based on an OP-TEE service invocation. The compatible mandates a
-> > channel ID defined with property "linaro,optee-channel-id".
->
-> I just found this thread via the compatible in the STM32MP131 patch set:
-> https://lore.kernel.org/all/20220225133137.813919-1-gabriel.fernandez@foss.st.com/
->
-> Linux doesn't care whether PSCI is provided by TF-A, OP-TEE or something
-> else, so there is just the arm,psci* compatible.
->
-> What's different about SCMI that this is not possible? Why couldn't the
-> existing binding and driver be used to communicate with OP-TEE as secure
-> monitor as well?
+--Rx93jjjGeYy76A0C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Compatible "linaro,scmi-optee" denote a alternate SCMI transport to
-those already in v5.16.
-"arm,psci" defines a mailbox + shmem interface.
-"arm,psci
- it uses an optee service as in service
+On Tue, Mar 01, 2022 at 02:54:06PM +0100, Stephan Gerhold wrote:
+> On Tue, Mar 01, 2022 at 01:36:33PM +0000, Mark Brown wrote:
+> > On Tue, Mar 01, 2022 at 01:37:41PM +0100, Stephan Gerhold wrote:
 
+> > > +  awinic,mode:
+> > > +    description: Amplifier mode (number of pulses for one-wire pulse control)
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    minimum: 1
 
->
-> Cheers,
-> Ahmad
->
-> >
-> > Cc: devicetree@vger.kernel.org
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
-> > ---
-> > Changes since v6:
-> >  - Remove maxItems from linaro,optee-channel-id description
-> >
-> > No change since v5
-> >
-> > Changes since v4:
-> >  - Fix sram node name in DTS example: s/-shm-/-sram-/
-> >
-> > Changes since v3:
-> >  - Add description for linaro,optee-channel-id in patternProperties
-> >    specifying protocol can optionaly define a dedicated channel id.
-> >  - Fix DTS example (duplicated phandles issue, subnodes ordering)
-> >  - Fix typo in DTS example and description comments.
-> >
-> > Changes since v2:
-> >  - Define mandatory property linaro,optee-channel-id
-> >  - Rebased on yaml description file
-> >
-> > Changes since v1:
-> >  - Removed modification regarding mboxes property description.
-> > ---
-> >  .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
-> >  1 file changed, 65 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > index 5c4c6782e052..eae15df36eef 100644
-> > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > @@ -38,6 +38,9 @@ properties:
-> >                       The virtio transport only supports a single device.
-> >          items:
-> >            - const: arm,scmi-virtio
-> > +      - description: SCMI compliant firmware with OP-TEE transport
-> > +        items:
-> > +          - const: linaro,scmi-optee
-> >
-> >    interrupts:
-> >      description:
-> > @@ -83,6 +86,11 @@ properties:
-> >      description:
-> >        SMC id required when using smc or hvc transports
-> >
-> > +  linaro,optee-channel-id:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      Channel specifier required when using OP-TEE transport.
-> > +
-> >    protocol@11:
-> >      type: object
-> >      properties:
-> > @@ -195,6 +203,12 @@ patternProperties:
-> >          minItems: 1
-> >          maxItems: 2
-> >
-> > +      linaro,optee-channel-id:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32
-> > +        description:
-> > +          Channel specifier required when using OP-TEE transport and
-> > +          protocol has a dedicated communication channel.
-> > +
-> >      required:
-> >        - reg
-> >
-> > @@ -226,6 +240,16 @@ else:
-> >        - arm,smc-id
-> >        - shmem
-> >
-> > +  else:
-> > +    if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: linaro,scmi-optee
-> > +    then:
-> > +      required:
-> > +        - linaro,optee-channel-id
-> > +
-> >  examples:
-> >    - |
-> >      firmware {
-> > @@ -340,7 +364,48 @@ examples:
-> >                  reg = <0x11>;
-> >                  #power-domain-cells = <1>;
-> >              };
-> > +        };
-> > +    };
-> > +
-> > +  - |
-> > +    firmware {
-> > +        scmi {
-> > +            compatible = "linaro,scmi-optee";
-> > +            linaro,optee-channel-id = <0>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            scmi_dvfs1: protocol@13 {
-> > +                reg = <0x13>;
-> > +                linaro,optee-channel-id = <1>;
-> > +                shmem = <&cpu_optee_lpri0>;
-> > +                #clock-cells = <1>;
-> > +            };
-> > +
-> > +            scmi_clk0: protocol@14 {
-> > +                reg = <0x14>;
-> > +                #clock-cells = <1>;
-> > +            };
-> > +        };
-> > +    };
-> >
-> > +    soc {
-> > +        #address-cells = <2>;
-> > +        #size-cells = <2>;
-> > +
-> > +        sram@51000000 {
-> > +            compatible = "mmio-sram";
-> > +            reg = <0x0 0x51000000 0x0 0x10000>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            ranges = <0 0x0 0x51000000 0x10000>;
-> > +
-> > +            cpu_optee_lpri0: optee-sram-section@0 {
-> > +                compatible = "arm,scmi-shmem";
-> > +                reg = <0x0 0x80>;
-> > +            };
-> >          };
-> >      };
-> >
->
->
-> --
-> Pengutronix e.K.                           |                             |
-> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> > No maximum?
+
+> I wasn't sure if we really want to maintain maxima for several different
+> Awinic part numbers here. For the AW8738 the maximum is 7, for the
+> AW87318 (note the additional 1 in the name) it would be 10. The driver
+> part would be identical for both.
+
+> ... But it's probably cleaner to have the schema check for the real
+> maximum of the selected compatible. I will add a "maximum" in v2.
+
+Even if it's just a maximum for any of the supported chips it'd still be
+something.
+
+> > > +  sound-name-prefix: true
+
+> > While it's very likely that someone will want to use this it shouldn't
+> > be *mandatory* that they do so, there may be no other controls for it to
+> > collide with (eg, if none of the other components in the audio path have
+> > controls).
+
+> This line just enables the "sound-name-prefix" from the included
+> name-prefix.yaml. It's not listed in "required" so it's actually
+> already optional.
+
+Of, that's a really confusing way of importing things.
+
+--Rx93jjjGeYy76A0C
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIeKEMACgkQJNaLcl1U
+h9C/KAf9Gt7awV5WuAyBSjuvdohK/UvqC8PXq0zg84VbkYtjydMMLNZVq5Do/tvY
+SgrFFonq2RQJJJ123aSYkDWo4ySAJostbq+r/AXq+laboOOMrObTWZms21rvYI/C
+oOE6b2B2lA+R7TaDrzRX9K275tdctZeeisuFwNqLVchIlcnKlWTZsI9Bq/3et7Gy
+jtGJ0i9ZfvWwCFKMtV1THWgPutuohATHotqadP8j+ruCVJLX16hwDpEXzcD3/4wc
+jOkPheO7cAzUQFquJkewNUBvSURxugPktwAA39VUkCFxzW5rnxDXJoTB7EGbPatB
+1BPXQgh25ltoFHe9ykFNxa/NUUqj4A==
+=tzMw
+-----END PGP SIGNATURE-----
+
+--Rx93jjjGeYy76A0C--
