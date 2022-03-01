@@ -2,163 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D100A4C9480
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 677F24C9495
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:42:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236318AbiCATkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 14:40:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38554 "EHLO
+        id S237234AbiCATnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 14:43:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232698AbiCATkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:40:40 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 100FE65494
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:39:59 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id y15-20020a4a650f000000b0031c19e9fe9dso23532170ooc.12
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 11:39:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=iOuftU1chGXMf3eFiOe8yxe1FZrdlpvfysxHIVyleiw=;
-        b=pUUy8AdZ8gUokOkQvTGeZJyMqxOmaQzKxO9YGhxdsUHJvTxK5Ojjx/Hirtfd2GqLl0
-         f08asCK12JIjOPr5syWGB6KJJXmGID+hA5D+rg3LEI2GCYKV0zvhf/xCMkGSYTSnhIVG
-         2amm71llK/Lv88CvvpLul4OH5mtR/2AEUSrWfNaNCUKpTypgY2v+cNp9KYwfC8wbFUqv
-         dNbNDQM5VIk3wgcTRbWb22HijiJ97P4ochH0khPfKxYTZAUC0QGGTXLHdRdYGHepc/Zg
-         jcpo4J0BTsgFhNTVrVxiYCnfAdrh6M4uY9GjsD610VDUI2VWZqInlZ7T6UlCNQO2ggIS
-         GHOg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=iOuftU1chGXMf3eFiOe8yxe1FZrdlpvfysxHIVyleiw=;
-        b=iQ1IwS5FvXqRKSYWiDrJ2yurY6+Hy+FuewqeYBbxfnvrpfPDP16rVJSzggeTfQBJiw
-         Lzh2pI2jHh1i3Voq1Eyvqvok6Omz2/V3Cn4LVR9PkF1n+H1ObcPoOVhWF3wsw+Ftr+jo
-         40O/1jSK4mU1GIRuPNTPIcqV9XSEQanT++cylxZXfRY1FfKlPk+IjXRTsmwqAhiCQtSX
-         Boo0lIpElKi3lULZUjT0XpNgFNhWu2xFzgoNkNYjqeSMo3d5Ka9Y6CMXWdoTmGwf6reZ
-         fR2bc8CfNH2D1cw5U1k/VXS845AGMr68qrEu9AHTKzjmcxY717uPoq2XhKIaG1l15slW
-         zXyA==
-X-Gm-Message-State: AOAM531dztpGF0KFohafd4qCkMgmIIi7jBvjyvCg+HML47lzcJZxzCEU
-        fSwJZ5eQOTFBrAgogUtCbW+vOSbY+FdtbZ0UCXHalA==
-X-Google-Smtp-Source: ABdhPJz/qPuzEZTR9ZljdsTiZ+cLXv57fWdEG6zvfn3JtKxljL5qaf0Sq8My8qOZA9m/u6u+6gFx7s/axlGnWK6sASg=
-X-Received: by 2002:a05:6870:4508:b0:d7:162f:6682 with SMTP id
- e8-20020a056870450800b000d7162f6682mr8083444oao.126.1646163598081; Tue, 01
- Mar 2022 11:39:58 -0800 (PST)
+        with ESMTP id S232112AbiCATnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:43:09 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09233204D;
+        Tue,  1 Mar 2022 11:42:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646163747; x=1677699747;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=0jEz/DJzpwaJIm6VwC7B5azcRqmPUDVe75s6sEfdqSk=;
+  b=oHksIjmR2s5BTQbWYHdyuSCpFZhBvkY8fcllomR0s5Nr2yxEfxkDw4m+
+   yLpMs+KO2EKpk1E4TqufnJSwKx+I4u1KD9zox0vF3IAZxlcOYAh5R+NOI
+   HvkFEu9ecvl6NSiqrEli6CY3ueyl7FoOVCyblOaocVTgUNDT7yM8V8C49
+   g+np/sirIiqQVJTPfn3xZOn53xYF1fGX0fJ6mJ+bs0TlwW6ZaskzMS3Da
+   JV89CTirT1L+DIniF4+o9mCz/DhvUQ0g1fzWisv+OTXzKSDnFEFtoECkR
+   r9SV2zUSRkg4Pq4R/04wDj+IlazMHPhy7K/wec0PZlSfNjcfVu3HVePBK
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="252956430"
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
+   d="scan'208";a="252956430"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 11:42:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
+   d="scan'208";a="493233881"
+Received: from lkp-server01.sh.intel.com (HELO 2146afe809fb) ([10.239.97.150])
+  by orsmga003.jf.intel.com with ESMTP; 01 Mar 2022 11:42:08 -0800
+Received: from kbuild by 2146afe809fb with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nP8Nr-0000wF-Cm; Tue, 01 Mar 2022 19:42:07 +0000
+Date:   Wed, 2 Mar 2022 03:41:21 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, perex@perex.cz,
+        matthias.bgg@gmail.com, trevor.wu@mediatek.com, tzungbi@google.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: Re: [PATCH] ASoC: bt-sco: fix bt-sco-pcm-wb dai widget don't connect
+ to the endpoint
+Message-ID: <202203020332.YsOHk7De-lkp@intel.com>
+References: <20220301171137.27442-1-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-References: <20220126221725.710167-1-bhupesh.sharma@linaro.org>
- <20220126221725.710167-8-bhupesh.sharma@linaro.org> <Yfh4cahRIdkY4KWg@builder.lan>
-In-Reply-To: <Yfh4cahRIdkY4KWg@builder.lan>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 2 Mar 2022 01:09:47 +0530
-Message-ID: <CAH=2NtzQk+sdBgMv5ZKPXQ1vWFrp3TOR1w2Ed1WEw_5U=1i65Q@mail.gmail.com>
-Subject: Re: [PATCH 7/8] clk: qcom: gcc-sm8150: use runtime PM for the clock controller
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, agross@kernel.org, sboyd@kernel.org,
-        tdas@codeaurora.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, davem@davemloft.net,
-        netdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220301171137.27442-1-jiaxin.yu@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Bjorn,
+Hi Jiaxin,
 
-Thanks for the review. Sorry for the late reply.
+Thank you for the patch! Yet something to improve:
 
-On Tue, 1 Feb 2022 at 05:31, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->
-> On Wed 26 Jan 16:17 CST 2022, Bhupesh Sharma wrote:
->
-> > On sm8150 emac clk registers are powered up by the GDSC power
-> > domain. Use runtime PM calls to make sure that required power domain is
-> > powered on while we access clock controller's registers.
-> >
->
-> Typically the GCC registers need only "cx" enabled for us to much around
-> with its registers and I don't see you add any references to additional
-> resources, so can you please elaborate on how this affects the state of
-> the system to enable you to operate the emac registers?
+[auto build test ERROR on broonie-sound/for-next]
+[also build test ERROR on v5.17-rc6 next-20220301]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-Indeed. On second thought and further tests, I think we don't need
-this change. Only keeping EMAC GDSC in ON state (always) should fix
-the issue (added via [PATCH 8/8] in this series).
+url:    https://github.com/0day-ci/linux/commits/Jiaxin-Yu/ASoC-bt-sco-fix-bt-sco-pcm-wb-dai-widget-don-t-connect-to-the-endpoint/20220302-011344
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+config: hexagon-randconfig-r045-20220301 (https://download.01.org/0day-ci/archive/20220302/202203020332.YsOHk7De-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/0day-ci/linux/commit/de4d22036c32b5b4be162ace0b3ce74c193c43c0
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Jiaxin-Yu/ASoC-bt-sco-fix-bt-sco-pcm-wb-dai-widget-don-t-connect-to-the-endpoint/20220302-011344
+        git checkout de4d22036c32b5b4be162ace0b3ce74c193c43c0
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash sound/soc/codecs/
 
-So, I will drop this from v2.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-Regards,
-Bhupesh
+All errors (new ones prefixed by >>):
 
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/clk/qcom/gcc-sm8150.c | 27 +++++++++++++++++++++++++--
-> >  1 file changed, 25 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-> > index ada755ad55f7..2e71afed81fd 100644
-> > --- a/drivers/clk/qcom/gcc-sm8150.c
-> > +++ b/drivers/clk/qcom/gcc-sm8150.c
-> > @@ -5,6 +5,7 @@
-> >  #include <linux/bitops.h>
-> >  #include <linux/err.h>
-> >  #include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_device.h>
-> > @@ -3792,19 +3793,41 @@ static const struct of_device_id gcc_sm8150_match_table[] = {
-> >  };
-> >  MODULE_DEVICE_TABLE(of, gcc_sm8150_match_table);
-> >
-> > +static void gcc_sm8150_pm_runtime_disable(void *data)
-> > +{
-> > +     pm_runtime_disable(data);
-> > +}
-> > +
-> >  static int gcc_sm8150_probe(struct platform_device *pdev)
-> >  {
-> >       struct regmap *regmap;
-> > +     int ret;
-> > +
-> > +     pm_runtime_enable(&pdev->dev);
-> > +
-> > +     ret = devm_add_action_or_reset(&pdev->dev, gcc_sm8150_pm_runtime_disable, &pdev->dev);
-> > +     if (ret)
-> > +             return ret;
-> > +
-> > +     ret = pm_runtime_resume_and_get(&pdev->dev);
-> > +     if (ret)
-> > +             return ret;
-> >
-> >       regmap = qcom_cc_map(pdev, &gcc_sm8150_desc);
-> > -     if (IS_ERR(regmap))
-> > +     if (IS_ERR(regmap)) {
-> > +             pm_runtime_put(&pdev->dev);
-> >               return PTR_ERR(regmap);
-> > +     }
-> >
-> >       /* Disable the GPLL0 active input to NPU and GPU via MISC registers */
-> >       regmap_update_bits(regmap, 0x4d110, 0x3, 0x3);
-> >       regmap_update_bits(regmap, 0x71028, 0x3, 0x3);
-> >
-> > -     return qcom_cc_really_probe(pdev, &gcc_sm8150_desc, regmap);
-> > +     ret = qcom_cc_really_probe(pdev, &gcc_sm8150_desc, regmap);
-> > +
-> > +     pm_runtime_put(&pdev->dev);
-> > +
-> > +     return ret;
-> >  }
-> >
-> >  static struct platform_driver gcc_sm8150_driver = {
-> > --
-> > 2.34.1
-> >
+>> sound/soc/codecs/bt-sco.c:26:1: error: extraneous closing brace ('}')
+   };
+   ^
+   1 error generated.
+
+
+vim +26 sound/soc/codecs/bt-sco.c
+
+5195ca4902fe0b Mark Brown 2013-08-19  21  
+5195ca4902fe0b Mark Brown 2013-08-19  22  static const struct snd_soc_dapm_route bt_sco_routes[] = {
+de4d22036c32b5 Jiaxin Yu  2022-03-02  23  	{ "BT_SCO_TX", NULL, "RX" },
+de4d22036c32b5 Jiaxin Yu  2022-03-02  24  	{ "TX", NULL, "BT_SCO_RX" },
+de4d22036c32b5 Jiaxin Yu  2022-03-02  25  };
+5195ca4902fe0b Mark Brown 2013-08-19 @26  };
+5195ca4902fe0b Mark Brown 2013-08-19  27  
+
+---
+0-DAY CI Kernel Test Service, Intel Corporation
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
