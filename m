@@ -2,119 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 677F24C9495
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:42:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CDC74C94AB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 20:44:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237234AbiCATnM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 14:43:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40582 "EHLO
+        id S232950AbiCATpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 14:45:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232112AbiCATnJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:43:09 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F09233204D;
-        Tue,  1 Mar 2022 11:42:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646163747; x=1677699747;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0jEz/DJzpwaJIm6VwC7B5azcRqmPUDVe75s6sEfdqSk=;
-  b=oHksIjmR2s5BTQbWYHdyuSCpFZhBvkY8fcllomR0s5Nr2yxEfxkDw4m+
-   yLpMs+KO2EKpk1E4TqufnJSwKx+I4u1KD9zox0vF3IAZxlcOYAh5R+NOI
-   HvkFEu9ecvl6NSiqrEli6CY3ueyl7FoOVCyblOaocVTgUNDT7yM8V8C49
-   g+np/sirIiqQVJTPfn3xZOn53xYF1fGX0fJ6mJ+bs0TlwW6ZaskzMS3Da
-   JV89CTirT1L+DIniF4+o9mCz/DhvUQ0g1fzWisv+OTXzKSDnFEFtoECkR
-   r9SV2zUSRkg4Pq4R/04wDj+IlazMHPhy7K/wec0PZlSfNjcfVu3HVePBK
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="252956430"
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
-   d="scan'208";a="252956430"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 11:42:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,146,1643702400"; 
-   d="scan'208";a="493233881"
-Received: from lkp-server01.sh.intel.com (HELO 2146afe809fb) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 01 Mar 2022 11:42:08 -0800
-Received: from kbuild by 2146afe809fb with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nP8Nr-0000wF-Cm; Tue, 01 Mar 2022 19:42:07 +0000
-Date:   Wed, 2 Mar 2022 03:41:21 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org, perex@perex.cz,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com, tzungbi@google.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: Re: [PATCH] ASoC: bt-sco: fix bt-sco-pcm-wb dai widget don't connect
- to the endpoint
-Message-ID: <202203020332.YsOHk7De-lkp@intel.com>
-References: <20220301171137.27442-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S231575AbiCATpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 14:45:17 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0B5F6BDEE
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 11:44:35 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id 6-20020a4a0906000000b0031d7eb98d31so8207469ooa.10
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 11:44:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1uzo2Ip3l9Z2WQS9kRS2aI5MRe3AqAqtHQ4fqs0dZqM=;
+        b=j+4eI4mL8Io4pIpAK1lB2FDt4unR4+dJaAUcY/Ewwp0MUPjXgCmMEWHzcv9mFI3hJV
+         vsBIhtV0uj3na59CjWp0U7657THTQVG6F/IOtlGEPGWk7V4axGAm0IHZGINRt4SsHJl2
+         9R3/Z2mavRX91oq19CYyBKM/yv2xNxpxlJCKKYrqbLchAcgcgcfWVaQPAMsjhN2ZP3tT
+         zDJsd4yJPLcClsEOnzBHhUSS/XiDkZRztOdmAdNZA2Ag+40kkSMVfMwriqEj745RH90V
+         9x3oA3nXFSRlaAkrDAEnhUQwYGXPVylQ9gzhT8be9YcvvUxEpxowei3QfMWFQT7MJRBe
+         qHkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1uzo2Ip3l9Z2WQS9kRS2aI5MRe3AqAqtHQ4fqs0dZqM=;
+        b=jPg1sOYrdgurMy0Rwdv8obya6yWVjBap3J1N4pSADQgtnY+/tt5Fu/pcZV3RyEVeP4
+         dTm0o6KRep0L1fpWWzwtCuRqJdsGft7PM/LMC/opISTMsKYu+j96BJcvC5Fulm8RVr1L
+         CUcgRcue/SDf8UzSv4KHwCbrwS0p2vFZ7c93EIULMgmYMpnic7oC3fYHR4MgeQuE5wkK
+         A6w+nr0Eg1kv37At8xg3bZiH6NIu+tPAcwx+eIVQCp0GTgJU5okC8cAP28e5JtoxetxJ
+         Zti2hvpRJO5aoGfR7FBDiCPNFwDQpdddmOk4oOGDaxnq0Ab1NSNeDFwiT4XX/tvwOJHK
+         BU7w==
+X-Gm-Message-State: AOAM531GitUkLCbpMwO3JSioJH2u3S1E9ymczoh9IJ7ZYqZHdJudzOGg
+        mKnLmdabAEOnceu7jqQEGHKuviueG89JFcIwfOhptA==
+X-Google-Smtp-Source: ABdhPJyEUajenDJbWbNCZz42qYV3Igx3HUl6FSLFUPlIyhD+EGMYK6EzbuBvtIdRnbAST4QpaJIH5PqobnizZtwZDXI=
+X-Received: by 2002:a05:6870:434f:b0:bf:9f2a:26f0 with SMTP id
+ x15-20020a056870434f00b000bf9f2a26f0mr5166687oah.40.1646163874720; Tue, 01
+ Mar 2022 11:44:34 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220301171137.27442-1-jiaxin.yu@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220126221725.710167-1-bhupesh.sharma@linaro.org>
+ <20220126221725.710167-9-bhupesh.sharma@linaro.org> <Yfh5Pjpw693ZMteC@builder.lan>
+In-Reply-To: <Yfh5Pjpw693ZMteC@builder.lan>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Wed, 2 Mar 2022 01:14:23 +0530
+Message-ID: <CAH=2Ntw7niiKSS-Nw6QKO+3JCGwvqv71ycZpCOb5fRjYh-dPmQ@mail.gmail.com>
+Subject: Re: [PATCH 8/8] clk: qcom: gcc-sm8150: Use PWRSTS_ON (only) as a
+ workaround for emac gdsc
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, agross@kernel.org, sboyd@kernel.org,
+        tdas@codeaurora.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, davem@davemloft.net,
+        netdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiaxin,
+Hi Bjorn,
 
-Thank you for the patch! Yet something to improve:
+On Tue, 1 Feb 2022 at 05:35, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 26 Jan 16:17 CST 2022, Bhupesh Sharma wrote:
+>
+> > EMAC GDSC currently has issues (seen on SA8155p-ADP) when its
+> > turn'ed ON, once its already in OFF state. So, use PWRSTS_ON
+> > state (only) as a workaround for now.
+> >
+> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > Cc: Stephen Boyd <sboyd@kernel.org>
+> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> > ---
+> >  drivers/clk/qcom/gcc-sm8150.c | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
+> > index 2e71afed81fd..fd7e931d3c09 100644
+> > --- a/drivers/clk/qcom/gcc-sm8150.c
+> > +++ b/drivers/clk/qcom/gcc-sm8150.c
+> > @@ -3449,12 +3449,16 @@ static struct clk_branch gcc_video_xo_clk = {
+> >       },
+> >  };
+> >
+> > +/* To Do: EMAC GDSC currently has issues when its turn'ed ON, once
+> > + * its already in OFF state. So use PWRSTS_ON state (only) as a
+> > + * workaround for now.
+>
+> So you're not able to turn on the GDSC after turning it off?
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on v5.17-rc6 next-20220301]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+Indeed. On the SM8150 platform (SA8155p ADP board), what I am
+observing is that the
+ethernet interface CLKs (RGMII clock etc) cannot be turned on once the
+EMAC GDSC is moved
+from an OFF to ON state. This is because the EMAC GDSC cannot be
+properly turned ON once it is
+in the OFF state.
 
-url:    https://github.com/0day-ci/linux/commits/Jiaxin-Yu/ASoC-bt-sco-fix-bt-sco-pcm-wb-dai-widget-don-t-connect-to-the-endpoint/20220302-011344
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: hexagon-randconfig-r045-20220301 (https://download.01.org/0day-ci/archive/20220302/202203020332.YsOHk7De-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project d271fc04d5b97b12e6b797c6067d3c96a8d7470e)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/de4d22036c32b5b4be162ace0b3ce74c193c43c0
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Jiaxin-Yu/ASoC-bt-sco-fix-bt-sco-pcm-wb-dai-widget-don-t-connect-to-the-endpoint/20220302-011344
-        git checkout de4d22036c32b5b4be162ace0b3ce74c193c43c0
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=hexagon SHELL=/bin/bash sound/soc/codecs/
+So, basically if we leave the EMAC GDSC on from boot (which is default
+bootloader setting), the eth interface
+can always come up fine and it can also be used for traffic tx/rx.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+> > + */
+> >  static struct gdsc emac_gdsc = {
+> >       .gdscr = 0x6004,
+> >       .pd = {
+> >               .name = "emac_gdsc",
+> >       },
+> > -     .pwrsts = PWRSTS_OFF_ON,
+> > +     .pwrsts = PWRSTS_ON,
+>
+> Doesn't this tell the gdsc driver that the only state supported is "on"
+> and hence prohibit you from turning it on in the first place?
 
-All errors (new ones prefixed by >>):
+That's correct indeed.  Without this hack in place, the EMAC GDSC is not able to
+switch from an OFF to ON state, so when the 'eth' interface is turned
+up it fails (as RGMII CLK is unavailable):
 
->> sound/soc/codecs/bt-sco.c:26:1: error: extraneous closing brace ('}')
-   };
-   ^
-   1 error generated.
+qcom-ethqos 20000.ethernet eth0: PHY [stmmac-0:07] driver [Micrel
+KSZ9031 Gigabit PHY] (irq=150)
+<..snip..>
+qcom-ethqos 20000.ethernet: Failed to reset the dma
+qcom-ethqos 20000.ethernet eth0: stmmac_hw_setup: DMA engine
+initialization failed
+qcom-ethqos 20000.ethernet eth0: stmmac_open: Hw setup failed
 
+> >       .flags = POLL_CFG_GDSCR,
+>
+> You could add ALWAYS_ON to .flags, but we need a better description of
+> the actual problem that you're working around.
 
-vim +26 sound/soc/codecs/bt-sco.c
+I agree. Let me add the above 'stmmac dma reset' issue while
+describing the workaround in the next version of the patch.
 
-5195ca4902fe0b Mark Brown 2013-08-19  21  
-5195ca4902fe0b Mark Brown 2013-08-19  22  static const struct snd_soc_dapm_route bt_sco_routes[] = {
-de4d22036c32b5 Jiaxin Yu  2022-03-02  23  	{ "BT_SCO_TX", NULL, "RX" },
-de4d22036c32b5 Jiaxin Yu  2022-03-02  24  	{ "TX", NULL, "BT_SCO_RX" },
-de4d22036c32b5 Jiaxin Yu  2022-03-02  25  };
-5195ca4902fe0b Mark Brown 2013-08-19 @26  };
-5195ca4902fe0b Mark Brown 2013-08-19  27  
+Regards,
+Bhupesh
 
----
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
