@@ -2,195 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B03A4C8971
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 11:39:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D73E4C8A17
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 11:56:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234326AbiCAKkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 05:40:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60654 "EHLO
+        id S234353AbiCAK4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 05:56:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234297AbiCAKkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 05:40:22 -0500
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2104.outbound.protection.outlook.com [40.107.215.104])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D48D593B8;
-        Tue,  1 Mar 2022 02:39:41 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QmDh0I5a/LvuSDKm3Mt82aCR8WOwTOlCSse/cx8kSOkmbLrCHOqktcATX49pY6ocmZ1lb81tS0T8UScKiGxrfiQfQc32T7xE9mrOS7/yIQONxEq8cCVgTVHoAqgHP7yXh4w7mPkTndStVTKQ/2GtZt8NkUw/s6MljV4T1uJvkKvc9fkAwG8aEcrhyhFoVSX5XUY3JDoKPFvYYFpaklo1Vz01cVvJm04bYbVlKG7SroAZgFqilWCxHb/f3jkpXjW8Huj3/dBzTyHDdVUJQ/hl8wEnTwRvaOls5OeZSo4HNuIX07Lb1O3zpCJrdU4WHLNK7XZ7iIGf9yNjbbDTuL0qSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dy4h7GbVHqJlb6gex0kd9iCoN3mDmgwQF6Bkk5v4J4w=;
- b=FcjqDbNOX3tP+zoYX+W+c7JAbfL2wxGqmNfBEk43p324ktJxyV1itylSFOY5p1c2mbiFuoIqvIXp6omQozwYDwlIatE61VO8+Cya79JlIOebRpbDlErKV4NPbHooCIe+YBWZgE4ij/oMGJLzNLZn3kxwo4/Q8PpuR6DSOMbp5JRHCI6V+CME3f8sBXAOFLdcFCKh0lwhMcnnmhVGCdlRS415738TRfzHqmRA/M8GjuP0Z2t31cbEzePCwLDY3l3BVfE8ZjoemOHsrceGSchhXFJcVfGA3qhptf1FB+/0ZkkL/DKtUwHOHcD5Gv/Kkwde3cRnmuRqtC5NxVZakEq8Qw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quantatw.com; dmarc=pass action=none header.from=quantatw.com;
- dkim=pass header.d=quantatw.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=quantacorp.onmicrosoft.com; s=selector2-quantacorp-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dy4h7GbVHqJlb6gex0kd9iCoN3mDmgwQF6Bkk5v4J4w=;
- b=Z3nV9FLrSHHqh/V496hSN1hWDBr5Nyx9AqQ6sDjs8gHTRotNmCNdXUdMjaabwjuwUQkSOqfDIfaDIJuNDxdVe96cX/V01iLSyVBwWwz/CyfCvM95ypyZCPpbnZDVBh0INEFFECGcz6zqxmeMhV0Q4xk8dfenzZYA4vndcdR899g=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quantatw.com;
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com (2603:1096:203:89::17)
- by TYZPR04MB4925.apcprd04.prod.outlook.com (2603:1096:400:125::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5017.24; Tue, 1 Mar
- 2022 10:39:33 +0000
-Received: from HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::b57e:962a:3820:eab]) by HK0PR04MB3282.apcprd04.prod.outlook.com
- ([fe80::b57e:962a:3820:eab%3]) with mapi id 15.20.5017.027; Tue, 1 Mar 2022
- 10:39:33 +0000
-From:   Potin Lai <potin.lai@quantatw.com>
-To:     Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Potin Lai <potin.lai@quantatw.com>
-Subject: [PATCH v4 2/2] dt-bindings: hwmon: Add sample averaging properties for ADM1275
-Date:   Tue,  1 Mar 2022 18:39:00 +0800
-Message-Id: <20220301103900.12637-3-potin.lai@quantatw.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220301103900.12637-1-potin.lai@quantatw.com>
-References: <20220301103900.12637-1-potin.lai@quantatw.com>
-Content-Type: text/plain
-X-ClientProxiedBy: HK2PR02CA0129.apcprd02.prod.outlook.com
- (2603:1096:202:16::13) To HK0PR04MB3282.apcprd04.prod.outlook.com
- (2603:1096:203:89::17)
+        with ESMTP id S234302AbiCAK4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 05:56:54 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 60F4D8BF14;
+        Tue,  1 Mar 2022 02:56:13 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2F7FBED1;
+        Tue,  1 Mar 2022 02:56:13 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 701873F73D;
+        Tue,  1 Mar 2022 02:56:10 -0800 (PST)
+Message-ID: <4e4bb61a-377e-1ec9-5998-214055ef0a78@arm.com>
+Date:   Tue, 1 Mar 2022 10:56:05 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9ead7a7a-3115-413c-d7ca-08d9fb6fc5af
-X-MS-TrafficTypeDiagnostic: TYZPR04MB4925:EE_
-X-Microsoft-Antispam-PRVS: <TYZPR04MB4925A6A3CE036104A68A4BC08E029@TYZPR04MB4925.apcprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xQuqxT3mh9Lk6iSbUvaDSWfgUBMRa0nm/Q5aVvBWz7o9nZX2UIi/dX7PEmHlZD3zbtQz/DPZzfvJNrCY37/lpKEgfRoExflv1HjqLELjVepYuIL4j+pKMXsl3VKGHbeQ4GUCemPfhej7MoifJ2RNOjplpPxsm4qPViITMZdza+AF1vsLkTcPEdzYq2Roibp+6u5F+414A7UAPTgNyu2F+h3OxKCHZxb5Lwq2uNw3HdtkNYwnTPspubzWEkn3Asq2G2LUjMUQt2gI1pqY4VAV5INPra+p8gQPkDOvUT9XCCkj4HkqDwvBpTnlcw9zOcgrA48K/1DTFaDbryZFiWRUaOeigXF0dmTbX4QAxgIumtGThCYR/NFovhg99HlrTpRJTNQZw/oGAdC4F9GmhG9vQ0ZkNeMvr2bznluWVSvro66DbfWvb3qmWsVZTSYV5Qp+7F4cnXbLHNbcw6KhX5CMp64IBxz94dPQW9v49IAeQhvvHdhXGpXl1+SH6W/qlGDopQujH6Bq3KBLcEeK0vNxnnrVSMnMpbIZltHmbmndqLAQWHjpeTiz0Iub+fyfRqtPsS9HuYzdQJa8A1ie3pHcHayBuf1kE73wyzoHvp8kBSsYPPnGJXMmszOFwLlW98njuOfqU0sRVcH9bYMyRHcgHENC0zDzyMei+KR8JN/vt8Ayhqk/qUqvfN4chU5vVJWRQ8LfdkrbYmmiszZijAN2eg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB3282.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6486002)(6666004)(4326008)(8676002)(38350700002)(52116002)(36756003)(6512007)(508600001)(83380400001)(110136005)(54906003)(316002)(1076003)(8936002)(38100700002)(6506007)(44832011)(86362001)(2616005)(107886003)(5660300002)(2906002)(26005)(186003)(66476007)(66556008)(66946007);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RejYNmZv24Hx1O+Lkk+KlNL0Jd7Adyjo2n8UE48GltWwsQzYtKJEjohGMNVD?=
- =?us-ascii?Q?nkCKGBIMABkj0iR6yON3MLXihT7a0HTedQY/vExszO4XEzFv6rb3ypHFc8Vt?=
- =?us-ascii?Q?LvFn5PrL1bImXwgvg0zvvSHByZPL68FFXYX/8jVZqswemcVtrDhrMe/sXTcf?=
- =?us-ascii?Q?xcVO619L644ziYo9d4K2l3IqAgkXmxsZ8t75AZW+wTdJzo+Q28dO2v9tb7o7?=
- =?us-ascii?Q?UnrHQy4Q7UUB+gf0MUFRCX07jCMvFfCzbYUYQ2h41Z0kd+C3GBBYUFTk6ob6?=
- =?us-ascii?Q?NeAkTdie2cnp3oKZxvx4OnFAcn93lFTnUb3YBstp3puznL3qSsdN5NbgRJnh?=
- =?us-ascii?Q?f1oXSPadXN9jfSqgrRYuPPHU/NC/XxNuPjPDQ62ThXVWetKU0rF8RoILmjiw?=
- =?us-ascii?Q?/yBfTjPdn3U81N2gpT6PWeAlrtxyRxiv5lxgLruFW/l76VYItmqDP06jvGM4?=
- =?us-ascii?Q?/JmT1kSmIUoQ5BnBaY5MPYNImOl+/neeG18BVmDktF4ly22IBTj8i67MY6+K?=
- =?us-ascii?Q?JbRPzzYcUhVOljK7U7fo9Gn0IAhkd4zHPAIpE4LYg3pK4nQ3rFjFh67Nq7Mn?=
- =?us-ascii?Q?Xy8Vlsxn87PZpcmlJGo+fYHvNZXY7fRTFAub4bKfjFiSjFYMTYTrkqYlxLMu?=
- =?us-ascii?Q?QLVzNxpPykf9Fwh0r6qA+lQgu4UNu/mmKzNNZ+sHG0qFrkgwdtSIQ8QYz8jv?=
- =?us-ascii?Q?1LkyCJEKssAYgfWzhsK5bxgcnbpPSXffT3tR5DJ7yiyr8HImH5eb0yqjrDZ0?=
- =?us-ascii?Q?KZfmSGgp6BlSKaA4OClxSX5vf5rNYl3AUjasD3GkgL0N9d0WmvfUD4aB1fN+?=
- =?us-ascii?Q?0NtMfsCD1FfCeusGdGRgQZZgY0zuW2WrlW7kkxJT2MgrUTkcY4JUnQN9pHcj?=
- =?us-ascii?Q?7k0kmcUinBQjgEbE3g4ZBl7bRxenQvDn6uTi9lXL4NQN4rmtAECfUj167WNB?=
- =?us-ascii?Q?QxLS257nTYpGIq+Z0RENqaQ9FXoMbvZsL5s5zHpSsID3Fo8d2lmGDYESuOmY?=
- =?us-ascii?Q?crQpSjPe8FblN0nY5z9cKAStDygQB4NiRHl1DJTuhHa/0WUsutJJQLuiG49R?=
- =?us-ascii?Q?HM0iKoHnF+tE+SYq/GW5zOU4SVSYgQPna66bjwV8LMr9kJsy5OrybeBq/Snv?=
- =?us-ascii?Q?FReFqXSzctR2lQqXwNf0B6DASGVGTaEl3Ym7vK4d6uve50j3FKQaxcST+K/4?=
- =?us-ascii?Q?/uFtEqxoIREoGhQEaOVmTHDQ2Udabqzf0pAk/qFCHGH0UZuCqr1yNUZZk7h/?=
- =?us-ascii?Q?2/pq3SpXGukQPdY0URMnA0IsIun2G3q4WXWEBATYvEamCHFz4ICaprN9XUSm?=
- =?us-ascii?Q?qjZz69Er2dPQkJow+kPejUGA1Xb/7Pz0OuSUYtDD0AWLPwajUEBDW6tKtzKY?=
- =?us-ascii?Q?nud+LWdbfgHqrkAXELrMr2+6zyoEyNc56i0jR+nCIyMosDe7hSleYQfHCpsz?=
- =?us-ascii?Q?yguuTVv2UDY/g7FQvA7zjV+y03JadNKKPd0ogtAGE0hhQMVKP1Q2R1Xxs3dU?=
- =?us-ascii?Q?GGobEyAiEcAOB8obWT8Y6l2f1Qbo0TOIlN2RS8vsSyuWhXU0G6aunpC4Ir/4?=
- =?us-ascii?Q?NzVYsOzcMGP5zMQeqmWHUkxP+KmN1a2KsWlZ70QGrLjLwnCe9rEetQZRTwhn?=
- =?us-ascii?Q?UuRK9xWCLJTArvfQ0xP/ItU=3D?=
-X-OriginatorOrg: quantatw.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9ead7a7a-3115-413c-d7ca-08d9fb6fc5af
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR04MB3282.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2022 10:39:32.8087
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 179b0327-07fc-4973-ac73-8de7313561b2
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pbyJqc8r3xHPKJwu4K9lbJJ9kT+4RQRxh+9jiiznCaphYvU4m5Av/FqddvTF3S068KwkZKkaEvKUHQEjnxcNoQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB4925
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 0/7] arm64: Default to 32-bit wide ZONE_DMA
+Content-Language: en-GB
+To:     Matt Flax <flatmax@gmail.com>, nsaenzjulienne@suse.de
+Cc:     ardb@kernel.org, catalin.marinas@arm.com,
+        devicetree@vger.kernel.org, guohanjun@huawei.com, hch@lst.de,
+        iommu@lists.linux-foundation.org, jeremy.linton@arm.com,
+        linux-acpi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, lorenzo.pieralisi@arm.com,
+        robh+dt@kernel.org, will@kernel.org,
+        Matt Flax <flatmax@flatmax.com>
+References: <20201119175400.9995-1-nsaenzjulienne@suse.de>
+ <20220301030031.4025282-1-flatmax@flatmax.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220301030031.4025282-1-flatmax@flatmax.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation of new properties for sample averaging in PMON_CONFIG
-register.
+Hi Matt,
 
-New properties:
-- adi,volt-curr-sample-average
-- adi,power-sample-average
-- adi,power-sample-average-enable
+On 2022-03-01 03:00, Matt Flax wrote:
+> Hi All,
+> 
+> It seems that the ZONE_DMA changes have broken the operation of Rochip rk3399 chipsets from v5.10.22 onwards.
+> 
+> It isn't clear what needs to be changed to get any of these boards up and running again. Any pointers on how/what to change ?
 
-Signed-off-by: Potin Lai <potin.lai@quantatw.com>
----
- .../bindings/hwmon/adi,adm1275.yaml           | 44 +++++++++++++++++++
- 1 file changed, 44 insertions(+)
+Your firmware/bootloader setup is mismatched. If you're using the 
+downstream Rockchip blob for BL31, you need to reserve or remove the 
+memory range 0x8400000-0x9600000 to match the behaviour of the original 
+Android BSP U-Boot. The downstream firmware firewalls this memory off 
+for the Secure world such that any attempt to touch it from Linux 
+results in a fatal SError fault as below. Any apparent correlation with 
+the ZONE_DMA changes will simply be because they've affected the 
+behaviour of the page allocator, such that it's more likely to reach 
+into the affected range of memory.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-index 223393d7cafd..1b612dc06992 100644
---- a/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-+++ b/Documentation/devicetree/bindings/hwmon/adi,adm1275.yaml
-@@ -37,6 +37,47 @@ properties:
-     description:
-       Shunt resistor value in micro-Ohm.
- 
-+  adi,volt-curr-sample-average:
-+    description: |
-+      Number of samples to be used to report voltage and current values.
-+      If the configured value is not a power of 2, sample averaging number
-+      will be configured with smaller and closest power of 2.
-+
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-+    default: 1
-+
-+  adi,power-sample-average:
-+    description: |
-+      Number of samples to be used to report power values.
-+      If the configured value is not a power of 2, sample averaging number
-+      will be configured with smaller and closest power of 2.
-+
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [1, 2, 4, 8, 16, 32, 64, 128]
-+    default: 1
-+
-+  adi,power-sample-average-enable:
-+    description: Enable sample averaging for power reading.
-+    type: boolean
-+
-+dependencies:
-+  adi,power-sample-average-enable: ['adi,power-sample-average']
-+  adi,power-sample-average: ['adi,power-sample-average-enable']
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - adi,adm1075
-+              - adi,adm1275
-+              - adi,adm1276
-+    then:
-+      properties:
-+        adi,power-sample-average-enable: false
-+
- required:
-   - compatible
-   - reg
-@@ -53,5 +94,8 @@ examples:
-             compatible = "adi,adm1272";
-             reg = <0x10>;
-             shunt-resistor-micro-ohms = <500>;
-+            adi,volt-curr-sample-average = <128>;
-+            adi,power-sample-average = <128>;
-+            adi,power-sample-average-enable;
-         };
-     };
--- 
-2.17.1
+Cheers,
+Robin.
 
+> An easy test for debugging is to run stress :
+> 
+> stress --cpu 4 --io 4 --vm 2 --vm-bytes 128M
+> 
+> stress: info: [255] dispatching hogs: 4 cpu, 4 io, 2 vm, 0 hdd
+> [    8.070280] SError Interrupt on CPU4, code 0xbf000000 -- SError
+> [    8.070286] CPU: 4 PID: 261 Comm: stress Not tainted 5.10.21 #1
+> [    8.070289] Hardware name: FriendlyElec NanoPi M4 (DT)
+> [    8.070293] pstate: 00000005 (nzcv daif -PAN -UAO -TCO BTYPE=--)
+> [    8.070296] pc : clear_page+0x14/0x28
+> [    8.070298] lr : clear_subpage+0x50/0x90
+> [    8.070302] sp : ffff800012abbc40
+> [    8.070305] x29: ffff800012abbc40 x28: ffff000000f68000
+> [    8.070313] x27: 0000000000000000 x26: ffff000001f38e40
+> [    8.070320] x25: ffff8000114fd000 x24: 0000000000000000
+> [    8.070326] x23: 0000000000000000 x22: 0000000000001000
+> [    8.070334] x21: 0000ffffa7e00000 x20: fffffe0000010000
+> [    8.070341] x19: ffff000000f68000 x18: 0000000000000000
+> [    8.070348] x17: 0000000000000000 x16: 0000000000000000
+> [    8.070354] x15: 0000000000000002 x14: 0000000000000001
+> [    8.070361] x13: 0000000000075879 x12: 00000000000000c0
+> [    8.070368] x11: ffff80006c46a000 x10: 0000000000000200
+> [    8.070374] x9 : 0000000000000000 x8 : 0000000000000010
+> [    8.070381] x7 : ffff00007db800a0 x6 : ffff800011b899c0
+> [    8.070387] x5 : 0000000000000000 x4 : ffff00007db800f7
+> [    8.070394] x3 : 0000020000200000 x2 : 0000000000000004
+> [    8.070401] x1 : 0000000000000040 x0 : ffff0000085ff4c0
+> [    8.070409] Kernel panic - not syncing: Asynchronous SError Interrupt
+> [    8.070412] CPU: 4 PID: 261 Comm: stress Not tainted 5.10.21 #1
+> [    8.070415] Hardware name: FriendlyElec NanoPi M4 (DT)
+> [    8.070418] Call trace:
+> [    8.070420]  dump_backtrace+0x0/0x1b0
+> [    8.070423]  show_stack+0x18/0x70
+> [    8.070425]  dump_stack+0xd0/0x12c
+> [    8.070428]  panic+0x16c/0x334
+> [    8.070430]  nmi_panic+0x8c/0x90
+> [    8.070433]  arm64_serror_panic+0x78/0x84
+> [    8.070435]  do_serror+0x64/0x70
+> [    8.070437]  el1_error+0x88/0x108
+> [    8.070440]  clear_page+0x14/0x28
+> [    8.070443]  clear_huge_page+0x74/0x210
+> [    8.070445]  do_huge_pmd_anonymous_page+0x1b0/0x7c0
+> [    8.070448]  handle_mm_fault+0xdac/0x1290
+> [    8.070451]  do_page_fault+0x130/0x3a0
+> [    8.070453]  do_translation_fault+0xb0/0xc0
+> [    8.070456]  do_mem_abort+0x44/0xb0
+> [    8.070458]  el0_da+0x28/0x40
+> [    8.070461]  el0_sync_handler+0x168/0x1b0
+> [    8.070464]  el0_sync+0x174/0x180
+> [    8.070508] SError Interrupt on CPU0, code 0xbf000000 -- SError
+> [    8.070511] CPU: 0 PID: 258 Comm: stress Not tainted 5.10.21 #1
+> [    8.070515] Hardware name: FriendlyElec NanoPi M4 (DT)
+> [    8.070518] pstate: 80000000 (Nzcv daif -PAN -UAO -TCO BTYPE=--)
+> [    8.070520] pc : 0000aaaacec22e98
+> [    8.070523] lr : 0000aaaacec22d84
+> [    8.070525] sp : 0000ffffe67a8620
+> [    8.070528] x29: 0000ffffe67a8620 x28: 0000000000000003
+> [    8.070534] x27: 0000aaaacec34000 x26: 0000ffffaeb42610
+> [    8.070541] x25: 0000ffffa69af010 x24: 0000aaaacec23a98
+> [    8.070547] x23: 0000aaaacec35010 x22: 0000aaaacec35000
+> [    8.070554] x21: 0000000000001000 x20: ffffffffffffffff
+> [    8.070560] x19: 0000000008000000 x18: 0000000000000000
+> [    8.070567] x17: 0000000000000000 x16: 0000000000000000
+> [    8.070573] x15: 0000000000000000 x14: 0000000000000000
+> [    8.070580] x13: 0000000000008000 x12: 0000000000000000
+> [    8.070587] x11: 0000000000000020 x10: 0000000000000030
+> [    8.070593] x9 : 000000000000000a x8 : 00000000000000de
+> [    8.070599] x7 : 0000000000200000 x6 : 000000000000021b
+> [    8.070606] x5 : 0000000000000000 x4 : ffffffffffffffff
+> [    8.070613] x3 : 0000000000000000 x2 : 0000ffffaeb47000
+> [    8.070619] x1 : 000000000000005a x0 : 0000000000a58000
+> [    8.070629] SMP: stopping secondary CPUs
+> [    8.070632] Kernel Offset: disabled
+> [    8.070634] CPU features: 0x0240022,6100600c
+> [    8.070637] Memory Limit: none
+> 
+> 
