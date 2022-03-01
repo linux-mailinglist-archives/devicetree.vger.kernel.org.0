@@ -2,227 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 211DE4C868D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:33:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D434C869E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Mar 2022 09:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233381AbiCAIeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 03:34:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34712 "EHLO
+        id S231678AbiCAIiN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 03:38:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229906AbiCAIeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:34:20 -0500
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9029B27FFC;
-        Tue,  1 Mar 2022 00:33:38 -0800 (PST)
-Received: by mail-wm1-x333.google.com with SMTP id bg16-20020a05600c3c9000b00380f6f473b0so801129wmb.1;
-        Tue, 01 Mar 2022 00:33:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=LkrTcQQbt/9+kZrb/G+6KYClsmPdfv/aEHScRzi5ZAs=;
-        b=mtj+dI+NVw8LeXLhTCnZeZgjE3M77ddOgX9ienReKqhu6eqXMGaGvl7kUgLxrH/imx
-         zZL610ITo2FA7KruB9rkrHKT4/Lwpt/A3V3047Sb8rZzaecQu8EuVpKZycFqjIf+Ea4F
-         1Ysqyx7vO9OwDlQTRcD+6O6gpHTx7Fw5Hw+exkYLnkC+IckNQZ9/lqdjjYftid5gPmse
-         d7D0a0z9p529s7UIwJUtQlgVGEp3iWEeBgftNB1BSDhHTWNlWvSwbDKAGdVMajt29Ily
-         0TwJaiR/lZw0rkHIIdH1NSpo+w34uoy7kF+7eM0po8sA+nNKCN9ARHCMjWC/Mjt8tVU9
-         1rjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=LkrTcQQbt/9+kZrb/G+6KYClsmPdfv/aEHScRzi5ZAs=;
-        b=7hnRhBnHhc1xCk5Uti9CJqOdl32R4Osfyr1p04QiKqF9DeqRIbGpO00VKbW6lagESZ
-         KtQyin/6wDFLJZfkeFcFsyFyOdnik/3/n9HCI9+08Tm+8x49CIkXANXCbjMCukBMyNHr
-         EdV6MDG3cVQhH1VWmELT8wfPIghP2kDLUuAoDc2PZm7ckORSH+VEDDv1qUEknfSw8ANY
-         7E7xUhmTuncemW6Jg2Fs5Fb2/XmyR5LZPI1uXsKPkGZror+zfLd/3iFNYxvR/zdQLdW/
-         II8Gr+Y21coFqmotLAM2Dl8xOo+gxzMhQLLQ7qzz52GbKqxyBcInjcpMaZsV4LX5netE
-         V/vA==
-X-Gm-Message-State: AOAM532M9xwhExwFwRLPUsYSt+NxeTVni+9vpDoCZsPlvjUdjzy6iShL
-        Ac2++EQ9HvlEuRo+XQRubbM=
-X-Google-Smtp-Source: ABdhPJwgp8UucD4OAX8skQYsYngCTn4CiMKZRKK9OmCXn08gSTewF+CNCCfhF6TU4XyQpJj6ERIYSQ==
-X-Received: by 2002:a05:600c:508:b0:380:fd39:2c42 with SMTP id i8-20020a05600c050800b00380fd392c42mr15993789wmc.178.1646123616070;
-        Tue, 01 Mar 2022 00:33:36 -0800 (PST)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id q17-20020adfc511000000b001edc0a8a8b6sm19256706wrf.0.2022.03.01.00.33.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 00:33:35 -0800 (PST)
-Message-ID: <232259a8-1cce-002b-3f46-916425de1d69@gmail.com>
-Date:   Tue, 1 Mar 2022 09:33:34 +0100
+        with ESMTP id S230273AbiCAIiM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 03:38:12 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B6D529C81
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 00:37:30 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nOy0d-0005k9-41; Tue, 01 Mar 2022 09:37:27 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nOy0b-0003bu-0J; Tue, 01 Mar 2022 09:37:25 +0100
+Date:   Tue, 1 Mar 2022 09:37:24 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        kernel@pengutronix.de, Sandy Huang <hjc@rock-chips.com>,
+        dri-devel@lists.freedesktop.org,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Message-ID: <20220301083724.GO19585@pengutronix.de>
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+ <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+ <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
+ <20220225131154.GE19585@pengutronix.de>
+ <20220228141921.GN19585@pengutronix.de>
+ <43eb78d9-4252-938e-aaaa-8d353730314a@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/1] arm64: dts: mediatek: add clock support for mt7986a
-Content-Language: en-US
-To:     Sam Shih <sam.shih@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>, Ryder Lee <ryder.lee@kernel.org>
-References: <20220119123624.10043-1-sam.shih@mediatek.com>
- <20220119123624.10043-2-sam.shih@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20220119123624.10043-2-sam.shih@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <43eb78d9-4252-938e-aaaa-8d353730314a@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:05:08 up 80 days, 16:50, 82 users,  load average: 1.01, 0.82,
+ 0.44
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 19/01/2022 13:36, Sam Shih wrote:
-> Add clock controller nodes, include 40M clock source, topckgen,
-> infracfg, apmixedsys and ethernet subsystem.
+On Tue, Mar 01, 2022 at 01:56:59AM +0300, Dmitry Osipenko wrote:
+> On 2/28/22 17:19, Sascha Hauer wrote:
+> > On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
+> >> On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
+> >>> On 2022-02-25 11:10, Dmitry Osipenko wrote:
+> >>>> 25.02.2022 13:49, Sascha Hauer пишет:
+> >>>>> On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+> >>>>>> 25.02.2022 10:51, Sascha Hauer пишет:
+> >>>>>>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+> >>>>>>> HDMI controller to work. The purpose of that clock is not clear. It is
+> >>>>>>> named "hclk" in the downstream driver, so use the same name.
+> >>>>>>>
+> >>>>>>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> >>>>>>> ---
+> >>>>>>>
+> >>>>>>> Notes:
+> >>>>>>>      Changes since v5:
+> >>>>>>>      - Use devm_clk_get_optional rather than devm_clk_get
+> >>>>>>>
+> >>>>>>>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+> >>>>>>>   1 file changed, 16 insertions(+)
+> >>>>>>>
+> >>>>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> >>>>>>> index fe4f9556239ac..c6c00e8779ab5 100644
+> >>>>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> >>>>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> >>>>>>> @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+> >>>>>>>   	const struct rockchip_hdmi_chip_data *chip_data;
+> >>>>>>>   	struct clk *ref_clk;
+> >>>>>>>   	struct clk *grf_clk;
+> >>>>>>> +	struct clk *hclk_clk;
+> >>>>>>>   	struct dw_hdmi *hdmi;
+> >>>>>>>   	struct regulator *avdd_0v9;
+> >>>>>>>   	struct regulator *avdd_1v8;
+> >>>>>>> @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+> >>>>>>>   		return PTR_ERR(hdmi->grf_clk);
+> >>>>>>>   	}
+> >>>>>>> +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+> >>>>>>> +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+> >>>>>>
+> >>>>>> Have you tried to investigate the hclk? I'm still thinking that's not
+> >>>>>> only HDMI that needs this clock and then the hardware description
+> >>>>>> doesn't look correct.
+> >>>>>
+> >>>>> I am still not sure what you mean. Yes, it's not only the HDMI that
+> >>>>> needs this clock. The VOP2 needs it as well and the driver handles that.
+> >>>>
+> >>>> I'm curious whether DSI/DP also need that clock to be enabled. If they
+> >>>> do, then you aren't modeling h/w properly AFAICS.
+> >>>
+> >>> Assuming nobody at Rockchip decided to make things needlessly inconsistent
+> >>> with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
+> >>> interface. Usually, if that affected anything other than accessing VOP
+> >>> registers, indeed it would smell of something being wrong in the clock tree,
+> >>> but in this case I'd also be suspicious of whether it might have ended up
+> >>> clocking related GRF registers as well (either directly, or indirectly via
+> >>> some gate that the clock driver hasn't modelled yet).
+> >>
+> >> Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
+> >> hanging when HCLK_VOP is disabled by disabling that clock via sysfs
+> >> using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
+> >> of that units can't be accessed. However, when I disable HCLK_VOP by
+> >> directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
+> >> accessing VOP registers hangs, the other units stay functional.
+> >> So it seems it must be the parent clock which must be enabled. The
+> >> parent clock is hclk_vo. This clock should be handled as part of the
+> >> RK3568_PD_VO power domain:
+> >>
+> >> 	power-domain@RK3568_PD_VO {
+> >>                 reg = <RK3568_PD_VO>;
+> >>                 clocks = <&cru HCLK_VO>,
+> >>                          <&cru PCLK_VO>,
+> >>                          <&cru ACLK_VOP_PRE>;
+> >>                  pm_qos = <&qos_hdcp>,
+> >>                           <&qos_vop_m0>,
+> >>                           <&qos_vop_m1>;
+> >>                  #power-domain-cells = <0>;
+> >>         };
+> > 
+> > Forget this. The clocks in this node are only enabled during enabling or
+> > disabling the power domain, they are disabled again immediately afterwards.
+> > 
+> > OK, I need HCLK_VO to access the HDMI registers. I verified that by
+> > disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
+> > HDMI registers become inaccessible then. This means I'll replace
+> > HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
 > 
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> The RK3568_PD_VO already has HCLK_VO and the domain should be
+> auto-enabled before HDMI registers are accessed,
 
-Applied, thanks!
+As said, the clocks given in the power domain are only enabled during
+the process of enabling/disabling the power domain and are disabled
+again directly afterwards:
 
-> ---
->   arch/arm64/boot/dts/mediatek/mt7986a.dtsi | 68 +++++++++++++++++++++--
->   1 file changed, 63 insertions(+), 5 deletions(-)
+> 	if (rockchip_pmu_domain_is_on(pd) != power_on) {
+
+They are enabled here:
+
+> 		ret = clk_bulk_enable(pd->num_clks, pd->clks);
+> 		if (ret < 0) {
+> 			dev_err(pmu->dev, "failed to enable clocks\n");
+> 			mutex_unlock(&pmu->mutex);
+> 			return ret;
+> 		}
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> index b8da76b6ba47..694acf8f5b70 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt7986a.dtsi
-> @@ -6,16 +6,18 @@
->   
->   #include <dt-bindings/interrupt-controller/irq.h>
->   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/clock/mt7986-clk.h>
->   
->   / {
->   	interrupt-parent = <&gic>;
->   	#address-cells = <2>;
->   	#size-cells = <2>;
->   
-> -	system_clk: dummy40m {
-> +	clk40m: oscillator@0 {
->   		compatible = "fixed-clock";
->   		clock-frequency = <40000000>;
->   		#clock-cells = <0>;
-> +		clock-output-names = "clkxtal";
->   	};
->   
->   	cpus {
-> @@ -98,6 +100,18 @@ gic: interrupt-controller@c000000 {
->   			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->   		};
->   
-> +		infracfg: infracfg@10001000 {
-> +			compatible = "mediatek,mt7986-infracfg", "syscon";
-> +			reg = <0 0x10001000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		topckgen: topckgen@1001b000 {
-> +			compatible = "mediatek,mt7986-topckgen", "syscon";
-> +			reg = <0 0x1001B000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
->   		watchdog: watchdog@1001c000 {
->   			compatible = "mediatek,mt7986-wdt",
->   				     "mediatek,mt6589-wdt";
-> @@ -107,6 +121,12 @@ watchdog: watchdog@1001c000 {
->   			status = "disabled";
->   		};
->   
-> +		apmixedsys: apmixedsys@1001e000 {
-> +			compatible = "mediatek,mt7986-apmixedsys";
-> +			reg = <0 0x1001E000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
->   		pio: pinctrl@1001f000 {
->   			compatible = "mediatek,mt7986a-pinctrl";
->   			reg = <0 0x1001f000 0 0x1000>,
-> @@ -128,11 +148,25 @@ pio: pinctrl@1001f000 {
->   			#interrupt-cells = <2>;
->   		};
->   
-> +		sgmiisys0: syscon@10060000 {
-> +			compatible = "mediatek,mt7986-sgmiisys_0",
-> +				     "syscon";
-> +			reg = <0 0x10060000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
-> +		sgmiisys1: syscon@10070000 {
-> +			compatible = "mediatek,mt7986-sgmiisys_1",
-> +				     "syscon";
-> +			reg = <0 0x10070000 0 0x1000>;
-> +			#clock-cells = <1>;
-> +		};
-> +
->   		trng: trng@1020f000 {
->   			compatible = "mediatek,mt7986-rng",
->   				     "mediatek,mt7623-rng";
->   			reg = <0 0x1020f000 0 0x100>;
-> -			clocks = <&system_clk>;
-> +			clocks = <&infracfg CLK_INFRA_TRNG_CK>;
->   			clock-names = "rng";
->   			status = "disabled";
->   		};
-> @@ -142,7 +176,13 @@ uart0: serial@11002000 {
->   				     "mediatek,mt6577-uart";
->   			reg = <0 0x11002000 0 0x400>;
->   			interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&system_clk>;
-> +			clocks = <&infracfg CLK_INFRA_UART0_SEL>,
-> +				 <&infracfg CLK_INFRA_UART0_CK>;
-> +			clock-names = "baud", "bus";
-> +			assigned-clocks = <&topckgen CLK_TOP_UART_SEL>,
-> +					  <&infracfg CLK_INFRA_UART0_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_XTAL>,
-> +						 <&topckgen CLK_TOP_UART_SEL>;
->   			status = "disabled";
->   		};
->   
-> @@ -151,7 +191,11 @@ uart1: serial@11003000 {
->   				     "mediatek,mt6577-uart";
->   			reg = <0 0x11003000 0 0x400>;
->   			interrupts = <GIC_SPI 124 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&system_clk>;
-> +			clocks = <&infracfg CLK_INFRA_UART1_SEL>,
-> +				 <&infracfg CLK_INFRA_UART1_CK>;
-> +			clock-names = "baud", "bus";
-> +			assigned-clocks = <&infracfg CLK_INFRA_UART1_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_F26M_SEL>;
->   			status = "disabled";
->   		};
->   
-> @@ -160,10 +204,24 @@ uart2: serial@11004000 {
->   				     "mediatek,mt6577-uart";
->   			reg = <0 0x11004000 0 0x400>;
->   			interrupts = <GIC_SPI 125 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&system_clk>;
-> +			clocks = <&infracfg CLK_INFRA_UART2_SEL>,
-> +				 <&infracfg CLK_INFRA_UART2_CK>;
-> +			clock-names = "baud", "bus";
-> +			assigned-clocks = <&infracfg CLK_INFRA_UART2_SEL>;
-> +			assigned-clock-parents = <&topckgen CLK_TOP_F26M_SEL>;
->   			status = "disabled";
->   		};
->   
-> +		ethsys: syscon@15000000 {
-> +			 #address-cells = <1>;
-> +			 #size-cells = <1>;
-> +			 compatible = "mediatek,mt7986-ethsys",
-> +				      "syscon";
-> +			 reg = <0 0x15000000 0 0x1000>;
-> +			 #clock-cells = <1>;
-> +			 #reset-cells = <1>;
-> +		};
-> +
->   	};
->   
->   };
+> 		if (!power_on) {
+> 			rockchip_pmu_save_qos(pd);
+> 
+> 			/* if powering down, idle request to NIU first */
+> 			rockchip_pmu_set_idle_request(pd, true);
+> 		}
+>
+
+Then the power domain is switched:
+
+> 		rockchip_do_pmu_set_power_domain(pd, power_on);
+> 
+> 		if (power_on) {
+> 			/* if powering up, leave idle mode */
+> 			rockchip_pmu_set_idle_request(pd, false);
+> 
+> 			rockchip_pmu_restore_qos(pd);
+> 		}
+> 
+
+And here the clocks are disabled again:
+
+> 		clk_bulk_disable(pd->num_clks, pd->clks);
+> 	}
+
+> hence you should do the
+> opposite and remove the HCLK_VO/P clock from the HDMI DT, not add it. If
+> the HCLK_VO clock isn't enabled by the domain driver, then you need to
+> check why. Or am I missing something?
+
+What the power domain driver additionally does is: It does a of_clk_get()
+on all the clocks found in the node of a power domains consumer. It then
+does a pm_clk_add_clk() on the clocks and sets the GENPD_FLAG_PM_CLK
+flag. This has the effect that all clocks of a device in a power domain
+are enabled as long as the power domain itself is enabled. This means
+when I just add HCLK_VO to the DSI node, then the power domain driver
+will enable it, even when the clock is not touched in the DSI driver at
+all. To me this looks really fishy because I think a device itself
+should have control over its clocks. I don't know how many devices
+really depend on the power domain driver controlling their clocks, but
+everyone of them will stop working when the power domain driver is not
+compiled in.
+
+> 
+> What about DSI and DP? Don't they depend on RK3568_PD_VO as well?
+
+Yes, they depend on that power domain as well.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
