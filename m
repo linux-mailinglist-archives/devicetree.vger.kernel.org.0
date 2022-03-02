@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB734CA82C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9824CA841
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:34:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243028AbiCBObZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 09:31:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43666 "EHLO
+        id S243042AbiCBOfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 09:35:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243121AbiCBOaK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:30:10 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D1EB6E34B;
-        Wed,  2 Mar 2022 06:28:53 -0800 (PST)
+        with ESMTP id S242306AbiCBOfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:35:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF7B1FCEA;
+        Wed,  2 Mar 2022 06:34:39 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 1ACA7B81FF6;
-        Wed,  2 Mar 2022 14:28:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BC28C340ED;
-        Wed,  2 Mar 2022 14:28:50 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CC5FB6133D;
+        Wed,  2 Mar 2022 14:34:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EAF9C004E1;
+        Wed,  2 Mar 2022 14:34:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646231330;
-        bh=x5NhZSDTe+nBk7s18b/KMi3nUIEuVJYY1jAlwghRTyk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lZCrFgAVl4vJwdBUJKqCZreKsAfPLt6WCJ3rKSfZYE1Ygf1C1lKiVYAWqo51qTIkz
-         hKteFm4C9635nJ773d5Me4M+0h1bSFNFgLy9hk/ifpwHZvqMWT/JpVJQJfv6yuI5vw
-         scC4wN4I/KiENygKF0tDoUUsxzRCL4mFlcp5opU0DFa2/rjXybuTqQ7AWpJFp10NVE
-         U29UZSVNmQz7Zow63+JcBshpMw6Fjy6iG/kRaNE8rrtl45v4EH7r51r/Zx7GpJo6+N
-         V9OCGCciFnIG3Xo7awHeaWrnDJRCyHXG54eTik6I6XNbwbjcJ/GHRSyKqXiTjI3yl6
-         Ncm56n8TBwBEw==
-Date:   Wed, 2 Mar 2022 19:58:47 +0530
+        s=k20201202; t=1646231678;
+        bh=DsddKgliXpWgfbTSJqq6vbfVEJXlCc5yzM7GOjfvd2k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pgvWETVkoFF4pAglxqhxWAalhLE20E45W4S3hMYrAS0UkvtR/ilZ/bwXabiyQHKdh
+         DkBwFr3SelME5V7IvbwCnNJKk93hKZvCvK+LK1CJm/xGN9gPqnDVHBKgAuPoDCxEQ9
+         szrC6UgcMzmHmVxu2cgzuq59ZehMe5+R8laoL1ZyBq10HZGCIt+ca4R5vKUb7y3ELg
+         v1OhxNNIl8dD6sHgTtBRCF3G25UVhlE5k7B4su+CngT3wVha5eVE1cu+7bB7DaB0U/
+         CuDLGxh5ZtwyVOXpKgwFotwQtv/8crf8uIvBs5xGLsayYjNMGaUYNT5VLj0pwS+U8g
+         nAlxiD78cWkqA==
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Peter Geis <pgwipeout@gmail.com>
+Cc:     linux-phy@lists.infradead.org, Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: qcom,usb-snps-femto-v2: Add
- sc8180x and sc8280xp
-Message-ID: <Yh9/H9SQilPoHaa/@matsya>
-References: <20220225034049.2294207-1-bjorn.andersson@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: Revert "dt-bindings: soc: grf: add naneng combo phy register compatible"
+Date:   Wed,  2 Mar 2022 20:04:27 +0530
+Message-Id: <20220302143427.447748-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220225034049.2294207-1-bjorn.andersson@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -58,11 +59,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24-02-22, 19:40, Bjorn Andersson wrote:
-> Add compatible for the femto USB PHY found in sc8180x, sc8280xp and the
-> generic 5nm form of the latter.
+This reverts commit b3df807e1fb0 ("dt-bindings: soc: grf: add naneng
+combo phy register compatible") as that was wrongly merged, so better to
+drop the wrong patch
 
-Applied all, thanks
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+I am applying this to phy-next to fix the issue
 
+ Documentation/devicetree/bindings/soc/rockchip/grf.yaml | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+index fe68e22efce0..dfebf425ca49 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.yaml
+@@ -38,8 +38,6 @@ properties:
+               - rockchip,rk3399-grf
+               - rockchip,rk3399-pmugrf
+               - rockchip,rk3568-grf
+-              - rockchip,rk3568-pipe-grf
+-              - rockchip,rk3568-pipe-phy-grf
+               - rockchip,rk3568-pmugrf
+               - rockchip,rv1108-grf
+               - rockchip,rv1108-pmugrf
 -- 
-~Vinod
+2.34.1
+
