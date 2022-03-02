@@ -2,96 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6EA14CA6B8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:55:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D04224CA6C9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:57:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242569AbiCBN4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 08:56:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58780 "EHLO
+        id S239043AbiCBN6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 08:58:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242658AbiCBN4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:56:18 -0500
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 002125F78;
-        Wed,  2 Mar 2022 05:55:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646229335; x=1677765335;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=/S7MkHzGN31vU2aDn4zLMW/e/z4TdWeBwxC5Duf+3PY=;
-  b=Bykq6cXwA0qQFKv+ALKd00hs7CIOo4lqZqTbzKJok1JkEB0sLQmr9Jcs
-   7FD/9UK9uHyv5veBVem1+uq9DIzWTxn3S9HOOBo3uH2sTvKMw/SKwa/Oa
-   KlULIfcHGSreu/PqUweDAT4X4ue8TqrXXV9mdDFBrdwPHGLwCLo7Sh+Wv
-   8xYyVz69J0d5bm3ZscSAqTctbBtXzP0gs5joWcGLNMU/cC7cEJNc+4Bsw
-   7gFhlsy0Qt1uEwg70aiuMr562jelaIeWnlsfBC8pO9Dmwwu7Uut8wgnKv
-   N20DqjgXxpvRCeqvPisCEA6Frx3yArFIUlBvZcLiV//624lxgOANRbkuV
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="253329214"
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
-   d="scan'208";a="253329214"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 05:55:34 -0800
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
-   d="scan'208";a="630417622"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 05:55:32 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nPPRE-00AJcu-UK;
-        Wed, 02 Mar 2022 15:54:44 +0200
-Date:   Wed, 2 Mar 2022 15:54:44 +0200
-From:   "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>
-To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
-Message-ID: <Yh93JNYc/BcTquCC@smile.fi.intel.com>
-References: <20220222095654.9097-1-shruthi.sanil@intel.com>
- <20220222095654.9097-3-shruthi.sanil@intel.com>
- <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
- <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S239201AbiCBN6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:58:17 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29FD13CDE;
+        Wed,  2 Mar 2022 05:57:31 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F6CB60F85;
+        Wed,  2 Mar 2022 13:57:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7599C004E1;
+        Wed,  2 Mar 2022 13:57:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646229451;
+        bh=DzFG8/yJDkYeDVAB1tmDBfvUxPtLzmX1Grn8UfXaJ6M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=O8g7UPnMEmyzkJcPsBymD1qiq8qvReBwUUH9rq4Az++CoihNCXGYc/D+W1K/lWZxV
+         4s0G7+sjpQLbNEs0lF7wzTGB2nQN48iT8zxTEAq6btZzhX6yOdG7tP1pInAAZ+y2T8
+         zmjL9PbVO5QrdCfqMZBdXHbEVsrsiTWy1m6TgiNhxb41HHwrW+DF4xFdlykf6h9eoF
+         4L+jABM6O+0V9nubuXIYYYY8v9UKk1hcBKnyzos4HxGkW7Xn72PROkysC8buy/SZtf
+         LHxtB0r3EvL2ICEFdjomUaiK99SvtU/A6wkcEpL+7Es+9aubRZ4xxLlHnHraKCXEpl
+         g9PocFekKLwRA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nPPTs-00BhAr-Iw; Wed, 02 Mar 2022 13:57:28 +0000
+Date:   Wed, 02 Mar 2022 13:57:27 +0000
+Message-ID: <875yow31a0.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20220302133441.GM269879@dragon>
+References: <20220301062414.2987591-1-shawn.guo@linaro.org>
+        <20220301062414.2987591-3-shawn.guo@linaro.org>
+        <87ee3m2aed.wl-maz@kernel.org>
+        <20220302084028.GL269879@dragon>
+        <877d9c3b2u.wl-maz@kernel.org>
+        <20220302133441.GM269879@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, sudeep.holla@arm.com, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 10:12:49AM +0000, Sanil, Shruthi wrote:
-> > From: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > Sent: Wednesday, March 2, 2022 2:39 AM
-> > Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
-> > On 22/02/2022 10:56, shruthi.sanil@intel.com wrote:
-
-...
-
-> > One line comment format is usually for the network subsystem
+On Wed, 02 Mar 2022 13:34:41 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
 > 
-> OK. I'll update the comment format.
+> On Wed, Mar 02, 2022 at 10:25:45AM +0000, Marc Zyngier wrote:
+> > On Wed, 02 Mar 2022 08:40:28 +0000,
+> > Shawn Guo <shawn.guo@linaro.org> wrote:
+> > > 
+> > > Hi Marc,
+> > > 
+> > > On Tue, Mar 01, 2022 at 11:13:30AM +0000, Marc Zyngier wrote:
+> > > > Hi Shawn,
+> > 
+> > [...]
+> > 
+> > > > 
+> > > > > +static int qcom_mpm_set_type(struct irq_data *d, unsigned int type)
+> > > > > +{
+> > > > > +	struct qcom_mpm_priv *priv = d->chip_data;
+> > > > > +	int pin = d->hwirq;
+> > > > > +	unsigned int index = pin / 32;
+> > > > > +	unsigned int shift = pin % 32;
+> > > > > +
+> > > > > +	switch (type & IRQ_TYPE_SENSE_MASK) {
+> > > > > +	case IRQ_TYPE_EDGE_RISING:
+> > > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_RISING),
+> > > > > +			     MPM_REG_RISING_EDGE, index, shift);
+> > > > > +		break;
+> > > > > +	case IRQ_TYPE_EDGE_FALLING:
+> > > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_FALLING),
+> > > > > +			     MPM_REG_FALLING_EDGE, index, shift);
+> > > > > +		break;
+> > > > > +	case IRQ_TYPE_LEVEL_HIGH:
+> > > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_LEVEL_HIGH),
+> > > > > +			     MPM_REG_POLARITY, index, shift);
+> > > > > +		break;
+> > > > > +	}
+> > > > 
+> > > > All these '!!(type & BLAH)' are totally superfluous, as they all expand
+> > > > to 'true' by construction.
+> > > 
+> > > Yes, you are right!
+> > > 
+> > > > And this leads to a few questions:
+> > > > 
+> > > > - Shouldn't a rising interrupt clear the falling detection?
+> > > > - Shouldn't a level-low clear the polarity?
+> > > > - How do you handle IRQ_TYPE_EDGE_BOTH?
+> > > > - How is MPM_REG_POLARITY evaluated for edge interrupts (resp the EDGE
+> > > >   registers for level interrupts), as you never seem to be configuring
+> > > >   a type here?
+> > > 
+> > > Honestly, qcom_mpm_set_type() was mostly taken from downstream without
+> > > too much thinking.
+> 
+> I have to take this statement back.  It seems that the current code has
+> been diverted from the downstream in a wrong way.
+> 
+> > > I trusted it as a "good" reference as I have no
+> > > document to verify the code.  These questions are great and resulted the
+> > > code changes are pretty sensible to me.
+> > 
+> > I don't think these changes are enough. For example, an interrupt
+> > being switched from level to edge is likely to misbehave (how do you
+> > distinguish the two?). If that's what the downstream driver does, then
+> > it is terminally broken.
+> 
+> Could you take a look at downstream code and see if it answers all your
+> questions?
 
-Hold on, we need a proof from documentation.
+This code actually makes me ask more questions. Why is it programming
+2 'pins' for each IRQ?
+
+> 
+> It seems MPM_REG_POLARITY is only meant for level interrupts, since edge
+> interrupts already have separate registers for rising and falling.
+
+Then level interrupts must clear both the edge registers at all times.
+
+> 
+> I will fix my broken code by respecting the downstream logic.
+> 
+> > As I asked before, we need some actual specs, or at least someone to
+> > paraphrase it for us. There are a number of QC folks on Cc, and I
+> > expect them to chime in and explain how MPM works here.
+> > 
+> > > 
+> > > > - What initialises the MPM trigger types at boot time?
+> > > 
+> > > I dumped the vMPM region and it's all zeros.  My understanding is if
+> > > vMPM needs any sort of initialization, it should be done by RPM firmware
+> > > before APSS gets booting.
+> > 
+> > What about kexec? We can't rely on this memory region to always be
+> > 0-initialised, nor do we know what that means.
+> 
+> We are not relying on it being 0-initialised, but being initialised by
+> RPM with initial physical MPM register values.
+
+Whatever. It simply cannot be trusted. If you kexec another kernel,
+you need to be able to restore a sane state at probe time. This isn't
+optional.
+
+	M.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Without deviation from the norm, progress is not possible.
