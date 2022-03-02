@@ -2,196 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE6864CA3FB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:41:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24BA54CA44D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:57:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239393AbiCBLmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 06:42:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56660 "EHLO
+        id S235155AbiCBL6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 06:58:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239015AbiCBLmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:42:37 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B4890261;
-        Wed,  2 Mar 2022 03:41:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646221314; x=1677757314;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=PoYR7AGVv9IFUckNtTemdvQeFRkA7Uei4+Soa/AJfn0=;
-  b=11DGOTlKyxLSkiehqolmDpznW5jv4gJVBJzgSOXzXf26mic/IjFQkxhj
-   YTT53mrSEGpGMHth8VW3V33YJfBXjuAfmxQ+D7PzYaQWWlUI7UsQfqDQL
-   X2sSfceMVWaVywtX26JEstBBT7kbSa/fpLTkUYJamQROSkLzZwn/CiuBO
-   sxJesd+aF6yCW5LDHG+8zrSfbR6QsmiSDERTpvGLxPwl6Wl0yiYWXnJdr
-   aDD2idwsLV6lpNl+SbsUTTzTxh1F1WqsRfG74L40DmHL0HHqCB9l1/+T3
-   Po5+Y/g3psqaXs1W4HmNzRaN99SHYcp/7Wy06mUTzK6egQx31YMObEwHB
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,148,1643698800"; 
-   d="scan'208";a="87532775"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Mar 2022 04:41:53 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 2 Mar 2022 04:41:52 -0700
-Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 2 Mar 2022 04:41:46 -0700
-Message-ID: <1300f84832ef1c43ecb9edb311fb817e3aab5420.camel@microchip.com>
-Subject: Re: [PATCH v8 net-next 01/10] dt-bindings: net: dsa: dt bindings
- for microchip lan937x
-From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>, <robh+dt@kernel.org>
-CC:     <UNGLinuxDriver@microchip.com>, <woojung.huh@microchip.com>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        <andrew@lunn.ch>, <netdev@vger.kernel.org>, <olteanv@gmail.com>
-Date:   Wed, 2 Mar 2022 17:11:43 +0530
-In-Reply-To: <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
-References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
-         <20220207172204.589190-2-prasanna.vengateshan@microchip.com>
-         <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
-         <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
-         <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
+        with ESMTP id S235302AbiCBL5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:57:51 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180B4B12C2
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:57:05 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nPNbK-00063g-6g; Wed, 02 Mar 2022 12:57:02 +0100
+Message-ID: <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Liu Ying <victor.liu@oss.nxp.com>, Marek Vasut <marex@denx.de>,
+        Adam Ford <aford173@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
+Date:   Wed, 02 Mar 2022 12:57:00 +0100
+In-Reply-To: <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
+References: <20220228004605.367040-1-marex@denx.de>
+         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
+         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
+         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
+         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
+         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
+         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
+         <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.0-1 
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob and Florian,
-
-On Fri, 2022-02-11 at 19:56 -0800, Florian Fainelli wrote:
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> content is safe
-> 
-> On 2/9/2022 3:58 AM, Prasanna Vengateshan wrote:
-> > On Mon, 2022-02-07 at 18:53 -0800, Florian Fainelli wrote:
-> > > EXTERNAL EMAIL: Do not click links or open attachments unless you know the
-> > > content is safe
+Am Mittwoch, dem 02.03.2022 um 17:41 +0800 schrieb Liu Ying:
+> On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
+> > Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
+> > > On 3/1/22 14:18, Lucas Stach wrote:
+> > > > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
+> > > > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
+> > > > > > > On 3/1/22 11:04, Lucas Stach wrote:
+> > > > > > > 
+> > > > > > > Hi,
+> > > > > > > 
+> > > > > > > [...]
+> > > > > > > 
+> > > > > > > > > Given the two totally different IPs, I don't see bugs of IP control
+> > > > > > > > > logics should be fixed for both drivers. Naturally, the two would
+> > > > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
+> > > > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
+> > > > > > > > > 'if/else' checks(barely no common control code), which is hard to
+> > > > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
+> > > > > > > > > and 'LCDIF'.
+> > > > > > > > 
+> > > > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
+> > > > > > > > boilerplate anymore with all the helpers we have available in the
+> > > > > > > > framework today.
+> > > > > > > 
+> > > > > > > I did write a separate driver for this IP before I spent time merging
+> > > > > > > them into single driver, that's when I realized a single driver is much
+> > > > > > > better and discarded the separate driver idea.
+> > > > > > > 
+> > > > > > > > The IP is so different from the currently supported LCDIF controllers
+> > > > > > > > that I think trying to support this one in the existing driver actually
+> > > > > > > > increases the chances to break something when modifying the driver in
+> > > > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
+> > > > > > > > on having a separate driver for the i.MX8MP LCDIF.
+> > > > > > > 
+> > > > > > > If you look at both controllers, it is clear it is still the LCDIF
+> > > > > > > behind, even the CSC that is bolted on would suggest that.
+> > > > > > 
+> > > > > > Yes, but from a driver PoV what you care about is not really the
+> > > > > > hardware blocks used to implement something, but the programming model,
+> > > > > > i.e. the register interface exposed to software.
+> > > > > > 
+> > > > > > > I am also not happy when I look at the amount of duplication a separate
+> > > > > > > driver would create, it will be some 50% of the code that would be just
+> > > > > > > duplicated.
+> > > > > > > 
+> > > > > > Yea, the duplicated code is still significant, as the HW itself is so
+> > > > > > simple. However, if you find yourself in the situation where basically
+> > > > > > every actual register access in the driver ends up being in a "if (some
+> > > > > > HW rev) ... " clause, i still think it would be better to have a
+> > > > > > separate driver, as the programming interface is just different.
+> > > > > 
+> > > > > I tend to agree with Marek on this one.  We have an instance where the
+> > > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+> > > > > but different enough where each SoC has it's own set of tables and
+> > > > > some checks.   Lucas created the framework, and others adapted it for
+> > > > > various SoC's.  If there really is nearly 50% common code for the
+> > > > > LCDIF, why not either leave the driver as one or split the common code
+> > > > > into its own driver like lcdif-common and then have smaller drivers
+> > > > > that handle their specific variations.
+> > > > 
+> > > > I don't know exactly how the standalone driver looks like, but I guess
+> > > > the overlap is not really in any real HW specific parts, but the common
+> > > > DRM boilerplate, so there isn't much point in creating a common lcdif
+> > > > driver.
 > > > 
-> > > On 2/7/2022 9:21 AM, Prasanna Vengateshan wrote:
-> > > > Documentation in .yaml format and updates to the MAINTAINERS
-> > > > Also 'make dt_binding_check' is passed.
-> > > > 
-> > > > RGMII internal delay values for the mac is retrieved from
-> > > > rx-internal-delay-ps & tx-internal-delay-ps as per the feedback from
-> > > > v3 patch series.
-> > > > https://lore.kernel.org/netdev/20210802121550.gqgbipqdvp5x76ii@skbuf/
-> > > > 
-> > > > It supports only the delay value of 0ns and 2ns.
-> > > > 
-> > > > Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > ---
-> > > >    .../bindings/net/dsa/microchip,lan937x.yaml   | 179 ++++++++++++++++++
-> > > >    MAINTAINERS                                   |   1 +
-> > > >    2 files changed, 180 insertions(+)
-> > > >    create mode 100644
-> > > > Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
-> > > > 
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  mdio:
-> > > > +    $ref: /schemas/net/mdio.yaml#
-> > > > +    unevaluatedProperties: false
-> > > 
-> > > This should be moved to dsa.yaml since this is about describing the
-> > > switch's internal MDIO bus controller. This is applicable to any switch,
-> > > really.
+> > > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
+> > > that, there is some 400 LoC which are specific to old LCDIF and this 
+> > > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
+> > > shared boilerplate that would be duplicated .
 > > 
-> > Thanks for your review and feedback. Do you mean that 'mdio' to be added in
-> > dsa.yaml instead adding here?
+> > That is probably ignoring the fact that the 8MP LCDIF does not support
+> > any overlays, so it could use the drm_simple_display_pipe
+> > infrastructure to reduce the needed boilerplate.
 > 
-> Yes indeed, since this is a common property of all DSA switches, it can
-> be defined or not depending on whether the switch does have an internal
-> MDIO bus controller or not.
-> 
-> > 
-> > > 
-> > > > +
-> > > > +patternProperties:
-> > > > +  "^(ethernet-)?ports$":
-> > > > +    patternProperties:
-> > > > +      "^(ethernet-)?port@[0-7]+$":
-> > > > +        allOf:
-> > > > +          - if:
-> > > > +              properties:
-> > > > +                phy-mode:
-> > > > +                  contains:
-> > > > +                    enum:
-> > > > +                      - rgmii
-> > > > +                      - rgmii-rxid
-> > > > +                      - rgmii-txid
-> > > > +                      - rgmii-id
-> > > > +            then:
-> > > > +              properties:
-> > > > +                rx-internal-delay-ps:
-> > > > +                  $ref: "#/$defs/internal-delay-ps"
-> > > > +                tx-internal-delay-ps:
-> > > > +                  $ref: "#/$defs/internal-delay-ps"
-> > > 
-> > > Likewise, this should actually be changed in ethernet-controller.yaml
-> > 
-> > There is *-internal-delay-ps property defined for mac in ethernet-
-> > controller.yaml. Should that be changed like above?
-> 
-> It seems to me that these properties override whatever 'phy-mode'
-> property is defined, but in premise you are right that this is largely
-> applicable to RGMII only. I seem to recall that the QCA8K driver had
-> some sort of similar delay being applied even in SGMII mode but I am not
-> sure if we got to the bottom of this.
-> 
-> Please make sure that this does not create regressions for other DTS in
-> the tree before going with that change in ethernet-controller.yaml.
-> 
+> The drm_simple_display_pipe infrastructure is probably too simple for
+> i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
+> embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
+> outputs respectively. To use that infrastructure means there would be
+> three dri cards in all. However, the three LCDIF instances can be
+> wrapped by the one drm device, which is not the boilerplate code in the
+> current mxsfb driver may handle.
 
-I just tried changing rx-internal-delay-ps & tx-internal-delay-ps on conditional
-basis like above in the ethernet-controller.yaml and it passed 'make
-dt_binding_check' as well. 
+While that may make things a little simpler for userspace, I'm not sure
+if this is the right thing to do. It complicates the driver a lot,
+especially if you want to get things like independent power management,
+etc. right. It also creates a fake view for userspace, where is looks
+like there might be some shared resources between the different display
+paths, while in reality they are fully independent.
 
-It would be like below if existing *-internal-delay-ps are removed from
-ethernet-controller.yaml.
+While we do something similar on the GPU side and collect all GPU cores
+under a single DRM device, I'm not fully convinced that this was a good
+decision. It now comes back to bite us when the SoC topologies get a
+little more interesting and e.g. devices are behind different IOMMU
+streams.
 
-allOf:
-  - if:
-      properties:
-        phy-mode:
-          contains:
-            enum:
-              - rgmii
-              - rgmii-rxid
-              - rgmii-txid
-              - rgmii-id
-            then:
-              properties:
-                rx-internal-delay-ps:
-                  description:
-                    RGMII Receive Clock Delay defined in pico seconds.This is 
-                    used for controllers that have configurable RX internal 
-                    delays. If this property is present then the MAC applies 
-                    the RX delay.
-                tx-internal-delay-ps:
-                  description:
-                    RGMII Transmit Clock Delay defined in pico seconds.This is
-                    used for controllers that have configurable TX internal
-                    delays. If this property is present then the MAC applies
-                    the TX delay.   
-
-After the above changes, these two properties descriptions are different compare
-to other properties. So i just wanted to know whether i am following the right
-approach or are there any other proposal available? Thanks.
-
-Prasanna V
+Regards,
+Lucas
 
