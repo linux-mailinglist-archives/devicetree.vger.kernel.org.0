@@ -2,51 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AEEC4CAB08
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:01:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A17034CAB19
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:04:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243634AbiCBRCM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 12:02:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57818 "EHLO
+        id S234237AbiCBRFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 12:05:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243642AbiCBRCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:02:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22D79CF387;
-        Wed,  2 Mar 2022 09:01:20 -0800 (PST)
+        with ESMTP id S234082AbiCBRFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:05:05 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 512D411A32;
+        Wed,  2 Mar 2022 09:04:22 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 80C7BB82104;
-        Wed,  2 Mar 2022 17:01:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81B73C340ED;
-        Wed,  2 Mar 2022 17:01:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E109261923;
+        Wed,  2 Mar 2022 17:04:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A256C340F8;
+        Wed,  2 Mar 2022 17:04:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646240478;
-        bh=Zs5wBntKidaaPOmZunJVUcvMcbvcyFX9EXzTcGS2KjQ=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=Qs9Sq6kpS4eBlNYQOTEsTVs3RXAFuEXzRTDItD8yubKcESwXJ1DtFsY95/ZiGtfDl
-         qZud9M22xAtQqIJFLweN9n4o8XVolZgBfuCUYFqUv+qBL1YijITkf/Pu7IkCByHpXk
-         bqYASr2IRir9XuyUus0mlMIknHTfmD5S8Kgp73QWQlB/0wKsRdkUg9V7wJJBBx5FGW
-         cppc1MOJ1HVaIRbqYXY5hwRQA4IB8M+aW96re1jtcUkYbkoPnxhd3QoqayUuyw+CNX
-         05uuLEVqw93qXxgWEcJbjXDXwCdAgzgRf/IZC2uW5gpX7vNoM1/cdGDNT6xgO2yIB0
-         8bytwm5NW43/A==
-From:   Mark Brown <broonie@kernel.org>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20220301212358.1887668-1-robh@kernel.org>
-References: <20220301212358.1887668-1-robh@kernel.org>
-Subject: Re: [PATCH] spi: dt-bindings: mediatek: Set min size for 'mediatek,pad-select'
-Message-Id: <164624047624.1145410.7673106466966850861.b4-ty@kernel.org>
-Date:   Wed, 02 Mar 2022 17:01:16 +0000
+        s=k20201202; t=1646240661;
+        bh=Icqzp9SWIKc87+ugA8V1Jg/Egl5KGIZgDSmOGMm1YjM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=XlN89rRBvF+GlGzocnWiX3bxrAI2gW6UwYY9sVM2abvIaNKse/VLFty1vRTc36Lnb
+         SSdHHvC8+2f2xs+Ai+f5bVGIc8xGogCj6Xyb3IQod3sJNXMpuMbh4JtLyo9FuyGkdw
+         QeBMia/6AvkZY4fLDs3RGxSd9SeT98vWiiplnvECmf9Llo3Gs8qymYHZUxLFsgwJYU
+         tv+h0w8B4RKHuO09aJMWRTYACMp+HDRufCp5FtTLwnLm4Bcwn/PmxRjlHgSf+8G+tN
+         O847KYrkTuVKbaDKHuhpSwE9AdztBEOaKZZFVcGY81gCrxvtANDYA62iBj0dPtefFM
+         p1yp2/FLiHc5g==
+Received: by mail-qt1-f172.google.com with SMTP id w1so2223762qtj.2;
+        Wed, 02 Mar 2022 09:04:21 -0800 (PST)
+X-Gm-Message-State: AOAM531YYhk0294cAtarzAowPBKj/rN84kxan5QIUj8rYjcmjc2WKhhr
+        8u9j4COXkZMscPZt1XHPVWoVml7Rku4vi6FzpQ==
+X-Google-Smtp-Source: ABdhPJzVh9qPRrBt75o8AJLwWVKH7Kq5B4Apg3LHn1XCzh/s46oA4VubuT2CvtvTNnOdmGBFZvtsF8c7sASSb8loYU0=
+X-Received: by 2002:ac8:4e56:0:b0:2de:7120:61c9 with SMTP id
+ e22-20020ac84e56000000b002de712061c9mr24266586qtw.684.1646240660169; Wed, 02
+ Mar 2022 09:04:20 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20220302143427.447748-1-vkoul@kernel.org>
+In-Reply-To: <20220302143427.447748-1-vkoul@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 2 Mar 2022 11:04:08 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJMZ8PHqJk6drNbNHprmfeV9UvJzJnech7sz_JwcdbckA@mail.gmail.com>
+Message-ID: <CAL_JsqJMZ8PHqJk6drNbNHprmfeV9UvJzJnech7sz_JwcdbckA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Revert "dt-bindings: soc: grf: add naneng
+ combo phy register compatible"
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -57,40 +72,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 1 Mar 2022 15:23:57 -0600, Rob Herring wrote:
-> The minimum array length defaults to the same size as the maximum. For
-> 'mediatek,pad-select', the example has a length of 2 and in-tree .dts
-> files have a length of 1, but the schema says the length must be 4.
-> 
-> There's currently no warning in the example because the schema fixups
-> are not handling this case correctly.
-> 
-> [...]
+On Wed, Mar 2, 2022 at 8:34 AM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> This reverts commit b3df807e1fb0 ("dt-bindings: soc: grf: add naneng
+> combo phy register compatible") as that was wrongly merged, so better to
+> drop the wrong patch
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+> I am applying this to phy-next to fix the issue
 
-Applied to
+Reverting will just cause a different warning that it is undocumented.
+The fix in the other thread won't apply either if you revert.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/1] spi: dt-bindings: mediatek: Set min size for 'mediatek,pad-select'
-      commit: d149dd2a806b9d11e570c3731eca8bda3c5f6238
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Rob
