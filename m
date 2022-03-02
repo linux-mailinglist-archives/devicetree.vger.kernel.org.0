@@ -2,111 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 746384CA9FB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:19:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E4134CAA10
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:23:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237309AbiCBQTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 11:19:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39982 "EHLO
+        id S233708AbiCBQYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 11:24:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238228AbiCBQTm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:19:42 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB79C2E0AB;
-        Wed,  2 Mar 2022 08:18:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646237939; x=1677773939;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=iJZ4w2BNAIhvjzcRUQCBu6P8PtdF5bDSwthjMcne50s=;
-  b=fbwjA2G0jNFpJ8xrUz7MKCEgQBrHZy1gXPLZsSR81XYgmWQ4wqbF+++J
-   LeJIsvF+6E2FlWqQ6qWNdwmf7qjsgK+Fjwd0iDYLI9vtW3+9M4ZJpCTE6
-   YDNgUJ9fAOXPG7whlEwaQjnD/dP9KthtlpLcsiRKeO9WjMoVHkOr0gOmR
-   PnFg55HVqRTyFUWm8vpQ2S0XGKnIFnpg+lTN6WEfR7Q3TNsbTFThdr3O2
-   cq4xtuzn1DglVHg59pigePVuPkaL2/wrQZyfBNvujaSla/rey832C/I6P
-   GLK+5fI3N+rFkJdelWdqnuum8IwSwIQLFPCD2OwxVk7VntKZeCllup1Z4
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,149,1643698800"; 
-   d="scan'208";a="155442920"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Mar 2022 09:18:59 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 2 Mar 2022 09:18:59 -0700
-Received: from ROB-ULT-M18064N.mchp-main.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Wed, 2 Mar 2022 09:18:56 -0700
-From:   Tudor Ambarus <tudor.ambarus@microchip.com>
-To:     <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>,
-        <alexandre.belloni@bootlin.com>
-CC:     <robh+dt@kernel.org>, <eugen.hristev@microchip.com>,
-        <codrin.ciubotariu@microchip.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sergiu.moga@microchip.com>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        <stable@vger.kernel.org>
-Subject: [PATCH] ARM: dts: at91: sama7g5: Remove unused properties in i2c nodes
-Date:   Wed, 2 Mar 2022 18:18:54 +0200
-Message-ID: <20220302161854.32177-1-tudor.ambarus@microchip.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232397AbiCBQYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:24:24 -0500
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A653CFDE;
+        Wed,  2 Mar 2022 08:23:41 -0800 (PST)
+Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
+        by localhost (Postfix) with ESMTP id 4K7zvH3rXNz9sSR;
+        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id g3_V2IdfLWdQ; Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+        by pegase2.c-s.fr (Postfix) with ESMTP id 4K7zvH2zcrz9sSN;
+        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+Received: from localhost (localhost [127.0.0.1])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 5597B8B76D;
+        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+        with ESMTP id jM4um5h1j013; Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+Received: from [172.25.230.108] (unknown [172.25.230.108])
+        by messagerie.si.c-s.fr (Postfix) with ESMTP id 241D08B763;
+        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
+Message-ID: <d67e43a5-a654-e622-bab8-d2f55a7013f3@csgroup.eu>
+Date:   Wed, 2 Mar 2022 17:23:38 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [Reoprt] Some compile warning on ppc dts
+Content-Language: fr-FR
+To:     "chenjun (AM)" <chenjun102@huawei.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Paul Mackerras <paulus@samba.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "Xiangrui (Euler)" <rui.xiang@huawei.com>
+References: <CE1E7D7EFA066443B6454A6A5063B50220CCBBE4@dggeml509-mbx.china.huawei.com>
+From:   Christophe Leroy <christophe.leroy@csgroup.eu>
+In-Reply-To: <CE1E7D7EFA066443B6454A6A5063B50220CCBBE4@dggeml509-mbx.china.huawei.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "atmel,use-dma-rx", "atmel,use-dma-rx" dt properties are not used by
-the i2c-at91 driver, nor they are defined in the bindings file, thus remove
-them.
 
-Cc: stable@vger.kernel.org
-Fixes: 7540629e2fc7 ("ARM: dts: at91: add sama7g5 SoC DT and sama7g5-ek")
-Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
----
- arch/arm/boot/dts/sama7g5.dtsi | 6 ------
- 1 file changed, 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-index 1dc0631e9fd4..e626f6bd920a 100644
---- a/arch/arm/boot/dts/sama7g5.dtsi
-+++ b/arch/arm/boot/dts/sama7g5.dtsi
-@@ -591,8 +591,6 @@ i2c1: i2c@600 {
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(7)>,
- 					<&dma0 AT91_XDMAC_DT_PERID(8)>;
- 				dma-names = "rx", "tx";
--				atmel,use-dma-rx;
--				atmel,use-dma-tx;
- 				status = "disabled";
- 			};
- 		};
-@@ -778,8 +776,6 @@ i2c8: i2c@600 {
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(21)>,
- 					<&dma0 AT91_XDMAC_DT_PERID(22)>;
- 				dma-names = "rx", "tx";
--				atmel,use-dma-rx;
--				atmel,use-dma-tx;
- 				status = "disabled";
- 			};
- 		};
-@@ -804,8 +800,6 @@ i2c9: i2c@600 {
- 				dmas = <&dma0 AT91_XDMAC_DT_PERID(23)>,
- 					<&dma0 AT91_XDMAC_DT_PERID(24)>;
- 				dma-names = "rx", "tx";
--				atmel,use-dma-rx;
--				atmel,use-dma-tx;
- 				status = "disabled";
- 			};
- 		};
--- 
-2.25.1
+Le 01/03/2021 à 03:16, chenjun (AM) a écrit :
+> Hi
+> 
+> After run the following commands
+> make distclean
+> make allmodconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+> make oldconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+> make -j64 ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
+> 
+> I get some warning:
+> arch/powerpc/boot/dts/mpc5200b.dtsi:267.20-280.4: Warning (pci_bridge):
+> /pci@f0000d00: missing ranges for PCI bridg
+> e (or not a bridge)
+> arch/powerpc/boot/dts/o2dnt2.dtb: Warning (pci_device_bus_num): Failed
+> prerequisite 'pci_bridge'
+> arch/powerpc/boot/dts/mpc5200b.dtsi:182.18-186.5: Warning
+> (spi_bus_bridge): /soc5200@f0000000/psc@2000: node name f
+> or SPI buses should be 'spi'
+>     also defined at arch/powerpc/boot/dts/o2d.dtsi:32.12-43.5
+> arch/powerpc/boot/dts/o2dnt2.dtb: Warning (spi_bus_reg): Failed
+> prerequisite 'spi_bus_bridge'
+> ...
+> 
+> For the problem about "node name for SPI buses should be 'spi'":
+> Rename the psc@2000 to spi@2000 in arch/powerpc/boot/dts/o2d.dtsi can
+> fix it.
+> diff --git a/arch/powerpc/boot/dts/o2d.dtsi b/arch/powerpc/boot/dts/o2d.dtsi
+> index 6661955a2be4..cd3dc70cd72e 100644
+> --- a/arch/powerpc/boot/dts/o2d.dtsi
+> +++ b/arch/powerpc/boot/dts/o2d.dtsi
+> @@ -29,7 +29,7 @@ rtc@800 {
+>    >------>------->-------status = "disabled";
+>    >------>-------};
+> -
+> ->------>-------psc@2000 {>----->-------// PSC1
+> +>------>-------spi@2000 {>----->-------// PSC1
+>    >------>------->-------compatible =
+> "fsl,mpc5200b-psc-spi","fsl,mpc5200-psc-spi";
+>    >------>------->-------#address-cells = <1>;
+>    >------>------->-------#size-cells = <0>;
+> ---
+> 
+> For the problem about "missing ranges for PCI bridge (or not a bridge)":
+> Ranges should be add in arch/powerpc/boot/dts/mpc5200b.dtsi.
+>   >-------pci: pci@f0000d00 {
+>   >------->-------#interrupt-cells = <1>;
+>   >------->-------#size-cells = <2>;
+>   >------->-------#address-cells = <3>;
+>   >------->-------device_type = "pci";
+>   >------->-------compatible = "fsl,mpc5200b-pci","fsl,mpc5200-pci";
+>   >------->-------reg = <0xf0000d00 0x100>;
+>   >------->-------// interrupt-map-mask = need to add
+>   >------->-------// interrupt-map = need to add
+>   >------->-------clock-frequency = <0>; // From boot loader
+>   >------->-------interrupts = <2 8 0 2 9 0 2 10 0>;
+>   >------->-------bus-range = <0 0>;
+>   >------->-------// ranges = need to add
+>   >-------};
+> I think the ranges should be add by someone who knows the mpc5200 better.
+> 
 
+
+This patch has garbage instead of tabs, it doesn't apply
