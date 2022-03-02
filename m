@@ -2,63 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB304CA7C7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:18:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AFCFA4CA7DF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:22:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240469AbiCBOTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 09:19:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45190 "EHLO
+        id S241212AbiCBOXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 09:23:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229518AbiCBOTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:19:15 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DD7B3206A;
-        Wed,  2 Mar 2022 06:18:30 -0800 (PST)
+        with ESMTP id S240145AbiCBOXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:23:24 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF373CA47;
+        Wed,  2 Mar 2022 06:22:41 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0B61D61253;
-        Wed,  2 Mar 2022 14:18:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D6CCC36AE2;
-        Wed,  2 Mar 2022 14:18:29 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id CBB06B81F16;
+        Wed,  2 Mar 2022 14:22:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A177AC004E1;
+        Wed,  2 Mar 2022 14:22:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646230709;
-        bh=gxiP6v94MXu3RljGfCE7WLcIykK9JkMBERm4BwYuGSo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cJYa3a37PvqmYgw+/cPbLTkkyX2eOBa+4jzg8/hCRWrw/BzjqAhS8Dt61YvLcjfyk
-         VzxEtz72ydafRpJ3C6dErndSHZpSfRyEtSdLqTimP/1bsEfpXpuTc7OxUKhCW4f6PB
-         imUoW32AK12K/YIIvyhKIWbCcn6+AVZEqq0wCO5jFiM2jEQaz262AG5UVNPdMYJTVB
-         /nigVZXj3TLUYVXa+h3+ADwwPce5pYYY4+vVPigxaf+HDo6YWFqilYymKRp2hqdTq2
-         1G2H4OtqLcg2TLXxN9RIs6M5Nb3iNg9MHFkGkw5nXKf/TFztHKirfdYaVQ3+aNohEU
-         cSFotPCuHAfuw==
-Received: by mail-ed1-f42.google.com with SMTP id x5so2445201edd.11;
-        Wed, 02 Mar 2022 06:18:29 -0800 (PST)
-X-Gm-Message-State: AOAM531asbL3lIkLKdTQ8+fdVQsdF+A8osOc7KTupatycJyAULCqrHI0
-        Sl8rbjtPw2aRw7DG8M/rrAX+ew9Ffot5Rno1Uw==
-X-Google-Smtp-Source: ABdhPJxaHUApfDByMrpHno61mSAYEpUOyHQxBICf+S5gGxCXKyAPyKzrnwBQ4Ft+3F9gaSndH7kcBnkhpHeodrOzYfE=
-X-Received: by 2002:aa7:ce08:0:b0:410:a996:d6a5 with SMTP id
- d8-20020aa7ce08000000b00410a996d6a5mr29367115edv.303.1646230707611; Wed, 02
- Mar 2022 06:18:27 -0800 (PST)
+        s=k20201202; t=1646230958;
+        bh=gtQk75T3qKDxWoDQiGWygKCOzdyAYhEBNXZLCyqiv0M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=i22xKKX0SQD3c2kRTiVGhQmy0lDN0stgowJAclW1NmZbMgrB2gX93GGnFGrD33HtO
+         zAEXtNZBtM5wIau9y191ZpsXONrZTMg+aIeZZ+7vf6gYmqGCVyZL0rkC0JTgntPscu
+         bah6ZdaB0gk+YEraw4R4Lc0cZxCc2KGz4cSeVxeIGwpICfNCsk9omrVMdIVHn7impW
+         5AdCPag9H2wQN+O6s8I+bBqaZ4jPzSfz2jFD/xUGbDSUZ4ajriXJU9hrMYAIi/29sO
+         07K9ejfdoVFMIV7jCet3zH9iVRaof0i1hM5BS1CtiOBdUdMXihT5bZsWNDF/EqXqRj
+         LEynYA0zgVaIw==
+Date:   Wed, 2 Mar 2022 19:52:33 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Johan Jonker <jbx6244@gmail.com>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Rob Herring <robh@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 1/8] dt-bindings: soc: grf: fix rk3568 usb definitions
+Message-ID: <Yh99qVeALFN3X9te@matsya>
+References: <20220228135700.1089526-1-pgwipeout@gmail.com>
+ <20220228135700.1089526-2-pgwipeout@gmail.com>
+ <CAMdYzYqs=iRY6uNzVSkHrrhPYFixXdbZjtwSpPOjf-6f8TXutw@mail.gmail.com>
+ <Yh8n7XiJbaT4pZGD@matsya>
+ <CAMdYzYrkDbr5mHYmAbqBoJJEKH8A5xXfRNuTiTn8q40vRJeCgA@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220301230629.1892828-1-ctshao@google.com>
-In-Reply-To: <20220301230629.1892828-1-ctshao@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 2 Mar 2022 08:18:15 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK59GGhYQSEWvb=HtHTwMh=LXomu2zX4dEQeo4s3A0VtQ@mail.gmail.com>
-Message-ID: <CAL_JsqK59GGhYQSEWvb=HtHTwMh=LXomu2zX4dEQeo4s3A0VtQ@mail.gmail.com>
-Subject: Re: [PATCH] config: Using HOSTPKG_CONFIG prefix for pkg-config
-To:     Chun-Tse Shao <ctshao@google.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMdYzYrkDbr5mHYmAbqBoJJEKH8A5xXfRNuTiTn8q40vRJeCgA@mail.gmail.com>
 X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,99 +66,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 1, 2022 at 5:07 PM Chun-Tse Shao <ctshao@google.com> wrote:
->
-> In some parts, pkg-config does not use appropriate $BUILDROOT prefix.
+On 02-03-22, 07:18, Peter Geis wrote:
+> On Wed, Mar 2, 2022 at 3:16 AM Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > On 01-03-22, 09:52, Peter Geis wrote:
+> > > Good Morning,
+> > >
+> > > Would it be possible to pull this patch individually, to fix the
+> > > current error reported by Rob?
+> >
+> > This does not apply for me on phy-next. What was this based on..?
+> 
+> This is based on linux-next, which the applicable patch was accepted on 24 Feb.
+> The original patch was correct, but it seems a merge error happened
+> and these two lines were moved into an incorrect location.
+> This patch corrects that, but I see on the original patch chain you
+> are discussing reverting and reapplying to fix it.
 
-The kernel tree knows nothing about buildroot. Please reword this in a
-more generic way that you need to override the host pkg-config.
+Ok let me revert than so that it is easy for everyone to fix up
 
-> The patch adds HOSTPKG_CONFIG prefix for pkg-config to fix the issue.
->
-> Signed-off-by: Chun-Tse Shao <ctshao@google.com>
-> ---
->  Makefile               | 3 ++-
->  scripts/Makefile       | 4 ++--
->  scripts/dtc/Makefile   | 6 +++---
->  tools/objtool/Makefile | 4 ++--
->  4 files changed, 9 insertions(+), 8 deletions(-)
->
-> diff --git a/Makefile b/Makefile
-> index daeb5c88b50b..f6c5bef7e141 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -430,6 +430,7 @@ else
->  HOSTCC = gcc
->  HOSTCXX        = g++
->  endif
-> +HOSTPKG_CONFIG = pkg-config
->
->  export KBUILD_USERCFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes \
->                               -O2 -fomit-frame-pointer -std=gnu89
-> @@ -525,7 +526,7 @@ KBUILD_LDFLAGS_MODULE :=
->  KBUILD_LDFLAGS :=
->  CLANG_FLAGS :=
->
-> -export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC
-> +export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
->  export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
->  export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
->  export KGZIP KBZIP2 KLZOP LZMA LZ4 XZ ZSTD
-> diff --git a/scripts/Makefile b/scripts/Makefile
-> index ce5aa9030b74..f084f08ed176 100644
-> --- a/scripts/Makefile
-> +++ b/scripts/Makefile
-> @@ -14,8 +14,8 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)   += insert-sys-cert
->  HOSTCFLAGS_sorttable.o = -I$(srctree)/tools/include
->  HOSTLDLIBS_sorttable = -lpthread
->  HOSTCFLAGS_asn1_compiler.o = -I$(srctree)/include
-> -HOSTCFLAGS_sign-file.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
-> -HOSTLDLIBS_sign-file = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
-> +HOSTCFLAGS_sign-file.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
-> +HOSTLDLIBS_sign-file = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
->
->  ifdef CONFIG_UNWINDER_ORC
->  ifeq ($(ARCH),x86_64)
-> diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-> index 95aaf7431bff..743fc08827ea 100644
-> --- a/scripts/dtc/Makefile
-> +++ b/scripts/dtc/Makefile
-> @@ -18,7 +18,7 @@ fdtoverlay-objs       := $(libfdt) fdtoverlay.o util.o
->  # Source files need to get at the userspace version of libfdt_env.h to compile
->  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
->
-> -ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
-> +ifeq ($(shell $(HOSTPKG_CONFIG) --exists yaml-0.1 2>/dev/null && echo yes),)
->  ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
->  $(error dtc needs libyaml for DT schema validation support. \
->         Install the necessary libyaml development package.)
-> @@ -27,9 +27,9 @@ HOST_EXTRACFLAGS += -DNO_YAML
->  else
->  dtc-objs       += yamltree.o
->  # To include <yaml.h> installed in a non-default path
-> -HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
-> +HOSTCFLAGS_yamltree.o := $(shell $(HOSTPKG_CONFIG) --cflags yaml-0.1)
->  # To link libyaml installed in a non-default path
-> -HOSTLDLIBS_dtc := $(shell pkg-config yaml-0.1 --libs)
-> +HOSTLDLIBS_dtc := $(shell $(HOSTPKG_CONFIG) yaml-0.1 --libs)
->  endif
->
->  # Generated files need one more search path to include headers in source tree
-> diff --git a/tools/objtool/Makefile b/tools/objtool/Makefile
-> index 92ce4fce7bc7..549acc5859e9 100644
-> --- a/tools/objtool/Makefile
-> +++ b/tools/objtool/Makefile
-> @@ -19,8 +19,8 @@ LIBSUBCMD             = $(LIBSUBCMD_OUTPUT)libsubcmd.a
->  OBJTOOL    := $(OUTPUT)objtool
->  OBJTOOL_IN := $(OBJTOOL)-in.o
->
-> -LIBELF_FLAGS := $(shell pkg-config libelf --cflags 2>/dev/null)
-> -LIBELF_LIBS  := $(shell pkg-config libelf --libs 2>/dev/null || echo -lelf)
-> +LIBELF_FLAGS := $(shell $(HOSTPKG_CONFIG) libelf --cflags 2>/dev/null)
-> +LIBELF_LIBS  := $(shell $(HOSTPKG_CONFIG) libelf --libs 2>/dev/null || echo -lelf)
->
->  all: $(OBJTOOL)
->
-> --
-> 2.35.1.574.g5d30c73bfb-goog
->
+Thanks
+
+-- 
+~Vinod
