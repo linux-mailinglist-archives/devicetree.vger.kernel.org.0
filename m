@@ -2,109 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7A74CAE33
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:05:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4483A4CAE37
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:05:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236136AbiCBTFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 14:05:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45256 "EHLO
+        id S244901AbiCBTFy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 14:05:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244916AbiCBTFi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:05:38 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0FED048D
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 11:04:54 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8B7A53F612
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 19:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646247890;
-        bh=o/gq2zH0XhC0PaitqVD/LagQpkqLCpBFDwRKMGbmd0w=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:Cc:From:
-         In-Reply-To:Content-Type;
-        b=VX5E2GTk3XaX1klJGyfzuzvzJhPWgNbJ65jFDYpMxrC0weEhXY+s3plrO8WZWxZC9
-         FPkEz5MJ18M4nQTrn+3FzU3H+fY3QFJ0cqMqUyoR7yj2bfe1TwTYQb6VLz3H4Mz/ze
-         cq9QJtMQWMxBmaEk589oylobcyXTKA5vBeFa9rM1Ow4vCG0eyM5armtlt2uhjzfvNH
-         hfVi8H42m7POM3iyB/ZS7nSAw0ItWvrcKwdl19nB6Xn9fW5KaF1qojzaWQx3sKuDhu
-         tQ44XJvTw/MSH9+Nv6/Xr5AVOxPhOT0D8wxKi8rMpDux3NJChuVVmMQE5U4u7PB/E+
-         aQB1zUkEZ+1VA==
-Received: by mail-ed1-f70.google.com with SMTP id j9-20020a056402238900b004128085d906so1482673eda.19
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 11:04:50 -0800 (PST)
+        with ESMTP id S233516AbiCBTFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:05:51 -0500
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7927D04B4;
+        Wed,  2 Mar 2022 11:05:07 -0800 (PST)
+Received: by mail-pf1-x431.google.com with SMTP id e15so1158166pfv.11;
+        Wed, 02 Mar 2022 11:05:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=1v/GWH828oM9qnw7BmuwPl1OTwbK6th2t0rZuoggB/w=;
+        b=ZhyXOK3wtbHda6wuUihJ05V5rG7u73YYPzNG2P3Rqn46fkvYe+zsehpnNA3JLoYVNQ
+         omuYRrc8bolqhZsCwYCJ00BtBwMy6eO8vebHuG2yJgjmkfx7YK+t7bcFYMBo9MB/CJrA
+         ysj4wSTfCSnNa4hzgbKXWC0roQiVIvleSeh9CwqPJxL2EQ4pUeJRddoqYd6fTRoC1OTE
+         gLKk9K+BMcou31589beb+DxDz7Zx/W2dBBw/NFmeqL9SlKNqr8tRGnrNymWMu9i6V0hk
+         UZd/DBdSwEcJ5Z54tJSA/SzbtKz1n0P1bMlXCXV7OMNwso3UlcDzB6JrpSaUwcrN93IR
+         U2QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:cc:from:in-reply-to
-         :content-transfer-encoding;
-        bh=o/gq2zH0XhC0PaitqVD/LagQpkqLCpBFDwRKMGbmd0w=;
-        b=bEbyrTyMb+GJbkv2UlQrQ1Qyn7amheGsDhaAeMooI5oVZ5PWO+hOyV3tfuc5SyTs/R
-         dRSWWCt2iaeWFIef/9OPRxC/BtmJSe4IuNixQauAWn2WQ6yhZZRNvVbU5h7mYi8ZViJe
-         fMX6WY49+JRVW7GSdHu8mV1+pWrJUzgl+6LR2H3UTiT62lYSLPtH0KRtX58JiqWnLW9G
-         LutFFrDJRsvejHWMfJ64OF1EOPw9KbupACZMZInVMTUMLANfTJ5rejMSH4Y7RjXTWp8n
-         Q/eGCP8TDABSMy7WbaFhyAK5AO0Z1yGZwlIERiRqS/cObNMpwGouxZX7X1EgI3H2jjow
-         cEQw==
-X-Gm-Message-State: AOAM533LIGRJ1ehb92WS/o6oYyTwFs3tsZOxbehl6eZtukZQ0J61hXyU
-        QRrzIR0pYmBEdx+Y9E/9c1oZOBzRC6eb3hU5ynLY0SfK4tVnfKD7hdfapwb3btqBRKcv4QjVlGY
-        aLgEyAzL/SwoLm5FRh49tJ74abTB7l4B52zydic8=
-X-Received: by 2002:a05:6402:26cb:b0:3fa:3817:1f78 with SMTP id x11-20020a05640226cb00b003fa38171f78mr30654855edd.219.1646247889888;
-        Wed, 02 Mar 2022 11:04:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy5ud+uzIs5hvG4Gs8CgEyL9Hzob7WkoDzIJWUkIA9MRmpeL5TH6uATTuuggM0eZzWdPfuGEw==
-X-Received: by 2002:a05:6402:26cb:b0:3fa:3817:1f78 with SMTP id x11-20020a05640226cb00b003fa38171f78mr30654817edd.219.1646247889629;
-        Wed, 02 Mar 2022 11:04:49 -0800 (PST)
-Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id t14-20020a170906608e00b006d1455acc62sm6630349ejj.74.2022.03.02.11.04.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 11:04:46 -0800 (PST)
-Message-ID: <211b3d35-1d8d-b71c-996a-b185324815f7@canonical.com>
-Date:   Wed, 2 Mar 2022 20:04:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 00/15] pwm: dt-bindings: Include generic pwm schema
-Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>
-References: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Heiko Stuebner <heiko@sntech.de>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Yash Shah <yash.shah@sifive.com>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>,
-        Vignesh R <vigneshr@ti.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Rahul Tanwar <rtanwar@maxlinear.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1v/GWH828oM9qnw7BmuwPl1OTwbK6th2t0rZuoggB/w=;
+        b=qTGq+9VisaDAvUnvhpulTfun7sW9I/5nxX7fgJiBCJdmIzSd8qCNFGUMEvSl7R4IW+
+         c33eciRK1KWq3peSQLu+yxJztZ/Xk1LEpHirPxjNPmtPs4ztdMA8CGA1PRLqwN06tpnD
+         HwFAT5qEfqIKAuoBTnucyMaDu/IgZLYCtajcxPdCWrBM8FAH1AmyPi/sWHHN0EIYYSI6
+         zU05ow2VjsXwFYoQluosGDTrC32cwg8oMbCoYrciW1CPH2Q+VNQELIZpUPw66PMCzi0o
+         kdNBt4tWTc/maIKZZBJYcT/jCTc3WmMysfbQi4p7z1hI8sifCSO5xrpj5TTnd+QnOP1h
+         +Qjg==
+X-Gm-Message-State: AOAM532D+j9ncliCDVGOLa6mVZnoJhsaFyS9zzUnu7h6NKMvBeJDSCiT
+        xeGP0wm1GO8fVB/esAfowmgtGtKm+AT6OQ==
+X-Google-Smtp-Source: ABdhPJzpPlIv5KYqzsr/vWUHpTcqLEynLR/AoOHj/8TEInuNwABg/YDvtIwl/rkIspDh3TNNwwGSxA==
+X-Received: by 2002:a05:6a00:21cd:b0:4e1:b09b:18e8 with SMTP id t13-20020a056a0021cd00b004e1b09b18e8mr34456075pfj.60.1646247907314;
+        Wed, 02 Mar 2022 11:05:07 -0800 (PST)
+Received: from 9a2d8922b8f1 ([122.161.53.154])
+        by smtp.gmail.com with ESMTPSA id n42-20020a056a000d6a00b004e1a01dcc35sm21486049pfv.150.2022.03.02.11.05.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 11:05:06 -0800 (PST)
+Date:   Thu, 3 Mar 2022 00:35:01 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Jeff LaBundy <jeff@labundy.com>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-riscv@lists.infradead.org,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        linux-rockchip@lists.infradead.org
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220214212154.8853-1-krzysztof.kozlowski@canonical.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 3/3] dt-bindings: spi: Add spiclk to clock-names property
+ in pl022
+Message-ID: <20220302190501.GA2168@9a2d8922b8f1>
+References: <20220228124345.99474-1-singh.kuldeep87k@gmail.com>
+ <20220228124345.99474-4-singh.kuldeep87k@gmail.com>
+ <f22e9ddc-3103-2785-5504-fcc95d08cc8b@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f22e9ddc-3103-2785-5504-fcc95d08cc8b@arm.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -112,19 +75,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/02/2022 22:21, Krzysztof Kozlowski wrote:
-> Hi,
+On Mon, Feb 28, 2022 at 02:36:23PM +0000, Robin Murphy wrote:
+> On 2022-02-28 12:43, Kuldeep Singh wrote:
+> > Fix below dtc warning by making necessary addition of "spiclk" in
+> > clock-names property.
+> > 
+> > arch/arm64/boot/dts/broadcom/stingray/bcm958742t.dt.yaml: spi@190000:
+> > clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+> >      From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> > arch/arm64/boot/dts/broadcom/northstar2/ns2-svk.dt.yaml: spi@66190000:
+> > clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+> >      From schema: Documentation/devicetree/bindings/spi/spi-pl022.yaml
 > 
-> Changes since v1:
-> 1. Add tags.
-> 2. Adjust subject (Uwe).
-> 
+> As before, what makes the binding at fault rather than that DT? The PL022's
+> actual input is named SSPCLK, not SPICLK, so why should a driver which wants
+> to look up that clock by name expect to look for "spiclk"?
+ 
+That's right. It's the DT which is at the fault of defining spiclk
+instead of sspclk and need to be fixed in DT itself. I didn't take a
+look at pl022 doc and acted on the basis of DT info.
 
-Hi Thierry, Uwe and Lee,
+Moreover, DT also uses sspclk and SSPCLK names interchangeably which are
+anyway same. This also require updation to follow single convention.
 
-Any comments here? Rob acked all these, so these are clear to go via PWM
-tree.
+Appreciate your comments and valuable inputs.
 
-
-Best regards,
-Krzysztof
+-- 
+Best Regards
+Kuldeep
