@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0024CA2C9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:06:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6782D4CA392
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:25:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241259AbiCBLGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 06:06:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60384 "EHLO
+        id S237298AbiCBL0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 06:26:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241277AbiCBLGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:06:41 -0500
-Received: from mail-pj1-x102b.google.com (mail-pj1-x102b.google.com [IPv6:2607:f8b0:4864:20::102b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2052E4A3E9
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:05:53 -0800 (PST)
-Received: by mail-pj1-x102b.google.com with SMTP id m13-20020a17090aab0d00b001bbe267d4d1so3803063pjq.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 03:05:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=31oR/5R8uiOoYLaqojfd9sfVOvx41Qx3BFeK4/Ytd84=;
-        b=At4zU4shHEmJqgXsvdpIlpcNKb/1D5xR+vm2ACNKVXjaecQc51lvkgMGU7RJe7P4IQ
-         7TpGTETBaFOEaYnf5fMcZd5DeECI2tZr2PEsL9A0ljMbw8EFIppR2ogsrf2IqbAoJ/IO
-         RoKxXM24uFcdNc1ws28Nn0NkXW91PJd5FZMzZsT/1irCiBI8dXsQ2ShSu3ecKlAm58U/
-         y09E9p9MvKt1kvx1szrqD+oE4hxBnKzlGNeZaWmQivYHE1bx25EUPydjTveDKicysD6B
-         VEoCYh8I6/s4L7qtGVFgKey6R7lFIP2ZksRmyPuYQFdBPKCIONz+pQWGfhxWi4ttyJ6I
-         a65Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=31oR/5R8uiOoYLaqojfd9sfVOvx41Qx3BFeK4/Ytd84=;
-        b=IzorlD8tjQFhfMmIA7tyKHoaemAkuF2Fiakh874i9zFokB6LJ/fg3uiaa3aP/T6g10
-         otG5nvjTnhBpfEBN9Ygo7hGHWCp1EFN0R1/ok8w04e9Bd0l2eWiNNYChYjrxHoe2y6tJ
-         /s38TdpreTvQrpVG5DdSgRuKmBcEWHDfAt/pbLWFI1SuxQqR0T9ad22xmuXcfPS5KXT9
-         X1SOsiHgb9mIT1wZzCgGDCRWpd78PACf9nksnS36xRJLiNJTx8R1H/85wjVR4beG/fJ9
-         vyv7mfv6qIy3ZU2I1beK1OyEPEa1zVG/rick1EEzZazlwvkQxMIchgoa2yKLSVSMKNpA
-         /s9A==
-X-Gm-Message-State: AOAM532cwHJeY81Yw0f/KTVpVY+KInOJxu9VGyE4vXy5+/H9ywPcWQVx
-        n+gw1/qDOiVYEoo4ejOWnzTDew==
-X-Google-Smtp-Source: ABdhPJxSbxvCb0rvr3EAZIz1KY6zF0rK1ThfoOP2vyrgJijNdBkpiwk/lGAKFU73doZnK2Z8RpsDGg==
-X-Received: by 2002:a17:90a:dc81:b0:1bd:2d28:4bf4 with SMTP id j1-20020a17090adc8100b001bd2d284bf4mr18701085pjv.206.1646219152594;
-        Wed, 02 Mar 2022 03:05:52 -0800 (PST)
-Received: from localhost.localdomain ([171.50.175.145])
-        by smtp.gmail.com with ESMTPSA id hk1-20020a17090b224100b001b8cff17f89sm5049186pjb.12.2022.03.02.03.05.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 03:05:52 -0800 (PST)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        robh+dt@kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: [PATCH v2 5/5] arm64: dts: qcom: sa8155p-adp: Enable ethernet node
-Date:   Wed,  2 Mar 2022 16:35:08 +0530
-Message-Id: <20220302110508.69053-6-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220302110508.69053-1-bhupesh.sharma@linaro.org>
-References: <20220302110508.69053-1-bhupesh.sharma@linaro.org>
+        with ESMTP id S236983AbiCBL0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:26:17 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A5EC606C0
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:25:34 -0800 (PST)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nPN6p-0002Jt-9J; Wed, 02 Mar 2022 12:25:31 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nPN6m-0007Nq-M4; Wed, 02 Mar 2022 12:25:28 +0100
+Date:   Wed, 2 Mar 2022 12:25:28 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Dmitry Osipenko <digetx@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
+Message-ID: <20220302112528.GV19585@pengutronix.de>
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-11-s.hauer@pengutronix.de>
+ <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
+ <20220225104924.GC19585@pengutronix.de>
+ <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
+ <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
+ <20220225131154.GE19585@pengutronix.de>
+ <20220228141921.GN19585@pengutronix.de>
+ <5184ecf2-8734-3121-cbbc-5dcfcf0d02f8@arm.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+In-Reply-To: <5184ecf2-8734-3121-cbbc-5dcfcf0d02f8@arm.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:03:46 up 81 days, 19:49, 87 users,  load average: 0.22, 0.39,
+ 0.35
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,186 +71,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vinod Koul <vkoul@kernel.org>
+On Tue, Mar 01, 2022 at 01:39:31PM +0000, Robin Murphy wrote:
+> On 2022-02-28 14:19, Sascha Hauer wrote:
+> > On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
+> > > On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
+> > > > On 2022-02-25 11:10, Dmitry Osipenko wrote:
+> > > > > 25.02.2022 13:49, Sascha Hauer пишет:
+> > > > > > On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
+> > > > > > > 25.02.2022 10:51, Sascha Hauer пишет:
+> > > > > > > > The rk3568 HDMI has an additional clock that needs to be enabled for the
+> > > > > > > > HDMI controller to work. The purpose of that clock is not clear. It is
+> > > > > > > > named "hclk" in the downstream driver, so use the same name.
+> > > > > > > > 
+> > > > > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > > > > > ---
+> > > > > > > > 
+> > > > > > > > Notes:
+> > > > > > > >       Changes since v5:
+> > > > > > > >       - Use devm_clk_get_optional rather than devm_clk_get
+> > > > > > > > 
+> > > > > > > >    drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
+> > > > > > > >    1 file changed, 16 insertions(+)
+> > > > > > > > 
+> > > > > > > > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> > > > > > > > index fe4f9556239ac..c6c00e8779ab5 100644
+> > > > > > > > --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> > > > > > > > +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> > > > > > > > @@ -76,6 +76,7 @@ struct rockchip_hdmi {
+> > > > > > > >    	const struct rockchip_hdmi_chip_data *chip_data;
+> > > > > > > >    	struct clk *ref_clk;
+> > > > > > > >    	struct clk *grf_clk;
+> > > > > > > > +	struct clk *hclk_clk;
+> > > > > > > >    	struct dw_hdmi *hdmi;
+> > > > > > > >    	struct regulator *avdd_0v9;
+> > > > > > > >    	struct regulator *avdd_1v8;
+> > > > > > > > @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
+> > > > > > > >    		return PTR_ERR(hdmi->grf_clk);
+> > > > > > > >    	}
+> > > > > > > > +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
+> > > > > > > > +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
+> > > > > > > 
+> > > > > > > Have you tried to investigate the hclk? I'm still thinking that's not
+> > > > > > > only HDMI that needs this clock and then the hardware description
+> > > > > > > doesn't look correct.
+> > > > > > 
+> > > > > > I am still not sure what you mean. Yes, it's not only the HDMI that
+> > > > > > needs this clock. The VOP2 needs it as well and the driver handles that.
+> > > > > 
+> > > > > I'm curious whether DSI/DP also need that clock to be enabled. If they
+> > > > > do, then you aren't modeling h/w properly AFAICS.
+> > > > 
+> > > > Assuming nobody at Rockchip decided to make things needlessly inconsistent
+> > > > with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
+> > > > interface. Usually, if that affected anything other than accessing VOP
+> > > > registers, indeed it would smell of something being wrong in the clock tree,
+> > > > but in this case I'd also be suspicious of whether it might have ended up
+> > > > clocking related GRF registers as well (either directly, or indirectly via
+> > > > some gate that the clock driver hasn't modelled yet).
+> > > 
+> > > Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
+> > > hanging when HCLK_VOP is disabled by disabling that clock via sysfs
+> > > using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
+> > > of that units can't be accessed. However, when I disable HCLK_VOP by
+> > > directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
+> > > accessing VOP registers hangs, the other units stay functional.
+> > > So it seems it must be the parent clock which must be enabled. The
+> > > parent clock is hclk_vo. This clock should be handled as part of the
+> > > RK3568_PD_VO power domain:
+> > > 
+> > > 	power-domain@RK3568_PD_VO {
+> > >                  reg = <RK3568_PD_VO>;
+> > >                  clocks = <&cru HCLK_VO>,
+> > >                           <&cru PCLK_VO>,
+> > >                           <&cru ACLK_VOP_PRE>;
+> > >                   pm_qos = <&qos_hdcp>,
+> > >                            <&qos_vop_m0>,
+> > >                            <&qos_vop_m1>;
+> > >                   #power-domain-cells = <0>;
+> > >          };
+> > 
+> > Forget this. The clocks in this node are only enabled during enabling or
+> > disabling the power domain, they are disabled again immediately afterwards.
+> > 
+> > OK, I need HCLK_VO to access the HDMI registers. I verified that by
+> > disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
+> > HDMI registers become inaccessible then. This means I'll replace
+> > HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
+> 
+> Well, it's still a mystery hack overall, and in some ways it seems even more
+> suspect to be claiming a whole branch of the clock tree rather than a leaf
+> gate with a specific purpose. I'm really starting to think that the
+> underlying issue here is a bug in the clock driver, or a hardware mishap
+> that should logically be worked around by the clock driver, rather than
+> individual the consumers.
+> 
+> Does it work if you hack the clock driver to think that PCLK_VO is a child
+> of HCLK_VO? Even if that's not technically true, it would seem to
+> effectively match the observed behaviour (i.e. all 3 things whose register
+> access apparently *should* be enabled by a gate off PCLK_VO, seem to also
+> require HCLK_VO).
 
-Enable the etheret node, add the phy node and pinctrl for ethernet.
+Yes, that works as expected. I am not sure though if we really want to
+go that path. The pclk rates will become completely bogus with this and
+should we have to play with the rates in the future we might regret this
+step.
 
-Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-[bhsharma: Correct ethernet/rgmii related pinmuxs, specify multi-queues and
- plug in the PHY interrupt for WOL]
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 144 +++++++++++++++++++++++
- 1 file changed, 144 insertions(+)
+Sascha
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-index 8756c2b25c7e..474f688f14a2 100644
---- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-@@ -47,6 +47,65 @@ vreg_s4a_1p8: smps4 {
- 
- 		vin-supply = <&vreg_3p3>;
- 	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xC>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+		snps,tx-sched-wrr;
-+
-+		queue0 {
-+			snps,weight = <0x10>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x0>;
-+		};
-+
-+		queue1 {
-+			snps,weight = <0x11>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue2 {
-+			snps,weight = <0x12>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+
-+		queue3 {
-+			snps,weight = <0x13>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x3>;
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -317,6 +376,42 @@ &remoteproc_cdsp {
- 	firmware-name = "qcom/sa8155p/cdsp.mdt";
- };
- 
-+&ethernet {
-+	status = "okay";
-+
-+	snps,reset-gpio = <&tlmm 79 GPIO_ACTIVE_LOW>;
-+	snps,reset-active-low;
-+	snps,reset-delays-us = <0 11000 70000>;
-+
-+	snps,ptp-ref-clk-rate = <250000000>;
-+	snps,ptp-req-clk-rate = <96000000>;
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ethernet_defaults>;
-+
-+	phy-handle = <&rgmii_phy>;
-+	phy-mode = "rgmii";
-+	mdio {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		compatible = "snps,dwmac-mdio";
-+
-+		/* Micrel KSZ9031RNZ PHY */
-+		rgmii_phy: phy@7 {
-+			reg = <0x7>;
-+
-+			interrupt-parent = <&tlmm>;
-+			interrupts-extended = <&tlmm 124 IRQ_TYPE_EDGE_FALLING>; /* phy intr */
-+			device_type = "ethernet-phy";
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+		};
-+	};
-+};
-+
- &uart2 {
- 	status = "okay";
- };
-@@ -407,4 +502,53 @@ mux {
- 			drive-strength = <2>;
- 		};
- 	};
-+
-+	ethernet_defaults: ethernet-defaults {
-+		mdc {
-+			pins = "gpio7";
-+			function = "rgmii";
-+			bias-pull-up;
-+		};
-+
-+		mdio {
-+			pins = "gpio59";
-+			function = "rgmii";
-+			bias-pull-up;
-+		};
-+
-+		rgmii-rx {
-+			pins = "gpio117", "gpio118", "gpio119", "gpio120", "gpio115", "gpio116";
-+			function = "rgmii";
-+			bias-disable;
-+			drive-strength = <2>;
-+		};
-+
-+		rgmii-tx {
-+			pins = "gpio122", "gpio4", "gpio5", "gpio6", "gpio114", "gpio121";
-+			function = "rgmii";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+
-+		phy-intr {
-+			pins = "gpio124";
-+			function = "emac_phy";
-+			bias-disable;
-+			drive-strength = <8>;
-+		};
-+
-+		pps {
-+			pins = "gpio81";
-+			function = "emac_pps";
-+			bias-disable;
-+			drive-strength = <8>;
-+		};
-+
-+		phy-reset {
-+			pins = "gpio79";
-+			function = "gpio";
-+			bias-pull-up;
-+			drive-strength = <16>;
-+		};
-+	};
- };
+
 -- 
-2.35.1
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
