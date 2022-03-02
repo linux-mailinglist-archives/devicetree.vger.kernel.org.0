@@ -2,85 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BED1B4C9D69
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 06:32:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A84B94C9D85
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 06:37:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239543AbiCBFdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 00:33:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
+        id S236009AbiCBFiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 00:38:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239635AbiCBFc4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 00:32:56 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D62DB1538;
-        Tue,  1 Mar 2022 21:32:12 -0800 (PST)
-X-UUID: ad7a7b86cc1d4c2da224f08beceac12e-20220302
-X-UUID: ad7a7b86cc1d4c2da224f08beceac12e-20220302
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <xinlei.lee@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 567894442; Wed, 02 Mar 2022 13:32:08 +0800
-Received: from MTKMBS34N1.mediatek.inc (172.27.4.172) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 2 Mar 2022 13:32:07 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS34N1.mediatek.inc
- (172.27.4.172) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 2 Mar
- 2022 13:32:06 +0800
-Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
- MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
- 15.0.1497.2 via Frontend Transport; Wed, 2 Mar 2022 13:32:05 +0800
-From:   <xinlei.lee@mediatek.com>
-To:     <thierry.reding@gmail.com>, <u.kleine-koenig@pengutronix.de>,
-        <lee.jones@linaro.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <jitao.shi@mediatek.com>, <allen-kh.cheng@mediatek.com>,
-        <rex-bc.chen@mediatek.com>, Xinlei Lee <xinlei.lee@mediatek.com>
-Subject: [PATCH v3,6/6] dt-bindings: pwm: Add compatible for MediaTek MT8186
-Date:   Wed, 2 Mar 2022 13:31:46 +0800
-Message-ID: <1646199106-26879-7-git-send-email-xinlei.lee@mediatek.com>
-X-Mailer: git-send-email 2.6.4
-In-Reply-To: <1646199106-26879-1-git-send-email-xinlei.lee@mediatek.com>
-References: <1646199106-26879-1-git-send-email-xinlei.lee@mediatek.com>
+        with ESMTP id S239597AbiCBFiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 00:38:01 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4D85B1A94;
+        Tue,  1 Mar 2022 21:36:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646199412; x=1677735412;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=mRwvBAtok3xtIJz4XBlnJPoaxjUEKJHuRLmcYbLZajQ=;
+  b=zg6dgLuZJp5hvBollBi3m/S39MVeDob0WQtSO+GSU5XdpNrZmdx320YW
+   IhRxg+bt79qGDk6vTD2K6u5LymMNDE4kardDmDzd7IK01SYT/d6HwGIYM
+   hz4qun2dRhlTld5zZortE8jzWGtfkj971iiwEJ5X2HZHgwNC0jeAjk2jD
+   4=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 01 Mar 2022 21:36:52 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2022 21:36:52 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 1 Mar 2022 21:36:51 -0800
+Received: from [10.216.62.30] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Tue, 1 Mar 2022
+ 21:36:48 -0800
+Message-ID: <edee4305-77da-039b-1f07-bcdc5d462666@quicinc.com>
+Date:   Wed, 2 Mar 2022 11:06:45 +0530
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.3.2
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
+ bias-disable for sc7280-idp
+Content-Language: en-CA
+To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <robh+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <msavaliy@qti.qualcomm.com>,
+        <mka@chromium.org>, <swboyd@chromium.org>, <dianders@chromium.org>
+References: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
+From:   Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+In-Reply-To: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Xinlei Lee <xinlei.lee@mediatek.com>
++Google Reviewers
 
-Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
+Hello Reviewers,
 
-Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
----
- Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+We were wondering if you had a chance to review this patch and provide 
+any comments.
 
-diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-index 3a5d1cfed94d..053805846cfe 100644
---- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-+++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
-@@ -21,6 +21,9 @@ properties:
-           - mediatek,mt6595-disp-pwm
-           - mediatek,mt8173-disp-pwm
-           - mediatek,mt8183-disp-pwm
-+      - items:
-+          - const: mediatek,mt8186-disp-pwm
-+          - const: mediatek,mt8183-disp-pwm
-       - items:
-           - const: mediatek,mt8192-disp-pwm
-           - const: mediatek,mt8183-disp-pwm
--- 
-2.18.0
+Thank you,
 
+Vijay/
+
+
+
+On 2/14/2022 6:33 PM, Vijaya Krishna Nivarthi wrote:
+> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+> Change sleep pinctrl configuration to handle same.
+>
+> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index d623d71..de18319 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -516,10 +516,10 @@
+>   		pins = "gpio28";
+>   		function = "gpio";
+>   		/*
+> -		 * Configure a pull-down on CTS to match the pull of
+> -		 * the Bluetooth module.
+> +		 * Configure a disable on CTS to lower power usage
+> +		 * when BT is turned off.
+>   		 */
+> -		bias-pull-down;
+> +		bias-disable;
+>   	};
+>   
+>   	qup_uart7_sleep_rts: qup-uart7-sleep-rts {
