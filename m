@@ -2,345 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE07E4CA111
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:45:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE084CA11B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:46:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240613AbiCBJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
+        id S240605AbiCBJrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:47:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236428AbiCBJp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:45:56 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605DD7EDA3;
-        Wed,  2 Mar 2022 01:45:10 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 411D01F410A9
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646214309;
-        bh=zrznIpBFL8LiCItblwyMn7DORd4urUBkf/OPWsULH8s=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=RWxbwhcNszQIibXpghBJ1fzAbnZAgqcSmSelbPLSfSIwt7OXxk9yODmdAFrjXk2KL
-         kS1JCVexs9zuid8LlT1s/WEbQcTI8mnKEsoV0VAqrDiSLn3eAIh6uNOzAw51UFJ1W1
-         TNf/vIHnU7s9cp/BH6wBhd9F9nqApEE/EQc52d7svGIN5kOl8O8rRlPQkvMVfjFeLt
-         tm8OM2E/F6H1/RGQUAGju+kIir9elWnhAmwVtAoIE84KAuGtvigKg1u6G2ihFZFbFy
-         Jei4dABf+536KNiQ8ugLQs9gJcKZNUBnT39S9Kpr5LQwhIQA+u8C/GAgv38dmrO25S
-         7Bk2fbYCNuMiw==
-Message-ID: <dee15f20-0f7d-58c6-728b-3e14f84f0833@collabora.com>
-Date:   Wed, 2 Mar 2022 10:45:06 +0100
+        with ESMTP id S240625AbiCBJrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:47:02 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DAAD8EB55
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:46:15 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4F8933F5F9
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 09:46:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646214372;
+        bh=lAb27ZgFQOByFHIClEAhJ0N2dL6QzOfjA77CIlXGrDU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Fw/29sbtMEfxFK7RRYIMuK3K+0/eXxhIKUEGyAX730+8KTTyam6Bvg2MfJIbfctnK
+         aP1xmnba3wwW6E+9c2TOmHBhk/EWfd8oXlgVeYpcHqwWZY6zBLVFcAqfqFQOU0dhIG
+         Yc1hSojoUDusk8wwD8LQ0OBjsGPmLlQg6BkiXRFlHcdTR1SepbHAHd7QW7yIuki+gv
+         0GkA6b0A9spB64VMld9BOnIA2bCXHGqGetfhDaW3BBBHlSpTeg8XDGaUUDvRJdgOKy
+         1PX9d1aSN37XtHkLL+Wa9Mbf96jNzWXsHM3oA6W8oasHicFkcCBy6LrD83cPToVjLf
+         bOtV/Ne/mnnCg==
+Received: by mail-ed1-f69.google.com with SMTP id cm27-20020a0564020c9b00b004137effc24bso690799edb.10
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 01:46:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=lAb27ZgFQOByFHIClEAhJ0N2dL6QzOfjA77CIlXGrDU=;
+        b=bovXv+krPH7TsK4K9sAo9xTnbFLH/m6SVkoxkI8XXcuBVvmn+nlmgL1mSXVeihp1Kv
+         /YiWorg8Ak/SC3TsoBa0zGeb5JcRAdSFptBTwcXiwI2K57hFDOgp5eeXErLBRzm5ljbj
+         LiEkXZPmdg666fHw5Q7r3CAsjlBDip1BLaflwduNFMO7nY/wfAQ5QAgTQVG+xVsfaOTm
+         z+nsDwZeKlFDxeKhUsU0MrProAP/e1pPwAvA3B3cg92uxAkqNfuVN5OthCXzpP6bVgn7
+         ThCPruRp7RzW67sqpfnkTxS7BE5HJI4Vzy0JAh3enrb3yVLcujaSM9+ItbdhjOlbp83K
+         Bqig==
+X-Gm-Message-State: AOAM531xyiRor0cYbb45BlQKv5B29imSF9NMQqdprx/E72V7bZlUdDn/
+        ofKpePHo9blqR8D7pjxp+/A/QQfLfhCQuPM6FGs647K3a4XKDynJyI0o4Qn47jo3BsOsnd0xMFD
+        jxbsQd3sAPTjEzPYDtFlPh33EhB2enYpcnno5QyE=
+X-Received: by 2002:a17:906:c048:b0:6ce:a6f5:b23a with SMTP id bm8-20020a170906c04800b006cea6f5b23amr21987697ejb.350.1646214370261;
+        Wed, 02 Mar 2022 01:46:10 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxt3m08y7YEqtS4flqRepTSs5Wr7s6n2g6prN66QvwsvFQSR8vFMHL5ix5LeZez52FJ+02DBA==
+X-Received: by 2002:a17:906:c048:b0:6ce:a6f5:b23a with SMTP id bm8-20020a170906c04800b006cea6f5b23amr21987679ejb.350.1646214369981;
+        Wed, 02 Mar 2022 01:46:09 -0800 (PST)
+Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id v5-20020a056402184500b00412e1a73c7bsm8152603edy.61.2022.03.02.01.46.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 01:46:09 -0800 (PST)
+Message-ID: <6dae47c3-6083-782e-ecab-7be3f0bca0e1@canonical.com>
+Date:   Wed, 2 Mar 2022 10:46:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [RESEND,V7,3/6] media: mtk-jpegenc: manage jpegenc multi-hardware
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 1/5] dt-bindings: Convert ahci-platform DT bindings to
+ yaml
 Content-Language: en-US
-To:     "kyrie.wu" <kyrie.wu@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+To:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tzung-Bi Shih <tzungbi@chromium.org>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
-        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
-References: <1645693637-627-1-git-send-email-kyrie.wu@mediatek.com>
- <1645693637-627-4-git-send-email-kyrie.wu@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <1645693637-627-4-git-send-email-kyrie.wu@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20220301152421.57281-1-linux@fw-web.de>
+ <20220301152421.57281-2-linux@fw-web.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220301152421.57281-2-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 24/02/22 10:07, kyrie.wu ha scritto:
-> From: kyrie wu <kyrie.wu@mediatek.com>
+On 01/03/2022 16:24, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> manage each hardware information, including irq/clk/power.
-> the hardware includes HW0 and HW1.
+> Create a yaml file for dtbs_check from the old txt binding.
 > 
-> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->   drivers/media/platform/mtk-jpeg/Makefile      |  11 +-
->   .../media/platform/mtk-jpeg/mtk_jpeg_core.c   |  76 +++++---
->   .../media/platform/mtk-jpeg/mtk_jpeg_core.h   |  37 ++++
->   .../media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c | 168 ++++++++++++++++++
->   4 files changed, 267 insertions(+), 25 deletions(-)
+> v4:
+>   - fix min vs. max
+>   - fix indention of examples
+>   - move up sata-common.yaml
+>   - reorder compatible
+>   - add descriptions/maxitems
+>   - fix compatible-structure
+>   - fix typo in example achi vs. ahci
+>   - add clock-names and reg-names
+>   - fix ns2 errors in separate patch
+> v3:
+>   - add conversion to sata-series
+>   - fix some errors in dt_binding_check and dtbs_check
+>   - move to unevaluated properties = false
 > 
-
-Hello Kyrie,
-
-despite my v6 review, where I also gave you solutions for an issue with
-more than one example, this v7 still didn't get one out of the many
-requested fixes.
-
-I'm sure that this was not intentional, so it's not a problem...
-
-In any case, this gave me the opportunity to see some more issues inside
-of this patch: let's get it perfect!
-
-
-...snip...
-
-> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> index 3e4811a41ba2..31e941ef84bd 100644
-> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
-> @@ -9,6 +9,7 @@
->   #ifndef _MTK_JPEG_CORE_H
->   #define _MTK_JPEG_CORE_H
->   
-> +#include <linux/clk.h>
->   #include <linux/interrupt.h>
->   #include <media/v4l2-ctrls.h>
->   #include <media/v4l2-device.h>
-> @@ -60,6 +61,7 @@ enum mtk_jpeg_ctx_state {
->    * @cap_q_default_fourcc:	capture queue default fourcc
->    */
->   struct mtk_jpeg_variant {
-> +	bool is_multihw;
-
-Thanks for this fix, this name makes it way clearer!
-
->   	struct clk_bulk_data *clks;
->   	int num_clks;
->   	struct mtk_jpeg_fmt *formats;
-> @@ -74,6 +76,38 @@ struct mtk_jpeg_variant {
->   	u32 cap_q_default_fourcc;
->   };
->   
-> +enum mtk_jpegenc_hw_id {
-> +	MTK_JPEGENC_HW0,
-> +	MTK_JPEGENC_HW1,
-> +	MTK_JPEGENC_HW_MAX,
-> +};
+> ---
+> 
+> imho all errors should be fixed in the dts not in the yaml...
+> 
+> errors about the subitem requirement that was defined in txt but not fixed some marvell dts
+> 
+> some dts for Marvell SoC bring error
+> 'phys' is a required property
+> 'target-supply' is a required property
+> 
+> problem is in arch/arm64/boot/dts/marvell/armada-cp11x.dtsi:331
+> here the sata-port@0 is defined, but not overridden with phy/target-supply in any following dts
+> ---
+>  .../devicetree/bindings/ata/ahci-platform.txt |  79 ---------
+>  .../bindings/ata/ahci-platform.yaml           | 162 ++++++++++++++++++
+>  2 files changed, 162 insertions(+), 79 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
+>  create mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.txt b/Documentation/devicetree/bindings/ata/ahci-platform.txt
+> deleted file mode 100644
+> index 77091a277642..000000000000
+> --- a/Documentation/devicetree/bindings/ata/ahci-platform.txt
+> +++ /dev/null
+> @@ -1,79 +0,0 @@
+> -* AHCI SATA Controller
+> -
+> -SATA nodes are defined to describe on-chip Serial ATA controllers.
+> -Each SATA controller should have its own node.
+> -
+> -It is possible, but not required, to represent each port as a sub-node.
+> -It allows to enable each port independently when dealing with multiple
+> -PHYs.
+> -
+> -Required properties:
+> -- compatible        : compatible string, one of:
+> -  - "brcm,iproc-ahci"
+> -  - "hisilicon,hisi-ahci"
+> -  - "cavium,octeon-7130-ahci"
+> -  - "ibm,476gtr-ahci"
+> -  - "marvell,armada-380-ahci"
+> -  - "marvell,armada-3700-ahci"
+> -  - "snps,dwc-ahci"
+> -  - "snps,spear-ahci"
+> -  - "generic-ahci"
+> -- interrupts        : <interrupt mapping for SATA IRQ>
+> -- reg               : <registers mapping>
+> -
+> -Please note that when using "generic-ahci" you must also specify a SoC specific
+> -compatible:
+> -	compatible = "manufacturer,soc-model-ahci", "generic-ahci";
+> -
+> -Optional properties:
+> -- dma-coherent      : Present if dma operations are coherent
+> -- clocks            : a list of phandle + clock specifier pairs
+> -- resets            : a list of phandle + reset specifier pairs
+> -- target-supply     : regulator for SATA target power
+> -- phy-supply        : regulator for PHY power
+> -- phys              : reference to the SATA PHY node
+> -- phy-names         : must be "sata-phy"
+> -- ahci-supply       : regulator for AHCI controller
+> -- ports-implemented : Mask that indicates which ports that the HBA supports
+> -		      are available for software to use. Useful if PORTS_IMPL
+> -		      is not programmed by the BIOS, which is true with
+> -		      some embedded SOC's.
+> -
+> -Required properties when using sub-nodes:
+> -- #address-cells    : number of cells to encode an address
+> -- #size-cells       : number of cells representing the size of an address
+> -
+> -Sub-nodes required properties:
+> -- reg		    : the port number
+> -And at least one of the following properties:
+> -- phys		    : reference to the SATA PHY node
+> -- target-supply     : regulator for SATA target power
+> -
+> -Examples:
+> -        sata@ffe08000 {
+> -		compatible = "snps,spear-ahci";
+> -		reg = <0xffe08000 0x1000>;
+> -		interrupts = <115>;
+> -        };
+> -
+> -With sub-nodes:
+> -	sata@f7e90000 {
+> -		compatible = "marvell,berlin2q-achi", "generic-ahci";
+> -		reg = <0xe90000 0x1000>;
+> -		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&chip CLKID_SATA>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -
+> -		sata0: sata-port@0 {
+> -			reg = <0>;
+> -			phys = <&sata_phy 0>;
+> -			target-supply = <&reg_sata0>;
+> -		};
+> -
+> -		sata1: sata-port@1 {
+> -			reg = <1>;
+> -			phys = <&sata_phy 1>;
+> -			target-supply = <&reg_sata1>;;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> new file mode 100644
+> index 000000000000..cf67ddfc6afb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> @@ -0,0 +1,162 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/**
-> + * struct mtk_vcodec_clk - Structure used to store vcodec clock information
-> + */
-> +struct mtk_jpegenc_clk {
-> +	struct clk_bulk_data *clks;
-> +	int	clk_num;
-
-Why is clk_num tabbed?
-
-> +};
+> +title: AHCI SATA Controller
+> +description:
+> +  SATA nodes are defined to describe on-chip Serial ATA controllers.
+> +  Each SATA controller should have its own node.
 > +
-> +/**
-> + * struct mtk_jpegenc_comp_dev - JPEG COREX abstraction
-> + * @dev:		        JPEG device
-> + * @plat_dev:		    platform device data
-> + * @reg_base:		    JPEG registers mapping
-> + * @master_dev:		    mtk_jpeg_dev device
-> + * @pm:	                mtk_jpegenc_pm
-> + * @jpegenc_irq:	    jpeg encode irq num
-
-You're using tabulations *and* spaces.... please use either, not both, as it's
-not necessary. Besides, this is also producing bad indentation.
-
-> + */
-> +struct mtk_jpegenc_comp_dev {
-> +	struct device		*dev;
-> +	struct platform_device *plat_dev;
-> +	void __iomem		*reg_base;
-> +	struct mtk_jpeg_dev *master_dev;
-> +	struct mtk_jpegenc_clk	venc_clk;
-> +	int jpegenc_irq;
-> +};
+> +  It is possible, but not required, to represent each port as a sub-node.
+> +  It allows to enable each port independently when dealing with multiple
+> +  PHYs.
 > +
->   /**
->    * struct mtk_jpeg_dev - JPEG IP abstraction
->    * @lock:		the mutex protecting this structure
-> @@ -100,6 +134,9 @@ struct mtk_jpeg_dev {
->   	void __iomem		*reg_base;
->   	struct delayed_work job_timeout_work;
->   	const struct mtk_jpeg_variant *variant;
+> +maintainers:
+> +  - Hans de Goede <hdegoede@redhat.com>
+> +  - Jens Axboe <axboe@kernel.dk>
 > +
-> +	void __iomem *reg_encbase[MTK_JPEGENC_HW_MAX];
-> +	struct mtk_jpegenc_comp_dev *enc_hw_dev[MTK_JPEGENC_HW_MAX];
->   };
->   
->   /**
-> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
-> index a2b6e1f85c2d..3d967bff1352 100644
-> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
-> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
-> @@ -5,11 +5,27 @@
->    *
->    */
->   
-> +#include <linux/clk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
->   #include <linux/io.h>
->   #include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/slab.h>
-> +#include <media/media-device.h>
->   #include <media/videobuf2-core.h>
->   #include <media/videobuf2-dma-contig.h>
-> +#include <media/videobuf2-v4l2.h>
-> +#include <media/v4l2-mem2mem.h>
-> +#include <media/v4l2-dev.h>
-> +#include <media/v4l2-device.h>
-> +#include <media/v4l2-fh.h>
-> +#include <media/v4l2-event.h>
->   
-> +#include "mtk_jpeg_core.h"
->   #include "mtk_jpeg_enc_hw.h"
->   
->   static const struct mtk_jpeg_enc_qlt mtk_jpeg_enc_quality[] = {
-> @@ -30,6 +46,21 @@ static const struct mtk_jpeg_enc_qlt mtk_jpeg_enc_quality[] = {
->   	{.quality_param = 97, .hardware_value = JPEG_ENC_QUALITY_Q97},
->   };
->   
-> +#if defined(CONFIG_OF)
-> +static const struct of_device_id mtk_jpegenc_drv_ids[] = {
-> +	{
-> +		.compatible = "mediatek,mt8195-jpgenc0",
-> +		.data = (void *)MTK_JPEGENC_HW0,
-> +	},
-> +	{
-> +		.compatible = "mediatek,mt8195-jpgenc1",
-> +		.data = (void *)MTK_JPEGENC_HW1,
-> +	},
-
-I've already pointed out an issue with this in your v6 series:
-
-https://patchwork.kernel.org/comment/24726607/
-
-Besides, I want to add up that the SoC distinction is already done in the
-parent node which, in MT8195's case, is named "mediatek,mt8195-jpgenc", so
-you really don't have to redo this distinction "from scratch" here in the
-sub-driver, as you can just get your information from the parent device/node.
-
-So, just "mediatek,jpgenc-hw" should be totally enough here.
-
-Please fix this for v8.
-
-
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_jpegenc_drv_ids);
-> +#endif
+> +allOf:
+> +- $ref: "sata-common.yaml#"
 > +
->   void mtk_jpeg_enc_reset(void __iomem *base)
->   {
->   	writel(0, base + JPEG_ENC_RSTB);
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - enum:
+> +          - brcm,iproc-ahci
+> +          - marvell,armada-8k-ahci
+> +          - marvell,berlin2q-ahci
+> +        - const: generic-ahci
+> +      - enum:
+> +        - brcm,iproc-ahci
 
-...snip...
+This one is already earlier in generic-ahci, so you can skip him here.
+
+> +        - cavium,octeon-7130-ahci
+> +        - hisilicon,hisi-ahci
+> +        - ibm,476gtr-ahci
+> +        - marvell,armada-3700-ahci
+> +        - marvell,armada-380-ahci
+> +        - snps,dwc-ahci
+> +        - snps,spear-ahci
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Clock IDs array as required by the controller.
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  interrupts:
+> +    description:
+> +      specifies the interrupt number for the controller.
+
+Skip description, it's obvious.
+
+> +    maxItems: 1
+> +
+> +  ahci-supply:
+> +    description:
+> +      regulator for AHCI controller
+> +
+> +  clock-names:
+> +    description:
+> +      Names of clocks corresponding to IDs in the clock property.
+> +    minItems: 1
+> +    maxItems: 3
+
+Put the clock-names next to clocks.
 
 > +
-> +static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
-> +{
-> +	struct mtk_jpegenc_clk *jpegenc_clk;
-> +	struct mtk_jpeg_dev *master_dev;
-> +	struct mtk_jpegenc_comp_dev *dev;
-> +	int ret, comp_idx;
+> +  dma-coherent:
+> +    true
+
+New line not needed. "dma-coherent: true"
+
 > +
-> +	struct device *decs = &pdev->dev;
+> +  phy-supply:
+> +    description:
+> +      regulator for PHY power
 > +
-> +	if (!decs->parent)
-> +		return -EPROBE_DEFER;
+> +  phys:
+> +    description:
+> +      List of all PHYs on this controller
+> +    maxItems: 1
 > +
-> +	master_dev = dev_get_drvdata(decs->parent);
-> +	if (!master_dev)
-> +		return -EPROBE_DEFER;
+> +  phy-names:
+> +    description:
+> +      Name specifier for the PHYs
+> +    maxItems: 1
 > +
-> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
-> +	if (!dev)
-> +		return -ENOMEM;
+> +  ports-implemented:
+> +    $ref: '/schemas/types.yaml#/definitions/uint32'
+> +    description:
+> +      Mask that indicates which ports that the HBA supports
+> +      are available for software to use. Useful if PORTS_IMPL
+> +      is not programmed by the BIOS, which is true with
+> +      some embedded SoCs.
+> +    maxItems: 1
+
+maxItems are incorrect here, this is not an array.
+
 > +
-> +	dev->plat_dev = pdev;
+> +  reg-names:
+> +    maxItems: 1
 > +
-> +	jpegenc_clk = &dev->venc_clk;
+> +  resets:
+> +    maxItems: 1
 > +
-> +	jpegenc_clk->clk_num = devm_clk_bulk_get_all(&pdev->dev,
-> +						     &jpegenc_clk->clks);
-
-Using dev_err_probe() looks more appropriate here:
-
-	if (jpegenc_clk->clk_num < 0)
-		return dev_err_probe(&pdev->dev, jpegenc_clk->clk_num,
-				     "Failed to get jpegenc clocks\n");
-
-
-> +	if (jpegenc_clk->clk_num < 0) {
-> +		dev_err(&pdev->dev, "Failed to get jpegenc clock count\n");
-> +		return jpegenc_clk->clk_num;
-> +	}
+> +  target-supply:
+> +    description:
+> +      regulator for SATA target power
 > +
-> +	dev->reg_base =
-> +		devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(dev->reg_base)) {
-> +		ret = PTR_ERR(dev->reg_base);
-> +		goto err;
-
-There's no need for any goto here, as you're not reverting any operation.
-
-Hence, you can just:
-
-	if (IS_ERR(dev->reg_base))
-		return PTR_ERR(dev->reg_base);
-
-> +	}
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
 > +
-> +	ret = mtk_jpegenc_hw_init_irq(dev);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to register JPEGENC irq handler.\n");
-
-You are already printing an error inside of mtk_jpegenc_hw_init_irq(), so printing
-another one here is redundant.
-Either remove the prints in the function or, more appropriately, remove this print.
-
-Also, same "goto" comment applies here, you can simply return ret.
-
-> +		goto err;
-> +	}
+> +patternProperties:
+> +  "^sata-port@[0-9a-f]+$":
+> +    type: object
+> +    description:
+> +      Subnode with configuration of the Ports.
 > +
-> +	comp_idx = (enum mtk_jpegenc_hw_id)of_device_get_match_data(decs);
-> +	if (comp_idx < MTK_JPEGENC_HW_MAX) {
-
-`comp_idx` is a bit misleading, this is not using the component framework.
-
-....but this will probably be refactored after following the suggestion that
-I gave you in v6 and again now.
-
-> +		master_dev->enc_hw_dev[comp_idx] = dev;
-> +		master_dev->reg_encbase[comp_idx] = dev->reg_base;
-> +		dev->master_dev = master_dev;
-> +	} else {
-> +		dev_err(&pdev->dev, "Failed to get_match_data.\n");
-> +		goto err;
-> +	}
+> +    properties:
+> +      reg:
+> +        maxItems: 1
 > +
-> +	platform_set_drvdata(pdev, dev);
-> +	pm_runtime_enable(&pdev->dev);
+> +      phys:
+> +        minItems: 1
+
+maxItems: 1
+
 > +
-> +	return 0;
+> +      target-supply:
+> +        description:
+> +          regulator for SATA target power
 > +
-> +err:
-
-This label serves no real purpose: please remove.
-
-> +	return ret;
-> +}
+> +    required:
+> +      - reg
 > +
+> +    anyOf:
+> +      - required: [ phys ]
+> +      - required: [ target-supply ]
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    sata@ffe08000 {
+> +           compatible = "snps,spear-ahci";
+> +           reg = <0xffe08000 0x1000>;
+> +           interrupts = <115>;
+> +    };
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/berlin2q.h>
+> +    sata@f7e90000 {
+> +            compatible = "marvell,berlin2q-ahci", "generic-ahci";
+> +            reg = <0xe90000 0x1000>;
+
+You still have wrong address.
+
+> +            interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&chip CLKID_SATA>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            sata0: sata-port@0 {
+> +                    reg = <0>;
+> +                    phys = <&sata_phy 0>;
+> +                    target-supply = <&reg_sata0>;
+> +            };
+> +
+> +            sata1: sata-port@1 {
+> +                    reg = <1>;
+> +                    phys = <&sata_phy 1>;
+> +                    target-supply = <&reg_sata1>;
+> +            };
+> +    };
 
 
-
-Regards,
-Angelo
+Best regards,
+Krzysztof
