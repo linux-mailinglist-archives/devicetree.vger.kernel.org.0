@@ -2,109 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC764CB090
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:01:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B49DA4CB0AB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:09:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245049AbiCBVCY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 16:02:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48230 "EHLO
+        id S244512AbiCBVJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 16:09:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245019AbiCBVCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:02:23 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3312FDBD31
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 13:01:39 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id r10so4723419wrp.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 13:01:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IotEGEPl+vyvT7dXmaJAP+jOA9ymnn/1Ou6RVmJElPo=;
-        b=pC98Gxui5FKMvVnCS2lvd7EDmxqExt/7anZky4i0qilnWRH8AA1eZQ7k+JzXkwQ3go
-         wjGsj6ZUDSbpJN198GqqSwRxgdlVm8AY0Txpl9M1/OncZLt0B4SA5sP+gnTsAOeCGv7y
-         RhWtOqMlqMw0hobQKS+jFMd4FKY7VnrrLFqi84m2/MWQ1FHC+HxsXA5PBKwTF/gButw1
-         osSH0jsjnJUipS/61SLjBXKjgiueFK/jy7WJOMBHdFQjpC66ont/1QMVK+t/IfNyxlut
-         8ZbbLJ9eH8L0i+IG7VoVAfehe204+4Zbn5YOHqUr7Go9PavF1SC3qpLerb2LWVEFG+zs
-         09KA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=IotEGEPl+vyvT7dXmaJAP+jOA9ymnn/1Ou6RVmJElPo=;
-        b=7hez/wCFcE8g3mtXJGcM1rLbXqLNN5q70I+A5euVqoL+GI7U042law3HdRzOvuDlnH
-         QlQlyQTkC3LOZBh0rD/gloZKq+8Fb/514O51hpbc/rfBlyrG9LCBHwUR9i3o9LJwzi1v
-         xH+yS0JpKzD6jXeLFLRaS/phM1J4UZFvb0oDbPqpjR4mKdU5fEXPq8iHT+STKHtA/F6U
-         r3DAgDwSnMMPKf929ar3iTdjm+97L5d3x7zE7/qINMOg0WUC0bG35wVfC4RG2Howeekj
-         Pdh0dPB3/KUzZC6h/BXQQvpmi9N98x6ne1fxGw+o9e86mFntfUXhQfVWNzI1DiQc2jC4
-         SgXA==
-X-Gm-Message-State: AOAM532KSZFpbb7eNbhvjM5BD72NsqDIoFub/O8CuahdAl1fyagN9hwF
-        Az6Yw+vT0VWjX4ygaqABn5/1gg==
-X-Google-Smtp-Source: ABdhPJyu8xSxUgfVUOgYfqeqseA8crLejYQaJqBLvkT4iTpIUedL39JKLwdBq84PfWbf06al81Z94Q==
-X-Received: by 2002:a5d:5257:0:b0:1f0:1822:69ad with SMTP id k23-20020a5d5257000000b001f0182269admr6737136wrc.342.1646254897531;
-        Wed, 02 Mar 2022 13:01:37 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98? ([2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98])
-        by smtp.googlemail.com with ESMTPSA id m5-20020a05600c3b0500b00380da3ac789sm158320wms.1.2022.03.02.13.01.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 13:01:36 -0800 (PST)
-Message-ID: <efbb8a52-2e8b-9840-54c4-2696e19dd61c@linaro.org>
-Date:   Wed, 2 Mar 2022 22:01:34 +0100
+        with ESMTP id S232781AbiCBVJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:09:51 -0500
+Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1A263DA46
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 13:09:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=YVPonQqpEW/osiSkp2w5/19iAhJL
+        mXpMKKI4FyqWK1w=; b=V9rQ7AZbdbm8XDP19OJft5vyngmhg1u0v65JSKkWkVjI
+        jkJkq9AhqSzJp5QtkNnMoydkw5Q+X5ivdglaKX1mT6OgkfnyAGNQzB8CgOTxokr/
+        NzhXhdw7uH/mE5xKBdVkKPxDUnLBQiRYUcCem/KKTb7ptZ6mXQ+iZOepqtzmfc4=
+Received: (qmail 255582 invoked from network); 2 Mar 2022 22:08:56 +0100
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Mar 2022 22:08:56 +0100
+X-UD-Smtp-Session: l3s3148p1@Bw45sELZ9MMgAQnoAGk1AHiBA1wHs4oK
+Date:   Wed, 2 Mar 2022 22:08:51 +0100
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: i2c: renesas,riic: Document RZ/V2L SoC
+Message-ID: <Yh/c42fHi+aJNMYV@ninjato>
+Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Rob Herring <robh@kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>, linux-i2c@vger.kernel.org
+References: <20220301125046.17737-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <Yh+2T/Mny15X+pOq@robh.at.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/3] dt-bindings: thermal: samsung: convert to dtschema
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220122132554.65192-1-krzysztof.kozlowski@canonical.com>
- <20220122132554.65192-2-krzysztof.kozlowski@canonical.com>
- <d27ee47c-6c03-3927-4cac-46a1c2515ab6@canonical.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <d27ee47c-6c03-3927-4cac-46a1c2515ab6@canonical.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="oSnu0q8D7Aj2Z3Vb"
+Content-Disposition: inline
+In-Reply-To: <Yh+2T/Mny15X+pOq@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 20:11, Krzysztof Kozlowski wrote:
-> On 22/01/2022 14:25, Krzysztof Kozlowski wrote:
->> Convert the Samsung Exynos SoC Thermal Management Unit bindings to DT
->> schema format.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>   .../bindings/thermal/exynos-thermal.txt       | 106 ----------
->>   .../thermal/samsung,exynos-thermal.yaml       | 184 ++++++++++++++++++
->>   2 files changed, 184 insertions(+), 106 deletions(-)
->>   delete mode 100644 Documentation/devicetree/bindings/thermal/exynos-thermal.txt
->>   create mode 100644 Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
->>
-> 
-> Hi Amit, Daniel, Rafael and Zhang,
-> 
-> The patch got review from Rob. Could you pick it up to thermal/PM tree?
 
-https://git.kernel.org/pub/scm/linux/kernel/git/thermal/linux.git/commit/?h=thermal/linux-next&id=ffae973348505a786a145021d72da331509af185
+--oSnu0q8D7Aj2Z3Vb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> I already applied v1. I may have missed this because PW stopped getting=
+=20
+> mail the last 2 days.
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Can you revert v1 and apply v2? Or I apply v2? Works both for me.
+
+
+--oSnu0q8D7Aj2Z3Vb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmIf3N4ACgkQFA3kzBSg
+KbZ1ng//bzpLhbdUikOqpGN1QLqpmSmhCeZpCSQC4yX3UgLb6B9hIH03cfLYW2Sb
+r4u46CDHljP8c8jgwKvTksB5ZNebosw5dKasgXAM7jdDw2XFtNw2YFuyZIRxMFwX
+mCDpwlIpcngrivz4nxiJXeNP5yC4mKV2mOI8Dewc/K+3a0zX5P7ejl4T0VRanv4m
+O8vdrXzaW5UROf8wNzbllW6UHuXxnaKTAMha0qkj8mn3Rfm2OlYxcOl5P1jgvLKD
+NeHxmp5IBRHI6LYgLyX/BkMZzaTAjqQ7nLlr6onRtTDHiGHm9ZHZhNMg1X68S+GV
+wNmTAEbiPY7UUjoPLelmmYcF6KPvNOb6ufKi4T6GIycMYu+u951pbeXCGol51X2I
+t+hU8tBc840OqqUUbgV9Z8+T0NYzlrTuGuirCYKMCi4P3WZHOVhFENDA8/EPSKut
+qFy3cQ297mAQXO9+nRjAg5Lr3qt4oIjPKnyKYgAiHE7opliFCXBl0ZPUIkW2Frxs
+720+BN0fkN9SbKH6MSjbf/sRhy9qe73TRyHJbS6Lwi+Axl9e098gP/VFdU1GGHVO
+dZbG6/dscALNkThixglXPawvy6K9SChkNhuxc5CsBVI0uOKvOmRsjFA25/DAPzFz
+aGhPa0wy5Cdrei/AuHAcIlHghBfnveOA36AAsyMUasOAKgZRuZM=
+=kQuV
+-----END PGP SIGNATURE-----
+
+--oSnu0q8D7Aj2Z3Vb--
