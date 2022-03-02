@@ -2,155 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C4C4CAA67
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:36:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 084114CAAAB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:42:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239227AbiCBQhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 11:37:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50788 "EHLO
+        id S242427AbiCBQnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 11:43:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238232AbiCBQhA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:37:00 -0500
-Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E41F5CE907
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 08:36:16 -0800 (PST)
-Received: by mail-oo1-xc2a.google.com with SMTP id o7-20020a056820040700b003205d5eae6eso1986114oou.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 08:36:16 -0800 (PST)
+        with ESMTP id S243620AbiCBQnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:43:10 -0500
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BBF85527D3
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 08:42:22 -0800 (PST)
+Received: by mail-ej1-x630.google.com with SMTP id qt6so4910804ejb.11
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 08:42:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=o9t4H73QttGgZo+vQTCpgTCC+eA6JW9j2EdawokS1xg=;
-        b=Kh+hsA+IflggohdoCjeykEn6rdFU/iq8ofBCgdXylV1aoI6MALB8chVupv8YW4B4qy
-         NHWM4/OX0VoVpby85g/1JLrQOeXjfbZEWkNLKiiZ61UekrwMkJKDkX1/7KD0WhLJXK0s
-         WhUoo+jg+QMIz7VXBskoHAQIf2lW1Ptra+j4M+OmQq8gdnHTzd06dqYfe1vL/zsNq/UH
-         hK+N/fvamAmzjSDvWMChPot6IDlelhv1G4FpUCVAqeiVaXGmPMYXEIUP6JegvIF4PoP0
-         n0nl/jOcSuC4zR/YJAxMHdqZjz5yUbx7CbYjxPRq4PprqT0tnFES9U7gt+PHFhvJ1zG0
-         f+8Q==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=W/OHrbBOSzQoNIMp4yIse8lL5E3OuoeVt5dK0c4ZOz4=;
+        b=Q5NMvvWPoa1JXTZDJe5s1ZV4XNfqE8mrsFpXI0anaiU2bXxNMjkr2TIusHZrgDAfQg
+         GvuXrd5vGYsRvy+p3jRvKTDcIn5hiRh8sDfrIGZ2tGoTz1MK8bw67hxOF31U0LItDiTr
+         buhlylZrDBKEhmZMQCpKBn48eZeeFDrZSlX1M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=o9t4H73QttGgZo+vQTCpgTCC+eA6JW9j2EdawokS1xg=;
-        b=WGgNpVgYWTfc96i43iAOhwL7ONhSwqcMmBoS+f9xbgZ/x0YrkEWC/i8VZqj3aneb+Q
-         u7ojb+374cz7Nk9DKKhp3w0ueH7q/LfP1VCXQJfQV7lvuHYFgOU8bin+xmYPtNazgWGK
-         T+frJFokAJLVargiy4bE05we8VfgjsdxaxzpH3OCP7nnqWaVPSxCJyj/9bT5FR0QS1Pr
-         iJSRasLqvNGv4VQRz7Fyc6Ez5SZyTDhSuyLbtqKFdSwYp1Cb1gnn7xKLFX93MfLSN76H
-         SFfL5AM9BpIVnfDdlN3o2Gjl2+p2r+VqoKvgKga5j58s3G3D8q6Q+sP7PBjomEnDRX/l
-         ibrQ==
-X-Gm-Message-State: AOAM533HC3N7mo5s9HV99AyGCReFgbrY1CjLKZnc6pN9Rz4IPuZScfG/
-        28j9D4Ekpns/IWaDMVkp0SlRmUEkCvI=
-X-Google-Smtp-Source: ABdhPJzLd5RWxiotT7UCT5TSI5p8jatncWxYu4TxdOtvcvTRC6SeAQK+PX0Frar3/CRJ3733avW7HQ==
-X-Received: by 2002:a4a:2d19:0:b0:2da:d991:a489 with SMTP id y25-20020a4a2d19000000b002dad991a489mr15591889ooy.32.1646238976195;
-        Wed, 02 Mar 2022 08:36:16 -0800 (PST)
-Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id y6-20020a4a86c6000000b0031bf43a9212sm7804950ooh.11.2022.03.02.08.36.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 08:36:13 -0800 (PST)
-Date:   Wed, 2 Mar 2022 10:36:11 -0600
-From:   Chris Morgan <macroalpha82@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        lee.jones@linaro.org, heiko@sntech.de, zyw@rock-chips.com,
-        zhangqing@rock-chips.com, linux-rockchip@lists.infradead.org,
-        Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH v3] dt-bindings: mfd: rk808: Convert bindings to yaml
-Message-ID: <20220302163611.GA12995@wintermute.localdomain>
-References: <20220215211548.31940-1-macroalpha82@gmail.com>
- <9142ff41-4e95-3d52-bbe3-4f638b7d0fb2@arm.com>
- <YhfcxaaQgO7eDOXH@robh.at.kernel.org>
- <6ba1c897-a932-915e-1415-1bb685754305@arm.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W/OHrbBOSzQoNIMp4yIse8lL5E3OuoeVt5dK0c4ZOz4=;
+        b=0/+hAgLA/GNzJFeBC8ibe48Z7yM6JxV4dy6DHp/fJZBcbFaw/QVNnlOKLVvrlorWq1
+         evRQozi4CMjSy+qfcvLje3/ss9mzBBO3ZMnPcS2ESgJYpyRPODry4IDSAtlrmbORldeU
+         Fsn11PWsQFVYcW7zH6yA/dAr0lhhxcXQkOQo4A15Obx7vwUP5yA1o/mOyh2IHSeyshRw
+         Le+yUv4xl7FZyhQjxez2rS9juUVaEj/pm4GUNKwDGLp6PlMYLwcu2H/cye3l9vFze+7Y
+         fERfvqcuDAKTYps+LM/zz5akEul4ikVRb0KeJG0YPCMYUFPA7l2ibif68iCWma51iegP
+         OjAQ==
+X-Gm-Message-State: AOAM5323sarbQoWiLnaJGO+sCZMSPprpyP3JPkmHuVcIasd8tk3rgjl7
+        wt3vL3t6fzU+JGsyVtSL6ybs6p4jSfgfK63Q
+X-Google-Smtp-Source: ABdhPJw+do7JTXrU+WYi06e2KvQyYtI/2Rjea+k//UMcsOd0g6hj77sQrrw1W6NcYOMtIJIp9QkExw==
+X-Received: by 2002:a17:907:9956:b0:6b9:a6d9:a535 with SMTP id kl22-20020a170907995600b006b9a6d9a535mr23237687ejc.64.1646239340949;
+        Wed, 02 Mar 2022 08:42:20 -0800 (PST)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com. [209.85.221.54])
+        by smtp.gmail.com with ESMTPSA id gs39-20020a1709072d2700b006d3ed4f51c6sm6685430ejc.0.2022.03.02.08.42.19
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 08:42:19 -0800 (PST)
+Received: by mail-wr1-f54.google.com with SMTP id i8so3700266wrr.8
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 08:42:19 -0800 (PST)
+X-Received: by 2002:a5d:6543:0:b0:1ef:7194:3efc with SMTP id
+ z3-20020a5d6543000000b001ef71943efcmr19660822wrv.422.1646239338601; Wed, 02
+ Mar 2022 08:42:18 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6ba1c897-a932-915e-1415-1bb685754305@arm.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
+In-Reply-To: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 2 Mar 2022 08:42:05 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=XtkXganjG=ddgaq4-p+cAK1c4jqG=8Ux_xxdUrPpXhVA@mail.gmail.com>
+Message-ID: <CAD=FV=XtkXganjG=ddgaq4-p+cAK1c4jqG=8Ux_xxdUrPpXhVA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
+ bias-disable for sc7280-idp
+To:     Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        msavaliy@qti.qualcomm.com, Matthias Kaehlcke <mka@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 25, 2022 at 10:44:55AM +0000, Robin Murphy wrote:
-> On 2022-02-24 19:30, Rob Herring wrote:
-> [...]
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - "#clock-cells"
-> > > 
-> > > Is this actually required (ditto elsewhere)? Technically it's only necessary
-> > > if there are any clock consumers targeting this node, so arguably it should
-> > > be the clock binding's responsibility to validate that.
-> > > 
-> > > It wouldn't make much sense for a dedicated clock controller to omit
-> > > #clock-cells such that it couldn't have any consumers, but given that these
-> > > things are primarily PMICs I think it's reasonable to allow a board not to
-> > > care about the clocks at all if it doesn't use them. I know that the
-> > > original binding claimed it was required, but if we're already relaxing that
-> > > for RK805 here then we may as well relax it entirely.
-> > 
-> > Fair enough. However, if the consumer could be in an overlay, then I
-> > think we want it to be required and not make the overlay add the
-> > property. Properties just appearing within nodes at runtime is likely
-> > not well supported in OSs.
-> 
-> Ah yes, that's an angle I hadn't considered, and I reckon it clearly answers
-> my original question in the affirmative :)
-> 
-> Indeed these clock outputs are often hooked up to SDIO WiFi modules, and I'm
-> sure I *have* seen boards which put such modules on pluggable daughterboards
-> in a manner which could reasonably use overlays, so in principle it does
-> seem like a realistic concern. I'm happy with setting a general principle
-> that if a clock output is exposed on a physical pin, then at the DTS level
-> we can't know for sure that it *won't* be consumed (even if the original
-> board design didn't intend it), therefore the device is always a potential
-> clock controller and "#clock-cells" should be required. In that case, the
-> consistency argument would fall the other way, to enforcing it for RK805 as
-> well.
+Hi,
 
-Okay. So the existing point of contentions are:
+On Mon, Feb 14, 2022 at 5:04 AM Vijaya Krishna Nivarthi
+<quic_vnivarth@quicinc.com> wrote:
+>
+> WLAN rail was leaking power during RBSC/sleep even after turning BT off.
+> Change sleep pinctrl configuration to handle same.
+>
+> Signed-off-by: Vijaya Krishna Nivarthi <quic_vnivarth@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> index d623d71..de18319 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-idp.dtsi
+> @@ -516,10 +516,10 @@
+>                 pins = "gpio28";
+>                 function = "gpio";
+>                 /*
+> -                * Configure a pull-down on CTS to match the pull of
+> -                * the Bluetooth module.
+> +                * Configure a disable on CTS to lower power usage
+> +                * when BT is turned off.
+>                  */
+> -               bias-pull-down;
+> +               bias-disable;
 
-1) "#clock-cells" should always be required. This causes a few boards
-to fail to check properly, but I assume that can be easily remedied by
-adding the "#clock-cells" to the devicetree.
+Why is sc7280 different from all of the previous devices? Did the
+Bluetooth firmware change or are we measuring a different case? I know
+we spent a lot of time carefully choosing each of these pulls before
+so before changing them we should understand what changed.
 
-2) The rk805, rk809, and rk817 only have a single clock-out. To
-workaround a quirk in the driver some boards have 2 clock-output-names.
-To fix the devicetree to accurately describe the hardware, the driver
-will have to be updated along with many boards with these PMICs.
+CTS is an input from the AP's perspective, right? From the AP's
+perspective then the case we need to be careful of is to prevent this
+line from every floating while the AP is turned on. Specifically,
+consider this case:
 
-3) The rk808 has no vcc13 or vcc14 input, but at least 4 boards preport
-to use such a voltage input anyway.
+1. AP is powered on but has no pull on this line
 
-Not a point of contention, but I need to add examples for the rk805,
-rk809, and rk818 which I will just pull from a popular devicetree.
+2. The Bluetooth chip is powered off or otherwise configured to not
+drive this line.
 
-I can solve the clock-cells issue by simply adding that to the correct
-devicetrees (though I have no devices to test those on I assume they
-should be benign changes?). Is that acceptable to fix that?
+In that case the line will be floating. Its voltage will wander
+around, influenced by other parts of the system. The downside here is
+that, so I'm told, this will cause power draw on the AP. Each time the
+voltage on the line floats between trigger points that the AP is
+watching for it will trigger some logic in the AP and cause power
+consumption. That's really not ideal.
 
-For the single clock out, I can't really fix it without updating the
-driver and modifying a large number of devicetrees. Should I just make
-it 1 min/2 max across all these YAML files and note for the rk805,
-rk809, and rk817 that there is only really one clock output?
+So by disabling this pull you need to be _really_ sure that there's no
+case where the AP is on and the Bluetooth chip is powered off / not
+driving the line. In the past I don't think we were convinced of this,
+which is why we configured a pull but tried to match it with what the
+Bluetooth chip would do anyway.
 
-What should I do for #3? I've checked the schematic for the Pinebook
-Pro (which is one of the 4 boards affected) and can confirm that
-VCC13 and VCC14 on these boards is literally just VCC1 and VCC2,
-respectively. I can't seem to find the schematics for the other 3
-boards affected though, but I assume it's something similar.
 
-Let me know, I'd like to get this finalized so I can get the battery
-code for the rk817 charger pushed too.
+So... How about using bias-bus-hold instead? That has the advantage of
+keeping the line from floating but also shouldn't cause a constant
+power draw. I believe it was created _exactly_ to deal with this type
+of case. I don't think I was even aware that we supported
+bias-bus-hold the last time we had this discussion and it seems like
+it would solve the problem nicely. Does it work for you?
 
-Thank you very much for all your help.
-Chris
-
-> 
-> Cheers,
-> Robin.
+-Doug
