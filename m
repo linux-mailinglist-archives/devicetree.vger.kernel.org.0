@@ -2,60 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E4134CAA10
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D02374CAA1D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:26:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233708AbiCBQYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 11:24:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
+        id S232978AbiCBQ1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 11:27:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232397AbiCBQYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:24:24 -0500
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15A653CFDE;
-        Wed,  2 Mar 2022 08:23:41 -0800 (PST)
-Received: from localhost (mailhub3.si.c-s.fr [172.26.127.67])
-        by localhost (Postfix) with ESMTP id 4K7zvH3rXNz9sSR;
-        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-        by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id g3_V2IdfLWdQ; Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-        by pegase2.c-s.fr (Postfix) with ESMTP id 4K7zvH2zcrz9sSN;
-        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 5597B8B76D;
-        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-        by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-        with ESMTP id jM4um5h1j013; Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-Received: from [172.25.230.108] (unknown [172.25.230.108])
-        by messagerie.si.c-s.fr (Postfix) with ESMTP id 241D08B763;
-        Wed,  2 Mar 2022 17:23:39 +0100 (CET)
-Message-ID: <d67e43a5-a654-e622-bab8-d2f55a7013f3@csgroup.eu>
-Date:   Wed, 2 Mar 2022 17:23:38 +0100
+        with ESMTP id S240206AbiCBQ11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:27:27 -0500
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8D43CC51B
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 08:26:43 -0800 (PST)
+Received: by mail-wr1-x434.google.com with SMTP id p9so3593763wra.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 08:26:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=XjaeiEY8a1tH5c2j9KNmVI9SB++cezD6KFaef4Xjcac=;
+        b=zP0BA6qB3rPhTnq8Fj9Z87v5Om3r3lpqiDAIoP2yPgV+O441mHTr7Ur1NOl002un1B
+         CVZvsGx2tkNU6Uj24hNt0x2YU/ZVLnFBGj9cg7O8bGuozsHa888HLGJ6C88/M0XpnS4O
+         umjN75al8ea5bXZ53+cG1qUxOZDEHfI1U7OC0nDYWYG/XoQfNi0tGXVP3IN/vngQi15O
+         6GwdlyVjx7Q0LE+q03Zv7WDqsXarq6VoZxG0DMKwtHOanwWAx1QYggVsqKYT2gobrI0A
+         rXKq0rnmMVduqpklvtted93fzbsSmbHEhVzt2m8NAVbd0L5v336bhFvvNZVc4qdB5FyK
+         +VGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XjaeiEY8a1tH5c2j9KNmVI9SB++cezD6KFaef4Xjcac=;
+        b=Br8/fSxFO0SRCC5mj5UT1jXc5vSMDmjl0OFWAs8b9wHmOiEN9WRgnSVCTcIK4f/Dtq
+         l0wnhMjfYaCAJRG9lf8AdW8TW2ff9R+lYc4BwWJb7fuUY3csIZLxGWI3Fe7HYjAzRQdy
+         8npQgd+xoPFck3aGZqXzgMQHhVubRvN9RTA/e6HTsHx2/Rfe22l6hHZpPaO1XB6lw/6C
+         qkLSJOaLKL1wvPEop77WrNO3c3oLd9pWdpMGoRV5gnNVy0tXFPqjb7UoinnH7YWtdgA0
+         JEJl36M0v9LyTtFBDREV08TBm+upI43B6bnbXH4Vn/fDYxu21yTiGGB0JzzhANHYVpUz
+         c+7A==
+X-Gm-Message-State: AOAM531wCDvsVSuXMnqhKTOXa0Bog0bUkNWbrMkHBKZ1uRWBhOT9sR8i
+        Tfh9lB9kGIg4k4FfJYAEeffJ7w==
+X-Google-Smtp-Source: ABdhPJzKY+/eMiZPibbAsxw/NaB6uXT2sK3X5WA4cVQHSoWusKxMSFLA03cK79cL79Q1DUIlIf+R9A==
+X-Received: by 2002:adf:f849:0:b0:1ef:5d80:c68a with SMTP id d9-20020adff849000000b001ef5d80c68amr19686368wrq.280.1646238402267;
+        Wed, 02 Mar 2022 08:26:42 -0800 (PST)
+Received: from ?IPV6:2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98? ([2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98])
+        by smtp.googlemail.com with ESMTPSA id i9-20020adffdc9000000b001f046861795sm1588244wrs.19.2022.03.02.08.26.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 08:26:41 -0800 (PST)
+Message-ID: <3ff11b85-249f-2f47-cbc4-41d2ab6d168f@linaro.org>
+Date:   Wed, 2 Mar 2022 17:26:37 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [Reoprt] Some compile warning on ppc dts
-Content-Language: fr-FR
-To:     "chenjun (AM)" <chenjun102@huawei.com>,
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Content-Language: en-US
+To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "Xiangrui (Euler)" <rui.xiang@huawei.com>
-References: <CE1E7D7EFA066443B6454A6A5063B50220CCBBE4@dggeml509-mbx.china.huawei.com>
-From:   Christophe Leroy <christophe.leroy@csgroup.eu>
-In-Reply-To: <CE1E7D7EFA066443B6454A6A5063B50220CCBBE4@dggeml509-mbx.china.huawei.com>
+Cc:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-3-shruthi.sanil@intel.com>
+ <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
+ <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+ <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
+ <BN9PR11MB55458A882EB4A681C4A63B26F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <BN9PR11MB55458A882EB4A681C4A63B26F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,68 +88,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 02/03/2022 17:07, Sanil, Shruthi wrote:
+>> -----Original Message----- From: Daniel Lezcano
+>> <daniel.lezcano@linaro.org> Sent: Wednesday, March 2, 2022 3:54 PM 
+>> To: Sanil, Shruthi <shruthi.sanil@intel.com>; tglx@linutronix.de; 
+>> robh+dt@kernel.org; linux-kernel@vger.kernel.org; 
+>> devicetree@vger.kernel.org Cc: andriy.shevchenko@linux.intel.com;
+>> mgross@linux.intel.com; Thokala, Srikanth
+>> <srikanth.thokala@intel.com>; Raja Subramanian, Lakshmi Bai 
+>> <lakshmi.bai.raja.subramanian@intel.com>; Sangannavar,
+>> Mallikarjunappa <mallikarjunappa.sangannavar@intel.com> Subject:
+>> Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+>> 
+>> On 02/03/2022 11:12, Sanil, Shruthi wrote:
+>> 
+>> [ ... ]
+>> 
+>>>>> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) { +
+>>>>> pr_err("%pOF: Prescaler is not enabled\n", np); +		ret =
+>>>>> -ENODEV; +	}
+>>>> 
+>>>> Why bail out instead of enabling the prescalar ?
+>>> 
+>>> Because it is a secure register and it would be updated by the
+>>> bootloader.
+>> Should it be considered as a firmware bug ?
+> 
+> No. This is a common driver across products in the series and
+> enablement of this bit depends on the project requirements. Hence to
+> be sure from driver, we added this check to avoid initialization of
+> the driver in the case where it cannot be functional.
+
+I'm not sure to get the meaning of 'project requirements' but (for my 
+understanding) why not describe the timer in the DT for such projects?
 
 
-Le 01/03/2021 à 03:16, chenjun (AM) a écrit :
-> Hi
-> 
-> After run the following commands
-> make distclean
-> make allmodconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
-> make oldconfig ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
-> make -j64 ARCH=powerpc CROSS_COMPILE=powerpc64-linux-gnu-
-> 
-> I get some warning:
-> arch/powerpc/boot/dts/mpc5200b.dtsi:267.20-280.4: Warning (pci_bridge):
-> /pci@f0000d00: missing ranges for PCI bridg
-> e (or not a bridge)
-> arch/powerpc/boot/dts/o2dnt2.dtb: Warning (pci_device_bus_num): Failed
-> prerequisite 'pci_bridge'
-> arch/powerpc/boot/dts/mpc5200b.dtsi:182.18-186.5: Warning
-> (spi_bus_bridge): /soc5200@f0000000/psc@2000: node name f
-> or SPI buses should be 'spi'
->     also defined at arch/powerpc/boot/dts/o2d.dtsi:32.12-43.5
-> arch/powerpc/boot/dts/o2dnt2.dtb: Warning (spi_bus_reg): Failed
-> prerequisite 'spi_bus_bridge'
-> ...
-> 
-> For the problem about "node name for SPI buses should be 'spi'":
-> Rename the psc@2000 to spi@2000 in arch/powerpc/boot/dts/o2d.dtsi can
-> fix it.
-> diff --git a/arch/powerpc/boot/dts/o2d.dtsi b/arch/powerpc/boot/dts/o2d.dtsi
-> index 6661955a2be4..cd3dc70cd72e 100644
-> --- a/arch/powerpc/boot/dts/o2d.dtsi
-> +++ b/arch/powerpc/boot/dts/o2d.dtsi
-> @@ -29,7 +29,7 @@ rtc@800 {
->    >------>------->-------status = "disabled";
->    >------>-------};
-> -
-> ->------>-------psc@2000 {>----->-------// PSC1
-> +>------>-------spi@2000 {>----->-------// PSC1
->    >------>------->-------compatible =
-> "fsl,mpc5200b-psc-spi","fsl,mpc5200-psc-spi";
->    >------>------->-------#address-cells = <1>;
->    >------>------->-------#size-cells = <0>;
-> ---
-> 
-> For the problem about "missing ranges for PCI bridge (or not a bridge)":
-> Ranges should be add in arch/powerpc/boot/dts/mpc5200b.dtsi.
->   >-------pci: pci@f0000d00 {
->   >------->-------#interrupt-cells = <1>;
->   >------->-------#size-cells = <2>;
->   >------->-------#address-cells = <3>;
->   >------->-------device_type = "pci";
->   >------->-------compatible = "fsl,mpc5200b-pci","fsl,mpc5200-pci";
->   >------->-------reg = <0xf0000d00 0x100>;
->   >------->-------// interrupt-map-mask = need to add
->   >------->-------// interrupt-map = need to add
->   >------->-------clock-frequency = <0>; // From boot loader
->   >------->-------interrupts = <2 8 0 2 9 0 2 10 0>;
->   >------->-------bus-range = <0 0>;
->   >------->-------// ranges = need to add
->   >-------};
-> I think the ranges should be add by someone who knows the mpc5200 better.
-> 
+>> -- <http://www.linaro.org/> Linaro.org │ Open source software for
+>> ARM SoCs
+>> 
+>> Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook | 
+>> <http://twitter.com/#!/linaroorg> Twitter |
+>> <http://www.linaro.org/linaro- blog/> Blog
 
 
-This patch has garbage instead of tabs, it doesn't apply
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
