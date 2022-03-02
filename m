@@ -2,69 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE8904CAC64
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:46:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE6C4CAC69
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:47:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244221AbiCBRrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 12:47:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55940 "EHLO
+        id S244235AbiCBRsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 12:48:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234695AbiCBRrc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:47:32 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id CEAF3D19B1;
-        Wed,  2 Mar 2022 09:46:48 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 73AEC139F;
-        Wed,  2 Mar 2022 09:46:48 -0800 (PST)
-Received: from [10.57.21.27] (unknown [10.57.21.27])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 687AE3F73D;
-        Wed,  2 Mar 2022 09:46:46 -0800 (PST)
-Message-ID: <b040ea6c-5fdf-b68a-a580-d2d0095a33de@arm.com>
-Date:   Wed, 2 Mar 2022 17:46:44 +0000
+        with ESMTP id S244229AbiCBRr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:47:59 -0500
+Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C86D4C8D;
+        Wed,  2 Mar 2022 09:47:16 -0800 (PST)
+Received: by mail-oo1-f52.google.com with SMTP id r41-20020a4a966c000000b0031bf85a4124so2791141ooi.0;
+        Wed, 02 Mar 2022 09:47:16 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=e4Ynsr1KRV81mh/v7NFfZK09/uSAr9hKDyQJT4xohZg=;
+        b=F9JgVhJBvYb49StGk//PtPYAEJK5jf2Ohl62xcKR4nsyszVnXRL4AgYAlo45815HMd
+         jZdaUJAsR66IhBcVioSTvVAvAxVY4XTAYOURPCXBDULkQmkZhNbz17dXWMpXXDv37T2O
+         bopM88yJ64BCMxGrWzDveeV4LIEmm1JsfcbO556zWdvPDUjyKrq2hopQ7tfSLJQ3lTwz
+         /vQlH59B1724/Sip3Dwzidb98fvkS6exsLG+EBzCmNVXY3CfFoywhU5aIsBkOnCwRQzO
+         ECltmghxaNv5bH0bPzi5h4lTfDbOf7PT4+wYbkWgKynULJuWaqJsCyCHMriT+KMAOhjU
+         0Cqg==
+X-Gm-Message-State: AOAM530aOFHjeudPWokfPbNP2vkcWtguDFZcWVF4hqEi1DJW/82hxx3Y
+        S1RQWMHuqLEJUNT1ZavFrw==
+X-Google-Smtp-Source: ABdhPJzg5JoFk1NbMDL+DRO0m47cfdlGNhs1NOFAqhUNaPHs7ws2+aCvpQ+SNBK/slfH92ZxDB2vzQ==
+X-Received: by 2002:a4a:e216:0:b0:320:5471:3284 with SMTP id b22-20020a4ae216000000b0032054713284mr2599557oot.70.1646243235602;
+        Wed, 02 Mar 2022 09:47:15 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id bd14-20020a056808220e00b002d53f900b9csm10199789oib.30.2022.03.02.09.47.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 09:47:14 -0800 (PST)
+Received: (nullmailer pid 3948765 invoked by uid 1000);
+        Wed, 02 Mar 2022 17:47:13 -0000
+Date:   Wed, 2 Mar 2022 11:47:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc:     linux-serial@vger.kernel.org, Jiri Slaby <jirislaby@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-kernel@vger.kernel.org, Lukas Wunner <lukas@wunner.de>,
+        Johan Hovold <johan@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/7] dt_bindings: snps-dw-apb-uart: Add RS485
+Message-ID: <Yh+tofzEMXSWr60c@robh.at.kernel.org>
+References: <20220302095606.14818-1-ilpo.jarvinen@linux.intel.com>
+ <20220302095606.14818-5-ilpo.jarvinen@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v5 1/5] dt-bindings: opp: Add "opp-microwatt" entry in the
- OPP
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
-        viresh.kumar@linaro.org, rafael@kernel.org,
-        daniel.lezcano@linaro.org, nm@ti.com, sboyd@kernel.org,
-        mka@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20220302112917.27270-1-lukasz.luba@arm.com>
- <20220302112917.27270-2-lukasz.luba@arm.com>
- <Yh+tKe7oWCpmj5MC@robh.at.kernel.org>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-In-Reply-To: <Yh+tKe7oWCpmj5MC@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220302095606.14818-5-ilpo.jarvinen@linux.intel.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/2/22 17:45, Rob Herring wrote:
-> On Wed, Mar 02, 2022 at 11:29:13AM +0000, Lukasz Luba wrote:
->> Add new entry for the OPP which provides information about power
->> expressed in micro-Watts. It is useful for the Energy Model framework.
->>
->> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
->> ---
->>   .../devicetree/bindings/opp/opp-v2-base.yaml  | 23 +++++++++++++++++++
->>   1 file changed, 23 insertions(+)
+On Wed, Mar 02, 2022 at 11:56:03AM +0200, Ilpo Järvinen wrote:
+> Add RS485 enable & line polarity properties.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+> ---
+>  .../bindings/serial/snps-dw-apb-uart.yaml       | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> index 12137fe80acf..8d440afabb1f 100644
+> --- a/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/snps-dw-apb-uart.yaml
+> @@ -103,6 +103,23 @@ properties:
+>        register. Define this if your serial port does not use this pin.
+>      type: boolean
+>  
+> +  snps,rs485-interface-en:
+> +    description: Use true RS-485 DE and RE signals (in contrast to RS-485
+> +      emulation using RTS). Requires IP version 4 or above.
+> +    type: boolean
+> +
 
-Thank you Rob for the review!
+> +  snps,de-active-high:
+> +    description: Defines the polarity of driver enable (DE_EN) signal.
+> +      Meaningful only with snps,rs485-interface-en. True indicates active
+> +      high.
+> +    type: boolean
+> +
+> +  snps,re-active-high:
+> +    description: Defines the polarity of receiver enable (RE_EN) signal.
+> +      Meaningful only with snps,rs485-interface-en. True indicates active
+> +      high.
+> +    type: boolean
 
-Regards,
-Lukasz
+Seems plausible that other rs485 implementations could have varying 
+polarities too. IOW, should be common properties.
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.30.2
+> 
