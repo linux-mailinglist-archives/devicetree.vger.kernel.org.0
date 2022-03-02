@@ -2,157 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C35644CA094
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:23:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 577B34CA09D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:24:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240399AbiCBJYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:24:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51880 "EHLO
+        id S238916AbiCBJZ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:25:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238026AbiCBJYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:24:14 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CA03701E
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:23:30 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nPLCh-00046V-OS; Wed, 02 Mar 2022 10:23:27 +0100
-Message-ID: <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>
-Cc:     Liu Ying <victor.liu@oss.nxp.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
-Date:   Wed, 02 Mar 2022 10:23:25 +0100
-In-Reply-To: <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
-References: <20220228004605.367040-1-marex@denx.de>
-         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
-         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
-         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
-         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
-         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
-         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
-         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
-         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
-         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
-         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S238686AbiCBJZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:25:26 -0500
+Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9BB844BFFE;
+        Wed,  2 Mar 2022 01:24:43 -0800 (PST)
+Received: by mail-pj1-x102c.google.com with SMTP id m13-20020a17090aab0d00b001bbe267d4d1so3645513pjq.0;
+        Wed, 02 Mar 2022 01:24:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=WaWcwOHmu+CzQ075186NMnPBJxGmawZeuD/n9EcEdJQ=;
+        b=YV/F6XpueBprSxXpQ6q0Cm3rSGNkZEJG8x9nlQAWmqx/yxUilVZV3Q1eRdrbBlSe1n
+         +E4ziQn6svN4oFkSBNZRKYfOAFTPU12IDOpC0a4kNlL2zigBPVsAgRcUHQT+ADNdYGSH
+         6qxCLxtcYBJsnNm6m+XTAjnuzMoZIl8Vj0hQP2827+CzP2k76GINKQdwmB23vgoGxdvk
+         b7+17LJmP0skdRmMef8H/GqS0yzbwUT+ZOQunWgjTtbQNM81cJ7QiiVAQV6LlcKnUSEs
+         58xKWwBWlAWPNxIxZm4jBr5285OrJhCIrJLEfXuLcduRliEPzZv/v6VUniwVH4Kn5qMz
+         WHjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=WaWcwOHmu+CzQ075186NMnPBJxGmawZeuD/n9EcEdJQ=;
+        b=zs+MWYu9wYen2m52yJaXte8AUidB+MXmHhTvIfXcqD9SyZNNzHvkAz7PxJ0GCs09dk
+         IpEuYD7QiNP3/FiCGubS6nGm8zW/OvYzU1q1nEm5+MR6q12P8uuoK3kzg5819Zet6q1B
+         jijbOnNOx7MLf1lFRKzC9BH/40s6rm/yvYJxEyg3rQtPUteABR+EVp7avkf7IAI2fiyF
+         O9S96prgCmS17VogtPj5yWvVYFPK4D97jQ1GGPILZ2VyWsl3f92/LPwFyZaSkcGr35jC
+         PJZT3jOMVviutOhERZz051yJ3uLng9Eu8zYDtydk18/p4BYiFz7S3Ah+HGxu6kARBxtA
+         YFoA==
+X-Gm-Message-State: AOAM533XIq9/wMESqPpUh3idKRz/XuL2oC9XlT/9h7RTUtFZcw1vHBu2
+        pO6yfLIue+cyF6AD4BNcYB4=
+X-Google-Smtp-Source: ABdhPJxQUjpx4IZqwNjxYN691wEWHajSm3tH6KYSJTbQPvAxF9vngl/KgZHDYw3IJw7JlEunIdCumg==
+X-Received: by 2002:a17:903:32c8:b0:150:1189:c862 with SMTP id i8-20020a17090332c800b001501189c862mr30385943plr.134.1646213083073;
+        Wed, 02 Mar 2022 01:24:43 -0800 (PST)
+Received: from localhost.localdomain ([112.78.94.140])
+        by smtp.gmail.com with ESMTPSA id q22-20020a056a00085600b004f397d1f3b5sm21351153pfk.171.2022.03.02.01.24.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 01:24:42 -0800 (PST)
+From:   Medad CChien <medadyoung@gmail.com>
+X-Google-Original-From: Medad CChien <ctcchien@nuvoton.com>
+To:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
+        benjaminfair@google.com, yuenn@google.com, venture@google.com,
+        KWLIU@nuvoton.com, YSCHU@nuvoton.com, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com
+Cc:     linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Medad CChien <ctcchien@nuvoton.com>
+Subject: [PATCH v2 0/3] EDAC: nuvoton: Add nuvoton NPCM EDAC driver
+Date:   Wed,  2 Mar 2022 17:24:31 +0800
+Message-Id: <20220302092434.16625-1-ctcchien@nuvoton.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
-> On 3/1/22 14:18, Lucas Stach wrote:
-> > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
-> > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > > 
-> > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
-> > > > > On 3/1/22 11:04, Lucas Stach wrote:
-> > > > > 
-> > > > > Hi,
-> > > > > 
-> > > > > [...]
-> > > > > 
-> > > > > > > Given the two totally different IPs, I don't see bugs of IP control
-> > > > > > > logics should be fixed for both drivers. Naturally, the two would
-> > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
-> > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
-> > > > > > > 'if/else' checks(barely no common control code), which is hard to
-> > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
-> > > > > > > and 'LCDIF'.
-> > > > > > 
-> > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
-> > > > > > boilerplate anymore with all the helpers we have available in the
-> > > > > > framework today.
-> > > > > 
-> > > > > I did write a separate driver for this IP before I spent time merging
-> > > > > them into single driver, that's when I realized a single driver is much
-> > > > > better and discarded the separate driver idea.
-> > > > > 
-> > > > > > The IP is so different from the currently supported LCDIF controllers
-> > > > > > that I think trying to support this one in the existing driver actually
-> > > > > > increases the chances to break something when modifying the driver in
-> > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
-> > > > > > on having a separate driver for the i.MX8MP LCDIF.
-> > > > > 
-> > > > > If you look at both controllers, it is clear it is still the LCDIF
-> > > > > behind, even the CSC that is bolted on would suggest that.
-> > > > 
-> > > > Yes, but from a driver PoV what you care about is not really the
-> > > > hardware blocks used to implement something, but the programming model,
-> > > > i.e. the register interface exposed to software.
-> > > > 
-> > > > > 
-> > > > > I am also not happy when I look at the amount of duplication a separate
-> > > > > driver would create, it will be some 50% of the code that would be just
-> > > > > duplicated.
-> > > > > 
-> > > > Yea, the duplicated code is still significant, as the HW itself is so
-> > > > simple. However, if you find yourself in the situation where basically
-> > > > every actual register access in the driver ends up being in a "if (some
-> > > > HW rev) ... " clause, i still think it would be better to have a
-> > > > separate driver, as the programming interface is just different.
-> > > 
-> > > I tend to agree with Marek on this one.  We have an instance where the
-> > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
-> > > but different enough where each SoC has it's own set of tables and
-> > > some checks.   Lucas created the framework, and others adapted it for
-> > > various SoC's.  If there really is nearly 50% common code for the
-> > > LCDIF, why not either leave the driver as one or split the common code
-> > > into its own driver like lcdif-common and then have smaller drivers
-> > > that handle their specific variations.
-> > 
-> > I don't know exactly how the standalone driver looks like, but I guess
-> > the overlap is not really in any real HW specific parts, but the common
-> > DRM boilerplate, so there isn't much point in creating a common lcdif
-> > driver.
-> 
-> The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
-> that, there is some 400 LoC which are specific to old LCDIF and this 
-> patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
-> shared boilerplate that would be duplicated .
+Add support for Nuvoton NPCM SoC.
 
-That is probably ignoring the fact that the 8MP LCDIF does not support
-any overlays, so it could use the drm_simple_display_pipe
-infrastructure to reduce the needed boilerplate.
-> 
-> > As you brought up the blk-ctrl as an example: I'm all for supporting
-> > slightly different hardware in the same driver, as long as the HW
-> > interface is close enough. But then I also opted for a separate 8MP
-> > blk-ctrl driver for those blk-ctrls that differ significantly from the
-> > others, as I think it would make the common driver unmaintainable
-> > trying to support all the different variants in one driver.
-> 
-> But then you also need to maintain two sets of boilerplate, they 
-> diverge, and that is not good.
+Medad CChien (3):
+  ARM: dts: nuvoton: Add new device node
+  dt-bindings: edac: npcm-edac.yaml
+  EDAC: nuvoton: Add nuvoton NPCM EDAC driver
 
-I don't think that there is much chance for bugs going unfixed due to
-divergence in the boilerplate, especially if you use the simple pipe
-framework to handle most of that stuff for you, which gives you a lot
-of code sharing with other simple DRM drivers.
+ .../devicetree/bindings/edac/npcm-edac.yaml   |  62 ++
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |   7 +
+ drivers/edac/Kconfig                          |   9 +
+ drivers/edac/Makefile                         |   1 +
+ drivers/edac/npcm_edac.c                      | 714 ++++++++++++++++++
+ 5 files changed, 793 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/npcm-edac.yaml
+ create mode 100644 drivers/edac/npcm_edac.c
 
-Regards,
-Lucas
-
+-- 
+2.17.1
 
