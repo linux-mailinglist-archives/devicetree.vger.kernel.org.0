@@ -2,58 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6266E4CAC79
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:51:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33A3F4CAC90
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:54:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244102AbiCBRwJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 12:52:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38684 "EHLO
+        id S238204AbiCBRyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 12:54:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236917AbiCBRwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:52:09 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E86E2D1E2;
-        Wed,  2 Mar 2022 09:51:26 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id i5so2437915oih.1;
-        Wed, 02 Mar 2022 09:51:26 -0800 (PST)
+        with ESMTP id S233784AbiCBRyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:54:49 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4D5E9D0D6
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 09:54:05 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id j2so2424632oie.7
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 09:54:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GFF/t9fk//sx7LHwN7dlkkdLpRIX0g7zkDB/NfrGhNs=;
-        b=28/9Ledkegy2oYhjb7MU9fHpn9cY86840I0J+eft0GAdKOIUWMuBYtldgMkYwQByOd
-         SNq41ndNFsGdVX5Hfdp7MW23eueVqm7CxxA4I5zgozELfoW2zX55aHK366rAAQACHjFV
-         7ts6Ji6cWmCMRA3DYtxN77fbCtAeHYYW9KQSlzmiyk5zlnl+WMhyL205qe8Vegaft7BL
-         wSi2Jd4+G7f1o7EZXzGdafmYBNfXJ8b/ePtcdGYl1dh8uVSavkj7vhX7MHnlgki+diul
-         e43PJOwaJPR0xhuSIsXJwI3+QVhu1EIOjcRuYhhZDEchB/8oooGjwa1IFlIWBGqqnzQo
-         icIA==
-X-Gm-Message-State: AOAM5335kP7QW4WbbSbvTCKedWwjIYzZ7UuqzMpKNgzs3Hu+Sja0dWbL
-        bHzyWzRVCr8ihIsmxPkY0A==
-X-Google-Smtp-Source: ABdhPJzp4n9WySV+E8mkfq2VuWX+XkhyWRTeGtDGbTY2pp+hLqJV3uRkCT9mqniVOdzkKTRtxFjkLw==
-X-Received: by 2002:a05:6808:4c:b0:2d7:8451:feb2 with SMTP id v12-20020a056808004c00b002d78451feb2mr937798oic.100.1646243485492;
-        Wed, 02 Mar 2022 09:51:25 -0800 (PST)
+        bh=MEa4+AitEkUo+ZXbXWDE7cqp60A7nDmM+8ONuWSuF+M=;
+        b=n5B1WkH50jy3NPSXPN1lblqNIRJVrgW3N7dKaZj36mIusPze/o+mrxv9a+w2Cnk6kD
+         i0pcBx4ZCeBgESegA1o+6m+61jWnhuWiRe9+TngOmuPnhXpv4MUjqVTmCnpoVwDj4W3C
+         MuTL+Jf5bpglkvyVTSo9pd8c1h8l+Y9MaPBuKjXeEF7EpCq1IWEUDbEt9fSKAups5Jyj
+         KA3SL/3NLRs1B4EauWb/bZfNVZvq/F03q1j2If6GEe7nYO4fwOowsqpw4zkZ/94urmEY
+         IuW26JWU/XRLLX2Q2opThj3FmGYzdw+0k/CTn3S6vBlfOva9LqFWt43xaBlNghg4I2vK
+         A++A==
+X-Gm-Message-State: AOAM531oPKj6+j/a8WpR194oW3UmH0abDa+5uJVydmusnfYoKVMjotiV
+        9VJiOoQQRVWvtcMCR5GV1g==
+X-Google-Smtp-Source: ABdhPJwPpntbUJaBIXkJvbsIIMxK880e0ZksZypP3v1aQsNnVvZiD9H3/kVjNqCnP2kBEW1y3SNjLQ==
+X-Received: by 2002:a05:6808:bd2:b0:2d7:9ab4:a0a9 with SMTP id o18-20020a0568080bd200b002d79ab4a0a9mr897512oik.81.1646243645201;
+        Wed, 02 Mar 2022 09:54:05 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id b15-20020a05687061cf00b000d17a5f0ee6sm7397001oah.11.2022.03.02.09.51.24
+        by smtp.gmail.com with ESMTPSA id s29-20020a0568301c7d00b005af050c12c9sm7932222otg.72.2022.03.02.09.54.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 09:51:24 -0800 (PST)
-Received: (nullmailer pid 3955040 invoked by uid 1000);
-        Wed, 02 Mar 2022 17:51:23 -0000
-Date:   Wed, 2 Mar 2022 11:51:23 -0600
+        Wed, 02 Mar 2022 09:54:04 -0800 (PST)
+Received: (nullmailer pid 3959165 invoked by uid 1000);
+        Wed, 02 Mar 2022 17:54:03 -0000
+Date:   Wed, 2 Mar 2022 11:54:03 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ashish Mhetre <amhetre@nvidia.com>
-Cc:     krzysztof.kozlowski@canonical.com, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, digetx@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, vdumpa@nvidia.com, Snikam@nvidia.com
-Subject: Re: [Patch v4 2/4] dt-bindings: memory: Update reg maxitems for
- tegra186
-Message-ID: <Yh+um1TSNWK8P6GY@robh.at.kernel.org>
-References: <1646210609-21943-1-git-send-email-amhetre@nvidia.com>
- <1646210609-21943-3-git-send-email-amhetre@nvidia.com>
+To:     Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: Re: [PATCH V5 1/2] dt-bindings: power: add Amlogic s4 power domains
+ bindings
+Message-ID: <Yh+vOyKUsxwic9oq@robh.at.kernel.org>
+References: <20220302065540.16031-1-shunzhou.jiang@amlogic.com>
+ <20220302065540.16031-2-shunzhou.jiang@amlogic.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1646210609-21943-3-git-send-email-amhetre@nvidia.com>
+In-Reply-To: <20220302065540.16031-2-shunzhou.jiang@amlogic.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,35 +64,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 02:13:27PM +0530, Ashish Mhetre wrote:
-> >From tegra186 onwards, memory controller support multiple channels.
-> Reg items are updated with address and size of these channels.
-> Tegra186 has overall 5 memory controller channels. Tegra194 and tegra234
-> have overall 17 memory controller channels each.
-> There is 1 reg item for memory controller stream-id registers.
-> So update the reg maxItems to 18 in tegra186 devicetree documentation.
-
-Some of this needs to be in 'description' for 'reg'.
-
+On Wed, Mar 02, 2022 at 02:55:39PM +0800, Shunzhou Jiang wrote:
+> Add the bindings for the Amlogic Secure power domains, controlling the
+> secure power domains.
 > 
-> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> The bindings targets the Amlogic s4, in which the power domains registers
+> are in secure world.
+> 
+> Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 > ---
->  .../devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml      | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-> index 13c4c82..eb7ed00 100644
-> --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra186-mc.yaml
-> @@ -35,7 +35,7 @@ properties:
->  
->    reg:
->      minItems: 1
-> -    maxItems: 3
-> +    maxItems: 18
->  
->    interrupts:
->      items:
-> -- 
-> 2.7.4
-> 
+> V1->V2: fix spelling error, patchset use cover-letter
+> V2->V3: add power domain always on reason
+> V3->V4: clear vpu and usb power domaon always on
+> V4->V5: add reviewed owner in patchset
+> ---
+>  .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
+>  include/dt-bindings/power/meson-s4-power.h    | 19 +++++++++++++++++++
+>  2 files changed, 21 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/power/meson-s4-power.h
+
+Acked-by: Rob Herring <robh@kernel.org>
