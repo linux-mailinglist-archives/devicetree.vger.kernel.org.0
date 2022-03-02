@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAFF4CAB85
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:25:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EDB04CAB8E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 18:27:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243802AbiCBR0T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 12:26:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56336 "EHLO
+        id S243929AbiCBR2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 12:28:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243809AbiCBR0S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:26:18 -0500
-Received: from mail-ot1-x331.google.com (mail-ot1-x331.google.com [IPv6:2607:f8b0:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF2CCA33D
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 09:25:31 -0800 (PST)
-Received: by mail-ot1-x331.google.com with SMTP id w3-20020a056830060300b005ad10e3becaso2259103oti.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 09:25:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A7p+Sua3vWTnrJZHdXkQWaCDCi1ogBb2wcZTsYiqgV4=;
-        b=kSgjDYJtPfb9ROCmWxhJKur8Uaw3MOy+15dIiLp2BSKjF6NgN4VZPpOm11PH5Q2XrA
-         r7UqQ8AaC5RLrjGi485c5S8PablqMesWLFYHzsnpfcYXW5sH7ojPTvi/b4Wtn1+Lb4LI
-         u8Ki+p4BrjOZDvRVCNP8Yq6NvOGZ/t85CEOYWpgTSqxC7K326FpV9CyYlRyr7Dbr2eNx
-         FAVu6BaRigJcOwFcbBaJDzoIRdc8l5qu53ZMTrJiSXmNLtU9wGjUkOmDJ9OFe1KyB66C
-         FfM9f9NRMOu0nrjn4rjNuOs/xijBjaPfQMoRJ0OArmgDe2qhxEE2dOoW/gkO3qeFidbu
-         eyXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A7p+Sua3vWTnrJZHdXkQWaCDCi1ogBb2wcZTsYiqgV4=;
-        b=Ag5uGNKy38DUbK149ou7UASLHyolzASSXsp9sQZLSeQADV9CTXlKySVb2mu0qWE5fr
-         1CjHKKZZSzwz8bvwFHM1sXDTDzxOxOLrjHqYUlb1ySpOunGuE1WeKix2ivmZSzNooHFq
-         kmDzKMSPIZoEg9imT1q5ys4nxr8XyQHHlddXHLXgrGA3nmcO9yl9J6ie0qbOaIi6igdl
-         X3oBkzjArng7RW2qrHlhgbeoLH+ObY+iZ6H1Rj/rGJPYkrlrjtVPBXXRi5rm3yDsZ1yR
-         DNgQlaeWDGLywv/F68yFboj8+sM5PDWE/JSdkSPNsNLtQGTrh9hgYmCe70t2fc4DZ+QQ
-         9qmA==
-X-Gm-Message-State: AOAM5313cWycJ+wDOl6BE3emuuke4YjoZ2KDocUGYdawqsUe3T9QuE6M
-        QCTTCjpmxsJXnfWhgExrkX4Cz70Tp/LW0lyaFJpDbw==
-X-Google-Smtp-Source: ABdhPJwwxzHWuf8viqR1OdWBAi0a7r41AOauclraB7d347YvqjAztRTJua35obzbRfApLE3btcmqP+cYlOjzbV8E/Ns=
-X-Received: by 2002:a05:6830:314c:b0:5af:dc8a:d066 with SMTP id
- c12-20020a056830314c00b005afdc8ad066mr13881461ots.28.1646241930640; Wed, 02
- Mar 2022 09:25:30 -0800 (PST)
+        with ESMTP id S243908AbiCBR2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 12:28:01 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5185DCA33B;
+        Wed,  2 Mar 2022 09:27:18 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 051AFB820DD;
+        Wed,  2 Mar 2022 17:27:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02EF6C004E1;
+        Wed,  2 Mar 2022 17:27:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646242035;
+        bh=XX+gbWN6d/khISVOWirF+epY3OmJ0EbDPOgJ5dqOVDo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N8aGkykE+wQjURHstd0nScvLq8LPy77ZrjSFnVf+lF80AE6XC02uex2sTI348BTE5
+         y608MdYjz4A2HvtzFxrJi3pDwfL58AGLvoRCLHyzFlAZ3A5BSr2ob8PhCC0JkkGfSi
+         1H6uGKXMak+XL9qEh59sRwZrHwik0fFXLXHx4ueV4CUwMAFbzZ3StOM0ciVB/ACHKc
+         5Fc1tLapf64ahl1VZQJKUoAQOmQrRuydoDkR6TU4xIw5GZCyhIoJYD5OgsEynMIH5v
+         f4871jWWDv6fR1FSYKTHX07XXbUZqNCzdHpwTIsFJi9ctB6LSVQgVomnoEeR/yFH3S
+         FBgAENBJ4C8wg==
+Date:   Wed, 2 Mar 2022 22:57:11 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "open list:GENERIC PHY FRAMEWORK" <linux-phy@lists.infradead.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Johan Jonker <jbx6244@gmail.com>,
+        Jianqun Xu <jay.xu@rock-chips.com>,
+        Tobias Schramm <t.schramm@manjaro.org>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: Revert "dt-bindings: soc: grf: add naneng
+ combo phy register compatible"
+Message-ID: <Yh+o7/D0QqJypHga@matsya>
+References: <20220302143427.447748-1-vkoul@kernel.org>
+ <CAL_JsqJMZ8PHqJk6drNbNHprmfeV9UvJzJnech7sz_JwcdbckA@mail.gmail.com>
+ <CAMdYzYoCeSKPQjUqigtP7GiAB8iDre9BRwVTqvmq_OA-N06NQw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20220302110508.69053-1-bhupesh.sharma@linaro.org>
- <20220302110508.69053-3-bhupesh.sharma@linaro.org> <CAA8EJprTiGfEnkPOeDPyobdRGkyzyC6=vHivfQ9zsk22JPjM3w@mail.gmail.com>
-In-Reply-To: <CAA8EJprTiGfEnkPOeDPyobdRGkyzyC6=vHivfQ9zsk22JPjM3w@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Wed, 2 Mar 2022 22:55:19 +0530
-Message-ID: <CAH=2NtySLVEk_aLdftCS9DcfPS6egUxVAJTZnxjxLPQQnGb4aw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] clk: qcom: gcc: Add emac GDSC support for SM8150
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        robh+dt@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMdYzYoCeSKPQjUqigtP7GiAB8iDre9BRwVTqvmq_OA-N06NQw@mail.gmail.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,103 +66,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+On 02-03-22, 12:12, Peter Geis wrote:
+> On Wed, Mar 2, 2022 at 12:04 PM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Wed, Mar 2, 2022 at 8:34 AM Vinod Koul <vkoul@kernel.org> wrote:
+> > >
+> > > This reverts commit b3df807e1fb0 ("dt-bindings: soc: grf: add naneng
+> > > combo phy register compatible") as that was wrongly merged, so better to
+> > > drop the wrong patch
+> > >
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > > I am applying this to phy-next to fix the issue
+> >
+> > Reverting will just cause a different warning that it is undocumented.
+> > The fix in the other thread won't apply either if you revert.
+> 
+> Reverting and reapplying the original patch would work.
+> https://patchwork.kernel.org/project/linux-rockchip/patch/20220208091326.12495-2-yifeng.zhao@rock-chips.com/
 
-On Wed, 2 Mar 2022 at 18:00, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, 2 Mar 2022 at 14:05, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > Add the EMAC GDSC defines and driver structures for SM8150.
-> >
-> > Cc: Stephen Boyd <sboyd@kernel.org>
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  drivers/clk/qcom/gcc-sm8150.c               | 34 +++++++++++++--------
-> >  include/dt-bindings/clock/qcom,gcc-sm8150.h |  1 +
-> >  2 files changed, 23 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-> > index 245794485719..08ba29e3a835 100644
-> > --- a/drivers/clk/qcom/gcc-sm8150.c
-> > +++ b/drivers/clk/qcom/gcc-sm8150.c
-> > @@ -3448,22 +3448,31 @@ static struct clk_branch gcc_video_xo_clk = {
-> >         },
-> >  };
-> >
-> > +static struct gdsc emac_gdsc = {
-> > +       .gdscr = 0x6004,
-> > +       .pd = {
-> > +               .name = "emac_gdsc",
-> > +       },
-> > +       .pwrsts = PWRSTS_OFF_ON,
-> > +       .flags = POLL_CFG_GDSCR,
-> > +};
-> > +
-> >  static struct gdsc usb30_prim_gdsc = {
-> > -               .gdscr = 0xf004,
-> > -               .pd = {
-> > -                       .name = "usb30_prim_gdsc",
-> > -               },
-> > -               .pwrsts = PWRSTS_OFF_ON,
-> > -               .flags = POLL_CFG_GDSCR,
-> > +       .gdscr = 0xf004,
-> > +       .pd = {
-> > +               .name = "usb30_prim_gdsc",
-> > +       },
-> > +       .pwrsts = PWRSTS_OFF_ON,
-> > +       .flags = POLL_CFG_GDSCR,
->
-> Please move alignment changes to a separate patch
+It does not apply to phy-next!
 
-Right, Will fix it in v3.
-
-Regards,
-Bhupesh
-
-> >  };
-> >
-> >  static struct gdsc usb30_sec_gdsc = {
-> > -               .gdscr = 0x10004,
-> > -               .pd = {
-> > -                       .name = "usb30_sec_gdsc",
-> > -               },
-> > -               .pwrsts = PWRSTS_OFF_ON,
-> > -               .flags = POLL_CFG_GDSCR,
-> > +       .gdscr = 0x10004,
-> > +       .pd = {
-> > +               .name = "usb30_sec_gdsc",
-> > +       },
-> > +       .pwrsts = PWRSTS_OFF_ON,
-> > +       .flags = POLL_CFG_GDSCR,
-> >  };
-> >
-> >  static struct clk_regmap *gcc_sm8150_clocks[] = {
-> > @@ -3714,6 +3723,7 @@ static const struct qcom_reset_map gcc_sm8150_resets[] = {
-> >  };
-> >
-> >  static struct gdsc *gcc_sm8150_gdscs[] = {
-> > +       [EMAC_GDSC] = &emac_gdsc,
-> >         [USB30_PRIM_GDSC] = &usb30_prim_gdsc,
-> >         [USB30_SEC_GDSC] = &usb30_sec_gdsc,
-> >  };
-> > diff --git a/include/dt-bindings/clock/qcom,gcc-sm8150.h b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> > index 3e1a91876610..40596b9ded06 100644
-> > --- a/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> > +++ b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> > @@ -243,5 +243,6 @@
-> >  /* GCC GDSCRs */
-> >  #define USB30_PRIM_GDSC                     4
-> >  #define USB30_SEC_GDSC                                         5
-> > +#define EMAC_GDSC                                              6
-> >
-> >  #endif
-> > --
-> > 2.35.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
+-- 
+~Vinod
