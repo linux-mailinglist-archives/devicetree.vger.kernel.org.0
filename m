@@ -2,111 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D377F4CA0CE
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:30:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0DB4CA0F1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:37:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240503AbiCBJbW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:31:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41744 "EHLO
+        id S229720AbiCBJi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:38:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234241AbiCBJbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:31:21 -0500
-Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10206B8233
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:30:39 -0800 (PST)
-Received: by mail-pf1-x42c.google.com with SMTP id a5so1390320pfv.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 01:30:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=GJBBkuVoOY0NadmNicSfZEUGciYZ9mVdm2SUcdDUa1o=;
-        b=BiwF3Cgiq4NVJYHfcc9TVwFXiK/Plrkz9Icej7HVS5zeBpmXcxn/Y6OtaRy0iWYKKw
-         GuT4yZgy1INWhZJwxlOYi4bPJ9B72nL1ga0lPC8lALKz6E63s7JZrhb/SozMC0//IVj7
-         Q7c3jR/C3CmwE2Ovn3NV9+ZtGBwe4bt69pfIK3KwECUpDuf+4HS2LrYrpumJqMCinOlw
-         5VLGyVpBy8itZ9mUfzjPyYIvDPXUZzi+KjLpnCZ0fb4ON/2zIttKydFKH/VYORW84qM8
-         DhqkcPOQL97TuYPRA8kH/fefSoVVY/L5FK5nIDO6fxFoQCaeqbOE5pHTh+2huidDkWf+
-         z3Vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GJBBkuVoOY0NadmNicSfZEUGciYZ9mVdm2SUcdDUa1o=;
-        b=cy4BcHZQMHCEfFaFgMFbo0l4E9IZShwQCl7tFKg/LEJ4RDMcCYVi+zMDILU97EUIMa
-         U44LPDxLzkrHa6A71+M76KCTQ0gDuRdLF8IYLyL5vXqzgiyVVoSm461jVFXYIbdkEEG3
-         3IDhd6d86NtXD4Vaa7Kc2eT9lRmD2z5UrZ7qQOJQac3jiLHMAeRoJ2hx7z0kJ2n1rADN
-         plX5oLA+bTWpJ7F4as3GRur1Dr8kEpxLbj3q4GJgK8XThAMYc+c2gOCisdoxPKK+9352
-         2hrNt20x/D9ro+ODLHBmmzprlrCcVOFlOSeUgBqR6po9gNZmqStvu8l6aZtHorOXfKgA
-         D2ag==
-X-Gm-Message-State: AOAM532wxhaUFWjsv2p52QtdggLxCQph1DKRfUC9H8TfJbxvWCZfrtTX
-        hlbemBeninoyJvAcK6pJspk16g==
-X-Google-Smtp-Source: ABdhPJzKj3BxnxWBDF7gcRkF9CxOl4nkip25FQ/GRhoYU1H823jjPKs1ppyAbnJL3/5gQrYHU9aP6g==
-X-Received: by 2002:a05:6a00:140c:b0:4e1:530c:edc0 with SMTP id l12-20020a056a00140c00b004e1530cedc0mr32224862pfu.18.1646213438591;
-        Wed, 02 Mar 2022 01:30:38 -0800 (PST)
-Received: from localhost ([223.184.83.228])
-        by smtp.gmail.com with ESMTPSA id x6-20020a17090aa38600b001bce781ce03sm4554983pjp.18.2022.03.02.01.30.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 01:30:38 -0800 (PST)
-Date:   Wed, 2 Mar 2022 15:00:36 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Lukasz Luba <lukasz.luba@arm.com>
+        with ESMTP id S240557AbiCBJiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:38:25 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 719D224BC7;
+        Wed,  2 Mar 2022 01:37:41 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B3B9F1042;
+        Wed,  2 Mar 2022 01:37:41 -0800 (PST)
+Received: from [10.57.21.27] (unknown [10.57.21.27])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BDA013F66F;
+        Wed,  2 Mar 2022 01:37:39 -0800 (PST)
+Message-ID: <b9f12eb6-9156-022d-1069-662a0af05aaa@arm.com>
+Date:   Wed, 2 Mar 2022 09:37:37 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 3/4] OPP: Add support of "opp-microwatt" for advanced
+ EM registration
+Content-Language: en-US
+To:     Viresh Kumar <viresh.kumar@linaro.org>
 Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
         rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
         sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
         robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] OPP: Add support of "opp-microwatt" for advanced
- EM registration
-Message-ID: <20220302093036.qanm3vxuajinzbwb@vireshk-i7>
 References: <20220301093524.8870-1-lukasz.luba@arm.com>
  <20220301093524.8870-4-lukasz.luba@arm.com>
  <20220302074515.dqzoutfiobildiph@vireshk-i7>
  <e02d9113-d1ae-c029-750f-aece1cefab2d@arm.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e02d9113-d1ae-c029-750f-aece1cefab2d@arm.com>
-User-Agent: NeoMutt/20180716-391-311a52
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+ <20220302093036.qanm3vxuajinzbwb@vireshk-i7>
+From:   Lukasz Luba <lukasz.luba@arm.com>
+In-Reply-To: <20220302093036.qanm3vxuajinzbwb@vireshk-i7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-03-22, 08:50, Lukasz Luba wrote:
-> If you like, I can introduce new dual-macro implementation
-> in energy_modle.h which would sole this issue:
-> 
-> ifdef EM:
-> #define EM_SET_ACTIVE_POWER_CB(em_cb, cb) ((em_cb).active_power = cb)
-> 
-> ifndef EM:
-> #define EM_SET_ACTIVE_POWER_CB(em_cb, cb) do { } while (0)
-> 
-> 
-> Then we would keep the single call to the registration EM and
-> we would have:
-> 
->         if (_of_has_opp_microwatt_property(dev)) {
->                 EM_SET_ACTIVE_POWER_CB(em_cb, _get_dt_power);
->                 goto register_em;
->         }
-> 
-> 
-> 	
->         EM_SET_ACTIVE_POWER_CB(em_cb, _get_power);
-> 
-> register_em:
->         ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus, true);
-> 
-> 
-> I can do that, please let me know.
 
-That will work as well.
 
--- 
-viresh
+On 3/2/22 09:30, Viresh Kumar wrote:
+> On 02-03-22, 08:50, Lukasz Luba wrote:
+>> If you like, I can introduce new dual-macro implementation
+>> in energy_modle.h which would sole this issue:
+>>
+>> ifdef EM:
+>> #define EM_SET_ACTIVE_POWER_CB(em_cb, cb) ((em_cb).active_power = cb)
+>>
+>> ifndef EM:
+>> #define EM_SET_ACTIVE_POWER_CB(em_cb, cb) do { } while (0)
+>>
+>>
+>> Then we would keep the single call to the registration EM and
+>> we would have:
+>>
+>>          if (_of_has_opp_microwatt_property(dev)) {
+>>                  EM_SET_ACTIVE_POWER_CB(em_cb, _get_dt_power);
+>>                  goto register_em;
+>>          }
+>>
+>>
+>> 	
+>>          EM_SET_ACTIVE_POWER_CB(em_cb, _get_power);
+>>
+>> register_em:
+>>          ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus, true);
+>>
+>>
+>> I can do that, please let me know.
+> 
+> That will work as well.
+> 
+
+Great. Thank you for your comments. I'll send v5.
