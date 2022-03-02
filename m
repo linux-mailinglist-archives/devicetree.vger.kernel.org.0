@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2D064CB0C0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:11:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B9494CB0FE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:13:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245087AbiCBVMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 16:12:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41042 "EHLO
+        id S245132AbiCBVM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 16:12:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41676 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245068AbiCBVMA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:12:00 -0500
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1873DBD39;
-        Wed,  2 Mar 2022 13:11:15 -0800 (PST)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 4C2881C0004;
-        Wed,  2 Mar 2022 21:11:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646255474;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=T9RsY3uL4J3j0QOwi8eKlTAS0yrmwlj/haQTgokIQXQ=;
-        b=FVtXaR59dk3Dpj0gSPFUJzD4LNvPpvFO2l8uVCUH0+AJBf0JfPfOilYl50dKbTCKnGnId+
-        Or3yqwH7cEuxisdTB04xyx+L227Hlu8o7F1zCYT8zlJy2js2rOUpe9bzlEEbiPBNA+3BjS
-        H+z3yZW9Og4fFNbExBz57LUSLs46ddmD0HYJqMEu2mlbnm/xnF8x5EafBP29rriwR4bRcB
-        0bdsd3ZyVsLiG1WaMX56HQHxAstZpKG1n3rNkNGM/J1CeDow3q9+edbAdGGI2dRKG8+q3j
-        bcSDpnR3K/hYxFu+FcKMBdiYjwOHJfkT5BnjdWl3zciVgSYqfG6yAwcINhIxpg==
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v3 6/8] ARM: dts: sun8i: v3s: Add support for the ISP
-Date:   Wed,  2 Mar 2022 22:10:58 +0100
-Message-Id: <20220302211100.65264-7-paul.kocialkowski@bootlin.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
-References: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
+        with ESMTP id S245140AbiCBVMO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:12:14 -0500
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E613DD46E
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 13:11:26 -0800 (PST)
+Received: by mail-wr1-x42c.google.com with SMTP id r10so4754601wrp.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 13:11:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=mCxawyPN6KRYTDCClsWI1h6jdnBe5QeH3y4o4F1jrpo=;
+        b=sHZjZ5pf8NbozkZpFJEZiNveLKNV3UvXcFOTBicaVjXPBylVqZyWx3rLGcETTyvKY9
+         8L8oZSl3S9ciNCipph5PeVaT8zgwkjQ2CQ6o9aEt1U2Eji4KECAIfonwj3wsKd2IMxkP
+         d5g5RydGW1iwx9oNkTZSW1WFtC4XDeVS4/0ofmieFy+xhJD5Xqx8Zfm4LS4KZLJr9p3W
+         yc+pg74xytSEHW3WbUrLMTL5DpFaK/jgoBJkyP/iatNAXR0sdmoLe4oruw/CVGVu0BI9
+         bB3zciGTbs+GKxUNi9BP/IbK2tknFAZDC6RP4yH2vL8ZQ09bFzFBbOVtBhqIv4MyDiQW
+         qxAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=mCxawyPN6KRYTDCClsWI1h6jdnBe5QeH3y4o4F1jrpo=;
+        b=4w12SxvR6/S2valQCKU1CH566TJOnfzJDjBoqVUe8Mh3TB+CsfxLXXMr+hSS198oaK
+         caHWU/r7e1RU5j7uEvKR1T39bLgNKtOxzVA3fjPncdfOR8nMvNNrUt4Ricl1xTzTdm37
+         N9x5Ti1E9w9InmUQU5qK7eSzBWTr255W6emp6X/7+wX6zrS2XAyFuEMX6bcwE4OsWW9i
+         +JwkJyiIPqHvWqL98G2VhYR0EC8aaG50tbD088/xmMNhWTz4D92TRT20SMKkrnaW3+/i
+         3hi/4r94hXaFHsyZ2ZL583PpHxu6GvEGG3K/q7EA5FjzOD16NwBx3VouXWyMoYaJjhAj
+         K1Hg==
+X-Gm-Message-State: AOAM532Mdjd7CsijvxftgE2eOx9ItjZ6J4Ytwjin7OAqafYsvO2FUuTZ
+        H6HvK41FUAt1TNGFZ33LUpSM63sc5r+zHQ==
+X-Google-Smtp-Source: ABdhPJwioVpq0R67Kt5l0twnI9JuHMQtze9VoFWOWVQK3bqvxkXdIYdEqju5tKxZflc+ahOc0rlilw==
+X-Received: by 2002:a5d:6488:0:b0:1ea:7bfa:41e1 with SMTP id o8-20020a5d6488000000b001ea7bfa41e1mr24194226wri.563.1646255485409;
+        Wed, 02 Mar 2022 13:11:25 -0800 (PST)
+Received: from localhost.localdomain (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id z5-20020a05600c0a0500b0037fa93193a8sm145776wmp.44.2022.03.02.13.11.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 13:11:25 -0800 (PST)
+From:   Corentin Labbe <clabbe@baylibre.com>
+To:     heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, john@metanate.com,
+        Corentin Labbe <clabbe@baylibre.com>
+Subject: [PATCH v2 03/18] crypto: rockchip: do not do custom power management
+Date:   Wed,  2 Mar 2022 21:10:58 +0000
+Message-Id: <20220302211113.4003816-4-clabbe@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220302211113.4003816-1-clabbe@baylibre.com>
+References: <20220302211113.4003816-1-clabbe@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,78 +71,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The V3s (and related platforms) come with an instance of the A31 ISP.
-Even though it is very close to the A31 ISP, it is not exactly
-register-compatible and a dedicated compatible only is used as a
-result.
+The clock enable/disable at tfm init/exit is fragile,
+if 2 tfm are init in the same time and one is removed just after,
+it will leave the hardware uncloked even if a user remains.
 
-Just like most other blocks of the camera pipeline, the ISP uses
-the common CSI bus, module and ram clock as well as reset.
+Instead simply enable clocks at probe time.
+We will do PM later.
 
-A port connection to the ISP is added to CSI0 for convenience since
-CSI0 serves for MIPI CSI-2 interface support, which is likely to
-receive raw data that will need to be processed by the ISP to produce
-a final image.
-
-The interconnects property is used to inherit the proper DMA offset.
-
-Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
 ---
- arch/arm/boot/dts/sun8i-v3s.dtsi | 35 ++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ drivers/crypto/rockchip/rk3288_crypto.c          | 4 ++--
+ drivers/crypto/rockchip/rk3288_crypto.h          | 2 --
+ drivers/crypto/rockchip/rk3288_crypto_ahash.c    | 3 +--
+ drivers/crypto/rockchip/rk3288_crypto_skcipher.c | 5 +++--
+ 4 files changed, 6 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index a9405e011f3e..3d56a9471199 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -643,6 +643,14 @@ csi0_in_mipi_csi2: endpoint {
- 						remote-endpoint = <&mipi_csi2_out_csi0>;
- 					};
- 				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					csi0_out_isp: endpoint {
-+						remote-endpoint = <&isp_in_csi0>;
-+					};
-+				};
- 			};
- 		};
+diff --git a/drivers/crypto/rockchip/rk3288_crypto.c b/drivers/crypto/rockchip/rk3288_crypto.c
+index 21d3f1458584..4cff49b82983 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto.c
++++ b/drivers/crypto/rockchip/rk3288_crypto.c
+@@ -394,8 +394,7 @@ static int rk_crypto_probe(struct platform_device *pdev)
+ 		     rk_crypto_done_task_cb, (unsigned long)crypto_info);
+ 	crypto_init_queue(&crypto_info->queue, 50);
  
-@@ -701,5 +709,32 @@ csi1: camera@1cb4000 {
- 			resets = <&ccu RST_BUS_CSI>;
- 			status = "disabled";
- 		};
-+
-+		isp: isp@1cb8000 {
-+			compatible = "allwinner,sun8i-v3s-isp";
-+			reg = <0x01cb8000 0x1000>;
-+			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_CSI>,
-+				 <&ccu CLK_CSI1_SCLK>,
-+				 <&ccu CLK_DRAM_CSI>;
-+			clock-names = "bus", "mod", "ram";
-+			resets = <&ccu RST_BUS_CSI>;
-+			interconnects = <&mbus 5>;
-+			interconnect-names = "dma-mem";
-+			status = "disabled";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					isp_in_csi0: endpoint {
-+						remote-endpoint = <&csi0_out_isp>;
-+					};
-+				};
-+			};
-+		};
- 	};
- };
+-	crypto_info->enable_clk = rk_crypto_enable_clk;
+-	crypto_info->disable_clk = rk_crypto_disable_clk;
++	rk_crypto_enable_clk(crypto_info);
+ 	crypto_info->load_data = rk_load_data;
+ 	crypto_info->unload_data = rk_unload_data;
+ 	crypto_info->enqueue = rk_crypto_enqueue;
+@@ -422,6 +421,7 @@ static int rk_crypto_remove(struct platform_device *pdev)
+ 	struct rk_crypto_info *crypto_tmp = platform_get_drvdata(pdev);
+ 
+ 	rk_crypto_unregister();
++	rk_crypto_disable_clk(crypto_tmp);
+ 	tasklet_kill(&crypto_tmp->done_task);
+ 	tasklet_kill(&crypto_tmp->queue_task);
+ 	return 0;
+diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
+index 97278c2574ff..2fa7131e4060 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto.h
++++ b/drivers/crypto/rockchip/rk3288_crypto.h
+@@ -220,8 +220,6 @@ struct rk_crypto_info {
+ 	int (*start)(struct rk_crypto_info *dev);
+ 	int (*update)(struct rk_crypto_info *dev);
+ 	void (*complete)(struct crypto_async_request *base, int err);
+-	int (*enable_clk)(struct rk_crypto_info *dev);
+-	void (*disable_clk)(struct rk_crypto_info *dev);
+ 	int (*load_data)(struct rk_crypto_info *dev,
+ 			 struct scatterlist *sg_src,
+ 			 struct scatterlist *sg_dst);
+diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+index ed03058497bc..49017d1fb510 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
++++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+@@ -301,7 +301,7 @@ static int rk_cra_hash_init(struct crypto_tfm *tfm)
+ 				 sizeof(struct rk_ahash_rctx) +
+ 				 crypto_ahash_reqsize(tctx->fallback_tfm));
+ 
+-	return tctx->dev->enable_clk(tctx->dev);
++	return 0;
+ }
+ 
+ static void rk_cra_hash_exit(struct crypto_tfm *tfm)
+@@ -309,7 +309,6 @@ static void rk_cra_hash_exit(struct crypto_tfm *tfm)
+ 	struct rk_ahash_ctx *tctx = crypto_tfm_ctx(tfm);
+ 
+ 	free_page((unsigned long)tctx->dev->addr_vir);
+-	return tctx->dev->disable_clk(tctx->dev);
+ }
+ 
+ struct rk_crypto_tmp rk_ahash_sha1 = {
+diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+index 5bbf0d2722e1..8c44a19eab75 100644
+--- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
++++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+@@ -388,8 +388,10 @@ static int rk_ablk_init_tfm(struct crypto_skcipher *tfm)
+ 	ctx->dev->update = rk_ablk_rx;
+ 	ctx->dev->complete = rk_crypto_complete;
+ 	ctx->dev->addr_vir = (char *)__get_free_page(GFP_KERNEL);
++	if (!ctx->dev->addr_vir)
++		return -ENOMEM;
+ 
+-	return ctx->dev->addr_vir ? ctx->dev->enable_clk(ctx->dev) : -ENOMEM;
++	return 0;
+ }
+ 
+ static void rk_ablk_exit_tfm(struct crypto_skcipher *tfm)
+@@ -397,7 +399,6 @@ static void rk_ablk_exit_tfm(struct crypto_skcipher *tfm)
+ 	struct rk_cipher_ctx *ctx = crypto_skcipher_ctx(tfm);
+ 
+ 	free_page((unsigned long)ctx->dev->addr_vir);
+-	ctx->dev->disable_clk(ctx->dev);
+ }
+ 
+ struct rk_crypto_tmp rk_ecb_aes_alg = {
 -- 
-2.35.1
+2.34.1
 
