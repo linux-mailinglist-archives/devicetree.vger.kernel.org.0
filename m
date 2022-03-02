@@ -2,46 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74E9B4CA077
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:18:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C35644CA094
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:23:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233787AbiCBJTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:19:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43024 "EHLO
+        id S240399AbiCBJYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:24:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231479AbiCBJTh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:19:37 -0500
+        with ESMTP id S238026AbiCBJYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:24:14 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50683B0A51
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:18:53 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92CA03701E
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:23:30 -0800 (PST)
 Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1nPL81-0003HX-Oi; Wed, 02 Mar 2022 10:18:37 +0100
-Message-ID: <87f3a597d13f5122c88fd6d5d8ff01ec9f9fa0c1.camel@pengutronix.de>
-Subject: Re: [PATCH v3 5/7] arm64: dts: imx8mp: add HSIO power-domains
+        id 1nPLCh-00046V-OS; Wed, 02 Mar 2022 10:23:27 +0100
+Message-ID: <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
 From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Hongxing Zhu <hongxing.zhu@nxp.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>, Marek Vasut <marex@denx.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "patchwork-lst@pengutronix.de" <patchwork-lst@pengutronix.de>
-Date:   Wed, 02 Mar 2022 10:18:35 +0100
-In-Reply-To: <AS8PR04MB86765CDD268E93769C6D6ED78C039@AS8PR04MB8676.eurprd04.prod.outlook.com>
-References: <20220228201731.3330192-1-l.stach@pengutronix.de>
-         <20220228201731.3330192-6-l.stach@pengutronix.de>
-         <Yh3Hf95q+STtImg5@pendragon.ideasonboard.com>
-         <c5e9214b67260654efac52eed575fd9377f46f08.camel@pengutronix.de>
-         <AS8PR04MB86765CDD268E93769C6D6ED78C039@AS8PR04MB8676.eurprd04.prod.outlook.com>
+To:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>
+Cc:     Liu Ying <victor.liu@oss.nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
+Date:   Wed, 02 Mar 2022 10:23:25 +0100
+In-Reply-To: <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
+References: <20220228004605.367040-1-marex@denx.de>
+         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
+         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
+         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
+         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
+         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
 Content-Type: text/plain; charset="UTF-8"
 User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
 X-SA-Exim-Mail-From: l.stach@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
@@ -55,290 +62,97 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
-
-Am Mittwoch, dem 02.03.2022 um 08:47 +0000 schrieb Hongxing Zhu:
-> > -----Original Message-----
-> > From: Lucas Stach <l.stach@pengutronix.de>
-> > Sent: 2022年3月1日 17:09
-> > To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Cc: Shawn Guo <shawnguo@kernel.org>; Rob Herring
-> > <robh+dt@kernel.org>;
-> > Pengutronix Kernel Team <kernel@pengutronix.de>; dl-linux-imx
-> > <linux-imx@nxp.com>; Marek Vasut <marex@denx.de>;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > patchwork-lst@pengutronix.de
-> > Subject: Re: [PATCH v3 5/7] arm64: dts: imx8mp: add HSIO power-
-> > domains
-> > 
-> > Am Dienstag, dem 01.03.2022 um 09:13 +0200 schrieb Laurent
-> > Pinchart:
-> > > Hi Lucas,
-> > > 
-> > > Thank you for the patch.
-> > > 
-> > > On Mon, Feb 28, 2022 at 09:17:29PM +0100, Lucas Stach wrote:
-> > > > This adds the GPC and HSIO blk-ctrl nodes providing power
-> > > > control
-> > > > for the high-speed (USB and PCIe) IOs.
+Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
+> On 3/1/22 14:18, Lucas Stach wrote:
+> > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
+> > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
 > > > > 
-> > > > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > > > Reviewed-by: Laurent Pinchart
-> > > > <laurent.pinchart@ideasonboard.com>
-> Hi Lucas:
-> Thank you for the patch.
-> Based on this V3 serial patch-set. I'm trying to bring up PCIe on
-> i.MX8MP EVK.
-> But I encounter system hang when access the controller's register.
-> Clocks are turned on refer to the /sys/kernel/debug/clk/clk_summary.
-> It seems that the pd of PCIe controller is not up properly.
-> More investigation is still on-going.
+> > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
+> > > > > On 3/1/22 11:04, Lucas Stach wrote:
+> > > > > 
+> > > > > Hi,
+> > > > > 
+> > > > > [...]
+> > > > > 
+> > > > > > > Given the two totally different IPs, I don't see bugs of IP control
+> > > > > > > logics should be fixed for both drivers. Naturally, the two would
+> > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
+> > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
+> > > > > > > 'if/else' checks(barely no common control code), which is hard to
+> > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
+> > > > > > > and 'LCDIF'.
+> > > > > > 
+> > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
+> > > > > > boilerplate anymore with all the helpers we have available in the
+> > > > > > framework today.
+> > > > > 
+> > > > > I did write a separate driver for this IP before I spent time merging
+> > > > > them into single driver, that's when I realized a single driver is much
+> > > > > better and discarded the separate driver idea.
+> > > > > 
+> > > > > > The IP is so different from the currently supported LCDIF controllers
+> > > > > > that I think trying to support this one in the existing driver actually
+> > > > > > increases the chances to break something when modifying the driver in
+> > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
+> > > > > > on having a separate driver for the i.MX8MP LCDIF.
+> > > > > 
+> > > > > If you look at both controllers, it is clear it is still the LCDIF
+> > > > > behind, even the CSC that is bolted on would suggest that.
+> > > > 
+> > > > Yes, but from a driver PoV what you care about is not really the
+> > > > hardware blocks used to implement something, but the programming model,
+> > > > i.e. the register interface exposed to software.
+> > > > 
+> > > > > 
+> > > > > I am also not happy when I look at the amount of duplication a separate
+> > > > > driver would create, it will be some 50% of the code that would be just
+> > > > > duplicated.
+> > > > > 
+> > > > Yea, the duplicated code is still significant, as the HW itself is so
+> > > > simple. However, if you find yourself in the situation where basically
+> > > > every actual register access in the driver ends up being in a "if (some
+> > > > HW rev) ... " clause, i still think it would be better to have a
+> > > > separate driver, as the programming interface is just different.
+> > > 
+> > > I tend to agree with Marek on this one.  We have an instance where the
+> > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+> > > but different enough where each SoC has it's own set of tables and
+> > > some checks.   Lucas created the framework, and others adapted it for
+> > > various SoC's.  If there really is nearly 50% common code for the
+> > > LCDIF, why not either leave the driver as one or split the common code
+> > > into its own driver like lcdif-common and then have smaller drivers
+> > > that handle their specific variations.
+> > 
+> > I don't know exactly how the standalone driver looks like, but I guess
+> > the overlap is not really in any real HW specific parts, but the common
+> > DRM boilerplate, so there isn't much point in creating a common lcdif
+> > driver.
+> 
+> The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
+> that, there is some 400 LoC which are specific to old LCDIF and this 
+> patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
+> shared boilerplate that would be duplicated .
 
-Just to check the obvious things: you've put the controller into the
-IMX8MP_HSIOBLK_PD_PCIE and the PHY into IMX8MP_HSIOBLK_PD_PCIE_PHY,
-right?
+That is probably ignoring the fact that the 8MP LCDIF does not support
+any overlays, so it could use the drm_simple_display_pipe
+infrastructure to reduce the needed boilerplate.
+> 
+> > As you brought up the blk-ctrl as an example: I'm all for supporting
+> > slightly different hardware in the same driver, as long as the HW
+> > interface is close enough. But then I also opted for a separate 8MP
+> > blk-ctrl driver for those blk-ctrls that differ significantly from the
+> > others, as I think it would make the common driver unmaintainable
+> > trying to support all the different variants in one driver.
+> 
+> But then you also need to maintain two sets of boilerplate, they 
+> diverge, and that is not good.
 
-If the PHY access works then the power-domains should be powered up
-properly, as the PHY domain is nested inside the HSIO domain where the
-controller is located according to my information. So the most likely
-reason is still a clock path that isn't fully turned on. 
+I don't think that there is much chance for bugs going unfixed due to
+divergence in the boilerplate, especially if you use the simple pipe
+framework to handle most of that stuff for you, which gives you a lot
+of code sharing with other simple DRM drivers.
 
 Regards,
 Lucas
-
-> BTW, the access of PHY register is successful.
-> 
-> Best Regards
-> Richard Zhu
-> 
-> > > > ---
-> > > >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 71
-> > > > +++++++++++++++++++++--
-> > > >  1 file changed, 65 insertions(+), 6 deletions(-)
-> > > > 
-> > > > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > index 6b840c05dd77..69e533add539 100644
-> > > > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> > > > @@ -4,6 +4,7 @@
-> > > >   */
-> > > > 
-> > > >  #include <dt-bindings/clock/imx8mp-clock.h>
-> > > > +#include <dt-bindings/power/imx8mp-power.h>
-> > > >  #include <dt-bindings/gpio/gpio.h>
-> > > >  #include <dt-bindings/input/input.h>  #include
-> > > > <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > @@ -475,6 +476,44 @@ src: reset-controller@30390000 {
-> > > >  				interrupts = <GIC_SPI 89
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > >  				#reset-cells = <1>;
-> > > >  			};
-> > > > +
-> > > > +			gpc: gpc@303a0000 {
-> > > > +				compatible = "fsl,imx8mp-gpc";
-> > > > +				reg = <0x303a0000 0x1000>;
-> > > > +				interrupt-parent = <&gic>;
-> > > > +				interrupt-controller;
-> > > > +				#interrupt-cells = <3>;
-> > > > +
-> > > > +				pgc {
-> > > > +					#address-cells = <1>;
-> > > > +					#size-cells = <0>;
-> > > > +
-> > > > +					pgc_pcie_phy: power-
-> > > > domain@1 {
-> > > > +						#power-domain-
-> > > > cells = <0>;
-> > > > +						reg =
-> > > > <IMX8MP_POWER_DOMAIN_PCIE_PHY>;
-> > > > +					};
-> > > > +
-> > > > +					pgc_usb1_phy: power-
-> > > > domain@2 {
-> > > > +						#power-domain-
-> > > > cells = <0>;
-> > > > +						reg =
-> > > > <IMX8MP_POWER_DOMAIN_USB1_PHY>;
-> > > > +					};
-> > > > +
-> > > > +					pgc_usb2_phy: power-
-> > > > domain@3 {
-> > > > +						#power-domain-
-> > > > cells = <0>;
-> > > > +						reg =
-> > > > <IMX8MP_POWER_DOMAIN_USB2_PHY>;
-> > > > +					};
-> > > > +
-> > > > +					pgc_hsiomix:
-> > > > power-domains@17 {
-> > > > +						#power-domain-
-> > > > cells = <0>;
-> > > > +						reg =
-> > > > <IMX8MP_POWER_DOMAIN_HSIOMIX>;
-> > > > +						clocks = <&clk
-> > > > IMX8MP_CLK_HSIO_AXI>,
-> > > > +							 <&clk
-> > > > IMX8MP_CLK_HSIO_ROOT>;
-> > > > +						assigned-
-> > > > clocks = <&clk
-> > IMX8MP_CLK_HSIO_AXI>;
-> > > > +						assigned-
-> > > > clock-parents = <&clk
-> > IMX8MP_SYS_PLL2_500M>;
-> > > > +						assigned-
-> > > > clock-rates = <500000000>;
-> > > > +					};
-> > > > +				};
-> > > > +			};
-> > > >  		};
-> > > > 
-> > > >  		aips2: bus@30400000 {
-> > > > @@ -892,6 +931,28 @@ eqos: ethernet@30bf0000 {
-> > > >  			};
-> > > >  		};
-> > > > 
-> > > > +		aips4 {
-> > > 
-> > > I think this should be
-> > > 
-> > > 		aips4: bus@32c00000 {
-> > > 
-> > > to match the other buses. Apart from that, the patch looks good,
-> > > my Rb
-> > > tag still applies.
-> > 
-> > Urgh, apparently one shouldn't do those reworks too late in the
-> > evening. :/
-> > 
-> > Shawn, would you be willing to fix this up while applying, or
-> > should I resend
-> > the series?
-> > 
-> > Regards,
-> > Lucas
-> > 
-> > > 
-> > > > +			compatible = "fsl,aips-bus", "simple-
-> > > > bus";
-> > > > +			reg = <0x32c00000 0x400000>;
-> > > > +			#address-cells = <1>;
-> > > > +			#size-cells = <1>;
-> > > > +			ranges;
-> > > > +
-> > > > +			hsio_blk_ctrl: blk-ctrl@32f10000 {
-> > > > +				compatible = "fsl,imx8mp-hsio-
-> > > > blk-ctrl", "syscon";
-> > > > +				reg = <0x32f10000 0x24>;
-> > > > +				clocks = <&clk
-> > > > IMX8MP_CLK_USB_ROOT>,
-> > > > +					 <&clk
-> > > > IMX8MP_CLK_PCIE_ROOT>;
-> > > > +				clock-names = "usb", "pcie";
-> > > > +				power-domains =
-> > > > <&pgc_hsiomix>, <&pgc_hsiomix>,
-> > > > +						<&pgc_usb1_phy
-> > > > >, <&pgc_usb2_phy>,
-> > > > +						<&pgc_hsiomix>
-> > > > , <&pgc_pcie_phy>;
-> > > > +				power-domain-names = "bus",
-> > > > "usb", "usb-phy1",
-> > > > +						     "usb-
-> > > > phy2", "pcie", "pcie-phy";
-> > > > +				#power-domain-cells = <1>;
-> > > > +			};
-> > > > +		};
-> > > > +
-> > > >  		gic: interrupt-controller@38800000 {
-> > > >  			compatible = "arm,gic-v3";
-> > > >  			reg = <0x38800000 0x10000>,
-> > > > @@ -915,6 +976,7 @@ usb3_phy0: usb-phy@381f0040 {
-> > > >  			clock-names = "phy";
-> > > >  			assigned-clocks = <&clk
-> > > > IMX8MP_CLK_USB_PHY_REF>;
-> > > >  			assigned-clock-parents = <&clk
-> > > > IMX8MP_CLK_24M>;
-> > > > +			power-domains = <&hsio_blk_ctrl
-> > IMX8MP_HSIOBLK_PD_USB_PHY1>;
-> > > >  			#phy-cells = <0>;
-> > > >  			status = "disabled";
-> > > >  		};
-> > > > @@ -926,6 +988,7 @@ usb3_0: usb@32f10100 {
-> > > >  				 <&clk IMX8MP_CLK_USB_ROOT>;
-> > > >  			clock-names = "hsio", "suspend";
-> > > >  			interrupts = <GIC_SPI 148
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			power-domains = <&hsio_blk_ctrl
-> > > > IMX8MP_HSIOBLK_PD_USB>;
-> > > >  			#address-cells = <1>;
-> > > >  			#size-cells = <1>;
-> > > >  			dma-ranges = <0x40000000 0x40000000
-> > > > 0xc0000000>;
-> > @@ -939,9
-> > > > +1002,6 @@ usb_dwc3_0: usb@38100000 {
-> > > >  					 <&clk
-> > > > IMX8MP_CLK_USB_CORE_REF>,
-> > > >  					 <&clk
-> > > > IMX8MP_CLK_USB_ROOT>;
-> > > >  				clock-names = "bus_early",
-> > > > "ref", "suspend";
-> > > > -				assigned-clocks = <&clk
-> > > > IMX8MP_CLK_HSIO_AXI>;
-> > > > -				assigned-clock-parents = <&clk
-> > IMX8MP_SYS_PLL2_500M>;
-> > > > -				assigned-clock-rates =
-> > > > <500000000>;
-> > > >  				interrupts = <GIC_SPI 40
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > >  				phys = <&usb3_phy0>,
-> > > > <&usb3_phy0>;
-> > > >  				phy-names = "usb2-phy", "usb3-
-> > > > phy"; @@ -957,6
-> > +1017,7 @@
-> > > > usb3_phy1: usb-phy@382f0040 {
-> > > >  			clock-names = "phy";
-> > > >  			assigned-clocks = <&clk
-> > > > IMX8MP_CLK_USB_PHY_REF>;
-> > > >  			assigned-clock-parents = <&clk
-> > > > IMX8MP_CLK_24M>;
-> > > > +			power-domains = <&hsio_blk_ctrl
-> > IMX8MP_HSIOBLK_PD_USB_PHY2>;
-> > > >  			#phy-cells = <0>;
-> > > >  		};
-> > > > 
-> > > > @@ -967,6 +1028,7 @@ usb3_1: usb@32f10108 {
-> > > >  				 <&clk IMX8MP_CLK_USB_ROOT>;
-> > > >  			clock-names = "hsio", "suspend";
-> > > >  			interrupts = <GIC_SPI 149
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > > +			power-domains = <&hsio_blk_ctrl
-> > > > IMX8MP_HSIOBLK_PD_USB>;
-> > > >  			#address-cells = <1>;
-> > > >  			#size-cells = <1>;
-> > > >  			dma-ranges = <0x40000000 0x40000000
-> > > > 0xc0000000>;
-> > @@ -980,9
-> > > > +1042,6 @@ usb_dwc3_1: usb@38200000 {
-> > > >  					 <&clk
-> > > > IMX8MP_CLK_USB_CORE_REF>,
-> > > >  					 <&clk
-> > > > IMX8MP_CLK_USB_ROOT>;
-> > > >  				clock-names = "bus_early",
-> > > > "ref", "suspend";
-> > > > -				assigned-clocks = <&clk
-> > > > IMX8MP_CLK_HSIO_AXI>;
-> > > > -				assigned-clock-parents = <&clk
-> > IMX8MP_SYS_PLL2_500M>;
-> > > > -				assigned-clock-rates =
-> > > > <500000000>;
-> > > >  				interrupts = <GIC_SPI 41
-> > > > IRQ_TYPE_LEVEL_HIGH>;
-> > > >  				phys = <&usb3_phy1>,
-> > > > <&usb3_phy1>;
-> > > >  				phy-names = "usb2-phy", "usb3-
-> > > > phy";
-> > > 
-> > 
-> 
 
 
