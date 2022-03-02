@@ -2,74 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 966F44C9B2F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 03:26:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DB504C9B4F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 03:42:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233345AbiCBC1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 21:27:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36626 "EHLO
+        id S239142AbiCBCnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 21:43:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbiCBC1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 21:27:36 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEC8FA8EC2;
-        Tue,  1 Mar 2022 18:26:52 -0800 (PST)
-X-UUID: 15456e4f235a46cb82f7f33ffaf447dd-20220302
-X-UUID: 15456e4f235a46cb82f7f33ffaf447dd-20220302
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <yunfei.dong@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 771238223; Wed, 02 Mar 2022 10:26:43 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 2 Mar 2022 10:26:41 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 2 Mar 2022 10:26:40 +0800
-Message-ID: <f6a7e13d0f3dd87b76b47113a6b80517d30ef06d.camel@mediatek.com>
-Subject: Re: [PATCH v7, 03/15] media: mtk-vcodec: get capture queue buffer
- size from scp
-From:   "yunfei.dong@mediatek.com" <yunfei.dong@mediatek.com>
-To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Tzung-Bi Shih" <tzungbi@chromium.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S239137AbiCBCnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 21:43:09 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1502CC97
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 18:42:25 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so417202oot.11
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 18:42:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Ykgq7t6xR8v30M7/6cP1OGyqZn4ErnnZl659hWeMgBI=;
+        b=BBIzc32KIZEAnw5oPsFXsG8vQEQuwqR4lQ0ElGZCTRbVUPJD2voVG850DWnPjYxltq
+         s9Z50JToZOtqxF7NmrjosIfBt01RBfnMhOMJgqUfK2Gv9nkr5Bey+SzYz8dpnqc3fxes
+         fdoy56H4ywGyy2xS7zYe2orZfghFsFAhkQ5a2yYanFErT/i5i35/XEkQB2VcE0aeBb4K
+         A9jKCzma05T6V5VCZf510scXKy1EPY9CKqonAPPh3TsJxwS4ii3H13J4/rrMDhWrzv/B
+         tS+5qhsfYbqMHi4pTotvz0T4CDeMMgNcugvRmSqq7gHKz+5d9dhl12G31V9QLQEGFPbx
+         hCtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ykgq7t6xR8v30M7/6cP1OGyqZn4ErnnZl659hWeMgBI=;
+        b=d3TwNGAc8rhjVHuADnBo6LUF/SB9LgeWs1Bwjp25HRjp3LIwsDawbn6iao/IA2naw1
+         EpdyKZz2f34vg6lVw6ckpu/Gez1/5tayyzXyNDfwC1vJQnXS01pukaBTlE+pfZAcJKAg
+         m9akcnIoFYEJbsSxL14uif0B0Quw1CboI5ixPTXw6cepLC7rERXiDoUJKTERN5OKTjfJ
+         Ujh4z6LZeeh0v1Y21tvHreRJAHHFz6WPkKR44nHOoO66anvhCCH8cykLYgFYvVYMCbHW
+         V1e5Y+/8C2agaxvYYP1QQdQWuYeSi36hT3V6c4ysPWDhA0guzBtUVwNCEX2RfsR8O5Ue
+         HnSA==
+X-Gm-Message-State: AOAM532j3UEyFu4NsWBbzTfTkx9wu9zd+VIhW2+3bguVT7O3wv8nT9FU
+        zq0F+jWUMPyW66vYrMmZr65vtg==
+X-Google-Smtp-Source: ABdhPJwAg6PZVBHi6qfO5RvrzICxtMuFCam0r5vQpkQL45yF9sPlOztuyMXIA3oidh0VGNJ7eRrFlQ==
+X-Received: by 2002:a05:6870:d906:b0:d7:10a2:7fd8 with SMTP id gq6-20020a056870d90600b000d710a27fd8mr9530472oab.123.1646188944896;
+        Tue, 01 Mar 2022 18:42:24 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id u36-20020a056808152400b002d94715f853sm447946oiw.31.2022.03.01.18.42.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 18:42:24 -0800 (PST)
+Date:   Tue, 1 Mar 2022 18:44:16 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Loic Poulain <loic.poulain@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>
-CC:     George Sun <george.sun@mediatek.com>,
-        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "Fritz Koenig" <frkoenig@chromium.org>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Irui Wang <irui.wang@mediatek.com>,
-        Steve Cho <stevecho@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 2 Mar 2022 10:26:40 +0800
-In-Reply-To: <0af43e6de8bb963eecb856e88b00d649c5720c3d.camel@ndufresne.ca>
-References: <20220223034008.15781-1-yunfei.dong@mediatek.com>
-         <20220223034008.15781-4-yunfei.dong@mediatek.com>
-         <0af43e6de8bb963eecb856e88b00d649c5720c3d.camel@ndufresne.ca>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] drm/msm/dpu: Issue MDSS reset during
+ initialization
+Message-ID: <Yh7aAMZWJPjAeC1V@ripper>
+References: <20220302012931.4107196-1-bjorn.andersson@linaro.org>
+ <20220302012931.4107196-2-bjorn.andersson@linaro.org>
+ <CAA8EJppiNbJhrdFgJ0sESBM5m3oyazS-8dG8919xdZu50fZ8aQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJppiNbJhrdFgJ0sESBM5m3oyazS-8dG8919xdZu50fZ8aQ@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,225 +79,171 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolas,
+On Tue 01 Mar 17:47 PST 2022, Dmitry Baryshkov wrote:
 
-Thanks for you suggestion.
-On Tue, 2022-03-01 at 09:44 -0500, Nicolas Dufresne wrote:
-> Thanks for your patch, though perhaps it could be improved, see
-> comment below.
-> 
-> Le mercredi 23 février 2022 à 11:39 +0800, Yunfei Dong a écrit :
-> > Different capture buffer format has different buffer size, need to
-> > get
-> > real buffer size according to buffer type from scp.
-> > 
-> > Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+> On Wed, 2 Mar 2022 at 04:27, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+> >
+> > It's typical for the bootloader to bring up the display for showing a
+> > boot splash or efi framebuffer. But in some cases the kernel driver ends
+> > up only partially configuring (in particular) the DPU, which might
+> > result in e.g. that two different data paths attempts to push data to
+> > the interface - with resulting graphical artifacts.
+> >
+> > Naturally the end goal would be to inherit the bootloader's
+> > configuration and provide the user with a glitch free handover from the
+> > boot configuration to a running DPU.
+> >
+> > But as implementing seamless transition from the bootloader
+> > configuration to the running OS will be a considerable effort, start by
+> > simply resetting the entire MDSS to its power-on state, to avoid the
+> > partial configuration.
+> >
+> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > > ---
-> >  .../media/platform/mtk-vcodec/vdec_ipi_msg.h  | 36 ++++++++++++++
-> >  .../media/platform/mtk-vcodec/vdec_vpu_if.c   | 49
-> > +++++++++++++++++++
-> >  .../media/platform/mtk-vcodec/vdec_vpu_if.h   | 15 ++++++
-> >  3 files changed, 100 insertions(+)
-> > 
-> > diff --git a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> > b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> > index bf54d6d9a857..47070be2a991 100644
-> > --- a/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> > +++ b/drivers/media/platform/mtk-vcodec/vdec_ipi_msg.h
-> > @@ -20,6 +20,7 @@ enum vdec_ipi_msgid {
-> >  	AP_IPIMSG_DEC_RESET = 0xA004,
-> >  	AP_IPIMSG_DEC_CORE = 0xA005,
-> >  	AP_IPIMSG_DEC_CORE_END = 0xA006,
-> > +	AP_IPIMSG_DEC_GET_PARAM = 0xA007,
-> >  
-> >  	VPU_IPIMSG_DEC_INIT_ACK = 0xB000,
-> >  	VPU_IPIMSG_DEC_START_ACK = 0xB001,
-> > @@ -28,6 +29,7 @@ enum vdec_ipi_msgid {
-> >  	VPU_IPIMSG_DEC_RESET_ACK = 0xB004,
-> >  	VPU_IPIMSG_DEC_CORE_ACK = 0xB005,
-> >  	VPU_IPIMSG_DEC_CORE_END_ACK = 0xB006,
-> > +	VPU_IPIMSG_DEC_GET_PARAM_ACK = 0xB007,
+> >
+> > Changes since v1:
+> > - Rather than trying to deconfigure individual pieces of the DPU, reset the
+> >   entire block.
+> >
+> >  drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c | 18 ++++++++++++++++++
+> >  drivers/gpu/drm/msm/msm_drv.c            |  4 ++++
+> >  drivers/gpu/drm/msm/msm_kms.h            |  1 +
+> >  3 files changed, 23 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> > index b10ca505f9ac..419eaaefe606 100644
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+> > @@ -7,6 +7,7 @@
+> >  #include <linux/irqchip.h>
+> >  #include <linux/irqdesc.h>
+> >  #include <linux/irqchip/chained_irq.h>
+> > +#include <linux/reset.h>
+> >  #include "dpu_kms.h"
+> >
+> >  #define to_dpu_mdss(x) container_of(x, struct dpu_mdss, base)
+> > @@ -31,6 +32,7 @@ struct dpu_mdss {
+> >         void __iomem *mmio;
+> >         struct clk_bulk_data *clocks;
+> >         size_t num_clocks;
+> > +       struct reset_control *reset;
+> >         struct dpu_irq_controller irq_controller;
 > >  };
-> >  
-> >  /**
-> > @@ -114,4 +116,38 @@ struct vdec_vpu_ipi_init_ack {
-> >  	uint32_t inst_id;
-> >  };
-> >  
-> > +/**
-> > + * struct vdec_ap_ipi_get_param - for AP_IPIMSG_DEC_GET_PARAM
-> > + * @msg_id	: AP_IPIMSG_DEC_GET_PARAM
-> > + * @inst_id     : instance ID. Used if the ABI version >= 2.
-> > + * @data	: picture information
-> > + * @param_type	: get param type
-> > + * @codec_type	: Codec fourcc
-> > + */
-> > +struct vdec_ap_ipi_get_param {
-> > +	u32 msg_id;
-> > +	u32 inst_id;
-> > +	u32 data[4];
-> > +	u32 param_type;
-> > +	u32 codec_type;
-> > +};
-> > +
-> > +/**
-> > + * struct vdec_vpu_ipi_get_param_ack - for
-> > VPU_IPIMSG_DEC_GET_PARAM_ACK
-> > + * @msg_id	: VPU_IPIMSG_DEC_GET_PARAM_ACK
-> > + * @status	: VPU execution result
-> > + * @ap_inst_addr	: AP vcodec_vpu_inst instance address
-> > + * @data     : picture information from SCP.
-> > + * @param_type	: get param type
-> > + * @reserved : reserved param
-> > + */
-> > +struct vdec_vpu_ipi_get_param_ack {
-> > +	u32 msg_id;
-> > +	s32 status;
-> > +	u64 ap_inst_addr;
-> > +	u32 data[4];
-> > +	u32 param_type;
-> > +	u32 reserved;
-> > +};
-> > +
-> >  #endif
-> > diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> > b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> > index 7210061c772f..35f4d5583084 100644
-> > --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> > +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.c
-> > @@ -6,6 +6,7 @@
-> >  
-> >  #include "mtk_vcodec_drv.h"
-> >  #include "mtk_vcodec_util.h"
-> > +#include "vdec_drv_if.h"
-> >  #include "vdec_ipi_msg.h"
-> >  #include "vdec_vpu_if.h"
-> >  #include "mtk_vcodec_fw.h"
-> > @@ -54,6 +55,26 @@ static void handle_init_ack_msg(const struct
-> > vdec_vpu_ipi_init_ack *msg)
-> >  	}
+> >
+> > @@ -197,10 +199,18 @@ static void dpu_mdss_destroy(struct msm_mdss *mdss)
+> >         dpu_mdss->mmio = NULL;
 > >  }
-> >  
-> > +static void handle_get_param_msg_ack(const struct
-> > vdec_vpu_ipi_get_param_ack *msg)
+> >
+> > +static int dpu_mdss_reset(struct msm_mdss *mdss)
 > > +{
-> > +	struct vdec_vpu_inst *vpu = (struct vdec_vpu_inst *)
-> > +					(unsigned long)msg-
-> > >ap_inst_addr;
+> > +       struct dpu_mdss *dpu_mdss = to_dpu_mdss(mdss);
 > > +
-> > +	mtk_vcodec_debug(vpu, "+ ap_inst_addr = 0x%llx", msg-
-> > >ap_inst_addr);
-> > +
-> > +	/* param_type is enum vdec_get_param_type */
-> > +	switch (msg->param_type) {
-> > +	case GET_PARAM_PIC_INFO:
-> > +		vpu->fb_sz[0] = msg->data[0];
-> > +		vpu->fb_sz[1] = msg->data[1];
-> > +		break;
-> > +	default:
-> > +		mtk_vcodec_err(vpu, "invalid get param type=%d", msg-
-> > >param_type);
-> > +		vpu->failure = 1;
-> > +		break;
-> > +	}
+> > +       return reset_control_reset(dpu_mdss->reset);
 > > +}
 > > +
-> >  /*
-> >   * vpu_dec_ipi_handler - Handler for VPU ipi message.
-> >   *
-> > @@ -89,6 +110,9 @@ static void vpu_dec_ipi_handler(void *data,
-> > unsigned int len, void *priv)
-> >  		case VPU_IPIMSG_DEC_CORE_END_ACK:
-> >  			break;
-> >  
-> > +		case VPU_IPIMSG_DEC_GET_PARAM_ACK:
-> > +			handle_get_param_msg_ack(data);
-> > +			break;
-> >  		default:
-> >  			mtk_vcodec_err(vpu, "invalid msg=%X", msg-
-> > >msg_id);
-> >  			break;
-> > @@ -217,6 +241,31 @@ int vpu_dec_start(struct vdec_vpu_inst *vpu,
-> > uint32_t *data, unsigned int len)
-> >  	return err;
-> >  }
-> >  
-> > +int vpu_dec_get_param(struct vdec_vpu_inst *vpu, uint32_t *data,
-> > +		      unsigned int len, unsigned int param_type)
-> > +{
-> > +	struct vdec_ap_ipi_get_param msg;
-> > +	int err;
-> > +
-> > +	mtk_vcodec_debug_enter(vpu);
-> > +
-> > +	if (len > ARRAY_SIZE(msg.data)) {
-> > +		mtk_vcodec_err(vpu, "invalid len = %d\n", len);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	memset(&msg, 0, sizeof(msg));
-> > +	msg.msg_id = AP_IPIMSG_DEC_GET_PARAM;
-> > +	msg.inst_id = vpu->inst_id;
-> > +	memcpy(msg.data, data, sizeof(unsigned int) * len);
-> > +	msg.param_type = param_type;
-> > +	msg.codec_type = vpu->codec_type;
-> > +
-> > +	err = vcodec_vpu_send_msg(vpu, (void *)&msg, sizeof(msg));
-> > +	mtk_vcodec_debug(vpu, "- ret=%d", err);
-> > +	return err;
-> > +}
-> > +
-> >  int vpu_dec_core(struct vdec_vpu_inst *vpu)
-> >  {
-> >  	return vcodec_send_ap_ipi(vpu, AP_IPIMSG_DEC_CORE);
-> > diff --git a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> > b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> > index 4cb3c7f5a3ad..d1feba41dd39 100644
-> > --- a/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> > +++ b/drivers/media/platform/mtk-vcodec/vdec_vpu_if.h
-> > @@ -28,6 +28,8 @@ struct mtk_vcodec_ctx;
-> >   * @wq          : wait queue to wait VPU message ack
-> >   * @handler     : ipi handler for each decoder
-> >   * @codec_type     : use codec type to separate different codecs
-> > + * @capture_type    : used capture type to separate different
-> > capture format
-> > + * @fb_sz  : frame buffer size of each plane
-> >   */
-> >  struct vdec_vpu_inst {
-> >  	int id;
-> > @@ -42,6 +44,8 @@ struct vdec_vpu_inst {
-> >  	wait_queue_head_t wq;
-> >  	mtk_vcodec_ipi_handler handler;
-> >  	unsigned int codec_type;
-> > +	unsigned int capture_type;
-> 
-> This structure member is added in this patch, but never set or used.
-> 
-This member will be used in patch 13/14/15 used to record capture type,
-I will remove this member to patch 13 when first to use it.
-
-Best Regards,
-Yunfei Dong
-> > +	unsigned int fb_sz[2];
+> >  static const struct msm_mdss_funcs mdss_funcs = {
+> >         .enable = dpu_mdss_enable,
+> >         .disable = dpu_mdss_disable,
+> >         .destroy = dpu_mdss_destroy,
+> > +       .reset = dpu_mdss_reset,
 > >  };
-> >  
-> >  /**
-> > @@ -104,4 +108,15 @@ int vpu_dec_core(struct vdec_vpu_inst *vpu);
-> >   */
-> >  int vpu_dec_core_end(struct vdec_vpu_inst *vpu);
-> >  
-> > +/**
-> > + * vpu_dec_get_param - get param from scp
-> > + *
-> > + * @vpu : instance for vdec_vpu_inst
-> > + * @data: meta data to pass bitstream info to VPU decoder
-> > + * @len : meta data length
-> > + * @param_type : get param type
-> > + */
-> > +int vpu_dec_get_param(struct vdec_vpu_inst *vpu, uint32_t *data,
-> > +		      unsigned int len, unsigned int param_type);
+> >
+> >  int dpu_mdss_init(struct platform_device *pdev)
+> > @@ -227,6 +237,13 @@ int dpu_mdss_init(struct platform_device *pdev)
+> >         }
+> >         dpu_mdss->num_clocks = ret;
+> >
+> > +       dpu_mdss->reset = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
+> > +       if (IS_ERR(dpu_mdss->reset)) {
+> > +               ret = PTR_ERR(dpu_mdss->reset);
+> > +               DPU_ERROR("failed to acquire mdss reset, ret=%d", ret);
+> > +               goto reset_parse_err;
+> > +       }
 > > +
-> >  #endif
+> >         dpu_mdss->base.dev = &pdev->dev;
+> >         dpu_mdss->base.funcs = &mdss_funcs;
+> >
+> > @@ -252,6 +269,7 @@ int dpu_mdss_init(struct platform_device *pdev)
+> >  irq_error:
+> >         _dpu_mdss_irq_domain_fini(dpu_mdss);
+> >  irq_domain_error:
+> > +reset_parse_err:
+> >  clk_parse_err:
+> >         if (dpu_mdss->mmio)
+> >                 devm_iounmap(&pdev->dev, dpu_mdss->mmio);
+> > diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+> > index 129fa841ac22..7595f83da3f1 100644
+> > --- a/drivers/gpu/drm/msm/msm_drv.c
+> > +++ b/drivers/gpu/drm/msm/msm_drv.c
+> > @@ -388,6 +388,10 @@ static int msm_drm_init(struct device *dev, const struct drm_driver *drv)
+> >         if (ret)
+> >                 return ret;
+> >
+> > +       /* Issue a reset of the entire MDSS */
+> > +       if (priv->mdss && priv->mdss->funcs->reset)
+> > +               priv->mdss->funcs->reset(priv->mdss);
+> > +
 > 
+> I think this is incorrect. In this way reset happens after all
+> subdevice are probed. They might have programmed some state of the
+> corresponding block. The clocks are already registered, so the clock
+> framework will be out of sync.
+
+I went back and forth through the drivers and I believe at least the
+idea is that we probe all the drivers, which will acquire some
+resources.
+
+Then in bind() we actually start to access the hardware (and acquire
+more resources, for some reason).
+
+> I think the reset should happen before calling of_platform_populate(),
+> so the device state is consistent with the driver.
 > 
 
+Perhaps I'm misunderstanding the component framework, but I was under
+the impression that if any of the subcomponents fails to probe because
+of lacking resources, this could be printed on the efifb before we reset
+the hardware. Making errors slightly more user friendly.
+
+I.e. in the timeframe between of_platform_populate() and
+component_bind_all() below...
+
+
+But if you believe I'm incorrect on the assumptions about the hardware
+not being accessed before this point, I can move the reset before
+of_platform_populate() - this is the last piece needed to have
+functional eDP on sc8180x.
+
+> Also see the https://git.linaro.org/people/dmitry.baryshkov/kernel.git/log/?h=dpu-mdss-rework,
+> which reworks the mdss driver and mdss probing.
+> 
+
+There seems to be some room for reducing duplication between the two
+drivers, so this seems reasonable.
+
+Regards,
+Bjorn
+
+> >         /* Bind all our sub-components: */
+> >         ret = component_bind_all(dev, ddev);
+> >         if (ret)
+> > diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
+> > index 2a4f0526cb98..716a34fca1cd 100644
+> > --- a/drivers/gpu/drm/msm/msm_kms.h
+> > +++ b/drivers/gpu/drm/msm/msm_kms.h
+> > @@ -205,6 +205,7 @@ struct msm_mdss_funcs {
+> >         int (*enable)(struct msm_mdss *mdss);
+> >         int (*disable)(struct msm_mdss *mdss);
+> >         void (*destroy)(struct msm_mdss *mdss);
+> > +       int (*reset)(struct msm_mdss *mdss);
+> >  };
+> >
+> >  struct msm_mdss {
+> > --
+> > 2.33.1
+> >
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
