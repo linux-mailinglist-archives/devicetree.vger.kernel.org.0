@@ -2,241 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29A5B4CA6A7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:54:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EFA274CA6B3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:55:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242527AbiCBNyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 08:54:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58162 "EHLO
+        id S242445AbiCBN4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 08:56:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242671AbiCBNw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:52:56 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 978C9C6263
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 05:51:24 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9CB6A3F5F1
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 13:51:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646229073;
-        bh=sqmPaXdxxxGctLDB8wPzIBqrPvGA/5GcLbU1pcYO7kw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-         In-Reply-To:Content-Type;
-        b=YTaGRLEcpQu841LkpCD2mR+MnTa8an/n2pqeFYhrhzEnCkM/QYHuWmlJNWYhFx1gI
-         XU4YJcGqT9xgIsdFCzvLTlY/EKK+Jvn6L8/EiRtZd5bUGTbfSCfKfW26e66z7MHH36
-         YqY/EkGuzMb/8Pzzek4WTPflHw6E+vVxYd0hRgcJtX4HXOmPssHSuiZKp25M0zlG4S
-         COUMhzXmO8B2qca/wVGs5rehVdNb3aWK54UwKap4Yk2EEXgjrV8wsj35ayWdlj8dOD
-         kkfPXQjwVR6FKuQAUhV66V5LoAHXPjTZClzaZeVkC1feRwY1wDhPQILOjGJrmK4XP9
-         aWPculVQYAF+w==
-Received: by mail-ed1-f69.google.com with SMTP id f9-20020a0564021e8900b00412d0a6ef0dso1018196edf.11
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 05:51:13 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sqmPaXdxxxGctLDB8wPzIBqrPvGA/5GcLbU1pcYO7kw=;
-        b=fRn1GTbI1DgRTKCoyd6MDLp7OAke5ol4fRsonexDlWgUJAFdDuUDqrOHDID78NM4X8
-         +iQoVsi/1T7oj+Ca2ea+c4SPtU33o8DJeRXnkTllAL1gxGIxkrvnrzXtrx3sue28eCnL
-         ecRfACu0DDusBSJ9ra8GAU7Cu0EQ2jFQHuCLfDXyoKv/H8CD9f8RhnA3428XoIx+8b+Y
-         HnB0eaLYS8ESmDzyqA3VLipR9pxOsMIY+rqVwAbI3waLjpnuuTAkvilwT1qNr8H7A1yZ
-         C+Ty0B+IljVE3AWJM9/y6hPYe03Vab+u0nZ/TSP4bthW0TOqhgTOUWo5ugapxOBxycV9
-         7VfQ==
-X-Gm-Message-State: AOAM533W8CV3o5F4keeguWvW5Y4+MpItGDHjF8FkpxKJN3gqXqfaYs1q
-        A/V0Vfm068uDD7grc0pPYGl/dMtY+tW/4sXHA9Qg74nk0e/mk2BU5OMG6/cUArIRG4+mflwY6d6
-        fXdy6+m2Zun4ffcvCiqEj4xUvXngv5Y9KP0bIGow=
-X-Received: by 2002:aa7:cc02:0:b0:411:487e:36fe with SMTP id q2-20020aa7cc02000000b00411487e36femr29496879edt.338.1646229073280;
-        Wed, 02 Mar 2022 05:51:13 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxX4GrcpOZdSJtCi/COSwNz1OLfF4qe+Oy6hmPfNQADJxnPOKAqrg9txmB1CGt/uFrFMkDGjQ==
-X-Received: by 2002:aa7:cc02:0:b0:411:487e:36fe with SMTP id q2-20020aa7cc02000000b00411487e36femr29496856edt.338.1646229073047;
-        Wed, 02 Mar 2022 05:51:13 -0800 (PST)
-Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id u4-20020aa7db84000000b004136c2c357csm8402272edt.70.2022.03.02.05.51.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 05:51:12 -0800 (PST)
-Message-ID: <2b1f7c07-3cc9-9637-4621-3c5e0e09a65e@canonical.com>
-Date:   Wed, 2 Mar 2022 14:51:11 +0100
+        with ESMTP id S242509AbiCBNz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:55:58 -0500
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3317C7910;
+        Wed,  2 Mar 2022 05:54:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646229272; x=1677765272;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=6w+YhZ6FWmjUK1vt1o9WKL6bVSK9GReGozO3B7eqIdY=;
+  b=LkM58tmfREPpIEgWl5Sl0YrfbFadtL4+b3w1SUREyUaTpoSzQFFWt2B7
+   5F+B4apxq66a7aGCzJ3rA482ynmskq0Z85pxs5qmVT2ua1M6DeGX+G8Ye
+   nSj2lvt6aMjVM+k3e3O45dvRqMJxO9TeWC0xHMz8QepEqTrHurj9Y6+Dr
+   XwYLGiJZzZps1qDsyp+XkUm8brmCbM5XxfLRcOJCUG+RKVlpsae3HR6f3
+   V3zYKSGK1ae4Dq5tFiR0KCbUCvVdS/ACW5ubZKiE91tOLhNMqyXqjX2DC
+   cB3GCs8Euhc5dQA7ib06C7mz/YdCU8w+s1hE31vf/XHKY3rT4XivGoEAv
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="253134223"
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
+   d="scan'208";a="253134223"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 05:54:32 -0800
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
+   d="scan'208";a="709513228"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 05:54:29 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nPPQE-00AJbb-1M;
+        Wed, 02 Mar 2022 15:53:42 +0200
+Date:   Wed, 2 Mar 2022 15:53:41 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mgross@linux.intel.com, srikanth.thokala@intel.com,
+        lakshmi.bai.raja.subramanian@intel.com,
+        mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Message-ID: <Yh925VvqejDe2SR8@smile.fi.intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-3-shruthi.sanil@intel.com>
+ <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: add QCOM SM6125 display clock
- bindings
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Pavel Dubrova <pashadubrova@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220226200911.230030-1-marijn.suijten@somainline.org>
- <20220226200911.230030-3-marijn.suijten@somainline.org>
- <ea5d34c6-fe75-c096-d5b2-6a327c9d0ae5@canonical.com>
- <62ebb074-b8de-0dc3-2bbc-e43dca9d2ced@linaro.org>
- <05310308-b0ff-56a0-83ac-855b1b795936@canonical.com>
- <20220302125417.iu52rvdxrmo25wwt@SoMainline.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220302125417.iu52rvdxrmo25wwt@SoMainline.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 13:54, Marijn Suijten wrote:
-> On 2022-02-28 10:23:19, Krzysztof Kozlowski wrote:
->> On 27/02/2022 22:43, Dmitry Baryshkov wrote:
->>> On 27/02/2022 13:03, Krzysztof Kozlowski wrote:
->>>> On 26/02/2022 21:09, Marijn Suijten wrote:
->>>>> From: Martin Botka <martin.botka@somainline.org>
->>>>>
->>>>> Add device tree bindings for display clock controller for
->>>>> Qualcomm Technology Inc's SM6125 SoC.
->>>>>
->>>>> Signed-off-by: Martin Botka <martin.botka@somainline.org>
->>>>> ---
->>>>>   .../bindings/clock/qcom,dispcc-sm6125.yaml    | 87 +++++++++++++++++++
->>>>>   .../dt-bindings/clock/qcom,dispcc-sm6125.h    | 41 +++++++++
->>>>>   2 files changed, 128 insertions(+)
->>>>>   create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
->>>>>   create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm6125.h
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..3465042d0d9f
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
->>>>> @@ -0,0 +1,87 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm6125.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Qualcomm Display Clock Controller Binding for SM6125
->>>>> +
->>>>> +maintainers:
->>>>> +  - Martin Botka <martin.botka@somainline.org>
->>>>> +
->>>>> +description: |
->>>>> +  Qualcomm display clock control module which supports the clocks and
->>>>> +  power domains on SM6125.
->>>>> +
->>>>> +  See also:
->>>>> +    dt-bindings/clock/qcom,dispcc-sm6125.h
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - qcom,sm6125-dispcc
->>>>> +
->>>>> +  clocks:
->>>>> +    items:
->>>>> +      - description: Board XO source
->>>>> +      - description: Byte clock from DSI PHY0
->>>>> +      - description: Pixel clock from DSI PHY0
->>>>> +      - description: Pixel clock from DSI PHY1
->>>>> +      - description: Link clock from DP PHY
->>>>> +      - description: VCO DIV clock from DP PHY
->>>>> +      - description: AHB config clock from GCC
->>>>> +
->>>>> +  clock-names:
->>>>> +    items:
->>>>> +      - const: bi_tcxo
->>>>> +      - const: dsi0_phy_pll_out_byteclk
->>>>> +      - const: dsi0_phy_pll_out_dsiclk
->>>>> +      - const: dsi1_phy_pll_out_dsiclk
->>>>> +      - const: dp_phy_pll_link_clk
->>>>> +      - const: dp_phy_pll_vco_div_clk
->>>>> +      - const: cfg_ahb_clk
->>>>> +
->>>>> +  '#clock-cells':
->>>>> +    const: 1
->>>>> +
->>>>> +  '#power-domain-cells':
->>>>> +    const: 1
->>>>> +
->>>>> +  reg:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - clocks
->>>>> +  - clock-names
->>>>> +  - '#clock-cells'
->>>>> +  - '#power-domain-cells'
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/clock/qcom,rpmcc.h>
->>>>> +    #include <dt-bindings/clock/qcom,gcc-sm6125.h>
->>>>> +    clock-controller@5f00000 {
->>>>> +      compatible = "qcom,sm6125-dispcc";
->>>>> +      reg = <0x5f00000 0x20000>;
->>>>> +      clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
->>>>> +               <&dsi0_phy 0>,
->>>>> +               <&dsi0_phy 1>,
->>>>> +               <0>,
->>>>
->>>> This does not look like a valid phandle. This clock is required, isn't it?
+On Tue, Mar 01, 2022 at 10:09:06PM +0100, Daniel Lezcano wrote:
+> On 22/02/2022 10:56, shruthi.sanil@intel.com wrote:
+
+> > +		/* Clear interrupt for periodic timer*/
 > 
-> I remember it being used like this before, though upon closer inspection
-> only qcom,gcc-msm8998.yaml uses it as example.
+> nit: comment format is:
 > 
-> The clock should be optional, in that case it is perhaps desired to omit
-> it from clock-names instead, or pretend there's a `dsi1_phy 1`?
-
-I propose to omit it.
-
+> /*
+>  * my comment
+>  */
 > 
->>>
->>> Not, it's not required for general dispcc support.
->>> dispcc uses DSI and DP PHY clocks to provide respective pixel/byte/etc 
->>> clocks. However if support for DP is not enabled, the dispcc can work 
->>> w/o DP phy clock. Thus we typically add 0 phandles as placeholders for 
+> One line comment format is usually for the network subsystem
+
+Huh?
+Any pointers to the documentation, please?
+
+> > +		keembay_timer_clear_pending_int(tim_base);
+> > +	} else {
+> > +		/* Disable the timer for one shot timer */
 > 
-> Is there any semantic difference between omitting the clock from DT (in
-> clocks= /and/ clock-names=) or setting it to a 0 phandle?
-
-Yes, there is. The DT validation does not check the meaning behind
-values, so there is no difference between valid phandle/ID and 0. While
-not having a clock at all is spotted by validation.
-
+> comment format
 > 
->>> DSI/DP clock sources and populate them as support for respective 
->>> interfaces gets implemented.
->>>
->>
->> Then the clock is optional, isn't it? While not modeling it as optional?
-> 
-> It looks like this should be modelled using minItems: then, and
-> "optional" text/comment? Other clocks are optional as well, we don't
-> have DSI 1 in downstream SM6125 DT sources and haven't added the DP PLL
-> in our to-be-upstreamed mainline tree yet.
+> > +		keembay_timer_disable(tim_base);
+> > +	}
 
-Are they really optional? Or maybe they should not even be provided?
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Best regards,
-Krzysztof
