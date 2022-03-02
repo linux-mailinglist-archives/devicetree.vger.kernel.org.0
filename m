@@ -2,112 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D214F4C9BD6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 04:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 830B54C9C58
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 05:07:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239275AbiCBDKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 22:10:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54882 "EHLO
+        id S235121AbiCBEIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 23:08:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239272AbiCBDKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 22:10:52 -0500
-Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0731AF1C4;
-        Tue,  1 Mar 2022 19:10:09 -0800 (PST)
-Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.2176.14; Wed, 2 Mar 2022
- 11:10:04 +0800
-From:   Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-To:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <narmstrong@baylibre.com>, <khilman@baylibre.com>,
-        <jbrunet@baylibre.com>, <martin.blumenstingl@googlemail.com>,
-        Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-Subject: [PATCH V5 2/2] soc: s4: Add support for power domains controller
-Date:   Wed, 2 Mar 2022 11:09:59 +0800
-Message-ID: <20220302030959.823693-3-shunzhou.jiang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220302030959.823693-1-shunzhou.jiang@amlogic.com>
-References: <20220302030959.823693-1-shunzhou.jiang@amlogic.com>
+        with ESMTP id S229980AbiCBEIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 23:08:36 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F8E13DD0;
+        Tue,  1 Mar 2022 20:07:48 -0800 (PST)
+X-UUID: c5bbf587611e40539296222f6d93108a-20220302
+X-UUID: c5bbf587611e40539296222f6d93108a-20220302
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1851172525; Wed, 02 Mar 2022 12:07:41 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Wed, 2 Mar 2022 12:07:40 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 2 Mar 2022 12:07:39 +0800
+Message-ID: <0b8a5c22acb87b49de0380c7cb4e49030f93d715.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     Tzung-Bi Shih <tzungbi@kernel.org>
+CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+Date:   Wed, 2 Mar 2022 12:07:39 +0800
+In-Reply-To: <Yh3hcQpLngg8Pnd4@google.com>
+References: <20220301072924.24814-1-jiaxin.yu@mediatek.com>
+         <20220301072924.24814-3-jiaxin.yu@mediatek.com>
+         <Yh3hcQpLngg8Pnd4@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.98.11.200]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support s4 Power controller. In s4, power control
-registers are in secure domain, and should be accessed by smc.
+On Tue, 2022-03-01 at 17:03 +0800, Tzung-Bi Shih wrote:
+> On Tue, Mar 01, 2022 at 03:29:24PM +0800, Jiaxin Yu wrote:
+> > From: Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+> 
+> The environment didn't configure properly so that the header showed
+> up.
+> See [1].
+> 
+> [1]: 
+> https://git-scm.com/docs/git-send-email#Documentation/git-send-email.txt---fromltaddressgt
+> 
+Ok, I will take a look at the "from: " header.
 
-Signed-off-by: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
----
-V1->V2: fix spelling error, patchset use cover-letter
-V2->V3: add power domain always on reason
-V3->V4: clear vpu and usb power domaon always on
-V4->V5: add reviewed owner in patchset
----
- drivers/soc/amlogic/meson-secure-pwrc.c | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+> > diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-
+> > rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
+> 
+> [...]
+> > +static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682s_card = {
+> > +	.name = "mt8192_mt6359_rt1015p_rt5682s",
+> > +	.owner = THIS_MODULE,
+> > +	.dai_link = mt8192_mt6359_dai_links,
+> > +	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
+> > +	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
+> > +	.num_controls =
+> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
+> > +	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
+> > +	.num_dapm_widgets =
+> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
+> > +	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
+> > +	.num_dapm_routes =
+> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
+> > +};
+> 
+> Are the two cards only different from names
+> (mt8192_mt6359_rt1015p_rt5682_card vs.
+> mt8192_mt6359_rt1015p_rt5682s_card)?
+> 
+Yes, they are only different form names.
 
-diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-index 59bd195fa9c9..a10a417a87db 100644
---- a/drivers/soc/amlogic/meson-secure-pwrc.c
-+++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-@@ -11,6 +11,7 @@
- #include <linux/platform_device.h>
- #include <linux/pm_domain.h>
- #include <dt-bindings/power/meson-a1-power.h>
-+#include <dt-bindings/power/meson-s4-power.h>
- #include <linux/arm-smccc.h>
- #include <linux/firmware/meson/meson_sm.h>
- #include <linux/module.h>
-@@ -119,6 +120,18 @@ static struct meson_secure_pwrc_domain_desc a1_pwrc_domains[] = {
- 	SEC_PD(RSA,	0),
- };
- 
-+static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
-+	SEC_PD(S4_DOS_HEVC,	0),
-+	SEC_PD(S4_DOS_VDEC,	0),
-+	SEC_PD(S4_VPU_HDMI,	0),
-+	SEC_PD(S4_USB_COMB,	0),
-+	SEC_PD(S4_GE2D,		0),
-+	/* ETH is for ethernet online wakeup, and should be always on */
-+	SEC_PD(S4_ETH,		GENPD_FLAG_ALWAYS_ON),
-+	SEC_PD(S4_DEMOD,	0),
-+	SEC_PD(S4_AUDIO,	0),
-+};
-+
- static int meson_secure_pwrc_probe(struct platform_device *pdev)
- {
- 	int i;
-@@ -187,11 +200,20 @@ static struct meson_secure_pwrc_domain_data meson_secure_a1_pwrc_data = {
- 	.count = ARRAY_SIZE(a1_pwrc_domains),
- };
- 
-+static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
-+	.domains = s4_pwrc_domains,
-+	.count = ARRAY_SIZE(s4_pwrc_domains),
-+};
-+
- static const struct of_device_id meson_secure_pwrc_match_table[] = {
- 	{
- 		.compatible = "amlogic,meson-a1-pwrc",
- 		.data = &meson_secure_a1_pwrc_data,
- 	},
-+	{
-+		.compatible = "amlogic,meson-s4-pwrc",
-+		.data = &meson_secure_s4_pwrc_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
--- 
-2.34.1
+> > @@ -1150,6 +1177,52 @@ static int mt8192_mt6359_dev_probe(struct
+> > platform_device *pdev)
+> >  				dai_link->num_platforms =
+> >  					ARRAY_SIZE(i2s3_rt1015p_platfor
+> > ms);
+> >  			}
+> > +		} else if (strcmp(dai_link->name, "I2S8") == 0) {
+> > +			if (card == &mt8192_mt6359_rt1015_rt5682_card
+> > ||
+> > +			    card == &mt8192_mt6359_rt1015p_rt5682_card)
+> > {
+> > +				dai_link->cpus = i2s8_rt5682_cpus;
+> > +				dai_link->num_cpus =
+> > +					ARRAY_SIZE(i2s8_rt5682_cpus);
+> > +				dai_link->codecs = i2s8_rt5682_codecs;
+> > +				dai_link->num_codecs =
+> > +					ARRAY_SIZE(i2s8_rt5682_codecs);
+> > +				dai_link->platforms =
+> > i2s8_rt5682_platforms;
+> > +				dai_link->num_platforms =
+> > +					ARRAY_SIZE(i2s8_rt5682_platform
+> > s);
+> > +			} else if (card ==
+> > &mt8192_mt6359_rt1015p_rt5682s_card) {
+> > +				dai_link->cpus = i2s8_rt5682s_cpus;
+> > +				dai_link->num_cpus =
+> > +					ARRAY_SIZE(i2s8_rt5682s_cpus);
+> > +				dai_link->codecs = i2s8_rt5682s_codecs;
+> > +				dai_link->num_codecs =
+> > +					ARRAY_SIZE(i2s8_rt5682s_codecs)
+> > ;
+> > +				dai_link->platforms =
+> > i2s8_rt5682s_platforms;
+> > +				dai_link->num_platforms =
+> > +					ARRAY_SIZE(i2s8_rt5682s_platfor
+> > ms);
+> > +			}
+> > +		} else if (strcmp(dai_link->name, "I2S9") == 0) {
+> > +			if (card == &mt8192_mt6359_rt1015_rt5682_card
+> > ||
+> > +			    card == &mt8192_mt6359_rt1015p_rt5682_card)
+> > {
+> > +				dai_link->cpus = i2s9_rt5682_cpus;
+> > +				dai_link->num_cpus =
+> > +					ARRAY_SIZE(i2s9_rt5682_cpus);
+> > +				dai_link->codecs = i2s9_rt5682_codecs;
+> > +				dai_link->num_codecs =
+> > +					ARRAY_SIZE(i2s9_rt5682_codecs);
+> > +				dai_link->platforms =
+> > i2s9_rt5682_platforms;
+> > +				dai_link->num_platforms =
+> > +					ARRAY_SIZE(i2s9_rt5682_platform
+> > s);
+> > +			} else if (card ==
+> > &mt8192_mt6359_rt1015p_rt5682s_card) {
+> > +				dai_link->cpus = i2s9_rt5682s_cpus;
+> > +				dai_link->num_cpus =
+> > +					ARRAY_SIZE(i2s9_rt5682s_cpus);
+> > +				dai_link->codecs = i2s9_rt5682s_codecs;
+> > +				dai_link->num_codecs =
+> > +					ARRAY_SIZE(i2s9_rt5682s_codecs)
+> > ;
+> > +				dai_link->platforms =
+> > i2s9_rt5682s_platforms;
+> > +				dai_link->num_platforms =
+> > +					ARRAY_SIZE(i2s9_rt5682s_platfor
+> > ms);
+> > +			}
+> 
+> After seeing the code, I am starting to wonder if the reuse is
+> overkill.  If
+> they (RT5682 vs. RT5682S) only have some minor differences, probably
+> it could
+> reuse more by:
+> 
+> SND_SOC_DAILINK_DEFS(i2s8, ...
+> SND_SOC_DAILINK_DEFS(i2s9, ...
+> 
+> ...
+> 
+> if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
+>         i2s8_codecs.name = RT5682S_DEV0_NAME;
+>         i2s8_codecs.dai_name = RT5682S_CODEC_DAI;
+>         ...
+> }
+> 
+> Or even uses of_device_is_compatible() if it would like to reuse the
+> struct
+> snd_soc_card.
+If we reuse the struct snd_soc_card, the card .name will be same.
+Should I change the card .name through of_device_is_compatible()?
+
+Maybe like below:
+
+Remove rt5682x related words for snd_soc_card.
+static struct snd_soc_card mt8192_mt6359_rt1015p_card = {
+	.owner = THIS_MODULE,
+	.dai_link = mt8192_mt6359_dai_links,
+	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
+	.controls = mt8192_mt6359_rt1015p_controls,
+	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_controls),
+	.dapm_widgets = mt8192_mt6359_rt1015p_widgets,
+	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_widgets),
+	.dapm_routes = mt8192_mt6359_rt1015p_routes,
+	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_routes),
+};
+
+static const struct of_device_id mt8192_mt6359_dt_match[] = {
+	{
+		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
+		.data = &mt8192_mt6359_rt1015_rt5682_card,
+	},
+	{
+		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
+		.data = &mt8192_mt6359_rt1015p_card,
+	},
+	{
+		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682s",
+		.data = &mt8192_mt6359_rt1015p_card,
+	},
+	{}
+};
+
+if (of_device_is_compatible(np, "mediatek,
+mt8192_mt6359_rt1015p_rt5682")) {
+	card.name = "mt8192_mt6359_rt1015p_rt5682";
+	...
+} else if (of_device_is_compatible(np, "mediatek,
+mt8192_mt6359_rt1015p_rt5682s")) {
+	card.name = "mt8192_mt6359_rt1015p_rt5682s";
+	...
+}
+
+
+
+
+
 
