@@ -2,82 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C4644CA217
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 11:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE814CA221
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 11:25:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240899AbiCBKZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 05:25:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54684 "EHLO
+        id S240804AbiCBK0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 05:26:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240530AbiCBKZE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 05:25:04 -0500
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F67AC926
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 02:24:21 -0800 (PST)
-Received: by mail-wm1-x32c.google.com with SMTP id n33-20020a05600c3ba100b003832caf7f3aso835190wms.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 02:24:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Zf3t59YuuxCNJPUz/HY2r4h+HKYXoaw1e4s0ZaR15GE=;
-        b=tQVsBVO07MjcksiaS/uaKMdejreMdo52VHClB4yRNGHQIKJisEdQba1H/wrEUmxpNr
-         Epyf9UVis88yqtGydUngITuzdK2pH8M/yr+u9MqWwnvT6GEsZ68OqOyuoNIXotb6oqWL
-         M9QzYRVYcs9J3OId8gJywtG4LVXEyx3auR5CoQjRXQRRRyugmfiVdj7Hd2umBQ29O30x
-         hObiAmFyaRnm+sDzcCY0DXsHJl+j+u9gGwGXdu+giWxNvKcKPIDEtHaFdF9uyGY6ncZV
-         hfVe/pISTwgyCLydjWkPXfT8E631bRoKmGVN1yT+G7caWClpZ1uA3YKS+P3wyzjv4hLL
-         3h3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Zf3t59YuuxCNJPUz/HY2r4h+HKYXoaw1e4s0ZaR15GE=;
-        b=LaC5iFMjNUOWMBO65KFm+oKEJGyPuZuUr5vzTB43rsya8Fu7U0Cr8qLukpkFf56geL
-         V7dXIQwvkWrayvVxRQKi6rMeTmnHswSoaHh/R8pQbKBa2h95+F/DIEn9MvbJO/wWNdXd
-         1yyevG+OTK3t1xUQJQOJ2i1jrhQUMD7y1fsjJ0fAK4Ql4JdHGcZehtDLsXWH+Cv0pOHw
-         tTIuA2/8NKRmZbWa6MPJNDnLL3/wgmYaiIq3ngc59Ccd0Ld002B1hEGMiXI++sx6UxxR
-         Qiz85Ckcje7xnJ7tEBf7swowQoJ5BdGp7B5JZNZ4QZFT+X2sELNaEkMj/NL7Gi3RCUKT
-         ow+Q==
-X-Gm-Message-State: AOAM530EdjO5PFyQOVZYrif8yXpEYq2EfbwrhF5uGvSFA/PydjaLTS6E
-        lQWGoYIMO1I26EbB5KAkIE43qP5U10MhOw==
-X-Google-Smtp-Source: ABdhPJzXp6FHTG7RSsowKR7IPxM7MXRY8kmzfyBIvDDrAdkaP8nlOFVzNi+edlFGoCDmUpL9LisIwg==
-X-Received: by 2002:a1c:4603:0:b0:381:19fe:280b with SMTP id t3-20020a1c4603000000b0038119fe280bmr19946383wma.67.1646216660031;
-        Wed, 02 Mar 2022 02:24:20 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:49e8:f41b:b2a3:3a55? ([2a01:e34:ed2f:f020:49e8:f41b:b2a3:3a55])
-        by smtp.googlemail.com with ESMTPSA id f9-20020adffcc9000000b001e9e8163a46sm23514078wrs.54.2022.03.02.02.24.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 02:24:19 -0800 (PST)
-Message-ID: <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
-Date:   Wed, 2 Mar 2022 11:24:18 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
-Content-Language: en-US
-To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc:     "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-References: <20220222095654.9097-1-shruthi.sanil@intel.com>
- <20220222095654.9097-3-shruthi.sanil@intel.com>
- <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
- <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        with ESMTP id S240979AbiCBK0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 05:26:34 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D614BE1E1;
+        Wed,  2 Mar 2022 02:25:51 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id E0D5FB81F61;
+        Wed,  2 Mar 2022 10:25:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8667AC004E1;
+        Wed,  2 Mar 2022 10:25:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646216748;
+        bh=Rx6BK3yEyjhunkFOjdoBpPskNNZoXkPwCC5NrzfuBVI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=boMjGCPXsNFGILP20rRGUBff+Ww8a79Y1VcW2gc8PbsskhnE3Yrub3QjSQO0uhLjq
+         ssneieFqCHD6C44q3Sok9DgbpFBBvU8DBFwXCanOeR6a6eAwuuh2YKaB0kiDUi7j1y
+         YLDNIDWy31YSMb2nu5PMALi8MI9755iEVV2uinYMkFg1QqeQtRi1OZJPynybl9fSih
+         WQ4mgjpWHIOwGeqaj/YUKfsoa+Y8asWj+js+fU2A7EUaio4WT0EQC8myIebvmCrYTD
+         PF/rs3OANJgAGT62tLHxcWvvZJbp5HVE26ftMpx0bjdBCbwLuGntlR/7XLAey2j7BS
+         Q7OlyOwcC2GPg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nPMB0-00Be3p-50; Wed, 02 Mar 2022 10:25:46 +0000
+Date:   Wed, 02 Mar 2022 10:25:45 +0000
+Message-ID: <877d9c3b2u.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20220302084028.GL269879@dragon>
+References: <20220301062414.2987591-1-shawn.guo@linaro.org>
+        <20220301062414.2987591-3-shawn.guo@linaro.org>
+        <87ee3m2aed.wl-maz@kernel.org>
+        <20220302084028.GL269879@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, sudeep.holla@arm.com, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,23 +71,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 11:12, Sanil, Shruthi wrote:
-
-[ ... ]
-
->>> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) {
->>> +		pr_err("%pOF: Prescaler is not enabled\n", np);
->>> +		ret = -ENODEV;
->>> +	}
->>
->> Why bail out instead of enabling the prescalar ?
+On Wed, 02 Mar 2022 08:40:28 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
 > 
-> Because it is a secure register and it would be updated by the bootloader.
-Should it be considered as a firmware bug ?
+> Hi Marc,
+> 
+> On Tue, Mar 01, 2022 at 11:13:30AM +0000, Marc Zyngier wrote:
+> > Hi Shawn,
+
+[...]
+
+> > 
+> > > +static int qcom_mpm_set_type(struct irq_data *d, unsigned int type)
+> > > +{
+> > > +	struct qcom_mpm_priv *priv = d->chip_data;
+> > > +	int pin = d->hwirq;
+> > > +	unsigned int index = pin / 32;
+> > > +	unsigned int shift = pin % 32;
+> > > +
+> > > +	switch (type & IRQ_TYPE_SENSE_MASK) {
+> > > +	case IRQ_TYPE_EDGE_RISING:
+> > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_RISING),
+> > > +			     MPM_REG_RISING_EDGE, index, shift);
+> > > +		break;
+> > > +	case IRQ_TYPE_EDGE_FALLING:
+> > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_FALLING),
+> > > +			     MPM_REG_FALLING_EDGE, index, shift);
+> > > +		break;
+> > > +	case IRQ_TYPE_LEVEL_HIGH:
+> > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_LEVEL_HIGH),
+> > > +			     MPM_REG_POLARITY, index, shift);
+> > > +		break;
+> > > +	}
+> > 
+> > All these '!!(type & BLAH)' are totally superfluous, as they all expand
+> > to 'true' by construction.
+> 
+> Yes, you are right!
+> 
+> > And this leads to a few questions:
+> > 
+> > - Shouldn't a rising interrupt clear the falling detection?
+> > - Shouldn't a level-low clear the polarity?
+> > - How do you handle IRQ_TYPE_EDGE_BOTH?
+> > - How is MPM_REG_POLARITY evaluated for edge interrupts (resp the EDGE
+> >   registers for level interrupts), as you never seem to be configuring
+> >   a type here?
+> 
+> Honestly, qcom_mpm_set_type() was mostly taken from downstream without
+> too much thinking.  I trusted it as a "good" reference as I have no
+> document to verify the code.  These questions are great and resulted the
+> code changes are pretty sensible to me.
+
+I don't think these changes are enough. For example, an interrupt
+being switched from level to edge is likely to misbehave (how do you
+distinguish the two?). If that's what the downstream driver does, then
+it is terminally broken.
+
+As I asked before, we need some actual specs, or at least someone to
+paraphrase it for us. There are a number of QC folks on Cc, and I
+expect them to chime in and explain how MPM works here.
+
+> 
+> > - What initialises the MPM trigger types at boot time?
+> 
+> I dumped the vMPM region and it's all zeros.  My understanding is if
+> vMPM needs any sort of initialization, it should be done by RPM firmware
+> before APSS gets booting.
+
+What about kexec? We can't rely on this memory region to always be
+0-initialised, nor do we know what that means.
+
+Thanks,
+
+	M.
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Without deviation from the norm, progress is not possible.
