@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A031E4C9A1B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 01:52:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EFE34C9A1D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 01:52:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238783AbiCBAw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 19:52:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44292 "EHLO
+        id S232405AbiCBAw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 19:52:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236551AbiCBAwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 19:52:55 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8A97EA31
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 16:52:13 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id w27so95852lfa.5
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 16:52:13 -0800 (PST)
+        with ESMTP id S236551AbiCBAw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 19:52:58 -0500
+Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302C88A30A
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 16:52:15 -0800 (PST)
+Received: by mail-lj1-x22e.google.com with SMTP id u11so147412lju.4
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 16:52:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SWC9HLvSBhB6Pz8h3N3F3AQ0kWvVsZWnOAu1rbrD3T8=;
-        b=kFWE16Aoaj+o//Zn40/+etJqsbR+TZiRHqtnJsI4Wog2t4S6E4CxC6ghXAduSbJ7UT
-         thVeHdkT3kso/hcUs38OYn6eAL65hSDNXuayQoJSyYJDPJsMAeDwSdgMhda9CjVIGSSS
-         9UR9oX8fr7HPnLeOw6hY6crk5HT+Nknf6x3SwnSeZ7k27Bf7Oa7noyyqemREOVIZizMh
-         QeWpgE+3gnWmbj/NKI1NqbzIefp7Zk0xmkvMqymGJvbgP5GrSt5UWwHruw2JQdBaMvVM
-         u4qgyWgrchX3iceBmKZr8HKg4bWQPzevxyoJS629sZwO/ALPB1SloRM8f705ZAcDA5zB
-         Wo9g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=5dxVC0XYMtIkeKswxmMMqBeM9Azi7/GfbM0XxG5vLXE=;
+        b=oEmqBkXAdaJ9rnJDQtmTdrV6zzeyI3SIDdlyVBZ4QLxJAkUw4VYGbn5hLe0c2y4m1l
+         1i0hPWf5Us3QDEj8Wmu2DvR4cT0LcqhXE7NLRBSS5et5XaSCjpl0Sof4nZtburkGLa+w
+         I/QrvAYTnr4A0E2gkFhQdlYSuvHXK1LAdkqnZrJtADJb1ZVsU2mRi/gP+T2oL6Jw1Sgf
+         zF9cPkzMEpSD34t2STfywILF8DBgRD1GdlERGKgQveauH+uqiGKOUB3MbJwDxg2cx+GA
+         QlP3l4jeP1S5bOq+1i1fnDX6Fk6DyoD6seumYqf1xQqYMs0EIPeImFgpX+0gwDqqjw3/
+         seqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=SWC9HLvSBhB6Pz8h3N3F3AQ0kWvVsZWnOAu1rbrD3T8=;
-        b=2xfYU26Hn59SznXjIyNNUMR/63exLVFq+KR6aal79JLv4VeaRbzbS9C/Gft3G0d4T3
-         qxvszSMspslohrY35LoknLzIE4KPAZfeI2ENQCEfti0ebjEYOSt/Jpu2K9ffsratizc/
-         P2ESEVjPL1woZ5zRAZM7rUq0w6/FsIHfIM0pbsu6LBezItduZlZg2aUcmmnazlNq6yK4
-         lB9+5wA1iek7rgWZj3p/A/bx/08/hTuUfeMHP+yrfzObdLsDnECueLKRjwATgkZ0eoWC
-         XwBGLT1s3Nam64VEJkszldgQS6tgu1s2sz/yeoQXC1SLnRpsWmOh50cG5yhkTDJoLpuM
-         bOxg==
-X-Gm-Message-State: AOAM530QFB8juXMJqQIijsjFcBVasoUkJ1EPgK4Fx8TBUbSFpfoak7ob
-        0VCUx6+5SG//kApgx0cZ2KYt9g==
-X-Google-Smtp-Source: ABdhPJym3l2+Hs9czgroqBDyOci3cO8rUBNuuvJjNmEzzQ1BKImUtnbRIkY8c6HLvLBt5WHRuMLJWQ==
-X-Received: by 2002:a05:6512:3042:b0:437:96f5:e68a with SMTP id b2-20020a056512304200b0043796f5e68amr17760636lfb.449.1646182332278;
-        Tue, 01 Mar 2022 16:52:12 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=5dxVC0XYMtIkeKswxmMMqBeM9Azi7/GfbM0XxG5vLXE=;
+        b=CqA1VRAoRyjqf0w52jO++x+zSSHBm/mWRD++Hfm1vt0afI4LUs1dVYrYfq6Kr9hKpD
+         fQ/ANRhnBKcH0QMzM+0lncWRmP9vlNUyqP2tjefRfeItCMQjT4dfSRF62rMyAP58MBdV
+         iec/L9BKZZ35W6cleniEEY7fC97muobAyMCV8NdfM2GQTHJ8Gecnr5IDaenq5JiW7ZeL
+         Y323oUKoJYp4Sn3mK17YQ0R5vbhO2uj120JylDofplKNVLf35aNHEffCSFhjUE3LiPen
+         yQfgFC9KeY67M1DZMJGewi+c0cknoysPmhZK4TTcMSDPkh8p2GVSXhtssf0vhYr8TbK1
+         f7gQ==
+X-Gm-Message-State: AOAM533Aoe2zha7/7sOACtF6O2a2A8lLuaDi7quFjWWCyOi1Ece8Hjcy
+        4RugPSpTtsUMnNMaPmWaQYMWqA==
+X-Google-Smtp-Source: ABdhPJw1dajR6vcW+/GGOcsIoftUlKpFkCNvxRaWyG04WZEO0cJhVTEkXW+He7bQtZfg+1bUDlFVSA==
+X-Received: by 2002:a05:651c:514:b0:246:8b8c:a97b with SMTP id o20-20020a05651c051400b002468b8ca97bmr8544838ljp.238.1646182333544;
+        Tue, 01 Mar 2022 16:52:13 -0800 (PST)
 Received: from eriador.lan ([2001:470:dd84:abc0:5258:5528:7624:3edd])
-        by smtp.gmail.com with ESMTPSA id n23-20020a19ef17000000b00445b8db3c42sm198171lfh.172.2022.03.01.16.52.11
+        by smtp.gmail.com with ESMTPSA id n23-20020a19ef17000000b00445b8db3c42sm198171lfh.172.2022.03.01.16.52.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 16:52:11 -0800 (PST)
+        Tue, 01 Mar 2022 16:52:13 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
@@ -58,10 +58,12 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH 1/5] arm64: dts: qcom: msm8996: Drop flags for mdss irqs
-Date:   Wed,  2 Mar 2022 03:52:06 +0300
-Message-Id: <20220302005210.2267725-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 2/5] arm64: dts: qcom: sdm630: Drop flags for mdss irqs
+Date:   Wed,  2 Mar 2022 03:52:07 +0300
+Message-Id: <20220302005210.2267725-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20220302005210.2267725-1-dmitry.baryshkov@linaro.org>
+References: <20220302005210.2267725-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,40 +82,31 @@ Drop the second cell containing (unused) irq flags.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/qcom/sdm630.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-index f0f81c23c16f..0597d865a4a6 100644
---- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-@@ -788,7 +788,7 @@ mdp: mdp@901000 {
+diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+index 240293592ef9..7f875bf9390a 100644
+--- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+@@ -1453,7 +1453,7 @@ mdp: mdp@c901000 {
  				reg-names = "mdp_phys";
  
  				interrupt-parent = <&mdss>;
 -				interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
 +				interrupts = <0>;
  
- 				clocks = <&mmcc MDSS_AHB_CLK>,
- 					 <&mmcc MDSS_AXI_CLK>,
-@@ -834,7 +834,7 @@ dsi0: dsi@994000 {
- 				reg-names = "dsi_ctrl";
+ 				assigned-clocks = <&mmcc MDSS_MDP_CLK>,
+ 						  <&mmcc MDSS_VSYNC_CLK>;
+@@ -1530,7 +1530,7 @@ dsi0: dsi@c994000 {
+ 				power-domains = <&rpmpd SDM660_VDDCX>;
  
  				interrupt-parent = <&mdss>;
 -				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
 +				interrupts = <4>;
  
- 				clocks = <&mmcc MDSS_MDP_CLK>,
- 					 <&mmcc MDSS_BYTE0_CLK>,
-@@ -904,7 +904,7 @@ hdmi: hdmi-tx@9a0000 {
- 					    "hdcp_physical";
- 
- 				interrupt-parent = <&mdss>;
--				interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <8>;
- 
- 				clocks = <&mmcc MDSS_MDP_CLK>,
- 					 <&mmcc MDSS_AHB_CLK>,
+ 				assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
+ 						  <&mmcc PCLK0_CLK_SRC>;
 -- 
 2.34.1
 
