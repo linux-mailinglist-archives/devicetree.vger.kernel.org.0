@@ -2,99 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D1A4C9B60
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 03:48:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 335B04C9B67
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 03:49:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233588AbiCBCss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 21:48:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51698 "EHLO
+        id S237341AbiCBCua (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 21:50:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232091AbiCBCss (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 21:48:48 -0500
-Received: from mg.sunplus.com (unknown [113.196.136.162])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7B57B506D5;
-        Tue,  1 Mar 2022 18:48:05 -0800 (PST)
-X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
-        ,3)
-Received: from 172.17.9.202
-        by mg01.sunplus.com with MailGates ESMTP Server V5.0(10053:0:AUTH_RELAY)
-        (envelope-from <tony.huang@sunplus.com>); Wed, 02 Mar 2022 10:48:15 +0800 (CST)
-Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
- sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
- 15.0.1497.26; Wed, 2 Mar 2022 10:48:15 +0800
-Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
- sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
- 15.00.1497.026; Wed, 2 Mar 2022 10:48:15 +0800
-From:   =?utf-8?B?VG9ueSBIdWFuZyDpu4Pmh7fljpo=?= <tony.huang@sunplus.com>
-To:     Arnd Bergmann <arnd@arndb.de>,
-        Tony Huang <tonyhuang.sunplus@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <derek.kiernan@xilinx.com>,
-        Dragan Cvetic <dragan.cvetic@xilinx.com>,
-        gregkh <gregkh@linuxfoundation.org>,
-        =?utf-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>
-Subject: RE: [PATCH v9 2/2] misc: Add iop driver for Sunplus SP7021
-Thread-Topic: [PATCH v9 2/2] misc: Add iop driver for Sunplus SP7021
-Thread-Index: AQHYJsjgtEqSV/WirUaNKgOQ/NhSWaydE0+AgA5UZIA=
-Date:   Wed, 2 Mar 2022 02:48:14 +0000
-Message-ID: <5c7e4c014858485a8b0eb120f85e98de@sphcmbx02.sunplus.com.tw>
-References: <cover.1645407997.git.tonyhuang.sunplus@gmail.com>
- <20f858dfe999816cb05dfde5f89db48f3416358e.1645407997.git.tonyhuang.sunplus@gmail.com>
- <CAK8P3a1FZQ2LQco8D263+YXjcSQvzU6RHAL8SKcKy8hiLnHY8g@mail.gmail.com>
-In-Reply-To: <CAK8P3a1FZQ2LQco8D263+YXjcSQvzU6RHAL8SKcKy8hiLnHY8g@mail.gmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.25.108.54]
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S232091AbiCBCu3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 21:50:29 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E064FAA022
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 18:49:46 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id C7BFA83BEE;
+        Wed,  2 Mar 2022 03:49:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1646189382;
+        bh=RnLQ1kSTn68gdlTwMtECShUd7f5MtMzMhxUhBCdUMjc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fz1lwIokv3awZa4+fkO7y6CaxGTVUjYs/sYmGldgwyOAZ6fV6cbs3rJDKRWC5ymU+
+         mFDGGkV9tya9+1IWgui53d4184sj3QbUPEWjndjQwkhC9LYYxyvSdmLHKicd+CVbwt
+         RZI7dvvYlPDzQmdrN7GK+S6luHFY3Y+Te6+ET8KrDWiysF3hHuDyvt+cEVOQ9xhd2o
+         ErFHmVIdKuy6QUeAP+DwnR5a/ZWnLaigK6Nr7MCAwcEQQXbSAyNLnOPINy7r8KZdpx
+         LU4jmjsb3VfMH4ruyuBD2YbhG4EL78luvyTHDfboElVIcnc8veaUICtmfWxCgNpQw0
+         bJg+SBDYJT95w==
+Message-ID: <3485f77c-667c-05fa-ff96-93e732247b49@denx.de>
+Date:   Wed, 2 Mar 2022 03:49:41 +0100
 MIME-Version: 1.0
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [EXT] Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for
+ i.MX8MP
+Content-Language: en-US
+To:     Robby Cai <robby.cai@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>
+Cc:     "Ying Liu (OSS)" <victor.liu@oss.nxp.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+References: <20220228004605.367040-1-marex@denx.de>
+ <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+ <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
+ <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+ <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
+ <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+ <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+ <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
+ <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+ <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+ <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
+ <VI1PR04MB699190CC6CB1D5C37C4BB64CF2029@VI1PR04MB6991.eurprd04.prod.outlook.com>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <VI1PR04MB699190CC6CB1D5C37C4BB64CF2029@VI1PR04MB6991.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RGVhciBBcm5kLCBHcmVna2g6DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJv
-bTogQXJuZCBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT4NCj4gU2VudDogTW9uZGF5LCBGZWJydWFy
-eSAyMSwgMjAyMiAzOjIwIFBNDQo+IFRvOiBUb255IEh1YW5nIDx0b255aHVhbmcuc3VucGx1c0Bn
-bWFpbC5jb20+DQo+IENjOiBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPjsgRFRNTCA8
-ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+Ow0KPiBMaW51eCBLZXJuZWwgTWFpbGluZyBMaXN0
-IDxsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnPjsgRGVyZWsgS2llcm5hbg0KPiA8ZGVyZWsu
-a2llcm5hbkB4aWxpbnguY29tPjsgRHJhZ2FuIEN2ZXRpYyA8ZHJhZ2FuLmN2ZXRpY0B4aWxpbngu
-Y29tPjsgQXJuZA0KPiBCZXJnbWFubiA8YXJuZEBhcm5kYi5kZT47IGdyZWdraCA8Z3JlZ2toQGxp
-bnV4Zm91bmRhdGlvbi5vcmc+OyBXZWxscyBMdQ0KPiDlkYLoirPpqLAgPHdlbGxzLmx1QHN1bnBs
-dXMuY29tPjsgVG9ueSBIdWFuZyDpu4Pmh7fljpoNCj4gPHRvbnkuaHVhbmdAc3VucGx1cy5jb20+
-DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0ggdjkgMi8yXSBtaXNjOiBBZGQgaW9wIGRyaXZlciBmb3Ig
-U3VucGx1cyBTUDcwMjENCj4gDQo+IE9uIE1vbiwgRmViIDIxLCAyMDIyIGF0IDM6MTQgQU0gVG9u
-eSBIdWFuZw0KPiA8dG9ueWh1YW5nLnN1bnBsdXNAZ21haWwuY29tPiB3cm90ZToNCj4gPg0KPiA+
-IElPUCg4MDUxKSBlbWJlZGRlZCBpbnNpZGUgU1A3MDIxIHdoaWNoIGlzIHVzZWQgYXMgUHJvY2Vz
-c29yIGZvciBJL08NCj4gPiBjb250cm9sLCBtb25pdG9yIFJUQyBpbnRlcnJ1cHQgYW5kIGNvb3Bl
-cmF0aW9uIHdpdGggQ1BVICYgUE1DIGluIHBvd2VyDQo+ID4gbWFuYWdlbWVudCBwdXJwb3NlLg0K
-PiA+IFRoZSBJT1AgY29yZSBpcyBEUTgwNTEsIHNvIGFsc28gbmFtZWQgSU9QODA1MSwgaXQgc3Vw
-cG9ydHMgZGVkaWNhdGVkDQo+ID4gSlRBRyBkZWJ1ZyBwaW5zIHdoaWNoIHNoYXJlIHdpdGggU1A3
-MDIxLg0KPiA+IEluIHN0YW5kYnkgbW9kZSBvcGVyYXRpb24sIHRoZSBwb3dlciBzcGVjIHJlYWNo
-IDQwMHVBLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogVG9ueSBIdWFuZyA8dG9ueWh1YW5nLnN1
-bnBsdXNAZ21haWwuY29tPg0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgaW4gdjk6DQo+ID4gIC0gUmVt
-b3ZlIGN1c3RvbSBhdHRyaWJ1dGVzIHN5c2ZzLg0KPiANCj4gWW91IGFyZSBub3cgYmFjayB0byBh
-IGRyaXZlciB0aGF0IGRvZXMgbm90aGluZyBhdCBhbGwsIHBsZWFzZSBtYWtlIGl0IHVzZSBhdA0K
-PiBsZWFzdCBvbmUga2VybmVsIHN1YnN5c3RlbSB0aGF0IGl0IGNhbiBob29rIHVwIHRvIGJlZm9y
-ZSB5b3Ugc2VuZCBpdCBhZ2Fpbi4NCj4gDQptb25pdG9yIFJUQyBpbnRlcnJ1cHQ6DQpTUDcwMjEg
-c3lzdGVtIGhhcyBpdHMgb3duIFJUQyBkZXZpY2UgZHJpdmVyIChydGMtc3VucGx1cy5jKS4JCQkJ
-CQkJCQkNClRoZSB1c2VyIGNhbiBzZXQgdGhlIFJUQyB3YWtlLXVwIHRpbWUgdGhyb3VnaCBydGMt
-c3VucGx1cy5jLgkJCQkJCQkJCQ0KVGhlIElPUCBjb2RlIGRvZXMgbm90IG5lZWQgdG8gaW5jcmVh
-c2UgdGhlIFJUQyBzdWJzeXN0ZW0gZnVuY3Rpb24sIHNldCB0aGUgUlRDIHJlZ2lzdGVyLgkJCQkJ
-CQkJCQ0KV2hlbiB0aGUgbGludXgga2VybmVsIHN5c3RlbS4gT25seSB0aGUgODA1MSBDUFUgaGFz
-IHBvd2VyIGFuZCBjYW4gbW9uaXRvciB0aGUgUlRDIHdha2UtdXAgaW50ZXJydXB0LgkJCQkJCQkJ
-CQ0KDQo+IEFsc28sIHdoZW4gbGlzdGluZyB0aGUgZnVuY3Rpb25hbGl0eSBhYm92ZSwgZGVzY3Jp
-YmUgd2hpY2ggc3Vic3lzdGVtcyB5b3Ugd2FudA0KPiB0byB1c2UgZm9yIHRob3NlIGluIHRoZSBs
-b25nIHJ1biwgdGhpcyB3b3VsZCBtYWtlIGl0IGNsZWFyZXIgdG8gc2VlIHdoaWNoDQo+IGRpcmVj
-dGlvbiB5b3Ugd2FudCB0byB0YWtlIHRoaXMgZHJpdmVyIHdoZW4geW91IGFkZCBiYWNrIHRoZSBm
-ZWF0dXJlcy4NCj4gDQo+ICAgICAgICAgIEFybmQNCg==
+On 3/1/22 14:37, Robby Cai wrote:
+
+Hi,
+
+[...]
+
+>>> I tend to agree with Marek on this one.  We have an instance where the
+>>> blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+>>> but different enough where each SoC has it's own set of tables and
+>>> some checks.   Lucas created the framework, and others adapted it for
+>>> various SoC's.  If there really is nearly 50% common code for the
+>>> LCDIF, why not either leave the driver as one or split the common code
+>>> into its own driver like lcdif-common and then have smaller drivers
+>>> that handle their specific variations.
+>>
+>> I don't know exactly how the standalone driver looks like, but I guess the
+>> overlap is not really in any real HW specific parts, but the common DRM
+>> boilerplate, so there isn't much point in creating a common lcdif driver.
+>>
+>> As you brought up the blk-ctrl as an example: I'm all for supporting slightly
+>> different hardware in the same driver, as long as the HW interface is close
+>> enough. But then I also opted for a separate 8MP blk-ctrl driver for those
+>> blk-ctrls that differ significantly from the others, as I think it would make the
+>> common driver unmaintainable trying to support all the different variants in
+>> one driver.
+>>
+>> Regards,
+>> Lucas
+> 
+> LCDIF on i.MX8MP is a different IP which is borrowed from non-iMX series, although it's also called 'LCDIF'.
+> We prefer not mix these two series of IPs in one driver for ease of maintenance and extension.
+
+Where does the MX8MP LCDIF come from then, SGTL maybe ?
