@@ -2,169 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 992C34CA61C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:34:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E614CA647
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 14:47:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242266AbiCBNfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 08:35:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56376 "EHLO
+        id S239064AbiCBNsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 08:48:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242204AbiCBNfb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:35:31 -0500
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D563BDE7C
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 05:34:48 -0800 (PST)
-Received: by mail-pl1-x633.google.com with SMTP id n15so1571000plf.4
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 05:34:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=g/0CGihmreYP75AblhYq/wa365Fq2crJ7rthQ8/LRIw=;
-        b=OxqV9xSNxet4uLHNXQBA5/6d7VsKxxBep6AmpAfNc7LxzgNLGIKeAxhaibUDtb9JbO
-         NSqNAMW71d6Jr9CyMEN5iTigMSS+vQNGjZ87wuFokpzomaZRw4PfZyBaCmiNuKiUH5ya
-         p0RyJyCq6zY90YYy8rKZPdeYR7OSfRk5CYFPctWPHvW1qfS23Gd4rvhVW29dEgc7s/fI
-         eudBqHWF1y0MMsJq7tOhiBv1qL/R0U309xMXkgUFuR7dNvA6dGxuHm1HaY7u2mEJ6Cin
-         vRnzOS+sRNuR2VVQ3Rlq8nzm8arMkJK9wVc2jFHEc6cTU/5dh30jfmynhhVWsVguXu7X
-         9gYw==
+        with ESMTP id S236210AbiCBNsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 08:48:35 -0500
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A31A3914E;
+        Wed,  2 Mar 2022 05:47:49 -0800 (PST)
+Received: by mail-ed1-f54.google.com with SMTP id h15so2325964edv.7;
+        Wed, 02 Mar 2022 05:47:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=g/0CGihmreYP75AblhYq/wa365Fq2crJ7rthQ8/LRIw=;
-        b=a9fopJ5H980KO8ujbuapyocF1EzRFHevw0RHfqlI6z+ZfY9Rseun8NcjZx3yHuJwJS
-         Fl2tMhrjz++AfGM+X0ou5uvNH0kBmM0c3JVnOWcH5VRaWPX9UKiIKk89luBmVJ8/FGX4
-         CEnVLhacBKPVmlqc+v+H3I0YtYg/Ht4qVCJyNuXXNpP+vLg5eq8sC638tWRP1yIgsHsA
-         27ltTSHp1+oP+3Pr/Gjyt8BvBNN76a6V3geQFta/I/bGNLEPHxu0fwEl3EOcJXzmAaGk
-         09TxoIr/XyjmvhgeSZI2imsVYIVvhTXS2ffvzk4oSmyqbnHMeCD538n907BIfJ/qRbKE
-         cUsg==
-X-Gm-Message-State: AOAM5317QAjs7Sv2f5+7l1QCrWAXZRPqdVkfrq4r1JORRbdwYZbmpTor
-        yJvb7RcSVg0xaCqlv18F6MCA1A==
-X-Google-Smtp-Source: ABdhPJyE1iWx1lWKj+H36O4PN4ngiSgwvqXfNlf2EPfHuhvB6INluq6wAlHqbkUpYueyr3kBnTIugw==
-X-Received: by 2002:a17:90a:6542:b0:1bd:149f:1c29 with SMTP id f2-20020a17090a654200b001bd149f1c29mr22011228pjs.240.1646228087854;
-        Wed, 02 Mar 2022 05:34:47 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id d10-20020a63360a000000b0037947abe4bbsm2486157pga.34.2022.03.02.05.34.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 05:34:47 -0800 (PST)
-Date:   Wed, 2 Mar 2022 21:34:41 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
-Message-ID: <20220302133441.GM269879@dragon>
-References: <20220301062414.2987591-1-shawn.guo@linaro.org>
- <20220301062414.2987591-3-shawn.guo@linaro.org>
- <87ee3m2aed.wl-maz@kernel.org>
- <20220302084028.GL269879@dragon>
- <877d9c3b2u.wl-maz@kernel.org>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AcALeRLgruJraoqYkSDWeD6cogilR50XrL0fln3VffM=;
+        b=Zt/DO+Bq20//tVb2JU+hu8hHyEkmNc1bCqbD+5AM+Cc5TzPLsHYHf8Ecjg2JQ2TAcM
+         xdLnPGzSZJIlB1Etlp6Q8H28Ft7xBv0kRPV6MnqFKPDPxcQG4gLWXfEW/g6/SeQq5Jq0
+         cJWyIcE6vBvTq9qMxPUnLbJrj3uwx9PWJGEjabaN/Z+6E9Hk4ocbuSDmcpuxF7l/TcbR
+         6Joh9pPAYeBCTZx4QJ/s9RPN5QKF9EYoyfFSxxJLxBNhw0ngP7oR7eze2+blMf9RHpDa
+         mwcwewOu0RXHn3pTlW+EuvImKy5LfoaK1ND3JETVwDX5QeYKBi/Ak7dvHUqKT5VMhn72
+         xBIg==
+X-Gm-Message-State: AOAM530wSp+qQftMjLT2l/+oX1MLFIxVnIsf+qt9L/wv+IkWjVpm3cI9
+        tje5s2moolIG/7FeFG6rIb1RFQgwYBQ=
+X-Google-Smtp-Source: ABdhPJyLon6u9lLsCunawYR20XfDf0xqCgLlH9uQfjZDDHBev+/9Kxx+h6PWJ1DRu4mFMN+J2Sl/Iw==
+X-Received: by 2002:a05:6402:520c:b0:412:7f7d:b06b with SMTP id s12-20020a056402520c00b004127f7db06bmr29985652edd.91.1646228867527;
+        Wed, 02 Mar 2022 05:47:47 -0800 (PST)
+Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id l5-20020a170906644500b006ce6b73ffd2sm6364627ejn.84.2022.03.02.05.47.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 05:47:46 -0800 (PST)
+Message-ID: <5476022d-6cac-82b4-b17e-23160689ea38@kernel.org>
+Date:   Wed, 2 Mar 2022 14:47:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <877d9c3b2u.wl-maz@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 2/2] dt-bindings: hwmon: Add sample averaging
+ properties for ADM1275
+Content-Language: en-US
+To:     Potin Lai <potin.lai@quantatw.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Patrick Williams <patrick@stwcx.xyz>, linux-hwmon@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220302123817.27025-1-potin.lai@quantatw.com>
+ <20220302123817.27025-3-potin.lai@quantatw.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220302123817.27025-3-potin.lai@quantatw.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 10:25:45AM +0000, Marc Zyngier wrote:
-> On Wed, 02 Mar 2022 08:40:28 +0000,
-> Shawn Guo <shawn.guo@linaro.org> wrote:
-> > 
-> > Hi Marc,
-> > 
-> > On Tue, Mar 01, 2022 at 11:13:30AM +0000, Marc Zyngier wrote:
-> > > Hi Shawn,
+On 02/03/2022 13:38, Potin Lai wrote:
+> Add documentation of new properties for sample averaging in PMON_CONFIG
+> register.
 > 
-> [...]
+> New properties:
+> - adi,volt-curr-sample-average
+> - adi,power-sample-average
 > 
-> > > 
-> > > > +static int qcom_mpm_set_type(struct irq_data *d, unsigned int type)
-> > > > +{
-> > > > +	struct qcom_mpm_priv *priv = d->chip_data;
-> > > > +	int pin = d->hwirq;
-> > > > +	unsigned int index = pin / 32;
-> > > > +	unsigned int shift = pin % 32;
-> > > > +
-> > > > +	switch (type & IRQ_TYPE_SENSE_MASK) {
-> > > > +	case IRQ_TYPE_EDGE_RISING:
-> > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_RISING),
-> > > > +			     MPM_REG_RISING_EDGE, index, shift);
-> > > > +		break;
-> > > > +	case IRQ_TYPE_EDGE_FALLING:
-> > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_EDGE_FALLING),
-> > > > +			     MPM_REG_FALLING_EDGE, index, shift);
-> > > > +		break;
-> > > > +	case IRQ_TYPE_LEVEL_HIGH:
-> > > > +		mpm_set_type(priv, !!(type & IRQ_TYPE_LEVEL_HIGH),
-> > > > +			     MPM_REG_POLARITY, index, shift);
-> > > > +		break;
-> > > > +	}
-> > > 
-> > > All these '!!(type & BLAH)' are totally superfluous, as they all expand
-> > > to 'true' by construction.
-> > 
-> > Yes, you are right!
-> > 
-> > > And this leads to a few questions:
-> > > 
-> > > - Shouldn't a rising interrupt clear the falling detection?
-> > > - Shouldn't a level-low clear the polarity?
-> > > - How do you handle IRQ_TYPE_EDGE_BOTH?
-> > > - How is MPM_REG_POLARITY evaluated for edge interrupts (resp the EDGE
-> > >   registers for level interrupts), as you never seem to be configuring
-> > >   a type here?
-> > 
-> > Honestly, qcom_mpm_set_type() was mostly taken from downstream without
-> > too much thinking.
-
-I have to take this statement back.  It seems that the current code has
-been diverted from the downstream in a wrong way.
-
-> > I trusted it as a "good" reference as I have no
-> > document to verify the code.  These questions are great and resulted the
-> > code changes are pretty sensible to me.
+> Signed-off-by: Potin Lai <potin.lai@quantatw.com>
+> ---
+>  .../bindings/hwmon/adi,adm1275.yaml           | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
 > 
-> I don't think these changes are enough. For example, an interrupt
-> being switched from level to edge is likely to misbehave (how do you
-> distinguish the two?). If that's what the downstream driver does, then
-> it is terminally broken.
 
-Could you take a look at downstream code and see if it answers all your
-questions?
 
-It seems MPM_REG_POLARITY is only meant for level interrupts, since edge
-interrupts already have separate registers for rising and falling.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-I will fix my broken code by respecting the downstream logic.
 
-> As I asked before, we need some actual specs, or at least someone to
-> paraphrase it for us. There are a number of QC folks on Cc, and I
-> expect them to chime in and explain how MPM works here.
-> 
-> > 
-> > > - What initialises the MPM trigger types at boot time?
-> > 
-> > I dumped the vMPM region and it's all zeros.  My understanding is if
-> > vMPM needs any sort of initialization, it should be done by RPM firmware
-> > before APSS gets booting.
-> 
-> What about kexec? We can't rely on this memory region to always be
-> 0-initialised, nor do we know what that means.
-
-We are not relying on it being 0-initialised, but being initialised by
-RPM with initial physical MPM register values.
-
-Shawn
-
-[1] https://source.codeaurora.org/quic/la/kernel/msm-5.4/tree/drivers/irqchip/qcom-mpm.c/?h=LE.UM.6.2.4.r1#n187
+Best regards,
+Krzysztof
