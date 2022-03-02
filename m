@@ -2,78 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 366FA4CB30A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 47E9C4CB333
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 01:34:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229717AbiCBXvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 18:51:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48162 "EHLO
+        id S229703AbiCBXy2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 18:54:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229688AbiCBXvu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:51:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 511F14A901;
-        Wed,  2 Mar 2022 15:51:05 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B470661B76;
-        Wed,  2 Mar 2022 23:51:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1EA3FC340F4;
-        Wed,  2 Mar 2022 23:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646265064;
-        bh=5xLrGpY62nYRCu13K/OIwB4PVpVGnEDLpAk67ymdxVU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eBbSYreyGTVWkKyO4T3IcevV+V+mTuhI76+73sHVV9zMgXVbT5mYyZk0c83VY0z1z
-         5aB2yrMvo4nMHSePlUhss7XZwDA+lE4c0gdGQC6Z1gHXEkS4O4G98C9gx6w7aOkIEm
-         I1HPlEhl6TcfOnqHU+SnGR7L64iAI26ckTxtQiDryPBQOxD/hze9Xgr8knmWrx6Hb/
-         fwdS1M2ENB8fR1RCSiIRxoyzLnKJFwFVXvSJi132Wi1gzuw05JNec5KNDAN/NQ9XWB
-         XzicY3bPx6u3SaLhjAQggJ5g7mgw4IHH3R9Q4Uwn2DUFx6hxLMXrQsvrqWZm3LMxFY
-         K+Xh0LNtfLFdQ==
-Received: by mail-ej1-f45.google.com with SMTP id a23so7112367eju.3;
-        Wed, 02 Mar 2022 15:51:04 -0800 (PST)
-X-Gm-Message-State: AOAM531UbsCGDksPtAtitb9lPql9esilY2VZZpgtJGljjdAg4mddlvSC
-        WemxqXSFDh97ksX0z/FY2yTRekQgrtGTr5o+pg==
-X-Google-Smtp-Source: ABdhPJy8BgFbiNpA6fAc8G8dJGtH6TqNMNEYUYJ0+kAz+CWpXAxOiVbGxTudEMr3eo2aAfAGkSAGo/sKnwcUwjG/P7Y=
-X-Received: by 2002:a17:906:af79:b0:6cf:6b3f:5b3b with SMTP id
- os25-20020a170906af7900b006cf6b3f5b3bmr24918369ejb.14.1646265062254; Wed, 02
- Mar 2022 15:51:02 -0800 (PST)
+        with ESMTP id S229696AbiCBXy1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:54:27 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7D22C110;
+        Wed,  2 Mar 2022 15:53:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646265223; x=1677801223;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=m3u25xMhZVEc/MJyWhaLe99ts/+HPtLY71qMZMMqvqg=;
+  b=yuu1+5wcSPJJ/jZ7MBS31PsQdvc3WQC+Vef+Bv1zVq7z96vwVhTHr8z+
+   mSADl1BCZceJqPAXkPRFBj7nlLmiuMhmmwLVe/jhzpV5fi0Fv1OWFvbdn
+   y+lonvfeAN25GTiSw5M9QrP9LPVxCAdBsZPyr7GScSb0+P60WHrm5neyQ
+   k=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 Mar 2022 15:53:42 -0800
+X-QCInternal: smtphost
+Received: from nasanex01b.na.qualcomm.com ([10.46.141.250])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 15:53:42 -0800
+Received: from [10.110.8.146] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 2 Mar 2022
+ 15:53:41 -0800
+Message-ID: <ce19852f-8a69-3c98-cf0f-f78e37616fa6@quicinc.com>
+Date:   Wed, 2 Mar 2022 15:53:41 -0800
 MIME-Version: 1.0
-References: <20220126071932.32615-1-jason-jh.lin@mediatek.com>
-In-Reply-To: <20220126071932.32615-1-jason-jh.lin@mediatek.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 2 Mar 2022 17:50:50 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+6k5EqouAO2Xm=GpBz3Pi-wfB-ixGwfyC+Y+qOrjUFTg@mail.gmail.com>
-Message-ID: <CAL_Jsq+6k5EqouAO2Xm=GpBz3Pi-wfB-ixGwfyC+Y+qOrjUFTg@mail.gmail.com>
-Subject: Re: [PATCH v15 00/12] Add Mediatek Soc DRM (vdosys0) support for mt8195
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Fei Shao <fshao@chromium.org>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        "roy-cw.yeh" <roy-cw.yeh@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Jitao shi <jitao.shi@mediatek.com>, nancy.lin@mediatek.com,
-        singo.chang@mediatek.com, devicetree@vger.kernel.org,
-        "moderated list:ARM/STM32 ARCHITECTURE" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH 02/11] dt-bindings: Add binding for gunyah hypervisor
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        "Andy Gross" <agross@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        Murali Nalajala <quic_mnalajal@quicinc.com>
+References: <20220223233729.1571114-1-quic_eberman@quicinc.com>
+ <20220223233729.1571114-3-quic_eberman@quicinc.com>
+ <Yhk1j7riufsOFUsg@robh.at.kernel.org>
+From:   Elliot Berman <quic_eberman@quicinc.com>
+In-Reply-To: <Yhk1j7riufsOFUsg@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,266 +67,335 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jan 26, 2022 at 1:19 AM jason-jh.lin <jason-jh.lin@mediatek.com> wrote:
->
-> Change in v15:
-> - remove mt8195-mmsys.h comment for mux settings
-> - define the mask macro to replace using value as mask
->   to fix zero mask problem
-> - add EOF setting comment for MUTEX sof register
->
-> Change in v14:
-> - rebase on mediatek-drm-next-5.17
-> - rebase on "Add mmsys and mutex support for MDP" series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=602528
-> - rebase on "media: mediatek: support mdp3 on mt8183 platform" series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=602834
->
-> Change in v13:
-> - remove dts patch
-> - rebase on kernel-5.16-rc1
-> - rebase on mediatek-drm-next
->
-> Change in v12:
-> - add clock-names property to merge yaml
-> - using BIT(nr) macro to define the settings of mmsys routing table
-> - fix clk_get and clk_prepare_enable error handling issue
->
-> Change in v11:
-> - rebase on kernel-5.15-rc1
-> - change mbox label to gce0 for dts node of vdosys0
-> - change ovl compatibale to mt8192 to set smi_id_en=true in driver data
-> - move common module from display folder to common folder,
->   such as AAL, COCLOR, CCORR and MUTEX
->
-> Change in v10:
-> - rebase on "drm/mediatek: add support for mediatek SOC MT8192" series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=529489
-> - rebase on "soc: mediatek: mmsys: add mt8192 mmsys support" series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=524857
-> - fix some typo and "mediatek" start with capital in every dt-bindings
-> - move mutex yaml from dfisplay folder to soc folder
-> - separate merge additional propoerties to an individual dt-bindings patch
->
-> Change in v9:
-> - separate power and gce properties of mmsys into another dt-binding patch
-> - rebase on "Separate aal module" series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=516463
-> - keep mtk_ddp_clk_enable/disable in the same place
-> - change mtk_dsc_start config register to mtk_drm_ddp_write_mask
-> - remove the 0 setting of merge fifo config function
-> - add CCORR driver data for mt8195
->
-> Change in v8:
-> - add DP_INTF0 mux into mmsys routing table
-> - add DP_INTF0 mutex mod and enum into add/remove comp function
-> - remove bypass DSC enum in mtk_ddp_comp_init
->
-> Change in v7:
-> - add dt=binding of mmsys and disp path into this series
-> - separate th modidfication of alphabetic order, remove unused define and
->   rename the define of register offset to individual patch
-> - add comment for MERGE ultra and preultra setting
->
-> Change in v6:
-> - adjust alphabetic order for mediatek-drm
-> - move the patch that add mt8195 support for mediatek-drm as
->   the lastest patch
-> - add MERGE define for const varriable
->
-> Change in v5:
-> - add power-domain property into vdosys0 and vdosys1 dts node.
-> - add MT8195 prifix and remove unused VDO1 define in mt8195-mmsys.h
->
-> Change in v4:
-> - extract dt-binding patches to another patch series
->   https://patchwork.kernel.org/project/linux-mediatek/list/?series=519597
-> - squash DSC module into mtk_drm_ddp_comp.c
-> - add coment and simplify MERGE config function
->
-> Change in v3:
-> - change mmsys and display dt-bindings document from txt to yaml
-> - add MERGE additional description in display dt-bindings document
-> - fix mboxes-cells number of vdosys0 node in dts
-> - drop mutex eof convert define
-> - remove pm_runtime apis in DSC and MERGE
-> - change DSC and MERGE enum to alphabetic order
->
-> Change in v2:
-> - add DSC yaml file
-> - add mt8195 drm driver porting parts in to one patch
-> - remove useless define, variable, structure member and function
-> - simplify DSC and MERGE file and switch threre order
->
-> jason-jh.lin (12):
->   dt-bindings: arm: mediatek: mmsys: add power and gce properties
->   dt-bindings: arm: mediatek: mmsys: add mt8195 SoC binding
->   dt-bindings: display: mediatek: disp: split each block to individual
->     yaml
->   dt-bindings: display: mediatek: dsc: add yaml for mt8195 SoC binding
->   dt-bindings: display: mediatek: merge: add additional prop for mt8195
->   dt-bindings: display: mediatek: add mt8195 SoC binding for vdosys0
->   dt-bindings: arm: mediatek: move out common module from display folder
->   soc: mediatek: add mtk-mmsys support for mt8195 vdosys0
->   soc: mediatek: add mtk-mutex support for mt8195 vdosys0
->   drm/mediatek: add DSC support for mediatek-drm
->   drm/mediatek: add MERGE support for mediatek-drm
->   drm/mediatek: add mediatek-drm of vdosys0 support for mt8195
->
->  .../bindings/arm/mediatek/mediatek,mmsys.yaml |  32 ++-
->  .../display/mediatek/mediatek,disp.txt        | 219 ----------------
->  .../display/mediatek/mediatek,dither.yaml     |  76 ++++++
->  .../display/mediatek/mediatek,dsc.yaml        |  71 +++++
->  .../display/mediatek/mediatek,gamma.yaml      |  77 ++++++
->  .../display/mediatek/mediatek,merge.yaml      | 106 ++++++++
->  .../display/mediatek/mediatek,od.yaml         |  53 ++++
->  .../display/mediatek/mediatek,ovl-2l.yaml     |  88 +++++++
->  .../display/mediatek/mediatek,ovl.yaml        | 103 ++++++++
->  .../display/mediatek/mediatek,postmask.yaml   |  69 +++++
->  .../display/mediatek/mediatek,rdma.yaml       | 117 +++++++++
->  .../display/mediatek/mediatek,split.yaml      |  58 +++++
->  .../display/mediatek/mediatek,ufoe.yaml       |  61 +++++
->  .../bindings/soc/mediatek/mediatek,aal.yaml   |  72 +++++
->  .../bindings/soc/mediatek/mediatek,ccorr.yaml |  46 +++-
->  .../bindings/soc/mediatek/mediatek,color.yaml |  81 ++++++
->  .../bindings/soc/mediatek/mediatek,mutex.yaml |  77 ++++++
->  .../bindings/soc/mediatek/mediatek,wdma.yaml  |  47 +++-
->  drivers/gpu/drm/mediatek/Makefile             |   1 +
->  drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   8 +
->  drivers/gpu/drm/mediatek/mtk_disp_merge.c     | 246 ++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_disp_rdma.c      |   6 +
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c   |  63 +++++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h   |   2 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c        |  32 ++-
->  drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   1 +
->  drivers/soc/mediatek/mt8195-mmsys.h           | 130 +++++++++
->  drivers/soc/mediatek/mtk-mmsys.c              |  11 +
->  drivers/soc/mediatek/mtk-mutex.c              | 103 +++++++-
->  include/linux/soc/mediatek/mtk-mmsys.h        |   9 +
->  30 files changed, 1832 insertions(+), 233 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dither.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,merge.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,od.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,aal.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,color.yaml
->  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/mediatek,mutex.yaml
->  create mode 100644 drivers/gpu/drm/mediatek/mtk_disp_merge.c
->  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
 
-Looks like this is in linux-next and now:
+On 2/25/2022 12:01 PM, Rob Herring wrote:
+> On Wed, Feb 23, 2022 at 03:37:20PM -0800, Elliot Berman wrote:
+>> When Linux is booted as a guest under the Gunyah hypervisor, Gunyah
+>> applies a devicetree overlay describing the virtual platform
+>> configuration of the guest VM, such as the message queue capability IDs
+>> for communicating with the Resource Manager. Add the DT bindings that
+>> Gunyah adheres for the hypervisor node and message queues.
+>>
+>> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+>> ---
+>>   .../bindings/gunyah/message-queue.yml         | 100 ++++++++++++++
+>>   .../bindings/gunyah/qcom,hypervisor.yml       | 122 ++++++++++++++++++
+> 
+> How did testing these files work? It didn't because .yml files are
+> ignored. Get 'make dt_binding_check' actually working and resubmit.
+> 
+I'll double check this, thanks!
 
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,aal.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,aal.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,wdma.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,ccorr.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,dither.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,dither.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,postmask.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,ufoe.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,rdma.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,od.example.dts:24.30-31
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,od.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,color.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,color.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.example.dts:35.50-51
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,ethdr.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,split.example.dts:24.35-36
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,split.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,merge.example.dts:27.35-36
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,merge.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,mutex.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,dsc.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,ovl-2l.example.dt.yaml]
-Error 1
-Error: Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.example.dts:27.27-28
-syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:386:
-Documentation/devicetree/bindings/display/mediatek/mediatek,ovl.example.dt.yaml]
-Error 1
+> No, you don't get your own directory.
+> 
+Do you have a suggestion for an alternate directory? I'm not sure if 
+misc/ makes sense here?
 
-Please fix 'make dt_binding_check'.
+> In general, DT is for undiscoverable hardware that we are stuck with
+> because it was not made discoverable. As this is not h/w and you control
+> each side of the interface, make it discoverable and don't use DT for
+> your discovery mechanism.
+> 
+Gunyah follows a micro-kernel architecture. The EL2 hypervisor doesn't 
+keep the necessary context to share initial message queue information in 
+order to communicate with the resource manager VM, and it's considered 
+undiscoverable in this regard.
 
-Rob
+This feedback is good for the other properties, though. I'll improve the 
+discoverability for other properties and drop the bindings for them.
+
+In summary, I can remove all of the properties and subnodes from 
+/hypervisor node, except for /hypervisor/resource-manager-rpc. For that 
+node, I only need to keep a few fields (reg and interrupts) because that 
+information isn't discoverable.
+
+> Incomplete review follows...
+> 
+>>   MAINTAINERS                                   |   1 +
+>>   3 files changed, 223 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/gunyah/message-queue.yml
+>>   create mode 100644 Documentation/devicetree/bindings/gunyah/qcom,hypervisor.yml
+>>
+>> diff --git a/Documentation/devicetree/bindings/gunyah/message-queue.yml b/Documentation/devicetree/bindings/gunyah/message-queue.yml
+>> new file mode 100644
+>> index 000000000000..1a96d3de2a19
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gunyah/message-queue.yml
+>> @@ -0,0 +1,100 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/gunyah/qcom,hypervisor.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Gunyah message queue
+>> +
+>> +maintainers:
+>> +   - Murali Nalajala <quic_mnalajal@quicinc.com>
+>> +   - Elliot Berman <quic_eberman@quicinc.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: qcom,gunyah-message-queue
+>> +      - const: qcom,gunyah-capability
+> 
+> I'm not following how capability is a fallback to message-queue.
+> 
+
+This node shares common properties with other Gunyah capabilities. Linux 
+drivers don't need to make use of this compatible, but Gunyah needs to 
+make it present for other operating systems. In that case, should I drop 
+"gunyah-capability" from the bindings?
+
+>> +  peer:
+>> +    description: VMID of the VM on the other end of message queue
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +  allOf:
+> 
+> Check your indentation.
+> 
+>> +    - if:
+>> +        anyOf:
+>> +          - properties:
+>> +              qcom,is-sender: true
+>> +          - properties:
+>> +              qcom,is-full-duplex: true
+>> +      then:
+>> +        properties:
+>> +          qcom,tx-message-size:
+>> +            description: Maximum size in bytes of a message which can be sent by this queue
+>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> +          qcom,tx-queue-depth:
+>> +            description: Depth of transmit queue for messages sent by this queue
+>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> +    - if:
+>> +        anyOf:
+>> +          - properties:
+>> +              qcom,is-receiver: true
+>> +          - properties:
+>> +              qcom,is-full-duplex: true
+>> +      then:
+>> +        properties:
+>> +          qcom,rx-message-size:
+>> +            description: Maximum size in bytes of a message which can be received by this queue
+>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> +          qcom,rx-queue-depth:
+>> +            description: Depth of transmit queue for messages received by this queue
+>> +            $ref: /schemas/types.yaml#/definitions/int32
+>> +    - if:
+>> +        anyOf:
+>> +          - properties:
+>> +              qcom,is-receiver: true
+>> +          - properties:
+>> +              qcom,is-sender: true
+>> +      then:
+>> +        properties:
+>> +          reg:
+>> +            description: Hypervisor capability ID of the message queue
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            minItems: 1
+>> +            maxItems: 1
+>> +          interrupts:
+>> +            minItems: 1
+>> +            maxItems: 1
+>> +    - if:
+>> +        properties:
+>> +          qcom,is-full-duplex: true
+>> +      then:
+>> +        properties:
+>> +          reg:
+>> +            description:
+>> +              Hypervisor capability IDs of the message queue
+>> +              The first is tx side, the second is rx side
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            minItems: 2
+>> +            maxItems: 2
+>> +          interrupts:
+>> +            description: The first is tx interrupt, second is rx interrupt
+>> +            minItems: 2
+>> +            maxItems: 2
+>> +  required:
+>> +    - compatible
+>> +    - reg
+>> +    - interrupts
+>> +
+>> +
+>> +examples:
+>> +  - |
+>> +    display-msgq-pair@abbf0da3c3c965cc {
+>> +      compatible = "qcom,gunyah-message-queue", "qcom,gunyah-capability";
+>> +      interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX full IRQ */
+>> +                    <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX empty IRQ */
+>> +      reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>; /* TX, RX cap ids */
+>> +      qcom,is-full-duplex;
+>> +      qcom,tx-queue-depth = <8>;
+>> +      qcom,tx-message-size = <0xf0>;
+>> +      qcom,rx-queue-depth = <8>;
+>> +      qcom,rx-message-size = <0xf0>;
+>> +    };
+>> \ No newline at end of file
+> 
+> Fix this.
+> 
+>> diff --git a/Documentation/devicetree/bindings/gunyah/qcom,hypervisor.yml b/Documentation/devicetree/bindings/gunyah/qcom,hypervisor.yml
+>> new file mode 100644
+>> index 000000000000..f637d51c52f0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gunyah/qcom,hypervisor.yml
+>> @@ -0,0 +1,122 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/gunyah/qcom,hypervisor.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hypervisor node to define virtual devices and other services provided by a Gunyah hypervisor
+>> +       to this virtual machine.
+>> +
+>> +maintainers:
+>> +   - Murali Nalajala <quic_mnalajal@quicinc.com>
+>> +   - Elliot Berman <quic_eberman@quicinc.com>
+>> +
+>> +description: |+
+>> +  On systems which support devicetree, Gunyah generates and overlays a deviceetree overlay which
+>> +  describes the basic configuration of the hypervisor. Virtual machines use this information for
+>> +  initial discovery that they are running as a Gunyah guest VM.
+>> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: qcom,gunyah-hypervisor-1.0
+>> +          - const: qcom,gunyah-hypervisor
+>> +
+>> +  "#address-cells":
+>> +    description: Number of cells needed to represent 64-bit capability IDs.
+>> +    const: 2
+>> +  "#size-cells":
+>> +    description: must be 0, because capability IDs are not memory address
+>> +                  ranges and do not have a size.
+>> +    const: 0
+>> +
+>> +  qcom,gunyah-vm:
+>> +    type: object
+>> +    description:
+>> +      The VM Identification is a virtual node that conveys to the VM information
+>> +      about this virtual machine in the context of the hypervisor-based system
+>> +    properties:
+>> +      compatible:
+>> +        oneOf:
+>> +          - items:
+>> +            - const: qcom,gunyah-vm-id-1.0
+>> +            - const: qcom,gunyah-vm-id
+>> +      qcom,vendor:
+>> +        $ref: /schemas/types.yaml#/definitions/string
+>> +        description: Vendor of the Virtual Machine, e.g. Qualcomm
+> 
+> Doesn't the compatible say this already?
+> 
+
+We'll drop "qcom," vendor prefix.
+
+>> +      qcom,vmid:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: contains the VMID of this VM as a 32-bit value
+>> +      qcom,owner-vmid:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Contains the hypervisor VMID of the VM's owner. The owner
+>> +                     is the VM that allocated and created the VM. VMs directly
+>> +                     managed by the resource manager, such as the primary VM do
+>> +                     not have an owner.
+>> +    required:
+>> +      - compatible
+>> +      - qcom,vmid
+>> +      - qcom,owner-vmid
+>> +
+>> +patternProperties:
+>> +  "^qcom,resource-manager-rpc(@.*)?":
+> 
+> We don't use vendor prefixes in node names. QCom really liked to though.
+> 
+
+We'll drop "qcom," vendor prefix.
+
+>> +    type: object
+>> +    description:
+>> +      Resource Manager node which is required to communicate to Resource
+>> +      Manager VM using Gunyah Message Queues.
+>> +    allOf: "message-queue.yml#"
+> 
+> Not valid json-schema...
+> 
+Will double check this in next patch.
+
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        oneOf:
+>> +          items:
+>> +            - const: qcom,resource-manager-1-0
+>> +            - const: qcom,resource-manager
+>> +      qcom,console-dev:
+>> +        $ref: /schemas/types.yaml#/definitions/flag
+>> +        description: if set, the resource-manger will accept console logs from the VM
+>> +      qcom,free-irq-start:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description: Set on ARM systems which use a GIC. First VIRQ number which is free
+>> +                     for virtual interrupt use.
+>> +    required:
+>> +      - qcom,is-full-duplex
+>> +
+>> +
+>> +required:
+>> +- compatible
+>> +- "#address-cells"
+>> +- "#size-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    hypervisor {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <0>;
+>> +        compatible = "qcom,gunyah-hypervisor-1.0", "qcom,gunyah-hypervisor", "simple-bus";
+>> +        name = "hypervisor";
+>> +
+>> +        qcom,gunyah-vm {
+>> +            compatible = "qcom,gunyah-vm-id-1.0", "qcom,gunyah-vm-id";
+>> +            qcom,vendor = "Qualcomm Technologies, Inc.";
+>> +            qcom,vmid = <45>;
+>> +            qcom,owner-vmid = <3>;
+>> +        };
+>> +
+>> +        qcom,resource-manager-rpc@0000000000000001 {
+>> +            compatible = "qcom,resource-manager-1-0", "qcom,resource-manager",
+>> +                          "qcom,gunyah-message-queue", "qcom,gunyah-capability";
+>> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX full IRQ */
+>> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX empty IRQ */
+>> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
+>> +                  /* TX, RX cap ids */
+>> +            qcom,is-full-duplex;
+>> +            qcom,free-irq-start = <0>;
+>> +            qcom,tx-queue-depth = <8>;
+>> +            qcom,tx-message-size = <0xf0>;
+>> +            qcom,rx-queue-depth = <8>;
+>> +            qcom,rx-message-size = <0xf0>;
+>> +        };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index bed175adc4c3..6a918f653eac 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -8400,6 +8400,7 @@ M:	Elliot Berman <quic_eberman@quicinc.com>
+>>   M:	Murali Nalajala <quic_mnalajal@quicinc.com>
+>>   L:	linux-arm-msm@vger.kernel.org
+>>   S:	Maintained
+>> +F:	Documentation/devicetree/bindings/gunyah/
+>>   F:	Documentation/virt/gunyah/
+>>   
+>>   H8/300 ARCHITECTURE
+>> -- 
+>> 2.25.1
+>>
+>>
