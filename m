@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F00F84CA12A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:47:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AC3F4CA131
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:48:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240657AbiCBJsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:48:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48890 "EHLO
+        id S233563AbiCBJsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:48:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236880AbiCBJsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:48:13 -0500
-Received: from mail-qv1-xf2f.google.com (mail-qv1-xf2f.google.com [IPv6:2607:f8b0:4864:20::f2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C48402559E
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:47:29 -0800 (PST)
-Received: by mail-qv1-xf2f.google.com with SMTP id gm1so1042861qvb.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 01:47:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=oVymzacBmHlfSEBN0NUcViscc1BlJREjJA6+b6RGOmg=;
-        b=QWdde23KNX46k7WkqryQHz1i3nNKX3hJ6bUw0DjcHiOt75WWu7w5auh04nLkT/xnOJ
-         R0VQHYTpPb3pK1dC5Q61RFQMwi4trskiEVa2TQn04UuisHYWibAazS7ATmu54TIBxXdA
-         5lK9Ys3nLH2M+OL5YbUWmBjXKkfNKuHDhT335FY7373hVh3ljtDU7hufDm+HoFdxRSC5
-         irTZ1zsjvdJCrCgb+ck2wdaojqCCFwevHlYpXu0UnAPPXOqgUXh+Q4uM4deQ12SqSBxO
-         anQ3SzaZnzqNuLNM3DIBa/tSUB0jwrQxi9OOPrEA2SXa6sqI0YSXgXVQjBwH2TaK1Eg7
-         1gOQ==
+        with ESMTP id S240661AbiCBJsp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:48:45 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C6E29CB6
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:48:01 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5E5603F607
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 09:48:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646214480;
+        bh=YDwov9hZPxOfFvFJ4bntrUYDDCSZQA6/kiFH4/f2u8U=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=pAp4jYAVXSV9cYnxGGscuBFHI6KzBvB2b3MPeOtbSkJbpRy+VBdrYbOqaBgnZYThQ
+         Jr0fyBdKL+Rp4xQYng+CUIuE/K9y3fB6eNdd/qn6fmWFlWukr9B2LbwOmNLIz2Yt/1
+         aucanrNoYRpN0IBjeLtTjfLeAQCpb61/Lg7VxfKuhjVMg4ikdEvHxLiRp0H0SGgmU1
+         X9pxzhve/+LiV2/suiu9QiFlMTzRwxbTRDYYmdVaTc2GDa/vGTQW9Soo7pLFjXIHdH
+         TF/qvUPbzJe2K/2xaWE1CnZfKHAoPy/HdB53vS9GU6YsW0zSuM7AR0nvwKPOpvfeGJ
+         UtN2o9/UX7tcw==
+Received: by mail-ej1-f69.google.com with SMTP id sa22-20020a1709076d1600b006ce78cacb85so720706ejc.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 01:48:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=oVymzacBmHlfSEBN0NUcViscc1BlJREjJA6+b6RGOmg=;
-        b=Ja7buh9oTC14eP4MB4nG2qCklJP8d4tZXgaivnqoLOeHGzF01aRazbffwY8AAyJttZ
-         5+euOYCjjCTqIpJ59sjh5HmGdl0H0JmT0bxOm84BSI8V+FQLVBQYq/FUmUrz6vmosD57
-         F/IOtoH4w/AYtHX5R7GKEPXDPB/7/hFY5h6CQwtLYR/1P0Mzdgo+KC3dXPRb4gLt5h7q
-         0a+bWaLE0jflIeVVO+ZFL0FD+RkfPUM8aLHJEgtbWJhp78mlI9iufsZaIkeJ5LCesHbJ
-         8D56aTiDSdCDJEDHo3EakzeYtwRPWZuYYR/jTSJIbQD2V+YP8FzhbjBVkcRsCTYXjMtk
-         wDrg==
-X-Gm-Message-State: AOAM532CGMkQbYOnnKWkbXdka5L4jmM+gNTPP6olYiOLkUkWKheeBmXG
-        D1iOGt8+zYSTWcN2DKPusW95xGiVEi6CQGj54cg=
-X-Google-Smtp-Source: ABdhPJwbpxn+o5lpNUFUhQmBWdx4hvUvkX98PANWZ50On8S1tPm3b2kQMdzMgrFsQtUtHu3RHExhB4D+i2WeoxrhN7I=
-X-Received: by 2002:a05:6214:f2d:b0:432:dc5f:ea15 with SMTP id
- iw13-20020a0562140f2d00b00432dc5fea15mr14989081qvb.81.1646214448456; Wed, 02
- Mar 2022 01:47:28 -0800 (PST)
+        bh=YDwov9hZPxOfFvFJ4bntrUYDDCSZQA6/kiFH4/f2u8U=;
+        b=zrt4Pn1TG7dh6o22kDiFh7pYTekCbup3wJIe84GJoIvmcqcE32NGz4VcSUquD92RPe
+         htKqmS1Y8atEsM/RcOehX9Js7tYb6kPrmDm12mNnwt3oZ1QJhuH0NC3w2/FI1Hsmv4Qa
+         4hKoe6SnGeFyOwk7HCGM3jR145z28UYzGYqB4lxJ8+yIFZSLxw63sNIz5p/yjqvUP41X
+         GegGXtUvBH/EHPzD2heZtS88tF/wbzfU1dc7qOa3MHXckVMAwnfxrsxz966XknNJIx0b
+         jwo3pp7T3Kb5Au0AM1GArTpg//tr2BR9qTo31KUfYKNMIy0nK5iU2tuVnsj0EZcUoJ5M
+         Crfw==
+X-Gm-Message-State: AOAM532dlkaf+UsY3N8GQUTeYbX+5QsthFbj3TjyW9pJdCtn/DaUEFHH
+        Lqa7uFrH6v/Hy2m0yzR0DR4JrrgwXN9vRcMj+ZPjHbjML1q168ZeVgPfMquqgtbs4AcN34Ll8VK
+        0BlwwRjCvAk+8zGfFje+lbvpnxyPyhstxxNgYv3c=
+X-Received: by 2002:a17:906:b2c6:b0:6cf:e599:6b81 with SMTP id cf6-20020a170906b2c600b006cfe5996b81mr21825565ejb.578.1646214480096;
+        Wed, 02 Mar 2022 01:48:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwO8JN6K/qUNTGO/ulb3ap2nw6FIqgubS/vcKSkfPUzgYCmSRSQ7dXnf8ZAZnCeWE8ssUrhNA==
+X-Received: by 2002:a17:906:b2c6:b0:6cf:e599:6b81 with SMTP id cf6-20020a170906b2c600b006cfe5996b81mr21825547ejb.578.1646214479935;
+        Wed, 02 Mar 2022 01:47:59 -0800 (PST)
+Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id si13-20020a170906cecd00b006cded0c5ee2sm6241313ejb.61.2022.03.02.01.47.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 01:47:59 -0800 (PST)
+Message-ID: <cb654f98-3b4f-0b1c-77e6-22fe03bbed85@canonical.com>
+Date:   Wed, 2 Mar 2022 10:47:58 +0100
 MIME-Version: 1.0
-Received: by 2002:ad4:5443:0:0:0:0:0 with HTTP; Wed, 2 Mar 2022 01:47:27 -0800 (PST)
-From:   Anna Zakharchenko <fpar.org@gmail.com>
-Date:   Wed, 2 Mar 2022 10:47:27 +0100
-Message-ID: <CALr0R0oEzU-WF+OhADUDAnG2qytOv4T7_0dX6YBZoqPbR=3=NA@mail.gmail.com>
-Subject: Re: Help me in Ukraine
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=4.8 required=5.0 tests=ADVANCE_FEE_4_NEW_MONEY,
-        BAYES_50,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        FREEMAIL_FROM,LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_MONEY_PERCENT,T_SCC_BODY_TEXT_LINE,UNDISC_MONEY,URG_BIZ autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 4/5] dt-bindings: Add rk3568-dwc3-ahci compatible
+Content-Language: en-US
+To:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com
+References: <20220301152421.57281-1-linux@fw-web.de>
+ <20220301152421.57281-5-linux@fw-web.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220301152421.57281-5-linux@fw-web.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On 01/03/2022 16:24, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Add SoC specific compatible for rk3568 ahci controller
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v4: new Patch
+>  Documentation/devicetree/bindings/ata/ahci-platform.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+
+Here and in previous bindings patches - you have wrong subject. I
+already said it with v3. I gave you exact subject prefix to use.
 
 
-I am a Russian widow trapped in Ukraine's Donbass region amid Vladimir
-Putin's senseless conflict. During the 2014 battle in the Donbass, I
-lost my husband, a prominent Ukrainian businessman, who died without
-having children with me. I am currently in an underground bunker in
-Donetsk Oblast, a separatist war zone recognized by Russian President
-Vladimir Putin. I urgently request your assistance in moving my family
-trust fund worth =C2=A33,500,000.00 from the UK to your country to prevent
-European Union sanctions from seizing my money because I am a Russian
-citizen.
-
-Please help me save and protect this money. You will receive 30% of
-the total money as a reward for your efforts, while you must keep 70%
-for me until the conflict is over. For more information, you can
-contact me directly at (anna@sc2000.net).
-
-
-Cordially
-Anna Zakharchenko
-My email address is: anna@sc2000.net
+Best regards,
+Krzysztof
