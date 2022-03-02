@@ -2,122 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB184CA9BA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 16:58:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F044CA9DA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 17:10:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235578AbiCBP7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 10:59:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54174 "EHLO
+        id S238457AbiCBQKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 11:10:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233380AbiCBP67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 10:58:59 -0500
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5406E49935
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 07:58:16 -0800 (PST)
-Received: by mail-wm1-x331.google.com with SMTP id p184-20020a1c29c1000000b0037f76d8b484so1519426wmp.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 07:58:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=S7tBxL3zCrsmorspR7qPusrnc1TbsRYLggUh4+p6MEo=;
-        b=x7f7c2SCinYE0MhyzXnrqP7gjrhNRCE4IyOZQSela0bBvemhD+IbNSM+fPbXcMa8Rz
-         RUAvlekxqc9fQEFuKlfqxAVxZekoNANTDkXI1SdGwjelE03LqmuSltivVZmw0Ep5hSWs
-         ztLpCVRSCE7uQnRGcD0GV/9CC+bfmRpWqG/FuSf8qQn7IC0A2fzeehWs4lSWICvnf7iV
-         OFwl4xO0qAlqi+6VgrfyLEQbq1uscBTk0XYElKcO3NVKUstvQ1lZh++f84FUr0OLMm3S
-         ZxtCLYA16yDxYWvv4N80WLNnhtm6lNgGx7e8gv6Yz6sN470Eg0A8baKKgJM7zzwpzccA
-         8YTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=S7tBxL3zCrsmorspR7qPusrnc1TbsRYLggUh4+p6MEo=;
-        b=Y1BncgnpwaN0ANYL6mFqH/dgCOuRgb5BWSRt6E0DEefo6UTtJB7psSGVbxMtgC3N7b
-         Npd0DnVscodkEt5zAlchRGUsFxN192j2nsWq0cXJ9dCU8uo/ByOwah7Mlwh245kpIWrf
-         raXGXiMaSx82W+/xZGtnQxB/YEtOzh3obf1hOB1tX3F5ZKEOoJOz8a0rMqj9kIAONn+n
-         cPzR76m2kZDNN0+GqfBWBlGVGGBKMKpTnI3ZAzoZ9te+FIr6WpsUVpXSmVzMI7Jfcddf
-         sepbLB5vQw4C1Klae320vr2IWRvDlXmwpxYtAt/2ZtGExJU8HORia77v9Lc94WqLgbcl
-         Wa8g==
-X-Gm-Message-State: AOAM531lT6bpIeFBoEIgrEqmw/M9ZuFXfR+nETP2UxOvJU7/uvIdG5oS
-        HUuQgTpZsW2lVc0gXYDR5dqtmA==
-X-Google-Smtp-Source: ABdhPJypg+b21zNLXqV+F0y7KcTaJmTZ+m1NyDelT51EGx+VrpgB4V48jUYw7ZH84y1/mFvFnaqTWQ==
-X-Received: by 2002:a05:600c:1c9c:b0:386:f4ed:3f59 with SMTP id k28-20020a05600c1c9c00b00386f4ed3f59mr189896wms.27.1646236694737;
-        Wed, 02 Mar 2022 07:58:14 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98? ([2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98])
-        by smtp.googlemail.com with ESMTPSA id l7-20020adfc787000000b001f049375350sm487067wrg.8.2022.03.02.07.58.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 07:58:13 -0800 (PST)
-Message-ID: <d1f82398-3f94-2f48-db92-d1fe487032c7@linaro.org>
-Date:   Wed, 2 Mar 2022 16:58:08 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+        with ESMTP id S240511AbiCBQKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 11:10:47 -0500
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25C50CB646;
+        Wed,  2 Mar 2022 08:10:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646237404; x=1677773404;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=BAwjbMSNSBgg1FOhGnv01+DlxDYMhjhUOyVrW6GFTRY=;
+  b=CvhmemfxhfAkorYQud6CPyf2xUikLVbDCBPooSlFP/qdIq+j8rsCsQhX
+   Rzw4KmZ3VJbfpilD9h0PSaMYrFNrQZOypAd1kGTqfxnHUhfFdcCF6o7oX
+   la+nEbXqt9swwlTdF5LNCXK/y6rc5ib9wPyEMm2PGTW/QdUcLJa6xG2bR
+   eKN+TxsbvLY4SgIah//nov4GzWQzE7Lcrv3nfDXxbTTGTP6yrndgQKoLK
+   NBsg203eP3M5wi780D3/htZeTp2JLad5Bmi+t/xs/l0e+w6qa6w73HLWh
+   TZIC4/DrGeHdrvfpw3AGys85uSWMClZQgKwYZ5qwB/jCt84LhkCwuiROH
+   Q==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="234054763"
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
+   d="scan'208";a="234054763"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 08:10:03 -0800
+X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
+   d="scan'208";a="609245191"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 08:10:01 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nPRVH-00ANE0-Af;
+        Wed, 02 Mar 2022 18:07:03 +0200
+Date:   Wed, 2 Mar 2022 18:07:02 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
 Cc:     shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         mgross@linux.intel.com, srikanth.thokala@intel.com,
         lakshmi.bai.raja.subramanian@intel.com,
         mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Message-ID: <Yh+WJpmVe6V2oJVT@smile.fi.intel.com>
 References: <20220222095654.9097-1-shruthi.sanil@intel.com>
  <20220222095654.9097-3-shruthi.sanil@intel.com>
  <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
  <Yh925VvqejDe2SR8@smile.fi.intel.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <Yh925VvqejDe2SR8@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+ <d1f82398-3f94-2f48-db92-d1fe487032c7@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d1f82398-3f94-2f48-db92-d1fe487032c7@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 14:53, Andy Shevchenko wrote:
-> On Tue, Mar 01, 2022 at 10:09:06PM +0100, Daniel Lezcano wrote:
->> On 22/02/2022 10:56, shruthi.sanil@intel.com wrote:
+On Wed, Mar 02, 2022 at 04:58:08PM +0100, Daniel Lezcano wrote:
+> On 02/03/2022 14:53, Andy Shevchenko wrote:
+> > On Tue, Mar 01, 2022 at 10:09:06PM +0100, Daniel Lezcano wrote:
+> > > On 22/02/2022 10:56, shruthi.sanil@intel.com wrote:
+
+...
+
+> > > One line comment format is usually for the network subsystem
+
+> > Any pointers to the documentation, please?
 > 
->>> +		/* Clear interrupt for periodic timer*/
->>
->> nit: comment format is:
->>
->> /*
->>   * my comment
->>   */
->>
->> One line comment format is usually for the network subsystem
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/coding-style.rst#n598
 > 
-> Huh?
-> Any pointers to the documentation, please?
+> Well actually it is for multi line, so I may have confused with these one
+> line comments.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/coding-style.rst#n598
+Seems so.
 
-Well actually it is for multi line, so I may have confused with these 
-one line comments.
+> On the other hand having one line comment telling what does the function
+> right after is not really useful. The function names are self-explanatory.
 
-On the other hand having one line comment telling what does the function 
-right after is not really useful. The function names are self-explanatory.
-
->>> +		keembay_timer_clear_pending_int(tim_base);
->>> +	} else {
->>> +		/* Disable the timer for one shot timer */
->>
->> comment format
->>
->>> +		keembay_timer_disable(tim_base);
->>> +	}
-> 
-
+Agree on this.
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+With Best Regards,
+Andy Shevchenko
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+
