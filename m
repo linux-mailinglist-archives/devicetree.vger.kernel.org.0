@@ -2,178 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD82B4CB1A4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:59:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C324CB1BB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 23:08:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236911AbiCBWAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 17:00:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43658 "EHLO
+        id S236235AbiCBWIm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 17:08:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236858AbiCBWAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 17:00:13 -0500
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F44C7D6A;
-        Wed,  2 Mar 2022 13:59:29 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id h16-20020a4a6f10000000b00320507b9ccfso3572140ooc.7;
-        Wed, 02 Mar 2022 13:59:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Qu1UuB2p88jejBUeTppCLZmThyB2NBuh2qoIYxclrJ0=;
-        b=n5bBArR3jkfYhep6CeU4mbyHHnVeOQUI//JdmXqdAKmf9PrgWUa5ycylsMt5Z3Nl79
-         remijbuvSEUSq0yuDFYyxKT5E9MXfQeRHvHhAIZudhIj1tFM2rJLvj/NlvEW7zO83cX6
-         KQIfjLitE+3fdh6l71llNMyBODj1OxdiMWcp399TzsrjoipTFeTksNBQpgxJQ/CYKFXz
-         Ip2fLVqz6QsuBtPvNLJ1qfN0SbbJhYI1bOLGEveUu7AmpNRcBzs2ISEAjPNDeqh/Z7HU
-         QNEbDQVcSM6ThCXEaib8GekbqZL9PVsvHwXy5fGVdkWPKIQ++gLPOF55sW1nrt1gFHXE
-         3u1A==
-X-Gm-Message-State: AOAM533hkHi3odbmpYLlgcfppXt0NaqAz3Yviw6lU/ogMvmgTmR1lDmE
-        NO3gIMMC2R+1TbBFJZBCSA==
-X-Google-Smtp-Source: ABdhPJyx91JNIzn6Cs8BTFJCDX9woUE85mryXqEj9TpESgDFUDa6M10DSB6TiCbbfyh1zYVWrMO45w==
-X-Received: by 2002:a05:6870:c05:b0:d6:fa9f:bcd1 with SMTP id le5-20020a0568700c0500b000d6fa9fbcd1mr1663709oab.108.1646258368953;
-        Wed, 02 Mar 2022 13:59:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id l14-20020a4ac60e000000b002e0e75dcb82sm98740ooq.12.2022.03.02.13.59.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 13:59:26 -0800 (PST)
-Received: (nullmailer pid 133360 invoked by uid 1000);
-        Wed, 02 Mar 2022 21:59:25 -0000
-Date:   Wed, 2 Mar 2022 15:59:25 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tom Rini <trini@konsulko.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, u-boot@lists.denx.de,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: add UBI binding
-Message-ID: <Yh/ovYMV104jc+CE@robh.at.kernel.org>
-References: <20220217102448.27586-1-zajec5@gmail.com>
+        with ESMTP id S231542AbiCBWIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 17:08:42 -0500
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C2D8381B2;
+        Wed,  2 Mar 2022 14:07:56 -0800 (PST)
+Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 7BAE2E0003;
+        Wed,  2 Mar 2022 22:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1646258874;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=lS1QSNcGHjM0XgM4B7WgVQryBpLLi9DEmZbSo/cMOS4=;
+        b=Ote3cmIhGhk7KJS0xw+Cs7bF1JY7KqFtTRznRFMQ/c46qky2tYY2cIXY9hVGQhEJmqX9OP
+        U4xAt/K0wnm3Pqa/OMt74VIPtie+FSN1/BBxcmCT/JeieyOhACx7AGDMbqF6ZfQypTKlXI
+        usISbdehawZc35+D+zq3QOh4KdWaqG3kgnMaMiJ2L0nUcsUrVZHdZKAW7ZeI7sOxN+3a+C
+        sxMDAANwX3dg/bf9wWVAXGLuBGBHoOrQBtGnVP/9elpzmk+BxWqR0ZmDFNYA1Rj1sWExcm
+        fgILP9116WRqikXUK4tGgq0dRl6u13mSs6phGZvEXLo++mmFwxZXCYauUUJsgg==
+From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Cc:     Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v3 0/9] Allwinner A31/A83T MIPI CSI-2 and A31 ISP / MIPI CSI-2 Support
+Date:   Wed,  2 Mar 2022 23:07:30 +0100
+Message-Id: <20220302220739.144303-1-paul.kocialkowski@bootlin.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220217102448.27586-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 17, 2022 at 11:24:48AM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> UBI is often used on embedded devices to store UBI volumes with device
-> configuration / calibration data. Such volumes may need to be documented
-> and referenced for proper boot & setup.
-> 
-> Some examples:
-> 1. U-Boot environment variables
-> 2. Device calibration data
-> 3. Default setup (e.g. initial password)
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
->  .../bindings/mtd/partitions/ubi.yaml          | 67 +++++++++++++++++++
->  1 file changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> new file mode 100644
-> index 000000000000..cd081f06d4cb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/partitions/ubi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: UBI (Unsorted Block Images) device
-> +
-> +description: |
-> +  UBI is a layer providing logical volumes (consisting of logical blocks) on top
-> +  of raw flash devices. It deals with low-level flash issues (bit-flips, bad
-> +  physical eraseblocks, wearing) providing a reliable data storage.
-> +
-> +  UBI device is built and stored in a single flash partition.
-> +
-> +  Some (usually embedded) devices use UBI volumes of specific names or indexes
-> +  to store setup / configuration data. This binding allows describing such
-> +  volumes so they can be identified and referenced by consumers.
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +allOf:
-> +  - $ref: partition.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: ubi
-> +
-> +patternProperties:
-> +  "^volume-[0-9a-f]+$":
-> +    type: object
-> +    description: UBI volume
-> +    properties:
-> +      volume-name:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +      volume-id:
-> +        $ref: /schemas/types.yaml#/definitions/uint32
-> +    anyOf:
-> +      - required:
-> +          - volume-name
-> +      - required:
-> +          - volume-id
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    partitions {
-> +        compatible = "fixed-partitions";
-> +        #address-cells = <1>;
-> +        #size-cells = <1>;
-> +
-> +        partition@0 {
-> +            compatible = "ubi";
-> +            reg = <0x0000000 0x1000000>;
-> +            label = "filesystem";
-> +
-> +            env: volume-0 {
-> +                volume-name = "u-boot-env";
+This new version is an offspring from the big "Allwinner A31/A83T
+MIPI CSI-2 Support and A31 ISP Support" series, which was split into
+individual series for better clarity and handling.
 
-Why not do 'compatible = "u-boot,env";' to align with normal partitions?
+This part only concerns the MIPI CSI-2 controllers support changes.
 
-Or 'label'?
+Changes since all-in-one v2:
+- Use the newly-introduced media/mipi-csi2.h header instead of local
+  definitions;
+- Introduce a use a mutex for format access serialization;
+- Make both port@0 and port@1 as well as ports required in the binding;
+- Made one of the two CSI input ports required;
 
-We have enough ways to identify things, I don't think we need another.
+Paul Kocialkowski (9):
+  dt-bindings: sun6i-a31-mipi-dphy: Add optional direction property
+  phy: allwinner: phy-sun6i-mipi-dphy: Support D-PHY Rx mode for MIPI
+    CSI-2
+  dt-bindings: media: sun6i-a31-csi: Add MIPI CSI-2 input port
+  dt-bindings: media: Add Allwinner A31 MIPI CSI-2 bindings
+    documentation
+  media: sunxi: Add support for the A31 MIPI CSI-2 controller
+  MAINTAINERS: Add entry for the Allwinner A31 MIPI CSI-2 bridge driver
+  dt-bindings: media: Add Allwinner A83T MIPI CSI-2 bindings
+    documentation
+  media: sunxi: Add support for the A83T MIPI CSI-2 controller
+  MAINTAINERS: Add entry for the Allwinner A83T MIPI CSI-2 bridge
 
-> +            };
-> +
-> +            calibration: volume-1 {
+ .../media/allwinner,sun6i-a31-csi.yaml        |  66 +-
+ .../media/allwinner,sun6i-a31-mipi-csi2.yaml  | 147 ++++
+ .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 138 +++
+ .../phy/allwinner,sun6i-a31-mipi-dphy.yaml    |  12 +
+ MAINTAINERS                                   |  16 +
+ drivers/media/platform/sunxi/Kconfig          |   2 +
+ drivers/media/platform/sunxi/Makefile         |   2 +
+ .../platform/sunxi/sun6i-mipi-csi2/Kconfig    |  12 +
+ .../platform/sunxi/sun6i-mipi-csi2/Makefile   |   4 +
+ .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c   | 766 ++++++++++++++++
+ .../sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h   |  53 ++
+ .../sun6i-mipi-csi2/sun6i_mipi_csi2_reg.h     |  76 ++
+ .../sunxi/sun8i-a83t-mipi-csi2/Kconfig        |  11 +
+ .../sunxi/sun8i-a83t-mipi-csi2/Makefile       |   4 +
+ .../sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.c    |  72 ++
+ .../sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.h    |  39 +
+ .../sun8i_a83t_mipi_csi2.c                    | 833 ++++++++++++++++++
+ .../sun8i_a83t_mipi_csi2.h                    |  56 ++
+ .../sun8i_a83t_mipi_csi2_reg.h                | 151 ++++
+ drivers/phy/allwinner/phy-sun6i-mipi-dphy.c   | 166 +++-
+ 20 files changed, 2609 insertions(+), 17 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-mipi-csi2.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/Makefile
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.c
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2.h
+ create mode 100644 drivers/media/platform/sunxi/sun6i-mipi-csi2/sun6i_mipi_csi2_reg.h
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/Kconfig
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/Makefile
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.c
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_dphy.h
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_mipi_csi2.c
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_mipi_csi2.h
+ create mode 100644 drivers/media/platform/sunxi/sun8i-a83t-mipi-csi2/sun8i_a83t_mipi_csi2_reg.h
 
-Are 0 and 1 meaningful or just made up indexing?
+-- 
+2.35.1
 
-> +                volume-id = <99>;
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.34.1
-> 
-> 
