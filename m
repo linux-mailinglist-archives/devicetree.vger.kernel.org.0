@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D71F4C9A1F
+	by mail.lfdr.de (Postfix) with ESMTP id 9176F4C9A21
 	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 01:52:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238801AbiCBAxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S238799AbiCBAxA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 1 Mar 2022 19:53:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44336 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44362 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238798AbiCBAw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 19:52:58 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74F7C8F98A
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 16:52:16 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id f37so79475lfv.8
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 16:52:16 -0800 (PST)
+        with ESMTP id S238803AbiCBAxA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 19:53:00 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4176D13FB7
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 16:52:18 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id f37so79549lfv.8
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 16:52:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cuV5T+xDXxoIpuuof4RZMLElzWdFxHlFrB9qxP2rO7U=;
-        b=yCR0+2MguovBLCP54GnVfDr/RPj7egrBpX99xfCWVR/brkxDIkuq9T0kxxgtmB49MW
-         8FAqcA7tb0WpbMP6h6/4p00NdPQy/VFlRQhCls4v7YwX5OJygRMRgFcJwGDvqaafKxJx
-         dfnYXQLRs4vP8YVNrL7ovXjUiyQc8DpsgDibi+YULzll0rI6BdM/VFc4L8+tldKigLCO
-         hyn2gWOdDJiuWYsntq7BG0Ymgd7PKqbRIbwCvkpWIbJUeXbaaznWb7PGNnYFVj6CSVOD
-         Vrj+W3QgYmnVpUgPp137OzycqhdiZzRSJC1Ky6CFTWpRJKElPVfQer7RyLLPL+EO6Viq
-         Ohcw==
+        bh=W7xjJAoU4ptNKmChTRqSq+Gw3fZE/TkYmjx78F7vN8w=;
+        b=SqcH/IEbxNgW8RlMnRkRygD6MkdViXJQvrlfxNoJUJCJR0ZdJj+CgIx6VxTEZ04HoP
+         1xG8gwhfYcIwabk3J5QzmieP52ooJj48NvR8ong99VN35W2bysOjAzt3qjqHv7s3yql7
+         VqoSZjS84zcg2owgSzOD/4JqTcFS3oCiD+Qv2DObxFYUb9x27J4KiYG0yoaKnTryPzX2
+         o+NO6q8VE65DaFd40zPcauyUNqukTHRuO02t3ev/m0Z0g7VE+KJa+7UMOJbB9JpD2weW
+         B/Wsx/FfaIoKmdm6Slfxo/mFjYegaE7EVDyyVzNuZnlhKOC7B23NipjkLmZGgywowxN+
+         n7Vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cuV5T+xDXxoIpuuof4RZMLElzWdFxHlFrB9qxP2rO7U=;
-        b=VdYZAyfjVj/EnnVf9j3Q3T+bLwE4p0QNefZwQIYf6QJE3ir7qE9FC4W708qJwYGzaM
-         OP6lW6U1EPwvM8x9/+Hak24244JLjqCkwa8sBCjjNblG5HEBM8BFFQat9xkZT6V+GWMU
-         31JDAoSwR5d8yb0IlW7GwTA5m9ScMIrsVmaoQVGXdz8dZwLZfK0JfZEMxQkc/LIlesw7
-         yChcXaVvcNFvj5mA5SeXeRelaIFOtPQQSvK9GsL0lrmVIbJRag5ZwN5qwJ3Ajt89E5rs
-         1uX0THNftdXwaOazRMfPRCXg4HyLgm01dFHpvuZ2B4kBOWH4mrxYnhW9phEI3+ojeaES
-         LuJw==
-X-Gm-Message-State: AOAM531l9N8V+R+WORPGR8D9siGRwYRA2nFnEqfev0Eoh1Eh0I9c3ezy
-        ZYGY3QAt4+TtSPsTUG8O3nUiRQ==
-X-Google-Smtp-Source: ABdhPJwaZ6Tmh1tkbRTMhxj9QmyVBiA/Fq03uK+R7t0pt6RoZngYZHLL6ODNa/NxuEMZddW8yUQukQ==
-X-Received: by 2002:ac2:4c34:0:b0:445:6ce3:ed6d with SMTP id u20-20020ac24c34000000b004456ce3ed6dmr16622964lfq.29.1646182334833;
-        Tue, 01 Mar 2022 16:52:14 -0800 (PST)
+        bh=W7xjJAoU4ptNKmChTRqSq+Gw3fZE/TkYmjx78F7vN8w=;
+        b=JYW2zWb4XLRBY5W/3tgYiTO3Er0hPHoqXtT8U1wAk0CQUolNT9HGrpI9UssFyqV/ns
+         2jVSuK1Wylr0HvrIz350PoEUxrOt5VZipHGSyT+lbJ0PbT46TOML5zz7BMpo28iLZrWx
+         NWvTr76/ADvI0i4cs/g5wUK+n9jYD4qqbJI0s8Uhcq6HZZHtts0ZRlph/3dvp13WpzyP
+         PevP1r+Cv1po7GhLmBvwtPQvjqZ9s+N0EcSsDpEbtauANS4kJ0q+LIJn6eR+3Sbz4z4f
+         CQFiqk+Aoyjo7FdCPj+22lOlHJIIor6Jdt7Bt7Tvp7NwIJnHq6lYsQPBsun/8PLTkwPD
+         mXbA==
+X-Gm-Message-State: AOAM530aQV61EQiae8esjBeAveV3zxo/fXjnT7bRNISaCeExa/lR5eyC
+        pTNY+AZKYMwoxflrhCGBRkqtsw==
+X-Google-Smtp-Source: ABdhPJxEK0920YIHgw1rH58z3JYo6bDjeyqPPqzTPpGMsRoCZxGvGLI3sDe8vWPkrwdDoOkc6Nm5DA==
+X-Received: by 2002:a05:6512:3f0d:b0:443:5f35:6360 with SMTP id y13-20020a0565123f0d00b004435f356360mr16505159lfa.661.1646182336144;
+        Tue, 01 Mar 2022 16:52:16 -0800 (PST)
 Received: from eriador.lan ([2001:470:dd84:abc0:5258:5528:7624:3edd])
-        by smtp.gmail.com with ESMTPSA id n23-20020a19ef17000000b00445b8db3c42sm198171lfh.172.2022.03.01.16.52.13
+        by smtp.gmail.com with ESMTPSA id n23-20020a19ef17000000b00445b8db3c42sm198171lfh.172.2022.03.01.16.52.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Mar 2022 16:52:14 -0800 (PST)
+        Tue, 01 Mar 2022 16:52:15 -0800 (PST)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
@@ -58,9 +58,9 @@ Cc:     Stephen Boyd <swboyd@chromium.org>,
         Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org
-Subject: [PATCH 3/5] arm64: dts: qcom: sdm660: Drop flags for mdss irqs
-Date:   Wed,  2 Mar 2022 03:52:08 +0300
-Message-Id: <20220302005210.2267725-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/5] arm64: dts: qcom: sdm845: Drop flags for mdss irqs
+Date:   Wed,  2 Mar 2022 03:52:09 +0300
+Message-Id: <20220302005210.2267725-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220302005210.2267725-1-dmitry.baryshkov@linaro.org>
 References: <20220302005210.2267725-1-dmitry.baryshkov@linaro.org>
@@ -68,7 +68,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,22 +82,40 @@ Drop the second cell containing (unused) irq flags.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm660.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-index eccf6fde16b4..1d748c5305f4 100644
---- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-@@ -163,7 +163,7 @@ dsi1: dsi@c996000 {
- 		power-domains = <&rpmpd SDM660_VDDCX>;
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 41f4e46e1f85..95e6a97c2170 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -4281,7 +4281,7 @@ mdss_mdp: mdp@ae01000 {
+ 				power-domains = <&rpmhpd SDM845_CX>;
  
- 		interrupt-parent = <&mdss>;
--		interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupts = <5>;
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <0>;
  
- 		assigned-clocks = <&mmcc BYTE1_CLK_SRC>,
- 					<&mmcc PCLK1_CLK_SRC>;
+ 				ports {
+ 					#address-cells = <1>;
+@@ -4333,7 +4333,7 @@ dsi0: dsi@ae94000 {
+ 				reg-names = "dsi_ctrl";
+ 
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <4>;
+ 
+ 				clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
+ 					 <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
+@@ -4405,7 +4405,7 @@ dsi1: dsi@ae96000 {
+ 				reg-names = "dsi_ctrl";
+ 
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <5>;
+ 
+ 				clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
+ 					 <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
 -- 
 2.34.1
 
