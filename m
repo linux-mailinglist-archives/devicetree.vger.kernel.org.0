@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B0DA4CAE48
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 130CE4CAE4D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:10:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230433AbiCBTK3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 14:10:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54440 "EHLO
+        id S244917AbiCBTKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 14:10:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244824AbiCBTK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:10:28 -0500
+        with ESMTP id S244914AbiCBTKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:10:31 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46B0FCA0FA
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 11:09:45 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9406BCA709
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 11:09:47 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2798F3F60E
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 19:09:44 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5C0FC3F1DD
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 19:09:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646248184;
-        bh=WFYOXtt9pED7Md3w69qXaTq44oOJ0ADXDZapjGJ37mA=;
+        s=20210705; t=1646248185;
+        bh=+ix6D6CD66t0elYK19u+3Q/64q1OEoVuJh2pl4hMuNY=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=wYUrEwsjCUt6tgi2YlXzs25vJ4SJ6BdvxBvpSBUJkYDI+2mTFo2EguUvwPGSWC7hO
-         cTRPKIhgP3w7qTMHJh4/iq2QQnfSsemYamhulvxzrhps2adTDNbo7Mk9vIAN0bMC7D
-         1+0oAbUnUr9y2kj47EOKFeCw1dKJzxwhGFMtBBOyTqe1IjxHK9JacsgtZg++dQ10ji
-         XPWZk+1/lIdx/CMJ+1VIcshxouO1HJd2FaYYLbd7UwBWDd3ZRa0TewhNfRbOssNFtm
-         xrXTZsWBeoDcWCpao6Stdiy4VTS+IGHZQETro6lVYcqBnjXrX0LUhJVft+b542Y0G6
-         i3NwBpaGeO+ag==
-Received: by mail-ed1-f69.google.com with SMTP id r11-20020a508d8b000000b00410a4fa4768so1512720edh.9
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 11:09:44 -0800 (PST)
+        b=JcfHF4JdIg2G3t7FM0eJjqU7k4GoOJp2GRSrLQL6qCYF3OIGe8TNs1uI803Ez6t1i
+         fkNI6lafislkhmAtM3RRvPgyCf5EWHuZms7VrzAPSDpwTvWgGGq243VqjjKemnLOnD
+         kiWHHtiwURK7YmGZMu07ktI8ShIltOMhubhRMSgwngsncaAW1Ld6omm+0Lb8t/nwEA
+         kqnSvwlx+DIRheFWw+J5J79rbbEpdEYW9XPBeu4li6HymG017+fL4uTxJ+LkruiVkw
+         MfhdTubPIxZCDn3GriC0l4QmJmXCeOQerMIsnVDppUwM01ZpNrdIBchx3OozzLbGM/
+         KhEaaMJuDpNfA==
+Received: by mail-ed1-f70.google.com with SMTP id h17-20020a05640250d100b004133863d836so1548735edb.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 11:09:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=WFYOXtt9pED7Md3w69qXaTq44oOJ0ADXDZapjGJ37mA=;
-        b=4GHQijEcSeaJR5dHv+9XeaUUpkm82uoIaPxIClbyh1L6dDI0tjCuJRTAUnxySCGu8z
-         YD+ZbGyvxYTw9BAEVc17jsnn+De12pGB7TtjqF5GOdcAhMe/Q2zsYvOkUm3kMSUi6Twi
-         Gv1wZITXs9XXmGUQJLtAa0ul4LpQfffVwxgEciTRyak/Ho8TSde/AL8NATAO/eZHWb0v
-         M1d0HvAQdxz40E//II2bodWlWlR6VIKcC9vxtmDHbK5Bw7b+AQ3wtXrMtmg8QnkD/l8Y
-         bPiafjlY0annEiQEWoA5AcVNeNumTF3wB+JoE0T+/Sj121ivvxgWu8k6tbZrJUnk7Unb
-         li1w==
-X-Gm-Message-State: AOAM531OObM8LQaQ7hHSa8qBh3mtFnwD9dBd+QxhuEMlHPOKU91WwxUJ
-        np3KvQfTG1mduQFyobWJDJEf1yPOfd1sd4YRZsNd1S5MDw7zNZyO0W7IojILvJfV0lfKB/QUI0e
-        wplgODubLRcS8A5mMk62eK8u9RpbmsyIoGiJlDvA=
-X-Received: by 2002:a05:6402:26c1:b0:412:8942:64a3 with SMTP id x1-20020a05640226c100b00412894264a3mr30774873edd.1.1646248183622;
-        Wed, 02 Mar 2022 11:09:43 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyoklmMKNHtJPsg1EFJJcOrrgUfuFjPLq1ALp547n1+JEqDuZaFh3NA3GvphfJApxkirIYcHg==
-X-Received: by 2002:a05:6402:26c1:b0:412:8942:64a3 with SMTP id x1-20020a05640226c100b00412894264a3mr30774848edd.1.1646248183343;
-        Wed, 02 Mar 2022 11:09:43 -0800 (PST)
+        bh=+ix6D6CD66t0elYK19u+3Q/64q1OEoVuJh2pl4hMuNY=;
+        b=k9QnD2KUror7rUtgCyrVjBUlMDe37UXS/UYZ+bL0/mjAlExw9Nfi16V/aVoKYh7w+m
+         eGPuBETapRgynAJXdO7uT2ZKHRo3BxSYypmeVjBPdjvuynCH7JjotoWEwgnlWFK7Z1rb
+         LyqzcxGIpsN5VcfTJDVbRqA1/vzr/u5soP8+WSezB6BQXaYlNsQ+b0DmSJvbhv4tE5pR
+         tphEzhK4tvt9AyaJr2hTodBk/Cn82tQU1Gt+27n4gdqTp7qM0eZTSOgeQYiPZKzKq1GV
+         b8SGl6uc2dYOigQIeEt9ps4QcD6WetPv+JsMFQqxXj9wT3jMImH0DnuvdfjoiTYZ7eEa
+         Ohjg==
+X-Gm-Message-State: AOAM533XI8QiBkiJoMd6VdnZwy98nDNiO+tqHiu81wB9R/kDqs5PGhNo
+        wJm7PcM+GiujJFCwCQu3+IUepibcgCqSX5FT3uPDN6e7jzyu2sgHnH4f6l1enb5yj8RxqZVb4AQ
+        5kMBENrmrK/XowpoMdFO/tLu6EBSQ2oiRGUh0vG0=
+X-Received: by 2002:a50:d097:0:b0:415:cec5:3b31 with SMTP id v23-20020a50d097000000b00415cec53b31mr1313764edd.377.1646248184911;
+        Wed, 02 Mar 2022 11:09:44 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwyzzw3WeGg9KUbPHGQtz+Yl8jQt3D3ZCq0CDIYK4ChRt1a5zuypCDtRTnUImYuRW4UJHRt0Q==
+X-Received: by 2002:a50:d097:0:b0:415:cec5:3b31 with SMTP id v23-20020a50d097000000b00415cec53b31mr1313746edd.377.1646248184686;
+        Wed, 02 Mar 2022 11:09:44 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id u9-20020aa7db89000000b0041372781e69sm8216383edt.52.2022.03.02.11.09.41
+        by smtp.gmail.com with ESMTPSA id u9-20020aa7db89000000b0041372781e69sm8216383edt.52.2022.03.02.11.09.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 11:09:42 -0800 (PST)
+        Wed, 02 Mar 2022 11:09:43 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -64,9 +64,9 @@ To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
 Cc:     Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: usb: samsung,exynos-dwc3: convert to dtschema
-Date:   Wed,  2 Mar 2022 20:09:37 +0100
-Message-Id: <20220302190938.6195-2-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 2/2] dt-bindings: usb: samsung,exynos-usb2: convert to dtschema
+Date:   Wed,  2 Mar 2022 20:09:38 +0100
+Message-Id: <20220302190938.6195-3-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220302190938.6195-1-krzysztof.kozlowski@canonical.com>
 References: <20220302190938.6195-1-krzysztof.kozlowski@canonical.com>
@@ -74,7 +74,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,87 +82,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Samsung Exynos SoC USB 3.0 DWC3 Controller bindings to DT
-schema format.
+Convert the Samsung Exynos SoC USB 2.0 EHCI and OHCI Controller bindings
+to DT schema format.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/usb/exynos-usb.txt    |  49 -------
- .../bindings/usb/samsung,exynos-dwc3.yaml     | 129 ++++++++++++++++++
- 2 files changed, 129 insertions(+), 49 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+ .../devicetree/bindings/usb/exynos-usb.txt    |  66 ----------
+ .../bindings/usb/samsung,exynos-usb2.yaml     | 117 ++++++++++++++++++
+ 2 files changed, 117 insertions(+), 66 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/usb/exynos-usb.txt
+ create mode 100644 Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
 
 diff --git a/Documentation/devicetree/bindings/usb/exynos-usb.txt b/Documentation/devicetree/bindings/usb/exynos-usb.txt
-index f7ae79825d7d..61c03c0ef19f 100644
+deleted file mode 100644
+index 61c03c0ef19f..000000000000
 --- a/Documentation/devicetree/bindings/usb/exynos-usb.txt
-+++ b/Documentation/devicetree/bindings/usb/exynos-usb.txt
-@@ -64,52 +64,3 @@ Example:
- 		phys = <&usb2phy 1>;
- 		phy-names = "host";
- 	};
++++ /dev/null
+@@ -1,66 +0,0 @@
+-Samsung Exynos SoC USB controller
 -
--DWC3
+-The USB devices interface with USB controllers on Exynos SOCs.
+-The device node has following properties.
+-
+-EHCI
 -Required properties:
-- - compatible: should be one of the following -
--	       "samsung,exynos5250-dwusb3": for USB 3.0 DWC3 controller on
--					    Exynos5250/5420.
--	       "samsung,exynos5433-dwusb3": for USB 3.0 DWC3 controller on
--					    Exynos5433.
--	       "samsung,exynos7-dwusb3": for USB 3.0 DWC3 controller on Exynos7.
-- - #address-cells, #size-cells : should be '1' if the device has sub-nodes
--				 with 'reg' property.
-- - ranges: allows valid 1:1 translation between child's address space and
--	   parent's address space
-- - clocks: Clock IDs array as required by the controller.
-- - clock-names: Names of clocks corresponding to IDs in the clock property.
--                Following clock names shall be provided for different
--                compatibles:
--                 - samsung,exynos5250-dwusb3: "usbdrd30",
--                 - samsung,exynos5433-dwusb3: "aclk", "susp_clk", "pipe_pclk",
--                                              "phyclk",
--                 - samsung,exynos7-dwusb3: "usbdrd30", "usbdrd30_susp_clk",
--                                           "usbdrd30_axius_clk"
-- - vdd10-supply: 1.0V powr supply
-- - vdd33-supply: 3.0V/3.3V power supply
+- - compatible: should be "samsung,exynos4210-ehci" for USB 2.0
+-   EHCI controller in host mode.
+- - reg: physical base address of the controller and length of memory mapped
+-   region.
+- - interrupts: interrupt number to the cpu.
+- - clocks: from common clock binding: handle to usb clock.
+- - clock-names: from common clock binding: Shall be "usbhost".
+- - phys: from the *Generic PHY* bindings; array specifying phy(s) used
+-   by the root port.
+- - phy-names: from the *Generic PHY* bindings; array of the names for
+-   each phy for the root ports, must be a subset of the following:
+-   "host", "hsic0", "hsic1".
 -
--Sub-nodes:
--The dwc3 core should be added as subnode to Exynos dwc3 glue.
--- dwc3 :
--   The binding details of dwc3 can be found in:
--   Documentation/devicetree/bindings/usb/snps,dwc3.yaml
+-Optional properties:
+- - samsung,vbus-gpio:  if present, specifies the GPIO that
+-   needs to be pulled up for the bus to be powered.
 -
 -Example:
--	usb@12000000 {
--		compatible = "samsung,exynos5250-dwusb3";
--		clocks = <&clock 286>;
--		clock-names = "usbdrd30";
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges;
--		vdd10-supply = <&ldo11_reg>;
--		vdd33-supply = <&ldo9_reg>;
 -
--		dwc3 {
--			compatible = "synopsys,dwc3";
--			reg = <0x12000000 0x10000>;
--			interrupts = <0 72 0>;
--			usb-phy = <&usb2_phy &usb3_phy>;
--		};
+-	usb@12110000 {
+-		compatible = "samsung,exynos4210-ehci";
+-		reg = <0x12110000 0x100>;
+-		interrupts = <0 71 0>;
+-		samsung,vbus-gpio = <&gpx2 6 1 3 3>;
+-
+-		clocks = <&clock 285>;
+-		clock-names = "usbhost";
+-
+-		phys = <&usb2phy 1>;
+-		phy-names = "host";
 -	};
-diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+-
+-OHCI
+-Required properties:
+- - compatible: should be "samsung,exynos4210-ohci" for USB 2.0
+-   OHCI companion controller in host mode.
+- - reg: physical base address of the controller and length of memory mapped
+-   region.
+- - interrupts: interrupt number to the cpu.
+- - clocks: from common clock binding: handle to usb clock.
+- - clock-names: from common clock binding: Shall be "usbhost".
+- - phys: from the *Generic PHY* bindings; array specifying phy(s) used
+-   by the root port.
+- - phy-names: from the *Generic PHY* bindings; array of the names for
+-   each phy for the root ports, must be a subset of the following:
+-   "host", "hsic0", "hsic1".
+-
+-Example:
+-	usb@12120000 {
+-		compatible = "samsung,exynos4210-ohci";
+-		reg = <0x12120000 0x100>;
+-		interrupts = <0 71 0>;
+-
+-		clocks = <&clock 285>;
+-		clock-names = "usbhost";
+-
+-		phys = <&usb2phy 1>;
+-		phy-names = "host";
+-	};
+diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
 new file mode 100644
-index 000000000000..22b91a27d776
+index 000000000000..fbf07d6e707a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
-@@ -0,0 +1,129 @@
++++ b/Documentation/devicetree/bindings/usb/samsung,exynos-usb2.yaml
+@@ -0,0 +1,117 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/usb/samsung,exynos-dwc3.yaml#
++$id: http://devicetree.org/schemas/usb/samsung,exynos-usb2.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Samsung Exynos SoC USB 3.0 DWC3 Controller
++title: Samsung Exynos SoC USB 2.0 EHCI/OHCI Controller
 +
 +maintainers:
 +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
@@ -170,94 +186,66 @@ index 000000000000..22b91a27d776
 +properties:
 +  compatible:
 +    enum:
-+      - samsung,exynos5250-dwusb3
-+      - samsung,exynos5433-dwusb3
-+      - samsung,exynos7-dwusb3
++      - samsung,exynos4210-ehci
++      - samsung,exynos4210-ohci
 +
 +  '#address-cells':
 +    const: 1
 +
 +  clocks:
-+    minItems: 1
-+    maxItems: 4
++    maxItems: 1
 +
 +  clock-names:
-+    minItems: 1
-+    maxItems: 4
++    items:
++      - const: usbhost
 +
-+  ranges: true
++  interrupts:
++    maxItems: 1
++
++  phys:
++    minItems: 1
++    maxItems: 3
++
++  phy-names:
++    items:
++      enum: [host, hsic0, hsic1]
++    minItems: 1
++    maxItems: 3
++
++  reg:
++    maxItems: 1
++
++  samsung,vbus-gpio:
++    description:
++      Only for controller in EHCI mode, if present, specifies the GPIO that
++      needs to be pulled up for the bus to be powered.
 +
 +  '#size-cells':
-+    const: 1
-+
-+  vdd10-supply:
-+    description: 1.0V power supply
-+
-+  vdd33-supply:
-+    description: 3.0V/3.3V power supply
++    const: 0
 +
 +patternProperties:
-+  "^usb@[0-9a-f]+$":
-+    $ref: snps,dwc3.yaml#
-+    description: Required child node
++  "^.*@[0-9a-f]{1,2}$":
++    description: The hard wired USB devices
++    type: object
++    $ref: /usb/usb-device.yaml
 +
 +required:
 +  - compatible
-+  - '#address-cells'
 +  - clocks
 +  - clock-names
-+  - ranges
-+  - '#size-cells'
-+  - vdd10-supply
-+  - vdd33-supply
++  - interrupts
++  - phys
++  - phy-names
 +
 +allOf:
 +  - if:
 +      properties:
 +        compatible:
 +          contains:
-+            const: samsung,exynos5250-dwusb3
++            const: samsung,exynos4210-ohci
 +    then:
 +      properties:
-+        clocks:
-+          minItems: 1
-+          maxItems: 1
-+        clock-names:
-+          items:
-+            - const: usbdrd30
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos54333-dwusb3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 4
-+          maxItems: 4
-+        clock-names:
-+          items:
-+            - const: aclk
-+            - const: susp_clk
-+            - const: pipe_pclk
-+            - const: phyclk
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: samsung,exynos7-dwusb3
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+          maxItems: 3
-+        clock-names:
-+          items:
-+            - const: usbdrd30
-+            - const: usbdrd30_susp_clk
-+            - const: usbdrd30_axius_clk
++        samsung,vbus-gpio: false
 +
 +additionalProperties: false
 +
@@ -266,24 +254,40 @@ index 000000000000..22b91a27d776
 +    #include <dt-bindings/clock/exynos5420.h>
 +    #include <dt-bindings/interrupt-controller/arm-gic.h>
 +
-+    usb {
-+        compatible = "samsung,exynos5250-dwusb3";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges;
-+        clocks = <&clock CLK_USBD300>;
-+        clock-names = "usbdrd30";
-+        vdd33-supply = <&ldo9_reg>;
-+        vdd10-supply = <&ldo11_reg>;
++    usb@12110000 {
++        compatible = "samsung,exynos4210-ehci";
++        reg = <0x12110000 0x100>;
++        interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clock CLK_USBH20>;
++        clock-names = "usbhost";
++        phys = <&usb2_phy 0>;
++        phy-names = "host";
 +
-+        usb@12000000 {
-+            compatible = "snps,dwc3";
-+            reg = <0x12000000 0x10000>;
-+            interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-+            phys = <&usbdrd_phy0 0>, <&usbdrd_phy0 1>;
-+            phy-names = "usb2-phy", "usb3-phy";
-+            snps,dis_u3_susphy_quirk;
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        hub@1 {
++            compatible = "usb0424,9514";
++            reg = <1>;
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            usbether@1 {
++                compatible = "usb0424,ec00";
++                reg = <1>;
++                local-mac-address = [00 00 00 00 00 00];
++            };
 +        };
++    };
++
++    usb@12120000 {
++        compatible = "samsung,exynos4210-ohci";
++        reg = <0x12120000 0x100>;
++        interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clock CLK_USBH20>;
++        clock-names = "usbhost";
++        phys = <&usb2_phy 0>;
++        phy-names = "host";
 +    };
 -- 
 2.32.0
