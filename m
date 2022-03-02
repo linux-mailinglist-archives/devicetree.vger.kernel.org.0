@@ -2,61 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24BA54CA44D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:57:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2040C4CA478
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 13:11:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235155AbiCBL6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 06:58:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33016 "EHLO
+        id S241678AbiCBML4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 07:11:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235302AbiCBL5v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:57:51 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 180B4B12C2
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:57:05 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nPNbK-00063g-6g; Wed, 02 Mar 2022 12:57:02 +0100
-Message-ID: <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Liu Ying <victor.liu@oss.nxp.com>, Marek Vasut <marex@denx.de>,
-        Adam Ford <aford173@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
-Date:   Wed, 02 Mar 2022 12:57:00 +0100
-In-Reply-To: <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
-References: <20220228004605.367040-1-marex@denx.de>
-         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
-         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
-         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
-         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
-         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
-         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
-         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
-         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
-         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
-         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
-         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
-         <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S238422AbiCBML4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 07:11:56 -0500
+Received: from esa4.hgst.iphmx.com (esa4.hgst.iphmx.com [216.71.154.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1549E6E56D
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 04:11:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1646223072; x=1677759072;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=vAuQx7BREl0FilyuvYvK+6a4J3lvwM0xT1xhYotLxzk=;
+  b=m4aKCZ8fEoP2QXlVu1hoW16WFB2mHm9/AtPSVGijqCokKrldHoJFKovs
+   2eK32Q5jI75NTD+NqYpRzQw6Wlw+g3HlqxAuPte12FvQ3bzW/nABICIHJ
+   PcTzSddof+zNTEGbVFmelO9Gc2w4TaRm9rdp52NtFTr/COFF4WIp1Hndh
+   m1wKukTisNAW2zIXQ01YX4l6KKzMuTZCuUP5zkdmII05dwl7HaiGNAWEY
+   2ZhbhDZ/h1SR385k2l4Jw5p4k0oFGghiO3mcY6OCEkmYuwjfTKaJdqASQ
+   LOixGyUfhKUVazoOsPYnLCWurauhGYoYAyqOAqjNlm8MDxavmVJMbUD7u
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,148,1643644800"; 
+   d="scan'208";a="193214765"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 02 Mar 2022 20:11:09 +0800
+IronPort-SDR: Far+scBILtTCvWsDA/ek0vOexTSHD39Ooj1NH7sFDhh2jb+c5SE0hEL5/oBAkrUdbczAjcU97a
+ 1milJLvjQLD1jsDe4ozu1ZZe/Gnr3AE9QwY+AKOV8mfgbCD3EIzI/Ng6ibnYQ/Ye7RTb95Xkqv
+ ksU5xUlIDZOkRbgLhN9XG80r81PWZhFgtO4bf2JDT2Iqv8sTraao2chRyi324loFPkMrpVypAp
+ lWQskYveSRltWtKr+vTHmQZTJfraALRyIMfhAb8tVj0GA/UGBYJNbR7ag5dM1iFQ4GFTxTMiaZ
+ w4c3y56Q0Ccw6b+8pTC0xYyC
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 03:43:35 -0800
+IronPort-SDR: DLn+h04AXJPqF9EaReok8g4BqgkD2Zj3ZUQveO/8caS3g6QyNuSMM4YN4dWLNX02T+MMT6mf4O
+ DWVEk4CFi6hXxT2fcSdwKrKaoRH8E3aKtqiu1g6DIxKZZM+qbwBjcv/hnbbGZti9qRUVb7HjmP
+ gc470Wr6/y4oSuGweKV96v9oxOk5G5NuEVCs9FmkP8Psx+3hsn8Hx1Jr8D0616IUD0Ul7kme7r
+ HUxCAm45vJfrrVB8VRF3fSbHRbCiTk+AQ7ZsEJVw/JLHZAcbgcAL9IE+8Sa3TCu/yBVcQo86HG
+ Vig=
+WDCIronportException: Internal
+Received: from usg-ed-osssrv.wdc.com ([10.3.10.180])
+  by uls-op-cesaip01.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 04:11:09 -0800
+Received: from usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTP id 4K7tHx3PnFz1SVny
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 04:11:09 -0800 (PST)
+Authentication-Results: usg-ed-osssrv.wdc.com (amavisd-new); dkim=pass
+        reason="pass (just generated, assumed good)"
+        header.d=opensource.wdc.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=
+        opensource.wdc.com; h=content-transfer-encoding:content-type
+        :in-reply-to:organization:from:references:to:content-language
+        :subject:user-agent:mime-version:date:message-id; s=dkim; t=
+        1646223066; x=1648815067; bh=vAuQx7BREl0FilyuvYvK+6a4J3lvwM0xT1x
+        hYotLxzk=; b=sW24+POORS7QCs5ajGoOpwrD02UfzHTMEihD7QuUSYtAsBb9DyB
+        3fIO572maEFRNfM0Qnxag1NYztWLzDufPPInhe8sBaLq19I4HRkhNQbLH2d9KJ9N
+        Ofxwk4Z+v/4ezCovRr1X1ZePFzZQG3kfzrBIEZ9VA72/11++DL/FcEbSjx2mv4g8
+        dtbg8czLWBdbTztEThp8OVK+7kRXsLlmuRpLNbii27M1WSv4pCtJYLDpIA6tenW/
+        D3dYyrQOZ4xWfynPIeSVI0U77bsuV5aO7k+2n90FdpjqkrNFp0oSc9vca5m/JcPG
+        YWGAOZmXjGAT/mK9K4wjqDJ184QEQFBAnCw==
+X-Virus-Scanned: amavisd-new at usg-ed-osssrv.wdc.com
+Received: from usg-ed-osssrv.wdc.com ([127.0.0.1])
+        by usg-ed-osssrv.wdc.com (usg-ed-osssrv.wdc.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 6ONNGKyPXijI for <devicetree@vger.kernel.org>;
+        Wed,  2 Mar 2022 04:11:06 -0800 (PST)
+Received: from [10.112.1.94] (c02drav6md6t.wdc.com [10.112.1.94])
+        by usg-ed-osssrv.wdc.com (Postfix) with ESMTPSA id 4K7tHq4cw8z1Rvlx;
+        Wed,  2 Mar 2022 04:11:03 -0800 (PST)
+Message-ID: <2918bfa8-ca14-1395-b8a0-428e250c5a00@opensource.wdc.com>
+Date:   Wed, 2 Mar 2022 14:11:00 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.6.1
+Subject: Re: [PATCH] ata: Drop commas after OF match table sentinels
+Content-Language: en-US
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <15d4b8e1108c902c4e80c87edfc702a7786de4ba.1646209667.git.geert+renesas@glider.be>
+From:   Damien Le Moal <damien.lemoal@opensource.wdc.com>
+Organization: Western Digital Research
+In-Reply-To: <15d4b8e1108c902c4e80c87edfc702a7786de4ba.1646209667.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,102 +101,205 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, dem 02.03.2022 um 17:41 +0800 schrieb Liu Ying:
-> On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
-> > Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
-> > > On 3/1/22 14:18, Lucas Stach wrote:
-> > > > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
-> > > > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
-> > > > > > > On 3/1/22 11:04, Lucas Stach wrote:
-> > > > > > > 
-> > > > > > > Hi,
-> > > > > > > 
-> > > > > > > [...]
-> > > > > > > 
-> > > > > > > > > Given the two totally different IPs, I don't see bugs of IP control
-> > > > > > > > > logics should be fixed for both drivers. Naturally, the two would
-> > > > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
-> > > > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
-> > > > > > > > > 'if/else' checks(barely no common control code), which is hard to
-> > > > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
-> > > > > > > > > and 'LCDIF'.
-> > > > > > > > 
-> > > > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
-> > > > > > > > boilerplate anymore with all the helpers we have available in the
-> > > > > > > > framework today.
-> > > > > > > 
-> > > > > > > I did write a separate driver for this IP before I spent time merging
-> > > > > > > them into single driver, that's when I realized a single driver is much
-> > > > > > > better and discarded the separate driver idea.
-> > > > > > > 
-> > > > > > > > The IP is so different from the currently supported LCDIF controllers
-> > > > > > > > that I think trying to support this one in the existing driver actually
-> > > > > > > > increases the chances to break something when modifying the driver in
-> > > > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
-> > > > > > > > on having a separate driver for the i.MX8MP LCDIF.
-> > > > > > > 
-> > > > > > > If you look at both controllers, it is clear it is still the LCDIF
-> > > > > > > behind, even the CSC that is bolted on would suggest that.
-> > > > > > 
-> > > > > > Yes, but from a driver PoV what you care about is not really the
-> > > > > > hardware blocks used to implement something, but the programming model,
-> > > > > > i.e. the register interface exposed to software.
-> > > > > > 
-> > > > > > > I am also not happy when I look at the amount of duplication a separate
-> > > > > > > driver would create, it will be some 50% of the code that would be just
-> > > > > > > duplicated.
-> > > > > > > 
-> > > > > > Yea, the duplicated code is still significant, as the HW itself is so
-> > > > > > simple. However, if you find yourself in the situation where basically
-> > > > > > every actual register access in the driver ends up being in a "if (some
-> > > > > > HW rev) ... " clause, i still think it would be better to have a
-> > > > > > separate driver, as the programming interface is just different.
-> > > > > 
-> > > > > I tend to agree with Marek on this one.  We have an instance where the
-> > > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
-> > > > > but different enough where each SoC has it's own set of tables and
-> > > > > some checks.   Lucas created the framework, and others adapted it for
-> > > > > various SoC's.  If there really is nearly 50% common code for the
-> > > > > LCDIF, why not either leave the driver as one or split the common code
-> > > > > into its own driver like lcdif-common and then have smaller drivers
-> > > > > that handle their specific variations.
-> > > > 
-> > > > I don't know exactly how the standalone driver looks like, but I guess
-> > > > the overlap is not really in any real HW specific parts, but the common
-> > > > DRM boilerplate, so there isn't much point in creating a common lcdif
-> > > > driver.
-> > > 
-> > > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
-> > > that, there is some 400 LoC which are specific to old LCDIF and this 
-> > > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
-> > > shared boilerplate that would be duplicated .
-> > 
-> > That is probably ignoring the fact that the 8MP LCDIF does not support
-> > any overlays, so it could use the drm_simple_display_pipe
-> > infrastructure to reduce the needed boilerplate.
+On 2022/03/02 10:30, Geert Uytterhoeven wrote:
+> It does not make sense to have a comma after a sentinel, as any new
+> elements must be added before the sentinel.
 > 
-> The drm_simple_display_pipe infrastructure is probably too simple for
-> i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
-> embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
-> outputs respectively. To use that infrastructure means there would be
-> three dri cards in all. However, the three LCDIF instances can be
-> wrapped by the one drm device, which is not the boilerplate code in the
-> current mxsfb driver may handle.
+> Add comments to clarify the purpose of the empty elements.
 
-While that may make things a little simpler for userspace, I'm not sure
-if this is the right thing to do. It complicates the driver a lot,
-especially if you want to get things like independent power management,
-etc. right. It also creates a fake view for userspace, where is looks
-like there might be some shared resources between the different display
-paths, while in reality they are fully independent.
+Some nits below.
 
-While we do something similar on the GPU side and collect all GPU cores
-under a single DRM device, I'm not fully convinced that this was a good
-decision. It now comes back to bite us when the SoC topologies get a
-little more interesting and e.g. devices are behind different IOMMU
-streams.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  drivers/ata/ahci_brcm.c        | 2 +-
+>  drivers/ata/ahci_ceva.c        | 2 +-
+>  drivers/ata/ahci_da850.c       | 2 +-
+>  drivers/ata/ahci_dm816.c       | 2 +-
+>  drivers/ata/ahci_imx.c         | 2 +-
+>  drivers/ata/ahci_mtk.c         | 2 +-
+>  drivers/ata/ahci_mvebu.c       | 2 +-
+>  drivers/ata/ahci_octeon.c      | 2 +-
+>  drivers/ata/ahci_platform.c    | 2 +-
+>  drivers/ata/ahci_qoriq.c       | 2 +-
+>  drivers/ata/ahci_st.c          | 2 +-
+>  drivers/ata/ahci_sunxi.c       | 2 +-
+>  drivers/ata/ahci_xgene.c       | 2 +-
+>  drivers/ata/pata_ftide010.c    | 2 +-
+>  drivers/ata/pata_ixp4xx_cf.c   | 2 +-
+>  drivers/ata/pata_macio.c       | 2 +-
+>  drivers/ata/pata_mpc52xx.c     | 2 +-
+>  drivers/ata/pata_octeon_cf.c   | 2 +-
+>  drivers/ata/pata_of_platform.c | 2 +-
+>  drivers/ata/sata_fsl.c         | 2 +-
+>  drivers/ata/sata_gemini.c      | 2 +-
+>  drivers/ata/sata_highbank.c    | 2 +-
+>  drivers/ata/sata_mv.c          | 2 +-
+>  drivers/ata/sata_rcar.c        | 2 +-
+>  24 files changed, 24 insertions(+), 24 deletions(-)
 
-Regards,
-Lucas
+[...]
 
+> diff --git a/drivers/ata/pata_ftide010.c b/drivers/ata/pata_ftide010.c
+> index 34cb104f6b43e5cf..2a92797b5e11a9aa 100644
+> --- a/drivers/ata/pata_ftide010.c
+> +++ b/drivers/ata/pata_ftide010.c
+> @@ -557,7 +557,7 @@ static const struct of_device_id pata_ftide010_of_match[] = {
+>  	{
+>  		.compatible = "faraday,ftide010",
+>  	},
+
+While at it, could you rewrap this one to a single line to have a consistent style ?
+
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  
+>  static struct platform_driver pata_ftide010_driver = {
+> diff --git a/drivers/ata/pata_ixp4xx_cf.c b/drivers/ata/pata_ixp4xx_cf.c
+> index 17b557c91e1c78fc..e225913a619d8414 100644
+> --- a/drivers/ata/pata_ixp4xx_cf.c
+> +++ b/drivers/ata/pata_ixp4xx_cf.c
+> @@ -293,7 +293,7 @@ static int ixp4xx_pata_probe(struct platform_device *pdev)
+>  
+>  static const struct of_device_id ixp4xx_pata_of_match[] = {
+>  	{ .compatible = "intel,ixp4xx-compact-flash", },
+> -	{ },
+> +	{ /* sentinel */ }
+>  };
+>  
+>  static struct platform_driver ixp4xx_pata_platform_driver = {
+> diff --git a/drivers/ata/pata_macio.c b/drivers/ata/pata_macio.c
+> index 16e8aa184a75793f..8cf778723fd6d049 100644
+> --- a/drivers/ata/pata_macio.c
+> +++ b/drivers/ata/pata_macio.c
+> @@ -1345,7 +1345,7 @@ static const struct of_device_id pata_macio_match[] =
+>  	{
+>  	.type		= "ata",
+>  	},
+
+Here too.
+
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pata_macio_match);
+>  
+> diff --git a/drivers/ata/pata_mpc52xx.c b/drivers/ata/pata_mpc52xx.c
+> index f1d352d5f128537a..bc9d9df3b5aced64 100644
+> --- a/drivers/ata/pata_mpc52xx.c
+> +++ b/drivers/ata/pata_mpc52xx.c
+> @@ -849,7 +849,7 @@ mpc52xx_ata_resume(struct platform_device *op)
+>  static const struct of_device_id mpc52xx_ata_of_match[] = {
+>  	{ .compatible = "fsl,mpc5200-ata", },
+>  	{ .compatible = "mpc5200-ata", },
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  
+>  
+> diff --git a/drivers/ata/pata_octeon_cf.c b/drivers/ata/pata_octeon_cf.c
+> index 05c2ab3757568c62..bdaec863171a14cf 100644
+> --- a/drivers/ata/pata_octeon_cf.c
+> +++ b/drivers/ata/pata_octeon_cf.c
+> @@ -1009,7 +1009,7 @@ static const struct of_device_id octeon_cf_match[] = {
+>  	{
+>  		.compatible = "cavium,ebt3000-compact-flash",
+>  	},
+
+And here as well.
+
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, octeon_cf_match);
+>  
+> diff --git a/drivers/ata/pata_of_platform.c b/drivers/ata/pata_of_platform.c
+> index c3a40b717dcdcc2a..ac5a633c00a57ac1 100644
+> --- a/drivers/ata/pata_of_platform.c
+> +++ b/drivers/ata/pata_of_platform.c
+> @@ -79,7 +79,7 @@ static int pata_of_platform_probe(struct platform_device *ofdev)
+>  
+>  static const struct of_device_id pata_of_platform_match[] = {
+>  	{ .compatible = "ata-generic", },
+> -	{ },
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, pata_of_platform_match);
+>  
+> diff --git a/drivers/ata/sata_fsl.c b/drivers/ata/sata_fsl.c
+> index 556034a15430461f..11867a7eb4691771 100644
+> --- a/drivers/ata/sata_fsl.c
+> +++ b/drivers/ata/sata_fsl.c
+> @@ -1583,7 +1583,7 @@ static const struct of_device_id fsl_sata_match[] = {
+>  	{
+>  		.compatible = "fsl,pq-sata-v2",
+>  	},
+
+Same.
+
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  
+>  MODULE_DEVICE_TABLE(of, fsl_sata_match);
+> diff --git a/drivers/ata/sata_gemini.c b/drivers/ata/sata_gemini.c
+> index 440a63de20d01a07..c7e9efc0025f1a91 100644
+> --- a/drivers/ata/sata_gemini.c
+> +++ b/drivers/ata/sata_gemini.c
+> @@ -422,7 +422,7 @@ static const struct of_device_id gemini_sata_of_match[] = {
+>  	{
+>  		.compatible = "cortina,gemini-sata-bridge",
+>  	},
+
+Another...
+
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  
+>  static struct platform_driver gemini_sata_driver = {
+> diff --git a/drivers/ata/sata_highbank.c b/drivers/ata/sata_highbank.c
+> index b29d3f1d64b03317..cd375e4df9644e33 100644
+> --- a/drivers/ata/sata_highbank.c
+> +++ b/drivers/ata/sata_highbank.c
+> @@ -444,7 +444,7 @@ static struct scsi_host_template ahci_highbank_platform_sht = {
+>  
+>  static const struct of_device_id ahci_of_match[] = {
+>  	{ .compatible = "calxeda,hb-ahci" },
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, ahci_of_match);
+>  
+> diff --git a/drivers/ata/sata_mv.c b/drivers/ata/sata_mv.c
+> index 53446b997740d5fd..13d92b71e6659cda 100644
+> --- a/drivers/ata/sata_mv.c
+> +++ b/drivers/ata/sata_mv.c
+> @@ -4277,7 +4277,7 @@ static int mv_platform_resume(struct platform_device *pdev)
+>  static const struct of_device_id mv_sata_dt_ids[] = {
+>  	{ .compatible = "marvell,armada-370-sata", },
+>  	{ .compatible = "marvell,orion-sata", },
+> -	{},
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, mv_sata_dt_ids);
+>  #endif
+> diff --git a/drivers/ata/sata_rcar.c b/drivers/ata/sata_rcar.c
+> index 3d96b6faa3f0e1c6..1483d3efeb7e220e 100644
+> --- a/drivers/ata/sata_rcar.c
+> +++ b/drivers/ata/sata_rcar.c
+> @@ -857,7 +857,7 @@ static const struct of_device_id sata_rcar_match[] = {
+>  		.compatible = "renesas,rcar-gen3-sata",
+>  		.data = (void *)RCAR_GEN3_SATA
+>  	},
+> -	{ },
+> +	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, sata_rcar_match);
+>  
+
+
+-- 
+Damien Le Moal
+Western Digital Research
