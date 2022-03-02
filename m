@@ -2,122 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 542614CB2E2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA11F4CB2EF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:51:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229436AbiCBXpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 18:45:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51982 "EHLO
+        id S229556AbiCBXql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 18:46:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiCBXpx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:45:53 -0500
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB41483B0;
-        Wed,  2 Mar 2022 15:43:48 -0800 (PST)
-Received: by mail-oo1-xc29.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so3845592oot.11;
-        Wed, 02 Mar 2022 15:43:48 -0800 (PST)
+        with ESMTP id S229610AbiCBXq1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:46:27 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D27A6C970;
+        Wed,  2 Mar 2022 15:44:44 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id k2so3291538oia.2;
+        Wed, 02 Mar 2022 15:44:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/c70eOOtZ8Slm0RoKC+PAhJNIVgAv9doZtxHf/Xm/kc=;
-        b=D75DC4zuoJBqmhya9kPnt4KrKzDXMqZ75ebnx3hhjnbfIBCys7HuFEWftGWMjJ4p9j
-         CKCm3AMypFD3XKtVX2VPFs3ECFXjgxwYTrSCkhFwMYHnoP1fJyrGSFM9jvOqHx16Phk/
-         RAi2XZRM9JZsd9Wx5gbt9gagkLhGwDMCYFzkWdYm9VCHVHkwqt8IiwTx1Gb9QHERnYMJ
-         5As4v7RqFn7ivCaNPlNV4LSIZNBqR+gQif5sLQBvINiLqgJJ1rSd6+V4RYG7/Ctdc1QA
-         eteYk5L5EAaQzOiVpiRAyEQ9AvFuPx4P0avz2jCtdPxuQxWMCR4v+t0VWDrS0B5CPFs7
-         nBjA==
-X-Gm-Message-State: AOAM532NaU3rEKogtt/dZRINul3XjGJJ0+J2bcQsxMNmEN7cjNEyuEQp
-        ZgOoJeCA+0s/UWyHX15I+ZatRE6XOw==
-X-Google-Smtp-Source: ABdhPJwgPoO9G+g2UL7d6AnfejCdiifxATPEVty//3FdiAhYyj/XEHnLOtfsAaL+W8FuBOOev/+m4Q==
-X-Received: by 2002:a05:6871:85:b0:d9:ac7a:7a5a with SMTP id u5-20020a056871008500b000d9ac7a7a5amr1932120oaa.9.1646264526194;
-        Wed, 02 Mar 2022 15:42:06 -0800 (PST)
+        bh=8YMUTnsXm+M9+dNQuf4G0QInghug+tyPAlId0Vy17Ks=;
+        b=QkySPkCdAqY2R840qmJbCam+0jv7xou9VktKh0yHWCWSGvKnp03OBfqnjY+dSGR4X3
+         GJspR9PT7vXvgMT2LUWtvnL2kkqRE771AskCklji1iAsfreQbGu9wIgs8915Is6TVKMA
+         AI7FzTBkLB56mo6mC7d6+HEpl6mrcVel1dBOrhmO+Ws6HfyOKhPP9rg0neSzzuvTa3/8
+         qUhPxhhZbo4o0eYKik1kcbo1NUAyhZYMdRkNhrR4yNSQw7T16aqGxztbjko376ONSijR
+         6PtR9NxQkot6pmDp5oXwbaetzlEnpydXhEfZi64pzM1AOrz06SObMUNX3H6gJcTQkwIC
+         Y0lg==
+X-Gm-Message-State: AOAM533qzLEoduH8YgPmgYQ7QWwG7bROlhZpuG8a79pTFtr7DTRIbflD
+        fxEsOAVS2Lj8OP3FD/Qw7+Yk9pZ9WQ==
+X-Google-Smtp-Source: ABdhPJzvdLVwsrsmUmbCdsCY2U5wylRZU+h6HwxMq7Pa9QA826lZdCUOl1ytBb0OIpfFS70UHUh+VQ==
+X-Received: by 2002:aca:5f87:0:b0:2d9:1363:1613 with SMTP id t129-20020aca5f87000000b002d913631613mr2092022oib.165.1646264683475;
+        Wed, 02 Mar 2022 15:44:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id a11-20020a0568300b8b00b005acfd19434asm163073otv.75.2022.03.02.15.42.05
+        by smtp.gmail.com with ESMTPSA id z9-20020a9d71c9000000b005ad12cbc899sm202195otj.36.2022.03.02.15.44.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 15:42:05 -0800 (PST)
-Received: (nullmailer pid 276450 invoked by uid 1000);
-        Wed, 02 Mar 2022 23:42:04 -0000
-Date:   Wed, 2 Mar 2022 17:42:04 -0600
+        Wed, 02 Mar 2022 15:44:42 -0800 (PST)
+Received: (nullmailer pid 280433 invoked by uid 1000);
+        Wed, 02 Mar 2022 23:44:41 -0000
+Date:   Wed, 2 Mar 2022 17:44:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH] leds: add new functions for mobile routers
-Message-ID: <YiAAzH4GDnC8ridY@robh.at.kernel.org>
-References: <20220218085002.18110-1-paweldembicki@gmail.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, yongqiang.niu@mediatek.com,
+        jassisinghbrar@gmail.com, linux-mediatek@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mailbox: add definition for mt8186
+Message-ID: <YiABadKsmVNt0bnB@robh.at.kernel.org>
+References: <20220223030138.13939-1-rex-bc.chen@mediatek.com>
+ <20220223030138.13939-2-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220218085002.18110-1-paweldembicki@gmail.com>
+In-Reply-To: <20220223030138.13939-2-rex-bc.chen@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 18, 2022 at 09:50:02AM +0100, Pawel Dembicki wrote:
-> 2G/2G/4G routers have some special leds functions:
->   - signal strength, which shows info about signal status.
->     Some devices have multicolor indication (e.g. D-Link DWR-960)
->     other use multiple leds for different levels (e.g. Cell-C RTL30VW)
->   - connection status, which shows if connection is active. Some devices
->     have multiple leds for different bands (e.g. D-Link DWR-960).
->   - sms indicator
+On Wed, 23 Feb 2022 11:01:37 +0800, Rex-BC Chen wrote:
+> Add definition of compatible and dt-binding header for mt8186.
 > 
-> This patch adds new LED_FUNCTION_* defines of them.
-> 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  Documentation/leds/well-known-leds.txt | 9 +++++++++
->  include/dt-bindings/leds/common.h      | 5 +++++
->  2 files changed, 14 insertions(+)
+>  Documentation/devicetree/bindings/mailbox/mtk-gce.txt | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/leds/well-known-leds.txt b/Documentation/leds/well-known-leds.txt
-> index 2160382c86be..677cf7e57a76 100644
-> --- a/Documentation/leds/well-known-leds.txt
-> +++ b/Documentation/leds/well-known-leds.txt
-> @@ -16,6 +16,15 @@ but then try the legacy ones, too.
->  
->  Notice there's a list of functions in include/dt-bindings/leds/common.h .
->  
-> +* 4G/3G/2G routers
-> +
-> +Cellular routers use LEDs for signal strength identification and connection
-> +status. Some models also have incoming SMS indicator.
-> +
-> +Good: "*:connection"
-> +Good: "*:signal"
-> +Good: "*:sms"
-> +
->  * Gamepads and joysticks
->  
->  Game controllers may feature LEDs to indicate a player number. This is commonly
-> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-> index 3be89a7c20a9..3adfa120353e 100644
-> --- a/include/dt-bindings/leds/common.h
-> +++ b/include/dt-bindings/leds/common.h
-> @@ -60,6 +60,11 @@
->  #define LED_FUNCTION_MICMUTE "micmute"
->  #define LED_FUNCTION_MUTE "mute"
->  
-> +/* Used for 4G/3G/2G routers. */
-> +#define LED_FUNCTION_CONNECTION "connection"
 
-wan?
-
-> +#define LED_FUNCTION_SIGNAL "signal"
-> +#define LED_FUNCTION_SMS "sms"
-
-mail?
-
-The whole idea with defining the names was to not create different names 
-for roughly the same thing.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
