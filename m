@@ -2,236 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 830B54C9C58
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 05:07:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B6F674C9C99
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 05:42:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235121AbiCBEIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 23:08:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51498 "EHLO
+        id S239478AbiCBEm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 23:42:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229980AbiCBEIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 23:08:36 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82F8E13DD0;
-        Tue,  1 Mar 2022 20:07:48 -0800 (PST)
-X-UUID: c5bbf587611e40539296222f6d93108a-20220302
-X-UUID: c5bbf587611e40539296222f6d93108a-20220302
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1851172525; Wed, 02 Mar 2022 12:07:41 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 2 Mar 2022 12:07:40 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 2 Mar 2022 12:07:39 +0800
-Message-ID: <0b8a5c22acb87b49de0380c7cb4e49030f93d715.camel@mediatek.com>
-Subject: Re: [PATCH 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-CC:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
-Date:   Wed, 2 Mar 2022 12:07:39 +0800
-In-Reply-To: <Yh3hcQpLngg8Pnd4@google.com>
-References: <20220301072924.24814-1-jiaxin.yu@mediatek.com>
-         <20220301072924.24814-3-jiaxin.yu@mediatek.com>
-         <Yh3hcQpLngg8Pnd4@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S239448AbiCBEm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 23:42:57 -0500
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2176AB0D02
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 20:42:12 -0800 (PST)
+Received: by mail-lj1-x233.google.com with SMTP id r20so643176ljj.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 20:42:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=ARb9aZbZYQidMZDix9fUW3Av4Mah2x7ZZrBUNsk6at4=;
+        b=Ui0F+FwAxNQGCcr+MK8Tnq1KQ0qaMmHuzF6LZXTr3eztgnjoUXPYcMGt+AqlOmZTsD
+         1ISV7oisWR8C2GeMPmPqXCuUj660uH5dlRCxpcz1Wa70xPdFO25i07S14grHOUO/jg/y
+         J+rigqiZwwhTGOpv0VG03paDhLmFpnTKBDE7/G4rcsQEWDD7rq3/OyCYm9dOnkQsA+t1
+         9Oo0JK6/cOq183AjJxL+GAXbGDvCh63EibNA+5XE/a9clc7vt+YRzBexNKS98Dobncwv
+         qrK5dZkbB78Hs9sRyzugSLmBq5nGNvkE8p9IwtlWQ9IEPPwPsjD7XCvkpifm1B8Thp1W
+         m4DQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ARb9aZbZYQidMZDix9fUW3Av4Mah2x7ZZrBUNsk6at4=;
+        b=VqQiBHzKRzwya+Pv5VmzEr2W/g9iQMhZFcc4qtCajvwOWA6OFLo8VGiZERtgjsgoAd
+         373CV3soh58hinmtKNklj6b0ckGaVT/th6OrCJRqoUqgrvMQ6VGhy1BCu8aI/mVAS+1Y
+         N/zjFyi9NlOp7/Rs3xUnSd0gO0hU3KQhsY5CFe1OdLdLwF1jXFKntM4WGx/5eoo592Ug
+         fhntkoYEtmJA/MzWIJ02R+HrQ/22kDRAehEIxhDCWFTgFqiU5C+bOLIjtQsTA1GchT5j
+         08LLIfKZgQSsirEbPV+GeOduMbQRqxkqky+TL6+JS8no7XLapVc0vThQci7lk1PRAB+w
+         BRGQ==
+X-Gm-Message-State: AOAM533pm3pKLNoP1LOGo56XKovUKdDZCo8nf8/YfBtLmQH/dVKttFne
+        4x4yySZHeA92T6jdXmxusF5OGA==
+X-Google-Smtp-Source: ABdhPJzGqSVw9ionhPrDsFLgT7RWE3koUXv8w8EmA7YxIS9JBdPF35KMr2+UEyOsDQ5faKxMYNI/yg==
+X-Received: by 2002:a2e:b52f:0:b0:23e:2fe6:af10 with SMTP id z15-20020a2eb52f000000b0023e2fe6af10mr18517670ljm.46.1646196130359;
+        Tue, 01 Mar 2022 20:42:10 -0800 (PST)
+Received: from ?IPV6:2001:470:dd84:abc0:5258:5528:7624:3edd? ([2001:470:dd84:abc0:5258:5528:7624:3edd])
+        by smtp.gmail.com with ESMTPSA id k7-20020a0565123d8700b00443cec880e5sm1838432lfv.4.2022.03.01.20.42.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Mar 2022 20:42:09 -0800 (PST)
+Message-ID: <ea6d7b5b-04e5-9333-cb9e-34c230bf1cbc@linaro.org>
+Date:   Wed, 2 Mar 2022 07:42:08 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH v2 2/2] drm/msm/dpu: Issue MDSS reset during
+ initialization
+Content-Language: en-GB
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220302012931.4107196-1-bjorn.andersson@linaro.org>
+ <20220302012931.4107196-2-bjorn.andersson@linaro.org>
+ <CAA8EJppiNbJhrdFgJ0sESBM5m3oyazS-8dG8919xdZu50fZ8aQ@mail.gmail.com>
+ <Yh7aAMZWJPjAeC1V@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <Yh7aAMZWJPjAeC1V@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-03-01 at 17:03 +0800, Tzung-Bi Shih wrote:
-> On Tue, Mar 01, 2022 at 03:29:24PM +0800, Jiaxin Yu wrote:
-> > From: Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+On 02/03/2022 05:44, Bjorn Andersson wrote:
+> On Tue 01 Mar 17:47 PST 2022, Dmitry Baryshkov wrote:
 > 
-> The environment didn't configure properly so that the header showed
-> up.
-> See [1].
+>> On Wed, 2 Mar 2022 at 04:27, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+>>>
+>>> It's typical for the bootloader to bring up the display for showing a
+>>> boot splash or efi framebuffer. But in some cases the kernel driver ends
+>>> up only partially configuring (in particular) the DPU, which might
+>>> result in e.g. that two different data paths attempts to push data to
+>>> the interface - with resulting graphical artifacts.
+>>>
+>>> Naturally the end goal would be to inherit the bootloader's
+>>> configuration and provide the user with a glitch free handover from the
+>>> boot configuration to a running DPU.
+>>>
+>>> But as implementing seamless transition from the bootloader
+>>> configuration to the running OS will be a considerable effort, start by
+>>> simply resetting the entire MDSS to its power-on state, to avoid the
+>>> partial configuration.
+>>>
+>>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+>>> ---
+>>>
+>>> Changes since v1:
+>>> - Rather than trying to deconfigure individual pieces of the DPU, reset the
+>>>    entire block.
+>>>
+>>>   drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c | 18 ++++++++++++++++++
+>>>   drivers/gpu/drm/msm/msm_drv.c            |  4 ++++
+>>>   drivers/gpu/drm/msm/msm_kms.h            |  1 +
+>>>   3 files changed, 23 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+>>> index b10ca505f9ac..419eaaefe606 100644
+>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
+>>> @@ -7,6 +7,7 @@
+>>>   #include <linux/irqchip.h>
+>>>   #include <linux/irqdesc.h>
+>>>   #include <linux/irqchip/chained_irq.h>
+>>> +#include <linux/reset.h>
+>>>   #include "dpu_kms.h"
+>>>
+>>>   #define to_dpu_mdss(x) container_of(x, struct dpu_mdss, base)
+>>> @@ -31,6 +32,7 @@ struct dpu_mdss {
+>>>          void __iomem *mmio;
+>>>          struct clk_bulk_data *clocks;
+>>>          size_t num_clocks;
+>>> +       struct reset_control *reset;
+>>>          struct dpu_irq_controller irq_controller;
+>>>   };
+>>>
+>>> @@ -197,10 +199,18 @@ static void dpu_mdss_destroy(struct msm_mdss *mdss)
+>>>          dpu_mdss->mmio = NULL;
+>>>   }
+>>>
+>>> +static int dpu_mdss_reset(struct msm_mdss *mdss)
+>>> +{
+>>> +       struct dpu_mdss *dpu_mdss = to_dpu_mdss(mdss);
+>>> +
+>>> +       return reset_control_reset(dpu_mdss->reset);
+>>> +}
+>>> +
+>>>   static const struct msm_mdss_funcs mdss_funcs = {
+>>>          .enable = dpu_mdss_enable,
+>>>          .disable = dpu_mdss_disable,
+>>>          .destroy = dpu_mdss_destroy,
+>>> +       .reset = dpu_mdss_reset,
+>>>   };
+>>>
+>>>   int dpu_mdss_init(struct platform_device *pdev)
+>>> @@ -227,6 +237,13 @@ int dpu_mdss_init(struct platform_device *pdev)
+>>>          }
+>>>          dpu_mdss->num_clocks = ret;
+>>>
+>>> +       dpu_mdss->reset = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
+>>> +       if (IS_ERR(dpu_mdss->reset)) {
+>>> +               ret = PTR_ERR(dpu_mdss->reset);
+>>> +               DPU_ERROR("failed to acquire mdss reset, ret=%d", ret);
+>>> +               goto reset_parse_err;
+>>> +       }
+>>> +
+>>>          dpu_mdss->base.dev = &pdev->dev;
+>>>          dpu_mdss->base.funcs = &mdss_funcs;
+>>>
+>>> @@ -252,6 +269,7 @@ int dpu_mdss_init(struct platform_device *pdev)
+>>>   irq_error:
+>>>          _dpu_mdss_irq_domain_fini(dpu_mdss);
+>>>   irq_domain_error:
+>>> +reset_parse_err:
+>>>   clk_parse_err:
+>>>          if (dpu_mdss->mmio)
+>>>                  devm_iounmap(&pdev->dev, dpu_mdss->mmio);
+>>> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
+>>> index 129fa841ac22..7595f83da3f1 100644
+>>> --- a/drivers/gpu/drm/msm/msm_drv.c
+>>> +++ b/drivers/gpu/drm/msm/msm_drv.c
+>>> @@ -388,6 +388,10 @@ static int msm_drm_init(struct device *dev, const struct drm_driver *drv)
+>>>          if (ret)
+>>>                  return ret;
+>>>
+>>> +       /* Issue a reset of the entire MDSS */
+>>> +       if (priv->mdss && priv->mdss->funcs->reset)
+>>> +               priv->mdss->funcs->reset(priv->mdss);
+>>> +
+>>
+>> I think this is incorrect. In this way reset happens after all
+>> subdevice are probed. They might have programmed some state of the
+>> corresponding block. The clocks are already registered, so the clock
+>> framework will be out of sync.
 > 
-> [1]: 
-> https://git-scm.com/docs/git-send-email#Documentation/git-send-email.txt---fromltaddressgt
+> I went back and forth through the drivers and I believe at least the
+> idea is that we probe all the drivers, which will acquire some
+> resources.
 > 
-Ok, I will take a look at the "from: " header.
+> Then in bind() we actually start to access the hardware (and acquire
+> more resources, for some reason).
 
-> > diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-
-> > rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
+DSI clock init happens in the dsi_clk_init(), called from 
+msm_dsi_host_inti(), dsi_init(), dsi_dev_probe(). But it's not the major 
+problem.
+
+All the PHYs do not use component framework, be it the DSI PHY or HDMI 
+PHY. So at the time you call MDSS reset, the PHYs are already 
+initialized, the clocks are registered in the clock subsystem, etc.
+Performing a reset will put the hardware out of sync with the Linux kernel.
+
+So, if you'd like to perform a reset in the msm_drm_init(), we'd have to 
+modify DSI to perform some parts of init later. And to move PHYs to also 
+use the component framework. And I'm not sure if that won't break the 
+dispcc, the way it gets the DSI clocks.
+
 > 
-> [...]
-> > +static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682s_card = {
-> > +	.name = "mt8192_mt6359_rt1015p_rt5682s",
-> > +	.owner = THIS_MODULE,
-> > +	.dai_link = mt8192_mt6359_dai_links,
-> > +	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-> > +	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
-> > +	.num_controls =
-> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
-> > +	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
-> > +	.num_dapm_widgets =
-> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
-> > +	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
-> > +	.num_dapm_routes =
-> > ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-> > +};
+>> I think the reset should happen before calling of_platform_populate(),
+>> so the device state is consistent with the driver.
+>>
 > 
-> Are the two cards only different from names
-> (mt8192_mt6359_rt1015p_rt5682_card vs.
-> mt8192_mt6359_rt1015p_rt5682s_card)?
+> Perhaps I'm misunderstanding the component framework, but I was under
+> the impression that if any of the subcomponents fails to probe because
+> of lacking resources, this could be printed on the efifb before we reset
+> the hardware. Making errors slightly more user friendly.
+
+Yes, I understand why did you place the call in msm_drm_init().
+
 > 
-Yes, they are only different form names.
-
-> > @@ -1150,6 +1177,52 @@ static int mt8192_mt6359_dev_probe(struct
-> > platform_device *pdev)
-> >  				dai_link->num_platforms =
-> >  					ARRAY_SIZE(i2s3_rt1015p_platfor
-> > ms);
-> >  			}
-> > +		} else if (strcmp(dai_link->name, "I2S8") == 0) {
-> > +			if (card == &mt8192_mt6359_rt1015_rt5682_card
-> > ||
-> > +			    card == &mt8192_mt6359_rt1015p_rt5682_card)
-> > {
-> > +				dai_link->cpus = i2s8_rt5682_cpus;
-> > +				dai_link->num_cpus =
-> > +					ARRAY_SIZE(i2s8_rt5682_cpus);
-> > +				dai_link->codecs = i2s8_rt5682_codecs;
-> > +				dai_link->num_codecs =
-> > +					ARRAY_SIZE(i2s8_rt5682_codecs);
-> > +				dai_link->platforms =
-> > i2s8_rt5682_platforms;
-> > +				dai_link->num_platforms =
-> > +					ARRAY_SIZE(i2s8_rt5682_platform
-> > s);
-> > +			} else if (card ==
-> > &mt8192_mt6359_rt1015p_rt5682s_card) {
-> > +				dai_link->cpus = i2s8_rt5682s_cpus;
-> > +				dai_link->num_cpus =
-> > +					ARRAY_SIZE(i2s8_rt5682s_cpus);
-> > +				dai_link->codecs = i2s8_rt5682s_codecs;
-> > +				dai_link->num_codecs =
-> > +					ARRAY_SIZE(i2s8_rt5682s_codecs)
-> > ;
-> > +				dai_link->platforms =
-> > i2s8_rt5682s_platforms;
-> > +				dai_link->num_platforms =
-> > +					ARRAY_SIZE(i2s8_rt5682s_platfor
-> > ms);
-> > +			}
-> > +		} else if (strcmp(dai_link->name, "I2S9") == 0) {
-> > +			if (card == &mt8192_mt6359_rt1015_rt5682_card
-> > ||
-> > +			    card == &mt8192_mt6359_rt1015p_rt5682_card)
-> > {
-> > +				dai_link->cpus = i2s9_rt5682_cpus;
-> > +				dai_link->num_cpus =
-> > +					ARRAY_SIZE(i2s9_rt5682_cpus);
-> > +				dai_link->codecs = i2s9_rt5682_codecs;
-> > +				dai_link->num_codecs =
-> > +					ARRAY_SIZE(i2s9_rt5682_codecs);
-> > +				dai_link->platforms =
-> > i2s9_rt5682_platforms;
-> > +				dai_link->num_platforms =
-> > +					ARRAY_SIZE(i2s9_rt5682_platform
-> > s);
-> > +			} else if (card ==
-> > &mt8192_mt6359_rt1015p_rt5682s_card) {
-> > +				dai_link->cpus = i2s9_rt5682s_cpus;
-> > +				dai_link->num_cpus =
-> > +					ARRAY_SIZE(i2s9_rt5682s_cpus);
-> > +				dai_link->codecs = i2s9_rt5682s_codecs;
-> > +				dai_link->num_codecs =
-> > +					ARRAY_SIZE(i2s9_rt5682s_codecs)
-> > ;
-> > +				dai_link->platforms =
-> > i2s9_rt5682s_platforms;
-> > +				dai_link->num_platforms =
-> > +					ARRAY_SIZE(i2s9_rt5682s_platfor
-> > ms);
-> > +			}
+> I.e. in the timeframe between of_platform_populate() and
+> component_bind_all() below...
 > 
-> After seeing the code, I am starting to wonder if the reuse is
-> overkill.  If
-> they (RT5682 vs. RT5682S) only have some minor differences, probably
-> it could
-> reuse more by:
 > 
-> SND_SOC_DAILINK_DEFS(i2s8, ...
-> SND_SOC_DAILINK_DEFS(i2s9, ...
+> But if you believe I'm incorrect on the assumptions about the hardware
+> not being accessed before this point, I can move the reset before
+> of_platform_populate() - this is the last piece needed to have
+> functional eDP on sc8180x.
 > 
-> ...
+>> Also see the https://git.linaro.org/people/dmitry.baryshkov/kernel.git/log/?h=dpu-mdss-rework,
+>> which reworks the mdss driver and mdss probing.
+>>
 > 
-> if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
->         i2s8_codecs.name = RT5682S_DEV0_NAME;
->         i2s8_codecs.dai_name = RT5682S_CODEC_DAI;
->         ...
-> }
+> There seems to be some room for reducing duplication between the two
+> drivers, so this seems reasonable.
 > 
-> Or even uses of_device_is_compatible() if it would like to reuse the
-> struct
-> snd_soc_card.
-If we reuse the struct snd_soc_card, the card .name will be same.
-Should I change the card .name through of_device_is_compatible()?
-
-Maybe like below:
-
-Remove rt5682x related words for snd_soc_card.
-static struct snd_soc_card mt8192_mt6359_rt1015p_card = {
-	.owner = THIS_MODULE,
-	.dai_link = mt8192_mt6359_dai_links,
-	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-	.controls = mt8192_mt6359_rt1015p_controls,
-	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_controls),
-	.dapm_widgets = mt8192_mt6359_rt1015p_widgets,
-	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_widgets),
-	.dapm_routes = mt8192_mt6359_rt1015p_routes,
-	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_routes),
-};
-
-static const struct of_device_id mt8192_mt6359_dt_match[] = {
-	{
-		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
-		.data = &mt8192_mt6359_rt1015_rt5682_card,
-	},
-	{
-		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
-		.data = &mt8192_mt6359_rt1015p_card,
-	},
-	{
-		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682s",
-		.data = &mt8192_mt6359_rt1015p_card,
-	},
-	{}
-};
-
-if (of_device_is_compatible(np, "mediatek,
-mt8192_mt6359_rt1015p_rt5682")) {
-	card.name = "mt8192_mt6359_rt1015p_rt5682";
-	...
-} else if (of_device_is_compatible(np, "mediatek,
-mt8192_mt6359_rt1015p_rt5682s")) {
-	card.name = "mt8192_mt6359_rt1015p_rt5682s";
-	...
-}
+> Regards,
+> Bjorn
+> 
+>>>          /* Bind all our sub-components: */
+>>>          ret = component_bind_all(dev, ddev);
+>>>          if (ret)
+>>> diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
+>>> index 2a4f0526cb98..716a34fca1cd 100644
+>>> --- a/drivers/gpu/drm/msm/msm_kms.h
+>>> +++ b/drivers/gpu/drm/msm/msm_kms.h
+>>> @@ -205,6 +205,7 @@ struct msm_mdss_funcs {
+>>>          int (*enable)(struct msm_mdss *mdss);
+>>>          int (*disable)(struct msm_mdss *mdss);
+>>>          void (*destroy)(struct msm_mdss *mdss);
+>>> +       int (*reset)(struct msm_mdss *mdss);
+>>>   };
+>>>
+>>>   struct msm_mdss {
+>>> --
+>>> 2.33.1
+>>>
+>>
+>>
+>> -- 
+>> With best wishes
+>> Dmitry
 
 
-
-
-
-
+-- 
+With best wishes
+Dmitry
