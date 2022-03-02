@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 819C24CB30B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:52:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D84654CB2E1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:51:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbiCBXqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 18:46:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56660 "EHLO
+        id S229749AbiCBXse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 18:48:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbiCBXqr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:46:47 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C762239D4E;
-        Wed,  2 Mar 2022 15:45:29 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id y7so3278394oih.5;
-        Wed, 02 Mar 2022 15:45:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=TVwAiWa85hMzvOKS5YqVsqzuP2wtpcfL3Lp/rwM7cLo=;
-        b=8K23GeIOfhOpv9ZFmOgBshxXL5YKvz4as3CZXWrBpdY8/kRnCwlDf2I1KH5E7jEKgd
-         mTxHFMvzSvaRVZo8EWUmzpI76aot50X7kKNkooHKHTt95Ht+8rq6hhH/QZ8d6CZ+lwtl
-         l2ikuKblLOr0FUZLMc/sti30wIoXzVekZNgkyanuVoyIgqPYTJnGSnnUR9ZhiPWeuPPy
-         MuCTp3wh3DRP3opZsSm9baM7J3WHl+rAf/tJwYW4Ldmg08W20wmEnGsQCLWSaUOOBhYu
-         4mWtB944tTH3yJV2l2MzTMwbZB1l85J1L7SvxHv7tLkP3lOkXpXJcjQE47LLF9vOWNuC
-         tSuQ==
-X-Gm-Message-State: AOAM5307URGWwYN4yk1PrR/JY3PLQ2oINURgS4/ympA0uDtXjZ1Y76eL
-        au07jFcRf3N7OOSlKzhweA==
-X-Google-Smtp-Source: ABdhPJxe/GLJSdnuwSrDlaLTvAy6qRBAvzK/N3ff9doZ/bxjytEkDVKgKi94KuMwdbOu6KjZ1it+Lw==
-X-Received: by 2002:a05:6808:bd2:b0:2d7:9ab4:a0a9 with SMTP id o18-20020a0568080bd200b002d79ab4a0a9mr2128835oik.81.1646264728524;
-        Wed, 02 Mar 2022 15:45:28 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056830200700b005a09222e268sm203009otp.7.2022.03.02.15.45.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 15:45:27 -0800 (PST)
-Received: (nullmailer pid 281569 invoked by uid 1000);
-        Wed, 02 Mar 2022 23:45:26 -0000
-Date:   Wed, 2 Mar 2022 17:45:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
-Cc:     linux-arm-kernel@lists.infradead.org, yongqiang.niu@mediatek.com,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, matthias.bgg@gmail.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, jassisinghbrar@gmail.com
-Subject: Re: [PATCH 2/2] dt-bindings: gce: add gce header file for mt8186
-Message-ID: <YiABlmL55ZJBOPUz@robh.at.kernel.org>
-References: <20220223030138.13939-1-rex-bc.chen@mediatek.com>
- <20220223030138.13939-3-rex-bc.chen@mediatek.com>
+        with ESMTP id S229709AbiCBXsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:48:22 -0500
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A60A010CF0C;
+        Wed,  2 Mar 2022 15:47:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646264846; x=1677800846;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=KwJmzLMc/dS9fM65kAwlsOu7mLCuAExYDF3cN1aB5fM=;
+  b=uFYyYCLMS+HWnTe1OOp5JlMBkFIXEMPvzRM/igfYi7LxziGCduhhAHq8
+   5Bp2BdFlZtx3njofac6OkPZ0CEm6dzrx/lPLc6Z1jfNj+hTGtxMR5MpTP
+   gEtkKHUDbjvmIPR75O8WqScn8pSaCHrzJCwkNXCVxDTRLXeLg9KX8VJFm
+   w=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 02 Mar 2022 15:47:25 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 15:47:25 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 2 Mar 2022 15:47:24 -0800
+Received: from [10.110.107.103] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 2 Mar 2022
+ 15:47:24 -0800
+Message-ID: <2cd02c8b-9c1b-e87b-a90c-6e591b3a21a4@quicinc.com>
+Date:   Wed, 2 Mar 2022 15:47:23 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220223030138.13939-3-rex-bc.chen@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v2 1/6] arm64: dts: qcom: msm8996: Drop flags for mdss
+ irqs
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Stephen Boyd <swboyd@chromium.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <freedreno@lists.freedesktop.org>
+References: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
+From:   Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,17 +71,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Feb 2022 11:01:38 +0800, Rex-BC Chen wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> 
-> Add gce header file to define the gce subsys id, hardware event id and
-> constant for mt8186.
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  include/dt-bindings/gce/mt8186-gce.h | 421 +++++++++++++++++++++++++++
->  1 file changed, 421 insertions(+)
->  create mode 100644 include/dt-bindings/gce/mt8186-gce.h
-> 
 
-Acked-by: Rob Herring <robh@kernel.org>
+
+On 3/2/2022 2:54 PM, Dmitry Baryshkov wrote:
+> The number of interrupt cells for the mdss interrupt controller is 1,
+> meaning there should only be one cell for the interrupt number, not two.
+> Drop the second cell containing (unused) irq flags.
+> 
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> Fixes: 12d540375736 ("arm64: dts: qcom: msm8996: Add DSI0 nodes")
+> Fixes: 3a4547c1fc2f ("arm64: qcom: msm8996.dtsi: Add Display nodes")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Reviewed-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
+>   1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> index f0f81c23c16f..0597d865a4a6 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+> @@ -788,7 +788,7 @@ mdp: mdp@901000 {
+>   				reg-names = "mdp_phys";
+>   
+>   				interrupt-parent = <&mdss>;
+> -				interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupts = <0>;
+>   
+>   				clocks = <&mmcc MDSS_AHB_CLK>,
+>   					 <&mmcc MDSS_AXI_CLK>,
+> @@ -834,7 +834,7 @@ dsi0: dsi@994000 {
+>   				reg-names = "dsi_ctrl";
+>   
+>   				interrupt-parent = <&mdss>;
+> -				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupts = <4>;
+>   
+>   				clocks = <&mmcc MDSS_MDP_CLK>,
+>   					 <&mmcc MDSS_BYTE0_CLK>,
+> @@ -904,7 +904,7 @@ hdmi: hdmi-tx@9a0000 {
+>   					    "hdcp_physical";
+>   
+>   				interrupt-parent = <&mdss>;
+> -				interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
+> +				interrupts = <8>;
+>   
+>   				clocks = <&mmcc MDSS_MDP_CLK>,
+>   					 <&mmcc MDSS_AHB_CLK>,
