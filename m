@@ -2,91 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F3AC4CA6D5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:00:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95AA74CA7B8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 15:14:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239753AbiCBOAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 09:00:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54784 "EHLO
+        id S242779AbiCBOPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 09:15:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40052 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237510AbiCBOAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:00:50 -0500
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6731275C0F;
-        Wed,  2 Mar 2022 06:00:07 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646229607; x=1677765607;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=z0zRvgEVVCkwhpwxawMEmLKanlSkibn/flJ6Tvgo1Eg=;
-  b=nnFn78y2yJFNeoRHzk+Uy4luQlanXaLsJPryv2peLvWr9KSzygGyG3sZ
-   JhRT5hfjmHo2SUnJVULXeeeA/3rfdZ95+26PkxsQbCS9aU62WQBu/CMRH
-   6re0zbkQHZ0BNpt9XXeGInOOEUBAKewgZXwhqWYM4rNpqrgVkU8SUkgOZ
-   pRPCFOsnlmB/zt856f62o8d7VtOQcoKh8MH7JeCNgb39U5SWTqoX963MC
-   nPe9QWqFopUKOqFcVZCGleYMQP2WsmbPcZzA6qLcjFr6w2TJ28rXpshhH
-   598I4xPnyX51VRBPWiFh/YqKkbXZbdc5lH8UigfLNhY1W8wH0nvRwz2s8
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10273"; a="314122716"
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
-   d="scan'208";a="314122716"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 06:00:06 -0800
-X-IronPort-AV: E=Sophos;i="5.90,149,1643702400"; 
-   d="scan'208";a="576111735"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 06:00:04 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nPPVd-00AJiV-3S;
-        Wed, 02 Mar 2022 15:59:17 +0200
-Date:   Wed, 2 Mar 2022 15:59:16 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     "Sicelo A. Mhlongo" <absicsz@gmail.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>
-Subject: Re: [PATCH v2 3/3] iio: accel: add support for LIS302DL variant
-Message-ID: <Yh94NEO7jJrChx8z@smile.fi.intel.com>
-References: <20220301225432.60844-1-absicsz@gmail.com>
- <20220301225432.60844-4-absicsz@gmail.com>
+        with ESMTP id S229518AbiCBOPj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 09:15:39 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6AC0A88AC;
+        Wed,  2 Mar 2022 06:14:54 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id DB7F41F44672
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646230493;
+        bh=qicDU8a/aQVHGR0OpxT7GfZuyLBKrh3Al3E4YeEHPCE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=T2p8R/VWCXLp4Dv4iLMWAy3MUHP0IEHakz4Cjt9R78gLbThc41i6lpjfFEr58iMRX
+         Be/s4JcpcxtFzA8rPsm7mzE5GVromwEzO2Sbxj2WLFw6w4T8Kz/u8Q16ni87D2lLKV
+         gMXMoD0hVqUeG3YJjJfmWEG/s4FMlN0ybHe2jyWUXzwK09UYtqIp9NcNtGF408IE1s
+         jRYe8iqLdkjC+1j6KejSqMjAc0pyiVTzhudzBZp7/w1lp0BEk/qLNI3XtTVxgr5n0w
+         ikOctsoFKKV4euH2B3em0DHCat6NN15MLK1xJ1k68slXvjZLTc5rmu8RhRA7UGhVk2
+         lZ4w7Yu3zTalA==
+Message-ID: <b5d3d996-9c4c-b245-ad59-4fb2218dac1f@collabora.com>
+Date:   Wed, 2 Mar 2022 15:14:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220301225432.60844-4-absicsz@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v3,6/6] dt-bindings: pwm: Add compatible for MediaTek
+ MT8186
+Content-Language: en-US
+To:     xinlei.lee@mediatek.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, matthias.bgg@gmail.com
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        jitao.shi@mediatek.com, allen-kh.cheng@mediatek.com,
+        rex-bc.chen@mediatek.com
+References: <1646199106-26879-1-git-send-email-xinlei.lee@mediatek.com>
+ <1646199106-26879-7-git-send-email-xinlei.lee@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <1646199106-26879-7-git-send-email-xinlei.lee@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 12:54:32AM +0200, Sicelo A. Mhlongo wrote:
-> Add support for STMicroelectronics LIS302DL accelerometer to the st_accel
-> framework.
+Il 02/03/22 06:31, xinlei.lee@mediatek.com ha scritto:
+> From: Xinlei Lee <xinlei.lee@mediatek.com>
+> 
+> Add dt-binding documentation of pwm for MediaTek MT8186 SoC.
+> 
+> Signed-off-by: Xinlei Lee <xinlei.lee@mediatek.com>
+> ---
+>   Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> index 3a5d1cfed94d..053805846cfe 100644
+> --- a/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/mediatek,pwm-disp.yaml
+> @@ -21,6 +21,9 @@ properties:
+>             - mediatek,mt6595-disp-pwm
+>             - mediatek,mt8173-disp-pwm
+>             - mediatek,mt8183-disp-pwm
+> +      - items:
+> +          - const: mediatek,mt8186-disp-pwm
+> +          - const: mediatek,mt8183-disp-pwm
+>         - items:
+>             - const: mediatek,mt8192-disp-pwm
+>             - const: mediatek,mt8183-disp-pwm
+> 
 
-> https://www.st.com/resource/en/datasheet/lis302dl.pdf
 
-Can this be converted to Datasheet: tag, please?
+Hello Xinlei,
 
-> Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
+even though repeating these items may not give you errors, this is not really
+the best way to do this.
+I've done something similar here:
+https://lore.kernel.org/linux-arm-kernel/20220217095242.13761-1-angelogioacchino.delregno@collabora.com/
 
-...
+So, for the compatibles needing mediatek,mt8183-disp-pwm it should be looking
+similar to this:
 
->  drivers/iio/accel/st_accel_i2c.c  | 5 +++++
+- items:
+     - enum:
+         - mediatek,mt8186-disp-pwm
+         - mediatek,mt8192-disp-pwm
+         - mediatek,mt8195-disp-pwm
+     - const: mediatek,mt8183-disp-pwm
 
-Doesn't SPI also need to be updated? I believe those sensors are capable
-of both interfaces, but correct me, if I'm wrong.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Angelo
