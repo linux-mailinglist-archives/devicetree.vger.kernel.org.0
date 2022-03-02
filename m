@@ -2,161 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B714CAED6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:36:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D0A834CAEF4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:44:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241719AbiCBThf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 14:37:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39222 "EHLO
+        id S233901AbiCBTpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 14:45:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240613AbiCBThe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:37:34 -0500
-Received: from mail-pl1-x64a.google.com (mail-pl1-x64a.google.com [IPv6:2607:f8b0:4864:20::64a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9738ED76C4
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 11:36:50 -0800 (PST)
-Received: by mail-pl1-x64a.google.com with SMTP id u8-20020a170903124800b0015195a5826cso1541807plh.4
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 11:36:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=/rFz9WuD68JZvZdSymWTaIZIBcr35Cslo8bOp/2Fz0s=;
-        b=Z4dNVLLzNoxuSxQda8ipH6FUJbpN1A5Yyt4TiE7QlIDG6OCU+SMgpd03L2qd+jlK8e
-         4k4XCoZwnrytb/orxLBsohQHlnWQqQmsO08rtTNDHVSMe2J3WXgDVsXV5P0/OffCQRcH
-         Wvym0V5NY2s9tXPNy8IXmig2GWkYZ8dUqez5IGk/HqpyNfVS5bPTUodnc74DvdvI7J6s
-         IDMBKp81GlX4gzm0cSqV7Nhw3VEsNwk52eacNIqToFTjc/clwiEe5k5A0ybJyNT3AMAB
-         VP+RIyMbNW7VmxD+YU7N16wS3NRDb4OEkyOjTj/ZbXMpMBU4+3TuD5XgVRMAo4Rrzuqu
-         oJXw==
+        with ESMTP id S236932AbiCBTpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:45:08 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B785DCA0DF
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 11:44:24 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9D6833F60E
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 19:44:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646250263;
+        bh=CXgP08C1PuFq4bqpjNjFmw31qLuU1W2/XX2cgUb+4wc=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=ReaNoNkZPHpbDnlCJb8wdbhj7vA9g0We8sf6i4wYTFmJTehsAlJVK+utKO2MNZ8wu
+         MSIYT2JiVykvc2YU85iB/59PF2lRDxmpcbJ8xSiNJ/DOGt/HA6scoKRrlb53/l5V8O
+         KR11Ix7mvZSFjv05Wa94kvaAxFkTZRIssVapA31snbA9jgZ3NICwnzcuDFlTxZI+FN
+         wI0bESjkQPdD0Uogase46Vg9u2O7Q1bWK2MwP9bMu9G9JEdfrGLbIrIXntcIo3pGxF
+         Plcfjg26f/tPhteP5ElSI0qzF/9XWR8kmt7kednP+HI3vYEbVmf0kEuBe3DnBIGeL2
+         VjnPcnbeUxabw==
+Received: by mail-ed1-f71.google.com with SMTP id y10-20020a056402358a00b00410deddea4cso1551503edc.16
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 11:44:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=/rFz9WuD68JZvZdSymWTaIZIBcr35Cslo8bOp/2Fz0s=;
-        b=4ZjQzTidmIXR/i5M8nxJsYgNgvSfpLV+oc8h6uL82rDKPOyPpPCyKar/ixxnNQw3+E
-         Pblb9WeI59DEXtMIUbBO0tmeNLDHNCSscOvxtJXCYrLVUmMd8n9CfkLN0vaCFYgz86Er
-         +0eZPImkjcu7UTRjwbD70lQzRGNW3KOgOim0UPRrRwbOtUTNG7uAo3SXOCxRAPz09Laf
-         TBHPqPh6pNoPJCRvV9Gc0rI0kPCStVWg3YWiY4ypdmIjJVv8aKc+3OlhbgjSKcz4juEC
-         2N49kqJML+fZgyR5QWnMtwWZcjs4r6lWO8EI6dkW4CFfmERvCOOWQu8YQexNVwDYXa/9
-         SWNA==
-X-Gm-Message-State: AOAM533QSJQrTmt0qQDuHEZKFCjRl7UGRup8g1ivTi1V8wtjodyrhKSQ
-        H8uXIVLmV4s4UWhWb4JENFcYK2HCnYY=
-X-Google-Smtp-Source: ABdhPJwOCBzLooZc0i5PnERg9swC5nI04if9PXMoPCbrZH7AGxIoIhWNk5iwcUhjs9Q88WX2SbGsqMkxB8U=
-X-Received: from colette.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:306])
- (user=ctshao job=sendgmr) by 2002:a17:902:edcd:b0:14d:c114:b86b with SMTP id
- q13-20020a170902edcd00b0014dc114b86bmr32115492plk.166.1646249810047; Wed, 02
- Mar 2022 11:36:50 -0800 (PST)
-Date:   Wed,  2 Mar 2022 19:36:38 +0000
-In-Reply-To: <20220302102705.15c32822@gandalf.local.home>
-Message-Id: <20220302193638.11034-1-ctshao@google.com>
-Mime-Version: 1.0
-References: <20220302102705.15c32822@gandalf.local.home>
-X-Mailer: git-send-email 2.35.1.574.g5d30c73bfb-goog
-Subject: [PATCH v2] config: Allow kernel installation packaging to override pkg-config
-From:   Chun-Tse Shao <ctshao@google.com>
-To:     rostedt@goodmis.org
-Cc:     ctshao@google.com, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, jpoimboe@redhat.com,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        masahiroy@kernel.org, michal.lkml@markovi.net,
-        ndesaulniers@google.com, peterz@infradead.org, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-10.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=CXgP08C1PuFq4bqpjNjFmw31qLuU1W2/XX2cgUb+4wc=;
+        b=qmscsXhry0OlOfsnIKRacBoipr63J+pf2m6+sKB1OvMeAmaIMXLar4NkVYeWhvd/kZ
+         eZmBBNn0QdAfzEB62yZEQh5+psCu+pZQBqMTmrYMdDHdqOri+YCPVOe8/k3OdH2XT7xH
+         qU5a428lRjnmGI/MxqGvMIII1G5Gk3fESm3eYfgNAfEvY81UwuGsfkCzynVcNaRzbRkJ
+         Ti6HytX+Zy6Tk3BFXLJjyOFP03C7IPdH2+6fGfE5/1wYiWa4dcJU/AI7zR6vAcRtcNUP
+         g74KwXiw9JI9VotiBQGqlc59nepEtGa/VheFVBL93Zrh1XJygr4BR6kAYV/aHQVUYKxj
+         6CAA==
+X-Gm-Message-State: AOAM533SkOC/dauM2YLvdVLhzpyKUKY5lT6jmVG14Iae3pKABpptc7iF
+        Mtq7LBxpXA7Sk/I32F5j9Q2LnXgOvX8+TZ6mNwGb+x+CLDnFDZV+rtRHQP5FWzJ2Kg596DRNbuF
+        q1JL3Qrc2H0IDZYWzWhj3NqYiH/UTJNepGPXnXiY=
+X-Received: by 2002:a17:906:7056:b0:6d6:dd99:f2a4 with SMTP id r22-20020a170906705600b006d6dd99f2a4mr9253748ejj.43.1646250263270;
+        Wed, 02 Mar 2022 11:44:23 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxeddp5OV+Flh+0Pd77oYKfgd5Yl2rsTAbN/GiVUOQXPIPUCAJzYFwH4LA4d4WjKVxsccE4rQ==
+X-Received: by 2002:a17:906:7056:b0:6d6:dd99:f2a4 with SMTP id r22-20020a170906705600b006d6dd99f2a4mr9253733ejj.43.1646250263033;
+        Wed, 02 Mar 2022 11:44:23 -0800 (PST)
+Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id y12-20020a50eb8c000000b00410f02e577esm9138825edr.7.2022.03.02.11.44.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 11:44:22 -0800 (PST)
+Message-ID: <72fafc84-4986-926f-67ae-155f4fced88b@canonical.com>
+Date:   Wed, 2 Mar 2022 20:44:21 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [Patch v4 4/4] memory: tegra: Add MC error logging on tegra186
+ onward
+Content-Language: en-US
+To:     Ashish Mhetre <amhetre@nvidia.com>, robh+dt@kernel.org,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, digetx@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
+References: <1646210609-21943-1-git-send-email-amhetre@nvidia.com>
+ <1646210609-21943-5-git-send-email-amhetre@nvidia.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1646210609-21943-5-git-send-email-amhetre@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
-what pkg-config and parameters are used.
+On 02/03/2022 09:43, Ashish Mhetre wrote:
+> Add new function 'get_int_channel' in tegra_mc_soc struture which is
+> implemented by tegra SOCs which support multiple MC channels. This
+> function returns the channel which should be used to get the information
+> of interrupts.
+> Remove static from tegra30_mc_handle_irq and use it as interrupt handler
+> for MC interrupts on tegra186, tegra194 and tegra234 to log the errors.
+> Add error specific MC status and address register bits and use them on
+> tegra186, tegra194 and tegra234.
+> Add error logging for generalized carveout interrupt on tegra186, tegra194
+> and tegra234.
+> Add error logging for route sanity interrupt on tegra194 an tegra234.
+> Add register for higher bits of error address which is available on
+> tegra194 and tegra234.
+> Add a boolean variable 'has_addr_hi_reg' in tegra_mc_soc struture which
+> will be true if soc has register for higher bits of memory controller
+> error address. Set it true for tegra194 and tegra234.
+> 
+> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> ---
+>  drivers/memory/tegra/mc.c       | 102 ++++++++++++++++++++++++++++++++++------
+>  drivers/memory/tegra/mc.h       |  37 ++++++++++++++-
+>  drivers/memory/tegra/tegra186.c |  45 ++++++++++++++++++
+>  drivers/memory/tegra/tegra194.c |  44 +++++++++++++++++
+>  drivers/memory/tegra/tegra234.c |  59 +++++++++++++++++++++++
+>  include/soc/tegra/mc.h          |   4 ++
+>  6 files changed, 275 insertions(+), 16 deletions(-)
+> 
 
-Signed-off-by: Chun-Tse Shao <ctshao@google.com>
----
- Makefile               | 3 ++-
- scripts/Makefile       | 4 ++--
- scripts/dtc/Makefile   | 6 +++---
- tools/objtool/Makefile | 4 ++--
- 4 files changed, 9 insertions(+), 8 deletions(-)
+(...)
 
-diff --git a/Makefile b/Makefile
-index daeb5c88b50b..f6c5bef7e141 100644
---- a/Makefile
-+++ b/Makefile
-@@ -430,6 +430,7 @@ else
- HOSTCC	= gcc
- HOSTCXX	= g++
- endif
-+HOSTPKG_CONFIG	= pkg-config
- 
- export KBUILD_USERCFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes \
- 			      -O2 -fomit-frame-pointer -std=gnu89
-@@ -525,7 +526,7 @@ KBUILD_LDFLAGS_MODULE :=
- KBUILD_LDFLAGS :=
- CLANG_FLAGS :=
- 
--export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC
-+export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
- export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
- export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
- export KGZIP KBZIP2 KLZOP LZMA LZ4 XZ ZSTD
-diff --git a/scripts/Makefile b/scripts/Makefile
-index ce5aa9030b74..f084f08ed176 100644
---- a/scripts/Makefile
-+++ b/scripts/Makefile
-@@ -14,8 +14,8 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)	+= insert-sys-cert
- HOSTCFLAGS_sorttable.o = -I$(srctree)/tools/include
- HOSTLDLIBS_sorttable = -lpthread
- HOSTCFLAGS_asn1_compiler.o = -I$(srctree)/include
--HOSTCFLAGS_sign-file.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
--HOSTLDLIBS_sign-file = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
-+HOSTCFLAGS_sign-file.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
-+HOSTLDLIBS_sign-file = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
- 
- ifdef CONFIG_UNWINDER_ORC
- ifeq ($(ARCH),x86_64)
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 95aaf7431bff..743fc08827ea 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -18,7 +18,7 @@ fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
- 
--ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
-+ifeq ($(shell $(HOSTPKG_CONFIG) --exists yaml-0.1 2>/dev/null && echo yes),)
- ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
- $(error dtc needs libyaml for DT schema validation support. \
- 	Install the necessary libyaml development package.)
-@@ -27,9 +27,9 @@ HOST_EXTRACFLAGS += -DNO_YAML
- else
- dtc-objs	+= yamltree.o
- # To include <yaml.h> installed in a non-default path
--HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
-+HOSTCFLAGS_yamltree.o := $(shell $(HOSTPKG_CONFIG) --cflags yaml-0.1)
- # To link libyaml installed in a non-default path
--HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
-+HOSTLDLIBS_dtc	:= $(shell $(HOSTPKG_CONFIG) yaml-0.1 --libs)
- endif
- 
- # Generated files need one more search path to include headers in source tree
-diff --git a/tools/objtool/Makefile b/tools/objtool/Makefile
-index 92ce4fce7bc7..549acc5859e9 100644
---- a/tools/objtool/Makefile
-+++ b/tools/objtool/Makefile
-@@ -19,8 +19,8 @@ LIBSUBCMD		= $(LIBSUBCMD_OUTPUT)libsubcmd.a
- OBJTOOL    := $(OUTPUT)objtool
- OBJTOOL_IN := $(OBJTOOL)-in.o
- 
--LIBELF_FLAGS := $(shell pkg-config libelf --cflags 2>/dev/null)
--LIBELF_LIBS  := $(shell pkg-config libelf --libs 2>/dev/null || echo -lelf)
-+LIBELF_FLAGS := $(shell $(HOSTPKG_CONFIG) libelf --cflags 2>/dev/null)
-+LIBELF_LIBS  := $(shell $(HOSTPKG_CONFIG) libelf --libs 2>/dev/null || echo -lelf)
- 
- all: $(OBJTOOL)
- 
--- 
-2.35.1.574.g5d30c73bfb-goog
+>  
+> +static int tegra186_mc_get_channel(struct tegra_mc *mc, int *mc_channel)
+> +{
+> +	u32 g_intstatus;
+> +
+> +	g_intstatus = mc_ch_readl(mc, MC_BROADCAST_CHANNEL,
+> +				  MC_GLOBAL_INTSTATUS);
+> +
+> +	switch (g_intstatus & mc->soc->int_channel_mask) {
+> +	case BIT(0):
+> +		*mc_channel = 0;
+> +		break;
+> +
+> +	case BIT(1):
+> +		*mc_channel = 1;
+> +		break;
+> +
+> +	case BIT(2):
+> +		*mc_channel = 2;
+> +		break;
+> +
+> +	case BIT(3):
+> +		*mc_channel = 3;
+> +		break;
+> +
+> +	case BIT(24):
+> +		*mc_channel = MC_BROADCAST_CHANNEL;
+> +		break;
+> +
+> +	default:
+> +		pr_err("Unknown interrupt source\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  const struct tegra_mc_soc tegra186_mc_soc = {
+>  	.num_clients = ARRAY_SIZE(tegra186_mc_clients),
+>  	.clients = tegra186_mc_clients,
+>  	.num_address_bits = 40,
+>  	.num_channels = 4,
+> +	.client_id_mask = 0xff,
+> +	.intmask = MC_INT_DECERR_GENERALIZED_CARVEOUT | MC_INT_DECERR_MTS |
+> +		   MC_INT_SECERR_SEC | MC_INT_DECERR_VPR |
+> +		   MC_INT_SECURITY_VIOLATION | MC_INT_DECERR_EMEM,
+>  	.ops = &tegra186_mc_ops,
+> +	.int_channel_mask = 0x100000f,
+> +	.get_int_channel = tegra186_mc_get_channel,
+>  };
+>  #endif
+> diff --git a/drivers/memory/tegra/tegra194.c b/drivers/memory/tegra/tegra194.c
+> index 9400117..bc16567 100644
+> --- a/drivers/memory/tegra/tegra194.c
+> +++ b/drivers/memory/tegra/tegra194.c
+> @@ -1343,10 +1343,54 @@ static const struct tegra_mc_client tegra194_mc_clients[] = {
+>  	},
+>  };
+>  
+> +static int tegra194_mc_get_channel(struct tegra_mc *mc, int *mc_channel)
 
+Looks like 'mc' could be a pointer to const.
+
+> +{
+> +	u32 g_intstatus;
+
+Variable name just "status" because it looks like some
+hungarian-notation-style...
+
+The same in other places like this.
+
+
+Best regards,
+Krzysztof
