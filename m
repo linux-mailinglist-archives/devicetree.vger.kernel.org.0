@@ -2,398 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 087404CA2DF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:08:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F2194CA2B5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 12:05:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234772AbiCBLI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 06:08:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36330 "EHLO
+        id S231533AbiCBLGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 06:06:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234261AbiCBLI4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:08:56 -0500
-Received: from michel.telenet-ops.be (michel.telenet-ops.be [IPv6:2a02:1800:110:4::f00:18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F308325C4F
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:08:10 -0800 (PST)
-Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:8cac:a75c:6aef:8a67])
-        by michel.telenet-ops.be with bizsmtp
-        id 1P822701C36NB4j06P82Ze; Wed, 02 Mar 2022 12:08:08 +0100
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nPMiA-002RkT-Vm; Wed, 02 Mar 2022 12:00:02 +0100
-Received: from geert by rox.of.borg with local (Exim 4.93)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1nPKNb-007MlU-37; Wed, 02 Mar 2022 09:30:39 +0100
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH] ata: Drop commas after OF match table sentinels
-Date:   Wed,  2 Mar 2022 09:30:34 +0100
-Message-Id: <15d4b8e1108c902c4e80c87edfc702a7786de4ba.1646209667.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S239772AbiCBLGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 06:06:16 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B48814A3E9
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 03:05:30 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id 195so1327407pgc.6
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 03:05:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iM4tqoBNZnRDhHlhJv4qaUp41vM2/itvqk+JO0plpzU=;
+        b=eUCFUBtB8g0HcK0Dm6lzd43xTsjUZvZy+n8LQ7kZQiOs8hWrHoopwzWWggNY93Kth/
+         d+yg12rDsIzVf25SP9oTp5FxUy9c7NkqTmGgGLdn7tyqW/nDr780P+yvFBiU5EQousk4
+         8sF3aEpksyhIccyC3cM2mH4iDzP3NwL0I57CYqkOZCBILQKhuvZJVPOLGySLYvx/yXwh
+         I6elZu4Ycv6/m7nev9kSR83Qi7GDI/FnMQVrrxDTYB5k+y8RspG3E10tHtL55dXk1NuM
+         A8+SxU51PuLkX6Sw3L2WJ6uX0gpfMDEV2TZLS49hJbLwt/YRIWVY6txZDZQwPMwPUTSu
+         0amQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=iM4tqoBNZnRDhHlhJv4qaUp41vM2/itvqk+JO0plpzU=;
+        b=EQlOAAV1huECNv5uyJNOPJoEIVBnKfV1HrR0HEZA6VGU+Sq95SJdtwta85/OS1IFwI
+         /kZn+Mpfl1laoqhIew1Hp99IsTvniGuZMT2RhZkKZl8r0MDfExVWcSNB9DBta9cvdFfA
+         Vy5hT46+3WWtzMWYSBNHGwsQhzCrY27WIru5BJB22W8OKYORCsMKNfUwOIt1eFpn8rPo
+         CIGRSysU2z6+qtuKMTf9sxC4BWb+bPd7/v/l/5MU9WhMmC2XJGK1UpRx+lCYuI8uvvbU
+         +JWFibbcAZlVTsN/Lj9sfcW1OF3NxtZgauga6ALP1YP2R5P/t39OTSKEqRb9DFhOc6YF
+         8UVQ==
+X-Gm-Message-State: AOAM532nGzypZszYqI9qQXCAmTIvkqi9y6kNEb5Hl690ummzKqhgSD8s
+        K7r3fUqDhsswAjRtIX+zylpBvOBpwPROmA==
+X-Google-Smtp-Source: ABdhPJxeyMaemFdosUe7a1Nz/OmLGcqy/zp1HyS7opVeuNuR2PmDhFIdpuZN0hRH0U2QcVKyK817Qg==
+X-Received: by 2002:a63:2a45:0:b0:373:1850:d5b with SMTP id q66-20020a632a45000000b0037318500d5bmr24767273pgq.563.1646219130121;
+        Wed, 02 Mar 2022 03:05:30 -0800 (PST)
+Received: from localhost.localdomain ([171.50.175.145])
+        by smtp.gmail.com with ESMTPSA id hk1-20020a17090b224100b001b8cff17f89sm5049186pjb.12.2022.03.02.03.05.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 03:05:29 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: [PATCH v2 0/5] Add ethernet support for Qualcomm SA8155p-ADP board
+Date:   Wed,  2 Mar 2022 16:35:03 +0530
+Message-Id: <20220302110508.69053-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It does not make sense to have a comma after a sentinel, as any new
-elements must be added before the sentinel.
+Changes since v1:
+-----------------
+- v1 can be seen here: https://lore.kernel.org/netdev/20220126221725.710167-1-bhupesh.sharma@linaro.org/t/
+- Fixed review comments from Bjorn - broke the v1 series into two
+  separate series - one each for 'net' tree and 'arm clock/dts' tree
+  - so as to ease review of the same from the respective maintainers.
+- This series is intended for the 'arm msm clock/dts' tree.
+- Other changes:
+  - Dropped [PATCH 7/8] from v1.
+  - Added more background on the emac gdsc issue, requiring it to be in
+    ALWAYS_ON state in [PATCH 5/5].
+  - Collected Ack from Rob for [PATCH 1/5].
+  - Broke down v1's [PATCH 3/8] into 3 separate patches (one each for emac,
+    pci and ufs gdsc defines) - one of which is carried as [PATCH 2/5]
+    in this series, which is used to enable emac GDSC.
 
-Add comments to clarify the purpose of the empty elements.
+The SA8155p-ADP board supports on-board ethernet (Gibabit Interface),
+with support for both RGMII and RMII buses.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- drivers/ata/ahci_brcm.c        | 2 +-
- drivers/ata/ahci_ceva.c        | 2 +-
- drivers/ata/ahci_da850.c       | 2 +-
- drivers/ata/ahci_dm816.c       | 2 +-
- drivers/ata/ahci_imx.c         | 2 +-
- drivers/ata/ahci_mtk.c         | 2 +-
- drivers/ata/ahci_mvebu.c       | 2 +-
- drivers/ata/ahci_octeon.c      | 2 +-
- drivers/ata/ahci_platform.c    | 2 +-
- drivers/ata/ahci_qoriq.c       | 2 +-
- drivers/ata/ahci_st.c          | 2 +-
- drivers/ata/ahci_sunxi.c       | 2 +-
- drivers/ata/ahci_xgene.c       | 2 +-
- drivers/ata/pata_ftide010.c    | 2 +-
- drivers/ata/pata_ixp4xx_cf.c   | 2 +-
- drivers/ata/pata_macio.c       | 2 +-
- drivers/ata/pata_mpc52xx.c     | 2 +-
- drivers/ata/pata_octeon_cf.c   | 2 +-
- drivers/ata/pata_of_platform.c | 2 +-
- drivers/ata/sata_fsl.c         | 2 +-
- drivers/ata/sata_gemini.c      | 2 +-
- drivers/ata/sata_highbank.c    | 2 +-
- drivers/ata/sata_mv.c          | 2 +-
- drivers/ata/sata_rcar.c        | 2 +-
- 24 files changed, 24 insertions(+), 24 deletions(-)
+This patchset adds the support for the same.
 
-diff --git a/drivers/ata/ahci_brcm.c b/drivers/ata/ahci_brcm.c
-index 64dd8aa397d5276b..ab8552b1ff2a14ad 100644
---- a/drivers/ata/ahci_brcm.c
-+++ b/drivers/ata/ahci_brcm.c
-@@ -427,7 +427,7 @@ static const struct of_device_id ahci_of_match[] = {
- 	{.compatible = "brcm,bcm63138-ahci", .data = (void *)BRCM_SATA_BCM7445},
- 	{.compatible = "brcm,bcm-nsp-ahci", .data = (void *)BRCM_SATA_NSP},
- 	{.compatible = "brcm,bcm7216-ahci", .data = (void *)BRCM_SATA_BCM7216},
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_of_match);
- 
-diff --git a/drivers/ata/ahci_ceva.c b/drivers/ata/ahci_ceva.c
-index acf59f51b3569d71..cb24ecf36fafe040 100644
---- a/drivers/ata/ahci_ceva.c
-+++ b/drivers/ata/ahci_ceva.c
-@@ -363,7 +363,7 @@ static SIMPLE_DEV_PM_OPS(ahci_ceva_pm_ops, ceva_ahci_suspend, ceva_ahci_resume);
- 
- static const struct of_device_id ceva_ahci_of_match[] = {
- 	{ .compatible = "ceva,ahci-1v84" },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ceva_ahci_of_match);
- 
-diff --git a/drivers/ata/ahci_da850.c b/drivers/ata/ahci_da850.c
-index 0e82766007128e72..052c28e250aa8d96 100644
---- a/drivers/ata/ahci_da850.c
-+++ b/drivers/ata/ahci_da850.c
-@@ -241,7 +241,7 @@ static SIMPLE_DEV_PM_OPS(ahci_da850_pm_ops, ahci_platform_suspend,
- 
- static const struct of_device_id ahci_da850_of_match[] = {
- 	{ .compatible = "ti,da850-ahci", },
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_da850_of_match);
- 
-diff --git a/drivers/ata/ahci_dm816.c b/drivers/ata/ahci_dm816.c
-index 8bec4104167142c5..8a92112dcd59080a 100644
---- a/drivers/ata/ahci_dm816.c
-+++ b/drivers/ata/ahci_dm816.c
-@@ -176,7 +176,7 @@ static SIMPLE_DEV_PM_OPS(ahci_dm816_pm_ops,
- 
- static const struct of_device_id ahci_dm816_of_match[] = {
- 	{ .compatible = "ti,dm816-ahci", },
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_dm816_of_match);
- 
-diff --git a/drivers/ata/ahci_imx.c b/drivers/ata/ahci_imx.c
-index 388baf528fa81cab..79aa9f2853129f6e 100644
---- a/drivers/ata/ahci_imx.c
-+++ b/drivers/ata/ahci_imx.c
-@@ -811,7 +811,7 @@ static const struct of_device_id imx_ahci_of_match[] = {
- 	{ .compatible = "fsl,imx6q-ahci", .data = (void *)AHCI_IMX6Q },
- 	{ .compatible = "fsl,imx6qp-ahci", .data = (void *)AHCI_IMX6QP },
- 	{ .compatible = "fsl,imx8qm-ahci", .data = (void *)AHCI_IMX8QM },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, imx_ahci_of_match);
- 
-diff --git a/drivers/ata/ahci_mtk.c b/drivers/ata/ahci_mtk.c
-index d9b08ae7c3b22104..1f6c85fde9830ac1 100644
---- a/drivers/ata/ahci_mtk.c
-+++ b/drivers/ata/ahci_mtk.c
-@@ -169,7 +169,7 @@ static SIMPLE_DEV_PM_OPS(ahci_pm_ops, ahci_platform_suspend,
- 
- static const struct of_device_id ahci_of_match[] = {
- 	{ .compatible = "mediatek,mtk-ahci", },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_of_match);
- 
-diff --git a/drivers/ata/ahci_mvebu.c b/drivers/ata/ahci_mvebu.c
-index 3ad46d26d9d51790..991413a272e608a2 100644
---- a/drivers/ata/ahci_mvebu.c
-+++ b/drivers/ata/ahci_mvebu.c
-@@ -239,7 +239,7 @@ static const struct of_device_id ahci_mvebu_of_match[] = {
- 		.compatible = "marvell,armada-3700-ahci",
- 		.data = &ahci_mvebu_armada_3700_plat_data,
- 	},
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_mvebu_of_match);
- 
-diff --git a/drivers/ata/ahci_octeon.c b/drivers/ata/ahci_octeon.c
-index 5a44e089c6bb6ae2..b9460b91288f772d 100644
---- a/drivers/ata/ahci_octeon.c
-+++ b/drivers/ata/ahci_octeon.c
-@@ -80,7 +80,7 @@ static int ahci_octeon_remove(struct platform_device *pdev)
- 
- static const struct of_device_id octeon_ahci_match[] = {
- 	{ .compatible = "cavium,octeon-7130-sata-uctl", },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, octeon_ahci_match);
- 
-diff --git a/drivers/ata/ahci_platform.c b/drivers/ata/ahci_platform.c
-index 3aab2e3d57f3373a..28a8de5b48b979c9 100644
---- a/drivers/ata/ahci_platform.c
-+++ b/drivers/ata/ahci_platform.c
-@@ -88,7 +88,7 @@ static const struct of_device_id ahci_of_match[] = {
- 	{ .compatible = "snps,dwc-ahci", },
- 	{ .compatible = "hisilicon,hisi-ahci", },
- 	{ .compatible = "cavium,octeon-7130-ahci", },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_of_match);
- 
-diff --git a/drivers/ata/ahci_qoriq.c b/drivers/ata/ahci_qoriq.c
-index bf5b388bd4e0db9b..dd612d7963159118 100644
---- a/drivers/ata/ahci_qoriq.c
-+++ b/drivers/ata/ahci_qoriq.c
-@@ -77,7 +77,7 @@ static const struct of_device_id ahci_qoriq_of_match[] = {
- 	{ .compatible = "fsl,ls1088a-ahci", .data = (void *)AHCI_LS1088A},
- 	{ .compatible = "fsl,ls2088a-ahci", .data = (void *)AHCI_LS2088A},
- 	{ .compatible = "fsl,lx2160a-ahci", .data = (void *)AHCI_LX2160A},
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_qoriq_of_match);
- 
-diff --git a/drivers/ata/ahci_st.c b/drivers/ata/ahci_st.c
-index c268264c2129c52a..7526653c843b3226 100644
---- a/drivers/ata/ahci_st.c
-+++ b/drivers/ata/ahci_st.c
-@@ -232,7 +232,7 @@ static SIMPLE_DEV_PM_OPS(st_ahci_pm_ops, st_ahci_suspend, st_ahci_resume);
- 
- static const struct of_device_id st_ahci_match[] = {
- 	{ .compatible = "st,ahci", },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, st_ahci_match);
- 
-diff --git a/drivers/ata/ahci_sunxi.c b/drivers/ata/ahci_sunxi.c
-index 56b695136977ab72..c7273c1cb0c73b9b 100644
---- a/drivers/ata/ahci_sunxi.c
-+++ b/drivers/ata/ahci_sunxi.c
-@@ -286,7 +286,7 @@ static SIMPLE_DEV_PM_OPS(ahci_sunxi_pm_ops, ahci_platform_suspend,
- static const struct of_device_id ahci_sunxi_of_match[] = {
- 	{ .compatible = "allwinner,sun4i-a10-ahci", },
- 	{ .compatible = "allwinner,sun8i-r40-ahci", },
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_sunxi_of_match);
- 
-diff --git a/drivers/ata/ahci_xgene.c b/drivers/ata/ahci_xgene.c
-index 8e206379d699f080..d205896f66cfb228 100644
---- a/drivers/ata/ahci_xgene.c
-+++ b/drivers/ata/ahci_xgene.c
-@@ -726,7 +726,7 @@ MODULE_DEVICE_TABLE(acpi, xgene_ahci_acpi_match);
- static const struct of_device_id xgene_ahci_of_match[] = {
- 	{.compatible = "apm,xgene-ahci", .data = (void *) XGENE_AHCI_V1},
- 	{.compatible = "apm,xgene-ahci-v2", .data = (void *) XGENE_AHCI_V2},
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, xgene_ahci_of_match);
- 
-diff --git a/drivers/ata/pata_ftide010.c b/drivers/ata/pata_ftide010.c
-index 34cb104f6b43e5cf..2a92797b5e11a9aa 100644
---- a/drivers/ata/pata_ftide010.c
-+++ b/drivers/ata/pata_ftide010.c
-@@ -557,7 +557,7 @@ static const struct of_device_id pata_ftide010_of_match[] = {
- 	{
- 		.compatible = "faraday,ftide010",
- 	},
--	{},
-+	{ /* sentinel */ }
- };
- 
- static struct platform_driver pata_ftide010_driver = {
-diff --git a/drivers/ata/pata_ixp4xx_cf.c b/drivers/ata/pata_ixp4xx_cf.c
-index 17b557c91e1c78fc..e225913a619d8414 100644
---- a/drivers/ata/pata_ixp4xx_cf.c
-+++ b/drivers/ata/pata_ixp4xx_cf.c
-@@ -293,7 +293,7 @@ static int ixp4xx_pata_probe(struct platform_device *pdev)
- 
- static const struct of_device_id ixp4xx_pata_of_match[] = {
- 	{ .compatible = "intel,ixp4xx-compact-flash", },
--	{ },
-+	{ /* sentinel */ }
- };
- 
- static struct platform_driver ixp4xx_pata_platform_driver = {
-diff --git a/drivers/ata/pata_macio.c b/drivers/ata/pata_macio.c
-index 16e8aa184a75793f..8cf778723fd6d049 100644
---- a/drivers/ata/pata_macio.c
-+++ b/drivers/ata/pata_macio.c
-@@ -1345,7 +1345,7 @@ static const struct of_device_id pata_macio_match[] =
- 	{
- 	.type		= "ata",
- 	},
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, pata_macio_match);
- 
-diff --git a/drivers/ata/pata_mpc52xx.c b/drivers/ata/pata_mpc52xx.c
-index f1d352d5f128537a..bc9d9df3b5aced64 100644
---- a/drivers/ata/pata_mpc52xx.c
-+++ b/drivers/ata/pata_mpc52xx.c
-@@ -849,7 +849,7 @@ mpc52xx_ata_resume(struct platform_device *op)
- static const struct of_device_id mpc52xx_ata_of_match[] = {
- 	{ .compatible = "fsl,mpc5200-ata", },
- 	{ .compatible = "mpc5200-ata", },
--	{},
-+	{ /* sentinel */ }
- };
- 
- 
-diff --git a/drivers/ata/pata_octeon_cf.c b/drivers/ata/pata_octeon_cf.c
-index 05c2ab3757568c62..bdaec863171a14cf 100644
---- a/drivers/ata/pata_octeon_cf.c
-+++ b/drivers/ata/pata_octeon_cf.c
-@@ -1009,7 +1009,7 @@ static const struct of_device_id octeon_cf_match[] = {
- 	{
- 		.compatible = "cavium,ebt3000-compact-flash",
- 	},
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, octeon_cf_match);
- 
-diff --git a/drivers/ata/pata_of_platform.c b/drivers/ata/pata_of_platform.c
-index c3a40b717dcdcc2a..ac5a633c00a57ac1 100644
---- a/drivers/ata/pata_of_platform.c
-+++ b/drivers/ata/pata_of_platform.c
-@@ -79,7 +79,7 @@ static int pata_of_platform_probe(struct platform_device *ofdev)
- 
- static const struct of_device_id pata_of_platform_match[] = {
- 	{ .compatible = "ata-generic", },
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, pata_of_platform_match);
- 
-diff --git a/drivers/ata/sata_fsl.c b/drivers/ata/sata_fsl.c
-index 556034a15430461f..11867a7eb4691771 100644
---- a/drivers/ata/sata_fsl.c
-+++ b/drivers/ata/sata_fsl.c
-@@ -1583,7 +1583,7 @@ static const struct of_device_id fsl_sata_match[] = {
- 	{
- 		.compatible = "fsl,pq-sata-v2",
- 	},
--	{},
-+	{ /* sentinel */ }
- };
- 
- MODULE_DEVICE_TABLE(of, fsl_sata_match);
-diff --git a/drivers/ata/sata_gemini.c b/drivers/ata/sata_gemini.c
-index 440a63de20d01a07..c7e9efc0025f1a91 100644
---- a/drivers/ata/sata_gemini.c
-+++ b/drivers/ata/sata_gemini.c
-@@ -422,7 +422,7 @@ static const struct of_device_id gemini_sata_of_match[] = {
- 	{
- 		.compatible = "cortina,gemini-sata-bridge",
- 	},
--	{},
-+	{ /* sentinel */ }
- };
- 
- static struct platform_driver gemini_sata_driver = {
-diff --git a/drivers/ata/sata_highbank.c b/drivers/ata/sata_highbank.c
-index b29d3f1d64b03317..cd375e4df9644e33 100644
---- a/drivers/ata/sata_highbank.c
-+++ b/drivers/ata/sata_highbank.c
-@@ -444,7 +444,7 @@ static struct scsi_host_template ahci_highbank_platform_sht = {
- 
- static const struct of_device_id ahci_of_match[] = {
- 	{ .compatible = "calxeda,hb-ahci" },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, ahci_of_match);
- 
-diff --git a/drivers/ata/sata_mv.c b/drivers/ata/sata_mv.c
-index 53446b997740d5fd..13d92b71e6659cda 100644
---- a/drivers/ata/sata_mv.c
-+++ b/drivers/ata/sata_mv.c
-@@ -4277,7 +4277,7 @@ static int mv_platform_resume(struct platform_device *pdev)
- static const struct of_device_id mv_sata_dt_ids[] = {
- 	{ .compatible = "marvell,armada-370-sata", },
- 	{ .compatible = "marvell,orion-sata", },
--	{},
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, mv_sata_dt_ids);
- #endif
-diff --git a/drivers/ata/sata_rcar.c b/drivers/ata/sata_rcar.c
-index 3d96b6faa3f0e1c6..1483d3efeb7e220e 100644
---- a/drivers/ata/sata_rcar.c
-+++ b/drivers/ata/sata_rcar.c
-@@ -857,7 +857,7 @@ static const struct of_device_id sata_rcar_match[] = {
- 		.compatible = "renesas,rcar-gen3-sata",
- 		.data = (void *)RCAR_GEN3_SATA
- 	},
--	{ },
-+	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, sata_rcar_match);
- 
+Note that this patchset is based on an earlier sent patchset
+for adding PDC controller support on SM8150 (see [1]).
+
+[1]. https://lore.kernel.org/linux-arm-msm/20220226184028.111566-1-bhupesh.sharma@linaro.org/T/
+
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Bhupesh Sharma (2):
+  clk: qcom: gcc: Add emac GDSC support for SM8150
+  clk: qcom: gcc-sm8150: Use ALWAYS_ON flag as a workaround for emac
+    gdsc
+
+Vinod Koul (3):
+  dt-bindings: net: qcom,ethqos: Document SM8150 SoC compatible
+  arm64: dts: qcom: sm8150: add ethernet node
+  arm64: dts: qcom: sa8155p-adp: Enable ethernet node
+
+ .../devicetree/bindings/net/qcom,ethqos.txt   |   4 +-
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts      | 144 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  27 ++++
+ drivers/clk/qcom/gcc-sm8150.c                 |  40 +++--
+ include/dt-bindings/clock/qcom,gcc-sm8150.h   |   1 +
+ 5 files changed, 203 insertions(+), 13 deletions(-)
+
 -- 
-2.25.1
+2.35.1
 
