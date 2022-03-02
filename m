@@ -2,109 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AB3E4CB2AB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 23:58:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D94C04CB350
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 01:35:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229652AbiCBW72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 17:59:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51316 "EHLO
+        id S229758AbiCBX4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 18:56:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229615AbiCBW71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 17:59:27 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0521216AF
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 14:58:34 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id i11so5370780lfu.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 14:58:33 -0800 (PST)
+        with ESMTP id S229744AbiCBX4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:56:38 -0500
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31056E02B
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 15:55:54 -0800 (PST)
+Received: by mail-yb1-xb33.google.com with SMTP id j2so6866850ybu.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 15:55:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I/L0yu6xWoay6PlawGPpd06J/A2WPkL2s2cqdaEK+Ks=;
-        b=b94OIzWbOWEGzrng+NGPHaIrx/8QeINkda6Ml263QN1J+oQbqRkOIt79judywV36nB
-         EBELVRi8yLkxbmFX9xDQBOzTD82Z8GHuMPr9QqAmkk/8aX4gGfrJMhf7vN/QEESU7Rja
-         5wGREPlwRjZtPgCOwYPgqYrpeFszqOv4ZyaMCnIwKmhVGQQJb7BWnoY/gYwyplXQ7cJ7
-         pDtSBof5k3cxKJQjQauif9RtTCMu7hwoSPUTNCH4yZsGSr4m0EQRl7un2VYmVI4Nj5zU
-         wB397Lrqu67l0iW2rxkW3I01a82yBW9G2DcU8LVMVAdxTf3Gs4KQUBGUjlefnJ5Q7eJB
-         INRA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k8nlddZ/AsXirg2qg8zuLLRb6b9AsuKxIWbTpdb5n7o=;
+        b=qXIu8G+NMa/j3lA6WJhGcAK/jWocTppZoFEO/KFj0GMqQrDp2ejDZ3JTUncuwYWsty
+         +JWzSgaefCaLjln+GG2L4gQx7furNHx7S0YRZYiRr4Z7GcrWrNPfWZVmqrCl23yFOenR
+         M8yu5kFkVQA0Y8nliv+nD74qds3iU2PZ1tj7Ll0p2XzwsGEGZqxETIEtOTugYK427ejq
+         g9n9ckCwhh24/M4IIhkIkDwxVxGLrs8b8U8GJ4ojJuQzF3njNBkeY85q5SrYoc1Rd4Mw
+         /29rFLGWzKT1TBT507hmvRF++2flnvnF/y6x+cs7UeRgMMaZYVZ1DfnQDBItstYrjby+
+         15Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I/L0yu6xWoay6PlawGPpd06J/A2WPkL2s2cqdaEK+Ks=;
-        b=tzYJm2pVras2AKm1Nz003dhUX2oK6svAi/TcKnT4bwJdPYCqM3CwdRCRWtT6spvWiJ
-         L+sEqSzIL8VEmnRVuYoXgWlXL+qj4k5UPUlwHHt/aPOtZ3rOuNMUPh+Ec4+fbY4F3TnE
-         G7XoG+c5DzmXK1qOUAiFqXj92yyUSi+BusrJ7xdz7aiXWctUN02ASuf1M4jUpf5b69xg
-         lGJ7KoDGjVBLPrfXwONMBqM++OAC5ecAWtjgcYP5r3huSzFAwxVZPof1gEePsmGOCNa1
-         kWEht07HneAxUQuwbrHy0WIkJZDc8Exb7B33/QMO2TYPKo24LvJFST102Wv3xHh/ApOH
-         U8IQ==
-X-Gm-Message-State: AOAM5318/pkZkz8ntioJhc5Qsi1DCWBok3hl8BR2RTqjcuJ2e+PSFQp6
-        Zx5ru8ZcXQzZz6Rg0N9RoDz3kg==
-X-Google-Smtp-Source: ABdhPJwwvQR0vD9FZ299QAiPm1IxiWVuAajuPYm5A9TWGw/1UDW6EZnSZpLduvd6UfFyY/mSiEZLoA==
-X-Received: by 2002:a05:6512:ba6:b0:42a:84ee:d9d9 with SMTP id b38-20020a0565120ba600b0042a84eed9d9mr20848149lfv.353.1646261659976;
-        Wed, 02 Mar 2022 14:54:19 -0800 (PST)
-Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
-        by smtp.gmail.com with ESMTPSA id x26-20020a05651c105a00b00246585ccd53sm54236ljm.75.2022.03.02.14.54.18
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=k8nlddZ/AsXirg2qg8zuLLRb6b9AsuKxIWbTpdb5n7o=;
+        b=xpsduAHDzXrshLhthiLo9ioCVzGx615CvKTWnHNd13HzRZzhKqG2qZqdxcQl9hSmX8
+         QwwM+hxw73p6zlcQkux8bNXzlWfzVE/9rj3mOFM27QZElePuOJNadX2ceKm7VmU3x9Zt
+         kC0459eM43fFX5RcqbXgpSvjsgNZhiQv2WOtRupsYzTVr+UwzkwTcHW4uXl+z6xJnP1r
+         uH95W6x46fwWYlRi9ie1yrg3CeFmFpT+yQIlp4TtnJtEeT3C1NeKR4HQy9+tZl1jYq5M
+         OZkFXx+961qOcVzFUfI5FOsNnFSQzZ/x9fzm8waGEzq9V2YfLYS9dLRrUKwjJ9b8SJNU
+         85Ng==
+X-Gm-Message-State: AOAM533aqEFsU75gQhEbfg+jTjhn2q2xA3GqKhvZ4TU2zY+pak2geVC/
+        dFvB95nMvUX3T8ks4m9L9iy0Y6ODuI0=
+X-Google-Smtp-Source: ABdhPJw12W9VdaIJJJr391d3MGiSvTAqRcSgmSWwUAN+4VMjCitlDiUa0OntL4gh7sCU8VDPUQJxCQ==
+X-Received: by 2002:a05:6830:1daa:b0:5af:2431:3764 with SMTP id z10-20020a0568301daa00b005af24313764mr17192831oti.27.1646263581254;
+        Wed, 02 Mar 2022 15:26:21 -0800 (PST)
+Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
+        by smtp.gmail.com with ESMTPSA id fs3-20020a056870f78300b000d75f1d9b89sm234925oab.54.2022.03.02.15.26.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 14:54:19 -0800 (PST)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: [PATCH v2 6/6] arm: dts: qcom-msm8974: Drop flags for mdss irqs
-Date:   Thu,  3 Mar 2022 01:54:11 +0300
-Message-Id: <20220302225411.2456001-6-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
-References: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
+        Wed, 02 Mar 2022 15:26:19 -0800 (PST)
+From:   Chris Morgan <macroalpha82@gmail.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
+        robh+dt@kernel.org, heiko@sntech.de, strit@manjaro.org,
+        mbrugger@suse.com, arnaud.ferraris@collabora.com,
+        knaerzche@gmail.com, zyw@rock-chips.com, zhangqing@rock-chips.com,
+        Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH 0/3 v4] rk808: Convert bindings to yaml
+Date:   Wed,  2 Mar 2022 17:26:09 -0600
+Message-Id: <20220302232612.25455-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The number of interrupt cells for the mdss interrupt controller is 1,
-meaning there should only be one cell for the interrupt number, not two.
-Drop the second cell containing (unused) irq flags.
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Fixes: 5a9fc531f6ec ("ARM: dts: msm8974: add display support")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom-msm8974.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Convert the rk808 bindings into yaml format. In order to accomplish
+this some bindings for the rk809 had to be updated to remove
+non-existent vcc inputs. Additionally, some bindings for the rk805
+needed to be updated to add a now-mandatory #clock-cells value.
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-index 412d94736c35..3b9af5e24907 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1495,7 +1495,7 @@ mdp: mdp@fd900000 {
- 				reg-names = "mdp_phys";
- 
- 				interrupt-parent = <&mdss>;
--				interrupts = <0 0>;
-+				interrupts = <0>;
- 
- 				clocks = <&mmcc MDSS_AHB_CLK>,
- 					 <&mmcc MDSS_AXI_CLK>,
-@@ -1530,7 +1530,7 @@ dsi0: dsi@fd922800 {
- 				reg-names = "dsi_ctrl";
- 
- 				interrupt-parent = <&mdss>;
--				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <4>;
- 
- 				assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
- 				                  <&mmcc PCLK0_CLK_SRC>;
+Changes from V3:
+ - yamllint, dt_binding_check, and dtbs_check now returns no errors for
+   arm and arm64.
+ - Updated rk809 bindings for the rk3399-pinebook-pro and the
+   rk3399-roc-pc to remove regulator inputs vcc13 and vcc14. These are
+   not valid regulators and appear to be holdovers from the original
+   rk3399 schematic.
+ - Updated rk805 bindings for the rv1108-elgin-r1, rv1108-evb, and
+   rk3328-a1 to add a now mandatory #clock-cells parameter.
+ - Made clock-output-names for rk805, rk809, and rk817 a max of 2 if
+   the #clock-cells is 1, and a max of 1 if the #clock-cells is 0.
+   Even though these PMICs only support a single clock output enforcing
+   this in the schema would require us to modify the driver.
+
+Changes from V2:
+ - Dropped language about battery. I'm keeping the commits entirely
+   separate.
+ - Added vddio-supply for rk809 and rk818, since after examining the
+   datasheet I can confirm such a supply exists.
+
+Changes from V1:
+ - Removed generic descriptions.
+ - Added maxItems to clock-output-names. Max items is 2 per the driver.
+ - Added unevaluatedProperties as false to regulators.
+ - Correct i2c node.
+ - Added note about the battery.
+
+Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
+
+Chris Morgan (3):
+  arm64: dts: rockchip: Remove vcc13 and vcc14 for rk808
+  dts: rockchip: Add #clock-cells value for rk805
+  dt-bindings: mfd: rk808: Convert bindings to yaml
+
+ .../devicetree/bindings/mfd/rk808.txt         | 465 ------------------
+ .../bindings/mfd/rockchip,rk805.yaml          | 219 +++++++++
+ .../bindings/mfd/rockchip,rk808.yaml          | 257 ++++++++++
+ .../bindings/mfd/rockchip,rk809.yaml          | 284 +++++++++++
+ .../bindings/mfd/rockchip,rk817.yaml          | 330 +++++++++++++
+ .../bindings/mfd/rockchip,rk818.yaml          | 282 +++++++++++
+ arch/arm/boot/dts/rv1108-elgin-r1.dts         |   1 +
+ arch/arm/boot/dts/rv1108-evb.dts              |   1 +
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts    |   1 +
+ .../boot/dts/rockchip/rk3399-pinebook-pro.dts |   2 -
+ .../boot/dts/rockchip/rk3399-roc-pc.dtsi      |   2 -
+ 11 files changed, 1375 insertions(+), 469 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
+
 -- 
-2.34.1
+2.25.1
 
