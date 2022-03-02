@@ -2,181 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 228E74CB18F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:48:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 43EC64CB199
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 22:54:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238669AbiCBVtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 16:49:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46302 "EHLO
+        id S238088AbiCBVzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 16:55:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234670AbiCBVs7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:48:59 -0500
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952EC3193E
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 13:48:15 -0800 (PST)
-Received: by mail-lf1-x129.google.com with SMTP id y24so5138540lfg.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 13:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OmEHlpCk9+kT+4UG18motyIrJrBLGArcs0YNOn66F5M=;
-        b=pdf0eNr+XEEhx6I7NBLOlzOXh63+Tgzj57OoXc2xEiLr52dDN2Iezc0x/79HwdlArL
-         AcPgvTMday3W8ntpZQMzdo9lUHcaPlEjl/B6Xb9hJYZqLtiAK1IN25puSG2r4LbVR6S5
-         kv2w6KiQuWddK6b30orD+iPZd5SFWrnaaHl7LW+arNb7MkCbjCFaTL05LJNKMKpz2rIx
-         utYiKKPWQtXPFVIh8tbe/uOIB+X91M5E47jJ/A0oTBzLODRri8QD6or/+GeyrbulYhUU
-         IqSEPbkEDhA/StOHjj8xs9elHvB2uXJgeRHStnGW2GMm8o260oE3K/8be+6+ISPmAmWF
-         dITw==
+        with ESMTP id S235341AbiCBVzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 16:55:07 -0500
+Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C7C35C863;
+        Wed,  2 Mar 2022 13:54:23 -0800 (PST)
+Received: by mail-oi1-f175.google.com with SMTP id z7so3071483oid.4;
+        Wed, 02 Mar 2022 13:54:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OmEHlpCk9+kT+4UG18motyIrJrBLGArcs0YNOn66F5M=;
-        b=aqOQ/Bfy19XJJyA/fhWdjibixTFWV38izHzb7ONUbNwbaVOBfh75oRIMnnkzuR2SY0
-         85/hwUQ/NWrP0NOne7CrHH7mz3cqdvrQJUezMH37YWdn4QExBxPHn/yTkRK/N1/A8moe
-         8JRtrJzgom4KfU2N+cxhhl2ZpcFqzV4LpmUa+qMssPHSDRXJs58SYsPPIXAnjKH5YWot
-         HqUWrXvlYia0z88vDTbMyyij4HaB+oj+EjVm5agGn0P7a00BNGo+WXQUTbsqyPmUNGWn
-         IGXH6guShmOyh1Co4bUMHfk8cdjS139hHGT+DrbRs2g0C1kAsIjcRcj/7Qe57BLx2AJB
-         R/2w==
-X-Gm-Message-State: AOAM531d4bJSVeGnCSLdyweHzh0klCfOxhPlZlSeIVmSODaeobuttrRF
-        fsFsqCfYzUWYSF5kNArKI399AXGXfcGH/kwDuVU1FA==
-X-Google-Smtp-Source: ABdhPJyrQGT67+E2Q0B8IWs/wD6tmHwf9aFFsYLSMb5RypgEguFXNl8rPDiBdZE24YYwgR7k2i2T5YU4Gl16CkxuhVY=
-X-Received: by 2002:a05:6512:490:b0:443:d65a:2bc8 with SMTP id
- v16-20020a056512049000b00443d65a2bc8mr19232653lfq.579.1646257693378; Wed, 02
- Mar 2022 13:48:13 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=FT7qXkd3XFxv8GYIIHo4RitAFBU5L9E0sYaLEAc3SV8=;
+        b=UpGheuEchrK5bQWBykeuE0tbdAOXXV7sNmsdp4zr2p8nWdGdZ2kTAaAUTWo1Lo1Ik8
+         Qw49U2lD+DKvP0jLWcmNr4lj2ry3B517UfdO1DL6wNIHcw4NaOECD7RHq4SJcGqiDGcz
+         vmiM1Kabu7HsiW99EP3kXuDrqj6TkA9vgyjE/WK8xuU5a80UaqLeDxFgZtU2gnQJpYxF
+         0RjkQrSqQuRzjKrYtwgYiBjyGyTbOjpO2TtHlQoCVBZ0dqrJuoha7EkcXt8RCKDl6j2U
+         BsDXyFf++IVPe8Z+RDH49qCCvYjpwYlgF3FGVQ5M5RcEaW34G3uM1iD2N2AlHS948VhP
+         mhmw==
+X-Gm-Message-State: AOAM531Ah8jDEAP9kbfYSokfP6JfoYwHCp6qQCnyLP3e6mY9QxDC1xjc
+        mC56kog8I+uy6wYZcwLZxw==
+X-Google-Smtp-Source: ABdhPJxECvNsWJt/n5xjiUpSjwKgUMd5ZuCLEID3xAjfwZicO5bFYzbFaHZ+FJejuPb9qOGrg3tA6Q==
+X-Received: by 2002:a05:6808:179b:b0:2d9:6b9b:b24e with SMTP id bg27-20020a056808179b00b002d96b9bb24emr1770709oib.149.1646258062522;
+        Wed, 02 Mar 2022 13:54:22 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i2-20020a056870c1c200b000d7355852b3sm172623oad.19.2022.03.02.13.54.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 13:54:21 -0800 (PST)
+Received: (nullmailer pid 125552 invoked by uid 1000);
+        Wed, 02 Mar 2022 21:54:20 -0000
+Date:   Wed, 2 Mar 2022 15:54:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tzung-Bi Shih <tzungbi@google.com>
+Cc:     devicetree@vger.kernel.org, robh+dt@kernel.org,
+        bleung@chromium.org, linux-kernel@vger.kernel.org,
+        chrome-platform@lists.linux.dev, groeck@chromium.org
+Subject: Re: [PATCH 3/5] dt-bindings: add google,cros-kbd-led-backlight
+Message-ID: <Yh/njNrNgy+MWtz0@robh.at.kernel.org>
+References: <20220214053646.3088298-1-tzungbi@google.com>
+ <20220214053646.3088298-4-tzungbi@google.com>
 MIME-Version: 1.0
-References: <20220302102705.15c32822@gandalf.local.home> <20220302193638.11034-1-ctshao@google.com>
-In-Reply-To: <20220302193638.11034-1-ctshao@google.com>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Wed, 2 Mar 2022 13:48:01 -0800
-Message-ID: <CAKwvOdkWcu5ZPADGieb1Vb+kTbfHNzFAa3FXTWC98xXtzuLwqQ@mail.gmail.com>
-Subject: Re: [PATCH v2] config: Allow kernel installation packaging to
- override pkg-config
-To:     Chun-Tse Shao <ctshao@google.com>
-Cc:     rostedt@goodmis.org, devicetree@vger.kernel.org,
-        frowand.list@gmail.com, jpoimboe@redhat.com,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        masahiroy@kernel.org, michal.lkml@markovi.net,
-        peterz@infradead.org, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-18.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220214053646.3088298-4-tzungbi@google.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 2, 2022 at 11:36 AM Chun-Tse Shao <ctshao@google.com> wrote:
->
-> Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
-> what pkg-config and parameters are used.
->
-> Signed-off-by: Chun-Tse Shao <ctshao@google.com>
-
-I'm ok with this patch; a quick grep though shows a few more open
-coded instances of pkg-config.  Should we fix those up, too? i.e.
-
-certs/Makefile:92:HOSTCFLAGS_extract-cert.o = $(shell pkg-config
---cflags libcrypto 2> /dev/null)
-certs/Makefile:93:HOSTLDLIBS_extract-cert = $(shell pkg-config --libs
-libcrypto 2> /dev/null || echo -lcrypto)
-scripts/kconfig/gconf-cfg.sh
-tools/perf/Makefile.perf
-tools/ in general
-
-
+On Mon, 14 Feb 2022 13:36:44 +0800, Tzung-Bi Shih wrote:
+> Signed-off-by: Tzung-Bi Shih <tzungbi@google.com>
 > ---
->  Makefile               | 3 ++-
->  scripts/Makefile       | 4 ++--
->  scripts/dtc/Makefile   | 6 +++---
->  tools/objtool/Makefile | 4 ++--
->  4 files changed, 9 insertions(+), 8 deletions(-)
->
-> diff --git a/Makefile b/Makefile
-> index daeb5c88b50b..f6c5bef7e141 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -430,6 +430,7 @@ else
->  HOSTCC = gcc
->  HOSTCXX        = g++
->  endif
-> +HOSTPKG_CONFIG = pkg-config
->
->  export KBUILD_USERCFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes \
->                               -O2 -fomit-frame-pointer -std=gnu89
-> @@ -525,7 +526,7 @@ KBUILD_LDFLAGS_MODULE :=
->  KBUILD_LDFLAGS :=
->  CLANG_FLAGS :=
->
-> -export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC
-> +export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
->  export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
->  export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
->  export KGZIP KBZIP2 KLZOP LZMA LZ4 XZ ZSTD
-> diff --git a/scripts/Makefile b/scripts/Makefile
-> index ce5aa9030b74..f084f08ed176 100644
-> --- a/scripts/Makefile
-> +++ b/scripts/Makefile
-> @@ -14,8 +14,8 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)   += insert-sys-cert
->  HOSTCFLAGS_sorttable.o = -I$(srctree)/tools/include
->  HOSTLDLIBS_sorttable = -lpthread
->  HOSTCFLAGS_asn1_compiler.o = -I$(srctree)/include
-> -HOSTCFLAGS_sign-file.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
-> -HOSTLDLIBS_sign-file = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
-> +HOSTCFLAGS_sign-file.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
-> +HOSTLDLIBS_sign-file = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
->
->  ifdef CONFIG_UNWINDER_ORC
->  ifeq ($(ARCH),x86_64)
-> diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-> index 95aaf7431bff..743fc08827ea 100644
-> --- a/scripts/dtc/Makefile
-> +++ b/scripts/dtc/Makefile
-> @@ -18,7 +18,7 @@ fdtoverlay-objs       := $(libfdt) fdtoverlay.o util.o
->  # Source files need to get at the userspace version of libfdt_env.h to compile
->  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
->
-> -ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
-> +ifeq ($(shell $(HOSTPKG_CONFIG) --exists yaml-0.1 2>/dev/null && echo yes),)
->  ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
->  $(error dtc needs libyaml for DT schema validation support. \
->         Install the necessary libyaml development package.)
-> @@ -27,9 +27,9 @@ HOST_EXTRACFLAGS += -DNO_YAML
->  else
->  dtc-objs       += yamltree.o
->  # To include <yaml.h> installed in a non-default path
-> -HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
-> +HOSTCFLAGS_yamltree.o := $(shell $(HOSTPKG_CONFIG) --cflags yaml-0.1)
->  # To link libyaml installed in a non-default path
-> -HOSTLDLIBS_dtc := $(shell pkg-config yaml-0.1 --libs)
-> +HOSTLDLIBS_dtc := $(shell $(HOSTPKG_CONFIG) yaml-0.1 --libs)
->  endif
->
->  # Generated files need one more search path to include headers in source tree
-> diff --git a/tools/objtool/Makefile b/tools/objtool/Makefile
-> index 92ce4fce7bc7..549acc5859e9 100644
-> --- a/tools/objtool/Makefile
-> +++ b/tools/objtool/Makefile
-> @@ -19,8 +19,8 @@ LIBSUBCMD             = $(LIBSUBCMD_OUTPUT)libsubcmd.a
->  OBJTOOL    := $(OUTPUT)objtool
->  OBJTOOL_IN := $(OBJTOOL)-in.o
->
-> -LIBELF_FLAGS := $(shell pkg-config libelf --cflags 2>/dev/null)
-> -LIBELF_LIBS  := $(shell pkg-config libelf --libs 2>/dev/null || echo -lelf)
-> +LIBELF_FLAGS := $(shell $(HOSTPKG_CONFIG) libelf --cflags 2>/dev/null)
-> +LIBELF_LIBS  := $(shell $(HOSTPKG_CONFIG) libelf --libs 2>/dev/null || echo -lelf)
->
->  all: $(OBJTOOL)
->
-> --
-> 2.35.1.574.g5d30c73bfb-goog
->
+>  .../chrome/google,cros-kbd-led-backlight.yaml | 35 +++++++++++++++++++
+>  .../bindings/mfd/google,cros-ec.yaml          |  3 ++
+>  2 files changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-kbd-led-backlight.yaml
+> 
 
-
--- 
-Thanks,
-~Nick Desaulniers
+Acked-by: Rob Herring <robh@kernel.org>
