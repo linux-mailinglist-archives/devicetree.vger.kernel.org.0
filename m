@@ -2,87 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5DAE4CACE3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 19:04:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B254CACE6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 19:04:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243279AbiCBSE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 13:04:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40310 "EHLO
+        id S244374AbiCBSFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 13:05:24 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244283AbiCBSE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 13:04:56 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4D2532DD;
-        Wed,  2 Mar 2022 10:04:11 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id i6-20020a4ac506000000b0031c5ac6c078so2806247ooq.6;
-        Wed, 02 Mar 2022 10:04:11 -0800 (PST)
+        with ESMTP id S244283AbiCBSFX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 13:05:23 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F08A43CA4F;
+        Wed,  2 Mar 2022 10:04:39 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id l25so2428870oic.13;
+        Wed, 02 Mar 2022 10:04:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=NyCZbFNG5zXvLkeeXgNZuh7pG1t1jvI75UWVDVGd5RM=;
-        b=4TB6mlsx22GljFbMfm0Zbc9BUlVxagZ+Fw7zaLXG9X0E81tkZN26vRylqOjBki0NTS
-         ARowXatAP8YOGo//40JhOCm1OA0NYwMKMr+6BIxSkZbdzV7c+CzWiXDzMfAkx7vVXiqR
-         E58J3WVSiknwi3QM1CPT5ifpFgH+D0T1oLmDUSYGsLThwalYw1RwUUbk7i0ehOepsc/f
-         gZHw4D5dWUkmf2XniwKglT1sv0uOMCKwLGe2bzm1htVh26yxEF/puV2NlR+yb5WEJaxE
-         0d4Tv4v0cBuNjQUE+hf/X5BgjGiCPbiX/g+HRHE64We8n6ZjbLqi3u9TcxwNZw0JhTQG
-         4skw==
-X-Gm-Message-State: AOAM532hTA3+ecgxvDG7eEBcPYilshKaO7xTWQWo9VmEmi+Y2JmAn7V/
-        iSOuINR5q/HjBawf2tnrFA==
-X-Google-Smtp-Source: ABdhPJxRfEvne9Olzfj87R4/ZAFsMzyq/AgkwsOQIj7de/21zewdDmDo8cR0oklkbOky7y2+ovYPKg==
-X-Received: by 2002:a05:6870:f611:b0:d6:d3ad:75d0 with SMTP id ek17-20020a056870f61100b000d6d3ad75d0mr796616oab.101.1646244251160;
-        Wed, 02 Mar 2022 10:04:11 -0800 (PST)
+        bh=SKMQkGeL8hSEJHjE1ly5n4/Lmb0Jg4MK9h9Z9NR67z0=;
+        b=Sj+X2ZvOkQ9xdGiEIbXorlfZqauxyI/KMAeawyLOA1bQ/JFqy5Mv8i8NHp04XmKo5/
+         yYzFNTbma3Mr6DUR6Mfbp5FL7yTZsZQc8iXn8eHUsg5Mbo+xfMAniXRZGUROnria+m4/
+         e07n10sW2iQWlL8qAinEKT8yxbqtjOJafgooD9vD/yQcsTqxgUdjugbzpt8/GIJHW/kB
+         zbjo13Y3kzz68v7sHYqejBMQT/LOXEUHgqg2wqbXKcvwnwFzhB1oGW43RqOuOSCXMj4H
+         hi/ESqxCoehIB5yaz2BeTjb5Fp7nwYlvaueRNWJDruTHf7DcEAHw+Bl4PmBGgjq8H24W
+         2kVg==
+X-Gm-Message-State: AOAM531nW5lt6/F6YeIIdw9ix/pGHWhqezmjlqSAyFn+/xZF3Jkx8HlX
+        soypGqKGz1QMSNL5dEXcgWVbwMr3dA==
+X-Google-Smtp-Source: ABdhPJx8L8MF5QsuehmfjzHb5fwFctMBiii9azFP6XwyZYEd2AHJmRwIVDs1XD/pPfVZjR2OZ8Kbbw==
+X-Received: by 2002:a05:6808:13d6:b0:2d6:7f1a:9390 with SMTP id d22-20020a05680813d600b002d67f1a9390mr921148oiw.159.1646244279294;
+        Wed, 02 Mar 2022 10:04:39 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id gz3-20020a056870280300b000c2e2d0a326sm7449557oab.38.2022.03.02.10.04.09
+        by smtp.gmail.com with ESMTPSA id w5-20020a4a5d05000000b0031c67a9b54bsm8082255ooa.45.2022.03.02.10.04.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 10:04:10 -0800 (PST)
-Received: (nullmailer pid 3973831 invoked by uid 1000);
-        Wed, 02 Mar 2022 18:04:09 -0000
-Date:   Wed, 2 Mar 2022 12:04:09 -0600
+        Wed, 02 Mar 2022 10:04:37 -0800 (PST)
+Received: (nullmailer pid 3974426 invoked by uid 1000);
+        Wed, 02 Mar 2022 18:04:36 -0000
+Date:   Wed, 2 Mar 2022 12:04:36 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org, Loic Poulain <loic.poulain@linaro.org>,
-        David Airlie <airlied@linux.ie>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Stephen Boyd <swboyd@chromium.org>,
-        freedreno@lists.freedesktop.org
-Subject: Re: [RESEND PATCH] dt-bindings: display/msm: add missing brace in
- dpu-qcm2290.yaml
-Message-ID: <Yh+xmSaLHc14ZNnV@robh.at.kernel.org>
-References: <20220302001410.2264039-1-dmitry.baryshkov@linaro.org>
+To:     "Sicelo A. Mhlongo" <absicsz@gmail.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: st,st-sensors add LIS302DL
+Message-ID: <Yh+xtBrEal111OVO@robh.at.kernel.org>
+References: <20220301225432.60844-1-absicsz@gmail.com>
+ <20220301225432.60844-2-absicsz@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220302001410.2264039-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220301225432.60844-2-absicsz@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 03:14:10AM +0300, Dmitry Baryshkov wrote:
-> Add missing brace in dpu-qcm2290.yaml. While we are at it, also fix
-> indentation for another brace, so it matches the corresponding line.
+On Wed, Mar 02, 2022 at 12:54:30AM +0200, Sicelo A. Mhlongo wrote:
+> Update st,st-sensors bindings for STMicroelectronics LIS302DL variant
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Cc: Loic Poulain <loic.poulain@linaro.org>
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Sicelo A. Mhlongo <absicsz@gmail.com>
 > ---
-> Didn't include freedreno@ in the first email, so resending.
-> ---
->  Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-
-Thanks for fixing.
+>  Documentation/devicetree/bindings/iio/st,st-sensors.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
 Acked-by: Rob Herring <robh@kernel.org>
