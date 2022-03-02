@@ -2,249 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2793F4CA100
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE07E4CA111
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:45:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233775AbiCBJmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:42:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36038 "EHLO
+        id S240613AbiCBJp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:45:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232019AbiCBJmX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:42:23 -0500
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com (mail-eopbgr150053.outbound.protection.outlook.com [40.107.15.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F57035DE4
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:41:40 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c+kgP8XnXau2DQMdeWUVr+0WbFiDgnagMhS41mF2SB6dSMSpr0RMMTYhMTAlr6EfALkmtNerPDbKPyGHwbI4kiVLM4Do4uSZB1oTnkNaqIl6QO7S7hv69Nvou3K13FcyV2wLxrJqH8uzf0lBSKj1iCneNREA2N1UrtrYX/484Jlljdqb3tQ2aIOh4GP4aZ6Xj97lhGUnOuB45Y0f/x8qFRXBYqJyprgE4ZKtLxr/XqvCf6g7H+oi5A7CiUCq2zWdh3UTK0xipPKiq2mrhQkMw42SBaiCedC2UCN9XQCtGkLDR40/9/etZG7crYneNdZM9pzivUKNZPBuTi/P5b3P6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7d2N4nrON3p3Stm/A+nuG4ue1eoE6b5mJ3QJfkprQIU=;
- b=QOFygTQuJoHGnmZ+lAgcpS76dM83pi//aCmbIlvJhGbuC4ZicxxxAM4fDkpbkWyLiegD64l8he96rBteWLL+/th5diI1wGtHyLx4D0/QvW2Hbc39tEQz1X3Ig4uEALBsd0wQ7odv2uKKCaFnL7AtN9EGXp0+G+3/hbKAE3diQw5A5eNmsOgT5Xe030Qq/erLVWqvpNsdgVJDN69eN6Fq0aXltM/7X3vaxuVbeWVCIlMIyZwD54afEZ5wEDQXfxbNSY5fMbYIWybNYy70hgCLrFkDhqILhRFF/xjK0DpvxOxKar06JP4d2EFJweVTJzkvr5MoI5/f9l3JNX18B2ls1w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7d2N4nrON3p3Stm/A+nuG4ue1eoE6b5mJ3QJfkprQIU=;
- b=VUhUiIrdsI8yRtHAQiXr0Ddw2a7GyxVuL3ZPUVJdSwrG3E8RoGnKGew3mAhEKRJNug6Uz6Y5Rh7YyCvaTSVhvLdMr9Fnzwg/HNXwS3oXf9r0VuEyPxG1Vd6w3sNpmMHiRp+I9ThBy8MmiPbe7rehkyaWwK66bZHcMo0kXBmBsg8=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VI1PR04MB4253.eurprd04.prod.outlook.com (2603:10a6:803:3e::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 2 Mar
- 2022 09:41:37 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::6117:74ed:7550:b3b3]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::6117:74ed:7550:b3b3%6]) with mapi id 15.20.5038.014; Wed, 2 Mar 2022
- 09:41:36 +0000
-Message-ID: <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-From:   Liu Ying <victor.liu@oss.nxp.com>
-To:     Lucas Stach <l.stach@pengutronix.de>, Marek Vasut <marex@denx.de>,
-        Adam Ford <aford173@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
-Date:   Wed, 02 Mar 2022 17:41:39 +0800
-In-Reply-To: <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
-References: <20220228004605.367040-1-marex@denx.de>
-         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
-         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
-         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
-         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
-         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
-         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
-         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
-         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
-         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
-         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
-         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.36.4-0ubuntu1 
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR01CA0035.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::13) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+        with ESMTP id S236428AbiCBJp4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:45:56 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 605DD7EDA3;
+        Wed,  2 Mar 2022 01:45:10 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 411D01F410A9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646214309;
+        bh=zrznIpBFL8LiCItblwyMn7DORd4urUBkf/OPWsULH8s=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=RWxbwhcNszQIibXpghBJ1fzAbnZAgqcSmSelbPLSfSIwt7OXxk9yODmdAFrjXk2KL
+         kS1JCVexs9zuid8LlT1s/WEbQcTI8mnKEsoV0VAqrDiSLn3eAIh6uNOzAw51UFJ1W1
+         TNf/vIHnU7s9cp/BH6wBhd9F9nqApEE/EQc52d7svGIN5kOl8O8rRlPQkvMVfjFeLt
+         tm8OM2E/F6H1/RGQUAGju+kIir9elWnhAmwVtAoIE84KAuGtvigKg1u6G2ihFZFbFy
+         Jei4dABf+536KNiQ8ugLQs9gJcKZNUBnT39S9Kpr5LQwhIQA+u8C/GAgv38dmrO25S
+         7Bk2fbYCNuMiw==
+Message-ID: <dee15f20-0f7d-58c6-728b-3e14f84f0833@collabora.com>
+Date:   Wed, 2 Mar 2022 10:45:06 +0100
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 1b956355-a3f1-4f31-05c2-08d9fc30d82c
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4253:EE_
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB4253A5B7AA09DB75CE4D0257D9039@VI1PR04MB4253.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XeX3KE0pRsTRFMjmlv3uFiNVXm0obW7+ZTUyXkOSIy6HoWRjgsx6DR2kAuQmpNr61YIPPEcOkJK0rW8XSnSoC75v1Czh97VtvoBxAK4naWKKdHSLQb/WYS+7rleEhggxcP6uPBwZUKonRLV1gYr4fsUzUVyH6tlDaySR/kUvjzx97bpVuXxkYTgtfZLHzwfusTHcPdS/FMLZJVy7oMS62UzEgFOgJbmva2gf1kNM//bZIj7+SQkZoKz8hok2yI4vjbza+Dd3TxjRSX4Xv5+2vL61pCsJxLBJKffQc26Dh97fgT2YGvuYPkzIZ1MjlXFZownMHEFqBLJDH11UkRfhNV2rVv37xKcAcHG5AWf/ppRZxCdxIoWh9nMtSk6QZFmOefjjJimSiHLyQ8XyTNbcuggjxyQsOB6NCpLteyQGmBDE5TS+DKSs2X6vHNRBxa2EwetS1++FXe70cLpTJrS9fkedO27m1OgwHrrcd7U8KipycWTli+G0Q83N2+w/K7CTA9Ehf0OmBNn/6yjo16GLOxyfNbIS9mFpNr1yZqv+GR+o2KHdzrh8/mhsEA151LadgLxOnkEkM9EUhZFskh+LVUDPEa8fge05KfnyWOo5oSc45KpjfQ4BEg7aGoaSKDcyMTyw7fS+zubGOLeQqRlWXyvIl5Z8M0k7cerwC9zM+RUqYY/ooEfbj6a7Qc1kH9tSJC5eOzXmHs4UumdxsBKCtw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2616005)(8936002)(186003)(26005)(54906003)(316002)(66556008)(66476007)(52116002)(6512007)(53546011)(66946007)(6506007)(4326008)(5660300002)(8676002)(6486002)(86362001)(83380400001)(2906002)(38100700002)(38350700002)(508600001)(110136005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QmY1ZGpSM3ZsZVlzMjNVV0kwZUpnYi9pK2tGQTFpQTNSV1JneUFISnU0QkNi?=
- =?utf-8?B?N3ltNFZIZWg1UXNVSUltUkhTTmJPK0xocDc3QmtFSTE1VmtVS3cyVTgrRnZk?=
- =?utf-8?B?dk1LN0wxN0FwYm5qUXBWVHRvcGRRalhSL2o1SkNRYjRjc0RJYUZXY2xPcGZ2?=
- =?utf-8?B?bWt2UlNUV0NyQlBvNmE2enU4emVOV1I3alZQcWhBaTlVREZJUXo2ME9kUG05?=
- =?utf-8?B?Ni94dUd1cWVIckxBQUdOWVJ3MVJNd2lIdTF4SFNLSm94ZFY1d0xhdmYySC9E?=
- =?utf-8?B?VHVDTnRIRkNEejdPUThQb0FuTC9NNzlqbUhoR3NsTXdvTyswKzRncEM1eGdS?=
- =?utf-8?B?MjRPazRFWlFIUmJOMDVlMVZCbXVNaXJmb0YxMTdKWjk2SjZVU0NKdmxBUjly?=
- =?utf-8?B?Tzd3NWFkbFdLTklIVjEzdHkxd044Z3UyZUFjRUlxTUw2YlpqVGpQTUFiaUVZ?=
- =?utf-8?B?cFpnSmVkMFFFbjBFVm1FYW5QYXZ1c29kYlRRWHNGVlo3ZTl0ZHZIb1RCTGdt?=
- =?utf-8?B?TnUwMnFncTFhMXUzNVdlQmQyQ1RtOWFDMEh5cHpkVGNmaC9vMFpRWUpXYmth?=
- =?utf-8?B?cGsxMFV1VWNiK0xTODlGbzNCUkF0OHZ2Tll3RTYydm53VEh3WHJOYWhBcmFp?=
- =?utf-8?B?YWxtOGdiU2hmWTZnREtJZWJZVHpTUVlGam8vZnU1VDdOSW4vanJLOUtvZDRS?=
- =?utf-8?B?UEdGZXFpZmFLcVo5VCt0WjE4WlRYcWFPbDRCT3VqNnh2ZW0vYjBNeXk4U1l3?=
- =?utf-8?B?NFFrd2piakJtM2ZwUVA4ellmdEZFdlJWNGlvR25FdGdheEJ3RFhWQnFEbXEr?=
- =?utf-8?B?ZUdma0NuSmRwWkhtV2ZDMjZXb3ozd2xLRzVNU2d4bG8rajFtU2gxME14MzN0?=
- =?utf-8?B?ZEpnNE8yTXU4SDU2eThvUFQ0K2JZRWhkdnkvVXovOVNEeVJxUmNwYXN3Vnpr?=
- =?utf-8?B?cVFZT29qV2w0UHo2Ni8rT0N3RDdYRTh5R1pKNW5xeWUxUmNOa2o0MUlpS2kw?=
- =?utf-8?B?b3gvVjBRYlVLY2Uxc3IzOEcxVmJaMFBPV3d6SWxLdE8rR0lPN0pqYXkzNDd0?=
- =?utf-8?B?WDJGTXIwa3JmQytKZTNWUFd6ZGlSU2cwL3gwVGt0b0VBc2dDV3RzbExDdmt0?=
- =?utf-8?B?MEVxakRiWjlSVExGejFVNGRPb2FnWFVSNnFlenZRNnA0Y21YOHp1WFlvcTlj?=
- =?utf-8?B?SzN6WGZCRHNtUlRmN1JNQXBCT3dCQkZMaGxKUmtLaFZsSmEyZTgxM3pSdmhn?=
- =?utf-8?B?WWUrSkl0UEFxaFNWdCs0TkxCcGpqQUhqWVNjT3lXSUt0Y0hNNGRSTk9lT05v?=
- =?utf-8?B?MFdHWmlQcmdydXNBYVNYR0FackloUE5wNFFKcWI0RFRSaXg5YmdROGtobU10?=
- =?utf-8?B?RkJneS9ZaGRlbkYwTTNOMlBzSENTSEQreW1uTXlRUkR6ck5VMDhtZzVsUkJl?=
- =?utf-8?B?SHJNR0V1VlhkSFRoN3RTUFZyY2ZqaWJXc2VJOWRROTZzZzlwY3M1eTVLMDZw?=
- =?utf-8?B?NTFMT0VFNEFuTmc2L1JxSEJ1Q2pzc24rc3BUTUd4MHJNQWFMcnU3c2Yxd21k?=
- =?utf-8?B?L0FLSVhUb292WXJScE5kd2kzenV1MEszdi91bEJubVNzYis1bFNkQnNCWTBx?=
- =?utf-8?B?SzUzQ3RFMUMzMWl5TWlBeXJralBkWHY0VWlqMTkwb3ZSMlJ3emVOSjJWR1gz?=
- =?utf-8?B?bFVZazFiKy9TZUZiZ2x0VmxGQnRGd2pMbHYwVHhzcVZkTXVjU3d3M3lrejVv?=
- =?utf-8?B?OFJET0lBNjRlR00xUGVta1AyOFRnOHpGMFhuSHVsQVVvL09YMFV6MXpyaGcw?=
- =?utf-8?B?aDlDUVdlei9BVTRYcTRaYkR4cDZYNU5GM0NubzV5SVhIYmo4NXpsN21paTRF?=
- =?utf-8?B?YmRiejQyeGRkeHBmUVBaOVZUY0dRRkJHZERlTDlUaHR6ZkRvTmFIS2Y2MHBh?=
- =?utf-8?B?alU2TnhISHdCd3lXQUpQa0NlcFZXdEQ5ZTI2em85UWRsbXRzN2V3RnB4b21z?=
- =?utf-8?B?TlI1QkVvNU1NWS9EQnh4RVpsbVErT0xQYXczZ1FOY0s1am4xU3dnTG10aEQy?=
- =?utf-8?B?Y0JmejRNK0Vlemd1aVVpRzR0QzBScFlobnUvUDNDQ01abHd6a2QwTEt2d0sw?=
- =?utf-8?B?ZG9kSjkyMExFTFJuQ1k5d3Y2L2V3K0Z1SDVuSDJkNS84VUFhWTVpWlRpY0FH?=
- =?utf-8?Q?RuCNUISEb4pp7KKAqLWMcuk=3D?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1b956355-a3f1-4f31-05c2-08d9fc30d82c
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2022 09:41:36.8934
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mof2o+LpJDJ2DahEIFXZy0OM11zhdfk8irUjgaGr6RSuuTEkYWWLRjsssmc8WO0Pin/W2VsMV4MHCU3ItRPLLg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4253
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [RESEND,V7,3/6] media: mtk-jpegenc: manage jpegenc multi-hardware
+Content-Language: en-US
+To:     "kyrie.wu" <kyrie.wu@mediatek.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tzung-Bi Shih <tzungbi@chromium.org>
+Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Tomasz Figa <tfiga@chromium.org>, xia.jiang@mediatek.com,
+        maoguang.meng@mediatek.com, srv_heupstream@mediatek.com
+References: <1645693637-627-1-git-send-email-kyrie.wu@mediatek.com>
+ <1645693637-627-4-git-send-email-kyrie.wu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <1645693637-627-4-git-send-email-kyrie.wu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
-> Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
-> > On 3/1/22 14:18, Lucas Stach wrote:
-> > > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
-> > > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
-> > > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
-> > > > > > On 3/1/22 11:04, Lucas Stach wrote:
-> > > > > > 
-> > > > > > Hi,
-> > > > > > 
-> > > > > > [...]
-> > > > > > 
-> > > > > > > > Given the two totally different IPs, I don't see bugs of IP control
-> > > > > > > > logics should be fixed for both drivers. Naturally, the two would
-> > > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
-> > > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
-> > > > > > > > 'if/else' checks(barely no common control code), which is hard to
-> > > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
-> > > > > > > > and 'LCDIF'.
-> > > > > > > 
-> > > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
-> > > > > > > boilerplate anymore with all the helpers we have available in the
-> > > > > > > framework today.
-> > > > > > 
-> > > > > > I did write a separate driver for this IP before I spent time merging
-> > > > > > them into single driver, that's when I realized a single driver is much
-> > > > > > better and discarded the separate driver idea.
-> > > > > > 
-> > > > > > > The IP is so different from the currently supported LCDIF controllers
-> > > > > > > that I think trying to support this one in the existing driver actually
-> > > > > > > increases the chances to break something when modifying the driver in
-> > > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
-> > > > > > > on having a separate driver for the i.MX8MP LCDIF.
-> > > > > > 
-> > > > > > If you look at both controllers, it is clear it is still the LCDIF
-> > > > > > behind, even the CSC that is bolted on would suggest that.
-> > > > > 
-> > > > > Yes, but from a driver PoV what you care about is not really the
-> > > > > hardware blocks used to implement something, but the programming model,
-> > > > > i.e. the register interface exposed to software.
-> > > > > 
-> > > > > > I am also not happy when I look at the amount of duplication a separate
-> > > > > > driver would create, it will be some 50% of the code that would be just
-> > > > > > duplicated.
-> > > > > > 
-> > > > > Yea, the duplicated code is still significant, as the HW itself is so
-> > > > > simple. However, if you find yourself in the situation where basically
-> > > > > every actual register access in the driver ends up being in a "if (some
-> > > > > HW rev) ... " clause, i still think it would be better to have a
-> > > > > separate driver, as the programming interface is just different.
-> > > > 
-> > > > I tend to agree with Marek on this one.  We have an instance where the
-> > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
-> > > > but different enough where each SoC has it's own set of tables and
-> > > > some checks.   Lucas created the framework, and others adapted it for
-> > > > various SoC's.  If there really is nearly 50% common code for the
-> > > > LCDIF, why not either leave the driver as one or split the common code
-> > > > into its own driver like lcdif-common and then have smaller drivers
-> > > > that handle their specific variations.
-> > > 
-> > > I don't know exactly how the standalone driver looks like, but I guess
-> > > the overlap is not really in any real HW specific parts, but the common
-> > > DRM boilerplate, so there isn't much point in creating a common lcdif
-> > > driver.
-> > 
-> > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
-> > that, there is some 400 LoC which are specific to old LCDIF and this 
-> > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
-> > shared boilerplate that would be duplicated .
+Il 24/02/22 10:07, kyrie.wu ha scritto:
+> From: kyrie wu <kyrie.wu@mediatek.com>
 > 
-> That is probably ignoring the fact that the 8MP LCDIF does not support
-> any overlays, so it could use the drm_simple_display_pipe
-> infrastructure to reduce the needed boilerplate.
+> manage each hardware information, including irq/clk/power.
+> the hardware includes HW0 and HW1.
+> 
+> Signed-off-by: kyrie wu <kyrie.wu@mediatek.com>
+> ---
+>   drivers/media/platform/mtk-jpeg/Makefile      |  11 +-
+>   .../media/platform/mtk-jpeg/mtk_jpeg_core.c   |  76 +++++---
+>   .../media/platform/mtk-jpeg/mtk_jpeg_core.h   |  37 ++++
+>   .../media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c | 168 ++++++++++++++++++
+>   4 files changed, 267 insertions(+), 25 deletions(-)
+> 
 
-The drm_simple_display_pipe infrastructure is probably too simple for
-i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
-embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
-outputs respectively. To use that infrastructure means there would be
-three dri cards in all. However, the three LCDIF instances can be
-wrapped by the one drm device, which is not the boilerplate code in the
-current mxsfb driver may handle.
+Hello Kyrie,
+
+despite my v6 review, where I also gave you solutions for an issue with
+more than one example, this v7 still didn't get one out of the many
+requested fixes.
+
+I'm sure that this was not intentional, so it's not a problem...
+
+In any case, this gave me the opportunity to see some more issues inside
+of this patch: let's get it perfect!
+
+
+...snip...
+
+> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
+> index 3e4811a41ba2..31e941ef84bd 100644
+> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
+> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h
+> @@ -9,6 +9,7 @@
+>   #ifndef _MTK_JPEG_CORE_H
+>   #define _MTK_JPEG_CORE_H
+>   
+> +#include <linux/clk.h>
+>   #include <linux/interrupt.h>
+>   #include <media/v4l2-ctrls.h>
+>   #include <media/v4l2-device.h>
+> @@ -60,6 +61,7 @@ enum mtk_jpeg_ctx_state {
+>    * @cap_q_default_fourcc:	capture queue default fourcc
+>    */
+>   struct mtk_jpeg_variant {
+> +	bool is_multihw;
+
+Thanks for this fix, this name makes it way clearer!
+
+>   	struct clk_bulk_data *clks;
+>   	int num_clks;
+>   	struct mtk_jpeg_fmt *formats;
+> @@ -74,6 +76,38 @@ struct mtk_jpeg_variant {
+>   	u32 cap_q_default_fourcc;
+>   };
+>   
+> +enum mtk_jpegenc_hw_id {
+> +	MTK_JPEGENC_HW0,
+> +	MTK_JPEGENC_HW1,
+> +	MTK_JPEGENC_HW_MAX,
+> +};
+> +
+> +/**
+> + * struct mtk_vcodec_clk - Structure used to store vcodec clock information
+> + */
+> +struct mtk_jpegenc_clk {
+> +	struct clk_bulk_data *clks;
+> +	int	clk_num;
+
+Why is clk_num tabbed?
+
+> +};
+> +
+> +/**
+> + * struct mtk_jpegenc_comp_dev - JPEG COREX abstraction
+> + * @dev:		        JPEG device
+> + * @plat_dev:		    platform device data
+> + * @reg_base:		    JPEG registers mapping
+> + * @master_dev:		    mtk_jpeg_dev device
+> + * @pm:	                mtk_jpegenc_pm
+> + * @jpegenc_irq:	    jpeg encode irq num
+
+You're using tabulations *and* spaces.... please use either, not both, as it's
+not necessary. Besides, this is also producing bad indentation.
+
+> + */
+> +struct mtk_jpegenc_comp_dev {
+> +	struct device		*dev;
+> +	struct platform_device *plat_dev;
+> +	void __iomem		*reg_base;
+> +	struct mtk_jpeg_dev *master_dev;
+> +	struct mtk_jpegenc_clk	venc_clk;
+> +	int jpegenc_irq;
+> +};
+> +
+>   /**
+>    * struct mtk_jpeg_dev - JPEG IP abstraction
+>    * @lock:		the mutex protecting this structure
+> @@ -100,6 +134,9 @@ struct mtk_jpeg_dev {
+>   	void __iomem		*reg_base;
+>   	struct delayed_work job_timeout_work;
+>   	const struct mtk_jpeg_variant *variant;
+> +
+> +	void __iomem *reg_encbase[MTK_JPEGENC_HW_MAX];
+> +	struct mtk_jpegenc_comp_dev *enc_hw_dev[MTK_JPEGENC_HW_MAX];
+>   };
+>   
+>   /**
+> diff --git a/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c b/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
+> index a2b6e1f85c2d..3d967bff1352 100644
+> --- a/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
+> +++ b/drivers/media/platform/mtk-jpeg/mtk_jpeg_enc_hw.c
+> @@ -5,11 +5,27 @@
+>    *
+>    */
+>   
+> +#include <linux/clk.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+>   #include <linux/io.h>
+>   #include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/slab.h>
+> +#include <media/media-device.h>
+>   #include <media/videobuf2-core.h>
+>   #include <media/videobuf2-dma-contig.h>
+> +#include <media/videobuf2-v4l2.h>
+> +#include <media/v4l2-mem2mem.h>
+> +#include <media/v4l2-dev.h>
+> +#include <media/v4l2-device.h>
+> +#include <media/v4l2-fh.h>
+> +#include <media/v4l2-event.h>
+>   
+> +#include "mtk_jpeg_core.h"
+>   #include "mtk_jpeg_enc_hw.h"
+>   
+>   static const struct mtk_jpeg_enc_qlt mtk_jpeg_enc_quality[] = {
+> @@ -30,6 +46,21 @@ static const struct mtk_jpeg_enc_qlt mtk_jpeg_enc_quality[] = {
+>   	{.quality_param = 97, .hardware_value = JPEG_ENC_QUALITY_Q97},
+>   };
+>   
+> +#if defined(CONFIG_OF)
+> +static const struct of_device_id mtk_jpegenc_drv_ids[] = {
+> +	{
+> +		.compatible = "mediatek,mt8195-jpgenc0",
+> +		.data = (void *)MTK_JPEGENC_HW0,
+> +	},
+> +	{
+> +		.compatible = "mediatek,mt8195-jpgenc1",
+> +		.data = (void *)MTK_JPEGENC_HW1,
+> +	},
+
+I've already pointed out an issue with this in your v6 series:
+
+https://patchwork.kernel.org/comment/24726607/
+
+Besides, I want to add up that the SoC distinction is already done in the
+parent node which, in MT8195's case, is named "mediatek,mt8195-jpgenc", so
+you really don't have to redo this distinction "from scratch" here in the
+sub-driver, as you can just get your information from the parent device/node.
+
+So, just "mediatek,jpgenc-hw" should be totally enough here.
+
+Please fix this for v8.
+
+
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mtk_jpegenc_drv_ids);
+> +#endif
+> +
+>   void mtk_jpeg_enc_reset(void __iomem *base)
+>   {
+>   	writel(0, base + JPEG_ENC_RSTB);
+
+...snip...
+
+> +
+> +static int mtk_jpegenc_hw_probe(struct platform_device *pdev)
+> +{
+> +	struct mtk_jpegenc_clk *jpegenc_clk;
+> +	struct mtk_jpeg_dev *master_dev;
+> +	struct mtk_jpegenc_comp_dev *dev;
+> +	int ret, comp_idx;
+> +
+> +	struct device *decs = &pdev->dev;
+> +
+> +	if (!decs->parent)
+> +		return -EPROBE_DEFER;
+> +
+> +	master_dev = dev_get_drvdata(decs->parent);
+> +	if (!master_dev)
+> +		return -EPROBE_DEFER;
+> +
+> +	dev = devm_kzalloc(&pdev->dev, sizeof(*dev), GFP_KERNEL);
+> +	if (!dev)
+> +		return -ENOMEM;
+> +
+> +	dev->plat_dev = pdev;
+> +
+> +	jpegenc_clk = &dev->venc_clk;
+> +
+> +	jpegenc_clk->clk_num = devm_clk_bulk_get_all(&pdev->dev,
+> +						     &jpegenc_clk->clks);
+
+Using dev_err_probe() looks more appropriate here:
+
+	if (jpegenc_clk->clk_num < 0)
+		return dev_err_probe(&pdev->dev, jpegenc_clk->clk_num,
+				     "Failed to get jpegenc clocks\n");
+
+
+> +	if (jpegenc_clk->clk_num < 0) {
+> +		dev_err(&pdev->dev, "Failed to get jpegenc clock count\n");
+> +		return jpegenc_clk->clk_num;
+> +	}
+> +
+> +	dev->reg_base =
+> +		devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(dev->reg_base)) {
+> +		ret = PTR_ERR(dev->reg_base);
+> +		goto err;
+
+There's no need for any goto here, as you're not reverting any operation.
+
+Hence, you can just:
+
+	if (IS_ERR(dev->reg_base))
+		return PTR_ERR(dev->reg_base);
+
+> +	}
+> +
+> +	ret = mtk_jpegenc_hw_init_irq(dev);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to register JPEGENC irq handler.\n");
+
+You are already printing an error inside of mtk_jpegenc_hw_init_irq(), so printing
+another one here is redundant.
+Either remove the prints in the function or, more appropriately, remove this print.
+
+Also, same "goto" comment applies here, you can simply return ret.
+
+> +		goto err;
+> +	}
+> +
+> +	comp_idx = (enum mtk_jpegenc_hw_id)of_device_get_match_data(decs);
+> +	if (comp_idx < MTK_JPEGENC_HW_MAX) {
+
+`comp_idx` is a bit misleading, this is not using the component framework.
+
+....but this will probably be refactored after following the suggestion that
+I gave you in v6 and again now.
+
+> +		master_dev->enc_hw_dev[comp_idx] = dev;
+> +		master_dev->reg_encbase[comp_idx] = dev->reg_base;
+> +		dev->master_dev = master_dev;
+> +	} else {
+> +		dev_err(&pdev->dev, "Failed to get_match_data.\n");
+> +		goto err;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, dev);
+> +	pm_runtime_enable(&pdev->dev);
+> +
+> +	return 0;
+> +
+> +err:
+
+This label serves no real purpose: please remove.
+
+> +	return ret;
+> +}
+> +
+
+
 
 Regards,
-Liu Ying
-
-> > > As you brought up the blk-ctrl as an example: I'm all for supporting
-> > > slightly different hardware in the same driver, as long as the HW
-> > > interface is close enough. But then I also opted for a separate 8MP
-> > > blk-ctrl driver for those blk-ctrls that differ significantly from the
-> > > others, as I think it would make the common driver unmaintainable
-> > > trying to support all the different variants in one driver.
-> > 
-> > But then you also need to maintain two sets of boilerplate, they 
-> > diverge, and that is not good.
-> 
-> I don't think that there is much chance for bugs going unfixed due to
-> divergence in the boilerplate, especially if you use the simple pipe
-> framework to handle most of that stuff for you, which gives you a lot
-> of code sharing with other simple DRM drivers.
-> 
-> Regards,
-> Lucas
-> 
-> 
-
+Angelo
