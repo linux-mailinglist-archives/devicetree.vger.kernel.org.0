@@ -2,90 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC3F4CA131
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:48:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 95A274CA13F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 10:49:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233563AbiCBJsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 04:48:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51078 "EHLO
+        id S239131AbiCBJuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 04:50:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240661AbiCBJsp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:48:45 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9C6E29CB6
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 01:48:01 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        with ESMTP id S235450AbiCBJue (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 04:50:34 -0500
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 034C0B91F0;
+        Wed,  2 Mar 2022 01:49:49 -0800 (PST)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [80.241.60.233])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 5E5603F607
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 09:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646214480;
-        bh=YDwov9hZPxOfFvFJ4bntrUYDDCSZQA6/kiFH4/f2u8U=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=pAp4jYAVXSV9cYnxGGscuBFHI6KzBvB2b3MPeOtbSkJbpRy+VBdrYbOqaBgnZYThQ
-         Jr0fyBdKL+Rp4xQYng+CUIuE/K9y3fB6eNdd/qn6fmWFlWukr9B2LbwOmNLIz2Yt/1
-         aucanrNoYRpN0IBjeLtTjfLeAQCpb61/Lg7VxfKuhjVMg4ikdEvHxLiRp0H0SGgmU1
-         X9pxzhve/+LiV2/suiu9QiFlMTzRwxbTRDYYmdVaTc2GDa/vGTQW9Soo7pLFjXIHdH
-         TF/qvUPbzJe2K/2xaWE1CnZfKHAoPy/HdB53vS9GU6YsW0zSuM7AR0nvwKPOpvfeGJ
-         UtN2o9/UX7tcw==
-Received: by mail-ej1-f69.google.com with SMTP id sa22-20020a1709076d1600b006ce78cacb85so720706ejc.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 01:48:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=YDwov9hZPxOfFvFJ4bntrUYDDCSZQA6/kiFH4/f2u8U=;
-        b=zrt4Pn1TG7dh6o22kDiFh7pYTekCbup3wJIe84GJoIvmcqcE32NGz4VcSUquD92RPe
-         htKqmS1Y8atEsM/RcOehX9Js7tYb6kPrmDm12mNnwt3oZ1QJhuH0NC3w2/FI1Hsmv4Qa
-         4hKoe6SnGeFyOwk7HCGM3jR145z28UYzGYqB4lxJ8+yIFZSLxw63sNIz5p/yjqvUP41X
-         GegGXtUvBH/EHPzD2heZtS88tF/wbzfU1dc7qOa3MHXckVMAwnfxrsxz966XknNJIx0b
-         jwo3pp7T3Kb5Au0AM1GArTpg//tr2BR9qTo31KUfYKNMIy0nK5iU2tuVnsj0EZcUoJ5M
-         Crfw==
-X-Gm-Message-State: AOAM532dlkaf+UsY3N8GQUTeYbX+5QsthFbj3TjyW9pJdCtn/DaUEFHH
-        Lqa7uFrH6v/Hy2m0yzR0DR4JrrgwXN9vRcMj+ZPjHbjML1q168ZeVgPfMquqgtbs4AcN34Ll8VK
-        0BlwwRjCvAk+8zGfFje+lbvpnxyPyhstxxNgYv3c=
-X-Received: by 2002:a17:906:b2c6:b0:6cf:e599:6b81 with SMTP id cf6-20020a170906b2c600b006cfe5996b81mr21825565ejb.578.1646214480096;
-        Wed, 02 Mar 2022 01:48:00 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwO8JN6K/qUNTGO/ulb3ap2nw6FIqgubS/vcKSkfPUzgYCmSRSQ7dXnf8ZAZnCeWE8ssUrhNA==
-X-Received: by 2002:a17:906:b2c6:b0:6cf:e599:6b81 with SMTP id cf6-20020a170906b2c600b006cfe5996b81mr21825547ejb.578.1646214479935;
-        Wed, 02 Mar 2022 01:47:59 -0800 (PST)
-Received: from [192.168.0.136] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id si13-20020a170906cecd00b006cded0c5ee2sm6241313ejb.61.2022.03.02.01.47.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 01:47:59 -0800 (PST)
-Message-ID: <cb654f98-3b4f-0b1c-77e6-22fe03bbed85@canonical.com>
-Date:   Wed, 2 Mar 2022 10:47:58 +0100
+        by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4K7q8r0hYCz9sTn;
+        Wed,  2 Mar 2022 10:49:48 +0100 (CET)
+From:   Marcello Sylvester Bauer <sylv@sylv.io>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sylv.io; s=MBO0001;
+        t=1646214586;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=p97zePmp9d+cmIP2kHmhFQpvfjnvmtO8AdQThs+dFK8=;
+        b=s+33/JYWZdAj57Xj18ul4qV9xcx4mhTjBA8VuTXp8kvndZU8fmi+PwnCBURlNmnbrmf/l0
+        MJ7p4pZittWO6A1/c6ZqHB13l8/9sJqatK1BFbfoVZM9V5URikVeMhTvHESyafupKQObuf
+        iUDJOrOEshz5AJh8JBRRKWOkjcNZVWrh6m4vmCtTmZXur8eqrjBAEPIgylA+RrzzOTNQ9K
+        E/qzM1AErVeGRlwH0wLNRZF59E6EylJf/PxJxp1zWXmoEcTJ08faxgyMWZaiDCZFPaLQRS
+        jELOqk6FFODN7S4V3DpetjkgptkNN2uD/Jn15RLzvGWr8261EIbOaJvaSef3Qg==
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        Patrick Rudolph <patrick.rudolph@9elements.com>,
+        Marcello Sylvester Bauer <sylv@sylv.io>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v4 1/3] dt-bindings: trivial-devices: Add xdpe11280
+Date:   Wed,  2 Mar 2022 10:49:19 +0100
+Message-Id: <81c0523ba790965a371d267bb1944652d80f5f72.1646214248.git.sylv@sylv.io>
+In-Reply-To: <cover.1646214248.git.sylv@sylv.io>
+References: <cover.1646214248.git.sylv@sylv.io>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 4/5] dt-bindings: Add rk3568-dwc3-ahci compatible
-Content-Language: en-US
-To:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com
-References: <20220301152421.57281-1-linux@fw-web.de>
- <20220301152421.57281-5-linux@fw-web.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220301152421.57281-5-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,21 +57,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 01/03/2022 16:24, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add SoC specific compatible for rk3568 ahci controller
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v4: new Patch
->  Documentation/devicetree/bindings/ata/ahci-platform.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+Add Infineon Multi-phase Digital Controller XDPE11280.
 
-Here and in previous bindings patches - you have wrong subject. I
-already said it with v3. I gave you exact subject prefix to use.
+Signed-off-by: Marcello Sylvester Bauer <sylv@sylv.io>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 1c49bbc654ee..da929cb08463 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -137,6 +137,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
++            # Infineon Multi-phase Digital VR Controller xdpe11280
++          - infineon,xdpe11280
+             # Infineon Multi-phase Digital VR Controller xdpe12254
+           - infineon,xdpe12254
+             # Infineon Multi-phase Digital VR Controller xdpe12284
+-- 
+2.35.1
 
-Best regards,
-Krzysztof
