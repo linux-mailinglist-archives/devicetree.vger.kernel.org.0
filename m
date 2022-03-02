@@ -2,149 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5D04C9E7D
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 08:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D26844C9E8A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 08:45:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234638AbiCBHlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 02:41:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60250 "EHLO
+        id S239897AbiCBHqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 02:46:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231681AbiCBHlg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 02:41:36 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 68C106E298;
-        Tue,  1 Mar 2022 23:40:49 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.90,148,1643641200"; 
-   d="scan'208";a="112076584"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 02 Mar 2022 16:40:48 +0900
-Received: from localhost.localdomain (unknown [10.226.93.45])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 928A041FB5BF;
-        Wed,  2 Mar 2022 16:40:46 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: r9a07g044c2-smarc: Enable usb2.0
-Date:   Wed,  2 Mar 2022 07:40:43 +0000
-Message-Id: <20220302074043.21525-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S239876AbiCBHqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 02:46:00 -0500
+Received: from mail-pl1-x62d.google.com (mail-pl1-x62d.google.com [IPv6:2607:f8b0:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF4BAEF0E
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 23:45:18 -0800 (PST)
+Received: by mail-pl1-x62d.google.com with SMTP id e13so879838plh.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 23:45:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=F9EtQ8yCDPdY6oJUsT6nUpz0TTVJMffkSKOyUDKlf6g=;
+        b=dNj/gUws35uaqKdhHY3lu4/zgchEG0cqtQXu3vowcftUBbkQXDkZR/CJz0J4FqCnym
+         YHsfvEv3jRC6KpDCQY61D7QW5Q8oVYrwz+W/iVgktqhA3/qjboT8klvbsxZN4hYr0ITE
+         pix8SawqbDMwN93+4g22NeRi8YOW2YoF2EUAS99h2CYBbGwL7ESNnIiBnzojb6OKOG3P
+         00zgyWDWKDTGg1u3jvQXsogb/NO6DTpgHC56HONXtaW39xDBqLBzAABe0+5ETvNga1ug
+         bKu3nMCvrCIIZdAfh6U1gwvcnicUJ872A6zvrzzSd8mI8IHX6dNmZa5jVZf67asZkh+N
+         QQ2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=F9EtQ8yCDPdY6oJUsT6nUpz0TTVJMffkSKOyUDKlf6g=;
+        b=vzzGdM8LmoYnlIRcYHbVBcnCx4w5Db7bSTd8y5F8ShzV9Bo2MHMtUc4kmDCrbQYXA1
+         mBbkqpbSElIHyTMXQsX+ILcGH5Rg8eWWaUdqe1BvpAgH+tZyhqsSQzOXKx8h7ZoO+WX7
+         zHOPU+YoiEdUWC2aHpTK4/LE6q4rKHQ/Sdfa0lE9ktba2E3hhPL3AL7u6aRFl7BLfEi7
+         z3EwukfVSf2T/B2JRBAkfpdnfhlrV14Y2aki3649OUrazHHuDOxHnoehaxjb5k+sw/00
+         hxwx2qKzlHQkGDVgUvnnZrDFWBFN3+pEeQyblmXjqmM0axQq2YrVuMpmUm0FhSHC8H6u
+         5+oQ==
+X-Gm-Message-State: AOAM533mbHchJ60n4t1Lxw2egPK+Hf9JFkhFVo23pm04Y+psk+OKIoTc
+        WlMs1ldVj7tDE6VlDJZODztwRg==
+X-Google-Smtp-Source: ABdhPJwYMu1C28ILx7eUzFRPd7Lj2NxP1BHQ8w5qbPr6FmhQ/Gj7s683H8KNjPhBk+XXAQ0mNbiCjA==
+X-Received: by 2002:a17:902:b696:b0:151:7777:2211 with SMTP id c22-20020a170902b69600b0015177772211mr9195582pls.46.1646207117588;
+        Tue, 01 Mar 2022 23:45:17 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id b3-20020a056a00114300b004e099ec2871sm20035153pfm.154.2022.03.01.23.45.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 23:45:17 -0800 (PST)
+Date:   Wed, 2 Mar 2022 13:15:15 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] OPP: Add support of "opp-microwatt" for advanced
+ EM registration
+Message-ID: <20220302074515.dqzoutfiobildiph@vireshk-i7>
+References: <20220301093524.8870-1-lukasz.luba@arm.com>
+ <20220301093524.8870-4-lukasz.luba@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220301093524.8870-4-lukasz.luba@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
-X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable usb2.0 host/device functionality on RZ/G2LC SMARC EVK
-by deleting phyrst, usb2_phy{0,1}, ehci/ohci{0,1} and hsusb
-entries from board DT, so that entries from common dtsi kick
-in and make USB2.0 functionality operational.
+On 01-03-22, 09:35, Lukasz Luba wrote:
+>  /**
+>   * dev_pm_opp_of_register_em() - Attempt to register an Energy Model
+>   * @dev		: Device for which an Energy Model has to be registered
+> @@ -1517,6 +1567,12 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>  		goto failed;
+>  	}
+>  
+> +	/* First, try to find more precised Energy Model in DT */
+> +	if (_of_has_opp_microwatt_property(dev)) {
+> +		em_cb.active_power = _get_dt_power;
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
- .../boot/dts/renesas/r9a07g044c2-smarc.dts    | 46 -------------------
- .../dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 11 +++++
- 2 files changed, 11 insertions(+), 46 deletions(-)
+You can also do (to fix the warning) this instead:
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 5a5cea82a5d9..d5254b16b0b3 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -14,24 +14,6 @@
- 	compatible = "renesas,smarc-evk", "renesas,r9a07g044c2", "renesas,r9a07g044";
- };
- 
--&ehci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ehci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&hsusb {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
- &i2c0 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
-@@ -50,22 +32,6 @@
- 	status = "disabled";
- };
- 
--&ohci0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&ohci1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&phyrst {
--	status = "disabled";
--};
--
- &spi1 {
- 	/delete-property/ pinctrl-0;
- 	/delete-property/ pinctrl-names;
-@@ -77,15 +43,3 @@
- 	/delete-property/ pinctrl-names;
- 	status = "disabled";
- };
--
--&usb2_phy0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
--
--&usb2_phy1 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index 37ff2091582e..5f5ec21e655c 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -90,5 +90,16 @@
- 		pins = "AUDIO_CLK1", "AUDIO_CLK2";
- 		input-enable;
- 	};
-+
-+	usb0_pins: usb0 {
-+		pinmux = <RZG2L_PORT_PINMUX(4, 0, 1)>, /* VBUS */
-+			 <RZG2L_PORT_PINMUX(5, 0, 1)>, /* OVC */
-+			 <RZG2L_PORT_PINMUX(5, 1, 1)>; /* OTG_ID */
-+	};
-+
-+	usb1_pins: usb1 {
-+		pinmux = <RZG2L_PORT_PINMUX(42, 0, 1)>, /* VBUS */
-+			 <RZG2L_PORT_PINMUX(42, 1, 1)>; /* OVC */
-+	};
- };
- 
+em_cb = EM_DATA_CB(_get_dt_power);
+
+Similar for the else part.
+
+> +		goto register_em;
+> +	}
+> +
+>  	np = of_node_get(dev->of_node);
+>  	if (!np) {
+>  		ret = -EINVAL;
+> @@ -1538,6 +1594,7 @@ int dev_pm_opp_of_register_em(struct device *dev, struct cpumask *cpus)
+>  		goto failed;
+>  	}
+>  
+> +register_em:
+>  	ret = em_dev_register_perf_domain(dev, nr_opp, &em_cb, cpus, true);
+>  	if (ret)
+>  		goto failed;
+> -- 
+> 2.17.1
+
 -- 
-2.17.1
-
+viresh
