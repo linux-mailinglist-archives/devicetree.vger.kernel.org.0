@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6F674C9C99
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 05:42:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DA9E64C9CC2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 05:53:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239478AbiCBEm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 1 Mar 2022 23:42:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32958 "EHLO
+        id S234873AbiCBExu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 1 Mar 2022 23:53:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239448AbiCBEm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 23:42:57 -0500
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2176AB0D02
-        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 20:42:12 -0800 (PST)
-Received: by mail-lj1-x233.google.com with SMTP id r20so643176ljj.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 20:42:12 -0800 (PST)
+        with ESMTP id S232138AbiCBExt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 1 Mar 2022 23:53:49 -0500
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 051A049CA9
+        for <devicetree@vger.kernel.org>; Tue,  1 Mar 2022 20:53:05 -0800 (PST)
+Received: by mail-pj1-x102f.google.com with SMTP id cx5so767492pjb.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Mar 2022 20:53:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=ARb9aZbZYQidMZDix9fUW3Av4Mah2x7ZZrBUNsk6at4=;
-        b=Ui0F+FwAxNQGCcr+MK8Tnq1KQ0qaMmHuzF6LZXTr3eztgnjoUXPYcMGt+AqlOmZTsD
-         1ISV7oisWR8C2GeMPmPqXCuUj660uH5dlRCxpcz1Wa70xPdFO25i07S14grHOUO/jg/y
-         J+rigqiZwwhTGOpv0VG03paDhLmFpnTKBDE7/G4rcsQEWDD7rq3/OyCYm9dOnkQsA+t1
-         9Oo0JK6/cOq183AjJxL+GAXbGDvCh63EibNA+5XE/a9clc7vt+YRzBexNKS98Dobncwv
-         qrK5dZkbB78Hs9sRyzugSLmBq5nGNvkE8p9IwtlWQ9IEPPwPsjD7XCvkpifm1B8Thp1W
-         m4DQ==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=R9ewq8IKyII02hpWaWH/lhlLsChnLN+g08ELQd2cLms=;
+        b=jLwsIKRZQ3dzZRSk3NsjHqE2fINfKJmqaC/Kldfn6PXM8Is3wF9nZ+yS09RNAcVA8c
+         IOYqpy3AOzWIGgoeARfHCZXE/xVYUL25CanBoi+ars1ASqj9NzJJbs29FpLTipzqqoaE
+         fPJt4VKO3BrdZr6BdaCA0oYtnKmpO/E6rRHqu8Ocjd8Vbvze2xISnWsCYUueArfb0Yuk
+         JQN1X2yjxjtp1lj4Lp2JyD8Pho8LZZnrF0Uk7qvKww4v0Y8Q+Y2D38o33EjFfpDTy/NC
+         isFilFs8RdfxB/58iW5vcL77a5ZV0ixjxTRCct7ez+YvdkhWZtTBCTWnbNtn6DHDpMAJ
+         O1ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ARb9aZbZYQidMZDix9fUW3Av4Mah2x7ZZrBUNsk6at4=;
-        b=VqQiBHzKRzwya+Pv5VmzEr2W/g9iQMhZFcc4qtCajvwOWA6OFLo8VGiZERtgjsgoAd
-         373CV3soh58hinmtKNklj6b0ckGaVT/th6OrCJRqoUqgrvMQ6VGhy1BCu8aI/mVAS+1Y
-         N/zjFyi9NlOp7/Rs3xUnSd0gO0hU3KQhsY5CFe1OdLdLwF1jXFKntM4WGx/5eoo592Ug
-         fhntkoYEtmJA/MzWIJ02R+HrQ/22kDRAehEIxhDCWFTgFqiU5C+bOLIjtQsTA1GchT5j
-         08LLIfKZgQSsirEbPV+GeOduMbQRqxkqky+TL6+JS8no7XLapVc0vThQci7lk1PRAB+w
-         BRGQ==
-X-Gm-Message-State: AOAM533pm3pKLNoP1LOGo56XKovUKdDZCo8nf8/YfBtLmQH/dVKttFne
-        4x4yySZHeA92T6jdXmxusF5OGA==
-X-Google-Smtp-Source: ABdhPJzGqSVw9ionhPrDsFLgT7RWE3koUXv8w8EmA7YxIS9JBdPF35KMr2+UEyOsDQ5faKxMYNI/yg==
-X-Received: by 2002:a2e:b52f:0:b0:23e:2fe6:af10 with SMTP id z15-20020a2eb52f000000b0023e2fe6af10mr18517670ljm.46.1646196130359;
-        Tue, 01 Mar 2022 20:42:10 -0800 (PST)
-Received: from ?IPV6:2001:470:dd84:abc0:5258:5528:7624:3edd? ([2001:470:dd84:abc0:5258:5528:7624:3edd])
-        by smtp.gmail.com with ESMTPSA id k7-20020a0565123d8700b00443cec880e5sm1838432lfv.4.2022.03.01.20.42.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Mar 2022 20:42:09 -0800 (PST)
-Message-ID: <ea6d7b5b-04e5-9333-cb9e-34c230bf1cbc@linaro.org>
-Date:   Wed, 2 Mar 2022 07:42:08 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=R9ewq8IKyII02hpWaWH/lhlLsChnLN+g08ELQd2cLms=;
+        b=3+xc+LZnD4hZTmWRRRDBfm/+8GC3kl4yS1um3lSCelvEuVa9s9c/AadBnFmXyBFoWU
+         Rh4R2Q6fplZ66OLYVUyT6Z3bSH0TZP24Ylfylvd4b058fTj5oz3AY5oHCfaYKYQ2SyR2
+         IbRePNRIbwwKQsr2lb7VENJjYIiuigz34r9j8Us2RhowWdk2YtNMxYJzEpcvH3I5Wyre
+         k1igtqRNMZEgLYr97t+98US9/+KXkJO529YkarDs3sa04TWESKoTnWEa+QfU2pX2+i/H
+         OB2MlJvDjb96nDHYA6cMYmTtbvg0IbZqfZONckn4jURGVoO5Z1ZcuTfbPufzqaRP4KMJ
+         3toA==
+X-Gm-Message-State: AOAM531VFDU5uvdaSSn6oj2s/l4KD13quxGHgtbkCuG66m35/dnweNPn
+        Peuj3YEBfV6uRzsjP9mrnr8qLg==
+X-Google-Smtp-Source: ABdhPJxJ1RwhIoAz0SQKaLPZQViq70gdhaqIbQCWIugJ4u1o2z9iIDQ0avf6a/E8q2g55qxnaq6/Sw==
+X-Received: by 2002:a17:902:8ec7:b0:14a:c442:8ca2 with SMTP id x7-20020a1709028ec700b0014ac4428ca2mr29106038plo.12.1646196784471;
+        Tue, 01 Mar 2022 20:53:04 -0800 (PST)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id e14-20020a056a001a8e00b004e136d54a15sm19675601pfv.105.2022.03.01.20.53.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Mar 2022 20:53:03 -0800 (PST)
+Date:   Wed, 2 Mar 2022 10:23:01 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-kernel@vger.kernel.org, dietmar.eggemann@arm.com,
+        rafael@kernel.org, daniel.lezcano@linaro.org, nm@ti.com,
+        sboyd@kernel.org, mka@chromium.org, dianders@chromium.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] OPP: Add support of "opp-microwatt" for advanced
+ EM registration
+Message-ID: <20220302045301.fq6nolscdfd5wvyo@vireshk-i7>
+References: <20220301093524.8870-1-lukasz.luba@arm.com>
+ <20220301093524.8870-4-lukasz.luba@arm.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v2 2/2] drm/msm/dpu: Issue MDSS reset during
- initialization
-Content-Language: en-GB
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220302012931.4107196-1-bjorn.andersson@linaro.org>
- <20220302012931.4107196-2-bjorn.andersson@linaro.org>
- <CAA8EJppiNbJhrdFgJ0sESBM5m3oyazS-8dG8919xdZu50fZ8aQ@mail.gmail.com>
- <Yh7aAMZWJPjAeC1V@ripper>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <Yh7aAMZWJPjAeC1V@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220301093524.8870-4-lukasz.luba@arm.com>
+User-Agent: NeoMutt/20180716-391-311a52
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,195 +75,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 05:44, Bjorn Andersson wrote:
-> On Tue 01 Mar 17:47 PST 2022, Dmitry Baryshkov wrote:
+On 01-03-22, 09:35, Lukasz Luba wrote:
+> The Energy Model (EM) can be created based on DT entry:
+> 'dynamic-power-coefficient'. It's a 'simple' EM which is limited to the
+> dynamic power. It has to fit into the math formula which requires also
+> information about voltage. Some of the platforms don't expose voltage
+> information, thus it's not possible to use EM registration using DT.
 > 
->> On Wed, 2 Mar 2022 at 04:27, Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
->>>
->>> It's typical for the bootloader to bring up the display for showing a
->>> boot splash or efi framebuffer. But in some cases the kernel driver ends
->>> up only partially configuring (in particular) the DPU, which might
->>> result in e.g. that two different data paths attempts to push data to
->>> the interface - with resulting graphical artifacts.
->>>
->>> Naturally the end goal would be to inherit the bootloader's
->>> configuration and provide the user with a glitch free handover from the
->>> boot configuration to a running DPU.
->>>
->>> But as implementing seamless transition from the bootloader
->>> configuration to the running OS will be a considerable effort, start by
->>> simply resetting the entire MDSS to its power-on state, to avoid the
->>> partial configuration.
->>>
->>> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->>> ---
->>>
->>> Changes since v1:
->>> - Rather than trying to deconfigure individual pieces of the DPU, reset the
->>>    entire block.
->>>
->>>   drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c | 18 ++++++++++++++++++
->>>   drivers/gpu/drm/msm/msm_drv.c            |  4 ++++
->>>   drivers/gpu/drm/msm/msm_kms.h            |  1 +
->>>   3 files changed, 23 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
->>> index b10ca505f9ac..419eaaefe606 100644
->>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
->>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_mdss.c
->>> @@ -7,6 +7,7 @@
->>>   #include <linux/irqchip.h>
->>>   #include <linux/irqdesc.h>
->>>   #include <linux/irqchip/chained_irq.h>
->>> +#include <linux/reset.h>
->>>   #include "dpu_kms.h"
->>>
->>>   #define to_dpu_mdss(x) container_of(x, struct dpu_mdss, base)
->>> @@ -31,6 +32,7 @@ struct dpu_mdss {
->>>          void __iomem *mmio;
->>>          struct clk_bulk_data *clocks;
->>>          size_t num_clocks;
->>> +       struct reset_control *reset;
->>>          struct dpu_irq_controller irq_controller;
->>>   };
->>>
->>> @@ -197,10 +199,18 @@ static void dpu_mdss_destroy(struct msm_mdss *mdss)
->>>          dpu_mdss->mmio = NULL;
->>>   }
->>>
->>> +static int dpu_mdss_reset(struct msm_mdss *mdss)
->>> +{
->>> +       struct dpu_mdss *dpu_mdss = to_dpu_mdss(mdss);
->>> +
->>> +       return reset_control_reset(dpu_mdss->reset);
->>> +}
->>> +
->>>   static const struct msm_mdss_funcs mdss_funcs = {
->>>          .enable = dpu_mdss_enable,
->>>          .disable = dpu_mdss_disable,
->>>          .destroy = dpu_mdss_destroy,
->>> +       .reset = dpu_mdss_reset,
->>>   };
->>>
->>>   int dpu_mdss_init(struct platform_device *pdev)
->>> @@ -227,6 +237,13 @@ int dpu_mdss_init(struct platform_device *pdev)
->>>          }
->>>          dpu_mdss->num_clocks = ret;
->>>
->>> +       dpu_mdss->reset = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
->>> +       if (IS_ERR(dpu_mdss->reset)) {
->>> +               ret = PTR_ERR(dpu_mdss->reset);
->>> +               DPU_ERROR("failed to acquire mdss reset, ret=%d", ret);
->>> +               goto reset_parse_err;
->>> +       }
->>> +
->>>          dpu_mdss->base.dev = &pdev->dev;
->>>          dpu_mdss->base.funcs = &mdss_funcs;
->>>
->>> @@ -252,6 +269,7 @@ int dpu_mdss_init(struct platform_device *pdev)
->>>   irq_error:
->>>          _dpu_mdss_irq_domain_fini(dpu_mdss);
->>>   irq_domain_error:
->>> +reset_parse_err:
->>>   clk_parse_err:
->>>          if (dpu_mdss->mmio)
->>>                  devm_iounmap(&pdev->dev, dpu_mdss->mmio);
->>> diff --git a/drivers/gpu/drm/msm/msm_drv.c b/drivers/gpu/drm/msm/msm_drv.c
->>> index 129fa841ac22..7595f83da3f1 100644
->>> --- a/drivers/gpu/drm/msm/msm_drv.c
->>> +++ b/drivers/gpu/drm/msm/msm_drv.c
->>> @@ -388,6 +388,10 @@ static int msm_drm_init(struct device *dev, const struct drm_driver *drv)
->>>          if (ret)
->>>                  return ret;
->>>
->>> +       /* Issue a reset of the entire MDSS */
->>> +       if (priv->mdss && priv->mdss->funcs->reset)
->>> +               priv->mdss->funcs->reset(priv->mdss);
->>> +
->>
->> I think this is incorrect. In this way reset happens after all
->> subdevice are probed. They might have programmed some state of the
->> corresponding block. The clocks are already registered, so the clock
->> framework will be out of sync.
+> This patch aims to fix it. It introduces new implementation of the EM
+> registration callback. The new mechanism relies on the new OPP feature
+> allowing to get power (which is coming from "opp-microwatt" DT property)
+> expressed in micro-Watts.
 > 
-> I went back and forth through the drivers and I believe at least the
-> idea is that we probe all the drivers, which will acquire some
-> resources.
-> 
-> Then in bind() we actually start to access the hardware (and acquire
-> more resources, for some reason).
+> The patch also opens new opportunity to better support platforms, which
+> have a decent static power. It allows to register 'advanced' EM (based
+> on real power measurements) which models total power (static + dynamic),
+> so better reflects real HW.
 
-DSI clock init happens in the dsi_clk_init(), called from 
-msm_dsi_host_inti(), dsi_init(), dsi_dev_probe(). But it's not the major 
-problem.
-
-All the PHYs do not use component framework, be it the DSI PHY or HDMI 
-PHY. So at the time you call MDSS reset, the PHYs are already 
-initialized, the clocks are registered in the clock subsystem, etc.
-Performing a reset will put the hardware out of sync with the Linux kernel.
-
-So, if you'd like to perform a reset in the msm_drm_init(), we'd have to 
-modify DSI to perform some parts of init later. And to move PHYs to also 
-use the component framework. And I'm not sure if that won't break the 
-dispcc, the way it gets the DSI clocks.
-
-> 
->> I think the reset should happen before calling of_platform_populate(),
->> so the device state is consistent with the driver.
->>
-> 
-> Perhaps I'm misunderstanding the component framework, but I was under
-> the impression that if any of the subcomponents fails to probe because
-> of lacking resources, this could be printed on the efifb before we reset
-> the hardware. Making errors slightly more user friendly.
-
-Yes, I understand why did you place the call in msm_drm_init().
-
-> 
-> I.e. in the timeframe between of_platform_populate() and
-> component_bind_all() below...
-> 
-> 
-> But if you believe I'm incorrect on the assumptions about the hardware
-> not being accessed before this point, I can move the reset before
-> of_platform_populate() - this is the last piece needed to have
-> functional eDP on sc8180x.
-> 
->> Also see the https://git.linaro.org/people/dmitry.baryshkov/kernel.git/log/?h=dpu-mdss-rework,
->> which reworks the mdss driver and mdss probing.
->>
-> 
-> There seems to be some room for reducing duplication between the two
-> drivers, so this seems reasonable.
-> 
-> Regards,
-> Bjorn
-> 
->>>          /* Bind all our sub-components: */
->>>          ret = component_bind_all(dev, ddev);
->>>          if (ret)
->>> diff --git a/drivers/gpu/drm/msm/msm_kms.h b/drivers/gpu/drm/msm/msm_kms.h
->>> index 2a4f0526cb98..716a34fca1cd 100644
->>> --- a/drivers/gpu/drm/msm/msm_kms.h
->>> +++ b/drivers/gpu/drm/msm/msm_kms.h
->>> @@ -205,6 +205,7 @@ struct msm_mdss_funcs {
->>>          int (*enable)(struct msm_mdss *mdss);
->>>          int (*disable)(struct msm_mdss *mdss);
->>>          void (*destroy)(struct msm_mdss *mdss);
->>> +       int (*reset)(struct msm_mdss *mdss);
->>>   };
->>>
->>>   struct msm_mdss {
->>> --
->>> 2.33.1
->>>
->>
->>
->> -- 
->> With best wishes
->> Dmitry
-
+Advanced :(
 
 -- 
-With best wishes
-Dmitry
+viresh
