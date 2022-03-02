@@ -2,279 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F8204CA513
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 13:44:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C554CA545
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 13:53:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241872AbiCBMon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 07:44:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53792 "EHLO
+        id S236980AbiCBMy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 07:54:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239297AbiCBMom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 07:44:42 -0500
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBD19C1CA7
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 04:43:58 -0800 (PST)
-Received: by mail-qt1-x835.google.com with SMTP id s15so1430886qtk.10
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 04:43:58 -0800 (PST)
+        with ESMTP id S234165AbiCBMy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 07:54:26 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C38C590CC4;
+        Wed,  2 Mar 2022 04:53:42 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id e5so1701455vsg.12;
+        Wed, 02 Mar 2022 04:53:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=RCQ1Hkosqigsur7jPtC2YOzm+InzZYgdKWMxBC1qOYw=;
-        b=FBXgzWMQWPOZtM6gc2/TE90LewcUir6ipXYQhYCpbdVXSFaC2wVUU/vFIZOZv9mLBP
-         0slZIBmx33g9PsibumRs0SfQCwQLnKKTmM706sJRj3Tt197DXiAWprVy5qRgapcwC6cN
-         z7hxAn7ZXThaH3dSg9FqoxNp3IWG1dKCCtDQWDK7dAeh/KJvucb8WXRlz6VF+fGRQSla
-         Z/55AH2ksORaHGH1aUQ8vJ0g8eaClEkk6AT9kxhQuYCiFd28lwvJEWutNflMlwivu8pu
-         X6A00103Xt6AfKZ4y0Nx8SKScIrMcGxSqN2ZmDP9Rg+paqSachRkLE9G2XQtWp3tbYEV
-         8GWQ==
+         :content-transfer-encoding;
+        bh=+Ikj6nSRW/83wAf8afXGAgsjyXlLyHwdFoow7ohi4CA=;
+        b=UeBgR12APOHtLPpa0zXQWvvdUaqMRKijI8g5p/mpjKyeBdqZhOu1GBuyNOXylcM96T
+         oLFjeniEtxytH8/srESWhLAZ6OXjOezrU9mERuY/yg4Dtebs19wic9MKE0+Gw5d6uuOG
+         MssH5VSOIoTqvuJt4WbIxARibIBRaD2HK+r7IfFmjgKTvnrTdvNrqDMFn6n5Rnvb+dEL
+         NmIS3UXbjaIyNXsQgJ54FsGwPR4qyzezC/y+L7LKyPXCfYwrYVdZAl15nvOqPldnkotx
+         5GebsW5IVElNnfHg2jvccyAYg5YsDdy8wnEcTJWfdeWUODcuGRI1tCBHruxCwAmpRZrO
+         faww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RCQ1Hkosqigsur7jPtC2YOzm+InzZYgdKWMxBC1qOYw=;
-        b=DWXSfdLepF2hB3BmPc+obGn9lf9cBm0v0qO7JpUY6VS6GZzbL/v4NvHPHtTmPs6D/D
-         ib/aH3NzA0A9nbxZ+mvFUUIpNjMFv/9xT9LBtdUtPE+rlfkY5qIpUZ2QW/pDB5HuHRM1
-         fohvraTbtT2O1uvGyd3xFLzkONvAoCRfwwB2VtgiA8BX4dZpWFT6dKfMbB2Royhu3IFU
-         DHsbr3gHHWtkQT60zj3HfD4JKgQaZHd0MPxMUP1/dhHzwS1kctkm+htvtvE8uFNVwXRm
-         vJBcBCWv5R7FaBy06oixtYR+l9I2VPTygNpr4jUoG5zYGqd6AUqoKOFJTednFAJdJAQ0
-         7qjQ==
-X-Gm-Message-State: AOAM533Hb/ngc3P2OnluneWkpD27HrQWFiFVODL/6sA5isScCYwW3J6V
-        PaRnSHH87kyVfVedG69S4qp6PyD+4qxEyrNKWFfy2Q==
-X-Google-Smtp-Source: ABdhPJwMuxqRwOOLiFtj4FdM+AMZ8K59rjBxOZQQjcAmPJAFrQOD1S3+JJWqcwBfGHhLtMiYAlW2I/Cg5BBeB+b54Vg=
-X-Received: by 2002:a05:622a:1206:b0:2de:6fa4:41fb with SMTP id
- y6-20020a05622a120600b002de6fa441fbmr23365305qtx.295.1646225038036; Wed, 02
- Mar 2022 04:43:58 -0800 (PST)
+         :message-id:subject:to:content-transfer-encoding;
+        bh=+Ikj6nSRW/83wAf8afXGAgsjyXlLyHwdFoow7ohi4CA=;
+        b=qquHognyG7ZLtsNd774MEq7ng2KrsC2rrkk6I2jC/oMizNGUsLILCXocb1I6/6B8Er
+         pwENKQ7I38a5gkzezLczYdauO0ZsNwpMziyuwKZyKI8kmxqA9iSyitjwG1cgJYoeshKO
+         /rd/X6B9F3taGSi1/kp97ljC4B2td0ynkjTyouWBFSQepD0X4LNIUJsHHrOkSwAXtTy5
+         I/O3cXQJ41dr9gAKoel3W6Ge03mlzqnrGYz22dn9KxJ9RhY6pNzLe2+NLGvxy3za+Ge0
+         ac1rTIJtkSF9eAUN1jGvmk0BjFh8cswNd3TuxQYXOXBQTdo0sKzX3dUpipg2IBwzj1Mt
+         E9kg==
+X-Gm-Message-State: AOAM533vMALZvTbgF/jKfHeoL06RDLcv1Xn20McuzR74zk/TqwNk+SuM
+        OAGXY0/9LchtN1/lEzcMhXK0dfN+/iP8j2yBLg==
+X-Google-Smtp-Source: ABdhPJwTl6o4n3ZiUFNOKRW+dr9GCbZ5z70Ms3ll+1CcGAyZvwH9YO0ObjYUMZbhQ1TBIqRqsT6qzfnRwllIuoAuHMc=
+X-Received: by 2002:a67:d319:0:b0:31e:98fd:31b0 with SMTP id
+ a25-20020a67d319000000b0031e98fd31b0mr6452889vsj.47.1646225621566; Wed, 02
+ Mar 2022 04:53:41 -0800 (PST)
 MIME-Version: 1.0
-References: <20220302013339.2354076-1-robh@kernel.org> <CAA8EJpowE0VfnA1QhU1LfXobFYjGPirWb52QW6HT5kCpcX0NBQ@mail.gmail.com>
- <20220302123518.3xprnrpp4nt7hmqs@SoMainline.org>
-In-Reply-To: <20220302123518.3xprnrpp4nt7hmqs@SoMainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 2 Mar 2022 15:43:46 +0300
-Message-ID: <CAA8EJpofXWsEQxacoW77hJ4a+=Si0qp10UmKWQQRhsbifZ2V1Q@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64/arm: dts: qcom: Drop bogus interrupt flags cell
- on MDSS nodes
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+References: <20220220035321.3870-1-warp5tw@gmail.com> <5d507fda-525e-4064-3add-0bb0cc23d016@canonical.com>
+ <CACD3sJaXeWLu6=oLgxJcU9R+A1J+jB7xKaGcDFwYxof33yj17Q@mail.gmail.com>
+ <5ce0f6a6-4a5f-4f25-3cc6-ab0f24bf15cf@canonical.com> <CACD3sJaWJMFgwzQgrHFV0KkkbJXzhgFx=umywxSrLszwP+hO2w@mail.gmail.com>
+ <Yh536s/7bm6Xt6o3@ninjato>
+In-Reply-To: <Yh536s/7bm6Xt6o3@ninjato>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Wed, 2 Mar 2022 20:53:29 +0800
+Message-ID: <CACD3sJboyA_wV_eiivfbHR527Y3E6z3NRmhiDzegk=fcw+nZ9w@mail.gmail.com>
+Subject: Re: [PATCH v2 00/11] i2c: npcm: Bug fixes timeout, spurious interrupts
+To:     Wolfram Sang <wsa@kernel.org>, Tyrone Ting <warp5tw@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, semen.protsenko@linaro.org,
+        yangyicong@hisilicon.com, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, christophe.leroy@csgroup.eu,
+        lukas.bulwahn@gmail.com, olof@lixom.net, arnd@arndb.de,
+        digetx@gmail.com, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Mar 2022 at 15:35, Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
->
-> On 2022-03-02 04:53:56, Dmitry Baryshkov wrote:
-> > On Wed, 2 Mar 2022 at 04:33, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > The MDSS interrupt provider is a single cell, so specifying interrupt flags
-> > > on the consumers is incorrect.
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> >
-> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->
-> Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
->
-> Dmitry, it seems you sent a similar change - albeit split across one
-> patch per DTSI file and omitting arm qcom-msm8974 - inbetween v1 and v2
-> of this patch.  To me that only makes sense if every patch includes the
-> appropriate, individual `Fixes:` tag but the patches lack those too.
-> Which approach should be reviewed and applied going forward?
+Hi Wolfram:
 
-Probably it's up to Bjorn to decide. I can resend my series including
-the Fixes tags (and msm8974) if he thinks it's the better approach
+Thank you for your comment and it'll be addressed.
 
+Wolfram Sang <wsa@kernel.org> =E6=96=BC 2022=E5=B9=B43=E6=9C=882=E6=97=A5 =
+=E9=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=883:45=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> - Marijn
 >
-> > > ---
-> > > v2:
-> > >  - Add a bunch of missed cases
-> > > ---
-> > >  arch/arm/boot/dts/qcom-msm8974.dtsi   | 4 ++--
-> > >  arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
-> > >  arch/arm64/boot/dts/qcom/sdm630.dtsi  | 5 ++---
-> > >  arch/arm64/boot/dts/qcom/sdm660.dtsi  | 2 +-
-> > >  arch/arm64/boot/dts/qcom/sdm845.dtsi  | 6 +++---
-> > >  arch/arm64/boot/dts/qcom/sm8250.dtsi  | 6 +++---
-> > >  6 files changed, 14 insertions(+), 15 deletions(-)
-> > >
-> > > diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > > index 412d94736c35..3b9af5e24907 100644
-> > > --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > > +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> > > @@ -1495,7 +1495,7 @@ mdp: mdp@fd900000 {
-> > >                                 reg-names = "mdp_phys";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <0 0>;
-> > > +                               interrupts = <0>;
-> > >
-> > >                                 clocks = <&mmcc MDSS_AHB_CLK>,
-> > >                                          <&mmcc MDSS_AXI_CLK>,
-> > > @@ -1530,7 +1530,7 @@ dsi0: dsi@fd922800 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <4>;
-> > >
-> > >                                 assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
-> > >                                                   <&mmcc PCLK0_CLK_SRC>;
-> > > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > > index f0f81c23c16f..0597d865a4a6 100644
-> > > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > > @@ -788,7 +788,7 @@ mdp: mdp@901000 {
-> > >                                 reg-names = "mdp_phys";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <0>;
-> > >
-> > >                                 clocks = <&mmcc MDSS_AHB_CLK>,
-> > >                                          <&mmcc MDSS_AXI_CLK>,
-> > > @@ -834,7 +834,7 @@ dsi0: dsi@994000 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <4>;
-> > >
-> > >                                 clocks = <&mmcc MDSS_MDP_CLK>,
-> > >                                          <&mmcc MDSS_BYTE0_CLK>,
-> > > @@ -904,7 +904,7 @@ hdmi: hdmi-tx@9a0000 {
-> > >                                             "hdcp_physical";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <8>;
-> > >
-> > >                                 clocks = <&mmcc MDSS_MDP_CLK>,
-> > >                                          <&mmcc MDSS_AHB_CLK>,
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > index 240293592ef9..f646fb80924f 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > > @@ -1453,7 +1453,7 @@ mdp: mdp@c901000 {
-> > >                                 reg-names = "mdp_phys";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <0>;
-> > >
-> > >                                 assigned-clocks = <&mmcc MDSS_MDP_CLK>,
-> > >                                                   <&mmcc MDSS_VSYNC_CLK>;
-> > > @@ -1530,7 +1530,7 @@ dsi0: dsi@c994000 {
-> > >                                 power-domains = <&rpmpd SDM660_VDDCX>;
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <4>;
-> > >
-> > >                                 assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
-> > >                                                   <&mmcc PCLK0_CLK_SRC>;
-> > > @@ -2487,4 +2487,3 @@ timer {
-> > >                                  <GIC_PPI 0 0xf08>;
-> > >         };
-> > >  };
-> > > -
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm660.dtsi b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> > > index eccf6fde16b4..1d748c5305f4 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm660.dtsi
-> > > @@ -163,7 +163,7 @@ dsi1: dsi@c996000 {
-> > >                 power-domains = <&rpmpd SDM660_VDDCX>;
-> > >
-> > >                 interrupt-parent = <&mdss>;
-> > > -               interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-> > > +               interrupts = <5>;
-> > >
-> > >                 assigned-clocks = <&mmcc BYTE1_CLK_SRC>,
-> > >                                         <&mmcc PCLK1_CLK_SRC>;
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > index 41f4e46e1f85..95e6a97c2170 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> > > @@ -4281,7 +4281,7 @@ mdss_mdp: mdp@ae01000 {
-> > >                                 power-domains = <&rpmhpd SDM845_CX>;
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <0>;
-> > >
-> > >                                 ports {
-> > >                                         #address-cells = <1>;
-> > > @@ -4333,7 +4333,7 @@ dsi0: dsi@ae94000 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <4>;
-> > >
-> > >                                 clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-> > >                                          <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-> > > @@ -4405,7 +4405,7 @@ dsi1: dsi@ae96000 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <5>;
-> > >
-> > >                                 clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-> > >                                          <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-> > > diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > index fdaf303ba047..956848068871 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> > > @@ -3200,7 +3200,7 @@ mdss_mdp: mdp@ae01000 {
-> > >                                 power-domains = <&rpmhpd SM8250_MMCX>;
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <0>;
-> > >
-> > >                                 ports {
-> > >                                         #address-cells = <1>;
-> > > @@ -3252,7 +3252,7 @@ dsi0: dsi@ae94000 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <4>;
-> > >
-> > >                                 clocks = <&dispcc DISP_CC_MDSS_BYTE0_CLK>,
-> > >                                          <&dispcc DISP_CC_MDSS_BYTE0_INTF_CLK>,
-> > > @@ -3325,7 +3325,7 @@ dsi1: dsi@ae96000 {
-> > >                                 reg-names = "dsi_ctrl";
-> > >
-> > >                                 interrupt-parent = <&mdss>;
-> > > -                               interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-> > > +                               interrupts = <5>;
-> > >
-> > >                                 clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK>,
-> > >                                          <&dispcc DISP_CC_MDSS_BYTE1_INTF_CLK>,
-> > > --
-> > > 2.32.0
-> > >
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
+> > I'll keep old code as fallback, if getting nuvoton,sys-mgr fails as
+> > you point out.
+>
+> Yeah, fallback is much needed. And if you implement it, then you can
+> also split the series into two. One for the DTS changes and one for the
+> I2C changes. That would make upstreaming a lot easier.
+>
 
-
-
--- 
-With best wishes
-Dmitry
+Regards,
+Tyrone
