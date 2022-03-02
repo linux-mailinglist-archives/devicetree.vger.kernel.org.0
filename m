@@ -2,62 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E62A94CA1F3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 11:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C4644CA217
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 11:24:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235668AbiCBKP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 05:15:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39696 "EHLO
+        id S240899AbiCBKZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 05:25:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232069AbiCBKP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 05:15:27 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C83353EF1A;
-        Wed,  2 Mar 2022 02:14:44 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id D18B01F44C93
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646216083;
-        bh=CRz1hl04S7o5hFhSfEJ8l4P0iLKv8xFFSD4PLarV2g4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=gNDI0v4pUxf2bQQJJvn9Vuebv0Z+f5T03H5csv0tVva6ordHyKgokbRavmSAGxWjB
-         q6yx+vho1qMuhf9ON8MvdKwYpQMym2QUm4x5r1ojCIxtMDHsf3gz0TNhiPlXYYW2+S
-         L0tmUkYMfPLMxSsdfu7UM3UfmPPWxGEYfHiBJHNxzk0fUdSOVslyQMbgY0PxtKekkY
-         SkqJ4uRpsKbbWLdYm+3pxEGbR/nOrRE4cjTZ/0jQkkFETbngW0F/nEyIZgK6/Ab8Fp
-         nNw2adEw/r+TcioMZEFl9Lae5hmJyejfsDbik37z8fB/CAicFgN6Nu/HDOgowuj3js
-         t3LhNxxJQVCpw==
-Message-ID: <909f6957-86c5-1ebc-47b2-73085dd7399a@collabora.com>
-Date:   Wed, 2 Mar 2022 11:14:39 +0100
+        with ESMTP id S240530AbiCBKZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 05:25:04 -0500
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85F67AC926
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 02:24:21 -0800 (PST)
+Received: by mail-wm1-x32c.google.com with SMTP id n33-20020a05600c3ba100b003832caf7f3aso835190wms.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 02:24:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Zf3t59YuuxCNJPUz/HY2r4h+HKYXoaw1e4s0ZaR15GE=;
+        b=tQVsBVO07MjcksiaS/uaKMdejreMdo52VHClB4yRNGHQIKJisEdQba1H/wrEUmxpNr
+         Epyf9UVis88yqtGydUngITuzdK2pH8M/yr+u9MqWwnvT6GEsZ68OqOyuoNIXotb6oqWL
+         M9QzYRVYcs9J3OId8gJywtG4LVXEyx3auR5CoQjRXQRRRyugmfiVdj7Hd2umBQ29O30x
+         hObiAmFyaRnm+sDzcCY0DXsHJl+j+u9gGwGXdu+giWxNvKcKPIDEtHaFdF9uyGY6ncZV
+         hfVe/pISTwgyCLydjWkPXfT8E631bRoKmGVN1yT+G7caWClpZ1uA3YKS+P3wyzjv4hLL
+         3h3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Zf3t59YuuxCNJPUz/HY2r4h+HKYXoaw1e4s0ZaR15GE=;
+        b=LaC5iFMjNUOWMBO65KFm+oKEJGyPuZuUr5vzTB43rsya8Fu7U0Cr8qLukpkFf56geL
+         V7dXIQwvkWrayvVxRQKi6rMeTmnHswSoaHh/R8pQbKBa2h95+F/DIEn9MvbJO/wWNdXd
+         1yyevG+OTK3t1xUQJQOJ2i1jrhQUMD7y1fsjJ0fAK4Ql4JdHGcZehtDLsXWH+Cv0pOHw
+         tTIuA2/8NKRmZbWa6MPJNDnLL3/wgmYaiIq3ngc59Ccd0Ld002B1hEGMiXI++sx6UxxR
+         Qiz85Ckcje7xnJ7tEBf7swowQoJ5BdGp7B5JZNZ4QZFT+X2sELNaEkMj/NL7Gi3RCUKT
+         ow+Q==
+X-Gm-Message-State: AOAM530EdjO5PFyQOVZYrif8yXpEYq2EfbwrhF5uGvSFA/PydjaLTS6E
+        lQWGoYIMO1I26EbB5KAkIE43qP5U10MhOw==
+X-Google-Smtp-Source: ABdhPJzXp6FHTG7RSsowKR7IPxM7MXRY8kmzfyBIvDDrAdkaP8nlOFVzNi+edlFGoCDmUpL9LisIwg==
+X-Received: by 2002:a1c:4603:0:b0:381:19fe:280b with SMTP id t3-20020a1c4603000000b0038119fe280bmr19946383wma.67.1646216660031;
+        Wed, 02 Mar 2022 02:24:20 -0800 (PST)
+Received: from ?IPV6:2a01:e34:ed2f:f020:49e8:f41b:b2a3:3a55? ([2a01:e34:ed2f:f020:49e8:f41b:b2a3:3a55])
+        by smtp.googlemail.com with ESMTPSA id f9-20020adffcc9000000b001e9e8163a46sm23514078wrs.54.2022.03.02.02.24.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Mar 2022 02:24:19 -0800 (PST)
+Message-ID: <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
+Date:   Wed, 2 Mar 2022 11:24:18 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v12 04/23] dt-bindings: reset: mt8195: add vdosys1 reset
- control bit
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
 Content-Language: en-US
-To:     "Nancy.Lin" <nancy.lin@mediatek.com>, CK Hu <ck.hu@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
-        Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        singo.chang@mediatek.com, srv_heupstream@mediatek.com
-References: <20220222100741.30138-1-nancy.lin@mediatek.com>
- <20220222100741.30138-5-nancy.lin@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220222100741.30138-5-nancy.lin@mediatek.com>
+To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-3-shruthi.sanil@intel.com>
+ <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
+ <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,12 +86,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 22/02/22 11:07, Nancy.Lin ha scritto:
-> Add vdosys1 reset control bit for MT8195 platform.
+On 02/03/2022 11:12, Sanil, Shruthi wrote:
+
+[ ... ]
+
+>>> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) {
+>>> +		pr_err("%pOF: Prescaler is not enabled\n", np);
+>>> +		ret = -ENODEV;
+>>> +	}
+>>
+>> Why bail out instead of enabling the prescalar ?
 > 
-> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
-> Reviewed-by: Chun-Kuang Hu <chunkuang.hu@kernel.org>
+> Because it is a secure register and it would be updated by the bootloader.
+Should it be considered as a firmware bug ?
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
