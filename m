@@ -2,273 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C6024CB28F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 23:50:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C12C4CB2A1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 23:57:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229684AbiCBWvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 17:51:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37782 "EHLO
+        id S229632AbiCBW6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 17:58:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229821AbiCBWvG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 17:51:06 -0500
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7029863BC0;
-        Wed,  2 Mar 2022 14:50:12 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id bt3so3140090qtb.0;
-        Wed, 02 Mar 2022 14:50:12 -0800 (PST)
+        with ESMTP id S229625AbiCBW6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 17:58:17 -0500
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8705D13EF8E
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 14:57:23 -0800 (PST)
+Received: by mail-lf1-x12f.google.com with SMTP id b11so5314463lfb.12
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 14:57:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=w/QeTGizctCe/lCvmDH1b/DvToPpxOQCqRpfxZuWv28=;
-        b=afkxXKmP4vgQGD2EE5HprQH2X5UgEcVUkXVmApWi5dntSCUUp3EaVbVDV9STJR8z59
-         D5N0AieGgMKi3GyCkx2a8Ks2SsJ67PPkisdxWEQAXzqTvkVEz8JUwswyS6Dg/86N3JoF
-         88bjGJMQTFVAibzkb8Gj7zZaqx9EHHkREazbo=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zfVruM9Td3Qe8hMUXW/2W8vzb/CFZlBCaj9qNxMrBZQ=;
+        b=SGDqdhhUoyUk04TyuwRLj5nU0/n+pQJk8CyLPjKi7op48hE9Oi5PG0XgD+plY0lBTd
+         YFe1dD838csgexBoNIArITbGMar8UJOYBpr4mhgLDUD8p5jhXs/tZLg/vK1RHvJtEfi9
+         g16OOJLslG7KgpYDVDHIVRMeuvrg3cLaaN1a21Vtnk9DjihknS5bECQW2O66o5wyuyc/
+         t+hu5WB1XPe8k/NTBufYN59e68VwdmM9Zx0J7jbRhIjCNxIIFOfQV7h45tNTn9ivrzyu
+         T/m6gyxWFroX4a1Npr6XWIZSKqTlzdM+oGbBb4OESbiHnAZTvkAHTN6Y/Fy9hrDhOK1L
+         NuNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=w/QeTGizctCe/lCvmDH1b/DvToPpxOQCqRpfxZuWv28=;
-        b=X4aDWNzTC7Tx6oMlflXU/ad0daBAuiOKHqDssZgeGz1o2+2kEIl2WZbBOpry+346o0
-         bwyFPW/7x+hlAwtzhUKDzv0oIiUdOfS+A71+fLZxTHFNIj+m7QjNs9lVXR23h6JAAQD1
-         mMcxEeZTtPtJPBfznYABF3+YSZVD+USabRdYOtC15i3BdeLKseefewPzggmiuTYv00WE
-         osPnA1cLMxTKTPaZM7fwFQ0ceRq9GGBm64juE3zY4I83puJJlcAmGP7sHZjQqoAppXpn
-         3Hk/txKOwIyKIJRPx5VvEVW/o2MG3H7wHDtketKbKkS83yNdL/dT19yhCrA5+JJDzkne
-         FLcw==
-X-Gm-Message-State: AOAM533xZcBvdCaKa9mI5mFTQLwtwVBmC4R//n6zvT3aP8vfvMiZPVKn
-        W4Ss2SctRcpSWOQNWRdnP6M/fLWbzrVNwzsvzOM=
-X-Google-Smtp-Source: ABdhPJwcRIUuSCOa0NIMdNnY7uIfvSl3sBRNTtNc09Jy3EHvdAiMXNhsdMI3cg/+3wWITyoi069ULAwsRr28IETf5DQ=
-X-Received: by 2002:ac8:5b82:0:b0:2cf:232d:b1f8 with SMTP id
- a2-20020ac85b82000000b002cf232db1f8mr25803033qta.58.1646261351104; Wed, 02
- Mar 2022 14:49:11 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zfVruM9Td3Qe8hMUXW/2W8vzb/CFZlBCaj9qNxMrBZQ=;
+        b=j9DgLpJfDsRhUNH9kg/nlEU834A0CaKtJZu8JtTF88keIrRHb0MvVmtNFqEhky8qJ9
+         Bk6t+NDmrv9xVWf1/d6/Z7by2OpItVXspV333q8y2etMYs8dcoAsf1nqqkJR0sEt2+YB
+         iYG0uF0J2OqvQLPan18E16Cjs2+tH99/LFyALhO016ec5k/2bk8n0LNz4nXEp2eC7hE4
+         uv0YkC7okRqZdPCNIasuhQZKkexnhE7vylVn98cRL6RYbH86LHqhldEgpG6WEsCBx6b6
+         bVRn3GxATsz3+22fj4itLENk1S9dXSQpqGaw9nJYMheeEsrWaZuuhsAnLXDA68YHIv+h
+         htyA==
+X-Gm-Message-State: AOAM5329HcZsHu+NKSslc63l0Mb8789UXZmpKbt6aQet7jsBGIggIYd3
+        BZWdeqiYkjw2tY9i3eyPOJWXWA==
+X-Google-Smtp-Source: ABdhPJxtG5vOkVSwq2a3O+epKEVFO0+KA/Fssvm52be6GqZuJov2slZ3MzxvMZGWGDO0S36/SIIl7A==
+X-Received: by 2002:a05:6512:3408:b0:443:c898:520b with SMTP id i8-20020a056512340800b00443c898520bmr18979256lfr.465.1646261653800;
+        Wed, 02 Mar 2022 14:54:13 -0800 (PST)
+Received: from eriador.lan ([2001:470:dd84:abc0::8a5])
+        by smtp.gmail.com with ESMTPSA id x26-20020a05651c105a00b00246585ccd53sm54236ljm.75.2022.03.02.14.54.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 14:54:13 -0800 (PST)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: [PATCH v2 1/6] arm64: dts: qcom: msm8996: Drop flags for mdss irqs
+Date:   Thu,  3 Mar 2022 01:54:06 +0300
+Message-Id: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20220302173114.927476-1-clg@kaod.org> <20220302173114.927476-11-clg@kaod.org>
- <CACPK8XeDBCMCEO4=w7qUQxsYiFUDKPAuBhXW5Sr6=UHM_GRsWA@mail.gmail.com>
-In-Reply-To: <CACPK8XeDBCMCEO4=w7qUQxsYiFUDKPAuBhXW5Sr6=UHM_GRsWA@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 2 Mar 2022 22:48:58 +0000
-Message-ID: <CACPK8Xd6VJLuWsvSjYrQ-y=yS+yR7vjdWECfsd2W9_J7e09K-A@mail.gmail.com>
-Subject: Re: [PATCH v2 10/10] ARM: dts: aspeed: Enable Dual SPI RX transfers
-To:     =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
-Cc:     linux-spi@vger.kernel.org,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Mar 2022 at 22:45, Joel Stanley <joel@jms.id.au> wrote:
->
-> On Wed, 2 Mar 2022 at 17:31, C=C3=A9dric Le Goater <clg@kaod.org> wrote:
-> >
-> > All these controllers support at least Dual SPI. Update the DTs.
-> >
-> > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> > Signed-off-by: C=C3=A9dric Le Goater <clg@kaod.org>
->
-> Thanks. I'll apply this to the aspeed tree now.
->
-> Did you also have a patch to add a second flash chip to the AST2400 FMC?
+The number of interrupt cells for the mdss interrupt controller is 1,
+meaning there should only be one cell for the interrupt number, not two.
+Drop the second cell containing (unused) irq flags.
 
-That was a reference to the discussion on the openbmc list with Tao. I
-was mistaken; the flash chips are there, but they lack the
-spi-max-frequency property.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Fixes: 12d540375736 ("arm64: dts: qcom: msm8996: Add DSI0 nodes")
+Fixes: 3a4547c1fc2f ("arm64: qcom: msm8996.dtsi: Add Display nodes")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/msm8996.dtsi | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
->
-> > ---
-> >  arch/arm/boot/dts/aspeed-g4.dtsi | 6 ++++++
-> >  arch/arm/boot/dts/aspeed-g5.dtsi | 7 +++++++
-> >  arch/arm/boot/dts/aspeed-g6.dtsi | 8 ++++++++
-> >  3 files changed, 21 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed-g4.dtsi b/arch/arm/boot/dts/aspee=
-d-g4.dtsi
-> > index 9ae67e83cf60..31e6569db97e 100644
-> > --- a/arch/arm/boot/dts/aspeed-g4.dtsi
-> > +++ b/arch/arm/boot/dts/aspeed-g4.dtsi
-> > @@ -64,27 +64,32 @@ fmc: spi@1e620000 {
-> >                         flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 spi-max-frequency =3D <50000000>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@2 {
-> >                                 reg =3D < 2 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@3 {
-> >                                 reg =3D < 3 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@4 {
-> >                                 reg =3D < 4 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > @@ -100,6 +105,7 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspee=
-d-g5.dtsi
-> > index c3e0a8e13c8a..29bf017899b6 100644
-> > --- a/arch/arm/boot/dts/aspeed-g5.dtsi
-> > +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
-> > @@ -66,18 +66,21 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@2 {
-> >                                 reg =3D < 2 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > @@ -93,12 +96,14 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > @@ -114,12 +119,14 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspee=
-d-g6.dtsi
-> > index 1ad05dde19d2..ce93c56a21a7 100644
-> > --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> > +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> > @@ -106,18 +106,21 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@2 {
-> >                                 reg =3D < 2 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > @@ -133,12 +136,14 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > @@ -154,18 +159,21 @@ flash@0 {
-> >                                 reg =3D < 0 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@1 {
-> >                                 reg =3D < 1 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                         flash@2 {
-> >                                 reg =3D < 2 >;
-> >                                 compatible =3D "jedec,spi-nor";
-> >                                 spi-max-frequency =3D <50000000>;
-> > +                               spi-rx-bus-width =3D <2>;
-> >                                 status =3D "disabled";
-> >                         };
-> >                 };
-> > --
-> > 2.34.1
-> >
+diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+index f0f81c23c16f..0597d865a4a6 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
+@@ -788,7 +788,7 @@ mdp: mdp@901000 {
+ 				reg-names = "mdp_phys";
+ 
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <0>;
+ 
+ 				clocks = <&mmcc MDSS_AHB_CLK>,
+ 					 <&mmcc MDSS_AXI_CLK>,
+@@ -834,7 +834,7 @@ dsi0: dsi@994000 {
+ 				reg-names = "dsi_ctrl";
+ 
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <4>;
+ 
+ 				clocks = <&mmcc MDSS_MDP_CLK>,
+ 					 <&mmcc MDSS_BYTE0_CLK>,
+@@ -904,7 +904,7 @@ hdmi: hdmi-tx@9a0000 {
+ 					    "hdcp_physical";
+ 
+ 				interrupt-parent = <&mdss>;
+-				interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
++				interrupts = <8>;
+ 
+ 				clocks = <&mmcc MDSS_MDP_CLK>,
+ 					 <&mmcc MDSS_AHB_CLK>,
+-- 
+2.34.1
+
