@@ -2,74 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C1204CAE8E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:22:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E59734CAEB2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Mar 2022 20:29:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235062AbiCBTXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 14:23:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58728 "EHLO
+        id S231635AbiCBTaF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 14:30:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235115AbiCBTXT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:23:19 -0500
-Received: from mail-pj1-x102a.google.com (mail-pj1-x102a.google.com [IPv6:2607:f8b0:4864:20::102a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D8EB2BCC;
-        Wed,  2 Mar 2022 11:22:36 -0800 (PST)
-Received: by mail-pj1-x102a.google.com with SMTP id em10-20020a17090b014a00b001bc3071f921so5644113pjb.5;
-        Wed, 02 Mar 2022 11:22:36 -0800 (PST)
+        with ESMTP id S233197AbiCBTaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 14:30:04 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E66EB27B18;
+        Wed,  2 Mar 2022 11:29:20 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id mr24-20020a17090b239800b001bf0a375440so311795pjb.4;
+        Wed, 02 Mar 2022 11:29:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=e4GTR8GaUHYkyzZntKtPvMACHaO+jIs3XNbO6sJQm48=;
-        b=h5rBD0THGtQxl3P8+fdalmIEcRsx/fi77wxgGlwZxzhpp85g6zGKMvnReB2R/0KApi
-         l1aI3C88GAiJqiCsBkG+ZtAuBdx0tt3VqJZjygi/VkVAfKV0j08DA961K7c3CQRPe5Tl
-         KMk+4JySvAq5V+LO8jhFzy5phCBnwDWOwxWAIMqqGRM3FNr1nfzEUZ8hoI+NPr2x7rXO
-         78GtcdFyOcVD2XEJL0R5aCV/6983WJF18lX1v0oL0PCGhVIxMMycjQA+DHAjbvXwbPnD
-         Nm412ij1baoGvURNcQkhu0qHGAA9unCxHIk9AK0A3sAzyeol1LFFTA4wT4nQU5G62+X5
-         X/BQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=UzhXNQEk/98D9nQUp1p8H/GyW3pI8iVAEFCE5YOMGLY=;
+        b=d+cdkiaLMABcaz2/BTbjX2lCMh2WlXg1OAvIXG+RneTxIPApCaeWTwrYce2FtoR3BQ
+         j4EuGjR/HHxtLdAik2Q+eWeEdQ19c4n4FashAo5xeCMkY2QAblES/mrzXkLYwXKsIILi
+         Rd63nuZNJgeljVaAVKFS9vExpPnVFse5i8GL27dYKjKEd6MViSZbT+psLuYBe/79FDuj
+         j8R1BeeMnwBA3ptFzVlGgYOjjL3L/9f3gfzxLGHRuWfcUoO50cd0YJSHM8nj99Lvjc0u
+         Gq/WoGEvp8j7hHi/2KAx3ASOO9zBaeaKMgrJQWqK9e6LZczSySjOEJMGsq+lXu0zFiqH
+         78Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=e4GTR8GaUHYkyzZntKtPvMACHaO+jIs3XNbO6sJQm48=;
-        b=BIlDnYziS7CsPwGrGzjFw1871uhEsorYq2mhruerrYVEjXnEtcVnvbuDDhtqCArfC7
-         tMGDTvBCgG/oE3DXBaVV7412rQZBXia0SVb+YX5/PMJipRSBX/qImlov6gHXHwChVXgr
-         UBAZJet6fip7UR2PHn/qOWhAFafbMhUdhh+7YgEk3Y67ytDvWtz0W4ZqJIQJZ81jHC57
-         ELPN5GgVi6gU36S5AiLAWBh1DwbUSFwG1HVZURTTX6TykccOBgoHnGHxIHF7BJmMkxC+
-         8Om6IVTyPql4LAovFwhElQOqGT0vdOFgvzX+LZQLjXFmfAPIdJJd/SllFs2OlIdzaXDf
-         sMig==
-X-Gm-Message-State: AOAM532QC0BIqmEcXrOeyNlKn8YJuW/VkcBzjoXBSjWhZG/JHpkiGoWX
-        pGDho35mdUkNDhyZM6LnpUY=
-X-Google-Smtp-Source: ABdhPJya2BuKC74VQ9qxushY+WD8JX8/Ndgb9h19iixfLdlcy5xscoib53+wVHcJeAnpY31fdMwQ2w==
-X-Received: by 2002:a17:90b:f87:b0:1bc:b82b:69fc with SMTP id ft7-20020a17090b0f8700b001bcb82b69fcmr1357002pjb.236.1646248955678;
-        Wed, 02 Mar 2022 11:22:35 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id 142-20020a621894000000b004dfc714b076sm22597207pfy.11.2022.03.02.11.22.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Mar 2022 11:22:35 -0800 (PST)
-Message-ID: <f3320bb8-b7eb-95d8-2f8d-9821dcecc198@gmail.com>
-Date:   Wed, 2 Mar 2022 11:22:33 -0800
+        bh=UzhXNQEk/98D9nQUp1p8H/GyW3pI8iVAEFCE5YOMGLY=;
+        b=cqPYoN9ncnseoHjDzOdgqMIEvDFEXjoRnu4UdisJF/kkrNtk58s1tDYMadWcrqaWNB
+         Fk1aslHVR9B4bb3n/jSUY80PKbpUFxFVRZ3/J10Ixe/TUXOkF7Fa30ICc6i2Tw1/eVSp
+         T5E4pizhlomj/ayJZw0VWQ2/xKPC768I0lFCyMxCjtISdKbYSLkWudxO1zIzmYrcm5ZH
+         gOIbuSpWwLFnFbJdiPfnG59y3GVHH9AOt5l4Pzmx++mY8iTosvDeTJ+ccMSLyS3UhKCG
+         6dxeruQ1MSYoGfXcB00I+led+9RLzVJKHx2l1HaH+/pt9y7Amnl/PcdSwC61/81K5VLn
+         J3ag==
+X-Gm-Message-State: AOAM531HJLMYSkacRsrPemqXjhJyBqseWiJyl6hMYjrdEUmSKIY3w1N9
+        gOjY6KuxHceJU6pk996YcTeLgjed3Rs34Q==
+X-Google-Smtp-Source: ABdhPJy6JyjjvgV7Esq1cCv1MhMeNUuMKG73Gd6Qjt1R93GuwVHnmRshzm15dwzxBFVlearJQEKFVg==
+X-Received: by 2002:a17:902:e889:b0:151:a56d:eb8f with SMTP id w9-20020a170902e88900b00151a56deb8fmr1132881plg.142.1646249360397;
+        Wed, 02 Mar 2022 11:29:20 -0800 (PST)
+Received: from localhost.localdomain ([122.161.53.154])
+        by smtp.gmail.com with ESMTPSA id e21-20020a635455000000b00372badd9063sm16763076pgm.11.2022.03.02.11.29.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 11:29:20 -0800 (PST)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Han Xu <han.xu@nxp.com>
+Subject: [PATCH] dt-bindings: spi: Update NXP Flexspi maintainer details
+Date:   Thu,  3 Mar 2022 00:59:15 +0530
+Message-Id: <20220302192915.6193-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH] ata: Drop commas after OF match table sentinels
-Content-Language: en-US
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>
-Cc:     Hans de Goede <hdegoede@redhat.com>, Jens Axboe <axboe@kernel.dk>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Sergey Shtylyov <s.shtylyov@omp.ru>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-ide@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <15d4b8e1108c902c4e80c87edfc702a7786de4ba.1646209667.git.geert+renesas@glider.be>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <15d4b8e1108c902c4e80c87edfc702a7786de4ba.1646209667.git.geert+renesas@glider.be>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,20 +67,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add Han Xu as flexspi maintainer.
+Also, update my email address as previous one is not working anymore.
 
+Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+---
+ Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-On 3/2/2022 12:30 AM, Geert Uytterhoeven wrote:
-> It does not make sense to have a comma after a sentinel, as any new
-> elements must be added before the sentinel.
-> 
-> Add comments to clarify the purpose of the empty elements.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Acked-by: Florian Fainelli <f.fainelli@gmail.com>
-
-For:
-> ---
->   drivers/ata/ahci_brcm.c        | 2 +-
+diff --git a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+index 283815d59e85..1b552c298277 100644
+--- a/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-nxp-fspi.yaml
+@@ -7,7 +7,8 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: NXP Flex Serial Peripheral Interface (FSPI)
+ 
+ maintainers:
+-  - Kuldeep Singh <kuldeep.singh@nxp.com>
++  - Han Xu <han.xu@nxp.com>
++  - Kuldeep Singh <singh.kuldeep87k@gmail.com>
+ 
+ allOf:
+   - $ref: "spi-controller.yaml#"
 -- 
-Florian
+2.25.1
+
