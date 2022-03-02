@@ -2,72 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4005D4CB2F6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:51:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 542614CB2E2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 00:51:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229579AbiCBXqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 18:46:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56904 "EHLO
+        id S229436AbiCBXpy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 18:45:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51982 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229568AbiCBXqu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:46:50 -0500
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1390A16E7F2;
-        Wed,  2 Mar 2022 15:45:44 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id a1so3171246qta.13;
-        Wed, 02 Mar 2022 15:45:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0UHeOvGnIMNoM6NqeyF78xFos6+YD8GiFF2O+NX+I08=;
-        b=A/8uC4OLZK85x/RsG6wFgeWjAayUjjUSlMWGVzfPxubGvRVyL6+UqPMrijz8hBNBae
-         7+Xma0aYf2Wnr1goOeR8vCpaBIDCURIghfyk8+CPkPm8Wjlh4XrVXzXMmlU7y9LZ5llU
-         Ra7+w69qG+z5lQmzrnsv6xktbsN0B2rEgy1R4=
+        with ESMTP id S229491AbiCBXpx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 18:45:53 -0500
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB41483B0;
+        Wed,  2 Mar 2022 15:43:48 -0800 (PST)
+Received: by mail-oo1-xc29.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so3845592oot.11;
+        Wed, 02 Mar 2022 15:43:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0UHeOvGnIMNoM6NqeyF78xFos6+YD8GiFF2O+NX+I08=;
-        b=eTNnHi78Vt+iU6Ij6novjktAoN44QgzszsL7ET+iLVyojI/f68yJcXPYtWi7daVZpA
-         o3LEMPTtvt2FgyoYxKwd8zj5GbQsRvD0+7ONQzq0ULIunrZw6vAz0EXdRMpW8XAUs6w0
-         /oA5pE0vRbEhfeX5WolzyE4FYnZxCuHfjs7rTEK4SVM3HAkAuGv3jynVfkZ6f/lP+zRD
-         kgF2iLMa8z5XdV30JhYHLVnO1vR+YbtEwWDaKOQzVd9snbXxxbzi0EGWUMVHp+2lEg7O
-         gq1eR3Q7j+rDGjauX5jjuuFK9ZmAmsSigW04aD9t/WybS9qt6gHVOX/Wm3S9NcEnLvTT
-         vi3A==
-X-Gm-Message-State: AOAM5330Lwcrva3gcH/t8S6ULw0iAWHlQ2mqELjtkTgvhnJjI8njb2qG
-        qSarEF4BTsBKveM/FFgSVG7fjWakKC/rjei4/Nv/FShvD2PzUw==
-X-Google-Smtp-Source: ABdhPJwCs5BS/vb/0Gnia8sBd/4fwz2M9pisx/6g/jEojI9HtPhU1m7xtnkyYUd9xlwgdUsE3xPO2rpi1UAXpFZPYeE=
-X-Received: by 2002:a05:622a:1b8d:b0:2c6:59a9:360e with SMTP id
- bp13-20020a05622a1b8d00b002c659a9360emr25551831qtb.678.1646264303744; Wed, 02
- Mar 2022 15:38:23 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=/c70eOOtZ8Slm0RoKC+PAhJNIVgAv9doZtxHf/Xm/kc=;
+        b=D75DC4zuoJBqmhya9kPnt4KrKzDXMqZ75ebnx3hhjnbfIBCys7HuFEWftGWMjJ4p9j
+         CKCm3AMypFD3XKtVX2VPFs3ECFXjgxwYTrSCkhFwMYHnoP1fJyrGSFM9jvOqHx16Phk/
+         RAi2XZRM9JZsd9Wx5gbt9gagkLhGwDMCYFzkWdYm9VCHVHkwqt8IiwTx1Gb9QHERnYMJ
+         5As4v7RqFn7ivCaNPlNV4LSIZNBqR+gQif5sLQBvINiLqgJJ1rSd6+V4RYG7/Ctdc1QA
+         eteYk5L5EAaQzOiVpiRAyEQ9AvFuPx4P0avz2jCtdPxuQxWMCR4v+t0VWDrS0B5CPFs7
+         nBjA==
+X-Gm-Message-State: AOAM532NaU3rEKogtt/dZRINul3XjGJJ0+J2bcQsxMNmEN7cjNEyuEQp
+        ZgOoJeCA+0s/UWyHX15I+ZatRE6XOw==
+X-Google-Smtp-Source: ABdhPJwgPoO9G+g2UL7d6AnfejCdiifxATPEVty//3FdiAhYyj/XEHnLOtfsAaL+W8FuBOOev/+m4Q==
+X-Received: by 2002:a05:6871:85:b0:d9:ac7a:7a5a with SMTP id u5-20020a056871008500b000d9ac7a7a5amr1932120oaa.9.1646264526194;
+        Wed, 02 Mar 2022 15:42:06 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a11-20020a0568300b8b00b005acfd19434asm163073otv.75.2022.03.02.15.42.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 15:42:05 -0800 (PST)
+Received: (nullmailer pid 276450 invoked by uid 1000);
+        Wed, 02 Mar 2022 23:42:04 -0000
+Date:   Wed, 2 Mar 2022 17:42:04 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH] leds: add new functions for mobile routers
+Message-ID: <YiAAzH4GDnC8ridY@robh.at.kernel.org>
+References: <20220218085002.18110-1-paweldembicki@gmail.com>
 MIME-Version: 1.0
-References: <20220302173114.927476-1-clg@kaod.org> <20220302173114.927476-5-clg@kaod.org>
-In-Reply-To: <20220302173114.927476-5-clg@kaod.org>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Wed, 2 Mar 2022 23:38:10 +0000
-Message-ID: <CACPK8Xc5DMeBnQnVWk4YUsiN7YFsujYh9Qs9okrc8vFvaF28Fw@mail.gmail.com>
-Subject: Re: [PATCH v2 04/10] spi: spi-mem: Add driver for Aspeed SMC controllers
-To:     =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>
-Cc:     linux-spi@vger.kernel.org,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220218085002.18110-1-paweldembicki@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
@@ -77,62 +62,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2 Mar 2022 at 17:31, C=C3=A9dric Le Goater <clg@kaod.org> wrote:
->
-> This SPI driver adds support for the Aspeed static memory controllers
-> of the AST2600, AST2500 and AST2400 SoCs using the spi-mem interface.
->
->  * AST2600 Firmware SPI Memory Controller (FMC)
->    . BMC firmware
->    . 3 chip select pins (CE0 ~ CE2)
->    . Only supports SPI type flash memory
->    . different segment register interface
->    . single, dual and quad mode.
->
->  * AST2600 SPI Flash Controller (SPI1 and SPI2)
->    . host firmware
->    . 2 chip select pins (CE0 ~ CE1)
->    . different segment register interface
->    . single, dual and quad mode.
->
->  * AST2500 Firmware SPI Memory Controller (FMC)
->    . BMC firmware
->    . 3 chip select pins (CE0 ~ CE2)
->    . supports SPI type flash memory (CE0-CE1)
->    . CE2 can be of NOR type flash but this is not supported by the driver
->    . single, dual mode.
->
->  * AST2500 SPI Flash Controller (SPI1 and SPI2)
->    . host firmware
->    . 2 chip select pins (CE0 ~ CE1)
->    . single, dual mode.
->
->  * AST2400 New Static Memory Controller (also referred as FMC)
->    . BMC firmware
->    . New register set
->    . 5 chip select pins (CE0 =E2=88=BC CE4)
->    . supports NOR flash, NAND flash and SPI flash memory.
->    . single, dual and quad mode.
->
-> Each controller has a memory range on which flash devices contents are
-> mapped. Each device is assigned a window that can be changed at bootime
-> with the Segment Address Registers.
->
-> Each SPI flash device can then be accessed in two modes: Command and
-> User. When in User mode, SPI transfers are initiated with accesses to
-> the memory segment of a device. When in Command mode, memory
-> operations on the memory segment of a device generate SPI commands
-> automatically using a Control Register for the settings.
->
-> This initial patch adds support for User mode. Command mode needs a littl=
-e
-> more work to check that the memory window on the AHB bus fits the device
-> size. It will come later when support for direct mapping is added.
->
-> Single and dual mode RX transfers are supported. Other types than SPI
-> are not supported.
->
-> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-> Signed-off-by: C=C3=A9dric Le Goater <clg@kaod.org>
+On Fri, Feb 18, 2022 at 09:50:02AM +0100, Pawel Dembicki wrote:
+> 2G/2G/4G routers have some special leds functions:
+>   - signal strength, which shows info about signal status.
+>     Some devices have multicolor indication (e.g. D-Link DWR-960)
+>     other use multiple leds for different levels (e.g. Cell-C RTL30VW)
+>   - connection status, which shows if connection is active. Some devices
+>     have multiple leds for different bands (e.g. D-Link DWR-960).
+>   - sms indicator
+> 
+> This patch adds new LED_FUNCTION_* defines of them.
+> 
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+> ---
+>  Documentation/leds/well-known-leds.txt | 9 +++++++++
+>  include/dt-bindings/leds/common.h      | 5 +++++
+>  2 files changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/leds/well-known-leds.txt b/Documentation/leds/well-known-leds.txt
+> index 2160382c86be..677cf7e57a76 100644
+> --- a/Documentation/leds/well-known-leds.txt
+> +++ b/Documentation/leds/well-known-leds.txt
+> @@ -16,6 +16,15 @@ but then try the legacy ones, too.
+>  
+>  Notice there's a list of functions in include/dt-bindings/leds/common.h .
+>  
+> +* 4G/3G/2G routers
+> +
+> +Cellular routers use LEDs for signal strength identification and connection
+> +status. Some models also have incoming SMS indicator.
+> +
+> +Good: "*:connection"
+> +Good: "*:signal"
+> +Good: "*:sms"
+> +
+>  * Gamepads and joysticks
+>  
+>  Game controllers may feature LEDs to indicate a player number. This is commonly
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
+> index 3be89a7c20a9..3adfa120353e 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -60,6 +60,11 @@
+>  #define LED_FUNCTION_MICMUTE "micmute"
+>  #define LED_FUNCTION_MUTE "mute"
+>  
+> +/* Used for 4G/3G/2G routers. */
+> +#define LED_FUNCTION_CONNECTION "connection"
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+wan?
+
+> +#define LED_FUNCTION_SIGNAL "signal"
+> +#define LED_FUNCTION_SMS "sms"
+
+mail?
+
+The whole idea with defining the names was to not create different names 
+for roughly the same thing.
+
+Rob
