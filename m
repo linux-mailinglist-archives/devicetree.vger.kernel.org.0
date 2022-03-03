@@ -2,187 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40C1F4CC246
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:07:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 061FD4CC28A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:21:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233206AbiCCQIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 11:08:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40588 "EHLO
+        id S234917AbiCCQWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 11:22:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234870AbiCCQIF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:08:05 -0500
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2027B198D1D;
-        Thu,  3 Mar 2022 08:07:17 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id AC9AC4001B;
-        Thu,  3 Mar 2022 16:07:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646323636;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=h/V2fl+WKVWANDZw1/vLE1+4r0C4bFnhRl+F59/e1W8=;
-        b=FBGJrfWaZUm2AGLBZhTuqfxz4xWi7LZ5kL203xwZs/b5cVH2P6C8SL3VSz6spVx7dMo54Z
-        y9jbrfARgLxLXmeOY/1fzGrM52xiIdWuwAb43xOfV4F7GqxzQURV6L+I35FgG2Z3ljZEIQ
-        ZwaP4P/lLaoCFyOBkLzcIZb6LoXP1AxjxZ5gfuds7R3i3KiLhQ/5t6q7mInrKX+Fkv683E
-        gZLcg1KTC13htzBWPdIHl7q8VwazN2fBuzTbA/48RNPK5swORQUkSXTtyc8w59nonrRO6u
-        WlSFhyLTraK59na3ZeRgf9iG+Yk8ej/goti8uLbSwzaAAbs9B2FZxhKlIafs1A==
-Date:   Thu, 3 Mar 2022 17:07:15 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, nicolas.ferre@microchip.com,
-        claudiu.beznea@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] ARM: dts: at91: Move rtt node properties from
- "dts" file to "dtsi" file
-Message-ID: <YiDns7xc5mTg7WzH@piout.net>
-References: <20220303140626.38129-1-sergiu.moga@microchip.com>
- <20220303140626.38129-2-sergiu.moga@microchip.com>
-MIME-Version: 1.0
+        with ESMTP id S230150AbiCCQWC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:22:02 -0500
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60069.outbound.protection.outlook.com [40.107.6.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70237199D5D;
+        Thu,  3 Mar 2022 08:21:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kkuPBfTO9mBmW3J+Tp+naqgfqtL3+O6wXdzJVFKpbgshlsr7uABUNBl5jFSVgqcd7Az3BrFCc9rEeIHxd2s3/AfYLsUdtnA2lHANiYwyhQW25ZYuOjYbcnJfjIB3KG+HMZ7QokQ5vI5TRWy5lLey8eaGpxrDP4dTdb+WE0Cx7HHJ0jq+RRONJV0BDBsoswVrAdfvdIQWmJi88YaTOOIKrsr+Mwt2D+dMdRRPa/zXN8LEYNT58zxR+5T/orBCm5M9SZpJIRBwKxNawd+/LqrPVK9xTjxgL1IkAWIaq9W9itLaYYAx/VTWMcn8lcqDI+Ze4W6DgTNqmpM/0xPp3xPpAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z0CmRnVTVpFbd4Bzh38q+wbyUw/F751LcToN8Pzy20M=;
+ b=T10O+OHMu60ipEFj0Q1ySO9XHu2CYWTwM76pRMP25quccPNEHseGdIgsE4Nie/16tpIqjCZMrxzqzbi+ZK+B6ZcXYu12yRzhYdFPdnysepc0Vg0BR+sBd9JGvlbuOaoMbUmFcwdnYU8VukwD2Ljs6XLQjEEFN4MOzL8dAQZZ5EuydENe6mtVXhcxgQEN6a2OohLoy/LpjzUIuSUUvbeqHAYWwQYHj3xhfDuIpNRi2Wb3Ap4VAOMR2+AYwkCfZ/LXzrESvT+y9q8YznlXfpbIbGWiHeGLXZbfjTyW5qO+NkfVTfZOdNT7RUnERFOk/0LtX6zePcMCIyQxm6NqXhqVGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z0CmRnVTVpFbd4Bzh38q+wbyUw/F751LcToN8Pzy20M=;
+ b=cggOm/uBQzbj/tYelh1mQCMKgV7z5SzhcW0lsvPrKrDvpSgyWi7rZ96l1bYPgZaA6Y8Y4/U/mn3YytmULKc1Gey1Q4pJsBfHL/Mrw533c6c5IjRq2Qxts2c+ahqiJ9pisBR6gp1dhYiuIK9PZmTqYtw3Y6YXty2YOGHpkZy0GmU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com (2603:10a6:10:2e1::21)
+ by DB9PR04MB9354.eurprd04.prod.outlook.com (2603:10a6:10:36c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Thu, 3 Mar
+ 2022 16:21:15 +0000
+Received: from DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::2911:de67:4045:3f28]) by DU2PR04MB8774.eurprd04.prod.outlook.com
+ ([fe80::2911:de67:4045:3f28%6]) with mapi id 15.20.5038.014; Thu, 3 Mar 2022
+ 16:21:15 +0000
+Date:   Thu, 3 Mar 2022 10:21:08 -0600
+From:   Han Xu <han.xu@nxp.com>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: spi: Update NXP Flexspi maintainer details
+Message-ID: <20220303162108.cxngob4yg736nrau@umbrella>
+References: <20220302192915.6193-1-singh.kuldeep87k@gmail.com>
+ <YiDnFEcpx5OiNMaj@sirena.org.uk>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220303140626.38129-2-sergiu.moga@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <YiDnFEcpx5OiNMaj@sirena.org.uk>
+User-Agent: NeoMutt/20171215
+X-ClientProxiedBy: SN6PR05CA0015.namprd05.prod.outlook.com
+ (2603:10b6:805:de::28) To DU2PR04MB8774.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7b5aab0f-d74d-44fd-44ab-08d9fd31d6f3
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9354:EE_
+X-Microsoft-Antispam-PRVS: <DB9PR04MB93547C108EE88603F1D9D6E097049@DB9PR04MB9354.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: gXwbeBUJjOxfBLob65FJbjLH/T/xdiMh4livF3TT9PnpSN6aVehdmIEA4dbUy9d/7I3XmI0d/DFoIeVU/zrIua7rNwxeS18hsK0XHlrqErq4+zQdhc13dJNA8k+vyb8j8KS+9YhHTOo0F8W7d1tXn2KT86z2xIPqF7tAFO5K6gDH6Sbuw03JGVNZ7aoxN8qzKvLp1swyN+qNPr7FF03jmLPYeGQECS/cyZo3+Q4EuiZhihxBff0LJcOCu9bNNSML7Y7MwXRc9wA25F6uIQEMKjOKNwnxiRpXhk+oDZSBSSz4xrABYc8rzE2fEL8FvNkWOurnSBr/kjkSCjR6ZSw+SiahZ6Fy3EN6CCeIr8KpGvwV0A3mVmbKJfy54wBfCCFl6MVvxJWTn8eGZLDC4rmlNRO+R95E0UANpOzfJ7MqmvnBBS4x5/KNt7t7pPxOyBH1/10GLJvkEOG6OcnFyutAbuoHmGnqlK7gzK6jVxwFEJf73I53/IEsto5aAnzL9HHr2/e5cI7t+0E1ZDB8JKoMVAeJO/rcIQsCB11CUMe3pxUR6eArtim+NxKTDawmoNIY2j17nA9cMjQ2XeGPTq1CnqZPd8EA7LEmAj5o9AdIzTemU9R2/vNyjDUL8T582LgaflzxLI/8btTNVqLPh3zVm/rv18pRDZ3odQIhGYcBCd59xYC3vqMvqB2iLigiTmlQ4yeS4ZqxNuzgjj1ayoI49A==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8774.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(8936002)(83380400001)(86362001)(54906003)(44832011)(6916009)(498600001)(15650500001)(6486002)(33716001)(1076003)(26005)(186003)(5660300002)(6666004)(66476007)(558084003)(66946007)(38350700002)(66556008)(8676002)(38100700002)(4326008)(6506007)(9686003)(6512007)(52116002)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e9VYJk9k6HOMtVuqt4/EavfHkc9b7nFgNi9VA+7skT1vKcxH5Fw5XldO5ZKZ?=
+ =?us-ascii?Q?DJ5M/SalsYvRhkEvF9vzyoVvK0Ev6blPrBte1GlwRapHtw7novsnnXuOYOWG?=
+ =?us-ascii?Q?4ZebBmkfFv+GS1WMJhmNfnwfy//2nEZDIgLuMPXXkkLfE9ynZ7BpsufMQDMo?=
+ =?us-ascii?Q?kACO9gZrSYyNCvlDaeD3cF3bSyiWegtGcJTnfprH52CLP0JlYWalWGCFDy/v?=
+ =?us-ascii?Q?iVx2rcYFcNddSo6faPvpF9AdKT0UvVGyf2Pp4218YimLfdySspgYcjSrOdfQ?=
+ =?us-ascii?Q?wkPooKT0KD7HfjhqcjVMHGij+80JuIbLyU6Qjy1hGZ0IVR/UiiC+lxSjgpwC?=
+ =?us-ascii?Q?k8jihRXWubQ56ujzBrg7B7V5TkRp1suz7kJNEmHJEOUv6o3usqQ1ccZI/3t4?=
+ =?us-ascii?Q?c88ybB0OjNFEHzI2lpsDML0CUEdicoe+yEqjnWGS2DzYaK+07yBZbr6D+pky?=
+ =?us-ascii?Q?+LSpGJmiAczAJVO06b3VdTJcUEHCQ2kobx4sZJtzCyi1n8IXI3XvBFkBP8Fi?=
+ =?us-ascii?Q?lGkXmzMfnC4njbEO6mHrbwMHPRKsWqTioA+VK38NAa80y+6myX70BVRr+k4l?=
+ =?us-ascii?Q?RrXmcFGv+NU2t2W/WfULlf4E23ELW8fDDmj5qKSOiikynn7txpvBiKA0QDpT?=
+ =?us-ascii?Q?wUfA4K6p9fARcL3/A+cbXBbmKnVTQVO6iK/UevUrLYZlbqsgVenzuUWGoQig?=
+ =?us-ascii?Q?Ao0o/gulQPQHVSGPdz0AOw3ZQEgww2vY6THGAzUksfx9sUIblWCC6rhUSkmg?=
+ =?us-ascii?Q?t5AdgpyDDQxDu/4C2kbbxC7uVwpaIPoO7e0M1iacaaa/AUuQ9X2QKb1cyC9F?=
+ =?us-ascii?Q?2yeBn23CMZIf0a/HBqqg9V6NITPoyoyNOXEUNUBXowl70hPC2ZWgPLwtCgKR?=
+ =?us-ascii?Q?hm0lR/JFu0/yLp2JnpF2nP12lwXe3l6xyR5QyWkgICIPR6nsB7/IqdiVG2s9?=
+ =?us-ascii?Q?4Zl+k1RWl8F0luFKCrYczCeUzUItAgasMTfaIJvcQqaRCTkLhaPgZ6T0ejtR?=
+ =?us-ascii?Q?2lFLUy4Ck3PKvt8NmSjRpVQ4c26G02Zn95E7xPSfx0/sQCYlAhNsq8gl1CNz?=
+ =?us-ascii?Q?KE5ljkRyYtZHmGUADqWgYfMgdUAmvz41BCMdihzfopmqgK7DVYOvAOXgELXk?=
+ =?us-ascii?Q?xhYh6bxhtfdh9KNnauutME2HRVA/iS37b1i/w2Kn73CE+W4u4aKxzNWYtZ8X?=
+ =?us-ascii?Q?GmaQj2sJeutxdPBGT2TEPstFM5Y1ZgRAy+aWy2KOm+C6Oax5YWv0TSOKHTDz?=
+ =?us-ascii?Q?C2E5VQPbLZAQ0zMBzCp9Cgz8pEZ8DB6zn7zaXAwKuvG3hv1mZjbCTCITumQ6?=
+ =?us-ascii?Q?RjP+GiTu5pf8vBZd6Di1q1jx3ZWk0oJ4zEqo1QFYAPPINFy/M1x5W345lSaz?=
+ =?us-ascii?Q?/dNA1N5y0IYzTgIxTCVtd8xFmXYEjy3yS5HardEyc+oLFRIHuw61mnz19FBb?=
+ =?us-ascii?Q?ZzIyzJSIqBMhU0GtpUki5Ne+kVFmdWRYMMcu7g4Mnq+34iSbOtAOH5NEO6CM?=
+ =?us-ascii?Q?/PKW8vrF3CqZb+TyDFrsrkzcXd6KVROSor61rGYzEB9fGKYiCLoxW2ubh8Ft?=
+ =?us-ascii?Q?nxI5CnNLD7cowoLxUpI=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7b5aab0f-d74d-44fd-44ab-08d9fd31d6f3
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8774.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2022 16:21:15.2689
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f1HM+aZXOJCJyyHPJXw+RjZn/lkySwuVDAW6wJxaqWg+hFmrpMKEzOaqrRKltzlo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9354
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2022 16:06:22+0200, Sergiu Moga wrote:
-> Move the properties of the rtt node of RTT IPs from the "dts" file to the
-> "dtsi" file, since it is more IP specific than it is board specific.
+On 22/03/03 04:04PM, Mark Brown wrote:
+> On Thu, Mar 03, 2022 at 12:59:15AM +0530, Kuldeep Singh wrote:
+> > Add Han Xu as flexspi maintainer.
+> > Also, update my email address as previous one is not working anymore.
 > 
+> Han, are you OK with this?
 
-The fact that it uses a specific GPBR register makes it board specific
-so I don't really agree with this patch.
-
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
->  arch/arm/boot/dts/at91-sam9x60ek.dts   | 5 -----
->  arch/arm/boot/dts/at91-sama7g5ek.dts   | 4 ----
->  arch/arm/boot/dts/at91sam9260.dtsi     | 1 +
->  arch/arm/boot/dts/at91sam9260ek.dts    | 1 -
->  arch/arm/boot/dts/at91sam9g45.dtsi     | 1 +
->  arch/arm/boot/dts/at91sam9m10g45ek.dts | 1 -
->  arch/arm/boot/dts/sam9x60.dtsi         | 1 +
->  arch/arm/boot/dts/sama7g5.dtsi         | 1 +
->  8 files changed, 4 insertions(+), 11 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/at91-sam9x60ek.dts b/arch/arm/boot/dts/at91-sam9x60ek.dts
-> index b1068cca4228..97ff91346cb4 100644
-> --- a/arch/arm/boot/dts/at91-sam9x60ek.dts
-> +++ b/arch/arm/boot/dts/at91-sam9x60ek.dts
-> @@ -656,11 +656,6 @@ kernel@200000 {
->  	};
->  };
->  
-> -&rtt {
-> -	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> -	status = "okay";
-> -};
-> -
->  &shutdown_controller {
->  	debounce-delay-us = <976>;
->  	status = "okay";
-> diff --git a/arch/arm/boot/dts/at91-sama7g5ek.dts b/arch/arm/boot/dts/at91-sama7g5ek.dts
-> index ccf9e224da78..b7416d9469e3 100644
-> --- a/arch/arm/boot/dts/at91-sama7g5ek.dts
-> +++ b/arch/arm/boot/dts/at91-sama7g5ek.dts
-> @@ -708,10 +708,6 @@ &pwm {
->  	status = "disabled"; /* Conflict with leds. */
->  };
->  
-> -&rtt {
-> -	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> -};
-> -
->  &sdmmc0 {
->  	bus-width = <8>;
->  	non-removable;
-> diff --git a/arch/arm/boot/dts/at91sam9260.dtsi b/arch/arm/boot/dts/at91sam9260.dtsi
-> index 7368347c9357..66d11c8f1a9b 100644
-> --- a/arch/arm/boot/dts/at91sam9260.dtsi
-> +++ b/arch/arm/boot/dts/at91sam9260.dtsi
-> @@ -713,6 +713,7 @@ rtc@fffffd20 {
->  				reg = <0xfffffd20 0x10>;
->  				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
->  				clocks = <&pmc PMC_TYPE_CORE PMC_SLOW>;
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  				status = "disabled";
->  			};
->  
-> diff --git a/arch/arm/boot/dts/at91sam9260ek.dts b/arch/arm/boot/dts/at91sam9260ek.dts
-> index ce96345d28a3..6932dab42f2e 100644
-> --- a/arch/arm/boot/dts/at91sam9260ek.dts
-> +++ b/arch/arm/boot/dts/at91sam9260ek.dts
-> @@ -118,7 +118,6 @@ shdwc@fffffd10 {
->  			};
->  
->  			rtc@fffffd20 {
-> -				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  				status = "okay";
->  			};
->  
-> diff --git a/arch/arm/boot/dts/at91sam9g45.dtsi b/arch/arm/boot/dts/at91sam9g45.dtsi
-> index 2ab730fd6472..fd308e2c15e8 100644
-> --- a/arch/arm/boot/dts/at91sam9g45.dtsi
-> +++ b/arch/arm/boot/dts/at91sam9g45.dtsi
-> @@ -929,6 +929,7 @@ rtc@fffffd20 {
->  				reg = <0xfffffd20 0x10>;
->  				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
->  				clocks = <&clk32k>;
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  				status = "disabled";
->  			};
->  
-> diff --git a/arch/arm/boot/dts/at91sam9m10g45ek.dts b/arch/arm/boot/dts/at91sam9m10g45ek.dts
-> index b6256a20fbc7..07bfa8ef715d 100644
-> --- a/arch/arm/boot/dts/at91sam9m10g45ek.dts
-> +++ b/arch/arm/boot/dts/at91sam9m10g45ek.dts
-> @@ -220,7 +220,6 @@ pwm0: pwm@fffb8000 {
->  			};
->  
->  			rtc@fffffd20 {
-> -				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  				status = "okay";
->  			};
->  
-> diff --git a/arch/arm/boot/dts/sam9x60.dtsi b/arch/arm/boot/dts/sam9x60.dtsi
-> index ec45ced3cde6..57ba47c54043 100644
-> --- a/arch/arm/boot/dts/sam9x60.dtsi
-> +++ b/arch/arm/boot/dts/sam9x60.dtsi
-> @@ -693,6 +693,7 @@ rtt: rtt@fffffe20 {
->  				reg = <0xfffffe20 0x20>;
->  				interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
->  				clocks = <&clk32k 0>;
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  			};
->  
->  			pit: timer@fffffe40 {
-> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
-> index eddcfbf4d223..1530d88ce80f 100644
-> --- a/arch/arm/boot/dts/sama7g5.dtsi
-> +++ b/arch/arm/boot/dts/sama7g5.dtsi
-> @@ -138,6 +138,7 @@ rtt: rtt@e001d020 {
->  			reg = <0xe001d020 0x30>;
->  			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
->  			clocks = <&clk32k 0>;
-> +			atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
->  		};
->  
->  		clk32k: clock-controller@e001d050 {
-> -- 
-> 2.25.1
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Yes, I will take it over.
