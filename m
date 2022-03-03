@@ -2,100 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBB094CC55C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 19:41:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9F724CC58A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 20:01:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235798AbiCCSmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 13:42:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60494 "EHLO
+        id S235814AbiCCTBo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 14:01:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235794AbiCCSmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 13:42:21 -0500
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 248BD3C70A
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 10:41:35 -0800 (PST)
-Received: by mail-lj1-x22f.google.com with SMTP id bn33so7975610ljb.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 10:41:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X+bdG8oq1H6/aUnJciOgA74gwshFz66gJB5eQKnp8Ok=;
-        b=CYJilK9gZn72SSDzyPFgXwQvqQzgq4+msBhizhleAPt/46c51IFkVj7OiPfMkcggxS
-         zgwPowZsx/Fch0FyAxBjN/pMrvkHyrjePqZx4Obi/sjYvZK7xpj7b0LAYLvqSLAME0na
-         fAXsUoR9II5hPxAHlKaHc+rhXRQPRJ0p9L0e3r3newuZKu79kz6kSGfYCSUtEjRJA9jk
-         QzONQnoQ45G0kpubRQt4Hdpx0GdLKWmeMKeOaVUFnNXiA3JHU+D8VDGeqi0LgvIoLFqt
-         c7kaYBXxTjZ7nPv0Y0OXZ659xYswGMM0X4k/dTN6o4bzsFg3CRSD2G7lzQwOlb/TSVoi
-         O1bw==
+        with ESMTP id S233939AbiCCTBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 14:01:42 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AD8E19F455;
+        Thu,  3 Mar 2022 11:00:56 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id 40-20020a9d032b000000b005b02923e2e6so5433472otv.1;
+        Thu, 03 Mar 2022 11:00:56 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X+bdG8oq1H6/aUnJciOgA74gwshFz66gJB5eQKnp8Ok=;
-        b=BGIntiSrwR17b7cDblgH1K5BhcJqGwGSaDlsGF7Jg1U5sgQnLcIpRDcAgrZeHbINnG
-         ooSN/eVY4zVsy117F/m+RnJy4EvVNwggp0Sic88kZs8s+NYecJ9c0Ry3ZnmUgkd+OfwK
-         JWf58AdJWQxmU+FB4Kmi+5783MGczeivVdVGE4l1awAXEOmcETOn2wBM2guQ+cFQdGas
-         HIsiNWYkxVAb4rxpqDhPkncRlfIq6BNK09olPz6glGV1ZuQN25D5p0FicZufoRyVoF3B
-         KTo2JP+D4Vq6ao2mv4yQF5faeMGQ5lQspRJMuVyw/MuioVH77wHpKGZw7VahYZ3Titca
-         sjQg==
-X-Gm-Message-State: AOAM531SolxAeihoFhuFz5MogJMI31c3H+oUENwOv6z7QFhz3OtQfZWy
-        aNRb302A5Zaq3TYnrVORxZh4HybY/2GNUgU/Vz+MnQ==
-X-Google-Smtp-Source: ABdhPJz0UC7oDFxNw9Swy+2XXfpLSCAUbuM+aYXSo/9oBFDrSwb3jYlCaT80zR8uv7PaXUwAKZ8lHKhKCCd9qiIq178=
-X-Received: by 2002:a2e:871a:0:b0:246:ee2:1109 with SMTP id
- m26-20020a2e871a000000b002460ee21109mr23677899lji.165.1646332893237; Thu, 03
- Mar 2022 10:41:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20220302102705.15c32822@gandalf.local.home> <20220302193638.11034-1-ctshao@google.com>
- <CAKwvOdkWcu5ZPADGieb1Vb+kTbfHNzFAa3FXTWC98xXtzuLwqQ@mail.gmail.com> <20220303074243.29ca40c2@rorschach.local.home>
-In-Reply-To: <20220303074243.29ca40c2@rorschach.local.home>
-From:   Nick Desaulniers <ndesaulniers@google.com>
-Date:   Thu, 3 Mar 2022 10:41:21 -0800
-Message-ID: <CAKwvOdnHioO_tjBbA0Dzghr-kcXywp-OEROkoCYTcq8STonFVA@mail.gmail.com>
-Subject: Re: [PATCH v2] config: Allow kernel installation packaging to
- override pkg-config
-To:     Steven Rostedt <rostedt@goodmis.org>,
-        Chun-Tse Shao <ctshao@google.com>
-Cc:     devicetree@vger.kernel.org, frowand.list@gmail.com,
-        jpoimboe@redhat.com, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, masahiroy@kernel.org,
-        michal.lkml@markovi.net, peterz@infradead.org, robh+dt@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-18.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=dEqyBR6kCW9UlA1zBsmnhStMOP8YHEJxcgst1aAegPQ=;
+        b=H9Bm1qDHs+wwHE0iRAblNg/OsVzOiZycfj62BffYX/R89swZKWOpLXtdjBAyE/tDTT
+         AjwpLg66J9bLD+6aO+glB/iB+AuWVdc+/qj3L0r4F16GfnaGo/DVcBEhqXNrboBYOcN5
+         vpH466Mk9Y0FCOFA9Ibg//x5r7b7o2qSPYkwhPFciyUga+ze0jqmx0R6s9H0njiEX67N
+         Y1WIq9Ij7RkNMrQ4NDmQTweShOQn6KNSahm0Jmy3MfeYAGkzbsDe4WkY5vvY9YDP1zLZ
+         Ugm8beTNRJFYLDzc1nXsAaXzC5GeFvOf815Vb111kiBfHmBLufgqpnWSxz2dj6yaVdGI
+         JLLQ==
+X-Gm-Message-State: AOAM530kAvBUxXgPWS4HKsktYVkM8cpSLCg8u3gudRjQH0Yki/W0P+ts
+        f4E7ZeO5oN8yCvSrcl27Jq4rPuiCmg==
+X-Google-Smtp-Source: ABdhPJzs7+4gMhuA2iPpZzX05xAcl9nkwd4vsQrGe/23G32SXPHyHmKj5dA92zRXVBLstlHcEeuVSA==
+X-Received: by 2002:a05:6830:2783:b0:5ac:e99f:70fe with SMTP id x3-20020a056830278300b005ace99f70femr20213907otu.122.1646334055673;
+        Thu, 03 Mar 2022 11:00:55 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id x25-20020a056830409900b005af164235b4sm1318358ott.2.2022.03.03.11.00.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 11:00:54 -0800 (PST)
+Received: (nullmailer pid 2139596 invoked by uid 1000);
+        Thu, 03 Mar 2022 19:00:53 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        David Rhodes <drhodes@opensource.cirrus.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
+        Takashi Iwai <tiwai@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        patches@opensource.cirrus.com, Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220303173059.269657-21-tanureal@opensource.cirrus.com>
+References: <20220303173059.269657-1-tanureal@opensource.cirrus.com> <20220303173059.269657-21-tanureal@opensource.cirrus.com>
+Subject: Re: [PATCH 20/20] Documentation: devicetree: CS35l41 External Boost
+Date:   Thu, 03 Mar 2022 13:00:53 -0600
+Message-Id: <1646334053.475639.2139595.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 3, 2022 at 4:42 AM Steven Rostedt <rostedt@goodmis.org> wrote:
->
-> On Wed, 2 Mar 2022 13:48:01 -0800
-> Nick Desaulniers <ndesaulniers@google.com> wrote:
->
-> > I'm ok with this patch; a quick grep though shows a few more open
-> > coded instances of pkg-config.  Should we fix those up, too? i.e.
-> >
-> > certs/Makefile:92:HOSTCFLAGS_extract-cert.o = $(shell pkg-config
-> > --cflags libcrypto 2> /dev/null)
-> > certs/Makefile:93:HOSTLDLIBS_extract-cert = $(shell pkg-config --libs
-> > libcrypto 2> /dev/null || echo -lcrypto)
-> > scripts/kconfig/gconf-cfg.sh
->
-> For this patch set, the above is probably good enough to do (and test
-> with a make allmodconfig).
->
-> > tools/perf/Makefile.perf
-> > tools/ in general
->
-> I would hold off on doing tools for a separate patch. With the
-> exception of objtool most of tools is not needed for the build process.
+On Thu, 03 Mar 2022 17:30:59 +0000, Lucas Tanure wrote:
+> From: David Rhodes <drhodes@opensource.cirrus.com>
+> 
+> Document external boost feature on CS35L41
+> 
+> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> ---
+>  .../bindings/sound/cirrus,cs35l41.yaml        | 42 +++++++++++++++++--
+>  1 file changed, 39 insertions(+), 3 deletions(-)
+> 
 
-SGTM
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
--- 
-Thanks,
-~Nick Desaulniers
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cirrus,cs35l41.example.dt.yaml: cs35l41@2: 'cirrus,gpio1-output-enable' is a required property
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1600514
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
