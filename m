@@ -2,111 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E58A4CB99C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:51:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DB564CB9A3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:55:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbiCCIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 03:51:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37096 "EHLO
+        id S229914AbiCCIzy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 03:55:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231213AbiCCIv4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:51:56 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1582A1768D4
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:51:10 -0800 (PST)
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S229660AbiCCIzx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:55:53 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392421768F6;
+        Thu,  3 Mar 2022 00:55:09 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 728723F043
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 08:51:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646297468;
-        bh=oNR1xncvu3qu9e99bCBj3dwVF0BkMGGG1dhnvvFNoac=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=nDfYnWCjUZND/S1iel++m/U2zVvpNN2248i3w/EmBuJB7sBaxuHA6Ovo6u6PDMjWt
-         2i76OI8G2031eAyvuKJyWl8Zrnd3RI7jg5ca++QnsYvLMzFIUNduN7bNO8tHm7Lcik
-         flYqD/mYCtenXYGT/nRuayaV1TTOYc9BoxdZtVn8aBd5kygUhsk+4rOvrWmSa6kS6v
-         A1qYFztDbuUdmyNJE4HUT2njWi59PZLYlrqD2xvLZBJE+ttXE6j8yxwUQlYeQkj+OL
-         A/bVTiPgp3YCRgE8ewp4pb5QIirmTDkJz9358aUYs9TLPH+synrXVMTe93enkWKzlC
-         uyuxT63H+4icA==
-Received: by mail-wr1-f69.google.com with SMTP id b7-20020a05600003c700b001efac398af7so1765843wrg.22
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 00:51:08 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=oNR1xncvu3qu9e99bCBj3dwVF0BkMGGG1dhnvvFNoac=;
-        b=7K/XLgO9S7QhcA+bcuoIDrkSuEPD4ltVbX3oDVrWbaO6ZZ1KAPzjXGDV8Fa/DX81AN
-         8ysi38R2+jIf/oxWWaWh3jILPIW3PMY8ZFclMqGWe09KZvPT4gl0K/AOuGwwgjndA/pJ
-         OgpRv1HhAdVdwNBC/729hD5HkFM2XJaarZolTcCkYz3HrtsWSVObGKCLcwcaOt4EtvSl
-         lNFqLvNXOdr+uIl8BNrt9qK6kJkypyUq09uwuK7+nLYvBJRMQYwRaghxycvL4UFHQRwC
-         45SROSoTQmBjRQAqT+h0vEUdCPasgMwH8dkAgGHagw/AC9T1B/Q6uNSh5iKXIQm/VjbG
-         zgIg==
-X-Gm-Message-State: AOAM533Bz60tRctWG61xe5XT7XSBmrKKxGRhJrQ0GZOMLa+pwna1cEhx
-        ik/41mIinDdkwzMwZ9GjeOSXiGUzN8N2QWOjqovRtP8SA2XcQUG8rtpgpD9CpFLZ6LYEnUcPl3t
-        y4eDhHUbMmhAvBY4SK5AdTjNXHILEIfx6tyo3X2E=
-X-Received: by 2002:adf:bc09:0:b0:1f0:2483:48b with SMTP id s9-20020adfbc09000000b001f02483048bmr6268549wrg.118.1646297468110;
-        Thu, 03 Mar 2022 00:51:08 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwA4DWyqvBE/19fVpLvop30/yN6VpcN05Y2xu45Wxe3oLMpDg0yQrlkrZEwCwPDWIh6S2wwjw==
-X-Received: by 2002:adf:bc09:0:b0:1f0:2483:48b with SMTP id s9-20020adfbc09000000b001f02483048bmr6268536wrg.118.1646297467942;
-        Thu, 03 Mar 2022 00:51:07 -0800 (PST)
-Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id o13-20020a5d648d000000b001efd62a840dsm1483242wri.111.2022.03.03.00.51.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 00:51:07 -0800 (PST)
-Message-ID: <2674d7af-56cd-b2fc-74d9-ade32ada7bf9@canonical.com>
-Date:   Thu, 3 Mar 2022 09:51:06 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id E7472B82451;
+        Thu,  3 Mar 2022 08:55:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70C85C004E1;
+        Thu,  3 Mar 2022 08:55:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646297706;
+        bh=kU5Q06pAx6Ke2pgUtQgshelxBuHKHAWI3QpSa9wC5UY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OvuGsYkKqyLhu4HoxbCPmS8D8ZmQHLQY5D4+dOgwVoidcT5Zg+gPqjBJNrykjeE/5
+         ZRroooUFFL1sK8UqRkSWlcH2WjnsUKpS6gNbaHTRew7U+hC/WtmD8t4getcCZvyeTG
+         B/JTk5f+9WRrYk9OceV7uvBE1/ocsiIYRt5JtklC0Un+YwMRvLsRuVmBM/nCqZChYH
+         pMpKXJIZYtUcRE8fIOOb0T9GTEkT0daYKeufiBdHpqEK3Ymj+yIN5oY28UgQsUdtxz
+         wemjxoJEdPHUD3bnbFzvhYrwxU1oTozoHSSGYequ5W10JV5+Y/lmcIKFp78b/QijPJ
+         6Fbk7R1nmxaig==
+Date:   Thu, 3 Mar 2022 16:55:02 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, perex@perex.cz, matthias.bgg@gmail.com,
+        trevor.wu@mediatek.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        aaronyu@google.com
+Subject: Re: [PATCH] ASoC: mediatek: mt8183: support wb bt audio
+Message-ID: <YiCCZoryo9LVQEGl@google.com>
+References: <20220303061147.5037-1-jiaxin.yu@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: kbuild: Support partial matches with
- DT_SCHEMA_FILES
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220228201006.1484903-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220228201006.1484903-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220303061147.5037-1-jiaxin.yu@mediatek.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/02/2022 21:10, Rob Herring wrote:
-> DT_SCHEMA_FILES is currently restricted to a list of exact files with
-> the full source tree path (i.e. Documentation/devicetree/bindings/...).
-> Loosen this requirement and let DT_SCHEMA_FILES be a partial match.
-> 
-> With this, checking all schema files in a directory is possible:
-> 
-> $ make DT_SCHEMA_FILES=/gpio/ dt_binding_check
-> 
-> Or all schema files with 'qcom' in the path or filename:
-> 
-> $ make DT_SCHEMA_FILES=qcom dt_binding_check
-> 
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+On Thu, Mar 03, 2022 at 02:11:47PM +0800, Jiaxin Yu wrote:
+> This patch use "bt-sco-pcm-wb" codec dai driver for wb bt audio.
+
+If it could get chance for a respin, describe it in imperative mood.  See [1].
+
+[1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#describe-your-changes
+
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+With some minor comments,
+Reviewed-by: Tzung-Bi Shih <tzungbi@kernel.org>
+
 > ---
->  Documentation/devicetree/bindings/Makefile        | 15 +++++----------
->  .../devicetree/bindings/writing-schema.rst        |  9 +++++----
->  2 files changed, 10 insertions(+), 14 deletions(-)
 > 
+> This patch depends on:
+> https://patchwork.kernel.org/project/alsa-devel/patch/20220302013533.29068-1-jiaxin.yu@mediatek.com/
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
+Actually, it doesn't depend on the patch.  They are independent.
