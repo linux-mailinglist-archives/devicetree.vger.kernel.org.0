@@ -2,108 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11B414CB483
+	by mail.lfdr.de (Postfix) with ESMTP id F39764CB486
 	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 02:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231474AbiCCBw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 20:52:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45644 "EHLO
+        id S231559AbiCCBxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 20:53:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231603AbiCCBw4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 20:52:56 -0500
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2F45113D;
-        Wed,  2 Mar 2022 17:52:11 -0800 (PST)
+        with ESMTP id S231503AbiCCBxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 20:53:40 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB841ADA7;
+        Wed,  2 Mar 2022 17:52:55 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id x193so3547770oix.0;
+        Wed, 02 Mar 2022 17:52:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646272332; x=1677808332;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=icOWcKXZ8RLcuFhBmkMKn2v/xS0KeI078BnGvm3HMPU=;
-  b=ONLY1Dr7j0Oaty1DwenBEHiIGXyj7/RIT2yIPXuT1vK+94TBv1oceJcv
-   RnNC2UuHGRzvHXp6TpykYsc567nZjQ1wRmt4e06Xiumlc5VvxtaOBDe04
-   5gBlqBRcONdxs0veXALzYLABzc0Aj+N6fbYoK/Li5Q9xc61fKT/zlRuYK
-   0=;
-Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
-  by alexa-out.qualcomm.com with ESMTP; 02 Mar 2022 17:52:11 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 17:52:10 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Wed, 2 Mar 2022 17:52:09 -0800
-Received: from [10.216.42.174] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 2 Mar 2022
- 17:52:03 -0800
-Message-ID: <6a1a4129-00af-4db2-6bd5-974784646e50@quicinc.com>
-Date:   Thu, 3 Mar 2022 07:21:58 +0530
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=iQB0vYq8LkR/vFpCk3gDNacx/LQaaAUMMsiPFTE4IUE=;
+        b=SdZB/SZx1Q8uq2FJM6zA0EeHj0vrBi1onjSvO9naI2tY7bcdZKlKLMUovJTG1ryoB1
+         31CLCPFAxpioXFwtR3Ub1JM2wjVxVx3ynBTPPkwEqEYddrFzqAQL016kPQVHYmUWBGRS
+         n9Je75cSOnfUmp1XsOrCH7236pyRdZ8pUV1t5m8HG+m31QCP02evhAoYu4g2quMUP1bv
+         qdPtubdJqzbx6K23NatKe1DJx/ZIpF/09tHPvse6IrgnYMhehZKPs9yxyZzc5fx20do4
+         Hjx2zE+plHuNxrEtqFvEAKblfMyc08xtPxgM1MCNYfCpVkZLjrBnRYVrSyYCp80uIDeN
+         NVHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=iQB0vYq8LkR/vFpCk3gDNacx/LQaaAUMMsiPFTE4IUE=;
+        b=sVyjbF1Zv2po/qSV7uey3WSojKJ4OHT0mYUNviBIX4gkZMkl0X9/v/ek7wBMU05KZv
+         908Y5sx4TzCtEVR5S4Yt5T2lU34L32GopqKesbDM7OxV7xXvzhrLuojcV3I9cFYjqVL6
+         bIMrYm5b3yMbrphFeEMH/XOUrI0u15pNuRjIO5eWLETk3ZYUPY5liYnuRi5vSfR8PFg0
+         eUiqfYxNWLVAeqXoRJEO5NjZ2ZEcT8+mkKhyMK9gVV7WUuWIS5V1jnIqVbc8Yw6i+0rj
+         WHW8DlNt+XmDmaPW7XssQXCslW3ZAA7i731AeLy8KM2IoRjyjpxxKuuJ6t8FbIp/ld8L
+         bEpg==
+X-Gm-Message-State: AOAM531GVeBuwCwb5NYQihux+l1K00Tg8NbPxuM+EjEUVF/N4dB5yXEO
+        vujifYs56bUrm+FlpYSP1A/ym+wwD5o=
+X-Google-Smtp-Source: ABdhPJxjktwZen9Pc8nn0dW34yw+NliWgdRNBHGNJB0frAc9XT+gLbicCae3kmEsMYkEDWWFFhIcRg==
+X-Received: by 2002:a05:6808:128a:b0:2d7:8f0b:e9a8 with SMTP id a10-20020a056808128a00b002d78f0be9a8mr2602255oiw.174.1646272374137;
+        Wed, 02 Mar 2022 17:52:54 -0800 (PST)
+Received: from tresc043793.tre-sc.gov.br (187-049-235-234.floripa.net.br. [187.49.235.234])
+        by smtp.gmail.com with ESMTPSA id a10-20020a05687073ca00b000d128dfeebfsm446310oan.2.2022.03.02.17.52.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 17:52:53 -0800 (PST)
+From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
+To:     netdev@vger.kernel.org
+Cc:     linus.walleij@linaro.org, andrew@lunn.ch, vivien.didelot@gmail.com,
+        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, alsi@bang-olufsen.dk, arinc.unal@arinc9.com,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH net-next v5 1/3] dt-bindings: net: dsa: add rtl8_4 and rtl8_4t tag formats
+Date:   Wed,  2 Mar 2022 22:52:33 -0300
+Message-Id: <20220303015235.18907-2-luizluca@gmail.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220303015235.18907-1-luizluca@gmail.com>
+References: <20220303015235.18907-1-luizluca@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v6 1/3] soundwire: qcom: Add compatible name for v1.6.0
-Content-Language: en-US
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <yung-chuan.liao@linux.intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-References: <1646224982-3361-1-git-send-email-quic_srivasam@quicinc.com>
- <1646224982-3361-2-git-send-email-quic_srivasam@quicinc.com>
- <Yh+Qs6P3pm2mHDjJ@matsya>
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Organization: Qualcomm
-In-Reply-To: <Yh+Qs6P3pm2mHDjJ@matsya>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Realtek rtl8365mb DSA driver can use these two tag formats.
 
-On 3/2/2022 9:13 PM, Vinod Koul wrote:
-Thanks for Your time Vinod!!!
-> On 02-03-22, 18:13, Srinivasa Rao Mandadapu wrote:
->> Update compatible string and master data information in soundwire driver
->> to support v1.6.0 in lpass sc7280 based platform.
-> Where is the documentation of this new compatible
-The compatible name already exists in 
-Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
->> ---
->>   drivers/soundwire/qcom.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->> index 5481341..fc41210 100644
->> --- a/drivers/soundwire/qcom.c
->> +++ b/drivers/soundwire/qcom.c
->> @@ -1348,6 +1348,7 @@ static int qcom_swrm_remove(struct platform_device *pdev)
->>   static const struct of_device_id qcom_swrm_of_match[] = {
->>   	{ .compatible = "qcom,soundwire-v1.3.0", .data = &swrm_v1_3_data },
->>   	{ .compatible = "qcom,soundwire-v1.5.1", .data = &swrm_v1_5_data },
->> +	{ .compatible = "qcom,soundwire-v1.6.0", .data = &swrm_v1_5_data },
->>   	{/* sentinel */},
->>   };
->>   
->> -- 
->> 2.7.4
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+---
+ Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+index 702df848a71d..e60867c7c571 100644
+--- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
++++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+@@ -51,6 +51,8 @@ properties:
+       - edsa
+       - ocelot
+       - ocelot-8021q
++      - rtl8_4
++      - rtl8_4t
+       - seville
+ 
+   phy-handle: true
+-- 
+2.35.1
+
