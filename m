@@ -2,34 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8EB4CBC79
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 12:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 62D9C4CBCCA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 12:36:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231183AbiCCLYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 06:24:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37860 "EHLO
+        id S232419AbiCCLf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 06:35:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229794AbiCCLYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 06:24:05 -0500
-Received: from zg8tmty1ljiyny4xntqumjca.icoremail.net (zg8tmty1ljiyny4xntqumjca.icoremail.net [165.227.154.27])
-        by lindbergh.monkeyblade.net (Postfix) with SMTP id 0BD9512E775;
-        Thu,  3 Mar 2022 03:23:18 -0800 (PST)
+        with ESMTP id S231778AbiCCLfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 06:35:19 -0500
+X-Greylist: delayed 574 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 03 Mar 2022 03:32:48 PST
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+        by lindbergh.monkeyblade.net (Postfix) with SMTP id 7AF2455772;
+        Thu,  3 Mar 2022 03:32:46 -0800 (PST)
 Received: from localhost (unknown [192.168.98.254])
-        by app1 (Coremail) with SMTP id C4KowAB36FDLpCBiuLw6AA--.16098S2;
-        Thu, 03 Mar 2022 19:21:48 +0800 (CST)
-Date:   Thu, 3 Mar 2022 19:21:47 +0800
+        by app1 (Coremail) with SMTP id C4KowABn2VFHpyBilsE6AA--.21846S2;
+        Thu, 03 Mar 2022 19:32:23 +0800 (CST)
+Date:   Thu, 3 Mar 2022 19:32:23 +0800
 From:   fuyao <fuyao1697@cyg.com>
-To:     Rob@scg, Herring@scg, robh+dt@kernel.org, Maxime@scg, Ripard@scg,
-        mripard@kernel.org, Chen-Yu@scg, Tsai@scg, wens@csie.org,
-        Jernej@scg, Skrabec@scg, jernej.skrabec@gmail.com,
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
 Cc:     =?utf-8?B?6bqm5YGl5qif?= <maijianzhang@allwinnertech.com>
 Subject: [PATCH] sunxi:dts: remove r40 can node
-Message-ID: <YiCky/6luAPcmiEB@scg>
-Mail-Followup-To: Rob@scg, Herring@scg, robh+dt@kernel.org, Maxime@scg,
-        Ripard@scg, mripard@kernel.org, Chen-Yu@scg, Tsai@scg,
-        wens@csie.org, Jernej@scg, Skrabec@scg, jernej.skrabec@gmail.com,
+Message-ID: <YiCnR5v9fYoXXy39@scg>
+Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
         =?utf-8?B?6bqm5YGl5qif?= <maijianzhang@allwinnertech.com>
@@ -37,27 +39,27 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Organization: work_work_work
-X-CM-TRANSID: C4KowAB36FDLpCBiuLw6AA--.16098S2
+X-CM-TRANSID: C4KowABn2VFHpyBilsE6AA--.21846S2
 X-Coremail-Antispam: 1UD129KBjvdXoW7GF18CFWUuw4xWF4fGFyDZFb_yoW3KFb_Ka
         4fGa15WFWrArZ8trn5Jw43Jw18Zw48C3s3X34IqF4UJanIvws5XF4DJa93Xw15WrW2gFZY
-        yay5XF98tw1Y9jkaLaAFLSUrUUUUUb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-        9fnUUIcSsGvfJTRUUUbs8YjsxI4VWkKwAYFVCjjxCrM7CY07I20VC2zVCF04k26cxKx2IY
+        yay5XF98tw1Y9jkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+        9fnUUIcSsGvfJTRUUUbIxYjsxI4VWkKwAYFVCjjxCrM7CY07I20VC2zVCF04k26cxKx2IY
         s7xG6rWj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
         8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E
         87Iv67AKxVWxJr0_GcWl84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s0DM2vYz4IE04k24V
         AvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xf
         McIj6x8ErcxFaVAv8VW8GwAv7VCY1x0262k0Y48FwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r
-        1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7MxkIecxEwVCm-wCF04k2
-        0xvY0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26r48MxC20s026xCaFVCjc4AY6r1j6r4UMI
-        8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AK
-        xVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI
-        8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280
-        aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43
-        ZEXa7IUeeVbPUUUUU==
+        1j6r4UM4x0Y48IcVAKI48JMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04k20xvY
+        0x0EwIxGrwCF04k20xvE74AGY7Cv6cx26r48MxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I
+        0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWU
+        tVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2Ix0cI8IcV
+        CY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAF
+        wI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa
+        7IU53GYJUUUUU==
 X-CM-SenderInfo: 5ix1t0irwzlqxf1jhudrp/
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
