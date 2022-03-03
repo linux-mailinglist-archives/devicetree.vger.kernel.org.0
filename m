@@ -2,119 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D670A4CBF70
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 15:02:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F328A4CBFA1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 15:12:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233924AbiCCODd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 09:03:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56688 "EHLO
+        id S233940AbiCCONL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 09:13:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233923AbiCCODc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 09:03:32 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6693F13D46;
-        Thu,  3 Mar 2022 06:02:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646316166; x=1677852166;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=bh/uahIEsWNuKKULv6bRUufRjjRvk8F5xyVGfWVXA90=;
-  b=WwDq4hvTsknxWjIPZwPPJu8Fctm1pzKIwUJ6WuXm/YUtBfrhSYomITKz
-   hbVONnlE3HiWHo0Zs1Q9xQCA6i8eyLbj+8c6LEqgwXzMiw+J8d4Ef5q1f
-   eNjurcfaGB4OVGZLZUaTj8vbzv/Ru+t03jRSy6ujckBwBsnAQkNYNFX6k
-   w=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 03 Mar 2022 06:02:45 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 06:02:44 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 3 Mar 2022 06:02:44 -0800
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 3 Mar 2022 06:02:38 -0800
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        <yung-chuan.liao@linux.intel.com>,
-        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>,
-        <vkoul@kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v7 2/2] dt-bindings: soundwire: qcom: Add bindings for audio clock reset control property
-Date:   Thu, 3 Mar 2022 19:32:08 +0530
-Message-ID: <1646316128-21082-3-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1646316128-21082-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1646316128-21082-1-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S229914AbiCCONK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 09:13:10 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA71A18CC0E;
+        Thu,  3 Mar 2022 06:12:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646316745; x=1677852745;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=OmW3wFitWOZ9d4nCwITn7KMkbSxKvXR3UNgpfKrtjjc=;
+  b=aTwDrlzxpfkpMTYgCZ0fE5V6N7yUUAFrc5DQVyIpmY1AWDBr8EOWB7/X
+   K/48BORewPNTp2n9Et5yZp2YVX4/UToz57nBTV+e3aOfa1nvY2vGPeZeF
+   5ZK/QxfVWceO8kM9vzXDAL5n2LllkkAErPVRNFCIruF5vJNfu6pgLOEE2
+   8ndO3dxWW4o2xat+elbD3lEaZ6eIUKNoCx/Ku7+UFlR1CKXwApm0+LXRT
+   puou0US0e/GWf8ncCqxR/sGskRH93hLXA9A/uJkFypqrP3KB7QL8tsQbG
+   EuHOZJBTLxxm+raPhRveJY2CrF1pEhAG0BlTwZePPQvUYhmYIpWr5MIYS
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,151,1643698800"; 
+   d="scan'208";a="147960138"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 03 Mar 2022 07:12:24 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 3 Mar 2022 07:12:23 -0700
+Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 3 Mar 2022 07:12:18 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
+        <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Sergiu Moga <sergiu.moga@microchip.com>
+Subject: [PATCH v2 0/5] dt-bindings: rtc: convert at91sam9 bindings to
+Date:   Thu, 3 Mar 2022 16:06:21 +0200
+Message-ID: <20220303140626.38129-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update description for audio clock reset control property, which is required
-for latest chipsets, to allow rx, tx and wsa bus clock enabling in software
- control mode by configuring dynamic clock gating control registers.
+This patch series addresses the conversion of the RTC binding for
+Atmel/Microchip SoCs to Device Tree Schema format. It also changes
+the node names from some of the "dtsi" files from "rtt" to the more
+generic "rtc", while moving some of the specific properties from the
+"dts" files to the "dtsi" files as well as adding this required property to
+the "dtsi" files that were missing it.
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Changes since v1:
+- Add the "start-year" property as suggested by Alexandre Belloni
+- Fix the errors generated from not using the more generic "rtc" node
+name for the example of the binding, as suggested by Krzysztof Kozlowski
+- Replace the "uint32-array" type of the "atmel,rtt-rtc-time-reg"
+  property with "syscon", as suggested by Krzysztof Kozlowski
+- Move the "atmel,rtt-rtc-time-reg" property from some of the
+Atmel/Microchip board files to the SoC files
+- Add the "atmel,rtt-rtc-time-reg" required property to the
+Atmel/Microchip SoC files that were missing it
+- Use the more generic "rtc" node name inside the Atmel/Microchip SoC
+files that were using "rtt" instead
+- Add SAMA7G5 compatible strings list to the DT binding
 
-diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-index b93a2b3..32e156d 100644
---- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-+++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-@@ -150,6 +150,18 @@ board specific bus parameters.
- 		    or applicable for the respective data port.
- 		    More info in MIPI Alliance SoundWire 1.0 Specifications.
- 
-+- reset:
-+	Usage: optional
-+	Value type: <prop-encoded-array>
-+	Definition: Should specify the SoundWire audio CSR reset controller interface,
-+		    which is required for SoundWire version 1.6.0 and above.
-+
-+- reset-names:
-+	Usage: optional
-+	Value type: <stringlist>
-+	Definition: should be "swr_audio_cgcr" for SoundWire audio CSR reset
-+		    controller interface.
-+
- Note:
- 	More Information on detail of encoding of these fields can be
- found in MIPI Alliance SoundWire 1.0 Specifications.
-@@ -168,6 +180,8 @@ soundwire: soundwire@c85 {
- 	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
- 	clocks = <&wcc>;
- 	clock-names = "iface";
-+	resets = <&lpass_audiocc LPASS_AUDIO_SWR_TX_CGCR>;
-+	reset-names = "swr_audio_cgcr";
- 	#sound-dai-cells = <1>;
- 	qcom,dports-type = <0>;
- 	qcom,dout-ports	= <6>;
+
+Sergiu Moga (5):
+  ARM: dts: at91: Move rtt node properties from "dts" file to "dtsi"
+    file
+  ARM: dts: at91: Add the required `atmel,rtt-rtc-time-reg` property
+  ARM: dts: at91: Use the generic "rtc" node name for the rtt IPs
+  dt-bindings: rtc: convert at91sam9 bindings to json-schema
+  dt-bindings: rtc: at91: Add SAMA7G5 compatible strings list
+
+ .../bindings/rtc/atmel,at91sam9-rtc.txt       | 25 -------
+ .../bindings/rtc/atmel,at91sam9-rtc.yaml      | 65 +++++++++++++++++++
+ arch/arm/boot/dts/at91-sam9x60ek.dts          |  5 --
+ arch/arm/boot/dts/at91-sama7g5ek.dts          |  4 --
+ arch/arm/boot/dts/at91sam9260.dtsi            |  1 +
+ arch/arm/boot/dts/at91sam9260ek.dts           |  1 -
+ arch/arm/boot/dts/at91sam9261.dtsi            |  1 +
+ arch/arm/boot/dts/at91sam9263.dtsi            |  2 +
+ arch/arm/boot/dts/at91sam9g45.dtsi            |  1 +
+ arch/arm/boot/dts/at91sam9m10g45ek.dts        |  1 -
+ arch/arm/boot/dts/at91sam9rl.dtsi             |  1 +
+ arch/arm/boot/dts/sam9x60.dtsi                |  3 +-
+ arch/arm/boot/dts/sama7g5.dtsi                |  3 +-
+ 13 files changed, 75 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+
 -- 
-2.7.4
+2.25.1
 
