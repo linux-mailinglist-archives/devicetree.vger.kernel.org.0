@@ -2,90 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9BE84CBE6A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:04:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C4AE4CBE6D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:04:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232648AbiCCNEq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 08:04:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53778 "EHLO
+        id S233520AbiCCNE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 08:04:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54588 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232432AbiCCNEq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:04:46 -0500
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 047AF4F447
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 05:04:00 -0800 (PST)
-Received: from SoMainline.org (94-209-165-62.cable.dynamic.v4.ziggo.nl [94.209.165.62])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 39B8D3F94F;
-        Thu,  3 Mar 2022 14:03:59 +0100 (CET)
-Date:   Thu, 3 Mar 2022 14:03:57 +0100
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v2 6/6] arm: dts: qcom-msm8974: Drop flags for mdss irqs
-Message-ID: <20220303130357.b2we5z42uds2nizs@SoMainline.org>
-References: <20220302225411.2456001-1-dmitry.baryshkov@linaro.org>
- <20220302225411.2456001-6-dmitry.baryshkov@linaro.org>
+        with ESMTP id S232892AbiCCNE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:04:57 -0500
+Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9069F50477;
+        Thu,  3 Mar 2022 05:04:11 -0800 (PST)
+Received: by mail-qv1-xf2c.google.com with SMTP id j5so3984546qvs.13;
+        Thu, 03 Mar 2022 05:04:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/lVVqGzxWl1Ux5ICb2CCCQDe80RAQD6Gjf6fg6zMkY8=;
+        b=Ztb+V9aWpOLnDQnK8i2xWUBhxQ7+roYPkRS4jvaARlWILKSyBe7MfmnHHd3R4n+bFT
+         ClCXjl97vna3KL0S2uQszBOzV7kFp8m0N7Hot0+fvLLSnlmWebPTaW8zeUP2EKP0+/eg
+         oYQVSNAjkaks3Nc88jbzNy5KYE6ZFW6UZQ3V/md9sRy+Wl98aDfOuWtbGYaGg/5h3bpV
+         +tUSRAfOsPwShrpRdlUdUtGwFieCOQgBEGd4TIrvDKidxGtU5pU/ShEv5bo0NY+Ye5rW
+         r2JhUXmQZVBtrB5Ez/Gyom1FkFb/O7KEYgBdiRXYVMv97NwteH/TTiuU/GE7uTgid+3f
+         JZnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/lVVqGzxWl1Ux5ICb2CCCQDe80RAQD6Gjf6fg6zMkY8=;
+        b=d0Z1v2ABmxTedKno4+vSAcTxqxT5MWRwqlBNn43NW09GnaZANhWMVbj+p+Js04TgJc
+         0qrOE3MCeWhliw0z7LAdPFlDoRooTetJTaSXjzAy6gBM3/E5L5ch0XEmtEW2MpukaBhL
+         tUz41wBuppRI0UiP7e4dHTTtE9gB15ww9PzkyCPAmzKtBewLUpe2M2/Un3tU8QTNrmht
+         I7jvBWN4j+c2rcjuGleyAIkv0ZwcrDF6pSiPiBnrchYb4ALwJK9TaXruMv6Tk5Ts1H/J
+         dXjBbFxywCy0rn7aUaWVeBsUSUZed4sh/W78wDfCTgM4CIQWxC9Kp1pmleWGNOco1fpq
+         Oncg==
+X-Gm-Message-State: AOAM531t2PG/yeXndWeAkPHp1i9kOZ3atkgKJ2Ctx4oYzIc9dqNAlK3Z
+        dERloGExHx+WAtShn418/JHaCOBty7Uw9wEHyNM=
+X-Google-Smtp-Source: ABdhPJwdktgf6aoxdjY555xRSyIKgajAti2vfX8KCBRVqgNzmbSLxxuW2JQwZsXmzwFidaRikPpLS1azpbs3dq6ldI8=
+X-Received: by 2002:ad4:5ba8:0:b0:434:66a8:6cd8 with SMTP id
+ 8-20020ad45ba8000000b0043466a86cd8mr10177600qvq.4.1646312650715; Thu, 03 Mar
+ 2022 05:04:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220302225411.2456001-6-dmitry.baryshkov@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20220303083141.8742-1-warp5tw@gmail.com> <YiCXujUOUum+CAU9@smile.fi.intel.com>
+In-Reply-To: <YiCXujUOUum+CAU9@smile.fi.intel.com>
+From:   Tali Perry <tali.perry1@gmail.com>
+Date:   Thu, 3 Mar 2022 15:03:59 +0200
+Message-ID: <CAHb3i=sW16cykfp2Q=s6evzodD4wKreK3PrOb2YPeQzE-NWe4A@mail.gmail.com>
+Subject: Re: [PATCH v3 00/11] i2c: npcm: Bug fixes timeout, spurious interrupts
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        Wolfram Sang <wsa@kernel.org>, jie.deng@intel.com,
+        sven@svenpeter.dev, bence98@sch.bme.hu, lukas.bulwahn@gmail.com,
+        arnd@arndb.de, olof@lixom.net, Tali Perry <tali.perry@nuvoton.com>,
+        Avi Fishman <Avi.Fishman@nuvoton.com>,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-03 01:54:11, Dmitry Baryshkov wrote:
-> The number of interrupt cells for the mdss interrupt controller is 1,
-> meaning there should only be one cell for the interrupt number, not two.
-> Drop the second cell containing (unused) irq flags.
-> 
-> Fixes: 5a9fc531f6ec ("ARM: dts: msm8974: add display support")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Mar 3, 2022 at 12:27 PM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Thu, Mar 03, 2022 at 04:31:30PM +0800, Tyrone Ting wrote:
+> > From: Tyrone Ting <kfting@nuvoton.com>
+> >
+> > This patchset includes the following fixes:
+> >
+> > - Add dt-bindings description for NPCM845.
+> > - Bug fix for timeout calculation.
+> > - Better handling of spurious interrupts.
+> > - Fix for event type in slave mode.
+> > - Removal of own slave addresses [2:10].
+> > - Support for next gen BMC (NPCM845).
+> >
+> > The NPCM I2C driver is tested on NPCM750 and NPCM845 evaluation boards.
+>
+> Overall my impression that the code was never tested for this driver and
+> somehow appears in the upstream and hence this series.
+>
+> Anyway, I'm going to review the changes here.
+>
+> --
 
-Thanks for adding the Fixes: tag.
 
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
+Actually it was and is being used by multiple users in lots of BMCs.
+We haven't submitted patches for this driver for a while
+and accumulated them all on Nuvoton Github repo, but now we wanted to
+clear the table.
 
-> ---
->  arch/arm/boot/dts/qcom-msm8974.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> index 412d94736c35..3b9af5e24907 100644
-> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-> @@ -1495,7 +1495,7 @@ mdp: mdp@fd900000 {
->  				reg-names = "mdp_phys";
->  
->  				interrupt-parent = <&mdss>;
-> -				interrupts = <0 0>;
-> +				interrupts = <0>;
->  
->  				clocks = <&mmcc MDSS_AHB_CLK>,
->  					 <&mmcc MDSS_AXI_CLK>,
-> @@ -1530,7 +1530,7 @@ dsi0: dsi@fd922800 {
->  				reg-names = "dsi_ctrl";
->  
->  				interrupt-parent = <&mdss>;
-> -				interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-> +				interrupts = <4>;
->  
->  				assigned-clocks = <&mmcc BYTE0_CLK_SRC>,
->  				                  <&mmcc PCLK0_CLK_SRC>;
-> -- 
-> 2.34.1
-> 
+All your comments will be addressed and fixed for the next patchset.
+As always, we really appreciate your review and taking the time to go
+through all these changes.
+
+
+> With Best Regards,
+> Andy Shevchenko
+>
+>
+
+Thanks!
+
+Tali Perry
