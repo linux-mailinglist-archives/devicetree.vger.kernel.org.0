@@ -2,98 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9B54CC50E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 19:24:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBB094CC55C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 19:41:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231206AbiCCSZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 13:25:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55660 "EHLO
+        id S235798AbiCCSmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 13:42:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230438AbiCCSZg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 13:25:36 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD13F7463;
-        Thu,  3 Mar 2022 10:24:50 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DCA661A0A;
-        Thu,  3 Mar 2022 18:24:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CB8CC004E1;
-        Thu,  3 Mar 2022 18:24:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646331889;
-        bh=3MZNzrhAk/+psbz8VzU1OByNwI7vUL1qSMbaehVjBIc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=unqwnnoIczOaQY52OttmcXQyJLAjp0Oai11cxoDhm9fxfyzNYxCbGG5xfBCE/6k7k
-         tpAYbd0AHpmgDoYYINTeAnJELhdWCb7hHSS1UzI3y7ctVNpLJ1YMWXqjJceDSpT+7f
-         RgHJ76zABcWbFYzI2+4dJe+lMPudHm+xq97Q/faBLY/SNBy0DXvPtmAU86zed9hLVC
-         YCXNnsMnl1D8sBI1v7EKD1sPKrJIsRzwGFDwoAZ3X21P/Fuep0sg+u1fiF4RXVzg/i
-         lf1qZ6niI+cDhDNa//BJaA2mXBvCtE5GGIX3hD4+MH3VwwOisTpw82Ti4tXkXF3Ui6
-         +c2tm0AjiX9lg==
-Date:   Thu, 3 Mar 2022 18:24:44 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH 20/20] Documentation: devicetree: CS35l41 External Boost
-Message-ID: <YiEH7B3btDrwGW5M@sirena.org.uk>
-References: <20220303173059.269657-1-tanureal@opensource.cirrus.com>
- <20220303173059.269657-21-tanureal@opensource.cirrus.com>
+        with ESMTP id S235794AbiCCSmV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 13:42:21 -0500
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 248BD3C70A
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 10:41:35 -0800 (PST)
+Received: by mail-lj1-x22f.google.com with SMTP id bn33so7975610ljb.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 10:41:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X+bdG8oq1H6/aUnJciOgA74gwshFz66gJB5eQKnp8Ok=;
+        b=CYJilK9gZn72SSDzyPFgXwQvqQzgq4+msBhizhleAPt/46c51IFkVj7OiPfMkcggxS
+         zgwPowZsx/Fch0FyAxBjN/pMrvkHyrjePqZx4Obi/sjYvZK7xpj7b0LAYLvqSLAME0na
+         fAXsUoR9II5hPxAHlKaHc+rhXRQPRJ0p9L0e3r3newuZKu79kz6kSGfYCSUtEjRJA9jk
+         QzONQnoQ45G0kpubRQt4Hdpx0GdLKWmeMKeOaVUFnNXiA3JHU+D8VDGeqi0LgvIoLFqt
+         c7kaYBXxTjZ7nPv0Y0OXZ659xYswGMM0X4k/dTN6o4bzsFg3CRSD2G7lzQwOlb/TSVoi
+         O1bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X+bdG8oq1H6/aUnJciOgA74gwshFz66gJB5eQKnp8Ok=;
+        b=BGIntiSrwR17b7cDblgH1K5BhcJqGwGSaDlsGF7Jg1U5sgQnLcIpRDcAgrZeHbINnG
+         ooSN/eVY4zVsy117F/m+RnJy4EvVNwggp0Sic88kZs8s+NYecJ9c0Ry3ZnmUgkd+OfwK
+         JWf58AdJWQxmU+FB4Kmi+5783MGczeivVdVGE4l1awAXEOmcETOn2wBM2guQ+cFQdGas
+         HIsiNWYkxVAb4rxpqDhPkncRlfIq6BNK09olPz6glGV1ZuQN25D5p0FicZufoRyVoF3B
+         KTo2JP+D4Vq6ao2mv4yQF5faeMGQ5lQspRJMuVyw/MuioVH77wHpKGZw7VahYZ3Titca
+         sjQg==
+X-Gm-Message-State: AOAM531SolxAeihoFhuFz5MogJMI31c3H+oUENwOv6z7QFhz3OtQfZWy
+        aNRb302A5Zaq3TYnrVORxZh4HybY/2GNUgU/Vz+MnQ==
+X-Google-Smtp-Source: ABdhPJz0UC7oDFxNw9Swy+2XXfpLSCAUbuM+aYXSo/9oBFDrSwb3jYlCaT80zR8uv7PaXUwAKZ8lHKhKCCd9qiIq178=
+X-Received: by 2002:a2e:871a:0:b0:246:ee2:1109 with SMTP id
+ m26-20020a2e871a000000b002460ee21109mr23677899lji.165.1646332893237; Thu, 03
+ Mar 2022 10:41:33 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5+pn/WO7t9hPQNbs"
-Content-Disposition: inline
-In-Reply-To: <20220303173059.269657-21-tanureal@opensource.cirrus.com>
-X-Cookie: Password:
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220302102705.15c32822@gandalf.local.home> <20220302193638.11034-1-ctshao@google.com>
+ <CAKwvOdkWcu5ZPADGieb1Vb+kTbfHNzFAa3FXTWC98xXtzuLwqQ@mail.gmail.com> <20220303074243.29ca40c2@rorschach.local.home>
+In-Reply-To: <20220303074243.29ca40c2@rorschach.local.home>
+From:   Nick Desaulniers <ndesaulniers@google.com>
+Date:   Thu, 3 Mar 2022 10:41:21 -0800
+Message-ID: <CAKwvOdnHioO_tjBbA0Dzghr-kcXywp-OEROkoCYTcq8STonFVA@mail.gmail.com>
+Subject: Re: [PATCH v2] config: Allow kernel installation packaging to
+ override pkg-config
+To:     Steven Rostedt <rostedt@goodmis.org>,
+        Chun-Tse Shao <ctshao@google.com>
+Cc:     devicetree@vger.kernel.org, frowand.list@gmail.com,
+        jpoimboe@redhat.com, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, masahiroy@kernel.org,
+        michal.lkml@markovi.net, peterz@infradead.org, robh+dt@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-18.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Mar 3, 2022 at 4:42 AM Steven Rostedt <rostedt@goodmis.org> wrote:
+>
+> On Wed, 2 Mar 2022 13:48:01 -0800
+> Nick Desaulniers <ndesaulniers@google.com> wrote:
+>
+> > I'm ok with this patch; a quick grep though shows a few more open
+> > coded instances of pkg-config.  Should we fix those up, too? i.e.
+> >
+> > certs/Makefile:92:HOSTCFLAGS_extract-cert.o = $(shell pkg-config
+> > --cflags libcrypto 2> /dev/null)
+> > certs/Makefile:93:HOSTLDLIBS_extract-cert = $(shell pkg-config --libs
+> > libcrypto 2> /dev/null || echo -lcrypto)
+> > scripts/kconfig/gconf-cfg.sh
+>
+> For this patch set, the above is probably good enough to do (and test
+> with a make allmodconfig).
+>
+> > tools/perf/Makefile.perf
+> > tools/ in general
+>
+> I would hold off on doing tools for a separate patch. With the
+> exception of objtool most of tools is not needed for the build process.
 
---5+pn/WO7t9hPQNbs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+SGTM
 
-On Thu, Mar 03, 2022 at 05:30:59PM +0000, Lucas Tanure wrote:
-> From: David Rhodes <drhodes@opensource.cirrus.com>
->=20
-> Document external boost feature on CS35L41
-
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
-
-Generally DT bindings patches come before the changes that they
-document.
-
---5+pn/WO7t9hPQNbs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIhB+sACgkQJNaLcl1U
-h9B2fQf+JyZdYpzru6DQzdgIuNNm9UZokagqpucw/b8YH2hd1KNhxnM24CP6DS+J
-AJvhMrlvuHTNsQYS9rSKb+FI897TAuwTyFp9yrdy5xiJf0RaNaGcq41to0/I7Gvd
-ZTFNXf23QKUbkfDN8bdzxksByfCrFX41IcrPxt9qSo4M2DLrmvty8vSYgYa8nsU+
-QIytNm6Uyrd7e5IPufaM9XrRA1aztpjQwmaP9jSYUJvI3Pl/T894JtiA89V9ntxG
-cBXI3GNifKfG4mOXw7fgs70+1lmfvKdFN9TqYf71s4DNhoWhqwmnDXEL7k4OEW23
-UBIRaCDbl3gJevI5BmfhOa2tpOtQcQ==
-=/fvV
------END PGP SIGNATURE-----
-
---5+pn/WO7t9hPQNbs--
+-- 
+Thanks,
+~Nick Desaulniers
