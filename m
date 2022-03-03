@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E49AE4CC03F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 15:47:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D91CE4CC044
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 15:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234161AbiCCOsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 09:48:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43458 "EHLO
+        id S234173AbiCCOsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 09:48:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233688AbiCCOsi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 09:48:38 -0500
+        with ESMTP id S234164AbiCCOsw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 09:48:52 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA1754CD7E
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 06:47:51 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6BD64FC42
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 06:48:05 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7EB243F5F1
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 14:47:50 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4977C3F4C2
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 14:48:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646318870;
-        bh=CxzFP3tGzxrqCnnX51QcUCT9fYSeSWG8X2huDv3i2u4=;
+        s=20210705; t=1646318882;
+        bh=LAs/6LRRxzJHgIKQxtRjIVV9shF4X2KxxwHj1qUD7Ok=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=lHDG6IhfiNPmuzwUvILD8Tq9ZMew4wdjNyK6bdMx+r4gnfmYCV7m4wFjS0Lyht8ww
-         bXWb6BF2Vw0t7QUL0OHaGb+AwI3K+09uiO/xthho4Jgoav4TgCSHxKk4PXBSIWslJD
-         NmVffffIdf4W8dBJ0GytiwILq5tArZOp9t8UAQiJDI3JPC4DbTAFxkeSF3vFiQGvaj
-         l4d/jOlPoFDisVyq7yBEuEVsV5IRKpeZ9DYWdIaQmUiblljQdbizlMuJE0Zc8VmGTZ
-         iDJZBhKnyxwAdEpdUXXC0wdZKmQf0g3XHVR/ero2atkHGiZJsirVNddsxe6fMD579/
-         a9fYvYOkXUrKA==
-Received: by mail-ej1-f69.google.com with SMTP id y5-20020a1709060a8500b006da9258a34cso1080506ejf.21
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 06:47:50 -0800 (PST)
+        b=v+lQoDiG+GuCj9XPsy1vbovde9UMixCBbVY7T+h1HUV9TA8JlFGIbrEx/kTpR4Wk1
+         4yyEBbJX8qY/Kv6n6g7Z7LmvO7st6kuMvxbqGIcriVZZ/kdZ1QxolpUAYATui3eQ2D
+         B6Ip/vUJ8a+66T8zAbfnLFgPr4teNOHKEkPFxCXfEYu1hiLORFCNVbAVJhwJJp1F/C
+         Gv+P4/i+JzJ1y15COOzl1Kh++huQ++acWXSFNT8yRECEEGZPiFaUwrXNJb0uCmSlJC
+         lMt2Fv4xmRC7YKVCT1p5QiJVNmEBfwhVmLY+vBs7e9rpo20ZmXilGTOqr7SPsONIe0
+         7G3mBM+XWHNpQ==
+Received: by mail-ed1-f69.google.com with SMTP id i17-20020aa7c711000000b00415ecaefd07so593482edq.21
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 06:48:02 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=CxzFP3tGzxrqCnnX51QcUCT9fYSeSWG8X2huDv3i2u4=;
-        b=IqtTGkBcqnlFFR2TmXt9T07dY6EghOb4Y/CvLy/Kgl/sM6QvEFxnkOfaGwBt1vchmt
-         r4F1zHtdUhGBxMw3LNMNvlfRQvFOEer9UvqWCLcF5FCvAZOR6lOivJbd+9wNjcTNDEc3
-         5LyvicM6W3iRi+vZ+YFD8ND+mqv8H0ZflIM9wDCtTOwH3z5Ek6MpYmytyMyGGe+F2OE3
-         W07zHAxg3jw831A+gjQRZN/vmXsRAxM1S6gAea2CuWxAuBasEgHUI06U2i31gcRHcpUM
-         KxJZkb2WdAVMNBr0XHRSqy63KxFWrrwNxqK4wOK9IrlVs6c3HGPwYIyerUBcsJIMvKa0
-         NZaw==
-X-Gm-Message-State: AOAM5329j4A8buePZPU1DgrN2B2nXuzhufVRwKeIi0GC4uzcUu8bbwss
-        oDOPSqLY+2PQj9JiPsuwnKHZXMfgrj+7HvoYZ6XPok1vEbNe6YO1m3qAVtDFah7O2WN/yduLuHu
-        VPER2IGWSABRAd+VLlT5lHfzeM0gaetMz6A+nLxQ=
-X-Received: by 2002:a50:da4b:0:b0:40f:28f0:c2c0 with SMTP id a11-20020a50da4b000000b0040f28f0c2c0mr34599587edk.374.1646318869543;
-        Thu, 03 Mar 2022 06:47:49 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzgdcMT370bTQ0EzwypM8MzX+F1/sOFiaay++W+IjgNwLT95VAPst9y79sRHA7O5pCw2Q1isA==
-X-Received: by 2002:a50:da4b:0:b0:40f:28f0:c2c0 with SMTP id a11-20020a50da4b000000b0040f28f0c2c0mr34599577edk.374.1646318869389;
-        Thu, 03 Mar 2022 06:47:49 -0800 (PST)
+        bh=LAs/6LRRxzJHgIKQxtRjIVV9shF4X2KxxwHj1qUD7Ok=;
+        b=LZARRXA0kg26GDRzsyIyl0VBr7hTHoq9dIZHKaFI/GpseILiuBkiE3ZWMmGMnO8jBG
+         4W2IH5dwZOGwQ6uDzH7VaUesVZnriZklt8gTkJ8C1UfvWQYe3DJKyYL1fM12KyQYCNk+
+         RzVLm87zgYwggj9YwBlOsTB9POMZrD2m8Wd/Ps3Ngf3x5hQN172YjwYQztC9UpYTGysy
+         4j220W2PcezscNFOinFGIjErxEIMN00ArvGexGZtbSybTsokKOk3oLqOJld2TUNrHCuV
+         pFX/31a/NS42IxDgJEQ/0Dbxyt9HZVGNvpRo3FuUS192wd6v90kNwF1lMOZ8JfUHtHmc
+         QzYA==
+X-Gm-Message-State: AOAM531zaXe/5lE7tSgMcAudXzaBjLL8RZ78d3ZkUBUaDu0SyzNj+2ql
+        ygZn3bFt5NrByMZEhptMYwo0oIwu7FG2co9Gn+E3oXD23ku+dbes1c8CG4AqXz9WqMPZHbJC0lh
+        OUiO+d1ZCVqHNDRgY6u0LsbRfOgTN+gCJFpVh7Pk=
+X-Received: by 2002:a17:906:32d8:b0:6ce:d850:f79 with SMTP id k24-20020a17090632d800b006ced8500f79mr26432627ejk.414.1646318882043;
+        Thu, 03 Mar 2022 06:48:02 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwytkSR6dilP11S7DvOKJ5JW0P4codQZvsoymdmrg/Gth5TjrMaHSqxiOJpzo0DrsZkMEGHIA==
+X-Received: by 2002:a17:906:32d8:b0:6ce:d850:f79 with SMTP id k24-20020a17090632d800b006ced8500f79mr26432613ejk.414.1646318881892;
+        Thu, 03 Mar 2022 06:48:01 -0800 (PST)
 Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id gs39-20020a1709072d2700b006d3ed4f51c6sm818854ejc.0.2022.03.03.06.47.48
+        by smtp.gmail.com with ESMTPSA id pg27-20020a170907205b00b006d6e5102ca2sm778506ejb.97.2022.03.03.06.48.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 06:47:48 -0800 (PST)
-Message-ID: <be111013-a726-629e-2ce8-fcab9d26a3a2@canonical.com>
-Date:   Thu, 3 Mar 2022 15:47:48 +0100
+        Thu, 03 Mar 2022 06:48:01 -0800 (PST)
+Message-ID: <7a71f580-28dc-def2-c693-70c4b0e9aee2@canonical.com>
+Date:   Thu, 3 Mar 2022 15:48:00 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/5] ARM: dts: at91: Use the generic "rtc" node name
- for the rtt IPs
+Subject: Re: [PATCH v2 5/5] dt-bindings: rtc: at91: Add SAMA7G5 compatible
+ strings list
 Content-Language: en-US
 To:     Sergiu Moga <sergiu.moga@microchip.com>, a.zummo@towertech.it,
         alexandre.belloni@bootlin.com, robh+dt@kernel.org,
@@ -71,9 +71,9 @@ To:     Sergiu Moga <sergiu.moga@microchip.com>, a.zummo@towertech.it,
 Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20220303140626.38129-1-sergiu.moga@microchip.com>
- <20220303140626.38129-4-sergiu.moga@microchip.com>
+ <20220303140626.38129-6-sergiu.moga@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220303140626.38129-4-sergiu.moga@microchip.com>
+In-Reply-To: <20220303140626.38129-6-sergiu.moga@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -87,16 +87,14 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/03/2022 15:06, Sergiu Moga wrote:
-> As the DT specification recommends, the node names should be of a
-> generic nature. Thus, the most appropriate generic node name for
-> the at91 rtt IPs is the "rtc" node name.
+> Add compatible strings list for SAMA7G5.
 > 
 > Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
 > ---
->  arch/arm/boot/dts/sam9x60.dtsi | 2 +-
->  arch/arm/boot/dts/sama7g5.dtsi | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+>  Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/d
 
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
