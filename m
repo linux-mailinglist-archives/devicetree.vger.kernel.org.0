@@ -2,126 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F4374CBE35
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 13:54:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77EB94CBE41
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 13:57:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233429AbiCCMzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 07:55:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60600 "EHLO
+        id S233142AbiCCM6D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 07:58:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231392AbiCCMzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 07:55:24 -0500
-Received: from mail-qk1-x729.google.com (mail-qk1-x729.google.com [IPv6:2607:f8b0:4864:20::729])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F38F3EBBC;
-        Thu,  3 Mar 2022 04:54:39 -0800 (PST)
-Received: by mail-qk1-x729.google.com with SMTP id b13so3740871qkj.12;
-        Thu, 03 Mar 2022 04:54:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Gpvc/JncUD6k2jJA3rPe/Gzgk+Fq4UJfHnGecuBxreA=;
-        b=IKexSrjmgJhU/WoXJKfWByEwrcXXCaNVPlDjEbMiSg0nxBodoBSBq20+tAwigK6+pC
-         9Dp6cFBNY+QNtcPfFvnwju/gHjuFP+6ukcCnooqujSXxGAkBpnouqN1b+TQXjs+Yfi36
-         WUWSGgNTjHRQiqueElBcOjkFqfNubmTwkDuIPRDKk65BJVYxujTBTUB/R9Yj71lu8EmR
-         1Dh4K2vfrjlXP5q1NTc264erP0AEzWAhFK8isbrZAlyXsw11MyCLEOS2Xu/38VYki9dP
-         VCdIcInwZgLBQFuPC8S/9sVzCg7bShQNrudP7qD0LkThcDgEkk0geVGMx22W9GCSObdd
-         eVoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Gpvc/JncUD6k2jJA3rPe/Gzgk+Fq4UJfHnGecuBxreA=;
-        b=EI+MeLd1RLOA60DY1nIuUct8EqfkM0r1/WB/hLgShm4b2Gy6EAzN7XZ+Vql1V7d03m
-         GxZQIi+4AjePoRsyyJCzq39zyPYc/jkEqaQjsY2A91IpbgAQStRCuxOUm0FTXEZa6XPd
-         jgEiLYNzHPOfgZXlbh5JHWKTzYE8MgkOeeQ4FMvs8fuWPQYWaYV2LJAK7WCHjw7k4Hh3
-         FXvIvXGatMcuF4MHKgfSYdoAkoapefnJcGiXsBHz1BsF8jIBUFvwr32Yz/a1y4OP63Dx
-         LJSwu6WWwP49unC4drefz2h1TlSR9gj+phUcRg2QqRa6CBeMsfTs/C/HSyCUpCrU62AU
-         xtIA==
-X-Gm-Message-State: AOAM530L32cTe151n1qzyLRBDsEnqOcFn1x6aL4IT1MfPF67j4jtZpow
-        /v81cbbrmnQkMgWbll3QcDwXaee/jk2p7p4lpDE=
-X-Google-Smtp-Source: ABdhPJya62aW6zfOJJA50kUityeXdjHGZGgzkLm44Teu6/f9/Pp5GGbIVsrZWAIDPZCmqYoXqiTzVJWyoZq7y7zgu3A=
-X-Received: by 2002:a05:620a:11:b0:508:7199:40ef with SMTP id
- j17-20020a05620a001100b00508719940efmr18483948qki.62.1646312078413; Thu, 03
- Mar 2022 04:54:38 -0800 (PST)
+        with ESMTP id S229954AbiCCM6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 07:58:03 -0500
+Received: from metanate.com (unknown [IPv6:2001:8b0:1628:5005::111])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEABF186218;
+        Thu,  3 Mar 2022 04:57:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=metanate.com; s=stronger; h=In-Reply-To:Content-Type:References:Message-ID:
+        Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description; bh=Ui7Wx3HT5wFF2lD9OqwpaMhrO7qy33DzT68PqCTpFeA=; b=t2ko4
+        NFlATGyheALC9w+H68/z3RvSSOEB6BrmYEzUF5r8KqMq1m06wmG4/48fY/k1SirfLL8ebbuWySbK+
+        yAIBOZP7CNmNQwuVEQFAyP6sY3UK1LSpXV+t+8dZS/gAeJjam7Eu7BQ1fmtksh1ecMYZM7QJCHYtn
+        kBW0GuvUjAebv5yS+bC5ZA0izcBIu8XwZBDNE8aadZPiBBeTFnvKy1vu7Nb0iW8b60M7xMAX9fUIL
+        kVAxrsn/p2QVIA4oUW3Ety5Agn002vZfP/aTWFOu8FDRIHiBKgqt4I8XPykJQCQ8JszenDrhULJNU
+        z9o0dmnVkLuKL3W7mSH/OAvSeAIsQ==;
+Received: from [81.174.171.191] (helo=donbot)
+        by email.metanate.com with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <john@metanate.com>)
+        id 1nPl0y-0004oa-Jj; Thu, 03 Mar 2022 12:57:04 +0000
+Date:   Thu, 3 Mar 2022 12:57:03 +0000
+From:   John Keeping <john@metanate.com>
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 15/18] crypto: rockchip: introduce PM
+Message-ID: <YiC7Hxm0epcAcHen@donbot>
+References: <20220302211113.4003816-1-clabbe@baylibre.com>
+ <20220302211113.4003816-16-clabbe@baylibre.com>
 MIME-Version: 1.0
-References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-9-warp5tw@gmail.com>
- <YiCZlhJoXPLpQ6/D@smile.fi.intel.com>
-In-Reply-To: <YiCZlhJoXPLpQ6/D@smile.fi.intel.com>
-From:   Tali Perry <tali.perry1@gmail.com>
-Date:   Thu, 3 Mar 2022 14:54:27 +0200
-Message-ID: <CAHb3i=t+Ai3w5mMhmZxxMsD7Zv0xpM4ZicMCmdDMtVn_OMbWYA@mail.gmail.com>
-Subject: Re: [PATCH v3 08/11] i2c: npcm: Correct register access width
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        Wolfram Sang <wsa@kernel.org>, jie.deng@intel.com,
-        sven@svenpeter.dev, bence98@sch.bme.hu, lukas.bulwahn@gmail.com,
-        arnd@arndb.de, olof@lixom.net, Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220302211113.4003816-16-clabbe@baylibre.com>
+X-Authenticated: YES
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RDNS_NONE,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Thu, Mar 03, 2022 at 04:31:38PM +0800, Tyrone Ting wrote:
-> > From: Tyrone Ting <kfting@nuvoton.com>
-> >
-> > Use ioread8 instead of ioread32 to access the SMBnCTL3 register since
-> > the register is only 8-bit wide.
->
-> > Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver")
->
-> No, this is bad commit message, since you have bitwise masks and there is
-> nothing to fix from functional point of view. So, why is this a fix?
->
+On Wed, Mar 02, 2022 at 09:11:10PM +0000, Corentin Labbe wrote:
+> Add runtime PM support for rockchip crypto.
+> 
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  drivers/crypto/Kconfig                        |  1 +
+>  drivers/crypto/rockchip/rk3288_crypto.c       | 50 ++++++++++++++++++-
+>  drivers/crypto/rockchip/rk3288_crypto.h       |  1 +
+>  drivers/crypto/rockchip/rk3288_crypto_ahash.c | 11 ++++
+>  .../crypto/rockchip/rk3288_crypto_skcipher.c  | 10 ++++
+>  5 files changed, 71 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
+> index 04c8e332c5a1..685631a5cbea 100644
+> --- a/drivers/crypto/Kconfig
+> +++ b/drivers/crypto/Kconfig
+> @@ -784,6 +784,7 @@ config CRYPTO_DEV_IMGTEC_HASH
+>  config CRYPTO_DEV_ROCKCHIP
+>  	tristate "Rockchip's Cryptographic Engine driver"
+>  	depends on OF && ARCH_ROCKCHIP
+> +	depends on PM
 
-The next gen of this device is a 64 bit cpu.
-The module is and was 8 bit.
+Does this need to depend on PM?  If you enable the clock in _probe then
+use pm_runtime_put_autosuspend() the no-op helpers when !PM will mean
+this works whether PM is enabled or not.
 
-The ioread32 that seemed to work smoothly on a 32 bit machine
-was causing a panic on a 64 bit machine.
-since the module is 8 bit we changed to ioread8.
-This is working both for the 32 and 64 CPUs with no issue.
+>  	select CRYPTO_AES
+>  	select CRYPTO_ENGINE
+>  	select CRYPTO_LIB_DES
+> diff --git a/drivers/crypto/rockchip/rk3288_crypto.c b/drivers/crypto/rockchip/rk3288_crypto.c
+> index cd0755731cf7..ba56f8ff97c3 100644
+> --- a/drivers/crypto/rockchip/rk3288_crypto.c
+> +++ b/drivers/crypto/rockchip/rk3288_crypto.c
+> @@ -57,6 +57,48 @@ static void rk_crypto_disable_clk(struct rk_crypto_info *dev)
+>  	clk_disable_unprepare(dev->sclk);
+>  }
+>  
+> +/*
+> + * Power management strategy: The device is suspended unless a TFM exists for
+> + * one of the algorithms proposed by this driver.
+> + */
+> +static int rk_crypto_pm_suspend(struct device *dev)
+> +{
+> +	struct rk_crypto_info *rkdev = dev_get_drvdata(dev);
+> +
+> +	rk_crypto_disable_clk(rkdev);
+> +	return 0;
+> +}
+> +
+> +static int rk_crypto_pm_resume(struct device *dev)
+> +{
+> +	struct rk_crypto_info *rkdev = dev_get_drvdata(dev);
+> +
+> +	return rk_crypto_enable_clk(rkdev);
+> +}
+> +
+> +static const struct dev_pm_ops rk_crypto_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(rk_crypto_pm_suspend, rk_crypto_pm_resume, NULL)
+> +};
+> +
+> +static int rk_crypto_pm_init(struct rk_crypto_info *rkdev)
+> +{
+> +	int err;
+> +
+> +	pm_runtime_use_autosuspend(rkdev->dev);
+> +	pm_runtime_set_autosuspend_delay(rkdev->dev, 2000);
+> +
+> +	err = pm_runtime_set_suspended(rkdev->dev);
+> +	if (err)
+> +		return err;
+> +	pm_runtime_enable(rkdev->dev);
+> +	return err;
+> +}
+> +
+> +static void rk_crypto_pm_exit(struct rk_crypto_info *rkdev)
+> +{
+> +	pm_runtime_disable(rkdev->dev);
+> +}
+> +
+>  static irqreturn_t rk_crypto_irq_handle(int irq, void *dev_id)
+>  {
+>  	struct rk_crypto_info *dev  = platform_get_drvdata(dev_id);
+> @@ -259,7 +301,9 @@ static int rk_crypto_probe(struct platform_device *pdev)
+>  	crypto_engine_start(crypto_info->engine);
+>  	init_completion(&crypto_info->complete);
+>  
+> -	rk_crypto_enable_clk(crypto_info);
+> +	err = rk_crypto_pm_init(crypto_info);
+> +	if (err)
+> +		goto err_crypto;
+>  
+>  	err = rk_crypto_register(crypto_info);
+>  	if (err) {
+> @@ -280,6 +324,7 @@ static int rk_crypto_probe(struct platform_device *pdev)
+>  	return 0;
+>  
+>  err_register_alg:
+> +	rk_crypto_pm_exit(crypto_info);
+>  err_crypto:
+>  	dev_err(dev, "Crypto Accelerator not successfully registered\n");
+>  	return err;
+> @@ -293,7 +338,7 @@ static int rk_crypto_remove(struct platform_device *pdev)
+>  	debugfs_remove_recursive(crypto_tmp->dbgfs_dir);
+>  #endif
+>  	rk_crypto_unregister();
+> -	rk_crypto_disable_clk(crypto_tmp);
+> +	rk_crypto_pm_exit(crypto_tmp);
+>  	return 0;
+>  }
+>  
+> @@ -302,6 +347,7 @@ static struct platform_driver crypto_driver = {
+>  	.remove		= rk_crypto_remove,
+>  	.driver		= {
+>  		.name	= "rk3288-crypto",
+> +		.pm		= &rk_crypto_pm_ops,
+>  		.of_match_table	= crypto_of_id_table,
+>  	},
+>  };
+> diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
+> index e2a6d735f2e2..06b2d9f52a80 100644
+> --- a/drivers/crypto/rockchip/rk3288_crypto.h
+> +++ b/drivers/crypto/rockchip/rk3288_crypto.h
+> @@ -9,6 +9,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/delay.h>
+> +#include <linux/pm_runtime.h>
+>  #include <linux/scatterlist.h>
+>  #include <crypto/engine.h>
+>  #include <crypto/internal/hash.h>
+> diff --git a/drivers/crypto/rockchip/rk3288_crypto_ahash.c b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> index 8856c6226be6..a41e21c7141b 100644
+> --- a/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> +++ b/drivers/crypto/rockchip/rk3288_crypto_ahash.c
+> @@ -328,6 +328,7 @@ static int rk_cra_hash_init(struct crypto_tfm *tfm)
+>  	struct ahash_alg *alg = __crypto_ahash_alg(tfm->__crt_alg);
+>  
+>  	const char *alg_name = crypto_tfm_alg_name(tfm);
+> +	int err;
+>  
+>  	algt = container_of(alg, struct rk_crypto_tmp, alg.hash);
+>  
+> @@ -349,7 +350,16 @@ static int rk_cra_hash_init(struct crypto_tfm *tfm)
+>  	tctx->enginectx.op.prepare_request = rk_hash_prepare;
+>  	tctx->enginectx.op.unprepare_request = rk_hash_unprepare;
+>  
+> +	err = pm_runtime_get_sync(tctx->dev->dev);
 
+pm_runtime_resume_and_get() ?  The error handling is nicer with that.
 
-> > Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
-> > Signed-off-by: Tali Perry <tali.perry1@gmail.com>
->
-> This is wrong SoB chain.
->
-> ...
->
-> > -     return !!(I2CCTL3_SCL_LVL & ioread32(bus->reg + NPCM_I2CCTL3));
-> > +     return !!(I2CCTL3_SCL_LVL & ioread8(bus->reg + NPCM_I2CCTL3));
->
-> ...
->
-> > -     return !!(I2CCTL3_SDA_LVL & ioread32(bus->reg + NPCM_I2CCTL3));
-> > +     return !!(I2CCTL3_SDA_LVL & ioread8(bus->reg + NPCM_I2CCTL3));
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+> +	if (err < 0)
+> +		goto error_pm;
+> +
+>  	return 0;
+> +error_pm:
+> +	pm_runtime_put_noidle(tctx->dev->dev);
+> +	crypto_free_ahash(tctx->fallback_tfm);
+> +
+> +	return err;
+>  }
+>  
+>  static void rk_cra_hash_exit(struct crypto_tfm *tfm)
+> @@ -357,6 +367,7 @@ static void rk_cra_hash_exit(struct crypto_tfm *tfm)
+>  	struct rk_ahash_ctx *tctx = crypto_tfm_ctx(tfm);
+>  
+>  	crypto_free_ahash(tctx->fallback_tfm);
+> +	pm_runtime_put_sync_suspend(tctx->dev->dev);
 
-Thanks Andy,
+Why use sync_suspend here?  Could this be pm_runtime_put_autosuspend()?
 
-BR,
-Tali Perry
+>  }
+>  
+>  struct rk_crypto_tmp rk_ahash_sha1 = {
+> diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> index a8cfb520eaf8..55efda6ea3e7 100644
+> --- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> +++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> @@ -458,6 +458,7 @@ static int rk_ablk_init_tfm(struct crypto_skcipher *tfm)
+>  	struct skcipher_alg *alg = crypto_skcipher_alg(tfm);
+>  	const char *name = crypto_tfm_alg_name(&tfm->base);
+>  	struct rk_crypto_tmp *algt;
+> +	int err;
+>  
+>  	algt = container_of(alg, struct rk_crypto_tmp, alg.skcipher);
+>  
+> @@ -475,7 +476,15 @@ static int rk_ablk_init_tfm(struct crypto_skcipher *tfm)
+>  
+>  	ctx->enginectx.op.do_one_request = rk_cipher_run;
+>  
+> +	err = pm_runtime_get_sync(ctx->dev->dev);
+
+Another place for pm_runtime_resume_and_get() ?
+
+> +	if (err < 0)
+> +		goto error_pm;
+> +
+>  	return 0;
+> +error_pm:
+> +	pm_runtime_put_noidle(ctx->dev->dev);
+> +	crypto_free_skcipher(ctx->fallback_tfm);
+> +	return err;
+>  }
+>  
+>  static void rk_ablk_exit_tfm(struct crypto_skcipher *tfm)
+> @@ -484,6 +493,7 @@ static void rk_ablk_exit_tfm(struct crypto_skcipher *tfm)
+>  
+>  	memzero_explicit(ctx->key, ctx->keylen);
+>  	crypto_free_skcipher(ctx->fallback_tfm);
+> +	pm_runtime_put_sync_suspend(ctx->dev->dev);
+
+Again, can this be pm_runtime_put_autosuspend() ?
