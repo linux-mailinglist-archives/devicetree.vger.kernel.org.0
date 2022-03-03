@@ -2,97 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F39764CB486
+	by mail.lfdr.de (Postfix) with ESMTP id 5D2714CB484
 	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 02:57:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231559AbiCCBxo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 20:53:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48108 "EHLO
+        id S231560AbiCCB5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 20:57:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231503AbiCCBxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 20:53:40 -0500
-Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FB841ADA7;
-        Wed,  2 Mar 2022 17:52:55 -0800 (PST)
-Received: by mail-oi1-x234.google.com with SMTP id x193so3547770oix.0;
-        Wed, 02 Mar 2022 17:52:55 -0800 (PST)
+        with ESMTP id S231553AbiCCB5D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 20:57:03 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91BCE33E13;
+        Wed,  2 Mar 2022 17:56:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=iQB0vYq8LkR/vFpCk3gDNacx/LQaaAUMMsiPFTE4IUE=;
-        b=SdZB/SZx1Q8uq2FJM6zA0EeHj0vrBi1onjSvO9naI2tY7bcdZKlKLMUovJTG1ryoB1
-         31CLCPFAxpioXFwtR3Ub1JM2wjVxVx3ynBTPPkwEqEYddrFzqAQL016kPQVHYmUWBGRS
-         n9Je75cSOnfUmp1XsOrCH7236pyRdZ8pUV1t5m8HG+m31QCP02evhAoYu4g2quMUP1bv
-         qdPtubdJqzbx6K23NatKe1DJx/ZIpF/09tHPvse6IrgnYMhehZKPs9yxyZzc5fx20do4
-         Hjx2zE+plHuNxrEtqFvEAKblfMyc08xtPxgM1MCNYfCpVkZLjrBnRYVrSyYCp80uIDeN
-         NVHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=iQB0vYq8LkR/vFpCk3gDNacx/LQaaAUMMsiPFTE4IUE=;
-        b=sVyjbF1Zv2po/qSV7uey3WSojKJ4OHT0mYUNviBIX4gkZMkl0X9/v/ek7wBMU05KZv
-         908Y5sx4TzCtEVR5S4Yt5T2lU34L32GopqKesbDM7OxV7xXvzhrLuojcV3I9cFYjqVL6
-         bIMrYm5b3yMbrphFeEMH/XOUrI0u15pNuRjIO5eWLETk3ZYUPY5liYnuRi5vSfR8PFg0
-         eUiqfYxNWLVAeqXoRJEO5NjZ2ZEcT8+mkKhyMK9gVV7WUuWIS5V1jnIqVbc8Yw6i+0rj
-         WHW8DlNt+XmDmaPW7XssQXCslW3ZAA7i731AeLy8KM2IoRjyjpxxKuuJ6t8FbIp/ld8L
-         bEpg==
-X-Gm-Message-State: AOAM531GVeBuwCwb5NYQihux+l1K00Tg8NbPxuM+EjEUVF/N4dB5yXEO
-        vujifYs56bUrm+FlpYSP1A/ym+wwD5o=
-X-Google-Smtp-Source: ABdhPJxjktwZen9Pc8nn0dW34yw+NliWgdRNBHGNJB0frAc9XT+gLbicCae3kmEsMYkEDWWFFhIcRg==
-X-Received: by 2002:a05:6808:128a:b0:2d7:8f0b:e9a8 with SMTP id a10-20020a056808128a00b002d78f0be9a8mr2602255oiw.174.1646272374137;
-        Wed, 02 Mar 2022 17:52:54 -0800 (PST)
-Received: from tresc043793.tre-sc.gov.br (187-049-235-234.floripa.net.br. [187.49.235.234])
-        by smtp.gmail.com with ESMTPSA id a10-20020a05687073ca00b000d128dfeebfsm446310oan.2.2022.03.02.17.52.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 17:52:53 -0800 (PST)
-From:   Luiz Angelo Daros de Luca <luizluca@gmail.com>
-To:     netdev@vger.kernel.org
-Cc:     linus.walleij@linaro.org, andrew@lunn.ch, vivien.didelot@gmail.com,
-        f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, alsi@bang-olufsen.dk, arinc.unal@arinc9.com,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH net-next v5 1/3] dt-bindings: net: dsa: add rtl8_4 and rtl8_4t tag formats
-Date:   Wed,  2 Mar 2022 22:52:33 -0300
-Message-Id: <20220303015235.18907-2-luizluca@gmail.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220303015235.18907-1-luizluca@gmail.com>
-References: <20220303015235.18907-1-luizluca@gmail.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646272578; x=1677808578;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=3bzSRY1al0oYlmM52NOwKtS+br8ieRk+tPabImmuEUM=;
+  b=IUllmM4Q7zHnq/KDRBRxxnlRhUBz/KKesZNU8NjsBLJbto3qbJBAAwcw
+   rF7cFm/fhx8XDHFyCkNr3azs4EYeImGZYGbHohHo8BHhJ21XNKj9X4UH/
+   0XO/ZeF5b+IwgU8tcQ/d0I7625cCr30l4+zfAm5KIC9Cgc2YHlnkVAkZ5
+   w=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 02 Mar 2022 17:56:18 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2022 17:56:17 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Wed, 2 Mar 2022 17:56:16 -0800
+Received: from [10.216.42.174] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Wed, 2 Mar 2022
+ 17:56:09 -0800
+Message-ID: <7e9fceed-6b29-d6a6-2035-fdf3fc70a773@quicinc.com>
+Date:   Thu, 3 Mar 2022 07:26:06 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v6 3/3] dt-bindings: soundwire: qcom: Add bindings for
+ audio CSR reset control property
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
+        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
+        <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        <yung-chuan.liao@linux.intel.com>,
+        <pierre-louis.bossart@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1646224982-3361-1-git-send-email-quic_srivasam@quicinc.com>
+ <1646224982-3361-4-git-send-email-quic_srivasam@quicinc.com>
+ <Yh+RwQS1Cyeuq4Jf@matsya>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <Yh+RwQS1Cyeuq4Jf@matsya>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Realtek rtl8365mb DSA driver can use these two tag formats.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
----
- Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-index 702df848a71d..e60867c7c571 100644
---- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-+++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-@@ -51,6 +51,8 @@ properties:
-       - edsa
-       - ocelot
-       - ocelot-8021q
-+      - rtl8_4
-+      - rtl8_4t
-       - seville
- 
-   phy-handle: true
--- 
-2.35.1
-
+On 3/2/2022 9:18 PM, Vinod Koul wrote:
+Thanks for your time Vinod!!!
+> On 02-03-22, 18:13, Srinivasa Rao Mandadapu wrote:
+>> Update description for audio CSR reset control property, which is
+>> required for latest chipsets to allow software enabling in CGCR HCLK register.
+> too many acronyms pls explain!
+Okay. Will expand and re post the patch.
+>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+>> index b93a2b3..84c8f54 100644
+>> --- a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+>> +++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+>> @@ -150,6 +150,18 @@ board specific bus parameters.
+>>   		    or applicable for the respective data port.
+>>   		    More info in MIPI Alliance SoundWire 1.0 Specifications.
+>>   
+>> +- reset:
+>> +	Usage: optional
+>> +	Value type: <prop-encoded-array>
+>> +	Definition: Should specify the SoundWire audio CSR reset controller interface,
+>> +		    which is required for SoundWire version 1.6.0 and above.
+>> +
+>> +- reset-names:
+>> +	Usage: optional
+>> +	Value type: <stringlist>
+>> +	Definition: should be "swr_audio_cgcr" for SoundWire audio CSR reset
+>> +		    controller interface.
+>> +
+> We should add these in example as well...
+Okay. Will add in Example.
+>
+>>   Note:
+>>   	More Information on detail of encoding of these fields can be
+>>   found in MIPI Alliance SoundWire 1.0 Specifications.
+>> -- 
+>> 2.7.4
