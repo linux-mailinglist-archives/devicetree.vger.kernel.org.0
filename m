@@ -2,143 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E09144CBE70
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:04:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6905A4CBE8C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:09:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233527AbiCCNFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 08:05:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55052 "EHLO
+        id S231603AbiCCNKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 08:10:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232892AbiCCNFC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:05:02 -0500
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B154F9C6
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 05:04:14 -0800 (PST)
-Received: by mail-wr1-x42e.google.com with SMTP id m6so7737953wrr.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 05:04:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=Fn1mW/M+b5JfP/RL4eNIoaoJKFnoTSy8/1QRkY7yY6w=;
-        b=cAfXFEhOpXumYj813HTkLEraMgQg06hYN419xoSCexoVB93sZr7EXzvNEtL0Fieqrq
-         y2PG01R601L0eMlhdJEz0GtRmms3CBjweJcfL1xQZQpLD0mTvmzFfzn50yBo5Q6zHxCC
-         5w98EIfIom79Bv09c7Fm9gbTpuNUAjAx4DMaBgrh/2yMSFAEkq+MVVwiZIksY0LGQmAo
-         JibtNXb84wWol/uCRRSBrdJ3x8FG4tCJ0z5vDxHADTEp4kvP/VaJo/Aom7BZbPvAety6
-         5vpEWUs1gS1oEsNkXh+nLaHR21sIqaY5xMf7Fn3uOokLAY+EadocHPL1ZuEAEeZIhOcf
-         2Srg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=Fn1mW/M+b5JfP/RL4eNIoaoJKFnoTSy8/1QRkY7yY6w=;
-        b=1nx0Ek/YwoRRkdNgl2ZBMtNW4bHe31JkdEYJf10HtklzkBtYJPfDiopwa4q9pHBXPw
-         2HOH4cx4vTSOp6Rt0TiEkYE1srsGE9JhTgTeBTybK2/7SnMB2noXKa2vQlIPmU8dcOwR
-         gJQQwmQ0P/Wq02M/SpBQFKSuaXYE0v+58jriTNeMTYhqVyo7k7RSnO55b/89mNx5vF4z
-         pjqAHwFMEWRzef+xf6T3mFWLE4Zqqhuwwj90ztQfDabGJ5NhA1yvcS2LuTOJmV0RqJoV
-         4z5qC3eMgeQ5zX94jGv1n7lxBjzNvVjIwP59RMXJpX3XKotM32bzAGw4NUDLUDtsvWi1
-         IBgw==
-X-Gm-Message-State: AOAM532oaJhiTt63F9R6cgEvTcaD/T4ZPCeLKiGlRDUamW7mdObeeTms
-        skWuuH2RJN5tio/1PpzwXqp0Vg==
-X-Google-Smtp-Source: ABdhPJyvuhJeoFTwSlXcRkogHWdVBOBzuvgCFWCYYC2O1J7O8WsFAPsAMwhcS8NYLsoLeBgL6NPQdQ==
-X-Received: by 2002:a05:6000:1847:b0:1e6:2783:b3e6 with SMTP id c7-20020a056000184700b001e62783b3e6mr26593796wri.163.1646312652810;
-        Thu, 03 Mar 2022 05:04:12 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98? ([2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98])
-        by smtp.googlemail.com with ESMTPSA id a3-20020a7bc1c3000000b00380e493660esm8449303wmj.42.2022.03.03.05.04.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 05:04:12 -0800 (PST)
-Message-ID: <ac06ce18-5997-d553-3033-6bc7ac65f608@linaro.org>
-Date:   Thu, 3 Mar 2022 14:04:10 +0100
+        with ESMTP id S231362AbiCCNKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:10:33 -0500
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 250B816A591;
+        Thu,  3 Mar 2022 05:09:46 -0800 (PST)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2238CPqK032368;
+        Thu, 3 Mar 2022 14:09:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=pkx2zGWPYrmHsy35xU9yJKQc3yW9y5fEcg/t+W/SnkU=;
+ b=sC6ovMPOTEXe+30l/yJflYQQHj+2vmOsf96wQ/rTixDLGP3fvI6Ooh3N3I4kV4d/h7Oe
+ KD9FbaawUGGJBOW8Nm5nnzO341bzj3RTmPCs4ButNosY+EsMaGBBjQAJUyAurUkbVCcz
+ 8gds/mjiSvihkIeyLWHh38jH5KVu8xOGOzqNrVzNuv2xJy0NK4QOFJL40v6CVw9tCZfx
+ nbhyHi9C2sWLuQguz2gzp+gdjE5fUpOWqyGIdRWvaAWhPjxG63IK5c5T+22OLQnAkhaS
+ S9i1sXco1nWZBuLWsLZabmKXG32UuefhfI9Z2IlfU3JaldcjK0qwjY4X7Aey2u2bpejI OQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ejsy7hw3f-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 03 Mar 2022 14:09:21 +0100
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 70197100034;
+        Thu,  3 Mar 2022 14:09:18 +0100 (CET)
+Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 5A18A22178A;
+        Thu,  3 Mar 2022 14:09:18 +0100 (CET)
+Received: from [10.201.22.79] (10.75.127.49) by SFHDAG2NODE2.st.com
+ (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Thu, 3 Mar
+ 2022 14:09:17 +0100
+Message-ID: <65581f3a-3ae6-2dd3-7571-1e64982b5f50@foss.st.com>
+Date:   Thu, 3 Mar 2022 14:09:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Subject: Re: [Linux-stm32] [PATCH v2 12/13] ARM: dts: stm32: enable optee
+ firmware and SCMI support on STM32MP13
 Content-Language: en-US
-To:     "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>
-Cc:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-References: <20220222095654.9097-1-shruthi.sanil@intel.com>
- <20220222095654.9097-3-shruthi.sanil@intel.com>
- <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
- <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
- <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
- <BN9PR11MB55458A882EB4A681C4A63B26F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
- <3ff11b85-249f-2f47-cbc4-41d2ab6d168f@linaro.org>
- <DM4PR11MB554994532B3D128F85553C38F1049@DM4PR11MB5549.namprd11.prod.outlook.com>
- <ce516de7-f1cf-c614-f9ff-439626dfafea@linaro.org>
- <YiCcu7unsP5YDxun@smile.fi.intel.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <YiCcu7unsP5YDxun@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20220225133137.813919-1-gabriel.fernandez@foss.st.com>
+ <20220225133137.813919-13-gabriel.fernandez@foss.st.com>
+ <1d90078d-e27f-539d-d010-78a3c4da565a@pengutronix.de>
+From:   Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <1d90078d-e27f-539d-d010-78a3c4da565a@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG2NODE2.st.com
+ (10.75.127.5)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-03_07,2022-02-26_01,2022-02-23_01
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2022 11:47, andriy.shevchenko@linux.intel.com wrote:
-> On Thu, Mar 03, 2022 at 11:17:33AM +0100, Daniel Lezcano wrote:
->> On 03/03/2022 07:18, Sanil, Shruthi wrote:
-> 
->>>>>>>>> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) { +
->>>>>>>>> pr_err("%pOF: Prescaler is not enabled\n", np);
->>>>>>>>> +		ret = -ENODEV; +	}
->>>>>>>>
->>>>>>>> Why bail out instead of enabling the prescalar ?
->>>>>>>
->>>>>>> Because it is a secure register and it would be updated by
->>>>>>> the bootloader.
->>>>>> Should it be considered as a firmware bug ?
->>>>>
->>>>> No. This is a common driver across products in the series and
->>>>> enablement of this bit depends on the project requirements.
->>>>> Hence
->>>>> to be sure from driver, we added this check to avoid
->>>>> initialization of the driver in the case where it cannot be
->>>>> functional.
->>>>
->>>> I'm not sure to get the meaning of 'project requirements' but (for
->>>> my understanding) why not describe the timer in the DT for such
->>>> projects?
->>>>
->>>
->>> OK, I understand your point now. We can control the driver
->>> initialization from device tree binding rather than add a check in
->>> the driver. But isn't it good to have a check, if enabling of the bit
->>> is missed out in the FW? This can help in debugging.
+
+On 2/25/22 16:13, Ahmad Fatoum wrote:
+> Hello Gabriel,
+>
+> On 25.02.22 14:31, gabriel.fernandez@foss.st.com wrote:
+>> From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
 >>
->> So if the description is in the DT but the prescaler bit is not enabled then
->> the firmware is buggy, IIUC. Yeah, this check would help, may be add more
->> context in the error message, eg. "Firmware has not enabled the prescaler
->> bit" or something like that
-> 
-> For this we also use a FW_BUG prefix to printf()-like functions.
+>> Enable optee and SCMI clocks support.
+>>
+>> Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+>> ---
+>>   arch/arm/boot/dts/stm32mp131.dtsi | 37 +++++++++++++++++++++++++++++++
+>>   1 file changed, 37 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
+>> index 262de4eeb4ed..78eac53224d4 100644
+>> --- a/arch/arm/boot/dts/stm32mp131.dtsi
+>> +++ b/arch/arm/boot/dts/stm32mp131.dtsi
+>> @@ -27,6 +27,43 @@ arm-pmu {
+>>   		interrupt-parent = <&intc>;
+>>   	};
+>>   
+>> +	scmi_sram: sram@2ffff000 {
+>> +		compatible = "mmio-sram";
+>> +		reg = <0x2ffff000 0x1000>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		ranges = <0 0x2ffff000 0x1000>;
+>> +
+>> +		scmi_shm: scmi_shm@0 {
+>> +			compatible = "arm,scmi-shmem";
+>> +			reg = <0 0x80>;
+>> +		};
+>> +	};
+>> +
+>> +	firmware {
+>> +		optee {
+>> +			method = "smc";
+>> +			compatible = "linaro,optee-tz";
+>> +		};
+>> +
+>> +		scmi: scmi {
+>> +			compatible = "linaro,scmi-optee";
+> This compatible doesn't seem to be documented upstream. I am looking at v5.17-rc5.
+> Do you have a reference detailing the difference between this conduit and
+> plain arm,scmi-smc (as used with TF-A on the STM32MP151).
+>
+> Cheers,
+> Ahmad
 
-Thanks for the information, I was unaware of this prefix.
+Hi
 
-Good to know ;)
+Ahmad,
 
+it's on going.
 
+https://lore.kernel.org/linux-arm-kernel/20211029102118.GG6526@e120937-lin/T/#mf46c83f0aadce3061ee93fa22159405f38d881a0
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+>
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			linaro,optee-channel-id = <0>;
+>> +			shmem = <&scmi_shm>;
+>> +
+>> +			scmi_clk: protocol@14 {
+>> +				reg = <0x14>;
+>> +				#clock-cells = <1>;
+>> +			};
+>> +
+>> +			scmi_reset: protocol@16 {
+>> +				reg = <0x16>;
+>> +				#reset-cells = <1>;
+>> +			};
+>> +		};
+>> +	};
+>>   	clocks {
+>>   		clk_axi: clk-axi {
+>>   			#clock-cells = <0>;
+>
