@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFB9D4CB5B9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:01:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F072A4CB5B4
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:01:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbiCCECI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 23:02:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34850 "EHLO
+        id S229639AbiCCECH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 23:02:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229668AbiCCECE (ORCPT
+        with ESMTP id S229673AbiCCECE (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 23:02:04 -0500
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B065315D3AE
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:01:17 -0800 (PST)
-Received: by mail-wr1-x42c.google.com with SMTP id n14so5793337wrq.7
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 20:01:17 -0800 (PST)
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E869515D3B2
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:01:18 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id t11so5794206wrm.5
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 20:01:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=zozG4Oy5Pt0vWjsRDZ91928+qvWs4STBKU9M4pGg1h4=;
-        b=GtETtXWXuQkd42nbMR6nn88ERrAR/i7/RBu9oPuEUqdPFC0Up94swtx3AIPfV9CU0z
-         DubnWU6Rdz4zBpoB4BT24AeeVCJeg/XVY4jzMN61mbjqHHh0G7qFwCKD6oWolCOZIaW0
-         EAMv42THAC1zrM7jytTexyPf6gnKXkWYpCou8UrEAqHLRqi/kuJk4ZAj86CpGV4TRsQz
-         ibL0PvDEwNWzdJsdhCi6T0ftDjD+7IhJkUvu70vaD1dkPtNaHGaKZJlGJBZzr0OcJTri
-         E8dKtf1Mwq162fLIxD6F2GphbB0Sce3N1RTatH2zLdv6uuwtDUxfV+uhqFbSApV4ORse
-         xwtw==
+        bh=qImSYxU2i/y/qV71r8EFW+LTWk9ZfhM4KeM2jcTcklQ=;
+        b=Yh1eogp3N1ugymSzZK9htzlenKX8GfJBQ9WV7MDTL5SUK10yARpdHoeVUgk6PpVSGD
+         itB9HWNjMmE0UIyS25ruimsyNA5jLEt8KXRLcvsQXq0h1mKctbuvbzc/OXeFNo1t/YEs
+         uhTYrVsfcSMrd6uUo8U5xp4aSNEPiggU/1k1+pk+iKBsADEiG17Fb9/8U0TALT1Fai0p
+         CxSbYiSBHt7aMncd5hmNum8la3++zH4xlz8vZCCgwB5DTRVWA1kMDrb8UEBzgAkahZwq
+         iO0cv7c9ugGQD54Rl9s5/ZXBCaqfP8h8cQvE5tWrmNf01dIQnazyd6icRNP1T6LrfeRn
+         CMag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=zozG4Oy5Pt0vWjsRDZ91928+qvWs4STBKU9M4pGg1h4=;
-        b=QZSnWh6s7SzTGYqzmFqfjBcMJU3FTPEFPwohGru9LF28RTvQOPQDxo9+meze514tXG
-         ZLNhtuqLVNvwm1RBDS6q6mYo/67stveLem57kj07XrfVjXcCS4I8NK59KaM39m/dkkz3
-         E+Mu1njfSes+iKG5LcY3aMOjXbBxg0z+QMwij0ial7rVdZ6XiDVUENwAjl7SE/pthMdj
-         fxUYEGjVE04imyv1UaaafkPKukuJNSElliaKG8Jkvp2d+cMukIBz90Qd04RWRWuVJHdA
-         l5DHJ8wojMaQiMXgq+oLdRjZYtpMe4asp/CoZm58k71fkD5J+Yt7D9s/8Wv4e1Me/Qw7
-         KMrQ==
-X-Gm-Message-State: AOAM531fJclrPJJeBPQ5AbBCW7hQjiBnhXrPGkFt7UwB2r1MJCDS16AJ
-        lP5CpFrrz4CsHQCrC9GBURdAlA==
-X-Google-Smtp-Source: ABdhPJw1sPHjiYqCY8K107nqizdZEpManrjkFDw4CZ6liqAMJD/YeEihykdQplF0Z2y28DOWEShY9w==
-X-Received: by 2002:a05:6000:16cb:b0:1ef:e0f8:94d6 with SMTP id h11-20020a05600016cb00b001efe0f894d6mr11144542wrf.485.1646280076274;
-        Wed, 02 Mar 2022 20:01:16 -0800 (PST)
+        bh=qImSYxU2i/y/qV71r8EFW+LTWk9ZfhM4KeM2jcTcklQ=;
+        b=I0PvaWRTb1ptxW3/xr7sR8J8tCvTTZx/UYW7y+mJBDUehWo44Iq3r9SpxfprFPDGzr
+         pEFAjMMwxraBNY56iVZbg1reUobycjXuDGu6swougtG+5lGjbPUCfsoYt9GFG4YZdrin
+         ZJZZUGwhCtge6JzZp45MZsTVPGTcqyPjVtdNfqrnDytrKtBuQbWamRSpx7bMCnZU/yjr
+         rWEH/CaYlwVp3wj6iDLssPieDRAOFbWoqc0Z4DP8zKzPM5jyD/6UvprerztwEymfdkZB
+         x7BSX5y8vZU41hh1BSyIfVLbEn/X9E07MA5qkkWROx7JjSCw9Sgyi3XI4cUtqw4Kn8jB
+         qzxw==
+X-Gm-Message-State: AOAM530CKAyV2RoveO/KWiJ0K8zoFJYDZ5FzisEtiDKeIxKvnqX9fPEF
+        QA5WDuDEPnwCSxTa745QzOKGWw==
+X-Google-Smtp-Source: ABdhPJz9ghxh9GXiWJH62ZkCnE2MDHsoxw49C7l0LPpn1fBD2fGCSAhWi5yQacKDitsyq229QNEKNw==
+X-Received: by 2002:a05:6000:1aca:b0:1ef:b7c5:896d with SMTP id i10-20020a0560001aca00b001efb7c5896dmr14693398wry.572.1646280077465;
+        Wed, 02 Mar 2022 20:01:17 -0800 (PST)
 Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id r16-20020a5d4e50000000b001f0075f4ca1sm702615wrt.105.2022.03.02.20.01.15
+        by smtp.gmail.com with ESMTPSA id r16-20020a5d4e50000000b001f0075f4ca1sm702615wrt.105.2022.03.02.20.01.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 20:01:15 -0800 (PST)
+        Wed, 02 Mar 2022 20:01:16 -0800 (PST)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
 To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -58,9 +58,9 @@ To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
         john.stultz@linaro.org
-Subject: [PATCH v9 6/9] arm64: dts: qcom: pmi8998: add rradc node
-Date:   Thu,  3 Mar 2022 04:00:32 +0000
-Message-Id: <20220303040035.1454103-7-caleb.connolly@linaro.org>
+Subject: [PATCH v9 7/9] arm64: dts: qcom: sdm845-oneplus: enable rradc
+Date:   Thu,  3 Mar 2022 04:00:33 +0000
+Message-Id: <20220303040035.1454103-8-caleb.connolly@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220303040035.1454103-1-caleb.connolly@linaro.org>
 References: <20220303040035.1454103-1-caleb.connolly@linaro.org>
@@ -76,32 +76,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a DT node for the Round Robin ADC found in the PMI8998 PMIC.
+Enable the RRADC for the OnePlus 6.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmi8998.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmi8998.dtsi b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-index 0fef5f113f05..da10668c361d 100644
---- a/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi8998.dtsi
-@@ -18,6 +18,14 @@ pmi8998_gpio: gpios@c000 {
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 		};
-+
-+		pmi8998_rradc: rradc@4500 {
-+			compatible = "qcom,pmi8998-rradc";
-+			reg = <0x4500>;
-+			#io-channel-cells = <1>;
-+
-+			status = "disabled";
-+		};
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+index 7f42e5315ecb..e8287cf02511 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
+@@ -450,6 +450,10 @@ pinconf {
  	};
+ };
  
- 	pmi8998_lsid1: pmic@3 {
++&pmi8998_rradc {
++	status = "okay";
++};
++
+ &qupv3_id_1 {
+ 	status = "okay";
+ };
 -- 
 2.35.1
 
