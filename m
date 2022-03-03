@@ -2,76 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF674CB54C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 04:19:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 09A764CB5AC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:01:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbiCCDQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 22:16:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54632 "EHLO
+        id S229470AbiCCECD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 23:02:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231966AbiCCDQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 22:16:56 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE5D26AD0
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 19:16:05 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 257E483B62;
-        Thu,  3 Mar 2022 04:16:03 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1646277363;
-        bh=5mxX4p9hMFO6do4To2FxcxkUSm6PEmxsnEERVHCUsqE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=G6IkfHzhijCkDekmQs7NwBZMhJnW9upr4buPfMVBuChIiCA7MqvY9F86R/1qh0kAX
-         NXAuJQJM++Z94Eh6yB+Ufi1bXzpSfPR+5cOaj/yHtps+vzxt6/yG4FBSi0PBFoU123
-         bQZjNT+OTV5fVlgu+08UYWMBKF8XbIJti2D9MPz/TCb1/QCfJe02WKDZBQvBijKYHn
-         VyQFKT+eVxP7KX8Cn16S5mIDS3tunXNf3rnudrKp7CMKSxXcnQWhJQHNGEdi2v8AP1
-         biWoUFzsA/dOtmlMLN8zH+UBviRUZABQ4eOtF8U12Jh2Y2IhB630aNzwvxKIX4lJDZ
-         tagNlmRxCusuA==
-Message-ID: <fc32e5b9-9185-e547-ec24-87014140c4ca@denx.de>
-Date:   Thu, 3 Mar 2022 04:16:02 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [EXT] Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for
- i.MX8MP
-Content-Language: en-US
-To:     Robby Cai <robby.cai@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>
-Cc:     "Ying Liu (OSS)" <victor.liu@oss.nxp.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        with ESMTP id S229634AbiCCEBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 23:01:55 -0500
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A2B515C9FD
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:01:10 -0800 (PST)
+Received: by mail-wm1-x335.google.com with SMTP id l2-20020a7bc342000000b0037fa585de26so3268668wmj.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 20:01:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qcOeicUxzw8WX6YNAc05GRTwMqRrAQsovI1aTRBfHWU=;
+        b=osfrshoYSUClnXe2sXt4a5XWfVLBVXHGUNelA+L1I2SbQ1avCUos9geVkYwFqUHK8l
+         mDApJkWDBnwKIHaysRqhGBVH5ErAbkcSbXghiHQZZ0kBMO5zuFkbsGNFyhiGP2lu4jpa
+         aZcsMAxWrON3uWwDSFvm5HEjOIvBiH8yzNo+cVT5nHnhs3AuIDsb7shfo1ZLghcXI+Up
+         YolGD9fYs/hDlyhMTOymW4+ez6WtGy1wpyHy4lkbcQIUlxXBY+fa2U0b9B/RW0RuujrX
+         2WVnaQjDm8qnlz43Vbv8c61XLKfleJfibk+dxHcIztJM0jAU1NyD4cxBHEw7U2Ts8CRL
+         5S8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=qcOeicUxzw8WX6YNAc05GRTwMqRrAQsovI1aTRBfHWU=;
+        b=EiHV+6zuWQBktEDYh+8zLcHVfhANqQXTJnegwCsO4dG1slQtarn7HYuayZE4lUOb9+
+         hYmXXFYCdrI7JmiEKSoEwcx6GxBuNbQgYa8hKEEb0OQiae1sKdZFxkewylkADAxbpH8o
+         OduRPc6jYoj92mAZgUxqkk9tn22YenM9h4zvTAnN4heDiKtlQtEtx+PIMDYFtYbUaUYZ
+         ceWdxwhfKdk2CCZ3uEau6dHmoUiGYCR7ltRpVTeEu4bB5UW0c9eV9kT0fxH+gYibE4wd
+         bdYNZJEx2Tew2un9SNlgNDjyGkwQtAmjlnxY1Y/lCy4v415efNHRl63fgb8WuTwt9zHG
+         8r5g==
+X-Gm-Message-State: AOAM530X9qXKhhDLUt9vU0fvDe7Ii4OtaVKao2I0y1FhCyY7faABPUe7
+        JkNevw4aGVqFqXANmoS9XpT41g==
+X-Google-Smtp-Source: ABdhPJws04sfpoSRDXFHRg7RKQhO1Ny6cLdZOB0fvZJu7+kmvlF+wYs1WIqCflYTCbKH3g539th15g==
+X-Received: by 2002:a7b:c38f:0:b0:385:e56c:8624 with SMTP id s15-20020a7bc38f000000b00385e56c8624mr2250328wmj.19.1646280068985;
+        Wed, 02 Mar 2022 20:01:08 -0800 (PST)
+Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
+        by smtp.gmail.com with ESMTPSA id r16-20020a5d4e50000000b001f0075f4ca1sm702615wrt.105.2022.03.02.20.01.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Mar 2022 20:01:08 -0800 (PST)
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-References: <20220228004605.367040-1-marex@denx.de>
- <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
- <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
- <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
- <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
- <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
- <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
- <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
- <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
- <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
- <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
- <VI1PR04MB699190CC6CB1D5C37C4BB64CF2029@VI1PR04MB6991.eurprd04.prod.outlook.com>
- <3485f77c-667c-05fa-ff96-93e732247b49@denx.de>
- <VI1PR04MB6991E6759DA88E5A3804DB74F2039@VI1PR04MB6991.eurprd04.prod.outlook.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <VI1PR04MB6991E6759DA88E5A3804DB74F2039@VI1PR04MB6991.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org
+Subject: [PATCH v9 0/9] iio: adc: introduce Qualcomm SPMI Round Robin ADC
+Date:   Thu,  3 Mar 2022 04:00:26 +0000
+Message-Id: <20220303040035.1454103-1-caleb.connolly@linaro.org>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,22 +74,101 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/2/22 14:14, Robby Cai wrote:
+The RRADC is responsible for reading data about the current and
+voltage from the USB or DC in jacks, it can also read the battery
+ID (resistence) and some temperatures. It is found on the PMI8998 and
+PM660 Qualcomm PMICs.
 
-Hi
+The RRADC has to calibrate some ADC values based on which chip fab
+the PMIC was produced in, to facilitate this the patches
+("mfd: qcom-spmi-pmic: expose the PMIC revid information to clients")
+and ("mfd: qcom-spmi-pmic: read fab id on supported PMICs")
+expose the PMIC revision information and fab_id as a struct and register
+them as driver data in the Qualcomm SPMI PMIC driver so that it can be
+read by the RRADC.
 
-[...]
+The first 3 patches add support for looking up an SPMI device from a
+struct device_node, as well as introducing support for looking up the
+base USID of a Qcom PMIC, see patch comments for more details. These
+Address Bjorns comments on v2.
 
->>> LCDIF on i.MX8MP is a different IP which is borrowed from non-iMX series,
->> although it's also called 'LCDIF'.
->>> We prefer not mix these two series of IPs in one driver for ease of
->> maintenance and extension.
->>
->> Where does the MX8MP LCDIF come from then, SGTL maybe ?
-> 
-> AFAIK, it's RT1170. You may have a check on RM [1]. Interestingly, this SoC has both eLCDIF and LCDIFv2, two IPs we are talking about.
-> 
-> [1] https://www.nxp.com/webapp/Download?colCode=IMXRT1170RM
+Changes since v8:
+ * Drop Reported-by for the bugfix on previous revision reported by LKP
+ * Apply Jonathans suggestions
+ * Rework patch 2 ("expose the PMIC revid information to clients") to
+   handle PMICs with a single USID (thanks Dmitry)
 
-That's interesting, I wasn't aware of this one. So that's MX8MP LCDIF + 
-overlays. Did the LCDIF v2 in iMXRT1070 have any predecessor too ?
+Changes since v7:
+ * Addressed Jonathans comments
+ * Fixed bug reported by LKP
+
+Changes since v6:
+ * Fix printf format warning in rradc
+
+Changes since v5:
+ * Add missing EXPORT_SYMBOL_GPL() to
+   ("spmi: add a helper to look up an SPMI device from a device node")
+
+Changes since v4:
+ * Addressed Jonathan's comments on v4
+ * Reworked the qcom-spmi-pmic patches to properly walk the devicetree
+   to find the base USID. I've tested this on SDM845 which has two PMICs
+   (pm8998 and pmi8998) and I'm able to look up the PMIC revid from all
+   4 USIDs.
+
+Changes since v3:
+ * Split PMIC patch in two, rework to support function drivers on a
+   sibling USID
+ * Completely rework RRADC driver to make use of the modern IIO
+   framework. This required re-arranging a lot of the equations and
+   results in some lost precision, where relevant I've left comments to
+   explain this. I don't think any of it is significant enough to
+   justify doing post-processing in driver.
+	Thanks a lot Jonathan and John Stultz for helping me out with
+	this 
+
+Changes since v2:
+ * Add missing include (thanks kernel test robot :D)
+ * Rework some confusing function return values, specifically
+   rradc_read_status_in_cont_mode and rradc_prepare_batt_id_conversion
+   both of which didn't correctly handle "ret". This also bought up an
+   issue as the previous implementation didn't actually wait for the
+   channel to be ready. It doesn't seem like that's strictly necessary
+   (same data is reported if I wait for the status to be good or not)
+   but I've included it anyway for good measure.
+
+Changes since v1:
+ * Rework the RRADC driver based on Jonathan's feedback
+ * Pick up Rob's reviewed by for the dt-binding patch.
+---
+Caleb Connolly (9):
+  spmi: add a helper to look up an SPMI device from a device node
+  mfd: qcom-spmi-pmic: expose the PMIC revid information to clients
+  mfd: qcom-spmi-pmic: read fab id on supported PMICs
+  dt-bindings: iio: adc: document qcom-spmi-rradc
+  iio: adc: qcom-spmi-rradc: introduce round robin adc
+  arm64: dts: qcom: pmi8998: add rradc node
+  arm64: dts: qcom: sdm845-oneplus: enable rradc
+  arm64: dts: qcom: sdm845-db845c: enable rradc
+  arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
+
+ .../bindings/iio/adc/qcom,spmi-rradc.yaml     |   54 +
+ arch/arm64/boot/dts/qcom/pmi8998.dtsi         |    8 +
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts    |    4 +
+ .../boot/dts/qcom/sdm845-oneplus-common.dtsi  |    4 +
+ .../boot/dts/qcom/sdm845-xiaomi-beryllium.dts |    4 +
+ drivers/iio/adc/Kconfig                       |   12 +
+ drivers/iio/adc/Makefile                      |    1 +
+ drivers/iio/adc/qcom-spmi-rradc.c             | 1020 +++++++++++++++++
+ drivers/mfd/qcom-spmi-pmic.c                  |  275 +++--
+ drivers/spmi/spmi.c                           |   17 +
+ include/linux/spmi.h                          |    2 +
+ include/soc/qcom/qcom-spmi-pmic.h             |   61 +
+ 12 files changed, 1372 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
+ create mode 100644 drivers/iio/adc/qcom-spmi-rradc.c
+ create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
+
+-- 
+2.35.1
+
