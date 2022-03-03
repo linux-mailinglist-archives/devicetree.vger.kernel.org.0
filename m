@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B21BE4CBF0B
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:42:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 02E734CBF0E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 14:43:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232346AbiCCNnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 08:43:19 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50008 "EHLO
+        id S233818AbiCCNnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 08:43:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233805AbiCCNnT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:43:19 -0500
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1064F50441;
-        Thu,  3 Mar 2022 05:42:34 -0800 (PST)
-Received: by mail-oo1-f49.google.com with SMTP id n5-20020a4a9545000000b0031d45a442feso5791131ooi.3;
-        Thu, 03 Mar 2022 05:42:34 -0800 (PST)
+        with ESMTP id S231370AbiCCNnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 08:43:49 -0500
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A25718A7B9;
+        Thu,  3 Mar 2022 05:43:04 -0800 (PST)
+Received: by mail-oi1-f173.google.com with SMTP id k2so4813763oia.2;
+        Thu, 03 Mar 2022 05:43:04 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=5lWBzoOWGU7G5/Zn3FRdl8Hy5UVc8HqxipISQi2chqQ=;
-        b=Se/vQlyW0u2daI8EWdoYCZc2yspAGd6I3ggUZAPBnvW/fIt41Pa/V9CIOv+NRadqvw
-         XginrU4h3/hvDu8REqCX/AwWjKuKcHQpHnQdwvxwfGlntiYjN0HHqs0yKP4P/tK/CQsl
-         8ev1tGY73pesHCuE6fDttYFOcq+bTAXd1QTQSdDshrncNNYxdBLSQPcfZjUwjoU4P2Wb
-         DlXCOoSoj5OXo7+lP21qLzlOGtAxlztTWFl/zBDCcmKcG3YJ+g/BtEDjAEF5Wu1tNfnQ
-         l6kLDfRnlb/ATAFUkKq9uiBHyz7WSD7dIwFt4HBD3Hmy85YuZ2YsDbc2yyWIJhakac8r
-         JiuQ==
-X-Gm-Message-State: AOAM531jXZTyVKpBdo/BOqsR2w2Xjp1cpBBowvPBaa5tVRn+Fa5pnGJC
-        g46YsTvJXjCasev6Mjb6fA==
-X-Google-Smtp-Source: ABdhPJwZDnkj6WGwaUvxYlZzHP+V6c+mocX9RVyZQwpWKoYGtlzUPQ7kmzaogIdQ65P5HG5IcDFmzA==
-X-Received: by 2002:a05:6870:8322:b0:d3:a3f7:ad88 with SMTP id p34-20020a056870832200b000d3a3f7ad88mr3859346oae.107.1646314953406;
-        Thu, 03 Mar 2022 05:42:33 -0800 (PST)
+        bh=uVjIFvRGxmCNMTbSrBbokaQaBUIKi3VHJCUkgaVuEhc=;
+        b=lsASdvl8mQGrqlK7LDnbus6bLFbfUkYTZbnvQkk9jeuAr5VK7beEwIO1QfLMgrRT8L
+         L7FOOsJdZcmSnK++aaFrL5fcpXhLoLhwH6xgL3gWCW312mUaSGQrZlRELpIKxfW2a785
+         sxGVcb0lpG+P9mNIx/gWukL7VcZK2sZqMtkCRbedSqp4YqGYn51K4PB4d0egV3Ea0Arl
+         +6nzjxIFzzTeMohBNqW23zJdfEOrfWYXkHmL/qMBXn84RT1OrWw46CUl/NiDJ2V8Mj7g
+         zl5O4XE65bqFG1cysPunCSXBZA12j/7CBvAdaN/kOgHg0H8a/+rNlMngIQGM7Bt4Wir2
+         MfNQ==
+X-Gm-Message-State: AOAM532Bf8Nz1ycgZbeJnHQCo4oLfFHTXFT7vKgab7UG9ZRMphiS2Dfh
+        h4kKofFg+ynM7vsca+TEqQ==
+X-Google-Smtp-Source: ABdhPJyerRkHKmBETO/iPjPoX2HnozFhTqwx0qSfhqj4YNiGOkshnbjByp8JMzHFIJUHKbBPBFFypA==
+X-Received: by 2002:a54:4e9a:0:b0:2d5:3e7c:7ff6 with SMTP id c26-20020a544e9a000000b002d53e7c7ff6mr4594562oiy.24.1646314983421;
+        Thu, 03 Mar 2022 05:43:03 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id y28-20020a4aea3c000000b0031c0cddfbf9sm942208ood.20.2022.03.03.05.42.31
+        by smtp.gmail.com with ESMTPSA id n23-20020a056870559700b000d47e9dabf0sm1166362oao.0.2022.03.03.05.43.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 05:42:31 -0800 (PST)
-Received: (nullmailer pid 1491084 invoked by uid 1000);
-        Thu, 03 Mar 2022 13:42:30 -0000
-Date:   Thu, 3 Mar 2022 07:42:30 -0600
+        Thu, 03 Mar 2022 05:43:02 -0800 (PST)
+Received: (nullmailer pid 1492131 invoked by uid 1000);
+        Thu, 03 Mar 2022 13:43:01 -0000
+Date:   Thu, 3 Mar 2022 07:43:01 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Michael Turquette <mturquette@baylibre.com>
-Subject: Re: [PATCH v3 2/7] dt-bindings: dma: Introduce RZN1 DMA compatible
-Message-ID: <YiDFxoubwNp1Zuwo@robh.at.kernel.org>
-References: <20220225112403.505562-1-miquel.raynal@bootlin.com>
- <20220225112403.505562-3-miquel.raynal@bootlin.com>
+To:     Michael Riesch <michael.riesch@wolfvision.net>
+Cc:     Johan Jonker <jbx6244@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
+        Liang Chen <cl@rock-chips.com>,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Subject: Re: [PATCH v2 2/4] dt-bindings: usb: add rk3568 compatible to
+ rockchip,dwc3
+Message-ID: <YiDF5WVoR3c0Eevt@robh.at.kernel.org>
+References: <20220225131602.2283499-1-michael.riesch@wolfvision.net>
+ <20220225131602.2283499-3-michael.riesch@wolfvision.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220225112403.505562-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20220225131602.2283499-3-michael.riesch@wolfvision.net>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Feb 2022 12:23:57 +0100, Miquel Raynal wrote:
-> Just like for the NAND controller that is also on this SoC, let's
-> provide a SoC generic and a more specific couple of compatibles for the
-> DMA controller.
+On Fri, 25 Feb 2022 14:16:00 +0100, Michael Riesch wrote:
+> Add the compatible for the Rockchip RK3568 variant.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
 > ---
->  .../devicetree/bindings/dma/snps,dma-spear1340.yaml       | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/usb/rockchip,dwc3.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
