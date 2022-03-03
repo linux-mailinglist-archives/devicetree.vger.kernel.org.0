@@ -2,122 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 331F74CC8E1
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 23:28:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A7B4CC8EE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 23:32:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236875AbiCCW3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 17:29:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45392 "EHLO
+        id S234749AbiCCWcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 17:32:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231722AbiCCW3W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 17:29:22 -0500
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2043.outbound.protection.outlook.com [40.107.21.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A0C32FFD5;
-        Thu,  3 Mar 2022 14:28:35 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TsGWVJZk72S5SBJEatIpg76it4qVRBzHUMx8HEkhzmV/jp+xBaePOWv6t+GcnzMmhmnO+3Q+DmhQ7qUP+ZMqB2LVQdyMTMSF4WsPyR+y5kMMbjphRjkL0LzyTeMSTlHFnlSo/2cXgEZy0q0jwrgLGP11Woc5Gfka+0DGWek2ixE2UDSjDSpTF1Sfv/6SmjBEXWbppfJlPO0ZicF8QWpH9GQ/AJmyLQRs1Qi8ev77RMXjzS+uORh9k9UK2aJXhf5/FOj2vvMbPsmEg0Rx19Ay51XWgTw4DEAicEj5QENoI1UHB7rgs+ls5FPbItz7ko1XvSJTYG3PVGuWoulklQU7NA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JSlGsGnf70nJWR2MCU2IgR4NM4JaoibNWXZn0RbZ51M=;
- b=Ee3U+s7vsYG4IJvDuh7X+EWlxV0SJCloAvcf+uXFam7qipJykaLGkaF0/qJ5yzc+JsWulsyDRqC5XV3D6HaMI8ZPMsCH40N659bEyGBcwCg2UO3jXsVtESeNRysMCrExy09vPBvpMi3619SdLYBxAJ+D9qbv98bef59LlpJorizmewU77ibqhIRG+eaPtxert8WviX0q38rxb/8zsdPKJAzex1Gfq2a+Ce/QVCiZq0ymKSBlw0RALANaVE6LIzOON6QoqVwjJW+MO3UPeJOYHGJ6WQj0xfSWlQOW1nIv5UTj6X8PCIUaL9snHUgvCTjbP58lD+IVK/RuzTcuaiV1pQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JSlGsGnf70nJWR2MCU2IgR4NM4JaoibNWXZn0RbZ51M=;
- b=0x0/8sZiSeWOCrLrUz/hQs7jW1J5y6zs+/Tm1LFrlNPT4uxmzrWdRPQFiPPrQ23ooy1TqsLoOgkoVyVqinHBBJ4VS1ECURz/Y6Jie4663gCJcJ19W8BTddpD6LTDtQCxz4PKY3qv6JnYMnu15wNY5pZy2mP/sfEAMbPxq8T3NgLzIGJIMkeXHhjrwWm/SXI/h1e3WCXy3cq09AiqHBu78YHhZJXl7KjhZKVKEpXBYU+FQ+tZPVwKju//9/7QV+PNB0+UkzHskeohAyZKYbGjXjji4JiYbYOWPgfrQdhLKIlNxsImzvVP68Ni5viz3WenqHj2t4KMYKaTQ99SiWwNQg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com (2603:10a6:10:19::27)
- by DB3PR0302MB3387.eurprd03.prod.outlook.com (2603:10a6:8:c::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.15; Thu, 3 Mar
- 2022 22:28:31 +0000
-Received: from DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::9130:93ae:6e27:e9a]) by DB7PR03MB4523.eurprd03.prod.outlook.com
- ([fe80::9130:93ae:6e27:e9a%4]) with mapi id 15.20.5038.014; Thu, 3 Mar 2022
- 22:28:31 +0000
-Subject: Re: [PATCH v13 2/2] pwm: Add support for Xilinx AXI Timer
-To:     =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Alvaro Gamez <alvaro.gamez@hazent.com>,
-        Mubin Usman Sayyed <MUBINUSM@xilinx.com>,
-        linux-kernel@vger.kernel.org, michal.simek@xilinx.com,
-        Lee Jones <lee.jones@linaro.org>
-References: <20220204180106.154000-1-sean.anderson@seco.com>
- <20220204180106.154000-2-sean.anderson@seco.com>
- <20220303222542.6ytwfp3bvm62igyy@pengutronix.de>
-From:   Sean Anderson <sean.anderson@seco.com>
-Message-ID: <3381d726-1d18-3386-5d3d-d89a9efdf091@seco.com>
-Date:   Thu, 3 Mar 2022 17:28:26 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-In-Reply-To: <20220303222542.6ytwfp3bvm62igyy@pengutronix.de>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BLAPR03CA0096.namprd03.prod.outlook.com
- (2603:10b6:208:32a::11) To DB7PR03MB4523.eurprd03.prod.outlook.com
- (2603:10a6:10:19::27)
+        with ESMTP id S234087AbiCCWcs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 17:32:48 -0500
+Received: from mail-oo1-xc31.google.com (mail-oo1-xc31.google.com [IPv6:2607:f8b0:4864:20::c31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F402D1375A3
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 14:32:01 -0800 (PST)
+Received: by mail-oo1-xc31.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso7456629ooi.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 14:32:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GXj+JJPwfsy1TPTyievdzxMaMQ1HgahsIy1fHCecuJ8=;
+        b=s5oo+ymjcJWqfAiP1BwjR3idcGDdOwaFb2X8H+Z/c3G5sY1UtDiv3Fv7vjncR7nFMO
+         wA8UYS+eLiiZUeb9Rrgal3IJ+vrQnXJmt3tiaP67Qu+bpO+I1pKc9eYWPE82v9mAuy0a
+         zf0JzaDYQVuA41giUxuz7reKLPok3cCf431Pr/tlhu8wiiki7ajXlfmw9DWYkqIP9KPA
+         MexWfe2ty+nGrQ/qkN0EQ00ztZard0NnaFwi6x9CO5pb5xycrzQoIxbN5A4zHkhBQrm+
+         vSeWTJEqXUe38QHMrC0SrFuUr9O+0Ik1aqwc8yImJ4BdGByk5nVux5cKyLQ/gTzC2JRh
+         J2Fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GXj+JJPwfsy1TPTyievdzxMaMQ1HgahsIy1fHCecuJ8=;
+        b=Ttt+LceFAz6+Kmr/wvC2tIeslDpV+hjsVFisuAs1TT+KltPoSpHypivS0pNQZQYCHk
+         uW+bJH5UmG3DiINYMP4EfWqWq3Z1Rw7jY5yOGZ62SOg208Z3RL5kW1lbe5T0mRuqaQ2Q
+         KsUSZ/3f8VjFl25ODK438++N3TCygslp9H54IUWIqVg/u3o/ONQeDTk+zbtRCO+Ujvwa
+         +Cthx0oSbjw+LwTFiBeKzQpLL79JwDcz03tQk6TSL6aEN7Pf9rlWB5h9E6rntW+x7bUd
+         6WzUC4sN5RU6TrrmqdjVG85NfPPHqjOKlAVnT8ZvZD9Ql+ziIJ4T7Qg0Z6AQg1m01p1m
+         zmlA==
+X-Gm-Message-State: AOAM530T2netj1JkOhCGLaVvX+YxnvRjUd1TNMfaMx4rUmpWotnDTRAR
+        u0V2ZNcZaH65LTrvR6UdSafGYg==
+X-Google-Smtp-Source: ABdhPJzkhWKivVU8Vch0wuh08xQA/XMkkCLJf277FgVKCZMd2uuRFKuuha1IbHcDRlai/7h6StF3NQ==
+X-Received: by 2002:a4a:d21b:0:b0:2e2:113:db90 with SMTP id c27-20020a4ad21b000000b002e20113db90mr19603967oos.50.1646346721308;
+        Thu, 03 Mar 2022 14:32:01 -0800 (PST)
+Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id fq14-20020a0568710b0e00b000d4492531a2sm1764777oab.17.2022.03.03.14.32.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 14:32:00 -0800 (PST)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>
+Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 1/6] device property: Helper to match multiple connections
+Date:   Thu,  3 Mar 2022 14:33:46 -0800
+Message-Id: <20220303223351.141238-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 16cf954a-768c-42f1-1242-08d9fd6524ed
-X-MS-TrafficTypeDiagnostic: DB3PR0302MB3387:EE_
-X-Microsoft-Antispam-PRVS: <DB3PR0302MB3387A2B10DB8045141A071EC96049@DB3PR0302MB3387.eurprd03.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 31irPlU4xAIIk0TL3K+1hj/qloaqtV43gPesk1NloXbSG/dNGscT/DtgwbvMOLDV5ZVyrK9z3ZlT/yLWLe2VjomMcF2MPXMqyQjKlkTfKWBS3+EEplLV65k5uDRYPwA7vjvHP+oJhJ+q+A7cz45JDK2qaun8MPQk8wo9fLm9wQfB8kXcWnFiSYVv85nkK3UhfPVrPucwwYkuzKUY6AIpd5XlMIQaxlWUgsKbXLwvi61NCgWq85ZwJ7fhrZSUpCwpZ6/LveWWPYmwcBGMT/Sl6G+KhGoNhGxszhdcGete+c6DYvNqdDKIXu2SJUt+v6ODZ3sEZHMugAKXSa7B55KD799dfSlT7p9j6Qk+sHw/fhhfAuqUgAlXM6nj1qnAMj8dFC0j2UkVyXv2mnOIp/4jwAyG9NTgFveRs3I+qrwuCq/KNOimFV5CZ7MQJeYwZgsTUdkLDIK0agYWFLjb7pCwVAJUjZVMJPoL1TQWEc+YoCiSpDZ8RUOAfsEVQnjgBs0EwTI8r4OGsaf9/6sS/nmwxxRp+AbS/NI8ircuXqbbmf5y/4hiy7cNE0iXvvuc4eiVb2ZQn+aI2lXGdJyXcZrEFkAcpN+gd5gKNjw3XDjubwmGsIIXPFQ7j/JKXB7JjRhfvJngSXYSAZSu+SJSVLUCD6oRU4SOGknblKu6Lmx6C8Jx9JmX8H0iedJDV8LPXVtMWsp6AcK0CDMnwfghdfIYUDXbCjRoha2KhK0q5AfA89BEgQT2Cpa5TCs2XlG8kaQadUneITfiQtWAp4FGPvmiaQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR03MB4523.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(5660300002)(6916009)(54906003)(38100700002)(38350700002)(52116002)(53546011)(6506007)(36756003)(2616005)(83380400001)(6512007)(7416002)(2906002)(186003)(26005)(31686004)(44832011)(6666004)(8936002)(86362001)(31696002)(316002)(4326008)(66556008)(8676002)(66946007)(66476007)(508600001)(6486002)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?Windows-1252?Q?5Beg6Sxh4L1oFtMAiBlTgiUhG4r60QQePkxoFhl0z2OJcnXc8pnDKFUf?=
- =?Windows-1252?Q?epe+7mwJhByPUT65rEChdhr4rhwOZK9fICMDx+8RrDuowSvL02fnBp6o?=
- =?Windows-1252?Q?3dBkhJ+j3PwZWYDfjZDlGgubrQY/ItewZ6rQYWPP0zYDzHpeZZa9xVT1?=
- =?Windows-1252?Q?NG1rhE6um3034lVtNz879SMbwcGoPnb8q87QPy4LEPeAOx6FsF510D9X?=
- =?Windows-1252?Q?lTkelFgNAq9QwcZqsRJ25cykkrWCrIhG6rcUb+CdhJjiCdTxX/1SPtY+?=
- =?Windows-1252?Q?vVTraAX+jSUYluCyvvMw7Tg29CSsqwkGYVTOKlVwiaysZkesiFYOB7af?=
- =?Windows-1252?Q?OUufBzmCWZGX6x+I7+MgEbI4DuPZJde21ioB0+CG+wRUKQ0+bp82xpEj?=
- =?Windows-1252?Q?B9srGTkPUkWeY0JX/JK68dn3FyQrdfbaXWy3uTaT0SB8g6RcTimOlQ9A?=
- =?Windows-1252?Q?GxH2ajxFjpVYdpzLPKbdKnUXz/MButWopLqzwTkr+VDTGMu8SimKI1Vf?=
- =?Windows-1252?Q?2yLwwFhYddepsGsYog42Q1OeeYFP955W6pBiRBiCZ+oIkvkusKaBw6XK?=
- =?Windows-1252?Q?97dBzJgQKstS7jtGF/xgKfXCPs30nbjr0uS/89eETBIQqB9ht44ce7xw?=
- =?Windows-1252?Q?0GQcB2lO1oIUKR6DxXcmYEkhUHFRfc+ukwqgY0MnPbtjW4tnxShAwzd+?=
- =?Windows-1252?Q?TPHyeo/t2l/BHeP2WixVFawwdT7WcYmdA37jGNfR3zkbGaH5/kLf0hEI?=
- =?Windows-1252?Q?SynusFvV4NlWULzEPEKAOTYDMl82ldjdUjFoFpLHpRDd1UIgv2rfQCTN?=
- =?Windows-1252?Q?CdE6X5Qwm4XgARwcG5mbb6BbuafLKt6I0gQRwakNITSPqfKkzG9mbJE+?=
- =?Windows-1252?Q?CxklQIbADpq7ECyVmDli0BeH9beKeSgQS8GUJDPD+E8nTcF6VMXHjcxE?=
- =?Windows-1252?Q?JOc5ce+EzXXaSa/5jTGCQk3zUpVhHQeluvPfLCnr8ZX9RMRi/NVP35uV?=
- =?Windows-1252?Q?L85V6i1OHljID0X3fsLlIdWvvJv/K8jQGAu1gM/FoZPoPaUoqRn95+9s?=
- =?Windows-1252?Q?uN7dql3nuxWkEqHLBeMMthaJbDIH35X8WBnfmPHGBoq75t3sRQkqSYSz?=
- =?Windows-1252?Q?7AYyyyuNY8UPWxQExn2J7+YlB5prJMFo3pG6oz1pgaSacJ6UpvpU7vUo?=
- =?Windows-1252?Q?unFbimmyLe97BhGB0EnDHePEtEL+BgmcVZtwzOvwUr9J6hOWqJWfH7xk?=
- =?Windows-1252?Q?WbjElKsJHkjgywGA0GiyYAs54HCrr9xsm2wiYC2M8MLYs3wEswClOTNu?=
- =?Windows-1252?Q?MMLZqOFfsDMpE3A+G43Pjc45MkBnHqvFx+oqNBscspyPDlFW2OE0YVYj?=
- =?Windows-1252?Q?jl7krINrcmp4QGliiVzLW7bc/TFACxpb/15IzWVRlAnEa4sENTQ9Gg8f?=
- =?Windows-1252?Q?LB7Qp/M2a2b2bzBkYaUbtvvOmrDjSpdqbi/nj/mCqamCPmsv6/zmnclS?=
- =?Windows-1252?Q?1ahJrZ7F7LAAXe/Qau6gT1gjzHzlECNxp8HVfN3M0MrYIvEGOvH068le?=
- =?Windows-1252?Q?NgzIxH3kzmJ6KT2Mzxi7fRnia6FyIhShrQjTCBC0+eI86z+iSFrq7lDt?=
- =?Windows-1252?Q?gfAl3Ry8rA7dL2g1H6sjwZ0m2tiwth7f8CxM2Bp9auxAVeH7B49KURrT?=
- =?Windows-1252?Q?LfRGsxAIr99HezPKv0NSSVHrastlcfbDNyW2sD9QUukIk0pUzGfEWEaU?=
- =?Windows-1252?Q?Gj8lQLd3LDZwFOzdrno=3D?=
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 16cf954a-768c-42f1-1242-08d9fd6524ed
-X-MS-Exchange-CrossTenant-AuthSource: DB7PR03MB4523.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2022 22:28:30.9082
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ESA2tjqjnoaRT2W/2IcTr3kQu6oA7yDPIN707RTxS6rhELUCfYEkKUe/l5wwHjb7qCYvvUFrsocTTbOi1+Snog==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0302MB3387
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -125,70 +74,182 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+In some cases multiple connections with the same connection id
+needs to be resolved from a fwnode graph.
 
+One such example is when separate hardware is used for performing muxing
+and/or orientation switching of the SuperSpeed and SBU lines in a USB
+Type-C connector. In this case the connector needs to belong to a graph
+with multiple matching remote endpoints, and the Type-C controller needs
+to be able to resolve them both.
 
-On 3/3/22 5:25 PM, Uwe Kleine-König wrote:
-> Hello,
-> 
-> just a few minor things left for me to criticise:
-> 
-> On Fri, Feb 04, 2022 at 01:01:06PM -0500, Sean Anderson wrote:
->> [...]
->> +	regmap_read(priv->map, TCSR1, &tcsr1);
->> +	state->period = xilinx_timer_get_period(priv, tlr0, tcsr0);
->> +	state->duty_cycle = xilinx_timer_get_period(priv, tlr1, tcsr1);
->> +	state->enabled = xilinx_timer_pwm_enabled(tcsr0, tcsr1);
->> +	state->polarity = PWM_POLARITY_NORMAL;
->> +
->> +	/*
->> +	 * 100% duty cycle results in constant low output. This may be slightly
->> +	 * wrong if rate >= 1GHz, so fix this if you have such hardware :)
->> +	 */
-> 
-> I'd drop "slightly" here. If the bug happens (e.g. tlr0 = 999999999,
-> tlr1 = 999999998, clkrate = 1000000001 Hz) then you diagnose a nearly
-> 100% relative duty cycle as 0%. Also s/>= 1GHz/> 1 GHz/.
+Add a new API that allows this kind of lookup.
 
-OK
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
 
->> [...]
->> +	if (one_timer)
->> +		return dev_err_probe(dev, -EINVAL,
->> +				     "Two timers required for PWM mode\n");
->> +
->> +
-> 
-> One empty line here would be enough.
+Changes since v2:
+- Allow the caller of the new api to pass a matches of NULL, to count possible
+  matches. I previously argued that this will cause memory leaks, but Andy
+  pointed out that this depends on the caller and the match function.
+- Fixed spelling mistakes in commit message and kernel-doc.
+- Use two "count" variables to make the math clearer.
 
-OK
+Changes since v1:
+- Iterator in fwnode_devcon_matches() is now unsigned.
+- fwnode_handle_put() node for unavailable nodes.
+- Extended commit message on the subject of supporting dynamically sized
+  "matches" array.
 
->> diff --git a/include/clocksource/timer-xilinx.h b/include/clocksource/timer-xilinx.h
->> new file mode 100644
->> index 000000000000..1f7757b84a5e
->> --- /dev/null
->> +++ b/include/clocksource/timer-xilinx.h
->> @@ -0,0 +1,91 @@
->> [...]
->> +/**
->> + * xilinx_timer_common_init() - Perform common initialization for Xilinx
->> + *                              AXI timer drivers.
->> + * @priv: The timer's private data
->> + * @np: The devicetree node for the timer
->> + * @one_timer: Set to %1 if there is only one timer
->> + *
->> + * This performs common initialization, such as detecting endianness,
->> + * and parsing devicetree properties. @priv->regs must be initialized
->> + * before calling this function. This function initializes @priv->read,
->> + * @priv->write, and @priv->width.
->> + *
->> + * Return: 0, or negative errno
->> + */
->> +int xilinx_timer_common_init(struct device_node *np,
->> +			     struct xilinx_timer_priv *priv,
->> +			     u32 *one_timer);
-> 
-> This function is gone, so the prototype should go away, too.
+ drivers/base/property.c  | 107 +++++++++++++++++++++++++++++++++++++++
+ include/linux/property.h |   5 ++
+ 2 files changed, 112 insertions(+)
 
-OK
+diff --git a/drivers/base/property.c b/drivers/base/property.c
+index c0e94cce9c29..5cda205136f6 100644
+--- a/drivers/base/property.c
++++ b/drivers/base/property.c
+@@ -1218,6 +1218,40 @@ fwnode_graph_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+ 	return NULL;
+ }
+ 
++static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
++						const char *con_id, void *data,
++						devcon_match_fn_t match,
++						void **matches,
++						unsigned int matches_len)
++{
++	struct fwnode_handle *node;
++	struct fwnode_handle *ep;
++	unsigned int count = 0;
++	void *ret;
++
++	fwnode_graph_for_each_endpoint(fwnode, ep) {
++		if (count >= matches_len && matches) {
++			fwnode_handle_put(ep);
++			return count;
++		}
++
++		node = fwnode_graph_get_remote_port_parent(ep);
++		if (!fwnode_device_is_available(node)) {
++			fwnode_handle_put(node);
++			continue;
++		}
++
++		ret = match(node, con_id, data);
++		fwnode_handle_put(node);
++		if (ret) {
++			if (matches)
++				matches[count] = ret;
++			count++;
++		}
++	}
++	return count;
++}
++
+ static void *
+ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+ 		    void *data, devcon_match_fn_t match)
+@@ -1240,6 +1274,37 @@ fwnode_devcon_match(struct fwnode_handle *fwnode, const char *con_id,
+ 	return NULL;
+ }
+ 
++static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
++					  const char *con_id, void *data,
++					  devcon_match_fn_t match,
++					  void **matches,
++					  unsigned int matches_len)
++{
++	struct fwnode_handle *node;
++	unsigned int count = 0;
++	unsigned int i;
++	void *ret;
++
++	for (i = 0; ; i++) {
++		if (count >= matches_len && matches)
++			return count;
++
++		node = fwnode_find_reference(fwnode, con_id, i);
++		if (IS_ERR(node))
++			break;
++
++		ret = match(node, NULL, data);
++		fwnode_handle_put(node);
++		if (ret) {
++			if (matches)
++				matches[count] = ret;
++			count++;
++		}
++	}
++
++	return count;
++}
++
+ /**
+  * fwnode_connection_find_match - Find connection from a device node
+  * @fwnode: Device node with the connection
+@@ -1267,3 +1332,45 @@ void *fwnode_connection_find_match(struct fwnode_handle *fwnode,
+ 	return fwnode_devcon_match(fwnode, con_id, data, match);
+ }
+ EXPORT_SYMBOL_GPL(fwnode_connection_find_match);
++
++/**
++ * fwnode_connection_find_matches - Find connections from a device node
++ * @fwnode: Device node with the connection
++ * @con_id: Identifier for the connection
++ * @data: Data for the match function
++ * @match: Function to check and convert the connection description
++ * @matches: Array of pointers to fill with matches
++ * @matches_len: Length of @matches
++ *
++ * Find up to @matches_len connections with unique identifier @con_id between
++ * @fwnode and other device nodes. @match will be used to convert the
++ * connection description to data the caller is expecting to be returned
++ * through the @matches array.
++ * If @matches is NULL @matches_len is ignored and the total number of resolved
++ * matches is returned.
++ *
++ * Return: Number of matches resolved, or negative errno.
++ */
++int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
++				   const char *con_id, void *data,
++				   devcon_match_fn_t match,
++				   void **matches, unsigned int matches_len)
++{
++	unsigned int count_graph;
++	unsigned int count_ref;
++
++	if (!fwnode || !match)
++		return -EINVAL;
++
++	count_graph = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
++						  matches, matches_len);
++
++	matches += count_graph;
++	matches_len -= count_graph;
++
++	count_ref = fwnode_devcon_matches(fwnode, con_id, data, match,
++					  matches, matches_len);
++
++	return count_graph + count_ref;
++}
++EXPORT_SYMBOL_GPL(fwnode_connection_find_matches);
+diff --git a/include/linux/property.h b/include/linux/property.h
+index 4cd4b326941f..de7ff336d2c8 100644
+--- a/include/linux/property.h
++++ b/include/linux/property.h
+@@ -447,6 +447,11 @@ static inline void *device_connection_find_match(struct device *dev,
+ 	return fwnode_connection_find_match(dev_fwnode(dev), con_id, data, match);
+ }
+ 
++int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
++				   const char *con_id, void *data,
++				   devcon_match_fn_t match,
++				   void **matches, unsigned int matches_len);
++
+ /* -------------------------------------------------------------------------- */
+ /* Software fwnode support - when HW description is incomplete or missing */
+ 
+-- 
+2.33.1
 
---Sean
