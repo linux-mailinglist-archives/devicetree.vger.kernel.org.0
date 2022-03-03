@@ -2,96 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA1694CBA24
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D8314CBA4F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:31:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230476AbiCCJ0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 04:26:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
+        id S230342AbiCCJca (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 04:32:30 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbiCCJ0B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:26:01 -0500
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C5847AC1;
-        Thu,  3 Mar 2022 01:25:16 -0800 (PST)
-Received: by mail-lf1-x135.google.com with SMTP id f37so7313049lfv.8;
-        Thu, 03 Mar 2022 01:25:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=q6dWyOSxtQaqc6rOdj1kSMlaHNYdY8a6NUWiCmzKlBU=;
-        b=Wu6azQb51NeYK2nXdZ4c+57Tqdxw0f2J8bT9gGTqou+kF7sYbWqIZLP3Wzt07AsRwk
-         FoZsY71KojwkB5vzjVg0Td/eX5chuwVl0W7NQABSIJ7nMUGUpRkwfVjsjR75gHAqw0Td
-         SJ2x3c6uuU0GR89MPXsPmqV/G8jrclkAArWz4nyeuuBUzYcwlE4iuqBLJkdYwwginf2M
-         EpMqc2x3y99e5Gx80k2nVM4ofj24hnzyy93TMGSPnnL+TVvno8m85/9E+9gXo+J0gXRr
-         y8xKY9HQRwqDiuk/M1VUvnl6q8Kh0lu4dqi2wQQ6422/HJ7CpexWGZG3EkUZTN3rtDTw
-         5cSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=q6dWyOSxtQaqc6rOdj1kSMlaHNYdY8a6NUWiCmzKlBU=;
-        b=hpcrw021P9QCt2SAZVnOY5Ay5WU0H3/4WXXIvWJig6ElThSflGxO7q0FrKmpI/JLr4
-         lI2gSSzsxare/5VdZcdliJJbykBUNQKjFVh4kKZ5LdLI1h9Ghql6LSWcloKWXVrDtTIW
-         xVjPMOfA0pQxkAsbzqV3c7G+GhLTfQQ4LdSvrgL2jIQf0lPxyYbt+0uOBP/jhFF4ng3O
-         CDqVdaWwq6hcI/SymwQ9laNIMrkcRbp2Lbe7Qe/qFhn3Waqbst1ae5IUBgB7UW67szuk
-         SHe4w4zTWNGOrYlBWElKpPPvDK1Mp+E60NDyF5O6vstQhpv3Au1l8Z2AljxmD/84p5Nt
-         q8Kg==
-X-Gm-Message-State: AOAM532geIddcbvIfZbAaeRTpqtfPEgrX84MPN19ix6AfLFdXKTFvLIJ
-        a54C2GHo8HEp6wVtOHpC8kY=
-X-Google-Smtp-Source: ABdhPJx8KZKR+FK3NQRCubIjKos2NSeV9iIUKZ41fLvSBPNb/4w/2u6vpuX6J8ZLgwoPKvHczRqKCA==
-X-Received: by 2002:ac2:5963:0:b0:442:eff6:4219 with SMTP id h3-20020ac25963000000b00442eff64219mr20886948lfp.56.1646299514385;
-        Thu, 03 Mar 2022 01:25:14 -0800 (PST)
-Received: from [192.168.1.103] ([31.173.85.105])
-        by smtp.gmail.com with ESMTPSA id y3-20020a2e3203000000b0024630256cdbsm354462ljy.58.2022.03.03.01.25.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 01:25:13 -0800 (PST)
-Subject: Re: [PATCH 1/4] arm64: dts: renesas: rzg2lc-smarc-pinfunction: Sort
- the nodes
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20220302103301.23852-1-biju.das.jz@bp.renesas.com>
- <20220302103301.23852-2-biju.das.jz@bp.renesas.com>
-From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Message-ID: <98b0cafb-4f0b-5e4c-72b0-a0983d0ff493@gmail.com>
-Date:   Thu, 3 Mar 2022 12:25:11 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.10.1
+        with ESMTP id S229732AbiCCJc3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:32:29 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E550E16F951;
+        Thu,  3 Mar 2022 01:31:44 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 94AC71F45394
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646299903;
+        bh=7BamnJwMgtqrT3JoQ68Ebed6Mw0Z4qhgq17wKkO7uZQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=DsKwhWmYCfBFjIrDoWzkxPNJKmtBbRcsgc1JMZx9lfNHbf04n0AFN6jYOU5/79Sgw
+         nyvDJ6M5EkqPGymiwkWb9kne6FdPEpfJ7vttPbObbeF56henBC6oGc/RTdSSjfFW6+
+         VC8zJrNU1oQ4UK0ECsXCpbxrdqn7cMaBEEa6/oHh5jqH6bCErPARX3ha6Zno76b3E+
+         mVHxV/HiSCkOtzQ38z1XM+GaVwYW7hIpmZE01VSoCluMtv/2M2vCwEAIzg0+8JiSmH
+         crxIXXQ4Kl6XsDKLzr6kxkK6ds2BQl0YGHLhGRoZPLryIOwv7sDw2menm+j746SUHW
+         LfIys7ju/p13w==
+Message-ID: <28098efc-1de1-b540-b1a3-bf7a92af9511@collabora.com>
+Date:   Thu, 3 Mar 2022 10:31:39 +0100
 MIME-Version: 1.0
-In-Reply-To: <20220302103301.23852-2-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v15 00/12] Add Mediatek Soc DRM (vdosys0) support for
+ mt8195
 Content-Language: en-US
+To:     Jason-JH Lin <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fei Shao <fshao@chromium.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        "roy-cw.yeh" <roy-cw.yeh@mediatek.com>, CK Hu <ck.hu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>,
+        Jitao shi <jitao.shi@mediatek.com>, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com, devicetree@vger.kernel.org,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220126071932.32615-1-jason-jh.lin@mediatek.com>
+ <CAL_Jsq+6k5EqouAO2Xm=GpBz3Pi-wfB-ixGwfyC+Y+qOrjUFTg@mail.gmail.com>
+ <c103927d7dbc3217431c83dc22a44c656c561228.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <c103927d7dbc3217431c83dc22a44c656c561228.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+Il 03/03/22 05:25, Jason-JH Lin ha scritto:
+> Hi Rob,
+> 
+> Thanks for the reviews.
+> 
+> On Wed, 2022-03-02 at 17:50 -0600, Rob Herring wrote:
+>> On Wed, Jan 26, 2022 at 1:19 AM jason-jh.lin <
+>> jason-jh.lin@mediatek.com> wrote:
+>>>
+> 
+> [snip]
+> 
 
-On 3/2/22 1:32 PM, Biju Das wrote:
+Hello Rob, Jason-JH,
 
-> Sort the pinctrl nodes alphabatically.
+I have just crafted a patch that fixes everything mentioned here,
+if it's easier like this, I can either send it for the maintainer(s)
+to apply on top, or squash in Jason-JH's original patch.
 
-   Alphabetically. :-)
-   Could prolly be fixed while applying...
+If you'd like to get my patch, though, I have one question:
+this is touching literally all of the YAML files that Jason-JH is
+introducing, so, should I send this as one patch per file (which would be
+something around 16 patches) or is just one fixing them all fine?
 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-
-[...]
-
-MBR, Sergey
+Cheers,
+Angelo
