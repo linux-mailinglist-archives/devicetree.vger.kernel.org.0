@@ -2,66 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F704CCA4F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 00:51:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A70954CCA56
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 00:57:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237323AbiCCXvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 18:51:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43298 "EHLO
+        id S237340AbiCCX5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 18:57:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237328AbiCCXvu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 18:51:50 -0500
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8348171EE0
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 15:51:02 -0800 (PST)
-Received: by mail-qk1-x72e.google.com with SMTP id z66so5236732qke.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 15:51:02 -0800 (PST)
+        with ESMTP id S237334AbiCCX5p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 18:57:45 -0500
+Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11B27177D04
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 15:56:59 -0800 (PST)
+Received: by mail-oo1-xc2f.google.com with SMTP id r41-20020a4a966c000000b0031bf85a4124so7674135ooi.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 15:56:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EEUDph6pdILfOjFK/V90NsjsmH/ILVmOF+Vdrb+tua8=;
-        b=DFpGnpSMnFmOUvMJOYbl261thgAry2SYgtDsyMBZuLiJDYxlUr+vXHe5DRn1OOPG55
-         lbAU5uyEJ6BCRngz3QV/NzOlgo9IdG/lUiQi7nmDxqL9XgwJIVmhdSPBnyODd43C5Hq8
-         ztcOXHnG5slmbzAFJ9tFDftjvWJnxU4V/Tvk9whBObB1E75KVBul2XY8XdWshFO4Lp7j
-         yDZub7Qd094o4eV03t3BQzIwoffa9QfyD1XaIeHpqqnEeqcp15O3d+fZlyCrSYlD8iI5
-         l/lRSc3ayN3yttX+4Ndi7Aw6gvAahTmo0Jbul3oLc+yzqhYgXJWoyjtrumJMmlOeVkhY
-         LkvA==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=dwS/mMF8qJmYYFw5VmuECBUPxWsibvAI/Ds5lWtd2zw=;
+        b=m3CuSnC6oqRK7aLG2h0vxrP4TOLlZDKAr7awdinW0GQ+2rTNU0x8oFNQaIC6BKZDnf
+         f7Wd88R/LOLltHPGAnGsC3is2wcwatS1i7hZkbOSbcMdRoALrNUtKXIO6QYyOV/vM8ug
+         9RjL+6SkC+yvItdZYFvOoFlcdye7yd/JziLlE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EEUDph6pdILfOjFK/V90NsjsmH/ILVmOF+Vdrb+tua8=;
-        b=Kf7/wjj8/cQTzApy8yxIeo28pmS0hMTegPsS0Is1a7Eo8aX6soG6d3YIUFkZ5MpaIt
-         BFc838NPOR2C7ECIlbKFSfkCNvjwCkKWGnEpfNevkeNwkFJaJ2701p67+FRNmCWPADFA
-         ZCXpQeZw79OlqEOsA5gbyA6vyYU78djFaUisDqw8+gfZNaHfMe0s2bWCPWLJrtBG2npF
-         AHH8MTOA3FdsOgEuPWZ+RSNE8YSmrLVJmHLVKdnlz919nfP5e+/Q6SWC76wU44cf5gvb
-         OBDlQ7UUUPk4Hyyef9Djh0+2q+QNR23IAK37YHIhODTSaYHLbku1SBSgdk7crkM7cncP
-         UijA==
-X-Gm-Message-State: AOAM530I9NrzG+gAy2Uu3MEwVXA51i65oQmfuH7su/bx1iSgOABEqmqY
-        kb9dIGSqrGe3ZAHT/S5OIEauIiY2hpz5APEs5qQEUQ==
-X-Google-Smtp-Source: ABdhPJxO/chGuWgVCSeW611qh1w44gEqrV7Xsc4Oh8x15acfkpz3bzzXTGhRfR1YREAZMdmJovlbjCD2iHuTu/of2xE=
-X-Received: by 2002:a05:620a:1392:b0:60d:d76a:5073 with SMTP id
- k18-20020a05620a139200b0060dd76a5073mr1036802qki.59.1646351461812; Thu, 03
- Mar 2022 15:51:01 -0800 (PST)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=dwS/mMF8qJmYYFw5VmuECBUPxWsibvAI/Ds5lWtd2zw=;
+        b=QN/GQ8o7Sp0EWItoXQQ6q09sVmUoGyRHLUfs5khajk+tMZpRxH4L/TZW7JRDaji9dF
+         Duis71K0dCP4kEz7TJQbC7URjTiUnuNCnht+uFM9i8cTRfOafuLrOpnNM5baeTd1q4CY
+         MHax4gqwINOfOxI3zqEvtVwfo1d1uCJvZaujnmaRdcGAvdiywa92Sz4tp69GQ/UDM23j
+         shlKwXEEWkJ+tjhIu5NxMGEzur/mBEIcGxbfQGE9XudDnHJCoChAwahuFpnSV3so81xT
+         Cil/jhiUP0Xm7q8DP3JYj7dSh9muX1HwWcef3ecJoVVIoPxyRiKAR4nTjBfEHdbT9/GT
+         VL2w==
+X-Gm-Message-State: AOAM530p7fLkNmfkdL6Pc3lekfPYq7J69V9//wFRK88+UBdJYIHplN6S
+        FV/xEF4aC3lezxWwWo8PDxsb8MxlR6NIWDWoRDmupA==
+X-Google-Smtp-Source: ABdhPJz9sD1I3KbDT/hqOHCp+SihiCCexPpGaQx23kjAJ6wYmV8w9stGqBBZwbhsZ/sDw1S7g/QJrnQLCxhDbWxdoi0=
+X-Received: by 2002:a05:6870:3c18:b0:d7:22ed:20b0 with SMTP id
+ gk24-20020a0568703c1800b000d722ed20b0mr6012444oab.32.1646351818426; Thu, 03
+ Mar 2022 15:56:58 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 3 Mar 2022 15:56:58 -0800
 MIME-Version: 1.0
-References: <1646300401-9063-1-git-send-email-quic_vpolimer@quicinc.com> <1646300401-9063-5-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1646300401-9063-5-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 4 Mar 2022 02:50:50 +0300
-Message-ID: <CAA8EJpqkK8q7g8q56rfiOO22ykxgycJTpSJKHuhcqGk05nsVzA@mail.gmail.com>
+In-Reply-To: <CAA8EJpqkK8q7g8q56rfiOO22ykxgycJTpSJKHuhcqGk05nsVzA@mail.gmail.com>
+References: <1646300401-9063-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1646300401-9063-5-git-send-email-quic_vpolimer@quicinc.com> <CAA8EJpqkK8q7g8q56rfiOO22ykxgycJTpSJKHuhcqGk05nsVzA@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 3 Mar 2022 15:56:57 -0800
+Message-ID: <CAE-0n53jGQcn=NThrrW92NL-cry8yrFErdSYTHHEHWW48b3xbg@mail.gmail.com>
 Subject: Re: [PATCH v4 4/4] arm64/dts/qcom/sm8250: remove assigned-clock-rate
  property for mdp clk
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Vinod Polimera <quic_vpolimer@quicinc.com>
 Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
         freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com
+        dianders@chromium.org, quic_kalyant@quicinc.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,58 +70,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Mar 2022 at 12:40, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
+Quoting Dmitry Baryshkov (2022-03-03 15:50:50)
+> On Thu, 3 Mar 2022 at 12:40, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
+> >
+> > Kernel clock driver assumes that initial rate is the
+> > max rate for that clock and was not allowing it to scale
+> > beyond the assigned clock value.
+> >
+> > Drop the assigned clock rate property and vote on the mdp clock as per
+> > calculated value during the usecase.
+> >
+> > Fixes: 7c1dffd471("arm64: dts: qcom: sm8250.dtsi: add display system nodes")
 >
-> Kernel clock driver assumes that initial rate is the
-> max rate for that clock and was not allowing it to scale
-> beyond the assigned clock value.
->
-> Drop the assigned clock rate property and vote on the mdp clock as per
-> calculated value during the usecase.
->
-> Fixes: 7c1dffd471("arm64: dts: qcom: sm8250.dtsi: add display system nodes")
+> Please remove the Fixes tags from all commits. Otherwise the patches
+> might be picked up into earlier kernels, which do not have a patch
+> adding a vote on the MDP clock.
 
-Please remove the Fixes tags from all commits. Otherwise the patches
-might be picked up into earlier kernels, which do not have a patch
-adding a vote on the MDP clock.
-
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8250.dtsi | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> index fdaf303..2105eb7 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-> @@ -3164,9 +3164,6 @@
->                                  <&dispcc DISP_CC_MDSS_MDP_CLK>;
->                         clock-names = "iface", "bus", "nrt_bus", "core";
->
-> -                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> -                       assigned-clock-rates = <460000000>;
-> -
->                         interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
->                         interrupt-controller;
->                         #interrupt-cells = <1>;
-> @@ -3191,10 +3188,8 @@
->                                          <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
->                                 clock-names = "iface", "bus", "core", "vsync";
->
-> -                               assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> -                                                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> -                               assigned-clock-rates = <460000000>,
-> -                                                      <19200000>;
-> +                               assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
-> +                               assigned-clock-rates = <19200000>;
->
->                                 operating-points-v2 = <&mdp_opp_table>;
->                                 power-domains = <&rpmhpd SM8250_MMCX>;
-> --
-> 2.7.4
->
-
-
--- 
-With best wishes
-Dmitry
+What patch is that? The Fixes tag could point to that commit.
