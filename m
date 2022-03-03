@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C5C4CB8A0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 85D324CB8AA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:22:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231294AbiCCIWK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 03:22:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57390 "EHLO
+        id S231317AbiCCIWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 03:22:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231298AbiCCIWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:22:08 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087A3171ED3
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:21:21 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1nPgi5-0004aM-SH; Thu, 03 Mar 2022 09:21:17 +0100
-Message-ID: <a1240c0263be8372ccad42552db635a384deee4d.camel@pengutronix.de>
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, Adam Ford <aford173@gmail.com>
-Cc:     Liu Ying <victor.liu@oss.nxp.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
-Date:   Thu, 03 Mar 2022 09:21:16 +0100
-In-Reply-To: <430de480-5a7a-6ed0-eecd-4105f5940aba@denx.de>
-References: <20220228004605.367040-1-marex@denx.de>
-         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
-         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
-         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
-         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
-         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
-         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
-         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
-         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
-         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
-         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
-         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
-         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
-         <430de480-5a7a-6ed0-eecd-4105f5940aba@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+        with ESMTP id S231315AbiCCIWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:22:44 -0500
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D6D3171ECA
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:21:59 -0800 (PST)
+Received: by mail-il1-x130.google.com with SMTP id i1so3433146ilu.6
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 00:21:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7suCs499Q089tHCM2SND3Dw+QYoA5ouYgqyYernBKK8=;
+        b=KgtU2TPvF6aTpGm0JZAu/2VbNyjDWFxvDbzuwyZ7PNnlwoEM1H3nxSuujodJ4ykwgb
+         Mc5b/0uE2jYwkTo9RSo3wFjXGfvPw0qqAN11GgWZd0ZnPHU6nJhnZO1+tN747bRhtQYV
+         M7by3huCRHVHV2HlEQi6tEDUxLYH446nE3UHNvrp1txtSsPVV+iIcl9GHAyLoya4zR2A
+         kn6Mw13E7B55bITcYw7IirJhPh6eiOyhNRZKm9RsJdw62kTCEmxTYZMrZLsQ6oRphi90
+         qNQEWNLcup9KU4L831Bt36vU084RfMtgTehtSrwB2tXmFeHqMVHg49zEihso5taLmvfG
+         F2og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7suCs499Q089tHCM2SND3Dw+QYoA5ouYgqyYernBKK8=;
+        b=Z+mWfKdQtn4WZPh/SSofuZS+btN9QgvTaDMNXICGSd8KnOASZikjMpG9mFUW5UJUWm
+         T8jzOXCjXme56Nv08bK8R1pjU/YuBqYuCFI+S2qdT9v3ehp6fkK4rsm7ILJ9PBxIh9RL
+         auMv4FaBnQeBvFaaU4TNaTAcN6y2ZNZCNRKkVkf8WMTPxiVMtQlpmaYw9iiqaDKeG+BK
+         rd312YH9bIsIu4oZV/UppZgEXYh2nTNYdtMFzHoWPr/Mq5URDtovT5BLmCrXtXnQwvyB
+         oP1TN0xeoiGukFG7hHvDorfP+LRUoH4Zaf7LHaU/ftj2ZtfWGLoaFQfzaIUNUxeLNiQf
+         8R4g==
+X-Gm-Message-State: AOAM532aR4nk+bVfFoFU4Dw+ubDEfXShh5UTRBrxo3QIzS7dN3ft01ej
+        PCnti6vusIpNm8YW1xRIlakTcg==
+X-Google-Smtp-Source: ABdhPJzGHhaYx5+V8/MlwEElvDEmzYHbAGANh+CEgaHibHVdTyQ3RJtk7e0oRN4TY5n55RsNU9AtHA==
+X-Received: by 2002:a05:6e02:1c8b:b0:2b8:ba1d:859b with SMTP id w11-20020a056e021c8b00b002b8ba1d859bmr32391917ill.233.1646295718722;
+        Thu, 03 Mar 2022 00:21:58 -0800 (PST)
+Received: from localhost.localdomain ([182.64.85.91])
+        by smtp.gmail.com with ESMTPSA id l187-20020a6b3ec4000000b0060523f4e92dsm1204569ioa.28.2022.03.03.00.21.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 00:21:58 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org
+Subject: [PATCH v3 0/2] Add ufs power-domain entries for SM8150
+Date:   Thu,  3 Mar 2022 13:51:38 +0530
+Message-Id: <20220303082140.240745-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,63 +70,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Donnerstag, dem 03.03.2022 um 04:14 +0100 schrieb Marek Vasut:
-> On 3/2/22 10:23, Lucas Stach wrote:
-> 
-> [...]
-> 
-> > > > > I tend to agree with Marek on this one.  We have an instance where the
-> > > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
-> > > > > but different enough where each SoC has it's own set of tables and
-> > > > > some checks.   Lucas created the framework, and others adapted it for
-> > > > > various SoC's.  If there really is nearly 50% common code for the
-> > > > > LCDIF, why not either leave the driver as one or split the common code
-> > > > > into its own driver like lcdif-common and then have smaller drivers
-> > > > > that handle their specific variations.
-> > > > 
-> > > > I don't know exactly how the standalone driver looks like, but I guess
-> > > > the overlap is not really in any real HW specific parts, but the common
-> > > > DRM boilerplate, so there isn't much point in creating a common lcdif
-> > > > driver.
-> > > 
-> > > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of
-> > > that, there is some 400 LoC which are specific to old LCDIF and this
-> > > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of
-> > > shared boilerplate that would be duplicated .
-> > 
-> > That is probably ignoring the fact that the 8MP LCDIF does not support
-> > any overlays, so it could use the drm_simple_display_pipe
-> > infrastructure to reduce the needed boilerplate.
-> 
-> It seems the IMXRT1070 LCDIF v2 (heh ...) does support overlays, so no, 
-> the mxsfb and hypothetical lcdif drivers would look really very similar.
-> 
-> > > > As you brought up the blk-ctrl as an example: I'm all for supporting
-> > > > slightly different hardware in the same driver, as long as the HW
-> > > > interface is close enough. But then I also opted for a separate 8MP
-> > > > blk-ctrl driver for those blk-ctrls that differ significantly from the
-> > > > others, as I think it would make the common driver unmaintainable
-> > > > trying to support all the different variants in one driver.
-> > > 
-> > > But then you also need to maintain two sets of boilerplate, they
-> > > diverge, and that is not good.
-> > 
-> > I don't think that there is much chance for bugs going unfixed due to
-> > divergence in the boilerplate, especially if you use the simple pipe
-> > framework to handle most of that stuff for you, which gives you a lot
-> > of code sharing with other simple DRM drivers.
-> 
-> But I can not use the simple pipe because overlays, see imxrt1070 .
-> 
-> [...]
-> 
-> We can always split the drivers later if this becomes unmaintainable 
-> too, no ?
+Changes since v2:
+----------------
+- v2 can be found here: https://lore.kernel.org/linux-arm-msm/20220228144607.456194-1-bhupesh.sharma@linaro.org/T/
+- Modified [PATCH 2/2] from v2 to include gdsc driver structs and
+  support code for UFS_PHY and UFS_CARD (in addition to defines for the
+  same).
 
-Not if you want to keep the same userspace running. As userspace has
-some ties to the DRM driver name, e.g. for finding the right GBM
-implementation, splitting the driver later on would be a UABI break.
+Changes since v1:
+----------------
+- v1 can be found here: https://lore.kernel.org/lkml/202201220442.bMRI74m1-lkp@intel.com/T/
+- Broke down another separately sent out PATCH (see [1]), into a 3 patches (one each for emac, pci
+  and ufs gdsc defines) - one of which is carried as [PATCH 1/2]
+  in this series, which fixes a compilation error reported by 'kernel test robot'.
+  The rest would be sent out as separate patch(es).
 
-Regards,
-Lucas
+[1]. https://patchwork.kernel.org/project/netdevbpf/patch/20220126221725.710167-4-bhupesh.sharma@linaro.org/
+
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Bhupesh Sharma (2):
+  clk: qcom: gcc: Add UFS_CARD and UFS_PHY GDSCs for SM8150
+  arm64: dts: qcom: sm8150: Add ufs power-domain entries
+
+ arch/arm64/boot/dts/qcom/sm8150.dtsi        |  5 +++++
+ drivers/clk/qcom/gcc-sm8150.c               | 20 ++++++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sm8150.h |  2 ++
+ 3 files changed, 27 insertions(+)
+
+-- 
+2.35.1
 
