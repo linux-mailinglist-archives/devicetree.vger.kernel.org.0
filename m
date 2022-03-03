@@ -2,448 +2,273 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CBC74CB51E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 03:52:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CEE0E4CB52D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 03:58:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbiCCCpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 21:45:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49938 "EHLO
+        id S231859AbiCCCyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 21:54:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231700AbiCCCpH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 21:45:07 -0500
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7C9412AD7
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 18:44:21 -0800 (PST)
-Received: from relay9-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::229])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 6E59BC2550
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 02:41:19 +0000 (UTC)
-Received: (Authenticated sender: ash@heyquark.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 407E3FF804;
-        Thu,  3 Mar 2022 02:41:04 +0000 (UTC)
-Message-ID: <01e8b44f-6fc3-280e-a88b-e7fa55d39837@heyquark.com>
-Date:   Thu, 3 Mar 2022 13:41:02 +1100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 02/12] powerpc: wiiu: device tree
-Content-Language: en-US
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Paul Mackerras <paulus@samba.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.ne@posteo.net>,
-        Roberto Van Eeden <rw-r-r-0644@protonmail.com>,
-        Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>,
-        devicetree@vger.kernel.org
-References: <20220302044406.63401-1-ash@heyquark.com>
- <20220302044406.63401-3-ash@heyquark.com>
- <CAL_Jsq+ej_vZHRfjNk61ogEstsqwJXx8bkRJa4vhnQss1bzYSA@mail.gmail.com>
-From:   Ash Logan <ash@heyquark.com>
-In-Reply-To: <CAL_Jsq+ej_vZHRfjNk61ogEstsqwJXx8bkRJa4vhnQss1bzYSA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S231834AbiCCCyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 21:54:46 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70045.outbound.protection.outlook.com [40.107.7.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B85512C105
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 18:54:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RCEXyxygmVSYWN6yRtLn55lV/EkA2LsHe7B1fCjCyyHybdWTkKXMbnaDl0pkfayVOAL97oJmhotpgWAOhPBVfpAhUB6jdbze9xpPbFyPL0BsLbVindfjmm1pv8fyR9dPLCT1MuSzsT8zSiY1vvbT3WntJ2WX9MLy9bZ2bjQqV/rqHQ/upyBOP2YsViWooWetLBfAi1tkdthKjjOK/sMbqSflmyThT0+/xqsIOoEQdov2YBChJPv1v3CSwQYagU6VS2PJpMHCOF2nuOb+z3t6UB41Ui+AvralABz3RRZcgJytdemzwSzGSpuUGILjp+H7uFrV8eRcbq8f4Bn6seYvsw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OgicohKMmQEsZQUOK46NZ1ZkD42CD45VfYKcjk/OkM8=;
+ b=LSF8LYj3fYyf7Q4vZctxSMHg/bMZ0xnXWC95eT10uLou5aAeB1d4caJUuG9KLnxcv3LultKe7Vr8Ze3+Nr3dDxBLV4mRASfO6Oe5eW3yRKakpJUuCK9J5b6Qe8USMjorLng0QOPPVuiVppFg0/mkO9WBkVGa54Nz8wQ2u4BHF/JQ2aNh6vO+8So5S86N89+7oB68DnzaqXCyOHgGADcNbblygQNefJEiNus4IQcBFxnOW57T2wNqwvcsvd4IkaJQCkv3pl1PW4tZCSomQOiDcenhw01kzPg2SUugnRlHBOb7OVNfEBUrhjUcQeF+ZX/FVc6nPi0JN7fRn8rLuYaU4w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OgicohKMmQEsZQUOK46NZ1ZkD42CD45VfYKcjk/OkM8=;
+ b=J7g6LfFiTMw1kq3ssU7Hzd7tTeBGvKqsTgM4CQ6v2vDNTSBNayRzUC9t4kJQa+JaNA6/CxDVutmoSv78zbwDt1jSCwDtaWD6Gzf9xEZdqYHKeV9zwbPWLW6E2xP4JgHq5xLqvxfU8/NUYSsaq+xjWV5K8zTRkulwP3S81olcEDc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by DBBPR04MB8044.eurprd04.prod.outlook.com (2603:10a6:10:1e5::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Thu, 3 Mar
+ 2022 02:53:56 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::6117:74ed:7550:b3b3]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::6117:74ed:7550:b3b3%6]) with mapi id 15.20.5038.016; Thu, 3 Mar 2022
+ 02:53:56 +0000
+Message-ID: <15a6222b256f67a01ef947bb44a2737a6606ad4c.camel@oss.nxp.com>
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
+From:   Liu Ying <victor.liu@oss.nxp.com>
+To:     Lucas Stach <l.stach@pengutronix.de>, Marek Vasut <marex@denx.de>,
+        Adam Ford <aford173@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
+Date:   Thu, 03 Mar 2022 10:54:02 +0800
+In-Reply-To: <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
+References: <20220228004605.367040-1-marex@denx.de>
+         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
+         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
+         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
+         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
+         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
+         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
+         <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
+         <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-0ubuntu1 
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SG2PR04CA0202.apcprd04.prod.outlook.com
+ (2603:1096:4:187::20) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: a2bf5cfb-6bd4-4b7c-c3cb-08d9fcc10f0e
+X-MS-TrafficTypeDiagnostic: DBBPR04MB8044:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <DBBPR04MB8044372FE4349FB787A5D82BD9049@DBBPR04MB8044.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ojFvj+PggCkr5rIUqZFgWUuIjG+HaXXW1ouFw5GAVbm32wolqQx6CPHu2qcjZ45k32kxV+L5sj4HpMq+GHmnQlw4ryhVl65XSWRLhcIRBuNBHEnAStIPLU/p8KQ7mEYTBzxsHABGgu3HMNfBfrgLrDToXkdulj1j7iCMBd7oU06XtGVRWTprLDYWqRQJhlBU15SVcSYeB7R/WWWpClL8E1ItjkvQtqy3svYK4jXHA+0OFuxLQLmWNIXgYgfJgrZ78VnbfOu2NlxegzhtTPYeNI3nXA+3FYFqyo+uzYNKv9GoGg+GFXt0UooQykvn25wV/67AOx8ddBq3iLjGHopPFVfKd5SYkzxrdq2ss1dQ7c5OKEoZxKjEC4NxPHP0g2LH2Qx/8I3xLqf2zKsfadEXG1W9DjMlg4b2RMhSDlkfiqB4fKz1Zro/bSVPgLnOjuzQiIIpSyUVemM0CYPJZpyyhAQvlW9nOvrlRbTmPWLfm1rW1eNs+TSkkSUs47kIqXJ9Z7DYkvAzuG0BmrgYMMVHmFcZzdISobD2e03ndQe2iy/xQNNcZ7ppGThQS6UkjcVdYXpABZ9TOvTl2lGeeia5sfz7z5I4ftUOk7tFgVqxRmhI+yAPbxxASyNyEgjDuRNujhyzzO8ninyNz3YbVWvLC1OX2LtxQ73vkMCwE9ZRocQlQruQBBlK4zBxlXQnIcGtzdU+MLmhQlWpikHCI3GfZg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66476007)(66556008)(66946007)(316002)(4326008)(8676002)(6486002)(508600001)(110136005)(54906003)(86362001)(38350700002)(38100700002)(2616005)(186003)(26005)(6506007)(6512007)(6666004)(52116002)(53546011)(2906002)(5660300002)(8936002)(83380400001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHV3dHpyaXlBQjFpUzUxZXJFVkFUbFJwaGRmbTRzdGJuWmV2N0ptbUcvNWs0?=
+ =?utf-8?B?TklzY1RIQkxHNDJvTHViWms5Q2RGTjEwRHFXZUFtdi9Bank5cFdtTnYzTU9H?=
+ =?utf-8?B?T3RoOVhQTVU3SEdSMUJaNnBvTlMrRU9DVVN5c3F0ZnFOOUZVUE9rdG53V0hj?=
+ =?utf-8?B?Z0sxamdGTExoUGdvRkx2cUpBR25CRUdnRm9XOTFWaVRrdVBkSS9oMHAxazhi?=
+ =?utf-8?B?d0w5VlQwL2kxZy9TUm5UbUkxMGdLZ0NJUGgrMTJIVWM4K0xPd0tnblNSK241?=
+ =?utf-8?B?cVZoZzVNc0NFVjZDNVRjVU5SQlBaaXUvQytFZjBQREkxTXg0aFVuRDRndmU3?=
+ =?utf-8?B?QmRab2Y4TStIOTROTUpDT0pVWVlzdEoyVDR5OGVpdUx2Y1k0TEVxb3JPNkg2?=
+ =?utf-8?B?NHZDZFZJTjhaVGw3eDI0SFRDOUdNRldVbVYreDcwVEV0V2svb013UktTaDZN?=
+ =?utf-8?B?TzZLSTFkZC9KMHVqZzJ3MjN6R2VKS0VJdm9haHB5SUZWclNnckdpOUJWeXEw?=
+ =?utf-8?B?YWdjWUJnLy9qenhCTUVHRjc0VVFmeVpxTHRWSW15M0xvYjlIejdZYkthNVhw?=
+ =?utf-8?B?YWppTHZEYzJNdzYwTGNVbEpOT1ZYT1BBOWpkZnh4RXViTjM1MUhTb3ZoM1ND?=
+ =?utf-8?B?ckhzaGpGWUVDQTdPNldiVnZibXNLRHZJSnJUUGVyc1pnT2ltMEYzVUlUNTJL?=
+ =?utf-8?B?TGpiakFEV2pJYUZFeU0wRm5TVHdlWjlHelNGZVVSUkdGZGU3YU9vSnYyNmR2?=
+ =?utf-8?B?NWFmblRKei9ta0JGaS9SNjNQRDV1VTM1RjBGUVFLU3A1TDRYTnJPQ0Q2cTVP?=
+ =?utf-8?B?dzZRT0Jvblcrcm8rUDN2bTVleEdiaElzd2JNNXdDUXRQM0xnS2tIdDllcUY2?=
+ =?utf-8?B?dUlxNmZTYnVxb01IRjkwQjh1QW5tZG9Gd1dYUVV0ZnU1bHBISU5uaGdTMy80?=
+ =?utf-8?B?ejd1UW9RMDloQU1sOE1NYkpTcDNKMHVEQkgreXo2cHpOaWoxbHJOVFVLRnFu?=
+ =?utf-8?B?Yys3V0xXL2pSRVQxU1hrcUlmQlZDQmw1T1NFaFRVR29kR2N5WnpNTHZES0Ft?=
+ =?utf-8?B?N2FFTC9hc2dIRnkzY2JRSnZMOUxGUzZ2VDZxbVFKQVluY3lHaW5UeDZ3U0dL?=
+ =?utf-8?B?SWYvMmVoUlJibkQwRnNXbC92OTlMaG9tYnJGQUVjRmJyMEJtR1o4M3VMSFEw?=
+ =?utf-8?B?VllZQXhHTXZtdzFhRHZnZk1Yc05TRWtvQnpLbDMxelU0SzdXalZTZkVoSEVY?=
+ =?utf-8?B?QThLbE0xTEtRekhlOVBiTUo0SWlWV0JUZlh6TTg1NVBCZ200UDc4anlPNU42?=
+ =?utf-8?B?WVhkYXJRd2tGOEF3dXBtWklGTGtINW1hMk8rd3pVc3JwS1J6OCtvK0k2TlY3?=
+ =?utf-8?B?TlZSYUpvMDc5QUg1NFVUSUNXQ2R0a24vWnFCTmZFYUc5TUN4ZDBXNkRRVnNZ?=
+ =?utf-8?B?aXh6cWpLby93N3FqR0xVaENIcVo0eHZVUGl6a1g2bkJMbWt6ZUp2bmM0Skw5?=
+ =?utf-8?B?YXhIWDFSUUpLNGVKRlpKNE5UUThrS1NQME0rVHZMeUU2Q25kaFRvWGcrVmdt?=
+ =?utf-8?B?ckJFYjBYYm9TNTRxakEvNkt0YXpOczNsbVRBdVA0T2pyQkN3Z216c0ZLODBO?=
+ =?utf-8?B?ZGhpWnhBSytGM2N5WUhyMHZLOWRsS3YrVnFmSEVTL283aXVIRUNOZTlHVlVW?=
+ =?utf-8?B?UXN2T2tHRUlodExRMmJqVEJDKzE5WTZTNmJWdDAvRHB5LzVEei9mWUN6YTQ5?=
+ =?utf-8?B?ejNyY2QzVTZiVmNKbXh0cmdRT3IxQWVmMUkyTlFneDdjTk1OUHJmZDZaNklo?=
+ =?utf-8?B?VytMZUk3dnQ5UndkVzJ0OFM5emk3QXVQYkY0TlQzbUpRQ01wZUJqdFVkRHg3?=
+ =?utf-8?B?eEN3endPRmswVkZDUzZOYmdNR2VMM1BqOGpDRkVVMHhNdkVUb3FZNHRkakpU?=
+ =?utf-8?B?bzd0eG4wWXZaNS90d002ZmtxUUlsVkdHOVFRZEtwMEtibm4vYWJrWU1OMjZU?=
+ =?utf-8?B?QmRxc1VOMVBvZ3VESCsrWXVmN3luQVo5dGJIZXJaMU1YS0lWK2hWeHJnRThL?=
+ =?utf-8?B?RDE3U2hsNTNWV0RHYTF0K1JORVFFY3lqQkZHcmJqcFRpbk5RUXFkN2F1b3c0?=
+ =?utf-8?B?aWVTa0k1eXh5UmRvMGhueDJra3FHdGptWGNFUUR3SmhKeGNUSmZiNlIzWTdF?=
+ =?utf-8?Q?w/JiT2/dbn9xCaycIB/lrjY=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a2bf5cfb-6bd4-4b7c-c3cb-08d9fcc10f0e
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2022 02:53:56.4742
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: v2DdKdUcjja7Or2Slj/Rus7VsYKiTE1DO4GI/UFbHeqzl8IViUOhYZ3kuFebBc2o39v5dep3Yw8sx+r4HbR0ig==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB8044
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-Thanks for the review.
+On Wed, 2022-03-02 at 12:57 +0100, Lucas Stach wrote:
+> Am Mittwoch, dem 02.03.2022 um 17:41 +0800 schrieb Liu Ying:
+> > On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
+> > > Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
+> > > > On 3/1/22 14:18, Lucas Stach wrote:
+> > > > > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
+> > > > > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
+> > > > > > > > On 3/1/22 11:04, Lucas Stach wrote:
+> > > > > > > > 
+> > > > > > > > Hi,
+> > > > > > > > 
+> > > > > > > > [...]
+> > > > > > > > 
+> > > > > > > > > > Given the two totally different IPs, I don't see bugs of IP control
+> > > > > > > > > > logics should be fixed for both drivers. Naturally, the two would
+> > > > > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
+> > > > > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
+> > > > > > > > > > 'if/else' checks(barely no common control code), which is hard to
+> > > > > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
+> > > > > > > > > > and 'LCDIF'.
+> > > > > > > > > 
+> > > > > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
+> > > > > > > > > boilerplate anymore with all the helpers we have available in the
+> > > > > > > > > framework today.
+> > > > > > > > 
+> > > > > > > > I did write a separate driver for this IP before I spent time merging
+> > > > > > > > them into single driver, that's when I realized a single driver is much
+> > > > > > > > better and discarded the separate driver idea.
+> > > > > > > > 
+> > > > > > > > > The IP is so different from the currently supported LCDIF controllers
+> > > > > > > > > that I think trying to support this one in the existing driver actually
+> > > > > > > > > increases the chances to break something when modifying the driver in
+> > > > > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
+> > > > > > > > > on having a separate driver for the i.MX8MP LCDIF.
+> > > > > > > > 
+> > > > > > > > If you look at both controllers, it is clear it is still the LCDIF
+> > > > > > > > behind, even the CSC that is bolted on would suggest that.
+> > > > > > > 
+> > > > > > > Yes, but from a driver PoV what you care about is not really the
+> > > > > > > hardware blocks used to implement something, but the programming model,
+> > > > > > > i.e. the register interface exposed to software.
+> > > > > > > 
+> > > > > > > > I am also not happy when I look at the amount of duplication a separate
+> > > > > > > > driver would create, it will be some 50% of the code that would be just
+> > > > > > > > duplicated.
+> > > > > > > > 
+> > > > > > > Yea, the duplicated code is still significant, as the HW itself is so
+> > > > > > > simple. However, if you find yourself in the situation where basically
+> > > > > > > every actual register access in the driver ends up being in a "if (some
+> > > > > > > HW rev) ... " clause, i still think it would be better to have a
+> > > > > > > separate driver, as the programming interface is just different.
+> > > > > > 
+> > > > > > I tend to agree with Marek on this one.  We have an instance where the
+> > > > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+> > > > > > but different enough where each SoC has it's own set of tables and
+> > > > > > some checks.   Lucas created the framework, and others adapted it for
+> > > > > > various SoC's.  If there really is nearly 50% common code for the
+> > > > > > LCDIF, why not either leave the driver as one or split the common code
+> > > > > > into its own driver like lcdif-common and then have smaller drivers
+> > > > > > that handle their specific variations.
+> > > > > 
+> > > > > I don't know exactly how the standalone driver looks like, but I guess
+> > > > > the overlap is not really in any real HW specific parts, but the common
+> > > > > DRM boilerplate, so there isn't much point in creating a common lcdif
+> > > > > driver.
+> > > > 
+> > > > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
+> > > > that, there is some 400 LoC which are specific to old LCDIF and this 
+> > > > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
+> > > > shared boilerplate that would be duplicated .
+> > > 
+> > > That is probably ignoring the fact that the 8MP LCDIF does not support
+> > > any overlays, so it could use the drm_simple_display_pipe
+> > > infrastructure to reduce the needed boilerplate.
+> > 
+> > The drm_simple_display_pipe infrastructure is probably too simple for
+> > i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
+> > embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
+> > outputs respectively. To use that infrastructure means there would be
+> > three dri cards in all. However, the three LCDIF instances can be
+> > wrapped by the one drm device, which is not the boilerplate code in the
+> > current mxsfb driver may handle.
+> 
+> While that may make things a little simpler for userspace, I'm not sure
+> if this is the right thing to do. It complicates the driver a lot,
+> especially if you want to get things like independent power management,
+> etc. right. It also creates a fake view for userspace, where is looks
+> like there might be some shared resources between the different display
+> paths, while in reality they are fully independent.
 
-On 3/3/22 00:36, Rob Herring wrote:
-> On Tue, Mar 1, 2022 at 10:44 PM Ash Logan <ash@heyquark.com> wrote:
->>
->> Add a device tree source file for the Nintendo Wii U video game console.
-> 
-> Test this with 'make W=1 dtbs_checks'.
+Trade-off will be made between one drm device and three. My first
+impression of using the drm_simple_display_pipe infrastructure is that
+it's too simple and less flexible/scalable, because SoC designer will
+be likely to add muxes between CRTCs and encoders/bridges or overlay
+plane(s) in next generations of SoCs(SW developers don't seem have good
+reasons to suggest not to do that).  Another concern is that whether
+the userspace may use the three drm devices well or not. 
 
-Does make W=1 ARCH=powerpc wiiu_defconfig dtbs_check seem reasonable? I 
-ran it, and saw LINT/CHKDT/UPD/SCHEMA/COPY steps, but if I put garbage 
-in the .dts it gives no warnings.
+A few more points:
+1) With one drm device, userspace may use drm lease APIs to control
+those independant pipes with drm masters(not sure about the userspace
+maturity).
+2) Code to gather all LCDIFs as one drm device has chance to be created
+as helpers once there are similar use cases in other drivers(maybe,
+there is/are already).
+3) Power management doesn't seem to be a problem, since each LCDIF has
+it's own struct device which can be used to do runtime PM at some
+drm_crtc_helper_funcs callbacks.
+4) Regarding the fake view of shared resources, atomic check can handle
+that, so it doesn't seem to be a big problem, either.
 
->>
->> Signed-off-by: Ash Logan <ash@heyquark.com>
->> Co-developed-by: Roberto Van Eeden <rw-r-r-0644@protonmail.com>
->> Signed-off-by: Roberto Van Eeden <rw-r-r-0644@protonmail.com>
->> Co-developed-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
->> Signed-off-by: Emmanuel Gil Peyrot <linkmauve@linkmauve.fr>
->> ---
->>   arch/powerpc/boot/dts/wiiu.dts | 327 +++++++++++++++++++++++++++++++++
->>   1 file changed, 327 insertions(+)
->>   create mode 100644 arch/powerpc/boot/dts/wiiu.dts
->>
->> diff --git a/arch/powerpc/boot/dts/wiiu.dts b/arch/powerpc/boot/dts/wiiu.dts
->> new file mode 100644
->> index 000000000000..aaf264963f61
->> --- /dev/null
->> +++ b/arch/powerpc/boot/dts/wiiu.dts
->> @@ -0,0 +1,327 @@
->> +// SPDX-License-Identifier: GPL-2.0
 > 
-> What about non-GPL environments?
+> While we do something similar on the GPU side and collect all GPU cores
+> under a single DRM device, I'm not fully convinced that this was a good
+> decision. It now comes back to bite us when the SoC topologies get a
+> little more interesting and e.g. devices are behind different IOMMU
+> streams.
 
-The other powerpc dts files are all GPL-2.0(-or-later), is there a 
-preferred license for devicetrees?
+Right, SoC topologies may change, like the aforementioned muxes.
+Generally speaking, I think one drm device is more flexible and
+scalable than three.
 
->> +/*
->> + * Nintendo Wii U Device Tree Source
->> + *
->> + * Copyright (C) 2022 The linux-wiiu Team
->> + */
->> +
->> +/dts-v1/;
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +
->> +/ {
->> +       model = "nintendo,wiiu";
->> +       compatible = "nintendo,wiiu";
->> +
->> +       #address-cells = <1>;
->> +       #size-cells = <1>;
->> +
->> +       chosen {
->> +               bootargs = "root=/dev/sda1 rootwait";
->> +       };
->> +
->> +       memory {
->> +               device_type = "memory";
->> +               reg = <0x00000000 0x02000000    /* MEM1 - 32MiB */
->> +                      0x08000000 0x00300000    /* MEM0 - 3MiB  */
->> +                      0x10000000 0x80000000>;  /* MEM2 - 2GiB  */
->> +       };
->> +
->> +       cpus {
->> +               #address-cells = <1>;
->> +               #size-cells = <0>;
->> +
->> +               /* TODO: Add SMP */
->> +               PowerPC,espresso@0 {
->> +                       device_type = "cpu";
->> +                       reg = <0>;
->> +                       clock-frequency = <1243125000>;         /* 1.243125GHz */
->> +                       bus-frequency = <248625000>;            /* 248.625MHz core-to-bus 5x */
->> +                       timebase-frequency = <62156250>;        /* 1/4 of the bus clock */
->> +                       i-cache-size = <32768>; /* 32K icache */
->> +                       i-cache-line-size = <32>;
->> +                       i-cache-block-size = <32>;
->> +                       i-cache-sets = <128>;
->> +                       d-cache-size = <32768>; /* 32K dcache */
->> +                       d-cache-line-size = <32>;
->> +                       d-cache-block-size = <32>;
->> +                       d-cache-sets = <128>;
->> +                       next-level-cache = <&L2_0>;
->> +                       L2_0:l2-cache {
->> +                               compatible = "cache";
->> +                               cache-level = <2>;
->> +                               cache-unified;
->> +                               cache-size = <0x80000>; /* 512KB L2 */
->> +                               cache-line-size = <64>;
->> +                               cache-block-size = <32>;
->> +                               cache-sets = <2048>;
->> +                       };
->> +               };
->> +       };
->> +
->> +       latte {
->> +               #address-cells = <1>;
->> +               #size-cells = <1>;
->> +               compatible = "nintendo,latte";
->> +               ranges = <0x0c000000 0x0c000000 0x00400000      /* Espresso-only registers */
->> +                         0x0d000000 0x0d000000 0x00200000      /* Latte AHB deivces */
->> +                         0x0d800000 0x0d800000 0x00800000>;    /* Latte SoC registers */
->> +
->> +               gpu7@c200000 {
-> 
-> gpu@...
-> 
->> +                       compatible = "nintendo,latte-gpu7";
->> +                       reg = <0x0c200000 0x80000>;
->> +                       interrupts = <2>;
->> +                       interrupt-parent = <&espresso_pic>;
->> +               };
->> +
->> +               espresso_pic: pic@c000078 {
->> +                       #interrupt-cells = <1>;
->> +                       interrupt-controller;
->> +
->> +                       compatible = "nintendo,espresso-pic";
->> +                       reg = <0x0c000078 0x18>;
->> +               };
->> +
->> +               latte_dsp: dsp@c005000 {
->> +                       compatible = "nintendo,latte-dsp";
->> +                       reg = <0x0c005000 0x200>;
->> +               };
->> +
->> +               ehci_0: usb@d040000 {
->> +                       compatible = "nintendo,latte-usb-ehci", "usb-ehci";
->> +                       reg = <0x0d040000 0x100>;
->> +                       interrupts = <4>;
->> +                       interrupt-parent = <&latte_pic>;
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ohci_0_0: usb@d050000 {
->> +                       compatible = "nintendo,latte-usb-ohci";
->> +                       reg = <0x0d050000 0x100>;
->> +                       interrupts = <5>;
->> +                       interrupt-parent = <&latte_pic>;
->> +
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ohci_0_1: usb@d060000 {
->> +                       compatible = "nintendo,latte-usb-ohci";
->> +                       reg = <0x0d060000 0x100>;
->> +                       interrupts = <6>;
->> +                       interrupt-parent = <&latte_pic>;
->> +
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ehci_1: usb@d120000 {
->> +                       compatible = "nintendo,latte-usb-ehci", "usb-ehci";
->> +                       reg = <0x0d120000 0x100>;
->> +                       interrupts = <16>;
->> +                       interrupt-parent = <&latte_pic>;
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ohci_1_0: usb@d130000 {
->> +                       compatible = "nintendo,latte-usb-ohci";
->> +                       reg = <0x0d130000 0x100>;
->> +                       interrupts = <35>;
->> +                       interrupt-parent = <&latte_pic>;
->> +
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ehci_2: usb@d140000 {
->> +                       compatible = "nintendo,latte-usb-ehci", "usb-ehci";
->> +                       reg = <0x0d140000 0x100>;
->> +                       interrupts = <36>;
->> +                       interrupt-parent = <&latte_pic>;
->> +                       big-endian-regs;
->> +               };
->> +
->> +               ohci_2_0: usb@d150000 {
->> +                       compatible = "nintendo,latte-usb-ohci";
->> +                       reg = <0x0d150000 0x100>;
->> +                       interrupts = <37>;
->> +                       interrupt-parent = <&latte_pic>;
->> +
->> +                       big-endian-regs;
->> +               };
->> +
->> +               sdcard_0: sdhci@d070000 {
->> +                       compatible = "nintendo,latte-sdhci","sdhci";
->> +                       reg = <0x0d070000 0x200>;
->> +                       interrupts = <7>;
->> +                       interrupt-parent = <&latte_pic>;
->> +               };
->> +
->> +               wifi_0: sdhci@d080000 {
->> +                       compatible = "nintendo,latte-sdhci","sdhci";
->> +                       reg = <0x0d080000 0x200>;
->> +                       interrupts = <8>;
->> +                       interrupt-parent = <&latte_pic>;
->> +               };
->> +
->> +               legacy_ipc: ipc@d800000 {
->> +                       compatible = "nintendo,latte-ipc","nintendo,hollywood-ipc";
-> 
-> space between compatibles needed.
-> 
->> +                       reg = <0x0d800000 0x10>;
->> +                       interrupts = <30 31>;
->> +                       interrupt-parent = <&latte_pic>;
->> +               };
->> +
->> +               latte_otp: otp@d8001ec {
->> +                       compatible = "nintendo,latte-otp";
->> +                       reg = <0x0d8001ec 0x8>;
->> +               };
->> +
->> +               sata: ahci@d160400 {
->> +                       compatible = "nintendo,latte-ahci";
->> +                       reg = <0x0d160400 0x808>;
->> +
->> +                       interrupt-parent = <&latte_pic>;
->> +                       interrupts = <38 28>;
->> +               };
->> +
->> +               latte_pic: pic@d800440 {
->> +                       #interrupt-cells = <1>;
->> +                       interrupt-controller;
->> +
->> +                       compatible = "nintendo,latte-pic";
->> +                       reg = <0x0d800440 0x30>;
->> +                       interrupt-parent = <&espresso_pic>;
->> +                       interrupts = <24>;
->> +               };
->> +
->> +               gpio: gpio@d8000c0 {
->> +                       #gpio-cells = <2>;
->> +                       compatible = "nintendo,latte-gpio", "nintendo,hollywood-gpio";
->> +
->> +                       reg = <0x0d8000c0 0x40>;
->> +                       gpio-controller;
->> +                       /* TODO: There are actually 31 AHBALL GPIOs */
->> +                       ngpios = <24>;
->> +
->> +                       gpio-line-names =
->> +                               "POWER", "DWIFI", "FAN", "DC_DC",
->> +                               "", "Esp10WorkAround", "", "",
->> +                               "PADPD", "", "EEP_CS", "EEP_CLK",
->> +                               "EEP_MOSI", "EEP_MISO", "AVE_SCL", "AVE_SDA",
->> +                               "DEBUG0", "DEBUG1", "DEBUG2", "DEBUG3",
->> +                               "DEBUG4", "DEBUG5", "DEBUG6", "DEBUG7";
->> +
->> +                       interrupt-controller;
->> +                       #interrupt-cells = <2>;
->> +                       interrupts = <10>;
->> +                       interrupt-parent = <&latte_pic>;
->> +               };
->> +
->> +               spi_gpio: spi-gpio {
-> 
-> Move this to root level. It's not on the 'latte' bus.
-> 
->> +                       compatible = "spi-gpio";
->> +                       #address-cells = <1>;
->> +                       #size-cells = <0>;
->> +                       status = "okay";
-> 
-> Not needed, that's the default.
-> 
->> +
->> +                       cs-gpios = <&gpio 10 GPIO_ACTIVE_HIGH>;
->> +                       gpio-sck = <&gpio 11 GPIO_ACTIVE_HIGH>;
->> +                       gpio-mosi = <&gpio 12 GPIO_ACTIVE_HIGH>;
->> +                       gpio-miso = <&gpio 13 GPIO_ACTIVE_HIGH>;
->> +                       num-chipselects = <1>;
->> +
->> +                       seeprom@0 {
-> 
-> eeprom@0
-> 
->> +                               compatible = "atmel,at93c66";
->> +                               reg = <0>;
->> +                               spi-max-frequency = <1000000>;
->> +                               spi-cs-high;
->> +                               /* TODO: wiiubrew says this is 16-bit, but I only get the correct
->> +                                * values in 8-bit...
->> +                                */
->> +                               data-size = <8>;
->> +                               read-only;
->> +
->> +                               #address-cells = <1>;
->> +                               #size-cells = <1>;
->> +
->> +                               /* https://wiiubrew.org/wiki/Hardware/SEEPROM */
->> +                               rng_seed: rng@12 { reg = <0x012 8>; };
->> +                               ppc_pvr: pvr@20 { reg = <0x020 4>; };
->> +                               seeprom_ver_str: sver-str@24 { reg = <0x024 6>; };
->> +                               seeprom_ver: sver@2a { reg = <0x02A 2>; };
->> +                               otp_ver: over@2c { reg = <0x02C 2>; };
->> +                               otp_rev: orev@2e { reg = <0x02E 2>; };
->> +                               otp_ver_str: over-str@30 { reg = <0x030 8>; };
->> +
->> +                               bc_crc: bc-crc@38 { reg = <0x038 4>; };
->> +                               bc_sz: bc-sz@3c { reg = <0x03C 2>; };
->> +                               bc_ver: bc-ver@3e { reg = <0x03E 2>; };
->> +                               bc_boardtype: boardtype@42 { reg = <0x042 2>; };
->> +                               bc_boardrev: boardrev@44 { reg = <0x044 2>; };
->> +                               bc_bootsource: bootsource@46 { reg = <0x046 2>; };
->> +                               bc_ddr3size: ddr3size@48 { reg = <0x048 2>; };
->> +                               bc_ddr3speed: ddr3speed@4a { reg = <0x04A 2>; };
->> +                               bc_ppcclockmul: ppcclockmul@4c { reg = <0x04C 2>; };
->> +                               bc_iopclockmul: iopclockmul@46 { reg = <0x04E 2>; };
->> +                               bc_video1080p: video1080p@50 { reg = <0x050 2>; };
->> +                               bc_ddr3vendor: ddr3vendor@52 { reg = <0x052 2>; };
->> +                               bc_movpassivereset: movpassivereset@54 { reg = <0x054 2>; };
->> +                               bc_syspllspd: syspllspd@56 { reg = <0x056 2>; };
->> +                               bc_satadevice: satadevice@58 { reg = <0x058 2>; };
->> +                               bc_consoletype: consoletype@5a { reg = <0x05A 2>; };
->> +                               bc_deviceprescence: deviceprescence@5c { reg = <0x05C 2>; };
->> +
->> +                               drive_key: drvkey@80 { reg = <0x080 16>; };
->> +                               factory_key: fackey@90 { reg = <0x090 16>; };
->> +                               shdd_key: shddkey@a0 { reg = <0x0A0 16>; };
->> +                               usb_key_seed: usbkeyseed@b0 { reg = <0x0B0 16>; };
->> +                               drive_key_flag: drvkeyf@c0 { reg = <0x0C0 2>; };
->> +                               usb_key_flag: udbkeyf@c2 { reg = <0x0C2 2>; };
->> +                               shdd_key_flag: shddkeyf@c4 { reg = <0x0C4 2>; };
->> +
->> +                               sysprod_version: sp_ver@140 { reg = <0x140 4>; };
->> +                               sysprod_eeprom_version: sp_ee_ver@144 { reg = <0x144 4>; };
->> +                               sysprod_product_area: sp_parea@148 { reg = <0x148 4>; };
->> +                               sysprod_game_region: sp_region@14c { reg = <0x14C 4>; };
->> +                               sysprod_ntsc_pal: sp_ntscpal@150 { reg = <0x150 4>; };
->> +                               sysprod_5ghz_country: sp_5ghz_c@154 { reg = <0x154 2>; };
->> +                               sysprod_5ghz_country_rev: sp_5ghz_crev@156 { reg = <0x156 2>; };
->> +                               sysprod_code: sp_code@158 { reg = <0x158 8>; };
->> +                               sysprod_serial: sp_serial@160 { reg = <0x160 16>; };
->> +                               sysprod_model: sp_model@170 { reg = <0x170 16>; };
->> +
->> +                               prod_year: pyear@188 { reg = <0x188 2>; };
->> +                               prod_date: pdate@18a { reg = <0x18A 2>; };
->> +                               prod_time: ptime@18c { reg = <0x18C 2>; };
->> +
->> +                               boot_params: boot_params@1c0 { reg = <0x1C0 48>; };
->> +                       };
->> +               };
->> +
->> +               /* TODO make this gpio-keyed once hollywood-gpio supports interrupts */
->> +               gpio-keys-polled {
-> 
-> This too.
-> 
->> +                       poll-interval = <50>;
->> +                       compatible = "gpio-keys-polled";
->> +
->> +                       power {
->> +                               label = "Power Button";
->> +                               gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
->> +                               linux,code = <KEY_POWER>;
->> +                       };
->> +               };
->> +
->> +               gpio2: gpio2@d8000c0 {
-> 
-> gpio@d800520
-> 
->> +                       #gpio-cells = <2>;
->> +                       compatible = "nintendo,latte-gpio", "nintendo,hollywood-gpio";
->> +
->> +                       reg = <0x0d800520 0x40>;
->> +                       gpio-controller;
->> +                       ngpios = <7>;
->> +
->> +                       gpio-line-names =
->> +                               "FANSPEED", "SMC_SCL", "SMC_SDA", "DC_DC2",
->> +                               "AVE_INT", "", "AVE_RESET";
->> +
->> +                       interrupt-controller;
->> +                       #interrupt-cells = <2>;
->> +                       interrupts = <10>;
->> +                       interrupt-parent = <&latte_pic>;
->> +               };
->> +       };
->> +};
->> --
->> 2.35.1
->>
+Regards,
+Liu Ying
 
-Will do in v2.
 
-Thanks,
-Ash
