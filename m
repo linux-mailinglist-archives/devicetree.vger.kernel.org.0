@@ -2,66 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 079FF4CB896
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:20:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C63C04CB899
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:20:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231282AbiCCIUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 03:20:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52944 "EHLO
+        id S229793AbiCCIUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 03:20:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231267AbiCCIUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:20:33 -0500
-Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA13E171845
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:19:48 -0800 (PST)
-Received: by mail-qt1-x82e.google.com with SMTP id w1so3970686qtj.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 00:19:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eBbghWmyN77JF7RUpoIN9lkaA23tcjbHORN7ZoYwWzA=;
-        b=O33UcScGamI/CbJS2qdYJFMnkoGyvajYHAEDnA1q32GaQGdYlOFF7E/Wu4I2A6awOB
-         8kHS3FMUK2LE41rzxdVjPjRD9UKIjJgcB730BEVO9EFbgrwPgXVRpI2j0WITQtJrjn4v
-         cVeafQ/DY+JzVcs8qekyK+4EZn/xF0kAVhJNY0eX56zgfPsIpB3vQ92roJgu8daAvomr
-         fL6PV8jZKzTYn+t2bn9N/tWswi4bxc71DF6zMvRz50BOSDS/whVmIdG4MoA4nBKNmwEI
-         ENNeJnXecQxETQlmR0yjeMH6vWpP18HnOa30Jt3D8T1DHzWE5IQIAuA4+FGcjHqlBSxf
-         zAXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eBbghWmyN77JF7RUpoIN9lkaA23tcjbHORN7ZoYwWzA=;
-        b=PvSWizWh5A4I72Yyh69R5pnXkp80slMj/aZ6r+fSq7VC5zzNsL0uKOU+CznOC+VJYU
-         mk4/AdMBzHnhC+fJDtV41Hn9Lqeclt4/hk67rE7sjNR61bl/F80pUOTHlX8yfNmamfli
-         NlqDec6p2KHh5FM5/Tw2ISRFEkfZlDx67CgTQwimXtRltSfIRZbvyz2Ah78+qqdyxqb/
-         jK3yURbeI5pcA3+qW595tr5wBbqfOU7sgHv3pdUwt1XhVz5t93fPTMAag4M59Hiv3rji
-         VMcyGJWvTvHytzp0z4j12XXJ/QWREMNFwDCYdLu6P/tUT9thdE0CQOhj4GTdUZu1sJB9
-         Ewzw==
-X-Gm-Message-State: AOAM533sgLW95LIKwrHw3wRk909LVuBCoGWa1VaACT5SVjnu9GDWp36I
-        anziCTbBQr9nyCmwk9v9PBVdliwCH9JuHmtVWz45qw==
-X-Google-Smtp-Source: ABdhPJzwybpbRKv/JsGwbbxWqXiPUR4uibbx0YjX5VRLF4ZSmc8ArqQjtlAMg4s/pfikPz32DA/3T3dwuz1Doz+bPUQ=
-X-Received: by 2002:ac8:5713:0:b0:2de:4e16:5b25 with SMTP id
- 19-20020ac85713000000b002de4e165b25mr26214309qtw.682.1646295587875; Thu, 03
- Mar 2022 00:19:47 -0800 (PST)
-MIME-Version: 1.0
-References: <1646294904-4753-1-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1646294904-4753-1-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 3 Mar 2022 11:19:36 +0300
-Message-ID: <CAA8EJppbk+yCmVgRbUNBn+BO09xDZe93RXK_cUxbX9HZM9ZXmw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] Update mdp clk to max supported value to support
- higher refresh rates
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com
+        with ESMTP id S231264AbiCCIUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:20:48 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D68BB171859
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:20:01 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nPggo-00047v-Ta; Thu, 03 Mar 2022 09:19:58 +0100
+Message-ID: <8865c3248d860aefb802ccbc3c486fb6d3721b14.camel@pengutronix.de>
+Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Liu Ying <victor.liu@oss.nxp.com>, Marek Vasut <marex@denx.de>,
+        Adam Ford <aford173@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Peng Fan <peng.fan@nxp.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
+Date:   Thu, 03 Mar 2022 09:19:55 +0100
+In-Reply-To: <15a6222b256f67a01ef947bb44a2737a6606ad4c.camel@oss.nxp.com>
+References: <20220228004605.367040-1-marex@denx.de>
+         <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
+         <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
+         <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
+         <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
+         <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
+         <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
+         <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
+         <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
+         <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
+         <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
+         <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
+         <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
+         <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
+         <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
+         <15a6222b256f67a01ef947bb44a2737a6606ad4c.camel@oss.nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,31 +66,154 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Mar 2022 at 11:08, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
->
-> *** BLURB HERE ***
+Am Donnerstag, dem 03.03.2022 um 10:54 +0800 schrieb Liu Ying:
+> On Wed, 2022-03-02 at 12:57 +0100, Lucas Stach wrote:
+> > Am Mittwoch, dem 02.03.2022 um 17:41 +0800 schrieb Liu Ying:
+> > > On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
+> > > > Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
+> > > > > On 3/1/22 14:18, Lucas Stach wrote:
+> > > > > > Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
+> > > > > > > On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
+> > > > > > > > Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
+> > > > > > > > > On 3/1/22 11:04, Lucas Stach wrote:
+> > > > > > > > > 
+> > > > > > > > > Hi,
+> > > > > > > > > 
+> > > > > > > > > [...]
+> > > > > > > > > 
+> > > > > > > > > > > Given the two totally different IPs, I don't see bugs of IP control
+> > > > > > > > > > > logics should be fixed for both drivers. Naturally, the two would
+> > > > > > > > > > > diverge due to different HWs. Looking at Patch 9/9, it basically
+> > > > > > > > > > > squashes code to control LCDIFv3 into the mxsfb drm driver with
+> > > > > > > > > > > 'if/else' checks(barely no common control code), which is hard to
+> > > > > > > > > > > maintain and not able to achieve good scalability for both 'LCDIFv3'
+> > > > > > > > > > > and 'LCDIF'.
+> > > > > > > > > > 
+> > > > > > > > > > I tend to agree with Liu here. Writing a DRM driver isn't that much
+> > > > > > > > > > boilerplate anymore with all the helpers we have available in the
+> > > > > > > > > > framework today.
+> > > > > > > > > 
+> > > > > > > > > I did write a separate driver for this IP before I spent time merging
+> > > > > > > > > them into single driver, that's when I realized a single driver is much
+> > > > > > > > > better and discarded the separate driver idea.
+> > > > > > > > > 
+> > > > > > > > > > The IP is so different from the currently supported LCDIF controllers
+> > > > > > > > > > that I think trying to support this one in the existing driver actually
+> > > > > > > > > > increases the chances to break something when modifying the driver in
+> > > > > > > > > > the future. Not everyone is able to test all LCDIF versions. My vote is
+> > > > > > > > > > on having a separate driver for the i.MX8MP LCDIF.
+> > > > > > > > > 
+> > > > > > > > > If you look at both controllers, it is clear it is still the LCDIF
+> > > > > > > > > behind, even the CSC that is bolted on would suggest that.
+> > > > > > > > 
+> > > > > > > > Yes, but from a driver PoV what you care about is not really the
+> > > > > > > > hardware blocks used to implement something, but the programming model,
+> > > > > > > > i.e. the register interface exposed to software.
+> > > > > > > > 
+> > > > > > > > > I am also not happy when I look at the amount of duplication a separate
+> > > > > > > > > driver would create, it will be some 50% of the code that would be just
+> > > > > > > > > duplicated.
+> > > > > > > > > 
+> > > > > > > > Yea, the duplicated code is still significant, as the HW itself is so
+> > > > > > > > simple. However, if you find yourself in the situation where basically
+> > > > > > > > every actual register access in the driver ends up being in a "if (some
+> > > > > > > > HW rev) ... " clause, i still think it would be better to have a
+> > > > > > > > separate driver, as the programming interface is just different.
+> > > > > > > 
+> > > > > > > I tend to agree with Marek on this one.  We have an instance where the
+> > > > > > > blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
+> > > > > > > but different enough where each SoC has it's own set of tables and
+> > > > > > > some checks.   Lucas created the framework, and others adapted it for
+> > > > > > > various SoC's.  If there really is nearly 50% common code for the
+> > > > > > > LCDIF, why not either leave the driver as one or split the common code
+> > > > > > > into its own driver like lcdif-common and then have smaller drivers
+> > > > > > > that handle their specific variations.
+> > > > > > 
+> > > > > > I don't know exactly how the standalone driver looks like, but I guess
+> > > > > > the overlap is not really in any real HW specific parts, but the common
+> > > > > > DRM boilerplate, so there isn't much point in creating a common lcdif
+> > > > > > driver.
+> > > > > 
+> > > > > The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of 
+> > > > > that, there is some 400 LoC which are specific to old LCDIF and this 
+> > > > > patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of 
+> > > > > shared boilerplate that would be duplicated .
+> > > > 
+> > > > That is probably ignoring the fact that the 8MP LCDIF does not support
+> > > > any overlays, so it could use the drm_simple_display_pipe
+> > > > infrastructure to reduce the needed boilerplate.
+> > > 
+> > > The drm_simple_display_pipe infrastructure is probably too simple for
+> > > i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
+> > > embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
+> > > outputs respectively. To use that infrastructure means there would be
+> > > three dri cards in all. However, the three LCDIF instances can be
+> > > wrapped by the one drm device, which is not the boilerplate code in the
+> > > current mxsfb driver may handle.
+> > 
+> > While that may make things a little simpler for userspace, I'm not sure
+> > if this is the right thing to do. It complicates the driver a lot,
+> > especially if you want to get things like independent power management,
+> > etc. right. It also creates a fake view for userspace, where is looks
+> > like there might be some shared resources between the different display
+> > paths, while in reality they are fully independent.
+> 
+> Trade-off will be made between one drm device and three. My first
+> impression of using the drm_simple_display_pipe infrastructure is that
+> it's too simple and less flexible/scalable, because SoC designer will
+> be likely to add muxes between CRTCs and encoders/bridges or overlay
+> plane(s) in next generations of SoCs(SW developers don't seem have good
+> reasons to suggest not to do that).  Another concern is that whether
+> the userspace may use the three drm devices well or not. 
+> 
+> A few more points:
+> 1) With one drm device, userspace may use drm lease APIs to control
+> those independant pipes with drm masters(not sure about the userspace
+> maturity).
 
-Description, dependencies, etc?
+I'm not sure why you are so keen on using DRM leases in your
+downstream. Actually this argument is a argument in _favor_ of
+independent DRM devices: you don't need to deal with leases when every
+userspace component can just exclusively use a DRM device.
 
->
-> Vinod Polimera (3):
->   arm64/dts/qcom/sc7280: remove assigned-clock-rate property for mdp clk
->   arm64/dts/qcom/sc7180: remove assigned-clock-rate property for mdp clk
->   arm64/dts/qcom/sdm845: remove assigned-clock-rate property for mdp clk
+> 2) Code to gather all LCDIFs as one drm device has chance to be created
+> as helpers once there are similar use cases in other drivers(maybe,
+> there is/are already).
 
-sm8250.dtsi is missing
+We already gather the GPU cores in etnaviv and as I said this decision
+proves to add complications in the long run. For example prime import
+with the DRM helpers is currently bound to the DRM device, so if your
+actual HW devices backing the DRM device have differing DMA constraints
+things get really messy.
 
->
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 9 ++-------
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 ++-------
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 9 ++-------
->  3 files changed, 6 insertions(+), 21 deletions(-)
->
-> --
-> 2.7.4
->
+> 3) Power management doesn't seem to be a problem, since each LCDIF has
+> it's own struct device which can be used to do runtime PM at some
+> drm_crtc_helper_funcs callbacks.
+
+It's not a big problem, but it adds complexity that wouldn't be there
+if you have a simple 1 IP instance <-> 1 DRM device mapping.
+
+> 4) Regarding the fake view of shared resources, atomic check can handle
+> that, so it doesn't seem to be a big problem, either.
+
+Sure, there isn't even anything to handle, as the pipes are truly
+independent.
+
+> 
+> > 
+> > While we do something similar on the GPU side and collect all GPU cores
+> > under a single DRM device, I'm not fully convinced that this was a good
+> > decision. It now comes back to bite us when the SoC topologies get a
+> > little more interesting and e.g. devices are behind different IOMMU
+> > streams.
+> 
+> Right, SoC topologies may change, like the aforementioned muxes.
+> Generally speaking, I think one drm device is more flexible and
+> scalable than three.
+> 
+> Regards,
+> Liu Ying
+> 
+> 
 
 
--- 
-With best wishes
-Dmitry
