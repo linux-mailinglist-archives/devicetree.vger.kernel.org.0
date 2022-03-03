@@ -2,109 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6094CC17D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 16:37:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D13F4CC1AE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 16:41:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234505AbiCCPiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 10:38:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46966 "EHLO
+        id S232535AbiCCPmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 10:42:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234574AbiCCPiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 10:38:01 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13B55194146
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 07:37:16 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 33B343F618
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 15:37:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646321833;
-        bh=8DezQocHOANVzIXQp7GBe2DNdvF/29uXU4JAHaGAUrE=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=oXdiC+Ppz1AORSxZe4DyD3xTLnykpMjAxbYwDJ2h1DEdYow91ghxco+Zyr7y7Y2Us
-         l/JFw20oN3Sgw8J5WhiLzBMURdRLWzGocJ7NVS2qHo0sTdBRqnaab/V0pY96zxhj9o
-         k91TDar7I/PU0B42NfO089JTbVIoiG1KqQHeA9TjBXZbELkDfTW0SpPzifsBczTn18
-         0uDjA2SBNIiMsUxx+0l9dHFz9pEzmkJCfKoIVRqV1Hql8wOEXEe3sGZOAAguZoBv2Q
-         He4Ytd5Xx7ZmxInPFDnpK/WY3vAmc8Bk/DfZaZFL7Gz+xZscGVVB4cVotY2pUJmlCn
-         nDxUnSM9FyrOg==
-Received: by mail-ej1-f72.google.com with SMTP id ey18-20020a1709070b9200b006da9614af58so894185ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 07:37:13 -0800 (PST)
+        with ESMTP id S229621AbiCCPmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 10:42:20 -0500
+Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB33195316;
+        Thu,  3 Mar 2022 07:41:35 -0800 (PST)
+Received: by mail-oi1-x235.google.com with SMTP id 12so5116615oix.12;
+        Thu, 03 Mar 2022 07:41:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=UkHMEQWO9jTM74a5At67rWZxBXWSHZgLI2GDyhLMShE=;
+        b=g5QV0tH1fwOXvEz/lY4cLuKdG0gfhCb0ZPdtzeO0gXKftZcoRKXjLWqx5kRpj4h9ay
+         gnWfCvayE+QX83ohJu0M4jMgNV9AtPuCv1u/hxQXAkNZKJGjvFQlwdXMkrmF2yppUmsp
+         crdY6DW0mpFm6F53cRStsKbEufb8TBUQV49AoJHhXTaYniaVTER70dSJUySOTSX/F9DK
+         r7gnY4JYxaad/T+PEYyhA0VwxlKZbXDdsMjxexJ48kp3jpCICmCweuNRcnEJmnslfLye
+         RB9Cb1PPRL/CEjssCtiJS3LF5uNC0egIeYxkrAxN676TTq9g21FMN7QQzCiCGWk7DTRb
+         YpLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=8DezQocHOANVzIXQp7GBe2DNdvF/29uXU4JAHaGAUrE=;
-        b=QGG6jpmMYjpq0depkla9Eb3l1lrjYQgxOnMVtqHvVS0sHh0oEVBhRZB4C92mi7zf+x
-         28uuGi2MmzOBnouBvZFeDYymvZ5DOro5UjSggHCR5tVB74ItAa24sN5sLwodhLTo+ZJB
-         BfHbN/XqalUYMQIIfTMeEomdh3yirWppTOhvDLb7qwOu6jsMdw0Lqkzr4sKA7EIZGf38
-         2rLq8zDJWW0QW/6qqiZNINxUELH2XXX+BBUokBOObhEJxBT/+AvAAXmmUV9jI2VZfrNR
-         zyQHqCFEABYuUdQLwPzdDAAsP53n6jeXYI4KvCYMvbt5JrY/GMlBrzWfTf5RmyFyoU3o
-         H/fw==
-X-Gm-Message-State: AOAM530Mckz8eNVXqw3hgZm2M+F8Tx5n8l+WSRhlAOT/AIf78biF2zyn
-        0wTE8m0gF6JmuQvO9w2Ol836SvoG0P3uzlleSmGTzlsmXn+rH1eHAcFoGE1ex/+A8xaux6rPRSv
-        WByrjS9WTHcXKKr0/LrzPuzH38ZkOM0/NTBFd260=
-X-Received: by 2002:a05:6402:5150:b0:415:de72:5384 with SMTP id n16-20020a056402515000b00415de725384mr3251283edd.273.1646321830720;
-        Thu, 03 Mar 2022 07:37:10 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzuGas3Tunwgz5F3zcC5Firl26y2pjjUMIjqfXRcAT+U15otBYle/YgV3gbGaIkBzdsY2NVUA==
-X-Received: by 2002:a05:6402:5150:b0:415:de72:5384 with SMTP id n16-20020a056402515000b00415de725384mr3251268edd.273.1646321830509;
-        Thu, 03 Mar 2022 07:37:10 -0800 (PST)
-Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id q10-20020aa7cc0a000000b0040f826f09fdsm958428edt.81.2022.03.03.07.37.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 07:37:09 -0800 (PST)
-Message-ID: <58e10c95-902a-bdf3-15e6-616e4d2cda7f@canonical.com>
-Date:   Thu, 3 Mar 2022 16:37:09 +0100
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition
+         :content-transfer-encoding:in-reply-to;
+        bh=UkHMEQWO9jTM74a5At67rWZxBXWSHZgLI2GDyhLMShE=;
+        b=Q/dIffnInk72ZWANu+WPoZBVdLNxjHpjAGU2IHZEUgu3SJXj4cUZo4zHwYsgWAuxNr
+         iLxpgvc5VuGqRsP7RG0EXvNayUhqLrfMMWi3ZoKUKkl56/k10my3peRAluGVApUZoHBH
+         OEXE3nQ9rqsQTeJ8KYEDwiY7iMwHALk2dWkpO5BYmPbP7Gb/WS7R57yl5j+ynJloNLfD
+         XWsckGe/ea55yQGNLD99mIOjJBqDVUrsaV4Dr+99p/8+Uixmkz2TbKEcdOeEMmBcijye
+         dPzf/7Be4XEel1jeQ/wtb9Qa1QESMH20I8EI9OvPuPHbH8DCChBSDdiiODRD33ZOPwZV
+         SaAQ==
+X-Gm-Message-State: AOAM530sll193AWxbKsuXoxH3MLLpeKeqSYONznUgwQlLyYXCPDLiIfw
+        OtHbmvbj4rtwJjNBlle/cqc=
+X-Google-Smtp-Source: ABdhPJxvcjNbNP9xGnJVPNmC0mn1UHYAeho4sP1SuqkQerf9EB5WgdjG6oFIFm4I9z8mFv/w+ybQYQ==
+X-Received: by 2002:aca:90e:0:b0:2d4:8fb3:2674 with SMTP id 14-20020aca090e000000b002d48fb32674mr5063906oij.124.1646322094628;
+        Thu, 03 Mar 2022 07:41:34 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a12-20020a9d5c8c000000b005ad51592bd8sm1083522oti.49.2022.03.03.07.41.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 07:41:33 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Thu, 3 Mar 2022 07:41:32 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Agathe Porte <agathe.porte@nokia.com>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Adamski <krzysztof.adamski@nokia.com>
+Subject: Re: [PATCH v7 2/2] hwmon: Add driver for Texas Instruments TMP464
+ and TMP468
+Message-ID: <20220303154132.GA3408592@roeck-us.net>
+References: <20220222223610.23098-1-linux@roeck-us.net>
+ <20220222223610.23098-2-linux@roeck-us.net>
+ <20220302175941.GA2523098@roeck-us.net>
+ <9e868438-c0ad-464f-358c-5ee77bfb7f4f@nokia.com>
+ <abde8dce-810b-fd39-b0aa-4f1b2ec8f8d7@roeck-us.net>
+ <c3a9b340-34b1-4bed-4810-4c5f39a8554b@nokia.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: Convert i.MX7D to json-schema
-Content-Language: en-US
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20220303150653.1903910-1-alexander.stein@ew.tq-group.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220303150653.1903910-1-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c3a9b340-34b1-4bed-4810-4c5f39a8554b@nokia.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/03/2022 16:06, Alexander Stein wrote:
-> Convert the i.MX7D pinctrl binding to DT schema format using json-schema
+On Thu, Mar 03, 2022 at 04:31:39PM +0100, Agathe Porte wrote:
+> Le 3/3/2022 à 4:00 PM, Guenter Roeck a écrit :
+> > On 3/3/22 00:57, Agathe Porte wrote:
+> > > Hi Guenter,
+> > > 
+> > > Le 02/03/2022 à 18:59, Guenter Roeck a écrit :
+> > > > Any review / test feedback on this patch ? I would like to apply it
+> > > > before the commit window opens, but the time is getting short.
+> > > 
+> > > I thought that you did receive the TMP464 samples and had the
+> > > opportunity to test on it. I will test v7 on our hardware equipped
+> > > with TMP464, verify that DT support works fine, and will reply to
+> > > this email with my findings.
+> > > 
+> > 
+> > Yes, I did, and thanks a lot for it! I even wrote a qemu emulation
+> > for the chip to be able to test the devicetree code.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
->  .../bindings/pinctrl/fsl,imx7d-pinctrl.txt    |  87 --------------
->  .../bindings/pinctrl/fsl,imx7d-pinctrl.yaml   | 113 ++++++++++++++++++
->  2 files changed, 113 insertions(+), 87 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx7d-pinctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx7d-pinctrl.yaml
+> Great!
+> 
+> > Still, I need to have someone else confirm that I didn't mess up.
+> 
+> I tested v7 on our hardware and the behavior seems to be the same as our
+> previous, in-house driver, if that gives you a point of comparison. We only
+> use temp*_input sysfs though.
+> 
+> No compilation warnings.
+> 
+> I can disable and enable sensors fine at runtime:
+> 
+> > # cat temp*_input
+> > 43063
+> > 35813
+> > 34938
+> > 39313
+> > 29125
+> > # echo 0 | tee temp*_enable
+> > 0
+> > # cat temp*_input
+> > cat: temp1_input: No data available
+> > cat: temp2_input: No data available
+> > cat: temp3_input: No data available
+> > cat: temp4_input: No data available
+> > cat: temp5_input: No data available
+> > # echo 1 | tee temp*_enable
+> > 1
+> > # cat temp*_input
+> > 43063
+> > 35750
+> > 34875
+> > 39313
+> > 29188
+> 
+> For what it's worth:
+> 
+> Tested-by: Agathe Porte <agathe.porte@nokia.com>
 > 
 
+Thanks a lot! 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+I applied the series to hwmon-next.
 
-Best regards,
-Krzysztof
+Guenter
