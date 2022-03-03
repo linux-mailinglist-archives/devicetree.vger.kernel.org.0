@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A83E4CBA57
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:33:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 33AF34CBA5C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:34:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231942AbiCCJe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 04:34:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42728 "EHLO
+        id S232009AbiCCJfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 04:35:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230468AbiCCJe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:34:27 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F153B3337A;
-        Thu,  3 Mar 2022 01:33:40 -0800 (PST)
-X-UUID: 1e602f6b8d404a33b426a4f131e7b2ff-20220303
-X-UUID: 1e602f6b8d404a33b426a4f131e7b2ff-20220303
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 471280493; Thu, 03 Mar 2022 17:33:37 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 3 Mar 2022 17:33:35 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 3 Mar 2022 17:33:35 +0800
-Message-ID: <1c665549b28c206126b1407eaf6ca97269bf1169.camel@mediatek.com>
-Subject: Re: [PATCH v12 3/4] soc: mediatek: mutex: add support for MDP
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Jernej Skrabec" <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Alexandre Courbot" <acourbot@chromium.org>, <tfiga@chromium.org>,
-        <drinkcat@chromium.org>, <pihsun@chromium.org>,
-        <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
-        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 3 Mar 2022 17:33:35 +0800
-In-Reply-To: <20220301100246.2153-4-moudy.ho@mediatek.com>
-References: <20220301100246.2153-1-moudy.ho@mediatek.com>
-         <20220301100246.2153-4-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S231857AbiCCJfU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:35:20 -0500
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70FBF403C2;
+        Thu,  3 Mar 2022 01:34:35 -0800 (PST)
+Received: by mail-ej1-f46.google.com with SMTP id qx21so9258426ejb.13;
+        Thu, 03 Mar 2022 01:34:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=HCoJ2YMwz0q/SwgLBzV0H3UA+rYOKmWN8IjDCigSeO8=;
+        b=QeWlJjedoR2qFQBUOh4pkhzui5u5PKxnKQUs5zyRaF5mTqLJkKjx2lJcSdTp4D4V/d
+         NweQl12MrRSaJTviT4Nmzvr5hRPl6ZIoyJ5SWf1ZE/BVbnVyp5EY9W/FYSxw+W67ms0x
+         3Tc/EJHGU2v4Cfz954oAjvXSxchWOfWf70Yc/3EA91lFIKkXZeZMphk4JY7MjyCXDKRL
+         0GwdW3UkK7fcWvnmMBXR1iEnbhtTe7j210IQtL0LlpIL6x8qJNT8N10IoPqGkT4aFbYF
+         DSOqePZ20AIdQZiziy1VaHD9bE3lPjaauePg+l2qGeZG6SbHfAPvq71EfaPt2CslijLi
+         bodA==
+X-Gm-Message-State: AOAM5339lsRSqgv6ri2nmuqHXf6oMYGuzKCYahmDQa6va9QSG0FcJTmU
+        7HWgYiyml/fTml07yJ6lJqY1biMyFVU=
+X-Google-Smtp-Source: ABdhPJyj7IPoYYr6U2OkzEEq2Jm0KvkKkWEb0ABY+xk3BFll3PIddVhRcde7e62zhWwEa+oWwrxWsA==
+X-Received: by 2002:a17:906:402:b0:6d5:c6bc:3150 with SMTP id d2-20020a170906040200b006d5c6bc3150mr26995549eja.403.1646300073839;
+        Thu, 03 Mar 2022 01:34:33 -0800 (PST)
+Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.googlemail.com with ESMTPSA id f6-20020a50fc86000000b0040f614e0906sm615639edq.46.2022.03.03.01.34.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 01:34:32 -0800 (PST)
+Message-ID: <fd39f73e-8317-38c4-6002-8defd784caec@kernel.org>
+Date:   Thu, 3 Mar 2022 10:34:31 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
+ sp7021
+Content-Language: en-US
+To:     =?UTF-8?B?RWR3aW4gQ2hpdSDpgrHlnoLls7A=?= <edwin.chiu@sunplus.com>,
+        Edwin Chiu <edwinchiu0505tw@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
+ <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
+ <394261d1-f1df-e80d-3591-10f2d649e731@kernel.org>
+ <bcc7a0b58aad4f0989d7d86eaee2c746@sphcmbx02.sunplus.com.tw>
+ <748eb0e1-684c-a772-bccd-64b80780192f@kernel.org>
+ <fda1e55e576b4cdf9ab412529a3dfc7b@sphcmbx02.sunplus.com.tw>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <fda1e55e576b4cdf9ab412529a3dfc7b@sphcmbx02.sunplus.com.tw>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,188 +74,164 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Moudy:
-
-On Tue, 2022-03-01 at 18:02 +0800, Moudy Ho wrote:
-> For the purpose of module independence, related settings should be
-> moved
-> from MDP to the corresponding driver.
-> This patch adds more 8183 MDP settings and interface.
+On 03/03/2022 10:01, Edwin Chiu 邱垂峰 wrote:
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> Acked-by: AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com>
-> ---
->  drivers/soc/mediatek/mtk-mutex.c       | 68
-> ++++++++++++++++++++++++++
->  include/linux/soc/mediatek/mtk-mutex.h |  3 ++
->  2 files changed, 71 insertions(+)
 > 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c
-> b/drivers/soc/mediatek/mtk-mutex.c
-> index aaf8fc1abb43..a6268ecde240 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -136,6 +136,18 @@
->  #define MT8183_MUTEX_EOF_DSI0			(MT8183_MUTEX_S
-> OF_DSI0 << 6)
->  #define MT8183_MUTEX_EOF_DPI0			(MT8183_MUTEX_S
-> OF_DPI0 << 6)
->  
-> +#define MT8183_MUTEX_MDP_START			5
-> +#define MT8183_MUTEX_MDP_MOD_MASK		0x07FFFFFF
-> +#define MT8183_MUTEX_MDP_SOF_MASK		0x00000007
-> +#define MT8183_MUTEX_MOD_MDP_RDMA0		BIT(2)
-> +#define MT8183_MUTEX_MOD_MDP_RSZ0		BIT(4)
-> +#define MT8183_MUTEX_MOD_MDP_RSZ1		BIT(5)
-> +#define MT8183_MUTEX_MOD_MDP_TDSHP0		BIT(6)
-> +#define MT8183_MUTEX_MOD_MDP_WROT0		BIT(7)
-> +#define MT8183_MUTEX_MOD_MDP_WDMA		BIT(8)
-> +#define MT8183_MUTEX_MOD_MDP_AAL0		BIT(23)
-> +#define MT8183_MUTEX_MOD_MDP_CCORR0		BIT(24)
-> +
->  struct mtk_mutex {
->  	int id;
->  	bool claimed;
-> @@ -156,6 +168,10 @@ struct mtk_mutex_data {
->  	const unsigned int *mutex_sof;
->  	const unsigned int mutex_mod_reg;
->  	const unsigned int mutex_sof_reg;
-> +	const unsigned int *mutex_mdp_offset;
-> +	const unsigned int *mutex_mdp_mod;
-> +	const unsigned int mutex_mdp_mod_mask;
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Tuesday, March 1, 2022 7:34 PM
+>> To: Edwin Chiu 邱垂峰 <edwin.chiu@sunplus.com>; Edwin Chiu <edwinchiu0505tw@gmail.com>;
+>> robh+dt@kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; rafael@kernel.org;
+>> daniel.lezcano@linaro.org; linux-pm@vger.kernel.org
+>> Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus sp7021
+>>
+>> On 01/03/2022 10:30, Edwin Chiu 邱垂峰 wrote:
+>>>
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>>>> Sent: Tuesday, February 22, 2022 12:48 AM
+>>>> To: Edwin Chiu <edwinchiu0505tw@gmail.com>; Edwin Chiu 邱垂峰
+>>>> <edwin.chiu@sunplus.com>;
+>>>> robh+dt@kernel.org; devicetree@vger.kernel.org;
+>>>> robh+linux-kernel@vger.kernel.org; rafael@kernel.org;
+>>>> daniel.lezcano@linaro.org; linux-pm@vger.kernel.org
+>>>> Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for
+>>>> sunplus sp7021
+>>>>
+>>>> On 21/02/2022 08:26, Edwin Chiu wrote:
+>>>>> Create cpuidle driver for sunplus sp7021 chip
+>>>>>
+>>>>> Signed-off-by: Edwin Chiu <edwinchiu0505tw@gmail.com>
+>>>>> ---
+>>>>> Changes in v3
+>>>>>  - Rearrangement #include sequence
+>>>>>  - Change remark style to /*~*/
+>>>>>  - Align author email address to same as sob
+>>>>>  - Optimal code
+>>>>> Changes in v4
+>>>>>  - According Rob Herringrobh's comment
+>>>>>    There is no need for this binding.
+>>>>>    Just wanting a different driver is not a reason
+>>>>>    for a duplicate schema.
+>>>>>    So remove yaml file and submit driver again.
+>>>>> Changes in v5
+>>>>>  - According Krzysztof's comment
+>>>>>    You either use appropriate compatible in DT
+>>>>>    or add your compatible to cpuidle-arm.
+>>>>>    Even if this did not work, then the solution is to
+>>>>>    use common parts, not to duplicate entire driver.
+>>>>>    According Sudeep's comment
+>>>>>    In short NACK for any dedicated driver for this platform,
+>>>>>    use the generic cpuidle-arm driver with appropriate platform hooks
+>>>>>    Create cpuidle-sunplus.c in arch/arm/mach-sunplus/
+>>>>>    for hook generic cpuidle-arm driver
+>>>>>
+>>>>>  MAINTAINERS                                   |  6 ++
+>>>>>  arch/arm/mach-sunplus/cpuidle-sunplus.c       | 88 +++++++++++++++++
+>>>>>  include/linux/platform_data/cpuidle-sunplus.h | 12 ++++
+>>>>>  3 files changed, 106 insertions(+)
+>>>>>  create mode 100644 arch/arm/mach-sunplus/cpuidle-sunplus.c
+>>>>>  create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
+>>>>>
+>>>>> diff --git a/MAINTAINERS b/MAINTAINERS index e0dca8f..5c96428 100644
+>>>>> --- a/MAINTAINERS
+>>>>> +++ b/MAINTAINERS
+>>>>> @@ -18252,6 +18252,12 @@ L:	netdev@vger.kernel.org
+>>>>>  S:	Maintained
+>>>>>  F:	drivers/net/ethernet/dlink/sundance.c
+>>>>>
+>>>>> +SUNPLUS CPUIDLE DRIVER
+>>>>> +M:	Edwin Chiu <edwinchiu0505tw@gmail.com>
+>>>>> +S:	Maintained
+>>>>> +F:	arch/arm/mach-sunplus/cpuidle-sunplus.c
+>>>>> +F:	include/linux/platform_data/cpuidle-sunplus.h
+>>>>> +
+>>>>>  SUPERH
+>>>>>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
+>>>>>  M:	Rich Felker <dalias@libc.org>
+>>>>> diff --git a/arch/arm/mach-sunplus/cpuidle-sunplus.c
+>>>>> b/arch/arm/mach-sunplus/cpuidle-sunplus.c
+>>>>> new file mode 100644
+>>>>> index 0000000..e9d9738
+>>>>> --- /dev/null
+>>>>> +++ b/arch/arm/mach-sunplus/cpuidle-sunplus.c
+>>>>> @@ -0,0 +1,88 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>>>> +/*
+>>>>> + * SP7021 cpu idle Driver.
+>>>>> + * Copyright (C) Sunplus Tech / Tibbo Tech.
+>>>>> + */
+>>>>> +#define pr_fmt(fmt) "CPUidle arm: " fmt
+>>>>> +
+>>>>> +#include <linux/cpuidle.h>
+>>>>> +#include <linux/of_device.h>
+>>>>> +#include <linux/platform_data/cpuidle-sunplus.h>
+>>>>> +
+>>>>> +#include <asm/cpuidle.h>
+>>>>> +
+>>>>> +typedef int (*idle_fn)(void);
+>>>>> +
+>>>>> +static DEFINE_PER_CPU(idle_fn*, sp7021_idle_ops);
+>>>>> +
+>>>>> +static int sp7021_cpuidle_enter(unsigned long index) {
+>>>>> +	return __this_cpu_read(sp7021_idle_ops)[index]();
+>>>>> +}
+>>>>> +static int sp7021_cpu_spc(void)
+>>>>> +{
+>>>>> +	cpu_v7_do_idle();   /* idle to WFI */
+>>>>> +	return 0;
+>>>>> +}
+>>>>> +static const struct of_device_id sp7021_idle_state_match[] = {
+>>>>> +	{ .compatible = "arm,idle-state", .data = sp7021_cpu_spc },
+>>>>> +	{ },
+>>>>> +};
+>>>>
+>>>> This is confusing. You want to have two drivers to bind to the same
+>>>> compatible? As I wrote in the previous messages, you should simply use arm,idle-state just like few
+>> other architectures.
+>>>>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>>
+>>> The patch v5 implemented according your comment.
+>>> Used common part of arm,idle-state.
+>>> Create new enable-method for cpuidle.ops function.
+>>> It only have arm cpuidle driver exist now, no two drivers to bind to the same compatible.
+>>>
+>>> What do you mean " simply use arm,idle-state just like few other architectures "?
+>>>
+>>
+>> I mean, do it similarly (by using arm,idle-state and other related
+>> properties) to for example ti,am4372/ti,am3352.
+>>
+>> Best regards,
+>> Krzysztof
+> 
+> 
+> The am3352 cpuidle code structure is very similar to ours.				
+> Used enable-method = "ti,am3352" and compatible = "arm,idle-state" in am33xx.dtsi				
+> Used CPUIDLE_METHOD_OF_DECLARE(pm33xx_idle, "ti,am3352", &amx3_cpuidle_ops) in pm33xx-core.c				
+> 				
+> The difference are				
+> am3352				
+> amx3_idle_init(~) assign idle_states[i].wfi_flags = states[i].wfi_flags;				
+> amx3_idle_enter(~) call idle_fn(idle_state->wfi_flags)				
+> 				
+> sunplus-sp7021				
+> sp7021_cpuidle_init(~) assign fns[i] = idle_fns[i];				
+> sp7021_cpuidle_enter(~) call __this_cpu_read(sp7021_idle_ops)[index]();				
+> 
+> I don't think am3352 cpuidle code architecture simpler than ours.
+> The idle_fn function need more complex method to be assign.
+> How do you think?
 
-Useless, so remove this.
+You duplicated a driver, entire pieces of code. This is not acceptable.
+Therefore it does not really make sense to discuss whether duplicated
+solution seems simpler or not... We won't accept duplicated code.
+Especially for WFI-only driver.
 
-> +	const unsigned int mutex_mdp_sof_mask;
-
-Useless, so remove this.
-
->  	const bool no_clk;
->  };
->  
-> @@ -243,6 +259,17 @@ static const unsigned int
-> mt8183_mutex_mod[DDP_COMPONENT_ID_MAX] = {
->  	[DDP_COMPONENT_WDMA0] = MT8183_MUTEX_MOD_DISP_WDMA0,
->  };
->  
-> +static const unsigned int mt8183_mutex_mdp_mod[MDP_MAX_COMP_COUNT] =
-> {
-> +	[MDP_COMP_RDMA0] = MT8183_MUTEX_MOD_MDP_RDMA0,
-> +	[MDP_COMP_RSZ0] = MT8183_MUTEX_MOD_MDP_RSZ0,
-> +	[MDP_COMP_RSZ1] = MT8183_MUTEX_MOD_MDP_RSZ1,
-> +	[MDP_COMP_TDSHP0] = MT8183_MUTEX_MOD_MDP_TDSHP0,
-> +	[MDP_COMP_WROT0] = MT8183_MUTEX_MOD_MDP_WROT0,
-> +	[MDP_COMP_WDMA] = MT8183_MUTEX_MOD_MDP_WDMA,
-> +	[MDP_COMP_AAL0] = MT8183_MUTEX_MOD_MDP_AAL0,
-> +	[MDP_COMP_CCORR0] = MT8183_MUTEX_MOD_MDP_CCORR0,
-> +};
-> +
->  static const unsigned int mt8186_mutex_mod[DDP_COMPONENT_ID_MAX] = {
->  	[DDP_COMPONENT_AAL0] = MT8186_MUTEX_MOD_DISP_AAL0,
->  	[DDP_COMPONENT_CCORR] = MT8186_MUTEX_MOD_DISP_CCORR0,
-> @@ -300,6 +327,14 @@ static const unsigned int
-> mt8186_mutex_sof[MUTEX_SOF_DSI3 + 1] = {
->  	[MUTEX_SOF_DPI0] = MT8186_MUTEX_SOF_DPI0 |
-> MT8186_MUTEX_EOF_DPI0,
->  };
->  
-> +/* indicate which mutex is used by each pipepline */
-> +static const unsigned int mt8183_mutex_mdp_offset[MDP_PIPE_MAX] = {
-> +	[MDP_PIPE_IMGI] = MT8183_MUTEX_MDP_START,
-> +	[MDP_PIPE_RDMA0] = MT8183_MUTEX_MDP_START + 1,
-> +	[MDP_PIPE_WPEI] = MT8183_MUTEX_MDP_START + 2,
-> +	[MDP_PIPE_WPEI2] = MT8183_MUTEX_MDP_START + 3
-> +};
-> +
->  static const struct mtk_mutex_data mt2701_mutex_driver_data = {
->  	.mutex_mod = mt2701_mutex_mod,
->  	.mutex_sof = mt2712_mutex_sof,
-> @@ -334,6 +369,10 @@ static const struct mtk_mutex_data
-> mt8183_mutex_driver_data = {
->  	.mutex_sof = mt8183_mutex_sof,
->  	.mutex_mod_reg = MT8183_MUTEX0_MOD0,
->  	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
-> +	.mutex_mdp_offset = mt8183_mutex_mdp_offset,
-> +	.mutex_mdp_mod = mt8183_mutex_mdp_mod,
-> +	.mutex_mdp_mod_mask = MT8183_MUTEX_MDP_MOD_MASK,
-> +	.mutex_mdp_sof_mask = MT8183_MUTEX_MDP_SOF_MASK,
->  	.no_clk = true,
->  };
->  
-> @@ -366,6 +405,21 @@ struct mtk_mutex *mtk_mutex_get(struct device
-> *dev)
->  }
->  EXPORT_SYMBOL_GPL(mtk_mutex_get);
->  
-> +struct mtk_mutex *mtk_mutex_mdp_get(struct device *dev,
-> +				    enum mtk_mdp_pipe_id id)
-
-For DRM, mutex id does not physically bound to specific hardware, why
-do MDP need the pipeline id?
-
-Regards,
-CK
-
-> +{
-> +	struct mtk_mutex_ctx *mtx = dev_get_drvdata(dev);
-> +	int i = mtx->data->mutex_mdp_offset[id];
-> +
-> +	if (!mtx->mutex[i].claimed) {
-> +		mtx->mutex[i].claimed = true;
-> +		return &mtx->mutex[i];
-> +	}
-> +
-> +	return ERR_PTR(-EBUSY);
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_mdp_get);
-> +
->  void mtk_mutex_put(struct mtk_mutex *mutex)
->  {
->  	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> mtk_mutex_ctx,
-> @@ -485,6 +539,20 @@ void mtk_mutex_remove_comp(struct mtk_mutex
-> *mutex,
->  }
->  EXPORT_SYMBOL_GPL(mtk_mutex_remove_comp);
->  
-> +u32 mtk_mutex_get_mdp_mod(struct mtk_mutex *mutex, enum
-> mtk_mdp_comp_id id)
-> +{
-> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> mtk_mutex_ctx,
-> +						 mutex[mutex->id]);
-> +
-> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> +
-> +	if (mtx->data->mutex_mdp_mod)
-> +		return mtx->data->mutex_mdp_mod[id];
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_get_mdp_mod);
-> +
->  void mtk_mutex_enable(struct mtk_mutex *mutex)
->  {
->  	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> mtk_mutex_ctx,
-> diff --git a/include/linux/soc/mediatek/mtk-mutex.h
-> b/include/linux/soc/mediatek/mtk-mutex.h
-> index 6fe4ffbde290..b2608f4220ee 100644
-> --- a/include/linux/soc/mediatek/mtk-mutex.h
-> +++ b/include/linux/soc/mediatek/mtk-mutex.h
-> @@ -11,9 +11,12 @@ struct device;
->  struct mtk_mutex;
->  
->  struct mtk_mutex *mtk_mutex_get(struct device *dev);
-> +struct mtk_mutex *mtk_mutex_mdp_get(struct device *dev,
-> +				    enum mtk_mdp_pipe_id id);
->  int mtk_mutex_prepare(struct mtk_mutex *mutex);
->  void mtk_mutex_add_comp(struct mtk_mutex *mutex,
->  			enum mtk_ddp_comp_id id);
-> +u32 mtk_mutex_get_mdp_mod(struct mtk_mutex *mutex, enum
-> mtk_mdp_comp_id id);
->  void mtk_mutex_enable(struct mtk_mutex *mutex);
->  void mtk_mutex_disable(struct mtk_mutex *mutex);
->  void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
-
+Best regards,
+Krzysztof
