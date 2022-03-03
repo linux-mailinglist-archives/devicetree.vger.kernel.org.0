@@ -2,153 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE1EB4CC3AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 18:26:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E70044CC3CD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 18:31:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235339AbiCCR1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 12:27:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37624 "EHLO
+        id S235387AbiCCRcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 12:32:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbiCCR1J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 12:27:09 -0500
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD3319E02F
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 09:26:22 -0800 (PST)
-Received: by mail-oo1-xc29.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso6554019ooi.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 09:26:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Hi+eKfkvL+1ELz8vCd2J8tALPiN2Yeq81v7WF2HdAvA=;
-        b=ST/Z+X1lhcPRR3gkR9suvwoVxqwduRsMYavBHcuzH6MEWvRTvI8XehW5GVLJKxx+FC
-         NE7DS70gcRfuBP+bWOto18cMXOIZPLk609iw8smuy/WxCEcWYm/+G+iCdIlMCCWpSINZ
-         +DfLXoHb7999QY5ssTrZRl7n0KNUX8O58zRTFoWlx3ttRtJXmbbewgi9suaOM+NiV36v
-         NmeOZAmFGzTuS00K7V5if14XLORNd3xksz9NN+wJMfw08Eh1bK23PFyL0ckhuwl0BCpJ
-         0VrqKXWYsDnU5ViWauFzYYUT0AyGj/KfqWwXDxN3Hn0HNlf+Zxf4qRSEUTD/zgtZ55wd
-         vatw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Hi+eKfkvL+1ELz8vCd2J8tALPiN2Yeq81v7WF2HdAvA=;
-        b=AL5dWC9EBJvKGSr4WEtGedbE3QvIAnPMiMFRr23F68u+6s5tybBf45Hs74SKsejEJS
-         a500DcH9fP3JuVhumt+LR5QzXAH7BW+DLNjYxy4UvFh3ElZqSrFyQXpRj4kfGq+V8Mky
-         jzilyFGONB900agBVqwARTpXSM9pId9pI1bGGoMeh7V/cSE13mpk56r9euGUBPaxoDNr
-         ywmu014WyoRoQtAPgezgHLRhDrrJHg57SckKxh+WrqmIkULu6sjbjKAioO1BdL6RYg9l
-         pES1xUcmiZ7W7SCUf3i52Szxhxp3g37O3OLzEOljhQM7Ep9v+0FYuuKVy42iIT7o1KiC
-         ddmQ==
-X-Gm-Message-State: AOAM53106hsdT+n2W8WjpqTOWCKeaRtlRETCaUDvacUcpPpvbCe8nTXt
-        N8J4VEHVgj048rXRsbIaZI6VaQ==
-X-Google-Smtp-Source: ABdhPJwv1sxGTZF0niRgbP0qtUDDm24paYlb1odjA9ejm9/YPSBr9Tb4EAnKGNswbr1L/KDB331RZA==
-X-Received: by 2002:a05:6870:a1a0:b0:d9:b198:4cfa with SMTP id a32-20020a056870a1a000b000d9b1984cfamr3722424oaf.159.1646328381877;
-        Thu, 03 Mar 2022 09:26:21 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id c26-20020a4ae25a000000b0031c268c5436sm1195619oot.16.2022.03.03.09.26.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 09:26:21 -0800 (PST)
-Date:   Thu, 3 Mar 2022 09:28:10 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
+        with ESMTP id S235379AbiCCRcE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 12:32:04 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CD2419E0A8;
+        Thu,  3 Mar 2022 09:31:18 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2234AADq028599;
+        Thu, 3 Mar 2022 11:31:04 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=84WJudr3xL0dnDa99zgx/2vbQMEBCtApcqUKb6n+efY=;
+ b=HypInva52hCFc29e6Nv9O3DrICfHRSSEQ0AAoQ2ML9sNQHTJ+L6KCmvpqsU8U/3H/pbp
+ NkGodak61EfPyU+MX2Q4Tvgv5z0ByntS35sawRFBzq4m645/LxUlg7kJ5iq4ZSHuu70n
+ qq2awF0yVCIVSoMKTb3g2h3Cz8SemV6qfbyOhoP6v04Wf2+ZPUdRRUqd6dYeaaEYaMkL
+ APIZ2wrTRX23oXyUUByJMXQTmPxAd4lj17lq086R69yd/UUxzGRJCqvsJL+1NOGYdvbU
+ s/WGIjfC6rvchwd8r80d8exjj7suA/RLFyYIvsGtitr8gRkp43q8ElrllOkLZ9VAAXvz BQ== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ejncq8ybk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 03 Mar 2022 11:31:04 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 3 Mar
+ 2022 17:31:02 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Thu, 3 Mar 2022 17:31:02 +0000
+Received: from aryzen.ad.cirrus.com (unknown [198.61.65.198])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id BAA842A1;
+        Thu,  3 Mar 2022 17:31:01 +0000 (UTC)
+From:   Lucas Tanure <tanureal@opensource.cirrus.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        linux-pwm <linux-pwm@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Luca Weiss <luca@z3ntu.xyz>
-Subject: Re: [PATCH v13 2/2] leds: Add driver for Qualcomm LPG
-Message-ID: <YiD6qrLC9B4A8sNz@ripper>
-References: <20220218183116.2261770-1-bjorn.andersson@linaro.org>
- <20220218183116.2261770-2-bjorn.andersson@linaro.org>
- <CAD=FV=UOLcu5xycimDsYTO1spwf=CMRPUSU3o0qRRC+a+zuRTQ@mail.gmail.com>
- <CAD=FV=We4Lv25h2XF6BsdYhMbYu4716LBuhAjH5N0s_HHt_Xcw@mail.gmail.com>
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lucas Tanure <tanureal@opensource.cirrus.com>
+Subject: [PATCH 00/20] Support external boost at CS35l41 ASoC driver
+Date:   Thu, 3 Mar 2022 17:30:39 +0000
+Message-ID: <20220303173059.269657-1-tanureal@opensource.cirrus.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=We4Lv25h2XF6BsdYhMbYu4716LBuhAjH5N0s_HHt_Xcw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 6tBsN7_2izzr_E_NtrMPINF7rOwLB622
+X-Proofpoint-GUID: 6tBsN7_2izzr_E_NtrMPINF7rOwLB622
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 03 Mar 08:41 PST 2022, Doug Anderson wrote:
+Move the support for CS35L41 external boost to its shared library
+for ASoC use.
+This move resulted in cs35l41_hda_reg_sequence being removed,
+and its steps were broken down into regmap writes or functions
+from the library. And hardware configuration struct was unified
+for its use in the shared lib.
+While at it, some minor bugs were found and fixed it.
 
-> Hi,
-> 
-> On Wed, Mar 2, 2022 at 4:03 PM Doug Anderson <dianders@chromium.org> wrote:
-> >
-> > Hi,
-> >
-> > On Fri, Feb 18, 2022 at 10:29 AM Bjorn Andersson
-> > <bjorn.andersson@linaro.org> wrote:
-> > >
-> > > +static void lpg_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> > > +                             struct pwm_state *state)
-> > > +{
-> > > +       struct lpg *lpg = container_of(chip, struct lpg, pwm);
-> > > +       struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
-> > > +       unsigned int pre_div;
-> > > +       unsigned int refclk;
-> > > +       unsigned int val;
-> > > +       unsigned int m;
-> > > +       u16 pwm_value;
-> > > +       int ret;
-> > > +
-> > > +       ret = regmap_read(lpg->map, chan->base + LPG_SIZE_CLK_REG, &val);
-> > > +       if (ret)
-> > > +               return;
-> > > +
-> > > +       refclk = lpg_clk_rates[(val & PWM_CLK_SELECT_MASK) - 1];
-> >
-> > I don't know why I didn't notice it before (maybe I was accidentally
-> > not building with KASAN?), but in my recent boots I'm getting a KASAN
-> > error pointing at the line above.
-> >
-> > Sure enough, the above looks a bit on the unsafe side. If (val & 0x3)
-> > is 0 then the "-1" will not be so wonderful. I put some printouts and,
-> > indeed, it's not so great.
-> >
-> > [    7.201635] DOUG: val is 0x00000004
-> >
-> > Amazingly my `refclk` ends up as 0 and I guess somehow this doesn't
-> > cause a divide by 0.
-> 
-> I dug a little more and found a document that talks about this
-> register. I guess the answer here is that at boot time on my device
-> the PWM is disabled and has never been enabled. That explains why, at
-> boot time, the "clk_select" is 0 AKA "no clock". So we do an invalid
-> memory access here and that's not so great, but it doesn't _truly_
-> cause any harm. All we need is something like this right before the
-> array dereference:
-> 
-> if ((val & PWM_CLK_SELECT_MASK) == 0)
->   return;
-> 
+David Rhodes (2):
+  ASoC: cs35l41: Fix GPIO2 configuration
+  Documentation: devicetree: CS35l41 External Boost
 
-Thanks for spotting and digging that up. I can confirm that the
-documentation has 0 as "no clock" and I think it would be nice if
-lpg_clk_rates[] reflected the possible hardware values. That way we can
-also get rid of the + 1 in lpg_apply_freq().
+Lucas Tanure (18):
+  ASoC: cs35l41: Fix max number of TX channels
+  ASoC: cs35l41: Fix DSP mbox start command and global enable order
+  ASoC: cs35l41: Remove unnecessary param
+  sound: cs35l41: Unify hardware configuration
+  sound: cs35l41: Check hw_config before using it
+  sound: cs35l41: Move cs35l41_gpio_config to shared lib
+  hda: cs35l41: Fix I2S params comments
+  hda: cs35l41: Always configure the DAI
+  hda: cs35l41: Add Boost type flag
+  hda: cs35l41: Put the device into safe mode for external boost
+  hda: cs35l41: Mute the device before shutdown
+  sound: cs35l41: Enable Internal Boost in shared lib
+  hda: cs35l41: Move boost config to initialization code
+  hda: cs35l41: Remove unnecessary log
+  hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+  hda: cs35l41: Handle all external boost setups the same way
+  hda: cs35l41: Move external boost handling to lib for ASoC use
+  ASoC: cs35l41: Support external boost
 
-I will fix this up, as well as fix up the indentation issue spotted by
-Uwe in the documentation and repost.
+ .../bindings/sound/cirrus,cs35l41.yaml        |  42 ++-
+ include/sound/cs35l41.h                       |  53 +++-
+ sound/pci/hda/cs35l41_hda.c                   | 296 +++++-------------
+ sound/pci/hda/cs35l41_hda.h                   |  27 +-
+ sound/soc/codecs/cs35l41-i2c.c                |   4 +-
+ sound/soc/codecs/cs35l41-lib.c                | 185 ++++++++++-
+ sound/soc/codecs/cs35l41-spi.c                |   4 +-
+ sound/soc/codecs/cs35l41.c                    | 174 +++++-----
+ sound/soc/codecs/cs35l41.h                    |   5 +-
+ 9 files changed, 431 insertions(+), 359 deletions(-)
 
-Regards,
-Bjorn
+-- 
+2.35.1
 
-> I'm still pretty interested in seeing this patch series land and, if
-> it helps it land sooner, I wouldn't object to the above getting fixed
-> in a followup patch.
-> 
-> -Doug
