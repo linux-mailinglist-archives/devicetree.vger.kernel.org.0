@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 175BB4CBB73
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:33:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE01D4CBB7C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:34:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232361AbiCCKeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 05:34:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45004 "EHLO
+        id S232402AbiCCKfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 05:35:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230452AbiCCKeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:34:19 -0500
-Received: from mail-qt1-x834.google.com (mail-qt1-x834.google.com [IPv6:2607:f8b0:4864:20::834])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE4832EEA
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 02:33:32 -0800 (PST)
-Received: by mail-qt1-x834.google.com with SMTP id s6so824765qtc.4
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 02:33:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hIUIRXFBoXE7LKj0blqQPxppbo/nPIraWqBU8j6waVY=;
-        b=VdUl2d8LLr7udWRlgutHX9PzKUBiepsWR4ZGSOZOMFfx4AWeOCur+bRsfqi1tbR81u
-         A4E/PYgAMzgVyMWZQZuiIiscLz1FUCnSRb6F+V9OV+YTEokff5b7+/uMR8jigHZ6wIeR
-         Ca1blU08Qz0fVJqoNlwxrclYlnOgMQMiZuuFvn9ass0VJRZLfggditK3iHpmZOAFOQY6
-         8CsOIemjBsMfjJ/dkxgBtrdOdEEStNkmr8W+cY3bLg/4ONpw8zJ6OtSum7vTE2hSmo5q
-         cjv83xod6p2z7GZYj6Vn6C5Z60uj5hrtl/baKGgHEuMRwsApzircFKgSM+k/H5wxlDMg
-         exKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hIUIRXFBoXE7LKj0blqQPxppbo/nPIraWqBU8j6waVY=;
-        b=ty/ir2NaSgSH7bXmDr5Utys0meJx8T+/FtgWM5rFOX81cFoAi/kLilSmzkT2UpbRuy
-         J86c7LVCnfYnLxU07deQGozWQtSlHiLg9R0Fnvpr9JFcQJI25IbG3hdFCIQqiITMWXCG
-         IS2a1jy6YteyEtdHL4+i4NV+PQzDqT6ni3t/C3FaELYEaIGVM5kKx/Y15AhFw7kI2zH8
-         iQqz7eGoItbbAdWdMiMy0WkpWfglnO0nWHqvFoCkXkBRC7D/AWnzqhrvLXJlWXs5mtaj
-         VXEe3iDqsF73iViYA7D6dPVAVhv2LDt++K3WJFa3Ma0REHk322ze3RSWINw8zWCCQWHi
-         qfvA==
-X-Gm-Message-State: AOAM532P23wkdoRSfEBl+cyNGiY6AtLdzZSLrA9qDJsl+1SHHI2piSYC
-        lOWaafl8jrpC0YukYFPg2wqPa60jOtzJ/Q4QJRYHUQ==
-X-Google-Smtp-Source: ABdhPJyr88hvBfvOgw+m1GCaBzh3gAlaA1b0BQe2hsLrUNDuXnLB77Rt8WPohBlyTN1KHHsy5mCgRdnHWPadzhTlr6s=
-X-Received: by 2002:a05:622a:1206:b0:2de:6fa4:41fb with SMTP id
- y6-20020a05622a120600b002de6fa441fbmr26633601qtx.295.1646303611639; Thu, 03
- Mar 2022 02:33:31 -0800 (PST)
+        with ESMTP id S232413AbiCCKfk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:35:40 -0500
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EAF3340D2;
+        Thu,  3 Mar 2022 02:34:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646303694; x=1677839694;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=U3CkbipzqRbVQQYh0KNk3tlacM3JmBcSMhxa/ULnS34=;
+  b=cdAxkBGfkumrfX2yaZdh0j+J0bSjBzm/GktY0+UKwQaz13zQB2U3hq6z
+   1FHzsq7ln9bKrnwoJUwT3N7C3gWLaIdG+M7ak43vf5yZjN4TZejNO8b66
+   +bd7B7YE0JFRi6815LH7ca/tsHGHbtDtuLud3Z0dc6ujHURFr5S3M6cjK
+   5zpy3EApPCCMbCn7r4xJy+cPClvuSUgPUCecfyT0nOawCb1kLRHIZWxaH
+   AvXFDb5u3mlmEwz/MATEvQUkciRpRzFHjyBwMCA6paG4BNLRsxyBf8zGW
+   dNtclbTaQzpHt/UU6qILe8dtpUXxnKbfj3VrLeU5Ssf86i7yvX+UmCvjC
+   w==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="237150278"
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; 
+   d="scan'208";a="237150278"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:34:53 -0800
+X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; 
+   d="scan'208";a="508542490"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:34:46 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nPimV-00Ak1G-2F;
+        Thu, 03 Mar 2022 12:33:59 +0200
+Date:   Thu, 3 Mar 2022 12:33:58 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Tyrone Ting <warp5tw@gmail.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 08/11] i2c: npcm: Correct register access width
+Message-ID: <YiCZlhJoXPLpQ6/D@smile.fi.intel.com>
+References: <20220303083141.8742-1-warp5tw@gmail.com>
+ <20220303083141.8742-9-warp5tw@gmail.com>
 MIME-Version: 1.0
-References: <20220303084824.284946-1-bhupesh.sharma@linaro.org> <20220303084824.284946-4-bhupesh.sharma@linaro.org>
-In-Reply-To: <20220303084824.284946-4-bhupesh.sharma@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Thu, 3 Mar 2022 13:33:20 +0300
-Message-ID: <CAA8EJpow=NPM5TrK24qsziVWgrD0cfbtwUxBD45CE2EQAg-msA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] clk: qcom: gcc: Add emac GDSC support for SM8150
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
-        mturquette@baylibre.com, linux-clk@vger.kernel.org,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220303083141.8742-9-warp5tw@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 3 Mar 2022 at 11:48, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
->
-> Add the EMAC GDSC defines and driver structures for SM8150.
->
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  drivers/clk/qcom/gcc-sm8150.c               | 10 ++++++++++
->  include/dt-bindings/clock/qcom,gcc-sm8150.h |  1 +
->  2 files changed, 11 insertions(+)
->
-> diff --git a/drivers/clk/qcom/gcc-sm8150.c b/drivers/clk/qcom/gcc-sm8150.c
-> index 85a431ac417b..08ba29e3a835 100644
-> --- a/drivers/clk/qcom/gcc-sm8150.c
-> +++ b/drivers/clk/qcom/gcc-sm8150.c
-> @@ -3448,6 +3448,15 @@ static struct clk_branch gcc_video_xo_clk = {
->         },
->  };
->
+On Thu, Mar 03, 2022 at 04:31:38PM +0800, Tyrone Ting wrote:
+> From: Tyrone Ting <kfting@nuvoton.com>
+> 
+> Use ioread8 instead of ioread32 to access the SMBnCTL3 register since
+> the register is only 8-bit wide.
 
-Is it available on sm8150 or only on sa8155au? I think this deserves
-at least a comment.
+> Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller driver")
 
-> +static struct gdsc emac_gdsc = {
-> +       .gdscr = 0x6004,
-> +       .pd = {
-> +               .name = "emac_gdsc",
-> +       },
-> +       .pwrsts = PWRSTS_OFF_ON,
-> +       .flags = POLL_CFG_GDSCR,
-> +};
-> +
->  static struct gdsc usb30_prim_gdsc = {
->         .gdscr = 0xf004,
->         .pd = {
-> @@ -3714,6 +3723,7 @@ static const struct qcom_reset_map gcc_sm8150_resets[] = {
->  };
->
->  static struct gdsc *gcc_sm8150_gdscs[] = {
-> +       [EMAC_GDSC] = &emac_gdsc,
->         [USB30_PRIM_GDSC] = &usb30_prim_gdsc,
->         [USB30_SEC_GDSC] = &usb30_sec_gdsc,
->  };
-> diff --git a/include/dt-bindings/clock/qcom,gcc-sm8150.h b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> index 3e1a91876610..40596b9ded06 100644
-> --- a/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> +++ b/include/dt-bindings/clock/qcom,gcc-sm8150.h
-> @@ -243,5 +243,6 @@
->  /* GCC GDSCRs */
->  #define USB30_PRIM_GDSC                     4
->  #define USB30_SEC_GDSC                                         5
-> +#define EMAC_GDSC                                              6
->
->  #endif
-> --
-> 2.35.1
->
+No, this is bad commit message, since you have bitwise masks and there is
+nothing to fix from functional point of view. So, why is this a fix?
 
+> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+
+This is wrong SoB chain.
+
+...
+
+> -	return !!(I2CCTL3_SCL_LVL & ioread32(bus->reg + NPCM_I2CCTL3));
+> +	return !!(I2CCTL3_SCL_LVL & ioread8(bus->reg + NPCM_I2CCTL3));
+
+...
+
+> -	return !!(I2CCTL3_SDA_LVL & ioread32(bus->reg + NPCM_I2CCTL3));
+> +	return !!(I2CCTL3_SDA_LVL & ioread8(bus->reg + NPCM_I2CCTL3));
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
