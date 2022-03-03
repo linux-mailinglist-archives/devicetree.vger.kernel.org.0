@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F072A4CB5B4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:01:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD92C4CB5C2
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:01:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229639AbiCCECH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 23:02:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
+        id S229685AbiCCECJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 2 Mar 2022 23:02:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbiCCECE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 23:02:04 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E869515D3B2
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:01:18 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id t11so5794206wrm.5
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 20:01:18 -0800 (PST)
+        with ESMTP id S229679AbiCCECG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 23:02:06 -0500
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D452615D3B6
+        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:01:19 -0800 (PST)
+Received: by mail-wr1-x42d.google.com with SMTP id r10so5799636wrp.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 20:01:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=qImSYxU2i/y/qV71r8EFW+LTWk9ZfhM4KeM2jcTcklQ=;
-        b=Yh1eogp3N1ugymSzZK9htzlenKX8GfJBQ9WV7MDTL5SUK10yARpdHoeVUgk6PpVSGD
-         itB9HWNjMmE0UIyS25ruimsyNA5jLEt8KXRLcvsQXq0h1mKctbuvbzc/OXeFNo1t/YEs
-         uhTYrVsfcSMrd6uUo8U5xp4aSNEPiggU/1k1+pk+iKBsADEiG17Fb9/8U0TALT1Fai0p
-         CxSbYiSBHt7aMncd5hmNum8la3++zH4xlz8vZCCgwB5DTRVWA1kMDrb8UEBzgAkahZwq
-         iO0cv7c9ugGQD54Rl9s5/ZXBCaqfP8h8cQvE5tWrmNf01dIQnazyd6icRNP1T6LrfeRn
-         CMag==
+        bh=o/d166yo9TtkM4+c7x0I89HNNMPO2K1Na/pBqagV1Y0=;
+        b=VkutF0q0fOnvXI7kbebPEJC4CziHOovcJmxBUQDSOVoNT/TQpj2XLeeHdgFseQO4gT
+         V+ZBcG7BNHaNE7EE473b5Vp+u+glVexg3UxEyqCHhapjJs87e/Bjh+6j/osdvZbceI0I
+         1cVc8hICTRqkHpIo3V14UoGhCXwTIZWqH4bgEUO62RjpcIZ0pzZPrM39dyolDcf/6wgQ
+         PHt7kqHVSPRwEiVcIq8BuUxXf2lR/S+LENwFt5gwKAepOKd+QT6qX7h73N8YavjOXTrN
+         HXMwrnwf7L6HHaSmJQjiNwSGwm9utzUiBhrsNMAgWUqr6pGIIJm4oop2heszD+Na9wku
+         ykXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=qImSYxU2i/y/qV71r8EFW+LTWk9ZfhM4KeM2jcTcklQ=;
-        b=I0PvaWRTb1ptxW3/xr7sR8J8tCvTTZx/UYW7y+mJBDUehWo44Iq3r9SpxfprFPDGzr
-         pEFAjMMwxraBNY56iVZbg1reUobycjXuDGu6swougtG+5lGjbPUCfsoYt9GFG4YZdrin
-         ZJZZUGwhCtge6JzZp45MZsTVPGTcqyPjVtdNfqrnDytrKtBuQbWamRSpx7bMCnZU/yjr
-         rWEH/CaYlwVp3wj6iDLssPieDRAOFbWoqc0Z4DP8zKzPM5jyD/6UvprerztwEymfdkZB
-         x7BSX5y8vZU41hh1BSyIfVLbEn/X9E07MA5qkkWROx7JjSCw9Sgyi3XI4cUtqw4Kn8jB
-         qzxw==
-X-Gm-Message-State: AOAM530CKAyV2RoveO/KWiJ0K8zoFJYDZ5FzisEtiDKeIxKvnqX9fPEF
-        QA5WDuDEPnwCSxTa745QzOKGWw==
-X-Google-Smtp-Source: ABdhPJz9ghxh9GXiWJH62ZkCnE2MDHsoxw49C7l0LPpn1fBD2fGCSAhWi5yQacKDitsyq229QNEKNw==
-X-Received: by 2002:a05:6000:1aca:b0:1ef:b7c5:896d with SMTP id i10-20020a0560001aca00b001efb7c5896dmr14693398wry.572.1646280077465;
-        Wed, 02 Mar 2022 20:01:17 -0800 (PST)
+        bh=o/d166yo9TtkM4+c7x0I89HNNMPO2K1Na/pBqagV1Y0=;
+        b=t3arvg0DjsqReasnAp9C4hOtLXQnb1c+NRblO8Lx5Ngmd9bFswdLRQ0/iwDxrrQQkW
+         zV2gTPZU1QSog4DNB5aTycjOiJwh1bKUrl/3qmxmeKt6Ub2woHS12KA070XTt54wNpeR
+         GsEltk0hWH+EAUlo2q6mNxRCMKE5hrPBbql5S9OnGSuXEdwU98mz+2wT10yBPu2Lwjd1
+         NL8SyVj8wZkHsC4smcyXPpZFO0fEAF1HQP5zQaBo6K5k0DuNWL5s/tlOX2exAgZRgeqp
+         G/g7UVca1spjincmt+5JHXy+wwwsJNhlMpjqIi2sipFezjPVihCQtS9wu1ryTEnYbeBN
+         IE1g==
+X-Gm-Message-State: AOAM532xc1M9fQ1XZvj3+y/SBrqu+TY0Y26zwWoa/oFbm14Dg3xQSyJ2
+        gTTXKH1+6JXIII76Su+A5SLV8w==
+X-Google-Smtp-Source: ABdhPJy6mifwCkcMePMaf4iKws53ggzWv0YohWJmH42BDUO2HCS7i7n9m2ZCK2UdLIPY32DaKBfq2Q==
+X-Received: by 2002:adf:ef4d:0:b0:1ed:c131:8b4d with SMTP id c13-20020adfef4d000000b001edc1318b4dmr24635672wrp.102.1646280078486;
+        Wed, 02 Mar 2022 20:01:18 -0800 (PST)
 Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id r16-20020a5d4e50000000b001f0075f4ca1sm702615wrt.105.2022.03.02.20.01.16
+        by smtp.gmail.com with ESMTPSA id r16-20020a5d4e50000000b001f0075f4ca1sm702615wrt.105.2022.03.02.20.01.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Mar 2022 20:01:16 -0800 (PST)
+        Wed, 02 Mar 2022 20:01:18 -0800 (PST)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
 To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
@@ -58,9 +58,9 @@ To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
 Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
         john.stultz@linaro.org
-Subject: [PATCH v9 7/9] arm64: dts: qcom: sdm845-oneplus: enable rradc
-Date:   Thu,  3 Mar 2022 04:00:33 +0000
-Message-Id: <20220303040035.1454103-8-caleb.connolly@linaro.org>
+Subject: [PATCH v9 8/9] arm64: dts: qcom: sdm845-db845c: enable rradc
+Date:   Thu,  3 Mar 2022 04:00:34 +0000
+Message-Id: <20220303040035.1454103-9-caleb.connolly@linaro.org>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20220303040035.1454103-1-caleb.connolly@linaro.org>
 References: <20220303040035.1454103-1-caleb.connolly@linaro.org>
@@ -68,7 +68,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,18 +76,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the RRADC for the OnePlus 6.
+Enable the Round Robin ADC for the db845c.
 
 Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 4 ++++
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index 7f42e5315ecb..e8287cf02511 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -450,6 +450,10 @@ pinconf {
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+index 13f80a0b6faa..1c452b458121 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
+@@ -595,6 +595,10 @@ resin {
  	};
  };
  
@@ -95,9 +95,9 @@ index 7f42e5315ecb..e8287cf02511 100644
 +	status = "okay";
 +};
 +
- &qupv3_id_1 {
- 	status = "okay";
- };
+ /* QUAT I2S Uses 4 I2S SD Lines for audio on LT9611 HDMI Bridge */
+ &q6afedai {
+ 	qi2s@22 {
 -- 
 2.35.1
 
