@@ -2,148 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 160D74CB998
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:50:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E58A4CB99C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:51:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231483AbiCCIuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 03:50:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33858 "EHLO
+        id S229934AbiCCIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 03:51:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230378AbiCCIui (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:50:38 -0500
-Received: from the.earth.li (the.earth.li [IPv6:2a00:1098:86:4d:c0ff:ee:15:900d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 914F4175871;
-        Thu,  3 Mar 2022 00:49:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=earth.li;
-        s=the; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:
-        Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=JraoEzfEu6BVdZPY22b9hr2HRvi9Lg4wAD5QnaTlQvQ=; b=Uzu5ikcdaD2LeKuz7YlSfqL2Rd
-        zHmlzoo/7Rp94sqmn55Y/prB0TYZe/9B8ocnsqcxOeflHQ8BQFcwYU9Gc8A17OfgljU5DWsREfzox
-        pGqr0j3osNbyhYjud8eLurnfnoAsSq8AuhFCMVsARC5/MCGJbMIFgkKVD3/YvaV0X7cukuL6khjr4
-        dCSs9kLBkqv3FYqdxHTWdgWYUzFyWA5ucAcuVCJeYbJEdGipec3/oEUetYU1CVBAaG6F9ZOxATauF
-        2yq9GIlMYgqieGSRGmOpttxgLxwTtZtU9DDm/9EPTz+H1jIU9cGhwPRK1+AvYnxH50KelgKX3eGWo
-        ofb6PtZA==;
-Received: from noodles by the.earth.li with local (Exim 4.94.2)
-        (envelope-from <noodles@earth.li>)
-        id 1nPh9U-00287t-A6; Thu, 03 Mar 2022 08:49:36 +0000
-Date:   Thu, 3 Mar 2022 08:49:36 +0000
-From:   Jonathan McDowell <noodles@earth.li>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 00/15] Multiple addition and improvement to ipq8064 gcc
-Message-ID: <YiCBIIA1FU1DbOso@earth.li>
-References: <20220226135235.10051-1-ansuelsmth@gmail.com>
+        with ESMTP id S231213AbiCCIv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:51:56 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1582A1768D4
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:51:10 -0800 (PST)
+Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 728723F043
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 08:51:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646297468;
+        bh=oNR1xncvu3qu9e99bCBj3dwVF0BkMGGG1dhnvvFNoac=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=nDfYnWCjUZND/S1iel++m/U2zVvpNN2248i3w/EmBuJB7sBaxuHA6Ovo6u6PDMjWt
+         2i76OI8G2031eAyvuKJyWl8Zrnd3RI7jg5ca++QnsYvLMzFIUNduN7bNO8tHm7Lcik
+         flYqD/mYCtenXYGT/nRuayaV1TTOYc9BoxdZtVn8aBd5kygUhsk+4rOvrWmSa6kS6v
+         A1qYFztDbuUdmyNJE4HUT2njWi59PZLYlrqD2xvLZBJE+ttXE6j8yxwUQlYeQkj+OL
+         A/bVTiPgp3YCRgE8ewp4pb5QIirmTDkJz9358aUYs9TLPH+synrXVMTe93enkWKzlC
+         uyuxT63H+4icA==
+Received: by mail-wr1-f69.google.com with SMTP id b7-20020a05600003c700b001efac398af7so1765843wrg.22
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 00:51:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=oNR1xncvu3qu9e99bCBj3dwVF0BkMGGG1dhnvvFNoac=;
+        b=7K/XLgO9S7QhcA+bcuoIDrkSuEPD4ltVbX3oDVrWbaO6ZZ1KAPzjXGDV8Fa/DX81AN
+         8ysi38R2+jIf/oxWWaWh3jILPIW3PMY8ZFclMqGWe09KZvPT4gl0K/AOuGwwgjndA/pJ
+         OgpRv1HhAdVdwNBC/729hD5HkFM2XJaarZolTcCkYz3HrtsWSVObGKCLcwcaOt4EtvSl
+         lNFqLvNXOdr+uIl8BNrt9qK6kJkypyUq09uwuK7+nLYvBJRMQYwRaghxycvL4UFHQRwC
+         45SROSoTQmBjRQAqT+h0vEUdCPasgMwH8dkAgGHagw/AC9T1B/Q6uNSh5iKXIQm/VjbG
+         zgIg==
+X-Gm-Message-State: AOAM533Bz60tRctWG61xe5XT7XSBmrKKxGRhJrQ0GZOMLa+pwna1cEhx
+        ik/41mIinDdkwzMwZ9GjeOSXiGUzN8N2QWOjqovRtP8SA2XcQUG8rtpgpD9CpFLZ6LYEnUcPl3t
+        y4eDhHUbMmhAvBY4SK5AdTjNXHILEIfx6tyo3X2E=
+X-Received: by 2002:adf:bc09:0:b0:1f0:2483:48b with SMTP id s9-20020adfbc09000000b001f02483048bmr6268549wrg.118.1646297468110;
+        Thu, 03 Mar 2022 00:51:08 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwA4DWyqvBE/19fVpLvop30/yN6VpcN05Y2xu45Wxe3oLMpDg0yQrlkrZEwCwPDWIh6S2wwjw==
+X-Received: by 2002:adf:bc09:0:b0:1f0:2483:48b with SMTP id s9-20020adfbc09000000b001f02483048bmr6268536wrg.118.1646297467942;
+        Thu, 03 Mar 2022 00:51:07 -0800 (PST)
+Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id o13-20020a5d648d000000b001efd62a840dsm1483242wri.111.2022.03.03.00.51.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 00:51:07 -0800 (PST)
+Message-ID: <2674d7af-56cd-b2fc-74d9-ade32ada7bf9@canonical.com>
+Date:   Thu, 3 Mar 2022 09:51:06 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220226135235.10051-1-ansuelsmth@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: kbuild: Support partial matches with
+ DT_SCHEMA_FILES
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220228201006.1484903-1-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220228201006.1484903-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Feb 26, 2022 at 02:52:20PM +0100, Ansuel Smith wrote:
-> This is an attempt in making the ipq8064 SoC actually usable. Currently
-> many feature are missing for this SoC and devs user off-the-tree patches
-> to make it work (example patch for missing clock, patch for cpufreq
-> driver, patch to add missing node in the dts)
+On 28/02/2022 21:10, Rob Herring wrote:
+> DT_SCHEMA_FILES is currently restricted to a list of exact files with
+> the full source tree path (i.e. Documentation/devicetree/bindings/...).
+> Loosen this requirement and let DT_SCHEMA_FILES be a partial match.
 > 
-> I notice there was some work in modernizing the gcc driver for other
-> qcom target but this wasn't done for ipq806x. This does exactly this, we
-> drop any parent_names stuff and we switch to the parent_data way. We
-> also drop the pxo and cxo source clk from gcc driver and we refer to the
-> dts for it.
+> With this, checking all schema files in a directory is possible:
 > 
-> This also add all the missing feature for the nss cores and the
-> cryptoengine in them. It does also introduce the required flags to make
-> the RPM actually work and NOT reject any command. There was an attempt
-> in declaring these clock as core clock in the dts but this ends up in no
-> serial as the kernel makes these clock not accessible. We just want to
-> make the kernel NOT disable them if unused nothing more.
+> $ make DT_SCHEMA_FILES=/gpio/ dt_binding_check
 > 
-> At the end we update the ipq8064 dtsi to add the pxo and cxo tag and
-> declare them in gcc and also fix a problem with tsens probe.
+> Or all schema files with 'qcom' in the path or filename:
+> 
+> $ make DT_SCHEMA_FILES=qcom dt_binding_check
+> 
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/Makefile        | 15 +++++----------
+>  .../devicetree/bindings/writing-schema.rst        |  9 +++++----
+>  2 files changed, 10 insertions(+), 14 deletions(-)
+> 
 
-FWIW, series tested on my RB3011. No regressions, tsens driver now
-correctly loads.
 
-Tested-by: Jonathan McDowell <noodles@earth.li>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-> v6:
-> - Add more info about the changed define
-> - Fixed wrong definition for pxo/cxo parent map
-> v5:
-> - Drop patch removing fixed clk
-> - Use name in parent_data to keep compatibility with old dtb
-> - Fix error in the documentation commits
-> - Keep old copyright for gcc documentation
-> - Fix an error with the rcg floor ops
-> - Set nss clk based on the device compatible
-> v4:
-> - Drop drivers in all the patches.
-> - Introduce floor ops for sdc
-> - gcc.yaml to gcc-other.yaml
-> - gcc-common.yaml to gcc.yaml
-> v3:
-> - Rework Documentation with Rob suggestions
-> v2:
-> - Fix error from Rob bot.
-> - Add additional commits to make qcom,gcc.yaml a template
-> - Squash parent_hws patch with the modernize patch
-> - Create gcc_pxo instead of using long define.
-> 
-> Ansuel Smith (15):
->   dt-bindings: clock: split qcom,gcc.yaml to common and specific schema
->   dt-bindings: clock: simplify qcom,gcc-apq8064 Documentation
->   dt-bindings: clock: document qcom,gcc-ipq8064 binding
->   clk: qcom: gcc-ipq806x: fix wrong naming for gcc_pxo_pll8_pll0
->   clk: qcom: gcc-ipq806x: convert parent_names to parent_data
->   clk: qcom: gcc-ipq806x: use ARRAY_SIZE for num_parents
->   clk: qcom: gcc-ipq806x: add additional freq nss cores
->   clk: qcom: gcc-ipq806x: add unusued flag for critical clock
->   clk: qcom: clk-rcg: add clk_rcg_floor_ops ops
->   clk: qcom: gcc-ipq806x: add additional freq for sdc table
->   dt-bindings: clock: add ipq8064 ce5 clk define
->   clk: qcom: gcc-ipq806x: add CryptoEngine clocks
->   dt-bindings: reset: add ipq8064 ce5 resets
->   clk: qcom: gcc-ipq806x: add CryptoEngine resets
->   ARM: dts: qcom: add syscon and cxo/pxo clock to gcc node for ipq8064
-> 
->  .../bindings/clock/qcom,gcc-apq8064.yaml      |  29 +-
->  .../bindings/clock/qcom,gcc-ipq8064.yaml      |  76 ++
->  .../bindings/clock/qcom,gcc-other.yaml        |  70 ++
->  .../devicetree/bindings/clock/qcom,gcc.yaml   |  59 +-
->  arch/arm/boot/dts/qcom-ipq8064.dtsi           |   8 +-
->  drivers/clk/qcom/clk-rcg.c                    |  24 +
->  drivers/clk/qcom/clk-rcg.h                    |   1 +
->  drivers/clk/qcom/gcc-ipq806x.c                | 649 +++++++++++++-----
->  include/dt-bindings/clock/qcom,gcc-ipq806x.h  |   5 +-
->  include/dt-bindings/reset/qcom,gcc-ipq806x.h  |   5 +
->  10 files changed, 685 insertions(+), 241 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-ipq8064.yaml
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,gcc-other.yaml
-> 
-> -- 
-> 2.34.1
 
-J.
-
--- 
-Web [            Even the Evening Herald slags me off.             ]
-site: https:// [                                          ]      Made by
-www.earth.li/~noodles/  [                      ]         HuggieTag 0.0.24
+Best regards,
+Krzysztof
