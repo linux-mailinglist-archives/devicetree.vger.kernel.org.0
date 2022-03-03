@@ -2,151 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7E54CC68E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 20:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F854CC69C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 20:55:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232403AbiCCTv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 14:51:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
+        id S234187AbiCCTzu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 14:55:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46260 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231815AbiCCTv1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 14:51:27 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FE051A2766;
-        Thu,  3 Mar 2022 11:50:41 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id u17-20020a056830231100b005ad13358af9so5508502ote.11;
-        Thu, 03 Mar 2022 11:50:41 -0800 (PST)
+        with ESMTP id S235260AbiCCTzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 14:55:50 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB618186B99
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 11:55:03 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id m6so9463188wrr.10
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 11:55:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=zsIbz0/b386hU/ZdkOSBubB6mU+6IwbbmnEE1Ycu+MY=;
+        b=P2/lLp3fpnzXDyB/a8TOfUWFAEABVhPQyw4vrBIqcCPNSqVsh75hfUEo7ksNNW/Lcb
+         ORQN/swrL9IYwChFBbsy08B20shjCFURo9fA0UgjDt75cIZKeskIDctWDweIMszbiF6m
+         3+nmbWDgvuxmybGFmrYHRHpPTjZCB/qljmJZ3vd6zWuX2A0yZ1UHZY77KScrPe2Ub+16
+         4cEBAP5AxkTO00SGIVZ8/zdzMBBN5llAfSpc1JftBSSCtowCDLpqBx1t2zciHAwnwV+W
+         7sLq/+PwEBc8tt8f0vczCDQUcL29TKHITgigXYDaIVbTLoXTERVs1vX0tt/vf35T8kAu
+         f+tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=WhMaxl9TNUY7wmimyJIBPEvN19wmFM03Xz5lz5R1wLg=;
-        b=cby+1l5RDded3QZDCUgDLdBTfNimHJK3k3b/tgDG0jF/z1M60ExT2A2PjQvx6vmUJc
-         L/ZhC7bNyZ/fbWYaPgHzNl/ELl23olCvqMmB7jRJs+dh7zbKfw8QPBp9FazH1liRKGE3
-         6Bb/4FN0sgdjQy0k/30HaMT4by1EDiN24kdPpF9Me1I0uYJsdZl7ilY4NQ1+gBhs+PIM
-         PGra8voYzA9fMVvNYeZwglqYQl4tSUKJQerVV8AMtFRUFQW8xhQSxOe5wh5EbnPxQWfZ
-         +nQowAmPc6lViWmrFmYvBYLVJVJegkJ+Gw/F2OHexKr/7JmB7+ECrJWen18x6mfsES65
-         hfQA==
-X-Gm-Message-State: AOAM532SBs3+Fmve6fgIDkhdWDBdAZbUVr7VHv2h/RAHC/Jv22VMMzRC
-        5durE37Y2Wv2MHnoBUyevl/QOCltbg==
-X-Google-Smtp-Source: ABdhPJxNkjR26g3ZjckCD3XAvZYDK3jRzlipdtAmUPlc+MmhHO0P1uj50SZKAybUR7H9R9TVdomSGQ==
-X-Received: by 2002:a05:6830:920:b0:5af:ca85:67c4 with SMTP id v32-20020a056830092000b005afca8567c4mr18478108ott.363.1646337040861;
-        Thu, 03 Mar 2022 11:50:40 -0800 (PST)
-Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.googlemail.com with ESMTPSA id bm5-20020a056820188500b0031c42eb457csm1367350oob.43.2022.03.03.11.50.39
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=zsIbz0/b386hU/ZdkOSBubB6mU+6IwbbmnEE1Ycu+MY=;
+        b=z+GPLc7YIjzVSUahFvzZdXa3OHO943LhDshSL+zsteVxSVhIq2TAERtH2BmxyUfq67
+         GjPUt29E4uKdo/9VXYk0VX60Fh+CHxAcqjE6TqE02RxX/Plwibigp+FGkUrexEUH9ugi
+         jMnOabvkUe+xY3ede8hmPKIFDgoOrAlgLcl3hoP3nvYilRxyZA/kbkhpv/bS1evQj0VH
+         J3C4nqfQgt0fZi7PgMknBre/cVgfIK5Y7Oy4Q4lFjD9Egy/vSa2++PiBj68CZTrhMtey
+         9b0S8C6d8UktZYWk76KgEs+EOFje/ErAi5HQH3AgyrCt3xjBirttPRoTyVtAFfklsmjJ
+         H0Eg==
+X-Gm-Message-State: AOAM531xV9VDtkUVdYRGg1HOu6csV3Mbvy3Drln9otI07xdiuWPBOAk1
+        x9W+xmnhwb7WPhhjlAGt8eWEBpAOsg/0aw==
+X-Google-Smtp-Source: ABdhPJwSAaV6ui1w2AUfj/WG1jEQ2FypYIkPGjDYhD/nRjjjEqPVDKL8xOYDM+Z1Oa9dFUUITZz1Yw==
+X-Received: by 2002:a5d:5407:0:b0:1f0:1246:5a8c with SMTP id g7-20020a5d5407000000b001f012465a8cmr10294116wrv.193.1646337302326;
+        Thu, 03 Mar 2022 11:55:02 -0800 (PST)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id x2-20020a7bc762000000b00380fd1ba4ebsm16466518wmk.9.2022.03.03.11.55.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 11:50:40 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        - <patches@opensource.cirrus.com>
-Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: mfd: Fix pinctrl node name warnings
-Date:   Thu,  3 Mar 2022 13:50:34 -0600
-Message-Id: <20220303195034.2261989-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        Thu, 03 Mar 2022 11:55:01 -0800 (PST)
+Date:   Thu, 3 Mar 2022 20:54:58 +0100
+From:   LABBE Corentin <clabbe@baylibre.com>
+To:     John Keeping <john@metanate.com>
+Cc:     heiko@sntech.de, herbert@gondor.apana.org.au, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v2 06/18] crypto: rockchip: add fallback for cipher
+Message-ID: <YiEdEoX79kDp8kUY@Red>
+References: <20220302211113.4003816-1-clabbe@baylibre.com>
+ <20220302211113.4003816-7-clabbe@baylibre.com>
+ <YiDO8Tt9Lhx530Oz@donbot>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <YiDO8Tt9Lhx530Oz@donbot>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
-pinctrl: use pinctrl.yaml") resulted in some node name warnings:
+Le Thu, Mar 03, 2022 at 02:21:37PM +0000, John Keeping a �crit :
+> On Wed, Mar 02, 2022 at 09:11:01PM +0000, Corentin Labbe wrote:
+> > The hardware does not handle 0 size length request, let's add a
+> > fallback.
+> > Furthermore fallback will be used for all unaligned case the hardware
+> > cannot handle.
+> > 
+> > Fixes: ce0183cb6464b ("crypto: rockchip - switch to skcipher API")
+> > Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> > ---
+> >  drivers/crypto/rockchip/rk3288_crypto.h       |  2 +
+> >  .../crypto/rockchip/rk3288_crypto_skcipher.c  | 97 ++++++++++++++++---
+> >  2 files changed, 86 insertions(+), 13 deletions(-)
+> > 
+> > diff --git a/drivers/crypto/rockchip/rk3288_crypto.h b/drivers/crypto/rockchip/rk3288_crypto.h
+> > index c919d9a43a08..8b1e15d8ddc6 100644
+> > --- a/drivers/crypto/rockchip/rk3288_crypto.h
+> > +++ b/drivers/crypto/rockchip/rk3288_crypto.h
+> > @@ -246,10 +246,12 @@ struct rk_cipher_ctx {
+> >  	struct rk_crypto_info		*dev;
+> >  	unsigned int			keylen;
+> >  	u8				iv[AES_BLOCK_SIZE];
+> > +	struct crypto_skcipher *fallback_tfm;
+> >  };
+> >  
+> >  struct rk_cipher_rctx {
+> >  	u32				mode;
+> > +	struct skcipher_request fallback_req;   // keep at the end
+> >  };
+> >  
+> >  enum alg_type {
+> > diff --git a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > index bbd0bf52bf07..bf9d398cc54c 100644
+> > --- a/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > +++ b/drivers/crypto/rockchip/rk3288_crypto_skcipher.c
+> > @@ -13,6 +13,63 @@
+> >  
+> >  #define RK_CRYPTO_DEC			BIT(0)
+> >  
+> > +static int rk_cipher_need_fallback(struct skcipher_request *req)
+> > +{
+> > +	struct scatterlist *sgs, *sgd;
+> > +
+> > +	if (!req->cryptlen)
+> > +		return true;
+> > +
+> > +	sgs = req->src;
+> > +	while (sgs) {
+> > +		if (!IS_ALIGNED(sgs->offset, sizeof(u32))) {
+> > +			return true;
+> > +		}
+> > +		if (sgs->length % 16) {
+> 
+> Can this be relaxed to check for alignment to 4 rather than 16?  That's
+> the requirement for programming the registers.
 
-Documentation/devicetree/bindings/mfd/cirrus,lochnagar.example.dt.yaml: \
- lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml: \
- codec@1a: $nodename:0: 'codec@1a' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: \
- pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+No we cannot, the hardware could operate only one SG at a time, and the cipher operation need to be complete, so the length should be a multiple of AES_BLOCK_SIZE.
+The original driver already have this size check.
+But for DES/3DES this check is bad and should be 8, so a fix is needed anyway.
 
-Fix the node names to the preferred 'pinctrl'. For cirrus,madera,
-nothing from pinctrl.yaml schema is used, so just drop the reference.
+> 
+> But I think this check is wrong in general as it doesn't account for
+> cryptlen; with fscrypt I'm seeing sgs->length == 255 but cryptlen == 16
+> so the hardware can be used but at the moment the fallback path is
+> triggered.
 
-Fixes: c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml")
-Cc: Rafał Miłecki <rafal@milecki.pl>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Fix lochnagar-pinctrl nodename in example
+Yes, I need to check min(sg->length, cryptlen_remaining) instead.
+I will fix that.
 
- Documentation/devicetree/bindings/mfd/brcm,cru.yaml          | 4 ++--
- Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml  | 4 ++--
- Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml | 3 ---
- 3 files changed, 4 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-index be4a2df71c25..b85819fbb07c 100644
---- a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-+++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-@@ -39,7 +39,7 @@ patternProperties:
-   '^phy@[a-f0-9]+$':
-     $ref: ../phy/bcm-ns-usb2-phy.yaml
- 
--  '^pin-controller@[a-f0-9]+$':
-+  '^pinctrl@[a-f0-9]+$':
-     $ref: ../pinctrl/brcm,ns-pinmux.yaml
- 
-   '^syscon@[a-f0-9]+$':
-@@ -94,7 +94,7 @@ examples:
-             reg = <0x180 0x4>;
-         };
- 
--        pin-controller@1c0 {
-+        pinctrl@1c0 {
-             compatible = "brcm,bcm4708-pinmux";
-             reg = <0x1c0 0x24>;
-             reg-names = "cru_gpio_control";
-diff --git a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-index c00ad3e21c21..a04570335b76 100644
---- a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-+++ b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-@@ -126,7 +126,7 @@ properties:
-       clock-frequency:
-         const: 12288000
- 
--  lochnagar-pinctrl:
-+  pinctrl:
-     type: object
-     $ref: /schemas/pinctrl/cirrus,lochnagar.yaml#
- 
-@@ -293,7 +293,7 @@ examples:
-                 clock-frequency = <32768>;
-             };
- 
--            lochnagar-pinctrl {
-+            pinctrl {
-                 compatible = "cirrus,lochnagar-pinctrl";
- 
-                 gpio-controller;
-diff --git a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-index c85f759ae5a3..8a90d8273767 100644
---- a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
-@@ -107,9 +107,6 @@ properties:
- 
-     additionalProperties: false
- 
--allOf:
--  - $ref: "pinctrl.yaml#"
--
- required:
-   - pinctrl-0
-   - pinctrl-names
--- 
-2.32.0
-
+Thanks.
