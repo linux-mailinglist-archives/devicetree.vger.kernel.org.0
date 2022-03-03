@@ -2,101 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 377494CBD3A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 12:58:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CFAD4CBD45
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 13:00:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231231AbiCCL7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 06:59:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39558 "EHLO
+        id S231926AbiCCMBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 07:01:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229837AbiCCL7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 06:59:14 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 25149133971
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 03:58:29 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E589C1424;
-        Thu,  3 Mar 2022 03:58:28 -0800 (PST)
-Received: from [10.57.39.47] (unknown [10.57.39.47])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 81ACC3F70D;
-        Thu,  3 Mar 2022 03:58:24 -0800 (PST)
-Message-ID: <fa051752-c98a-df6f-27a3-dd4c0de1caf5@arm.com>
-Date:   Thu, 3 Mar 2022 11:58:24 +0000
+        with ESMTP id S231440AbiCCMB3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 07:01:29 -0500
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED7DC16C4F8
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 04:00:42 -0800 (PST)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 223C0cn7019436;
+        Thu, 3 Mar 2022 06:00:38 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1646308838;
+        bh=1hPLlw/UbYRvdcMP1ZW1HcC6JRcyfF82h6/EdTktyGE=;
+        h=From:To:CC:Subject:Date;
+        b=FAiNQynvu2J01UyW6p6wA9IwYh2ScIuYJI5PgDG3OvH2CUvww9zccM3osVg6mjxic
+         RhVX7w7OjL2H3TlWfrlvknJ4zqxoyjwol/8TKfq2YqT0MUDRWJHuD+cpEuChdliocN
+         lBxFZIiVZImfQQ+SChwriOTSnRinKyWqz5X4hOK8=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 223C0c9O012119
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 3 Mar 2022 06:00:38 -0600
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Thu, 3
+ Mar 2022 06:00:38 -0600
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
+ Frontend Transport; Thu, 3 Mar 2022 06:00:37 -0600
+Received: from localhost.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 223C0VIk124441;
+        Thu, 3 Mar 2022 06:00:33 -0600
+From:   Georgi Vlaev <g-vlaev@ti.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <ldewangan@nvidia.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        Georgi Vlaev <g-vlaev@ti.com>
+Subject: [PATCH] dt-bindings: regulator: Convert TPS62360 binding to json-schema
+Date:   Thu, 3 Mar 2022 14:00:17 +0200
+Message-ID: <20220303120017.30181-1-g-vlaev@ti.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 2/3 v4] dts: rockchip: Add #clock-cells value for rk805
-Content-Language: en-GB
-To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, heiko@sntech.de, strit@manjaro.org,
-        mbrugger@suse.com, arnaud.ferraris@collabora.com,
-        knaerzche@gmail.com, zyw@rock-chips.com, zhangqing@rock-chips.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220302232612.25455-1-macroalpha82@gmail.com>
- <20220302232612.25455-3-macroalpha82@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220302232612.25455-3-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-02 23:26, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Based on a brief discussion on the mailing list it was determined that
-> clock-cells should be a required parameter in the event that a consumer
-> of the clock gets added in an overlay.
+Convert the TPS62360 regulator binding to DT schema format
+using json-schema.
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Signed-off-by: Georgi Vlaev <g-vlaev@ti.com>
+---
+ .../bindings/regulator/ti,tps62360.yaml       | 99 +++++++++++++++++++
+ .../bindings/regulator/tps62360-regulator.txt | 44 ---------
+ 2 files changed, 99 insertions(+), 44 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->   arch/arm/boot/dts/rv1108-elgin-r1.dts      | 1 +
->   arch/arm/boot/dts/rv1108-evb.dts           | 1 +
->   arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 1 +
->   3 files changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-> index f62c9f7af79d..0c99a5934ebf 100644
-> --- a/arch/arm/boot/dts/rv1108-elgin-r1.dts
-> +++ b/arch/arm/boot/dts/rv1108-elgin-r1.dts
-> @@ -72,6 +72,7 @@ rk805: pmic@18 {
->   		interrupt-parent = <&gpio0>;
->   		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
->   		rockchip,system-power-controller;
-> +		#clock-cells = <0>;
->   
->   		vcc1-supply = <&vcc_sys>;
->   		vcc2-supply = <&vcc_sys>;
-> diff --git a/arch/arm/boot/dts/rv1108-evb.dts b/arch/arm/boot/dts/rv1108-evb.dts
-> index fe5fc9bf75c9..46cad7cb94bf 100644
-> --- a/arch/arm/boot/dts/rv1108-evb.dts
-> +++ b/arch/arm/boot/dts/rv1108-evb.dts
-> @@ -85,6 +85,7 @@ rk805: pmic@18 {
->   		interrupt-parent = <&gpio0>;
->   		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
->   		rockchip,system-power-controller;
-> +		#clock-cells = <0>;
->   
->   		vcc1-supply = <&vcc_sys>;
->   		vcc2-supply = <&vcc_sys>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-> index de2d3e88e27f..40bf808642b9 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
-> @@ -160,6 +160,7 @@ pmic@18 {
->   		pinctrl-0 = <&pmic_int_l>;
->   		rockchip,system-power-controller;
->   		wakeup-source;
-> +		#clock-cells = <0>;
->   
->   		vcc1-supply = <&vcc_sys>;
->   		vcc2-supply = <&vcc_sys>;
+diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
+new file mode 100644
+index 000000000000..73674ef4d903
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
+@@ -0,0 +1,99 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/ti,tps62360.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Texas Instruments TPS6236x Voltage Regulators
++
++maintainers:
++  - Laxman Dewangan <ldewangan@nvidia.com>
++
++description: |
++  The TPS6236x are a family of step down dc-dc converter with
++  an input voltage range of 2.5V to 5.5V. The devices provide
++  up to 3A peak load current, and an output voltage range of
++  0.77V to 1.4V (TPS62360/62) and 0.5V to 1.77V (TPS62361B/63).
++
++  Datasheet is available at:
++  https://www.ti.com/lit/gpn/tps62360
++
++allOf:
++  - $ref: "regulator.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - ti,tps62360
++      - ti,tps62361
++      - ti,tps62362
++      - ti,tps62363
++
++  reg:
++    maxItems: 1
++
++  ti,vsel0-gpio:
++    description: |
++      GPIO for controlling VSEL0 line. If this property
++      is missing, then assume that there is no GPIO for
++      VSEL0 control.
++    maxItems: 1
++
++  ti,vsel1-gpio:
++    description: |
++      GPIO for controlling VSEL1 line. If this property
++      is missing, then assume that there is no GPIO for
++      VSEL1 control.
++    maxItems: 1
++
++  ti,enable-vout-discharge:
++    description: Enable output discharge.
++    type: boolean
++
++  ti,enable-pull-down:
++    description: Enable pull down.
++    type: boolean
++
++  ti,vsel0-state-high:
++    description: |
++      Initial state of VSEL0 input is high. If this property
++      is missing, then assume the state as low.
++    type: boolean
++
++  ti,vsel1-state-high:
++    description: |
++      Initial state of VSEL1 input is high. If this property
++      is missing, then assume the state as low.
++    type: boolean
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@60 {
++          compatible = "ti,tps62361";
++          reg =  <0x60>;
++          regulator-name = "tps62361-vout";
++          regulator-min-microvolt = <500000>;
++          regulator-max-microvolt = <1500000>;
++          regulator-boot-on;
++          ti,vsel0-gpio = <&gpio1 16 GPIO_ACTIVE_HIGH>;
++          ti,vsel1-gpio = <&gpio1 17 GPIO_ACTIVE_HIGH>;
++          ti,vsel0-state-high;
++          ti,vsel1-state-high;
++          ti,enable-pull-down;
++          ti,enable-force-pwm;
++          ti,enable-vout-discharge;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt b/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
+deleted file mode 100644
+index 1b20c3dbcdb8..000000000000
+--- a/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
++++ /dev/null
+@@ -1,44 +0,0 @@
+-TPS62360 Voltage regulators
+-
+-Required properties:
+-- compatible: Must be one of the following.
+-	"ti,tps62360"
+-	"ti,tps62361",
+-	"ti,tps62362",
+-	"ti,tps62363",
+-- reg: I2C slave address
+-
+-Optional properties:
+-- ti,enable-vout-discharge: Enable output discharge. This is boolean value.
+-- ti,enable-pull-down: Enable pull down. This is boolean value.
+-- ti,vsel0-gpio: GPIO for controlling VSEL0 line.
+-  If this property is missing, then assume that there is no GPIO
+-  for vsel0 control.
+-- ti,vsel1-gpio: Gpio for controlling VSEL1 line.
+-  If this property is missing, then assume that there is no GPIO
+-  for vsel1 control.
+-- ti,vsel0-state-high: Initial state of vsel0 input is high.
+-  If this property is missing, then assume the state as low (0).
+-- ti,vsel1-state-high: Initial state of vsel1 input is high.
+-  If this property is missing, then assume the state as low (0).
+-
+-Any property defined as part of the core regulator binding, defined in
+-regulator.txt, can also be used.
+-
+-Example:
+-
+-	abc: tps62360 {
+-		compatible = "ti,tps62361";
+-		reg =  <0x60>;
+-		regulator-name = "tps62361-vout";
+-		regulator-min-microvolt = <500000>;
+-		regulator-max-microvolt = <1500000>;
+-		regulator-boot-on
+-		ti,vsel0-gpio = <&gpio1 16 0>;
+-		ti,vsel1-gpio = <&gpio1 17 0>;
+-		ti,vsel0-state-high;
+-		ti,vsel1-state-high;
+-		ti,enable-pull-down;
+-		ti,enable-force-pwm;
+-		ti,enable-vout-discharge;
+-	};
+-- 
+2.30.2
+
