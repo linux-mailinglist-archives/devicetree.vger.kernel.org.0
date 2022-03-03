@@ -2,66 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90AED4CBBA4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2784CBBAA
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:48:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232460AbiCCKph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 05:45:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50864 "EHLO
+        id S231510AbiCCKs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 05:48:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232428AbiCCKpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:45:36 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15D5B4707D;
-        Thu,  3 Mar 2022 02:44:51 -0800 (PST)
+        with ESMTP id S231405AbiCCKs6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:48:58 -0500
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4649913CEEF;
+        Thu,  3 Mar 2022 02:48:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646304291; x=1677840291;
+  t=1646304493; x=1677840493;
   h=date:from:to:cc:subject:message-id:references:
    mime-version:in-reply-to;
-  bh=dVD9z92VH43KxwwjXiWGXRu7osivdsQyI2JqeG5AhT4=;
-  b=c+os0yg8l1HErMjKTbPs9ZO3Qo1AdWDUvSywRr7KAUtbS7eFpJJ1bhpe
-   ewKhv/eTaH9N/3AQMwMPNTS8g3MHMj8UYoFWRU8cSTHkDvLtDQl1r921/
-   eAqHFdGePvoKm412oJmHja/q349O7sjGHw9xUFyQk5Lf3Grj3eJCm8eo3
-   HzRQIUpmOC7j9deDLyqcMKlK1W6MBGbabtRbDI+DAdBRGx3vhn8zuBn1G
-   bh2YpwzRernus65UocaXL1srpikZRVbPhyB+Xsnf8DoDnRQyMpyQq7lrj
-   TDCfelSEBzRNRyISgxy7MD8mb1pve8l9BxAgRM+Hv0+f1he0piFJBbR0T
+  bh=XERL7zQnkfENm2cJG9WqtvSSN/OYkhjEjtnM4+TkMjc=;
+  b=PJtT/4CCe8zIFceXZVouAaaFcAspOTQzXtQ6M0P2Jt6e5OUi+z2/bKbb
+   KrPlNftsahfI9pCbN7JsaJ/M0slhuCiO/BhYh2b8NW0SzZarU+vf+j+Kf
+   EyfxJnCGm/qBL1ryd3TFrVMvVJS88fMjuVCrzdiSw4bOGAt3b4+cdjl56
+   0nH6DPKnfKQ4wAbdpJIdYfIHvpsSuVAJVBnMgvBJY/KfE2H55pMmPdiUt
+   BBKZz7YwL72mhJgVDF29Ek9O8EYfFg+mjKbGKcYWXH1I7D7Wv5ONwl8A9
+   LCfImoUGFqrg9JMF2RIZW98rqIJ2no5C2bQYTUUgg8USWXHclYc+vLqqd
    Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="253373147"
+X-IronPort-AV: E=McAfee;i="6200,9189,10274"; a="241061517"
 X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; 
-   d="scan'208";a="253373147"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:44:50 -0800
+   d="scan'208";a="241061517"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:48:12 -0800
 X-IronPort-AV: E=Sophos;i="5.90,151,1643702400"; 
-   d="scan'208";a="576447018"
+   d="scan'208";a="640136529"
 Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:44:44 -0800
+  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 02:48:10 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.95)
         (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nPiw8-00AkCJ-VT;
-        Thu, 03 Mar 2022 12:43:56 +0200
-Date:   Thu, 3 Mar 2022 12:43:56 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
-        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
-        olof@lixom.net, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 11/11] i2c: npcm: Support NPCM845
-Message-ID: <YiCb7LNY9tmMCZx7@smile.fi.intel.com>
-References: <20220303083141.8742-1-warp5tw@gmail.com>
- <20220303083141.8742-12-warp5tw@gmail.com>
+        id 1nPizT-00AkGn-Hz;
+        Thu, 03 Mar 2022 12:47:23 +0200
+Date:   Thu, 3 Mar 2022 12:47:23 +0200
+From:   "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Message-ID: <YiCcu7unsP5YDxun@smile.fi.intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-3-shruthi.sanil@intel.com>
+ <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
+ <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+ <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
+ <BN9PR11MB55458A882EB4A681C4A63B26F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+ <3ff11b85-249f-2f47-cbc4-41d2ab6d168f@linaro.org>
+ <DM4PR11MB554994532B3D128F85553C38F1049@DM4PR11MB5549.namprd11.prod.outlook.com>
+ <ce516de7-f1cf-c614-f9ff-439626dfafea@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220303083141.8742-12-warp5tw@gmail.com>
+In-Reply-To: <ce516de7-f1cf-c614-f9ff-439626dfafea@linaro.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -73,75 +81,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 04:31:41PM +0800, Tyrone Ting wrote:
-> From: Tyrone Ting <kfting@nuvoton.com>
+On Thu, Mar 03, 2022 at 11:17:33AM +0100, Daniel Lezcano wrote:
+> On 03/03/2022 07:18, Sanil, Shruthi wrote:
+
+> > > > > > > > +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) { +
+> > > > > > > > pr_err("%pOF: Prescaler is not enabled\n", np);
+> > > > > > > > +		ret = -ENODEV; +	}
+> > > > > > > 
+> > > > > > > Why bail out instead of enabling the prescalar ?
+> > > > > > 
+> > > > > > Because it is a secure register and it would be updated by
+> > > > > > the bootloader.
+> > > > > Should it be considered as a firmware bug ?
+> > > > 
+> > > > No. This is a common driver across products in the series and
+> > > > enablement of this bit depends on the project requirements.
+> > > > Hence
+> > > > to be sure from driver, we added this check to avoid
+> > > > initialization of the driver in the case where it cannot be
+> > > > functional.
+> > > 
+> > > I'm not sure to get the meaning of 'project requirements' but (for
+> > > my understanding) why not describe the timer in the DT for such
+> > > projects?
+> > > 
+> > 
+> > OK, I understand your point now. We can control the driver
+> > initialization from device tree binding rather than add a check in
+> > the driver. But isn't it good to have a check, if enabling of the bit
+> > is missed out in the FW? This can help in debugging.
 > 
-> Add NPCM8XX I2C support.
-> The NPCM8XX uses a similar i2c module as NPCM7XX.
-> The internal HW FIFO is larger in NPCM8XX.
-> 
-> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
-> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+> So if the description is in the DT but the prescaler bit is not enabled then
+> the firmware is buggy, IIUC. Yeah, this check would help, may be add more
+> context in the error message, eg. "Firmware has not enabled the prescaler
+> bit" or something like that
 
-Wrong SoB chain.
-
-...
-
-> +static const struct npcm_i2c_data npxm7xx_i2c_data = {
-> +	.fifo_size = 16,
-> +	.segctl_init_val = 0x0333F000,
-> +	.txf_sts_tx_bytes = GENMASK(4, 0),
-> +	.rxf_sts_rx_bytes = GENMASK(4, 0),
-> +	.rxf_ctl_last_pec = BIT(5)
-
-+ Comma.
-
-> +};
-> +
-> +static const struct npcm_i2c_data npxm8xx_i2c_data = {
-> +	.fifo_size = 32,
-> +	.segctl_init_val = 0x9333F000,
-> +	.txf_sts_tx_bytes = GENMASK(5, 0),
-> +	.rxf_sts_rx_bytes = GENMASK(5, 0),
-> +	.rxf_ctl_last_pec = BIT(7)
-
-Ditto.
-
-> +};
-
-...
-
-> -	left_in_fifo = FIELD_GET(NPCM_I2CTXF_STS_TX_BYTES,
-> -				 ioread8(bus->reg + NPCM_I2CTXF_STS));
-> +	left_in_fifo = (bus->data->txf_sts_tx_bytes &
-> +			ioread8(bus->reg + NPCM_I2CTXF_STS));
-
-Besides too many parentheses, this is an interesting change. So, in different
-versions of IP the field is on different bits? Perhaps it means that you need
-something like internal ops structure for all these, where you will have been
-using the statically defined masks?
-
-...
-
-> +	match = of_match_device(npcm_i2c_bus_of_table, dev);
-> +	if (!match) {
-> +		dev_err(dev, "OF data missing\n");
-> +		return -EINVAL;
-> +	}
-> +	bus->data = match->data;
-
-This is NIH of_device_get_match_data().
-
-...
-
-> -static const struct of_device_id npcm_i2c_bus_of_table[] = {
-> -	{ .compatible = "nuvoton,npcm750-i2c", },
-> -	{}
-> -};
-> -MODULE_DEVICE_TABLE(of, npcm_i2c_bus_of_table);
-> -
-
-Redundant change, leave this as is.
+For this we also use a FW_BUG prefix to printf()-like functions.
 
 -- 
 With Best Regards,
