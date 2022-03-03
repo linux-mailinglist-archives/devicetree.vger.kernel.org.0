@@ -2,176 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0214CC958
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 23:44:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F034CC963
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 23:46:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237002AbiCCWov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 17:44:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60056 "EHLO
+        id S232560AbiCCWrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 17:47:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237072AbiCCWot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 17:44:49 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1C3F15928A;
-        Thu,  3 Mar 2022 14:44:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646347442; x=1677883442;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LGs61FMx3IeFD9eB7+GKLp/0tGX59gvBzS7laALfEFU=;
-  b=ddfYk6zLewr44AgGkgnryfNqOwg4t31DsOhFNR4zkzSsDKNn12tE7ntx
-   0IbIUol8cwEUrIFdUgIfI7sZoapOr0Cjagz//jnZowqRYF5jpZOdE+i+b
-   P8J6Cwm9JqP6CdScMR9ewiixR/xLSwufB50GWYAUV3wNnqu6Xs1TpvU9v
-   JeCG/Kj/L6a+jUxiytbf3/w1UhutbmgdPde0VhB5vCZ7jbZxQqYglSOgl
-   5TIP3mM27UYeBDwr+c8SqmhcewpXq3fLhN2Vn+/2KJfFY2vM1UiEFgd8z
-   xJYqksmtko7+dlb3oD66NQpiXcqKjoEkC8rzVppzANe+t0LXB3gc0cKf/
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="252660211"
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; 
-   d="scan'208";a="252660211"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 14:44:02 -0800
-X-IronPort-AV: E=Sophos;i="5.90,153,1643702400"; 
-   d="scan'208";a="642299153"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 14:43:57 -0800
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 33DDE20150;
-        Fri,  4 Mar 2022 00:43:55 +0200 (EET)
-Date:   Fri, 4 Mar 2022 00:43:55 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Helen Koike <helen.koike@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v2 30/66] media: sun6i-csi: Add bridge v4l2 subdev with
- port management
-Message-ID: <YiFEq1liAnBy0fkq@paasikivi.fi.intel.com>
-References: <20220205185429.2278860-1-paul.kocialkowski@bootlin.com>
- <20220205185429.2278860-31-paul.kocialkowski@bootlin.com>
- <YgqbqVRinNxQ8+WV@paasikivi.fi.intel.com>
- <Yh+GZv9/rKQ2WbI2@aptenodytes>
+        with ESMTP id S231805AbiCCWrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 17:47:07 -0500
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE5716DAE7;
+        Thu,  3 Mar 2022 14:46:17 -0800 (PST)
+Received: by mail-ej1-x62c.google.com with SMTP id bi12so641105ejb.3;
+        Thu, 03 Mar 2022 14:46:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=8G4fsdSTZhHoqhtMqzCYvFpkqK9xPa9Uuwfj+Kc4FDc=;
+        b=Vv6qPamZ34/Ss4Omy+Sumi9AgjANPMe7auZ0nBj4JSeydwwqGjIP+hcyZrglQBlZcu
+         duJMY8yJkpGpiT+2TD6c/iq4zUhj1xfAhCmWegesHd7ZKcwoKHNW2Gk7ECIeitqLF2oc
+         VH3Ir5YY2GcspLm+CD3tbIpF2BIFseWkxqncN+NRNJGU99TyB/SzNzwSc95/Ul7Y5BcK
+         cD87a7Nk+VbD/4iTqN8cDle1ZZ95bvqxYXHXjxf/9H6E2vf6aJR5Z+u6EvieJXgoROdo
+         46oPhvUDiG9DWnc+SuowgIPyc/HMoydyVyJz+Mzzbji8gFtv4OEsrWWW084223TPz5oG
+         DNTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=8G4fsdSTZhHoqhtMqzCYvFpkqK9xPa9Uuwfj+Kc4FDc=;
+        b=zEDNV0M7ewXHxztSfxXg6+5ZWE5MdxfoFJWyiJcp8kEaT7noZgiwzlyx1fTkAiTFUZ
+         /Ig+OEFwHPa5bKDYczJQxI5hZhamqalfEKfnXI87meFu3p2PcOjRUJrqXTPLkdZSpfEc
+         79zuqWhNO75myAMBXYMKbbZqvjeGQHnMl4J0hopDfCmAyX3+WzsH05iw97F9F8p5m+FN
+         teWeG3mSfnLuXB9OjMDyaqch8DFoQX01/VPBpwBgChYf0RQB/1o1dS1DXUOkdipqFsPx
+         Cd05JyLWw+/zjTzxoYatZebRGF/xrZKm5bueb3E2JXLaAzW5jFytH2aY4gFmq+m/mGo7
+         jSlQ==
+X-Gm-Message-State: AOAM5316EW+jHkpe95958RX8wpzZ5P2REZtpJeqbZw4W/sHf9BAgl5df
+        Hs6We0klr5bFKECobQON3nU=
+X-Google-Smtp-Source: ABdhPJxDygBr+KpHY2REE6mJWoCbqzYcS5amc+jaOuQCbso4BmBRhR/1IV1fcfyjno9g6NqtzkJT0g==
+X-Received: by 2002:a17:906:30d1:b0:6cf:d160:d8e4 with SMTP id b17-20020a17090630d100b006cfd160d8e4mr29143060ejb.265.1646347575877;
+        Thu, 03 Mar 2022 14:46:15 -0800 (PST)
+Received: from skbuf ([188.25.231.156])
+        by smtp.gmail.com with ESMTPSA id ep16-20020a1709069b5000b006daa26de2fbsm581804ejc.153.2022.03.03.14.46.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 14:46:15 -0800 (PST)
+Date:   Fri, 4 Mar 2022 00:46:13 +0200
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
+        davem@davemloft.net, kuba@kernel.org, alsi@bang-olufsen.dk,
+        arinc.unal@arinc9.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v5 1/3] dt-bindings: net: dsa: add rtl8_4 and
+ rtl8_4t tag formats
+Message-ID: <20220303224613.sdyfcipcmhzepbo7@skbuf>
+References: <20220303015235.18907-1-luizluca@gmail.com>
+ <20220303015235.18907-2-luizluca@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Yh+GZv9/rKQ2WbI2@aptenodytes>
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220303015235.18907-2-luizluca@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
-
-On Wed, Mar 02, 2022 at 03:59:50PM +0100, Paul Kocialkowski wrote:
-> > > +static int
-> > > +sun6i_csi_bridge_notifier_bound(struct v4l2_async_notifier *notifier,
-> > > +				struct v4l2_subdev *remote_subdev,
-> > > +				struct v4l2_async_subdev *async_subdev)
-> > > +{
-> > > +	struct sun6i_csi_device *csi_dev =
-> > > +		container_of(notifier, struct sun6i_csi_device,
-> > > +			     bridge.notifier);
-> > > +	struct sun6i_csi_bridge *bridge = &csi_dev->bridge;
-> > > +	struct sun6i_csi_bridge_source *source = NULL;
-> > > +	struct fwnode_handle *fwnode = dev_fwnode(csi_dev->dev);
-> > > +	struct fwnode_handle *handle = NULL;
-> > > +	bool enabled;
-> > > +	int ret;
-> > > +
-> > > +	while ((handle = fwnode_graph_get_next_endpoint(fwnode, handle))) {
-> > 
-> > I'd instead store the information you need here in struct sun6i_csi_bridge.
-> > You could remove the loop here.
+On Wed, Mar 02, 2022 at 10:52:33PM -0300, Luiz Angelo Daros de Luca wrote:
+> Realtek rtl8365mb DSA driver can use these two tag formats.
 > 
-> Is there a different method for matching a remote subdev to a local port?
-> The rationale here is that I need the handle for fwnode_graph_parse_endpoint
-> but cannot get that handle from the remote subdev's fwnode pointer directly.
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> ---
 
-You generally shouldn't try to match fwnodes here as the V4L2 async
-framework has already done that job. This information can be found behind
-the async_subdev pointer.
+Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
 
-See e.g. drivers/media/pci/intel/ipu3/ipu3-cio2-main.c for an example.
-
+>  Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> > > +		struct fwnode_endpoint endpoint = { 0 };
-> > > +		struct fwnode_handle *remote_fwnode;
-> > > +
-> > > +		remote_fwnode = fwnode_graph_get_remote_port_parent(handle);
-> > > +		if (!remote_fwnode)
-> > > +			continue;
-> > > +
-> > > +		if (remote_fwnode != remote_subdev->fwnode)
-> > > +			goto next;
-> > > +
-> > > +		ret = fwnode_graph_parse_endpoint(handle, &endpoint);
-> > > +		if (ret < 0)
-> > > +			goto next;
-> > > +
-> > > +		switch (endpoint.port) {
-> > > +		case SUN6I_CSI_PORT_PARALLEL:
-> > > +			source = &bridge->source_parallel;
-> > > +			enabled = true;
-> > > +			break;
-> > > +		default:
-> > > +			break;
-> > > +		}
-> > > +
-> > > +next:
-> > > +		fwnode_handle_put(remote_fwnode);
-> > > +	}
-> > > +
-> > > +	if (!source)
-> > > +		return -EINVAL;
-> > > +
-> > > +	source->subdev = remote_subdev;
-> > > +
-> > > +	return sun6i_csi_bridge_link(csi_dev, SUN6I_CSI_BRIDGE_PAD_SINK,
-> > > +				     remote_subdev, enabled);
-> > > +}
-> > > +
-> > > +static int
-> > > +sun6i_csi_bridge_notifier_complete(struct v4l2_async_notifier *notifier)
-> > > +{
-> > > +	struct sun6i_csi_device *csi_dev =
-> > > +		container_of(notifier, struct sun6i_csi_device,
-> > > +			     bridge.notifier);
-> > > +
-> > > +	return sun6i_csi_v4l2_complete(csi_dev);
-> > 
-> > You could call v4l2_device_register_subdev_nodes() here.
+> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> index 702df848a71d..e60867c7c571 100644
+> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
+> @@ -51,6 +51,8 @@ properties:
+>        - edsa
+>        - ocelot
+>        - ocelot-8021q
+> +      - rtl8_4
+> +      - rtl8_4t
+>        - seville
+>  
+>    phy-handle: true
+> -- 
+> 2.35.1
 > 
-> That's definitely what sun6i_csi_v4l2_complete does (the diff is probably not
-> very clear). Note that the wrapper is extended later on to register the capture
-> video device for the no-isp path.
-
-I could be missing something... Do you need to call
-sun6i_csi_v4l2_complete() in multiple places or not? If not, then I think
-it'd be probably better to just move the code here.
-
-> 
-> Maybe the capture registration could be kept in sun6i_csi_probe for the non-isp
-> path and then the wrapper wouldn't be needed. I don't mind either way.
-
--- 
-Kind regards,
-
-Sakari Ailus
