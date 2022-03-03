@@ -2,256 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E624CC9E8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 00:18:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CCEC4CCA01
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 00:24:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235318AbiCCXSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 18:18:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51196 "EHLO
+        id S235403AbiCCXZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 18:25:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231898AbiCCXSu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 18:18:50 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB0E72A70E;
-        Thu,  3 Mar 2022 15:18:03 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 455B761532;
-        Thu,  3 Mar 2022 23:18:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2F7EC340F1;
-        Thu,  3 Mar 2022 23:18:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646349482;
-        bh=tlOHNfyRtXEFJ6xoJ1AtsupQm9XzW3NADGZEF72E09I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=FSEdEhsphzeP07HC7WHYwdul0B2vKlmEIrKvi0FwBCC+QJLQQ6mr4OX0OMQOp6FYW
-         tigRGG0MyZbrzSM66O2k5FQMbyZdAlUSNdK7RVosG2TvW2RTMY5GFQ5Ln6e20z+JPF
-         ozi0nuP16NZZsa1lCfilUB9asttLe71PTDN7GxXuGLYyyU6dnWwRjlZowT4OTGARQW
-         2a3pRbPncrYYKmQgP69WtBPOimN3Xuusbgks8+l51Y4asforlD5I0/LmGZ0IJx8AkV
-         JQnWJ0YMf6rsSviWCZigheHA1NOYMJvD054gRPpMh+SPuqOyJ7Al+YaYrvlwqxQEs7
-         faLc08eacbILA==
-Received: by mail-ed1-f46.google.com with SMTP id o1so7530082edc.3;
-        Thu, 03 Mar 2022 15:18:02 -0800 (PST)
-X-Gm-Message-State: AOAM530hsYMDr16amKWivENSDcLRzJMUF4HduiBSGBsnWoBFzxqHemNN
-        tyxhCx1UOhiQQjkO1LhTCYLcqed+QXkkwc4MFA==
-X-Google-Smtp-Source: ABdhPJzvyLJfhUCl0fo8/owb0CYZcEj2xeWHM6SoIUh0U5eB5kzm5d1D+Kv+qFcoK6fL5nAJQT70EZLXKwscis5r5DA=
-X-Received: by 2002:a05:6402:4384:b0:413:9e36:b56f with SMTP id
- o4-20020a056402438400b004139e36b56fmr25916622edc.280.1646349480795; Thu, 03
- Mar 2022 15:18:00 -0800 (PST)
-MIME-Version: 1.0
-References: <20220303211620.32456-1-david@ixit.cz>
-In-Reply-To: <20220303211620.32456-1-david@ixit.cz>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 3 Mar 2022 17:17:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKXwfKRooYmUB7HQwOi49P6Fd9sOqbxMa9TRnp6WqiYnw@mail.gmail.com>
-Message-ID: <CAL_JsqKXwfKRooYmUB7HQwOi49P6Fd9sOqbxMa9TRnp6WqiYnw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: timer: Tegra: Convert text bindings to yaml
-To:     David Heidelberg <david@ixit.cz>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S229809AbiCCXZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 18:25:01 -0500
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36D2710D0;
+        Thu,  3 Mar 2022 15:24:15 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so7542359oos.9;
+        Thu, 03 Mar 2022 15:24:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Vfm2jK+tU0YA9XVn2HUL++BRTsYSj8H0ghNLcRVI0aY=;
+        b=lF1M84G8Md/LQpNzWjJypf0LJm1j8AToDqmju4sbtk6VrdZ8lICzBDK3sD2OSB8Wsa
+         wnIWzSc8Doeun093xFHZ71pxqHpywVKk8jJImEj2kQZeBSpKXyDsHPWOufEXbKcyF2lQ
+         WpEH5ByIQmB+J1M6gI7coCB0qGG3WrzWrRgvOTzfGnxAQcNxthS4o8LCVeG9dpgzFcF3
+         m52fJ9nfQM4WjTt7vnOR+S7sewlKZk8g1FaJwFM5OaPMagt1QSHWfElp7A+H2pQc/Q2f
+         QlGle2OwYOHBVnrB9bT4ccyVIMV1Jgqg0WPKgKELBoH2WrJo9tkxxzMkOCtRLeXxRDFP
+         GSAA==
+X-Gm-Message-State: AOAM533JIrMLtZLlgy/TzRt8SzgOls6PWiaYSWsy9z6I2d87XvsCZZzu
+        D806gHQ/HYnejB0jOpFZquY56JEF9Q==
+X-Google-Smtp-Source: ABdhPJy/AfNGD3ko7bxz0ZgWRWoEoA/ewhRmp21gvsTgCpu1A+pig7QyPb5sbwgUIyO1QIXOWxOmYw==
+X-Received: by 2002:a05:6870:f286:b0:d7:84b:f1bf with SMTP id u6-20020a056870f28600b000d7084bf1bfmr6015116oap.179.1646349854971;
+        Thu, 03 Mar 2022 15:24:14 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id l6-20020a056870d3c600b000d75713938csm1724128oag.7.2022.03.03.15.24.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 15:24:14 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Lee Jones <lee.jones@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Stephen Warren <swarren@nvidia.com>,
-        ~okias/devicetree@lists.sr.ht,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-tegra <linux-tegra@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        - <patches@opensource.cirrus.com>
+Cc:     =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: mfd: Fix pinctrl node name warnings
+Date:   Thu,  3 Mar 2022 17:23:49 -0600
+Message-Id: <20220303232350.2591143-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 3, 2022 at 3:16 PM David Heidelberg <david@ixit.cz> wrote:
->
-> Convert Tegra timer binding into yaml format.
->
-> This commit also merge 3 text bindings with almost
-> identical content (differens in number of registers).
->
-> Signed-off-by: David Heidelberg <david@ixit.cz>
-> ---
-> v2:
->  - reg: true -> reg: maxItems: 1
-> ---
->  .../bindings/timer/nvidia,tegra-timer.yaml    | 150 ++++++++++++++++++
->  .../bindings/timer/nvidia,tegra20-timer.txt   |  24 ---
->  .../bindings/timer/nvidia,tegra210-timer.txt  |  36 -----
->  .../bindings/timer/nvidia,tegra30-timer.txt   |  28 ----
->  4 files changed, 150 insertions(+), 88 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra-timer.yaml
->  delete mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra20-timer.txt
->  delete mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra210-timer.txt
->  delete mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra30-timer.txt
->
-> diff --git a/Documentation/devicetree/bindings/timer/nvidia,tegra-timer.yaml b/Documentation/devicetree/bindings/timer/nvidia,tegra-timer.yaml
-> new file mode 100644
-> index 000000000000..f0b401f80aff
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/nvidia,tegra-timer.yaml
-> @@ -0,0 +1,150 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/timer/nvidia,tegra-timer.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: NVIDIA Tegra timer
-> +
-> +maintainers:
-> +  - Stephen Warren <swarren@nvidia.com>
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: nvidia,tegra210-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          # Either a single combined interrupt or up to 14 individual interrupts
-> +          minItems: 1
-> +          maxItems: 14
-> +          description: >
-> +            A list of 14 interrupts; one per each timer channels 0 through 13
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          oneOf:
-> +            - items:
-> +                - enum:
-> +                    - nvidia,tegra114-timer
-> +                    - nvidia,tegra124-timer
-> +                    - nvidia,tegra132-timer
-> +                - const: nvidia,tegra30-timer
-> +            - items:
-> +                - const: nvidia,tegra30-timer
-> +                - const: nvidia,tegra20-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          # Either a single combined interrupt or up to 6 individual interrupts
-> +          minItems: 1
-> +          maxItems: 6
-> +          description: >
-> +            A list of 6 interrupts; one per each of timer channels 1 through 5,
-> +            and one for the shared interrupt for the remaining channels.
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: nvidia,tegra20-timer
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          # Either a single combined interrupt or up to 4 individual interrupts
-> +          minItems: 1
-> +          maxItems: 4
-> +          description: |
-> +            A list of 4 interrupts; one per timer channel.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: nvidia,tegra210-timer
-> +        description: >
-> +          The Tegra210 timer provides fourteen 29-bit timer counters and one 32-bit
-> +          timestamp counter. The TMRs run at either a fixed 1 MHz clock rate derived
-> +          from the oscillator clock (TMR0-TMR9) or directly at the oscillator clock
-> +          (TMR10-TMR13). Each TMR can be programmed to generate one-shot, periodic,
-> +          or watchdog interrupts.
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra114-timer
-> +              - nvidia,tegra124-timer
-> +              - nvidia,tegra132-timer
-> +          - const: nvidia,tegra30-timer
-> +      - items:
-> +          - const: nvidia,tegra30-timer
-> +          - const: nvidia,tegra20-timer
-> +        description: >
-> +          The Tegra30 timer provides ten 29-bit timer channels, a single 32-bit free
-> +          running counter, and 5 watchdog modules. The first two channels may also
-> +          trigger a legacy watchdog reset.
-> +      - const: nvidia,tegra20-timer
-> +        description: >
-> +          The Tegra20 timer provides four 29-bit timer channels and a single 32-bit free
-> +          running counter. The first two channels may also trigger a watchdog reset.
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts: true
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: timer
-> +
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    timer@60005000 {
-> +        compatible = "nvidia,tegra30-timer", "nvidia,tegra20-timer";
-> +        reg = <0x60005000 0x400>;
-> +        interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH
-> +                      0 1 IRQ_TYPE_LEVEL_HIGH
-> +                      0 41 IRQ_TYPE_LEVEL_HIGH
-> +                      0 42 IRQ_TYPE_LEVEL_HIGH
-> +                      0 121 IRQ_TYPE_LEVEL_HIGH
-> +                      0 122 IRQ_TYPE_LEVEL_HIGH>;
+The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
+pinctrl: use pinctrl.yaml") resulted in some node name warnings:
 
-The unhelpful bot warning is a new thing. 'interrupts' here must now
-have brackets around each entry to figure out the interrupt cell size.
+Documentation/devicetree/bindings/mfd/cirrus,lochnagar.example.dt.yaml: \
+ lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml: \
+ codec@1a: $nodename:0: 'codec@1a' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
+Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: \
+ pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
 
-With that,
+Fix the node names to the preferred 'pinctrl'. For cirrus,madera,
+nothing from pinctrl.yaml schema is used, so just drop the reference.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Fixes: c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml")
+Cc: Rafał Miłecki <rafal@milecki.pl>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+ - Fix lochnagar-pinctrl nodename in example
+v3:
+ - And fix lochnagar-pinctrl nodename in 'required'. Sigh...
+---
+ Documentation/devicetree/bindings/mfd/brcm,cru.yaml         | 4 ++--
+ Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml | 6 +++---
+ .../devicetree/bindings/pinctrl/cirrus,madera.yaml          | 3 ---
+ 3 files changed, 5 insertions(+), 8 deletions(-)
 
-> +        clocks = <&tegra_car 214>;
-> +    };
-> +  - |
-> +    #include <dt-bindings/clock/tegra210-car.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    timer@60005000 {
-> +        compatible = "nvidia,tegra210-timer";
-> +        reg = <0x60005000 0x400>;
-> +        interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
-> +                     <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&tegra_car TEGRA210_CLK_TIMER>;
-> +        clock-names = "timer";
-> +    };
+diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+index be4a2df71c25..b85819fbb07c 100644
+--- a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
++++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
+@@ -39,7 +39,7 @@ patternProperties:
+   '^phy@[a-f0-9]+$':
+     $ref: ../phy/bcm-ns-usb2-phy.yaml
+ 
+-  '^pin-controller@[a-f0-9]+$':
++  '^pinctrl@[a-f0-9]+$':
+     $ref: ../pinctrl/brcm,ns-pinmux.yaml
+ 
+   '^syscon@[a-f0-9]+$':
+@@ -94,7 +94,7 @@ examples:
+             reg = <0x180 0x4>;
+         };
+ 
+-        pin-controller@1c0 {
++        pinctrl@1c0 {
+             compatible = "brcm,bcm4708-pinmux";
+             reg = <0x1c0 0x24>;
+             reg-names = "cru_gpio_control";
+diff --git a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
+index c00ad3e21c21..ad285cb480c9 100644
+--- a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
++++ b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
+@@ -126,7 +126,7 @@ properties:
+       clock-frequency:
+         const: 12288000
+ 
+-  lochnagar-pinctrl:
++  pinctrl:
+     type: object
+     $ref: /schemas/pinctrl/cirrus,lochnagar.yaml#
+ 
+@@ -255,7 +255,7 @@ required:
+   - reg
+   - reset-gpios
+   - lochnagar-clk
+-  - lochnagar-pinctrl
++  - pinctrl
+ 
+ additionalProperties: false
+ 
+@@ -293,7 +293,7 @@ examples:
+                 clock-frequency = <32768>;
+             };
+ 
+-            lochnagar-pinctrl {
++            pinctrl {
+                 compatible = "cirrus,lochnagar-pinctrl";
+ 
+                 gpio-controller;
+diff --git a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
+index c85f759ae5a3..8a90d8273767 100644
+--- a/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml
+@@ -107,9 +107,6 @@ properties:
+ 
+     additionalProperties: false
+ 
+-allOf:
+-  - $ref: "pinctrl.yaml#"
+-
+ required:
+   - pinctrl-0
+   - pinctrl-names
+-- 
+2.32.0
+
