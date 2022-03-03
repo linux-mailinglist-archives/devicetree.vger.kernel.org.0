@@ -2,102 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4BC4CBA01
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:19:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1694CBA24
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:25:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231496AbiCCJUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 04:20:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58154 "EHLO
+        id S230476AbiCCJ0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 04:26:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230239AbiCCJUD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:20:03 -0500
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0E116AA42
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 01:19:17 -0800 (PST)
-Received: by mail-wr1-x433.google.com with SMTP id u10so5136709wra.9
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 01:19:17 -0800 (PST)
+        with ESMTP id S230450AbiCCJ0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:26:01 -0500
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26C5847AC1;
+        Thu,  3 Mar 2022 01:25:16 -0800 (PST)
+Received: by mail-lf1-x135.google.com with SMTP id f37so7313049lfv.8;
+        Thu, 03 Mar 2022 01:25:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=49xGlm/DxY0ahn3U3JBRs5yGk2SDIewapjDdO3Gg/+Y=;
-        b=AtZQQ1Ms/KXgba3kaO2jKK5cWXRU+SayBn87UkdQm/v6JrrJHsm+HUgcKYTTh9mDO9
-         Je1ZPwVLyX3gCAVefkixlLx89TDEBiUANtsejO9isoIJ8FrMKL+9IjeLQiQI5kl8uF8X
-         8rahIRSfaopWs/AzhDsZE6UH3r/iLC0SqEJ4KuPqt8f8jAoFKZkUV8PcYMfCBWmkYCtj
-         EzYzduLGL3UiIk6Mrj+IaRSR8IZbF/Pj4sH0g1sRJUxg+FOwdhwtmhhY4N5kw+U3QGFp
-         10Phsq8eudKDVeDbnViBTADjyExuDHRv9KOorGWWJWh1YqyfmmLFJK+Absefpq1W8kxp
-         XNVg==
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=q6dWyOSxtQaqc6rOdj1kSMlaHNYdY8a6NUWiCmzKlBU=;
+        b=Wu6azQb51NeYK2nXdZ4c+57Tqdxw0f2J8bT9gGTqou+kF7sYbWqIZLP3Wzt07AsRwk
+         FoZsY71KojwkB5vzjVg0Td/eX5chuwVl0W7NQABSIJ7nMUGUpRkwfVjsjR75gHAqw0Td
+         SJ2x3c6uuU0GR89MPXsPmqV/G8jrclkAArWz4nyeuuBUzYcwlE4iuqBLJkdYwwginf2M
+         EpMqc2x3y99e5Gx80k2nVM4ofj24hnzyy93TMGSPnnL+TVvno8m85/9E+9gXo+J0gXRr
+         y8xKY9HQRwqDiuk/M1VUvnl6q8Kh0lu4dqi2wQQ6422/HJ7CpexWGZG3EkUZTN3rtDTw
+         5cSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=49xGlm/DxY0ahn3U3JBRs5yGk2SDIewapjDdO3Gg/+Y=;
-        b=VNCvcJV5oYutIq/Icv61MSktaznUqpcuje3Bv6GLr4eoXpP6QdLSkZQJlxkLIqKRzY
-         vY1A44NlRruXX26bsdeS0yC+EPfxM8OHiTTBI7OnPcnavaGhOn+/LXDTJfNe9tzs4iwc
-         nEyOV1g77++iuxIjs5ZppDZsMpiEX0dvd7iF2BUuSnbi+tASbcFNOrBRs39q1B6W3SKg
-         pY1aTbRXhrBgfnRnMckCre9v2u1ihSV8EvOP/ZOvkFQGXQ71ExACaaCVOJTgvaK38v6e
-         rTf+94HShzBJPomx2mM1YQIgLWuTVLWyxGSFcD3xUEopODzNRDcKotziyxeAvxZxaNHE
-         h0/A==
-X-Gm-Message-State: AOAM533oR3CkRoih0eEzFBymT2G5B45DQpieZPgqehwXjbC615heIeW5
-        JRKHfDmhtOXERk4Yx6oVKiUDPy2IcY9Qqw==
-X-Google-Smtp-Source: ABdhPJxuhqXmLr+4swlzFDpUazpx85y15v3ttKVl4YU+8C6hPlbir/P24pU8bQbhDBUzVN3002Aetw==
-X-Received: by 2002:a05:6000:3c8:b0:1ef:64e8:9235 with SMTP id b8-20020a05600003c800b001ef64e89235mr22508518wrg.498.1646299156414;
-        Thu, 03 Mar 2022 01:19:16 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id g17-20020adff411000000b001f03426827csm1426404wro.71.2022.03.03.01.19.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 01:19:15 -0800 (PST)
-Date:   Thu, 3 Mar 2022 09:19:14 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Robert Marko <robert.marko@sartura.hr>, linus.walleij@linaro.org,
-        brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        skhan@linuxfoundation.org, luka.perkov@sartura.hr
-Subject: Re: [PATCH v10 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers
- bindings
-Message-ID: <YiCIEsMVcK1WEecR@google.com>
-References: <20220131133049.77780-1-robert.marko@sartura.hr>
- <20220131133049.77780-6-robert.marko@sartura.hr>
- <Yh8vJNc4D6rA68au@google.com>
- <Yh/kFzNuvbwA2qeE@robh.at.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=q6dWyOSxtQaqc6rOdj1kSMlaHNYdY8a6NUWiCmzKlBU=;
+        b=hpcrw021P9QCt2SAZVnOY5Ay5WU0H3/4WXXIvWJig6ElThSflGxO7q0FrKmpI/JLr4
+         lI2gSSzsxare/5VdZcdliJJbykBUNQKjFVh4kKZ5LdLI1h9Ghql6LSWcloKWXVrDtTIW
+         xVjPMOfA0pQxkAsbzqV3c7G+GhLTfQQ4LdSvrgL2jIQf0lPxyYbt+0uOBP/jhFF4ng3O
+         CDqVdaWwq6hcI/SymwQ9laNIMrkcRbp2Lbe7Qe/qFhn3Waqbst1ae5IUBgB7UW67szuk
+         SHe4w4zTWNGOrYlBWElKpPPvDK1Mp+E60NDyF5O6vstQhpv3Au1l8Z2AljxmD/84p5Nt
+         q8Kg==
+X-Gm-Message-State: AOAM532geIddcbvIfZbAaeRTpqtfPEgrX84MPN19ix6AfLFdXKTFvLIJ
+        a54C2GHo8HEp6wVtOHpC8kY=
+X-Google-Smtp-Source: ABdhPJx8KZKR+FK3NQRCubIjKos2NSeV9iIUKZ41fLvSBPNb/4w/2u6vpuX6J8ZLgwoPKvHczRqKCA==
+X-Received: by 2002:ac2:5963:0:b0:442:eff6:4219 with SMTP id h3-20020ac25963000000b00442eff64219mr20886948lfp.56.1646299514385;
+        Thu, 03 Mar 2022 01:25:14 -0800 (PST)
+Received: from [192.168.1.103] ([31.173.85.105])
+        by smtp.gmail.com with ESMTPSA id y3-20020a2e3203000000b0024630256cdbsm354462ljy.58.2022.03.03.01.25.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 01:25:13 -0800 (PST)
+Subject: Re: [PATCH 1/4] arm64: dts: renesas: rzg2lc-smarc-pinfunction: Sort
+ the nodes
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220302103301.23852-1-biju.das.jz@bp.renesas.com>
+ <20220302103301.23852-2-biju.das.jz@bp.renesas.com>
+From:   Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Message-ID: <98b0cafb-4f0b-5e4c-72b0-a0983d0ff493@gmail.com>
+Date:   Thu, 3 Mar 2022 12:25:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
+In-Reply-To: <20220302103301.23852-2-biju.das.jz@bp.renesas.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Yh/kFzNuvbwA2qeE@robh.at.kernel.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Mar 2022, Rob Herring wrote:
+Hello!
 
-> On Wed, Mar 02, 2022 at 08:47:32AM +0000, Lee Jones wrote:
-> > On Mon, 31 Jan 2022, Robert Marko wrote:
-> > 
-> > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > 
-> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > 
-> > This is missing a DT review.
-> 
-> How about this one[1]?
-> 
-> Rob
-> 
-> [1] https://lore.kernel.org/all/20210719225906.GA2769608@robh.at.kernel.org/
+On 3/2/22 1:32 PM, Biju Das wrote:
 
-Looks like the ball is in your court Robert.
+> Sort the pinctrl nodes alphabatically.
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+   Alphabetically. :-)
+   Could prolly be fixed while applying...
+
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+[...]
+
+MBR, Sergey
