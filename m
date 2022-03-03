@@ -2,102 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53F034CC963
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 23:46:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 884414CC9D3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 00:10:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232560AbiCCWrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 17:47:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39386 "EHLO
+        id S231904AbiCCXLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 18:11:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231805AbiCCWrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 17:47:07 -0500
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE5716DAE7;
-        Thu,  3 Mar 2022 14:46:17 -0800 (PST)
-Received: by mail-ej1-x62c.google.com with SMTP id bi12so641105ejb.3;
-        Thu, 03 Mar 2022 14:46:17 -0800 (PST)
+        with ESMTP id S233192AbiCCXK6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 18:10:58 -0500
+Received: from mail-yb1-xb31.google.com (mail-yb1-xb31.google.com [IPv6:2607:f8b0:4864:20::b31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C69B47AEE
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 15:10:12 -0800 (PST)
+Received: by mail-yb1-xb31.google.com with SMTP id w16so13319451ybi.12
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 15:10:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8G4fsdSTZhHoqhtMqzCYvFpkqK9xPa9Uuwfj+Kc4FDc=;
-        b=Vv6qPamZ34/Ss4Omy+Sumi9AgjANPMe7auZ0nBj4JSeydwwqGjIP+hcyZrglQBlZcu
-         duJMY8yJkpGpiT+2TD6c/iq4zUhj1xfAhCmWegesHd7ZKcwoKHNW2Gk7ECIeitqLF2oc
-         VH3Ir5YY2GcspLm+CD3tbIpF2BIFseWkxqncN+NRNJGU99TyB/SzNzwSc95/Ul7Y5BcK
-         cD87a7Nk+VbD/4iTqN8cDle1ZZ95bvqxYXHXjxf/9H6E2vf6aJR5Z+u6EvieJXgoROdo
-         46oPhvUDiG9DWnc+SuowgIPyc/HMoydyVyJz+Mzzbji8gFtv4OEsrWWW084223TPz5oG
-         DNTQ==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=YInCGTDHP4uEDLfZ+VtOKdALPoSEe5yJvGES7+vW7vI=;
+        b=rYUcvXAjbjBP/e/HHL9CQrZXT3yEcE6V3E5vTjyI8ujlve9/iZ/WOdLLbrrhK8HQgC
+         IcplXQchbeeDO0QN4mH3DD9fn3VaYVSZdGR5pAXvesv9RZxAHf84T3ZMaWXRceTdLtRJ
+         Co3yPy5txLG+rQqamF7+DphG6YADQ0R6yiTdhJJoogWVX4BJiQwXXLHwMBti9IKDhFjZ
+         A12cV6bBEf08yORmYmsfD021Q82YuE+w1YA2Dqkw1Fba4Y87oOK7FweNtHWEKCAuwsKI
+         paQf3SYp8l7zTuhvdmpZE3PKUGoh+NTaVD9S0mH7cODfPuuAXu4j6BDt9P4zGaiT9iUG
+         tNEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8G4fsdSTZhHoqhtMqzCYvFpkqK9xPa9Uuwfj+Kc4FDc=;
-        b=zEDNV0M7ewXHxztSfxXg6+5ZWE5MdxfoFJWyiJcp8kEaT7noZgiwzlyx1fTkAiTFUZ
-         /Ig+OEFwHPa5bKDYczJQxI5hZhamqalfEKfnXI87meFu3p2PcOjRUJrqXTPLkdZSpfEc
-         79zuqWhNO75myAMBXYMKbbZqvjeGQHnMl4J0hopDfCmAyX3+WzsH05iw97F9F8p5m+FN
-         teWeG3mSfnLuXB9OjMDyaqch8DFoQX01/VPBpwBgChYf0RQB/1o1dS1DXUOkdipqFsPx
-         Cd05JyLWw+/zjTzxoYatZebRGF/xrZKm5bueb3E2JXLaAzW5jFytH2aY4gFmq+m/mGo7
-         jSlQ==
-X-Gm-Message-State: AOAM5316EW+jHkpe95958RX8wpzZ5P2REZtpJeqbZw4W/sHf9BAgl5df
-        Hs6We0klr5bFKECobQON3nU=
-X-Google-Smtp-Source: ABdhPJxDygBr+KpHY2REE6mJWoCbqzYcS5amc+jaOuQCbso4BmBRhR/1IV1fcfyjno9g6NqtzkJT0g==
-X-Received: by 2002:a17:906:30d1:b0:6cf:d160:d8e4 with SMTP id b17-20020a17090630d100b006cfd160d8e4mr29143060ejb.265.1646347575877;
-        Thu, 03 Mar 2022 14:46:15 -0800 (PST)
-Received: from skbuf ([188.25.231.156])
-        by smtp.gmail.com with ESMTPSA id ep16-20020a1709069b5000b006daa26de2fbsm581804ejc.153.2022.03.03.14.46.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 14:46:15 -0800 (PST)
-Date:   Fri, 4 Mar 2022 00:46:13 +0200
-From:   Vladimir Oltean <olteanv@gmail.com>
-To:     Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc:     netdev@vger.kernel.org, linus.walleij@linaro.org, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        davem@davemloft.net, kuba@kernel.org, alsi@bang-olufsen.dk,
-        arinc.unal@arinc9.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v5 1/3] dt-bindings: net: dsa: add rtl8_4 and
- rtl8_4t tag formats
-Message-ID: <20220303224613.sdyfcipcmhzepbo7@skbuf>
-References: <20220303015235.18907-1-luizluca@gmail.com>
- <20220303015235.18907-2-luizluca@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=YInCGTDHP4uEDLfZ+VtOKdALPoSEe5yJvGES7+vW7vI=;
+        b=DQhbh2xECMf3JZZU4ssuMor3+C7oDzDgSR9m0i0AkqhmpE62Cdtvm8oE9F+D86l9L2
+         0eV3LmESU0gWHW+Zd3hQbkyQkHSjAD4nWWpAJDZWYwYoftie37LPrWBNeuwHmD3ehJML
+         VtijFgRuvPdurQSWk/lhRqlmlK6ql7xJ6e1uF0vLblBGav9wDV1+v41I5Ovrp3mhSXny
+         5Rax3N2NmAuKY7Ke9RQPzrnMg6djfzwD/UAHAwxmP9Z5yDnrCPMarujobumEapykwYok
+         mwGgTU53J565aeCyeg6WQkcSlTGOqHD8H1C1Y7Hy4KFrIXPgTHME4yIWj8EhxnjAC8Wz
+         itJA==
+X-Gm-Message-State: AOAM531i0X8N9FRXTRPFCA5KZUk6n8EI34SLQ4irRya/Wecx/mDPWQYr
+        JjY8mipihIPQio3ZP8f3Pq1XIWkPpWZBAp3KLiIBXw==
+X-Google-Smtp-Source: ABdhPJzTeVvy0ZXmMbNug5JQgHPRdUPKsYwepu2pUfahumGm8539y4yaEH88/G2mI0zVqSydkS+y839Csd59U8fXZts=
+X-Received: by 2002:a25:2308:0:b0:628:9a66:7327 with SMTP id
+ j8-20020a252308000000b006289a667327mr10394599ybj.626.1646349011461; Thu, 03
+ Mar 2022 15:10:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220303015235.18907-2-luizluca@gmail.com>
+References: <52970494111d9287cc8355e0f2e3de474361c75f.1646296493.git.geert+renesas@glider.be>
+In-Reply-To: <52970494111d9287cc8355e0f2e3de474361c75f.1646296493.git.geert+renesas@glider.be>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 4 Mar 2022 00:10:00 +0100
+Message-ID: <CACRpkda+gNgE1bE1_79pLrqku86dXygg4v_ynC5OaFNb0yth=Q@mail.gmail.com>
+Subject: Re: [PATCH v2] ata: Drop commas after OF match table sentinels
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>,
+        Patrice Chotard <patrice.chotard@foss.st.com>,
+        Sergey Shtylyov <s.shtylyov@omp.ru>, linux-ide@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 10:52:33PM -0300, Luiz Angelo Daros de Luca wrote:
-> Realtek rtl8365mb DSA driver can use these two tag formats.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-> ---
+On Thu, Mar 3, 2022 at 12:03 PM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 
-Reviewed-by: Vladimir Oltean <olteanv@gmail.com>
+> It does not make sense to have a comma after a sentinel, as any new
+> elements must be added before the sentinel.
+>
+> Add comments to clarify the purpose of the empty elements.
+> Rewrap entries to a single line to have a consistent style.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Sergey Shtylyov <s.shtylyov@omp.ru>
+> Acked-by: Florian Fainelli <f.fainelli@gmail.com> [ahci_brcm]
 
->  Documentation/devicetree/bindings/net/dsa/dsa-port.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> index 702df848a71d..e60867c7c571 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> +++ b/Documentation/devicetree/bindings/net/dsa/dsa-port.yaml
-> @@ -51,6 +51,8 @@ properties:
->        - edsa
->        - ocelot
->        - ocelot-8021q
-> +      - rtl8_4
-> +      - rtl8_4t
->        - seville
->  
->    phy-handle: true
-> -- 
-> 2.35.1
-> 
+This looks so much better.
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
