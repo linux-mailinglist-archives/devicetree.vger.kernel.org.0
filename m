@@ -2,121 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 855B14CC394
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 18:18:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BE1EB4CC3AC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 18:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235282AbiCCRTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 12:19:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
+        id S235339AbiCCR1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 12:27:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235284AbiCCRTW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 12:19:22 -0500
-Received: from mail-io1-xd30.google.com (mail-io1-xd30.google.com [IPv6:2607:f8b0:4864:20::d30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3DD1768EA;
-        Thu,  3 Mar 2022 09:18:36 -0800 (PST)
-Received: by mail-io1-xd30.google.com with SMTP id t11so6595060ioi.7;
-        Thu, 03 Mar 2022 09:18:36 -0800 (PST)
+        with ESMTP id S231726AbiCCR1J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 12:27:09 -0500
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAD3319E02F
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 09:26:22 -0800 (PST)
+Received: by mail-oo1-xc29.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso6554019ooi.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 09:26:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=0WF3B5MhmM4VMTKxqIPbUl7+aYszdv2qaJTWGu36x48=;
-        b=njhaYPGdjPvmw5QM90U49Q4Ymshn7zeqlSQBGMVtO8tQUksrPUiBsclxp8+rFi9ejq
-         sK1nbemdUcaiqMXQFYMBUwIdBdznC7wjzlJ9M6b7OhlpjEyBVitzBw63TroEw8CDOuhK
-         VWtY4HTnBwfeY4Wy9e1px7iFzt/SC4fxE9D8R9QPF6l78P5XqwFXbsaL8MV8ld073yOR
-         oy4dhyXK+Hsg3NA4RH3uEtni1/kSzGIKbexmIAJ1W/U/9eilRNpDgcpJWllPJ3kC6XVP
-         6S10wA+gDKgHCYi+eMf97q7iBP+u/CS5Qp6zhqercoCtowW9znXpTgF2tHVhjptmy3ZZ
-         +Wrg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Hi+eKfkvL+1ELz8vCd2J8tALPiN2Yeq81v7WF2HdAvA=;
+        b=ST/Z+X1lhcPRR3gkR9suvwoVxqwduRsMYavBHcuzH6MEWvRTvI8XehW5GVLJKxx+FC
+         NE7DS70gcRfuBP+bWOto18cMXOIZPLk609iw8smuy/WxCEcWYm/+G+iCdIlMCCWpSINZ
+         +DfLXoHb7999QY5ssTrZRl7n0KNUX8O58zRTFoWlx3ttRtJXmbbewgi9suaOM+NiV36v
+         NmeOZAmFGzTuS00K7V5if14XLORNd3xksz9NN+wJMfw08Eh1bK23PFyL0ckhuwl0BCpJ
+         0VrqKXWYsDnU5ViWauFzYYUT0AyGj/KfqWwXDxN3Hn0HNlf+Zxf4qRSEUTD/zgtZ55wd
+         vatw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=0WF3B5MhmM4VMTKxqIPbUl7+aYszdv2qaJTWGu36x48=;
-        b=pKaVR1+lMotTK+Uta4xLqJBFwuvcrSNjYZra4BneIXv5B0/twxEMqzZAH6nGFGVB3A
-         OqK9y+ZuAonDljHA2n8CaMx1tnI9rNpdn6PvVKJGD8zBTC3d97GdBFSCLl/uyzKnCAZy
-         T5Ydm9bnSPtQ6UUTaV3B1xuJj5g7wk6X5i9IYSNXVPzbJsKUAk0ON04Ev89HYHk+9bwh
-         NQDyPEOhrafLHlhyeY97CHRC3yoicREx01bDePmxduduAZsjEXzSMuBN2fGRBovJe+hC
-         FaP5cCnEx0lTZGJywFldyNS4FHvt7UWdMXu0LLWC+oFHUGm1aKdytsZTusfSQ9KPMMLh
-         xTwQ==
-X-Gm-Message-State: AOAM530ohHMc++tPUk6BG7+Qk8wBAcalMiKG6QvBT3pRgAVGv1DM7ajZ
-        U98LhBMqOjT5NsbTg44XPM2uAamknowQZA==
-X-Google-Smtp-Source: ABdhPJwwZbYuhjgp3vYy95ehiMEQUCMr4P3uLS4JxL0pUCEASWodXfSIWznGeLwWsW6fTXDebSdzig==
-X-Received: by 2002:a02:1183:0:b0:314:4120:1fbe with SMTP id 125-20020a021183000000b0031441201fbemr30693303jaf.129.1646327915784;
-        Thu, 03 Mar 2022 09:18:35 -0800 (PST)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id b11-20020a92c56b000000b002c5ff65adffsm3016655ilj.31.2022.03.03.09.18.34
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Hi+eKfkvL+1ELz8vCd2J8tALPiN2Yeq81v7WF2HdAvA=;
+        b=AL5dWC9EBJvKGSr4WEtGedbE3QvIAnPMiMFRr23F68u+6s5tybBf45Hs74SKsejEJS
+         a500DcH9fP3JuVhumt+LR5QzXAH7BW+DLNjYxy4UvFh3ElZqSrFyQXpRj4kfGq+V8Mky
+         jzilyFGONB900agBVqwARTpXSM9pId9pI1bGGoMeh7V/cSE13mpk56r9euGUBPaxoDNr
+         ywmu014WyoRoQtAPgezgHLRhDrrJHg57SckKxh+WrqmIkULu6sjbjKAioO1BdL6RYg9l
+         pES1xUcmiZ7W7SCUf3i52Szxhxp3g37O3OLzEOljhQM7Ep9v+0FYuuKVy42iIT7o1KiC
+         ddmQ==
+X-Gm-Message-State: AOAM53106hsdT+n2W8WjpqTOWCKeaRtlRETCaUDvacUcpPpvbCe8nTXt
+        N8J4VEHVgj048rXRsbIaZI6VaQ==
+X-Google-Smtp-Source: ABdhPJwv1sxGTZF0niRgbP0qtUDDm24paYlb1odjA9ejm9/YPSBr9Tb4EAnKGNswbr1L/KDB331RZA==
+X-Received: by 2002:a05:6870:a1a0:b0:d9:b198:4cfa with SMTP id a32-20020a056870a1a000b000d9b1984cfamr3722424oaf.159.1646328381877;
+        Thu, 03 Mar 2022 09:26:21 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id c26-20020a4ae25a000000b0031c268c5436sm1195619oot.16.2022.03.03.09.26.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 09:18:35 -0800 (PST)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-omap@vger.kernel.org
-Cc:     aford@beaconembedded.com, Adam Ford <aford173@gmail.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: logicpd-som-lv: Move pinmuxing to peripheral nodes
-Date:   Thu,  3 Mar 2022 11:18:18 -0600
-Message-Id: <20220303171818.11060-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220303171818.11060-1-aford173@gmail.com>
-References: <20220303171818.11060-1-aford173@gmail.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 03 Mar 2022 09:26:21 -0800 (PST)
+Date:   Thu, 3 Mar 2022 09:28:10 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Pavel Machek <pavel@ucw.cz>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe Kleine-K?nig <u.kleine-koenig@pengutronix.de>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>, linux-leds@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-pwm <linux-pwm@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Luca Weiss <luca@z3ntu.xyz>
+Subject: Re: [PATCH v13 2/2] leds: Add driver for Qualcomm LPG
+Message-ID: <YiD6qrLC9B4A8sNz@ripper>
+References: <20220218183116.2261770-1-bjorn.andersson@linaro.org>
+ <20220218183116.2261770-2-bjorn.andersson@linaro.org>
+ <CAD=FV=UOLcu5xycimDsYTO1spwf=CMRPUSU3o0qRRC+a+zuRTQ@mail.gmail.com>
+ <CAD=FV=We4Lv25h2XF6BsdYhMbYu4716LBuhAjH5N0s_HHt_Xcw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=We4Lv25h2XF6BsdYhMbYu4716LBuhAjH5N0s_HHt_Xcw@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move some pinmux references to their respective peripherals.
-This keeps the pins in safe-mode until they are requested.
+On Thu 03 Mar 08:41 PST 2022, Doug Anderson wrote:
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+> Hi,
+> 
+> On Wed, Mar 2, 2022 at 4:03 PM Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > On Fri, Feb 18, 2022 at 10:29 AM Bjorn Andersson
+> > <bjorn.andersson@linaro.org> wrote:
+> > >
+> > > +static void lpg_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
+> > > +                             struct pwm_state *state)
+> > > +{
+> > > +       struct lpg *lpg = container_of(chip, struct lpg, pwm);
+> > > +       struct lpg_channel *chan = &lpg->channels[pwm->hwpwm];
+> > > +       unsigned int pre_div;
+> > > +       unsigned int refclk;
+> > > +       unsigned int val;
+> > > +       unsigned int m;
+> > > +       u16 pwm_value;
+> > > +       int ret;
+> > > +
+> > > +       ret = regmap_read(lpg->map, chan->base + LPG_SIZE_CLK_REG, &val);
+> > > +       if (ret)
+> > > +               return;
+> > > +
+> > > +       refclk = lpg_clk_rates[(val & PWM_CLK_SELECT_MASK) - 1];
+> >
+> > I don't know why I didn't notice it before (maybe I was accidentally
+> > not building with KASAN?), but in my recent boots I'm getting a KASAN
+> > error pointing at the line above.
+> >
+> > Sure enough, the above looks a bit on the unsafe side. If (val & 0x3)
+> > is 0 then the "-1" will not be so wonderful. I put some printouts and,
+> > indeed, it's not so great.
+> >
+> > [    7.201635] DOUG: val is 0x00000004
+> >
+> > Amazingly my `refclk` ends up as 0 and I guess somehow this doesn't
+> > cause a divide by 0.
+> 
+> I dug a little more and found a document that talks about this
+> register. I guess the answer here is that at boot time on my device
+> the PWM is disabled and has never been enabled. That explains why, at
+> boot time, the "clk_select" is 0 AKA "no clock". So we do an invalid
+> memory access here and that's not so great, but it doesn't _truly_
+> cause any harm. All we need is something like this right before the
+> array dereference:
+> 
+> if ((val & PWM_CLK_SELECT_MASK) == 0)
+>   return;
+> 
 
-diff --git a/arch/arm/boot/dts/logicpd-som-lv.dtsi b/arch/arm/boot/dts/logicpd-som-lv.dtsi
-index 55b619c99e24..9ba0ea4eb48a 100644
---- a/arch/arm/boot/dts/logicpd-som-lv.dtsi
-+++ b/arch/arm/boot/dts/logicpd-som-lv.dtsi
-@@ -27,6 +27,8 @@
- 
- 	/* HS USB Host PHY on PORT 1 */
- 	hsusb2_phy: hsusb2_phy {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hsusb2_reset_pin>;
- 		compatible = "usb-nop-xceiv";
- 		reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>; /* gpio_4 */
- 		#phy-cells = <0>;
-@@ -144,6 +146,8 @@
- };
- 
- &usbhshost {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&hsusb2_pins>;
- 	port2-mode = "ehci-phy";
- };
- 
-@@ -151,10 +155,7 @@
- 	phys = <0 &hsusb2_phy>;
- };
- 
--
- &omap3_pmx_core {
--	pinctrl-names = "default";
--	pinctrl-0 = <&hsusb2_pins>;
- 
- 	mmc3_pins: pinmux_mm3_pins {
- 		pinctrl-single,pins = <
-@@ -250,8 +251,7 @@
- };
- 
- &omap3_pmx_wkup {
--	pinctrl-names = "default";
--	pinctrl-0 = <&hsusb2_reset_pin>;
-+
- 	hsusb2_reset_pin: pinmux_hsusb1_reset_pin {
- 		pinctrl-single,pins = <
- 			OMAP3_WKUP_IOPAD(0x2a0e, PIN_OUTPUT | MUX_MODE4)	/* sys_boot2.gpio_4 */
--- 
-2.17.1
+Thanks for spotting and digging that up. I can confirm that the
+documentation has 0 as "no clock" and I think it would be nice if
+lpg_clk_rates[] reflected the possible hardware values. That way we can
+also get rid of the + 1 in lpg_apply_freq().
 
+I will fix this up, as well as fix up the indentation issue spotted by
+Uwe in the documentation and repost.
+
+Regards,
+Bjorn
+
+> I'm still pretty interested in seeing this patch series land and, if
+> it helps it land sooner, I wouldn't object to the above getting fixed
+> in a followup patch.
+> 
+> -Doug
