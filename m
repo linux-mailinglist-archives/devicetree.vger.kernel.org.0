@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 655764CC728
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 21:40:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2E184CC726
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 21:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231611AbiCCUkv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 15:40:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55866 "EHLO
+        id S235141AbiCCUkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 15:40:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235403AbiCCUku (ORCPT
+        with ESMTP id S235964AbiCCUku (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 15:40:50 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF7FA45044
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 12:40:02 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id j2so5941729oie.7
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 12:40:02 -0800 (PST)
+Received: from mail-oo1-xc36.google.com (mail-oo1-xc36.google.com [IPv6:2607:f8b0:4864:20::c36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBE7670914
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 12:40:03 -0800 (PST)
+Received: by mail-oo1-xc36.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so7108372oot.11
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 12:40:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=W6ivzEST0/0RmfsLaCOCltq4DgvWGRxDFP541B1VCs8=;
-        b=Z1LcOYQlEowy0QyeZxrUoMDteE4xtibDZsUdPTgwGAwZaAcvNkom9Z9tDJRRbMtoUk
-         qewA1z6Mvtzir5svwwzzoNIlGeoLwmez44AVqp+983gm7OwxWj5AaUKg/H8GlcPAPKSx
-         nX2zlGvcx1KTnv+3S0tQg3H0s1RIXEKUYnk5A9aWx64yhvWJ/2o3JvBlissJJ5BnJluH
-         rAGaFTRO0smP1tuA5aI/RSp/2sotfshBY2qjXU96IuxL53U9LzKlcsskxtJ3LC75lSNE
-         xvIgdpbRDqatJBCxgdd/wOi7SFeEWCfC9yyjp2jo4truf/MxiTgRa/1GBnt5plYjFVkB
-         qmFQ==
+        bh=ZER1xlrF5OLn4vnRWSKKsumGqChKVTvRQzNWAx59PWE=;
+        b=EJaoWiZkHlsvFm9x5fEKxTQge06popRyPC0XcAF0WTTVCjY61TyxOOukThZwzSW2Ox
+         +fiqBKldlBCJTNmbHtcVVaJEmkIbUt0CR7Nn1jdmnu0S36E1K+DchNXxuLQ5x5E0nV4X
+         DAApgsv+w8shSQpSF1LyWVMMiS/WPW4WtVZJyBJoAN3JfGkIRY/ytMWafYJS8Kh7+v9u
+         Cva9hfH6bEj8LqF0S3IY6z+P3scJhpxyp9sW6H55pgqNJa0tIZvOczywV0hy/Y1pdh/D
+         fPXwpEwwJCV16THINp2xcbUlNJUUyZ7uDKeOSrjnJ/8CNbnZiEdxIyzJrgLF7Jcz3HjZ
+         4pvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=W6ivzEST0/0RmfsLaCOCltq4DgvWGRxDFP541B1VCs8=;
-        b=iSwxsj3Y/9oB78qOBj44HVX86LNGpJr8nOrlAYY9jRiW6Dsyt+4RNW1smJl+MVF+8k
-         NJWJ0mYg2r+R7IJbaY3gI/pMipTQzk8oZnpsi5xMIEwmNfijw+xg7m4turefCiH/c3YA
-         4aMFysJkuYTduImj61PWvIyK652LDPG0kdf/zgKzyQ23HsX37qAaEqX+MmVk2PlRmYEE
-         NGa0Bu+5V7f2nwAJqneiZ5DgEO8QQpPBdSnoI1D7Hbx5+mMfEgXiUzXBbQugrNZ4zU0c
-         lbbNfx3YNUuCNbbdJlXeFn+bO3rYUNaT/hBs8jQY0csKIryY3Zh1rZFzIKJEkFFSv2v2
-         a2zQ==
-X-Gm-Message-State: AOAM531vk3TbUpQDpqKbmtdgUVJv15SuWfHqQs3xhaTlnpnvLCg9bwoK
-        u836PNcjU4qDoDo0qG9/UW7PITnvm8k=
-X-Google-Smtp-Source: ABdhPJy+mTCSe/mHq4ifhK65etOUA2QVyk4U43+F1NvlrHbpFv6MKaOfV5N4Xitc4ZKfVgEeixgOPw==
-X-Received: by 2002:a05:6808:30a3:b0:2d5:2019:97ac with SMTP id bl35-20020a05680830a300b002d5201997acmr6310842oib.40.1646340001821;
-        Thu, 03 Mar 2022 12:40:01 -0800 (PST)
+        bh=ZER1xlrF5OLn4vnRWSKKsumGqChKVTvRQzNWAx59PWE=;
+        b=rndANYZgiM+WvyZIY4jqp4FRYmIcaL5ED2HoTlf0SkmmlwoicgIDmm6rPwDbbKgUIC
+         tcBXu82UxXKS5QtspIVnebzd0WcVGjnh+nijXcnkrV999CfaPzJnRu5Vm/ZbBA2oCvOQ
+         zaBgHKzv8tgVK1rXkXxTDQCBKnzVmAWv+b9Dyaz+6lmSrMxUzQ+xLOsK4RfhFhz6HGp+
+         B3C9kfn5sCqoS7JL7WHX4ZQ0E125fFqQgYUsucw0pBtADPKpsMhjIiqXLqWKtjPXNLdx
+         sxd2VOlK5HFKLkiVplowKewQPzBNitzwG6myyFdLYlrCx1KsokMDkA1btE1W5Jih8AY+
+         JMEg==
+X-Gm-Message-State: AOAM532prebSDlGMwnpoJxiI+ufgAPPyjd7BtOWOK9K7JQvlXWth8lrW
+        o4aaNLEB+hyktH99jYOFNLALUxdHUY4=
+X-Google-Smtp-Source: ABdhPJyUS60t7H/eYGRpzg49saWDRIolfyQYxQZr8rY7FglZ2qM4Cxt3uc3u26snCVvwrv+lDw3IMA==
+X-Received: by 2002:a4a:3906:0:b0:31b:e657:fbd9 with SMTP id m6-20020a4a3906000000b0031be657fbd9mr19534638ooa.14.1646340003028;
+        Thu, 03 Mar 2022 12:40:03 -0800 (PST)
 Received: from wintermute.localdomain (cpe-76-183-134-35.tx.res.rr.com. [76.183.134.35])
-        by smtp.gmail.com with ESMTPSA id l84-20020aca3e57000000b002d97bda3872sm1487822oia.55.2022.03.03.12.40.00
+        by smtp.gmail.com with ESMTPSA id l84-20020aca3e57000000b002d97bda3872sm1487822oia.55.2022.03.03.12.40.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 12:40:01 -0800 (PST)
+        Thu, 03 Mar 2022 12:40:02 -0800 (PST)
 From:   Chris Morgan <macroalpha82@gmail.com>
 To:     devicetree@vger.kernel.org
 Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
@@ -55,9 +55,9 @@ Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
         knaerzche@gmail.com, zyw@rock-chips.com, zhangqing@rock-chips.com,
         Chris Morgan <macromorgan@hotmail.com>,
         Robin Murphy <robin.murphy@arm.com>
-Subject: [PATCH 1/4 v5] arm64: dts: rockchip: Remove vcc13 and vcc14 for rk808
-Date:   Thu,  3 Mar 2022 14:39:55 -0600
-Message-Id: <20220303203958.4904-2-macroalpha82@gmail.com>
+Subject: [PATCH 2/4 v5] dts: rockchip: Add #clock-cells value for rk805
+Date:   Thu,  3 Mar 2022 14:39:56 -0600
+Message-Id: <20220303203958.4904-3-macroalpha82@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20220303203958.4904-1-macroalpha82@gmail.com>
 References: <20220303203958.4904-1-macroalpha82@gmail.com>
@@ -75,44 +75,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Chris Morgan <macromorgan@hotmail.com>
 
-The Rockchip rk808 Power Management IC does not have a vcc13 or a
-vcc14. The schematics for at least the Pinebook Pro suggest this is
-actually vcc1 and vcc2, and may be an artifact from the reference
-design schematic).
+Based on a brief discussion on the mailing list it was determined that
+clock-cells should be a required parameter in the event that a consumer
+of the clock gets added in an overlay.
 
 Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 Reviewed-by: Robin Murphy <robin.murphy@arm.com>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 2 --
- arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi      | 2 --
- 2 files changed, 4 deletions(-)
+ arch/arm/boot/dts/rv1108-elgin-r1.dts      | 1 +
+ arch/arm/boot/dts/rv1108-evb.dts           | 1 +
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts | 1 +
+ 3 files changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index c2f021a1a18f..20f71317d7ab 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -472,8 +472,6 @@ rk808: pmic@1b {
- 		vcc10-supply = <&vcc_sysin>;
- 		vcc11-supply = <&vcc_sysin>;
- 		vcc12-supply = <&vcc3v3_sys>;
--		vcc13-supply = <&vcc_sysin>;
--		vcc14-supply = <&vcc_sysin>;
+diff --git a/arch/arm/boot/dts/rv1108-elgin-r1.dts b/arch/arm/boot/dts/rv1108-elgin-r1.dts
+index f62c9f7af79d..0c99a5934ebf 100644
+--- a/arch/arm/boot/dts/rv1108-elgin-r1.dts
++++ b/arch/arm/boot/dts/rv1108-elgin-r1.dts
+@@ -72,6 +72,7 @@ rk805: pmic@18 {
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
+ 		rockchip,system-power-controller;
++		#clock-cells = <0>;
  
- 		regulators {
- 			/* rk3399 center logic supply */
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-index d1aaf8e83391..0e45cc2d195b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi
-@@ -310,8 +310,6 @@ rk808: pmic@1b {
- 		vcc10-supply = <&vcc3v3_sys>;
- 		vcc11-supply = <&vcc3v3_sys>;
- 		vcc12-supply = <&vcc3v3_sys>;
--		vcc13-supply = <&vcc3v3_sys>;
--		vcc14-supply = <&vcc3v3_sys>;
- 		vddio-supply = <&vcc_3v0>;
+ 		vcc1-supply = <&vcc_sys>;
+ 		vcc2-supply = <&vcc_sys>;
+diff --git a/arch/arm/boot/dts/rv1108-evb.dts b/arch/arm/boot/dts/rv1108-evb.dts
+index fe5fc9bf75c9..46cad7cb94bf 100644
+--- a/arch/arm/boot/dts/rv1108-evb.dts
++++ b/arch/arm/boot/dts/rv1108-evb.dts
+@@ -85,6 +85,7 @@ rk805: pmic@18 {
+ 		interrupt-parent = <&gpio0>;
+ 		interrupts = <RK_PB4 IRQ_TYPE_LEVEL_LOW>;
+ 		rockchip,system-power-controller;
++		#clock-cells = <0>;
  
- 		regulators {
+ 		vcc1-supply = <&vcc_sys>;
+ 		vcc2-supply = <&vcc_sys>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+index de2d3e88e27f..40bf808642b9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+@@ -160,6 +160,7 @@ pmic@18 {
+ 		pinctrl-0 = <&pmic_int_l>;
+ 		rockchip,system-power-controller;
+ 		wakeup-source;
++		#clock-cells = <0>;
+ 
+ 		vcc1-supply = <&vcc_sys>;
+ 		vcc2-supply = <&vcc_sys>;
 -- 
 2.25.1
 
