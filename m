@@ -2,118 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 449094CC242
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:06:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC8924CC24A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:07:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232123AbiCCQHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 11:07:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40414 "EHLO
+        id S234802AbiCCQIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 11:08:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230450AbiCCQHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:07:36 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6740C198D02
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 08:06:50 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E94E23F043
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 16:06:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646323608;
-        bh=xG1VegpeadOmn88+iE57xOfi/3/gVn1p4ncbNJPQ2/Y=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=sAdbiiW3iXjWdjm8WmpFvZ5m5jveez6nKrSxFcqqa3PYLWq1ilHG1/t/jg/a+vZRm
-         4gV7PpSlBhoTBMyS5EXsXbUiUVHJzEOwiuFErb7rwBn3NAor2qWQeMpzSzkZUuzZml
-         x0/el+XEXCRE3lx6ZXB3GjbHbgfxROcnKKM31Pqae5W6ePUQxJrxvoZVW0IzrBOAeV
-         MDSRwzgnq/vgEVYzo04e9Lyl+YL/8bhlwAelboWpFyXSuY/JRBO9ssU0dRSkMcSHNT
-         Gsw6dRQpqiNyxp87HSRb2/MWXOVQNBpDo6x2TzQsP2xfcRABNWli8ygUzsoEF8sKQu
-         AQy1xqfMFpJPg==
-Received: by mail-ed1-f72.google.com with SMTP id n11-20020a50cc4b000000b00415e939bf9eso930185edi.22
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 08:06:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xG1VegpeadOmn88+iE57xOfi/3/gVn1p4ncbNJPQ2/Y=;
-        b=eBnbNY7qLnYUSW7rVYz6t8D+2xYDcnnGpMdWiTjuMbofRHzhNvPtQekeLCGpZZlRrn
-         dLbKqJ8QcWCYOAH6yM8spKMQ+oNHczbWyYpE+YdgHb8873emMa66NA0xXiA6njJPRN/i
-         a/bz6/e7036fAjocKJWU+5370Z2OSuJfDNpQajd1/2qP8NR1ySdRb0yBcxT+ct+1JTed
-         SkdHJlvTUWEZVVmhwtCX4/+tmOLcNgMuw/twqRlaQXVER1kSCnR3C53OtGFehfuAgirk
-         Jg+Uhc/9OvemLT6ZntR6E642tOpOWJ7bFdOHHALe6zHIiNV8L8i/SKws4+kLfc1g/vyf
-         nJlQ==
-X-Gm-Message-State: AOAM532p2LDk22NmUn7Hl/HV7OvUtUwo5c8OfJPq+RjXc2tAK50DN4QW
-        yLZ9MsaMfLbLewzQ4E+zhpvSFbpzRecCYaK3IYpep5ov7bRD+NPm1PqUCafMo9pfuoH0OkylfCw
-        wc7mqdDAEW3MIN7AK4sMIv5iSz6VqrKnkwkXbpaY=
-X-Received: by 2002:a05:6402:2709:b0:413:1871:3bc7 with SMTP id y9-20020a056402270900b0041318713bc7mr35222860edd.71.1646323607949;
-        Thu, 03 Mar 2022 08:06:47 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy0ypSpE+JBXZxF1rAG3goiPCgi8sTmtd8ySS6JDdwWuc1APd+jzk60hvABThhhUKmBtUFdpg==
-X-Received: by 2002:a05:6402:2709:b0:413:1871:3bc7 with SMTP id y9-20020a056402270900b0041318713bc7mr35222838edd.71.1646323607691;
-        Thu, 03 Mar 2022 08:06:47 -0800 (PST)
-Received: from [192.168.0.137] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id p3-20020a1709060e8300b006d0e8ada804sm825929ejf.127.2022.03.03.08.06.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 08:06:47 -0800 (PST)
-Message-ID: <db306916-c748-c983-d535-a4ce67d36cbb@canonical.com>
-Date:   Thu, 3 Mar 2022 17:06:46 +0100
+        with ESMTP id S234799AbiCCQIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:08:14 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFA5553B56
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 08:07:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1646323621;
+        bh=D9W07+OUMPXR+k9aCYXbl5HFYe+LbU3RKRHJ4qCmUZs=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=AUl5B72MxoLUWFdMwnZ7l+X12NdvFwz2rYRZXJRrsnRTibYOr37GMhec0EKGe0hPV
+         F0Vryvk81TDdnfaJjwOmOpjLg+jXZEbGHoruSgORGquaRF70SSdwk+f4Bgfbvn9l9G
+         4VBjeF6JMyf9kUee8e3yYCZwHZz8Zh2yNiHmWVNg=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.154.125] ([217.61.154.125]) by web-mail.gmx.net
+ (3c-app-gmx-bs69.server.lan [172.19.170.214]) (via HTTP); Thu, 3 Mar 2022
+ 17:07:01 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: display/msm: add missing brace in
- dpu-qcm2290.yaml
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Loic Poulain <loic.poulain@linaro.org>
-References: <20220301233037.2257996-1-dmitry.baryshkov@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220301233037.2257996-1-dmitry.baryshkov@linaro.org>
+Message-ID: <trinity-e24fc9d8-680d-43e4-bc2a-9a3cc7d43138-1646323621559@3c-app-gmx-bs69>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Aw: [PATCH v7 22/24] drm: rockchip: Add VOP2 driver
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Date:   Thu, 3 Mar 2022 17:07:01 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20220225075150.2729401-23-s.hauer@pengutronix.de>
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-23-s.hauer@pengutronix.de>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:U5wBZdbza9VwWSnL2Fb/j5WKWmiu06uBo7QibEBguykIkwt7nMKuSqoQTfEekVKnR75KK
+ qAtXS1kKXTbWjJXW/t/jjRrhq3gv/CeiVeIuYSvdcVoc7OzZk7GSUcIOvQZD5M1UT2xfVcrI0NPi
+ 9bCLXlld6yvNiefpjlqGrZnRa6GpXuVFXfdMgQqmAWUTvwy2EsZQb6eKSG/ZurDmP13S12aZGdwc
+ L7S4d94Fm2Jdpz3VYvZQDp7Kufu/NS42cIOeYFlFfwN0paqnc0buptBlVcZlKPywFDP9g6LHgUiX
+ K0=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:qf+KSkywVP0=:JpcIqLcBRZBQNiLw8+A4la
+ tiqpbqm6gA5oF3Y0T++yP1jdH443sT//j7UKXJ/CF4m4jXwx61MDkQex5e0Z5BY2G1cIJWMJW
+ Ww+ofziD4r3yUpD+uhNJJk3gTW4eswSpmLvY0cwvGe61LLf1lq0jCUJIAw9w/4wdQf0FToS/0
+ CnurClPnc3A8qkz5t6TRdIiocPH5rVk9GOum6m7MtvekiRjtJ+6cZZOfQjgZPUpM2kIwaiB5B
+ XzAny3uYO04ndJ6NnxwMQf66BvEaBc6g5CUxTXJCRlQJ0FXe7QWlmbxcCPZdjpCwoqy6UU9J+
+ ipRjFAD+rqTiiSbIpdZOJT8efLdElV4PlEVKY9Ug1/gfNree7QrfDQQstk3UfJMHAuDqp0wOQ
+ AVzZjG4+ir5/PmCsKirIwKjJVzELsK06t4ctIHrsV7cYUBuDQI4hOI+7Ktj+wjLrCBDewJycw
+ NatU87zOZUyX7yMJjYXcjVrc4vyTVnHCC3y3p4U75FOgbqES2fbtUEIYZHRKp9DfKyJKZ+lEc
+ xpdSh81+mThatPwn9qW9j4boQ8UPaM2+/H62weOFR8vAiL4Sv4K6dsNwG3bJjBtUmfSIx9Egv
+ +bYlQrmYhwRNSXoiuRr0zA950wToiif/re86r8e7ecExmqHYte4MUhVky8AsZ5bGz8iDYmVtx
+ 6N+lZ/I+HLK2xSUdS8XQ7mpJDHZpzSswtONauWMKO+AOejB88T+pOZXyqZSp/9VhijBPTxQEt
+ uWKbXg0GEtzWShS3loX/eVmHHvLOgWd7X56MhqeCsw8B/ye9V63ZvOMPQq2n3OQ8H+2Wzn9xN
+ yYP1KlJ
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/03/2022 00:30, Dmitry Baryshkov wrote:
-> Add missing brace in dpu-qcm2290.yaml. While we are at it, also fix
-> indentation for another brace, so it matches the corresponding line.
-> 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Cc: Loic Poulain <loic.poulain@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> index 8766b13f0c46..b1b4652077db 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dpu-qcm2290.yaml
-> @@ -209,6 +209,7 @@ examples:
->                                          remote-endpoint = <&dsi0_in>;
->                                  };
->                          };
-> -                 };
-> +                };
+Tested this Series on my rk3568 Bananapi R2 Pro v00
 
-I see this was applied, but indentation is still wrong. It is not
-aligned with opening block.
+Tested-by: Frank Wunderlich <frank-w@public-files.de>
 
-The indentation should be converted to DT schema convention, so 2 or 4
-tabs. I propose 4.
-
-Best regards,
-Krzysztof
+regards Frank
