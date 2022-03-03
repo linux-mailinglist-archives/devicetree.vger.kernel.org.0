@@ -2,93 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0520D4CB9E9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:14:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4BC4CBA01
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 10:19:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230201AbiCCJPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 04:15:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50352 "EHLO
+        id S231496AbiCCJUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 04:20:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229930AbiCCJPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:15:22 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 887B4119435;
-        Thu,  3 Mar 2022 01:14:37 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CC1A6885;
-        Thu,  3 Mar 2022 10:14:35 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1646298876;
-        bh=OSe+PR5iWXfk7TT5SmP463t6QDDD1+tQqfbrYuJ59f8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XnUFRHaoCchmSwwnyhCDedhVyStwSz2xuZyQIv1ynac1QJiCugETWID5aNAINkn0p
-         tpChYrzOvLoJh6Tv78+ZZ2V0KnuTwB0WmtY7iK5EbxWEh4sMnxGzLtebJZ+3LarCIN
-         Z4kWWgD51SU28KPoS1cw/FwUbTe6bHkRWX6Jij/Y=
-Date:   Thu, 3 Mar 2022 11:14:23 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] dt-bindings: display: bridge: renesas,lvds: Document
- r8a77961 bindings
-Message-ID: <YiCG7xSHx6qqFlrc@pendragon.ideasonboard.com>
-References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
- <20211224052309.1997096-4-nikita.yoush@cogentembedded.com>
- <YcyRAk/d2728mDgH@pendragon.ideasonboard.com>
- <CAMuHMdWkgEwgSEBrNt57nMPuMvyCSPsSbKFuQTGX8qX0-mrDLA@mail.gmail.com>
+        with ESMTP id S230239AbiCCJUD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 04:20:03 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA0E116AA42
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 01:19:17 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id u10so5136709wra.9
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 01:19:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=49xGlm/DxY0ahn3U3JBRs5yGk2SDIewapjDdO3Gg/+Y=;
+        b=AtZQQ1Ms/KXgba3kaO2jKK5cWXRU+SayBn87UkdQm/v6JrrJHsm+HUgcKYTTh9mDO9
+         Je1ZPwVLyX3gCAVefkixlLx89TDEBiUANtsejO9isoIJ8FrMKL+9IjeLQiQI5kl8uF8X
+         8rahIRSfaopWs/AzhDsZE6UH3r/iLC0SqEJ4KuPqt8f8jAoFKZkUV8PcYMfCBWmkYCtj
+         EzYzduLGL3UiIk6Mrj+IaRSR8IZbF/Pj4sH0g1sRJUxg+FOwdhwtmhhY4N5kw+U3QGFp
+         10Phsq8eudKDVeDbnViBTADjyExuDHRv9KOorGWWJWh1YqyfmmLFJK+Absefpq1W8kxp
+         XNVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=49xGlm/DxY0ahn3U3JBRs5yGk2SDIewapjDdO3Gg/+Y=;
+        b=VNCvcJV5oYutIq/Icv61MSktaznUqpcuje3Bv6GLr4eoXpP6QdLSkZQJlxkLIqKRzY
+         vY1A44NlRruXX26bsdeS0yC+EPfxM8OHiTTBI7OnPcnavaGhOn+/LXDTJfNe9tzs4iwc
+         nEyOV1g77++iuxIjs5ZppDZsMpiEX0dvd7iF2BUuSnbi+tASbcFNOrBRs39q1B6W3SKg
+         pY1aTbRXhrBgfnRnMckCre9v2u1ihSV8EvOP/ZOvkFQGXQ71ExACaaCVOJTgvaK38v6e
+         rTf+94HShzBJPomx2mM1YQIgLWuTVLWyxGSFcD3xUEopODzNRDcKotziyxeAvxZxaNHE
+         h0/A==
+X-Gm-Message-State: AOAM533oR3CkRoih0eEzFBymT2G5B45DQpieZPgqehwXjbC615heIeW5
+        JRKHfDmhtOXERk4Yx6oVKiUDPy2IcY9Qqw==
+X-Google-Smtp-Source: ABdhPJxuhqXmLr+4swlzFDpUazpx85y15v3ttKVl4YU+8C6hPlbir/P24pU8bQbhDBUzVN3002Aetw==
+X-Received: by 2002:a05:6000:3c8:b0:1ef:64e8:9235 with SMTP id b8-20020a05600003c800b001ef64e89235mr22508518wrg.498.1646299156414;
+        Thu, 03 Mar 2022 01:19:16 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id g17-20020adff411000000b001f03426827csm1426404wro.71.2022.03.03.01.19.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 01:19:15 -0800 (PST)
+Date:   Thu, 3 Mar 2022 09:19:14 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Robert Marko <robert.marko@sartura.hr>, linus.walleij@linaro.org,
+        brgl@bgdev.pl, p.zabel@pengutronix.de, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        skhan@linuxfoundation.org, luka.perkov@sartura.hr
+Subject: Re: [PATCH v10 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers
+ bindings
+Message-ID: <YiCIEsMVcK1WEecR@google.com>
+References: <20220131133049.77780-1-robert.marko@sartura.hr>
+ <20220131133049.77780-6-robert.marko@sartura.hr>
+ <Yh8vJNc4D6rA68au@google.com>
+ <Yh/kFzNuvbwA2qeE@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdWkgEwgSEBrNt57nMPuMvyCSPsSbKFuQTGX8qX0-mrDLA@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yh/kFzNuvbwA2qeE@robh.at.kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 06:00:08PM +0100, Geert Uytterhoeven wrote:
-> On Wed, Dec 29, 2021 at 5:47 PM Laurent Pinchart wrote:
-> > On Fri, Dec 24, 2021 at 08:23:09AM +0300, Nikita Yushchenko wrote:
-> > > Document the R-Car M3-W+ (R8A77961) SoC in the R-Car LVDS encoder
-> > > bindings.
-> > >
-> > > Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-> > > ---
-> > >  .../devicetree/bindings/display/bridge/renesas,lvds.yaml         | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > index acfc327f70a7..ca5443e5c2e3 100644
-> > > --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > @@ -27,6 +27,7 @@ properties:
-> > >        - renesas,r8a7791-lvds # for R-Car M2-W compatible LVDS encoders
-> > >        - renesas,r8a7793-lvds # for R-Car M2-N compatible LVDS encoders
-> > >        - renesas,r8a7795-lvds # for R-Car H3 compatible LVDS encoders
-> > > +      - renesas,r8a77961-lvds # for R-Car M3-W+ compatible LVDS encoders
-> >
-> > I'll move this line after the next to keep them sorted. No need to
-> > resubmit.
-> 
-> Any chance this will happen soon? Same for patch 1/3 .
-> Patch 2/3 is already queued in soc/for-next.
+On Wed, 02 Mar 2022, Rob Herring wrote:
 
-Oops. I can send a pull request right away, but we're already at -rc6,
-so I'm afraid it will get delayed to v5.19.
+> On Wed, Mar 02, 2022 at 08:47:32AM +0000, Lee Jones wrote:
+> > On Mon, 31 Jan 2022, Robert Marko wrote:
+> > 
+> > > Add binding documents for the Delta TN48M CPLD drivers.
+> > > 
+> > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > 
+> > This is missing a DT review.
+> 
+> How about this one[1]?
+> 
+> Rob
+> 
+> [1] https://lore.kernel.org/all/20210719225906.GA2769608@robh.at.kernel.org/
+
+Looks like the ball is in your court Robert.
 
 -- 
-Regards,
-
-Laurent Pinchart
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
