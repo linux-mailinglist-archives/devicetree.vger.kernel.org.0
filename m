@@ -2,52 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 386724CBAEC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:02:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A0824CBB1A
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 11:17:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231494AbiCCKDb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 05:03:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44018 "EHLO
+        id S230059AbiCCKS0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 05:18:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbiCCKDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:03:31 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 795511B785;
-        Thu,  3 Mar 2022 02:02:45 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8E5AD1424;
-        Thu,  3 Mar 2022 02:02:44 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 380833F73D;
-        Thu,  3 Mar 2022 02:02:43 -0800 (PST)
-Date:   Thu, 3 Mar 2022 10:02:40 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Edwin Chiu =?utf-8?B?6YKx5Z6C5bOw?= <edwin.chiu@sunplus.com>,
-        Edwin Chiu <edwinchiu0505tw@gmail.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
- sp7021
-Message-ID: <YiCSQCG4NkepeZKs@bogus>
-References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
- <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
- <394261d1-f1df-e80d-3591-10f2d649e731@kernel.org>
- <bcc7a0b58aad4f0989d7d86eaee2c746@sphcmbx02.sunplus.com.tw>
- <748eb0e1-684c-a772-bccd-64b80780192f@kernel.org>
- <fda1e55e576b4cdf9ab412529a3dfc7b@sphcmbx02.sunplus.com.tw>
- <fd39f73e-8317-38c4-6002-8defd784caec@kernel.org>
+        with ESMTP id S232214AbiCCKSY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 05:18:24 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A60EB3D
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 02:17:37 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id r65so2834502wma.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 02:17:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=TtOHWLLsa7rSXRza0fGN1cBKMNwfwygfgSB4i7ej/Go=;
+        b=Nbxsqfpf4U//4kMEYQgwampDN3L5Q2TZvU6x4HLIh5rHGeSfTWOiwOWf7WlZqw6Frz
+         zabhNvVrT6tq8E8cRpfzQby2OfWLCvBQS6NEKRHlj/5MZ486/unuIlHEcozP6A2obxrZ
+         vgvn9NR7WrxE6k4h/FVtUhMxA0XamBacTNXmPndxgT1s1Gzq1iOClFR7LzN8VEfyDUNC
+         CPyh7ZV2CDvjdanG5kRemUYkgHYqpusnawgCP2gFBEL0axzKiQyl7FN0TM/0pSmF7XrP
+         rg+gzo7zHRPIMjtAOSzVsLtTBGl1VLlODl7eu5qVrzYcg95eWFhHCKqTy7XYy/L5UnL1
+         6HXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TtOHWLLsa7rSXRza0fGN1cBKMNwfwygfgSB4i7ej/Go=;
+        b=LLiqMA4X6jkwOjSlOAvHiHdOo7QsiEbZIOZDwUpzl3UUVUmvOHHac1QY2sO8LAJiQn
+         IiCfi1TAJtR/yLS/OI431rmASfuT5HOEZttx0fVGJjoHlvEmUevHxCSWqHXe7F3HZwMF
+         JxLaP6FQ7IPVWj4PBuBSJ0ZaaUJflKMNEwii5yUl8TykfWeXHbU7iqCPpUbzdh2bzEj7
+         HU4BM52YfPTJGp2V+Yk7qb4Dx+N6KqYbIFctFLBXKvvBEIvQtlaX42Yp5BWjvNkyh7eh
+         T293mnXMl0jo1GMj7CBRdAhm58V+qcCkubM5jnU/YV/GFckXTolP3k52YJ14e4LSk9k5
+         /LyQ==
+X-Gm-Message-State: AOAM532ClRLki5Fowtk7MqH6EDWzXBHz9KdVbPUEjlJrLnVD759ZgKdz
+        xrNmFvk0oeHQtved/BcPdlnG6Q==
+X-Google-Smtp-Source: ABdhPJymkgSussHvNIxK2wwqP7NcLV6g47ibW+vjezWNLiFeFT+TfibQHdlBZqfWNbFWWCD8pOD30Q==
+X-Received: by 2002:a05:600c:4401:b0:387:1bcb:af41 with SMTP id u1-20020a05600c440100b003871bcbaf41mr2793032wmn.101.1646302655488;
+        Thu, 03 Mar 2022 02:17:35 -0800 (PST)
+Received: from ?IPV6:2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98? ([2a01:e34:ed2f:f020:b9e3:8853:bc0:bb98])
+        by smtp.googlemail.com with ESMTPSA id e18-20020adfdbd2000000b001e4bbbe5b92sm1713098wrj.76.2022.03.03.02.17.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 02:17:34 -0800 (PST)
+Message-ID: <ce516de7-f1cf-c614-f9ff-439626dfafea@linaro.org>
+Date:   Thu, 3 Mar 2022 11:17:33 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 2/2] clocksource: Add Intel Keem Bay timer support
+Content-Language: en-US
+To:     "Sanil, Shruthi" <shruthi.sanil@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Cc:     "andriy.shevchenko@linux.intel.com" 
+        <andriy.shevchenko@linux.intel.com>,
+        "mgross@linux.intel.com" <mgross@linux.intel.com>,
+        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        "Sangannavar, Mallikarjunappa" 
+        <mallikarjunappa.sangannavar@intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-3-shruthi.sanil@intel.com>
+ <91653d8d-1dc6-0170-2c3c-1187b0bad899@linaro.org>
+ <BN9PR11MB55451DB929086919F8D06390F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+ <23f86de0-3869-ee22-812d-ba610bac48b3@linaro.org>
+ <BN9PR11MB55458A882EB4A681C4A63B26F1039@BN9PR11MB5545.namprd11.prod.outlook.com>
+ <3ff11b85-249f-2f47-cbc4-41d2ab6d168f@linaro.org>
+ <DM4PR11MB554994532B3D128F85553C38F1049@DM4PR11MB5549.namprd11.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <DM4PR11MB554994532B3D128F85553C38F1049@DM4PR11MB5549.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <fd39f73e-8317-38c4-6002-8defd784caec@kernel.org>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,177 +90,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 10:34:31AM +0100, Krzysztof Kozlowski wrote:
-> On 03/03/2022 10:01, Edwin Chiu 邱垂峰 wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Sent: Tuesday, March 1, 2022 7:34 PM
-> >> To: Edwin Chiu 邱垂峰 <edwin.chiu@sunplus.com>; Edwin Chiu <edwinchiu0505tw@gmail.com>;
-> >> robh+dt@kernel.org; devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; rafael@kernel.org;
-> >> daniel.lezcano@linaro.org; linux-pm@vger.kernel.org
-> >> Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus sp7021
-> >>
-> >> On 01/03/2022 10:30, Edwin Chiu 邱垂峰 wrote:
-> >>>
-> >>>
-> >>>> -----Original Message-----
-> >>>> From: Krzysztof Kozlowski <krzk@kernel.org>
-> >>>> Sent: Tuesday, February 22, 2022 12:48 AM
-> >>>> To: Edwin Chiu <edwinchiu0505tw@gmail.com>; Edwin Chiu 邱垂峰
-> >>>> <edwin.chiu@sunplus.com>;
-> >>>> robh+dt@kernel.org; devicetree@vger.kernel.org;
-> >>>> robh+linux-kernel@vger.kernel.org; rafael@kernel.org;
-> >>>> daniel.lezcano@linaro.org; linux-pm@vger.kernel.org
-> >>>> Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for
-> >>>> sunplus sp7021
-> >>>>
-> >>>> On 21/02/2022 08:26, Edwin Chiu wrote:
-> >>>>> Create cpuidle driver for sunplus sp7021 chip
-> >>>>>
-> >>>>> Signed-off-by: Edwin Chiu <edwinchiu0505tw@gmail.com>
-> >>>>> ---
-> >>>>> Changes in v3
-> >>>>>  - Rearrangement #include sequence
-> >>>>>  - Change remark style to /*~*/
-> >>>>>  - Align author email address to same as sob
-> >>>>>  - Optimal code
-> >>>>> Changes in v4
-> >>>>>  - According Rob Herringrobh's comment
-> >>>>>    There is no need for this binding.
-> >>>>>    Just wanting a different driver is not a reason
-> >>>>>    for a duplicate schema.
-> >>>>>    So remove yaml file and submit driver again.
-> >>>>> Changes in v5
-> >>>>>  - According Krzysztof's comment
-> >>>>>    You either use appropriate compatible in DT
-> >>>>>    or add your compatible to cpuidle-arm.
-> >>>>>    Even if this did not work, then the solution is to
-> >>>>>    use common parts, not to duplicate entire driver.
-> >>>>>    According Sudeep's comment
-> >>>>>    In short NACK for any dedicated driver for this platform,
-> >>>>>    use the generic cpuidle-arm driver with appropriate platform hooks
-> >>>>>    Create cpuidle-sunplus.c in arch/arm/mach-sunplus/
-> >>>>>    for hook generic cpuidle-arm driver
-> >>>>>
-> >>>>>  MAINTAINERS                                   |  6 ++
-> >>>>>  arch/arm/mach-sunplus/cpuidle-sunplus.c       | 88 +++++++++++++++++
-> >>>>>  include/linux/platform_data/cpuidle-sunplus.h | 12 ++++
-> >>>>>  3 files changed, 106 insertions(+)
-> >>>>>  create mode 100644 arch/arm/mach-sunplus/cpuidle-sunplus.c
-> >>>>>  create mode 100644 include/linux/platform_data/cpuidle-sunplus.h
-> >>>>>
-> >>>>> diff --git a/MAINTAINERS b/MAINTAINERS index e0dca8f..5c96428 100644
-> >>>>> --- a/MAINTAINERS
-> >>>>> +++ b/MAINTAINERS
-> >>>>> @@ -18252,6 +18252,12 @@ L:	netdev@vger.kernel.org
-> >>>>>  S:	Maintained
-> >>>>>  F:	drivers/net/ethernet/dlink/sundance.c
-> >>>>>
-> >>>>> +SUNPLUS CPUIDLE DRIVER
-> >>>>> +M:	Edwin Chiu <edwinchiu0505tw@gmail.com>
-> >>>>> +S:	Maintained
-> >>>>> +F:	arch/arm/mach-sunplus/cpuidle-sunplus.c
-> >>>>> +F:	include/linux/platform_data/cpuidle-sunplus.h
-> >>>>> +
-> >>>>>  SUPERH
-> >>>>>  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
-> >>>>>  M:	Rich Felker <dalias@libc.org>
-> >>>>> diff --git a/arch/arm/mach-sunplus/cpuidle-sunplus.c
-> >>>>> b/arch/arm/mach-sunplus/cpuidle-sunplus.c
-> >>>>> new file mode 100644
-> >>>>> index 0000000..e9d9738
-> >>>>> --- /dev/null
-> >>>>> +++ b/arch/arm/mach-sunplus/cpuidle-sunplus.c
-> >>>>> @@ -0,0 +1,88 @@
-> >>>>> +// SPDX-License-Identifier: GPL-2.0-only
-> >>>>> +/*
-> >>>>> + * SP7021 cpu idle Driver.
-> >>>>> + * Copyright (C) Sunplus Tech / Tibbo Tech.
-> >>>>> + */
-> >>>>> +#define pr_fmt(fmt) "CPUidle arm: " fmt
-> >>>>> +
-> >>>>> +#include <linux/cpuidle.h>
-> >>>>> +#include <linux/of_device.h>
-> >>>>> +#include <linux/platform_data/cpuidle-sunplus.h>
-> >>>>> +
-> >>>>> +#include <asm/cpuidle.h>
-> >>>>> +
-> >>>>> +typedef int (*idle_fn)(void);
-> >>>>> +
-> >>>>> +static DEFINE_PER_CPU(idle_fn*, sp7021_idle_ops);
-> >>>>> +
-> >>>>> +static int sp7021_cpuidle_enter(unsigned long index) {
-> >>>>> +	return __this_cpu_read(sp7021_idle_ops)[index]();
-> >>>>> +}
-> >>>>> +static int sp7021_cpu_spc(void)
-> >>>>> +{
-> >>>>> +	cpu_v7_do_idle();   /* idle to WFI */
-> >>>>> +	return 0;
-> >>>>> +}
-> >>>>> +static const struct of_device_id sp7021_idle_state_match[] = {
-> >>>>> +	{ .compatible = "arm,idle-state", .data = sp7021_cpu_spc },
-> >>>>> +	{ },
-> >>>>> +};
-> >>>>
-> >>>> This is confusing. You want to have two drivers to bind to the same
-> >>>> compatible? As I wrote in the previous messages, you should simply use arm,idle-state just like few
-> >> other architectures.
-> >>>>
-> >>>>
-> >>>> Best regards,
-> >>>> Krzysztof
-> >>>
-> >>>
-> >>> The patch v5 implemented according your comment.
-> >>> Used common part of arm,idle-state.
-> >>> Create new enable-method for cpuidle.ops function.
-> >>> It only have arm cpuidle driver exist now, no two drivers to bind to the same compatible.
-> >>>
-> >>> What do you mean " simply use arm,idle-state just like few other architectures "?
-> >>>
-> >>
-> >> I mean, do it similarly (by using arm,idle-state and other related
-> >> properties) to for example ti,am4372/ti,am3352.
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >
-> >
-> > The am3352 cpuidle code structure is very similar to ours.
-> > Used enable-method = "ti,am3352" and compatible = "arm,idle-state" in am33xx.dtsi
-> > Used CPUIDLE_METHOD_OF_DECLARE(pm33xx_idle, "ti,am3352", &amx3_cpuidle_ops) in pm33xx-core.c
-> >
-> > The difference are
-> > am3352
-> > amx3_idle_init(~) assign idle_states[i].wfi_flags = states[i].wfi_flags;
-> > amx3_idle_enter(~) call idle_fn(idle_state->wfi_flags)
-> >
-> > sunplus-sp7021
-> > sp7021_cpuidle_init(~) assign fns[i] = idle_fns[i];
-> > sp7021_cpuidle_enter(~) call __this_cpu_read(sp7021_idle_ops)[index]();
-> >
-> > I don't think am3352 cpuidle code architecture simpler than ours.
-> > The idle_fn function need more complex method to be assign.
-> > How do you think?
->
-> You duplicated a driver, entire pieces of code. This is not acceptable.
-> Therefore it does not really make sense to discuss whether duplicated
-> solution seems simpler or not... We won't accept duplicated code.
-> Especially for WFI-only driver.
->
+On 03/03/2022 07:18, Sanil, Shruthi wrote:
 
-+1 for above comment.
+[ ... ]
 
-In addition, the reference platform am33xx* doesn't seem to support hotplug
-(may be I am missing to see but quick grep gave no results) and their idle
-is definitely not just WFI. So what I asked is that please document the
-chosen "sunplus,sc-smp" as bot cpu idle and hotplug methods and when you
-support non WFI states, we can revisit this. Also you must stick to this
-hotplug method whenever you decided to support it.
+>>>>>>> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) { + 
+>>>>>>> pr_err("%pOF: Prescaler is not enabled\n", np); +		ret = 
+>>>>>>> -ENODEV; +	}
+>>>>>> 
+>>>>>> Why bail out instead of enabling the prescalar ?
+>>>>> 
+>>>>> Because it is a secure register and it would be updated by
+>>>>> the bootloader.
+>>>> Should it be considered as a firmware bug ?
+>>> 
+>>> No. This is a common driver across products in the series and 
+>>> enablement of this bit depends on the project requirements. Hence
+>>> to be sure from driver, we added this check to avoid
+>>> initialization of the driver in the case where it cannot be
+>>> functional.
+>> 
+>> I'm not sure to get the meaning of 'project requirements' but (for
+>> my understanding) why not describe the timer in the DT for such
+>> projects?
+>> 
+> 
+> OK, I understand your point now. We can control the driver
+> initialization from device tree binding rather than add a check in
+> the driver. But isn't it good to have a check, if enabling of the bit
+> is missed out in the FW? This can help in debugging.
+
+So if the description is in the DT but the prescaler bit is not enabled 
+then the firmware is buggy, IIUC. Yeah, this check would help, may be 
+add more context in the error message, eg. "Firmware has not enabled the 
+prescaler bit" or something like that
+
+Thanks for the clarification
+
+   -- D.
 
 
---
-Regards,
-Sudeep
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
