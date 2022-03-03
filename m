@@ -2,75 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D60404CB5D5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 05:14:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DECF4CB622
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 06:16:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229557AbiCCEPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 2 Mar 2022 23:15:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33284 "EHLO
+        id S229519AbiCCFQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 00:16:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbiCCEPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 2 Mar 2022 23:15:15 -0500
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5AE3DF4D38
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 20:14:28 -0800 (PST)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229458AbiCCFQz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 00:16:55 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08D31637DD;
+        Wed,  2 Mar 2022 21:16:10 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 8919F83B9F;
-        Thu,  3 Mar 2022 05:14:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1646280866;
-        bh=2xWG+M4NrZBWRPXzWMdjfDGDaYcG7GwtQKJiX8d2DEk=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=MXWpKZrPKXfgBcrp1gNoymzGBVfzz8+gn74WyjQDumcBNJp6gYNy+RAHOxiQEd9w6
-         ryIoB4fcch+BbLzpBIlGgKryD23piaYQU/OAsP9CsptpwgVEPVpsBOnrnr+OR8VF/c
-         f1zWNGJAYfkc8LyarPMuNMAnkgoSyzI+Rq4avzLr1Z5Xa9+JhERBBEFbYGjEeJ3Z7j
-         jwTn/mYkBl2IijaT93E20clYmLe5MHJouCvOpeapc8qDdoWtR/tqKU5ocvKSir4w45
-         gIMSOC/vZCBBfx3VsrPXMT2fb+gljvCAzVF9fLvpbhRJHPkjVLG7opzzt6E3UORHQ9
-         FPivVfz5G99iQ==
-Message-ID: <e8802c2b-2e0a-1e37-de79-f5de60147a59@denx.de>
-Date:   Thu, 3 Mar 2022 05:14:25 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id 17BCBB82232;
+        Thu,  3 Mar 2022 05:16:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91609C004E1;
+        Thu,  3 Mar 2022 05:16:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646284567;
+        bh=0bq/jJdABYiYg74A+Fe0/noQNqV2iAgsmxYRoawwrlo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uZ5A5oQoJlaOFyFdgdRfHHGQkn4BIGzNHMx23tTiXbv2PzRoXTrI3YduuTBp0Mm77
+         sYpOvkvXxTGeq8Xoefo30WCa2/LtCfTmCyYCStH5idHLLDLzF65JuJtbOEfeZEHNBx
+         jEvxXX0p65qRHDwTJMhskS5RzBe4xTGqUDrwnGYqkthjApxEajeKwPy7DKwlP1GKTz
+         60UhG2uZkUnnr+fsd1LvZZLbkzvfyDzY40t85sEXZRUdLIDdfyiESu2lpIKBAwKLjb
+         dcE3UcqlzLEdrtOM6IkYdAhPattuq7VKn19JFr4w0+KP5gRIcHF424ulBCBY1lE4Sd
+         lAzWmgqDd0PVg==
+Date:   Thu, 3 Mar 2022 13:16:03 +0800
+From:   Tzung-Bi Shih <tzungbi@kernel.org>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, matthias.bgg@gmail.com,
+        trevor.wu@mediatek.com, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Jiaxin Yu <jiaxin.yu@mediatek.corp-partner.google.com>
+Subject: Re: [PATCH 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Message-ID: <YiBPE9z+iHU7unn7@google.com>
+References: <20220301072924.24814-1-jiaxin.yu@mediatek.com>
+ <20220301072924.24814-3-jiaxin.yu@mediatek.com>
+ <Yh3hcQpLngg8Pnd4@google.com>
+ <0b8a5c22acb87b49de0380c7cb4e49030f93d715.camel@mediatek.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 1/9] dt-bindings: mxsfb: Add compatible for i.MX8MP
-Content-Language: en-US
-To:     Liu Ying <victor.liu@oss.nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Adam Ford <aford173@gmail.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Peng Fan <peng.fan@nxp.com>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Robby Cai <robby.cai@nxp.com>
-References: <20220228004605.367040-1-marex@denx.de>
- <35b981d0d9d763525c427491ca0e25b6e4c03d0f.camel@oss.nxp.com>
- <8eac8a2c-bc6d-0c79-c727-bdaa2cd9abee@denx.de>
- <a3ab4ec2dd0c7b87698bc7902509a4de6950dd25.camel@oss.nxp.com>
- <33207e88-da9b-96d7-0fef-461cb4496c88@denx.de>
- <284d65f53dffb6085bde6ef6ecd398f10d4c6c80.camel@oss.nxp.com>
- <8950434843ff7bbd1a527b0c799d9a74a75ee36d.camel@pengutronix.de>
- <7aeed693-dfb7-950f-fdf0-3c90de285392@denx.de>
- <8bf0b5a1c9ab9faee28077436cdfd49c0cd08792.camel@pengutronix.de>
- <CAHCN7xJ6ypDxZouZV1b1F1EgQFwdTvmY6EEekj+_z-UWbQMD5Q@mail.gmail.com>
- <4253aa4b5dc4a3568e45755678849961468bfd38.camel@pengutronix.de>
- <b655f565-43b2-4e42-953e-d6efa02f0219@denx.de>
- <85af7c5dfa120903a22e5e704e3bddd87830033c.camel@pengutronix.de>
- <049a182d8bf75110dc5ebe72f5b58d209b64d58a.camel@oss.nxp.com>
- <7e0323b120ebd8faef162a9b0f0ab048bdb7a34b.camel@pengutronix.de>
- <15a6222b256f67a01ef947bb44a2737a6606ad4c.camel@oss.nxp.com>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <15a6222b256f67a01ef947bb44a2737a6606ad4c.camel@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0b8a5c22acb87b49de0380c7cb4e49030f93d715.camel@mediatek.com>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,130 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/3/22 03:54, Liu Ying wrote:
-> On Wed, 2022-03-02 at 12:57 +0100, Lucas Stach wrote:
->> Am Mittwoch, dem 02.03.2022 um 17:41 +0800 schrieb Liu Ying:
->>> On Wed, 2022-03-02 at 10:23 +0100, Lucas Stach wrote:
->>>> Am Mittwoch, dem 02.03.2022 um 03:54 +0100 schrieb Marek Vasut:
->>>>> On 3/1/22 14:18, Lucas Stach wrote:
->>>>>> Am Dienstag, dem 01.03.2022 um 07:03 -0600 schrieb Adam Ford:
->>>>>>> On Tue, Mar 1, 2022 at 5:05 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->>>>>>>> Am Dienstag, dem 01.03.2022 um 11:19 +0100 schrieb Marek Vasut:
->>>>>>>>> On 3/1/22 11:04, Lucas Stach wrote:
->>>>>>>>>
->>>>>>>>> Hi,
->>>>>>>>>
->>>>>>>>> [...]
->>>>>>>>>
->>>>>>>>>>> Given the two totally different IPs, I don't see bugs of IP control
->>>>>>>>>>> logics should be fixed for both drivers. Naturally, the two would
->>>>>>>>>>> diverge due to different HWs. Looking at Patch 9/9, it basically
->>>>>>>>>>> squashes code to control LCDIFv3 into the mxsfb drm driver with
->>>>>>>>>>> 'if/else' checks(barely no common control code), which is hard to
->>>>>>>>>>> maintain and not able to achieve good scalability for both 'LCDIFv3'
->>>>>>>>>>> and 'LCDIF'.
->>>>>>>>>>
->>>>>>>>>> I tend to agree with Liu here. Writing a DRM driver isn't that much
->>>>>>>>>> boilerplate anymore with all the helpers we have available in the
->>>>>>>>>> framework today.
->>>>>>>>>
->>>>>>>>> I did write a separate driver for this IP before I spent time merging
->>>>>>>>> them into single driver, that's when I realized a single driver is much
->>>>>>>>> better and discarded the separate driver idea.
->>>>>>>>>
->>>>>>>>>> The IP is so different from the currently supported LCDIF controllers
->>>>>>>>>> that I think trying to support this one in the existing driver actually
->>>>>>>>>> increases the chances to break something when modifying the driver in
->>>>>>>>>> the future. Not everyone is able to test all LCDIF versions. My vote is
->>>>>>>>>> on having a separate driver for the i.MX8MP LCDIF.
->>>>>>>>>
->>>>>>>>> If you look at both controllers, it is clear it is still the LCDIF
->>>>>>>>> behind, even the CSC that is bolted on would suggest that.
->>>>>>>>
->>>>>>>> Yes, but from a driver PoV what you care about is not really the
->>>>>>>> hardware blocks used to implement something, but the programming model,
->>>>>>>> i.e. the register interface exposed to software.
->>>>>>>>
->>>>>>>>> I am also not happy when I look at the amount of duplication a separate
->>>>>>>>> driver would create, it will be some 50% of the code that would be just
->>>>>>>>> duplicated.
->>>>>>>>>
->>>>>>>> Yea, the duplicated code is still significant, as the HW itself is so
->>>>>>>> simple. However, if you find yourself in the situation where basically
->>>>>>>> every actual register access in the driver ends up being in a "if (some
->>>>>>>> HW rev) ... " clause, i still think it would be better to have a
->>>>>>>> separate driver, as the programming interface is just different.
->>>>>>>
->>>>>>> I tend to agree with Marek on this one.  We have an instance where the
->>>>>>> blk-ctrl and the GPC driver between 8m, mini, nano, plus are close,
->>>>>>> but different enough where each SoC has it's own set of tables and
->>>>>>> some checks.   Lucas created the framework, and others adapted it for
->>>>>>> various SoC's.  If there really is nearly 50% common code for the
->>>>>>> LCDIF, why not either leave the driver as one or split the common code
->>>>>>> into its own driver like lcdif-common and then have smaller drivers
->>>>>>> that handle their specific variations.
->>>>>>
->>>>>> I don't know exactly how the standalone driver looks like, but I guess
->>>>>> the overlap is not really in any real HW specific parts, but the common
->>>>>> DRM boilerplate, so there isn't much point in creating a common lcdif
->>>>>> driver.
->>>>>
->>>>> The mxsfb currently has 1280 LoC as of patch 8/9 of this series. Of
->>>>> that, there is some 400 LoC which are specific to old LCDIF and this
->>>>> patch adds 380 LoC for the new LCDIF. So that's 800 LoC or ~60% of
->>>>> shared boilerplate that would be duplicated .
->>>>
->>>> That is probably ignoring the fact that the 8MP LCDIF does not support
->>>> any overlays, so it could use the drm_simple_display_pipe
->>>> infrastructure to reduce the needed boilerplate.
->>>
->>> The drm_simple_display_pipe infrastructure is probably too simple for
->>> i.MX8MP LCDIF, since it uses one only crtc for one drm device. i.MX8MP
->>> embeds *three* LCDIF instances to support MIPI DSI, LVDS and HDMI
->>> outputs respectively. To use that infrastructure means there would be
->>> three dri cards in all. However, the three LCDIF instances can be
->>> wrapped by the one drm device, which is not the boilerplate code in the
->>> current mxsfb driver may handle.
->>
->> While that may make things a little simpler for userspace, I'm not sure
->> if this is the right thing to do. It complicates the driver a lot,
->> especially if you want to get things like independent power management,
->> etc. right. It also creates a fake view for userspace, where is looks
->> like there might be some shared resources between the different display
->> paths, while in reality they are fully independent.
-> 
-> Trade-off will be made between one drm device and three. My first
-> impression of using the drm_simple_display_pipe infrastructure is that
-> it's too simple and less flexible/scalable, because SoC designer will
-> be likely to add muxes between CRTCs and encoders/bridges or overlay
-> plane(s) in next generations of SoCs(SW developers don't seem have good
-> reasons to suggest not to do that).  Another concern is that whether
-> the userspace may use the three drm devices well or not.
-> 
-> A few more points:
-> 1) With one drm device, userspace may use drm lease APIs to control
-> those independant pipes with drm masters(not sure about the userspace
-> maturity).
-> 2) Code to gather all LCDIFs as one drm device has chance to be created
-> as helpers once there are similar use cases in other drivers(maybe,
-> there is/are already).
-> 3) Power management doesn't seem to be a problem, since each LCDIF has
-> it's own struct device which can be used to do runtime PM at some
-> drm_crtc_helper_funcs callbacks.
-> 4) Regarding the fake view of shared resources, atomic check can handle
-> that, so it doesn't seem to be a big problem, either.
-> 
->>
->> While we do something similar on the GPU side and collect all GPU cores
->> under a single DRM device, I'm not fully convinced that this was a good
->> decision. It now comes back to bite us when the SoC topologies get a
->> little more interesting and e.g. devices are behind different IOMMU
->> streams.
-> 
-> Right, SoC topologies may change, like the aforementioned muxes.
-> Generally speaking, I think one drm device is more flexible and
-> scalable than three.
+On Wed, Mar 02, 2022 at 12:07:39PM +0800, Jiaxin Yu wrote:
+> On Tue, 2022-03-01 at 17:03 +0800, Tzung-Bi Shih wrote:
+> > After seeing the code, I am starting to wonder if the reuse is
+> > overkill.  If
+> > they (RT5682 vs. RT5682S) only have some minor differences, probably
+> > it could
+> > reuse more by:
+> > 
+> > SND_SOC_DAILINK_DEFS(i2s8, ...
+> > SND_SOC_DAILINK_DEFS(i2s9, ...
+> > 
+> > ...
+> > 
+> > if (card == &mt8192_mt6359_rt1015p_rt5682s_card) {
+> >         i2s8_codecs.name = RT5682S_DEV0_NAME;
+> >         i2s8_codecs.dai_name = RT5682S_CODEC_DAI;
+> >         ...
+> > }
+> > 
+> > Or even uses of_device_is_compatible() if it would like to reuse the
+> > struct
+> > snd_soc_card.
+> If we reuse the struct snd_soc_card, the card .name will be same.
+> Should I change the card .name through of_device_is_compatible()?
 
-I agree with Lucas on one driver instance - one IP instance. Each IP 
-instance is separate, so it should have separate driver instance bound 
-to it.
+Exactly yes.
