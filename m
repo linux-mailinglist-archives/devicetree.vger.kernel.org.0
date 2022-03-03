@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A95474CC315
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 495FD4CC34E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:57:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235110AbiCCQnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 11:43:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40050 "EHLO
+        id S234757AbiCCQ6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 11:58:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235111AbiCCQnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:43:00 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 2063F19D74C;
-        Thu,  3 Mar 2022 08:42:15 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.90,151,1643641200"; 
-   d="scan'208";a="112234878"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 04 Mar 2022 01:42:11 +0900
-Received: from localhost.localdomain (unknown [10.226.93.138])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id C3DFA40065C8;
-        Fri,  4 Mar 2022 01:42:09 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH V2 4/4] arm64: dts: renesas: rzg2lc-smarc: Enable Audio
-Date:   Thu,  3 Mar 2022 16:41:55 +0000
-Message-Id: <20220303164155.7706-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220303164155.7706-1-biju.das.jz@bp.renesas.com>
-References: <20220303164155.7706-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S234358AbiCCQ6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:58:11 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D3D1382;
+        Thu,  3 Mar 2022 08:57:25 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so6460636ooi.2;
+        Thu, 03 Mar 2022 08:57:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=XGCumHgMLBELRu52rk5UqShkzz2ZUaCbCoiX7DHIJjo=;
+        b=3daa/Xi6PRdQVAlbzp0kfVKo6cW9IllCPEh1rgDtJM/YFEKfz/QfnBZO6ZuO+tWA2l
+         rMZRgMdDAQhWDR3biBOC4jwA6IJV/EeczDdcN44758lwZmRMbLMnyH5tNgZXX5qp+xEQ
+         rNDuoDBE1bjECG+CywGheBzjiOG3Sp8+ncEbocldysocdeGtRFh/cYFq5zkmD1Qpt0hv
+         5HTE5Hr5chRteD2xK9tgrq/KWqIwhn7XNyJsfg9U9EY5lpD1c66jktG9EbyrT/rOJSR7
+         7HI5PQNPcWUjg3qroOanuJ5egZE9bOnrvtmfhBNKYjtXmcuy5p0M+yVVoNwt8BMa5ees
+         4Jww==
+X-Gm-Message-State: AOAM532VSCD0tB8CjprYB4bJ7906DwW373klPCuk3ZxU2nBdYDYrVHsk
+        6ssNaY8ibb5SkeEYFwA2ko1jvEizGw==
+X-Google-Smtp-Source: ABdhPJwXDCjm/ogChH0mahEYJGjHROaJuT/GNQDy5B6m7ZeQMkVYPgNQGQYbmPKjCrLxG505HRERSQ==
+X-Received: by 2002:a05:6820:552:b0:31c:5eca:fa40 with SMTP id n18-20020a056820055200b0031c5ecafa40mr18682006ooj.82.1646326644797;
+        Thu, 03 Mar 2022 08:57:24 -0800 (PST)
+Received: from xps15.herring.priv (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.googlemail.com with ESMTPSA id l20-20020a056820031400b0031cf5913126sm1155125ooe.36.2022.03.03.08.57.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 08:57:24 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: Allow 32-bit 'cpu-release-addr' values
+Date:   Thu,  3 Mar 2022 10:57:09 -0600
+Message-Id: <20220303165710.1859862-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Audio on RZ/G2LC SMARC EVK by deleting ssi0 entries from
-board DT and adding pincontrol entries to the soc-pinctrl dtsi,
-so that entries from common dtsi kick in and make audio functionality
-operational.
+While the DT Spec says 'cpu-release-addr' is always 64-bit, some 32-bit Arm
+DTs used a 32-bit value. We're now stuck with those cases, so add uint32 as
+a valid type.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-v1->v2:
- * No change.
----
- arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts         | 6 ------
- arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi | 7 +++++++
- 2 files changed, 7 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/arm/cpus.yaml | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-index 52b834205126..74a2f2bade10 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
-@@ -19,9 +19,3 @@
- 	/delete-property/ pinctrl-names;
- 	status = "disabled";
- };
--
--&ssi0 {
--	/delete-property/ pinctrl-0;
--	/delete-property/ pinctrl-names;
--	status = "disabled";
--};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-index 1322e5bcd456..d275a55333e3 100644
---- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-+++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
-@@ -106,6 +106,13 @@
- 		input-enable;
- 	};
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 85a31ca862d0..ed04650291a8 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -233,14 +233,14 @@ properties:
+           - ti,am4372
  
-+	ssi0_pins: ssi0 {
-+		pinmux = <RZG2L_PORT_PINMUX(45, 0, 1)>, /* BCK */
-+			 <RZG2L_PORT_PINMUX(45, 1, 1)>, /* RCK */
-+			 <RZG2L_PORT_PINMUX(45, 2, 1)>, /* TXD */
-+			 <RZG2L_PORT_PINMUX(45, 3, 1)>; /* RXD */
-+	};
-+
- 	usb0_pins: usb0 {
- 		pinmux = <RZG2L_PORT_PINMUX(4, 0, 1)>, /* VBUS */
- 			 <RZG2L_PORT_PINMUX(5, 0, 1)>, /* OVC */
+   cpu-release-addr:
+-    $ref: '/schemas/types.yaml#/definitions/uint64'
+-
++    oneOf:
++      - $ref: '/schemas/types.yaml#/definitions/uint32'
++      - $ref: '/schemas/types.yaml#/definitions/uint64'
+     description:
++      The DT specification defines this as 64-bit always, but some 32-bit Arm
++      systems have used a 32-bit value which must be supported.
+       Required for systems that have an "enable-method"
+         property value of "spin-table".
+-      On ARM v8 64-bit systems must be a two cell
+-        property identifying a 64-bit zero-initialised
+-        memory location.
+ 
+   cpu-idle-states:
+     $ref: '/schemas/types.yaml#/definitions/phandle-array'
 -- 
-2.17.1
+2.32.0
 
