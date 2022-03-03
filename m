@@ -2,234 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E63EB4CC2B3
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 711794CC2BD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 17:29:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234967AbiCCQ17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 11:27:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
+        id S232673AbiCCQ3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 11:29:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234977AbiCCQ1p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:27:45 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B0AFC19BE43;
-        Thu,  3 Mar 2022 08:26:58 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.90,151,1643641200"; 
-   d="scan'208";a="112234288"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 04 Mar 2022 01:26:58 +0900
-Received: from localhost.localdomain (unknown [10.226.93.138])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 253CD40178B7;
-        Fri,  4 Mar 2022 01:26:55 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH V2 7/7] arm64: dts: renesas: Add initial device tree for RZ/G2UL Type-1 SMARC EVK
-Date:   Thu,  3 Mar 2022 16:26:34 +0000
-Message-Id: <20220303162634.6572-8-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220303162634.6572-1-biju.das.jz@bp.renesas.com>
-References: <20220303162634.6572-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S235027AbiCCQ3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 11:29:37 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84B7DF746C
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 08:28:39 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id t11so8683020wrm.5
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 08:28:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=e9uAigxs46BqjYn/NnAb73WG4q/CVGltu1N4Y/zwCMs=;
+        b=Vcev2SFIz15CNPNz6TgieU6hpUaPUyb2MiXTR9yTHY32sCp/JeqnNvir2PknyHnDzI
+         jJwtHbgTSNp/z0wchPmANaZIrlJdoKv7kQz1OJbLNbX1F0ARrRKmj6RsJBckurzoETnv
+         A8CYJP4srXFo+uv8g+fTSD8j6J0/8NSkTADCX2Ds0k6d+yQqZr96K40JIK4uIYUuUUsH
+         BOAvBEaqJyAQvG3LObSDzHoHEUYtNzGIERv9dbDQLHMN3jskOFXkehgBlp89UmXhWQk7
+         zgzZhKL0CetqGCoRuobLTnyqYqIe2UA59mgDFLo6Vgv+i/qv6fZ7D4iarndZpeFBLXQp
+         YSZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=e9uAigxs46BqjYn/NnAb73WG4q/CVGltu1N4Y/zwCMs=;
+        b=0goTfqOiIg1vTZYdw0I5kTJbESMY78JKWH+9dF+FslLeVImN+6aXP1DWIfpuHrtwOD
+         dVcdIq+ThgzuDQxu9mrADlOuhHu2aR4JExXpts+htb5B+L4KkLpAMDslfK+ETUAPsiaw
+         0wDpZYHYqamCpAP9hZSRGzcnwRygIy/LE/fjFrMK0mNteXVeF1jgqLUMfTqCQiOiyC3K
+         cPFLr9bE9zKd2xhDuOj4nrD8e+oim07orZ/JQcBY8xeKRbxXfUlg2+Ybilbt8VScwz7A
+         eyxMtBB5fOFkC85FFWI7YIT7AXOU6FS4IQX4wOazU3c4rqtQ/MsI4nsDMA2tZeWO6LxL
+         hdyg==
+X-Gm-Message-State: AOAM533rVkCpCisDcLcWNI2b8xJB3TOgDPMHE3h816jqIsnniBpEcLNG
+        bz+FJqNILwZ2qIx2YT1m7iIFmQ==
+X-Google-Smtp-Source: ABdhPJw+68OTesX5GBgIs6OHFuXgq005qYLbStO1qwh6vFVRL4WvvzUZwrz7pgV1BM2p92GZLjvDSg==
+X-Received: by 2002:adf:f5c3:0:b0:1f0:4b6e:b7e7 with SMTP id k3-20020adff5c3000000b001f04b6eb7e7mr3513863wrp.287.1646324918134;
+        Thu, 03 Mar 2022 08:28:38 -0800 (PST)
+Received: from [192.168.86.34] (cpc90716-aztw32-2-0-cust825.18-1.cable.virginm.net. [86.26.103.58])
+        by smtp.googlemail.com with ESMTPSA id r1-20020a5d4941000000b001ed89dcacbbsm2419346wrs.23.2022.03.03.08.28.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 08:28:37 -0800 (PST)
+Message-ID: <cef16c0a-c0a8-3ed2-c35b-09fda2068073@linaro.org>
+Date:   Thu, 3 Mar 2022 16:28:36 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] soundwire: qcom: fix build failures if CONFIG_PM=n
+Content-Language: en-US
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     yung-chuan.liao@linux.intel.com,
+        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        quic_srivasam@quicinc.com,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Stephen Rothwell <sfr@canb.auug.org.au>
+References: <20220303110321.23666-1-srinivas.kandagatla@linaro.org>
+ <YiDlBevX3/BrXmwb@matsya>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <YiDlBevX3/BrXmwb@matsya>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for RZ/G2UL SMARC EVK (based on R9A07G043U11):
-- memory
-- External input clock
-- CPG
-- DMA
-- SCIF
 
-It shares the same carrier board with RZ/G2L, but the pin mapping is
-different. Disable the device nodes which are not tested and delete the
-corresponding pinctrl definitions.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2:
- * Changed soc compatible from r9a07g043u->r9a07g043.
----
- arch/arm64/boot/dts/renesas/Makefile          |   2 +
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
- .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    |  25 ++++
- 3 files changed, 138 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
- create mode 100644 arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+On 03/03/2022 15:55, Vinod Koul wrote:
+> On 03-03-22, 11:03, Srinivas Kandagatla wrote:
+>> Fix below build failure
+>> drivers/soundwire/qcom.c:1460:12: error: 'swrm_runtime_resume' defined
+>> but not used [-Werror=unused-function]
+>> by marking the resume swrm_runtime_resume() with  __maybe_unused attribute.
+> 
+> A patch title should reflect the change and not the cause. So i have
+> taken liberty to fix it as:
+> 
+> soundwire: qcom: use __maybe_unused for swrm_runtime_resume()
+>   
+> swrm_runtime_resume() would not be defined when CONFIG_PM=n
+>   
+> This causes below build failure
+> drivers/soundwire/qcom.c:1460:12: error: 'swrm_runtime_resume' defined
+> but not used [-Werror=unused-function]
+>   
+> Mark the resume swrm_runtime_resume() with  __maybe_unused attribute.
+> 
+> With this i have applied
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index d000f6b131dc..a1217df9cd10 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -75,6 +75,8 @@ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb-kf.dtb
- 
- dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A07G043U) += r9a07g043u11-smarc.dtb
-+
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-new file mode 100644
-index 000000000000..762bf26d679b
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G2UL Type-1 SMARC EVK board
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+#include "r9a07g043u.dtsi"
-+#include "rzg2ul-smarc-som.dtsi"
-+#include "rz-smarc-common.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK based on r9a07g043u11";
-+	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
-+};
-+
-+&canfd {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ehci0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ehci1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&hsusb {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&i2c0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+
-+	wm8978: codec@1a {
-+		compatible = "wlf,wm8978";
-+		#sound-dai-cells = <0>;
-+		reg = <0x1a>;
-+	};
-+};
-+
-+&ohci0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ohci1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&phyrst {
-+	status = "disabled";
-+};
-+
-+&scif0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+};
-+
-+&sdhi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-1;
-+	/delete-property/ pinctrl-names;
-+	/delete-property/ vmmc-supply;
-+	status = "disabled";
-+};
-+
-+&spi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ssi0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&usb2_phy0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&usb2_phy1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-new file mode 100644
-index 000000000000..3bbb8fcd604c
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G2UL SMARC SOM common parts
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+/ {
-+	chosen {
-+		bootargs = "ignore_loglevel";
-+	};
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x0 0x38000000>;
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <24000000>;
-+};
--- 
-2.17.1
+Thanks Vinod,
 
+--srini
+> 
