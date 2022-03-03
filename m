@@ -2,218 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E25324CB90A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:32:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E36914CB976
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 09:48:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbiCCIdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 03:33:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59356 "EHLO
+        id S229741AbiCCItZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 03:49:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231530AbiCCIdd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:33:33 -0500
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DACB549F9D;
-        Thu,  3 Mar 2022 00:32:45 -0800 (PST)
-Received: by mail-lj1-x236.google.com with SMTP id v22so5745083ljh.7;
-        Thu, 03 Mar 2022 00:32:45 -0800 (PST)
+        with ESMTP id S231577AbiCCItY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 03:49:24 -0500
+Received: from mail-io1-xd31.google.com (mail-io1-xd31.google.com [IPv6:2607:f8b0:4864:20::d31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DFAE1B59
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 00:48:37 -0800 (PST)
+Received: by mail-io1-xd31.google.com with SMTP id c23so4998555ioi.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 00:48:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=DBFYMKAkX/+X4ffNw6h4ygU2WXIfLsougJ0b6s/z1mE=;
-        b=KOqgA6AAztWzmSbNCZkD/x3REvvm47jEcpi9jyZM0WjbKW2i30ZuSlf1mEVyp8lSKz
-         uQYoClbXREjv1XpMOBXcijZ1/1CbNG3FYG20o1l9VO/RDfClRs8K1B71GEp3pU/tHbcS
-         KwZf+hBLO6Oia/I1W7I+wtGm8drUmgkWLwv8K5giTXC0JqRxJL0WWHo/4/Wd4j7VRS45
-         +1EBbTrtlSn+zQo4a5eIgS2/KG78dCedkA2ZtCFnbrRoh/+slt/zB3h+XML9y7hLkPeH
-         ad1OkqRnAtnW18AjWUPre2fFSeivjXB6t03OW9DA8MUI3nksERPKIVVY1a6sMokYxrvc
-         O6eQ==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hkhZgYA/1qOi3W2uMLIGsfsxrZRgQn2BiaZgNLglVk0=;
+        b=M0ezjdyrjpxEXpbLa8XmCe5TcR38bl/0Ga+yN9Pqt/XC+DK1HN60rS/o1hiifZvSFT
+         47kBu0kK/MhEKAnNOruoXzPukiKGz35QKKXxMIOeEoIg8P48FFs57G9kS7DHRrFVFbHn
+         Ef4lOsCqo0Ox8ZFYYWw/kvBH8QBQ81yRv3Hloir2SJKHGNSojn9EFGvR/mNPeANbOGsr
+         q3S6krJltUOh6VrTH4WwclsYY9cosrRTMjhPF6ckE8ahyQbRQ24ZWoCrm6ID0IvIfq5n
+         R/38ll9GQqCY7GFfoWkYBlLsK+Uit8hlu4IxJ6aARXn3k6ZsL6+Ov638hx8e6t4187ZW
+         GmRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=DBFYMKAkX/+X4ffNw6h4ygU2WXIfLsougJ0b6s/z1mE=;
-        b=rmrRcs8RH043FDznZx60oG3LnYKJKlSI4hF+7OSGjiputaz0V4fLyh0CYLV4b84IoJ
-         /c/HG/JcV3QDU/pGHFNX/j5Gk10XXUu79E2NhVcqhwsqgSjKL+bdSS1iN6TX39g6JlxV
-         +wktDXUQL4EFxNGmKLmdhlUXe3ZzGqgOVTjGiIVggAcEqVnlgj2hJrWZqD3WrbOFfzrN
-         xvbXczlS1zGT1kklyqsQ4iqE9V88n2JiZybwYJR7CvhKf3obBns214NVI+FgtYvVefab
-         SgMBAy/0tqDkUvr5c1tS5dDkhSSfJZpzbvj4Jc6ivsYcBzwBmP3oJ+71bocFDZ+jqZMV
-         M7Kg==
-X-Gm-Message-State: AOAM531j5ICfoOmzVpqKzOK3uVEntaM5+171nv7F87/tEPMKTmZBf28P
-        d7cGJFH/sZYKhTY2QktZlAk=
-X-Google-Smtp-Source: ABdhPJwxQD23hLO7eHUX3JyISNNuANHEqy+kAaWJrtsZxN6MGxGebaLJwTJhApHPECnaXU3+Kv3+mA==
-X-Received: by 2002:a2e:b5cb:0:b0:246:4e4e:45f4 with SMTP id g11-20020a2eb5cb000000b002464e4e45f4mr22877087ljn.407.1646296363738;
-        Thu, 03 Mar 2022 00:32:43 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id n8-20020a2e7208000000b00233697d2d9bsm331541ljc.12.2022.03.03.00.32.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 00:32:43 -0800 (PST)
-Message-ID: <fb18b5e2-d273-adf6-3e14-77628abc4560@gmail.com>
-Date:   Thu, 3 Mar 2022 09:32:41 +0100
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hkhZgYA/1qOi3W2uMLIGsfsxrZRgQn2BiaZgNLglVk0=;
+        b=b5g1csDQ6zRTcGbJEft2egrPTAPOW9QSbTI1B3GpbEgwB2weRzWF/NDdNr1z7ct8vK
+         VUXSr+ttqxUoyWm2YtBX8kz6NE3ikFP5tI8yhSREsQSkqY1J/aEqExVy+MS51BJeN8Ej
+         UNNpsnvbrWkwa410aZ29r/aZXZ5wwPHej+uO6fbXHeCf6DNocOUo6zYuk4WWhQmOCAeJ
+         SLvrEsBNZd6EZuR+pNsAwqWR1owGZJJmjtZFivhVCz5tsdUsIi8EychhpkTMc7Fg5haO
+         X84lpn0cPcqN72S57EuPbN5oIt3+epmlncziVKCiMYcFFjfFvSXpHzkOKcQaGmU/DE4E
+         U3Vg==
+X-Gm-Message-State: AOAM531UNv0JSIl4H+LON4CnZ/llwZe3sMB9JR4goLi9Sxr4tC8ipoy2
+        FTFHyiuAt7pZkBGKMWYwZ5PaNg==
+X-Google-Smtp-Source: ABdhPJxRnkg1tkBRcs8xLRSbKg7O8Y2NzXOn2lh8XyLpEd0WwwpP1/qplz0Uz1GyMwWFpfLzUxnoMA==
+X-Received: by 2002:a6b:4106:0:b0:5ec:2631:4047 with SMTP id n6-20020a6b4106000000b005ec26314047mr26589505ioa.65.1646297316771;
+        Thu, 03 Mar 2022 00:48:36 -0800 (PST)
+Received: from localhost.localdomain ([182.64.85.91])
+        by smtp.gmail.com with ESMTPSA id m9-20020a923f09000000b002c2a1a3a888sm1480704ila.50.2022.03.03.00.48.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Mar 2022 00:48:36 -0800 (PST)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     bhupesh.sharma@linaro.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org, tdas@codeaurora.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org
+Subject: [PATCH v3 0/6] Add ethernet support for Qualcomm SA8155p-ADP board
+Date:   Thu,  3 Mar 2022 14:18:18 +0530
+Message-Id: <20220303084824.284946-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH] dt-bindings: mtd: partitions: add UBI binding
-To:     Rob Herring <robh@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Tom Rini <trini@konsulko.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, u-boot@lists.denx.de,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220217102448.27586-1-zajec5@gmail.com>
- <Yh/ovYMV104jc+CE@robh.at.kernel.org>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <Yh/ovYMV104jc+CE@robh.at.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.03.2022 22:59, Rob Herring wrote:
-> On Thu, Feb 17, 2022 at 11:24:48AM +0100, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> UBI is often used on embedded devices to store UBI volumes with device
->> configuration / calibration data. Such volumes may need to be documented
->> and referenced for proper boot & setup.
->>
->> Some examples:
->> 1. U-Boot environment variables
->> 2. Device calibration data
->> 3. Default setup (e.g. initial password)
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->>   .../bindings/mtd/partitions/ubi.yaml          | 67 +++++++++++++++++++
->>   1 file changed, 67 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
->> new file mode 100644
->> index 000000000000..cd081f06d4cb
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi.yaml
->> @@ -0,0 +1,67 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/mtd/partitions/ubi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: UBI (Unsorted Block Images) device
->> +
->> +description: |
->> +  UBI is a layer providing logical volumes (consisting of logical blocks) on top
->> +  of raw flash devices. It deals with low-level flash issues (bit-flips, bad
->> +  physical eraseblocks, wearing) providing a reliable data storage.
->> +
->> +  UBI device is built and stored in a single flash partition.
->> +
->> +  Some (usually embedded) devices use UBI volumes of specific names or indexes
->> +  to store setup / configuration data. This binding allows describing such
->> +  volumes so they can be identified and referenced by consumers.
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
->> +allOf:
->> +  - $ref: partition.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: ubi
->> +
->> +patternProperties:
->> +  "^volume-[0-9a-f]+$":
->> +    type: object
->> +    description: UBI volume
->> +    properties:
->> +      volume-name:
->> +        $ref: /schemas/types.yaml#/definitions/string
->> +      volume-id:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +    anyOf:
->> +      - required:
->> +          - volume-name
->> +      - required:
->> +          - volume-id
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    partitions {
->> +        compatible = "fixed-partitions";
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +
->> +        partition@0 {
->> +            compatible = "ubi";
->> +            reg = <0x0000000 0x1000000>;
->> +            label = "filesystem";
->> +
->> +            env: volume-0 {
->> +                volume-name = "u-boot-env";
-> 
-> Why not do 'compatible = "u-boot,env";' to align with normal partitions?
+Changes since v2:
+-----------------
+- v2 can be seen here: https://lore.kernel.org/linux-arm-msm/20220302110508.69053-1-bhupesh.sharma@linaro.org/T
+- Fixed review comments from Dmitry - created a new [PATCH 2/6]
+  to fix some identation issues with sm8150 gcc driver.
 
-I mean to reserve "compatible" for describing UBI volume content.
+Changes since v1:
+-----------------
+- v1 can be seen here: https://lore.kernel.org/netdev/20220126221725.710167-1-bhupesh.sharma@linaro.org/t/
+- Fixed review comments from Bjorn - broke the v1 series into two
+  separate series - one each for 'net' tree and 'arm clock/dts' tree
+  - so as to ease review of the same from the respective maintainers.
+- This series is intended for the 'arm msm clock/dts' tree.
+- Other changes:
+  - Dropped [PATCH 7/8] from v1.
+  - Added more background on the emac gdsc issue, requiring it to be in
+    ALWAYS_ON state in [PATCH 5/5].
+  - Collected Ack from Rob for [PATCH 1/5].
+  - Broke down v1's [PATCH 3/8] into 3 separate patches (one each for emac,
+    pci and ufs gdsc defines) - one of which is carried as [PATCH 2/5]
+    in this series, which is used to enable emac GDSC.
 
-If I manage to get
-[PATCH V3] dt-bindings: nvmem: add U-Boot environment variables binding
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20220228131250.16943-1-zajec5@gmail.com/
-accepted, it'll allow me to later work on something like:
+The SA8155p-ADP board supports on-board ethernet (Gibabit Interface),
+with support for both RGMII and RMII buses.
 
-env: volume-0 {
-     compatible = "u-boot,env";
-     volume-name = "u-boot-env";
-};
+This patchset adds the support for the same.
 
-(I believe) I'll need (in the final shape) two properties:
-1. One for describing UBI volume ("compatible")
-2. One for identifying UBI volume ("volume-name" / "volume-id")
+Note that this patchset is based on an earlier sent patchset
+for adding PDC controller support on SM8150 (see [1]).
 
-It's similar design to the "compatible" vs. "reg" in IO hw blocks.
+[1]. https://lore.kernel.org/linux-arm-msm/20220226184028.111566-1-bhupesh.sharma@linaro.org/T/
 
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> Or 'label'?
+Bhupesh Sharma (3):
+  clk: qcom: gcc: sm8150: Fix some identation issues
+  clk: qcom: gcc: Add emac GDSC support for SM8150
+  clk: qcom: gcc-sm8150: Use ALWAYS_ON flag as a workaround for emac
+    gdsc
 
-I could replace "volume-name" with "label" but someone once told me that:
- > 'label' is supposed to correspond to a sticker on a port or something
- > human identifiable
+Vinod Koul (3):
+  dt-bindings: net: qcom,ethqos: Document SM8150 SoC compatible
+  arm64: dts: qcom: sm8150: add ethernet node
+  arm64: dts: qcom: sa8155p-adp: Enable ethernet node
 
-;) https://patchwork.ozlabs.org/comment/2812214/
+ .../devicetree/bindings/net/qcom,ethqos.txt   |   4 +-
+ arch/arm64/boot/dts/qcom/sa8155p-adp.dts      | 144 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  27 ++++
+ drivers/clk/qcom/gcc-sm8150.c                 |  40 +++--
+ include/dt-bindings/clock/qcom,gcc-sm8150.h   |   1 +
+ 5 files changed, 203 insertions(+), 13 deletions(-)
 
-So I don't want to abuse "label" here.
-
-
-> We have enough ways to identify things, I don't think we need another.
-> 
->> +            };
->> +
->> +            calibration: volume-1 {
-> 
-> Are 0 and 1 meaningful or just made up indexing?
-
-Made up indexing. I need unique nodenames but @[0-9a-f] doesn't appply here.
-
-
->> +                volume-id = <99>;
->> +            };
->> +        };
->> +    };
->> -- 
->> 2.34.1
+-- 
+2.35.1
 
