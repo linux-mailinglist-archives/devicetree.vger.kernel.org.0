@@ -2,68 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 087EC4CB6AF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 07:10:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B84DB4CB6BD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Mar 2022 07:12:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229784AbiCCGKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 01:10:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51952 "EHLO
+        id S229774AbiCCGMp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 01:12:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbiCCGKn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 01:10:43 -0500
-Received: from mail-oi1-x235.google.com (mail-oi1-x235.google.com [IPv6:2607:f8b0:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25F24165C02
-        for <devicetree@vger.kernel.org>; Wed,  2 Mar 2022 22:09:58 -0800 (PST)
-Received: by mail-oi1-x235.google.com with SMTP id 12so3883509oix.12
-        for <devicetree@vger.kernel.org>; Wed, 02 Mar 2022 22:09:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=F72bStix4IAs331NpnLfcvSkp3vRgdYM9D6jVxCO3QM=;
-        b=mSmOEmxrWvorEYk7gtgGW3K4iwExNWCdjz0ETKAOYeEVbyg/cDPlngL2s7hEPx4/2P
-         1Dt9/loXa7MYg3XY39YIedYAdXyh2s6Hk4RCByvFFECGsnrOjiVGJm746faqn75T/tCI
-         X8rLznuEa7mLlGd8AFgcWMzXYROccUbza3KAh4GXXEumgdBMSVHoGSMkl+kvg3mR0Ryh
-         iEo8o0H/db4NyunEi7Jz2O4SqoTcpOG9Q/ZOkIdFY5ZtxwJqwEffbHD+weHSDd9jLpyr
-         fps/FD6TN95wlMtVUiP7Xp+ghyc4DoM+drJSnhnp273OFM15OkQ1ydO4+BwAkJrpYO1R
-         h+Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F72bStix4IAs331NpnLfcvSkp3vRgdYM9D6jVxCO3QM=;
-        b=Ib6jGx1wSE44dI6GL5ha2VrNJofbb3YY9WwpjckMOVwtde53vUOIjxRU1cnF44EMQ9
-         tZAdf95Xy9a0+H6jjbNC2/y2llwHlUbe6anQb+a5yW6oXStK9V01ISSpcnfdrSsqcli/
-         76pBkKqIQHXUas/02eHixppal2FtZan315Iq5tdPLl+CxmRk+T5tzjqIry5cevEqK+/k
-         Ngy38S2GGg3imF1Ar63M9/QDbz6k8o3LaSDdgR1Z2L+6TyylNydrqujX3Ok7ak5K3nGi
-         tlM4/05b459yoayjLYT/F7XxyUF0T1i8qsDflpk4zRHubDS7go7e1+8SLIdXs5m+ugYL
-         uo8A==
-X-Gm-Message-State: AOAM531vkZqF1s4Lk53zRCt/CzhPQgGIqlbH1AvH93nDE5e1yYduPXFL
-        wSVgtv02D3Vcj0M0m/eL3najKbPbvKgLkC4369NhYQ==
-X-Google-Smtp-Source: ABdhPJxP3AtADN5GNByKE/AGLTv6cQU/7GcPF7zfBmZLYqoxmlu3/BeupgEkWEqQsweRc3052c5+h2eBjUrfS2FL/lY=
-X-Received: by 2002:a54:4494:0:b0:2d7:652b:287 with SMTP id
- v20-20020a544494000000b002d7652b0287mr3236523oiv.126.1646287797432; Wed, 02
- Mar 2022 22:09:57 -0800 (PST)
+        with ESMTP id S229632AbiCCGMo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 01:12:44 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C59115C9EB;
+        Wed,  2 Mar 2022 22:11:55 -0800 (PST)
+X-UUID: b0b72e64f45740dd8f5966e79a688e64-20220303
+X-UUID: b0b72e64f45740dd8f5966e79a688e64-20220303
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1381862432; Thu, 03 Mar 2022 14:11:49 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 3 Mar 2022 14:11:49 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 3 Mar 2022 14:11:48 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>
+CC:     <perex@perex.cz>, <matthias.bgg@gmail.com>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <aaronyu@google.com>, Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [PATCH] ASoC: mediatek: mt8183: support wb bt audio
+Date:   Thu, 3 Mar 2022 14:11:47 +0800
+Message-ID: <20220303061147.5037-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220302203045.184500-1-bhupesh.sharma@linaro.org>
- <20220302203045.184500-8-bhupesh.sharma@linaro.org> <CAA8EJpqEy+669gpDsy-zGp2NpDP-d7ZxNf7RVo=OQZdvGdZOvQ@mail.gmail.com>
-In-Reply-To: <CAA8EJpqEy+669gpDsy-zGp2NpDP-d7ZxNf7RVo=OQZdvGdZOvQ@mail.gmail.com>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Date:   Thu, 3 Mar 2022 11:39:46 +0530
-Message-ID: <CAH=2Ntz2=pgysEVSfSuGd12C-Am-qRZymaotCw-Lwp0_xaNcOg@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] arm64: dts: qcom: sa8155: Enable PCIe nodes
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, bhupesh.linux@gmail.com,
-        lorenzo.pieralisi@arm.com, agross@kernel.org,
-        bjorn.andersson@linaro.org, svarbanov@mm-sol.com,
-        bhelgaas@google.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
-        linux-clk@vger.kernel.org, Vinod Koul <vkoul@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,100 +53,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+This patch use "bt-sco-pcm-wb" codec dai driver for wb bt audio.
 
-On Thu, 3 Mar 2022 at 02:29, Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Wed, 2 Mar 2022 at 23:31, Bhupesh Sharma <bhupesh.sharma@linaro.org> wrote:
-> >
-> > SA8155p ADP board supports the PCIe0 controller in the RC
-> > mode (only). So add the support for the same.
-> >
-> > Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Cc: Vinod Koul <vkoul@kernel.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sa8155p-adp.dts | 42 ++++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> > index 8756c2b25c7e..3f6b3ee404f5 100644
-> > --- a/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sa8155p-adp.dts
-> > @@ -387,9 +387,51 @@ &usb_2_qmpphy {
-> >         vdda-pll-supply = <&vdda_usb_ss_dp_core_1>;
-> >  };
-> >
-> > +&pcie0 {
-> > +       status = "okay";
-> > +};
-> > +
-> > +&pcie0_phy {
-> > +       status = "okay";
-> > +       vdda-phy-supply = <&vreg_l18c_0p88>;
-> > +       vdda-pll-supply = <&vreg_l8c_1p2>;
-> > +};
-> > +
-> > +&pcie1_phy {
-> > +       vdda-phy-supply = <&vreg_l18c_0p88>;
-> > +       vdda-pll-supply = <&vreg_l8c_1p2>;
-> > +};
-> > +
-> >  &tlmm {
-> >         gpio-reserved-ranges = <0 4>;
-> >
-> > +       bt_en_default: bt_en_default {
-> > +               mux {
-> > +                       pins = "gpio172";
-> > +                       function = "gpio";
-> > +               };
-> > +
-> > +               config {
-> > +                       pins = "gpio172";
-> > +                       drive-strength = <2>;
-> > +                       bias-pull-down;
-> > +               };
-> > +       };
-> > +
-> > +       wlan_en_default: wlan_en_default {
-> > +               mux {
-> > +                       pins = "gpio169";
-> > +                       function = "gpio";
-> > +               };
-> > +
-> > +               config {
-> > +                       pins = "gpio169";
-> > +                       drive-strength = <16>;
-> > +                       output-high;
-> > +                       bias-pull-up;
-> > +               };
-> > +       };
-> > +
->
-> Not related to PCIe
+Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+---
 
-Hmm.. I have no strong personal opinion on this, so let's see what
-Bjorn thinks about the same.
-My reasoning for keeping it here was to just capture that we have
-'bt_en' and 'wlan_en' related tlmm details here, so that when you send
-out the reworked QCAxxxx mfd series (see [1]) later, I can easily plug
-it in for SA8155p ADP dts as well with the 'bt' and 'wlan' constructs.
+This patch depends on:
+https://patchwork.kernel.org/project/alsa-devel/patch/20220302013533.29068-1-jiaxin.yu@mediatek.com/
 
-[1]. https://lore.kernel.org/lkml/20210621223141.1638189-2-dmitry.baryshkov@linaro.org/T/
+ sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-Regards.
-Bhupesh
+diff --git a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
+index b0ec5ebd4f2d..889f9e4a96aa 100644
+--- a/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
++++ b/sound/soc/mediatek/mt8183/mt8183-mt6358-ts3a227-max98357.c
+@@ -260,7 +260,7 @@ SND_SOC_DAILINK_DEFS(pcm2,
+ 
+ SND_SOC_DAILINK_DEFS(i2s0,
+ 	DAILINK_COMP_ARRAY(COMP_CPU("I2S0")),
+-	DAILINK_COMP_ARRAY(COMP_CODEC("bt-sco", "bt-sco-pcm")),
++	DAILINK_COMP_ARRAY(COMP_CODEC("bt-sco", "bt-sco-pcm-wb")),
+ 	DAILINK_COMP_ARRAY(COMP_EMPTY()));
+ 
+ SND_SOC_DAILINK_DEFS(i2s1,
+@@ -291,7 +291,7 @@ SND_SOC_DAILINK_DEFS(i2s3_rt1015p,
+ 
+ SND_SOC_DAILINK_DEFS(i2s5,
+ 	DAILINK_COMP_ARRAY(COMP_CPU("I2S5")),
+-	DAILINK_COMP_ARRAY(COMP_CODEC("bt-sco", "bt-sco-pcm")),
++	DAILINK_COMP_ARRAY(COMP_CODEC("bt-sco", "bt-sco-pcm-wb")),
+ 	DAILINK_COMP_ARRAY(COMP_EMPTY()));
+ 
+ SND_SOC_DAILINK_DEFS(tdm,
+@@ -508,7 +508,6 @@ static struct snd_soc_dai_link mt8183_mt6358_ts3a227_dai_links[] = {
+ 		.no_pcm = 1,
+ 		.dpcm_capture = 1,
+ 		.ignore_suspend = 1,
+-		.be_hw_params_fixup = mt8183_i2s_hw_params_fixup,
+ 		.ops = &mt8183_mt6358_i2s_ops,
+ 		SND_SOC_DAILINK_REG(i2s0),
+ 	},
+@@ -541,7 +540,6 @@ static struct snd_soc_dai_link mt8183_mt6358_ts3a227_dai_links[] = {
+ 		.no_pcm = 1,
+ 		.dpcm_playback = 1,
+ 		.ignore_suspend = 1,
+-		.be_hw_params_fixup = mt8183_i2s_hw_params_fixup,
+ 		.ops = &mt8183_mt6358_i2s_ops,
+ 		SND_SOC_DAILINK_REG(i2s5),
+ 	},
+-- 
+2.25.1
 
-> >         usb2phy_ac_en1_default: usb2phy_ac_en1_default {
-> >                 mux {
-> >                         pins = "gpio113";
-> > --
-> > 2.35.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
