@@ -2,184 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E89B14CD34E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 12:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA43C4CD359
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 12:24:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239354AbiCDLXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 06:23:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53798 "EHLO
+        id S234275AbiCDLZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 06:25:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239477AbiCDLWx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 06:22:53 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 36B17137754;
-        Fri,  4 Mar 2022 03:22:03 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 03CFC143D;
-        Fri,  4 Mar 2022 03:22:03 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DD2F03F70D;
-        Fri,  4 Mar 2022 03:22:01 -0800 (PST)
-Date:   Fri, 4 Mar 2022 11:21:59 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Stefano Stabellini <sstabellini@kernel.org>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S234966AbiCDLZ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 06:25:27 -0500
+Received: from mg.sunplus.com (mswedge2.sunplus.com [60.248.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B91F619E738;
+        Fri,  4 Mar 2022 03:24:29 -0800 (PST)
+X-MailGates: (flag:3,DYNAMIC,RELAY,NOHOST:PASS)(compute_score:DELIVER,40
+        ,3)
+Received: from 172.17.9.202
+        by mg02.sunplus.com with MailGates ESMTP Server V5.0(59933:0:AUTH_RELAY)
+        (envelope-from <edwin.chiu@sunplus.com>); Fri, 04 Mar 2022 19:24:38 +0800 (CST)
+Received: from sphcmbx02.sunplus.com.tw (172.17.9.112) by
+ sphcmbx01.sunplus.com.tw (172.17.9.202) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.26; Fri, 4 Mar 2022 19:24:32 +0800
+Received: from sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd]) by
+ sphcmbx02.sunplus.com.tw ([fe80::fd3d:ad1a:de2a:18bd%14]) with mapi id
+ 15.00.1497.026; Fri, 4 Mar 2022 19:24:32 +0800
+From:   =?utf-8?B?RWR3aW4gQ2hpdSDpgrHlnoLls7A=?= <edwin.chiu@sunplus.com>
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Edwin Chiu <edwinchiu0505tw@gmail.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
-Message-ID: <YiH2V5pJs4vvsdn2@bogus>
-References: <cover.1645460043.git.oleksii_moisieiev@epam.com>
- <2546477f-4190-e838-3095-f47b31802445@kernel.org>
- <20220221213932.GA164964@EPUAKYIW015D>
- <7f17ab8f-429f-d2e0-8f5f-bfa2dd19cc49@kernel.org>
- <20220222161440.xadrgjftdyxenxgo@bogus>
- <20220222173458.GA2310133@EPUAKYIW015D>
- <alpine.DEB.2.22.394.2202231841190.239973@ubuntu-linux-20-04-desktop>
- <20220224093232.GA12053@e120937-lin>
- <alpine.DEB.2.22.394.2202241415180.239973@ubuntu-linux-20-04-desktop>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: RE: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
+ sp7021
+Thread-Topic: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
+ sp7021
+Thread-Index: AQHYJvM6KsEFetK2rkm3Rlg2+5O/D6ydsX4AgAybu1D//588AIADfEqg//+HA4CAAAfdAIACKqbA
+Date:   Fri, 4 Mar 2022 11:24:32 +0000
+Message-ID: <ffdcb88f0ea240f68b5e5ec40f0f525c@sphcmbx02.sunplus.com.tw>
+References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
+ <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
+ <394261d1-f1df-e80d-3591-10f2d649e731@kernel.org>
+ <bcc7a0b58aad4f0989d7d86eaee2c746@sphcmbx02.sunplus.com.tw>
+ <748eb0e1-684c-a772-bccd-64b80780192f@kernel.org>
+ <fda1e55e576b4cdf9ab412529a3dfc7b@sphcmbx02.sunplus.com.tw>
+ <fd39f73e-8317-38c4-6002-8defd784caec@kernel.org> <YiCSQCG4NkepeZKs@bogus>
+In-Reply-To: <YiCSQCG4NkepeZKs@bogus>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.25.108.40]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <alpine.DEB.2.22.394.2202241415180.239973@ubuntu-linux-20-04-desktop>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Feb 24, 2022 at 02:22:28PM -0800, Stefano Stabellini wrote:
-> On Thu, 24 Feb 2022, Cristian Marussi wrote:
-> > On Wed, Feb 23, 2022 at 06:51:59PM -0800, Stefano Stabellini wrote:
-> > > On Tue, 22 Feb 2022, Oleksii Moisieiev wrote:
-> > > > On Tue, Feb 22, 2022 at 04:14:40PM +0000, Sudeep Holla wrote:
-> > > > > On Tue, Feb 22, 2022 at 09:06:25AM +0100, Krzysztof Kozlowski wrote:
-> > > > > > On 21/02/2022 22:39, Oleksii Moisieiev wrote:
-> > > > > > > Hi Krzysztof,
-> > > > > > > 
-> > 
-> > Hi Stefano,
-> > 
-> > > > > > > On Mon, Feb 21, 2022 at 10:01:43PM +0100, Krzysztof Kozlowski wrote:
-> > > > > > >> On 21/02/2022 18:26, Oleksii Moisieiev wrote:
-> > > > > > >>> Introducing new parameter called scmi_devid to the device-tree bindings.
-> > > > > > >>> This parameter should be set for the device nodes, which has
-> > > > > > >>> clocks/power-domains/resets working through SCMI.
-> > > > > > >>> Given parameter should set the device_id, needed to set device
-> > > > > > >>> permissions in the Firmware. This feature will be extremely useful for
-> > > > > > >>> the virtualized systems, which has more that one Guests running on the
-> > > > > > >>> system at the same time or for the syestems, which require several
-> > > > > > >>> agents with different permissions. Trusted agent will use scmi_devid to
-> > > > > > >>> set the Device permissions for the Firmware (See Section 4.2.2.10 [0]
-> > > > > > >>> for details).
-> > > > > > >>> Agents concept is described in Section 4.2.1 [0].
-> > > > > > >>>
-> > > > > > >>> scmi_devid in Device-tree node example:
-> > > > > > >>> usb@e6590000
-> > > > > > >>> {
-> > > > > > >>>     scmi_devid = <19>;
-> > > > > > >>>     clocks = <&scmi_clock 3>, <&scmi_clock 2>;
-> > > > > > >>>     resets = <&scmi_reset 10>, <&scmi_reset 9>;
-> > > > > > >>>     power-domains = <&scmi_power 0>;
-> > > > > > >>> };
-> > > > > > >>
-> > > > > > >> And how do you prevent DT overlay adding such devid to any other node
-> > > > > > >> thus allowing any other device to send requests with given devid?
-> > > > > > >>
-> > > > > > > Thank you for the quick response.
-> > > > > > > scmi_devid value will be used only by Trusted Agent when the device
-> > > > > > > permissions are set. Non-trusted agents, which in our case are
-> > > > > > > represented as Guest OS are using scmi drivers, already present in linux
-> > > > > > > kernel, ignores scmi_devid and uses scmi_clocks, scmi_power, scmi_reset
-> > > > > > > nodes to access to SCMI protocol.
-> > > > > > 
-> > > > > > Ah, ok.
-> > > > > > 
-> > > > > > > 
-> > > > > > >> Plus few technicalities:
-> > > > > > >> 1. Hyphen, not underscore in property name, so scmi-devid.
-> > > > > > > 
-> > > > > > > Thanks for the tip, I will change that in v2.
-> > > > > > 
-> > > > > > Few more thoughts:
-> > > > > > 1. This looks specific to ARM SCMI, so you also need vendor prefix, so
-> > > > > > something like:
-> > > > > > arm,scmi-devid
-> > > > > > arm,scmi-device-id
-> > > > > > 
-> > > > > 
-> > > > > Keeping the other discussion separate, I wanted to comment on this.
-> > > > > I agree with Krzysztof on having vendor specific prefix if we decide to add
-> > > > > this device id thing. However, I prefer not to use "arm,scmi-" here.
-> > > > > It can be "xen,scmi-" as we had plans to introduce some concepts in SCMI
-> > > > > spec that may use looks like this device-id. I would just like to avoid
-> > > > > conflicting with that in the future. It may happen to be same in the future
-> > > > > (i.e. this xen device-id matches 100% with definition of device-id we might
-> > > > > introduce in the spec, but I want to make assumption otherwise and leave
-> > > > > scope for divergence however small/little it can be). No issues even if
-> > > > > they converge and match 100% later in the far future.
-> > > > > 
-> > > > 
-> > > > xem,scmi- works for me. What do other thinks?
-> > >   ^ xen,scmi-
-> > > 
-> > > If this problem was Xen specific, then it would be fine to use xen,scmi-
-> > > As Xen developer, it solves my problem and I am fine with it.
-> > > 
-> > > However, from a device tree and SCMI point of view, it looks like this
-> > > problem is generic and it just happens that Xen is the first
-> > > implementation to encounter it.
-> > > 
-> > > Cristian wrote: "The SCMI spec does not indeed cover the discovery of
-> > > such devices and the related associated resources: it indeed delegates
-> > > such description to FDT/ACPI as of now." How is that supposed to happen
-> > > today with the current DT definitions, regardless of Xen? Is it a gap in
-> > > the current device tree binding?
-> > 
-> > What I meant is that in fact SCMI device IDs are NOT needed in the Linux
-> > Kernel DT, in fact also this series does not add any code using it and
-> > there is no code as of now in Kernel to issue BASE_SET_DEVICE_PERMISSIONS
-> > commands; Linux Guest OS in the above scenario is a Non-Trusted agent and
-> > doesn't need to know SCMI DevIDs and must NOT have access to those IDs for
-> > security reasons too (as Sudeep was saying): the Trusted Agent (XEN here)
-> > and the SCMI platform server are the only ones required to share the
-> > knowledge of such Device IDs (and how the related resources are grouped)
-> > via some HW description scheme as you are doing indeed in XEN.
-> > 
-> > So, while on one side such device IDs discovery is delegated by the spec
-> > to the HW description mechanisms, it seems just not needed in Kernel DT
-> > given the kind or role it has as an SCMI agent in this context: as said
-> > in fact there won't be any use as of now in Linux of such DT entries as
-> > of now.
-> 
-> I see. This is one of those "difficult" cases where the device tree
-> binding is needed but it is not used by the Linux kernel. (We have a few
-> cases like this in system device tree and the more device tree gets
-> adopted by other projects the more will see instances like this one.)
->
-
-Indeed, I mentioned this in the other email. It clearly falls under the
-larger umbrella of system device tree and not the one used by the Linux.
-
-> In that case, I think it is OK to call it "xen,scmi-" if Rob also
-> agrees.
->
-
-Thanks.
-
-> After all, we are currently using in Xen a property called
-> "linux,pci-domain". We might as well have Linux in the future use a
-> property called "xen,scmi-devid" to even things out :-)
-
-Sure or we may add a generic one in the future as mentioned in the other
-email for reasons mentioned there.
-
---
-Regards,
-Sudeep
+DQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFN1ZGVlcCBIb2xsYSA8c3Vk
+ZWVwLmhvbGxhQGFybS5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBNYXJjaCAzLCAyMDIyIDY6MDMg
+UE0NCj4gVG86IEtyenlzenRvZiBLb3psb3dza2kgPGtyemtAa2VybmVsLm9yZz4NCj4gQ2M6IEVk
+d2luIENoaXUg6YKx5Z6C5bOwIDxlZHdpbi5jaGl1QHN1bnBsdXMuY29tPjsgRWR3aW4gQ2hpdSA8
+ZWR3aW5jaGl1MDUwNXR3QGdtYWlsLmNvbT47DQo+IFN1ZGVlcCBIb2xsYSA8c3VkZWVwLmhvbGxh
+QGFybS5jb20+OyByb2JoK2R0QGtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3Jn
+Ow0KPiBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyByYWZhZWxAa2VybmVsLm9yZzsgZGFu
+aWVsLmxlemNhbm9AbGluYXJvLm9yZzsgbGludXgtcG1Admdlci5rZXJuZWwub3JnDQo+IFN1Ympl
+Y3Q6IFJlOiBbUEFUQ0ggdjVdIGNwdWlkbGU6IHN1bnBsdXM6IENyZWF0ZSBjcHVpZGxlIGRyaXZl
+ciBmb3Igc3VucGx1cyBzcDcwMjENCj4gDQo+IE9uIFRodSwgTWFyIDAzLCAyMDIyIGF0IDEwOjM0
+OjMxQU0gKzAxMDAsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+ID4gT24gMDMvMDMvMjAy
+MiAxMDowMSwgRWR3aW4gQ2hpdSDpgrHlnoLls7Agd3JvdGU6DQo+ID4gPg0KPiA+ID4NCj4gPiA+
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+ID4+IEZyb206IEtyenlzenRvZiBLb3ps
+b3dza2kgPGtyemtAa2VybmVsLm9yZz4NCj4gPiA+PiBTZW50OiBUdWVzZGF5LCBNYXJjaCAxLCAy
+MDIyIDc6MzQgUE0NCj4gPiA+PiBUbzogRWR3aW4gQ2hpdSDpgrHlnoLls7AgPGVkd2luLmNoaXVA
+c3VucGx1cy5jb20+OyBFZHdpbiBDaGl1DQo+ID4gPj4gPGVkd2luY2hpdTA1MDV0d0BnbWFpbC5j
+b20+Ow0KPiA+ID4+IHJvYmgrZHRAa2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5v
+cmc7DQo+ID4gPj4gcm9iaCtsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyByYWZhZWxAa2Vy
+bmVsLm9yZzsNCj4gPiA+PiBkYW5pZWwubGV6Y2Fub0BsaW5hcm8ub3JnOyBsaW51eC1wbUB2Z2Vy
+Lmtlcm5lbC5vcmcNCj4gPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIHY1XSBjcHVpZGxlOiBzdW5w
+bHVzOiBDcmVhdGUgY3B1aWRsZSBkcml2ZXIgZm9yDQo+ID4gPj4gc3VucGx1cyBzcDcwMjENCj4g
+PiA+Pg0KPiA+ID4+IE9uIDAxLzAzLzIwMjIgMTA6MzAsIEVkd2luIENoaXUg6YKx5Z6C5bOwIHdy
+b3RlOg0KPiA+ID4+Pg0KPiA+ID4+Pg0KPiA+ID4+Pj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCj4gPiA+Pj4+IEZyb206IEtyenlzenRvZiBLb3psb3dza2kgPGtyemtAa2VybmVsLm9yZz4N
+Cj4gPiA+Pj4+IFNlbnQ6IFR1ZXNkYXksIEZlYnJ1YXJ5IDIyLCAyMDIyIDEyOjQ4IEFNDQo+ID4g
+Pj4+PiBUbzogRWR3aW4gQ2hpdSA8ZWR3aW5jaGl1MDUwNXR3QGdtYWlsLmNvbT47IEVkd2luIENo
+aXUg6YKx5Z6C5bOwDQo+ID4gPj4+PiA8ZWR3aW4uY2hpdUBzdW5wbHVzLmNvbT47DQo+ID4gPj4+
+PiByb2JoK2R0QGtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiA+ID4+
+Pj4gcm9iaCtsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOyByYWZhZWxAa2VybmVsLm9yZzsN
+Cj4gPiA+Pj4+IGRhbmllbC5sZXpjYW5vQGxpbmFyby5vcmc7IGxpbnV4LXBtQHZnZXIua2VybmVs
+Lm9yZw0KPiA+ID4+Pj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NV0gY3B1aWRsZTogc3VucGx1czog
+Q3JlYXRlIGNwdWlkbGUgZHJpdmVyDQo+ID4gPj4+PiBmb3Igc3VucGx1cyBzcDcwMjENCj4gPiA+
+Pj4+DQo+ID4gPj4+PiBPbiAyMS8wMi8yMDIyIDA4OjI2LCBFZHdpbiBDaGl1IHdyb3RlOg0KPiA+
+ID4+Pj4+IENyZWF0ZSBjcHVpZGxlIGRyaXZlciBmb3Igc3VucGx1cyBzcDcwMjEgY2hpcA0KPiA+
+ID4+Pj4+DQo+ID4gPj4+Pj4gU2lnbmVkLW9mZi1ieTogRWR3aW4gQ2hpdSA8ZWR3aW5jaGl1MDUw
+NXR3QGdtYWlsLmNvbT4NCj4gPiA+Pj4+PiAtLS0NCj4gPiA+Pj4+PiBDaGFuZ2VzIGluIHYzDQo+
+ID4gPj4+Pj4gIC0gUmVhcnJhbmdlbWVudCAjaW5jbHVkZSBzZXF1ZW5jZQ0KPiA+ID4+Pj4+ICAt
+IENoYW5nZSByZW1hcmsgc3R5bGUgdG8gLyp+Ki8NCj4gPiA+Pj4+PiAgLSBBbGlnbiBhdXRob3Ig
+ZW1haWwgYWRkcmVzcyB0byBzYW1lIGFzIHNvYg0KPiA+ID4+Pj4+ICAtIE9wdGltYWwgY29kZQ0K
+PiA+ID4+Pj4+IENoYW5nZXMgaW4gdjQNCj4gPiA+Pj4+PiAgLSBBY2NvcmRpbmcgUm9iIEhlcnJp
+bmdyb2JoJ3MgY29tbWVudA0KPiA+ID4+Pj4+ICAgIFRoZXJlIGlzIG5vIG5lZWQgZm9yIHRoaXMg
+YmluZGluZy4NCj4gPiA+Pj4+PiAgICBKdXN0IHdhbnRpbmcgYSBkaWZmZXJlbnQgZHJpdmVyIGlz
+IG5vdCBhIHJlYXNvbg0KPiA+ID4+Pj4+ICAgIGZvciBhIGR1cGxpY2F0ZSBzY2hlbWEuDQo+ID4g
+Pj4+Pj4gICAgU28gcmVtb3ZlIHlhbWwgZmlsZSBhbmQgc3VibWl0IGRyaXZlciBhZ2Fpbi4NCj4g
+PiA+Pj4+PiBDaGFuZ2VzIGluIHY1DQo+ID4gPj4+Pj4gIC0gQWNjb3JkaW5nIEtyenlzenRvZidz
+IGNvbW1lbnQNCj4gPiA+Pj4+PiAgICBZb3UgZWl0aGVyIHVzZSBhcHByb3ByaWF0ZSBjb21wYXRp
+YmxlIGluIERUDQo+ID4gPj4+Pj4gICAgb3IgYWRkIHlvdXIgY29tcGF0aWJsZSB0byBjcHVpZGxl
+LWFybS4NCj4gPiA+Pj4+PiAgICBFdmVuIGlmIHRoaXMgZGlkIG5vdCB3b3JrLCB0aGVuIHRoZSBz
+b2x1dGlvbiBpcyB0bw0KPiA+ID4+Pj4+ICAgIHVzZSBjb21tb24gcGFydHMsIG5vdCB0byBkdXBs
+aWNhdGUgZW50aXJlIGRyaXZlci4NCj4gPiA+Pj4+PiAgICBBY2NvcmRpbmcgU3VkZWVwJ3MgY29t
+bWVudA0KPiA+ID4+Pj4+ICAgIEluIHNob3J0IE5BQ0sgZm9yIGFueSBkZWRpY2F0ZWQgZHJpdmVy
+IGZvciB0aGlzIHBsYXRmb3JtLA0KPiA+ID4+Pj4+ICAgIHVzZSB0aGUgZ2VuZXJpYyBjcHVpZGxl
+LWFybSBkcml2ZXIgd2l0aCBhcHByb3ByaWF0ZSBwbGF0Zm9ybSBob29rcw0KPiA+ID4+Pj4+ICAg
+IENyZWF0ZSBjcHVpZGxlLXN1bnBsdXMuYyBpbiBhcmNoL2FybS9tYWNoLXN1bnBsdXMvDQo+ID4g
+Pj4+Pj4gICAgZm9yIGhvb2sgZ2VuZXJpYyBjcHVpZGxlLWFybSBkcml2ZXINCj4gPiA+Pj4+Pg0K
+PiA+ID4+Pj4+ICBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+fCAgNiArKw0KPiA+ID4+Pj4+ICBhcmNoL2FybS9tYWNoLXN1bnBsdXMvY3B1aWRsZS1zdW5wbHVz
+LmMgICAgICAgfCA4OCArKysrKysrKysrKysrKysrKw0KPiA+ID4+Pj4+ICBpbmNsdWRlL2xpbnV4
+L3BsYXRmb3JtX2RhdGEvY3B1aWRsZS1zdW5wbHVzLmggfCAxMiArKysrDQo+ID4gPj4+Pj4gIDMg
+ZmlsZXMgY2hhbmdlZCwgMTA2IGluc2VydGlvbnMoKykgIGNyZWF0ZSBtb2RlIDEwMDY0NA0KPiA+
+ID4+Pj4+IGFyY2gvYXJtL21hY2gtc3VucGx1cy9jcHVpZGxlLXN1bnBsdXMuYw0KPiA+ID4+Pj4+
+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gPiA+Pj4+PiBpbmNsdWRlL2xpbnV4L3BsYXRmb3JtX2Rh
+dGEvY3B1aWRsZS1zdW5wbHVzLmgNCj4gPiA+Pj4+Pg0KPiA+ID4+Pj4+IGRpZmYgLS1naXQgYS9N
+QUlOVEFJTkVSUyBiL01BSU5UQUlORVJTIGluZGV4IGUwZGNhOGYuLjVjOTY0MjgNCj4gPiA+Pj4+
+PiAxMDA2NDQNCj4gPiA+Pj4+PiAtLS0gYS9NQUlOVEFJTkVSUw0KPiA+ID4+Pj4+ICsrKyBiL01B
+SU5UQUlORVJTDQo+ID4gPj4+Pj4gQEAgLTE4MjUyLDYgKzE4MjUyLDEyIEBAIEw6CW5ldGRldkB2
+Z2VyLmtlcm5lbC5vcmcNCj4gPiA+Pj4+PiAgUzoJTWFpbnRhaW5lZA0KPiA+ID4+Pj4+ICBGOglk
+cml2ZXJzL25ldC9ldGhlcm5ldC9kbGluay9zdW5kYW5jZS5jDQo+ID4gPj4+Pj4NCj4gPiA+Pj4+
+PiArU1VOUExVUyBDUFVJRExFIERSSVZFUg0KPiA+ID4+Pj4+ICtNOglFZHdpbiBDaGl1IDxlZHdp
+bmNoaXUwNTA1dHdAZ21haWwuY29tPg0KPiA+ID4+Pj4+ICtTOglNYWludGFpbmVkDQo+ID4gPj4+
+Pj4gK0Y6CWFyY2gvYXJtL21hY2gtc3VucGx1cy9jcHVpZGxlLXN1bnBsdXMuYw0KPiA+ID4+Pj4+
+ICtGOglpbmNsdWRlL2xpbnV4L3BsYXRmb3JtX2RhdGEvY3B1aWRsZS1zdW5wbHVzLmgNCj4gPiA+
+Pj4+PiArDQo+ID4gPj4+Pj4gIFNVUEVSSA0KPiA+ID4+Pj4+ICBNOglZb3NoaW5vcmkgU2F0byA8
+eXNhdG9AdXNlcnMuc291cmNlZm9yZ2UuanA+DQo+ID4gPj4+Pj4gIE06CVJpY2ggRmVsa2VyIDxk
+YWxpYXNAbGliYy5vcmc+DQo+ID4gPj4+Pj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL21hY2gtc3Vu
+cGx1cy9jcHVpZGxlLXN1bnBsdXMuYw0KPiA+ID4+Pj4+IGIvYXJjaC9hcm0vbWFjaC1zdW5wbHVz
+L2NwdWlkbGUtc3VucGx1cy5jDQo+ID4gPj4+Pj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiA+
+Pj4+PiBpbmRleCAwMDAwMDAwLi5lOWQ5NzM4DQo+ID4gPj4+Pj4gLS0tIC9kZXYvbnVsbA0KPiA+
+ID4+Pj4+ICsrKyBiL2FyY2gvYXJtL21hY2gtc3VucGx1cy9jcHVpZGxlLXN1bnBsdXMuYw0KPiA+
+ID4+Pj4+IEBAIC0wLDAgKzEsODggQEANCj4gPiA+Pj4+PiArLy8gU1BEWC1MaWNlbnNlLUlkZW50
+aWZpZXI6IEdQTC0yLjAtb25seQ0KPiA+ID4+Pj4+ICsvKg0KPiA+ID4+Pj4+ICsgKiBTUDcwMjEg
+Y3B1IGlkbGUgRHJpdmVyLg0KPiA+ID4+Pj4+ICsgKiBDb3B5cmlnaHQgKEMpIFN1bnBsdXMgVGVj
+aCAvIFRpYmJvIFRlY2guDQo+ID4gPj4+Pj4gKyAqLw0KPiA+ID4+Pj4+ICsjZGVmaW5lIHByX2Zt
+dChmbXQpICJDUFVpZGxlIGFybTogIiBmbXQNCj4gPiA+Pj4+PiArDQo+ID4gPj4+Pj4gKyNpbmNs
+dWRlIDxsaW51eC9jcHVpZGxlLmg+DQo+ID4gPj4+Pj4gKyNpbmNsdWRlIDxsaW51eC9vZl9kZXZp
+Y2UuaD4NCj4gPiA+Pj4+PiArI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RhdGEvY3B1aWRsZS1z
+dW5wbHVzLmg+DQo+ID4gPj4+Pj4gKw0KPiA+ID4+Pj4+ICsjaW5jbHVkZSA8YXNtL2NwdWlkbGUu
+aD4NCj4gPiA+Pj4+PiArDQo+ID4gPj4+Pj4gK3R5cGVkZWYgaW50ICgqaWRsZV9mbikodm9pZCk7
+DQo+ID4gPj4+Pj4gKw0KPiA+ID4+Pj4+ICtzdGF0aWMgREVGSU5FX1BFUl9DUFUoaWRsZV9mbios
+IHNwNzAyMV9pZGxlX29wcyk7DQo+ID4gPj4+Pj4gKw0KPiA+ID4+Pj4+ICtzdGF0aWMgaW50IHNw
+NzAyMV9jcHVpZGxlX2VudGVyKHVuc2lnbmVkIGxvbmcgaW5kZXgpIHsNCj4gPiA+Pj4+PiArCXJl
+dHVybiBfX3RoaXNfY3B1X3JlYWQoc3A3MDIxX2lkbGVfb3BzKVtpbmRleF0oKTsNCj4gPiA+Pj4+
+PiArfQ0KPiA+ID4+Pj4+ICtzdGF0aWMgaW50IHNwNzAyMV9jcHVfc3BjKHZvaWQpIHsNCj4gPiA+
+Pj4+PiArCWNwdV92N19kb19pZGxlKCk7ICAgLyogaWRsZSB0byBXRkkgKi8NCj4gPiA+Pj4+PiAr
+CXJldHVybiAwOw0KPiA+ID4+Pj4+ICt9DQo+ID4gPj4+Pj4gK3N0YXRpYyBjb25zdCBzdHJ1Y3Qg
+b2ZfZGV2aWNlX2lkIHNwNzAyMV9pZGxlX3N0YXRlX21hdGNoW10gPSB7DQo+ID4gPj4+Pj4gKwl7
+IC5jb21wYXRpYmxlID0gImFybSxpZGxlLXN0YXRlIiwgLmRhdGEgPSBzcDcwMjFfY3B1X3NwYyB9
+LA0KPiA+ID4+Pj4+ICsJeyB9LA0KPiA+ID4+Pj4+ICt9Ow0KPiA+ID4+Pj4NCj4gPiA+Pj4+IFRo
+aXMgaXMgY29uZnVzaW5nLiBZb3Ugd2FudCB0byBoYXZlIHR3byBkcml2ZXJzIHRvIGJpbmQgdG8g
+dGhlDQo+ID4gPj4+PiBzYW1lIGNvbXBhdGlibGU/IEFzIEkgd3JvdGUgaW4gdGhlIHByZXZpb3Vz
+IG1lc3NhZ2VzLCB5b3Ugc2hvdWxkDQo+ID4gPj4+PiBzaW1wbHkgdXNlIGFybSxpZGxlLXN0YXRl
+IGp1c3QgbGlrZSBmZXcNCj4gPiA+PiBvdGhlciBhcmNoaXRlY3R1cmVzLg0KPiA+ID4+Pj4NCj4g
+PiA+Pj4+DQo+ID4gPj4+PiBCZXN0IHJlZ2FyZHMsDQo+ID4gPj4+PiBLcnp5c3p0b2YNCj4gPiA+
+Pj4NCj4gPiA+Pj4NCj4gPiA+Pj4gVGhlIHBhdGNoIHY1IGltcGxlbWVudGVkIGFjY29yZGluZyB5
+b3VyIGNvbW1lbnQuDQo+ID4gPj4+IFVzZWQgY29tbW9uIHBhcnQgb2YgYXJtLGlkbGUtc3RhdGUu
+DQo+ID4gPj4+IENyZWF0ZSBuZXcgZW5hYmxlLW1ldGhvZCBmb3IgY3B1aWRsZS5vcHMgZnVuY3Rp
+b24uDQo+ID4gPj4+IEl0IG9ubHkgaGF2ZSBhcm0gY3B1aWRsZSBkcml2ZXIgZXhpc3Qgbm93LCBu
+byB0d28gZHJpdmVycyB0byBiaW5kIHRvIHRoZSBzYW1lIGNvbXBhdGlibGUuDQo+ID4gPj4+DQo+
+ID4gPj4+IFdoYXQgZG8geW91IG1lYW4gIiBzaW1wbHkgdXNlIGFybSxpZGxlLXN0YXRlIGp1c3Qg
+bGlrZSBmZXcgb3RoZXIgYXJjaGl0ZWN0dXJlcyAiPw0KPiA+ID4+Pg0KPiA+ID4+DQo+ID4gPj4g
+SSBtZWFuLCBkbyBpdCBzaW1pbGFybHkgKGJ5IHVzaW5nIGFybSxpZGxlLXN0YXRlIGFuZCBvdGhl
+ciByZWxhdGVkDQo+ID4gPj4gcHJvcGVydGllcykgdG8gZm9yIGV4YW1wbGUgdGksYW00MzcyL3Rp
+LGFtMzM1Mi4NCj4gPiA+Pg0KPiA+ID4+IEJlc3QgcmVnYXJkcywNCj4gPiA+PiBLcnp5c3p0b2YN
+Cj4gPiA+DQo+ID4gPg0KPiA+ID4gVGhlIGFtMzM1MiBjcHVpZGxlIGNvZGUgc3RydWN0dXJlIGlz
+IHZlcnkgc2ltaWxhciB0byBvdXJzLg0KPiA+ID4gVXNlZCBlbmFibGUtbWV0aG9kID0gInRpLGFt
+MzM1MiIgYW5kIGNvbXBhdGlibGUgPSAiYXJtLGlkbGUtc3RhdGUiDQo+ID4gPiBpbiBhbTMzeHgu
+ZHRzaSBVc2VkIENQVUlETEVfTUVUSE9EX09GX0RFQ0xBUkUocG0zM3h4X2lkbGUsDQo+ID4gPiAi
+dGksYW0zMzUyIiwgJmFteDNfY3B1aWRsZV9vcHMpIGluIHBtMzN4eC1jb3JlLmMNCj4gPiA+DQo+
+ID4gPiBUaGUgZGlmZmVyZW5jZSBhcmUNCj4gPiA+IGFtMzM1Mg0KPiA+ID4gYW14M19pZGxlX2lu
+aXQofikgYXNzaWduIGlkbGVfc3RhdGVzW2ldLndmaV9mbGFncyA9DQo+ID4gPiBzdGF0ZXNbaV0u
+d2ZpX2ZsYWdzOw0KPiA+ID4gYW14M19pZGxlX2VudGVyKH4pIGNhbGwgaWRsZV9mbihpZGxlX3N0
+YXRlLT53ZmlfZmxhZ3MpDQo+ID4gPg0KPiA+ID4gc3VucGx1cy1zcDcwMjENCj4gPiA+IHNwNzAy
+MV9jcHVpZGxlX2luaXQofikgYXNzaWduIGZuc1tpXSA9IGlkbGVfZm5zW2ldOw0KPiA+ID4gc3A3
+MDIxX2NwdWlkbGVfZW50ZXIofikgY2FsbA0KPiA+ID4gX190aGlzX2NwdV9yZWFkKHNwNzAyMV9p
+ZGxlX29wcylbaW5kZXhdKCk7DQo+ID4gPg0KPiA+ID4gSSBkb24ndCB0aGluayBhbTMzNTIgY3B1
+aWRsZSBjb2RlIGFyY2hpdGVjdHVyZSBzaW1wbGVyIHRoYW4gb3Vycy4NCj4gPiA+IFRoZSBpZGxl
+X2ZuIGZ1bmN0aW9uIG5lZWQgbW9yZSBjb21wbGV4IG1ldGhvZCB0byBiZSBhc3NpZ24uDQo+ID4g
+PiBIb3cgZG8geW91IHRoaW5rPw0KPiA+DQo+ID4gWW91IGR1cGxpY2F0ZWQgYSBkcml2ZXIsIGVu
+dGlyZSBwaWVjZXMgb2YgY29kZS4gVGhpcyBpcyBub3QgYWNjZXB0YWJsZS4NCj4gPiBUaGVyZWZv
+cmUgaXQgZG9lcyBub3QgcmVhbGx5IG1ha2Ugc2Vuc2UgdG8gZGlzY3VzcyB3aGV0aGVyIGR1cGxp
+Y2F0ZWQNCj4gPiBzb2x1dGlvbiBzZWVtcyBzaW1wbGVyIG9yIG5vdC4uLiBXZSB3b24ndCBhY2Nl
+cHQgZHVwbGljYXRlZCBjb2RlLg0KPiA+IEVzcGVjaWFsbHkgZm9yIFdGSS1vbmx5IGRyaXZlci4N
+Cj4gPg0KPiANCj4gKzEgZm9yIGFib3ZlIGNvbW1lbnQuDQo+IA0KPiBJbiBhZGRpdGlvbiwgdGhl
+IHJlZmVyZW5jZSBwbGF0Zm9ybSBhbTMzeHgqIGRvZXNuJ3Qgc2VlbSB0byBzdXBwb3J0IGhvdHBs
+dWcgKG1heSBiZSBJIGFtIG1pc3NpbmcgdG8NCj4gc2VlIGJ1dCBxdWljayBncmVwIGdhdmUgbm8g
+cmVzdWx0cykgYW5kIHRoZWlyIGlkbGUgaXMgZGVmaW5pdGVseSBub3QganVzdCBXRkkuIFNvIHdo
+YXQgSSBhc2tlZCBpcyB0aGF0IHBsZWFzZQ0KPiBkb2N1bWVudCB0aGUgY2hvc2VuICJzdW5wbHVz
+LHNjLXNtcCIgYXMgYm90IGNwdSBpZGxlIGFuZCBob3RwbHVnIG1ldGhvZHMgYW5kIHdoZW4geW91
+IHN1cHBvcnQgbm9uDQo+IFdGSSBzdGF0ZXMsIHdlIGNhbiByZXZpc2l0IHRoaXMuIEFsc28geW91
+IG11c3Qgc3RpY2sgdG8gdGhpcyBob3RwbHVnIG1ldGhvZCB3aGVuZXZlciB5b3UgZGVjaWRlZCB0
+bw0KPiBzdXBwb3J0IGl0Lg0KPiANCj4gDQo+IC0tDQo+IFJlZ2FyZHMsDQo+IFN1ZGVlcA0KDQoN
+ClRoYW5rcyB5b3VyIGFkdmljZS4NCkxvb2sgbGlrZSBrZXkgcG9pbnQgc3RpbGwgb25seSBXRkkg
+ZnVuY3Rpb24gd2hlbiBjcHVpZGxlLg0KQXMgSSBleHBsYWluIGJlZm9yZSwgb25seSBlbmFibGUg
+Z2VuZXJpYyBBUk0gY3B1aWRsZSBkcml2ZXIgaXMgbm90IHdvcmsuDQpJdCBuZWVkIGVuYWJsZS1t
+ZXRob2QgY29kZSB0byBhc3NpZ24gY3B1aWRsZV9vcHMgZnVuY3Rpb25zLg0KInBzY2kiIGlzIG9u
+ZSBvZiBlbmFibGUtbWV0aG9kLCBidXQgdGhlcmUgaGF2ZSBwcm9ibGVtIGluIG15IHNpZGUgZHVl
+IHRvIHNtYyBvciBzZWN1cmUgY29kZSB1bnN1cHBvcnRlZC4NClNvIEkgY3JlYXRlIGNwdWlkbGUt
+c3VucGx1cy5jIGNvZGUgd2l0aCAic3VucGx1cyxzYy1zbXAiIHRvIGxldCBjcHVpZGxlIGNvZGUg
+Y29tcGxldGUgZm9yIG91ciBzb3VyY2UgY29kZS4gDQpXaXRoIHRoaXMgc3RydWN0dXJlLCBJIGNh
+biBhZGQgbW9yZSBjdXN0b20gbG93IHBvd2VyIGNvZGUgaW4gdGhlIGZ1dHVyZS4NCg0KV2hhdCBk
+b2VzIGl0IG1lYW4gZm9yICJwbGVhc2UgZG9jdW1lbnQgdGhlIGNob3NlbiAic3VucGx1cyxzYy1z
+bXAiIGFzIGJvdCBjcHUgaWRsZSBhbmQgaG90cGx1ZyBtZXRob2RzIiA/DQpEb2VzIGl0IG1lYW4g
+ImVkaXQgeWFtbCBmaWxlIj8gKFByZXZpb3VzbHksIEkgc3VibWl0IHlhbWwgZmlsZSBhbHNvLCBi
+dXQgUm9iIHNheSBJIGRvbid0IG5lZWQgc3VibWl0IHdoZW4gSSB1c2UgY29tcGF0aWJsZT0iYXJt
+LGlkbGUtc3RhdGUiKQ0KDQoNCumCseWeguWzsCBFZHdpbkNoaXUNCuaZuuiDvemBi+eul+WwiOah
+iA0KVDogKzg4Ni0zLTU3ODYwMDUgZXh0LjI1OTANCmVkd2luLmNoaXVAc3VucGx1cy5jb20NCjMw
+MCDmlrDnq7nnp5HlrbjlnJLljYDlibXmlrDkuIDot68xOeiZnw0KDQoNCg==
