@@ -2,153 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB0D4CD3BF
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 12:48:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BB14CD3C5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 12:51:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229894AbiCDLtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 06:49:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40616 "EHLO
+        id S229491AbiCDLwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 06:52:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229574AbiCDLtl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 06:49:41 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 680F818CC29;
-        Fri,  4 Mar 2022 03:48:52 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3A43951C;
-        Fri,  4 Mar 2022 12:48:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1646394530;
-        bh=Tpmci2229+d69SIklAmDsEQusgFyc/vp2PTOJIMLm2I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Mn7A7sk9koDrV8kFK7nOrLrJz4m5dHtM1/DeQzlt/y3cqkV0pcKzwQO18olJzNJbt
-         AnjrfaRVlWXsDgZJCGTBtWG1wnIbPv+tA4png3K5nU6+BNuwX0wMXH/76ehXTptVHq
-         5kLuAQW656aszJpVgIgsLGLK7dcVyltzcjHN71m8=
-Date:   Fri, 4 Mar 2022 13:48:37 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kbuild@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: kbuild: Pass DT_SCHEMA_FILES to
- dt-validate
-Message-ID: <YiH8lWq8gOnaQ+7G@pendragon.ideasonboard.com>
-References: <20220303224237.2497570-1-robh@kernel.org>
- <20220303224237.2497570-2-robh@kernel.org>
+        with ESMTP id S233210AbiCDLwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 06:52:16 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CE0E1B2AD8;
+        Fri,  4 Mar 2022 03:51:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646394689; x=1677930689;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=FxwcU+/OZL3whMMuPBQkDX2LZjf2mVv8lduqCz1axG0=;
+  b=qhYCa4gTufDvva+IbgBsJQfSCdjP7/3PDPuA4+kA/jfEPw3ZdDrCVliA
+   O69VRWicIuqj6E+TK+ORhfGztH47rqaiNFcJwqNJDRHVjiQ0eD+9COkww
+   yFTuiVHVoVDASKnLEql1zUOrl2L6Ar+xI8JP8abqbyBx0LWwNjPvI0yZ5
+   +bjxXsrZcZBd91R4nbw4h203cFf+vKY1FxODq4yezwKjMrRCv091SvUAx
+   qanEsVSbC9wuCqxxw+RMxPMmprTg0nbRtc1FENZUplEy5gl7Ne+Oq/8cI
+   ffSWcpCV6UFNHT30wHRJ+qgOrdBKSgxLcP06gLS72gn8lCGkYbjCBiYBy
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,155,1643698800"; 
+   d="scan'208";a="87826740"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Mar 2022 04:51:28 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 4 Mar 2022 04:51:28 -0700
+Received: from [10.12.72.98] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 4 Mar 2022 04:51:26 -0700
+Message-ID: <67d0ca93-cf95-8d7c-3658-bf6843c2bb51@microchip.com>
+Date:   Fri, 4 Mar 2022 12:51:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220303224237.2497570-2-robh@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] ARM: configs: at91: add eic
+Content-Language: en-US
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>
+CC:     <robh+dt@kernel.org>, <linux@armlinux.org.uk>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20220228122326.1400954-1-claudiu.beznea@microchip.com>
+ <20220228122326.1400954-3-claudiu.beznea@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220228122326.1400954-3-claudiu.beznea@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 04:42:36PM -0600, Rob Herring wrote:
-> In preparation for supporting validation of DTB files, the full
-> processed schema will always be needed in order to extract type
-> information from it. Therefore, the processed schema containing only
-> what DT_SCHEMA_FILES specifies won't work. Instead, dt-validate has
-> gained an option, -l or --limit, to specify which schema(s) to use for
-> validation.
+On 28/02/2022 at 13:23, Claudiu Beznea wrote:
+> Add eic.
 > 
-> As the command line option is new, we the minimum dtschema version must be
-> updated.
-> 
-> Cc: Masahiro Yamada <masahiroy@kernel.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+
+Queued for 5.18 in at91-defconfig
+Regards,
+   Nicolas
+
 > ---
->  Documentation/devicetree/bindings/Makefile | 28 +++-------------------
->  scripts/Makefile.lib                       |  3 +--
->  2 files changed, 4 insertions(+), 27 deletions(-)
+>   arch/arm/configs/sama7_defconfig | 1 +
+>   1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-> index 61ec18ecc931..246ba0ecab64 100644
-> --- a/Documentation/devicetree/bindings/Makefile
-> +++ b/Documentation/devicetree/bindings/Makefile
-> @@ -6,7 +6,7 @@ DT_MK_SCHEMA ?= dt-mk-schema
->  DT_SCHEMA_LINT := $(shell which yamllint || \
->    echo "warning: yamllint not installed, skipping. To install, run 'pip install yamllint'" >&2)
->  
-> -DT_SCHEMA_MIN_VERSION = 2021.2.1
-> +DT_SCHEMA_MIN_VERSION = 2022.3
->  
->  PHONY += check_dtschema_version
->  check_dtschema_version:
-> @@ -25,9 +25,6 @@ quiet_cmd_extract_ex = DTEX    $@
->  $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
->  	$(call if_changed,extract_ex)
->  
-> -# Use full schemas when checking %.example.dts
-> -DT_TMP_SCHEMA := $(obj)/processed-schema-examples.json
-> -
->  find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
->  		-name 'processed-schema*' ! \
->  		-name '*.example.dt.yaml' \)
-> @@ -70,29 +67,10 @@ override DTC_FLAGS := \
->  # Disable undocumented compatible checks until warning free
->  override DT_CHECKER_FLAGS ?=
->  
-> -$(obj)/processed-schema-examples.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
-> +$(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version FORCE
->  	$(call if_changed_rule,chkdt)
->  
-> -ifeq ($(DT_SCHEMA_FILES),)
-> -
-> -# Unless DT_SCHEMA_FILES is specified, use the full schema for dtbs_check too.
-> -# Just copy processed-schema-examples.json
-> -
-> -$(obj)/processed-schema.json: $(obj)/processed-schema-examples.json FORCE
-> -	$(call if_changed,copy)
-> -
-> -else
-> -
-> -# If DT_SCHEMA_FILES is specified, use it for processed-schema.json
-> -
-> -$(obj)/processed-schema.json: DT_MK_SCHEMA_FLAGS := -u
-> -$(obj)/processed-schema.json: $(CHK_DT_DOCS) check_dtschema_version FORCE
-> -	$(call if_changed,mk_schema)
-> -
-> -endif
-> -
-> -always-$(CHECK_DT_BINDING) += processed-schema-examples.json
-> -always-$(CHECK_DTBS)       += processed-schema.json
-> +always-y += processed-schema.json
->  always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
->  always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dt.yaml, $(CHK_DT_DOCS))
->  
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index 79be57fdd32a..9f1e8442564e 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -361,9 +361,8 @@ $(multi-dtb-y): FORCE
->  $(call multi_depend, $(multi-dtb-y), .dtb, -dtbs)
->  
->  DT_CHECKER ?= dt-validate
-> -DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),,-m)
-> +DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),-l $(DT_SCHEMA_FILES),-m)
->  DT_BINDING_DIR := Documentation/devicetree/bindings
-> -# DT_TMP_SCHEMA may be overridden from Documentation/devicetree/bindings/Makefile
->  DT_TMP_SCHEMA ?= $(objtree)/$(DT_BINDING_DIR)/processed-schema.json
+> diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
+> index aad10ae85a7d..ecb5c4b750e1 100644
+> --- a/arch/arm/configs/sama7_defconfig
+> +++ b/arch/arm/configs/sama7_defconfig
+> @@ -190,6 +190,7 @@ CONFIG_IIO_SW_TRIGGER=y
+>   CONFIG_AT91_SAMA5D2_ADC=y
+>   CONFIG_PWM=y
+>   CONFIG_PWM_ATMEL=y
+> +CONFIG_MCHP_EIC=y
+>   CONFIG_EXT2_FS=y
+>   CONFIG_EXT3_FS=y
+>   CONFIG_FANOTIFY=y
 
-This could now use := instead of ?=
-
-Apart from the fact that 2022.3 hasn't been tagged yet as pointed out by
-Geert, this looks fine to me (but I'm no expert in this area).
-
->  
->  quiet_cmd_dtb_check =	CHECK   $@
 
 -- 
-Regards,
-
-Laurent Pinchart
+Nicolas Ferre
