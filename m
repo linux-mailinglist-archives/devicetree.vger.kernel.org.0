@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD8704CD560
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:45:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED2A24CD566
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:46:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229640AbiCDNqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 08:46:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51326 "EHLO
+        id S231528AbiCDNrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 08:47:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbiCDNqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:46:30 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E77122231;
-        Fri,  4 Mar 2022 05:45:42 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id y15-20020a4a650f000000b0031c19e9fe9dso9396704ooc.12;
-        Fri, 04 Mar 2022 05:45:42 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=KUpNuUQnXgfSvSQJNQQ/zhupQmOW5yWTQDWjvjsKk7E=;
-        b=RWQBa3foBVvpk7Y7a248I4k8iw/maDMDxeskfNCHLp679Uk7dR3ZcTWVNdViZgYz7e
-         jC6igMVY6EHewnC0oGmmn2ed9htP32RkPGqAjvi4tbG8+OFLasxw/N6h22nmSwGRwZrK
-         dMdJVhjLvX+STO2vyHcgXltbf68mgAIiXXLefZf6idaNX3n+2DYXELDM44Wc37L9CQau
-         pCM4oeySJzPS/gtCJA6jew0PDqkGAxRQl7/6y3uNWLBfuVjapj3Mr/gfV8AvIvj9Zrcs
-         rXe8B1T83/ZYr0726X931YvWRsacdkzLjs1M+qsAvANZVr0F4K3bqgRnNf6eUPAbe6Cn
-         6MHg==
-X-Gm-Message-State: AOAM5325oD1c4FhGvhrEMcTSHuYrR9X55PnCb19HMQP92OSBW1xrqI39
-        yQGGB8Avde2Elm7RX9CqFbEZEvkg4A==
-X-Google-Smtp-Source: ABdhPJyAnmg/NW3RCU37MQSAswSycJFsenLWW9LE/mVJ6wGvlVv9qf9yxxcE95G3b/2olO4x43Vj7Q==
-X-Received: by 2002:a4a:c98d:0:b0:31b:e25d:d98d with SMTP id u13-20020a4ac98d000000b0031be25dd98dmr21872880ooq.86.1646401540139;
-        Fri, 04 Mar 2022 05:45:40 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id c8-20020a4ad788000000b0031ce69b1640sm2299367oou.10.2022.03.04.05.45.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 05:45:39 -0800 (PST)
-Received: (nullmailer pid 3810487 invoked by uid 1000);
-        Fri, 04 Mar 2022 13:45:38 -0000
-Date:   Fri, 4 Mar 2022 07:45:38 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        - <patches@opensource.cirrus.com>,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: Fix pinctrl node name warnings
-Message-ID: <YiIYAnLbxHJ3CWYw@robh.at.kernel.org>
-References: <20220303194737.2258809-1-robh@kernel.org>
- <20220304095837.GS38351@ediswmail.ad.cirrus.com>
+        with ESMTP id S231432AbiCDNrA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:47:00 -0500
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8054A1B84D6;
+        Fri,  4 Mar 2022 05:46:12 -0800 (PST)
+From:   Kurt Kanzenbach <kurt@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020; t=1646401570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+qVNVphU3Gm3EnlFWZRXmSURmHaVndeojdH/n2OcvIc=;
+        b=Mj3OST0SQfXiy8DBZm8US3DVz9ppbnUkSJpLY44P+ArnzdySToKmhmuGZnF4tpaMKXBFpt
+        gi6CbIccfUQn5ljWOqqEE1fzsjOBtbYgamV9lXVAoZiPPYaXJZjyzi48O63yLYniupf+p6
+        jlZvYIEiE4LNXj1s5zsHVUwlyF4yH52tiEozJD5gXYU9wIZatN6as1/civFdn2RYxQz9EX
+        DBPVdduv5BkyNacUMmY04dIWOLAB2jy70h1cy6mVaZnZeQVmTpR6xrhech45o0M/plz6Ls
+        DRhCxfST8Wf+9LljIruDg3o9fFmw1MLCKWNzH3/NznwEuGzkbVDEg/y2hgBJ4Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+        s=2020e; t=1646401570;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+qVNVphU3Gm3EnlFWZRXmSURmHaVndeojdH/n2OcvIc=;
+        b=Xb19Oja3bbFVg6GnmPnbHKScCj4hVOICzSVFdCDOd3fy0iXUfHKIjiWyUlwjXSgkmFwFHX
+        H9HkP1l3NmfntNAQ==
+To:     Divya Koppera <Divya.Koppera@microchip.com>,
+        netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        richardcochran@gmail.com
+Cc:     linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
+        madhuri.sripada@microchip.com, manohar.puri@microchip.com
+Subject: Re: [PATCH net-next 3/3] net: phy: micrel: 1588 support for LAN8814
+ phy
+In-Reply-To: <20220304093418.31645-4-Divya.Koppera@microchip.com>
+References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
+ <20220304093418.31645-4-Divya.Koppera@microchip.com>
+Date:   Fri, 04 Mar 2022 14:46:08 +0100
+Message-ID: <87ee3hde5b.fsf@kurt>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220304095837.GS38351@ediswmail.ad.cirrus.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha512; protocol="application/pgp-signature"
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 09:58:37AM +0000, Charles Keepax wrote:
-> On Thu, Mar 03, 2022 at 01:47:37PM -0600, Rob Herring wrote:
-> > The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
-> > pinctrl: use pinctrl.yaml") resulted in some node name warnings:
-> > 
-> > Documentation/devicetree/bindings/mfd/cirrus,lochnagar.example.dt.yaml: \
-> >  lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> > Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml: \
-> >  codec@1a: $nodename:0: 'codec@1a' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> > Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: \
-> >  pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> > 
-> > Fix the node names to the preferred 'pinctrl'. For cirrus,madera,
-> > nothing from pinctrl.yaml schema is used, so just drop the reference.
-> > 
-> > Fixes: c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml")
-> > Cc: Rafał Miłecki <rafal@milecki.pl>
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> > diff --git a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-> > index c00ad3e21c21..975a46f3c46f 100644
-> > --- a/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml
-> > @@ -126,7 +126,7 @@ properties:
-> >        clock-frequency:
-> >          const: 12288000
-> >  
-> > -  lochnagar-pinctrl:
-> > +  pinctrl:
-> >      type: object
-> >      $ref: /schemas/pinctrl/cirrus,lochnagar.yaml#
-> >  
-> 
-> We also need to update the required properties and the example here.
+--=-=-=
+Content-Type: text/plain
 
-Yes, see v3.
+On Fri Mar 04 2022, Divya Koppera wrote:
+> Add support for 1588 in LAN8814 phy driver.
+> It supports 1-step and 2-step timestamping.
+>
+> Co-developed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> Signed-off-by: Divya Koppera <Divya.Koppera@microchip.com>
+> ---
+>  drivers/net/phy/micrel.c | 1088 +++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 1066 insertions(+), 22 deletions(-)
 
-Rob
+[snip]
+
+> +static bool is_sync(struct sk_buff *skb, int type)
+> +{
+> +	struct ptp_header *hdr;
+> +
+> +	hdr = ptp_parse_header(skb, type);
+> +	if (!hdr)
+> +		return false;
+> +
+> +	return ((ptp_get_msgtype(hdr, type) & 0xf) == 0);
+
+The '& 0xf' is already performed by ptp_get_msgtype() and you can use '==
+PTP_MSGTYPE_SYNC' instead of 0.
+
+Second, this seems like the second driver to use is_sync(). The other
+one is dp83640. Richard, should it be moved to ptp classify?
+
+Thanks,
+Kurt
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJHBAEBCgAxFiEEvLm/ssjDfdPf21mSwZPR8qpGc4IFAmIiGCATHGt1cnRAbGlu
+dXRyb25peC5kZQAKCRDBk9HyqkZzgkafD/9Amt6hCJYn08slvDgpUI1XdQ3cmggH
+t9PslPZSCutHidicIoDgLtEI1AtQAVexZN181eHLF6SjRDoNA0hgQQCMR4b/TkWH
+vYWUXcoabIxeG0cnf/hAlfgdceMF7d5QdJxHIIBu09KXlDojqp1pAFOy7yxODM+g
+hcuB9WsBzRiPE4QZbPENXd3XoGHsECfNb1owUPIUS47DJPUwsfPwyoJjc9bIUKz7
+0W5WYdV97GbU+omp8Pt8NCT100FfIFN0cCJ/VN7ra5KI9olXGWQA8FvnUQgQmdZF
+whskULc2aNxb2g+4c09aD/Ykpuiy7YvwG1tSAFqbVhzJV0A4bT7tkZkz042E81ik
+GbT+UpGGXReQzFt1jb887CMR0JHYw4A3GyZVx7l7pDoYvx99BMUUIF1Bz89x4Lnj
+vIcQaK01qVFpfwnY7y/QrFEzO0E+3xbIDrVBu0HgdpUOvL4rL3VhDA3E3qVN5WpS
+yOjnWiP36OtXdDgpXLM9VdqbYo7vzEhikeFBkJIbL3dlL5iFtCMip41/5YWYFOGh
+ObWfJ5cO5VfXcpcxag24s0zEG1lK83UfO64YNV90DxbbTbR19EzN702qCmj2AyMv
+VDbQw71WrX3OpAIslfbaATPeDvY3x8ZECmCvryiRpZb7c7YZ7spWJFqeEZnoayv4
+OG+rQebpHO/Flg==
+=Uwq4
+-----END PGP SIGNATURE-----
+--=-=-=--
