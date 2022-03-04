@@ -2,76 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 695334CE108
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:37:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A65704CE115
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:41:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbiCDXiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 18:38:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
+        id S229689AbiCDXmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 18:42:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbiCDXiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:38:17 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FFF611B;
-        Fri,  4 Mar 2022 15:37:27 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C2CB61F1E;
-        Fri,  4 Mar 2022 23:37:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84BCBC340F6;
-        Fri,  4 Mar 2022 23:37:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646437046;
-        bh=vYW2Inc1gofPuL2v43VLkLxzmzCwQMyJPz0gOoV+3UI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=uCBwUfqYPO14kQFStyCPuYAY65dVziFIDvjAEG7SAjtkLay1Cnlwpgmrnoy3IBmj9
-         2VwFzs5h0xty6dEF9K0mtUbloSRgzfr0uKTzZ3HcTzkHBcpYURHts2OndxLUe8mmXT
-         3UzA9s97Whx5U4PnMclmZTKrkPvZLErB7ZnH47JgEc7ntpN63XRSqYk26Q8YUc32ZK
-         VQ0ggKVqquIPRkPi3MsKr0juutUzr/3Jh5813ep8emmgUDXk/Rwwl/+mj0H/5Xadvc
-         H8tRzXdD5aDw8xvhBaYm45hmnJicWs7ZKfs0jlG+neTFi6LgyaaZWBgBYda6d+mVrC
-         xKl7rlaHRF52g==
-Received: by mail-ej1-f42.google.com with SMTP id qx21so20436743ejb.13;
-        Fri, 04 Mar 2022 15:37:26 -0800 (PST)
-X-Gm-Message-State: AOAM532Y/WILcgUykrZLhkuC5GJeLHDOUiyXvqiTx8O+YS1CocTwJ8hO
-        svfY1CfBO2fQAhGMhTVI4qDEq+2coRQZxFC37A==
-X-Google-Smtp-Source: ABdhPJysjUsy0FGiLn6wFPmbk1rqw0yxwzXpgWZTQIFFHB18ic8Jox7eKR/BaHXTH8v9rCjwtz80d697E9wdwnZEpWo=
-X-Received: by 2002:a17:906:9913:b0:6d6:dc48:5d49 with SMTP id
- zl19-20020a170906991300b006d6dc485d49mr895534ejb.325.1646437044625; Fri, 04
- Mar 2022 15:37:24 -0800 (PST)
-MIME-Version: 1.0
-References: <20220301152421.57281-1-linux@fw-web.de> <20220301152421.57281-2-linux@fw-web.de>
- <Yh+0B+iKx1gJXXCk@robh.at.kernel.org> <trinity-1ca1f3fd-1eeb-4c8d-a7e2-65851eb8002b-1646291055736@3c-app-gmx-bs69>
-In-Reply-To: <trinity-1ca1f3fd-1eeb-4c8d-a7e2-65851eb8002b-1646291055736@3c-app-gmx-bs69>
+        with ESMTP id S229471AbiCDXmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:42:04 -0500
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD1A56D4C9;
+        Fri,  4 Mar 2022 15:41:15 -0800 (PST)
+Received: by mail-oi1-f171.google.com with SMTP id z7so9470319oid.4;
+        Fri, 04 Mar 2022 15:41:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=M5iwGSDdY2W1QgyJNAYWoPTA/ZIrFOgrco9BAm31DxA=;
+        b=AL1smD3zN3sMFhx9SAZQ+bIcm9Ih0hinQyHxGLJ+F1hvdnvcAaOhf+AQXjMwZJuiOg
+         452DBmWRZE9eZ1x+ELCgo02e/KvqEcMHQHAtGm8HPXQCjE8tGrfopXEbp9GLTttcuVbM
+         7+FNettAUyMx2jJt6gjydZz96H+hd0IEcjhKlfh5rROLtcsimhBw7BvtuPCBTDe/r0By
+         r1rJKMQBrIcK5yex+Sl7/2064SLr4iDebqHBELuXGk4T7McNn9ZfgBKHkry9yym9+Zsg
+         L4BeY0xNV/+OVLIBq1iO4Cgt9LwZUnsF+OvlPKksfhV+skaed6KUpUBjzMtNbPELURZD
+         5vVA==
+X-Gm-Message-State: AOAM531AfRGj0JZMR/lzUynxh7QeDKGLzIKSpZ/nDAp9Tmdw/a/pWBsy
+        M4Ob9CkJli2j3UjZOwWkmA==
+X-Google-Smtp-Source: ABdhPJw6s9xCimPh++z5LAJxShkHR1sFTlm6l83hbiYcKPIoPpOoIsougYSB45a8VTpMUYmxD3z/Sw==
+X-Received: by 2002:a05:6808:1287:b0:2d9:a01a:4bb1 with SMTP id a7-20020a056808128700b002d9a01a4bb1mr552647oiw.216.1646437275206;
+        Fri, 04 Mar 2022 15:41:15 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a4-20020a9d6e84000000b005afe328af91sm2804581otr.54.2022.03.04.15.41.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 15:41:14 -0800 (PST)
+Received: (nullmailer pid 689808 invoked by uid 1000);
+        Fri, 04 Mar 2022 23:41:13 -0000
+Date:   Fri, 4 Mar 2022 17:41:13 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 4 Mar 2022 17:37:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJMZ1mZ91SYZR03rMkK-ZqFd-tCwV6zOrNu5NmP6V+duA@mail.gmail.com>
-Message-ID: <CAL_JsqJMZ1mZ91SYZR03rMkK-ZqFd-tCwV6zOrNu5NmP6V+duA@mail.gmail.com>
-Subject: Re: Re: [PATCH v4 1/5] dt-bindings: Convert ahci-platform DT bindings
- to yaml
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>,
-        "open list:LIBATA SUBSYSTEM (Serial and Parallel ATA drivers)" 
-        <linux-ide@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
-        <bcm-kernel-feedback-list@broadcom.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aisheng.dong@nxp.com, shawnguo@kernel.org, linux-imx@nxp.com,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        Peng Fan <peng.fan@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, stefan@agner.ch,
+        kernel@pengutronix.de, devicetree@vger.kernel.org,
+        festevam@gmail.com
+Subject: Re: [PATCH V2 1/2] dt-bindings: pinctrl: imx93: Add pinctrl binding
+Message-ID: <YiKjmZIO38X+5VRL@robh.at.kernel.org>
+References: <20220228010103.2725893-1-peng.fan@oss.nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220228010103.2725893-1-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,152 +66,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 3, 2022 at 1:04 AM Frank Wunderlich <frank-w@public-files.de> w=
-rote:
->
-> Hi Rob,
->
-> thanks for review,
->
-> have prepared the changes based on yours and krzysztof comments
->
-> https://github.com/frank-w/BPI-R2-4.14/commits/5.17-next-20220225
->
-> (just ignore the top 2 commits) i thought i had a size-cells-error, but d=
-id not get them again after reverting this part, seems they are fixed by in=
-clusion of the sata-common binding
->
-> > Gesendet: Mittwoch, 02. M=C3=A4rz 2022 um 19:14 Uhr
-> > Von: "Rob Herring" <robh@kernel.org>
-> > An: "Frank Wunderlich" <linux@fw-web.de>
->
-> > On Tue, Mar 01, 2022 at 04:24:17PM +0100, Frank Wunderlich wrote:
-> > > From: Frank Wunderlich <frank-w@public-files.de>
->
-> > > diff --git a/Documentation/devicetree/bindings/ata/ahci-platform.yaml=
- b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > > new file mode 100644
-> > > index 000000000000..cf67ddfc6afb
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/ata/ahci-platform.yaml
-> > > @@ -0,0 +1,162 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/ata/ahci-platform.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: AHCI SATA Controller
-> >
-> > blank line.
->
-> done
->
-> > > +description:
-> > > +  SATA nodes are defined to describe on-chip Serial ATA controllers.
-> > > +  Each SATA controller should have its own node.
-> > > +
-> > > +  It is possible, but not required, to represent each port as a sub-=
-node.
-> > > +  It allows to enable each port independently when dealing with mult=
-iple
-> > > +  PHYs.
-> >
-> > You need a '|' after 'description' if you want to maintain the
-> > paragraphs.
->
-> ok added | to all multiline descriptions
->
-> > > +
-> > > +maintainers:
-> > > +  - Hans de Goede <hdegoede@redhat.com>
-> > > +  - Jens Axboe <axboe@kernel.dk>
-> > > +
-> > > +allOf:
-> > > +- $ref: "sata-common.yaml#"
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +        - enum:
-> > > +          - brcm,iproc-ahci
-> > > +          - marvell,armada-8k-ahci
-> > > +          - marvell,berlin2q-ahci
-> > > +        - const: generic-ahci
-> > > +      - enum:
-> > > +        - brcm,iproc-ahci
-> > > +        - cavium,octeon-7130-ahci
-> > > +        - hisilicon,hisi-ahci
-> > > +        - ibm,476gtr-ahci
-> > > +        - marvell,armada-3700-ahci
-> > > +        - marvell,armada-380-ahci
-> > > +        - snps,dwc-ahci
-> > > +        - snps,spear-ahci
-> >
-> > Install yamllint and run 'make dt_binding_check'. It's going to
-> > complain about the indentation.
->
-> you're right, i had no yamllint installed, so i have not seen these inden=
-tion errors
->
-> > > +  ahci-supply:
-> > > +    description:
-> > > +      regulator for AHCI controller
-> > > +
-> > > +  clock-names:
-> >
-> > Group with 'clocks'
->
-> ok, already done in my tree because of krzysztofs comment
->
-> > > +  ports-implemented:
-> > > +    $ref: '/schemas/types.yaml#/definitions/uint32'
-> > > +    description:
-> > > +      Mask that indicates which ports that the HBA supports
-> > > +      are available for software to use. Useful if PORTS_IMPL
-> > > +      is not programmed by the BIOS, which is true with
-> > > +      some embedded SoCs.
-> > > +    maxItems: 1
-> >
-> > A uint32 is only ever 1 item. Drop.
-> >
-> > IIRC, isn't the max here 0xff? Add constraints.
->
-> i've found it only set to 0x1 so i have currently set the maximum to 0x1,=
- is this ok?
-> If some higher value is needed binding needs to be touched...
+On Mon, 28 Feb 2022 09:01:02 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add pinctrl binding doc for i.MX93
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+> 
+> V2:
+>  Licence update
+>  Move allOf above properties
+> 
+>  .../bindings/pinctrl/fsl,imx93-pinctrl.yaml   | 85 +++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/fsl,imx93-pinctrl.yaml
+> 
 
-There's a spec for it, so no need to look at what's used. Calxeda AHCI
-had 5 ports IIRC.
-
-
-> > > +  reg-names:
-> > > +    maxItems: 1
-> >
-> > Group with 'reg'.
->
-> ok
->
-> > > +patternProperties:
-> > > +  "^sata-port@[0-9a-f]+$":
-> > > +    type: object
-> >
-> >        additionalProperties: false
->
-> ok added to my tree
->
-> and needed to add phy-names because some marvell boards using this
->
-> arch/arm64/boot/dts/marvell/armada-8040-mcbin-singleshot.dt.yaml: sata@54=
-0000: sata-port@1: 'phy-names' does not match any of the regexes: 'pinctrl-=
-[0-9]+'
->
-> now i have only the marvell-errors about incomplete sata-port subnode (wi=
-thout phy/target-supply) like i mention in the patch...how to proceed with =
-this?
-
-So the child nodes are incomplete? They should be disabled then
-(status =3D "disabled") and that turns off required properties checks.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
