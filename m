@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D164D4CCA60
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 01:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9D594CCA62
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 01:03:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231225AbiCDAES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 19:04:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
+        id S229849AbiCDAEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 19:04:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbiCDAER (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 19:04:17 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E08CFB109F
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 16:03:30 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id z12-20020a17090ad78c00b001bf022b69d6so5370950pju.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 16:03:30 -0800 (PST)
+        with ESMTP id S229838AbiCDAEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 19:04:22 -0500
+Received: from mail-pl1-x62b.google.com (mail-pl1-x62b.google.com [IPv6:2607:f8b0:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A11AD1098
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 16:03:36 -0800 (PST)
+Received: by mail-pl1-x62b.google.com with SMTP id n15so6246906plf.4
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 16:03:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=wLbnAogNT/oWqYux4yLvZ6VmokfE6BJtRW5+y3qAKWc=;
-        b=hi2XA1mGuWmzBzW2eI21+QsIerzLq33JIxiQE5ib685tWM9tZWUvnicxNP8036rM21
-         u6fRHECcwEvvDNdCvQbJuComVS7o2Q89BBXL1/NDnR0RHJUQXDq2U6UHAuN7+TxO4eW0
-         4SgV7FZnhLt50QFYEBELcSByrEzKbYDqLphlprmwV641hOF2t+Y1czJPeuofptpykR3t
-         iDCnhEOK7DA9aDrBepcvkBbqWH7arkkPvCch6hH6bXgQCmbwm4H0XZ5FqVNRn83I8mXi
-         TZwQ3Zt2y0mfKNo76TqOGc54qd8K4u6RTit7M6Zupof3RKtFDlfece48fZzkyrrH2apC
-         fJuw==
+        bh=i4Na1N1IMcDiqM3XRO5aUsCt6DvAkHmrn4n5xsrfFdU=;
+        b=aksTpisVOu8Uh3NepbnfMUB9aa45qUzmbOgSd4baOPEjlXfuyqmztPiilq2fGdJh6w
+         5puTwtz4TuAJIObrFm4cf0Alz0Cp0cSO1zD8H8fdGAHce0D1HGDRsUBnOuLCuc3kfEqA
+         684NIdrTHa7dsL4qQsUO60+rl8IXloVdWy9QjHk23YCSkT8Bhq64ujbbk31Ix8nmJPIm
+         TWobxtxzNg7fQTM7QuFeZ93UF6UC9m89KY0kV22sAP+2DGYrDtjpBzupiGmbvqSFZHZN
+         ozPxsQM8F7tkkjl7F/r5Bf07TG1p5xPGrnbxsj2Ph21ao6/ADl8TVNSmj80xycqyoJFT
+         OeyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=wLbnAogNT/oWqYux4yLvZ6VmokfE6BJtRW5+y3qAKWc=;
-        b=iblqigL2Zlqg3K4M2SEfQwI4qvbBo6ds7d6NTvjp4B9W/a/oHlKIzPc7GV1VmbVfZZ
-         PilUHGPcvPOKk7e0gjL3wM629I9KGWOMsto3ZyyJ4aFGlp7jA6b0TliACTZU1TixVyct
-         9ntZWfgSpa+N6luuB2XOjomKk6IXJOEmIjxKTApveh35o8vdoyxH8vDlJh37wQBbff0Z
-         cEdJy5mdvdKpppCgV+0Gdp6jjq4lSbDquW7z9iw2LYgYIY4TxgUQ1YTu/2iqeKR8ZV1p
-         ZFANlgRlhcPrQxA8oHIKX+gIdMz+a5lVJXv1S15At4gBmVjoXO7vos5FH5luMlWZdKJ3
-         gnPw==
-X-Gm-Message-State: AOAM533jbxPbtLgExR6j4Qr9mNo7qUEhcS5YvenL/Og4jgOYuePgisS6
-        WVNiwMNs+41Vd+D1t9poxxwxdVZvkQn4Xkg1
-X-Google-Smtp-Source: ABdhPJyELqxSTPbuNUbV618Zl9NffFmwo6n9gQkEBZYjAx7lveDnXUSUAAOKa93JYUPwetl8+4Ufdg==
-X-Received: by 2002:a17:90a:4749:b0:1be:ea64:4348 with SMTP id y9-20020a17090a474900b001beea644348mr7804979pjg.231.1646352210357;
-        Thu, 03 Mar 2022 16:03:30 -0800 (PST)
+        bh=i4Na1N1IMcDiqM3XRO5aUsCt6DvAkHmrn4n5xsrfFdU=;
+        b=0FYKgxqNy/1W5YUtOyFcT7iSyadz8iZmRD7f+Xkwu9h0W/sW8Qvy8qNfAP4jTJPmdk
+         bQLHlS7D+2ok9vweZVAaHEfNOeiaApeB4peGXBW0G3ntdnBcwA+lOW1CTITv9ar50xze
+         +O1qHg0cdt3+AHHrrbd68QX0mkwJVRi5d2M5U7gjLFwEbJ9sr+g9oUpEMg7yo+zIUhgn
+         PvZLFrlbG33/ChHESd5g/0d2FqkWo63RAe21JR3oHK7XMYtgYW2t7KAN9lUtXg3rDp7Y
+         Zxo22m2xKkz2ZlnQNF4+Dc3csQLQijSGObUnEW410pDf/8vSGiqjRBjXZT3Hv4Ywbh90
+         6e/A==
+X-Gm-Message-State: AOAM532YYrOQBoXnKL2eFSw/lqGvc66UtClWxc4woC+s5x6eZqz6jl+h
+        CIAHqs4TeO7hrbb910v9xCk=
+X-Google-Smtp-Source: ABdhPJyFQ7V0jyTkRptySF21wS+UPkx2IVBsSDOyqX7OEgOlQYE3EIIDIJ180eGmwMlEgjVLq8JPmQ==
+X-Received: by 2002:a17:902:ef4d:b0:14f:e82b:25fd with SMTP id e13-20020a170902ef4d00b0014fe82b25fdmr38376369plx.80.1646352215575;
+        Thu, 03 Mar 2022 16:03:35 -0800 (PST)
 Received: from localhost.localdomain ([45.124.203.14])
-        by smtp.gmail.com with ESMTPSA id z8-20020aa79588000000b004e1dc67ead3sm3579070pfj.126.2022.03.03.16.03.26
+        by smtp.gmail.com with ESMTPSA id z8-20020aa79588000000b004e1dc67ead3sm3579070pfj.126.2022.03.03.16.03.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 16:03:29 -0800 (PST)
+        Thu, 03 Mar 2022 16:03:33 -0800 (PST)
 Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
 From:   Joel Stanley <joel@jms.id.au>
 To:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>
@@ -54,9 +54,9 @@ Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-aspeed@lists.ozlabs.org,
         Linus Walleij <linus.walleij@linaro.org>,
         Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH v2 1/2] dt-bindings: pinctrl: aspeed: Update gfx node in example
-Date:   Fri,  4 Mar 2022 10:33:10 +1030
-Message-Id: <20220304000311.970267-2-joel@jms.id.au>
+Subject: [PATCH v2 2/2] dt-bindings: gpu: Convert aspeed-gfx bindings to yaml
+Date:   Fri,  4 Mar 2022 10:33:11 +1030
+Message-Id: <20220304000311.970267-3-joel@jms.id.au>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20220304000311.970267-1-joel@jms.id.au>
 References: <20220304000311.970267-1-joel@jms.id.au>
@@ -73,59 +73,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The example needs updating to match the to be added yaml bindings for
-the gfx node.
+Convert the bindings to yaml and add the ast2600 compatible string.
+
+The legacy mfd description was put in place before the gfx bindings
+existed, to document the compatible that is used in the pinctrl
+bindings.
 
 Signed-off-by: Joel Stanley <joel@jms.id.au>
 ---
- .../bindings/pinctrl/aspeed,ast2500-pinctrl.yaml | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ .../devicetree/bindings/gpu/aspeed,gfx.yaml   | 69 +++++++++++++++++++
+ .../devicetree/bindings/gpu/aspeed-gfx.txt    | 41 -----------
+ .../devicetree/bindings/mfd/aspeed-gfx.txt    | 17 -----
+ 3 files changed, 69 insertions(+), 58 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+ delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-index d316cc082107..9969997c2f1b 100644
---- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-@@ -73,6 +73,7 @@ additionalProperties: false
- 
- examples:
-   - |
-+    #include <dt-bindings/clock/aspeed-clock.h>
-     apb {
-         compatible = "simple-bus";
-         #address-cells = <1>;
-@@ -82,6 +83,8 @@ examples:
-         syscon: scu@1e6e2000 {
-             compatible = "aspeed,ast2500-scu", "syscon", "simple-mfd";
-             reg = <0x1e6e2000 0x1a8>;
-+            #clock-cells = <1>;
-+            #reset-cells = <1>;
- 
-             pinctrl: pinctrl {
-                 compatible = "aspeed,ast2500-pinctrl";
-@@ -102,6 +105,12 @@ examples:
-         gfx: display@1e6e6000 {
-             compatible = "aspeed,ast2500-gfx", "syscon";
-             reg = <0x1e6e6000 0x1000>;
-+            reg-io-width = <4>;
-+            clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
-+            resets = <&syscon ASPEED_RESET_CRT1>;
-+            interrupts = <0x19>;
-+            syscon = <&syscon>;
-+            memory-region = <&gfx_memory>;
-         };
-     };
- 
-@@ -128,3 +137,10 @@ examples:
-             };
-         };
-     };
+diff --git a/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+new file mode 100644
+index 000000000000..8ddc4fa6e8e4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+@@ -0,0 +1,69 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpu/aspeed,gfx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+    gfx_memory: framebuffer {
-+        size = <0x01000000>;
-+        alignment = <0x01000000>;
-+        compatible = "shared-dma-pool";
-+        reusable;
-+    };
++title: ASPEED GFX display device
++
++maintainers:
++  - Joel Stanley <joel@jms.id.au>
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - aspeed,ast2400-gfx
++          - aspeed,ast2500-gfx
++          - aspeed,ast2600-gfx
++      - const: syscon
++
++  reg:
++    minItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  memory-region: true
++
++  syscon: true
++
++  reg-io-width: true
++
++required:
++  - reg
++  - compatible
++  - interrupts
++  - clocks
++  - resets
++  - memory-region
++  - syscon
++
++additionalProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/clock/aspeed-clock.h>
++   gfx: display@1e6e6000 {
++       compatible = "aspeed,ast2500-gfx", "syscon";
++       reg = <0x1e6e6000 0x1000>;
++       reg-io-width = <4>;
++       clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
++       resets = <&syscon ASPEED_RESET_CRT1>;
++       interrupts = <0x19>;
++       syscon = <&syscon>;
++       memory-region = <&gfx_memory>;
++   };
++
++   gfx_memory: framebuffer {
++       size = <0x01000000>;
++       alignment = <0x01000000>;
++       compatible = "shared-dma-pool";
++       reusable;
++   };
+diff --git a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt b/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+deleted file mode 100644
+index 958bdf962339..000000000000
+--- a/Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
++++ /dev/null
+@@ -1,41 +0,0 @@
+-Device tree configuration for the GFX display device on the ASPEED SoCs
+-
+-Required properties:
+-  - compatible
+-    * Must be one of the following:
+-      + aspeed,ast2500-gfx
+-      + aspeed,ast2400-gfx
+-    * In addition, the ASPEED pinctrl bindings require the 'syscon' property to
+-      be present
+-
+-  - reg: Physical base address and length of the GFX registers
+-
+-  - interrupts: interrupt number for the GFX device
+-
+-  - clocks: clock number used to generate the pixel clock
+-
+-  - resets: reset line that must be released to use the GFX device
+-
+-  - memory-region:
+-    Phandle to a memory region to allocate from, as defined in
+-    Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+-
+-
+-Example:
+-
+-gfx: display@1e6e6000 {
+-	compatible = "aspeed,ast2500-gfx", "syscon";
+-	reg = <0x1e6e6000 0x1000>;
+-	reg-io-width = <4>;
+-	clocks = <&syscon ASPEED_CLK_GATE_D1CLK>;
+-	resets = <&syscon ASPEED_RESET_CRT1>;
+-	interrupts = <0x19>;
+-	memory-region = <&gfx_memory>;
+-};
+-
+-gfx_memory: framebuffer {
+-	size = <0x01000000>;
+-	alignment = <0x01000000>;
+-	compatible = "shared-dma-pool";
+-	reusable;
+-};
+diff --git a/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt b/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
+deleted file mode 100644
+index aea5370efd97..000000000000
+--- a/Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-* Device tree bindings for Aspeed SoC Display Controller (GFX)
+-
+-The Aspeed SoC Display Controller primarily does as its name suggests, but also
+-participates in pinmux requests on the g5 SoCs. It is therefore considered a
+-syscon device.
+-
+-Required properties:
+-- compatible:		"aspeed,ast2500-gfx", "syscon"
+-- reg:			contains offset/length value of the GFX memory
+-			region.
+-
+-Example:
+-
+-gfx: display@1e6e6000 {
+-	compatible = "aspeed,ast2500-gfx", "syscon";
+-	reg = <0x1e6e6000 0x1000>;
+-};
 -- 
 2.34.1
 
