@@ -2,135 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F7824CD45A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:39:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73DDF4CD477
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:50:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232565AbiCDMjy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 07:39:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34842 "EHLO
+        id S230135AbiCDMvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 07:51:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229886AbiCDMjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:39:54 -0500
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C530F13FAD2;
-        Fri,  4 Mar 2022 04:39:05 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646397545; x=1677933545;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QJ5044QybdgyBcGGWpEQ66a2p8/cp1NF4P4f5axlo9k=;
-  b=joUQmOxSdedcN1I9+GCIIO+RMAaKFRpjw5usPStdRAhlmxkAX38OjT2u
-   M1y7wTiV45Y9l0bAM6CE89MQAxrXPLUwYCK6RpXS98UyzEVrS9Z63XJZV
-   +nNNALn9Fg2JYZJ7SB/u7XV2EHtGj+tRmZz9BL5QaZ9gG8PD/iPvgU/1x
-   Ox7zFg2ZOWBfRtL5DM9ejLI+FaQA7VYz4iShZ7+HX8SNKff0AIPHUNJBg
-   51baMoOBS/U+cdEAeZr2qNVtj4I0fxKh/aV0dvTREkRHG5pCip/FBag1x
-   rQpT9UoCBtMaQwvdqVXN3mlGD+aMkwFf9J03F0DiQgKNqbaUT0BAHLKdb
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="252793831"
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; 
-   d="scan'208";a="252793831"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2022 04:39:05 -0800
-X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; 
-   d="scan'208";a="576869293"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2022 04:39:01 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nQ7CI-00BDcA-IQ;
-        Fri, 04 Mar 2022 14:38:14 +0200
-Date:   Fri, 4 Mar 2022 14:38:14 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fengping Yu <fengping.yu@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v21 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
-Message-ID: <YiIINpi4zbJq/AZE@smile.fi.intel.com>
-References: <20220303154302.252041-1-mkorpershoek@baylibre.com>
- <20220303154302.252041-3-mkorpershoek@baylibre.com>
- <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
+        with ESMTP id S229748AbiCDMvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:51:00 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 085461B1DDB;
+        Fri,  4 Mar 2022 04:50:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8F88561E34;
+        Fri,  4 Mar 2022 12:50:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C44B0C36AE3;
+        Fri,  4 Mar 2022 12:50:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646398211;
+        bh=8E590hgOzdtfm609w/+T6E0nCXsdC+UBFBK7EOHlaDI=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=L276cVRzbdP66ujtroJKO66aO08fumiEFmuk+yQyLruRfAFOjSPvB9DXDjaEhttSs
+         i0xoD+kxd/nKvGruMIh0rxnhP9XfcM9EtZi5+/URy64atVOl2E9fvn2FM4/Lo6BXKp
+         jiFdm7jQESOh7ZiSQnMWwNT931ox58t6JaAfD1jj24W7CNFUa+p56CbUempM+/dPcj
+         7ULp+XEMJJG0zD5cUGOeBUynnwRiIlYXuRtzADCDi1vID0hZJ1znzYqtoJzhSA85H+
+         Tt4d24YOk2r1SZSZQuDg5suPbNhepAiiTnXQqUhJX1bVtt98/eOZKgERNqtIhnjOgA
+         V2ehjDUA4yGYg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id A8833EAC09D;
+        Fri,  4 Mar 2022 12:50:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.7 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
+Date:   Fri, 04 Mar 2022 12:50:11 +0000
+References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
+In-Reply-To: <20220304093418.31645-1-Divya.Koppera@microchip.com>
+To:     Divya Koppera <Divya.Koppera@microchip.com>
+Cc:     netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        richardcochran@gmail.com, linux-kernel@vger.kernel.org,
+        UNGLinuxDriver@microchip.com, madhuri.sripada@microchip.com,
+        manohar.puri@microchip.com
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 11:31:38AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 03/03/22 16:43, Mattijs Korpershoek ha scritto:
-> > From: "fengping.yu" <fengping.yu@mediatek.com>
-> > 
-> > This patch adds matrix keypad support for Mediatek SoCs.
+Hello:
 
-> > +struct mt6779_keypad {
-> > +	struct regmap *regmap;
-> > +	struct input_dev *input_dev;
-> > +	struct clk *clk;
+This series was applied to netdev/net-next.git (master)
+by David S. Miller <davem@davemloft.net>:
 
-> > +	void __iomem *base;
-
-Not sure why you need this here.
-
-> > +	u32 n_rows;
-> > +	u32 n_cols;
-> > +	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
-> > +};
-> > +
-> > +static const struct regmap_config mt6779_keypad_regmap_cfg = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = sizeof(u32),
-> > +	.max_register = 36,
+On Fri, 4 Mar 2022 15:04:15 +0530 you wrote:
+> The following patch series contains:
+> - Fix for concurrent register access, which provides
+>   atomic access to extended page register reads/writes.
+> - Provides dt-bindings related to latency and timestamping
+>   that are required for LAN8814 phy.
+> - 1588 hardware timestamping support in LAN8814 phy.
 > 
-> Are you sure that you can't use .fast_io = true?
-> 
-> Another version for the same question:
-> Are you sure that you need to lock with a mutex here, and not with a spinlock?
-> 
-> Since you're performing reads over a MMIO, I think that there's a very good
-> chance that you can use fast_io.
-> 
-> > +};
+> [...]
 
-...
+Here is the summary with links:
+  - [net-next,1/3] net: phy: micrel: Fix concurrent register access
+    https://git.kernel.org/netdev/net-next/c/4488f6b61480
+  - [net-next,2/3] dt-bindings: net: micrel: Configure latency values and timestamping check for LAN8814 phy
+    https://git.kernel.org/netdev/net-next/c/2358dd3fd325
+  - [net-next,3/3] net: phy: micrel: 1588 support for LAN8814 phy
+    https://git.kernel.org/netdev/net-next/c/ece19502834d
 
-> Please use dev_err_probe() to simplify error handling in probe functions: you've
-> done a great job with adding a devm action for the error cases, avoiding gotos to
-> get out cleanly.. it would be a pity to not finish this to perfection.
-> 
-> I'll give you two examples for this, so that you'll be all set.
-> 
-> 	if (IS_ERR(keypad->regmap))
-> 		return dev_err_probe(&pdev->dev, PTR_ERR(keypad->regmap),
-> 				     "regmap init failed\n");
-> 
-> P.S.: No need for %pe here, as dev_err_probe prints the error number for you!
-
-Maintainer of the input subsystem is strongly against dev_err_probe() API. See
-other files there. Ditto for other cases you mentioned below.
-
+You are awesome, thank you!
 -- 
-With Best Regards,
-Andy Shevchenko
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
