@@ -2,111 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C1044CD59B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:55:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7B874CD5A1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:56:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238609AbiCDN4f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 08:56:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50554 "EHLO
+        id S239079AbiCDN4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 08:56:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238638AbiCDN4c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:56:32 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E44E1A3633;
-        Fri,  4 Mar 2022 05:55:45 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id q11so7782907pln.11;
-        Fri, 04 Mar 2022 05:55:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=+2Ag8K/blpO/TDuAG0o3dn05J6Gq6o2fRSh54mpEwNc=;
-        b=B71XufcFomvBNM9td+bERxkg2FnnNIE9z1nFpYLaic4J1is3LslJm+trITcDpEppZ8
-         I0cS8rlQohzdopXi/QsAbtGWrI0JM+Ht5Fu+93Zjd80WJNSh6nLUyXscc3FAdJaJRi8F
-         jRb/E1d6oovgk1UYZtWTqRt8Qj7gdKco/+AgYb5y/0z4woLwswXubxhRCM0gNXqx4tR/
-         XrHlkDmLSDQEHiph4KOkQWfh4xT0Kalrpx7nR0U1ie1V8JjssCrxz+HqWqLEhNArz3Cf
-         FRnix0gcKRlYythQZCI3zd9KWWmOiZQvcOgquPZ0vJPbfLVTFtn7M6Gd53Yeky+D4+u1
-         Vbaw==
+        with ESMTP id S239074AbiCDN4t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:56:49 -0500
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D98A41A94BE;
+        Fri,  4 Mar 2022 05:56:01 -0800 (PST)
+Received: by mail-ot1-f51.google.com with SMTP id l25-20020a9d7a99000000b005af173a2875so7495484otn.2;
+        Fri, 04 Mar 2022 05:56:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=+2Ag8K/blpO/TDuAG0o3dn05J6Gq6o2fRSh54mpEwNc=;
-        b=E0T0gEwamddL1kCOofdzJFBqHABy2cgu4TwhS9lLZv0xP5XHK6oYNj3K2Ok07RDSeI
-         fibA4hIoG8YNnj1lebdkOkoPTqBqd3js1NmiOoUB+tczYZL30QWvRC+jdMrBdnq/wdjU
-         5X1vnRBRKJk55vMh6YAsNIu/VvXqxGJrruEHVb3vT3iI8FOyK6dqMyAeNB+tBvU5x9/z
-         BWbGAey9n7OydSJv1asuMJ+lsQdVPNzFyWCsUyueqfX5oxGEGg7axU03RhDX/CysRunt
-         +lJdIcGONpKfuJ0oqQtpFgduY3e0V1rUz+4LQo8i++YgDcQrezZEz47NKBTciIXF2kLV
-         cHIw==
-X-Gm-Message-State: AOAM531MHgbNAhNbcmJFnOIHtMeRZrb2kF+5zT+0aK2sMSwJivtnik0M
-        LFkoby9Hy0UR4Lveha/vaD0=
-X-Google-Smtp-Source: ABdhPJxa/iKoXGuaImlslpn8S7p8aK0lGXiSONR4kJcxGBaijeonlXy+/ieYTqit5J/nGuCrpHELyA==
-X-Received: by 2002:a17:90b:3886:b0:1bf:1a16:25d4 with SMTP id mu6-20020a17090b388600b001bf1a1625d4mr6829177pjb.193.1646402144501;
-        Fri, 04 Mar 2022 05:55:44 -0800 (PST)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id q8-20020a056a00088800b004bca31c8e56sm6371367pfj.115.2022.03.04.05.55.42
+         :mime-version:content-disposition:in-reply-to;
+        bh=F4BEuWjdvB4IxC7cOosJvlKNe0JC2a1oUGDV4WHlCFQ=;
+        b=pyatyDZec39hSFP3Szv3rQ/He3DbhQ6BGmrFvkgY6tl4uTyHceDVNdjqcfYtEHKhF/
+         /VdZ6C5MFmjUKWLe/I7wOSi098kiIfyMmrPTqM4yqZzpxpDkWGmXGHwLh4FXEI/H+xFr
+         J8XeB9+/2IkqMxBSry1OM/9VBS33XlpCMAaYRn6QKaHxV2Xwozq5oAkq2Boiued/26qO
+         rhwv6wUXq0HvPok56Gqt01lZOFQ1/+G0IBk+vDKHlb4zWY8FwNEnyAExut8fpTEj0y0Y
+         UBVWpPJeqmB3fhJnK22R72i+aHbwNtgUiZlnfLgFkiE9xjKw+8aXeGh0qK1xctU8h0Em
+         FjeQ==
+X-Gm-Message-State: AOAM5326gzvFVqMo25zUnSR8iCGQa7Wdxepp/ZpKJ5bfip+4IBUQH2/V
+        bet0AFIWs3gOzRb0Fkhni+TVzsI7ZQ==
+X-Google-Smtp-Source: ABdhPJy4N6TB/t01GBgXThASK/Qol3Vsv8ZZq7Oi4wOHD9586D5rAtX6jlsFuwjwYrHWqr+qTaq/dw==
+X-Received: by 2002:a9d:6008:0:b0:5b0:2de8:31b1 with SMTP id h8-20020a9d6008000000b005b02de831b1mr12290119otj.381.1646402161185;
+        Fri, 04 Mar 2022 05:56:01 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id i11-20020a056830402b00b005af1411565bsm2288310ots.78.2022.03.04.05.56.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 05:55:43 -0800 (PST)
-Date:   Fri, 4 Mar 2022 05:55:40 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Divya Koppera <Divya.Koppera@microchip.com>,
-        netdev@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        madhuri.sripada@microchip.com, manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <20220304135540.GD16032@hoboy.vegasvil.org>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-3-Divya.Koppera@microchip.com>
- <YiILJ3tXs9Sba42B@lunn.ch>
+        Fri, 04 Mar 2022 05:56:00 -0800 (PST)
+Received: (nullmailer pid 3825460 invoked by uid 1000);
+        Fri, 04 Mar 2022 13:55:59 -0000
+Date:   Fri, 4 Mar 2022 07:55:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: kbuild: Print a warning if yamllint is not
+ found
+Message-ID: <YiIab+sR1vPFPGHQ@robh.at.kernel.org>
+References: <20220303221417.2486268-1-robh@kernel.org>
+ <CAMuHMdU+LCumdzAFtqnRECxsUzpYD_69nVgy9zE0-KXewE1FVQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <YiILJ3tXs9Sba42B@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAMuHMdU+LCumdzAFtqnRECxsUzpYD_69nVgy9zE0-KXewE1FVQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 01:50:47PM +0100, Andrew Lunn wrote:
-> Why does this need to be configured, rather than hard coded? Why would
-> the latency for a given speed change? I would of thought though you
-> would take the average length of a PTP packet and divide is by the
-> link speed.
+On Fri, Mar 04, 2022 at 09:59:12AM +0100, Geert Uytterhoeven wrote:
+> Hi Rob,
+> 
+> On Thu, Mar 3, 2022 at 11:15 PM Rob Herring <robh@kernel.org> wrote:
+> > Running yamllint is effectively required for binding schemas, so print a
+> > warning if not found rather than silently skipping running it.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> 
+> Thanks for your patch!
+> 
+> > --- a/Documentation/devicetree/bindings/Makefile
+> > +++ b/Documentation/devicetree/bindings/Makefile
+> > @@ -3,7 +3,8 @@ DT_DOC_CHECKER ?= dt-doc-validate
+> >  DT_EXTRACT_EX ?= dt-extract-example
+> >  DT_MK_SCHEMA ?= dt-mk-schema
+> >
+> > -DT_SCHEMA_LINT = $(shell which yamllint)
+> > +DT_SCHEMA_LINT := $(shell which yamllint || \
+> > +  echo "warning: yamllint not installed, skipping. To install, run 'pip install yamllint'" >&2)
+> 
+> Do we want to encourage people to use pip, instead of their distro's
+> package manager? At least Debian/Ubuntu provide yamllint packages.
+> 
+> So perhaps drop the install rule?
 
-Latency is unrelated to frame length.
+Okay, that's what I originally had. I'm sure someone will want to 
+document 'how to install yamllint' somewhere. Maybe I'll say:
 
-My understanding is that it is VERY tricky to measure PHY latency.
-Studies have shown that some PHYs vary by link speed, and some vary
-randomly, frame by frame.
+warning: python package 'yamllint' not installed, skipping
 
-So I can understand wanting to configure it.  However, DTS is probably
-the wrong place.  The linuxptp user space stack has configuration
-variables for this purpose:
+To give some hint how to install.
 
-       egressLatency
-              Specifies  the  difference  in  nanoseconds  between  the actual
-              transmission time at the reference plane and the reported trans‐
-              mit  time  stamp. This value will be added to egress time stamps
-              obtained from the hardware.  The default is 0.
+I'm not sure exactly, but there is a minimum version of yamllint so it 
+is possible the distro versions are too old. IIRC, unknown config 
+settings throw an error. I think at the time I did the config everything 
+had been around for at least a year or 2 and I don't think anyone has 
+reported issues.
 
-       ingressLatency
-              Specifies the difference in nanoseconds between the reported re‐
-              ceive  time  stamp  and  the  actual reception time at reference
-              plane. This value will be subtracted from  ingress  time  stamps
-              obtained from the hardware.  The default is 0.
-
-Thanks,
-Richard
+Rob
