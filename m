@@ -2,134 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 055504CCC6F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 04:58:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B28214CCC99
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 05:37:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237696AbiCDD6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 22:58:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
+        id S237921AbiCDEhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 23:37:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229965AbiCDD6z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 22:58:55 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AEF64C799;
-        Thu,  3 Mar 2022 19:58:07 -0800 (PST)
+        with ESMTP id S237909AbiCDEhg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 23:37:36 -0500
+Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B79E180D0F
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 20:36:49 -0800 (PST)
+Received: by mail-yb1-xb49.google.com with SMTP id w6-20020a25c706000000b006287a0164f2so6416241ybe.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 20:36:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646366287; x=1677902287;
-  h=subject:from:to:cc:references:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=ebBvZoakZRPaLqiip1r6GvYgYOcgLjCmwdtlw630iFQ=;
-  b=umLWZbXDF6PrerhbCaMJM2sKtjM5pwiacwGIx/EbGRJFI3EWdTEr6CXi
-   fN36kIkOK5b1nUIzn1ClUDG4y8STuxC660xNtgrw790TGmxUn7P9NyioD
-   v2k7FU3HGlPJUxwPxL+0sNTK8LjpuHU+rkPYojC6+RY2pse5wcPabxExm
-   Y=;
-Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 03 Mar 2022 19:58:07 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 19:58:06 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Thu, 3 Mar 2022 19:58:06 -0800
-Received: from [10.50.57.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Thu, 3 Mar 2022
- 19:58:02 -0800
-Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: fix the sleep clock frequency
-From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     <agross@kernel.org>, <robh+dt@kernel.org>, <varada@codeaurora.org>,
-        <mraghava@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <stable@vger.kernel.org>, <quic_srichara@quicinc.com>
-References: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
- <YhfjLNHCZeK4hYKa@builder.lan>
- <848671a3-dcf0-9968-f3fd-a3c5b9902ccf@quicinc.com>
-Message-ID: <f4dc04a8-e0b4-d14d-653f-bfaf8f77e79a@quicinc.com>
-Date:   Fri, 4 Mar 2022 09:27:59 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.14.0
-MIME-Version: 1.0
-In-Reply-To: <848671a3-dcf0-9968-f3fd-a3c5b9902ccf@quicinc.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        d=google.com; s=20210112;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=hVhp0B9PQwo3QVpUi+NI1HAAHxq+/43f5jq0h0ON3rc=;
+        b=FExUDM+QtGlrpOx9rGz2Fa+bDQpFmka6zCE/rTKzwCcAWIfnoZcXeXrKFxNhFsnE2C
+         E6l8TXSOLYl+5HB7NA1NFgtEFjaxCkwRJ42gOFxorun060VHOvwG4dO7+/BFj6P1XBBp
+         nnNqyUkTruTkTLp+7GFYOf9jPip2hwzfByNoweGhp1Yt6rqDAcdoNKtbx1MoMT0ytTV3
+         w53+7zlLjb5noE0qE49+yuSbpUgIu5MIBlWjYMHaKBHDBc9rcCbm9jI50ZVw73N5mmlk
+         Kmfnx62thJdUrj68w3MZObD0sXEixf/K7lcKb3+iemG1wJPFZsf1Mm5aoSazkRYutnH7
+         jn2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=hVhp0B9PQwo3QVpUi+NI1HAAHxq+/43f5jq0h0ON3rc=;
+        b=EPyACQvxC73n3ozakeS+CtW5Ckj5tKoykJFEfSBH9p9WkIay6Tw6f0MwmLqwbJ8jYM
+         MsTTJ1qAbNkfgaQgdYNY3XW4pTla4Pp/qj26O1KZkEa1G34BoVg1ouN5M63IFsamAS6a
+         v8nhr2xMNpbdNqnlhSr5uTV+GO51JpIObJ6EByeNSMawfxT7TqhToWcvnheeNHcNRy4a
+         TNKw49Ue78zhwcxMl7dW/xQom2X1TOq0M+x+Y9ZOskusvyCtcYakwd671e0s1FQbP2CW
+         kLnDDabPnlYfQlhT+akJZ0N7d7zwwJhB4Ua7aFhi0dK0FHLppdiU7uKEt/1+4eLEdOrL
+         jiAg==
+X-Gm-Message-State: AOAM533OFJaoyBs6bvZeoZ8TIiZeXxak/E9Kpp2hOD0cSw+SdTNY3Fhp
+        F7dBf4GQ2I1UGD28HuReB21jNfbojQs=
+X-Google-Smtp-Source: ABdhPJxVVZFZHqAwY1fPRX9HI0yIhKH2iiN9GsYqQS6rzxP15cyYglv/sh4CkSy/3rdozBTmFM9ySxJLa2U=
+X-Received: from colette.c.googlers.com ([fda3:e722:ac3:cc00:20:ed76:c0a8:306])
+ (user=ctshao job=sendgmr) by 2002:a25:3252:0:b0:628:a874:e41e with SMTP id
+ y79-20020a253252000000b00628a874e41emr9969830yby.484.1646368608392; Thu, 03
+ Mar 2022 20:36:48 -0800 (PST)
+Date:   Fri,  4 Mar 2022 04:14:51 +0000
+Message-Id: <20220304041449.939308-1-ctshao@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.35.1.616.g0bdcbb4464-goog
+Subject: [PATCH v3] config: Allow kernel installation packaging to override pkg-config
+From:   Chun-Tse Shao <ctshao@google.com>
+To:     rostedt@goodmis.org, ndesaulniers@google.com
+Cc:     ctshao@google.com, Masahiro Yamada <masahiroy@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
+        keyrings@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-10.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+[ Resending as a separate thread ]
 
-On 2/25/2022 5:48 PM, Kathiravan Thirumoorthy wrote:
->
-> On 2/25/2022 1:27 AM, Bjorn Andersson wrote:
->> On Fri 11 Feb 06:14 CST 2022, Kathiravan T wrote:
->>
->>> Sleep clock frequency should be 32768Hz. Lets fix it.
->>>
->>> Cc: stable@vger.kernel.org
->>> Fixes: 41dac73e243d ("arm64: dts: Add ipq8074 SoC and HK01 board 
->>> support")
->>> Link: 
->>> https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
->>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
->> Can you please confirm this? The documentation for GCC says that the
->> incoming sleep clock is 32000Hz.
->>
->> Regards,
->> Bjorn
->
-> Bjorn,
->
-> I checked the internal documents and it is derived from the PMIC as 
-> 32.7645KHz. I rounded off it to 32768Hz. Looks like GCC documentation 
-> is not up-to-date.
->
-> All these information is available in the link 
-> https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
->
-> Please let me know if you need any further information.
->
-> Thanks,
->
-> Kathiravan T.
+Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
+what pkg-config and parameters are used.
 
-Bjorn,
+Signed-off-by: Chun-Tse Shao <ctshao@google.com>
+---
+Changes from v2: https://lore.kernel.org/all/20220302193638.11034-1-ctshao@google.com/
+  - Fix more open coded instance of pkg-config in scripts and certs
+  - Tested with make allmodconfig
 
-Gentle Ping.
+Changes from v1: https://lore.kernel.org/all/20220301230629.1892828-1-ctshao@google.com/
+  - Make the commit message more clearer.
+---
 
-Thanks,
+ Makefile                     |  3 ++-
+ certs/Makefile               |  4 ++--
+ scripts/Makefile             |  4 ++--
+ scripts/dtc/Makefile         |  6 +++---
+ scripts/kconfig/gconf-cfg.sh | 10 +++++-----
+ scripts/kconfig/mconf-cfg.sh | 14 +++++++-------
+ scripts/kconfig/nconf-cfg.sh | 14 +++++++-------
+ scripts/kconfig/qconf-cfg.sh | 14 +++++++-------
+ tools/objtool/Makefile       |  4 ++--
+ 9 files changed, 37 insertions(+), 36 deletions(-)
 
-Kathiravan T.
+diff --git a/Makefile b/Makefile
+index daeb5c88b50b..f6c5bef7e141 100644
+--- a/Makefile
++++ b/Makefile
+@@ -430,6 +430,7 @@ else
+ HOSTCC	= gcc
+ HOSTCXX	= g++
+ endif
++HOSTPKG_CONFIG	= pkg-config
 
->
->>> ---
->>>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
->>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi 
->>> b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>> index 26ba7ce9222c..b6287355ad08 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->>> @@ -13,7 +13,7 @@
->>>       clocks {
->>>           sleep_clk: sleep_clk {
->>>               compatible = "fixed-clock";
->>> -            clock-frequency = <32000>;
->>> +            clock-frequency = <32768>;
->>>               #clock-cells = <0>;
->>>           };
->>>   --
->>> 2.7.4
->>>
+ export KBUILD_USERCFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes \
+ 			      -O2 -fomit-frame-pointer -std=gnu89
+@@ -525,7 +526,7 @@ KBUILD_LDFLAGS_MODULE :=
+ KBUILD_LDFLAGS :=
+ CLANG_FLAGS :=
+
+-export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC
++export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
+ export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
+ export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
+ export KGZIP KBZIP2 KLZOP LZMA LZ4 XZ ZSTD
+diff --git a/certs/Makefile b/certs/Makefile
+index 3ea7fe60823f..fa540d14ef2d 100644
+--- a/certs/Makefile
++++ b/certs/Makefile
+@@ -89,5 +89,5 @@ targets += x509_revocation_list
+
+ hostprogs := extract-cert
+
+-HOSTCFLAGS_extract-cert.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
+-HOSTLDLIBS_extract-cert = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
++HOSTCFLAGS_extract-cert.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
++HOSTLDLIBS_extract-cert = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
+diff --git a/scripts/Makefile b/scripts/Makefile
+index ce5aa9030b74..f084f08ed176 100644
+--- a/scripts/Makefile
++++ b/scripts/Makefile
+@@ -14,8 +14,8 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)	+= insert-sys-cert
+ HOSTCFLAGS_sorttable.o = -I$(srctree)/tools/include
+ HOSTLDLIBS_sorttable = -lpthread
+ HOSTCFLAGS_asn1_compiler.o = -I$(srctree)/include
+-HOSTCFLAGS_sign-file.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
+-HOSTLDLIBS_sign-file = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
++HOSTCFLAGS_sign-file.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
++HOSTLDLIBS_sign-file = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
+
+ ifdef CONFIG_UNWINDER_ORC
+ ifeq ($(ARCH),x86_64)
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index 95aaf7431bff..743fc08827ea 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -18,7 +18,7 @@ fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
+ # Source files need to get at the userspace version of libfdt_env.h to compile
+ HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
+
+-ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
++ifeq ($(shell $(HOSTPKG_CONFIG) --exists yaml-0.1 2>/dev/null && echo yes),)
+ ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
+ $(error dtc needs libyaml for DT schema validation support. \
+ 	Install the necessary libyaml development package.)
+@@ -27,9 +27,9 @@ HOST_EXTRACFLAGS += -DNO_YAML
+ else
+ dtc-objs	+= yamltree.o
+ # To include <yaml.h> installed in a non-default path
+-HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
++HOSTCFLAGS_yamltree.o := $(shell $(HOSTPKG_CONFIG) --cflags yaml-0.1)
+ # To link libyaml installed in a non-default path
+-HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
++HOSTLDLIBS_dtc	:= $(shell $(HOSTPKG_CONFIG) yaml-0.1 --libs)
+ endif
+
+ # Generated files need one more search path to include headers in source tree
+diff --git a/scripts/kconfig/gconf-cfg.sh b/scripts/kconfig/gconf-cfg.sh
+index 480ecd8b9f41..267ef6012203 100755
+--- a/scripts/kconfig/gconf-cfg.sh
++++ b/scripts/kconfig/gconf-cfg.sh
+@@ -3,14 +3,14 @@
+
+ PKG="gtk+-2.0 gmodule-2.0 libglade-2.0"
+
+-if [ -z "$(command -v pkg-config)" ]; then
++if [ -z "$(command -v $(HOSTPKG_CONFIG))" ]; then
+ 	echo >&2 "*"
+ 	echo >&2 "* 'make gconfig' requires 'pkg-config'. Please install it."
+ 	echo >&2 "*"
+ 	exit 1
+ fi
+
+-if ! pkg-config --exists $PKG; then
++if ! $(HOSTPKG_CONFIG) --exists $PKG; then
+ 	echo >&2 "*"
+ 	echo >&2 "* Unable to find the GTK+ installation. Please make sure that"
+ 	echo >&2 "* the GTK+ 2.0 development package is correctly installed."
+@@ -19,12 +19,12 @@ if ! pkg-config --exists $PKG; then
+ 	exit 1
+ fi
+
+-if ! pkg-config --atleast-version=2.0.0 gtk+-2.0; then
++if ! $(HOSTPKG_CONFIG) --atleast-version=2.0.0 gtk+-2.0; then
+ 	echo >&2 "*"
+ 	echo >&2 "* GTK+ is present but version >= 2.0.0 is required."
+ 	echo >&2 "*"
+ 	exit 1
+ fi
+
+-echo cflags=\"$(pkg-config --cflags $PKG)\"
+-echo libs=\"$(pkg-config --libs $PKG)\"
++echo cflags=\"$($(HOSTPKG_CONFIG) --cflags $PKG)\"
++echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG)\"
+diff --git a/scripts/kconfig/mconf-cfg.sh b/scripts/kconfig/mconf-cfg.sh
+index b520e407a8eb..21e40e9a7cd6 100755
+--- a/scripts/kconfig/mconf-cfg.sh
++++ b/scripts/kconfig/mconf-cfg.sh
+@@ -4,16 +4,16 @@
+ PKG="ncursesw"
+ PKG2="ncurses"
+
+-if [ -n "$(command -v pkg-config)" ]; then
+-	if pkg-config --exists $PKG; then
+-		echo cflags=\"$(pkg-config --cflags $PKG)\"
+-		echo libs=\"$(pkg-config --libs $PKG)\"
++if [ -n "$(command -v $(HOSTPKG_CONFIG))" ]; then
++	if $(HOSTPKG_CONFIG) --exists $PKG; then
++		echo cflags=\"$($(HOSTPKG_CONFIG) --cflags $PKG)\"
++		echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG)\"
+ 		exit 0
+ 	fi
+
+-	if pkg-config --exists $PKG2; then
+-		echo cflags=\"$(pkg-config --cflags $PKG2)\"
+-		echo libs=\"$(pkg-config --libs $PKG2)\"
++	if $(HOSTPKG_CONFIG) --exists $PKG2; then
++		echo cflags=\"$($(HOSTPKG_CONFIG) --cflags $PKG2)\"
++		echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG2)\"
+ 		exit 0
+ 	fi
+ fi
+diff --git a/scripts/kconfig/nconf-cfg.sh b/scripts/kconfig/nconf-cfg.sh
+index c212255070c0..eec46e627e5c 100755
+--- a/scripts/kconfig/nconf-cfg.sh
++++ b/scripts/kconfig/nconf-cfg.sh
+@@ -4,16 +4,16 @@
+ PKG="ncursesw menuw panelw"
+ PKG2="ncurses menu panel"
+
+-if [ -n "$(command -v pkg-config)" ]; then
+-	if pkg-config --exists $PKG; then
+-		echo cflags=\"$(pkg-config --cflags $PKG)\"
+-		echo libs=\"$(pkg-config --libs $PKG)\"
++if [ -n "$(command -v $(HOSTPKG_CONFIG))" ]; then
++	if $(HOSTPKG_CONFIG) --exists $PKG; then
++		echo cflags=\"$($(HOSTPKG_CONFIG) --cflags $PKG)\"
++		echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG)\"
+ 		exit 0
+ 	fi
+
+-	if pkg-config --exists $PKG2; then
+-		echo cflags=\"$(pkg-config --cflags $PKG2)\"
+-		echo libs=\"$(pkg-config --libs $PKG2)\"
++	if $(HOSTPKG_CONFIG) --exists $PKG2; then
++		echo cflags=\"$($(HOSTPKG_CONFIG) --cflags $PKG2)\"
++		echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG2)\"
+ 		exit 0
+ 	fi
+ fi
+diff --git a/scripts/kconfig/qconf-cfg.sh b/scripts/kconfig/qconf-cfg.sh
+index fa564cd795b7..839b45b5746e 100755
+--- a/scripts/kconfig/qconf-cfg.sh
++++ b/scripts/kconfig/qconf-cfg.sh
+@@ -3,22 +3,22 @@
+
+ PKG="Qt5Core Qt5Gui Qt5Widgets"
+
+-if [ -z "$(command -v pkg-config)" ]; then
++if [ -z "$(command -v $(HOSTPKG_CONFIG))" ]; then
+ 	echo >&2 "*"
+-	echo >&2 "* 'make xconfig' requires 'pkg-config'. Please install it."
++	echo >&2 "* 'make xconfig' requires '$(HOSTPKG_CONFIG)'. Please install it."
+ 	echo >&2 "*"
+ 	exit 1
+ fi
+
+-if pkg-config --exists $PKG; then
+-	echo cflags=\"-std=c++11 -fPIC $(pkg-config --cflags $PKG)\"
+-	echo libs=\"$(pkg-config --libs $PKG)\"
+-	echo moc=\"$(pkg-config --variable=host_bins Qt5Core)/moc\"
++if $(HOSTPKG_CONFIG) --exists $PKG; then
++	echo cflags=\"-std=c++11 -fPIC $($(HOSTPKG_CONFIG) --cflags $PKG)\"
++	echo libs=\"$($(HOSTPKG_CONFIG) --libs $PKG)\"
++	echo moc=\"$($(HOSTPKG_CONFIG) --variable=host_bins Qt5Core)/moc\"
+ 	exit 0
+ fi
+
+ echo >&2 "*"
+-echo >&2 "* Could not find Qt5 via pkg-config."
++echo >&2 "* Could not find Qt5 via $(HOSTPKG_CONFIG)."
+ echo >&2 "* Please install Qt5 and make sure it's in PKG_CONFIG_PATH"
+ echo >&2 "*"
+ exit 1
+diff --git a/tools/objtool/Makefile b/tools/objtool/Makefile
+index 92ce4fce7bc7..549acc5859e9 100644
+--- a/tools/objtool/Makefile
++++ b/tools/objtool/Makefile
+@@ -19,8 +19,8 @@ LIBSUBCMD		= $(LIBSUBCMD_OUTPUT)libsubcmd.a
+ OBJTOOL    := $(OUTPUT)objtool
+ OBJTOOL_IN := $(OBJTOOL)-in.o
+
+-LIBELF_FLAGS := $(shell pkg-config libelf --cflags 2>/dev/null)
+-LIBELF_LIBS  := $(shell pkg-config libelf --libs 2>/dev/null || echo -lelf)
++LIBELF_FLAGS := $(shell $(HOSTPKG_CONFIG) libelf --cflags 2>/dev/null)
++LIBELF_LIBS  := $(shell $(HOSTPKG_CONFIG) libelf --libs 2>/dev/null || echo -lelf)
+
+ all: $(OBJTOOL)
+
+--
+2.35.1.616.g0bdcbb4464-goog
+
