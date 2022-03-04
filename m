@@ -2,96 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3634CDFD0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 22:35:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0687E4CDFE0
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 22:47:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229814AbiCDVgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 16:36:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50632 "EHLO
+        id S229805AbiCDVsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 16:48:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229671AbiCDVgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 16:36:41 -0500
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C6A5F4FD;
-        Fri,  4 Mar 2022 13:35:52 -0800 (PST)
-Received: by mail-pj1-x1030.google.com with SMTP id 15-20020a17090a098f00b001bef0376d5cso9078677pjo.5;
-        Fri, 04 Mar 2022 13:35:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=XsC7mU8ah15EW22L8EEXM/zZVwqEyUHDJiXvi6kLCqY=;
-        b=qFn074RcGcxg2ckoRJn+fz2sN30sBmknx0Z6Vwi41mAMLl7o1Yrnmxe5oNXGm5wpgF
-         AeK0uV1JQDl3pC8geGE6uEHLMtqaAolI4ERQT/kHsu5VVv+ChRoOt8uwqcV2CTO5HQ5c
-         mV2bYAAh+9RPakw/xacPbSSI06uZfLVulmdUed7nOJcWndKJv6tVzh1jm7+1W2Pfcc7z
-         6UvFIInTK/1GTOYzoVPaXu8BKXLt808GA1JfMBgbpveluw1eTZyqin4TRVQ3hmjkC9Ym
-         97Rew6WtPlPTJ2DDtqJh6ij/1uDYG8Zt/e9rTGTu/ee7hTDqKaXjDKGzNuqPPBvnnMH8
-         Rssw==
+        with ESMTP id S229468AbiCDVsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 16:48:08 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F0223BF08;
+        Fri,  4 Mar 2022 13:47:19 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id x193so9236449oix.0;
+        Fri, 04 Mar 2022 13:47:19 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XsC7mU8ah15EW22L8EEXM/zZVwqEyUHDJiXvi6kLCqY=;
-        b=ksCPJxz89L+ct4WSMh6UT9wSlapxK0RaMMItHiBA3fh/UBJ3cVARzeyd/j34O6xrTW
-         NdDDmP3EntQXua+GLETZoHVKiDC6S7u8ParboMLrKe0JHkoRlK8nrdu6CtrfGLLjeafT
-         EuSeNvuU5iey0Tlfa2SdMVR2+4EobHTHu7ph0LC6kFhzi6ctbUBu/tAeQ34nh3jisagm
-         WZmTs9QWdghtb5xkj6X2iFIv0WXccPwkAmPa1fpXGAFck+mq+FmOj8Lz65Le1+tGhYJj
-         0jDHJSXw48p1EBKbaHs8fDCXuVc1ckA2kCCsvVmvLzcMhLpfchhxZR7/mhgpmGfKnmfp
-         S9mw==
-X-Gm-Message-State: AOAM530nWTIXWN28IsIcxr/5NY4CQBeMgoaqZXW7ofx2WpVrLpH/Rjt7
-        Ydb6ZxQRKe9ZBAm4gRzCcHw=
-X-Google-Smtp-Source: ABdhPJyMrhGhQb/8noLZzOQ9HqiMRHUEzs0JipFyO3zkq3MO2iQ1u0rrVHOLRXdHbSSZUbxZ/26GHQ==
-X-Received: by 2002:a17:902:7285:b0:14d:7f5b:94d0 with SMTP id d5-20020a170902728500b0014d7f5b94d0mr314076pll.25.1646429752348;
-        Fri, 04 Mar 2022 13:35:52 -0800 (PST)
-Received: from [192.168.1.3] (ip72-194-116-95.oc.oc.cox.net. [72.194.116.95])
-        by smtp.gmail.com with ESMTPSA id m11-20020a056a00080b00b004f0fbf3b524sm6771062pfk.206.2022.03.04.13.35.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Mar 2022 13:35:51 -0800 (PST)
-Message-ID: <7a4c35ed-9a45-268c-c5ea-feba81855235@gmail.com>
-Date:   Fri, 4 Mar 2022 13:35:50 -0800
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=v8uPxGmN/Yw0f1shToPT9W3nN9S4UgeJqSz8uMeBf4I=;
+        b=psL7IHCn2OUdBRMZa4p6frq4OmL/tZ6iCjhoatUShHA1nMUMhjVITSrhL8xiaXRH2d
+         O9SoJRN2Jo8dwtS0SBQtSK/UpDXfh249RyPxD158a1zp6xVR5LdWuZ1xH00mh39nrzOR
+         EnX3qFsg5aM+vKh1Wi3Qsx6stKgXH4+nBocasZJ3VKtj724lHBk2CGg9QpTMmQMRy9qJ
+         vs6Th18X3/dDiYFsSaprVlCTinGKdWeTSBiGHb4urLYFxWS1TZlh4dzOHUbwx9AdeTkX
+         HZvmEOQJcpWEKXLwElygqRq01LCnvBZzZsXSR2T3tuop7XcvriyPQaQG0NORPhKlgclk
+         chQA==
+X-Gm-Message-State: AOAM531H0nS/ai2nBPvA5wMdW1hYSN4bc0rj2ywxvUnDX4BvZjp2r1RS
+        lSToB4vhiNvUU85RMNB1tw==
+X-Google-Smtp-Source: ABdhPJxpB08C6ssiZ00fO8S7d2fJJ296KZSsPzCPeeZQCV9EpMtuahVBNRj7tp23f2267B6/2Gya/A==
+X-Received: by 2002:a05:6808:10d2:b0:2d9:a01a:4b9d with SMTP id s18-20020a05680810d200b002d9a01a4b9dmr357309ois.196.1646430439165;
+        Fri, 04 Mar 2022 13:47:19 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id g12-20020a056870340c00b000d17b798ba9sm2924628oah.34.2022.03.04.13.47.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 13:47:17 -0800 (PST)
+Received: (nullmailer pid 472361 invoked by uid 1000);
+        Fri, 04 Mar 2022 21:47:16 -0000
+Date:   Fri, 4 Mar 2022 15:47:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Marko <robert.marko@sartura.hr>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>, brgl@bgdev.pl,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        skhan@linuxfoundation.org, Luka Perkov <luka.perkov@sartura.hr>
+Subject: Re: [PATCH v10 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers
+ bindings
+Message-ID: <YiKI5LDWaxvlc9m5@robh.at.kernel.org>
+References: <20220131133049.77780-1-robert.marko@sartura.hr>
+ <20220131133049.77780-6-robert.marko@sartura.hr>
+ <Yh8vJNc4D6rA68au@google.com>
+ <Yh/kFzNuvbwA2qeE@robh.at.kernel.org>
+ <CA+HBbNHComN9kgFp1Xr4mdedwYjDMbSUkw+6_KAe8+O4hrtvKQ@mail.gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH] arm64: dts: broadcom: Fix boolean properties with values
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220304202551.317448-1-robh@kernel.org>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <20220304202551.317448-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+HBbNHComN9kgFp1Xr4mdedwYjDMbSUkw+6_KAe8+O4hrtvKQ@mail.gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/4/2022 12:25 PM, Rob Herring wrote:
-> Boolean properties in DT are present or not present and don't take a value.
-> A property such as 'foo = <0>;' evaluated to true. IOW, the value doesn't
-> matter.
+On Thu, Mar 03, 2022 at 01:41:13PM +0100, Robert Marko wrote:
+> On Wed, Mar 2, 2022 at 10:39 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Mar 02, 2022 at 08:47:32AM +0000, Lee Jones wrote:
+> > > On Mon, 31 Jan 2022, Robert Marko wrote:
+> > >
+> > > > Add binding documents for the Delta TN48M CPLD drivers.
+> > > >
+> > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+> > >
+> > > This is missing a DT review.
+> >
+> > How about this one[1]?
+> >
+> > Rob
+> >
+> > [1] https://lore.kernel.org/all/20210719225906.GA2769608@robh.at.kernel.org/
 > 
-> It may have been intended that 0 values are false, but there is no change
-> in behavior with this patch.
+> Hi Rob,
+> Thanks for reaching out.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> As you can see the bindings have evolved since v6,
+> GPIO driver now only uses 2 distinct compatibles.
 
-Thanks, I already have queued up an identical change just a few days ago:
+Fundamentally, it hasn't really changed.
 
-https://github.com/Broadcom/stblinux/commit/c953c764e505428f59ffe6afb1c73b89b5b1ac35
+There's 2 main issues. First, I don't see the need for any child nodes. 
+This would be sufficient:
 
-This will be submitted shortly for 5.18.
--- 
-Florian
+cpld@41 {
+    compatible = "delta,tn48m-cpld";
+    reg = <0x41>;
+    #reset-cells = <1>;
+    #gpio-cells = <2>;
+    gpio-controller;
+};
+
+You only need child nodes if the sub-blocks have their own resources or 
+are widely reused in different configurations.
+
+The 2nd issue is whether GPIOs are even GPIOs at all. I don't recall 
+that Linus ever agreed.
+
+Both issues kind of boil down to is there even more that 1 variation of 
+this h/w where you have differing connections? AFAICT, Delta tn48m is a 
+pretty specific device and I would guess something implemented in a CPLD 
+is likely to change on every board design. At least that's my experience 
+with 'board level logic'.
+
+Rob
