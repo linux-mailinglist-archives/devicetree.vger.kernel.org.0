@@ -2,85 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 540034CD685
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC414CD69F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:43:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236971AbiCDOib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:38:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33084 "EHLO
+        id S236619AbiCDOnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 09:43:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233343AbiCDOib (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:38:31 -0500
-X-Greylist: delayed 4569 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 04 Mar 2022 06:37:40 PST
-Received: from mail.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C87531FCE2
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 06:37:39 -0800 (PST)
-Received: from localhost (cpc147930-brnt3-2-0-cust60.4-2.cable.virginm.net [86.15.196.61])
-        by mail.monkeyblade.net (Postfix) with ESMTPSA id 04EFB8419032;
-        Fri,  4 Mar 2022 06:37:35 -0800 (PST)
-Date:   Fri, 04 Mar 2022 14:37:30 +0000 (GMT)
-Message-Id: <20220304.143730.2194933898132251429.davem@davemloft.net>
-To:     andrew@lunn.ch
-Cc:     Divya.Koppera@microchip.com, netdev@vger.kernel.org,
-        hkallweit1@gmail.com, linux@armlinux.org.uk, kuba@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        richardcochran@gmail.com, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, madhuri.sripada@microchip.com,
-        manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <YiIYhDzOiRnLbzQy@lunn.ch>
-References: <YiIO7lAMCkHhd11L@lunn.ch>
-        <20220304.132121.856864783082151547.davem@davemloft.net>
-        <YiIYhDzOiRnLbzQy@lunn.ch>
-X-Mailer: Mew version 6.8 on Emacs 27.2
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
+        with ESMTP id S236723AbiCDOnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:43:47 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A998118FADA
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 06:42:58 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 801AC3F5FB
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 14:42:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646404971;
+        bh=QUzZG1KHFRSY8yqpaadJhb+c5sbI5/bUJrksOfy+R30=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=IwDM616Oxpm00HYIaDH5WtBhLkcbLwkQu5GmSZTXil0LQp0mJP0pHTraYG/FRrHYD
+         7jqiMeAjDlmQ8RiAAoAwcpBBIiyx5S4vb4Dwou8MCDsCf1xZNfJwyG+X1lBFDi+yYn
+         jmKBDGFvfiZGBsYtj+fQqY+iNK9nnq59RZ8byqpuLbOhWPIocvqoMNj7Xn9/3Si2Ue
+         nA5RSstsXQfQbTaQJGBgeH18LetrgIIz6OnNFxgXTTWKEBXYe0KRGyvCEt+zSUMMxb
+         qlsqMxCuiwl/0y3SQWimUV+jMVX7OlSDop4O0n5RJm5QdF8KLpa5fG4r1mKXOyc2eY
+         R03PEZqyJBjHQ==
+Received: by mail-ej1-f71.google.com with SMTP id sa22-20020a1709076d1600b006ce78cacb85so4518173ejc.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 06:42:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=QUzZG1KHFRSY8yqpaadJhb+c5sbI5/bUJrksOfy+R30=;
+        b=TAqPld+12QejEa8py41KaXOOB1p235Q+3J9Bm08jHK9k5MabxE/JSgD3Xh70nQSA2a
+         8A+5YoVfxWO5qzl5ICahlCZmgG7ecrdWXeE7R85VJaG2hUlS5AonnPY9UvgZfCj5AOtt
+         XTpyCp6hjn9Ss3RsbN84Eb7HqCHNMieyQeJOoCmBgJsPym+t4W0UhvRC6QXTQVaMvtmx
+         YZOR48TvxAxLnOZrj5S776XwOxzEIKuUf2wYGUtJgKWGkooWFRDHUyq6LhnXZOnaJFkO
+         7N9XKm5LhReLsMoAJTljru4Guuz+8ZtSiilnAY1H6TE8vIcktewJJxiDF4sQRuLKXlNg
+         gsUw==
+X-Gm-Message-State: AOAM530f7V2Xzd96DSwo5uS6cQLL57aGp1CarSacmoDwCMxJ3grU7YpE
+        Fypj6cg8p2aKrraf8doG6GQFtxInZeyeDJPwgqw0BSBLniODGEDHFD6oROtAulCxr5gpk7PWp8S
+        K+38O4WnqLnpcxem3iove8hWLdNBKbFausUOfoiU=
+X-Received: by 2002:a17:906:360a:b0:6a6:a997:8297 with SMTP id q10-20020a170906360a00b006a6a9978297mr30602327ejb.180.1646404970955;
+        Fri, 04 Mar 2022 06:42:50 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxrx2g3R6Ud68BvV4gWkPPo1k1U/MwisVmn7ju2xnZT/szKCRH0WkiBUxKJZAcmjTHeut8HyQ==
+X-Received: by 2002:a17:906:360a:b0:6a6:a997:8297 with SMTP id q10-20020a170906360a00b006a6a9978297mr30602297ejb.180.1646404970689;
+        Fri, 04 Mar 2022 06:42:50 -0800 (PST)
+Received: from [192.168.0.139] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id c6-20020a05640227c600b00415e926bbe1sm1806309ede.89.2022.03.04.06.42.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Mar 2022 06:42:49 -0800 (PST)
+Message-ID: <cc55b477-9f80-fc77-f07b-de0de4812188@canonical.com>
+Date:   Fri, 4 Mar 2022 15:42:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 3/5] dt-bindings: rtc: convert at91sam9 bindings to
+ json-schema
+Content-Language: en-US
+To:     Sergiu Moga <sergiu.moga@microchip.com>, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220304142746.121947-1-sergiu.moga@microchip.com>
+ <20220304142746.121947-4-sergiu.moga@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220304142746.121947-4-sergiu.moga@microchip.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.6.2 (mail.monkeyblade.net [0.0.0.0]); Fri, 04 Mar 2022 06:37:38 -0800 (PST)
-X-Spam-Status: No, score=0.2 required=5.0 tests=BAYES_20,KHOP_HELO_FCRDNS,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andrew Lunn <andrew@lunn.ch>
-Date: Fri, 4 Mar 2022 14:47:48 +0100
-
-> On Fri, Mar 04, 2022 at 01:21:21PM +0000, David Miller wrote:
->> From: Andrew Lunn <andrew@lunn.ch>
->> Date: Fri, 4 Mar 2022 14:06:54 +0100
->> 
->> > On Fri, Mar 04, 2022 at 12:50:11PM +0000, patchwork-bot+netdevbpf@kernel.org wrote:
->> >> Hello:
->> >> 
->> >> This series was applied to netdev/net-next.git (master)
->> >> by David S. Miller <davem@davemloft.net>:
->> > 
->> > Hi David
->> > 
->> > Why was this merged?
->> 
->> Sorry, it seemed satraightforward to me, and I try to get the backlog under 40 patches before
->> I hand over to Jakub for the day.
->> 
->> If you want to review, reply to the thread immediately saying so, don't wait until you haver time for the
->> full review.
+On 04/03/2022 15:27, Sergiu Moga wrote:
+> Convert RTC binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
 > 
-> This patchset was on the list for less than 5 hours before it got
-> merged. I tend to sleep for 8 to 10 hours. Making it impossible for me
-> to react any faster. At an absolute minimum, you need to wait 12
-> hours, if you expect anybody to have a fair chance of being able to
-> say, hold on, i want to comment on this patchset.
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../bindings/rtc/atmel,at91sam9-rtc.txt       | 25 --------
+>  .../bindings/rtc/atmel,at91sam9-rtc.yaml      | 63 +++++++++++++++++++
+>  2 files changed, 63 insertions(+), 25 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
 > 
-> I also don't like the metric of 40 patches backlog. Is the size of
-> backlog more important than the quality of the patches? Don't we care
-> about the quality of the code any more? Don't we care about getting
-> code reviewed any more?
+> diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+> deleted file mode 100644
+> index 3f0e2a5950eb..000000000000
+> --- a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+> +++ /dev/null
+> @@ -1,25 +0,0 @@
+> -Atmel AT91SAM9260 Real Time Timer
+> -
+> -Required properties:
+> -- compatible: should be one of the following:
+> -	- "atmel,at91sam9260-rtt"
+> -	- "microchip,sam9x60-rtt", "atmel,at91sam9260-rtt"
+> -- reg: should encode the memory region of the RTT controller
+> -- interrupts: rtt alarm/event interrupt
+> -- clocks: should contain the 32 KHz slow clk that will drive the RTT block.
+> -- atmel,rtt-rtc-time-reg: should encode the GPBR register used to store
+> -	the time base when the RTT is used as an RTC.
+> -	The first cell should point to the GPBR node and the second one
+> -	encode the offset within the GPBR block (or in other words, the
+> -	GPBR register used to store the time base).
+> -
+> -
+> -Example:
+> -
+> -rtt@fffffd20 {
+> -	compatible = "atmel,at91sam9260-rtt";
+> -	reg = <0xfffffd20 0x10>;
+> -	interrupts = <1 4 7>;
+> -	clocks = <&clk32k>;
+> -	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+> new file mode 100644
+> index 000000000000..af25cc275356
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/atmel,at91sam9-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel AT91 RTT Device Tree Bindings
+> +
+> +allOf:
+> +  - $ref: "rtc.yaml#"
+> +
+> +maintainers:
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: atmel,at91sam9260-rtt
+> +      - items:
+> +          - const: microchip,sam9x60-rtt
+> +          - const: atmel,at91sam9260-rtt
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  atmel,rtt-rtc-time-reg:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: Phandle to the GPBR node.
+> +          - description: Offset within the GPBR block.
+> +    description:
+> +      Should encode the GPBR register used to store the time base when the
+> +      RTT is used as an RTC. The first cell should point to the GPBR node
+> +      and the second one encodes the offset within the GPBR block (or in
+> +      other words, the GPBR register used to store the time base).
 
-Ok, message received, I'll apply things less aggressively.
+Don't duplicate in description what is already before, so entire part
+from "The first cell" is not needed. I mentioned it last time - Instead
+of describing cells here, use items. You have items, good, but you still
+have description.
 
-Thank you.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - atmel,rtt-rtc-time-reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    rtc@fffffd20 {
+> +        compatible = "atmel,at91sam9260-rtt";
+> +        reg = <0xfffffd20 0x10>;
+> +        interrupts = <1 4 7>;
+
+Could you start acknowledging comments instead of ignoring them?
+
+> +        clocks = <&clk32k>;
+> +        atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
+> +    };
+
+
+Best regards,
+Krzysztof
