@@ -2,80 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 44BD74CD56C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:47:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 403AF4CD56E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:47:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232707AbiCDNsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 08:48:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53074 "EHLO
+        id S233118AbiCDNsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 08:48:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbiCDNsV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:48:21 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B4DDE26F7
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 05:47:32 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 79F4E1396;
-        Fri,  4 Mar 2022 05:47:32 -0800 (PST)
-Received: from [10.57.39.47] (unknown [10.57.39.47])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E1D63F70D;
-        Fri,  4 Mar 2022 05:47:30 -0800 (PST)
-Message-ID: <926e583e-14d1-67ee-f3dd-4f2cb57ea638@arm.com>
-Date:   Fri, 4 Mar 2022 13:47:25 +0000
+        with ESMTP id S230415AbiCDNsl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:48:41 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE035B890;
+        Fri,  4 Mar 2022 05:47:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=yUfWjX3h8CMnaiUpvCJtN8WVKzX4/Iy7kNdpr2Dj4L0=; b=hCJ6g8iobtGAt7/ncSptnHELQS
+        zHMPqNTfCpH6vXUOB0yHhwmczFsgRSrExG+znU0KFY137mkYrMNxLC1ACUutekXxG24EI4rcbBTO0
+        m7Vm7LsgkJXyCzITwB9ezWMTQ0eeykMTSfbowaROAqO31Xjz8V1YQwyR4F4NiHCQ3KJk=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nQ8Hc-009EkS-PE; Fri, 04 Mar 2022 14:47:48 +0100
+Date:   Fri, 4 Mar 2022 14:47:48 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     David Miller <davem@davemloft.net>
+Cc:     Divya.Koppera@microchip.com, netdev@vger.kernel.org,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, kuba@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        richardcochran@gmail.com, linux-kernel@vger.kernel.org,
+        UNGLinuxDriver@microchip.com, madhuri.sripada@microchip.com,
+        manohar.puri@microchip.com
+Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
+Message-ID: <YiIYhDzOiRnLbzQy@lunn.ch>
+References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
+ <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
+ <YiIO7lAMCkHhd11L@lunn.ch>
+ <20220304.132121.856864783082151547.davem@davemloft.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH 3/4 v5] dts: rockchip: Update regulator name for PX3
-Content-Language: en-GB
-To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
-Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
-        robh+dt@kernel.org, heiko@sntech.de, strit@manjaro.org,
-        mbrugger@suse.com, arnaud.ferraris@collabora.com,
-        knaerzche@gmail.com, zyw@rock-chips.com, zhangqing@rock-chips.com,
-        Chris Morgan <macromorgan@hotmail.com>
-References: <20220303203958.4904-1-macroalpha82@gmail.com>
- <20220303203958.4904-4-macroalpha82@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220303203958.4904-4-macroalpha82@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220304.132121.856864783082151547.davem@davemloft.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-03 20:39, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Fri, Mar 04, 2022 at 01:21:21PM +0000, David Miller wrote:
+> From: Andrew Lunn <andrew@lunn.ch>
+> Date: Fri, 4 Mar 2022 14:06:54 +0100
 > 
-> The regulator name of SWITCH_REG1 does not match any other board
-> with a rk818 PMIC, nor does it correspond to a regulator in the
-> rk808-regulator driver. Changing name to SWITCH_REG which is
-> consistent with other boards and is in the driver.
-
-The datasheet I found also names the channel "SWITCH" rather than 
-"SWITCH1", so this seems correct to me.
-
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
-
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->   arch/arm/boot/dts/rk3188-px3-evb.dts | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> > On Fri, Mar 04, 2022 at 12:50:11PM +0000, patchwork-bot+netdevbpf@kernel.org wrote:
+> >> Hello:
+> >> 
+> >> This series was applied to netdev/net-next.git (master)
+> >> by David S. Miller <davem@davemloft.net>:
+> > 
+> > Hi David
+> > 
+> > Why was this merged?
 > 
-> diff --git a/arch/arm/boot/dts/rk3188-px3-evb.dts b/arch/arm/boot/dts/rk3188-px3-evb.dts
-> index 39c60426c9c9..fc478ac4e781 100644
-> --- a/arch/arm/boot/dts/rk3188-px3-evb.dts
-> +++ b/arch/arm/boot/dts/rk3188-px3-evb.dts
-> @@ -212,7 +212,7 @@ wl_18: LDO_REG8 {
->   				regulator-name = "wl_18";
->   			};
->   
-> -			lcd_33: SWITCH_REG1 {
-> +			lcd_33: SWITCH_REG {
->   				regulator-name = "lcd_33";
->   			};
->   		};
+> Sorry, it seemed satraightforward to me, and I try to get the backlog under 40 patches before
+> I hand over to Jakub for the day.
+> 
+> If you want to review, reply to the thread immediately saying so, don't wait until you haver time for the
+> full review.
+
+This patchset was on the list for less than 5 hours before it got
+merged. I tend to sleep for 8 to 10 hours. Making it impossible for me
+to react any faster. At an absolute minimum, you need to wait 12
+hours, if you expect anybody to have a fair chance of being able to
+say, hold on, i want to comment on this patchset.
+
+I also don't like the metric of 40 patches backlog. Is the size of
+backlog more important than the quality of the patches? Don't we care
+about the quality of the code any more? Don't we care about getting
+code reviewed any more?
+
+     Andrew
