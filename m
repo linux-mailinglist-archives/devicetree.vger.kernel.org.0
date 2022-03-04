@@ -2,215 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 850354CCDC1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 07:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D72B4CCEE5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:13:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230451AbiCDGco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 01:32:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33566 "EHLO
+        id S232606AbiCDHOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 02:14:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231135AbiCDGcm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 01:32:42 -0500
-Received: from twspam01.aspeedtech.com (twspam01.aspeedtech.com [211.20.114.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94B7B187E1C
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 22:31:53 -0800 (PST)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 2246MIcb041906;
-        Fri, 4 Mar 2022 14:22:18 +0800 (GMT-8)
-        (envelope-from tommy_huang@aspeedtech.com)
-Received: from tommy0527-VirtualBox.aspeedtech.com (192.168.2.141) by
- TWMBX02.aspeed.com (192.168.0.24) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 4 Mar 2022 14:31:44 +0800
-From:   Tommy Haung <tommy_huang@aspeedtech.com>
-To:     <joel@jms.id.au>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <robh+dt@kernel.org>, <andrew@aj.id.au>,
-        <linux-aspeed@lists.ozlabs.org>, <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH v1 2/2] drm/aspeed: Add 1024x768 mode for AST2600
-Date:   Fri, 4 Mar 2022 14:31:37 +0800
-Message-ID: <20220304063137.12970-3-tommy_huang@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220304063137.12970-1-tommy_huang@aspeedtech.com>
-References: <20220304063137.12970-1-tommy_huang@aspeedtech.com>
+        with ESMTP id S239517AbiCDHNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:13:45 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74741A275B
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 23:09:39 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 04A793F1AF
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 07:09:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646377762;
+        bh=XhhG0wWaf3K6yBJwDmPYA6VsKmLLMnPsayg6VQNoL9o=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=vexEf/yPs8XqYl6NUtKiYIxtAC3tiCe3KZhrOCZUrIcps5ywTESoiosiThT+iAIYm
+         k8r0jBUhkzgk19/fRZe4zi4URwCetYByhlg4L7+olfPVVLoROrFEFF6r7pVNfGGRsH
+         W1Tq3Cpm9cW2a31WJCtZwx1xO0nCwmX0PnW+QsPQwT5PQdgegHD/MmjrCzHaTXbjc5
+         xwHFKWoZBpHVpwDjeXu7PAhO/CWZLlwc4J4BmQfmPZyyhXs/LFp9HWs6mQJKRdl8oX
+         g2YO7iSjMXtAfJg9pYzx3mXt6cDhQmqBojfLQJlbOP1HqdvwQd+awZMH1HFFzk4IHM
+         3mLQ6igsOF9oQ==
+Received: by mail-ej1-f69.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso3969918ejk.17
+        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 23:09:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XhhG0wWaf3K6yBJwDmPYA6VsKmLLMnPsayg6VQNoL9o=;
+        b=FkqGWNbjt61zv9Y0FOFhUbYcBvoUEJuFdfeDpqo8LGdZ0DUaz9Gc88r5tA+ZArB6fn
+         5DQYdpnG5UBCUs/uo5aS1z6qcmwn6eGFPkLcNJJ6VXVoJPJ1eaB3OHIJyt6SBXzq8kK7
+         5jhfxGlE23TWdxGLeE44HkTxkzX9+D1o9NkdBa2/B9iZWTbLfHZlBNxBIrvybhliBWZx
+         w9ZHU9h8/kRrZiGQgTYKPv64k7NwsrGRNQovgr4RePaFbKNv1xVi/Riu176N7ksjOKjn
+         4oKiZx3VMKS2qAljLvkSIrG/3DlUvdfjNsEysWIKq6ucO7EstUeZTGekG5qG/ajO93Ql
+         4DeA==
+X-Gm-Message-State: AOAM532zQYydV5qzoz/O94b2INcy1Ym2DLZ4IRxx4AwAPS66Y+xGriDk
+        OE1A4PP6NBb1rzTICfftHz1LQyGoMyfrKeN4TstCilvwgQn5Jry2gXAsb+874W/G7xz/31tOE63
+        VH83e6v7mhj9tSlmi9EACghRAbzCQ4zNTaO6nja8=
+X-Received: by 2002:a17:907:72c1:b0:6da:be5e:dc98 with SMTP id du1-20020a17090772c100b006dabe5edc98mr607436ejc.283.1646377761657;
+        Thu, 03 Mar 2022 23:09:21 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzZbPRGv5bnhCmhmW6GOxSNC610FEmnF8Qt69qFZsxgdxMOr5mYxC1tSKXc+KrPEdq7x4Y8iQ==
+X-Received: by 2002:a17:907:72c1:b0:6da:be5e:dc98 with SMTP id du1-20020a17090772c100b006dabe5edc98mr607430ejc.283.1646377761513;
+        Thu, 03 Mar 2022 23:09:21 -0800 (PST)
+Received: from [192.168.0.138] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id e8-20020a17090681c800b006d9f7b69649sm1425116ejx.32.2022.03.03.23.09.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Mar 2022 23:09:20 -0800 (PST)
+Message-ID: <d714afb4-0ecb-0caf-564a-b8cc1933d9d5@canonical.com>
+Date:   Fri, 4 Mar 2022 08:09:20 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.2.141]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 2246MIcb041906
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: kbuild: Print a warning if yamllint is not
+ found
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert@linux-m68k.org>
+References: <20220303221417.2486268-1-robh@kernel.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220303221417.2486268-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the aspeed_gfx_set_clk with display width.
-At AST2600, the display clock could be coming from
-HPLL clock / 16 = 75MHz. It would fit 1024x768@70Hz.
-Another chip will still keep 800x600.
+On 03/03/2022 23:14, Rob Herring wrote:
+> Running yamllint is effectively required for binding schemas, so print a
+> warning if not found rather than silently skipping running it.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/Makefile | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
 
-Signed-off-by: Tommy Haung <tommy_huang@aspeedtech.com>
----
- drivers/gpu/drm/aspeed/aspeed_gfx.h      | 12 ++++++----
- drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c | 29 ++++++++++++++++++++----
- drivers/gpu/drm/aspeed/aspeed_gfx_drv.c  | 16 +++++++++++--
- drivers/gpu/drm/aspeed/aspeed_gfx_out.c  | 14 +++++++++++-
- 4 files changed, 60 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx.h b/drivers/gpu/drm/aspeed/aspeed_gfx.h
-index eb4c267cde5e..c7aefee0657a 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx.h
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx.h
-@@ -109,11 +109,15 @@ int aspeed_gfx_create_output(struct drm_device *drm);
- #define CRT_THROD_HIGH(x)		((x) << 8)
- 
- /* SCU control */
--#define SCU_G6_CLK_COURCE		0x300
-+#define G6_CLK_SOURCE			0x300
-+#define G6_CLK_SOURCE_MASK		(BIT(8) | BIT(9) | BIT(10))
-+#define G6_CLK_SOURCE_HPLL		(BIT(8) | BIT(9) | BIT(10))
-+#define G6_CLK_SOURCE_USB		BIT(9)
-+#define G6_CLK_SEL3			0x308
-+#define G6_CLK_DIV_MASK			0x3F000
-+#define G6_CLK_DIV_16			(BIT(16)|BIT(15)|BIT(13)|BIT(12))
-+#define G6_USB_40_CLK			BIT(9)
- 
- /* GFX FLAGS */
- #define CLK_MASK			BIT(0)
- #define CLK_G6				BIT(0)
--
--#define G6_CLK_MASK			(BIT(8) | BIT(9) | BIT(10))
--#define G6_USB_40_CLK			BIT(9)
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-index a24fab22eac4..5829be9c7c67 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx_crtc.c
-@@ -23,6 +23,28 @@ drm_pipe_to_aspeed_gfx(struct drm_simple_display_pipe *pipe)
- 	return container_of(pipe, struct aspeed_gfx, pipe);
- }
- 
-+static void aspeed_gfx_set_clock_source(struct aspeed_gfx *priv, int mode_width)
-+{
-+	regmap_update_bits(priv->scu, G6_CLK_SOURCE, G6_CLK_SOURCE_MASK, 0x0);
-+	regmap_update_bits(priv->scu, G6_CLK_SEL3, G6_CLK_DIV_MASK, 0x0);
-+
-+	switch (mode_width) {
-+	case 1024:
-+		/* hpll div 16 = 75Mhz */
-+		regmap_update_bits(priv->scu, G6_CLK_SOURCE,
-+		G6_CLK_SOURCE_MASK, G6_CLK_SOURCE_HPLL);
-+		regmap_update_bits(priv->scu, G6_CLK_SEL3,
-+		G6_CLK_DIV_MASK, G6_CLK_DIV_16);
-+		break;
-+	case 800:
-+	default:
-+		/* usb 40Mhz */
-+		regmap_update_bits(priv->scu, G6_CLK_SOURCE,
-+		G6_CLK_SOURCE_MASK, G6_CLK_SOURCE_USB);
-+		break;
-+	}
-+}
-+
- static int aspeed_gfx_set_pixel_fmt(struct aspeed_gfx *priv, u32 *bpp)
- {
- 	struct drm_crtc *crtc = &priv->pipe.crtc;
-@@ -77,12 +99,11 @@ static void aspeed_gfx_disable_controller(struct aspeed_gfx *priv)
- 	regmap_update_bits(priv->scu, priv->dac_reg, BIT(16), 0);
- }
- 
--static void aspeed_gfx_set_clk(struct aspeed_gfx *priv)
-+static void aspeed_gfx_set_clk(struct aspeed_gfx *priv, int mode_width)
- {
- 	switch (priv->flags & CLK_MASK) {
- 	case CLK_G6:
--		regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE, G6_CLK_MASK, 0x0);
--		regmap_update_bits(priv->scu, SCU_G6_CLK_COURCE, G6_CLK_MASK, G6_USB_40_CLK);
-+		aspeed_gfx_set_clock_source(priv, mode_width);
- 		break;
- 	default:
- 		break;
-@@ -99,7 +120,7 @@ static void aspeed_gfx_crtc_mode_set_nofb(struct aspeed_gfx *priv)
- 	if (err)
- 		return;
- 
--	aspeed_gfx_set_clk(priv);
-+	aspeed_gfx_set_clk(priv, m->hdisplay);
- 
- #if 0
- 	/* TODO: we have only been able to test with the 40MHz USB clock. The
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-index af56ffdccc65..e1a814aebc2d 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx_drv.c
-@@ -110,6 +110,7 @@ static const struct drm_mode_config_funcs aspeed_gfx_mode_config_funcs = {
- 
- static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
- {
-+	struct aspeed_gfx *priv = to_aspeed_gfx(drm);
- 	int ret;
- 
- 	ret = drmm_mode_config_init(drm);
-@@ -118,8 +119,18 @@ static int aspeed_gfx_setup_mode_config(struct drm_device *drm)
- 
- 	drm->mode_config.min_width = 0;
- 	drm->mode_config.min_height = 0;
--	drm->mode_config.max_width = 800;
--	drm->mode_config.max_height = 600;
-+
-+	switch (priv->flags & CLK_MASK) {
-+	case CLK_G6:
-+		drm->mode_config.max_width = 1024;
-+		drm->mode_config.max_height = 768;
-+		break;
-+	default:
-+		drm->mode_config.max_width = 800;
-+		drm->mode_config.max_height = 600;
-+		break;
-+	}
-+
- 	drm->mode_config.funcs = &aspeed_gfx_mode_config_funcs;
- 
- 	return ret;
-@@ -167,6 +178,7 @@ static int aspeed_gfx_load(struct drm_device *drm)
- 	priv->vga_scratch_reg = config->vga_scratch_reg;
- 	priv->throd_val = config->throd_val;
- 	priv->scan_line_max = config->scan_line_max;
-+	priv->flags = config->gfx_flags;
- 
- 	priv->scu = syscon_regmap_lookup_by_phandle(np, "syscon");
- 	if (IS_ERR(priv->scu)) {
-diff --git a/drivers/gpu/drm/aspeed/aspeed_gfx_out.c b/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
-index 6759cb88415a..5d5e04f15c59 100644
---- a/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
-+++ b/drivers/gpu/drm/aspeed/aspeed_gfx_out.c
-@@ -10,7 +10,19 @@
- 
- static int aspeed_gfx_get_modes(struct drm_connector *connector)
- {
--	return drm_add_modes_noedid(connector, 800, 600);
-+	struct aspeed_gfx *priv = container_of(connector, struct aspeed_gfx, connector);
-+	int mode_count = 0;
-+
-+	switch (priv->flags & CLK_MASK) {
-+	case CLK_G6:
-+		mode_count = drm_add_modes_noedid(connector, 1024, 768);
-+		break;
-+	default:
-+		mode_count = drm_add_modes_noedid(connector, 800, 600);
-+		break;
-+	}
-+
-+	return mode_count;
- }
- 
- static const struct
--- 
-2.17.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+
+Best regards,
+Krzysztof
