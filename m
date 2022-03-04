@@ -2,82 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B0914CD1F6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:04:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 092D94CD1E8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:03:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239488AbiCDKEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 05:04:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37414 "EHLO
+        id S239454AbiCDKER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 05:04:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239485AbiCDKEc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:04:32 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B12419F457;
-        Fri,  4 Mar 2022 02:03:35 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2245iwq8027365;
-        Fri, 4 Mar 2022 04:02:54 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=M7y9+ws1UzFnCV73zGH8Gh0p6l/ZnIf+ItwTTnOX80E=;
- b=NpBgSUXi2fBIKxscTv8bXJlYkrg/wYdQUy08by/lIe8lQ/V87BJOJ9V/HfWk1+aVWnLV
- ZVEGrlYxF18FAmXVsht74N9ihoPlb8rJCcmyWEWJV/f2lRVy233e6EiYPh+yGmIihuRF
- ROL9gXqsJRkM3h7nidazoc5Bck7p40EF4BNtdRQ/sYZm0NaslyPmidY5hhKLvEF1FxBA
- co8SjOdDePUmLSA7vPKh7ofA76g3/2i2ERMzwS1XfT+/6wmpwzLAQUlnwGnlT8NXDqas
- zWLCd2BW55MFn/Qn4VHdGJm47xZ9Y/xelwK3pBA9T6lqosyvFs7vBVuauY3OpTxbXSkR ew== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ek4j3gsb6-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 04 Mar 2022 04:02:54 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
- 2022 10:02:52 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Fri, 4 Mar 2022 10:02:52 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id D0FCD7C;
-        Fri,  4 Mar 2022 10:02:52 +0000 (UTC)
-Date:   Fri, 4 Mar 2022 10:02:52 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 04/20] ASoC: cs35l41: Remove unnecessary param
-Message-ID: <20220304100252.GZ38351@ediswmail.ad.cirrus.com>
-References: <20220303173059.269657-1-tanureal@opensource.cirrus.com>
- <20220303173059.269657-5-tanureal@opensource.cirrus.com>
+        with ESMTP id S234272AbiCDKEQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:04:16 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 602D8652C7
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:03:27 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id 27so7087175pgk.10
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 02:03:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y54ktKd4wc7WsH7lw6nZsgyvKLTv134GmA+zY8xdjj4=;
+        b=SGZDKXJePqBrV0sAxLu6XG0/dxI/VUB1sBhx4bWpguzOlmVucZuK0rU+0cKa9NS2nf
+         n0sxUh4eQaRX+dqRtbhOrpQ/QA6FqjiEVrcfZfsR1pOvX9RZkuoWwkNWZ/xgta1WZJrC
+         oDSL2R8LL9Bj8aHcuzxidIZbjYixL/+j6+RO/5Tko/G4gi4k8EmJAizUZr02yXFwW7E0
+         K8nk4bqEMywWkdPm2XEQUKSZTRIQkzsEOxeJUAUZsTylV4ccum9INs3WPCtgTKZBsUUP
+         GbFzmTbpr8Yn/UpFMp+DacXIE2/oFxZ4BPsAhKJJO4VpgDT+okw5+w9eJsKno9Oc0x0l
+         MUYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Y54ktKd4wc7WsH7lw6nZsgyvKLTv134GmA+zY8xdjj4=;
+        b=RtjsnXh9Jcbyjcq2U6hfhb9EpqHe9yEg+HMRKO7PPKo1aDGdtZw2fZzPW1uENBb5nI
+         idcExn4RVOaMyrODNEY1rvPlBhM5sOY+Lr2AG9kIgdEjS46AbNXrWpCsDqGhQklLNxwt
+         5kfl/MN9NAA0a7AGHtiWUYqgh8ikF2BCnkmlKGxEPM+ugUWyyBaoRj6An76/B7QfhnJ2
+         rGN0TgDp06ZOe86cR9w06/etIwO9bUuRop4nDqeIVLVUkwYWl1+yNJf29MbBk6C7HCPc
+         LXsSIJzAvClUPUYsgK37iaSqKpwFx6xzV5hRHUGdxgxo9FhEiNkAy2/KasYdHVydmHIu
+         9B0w==
+X-Gm-Message-State: AOAM531RiDj8JmwVWlBIQFM8knAInFhKrdiTsUq+6fSSQ/cNsC1EodLz
+        3h4Rc4uKvF2NPLibHhqWOiQojugGGh2IfQ==
+X-Google-Smtp-Source: ABdhPJwbdj2tEKA67YJ7rF/2kNeOsmHdJCZ/olVb/rnSSwnSH/sL0zqFgLqTs1dIeVm8a7KlmHDaww==
+X-Received: by 2002:a05:6a00:887:b0:4f2:6d3f:5b53 with SMTP id q7-20020a056a00088700b004f26d3f5b53mr43055145pfj.21.1646388206921;
+        Fri, 04 Mar 2022 02:03:26 -0800 (PST)
+Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
+        by smtp.gmail.com with ESMTPSA id j8-20020a056a00174800b004f26d3f5b03sm5461605pfc.39.2022.03.04.02.03.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 02:03:26 -0800 (PST)
+From:   Zong Li <zong.li@sifive.com>
+To:     mturquette@baylibre.com, sboyd@kernel.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, lee.jones@linaro.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Zong Li <zong.li@sifive.com>
+Subject: [PATCH v2 0/5] Refactor the PRCI driver to reduce the complexity
+Date:   Fri,  4 Mar 2022 18:03:16 +0800
+Message-Id: <cover.1646388139.git.zong.li@sifive.com>
+X-Mailer: git-send-email 2.31.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220303173059.269657-5-tanureal@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: LeB-Qxya0jLL_KwkkA27oMicAUA6qXYA
-X-Proofpoint-ORIG-GUID: LeB-Qxya0jLL_KwkkA27oMicAUA6qXYA
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 05:30:43PM +0000, Lucas Tanure wrote:
-> cs35l41_private is not used on cs35l41_handle_pdata
-> 
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-> ---
+This patch set tries to improve the PRCI driver to reduce the
+complexity, we remove the SoCs C files by putting putting all stuff in
+each SoCs header file, and include these SoCs-specific header files in
+core of PRCI. It can also avoid the W=1 kernel build warnings about
+variable defined but not used [-Wunused-const-variable=], like 'commit
+487dc7bb6a0c ("clk: sifive:fu540-prci: Declare static const variable
+'prci_clk_fu540' where it's used")' does.
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+This patch set also contains the dt-bindings and dts change, because
+we change the macro name for fu540 and fu740 by adding the prefix
+respectively.
 
-Thanks,
-Charles
+Thanks all for your review and suggestions.
+
+Changed in v2:
+ - Rebase on v5.17-rc6
+ - Add a temporary patch for avoiding breaking git bisect
+
+Zong Li (5):
+  clk: sifive: duplicate the macro definitions for the time being
+  dt-bindings: change the macro name of prci in header files and example
+  riscv: dts: Change the macro name of prci in each device node
+  clk: sifive: Add SoCs prefix in each SoCs-dependent data
+  clk: sifive: Move all stuff into SoCs header files from C files
+
+ .../devicetree/bindings/gpio/sifive,gpio.yaml |   2 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml       |   2 +-
+ .../bindings/serial/sifive-serial.yaml        |   2 +-
+ arch/riscv/boot/dts/sifive/fu540-c000.dtsi    |  22 +--
+ arch/riscv/boot/dts/sifive/fu740-c000.dtsi    |  26 ++--
+ drivers/clk/sifive/Makefile                   |   2 +-
+ drivers/clk/sifive/fu540-prci.c               |  89 ------------
+ drivers/clk/sifive/fu540-prci.h               |  91 +++++++++++-
+ drivers/clk/sifive/fu740-prci.c               | 134 ------------------
+ drivers/clk/sifive/fu740-prci.h               | 130 ++++++++++++++++-
+ drivers/clk/sifive/sifive-prci.c              |   5 -
+ include/dt-bindings/clock/sifive-fu540-prci.h |   8 +-
+ include/dt-bindings/clock/sifive-fu740-prci.h |  18 +--
+ 13 files changed, 254 insertions(+), 277 deletions(-)
+ delete mode 100644 drivers/clk/sifive/fu540-prci.c
+ delete mode 100644 drivers/clk/sifive/fu740-prci.c
+
+-- 
+2.31.1
+
