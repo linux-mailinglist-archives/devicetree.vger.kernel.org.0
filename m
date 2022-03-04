@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABD794CD430
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DC064CD43A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:25:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236890AbiCDMZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 07:25:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59884 "EHLO
+        id S239704AbiCDM0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 07:26:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236540AbiCDMZv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:25:51 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904A51B01A5
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 04:25:03 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        with ESMTP id S234479AbiCDM0A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:26:00 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 152D71B370F
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 04:25:11 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 92E6D3F60B
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 12:25:01 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 48F553F5FD
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 12:25:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646396701;
-        bh=TY+lA6i8XxWtBRy+CXNMVFSE4D7AiD1N2aYEOcdmjms=;
-        h=From:To:Subject:Date:Message-Id:MIME-Version;
-        b=TdV5B039W6BVETRjGNXr9xZLlfkCFhMRDU0ye62UlOf0bALlak65BthFUHt32qQSI
-         yfoVkqsOaVLC35ufUeP8IE8Pb3x7VmL4RMQl8zI1zlcfpiHp1aA4zPg6uMw2PQ1HJU
-         BCyJJbg4fiJ/iMQLCLZA/V0h1nL05h7p1fEYTpKRhLXikr02oUxHtTIgwfhnYmHxmr
-         ChWIMg8cWNSOVNW2fZ5g5XPlTj0apf73tKxfLpGl27+P67vBmiHX4GEqLdImpQymYj
-         MxqP37JeS19WRRzIglRfm9DLgLVMIIVqujKcbPMCWj+Wh09Pow2m2Qi5dapNmWlwGS
-         8s+hP5Afl1L+Q==
-Received: by mail-ed1-f72.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so4506535edb.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 04:25:01 -0800 (PST)
+        s=20210705; t=1646396706;
+        bh=kgcW8NoeEKgqEQpiOeMGrdb/y3sIE8kBcUfOjO129hk=;
+        h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=pktsgqpu+Df2G9BpHzpZofcm7YEktB2HzRXqgRWN+ag14nOiJxjjRcOHYPu4ccjbE
+         cgLiQ8omvNPbHoySRGMTgg5ihCKpDS2DmaJOyMgaJto18Fwsi67OJ8VsIt1BqouYwO
+         UUQzVhZ3cZyKUL5h0kVz+FRO/7/JWpPiWVNWs/8RcNbOgaCc9/jnc6qm7SYmB2bXyQ
+         IrX16FXXa9LudID7reLxnxjzN3Piwifp0N/+XLvusZUDkrltEh2CXCDb1tH58K3bZ+
+         /pCX1z0cx8PHnPyohkFVIZKTfH3J63Q81zBOy/4EyMBST+kVlfQYbYIKhAnsvCkKrl
+         BAiqDzx65yPCA==
+Received: by mail-ej1-f70.google.com with SMTP id ey18-20020a1709070b9200b006da9614af58so2283006ejc.10
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 04:25:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TY+lA6i8XxWtBRy+CXNMVFSE4D7AiD1N2aYEOcdmjms=;
-        b=Zf6MkAekXrCkOx/e00Vl9FU/3JVCW31TM7nJqKFFpdiy/w5F0aexu06kb5mYqxOVWL
-         pF58olOuVDZCEWogs5EaeuD1jgxVnG9cq/LNvCMLPWxCo+hq0zTgU25ZZD2sG2wtzR2O
-         8EG/SjsY4IijPqDfiXtk4u8frmxVHnKpuWCsI2N4f2GevuOL14p/dV2S5+U2fRi776Wo
-         tDWdExdytllP5PuB3Y3b5JVazYM6c0jXbURcV4QY2QIvowm2fdhVrJBdRJhsl5HcXvgt
-         cGFNRndNxdamYC/L6CQ9bS0yOML801ZZADrJfPrvujew7gbpCln/PqvsSaP0qzZiQli9
-         kFgg==
-X-Gm-Message-State: AOAM532KSRg80emKxrBigaIwSVLdO4FIengJ3Fp+Vud+LwphiazF70Re
-        IG08jeAyQvGtYGepKO/lmXozbszZODtgkNg3arj/7JKb+k4oGN7HdUqHxakqCLkf1yzugB7nkic
-        aZXfh7qkBaSuE55TKH3LKsBk4I4aJ+1z+AkfAc9w=
-X-Received: by 2002:a17:906:b207:b0:6da:81ba:3789 with SMTP id p7-20020a170906b20700b006da81ba3789mr8302673ejz.578.1646396700461;
-        Fri, 04 Mar 2022 04:25:00 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwWzK+iNBIRKwo4mH2PPJHmzHvNxYOtWvwU/P0Gkg3e+/8BPPc+9gd/RWrf4ekFqNBIo2I59Q==
-X-Received: by 2002:a17:906:b207:b0:6da:81ba:3789 with SMTP id p7-20020a170906b20700b006da81ba3789mr8302658ejz.578.1646396700216;
-        Fri, 04 Mar 2022 04:25:00 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=kgcW8NoeEKgqEQpiOeMGrdb/y3sIE8kBcUfOjO129hk=;
+        b=m+5ymAHxiVQHgd9GDpHFAgatfQAzgUcqw7Jhn8a8ogf608BBv4rLqmF/8HMBJm80xY
+         wioKN9Ap8L9n3aTZXcpk0r7xckLw+qbSLDORAJmBFKfIl2HFOcO852cDpcko0Wj/0jgJ
+         BPL5iHccXY0PbRncdUSFk2aq0VYlCg/cNYfKQ35Ee6m/+3GxK5bQMLdbdOUpizRKQIaz
+         ccZKH6DiZdQ422N9XJ2um6x1drcfgN7i5yOs+gfHTve0FLFr9SYYdqvc+FkiWMPiNhnK
+         BSZAr4LAMEVeowDGeBHcVpJ5fXG/5fndWKYw94xnLbV2UAwCnlDUZSuhQegii0QhF0O3
+         EEvA==
+X-Gm-Message-State: AOAM533/JFklw7u4q+Pa+ZIlnqcv3uTLmpLjb5E/5Zo4vvqTq7USfy1v
+        FoDNZTrJ+E0ql3ht8+ddjPlN5fnLWBey5TzGpaMdFnrxczijekKKhwTJ3ogWedYTfKXrpemqI0/
+        zbFj3ibpbb+4F2dFujzuv18pHGWo1ErzJXz45yuM=
+X-Received: by 2002:a17:907:70c1:b0:6ce:78ff:bad4 with SMTP id yk1-20020a17090770c100b006ce78ffbad4mr31164817ejb.68.1646396701950;
+        Fri, 04 Mar 2022 04:25:01 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy6Wvt1ALjXyOY5O7427bhp34XMAl6I3Ap8zIOpaKncvQpm4/ZUjYymTNh6SzZvWw89ZXr/bw==
+X-Received: by 2002:a17:907:70c1:b0:6ce:78ff:bad4 with SMTP id yk1-20020a17090770c100b006ce78ffbad4mr31164791ejb.68.1646396701612;
+        Fri, 04 Mar 2022 04:25:01 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00415a1431488sm2047368eds.4.2022.03.04.04.24.59
+        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00415a1431488sm2047368eds.4.2022.03.04.04.25.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 04:24:59 -0800 (PST)
+        Fri, 04 Mar 2022 04:25:00 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>,
@@ -64,15 +65,17 @@ To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v2 0/4] dt-bindings: timer: exynos4210-mct: describe known hardware and its interrupts
-Date:   Fri,  4 Mar 2022 13:24:20 +0100
-Message-Id: <20220304122424.307885-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v2 1/4] dt-bindings: timer: exynos4210-mct: describe known hardware and its interrupts
+Date:   Fri,  4 Mar 2022 13:24:21 +0100
+Message-Id: <20220304122424.307885-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220304122424.307885-1-krzysztof.kozlowski@canonical.com>
+References: <20220304122424.307885-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,38 +83,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Most of the Samsung Exynos SoCs use almost the same Multi-Core Timer
+block, so only two compatibles were used so far (for Exynos4210 and
+Exynos4412 flavors) with Exynos4210-one being used in most of the SoCs.
+However the Exynos4210 flavor actually differs by number of interrupts.
 
-Changes since v1:
-1. Patch 1: Specify Tesla FSD interrupts.
-2. New patch 4 for Tesla FSD.
-3. Add review tags.
+Add new compatibles, maintaining backward compatibility with Exynos4210,
+and constraints for number of interrupts.  This allows to exactly match
+the Exynos MCT hardware.
 
-Merging/dependencies
-====================
-The dt-bindings (patch 1) can go via timer tree and I will take later DTS
-patches via Samsung Soc.
-
-Best regards,
-Krzysztof
-
-Krzysztof Kozlowski (4):
-  dt-bindings: timer: exynos4210-mct: describe known hardware and its
-    interrupts
-  ARM: dts: exynos: add a specific compatible to MCT
-  arm64: dts: exynos: add a specific compatible to MCT
-  arm64: dts: tesla: add a specific compatible to MCT on FSD
-
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
  .../timer/samsung,exynos4210-mct.yaml         | 67 ++++++++++++++++++-
- arch/arm/boot/dts/exynos3250.dtsi             |  3 +-
- arch/arm/boot/dts/exynos5250.dtsi             |  3 +-
- arch/arm/boot/dts/exynos5260.dtsi             |  3 +-
- arch/arm/boot/dts/exynos54xx.dtsi             |  3 +-
- arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  3 +-
- arch/arm64/boot/dts/exynos/exynos850.dtsi     |  3 +-
- arch/arm64/boot/dts/tesla/fsd.dtsi            |  2 +-
- 8 files changed, 77 insertions(+), 10 deletions(-)
+ 1 file changed, 64 insertions(+), 3 deletions(-)
 
+diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+index f11cbc7ccc14..1584944c7ac4 100644
+--- a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
++++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+@@ -19,9 +19,20 @@ description: |+
+ 
+ properties:
+   compatible:
+-    enum:
+-      - samsung,exynos4210-mct
+-      - samsung,exynos4412-mct
++    oneOf:
++      - enum:
++          - samsung,exynos4210-mct
++          - samsung,exynos4412-mct
++      - items:
++          - enum:
++              - samsung,exynos3250-mct
++              - samsung,exynos5250-mct
++              - samsung,exynos5260-mct
++              - samsung,exynos5420-mct
++              - samsung,exynos5433-mct
++              - samsung,exynos850-mct
++              - tesla,fsd-mct
++          - const: samsung,exynos4210-mct
+ 
+   clocks:
+     minItems: 2
+@@ -63,6 +74,56 @@ required:
+   - interrupts
+   - reg
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos3250-mct
++    then:
++      properties:
++        interrupts:
++          minItems: 8
++          maxItems: 8
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: samsung,exynos5250-mct
++    then:
++      properties:
++        interrupts:
++          minItems: 6
++          maxItems: 6
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - samsung,exynos5260-mct
++              - samsung,exynos5420-mct
++              - samsung,exynos5433-mct
++              - samsung,exynos850-mct
++    then:
++      properties:
++        interrupts:
++          minItems: 12
++          maxItems: 12
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - tesla,fsd-mct
++    then:
++      properties:
++        interrupts:
++          minItems: 16
++          maxItems: 16
++
+ additionalProperties: false
+ 
+ examples:
 -- 
 2.32.0
 
