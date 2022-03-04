@@ -2,281 +2,581 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 577094CCB96
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 03:13:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5EA14CCBE5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 03:43:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237643AbiCDCNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 21:13:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38998 "EHLO
+        id S229830AbiCDCnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 21:43:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237654AbiCDCNo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 21:13:44 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71C4349929;
-        Thu,  3 Mar 2022 18:12:53 -0800 (PST)
-X-UUID: 9ef0ee03b26f4281b5166ebfa3bf8e22-20220304
-X-UUID: 9ef0ee03b26f4281b5166ebfa3bf8e22-20220304
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-        (envelope-from <irui.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 515010774; Fri, 04 Mar 2022 10:12:49 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+        with ESMTP id S231310AbiCDCny (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 21:43:54 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA245D5FB;
+        Thu,  3 Mar 2022 18:43:01 -0800 (PST)
+X-UUID: ddcd53243d804e7dac19bd61d4c6cad4-20220304
+X-UUID: ddcd53243d804e7dac19bd61d4c6cad4-20220304
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1831687328; Fri, 04 Mar 2022 10:42:55 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
  mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 4 Mar 2022 10:12:48 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ 15.0.1497.2; Fri, 4 Mar 2022 10:42:53 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 4 Mar
+ 2022 10:42:53 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 4 Mar 2022 10:12:47 +0800
-Message-ID: <070c86db605e60eafd53520b1d93644b2bdb2d96.camel@mediatek.com>
-Subject: Re: [PATCH v2, 03/10] dt-bindings: media: mtk-vcodec: Adds encoder
- cores dt-bindings for mt8195
-From:   Irui Wang <irui.wang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        "Tiffany Lin" <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>
-CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ Transport; Fri, 4 Mar 2022 10:42:53 +0800
+Message-ID: <5c86954704df2c4e71cca2ce10c35641b65c78f1.camel@mediatek.com>
+Subject: Re: [PATCH v8 15/19] drm/mediatek: Add mt8195 Embedded DisplayPort
+ driver
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Guillaume Ranquet <granquet@baylibre.com>,
+        <chunkuang.hu@kernel.org>, <p.zabel@pengutronix.de>,
+        <airlied@linux.ie>, <daniel@ffwll.ch>, <robh+dt@kernel.org>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <matthias.bgg@gmail.com>,
+        <chunfeng.yun@mediatek.com>, <kishon@ti.com>, <vkoul@kernel.org>,
+        <deller@gmx.de>, <jitao.shi@mediatek.com>,
+        <angelogioacchino.delregno@collabora.com>
+CC:     <dri-devel@lists.freedesktop.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Fri, 4 Mar 2022 10:12:45 +0800
-In-Reply-To: <0a867f1c-330b-16ac-6c87-42a181e50e1e@collabora.com>
-References: <20220117120615.21687-1-irui.wang@mediatek.com>
-         <20220117120615.21687-4-irui.wang@mediatek.com>
-         <0a867f1c-330b-16ac-6c87-42a181e50e1e@collabora.com>
+        <linux-phy@lists.infradead.org>, <linux-fbdev@vger.kernel.org>,
+        Markus Schneider-Pargmann <msp@baylibre.com>,
+        kernel test robot <lkp@intel.com>
+Date:   Fri, 4 Mar 2022 10:42:53 +0800
+In-Reply-To: <20220218145437.18563-16-granquet@baylibre.com>
+References: <20220218145437.18563-1-granquet@baylibre.com>
+         <20220218145437.18563-16-granquet@baylibre.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello, Angelo,
+Hi, Guillaume:
 
-Many thanks for your review.
+On Fri, 2022-02-18 at 15:54 +0100, Guillaume Ranquet wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> This patch adds a DisplayPort driver for the Mediatek mt8195 SoC.
+> 
+> It supports the mt8195, the embedded DisplayPort units. It offers
+> hot-plug-detection and DisplayPort 1.4 with up to 4 lanes.
+> 
+> The driver creates a child device for the phy. The child device will
+> never exist without the parent being active. As they are sharing a
+> register range, the parent passes a regmap pointer to the child so
+> that
+> both can work with the same register range. The phy driver sets
+> device
+> data that is read by the parent to get the phy device that can be
+> used
+> to control the phy properties.
+> 
+> This driver is based on an initial version by
+> Jason-JH.Lin <jason-jh.lin@mediatek.com>.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+> Reported-by: kernel test robot <lkp@intel.com>
+> ---
+>  drivers/gpu/drm/mediatek/Kconfig       |    7 +
+>  drivers/gpu/drm/mediatek/Makefile      |    2 +
+>  drivers/gpu/drm/mediatek/mtk_dp.c      | 2358
+> ++++++++++++++++++++++++
+>  drivers/gpu/drm/mediatek/mtk_dp_reg.h  |  568 ++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.c |    1 +
+>  drivers/gpu/drm/mediatek/mtk_drm_drv.h |    1 +
+>  6 files changed, 2937 insertions(+)
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_dp.c
+>  create mode 100644 drivers/gpu/drm/mediatek/mtk_dp_reg.h
+> 
+> 
 
-On Thu, 2022-03-03 at 15:53 +0100, AngeloGioacchino Del Regno wrote:
-> Il 17/01/22 13:06, Irui Wang ha scritto:
-> > Adds encoder cores dt-bindings for mt8195
-> > 
-> > Signed-off-by: Irui Wang <irui.wang@mediatek.com>
-> > ---
-> >   .../media/mediatek,vcodec-encoder-core.yaml   | 214
-> > ++++++++++++++++++
-> >   1 file changed, 214 insertions(+)
-> >   create mode 100644
-> > Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > b/Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-
-> > core.yaml
-> > new file mode 100644
-> > index 000000000000..d1e7bfa50bce
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-
-> > encoder-core.yaml
-> > @@ -0,0 +1,214 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +
-> > +%YAML 1.2
-> > +---
-> > +$id: "
-> > http://devicetree.org/schemas/media/mediatek,vcodec-encoder-core.yaml#
-> > "
-> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > +
-> > +title: Mediatek Video Encoder Accelerator With Multi Core
-> > +
-> > +maintainers:
-> > +  - Irui Wang <irui.wang@mediatek.com>
-> > +
-> > +description: |
-> > +  Mediatek Video Encode is the video encode hardware present in
-> > Mediatek
-> > +  SoCs which supports high resolution encoding functionalities.
-> > Required
-> > +  parent and child device node.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt8195-vcodec-enc
-> > +
-> > +  mediatek,scp:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    maxItems: 1
-> > +    description: |
-> > +      The node of system control processor (SCP), using
-> > +      the remoteproc & rpmsg framework.
-> > +
-> > +  iommus:
-> > +    minItems: 1
-> > +    maxItems: 32
-> > +    description: |
-> > +      List of the hardware port in respective IOMMU block for
-> > current Socs.
-> > +      Refer to bindings/iommu/mediatek,iommu.yaml.
-> > +
-> > +  dma-ranges:
-> > +    maxItems: 1
-> > +    description: |
-> > +      Describes the physical address space of IOMMU maps to
-> > memory.
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 1
-> > +
-> > +  ranges: true
-> > +
-> > +# Required child node:
-> > +patternProperties:
-> > +  "venc_core0@1a020000":
-> 
-> This should be a pattern, venc-coreN where N is a number between 0
-> and 9,
-> and any iostart should be allowed, not just 1a020000; doing it that
-> way
-> allows you to do a spec for all the core subnodes in one.
+[snip]
 
-I will fix it.
-> 
-> 
-> > +    type: object
-> > +
-> > +    properties:
-> > +      compatible:
-> > +        const: mediatek,mtk-venc-core0
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - mediatek,scp
-> > +  - iommus
-> > +  - dma-ranges
-> > +  - ranges
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/memory/mt8195-memory-port.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    #include <dt-bindings/clock/mt8195-clk.h>
-> > +    #include <dt-bindings/power/mt8195-power.h>
-> > +
-> > +    venc {
-> > +        compatible = "mediatek,mt8195-vcodec-enc";
-> > +        mediatek,scp = <&scp>;
-> > +        iommus = <&iommu_vdo M4U_PORT_L19_VENC_RCPU>;
-> > +        dma-ranges = <0x1 0x0 0x0 0x40000000 0x0 0xfff00000>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <1>;
-> > +        ranges;
-> 
-> What about doing instead...
-> 
-> #address-cells = <2>;
-> #size-cells = <2>;
-> (or fix your dma-ranges property)
+> +
+> +struct mtk_dp_train_info {
+> +	bool tps3;
+> +	bool tps4;
+> +	bool sink_ssc;
+> +	bool cable_plugged_in;
 
-cells=2 may cause some unexpected errors, I will check it again.
-> 
-> and...
-> 
-> ranges = <0 0 0 0x1a020000 0 0x1020000>;
->      venc-core0@0 {
->          compatible = "mediatek,mtk-venc-hw";
->          reg = <0 0 0 0x10000>;
->          mediatek,hw-leader;
->           ..... other properties .....
->      };
-> 
->      venc-core1@1000000 {
->          compatible = "mediatek,mtk-venc-hw";
->          reg = <0 0x1000000 0 0x10000>;
->           ..... other properties .....
->      }
-> 
-> Regards,
-> Angelo
+Move to external display port patch.
 
-I will rewrite the examples.
+> +	bool cable_state_change;
 
-Thanks
-Best Regards
+Move to external display port patch.
+
+> +	bool cr_done;
+> +	bool eq_done;
+> +
+> +	// link_rate is in multiple of 0.27Gbps
+> +	int link_rate;
+> +	int lane_count;
+> +
+> +	int irq_status;
+
+Move to external display port patch.
+
+> +	int check_cap_count;
+> +};
+> +
 > 
-> > +
-> > +        venc_core0@1a020000 {
-> > +            compatible = "mediatek,mtk-venc-core0";
-> > +            reg = <0x1a020000 0x10000>;
-> > +            iommus = <&iommu_vdo M4U_PORT_L19_VENC_RCPU>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REC>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_BSDMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_SV_COMV>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_RD_COMV>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_CUR_LUMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_CUR_CHROMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REF_LUMA>,
-> > +                     <&iommu_vdo M4U_PORT_L19_VENC_REF_CHROMA>;
-> > +            interrupts = <GIC_SPI 341 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            clocks = <&vencsys CLK_VENC_VENC>;
-> > +            clock-names = "MT_CG_VENC0";
-> > +            assigned-clocks = <&topckgen CLK_TOP_VENC>;
-> > +            assigned-clock-parents = <&topckgen
-> > CLK_TOP_UNIVPLL_D4>;
-> > +            power-domains = <&spm MT8195_POWER_DOMAIN_VENC>;
-> > +        };
-> > +
-> > +        venc_core1@1b020000 {
-> > +            compatible = "mediatek,mtk-venc-core1";
-> > +            reg = <0x1b020000 0x10000>;
-> > +            iommus = <&iommu_vpp M4U_PORT_L20_VENC_RCPU>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_REC>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_BSDMA>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_SV_COMV>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_RD_COMV>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_CUR_LUMA>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_CUR_CHROMA>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_REF_LUMA>,
-> > +                     <&iommu_vpp M4U_PORT_L20_VENC_REF_CHROMA>;
-> > +            interrupts = <GIC_SPI 346 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            clocks = <&vencsys_core1 CLK_VENC_CORE1_VENC>;
-> > +            clock-names = "MT_CG_VENC1";
-> > +            assigned-clocks = <&topckgen CLK_TOP_VENC>;
-> > +            assigned-clock-parents = <&topckgen
-> > CLK_TOP_UNIVPLL_D4>;
-> > +            power-domains = <&spm MT8195_POWER_DOMAIN_VENC_CORE1>;
-> > +        };
-> > +    };
+
+[snip]
+
+> +
+> +// Same values as used for DP Spec MISC0 bits 5,6,7
+> +enum mtk_dp_color_depth {
+> +	MTK_DP_COLOR_DEPTH_6BIT = 0,
+> +	MTK_DP_COLOR_DEPTH_8BIT = 1,
+
+Only 8bits is used, so drop other definition.
+
+> +	MTK_DP_COLOR_DEPTH_10BIT = 2,
+> +	MTK_DP_COLOR_DEPTH_12BIT = 3,
+> +	MTK_DP_COLOR_DEPTH_16BIT = 4,
+> +	MTK_DP_COLOR_DEPTH_UNKNOWN = 5,
+> +};
+> +
 > 
+
+[snip]
+
+> +
+> +struct mtk_dp {
+> +	struct device *dev;
+> +	struct platform_device *phy_dev;
+> +	struct phy *phy;
+> +	struct dp_cal_data cal_data;
+> +
+> +	struct drm_device *drm_dev;
+> +	struct drm_bridge bridge;
+> +	struct drm_bridge *next_bridge;
+> +	struct drm_dp_aux aux;
+> +
+> +	/* Protects edid as it is used in both bridge ops and IRQ
+> handler */
+> +	struct mutex edid_lock;
+> +	struct edid *edid;
+> +
+> +	u8 rx_cap[DP_RECEIVER_CAP_SIZE];
+> +
+> +	struct mtk_dp_info info;
+> +	enum mtk_dp_state state;
+> +
+> +	struct mtk_dp_train_info train_info;
+> +	enum mtk_dp_train_state train_state;
+> +	unsigned int input_fmt;
+> +
+> +	struct regmap *regs;
+> +	struct clk *dp_tx_clk;
+> +
+> +	bool enabled;
+> +
+> +	bool has_fec;
+> +	/* Protects the mtk_dp struct */
+> +	struct mutex dp_lock;
+> +
+> +	hdmi_codec_plugged_cb plugged_cb;
+> +	struct device *codec_dev;
+> +	u8 connector_eld[MAX_ELD_BYTES];
+
+Move this to dp audio patch.
+
+> +	struct drm_connector *conn;
+> +};
+> +
+> 
+
+[snip]
+
+> +
+> +static void mtk_dp_set_color_format(struct mtk_dp *mtk_dp,
+> +				    enum mtk_dp_color_format
+> color_format)
+> +{
+> +	u32 val;
+> +
+> +	mtk_dp->info.format = color_format;
+
+When call into this function from mtk_dp_video_config(), it calls
+
+mtk_dp_set_color_format(mtk_dp, mtk_dp->info.format);
+
+It looks weird that you pass mtk_dp->info.format into this function and
+set it to it. So I would like this function to be pure register
+setting, and move this variable keeping out of this function.
+
+
+> +
+> +	// Update MISC0
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3034,
+> +			   color_format << DP_TEST_COLOR_FORMAT_SHIFT,
+> +			   DP_TEST_COLOR_FORMAT_MASK);
+> +
+> +	switch (color_format) {
+> +	case MTK_DP_COLOR_FORMAT_YUV_422:
+> +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR422;
+> +		break;
+> +	case MTK_DP_COLOR_FORMAT_YUV_420:
+> +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_YCBCR420;
+> +		break;
+> +	case MTK_DP_COLOR_FORMAT_YONLY:
+> +	case MTK_DP_COLOR_FORMAT_RAW:
+> +	case MTK_DP_COLOR_FORMAT_RESERVED:
+> +	case MTK_DP_COLOR_FORMAT_UNKNOWN:
+> +		drm_warn(mtk_dp->drm_dev, "Unsupported color format:
+> %d\n",
+> +			 color_format);
+> +		fallthrough;
+> +	case MTK_DP_COLOR_FORMAT_RGB_444:
+> +	case MTK_DP_COLOR_FORMAT_YUV_444:
+> +		val = PIXEL_ENCODE_FORMAT_DP_ENC0_P0_RGB;
+> +		break;
+> +	}
+> +
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_303C, val,
+> +			   PIXEL_ENCODE_FORMAT_DP_ENC0_P0_MASK);
+> +}
+> +
+> 
+
+[snip]
+
+> +
+> +static void mtk_dp_pg_disable(struct mtk_dp *mtk_dp)
+> +{
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_3038, 0,
+> +			   VIDEO_SOURCE_SEL_DP_ENC0_P0_MASK);
+> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_31B0,
+> +			   4 << PGEN_PATTERN_SEL_SHIFT,
+> PGEN_PATTERN_SEL_MASK);
+> +}
+> +
+> +static bool mtk_dp_plug_state(struct mtk_dp *mtk_dp)
+
+Move this function to external dp patch.
+
+> +{
+> +	return !!(mtk_dp_read(mtk_dp, MTK_DP_TRANS_P0_3414) &
+> +		  HPD_DB_DP_TRANS_P0_MASK);
+> +}
+> +
+> 
+
+[snip]
+
+> +
+> +static void mtk_dp_train_set_pattern(struct mtk_dp *mtk_dp, int
+> pattern)
+> +{
+> +	if (pattern < 0 || pattern > 4) {
+
+Never happen, remove this checking.
+
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Implementation error, no such pattern %d\n",
+> pattern);
+> +		return;
+> +	}
+> +
+> +	if (pattern == 1) // TPS1
+> +		mtk_dp_set_idle_pattern(mtk_dp, false);
+> +
+> +	mtk_dp_update_bits(mtk_dp,
+> +			   MTK_DP_TRANS_P0_3400,
+> +			   pattern ? BIT(pattern - 1) <<
+> PATTERN1_EN_DP_TRANS_P0_SHIFT : 0,
+> +			   PATTERN1_EN_DP_TRANS_P0_MASK |
+> PATTERN2_EN_DP_TRANS_P0_MASK |
+> +			   PATTERN3_EN_DP_TRANS_P0_MASK |
+> +			   PATTERN4_EN_DP_TRANS_P0_MASK);
+> +}
+> +
+> 
+
+[snip]
+
+> +
+> +static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
+> +{
+> +	u32 sram_read_start = MTK_DP_TBC_BUF_READ_START_ADDR;
+
+It's not necessary to have a initial value.
+
+> +
+> +	if (mtk_dp->train_info.lane_count > 0) {
+> +		sram_read_start = min_t(u32,
+> +					MTK_DP_TBC_BUF_READ_START_ADDR,
+> +					mtk_dp->info.timings.vm.hactive 
+> /
+> +					(mtk_dp->train_info.lane_count
+> * 4 * 2 * 2));
+> +		mtk_dp_set_sram_read_start(mtk_dp, sram_read_start);
+> +	}
+> +
+> +	mtk_dp_setup_encoder(mtk_dp);
+> +}
+> +
+> 
+
+[snip]
+
+> +static void mtk_dp_train_handler(struct mtk_dp *mtk_dp)
+> +{
+> +	int ret = 0;
+> +	int i = 50;
+> +
+> +	do {
+> +		if (mtk_dp->train_state == MTK_DP_TRAIN_STATE_NORMAL)
+> +			continue;
+> +
+> +		switch (mtk_dp->train_state) {
+> +		case MTK_DP_TRAIN_STATE_STARTUP:
+> +			mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_CHECKCAP;
+> +			break;
+> +
+> +		case MTK_DP_TRAIN_STATE_CHECKCAP:
+> +			if (mtk_dp_parse_capabilities(mtk_dp)) {
+> +				mtk_dp->train_info.check_cap_count = 0;
+> +				mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_CHECKEDID;
+> +			} else {
+> +				mtk_dp->train_info.check_cap_count++;
+> +
+> +				if (mtk_dp->train_info.check_cap_count
+> >
+> +					MTK_DP_CHECK_SINK_CAP_TIMEOUT_C
+> OUNT) {
+> +					mtk_dp-
+> >train_info.check_cap_count = 0;
+> +					mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_DPIDLE;
+> +					ret = -ETIMEDOUT;
+> +				}
+> +			}
+> +			break;
+> +
+> +		case MTK_DP_TRAIN_STATE_CHECKEDID:
+> +			mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_TRAINING_PRE;
+> +			break;
+> +
+> +		case MTK_DP_TRAIN_STATE_TRAINING_PRE:
+> +			mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_TRAINING;
+> +			break;
+> +
+> +		case MTK_DP_TRAIN_STATE_TRAINING:
+> +			ret = mtk_dp_train_start(mtk_dp);
+> +			if (!ret) {
+> +				mtk_dp_video_mute(mtk_dp, true);
+> +				mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_NORMAL;
+> +				mtk_dp_fec_enable(mtk_dp, mtk_dp-
+> >has_fec);
+> +			} else if (ret != -EAGAIN) {
+> +				mtk_dp->train_state =
+> MTK_DP_TRAIN_STATE_DPIDLE;
+> +			}
+> +
+> +			ret = 0;
+> +			break;
+> +
+> +		case MTK_DP_TRAIN_STATE_NORMAL:
+> +			break;
+> +		case MTK_DP_TRAIN_STATE_DPIDLE:
+> +			break;
+> +		default:
+
+You have list all 7 states, why need default?
+
+> +			break;
+> +		}
+> +	} while (ret && i--);
+
+Why keep in this loop while error happen?
+
+> +
+> +	if (ret)
+> +		drm_err(mtk_dp->drm_dev, "Train handler failed %d\n",
+> ret);
+> +}
+> +
+> 
+
+[snip]
+
+> +static void mtk_dp_state_handler(struct mtk_dp *mtk_dp)
+> +{
+> +	switch (mtk_dp->state) {
+> +	case MTK_DP_STATE_INITIAL:
+> +		mtk_dp_video_mute(mtk_dp, true);
+> +		mtk_dp->state = MTK_DP_STATE_IDLE;
+> +		break;
+> +
+> +	case MTK_DP_STATE_IDLE:
+> +		if (mtk_dp->train_state == MTK_DP_TRAIN_STATE_NORMAL)
+> +			mtk_dp->state = MTK_DP_STATE_PREPARE;
+> +		break;
+> +
+> +	case MTK_DP_STATE_PREPARE:
+> +		mtk_dp_video_config(mtk_dp);
+> +		mtk_dp_video_enable(mtk_dp, true);
+> +
+> +		mtk_dp->state = MTK_DP_STATE_NORMAL;
+> +		break;
+> +
+> +	case MTK_DP_STATE_NORMAL:
+> +		if (mtk_dp->train_state != MTK_DP_TRAIN_STATE_NORMAL) {
+> +			mtk_dp_video_mute(mtk_dp, true);
+> +			mtk_dp->state = MTK_DP_STATE_IDLE;
+> +		}
+> +		break;
+> +
+> +	default:
+
+There is no default case, so remove this.
+
+> +		break;
+> +	}
+> +}
+> +
+> 
+
+[snip]
+
+> +
+> +static struct edid *mtk_dp_get_edid(struct drm_bridge *bridge,
+> +				    struct drm_connector *connector)
+> +{
+> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+> +	bool enabled = mtk_dp->enabled;
+> +	struct edid *new_edid = NULL;
+> +
+> +	if (!enabled)
+
+Would DRM core make this happen?
+
+> +		drm_bridge_chain_pre_enable(bridge);
+> +
+> +	drm_dp_dpcd_writeb(&mtk_dp->aux, DP_SET_POWER,
+> DP_SET_POWER_D0);
+> +	usleep_range(2000, 5000);
+> +
+> +	if (mtk_dp_plug_state(mtk_dp))
+> +		new_edid = drm_get_edid(connector, &mtk_dp->aux.ddc);
+> +
+> +	if (!enabled)
+> +		drm_bridge_chain_post_disable(bridge);
+> +
+> +	mutex_lock(&mtk_dp->edid_lock);
+> +	kfree(mtk_dp->edid);
+> +	mtk_dp->edid = NULL;
+> +
+> +	if (!new_edid) {
+> +		mutex_unlock(&mtk_dp->edid_lock);
+> +		return NULL;
+> +	}
+> +
+> +	mtk_dp->edid = drm_edid_duplicate(new_edid);
+> +	mutex_unlock(&mtk_dp->edid_lock);
+> +
+> +	return new_edid;
+> +}
+> +
+> 
+
+[snip]
+
+> +
+> +static void mtk_dp_bridge_atomic_enable(struct drm_bridge *bridge,
+> +					struct drm_bridge_state
+> *old_state)
+> +{
+> +	struct mtk_dp *mtk_dp = mtk_dp_from_bridge(bridge);
+> +	struct drm_connector_state *conn_state;
+> +	struct drm_crtc *crtc;
+> +	struct drm_crtc_state *crtc_state;
+> +
+> +	mtk_dp->conn =
+> drm_atomic_get_new_connector_for_encoder(old_state->base.state,
+> +								bridge-
+> >encoder);
+> +	if (!mtk_dp->conn) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as connector is
+> missing\n");
+> +		return;
+> +	}
+> +
+> +	memcpy(mtk_dp->connector_eld, mtk_dp->conn->eld,
+> MAX_ELD_BYTES);
+> +
+> +	conn_state =
+> +		drm_atomic_get_new_connector_state(old_state-
+> >base.state, mtk_dp->conn);
+> +	if (!conn_state) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as connector state is
+> missing\n");
+> +		return;
+> +	}
+> +
+> +	crtc = conn_state->crtc;
+> +	if (!crtc) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as connector state doesn't
+> have a crtc\n");
+> +		return;
+> +	}
+> +
+> +	crtc_state = drm_atomic_get_new_crtc_state(old_state-
+> >base.state, crtc);
+> +	if (!crtc_state) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as crtc state is
+> missing\n");
+> +		return;
+> +	}
+> +
+> +	mtk_dp_parse_drm_mode_timings(mtk_dp, &crtc_state-
+> >adjusted_mode);
+
+I think this bridge should implement mode_set() and these code is moved
+to mode_set().
+
+Regards,
+CK
+
+> +	if (!mtk_dp_parse_capabilities(mtk_dp)) {
+> +		drm_err(mtk_dp->drm_dev,
+> +			"Can't enable bridge as nothing is plugged
+> in\n");
+> +		return;
+> +	}
+> +
+> +	/* Training */
+> +	mtk_dp_train_handler(mtk_dp);
+> +	mtk_dp_state_handler(mtk_dp);
+> +	mtk_dp->enabled = true;
+> +}
+> +
 > 
 
