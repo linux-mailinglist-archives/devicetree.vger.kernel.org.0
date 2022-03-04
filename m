@@ -2,358 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D15E4CD2B3
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:46:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 322F04CD298
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:40:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235959AbiCDKrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 05:47:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35042 "EHLO
+        id S236721AbiCDKlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 05:41:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234268AbiCDKrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:47:16 -0500
-Received: from mslow1.mail.gandi.net (mslow1.mail.gandi.net [217.70.178.240])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0C651AC283
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:46:28 -0800 (PST)
-Received: from relay1-d.mail.gandi.net (unknown [IPv6:2001:4b98:dc4:8::221])
-        by mslow1.mail.gandi.net (Postfix) with ESMTP id 40925C9E13
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 10:34:26 +0000 (UTC)
-Received: (Authenticated sender: clement.leger@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id EC2BB24000F;
-        Fri,  4 Mar 2022 10:34:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646390060;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=aNxUJLIkcAu5DHgHCNnuDLsWx+04q7o2jFfhBc9Lcq8=;
-        b=W3hX5IkhRjMN2I7T3YD5kysnHYhoCl+5oUSLrR8HO2gIP9DRCxE59s+eBV4p2ntZU5PcSh
-        ryM2zKLBLvUFMFmPja/Bpju67RgCbG9ROAo/74aV22Y7Q9pi4/Nltmx4yWNsKms6VEQGVP
-        okj6DayDEa5l4Cq984TsjYMxnVD9gjL00l0FYNCUT9GrHiVlakudp84CgNXV1dfxNOlFpH
-        YMPlEPxASlSjuf0qlOwuG6Rzi3x/fgzn1O9Jd3cTtv9gIT1l+4NtIlLdbOncgWFSs9OBix
-        feKtV8QkIM36icmNqYwEOovTXRyh/v5eivSYrx8T7Wtk3KpLfA+daCI5V1SlKw==
-From:   =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Oltean <vladimir.oltean@nxp.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>
-Subject: [PATCH] dt-bindings: net: mscc,vsc7514-switch: convert txt bindings to yaml
-Date:   Fri,  4 Mar 2022 11:32:25 +0100
-Message-Id: <20220304103225.111428-1-clement.leger@bootlin.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S234714AbiCDKlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:41:15 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F771AA4A3;
+        Fri,  4 Mar 2022 02:40:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646390427; x=1677926427;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=MWHad0oWvKdIlSW1yZteYqB1ECrM7vqKBkt0Z55LL/M=;
+  b=RY8fCTR1tDhQ8CEixF2j2uHnXoR/7HDyPAj79zaCuFGEclP0lWfy6VZw
+   dgIPAlfMRB4jwMjF2+X8ISzMxPW7n33gmPAW45pmOdENPcTt8bEQ4kXLZ
+   Zp8P3iCLBonBw2ikpJpvREaEidsG4lAV4Ambz6jLJddHhm3uLl1oGMFek
+   xcbybYM9XFKxghprzb+dR/cqbmiywWQhZcAs5AcAR6VYinZ9Ci5V0UNgI
+   rZjfQSSQ/66katabP8QM3fOifpP8Zgor92wBmc+2CKDlH3oM4AWd+U4uI
+   puRZoa3rsrt/rl5FEj/V/eJQQG3/PvelLnAev9VCpEe/ifs0cmi+phmxu
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,154,1643698800"; 
+   d="scan'208";a="148086332"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Mar 2022 03:40:26 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 4 Mar 2022 03:40:26 -0700
+Received: from [10.12.72.98] (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 4 Mar 2022 03:40:23 -0700
+Message-ID: <03c0ed9e-73b6-5325-3034-ae9930ffd063@microchip.com>
+Date:   Fri, 4 Mar 2022 11:40:22 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,
-        RCVD_IN_VALIDITY_RPBL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] ARM: dts: at91: sama7g5: Remove unused properties in i2c
+ nodes
+Content-Language: en-US
+To:     Tudor Ambarus <tudor.ambarus@microchip.com>,
+        <claudiu.beznea@microchip.com>, <alexandre.belloni@bootlin.com>
+CC:     <robh+dt@kernel.org>, <eugen.hristev@microchip.com>,
+        <codrin.ciubotariu@microchip.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sergiu.moga@microchip.com>, <stable@vger.kernel.org>
+References: <20220302161854.32177-1-tudor.ambarus@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <20220302161854.32177-1-tudor.ambarus@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_PERMERROR autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert existing txt bindings to yaml format.
+On 02/03/2022 at 17:18, Tudor Ambarus wrote:
+> The "atmel,use-dma-rx", "atmel,use-dma-rx" dt properties are not used by
+> the i2c-at91 driver, nor they are defined in the bindings file, thus remove
+> them.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 7540629e2fc7 ("ARM: dts: at91: add sama7g5 SoC DT and sama7g5-ek")
+> Signed-off-by: Tudor Ambarus <tudor.ambarus@microchip.com>
 
-Signed-off-by: Clément Léger <clement.leger@bootlin.com>
----
- .../bindings/net/mscc,vsc7514-switch.yaml     | 191 ++++++++++++++++++
- .../devicetree/bindings/net/mscc-ocelot.txt   |  83 --------
- 2 files changed, 191 insertions(+), 83 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/mscc-ocelot.txt
+Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-diff --git a/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-new file mode 100644
-index 000000000000..ee0a504bdb24
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/mscc,vsc7514-switch.yaml
-@@ -0,0 +1,191 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/mscc,vsc7514-switch.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip VSC7514 Ethernet switch controller
-+
-+maintainers:
-+  - Vladimir Oltean <vladimir.oltean@nxp.com>
-+  - Claudiu Manoil <claudiu.manoil@nxp.com>
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+
-+description: |
-+  Bindings for the Microchip VSC7514 switch driver
-+
-+  The VSC7514 switch driver handles up to 11 ports and can inject/extract
-+  packets using CPU. Additionally, PTP is supported as well as FDMA for faster
-+  packet extraction/injection.
-+
-+properties:
-+  $nodename:
-+    pattern: "^switch@[0-9a-f]+$"
-+
-+  compatible:
-+    const: mscc,vsc7514-switch
-+
-+  reg:
-+    items:
-+      - description: system target
-+      - description: rewriter target
-+      - description: qs target
-+      - description: PTP target
-+      - description: Port0 target
-+      - description: Port1 target
-+      - description: Port2 target
-+      - description: Port3 target
-+      - description: Port4 target
-+      - description: Port5 target
-+      - description: Port6 target
-+      - description: Port7 target
-+      - description: Port8 target
-+      - description: Port9 target
-+      - description: Port10 target
-+      - description: QSystem target
-+      - description: Analyzer target
-+      - description: S0 target
-+      - description: S1 target
-+      - description: S2 target
-+      - description: fdma target
-+
-+  reg-names:
-+    items:
-+      - const: sys
-+      - const: rew
-+      - const: qs
-+      - const: ptp
-+      - const: port0
-+      - const: port1
-+      - const: port2
-+      - const: port3
-+      - const: port4
-+      - const: port5
-+      - const: port6
-+      - const: port7
-+      - const: port8
-+      - const: port9
-+      - const: port10
-+      - const: qsys
-+      - const: ana
-+      - const: s0
-+      - const: s1
-+      - const: s2
-+      - const: fdma
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: PTP ready
-+      - description: register based extraction
-+      - description: frame dma based extraction
-+
-+  interrupt-names:
-+    minItems: 1
-+    items:
-+      - const: ptp_rdy
-+      - const: xtr
-+      - const: fdma
-+
-+  ethernet-ports:
-+    type: object
-+
-+    properties:
-+      '#address-cells':
-+        const: 1
-+      '#size-cells':
-+        const: 0
-+
-+    additionalProperties: false
-+
-+    patternProperties:
-+      "^port@[0-9a-f]+$":
-+        type: object
-+        description: Ethernet ports handled by the switch
-+
-+        $ref: ethernet-controller.yaml#
-+
-+        unevaluatedProperties: false
-+
-+        properties:
-+          reg:
-+            description: Switch port number
-+
-+          phy-handle: true
-+
-+          phy-mode: true
-+
-+          fixed-link: true
-+
-+          mac-address: true
-+
-+        required:
-+          - reg
-+          - phy-mode
-+
-+        oneOf:
-+          - required:
-+              - phy-handle
-+          - required:
-+              - fixed-link
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - interrupt-names
-+  - ethernet-ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    switch@1010000 {
-+      compatible = "mscc,vsc7514-switch";
-+      reg = <0x1010000 0x10000>,
-+            <0x1030000 0x10000>,
-+            <0x1080000 0x100>,
-+            <0x10e0000 0x10000>,
-+            <0x11e0000 0x100>,
-+            <0x11f0000 0x100>,
-+            <0x1200000 0x100>,
-+            <0x1210000 0x100>,
-+            <0x1220000 0x100>,
-+            <0x1230000 0x100>,
-+            <0x1240000 0x100>,
-+            <0x1250000 0x100>,
-+            <0x1260000 0x100>,
-+            <0x1270000 0x100>,
-+            <0x1280000 0x100>,
-+            <0x1800000 0x80000>,
-+            <0x1880000 0x10000>,
-+            <0x1040000 0x10000>,
-+            <0x1050000 0x10000>,
-+            <0x1060000 0x10000>,
-+            <0x1a0 0x1c4>;
-+      reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
-+            "port2", "port3", "port4", "port5", "port6",
-+            "port7", "port8", "port9", "port10", "qsys",
-+            "ana", "s0", "s1", "s2", "fdma";
-+      interrupts = <18 21 16>;
-+      interrupt-names = "ptp_rdy", "xtr", "fdma";
-+
-+      ethernet-ports {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        port0: port@0 {
-+          reg = <0>;
-+          phy-handle = <&phy0>;
-+          phy-mode = "internal";
-+        };
-+        port1: port@1 {
-+          reg = <1>;
-+          phy-handle = <&phy1>;
-+          phy-mode = "internal";
-+        };
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/net/mscc-ocelot.txt b/Documentation/devicetree/bindings/net/mscc-ocelot.txt
-deleted file mode 100644
-index 3b6290b45ce5..000000000000
---- a/Documentation/devicetree/bindings/net/mscc-ocelot.txt
-+++ /dev/null
-@@ -1,83 +0,0 @@
--Microsemi Ocelot network Switch
--===============================
--
--The Microsemi Ocelot network switch can be found on Microsemi SoCs (VSC7513,
--VSC7514)
--
--Required properties:
--- compatible: Should be "mscc,vsc7514-switch"
--- reg: Must contain an (offset, length) pair of the register set for each
--  entry in reg-names.
--- reg-names: Must include the following entries:
--  - "sys"
--  - "rew"
--  - "qs"
--  - "ptp" (optional due to backward compatibility)
--  - "qsys"
--  - "ana"
--  - "portX" with X from 0 to the number of last port index available on that
--    switch
--- interrupts: Should contain the switch interrupts for frame extraction,
--  frame injection and PTP ready.
--- interrupt-names: should contain the interrupt names: "xtr", "inj". Can contain
--  "ptp_rdy" which is optional due to backward compatibility.
--- ethernet-ports: A container for child nodes representing switch ports.
--
--The ethernet-ports container has the following properties
--
--Required properties:
--
--- #address-cells: Must be 1
--- #size-cells: Must be 0
--
--Each port node must have the following mandatory properties:
--- reg: Describes the port address in the switch
--
--Port nodes may also contain the following optional standardised
--properties, described in binding documents:
--
--- phy-handle: Phandle to a PHY on an MDIO bus. See
--  Documentation/devicetree/bindings/net/ethernet.txt for details.
--
--Example:
--
--	switch@1010000 {
--		compatible = "mscc,vsc7514-switch";
--		reg = <0x1010000 0x10000>,
--		      <0x1030000 0x10000>,
--		      <0x1080000 0x100>,
--		      <0x10e0000 0x10000>,
--		      <0x11e0000 0x100>,
--		      <0x11f0000 0x100>,
--		      <0x1200000 0x100>,
--		      <0x1210000 0x100>,
--		      <0x1220000 0x100>,
--		      <0x1230000 0x100>,
--		      <0x1240000 0x100>,
--		      <0x1250000 0x100>,
--		      <0x1260000 0x100>,
--		      <0x1270000 0x100>,
--		      <0x1280000 0x100>,
--		      <0x1800000 0x80000>,
--		      <0x1880000 0x10000>;
--		reg-names = "sys", "rew", "qs", "ptp", "port0", "port1",
--			    "port2", "port3", "port4", "port5", "port6",
--			    "port7", "port8", "port9", "port10", "qsys",
--			    "ana";
--		interrupts = <18 21 22>;
--		interrupt-names = "ptp_rdy", "xtr", "inj";
--
--		ethernet-ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port0: port@0 {
--				reg = <0>;
--				phy-handle = <&phy0>;
--			};
--			port1: port@1 {
--				reg = <1>;
--				phy-handle = <&phy1>;
--			};
--		};
--	};
+Added in at91-dt for 5.18 as a 2nd batch of DT patches.
+Thanks, best regards,
+   Nicolas
+
+> ---
+>   arch/arm/boot/dts/sama7g5.dtsi | 6 ------
+>   1 file changed, 6 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/sama7g5.dtsi b/arch/arm/boot/dts/sama7g5.dtsi
+> index 1dc0631e9fd4..e626f6bd920a 100644
+> --- a/arch/arm/boot/dts/sama7g5.dtsi
+> +++ b/arch/arm/boot/dts/sama7g5.dtsi
+> @@ -591,8 +591,6 @@ i2c1: i2c@600 {
+>   				dmas = <&dma0 AT91_XDMAC_DT_PERID(7)>,
+>   					<&dma0 AT91_XDMAC_DT_PERID(8)>;
+>   				dma-names = "rx", "tx";
+> -				atmel,use-dma-rx;
+> -				atmel,use-dma-tx;
+>   				status = "disabled";
+>   			};
+>   		};
+> @@ -778,8 +776,6 @@ i2c8: i2c@600 {
+>   				dmas = <&dma0 AT91_XDMAC_DT_PERID(21)>,
+>   					<&dma0 AT91_XDMAC_DT_PERID(22)>;
+>   				dma-names = "rx", "tx";
+> -				atmel,use-dma-rx;
+> -				atmel,use-dma-tx;
+>   				status = "disabled";
+>   			};
+>   		};
+> @@ -804,8 +800,6 @@ i2c9: i2c@600 {
+>   				dmas = <&dma0 AT91_XDMAC_DT_PERID(23)>,
+>   					<&dma0 AT91_XDMAC_DT_PERID(24)>;
+>   				dma-names = "rx", "tx";
+> -				atmel,use-dma-rx;
+> -				atmel,use-dma-tx;
+>   				status = "disabled";
+>   			};
+>   		};
+
+
 -- 
-2.34.1
-
+Nicolas Ferre
