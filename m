@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 159094CCC07
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 03:56:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 055504CCC6F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 04:58:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237780AbiCDC5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 3 Mar 2022 21:57:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49348 "EHLO
+        id S237696AbiCDD6z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 3 Mar 2022 22:58:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37398 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235861AbiCDC5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 21:57:32 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F25E610A7C4
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 18:56:45 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id q5so6663087oij.6
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 18:56:45 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=0TA1Wjex6JCqhMgNCVoUHGlCg7LIP94z6BQYjbk/eQs=;
-        b=jSCJAbN3pI1EV/ebNJjFcoCwuwKozmLNjd/CC3mTE6iE+A7Xs8mw7Hn1YcdKHhx+5j
-         uYcqPUvpPv4eEJA+b4Q1ZBt6EU1AoQ/zhi1t8o8O0CtALaGmR2g7mW765TVOc6wXqfSC
-         ciB7BXxJwPPBSaAlE5VRbsm835Gt2Xv54Oi5Ix8e4pLqYpYCb//uhwxnMprXttIgcjI2
-         axK7Q8FKWEcngXZygYy/liK2cH0TuPWR+ZHYaQFwoXU2M8dgxKOFha5xckDd/Ple8L0a
-         EFQq15HckXEokOj8n9gqMdlAT6MHJGlkRx2VGanagRE4zgfySpkN1G1PiaHtcYL/yrYn
-         7UOg==
-X-Gm-Message-State: AOAM530hgaI7EoLqX3sC1KTNUdXoIo6Wx9lOIoNGfq2+hDyoapgDUCqW
-        TIR1vTautGDQ/WaszzLYbQ==
-X-Google-Smtp-Source: ABdhPJxdjYh6WofGXsJdoKgehtLeOMME9WZOZ4bbWO60hk1ETWWc2RuVgeopCvRXthygMQ9vtdlXlQ==
-X-Received: by 2002:a05:6808:1b24:b0:2d4:c828:be31 with SMTP id bx36-20020a0568081b2400b002d4c828be31mr7676220oib.80.1646362605257;
-        Thu, 03 Mar 2022 18:56:45 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id n6-20020a056870970600b000d8a7483548sm2052052oaq.43.2022.03.03.18.56.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 18:56:44 -0800 (PST)
-Received: (nullmailer pid 2901687 invoked by uid 1000);
-        Fri, 04 Mar 2022 02:56:43 -0000
-Date:   Thu, 3 Mar 2022 20:56:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Chris Morgan <macroalpha82@gmail.com>
-Cc:     knaerzche@gmail.com, strit@manjaro.org, mbrugger@suse.com,
-        zyw@rock-chips.com, zhangqing@rock-chips.com,
-        arnaud.ferraris@collabora.com, devicetree@vger.kernel.org,
-        Chris Morgan <macromorgan@hotmail.com>,
-        linux-rockchip@lists.infradead.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, heiko@sntech.de
-Subject: Re: [PATCH 4/4 v5] dt-bindings: mfd: rk808: Convert bindings to yaml
-Message-ID: <YiF/6zvlK6xkMZhd@robh.at.kernel.org>
-References: <20220303203958.4904-1-macroalpha82@gmail.com>
- <20220303203958.4904-5-macroalpha82@gmail.com>
+        with ESMTP id S229965AbiCDD6z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 3 Mar 2022 22:58:55 -0500
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7AEF64C799;
+        Thu,  3 Mar 2022 19:58:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646366287; x=1677902287;
+  h=subject:from:to:cc:references:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=ebBvZoakZRPaLqiip1r6GvYgYOcgLjCmwdtlw630iFQ=;
+  b=umLWZbXDF6PrerhbCaMJM2sKtjM5pwiacwGIx/EbGRJFI3EWdTEr6CXi
+   fN36kIkOK5b1nUIzn1ClUDG4y8STuxC660xNtgrw790TGmxUn7P9NyioD
+   v2k7FU3HGlPJUxwPxL+0sNTK8LjpuHU+rkPYojC6+RY2pse5wcPabxExm
+   Y=;
+Received: from unknown (HELO ironmsg01-sd.qualcomm.com) ([10.53.140.141])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 03 Mar 2022 19:58:07 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg01-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2022 19:58:06 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Thu, 3 Mar 2022 19:58:06 -0800
+Received: from [10.50.57.42] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Thu, 3 Mar 2022
+ 19:58:02 -0800
+Subject: Re: [PATCH] arm64: dts: qcom: ipq8074: fix the sleep clock frequency
+From:   Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <agross@kernel.org>, <robh+dt@kernel.org>, <varada@codeaurora.org>,
+        <mraghava@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <stable@vger.kernel.org>, <quic_srichara@quicinc.com>
+References: <1644581655-11568-1-git-send-email-quic_kathirav@quicinc.com>
+ <YhfjLNHCZeK4hYKa@builder.lan>
+ <848671a3-dcf0-9968-f3fd-a3c5b9902ccf@quicinc.com>
+Message-ID: <f4dc04a8-e0b4-d14d-653f-bfaf8f77e79a@quicinc.com>
+Date:   Fri, 4 Mar 2022 09:27:59 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220303203958.4904-5-macroalpha82@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <848671a3-dcf0-9968-f3fd-a3c5b9902ccf@quicinc.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,31 +69,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Mar 2022 14:39:58 -0600, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
-> 
-> Convert the rk808 bindings into yaml format. clock-output-names varies
-> in maxItems depending on whether or not the clock-cells is 0 or 1. For
-> the rk805, rk809, and rk817. This preserves behavior with the existing
-> driver handling setting the clock for these specific PMICs. When this
-> driver is corrected and the devicetrees updated this logic can be
-> removed (since the rk805, rk808, and rk817 only have one actual clock).
-> 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
-> ---
->  .../devicetree/bindings/mfd/rk808.txt         | 465 ------------------
->  .../bindings/mfd/rockchip,rk805.yaml          | 219 +++++++++
->  .../bindings/mfd/rockchip,rk808.yaml          | 257 ++++++++++
->  .../bindings/mfd/rockchip,rk809.yaml          | 284 +++++++++++
->  .../bindings/mfd/rockchip,rk817.yaml          | 330 +++++++++++++
->  .../bindings/mfd/rockchip,rk818.yaml          | 282 +++++++++++
->  6 files changed, 1372 insertions(+), 465 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mfd/rk808.txt
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk805.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk808.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk809.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk817.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/rockchip,rk818.yaml
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 2/25/2022 5:48 PM, Kathiravan Thirumoorthy wrote:
+>
+> On 2/25/2022 1:27 AM, Bjorn Andersson wrote:
+>> On Fri 11 Feb 06:14 CST 2022, Kathiravan T wrote:
+>>
+>>> Sleep clock frequency should be 32768Hz. Lets fix it.
+>>>
+>>> Cc: stable@vger.kernel.org
+>>> Fixes: 41dac73e243d ("arm64: dts: Add ipq8074 SoC and HK01 board 
+>>> support")
+>>> Link: 
+>>> https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
+>>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> Can you please confirm this? The documentation for GCC says that the
+>> incoming sleep clock is 32000Hz.
+>>
+>> Regards,
+>> Bjorn
+>
+> Bjorn,
+>
+> I checked the internal documents and it is derived from the PMIC as 
+> 32.7645KHz. I rounded off it to 32768Hz. Looks like GCC documentation 
+> is not up-to-date.
+>
+> All these information is available in the link 
+> https://lore.kernel.org/all/e2a447f8-6024-0369-f698-2027b6edcf9e@codeaurora.org/
+>
+> Please let me know if you need any further information.
+>
+> Thanks,
+>
+> Kathiravan T.
+
+Bjorn,
+
+Gentle Ping.
+
+Thanks,
+
+Kathiravan T.
+
+>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/ipq8074.dtsi | 2 +-
+>>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi 
+>>> b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> index 26ba7ce9222c..b6287355ad08 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
+>>> @@ -13,7 +13,7 @@
+>>>       clocks {
+>>>           sleep_clk: sleep_clk {
+>>>               compatible = "fixed-clock";
+>>> -            clock-frequency = <32000>;
+>>> +            clock-frequency = <32768>;
+>>>               #clock-cells = <0>;
+>>>           };
+>>>   --
+>>> 2.7.4
+>>>
