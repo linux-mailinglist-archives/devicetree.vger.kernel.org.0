@@ -2,189 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 001474CD644
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:22:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C85DE4CD65C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:29:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230343AbiCDOXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:23:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
+        id S239808AbiCDO3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 09:29:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbiCDOXb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:23:31 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28DD24889A
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 06:22:41 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nQ8pK-00075d-L3; Fri, 04 Mar 2022 15:22:38 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nQ8pH-0007oL-Tu; Fri, 04 Mar 2022 15:22:35 +0100
-Date:   Fri, 4 Mar 2022 15:22:35 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Dmitry Osipenko <digetx@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v7 10/24] drm/rockchip: dw_hdmi: Add support for hclk
-Message-ID: <20220304142235.GL22780@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-11-s.hauer@pengutronix.de>
- <47ddcaf3-4544-2b7c-a2f6-1f6346907f33@gmail.com>
- <20220225104924.GC19585@pengutronix.de>
- <78207d97-b5a1-9792-8ec9-11fcf2e00370@gmail.com>
- <90c61299-f02c-607b-4734-7134852ef0a6@arm.com>
- <20220225131154.GE19585@pengutronix.de>
- <20220228141921.GN19585@pengutronix.de>
- <5184ecf2-8734-3121-cbbc-5dcfcf0d02f8@arm.com>
- <20220302112528.GV19585@pengutronix.de>
+        with ESMTP id S239792AbiCDO3q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:29:46 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ABBE1B60B4;
+        Fri,  4 Mar 2022 06:28:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646404138; x=1677940138;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=H/iynhIkpEfv9ZlpWMFfCVlJ4/W9smECL8yrvx7yXlc=;
+  b=O8JwIQEbXGhE2qiQx0/1sEH8T4yei0r6BkYzeV6G26ST1pQeqEN0cyt5
+   iiESw6IdH5Ce6mEPaX/8LJ8HlDdZHGPF4cW0V78oq8KCWTZiTyJFooTAs
+   /f46ub+ugNXrpsawMkUQd6wdPXBhOdIIHl+JWKeEFzWRIs12GYsWfUUc6
+   bqwzarqJXbwma2cOpN63HqRaU+o0FzAzuMD9id9j52nkHbyabvuTNqnja
+   cga4Cq2tHheSgt1WDCHncbJf3QrgoNt/JHCBNvwEebBBQsTSMbv95UTtC
+   3/OgkV10vbF0rCaWHGLlQJ2xsiICdds/9CnFEcN/kAZyGMPUE+fTI79GC
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,155,1643698800"; 
+   d="scan'208";a="150868593"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Mar 2022 07:28:57 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 4 Mar 2022 07:28:57 -0700
+Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Fri, 4 Mar 2022 07:28:54 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <a.zummo@towertech.it>, <alexandre.belloni@bootlin.com>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
+        <nicolas.ferre@microchip.com>, <claudiu.beznea@microchip.com>
+CC:     <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Sergiu Moga <sergiu.moga@microchip.com>
+Subject: [PATCH v3 0/5] dt-bindings: rtc: convert at91sam9 bindings to
+Date:   Fri, 4 Mar 2022 16:27:41 +0200
+Message-ID: <20220304142746.121947-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220302112528.GV19585@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:19:13 up 83 days, 23:04, 85 users,  load average: 0.27, 0.51,
- 0.38
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 02, 2022 at 12:25:28PM +0100, Sascha Hauer wrote:
-> On Tue, Mar 01, 2022 at 01:39:31PM +0000, Robin Murphy wrote:
-> > On 2022-02-28 14:19, Sascha Hauer wrote:
-> > > On Fri, Feb 25, 2022 at 02:11:54PM +0100, Sascha Hauer wrote:
-> > > > On Fri, Feb 25, 2022 at 12:41:23PM +0000, Robin Murphy wrote:
-> > > > > On 2022-02-25 11:10, Dmitry Osipenko wrote:
-> > > > > > 25.02.2022 13:49, Sascha Hauer пишет:
-> > > > > > > On Fri, Feb 25, 2022 at 01:26:14PM +0300, Dmitry Osipenko wrote:
-> > > > > > > > 25.02.2022 10:51, Sascha Hauer пишет:
-> > > > > > > > > The rk3568 HDMI has an additional clock that needs to be enabled for the
-> > > > > > > > > HDMI controller to work. The purpose of that clock is not clear. It is
-> > > > > > > > > named "hclk" in the downstream driver, so use the same name.
-> > > > > > > > > 
-> > > > > > > > > Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> > > > > > > > > ---
-> > > > > > > > > 
-> > > > > > > > > Notes:
-> > > > > > > > >       Changes since v5:
-> > > > > > > > >       - Use devm_clk_get_optional rather than devm_clk_get
-> > > > > > > > > 
-> > > > > > > > >    drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++++++++++++++++
-> > > > > > > > >    1 file changed, 16 insertions(+)
-> > > > > > > > > 
-> > > > > > > > > diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > > > > > > > > index fe4f9556239ac..c6c00e8779ab5 100644
-> > > > > > > > > --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > > > > > > > > +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-> > > > > > > > > @@ -76,6 +76,7 @@ struct rockchip_hdmi {
-> > > > > > > > >    	const struct rockchip_hdmi_chip_data *chip_data;
-> > > > > > > > >    	struct clk *ref_clk;
-> > > > > > > > >    	struct clk *grf_clk;
-> > > > > > > > > +	struct clk *hclk_clk;
-> > > > > > > > >    	struct dw_hdmi *hdmi;
-> > > > > > > > >    	struct regulator *avdd_0v9;
-> > > > > > > > >    	struct regulator *avdd_1v8;
-> > > > > > > > > @@ -229,6 +230,14 @@ static int rockchip_hdmi_parse_dt(struct rockchip_hdmi *hdmi)
-> > > > > > > > >    		return PTR_ERR(hdmi->grf_clk);
-> > > > > > > > >    	}
-> > > > > > > > > +	hdmi->hclk_clk = devm_clk_get_optional(hdmi->dev, "hclk");
-> > > > > > > > > +	if (PTR_ERR(hdmi->hclk_clk) == -EPROBE_DEFER) {
-> > > > > > > > 
-> > > > > > > > Have you tried to investigate the hclk? I'm still thinking that's not
-> > > > > > > > only HDMI that needs this clock and then the hardware description
-> > > > > > > > doesn't look correct.
-> > > > > > > 
-> > > > > > > I am still not sure what you mean. Yes, it's not only the HDMI that
-> > > > > > > needs this clock. The VOP2 needs it as well and the driver handles that.
-> > > > > > 
-> > > > > > I'm curious whether DSI/DP also need that clock to be enabled. If they
-> > > > > > do, then you aren't modeling h/w properly AFAICS.
-> > > > > 
-> > > > > Assuming nobody at Rockchip decided to make things needlessly inconsistent
-> > > > > with previous SoCs, HCLK_VOP should be the clock for the VOP's AHB slave
-> > > > > interface. Usually, if that affected anything other than accessing VOP
-> > > > > registers, indeed it would smell of something being wrong in the clock tree,
-> > > > > but in this case I'd also be suspicious of whether it might have ended up
-> > > > > clocking related GRF registers as well (either directly, or indirectly via
-> > > > > some gate that the clock driver hasn't modelled yet).
-> > > > 
-> > > > Ok, I am beginning to understand. I verified that hdmi, mipi and dp are
-> > > > hanging when HCLK_VOP is disabled by disabling that clock via sysfs
-> > > > using CLOCK_ALLOW_WRITE_DEBUGFS. When it's disabled then the registers
-> > > > of that units can't be accessed. However, when I disable HCLK_VOP by
-> > > > directly writing to the gate bit RK3568_CLKGATE_CON(20) then only
-> > > > accessing VOP registers hangs, the other units stay functional.
-> > > > So it seems it must be the parent clock which must be enabled. The
-> > > > parent clock is hclk_vo. This clock should be handled as part of the
-> > > > RK3568_PD_VO power domain:
-> > > > 
-> > > > 	power-domain@RK3568_PD_VO {
-> > > >                  reg = <RK3568_PD_VO>;
-> > > >                  clocks = <&cru HCLK_VO>,
-> > > >                           <&cru PCLK_VO>,
-> > > >                           <&cru ACLK_VOP_PRE>;
-> > > >                   pm_qos = <&qos_hdcp>,
-> > > >                            <&qos_vop_m0>,
-> > > >                            <&qos_vop_m1>;
-> > > >                   #power-domain-cells = <0>;
-> > > >          };
-> > > 
-> > > Forget this. The clocks in this node are only enabled during enabling or
-> > > disabling the power domain, they are disabled again immediately afterwards.
-> > > 
-> > > OK, I need HCLK_VO to access the HDMI registers. I verified that by
-> > > disabling HCLK_VO at register level (CRU_GATE_CON(20) BIT(1)). The
-> > > HDMI registers become inaccessible then. This means I'll replace
-> > > HCLK_VOP in the HDMI node with HCLK_VO. Does this sound sane?
-> > 
-> > Well, it's still a mystery hack overall, and in some ways it seems even more
-> > suspect to be claiming a whole branch of the clock tree rather than a leaf
-> > gate with a specific purpose. I'm really starting to think that the
-> > underlying issue here is a bug in the clock driver, or a hardware mishap
-> > that should logically be worked around by the clock driver, rather than
-> > individual the consumers.
-> > 
-> > Does it work if you hack the clock driver to think that PCLK_VO is a child
-> > of HCLK_VO? Even if that's not technically true, it would seem to
-> > effectively match the observed behaviour (i.e. all 3 things whose register
-> > access apparently *should* be enabled by a gate off PCLK_VO, seem to also
-> > require HCLK_VO).
-> 
-> Yes, that works as expected. I am not sure though if we really want to
-> go that path. The pclk rates will become completely bogus with this and
-> should we have to play with the rates in the future we might regret this
-> step.
+This patch series addresses the conversion of the RTC binding for
+Atmel/Microchip SoCs to Device Tree Schema format. It also changes
+the node names from some of the "dtsi" files from "rtt" to the more
+generic "rtc", while adding the `atmel,rtt-rtc-time-reg` required
+property to the board files that were missing it.
 
-How do we proceed here? I can include a patch which makes PCLK_VO a
-child of HCLK_VO if that's what we agree upon.
+Changes since v2:
+- Removed patch that would move the `atmel,rtt-rtc-time-reg` property
+from the board file to the SoC file.
+- Modified the patch that adds the `atmel,rtt-rtc-time-reg` property
+to add it in the board file instead of the SoC file.
+- Replaced `start-year` and `additionalProperties` from the DT binding
+with `unevaluatedProperties`.
+- Modified the `atmel,rtt-rtc-time-reg` property described in the DT
+binding to use items with description.
+- Used macro for the IRQ type of the example node's interrupt property
+of the DT binding.
 
-Sascha
+Sergiu Moga (5):
+  ARM: dts: at91: Add the required `atmel,rtt-rtc-time-reg` property
+  ARM: dts: at91: Use the generic "rtc" node name for the rtt IPs
+  dt-bindings: rtc: convert at91sam9 bindings to json-schema
+  dt-bindings: rtc: at91: Use macros for the IRQ type
+  dt-bindings: rtc: at91: Add SAMA7G5 compatible strings list
+
+ .../bindings/rtc/atmel,at91sam9-rtc.txt       | 25 -------
+ .../bindings/rtc/atmel,at91sam9-rtc.yaml      | 69 +++++++++++++++++++
+ arch/arm/boot/dts/at91sam9261ek.dts           |  4 ++
+ arch/arm/boot/dts/at91sam9263ek.dts           |  8 +++
+ arch/arm/boot/dts/at91sam9rlek.dts            |  4 ++
+ arch/arm/boot/dts/sam9x60.dtsi                |  2 +-
+ arch/arm/boot/dts/sama7g5.dtsi                |  2 +-
+ 7 files changed, 87 insertions(+), 27 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.25.1
+
