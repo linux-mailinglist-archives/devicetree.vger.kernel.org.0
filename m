@@ -2,283 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 462164CCFF7
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 09:31:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF5D4CD02B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 09:38:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233522AbiCDIcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 03:32:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
+        id S232609AbiCDIi5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 4 Mar 2022 03:38:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46660 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233565AbiCDIcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 03:32:17 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CEEC19BE57;
-        Fri,  4 Mar 2022 00:31:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646382690; x=1677918690;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=bRh9vLr+hYcvBwH9b9Rd9p+oiNm33rxg+Jdz156Rm68=;
-  b=hhIqkDap7rMhjl4rFX4Vk91zdwTWdvjJq2+VaEqgSzTmZ1zHoOGVafGx
-   nLT1nLv6ZHZDK0F0SHaQK1nxwkzXxILsp2gQZDE8acTcwJ46SPDqN6aMM
-   rTEMQm0oo0Zg2sZO+oehG77tNbv8Ttb4i/gUZ0SmZ2fu9LEXbHt6Alp/O
-   2DqfR3F6Mqciu7XmusOkMH5qptxBMHg20/oiDE0CL+7eRAQI04qPaGr/w
-   zHFdftqHiKT5p1VAoKd5Tz6dL0uZ4sEaYKTaCGjdIankOW2V+dZ+Dp2uy
-   shwQHQloiIJ+wiUZ+v3+DlQZQWtKGin5yzaB7N53NwgNgEVO7NBQkghxh
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,154,1643698800"; 
-   d="scan'208";a="155702809"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Mar 2022 01:31:29 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 4 Mar 2022 01:31:27 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Fri, 4 Mar 2022 01:31:26 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lII6031IeG3+JhUYLuArkDtZRTB+kgPMzvBxI/TgZBxsJX9DM0NQ2dkKLCd6MREl11AKMDNpBzdZPiGEX6EjJhBJSLC1bEkkNzqTaJ7pcDxoDh4/cZJKCx3wuaO/KLK7pn0ZisiH65tcsKSl7Wof2HyOK48vixGJWdysjW7SEIUJcVrbKzpKZXHgS3NcW8U+mRMRFgRc5sO+03lyRGdI0gQYjtxi/b+smZ2TMdb2U5JvpKYOVP5zbmoDnwj9eTv7jQTwQ3BVA5eJhDniewBOcuAKQ4UuHLEIf2aS/1UYXROYB1XvWxzTAtJVRA2uHcMAHrHHJKFyvQ3q70gIUfLFtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bRh9vLr+hYcvBwH9b9Rd9p+oiNm33rxg+Jdz156Rm68=;
- b=PcbE+tr7XJYnmtF1x9vPAGbKGGC5ppdUBEObIfZEgOfwr6jGjx8Iw+90etoILlkz/XJ4fEYTJlhV93Bb8m5/2dM2PXc+pjw//GWnoxirDKxJ4EYNfKW+d++SRRBlKU5HKNN4Mfj9O0o10OURN2MMkRTfkgYN6ewnCEywvEnu9vAPCbt6yqHraRwyCpqFZw6I2Po9WE4x/XPcDkl71lduol2f3X9pTod2wWQGYRkN+hx+VpTDA8uQVeGUKH18qFHnm8PJrB6XwHbUvc95mbpzn9V3iL18uhydCtuBc9nOU8sSCufAu16CAWK9ZFk8d+ioK1jzszNsDBAMl9iDGUrvWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bRh9vLr+hYcvBwH9b9Rd9p+oiNm33rxg+Jdz156Rm68=;
- b=JjY9QXQMid8xYitFL5OWdkE9ppDMvwUjgtt4WRW8AmMzVgj7YKbuKRmWWAIFzBKT8eH8dunTAt9ElHRSxmpL8u3QGFPCpIuEIg584ovzEjyn8IPJaKjwwUmpaBPGluUFPrlQmsUsqPDCO3eVCuMuUiv6AJp3p04n1/arbT9yHdU=
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com (2603:10b6:303:91::21)
- by DM6PR11MB2667.namprd11.prod.outlook.com (2603:10b6:5:c1::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Fri, 4 Mar
- 2022 08:31:21 +0000
-Received: from CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::6d66:3f1d:7b05:660b]) by CO1PR11MB4769.namprd11.prod.outlook.com
- ([fe80::6d66:3f1d:7b05:660b%5]) with mapi id 15.20.5038.017; Fri, 4 Mar 2022
- 08:31:21 +0000
-From:   <Claudiu.Beznea@microchip.com>
-To:     <michael@walle.cc>, <Kavyasree.Kotagiri@microchip.com>,
-        <Nicolas.Ferre@microchip.com>
-CC:     <arnd@arndb.de>, <olof@lixom.net>, <soc@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
-        <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH v1 6/6] ARM: dts: lan966x: add basic Kontron KSwitch D10
- support
-Thread-Topic: [PATCH v1 6/6] ARM: dts: lan966x: add basic Kontron KSwitch D10
- support
-Thread-Index: AQHYL6I5IDsWmNUwNUeQZG3vhMQHpw==
-Date:   Fri, 4 Mar 2022 08:31:21 +0000
-Message-ID: <b4aca5f1-38c0-8197-6914-0a39b7755180@microchip.com>
-References: <20220303160323.3316317-1-michael@walle.cc>
- <20220303160323.3316317-7-michael@walle.cc>
-In-Reply-To: <20220303160323.3316317-7-michael@walle.cc>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2b7c0669-406d-4944-5c11-08d9fdb95c81
-x-ms-traffictypediagnostic: DM6PR11MB2667:EE_
-x-microsoft-antispam-prvs: <DM6PR11MB2667744043B1B8B6C0B07D5287059@DM6PR11MB2667.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Cmj3GX8hSRU4yM/f8l4+uyYuld5xgnMPX/bzj5z3AOOxzaRsjaOMfoau/Z00GWGH1FcGAeHRZW3C9jtuOrxtGMDqr3BGsSCQA6YwGNQC55/4idd2+AfofXFtfQjiHYjxnFzKhN6B+F1k/wp6a/9jDY6Tf08xckS7k/VBqihYK1Xk/Dcwu0gwsJ3DNyURja1pC7cfQWdIsYTBoVlM1LNps3MX7TMDjVOaQcpNFGXrpgrM6kZL+8iHjuX+hN6AiO9e9O5Gfbm+PnjUupUzewiPtS1WMKqzDjicbBXgDWai0mSHrdEVXGKAvQNRRUW/A9Ku9cO1MB6Lh9M9BBAtIlWOD9GhSN7l4+V8gCJnTSBPi+y9ThTRL4M7tGWZJEi0L/3r7+0geRfBiN7VW7Y75XMY6CUX8PE4g0B4Yu3cOCxvakRXQcYnb41BkwSuSoh7VIR+o4nIqraX13WJQAtDe6PRQBgOE7jcml/Bd+d8ZfFmSn/rfvaS9b3AZfS75hpQzuvEytB/wnsjUIMLd5zfyaMe/MCy7nkVN1/5GcOodu0SY/f4rSBufot9xwD1pBI33+GT7vOb8LPFiOtxsLy0UKexoJyaLrN5dhf4BjS0mny3b8UT+21NL5BSE3oxqIBZQLiQOQuxkRd3kqwj67MgHySSewlJ5XB6B5TuZOIpIH1NoYzA/3B6eIeSn2t2XePNPUoBYdgCnh5V0YIGjedMKBc7mOueXz4ipW2SEVbcbu4qXvoKu23sp9vL7RoZX/CPKxHRb4goOrActy4fXGTgl2lZjQ==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4769.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(53546011)(5660300002)(6512007)(6486002)(7416002)(86362001)(8936002)(76116006)(6506007)(6636002)(186003)(110136005)(26005)(54906003)(2906002)(2616005)(38100700002)(122000001)(31686004)(31696002)(38070700005)(83380400001)(66476007)(64756008)(8676002)(36756003)(66446008)(71200400001)(4326008)(508600001)(316002)(66946007)(91956017)(66556008)(43740500002)(45980500001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?aUx0L1RtNDZqSzF2azZRWmVLSWFnaXFEY0liZkVYSWFEYUVmME9vL2QyeTRk?=
- =?utf-8?B?bnRCMFZCKytnTmh4SWJzOEdhZ2xFeEx1cStCbkg2eVM1NG1rMjZrRW5jN0F6?=
- =?utf-8?B?TXlPcnlSUGozZVRyUlpLT0drRWc4RVdaZmVyZ0hFT2RkcnR2MmlDV2FuOHR5?=
- =?utf-8?B?OXN0TURLR3pidGx4bmdJdWM3RzZ0YWFSWWp0Um4xVzZMSFlXdjJhdy9zM1VU?=
- =?utf-8?B?Rkh1Q0QxcThSK25rSDlYSk1aUnJUeU85b2JCQjR0WFhEaUNOclVrQWc2SS92?=
- =?utf-8?B?R2RmSnB4NlZSaWplcWFvSXBCbTlnOVVoaW9aSU5TQmY3Z2Z3dHZjSUh3WWlM?=
- =?utf-8?B?Z3dNay8yWTF6MmdaVjcrdStvd05zS3JMeUZ4cC9NaFIzVTJKNTZqUzBwK1dB?=
- =?utf-8?B?ZWxLY1NTQ1R1ZUthK1A0Q1RhNzA1QWorSHBVYjNqRjFnQmlBUFd5RURsN3hx?=
- =?utf-8?B?Z1NadUhYVGxhWm83akh1YjFlWkFWTXB2ZE8wdHZVcUdJMFRiL291L0NFWTRS?=
- =?utf-8?B?dzBkZjNKY3pLcEMyaWF5aTBJei9xczh6TTVVS2s0elpTbXAyTlVmNmVLcGJR?=
- =?utf-8?B?VmNwelBPNVc3Z0xXUUVFQThTRHVqTi9HeFV3VlFKRFE0NjlMeW9TbzRFSkU1?=
- =?utf-8?B?bFFjbDV5K1E2L3B2aG5kRWZTakltdVhTemtNTWRLWjd4YkFyZHJRaUZTeFpH?=
- =?utf-8?B?eHpGQUxtUElpS2NsMUhyUk9hanpLT3k4VnVaNHVPS284SVdWaHFGTTBwSkI3?=
- =?utf-8?B?MkRxZS9ZQjJDTG9Sd29yRXR0ellZLzBsYkRmcFAxeU5oUFFLckNZcW1NRWZm?=
- =?utf-8?B?a3puUlZvNkMwZDJJUTJBK1k1Z3R1Sk54bzVjVDcwNENiVWhHVmVtSFZxYXhw?=
- =?utf-8?B?Z3hGakNFTThVdHEvS1NadlRkdDNGWGRMZmtRWTBwL0tnY1lQcUtKOXpkUmQ4?=
- =?utf-8?B?TmpwaDVtckE3M3pzTVE2TVJxSTYzRUM4d2xxWkt4T3o1RDBCUnNsM1RoMklJ?=
- =?utf-8?B?ZnhxSEI5U0hMZ1hhU0VRYlNneXBjZHlhSTVoVXEyR2lNNEFsYWhBYk1PaVZQ?=
- =?utf-8?B?NTEyS2wvRkIzb1Y4NFJicDZVTWNPbDZjbXhleGZJa1NnSkowTlo0SFhabWR3?=
- =?utf-8?B?N2RtNWRIVk9qcVFJQUlacW0rampGQ01xUTRNc0syTzNweEpiTEhUNWk1QkxL?=
- =?utf-8?B?cXdXVmp1YTNaTnAxbFo2SmFobW1YWGNId0RlTzBaMlM2U0szbzVkTkdBTW8y?=
- =?utf-8?B?OFg5ZlBLeDUrTmIrVzUwazF2eHZQZFQyYmxJQ2NnZkcySHZIVHFUQnpRZStT?=
- =?utf-8?B?M2d4QWZnS1VsWEludFVvL2VjSFFSdkloYzk0TkJYdktDNU1TU012elRTUHF6?=
- =?utf-8?B?bm1LT0xCY1VWYXRaQ2Via2FPTTdOL3RkOVBmMzBzdENaWUpjeGVoaU90dmJM?=
- =?utf-8?B?OTdZaGNDdlhyVDJoWkRzSE0vQVhwYU9qVDljVU4rYjJNQ0N1czVaNm0xQml5?=
- =?utf-8?B?T2ppdzFzdFpvV3Q0aHlNZ0NrZHR0c0xwbFFrRE1oVVR2T1NoaXkrc0RmTDFq?=
- =?utf-8?B?eXBBNzU5Mk5TQ1NCc2pBUHZ6U0ZvOUVmVXdyQ3M0Z2luRmlIZXBaNkE3bERq?=
- =?utf-8?B?VXlvTHE1YktlSzJFQ29LT1M4dDR1TVZtdDRFWkhGSjY5QzZ5Q2U5QlBVOTZY?=
- =?utf-8?B?MjduWEtGTitKZjdXVHp6d0hwdnE0bVBZZ3pWTzVtSEVHRzh0bTE3WHdRc09Y?=
- =?utf-8?B?UWtSRmNmY3VJanVDNU54SVhRU3ZHbUo0bWEzY2hCV1FLQjZic2R6bjRYSzdX?=
- =?utf-8?B?Mkx4L3B4dktoOW1RRitEM2t0YUY0TEhiWWlCZk45Q3Y2OEhnREZEQlhCbk9B?=
- =?utf-8?B?Q1h3NGFQQXhRUUQzSm1WU2FzSEVRcm50TWtRSGVFVnNUU2lrTXR3aTR6KzdH?=
- =?utf-8?B?Vk1mWG9kNnM5RmEzdkc1c1ErQzhMeXdpOWcyVEJUNC9lZXVmUzlrdlp6QXY1?=
- =?utf-8?B?QzErQmxpYjNBekFuUE0rZXhkWjYxMzErbGwzZWR3VTkrYkljVW1halZJM1NU?=
- =?utf-8?B?SWZrSVFtVGxZSERYTGxmczY1blN1cElELytSeFNmMDJNckwrRkt2cndBRTVP?=
- =?utf-8?B?aGNoNFd4SUZFMW53R2JrSVFSM0N4b2s5L1puRTE2cUFpY1lwNDE2aHljcnQ4?=
- =?utf-8?B?eklYWlZuejhKSWpsQ0RzTGlpMVRwTmpxWENhbXhFUFJleVptK1BmT01qeGVs?=
- =?utf-8?B?V1ZIRnQ1U2FObWxueElaalJpd1RnPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FE9B0FB6727B274C8AA801C295C07ACA@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        with ESMTP id S234055AbiCDIiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 03:38:46 -0500
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFBF124094;
+        Fri,  4 Mar 2022 00:37:58 -0800 (PST)
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 2245JNOH021192;
+        Fri, 4 Mar 2022 08:36:52 GMT
+Received: from ppma01fra.de.ibm.com (46.49.7a9f.ip4.static.sl-reverse.com [159.122.73.70])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 3ek8mxpp6e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Mar 2022 08:36:52 +0000
+Received: from pps.filterd (ppma01fra.de.ibm.com [127.0.0.1])
+        by ppma01fra.de.ibm.com (8.16.1.2/8.16.1.2) with SMTP id 2248XJ2V027393;
+        Fri, 4 Mar 2022 08:36:50 GMT
+Received: from b06avi18878370.portsmouth.uk.ibm.com (b06avi18878370.portsmouth.uk.ibm.com [9.149.26.194])
+        by ppma01fra.de.ibm.com with ESMTP id 3ek4k8124g-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 04 Mar 2022 08:36:50 +0000
+Received: from d06av24.portsmouth.uk.ibm.com (d06av24.portsmouth.uk.ibm.com [9.149.105.60])
+        by b06avi18878370.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 2248amEB47186186
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 4 Mar 2022 08:36:48 GMT
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 1AEAD42042;
+        Fri,  4 Mar 2022 08:36:48 +0000 (GMT)
+Received: from d06av24.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 73D0D42045;
+        Fri,  4 Mar 2022 08:36:47 +0000 (GMT)
+Received: from smtp.tlslab.ibm.com (unknown [9.101.4.1])
+        by d06av24.portsmouth.uk.ibm.com (Postfix) with SMTP;
+        Fri,  4 Mar 2022 08:36:47 +0000 (GMT)
+Received: from yukon.home (unknown [9.171.91.16])
+        by smtp.tlslab.ibm.com (Postfix) with ESMTP id 89B872200FD;
+        Fri,  4 Mar 2022 09:36:45 +0100 (CET)
+From:   =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+To:     linux-spi@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Tudor Ambarus <tudor.ambarus@microchip.com>,
+        Pratyush Yadav <p.yadav@ti.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-aspeed@lists.ozlabs.org, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        =?UTF-8?q?C=C3=A9dric=20Le=20Goater?= <clg@kaod.org>
+Subject: [PATCH v3 00/11] spi: spi-mem: Add driver for Aspeed SMC controllers
+Date:   Fri,  4 Mar 2022 09:36:32 +0100
+Message-Id: <20220304083643.1079142-1-clg@kaod.org>
+X-Mailer: git-send-email 2.34.1
+Content-Type: text/plain; charset=UTF-8
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: RFuuLzC8JejxWrm4oynsn6-IAqVUMeMt
+X-Proofpoint-ORIG-GUID: RFuuLzC8JejxWrm4oynsn6-IAqVUMeMt
+Content-Transfer-Encoding: 8BIT
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4769.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2b7c0669-406d-4944-5c11-08d9fdb95c81
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2022 08:31:21.0832
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 1vQ6oEoHXjof7faxtThKDpYYdMdSQBAtZZsxd3ZvlLkw4dHnaXUNeHVWMYOZSQHC8pzHgSEaNJRLOM2pi5seEkQ8eT9JT0OQQSY5Jkyowuk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB2667
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-04_02,2022-02-26_01,2022-02-23_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
+ mlxlogscore=999 lowpriorityscore=0 mlxscore=0 impostorscore=0 adultscore=0
+ spamscore=0 priorityscore=1501 phishscore=0 suspectscore=0 bulkscore=0
+ clxscore=1034 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2202240000 definitions=main-2203040044
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMDMuMDMuMjAyMiAxODowMywgTWljaGFlbCBXYWxsZSB3cm90ZToNCj4gRVhURVJOQUwgRU1B
-SUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25v
-dyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBBZGQgYmFzaWMgc3VwcG9ydCBmb3IgdGhlIEtv
-bnRyb24gS1N3aXRjaCBEMTAgTU1UIDZHLTJHUyB3aGljaA0KPiBmZWF0dXJlcyA2IEdpZ2FiaXQg
-Y29wcGVyIHBvcnRzIGFuZCB0d28gU0ZQIGNhZ2VzLiBGb3Igbm93IHRoZQ0KPiBmb2xsb3dpbmcg
-aXMgd29ya2luZzoNCj4gIC0gS2VybmVsIGNvbnNvbGUNCj4gIC0gU0ZQIGNhZ2VzIEkyQyBidXMg
-YW5kIG11eA0KPiAgLSBTUEkNCj4gIC0gU0dQSU8NCj4gIC0gV2F0Y2hkb2cNCj4gDQo+IFNpZ25l
-ZC1vZmYtYnk6IE1pY2hhZWwgV2FsbGUgPG1pY2hhZWxAd2FsbGUuY2M+DQo+IC0tLQ0KPiAgYXJj
-aC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUgICAgICAgICAgICAgICAgICAgIHwgICAzICstDQo+ICAu
-Li5sYW45NjZ4LWtvbnRyb24ta3N3aXRjaC1kMTAtbW10LTZnLTJncy5kdHMgfCAxNTkgKysrKysr
-KysrKysrKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDE2MSBpbnNlcnRpb25zKCspLCAxIGRl
-bGV0aW9uKC0pDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2
-eC1rb250cm9uLWtzd2l0Y2gtZDEwLW1tdC02Zy0yZ3MuZHRzDQo+IA0KPiBkaWZmIC0tZ2l0IGEv
-YXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUgYi9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZQ0K
-PiBpbmRleCAwODVjNDM2NDlkNDQuLjg2ZGQwZjk4MDRlZSAxMDA2NDQNCj4gLS0tIGEvYXJjaC9h
-cm0vYm9vdC9kdHMvTWFrZWZpbGUNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvTWFrZWZpbGUN
-Cj4gQEAgLTczOSw3ICs3MzksOCBAQCBkdGItJChDT05GSUdfU09DX0lNWDdVTFApICs9IFwNCj4g
-ICAgICAgICBpbXg3dWxwLWNvbS5kdGIgXA0KPiAgICAgICAgIGlteDd1bHAtZXZrLmR0Yg0KPiAg
-ZHRiLSQoQ09ORklHX1NPQ19MQU45NjYpICs9IFwNCj4gLSAgICAgICBsYW45NjZ4LXBjYjgyOTEu
-ZHRiDQo+ICsgICAgICAgbGFuOTY2eC1wY2I4MjkxLmR0YiBcDQo+ICsgICAgICAgbGFuOTY2eC1r
-b250cm9uLWtzd2l0Y2gtZDEwLW1tdC02Zy0yZ3MuZHRiDQo+ICBkdGItJChDT05GSUdfU09DX0xT
-MTAyMUEpICs9IFwNCj4gICAgICAgICBsczEwMjFhLW1veGEtdWMtODQxMGEuZHRiIFwNCj4gICAg
-ICAgICBsczEwMjFhLXFkcy5kdGIgXA0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMv
-bGFuOTY2eC1rb250cm9uLWtzd2l0Y2gtZDEwLW1tdC02Zy0yZ3MuZHRzIGIvYXJjaC9hcm0vYm9v
-dC9kdHMvbGFuOTY2eC1rb250cm9uLWtzd2l0Y2gtZDEwLW1tdC02Zy0yZ3MuZHRzDQo+IG5ldyBm
-aWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAwMDAwMC4uOTU4Njc4ZGVjN2FkDQo+IC0t
-LSAvZGV2L251bGwNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbGFuOTY2eC1rb250cm9uLWtz
-d2l0Y2gtZDEwLW1tdC02Zy0yZ3MuZHRzDQo+IEBAIC0wLDAgKzEsMTU5IEBADQo+ICsvLyBTUERY
-LUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjArIE9SIE1JVCkNCj4gKy8qDQo+ICsgKiBEZXZp
-Y2UgVHJlZSBmaWxlIGZvciB0aGUgS29udHJvbiBLU3dpdGNoIEQxMCBNTVQgNkctMkdTDQo+ICsg
-Ki8NCj4gKw0KPiArL2R0cy12MS87DQo+ICsjaW5jbHVkZSAibGFuOTY2eC5kdHNpIg0KPiArDQo+
-ICsvIHsNCj4gKyAgICAgICBtb2RlbCA9ICJLb250cm9uIEtTd2l0Y2ggRDEwIE1NVCA2Ry0yR1Mi
-Ow0KPiArICAgICAgIGNvbXBhdGlibGUgPSAia29udHJvbixrc3dpdGNoLWQxMC1tbXQtNmctMmdz
-IiwgImtvbnRyb24sczE5MjEiLA0KPiArICAgICAgICAgICAgICAgICAgICAibWljcm9jaGlwLGxh
-bjk2NjgiLCAibWljcm9jaGlwLGxhbjk2NiI7DQo+ICsNCj4gKyAgICAgICBhbGlhc2VzIHsNCj4g
-KyAgICAgICAgICAgICAgIHNlcmlhbDAgPSAmdXNhcnQwOw0KPiArICAgICAgIH07DQo+ICsNCj4g
-KyAgICAgICBjaG9zZW4gew0KPiArICAgICAgICAgICAgICAgc3Rkb3V0LXBhdGggPSAic2VyaWFs
-MDoxMTUyMDBuOCI7DQo+ICsgICAgICAgfTsNCj4gKw0KPiArICAgICAgIGdwaW8tcmVzdGFydCB7
-DQo+ICsgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImdwaW8tcmVzdGFydCI7DQo+ICsgICAg
-ICAgICAgICAgICBncGlvcyA9IDwmZ3BpbyA1NiBHUElPX0FDVElWRV9MT1c+Ow0KPiArICAgICAg
-ICAgICAgICAgcHJpb3JpdHkgPSA8MjAwPjsNCj4gKyAgICAgICB9Ow0KPiArDQo+ICsgICAgICAg
-aTJjbXV4IHsNCj4gKyAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiaTJjLW11eC1ncGlvIjsN
-Cj4gKyAgICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiArICAgICAgICAgICAg
-ICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ICsgICAgICAgICAgICAgICBtdXgtZ3Bpb3MgPSA8JnNn
-cGlvX291dCAzIDIgR1BJT19BQ1RJVkVfSElHSD4sDQo+ICsgICAgICAgICAgICAgICAgICAgICAg
-ICAgICA8JnNncGlvX291dCAzIDMgR1BJT19BQ1RJVkVfSElHSD47DQo+ICsgICAgICAgICAgICAg
-ICBpMmMtcGFyZW50ID0gPCZpMmM0PjsNCj4gKw0KPiArICAgICAgICAgICAgICAgaTJjNF8wOiBp
-MmNAMSB7DQo+ICsgICAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwxPjsNCj4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ICsgICAgICAgICAgICAgICAg
-ICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiArICAgICAgICAgICAgICAgfTsNCj4gKw0KPiAr
-ICAgICAgICAgICAgICAgaTJjNF8xOiBpMmNAMiB7DQo+ICsgICAgICAgICAgICAgICAgICAgICAg
-IHJlZyA9IDwyPjsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8
-MT47DQo+ICsgICAgICAgICAgICAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiArICAg
-ICAgICAgICAgICAgfTsNCj4gKyAgICAgICB9Ow0KPiArDQo+ICsgICAgICAgc2ZwMDogc2ZwMCB7
-DQo+ICsgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gInNmZixzZnAiOw0KPiArICAgICAgICAg
-ICAgICAgaTJjLWJ1cyA9IDwmaTJjNF8wPjsNCj4gKyAgICAgICAgICAgICAgIGxvcy1ncGlvcyA9
-IDwmc2dwaW9faW4gMSAwIEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiArICAgICAgICAgICAgICAgbW9k
-LWRlZjAtZ3Bpb3MgPSA8JnNncGlvX2luIDEgMSBHUElPX0FDVElWRV9MT1c+Ow0KPiArICAgICAg
-ICAgICAgICAgbWF4aW11bS1wb3dlci1taWxsaXdhdHQgPSA8MjUwMD47DQo+ICsgICAgICAgICAg
-ICAgICB0eC1kaXNhYmxlLWdwaW9zID0gPCZzZ3Bpb19vdXQgMyAwIEdQSU9fQUNUSVZFX0xPVz47
-DQo+ICsgICAgICAgICAgICAgICB0eC1mYXVsdC1ncGlvcyA9IDwmc2dwaW9faW4gMCAyIEdQSU9f
-QUNUSVZFX0hJR0g+Ow0KPiArICAgICAgICAgICAgICAgcmF0ZS1zZWxlY3QwLWdwaW9zID0gPCZz
-Z3Bpb19vdXQgMiAwIEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiArICAgICAgICAgICAgICAgcmF0ZS1z
-ZWxlY3QxLWdwaW9zID0gPCZzZ3Bpb19vdXQgMiAxIEdQSU9fQUNUSVZFX0hJR0g+Ow0KPiArICAg
-ICAgIH07DQo+ICsNCj4gKyAgICAgICBzZnAxOiBzZnAxIHsNCj4gKyAgICAgICAgICAgICAgIGNv
-bXBhdGlibGUgPSAic2ZmLHNmcCI7DQo+ICsgICAgICAgICAgICAgICBpMmMtYnVzID0gPCZpMmM0
-XzE+Ow0KPiArICAgICAgICAgICAgICAgbG9zLWdwaW9zID0gPCZzZ3Bpb19pbiAxIDIgR1BJT19B
-Q1RJVkVfSElHSD47DQo+ICsgICAgICAgICAgICAgICBtb2QtZGVmMC1ncGlvcyA9IDwmc2dwaW9f
-aW4gMSAzIEdQSU9fQUNUSVZFX0xPVz47DQo+ICsgICAgICAgICAgICAgICBtYXhpbXVtLXBvd2Vy
-LW1pbGxpd2F0dCA9IDwyNTAwPjsNCj4gKyAgICAgICAgICAgICAgIHR4LWRpc2FibGUtZ3Bpb3Mg
-PSA8JnNncGlvX291dCAzIDEgR1BJT19BQ1RJVkVfTE9XPjsNCj4gKyAgICAgICAgICAgICAgIHR4
-LWZhdWx0LWdwaW9zID0gPCZzZ3Bpb19pbiAwIDMgR1BJT19BQ1RJVkVfSElHSD47DQo+ICsgICAg
-ICAgICAgICAgICByYXRlLXNlbGVjdDAtZ3Bpb3MgPSA8JnNncGlvX291dCAyIDIgR1BJT19BQ1RJ
-VkVfSElHSD47DQo+ICsgICAgICAgICAgICAgICByYXRlLXNlbGVjdDEtZ3Bpb3MgPSA8JnNncGlv
-X291dCAyIDMgR1BJT19BQ1RJVkVfSElHSD47DQo+ICsgICAgICAgfTsNCj4gK307DQo+ICsNCj4g
-KyZmbHgwIHsNCj4gKyAgICAgICBhdG1lbCxmbGV4Y29tLW1vZGUgPSA8QVRNRUxfRkxFWENPTV9N
-T0RFX1VTQVJUPjsNCj4gKyAgICAgICBzdGF0dXMgPSAib2theSI7DQo+ICt9Ow0KPiArDQo+ICsm
-Zmx4MyB7DQo+ICsgICAgICAgYXRtZWwsZmxleGNvbS1tb2RlID0gPEFUTUVMX0ZMRVhDT01fTU9E
-RV9TUEk+Ow0KPiArICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZmbHg0
-IHsNCj4gKyAgICAgICBhdG1lbCxmbGV4Y29tLW1vZGUgPSA8QVRNRUxfRkxFWENPTV9NT0RFX1RX
-ST47DQo+ICsgICAgICAgc3RhdHVzID0gIm9rYXkiOw0KPiArfTsNCg0KQWx0aG91Z2ggdGhlcmUg
-aXMgMToxIG1hcHBpbmcgYi93IGlkcyBvZiBmbGV4Y29tcyBhbmQgdGhlIGVtYmVkZGVkIGJsb2Nr
-cw0KKGZseFggaGFzIHVzYXJ0WCwgaTJjWCwgc3BpWCkgYW5kIHRoZXJlIGlzIG5vdGhpbmcgd3Jv
-bmcgd2l0aCB0aGUgYXBwcm9hY2gNCmhlcmUgSSBmb3VuZCBhIGJpdCBoYXJkIHRvIGZvbGxvdyBp
-ZiB0aGUgY29ycmVzcG9uZGVudCBlbWJlZGRlZCBibG9jaw0KKGkyYywgc3BpLCB1c2FydCkgaXMg
-ZW5hYmxlZCBvciBub3QuDQoNCj4gKw0KPiArJmdwaW8gew0KPiArICAgICAgIHVzYXJ0MF9waW5z
-OiB1c2FydDAtcGlucyB7DQo+ICsgICAgICAgICAgICAgICAvKiBSWEQsIFRYRCAqLw0KPiArICAg
-ICAgICAgICAgICAgcGlucyA9ICJHUElPXzI1IiwgIkdQSU9fMjYiOw0KPiArICAgICAgICAgICAg
-ICAgZnVuY3Rpb24gPSAiZmMwX2IiOw0KPiArICAgICAgIH07DQo+ICsNCj4gKyAgICAgICBzZ3Bp
-b19hX3BpbnM6IHNncGlvLWEtcGlucyB7DQo+ICsgICAgICAgICAgICAgICAvKiBTQ0ssIEQwLCBE
-MSwgTEQgKi8NCj4gKyAgICAgICAgICAgICAgIHBpbnMgPSAiR1BJT18zMiIsICJHUElPXzMzIiwg
-IkdQSU9fMzQiOw0KPiArICAgICAgICAgICAgICAgZnVuY3Rpb24gPSAic2dwaW9fYSI7DQo+ICsg
-ICAgICAgfTsNCj4gKw0KPiArICAgICAgIHNncGlvX2JfcGluczogc2dwaW8tYi1waW5zIHsNCj4g
-KyAgICAgICAgICAgICAgIC8qIFNDSywgRDAsIEQxLCBMRCAqLw0KPiArICAgICAgICAgICAgICAg
-cGlucyA9ICJHUElPXzY0IjsNCj4gKyAgICAgICAgICAgICAgIGZ1bmN0aW9uID0gInNncGlvX2Ii
-Ow0KPiArICAgICAgIH07DQo+ICsNCj4gKyAgICAgICBmYzNfYl9waW5zOiBmYzMtYi1zcGktcGlu
-cyB7DQo+ICsgICAgICAgICAgICAgICAvKiBTQ0ssIE1JU08sIE1PU0kgKi8NCj4gKyAgICAgICAg
-ICAgICAgIHBpbnMgPSAiR1BJT181MSIsICJHUElPXzUyIiwgIkdQSU9fNTMiOw0KPiArICAgICAg
-ICAgICAgICAgZnVuY3Rpb24gPSAiZmMzX2IiOw0KPiArICAgICAgIH07DQo+ICsNCj4gKyAgICAg
-ICBmYzRfYl9waW5zOiBmYzQtYi1pMmMtcGlucyB7DQo+ICsgICAgICAgICAgICAgICAvKiBSWEQs
-IFRYRCAqLw0KPiArICAgICAgICAgICAgICAgcGlucyA9ICJHUElPXzU3IiwgIkdQSU9fNTgiOw0K
-PiArICAgICAgICAgICAgICAgZnVuY3Rpb24gPSAiZmM0X2IiOw0KPiArICAgICAgIH07DQo+ICt9
-Ow0KPiArDQo+ICsmaTJjNCB7DQo+ICsgICAgICAgcGluY3RybC0wID0gPCZmYzRfYl9waW5zPjsN
-Cj4gKyAgICAgICBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KPiArICAgICAgIHN0YXR1cyA9
-ICJva2F5IjsNCj4gK307DQo+ICsNCj4gKyZ1c2FydDAgew0KPiArICAgICAgIHBpbmN0cmwtMCA9
-IDwmdXNhcnQwX3BpbnM+Ow0KPiArICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+
-ICsgICAgICAgc3RhdHVzID0gIm9rYXkiOw0KPiArfTsNCj4gKw0KPiArJnNncGlvIHsNCj4gKyAg
-ICAgICBwaW5jdHJsLTAgPSA8JnNncGlvX2FfcGlucz4sIDwmc2dwaW9fYl9waW5zPjsNCj4gKyAg
-ICAgICBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KPiArICAgICAgIGJ1cy1mcmVxdWVuY3kg
-PSA8ODAwMDAwMD47DQo+ICsgICAgICAgLyogYXJiaXRyYXJ5IHJhbmdlIGJlY2F1c2UgYWxsIEdQ
-SU9zIGFyZSBpbiBzb2Z0d2FyZSBtb2RlICovDQo+ICsgICAgICAgbWljcm9jaGlwLHNncGlvLXBv
-cnQtcmFuZ2VzID0gPDAgMTE+Ow0KPiArICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gK307DQo+
-ICsNCj4gKyZzZ3Bpb19pbiB7DQo+ICsgICAgICAgbmdwaW9zID0gPDEyOD47DQo+ICt9Ow0KPiAr
-DQo+ICsmc2dwaW9fb3V0IHsNCj4gKyAgICAgICBuZ3Bpb3MgPSA8MTI4PjsNCj4gK307DQo+ICsN
-Cj4gKyZzcGkzIHsNCj4gKyAgICAgICBwaW5jdHJsLTAgPSA8JmZjM19iX3BpbnM+Ow0KPiArICAg
-ICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+ICsgICAgICAgY3MtZ3Bpb3MgPSA8Jmdw
-aW8gNDYgR1BJT19BQ1RJVkVfTE9XPjsNCj4gKyAgICAgICBzdGF0dXMgPSAib2theSI7DQo+ICt9
-Ow0KPiArDQo+ICsmd2F0Y2hkb2cgew0KPiArICAgICAgIHN0YXR1cyA9ICJva2F5IjsNCj4gK307
-DQo+IC0tDQo+IDIuMzAuMg0KPiANCg0K
+Hi,
+
+This series adds a new SPI driver using the spi-mem interface for the
+Aspeed static memory controllers of the AST2600, AST2500 and AST2400
+SoCs.
+
+ * AST2600 Firmware SPI Memory Controller (FMC)
+ * AST2600 SPI Flash Controller (SPI1 and SPI2)
+ * AST2500 Firmware SPI Memory Controller (FMC)
+ * AST2500 SPI Flash Controller (SPI1 and SPI2)
+ * AST2400 New Static Memory Controller (also referred as FMC)
+ * AST2400 SPI Flash Controller (SPI)
+
+It is based on the current OpenBMC kernel driver [1], using directly
+the MTD SPI-NOR interface and on a patchset [2] previously proposed
+adding support for the AST2600 only. This driver takes a slightly
+different approach to cover all 6 controllers.
+
+It does not make use of the controller register disabling Address and
+Data byte lanes because is not available on the AST2400 SoC. We could
+introduce a specific handler for new features available on recent SoCs
+if needed. As there is not much difference on performance, the driver
+chooses the common denominator: "User mode" which has been heavily
+tested in [1]. "User mode" is also used as a fall back method when
+flash device mapping window is too small.
+
+Problems to address with spi-mem were the configuration of the mapping
+windows and the calibration of the read timings. The driver handles
+them in the direct mapping handler when some knowledge on the size of
+the flash device is know. It is not perfect but not incorrect either.
+The algorithm is one from [1] because it doesn't require the DMA
+registers which are not available on all controllers.
+
+Direct mapping for writes is not supported (yet). I have seen some
+corruption with writes and I preferred to use the safer and proven
+method of the initial driver [1]. We can improve that later.
+
+The driver supports Quad SPI RX transfers on the AST2600 SoC but it
+didn't have the expected results. Therefore it is not activated yet.
+There are some issues on the pinctrl to investigate first. 
+
+The series does not remove the current Aspeed SMC driver but prepares
+ground for its removal by changing its CONFIG option. This last step
+can be addressed as a followup when the new driver using the spi-mem
+interface has been sufficiently exposed. 
+
+Tested on:
+ 
+ * OpenPOWER Palmetto (AST2400)
+ * Facebook Wedge 100 BMC (AST2400) by Tao Ren <rentao.bupt@gmail.com>
+ * Evaluation board (AST2500) 
+ * Inspur FP5280G2 BMC (AST2500) by John Wang <wangzq.jn@gmail.com>
+ * Facebook Backpack CMM BMC (AST2500) by Tao Ren <rentao.bupt@gmail.com>
+ * OpenPOWER Witherspoon (AST2500)
+ * Evaluation board (AST2600 A0 and A3)
+ * Rainier board (AST2600)
+ 
+[1] https://github.com/openbmc/linux/blob/dev-5.15/drivers/mtd/spi-nor/controllers/aspeed-smc.c
+[2] https://patchwork.ozlabs.org/project/linux-aspeed/list/?series=212394
+
+Thanks,
+
+C. 
+
+Changes in v3:
+
+ - Fixed compile warning on aspeed_spi_dirmap_read() prototype reported
+   by kernel test robot 
+ - Removed unnecessary entry in ast2600-fmc.yaml
+ - New patch from Tao to set spi-max-frequency on all FMC devices
+
+Changes in v2:
+
+ - Fixed dt_binding_check warnings (Rob)
+ - New entry in MAINTAINERS 
+ - Addressed Lukas comments regarding the SPI controller registration
+   and device removal. Checked with driver bind/unbind   
+ - Introduced setup and cleanup handlers and removed routine looping
+   on the DT children properties (Pratyush)
+ - Clarified in commit log requirements for training.
+ - Removed defconfig changes of patch 1 since they were reverted in
+   the last patch (Joel)
+
+Cédric Le Goater (10):
+  mtd: spi-nor: aspeed: Rename Kconfig option
+  ARM: dts: aspeed: Adjust "reg" property of FMC/SPI controllers
+  dt-bindings: spi: Add Aspeed SMC controllers device tree binding
+  spi: spi-mem: Add driver for Aspeed SMC controllers
+  spi: aspeed: Add support for direct mapping
+  spi: aspeed: Adjust direct mapping to device size
+  spi: aspeed: Workaround AST2500 limitations
+  spi: aspeed: Add support for the AST2400 SPI controller
+  spi: aspeed: Calibrate read timings
+  ARM: dts: aspeed: Enable Dual SPI RX transfers
+
+Tao Ren (1):
+  ARM: dts: aspeed-g4: Set spi-max-frequency for all flashes
+
+ drivers/spi/spi-aspeed-smc.c                  | 1184 +++++++++++++++++
+ .../bindings/spi/aspeed,ast2600-fmc.yaml      |   87 ++
+ MAINTAINERS                                   |   10 +
+ arch/arm/boot/dts/aspeed-g4.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g5.dtsi              |   16 +-
+ arch/arm/boot/dts/aspeed-g6.dtsi              |   17 +-
+ drivers/mtd/spi-nor/controllers/Kconfig       |    4 +-
+ drivers/mtd/spi-nor/controllers/Makefile      |    2 +-
+ drivers/spi/Kconfig                           |   11 +
+ drivers/spi/Makefile                          |    1 +
+ 10 files changed, 1329 insertions(+), 19 deletions(-)
+ create mode 100644 drivers/spi/spi-aspeed-smc.c
+ create mode 100644 Documentation/devicetree/bindings/spi/aspeed,ast2600-fmc.yaml
+
+-- 
+2.34.1
+
