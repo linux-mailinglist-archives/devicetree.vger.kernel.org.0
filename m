@@ -2,83 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D930B4CD547
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:37:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7585A4CD54E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:39:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233233AbiCDNhb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 08:37:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
+        id S232196AbiCDNkL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 08:40:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229969AbiCDNha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:37:30 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6E291B7627
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 05:36:42 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E8A313F1CB
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 13:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646401000;
-        bh=G8BoUtDwWRG/T6yTrFWDQ38LNVbbwgFUxvn7b9NKrcg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=p2sqZf6zeFWkI9WbU+Uiv4kofVFXQWKWBFHH7MBNKlfAF5dKC5lkuW8oTJh5FdwD7
-         8ijxwIiJSMFTRFybcBmoF21UA30Aui1pC6RVOYh0MD0aAbKiud3u9iYareIawk1k2S
-         +srM8HXGMNpxWMGbODADb1KG07bwsnFLUlzUXtjHilr2OgqitAz7N50P3qEHE3VsWT
-         yvHu5Uou15Rap0iR/FQwqVe15yK+iyuzVAwxgIR9MjlUsVKWEC0eTUbwy3oXgxhUC3
-         7yxhD9t5JwLj0JR8lq4NUs1E4rlcv0O20US0ugXcoEGCJwaIS8Ig5xd1ed0jaEksov
-         qHK+7BkoHIPIA==
-Received: by mail-ed1-f70.google.com with SMTP id u28-20020a50d51c000000b004159ffb8f24so4592001edi.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 05:36:40 -0800 (PST)
+        with ESMTP id S232034AbiCDNkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:40:11 -0500
+Received: from mail-vs1-xe2a.google.com (mail-vs1-xe2a.google.com [IPv6:2607:f8b0:4864:20::e2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CA710EC4A;
+        Fri,  4 Mar 2022 05:39:23 -0800 (PST)
+Received: by mail-vs1-xe2a.google.com with SMTP id d64so3459187vsd.12;
+        Fri, 04 Mar 2022 05:39:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=4cvMl/4qYoB0J9ZtKfUyo3O1j1h4wuQkE/ll5CQ0EvE=;
+        b=BOf+p0bXU0//OteVvJrqjfh2RxAMmJA0rI4mRyPA1+kD9F9k8jQUQKx9UUVW4JcAn0
+         R+u5HF9s+ires93EjvMO0Pxu2gO29z5cyOkS9RH69rN9sM7V7ndD0oBV7jQJaxKD79qk
+         vht7crtzrG+E20IUp79ds32p22VqMC/JSjiZj9U95mvGXdENjqYRxoytgXKQj9o68r0p
+         CeVfwkZ+svIlIELuLKPyG7LcqOdY+k7xJWPfJXF7QaWZF4WEl2T7zUtEa5fFDYkuI05O
+         SorVG79DepqQgC7qfq0LRF3X6NqSZGQVk9HS1Zizx2gd2NlYnkJIAjHtV1rYqihNfPLx
+         rvUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=G8BoUtDwWRG/T6yTrFWDQ38LNVbbwgFUxvn7b9NKrcg=;
-        b=C/ERcahmpNgJYig/knS0sRMKjkQIog7SEUapqoF6N+1ptykiy/1oypRVUgPCRnfJIi
-         dAT0ahM8zl0w5V55liJCsAMvyMPFLWbHElg7VAA/sAa0c7LQ5Jhc7dkmLIXmWQ/ch/Xq
-         eJhO2EnAmHo1HmK0zThwSLFlYsbABcyevUpQDvH6upGg6ZKnUBpl1KMQv0QH5L1yWaYO
-         G2c6kgIyihjhuIPwOKJyixvElQo/lwA6MjhQ2soJ1x+W2MyU83VU7Nxp6Fa80kFMHmfa
-         qK9ir8wWvGtGVMAbhTrjUkbPlusHaa23fhJIg0vhrJnlxlScONVwxdvUqHJNfDO302Dq
-         CU1w==
-X-Gm-Message-State: AOAM530pSGMdS0nm65qISD6D19CeN3tTfy1Iq0xqAJyEph5dAxWL+TPU
-        M5lpy9jxXSeICEPGVkWoy5XdAAqaWmSMk5WFPYg5H7gVCcV3AmOxQ3t+FN5qnc4xO/8BsFlK679
-        dlD3s4hczI6vaJS1nldnorTu6IVhCt0FFrp8LUXE=
-X-Received: by 2002:a17:906:5d08:b0:6da:b4ea:937 with SMTP id g8-20020a1709065d0800b006dab4ea0937mr2982747ejt.446.1646401000569;
-        Fri, 04 Mar 2022 05:36:40 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxXSloxVKU/uB+P+Qe8lxuU0aSrsdcd2j1OAvPHH2N5wZJyWjhLLLr1TExNVWeKR3YLHFUbvg==
-X-Received: by 2002:a17:906:5d08:b0:6da:b4ea:937 with SMTP id g8-20020a1709065d0800b006dab4ea0937mr2982729ejt.446.1646401000352;
-        Fri, 04 Mar 2022 05:36:40 -0800 (PST)
-Received: from [192.168.0.139] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id s5-20020a170906284500b006cc551d6cabsm1774511ejc.63.2022.03.04.05.36.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Mar 2022 05:36:39 -0800 (PST)
-Message-ID: <f58869e3-8b5c-ed4b-c11c-27a8e465c3a2@canonical.com>
-Date:   Fri, 4 Mar 2022 14:36:39 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=4cvMl/4qYoB0J9ZtKfUyo3O1j1h4wuQkE/ll5CQ0EvE=;
+        b=SEAwi52O3xWc3XcHErgseJIRdWUbhkyLqYRFmuF4g+ZVdxO6v60XVxf7uYNI3tGc4j
+         efGVUJCtQayuUUETxTglzF0lCR/BmzAT7v5/vzKFV96Jyi8MfHEnbjQLWvW+4fq0pCbt
+         0GVPP7T5NoY7ZHbrw1Ng7PLf7G6ZnoC3yGv9YCGyCgfyPokfdu0HAxIvXB7DSPq5ULVb
+         2dysHm94a2znhyxWxcanaJKvP8XZenhLTx2KnAaaOIce+q9blvh2CKgoQBvMS9g/SFDz
+         QKSlRQQuRurD7uNfYDIgb5Y8Wli4LBRenh1dttn3Xnw4UBycx1GGBgzOukD4KlBjv7lH
+         F3FQ==
+X-Gm-Message-State: AOAM532Jb/vwGaXvWJdT2Qlw+ghO9+5lbFYbkTyaJ/MdsyHnI3f3P8gQ
+        wmlZDa3TLxE6f15fcIdqSRyb+zWzX6xYUpVxaV634GavUA==
+X-Google-Smtp-Source: ABdhPJylHP1GmLWtcK6ibGHJi6U7Q9Nprg9MNaWs6QPNI9/RlRS8QJn5WasxlxNnf9ODDDxRXY2eEnX+GKY0yoC59SA=
+X-Received: by 2002:a05:6102:6d4:b0:320:7cd0:a5e3 with SMTP id
+ m20-20020a05610206d400b003207cd0a5e3mr1575595vsg.84.1646401162809; Fri, 04
+ Mar 2022 05:39:22 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: remoteproc: Add AVM WASP
-Content-Language: en-US
-To:     Daniel Kestrel <kestrelseventyfour@gmail.com>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+References: <20220303083141.8742-1-warp5tw@gmail.com> <20220303083141.8742-4-warp5tw@gmail.com>
+ <YiCYshb354S9T5ev@smile.fi.intel.com>
+In-Reply-To: <YiCYshb354S9T5ev@smile.fi.intel.com>
+From:   Tyrone Ting <warp5tw@gmail.com>
+Date:   Fri, 4 Mar 2022 21:39:11 +0800
+Message-ID: <CACD3sJZQJFvgNT2da+1Zx0UugoMRWNw4np3Ub3PTKejjS7X0Sg@mail.gmail.com>
+Subject: Re: [PATCH v3 03/11] i2c: npcm: Fix client address calculation
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        wsa@kernel.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20220227115832.13490-1-kestrelseventyfour@gmail.com>
- <20220227115832.13490-3-kestrelseventyfour@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220227115832.13490-3-kestrelseventyfour@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,89 +76,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/02/2022 12:58, Daniel Kestrel wrote:
-> AVM Fritzbox router boards may contain an additional ATH79
-> based SoC that has the wifi cards connected.
-> This patch adds bindings for this remote processor.
-> 
-> Signed-off-by: Daniel Kestrel <kestrelseventyfour@gmail.com>
-> ---
->  .../bindings/remoteproc/avm,wasp-rproc.yaml   | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> new file mode 100644
-> index 000000000000..8b39fafc60aa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/avm,wasp-rproc.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/avm,wasp-rproc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AVM WASP processor controller bindings
-> +
-> +maintainers:
-> +  - Daniel Kestrel <kestrelseventyfour@gmail.com>
-> +
-> +description: |
-> +  This document defines the bindings for the remoteproc component that loads and
-> +  boots firmwares on the AVM Wireless Assistent Support Processor (WASP) SoC
-> +  that is attached to some AVM Fritzbox devices (3390, 3490, 5490, 5491, 7490).
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - avm,fritzbox3390-wasp
-> +      - avm,fritzboxx490-wasp
+Hi Andy:
 
-This should be specific compatible instead of wildcard "x490".
+Thank you for your comment and it'll be addressed.
 
-> +
-> +  avm,wasp-mdio:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Lantiq GSWIP switch mdio.
-> +
-> +  avm,wasp-port:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Network port, where the WASP SoC is connected to.
-> +
-> +  avm,reset-gpios:
-> +    description: Reset gpio of the WASP SoC.
-
-maxItems
-
-> +
-> +  avm,startup-gpios:
-> +    description: Startup gpio of the WASP SoC.
-
-maxItems
-
-> +
-> +required:
-> +  - compatible
-> +  - avm,wasp-mdio
-> +  - avm,wasp-port
-> +  - avm,reset-gpios
-> +  - avm,startup-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    remoteproc {
-> +        compatible = "avm,fritzboxx490-wasp";
-> +        avm,wasp-mdio = <&gswip_mdio>;
-> +        avm,wasp-port = <&port5>;
-> +        avm,reset-gpios = <&gpio 34 GPIO_ACTIVE_HIGH>;
-> +        avm,startup-gpios = <&gpio 5 GPIO_ACTIVE_HIGH>;
-> +    };
-
+Andy Shevchenko <andriy.shevchenko@linux.intel.com> =E6=96=BC 2022=E5=B9=B4=
+3=E6=9C=883=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=886:31=E5=AF=AB=E9=
+=81=93=EF=BC=9A
+>
+> On Thu, Mar 03, 2022 at 04:31:33PM +0800, Tyrone Ting wrote:
+> > From: Tali Perry <tali.perry1@gmail.com>
+> >
+> > Fix i2c client address by left-shifting 1 bit before
+> > applying it to the data register.
+>
+> ...
+>
+> > -     bus->dest_addr =3D slave_addr;
+> > +     bus->dest_addr =3D slave_addr << 1;
+>
+> 1. Why this is not using i2c_8bit_addr_from_msg() helper?
+> 2. This is duplication of what npcm_i2c_master_start_xmit() does.
+>
+> Taking 2 into account, what is this exactly fixing?
+> Sounds like a red herring.
+>
+> --
+> With Best Regards,
+> Andy Shevchenko
+>
+>
 
 Best regards,
-Krzysztof
+Tyrone
