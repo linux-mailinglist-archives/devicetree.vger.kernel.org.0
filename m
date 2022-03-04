@@ -2,62 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D754CCF5D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:54:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 316D94CCF3F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:48:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235836AbiCDHzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 02:55:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
+        id S238892AbiCDHtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 02:49:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239033AbiCDHzD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:55:03 -0500
-X-Greylist: delayed 476 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 03 Mar 2022 23:54:11 PST
-Received: from mail.belongsenergy.pl (mail.belongsenergy.pl [185.45.112.191])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34E1194162
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 23:54:10 -0800 (PST)
-Received: by mail.belongsenergy.pl (Postfix, from userid 1001)
-        id 7F71426DE9; Fri,  4 Mar 2022 07:45:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=belongsenergy.pl;
-        s=mail; t=1646379973;
-        bh=JAEkA4FCBmQ7T7M+WVau75EdqeDf4MEEr9hE2/l61BA=;
-        h=Date:From:To:Subject:From;
-        b=hmIYeu4v/Iwr7oQPjZKGxER8kDPRrO08Zb7vt8tRKV/j48FXDVfOxvZhd5K+EaoyZ
-         kkcPOCGTbrtsalaAATRqEPFSI3p4m0JDrWzHbM7panh9nl4KX9z+QRJhUQLNMbfnqx
-         Ex6sH2BWekj196pJC33ACdUcgXjilWz/3fcAe4hJ39bz2tS+lhvy+4evw1lt0nbdSC
-         dDB2BQcpq5/PDbpiRO0tWuY6eTHnVoeHYQCe7QMtSGbsSJDKJZZ6wxyvAWDh3ni4yj
-         0u7rc6xUB+qHZu+OY6UtimsRgSnzsb3lI4awKprsYQvn+qp646dZKxKEOTuCLqsvQy
-         j6ZjnLB5o9AAw==
-Received: by mail.belongsenergy.pl for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 07:45:30 GMT
-Message-ID: <20220304074500-0.1.y.21x6.0.i9n2ou7ell@belongsenergy.pl>
-Date:   Fri,  4 Mar 2022 07:45:30 GMT
-From:   "Maciej Nitycz" <maciej.nitycz@belongsenergy.pl>
-To:     <devicetree@vger.kernel.org>
-Subject: Wycena paneli fotowoltaicznych
-X-Mailer: mail.belongsenergy.pl
+        with ESMTP id S235758AbiCDHtn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:49:43 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9363F70904
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 23:48:54 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nQ2gG-0006mM-9H; Fri, 04 Mar 2022 08:48:52 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nQ2gF-002ZDA-KG; Fri, 04 Mar 2022 08:48:50 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nQ2gE-006sEV-4C; Fri, 04 Mar 2022 08:48:50 +0100
+Date:   Fri, 4 Mar 2022 08:48:46 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Sean Anderson <sean.anderson@seco.com>
+Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Mubin Usman Sayyed <MUBINUSM@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org, michal.simek@xilinx.com,
+        Alvaro Gamez <alvaro.gamez@hazent.com>
+Subject: Re: [PATCH v14 2/2] pwm: Add support for Xilinx AXI Timer
+Message-ID: <20220304074846.bkzwn4c3voaxxqzu@pengutronix.de>
+References: <20220303223544.2810594-1-sean.anderson@seco.com>
+ <20220303223544.2810594-2-sean.anderson@seco.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_05,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="p2h2j3kov6vozmcs"
+Content-Disposition: inline
+In-Reply-To: <20220303223544.2810594-2-sean.anderson@seco.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
 
-dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
-irm=C4=85.
+--p2h2j3kov6vozmcs
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
-ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
+Hello,
 
-Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
-ropozycji?
+On Thu, Mar 03, 2022 at 05:35:43PM -0500, Sean Anderson wrote:
+> This adds PWM support for Xilinx LogiCORE IP AXI soft timers commonly
+> found on Xilinx FPGAs. At the moment clock control is very basic: we
+> just enable the clock during probe and pin the frequency. In the future,
+> someone could add support for disabling the clock when not in use.
+>=20
+> Some common code has been specially demarcated. While currently only
+> used by the PWM driver, it is anticipated that it may be split off in
+> the future to be used by the timer driver as well.
+>=20
+> This driver was written with reference to Xilinx DS764 for v1.03.a [1].
+>=20
+> [1] https://www.xilinx.com/support/documentation/ip_documentation/axi_tim=
+er/v1_03_a/axi_timer_ds764.pdf
+>=20
+> Signed-off-by: Sean Anderson <sean.anderson@seco.com>
+> Acked-by: Michal Simek <michal.simek@xilinx.com>
 
+One little thing below. Not worth respinning for just that though, so:
 
-Pozdrawiam,
-Maciej Nitycz
+Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+
+> +	/*
+> +	 * 100% duty cycle results in constant low output. This may be (very)
+> +	 * wrong if rate >=3D 1 GHz, so fix this if you have such hardware :)
+> +	 */
+
+In v13 I asked for s/>=3D 1GHz/> 1 GHz/. You seem to have missed, that
+this contains two suggested changes. So there is s/>=3D/>/ left.
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--p2h2j3kov6vozmcs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIhxFsACgkQwfwUeK3K
+7AkAGggAgfyHW1Ixgq5HpEFxU/VPYVbIaB6tfSzia/O45pIYTLinozrOQE5YD9dn
+/++33kt9jTX9M7dkV4sxLtFhgV1l3qVYaptN0TxGcwykyphzw6Q+FK28SdUegS1O
++HMlKJndbPwMp5ek+SoPzgXhkwsKg464tE0YwvLryt91/mJ6zwujhLC+R6VIh2lS
+61/fNKMVGN5PgW8NrRS6ILHR/NChzhmo4rcoTf2Q0j3sMHJ1hexMoIMmDSTyz5MU
+kpd3hPH8Wol4XUjfH12mJLEMlGbLhSxMMm1he2FquW+e2Z7gvvaEu43TJHbwUanu
+SRvWTydNi7ItVmT2wZrS7HLuXJWtsA==
+=KEN0
+-----END PGP SIGNATURE-----
+
+--p2h2j3kov6vozmcs--
