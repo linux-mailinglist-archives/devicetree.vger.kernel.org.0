@@ -2,71 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E77CB4CD672
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:31:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 19FC04CD683
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:37:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234388AbiCDObu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:31:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49436 "EHLO
+        id S236423AbiCDOiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 09:38:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230135AbiCDObt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:31:49 -0500
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BED0C1B6E05;
-        Fri,  4 Mar 2022 06:31:01 -0800 (PST)
-Received: by mail-oi1-f169.google.com with SMTP id a6so7962523oid.9;
-        Fri, 04 Mar 2022 06:31:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1PRcoDd6e5pTSWSDNB57phipwxCHGJPb3RfLFoPodZQ=;
-        b=QGnafN8gNDseAT3enl8/d4EcrT0wBouxT07iNMEMqKYtbGOINa4bvdP9AZCrWkFBBK
-         DNw3KwOj4gq7owdO5NfEAmFffk/GKWnmjy9eZzFpXgrHkkpylevav9OB+8hTZ+HuU0TA
-         sCuiAD+WY81sj7DJGuBt7jxcuGnE9s06HwXtdBOk/z6zhPbQQH7HQN/50E6On6e1NLGC
-         vAk9SMilcm/u6Yax4zdA/MzhJKn11BlG6F7JWdNbitia1D2xOderEn1Zfq/OOXrSEkxP
-         C/b/zeEyTS1SR3CvBhZKEwC/ld33EBcgOT8baUo+rCCvZUatREa/odqjE4hJ3PBVXh/y
-         0MUw==
-X-Gm-Message-State: AOAM533DsiwSlvd6NNsmU6TXpi/Auy87QXwjLlhsj6twA6kRYZc9v4fa
-        RPA7tAV2eL2EUSsLEi3mUPrbP8rZ2g==
-X-Google-Smtp-Source: ABdhPJxgFjet6DHJYjwSA/CVxxo72Wc5mEvkMEFHT26L/8KvHO9PM+GrI9tTCN8bOrkkfts2nI26Ag==
-X-Received: by 2002:a05:6808:2095:b0:2d5:328d:f61b with SMTP id s21-20020a056808209500b002d5328df61bmr9500712oiw.9.1646404260980;
-        Fri, 04 Mar 2022 06:31:00 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id r18-20020a056830081200b005ad10dfcf60sm2347847ots.67.2022.03.04.06.30.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 06:31:00 -0800 (PST)
-Received: (nullmailer pid 3877594 invoked by uid 1000);
-        Fri, 04 Mar 2022 14:30:59 -0000
-Date:   Fri, 4 Mar 2022 08:30:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Masahiro Yamada <masahiroy@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Nick Desaulniers <ndesaulniers@google.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kbuild <linux-kbuild@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: kbuild: Pass DT_SCHEMA_FILES to
- dt-validate
-Message-ID: <YiIio1dJd5mvMr0v@robh.at.kernel.org>
-References: <20220303224237.2497570-1-robh@kernel.org>
- <20220303224237.2497570-2-robh@kernel.org>
- <CAMuHMdU6g7c9YX0mBAGWbCWgA8exkUSfqn8ZGi_2N+Nz1WT+BA@mail.gmail.com>
- <YiIa3Ox7UBLyBtoR@robh.at.kernel.org>
- <CAMuHMdU9yzpLh+S821osed5nuHfc0rONB+i4sPjXsGuKLumgfQ@mail.gmail.com>
+        with ESMTP id S236915AbiCDOiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:38:01 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D943E1BAF3A;
+        Fri,  4 Mar 2022 06:37:13 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E369143D;
+        Fri,  4 Mar 2022 06:37:13 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DE923F70D;
+        Fri,  4 Mar 2022 06:37:12 -0800 (PST)
+Date:   Fri, 4 Mar 2022 14:37:09 +0000
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Edwin Chiu =?utf-8?B?6YKx5Z6C5bOw?= <edwin.chiu@sunplus.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Edwin Chiu <edwinchiu0505tw@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "rafael@kernel.org" <rafael@kernel.org>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH v5] cpuidle: sunplus: Create cpuidle driver for sunplus
+ sp7021
+Message-ID: <YiIkFZNGUihnoVPI@bogus>
+References: <cover.1645427180.git.edwinchiu0505tw@gmail.com>
+ <1628e048220f066204b8ac27f3cedf7f3cc02963.1645427180.git.edwinchiu0505tw@gmail.com>
+ <394261d1-f1df-e80d-3591-10f2d649e731@kernel.org>
+ <bcc7a0b58aad4f0989d7d86eaee2c746@sphcmbx02.sunplus.com.tw>
+ <748eb0e1-684c-a772-bccd-64b80780192f@kernel.org>
+ <fda1e55e576b4cdf9ab412529a3dfc7b@sphcmbx02.sunplus.com.tw>
+ <fd39f73e-8317-38c4-6002-8defd784caec@kernel.org>
+ <YiCSQCG4NkepeZKs@bogus>
+ <ffdcb88f0ea240f68b5e5ec40f0f525c@sphcmbx02.sunplus.com.tw>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAMuHMdU9yzpLh+S821osed5nuHfc0rONB+i4sPjXsGuKLumgfQ@mail.gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ffdcb88f0ea240f68b5e5ec40f0f525c@sphcmbx02.sunplus.com.tw>
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,60 +58,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 03:05:13PM +0100, Geert Uytterhoeven wrote:
-> Hi Rob,
+On Fri, Mar 04, 2022 at 11:24:32AM +0000, Edwin Chiu 邱垂峰 wrote:
 > 
-> On Fri, Mar 4, 2022 at 2:57 PM Rob Herring <robh@kernel.org> wrote:
-> > On Fri, Mar 04, 2022 at 10:32:29AM +0100, Geert Uytterhoeven wrote:
-> > > On Thu, Mar 3, 2022 at 11:43 PM Rob Herring <robh@kernel.org> wrote:
-> > > > In preparation for supporting validation of DTB files, the full
-> > > > processed schema will always be needed in order to extract type
-> > > > information from it. Therefore, the processed schema containing only
-> > > > what DT_SCHEMA_FILES specifies won't work. Instead, dt-validate has
-> > > > gained an option, -l or --limit, to specify which schema(s) to use for
-> > > > validation.
-> > > >
-> > > > As the command line option is new, we the minimum dtschema version must be
-> > > > updated.
-> > > >
-> > > > Cc: Masahiro Yamada <masahiroy@kernel.org>
-> > > > Signed-off-by: Rob Herring <robh@kernel.org>
-> > >
-> > > Thanks for your patch!
-> > >
-> > > > --- a/Documentation/devicetree/bindings/Makefile
-> > > > +++ b/Documentation/devicetree/bindings/Makefile
-> > > > @@ -6,7 +6,7 @@ DT_MK_SCHEMA ?= dt-mk-schema
-> > > >  DT_SCHEMA_LINT := $(shell which yamllint || \
-> > > >    echo "warning: yamllint not installed, skipping. To install, run 'pip install yamllint'" >&2)
-> > > >
-> > > > -DT_SCHEMA_MIN_VERSION = 2021.2.1
-> > > > +DT_SCHEMA_MIN_VERSION = 2022.3
-> > >
-> > > This doesn't work as-is, as that version hasn't been tagged yet ;-)
-> >
-> > I had to make sure people are paying attention. You win the prize. :)
-> >
-> > It's there now.
-> 
-> Thanks, confirmed.
-> 
-> With this series applied, the various salvator-xs DTS files are now
-> throwing up:
-> 
->     sata: size (19) error for type phandle
->     backlight: size (11) error for type phandle
+> Thanks your advice.
+> Look like key point still only WFI function when cpuidle.
 
-Those come from the code decoding the properties[1]. Unfortunately, I 
-haven't come up with a prettier way to report those with the filename. I 
-may just remove it because if decoding the property fails, we'll get 
-schema errors later on anyways.
+Indeed.
 
-But I don't see any 'sata' properties in the DTS files and 'backlight' 
-is a node. Are you building with '-@'? I probably need to skip 
-__symbols__ nodes. The overlay side is handled because examples are 
-built as overlays (to allow unresolved phandles).
+> As I explain before, only enable generic ARM cpuidle driver is not work.
 
-Rob
+Why do you think it is a must. Most arch(including arm) has default
+arch_cpu_idle handler that will be called if no cpuidle driver is active.
+It does execute the default WFI, so you don't need a driver to achieve
+the same.
 
-[1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/dtb.py#L149
+> It need enable-method code to assign cpuidle_ops functions.
+
+Correct, but you may not need that driver to be active at all. That is the
+main point of these discussions. Sorry if that was not mentioned explicitly
+earlier.
+
+> "psci" is one of enable-method, but there have problem in my side due to smc
+> or secure code unsupported. > So I create cpuidle-sunplus.c code with
+> "sunplus,sc-smp" to let cpuidle code complete for our source code.
+> With this structure, I can add more custom low power code in the future.
+>
+
+So you want to add custom low power mode support in future, so add the driver
+when that is ready. The platform must do WFI even now without the driver
+you are adding. Have you checked that ?
+
+> What does it mean for "please document the chosen "sunplus,sc-smp" as bot
+> cpu idle and hotplug methods" ?
+
+I meant if you are adding any custom SMP+Idle mentods you need to add the
+compatible to [1] or [2] based on what is more appropriate.
+
+> Does it mean "edit yaml file"? (Previously, I submit yaml file also, but Rob
+> say I don't need submit when I use compatible="arm,idle-state")
+
+Yes that covers the description of idle states but not the entry method.
+There are 2 separate things. You need both "arm,idle-state" and
+"sunplus,sc-smp" or "psci" whichever you decide to implement on your
+platform. If there is no implementation yet, it is strongly suggested
+to go for "psci" unless you have reasons not to. Please add that info
+when you submit the custom support, I will check on that again when
+you post. But for now you don't need anything.
+
+-- 
+Regards,
+Sudeep
+
+[1] Documentation/devicetree/bindings/arm/cpu-enable-method/
+[2] Documentation/devicetree/bindings/arm/cpus.yaml
