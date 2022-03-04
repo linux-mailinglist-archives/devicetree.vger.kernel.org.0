@@ -2,140 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011614CCF14
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:31:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C5D754CCF5D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:54:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233429AbiCDHcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 02:32:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34990 "EHLO
+        id S235836AbiCDHzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 02:55:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238689AbiCDHcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:32:20 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB65519142E
-        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 23:31:32 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 1EBC83F1C5
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 07:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646379091;
-        bh=znesbVorVsm63iCSSQmBPsZdwQn81pwm1UwoEW27Z4s=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=XWILBgk1RZT4tjCIfg0GQKUxdUG9diADsp3bIWb8HDkbIf174VXs+VMFbtoxaeLjf
-         bkMQiIC0+XZcxA4DdDioZX3VZ+iA5cElczxhhvp7RWRK4tkX4EVxTqpd8Ql6QBFFBk
-         vfACzqApbdbIeAdMSul6mok4skfKtNiTpjqKud/fzpAoAU30YGB+LhyTWCg3lA4VK+
-         oxHwGifgJNEdQkxqR63+2PujmeKgZObCgwa7aYsr1+3ogILlUbPueVOT3tsHNbj5MM
-         6EgdTXroc30RcYeBnso74kAsGxXKebTDpRu+0Rb90ZLStbTJVb+aWT2RFjZo0nHo7S
-         xxoWu5PRZwMoA==
-Received: by mail-ej1-f72.google.com with SMTP id d7-20020a1709061f4700b006bbf73a7becso3994024ejk.17
-        for <devicetree@vger.kernel.org>; Thu, 03 Mar 2022 23:31:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=znesbVorVsm63iCSSQmBPsZdwQn81pwm1UwoEW27Z4s=;
-        b=GzkafGP3ShiZskki167ESVuPf2wD+UDtQ88VQW1i2nBThFxSREaGXN8f5ovuGOAeDw
-         5H3LOl5sCuiaEdXbHGU2FwcDIgti1YmAWuYphL2ybU6UX8JTMZzN+XMOLpKnyQFRmrIT
-         r48p9eNMgXwm4W+zFYApke1M8gkvss9ff5i2WtuxZroNDX2Zfmrmnc1gglyICbX9AyDC
-         Oc/KrSMEzX7y8oMIx09qOj1zJobu1aVuFpDHOn6WNYMZ8qvA+2S1u8zm9B0JuaZl8S53
-         3l/5kQgzBBuFw9UIV0+Pw45JOl+m/DHWTgpAk2FSQfyStdfFupxdylmjsOBEDeKMkc8n
-         y4gw==
-X-Gm-Message-State: AOAM531GyMTPVrBDhKFLFm9aNzXGUW7DPLxuu0wEFT7CCwcDiPgbmHak
-        +V/GpxlUz2v7S2vtIIRW8CUeTRrn9hg3blQfcAi9AQxBVRPmWUjSR9hasSyWkD8xj2YIMCFW79m
-        sRy95n973pBc03KDOVxgNIlu9CkMFpSJc51hMq9M=
-X-Received: by 2002:a17:907:c0c:b0:6d1:8c46:6415 with SMTP id ga12-20020a1709070c0c00b006d18c466415mr30485465ejc.326.1646379090645;
-        Thu, 03 Mar 2022 23:31:30 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxGxs7X16ZzeLCZ/AHvyM0eIiEfVTT/3+RbXNFeYwjEzaLA6uLgNdT/DxKdJK+w4/ntCeI8hg==
-X-Received: by 2002:a17:907:c0c:b0:6d1:8c46:6415 with SMTP id ga12-20020a1709070c0c00b006d18c466415mr30485439ejc.326.1646379090348;
-        Thu, 03 Mar 2022 23:31:30 -0800 (PST)
-Received: from [192.168.0.138] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id t7-20020a1709063e4700b006da6357b1c0sm1445738eji.196.2022.03.03.23.31.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 23:31:29 -0800 (PST)
-Message-ID: <53fbfcde-0f5e-8ea2-4bca-c7a414f96c57@canonical.com>
-Date:   Fri, 4 Mar 2022 08:31:28 +0100
+        with ESMTP id S239033AbiCDHzD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:55:03 -0500
+X-Greylist: delayed 476 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 03 Mar 2022 23:54:11 PST
+Received: from mail.belongsenergy.pl (mail.belongsenergy.pl [185.45.112.191])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F34E1194162
+        for <devicetree@vger.kernel.org>; Thu,  3 Mar 2022 23:54:10 -0800 (PST)
+Received: by mail.belongsenergy.pl (Postfix, from userid 1001)
+        id 7F71426DE9; Fri,  4 Mar 2022 07:45:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=belongsenergy.pl;
+        s=mail; t=1646379973;
+        bh=JAEkA4FCBmQ7T7M+WVau75EdqeDf4MEEr9hE2/l61BA=;
+        h=Date:From:To:Subject:From;
+        b=hmIYeu4v/Iwr7oQPjZKGxER8kDPRrO08Zb7vt8tRKV/j48FXDVfOxvZhd5K+EaoyZ
+         kkcPOCGTbrtsalaAATRqEPFSI3p4m0JDrWzHbM7panh9nl4KX9z+QRJhUQLNMbfnqx
+         Ex6sH2BWekj196pJC33ACdUcgXjilWz/3fcAe4hJ39bz2tS+lhvy+4evw1lt0nbdSC
+         dDB2BQcpq5/PDbpiRO0tWuY6eTHnVoeHYQCe7QMtSGbsSJDKJZZ6wxyvAWDh3ni4yj
+         0u7rc6xUB+qHZu+OY6UtimsRgSnzsb3lI4awKprsYQvn+qp646dZKxKEOTuCLqsvQy
+         j6ZjnLB5o9AAw==
+Received: by mail.belongsenergy.pl for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 07:45:30 GMT
+Message-ID: <20220304074500-0.1.y.21x6.0.i9n2ou7ell@belongsenergy.pl>
+Date:   Fri,  4 Mar 2022 07:45:30 GMT
+From:   "Maciej Nitycz" <maciej.nitycz@belongsenergy.pl>
+To:     <devicetree@vger.kernel.org>
+Subject: Wycena paneli fotowoltaicznych
+X-Mailer: mail.belongsenergy.pl
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3] dt-bindings: mfd: Fix pinctrl node name warnings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Lee Jones <lee.jones@linaro.org>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        - <patches@opensource.cirrus.com>
-Cc:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org, linux-gpio@vger.kernel.org
-References: <20220303232350.2591143-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220303232350.2591143-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-0.7 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2022 00:23, Rob Herring wrote:
-> The recent addition pinctrl.yaml in commit c09acbc499e8 ("dt-bindings:
-> pinctrl: use pinctrl.yaml") resulted in some node name warnings:
-> 
-> Documentation/devicetree/bindings/mfd/cirrus,lochnagar.example.dt.yaml: \
->  lochnagar-pinctrl: $nodename:0: 'lochnagar-pinctrl' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> Documentation/devicetree/bindings/mfd/cirrus,madera.example.dt.yaml: \
->  codec@1a: $nodename:0: 'codec@1a' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> Documentation/devicetree/bindings/mfd/brcm,cru.example.dt.yaml: \
->  pin-controller@1c0: $nodename:0: 'pin-controller@1c0' does not match '^(pinctrl|pinmux)(@[0-9a-f]+)?$'
-> 
-> Fix the node names to the preferred 'pinctrl'. For cirrus,madera,
-> nothing from pinctrl.yaml schema is used, so just drop the reference.
-> 
-> Fixes: c09acbc499e8 ("dt-bindings: pinctrl: use pinctrl.yaml")
-> Cc: Rafał Miłecki <rafal@milecki.pl>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> v2:
->  - Fix lochnagar-pinctrl nodename in example
-> v3:
->  - And fix lochnagar-pinctrl nodename in 'required'. Sigh...
-> ---
->  Documentation/devicetree/bindings/mfd/brcm,cru.yaml         | 4 ++--
->  Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml | 6 +++---
->  .../devicetree/bindings/pinctrl/cirrus,madera.yaml          | 3 ---
->  3 files changed, 5 insertions(+), 8 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> index be4a2df71c25..b85819fbb07c 100644
-> --- a/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/brcm,cru.yaml
-> @@ -39,7 +39,7 @@ patternProperties:
->    '^phy@[a-f0-9]+$':
->      $ref: ../phy/bcm-ns-usb2-phy.yaml
->  
-> -  '^pin-controller@[a-f0-9]+$':
-> +  '^pinctrl@[a-f0-9]+$':
->      $ref: ../pinctrl/brcm,ns-pinmux.yaml
->  
->    '^syscon@[a-f0-9]+$':
-> @@ -94,7 +94,7 @@ examples:
->              reg = <0x180 0x4>;
->          };
->  
-> -        pin-controller@1c0 {
-> +        pinctrl@1c0 {
+Dzie=C5=84 dobry,
 
-DTS also need such change.
+dostrzegam mo=C5=BCliwo=C5=9B=C4=87 wsp=C3=B3=C5=82pracy z Pa=C5=84stwa f=
+irm=C4=85.
 
-Best regards,
-Krzysztof
+=C5=9Awiadczymy kompleksow=C4=85 obs=C5=82ug=C4=99 inwestycji w fotowolta=
+ik=C4=99, kt=C3=B3ra obni=C5=BCa koszty energii elektrycznej nawet o 90%.
+
+Czy s=C4=85 Pa=C5=84stwo zainteresowani weryfikacj=C4=85 wst=C4=99pnych p=
+ropozycji?
+
+
+Pozdrawiam,
+Maciej Nitycz
