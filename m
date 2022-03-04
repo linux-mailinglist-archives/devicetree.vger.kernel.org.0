@@ -2,125 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 964624CE133
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:49:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF084CE13A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:55:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229938AbiCDXuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 18:50:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38538 "EHLO
+        id S230052AbiCDX4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 18:56:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229717AbiCDXuU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:50:20 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E6746D39E;
-        Fri,  4 Mar 2022 15:49:31 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 25AC561F32;
-        Fri,  4 Mar 2022 23:49:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF37C340F0;
-        Fri,  4 Mar 2022 23:49:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646437770;
-        bh=4ELZp74PMU7CcPVa1I6hOUB32VqfOzoIpZtL5yF8JJM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=bH8Y9/qdfdmdEHqoPRStJ7/fyR414JEoPT8jqsRV7LWELkcJMkLjrB6qlTo4SvWoO
-         rkqZduxODORdeDwBSek+U6J7GS+DpuEq8APBgOyPkiLAfMEYExBoFr4CYdJWOQmUsC
-         7d4g/jAurqDNgogC57b3sMARoQgqA+7lizXuxw8Jt9YuAycE8UAdVw46OFZqnNIrRm
-         DXTblS8GaC04L+TmYEeojPB5v8Ol1JQZVLSsJn2sMHrB4iWJGVf4Ec0QB4TrB02F7E
-         1rysmAvGAHVeSdhPPHABHD6KFG3l9s9PTNZzRf2ytP6wApzGyBdpczY6EeYoGVsvj2
-         6tz6mXbSMcQnQ==
-Received: by mail-ej1-f46.google.com with SMTP id r13so20544756ejd.5;
-        Fri, 04 Mar 2022 15:49:30 -0800 (PST)
-X-Gm-Message-State: AOAM532KEavx1X3aCTToiyQABP/zP6GKFlc9m6oea1LC/67VwC+R3rn8
-        E7iZBe/kik8WPr5BnAmu7/4jleG7NddeJY0yKw==
-X-Google-Smtp-Source: ABdhPJwKzfXlFjDAMAwtLcoz0QtxWyjlL5WxxrHe/cElb7iEak4IuABWyNlIa9tTLPAXSXTcst+Vdbv+PcgD7ZHGvOs=
-X-Received: by 2002:a17:907:e87:b0:6da:8de2:ce94 with SMTP id
- ho7-20020a1709070e8700b006da8de2ce94mr959302ejc.406.1646437768870; Fri, 04
- Mar 2022 15:49:28 -0800 (PST)
+        with ESMTP id S229445AbiCDX4S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:56:18 -0500
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 807691E2FED;
+        Fri,  4 Mar 2022 15:55:29 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so11213946oos.9;
+        Fri, 04 Mar 2022 15:55:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=tSliGbcTSyYzBFVpCZN6O+4ZDMOchGSsN4LqAQ8U/xg=;
+        b=ECXVwP0y6CsC4ai6utWIYTngpLPMIrUBejiPNDc9mwES0hUGfnXuJFKjYETI72yhN5
+         YzeIdYT83oDEEAlYoTC7GhQCTeLRN4/JiU3Z7j6I249YWTi4UCO1LGNl9m71hgzmOG5Y
+         X6H0VM+DqrAYajodGYUxuHEeE2swESwvna0W6a8Zc4JhB6Yodj7S7UTe0gcItSIOw8rv
+         NFEAOextzbnT6rcf8+2xrXizDHeRe4TTQ/a1BmWfvI09a0qKH4cUXj2xfotgjhW2ARoG
+         HF9BuYP0NrXajnYtm5AGGadrXLeWlBcD9xpJSqtQjaIYdPJUTwTNg2Qevm/e+6s7z2VN
+         YiQQ==
+X-Gm-Message-State: AOAM532x549IBAq7q9BVmywG5jmvwriu2NdXQTAyjNjp5RM6oCwX2ZhQ
+        JltDIAHGuyZvrdZv+JrJMw==
+X-Google-Smtp-Source: ABdhPJwDll/7f5d8b0aYbIcWJFfsE9cWCdTQ2AfJhNqsJJJ6cfkTOdTcRm+Nvt4ZnlHXMIazqE4Vmg==
+X-Received: by 2002:a05:6870:ac21:b0:da:b3f:2b63 with SMTP id kw33-20020a056870ac2100b000da0b3f2b63mr906904oab.258.1646438128840;
+        Fri, 04 Mar 2022 15:55:28 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id u9-20020a4ab5c9000000b003182df292f7sm2802929ooo.18.2022.03.04.15.55.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 15:55:28 -0800 (PST)
+Received: (nullmailer pid 715300 invoked by uid 1000);
+        Fri, 04 Mar 2022 23:55:27 -0000
+Date:   Fri, 4 Mar 2022 17:55:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     Baruch Siach <baruch.siach@siklu.com>,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: ipq4019-mdio: Add ipq6018
+ compatible
+Message-ID: <YiKm76II+51YXXAn@robh.at.kernel.org>
+References: <8de887697c90cd432b7ab5fe0d833c87fc17f0f1.1646031524.git.baruch@tkos.co.il>
 MIME-Version: 1.0
-References: <20220304095458.12409-1-angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220304095458.12409-1-angelogioacchino.delregno@collabora.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sat, 5 Mar 2022 07:49:17 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_8CTewRw2Le9RjXoCrqF8AyHD0_p01EMiJ2QQ63yf-HKQ@mail.gmail.com>
-Message-ID: <CAAOTY_8CTewRw2Le9RjXoCrqF8AyHD0_p01EMiJ2QQ63yf-HKQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] Fix MediaTek display dt-bindings issues
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Jitao Shi <jitao.shi@mediatek.com>,
-        krzysztof.kozlowski@canonical.com, David Airlie <airlied@linux.ie>,
-        Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8de887697c90cd432b7ab5fe0d833c87fc17f0f1.1646031524.git.baruch@tkos.co.il>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob:
+On Mon, 28 Feb 2022 08:58:43 +0200, Baruch Siach wrote:
+> From: Baruch Siach <baruch.siach@siklu.com>
+> 
+> The IPQ60xx MDIO bus is the same as IPQ4019.
+> 
+> Update the schema to allow qcom,ipq4019-mdio compatible as fallback for
+> newer IPQ series.
+> 
+> Signed-off-by: Baruch Siach <baruch.siach@siklu.com>
+> ---
+> 
+> v3:
+> 
+>   Correct the schema to fix yamllint failure (Rob's bot)
+> 
+> v2:
+> 
+>   Update the schema to allow fallback compatible (Rob Herring)
+> ---
+>  .../devicetree/bindings/net/qcom,ipq4019-mdio.yaml     | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
 
-Would you like to take this series into your tree, or I take this
-series into my tree?
-
-Regards,
-Chun-Kuang.
-
-AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> =E6=96=
-=BC
-2022=E5=B9=B43=E6=9C=884=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:55=
-=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> The vdosys0 series carried a nice dt-bindings conversion of the old
-> txt documentation for the entire mediatek-drm driver, but some of
-> the issues in there weren't seen.
->
-> This series is fixing all of the issues pointed out by a
-> `dt_binding_check` run, followed by `dtbs_check`.
->
-> AngeloGioacchino Del Regno (3):
->   dt-bindings: display: mediatek,mutex: Fix mediatek,gce-events type
->   dt-bindings: display: mediatek,ovl: Fix 'iommu' required property typo
->   dt-bindings: display: mediatek: Fix examples on new bindings
->
->  .../display/mediatek/mediatek,aal.yaml        | 24 +++--
->  .../display/mediatek/mediatek,ccorr.yaml      | 23 +++--
->  .../display/mediatek/mediatek,color.yaml      | 23 +++--
->  .../display/mediatek/mediatek,dither.yaml     | 23 +++--
->  .../display/mediatek/mediatek,dpi.yaml        |  3 +-
->  .../display/mediatek/mediatek,dsc.yaml        | 23 +++--
->  .../display/mediatek/mediatek,ethdr.yaml      | 99 ++++++++++---------
->  .../display/mediatek/mediatek,gamma.yaml      | 23 +++--
->  .../display/mediatek/mediatek,merge.yaml      | 49 +++++----
->  .../display/mediatek/mediatek,mutex.yaml      | 27 +++--
->  .../display/mediatek/mediatek,od.yaml         | 14 ++-
->  .../display/mediatek/mediatek,ovl-2l.yaml     | 26 +++--
->  .../display/mediatek/mediatek,ovl.yaml        | 28 ++++--
->  .../display/mediatek/mediatek,postmask.yaml   | 23 +++--
->  .../display/mediatek/mediatek,rdma.yaml       | 28 ++++--
->  .../display/mediatek/mediatek,split.yaml      | 17 +++-
->  .../display/mediatek/mediatek,ufoe.yaml       | 19 ++--
->  .../display/mediatek/mediatek,wdma.yaml       | 26 +++--
->  18 files changed, 318 insertions(+), 180 deletions(-)
->
-> --
-> 2.35.1
->
+Reviewed-by: Rob Herring <robh@kernel.org>
