@@ -2,90 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B32C4CD20B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:07:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D4124CD238
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:16:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbiCDKIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 05:08:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47378 "EHLO
+        id S236228AbiCDKRc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 05:17:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236052AbiCDKIk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:08:40 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED23245793;
-        Fri,  4 Mar 2022 02:07:50 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 3D2CF1F464FC
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646388469;
-        bh=FZsV9ba/xuMDKrYCeoG5kKb+WB3TEznV+q7TAKpo3JE=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Z/+HfKH6m2gMYR33+DYiAue+iFGOvhah5GOHFpNlKFJqMG4MOd1VbxxrERk9rfAtu
-         8/Qd1FnQpl8UrU1lpchE1zxVjdxc8M46oXrPWgg9e07c8pGsGSItv44kp+mT8vkxiC
-         GqKMLEbT6u0aMosmlCZK3J02q13Vcqt7xl1S3bzZ9gL6QZxwDFnYoCzJHth9SqmKt/
-         zdAo07VBT2F1Sy2xWlemRsHGnyl3/3GjNVh2dW1sF+CDd8leaItHUb94UDOyyT6Uvd
-         3vidqdgIrB5sogWh7aqmnt7IJTQxNQiO/aLZ9ww7dxnQLDl/Z50tobHcx3MmMwzheE
-         MK7tpc8yctI2Q==
-Message-ID: <6b1bd27c-d371-51eb-d166-575312d8506f@collabora.com>
-Date:   Fri, 4 Mar 2022 11:07:45 +0100
+        with ESMTP id S236721AbiCDKRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:17:30 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A5FC1A94BE;
+        Fri,  4 Mar 2022 02:16:42 -0800 (PST)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2245CAnk021576;
+        Fri, 4 Mar 2022 04:15:54 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=khLSaYG6oS2lqdL3JueFC9e4ZvT4XthMfcFzydETK48=;
+ b=I8pTkNF38ystB5H6Sd+YexpFBSTwNltDdlNtWyQVSMuUMsaAv2ke8aA69/oCd6tfc02h
+ km5FpsSQ5e4bVaCk3UT7uEvKznWHT+o+fP1LJBy4WjvGioh9VtNc6YKKgoZ4ij73vTa2
+ O3ZTTSxP3fbnDg5ktZpS+c0ErG2e6nHRt3uk9bT3F4bJfqHwHMuNKWEXCBK+/y059mLy
+ 6REhz44nasZYsm9aNNfOUvv+JYnt5U1lSSv0IizkBghRDJ0slnxmSAU5SBfAXIDtOvVI
+ El+wCJP+q0pfs5B74z3K3E6wvCAbM2r6MM8Q7UYfryn7Dm2nhl8xp3q1zORPajfpFn2f KQ== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3ek4j1rskh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 04 Mar 2022 04:15:54 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
+ 2022 10:15:52 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Fri, 4 Mar 2022 10:15:52 +0000
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 6D8A9B06;
+        Fri,  4 Mar 2022 10:15:52 +0000 (UTC)
+Date:   Fri, 4 Mar 2022 10:15:52 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 05/20] sound: cs35l41: Unify hardware configuration
+Message-ID: <20220304101552.GA38351@ediswmail.ad.cirrus.com>
+References: <20220303173059.269657-1-tanureal@opensource.cirrus.com>
+ <20220303173059.269657-6-tanureal@opensource.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v5 00/34] MT8195 IOMMU SUPPORT
-Content-Language: en-US
-To:     Joerg Roedel <joro@8bytes.org>, Yong Wu <yong.wu@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org,
-        Hsin-Yi Wang <hsinyi@chromium.org>, youlin.pei@mediatek.com,
-        anan.sun@mediatek.com, xueqi.zhang@mediatek.com,
-        yen-chang.chen@mediatek.com, mingyuan.ma@mediatek.com,
-        yf.wang@mediatek.com, libo.kang@mediatek.com,
-        chengci.xu@mediatek.com
-References: <20220217113453.13658-1-yong.wu@mediatek.com>
- <YhzBSsn/zUlGg5JE@8bytes.org>
- <7ba0ee87-c193-9834-d0b4-ff3e06ced82b@collabora.com>
- <5ed9278fa0b72b993512cff2316218ab88cafe50.camel@mediatek.com>
- <YiHZ4lq2QClkdyxS@8bytes.org>
- <123cb154ca0e87504c2b663ebdca2ccad967776f.camel@mediatek.com>
- <YiHkhERbAY8oYRYw@8bytes.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <YiHkhERbAY8oYRYw@8bytes.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220303173059.269657-6-tanureal@opensource.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: 2R1OSoC0oB-He6_B6ZqpmKCrPkIXatxi
+X-Proofpoint-ORIG-GUID: 2R1OSoC0oB-He6_B6ZqpmKCrPkIXatxi
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/03/22 11:05, Joerg Roedel ha scritto:
-> On Fri, Mar 04, 2022 at 05:57:19PM +0800, Yong Wu wrote:
->> Thanks for this info. I will re-send this patchset after the next -rc1.
->>
->> Could you help apply Dafna's patchset at this time? This patchset
->> depends on it and it won't conflict with the others.
+On Thu, Mar 03, 2022 at 05:30:44PM +0000, Lucas Tanure wrote:
+> Both ASoC and HDA require to configure the GPIOs
+> and Boost, so put that in single shared struct.
 > 
-> Alright, picked up Dafna's patch-set.
-> 
-> Regards,
-> 
-> 	Joerg
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> ---
 
-Thanks for picking Dafna's series right now, this was very appreciated.
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-Regards,
-Angelo
+Thanks,
+Charles
