@@ -2,248 +2,357 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C704CD25F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 753DF4CD270
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:31:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234093AbiCDK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 05:27:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40318 "EHLO
+        id S234941AbiCDKcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 05:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52640 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234283AbiCDK1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:27:44 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AE3D1AA074
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:26:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646389613;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
-    From:Subject:Sender;
-    bh=HxMRsJVNoD4aUslfDNvhSQfvopdX2ltFdLYO+m4T4s4=;
-    b=kCVly/ZVBz5N7zyaO1FeYsZ2iKKR7EubfjL+b1VtRLk49/cEg1jj3wXgbZYpUwLU5c
-    JDXC2S4r/yzQwzR/TG11F9WvGDAziWi8vfGwCbuo6lnTgFO4kKuPjt82vsZo4LQGRMsP
-    VimWDGtSqXCvvAoXbXgjUx+f2/VPjnqnIoisYxoM/6COTyn0jkHAQwiF8RFR98CypxTJ
-    SdlnBwc6ivoF3Z3KySsoDMZUNCAMwuNqWo6nWiN1CGIpwFAAY9o9+xXPjKr6iFtilHNG
-    XhDCHlDYSVu8aZ+iB8EfaD0xIdGpaXS+skj1R7y2KRALwqTR7ppgu/JtEX/82Px3ByFe
-    gaWw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fyL2muE="
-X-RZG-CLASS-ID: mo00
-Received: from droid..
-    by smtp.strato.de (RZmta 47.40.1 AUTH)
-    with ESMTPSA id 2c4d58y24AQq4vE
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 4 Mar 2022 11:26:52 +0100 (CET)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 2/2] ASoC: codecs: Add Awinic AW8738 audio amplifier driver
-Date:   Fri,  4 Mar 2022 11:24:52 +0100
-Message-Id: <20220304102452.26856-3-stephan@gerhold.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220304102452.26856-1-stephan@gerhold.net>
-References: <20220304102452.26856-1-stephan@gerhold.net>
+        with ESMTP id S230023AbiCDKcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:32:31 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8450416BFAC;
+        Fri,  4 Mar 2022 02:31:43 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 5C74A1F46518
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646389902;
+        bh=+Q25/NgNVE68oIuS3bZoss/fJ3ewI6fEylYzejB/9ds=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=cTl18Lgrip5Dv9ssmao9SIBcXHb9e6McbV97dfYnRK9v5KeOpOYrEewLzcZmbL+u1
+         dpaQ7t0LlNigs987LCZNAdKpwK6mmRpRWLXt/AlatiUhDsfBfy6NZYtbdY3y3L9f7T
+         OV1/9cyDnGaMI85XdZ5W7o6SplMb3VcmSRqov2UrRMBZj7LhsLZNyYiXlRBlYcSvTX
+         45FuczS/BFZbkVwRupeeIyu1zsT1FkCA//t1aLrw07xgrXREKZHuYVh5ifLpp5IIV4
+         YD0R13ux/Rc4fBCESmfzwLwdPdK7DzLZDimv+6JUTcERfiu0CiavetH72LBZ6Jctsa
+         zVyOoavf161ww==
+Message-ID: <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
+Date:   Fri, 4 Mar 2022 11:31:38 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v21 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
+Content-Language: en-US
+To:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Fengping Yu <fengping.yu@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>
+Cc:     Fabien Parent <fparent@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20220303154302.252041-1-mkorpershoek@baylibre.com>
+ <20220303154302.252041-3-mkorpershoek@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220303154302.252041-3-mkorpershoek@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Albrieux <jonathan.albrieux@gmail.com>
+Il 03/03/22 16:43, Mattijs Korpershoek ha scritto:
+> From: "fengping.yu" <fengping.yu@mediatek.com>
+> 
+> This patch adds matrix keypad support for Mediatek SoCs.
+> 
+> Signed-off-by: fengping.yu <fengping.yu@mediatek.com>
+> Reviewed-by: Marco Felsch <m.felsch@pengutronix.de>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Reviewed-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
+> Signed-off-by: Mattijs Korpershoek <mkorpershoek@baylibre.com>
 
-The Awinic AW8738 is a simple audio amplifier using a single GPIO.
-The main difference to simple-amplifier is that there is a "one-wire
-pulse control" that allows configuring the amplifier to one of a few
-pre-defined modes. This can be used to configure the speaker-guard
-function (primarily the power limit for the amplifier).
+Hello Mattijs,
+thanks for the patch!
 
-Add a simple driver that allows setting it up in the device tree
-with a specified mode number.
+However, to make it perfect, there's something to improve....
 
-Signed-off-by: Jonathan Albrieux <jonathan.albrieux@gmail.com>
-Co-developed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
----
-Changes in v2:
-  - Clarify purpose of operation modes in commit message.
-  - Rename "enable" GPIO -> "mode" GPIO to better reflect its true
-    purpose.
----
- sound/soc/codecs/Kconfig  |  10 ++++
- sound/soc/codecs/Makefile |   2 +
- sound/soc/codecs/aw8738.c | 104 ++++++++++++++++++++++++++++++++++++++
- 3 files changed, 116 insertions(+)
- create mode 100644 sound/soc/codecs/aw8738.c
+> ---
+>   drivers/input/keyboard/Kconfig         |  12 ++
+>   drivers/input/keyboard/Makefile        |   1 +
+>   drivers/input/keyboard/mt6779-keypad.c | 215 +++++++++++++++++++++++++
+>   3 files changed, 228 insertions(+)
+>   create mode 100644 drivers/input/keyboard/mt6779-keypad.c
+> 
+> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
+> index 0c607da9ee10..03a9530f620e 100644
+> --- a/drivers/input/keyboard/Kconfig
+> +++ b/drivers/input/keyboard/Kconfig
+> @@ -779,6 +779,18 @@ config KEYBOARD_BCM
+>   	  To compile this driver as a module, choose M here: the
+>   	  module will be called bcm-keypad.
+>   
+> +config KEYBOARD_MT6779
+> +	tristate "MediaTek Keypad Support"
+> +	depends on ARCH_MEDIATEK || COMPILE_TEST
+> +	select REGMAP_MMIO
+> +	select INPUT_MATRIXKMAP
+> +	help
+> +	  Say Y here if you want to use the keypad on MediaTek SoCs.
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called mt6779-keypad.
+> +
+>   config KEYBOARD_MTK_PMIC
+>   	tristate "MediaTek PMIC keys support"
+>   	depends on MFD_MT6397
+> diff --git a/drivers/input/keyboard/Makefile b/drivers/input/keyboard/Makefile
+> index e3c8648f834e..721936e90290 100644
+> --- a/drivers/input/keyboard/Makefile
+> +++ b/drivers/input/keyboard/Makefile
+> @@ -44,6 +44,7 @@ obj-$(CONFIG_KEYBOARD_MATRIX)		+= matrix_keypad.o
+>   obj-$(CONFIG_KEYBOARD_MAX7359)		+= max7359_keypad.o
+>   obj-$(CONFIG_KEYBOARD_MCS)		+= mcs_touchkey.o
+>   obj-$(CONFIG_KEYBOARD_MPR121)		+= mpr121_touchkey.o
+> +obj-$(CONFIG_KEYBOARD_MT6779)		+= mt6779-keypad.o
+>   obj-$(CONFIG_KEYBOARD_MTK_PMIC) 	+= mtk-pmic-keys.o
+>   obj-$(CONFIG_KEYBOARD_NEWTON)		+= newtonkbd.o
+>   obj-$(CONFIG_KEYBOARD_NOMADIK)		+= nomadik-ske-keypad.o
+> diff --git a/drivers/input/keyboard/mt6779-keypad.c b/drivers/input/keyboard/mt6779-keypad.c
+> new file mode 100644
+> index 000000000000..b207acdd1e2a
+> --- /dev/null
+> +++ b/drivers/input/keyboard/mt6779-keypad.c
+> @@ -0,0 +1,215 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2022 MediaTek Inc.
+> + * Author Fengping Yu <fengping.yu@mediatek.com>
+> + */
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/input/matrix_keypad.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/property.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +
+> +#define MTK_KPD_NAME		"mt6779-keypad"
+> +#define MTK_KPD_MEM		0x0004
+> +#define MTK_KPD_DEBOUNCE	0x0018
+> +#define MTK_KPD_DEBOUNCE_MASK	GENMASK(13, 0)
+> +#define MTK_KPD_DEBOUNCE_MAX_MS	256
+> +#define MTK_KPD_NUM_MEMS	5
+> +#define MTK_KPD_NUM_BITS	136	/* 4*32+8 MEM5 only use 8 BITS */
+> +
+> +struct mt6779_keypad {
+> +	struct regmap *regmap;
+> +	struct input_dev *input_dev;
+> +	struct clk *clk;
+> +	void __iomem *base;
+> +	u32 n_rows;
+> +	u32 n_cols;
+> +	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
+> +};
+> +
+> +static const struct regmap_config mt6779_keypad_regmap_cfg = {
+> +	.reg_bits = 32,
+> +	.val_bits = 32,
+> +	.reg_stride = sizeof(u32),
+> +	.max_register = 36,
 
-diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 4de029ae377c..f46a22660103 100644
---- a/sound/soc/codecs/Kconfig
-+++ b/sound/soc/codecs/Kconfig
-@@ -53,6 +53,7 @@ config SND_SOC_ALL_CODECS
- 	imply SND_SOC_AK5558
- 	imply SND_SOC_ALC5623
- 	imply SND_SOC_ALC5632
-+	imply SND_SOC_AW8738
- 	imply SND_SOC_BT_SCO
- 	imply SND_SOC_BD28623
- 	imply SND_SOC_CQ0093VC
-@@ -579,6 +580,15 @@ config SND_SOC_ALC5632
- 	tristate
- 	depends on I2C
- 
-+config SND_SOC_AW8738
-+	tristate "Awinic AW8738 Audio Amplifier"
-+	select GPIOLIB
-+	help
-+	  Enable support for the Awinic AW8738 audio amplifier (or similar).
-+	  The driver supports simple audio amplifiers similar to
-+	  SND_SOC_SIMPLE_AMPLIFIER, but additionally allows setting the
-+	  operation mode using the Awinic-specific one-wire pulse control.
-+
- config SND_SOC_BD28623
- 	tristate "ROHM BD28623 CODEC"
- 	help
-diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index c3c6059a5f8a..8637e9e869e3 100644
---- a/sound/soc/codecs/Makefile
-+++ b/sound/soc/codecs/Makefile
-@@ -45,6 +45,7 @@ snd-soc-ak4671-objs := ak4671.o
- snd-soc-ak5386-objs := ak5386.o
- snd-soc-ak5558-objs := ak5558.o
- snd-soc-arizona-objs := arizona.o arizona-jack.o
-+snd-soc-aw8738-objs := aw8738.o
- snd-soc-bd28623-objs := bd28623.o
- snd-soc-bt-sco-objs := bt-sco.o
- snd-soc-cpcap-objs := cpcap.o
-@@ -388,6 +389,7 @@ obj-$(CONFIG_SND_SOC_AK5558)	+= snd-soc-ak5558.o
- obj-$(CONFIG_SND_SOC_ALC5623)    += snd-soc-alc5623.o
- obj-$(CONFIG_SND_SOC_ALC5632)	+= snd-soc-alc5632.o
- obj-$(CONFIG_SND_SOC_ARIZONA)	+= snd-soc-arizona.o
-+obj-$(CONFIG_SND_SOC_AW8738)	+= snd-soc-aw8738.o
- obj-$(CONFIG_SND_SOC_BD28623)	+= snd-soc-bd28623.o
- obj-$(CONFIG_SND_SOC_BT_SCO)	+= snd-soc-bt-sco.o
- obj-$(CONFIG_SND_SOC_CQ0093VC) += snd-soc-cq93vc.o
-diff --git a/sound/soc/codecs/aw8738.c b/sound/soc/codecs/aw8738.c
-new file mode 100644
-index 000000000000..0fe8af160319
---- /dev/null
-+++ b/sound/soc/codecs/aw8738.c
-@@ -0,0 +1,104 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/regulator/consumer.h>
-+#include <sound/soc.h>
-+
-+struct aw8738_priv {
-+	struct gpio_desc *gpiod_mode;
-+	unsigned int mode;
-+};
-+
-+static int aw8738_drv_event(struct snd_soc_dapm_widget *w,
-+			    struct snd_kcontrol *kcontrol, int event)
-+{
-+	struct snd_soc_component *c = snd_soc_dapm_to_component(w->dapm);
-+	struct aw8738_priv *aw = snd_soc_component_get_drvdata(c);
-+	int i;
-+
-+	switch (event) {
-+	case SND_SOC_DAPM_POST_PMU:
-+		for (i = 0; i < aw->mode; i++) {
-+			gpiod_set_value_cansleep(aw->gpiod_mode, 0);
-+			udelay(2);
-+			gpiod_set_value_cansleep(aw->gpiod_mode, 1);
-+			udelay(2);
-+		}
-+		msleep(40);
-+		break;
-+	case SND_SOC_DAPM_PRE_PMD:
-+		gpiod_set_value_cansleep(aw->gpiod_mode, 0);
-+		usleep_range(1000, 2000);
-+		break;
-+	default:
-+		WARN(1, "Unexpected event");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct snd_soc_dapm_widget aw8738_dapm_widgets[] = {
-+	SND_SOC_DAPM_INPUT("IN"),
-+	SND_SOC_DAPM_OUT_DRV_E("DRV", SND_SOC_NOPM, 0, 0, NULL, 0, aw8738_drv_event,
-+			       SND_SOC_DAPM_POST_PMU | SND_SOC_DAPM_PRE_PMD),
-+	SND_SOC_DAPM_OUTPUT("OUT"),
-+};
-+
-+static const struct snd_soc_dapm_route aw8738_dapm_routes[] = {
-+	{ "DRV", NULL, "IN" },
-+	{ "OUT", NULL, "DRV" },
-+};
-+
-+static const struct snd_soc_component_driver aw8738_component_driver = {
-+	.dapm_widgets = aw8738_dapm_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(aw8738_dapm_widgets),
-+	.dapm_routes = aw8738_dapm_routes,
-+	.num_dapm_routes = ARRAY_SIZE(aw8738_dapm_routes),
-+};
-+
-+static int aw8738_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct aw8738_priv *aw;
-+	int ret;
-+
-+	aw = devm_kzalloc(dev, sizeof(*aw), GFP_KERNEL);
-+	if (!aw)
-+		return -ENOMEM;
-+	platform_set_drvdata(pdev, aw);
-+
-+	aw->gpiod_mode = devm_gpiod_get(dev, "mode", GPIOD_OUT_LOW);
-+	if (IS_ERR(aw->gpiod_mode))
-+		return dev_err_probe(dev, PTR_ERR(aw->gpiod_mode),
-+				     "Failed to get 'mode' gpio");
-+
-+	ret = device_property_read_u32(dev, "awinic,mode", &aw->mode);
-+	if (ret)
-+		return -EINVAL;
-+
-+	return devm_snd_soc_register_component(&pdev->dev,
-+					       &aw8738_component_driver,
-+					       NULL, 0);
-+}
-+
-+#ifdef CONFIG_OF
-+static const struct of_device_id aw8738_of_match[] = {
-+	{ .compatible = "awinic,aw8738" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, aw8738_of_match);
-+#endif
-+
-+static struct platform_driver aw8738_driver = {
-+	.probe	= aw8738_probe,
-+	.driver = {
-+		.name = "aw8738",
-+		.of_match_table = of_match_ptr(aw8738_of_match),
-+	},
-+};
-+module_platform_driver(aw8738_driver);
-+
-+MODULE_DESCRIPTION("Awinic AW8738 Amplifier Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.35.1
+Are you sure that you can't use .fast_io = true?
+
+Another version for the same question:
+Are you sure that you need to lock with a mutex here, and not with a spinlock?
+
+Since you're performing reads over a MMIO, I think that there's a very good
+chance that you can use fast_io.
+
+> +};
+> +
+> +static irqreturn_t mt6779_keypad_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct mt6779_keypad *keypad = dev_id;
+> +	unsigned short *keycode = keypad->input_dev->keycode;
+> +	DECLARE_BITMAP(new_state, MTK_KPD_NUM_BITS);
+> +	DECLARE_BITMAP(change, MTK_KPD_NUM_BITS);
+> +	int bit_nr;
+> +	int pressed;
+> +	unsigned short code;
+> +	int row, col;
+> +	int row_shift = get_count_order(keypad->n_cols);
+> +
+> +	regmap_bulk_read(keypad->regmap, MTK_KPD_MEM,
+> +			 new_state, MTK_KPD_NUM_MEMS);
+> +
+> +	bitmap_xor(change, new_state, keypad->keymap_state, MTK_KPD_NUM_BITS);
+> +
+> +	for_each_set_bit(bit_nr, change, MTK_KPD_NUM_BITS) {
+> +	/* For 32bits register, only bits [15:0] use to indicate key status */
+> +		if (bit_nr % 32 >= 16)
+> +			continue;
+> +
+> +		/* 1: not pressed, 0: pressed */
+> +		pressed = !test_bit(bit_nr, new_state);
+> +		dev_dbg(&keypad->input_dev->dev, "%s",
+> +			pressed ? "pressed" : "released");
+> +
+> +		row = bit_nr / 32;
+> +		col = bit_nr % 32;
+> +
+> +		code = keycode[MATRIX_SCAN_CODE(row, col, row_shift)];
+> +
+> +		input_report_key(keypad->input_dev, code, pressed);
+> +		input_sync(keypad->input_dev);
+> +
+> +		dev_dbg(&keypad->input_dev->dev,
+> +			"report Linux keycode = %d\n", code);
+> +	}
+> +
+> +	bitmap_copy(keypad->keymap_state, new_state, MTK_KPD_NUM_BITS);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static void mt6779_keypad_clk_disable(void *data)
+> +{
+> +	clk_disable_unprepare(data);
+> +}
+> +
+> +static int mt6779_keypad_pdrv_probe(struct platform_device *pdev)
+> +{
+> +	struct mt6779_keypad *keypad;
+> +	unsigned int irq;
+> +	u32 debounce;
+> +	bool wakeup;
+> +	int error;
+> +
+> +	keypad = devm_kzalloc(&pdev->dev, sizeof(*keypad), GFP_KERNEL);
+> +	if (!keypad)
+> +		return -ENOMEM;
+> +
+> +	keypad->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(keypad->base))
+> +		return PTR_ERR(keypad->base);
+> +
+> +	keypad->regmap = devm_regmap_init_mmio(&pdev->dev,
+> +					       keypad->base,
+> +					       &mt6779_keypad_regmap_cfg);
+
+Please use dev_err_probe() to simplify error handling in probe functions: you've
+done a great job with adding a devm action for the error cases, avoiding gotos to
+get out cleanly.. it would be a pity to not finish this to perfection.
+
+I'll give you two examples for this, so that you'll be all set.
+
+	if (IS_ERR(keypad->regmap))
+		return dev_err_probe(&pdev->dev, PTR_ERR(keypad->regmap),
+				     "regmap init failed\n");
+
+P.S.: No need for %pe here, as dev_err_probe prints the error number for you!
+
+> +	if (IS_ERR(keypad->regmap)) {
+> +		dev_err(&pdev->dev,
+> +			"regmap init failed:%pe\n", keypad->regmap);
+> +		return PTR_ERR(keypad->regmap);
+> +	}
+> +
+> +	bitmap_fill(keypad->keymap_state, MTK_KPD_NUM_BITS);
+> +
+> +	keypad->input_dev = devm_input_allocate_device(&pdev->dev);
+
+	if (!keypad->input_dev)
+		return dev_err_probe(&pdev->dev, -ENOMEM,
+				     "Cannot allocate input device\n");
+
+> +	if (!keypad->input_dev) {
+> +		dev_err(&pdev->dev, "Failed to allocate input dev\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	keypad->input_dev->name = MTK_KPD_NAME;
+> +	keypad->input_dev->id.bustype = BUS_HOST;
+> +
+> +	error = matrix_keypad_parse_properties(&pdev->dev, &keypad->n_rows,
+> +					       &keypad->n_cols);
+> +	if (error) {
+> +		dev_err(&pdev->dev, "Failed to parse keypad params\n");
+> +		return error;
+> +	}
+> +
+> +	if (device_property_read_u32(&pdev->dev, "debounce-delay-ms",
+> +				     &debounce))
+> +		debounce = 16;
+> +
+> +	if (debounce > MTK_KPD_DEBOUNCE_MAX_MS) {
+> +		dev_err(&pdev->dev, "Debounce time exceeds the maximum allowed time %dms\n",
+> +			MTK_KPD_DEBOUNCE_MAX_MS);
+> +		return -EINVAL;
+> +	}
+> +
+> +	wakeup = device_property_read_bool(&pdev->dev, "wakeup-source");
+> +
+> +	dev_dbg(&pdev->dev, "n_row=%d n_col=%d debounce=%d\n",
+> +		keypad->n_rows, keypad->n_cols, debounce);
+> +
+> +	error = matrix_keypad_build_keymap(NULL, NULL,
+> +					   keypad->n_rows,
+> +					   keypad->n_cols,
+> +					   NULL,
+> +					   keypad->input_dev);
+> +	if (error) {
+> +		dev_err(&pdev->dev, "Failed to build keymap\n");
+> +		return error;
+> +	}
+> +
+> +	regmap_write(keypad->regmap, MTK_KPD_DEBOUNCE,
+> +		     (debounce * (1 << 5)) & MTK_KPD_DEBOUNCE_MASK);
+> +
+> +	keypad->clk = devm_clk_get(&pdev->dev, "kpd");
+> +	if (IS_ERR(keypad->clk))
+> +		return PTR_ERR(keypad->clk);
+> +
+> +	error = clk_prepare_enable(keypad->clk);
+> +	if (error) {
+> +		dev_err(&pdev->dev, "cannot prepare/enable keypad clock\n");
+> +		return error;
+> +	}
+> +
+> +	error = devm_add_action_or_reset(&pdev->dev, mt6779_keypad_clk_disable, keypad->clk);
+> +	if (error)
+> +		return error;
+> +
+> +	irq = platform_get_irq(pdev, 0);
+> +	if (irq < 0)
+> +		return irq;
+> +
+> +	error = devm_request_threaded_irq(&pdev->dev, irq, NULL, mt6779_keypad_irq_handler,
+> +					  IRQF_ONESHOT, MTK_KPD_NAME, keypad);
+> +	if (error) {
+> +		dev_err(&pdev->dev, "Failed to request IRQ#%d:%d\n", irq, error);
+> +		return error;
+> +	}
+> +
+> +	error = input_register_device(keypad->input_dev);
+> +	if (error) {
+> +		dev_err(&pdev->dev, "Failed to register device\n");
+> +		return error;
+> +	}
+> +
+> +	error =  device_init_wakeup(&pdev->dev, wakeup);
+
+Whoops! Two spaces here! Please fix this typo.
+
+P.S.: Please add my email to the Cc's when you'll send the next version, so that
+       I will be able to timely give you a R-b tag.
+
+Cheers,
+Angelo
+
 
