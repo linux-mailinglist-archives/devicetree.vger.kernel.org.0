@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E3E234CE092
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:07:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5504B4CE094
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:10:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbiCDXIj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 18:08:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50946 "EHLO
+        id S229447AbiCDXK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 18:10:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbiCDXIi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:08:38 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 47C3FDE6;
-        Fri,  4 Mar 2022 15:07:49 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id ay7so9359681oib.8;
-        Fri, 04 Mar 2022 15:07:49 -0800 (PST)
+        with ESMTP id S229436AbiCDXK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:10:56 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0277927B8C8;
+        Fri,  4 Mar 2022 15:10:08 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id z7so9407784oid.4;
+        Fri, 04 Mar 2022 15:10:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=EuVtOzmDY8KQtxviZjbiWvVDjL6QwHXJTtn2aF7LIXc=;
-        b=3Zp1SBCWu7lI8TVO2TZ7IJdeAsLUQzcFyfB6rm0SDk2oT3y9vyGWKsDLco+lr06hwx
-         nq+kSul7yhEI+PUiL9BJPrGV+rLVqBR6GI64s4JBvQsSmtPHCaRUdQdRA9e5OkUM2uWz
-         8uEeTnMASvvmx0Wt8/vV3FdMp/Ibd3IMq5jjn/EJ+mPmnJaVor0aa/V/R6njEyLPLgey
-         gi3EoECVxA8OovQmlKC1gG0K3prRDLXLNSmq5Na8KOWiDtA/uiNSbvltIe3GbRinVa3L
-         UzFvNl79/G/ZHMjfHPvucoJzf9K7ovlWHcarhV/pvOrZ2eolcNp6hguzVho+MRobpOpz
-         f0gg==
-X-Gm-Message-State: AOAM530LzzundRZ3/VjHjoPsT7wBVsrtGkfYJexpDnyi/mF9ciR+cd+D
-        thsyNorhwLrOCXDIXOZS4w==
-X-Google-Smtp-Source: ABdhPJzBMpgUUCLDYr6YbsXtD5Tw6YhhPdQRKDAFpiM7eprWpaKATZipSf90dkk5P62+xaVtLQfLoA==
-X-Received: by 2002:a05:6808:148d:b0:2d9:a01a:4873 with SMTP id e13-20020a056808148d00b002d9a01a4873mr959275oiw.190.1646435268666;
-        Fri, 04 Mar 2022 15:07:48 -0800 (PST)
+        bh=JW+rxnZpE9+fHEQrxDlG04ae248q2vaFTXN8LAiNdGI=;
+        b=6aZfavgP3uZmPoNBDusmIhadoeF/Cn0hjthPyjkNmcBhA7c8sEIxzSJtKnJqseKB5a
+         D5IZ4bzrcG4+79OAfSjyHMlUljMmXLO+5scEyPD+jLZvyYh7Jpeu+Sa2ledB92noPv/j
+         G9HmSKz2BoR+mZN3t0Jr5LJkCLlCkg5/rwMYH/u+7LWQEXFmvZ/NmtVfw2e9qMZw76RU
+         tUefloDqeTXpluyhvaILNFQ57qfI5o4m92JKxOuBrGWwZHh7Nwf01CkqUg/jktqNyBf4
+         ThZESlYp7sfRpRKETiBbDvEvXrMuxMnpXu7Pr0WtjjfsgVbNWUesBEcOup+mCyq4e+En
+         cI/g==
+X-Gm-Message-State: AOAM533Gmh5rf6qNF6DBwZ0HeZFWcr0cfZaYsCibz8Gl2oixlKHPvs/2
+        xEi7Yp0c012ZtnSoVfzK5w==
+X-Google-Smtp-Source: ABdhPJy9RdDp8xAHMMBepzvrVL3O5MwKYsIJ1gbpJkxbzCBhqvIZ4bNVu4BUg/Vl7bnetGqDDVqZQA==
+X-Received: by 2002:a05:6808:11cd:b0:2d5:3f90:b9e with SMTP id p13-20020a05680811cd00b002d53f900b9emr474875oiv.113.1646435406761;
+        Fri, 04 Mar 2022 15:10:06 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e7-20020a056830200700b005a09222e268sm2889932otp.7.2022.03.04.15.07.47
+        by smtp.gmail.com with ESMTPSA id a12-20020a9d5c8c000000b005ad51592bd8sm2900602oti.49.2022.03.04.15.10.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 15:07:47 -0800 (PST)
-Received: (nullmailer pid 629083 invoked by uid 1000);
-        Fri, 04 Mar 2022 23:07:46 -0000
-Date:   Fri, 4 Mar 2022 17:07:46 -0600
+        Fri, 04 Mar 2022 15:10:05 -0800 (PST)
+Received: (nullmailer pid 633452 invoked by uid 1000);
+        Fri, 04 Mar 2022 23:10:04 -0000
+Date:   Fri, 4 Mar 2022 17:10:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Miguel Ojeda <ojeda@kernel.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+To:     =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        kernel@collabora.com, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v5 2/6] dt-bindings: auxdisplay: Add Titan Micro
- Electronics TM1628
-Message-ID: <YiKbwv2mg3//5EAa@robh.at.kernel.org>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
+        linux-remoteproc@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: remoteproc: mediatek: Add interrupts
+ property to mtk,scp
+Message-ID: <YiKcTH9alpE5FExj@robh.at.kernel.org>
+References: <20220225225854.81038-1-nfraprado@collabora.com>
+ <20220225225854.81038-2-nfraprado@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2671e6e3-8f18-8b70-244b-9e1415bfdf8f@gmail.com>
+In-Reply-To: <20220225225854.81038-2-nfraprado@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -77,23 +76,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Feb 2022 22:13:16 +0100, Heiner Kallweit wrote:
-> Add a YAML schema binding for TM1628 auxdisplay
-> (7/11-segment LED) controller.
+On Fri, 25 Feb 2022 17:58:52 -0500, Nícolas F. R. A. Prado wrote:
+> The SCP node can have an associated interrupt. Add a property for it.
 > 
-> This patch is partially based on previous work from
-> Andreas Färber <afaerber@suse.de>.
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 > 
-> Co-developed-by: Andreas Färber <afaerber@suse.de>
-> Signed-off-by: Andreas Färber <afaerber@suse.de>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 > ---
-> v5:
-> - add vendor prefix to driver-specific properties
-> ---
->  .../bindings/auxdisplay/titanmec,tm1628.yaml  | 92 +++++++++++++++++++
->  1 file changed, 92 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+> 
+>  Documentation/devicetree/bindings/remoteproc/mtk,scp.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
