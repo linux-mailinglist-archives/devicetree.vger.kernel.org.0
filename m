@@ -2,68 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BACB4CD244
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:20:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 194FE4CD25D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229918AbiCDKVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 05:21:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54128 "EHLO
+        id S234292AbiCDK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 05:27:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231514AbiCDKVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:21:13 -0500
-Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC0441662ED;
-        Fri,  4 Mar 2022 02:20:25 -0800 (PST)
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2244C9fe003921;
-        Fri, 4 Mar 2022 04:19:44 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=DImCBkyjORf8pQMKZ3k5cogPNsWDGe32FfR6YNNWTyA=;
- b=R/PLloQ0rUTWlIO11J5QfdITDLIynSfpPNHVvYs4/lXQwq/QYrGJqaF3Ha89hFbxXrjH
- dFifHL6NmQCQLv/LELqWlbxSZ2P92/Jbz+R9bNcSjk1k/KbfAkoqiiIJHJKIUwmAH9qS
- z2gp/+j8m2kYTJf6VQuk+M4FJtu8oh923a2L2qe5AfOcjkK4z/gEMPV8heVtw/gvDuyv
- zbBtlOVeA5gt++ECBazwu0Zbkd4njJBU2JXr9E2pClPpQTEatpcYbtlf51LEIDjr21EW
- EvlBoYQupP0dl1YLuYDE8zBL+r/4yCciZVwpwh/a2QkWgk3h/wK98u4/NWlH1pwKLA/t ew== 
-Received: from ediex01.ad.cirrus.com ([84.19.233.68])
-        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ek4j3gsxe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Fri, 04 Mar 2022 04:19:44 -0600
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
- 2022 10:19:42 +0000
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
- Transport; Fri, 4 Mar 2022 10:19:42 +0000
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 676F47C;
-        Fri,  4 Mar 2022 10:19:42 +0000 (UTC)
-Date:   Fri, 4 Mar 2022 10:19:42 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
-        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 13/20] sound: cs35l41: Enable Internal Boost in shared lib
-Message-ID: <20220304101942.GD38351@ediswmail.ad.cirrus.com>
-References: <20220303173059.269657-1-tanureal@opensource.cirrus.com>
- <20220303173059.269657-14-tanureal@opensource.cirrus.com>
+        with ESMTP id S233073AbiCDK1n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:27:43 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FE11AA057
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:26:55 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646389612;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
+    bh=zudBi6qDl21Fw03NfI0Dqw3aifqtt17ZUkifzCNDbRM=;
+    b=AFm4UJ71wJ+mMup/7yUENhMkYZX/RZV2kWV4Y7oEP88CWLgIKo+JG9OOQkYaq1JpZb
+    MRuOhpf2o0fesqYNs4P8ZZzoohk0V2EnNVKKAakkmpWYFyynHSxHyvIWRZ0+t6L3LDv2
+    346wOkDfQO62jeGke98IYsRLNd8rGJqpKlipEUrlb7tfOee/PEmcr7Mv2fOb4+ACcvhC
+    z/Mxm+k/zD+KZTAdBxyuZkbBEQslacSuQVkRpAphDAyTgMpxpd2LCACv4C8/PzaXW/iq
+    Uu8iWIeV+cYYJdbO74i7jzkLf7H2UIjqIb9SQy663USZ6jfbTlzfi9ZuAqPcJdJLeV71
+    SU5g==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fyL2muE="
+X-RZG-CLASS-ID: mo00
+Received: from droid..
+    by smtp.strato.de (RZmta 47.40.1 AUTH)
+    with ESMTPSA id 2c4d58y24AQp4vC
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 4 Mar 2022 11:26:51 +0100 (CET)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+        Jonathan Albrieux <jonathan.albrieux@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH v2 0/2] ASoC: codecs: Add Awinic AW8738 audio amplifier driver
+Date:   Fri,  4 Mar 2022 11:24:50 +0100
+Message-Id: <20220304102452.26856-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20220303173059.269657-14-tanureal@opensource.cirrus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-GUID: QYLkXjjrVqh3elDkhp0JuUGy2H5JnFv3
-X-Proofpoint-ORIG-GUID: QYLkXjjrVqh3elDkhp0JuUGy2H5JnFv3
-X-Proofpoint-Spam-Reason: safe
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,17 +57,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 05:30:52PM +0000, Lucas Tanure wrote:
-> Boost enable is the default option from reset,
-> but with external boost support, internal boost
-> must be disabled.
-> Add the enable of boost in cs35l41_boost_config
-> to centralize the internal boost configuration.
-> 
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
-> ---
+This series adds a simple driver and DT schema for the Awinic AW8738 
+audio amplifier. It's fairly simple - the main difference to 
+simple-amplifier is that there is a "one-wire pulse control" that 
+allows configuring the amplifier to one of a few pre-defined modes. 
+This can be used to configure the speaker-guard function (primarily
+the power limit for the amplifier).
 
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+Jonathan Albrieux (1):
+  ASoC: codecs: Add Awinic AW8738 audio amplifier driver
 
-Thanks,
-Charles
+Stephan Gerhold (1):
+  ASoC: dt-bindings: Add schema for "awinic,aw8738"
+
+ .../bindings/sound/awinic,aw8738.yaml         |  54 +++++++++
+ sound/soc/codecs/Kconfig                      |  10 ++
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/aw8738.c                     | 104 ++++++++++++++++++
+ 4 files changed, 170 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
+ create mode 100644 sound/soc/codecs/aw8738.c
+
+-- 
+2.35.1
+
