@@ -2,118 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81A804CD6AA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 956604CD6B7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:47:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239939AbiCDOo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:44:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50340 "EHLO
+        id S239935AbiCDOsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 09:48:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239935AbiCDOoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:44:54 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DAD01BD073
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 06:44:06 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 140CD3F614
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 14:44:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646405045;
-        bh=gSSf/oFGcND5LFz2K7Y2Hc6MnvHoRe40iy4ZtWWVreU=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=vlfvc+2HV2skxVKXrB5iiu8z0hPXLZwV+DvX3fOsVuNBRVPk1BPS79c1poLK2F5fM
-         /Iu6S0MU/U7UkXA82dbNmvIh6FbUbhotNMP6NsdqB5pojX/3vutspDyGgvKXXz38m8
-         J1XceyTDx7T24D4rD05KM9b6T4Rc9fPkdiZRK1mX7Fod4N2OAGdapU5PTGiNZ7U5+L
-         ZtD0xX4rWfH0YlbJ4UDsLSxvkGE379q65osEZF+R76o438txpAl4dLDB0b1juZZYXq
-         /DUfdv2ogtlduKCt1s6P1aLxRs3ckw0tT+B6ni0SY1cPvHjkFK5AY5Lzzn9em9swy8
-         QTmjfEvm+4BlQ==
-Received: by mail-ej1-f69.google.com with SMTP id h22-20020a1709060f5600b006b11a2d3dcfso4512348ejj.4
-        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 06:44:05 -0800 (PST)
+        with ESMTP id S237160AbiCDOsD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:48:03 -0500
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF19848384;
+        Fri,  4 Mar 2022 06:47:15 -0800 (PST)
+Received: by mail-yb1-xb30.google.com with SMTP id g26so17243172ybj.10;
+        Fri, 04 Mar 2022 06:47:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=CUW9eyq6olA9UOxPXQmSp+qMVQaP00he0KkU/RyKjq0=;
+        b=ETyBEW7YhnLoIr1wJ94chKj8as25ZaiWCxdoQeJfM2137JFZx84RaD1MY+P+XNzoUy
+         P165qPpM5aAS9MffBzqblSELPKK9kxtTairC8Js/3oG3r3IHbrDLi18scYeptCyna7SP
+         TdxjaQ1rkJv7A03GmgIUFYy0DgSgLz7sBRlDUDER6ue7GgDUwaarpfbYV7BN1F5eTFlf
+         MSkMadqL7DBmi4eCyISJMDa+TWbOhaU34nZeSmLfAL4Zq136Q2HPdBdsgf48VgsLcMyQ
+         XNHCrMtwByGh/RsmKmeRc3AqDNe+FBnIz4FKJM4qKiAyj4Dd9ekHHh4i2tr4tAqlMK1D
+         TngQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=gSSf/oFGcND5LFz2K7Y2Hc6MnvHoRe40iy4ZtWWVreU=;
-        b=beYN5+2s7/kEGERwgCoJhVcEz6c6N10ueiw9G60LAZSHzeuNJLth7rmvIA9O3aa6uC
-         7UcyqCgvHuncUm6xL3toNO3e6zB8F41vrJpGeyOR3QsMjvEV5hAUYkLJmoi5d11dxgQR
-         WdnK9CZTx8jGty6zSvD8QZ9FLqVWQMSwABAFDQqM4UzsW2RxmQEhD1r5i6GVzHR8cQjr
-         lBoOSdal4/Xu/tZ65iS3o1f1/xJ+RrqxOyCOpKARyLl+b5BuHH7Xrkvqsle3GuaDnhep
-         jfRsBUUaGgjeQROAKZ0vnIybtTY0MUS/LCBctS6u4LO7Fz6lJUbGXP1JehT7XzPDU9xC
-         a5mw==
-X-Gm-Message-State: AOAM530AsUSVoD2a+5sGOmC4yolmhXVqjq9idoTp7OosxUhWPny8IkOX
-        GbeRfItDc7A1sSuuW67JunM0FNY8oKklrE5SOSERn2jY9I3WoMDtPyeSXKSQzJrM0a0irnJdq60
-        jKtPxZ/pOC13pHn4BaUNxQqAjIFHB52t/4yh4RaE=
-X-Received: by 2002:a17:906:32d0:b0:6ce:e1cf:3f2e with SMTP id k16-20020a17090632d000b006cee1cf3f2emr30484868ejk.214.1646405044639;
-        Fri, 04 Mar 2022 06:44:04 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy9+otEuho6Pdcwo/wfGl1pcYpW5/3K6MleLdh+2KoSkgGl4V3ktzs2YBifoCwSJYV6fHucfg==
-X-Received: by 2002:a17:906:32d0:b0:6ce:e1cf:3f2e with SMTP id k16-20020a17090632d000b006cee1cf3f2emr30484851ejk.214.1646405044405;
-        Fri, 04 Mar 2022 06:44:04 -0800 (PST)
-Received: from [192.168.0.139] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id b7-20020a170906490700b006b2512921b2sm1835912ejq.48.2022.03.04.06.44.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Mar 2022 06:44:03 -0800 (PST)
-Message-ID: <e97cf184-4e38-c540-da5a-28c762d8d21a@canonical.com>
-Date:   Fri, 4 Mar 2022 15:44:03 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=CUW9eyq6olA9UOxPXQmSp+qMVQaP00he0KkU/RyKjq0=;
+        b=WNsTQIGUV/jZFx7Q+LDaeTeKJwB3SRDXSZ7GLvGcx+lVdUuhI8SDulIuWECi3viQjM
+         DePpDEoSKOLSc7DwU1AxvC+0fnP2Co8MvXwEupGe2dyjsFm9VSZTVg5KrfHsNbxpQI5O
+         hYRsNjPEirnmS/Os7/KGyUopaMr6EXwYRbLjKtzUIJyWYGLOWJ3VaWrmS0PltYT2lBFC
+         vrQru2weUKIMlJdxpbQyimam4NHNBwgwciiH23ZghUcdF4f8CutBnlhX5TsF/YdoGF8L
+         uyET2Ddv8nOCMofHiuXkKr9iawtzt9lJmIkexMC06tsqlCqvTayQmdXp5TcVBtGXXp+t
+         RZBA==
+X-Gm-Message-State: AOAM531hOpco6ESSC5tqSlm/2ihKmO5jAV31gZWwem15GplQN232nJeQ
+        HGYQhlBYG2FjN1dTQ4sgFOh8y8duv+LfTm9AVc7lYj9x3Dw=
+X-Google-Smtp-Source: ABdhPJzL3K/jikdloz8L2WO3+zi/8Cp0G3owqWF4urVyT4uasuJoj++B4FPKa3BA6m7Ih1hTbhxRqbFNnawHLzBx2DA=
+X-Received: by 2002:a05:6902:143:b0:628:7cf1:f2a9 with SMTP id
+ p3-20020a056902014300b006287cf1f2a9mr17194704ybh.51.1646405234801; Fri, 04
+ Mar 2022 06:47:14 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 4/5] dt-bindings: rtc: at91: Use macros for the IRQ
- type
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        nicolas.ferre@microchip.com, claudiu.beznea@microchip.com
-Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220304142746.121947-1-sergiu.moga@microchip.com>
- <20220304142746.121947-5-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220304142746.121947-5-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20220127230727.3369358-1-briannorris@chromium.org> <20220127150615.v2.12.I3a5c7f21ecd8221b42c2dbcd618386bce7b3e9a6@changeid>
+In-Reply-To: <20220127150615.v2.12.I3a5c7f21ecd8221b42c2dbcd618386bce7b3e9a6@changeid>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Fri, 4 Mar 2022 09:47:03 -0500
+Message-ID: <CAMdYzYo9Y_pEAAtreQU0B9DVzGsbUgpTA2g7HGRyUXcSBjMy4g@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] arm64: dts: rockchip: Enable dmc and dfi nodes
+ on gru
+To:     Brian Norris <briannorris@chromium.org>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Lin Huang <hl@rock-chips.com>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Derek Basehore <dbasehore@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        =?UTF-8?B?R2HDq2wgUE9SVEFZ?= <gael.portay@collabora.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2022 15:27, Sergiu Moga wrote:
-> Prefer using macros for the IRQ type of the example node's
-> interrupt property.
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+On Thu, Jan 27, 2022 at 6:17 PM Brian Norris <briannorris@chromium.org> wro=
+te:
+>
+> From: Lin Huang <hl@rock-chips.com>
+>
+> Enable the DMC (Dynamic Memory Controller) and the DFI (DDR PHY
+> Interface) nodes on gru boards so we can support DDR DVFS.
+>
+> Signed-off-by: Lin Huang <hl@rock-chips.com>
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Signed-off-by: Ga=C3=ABl PORTAY <gael.portay@collabora.com>
+> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
+> Updates since the old series:
+>
+>  - reordered alphabetically by phandle name, per style
+>  - drop a ton of deprecated/unused properties
+>  - add required center-supply for scarlet
+>  - add new *_idle_dis_freq properties
+>  - drop the lowest (200 MHz) OPP; this was never stabilized for
+>    production
+>  - bump the voltage (0.9V -> 0.925V) for the highest OPP on Chromebook
+>    models; later (tablet) models were more stable, with a fixed DDR
+>    regulator
+>  - bump odt_dis_freq to 666 MHz; early versions used 333 MHz, but
+>    stabilization efforts landed on 666 MHz for production
+>
 > ---
->  Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-> index af25cc275356..d2452067bfe4 100644
-> --- a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-> +++ b/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-> @@ -54,10 +54,12 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
+>
+> Changes in v2:
+>  - Adapt to new properties
+>
+> Changes in v1:
+> This was part of a previous series, at:
+> https://lore.kernel.org/r/20210308233858.24741-3-daniel.lezcano@linaro.or=
+g
+> I've picked up a bunch of changes and fixes, so I've restarted the patch
+> series numbering.
+
+Good Morning,
+
+I'm trying to bring this series over to rockpro64 (and eventually the
+pinephone-pro) and am running into some snags.
+Essentially, anytime a transition happens, the board locks up.
+I've disabled the extra power save disable flags and adjusted the OPPs
+for rockpro64's power.
+Transitions anywhere from the default 800mhz cause a lock.
+
+I'm digging deeper, but I'm hoping you can answer some questions in
+the meantime:
+1. Does this require something from firmware that isn't available on
+Mainline ATF? (AKA special firmware to the Chromebook line)
+2. If not, do you have any recommendations off the top of your head?
+
+Thanks,
+Peter Geis
+
+>
+>  .../dts/rockchip/rk3399-gru-chromebook.dtsi   |  7 +++++
+>  .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi | 12 ++++++++
+>  arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  | 28 +++++++++++++++++++
+>  .../boot/dts/rockchip/rk3399-op1-opp.dtsi     | 25 +++++++++++++++++
+>  4 files changed, 72 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi b/ar=
+ch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+> index 9b2c679f5eca..cc8950046d94 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-chromebook.dtsi
+> @@ -234,6 +234,13 @@ &cdn_dp {
+>         extcon =3D <&usbc_extcon0>, <&usbc_extcon1>;
+>  };
+>
+> +&dmc {
+> +       center-supply =3D <&ppvar_centerlogic>;
+> +       rockchip,pd-idle-dis-freq-hz =3D <800000000>;
+> +       rockchip,sr-idle-dis-freq-hz =3D <800000000>;
+> +       rockchip,sr-mc-gate-idle-dis-freq-hz =3D <800000000>;
+> +};
 > +
->      rtc@fffffd20 {
->          compatible = "atmel,at91sam9260-rtt";
->          reg = <0xfffffd20 0x10>;
-> -        interrupts = <1 4 7>;
-> +        interrupts = <1 IRQ_TYPE_LEVEL_HIGH 7>;
-
-Ah, I see the change now. This should be squashed with previous patch.
-There is no point to add imperfect DTS code which is being changed a
-commit later. Example is not bindings.
-
-Best regards,
-Krzysztof
+>  &edp {
+>         status =3D "okay";
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi b/arch/=
+arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+> index a9817b3d7edc..913d845eb51a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru-scarlet.dtsi
+> @@ -391,6 +391,18 @@ &cru {
+>                 <400000000>;
+>  };
+>
+> +/* The center supply is fixed to .9V on scarlet */
+> +&dmc {
+> +       center-supply =3D <&pp900_s0>;
+> +};
+> +
+> +/* We don't need .925 V for 928 MHz on scarlet */
+> +&dmc_opp_table {
+> +       opp03 {
+> +               opp-microvolt =3D <900000>;
+> +       };
+> +};
+> +
+>  &gpio0 {
+>         gpio-line-names =3D /* GPIO0 A 0-7 */
+>                           "CLK_32K_AP",
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi b/arch/arm64/bo=
+ot/dts/rockchip/rk3399-gru.dtsi
+> index 162f08bca0d4..23bfba86daab 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi
+> @@ -373,6 +373,34 @@ &cru {
+>                 <200000000>;
+>  };
+>
+> +&dfi {
+> +       status =3D "okay";
+> +};
+> +
+> +&dmc {
+> +       status =3D "okay";
+> +
+> +       rockchip,pd-idle-ns =3D <160>;
+> +       rockchip,sr-idle-ns =3D <10240>;
+> +       rockchip,sr-mc-gate-idle-ns =3D <40960>;
+> +       rockchip,srpd-lite-idle-ns =3D <61440>;
+> +       rockchip,standby-idle-ns =3D <81920>;
+> +
+> +       rockchip,ddr3_odt_dis_freq =3D <666000000>;
+> +       rockchip,lpddr3_odt_dis_freq =3D <666000000>;
+> +       rockchip,lpddr4_odt_dis_freq =3D <666000000>;
+> +
+> +       rockchip,sr-mc-gate-idle-dis-freq-hz =3D <1000000000>;
+> +       rockchip,srpd-lite-idle-dis-freq-hz =3D <0>;
+> +       rockchip,standby-idle-dis-freq-hz =3D <928000000>;
+> +};
+> +
+> +&dmc_opp_table {
+> +       opp03 {
+> +               opp-suspend;
+> +       };
+> +};
+> +
+>  &emmc_phy {
+>         status =3D "okay";
+>  };
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-op1-opp.dtsi b/arch/arm6=
+4/boot/dts/rockchip/rk3399-op1-opp.dtsi
+> index 2180e0f75003..6e29e74f6fc6 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-op1-opp.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-op1-opp.dtsi
+> @@ -110,6 +110,27 @@ opp05 {
+>                         opp-microvolt =3D <1075000>;
+>                 };
+>         };
+> +
+> +       dmc_opp_table: dmc_opp_table {
+> +               compatible =3D "operating-points-v2";
+> +
+> +               opp00 {
+> +                       opp-hz =3D /bits/ 64 <400000000>;
+> +                       opp-microvolt =3D <900000>;
+> +               };
+> +               opp01 {
+> +                       opp-hz =3D /bits/ 64 <666000000>;
+> +                       opp-microvolt =3D <900000>;
+> +               };
+> +               opp02 {
+> +                       opp-hz =3D /bits/ 64 <800000000>;
+> +                       opp-microvolt =3D <900000>;
+> +               };
+> +               opp03 {
+> +                       opp-hz =3D /bits/ 64 <928000000>;
+> +                       opp-microvolt =3D <925000>;
+> +               };
+> +       };
+>  };
+>
+>  &cpu_l0 {
+> @@ -136,6 +157,10 @@ &cpu_b1 {
+>         operating-points-v2 =3D <&cluster1_opp>;
+>  };
+>
+> +&dmc {
+> +       operating-points-v2 =3D <&dmc_opp_table>;
+> +};
+> +
+>  &gpu {
+>         operating-points-v2 =3D <&gpu_opp_table>;
+>  };
+> --
+> 2.35.0.rc0.227.g00780c9af4-goog
+>
+>
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
