@@ -2,38 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 194FE4CD25D
+	by mail.lfdr.de (Postfix) with ESMTP id 938404CD25E
 	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:26:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234292AbiCDK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S233073AbiCDK1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 4 Mar 2022 05:27:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40308 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233073AbiCDK1n (ORCPT
+        with ESMTP id S234093AbiCDK1n (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:27:43 -0500
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12FE11AA057
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C07E1AA072
         for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:26:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646389612;
     s=strato-dkim-0002; d=gerhold.net;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=zudBi6qDl21Fw03NfI0Dqw3aifqtt17ZUkifzCNDbRM=;
-    b=AFm4UJ71wJ+mMup/7yUENhMkYZX/RZV2kWV4Y7oEP88CWLgIKo+JG9OOQkYaq1JpZb
-    MRuOhpf2o0fesqYNs4P8ZZzoohk0V2EnNVKKAakkmpWYFyynHSxHyvIWRZ0+t6L3LDv2
-    346wOkDfQO62jeGke98IYsRLNd8rGJqpKlipEUrlb7tfOee/PEmcr7Mv2fOb4+ACcvhC
-    z/Mxm+k/zD+KZTAdBxyuZkbBEQslacSuQVkRpAphDAyTgMpxpd2LCACv4C8/PzaXW/iq
-    Uu8iWIeV+cYYJdbO74i7jzkLf7H2UIjqIb9SQy663USZ6jfbTlzfi9ZuAqPcJdJLeV71
-    SU5g==
+    h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Cc:Date:
+    From:Subject:Sender;
+    bh=Iqm1fpwUrmgjEvUGxc9v780M6SwTcyGfZQ5pzdpBkTg=;
+    b=DpqODdD+uC0r6yxbd22i5n+1nANHB1y4KLVKumhK4BTkdY5Q+4UblsHJloiVf6xGQf
+    bAwSCr9d6o/pGE3bRm40/8ULVsv5qt1PfwWo6mugnND4+E1pb+THdiI80pXlM3Nt2EaM
+    KyZshBQoazzEPOdE5CQtFQfcNrNjHHjEyjv26iqW4zCnUXY4hpG0hEG4nr3nFx0vczsv
+    /4tVor1WstvC7u6MO1LFfsO/4fZ3J6JiezSvm7JdPsU5LgNaUu8XyKepqQ9oAI8BDoG/
+    oEcR1RpnfDiOAd02x3B77f14DJocvUJKnkrOgUV1EtkHH6AjT1+W0P+83N7dd7RB9aEm
+    kh4Q==
 Authentication-Results: strato.com;
     dkim=none
 X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXQ7UOGqRde+a0fyL2muE="
 X-RZG-CLASS-ID: mo00
 Received: from droid..
     by smtp.strato.de (RZmta 47.40.1 AUTH)
-    with ESMTPSA id 2c4d58y24AQp4vC
+    with ESMTPSA id 2c4d58y24AQq4vD
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
         (Client did not present a certificate);
-    Fri, 4 Mar 2022 11:26:51 +0100 (CET)
+    Fri, 4 Mar 2022 11:26:52 +0100 (CET)
 From:   Stephan Gerhold <stephan@gerhold.net>
 To:     Mark Brown <broonie@kernel.org>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -41,10 +42,12 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
         Jonathan Albrieux <jonathan.albrieux@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 0/2] ASoC: codecs: Add Awinic AW8738 audio amplifier driver
-Date:   Fri,  4 Mar 2022 11:24:50 +0100
-Message-Id: <20220304102452.26856-1-stephan@gerhold.net>
+Subject: [PATCH v2 1/2] ASoC: dt-bindings: Add schema for "awinic,aw8738"
+Date:   Fri,  4 Mar 2022 11:24:51 +0100
+Message-Id: <20220304102452.26856-2-stephan@gerhold.net>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220304102452.26856-1-stephan@gerhold.net>
+References: <20220304102452.26856-1-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -57,27 +60,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series adds a simple driver and DT schema for the Awinic AW8738 
-audio amplifier. It's fairly simple - the main difference to 
-simple-amplifier is that there is a "one-wire pulse control" that 
-allows configuring the amplifier to one of a few pre-defined modes. 
-This can be used to configure the speaker-guard function (primarily
-the power limit for the amplifier).
+Add a DT schema for describing Awinic AW8738 audio amplifiers. They are
+fairly simple and controlled using a single GPIO. The number of pulses
+during power up selects one of a few pre-defined operation modes. This
+can be used to configure the speaker-guard function (primarily the
+power limit for the amplifier).
 
-Jonathan Albrieux (1):
-  ASoC: codecs: Add Awinic AW8738 audio amplifier driver
-
-Stephan Gerhold (1):
-  ASoC: dt-bindings: Add schema for "awinic,aw8738"
-
- .../bindings/sound/awinic,aw8738.yaml         |  54 +++++++++
- sound/soc/codecs/Kconfig                      |  10 ++
- sound/soc/codecs/Makefile                     |   2 +
- sound/soc/codecs/aw8738.c                     | 104 ++++++++++++++++++
- 4 files changed, 170 insertions(+)
+Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+---
+Changes in v2:
+  - Rename "enable-gpios" -> "mode-gpios" as an attempt to better
+    reflect its true purpose. Add description to prevent confusion.
+  - Rewrite all descriptions to be more clear about the purpose of
+    the amplifier operation modes.
+  - Add maximum for "awinic,mode"
+---
+ .../bindings/sound/awinic,aw8738.yaml         | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
- create mode 100644 sound/soc/codecs/aw8738.c
 
+diff --git a/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml b/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
+new file mode 100644
+index 000000000000..dce86dafe382
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/awinic,aw8738.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/awinic,aw8738.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Awinic AW8738 Audio Amplifier
++
++maintainers:
++  - Stephan Gerhold <stephan@gerhold.net>
++
++description:
++  The Awinic AW8738 is a simple audio amplifier with different operation modes
++  (set using one-wire pulse control). The mode configures the speaker-guard
++  function (primarily the power limit for the amplifier).
++
++allOf:
++  - $ref: name-prefix.yaml#
++
++properties:
++  compatible:
++    const: awinic,aw8738
++
++  mode-gpios:
++    description:
++      GPIO used for one-wire pulse control. The pin is typically called SHDN
++      (active-low), but this is misleading since it is actually more than
++      just a simple shutdown/enable control.
++    maxItems: 1
++
++  awinic,mode:
++    description: Operation mode (number of pulses for one-wire pulse control)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 7
++
++  sound-name-prefix: true
++
++required:
++  - compatible
++  - mode-gpios
++  - awinic,mode
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    audio-amplifier {
++        compatible = "awinic,aw8738";
++        mode-gpios = <&msmgpio 114 GPIO_ACTIVE_HIGH>;
++        awinic,mode = <5>;
++        sound-name-prefix = "Speaker Amp";
++    };
 -- 
 2.35.1
 
