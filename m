@@ -2,98 +2,209 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBA24CD480
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:50:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C39634CD48F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:55:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230038AbiCDMvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 07:51:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38570 "EHLO
+        id S234233AbiCDM4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 07:56:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229966AbiCDMvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:51:43 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A25A51B1DE4;
-        Fri,  4 Mar 2022 04:50:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=3zSYmUfILo42NmKSIeBACpJ1qTOzQlDChMK4Lpf3/Lo=; b=BAXE8OUEXSqnQ+UMkLbA9OD6K+
-        lWA7nqaB6ANdF0z0U3qkln/ZC3Ya9OgavSDUoDhW5khEhAeLm/ULSHaCTXPKOXK03kL7SfJVWcn38
-        L+flw+wgdz5xnEps2SkfuUJjiObsU9LSSwFiz9FALOh9XxiLiEmt5Fxu7mC24iPM8O2Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nQ7OR-009EGH-DJ; Fri, 04 Mar 2022 13:50:47 +0100
-Date:   Fri, 4 Mar 2022 13:50:47 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Divya Koppera <Divya.Koppera@microchip.com>
-Cc:     netdev@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        richardcochran@gmail.com, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, madhuri.sripada@microchip.com,
-        manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <YiILJ3tXs9Sba42B@lunn.ch>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-3-Divya.Koppera@microchip.com>
+        with ESMTP id S231825AbiCDM4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:56:01 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49ECE869C;
+        Fri,  4 Mar 2022 04:55:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646398512; x=1677934512;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+ZFa6rhRZ44X3wnA/gDErro2pEA4WQVzTbV/DBqK2YE=;
+  b=X1U9Hgm8DkU2Wz47Ibp8H5nM0r1dZhv4bSmMdmA4//7B1RfN7j3Wc06k
+   JPcm+WPo47HmKvs/CFli3DgUUc9V8l8lcBr0wSiDzlC3oUHgS76bj8W9X
+   uC/sUYql+KQUzOz80hwHgpnX7Jz8j2asEi/EfgaoYEBCg75ykyYJRh0+X
+   /BiCNmYl/PxYfm/e8uOesrarQ15/6vtcglTsvVvjDQfqs8XpaQjd+xI/1
+   T3OmnseSXnXpiRDFJWd2MvY1RseNqm/m5n1AUT7AxJZjxtfCABk1Uq7wV
+   JlRVnvabWEWsCLUGOZRyw5M83WhYOKU79yLnUPkTPeEWGsWIBQN4ZZZgA
+   A==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10275"; a="251543752"
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; 
+   d="scan'208";a="251543752"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2022 04:55:12 -0800
+X-IronPort-AV: E=Sophos;i="5.90,155,1643702400"; 
+   d="scan'208";a="576872396"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Mar 2022 04:55:08 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nQ7Ru-00BDxX-4b;
+        Fri, 04 Mar 2022 14:54:22 +0200
+Date:   Fri, 4 Mar 2022 14:54:21 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v3 1/6] device property: Helper to match multiple
+ connections
+Message-ID: <YiIL/ejgxhfRhTDP@smile.fi.intel.com>
+References: <20220303223351.141238-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220304093418.31645-3-Divya.Koppera@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220303223351.141238-1-bjorn.andersson@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-7.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 03:04:17PM +0530, Divya Koppera wrote:
-> Supports configuring latency values and also adds
-> check for phy timestamping feature.
+On Thu, Mar 03, 2022 at 02:33:46PM -0800, Bjorn Andersson wrote:
+> In some cases multiple connections with the same connection id
+> needs to be resolved from a fwnode graph.
 > 
-> Signed-off-by: Divya Koppera<Divya.Koppera@microchip.com>
-> ---
->  .../devicetree/bindings/net/micrel.txt          | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
+> One such example is when separate hardware is used for performing muxing
+> and/or orientation switching of the SuperSpeed and SBU lines in a USB
+> Type-C connector. In this case the connector needs to belong to a graph
+> with multiple matching remote endpoints, and the Type-C controller needs
+> to be able to resolve them both.
 > 
-> diff --git a/Documentation/devicetree/bindings/net/micrel.txt b/Documentation/devicetree/bindings/net/micrel.txt
-> index 8d157f0295a5..c5ab62c39133 100644
-> --- a/Documentation/devicetree/bindings/net/micrel.txt
-> +++ b/Documentation/devicetree/bindings/net/micrel.txt
-> @@ -45,3 +45,20 @@ Optional properties:
->  
->  	In fiber mode, auto-negotiation is disabled and the PHY can only work in
->  	100base-fx (full and half duplex) modes.
-> +
-> + - lan8814,ignore-ts: If present the PHY will not support timestamping.
-> +
-> +	This option acts as check whether Timestamping is supported by
-> +	hardware or not. LAN8814 phy support hardware tmestamping.
+> Add a new API that allows this kind of lookup.
 
-Does this mean the hardware itself cannot tell you it is missing the
-needed hardware? What happens when you forget to add this flag? Does
-the driver timeout waiting for hardware which does not exists?
+...
 
-> + - lan8814,latency_rx_10: Configures Latency value of phy in ingress at 10 Mbps.
+> +static unsigned int fwnode_graph_devcon_matches(struct fwnode_handle *fwnode,
+> +						const char *con_id, void *data,
+> +						devcon_match_fn_t match,
+> +						void **matches,
+> +						unsigned int matches_len)
+> +{
+> +	struct fwnode_handle *node;
+> +	struct fwnode_handle *ep;
+> +	unsigned int count = 0;
+> +	void *ret;
 > +
-> + - lan8814,latency_tx_10: Configures Latency value of phy in egress at 10 Mbps.
-> +
-> + - lan8814,latency_rx_100: Configures Latency value of phy in ingress at 100 Mbps.
-> +
-> + - lan8814,latency_tx_100: Configures Latency value of phy in egress at 100 Mbps.
-> +
-> + - lan8814,latency_rx_1000: Configures Latency value of phy in ingress at 1000 Mbps.
-> +
-> + - lan8814,latency_tx_1000: Configures Latency value of phy in egress at 1000 Mbps.
+> +	fwnode_graph_for_each_endpoint(fwnode, ep) {
 
-Why does this need to be configured, rather than hard coded? Why would
-the latency for a given speed change? I would of thought though you
-would take the average length of a PTP packet and divide is by the
-link speed.
+> +		if (count >= matches_len && matches) {
+> +			fwnode_handle_put(ep);
+> +			return count;
+> +		}
 
-     Andrew
+Wouldn't be the same as
+
+		if (count >= matches_len) {
+			fwnode_handle_put(ep);
+			break;
+		}
+
+?
+
+> +		node = fwnode_graph_get_remote_port_parent(ep);
+> +		if (!fwnode_device_is_available(node)) {
+> +			fwnode_handle_put(node);
+> +			continue;
+> +		}
+> +
+> +		ret = match(node, con_id, data);
+> +		fwnode_handle_put(node);
+> +		if (ret) {
+> +			if (matches)
+> +				matches[count] = ret;
+> +			count++;
+> +		}
+> +	}
+> +	return count;
+> +}
+
+...
+
+> +static unsigned int fwnode_devcon_matches(struct fwnode_handle *fwnode,
+> +					  const char *con_id, void *data,
+> +					  devcon_match_fn_t match,
+> +					  void **matches,
+> +					  unsigned int matches_len)
+> +{
+> +	struct fwnode_handle *node;
+> +	unsigned int count = 0;
+> +	unsigned int i;
+> +	void *ret;
+> +
+> +	for (i = 0; ; i++) {
+
+> +		if (count >= matches_len && matches)
+> +			return count;
+
+Ditto.
+
+> +		node = fwnode_find_reference(fwnode, con_id, i);
+> +		if (IS_ERR(node))
+> +			break;
+> +
+> +		ret = match(node, NULL, data);
+> +		fwnode_handle_put(node);
+> +		if (ret) {
+> +			if (matches)
+> +				matches[count] = ret;
+> +			count++;
+> +		}
+> +	}
+> +
+> +	return count;
+> +}
+
+...
+
+> +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> +				   const char *con_id, void *data,
+> +				   devcon_match_fn_t match,
+> +				   void **matches, unsigned int matches_len)
+> +{
+> +	unsigned int count_graph;
+> +	unsigned int count_ref;
+> +
+> +	if (!fwnode || !match)
+> +		return -EINVAL;
+
+> +	count_graph = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> +						  matches, matches_len);
+
+> +	matches += count_graph;
+> +	matches_len -= count_graph;
+
+No, won't work when matches == NULL.
+
+Also, matches_len is expected to be 0 in that case (or at least being ignored,
+check with vsnprintf() behaviour in similar case).
+
+So, something like this, perhaps
+
+	if (matches && matches_len) {
+		matches += count_graph;
+		matches_len -= count_graph;
+	}
+
+> +	count_ref = fwnode_devcon_matches(fwnode, con_id, data, match,
+> +					  matches, matches_len);
+> +
+> +	return count_graph + count_ref;
+> +}
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
