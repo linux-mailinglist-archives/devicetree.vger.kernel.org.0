@@ -2,308 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51CA64CD0C5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 10:08:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D85514CD0D3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 10:09:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237217AbiCDJIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 04:08:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58956 "EHLO
+        id S234396AbiCDJKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 04:10:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239235AbiCDJIR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 04:08:17 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0404F1A7DA3;
-        Fri,  4 Mar 2022 01:07:18 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 26EE01F4637B
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646384837;
-        bh=y71jZr0BRLat9aUsDt8207drN0hQ3NtgJeEhAs5zIio=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=BGl4nIN4JMJ9bhW/+QP0U8oI6uxINNZWxEjwiHyjSN5OryySVZOzx1avvy9n3eVBS
-         KxWGSM9Zo60NlpyrINsd5pvxFAxub6ldRbik8OfRN1c6FhQaRd9e3sH4opUNYevDKm
-         llU/z6Ifzr4iE7MuX+G6xjuSAVMu1aNjBmVhAfVyNPF8V6saPCZ0yngdUxPhTlF3jo
-         0zPjZvdkYH85L0tZtmXxpLmN62AssaSZGsRwEmtXKVATeR9d5qiLSn4oJG/LMEIf8z
-         LJOsB6zh7hHY2r5i1Yw+3bPQ39ZOf6MFrgzByPTPBw0GTxK+/3n/btxUGkjgpMSUN0
-         ss+g2aNjn8VJg==
-Message-ID: <d92c6083-9d87-8eca-c760-f5a6f05f13b2@collabora.com>
-Date:   Fri, 4 Mar 2022 10:07:13 +0100
+        with ESMTP id S236465AbiCDJKD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 04:10:03 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF1B13FAC7
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 01:09:14 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 0BD6A3F613
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 09:09:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646384953;
+        bh=RTZPALBXRdkEKxlmwBNBI927r6kcbqzn0JImmuscASw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=g2SviGZfMtfmvWGXnBkFDitDyKKO/kMOLXzjCznCqd3TqS70fI507KbuXDWpwfSfU
+         0kFpNFB5H75zsYss2Zflew/kkKpWPUd4tI9q+yibNykuN4iFh3pLwnMXbgqZ6LCWZT
+         /Qrzdt174JlC5/ye+4YCY13QC5SkO+gn1dBmt+BOa6KUFDOLbjSAt+TGGWHBWXvivy
+         2TxEFC0g7hFA0feXyogND31NIHu85D/bIac1k3zROjd1tqG+PHFnp7QPuQ0BpOkgHA
+         pU2hasod23K2Wkeugz37j6E00gPanxPvyrj8uWU4AVBCC8dfFbCCOnP+k6SJ7aVGfP
+         WbQxUKL5NR0Fw==
+Received: by mail-ed1-f70.google.com with SMTP id j9-20020a056402238900b004128085d906so4231527eda.19
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 01:09:13 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=RTZPALBXRdkEKxlmwBNBI927r6kcbqzn0JImmuscASw=;
+        b=4PjlPyCSvpATqH7s6MomP8ngPz/alPoaQJUN/p6DPzcpxSTVEiO0I6MfCuxKgwMC6W
+         pdmsYMsKopPqgrNK0oXVYsk+SPCa1/86NoVDsa9cAU9qYMnzkekZe5Tnh8MtruuqSuFj
+         inKsJ7Y7F8iDVT7UMhmgGHXEOia5DQSvJ9o/8woO5OyX5iiJcCKtPz+YzcAubAISSS/6
+         8x1ffTZg5LrRV2dxDsA4udHcnHkSYCsrY/BgAdJbUVOORVclp+gAGCfDSzEsvB4S01fj
+         clZ2ejV05q2ARKs6T9o/8+X9eGrGrI1FZz0LpgqVXJ29/p3gl7L1+SfmMGhk7lThQHfe
+         aaRg==
+X-Gm-Message-State: AOAM532kCyQQLKAcPgomHUP/RV+eqNSmcBSpBuAYVyC9A3HJiYfsC2G+
+        xQFMdQa8L8Bef11HxzzJ5H7/HhrFKSLYhonDTucc684tnfACGPaAsO3hWclsAatlX8dPOh59ss4
+        HFS9yAq8NkATegq/mgT4O402qBITbhCGaBKMqz8g=
+X-Received: by 2002:a05:6402:42c9:b0:415:e324:c211 with SMTP id i9-20020a05640242c900b00415e324c211mr6137378edc.234.1646384952687;
+        Fri, 04 Mar 2022 01:09:12 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxXgyrNgfR/FnZmmPxYM01MW37vjWNK7AzoWWi8OQyY16xhXHNchbX5Jg3tWX4OAVkVq58unA==
+X-Received: by 2002:a05:6402:42c9:b0:415:e324:c211 with SMTP id i9-20020a05640242c900b00415e324c211mr6137362edc.234.1646384952492;
+        Fri, 04 Mar 2022 01:09:12 -0800 (PST)
+Received: from [192.168.0.138] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id l9-20020a170906078900b006dac5f336f8sm137442ejc.124.2022.03.04.01.09.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Mar 2022 01:09:11 -0800 (PST)
+Message-ID: <1664de3d-8e33-596e-19ff-4fb174f2a178@canonical.com>
+Date:   Fri, 4 Mar 2022 10:09:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v2, 04/10] media: mtk-vcodec: Enable venc dual core usage
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v6 1/3] dt-bindings: Add dma-channels property and modify
+ compatible
 Content-Language: en-US
-To:     Irui Wang <irui.wang@mediatek.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tomasz Figa <tfiga@google.com>, Yong Wu <yong.wu@mediatek.com>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Fritz Koenig <frkoenig@chromium.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220117120615.21687-1-irui.wang@mediatek.com>
- <20220117120615.21687-5-irui.wang@mediatek.com>
- <3eaa4c05-f8f2-9e18-e6d9-a627fe5e1e40@collabora.com>
- <0b7f30b6eabb54fa894dcffea5827023ffdd58ee.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <0b7f30b6eabb54fa894dcffea5827023ffdd58ee.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Zong Li <zong.li@sifive.com>, robh+dt@kernel.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, conor.dooley@microchip.com,
+        geert@linux-m68k.org, bin.meng@windriver.com, green.wan@sifive.com,
+        vkoul@kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     Palmer Dabbelt <palmer@rivosinc.com>, Rob Herring <robh@kernel.org>
+References: <cover.1646383150.git.zong.li@sifive.com>
+ <12cff3b68de1bd02a8915bd70999bb4edafaca1b.1646383150.git.zong.li@sifive.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <12cff3b68de1bd02a8915bd70999bb4edafaca1b.1646383150.git.zong.li@sifive.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/03/22 03:12, Irui Wang ha scritto:
-> Hello, Angelo,
+On 04/03/2022 09:42, Zong Li wrote:
+> Add dma-channels property, then we can determine how many channels there
+> by device tree, rather than statically defining it in PDMA driver.
+> In addition, we also modify the compatible for PDMA versioning scheme.
 > 
-> Many thanks for your review.
+> Signed-off-by: Zong Li <zong.li@sifive.com>
+> Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> ---
+>  .../bindings/dma/sifive,fu540-c000-pdma.yaml  | 19 +++++++++++++++++--
+>  1 file changed, 17 insertions(+), 2 deletions(-)
 > 
-> On Thu, 2022-03-03 at 15:27 +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/01/22 13:06, Irui Wang ha scritto:
->>> Adds new venc core mode to indicate different venc hardware mode:
->>> VENC_SINGLE_CORE_MODE means only one core, the device has its own
->>> power/clk/irq, init_clk/request_irq helper can be used.
->>>
->>> VENC_DUAL_CORE_MODE means more than one core inside, the core
->>> device
->>> can use the init_clk/request_irq helper to initialize their own
->>> power/clk/irq. And the main device doesn't need use these helper
->>> anymore.
->>>
->>> MT8195 has two H264 venc cores, enable dual_core_mode for it.
->>>
->>> Signed-off-by: Irui Wang <irui.wang@mediatek.com>
->>> ---
->>>    drivers/media/platform/mtk-vcodec/Makefile    |   4 +-
->>>    .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  22 +++
->>>    .../platform/mtk-vcodec/mtk_vcodec_enc_core.c | 153
->>> ++++++++++++++++++
->>>    .../platform/mtk-vcodec/mtk_vcodec_enc_core.h |  36 +++++
->>>    .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  |  88 +++++-----
->>>    5 files changed, 266 insertions(+), 37 deletions(-)
->>>    create mode 100644 drivers/media/platform/mtk-
->>> vcodec/mtk_vcodec_enc_core.c
->>>    create mode 100644 drivers/media/platform/mtk-
->>> vcodec/mtk_vcodec_enc_core.h
->>>
->>> diff --git a/drivers/media/platform/mtk-vcodec/Makefile
->>> b/drivers/media/platform/mtk-vcodec/Makefile
->>> index 93e7a343b5b0..c472b221bd6b 100644
->>> --- a/drivers/media/platform/mtk-vcodec/Makefile
->>> +++ b/drivers/media/platform/mtk-vcodec/Makefile
->>> @@ -3,7 +3,8 @@
->>>    obj-$(CONFIG_VIDEO_MEDIATEK_VCODEC) += mtk-vcodec-dec.o \
->>>    				       mtk-vcodec-enc.o \
->>>    				       mtk-vcodec-common.o \
->>> -				       mtk-vcodec-dec-hw.o
->>> +				       mtk-vcodec-dec-hw.o \
->>> +				       mtk-vcodec-enc-core.o
->>>    
->>>    mtk-vcodec-dec-y := vdec/vdec_h264_if.o \
->>>    		vdec/vdec_vp8_if.o \
->>> @@ -32,6 +33,7 @@ mtk-vcodec-enc-y := venc/venc_vp8_if.o \
->>>    		venc_drv_if.o \
->>>    		venc_vpu_if.o \
->>>    
->>> +mtk-vcodec-enc-core-y := mtk_vcodec_enc_core.o
->>>    
->>>    mtk-vcodec-common-y := mtk_vcodec_intr.o \
->>>    		mtk_vcodec_util.o \
->>> diff --git a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
->>> b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
->>> index f78463ff4551..9e4e4290a69a 100644
->>> --- a/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
->>> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h
->>> @@ -117,6 +117,23 @@ enum mtk_vdec_hw_count {
->>>    	MTK_VDEC_MAX_HW_COUNT,
->>>    };
->>>    
->>> +/*
->>> + * enum mtk_venc_core_id -- encoder core id
->>> + */
->>> +enum mtk_venc_core_id {
->>> +	MTK_VENC_CORE0 = 0,
->>> +	MTK_VENC_CORE1 = 1,
->>
->> You don't have to say "= 1" for core1, just...
->>
->> 	MTK_VENC_CORE0 = 0,
->> 	MTK_VENC_CORE1,
->>
->> ...is fine, and better.
-> 
-> I will fix it.
-> 
->>
->>> +	MTK_VENC_CORE_MAX,
->>> +};
->>> +
->>> +/**
->>> + * enmu mtk_venc_core_mode - Used to indicate different encode
->>> mode
->>> + */
->>> +enum mtk_venc_core_mode {
->>> +	VENC_SINGLE_CORE_MODE = 0,
->>> +	VENC_DUAL_CORE_MODE = 1,
->>> +};
->>> +
->>>    /*
->>>     * struct mtk_video_fmt - Structure used to store information
->>> about pixelformats
->>>     */
->>> @@ -420,6 +437,7 @@ struct mtk_vcodec_dec_pdata {
->>>     * @output_formats: array of supported output formats
->>>     * @num_output_formats: number of entries in output_formats
->>>     * @core_type: stand for h264 or vp8 encode
->>> + * @core_mode: indicate encode core mode
->>>     */
->>>    struct mtk_vcodec_enc_pdata {
->>>    	bool uses_ext;
->>> @@ -430,6 +448,7 @@ struct mtk_vcodec_enc_pdata {
->>>    	const struct mtk_video_fmt *output_formats;
->>>    	size_t num_output_formats;
->>>    	int core_type;
->>> +	enum mtk_venc_core_mode core_mode;
->>>    };
->>>    
->>>    #define MTK_ENC_CTX_IS_EXT(ctx) ((ctx)->dev->venc_pdata-
->>>> uses_ext)
->>> @@ -479,6 +498,7 @@ struct mtk_vcodec_enc_pdata {
->>>     * @subdev_dev: subdev hardware device
->>>     * @subdev_prob_done: check whether all used hw device is prob
->>> done
->>>     * @subdev_bitmap: used to record hardware is ready or not
->>> + * @enc_core_dev: used to store venc core device
->>>     */
->>>    struct mtk_vcodec_dev {
->>>    	struct v4l2_device v4l2_dev;
->>> @@ -524,6 +544,8 @@ struct mtk_vcodec_dev {
->>>    	void *subdev_dev[MTK_VDEC_HW_MAX];
->>>    	int (*subdev_prob_done)(struct mtk_vcodec_dev *vdec_dev);
->>>    	DECLARE_BITMAP(subdev_bitmap, MTK_VDEC_HW_MAX);
->>> +
->>> +	void *enc_core_dev[MTK_VENC_CORE_MAX];
->>>    };
->>>    
->>>    static inline struct mtk_vcodec_ctx *fh_to_ctx(struct v4l2_fh
->>> *fh)
->>> diff --git a/drivers/media/platform/mtk-
->>> vcodec/mtk_vcodec_enc_core.c b/drivers/media/platform/mtk-
->>> vcodec/mtk_vcodec_enc_core.c
->>> new file mode 100644
->>> index 000000000000..d84914f615a5
->>> --- /dev/null
->>> +++ b/drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_core.c
->>> @@ -0,0 +1,153 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2021 MediaTek Inc.
->>> + */
->>> +
->>> +#include <linux/interrupt.h>
->>> +#include <linux/irq.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of_platform.h>
->>> +#include <linux/pm_runtime.h>
->>> +#include <linux/slab.h>
->>> +
->>> +#include "mtk_vcodec_drv.h"
->>> +#include "mtk_vcodec_enc.h"
->>> +#include "mtk_vcodec_enc_core.h"
->>> +
->>> +static const struct of_device_id mtk_venc_core_ids[] = {
->>> +	{
->>> +		.compatible = "mediatek,mtk-venc-core0",
->>> +		.data = (void *)MTK_VENC_CORE0,
->>> +	},
->>> +	{
->>> +		.compatible = "mediatek,mtk-venc-core1",
->>> +		.data = (void *)MTK_VENC_CORE1,
->>> +	},
->>> +	{},
->>> +};
->>
->> Hello Irui,
->>
->> You don't need a different compatible for the different cores, as in
->> the
->> declaration, there's nothing special that differentiates them that
->> much.
->>
->> I understand that there may be a need to differentiate the core
->> number, as
->> in, CORE0 always has to be the leader, while CORE1 would be the
->> follower,
->> but this is not a good reason to give them a different compatible
->> string.
->>
->> I want to make you aware that Kyrie Wu did the same thing as you did
->> here
->> and in my review on his patch I was able to give an extensive example
->> of
->> how this should look; the exactly same logic would apply to this
->> patch.
->>
->> Please have a look here:
->> https://patchwork.kernel.org/comment/24726607/
->>
->> P.S.: In short, you should have only one "mediatek,mtk-venc-hw"
->> compatible
->>         used for probing both cores.
-> 
-> thanks for your suggestions, with your example, venc can be rewritten
-> like this:
-> venc {
->      compatible = "mediatek,mt8195-vcodec-enc";
->      ..... other properties .....
-> 
->      venc_core0 {
->          compatible = "mediatek,mtk-venc-hw";
->          mediatek,hw-leader;//mediatek,venc-core0;
->          ..... other properties .....
->      };
-> 
->      venc_core1 {
->          compatible = "mediatek,mtk-venc-hw";
->          //mediatek,venc-core1;
->          ..... other properties .....
->      };
-> };
-> I will rewrite this code if it matches your suggestions.
 
-Yes, exactly. Just one nit, please don't use underscores.
+Can you add subystem/driver prefix to the subject? In current form it
+looks generic, but it is actually specific, so:
 
-venc_core0: venc-hw@(addr)
-this is fine ^
+dt-bindings: dma-engine: sifive,fu540:
 
-venc_core0: venc_hw@(addr)
-this is NOT ok ^^
-
-By the way, one (or more than one) of the commits in this series
-is not working correctly, giving a kernel panic on dma mem alloc.
-
-Looking forward to see the new version!
-
-Regards,
-Angelo
-
-
+Best regards,
+Krzysztof
