@@ -2,163 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5BFB4CDF37
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 22:01:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CCFDB4CDF53
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 22:01:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229525AbiCDUoC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 15:44:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35312 "EHLO
+        id S229558AbiCDUsb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 15:48:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbiCDUoA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 15:44:00 -0500
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4C44230E68;
-        Fri,  4 Mar 2022 12:43:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1646426558;
-        bh=avVKest8nf1VF3/YI54jobn1lGq5BmcOz47RyPALIck=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=bR/J+w2eKA8Fr4ZmFuRBiXjAoZ7sAMdRaBkCKpkBfWQ8J6UxXubHPBQ9v0cSPFWxV
-         GFVWZCzFaIx2SA8k40/4dhgnSugqBmJPVkr04LrX+yaNNdvwUS7lhNN6AlnXrar/t2
-         OZjYZ+UcGJ+c3fG0K/tk9imAgQd6Zswn5ZB0oAc4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1N0G1d-1oMJaM35Fv-00xIgu; Fri, 04
- Mar 2022 21:42:37 +0100
-Date:   Fri, 4 Mar 2022 21:42:34 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Tali Perry <tali.perry1@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        yangyicong@hisilicon.com, Linux I2C <linux-i2c@vger.kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        JJLIU0@nuvoton.com, lukas.bulwahn@gmail.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, bence98@sch.bme.hu,
-        arnd@arndb.de, sven@svenpeter.dev,
-        Rob Herring <robh+dt@kernel.org>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        Tyrone Ting <warp5tw@gmail.com>, semen.protsenko@linaro.org,
-        jie.deng@intel.com, avifishman70@gmail.com,
-        Patrick Venture <venture@google.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Wolfram Sang <wsa@kernel.org>, kfting@nuvoton.com,
-        Tali Perry <tali.perry@nuvoton.com>, olof@lixom.net
-Subject: Re: [PATCH v3 08/11] i2c: npcm: Correct register access width
-Message-ID: <YiJ5unrCb82ZMV4Z@latitude>
-References: <20220303083141.8742-1-warp5tw@gmail.com>
- <20220303083141.8742-9-warp5tw@gmail.com>
- <YiCZlhJoXPLpQ6/D@smile.fi.intel.com>
- <CAHb3i=t+Ai3w5mMhmZxxMsD7Zv0xpM4ZicMCmdDMtVn_OMbWYA@mail.gmail.com>
- <YiDNdlEKqorDFkZB@smile.fi.intel.com>
+        with ESMTP id S229599AbiCDUs3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 15:48:29 -0500
+Received: from mail-oi1-x234.google.com (mail-oi1-x234.google.com [IPv6:2607:f8b0:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FE4410214E
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 12:47:41 -0800 (PST)
+Received: by mail-oi1-x234.google.com with SMTP id q5so9069970oij.6
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 12:47:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pwdmIZ1vAwSObDe/h49djMAqGoMYF/D6xcMqohXC3kE=;
+        b=RJf3TBmp93JdSx/quLb7AdYBJ1dJjO4Y4Ur4LXOaYnhYg5IMjk6yJimLcSePe+3blZ
+         i5tAo5PIEAC++iphSrvFL7dS6M0Ffa/2SdzGpF8ak6C7GgpMRuz0ywkeV5lFhhNf1pJy
+         B+YSlCqiwqlwnarFHej640qLdKSfryCEGs5+w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pwdmIZ1vAwSObDe/h49djMAqGoMYF/D6xcMqohXC3kE=;
+        b=KGn5sUZ2u4MS9k6yCCstgqHM4XcV4+rO2b0Bjf1vU2ic8vrCkZ3x3xr++4l75paEmt
+         sq6ODjIILA1muOYAkWM91vVsvnMkZ4xpM0Rm7kEo8Yi1vXqGu33skGlnoK7oNWoTk3wC
+         wjN+cJgqFvtLnHs4ieTTdreuJrt8m6OJTEGAzNPHUevqTk2DCH0jp0eEfkRJfc9uHQ0l
+         7bsYZZ+7l58M++PWLZKl83AfRoDQTVK1EGDhUXKU5LYilwdMO5EUFVx+X8ttGSKWyXep
+         YLMqJJv6ewGDtX+vSborudXV8kf5+TyzuMQsts2c/vZIyJzkHLisaY9+cOUMGOIh6lDr
+         0l+g==
+X-Gm-Message-State: AOAM5311EWpZqYG/F8L5/FtONIlOWaBQBNxIFtJ59y4Gmb85xeuxpYep
+        jhCSCEms8HIxUnJrAjNgdTQVLFYNJwDTeg==
+X-Google-Smtp-Source: ABdhPJzjoBjRqwAe9fTLWyLRjzxEVm5KgkoL0W0NN8yt7oQs/T3xZPHGwcXJcqMtP8wfUE+QQlT/cg==
+X-Received: by 2002:a05:6808:1391:b0:2d9:a01a:4b9a with SMTP id c17-20020a056808139100b002d9a01a4b9amr204203oiw.193.1646426860419;
+        Fri, 04 Mar 2022 12:47:40 -0800 (PST)
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com. [209.85.210.47])
+        by smtp.gmail.com with ESMTPSA id q14-20020a4a330e000000b002e89ed90006sm2795518ooq.44.2022.03.04.12.47.36
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Mar 2022 12:47:37 -0800 (PST)
+Received: by mail-ot1-f47.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso8355430ots.7
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 12:47:36 -0800 (PST)
+X-Received: by 2002:a9d:7:0:b0:5b1:fe36:2d15 with SMTP id 7-20020a9d0007000000b005b1fe362d15mr249673ota.186.1646426856478;
+ Fri, 04 Mar 2022 12:47:36 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="PXMPnXsV2kwhaoxF"
-Content-Disposition: inline
-In-Reply-To: <YiDNdlEKqorDFkZB@smile.fi.intel.com>
-X-Provags-ID: V03:K1:Zli3HN5UeRh8y7YdfY7dSXaXcoTBQJonefjHcxXAcSPHHiLbEUo
- COUWcmB3iv+h63RKwjP8auhxTimzHpMO0E7dpg6Nddpx678VDmNrR+vzqUTX5EKaP/7WloY
- FD3ANPuTqADzACb/t6LPyyBxCrFN/iviQlJ+JGqH87km+zF4Y0NJOr5TpCvOZr930esCkgO
- F4gxdgS4iye97RMJaEapw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:iR6a6/NuSJw=:B5Me0AONULYMpmO5CvccFi
- W62cBkOpnOmnYttFnp7/QWj4u/EJ0b/3/RzF1TlxnFgYKYTNTlLNx3N4aCAa7hqqD2vBjIPKm
- 5M4uSiMDGg/KcMkxKvB19vkq1RuV/48YEwT0OzbeJd3DwhnP0ZunakUeVmVMLuT+z9UQ6Wn+3
- CsXWz05DRX33fSaXEWjW5BAdbtn33OP5MdXM8BBDtZgFluNWbfiwxmrn3FKxB2yM89BVO2P3O
- OJq4CKZcm1S1GwqBhmRBj0KUpoP/0xa2XNpGpu9Yc6Ix540mflHFCUecqRxSUvssVp6Ap/viB
- FeVax6wYjhtQljYbVwcZhIk90iTATJaLNIkJy8GpsCegkIwLoO7Tu4u0p415uMhIZ8NLfKQVO
- oN5c8l6quAP6RkuB2sCymtyjml+Aq1KnXCxRSBvgLYaVJwzOTJH0mn7XiAbm5mn78OYxLtWFl
- Pinb4pbKIoCFIT4I6KxidMdl9NpTwHMkNkxh6xCbThbqSxEEmf0ZdI0CHDmW82Sb7M80jCgeV
- w/50LQuyc23GCINlR96eCEtLMznApSe2qTLknHzlL5Kwgbh6c4MvigbWWyTV+S+sFtl4DCa5G
- LxmoAl3Gg36JX+SDNOniD0PyBqrpMq183zDOxvQcoPbsRP7oDfHPz2U3iLgQH7LXgmHVIcsS4
- U++MyObQCgJQu+WKvY0pmAco9p9S7UGTYvnwfl14uFUXLo0vUF1PNupLaAHT+cHNDGNjqrz8U
- iyEb77N7yarc31zw7ICTyrCElY/k/HmHQVLwyvSixAIxPZW4bM1EvnwutZTB+UoZnNNJO+i1X
- g6rEX74oJ/1FCn1EubPV1lDAEKRmXYT1CqZKNYIuQdZrimFnSdmX8CpvqWJwqNb5FbEOu9I5u
- wij/YIRZJU9FGx3tWxuAee8iI9ZCcgdu/3eP9L2pmC6JFOP/S0md3d+pEyc3qiFISlKdX+kTU
- k13nO/rgbCdfhox6VDp4BWZYM4/ZZSNNqiOjGSEXAOIZJq57tXjekjTpCkbx4+BFLTcPeSjf5
- /3eK9fpB+J2Fc/33uBe0og/VlvwMdgNLzUYzbBALMLsqal/NamVU/KFnGk/hPjxGDCmQq3s8X
- K3RsRYLAviA8Ak=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220127230727.3369358-1-briannorris@chromium.org>
+ <20220127150615.v2.12.I3a5c7f21ecd8221b42c2dbcd618386bce7b3e9a6@changeid> <CAMdYzYo9Y_pEAAtreQU0B9DVzGsbUgpTA2g7HGRyUXcSBjMy4g@mail.gmail.com>
+In-Reply-To: <CAMdYzYo9Y_pEAAtreQU0B9DVzGsbUgpTA2g7HGRyUXcSBjMy4g@mail.gmail.com>
+From:   Brian Norris <briannorris@chromium.org>
+Date:   Fri, 4 Mar 2022 12:47:25 -0800
+X-Gmail-Original-Message-ID: <CA+ASDXPMOAM0sYdbYLsUDJhJ7qDn-WSP2Sx+GKsZwpuVgQ_OkA@mail.gmail.com>
+Message-ID: <CA+ASDXPMOAM0sYdbYLsUDJhJ7qDn-WSP2Sx+GKsZwpuVgQ_OkA@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] arm64: dts: rockchip: Enable dmc and dfi nodes
+ on gru
+To:     Peter Geis <pgwipeout@gmail.com>
+Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Lin Huang <hl@rock-chips.com>,
+        arm-mail-list <linux-arm-kernel@lists.infradead.org>,
+        Derek Basehore <dbasehore@chromium.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-pm <linux-pm@vger.kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        =?UTF-8?B?R2HDq2wgUE9SVEFZ?= <gael.portay@collabora.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Peter,
 
---PXMPnXsV2kwhaoxF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, Mar 4, 2022 at 6:47 AM Peter Geis <pgwipeout@gmail.com> wrote:
+> I'm trying to bring this series over to rockpro64 (and eventually the
+> pinephone-pro) and am running into some snags.
 
-Hello,
+Dumb question: is DDR DVFS supported on these systems in the
+"production" (vendor kernel? I'm not really familiar with these
+devices) software? I partly ask, because while I didn't do some of
+this first-hand, I'm aware that it was a real ordeal to get things
+stabilized (e.g., getting all the timings right; communicating the
+right details from bootloader to ATF; etc.), so if no one did these
+things in the first place, it's probably difficult to get working now
+just by guessing.
 
-On Thu, Mar 03, 2022 at 04:15:18PM +0200, Andy Shevchenko wrote:
-> On Thu, Mar 03, 2022 at 02:54:27PM +0200, Tali Perry wrote:
-> > > On Thu, Mar 03, 2022 at 04:31:38PM +0800, Tyrone Ting wrote:
-> > > > From: Tyrone Ting <kfting@nuvoton.com>
-> > > >
-> > > > Use ioread8 instead of ioread32 to access the SMBnCTL3 register sin=
-ce
-> > > > the register is only 8-bit wide.
-> > >
-> > > > Fixes: 56a1485b102e ("i2c: npcm7xx: Add Nuvoton NPCM I2C controller=
- driver")
-> > >
-> > > No, this is bad commit message, since you have bitwise masks and ther=
-e is
-> > > nothing to fix from functional point of view. So, why is this a fix?
-> > >
-> >=20
-> > The next gen of this device is a 64 bit cpu.
-> > The module is and was 8 bit.
-> >=20
-> > The ioread32 that seemed to work smoothly on a 32 bit machine
-> > was causing a panic on a 64 bit machine.
-> > since the module is 8 bit we changed to ioread8.
-> > This is working both for the 32 and 64 CPUs with no issue.
->=20
-> Then the commit message is completely wrong here.
+But if it works on a customized kernel, then that's a different story.
 
-I disagree: The commit message is perhaps incomplete, but not wrong.
-The SMBnCTL3 register was specified as 8 bits wide in the datasheets of
-multiple chip generations, as far as I can tell, but the driver wrongly
-made a 32-bit access, which just happened not to blow up.
+> Essentially, anytime a transition happens, the board locks up.
+> I've disabled the extra power save disable flags and adjusted the OPPs
+> for rockpro64's power.
+> Transitions anywhere from the default 800mhz cause a lock.
+>
+> I'm digging deeper, but I'm hoping you can answer some questions in
+> the meantime:
+> 1. Does this require something from firmware that isn't available on
+> Mainline ATF? (AKA special firmware to the Chromebook line)
 
-So, indeed, "since the register is only 8-bit wide" seems to be a
-correct claim.
+I don't know precisely. Chromebooks track mainline ATF, but somewhere
+before initial product launch, each platform gets its own firmware
+branch. On that firmware branch, we still try to stay in sync with
+mainline to some extent (e.g., submit to mainline and cherry-pick to
+branch), but it's not guaranteed.
 
-> And provide necessary (no need to have noisy commit messages)
-> bits of the oops to show what's going on
+Anyway, you can inspect our code here:
+https://chromium.googlesource.com/chromiumos/third_party/arm-trusted-firmware/+log/refs/heads/firmware-gru-8785.B
+https://chromium.googlesource.com/chromiumos/third_party/coreboot/+log/refs/heads/firmware-gru-8785.B
 
-I guess it's blowing up now because SMBnCTL3 isn't 32-bit aligned
-(being at offset 0x0e in the controller).
-
-
-Jonathan
-
---PXMPnXsV2kwhaoxF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIieZgACgkQCDBEmo7z
-X9vLSg//fITuy/ADChnXLOLttsuqN0fnIxt64hs6/pBiL3cnl2CIy2UYqmqWn/cJ
-EldCmMStePptCzalodvcviUUuEzLdFbIhRhCf+3KiMvsiHAxpb1btCpO/tSWO7KZ
-XERAbEgWgfMsl8cTnX6FQzbjDCGRZ7GdYHL8duoQwa0UcR1UY5n83S2SkhrBCEF5
-Ls0ooLJ1A/bjK16EdLai2g6U5IF+/n6reWCXXTQz8i20BLVtPznqgaXXeskTnCwr
-PMwOogzXEB9/5zsbEDY9pTH4WT1k+/sISONAI5R31A5NCqZ9ITkVKb+kHjom9HtT
-HoxHRra/i33qmiOsBXF8TF8H5UuMGmucItead9upr9NCOXmqwyks5lcdphPPsysS
-s518aMEDTqcJxNQJ7Ko4veKKgy7bXr6Lct7GO/tbV3zeEdJayIVkdxroFeV1mrFj
-PhOhl6/kd4JUluD4BSJXWU6BVp2CrwoGRAPSB9q+KyLZt0Zlx6jJ/AX86x+jn3em
-tbqlADio6jbSUvOgN2HGuj9ey6XFemQCnxPdVZFRYYSjUKZP70p3Td9GXkNVmgOs
-Oa/YO829ME+h6WelCPi6n6jHquf7AZM2ounhk4timphHvMvRjHSuJdBetSImnWq8
-acxQRLbfZgB/xdBBLTTPyPOgYr79+44fh2GjFWsMVY0DPMFVZx0=
-=ay5W
------END PGP SIGNATURE-----
-
---PXMPnXsV2kwhaoxF--
+Brian
