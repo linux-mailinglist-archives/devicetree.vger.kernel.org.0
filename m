@@ -2,65 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4784CE035
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 23:22:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF9A4CE085
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:06:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbiCDWXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 17:23:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45246 "EHLO
+        id S229993AbiCDXHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 18:07:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45068 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbiCDWXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 17:23:37 -0500
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E4D3119F28;
-        Fri,  4 Mar 2022 14:22:48 -0800 (PST)
-Received: by mail-oo1-f51.google.com with SMTP id 6-20020a4a0906000000b0031d7eb98d31so11023812ooa.10;
-        Fri, 04 Mar 2022 14:22:48 -0800 (PST)
+        with ESMTP id S229608AbiCDXHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:07:06 -0500
+Received: from mail-oo1-f50.google.com (mail-oo1-f50.google.com [209.85.161.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC786254A82;
+        Fri,  4 Mar 2022 15:06:17 -0800 (PST)
+Received: by mail-oo1-f50.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso11147801ooi.1;
+        Fri, 04 Mar 2022 15:06:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=FK6O8iZYd30gBa2H7oi4DqRG0FOU8lUzNheBx5but+U=;
-        b=34DDPIZm6A13OrvsLvs1Vpvdvsol7L8TBwB+z9w3vaQXTt+WXKEOw/jYBp7NZUKhXz
-         yOEHa785GzXTIxOHYOgnLqBy8eqBaQcr3hKZcvBeoZHwP2fjNgB0QlGVYTVRPNokb2I3
-         AtgQyeAKaA7nUTG39OrlNPtNbbumJVkAqvm5ybnt2HBG+anYCL1iIA2OfXORtOgHE1GO
-         24H8RYPKSnzvoqYuPD5x5f+tOd7mqUMcOS6JbR2ok57bz/qJDR2RdIW3LGI7Fk5Jyl3M
-         2U0QaWFab83eaMaxY6z5LDz4DpwxOD7duoL3nXciBuyvoZMVzhMqKQUfyAcHLBqf0NMC
-         RZsg==
-X-Gm-Message-State: AOAM533HuUuj5pQfxfamRggTDuS5X0mIcyZQ5xMkrOat4V768Bx8Lug1
-        WfEPb5dQnBExdu5iMegtwA==
-X-Google-Smtp-Source: ABdhPJw1skblzO/l37y1Ad9RMSdf/uLpokD28+b8ny8V7h1Wyw+1qpcXIpCmOYkOFGCjdu8+ICChTw==
-X-Received: by 2002:a4a:d415:0:b0:31c:3fc0:74ce with SMTP id n21-20020a4ad415000000b0031c3fc074cemr238974oos.47.1646432567688;
-        Fri, 04 Mar 2022 14:22:47 -0800 (PST)
+        bh=Wt8pADc1Xor517rfKpON9c9f/2mIwEXF0gypcO8fZOg=;
+        b=cl3zXbJXMs97BY4SDRxr6qVrZuNUbYAtxDVQDKvBZAGvi0Mjzj9rkJ7kxGs0uiQQhb
+         +5kUB6GsW/etsFiLT8qAzuX4OmS+JjlGptty2wxNC7UOuqmCGWy0m6GcAaTzfM/kmiBp
+         qL8nnrGJpdXAmN2+WYbINnpNDl2P0ptRe4HxhP7ek6CiAXK3nT8Fma1Nr3gq565Io78C
+         1CberGmfF/x3gNFBchwt5dzTFu5/16f4XgHztloTKSa6bLHCrlVkupJ1Osltn3aQ+bFz
+         eTrs+cTyPUE1zJ5CxWDl861uejRFeV90pQcsPwCrVgcJGL21kdRuhPO60vpiZamLpzBn
+         Kd4g==
+X-Gm-Message-State: AOAM532CRjy0Pv18fg64tIaFW1zH4GiQ3WtMUA+OqSUvNOT6YdNuDn6h
+        67szyHAS7qTKkceodhJI0g==
+X-Google-Smtp-Source: ABdhPJxcHFc8pGWIPi9xglYELcNC4ePLZUFOeeyR3mGpf4U+jexVsZL+RpS2hNK3I//uPFqp5YAPcg==
+X-Received: by 2002:a05:6870:7a3:b0:d7:5fbf:37b7 with SMTP id en35-20020a05687007a300b000d75fbf37b7mr401545oab.16.1646435177210;
+        Fri, 04 Mar 2022 15:06:17 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id e13-20020a9d490d000000b005b029275a9csm2945058otf.58.2022.03.04.14.22.45
+        by smtp.gmail.com with ESMTPSA id y28-20020a4aea3c000000b0031c0cddfbf9sm2936625ood.20.2022.03.04.15.06.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 14:22:46 -0800 (PST)
-Received: (nullmailer pid 546919 invoked by uid 1000);
-        Fri, 04 Mar 2022 22:22:44 -0000
-Date:   Fri, 4 Mar 2022 16:22:44 -0600
+        Fri, 04 Mar 2022 15:06:16 -0800 (PST)
+Received: (nullmailer pid 626164 invoked by uid 1000);
+        Fri, 04 Mar 2022 23:06:15 -0000
+Date:   Fri, 4 Mar 2022 17:06:15 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        perex@perex.cz, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, judyhsiao@chromium.org,
-        linux-kernel@vger.kernel.org, vkoul@kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>,
-        quic_plai@quicinc.com, sanyog.r.kale@intel.com, tiwai@suse.com,
-        broonie@kernel.org, rohitkr@codeaurora.org,
-        devicetree@vger.kernel.org, swboyd@chromium.org,
-        bgoswami@codeaurora.org, robh+dt@kernel.org,
-        yung-chuan.liao@linux.intel.com, agross@kernel.org,
-        lgirdwood@gmail.com, srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH v7 2/2] dt-bindings: soundwire: qcom: Add bindings for
- audio clock reset control property
-Message-ID: <YiKRNFONirytK+4X@robh.at.kernel.org>
-References: <1646316128-21082-1-git-send-email-quic_srivasam@quicinc.com>
- <1646316128-21082-3-git-send-email-quic_srivasam@quicinc.com>
+To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        Daniel Baluta <daniel.baluta@nxp.com>, cujomalainey@google.com,
+        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>, tzungbi@google.com,
+        Jaroslav Kysela <perex@perex.cz>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Ranjani Sridharan <ranjani.sridharan@linux.intel.com>,
+        linux-arm-kernel@lists.infradead.org,
+        sound-open-firmware@alsa-project.org,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        devicetree@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v18 1/2] dt-bindings: mailbox: mtk,adsp-mbox: add mtk
+ adsp-mbox document
+Message-ID: <YiKbZ8NRyCbcm1Gi@robh.at.kernel.org>
+References: <20220225132427.29152-1-allen-kh.cheng@mediatek.com>
+ <20220225132427.29152-2-allen-kh.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1646316128-21082-3-git-send-email-quic_srivasam@quicinc.com>
+In-Reply-To: <20220225132427.29152-2-allen-kh.cheng@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,17 +82,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Mar 2022 19:32:08 +0530, Srinivasa Rao Mandadapu wrote:
-> Update description for audio clock reset control property, which is required
-> for latest chipsets, to allow rx, tx and wsa bus clock enabling in software
->  control mode by configuring dynamic clock gating control registers.
+On Fri, 25 Feb 2022 21:24:26 +0800, Allen-KH Cheng wrote:
+> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+> This patch adds document for mediatek adsp mbox
+> 
+> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  Documentation/devicetree/bindings/soundwire/qcom,sdw.txt | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  .../bindings/mailbox/mtk,adsp-mbox.yaml       | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/mtk,adsp-mbox.yaml
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
