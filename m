@@ -2,93 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA8B4CD5E0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:06:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F484CD5ED
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:07:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239764AbiCDOHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:07:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51232 "EHLO
+        id S239797AbiCDOIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 09:08:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237194AbiCDOHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:07:19 -0500
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B3F01B9880;
-        Fri,  4 Mar 2022 06:06:32 -0800 (PST)
-Received: by mail-pf1-x430.google.com with SMTP id k1so7735387pfu.2;
-        Fri, 04 Mar 2022 06:06:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=c5LzvjZ/L9J5HFrrIzQ1NZcc5bYA3vDwRKV5bDRGslI=;
-        b=du47i1ZzjqJlAXXmSL3ZleQtK7h/0lXK3hFN9++IGVzGAUK062WKYT2Fubj83GGTIg
-         T3noycM+gK0j/DXtE4++lVe+Frp22AMHXmyjHCHbIRvvRMOfZ7BysWXqc7jcHE4ZZRPP
-         yq7nW7gVPwHNBhsVz7ycjgx6tuSp8VCKsPIIFcrXidg6NM3/bCJkEDpr+J+zs8qUaW0O
-         3ObZNVlxG4jGHoQowqEbDdNRl9OiDouO+dz1Z1IK3s2W7/cXX+brtIxttQGjsPLIlOo2
-         Bw5C6Pv4vOHVdOYu7x7qmWGcZcERcHjkcLDuS1SIAc6pktEln+LH4bLZPeSVJEqCIzb+
-         rwXQ==
+        with ESMTP id S239803AbiCDOIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:08:12 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06331B98B4;
+        Fri,  4 Mar 2022 06:07:24 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id ay7so7899410oib.8;
+        Fri, 04 Mar 2022 06:07:24 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=c5LzvjZ/L9J5HFrrIzQ1NZcc5bYA3vDwRKV5bDRGslI=;
-        b=I7Jmen8bI8zpfCcxZCtZ1QxP0ma9j7t/kcNo+TVIfcTsGW996de2h4c93yij8l99bd
-         EnGw4qLQ+OA0syGl4peysdw3y8LKArcOQ22PdnjKcGj9hrmk0S5O3fvexw5cQRD/Z8qt
-         wqqpQQMc++FQEtiqkyoFDRV/12KGjf//fBCYgGUog04JllYDFPcfrYyBH7uVP/JKH5hV
-         HD75sy8BGl+AzGk1GDIkRmGRgsVU+ARq7hy3n4GwtHtv809uD5mmkZOYNEThjiExTXhM
-         oM/6YfUwx/CxnHgEv2RQ4K1z7wS05AQlSGKTywqkkS+xHjzKX8BvxBxL4nMzRwSzHd3D
-         JhdA==
-X-Gm-Message-State: AOAM532ZauK0uacCFch5twAPrYI/1Z9m6r4z9B05a2lIppMaR1bTYfvU
-        /YrKb8f3alG1Tdsf9OnQBUQ=
-X-Google-Smtp-Source: ABdhPJwhxlQuBhBQ9bEAxgjwb7Wvvqjt2hiWCJ85qpbJjPgPgBdj5TF8HLYXzitOWIKQxqj1IItdtw==
-X-Received: by 2002:a63:2a96:0:b0:37c:46b0:add7 with SMTP id q144-20020a632a96000000b0037c46b0add7mr9247075pgq.50.1646402791670;
-        Fri, 04 Mar 2022 06:06:31 -0800 (PST)
-Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id m16-20020a638c10000000b0037c4cf366c0sm4681619pgd.61.2022.03.04.06.06.30
+         :mime-version:content-disposition:in-reply-to;
+        bh=Ri3M9rEvbqOZtQYvLCw0kYxpmzURzsEZbFbaOsupS2s=;
+        b=0CxaWSHe0/k/VmyK4TfUy//1oCz9pXmtX26BVk067+I3szWXPdkFvG8xknFlp9CloP
+         lVyU2uFWyoCGdUz6Abrs/gbNOJhecef/bsR0EO1YT/QeyAVJiPfbIzLqiqD35AuV+mOw
+         /axcDvQh6AK6jhzr0sxOGtSFUiHAEgpYYT7JUmbrCfUW6B+9CpU3hpl9i1NN0WctSEMl
+         tlSWLemJIkS0ZxFdyI4CEaNDADjx+6uxjqBOuhhWQcGKkWpWeDYZBQgXuCzGcDPXkpCP
+         ppadtwHcWatQx+HKQAKJ2dDxifA357khg+EfG2Z+DirA3hdnPrZ4CUdY9zLO922acopH
+         qoYw==
+X-Gm-Message-State: AOAM533Q3NOC+OPbgAbg30pn+6Ep5t7ofuV9pJb69JH23MBLI8m0gkjO
+        lsdJD0S5ikQSalFYePzo/A==
+X-Google-Smtp-Source: ABdhPJyci6UbkOLrwsWccGvun1sxcDyW/kMEWbKggLvHH1s6vVcgxC1dz4Bb6r88ow5hTuC9ncAQmQ==
+X-Received: by 2002:a05:6808:d52:b0:2d7:4e5a:6edb with SMTP id w18-20020a0568080d5200b002d74e5a6edbmr9428953oik.131.1646402843673;
+        Fri, 04 Mar 2022 06:07:23 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
+        by smtp.gmail.com with ESMTPSA id a27-20020a4ae93b000000b0031be7c7d2d3sm2446568ooe.0.2022.03.04.06.07.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 06:06:31 -0800 (PST)
-Date:   Fri, 4 Mar 2022 06:06:28 -0800
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     David Miller <davem@davemloft.net>
-Cc:     andrew@lunn.ch, Divya.Koppera@microchip.com,
-        netdev@vger.kernel.org, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, kuba@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        UNGLinuxDriver@microchip.com, madhuri.sripada@microchip.com,
-        manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
-Message-ID: <20220304140628.GF16032@hoboy.vegasvil.org>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
- <YiIO7lAMCkHhd11L@lunn.ch>
- <20220304.132121.856864783082151547.davem@davemloft.net>
+        Fri, 04 Mar 2022 06:07:23 -0800 (PST)
+Received: (nullmailer pid 3842339 invoked by uid 1000);
+        Fri, 04 Mar 2022 14:07:21 -0000
+Date:   Fri, 4 Mar 2022 08:07:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Masahiro Yamada <masahiroy@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Maxime Ripard <maxime@cerno.tech>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kbuild@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: kbuild: Use DTB files for validation
+Message-ID: <YiIdGTcqDyaaC1i9@robh.at.kernel.org>
+References: <20220303224237.2497570-1-robh@kernel.org>
+ <20220303224237.2497570-3-robh@kernel.org>
+ <YiH+Twl8JnwKPv3a@pendragon.ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220304.132121.856864783082151547.davem@davemloft.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YiH+Twl8JnwKPv3a@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 01:21:21PM +0000, David Miller wrote:
+On Fri, Mar 04, 2022 at 01:55:59PM +0200, Laurent Pinchart wrote:
+> Hi Rob,
+> 
+> Thank you for the patch.
+> 
+> On Thu, Mar 03, 2022 at 04:42:37PM -0600, Rob Herring wrote:
+> > Switch the DT validation to use DTB files directly instead of a DTS to
+> > YAML conversion.
+> > 
+> > The original motivation for supporting validation on DTB files was to
+> > enable running validation on a running system (e.g. 'dt-validate
+> > /sys/firmware/fdt') or other cases where the original source DTS is not
+> > available.
+> > 
+> > The YAML format was not without issues. Using DTBs with the schema type
+> > information solves some of those problems. The YAML format relies on the
+> > DTS source level information including bracketing of properties, size
+> > directives, and phandle tags all of which are lost in a DTB file. While
+> > standardizing the bracketing is a good thing, it does cause a lot of
+> > extra warnings and churn to fix them.
+> 
+> It does indeed, but it's a bit sad to let that feature go :-S
 
-> Sorry, it seemed satraightforward to me, and I try to get the backlog under 40 patches before
-> I hand over to Jakub for the day.
+I agree, but I think that checking is better served with a DTS linter.
 
-Day by day, it seems like there is more and more of this PTP driver
-stuff.  Maybe it is time for me to manage a separate PTP driver tree.
-I could get the reviews and acks, then place a PR to netdev or lkml
-when ready.
-
-Thoughts?
-
-Thanks,
-Richard
-
+Rob
