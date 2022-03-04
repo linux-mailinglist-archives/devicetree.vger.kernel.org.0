@@ -2,98 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACEE74CD421
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:21:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABD794CD430
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 13:25:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232461AbiCDMVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 07:21:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49324 "EHLO
+        id S236890AbiCDMZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 07:25:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbiCDMVr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:21:47 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 741EC1AF8EA;
-        Fri,  4 Mar 2022 04:21:00 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A279651C;
-        Fri,  4 Mar 2022 13:20:58 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1646396458;
-        bh=oIDe/f8B9cn87MHXgHXk87sK0s0dk8BfabHrG4XHYD4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WRL/LjPiTjiAls3MikIQdkLhAmW/kDjyUryPHWK1ojr/2N9y0Ac0aZOg9FxYZQe4P
-         JZvO5JOHF2RoxQ4Ik7EBmBB9o7o5OC4P01Sn47U7+frUFdDRDq9IQy4AQQVwZENId8
-         9U+x7KGQzRTPpWXEsV4Qq4JwlhC6AefEG/j8Nvl4=
-Date:   Fri, 4 Mar 2022 14:20:46 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Nikita Yushchenko <nikita.yoush@cogentembedded.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S236540AbiCDMZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 07:25:51 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 904A51B01A5
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 04:25:03 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 92E6D3F60B
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 12:25:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646396701;
+        bh=TY+lA6i8XxWtBRy+CXNMVFSE4D7AiD1N2aYEOcdmjms=;
+        h=From:To:Subject:Date:Message-Id:MIME-Version;
+        b=TdV5B039W6BVETRjGNXr9xZLlfkCFhMRDU0ye62UlOf0bALlak65BthFUHt32qQSI
+         yfoVkqsOaVLC35ufUeP8IE8Pb3x7VmL4RMQl8zI1zlcfpiHp1aA4zPg6uMw2PQ1HJU
+         BCyJJbg4fiJ/iMQLCLZA/V0h1nL05h7p1fEYTpKRhLXikr02oUxHtTIgwfhnYmHxmr
+         ChWIMg8cWNSOVNW2fZ5g5XPlTj0apf73tKxfLpGl27+P67vBmiHX4GEqLdImpQymYj
+         MxqP37JeS19WRRzIglRfm9DLgLVMIIVqujKcbPMCWj+Wh09Pow2m2Qi5dapNmWlwGS
+         8s+hP5Afl1L+Q==
+Received: by mail-ed1-f72.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so4506535edb.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 04:25:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TY+lA6i8XxWtBRy+CXNMVFSE4D7AiD1N2aYEOcdmjms=;
+        b=Zf6MkAekXrCkOx/e00Vl9FU/3JVCW31TM7nJqKFFpdiy/w5F0aexu06kb5mYqxOVWL
+         pF58olOuVDZCEWogs5EaeuD1jgxVnG9cq/LNvCMLPWxCo+hq0zTgU25ZZD2sG2wtzR2O
+         8EG/SjsY4IijPqDfiXtk4u8frmxVHnKpuWCsI2N4f2GevuOL14p/dV2S5+U2fRi776Wo
+         tDWdExdytllP5PuB3Y3b5JVazYM6c0jXbURcV4QY2QIvowm2fdhVrJBdRJhsl5HcXvgt
+         cGFNRndNxdamYC/L6CQ9bS0yOML801ZZADrJfPrvujew7gbpCln/PqvsSaP0qzZiQli9
+         kFgg==
+X-Gm-Message-State: AOAM532KSRg80emKxrBigaIwSVLdO4FIengJ3Fp+Vud+LwphiazF70Re
+        IG08jeAyQvGtYGepKO/lmXozbszZODtgkNg3arj/7JKb+k4oGN7HdUqHxakqCLkf1yzugB7nkic
+        aZXfh7qkBaSuE55TKH3LKsBk4I4aJ+1z+AkfAc9w=
+X-Received: by 2002:a17:906:b207:b0:6da:81ba:3789 with SMTP id p7-20020a170906b20700b006da81ba3789mr8302673ejz.578.1646396700461;
+        Fri, 04 Mar 2022 04:25:00 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwWzK+iNBIRKwo4mH2PPJHmzHvNxYOtWvwU/P0Gkg3e+/8BPPc+9gd/RWrf4ekFqNBIo2I59Q==
+X-Received: by 2002:a17:906:b207:b0:6da:81ba:3789 with SMTP id p7-20020a170906b20700b006da81ba3789mr8302658ejz.578.1646396700216;
+        Fri, 04 Mar 2022 04:25:00 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id r23-20020aa7da17000000b00415a1431488sm2047368eds.4.2022.03.04.04.24.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Mar 2022 04:24:59 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] dt-bindings: display: bridge: renesas,lvds: Document
- r8a77961 bindings
-Message-ID: <YiIEHpI3ltyOwumx@pendragon.ideasonboard.com>
-References: <20211224052309.1997096-1-nikita.yoush@cogentembedded.com>
- <20211224052309.1997096-4-nikita.yoush@cogentembedded.com>
- <YcyRAk/d2728mDgH@pendragon.ideasonboard.com>
- <CAMuHMdWkgEwgSEBrNt57nMPuMvyCSPsSbKFuQTGX8qX0-mrDLA@mail.gmail.com>
- <YiCG7xSHx6qqFlrc@pendragon.ideasonboard.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 0/4] dt-bindings: timer: exynos4210-mct: describe known hardware and its interrupts
+Date:   Fri,  4 Mar 2022 13:24:20 +0100
+Message-Id: <20220304122424.307885-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YiCG7xSHx6qqFlrc@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 11:14:24AM +0200, Laurent Pinchart wrote:
-> On Wed, Mar 02, 2022 at 06:00:08PM +0100, Geert Uytterhoeven wrote:
-> > On Wed, Dec 29, 2021 at 5:47 PM Laurent Pinchart wrote:
-> > > On Fri, Dec 24, 2021 at 08:23:09AM +0300, Nikita Yushchenko wrote:
-> > > > Document the R-Car M3-W+ (R8A77961) SoC in the R-Car LVDS encoder
-> > > > bindings.
-> > > >
-> > > > Signed-off-by: Nikita Yushchenko <nikita.yoush@cogentembedded.com>
-> > > > ---
-> > > >  .../devicetree/bindings/display/bridge/renesas,lvds.yaml         | 1 +
-> > > >  1 file changed, 1 insertion(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > > index acfc327f70a7..ca5443e5c2e3 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
-> > > > @@ -27,6 +27,7 @@ properties:
-> > > >        - renesas,r8a7791-lvds # for R-Car M2-W compatible LVDS encoders
-> > > >        - renesas,r8a7793-lvds # for R-Car M2-N compatible LVDS encoders
-> > > >        - renesas,r8a7795-lvds # for R-Car H3 compatible LVDS encoders
-> > > > +      - renesas,r8a77961-lvds # for R-Car M3-W+ compatible LVDS encoders
-> > >
-> > > I'll move this line after the next to keep them sorted. No need to
-> > > resubmit.
-> > 
-> > Any chance this will happen soon? Same for patch 1/3 .
-> > Patch 2/3 is already queued in soc/for-next.
-> 
-> Oops. I can send a pull request right away, but we're already at -rc6,
-> so I'm afraid it will get delayed to v5.19.
+Hi,
 
-The patch has been merged in the drm-next branch, thanks to Dave being
-very reactive before the tree freeze period begins. Thank you Dave.
+Changes since v1:
+1. Patch 1: Specify Tesla FSD interrupts.
+2. New patch 4 for Tesla FSD.
+3. Add review tags.
+
+Merging/dependencies
+====================
+The dt-bindings (patch 1) can go via timer tree and I will take later DTS
+patches via Samsung Soc.
+
+Best regards,
+Krzysztof
+
+Krzysztof Kozlowski (4):
+  dt-bindings: timer: exynos4210-mct: describe known hardware and its
+    interrupts
+  ARM: dts: exynos: add a specific compatible to MCT
+  arm64: dts: exynos: add a specific compatible to MCT
+  arm64: dts: tesla: add a specific compatible to MCT on FSD
+
+ .../timer/samsung,exynos4210-mct.yaml         | 67 ++++++++++++++++++-
+ arch/arm/boot/dts/exynos3250.dtsi             |  3 +-
+ arch/arm/boot/dts/exynos5250.dtsi             |  3 +-
+ arch/arm/boot/dts/exynos5260.dtsi             |  3 +-
+ arch/arm/boot/dts/exynos54xx.dtsi             |  3 +-
+ arch/arm64/boot/dts/exynos/exynos5433.dtsi    |  3 +-
+ arch/arm64/boot/dts/exynos/exynos850.dtsi     |  3 +-
+ arch/arm64/boot/dts/tesla/fsd.dtsi            |  2 +-
+ 8 files changed, 77 insertions(+), 10 deletions(-)
 
 -- 
-Regards,
+2.32.0
 
-Laurent Pinchart
