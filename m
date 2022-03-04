@@ -2,117 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED2A24CD566
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:46:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44BD74CD56C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 14:47:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbiCDNrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 08:47:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S232707AbiCDNsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 08:48:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbiCDNrA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:47:00 -0500
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8054A1B84D6;
-        Fri,  4 Mar 2022 05:46:12 -0800 (PST)
-From:   Kurt Kanzenbach <kurt@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020; t=1646401570;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+qVNVphU3Gm3EnlFWZRXmSURmHaVndeojdH/n2OcvIc=;
-        b=Mj3OST0SQfXiy8DBZm8US3DVz9ppbnUkSJpLY44P+ArnzdySToKmhmuGZnF4tpaMKXBFpt
-        gi6CbIccfUQn5ljWOqqEE1fzsjOBtbYgamV9lXVAoZiPPYaXJZjyzi48O63yLYniupf+p6
-        jlZvYIEiE4LNXj1s5zsHVUwlyF4yH52tiEozJD5gXYU9wIZatN6as1/civFdn2RYxQz9EX
-        DBPVdduv5BkyNacUMmY04dIWOLAB2jy70h1cy6mVaZnZeQVmTpR6xrhech45o0M/plz6Ls
-        DRhCxfST8Wf+9LljIruDg3o9fFmw1MLCKWNzH3/NznwEuGzkbVDEg/y2hgBJ4Q==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-        s=2020e; t=1646401570;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+qVNVphU3Gm3EnlFWZRXmSURmHaVndeojdH/n2OcvIc=;
-        b=Xb19Oja3bbFVg6GnmPnbHKScCj4hVOICzSVFdCDOd3fy0iXUfHKIjiWyUlwjXSgkmFwFHX
-        H9HkP1l3NmfntNAQ==
-To:     Divya Koppera <Divya.Koppera@microchip.com>,
-        netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        richardcochran@gmail.com
-Cc:     linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        madhuri.sripada@microchip.com, manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 3/3] net: phy: micrel: 1588 support for LAN8814
- phy
-In-Reply-To: <20220304093418.31645-4-Divya.Koppera@microchip.com>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-4-Divya.Koppera@microchip.com>
-Date:   Fri, 04 Mar 2022 14:46:08 +0100
-Message-ID: <87ee3hde5b.fsf@kurt>
+        with ESMTP id S230415AbiCDNsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 08:48:21 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id B4DDE26F7
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 05:47:32 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 79F4E1396;
+        Fri,  4 Mar 2022 05:47:32 -0800 (PST)
+Received: from [10.57.39.47] (unknown [10.57.39.47])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8E1D63F70D;
+        Fri,  4 Mar 2022 05:47:30 -0800 (PST)
+Message-ID: <926e583e-14d1-67ee-f3dd-4f2cb57ea638@arm.com>
+Date:   Fri, 4 Mar 2022 13:47:25 +0000
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 3/4 v5] dts: rockchip: Update regulator name for PX3
+Content-Language: en-GB
+To:     Chris Morgan <macroalpha82@gmail.com>, devicetree@vger.kernel.org
+Cc:     linux-rockchip@lists.infradead.org, lee.jones@linaro.org,
+        robh+dt@kernel.org, heiko@sntech.de, strit@manjaro.org,
+        mbrugger@suse.com, arnaud.ferraris@collabora.com,
+        knaerzche@gmail.com, zyw@rock-chips.com, zhangqing@rock-chips.com,
+        Chris Morgan <macromorgan@hotmail.com>
+References: <20220303203958.4904-1-macroalpha82@gmail.com>
+ <20220303203958.4904-4-macroalpha82@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20220303203958.4904-4-macroalpha82@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
+On 2022-03-03 20:39, Chris Morgan wrote:
+> From: Chris Morgan <macromorgan@hotmail.com>
+> 
+> The regulator name of SWITCH_REG1 does not match any other board
+> with a rk818 PMIC, nor does it correspond to a regulator in the
+> rk808-regulator driver. Changing name to SWITCH_REG which is
+> consistent with other boards and is in the driver.
 
-On Fri Mar 04 2022, Divya Koppera wrote:
-> Add support for 1588 in LAN8814 phy driver.
-> It supports 1-step and 2-step timestamping.
->
-> Co-developed-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> Signed-off-by: Divya Koppera <Divya.Koppera@microchip.com>
+The datasheet I found also names the channel "SWITCH" rather than 
+"SWITCH1", so this seems correct to me.
+
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+
+> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  drivers/net/phy/micrel.c | 1088 +++++++++++++++++++++++++++++++++++++-
->  1 file changed, 1066 insertions(+), 22 deletions(-)
-
-[snip]
-
-> +static bool is_sync(struct sk_buff *skb, int type)
-> +{
-> +	struct ptp_header *hdr;
-> +
-> +	hdr = ptp_parse_header(skb, type);
-> +	if (!hdr)
-> +		return false;
-> +
-> +	return ((ptp_get_msgtype(hdr, type) & 0xf) == 0);
-
-The '& 0xf' is already performed by ptp_get_msgtype() and you can use '==
-PTP_MSGTYPE_SYNC' instead of 0.
-
-Second, this seems like the second driver to use is_sync(). The other
-one is dp83640. Richard, should it be moved to ptp classify?
-
-Thanks,
-Kurt
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQJHBAEBCgAxFiEEvLm/ssjDfdPf21mSwZPR8qpGc4IFAmIiGCATHGt1cnRAbGlu
-dXRyb25peC5kZQAKCRDBk9HyqkZzgkafD/9Amt6hCJYn08slvDgpUI1XdQ3cmggH
-t9PslPZSCutHidicIoDgLtEI1AtQAVexZN181eHLF6SjRDoNA0hgQQCMR4b/TkWH
-vYWUXcoabIxeG0cnf/hAlfgdceMF7d5QdJxHIIBu09KXlDojqp1pAFOy7yxODM+g
-hcuB9WsBzRiPE4QZbPENXd3XoGHsECfNb1owUPIUS47DJPUwsfPwyoJjc9bIUKz7
-0W5WYdV97GbU+omp8Pt8NCT100FfIFN0cCJ/VN7ra5KI9olXGWQA8FvnUQgQmdZF
-whskULc2aNxb2g+4c09aD/Ykpuiy7YvwG1tSAFqbVhzJV0A4bT7tkZkz042E81ik
-GbT+UpGGXReQzFt1jb887CMR0JHYw4A3GyZVx7l7pDoYvx99BMUUIF1Bz89x4Lnj
-vIcQaK01qVFpfwnY7y/QrFEzO0E+3xbIDrVBu0HgdpUOvL4rL3VhDA3E3qVN5WpS
-yOjnWiP36OtXdDgpXLM9VdqbYo7vzEhikeFBkJIbL3dlL5iFtCMip41/5YWYFOGh
-ObWfJ5cO5VfXcpcxag24s0zEG1lK83UfO64YNV90DxbbTbR19EzN702qCmj2AyMv
-VDbQw71WrX3OpAIslfbaATPeDvY3x8ZECmCvryiRpZb7c7YZ7spWJFqeEZnoayv4
-OG+rQebpHO/Flg==
-=Uwq4
------END PGP SIGNATURE-----
---=-=-=--
+>   arch/arm/boot/dts/rk3188-px3-evb.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/rk3188-px3-evb.dts b/arch/arm/boot/dts/rk3188-px3-evb.dts
+> index 39c60426c9c9..fc478ac4e781 100644
+> --- a/arch/arm/boot/dts/rk3188-px3-evb.dts
+> +++ b/arch/arm/boot/dts/rk3188-px3-evb.dts
+> @@ -212,7 +212,7 @@ wl_18: LDO_REG8 {
+>   				regulator-name = "wl_18";
+>   			};
+>   
+> -			lcd_33: SWITCH_REG1 {
+> +			lcd_33: SWITCH_REG {
+>   				regulator-name = "lcd_33";
+>   			};
+>   		};
