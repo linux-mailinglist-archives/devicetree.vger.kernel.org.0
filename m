@@ -2,122 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A415E4CCF66
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD9F4CCF6F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 08:59:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234474AbiCDH6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 02:58:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35960 "EHLO
+        id S239033AbiCDIAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 03:00:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232845AbiCDH6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 02:58:42 -0500
-Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A89E065D05;
-        Thu,  3 Mar 2022 23:57:54 -0800 (PST)
-Received: by mail-pl1-x62c.google.com with SMTP id ay5so7074527plb.1;
-        Thu, 03 Mar 2022 23:57:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=b5JJahJbPSg5PuTw+HrbCqpeRRIjKIFlWzoeU01rKTU=;
-        b=DY4pRigayZTq/5rjtD2bjuRYX10CoBCJokMk8l+MP82c190ULI8mFEuacqaLNPAXPD
-         g19dQFm0zMVhGKiOsNUY9WJgsc90AJDeeLgEAB5cpBbXEMt6heWnf2gMNbOruuNvF17k
-         tXwKAv2lg7nTWKjS4zTcwxp73K/Vbt1z1Gar1VAgmd5Ag6hG/VXjy+dML3IARlgqC2B6
-         cGI/FVM8Zba/wkYhqCgAMgtvHPZVw74vWCg4uHmsYZyJaQoCdjis0QGRG8L1OWv6BWMe
-         j0uwGPD8wkT83IJ+e+RJJqDuugr6zMJGNHLqy9gJLwrC/UgMPBBtoo1bFd9Z8PQlBUsR
-         KiUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=b5JJahJbPSg5PuTw+HrbCqpeRRIjKIFlWzoeU01rKTU=;
-        b=g6Shr8ENbCs+DYD9W6qRgJVrxQaAImHDF+cM7NFrPH4uGMx41gqZXdQGkxdI4lyKb9
-         qN8LCBq1l3fZz/uKarhs4ynEdMXdZyCKNSm+OYKFqbptvZePyd1Qy8f2PfDRgTCZia83
-         UKnk6INHPC0zTWk7JK0k2jvK5+6cI+ItWxXpBQSPj72Li0XzTWNbh/FC4F5c63qSZX6Y
-         ea1GIkquuyJvKi21XH6pqJHHmQqRahAYDU5xrF97zVdWHb5m30LogQeS8V6v/MxybBu6
-         WppMmzcDbMvhqVpIwdYTeuRk9Rd1HYr2R75EhF3deELK4qvYOe7t49fA2Lo4DGNHd4QU
-         Yt+g==
-X-Gm-Message-State: AOAM532UYvIZfteLvtws9pK057J0fWcriYuuORk9nXVH+ZjMcfZZLFCv
-        7dXFnUm330UXIRjDIq6FOvE=
-X-Google-Smtp-Source: ABdhPJxvuPW+GS4d0R4GqvhhYiQKHdTrokQg6qHNRrkq/DtJ47Gkay/NlA31+zVRMc3ZiLuUSflWGA==
-X-Received: by 2002:a17:90a:4286:b0:1b8:8ba1:730c with SMTP id p6-20020a17090a428600b001b88ba1730cmr9376289pjg.181.1646380673939;
-        Thu, 03 Mar 2022 23:57:53 -0800 (PST)
-Received: from taoren-fedora-PC23YAB4 ([98.47.137.113])
-        by smtp.gmail.com with ESMTPSA id q7-20020a056a0002a700b004f357e3e42fsm4936341pfs.36.2022.03.03.23.57.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Mar 2022 23:57:53 -0800 (PST)
-Date:   Thu, 3 Mar 2022 23:57:50 -0800
-From:   Tao Ren <rentao.bupt@gmail.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     =?iso-8859-1?Q?C=E9dric?= Le Goater <clg@kaod.org>,
-        John Wang <wangzq.jn@gmail.com>, linux-spi@vger.kernel.org,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Tudor Ambarus <tudor.ambarus@microchip.com>,
-        Pratyush Yadav <p.yadav@ti.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 00/10] spi: spi-mem: Add driver for Aspeed SMC
- controllers
-Message-ID: <YiHGfh/4xZRim6Ka@taoren-fedora-PC23YAB4>
-References: <20220302173114.927476-1-clg@kaod.org>
- <CACPK8Xdo=krCNVVs5=jiSnmyiPkNPd9Dxxyx0Tv8eUHKR5J3cQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACPK8Xdo=krCNVVs5=jiSnmyiPkNPd9Dxxyx0Tv8eUHKR5J3cQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S239030AbiCDIAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 03:00:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13AB6149961;
+        Thu,  3 Mar 2022 23:59:22 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 114F2B827A1;
+        Fri,  4 Mar 2022 07:59:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 969CBC340E9;
+        Fri,  4 Mar 2022 07:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646380759;
+        bh=NZb/jyj/jkqA0t/E0dt1LZydRqSTZzkEbnbs7Uesp6s=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=cXIjvpATyWGIm/KCqM2kBndDnYceqLiPrwdSFhAvTItKb9Sxkfj24A09JR23uwUpM
+         ggKcW99vfTOH1UwIlkv+J9F2oQ+C4FAlsW1CloUIJhG8A/hQF/DexYwgz7UVdTKKZo
+         N2KFo/MeOgCnK4DDwehxxJOd01o4vT1LKfevyj/0oDz1Y55tBCqdkKN0yjS1HZkug8
+         LVzF7OHKZMhWyUFvaxK1i+UcYj+v95SkkTzPXb476jnifPgwN234w/8uvzOYVzKzRY
+         WILhkqzEzGf8VEMpp4FqSP6aK1IWCT7Zu/7MIjiuXuTEqXFU98N60dPqliYQqpT7j0
+         5KIfiCdKwI3Yg==
+Received: from ip-185-104-136-29.ptr.icomera.net ([185.104.136.29] helo=billy-the-mountain.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nQ2qL-00C9Jo-5G; Fri, 04 Mar 2022 07:59:17 +0000
+Date:   Fri, 04 Mar 2022 07:59:15 +0000
+Message-ID: <87fsnytagc.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20220303040229.GN269879@dragon>
+References: <20220301062414.2987591-1-shawn.guo@linaro.org>
+        <20220301062414.2987591-3-shawn.guo@linaro.org>
+        <87ee3m2aed.wl-maz@kernel.org>
+        <20220302084028.GL269879@dragon>
+        <877d9c3b2u.wl-maz@kernel.org>
+        <20220302133441.GM269879@dragon>
+        <875yow31a0.wl-maz@kernel.org>
+        <20220303040229.GN269879@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.104.136.29
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, sudeep.holla@arm.com, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 03, 2022 at 10:01:20AM +0000, Joel Stanley wrote:
-> On Wed, 2 Mar 2022 at 17:31, Cédric Le Goater <clg@kaod.org> wrote:
-> >
-> > Hi,
-> >
-> > This series adds a new SPI driver using the spi-mem interface for the
-> > Aspeed static memory controllers of the AST2600, AST2500 and AST2400
-> > SoCs.
-> >
-> >  * AST2600 Firmware SPI Memory Controller (FMC)
-> >  * AST2600 SPI Flash Controller (SPI1 and SPI2)
+On Thu, 03 Mar 2022 04:02:29 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
 > 
-> I've performed read and write tests on the 2600 controllers, and the
-> driver seems stable at the settings you have in the device tree.
+> On Wed, Mar 02, 2022 at 01:57:27PM +0000, Marc Zyngier wrote:
+> > This code actually makes me ask more questions. Why is it programming
+> > 2 'pins' for each IRQ?
 > 
-> Tested-by: Joel Stanley <joel@jms.id.au>
+> The mapping between MPM pin and GIC IRQ is not strictly 1-1.  There are
+> some rare case that up to 2 MPM pins map to a single GIC IRQ, for
+> example the last two in QC2290 'qcom,mpm-pin-map' below.
 > 
-> I've added Tao and John to cc as they have tested the 2400 and 2500,
-> and I'm sure will be able to provide some Tested-by.
+> 	qcom,mpm-pin-map = <2 275>,     /* tsens0_tsens_upper_lower_int */
+> 			   <5 296>,     /* lpass_irq_out_sdc */
+> 			   <12 422>,    /* b3_lfps_rxterm_irq */
+> 			   <24 79>,     /* bi_px_lpi_1_aoss_mx */
+> 			   <86 183>,    /* mpm_wake,spmi_m */
+> 			   <90 260>,    /* eud_p0_dpse_int_mx */
+> 			   <91 260>;    /* eud_p0_dmse_int_mx */
 > 
-> Cheers,
 > 
-> Joel
+> The downstream uses a DT bindings that specifies GIC hwirq number in
+> client device nodes.  In that case, d->hwirq in the driver is GIC IRQ
+> number, and the driver will need to query mapping table, find out the
+> possible 2 MPM pins, and set them up.
+> 
+> The patches I'm posting here use a different bindings that specifies MPM
+> pin instead in client device nodes.  Thus the driver can simply get the
+> MPM pin from d->hwirq, so that the whole look-up procedure can be saved.
 
-I've tested the patch series on ast2400 (wedge100) and ast2500 (cmm) by
-reading/writing FMC flash0 and flash1 for several times, and no issues
-observed so far.
+It still remains that there is no 1:1 mapping between input and
+output, which is the rule #1 to be able to use a hierarchical setup.
 
-Tested-by: Tao Ren <rentao.bupt@gmail.com>
+/me puzzled.
 
+>
+> > 
+> > > 
+> > > It seems MPM_REG_POLARITY is only meant for level interrupts, since edge
+> > > interrupts already have separate registers for rising and falling.
+> > 
+> > Then level interrupts must clear both the edge registers at all times.
+> 
+> The downstream logic already covers that, right?  The edge register bits
+> will be cleared as long as 'flowtype' is not EDGE.
 
-Cheers,
+I am talking about *your* code, not the Qualcomm stuff.
 
-Tao
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
