@@ -2,106 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7977E4CD6D0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 15:53:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A6BA94CD704
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 16:01:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239897AbiCDOyk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 09:54:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44018 "EHLO
+        id S229934AbiCDPC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 10:02:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237899AbiCDOyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 09:54:39 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF30187E39;
-        Fri,  4 Mar 2022 06:53:51 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id A78341BF204;
-        Fri,  4 Mar 2022 14:53:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646405630;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=TySVdy94IbkIuYNoa5NXDfUiMMMbAJCyvZocHTXJLaQ=;
-        b=JUTYSelu7xdSqVX75hDUcp8cIxwmHcv9hcdi+qKwFwZwwF9ZcswDHPNDri4vFA/nmhbPxn
-        zYUm/OokbkkmGlSzX0W1BDM0vYILIyMkFFjSeQXT1qZ52phCZCv1pZe061AFK/NTr8laQu
-        Alt77bfdW0/V4bA3W+kn0EGb83xDde01AF1r0x/V/6S8GTHlZvClDu4uxBsZCy8qag2B2a
-        +EajNCUcmd839e48K8ycbiqefS8XC+MRjz1MOCF8FCfpZGFXyA+QYe3zYEXtDeRBoRWA6p
-        xqOBY40MWUksV8Gke9Ji3wMwFPhCEBssJIIVzQiIvZV399HO96khPZSrXBeekQ==
-Date:   Fri, 4 Mar 2022 15:53:48 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Sergiu Moga <sergiu.moga@microchip.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, nicolas.ferre@microchip.com,
-        claudiu.beznea@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] ARM: dts: at91: Add the required
- `atmel,rtt-rtc-time-reg` property
-Message-ID: <YiIn/NJyqeYlhV/z@piout.net>
-References: <20220304142746.121947-1-sergiu.moga@microchip.com>
- <20220304142746.121947-2-sergiu.moga@microchip.com>
+        with ESMTP id S240006AbiCDPC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 10:02:28 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C3061BD9BB
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 07:01:41 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id E03873F5F5
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 15:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646406099;
+        bh=veW4gKIbKo9jmCs1Wuv5XKB6ixDrTo7kj8IuMc2L6jg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=bNbuZu7ajGxRnI2zD0k7do++qOxwoXPlCAvITsMHchHJWkhAfPtBD51YbW27pKLXQ
+         GC7/AiTmei3VTkWda7lp/GCGF8IRovOWTc+wB0893Qt2IJXhfKNuQkgHUbSufe2Dsk
+         PAlTCwN5raHd7Mhh16fdohGzjuthSiJocJEreokn3hQ6ICJ/MUfzQSAgcfLxLHWFHY
+         3u0tPG2CKfmKudxQbycplB+B7wWRn1qwXGaDv5OJnO/dHroLSL8VhEECte+SctVq9y
+         Tm5BuKWeszVVaADkGOWv46iqJ6cN2/o1a59kwNeEwhVa1NFhtNNLu2n6DUGVmWcpMN
+         ySFgt7QEODUAA==
+Received: by mail-ed1-f69.google.com with SMTP id e10-20020a056402190a00b00410f20467abso4703323edz.14
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 07:01:39 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=veW4gKIbKo9jmCs1Wuv5XKB6ixDrTo7kj8IuMc2L6jg=;
+        b=VqW1DRsfH9sG6OjLnm+KW17xTxeY948gE3O79RmBbQOF+OURJwEdXbwFv4ujII0tii
+         NjZE0LDuofBArtX5QbBTZme3V/5+xPUbxZ0pZpQuAwERkQAuKl8ZSBQJVhCP7lDAoac5
+         qIcZcQNhrbZfwI1BUDC3PlXnMpJmxcx+czoP4GB5FCa5xhdMlV0jz4PKv01fC8NijnV/
+         cSTcC+OJ0pmGK+jU06Rndkbtr0KUWUBtv5nkY54DuRxZRl7sA6fRFlixplO/TYFuMLcF
+         Gr6tcRJ9sH0A3vXn8K29M/8Crw0noe9Rdc5lq7NBaVQ+FQufYsu5ZwRIKfAh2qMBFNZe
+         H/Dw==
+X-Gm-Message-State: AOAM533mIwQ7+uGnmfNpjGpGZtqtbmw5Wirn9zzDX3NBRAZM7iasN7qU
+        wO3sW8BJEGIMMKLuD8DL/cJCzORf4MMLDe/URb0kX4hle3rnUf8jP0yKBs+X0IBOOCT4X6L4HRK
+        JQXK/Q3dKrwbkLeBgvPjYXyWBdhids/LKQdefGek=
+X-Received: by 2002:a05:6402:3489:b0:415:bc37:a81f with SMTP id v9-20020a056402348900b00415bc37a81fmr12512638edc.354.1646406099198;
+        Fri, 04 Mar 2022 07:01:39 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxgaVeX2hMApbdyglZkusLEVifJ+zoAKzqcXR0aV/1vWe1MjVa35U8Tzx/bcGq+skX2sVwWTA==
+X-Received: by 2002:a05:6402:3489:b0:415:bc37:a81f with SMTP id v9-20020a056402348900b00415bc37a81fmr12512608edc.354.1646406098927;
+        Fri, 04 Mar 2022 07:01:38 -0800 (PST)
+Received: from [192.168.0.139] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id k3-20020a05640212c300b0041605b2d9c1sm603615edx.58.2022.03.04.07.01.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Mar 2022 07:01:37 -0800 (PST)
+Message-ID: <9113e319-58a2-fd90-6887-fb32eb21fd18@canonical.com>
+Date:   Fri, 4 Mar 2022 16:01:36 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220304142746.121947-2-sergiu.moga@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
+ PWM Driver
+Content-Language: en-US
+To:     Hammer Hsieh <hammerh0314@gmail.com>, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com
+References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
+ <1646374812-2988-2-git-send-email-hammerh0314@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <1646374812-2988-2-git-send-email-hammerh0314@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2022 16:27:42+0200, Sergiu Moga wrote:
-> Add the required `atmel,rtt-rtc-time-reg` property to the `rtt` nodes
-> of the board files that were missing it.
+On 04/03/2022 07:20, Hammer Hsieh wrote:
+> Add bindings doc for Sunplus SoC PWM Driver
+
+You miss spaces in the subject.
+
 > 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
 > ---
->  arch/arm/boot/dts/at91sam9261ek.dts | 4 ++++
->  arch/arm/boot/dts/at91sam9263ek.dts | 8 ++++++++
->  arch/arm/boot/dts/at91sam9rlek.dts  | 4 ++++
->  3 files changed, 16 insertions(+)
+> Changes in v2:
+>  - Addressed all comments from Rob Herring.
+>    modify author's mail match Signed-off-by.
+>  - rebase kernel to 5.17 rc5
 > 
-> diff --git a/arch/arm/boot/dts/at91sam9261ek.dts b/arch/arm/boot/dts/at91sam9261ek.dts
-> index beed819609e8..3c1f40b4a13e 100644
-> --- a/arch/arm/boot/dts/at91sam9261ek.dts
-> +++ b/arch/arm/boot/dts/at91sam9261ek.dts
-> @@ -178,6 +178,10 @@ dbgu: serial@fffff200 {
->  				status = "okay";
->  			};
->  
-> +			rtc@fffffd20 {
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> +			};
-> +
->  			watchdog@fffffd40 {
->  				status = "okay";
->  			};
-> diff --git a/arch/arm/boot/dts/at91sam9263ek.dts b/arch/arm/boot/dts/at91sam9263ek.dts
-> index 71f60576761a..1208bb580d14 100644
-> --- a/arch/arm/boot/dts/at91sam9263ek.dts
-> +++ b/arch/arm/boot/dts/at91sam9263ek.dts
-> @@ -102,6 +102,14 @@ mtd_dataflash@0 {
->  				};
->  			};
->  
-> +			rtc@fffffd20 {
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> +			};
-> +
-> +			rtc@fffffd50 {
-> +				atmel,rtt-rtc-time-reg = <&gpbr 0x4>;
-> +			};
+>  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 40 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 +++
+>  2 files changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> new file mode 100644
+> index 0000000..19fe5d5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) Sunplus Co., Ltd. 2021
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
 
-Do we really need two RTCs with the exact same features on that board?
-Is there a check failure hen the property is not there and the node is
-disabled?
+Is it going to be one binding for all Sunplus SoCs? Existing and future?
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sunplus SoC PWM Controller
+> +
+> +maintainers:
+> +  - Hammer Hsieh <hammerh0314@gmail.com>
+> +
+
+allOf with pwm.yaml
+Then unevaluatedProperties instead of additionalProperties.
+
+
+> +properties:
+> +  '#pwm-cells':
+> +    const: 2
+> +
+> +  compatible:
+
+Commpatible goes first. Rest of properties you could order
+alphabetically. Similar approach in required.
+
+
+> +    items:
+> +      - const: sunplus,sp7021-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
+
+compatible
+
+> +  - reg
+> +  - clocks
+
+
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pwm: pwm@9c007a00 {
+> +      #pwm-cells = <2>;
+> +      compatible = "sunplus,sp7021-pwm";
+
+compatible goes first, then reg.
+
+
+Best regards,
+Krzysztof
