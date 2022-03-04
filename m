@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AC104CD1EB
+	by mail.lfdr.de (Postfix) with ESMTP id F2E4A4CD1ED
 	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 11:03:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239451AbiCDKEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S239456AbiCDKEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 4 Mar 2022 05:04:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36448 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239457AbiCDKES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:04:18 -0500
-Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1237119E71B
-        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:03:30 -0800 (PST)
-Received: by mail-pg1-x533.google.com with SMTP id 27so7087247pgk.10
-        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 02:03:30 -0800 (PST)
+        with ESMTP id S239268AbiCDKEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 05:04:20 -0500
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E270F652C7
+        for <devicetree@vger.kernel.org>; Fri,  4 Mar 2022 02:03:32 -0800 (PST)
+Received: by mail-pf1-x42d.google.com with SMTP id k1so7232884pfu.2
+        for <devicetree@vger.kernel.org>; Fri, 04 Mar 2022 02:03:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sifive.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/wivmtaq/SOM50t59wI6fLzJlaXtHmkBr6jDahJcOY4=;
-        b=bGsRhcabvtlSfwd8B3Hc862NImw4ysYnY4vIXQXnY8c0yLMXuW0PWOkCVaYH0JddgX
-         7XaSpfnyNR176s48aOfJYFXy71qH1fJ3EKDwd49Xj3F5Y3iKd0WHgQkui2hDyZDse7VV
-         HEq/JvcnB7tT50djw2mSzJSMbXst7GcASnJQwJe0mVpIA3Z6Ze0q1LfCirUuWD/0wUR0
-         B2ngyyebL8s4qkERUEDqCqZ7Go8vt76ElCnjnfNliAbA6d175ipCZTEec27TjBdsgtxB
-         1blU1E5FrL/PqUUV+WIHLFHThitCK4qGoqsxjnFgwJfsw1vMs+rpYR5QGKQJjZNGY8YF
-         y+og==
+        bh=YJQeczGCyde6fs+sGcXvqejtqL/oWjg9SsCj9ixzkS8=;
+        b=h2zhJkz4ejNA9UZn2qKXICuQVZ5crdHCD3aL0FrHrgAipBUZruvyGxutNpSmGwvz4h
+         q2FYeIflyxi4WjnT1UHwy9sb7CPF0FWUfW2O1BijSPjrnOD1yVt7ojVuUP/v0+2TCfAL
+         rs1N2rEApj2CSLe+gsoapMAQO4EkBHtlllYjOEFKYvfb/NDrscO1HTxxTeVEix4iUUa8
+         3h6v4pv7OGj36rQJ/IikLWbPoEHIc9Vk4xXIapdKiWk3BTZEVK92IhGdRfShRPWFcngL
+         +qGv/J6YvIILTX4Ob/dGgmHl/zUSRENL5K3ZB7dRlHITceMzo3AJ0CfM+HNbSbyHDjsL
+         aBHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/wivmtaq/SOM50t59wI6fLzJlaXtHmkBr6jDahJcOY4=;
-        b=jsZNYRqKGSlB6t6Z6EpSnbl7apJld+bKYnwb5Ug8fDZbV4pFTgAyJOI1EkrmOATh32
-         GxMIja0o8oWU+RZ5gbmZ/qLwTlBUJGWzHYifmgWwdlShvIYQqoLKJW7ttWvkDxwuwZBH
-         Pp2QLzjuV1OAXBT7T/4rjcbdEkd39vLLlsoXqA+EprXsJzwDqE+pRUOLPjxN5SSY8rTV
-         X2BDL0D8YKAjAKQDfUv36w5ny76dN0mt3aWhUdy8eMz4AX4EnhoEEDRIXw0+NQEWtJvr
-         1EmnyoPp+Iu1A3rjsrsMCamMimE3qotSbHrEJD/lrydkjs6CWBAmd5tkEIlb33bHZ5SF
-         pkPg==
-X-Gm-Message-State: AOAM5317j5In+GM8JGIfLPxlZHWrBvH79mJhMFGLHatjGbC1EiO3lVv8
-        W7D3ATDXjrDFfluZjh2IDBBh1g==
-X-Google-Smtp-Source: ABdhPJyn7J5CnDAcxUu7niaATceQ6lk+NyKYqye5kYn0ltG7hPXizvd7T07ZbTlOO9WCND1NeREjGA==
-X-Received: by 2002:a63:c61:0:b0:370:592b:3ad1 with SMTP id 33-20020a630c61000000b00370592b3ad1mr33584816pgm.240.1646388209553;
-        Fri, 04 Mar 2022 02:03:29 -0800 (PST)
+        bh=YJQeczGCyde6fs+sGcXvqejtqL/oWjg9SsCj9ixzkS8=;
+        b=NlbT8gpksjqcM6ZTd1NmEo0DpSSGdewy5yzygwo+VypLs2JrQRrsW5G0XltXPpZ/Mq
+         hkt1JxY+4tO8SkKp/n+MjhUGt2bxM/xlA7HG3b7Wr03z1fWqPZj6p1SYDjJJnagsoX3c
+         N8d4Y7135isHQH3Ij9k1DUa5BbALozU6o8CfCgosMeVlV1+O9L2SqohFtGBXRpWp0Kbm
+         +sq9u1DUQrwkwma0jlGTXWL/etbeK9PCp8QBzZ7Ym/6MmkRV303CeRvayb2+zXP5r7TN
+         7aJl/Q8VNGDRfXicR8AQ/TZgInFRuqf5EL211LUGZ7Obl707QmEONWXBWBRn+MQO867m
+         ltZQ==
+X-Gm-Message-State: AOAM5339eun/3imUleFND8CdOu0dG45nYTcF0BF27M/Z33FaiGs+dY9p
+        qtNUHeK2RrNb0cyBlKX/yBNhEA==
+X-Google-Smtp-Source: ABdhPJw8Wc3eKaZofkKh8W3VECbyxA6H4ZwEDiEWFzFFuLSB0crgYHjPTZ+vrcmF6tTgikJwX+lEtw==
+X-Received: by 2002:a63:85c6:0:b0:37e:61ff:863e with SMTP id u189-20020a6385c6000000b0037e61ff863emr602220pgd.412.1646388212452;
+        Fri, 04 Mar 2022 02:03:32 -0800 (PST)
 Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id j8-20020a056a00174800b004f26d3f5b03sm5461605pfc.39.2022.03.04.02.03.27
+        by smtp.gmail.com with ESMTPSA id j8-20020a056a00174800b004f26d3f5b03sm5461605pfc.39.2022.03.04.02.03.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 02:03:29 -0800 (PST)
+        Fri, 04 Mar 2022 02:03:31 -0800 (PST)
 From:   Zong Li <zong.li@sifive.com>
 To:     mturquette@baylibre.com, sboyd@kernel.org, palmer@dabbelt.com,
         paul.walmsley@sifive.com, lee.jones@linaro.org, robh+dt@kernel.org,
         devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
         linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Zong Li <zong.li@sifive.com>
-Subject: [PATCH v2 1/5] clk: sifive: duplicate the macro definitions for the time being
-Date:   Fri,  4 Mar 2022 18:03:17 +0800
-Message-Id: <8cfd57f01cfb59adb716eb13ca0c8250c246dcb2.1646388139.git.zong.li@sifive.com>
+Cc:     Zong Li <zong.li@sifive.com>, Rob Herring <robh@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: [PATCH v2 2/5] dt-bindings: change the macro name of prci in header files and example
+Date:   Fri,  4 Mar 2022 18:03:18 +0800
+Message-Id: <f9284873c2993a9952d9fe4f8dd5e89f20daab75.1646388139.git.zong.li@sifive.com>
 X-Mailer: git-send-email 2.31.1
 In-Reply-To: <cover.1646388139.git.zong.li@sifive.com>
 References: <cover.1646388139.git.zong.li@sifive.com>
@@ -63,7 +64,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,60 +72,105 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a temporary patch in whole patch set. We are going to change the
-macro name in dt-binding, in order to avoid breaking the driver build
-and git bisect, add these macro definitions for the time being, and we
-will remove them later.
+We currently change the macro name for fu540 and fu740 by adding the
+prefix respectively, the dt-bindings should be modified as well.
 
 Signed-off-by: Zong Li <zong.li@sifive.com>
+Acked-by: Rob Herring <robh@kernel.org>
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 ---
- drivers/clk/sifive/fu540-prci.c |  6 +++++-
- drivers/clk/sifive/fu740-prci.c | 11 ++++++++++-
- 2 files changed, 15 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/gpio/sifive,gpio.yaml  |  2 +-
+ .../bindings/pci/sifive,fu740-pcie.yaml        |  2 +-
+ .../bindings/serial/sifive-serial.yaml         |  2 +-
+ include/dt-bindings/clock/sifive-fu540-prci.h  |  8 ++++----
+ include/dt-bindings/clock/sifive-fu740-prci.h  | 18 +++++++++---------
+ 5 files changed, 16 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/clk/sifive/fu540-prci.c b/drivers/clk/sifive/fu540-prci.c
-index 29bab915003c..9e13119066eb 100644
---- a/drivers/clk/sifive/fu540-prci.c
-+++ b/drivers/clk/sifive/fu540-prci.c
-@@ -20,9 +20,13 @@
+diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+index 427c5873f96a..939e31c48081 100644
+--- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
+@@ -79,7 +79,7 @@ examples:
+         interrupts = <7>, <8>, <9>, <10>, <11>, <12>, <13>, <14>, <15>, <16>,
+                      <17>, <18>, <19>, <20>, <21>, <22>;
+         reg = <0x10060000 0x1000>;
+-        clocks = <&tlclk PRCI_CLK_TLCLK>;
++        clocks = <&tlclk FU540_PRCI_CLK_TLCLK>;
+         gpio-controller;
+         #gpio-cells = <2>;
+         interrupt-controller;
+diff --git a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+index 392f0ab488c2..195e6afeb169 100644
+--- a/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
++++ b/Documentation/devicetree/bindings/pci/sifive,fu740-pcie.yaml
+@@ -104,7 +104,7 @@ examples:
+                             <0x0 0x0 0x0 0x2 &plic0 58>,
+                             <0x0 0x0 0x0 0x3 &plic0 59>,
+                             <0x0 0x0 0x0 0x4 &plic0 60>;
+-            clocks = <&prci PRCI_CLK_PCIE_AUX>;
++            clocks = <&prci FU740_PRCI_CLK_PCIE_AUX>;
+             resets = <&prci 4>;
+             pwren-gpios = <&gpio 5 0>;
+             reset-gpios = <&gpio 8 0>;
+diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.yaml b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
+index 09aae43f65a7..b0a8871e3641 100644
+--- a/Documentation/devicetree/bindings/serial/sifive-serial.yaml
++++ b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
+@@ -59,7 +59,7 @@ examples:
+         interrupt-parent = <&plic0>;
+         interrupts = <80>;
+         reg = <0x10010000 0x1000>;
+-        clocks = <&prci PRCI_CLK_TLCLK>;
++        clocks = <&prci FU540_PRCI_CLK_TLCLK>;
+       };
  
- #include <dt-bindings/clock/sifive-fu540-prci.h>
+ ...
+diff --git a/include/dt-bindings/clock/sifive-fu540-prci.h b/include/dt-bindings/clock/sifive-fu540-prci.h
+index 3b21d0522c91..5af372e8385f 100644
+--- a/include/dt-bindings/clock/sifive-fu540-prci.h
++++ b/include/dt-bindings/clock/sifive-fu540-prci.h
+@@ -10,9 +10,9 @@
  
--#include "fu540-prci.h"
- #include "sifive-prci.h"
+ /* Clock indexes for use by Device Tree data and the PRCI driver */
  
-+#define PRCI_CLK_COREPLL	0
-+#define PRCI_CLK_DDRPLL		1
-+#define PRCI_CLK_GEMGXLPLL	2
-+#define PRCI_CLK_TLCLK		3
-+
- /* PRCI integration data for each WRPLL instance */
+-#define PRCI_CLK_COREPLL	       0
+-#define PRCI_CLK_DDRPLL		       1
+-#define PRCI_CLK_GEMGXLPLL	       2
+-#define PRCI_CLK_TLCLK		       3
++#define FU540_PRCI_CLK_COREPLL		0
++#define FU540_PRCI_CLK_DDRPLL		1
++#define FU540_PRCI_CLK_GEMGXLPLL	2
++#define FU540_PRCI_CLK_TLCLK		3
  
- static struct __prci_wrpll_data __prci_corepll_data = {
-diff --git a/drivers/clk/sifive/fu740-prci.c b/drivers/clk/sifive/fu740-prci.c
-index 53f6e00a03b9..7141a22d90e3 100644
---- a/drivers/clk/sifive/fu740-prci.c
-+++ b/drivers/clk/sifive/fu740-prci.c
-@@ -8,9 +8,18 @@
+ #endif
+diff --git a/include/dt-bindings/clock/sifive-fu740-prci.h b/include/dt-bindings/clock/sifive-fu740-prci.h
+index 7899b7fee7db..672bdadbf6c0 100644
+--- a/include/dt-bindings/clock/sifive-fu740-prci.h
++++ b/include/dt-bindings/clock/sifive-fu740-prci.h
+@@ -11,14 +11,14 @@
  
- #include <dt-bindings/clock/sifive-fu740-prci.h>
+ /* Clock indexes for use by Device Tree data and the PRCI driver */
  
--#include "fu540-prci.h"
- #include "sifive-prci.h"
+-#define PRCI_CLK_COREPLL	       0
+-#define PRCI_CLK_DDRPLL		       1
+-#define PRCI_CLK_GEMGXLPLL	       2
+-#define PRCI_CLK_DVFSCOREPLL	       3
+-#define PRCI_CLK_HFPCLKPLL	       4
+-#define PRCI_CLK_CLTXPLL	       5
+-#define PRCI_CLK_TLCLK		       6
+-#define PRCI_CLK_PCLK		       7
+-#define PRCI_CLK_PCIE_AUX	       8
++#define FU740_PRCI_CLK_COREPLL		0
++#define FU740_PRCI_CLK_DDRPLL		1
++#define FU740_PRCI_CLK_GEMGXLPLL	2
++#define FU740_PRCI_CLK_DVFSCOREPLL	3
++#define FU740_PRCI_CLK_HFPCLKPLL	4
++#define FU740_PRCI_CLK_CLTXPLL		5
++#define FU740_PRCI_CLK_TLCLK		6
++#define FU740_PRCI_CLK_PCLK		7
++#define FU740_PRCI_CLK_PCIE_AUX		8
  
-+#define PRCI_CLK_COREPLL	0
-+#define PRCI_CLK_DDRPLL		1
-+#define PRCI_CLK_GEMGXLPLL	2
-+#define PRCI_CLK_DVFSCOREPLL	3
-+#define PRCI_CLK_HFPCLKPLL	4
-+#define PRCI_CLK_CLTXPLL	5
-+#define PRCI_CLK_TLCLK		6
-+#define PRCI_CLK_PCLK		7
-+#define PRCI_CLK_PCIE_AUX	8
-+
- /* PRCI integration data for each WRPLL instance */
- 
- static struct __prci_wrpll_data __prci_corepll_data = {
+ #endif	/* __DT_BINDINGS_CLOCK_SIFIVE_FU740_PRCI_H */
 -- 
 2.31.1
 
