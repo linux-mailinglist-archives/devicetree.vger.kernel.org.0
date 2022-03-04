@@ -2,171 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D98B24CCCE2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 06:17:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E69964CCDA3
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 07:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232949AbiCDFRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 00:17:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35146 "EHLO
+        id S233142AbiCDGUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 01:20:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231487AbiCDFRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 00:17:46 -0500
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-eopbgr60087.outbound.protection.outlook.com [40.107.6.87])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDA18182BE9;
-        Thu,  3 Mar 2022 21:16:59 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ElpzeDtggr/VkLUq7q0k4p6IlKZcm4e3jpsq/nwKCeOzCOe/a815Q6eBGTIBneKv38g/0uWbqSi6wAq1oYp8ZDgS0rEhl0X/zT9X6n9inz/QOs/a5IpGqgyJ68YhOjs+KZFLpfevW/co3e62F9sPmtDbQDZyZVCMYKGXAdvR7IDc1gG16vnrDDbQU1gxWdO/WJfO380rncDOxMvnDkyNn4jeasjW213EYCXJzHBlGTtzkXu1ZG+RWP8nkxmCTRdbNQynamnCjkl/0I7+uqOk/tNyMwlaB47KT0HlJgovOYHfKoNkqiiB89+CzM3x25DpRA+cP9ybhxCioStMgTn5Ug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Fb5JuGmX+BXFaAHAJfVcUy0e326/mH+Ze2qCcaVqbnM=;
- b=gX4ZkeUS+qIVwjRH4+U4396VLVSy9Xy1+gBDXFd5CW/5A+LfXcVQPZohDK+NbM4VNq/qh/qzhz3LFr7tgZhi49D/5ypAOqDv878YSgNe3RBgj3fQA+tXoTsnuWa32ly3B5YDLDwo7Fhth0Ue5aai3uJ9ZMgcx0Ssdckt8nFpf3xXe/Hmn5ZxJhCZPWvb5j7yeZCN7qJQe9QZX6a6wEnQacVVIqj8dMnFCDTrhi13eS5hj38Dr4DjG7x4k0vF4o42a7JNp0u1qZ166CisFKnEbgPfIUaEtx5HH6sa4y5IJgmo80OW1QPJLn14c/SiOYuhfnQGI2IxXMyySw57E1/CpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Fb5JuGmX+BXFaAHAJfVcUy0e326/mH+Ze2qCcaVqbnM=;
- b=K5Pl2XI3TioGVWq0rXFHzAfxHdLF/gLD4d1kFl2nErmEey2/uuDIiFGXbky8EegilPBpPOgcJTjf9WpDCB0MMgx7RUSvnUChpA77z9mCM3ZHk8cKXlsI3jNXfY8jXxeMNZjCHxsodIN0IKr0Ruh6mz6ERCS5EF4NPY46Hu94I9Y=
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by PA4PR04MB7837.eurprd04.prod.outlook.com (2603:10a6:102:ca::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Fri, 4 Mar
- 2022 05:16:57 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::5538:7e34:6843:2bc7]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::5538:7e34:6843:2bc7%6]) with mapi id 15.20.5038.016; Fri, 4 Mar 2022
- 05:16:57 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH V2 0/6] mailbox: imx: misc fix and SECO MU support
-Thread-Topic: [PATCH V2 0/6] mailbox: imx: misc fix and SECO MU support
-Thread-Index: AQHYG8V+6zyXtHlnqUG2v4cVSruU8qyu1pXg
-Date:   Fri, 4 Mar 2022 05:16:57 +0000
-Message-ID: <DU0PR04MB941714DB00452D87D941E60688059@DU0PR04MB9417.eurprd04.prod.outlook.com>
-References: <20220207015211.394297-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20220207015211.394297-1-peng.fan@oss.nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e9eef08d-f3a5-49dd-e6a3-08d9fd9e345d
-x-ms-traffictypediagnostic: PA4PR04MB7837:EE_
-x-microsoft-antispam-prvs: <PA4PR04MB7837F99A73878623374B9C8C88059@PA4PR04MB7837.eurprd04.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rcPd4l43+x5JVMIbcFSMAUIfI1J8P1bwbGaPw0PIV4TRE+A2x+M3mDjTdQra8T9OQFrpya7GApJPpIbUPp2LzNg8hBc1EWIxw5uwYnuhTLCLf5DwKDlUYHleFS9bTthnvBL9kVHC56guDz8yomtz3xmEEgdrxi4973+xrC4PNT5YkMHPtu2cTcvIj3hPtR1+J7qcGuhbaSK0uYsIkXi6tvSt0fSTjyYI3Z/Yid/8TJOV7Z3NHg+cRtglWhjrmVflD8GoceyO/yNEDYmqDVDxURYQxaZiROqHT3RNaWaEoNJLaqJAQudg88Z+ftK+IejmMsKQi3Q7wMOVhDvbCcv1ExU8LP8kQk06xCJJPr3tv4BOA8pmstWGZWQ4lcAdHhFZL9Bjc1s1kS760j6J7f28zrf4sz+AX7A43NVUsaWsKUHskL4VZOZ2XJgwHpiqDcNnU6v4rnZaV3WhtwhESSh+aDb2OnkYXoNr6eXa+EONFPpCmxRPvg6GBQYE4DAGuRN8VKUBZ2msfa0ErrO9qLQ0bkF0tvMQiOgkjjhLCTz+P/igLJX2WINjtq6bVUrQL7m6Bnvl2prnH3GhmPDihgCy42P+WOIsmoZ+oXEMXkbum0WPGPsttRKaLnuuMuxtquHdoC/70VSoKxbOW12SVpQ2Ue/gE8VGJ08OCDzeF3dWvMiYj525hqOowjyCPvj8005Pc0kSeny2Ff7oaBJDSseibh7X0bFTKYMixyJLG7pZaNGN4wr2IzSjPOb8i+6/DGUIeoX3TSlPy1NqQys/IrXQYWzh8AiIz7YDSMvieA78we4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(26005)(186003)(83380400001)(2906002)(33656002)(15650500001)(44832011)(38100700002)(52536014)(8936002)(5660300002)(9686003)(6506007)(7696005)(8676002)(110136005)(76116006)(54906003)(86362001)(64756008)(66446008)(66476007)(66556008)(66946007)(55016003)(38070700005)(498600001)(4326008)(71200400001)(122000001)(966005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?lrc09f8LQtK1D1s5H+/TdvIk4bBRRyiQe2cn40s/RYWt6mZWyWusOsildBAu?=
- =?us-ascii?Q?P1/cGedmhvS6p9vPKyz7aFEjZJipWWDb9xiHkyv0smjOT56VQRTbgcFc8Ktm?=
- =?us-ascii?Q?++9e9olN82nS2/W4AeWcZ6yHviq/jHxgoeGBI/RRxALFr4LeehC1ggn+oach?=
- =?us-ascii?Q?DZUWYofQZ41CUOvHF3SyGO/9AtiMjnJWAhIMqH8VWK5PXBQOy1s0l/Jbi57P?=
- =?us-ascii?Q?VxC0su1vHXngdNtQccsbAza6i+pZCpCT7VDZCW//u6v1zZaEKaArLTUjR14l?=
- =?us-ascii?Q?t83KBmBcYdSWVmmrSEkbGcdavmoOaaXpOoxqqCAvCnlrAXrP+oVLBUwnd/fq?=
- =?us-ascii?Q?YEK1/d/njPsVSkB/5s4MaYBSfkUx8/eUXcpuitTTlJl+pj1ULnt3U83/R1Xy?=
- =?us-ascii?Q?b+n8tV4XlobBMW5O6MIb2zkAbnZW6KRdebt3s5BdY/TaXtmhRcsKG0U5c4Bq?=
- =?us-ascii?Q?d411/v+LIRkvTmrHM2RKmCiROu5O64P+fYEQ6+BW6ZS5GMPo4Ewewzh/OOXG?=
- =?us-ascii?Q?QsiS2Utyl36nIMerv3UzxFIX2VhwN59pPywr1sTsZegEUSkaF9i2mU24wQCQ?=
- =?us-ascii?Q?Hw2/fyVM8igkGppQyg/xoNXzvEmr3xgKaLPU21szY2WdqWwCyI3YDbgCAcMF?=
- =?us-ascii?Q?5I6ABcITXugIcjHs7FfCVLaySWxK8mKumzvzSGwW4xlIMdeMU2e4CzKcR4Di?=
- =?us-ascii?Q?4eG4/GnVcQaK/E4efqF9xuQ3mXD4Btdnmqvrzi+15cC5x5FR94F4pzEX/kkL?=
- =?us-ascii?Q?ANHqlciZVej8mdmUH3tg9p/QP+sM9OqgOTXrZlV9iW+WBmnsw62TAsOam3wg?=
- =?us-ascii?Q?iB6gDHff3q9+hqKddH28rzfs/My+bU31eoJX3FwnBPE3WoQi99wTN11bP4P0?=
- =?us-ascii?Q?ay8k5EO2kbdWdi0qIQ6K9NY+ZWgqnRxWbz1MyL0q2Y3m6JsDv5MirJ3kZnqM?=
- =?us-ascii?Q?FNax3dnPuLDAMeaHuGuWaXIA72L481bq4MfACoMRItfSeDS4c0vgoD97bxkW?=
- =?us-ascii?Q?qcTpnF4mHC9GNyYqkVs5N0Kb+F4Es606044KEkGwbdUEZKIpoROdlDkj7WE6?=
- =?us-ascii?Q?C5bxOlHO8l06fhLcdl+l9orfuCdoKq30muktx6G989rhjdcmRXpjh0m5zC3O?=
- =?us-ascii?Q?whSIB3yfHmGUT4ELUeBObGYazd1MyZHo5ARrg8P2Q3O7fFWuI9lesfR+Do52?=
- =?us-ascii?Q?MWJeH03nCidzhm6F99QMp2UKi9AI7FlD4NUsrIJySoywalvLqupin8kQZ0Ld?=
- =?us-ascii?Q?GZN88fslMlz8Yqvu+SmtzaU3+U1y80fskudIb0TyJXKY6v3EQsC/JwGn9oBG?=
- =?us-ascii?Q?w2BSGbtyVa6xj85yzPYx0hFAk1sSiUWQVnlt9MsDL4OJ1IbqzvY8rNHwz+pL?=
- =?us-ascii?Q?aDN4QbMQGx/+64HGEvDzUCwGR7YoiHRRJviMO6FdlxSEJvuyJNP/wJKUm0Vh?=
- =?us-ascii?Q?95dQFbPpaJTtuwYsPR58RhXxyIb36MIi+HgC6ABZ4uMHdnGf1OTes4g0VNAO?=
- =?us-ascii?Q?VDrk+7hEfyS57ayLz2Y6F1Cy/+T5QY4k9QZ6FtAoY3/9li/dbq99TJnKQ+pc?=
- =?us-ascii?Q?anzMay89MX/swrKlbkXk07x8sXrJM57eQUd1PQ4v6ak5uhK9gwNS4XnK6NKy?=
- =?us-ascii?Q?0Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9eef08d-f3a5-49dd-e6a3-08d9fd9e345d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Mar 2022 05:16:57.3927
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Fwdv9o+J4qAlPd/MiPoC8ikE3I5n0Y7Y2xMuRYuq5+kbYyRCzVfH9ZYKcD4+HZxNtqWekFvlJeZuhKMDjsoO3g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7837
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231956AbiCDGUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 01:20:44 -0500
+Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB69810B3;
+        Thu,  3 Mar 2022 22:19:57 -0800 (PST)
+Received: by mail-pf1-x436.google.com with SMTP id d17so6860238pfl.0;
+        Thu, 03 Mar 2022 22:19:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=slYJJjZa65wV0213u3JkKCTRFOm7CYIZQlf8tisrtTQ=;
+        b=eieDXLJeJlqE6jh6acTrj0VCE7gowsIMnnSDJhQb922bG7ACg86lK7opi4oEc7rpoP
+         llT3R8nUcf/eLCYV0EZgYRkVp4Ax9HPRY8fIluRlock8c9J1Yc4rAERSGRwuUAyn3/de
+         FlOjW/ly36pHznk4bKJ7Gp6s2ezP1Q7MJGqG0WfBdh7f9Q9YE0iQYgb8qbYCho3cTDxx
+         N+Lrn/VbX8CP+Tr442oyAY2ErD1K/4es4hM/FgZKqXL/2p4C2qhvcSdCvc0ga3SsEYcb
+         D1Z4/H03SaPI8UNhz2sV/rD4rQydEUQFmIJX6x98+lNnqmvLwAhXBmBL8Ak3r0tM7p0e
+         WWbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=slYJJjZa65wV0213u3JkKCTRFOm7CYIZQlf8tisrtTQ=;
+        b=JoD0MN8eu91wq8wlOSeN86JOBmwiF1a0AsjyBc/Viz0M7da0Mq+VsBrQ7ky4tG9p9l
+         m+re4YzcigLcus5rA+c7KmAgHqJ8IsYiczfUmQ4AM9DtVFK4I8mqG6HWG8SwtyOISAyF
+         SsE1oyQ/mFLePoHnoT2yL90lgH3ansWrwj3ZX/O0YZLziJ3OxKoVGgep/F+H1UCUvgHy
+         b8jBRWbkfAxogYvYW4T1k0iHjEz35T6nMkfaJUoPWhiMtczBoFxiBRaztOZ4YMDAxgn8
+         +ucco71+jgEu0Skag2hGUmcrTpF5Z/9vaAg79ZzISPLmwrNUDYGhkkNdBBuLH4SPSVR/
+         xtCQ==
+X-Gm-Message-State: AOAM530nFtv7zY2dE9MWU/LYhsURmHBGrLXNzOJwYYjg5YyDQKfen5/j
+        KXbTm6kfMRRPcEuqYHdMKUU=
+X-Google-Smtp-Source: ABdhPJxAZETKa7Os6w5VOrlGWaC0W7sM/a3XTCj00mriKSYu5grJWBvqD+g9NY5kHeDDbqs1q2xlvQ==
+X-Received: by 2002:a05:6a00:8d3:b0:4f6:76a1:4890 with SMTP id s19-20020a056a0008d300b004f676a14890mr5568086pfu.55.1646374797062;
+        Thu, 03 Mar 2022 22:19:57 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id kb6-20020a17090ae7c600b001bee8664d82sm8749471pjb.35.2022.03.03.22.19.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 03 Mar 2022 22:19:56 -0800 (PST)
+From:   Hammer Hsieh <hammerh0314@gmail.com>
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com,
+        Hammer Hsieh <hammerh0314@gmail.com>
+Subject: [PATCH v2 0/2] Add PWM driver for Suplus SP7021 SoC
+Date:   Fri,  4 Mar 2022 14:20:10 +0800
+Message-Id: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jassi,
+This is a patch series for PWM driver for Suplus SP7021 SoC.
 
-> Subject: [PATCH V2 0/6] mailbox: imx: misc fix and SECO MU support
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Any chance to get this in your tree for linux-next?
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
-Also do you have time to give a look at
-https://lore.kernel.org/lkml/20220302022522.1789588-1-peng.fan@oss.nxp.com/=
- ?
+Hammer Hsieh (2):
+  dt-bindings:pwm:Add bindings doc for Sunplus SoC PWM Driver
+  pwm:sunplus-pwm:Add Sunplus SoC PWM Driver
 
-Thanks,
-Peng.
+ .../devicetree/bindings/pwm/pwm-sunplus.yaml       |  40 ++++
+ MAINTAINERS                                        |   6 +
+ drivers/pwm/Kconfig                                |  11 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-sunplus.c                          | 229 +++++++++++++++++++++
+ 5 files changed, 287 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+ create mode 100644 drivers/pwm/pwm-sunplus.c
 
->=20
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> V2:
->  Drop "mailbox: imx: Add support for identifying SCU wakeup source from
-> sysfs" from v1  Add A-b from Rob
->=20
-> This patchset includes a few fixes for low power and i.MX8 SECO MU suppor=
-t
->=20
-> Franck LENORMAND (1):
->   mailbox: imx: add i.MX8 SECO MU support
->=20
-> Peng Fan (2):
->   dt-bindings: mailbox: imx-mu: add i.MX8 SECO MU support
->   mailbox: imx: introduce rxdb callback
->=20
-> Ranjani Vaidyanathan (1):
->   mailbox: imx: enlarge timeout while reading/writing messages to SCFW
->=20
-> Robin Gong (2):
->   mailbox: imx: fix wakeup failure from freeze mode
->   mailbox: imx: fix crash in resume on i.mx8ulp
->=20
->  .../devicetree/bindings/mailbox/fsl,mu.yaml   |   1 +
->  drivers/mailbox/imx-mailbox.c                 | 249
-> +++++++++++++++++-
->  2 files changed, 243 insertions(+), 7 deletions(-)
->=20
-> --
-> 2.25.1
+-- 
+2.7.4
 
