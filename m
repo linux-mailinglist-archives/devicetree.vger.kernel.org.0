@@ -2,83 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F17B74CD809
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 16:37:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D7CE34CD80F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 16:37:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231668AbiCDPiK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 10:38:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43278 "EHLO
+        id S240436AbiCDPi1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 10:38:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230013AbiCDPiJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 10:38:09 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E98C1C60F4;
-        Fri,  4 Mar 2022 07:37:22 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id 12so8135620oix.12;
-        Fri, 04 Mar 2022 07:37:22 -0800 (PST)
+        with ESMTP id S240458AbiCDPi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 10:38:26 -0500
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F1ED62E6;
+        Fri,  4 Mar 2022 07:37:36 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id p12-20020a05683019cc00b005af1442c9e9so7712751otp.13;
+        Fri, 04 Mar 2022 07:37:36 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PACe0xmx6r81EAuaFyvZQyZNTfONIujSTfg4d0qd68c=;
-        b=vpukUqwii8CHpeNsgD5/uQWrqDEyOCWdzc6fAFEfyJt6X/jct52/6QihjbY55vEIic
-         aRsklFMl0Xjup4jcyzx93Qi7EOV02xNJlNo4SUx/AcmURR6/usrmX/eyAvCGCJAg7VJj
-         otjc7IEwAFLZ4RJXiAPLrIbyen6iDGG2jFiyx+7Z52w/jqJ+y4w1+OayenbxxkC1j902
-         ru4+hHUX/WBl6rRHXBq4OlvKeXzI82293ToiQiz12vmN2kFkSLqdz8agNH44L+b9MmbE
-         fyuCtL3h4clNruoOiOep27uen8Clr2Pzf09r2UstGxnpUwEHH1ohI266pUZclPbmLXeT
-         mZ3A==
-X-Gm-Message-State: AOAM533s8Uh7uv7cXUEjJ9lHiFrfrI5oGatfMab67tCF6sr/4iatTqTx
-        H8jMJLEEU2ahSD0T1vovfQ==
-X-Google-Smtp-Source: ABdhPJyof2S988VwMuNZcB9U5XecU80emaNMSFoZxgT+mxIr6cGyJM+vro5tIuRKk2C7lcM5e49grw==
-X-Received: by 2002:a05:6808:1301:b0:2d5:4226:87e4 with SMTP id y1-20020a056808130100b002d5422687e4mr9716207oiv.136.1646408241690;
-        Fri, 04 Mar 2022 07:37:21 -0800 (PST)
+        bh=r+7LdT2y9uXyeXQDCwlxps28MTYEq5fDPijsqcJwyto=;
+        b=FE7JCxVUXpUZGI2xsiKBFkyUXyMiyE/EmCcOhFEBItYSKcPW2W9HoXVhld2PejJQ0i
+         Id03mnbzFGOpcq14261opqMf+97M4JenpUpRw2iMdSZ0w9qN/fdlWQ4C2nnT72xWuxRs
+         zu5BuxMC8BMY102yG1dSoo3HUsV2nbejtwz6XkGM/qeTEW30AFEFOp4CDDId7Ftj0okP
+         3b/tIDbHg24xzBWbzCI6ToW7XaBOV7sy3Mojf4nIF0ccGhaIzqbIxYP/DUYDyr+cZ5MG
+         Ka7e3FLcIP2NZ+20C/q1eqJIb0tZ9a/c8hXIZLIKpTmL8SD6S3snZp2ti9Z4LdCU/gdr
+         ln8w==
+X-Gm-Message-State: AOAM531SI/3TXmjMRvZEHF0ZjRTfMXkd/yVziEHCaOakNt2cJZptyYtj
+        6xhmmErHTwHUcJ2+t6V+AQ==
+X-Google-Smtp-Source: ABdhPJyS8IcggXZIQLqNgBK43mnyO4KB0rLd++CNegRmXhAPHh2bGQ7UVv06ZazIdvDbkatuCV33kw==
+X-Received: by 2002:a05:6830:33cf:b0:5af:4018:fc2a with SMTP id q15-20020a05683033cf00b005af4018fc2amr22847666ott.161.1646408255646;
+        Fri, 04 Mar 2022 07:37:35 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id m26-20020a05680806da00b002d797266870sm2690848oih.9.2022.03.04.07.37.20
+        by smtp.gmail.com with ESMTPSA id l13-20020a056830054d00b005a3cce351a1sm2577422otb.28.2022.03.04.07.37.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 07:37:21 -0800 (PST)
-Received: (nullmailer pid 3983773 invoked by uid 1000);
-        Fri, 04 Mar 2022 15:37:19 -0000
-Date:   Fri, 4 Mar 2022 09:37:19 -0600
+        Fri, 04 Mar 2022 07:37:34 -0800 (PST)
+Received: (nullmailer pid 3984240 invoked by uid 1000);
+        Fri, 04 Mar 2022 15:37:33 -0000
+Date:   Fri, 4 Mar 2022 09:37:33 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-Cc:     robh+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-        chunkuang.hu@kernel.org, jitao.shi@mediatek.com,
-        matthias.bgg@gmail.com, mcoquelin.stm32@gmail.com,
-        linux-mediatek@lists.infradead.org,
-        krzysztof.kozlowski@canonical.com, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, alexandre.torgue@foss.st.com,
-        ck.hu@mediatek.com, linux-stm32@st-md-mailman.stormreply.com,
-        airlied@linux.ie, daniel@ffwll.ch, p.zabel@pengutronix.de,
-        devicetree@vger.kernel.org, jason-jh.lin@mediatek.com
-Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek,mutex: Fix
- mediatek,gce-events type
-Message-ID: <YiIyL+Vd1zWiDKbm@robh.at.kernel.org>
+Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com,
+        alexandre.torgue@foss.st.com, airlied@linux.ie,
+        dri-devel@lists.freedesktop.org, daniel@ffwll.ch,
+        ck.hu@mediatek.com, linux-arm-kernel@lists.infradead.org,
+        jitao.shi@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com, p.zabel@pengutronix.de,
+        jason-jh.lin@mediatek.com, linux-kernel@vger.kernel.org,
+        chunkuang.hu@kernel.org, krzysztof.kozlowski@canonical.com,
+        devicetree@vger.kernel.org, mcoquelin.stm32@gmail.com
+Subject: Re: [PATCH 2/3] dt-bindings: display: mediatek,ovl: Fix 'iommu'
+ required property typo
+Message-ID: <YiIyPUGsH5bxapMS@robh.at.kernel.org>
 References: <20220304095458.12409-1-angelogioacchino.delregno@collabora.com>
- <20220304095458.12409-2-angelogioacchino.delregno@collabora.com>
+ <20220304095458.12409-3-angelogioacchino.delregno@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220304095458.12409-2-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220304095458.12409-3-angelogioacchino.delregno@collabora.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Mar 2022 10:54:56 +0100, AngeloGioacchino Del Regno wrote:
-> The mediatek,gce-events property needs as value an array of uint32
-> corresponding to the CMDQ events to listen to, and not any phandle.
+On Fri, 04 Mar 2022 10:54:57 +0100, AngeloGioacchino Del Regno wrote:
+> The property is called 'iommus' and not 'iommu'. Fix this typo.
 > 
 > Fixes: 4ed545e7d100 ("dt-bindings: display: mediatek: disp: split each block to individual yaml")
 > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../devicetree/bindings/display/mediatek/mediatek,mutex.yaml    | 2 +-
+>  .../devicetree/bindings/display/mediatek/mediatek,ovl.yaml      | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
