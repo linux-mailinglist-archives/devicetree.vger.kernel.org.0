@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B19824CD82A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 16:43:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B3474CD834
+	for <lists+devicetree@lfdr.de>; Fri,  4 Mar 2022 16:45:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240479AbiCDPoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 10:44:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57160 "EHLO
+        id S240417AbiCDPpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 10:45:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240480AbiCDPoH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 10:44:07 -0500
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4FBF6BDEE;
-        Fri,  4 Mar 2022 07:43:18 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 706891BF203;
-        Fri,  4 Mar 2022 15:43:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646408597;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=DuDywd0Iu3hrHJ/1yYYDf0hLNoWpE4Lk1omLHli7PTo=;
-        b=Tx0sM4e0E3YYWrdHr5WHAVMou9sbVVE89x7T8TvtJejAdc3K6t4ECWHIQ59CcaII3TC2uR
-        8IMR4ewGNjFC8SrZgxcyGCjYB/xatqblpyX4ixBgAtQgpzCycJAO/TlE5k0pTi2C0hlhMp
-        w8j4mIovOQC/CsqVmRvfsVKsppudhWm4zNywgzzitNLvyFKB0536OJhRMJ9YVN2w5L0Q+Y
-        Sjov42xNsFDmCpV48k6W15adLOigXQGsIJQEWBeROcxdqPOnYsau4rGXYkgFFPL9EsW9LG
-        j6u6Suf8tJNrRIi06sfeSDeOTdodqX4b4B68VrVlNS+R+lgFPNc5CVOZRNtO8w==
-Date:   Fri, 4 Mar 2022 16:43:16 +0100
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Sergiu.Moga@microchip.com
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, Nicolas.Ferre@microchip.com,
-        Claudiu.Beznea@microchip.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] ARM: dts: at91: Add the required
- `atmel,rtt-rtc-time-reg` property
-Message-ID: <YiIzlN3GpuVTsikk@piout.net>
-References: <20220304142746.121947-1-sergiu.moga@microchip.com>
- <20220304142746.121947-2-sergiu.moga@microchip.com>
- <YiIn/NJyqeYlhV/z@piout.net>
- <8f5d56ba-1a51-f9ab-43a2-86d7c938fbe2@microchip.com>
+        with ESMTP id S239868AbiCDPpu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 10:45:50 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33D8BE33A2;
+        Fri,  4 Mar 2022 07:45:02 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 2244w2je013723;
+        Fri, 4 Mar 2022 09:44:18 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=message-id : date :
+ mime-version : from : to : subject : references : in-reply-to :
+ content-type : content-transfer-encoding; s=PODMain02222019;
+ bh=Z4PNEb44rzAmhz7LlNft3ZiCpWyK5xAbOEcnRHxyPoU=;
+ b=qIpEJ3EWoV1DZnFSePQg2JQ4nKm2gIVxLXEoyE+R1BHXZaaZPOAVEJ0f1UZKGJqe/+pH
+ FmSiaOIPR+eIuxHy+FeIGLS9EQCJUUJeapZY9hEkVAXbBJDt6maEp3RZ5+rfyTSuU+Iq
+ q6jngQyXjzA6y10WAuk/D84f0XyviUqs7Mcq8AHUjFTjc6W5V6EClxf/wG20L9emWm3i
+ OjXoK5VyCMtwI636ZPaeUck3ThxlRWRveGUtPrMyA3Zg/+Ot2gTFzUVIXdagXmGCeLxN
+ VMgoIdAlOWmGetWP3nhxMroK8VwVcNif4haaJIGp1b0KJUr2UwniOFDRUf+4gyL+FqY/ gQ== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3ek4j3h5hg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 04 Mar 2022 09:44:17 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 4 Mar
+ 2022 15:44:16 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Fri, 4 Mar 2022 15:44:16 +0000
+Received: from [198.61.65.198] (unknown [198.61.65.198])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7D791B06;
+        Fri,  4 Mar 2022 15:44:15 +0000 (UTC)
+Message-ID: <d2b9dbba-b255-53d4-4698-ac233e6159d9@opensource.cirrus.com>
+Date:   Fri, 4 Mar 2022 15:44:15 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8f5d56ba-1a51-f9ab-43a2-86d7c938fbe2@microchip.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+From:   <tanureal@opensource.cirrus.com>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        David Rhodes <drhodes@opensource.cirrus.com>
+Subject: Re: [PATCH v2 01/20] ASoC: cs35l41: Fix GPIO2 configuration
+References: <20220304150721.3802-1-tanureal@opensource.cirrus.com>
+ <20220304150721.3802-2-tanureal@opensource.cirrus.com>
+ <20220304152226.GE38351@ediswmail.ad.cirrus.com>
+In-Reply-To: <20220304152226.GE38351@ediswmail.ad.cirrus.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: GWr-N8vf8EX8BexWVkJe6iTMll-5Vo-5
+X-Proofpoint-ORIG-GUID: GWr-N8vf8EX8BexWVkJe6iTMll-5Vo-5
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/03/2022 15:29:45+0000, Sergiu.Moga@microchip.com wrote:
-> On 04.03.2022 16:53, Alexandre Belloni wrote:
-> > On 04/03/2022 16:27:42+0200, Sergiu Moga wrote:
-> >> Add the required `atmel,rtt-rtc-time-reg` property to the `rtt` nodes
-> >> of the board files that were missing it.
-> >>
-> >> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> >> ---
-> >>   arch/arm/boot/dts/at91sam9261ek.dts | 4 ++++
-> >>   arch/arm/boot/dts/at91sam9263ek.dts | 8 ++++++++
-> >>   arch/arm/boot/dts/at91sam9rlek.dts  | 4 ++++
-> >>   3 files changed, 16 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/at91sam9261ek.dts b/arch/arm/boot/dts/at91sam9261ek.dts
-> >> index beed819609e8..3c1f40b4a13e 100644
-> >> --- a/arch/arm/boot/dts/at91sam9261ek.dts
-> >> +++ b/arch/arm/boot/dts/at91sam9261ek.dts
-> >> @@ -178,6 +178,10 @@ dbgu: serial@fffff200 {
-> >>                                status = "okay";
-> >>                        };
-> >>
-> >> +                     rtc@fffffd20 {
-> >> +                             atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> >> +                     };
-> >> +
-> >>                        watchdog@fffffd40 {
-> >>                                status = "okay";
-> >>                        };
-> >> diff --git a/arch/arm/boot/dts/at91sam9263ek.dts b/arch/arm/boot/dts/at91sam9263ek.dts
-> >> index 71f60576761a..1208bb580d14 100644
-> >> --- a/arch/arm/boot/dts/at91sam9263ek.dts
-> >> +++ b/arch/arm/boot/dts/at91sam9263ek.dts
-> >> @@ -102,6 +102,14 @@ mtd_dataflash@0 {
-> >>                                };
-> >>                        };
-> >>
-> >> +                     rtc@fffffd20 {
-> >> +                             atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> >> +                     };
-> >> +
-> >> +                     rtc@fffffd50 {
-> >> +                             atmel,rtt-rtc-time-reg = <&gpbr 0x4>;
-> >> +                     };
-> > Do we really need two RTCs with the exact same features on that board?
-> > Is there a check failure hen the property is not there and the node is
-> > disabled?
+On 3/4/22 3:22 PM, Charles Keepax <ckeepax@opensource.cirrus.com> wrote:
+> On Fri, Mar 04, 2022 at 03:07:02PM +0000, Lucas Tanure wrote:
+> > From: David Rhodes <drhodes@opensource.cirrus.com>
 > >
-> I can understand your point here. No, it is indeed not really needed 
-> since, from what I can see, they are both disabled in the SoC file. The 
-> reason why I added both was that I thought it would have been more 
-> consistent. Do you think I should remove both in this file and keep the 
-> changes in the other 2 files only?
+> > Fix GPIO2 polarity and direction configuration
+> >
+> > Fixes: fe1024d50477b ("ASoC: cs35l41: Combine adjacent register writes")
+> > Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> > Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > ---
 > 
-
-Well, I would keep the first node but not the second so that you have a
-good example, ready to be enabled.
-
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> Really sorry I only just spotted this but you are missing your
+> own sign off here. You always need to personally sign each patch
+> you are sending up.
+> 
+> Thanks,
+> Charles
+> 
+Yes, sorry about that. I will give some time for more reviews on this version and fix it on v3.
