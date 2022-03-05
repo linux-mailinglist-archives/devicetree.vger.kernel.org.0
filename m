@@ -2,63 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DB5D4CE148
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 00:59:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B70A64CE1BB
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 01:45:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229805AbiCDX7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 18:59:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38800 "EHLO
+        id S230322AbiCEAqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 19:46:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41548 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229560AbiCDX7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 18:59:48 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53531F1AF2;
-        Fri,  4 Mar 2022 15:58:59 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id y7so9454363oih.5;
-        Fri, 04 Mar 2022 15:58:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3vaokBMj/J8kbDel9BxGln/8gBsCxja7J1uSkU+kzXA=;
-        b=uJ8rG7gNSh8IHL8cFUGqs1fTQkTje+iH3EKQ7c3x22LnoMPHB3SnH+FQsOwSPI/VOG
-         cnc/4W8WdijbfF6MtWGPuNBcmygK4odWKxj7ktPY7+kxG+1otNcTcvh0aRksnKVl3O1A
-         l2neTdxZhZ84CSv7EvpQUbGyrVVUsihgzGnQ0qSLx5GA/FSg/v3gcdS2W1qMnykAXiYB
-         wJA2T9vq2eBWgPV5ymljFcyGrNubpV4PIXXApqh1+6lZHw6ynivn80u10PE/bQWd/qf/
-         Vu7xZ2T3LZ+RZUhYx4uP0hpXjAmh7CiEdzOMSZATG3FMsdSAxvsMfRLfOobkasyk+/Pf
-         QBDA==
-X-Gm-Message-State: AOAM532nZ+MTxDXj5aj3owM06mJbWLv4rbQqN4DNhnlPVZ4t3E2JoU8V
-        8/5m9bT4ApQEbQgiNiQGVA==
-X-Google-Smtp-Source: ABdhPJwgFu6dD1NTwa+Ou26TV2rAcT5cOmUnEJv+rdOqUmRd59DkF1MPbe8UFQT7YLwYY/JvNusJDQ==
-X-Received: by 2002:a05:6808:3008:b0:2d9:a0c7:dd3c with SMTP id ay8-20020a056808300800b002d9a0c7dd3cmr534141oib.181.1646438338651;
-        Fri, 04 Mar 2022 15:58:58 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-148-213.dyn.grandenetworks.net. [66.90.148.213])
-        by smtp.gmail.com with ESMTPSA id ex5-20020a056870ed4500b000a8853e8651sm2922799oab.23.2022.03.04.15.58.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Mar 2022 15:58:58 -0800 (PST)
-Received: (nullmailer pid 721760 invoked by uid 1000);
-        Fri, 04 Mar 2022 23:58:57 -0000
-Date:   Fri, 4 Mar 2022 17:58:57 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
-        agross@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, shawn.guo@linaro.org, vkoul@kernel.org,
-        linux-phy@lists.infradead.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Subject: Re: [PATCH v2 7/8] dt-bindings: phy: qcom,qmp: Describe phy@ subnode
- properly
-Message-ID: <YiKnwTZXev/ciErl@robh.at.kernel.org>
-References: <20220228123019.382037-1-bhupesh.sharma@linaro.org>
- <20220228123019.382037-8-bhupesh.sharma@linaro.org>
+        with ESMTP id S230242AbiCEAqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 19:46:22 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD6AB259F5E;
+        Fri,  4 Mar 2022 16:45:33 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 3773761F31;
+        Sat,  5 Mar 2022 00:45:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 276C4C340E9;
+        Sat,  5 Mar 2022 00:45:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646441132;
+        bh=w5DIfLVOZvFHDb7FDRiaShuHXiBm82TgafYJ6qhz+P4=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=NYiiQ0yG5MHIzesX/aCThtvBGDeg4Q4RgNGlQiZrwq5EqLb9QCZqUK6GB4rmK0SFG
+         g7F/UXky2usgSwo6EhBgvHTATQBIAwBB+BFCaWZYpTytM6VOxDDK/vKS3yAk7zAbA4
+         MnO58RcLVrdziNQK5f1GT9ICYgrymZlFrzyqe7Fd1JjtI6QYM5ROsCqciwGwg6f+6m
+         oL5FmV99llDjLXm3Ca98DMdx7L91P1Osel59AtW6bNDPeCYi70xtO5ayqdAB79VOcT
+         msH06Fl/w080STYFAGs/oCihLnZwtNL2es6gm+YRo0ejuS0aadSQD3mThuzo25QiRD
+         cfmMsRundGfPg==
+Date:   Fri, 4 Mar 2022 16:45:31 -0800 (PST)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
+To:     Sudeep Holla <sudeep.holla@arm.com>
+cc:     Stefano Stabellini <sstabellini@kernel.org>,
+        Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH 0/1] dt-bindings: arm: Add scmi_devid paramter for
+In-Reply-To: <YiH0KrL9LjFZnwBe@bogus>
+Message-ID: <alpine.DEB.2.22.394.2203041624150.3261@ubuntu-linux-20-04-desktop>
+References: <cover.1645460043.git.oleksii_moisieiev@epam.com> <20220222110003.GC21915@e120937-lin> <20220222160637.yn6pru4nfgwih23j@bogus> <20220222171549.GA2194063@EPUAKYIW015D> <20220224115443.fwhczfvm3cfwoim7@bogus> <alpine.DEB.2.22.394.2202241424110.239973@ubuntu-linux-20-04-desktop>
+ <alpine.DEB.2.22.394.2202241531111.239973@ubuntu-linux-20-04-desktop> <YiH0KrL9LjFZnwBe@bogus>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220228123019.382037-8-bhupesh.sharma@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,41 +61,157 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 06:00:18PM +0530, Bhupesh Sharma wrote:
-> Currently the qcom,qmp-phy dt-binding doesn't describe
-> the 'reg' and '#phy-cells' properties for the phy@ subnode.
+On Fri, 4 Mar 2022, Sudeep Holla wrote:
+> (sorry for the delay, had to move my email setup and some mails were
+> stuck in outbox and I missed to notice)
 > 
-> Fix the same.
+> On Thu, Feb 24, 2022 at 03:34:01PM -0800, Stefano Stabellini wrote:
+> > On Thu, 24 Feb 2022, Stefano Stabellini wrote:
+> > > On Thu, 24 Feb 2022, Sudeep Holla wrote:
+> > > > On Tue, Feb 22, 2022 at 05:15:49PM +0000, Oleksii Moisieiev wrote:
+> > > > > Hi Sudeep,
+> > > > > 
+> > > > > On Tue, Feb 22, 2022 at 04:06:37PM +0000, Sudeep Holla wrote:
+> > > > > > Hi Oleksii,
+> > > > > > 
+> > > > > > My initial feedback on this. And thanks Cristian for making it so easy as
+> > > > > > you have covered most of the things in depth(which I might have not done
+> > > > > > myself that well)
+> > > > > > 
+> > > > > > On Tue, Feb 22, 2022 at 11:00:03AM +0000, Cristian Marussi wrote:
+> > > > > > > On Mon, Feb 21, 2022 at 05:26:46PM +0000, Oleksii Moisieiev wrote:
+> > > > > > > > Introducing new parameter called scmi_devid to the device-tree bindings.
+> > > > > > > > This parameter should be set for the device nodes, which has
+> > > > > > > > clocks/power-domains/resets working through SCMI.
+> > > > > > 
+> > > > > > I prefer you had given more details on your usage model here instead of
+> > > > > > pointing to the other Xen thread as it helps for someone without much
+> > > > > > background on Xen or your use-case to review this.
+> > > > > > 
+> > > > > Let me describe the process in few words:
+> > > > > We implemented a new feature, called SCI-mediator in Xen.
+> > > > > The proposed implementation allows Guests to communicate with the Firmware using SCMI
+> > > > > protocol with SMC as a transport. Other implementation are also
+> > > > > possible, such as SCMI-Mailbox, SCPI-mailbox etc.
+> > > > > 
+> > > > > In this feature Xen is the Trusted Agent, which receives the following
+> > > > > information in Xen device-tree:
+> > > > > 1) All channels should be described, each channel defined as
+> > > > > arm,scmi-shmem node;
+> > > > > 2) Scmi node arm,scmi-smc with protocols description;
+> > > > 
+> > > > Sounds good so far.
+> > > > 
+> > > > > 3) scmi-devid should be set in nodes, which works through SCMI.
+> > > > >
+> > > > 
+> > > > Why is this needed for Guest OS, you need not populate this if Guest OS
+> > > > is not required to use it, right ? If it is needed just by Xen hypervisor,
+> > > > lets talk about that and why it is bad idea to mix that with general
+> > > > SCMI bindings.
+> > > 
+> > > I'll try to help Oleksii by answering here, I hope I am not off the mark
+> > > :-)
+> > > 
+> > > I think Sudeep is right, scmi-devid is not needed by the guest OS.
+> > > 
+> > > The host device tree is a more interesting discussion. As the host
+> > > device tree is meant to be generic and not tied to a specific version of
+> > > Linux, it should fully describe the SCMI interface available. If the
+> > > device tree is provided to a Trusted Agent, then it should also have the
+> > > scmi-devid information, right?
+> > > 
+> > > 
+> > > > > On start Xen inits itself as trusted agent and requests agent
+> > > > > configuration by using BASE_DISCOVER_AGENT message. This message is sent
+> > > > > to each configured channel to get agent_id
+> > > > > 
+> > > > > On Domain creation stage Xen will do the following steps:
+> > > > > 1) Assign channel to the Guest and map channel address to the Domain
+> > > > > address. For the Domain this address should be the same;
+> > > > > 2) Generate arm,scmi-shmem and arm,scmi-smc nodes if needed for Guest
+> > > > > device-tree (the device-tree which should be passed to the Guest);
+> > > > > 3) Process devices, which are passed through to this Guest and set
+> > > > > BASE_SET_DEVICE_PERMISSIONS for the scmi-devid, received from the
+> > > > > device-node;
+> > > > >
+> > > > 
+> > > > I am confused here. So the Xen knows which devices are assigned to each
+> > > > Guest OS but doesn't know device ID for them, but relies on the device
+> > > > tree node ?
+> > > 
+> > > Which devices go to which guest OS is a user-provided configuration. For
+> > > instance, a user can say: "assing /amba/ethernet@ff0e0000 to dom1". This
+> > > is normal and not related to SCMI: when a user configures a static
+> > > partitioning system, they decide which resources belong to which domain.
+> > > 
+> > > So Xen is told that /amba/ethernet@ff0e0000 is supposed to go to dom1.
+> > > Xen proceeds to map memory and interrupts corresponding to
+> > > /amba/ethernet@ff0e0000 to dom1. So far so good. What about SCMI?
+> > > 
+> > > In Oleksii's design, Xen is going to assign one of the available SCMI
+> > > channels to dom1 and restrict its permission to only
+> > > /amba/ethernet@ff0e0000. To do that, Xen needs to know the scmi-devid of
+> > > /amba/ethernet@ff0e0000. As far as I can tell there is nothing
+> > > Xen-specific in this activitity, that's why I asked Oleksii to reach out
+> > > to the upstream device tree community to improve the generic bindings
+> > > for everyone's benefits.
+> > 
+> > Let's leave Linux and Xen aside for the moment. What are other possible
+> > Trusted Agents? (Maybe TF-A?) How do they get the scmi-devid? It looks
+> > like it was supposed to come from device tree but nobody got around to
+> > adding it to the binding because it is not used by Linux?
 > 
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
-> ---
->  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> index 70e7cd75e173..f8a43acd229a 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> @@ -115,6 +115,13 @@ patternProperties:
->        Each device node of QMP phy is required to have as many child nodes as
->        the number of lanes the PHY has.
->      properties:
-> +      reg:
-> +        minItems: 1
-> +        maxItems: 6
+> I do agree we need this info and probably device tree is the way. But what
+> I disagree here is that it needs to part of existing SCMI bindings which are
+> for the SCMI users only and not for one that may provide the interface(SCMI
+> platform/server/arbitrator/passthrough/..whatever). You can have bindings for
+> them as part of system device tree initiative and can be merged back to Linux
+> if that happens. Or we may even take the whole devicetree bindings out of
+> the Linux one day (when all the stars are aligned :) )
 
-You need to define what each entry is.
+I would love to hear Rob's opinion on what I am about to write next on
+the topic of whether the binding should be under linux.git.
 
-> +
-> +      "#phy-cells":
-> +        const: 0
-> +
->        "#clock-cells":
->          enum: [ 0, 1, 2 ]
->  
-> -- 
-> 2.35.1
+I am not sure if the policy is that only device tree bindings actively
+used by Linux are present under
+linux.git/Documentation/devicetree/bindings/. There are a tons of other
+projects using device tree and without a central point for keeping these
+bindings the specification will shatter. Given that Linux prefers to
+keep the bindings under linux.git, then the logic conclusion is that
+linux.git/Documentation/devicetree/bindings/ should also hold bindings
+not actively used by Linux right at the moment. Especially bindings that
+could be used by Linux in the future. Otherwise we risk a new binding
+being used by U-boot, Xen, Zephyr and others then Linux introduces an
+incompatible version of it. Nobody would win in that situation.
+
+
+> > After all, we are currently using in Xen a property called
+> > "linux,pci-domain". We might as well have Linux in the future use a
+> > property called "xen,scmi-devid" to even things out :-)
 > 
+> Sure or we may add a generic one in the future as mentioned in the other
+> email for reasons mentioned there.
+
+[...]
+
+> The fact that we don't need this to be part of SCMI OSPM user bindings,
+> it is not addressed and can be considered as a gap.
 > 
+> + The reason I want to keep it xen specific at the moment as we had some
+> plan to extended the device-id usage in the spec which hasn't progressed
+> a bit(I must admit that before you ask), and this addition should not be
+> obstruct that future development. If we align with what we define xen
+> specific as part of $subject work, we can always define generic binding
+> in the future and slowly make the other obsolete over the time.
+
+Keep in mind that device tree is supposed to be backward compatible,
+with or without a "xen," prefix. The process of updating the binding and
+making the older binding obsolete won't be any different whether the
+property is called "super-official-device-id" or "xen,scmi-devid".
+
+(Also, it is not Xen specific, but as we have enstablished, it is for any
+Trusted Agents.)
+
+Why not review the bindings now also considering a future Linux use of
+it?
