@@ -2,154 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00E54CE498
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 12:26:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 560474CE4B4
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 13:10:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231622AbiCEL1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 06:27:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56548 "EHLO
+        id S231565AbiCEMLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Mar 2022 07:11:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231600AbiCEL1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 06:27:15 -0500
-Received: from mxout2.routing.net (mxout2.routing.net [IPv6:2a03:2900:1:a::b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBBD940E7D;
-        Sat,  5 Mar 2022 03:26:25 -0800 (PST)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
-        by mxout2.routing.net (Postfix) with ESMTP id 8AA445FD5D;
-        Sat,  5 Mar 2022 11:26:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-        s=20200217; t=1646479584;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oeojDkbixb+3+AqcShTPnuHWz+1GrcPznWJUJt5Sy3k=;
-        b=v+/pylN7fIi8+EJUtnWzr056KkXzMdaedd8sSSturEfyQOeI/a9pkpI49bIs4yF/Ja939r
-        PGjd/jAyuF/eyz+2yuGft/UJbOOMwn/NJkYAHL3di/Z10AG0fLpyvwGR17sXfiZhtiOV2b
-        w34lFlqgJmc4Nma/5qE68J+88L8z9Mw=
-Received: from localhost.localdomain (fttx-pool-217.61.157.101.bambit.de [217.61.157.101])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 9D40F1007DD;
-        Sat,  5 Mar 2022 11:26:23 +0000 (UTC)
-From:   Frank Wunderlich <linux@fw-web.de>
-To:     devicetree@vger.kernel.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v5 5/5] arm64: dts: rockchip: Add sata nodes to rk356x
-Date:   Sat,  5 Mar 2022 12:26:07 +0100
-Message-Id: <20220305112607.257734-6-linux@fw-web.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220305112607.257734-1-linux@fw-web.de>
-References: <20220305112607.257734-1-linux@fw-web.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: 6c0e6171-3ca7-422f-bfb9-56d26079865c
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230004AbiCEMLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 07:11:35 -0500
+X-Greylist: delayed 605 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 05 Mar 2022 04:10:45 PST
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0C6B40E6F
+        for <devicetree@vger.kernel.org>; Sat,  5 Mar 2022 04:10:45 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 950D35C0357;
+        Sat,  5 Mar 2022 07:00:38 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Sat, 05 Mar 2022 07:00:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; bh=vmjZL3xO/p2LUGnbNdIz4Ii8uyOFUT
+        LeArwBNgVOTPk=; b=EDhHShSD1ynAYDI7gYOO/Vzgt1AoXy03Qwpac9rh5O7PiE
+        PVTMbeZkBvqOLM2zu07K/ZY9zVNFotnTvAVsRAn5IUe2PWSri2IgY+b2WFvznDFX
+        X2TBD6laY+rrNB0ex0zSnyfiKmG+rM6OxyWmeoVjfdutJkuPi9LUSGj8MZA8J8L6
+        oZdJGaXI20agD8ywjcOrFm+c20q7ClAIqlnJyEZUwYnNisrqHm9uwqhc7QV1amKr
+        qFQzCAWqc/hiC5TGLmIEljHonBYqSZs++4rlfx6Zte5S0BsNd6TB4SppqqRP+ytX
+        K3mOSfBbNW3wg/CkqeTfFMc/7I6ZHP8MdzB4Ro9g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=vmjZL3xO/p2LUGnbN
+        dIz4Ii8uyOFUTLeArwBNgVOTPk=; b=EqVp0xytoKstSTEJHmJyn+GWgn6uHxXhv
+        2Idxs1MFIylBUiOBZZUEpsGbhQKVEp1kE0k0x5fiFBvBUvkqKr3ZrT8qSuDx8DCb
+        VSzVKEaENtOJ4sYCiKQ4zL7ulHljFNl8scKUwysP9r6q3wk5Zjr6MwCImsyo4EjD
+        rxpxX8maeLrClPw7KXnkMjD/V9Y+0uk3hW6kMX+6wtFlI8wf2RHXKjbP4oJCnRjq
+        rj5mMP9Ey4wF5fxBs6YxzCNfwrg/rGAeE2Ajxg5KMtMunOsLAlF6QbpWP6TAT/yu
+        9oqv7wmPS8qWnL1eFGW7jpe3HoIZOk3EQu+Sf02ODQKXftsKa1B7A==
+X-ME-Sender: <xms:5VAjYlK4WSvFEs8vO3CCwflKYCyFr-qRho6PXv0qdw7Wwk6Ba52ztg>
+    <xme:5VAjYhJDW2BtkCYCQOUhDP9AtoIpB3zgb6v2rlRNkvnqPWn76Yye5gf0NI8T-boCo
+    HShDQHy6ekGMkTLG20>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddutddgfeehucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfuvhgv
+    nhcurfgvthgvrhdfuceoshhvvghnsehsvhgvnhhpvghtvghrrdguvghvqeenucggtffrrg
+    htthgvrhhnpeehtdffledvffegveejgeegvdeujedtteefgfelffehtdetudekteethfet
+    keeuudenucffohhmrghinhepuggvvhhitggvthhrvggvrdhorhhgnecuvehluhhsthgvrh
+    fuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvghnsehsvhgvnhhpvght
+    vghrrdguvghv
+X-ME-Proxy: <xmx:5VAjYtsSFm3dtyfL074bbGL0yrwKnaQeHPgojbKzb2BK79al9uJwYQ>
+    <xmx:5VAjYmY1HthJ8dAi1FaImcwN5bRSMtznF1o9xEXCN65kRCWV_w8BPw>
+    <xmx:5VAjYsYkIhPFXhXARubbYScETCY5T-oDWkDVZZUWq8-_NvC2ishrOA>
+    <xmx:5lAjYhPWzaVXcIIUMf7GXBgtu23K-Z-Kunepi0n88j6U34YhEw6umw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 484B12740692; Sat,  5 Mar 2022 07:00:37 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-4778-g14fba9972e-fm-20220217.001-g14fba997
+Mime-Version: 1.0
+Message-Id: <2e36dae0-7eff-43fc-b1a5-2c530f56e877@www.fastmail.com>
+In-Reply-To: <0d7b9a17-f5fc-69e5-173f-1c897522d3f3@canonical.com>
+References: <20220227115743.69059-1-sven@svenpeter.dev>
+ <0d7b9a17-f5fc-69e5-173f-1c897522d3f3@canonical.com>
+Date:   Sat, 05 Mar 2022 13:00:17 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+Cc:     "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Mark Kettenis" <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Add apple,efuses
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frank Wunderlich <frank-w@public-files.de>
 
-RK356x supports up to 3 sata controllers which were compatible with the
-existing snps,dwc-ahci binding.
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-changes in v4:
- - drop newline in dts
- - re-add clock-names
- -  add soc specific compatible
-changes in v3:
-  - fix combphy error by moving sata0 to rk3568.dtsi
-  - remove clock-names and interrupt-names
-changes in v2:
-  - added sata0 + 1, but have only tested sata2
----
- arch/arm64/boot/dts/rockchip/rk3568.dtsi | 14 ++++++++++++
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 28 ++++++++++++++++++++++++
- 2 files changed, 42 insertions(+)
+On Thu, Mar 3, 2022, at 19:00, Krzysztof Kozlowski wrote:
+> On 27/02/2022 12:57, Sven Peter wrote:
+>> Apple SoCs come with eFuses used to store factory-programmed data
+>> such as calibration settings for the PCIe and Type-C PHY.
+>> 
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>>  .../bindings/nvmem/apple,efuses.yaml          | 50 +++++++++++++++++++
+>>  MAINTAINERS                                   |  1 +
+>>  2 files changed, 51 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+>> 
+>> diff --git a/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml b/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+>> new file mode 100644
+>> index 000000000000..a735d54856ae
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+>> @@ -0,0 +1,50 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/nvmem/apple,efuses.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Apple SoC eFuse-based NVMEM
+>> +
+>> +description: |
+>> +  Apple SoCs such as the M1 contain factory-programmed eFuses used to e.g. store
+>> +  calibration data for the PCIe and the Type-C PHY or unique chip identifiers such
+>> +  as the ECID.
+>> +
+>> +maintainers:
+>> +  - Sven Peter <sven@svenpeter.dev>
+>> +
+>> +allOf:
+>> +  - $ref: "nvmem.yaml#"
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - apple,t8103-efuses
+>> +          - apple,t6000-efuses
+>> +      - const: apple,efuses
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    efuse@3d2bc000 {
+>> +        compatible = "apple,t8103-efuses", "apple,efuses";
+>> +        reg = <0x3d2bc000 0x1000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        ecid: efuse@500 {
+>> +              reg = <0x500 0x8>;
+>
+> Mismatched indentation. Rest looks good.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-index 5b0f528d6818..3e07d9f6a2d1 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-@@ -8,6 +8,20 @@
- / {
- 	compatible = "rockchip,rk3568";
- 
-+	sata0: sata@fc000000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc000000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA0>, <&cru CLK_SATA0_PMALIVE>,
-+			 <&cru CLK_SATA0_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy0 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
- 	pipe_phy_grf0: syscon@fdc70000 {
- 		compatible = "rockchip,rk3568-pipe-phy-grf", "syscon";
- 		reg = <0x0 0xfdc70000 0x0 0x1000>;
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index 7cdef800cb3c..264dd030e703 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -230,6 +230,34 @@ scmi_shmem: sram@0 {
- 		};
- 	};
- 
-+	sata1: sata@fc400000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc400000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA1>, <&cru CLK_SATA1_PMALIVE>,
-+			 <&cru CLK_SATA1_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 95 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy1 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
-+	sata2: sata@fc800000 {
-+		compatible = "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
-+		reg = <0 0xfc800000 0 0x1000>;
-+		clocks = <&cru ACLK_SATA2>, <&cru CLK_SATA2_PMALIVE>,
-+			 <&cru CLK_SATA2_RXOOB>;
-+		clock-names = "sata", "pmalive", "rxoob";
-+		interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&combphy2 PHY_TYPE_SATA>;
-+		phy-names = "sata-phy";
-+		ports-implemented = <0x1>;
-+		power-domains = <&power RK3568_PD_PIPE>;
-+		status = "disabled";
-+	};
-+
- 	gic: interrupt-controller@fd400000 {
- 		compatible = "arm,gic-v3";
- 		reg = <0x0 0xfd400000 0 0x10000>, /* GICD */
--- 
-2.25.1
+Good catch, thanks! Will fix it for v2.
 
+
+Best,
+
+
+Sven
