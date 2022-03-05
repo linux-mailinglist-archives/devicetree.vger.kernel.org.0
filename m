@@ -2,96 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A726D4CE24E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 03:41:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D614CE298
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 05:25:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229463AbiCECml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 4 Mar 2022 21:42:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34806 "EHLO
+        id S230401AbiCEE0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 4 Mar 2022 23:26:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229956AbiCECml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 21:42:41 -0500
-Received: from mail-vk1-xa29.google.com (mail-vk1-xa29.google.com [IPv6:2607:f8b0:4864:20::a29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C295A24F866;
-        Fri,  4 Mar 2022 18:41:52 -0800 (PST)
-Received: by mail-vk1-xa29.google.com with SMTP id x62so5318394vkg.6;
-        Fri, 04 Mar 2022 18:41:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KkcNCtjpcO8rVm8LUzoHbBDqzf+JRgklTyG6XGrgh2A=;
-        b=n3v5g4r26iSDUpyH/15c34qb0OSlTQqGD+1AH+W+Ewm3Q8qbcr6ZF6eVUJqPxPg4AK
-         v1GMcYCik7Q682YyBSUSvzc4tarHahIlPrBHLKlVNZ6xWcydkFrucAajd29dD6DrJJwB
-         KTzCOgZpQjNn+KApVn46AtG6+ybOyLOhA9IoX4hMorNwLui+negdc5M2M9uoYiNIs9yd
-         rBlpV3llDOutr17RMr5lWoEb9FOXiZ9lIk79HMyeVyH1CJcoAt+fTwQEcMbyduPCmZax
-         Ew3hwauqxhC3lmJkK/c1qRQHdxy6tAj+6Hq97iFEV2MNzbiVNsP8nR/6Cf4PLyfkf3T6
-         J5CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KkcNCtjpcO8rVm8LUzoHbBDqzf+JRgklTyG6XGrgh2A=;
-        b=xdZXcN9ndX6kIjQSkktOsaEWTkfV/+JtGBe5Tiy4wCcYZjhq2uxKVQ0TQMNAFTSNoD
-         29ckoy8axEIFoc7y4PEQm5uaFXxCAgPPnb1iqcio403cY4MNpoDFqSH7xUTztYTStCI/
-         Y9dn0fTy+jO6U630wuOY4Ci2+sx//kcZH6s0Me0oksnu0ZZTUy/ClYSoM9vSTBsOn0kS
-         ZegBiwEgNgCk+jmyVWy7EAxBIwap5CuQOtqfUS/kT9O9ebsc9HdWhrhnTwzxYXafus++
-         bYDD5jPFxxarNP2ON8gOqRSLUkRzKrcgqMXElCcKSWhhkNfrXObLB5aDM6OhmK9PkSQD
-         2TNg==
-X-Gm-Message-State: AOAM531VMTI4FhWRyCvpHzxIQA0Z+62a7ky8EVFagBAXlNCwHd1lNwH4
-        G5ykantArbgyJyL3RVa8f+3N2rDE+9Im3KVt00iZBH3z
-X-Google-Smtp-Source: ABdhPJxOsN2RrE8cJHgE60PZbU5R7UZ2J4YCIf+ekeTLJwL7RE7YXmJekBtVPUrks2W4I8GY7/R3s05NmLLJnOyQapA=
-X-Received: by 2002:a1f:ee4a:0:b0:336:e616:82c6 with SMTP id
- m71-20020a1fee4a000000b00336e61682c6mr603775vkh.8.1646448111552; Fri, 04 Mar
- 2022 18:41:51 -0800 (PST)
-MIME-Version: 1.0
-References: <20210226141411.2517368-1-linux@rasmusvillemoes.dk>
- <20210304221247.488173-1-linux@rasmusvillemoes.dk> <20210304221247.488173-2-linux@rasmusvillemoes.dk>
- <4b560502-3885-91a0-3100-4b5506a17b32@roeck-us.net>
-In-Reply-To: <4b560502-3885-91a0-3100-4b5506a17b32@roeck-us.net>
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Date:   Fri, 4 Mar 2022 18:41:39 -0800
-Message-ID: <CAKdAkRQj9fTv-g03__ncNrnyNh5x+4uG2_yioyrc-iFAd22c3Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] clk: add devm_clk_prepare_enable() helper
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Arnd Bergmann <arnd@arndb.de>, Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>
+        with ESMTP id S230187AbiCEEZ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 4 Mar 2022 23:25:59 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1693D53708;
+        Fri,  4 Mar 2022 20:25:04 -0800 (PST)
+X-UUID: f91cd922797a4c02b60543ed4c65f1a6-20220305
+X-UUID: f91cd922797a4c02b60543ed4c65f1a6-20220305
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1076188222; Sat, 05 Mar 2022 12:25:00 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 5 Mar 2022 12:24:59 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 5 Mar
+ 2022 12:24:58 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 5 Mar 2022 12:24:57 +0800
+Message-ID: <6555d89deb9087825f865b9d4265f07465e7ae09.camel@mediatek.com>
+Subject: Re: [v2 01/17] ASoC: mediatek: mt6366: add codec driver
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <matthias.bgg@gmail.com>, <perex@perex.cz>,
+        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <aaronyu@google.com>, <zhangqilong3@huawei.com>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Sat, 5 Mar 2022 12:24:57 +0800
+In-Reply-To: <b22976ee-6426-cabf-f153-fbe093611e97@collabora.com>
+References: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
+         <20220217134205.15400-2-jiaxin.yu@mediatek.com>
+         <b22976ee-6426-cabf-f153-fbe093611e97@collabora.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 8, 2021 at 9:32 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On 3/4/21 2:12 PM, Rasmus Villemoes wrote:
-> > Add a managed wrapper for clk_prepare_enable().
-> >
-> > Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
->
-> That has been tried several times, including by yours truly,
-> and has always been rejected.
->
-> Just use devm_add_action_or_reset() like many other watchdog
-> drivers.
+On Fri, 2022-02-18 at 15:54 +0100, AngeloGioacchino Del Regno wrote:
+> Il 17/02/22 14:41, Jiaxin Yu ha scritto:
+> > Mt6366 is a new version of mt6358, and they are same about audio
+> > part.
+> > So we can reuse the driver of mt6358.
+> > 
+> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> 
+> Hello Jiaxin,
+> I'm sorry but this commit makes very little sense.
+> 
+> If you want to advertise MT6366 support, please write a note and/or
+> a new compatible string inside of the mt6358 driver (and dt-
+> bindings),
+> then, please drop this commit.
+> 
 
-Can we apply the devm version for crying out loud? I do not see what
-benefit there is to force everyone open-code it with
-devm_add_action_or_reset(). By simply blocking it we are not making
-the kernel better and it's been stalled for a very long time.
+Hello angelogioacchino,
 
-Thanks.
+Thank you for your advice.
 
--- 
-Dmitry
+If I add a new compatible string inside of the mt6358 driver and dt-
+bindings, then the machine driver which want to use mt6366 should
+select SND_SOC_MT6358.
+
+like below:
+
+config SND_SOC_MT8186_MT6366_DA7219_MAX98357
+	tristate "ASoC Audio driver for MT8186 with DA7219 MAX98357A
+codec"
+ 	depends on I2C && GPIOLIB
+ 	depends on SND_SOC_MT8186 && MTK_PMIC_WRAP
+ 	select SND_SOC_MT6366   ==> SND_SOC_MT6358
+	...
+
+I just doubt it's enough to make sense. I originally wanted to put this
+relationship in the sound/soc/codecs layer. So that this relationship
+is not perceived by users(machine driver).
+However, if the general practice is like this, I will adopt your
+suggestion. Thank you again.
+
+> 
+> > ---
+> >   sound/soc/codecs/Kconfig  | 8 ++++++++
+> >   sound/soc/codecs/Makefile | 1 +
+> >   2 files changed, 9 insertions(+)
+> > 
+> > diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
+> > index 8fa24783ce01..6631094678f5 100644
+> > --- a/sound/soc/codecs/Kconfig
+> > +++ b/sound/soc/codecs/Kconfig
+> > @@ -132,6 +132,7 @@ config SND_SOC_ALL_CODECS
+> >   	imply SND_SOC_MT6351
+> >   	imply SND_SOC_MT6358
+> >   	imply SND_SOC_MT6359
+> > +	imply SND_SOC_MT6366
+> >   	imply SND_SOC_MT6660
+> >   	imply SND_SOC_NAU8315
+> >   	imply SND_SOC_NAU8540
+> > @@ -1888,6 +1889,13 @@ config SND_SOC_MT6359_ACCDET
+> >   	  for ASoC codec soc-jack detection mechanism.
+> >   	  Select N if you don't have jack on board.
+> >   
+> > +config SND_SOC_MT6366
+> > +	tristate "MediaTek MT6366 Codec"
+> > +	depends on MTK_PMIC_WRAP
+> > +	help
+> > +	  Enable support for the platform which uses MT6366 as
+> > +	  external codec device.
+> > +
+> >   config SND_SOC_MT6660
+> >   	tristate "Mediatek MT6660 Speaker Amplifier"
+> >   	depends on I2C
+> > diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
+> > index 42d00aa4ee46..1279684feaf0 100644
+> > --- a/sound/soc/codecs/Makefile
+> > +++ b/sound/soc/codecs/Makefile
+> > @@ -465,6 +465,7 @@ obj-$(CONFIG_SND_SOC_MT6351)	+= snd-soc-
+> > mt6351.o
+> >   obj-$(CONFIG_SND_SOC_MT6358)	+= snd-soc-mt6358.o
+> >   obj-$(CONFIG_SND_SOC_MT6359)	+= snd-soc-mt6359.o
+> >   obj-$(CONFIG_SND_SOC_MT6359_ACCDET) += mt6359-accdet.o
+> > +obj-$(CONFIG_SND_SOC_MT6366)	+= snd-soc-mt6358.o
+> >   obj-$(CONFIG_SND_SOC_MT6660)	+= snd-soc-mt6660.o
+> >   obj-$(CONFIG_SND_SOC_NAU8315)   += snd-soc-nau8315.o
+> >   obj-$(CONFIG_SND_SOC_NAU8540)   += snd-soc-nau8540.o
+> 
+> 
+
