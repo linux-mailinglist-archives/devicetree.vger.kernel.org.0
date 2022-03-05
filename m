@@ -2,327 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99FB94CE44A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 11:49:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E874CE45E
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 12:05:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231526AbiCEKuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 05:50:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59000 "EHLO
+        id S231483AbiCELGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Mar 2022 06:06:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229488AbiCEKuf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 05:50:35 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E10C123D1A9;
-        Sat,  5 Mar 2022 02:49:40 -0800 (PST)
-X-UUID: 0c607429cdc248c09512541e15b67ac7-20220305
-X-UUID: 0c607429cdc248c09512541e15b67ac7-20220305
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1926967289; Sat, 05 Mar 2022 18:49:35 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Sat, 5 Mar 2022 18:49:34 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 5 Mar 2022 18:49:33 +0800
-Message-ID: <5aca64866e5441d21aaf0293a1e48286acfdd978.camel@mediatek.com>
-Subject: Re: [v2 03/17] ASoC: mediatek: mt8186: support adda in platform
- driver
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <aaronyu@google.com>, <zhangqilong3@huawei.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Sat, 5 Mar 2022 18:49:33 +0800
-In-Reply-To: <0e633e93-566d-0a91-f5e3-f3e3131fcb43@collabora.com>
-References: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
-         <20220217134205.15400-4-jiaxin.yu@mediatek.com>
-         <0e633e93-566d-0a91-f5e3-f3e3131fcb43@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S229546AbiCELGD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 06:06:03 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E6EF49275;
+        Sat,  5 Mar 2022 03:05:13 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 03C9CB801BF;
+        Sat,  5 Mar 2022 11:05:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9219FC004E1;
+        Sat,  5 Mar 2022 11:05:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646478310;
+        bh=sBvaL1nYVqIYei+YFhToiSOr8DcSm1Ymz6XxVlrvysU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=IzI1XW1nWd1FlLj+5ahQEJeDY1PS4U3KGLMOVZZX+dqb5ZGssBvwepN3LgXNaaNlP
+         j0lVqs2iQ492fK1Clz4gVdeoG6d8U0synyRtUZWL2lcY8+cYbQ8AAVI7hC9uxoP6Wa
+         ADTARA2hsi4XfJJ6wDD0+jHiZaOU8L9cjAQhU3LI4rXqjevHS3Gf3XeR6l6V0cllys
+         AnBgVd5EEWX91/AtvC+EOFMwfehvxgSpe5vQMhPxcZUn7/frLSLwgWfyEOeg2gVAdB
+         Zpa1aCupxVkejGvzC0IZwbS0oy3pdU1gf8lxwbd+PBMC6LpT+H0I5nyBPef4zKAQJm
+         HGXcjkll9bwiw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=billy-the-mountain.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nQSDk-00CQQC-0v; Sat, 05 Mar 2022 11:05:08 +0000
+Date:   Sat, 05 Mar 2022 11:05:07 +0000
+Message-ID: <87czj0u0bg.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Shawn Guo <shawn.guo@linaro.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Maulik Shah <quic_mkshah@quicinc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
+In-Reply-To: <20220305092420.GP269879@dragon>
+References: <20220301062414.2987591-3-shawn.guo@linaro.org>
+        <87ee3m2aed.wl-maz@kernel.org>
+        <20220302084028.GL269879@dragon>
+        <877d9c3b2u.wl-maz@kernel.org>
+        <20220302133441.GM269879@dragon>
+        <875yow31a0.wl-maz@kernel.org>
+        <20220303040229.GN269879@dragon>
+        <87fsnytagc.wl-maz@kernel.org>
+        <20220304082342.GO269879@dragon>
+        <87lexp211g.wl-maz@kernel.org>
+        <20220305092420.GP269879@dragon>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: shawn.guo@linaro.org, tglx@linutronix.de, quic_mkshah@quicinc.com, bjorn.andersson@linaro.org, sudeep.holla@arm.com, robh+dt@kernel.org, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-18 at 15:54 +0100, AngeloGioacchino Del Regno wrote:
-> Il 17/02/22 14:41, Jiaxin Yu ha scritto:
-> > This patch adds mt8186 adda dai driver
+On Sat, 05 Mar 2022 09:24:20 +0000,
+Shawn Guo <shawn.guo@linaro.org> wrote:
+> 
+> On Fri, Mar 04, 2022 at 03:24:43PM +0000, Marc Zyngier wrote:
+> > On Fri, 04 Mar 2022 08:23:42 +0000,
+> > Shawn Guo <shawn.guo@linaro.org> wrote:
+> > > 
+> > > On Fri, Mar 04, 2022 at 07:59:15AM +0000, Marc Zyngier wrote:
+> > > > On Thu, 03 Mar 2022 04:02:29 +0000,
+> > > > Shawn Guo <shawn.guo@linaro.org> wrote:
+> > > > > 
+> > > > > On Wed, Mar 02, 2022 at 01:57:27PM +0000, Marc Zyngier wrote:
+> > > > > > This code actually makes me ask more questions. Why is it programming
+> > > > > > 2 'pins' for each IRQ?
+> > > > > 
+> > > > > The mapping between MPM pin and GIC IRQ is not strictly 1-1.  There are
+> > > > > some rare case that up to 2 MPM pins map to a single GIC IRQ, for
+> > > > > example the last two in QC2290 'qcom,mpm-pin-map' below.
+> > > > > 
+> > > > > 	qcom,mpm-pin-map = <2 275>,     /* tsens0_tsens_upper_lower_int */
+> > > > > 			   <5 296>,     /* lpass_irq_out_sdc */
+> > > > > 			   <12 422>,    /* b3_lfps_rxterm_irq */
+> > > > > 			   <24 79>,     /* bi_px_lpi_1_aoss_mx */
+> > > > > 			   <86 183>,    /* mpm_wake,spmi_m */
+> > > > > 			   <90 260>,    /* eud_p0_dpse_int_mx */
+> > > > > 			   <91 260>;    /* eud_p0_dmse_int_mx */
+> > > > > 
+> > > > > 
+> > > > > The downstream uses a DT bindings that specifies GIC hwirq number in
+> > > > > client device nodes.  In that case, d->hwirq in the driver is GIC IRQ
+> > > > > number, and the driver will need to query mapping table, find out the
+> > > > > possible 2 MPM pins, and set them up.
+> > > > > 
+> > > > > The patches I'm posting here use a different bindings that specifies MPM
+> > > > > pin instead in client device nodes.  Thus the driver can simply get the
+> > > > > MPM pin from d->hwirq, so that the whole look-up procedure can be saved.
+> > > > 
+> > > > It still remains that there is no 1:1 mapping between input and
+> > > > output, which is the rule #1 to be able to use a hierarchical setup.
+> > > 
+> > > For direction of MPM pin -> GIC interrupt, it's a 1:1 mapping, i.e. for
+> > > given MPM pin, there is only one GIC interrupt.  And that's the
+> > > mapping MPM driver relies on.  For GIC interrupt -> MPM pin, it's not
+> > > a strict 1:1 mapping.
 > > 
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > ---
-> >   sound/soc/mediatek/mt8186/mt8186-dai-adda.c | 891
-> > ++++++++++++++++++++
-> >   1 file changed, 891 insertions(+)
-> >   create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> > 
-> > diff --git a/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> > b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> > new file mode 100644
-> > index 000000000000..6d7dd1533da0
-> > --- /dev/null
-> > +++ b/sound/soc/mediatek/mt8186/mt8186-dai-adda.c
-> > @@ -0,0 +1,891 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +//
-> > +// MediaTek ALSA SoC Audio DAI ADDA Control
-> > +//
-> > +// Copyright (c) 2022 MediaTek Inc.
-> > +// Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > +
-> > +#include <linux/regmap.h>
-> > +#include <linux/delay.h>
-> > +#include "mt8186-afe-clk.h"
-> > +#include "mt8186-afe-common.h"
-> > +#include "mt8186-afe-gpio.h"
-> > +#include "mt8186-interconnection.h"
-> > +
-...snip...
-> > 
-> > +/* dai ops */
-> > +static int mtk_dai_adda_hw_params(struct snd_pcm_substream
-> > *substream,
-> > +				  struct snd_pcm_hw_params *params,
-> > +				  struct snd_soc_dai *dai)
-> > +{
-> > +	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-> > +	struct mt8186_afe_private *afe_priv = afe->platform_priv;
-> > +	unsigned int rate = params_rate(params);
-> > +	int id = dai->id;
-> > +	struct mtk_afe_adda_priv *adda_priv = afe_priv->dai_priv[id];
-> > +
-> > +	dev_info(afe->dev, "%s(), id %d, stream %d, rate %d\n",
-> > +		 __func__,
-> > +		 id,
-> > +		 substream->stream,
-> > +		 rate);
-> > +
-> > +	if (!adda_priv) {
-> > +		dev_info(afe->dev, "%s(), adda_priv == NULL",
-> > __func__);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK) {
-> > +		unsigned int dl_src2_con0 = 0;
-> > +		unsigned int dl_src2_con1 = 0;
+> > Then this isn't a 1:1 mapping *AT ALL*. The hierarchical setup
+> > mandates that the mapping is a bijective function, and that's exactly
+> > what 1:1 means. There is no such thing a 1:1 in a single
+> > direction. When you take an interrupt, all you see is the GIC
+> > interrupt. How do you know which of the *two* pins interrupted you? Oh
+> > wait, you *can't* know. You end-up never servicing one of the two
+> > interrupts
 > 
-> This initialization is redundant: you're never using these variables
-> before initializing them later, so initializing them to zero is not
-> needed here.
-Yes, got it. Thank you.
+> Yes, you are right!  But that might be a problem only in theory.  I
+> checked all the Qualcomm platforms I know built on MPM, and found that
+> the only 2:1 case is USB DP & DM sensing pins.  Since these two pins
+> will be handled by USB driver with a single interrupt handler, it should
+> not cause any problem in practice.  That said, the 2:1 mapping is just
+> a special case specific to USB, and MPM driver can be implemented as if
+> it's just a 1:1 mapping.
+>
+> Shawn
 > 
-> > +
-> > +		adda_priv->dl_rate = rate;
-> > +
-> > +		/* set sampling rate */
-> > +		dl_src2_con0 = adda_dl_rate_transform(afe, rate) <<
-> > +			       DL_2_INPUT_MODE_CTL_SFT;
-> > +
-> > +		/* set output mode, UP_SAMPLING_RATE_X8 */
-> > +		dl_src2_con0 |= (0x3 << DL_2_OUTPUT_SEL_CTL_SFT);
-> > +
-> > +		/* turn off mute function */
-> > +		dl_src2_con0 |= (0x01 <<
-> > DL_2_MUTE_CH2_OFF_CTL_PRE_SFT);
-> 
-> BIT() macro, please
-> 
-> > +		dl_src2_con0 |= (0x01 <<
-> > DL_2_MUTE_CH1_OFF_CTL_PRE_SFT);
-> > +
-> > +		/* set voice input data if input sample rate is 8k or
-> > 16k */
-> > +		if (rate == 8000 || rate == 16000)
-> > +			dl_src2_con0 |= 0x01 <<
-> > DL_2_VOICE_MODE_CTL_PRE_SFT;
-> > +
-> > +		/* SA suggest apply -0.3db to audio/speech path */
-> > +		dl_src2_con1 = MTK_AFE_ADDA_DL_GAIN_NORMAL <<
-> > +			       DL_2_GAIN_CTL_PRE_SFT;
-> > +
-> > +		/* turn on down-link gain */
-> > +		dl_src2_con0 |= (0x01 << DL_2_GAIN_ON_CTL_PRE_SFT);
-> > +
-> > +		if (id == MT8186_DAI_ADDA) {
-> > +			/* clean predistortion */
-> > +			regmap_write(afe->regmap, AFE_ADDA_PREDIS_CON0,
-> > 0);
-> > +			regmap_write(afe->regmap, AFE_ADDA_PREDIS_CON1,
-> > 0);
-> > +
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_DL_SRC2_CON0,
-> > dl_src2_con0);
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_DL_SRC2_CON1,
-> > dl_src2_con1);
-> > +
-> > +			/* set sdm gain */
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_DL_SDM_DCCOMP_CON,
-> > +					   ATTGAIN_CTL_MASK_SFT,
-> > +					   AUDIO_SDM_LEVEL_NORMAL <<
-> > +					   ATTGAIN_CTL_SFT);
-> > +
-> > +			/* Use new 2nd sdm */
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_DL_SDM_DITHER_CON,
-> > +					   AFE_DL_SDM_DITHER_64TAP_EN_M
-> > ASK_SFT,
-> > +					   0x1 <<
-> > AFE_DL_SDM_DITHER_64TAP_EN_SFT);
-> 
-> BIT(AFE_DL_SDM_DITHER_64TAP_EN_SFT)
-> 
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_DL_SDM_AUTO_RESET_C
-> > ON,
-> > +					   AFE_DL_USE_NEW_2ND_SDM_MASK_
-> > SFT,
-> > +					   0x1 <<
-> > AFE_DL_USE_NEW_2ND_SDM_SFT);
-> 
-> BIT(AFE_DL_USE_NEW_2ND_SDM_SFT)
-> 
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_DL_SDM_DCCOMP_CON,
-> > +					   USE_3RD_SDM_MASK_SFT,
-> > +					   AUDIO_SDM_2ND <<
-> > USE_3RD_SDM_SFT);
-> > +
-> > +			/* sdm auto reset */
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_DL_SDM_AUTO_RESET_CON,
-> > +				     SDM_AUTO_RESET_THRESHOLD);
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_DL_SDM_AUTO_RESET_C
-> > ON,
-> > +					   SDM_AUTO_RESET_TEST_ON_MASK_
-> > SFT,
-> > +					   0x1 <<
-> > SDM_AUTO_RESET_TEST_ON_SFT);
-> 
-> BIT(SDM_AUTO_RESET_TEST_ON_SFT)
-> 
-> > +		}
-> > +	} else {
-> > +		unsigned int voice_mode = 0;
-> 
-> what about...
-> 		unsigned int ul_src_con0 = 0; /* default value */
-> 		unsigned int voice_mode =  adda_ul_rate_transform(afe,
-> rate);
-Agree with you.
+> > (and I suspect this results in memory corruption if you
+> > tear a hierarchy down).
 
-> > +		unsigned int ul_src_con0 = 0;	/* default value */
-> > +
-> > +		adda_priv->ul_rate = rate;
-> > +
-> > +		voice_mode = adda_ul_rate_transform(afe, rate);
-> > +
-> > +		ul_src_con0 |= (voice_mode << 17) & (0x7 << 17);
-> > +
-> > +		/* enable iir */
-> > +		ul_src_con0 |= (1 << UL_IIR_ON_TMP_CTL_SFT) &
-> > +			       UL_IIR_ON_TMP_CTL_MASK_SFT;
-> > +		ul_src_con0 |= (UL_IIR_SW << UL_IIRMODE_CTL_SFT) &
-> > +			       UL_IIRMODE_CTL_MASK_SFT;
-> > +		switch (id) {
-> > +		case MT8186_DAI_ADDA:
-> > +		case MT8186_DAI_AP_DMIC:
-> > +			/* 35Hz @ 48k */
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_IIR_COEF_02_01,
-> > 0x00000000);
-> 
-> Please drop leading zeroes:
-> 
-> regmap_write(afe->regmap, AFE_ADDA_IIR_COEF_02_01, 0);
-> 
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_IIR_COEF_04_03,
-> > 0x00003FB8);
-> 
-> ... and also please write hex in lower-case:
-> 
-Got it.
-> regmap_write(afe->regmap,
-> 	     AFE_ADDA_IIR_COEF_04_03, 0x03fb8);
-> 
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_IIR_COEF_06_05,
-> > 0x3FB80000);
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_IIR_COEF_08_07,
-> > 0x3FB80000);
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_IIR_COEF_10_09,
-> > 0x0000C048);
-> > +
-> > +			regmap_write(afe->regmap,
-> > +				     AFE_ADDA_UL_SRC_CON0,
-> > ul_src_con0);
-> > +
-> > +			/* Using Internal ADC */
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_TOP_CON0,
-> > +					   0x1 << 0,
-> > +					   0x0 << 0);
-> 
-> Please use the BIT() macro:
-> 
-> regmap_update_bits(afe->regmap, AFE_ADDA_TOP_CON0, BIT(0), 0);
-> 
-> P.S.: 87 columns is ok
+Key point here ^^^^^^^^^^
 
-How can I judge whether it can exceed 80 lines?
-> 
-> > +
-> > +			/* mtkaif_rxif_data_mode = 0, amic */
-> > +			regmap_update_bits(afe->regmap,
-> > +					   AFE_ADDA_MTKAIF_RX_CFG0,
-> > +					   0x1 << 0,
-> > +					   0x0 << 0);
-> 
-> same here.
-> 
-> > +			break;
-> > +		default:
-> > +			break;
-> > +		}
-> > +
-> > +		/* ap dmic */
-> > +		switch (id) {
-> > +		case MT8186_DAI_AP_DMIC:
-> > +			mtk_adda_ul_src_dmic(afe, id);
-> > +			break;
-> > +		default:
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> 
-> Regards,
-> Angelo
-> 
+You can't have *any* interrupt that fits this 2:1 model if the irqchip
+implements 1:1. Think about the data structures for a second:
 
+Pins x and y and routed to GIC interrupt z. This results in the
+following irq_data structures:
+
+   MPM-x ---\
+             GIC-z
+   MPM-y ---/
+
+Now, the driver using these interrupts is being removed, and the
+hierarchies is being freed. Tearing down the interrupt with pin x will
+result in z being also freed. And then you'll process pin y, which
+will just explode.
+
+So either you make sure these mappings can never be created, or you
+change the driver to not be hierarchical. You absolutely cannot have
+it both ways.
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
