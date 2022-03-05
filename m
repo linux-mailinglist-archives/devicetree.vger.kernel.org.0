@@ -2,194 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F594CE73B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 22:39:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A23C4CE746
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 22:49:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbiCEVk3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 16:40:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43222 "EHLO
+        id S231723AbiCEVuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Mar 2022 16:50:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230112AbiCEVk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 16:40:29 -0500
-X-Greylist: delayed 538 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 05 Mar 2022 13:39:31 PST
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444863700A;
-        Sat,  5 Mar 2022 13:39:31 -0800 (PST)
-Received: from leknes.fjasle.eu ([46.142.99.106]) by mrelayeu.kundenserver.de
- (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1M4JeB-1nQKsf2rsf-000HIv; Sat, 05 Mar 2022 22:22:52 +0100
-Received: by leknes.fjasle.eu (Postfix, from userid 1000)
-        id C33913C084; Sat,  5 Mar 2022 22:22:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=fjasle.eu; s=mail;
-        t=1646515367; bh=VVb1CgKBX0kCKQXocnAMbSC/sePuvQMCodg6jDvav/Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=plh6PCa2hEr74wCYxBGs1lg3LGj4FoG9+J0Jdv/wlFCXYl16MVkajCuOZ3x1NxSW2
-         edNhy0O0afXoHtmEuy6vlPciZBmCWsn6pPiy2RXY3AbPVh9fvz8KTgXO3h8zJuHNvT
-         uDbB4k9DWl8js9K3x/2+P7v16Z4SkFd0PwYNNBu8=
-Date:   Sat, 5 Mar 2022 22:22:47 +0100
-From:   Nicolas Schier <nicolas@fjasle.eu>
-To:     Chun-Tse Shao <ctshao@google.com>
-Cc:     rostedt@goodmis.org, ndesaulniers@google.com,
-        Masahiro Yamada <masahiroy@kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        David Howells <dhowells@redhat.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org,
-        keyrings@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] config: Allow kernel installation packaging to
- override pkg-config
-Message-ID: <YiPUp2KDmlnzv0MR@fjasle.eu>
-References: <20220304041449.939308-1-ctshao@google.com>
+        with ESMTP id S229805AbiCEVuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 16:50:00 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5091E1D0D3
+        for <devicetree@vger.kernel.org>; Sat,  5 Mar 2022 13:49:09 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 145C93F1AF
+        for <devicetree@vger.kernel.org>; Sat,  5 Mar 2022 21:49:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646516948;
+        bh=xIGwC4dMVAbcNM9VbnP/VQuX2kHBkqPx10EnWit2MpM=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=C3WQQ6ZWZJWssoxtQ5iO92qyAkxlBX0zMHFXrG9V2UWmWK5ukzsDQzWaqmZlNHkHx
+         2YMMZgab7ZkSMxIxJZ0PxXkJWddDJkeeMB4ohWF31IDuDXgxuebaw5UzIrJJK2ixMp
+         3I6KyWP6LcFCw0xbcC3H7kfcPt91MY+MxnGqT63oaAXY406xCbFcDUfoY7X9OLRSZB
+         4zxhm1MGMPxMlNQTHEXimgB0vA25a4RdufWF2jLkfOZ9PfKjv14h3iO+/oNLTAZpy/
+         oDfGuWKvJEvDSHEsEMpuM6eGuXrEck5Ff2Ouu+7M7YXTZl0wc1VcxxVYb625aLuWkR
+         HLehW+TjKlx0Q==
+Received: by mail-ej1-f70.google.com with SMTP id go11-20020a1709070d8b00b006cf0d933739so6016864ejc.5
+        for <devicetree@vger.kernel.org>; Sat, 05 Mar 2022 13:49:08 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xIGwC4dMVAbcNM9VbnP/VQuX2kHBkqPx10EnWit2MpM=;
+        b=uIR2BtxM51WEmD4J4qCDYcAf1f9UpL1Td6/QkiOPJDRxSEl1HRjZPQhKH/jPYorxFJ
+         DGz9XS4JK4OKovsqRfcA03JshzvYzbHgjuC5x7iVVsnnhydcCzSE0oJNObnUjZNananR
+         dH2GuGjxABDL4agBfPxrlBGO2SUXA6j4C+WsbdGxrGd9nNI6LKaK4gaYJuGJDPEyRtjb
+         89emODh81q0ikRiQfXuGZXJaaMF4RlyUxmrHPu1dwo+of5rKTSx5XtCaTQSIiGyIaIkF
+         hJFBa2scU/InSaoonZMBMb/loKuydhF4yCZtk5bm5ZAyoe/mJ51wJrzc2Ik3sgDlRNFl
+         OS3A==
+X-Gm-Message-State: AOAM531PLnxoPfpoFfY9OKfFZ387EbSbtcD4mhcC+u4cEebe2bRF/eho
+        /LnrIrEWmgald0V82Ix9OydxlzsduzCUPonl2E+943keT5LUDbWoTfZXp8FiAyu5SvLK5EDXLB7
+        uKSahTByiXb0dtBQqqM+iECzC2ycIOiP2VEhckck=
+X-Received: by 2002:a17:906:a10:b0:6ce:7107:598b with SMTP id w16-20020a1709060a1000b006ce7107598bmr3838144ejf.653.1646516947422;
+        Sat, 05 Mar 2022 13:49:07 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyr2kT1aeQLLJO9FBVlLCJJEpNgkXx6haeqI+gPwVq8L5czrgAUT8X08CZ0HwZ0nOoFqxAA7Q==
+X-Received: by 2002:a17:906:a10:b0:6ce:7107:598b with SMTP id w16-20020a1709060a1000b006ce7107598bmr3838131ejf.653.1646516947209;
+        Sat, 05 Mar 2022 13:49:07 -0800 (PST)
+Received: from [192.168.0.140] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm3247439eje.173.2022.03.05.13.49.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 05 Mar 2022 13:49:06 -0800 (PST)
+Message-ID: <44308465-db4c-80e7-2beb-b0f676d16edf@canonical.com>
+Date:   Sat, 5 Mar 2022 22:49:05 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220304041449.939308-1-ctshao@google.com>
-X-Provags-ID: V03:K1:ZTPKmg5lMYxvmlGfvYK6oNxUamFwwjyCH+SpD50e8sJcs+Mvg7h
- oLInTiZ7wYdfo3gesvnSRum6rUHEtj0CwH1yfA6Fs7PB16yBMv8G5j2S7isHClQ5Mjj/L+h
- tqIzhHqWIDxNLYZXgDDiITfz03Zrtao7ND2a0hEXmjlkD3XZOXPG1wLM64TUCg0rxUj+BL3
- V7vweONIr2LYQKz4TlN7w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:YVzQ1H78vwQ=:XEbYARMzYw3Jem6ZchATg+
- v4nweGdCQqj4iriHkAP1QN1REQpNk76IO5BxebCSjf/KN4OFIDInGzJqDsNNrZCA7hPRnsIIZ
- CWbVdVTKFEokpSOX5L8uYX7FEmKQ5hT0xmFVi29j8SwHEXgptpCkRA58O1dvBU3j8vBopcrf4
- eOdHYXL5+vH4Fn/cHtBkTb883S9kdpeRKV4z9Cujhh6UCJMApuMR5VOzWHOSnC92qJAt8P53J
- fEVvIyA1NSHhzWe59Eh0YfKubjczvUPorzegukSic1OQP1POFj8eIXPBIDWEXmaQVf09d5Plr
- wC1W96LVoPOopk3GR8tYLeXj+yLiQcvREzfaq/kaLmQqLcO2gT/c6ukfDx1wGtCppwQRbJKZv
- LFduJgbzBP9g/V5JaS5tw8U2pZC292mWIMt2iiM3eufHgqDevpau7DWTOWTtqT/4N/d9S9gwt
- yrRO34gajtE6ypVmVieo4AuoVsr9V1YcB5osULKw81sim05O6f1rEmYbUd5ORMIXOM6R4klC2
- wBhgI+kAZTrK+ywtJGKu4g8yWeYDRJPuWhDyBe6mMSLwSSXCfI2KXSSZKi038VQloxzFpSuFa
- zSI2VToODjU31nwwu199ESnmHNbx/UYIP4o2bZ/mkW1008RQdwtVPfb+wYpPi5nQsxlQ52eOb
- v3t8yFTlUvrmLkVAv7lUTby9+nGLC3NMw+AEch5SiYlvyZE7RPRaww3H34lu9y6Ti0Yk=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: gpu: Convert aspeed-gfx bindings to
+ yaml
+Content-Language: en-US
+To:     Joel Stanley <joel@jms.id.au>, Rob Herring <robh+dt@kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>
+References: <20220304000311.970267-1-joel@jms.id.au>
+ <20220304000311.970267-3-joel@jms.id.au>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220304000311.970267-3-joel@jms.id.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 04:14:51AM +0000 Chun-Tse Shao wrote:
-> [ Resending as a separate thread ]
+On 04/03/2022 01:03, Joel Stanley wrote:
+> Convert the bindings to yaml and add the ast2600 compatible string.
 > 
-> Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
-> what pkg-config and parameters are used.
+> The legacy mfd description was put in place before the gfx bindings
+> existed, to document the compatible that is used in the pinctrl
+> bindings.
 > 
-> Signed-off-by: Chun-Tse Shao <ctshao@google.com>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
 > ---
-> Changes from v2: https://lore.kernel.org/all/20220302193638.11034-1-ctshao@google.com/
->   - Fix more open coded instance of pkg-config in scripts and certs
->   - Tested with make allmodconfig
+>  .../devicetree/bindings/gpu/aspeed,gfx.yaml   | 69 +++++++++++++++++++
+>  .../devicetree/bindings/gpu/aspeed-gfx.txt    | 41 -----------
+>  .../devicetree/bindings/mfd/aspeed-gfx.txt    | 17 -----
+>  3 files changed, 69 insertions(+), 58 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
 > 
-> Changes from v1: https://lore.kernel.org/all/20220301230629.1892828-1-ctshao@google.com/
->   - Make the commit message more clearer.
-> ---
-> 
->  Makefile                     |  3 ++-
->  certs/Makefile               |  4 ++--
->  scripts/Makefile             |  4 ++--
->  scripts/dtc/Makefile         |  6 +++---
->  scripts/kconfig/gconf-cfg.sh | 10 +++++-----
->  scripts/kconfig/mconf-cfg.sh | 14 +++++++-------
->  scripts/kconfig/nconf-cfg.sh | 14 +++++++-------
->  scripts/kconfig/qconf-cfg.sh | 14 +++++++-------
->  tools/objtool/Makefile       |  4 ++--
->  9 files changed, 37 insertions(+), 36 deletions(-)
-> 
-> diff --git a/Makefile b/Makefile
-> index daeb5c88b50b..f6c5bef7e141 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -430,6 +430,7 @@ else
->  HOSTCC	= gcc
->  HOSTCXX	= g++
->  endif
-> +HOSTPKG_CONFIG	= pkg-config
-> 
->  export KBUILD_USERCFLAGS := -Wall -Wmissing-prototypes -Wstrict-prototypes \
->  			      -O2 -fomit-frame-pointer -std=gnu89
-> @@ -525,7 +526,7 @@ KBUILD_LDFLAGS_MODULE :=
->  KBUILD_LDFLAGS :=
->  CLANG_FLAGS :=
-> 
-> -export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC
-> +export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
->  export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
->  export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
->  export KGZIP KBZIP2 KLZOP LZMA LZ4 XZ ZSTD
-> diff --git a/certs/Makefile b/certs/Makefile
-> index 3ea7fe60823f..fa540d14ef2d 100644
-> --- a/certs/Makefile
-> +++ b/certs/Makefile
-> @@ -89,5 +89,5 @@ targets += x509_revocation_list
-> 
->  hostprogs := extract-cert
-> 
-> -HOSTCFLAGS_extract-cert.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
-> -HOSTLDLIBS_extract-cert = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
-> +HOSTCFLAGS_extract-cert.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
-> +HOSTLDLIBS_extract-cert = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
-> diff --git a/scripts/Makefile b/scripts/Makefile
-> index ce5aa9030b74..f084f08ed176 100644
-> --- a/scripts/Makefile
-> +++ b/scripts/Makefile
-> @@ -14,8 +14,8 @@ hostprogs-always-$(CONFIG_SYSTEM_EXTRA_CERTIFICATE)	+= insert-sys-cert
->  HOSTCFLAGS_sorttable.o = -I$(srctree)/tools/include
->  HOSTLDLIBS_sorttable = -lpthread
->  HOSTCFLAGS_asn1_compiler.o = -I$(srctree)/include
-> -HOSTCFLAGS_sign-file.o = $(shell pkg-config --cflags libcrypto 2> /dev/null)
-> -HOSTLDLIBS_sign-file = $(shell pkg-config --libs libcrypto 2> /dev/null || echo -lcrypto)
-> +HOSTCFLAGS_sign-file.o = $(shell $(HOSTPKG_CONFIG) --cflags libcrypto 2> /dev/null)
-> +HOSTLDLIBS_sign-file = $(shell $(HOSTPKG_CONFIG) --libs libcrypto 2> /dev/null || echo -lcrypto)
-> 
->  ifdef CONFIG_UNWINDER_ORC
->  ifeq ($(ARCH),x86_64)
-> diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-> index 95aaf7431bff..743fc08827ea 100644
-> --- a/scripts/dtc/Makefile
-> +++ b/scripts/dtc/Makefile
-> @@ -18,7 +18,7 @@ fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
->  # Source files need to get at the userspace version of libfdt_env.h to compile
->  HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
-> 
-> -ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
-> +ifeq ($(shell $(HOSTPKG_CONFIG) --exists yaml-0.1 2>/dev/null && echo yes),)
->  ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
->  $(error dtc needs libyaml for DT schema validation support. \
->  	Install the necessary libyaml development package.)
-> @@ -27,9 +27,9 @@ HOST_EXTRACFLAGS += -DNO_YAML
->  else
->  dtc-objs	+= yamltree.o
->  # To include <yaml.h> installed in a non-default path
-> -HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
-> +HOSTCFLAGS_yamltree.o := $(shell $(HOSTPKG_CONFIG) --cflags yaml-0.1)
->  # To link libyaml installed in a non-default path
-> -HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
-> +HOSTLDLIBS_dtc	:= $(shell $(HOSTPKG_CONFIG) yaml-0.1 --libs)
->  endif
-> 
->  # Generated files need one more search path to include headers in source tree
-> diff --git a/scripts/kconfig/gconf-cfg.sh b/scripts/kconfig/gconf-cfg.sh
-> index 480ecd8b9f41..267ef6012203 100755
-> --- a/scripts/kconfig/gconf-cfg.sh
-> +++ b/scripts/kconfig/gconf-cfg.sh
-> @@ -3,14 +3,14 @@
-> 
->  PKG="gtk+-2.0 gmodule-2.0 libglade-2.0"
-> 
-> -if [ -z "$(command -v pkg-config)" ]; then
-> +if [ -z "$(command -v $(HOSTPKG_CONFIG))" ]; then
+> diff --git a/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+> new file mode 100644
+> index 000000000000..8ddc4fa6e8e4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpu/aspeed,gfx.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED GFX display device
+> +
+> +maintainers:
+> +  - Joel Stanley <joel@jms.id.au>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - aspeed,ast2400-gfx
+> +          - aspeed,ast2500-gfx
+> +          - aspeed,ast2600-gfx
 
-Dereferencing variables in shell scripts has to be done by using "${var}" or
-"$var".  "$(var)" starts a sub-shell and executes "var", which is not your
-intention.  Thus, better try something like:
+That's different than original bindings - new patch. It's not currently
+supported, so adding it is more than just updating bindings to current
+state.
 
-    if [ -z "$(command -v "${HOSTPKG_CONFIG}")" ]; then
+> +      - const: syscon
+> +
+> +  reg:
+> +    minItems: 1
 
-(and all other shell script replacements in need to be revised, too.)
+maxItems?
 
-Kind regards,
-Nicolas
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  memory-region: true
+> +
+> +  syscon: true
+
+You need at least description. I see old bindings did not mention it
+(except that it is required)... I think you also need a type, because it
+is not a standard property.
+
+> +
+> +  reg-io-width: true
+
+Some constraints? Can it be anything from syscon schema?
+
+Best regards,
+Krzysztof
