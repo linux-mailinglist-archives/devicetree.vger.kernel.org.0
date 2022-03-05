@@ -2,408 +2,463 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 448B64CE2D2
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 06:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7835D4CE393
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 09:22:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231178AbiCEFYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 00:24:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42330 "EHLO
+        id S229590AbiCEIXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Mar 2022 03:23:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231276AbiCEFYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 00:24:41 -0500
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2074.outbound.protection.outlook.com [40.107.237.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E33FA1965C1;
-        Fri,  4 Mar 2022 21:23:50 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FH20IXb/zSitqlUDKnsLFRks7//jU7eyQPPAw1W3LBNrPsFYq/vdjCoSlY1zU8poN8MDnqnzksfgB0U7X0oxb9KAE56pb9/fxoN6q8GeXZ+GPiLkWPrEc4co0wS262NBAc7cyPZBj2/t/w4yc5k1mQys/hSIvvOUe9Xg9ymbIpH7ePnt+CqSqzAg6z8I8MnUAk1Cq6rw9WoGYdTgfM4bwIVDrjxA+aaP20lXojXmFElQCW85tjbui5mzxNJ8BKjsH3CjT8RrNvLz9/Ad50nj1OwK0MEhKEe1EW24NRRZRtlaQ6QUbu7uDhMfdTtQX+Fi9jzBEu+08U6LSnRMVFcz+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qdmgBRgPiavesm0saAo05tNSNGEzTR1CbgfRdTnIAxc=;
- b=FRKlAjMlE0K15dvmgYatdQjAfG/YmXbYuO/gcmTyUNOYkRNWDDWNcmSF9KeqTA/dfS1G4iXCiNoz8L35wd69LPPZvt0vzeVv2Z6ElBO95Gp52gcX9CzmpkMHAdhodmLKuS5rBz+h3ldHFA9h1dNqOnYzj5PfnJaAn2CG3XJpy/cET9j3FJ9z3p2U0cu6W0beXULJ7aj2zzcv93siij9cGwsfLo7mTxw9Y8PsrMxw9TV5YhdRMVnFPhCsixNJRZ5YA9AB6GtCVH2zpfAL6cYMHJgXqw3Ytb0J/SNXlpX+V5u/GLQvypMxtABArK4vMr4AJixFc546CGKYx5YqMP0whg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.62.198) smtp.rcpttodomain=infradead.org smtp.mailfrom=xilinx.com;
- dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qdmgBRgPiavesm0saAo05tNSNGEzTR1CbgfRdTnIAxc=;
- b=Acwv36unsXQUpRPfGRFoc5c5+CokFICwBAgBayKD0WssRPon6V7fc301ONbNXa2yBdcIkVwTvioCwJJi4O5dPL7Giq8HTlXWVYN2MDgOlyVt2rB0QQchhrqVGmVvhw538LTfVc5jVh0rSOHQVDpeY9t2dQ/F8EohQJ9T/jLdHhQ=
-Received: from SA9PR11CA0006.namprd11.prod.outlook.com (2603:10b6:806:6e::11)
- by PH0PR02MB8730.namprd02.prod.outlook.com (2603:10b6:510:d9::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.15; Sat, 5 Mar
- 2022 05:23:47 +0000
-Received: from SN1NAM02FT0043.eop-nam02.prod.protection.outlook.com
- (2603:10b6:806:6e:cafe::40) by SA9PR11CA0006.outlook.office365.com
- (2603:10b6:806:6e::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14 via Frontend
- Transport; Sat, 5 Mar 2022 05:23:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
- smtp.mailfrom=xilinx.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
-Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
- SN1NAM02FT0043.mail.protection.outlook.com (10.97.5.57) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.5038.14 via Frontend Transport; Sat, 5 Mar 2022 05:23:47 +0000
-Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2176.14; Fri, 4 Mar 2022 21:23:46 -0800
-Received: from smtp.xilinx.com (172.19.127.95) by
- xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
- 15.1.2176.14 via Frontend Transport; Fri, 4 Mar 2022 21:23:46 -0800
-Envelope-to: dwmw2@infradead.org,
- yilun.xu@intel.com,
- mdf@kernel.org,
- robh@kernel.org,
- trix@redhat.com,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org
-Received: from [172.19.72.93] (port=44432 helo=xsj-xw9400.xilinx.com)
-        by smtp.xilinx.com with esmtp (Exim 4.90)
-        (envelope-from <lizhi.hou@xilinx.com>)
-        id 1nQMtO-000BZ8-Lt; Fri, 04 Mar 2022 21:23:46 -0800
-Received: by xsj-xw9400.xilinx.com (Postfix, from userid 21952)
-        id 39BAE600196; Fri,  4 Mar 2022 21:23:10 -0800 (PST)
-From:   Lizhi Hou <lizhi.hou@xilinx.com>
-To:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh@kernel.org>
-CC:     Lizhi Hou <lizhi.hou@xilinx.com>, <yilun.xu@intel.com>,
-        <maxz@xilinx.com>, <sonal.santan@xilinx.com>, <yliu@xilinx.com>,
-        <michal.simek@xilinx.com>, <stefanos@xilinx.com>,
-        <trix@redhat.com>, <mdf@kernel.org>, <dwmw2@infradead.org>,
-        <linux-kernel@vger.kernel.org>, Max Zhen <max.zhen@xilinx.com>
-Subject: [PATCH V1 RESEND 4/4] of: enhance overlay applying interface to specific target base node
-Date:   Fri, 4 Mar 2022 21:23:04 -0800
-Message-ID: <20220305052304.726050-5-lizhi.hou@xilinx.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220305052304.726050-1-lizhi.hou@xilinx.com>
-References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
+        with ESMTP id S229458AbiCEIXJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 03:23:09 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F258221BB5;
+        Sat,  5 Mar 2022 00:22:15 -0800 (PST)
+X-UUID: 3f0045f906424d1d869dd924349f3313-20220305
+X-UUID: 3f0045f906424d1d869dd924349f3313-20220305
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 754612243; Sat, 05 Mar 2022 16:22:06 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sat, 5 Mar 2022 16:22:04 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 5 Mar 2022 16:22:04 +0800
+Message-ID: <88c09cbb11c76e17ce78376103d17ac408f3cfd5.camel@mediatek.com>
+Subject: Re: [PATCH V2 4/6] spi: mediatek: add spi memory support
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Date:   Sat, 5 Mar 2022 16:22:04 +0800
+In-Reply-To: <2c1a0925aeb1f3ba640a29e0f6f9765eb609293b.camel@mediatek.com>
+References: <20220221040717.3729-1-leilk.liu@mediatek.com>
+         <20220221040717.3729-5-leilk.liu@mediatek.com>
+         <2e994be0-8b60-a3dc-2ab7-34d93192dc09@collabora.com>
+         <2c1a0925aeb1f3ba640a29e0f6f9765eb609293b.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f8381eb2-dc22-4284-8d3e-08d9fe6852fa
-X-MS-TrafficTypeDiagnostic: PH0PR02MB8730:EE_
-X-Microsoft-Antispam-PRVS: <PH0PR02MB873042F0D90869040E18BBD7A1069@PH0PR02MB8730.namprd02.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6hmkloC6VHpLZ7F6CCoi3iozinOWw66Rsthi+kfo6gVro2Nmhw170UOXVnGrPv42WNUNOJWo45uH7BZ7ku6yZ3loNWpGEwxysVPIaKWTVGwCKRL/1uRYGUXZiZp2n9lZbu45SvJrUMwVsT7yzJvRFxeZ6Q/DREFzU7qxWMT6mp9sISoIFAmGvx2gNxThjyv3naa1pBQ+NpPmkmUUxvHxwMI4GJa2zCJD+kxxNI0kiKVzdUebm4ugRuMM+5Dr+RMNsCiPpa34fZmyJHvM7RMaqaQ82ihgncIAlZVvf77zaJ87W51PWRY1Wu4yp55xnD1zjse8L/hFA6eM3ekOVrI7D3zvCOLjp5g48LNRhFioE7IEX4g1XYCmc1KUki7f7tyRMnDk6OW9KJVQTMcThYeVfFEOmziOj2l7yw6Zkh9J1qYCnXK+nMGJZG4naBt7HXfrMY7C25cvG0ILpcNBPu76v/We3aS50LEGYzxK5AChG3mpPzov9waBZf4APSfERmqLGaxGev8GNCMLozwtm1yTfH4gORWlStNBi+QWMtnDx6APWYtXx75QnOzVFvR3dGFUrPSGuHK3Q+RY3Uu+UaEBZKBVP66KubV7aAjJwbjxyVoMMvPufnCwtDTniePGc7HBirvkXplhbpCNuix45sZKww==
-X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(36840700001)(336012)(426003)(83380400001)(5660300002)(2906002)(42186006)(7636003)(36756003)(26005)(44832011)(6266002)(356005)(1076003)(8936002)(186003)(107886003)(2616005)(8676002)(508600001)(70206006)(70586007)(110136005)(54906003)(82310400004)(36860700001)(47076005)(4326008)(316002)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2022 05:23:47.1060
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8381eb2-dc22-4284-8d3e-08d9fe6852fa
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0043.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR02MB8730
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The self discovered device, e.g. PCIe device, may carry a device tree
-overlay to describe its downstream devices. In this case, the device node
-is created dynamically by device driver. And in the overlay it does not
-specify a fixed target path. Instead, a relative path to the device node
-is specified.
-Thus, a new parameter is added to overlay applying interface. This
-parameter is the pointer of target base node. Then the entire overlay
-target path is target base node path plus the relative path specified in
-the device tree overlay.
+On Wed, 2022-02-23 at 09:59 +0800, Leilk Liu wrote:
+> On Tue, 2022-02-22 at 11:49 +0100, AngeloGioacchino Del Regno wrote:
+> > Il 21/02/22 05:07, Leilk Liu ha scritto:
+> > > this patch add the support of spi-mem.
+> > > 
+> > > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
+> > > ---
+> > >   drivers/spi/spi-mt65xx.c | 310
+> > > ++++++++++++++++++++++++++++++++++++++-
+> > >   1 file changed, 309 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
+> > > index 5fa677a589a4..852fc008329a 100644
+> > > --- a/drivers/spi/spi-mt65xx.c
+> > > +++ b/drivers/spi/spi-mt65xx.c
+> > > @@ -17,6 +17,7 @@
+> > >   #include <linux/platform_data/spi-mt65xx.h>
+> > >   #include <linux/pm_runtime.h>
+> > >   #include <linux/spi/spi.h>
+> > > +#include <linux/spi/spi-mem.h>
+> > >   #include <linux/dma-mapping.h>
+> > >   
+> > >   #define SPI_CFG0_REG                      0x0000
+> > > @@ -75,8 +76,21 @@
+> > >   #define SPI_CMD_IPM_GET_TICKDLY_OFFSET    22
+> > >   
+> > >   #define SPI_CMD_IPM_GET_TICKDLY_MASK	GENMASK(24, 22)
+> > > +
+> > > +#define PIN_MODE_CFG(x)	((x) / 2)
+> > > +
+> > > +#define SPI_CFG3_IPM_PIN_MODE_OFFSET		0
+> > >   #define SPI_CFG3_IPM_HALF_DUPLEX_DIR		BIT(2)
+> > >   #define SPI_CFG3_IPM_HALF_DUPLEX_EN		BIT(3)
+> > > +#define SPI_CFG3_IPM_XMODE_EN			BIT(4)
+> > > +#define SPI_CFG3_IPM_NODATA_FLAG		BIT(5)
+> > > +#define SPI_CFG3_IPM_CMD_BYTELEN_OFFSET		8
+> > > +#define SPI_CFG3_IPM_ADDR_BYTELEN_OFFSET	12
+> > > +
+> > > +#define SPI_CFG3_IPM_CMD_PIN_MODE_MASK		GENMASK(1, 0)
+> > > +#define SPI_CFG3_IPM_CMD_BYTELEN_MASK		GENMASK(11, 8)
+> > > +#define SPI_CFG3_IPM_ADDR_BYTELEN_MASK		GENMASK(15, 12)
+> > > +
+> > >   #define MT8173_SPI_MAX_PAD_SEL 3
+> > >   
+> > >   #define MTK_SPI_PAUSE_INT_STATUS 0x2
+> > > @@ -87,6 +101,8 @@
+> > >   #define MTK_SPI_MAX_FIFO_SIZE 32U
+> > >   #define MTK_SPI_PACKET_SIZE 1024
+> > >   #define MTK_SPI_IPM_PACKET_SIZE SZ_64K
+> > > +#define MTK_SPI_IPM_PACKET_LOOP SZ_256
+> > > +
+> > >   #define MTK_SPI_32BITS_MASK  (0xffffffff)
+> > >   
+> > >   #define DMA_ADDR_EXT_BITS (36)
+> > > @@ -104,7 +120,8 @@ struct mtk_spi_compatible {
+> > >   	bool no_need_unprepare;
+> > >   	/* IPM design improve some single mode features */
+> > >   	bool ipm_design;
+> > > -
+> > > +	/* IPM design that support quad mode */
+> > > +	bool support_quad;
+> > >   };
+> > >   
+> > >   struct mtk_spi {
+> > > @@ -120,6 +137,11 @@ struct mtk_spi {
+> > >   	u32 tx_sgl_len, rx_sgl_len;
+> > >   	const struct mtk_spi_compatible *dev_comp;
+> > >   	u32 spi_clk_hz;
+> > > +	struct completion spimem_done;
+> > > +	bool use_spimem;
+> > > +	struct device *dev;
+> > > +	dma_addr_t tx_dma;
+> > > +	dma_addr_t rx_dma;
+> > >   };
+> > >   
+> > >   static const struct mtk_spi_compatible mtk_common_compat;
+> > > @@ -134,6 +156,13 @@ static const struct mtk_spi_compatible
+> > > ipm_compat_single = {
+> > >   	.ipm_design = true,
+> > >   };
+> > >   
+> > > +static const struct mtk_spi_compatible ipm_compat_quad = {
+> > > +	.enhance_timing = true,
+> > > +	.dma_ext = true,
+> > > +	.ipm_design = true,
+> > > +	.support_quad = true,
+> > > +};
+> > > +
+> > >   static const struct mtk_spi_compatible mt6765_compat = {
+> > >   	.need_pad_sel = true,
+> > >   	.must_tx = true,
+> > > @@ -178,6 +207,9 @@ static const struct of_device_id
+> > > mtk_spi_of_match[] = {
+> > >   	{ .compatible = "mediatek,ipm-spi-single",
+> > >   		.data = (void *)&ipm_compat_single,
+> > >   	},
+> > > +	{ .compatible = "mediatek,ipm-spi-quad",
+> > > +		.data = (void *)&ipm_compat_quad,
+> > > +	},
+> > >   	{ .compatible = "mediatek,mt2701-spi",
+> > >   		.data = (void *)&mtk_common_compat,
+> > >   	},
+> > > @@ -694,6 +726,13 @@ static irqreturn_t mtk_spi_interrupt(int
+> > > irq,
+> > > void *dev_id)
+> > >   	else
+> > >   		mdata->state = MTK_SPI_IDLE;
+> > >   
+> > > +	/* SPI-MEM ops */
+> > > +	if (mdata->use_spimem) {
+> > > +		complete(&mdata->spimem_done);
+> > > +
+> > > +		return IRQ_HANDLED;
+> > > +	}
+> > > +
+> > 
+> > I would instead make a new ISR for the SPI-MEM case... as you're
+> > bypassing the
+> > entire mtk_spi_interrupt() function like that.
+> > 
+> > Example:
+> > 
+> > static void mtk_spi_check_and_set_state(struct mtk_spi *mdata)
+> > {
+> > 	u32 reg_val;
+> > 
+> > 	reg_val = readl(mdata->base + SPI_STATUS0_REG);
+> > 
+> > 	if (reg_val & MTK_SPI_PAUSE_INT_STATUS)
+> > 
+> > 		mdata->state = MTK_SPI_PAUSED;
+> > 
+> > 	else
+> > 
+> > 		mdata->state = MTK_SPI_IDLE;
+> > }
+> > 
+> > static irqreturn_t mtk_spi_interrupt(int irq, void *dev_id)
+> > 
+> > {
+> > 	u32 cmd, reg_val, cnt, remainder, len;
+> > 
+> > 	struct spi_master *master = dev_id;
+> > 
+> > 	struct mtk_spi *mdata = spi_master_get_devdata(master);
+> > 
+> > 	struct spi_transfer *trans = mdata->cur_transfer;
+> > 
+> > 	mtk_spi_check_and_set_state(mdata);
+> > 
+> > 	if (!master->can_dma(........
+> > 	.... blurb...
+> > }
+> > 
+> > static irqreturn_t mtk_spimem_interrupt(int irq, void *dev_id)
+> > {
+> > 	struct spi_master *master = dev_id;
+> > 
+> > 	struct mtk_spi *mdata = spi_master_get_devdata(master);
+> > 
+> > 	mtk_spi_check_and_set_state(mdata);
+> > 	complete(&mdata->spimem_done);
+> > 
+> > 	return IRQ_HANDLED;
+> > }
+> > 
+> > ... of course, in mtk_spi_probe(), you would do something like
+> > 
+> > if (mdata->use_spimem)
+> > 	ret = devm_request_irq(&pdev->dev, irq, mtk_spimem_interrupt,
+> > 		...... blah ......
+> > else
+> > 	ret = devm_request_irq(&pdev->dev, irq, mtk_spi_interrupt,
+> > 		..... blah ......
+> > 
+> > This way, you're separating the two - increasing human readability
+> > and showing
+> > the simplifications (in that regard) in the IPM IP's SPI-MEM
+> > handling.
+> > 
+> 
+> thanks for your advise, I'll do it in the next version.
+Hi AngeloGioacchino,
+ It can't request mtk_spimem_interrupt() only while support spimem
+core, since spi driver should support spi_sync and spi_mem_exec_op
+both.
 
-Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
-Signed-off-by: Max Zhen <max.zhen@xilinx.com>
-Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
----
- drivers/fpga/xrt/mgmt/Makefile       |  1 +
- drivers/fpga/xrt/mgmt/dt-test.dts    | 15 ++++++++++
- drivers/fpga/xrt/mgmt/dt-test.h      | 15 ++++++++++
- drivers/fpga/xrt/mgmt/xmgmt-drv.c    | 41 +++++++++++++++++++++++++++-
- drivers/gpu/drm/rcar-du/rcar_du_of.c |  2 +-
- drivers/of/overlay.c                 | 37 +++++++++++++++++--------
- drivers/of/unittest.c                |  2 +-
- include/linux/of.h                   |  2 +-
- 8 files changed, 100 insertions(+), 15 deletions(-)
- create mode 100644 drivers/fpga/xrt/mgmt/dt-test.dts
- create mode 100644 drivers/fpga/xrt/mgmt/dt-test.h
-
-diff --git a/drivers/fpga/xrt/mgmt/Makefile b/drivers/fpga/xrt/mgmt/Makefile
-index b893c7293d70..a87ab1f6b403 100644
---- a/drivers/fpga/xrt/mgmt/Makefile
-+++ b/drivers/fpga/xrt/mgmt/Makefile
-@@ -9,4 +9,5 @@
- obj-$(CONFIG_FPGA_XRT_XMGMT) += xrt-mgmt.o
- 
- xrt-mgmt-objs :=		\
-+	dt-test.dtb.o		\
- 	xmgmt-drv.o
-diff --git a/drivers/fpga/xrt/mgmt/dt-test.dts b/drivers/fpga/xrt/mgmt/dt-test.dts
-new file mode 100644
-index 000000000000..3bc3d0c95180
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/dt-test.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/dts-v1/;
-+
-+/ {
-+	fragment@0 {
-+		target-path="";
-+		__overlay__ {
-+			pr_isolate_ulp@0,41000 {
-+				compatible = "xlnx,alveo-pr-isolation";
-+				reg = <0x0 0x41000 0x0 0x1000>;
-+			};
-+		};
-+	};
-+};
-+
-diff --git a/drivers/fpga/xrt/mgmt/dt-test.h b/drivers/fpga/xrt/mgmt/dt-test.h
-new file mode 100644
-index 000000000000..dee0de570c8a
---- /dev/null
-+++ b/drivers/fpga/xrt/mgmt/dt-test.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2020-2022 Xilinx, Inc.
-+ *
-+ * Authors:
-+ *     Lizhi Hou <lizhih@xilinx.com>
-+ */
-+
-+#ifndef _DT_TEST_H_
-+#define _DT_TEST_H_
-+
-+extern u8 __dtb_dt_test_begin[];
-+extern u8 __dtb_dt_test_end[];
-+
-+#endif /* _DT_TEST_H_ */
-diff --git a/drivers/fpga/xrt/mgmt/xmgmt-drv.c b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
-index 60742a478a43..54078ffe37fe 100644
---- a/drivers/fpga/xrt/mgmt/xmgmt-drv.c
-+++ b/drivers/fpga/xrt/mgmt/xmgmt-drv.c
-@@ -14,8 +14,11 @@
- #include <linux/aer.h>
- #include <linux/vmalloc.h>
- #include <linux/delay.h>
-+#include <linux/of.h>
- #include <linux/of_pci.h>
- 
-+#include "dt-test.h"
-+
- #define XMGMT_MODULE_NAME	"xrt-mgmt"
- 
- /* PCI Device IDs */
-@@ -25,17 +28,53 @@ static const struct pci_device_id xmgmt_pci_ids[] = {
- 	{ 0, }
- };
- 
-+struct xmgmt {
-+	int ovcs_id;
-+};
-+
- static int xmgmt_probe(struct pci_dev *pdev, const struct pci_device_id *id)
- {
--	devm_of_pci_create_bus_endpoint(pdev);
-+	struct device_node *dn;
-+	struct xmgmt *xm;
-+	int ret;
-+
-+	xm = devm_kzalloc(&pdev->dev, sizeof(*xm), GFP_KERNEL);
-+	if (!xm)
-+		return -ENOMEM;
-+	pci_set_drvdata(pdev, xm);
-+
-+	ret = devm_of_pci_create_bus_endpoint(pdev);
-+	if (ret)
-+		return ret;
-+
-+	dn = of_pci_find_bus_endpoint(pdev);
-+	if (!dn) {
-+		dev_err(&pdev->dev, "does not find bus endpoint");
-+		return -EINVAL;
-+	}
-+
-+	ret = of_overlay_fdt_apply(__dtb_dt_test_begin,
-+				   (u32)(__dtb_dt_test_end - __dtb_dt_test_begin),
-+				   &xm->ovcs_id, dn);
-+	of_node_put(dn);
-+	if (ret)
-+		return ret;
- 
- 	return 0;
- }
- 
-+static void xmgmt_remove(struct pci_dev *pdev)
-+{
-+	struct xmgmt *xm = pci_get_drvdata(pdev);
-+
-+	of_overlay_remove(&xm->ovcs_id);
-+}
-+
- static struct pci_driver xmgmt_driver = {
- 	.name = XMGMT_MODULE_NAME,
- 	.id_table = xmgmt_pci_ids,
- 	.probe = xmgmt_probe,
-+	.remove = xmgmt_remove,
- };
- 
- static int __init xmgmt_init(void)
-diff --git a/drivers/gpu/drm/rcar-du/rcar_du_of.c b/drivers/gpu/drm/rcar-du/rcar_du_of.c
-index afef69669bb4..8799ed235f83 100644
---- a/drivers/gpu/drm/rcar-du/rcar_du_of.c
-+++ b/drivers/gpu/drm/rcar-du/rcar_du_of.c
-@@ -60,7 +60,7 @@ static int __init rcar_du_of_apply_overlay(const struct rcar_du_of_overlay *dtbs
- 
- 	ovcs_id = 0;
- 	return of_overlay_fdt_apply(dtb->begin, dtb->end - dtb->begin,
--				    &ovcs_id);
-+				    &ovcs_id, NULL);
- }
- 
- static int __init rcar_du_of_add_property(struct of_changeset *ocs,
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index d80160cf34bb..4d192dff5055 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -686,9 +686,11 @@ static int build_changeset(struct overlay_changeset *ovcs)
-  * 1) "target" property containing the phandle of the target
-  * 2) "target-path" property containing the path of the target
-  */
--static struct device_node *find_target(struct device_node *info_node)
-+static struct device_node *find_target(struct device_node *info_node,
-+				       struct device_node *target_base)
- {
- 	struct device_node *node;
-+	char *target_path;
- 	const char *path;
- 	u32 val;
- 	int ret;
-@@ -704,10 +706,23 @@ static struct device_node *find_target(struct device_node *info_node)
- 
- 	ret = of_property_read_string(info_node, "target-path", &path);
- 	if (!ret) {
--		node =  of_find_node_by_path(path);
--		if (!node)
--			pr_err("find target, node: %pOF, path '%s' not found\n",
--			       info_node, path);
-+		if (target_base) {
-+			target_path = kasprintf(GFP_KERNEL, "%pOF%s", target_base, path);
-+			if (!target_path)
-+				return NULL;
-+			node = of_find_node_by_path(target_path);
-+			if (!node) {
-+				pr_err("find target, node: %pOF, path '%s' not found\n",
-+				       info_node, target_path);
-+			}
-+			kfree(target_path);
-+		} else {
-+			node =  of_find_node_by_path(path);
-+			if (!node) {
-+				pr_err("find target, node: %pOF, path '%s' not found\n",
-+				       info_node, path);
-+			}
-+		}
- 		return node;
- 	}
- 
-@@ -730,7 +745,7 @@ static struct device_node *find_target(struct device_node *info_node)
-  * detected in @tree, or -ENOSPC if idr_alloc() error.
-  */
- static int init_overlay_changeset(struct overlay_changeset *ovcs,
--		const void *fdt, struct device_node *tree)
-+		const void *fdt, struct device_node *tree, struct device_node *target_base)
- {
- 	struct device_node *node, *overlay_node;
- 	struct fragment *fragment;
-@@ -792,7 +807,7 @@ static int init_overlay_changeset(struct overlay_changeset *ovcs,
- 
- 		fragment = &fragments[cnt];
- 		fragment->overlay = overlay_node;
--		fragment->target = find_target(node);
-+		fragment->target = find_target(node, target_base);
- 		if (!fragment->target) {
- 			of_node_put(fragment->overlay);
- 			ret = -EINVAL;
-@@ -914,7 +929,7 @@ static void free_overlay_changeset(struct overlay_changeset *ovcs)
-  */
- 
- static int of_overlay_apply(const void *fdt, struct device_node *tree,
--		int *ovcs_id)
-+		int *ovcs_id, struct device_node *base)
- {
- 	struct overlay_changeset *ovcs;
- 	int ret = 0, ret_revert, ret_tmp;
-@@ -947,7 +962,7 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- 	if (ret)
- 		goto err_free_tree;
- 
--	ret = init_overlay_changeset(ovcs, fdt, tree);
-+	ret = init_overlay_changeset(ovcs, fdt, tree, base);
- 	if (ret)
- 		goto err_free_tree;
- 
-@@ -1015,7 +1030,7 @@ static int of_overlay_apply(const void *fdt, struct device_node *tree,
- }
- 
- int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
--			 int *ovcs_id)
-+			 int *ovcs_id, struct device_node *base)
- {
- 	void *new_fdt;
- 	void *new_fdt_align;
-@@ -1053,7 +1068,7 @@ int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
- 		goto out_free_new_fdt;
- 	}
- 
--	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id);
-+	ret = of_overlay_apply(new_fdt, overlay_root, ovcs_id, base);
- 	if (ret < 0) {
- 		/*
- 		 * new_fdt and overlay_root now belong to the overlay
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index 70992103c07d..471bf6f2ec9a 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -3010,7 +3010,7 @@ static int __init overlay_data_apply(const char *overlay_name, int *ovcs_id)
- 	if (!size)
- 		pr_err("no overlay data for %s\n", overlay_name);
- 
--	ret = of_overlay_fdt_apply(info->dtb_begin, size, &info->ovcs_id);
-+	ret = of_overlay_fdt_apply(info->dtb_begin, size, &info->ovcs_id, NULL);
- 	if (ovcs_id)
- 		*ovcs_id = info->ovcs_id;
- 	if (ret < 0)
-diff --git a/include/linux/of.h b/include/linux/of.h
-index 2dc77430a91a..7c5ecafb98c8 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1567,7 +1567,7 @@ struct of_overlay_notify_data {
- #ifdef CONFIG_OF_OVERLAY
- 
- int of_overlay_fdt_apply(const void *overlay_fdt, u32 overlay_fdt_size,
--			 int *ovcs_id);
-+			 int *ovcs_id, struct device_node *target_base);
- int of_overlay_remove(int *ovcs_id);
- int of_overlay_remove_all(void);
- 
--- 
-2.27.0
+> 
+> > >   	if (!master->can_dma(master, NULL, trans)) {
+> > >   		if (trans->rx_buf) {
+> > >   			cnt = mdata->xfer_len / 4;
+> > > @@ -777,6 +816,266 @@ static irqreturn_t mtk_spi_interrupt(int
+> > > irq,
+> > > void *dev_id)
+> > >   	return IRQ_HANDLED;
+> > >   }
+> > >   
+> > > +static int mtk_spi_mem_adjust_op_size(struct spi_mem *mem,
+> > > +				      struct spi_mem_op *op)
+> > > +{
+> > > +	int opcode_len;
+> > > +
+> > > +	if (op->data.dir != SPI_MEM_NO_DATA) {
+> > > +		opcode_len = 1 + op->addr.nbytes + op->dummy.nbytes;
+> > > +		if (opcode_len + op->data.nbytes >
+> > > MTK_SPI_IPM_PACKET_SIZE) {
+> > > +			op->data.nbytes = MTK_SPI_IPM_PACKET_SIZE -
+> > > opcode_len;
+> > > +			/* force data buffer dma-aligned. */
+> > > +			op->data.nbytes -= op->data.nbytes % 4;
+> > > +		}
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static bool mtk_spi_mem_supports_op(struct spi_mem *mem,
+> > > +				    const struct spi_mem_op *op)
+> > > +{
+> > > +	if (op->data.buswidth > 4 || op->addr.buswidth > 4 ||
+> > > +	    op->dummy.buswidth > 4 || op->cmd.buswidth > 4)
+> > > +		return false;
+> > > +
+> > > +	if (op->addr.nbytes && op->dummy.nbytes &&
+> > > +	    op->addr.buswidth != op->dummy.buswidth)
+> > > +		return false;
+> > > +
+> > > +	if (op->addr.nbytes + op->dummy.nbytes > 16)
+> > > +		return false;
+> > > +
+> > > +	if (op->data.nbytes > MTK_SPI_IPM_PACKET_SIZE) {
+> > > +		if (op->data.nbytes / MTK_SPI_IPM_PACKET_SIZE >
+> > > +		    MTK_SPI_IPM_PACKET_LOOP ||
+> > > +		    op->data.nbytes % MTK_SPI_IPM_PACKET_SIZE != 0)
+> > > +			return false;
+> > > +	}
+> > > +
+> > > +	return true;
+> > > +}
+> > > +
+> > > +static void mtk_spi_mem_setup_dma_xfer(struct spi_master
+> > > *master,
+> > > +				       const struct spi_mem_op *op)
+> > > +{
+> > > +	struct mtk_spi *mdata = spi_master_get_devdata(master);
+> > > +
+> > > +	writel((u32)(mdata->tx_dma & MTK_SPI_32BITS_MASK),
+> > > +	       mdata->base + SPI_TX_SRC_REG);
+> > > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+> > > +	if (mdata->dev_comp->dma_ext)
+> > > +		writel((u32)(mdata->tx_dma >> 32),
+> > > +		       mdata->base + SPI_TX_SRC_REG_64);
+> > > +#endif
+> > > +
+> > > +	if (op->data.dir == SPI_MEM_DATA_IN) {
+> > > +		writel((u32)(mdata->rx_dma & MTK_SPI_32BITS_MASK),
+> > > +		       mdata->base + SPI_RX_DST_REG);
+> > > +#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
+> > > +		if (mdata->dev_comp->dma_ext)
+> > > +			writel((u32)(mdata->rx_dma >> 32),
+> > > +			       mdata->base + SPI_RX_DST_REG_64);
+> > > +#endif
+> > > +	}
+> > > +}
+> > > +
+> > > +static int mtk_spi_transfer_wait(struct spi_mem *mem,
+> > > +				 const struct spi_mem_op *op)
+> > > +{
+> > > +	struct mtk_spi *mdata = spi_master_get_devdata(mem->spi-
+> > > > master);
+> > > 
+> > > +	unsigned long long ms = 1;
+> > 
+> > Initializing ms to 1 here is useless, as you're anyway
+> > reinitializing
+> > it
+> > right after. I would do it as following:
+> > 
+> > u64 ms = 8000LL;
+> > 
+> > if (op->data.dir == SPI_MEM_NO_DATA)
+> > 	ms *= 32;
+> > else
+> > 	ms *= op->data.nbytes;
+> > 
+> 
+> OK,I'll fix it.
+> 
+> > Besides, can you please add a comment to the code explaining why
+> > the
+> > reason for the waits (why 8, why 1000, why 32)?
+> > 
+> 
+> OK,THANKS
+> 
+> > > +
+> > > +	if (op->data.dir == SPI_MEM_NO_DATA)
+> > > +		ms = 8LL * 1000LL * 32;
+> > > +	else
+> > > +		ms = 8LL * 1000LL * op->data.nbytes;
+> > > +	do_div(ms, mem->spi->max_speed_hz);
+> > 
+> > I appreciate the usage of safe division helpers, but this is the
+> > wrong one:
+> > you have a unsigned long long (64-bits) dividend and a u32 divisor,
+> > so the
+> > right function to use here is div_u64().
+> > 
+> 
+> OK, I'll fix it. thanks!
+> 
+> > 	ms = div_u64(ms, mem->spi->max_speed_hz);
+> > 
+> > > +	ms += ms + 1000; /* 1s tolerance */
+> > > +
+> > > +	if (ms > UINT_MAX)
+> > > +		ms = UINT_MAX;
+> > > +
+> > > +	if (!wait_for_completion_timeout(&mdata->spimem_done,
+> > > +					 msecs_to_jiffies(ms))) {
+> > > +		dev_err(mdata->dev, "spi-mem transfer timeout\n");
+> > > +		return -ETIMEDOUT;
+> > > +	}
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int mtk_spi_mem_exec_op(struct spi_mem *mem,
+> > > +			       const struct spi_mem_op *op)
+> > > +{
+> > > +	struct mtk_spi *mdata = spi_master_get_devdata(mem->spi-
+> > > > master);
+> > > 
+> > > +	u32 reg_val, nio = 1, tx_size;
+> > > +	char *tx_tmp_buf, *rx_tmp_buf;
+> > > +	int ret = 0;
+> > > +
+> > > +	mdata->use_spimem = true;
+> > > +	reinit_completion(&mdata->spimem_done);
+> > > +
+> > > +	mtk_spi_reset(mdata);
+> > > +	mtk_spi_hw_init(mem->spi->master, mem->spi);
+> > > +	mtk_spi_prepare_transfer(mem->spi->master, mem->spi-
+> > > > max_speed_hz);
+> > > 
+> > > +
+> > > +	reg_val = readl(mdata->base + SPI_CFG3_IPM_REG);
+> > > +	/* opcode byte len */
+> > > +	reg_val &= ~SPI_CFG3_IPM_CMD_BYTELEN_MASK;
+> > > +	reg_val |= 1 << SPI_CFG3_IPM_CMD_BYTELEN_OFFSET;
+> > > +
+> > > +	/* addr & dummy byte len */
+> > > +	reg_val &= ~SPI_CFG3_IPM_ADDR_BYTELEN_MASK;
+> > > +	if (op->addr.nbytes || op->dummy.nbytes)
+> > > +		reg_val |= (op->addr.nbytes + op->dummy.nbytes) <<
+> > > +			    SPI_CFG3_IPM_ADDR_BYTELEN_OFFSET;
+> > > +
+> > > +	/* data byte len */
+> > > +	if (op->data.dir == SPI_MEM_NO_DATA) {
+> > > +		reg_val |= SPI_CFG3_IPM_NODATA_FLAG;
+> > > +		writel(0, mdata->base + SPI_CFG1_REG);
+> > > +	} else {
+> > > +		reg_val &= ~SPI_CFG3_IPM_NODATA_FLAG;
+> > > +		mdata->xfer_len = op->data.nbytes;
+> > > +		mtk_spi_setup_packet(mem->spi->master);
+> > > +	}
+> > > +
+> > > +	if (op->addr.nbytes || op->dummy.nbytes) {
+> > > +		if (op->addr.buswidth == 1 || op->dummy.buswidth == 1)
+> > > +			reg_val |= SPI_CFG3_IPM_XMODE_EN;
+> > > +		else
+> > > +			reg_val &= ~SPI_CFG3_IPM_XMODE_EN;
+> > > +	}
+> > > +
+> > > +	if (op->addr.buswidth == 2 ||
+> > > +	    op->dummy.buswidth == 2 ||
+> > > +	    op->data.buswidth == 2)
+> > > +		nio = 2;
+> > > +	else if (op->addr.buswidth == 4 ||
+> > > +		 op->dummy.buswidth == 4 ||
+> > > +		 op->data.buswidth == 4)
+> > > +		nio = 4;
+> > 
+> > 	else
+> > 		nio = 1;
+> > 
+> > ...so that you can avoid double initialization of the `nio`
+> > variable.
+> > 
+> 
+> OK, I'll fix it,thanks
+> 
+> > > +
+> > > +	reg_val &= ~SPI_CFG3_IPM_CMD_PIN_MODE_MASK;
+> > > +	reg_val |= PIN_MODE_CFG(nio) << SPI_CFG3_IPM_PIN_MODE_OFFSET;
+> > > +
+> > 
+> > Regards,
+> > Angelo
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
 
