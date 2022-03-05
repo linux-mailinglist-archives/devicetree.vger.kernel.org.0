@@ -2,314 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94FB94CE46D
-	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 12:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C9404CE48D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Mar 2022 12:26:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230443AbiCELNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 06:13:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39074 "EHLO
+        id S231586AbiCEL1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 5 Mar 2022 06:27:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229463AbiCELNw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 06:13:52 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4626D761A;
-        Sat,  5 Mar 2022 03:13:01 -0800 (PST)
-X-UUID: df944644938c4e3cbacd0d079e0f1b42-20220305
-X-UUID: df944644938c4e3cbacd0d079e0f1b42-20220305
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1916300288; Sat, 05 Mar 2022 19:12:53 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sat, 5 Mar 2022 19:12:52 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 5 Mar 2022 19:12:51 +0800
-Message-ID: <f11791bc48c466ddc737e23d767bb8dadd218a36.camel@mediatek.com>
-Subject: Re: [v2 07/17] ASoC: mediatek: mt8186: support pcm in platform
- driver
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <perex@perex.cz>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <aaronyu@google.com>, <zhangqilong3@huawei.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Date:   Sat, 5 Mar 2022 19:12:51 +0800
-In-Reply-To: <78474983-a07c-6b1d-797a-d0788f3577b6@collabora.com>
-References: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
-         <20220217134205.15400-8-jiaxin.yu@mediatek.com>
-         <78474983-a07c-6b1d-797a-d0788f3577b6@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S230008AbiCEL1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 06:27:12 -0500
+Received: from mxout3.routing.net (mxout3.routing.net [IPv6:2a03:2900:1:a::8])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC6343F8BE;
+        Sat,  5 Mar 2022 03:26:22 -0800 (PST)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.89])
+        by mxout3.routing.net (Postfix) with ESMTP id 144C86049C;
+        Sat,  5 Mar 2022 11:26:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+        s=20200217; t=1646479580;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=6gwriWaFi6MV5ObTftZoDnQjQ5jbHMHJHeQVs8bkt4c=;
+        b=qEQuBz2SlAGt32/+NH/oMu13nPzwzTLS61QznyjSBVW5uO+dVrAWNaIgsZkUoHDdOa9odP
+        WMm50lW0X1JkT/RKCIw2G6zpVQ1d+tWqaZI/8AdO+hhWF0IskeeYIxR9ld6aUNkyZNHxpl
+        enjuPuSVwjeSlxbHkkIBZ34TEHYAqsU=
+Received: from localhost.localdomain (fttx-pool-217.61.157.101.bambit.de [217.61.157.101])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id CA68010040E;
+        Sat,  5 Mar 2022 11:26:18 +0000 (UTC)
+From:   Frank Wunderlich <linux@fw-web.de>
+To:     devicetree@vger.kernel.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v5 0/5] Add sata nodes to rk356x
+Date:   Sat,  5 Mar 2022 12:26:02 +0100
+Message-Id: <20220305112607.257734-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 5dcd9dc4-35e0-4c59-b894-336e52342d89
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-02-18 at 15:54 +0100, AngeloGioacchino Del Regno wrote:
-> Il 17/02/22 14:41, Jiaxin Yu ha scritto:
-> > This patch adds mt8186 pcm dai driver.
-> > 
-> > Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > ---
-> >   sound/soc/mediatek/mt8186/mt8186-dai-pcm.c | 432
-> > +++++++++++++++++++++
-> >   1 file changed, 432 insertions(+)
-> >   create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-pcm.c
-> > 
-> > diff --git a/sound/soc/mediatek/mt8186/mt8186-dai-pcm.c
-> > b/sound/soc/mediatek/mt8186/mt8186-dai-pcm.c
-> > new file mode 100644
-> > index 000000000000..73b3f720ed35
-> > --- /dev/null
-> > +++ b/sound/soc/mediatek/mt8186/mt8186-dai-pcm.c
-> > @@ -0,0 +1,432 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +//
-> > +// MediaTek ALSA SoC Audio DAI I2S Control
-> > +//
-> > +// Copyright (c) 2022 MediaTek Inc.
-> > +// Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
-> > +
-> > +#include <linux/regmap.h>
-> > +#include <sound/pcm_params.h>
-> > +#include "mt8186-afe-common.h"
-> > +#include "mt8186-afe-gpio.h"
-> > +#include "mt8186-interconnection.h"
-> > +
-> > +struct mtk_afe_pcm_priv {
-> > +	unsigned int id;
-> > +	unsigned int fmt;
-> > +	unsigned int bck_invert;
-> > +	unsigned int lck_invert;
-> > +};
-> > +
-> > +enum AUD_TX_LCH_RPT {
-> 
-> lowercase enumeration names please...
-> 
-> enum aud_tx_lch_rpt {
-> 	AUD_TX....BLAH
-> };
-> 
-Ok, I will fix them.
+From: Frank Wunderlich <frank-w@public-files.de>
 
-> > +	AUD_TX_LCH_RPT_NO_REPEAT = 0,
-> > +	AUD_TX_LCH_RPT_REPEAT = 1
-> > +};
-> > +
-> > +enum AUD_VBT_16K_MODE {
-> > +	AUD_VBT_16K_MODE_DISABLE = 0,
-> > +	AUD_VBT_16K_MODE_ENABLE = 1
-> > +};
-> > +
-> > +enum AUD_EXT_MODEM {
-> > +	AUD_EXT_MODEM_SELECT_INTERNAL = 0,
-> > +	AUD_EXT_MODEM_SELECT_EXTERNAL = 1
-> > +};
-> > +
-> > +enum AUD_PCM_SYNC_TYPE {
-> > +	/* bck sync length = 1 */
-> > +	AUD_PCM_ONE_BCK_CYCLE_SYNC = 0,
-> > +	/* bck sync length = PCM_INTF_CON1[9:13] */
-> > +	AUD_PCM_EXTENDED_BCK_CYCLE_SYNC = 1
-> > +};
-> > +
-> > +enum AUD_BT_MODE {
-> > +	AUD_BT_MODE_DUAL_MIC_ON_TX = 0,
-> > +	AUD_BT_MODE_SINGLE_MIC_ON_TX = 1
-> > +};
-> > +
-> > +enum AUD_PCM_AFIFO_SRC {
-> > +	/* slave mode & external modem uses different crystal */
-> > +	AUD_PCM_AFIFO_ASRC = 0,
-> > +	/* slave mode & external modem uses the same crystal */
-> > +	AUD_PCM_AFIFO_AFIFO = 1
-> > +};
-> > +
-> > +enum AUD_PCM_CLOCK_SOURCE {
-> > +	AUD_PCM_CLOCK_MASTER_MODE = 0,
-> > +	AUD_PCM_CLOCK_SLAVE_MODE = 1
-> > +};
-> > +
-> > +enum AUD_PCM_WLEN {
-> > +	AUD_PCM_WLEN_PCM_32_BCK_CYCLES = 0,
-> > +	AUD_PCM_WLEN_PCM_64_BCK_CYCLES = 1
-> > +};
-> > +
-> > +enum AUD_PCM_24BIT {
-> > +	AUD_PCM_24BIT_PCM_16_BITS = 0,
-> > +	AUD_PCM_24BIT_PCM_24_BITS = 1
-> > +};
-> > +
-> > +enum AUD_PCM_MODE {
-> > +	AUD_PCM_MODE_PCM_MODE_8K = 0,
-> > +	AUD_PCM_MODE_PCM_MODE_16K = 1,
-> > +	AUD_PCM_MODE_PCM_MODE_32K = 2,
-> > +	AUD_PCM_MODE_PCM_MODE_48K = 3,
-> > +};
-> > +
-> > +enum AUD_PCM_FMT {
-> > +	AUD_PCM_FMT_I2S = 0,
-> > +	AUD_PCM_FMT_EIAJ = 1,
-> > +	AUD_PCM_FMT_PCM_MODE_A = 2,
-> > +	AUD_PCM_FMT_PCM_MODE_B = 3
-> > +};
-> > +
-> > +enum AUD_BCLK_OUT_INV {
-> > +	AUD_BCLK_OUT_INV_NO_INVERSE = 0,
-> > +	AUD_BCLK_OUT_INV_INVERSE = 1
-> > +};
-> > +
-> > +enum AUD_LRCLK_OUT_INV {
-> > +	AUD_LRCLK_OUT_INV_NO_INVERSE = 0,
-> > +	AUD_LRCLK_OUT_INV_INVERSE = 1
-> > +};
-> > +
-> > +enum AUD_PCM_EN {
-> > +	AUD_PCM_EN_DISABLE = 0,
-> > +	AUD_PCM_EN_ENABLE = 1
-> > +};
-> > +
-> 
-> ..snip..
-> 
-> > +
-> > +/* dai ops */
-> > +static int mtk_dai_pcm_hw_params(struct snd_pcm_substream
-> > *substream,
-> > +				 struct snd_pcm_hw_params *params,
-> > +				 struct snd_soc_dai *dai)
-> > +{
-> > +	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-> > +	struct mt8186_afe_private *afe_priv = afe->platform_priv;
-> > +	int pcm_id = dai->id;
-> > +	struct mtk_afe_pcm_priv *pcm_priv = afe_priv->dai_priv[pcm_id];
-> > +	unsigned int rate = params_rate(params);
-> > +	unsigned int rate_reg = mt8186_rate_transform(afe->dev, rate,
-> > dai->id);
-> > +	snd_pcm_format_t format = params_format(params);
-> > +	unsigned int data_width =
-> > +		snd_pcm_format_width(format);
-> > +	unsigned int wlen_width =
-> > +		snd_pcm_format_physical_width(format);
-> > +	unsigned int pcm_con = 0;
-> > +
-> > +	dev_info(afe->dev, "%s(), id %d, stream %d, widget active p %d,
-> > c %d\n",
-> > +		 __func__,
-> > +		 dai->id,
-> > +		 substream->stream,
-> > +		 dai->playback_widget->active,
-> > +		 dai->capture_widget->active);
-> > +	dev_info(afe->dev, "%s(), rate %d, rate_reg %d, data_width %d,
-> > wlen_width %d\n",
-> > +		 __func__,
-> > +		 rate,
-> > +		 rate_reg,
-> > +		 data_width,
-> > +		 wlen_width);
-> 
-> dev_dbg() - also, you don't need one line per variable.
-> 
+This Series converts the binding for ahci-platform to yaml and adds
+sata nodes to rockchip rk356x device trees.
 
-Yes, I will line them up in two.
-> > +
-> > +	if (dai->playback_widget->active || dai->capture_widget-
-> > >active)
-> > +		return 0;
-> > +
-> > +	switch (dai->id) {
-> > +	case MT8186_DAI_PCM:
-> > +		pcm_con |= AUD_TX_LCH_RPT_NO_REPEAT <<
-> > PCM_TX_LCH_RPT_SFT;
-> > +		pcm_con |= AUD_VBT_16K_MODE_DISABLE <<
-> > PCM_VBT_16K_MODE_SFT;
-> > +		pcm_con |= AUD_EXT_MODEM_SELECT_EXTERNAL <<
-> > PCM_EXT_MODEM_SFT;
-> > +		pcm_con |= AUD_PCM_ONE_BCK_CYCLE_SYNC <<
-> > PCM_SYNC_TYPE_SFT;
-> > +		pcm_con |= AUD_BT_MODE_DUAL_MIC_ON_TX <<
-> > PCM_BT_MODE_SFT;
-> > +		pcm_con |= AUD_PCM_AFIFO_AFIFO << PCM_BYP_ASRC_SFT;
-> > +		pcm_con |= AUD_PCM_CLOCK_MASTER_MODE << PCM_SLAVE_SFT;
-> > +		pcm_con |= 0 << PCM_SYNC_LENGTH_SFT;
-> > +
-> > +		/* sampling rate */
-> > +		pcm_con |= rate_reg << PCM_MODE_SFT;
-> > +
-> > +		/* format */
-> > +		pcm_con |= pcm_priv->fmt << PCM_FMT_SFT;
-> > +
-> > +		/* 24bit data width */
-> > +		if (data_width > 16)
-> > +			pcm_con |= AUD_PCM_24BIT_PCM_24_BITS <<
-> > PCM_24BIT_SFT;
-> > +		else
-> > +			pcm_con |= AUD_PCM_24BIT_PCM_16_BITS <<
-> > PCM_24BIT_SFT;
-> > +
-> > +		/* wlen width*/
-> > +		if (wlen_width > 16)
-> > +			pcm_con |= AUD_PCM_WLEN_PCM_64_BCK_CYCLES <<
-> > PCM_WLEN_SFT;
-> > +		else
-> > +			pcm_con |= AUD_PCM_WLEN_PCM_32_BCK_CYCLES <<
-> > PCM_WLEN_SFT;
-> > +
-> > +		/* clock invert */
-> > +		pcm_con |= pcm_priv->lck_invert <<
-> > PCM_SYNC_OUT_INV_SFT;
-> > +		pcm_con |= pcm_priv->bck_invert <<
-> > PCM_BCLK_OUT_INV_SFT;
-> > +
-> > +		regmap_update_bits(afe->regmap, PCM_INTF_CON1,
-> > +				   0xfffffffe, pcm_con);
-> 
-> Fits in one line.
-> 
-> > +		break;
-> > +	default:
-> > +		dev_info(afe->dev, "%s(), id %d not support\n",
-> > +			 __func__, dai->id);
-> 
-> dev_err()
-> 
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int mtk_dai_pcm_set_fmt(struct snd_soc_dai *dai, unsigned
-> > int fmt)
-> > +{
-> > +	struct mtk_base_afe *afe = snd_soc_dai_get_drvdata(dai);
-> > +	struct mt8186_afe_private *afe_priv = afe->platform_priv;
-> > +	struct mtk_afe_pcm_priv *pcm_priv = afe_priv->dai_priv[dai-
-> > >id];
-> > +
-> > +	if (!pcm_priv) {
-> > +		dev_info(afe->dev, "%s(), tdm_priv == NULL", __func__);
-> 
-> dev_err()
-> 
-> > +		return -EINVAL;
-> > +	}
-> > +
+v5:
+  DTS:
+  - drop broadcom-patch as it is already applied
+  - add fix for marvell
+  YAML:
+  - change subject
+  - drop brcm,iproc-ahci from standalone enum
+  - fix reg address in example 2
+  - move clocknames next to clocks, regnames to reg
+  - drop interrupts description
+  - drop newline from dma-coherent
+  - drop max-items from ports-implemented
+  - min2max in child phys
+  - fix identation for compatible and sata-common
+  - add additionalProperties=false for subnodes
+  - pipe for paragraphs and newline after title
+  - add maximum for ports-implemented (found only 0x1 as its value)
+  - add phy-names to sata-ports
+v4:
+  YAML binding:
+  - fix min vs. max
+  - fix indention of examples
+  - move up sata-common.yaml
+  - reorder compatible
+  - add descriptions/maxitems
+  - fix compatible-structure
+  - fix typo in example achi vs. ahci
+  - add clock-names and reg-names
+  DTS-Patches:
+  - drop newline in dts
+  - re-add clock-names
+  - add soc specific compatible
+  - fix sata nodename in arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+v3:
+  - add conversion to sata-series
+  - fix some errors in dt_binding_check and dtbs_check
+  - move to unevaluated properties = false
+  - add power-domain to yaml
+  - move sata0 to rk3568.dtsi
+  - drop clock-names and interrupt-names
+
+Frank Wunderlich (5):
+  dt-bindings: ata: ahci-platform: Convert DT bindings to yaml
+  arm64: dts: marvell: fix anyOf conditional failed
+  dt-bindings: ata: ahci-platform: Add power-domains property
+  dt-bindings: ata: ahci-platform: Add rk3568-dwc3-ahci compatible
+  arm64: dts: rockchip: Add sata nodes to rk356x
+
+ .../devicetree/bindings/ata/ahci-platform.txt |  79 --------
+ .../bindings/ata/ahci-platform.yaml           | 170 ++++++++++++++++++
+ .../arm64/boot/dts/marvell/armada-7040-db.dts |   1 +
+ .../boot/dts/marvell/armada-7040-mochabin.dts |   2 +
+ .../marvell/armada-8040-clearfog-gt-8k.dts    |   1 +
+ .../arm64/boot/dts/marvell/armada-8040-db.dts |   2 +
+ .../boot/dts/marvell/armada-8040-mcbin.dtsi   |   1 +
+ .../dts/marvell/armada-8040-puzzle-m801.dts   |   2 +
+ arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   2 +
+ arch/arm64/boot/dts/marvell/cn9130-crb-B.dts  |   1 +
+ arch/arm64/boot/dts/marvell/cn9131-db.dtsi    |   1 +
+ arch/arm64/boot/dts/marvell/cn9132-db.dtsi    |   1 +
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      |  14 ++
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi      |  28 +++
+ 14 files changed, 226 insertions(+), 79 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.txt
+ create mode 100644 Documentation/devicetree/bindings/ata/ahci-platform.yaml
+
+-- 
+2.25.1
 
