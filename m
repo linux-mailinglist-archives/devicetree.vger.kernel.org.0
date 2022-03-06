@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 974A34CEABC
-	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 12:12:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 618D54CEAC7
+	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 12:12:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233317AbiCFLMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 06:12:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49600 "EHLO
+        id S233376AbiCFLNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 06:13:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233310AbiCFLMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 06:12:41 -0500
+        with ESMTP id S233352AbiCFLMt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 06:12:49 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4A7D60CF8
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 03:11:48 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DEB60AB5
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 03:11:57 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 701383F631
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 11:11:45 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 88AC13F636
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 11:11:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646565105;
-        bh=xb1NVPmzCu//acWeZYDa5U/h0JIp5bKXDfT7rDv6gyY=;
+        s=20210705; t=1646565108;
+        bh=5q3Cvfs96FMgD3OViDSeZ+rSi5cV583JAJ+X+hKXLOQ=;
         h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=CMG5g3dgHgKCD90u05vIsomchSxBmlCi37/4Dc102Qbud1/gWSzSLOZqV5jSVkAhC
-         EaJLLfWxvwjklEVvNPs1Ktr/DQTKIua/Vn2dPzt+OhKLqD+lfVOD+XLzhHmK7NesGf
-         I+fKh8+uBDzbU6UU/rfacLN2QXBzQ09NGBKqv5BKXIMl9wDrhTDOpkNEvlmfCh5Y+N
-         C1ut1FxBUGbIluxTG6q04aV1rCpC74sH2oIyWM903j/WlchfDM36E60evToYQ5AR5l
-         hqlPwismeoxsQ4C+g8UA1ewroMCGWQ3xPHw+vRf9CDUZ3WvavAQoFeBREyv/4eIcuI
-         ZazXWox46HWNg==
-Received: by mail-ej1-f70.google.com with SMTP id k16-20020a17090632d000b006ae1cdb0f07so6134879ejk.16
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 03:11:45 -0800 (PST)
+        b=FgTbh85gpiffX3Szwldtswz6NvPfjU8B4V1DUM/C+b/x9jHCPOyoUdB4AYtKHJkK7
+         1q04z6FK/pdiZITi+fMwsDt+F38qsGYDd1ep9etNV0Lnh+whSqRDCni5a4BTtdangA
+         LbH6KowoH4hGf8S0wibmwXEQQsMvbaco/xxrzgXQRRgH6g6npoR1FzJjyQHPsCueZP
+         kqQ76LsfpqrA0yp71GewnQyhPKqDdgRm847bLWeP3X6qGVcSl7H2V7gU349ACqLdT1
+         agVmedvS5ocSeG454lcvOMtdE6+6SH9P8zFVaMYHAA30sQmpVzjKq6qyvYIyfCvq0j
+         AmvqqXFTFmi2Q==
+Received: by mail-ed1-f69.google.com with SMTP id n11-20020a50cc4b000000b00415e939bf9eso4588595edi.22
+        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 03:11:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=xb1NVPmzCu//acWeZYDa5U/h0JIp5bKXDfT7rDv6gyY=;
-        b=cIH628oCOlIsPmdjd+hK/0Wy3FSYf/izLXZRGX++q9WNUqQBPMf4WhlSvXBeA2xqUZ
-         82dGgFkwOgxrqUP4fmD9xAzAXFdt6z9A0HG4JB31PdqHPf3eSrgi6Hyv9Q/KjKfZOihu
-         u9L11BWHfgt9vYE7ot+UZuhOM2eopQslNKEh3vm/vxz+XgrnHb98xZXOgCIMIcmSQYk2
-         wOpC19IDub6jAiiibDQ+ciA99BPyiNh1DsBEELIXB/5lxUtDql/Z6cz/ZmC6kQa46ost
-         yBbvDOtiNpKMT74q2G260hNTx3+DdaIGEMw1ALDvh9osMVgIc2d/z33LusIWYTQCmTWS
-         HXCA==
-X-Gm-Message-State: AOAM531Kz4oKvEUrdysHp2x4btcrdY3qSoqsAn3k4LAJWtii/Iy2pn4Y
-        tMudBDdmWRT22EKBL1VthaScef+faPny6Osy8ooNg4ZL0MF+Op5qBWa57e370NIZaANJRfyi8cP
-        MeAWXsq3sBgHJzM5/gvFFvQqUKFyMbku7HF+1wdI=
-X-Received: by 2002:a17:906:3ad1:b0:6ce:a880:7745 with SMTP id z17-20020a1709063ad100b006cea8807745mr5480157ejd.46.1646565104762;
-        Sun, 06 Mar 2022 03:11:44 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxkqOPNZGWUEHHQJ1DdvnKzAnwvejxildLb9k95BB+Ex4BtuNUf/GcST/RwEz/yOnL8XuyPOQ==
-X-Received: by 2002:a17:906:3ad1:b0:6ce:a880:7745 with SMTP id z17-20020a1709063ad100b006cea8807745mr5480132ejd.46.1646565104528;
-        Sun, 06 Mar 2022 03:11:44 -0800 (PST)
+        bh=5q3Cvfs96FMgD3OViDSeZ+rSi5cV583JAJ+X+hKXLOQ=;
+        b=RbKHf0F4Gt5NySjI4NcIjeebYFcMuQCjXB0g+9jPII359U7oGLaTsTWu1KF+kqCHtf
+         3Zgo2kcS0YRhu4waN3YID7zlEU3RSXn5Uh2FdczJpxUxUT9DxRmPQiot8jpAh4i0ptcv
+         arFHRoOJDc36vDOwinKZegkJNALchIOKEhegRtMDxS/kYyU6NM+lSPqjJQ6IMow1Hx7C
+         XQbbsdhE5fykt/iRESeVS4MFPI2nxTheiT6MftfbHe878wyElogiumzIcOC2x2mmvsE7
+         BSEYlm5WpSu+ZUsIn4yjjoDvbfQk3iawFFo/dL5UafjMY1Mpft+7odjIkut4sdyQ3x50
+         LW1g==
+X-Gm-Message-State: AOAM532JdJjYkc5fOaGw5DkDJ3d4DKvt2DyEufO9NnhCLhQx5M1o9RB3
+        YunMRZjt5Z7QVID42etCmA7vdfHUNDBoQtF96z/CMh2e9pO6CF+tGkqByoXt0xSXEFJv9TZE+pc
+        SRlw5b7BjI8Xe2cJ7Xe8uKLBzAwCPSNSaMUSI08Y=
+X-Received: by 2002:a05:6402:278f:b0:410:d242:465e with SMTP id b15-20020a056402278f00b00410d242465emr6368184ede.292.1646565106222;
+        Sun, 06 Mar 2022 03:11:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwW1Ya1zhxY85xcQnirVjPnpGI6XhFX2Sj/phtUq064BY75zEOeymYAnMlQ9+XNNG3HRgb2Sw==
+X-Received: by 2002:a05:6402:278f:b0:410:d242:465e with SMTP id b15-20020a056402278f00b00410d242465emr6368175ede.292.1646565106043;
+        Sun, 06 Mar 2022 03:11:46 -0800 (PST)
 Received: from localhost.localdomain (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
-        by smtp.gmail.com with ESMTPSA id a9-20020a1709066d4900b006da888c3ef0sm3720444ejt.108.2022.03.06.03.11.43
+        by smtp.gmail.com with ESMTPSA id a9-20020a1709066d4900b006da888c3ef0sm3720444ejt.108.2022.03.06.03.11.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Mar 2022 03:11:43 -0800 (PST)
+        Sun, 06 Mar 2022 03:11:45 -0800 (PST)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Alim Akhtar <alim.akhtar@samsung.com>,
         Avri Altman <avri.altman@wdc.com>,
@@ -73,9 +73,9 @@ To:     Alim Akhtar <alim.akhtar@samsung.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-samsung-soc@vger.kernel.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 09/12] arm64: dts: hisilicon: align 'freq-table-hz' with dtschema in UFS
-Date:   Sun,  6 Mar 2022 12:11:22 +0100
-Message-Id: <20220306111125.116455-10-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH v3 10/12] arm64: dts: qcom: msm8996: drop unsupported UFS vddp-ref-clk-max-microamp
+Date:   Sun,  6 Mar 2022 12:11:23 +0100
+Message-Id: <20220306111125.116455-11-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220306111125.116455-1-krzysztof.kozlowski@canonical.com>
 References: <20220306111125.116455-1-krzysztof.kozlowski@canonical.com>
@@ -91,45 +91,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DT schema expects 'freq-table-hz' property to be an uint32-matrix,
-which is also easier to read.
+The property vddp-ref-clk-max-microamp (for VDDP ref clk supply which is
+l25 regulator) is not documented in MSM8996 UFS PHY bindings
+(qcom,msm8996-qmp-ufs-phy).  It is mentioned in the other UFS PHY
+bindings for qcom,msm8996-ufs-phy-qmp-14nm.
+
+The MSM8996-based Xiaomi devices configure l25 regulator in a
+conflicting way:
+1. with maximum 100 uAmp for VDDP ref clk supply of UFS PHY,
+2. with maximum 450 mAmp for VCCQ supply of UFS.
+
+Since the vddp-ref-clk-max-microamp property is basically not
+documented for that UFS PHY and has a conflicting values, drop it
+entirely as it looks like not tested and not used ever.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- arch/arm64/boot/dts/hisilicon/hi3660.dtsi | 4 ++--
- arch/arm64/boot/dts/hisilicon/hi3670.dtsi | 4 ++--
- 2 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-index 8bd6d7e8a474..6b3057a09251 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3660.dtsi
-@@ -1045,8 +1045,8 @@ ufs: ufs@ff3b0000 {
- 			clocks = <&crg_ctrl HI3660_CLK_GATE_UFSIO_REF>,
- 				<&crg_ctrl HI3660_CLK_GATE_UFSPHY_CFG>;
- 			clock-names = "ref_clk", "phy_clk";
--			freq-table-hz = <0 0
--					 0 0>;
-+			freq-table-hz = <0 0>,
-+					<0 0>;
- 			/* offset: 0x84; bit: 12 */
- 			resets = <&crg_rst 0x84 12>;
- 			reset-names = "rst";
-diff --git a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-index 636c8817df7e..3125c3869c69 100644
---- a/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-+++ b/arch/arm64/boot/dts/hisilicon/hi3670.dtsi
-@@ -671,8 +671,8 @@ ufs: ufs@ff3c0000 {
- 			clocks = <&crg_ctrl HI3670_CLK_GATE_UFSIO_REF>,
- 				 <&crg_ctrl HI3670_CLK_GATE_UFS_SUBSYS>;
- 			clock-names = "ref_clk", "phy_clk";
--			freq-table-hz = <0 0
--					 0 0>;
-+			freq-table-hz = <0 0>,
-+					<0 0>;
- 			/* offset: 0x84; bit: 12 */
- 			resets = <&crg_rst 0x84 12>;
- 			reset-names = "rst";
+diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+index 7a9fcbe9bb31..3ade756e1cd9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
+@@ -341,7 +341,6 @@ &ufsphy {
+ 	vdda-pll-max-microamp = <9440>;
+ 
+ 	vddp-ref-clk-supply = <&vreg_l25a_1p2>;
+-	vddp-ref-clk-max-microamp = <100>;
+ 	vddp-ref-clk-always-on;
+ };
+ 
 -- 
 2.32.0
 
