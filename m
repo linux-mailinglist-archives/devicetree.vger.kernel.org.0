@@ -2,242 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0E9A4CEB7F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 13:18:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5301C4CEB88
+	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 13:25:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229745AbiCFMTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 07:19:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34146 "EHLO
+        id S233168AbiCFMZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 07:25:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52976 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233593AbiCFMTc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 07:19:32 -0500
-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 879791114F;
-        Sun,  6 Mar 2022 04:18:38 -0800 (PST)
-Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E78915802BB;
-        Sun,  6 Mar 2022 07:18:37 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute2.internal (MEProxy); Sun, 06 Mar 2022 07:18:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
-         h=cc:cc:content-transfer-encoding:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm1; bh=fAqBZoyuXQbc0j
-        buBUfb/Ov5yXGEQBn0rxhq7UBBsaM=; b=vKfmb+l6J6pFh49CxyzDJHfC+DJPva
-        OnOKC84BiDG0ASp1tfKfOc7SAKVOk+JhXRkUaINFp0+DTlDdYbpl7WNfjaLW6dkq
-        3OClfcIFgCKFH+9JpcSPF5LOguY/C6bO0oZe+RuH0GJCW1akZrPWvW4wVsKCb8wh
-        vlUdntqal7GEqnQQZMJn42av9Fk0izXdaCkh5cK/DjFNWfIz7qZm1DnDCD/Ve2af
-        5aC/IdRhaX637vk6QyejVg2PZj1lqSZHppPAhQctMDq28CisRgSZGKpoNApF0ApW
-        23PlTX9xNJpaAQEm/kBsdznnzlNzdMIvr9nYY1X/El5bsMAmtCIkd8Dg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding:date:date
-        :from:from:in-reply-to:in-reply-to:message-id:mime-version
-        :references:reply-to:sender:subject:subject:to:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=fAqBZo
-        yuXQbc0jbuBUfb/Ov5yXGEQBn0rxhq7UBBsaM=; b=EX5FSqR5H2MUYWHSAGXHMO
-        uXUNweBpBl6uXA6hgCbI1omawj02EC9QS15pdj2H1T8vz+dTNS4I3+LjskMsPmjB
-        aND7Zv8nrm1ARU2ZiTTmObySoBl48Q/WhTHyaAeMN6VURPpSrlRbqXEI7PqKHV9D
-        XCHZrR4B6Jjwn1j73Ekrekix1tW2tFGhRwveazfMfLBO9FUcKfuR9xzuTKKUvcYe
-        hIOjNJdx5J1MvqrFy8pn4ftvHByFwOAG9pirp03Qez7GfAb8qjcKRR1eDSlwrN/W
-        B0W+nSI0WWxPaktWwhSNnplO6SCigjhwQ8AIqdIwMVPYvz5VIzgNrxh992VSsw5A
-        ==
-X-ME-Sender: <xms:naYkYolAt3JaglncPM_q0SgLzH_9_RSNEWgSI-AUa9gT2FO45Y5dwg>
-    <xme:naYkYn2sQxBNl--wQdG4NsexJma9e_13E8uF4tl72Eq8oVZFX868kj67tWOepcxUK
-    0Tw9sWxPh_HzDXOnuU>
-X-ME-Received: <xmr:naYkYmoXZRoq96nQHVh9OITRiwKH-vFvv_bwP1TKpxU2Sbmpwvdv18qFQw_j7dRFJIX03lyJV2MOCbIba22_MjhkbJvG2QYpRrIjhS8xp51IhnGfw0BaWm2pIngHN08>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudduvddgfeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhephffvufffkffojghfggfgsedtkeertdertddtnecuhfhrohhmpefuvhgvnhcu
-    rfgvthgvrhcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrfgrthhtvg
-    hrnheptedvkeetleeuffffhfekteetffeggffgveehieelueefvddtueffveevlefhfeej
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepshhvvg
-    hnsehsvhgvnhhpvghtvghrrdguvghv
-X-ME-Proxy: <xmx:naYkYkmgr9bagCFd1l7_jUSf5m618nllMhf4FUHLFkYx2QJGwlUk9Q>
-    <xmx:naYkYm2ZWICu4Ma7pF2d0troxT9MmbG8lwaY8UclZdxmv2m_zpKsBQ>
-    <xmx:naYkYrvd87b3chnk5z_AEDUjLhDILEmbgk7uJTTUNxVYBMTN3YsO5g>
-    <xmx:naYkYkxlAQDrgtXagbU2PG4o-Xo2nuEOMcB9jzs_AgDke7i-rRdpXg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 6 Mar 2022 07:18:35 -0500 (EST)
-From:   Sven Peter <sven@svenpeter.dev>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Sven Peter <sven@svenpeter.dev>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowsk <krzysztof.kozlowski@canonical.com>,
-        Joey Gouly <joey.gouly@arm.com>,
-        Hector Martin <marcan@marcan.st>,
+        with ESMTP id S233155AbiCFMZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 07:25:57 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 574916BDC9
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 04:24:59 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BDF6E3F4C2
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 12:24:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646569497;
+        bh=ebLethXkP/SPKAvNmeAiw9LSso9GlAEBRLvcMgBoFxs=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Dz90mDYEAulSEt8DRVD4m0p3Dv5Dml3lL2FAgGq/GZXj7LQ6rHDazcigtvRKIe/pr
+         ix2wB7T5I+nER2LE2PO3LCOdNmlZ1qwJI4viyj8KbZCa3c0RlJeoh45Jtn5hXvq2q+
+         LE8+rZdsZuvj1INK+Lu27PLQSso3cmqkAqf4+Ess/MRv7cBUQJnSyqYXL4ruqV0wP8
+         WGjT0iudZ6Y51r9gpZUMaT7Dg1As/TcLDX3nnNyFcj4daLScX5iSwoxj+Cejp/hd2Z
+         t/BM7byaoDv4JahyOQd++xbuWBVX95BcfYRfIxS4sFufNW0G1rIdYMvSIBhjCfyV6s
+         KYlLzUaaHRXig==
+Received: by mail-ed1-f69.google.com with SMTP id x5-20020a50ba85000000b004161d68ace6so1708022ede.15
+        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 04:24:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ebLethXkP/SPKAvNmeAiw9LSso9GlAEBRLvcMgBoFxs=;
+        b=R/XNUNWZGHaFLjovr+wc14VOWwzT6mDVfh3s0tmD+XbmNNk+lYaCvi7BjTL3VgB7G5
+         AT6oqV6wjUwCWenU07UbJXuL3F2892+laaZf2mRv/+fgb43orK9gE8tlvMq8SM4ok8mX
+         iwB4MHrvGjtNztq/Bn1yLqcAtCtFwbk2A1Hru6rEAZgfFn541g03KrMVJneEReDsJ0oJ
+         /CoEAFS0Nl//ENHdNVQyekiIWz1LGcQ5Hxb8X7M+VE1IBKOdBalQmwXj4y7PuBrFw5qo
+         nvT2FieKViQA7XtstLU88/blwIUgBg4ZUFERlUdMWOFnN/55OF9Fk7RoHlxttFvxAV0e
+         uHbg==
+X-Gm-Message-State: AOAM531iB9gGVdXC06VasoDhfgkrhseheCKNNjTV+MhuEUr8faSH0w/Z
+        vgdyqsibjxqNmjN7q46MfVUYinfeLWKrwXbdV8NFv9E//PIfyItBSDXjI/2UvDSS+1eELeXWfyK
+        5pmC7dyu5ascnnxuYJMkisZLleEOFK2iwXroDlAo=
+X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr6771745edx.12.1646569497395;
+        Sun, 06 Mar 2022 04:24:57 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzGdkRJrJd5r49weJN8iJ+8MPgRizzkUtShktIIdhfalsq93LL/I1ZmB0Oe3EKICul07WDm9w==
+X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr6771736edx.12.1646569497186;
+        Sun, 06 Mar 2022 04:24:57 -0800 (PST)
+Received: from [192.168.0.140] (xdsl-188-155-181-108.adslplus.ch. [188.155.181.108])
+        by smtp.gmail.com with ESMTPSA id bq23-20020a170906d0d700b006db0372d3a2sm1506242ejb.20.2022.03.06.04.24.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Mar 2022 04:24:56 -0800 (PST)
+Message-ID: <135e9f87-7c39-e2c0-1735-dd814514a61d@canonical.com>
+Date:   Sun, 6 Mar 2022 13:24:55 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: nvmem: Add apple,efuses
+Content-Language: en-US
+To:     Sven Peter <sven@svenpeter.dev>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Joey Gouly <joey.gouly@arm.com>, Hector Martin <marcan@marcan.st>,
         Alyssa Rosenzweig <alyssa@rosenzweig.io>,
         Mark Kettenis <kettenis@openbsd.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] nvmem: Add Apple eFuse driver
-Date:   Sun,  6 Mar 2022 13:18:16 +0100
-Message-Id: <20220306121816.70537-2-sven@svenpeter.dev>
-X-Mailer: git-send-email 2.30.1 (Apple Git-130)
-In-Reply-To: <20220306121816.70537-1-sven@svenpeter.dev>
 References: <20220306121816.70537-1-sven@svenpeter.dev>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220306121816.70537-1-sven@svenpeter.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apple SoCs contain eFuses used to store factory-programmed data such
-as calibration values for the PCIe or the Type-C PHY. They are organized
-as 32bit values exposed as MMIO.
+On 06/03/2022 13:18, Sven Peter wrote:
+> Apple SoCs come with eFuses used to store factory-programmed data
+> such as calibration settings for the PCIe and Type-C PHY.
+> 
+> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+> ---
+> v1 -> v2:
+>   - fixed indentation issue pointed out by Krzysztof Kozlowski
+> 
+>  .../bindings/nvmem/apple,efuses.yaml          | 50 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/apple,efuses.yaml
+> 
 
-Signed-off-by: Sven Peter <sven@svenpeter.dev>
----
-v1 -> v2:
-  - fixed sparse warning about __iomem by introducing
-    struct apple_efuses_priv as done in other nvmem drivers
-  - make sure the driver actually works as a module by
-    setting .owner to THIS_MODULE and adding MODULE_DEVICE_TABLE
-    pointed out by Joey Gouly
 
- MAINTAINERS                  |  1 +
- drivers/nvmem/Kconfig        | 12 ++++++
- drivers/nvmem/Makefile       |  2 +
- drivers/nvmem/apple-efuses.c | 82 ++++++++++++++++++++++++++++++++++++
- 4 files changed, 97 insertions(+)
- create mode 100644 drivers/nvmem/apple-efuses.c
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f70d8525cbd4..e3e973a3f651 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1781,6 +1781,7 @@ F:	drivers/i2c/busses/i2c-pasemi-core.c
- F:	drivers/i2c/busses/i2c-pasemi-platform.c
- F:	drivers/irqchip/irq-apple-aic.c
- F:	drivers/mailbox/apple-mailbox.c
-+F:	drivers/nvmem/apple-efuses.c
- F:	drivers/pinctrl/pinctrl-apple-gpio.c
- F:	drivers/soc/apple/*
- F:	drivers/watchdog/apple_wdt.c
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index da414617a54d..bba29d1aec96 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -300,4 +300,16 @@ config NVMEM_BRCM_NVRAM
- 	  This driver provides support for Broadcom's NVRAM that can be accessed
- 	  using I/O mapping.
- 
-+config NVMEM_APPLE_EFUSES
-+	tristate "Apple eFuse support"
-+	depends on ARCH_APPLE || COMPILE_TEST
-+	default ARCH_APPLE
-+	help
-+	  Say y here to enable support for reading eFuses on Apple SoCs
-+	  such as the M1. These are e.g. used to store factory programmed
-+	  calibration data required for the PCIe or the USB-C PHY.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called nvmem-apple-efuses.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index dcbbde35b6a8..1a8e54691d3e 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -61,3 +61,5 @@ obj-$(CONFIG_NVMEM_RMEM) 	+= nvmem-rmem.o
- nvmem-rmem-y			:= rmem.o
- obj-$(CONFIG_NVMEM_BRCM_NVRAM)	+= nvmem_brcm_nvram.o
- nvmem_brcm_nvram-y		:= brcm_nvram.o
-+obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
-+nvmem-apple-efuses-y 		:= apple-efuses.o
-diff --git a/drivers/nvmem/apple-efuses.c b/drivers/nvmem/apple-efuses.c
-new file mode 100644
-index 000000000000..dd5576ec5408
---- /dev/null
-+++ b/drivers/nvmem/apple-efuses.c
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Apple SoC eFuse driver
-+ *
-+ * Copyright (C) The Asahi Linux Contributors
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/platform_device.h>
-+
-+struct apple_efuses_priv {
-+	void __iomem *fuses;
-+};
-+
-+static int apple_efuses_read(void *context, unsigned int offset, void *val,
-+			     size_t bytes)
-+{
-+	struct apple_efuses_priv *priv = context;
-+	u32 *dst = val;
-+
-+	while (bytes >= sizeof(u32)) {
-+		*dst++ = readl_relaxed(priv->fuses + offset);
-+		bytes -= sizeof(u32);
-+		offset += sizeof(u32);
-+	}
-+
-+	return 0;
-+}
-+
-+static int apple_efuses_probe(struct platform_device *pdev)
-+{
-+	struct apple_efuses_priv *priv;
-+	struct resource *res;
-+	struct nvmem_config config = {
-+		.dev = &pdev->dev,
-+		.read_only = true,
-+		.reg_read = apple_efuses_read,
-+		.stride = sizeof(u32),
-+		.word_size = sizeof(u32),
-+		.name = "apple_efuses_nvmem",
-+		.id = NVMEM_DEVID_AUTO,
-+		.owner = THIS_MODULE,
-+		.root_only = true,
-+	};
-+
-+	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->fuses = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(priv->fuses))
-+		return PTR_ERR(priv->fuses);
-+
-+	config.priv = priv;
-+	config.size = resource_size(res);
-+
-+	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
-+}
-+
-+static const struct of_device_id apple_efuses_of_match[] = {
-+	{ .compatible = "apple,efuses", },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, apple_efuses_of_match);
-+
-+static struct platform_driver apple_efuses_driver = {
-+	.driver = {
-+		.name = "apple_efuses",
-+		.of_match_table = apple_efuses_of_match,
-+		.owner = THIS_MODULE,
-+	},
-+	.probe = apple_efuses_probe,
-+};
-+
-+module_platform_driver(apple_efuses_driver);
-+
-+MODULE_AUTHOR("Sven Peter <sven@svenpeter.dev>");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
 
+Best regards,
+Krzysztof
