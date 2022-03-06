@@ -2,165 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B51B4CE975
-	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 07:10:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 896CD4CEA61
+	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 10:48:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232971AbiCFGLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 01:11:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53318 "EHLO
+        id S231313AbiCFJtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 04:49:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232965AbiCFGLP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 01:11:15 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E6447571;
-        Sat,  5 Mar 2022 22:10:23 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id t14so10955245pgr.3;
-        Sat, 05 Mar 2022 22:10:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=IFP0n3aR1KLrugHWvaTBlE8oeqir0qwrjSN1W4oR8A4=;
-        b=LutdSF7TOGs9m0nw/abVQLroRBIkivCxvs6RTvSJbASkCA5qJ/eA67aCcCtwtTjQJx
-         DX35hdPLW3DY/whBS9xo8PGCJqxym+u83naFZoF7W7dgBq4JYzh/y+keHZGnqISOI5FD
-         ieAbgQRDiHj15tFxN1Q2730SAIGpme19UhzBG+hEVwADld6q/zCb/ugFLljw4401FIyG
-         WS7UmejkwMMrib6R5PZGyo0hq1jYrX8TumfCSuLmnzHMGzmQPLR7mm3jDQEODvcjXmbu
-         4VLRZ00c0vOloumUhVGXP/5SWnRrE2KYNUqkXf8iumu34xdm4uFrqwmIK7nv89CTXfb0
-         nkSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=IFP0n3aR1KLrugHWvaTBlE8oeqir0qwrjSN1W4oR8A4=;
-        b=vzGv2iFq9OljeM53ppkeELn4MwVMk/Yt2tHfqGnqFYNHj2RHTneEe8rvc1ybhmpW9V
-         FzXzpgR4SrYBuBnbM62KJo8+50xn2nScQf2IOmHMTFBxGC9ex0/cRmxegSwl/AIvDltU
-         GXBqRPuvj2YWi3elz3PaIaAf7hp6t39zj7fNFUYH7+v9gu4z2QqeDdn4TnMnv9I0YcbR
-         bB8BO9mvF/wi2J8CFI4a4mD6xWpOAOIs6jYFHwOBnVDRB0g0BPVLbWyPMBb9ghiGUj39
-         /rpR6CihMmMeZMpeE5YulQ3to4iwZSp/tbAMw0lzjjtiPUJK9UXoQ1ew1z4l8G5rqUsy
-         Yjpg==
-X-Gm-Message-State: AOAM531QpAhZWv02cQNc5oMlR9q/0nAyDgfNOp7IALY81ztsKNOIWyVA
-        cgzk/FfrX1Q8q93oKp5q0Yc=
-X-Google-Smtp-Source: ABdhPJxV26u+wQtug7E3G5n/M1Gwls9RdmZzpeT486WpZCawBt9nzrdidxecQW//rxYRhRK9jIvbWg==
-X-Received: by 2002:a63:2c53:0:b0:373:7234:adf2 with SMTP id s80-20020a632c53000000b003737234adf2mr5141415pgs.111.1646547023418;
-        Sat, 05 Mar 2022 22:10:23 -0800 (PST)
-Received: from scdiu3.sunplus.com ([113.196.136.192])
-        by smtp.googlemail.com with ESMTPSA id q13-20020aa7982d000000b004cb98a2ca35sm11994907pfl.211.2022.03.05.22.10.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 05 Mar 2022 22:10:22 -0800 (PST)
-From:   Vincent Shih <vincent.sunplus@gmail.com>
-To:     gregkh@linuxfoundation.org, stern@rowland.harvard.edu,
-        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, wells.lu@sunplus.com
-Cc:     Vincent Shih <vincent.sunplus@gmail.com>
-Subject: [PATCH v3 2/2] dt-bindings: usb: Add bindings doc for Sunplus EHCI driver
-Date:   Sun,  6 Mar 2022 14:10:36 +0800
-Message-Id: <1646547036-14885-3-git-send-email-vincent.sunplus@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1646547036-14885-1-git-send-email-vincent.sunplus@gmail.com>
-References: <1646547036-14885-1-git-send-email-vincent.sunplus@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S230478AbiCFJtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 04:49:21 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49B1315A28;
+        Sun,  6 Mar 2022 01:48:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1646560070;
+        bh=OD9fC9I+jhM8Okh3twd8v6eVvZwsGcKGQ/IgKak8Gv0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Ny5UjL1sTdiqrIRD3wdU7tqzCN4lUZru1dJUCIRnKTmN6xcyx5SmRkhxv8IEgbQG9
+         StdwseJ272DQcBXAXCYlVGGK4ct+XstTGKsg6xLMOjBff/XferX08EL1cUoBzgtV6e
+         zRtzz0bjaKKyJrk/BAV3PJK+cmUHxysOpADXtyI8=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.145.243] ([217.61.145.243]) by web-mail.gmx.net
+ (3c-app-gmx-bs46.server.lan [172.19.170.98]) (via HTTP); Sun, 6 Mar 2022
+ 10:47:50 +0100
+MIME-Version: 1.0
+Message-ID: <trinity-9ef9e0d3-e70c-45d9-bdd8-e43d1c89a8c9-1646560070497@3c-app-gmx-bs46>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Aw: Re: [PATCH v5 1/5] dt-bindings: ata: ahci-platform: Convert DT
+ bindings to yaml
+Content-Type: text/plain; charset=UTF-8
+Date:   Sun, 6 Mar 2022 10:47:50 +0100
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <a2839b00-d195-131f-b2a7-d2f030a5bd95@canonical.com>
+References: <20220305112607.257734-1-linux@fw-web.de>
+ <20220305112607.257734-2-linux@fw-web.de>
+ <a2839b00-d195-131f-b2a7-d2f030a5bd95@canonical.com>
+Content-Transfer-Encoding: quoted-printable
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Echz34LhzOW5lmBqLmmb4P7mnPgqTTUheGQ31g1l4cvCB7QgzRtTYu2fQgCY6tYwBeroz
+ bkiKXu1NYcjP50rVa7bvFlK05WbKn34j5J3LeomEbN8mZHBor8Z9e28tvxyU13X+a1B0VMcEo3Is
+ 0c0SW2QymXtdzlA+3Qs7FfKYs175VGlLw9j2We/yhu1/F44dZQpZMdH6WaBV5zgfbEXy9abRCjeQ
+ DusZRjUvBrwRp0/hkZr1HHgYogx4mFESNDB/LGNEl/HZTSYqypdTFzqW+nkovm4U4zLCjm+2iuI8
+ es=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EowYyED6Quw=:Z01UPjyHuVxost3uxThyxc
+ ozZn7Bq/AJadPhkzyUmulvBAuWzvsO5W3OMUpNO0YksneTyUgNH9j6cdGxoLDJJMpQhgEa5r0
+ iZ1lMnk5aXliO2O4GQgH2NuaEAFVYV/4C3fIHC7p2wsRLGhsynzhz4IqITYN/uN2sIQ6XvrfP
+ wu92vavFMgcD+otN+pZxhhdAVUWuwsHZiVwtY8bKhbvDEVbnUh0f3svL1u2dWi0cCcEXVHHSU
+ UZrM7kXHfO474b4HE1QgZUdfQgY97n7fTuNzzP6v9mq2TOIjjUvyFr5TkxNeGI3vZrH/tt6v6
+ PyUgdKaj8qGR0IDHvGogajmD7i+t1WqfPh6QrWrkFhcpuy7Z+w5zKNIdE3du+yymkHFFDNHk2
+ 3YQS0yVgRg8ezuyQ10swPa/GdqYoGnKfMXC0i7jjH1wajvnRhshKRtxTCy2CtRL0dEO2FRwey
+ WFoVaJFlYriuZ4Hu7e1kmCYpbxFTf4frCUC7RvY4dMUiYTMTXNaDigbA7+J+LTVrG764N5EJ7
+ u2KkQ7ekRZrjH1FbhdwgROx+Q0LQSrzgWc0gjNOlPsk95dxjpnqy5Vt7YryeT4PebHNgt/3CM
+ 7wrwruTI0TxxG81/zyYzIT96eB2rbFe0Ipu8ZUkHLpvy2qczvvlAQx9aX5xAemMDXRln4XvtF
+ qeU4NcZcPfO5nmqFSa+2SqwLHW7QvdZR1Yn+YsEg2gDIjLpFAktTlvRoIT0SnlsTEcqBCOmks
+ NTdRv10cnMvpSQmGXXEwB1CKjmVrB9cE42vPy7dXJScAKy7sakNygTCNVmspFw2QqJF8W2XbE
+ p8XvUie
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings doc for Sunplus EHCI driver
+Hi Krzysztof,
 
-Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
----
-Changes in v2:
-  - Address the comments by Rob Herring.
+have seen some warnings in Robs bot for arm=2E
 
- .../bindings/usb/sunplus,sp7021-usb-ehci.yaml      | 63 ++++++++++++++++++++++
- MAINTAINERS                                        |  1 +
- 2 files changed, 64 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml
+imho have fixed them (and the indention you've mentioned already squashed)=
+ in my tree [1]=2E
 
-diff --git a/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml b/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml
-new file mode 100644
-index 0000000..905f68c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml
-@@ -0,0 +1,63 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) Sunplus Co., Ltd. 2021
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/sunplus,sp7021-usb-ehci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Sunplus SP7021 EHCI Controller Device Tree bindings
-+
-+allOf:
-+  - $ref: usb-hcd.yaml#
-+
-+maintainers:
-+  - Vincent Shih <vincent.sunplus@gmail.com>
-+
-+properties:
-+  compatible:
-+    const: sunplus,sp7021-usb2-ehci
-+
-+  clocks:
-+    maxItems: 1
-+
-+  resets:
-+    minItems: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  phys:
-+    maxItems: 1
-+
-+  phy-names:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - clocks
-+  - resets
-+  - reg
-+  - interrupts
-+  - phys
-+  - phy-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    sp_ehci0: usb@9c102100 {
-+      compatible = "sunplus,sp7021-usb-ehci";
-+      clocks = <&clkc 0x3a>;
-+      resets = <&rstc 0x2a>;
-+      reg = <0x9c102100 0x68>;
-+      interrupt-parent = <&intc>;
-+      interrupts = <14 IRQ_TYPE_LEVEL_HIGH>;
-+      phys = <&sp_uphy0>;
-+      phy-names = "uphy";
-+    };
-+    ...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6c2faf3..4e66993 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17951,6 +17951,7 @@ SUNPLUS USB EHCI DRIVER
- M:	Vincent Shih <vincent.sunplus@gmail.com>
- L:	linux-usb@vger.kernel.org
- S:	Maintained
-+F:	Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ehci.yaml
- F:	drivers/usb/host/ehci-sunplus.c
- 
- SUPERH
--- 
-2.7.4
+    add compatibles used together with generic-ahci
+      - marvell,berlin2-ahci
+      - qcom,apq8064-ahci
+      - qcom,ipq806x-ahci
+    increase reg-count to 2 (used in omap5-l4=2Edtsi)
+    increase clock-count to 5 (used in qcom-apq8064=2Edtsi)
+
+can i still add you reviewed-by to v6?
+
+[1] https://github=2Ecom/frank-w/BPI-R2-4=2E14/commits/5=2E17-next-2022022=
+5
+
+regards Frank
+
+
+> Gesendet: Samstag, 05=2E M=C3=A4rz 2022 um 18:43 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof=2Ekozlowski@canonical=2Ecom>
+>=20
+> Thanks for the changes, all look good except now I noticed that
+> indentation of example is unusual=2E It's not consistent=2E Starts with =
+four
+> space (correct) but then goes to 7 spaces=2E Please adjust entire exampl=
+e
+> to use 4 spaces indentation=2E
+>=20
+> With that:
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof=2Ekozlowski@canonical=2Ecom>
+
 
