@@ -2,175 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 257BA4CEB95
-	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 13:57:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7273A4CEC1E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 16:37:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233581AbiCFM6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 07:58:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35000 "EHLO
+        id S232119AbiCFPip (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 10:38:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60116 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232209AbiCFM6K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 07:58:10 -0500
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DC0541629
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 04:57:18 -0800 (PST)
-Received: by mail-pg1-x531.google.com with SMTP id t14so11391205pgr.3
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 04:57:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AGNlNYvrYq+F+LYnefVTTHEG0vAmzNrpj7QYD32tJhY=;
-        b=GvPjdJ0lJdL9rTjiFTxQKmLTmmVFYsrRwAD5ohdBTYZ8+EERBC6QIp85nNKtpBHCA6
-         iVd+/Txv+wgH01Fe/DHVjsvse4ANlwiGApz3RsCAArNst+pXbyqolo66ND6ktY+Opgjc
-         NZ4Dg7QGQkMmoNOKTQ4Fkg9I0aKpco8ptnKX5zHOdzcl5uYpkbkPbUvEc3GXf2FFpPHZ
-         jmB6vPOzAytT1Ok6M9ioAFVSGcSX9lq87RW43xExV9oqyU1GekpiPD4LYsgoFaiveExk
-         vhl7PpMWRwo9zP/ojcUig7tTKMDgyG2/A2NmNMyVgnZz8GDf9abkPRWmYeKS6iWO6zsC
-         CPIA==
+        with ESMTP id S230420AbiCFPio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 10:38:44 -0500
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 44738DF1C
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 07:37:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1646581071;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=+EG5ZoN5dKDEhImu4B6iOHSdTTgzb/PcHdEoxTJUFR4=;
+        b=M1APDMRAI9zkqsSvXwNunHrWq0cMUWgkb40KNPbyNMfJcsLFzBH9d8zNgkN86Tw8IsCkfk
+        qGR7pm5vyLyyYzCBSebiD+4X0wWK1lLF7ovieEsWePqg4H35OAdpapSddQdV2LXsY6w4qB
+        XzDCc3X36869JHI+r7UVG6yOAgRP4xM=
+Received: from mail-ot1-f72.google.com (mail-ot1-f72.google.com
+ [209.85.210.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-440-_KSE2xs0NSyTr5uKE_UJQA-1; Sun, 06 Mar 2022 10:37:49 -0500
+X-MC-Unique: _KSE2xs0NSyTr5uKE_UJQA-1
+Received: by mail-ot1-f72.google.com with SMTP id v7-20020a05683018c700b005af147b47beso10673688ote.22
+        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 07:37:49 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AGNlNYvrYq+F+LYnefVTTHEG0vAmzNrpj7QYD32tJhY=;
-        b=cofNY2zJScXW9o5NvGZVRZDJnPssoeMii0DdovgFYrqEhtNFBA3lHxOMX91XU5Gtv2
-         ZsP8r8BLI5cLJCasQ7241ZplbXxxr/UzrpcLR4HOwn9R2h2e7yU+di9kOWPrjcIGPJ60
-         xnxBait4Vrga1tby7qPgijSa0zceE+y6FErLJpxMqg0ZQCrzCd1x9sMYrFbFvzRG6WLP
-         bQhQRVIJTnwRHkB8FuqIFN7oo2ikG5lbZgWHcxwfEiMTK8e9R5BN0XASTkWCFQc1mMMw
-         FIgKcZLe7a3r38GIqnQLDCLRxhmHRndMm+NIE8ivxkIbp3kNTPnRM9EmkZmPXIeZUW6b
-         YDfw==
-X-Gm-Message-State: AOAM532zUVjkJNIpAnkVGcM/VltwAUjvRsuZQ9tVYjnK0EYwVQ1c1wwC
-        kQri9garb9fzrDDthk6ZLZXepg==
-X-Google-Smtp-Source: ABdhPJz/XXcg7KC7A+AktmZhW/Po/W5UWWZkGBdtvfYCN/S7VBZ2hrI9FbT1kObOi8mZMARBEVROGQ==
-X-Received: by 2002:a63:d306:0:b0:34e:4330:efea with SMTP id b6-20020a63d306000000b0034e4330efeamr6011096pgg.174.1646571437919;
-        Sun, 06 Mar 2022 04:57:17 -0800 (PST)
-Received: from dragon (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id l2-20020a056a0016c200b004e10af156adsm12538057pfc.190.2022.03.06.04.57.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Mar 2022 04:57:17 -0800 (PST)
-Date:   Sun, 6 Mar 2022 20:57:10 +0800
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v7 2/2] irqchip: Add Qualcomm MPM controller driver
-Message-ID: <20220306125710.GQ269879@dragon>
-References: <20220302084028.GL269879@dragon>
- <877d9c3b2u.wl-maz@kernel.org>
- <20220302133441.GM269879@dragon>
- <875yow31a0.wl-maz@kernel.org>
- <20220303040229.GN269879@dragon>
- <87fsnytagc.wl-maz@kernel.org>
- <20220304082342.GO269879@dragon>
- <87lexp211g.wl-maz@kernel.org>
- <20220305092420.GP269879@dragon>
- <87czj0u0bg.wl-maz@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=+EG5ZoN5dKDEhImu4B6iOHSdTTgzb/PcHdEoxTJUFR4=;
+        b=itbJqOLM+DS1JVOy8Bm1jJHejz7zmZ7LBVFPm/4WWt/OhTH6+NgpJKYyi210zSbKMG
+         pA5K0l9t4+0upXzNqTsSE1zs+3IiukGLbHPtFQTxjvw5p3bBEzSsQgwXZY3Iqwrvjp+o
+         aP5OJH7IqqEheSdJmU+jiRgUvSwuke4b/s8ZFRzRr+epRIJlpqHy70M2rrLF99bNpT3O
+         Lq+2UofBr9IV93eF7xHkciJZj9qoH5JCvnGBdkn4TZJYjdfJwxcDvnNYiDrXgH5oTJXz
+         01xFvivSsLiUBlnMKyHofJkLT6t1mjMIM5GAmE+tEOLb1gymeDSN6SXbt+JNfo5Z/AP+
+         LJvQ==
+X-Gm-Message-State: AOAM532sDWxEymDioxWLGtk1tgCDWy7n25cWTcZxH1D1jvmQebRyNrlZ
+        oTEuhcuGwoIuHbzyXwSKva8G2x7oFkSAR8iVNJfRWSyGpjYZPV7A9q/08zZiv/oKjOo77jrRqhM
+        iPEydm0K5BtEro0hHXzZK0A==
+X-Received: by 2002:a05:6808:128a:b0:2d7:8f0b:e9a8 with SMTP id a10-20020a056808128a00b002d78f0be9a8mr15583081oiw.174.1646581069142;
+        Sun, 06 Mar 2022 07:37:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyreqCZKQRU6DE2UD+nV7uwMFiFA/fm+L0rSDFLM2D9m2xql4ezmaJW0qh4SxoQwGlSM2Qd0w==
+X-Received: by 2002:a05:6808:128a:b0:2d7:8f0b:e9a8 with SMTP id a10-20020a056808128a00b002d78f0be9a8mr15583063oiw.174.1646581068891;
+        Sun, 06 Mar 2022 07:37:48 -0800 (PST)
+Received: from localhost.localdomain (024-205-208-113.res.spectrum.com. [24.205.208.113])
+        by smtp.gmail.com with ESMTPSA id u3-20020a056808114300b002d51f9b3263sm5328725oiu.28.2022.03.06.07.37.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Mar 2022 07:37:48 -0800 (PST)
+Subject: Re: [PATCH V1 RESEND 2/4] Documentation: devicetree: bindings: add
+ binding for PCIe endpoint bus
+To:     Lizhi Hou <lizhi.hou@xilinx.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Cc:     yilun.xu@intel.com, maxz@xilinx.com, sonal.santan@xilinx.com,
+        yliu@xilinx.com, michal.simek@xilinx.com, stefanos@xilinx.com,
+        mdf@kernel.org, dwmw2@infradead.org, linux-kernel@vger.kernel.org,
+        Max Zhen <max.zhen@xilinx.com>
+References: <20220305052304.726050-1-lizhi.hou@xilinx.com>
+ <20220305052304.726050-3-lizhi.hou@xilinx.com>
+From:   Tom Rix <trix@redhat.com>
+Message-ID: <e4c058e9-6549-4ce2-be05-d09d5b1a9fc9@redhat.com>
+Date:   Sun, 6 Mar 2022 07:37:46 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.10.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87czj0u0bg.wl-maz@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20220305052304.726050-3-lizhi.hou@xilinx.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 05, 2022 at 11:05:07AM +0000, Marc Zyngier wrote:
-> On Sat, 05 Mar 2022 09:24:20 +0000,
-> Shawn Guo <shawn.guo@linaro.org> wrote:
-> > 
-> > On Fri, Mar 04, 2022 at 03:24:43PM +0000, Marc Zyngier wrote:
-> > > On Fri, 04 Mar 2022 08:23:42 +0000,
-> > > Shawn Guo <shawn.guo@linaro.org> wrote:
-> > > > 
-> > > > On Fri, Mar 04, 2022 at 07:59:15AM +0000, Marc Zyngier wrote:
-> > > > > On Thu, 03 Mar 2022 04:02:29 +0000,
-> > > > > Shawn Guo <shawn.guo@linaro.org> wrote:
-> > > > > > 
-> > > > > > On Wed, Mar 02, 2022 at 01:57:27PM +0000, Marc Zyngier wrote:
-> > > > > > > This code actually makes me ask more questions. Why is it programming
-> > > > > > > 2 'pins' for each IRQ?
-> > > > > > 
-> > > > > > The mapping between MPM pin and GIC IRQ is not strictly 1-1.  There are
-> > > > > > some rare case that up to 2 MPM pins map to a single GIC IRQ, for
-> > > > > > example the last two in QC2290 'qcom,mpm-pin-map' below.
-> > > > > > 
-> > > > > > 	qcom,mpm-pin-map = <2 275>,     /* tsens0_tsens_upper_lower_int */
-> > > > > > 			   <5 296>,     /* lpass_irq_out_sdc */
-> > > > > > 			   <12 422>,    /* b3_lfps_rxterm_irq */
-> > > > > > 			   <24 79>,     /* bi_px_lpi_1_aoss_mx */
-> > > > > > 			   <86 183>,    /* mpm_wake,spmi_m */
-> > > > > > 			   <90 260>,    /* eud_p0_dpse_int_mx */
-> > > > > > 			   <91 260>;    /* eud_p0_dmse_int_mx */
-> > > > > > 
-> > > > > > 
-> > > > > > The downstream uses a DT bindings that specifies GIC hwirq number in
-> > > > > > client device nodes.  In that case, d->hwirq in the driver is GIC IRQ
-> > > > > > number, and the driver will need to query mapping table, find out the
-> > > > > > possible 2 MPM pins, and set them up.
-> > > > > > 
-> > > > > > The patches I'm posting here use a different bindings that specifies MPM
-> > > > > > pin instead in client device nodes.  Thus the driver can simply get the
-> > > > > > MPM pin from d->hwirq, so that the whole look-up procedure can be saved.
-> > > > > 
-> > > > > It still remains that there is no 1:1 mapping between input and
-> > > > > output, which is the rule #1 to be able to use a hierarchical setup.
-> > > > 
-> > > > For direction of MPM pin -> GIC interrupt, it's a 1:1 mapping, i.e. for
-> > > > given MPM pin, there is only one GIC interrupt.  And that's the
-> > > > mapping MPM driver relies on.  For GIC interrupt -> MPM pin, it's not
-> > > > a strict 1:1 mapping.
-> > > 
-> > > Then this isn't a 1:1 mapping *AT ALL*. The hierarchical setup
-> > > mandates that the mapping is a bijective function, and that's exactly
-> > > what 1:1 means. There is no such thing a 1:1 in a single
-> > > direction. When you take an interrupt, all you see is the GIC
-> > > interrupt. How do you know which of the *two* pins interrupted you? Oh
-> > > wait, you *can't* know. You end-up never servicing one of the two
-> > > interrupts
-> > 
-> > Yes, you are right!  But that might be a problem only in theory.  I
-> > checked all the Qualcomm platforms I know built on MPM, and found that
-> > the only 2:1 case is USB DP & DM sensing pins.  Since these two pins
-> > will be handled by USB driver with a single interrupt handler, it should
-> > not cause any problem in practice.  That said, the 2:1 mapping is just
-> > a special case specific to USB, and MPM driver can be implemented as if
-> > it's just a 1:1 mapping.
-> >
-> > Shawn
-> > 
-> > > (and I suspect this results in memory corruption if you
-> > > tear a hierarchy down).
-> 
-> Key point here ^^^^^^^^^^
-> 
-> You can't have *any* interrupt that fits this 2:1 model if the irqchip
-> implements 1:1. Think about the data structures for a second:
-> 
-> Pins x and y and routed to GIC interrupt z. This results in the
-> following irq_data structures:
-> 
->    MPM-x ---\
->              GIC-z
->    MPM-y ---/
-> 
-> Now, the driver using these interrupts is being removed, and the
-> hierarchies is being freed. Tearing down the interrupt with pin x will
-> result in z being also freed. And then you'll process pin y, which
-> will just explode.
+Lizhi,
 
-I tested with manually unbinding the USB driver and didn't run into any
-memory corruption.  If I read irq_domain code right, it seems that
-irq_domain_alloc_irq_data() will call into irq_domain_insert_irq_data()
-to allocate z irq_data in context of virq x and y respectively.  So x
-and y do not share a single parent (z) irq_data but have their own copy
-of z irq_data, no?
+Sorry for the delay, I am fighting with checking this with 'make 
+dt_binding_check'
 
-Shawn
+There is a recent failure in linux-next around display/mediatek,* 
+between next-20220301 and next-20220302 that I am bisecting.
+
+There are a couple of checkpatch --strict warnings for this set, the 
+obvious one is adding to the MAINTAINERS for new files.
+
+Tom
+
+On 3/4/22 9:23 PM, Lizhi Hou wrote:
+> Create device tree binding document for PCIe endpoint bus.
+>
+> Signed-off-by: Sonal Santan <sonal.santan@xilinx.com>
+> Signed-off-by: Max Zhen <max.zhen@xilinx.com>
+> Signed-off-by: Lizhi Hou <lizhi.hou@xilinx.com>
+> ---
+>   .../devicetree/bindings/bus/pci-ep-bus.yaml   | 72 +++++++++++++++++++
+>   1 file changed, 72 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
+> new file mode 100644
+> index 000000000000..0ca96298db6f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/pci-ep-bus.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/pci-ep-bus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PCIe Endpoint Bus binding
+> +
+> +description: |
+> +  PCIe device may use flattened device tree to describe apertures in its
+> +  PCIe BARs. The Bus PCIe endpoint node is created and attached under the
+> +  device tree root node for this kind of device. Then the flatten device
+> +  tree overlay for this device is attached under the endpoint node.
+> +
+> +  The aperture address which is under the endpoint node consists of BAR
+> +  index and offset. It uses the following encoding:
+> +
+> +    0xIooooooo 0xoooooooo
+> +
+> +  Where:
+> +
+> +    I = BAR index
+> +    oooooo oooooooo = BAR offset
+> +
+> +  The endpoint is compatible with 'simple-bus' and contains 'ranges'
+> +  property for translating aperture address to CPU address.
+> +
+> +allOf:
+> +  - $ref: /schemas/simple-bus.yaml#
+> +
+> +maintainers:
+> +  - Lizhi Hou <lizhi.hou@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    contains:
+> +      const: pci-ep-bus
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 2
+> +
+> +  ranges: true
+> +
+> +patternProperties:
+> +  "^.*@[0-9a-f]+$":
+> +    description: hardware apertures belong to this device.
+> +    type: object
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    bus {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +        pci-ep-bus@e0000000 {
+> +            compatible = "pci-ep-bus", "simple-bus";
+> +            #address-cells = <2>;
+> +            #size-cells = <2>;
+> +            ranges = <0x0 0x0 0x0 0xe0000000 0x0 0x2000000
+> +                      0x20000000 0x0 0x0 0xe4200000 0x0 0x40000>;
+> +        };
+> +    };
+
