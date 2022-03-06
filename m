@@ -2,111 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C2B4CE787
-	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 00:05:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E57234CE8CF
+	for <lists+devicetree@lfdr.de>; Sun,  6 Mar 2022 06:06:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232719AbiCEXFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 5 Mar 2022 18:05:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52026 "EHLO
+        id S232895AbiCFFGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 00:06:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbiCEXFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 5 Mar 2022 18:05:50 -0500
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A17E82BB1D;
-        Sat,  5 Mar 2022 15:04:59 -0800 (PST)
-Received: by mail-pj1-x1035.google.com with SMTP id 15-20020a17090a098f00b001bef0376d5cso10995866pjo.5;
-        Sat, 05 Mar 2022 15:04:59 -0800 (PST)
+        with ESMTP id S231631AbiCFFGE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 00:06:04 -0500
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC41A56752
+        for <devicetree@vger.kernel.org>; Sat,  5 Mar 2022 21:05:12 -0800 (PST)
+Received: by mail-yb1-xb32.google.com with SMTP id e186so24872126ybc.7
+        for <devicetree@vger.kernel.org>; Sat, 05 Mar 2022 21:05:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ZubhIdZTeko7cYjTeoqS5K64c7OG8apxg678QISjqVw=;
-        b=M4vlbWoHyEUiJdWodFBETTpRkW8Lia1ewznQNG5VLa+9O7xIeMV27xIc1kD7ofPyCv
-         cut6Ps5wBEp1MKOBdN3VlAa8PUB4htLCUK+bdkjeYGvzTYeNRHMUb65YqdK3yxoOPczh
-         lUC47inGFXLqvdcLidBQrGI81UsuDGgrETkdXLw5jB9DT7Nshtx4/dFVBndGqGxSA8Rc
-         SIcbFBg3udsK19BHylIszEkQzicgnumtj+Er+eYyGUCwlEYKC+AEBySniyUBRLGOFG2B
-         SdkB8++j9FakmxulCZ0xT1F7L4CP74kSw7AWBNE/WG92g1Xmg7ya8WvsyAL2iG+5+Qr+
-         TZjQ==
+        h=mime-version:sender:from:date:message-id:subject:to;
+        bh=VaaSLAJ+hgNGNq49WyPsh3ndDLo+mnrYcswrOHpJSv8=;
+        b=pMBd+462UDAjIMT0hjf58ZTLK2S3QMT/02Bhk6VPBhvX8m6xSv1V1+QZ5RXvzqB6KB
+         PjMmNYzaYz5N9tst+YvGM7y/FARz5By+MfWph81pprTpbs/MKMJsqcGDZ02S7chmpbIf
+         lxzYQjAKdf+CHagqY6a3NXTKuBO8hy0mkdNvidaD2a28xuVZZR9Nl/UblXPyt/FHPuV6
+         H4hYk7r+k0h4J1mpa0+NMc+uSp8J2wjuf+nkXkqTXbV06KyzW35LWNegs+WdkW12SZwj
+         dfX4Gc9r+0tG+2HR/6w4CpHhVGXYT5t5ade2KtYSGKIqgb2wnVk+I1Qh/xw0JyOWq+Uq
+         GPRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ZubhIdZTeko7cYjTeoqS5K64c7OG8apxg678QISjqVw=;
-        b=BdI3yLkB6u9Tko5F7vEesVEnvdjsXF272NNbtdJGNcxmtWQzJrY9Qwl+nYzieySoAR
-         ha9Kk1hdwX2FiPhT/J3/wfCpBlZDiel9Rm8nk5+uv6Vu3Qget4BaE1GZn7v8+roRdFVQ
-         s6O31U6mlj6AfTZTXq1Q99L1w9CbuunyxoqxsxKLPOWA4gFZO4szZB9bTSR+ViFjchaU
-         F07o21kdRYlaGNyWYrzdDrGj9fAJffoKW1XMtwai4F5N9hE2nrUOoVucAcqaMK2E0MNJ
-         ZFzpEr8pCMfX40P7hN1PXD/FrIYvwx9oiVGzT6ISplMgDh4nG22g1dU9KFKHSiOzUtfM
-         cyag==
-X-Gm-Message-State: AOAM531iSs7DyZtcxi2OWa24pLiIcbZBCmu+v8F/jHeClOAPJ8p73MAi
-        N7dWvaoWQpPmIigD8Lciurta+vp77WU=
-X-Google-Smtp-Source: ABdhPJzS7Zrz9TMo4WrLSBC+Wf80rAguG99nRWBRJmBaAMn9RulsBBVDVLRBgHNWBxkrenhhT/Wo5w==
-X-Received: by 2002:a17:90b:1648:b0:1bd:28ac:859d with SMTP id il8-20020a17090b164800b001bd28ac859dmr17660118pjb.59.1646521499026;
-        Sat, 05 Mar 2022 15:04:59 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:15af:5d15:3044:acb9])
-        by smtp.gmail.com with ESMTPSA id h3-20020a056a00170300b004f104c635e4sm10739527pfc.99.2022.03.05.15.04.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Mar 2022 15:04:58 -0800 (PST)
-Date:   Sat, 5 Mar 2022 15:04:55 -0800
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Mattijs Korpershoek <mkorpershoek@baylibre.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Fengping Yu <fengping.yu@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v21 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
-Message-ID: <YiPsl41Sawjlc2E+@google.com>
-References: <20220303154302.252041-1-mkorpershoek@baylibre.com>
- <20220303154302.252041-3-mkorpershoek@baylibre.com>
- <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to;
+        bh=VaaSLAJ+hgNGNq49WyPsh3ndDLo+mnrYcswrOHpJSv8=;
+        b=0WHR1Ps40k9NXOFISoFWzSrz/gHoB4ep0rNOASzwqFDZBuJyUDzltwHGaCJfmFr2Wo
+         wrYaeAUpFHW/Xq5T68mtPlrW2ZDZjD+s+r6pINQwIQ+RLRcucJLJ+ulsfgfA0GuZSs65
+         acdFTu78wqLC4ZIStm8Uht7EQ93TLR0udQrLKDiUBrmWua3ZdswF7zkhLHJxLTxMAIPr
+         DH+wXVx41xtmF/oSHbWI2+IQdLOR/hzQV5UHBmYeQ3EpukzKYffGHlxKEYHwLhVgjsXX
+         h2cWj1rmcx/TPdQkFLVuLiUwpyXSMp1jAJvlezOU2HpvV8OASkzaX0F4RVSuzVumCE17
+         aRYQ==
+X-Gm-Message-State: AOAM533Q53kdm8lY2Lya4c6+isRHyHm0ooQh0FCI+L93Tq8vbnD0Ro+c
+        ESR/o0UM2OsPEBIUB0NSjqcdIp8xwuKaeKikEm8=
+X-Google-Smtp-Source: ABdhPJx90+RxpYZTJG1k/w2VWX94PFiL2fcD0kPxHRQCAyrOv/Vi+jPbxrKWLmf2mrZcWF5NE7ta5wUFFTRXwADcESc=
+X-Received: by 2002:a25:6fc1:0:b0:624:43a0:c16c with SMTP id
+ k184-20020a256fc1000000b0062443a0c16cmr4210389ybc.222.1646543111983; Sat, 05
+ Mar 2022 21:05:11 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+Sender: madamarawaaa@gmail.com
+Received: by 2002:a05:7010:7044:b0:211:4c69:46e6 with HTTP; Sat, 5 Mar 2022
+ 21:05:11 -0800 (PST)
+From:   Ssan Elwood Hara <mrs.susanelwoodhara17@gmail.com>
+Date:   Sun, 6 Mar 2022 05:05:11 +0000
+X-Google-Sender-Auth: izPB-L9S-IM0QENjD_8qem61oRM
+Message-ID: <CAJRRPJ95fsbxu9WjBaBG6xRGOmXknYqGjX0oVWxj00HQwcVXOQ@mail.gmail.com>
+Subject: GOD BLESS YOU AS YOU REPLY URGENTLY
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.7 required=5.0 tests=BAYES_50,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,SUBJ_ALL_CAPS,
+        T_SCC_BODY_TEXT_LINE,UNDISC_MONEY autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 11:31:38AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 03/03/22 16:43, Mattijs Korpershoek ha scritto:
-> > From: "fengping.yu" <fengping.yu@mediatek.com>
-> > +
-> > +static const struct regmap_config mt6779_keypad_regmap_cfg = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = sizeof(u32),
-> > +	.max_register = 36,
-> 
-> Are you sure that you can't use .fast_io = true?
-> 
-> Another version for the same question:
-> Are you sure that you need to lock with a mutex here, and not with a spinlock?
-> 
-> Since you're performing reads over a MMIO, I think that there's a very good
-> chance that you can use fast_io.
+GOD BLESS YOU AS YOU REPLY URGENTLY
 
-I think there are good ideas here, but they are not critical (this is a
-keypad we are dealing with) and so can be investigated at a later time.
-
-I added reporting of EV_MSC/MSC_SCAN as it is customary for
-keyboard/keypad drivers, and applied the patch.
-
-Thank you.
-
--- 
-Dmitry
+ Hello Dear,
+Greetings, I am contacting you regarding an important information i
+have for you please reply to confirm your email address and for more
+details Thanks
+Regards
+Mrs Susan Elwood Hara.
