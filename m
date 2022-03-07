@@ -2,215 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CCD14D074A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:09:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AC754D0752
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:11:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240816AbiCGTKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 14:10:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52752 "EHLO
+        id S235485AbiCGTMl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 14:12:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236460AbiCGTKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:10:20 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208FB2182B
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 11:09:24 -0800 (PST)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 9A2A93F615
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 19:09:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646680163;
-        bh=q8g4tYGCrxotRx9lTZBNqkxXceWtfikA4nvN9afKB+c=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=j+YNOxFQNGX6znocE4BIXsNfo81KHpVYkBNGsfQWpMCpz1yb7Ej3jVLU3macYsICd
-         9iS/LyAPgeVHOZhOChO4RhyuAk4r85Y7becFdU9RtkVDuOdu88bsb/F/AS5a4X+N9B
-         oaL/WGtqwVY2AMnQ5sIQao0aZeymQLy38AnQDFpPu4ZJM/o5LJGFG1toIrOz7uzmZC
-         AeIAdrwOtlEv9/75wFLEP8wNHxpzw1QdtcWpsxVJF9OCwr0JfZOSlfYDrWGym1O0gy
-         uLh9ObmQv3/xV4aC7+P3JG3LXYMP0lujXUnxQOMtid//gu6up+ALkeFwKPiuZMAYQ6
-         shsTai4zm30jA==
-Received: by mail-ej1-f69.google.com with SMTP id le4-20020a170907170400b006dab546bc40so4177642ejc.15
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 11:09:23 -0800 (PST)
+        with ESMTP id S233428AbiCGTMl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:12:41 -0500
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 490895577C
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 11:11:46 -0800 (PST)
+Received: by mail-ot1-x333.google.com with SMTP id x8-20020a9d6288000000b005b22c373759so3650336otk.8
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 11:11:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Jb3LOlMf5pk1D9PjLVHGSfg0goBFbrUHnygCupUhgZI=;
+        b=iNQpsc5C47zsL+rwea5Gp9oqE5D8fpUxVHM/oEeqnouFvmu3EH516OlUb2UAnzE9j7
+         0fKrEb4VlNgNhBDOxV3WTDoN9IjJv7auS6de717hqUuXbO8rfTXzlEGqnVyfSBYs4TRo
+         JbHNYrXbasfzo6mbe5OoZ43yxlqsM24sjqZeKJddKqh+lHn/8ULKrgyJODzAudqWEF2M
+         dZQJtvb/W71PecwPK8ychQ5EwhbpQfCJL6Yz3j/4KX4p5jnGKQKdzSlKW5WRYZOJA82r
+         SQi+26rzzx5f0ztSOvpa211LBscQiorvpyq+3U7Wca8GeWz9ACEhPQLS8pKIgqhbMLjM
+         9itg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=q8g4tYGCrxotRx9lTZBNqkxXceWtfikA4nvN9afKB+c=;
-        b=LM2gfqaAHxTEBX9K26xdcjG9O41dD9a8HYWbhKydaqNVVZAauYlusNE7X2j8oJl8UN
-         CfSguMFL0Xnea7R5nKISLRrlnYzRNpDx3Odbg0X4qsTkaXG/6QIGypUaCjzTQvCQGiBc
-         oYd7yfSuB18JaiPgSeFvrJb9ao1Zan4NLStDiZkRcmD2/OoEQmiiyAgwa2WeFbvEIaI6
-         OuEv2pGHiMeyWJ/4BVBli2A4oMTaxbQZxHQHXbVy+TyUFF2EtOnqMebneVdmHFTzeYtk
-         SF70z82jQsZSJiMILhEPRdpUwHhZtRZFZA9bU1zRMUX0sWqmm8GfLBenXE3aI3L63mRy
-         cJ6g==
-X-Gm-Message-State: AOAM533Z2idK5NLXOOlZ/JFjqltYL+tYqTO9lmGQeqJT8mqqKAEIQ2yE
-        Jn4CeKZoZ1Hd1gJe6x2u58dx3UrGpNoMl71R4m13YFQs9rwOa+F+lFshH5jopQvKzeRBmlYhFn8
-        H1t/28xs8f81kG+kPPRtXEbuZtsve+gomXsx2Xzc=
-X-Received: by 2002:a05:6402:d05:b0:412:e171:28d9 with SMTP id eb5-20020a0564020d0500b00412e17128d9mr12536691edb.169.1646680162876;
-        Mon, 07 Mar 2022 11:09:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwnXJsZ3tP6u8vL9bjGPK4PcYrTbamwIQwunSPQfwoOShUSR1G2G0NoifRaJxoa1506PQCoHA==
-X-Received: by 2002:a05:6402:d05:b0:412:e171:28d9 with SMTP id eb5-20020a0564020d0500b00412e17128d9mr12536665edb.169.1646680162655;
-        Mon, 07 Mar 2022 11:09:22 -0800 (PST)
-Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id b7-20020a170906490700b006b2512921b2sm5042639ejq.48.2022.03.07.11.09.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 11:09:21 -0800 (PST)
-Message-ID: <d9bcb4b2-3d8d-d695-2bec-8a05ba7249f5@canonical.com>
-Date:   Mon, 7 Mar 2022 20:09:21 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Jb3LOlMf5pk1D9PjLVHGSfg0goBFbrUHnygCupUhgZI=;
+        b=Sh0LCYV2phmIai6EOK+cQvdZCASM7C5EUrxYZjnG+oOiuL4XhnVr2qmFZKpmSo5u6E
+         5mxxuw1TZmOer6dh7LLc/9JFB47UDRG81wyAm0wiKcWxcsQSQVZvA14NRkn3RjdcarQC
+         Rnu9eIQNLpAFF9m2CEQZY+p0N7Qd1VF/N8nRSwQKaj/QJ2iIVT328Ta5DqhHNIA6qsak
+         JmYLFmFgbDdEzdDK35etrnYWVcyZZ37yNyPVN8BxM/WUyxPwA5wfAKVfAUaYyuXDugq0
+         dOoTHigAJMFu2cR68fsPicN+cIyjjYhB9arVIlDUXBe5nwxaWQNO37f6iyHHPenwDr4f
+         x4+Q==
+X-Gm-Message-State: AOAM532JP/K1gV4ddGhu0INwM5JwtMl+WGZpn7mNvhL9WTnmQtejL72Y
+        hfVfGwf/5RoEHiMmGa1GLyq12A==
+X-Google-Smtp-Source: ABdhPJyrQkhnOMlIjCfuY6r6deiMNn2tGrB6tFf9VgrnJ7SyMmVsaBZWntgAitDk2cHkCVeXVdDvAQ==
+X-Received: by 2002:a9d:2045:0:b0:5b2:1052:93fd with SMTP id n63-20020a9d2045000000b005b2105293fdmr6358924ota.259.1646680305167;
+        Mon, 07 Mar 2022 11:11:45 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id k15-20020a056808068f00b002d91362e56esm6764310oig.1.2022.03.07.11.11.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 11:11:44 -0800 (PST)
+Date:   Mon, 7 Mar 2022 11:13:28 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v4 1/7] device property: Helper to match multiple
+ connections
+Message-ID: <YiZZWN1FgnWxBCuN@ripper>
+References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
+ <YiXZBMG7cK6Cm7wP@smile.fi.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v10 1/2] dt-binding: misc: Add iop yaml file for Sunplus
- SP7021
-Content-Language: en-US
-To:     Tony Huang <tonyhuang.sunplus@gmail.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        derek.kiernan@xilinx.com, Dragan.cvetic@xilinx.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org
-Cc:     wells.lu@sunplus.com, tony.huang@sunplus.com
-References: <cover.1646629400.git.tonyhuang.sunplus@gmail.com>
- <57d8c6d8ce52e7152156f2fcc4b61bfd2fed1c40.1646629400.git.tonyhuang.sunplus@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <57d8c6d8ce52e7152156f2fcc4b61bfd2fed1c40.1646629400.git.tonyhuang.sunplus@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YiXZBMG7cK6Cm7wP@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 06:25, Tony Huang wrote:
-> Add iop yaml file for Sunplus SP7021
+On Mon 07 Mar 02:05 PST 2022, Andy Shevchenko wrote:
 
-subject prefix is "dt-bindings", not "dt-binding".
+> On Sun, Mar 06, 2022 at 07:40:34PM -0800, Bjorn Andersson wrote:
+> > In some cases multiple connections with the same connection id
+> > needs to be resolved from a fwnode graph.
+> > 
+> > One such example is when separate hardware is used for performing muxing
+> > and/or orientation switching of the SuperSpeed and SBU lines in a USB
+> > Type-C connector. In this case the connector needs to belong to a graph
+> > with multiple matching remote endpoints, and the Type-C controller needs
+> > to be able to resolve them both.
+> > 
+> > Add a new API that allows this kind of lookup.
+> 
+> Thanks for the update!
+> 
+> First of all, I have noticed that subject misses the verb, something like Add
+> or Introduce.
+> 
+
+Will update accordingly.
+
+> ...
+> 
+> > +/**
+> > + * fwnode_connection_find_matches - Find connections from a device node
+> > + * @fwnode: Device node with the connection
+> > + * @con_id: Identifier for the connection
+> > + * @data: Data for the match function
+> > + * @match: Function to check and convert the connection description
+> > + * @matches: Array of pointers to fill with matches
+> 
+> (Optional) array...
+> 
+
+Ditto.
+
+> > + * @matches_len: Length of @matches
+> > + *
+> > + * Find up to @matches_len connections with unique identifier @con_id between
+> > + * @fwnode and other device nodes. @match will be used to convert the
+> > + * connection description to data the caller is expecting to be returned
+> > + * through the @matches array.
+> 
+> > + * If @matches is NULL @matches_len is ignored and the total number of resolved
+> > + * matches is returned.
+> 
+> I would require matches_len to be 0, see below.
+> 
+> > + * Return: Number of matches resolved, or negative errno.
+> > + */
+> > +int fwnode_connection_find_matches(struct fwnode_handle *fwnode,
+> > +				   const char *con_id, void *data,
+> > +				   devcon_match_fn_t match,
+> > +				   void **matches, unsigned int matches_len)
+> > +{
+> > +	unsigned int count_graph;
+> > +	unsigned int count_ref;
+> > +
+> > +	if (!fwnode || !match)
+> > +		return -EINVAL;
+> > +
+> > +	count_graph = fwnode_graph_devcon_matches(fwnode, con_id, data, match,
+> > +						  matches, matches_len);
+> 
+> > +	if (matches) {
+> > +		matches += count_graph;
+> > +		matches_len -= count_graph;
+> > +	}
+> 
+> So, the valid case is matches != NULL and matches_len == 0. For example, when
+> we have run something previously on the buffer and it becomes full.
+> 
+> In this case we have carefully handle this case.
+> 
+> 	if (matches) {
+> 		matches += count_graph;
+> 		if (matches_len)
+> 			matches_len -= count_graph;
+
+When matches is non-NULL, both the sub-functions are limited by
+matches_len and as such count_graph <= matches_len.
+
+As such matches_len >= 0.
+
+In the event that the originally passed matches_len was 0, then
+count_graph will be 0 and matches_len will remain 0.
+
+I therefor don't see that this additional check changes things.
+
+> 	}
+> 
+> Seems it can be also
+> 
+> 	if (matches)
+> 		matches += count_graph;
+> 
+> 	if (matches_len)
+> 		matches_len -= count_graph;
+
+We covered the case of matches && (matches_len || !matches_len) above.
+
+For the case of !matches && matches_len, this added conditional would
+cause matches_len to be extra ignored by keeping it at 0, but per
+kernel-doc and implementation we ignore all other values already.
+
+
+Note that this is in contrast from vsnprintf() where the code will
+continue to produce results, only store the first "matches_len"
+entires and return the final count.
+
+Unfortunately we can't follow such semantics here, instead it is clearly
+documented in the kernel-doc that @matches_len is ignored when @matches
+is NULL.
+
+
+So unless I'm missing something I don't see what you gain over keeping
+the check on only matches.
 
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
-> ---
-> Changes in v10:
->  -No change
+> That said, do we have a test cases for this?
 > 
->  .../devicetree/bindings/misc/sunplus-iop.yaml      | 76 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 ++
->  2 files changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/sunplus-iop.yaml
+
+I looked briefly at adding some kunit tests for this, but was discourage
+by the prospect of building up the graphs to run the tests against.
+
+Regards,
+Bjorn
+
+> > +	count_ref = fwnode_devcon_matches(fwnode, con_id, data, match,
+> > +					  matches, matches_len);
+> > +
+> > +	return count_graph + count_ref;
+> > +}
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/sunplus-iop.yaml b/Documentation/devicetree/bindings/misc/sunplus-iop.yaml
-> new file mode 100644
-> index 0000000..b37e697
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/sunplus-iop.yaml
-> @@ -0,0 +1,76 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) Sunplus Ltd. Co. 2021
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/sunplus-iop.yaml#
-
-Use file name in "vendor,name" format, so "sunplus,iop.yaml".
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sunplus IOP(8051) controller
-> +
-> +maintainers:
-> +  - Tony Huang <tonyhuang.sunplus@gmail.com>
-> +
-> +description: |
-> +  Processor for I/O control, RTC wake-up procedure management,
-> +  and cooperation with CPU&PMC in power management.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sunplus,sp7021-iop
-> +
-> +  reg:
-> +    items:
-> +      - description: IOP registers regions
-> +      - description: PMC registers regions
-> +      - description: MOON0 registers regions
-> +
-> +  reg-names:
-> +    items:
-> +      - const: iop
-> +      - const: iop_pmc
-> +      - const: moon0
-> +
-> +  interrupts:
-> +    items:
-> +      - description: IOP_INT0. IOP to system Interrupt 0.
-> +                     Sent by IOP to system RISC.
-> +      - description: IOP_INT1. IOP to System Interrupt 1.
-> +                     Sent by IOP to system RISC.
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  wakeup-gpios:
-> +    description: When the linux kernel system is powered off.
-> +      8051 is always powered. 8051 cand receive external signals
-> +      according to this gpio pin. 8051 receives external signal
-> +      through gpio pin. 8051 can power on linux kernel system.
-
-How many items (maxItems)? Unless Rob already asked about it...
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - interrupts
-> +  - memory-region
-> +  - wakeup-gpios
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    iop: iop@9c000400 {
-> +        compatible = "sunplus,sp7021-iop";
-> +        reg = <0x9c000400 0x80>, <0x9c003100 0x80>, <0x9c000000 0x80>;
-> +        reg-names = "iop", "iop_pmc", "moon0";
-> +        interrupt-parent = <&intc>;
-> +        interrupts = <41 IRQ_TYPE_LEVEL_HIGH>, <42 IRQ_TYPE_LEVEL_HIGH>;
-> +        memory-region = <&iop_reserve>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&iop_pins>;
-> +        wakeup-gpios = <&pctl 1 GPIO_ACTIVE_HIGH>;
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fb18ce7..6f336c9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18242,6 +18242,11 @@ L:	netdev@vger.kernel.org
->  S:	Maintained
->  F:	drivers/net/ethernet/dlink/sundance.c
->  
-> +SUNPLUS IOP DRIVER
-> +M:	Tony Huang <tonyhuang.sunplus@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/misc/sunplu-iop.yaml
-
-Wrong path.
-
-> +
->  SUPERH
->  M:	Yoshinori Sato <ysato@users.sourceforge.jp>
->  M:	Rich Felker <dalias@libc.org>
-
-
-Best regards,
-Krzysztof
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
