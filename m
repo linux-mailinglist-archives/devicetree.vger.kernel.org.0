@@ -2,58 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9220D4CFDA1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:04:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B97DB4CFDC3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:06:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232575AbiCGMFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 07:05:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
+        id S241194AbiCGMHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 07:07:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234746AbiCGMFn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:05:43 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918D86EB09;
-        Mon,  7 Mar 2022 04:04:48 -0800 (PST)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id DE1A62223A;
-        Mon,  7 Mar 2022 13:04:45 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1646654686;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nG3Uult3QUrmEBI/29xWk62uJTgK9WBGo1PMeAJ45F8=;
-        b=YCgWV+5UVQYW7R0+/OxWFQk9C2NjAxvrmB0LjDT0Iv1x6Fh2XdYhzuBAyuO25xwq5v7zpW
-        3znUg7wmgpXhOzQsA9KGdJXXrl2dHFJv+0ph9kOSPcB1LBvG+xqZgeI1dEVGr3QUMDwZpf
-        KbPrFlq8dkrDMRcfUaGAo6h+nfo/sDg=
+        with ESMTP id S241727AbiCGMHR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:07:17 -0500
+Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C64175E45
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 04:06:14 -0800 (PST)
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id 1C9D7AC0245;
+        Mon,  7 Mar 2022 20:06:11 +0800 (CST)
+Message-ID: <1483d5c1-1a4b-615c-b7c0-41da51b5f38c@rock-chips.com>
+Date:   Mon, 7 Mar 2022 20:06:10 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 15/24] drm/rockchip: dw_hdmi: add default 594Mhz clk
+ for 4K@60hz
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Nickey Yang <nickey.yang@rock-chips.com>
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-16-s.hauer@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220225075150.2729401-16-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Date:   Mon, 07 Mar 2022 13:04:45 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Claudiu.Beznea@microchip.com
-Cc:     Kavyasree.Kotagiri@microchip.com, Nicolas.Ferre@microchip.com,
-        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, alexandre.belloni@bootlin.com
-Subject: Re: [PATCH v1 3/6] ARM: dts: lan966x: add all flexcom usart nodes
-In-Reply-To: <bf005cd2-4c83-1552-8282-d229eacc51f3@microchip.com>
-References: <20220303160323.3316317-1-michael@walle.cc>
- <20220303160323.3316317-4-michael@walle.cc>
- <a33f0c73-df49-5a22-14b3-0059f7d6b827@microchip.com>
- <2e0aefc90a80bdf13df0e59857c52ca7@walle.cc>
- <bf005cd2-4c83-1552-8282-d229eacc51f3@microchip.com>
-User-Agent: Roundcube Webmail/1.4.12
-Message-ID: <219ffd086373c453d5d0aad897cd2d41@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRoeTxlWH0xKHRpJHx
+        5IQk4aVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NTI6Khw4Aj4MKzMxKEgPPygj
+        HzBPCgxVSlVKTU9NTU5PTExKTUhMVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElOSzcG
+X-HM-Tid: 0a7f6445d0eeb039kuuu1c9d7ac0245
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,95 +59,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-03-07 12:53, schrieb Claudiu.Beznea@microchip.com:
-> On 04.03.2022 13:01, Michael Walle wrote:
->> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
->> the
->> content is safe
->> 
->> Hi,
->> 
->> thanks for the quick review.
->> 
->> Am 2022-03-04 09:30, schrieb Claudiu.Beznea@microchip.com:
->>> On 03.03.2022 18:03, Michael Walle wrote:
->>>> EXTERNAL EMAIL: Do not click links or open attachments unless you 
->>>> know
->>>> the content is safe
->>>> 
->>>> Add all the usart nodes for the flexcom block. There was already
->>>> an usart node for the flexcom3 block. But it missed the DMA
->>>> channels.
->>> 
->>> And it would be good to go though a different patch.
->> 
->> sure
->> 
->>>> Although the DMA channels are specified, DMA is not
->>>> enabled by default because break detection doesn't work with DMA.
->>>> 
->>>> Keep the nodes disabled by default.
->>>> 
->>>> Signed-off-by: Michael Walle <michael@walle.cc>
->>>> ---
->>>>  arch/arm/boot/dts/lan966x.dtsi | 55
->>>> ++++++++++++++++++++++++++++++++++
->>>>  1 file changed, 55 insertions(+)
->>>> 
->>>> diff --git a/arch/arm/boot/dts/lan966x.dtsi
->>>> b/arch/arm/boot/dts/lan966x.dtsi
->>>> index a7d46a2ca058..bea69b6d2749 100644
->>>> --- a/arch/arm/boot/dts/lan966x.dtsi
->>>> +++ b/arch/arm/boot/dts/lan966x.dtsi
->>>> @@ -92,6 +92,19 @@ flx0: flexcom@e0040000 {
->>>>                         #size-cells = <1>;
->>>>                         ranges = <0x0 0xe0040000 0x800>;
->>>>                         status = "disabled";
->>>> +
->>>> +                       usart0: serial@200 {
->>>> +                               compatible =
->>>> "atmel,at91sam9260-usart";
->>> 
->>> Are the usart blocks in lan966x 1:1 compatible with what is is 
->>> sam9260?
->>> In
->>> case not it may worth to have a new compatible here, for lan966x, 
->>> such
->>> that
->>> when new features will be implemented in usart driver for lan966x the
->>> old
->>> DT (this one) will work with the new kernel implementation.
->> 
->> During my review of the inital dtsi patch, I've asked the same 
->> question
->> [1]
->> and I was told they are the same.
->> 
->> At least this exact usart compatible is already in this file. I was
->> under
->> the impression, that was the least controversial compatible :)
-> 
-> OK.
-> 
->> 
->> But you'll need to tell me if they are the same or not, I don't have
->> any clue what microchip has reused.
-> 
-> From software point of view comparing registers should be good, as far 
-> as I
-> can tell. All AT91 datasheet should be available. I though you have 
-> checked
-> one against LAN966. At the moment I don't have a DS for LAN966. I'll 
-> find
-> one and have a look.
+Hi:
 
-So my train of thought was like: even if the registers are the same I
-cannot be sure that it is the exact same IP and will behave the same.
-Therefore, it is something only microchip can answer.
+  I have a test with the 24 patches applied on Linux-5.17-rc5 on 
+rk3568-evb1-v10 board with Sony XR-75z9j  HDMI TV,
 
-You can find the registers at
-https://microchip-ung.github.io/lan9668_reginfo/reginfo_LAN9668.html
+4K don't work, the tv shows no signal.
 
-I'm not aware of any "classic" datasheet.
+1080P can work.
 
--michael
+On 2/25/22 15:51, Sascha Hauer wrote:
+> From: Nickey Yang <nickey.yang@rock-chips.com>
+>
+> add 594Mhz configuration parameters in rockchip_phy_config
+>
+> Signed-off-by: Nickey Yang <nickey.yang@rock-chips.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>
+> Notes:
+>      Changes since v3:
+>      - new patch
+>
+>   drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 1 +
+>   1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> index e97ba072a097b..03cda7229e559 100644
+> --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
+> @@ -192,6 +192,7 @@ static const struct dw_hdmi_phy_config rockchip_phy_config[] = {
+>   	{ 74250000,  0x8009, 0x0004, 0x0272},
+>   	{ 148500000, 0x802b, 0x0004, 0x028d},
+>   	{ 297000000, 0x8039, 0x0005, 0x028d},
+> +	{ 594000000, 0x8039, 0x0000, 0x019d},
+>   	{ ~0UL,	     0x0000, 0x0000, 0x0000}
+>   };
+>   
