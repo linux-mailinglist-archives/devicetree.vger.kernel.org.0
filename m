@@ -2,82 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4B24D036F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 16:51:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C7B454D037F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 16:55:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236457AbiCGPwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 10:52:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37380 "EHLO
+        id S241358AbiCGP4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 10:56:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229648AbiCGPwQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 10:52:16 -0500
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B2C192D33;
-        Mon,  7 Mar 2022 07:51:21 -0800 (PST)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id B0E2B30B;
-        Mon,  7 Mar 2022 16:51:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1646668278;
-        bh=SfxEEhRPvuDd44PxQZDXnX/DJ2LqiwGXoarMuJp/ZM4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V8ImryOJpGHpy5ygU0+dU6R2BhB3NGcuHbiW2AFKjATgPv9k2CQe2tGPptepqjkK5
-         diWkulTMnS2WWAi4ycvJW5/QCFZNvk9B93dackkT/b7YjSFI2YgRAGlOgQmR9dwvkU
-         fXI6DpLrdmaARIp54QP+2+HuL7TIsF240W0BxaZg=
-Date:   Mon, 7 Mar 2022 17:51:05 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Robert Foss <robert.foss@linaro.org>
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, xji@analogixsemi.com, hsinyi@chromium.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v1 0/2] Revert vendor property from anx7625 bindings
-Message-ID: <YiYp6bKJPdIoKD+f@pendragon.ideasonboard.com>
-References: <20220307154558.2505734-1-robert.foss@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220307154558.2505734-1-robert.foss@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S231715AbiCGP4m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 10:56:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 501FB7D007;
+        Mon,  7 Mar 2022 07:55:48 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DBC7160A20;
+        Mon,  7 Mar 2022 15:55:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49769C340EB;
+        Mon,  7 Mar 2022 15:55:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646668547;
+        bh=aVLhNCf5hrMjPL7JDmyueIwlbRUgBoYxzLRoIl+RLYk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=myX9e1ypm7GnGg1V9fumjZnegDmHdNoYeSrwbwq2WP0AgwwosEveFiTr9MLoHcTHS
+         5ZHY2aoDnZbgSGSOfIkhAJbqIrxPKINOUjUJZoBoc8pySSabKHnS2obNCOM2bqa5DS
+         xcF8O7Jfm9nxky0c2HAoAvdaRuWegfT7hYWAh6QXNRdaBoy/ACEPmV9Mx9s0BXNG0N
+         oOE497w3Of5Vr6iT5qcw3NAImtBXLAMH3Fcrl1Bv03jmuIxTPkMC7RTdz6Xlm9tJpa
+         N/A75QMnNobqHfJfLDpQ8g0fvo1pxudipd+ltgvMxnEk84Ejw07guKW8QrgGFA75aO
+         4N/q3zK8ZZTrg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nRFi4-00Cpho-QR; Mon, 07 Mar 2022 15:55:44 +0000
+Date:   Mon, 07 Mar 2022 15:55:44 +0000
+Message-ID: <875yop21vj.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Hector Martin <marcan@marcan.st>,
+        Sven Peter <sven@svenpeter.dev>,
+        Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Dougall <dougallj@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH v5 00/10] drivers/perf: CPU PMU driver for Apple M1
+In-Reply-To: <20220208185604.1097957-1-maz@kernel.org>
+References: <20220208185604.1097957-1-maz@kernel.org>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: will@kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, mark.rutland@arm.com, marcan@marcan.st, sven@svenpeter.dev, alyssa@rosenzweig.io, robh+dt@kernel.org, tglx@linutronix.de, dougallj@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thank you for the patch.
-
-On Mon, Mar 07, 2022 at 04:45:56PM +0100, Robert Foss wrote:
-> An issue[1] related to how the V4L2_FWNODE_BUS_TYPE_PARALLEL flag is mis-used
-> was found in recent addition to the anx7625 driver.
+On Tue, 08 Feb 2022 18:55:54 +0000,
+Marc Zyngier <maz@kernel.org> wrote:
 > 
-> In order to not introduce this issue into the ABI, let's revert the changes
-> to the anx7625 dt-binding related to this.
+> The M1 SoC embeds a per-CPU PMU that has a very different programming
+> interface compared to the architected PMUv3 that is normally present
+> on standard implementations.
 > 
-> [1] https://lore.kernel.org/all/YiTruiCIkyxs3jTC@pendragon.ideasonboard.com/
+> This small series adds a driver for this HW by leveraging the arm_pmu
+> infrastructure, resulting in a rather simple driver.
 > 
-> Robert Foss (2):
->   Revert "dt-bindings:drm/bridge:anx7625:add vendor define"
->   Revert "arm64: dts: mt8183: jacuzzi: Fix bus properties in anx's DSI
->     endpoint"
+> Of course, we know next to nothing about the actual events this PMU
+> counts, aside from CPU cycles and instructions. Everything else is
+> undocumented (though as Dougall pointed out, someone could extract the
+> relevant information from a macOS install if they wanted -- I don't).
+> I'm looking at allowing the perf userspace tool to load the event
+> descriptions at runtime, which would probably help.
 
-If this is enough to avoid the wrong bus-type becoming an ABI, even if
-the corresponding driver support isn't reverted, then, for the whole
-series,
+[...]
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+FWIW, I have created two branches:
 
->  .../display/bridge/analogix,anx7625.yaml      | 65 +------------------
->  .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  2 -
->  2 files changed, 2 insertions(+), 65 deletions(-)
+- [1] has the full series
+- [2] has the irqchip/DT prefix of [1]
+
+Both branches are stable, and I expect [2] to be used as a shared
+branch between the irqchip and perf trees.
+
+Thanks,
+
+	M.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=hack/m1-pmu
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/maz/arm-platforms.git/log/?h=irq/aic-pmu
 
 -- 
-Regards,
-
-Laurent Pinchart
+Without deviation from the norm, progress is not possible.
