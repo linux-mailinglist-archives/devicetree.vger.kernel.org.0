@@ -2,101 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA24F4D05E6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:03:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EEB4D05EE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:05:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244618AbiCGSEk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 13:04:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32832 "EHLO
+        id S244637AbiCGSGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 13:06:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240475AbiCGSEf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:04:35 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A2B74EA3D;
-        Mon,  7 Mar 2022 10:03:41 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S235549AbiCGSGq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:06:46 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A35347DE1E
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 10:05:51 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD078612CE;
-        Mon,  7 Mar 2022 18:03:40 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BE4DC340F6;
-        Mon,  7 Mar 2022 18:03:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646676220;
-        bh=GroBZq5f9ydM0k881i6/q8HA2YBB5lbcWXHdWwi9oEE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=VZv892sUwGARHDj+GY7H6M676BMAGIHmkA0BmAKxWKaSxrfsUGm4yjD0WDHXFEc5l
-         m2fU9mC0K4EZ/Ub+HVbTiWJejn75h8mVwmtQ96fo+wDfMArr46NmvqqOxB3gSPMXT3
-         bz3XtbaVQj23r82vdBxkCc5LdZs6cWn55iO9iYJBrvRJUhsYIxP1Vz19TgVf3Gyr6W
-         zXe7f2yuvVv6dA9Wn/quxONzGtTwdiDUk2ALsB7GXW/bpslRs3PblT67Mwp3POxF/R
-         nFhjFe4qWU5w8pXr55/De8kItH6iEkS0MiqjSFw0oPHC0Y8e+z1M+gx0BpK/qVkvEs
-         4rVrGIr+g+rRg==
-Received: by mail-ed1-f44.google.com with SMTP id q17so21118252edd.4;
-        Mon, 07 Mar 2022 10:03:39 -0800 (PST)
-X-Gm-Message-State: AOAM5310q0eBeyDslrXwifVCN/uQK79KUNpgfAdkD6HF9on4bQKU8+3e
-        54D862mWixbLkh3lxMLGac5qBVay/MEPfUkqHw==
-X-Google-Smtp-Source: ABdhPJyFuI/fg6RMtF1oAdFB4y+D9IZhG87aW9IlKhHbcqAMXheFmUXB6WhCL2/DsQNWoPooxUAVoIpIywyXTL9oAxQ=
-X-Received: by 2002:a05:6402:51cb:b0:409:e99f:bc1c with SMTP id
- r11-20020a05640251cb00b00409e99fbc1cmr12439878edd.68.1646676218348; Mon, 07
- Mar 2022 10:03:38 -0800 (PST)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2C99A3F1C9
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646676350;
+        bh=Xrzjqgd/gsl48ny3tXE+vznfcNU58djyNkJpGir9KQM=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=SrMz0L+DGu7LtMCVoOEdsxsSbnTbbMPBdwRBqg3kelLbm2bZQOdX/mOQ6ZjQlbajF
+         b3vI5UfvkmJvER7BKINzdGlPgUcJEqMeIu5Kh0E0DHUSlFE0lBQldu+gX6qWNt54+o
+         GBvPovAB4oxd+V7KqLWLa9W0Sf7TzfQU51yKR1ltylxYaftNowAqlF4Q3ihkIR6sXW
+         Qe47LxEjV+Fo+dJC+wYGT3mMjHFWlyREZ7ocTDdxJvDpWhnx7fpFPeBtthX9yNayoi
+         pqOSxvUrbsTd1NjBpHfqV7OwkRXbXLKxs+UbkpnwF5KBWq+YgwXb5xRrUHvwb53V/f
+         Ii9jh/AFVpkJA==
+Received: by mail-ed1-f69.google.com with SMTP id i17-20020aa7c711000000b00415ecaefd07so6732101edq.21
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 10:05:50 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Xrzjqgd/gsl48ny3tXE+vznfcNU58djyNkJpGir9KQM=;
+        b=xFPMAkVrw5ucvuNgFNNwQ25APZa0L4Ea3C3oPpGgf7jsZqgPrj34dbvHSPz6M0Rqdg
+         g67xCi3/osj+iu3CEHnkthvdn7S85V+tLqRU5zujBP5PTE3WR6POym/KHlDS6h9YZW3j
+         f77caP9ZHcL6jn8iCxgJnw3ckgR3CWM4J+Pnl34yQGJ2Nf/O6Iz2qOjdZVhRR0XttMab
+         HKSHkvbu0v7bmY2FtK030b+3GPIoMZkk/bjl7iDaqWiGwM3kZPWHqbVhZvPyilu0W4HG
+         i6NmJcZWQYb3JQiYCuss1lJvO4DiG6zNbFcCkmpu6Hdm0TlyxJtC/4f91HsmKWuSjvyh
+         jgJA==
+X-Gm-Message-State: AOAM533s+nE4xdeJTmDSYWygCN8CU1AviIPcKHOsKccYsptI2CfNEMv4
+        Yl84Hgo6WkAzcqB98L0fwHL/06IbW52z0ZX/nqNKdGiBeI9xN0FZQpQ5KRO4dR0x9xIZ93OA4LS
+        8FbW5n3E/vJU8+yGc0oup5UAOmtDysRP6UXEEZIk=
+X-Received: by 2002:a17:906:3cb1:b0:6ce:2a97:5ade with SMTP id b17-20020a1709063cb100b006ce2a975ademr9760144ejh.728.1646676349692;
+        Mon, 07 Mar 2022 10:05:49 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwe67Q+swcXzSKOn48eStmQdS6VNlblylpGjl5p/IJ03rs754mXnx2sOAo7MoENuJ8rlIpWlw==
+X-Received: by 2002:a17:906:3cb1:b0:6ce:2a97:5ade with SMTP id b17-20020a1709063cb100b006ce2a975ademr9760126ejh.728.1646676349499;
+        Mon, 07 Mar 2022 10:05:49 -0800 (PST)
+Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm5039499ejb.187.2022.03.07.10.05.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 10:05:47 -0800 (PST)
+Message-ID: <9cb70402-432d-0f45-37aa-c9d613c0a284@canonical.com>
+Date:   Mon, 7 Mar 2022 19:05:46 +0100
 MIME-Version: 1.0
-References: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 7 Mar 2022 12:03:26 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+ufttuegvW_STJ7yjDY_5TRAuLNqfAAxR9gjrqtbMP8w@mail.gmail.com>
-Message-ID: <CAL_Jsq+ufttuegvW_STJ7yjDY_5TRAuLNqfAAxR9gjrqtbMP8w@mail.gmail.com>
-Subject: Re: [PATCH] MAINTAINERS: dt-bindings: update Krzysztof Kozlowski's email
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] MAINTAINERS: dt-bindings: update Krzysztof Kozlowski's
+ email
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
         devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
+ <CAL_Jsq+ufttuegvW_STJ7yjDY_5TRAuLNqfAAxR9gjrqtbMP8w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAL_Jsq+ufttuegvW_STJ7yjDY_5TRAuLNqfAAxR9gjrqtbMP8w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 7, 2022 at 11:29 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> Use Krzysztof Kozlowski's @kernel.org account in dt-bindings maintainer
-> entry.
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->
-> ---
->
-> Hi Rob,
->
-> Could you take this one directly (optionally squash with the patch
-> adding me as maintainer)?
->
-> My email address also appears in the bindings. For now mailmap will
-> handle it (see my other commit). I will change it after merge window,
-> because some of the bindings are in separate for-next branches.
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4e88b4e17e35..48b0cf606be0 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -14604,7 +14604,7 @@ F:      scripts/dtc/
->
->  OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
->  M:     Rob Herring <robh+dt@kernel.org>
-> -M:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> +M:     Krzysztof Kozlowski <krzk+dt@kernel.org>
+On 07/03/2022 19:03, Rob Herring wrote:
+> On Mon, Mar 7, 2022 at 11:29 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
+>>
+>> Use Krzysztof Kozlowski's @kernel.org account in dt-bindings maintainer
+>> entry.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>>
+>> ---
+>>
+>> Hi Rob,
+>>
+>> Could you take this one directly (optionally squash with the patch
+>> adding me as maintainer)?
+>>
+>> My email address also appears in the bindings. For now mailmap will
+>> handle it (see my other commit). I will change it after merge window,
+>> because some of the bindings are in separate for-next branches.
+>> ---
+>>  MAINTAINERS | 2 +-
+>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index 4e88b4e17e35..48b0cf606be0 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -14604,7 +14604,7 @@ F:      scripts/dtc/
+>>
+>>  OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+>>  M:     Rob Herring <robh+dt@kernel.org>
+>> -M:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>> +M:     Krzysztof Kozlowski <krzk+dt@kernel.org>
+> 
+> FWIW, the +dt never really worked that well for me. I've concluded
+> that anything that relies on submitters getting things right doesn't
+> work.
 
-FWIW, the +dt never really worked that well for me. I've concluded
-that anything that relies on submitters getting things right doesn't
-work.
+I was afraid of this. :) Still this is the high-volume maintainership,
+so I need to try to organize it.
 
-Rob
+
+Best regards,
+Krzysztof
