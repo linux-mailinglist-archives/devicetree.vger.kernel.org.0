@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 774DA4D0522
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 18:21:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F190E4D053B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 18:29:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235527AbiCGRWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 12:22:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
+        id S241032AbiCGRaG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 12:30:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52980 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230226AbiCGRWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 12:22:17 -0500
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EBA690FDC
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 09:21:22 -0800 (PST)
-Received: by mail-wm1-x334.google.com with SMTP id q7-20020a7bce87000000b00382255f4ca9so11269364wmj.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 09:21:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=IAk3PhzzFGV0B1v2wNJhqD7ncx2tZ/E4HW4CrzZxjvg=;
-        b=PaUpUTCA0A/A6CIulO0e7HGJdVj9N3rHXbHC+6DwVntIWt976EdU4JtWRGZoHOFEmY
-         QyQuNyKQPGcd6ddGTOVXKN1vcXREQKFtN2iGHK8V9SMP/TOcbBbjVSIoG4UlfCOP0eyG
-         CmirCDFq8NZKvgRXAOYEpf4h7PMAwQeEvbjzKZfwdznPxFjgBS8cNk8/r5O7izqwifii
-         VW885WGpyvZFIGLk2fH2p+CP7cO3PCn4V5584kMNi/coIXAzvxmddup9dlzLGn1y5HVx
-         U06uaPPHJbkPqDO390ZOcLvrp3fnwqhi9t9w+tBH13TimxNj3HZBsn8V/gb9r38C2fmh
-         9mew==
+        with ESMTP id S232999AbiCGRaF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 12:30:05 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3908E4A3D1
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 09:29:11 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BD0813F222
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 17:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646674149;
+        bh=m2Jeq/q++zJQA18Xn6QgrfwH4qNWsS/mZookF9A9G8I=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=Ng9Oh+RVzaYbZauG58CXvDECM9c/oGCGay1CeMrnknUWrUHU1L8J7QxZE5AwOwLlV
+         3wU66CHK5NKwh1NS/e0QIKu+vkjtOrX4MmivpEpUZ0VTGQzcpyS4TyfLyKx1FcJ1KZ
+         Ps7Yr3j7jCrcagy4FmxjpRVXIu3Zk4UTcJdhxqq3GEpDl0ReYle1tAPU/o0f2IEqis
+         SLd+S9PS+KLSF+0QNJ9WNxIsLM5rMesnnEiYv6I+niD4fyOU0uiI5BgO8meZJsdc9L
+         oc4KEjXgEHaBnWZWHiieAaj0zFp2VTW+35E70A23rY3XeDAT6cS01kc6pJ0gmiu5XT
+         APesVYtqHRlwQ==
+Received: by mail-ed1-f69.google.com with SMTP id u28-20020a50d51c000000b004159ffb8f24so9054345edi.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 09:29:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=IAk3PhzzFGV0B1v2wNJhqD7ncx2tZ/E4HW4CrzZxjvg=;
-        b=cxqAej+ZRaqRUZmpo3/e0q+tVG4QeTZEH9H89obGuXG02P5U9ZUpiT3G3KBMJWQUwv
-         xo7AFkgvTo3k547QKYpRQuCZVKbToI/bisEc//oEgrii/6gofB8WEYpmCThZFGvTSohj
-         fge5LzMMQeL5LrMmdvhxl5N9ky4K3V/Cw/cDUXzi89T4vXoIQoognVb1I4hhuZzFPEsM
-         rbEGiMYg5iVYdhBg5INKKIkdPzBqDa/NHaMV7AoSEd4G0CUsC3PiuMRPN1tTcD0NLqTo
-         laGdzt1S60L6k8KvSWNkAfs/5MzgTzFqgPA881A7tUFGLlZuYMgRtCm0M5CZWfKFBSOY
-         h5Fw==
-X-Gm-Message-State: AOAM531bSs2wKisFlbBBUH+LqJul4loyWmLmnUvQs7Pwz3123LuZKkix
-        i7Ao+csNvv/YLNvDjpYS3jvMCw==
-X-Google-Smtp-Source: ABdhPJwGMQtZ3E63B/mV0G4eYSgvz/jkQ7+cCCZeFbDF8//gLskmpO84n3wySVlfltI0QtSFVKGSqA==
-X-Received: by 2002:a1c:7c0a:0:b0:389:8d53:260e with SMTP id x10-20020a1c7c0a000000b003898d53260emr9662454wmc.69.1646673681048;
-        Mon, 07 Mar 2022 09:21:21 -0800 (PST)
-Received: from ?IPV6:2a01:e34:ed2f:f020:6cbe:1901:15e:e188? ([2a01:e34:ed2f:f020:6cbe:1901:15e:e188])
-        by smtp.googlemail.com with ESMTPSA id m3-20020a5d6a03000000b001f06621641fsm9794789wru.96.2022.03.07.09.21.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 09:21:20 -0800 (PST)
-Message-ID: <174e42ce-13c7-e7ba-0ce8-227979383db1@linaro.org>
-Date:   Mon, 7 Mar 2022 18:21:18 +0100
+        bh=m2Jeq/q++zJQA18Xn6QgrfwH4qNWsS/mZookF9A9G8I=;
+        b=wkF1NDfMZ51j9DRviy4w8RIYNYPWT2BSJJ05SHE9uqayecWVKMGbP9eMQUFdMzQ8Q7
+         C7A3Bjg9220pPe5X80ed5uCN6OqydD83GuWTxB9fKGxlc5ulNns1q1/uKctNxWI3L67F
+         4MHMSm+ERHDIRI+ymOWgcZ+jy45FFbXNTvr6zI3dOVPpzYzHPXvpcPoaho9YzMyl8z2J
+         hs1yziUWYfkgL099C7p1OG47ZaTnW+97E1k+8Kja71swjOiYMMOKTFj2419Cc/H/8gFy
+         Blgiz1u/ES3l6mCp/Qq1QxruBW+nUvhjwkDXlSEr5tUEwJem8289FY6aZygUUdxsivBw
+         IyvA==
+X-Gm-Message-State: AOAM530KhugcDcSbyc/2bzTjH8W2EAZMEJoPKzXfbWnF4UNQ3kxIqUr8
+        VkN5omaUUl8tp+3Rb9H0Pakj0APVzK9frO/lEIxv1upx79C/ldqjB42hkLo/SeXD9NoYuIq0Ebr
+        2j2lAn8pc2EknvfNrxHE+NpfiQBqcw+SJ3ifxms0=
+X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr12196201edi.154.1646674149438;
+        Mon, 07 Mar 2022 09:29:09 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwPpZPNmmvyt3X8BGnd2kVeT7GVyxpB+/R5Nk1+D2hHUifJQ4ByfJ5kycdrfu6I4A2L3hAzVA==
+X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr12196177edi.154.1646674149239;
+        Mon, 07 Mar 2022 09:29:09 -0800 (PST)
+Received: from localhost.localdomain (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id cc20-20020a0564021b9400b00412f2502469sm6596636edb.23.2022.03.07.09.29.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 09:29:08 -0800 (PST)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] MAINTAINERS: dt-bindings: update Krzysztof Kozlowski's email
+Date:   Mon,  7 Mar 2022 18:29:01 +0100
+Message-Id: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v9 2/2] clocksource: Add Intel Keem Bay timer support
-Content-Language: en-US
-To:     shruthi.sanil@intel.com, tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com
-References: <20220307113147.19496-1-shruthi.sanil@intel.com>
- <20220307113147.19496-3-shruthi.sanil@intel.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20220307113147.19496-3-shruthi.sanil@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,27 +76,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 12:31, shruthi.sanil@intel.com wrote:
-> From: Shruthi Sanil <shruthi.sanil@intel.com>
+Use Krzysztof Kozlowski's @kernel.org account in dt-bindings maintainer
+entry.
 
-[ ... ]
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-> +	/* Prescaler bit must be enabled for the timer to function */
-> +	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) {
-> +		pr_err("%pOF: FW_BUG: Prescaler is not enabled\n", np);
-> +		ret = -ENODEV;
+---
 
-		return -ENODEV;
+Hi Rob,
 
-> +	}
+Could you take this one directly (optionally squash with the patch
+adding me as maintainer)?
 
-[ ... ]
+My email address also appears in the bindings. For now mailmap will
+handle it (see my other commit). I will change it after merge window,
+because some of the bindings are in separate for-next branches.
+---
+ MAINTAINERS | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-FW_BUG macro comment was already spotted
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 4e88b4e17e35..48b0cf606be0 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14604,7 +14604,7 @@ F:	scripts/dtc/
+ 
+ OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS
+ M:	Rob Herring <robh+dt@kernel.org>
+-M:	Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
++M:	Krzysztof Kozlowski <krzk+dt@kernel.org>
+ L:	devicetree@vger.kernel.org
+ S:	Maintained
+ C:	irc://irc.libera.chat/devicetree
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.32.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
