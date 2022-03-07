@@ -2,320 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC6114CF0AA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 05:34:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45FB84CF0B5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 05:40:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235168AbiCGEfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 23:35:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35446 "EHLO
+        id S234511AbiCGElu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 23:41:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229823AbiCGEfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 23:35:07 -0500
-Received: from mail-io1-xd36.google.com (mail-io1-xd36.google.com [IPv6:2607:f8b0:4864:20::d36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9673E4A3F9
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 20:34:13 -0800 (PST)
-Received: by mail-io1-xd36.google.com with SMTP id s20so2360145iol.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 20:34:13 -0800 (PST)
+        with ESMTP id S232319AbiCGEls (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 23:41:48 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DC8546A1;
+        Sun,  6 Mar 2022 20:40:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646628053; x=1678164053;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-transfer-encoding:mime-version;
+  bh=DdffTisXoh007mRFKH8NFkSV4gzoKt7I9k1bvBUjwSE=;
+  b=wq8pBHXkqDPi1d66op5Ca52qZxnmPEQpC8GM+DXHEub9akP4BJNI4m1t
+   60JdaC6gG0pLM95gfieGEvVBHvOIzxtz0mT/KdzhItYQruHLygGYs/47r
+   r2R5qT8WHCX+yylcA80DCe07VQqkZRvlalrvckCP3areqGzyA4DcLu3TR
+   Nomx8OEwRy683Itn1YRwwz9IXfKVWzXCUgfS3s9M/K8ArA2qpn9rMDtOz
+   MlIEpFm9sqFDQxrAtKpHEg+O5o5r3ezL145eKd0wDRhb3vznHuV8vKOab
+   +fdAx3r0s25aJm7ep+7Fe6G5ZLqQRALt59Lc3K2Wxt9yUbrHcEOPS1AKS
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,160,1643698800"; 
+   d="scan'208";a="88014522"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 06 Mar 2022 21:40:52 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Sun, 6 Mar 2022 21:40:47 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17 via Frontend Transport; Sun, 6 Mar 2022 21:40:47 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZDxArzeV9/mPYuFI+nHC1mh7TU8Yl5uflf7X/u2ZizY94pYij/Il20SKheINh5+Xr7zH3NBLv1gTy71viLc9QXapiPgX2162I+PpX83oB14bqqozqF0Wf3yDZF3lkSIRHXJ5ZFgJAN7eUHRWtdbISER3me0ryzJaO/ep8s/uVlpIC0hgfmXQ1jjSEQ9iv1h0gihXdKrjjHMybgUgu7mG+6uH3yGjhmxjhpXTgM8h5zFtnDVbx8/bhivpGrtflFcdHb9S3ellGukKCoD4Cv8GGDMKdhHLuvo0FXBl6yqxzur+62Q7ePXJJ5+PkdecpEVVKcjlU1C1ZMMloKRj8YJlzg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sn5gI1jMWMthTo2DJ2Awj/ntvr37gr0bDJlqnXmykf4=;
+ b=DH3XhRnqxV7wf33oRB1RfoNQMyHj8t69dIgZ9Uz3DHOwiXNWzsNnLcD4YTA/QCaS31N5J8Qo9wUdYrOBSxzSowndMapSbswps7N/u//iKEjKMk7B2YNZobZxYBly1fDz9abxB7pGzqXVmotdPWXs57dfKJ0gf7hiDxlil+gS/AH/4aC+tGeSiWm0WS3Sp/FUagrb0Zuc5BLAkS5/jlWSvS5mL8IJI4EQ10aIVlxtvR4JLxh5ATwtoppMl4kHQJYcKpHLyrikm27yffsErKao9XILmC43IvuWoI2eBC40EuFyQRorf/y4JxtRw+dTqo5hV4MUD+P7L2gCuZX2zxUeOA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bjv6LCJxAZSQQFHnal+Fzv3rUjp0Qsile4meIkT81UU=;
-        b=FXa4P7CgQyiStvvjzNbUa9zlUSzG0kwdzgejIP7/H2nRyc8KWONAsh4s9FuoVfpubg
-         kFK0musktYKhp/HQa1k+wsbRrO4G348ExOyZosojG+BPITxRcxWt+zhn1aWSfaUC60JI
-         BCo0+oihApJeKMeQ6ugAz0YNiQ0Z97gkbLlTI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bjv6LCJxAZSQQFHnal+Fzv3rUjp0Qsile4meIkT81UU=;
-        b=TPfEWwB2EiAigQpl2LHfieA51THzpLGwRDNswxtbOM5Yxsmt3on5oahCNM1KWBca7D
-         lILGtL7kprHAcKSkM/gYZK44J7f+WTS2Lk6DV+02IamMalZTd4ceLOQzOUSXO4DH+HAl
-         dUgBQNqNLzk20zeL09ct8n2msabj11zZCYOVkQAsetvr783nfuaDwRtGGmIMsODp7MaH
-         kzWTwYFLaeKOMf0UgKT73kD8H5o5g1+RjSMgfjPjSdCM4OdWwMygCOyLDoi+CEoxdtxC
-         8zDkTkXtHW51dGBdwEyrUyMJ3aTzNqGjEln+c0+vcwcm5WidlHpozauzOomyBiHCl9jY
-         DQ2Q==
-X-Gm-Message-State: AOAM530dx787cTgJgRKk6WToy+us9QUc6pAujt71qiQUNEEh6VsKH6z1
-        MD3f+/jMrNqC3poertfKaJKmN/LNDyWcTg==
-X-Google-Smtp-Source: ABdhPJyoGYGtvHb0Xc70cy3OTWVqunTMGD+/EsmtCGBIh7WwRHqRaF1c6RmV4J2qhs1YcOKjRsJDAQ==
-X-Received: by 2002:a05:6638:2722:b0:30d:2b4e:5ff with SMTP id m34-20020a056638272200b0030d2b4e05ffmr9164826jav.261.1646627652475;
-        Sun, 06 Mar 2022 20:34:12 -0800 (PST)
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com. [209.85.166.170])
-        by smtp.gmail.com with ESMTPSA id d7-20020a5d9647000000b00638d53cd21esm8689961ios.26.2022.03.06.20.34.09
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Mar 2022 20:34:09 -0800 (PST)
-Received: by mail-il1-f170.google.com with SMTP id l13so1002561iln.13
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 20:34:09 -0800 (PST)
-X-Received: by 2002:a05:6e02:128b:b0:2c6:49a4:ad23 with SMTP id
- y11-20020a056e02128b00b002c649a4ad23mr1158525ilq.251.1646627648731; Sun, 06
- Mar 2022 20:34:08 -0800 (PST)
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sn5gI1jMWMthTo2DJ2Awj/ntvr37gr0bDJlqnXmykf4=;
+ b=ZBC/cRiETAWyrdLotQuJqbFtIjLnGKG5CSgLNFzbp+tfrbWYQ4JevbxjpRwiXjbss8ZOO4kXGunfYuPr7AeXj47nsyEMTq3IdaXKe93DcWR5Sity0IMsDQbANdxVr+sIUtSO7847CaAue4O2mzhhe6VICV3TGmLT1MxZwuTeLlo=
+Received: from CO1PR11MB4771.namprd11.prod.outlook.com (2603:10b6:303:9f::9)
+ by DM5PR11MB1692.namprd11.prod.outlook.com (2603:10b6:3:d::23) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5038.19; Mon, 7 Mar 2022 04:40:41 +0000
+Received: from CO1PR11MB4771.namprd11.prod.outlook.com
+ ([fe80::7861:c716:b171:360]) by CO1PR11MB4771.namprd11.prod.outlook.com
+ ([fe80::7861:c716:b171:360%3]) with mapi id 15.20.5038.026; Mon, 7 Mar 2022
+ 04:40:41 +0000
+From:   <Divya.Koppera@microchip.com>
+To:     <andrew@lunn.ch>
+CC:     <netdev@vger.kernel.org>, <hkallweit1@gmail.com>,
+        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <richardcochran@gmail.com>, <linux-kernel@vger.kernel.org>,
+        <UNGLinuxDriver@microchip.com>, <Madhuri.Sripada@microchip.com>,
+        <Manohar.Puri@microchip.com>
+Subject: RE: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
+ values and timestamping check for LAN8814 phy
+Thread-Topic: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
+ values and timestamping check for LAN8814 phy
+Thread-Index: AQHYL6tdGiDfF8muKUy6jpI4YK/Ta6yvLZmAgAQXZ7A=
+Date:   Mon, 7 Mar 2022 04:40:40 +0000
+Message-ID: <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
+References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
+ <20220304093418.31645-3-Divya.Koppera@microchip.com>
+ <YiILJ3tXs9Sba42B@lunn.ch>
+In-Reply-To: <YiILJ3tXs9Sba42B@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 1892ad64-715d-471a-21eb-08d9fff4a253
+x-ms-traffictypediagnostic: DM5PR11MB1692:EE_
+x-microsoft-antispam-prvs: <DM5PR11MB1692A35D82DBB8E6F08E2BDDE2089@DM5PR11MB1692.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iuXhJLDFq9JWiTu4rC0rqvNmordlBq5jTKWTOWjLN06jlDz8jZxBusyOFh+cbrKUS0BE+KgE2/D7ntu92gFS3HjAtl7Rz6UuJalyE/GWoFFGRwpjLBsTIjFtFtcsdq2LAt3Rh1Cu/c9+wSX7fIgyFzM1h1WPwMHG9SDKkyjKCoPnqpd44HvPhcBA6DkcQAfdWEdNwxALxwcEPf5oDod/O8Bx5MLQMQ0G99XrAUP0WQ5Jwjzf5/Qx094GYifEtR5XTRPUrwI/9CdzhINDPB6tCXiYmcDq+DRWnkM1/GIiPTpdr5Z/W87R0WebGCMHrHTP2CAmM6COEi13baiF1VMxE2jVXAj0r2llPqgTqV4Nb96XYYBMwMs14xUHQmLFZFtrxtdIrez2kp2tiqrHCjiSsOcCSKnm7Bd3SpUswRISPpx4/Kb11xhfZd0Ogpu38CCyKtMl5wu/JwGwOqP0q+CpbIzOrJ4i4CuWDGi0J1WkVomS11/zZjEcPamw0dzSdGwYfZRhGt/sGApgXl3dJVjxBmP3wiH7Hqwwvn/5wI8JGztgxo0EMn5fwZeALZnBmVTWy2nzRIIbi7Ygv/aCEiMgZYQ7OxgJB+gQJLjUiFSQGSH7lfPBLjfbB0LDaM28nemPXiycc0y3UNcstbQ9l8yL7OLotK/8bjkMXG0R7zJiQwuUe4WPmI5RS7zcoF2/RwWURx+/I7/Judvyx7BziaAfKQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4771.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(4326008)(38070700005)(107886003)(76116006)(8676002)(66556008)(66476007)(64756008)(66946007)(83380400001)(66446008)(33656002)(2906002)(71200400001)(86362001)(53546011)(9686003)(7696005)(6506007)(122000001)(316002)(186003)(26005)(38100700002)(55016003)(6916009)(54906003)(52536014)(7416002)(8936002)(5660300002)(508600001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?6A4vr4kPFbUalsLre8shA+tLJ13IJHXHiJMXhupvFxwSUNdJBc+/NmNDWwsj?=
+ =?us-ascii?Q?NJjGLxSfJuN0UqKybTAYNThbEkjxC5fvAeaalY9ckA6aYUQtEgPszmKy+uqB?=
+ =?us-ascii?Q?Lxii9EwnNcyCCa99s8GQn40ixnpuQGW1SX1IuexTVSZqkcsTWxOGlhL87omp?=
+ =?us-ascii?Q?acT5T/Kp1QomBVBcBu4jm4JvsFC07vL7GfW2cUNa5Pgt6laEX86rvhPgTRyT?=
+ =?us-ascii?Q?UNKFWhE3dH/AlyZ+/n6hsYyT2FKTgdblm6phNYV588k1rwDm0H3CzBtZjiI7?=
+ =?us-ascii?Q?l34J4nnuWAQw0u6QgMZXxDA/IiqFtrxTGMqefBnZxTkM9Qu6HR0q4nI3fuSN?=
+ =?us-ascii?Q?5cOfZ43yn019hQ1scUb7Hm5uNfYiABXRBBjWDCdh2g5w4sV/upj8dOyuXEH0?=
+ =?us-ascii?Q?O5tkycP1yL4piVqZL521euLFc1Mowhc7SMRCDkUIguvIDC6yVLsj/5NcdREp?=
+ =?us-ascii?Q?MpDNBc0LH+tg9ECnx9J1UvAk1XK7I9BJrXioj6wzkG3oiRNsKhObG9Q1njhT?=
+ =?us-ascii?Q?qk6JkWfSoG4pIB8i+itlPwm0FrDG41D+z31kxBjRfnST0QKFV3/mthzs1Ux+?=
+ =?us-ascii?Q?/SP+1pJdmBRyu4uIYFyeqX/2jg17Va4lI36fYN/W7kvn9grmx98rNuBkcHXM?=
+ =?us-ascii?Q?L39thnSg3nbRnLaxd3J99YbX+IgzC4Jjm6yAQsMOFtP2xadCYOElWeH1kFYE?=
+ =?us-ascii?Q?pLxBi/waAyH3pn0WlxaI5XP52onZChfIKlORjvf4pScQTqhA2R4zYhyGxvQ4?=
+ =?us-ascii?Q?Sz9sdbtM2H+vU+6ACh16jnLUy2sX3oaETJn54mBj1RrfMHGqKb3uH/I7CfsV?=
+ =?us-ascii?Q?6hW1TFGGLKiS26yRQcdLOSRY3tF1CJ4qzhsBjuGTCtbgL25Fic45eHGRlzxh?=
+ =?us-ascii?Q?phwmBVOAU6reRKucJqVDAvFWAi/2RmH3jBB+QVGQ4KAZCdmR7DTcnXYpmfL+?=
+ =?us-ascii?Q?kHjOrgQVbj2+x7/Tu7hdvsh/QX9PZNiky/kVYPIioNTsVgW91Sd2+SF8mYeJ?=
+ =?us-ascii?Q?DOHjujV/2hBqmpr8/MZfO5jlYTSlubt57POKolbJ9FY4nHib41Y4c9u2cixv?=
+ =?us-ascii?Q?eOjpniiWp0NFtH8tbQQx+PimdNaeRAGAJKowSijZpKGNvyHE83LknJC64G4z?=
+ =?us-ascii?Q?N7k69yeEFZ2JbQnS2uz0xAkF7P37Krj9HvgV7Z4eSwJMSqRvMRQ5eBLkrGOA?=
+ =?us-ascii?Q?GTDtwmanf0XCO+abQ/+0up0esoVLpVE/XtUYLZDaDoenC5wu0Mreom7/43he?=
+ =?us-ascii?Q?ambd2AoqczE/FEr1YSvAgMmlHz78viYuNnH6XtLpluGDckcwy6WHX2Mq5q7G?=
+ =?us-ascii?Q?mo46LGPqlQ4TOz92zYzpJMh6kIcCb+A2zXFbH70DDsIkos9OrIgXDJeDOY1O?=
+ =?us-ascii?Q?mSBPXxgQqwgE7mQ0Jx7Z1JiyHbqZfMBZFN/ONavAue8efnsOY2QcyOhkyAXy?=
+ =?us-ascii?Q?NZcg1+XJCEi9WlaXKiMrDLRzEhCNAZKzllHB5hVm9nLX8LznkvuIBCWYC/vk?=
+ =?us-ascii?Q?hUwDL7Qr1pyFeBynqP6VJhBR45WOAbizpLAXn9hFOmehU00uWHUt0FkqsWLb?=
+ =?us-ascii?Q?14gIY9UZ6C2q/ygKFOUOzdEefHGLaN56tsKLBLVQbHxn59BUVTHZuNN7Qwkk?=
+ =?us-ascii?Q?sDO69SYJ+j8ncljccu79pJCddtnl9La7ySSM7nT9e6lJlSve5ayHMd8EwvIV?=
+ =?us-ascii?Q?oQZmLw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20220307032859.3275-1-jason-jh.lin@mediatek.com> <20220307032859.3275-5-jason-jh.lin@mediatek.com>
-In-Reply-To: <20220307032859.3275-5-jason-jh.lin@mediatek.com>
-From:   Fei Shao <fshao@chromium.org>
-Date:   Mon, 7 Mar 2022 12:33:30 +0800
-X-Gmail-Original-Message-ID: <CAC=S1ngHthMe8oOQksf34OPvX071uT=AHnvjAoSs3-oReNynvA@mail.gmail.com>
-Message-ID: <CAC=S1ngHthMe8oOQksf34OPvX071uT=AHnvjAoSs3-oReNynvA@mail.gmail.com>
-Subject: Re: [PATCH v16 4/8] soc: mediatek: add mtk-mmsys support for mt8195 vdosys0
-To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>, moudy.ho@mediatek.com,
-        roy-cw.yeh@mediatek.com, CK Hu <ck.hu@mediatek.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Nancy Lin <nancy.lin@mediatek.com>, singo.chang@mediatek.com,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4771.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1892ad64-715d-471a-21eb-08d9fff4a253
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2022 04:40:40.8689
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OCqCXw1SE0WAxaXHWXR5I4QbCOT1LZEWKIF5+UHbA2ZXhaH1pAnhr3lRh2Q4ZwPnIaLnHXn36d7DI1A78afkjk0ASt9zAGGSgrT6F8rjNZw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1692
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 7, 2022 at 11:30 AM jason-jh.lin <jason-jh.lin@mediatek.com> wrote:
->
-> Add mt8195 vdosys0 clock driver name and routing table to
-> the driver data of mtk-mmsys.
->
-> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
-> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Hi Andrew,
 
-We've verified this on MT8195 on our end, so
-Tested-by: Fei Shao <fshao@chromium.org>
+Thanks for review and comments. Please find reply inline below.
 
+> -----Original Message-----
+> From: Andrew Lunn <andrew@lunn.ch>
+> Sent: Friday, March 4, 2022 6:21 PM
+> To: Divya Koppera - I30481 <Divya.Koppera@microchip.com>
+> Cc: netdev@vger.kernel.org; hkallweit1@gmail.com; linux@armlinux.org.uk;
+> davem@davemloft.net; kuba@kernel.org; robh+dt@kernel.org;
+> devicetree@vger.kernel.org; richardcochran@gmail.com; linux-
+> kernel@vger.kernel.org; UNGLinuxDriver <UNGLinuxDriver@microchip.com>;
+> Madhuri Sripada - I34878 <Madhuri.Sripada@microchip.com>; Manohar Puri -
+> I30488 <Manohar.Puri@microchip.com>
+> Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure lat=
+ency
+> values and timestamping check for LAN8814 phy
+>=20
+> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
+e
+> content is safe
+>=20
+> On Fri, Mar 04, 2022 at 03:04:17PM +0530, Divya Koppera wrote:
+> > Supports configuring latency values and also adds check for phy
+> > timestamping feature.
+> >
+> > Signed-off-by: Divya Koppera<Divya.Koppera@microchip.com>
+> > ---
+> >  .../devicetree/bindings/net/micrel.txt          | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/micrel.txt
+> > b/Documentation/devicetree/bindings/net/micrel.txt
+> > index 8d157f0295a5..c5ab62c39133 100644
+> > --- a/Documentation/devicetree/bindings/net/micrel.txt
+> > +++ b/Documentation/devicetree/bindings/net/micrel.txt
+> > @@ -45,3 +45,20 @@ Optional properties:
+> >
+> >       In fiber mode, auto-negotiation is disabled and the PHY can only =
+work in
+> >       100base-fx (full and half duplex) modes.
+> > +
+> > + - lan8814,ignore-ts: If present the PHY will not support timestamping=
+.
+> > +
+> > +     This option acts as check whether Timestamping is supported by
+> > +     hardware or not. LAN8814 phy support hardware tmestamping.
+>=20
+> Does this mean the hardware itself cannot tell you it is missing the need=
+ed
+> hardware? What happens when you forget to add this flag? Does the driver
+> timeout waiting for hardware which does not exists?
+>=20
 
-> ---
-> Impelmentation patch of vdosys1 can be refered to [1]
->
-> [1] soc: mediatek: add mtk-mmsys support for mt8195 vdosys1
-> - https://patchwork.kernel.org/project/linux-mediatek/patch/20220222100741.30138-6-nancy.lin@mediatek.com/
-> ---
->
->  drivers/soc/mediatek/mt8195-mmsys.h    | 130 +++++++++++++++++++++++++
->  drivers/soc/mediatek/mtk-mmsys.c       |  11 +++
->  include/linux/soc/mediatek/mtk-mmsys.h |   9 ++
->  3 files changed, 150 insertions(+)
->  create mode 100644 drivers/soc/mediatek/mt8195-mmsys.h
->
-> diff --git a/drivers/soc/mediatek/mt8195-mmsys.h b/drivers/soc/mediatek/mt8195-mmsys.h
-> new file mode 100644
-> index 000000000000..24a3afe23bc8
-> --- /dev/null
-> +++ b/drivers/soc/mediatek/mt8195-mmsys.h
-> @@ -0,0 +1,130 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +
-> +#ifndef __SOC_MEDIATEK_MT8195_MMSYS_H
-> +#define __SOC_MEDIATEK_MT8195_MMSYS_H
-> +
-> +#define MT8195_VDO0_OVL_MOUT_EN                                        0xf14
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0                    BIT(0)
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_WDMA0                    BIT(1)
-> +#define MT8195_MOUT_DISP_OVL0_TO_DISP_OVL1                     BIT(2)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1                    BIT(4)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_WDMA1                    BIT(5)
-> +#define MT8195_MOUT_DISP_OVL1_TO_DISP_OVL0                     BIT(6)
-> +
-> +#define MT8195_VDO0_SEL_IN                                     0xf34
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_MASK                      GENMASK(1, 0)
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DSC_WRAP0_OUT             (0 << 0)
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_DISP_DITHER1              (1 << 0)
-> +#define MT8195_SEL_IN_VPP_MERGE_FROM_VDO1_VIRTUAL0             (2 << 0)
-> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_MASK                   GENMASK(4, 4)
-> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_DISP_DITHER0           (0 << 4)
-> +#define MT8195_SEL_IN_DSC_WRAP0_IN_FROM_VPP_MERGE              (1 << 4)
-> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_MASK                   GENMASK(5, 5)
-> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_DISP_DITHER1           (0 << 5)
-> +#define MT8195_SEL_IN_DSC_WRAP1_IN_FROM_VPP_MERGE              (1 << 5)
-> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_MASK                  GENMASK(8, 8)
-> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_VPP_MERGE             (0 << 8)
-> +#define MT8195_SEL_IN_SINA_VIRTUAL0_FROM_DSC_WRAP1_OUT         (1 << 8)
-> +#define MT8195_SEL_IN_SINB_VIRTUAL0_FROM_MASK                  GENMASK(9, 9)
-> +#define MT8195_SEL_IN_SINB_VIRTUAL0_FROM_DSC_WRAP0_OUT         (0 << 9)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_MASK                       GENMASK(13, 12)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_DSC_WRAP1_OUT              (0 << 0)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_VPP_MERGE                  (1 << 12)
-> +#define MT8195_SEL_IN_DP_INTF0_FROM_VDO1_VIRTUAL0              (2 << 12)
-> +#define MT8195_SEL_IN_DSI0_FROM_MASK                           GENMASK(16, 16)
-> +#define MT8195_SEL_IN_DSI0_FROM_DSC_WRAP0_OUT                  (0 << 16)
-> +#define MT8195_SEL_IN_DSI0_FROM_DISP_DITHER0                   (1 << 16)
-> +#define MT8195_SEL_IN_DSI1_FROM_MASK                           GENMASK(17, 17)
-> +#define MT8195_SEL_IN_DSI1_FROM_DSC_WRAP1_OUT                  (0 << 17)
-> +#define MT8195_SEL_IN_DSI1_FROM_VPP_MERGE                      (1 << 17)
-> +#define MT8195_SEL_IN_DISP_WDMA1_FROM_MASK                     GENMASK(20, 20)
-> +#define MT8195_SEL_IN_DISP_WDMA1_FROM_DISP_OVL1                        (0 << 20)
-> +#define MT8195_SEL_IN_DISP_WDMA1_FROM_VPP_MERGE                        (1 << 20)
-> +#define MT8195_SEL_IN_DSC_WRAP1_FROM_MASK                      GENMASK(21, 21)
-> +#define MT8195_SEL_IN_DSC_WRAP1_OUT_FROM_DSC_WRAP1_IN          (0 << 21)
-> +#define MT8195_SEL_IN_DSC_WRAP1_OUT_FROM_DISP_DITHER1          (1 << 21)
-> +#define MT8195_SEL_IN_DISP_WDMA0_FROM_MASK                     GENMASK(22, 22)
-> +#define MT8195_SEL_IN_DISP_WDMA0_FROM_DISP_OVL0                        (0 << 22)
-> +
-> +#define MT8195_VDO0_SEL_OUT                                    0xf38
-> +#define MT8195_SOUT_DISP_DITHER0_TO_MASK                       BIT(0)
-> +#define MT8195_SOUT_DISP_DITHER0_TO_DSC_WRAP0_IN               (0 << 0)
-> +#define MT8195_SOUT_DISP_DITHER0_TO_DSI0                       (1 << 0)
-> +#define MT8195_SOUT_DISP_DITHER1_TO_MASK                       GENMASK(2, 1)
-> +#define MT8195_SOUT_DISP_DITHER1_TO_DSC_WRAP1_IN               (0 << 1)
-> +#define MT8195_SOUT_DISP_DITHER1_TO_VPP_MERGE                  (1 << 1)
-> +#define MT8195_SOUT_DISP_DITHER1_TO_DSC_WRAP1_OUT              (2 << 1)
-> +#define MT8195_SOUT_VDO1_VIRTUAL0_TO_MASK                      GENMASK(4, 4)
-> +#define MT8195_SOUT_VDO1_VIRTUAL0_TO_VPP_MERGE                 (0 << 4)
-> +#define MT8195_SOUT_VDO1_VIRTUAL0_TO_DP_INTF0                  (1 << 4)
-> +#define MT8195_SOUT_VPP_MERGE_TO_MASK                          GENMASK(10, 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DSI1                          (0 << 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DP_INTF0                      (1 << 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_SINA_VIRTUAL0                 (2 << 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DISP_WDMA1                    (3 << 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DSC_WRAP0_IN                  (4 << 8)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DSC_WRAP1_IN_MASK             GENMASK(11, 11)
-> +#define MT8195_SOUT_VPP_MERGE_TO_DSC_WRAP1_IN                  (0 << 11)
-> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_MASK                      GENMASK(13, 12)
-> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_DSI0                      (0 << 12)
-> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_SINB_VIRTUAL0             (1 << 12)
-> +#define MT8195_SOUT_DSC_WRAP0_OUT_TO_VPP_MERGE                 (2 << 12)
-> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_MASK                      GENMASK(17, 16)
-> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_DSI1                      (0 << 16)
-> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_DP_INTF0                  (1 << 16)
-> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_SINA_VIRTUAL0             (2 << 16)
-> +#define MT8195_SOUT_DSC_WRAP1_OUT_TO_VPP_MERGE                 (3 << 16)
-> +
-> +static const struct mtk_mmsys_routes mmsys_mt8195_routing_table[] = {
-> +       {
-> +               DDP_COMPONENT_OVL0, DDP_COMPONENT_RDMA0,
-> +               MT8195_VDO0_OVL_MOUT_EN, MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0,
-> +               MT8195_MOUT_DISP_OVL0_TO_DISP_RDMA0
-> +       }, {
-> +               DDP_COMPONENT_OVL1, DDP_COMPONENT_RDMA1,
-> +               MT8195_VDO0_OVL_MOUT_EN, MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1,
-> +               MT8195_MOUT_DISP_OVL1_TO_DISP_RDMA1
-> +       }, {
-> +               DDP_COMPONENT_DSC0, DDP_COMPONENT_MERGE0,
-> +               MT8195_VDO0_SEL_IN, MT8195_SEL_IN_VPP_MERGE_FROM_MASK,
-> +               MT8195_SEL_IN_VPP_MERGE_FROM_DSC_WRAP0_OUT
-> +       }, {
-> +               DDP_COMPONENT_MERGE0, DDP_COMPONENT_DP_INTF0,
-> +               MT8195_VDO0_SEL_IN, MT8195_SEL_IN_DP_INTF0_FROM_MASK,
-> +               MT8195_SEL_IN_DP_INTF0_FROM_VPP_MERGE
-> +       }, {
-> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSC0,
-> +               MT8195_VDO0_SEL_IN, MT8195_SEL_IN_DSC_WRAP0_IN_FROM_MASK,
-> +               MT8195_SEL_IN_DSC_WRAP0_IN_FROM_DISP_DITHER0
-> +       }, {
-> +               DDP_COMPONENT_DSC0, DDP_COMPONENT_DSI0,
-> +               MT8195_VDO0_SEL_IN, MT8195_SEL_IN_DSI0_FROM_MASK,
-> +               MT8195_SEL_IN_DSI0_FROM_DSC_WRAP0_OUT
-> +       }, {
-> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-> +               MT8195_VDO0_SEL_IN, MT8195_SEL_IN_DSI0_FROM_MASK,
-> +               MT8195_SEL_IN_DSI0_FROM_DISP_DITHER0
-> +       }, {
-> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSC0,
-> +               MT8195_VDO0_SEL_OUT, MT8195_SOUT_DISP_DITHER0_TO_MASK,
-> +               MT8195_SOUT_DISP_DITHER0_TO_DSC_WRAP0_IN
-> +       }, {
-> +               DDP_COMPONENT_DITHER, DDP_COMPONENT_DSI0,
-> +               MT8195_VDO0_SEL_OUT, MT8195_SOUT_DISP_DITHER0_TO_MASK,
-> +               MT8195_SOUT_DISP_DITHER0_TO_DSI0
-> +       }, {
-> +               DDP_COMPONENT_DSC0, DDP_COMPONENT_DSI0,
-> +               MT8195_VDO0_SEL_OUT, MT8195_SOUT_DSC_WRAP0_OUT_TO_MASK,
-> +               MT8195_SOUT_DSC_WRAP0_OUT_TO_DSI0
-> +       }, {
-> +               DDP_COMPONENT_DSC0, DDP_COMPONENT_MERGE0,
-> +               MT8195_VDO0_SEL_OUT, MT8195_SOUT_DSC_WRAP0_OUT_TO_MASK,
-> +               MT8195_SOUT_DSC_WRAP0_OUT_TO_VPP_MERGE
-> +       }, {
-> +               DDP_COMPONENT_MERGE0, DDP_COMPONENT_DP_INTF0,
-> +               MT8195_VDO0_SEL_OUT, MT8195_SOUT_VPP_MERGE_TO_MASK,
-> +               MT8195_SOUT_VPP_MERGE_TO_DP_INTF0
-> +       }
-> +};
-> +
-> +#endif /* __SOC_MEDIATEK_MT8195_MMSYS_H */
-> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
-> index 4fc4c2c9ea20..dc5c51f0ccc8 100644
-> --- a/drivers/soc/mediatek/mtk-mmsys.c
-> +++ b/drivers/soc/mediatek/mtk-mmsys.c
-> @@ -17,6 +17,7 @@
->  #include "mt8183-mmsys.h"
->  #include "mt8186-mmsys.h"
->  #include "mt8192-mmsys.h"
-> +#include "mt8195-mmsys.h"
->  #include "mt8365-mmsys.h"
->
->  static const struct mtk_mmsys_driver_data mt2701_mmsys_driver_data = {
-> @@ -72,6 +73,12 @@ static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
->         .num_routes = ARRAY_SIZE(mmsys_mt8192_routing_table),
->  };
->
-> +static const struct mtk_mmsys_driver_data mt8195_vdosys0_driver_data = {
-> +       .clk_driver = "clk-mt8195-vdo0",
-> +       .routes = mmsys_mt8195_routing_table,
-> +       .num_routes = ARRAY_SIZE(mmsys_mt8195_routing_table),
-> +};
-> +
->  static const struct mtk_mmsys_driver_data mt8365_mmsys_driver_data = {
->         .clk_driver = "clk-mt8365-mm",
->         .routes = mt8365_mmsys_routing_table,
-> @@ -260,6 +267,10 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
->                 .compatible = "mediatek,mt8192-mmsys",
->                 .data = &mt8192_mmsys_driver_data,
->         },
-> +       {
-> +               .compatible = "mediatek,mt8195-vdosys0",
-> +               .data = &mt8195_vdosys0_driver_data,
-> +       },
->         {
->                 .compatible = "mediatek,mt8365-mmsys",
->                 .data = &mt8365_mmsys_driver_data,
-> diff --git a/include/linux/soc/mediatek/mtk-mmsys.h b/include/linux/soc/mediatek/mtk-mmsys.h
-> index 4bba275e235a..64c77c4a6c56 100644
-> --- a/include/linux/soc/mediatek/mtk-mmsys.h
-> +++ b/include/linux/soc/mediatek/mtk-mmsys.h
-> @@ -17,13 +17,22 @@ enum mtk_ddp_comp_id {
->         DDP_COMPONENT_COLOR0,
->         DDP_COMPONENT_COLOR1,
->         DDP_COMPONENT_DITHER,
-> +       DDP_COMPONENT_DP_INTF0,
->         DDP_COMPONENT_DPI0,
->         DDP_COMPONENT_DPI1,
-> +       DDP_COMPONENT_DSC0,
-> +       DDP_COMPONENT_DSC1,
->         DDP_COMPONENT_DSI0,
->         DDP_COMPONENT_DSI1,
->         DDP_COMPONENT_DSI2,
->         DDP_COMPONENT_DSI3,
->         DDP_COMPONENT_GAMMA,
-> +       DDP_COMPONENT_MERGE0,
-> +       DDP_COMPONENT_MERGE1,
-> +       DDP_COMPONENT_MERGE2,
-> +       DDP_COMPONENT_MERGE3,
-> +       DDP_COMPONENT_MERGE4,
-> +       DDP_COMPONENT_MERGE5,
->         DDP_COMPONENT_OD0,
->         DDP_COMPONENT_OD1,
->         DDP_COMPONENT_OVL0,
-> --
-> 2.18.0
->
+If forgot to add this flag, driver will try to register ptp_clock that need=
+s
+access to clock related registers, which in turn fails if those registers d=
+oesn't exists.
+
+> > + - lan8814,latency_rx_10: Configures Latency value of phy in ingress a=
+t 10
+> Mbps.
+> > +
+> > + - lan8814,latency_tx_10: Configures Latency value of phy in egress at=
+ 10
+> Mbps.
+> > +
+> > + - lan8814,latency_rx_100: Configures Latency value of phy in ingress =
+at 100
+> Mbps.
+> > +
+> > + - lan8814,latency_tx_100: Configures Latency value of phy in egress a=
+t 100
+> Mbps.
+> > +
+> > + - lan8814,latency_rx_1000: Configures Latency value of phy in ingress=
+ at
+> 1000 Mbps.
+> > +
+> > + - lan8814,latency_tx_1000: Configures Latency value of phy in egress =
+at
+> 1000 Mbps.
+>=20
+> Why does this need to be configured, rather than hard coded? Why would th=
+e
+> latency for a given speed change? I would of thought though you would tak=
+e
+> the average length of a PTP packet and divide is by the link speed.
+>=20
+
+This latency values could be different for different phy's. So hardcoding w=
+ill not work here.
+Yes in our case latency values depends on port speed. It is delay between n=
+etwork medium and=20
+PTP timestamp point.
+
+>      Andrew
