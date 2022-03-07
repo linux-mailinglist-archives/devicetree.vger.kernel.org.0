@@ -2,159 +2,254 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B274CF440
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:07:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAAE4CF447
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:08:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233819AbiCGJIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 04:08:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43344 "EHLO
+        id S232229AbiCGJJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 04:09:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233162AbiCGJIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:08:45 -0500
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4D6DF55;
-        Mon,  7 Mar 2022 01:07:50 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 2631B1F43859
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1646644069;
-        bh=mKuKc24peBTHJq96oPXVMVEPFG1UMKdTfUdLfSGxtH0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=S+nr6l6ud+gdKu5ahDRDne/nb8H6YRD77OPWBF4KsxIFPSWoe0DszZrrWihtjWXaT
-         KIcAbqgmYkYHkpqe6Z6JIVmXD00hmusob2Umsc2496UYcKdboInRXDfzCggoz19RLR
-         yUcKjJLTR5n9L4ijWAvo0cXjEp1LFJ2idl8PREEPXlHFCtEDOHQS3xaoyiRnW2c6Is
-         Tx6TPN7W1wrUrHC8GJH3UPzLbd3U+G4/vlXNJyg0fofeJG/E+3SOzatheWUZxcRDZa
-         SK2WUgGituRC1LNkpgBKcCC0WJyGTNKbC2Oj4PfAu+ykatmh19xUR76VCfEYLa1aZ8
-         g2zwcLTBmrPYA==
-Message-ID: <e2299a96-9f91-0ca3-1617-18029b3940d2@collabora.com>
-Date:   Mon, 7 Mar 2022 10:07:45 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [v2 01/17] ASoC: mediatek: mt6366: add codec driver
-Content-Language: en-US
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, perex@perex.cz, p.zabel@pengutronix.de,
-        geert+renesas@glider.be, trevor.wu@mediatek.com,
-        tzungbi@google.com, aaronyu@google.com, zhangqilong3@huawei.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20220217134205.15400-1-jiaxin.yu@mediatek.com>
- <20220217134205.15400-2-jiaxin.yu@mediatek.com>
- <b22976ee-6426-cabf-f153-fbe093611e97@collabora.com>
- <6555d89deb9087825f865b9d4265f07465e7ae09.camel@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <6555d89deb9087825f865b9d4265f07465e7ae09.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S232755AbiCGJJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:09:40 -0500
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF2E60DA2;
+        Mon,  7 Mar 2022 01:08:45 -0800 (PST)
+Received: from compute2.internal (compute2.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id 3B5FB5C031E;
+        Mon,  7 Mar 2022 04:08:43 -0500 (EST)
+Received: from imap47 ([10.202.2.97])
+  by compute2.internal (MEProxy); Mon, 07 Mar 2022 04:08:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=svenpeter.dev;
+         h=cc:cc:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; bh=CuD+6UMoHVIR6oldfnrYz19HAfESfe
+        N1v5yLvdZkpkI=; b=HNlRkQNBATVq9XbYKl09SZsmzqhv+DgzkzTZfACXeadb1r
+        jJp5ggogTaKrs5JuQKLV4+QUqRcScoJlo0nPYYz07y+/khiNQHVC0EUyOVEWOzt0
+        FX1HspPIUl+5rjAu4hMZsJqsT2uTgQTbcEfdORQd7pqVJPdm6JxF4YDNS8mRktyE
+        TSITmdatD5x1/jhepkiF/WMt80YtiT5URmjape1KP/T5Xen1iHrtc6iujVyg4seS
+        AgkSYfj2I4m3I8isqSUHOs8lBnKnkw529+XdwN6TeojYKkijX/qZHVnAUIggmaAa
+        WUUj0gUNtc/4QA7VnfhLA7bOfh4MWSiiY/FVJIxw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=CuD+6UMoHVIR6oldf
+        nrYz19HAfESfeN1v5yLvdZkpkI=; b=GbHVdYZl+iMeTFOcCbuo6ObLlJ22l2DtF
+        HxDi+aedjFK4qRHNg+W7RNvauDjN5/uCyEJBsXuQ07CZM/KXpOfpxek/2036uJLM
+        K9Jhf6iG7shFa3WxjfjhAiuzSjN8E4Q/tVLJvSM7VnGp94ebxBu0D65VoE1uF8tm
+        4R6cLP9xMXYzsTOXe1i0PDDKTCbzM/tw/sGk+Z2b9EHXAHpduoFXmJO8MUkrQxNV
+        VydUNmnjhWPlOuTcXsj+mi8OuqgP+FVqTW5RWe/2DwUiymty06ZK3xZPcMK+EC4y
+        HGZK6V0qPJU37O8GZ97a/e+agEUMo2W1wnAqksAfOCENUkUPOuu9w==
+X-ME-Sender: <xms:msslYh52gPkbK5YEtZ5JrLSvL1th7V6kq459B5ojuK0uNEQFzgNd0A>
+    <xme:msslYu5ab9X0T-Vn2Tyi7Odi-6zO3itNjpiCXoull8h0SP9Fg4QSLvEaEYBIngXEo
+    9IBuGtfWg7uJrwc3bg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddruddufedguddvkecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfufhv
+    vghnucfrvghtvghrfdcuoehsvhgvnhesshhvvghnphgvthgvrhdruggvvheqnecuggftrf
+    grthhtvghrnhepgfeigeeiffeuhfettdejgfetjeetfeelfefgfefgvddvtdfghfffudeh
+    vdefkeffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    epshhvvghnsehsvhgvnhhpvghtvghrrdguvghv
+X-ME-Proxy: <xmx:msslYofj4xrqh8ZaRu7d60UWeZH_FOHMKArpzF35MvKpAsvc5gKGWA>
+    <xmx:msslYqKWykj34tZPi26Qu8pudENb6uTNb56LHWIPS-6TxsKvjbNS1A>
+    <xmx:msslYlJzM5f5dxuJkdb9J8nxTuxXq5_sARtKWjoyUFjYr_34ejdr3Q>
+    <xmx:m8slYqp8PXZePl3TkiLI7NvHgN5mJwJSjQ4MelMp1XreknWvYwZC7g>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id ACC0A2740108; Mon,  7 Mar 2022 04:08:42 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-4778-g14fba9972e-fm-20220217.001-g14fba997
+Mime-Version: 1.0
+Message-Id: <9f43d5db-1476-4505-a9de-b862fbaf2685@www.fastmail.com>
+In-Reply-To: <ab2c0a8d-d27b-0c93-c7bc-2c8bf8ee1036@canonical.com>
+References: <20220306121816.70537-1-sven@svenpeter.dev>
+ <20220306121816.70537-2-sven@svenpeter.dev>
+ <ab2c0a8d-d27b-0c93-c7bc-2c8bf8ee1036@canonical.com>
+Date:   Mon, 07 Mar 2022 10:08:22 +0100
+From:   "Sven Peter" <sven@svenpeter.dev>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>,
+        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        "Joey Gouly" <joey.gouly@arm.com>,
+        "Hector Martin" <marcan@marcan.st>,
+        "Alyssa Rosenzweig" <alyssa@rosenzweig.io>,
+        "Mark Kettenis" <kettenis@openbsd.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] nvmem: Add Apple eFuse driver
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/03/22 05:24, Jiaxin Yu ha scritto:
-> On Fri, 2022-02-18 at 15:54 +0100, AngeloGioacchino Del Regno wrote:
->> Il 17/02/22 14:41, Jiaxin Yu ha scritto:
->>> Mt6366 is a new version of mt6358, and they are same about audio
->>> part.
->>> So we can reuse the driver of mt6358.
->>>
->>> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
->>
->> Hello Jiaxin,
->> I'm sorry but this commit makes very little sense.
->>
->> If you want to advertise MT6366 support, please write a note and/or
->> a new compatible string inside of the mt6358 driver (and dt-
->> bindings),
->> then, please drop this commit.
->>
-> 
-> Hello angelogioacchino,
-> 
-> Thank you for your advice.
-> 
-> If I add a new compatible string inside of the mt6358 driver and dt-
-> bindings, then the machine driver which want to use mt6366 should
-> select SND_SOC_MT6358.
-> 
-> like below:
-> 
-> config SND_SOC_MT8186_MT6366_DA7219_MAX98357
-> 	tristate "ASoC Audio driver for MT8186 with DA7219 MAX98357A
-> codec"
->   	depends on I2C && GPIOLIB
->   	depends on SND_SOC_MT8186 && MTK_PMIC_WRAP
->   	select SND_SOC_MT6366   ==> SND_SOC_MT6358
-> 	...
-> 
-> I just doubt it's enough to make sense. I originally wanted to put this
-> relationship in the sound/soc/codecs layer. So that this relationship
-> is not perceived by users(machine driver).
-> However, if the general practice is like this, I will adopt your
-> suggestion. Thank you again.
-> 
 
-Yes this is acceptable, please do it like that.
 
-Thanks,
-Angelo
+On Sun, Mar 6, 2022, at 13:25, Krzysztof Kozlowski wrote:
+> On 06/03/2022 13:18, Sven Peter wrote:
+>> Apple SoCs contain eFuses used to store factory-programmed data such
+>> as calibration values for the PCIe or the Type-C PHY. They are organized
+>> as 32bit values exposed as MMIO.
+>> 
+>> Signed-off-by: Sven Peter <sven@svenpeter.dev>
+>> ---
+>> v1 -> v2:
+>>   - fixed sparse warning about __iomem by introducing
+>>     struct apple_efuses_priv as done in other nvmem drivers
+>>   - make sure the driver actually works as a module by
+>>     setting .owner to THIS_MODULE and adding MODULE_DEVICE_TABLE
+>>     pointed out by Joey Gouly
+>> 
+>>  MAINTAINERS                  |  1 +
+>>  drivers/nvmem/Kconfig        | 12 ++++++
+>>  drivers/nvmem/Makefile       |  2 +
+>>  drivers/nvmem/apple-efuses.c | 82 ++++++++++++++++++++++++++++++++++++
+>>  4 files changed, 97 insertions(+)
+>>  create mode 100644 drivers/nvmem/apple-efuses.c
+>> 
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index f70d8525cbd4..e3e973a3f651 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -1781,6 +1781,7 @@ F:	drivers/i2c/busses/i2c-pasemi-core.c
+>>  F:	drivers/i2c/busses/i2c-pasemi-platform.c
+>>  F:	drivers/irqchip/irq-apple-aic.c
+>>  F:	drivers/mailbox/apple-mailbox.c
+>> +F:	drivers/nvmem/apple-efuses.c
+>>  F:	drivers/pinctrl/pinctrl-apple-gpio.c
+>>  F:	drivers/soc/apple/*
+>>  F:	drivers/watchdog/apple_wdt.c
+>> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
+>> index da414617a54d..bba29d1aec96 100644
+>> --- a/drivers/nvmem/Kconfig
+>> +++ b/drivers/nvmem/Kconfig
+>> @@ -300,4 +300,16 @@ config NVMEM_BRCM_NVRAM
+>>  	  This driver provides support for Broadcom's NVRAM that can be accessed
+>>  	  using I/O mapping.
+>>  
+>> +config NVMEM_APPLE_EFUSES
+>> +	tristate "Apple eFuse support"
+>> +	depends on ARCH_APPLE || COMPILE_TEST
+>> +	default ARCH_APPLE
+>> +	help
+>> +	  Say y here to enable support for reading eFuses on Apple SoCs
+>> +	  such as the M1. These are e.g. used to store factory programmed
+>> +	  calibration data required for the PCIe or the USB-C PHY.
+>> +
+>> +	  This driver can also be built as a module. If so, the module will
+>> +	  be called nvmem-apple-efuses.
+>> +
+>>  endif
+>> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
+>> index dcbbde35b6a8..1a8e54691d3e 100644
+>> --- a/drivers/nvmem/Makefile
+>> +++ b/drivers/nvmem/Makefile
+>> @@ -61,3 +61,5 @@ obj-$(CONFIG_NVMEM_RMEM) 	+= nvmem-rmem.o
+>>  nvmem-rmem-y			:= rmem.o
+>>  obj-$(CONFIG_NVMEM_BRCM_NVRAM)	+= nvmem_brcm_nvram.o
+>>  nvmem_brcm_nvram-y		:= brcm_nvram.o
+>> +obj-$(CONFIG_NVMEM_APPLE_EFUSES)	+= nvmem-apple-efuses.o
+>> +nvmem-apple-efuses-y 		:= apple-efuses.o
+>> diff --git a/drivers/nvmem/apple-efuses.c b/drivers/nvmem/apple-efuses.c
+>> new file mode 100644
+>> index 000000000000..dd5576ec5408
+>> --- /dev/null
+>> +++ b/drivers/nvmem/apple-efuses.c
+>> @@ -0,0 +1,82 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Apple SoC eFuse driver
+>> + *
+>> + * Copyright (C) The Asahi Linux Contributors
+>> + */
+>> +
+>> +#include <linux/io.h>
+>> +#include <linux/mod_devicetable.h>
+>> +#include <linux/module.h>
+>> +#include <linux/nvmem-provider.h>
+>> +#include <linux/platform_device.h>
+>> +
+>> +struct apple_efuses_priv {
+>> +	void __iomem *fuses;
+>> +};
+>> +
+>> +static int apple_efuses_read(void *context, unsigned int offset, void *val,
+>> +			     size_t bytes)
+>> +{
+>> +	struct apple_efuses_priv *priv = context;
+>> +	u32 *dst = val;
+>> +
+>> +	while (bytes >= sizeof(u32)) {
+>> +		*dst++ = readl_relaxed(priv->fuses + offset);
+>> +		bytes -= sizeof(u32);
+>> +		offset += sizeof(u32);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int apple_efuses_probe(struct platform_device *pdev)
+>> +{
+>> +	struct apple_efuses_priv *priv;
+>> +	struct resource *res;
+>> +	struct nvmem_config config = {
+>> +		.dev = &pdev->dev,
+>> +		.read_only = true,
+>> +		.reg_read = apple_efuses_read,
+>> +		.stride = sizeof(u32),
+>> +		.word_size = sizeof(u32),
+>> +		.name = "apple_efuses_nvmem",
+>> +		.id = NVMEM_DEVID_AUTO,
+>> +		.owner = THIS_MODULE,
+>> +		.root_only = true,
+>> +	};
+>> +
+>> +	priv = devm_kzalloc(config.dev, sizeof(*priv), GFP_KERNEL);
+>> +	if (!priv)
+>> +		return -ENOMEM;
+>> +
+>> +	priv->fuses = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
+>> +	if (IS_ERR(priv->fuses))
+>> +		return PTR_ERR(priv->fuses);
+>> +
+>> +	config.priv = priv;
+>> +	config.size = resource_size(res);
+>> +
+>> +	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
+>> +}
+>> +
+>> +static const struct of_device_id apple_efuses_of_match[] = {
+>> +	{ .compatible = "apple,efuses", },
+>> +	{}
+>> +};
+>> +
+>> +MODULE_DEVICE_TABLE(of, apple_efuses_of_match);
+>> +
+>> +static struct platform_driver apple_efuses_driver = {
+>> +	.driver = {
+>> +		.name = "apple_efuses",
+>> +		.of_match_table = apple_efuses_of_match,
+>> +		.owner = THIS_MODULE,
+>
+> You wrote it also in changelog, but why do you need it? Doesn't core set
+> it? Coccinelle should complain about this as well.
+>
 
->>
->>> ---
->>>    sound/soc/codecs/Kconfig  | 8 ++++++++
->>>    sound/soc/codecs/Makefile | 1 +
->>>    2 files changed, 9 insertions(+)
->>>
->>> diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
->>> index 8fa24783ce01..6631094678f5 100644
->>> --- a/sound/soc/codecs/Kconfig
->>> +++ b/sound/soc/codecs/Kconfig
->>> @@ -132,6 +132,7 @@ config SND_SOC_ALL_CODECS
->>>    	imply SND_SOC_MT6351
->>>    	imply SND_SOC_MT6358
->>>    	imply SND_SOC_MT6359
->>> +	imply SND_SOC_MT6366
->>>    	imply SND_SOC_MT6660
->>>    	imply SND_SOC_NAU8315
->>>    	imply SND_SOC_NAU8540
->>> @@ -1888,6 +1889,13 @@ config SND_SOC_MT6359_ACCDET
->>>    	  for ASoC codec soc-jack detection mechanism.
->>>    	  Select N if you don't have jack on board.
->>>    
->>> +config SND_SOC_MT6366
->>> +	tristate "MediaTek MT6366 Codec"
->>> +	depends on MTK_PMIC_WRAP
->>> +	help
->>> +	  Enable support for the platform which uses MT6366 as
->>> +	  external codec device.
->>> +
->>>    config SND_SOC_MT6660
->>>    	tristate "Mediatek MT6660 Speaker Amplifier"
->>>    	depends on I2C
->>> diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
->>> index 42d00aa4ee46..1279684feaf0 100644
->>> --- a/sound/soc/codecs/Makefile
->>> +++ b/sound/soc/codecs/Makefile
->>> @@ -465,6 +465,7 @@ obj-$(CONFIG_SND_SOC_MT6351)	+= snd-soc-
->>> mt6351.o
->>>    obj-$(CONFIG_SND_SOC_MT6358)	+= snd-soc-mt6358.o
->>>    obj-$(CONFIG_SND_SOC_MT6359)	+= snd-soc-mt6359.o
->>>    obj-$(CONFIG_SND_SOC_MT6359_ACCDET) += mt6359-accdet.o
->>> +obj-$(CONFIG_SND_SOC_MT6366)	+= snd-soc-mt6358.o
->>>    obj-$(CONFIG_SND_SOC_MT6660)	+= snd-soc-mt6660.o
->>>    obj-$(CONFIG_SND_SOC_NAU8315)   += snd-soc-nau8315.o
->>>    obj-$(CONFIG_SND_SOC_NAU8540)   += snd-soc-nau8540.o
->>
->>
-> 
+yeah, you're right. I shouldn't have just blindly followed what Hector and Joey
+had to do for another subsystem to make reference counting work there.
 
+I just checked again and it's neither required here not in struct nvmem_config
+because module_platform_driver -> platform_driver_register ->
+__platform_driver_register will set it in struct platform_driver and the
+nvmem core will take it from there and set it inside nvmem_config.
+
+
+thanks,
+
+
+Sven
