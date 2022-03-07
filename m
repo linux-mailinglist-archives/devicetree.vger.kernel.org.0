@@ -2,89 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5AEA4CF41F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:56:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B48F4CF424
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:58:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbiCGI5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 03:57:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
+        id S232775AbiCGI7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 03:59:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231222AbiCGI5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:57:01 -0500
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC462019D;
-        Mon,  7 Mar 2022 00:56:06 -0800 (PST)
-Received: by mail-wr1-x432.google.com with SMTP id u1so21996118wrg.11;
-        Mon, 07 Mar 2022 00:56:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JAuL6YepBIXFjvPpdz3/zKExoKESbH/f50M7nxlrs1I=;
-        b=nGao1OzYTY4jN+ZzN5oA5UmzE02b79yw/mCAIi5DnpU+5BC56C1OhsISLwcJ2FGV2X
-         qFtfLM0IW/j+SMgI5cE6PFXVOKstMwjxmHov02cKZcsRbqeZEC0kmqp6Ra896qQr/CYg
-         p6SLvoIumq63ElpdFWzCHXap6ABNysbFWJy1hhgTIVK2LIK3QJbFiKBOoHgDxnA/uBMM
-         6zY1GA3KlafZax0xHREzDs5N4SMZCRepsKC2dDZaladCiJalofs90/aAp+WBvAiFcM/D
-         u0ndNfHUlgtt67M4VK+r/OAl7yxGptV2hSsZG1UL3NfACqGC19Xu6nMVC3ZLWx3uxBeg
-         WBmg==
+        with ESMTP id S231402AbiCGI7V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:59:21 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A0632019D
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 00:58:27 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B0B173F1C5
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 08:58:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646643505;
+        bh=tXVanxy7+7Oc5O3WLbsohtPsqU2ukLOIpjIWEofC+MQ=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=bTxL4AF429f2wP4gWcvAgYtYQtrZPeR2edQBQSzrWBHyrBI4JTiqAR28Y53Ea+ZGi
+         92rP5oOdK/GJmSVovU9tM3Grg4xduU+DyvvK7+ukC6bkNQgqe06g/gkVDf8Nu8nrjR
+         nYztV8fYOg9TKVHVx6v3J4EvPxhS180ABnKHpgbkjcWipy+W+TRTbunfHyok8ZcQcj
+         S29iOe8IdrLUkDURi78ixPq45nDMFXNtgjpW53DidhXqUQIcuUrvIzExKXeRraLS2h
+         CP4iJU3r6xxQk2XeQm3E+M7nFmrIJ+XwsmLwtx7GUPTOEHKMTl04xDA0f/yqde1Qvs
+         mCao3vG46KCug==
+Received: by mail-ed1-f69.google.com with SMTP id u28-20020a50d51c000000b004159ffb8f24so8239104edi.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 00:58:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JAuL6YepBIXFjvPpdz3/zKExoKESbH/f50M7nxlrs1I=;
-        b=1tw8FCvzi4K/YhDLbxkq/GC8wNqHXno8DhlmYmsbrtGb6OmTUUqYOH60bTu2Aqg5sN
-         EwOnMIAyY5dq3pLLZ/Eyu7YC8GyxaWfn53T/BzAdOjUbNpMrWig+BAV2xKq5v/evi7fo
-         wbMJD36OczJ2Smtwku1JHDIBEFCCXSE6zc7U/ThoOBBs9eftSHoLw0cdZFMcIgEUJToH
-         3zmSoLKW804UQ9IZRbqERVpSiLqWduEsqWUoN2Fa2Rluo9gwrbS7wAAfZTd7qNmSuZnx
-         nkInQV9RHUPxY3DwiZcuxG+HwIKaucDXgy/IJpXq4IugIc8/PhKKjdtkM68nqOYGS5u8
-         dGfg==
-X-Gm-Message-State: AOAM530ICkEEmIFD9U6apNk/fj695imLBeLxH8nQbM4qcaP87X7q0tpP
-        7tJtJnIw1tvDTqoDTz/l2YKw5utvC6dcpDVo
-X-Google-Smtp-Source: ABdhPJzPdzD3vG9myUxu4TceAdws6H8czXcxAxloDB5YBr/EYyckRyrzZIUUvQtTHFjqsl21N5t8EA==
-X-Received: by 2002:a5d:452a:0:b0:1f0:48ce:97e0 with SMTP id j10-20020a5d452a000000b001f048ce97e0mr7375807wra.225.1646643364638;
-        Mon, 07 Mar 2022 00:56:04 -0800 (PST)
-Received: from tp440p.steeds.sam ([41.215.158.40])
-        by smtp.gmail.com with ESMTPSA id j20-20020a5d6e54000000b001f0642807cfsm15052968wrz.117.2022.03.07.00.56.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 00:56:03 -0800 (PST)
-Date:   Mon, 7 Mar 2022 10:55:56 +0200
-From:   Sicelo <absicsz@gmail.com>
-To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Subject: Re: [PATCH v2 0/3] Support LIS302DL in st_accel
-Message-ID: <YiXInAKKwWRsWh40@tp440p.steeds.sam>
-References: <20220301225432.60844-1-absicsz@gmail.com>
- <20220305155955.000075eb@Huawei.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=tXVanxy7+7Oc5O3WLbsohtPsqU2ukLOIpjIWEofC+MQ=;
+        b=DwILRswVhvhk3yiv+ACdrLar5aTmA3IV5wWm8Syz86dop3/x20zAtzaM90chrACXk9
+         ny71h4twHkOGo3UsZubJaq69iXauD/5rReaAlAfBSie13GSiqQjqS5tpSXxOnIITyPT1
+         amu6RffM9T9zMmprxlOp0+lLCRltVfgj/4HaPFUW6gyuQpt3Neolmws9ctxNwSX+hoox
+         ME0uqYlHq7CT4lSqInDtmvgf7qvwbbu0fZyL6di+eiQZguopadyoe1nhV+EgfTe1bTvh
+         72ZPa7/3BBxtUY076RIe2xBOVLJFs29VbS9pE+JVtLmUGxzrRVMRfX+stzEPreN+E+ld
+         lOSA==
+X-Gm-Message-State: AOAM532QknvvkQICgkyOvzVIbLjW3rmEXuUP1noIjheqD8bKBG0kuBm+
+        sbzprA969nDCkONlScX63zcxvhfDvrLXrtww+8es49QXJab4ibRvisQkjs+75W/KYxIk9ymdMcc
+        q3eKfZNTFsshr7wad1uh4vQ6JDICXfRo2ct39TlM=
+X-Received: by 2002:a05:6402:27cb:b0:412:124:e0db with SMTP id c11-20020a05640227cb00b004120124e0dbmr10188615ede.72.1646643505351;
+        Mon, 07 Mar 2022 00:58:25 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJy3ZMJrDKrVAyAS7Dzh3dQbNGgwVfhPijtSj0p1tH4keGdzqgbfHCWsGgoYJFegl75f4/Ns8g==
+X-Received: by 2002:a05:6402:27cb:b0:412:124:e0db with SMTP id c11-20020a05640227cb00b004120124e0dbmr10188597ede.72.1646643505198;
+        Mon, 07 Mar 2022 00:58:25 -0800 (PST)
+Received: from [192.168.0.140] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id fs6-20020a170907600600b006da8ec6e4a6sm4485847ejc.26.2022.03.07.00.58.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 00:58:24 -0800 (PST)
+Message-ID: <3b4b5fd3-6642-baf4-2c21-930b70ab0d63@canonical.com>
+Date:   Mon, 7 Mar 2022 09:58:24 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220305155955.000075eb@Huawei.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: serial: samsung: Add ARTPEC-8 UART
+Content-Language: en-US
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org
+Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com
+References: <20220307085053.1636475-1-vincent.whitchurch@axis.com>
+ <20220307085053.1636475-2-vincent.whitchurch@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220307085053.1636475-2-vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 05, 2022 at 03:59:55PM +0000, Jonathan Cameron wrote:
-> Other the the issues Andy raised around the tag and also
-> adding SPI support this looks good to me. 
+On 07/03/2022 09:50, Vincent Whitchurch wrote:
+> Add a compatible for the UART on the ARTPEC-8 SoC.
 > 
-> We are very late in this cycle, so it is now material for 5.19.
-> Plenty of time to make those final little tidy ups and get this
-> queued early in the next cycle.
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/samsung_uart.yaml b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> index 6aceba4a5f79..6f11f2c92f64 100644
+> --- a/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/samsung_uart.yaml
+> @@ -20,6 +20,7 @@ properties:
+>      items:
+>        - enum:
+>            - apple,s5l-uart
+> +          - axis,artpec8-uart
+>            - samsung,s3c2410-uart
+>            - samsung,s3c2412-uart
+>            - samsung,s3c2440-uart
 
-Thank you so much. I will prepare next version of patches soon.
+You need to define clocks - see the allOf part.
 
-Sincerely
-Sicelo
+Best regards,
+Krzysztof
