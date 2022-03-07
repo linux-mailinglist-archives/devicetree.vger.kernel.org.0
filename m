@@ -2,129 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42B594CF7DA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:51:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 67BAE4CFB8B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 11:39:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235711AbiCGJv2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 04:51:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54210 "EHLO
+        id S241636AbiCGKju (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 05:39:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240505AbiCGJvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:51:04 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 767787562C;
-        Mon,  7 Mar 2022 01:44:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646646286; x=1678182286;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iYmh9KvmrAN/9n49jwIZ1qbV8GdSrmGWQVFa5C6rxI4=;
-  b=amwK989APox6E/AfbAd0YUDGIOOPLjF8xKh4zmJgdz1NOS3F+trbAizf
-   M0Xi1Gb7xwz12Dn2u9lJV8G5sV3n2eUM6ywdPtzhWow5toqbUoy7ZlG92
-   09dFqh2wCNUwBxjGuYf6nhq2phKDYdmTeHBLawX75UdJXjZFk+vfC4idi
-   ErGGN/AvNy6HNsPEmBGoRXDMZhNeiYa1fzjoZbanCbW50M1C0+1pSK+Gm
-   Rl/HXN/shXUN9xCl0j5AP1z0m7xxsj4OL1CDYmPSBUn6d6tSVz5oyOBZl
-   8NimXjo2+Hzc7OFCn9LqU37eOz8migoBOb8fRxF+MTIV1XxKfhkZToeou
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="254541218"
-X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; 
-   d="scan'208";a="254541218"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 01:44:40 -0800
-X-IronPort-AV: E=Sophos;i="5.90,161,1643702400"; 
-   d="scan'208";a="495003939"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 01:44:34 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nR9u8-00Ch1M-IP;
-        Mon, 07 Mar 2022 11:43:48 +0200
-Date:   Mon, 7 Mar 2022 11:43:48 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Tali Perry <tali.perry1@gmail.com>,
-        Tyrone Ting <warp5tw@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        Wolfram Sang <wsa@kernel.org>, jie.deng@intel.com,
-        sven@svenpeter.dev, bence98@sch.bme.hu, lukas.bulwahn@gmail.com,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Tali Perry <tali.perry@nuvoton.com>,
-        Avi Fishman <Avi.Fishman@nuvoton.com>,
-        Tomer Maimon <tomer.maimon@nuvoton.com>, KWLIU@nuvoton.com,
-        JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 11/11] i2c: npcm: Support NPCM845
-Message-ID: <YiXT1JX5A7Ez7C6G@smile.fi.intel.com>
-References: <20220303083141.8742-1-warp5tw@gmail.com>
- <20220303083141.8742-12-warp5tw@gmail.com>
- <YiCb7LNY9tmMCZx7@smile.fi.intel.com>
- <CAHb3i=tWhtXK+c5GGbp6m23AHoyy=4woT_+n3a_N-6CqKUYb=g@mail.gmail.com>
- <YiDMX7pUqs/rLJUU@smile.fi.intel.com>
- <CAP6Zq1iy0yNMemqDjrLu1F0rrRSDFhZ+SqdoOa9FyJDNL0ENXA@mail.gmail.com>
+        with ESMTP id S240451AbiCGKgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 05:36:23 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6326E972B2;
+        Mon,  7 Mar 2022 02:05:06 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 672A61F438C7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646647463;
+        bh=vkE1dGmQ2i4mat5nimDDteTG2DySI3ffFGm0QSlU+rA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Rd8+GreErGoiKBLD+XzcSgcSayXG1eGW1o0pnS9WbP1Mwj5cbL36JkEWxWMyOY1p2
+         tdKbXphTVjPxk5PUZv+ku4rKBfMhWsKB8sF3cGjL+rSurUATaqQcPtnQoQ5Wimxd6v
+         a91PZz96kkxZIwJsG9UuKeToMGjIKb82pmLDTYgsBnDfBYA1yeYoGDHPKtxqan3Cet
+         yQItBSLS6K59hN7fVPMXTWw8osrHw4P0/wjVH/z6XVQpxTLoghAQ5J8FhamAOWbA4v
+         6cQ0j9IRrnS/fm2GZczNMtChTiWD/T7L7M5sagQV3tXlYHN0/1USSBZSplM1fFk8d6
+         I7JdYrEP+lrZQ==
+Message-ID: <cfab8fcc-3cb6-dc20-2c88-63884a2f7a6d@collabora.com>
+Date:   Mon, 7 Mar 2022 11:04:19 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1iy0yNMemqDjrLu1F0rrRSDFhZ+SqdoOa9FyJDNL0ENXA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v16 3/8] dt-bindings: arm: mediatek: mmsys: add mt8195 SoC
+ binding
+Content-Language: en-US
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        hsinyi@chromium.org, fshao@chromium.org, moudy.ho@mediatek.com,
+        roy-cw.yeh@mediatek.com, CK Hu <ck.hu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
+ <20220307032859.3275-4-jason-jh.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220307032859.3275-4-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Mar 06, 2022 at 03:33:20PM +0200, Tomer Maimon wrote:
-> On Thu, 3 Mar 2022 at 16:11, Andy Shevchenko <
-> andriy.shevchenko@linux.intel.com> wrote:
-> > On Thu, Mar 03, 2022 at 02:35:58PM +0200, Tali Perry wrote:
-> > > > On Thu, Mar 3, 2022 at 12:45 PM Andy Shevchenko <
-> > andriy.shevchenko@linux.intel.com> wrote:
-
-...
-
-> > But hold on and read set of questions below.
-> >
-> > Previously it was a fixed field with the NPCM_I2CTXF_STS_TX_BYTES mask
-> > applied,
-> > right? From above I have got that FIFO is growing twice. Is it correct?
+Il 07/03/22 04:28, jason-jh.lin ha scritto:
+> There are 2 mmsys, namely vdosys0 and vdosys1 in mt8195.
+> Each of them is bound to a display pipeline, so add their
+> definition in mtk-mmsys documentation with 2 compatibles.
 > 
-> What do you mean by growing twice? TX and RX?
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
 
-I meant from 16 bytes to 32 bytes.
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-> > Does the LSB stay at the same offset? What is the meaning of the MSB in 32
-> > byte
-> > case? If it's reserved then why not to always use 32 byte approach?
+> ---
+>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml        | 2 ++
+>   1 file changed, 2 insertions(+)
 > 
-> Yes, the LSB stays in the same place, and bit 5 is reserved in the NPCM7XX
-> SoC.
-> Unfortunately, the I2C test failed when we tried to use the 32 bytes
-> approach at NPCM7XX Soc, this is why we added NPCM_I2CTXF_STS_TX_BYTES and
-> NPCM_I2C_STSRXF_RX_BYTES to the data structure.
-> 
-> The device tree data structure pass data for each specific device, so I
-> don't understand why not use device tree data for supporting the I2C
-> specific device? this is not the case here?
-
-Basically we use compatible strings for that, but in any case if something
-can be autodetected from hardware, it's better to use autodetection.
-
-
--- 
-With Best Regards,
-Andy Shevchenko
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> index 6c2c3edcd443..c5ba515cb0d7 100644
+> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
+> @@ -32,6 +32,8 @@ properties:
+>                 - mediatek,mt8186-mmsys
+>                 - mediatek,mt8192-mmsys
+>                 - mediatek,mt8365-mmsys
+> +              - mediatek,mt8195-vdosys0
+> +              - mediatek,mt8195-vdosys1
+>             - const: syscon
+>         - items:
+>             - const: mediatek,mt7623-mmsys
 
 
