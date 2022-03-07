@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73B514D0710
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:57:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A7D4D0719
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:59:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244160AbiCGS6h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 13:58:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48170 "EHLO
+        id S244657AbiCGTAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 14:00:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244880AbiCGS6h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:58:37 -0500
+        with ESMTP id S234764AbiCGTAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:00:30 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9478811A2A
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 10:57:40 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECB555758
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 10:59:35 -0800 (PST)
 Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 47B7E3F7E3
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:57:39 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 015043F7E0
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:59:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646679459;
-        bh=Xy6MdIJ1JZ9Av676oic2sRFwBOpZq/tlPRFQIZOvVVo=;
+        s=20210705; t=1646679573;
+        bh=sFr5I+WRledcILsCjq370DCSnN0kDkpnKS2SgkWGsqU=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=am/q5y50SWdpD9yPWvEwNLQUOql3uPs1Dbg2Z0fuaDIXoHf778EknmFu4yxuO+ir2
-         v/6I426oaBtRLhCkNQ0uQ7mrUQEvNCYhYRtMYqbbf2UHjK1c0JKH8lx2GQVQkS4qTC
-         y2SvBwQVmu6+isqhY0JBeOcxWcBY7ZR21bZ9B7i8lL7ZL7RonA0gWNGJgDOqA8pRMr
-         6DrN3M9T0Z1ZuzNQHCvnkxyOgFMB8+phktYAQ68mQVc2ygu6+jrUSv9qEdB/TUzTcd
-         S8X238FL26gSnC6Lib6XIwB++dGvR7btIrLtO9SLakMQanPxzwPtyVKDh7vGCi2VwL
-         fgTKuFQAcGr7Q==
-Received: by mail-ed1-f70.google.com with SMTP id x5-20020a50ba85000000b004161d68ace6so4049348ede.15
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 10:57:39 -0800 (PST)
+        b=vhWjr9pNsg/w2Wq5aMYuOsaes9kiXvFOhvNJX9dpYIoaqZuwy3jmG0J4EDOsVwtOm
+         sEPxj5v7YUzvlwuKIDS5/LapDBiAQ4UdXtBtSo2Y3z2orUqELwmjMoj1YpU288W0bk
+         9Pr7D/YBRCDx520W1aiY+iWi2kswzeKYGVlA00Zw86wWo8ZDJlmVLXwt75EnS2yg1Q
+         L/PbQOE+920THxDhOifFJcH4hZqfqTTameNll6lRha2R/BrzIaNvabOaA3R6I6dUkC
+         rkM0nngQGD50PKhofgCmcY/ONeBQfMyWnRweGeSOnUNC+RSvBQAnnlE4FPhJh3MtUu
+         ilgJjPGqRmI9g==
+Received: by mail-ed1-f70.google.com with SMTP id i17-20020aa7c711000000b00415ecaefd07so6805365edq.21
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 10:59:32 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Xy6MdIJ1JZ9Av676oic2sRFwBOpZq/tlPRFQIZOvVVo=;
-        b=i50pixikVW51SrBfj44XpfoT4OMbb6Tu3St/oyA3I2Gfo/qAYofHEqgwWLF8ZbVcsy
-         ybuyArqwrlSDnof3YjwQtOxLAjjAj2NiJMC+vJ945ocWDULXNLq8/C60oO7aOmawi0rK
-         +arkz3zrWVXZVhkjby0q823JzB+GB5Op2xPDPr1Tagmr0Z/az80OzhKIDYCWPlqlXa1U
-         T/AbgMjj5nzJE2GTwrRnxG/hHCOe40uqmZGT34rdvWS0pXghg004qh0mwddDwrZ4CfyI
-         Bx0gQYQ9M8CnhQZLVSF9/+fLLsht12AP6iiqtfPKjGqCKosjOTM0t+lfc4uVFQgcn1f9
-         4gdg==
-X-Gm-Message-State: AOAM5326s22WcjikdwympyWG7OqNb/rotKLqne6SvVYR3Cn6s+/1DNAn
-        1+LX79sdOR3pA0aBiABFG+phV84zcSSCLRxj100InBKomfR6/QIK0lML5f82rg9GVxm3bM7F/N0
-        SlkgGINl4ZXETPA9HGkCwGc1JeNDKqzTxy8u9Rh8=
-X-Received: by 2002:a17:907:9622:b0:6db:a30:8bb8 with SMTP id gb34-20020a170907962200b006db0a308bb8mr8103686ejc.475.1646679458586;
-        Mon, 07 Mar 2022 10:57:38 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxbw5jzHRiBUPGzW87WJtQ5FkmPc5d1NjPaESWeFD6YzdTpSqPNUVHDARbSb6sfuT75Z3pO8g==
-X-Received: by 2002:a17:907:9622:b0:6db:a30:8bb8 with SMTP id gb34-20020a170907962200b006db0a308bb8mr8103654ejc.475.1646679458293;
-        Mon, 07 Mar 2022 10:57:38 -0800 (PST)
+        bh=sFr5I+WRledcILsCjq370DCSnN0kDkpnKS2SgkWGsqU=;
+        b=nL4pWLjRNO2eDGb8LElLFGoX0DKM7xn5Bpi+A71JQQj93WHwVqjVyNqQZGC5Edfcu9
+         wG5/a65QnqNZrOJWMH1IU3YXE1IN3q8ItEfOBm2+sB7qV6IpLPrcNTJH7/u7Zdo5d2CN
+         d0bULYohTXx97rZMvgVCQJjNG5T4zfGMb544CLUWOqXxbq5zLAFD0+qyoaNzEaXPVrWv
+         paMJKl7FcJnf8yxi6rqbxAXua7G3TCCklnboGGo/FBTbX/Ph424O++alZdEmReOGRUMs
+         zRSjn019V1CV2U70mMicFZWNExj+zJc5qDN4i7d8jw/sWkdDoZ/fLYqK/ePtPoq7c3H0
+         khOQ==
+X-Gm-Message-State: AOAM531M5YuLaXhoYXlK+cSQiZxttex9E0kQbCkSL+NpCy4KLm6FYIao
+        qP63BQsRUezwgScQBO/I99Wflpq5ljapHbDFi3fDa66Z0zl8e0Lir1A5/K29dr7dYHfKW3nNroh
+        NrlCMal2ntCs6Qp3MoTKZzgp/gn6DkDJwyS7wcn4=
+X-Received: by 2002:a50:d550:0:b0:416:2ac8:b98e with SMTP id f16-20020a50d550000000b004162ac8b98emr10828113edj.236.1646679571168;
+        Mon, 07 Mar 2022 10:59:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzXu0txwJE4+P5FIEK6e4oUCg8E1spjxcK+3rVXWuN/ncPvZuceRX30s52MHzZGh58AtN0qkg==
+X-Received: by 2002:a50:d550:0:b0:416:2ac8:b98e with SMTP id f16-20020a50d550000000b004162ac8b98emr10828096edj.236.1646679570975;
+        Mon, 07 Mar 2022 10:59:30 -0800 (PST)
 Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id fx13-20020a170906b74d00b006da9e406786sm4598892ejb.189.2022.03.07.10.57.36
+        by smtp.gmail.com with ESMTPSA id p24-20020a1709061b5800b006da6435cedcsm5016329ejg.132.2022.03.07.10.59.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 10:57:37 -0800 (PST)
-Message-ID: <ee98d248-b2cd-e975-84df-448917a79287@canonical.com>
-Date:   Mon, 7 Mar 2022 19:57:36 +0100
+        Mon, 07 Mar 2022 10:59:30 -0800 (PST)
+Message-ID: <d5c5e3f7-7f50-6c57-f82a-41d5494ea514@canonical.com>
+Date:   Mon, 7 Mar 2022 19:59:29 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 1/4] dt-bindings: cpufreq: mediatek: transform
- cpufreq-mediatek into yaml
+Subject: Re: [PATCH 2/4] dt-bindings: cpufreq: mediatek: add mt8186 cpufreq
+ dt-bindings
 Content-Language: en-US
 To:     Tim Chang <jia-wei.chang@mediatek.com>,
         "Rafael J . Wysocki" <rafael@kernel.org>,
@@ -81,9 +81,9 @@ Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         hsinyi@google.com,
         Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
 References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
- <20220307122151.11666-2-jia-wei.chang@mediatek.com>
+ <20220307122151.11666-3-jia-wei.chang@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307122151.11666-2-jia-wei.chang@mediatek.com>
+In-Reply-To: <20220307122151.11666-3-jia-wei.chang@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -97,101 +97,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 07/03/2022 13:21, Tim Chang wrote:
-> convert Mediatek cpufreq devicetree binding to YAML.
+> 1. add cci property.
+> 2. add example of MT8186.
 
-Start with capital letter please.
+One logical change at a time. Are these related? Why entirely new
+example just for "cci" node? Maybe this should be part of existing example?
+
 > 
 > Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
 > ---
->  .../bindings/cpufreq/cpufreq-mediatek.yaml    | 131 ++++++++++++++++++
->  1 file changed, 131 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
-
-You wrote "convert" but where is the removal of TXT?
-
+>  .../bindings/cpufreq/cpufreq-mediatek.yaml    | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
-> new file mode 100644
-> index 000000000000..584946eb3790
-> --- /dev/null
+> index 584946eb3790..d3ce17fd8fcf 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
 > +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
-> @@ -0,0 +1,131 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cpufreq/cpufreq-mediatek.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek CPUFREQ driver Device Tree Bindings
-
-Please remove "driver Device Tree Bindings" because the title should
-describe the hardware. Therefore it could be something like "Mediatek
-SoC CPU frequency and voltage scaling".
-
-How is it related to cpufreq-mediatek-hw.yaml? The names/title look
-unfortunately too similar.
-
-In general this does not look like proper bindings (see also below lack
-of compatible). Bindings describe the hardware, so what is exactly the
-hardware here?
-
-> +
-> +maintainers:
-> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
-> +
-> +description: |
-> +  CPUFREQ is used for scaling clock frequency of CPUs.
-> +  The module cooperates with CCI DEVFREQ to manage frequency for some Mediatek
-> +  SoCs.
-> +
-> +properties:
-
-How is this schema going to be applied? I don't see here select neither
-compatible.
-
-> +  clocks:
-> +    items:
-> +      - description:
-> +          The first one is the multiplexer for clock input of CPU cluster.
-> +      - description:
-> +          The other is used as an intermediate clock source when the original
-> +          CPU is under transition and not stable yet.
-> +
-> +  clock-names:
-> +    items:
-> +      - const: "cpu"
-> +      - const: "intermediate"
-> +
-> +  operating-points-v2:
+> @@ -48,6 +48,10 @@ properties:
+>        When absent, the voltage scaling flow is handled by hardware, hence no
+>        software "voltage tracking" is needed.
+>  
+> +  cci:
 > +    description:
-> +      For details, please refer to
-> +      Documentation/devicetree/bindings/opp/opp-v2.yaml
-> +
-> +  opp-table: true
+> +      Phandle of the cci to be linked with the phandle of CPU if present.
 
-You have operating-points-v2. What is this for? Did it exist in original
-bindings?
+This does not look like a standard type, so you need type.
 
-> +
-> +  proc-supply:
-> +    description:
-> +      Phandle of the regulator for CPU cluster that provides the supply
-> +      voltage.
-> +
-> +  sram-supply:
-> +    description:
-> +      Phandle of the regulator for sram of CPU cluster that provides the supply
-> +      voltage. When present, the cpufreq driver needs to do "voltage tracking"
-> +      to step by step scale up/down Vproc and Vsram to fit SoC specific needs.
-> +      When absent, the voltage scaling flow is handled by hardware, hence no
-> +      software "voltage tracking" is needed.
-> +
-> +  "#cooling-cells":
-> +    description:
-> +      For details, please refer to
-> +      Documentation/devicetree/bindings/thermal/thermal-cooling-devices.yaml
-
-Skip description, it's obvious. Instead add here const with value.
 
 
 Best regards,
