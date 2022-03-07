@@ -2,221 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFF4A4D054A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 18:32:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 082E64D05E5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:03:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232054AbiCGRds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 12:33:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59140 "EHLO
+        id S236634AbiCGSEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 13:04:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231509AbiCGRdr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 12:33:47 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C898846641;
-        Mon,  7 Mar 2022 09:32:51 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 493FFB80B52;
-        Mon,  7 Mar 2022 17:32:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E16F3C340EF;
-        Mon,  7 Mar 2022 17:32:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646674368;
-        bh=MTx+FSN4s0xomMOmVQ++nOaBz1hENZXctDzB+UA3WSo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rHHC8PyAe0g6wqoZv/RLj0BHY5FdVHkeOKVC13tFqH7fCIEUuUl2I2mrM4UrHvdvV
-         dNhV+82wSgojcoKvfaAGnzYdVHDJaXha9AgLIdGr+EY5nxHkNrNBi0EfM9/2rsxNEL
-         +R1PyCWtL8m4Fh1vczEXZ8i0C9UlGqPyeFRquNsJE4buppw9GvsczWeSHjrlI3JUVY
-         vSniQTbtOWlnEuzxFVZ9Z4jsknXTEjTbCzBRMLSUZTy6RBP9RQNSUHseDAZeKjrXhE
-         rjkjjbXzkIjfMJAhz1wifevRJU6hhfoyC+KwN6tf6ndUoC0y7F08Sdsi7bV3i9Mdkm
-         We5i4BU8ReUKA==
-Received: by mail-ej1-f54.google.com with SMTP id gb39so33518903ejc.1;
-        Mon, 07 Mar 2022 09:32:48 -0800 (PST)
-X-Gm-Message-State: AOAM531/wxMc/iGRlGOThrto8K4rzUZVaMOuYgWFYRmuoxNf875ZGjzg
-        0J9DhZo2eN3AOO9F50OuW8aQkcbkDAd4av2l1g==
-X-Google-Smtp-Source: ABdhPJyGmG3VkKnaYLa4PSf98LUiuSxcHYDSLhP/e/6IDPs0vEMo0pjg2pGSJgqWmgK/4anl0xt7rL3jNlIY+nDhFcY=
-X-Received: by 2002:a17:906:9913:b0:6d6:dc48:5d49 with SMTP id
- zl19-20020a170906991300b006d6dc485d49mr9995459ejb.325.1646674367107; Mon, 07
- Mar 2022 09:32:47 -0800 (PST)
+        with ESMTP id S240475AbiCGSEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:04:21 -0500
+Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7F545532
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 10:03:26 -0800 (PST)
+Received: by mail-qk1-x72e.google.com with SMTP id z66so12608479qke.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 10:03:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=xObSI9CPCP3pf6W9UIpjytzeoFc7wexzphF4iMEhqzc=;
+        b=nYgDloxyi2TOeUm+vSkrxwxB9NSxmt1HOOASOfmCcnA59e53YHQakn1P/RmeDHwCbC
+         zMeplk/oJpijV/UM7YOLyQPetxoFR7pcYZHvz1b5DvZGluNpTwRaonXZIEhn3UlICC5b
+         2jLfDc2T5NljZktdCWDBDqDYdg/u9hytIsGRlEHSSG+KAe/zCCk9FAun3ENIl1jFKh9W
+         ksBRb85bozQlKNuoojvwP4LzsdT4DKERCiPtzBrlxjuDVCyIrMnh+i/dELOAmB0dDT2P
+         N+pZbgkB2P8Q12IhN+fegpM5AcNhWwBmqsNWpSktUNgHEgLUZdw2mWfDPoVq15xQGtWp
+         i/lg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=xObSI9CPCP3pf6W9UIpjytzeoFc7wexzphF4iMEhqzc=;
+        b=GMxZniu7rfwBL9FZr3D2H4ev0FZWDhqGjfEYZ9cYmymU0Wa2duG/VqYmtut2fQr+oN
+         qdE6YpY2zXXFiyx9NgV3zTpG7Q3zOqBv8R6UBszFO2IJL08bBIXFyKbQInHONdq2ly85
+         aoFORi2K1dze0YxoqWlnyvR6CIcfgP838ANpjgQqUtethqwJjrKIXXnIcZNi7/Ecli/S
+         S6rZLoxWqmyOrxQ3/jp7VD1aXAB8BlTXxAusy6yuTV1dlgf+DBcoDIXR7FHugAUGoz5w
+         dDlrJYgJeuDVULhPzw4WJD8u22sg6cTjJp3DPwwTMMeUJR7aZsuKv6EoD/O3AHghxpuR
+         SosQ==
+X-Gm-Message-State: AOAM530WENqJaVys3Wd4PDtXeUVLo4SRsFkM9XCk+AprIZjI6hO2hC2P
+        3xzJ28ZzLrbpNs8D6iyWGZ87W/1pC4w=
+X-Google-Smtp-Source: ABdhPJwTsNv7QksFHKxul323Oe4WPkH+lBSQwwnr2perHOqAF/F8UP8+Udt/qlxj+2nCqSrLPNXVEg==
+X-Received: by 2002:a37:b03:0:b0:67b:2b47:d09f with SMTP id 3-20020a370b03000000b0067b2b47d09fmr3921617qkl.621.1646676205300;
+        Mon, 07 Mar 2022 10:03:25 -0800 (PST)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id d18-20020ac85d92000000b002d98bca0656sm9065872qtx.30.2022.03.07.10.03.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 10:03:24 -0800 (PST)
+Message-ID: <7de7a907-249c-8bdd-b364-689436e3b285@gmail.com>
+Date:   Mon, 7 Mar 2022 13:03:22 -0500
 MIME-Version: 1.0
-References: <20220307154558.2505734-1-robert.foss@linaro.org>
- <20220307154558.2505734-2-robert.foss@linaro.org> <YiY1CP6DkfgU4re/@robh.at.kernel.org>
- <CAG3jFyssPxuRXzZsZkVHWrSS8b6pRHRRmpZCTvLmDV-t2CDA1g@mail.gmail.com> <YiY8ko5WX3mQfDLY@pendragon.ideasonboard.com>
-In-Reply-To: <YiY8ko5WX3mQfDLY@pendragon.ideasonboard.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 7 Mar 2022 11:32:35 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+AqKJ7hU3j4sEf_61ibiyJqOWocc43B0q2G4fHDxPi1g@mail.gmail.com>
-Message-ID: <CAL_Jsq+AqKJ7hU3j4sEf_61ibiyJqOWocc43B0q2G4fHDxPi1g@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] Revert "dt-bindings:drm/bridge:anx7625:add vendor define"
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Robert Foss <robert.foss@linaro.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Xin Ji <xji@analogixsemi.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 00/14] ARM: suniv: dts: update Allwinner F1C100
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+References: <20220307143421.1106209-1-andre.przywara@arm.com>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <20220307143421.1106209-1-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 7, 2022 at 11:11 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Mon, Mar 07, 2022 at 05:57:47PM +0100, Robert Foss wrote:
-> > On Mon, 7 Mar 2022 at 17:38, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Mar 07, 2022 at 04:45:57PM +0100, Robert Foss wrote:
-> > > > This reverts commit a43661e7e819b100e1f833a35018560a1d9abb39.
-> > >
-> > > S-o-b and reason for the revert?
-> > >
-> > > > ---
-> > > >  .../display/bridge/analogix,anx7625.yaml      | 65 +------------------
-> > > >  1 file changed, 2 insertions(+), 63 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > index 1d3e88daca041..ab48ab2f4240d 100644
-> > > > --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> > > > @@ -43,70 +43,14 @@ properties:
-> > > >    vdd33-supply:
-> > > >      description: Regulator that provides the supply 3.3V power.
-> > > >
-> > > > -  analogix,lane0-swing:
-> > > > -    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > > > -    minItems: 1
-> > > > -    maxItems: 20
-> > > > -    description:
-> > > > -      an array of swing register setting for DP tx lane0 PHY.
-> > > > -      Registers 0~9 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
-> > > > -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
-> > > > -      Swing1_Pre2, Swing0_Pre3, they are for [Boost control] and
-> > > > -      [Swing control] setting.
-> > > > -      Registers 0~9, bit 3:0 is [Boost control], these bits control
-> > > > -      post cursor manual, increase the [Boost control] to increase
-> > > > -      Pre-emphasis value.
-> > > > -      Registers 0~9, bit 6:4 is [Swing control], these bits control
-> > > > -      swing manual, increase [Swing control] setting to add Vp-p value
-> > > > -      for each Swing, Pre.
-> > > > -      Registers 10~19 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
-> > > > -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
-> > > > -      Swing1_Pre2, Swing0_Pre3, they are for [R select control] and
-> > > > -      [R Termination control] setting.
-> > > > -      Registers 10~19, bit 4:0 is [R select control], these bits are
-> > > > -      compensation manual, increase it can enhance IO driven strength
-> > > > -      and Vp-p.
-> > > > -      Registers 10~19, bit 5:6 is [R termination control], these bits
-> > > > -      adjust 50ohm impedance of DP tx termination. 00:55 ohm,
-> > > > -      01:50 ohm(default), 10:45 ohm, 11:40 ohm.
-> > > > -
-> > > > -  analogix,lane1-swing:
-> > > > -    $ref: /schemas/types.yaml#/definitions/uint8-array
-> > > > -    minItems: 1
-> > > > -    maxItems: 20
-> > > > -    description:
-> > > > -      an array of swing register setting for DP tx lane1 PHY.
-> > > > -      DP TX lane1 swing register setting same with lane0
-> > > > -      swing, please refer lane0-swing property description.
-> > >
-> > > These apply to the DP side, so no need to revert this part.
-> >
-> > Ack.
-> >
-> > >
-> > > > -
-> > > > -  analogix,audio-enable:
-> > > > -    type: boolean
-> > > > -    description: let the driver enable audio HDMI codec function or not.
-> > > > -
-> > >
-> > > Not sure on this one...
-> >
-> > These additions are independent from my reading of this, would you
-> > like a v2 with only the bus-type related changes reverted?
 
-Yes.
 
-> >
-> > >
-> > > >    ports:
-> > > >      $ref: /schemas/graph.yaml#/properties/ports
-> > > >
-> > > >      properties:
-> > > >        port@0:
-> > > > -        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > > -        unevaluatedProperties: false
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > >          description:
-> > > > -          MIPI DSI/DPI input.
-> > > > -
-> > > > -        properties:
-> > > > -          endpoint:
-> > > > -            $ref: /schemas/media/video-interfaces.yaml#
-> > > > -            type: object
-> > > > -            additionalProperties: false
-> > > > -
-> > > > -            properties:
-> > > > -              remote-endpoint: true
-> > > > -
-> > > > -              bus-type:
-> > > > -                enum: [1, 5]
-> > >
-> > > I think the error here is really 1 should be 4 which corresponds to
-> > > D-PHY which is used by both CSI and DSI. Otherwise, I don't really see
-> > > the issue with bus-type being shared between CSI and DSI.
-> >
-> > I think that would be a correct solution. And ignoring everything
-> > else, the range of this property is something that should be fixed.
-> >
-> > But that would mean that CPI (camera parallel interface) and DPI
-> > (display parallel interface) would share the
-> > V4L2_FWNODE_BUS_TYPE_PARALLEL enum. I think that would be perfectly
-> > functional, but it is not what V4L2_FWNODE_BUS_TYPE_PARALLEL is
-> > documented to represent. As far as I can see it's only intended to
-> > represent CPI.
->
-> Are you aware of any standard documenting camera parallel interfaces
-> with separate sync signals ? I was looking for that the other day, and
-> couldn't find much. CPI seems to be an old MIPI standard, but I couldn't
-> find any public document, I'not not sure if it actually matches.
-
-I don't recall. Generally, I think the camera side is not quite the
-mess the display side is with all the formats.
-
-> Another common parallel interface in SoCs is AXI4 Stream, which we will
-> likely need a bus type for. We'll then have to decide on how to handle
-> on-SoC custom parallel buses.
-
-Except for those maybe.
-
-> > Instead of having V4L2_FWNODE_BUS_TYPE_PARALLEL represent two
-> > standards, I think they should be split. And possibly
-> > V4L2_FWNODE_BUS_TYPE_PARALLEL should be renamed for CPI, but that is a
-> > separate story. This would provide for the neatest and most legible
-> > solution. If this solution is implemented, this range would be
-> > incorrect. Additionally the snippet reverted in 2/2 of this series
-> > would no longer be valid.
-> >
-> > As it stands V4L2_FWNODE_BUS_TYPE_PARALLEL was used to represent DPI
-> > due to not being caught in the review process.
->
-> We may end up using those values, but I think it should be discussed and
-> not rushed in v5.17 if possible.
-
-Given it's not actually used (correctly), agreed.
-
-Rob
+On 3/7/22 09:34, Andre Przywara wrote:
+> The Allwinner F1C100 SoC didn't see much love since its initial merge in
+> 2018: the originally submitted .dts files were very basic, and didn't
+> cover such simple peripherals as MMC and SPI.
+> On top of that the watchdog compatible string was wrong, leading to a
+> non-functional watchdog and reset functionality.
+> 
+> This series aims to fix that, after the series MMC and SPI work, and
+> make dtbs_check comes back clean.
+> This was tested with mounting a filesystem on /dev/mmcblk0 on a
+> LicheePi Nano, also with accessing the SPI flash through /dev/mtdblock
+> and mtd_debug. Reboot and watchdog now also work.
+> 
+> Mainline U-Boot recently gained F1C100 support, and those DT updates are
+> needed there as well to get full MMC and SPI access.
+Thank you so much for doing this Giulio and I really appreciate this. 
+I'm sorry I haven't been available lately i have had other activities 
+lately.
+> The series is structured as follows:
+> - Patches 01/14 and 02/14 fix the watchdog, which allows to properly
+>    reboot the system.
+> - Patches 03-06 fix some shortcomings of the existing DT files, to make
+>    them DT binding compliant.
+> - Patches 07-09 are Jesse's recent MMC patches, with the comments from
+>    the last version addressed [1].
+> - Patches 10-12 add SPI support, to enable access to the SPI flash on
+>    the LicheePi Nano board.
+> - The final two patches (13/14 and 14/14) add the F1C100 platform to
+>    the multi_v5_defconfig, since it was not covered by any other
+>    defconfig before, and an ARMv5 compliant kernel is not commonly
+>    offered by distributions.
+> 
+> I saw George's series from two years ago to add USB support[2], that
+> looks good on the first glance, I will comment on that once I did some
+> testing on that.
+There are patches for USB host as well. There are working patches 
+floating around for the LCD controller, as well as patches for audio, 
+but audio only works in 5.2 even though none of the files the patches 
+touched have changed since. To test the LCD controller I made a DAC to 
+output to VGA unfortunately the blanking regions aren't set to 0v so its 
+not to VGA spec but if there is a black boarder it works fine.
+> Cheers,
+> Andre
+> 
+> Changelog for the MMC patches [1]:
+> - bindings doc: extend commit message
+> - .dtsi: extend commit message, re-order mmc0_pins node, add
+>    drive-strength
+> - .dts: extend commit message, add alias, regulator and disable-wp
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20220130220325.1983918-1-Mr.Bossman075@gmail.com/
+> [2] https://lore.kernel.org/linux-usb/20200331170219.267732-1-thirtythreeforty@gmail.com/
+> 
+> Andre Przywara (10):
+>    dt-bindings: watchdog: sunxi: fix F1C100s compatible
+>    ARM: dts: suniv: F1C100: fix watchdog compatible
+>    dt-bindings: arm: sunxi: document LicheePi Nano name
+>    ARM: dts: suniv: F1C100: fix CPU node
+>    ARM: dts: suniv: F1C100: fix timer node
+>    dt-bindings: spi: sunxi: document F1C100 controllers
+>    ARM: dts: suniv: F1C100: add SPI support
+>    ARM: dts: suniv: licheepi-nano: add SPI flash
+>    ARM: configs: sync multi_v5_defconfig from savedefconfig
+>    ARM: configs: multi_v5: Enable Allwinner F1C100
+> 
+> Jesse Taube (4):
+>    ARM: dts: suniv: F1C100: add clock and reset macros
+>    dt-bindings: mmc: sunxi: add Allwinner F1c100s compatible
+>    ARM: dts: suniv: F1C100: add MMC controllers
+>    ARM: dts: suniv: licheepi-nano: add microSD card
+> 
+>   .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+>   .../bindings/mmc/allwinner,sun4i-a10-mmc.yaml |   3 +
+>   .../bindings/spi/allwinner,sun6i-a31-spi.yaml |   1 +
+>   .../watchdog/allwinner,sun4i-a10-wdt.yaml     |   2 +-
+>   .../boot/dts/suniv-f1c100s-licheepi-nano.dts  |  31 ++++++
+>   arch/arm/boot/dts/suniv-f1c100s.dtsi          | 102 ++++++++++++++++--
+>   arch/arm/configs/multi_v5_defconfig           |  25 ++---
+>   7 files changed, 140 insertions(+), 29 deletions(-)
+> 
