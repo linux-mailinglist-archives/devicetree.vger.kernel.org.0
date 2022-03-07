@@ -2,99 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD9754CF444
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:08:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 41ACC4CF44C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:10:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231895AbiCGJJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 04:09:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45674 "EHLO
+        id S235737AbiCGJLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 04:11:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234245AbiCGJJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:09:28 -0500
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BB8760CFB
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 01:08:32 -0800 (PST)
-Received: by mail-wm1-x32a.google.com with SMTP id k29-20020a05600c1c9d00b003817fdc0f00so8844991wms.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 01:08:32 -0800 (PST)
+        with ESMTP id S233248AbiCGJLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:11:05 -0500
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2126.outbound.protection.outlook.com [40.107.223.126])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90A7B5640B;
+        Mon,  7 Mar 2022 01:10:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bJQYr2Jhgrw8RuzWQAx60ITtCpZrShJ9MT3lJHFDf/Ya/BCP88bYCTxDXEGfT9L+xUh1x3jxoshDOYVe35+J60jHWRBMkR183b9P5gz7lqqmShmaxZN/Z/G0ycZWf/kmV1Se3n5R5vg3YwoWvtrM5KZyNCEr0aU0zeiYHscpVDnAqvni/o0Wi56TU3ysPFDKCUNdlK8DbjbHC9jXb8VEB52M+rsynS9iScPukLhioan/7BMU1G85E9XuM4z708sYsaYQ679eUwc0AmF6JC5wMwHAwwgXTwzzvKUFalB0ogUy+pbbSdsZapUo0RWIPVGmjK+8+dhLV6HlPaU5Yz+kbA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3AE8IR/Q35SjIum4hi0AsFqvQnEf1l/8fXca+rNHjMk=;
+ b=az0uoakRNgIoEQUtV88n32/egzu7L9WZy/BLFufMhww24HFSBYE2Q6APBVPy3miwCdz4wsKtwJz5CxtjSIyte4+DDXuNf2pkG/sNLtY5wG0J94ANla/m0uQsqWt8EhZAPi3XxDBDWuGE8GRUrkF0o38TzjdEfWitb/zK3knzpU/DRl7GklMOnu7/X6D4HyOXjmKp5x4G5KWI0UUHY5h2HKK/LlY4ShQd/hGSNh1sVeP9nkZrq5TwEXYQw+VNYZF7ipfE01yEA+lOawT5a6KTEXaZEt6di64xArGy1RJ5fZDcZxdJzi8J3SObA3wBjY/xLgq+QFBXGZpnVJLJEfTLSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
+ header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=w8wUhS2rPl/dEm5cJIFUkKsOmjr6xbEyev6OP04Am6I=;
-        b=pr+x8KC3J3p5T1hWB424w/bj9ul2htznKIwAJ6G8ssEJF+pXPg5DC92tJrdKV9x/hf
-         WJJ1KVhNH5KDmj6Ftv4fEA133uyqTHdYV+EQtt6FvBBR+2vwR5K3k0uO+boHMerEJZiy
-         lI5/YhIsHRCB/BRLlYpWa3mBJWNatJiGGyXkg77qtGQs1qCCupeOdbhHMZmj9yJrY1R2
-         C5XXjn7XXW4lqk1aEqAs4Ox9rNLE91HbFULf+Xr3/Oat0CO8cxWNERCgnU/3yXNqsezJ
-         c+2LxvSmIj86aef2WSn/MwIw33KeB26uYekVzsSJ6B8l3vcovIwY4n/RRy7N/sJVAe1J
-         J6QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=w8wUhS2rPl/dEm5cJIFUkKsOmjr6xbEyev6OP04Am6I=;
-        b=DqP6xl/hIycrMs90zrsigPugl8L7cnxI1a5Nqb7CFoRh9S1lGWCPNV9s2uMiSNFN2l
-         uswpISq133WbF+5Q1VTzsU9jgW6/LyGRPqZ0cRs+VF4Q+5El5KeNYsQGAyqQHMTmU3ch
-         nTBviTt9PZsyqXmxYQOnokva7Wt8tMaizVEI6RbBnb7NI+Mdd8/Mazq61Ozc9B8A5aoT
-         3l4YAVCbHfSllDSyNeqNzUjuj/l/WINDrdFxb8HEvsQDkDGcwaoxhfIb50s41HchC/J7
-         89KovO5YwWIQCtL3tGkQt2dRXCFjtHs2EGJIgqnCYGHmxMDEiZ2pbMLwdF1QvmysHu46
-         LM3w==
-X-Gm-Message-State: AOAM531I2X2fN+z0VeOSZnnuAAwDk7gi6qW0V+fVQ4XynHOf4WHp2+uK
-        1nwb4RtL99zLsR7lzw9C1zFBNA==
-X-Google-Smtp-Source: ABdhPJwEF37Kxzq9sOSBZVz3rgInaciFkA5+ZVCFi+66DdDZUL6FymU9dN2U3b7yUwCLzXsd5wwRJQ==
-X-Received: by 2002:a05:600c:14c3:b0:389:a358:371c with SMTP id i3-20020a05600c14c300b00389a358371cmr4226142wmh.36.1646644110750;
-        Mon, 07 Mar 2022 01:08:30 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id u23-20020a7bcb17000000b0037bdfa1665asm29388545wmj.18.2022.03.07.01.08.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 01:08:30 -0800 (PST)
-Date:   Mon, 7 Mar 2022 09:08:28 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 2/5] dt-bindings: extcon: maxim,max77843: add MAX77843
- bindings
-Message-ID: <YiXLjDCgYZcD3w9Q@google.com>
-References: <20220111174805.223732-1-krzysztof.kozlowski@canonical.com>
- <20220111174805.223732-3-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+ d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3AE8IR/Q35SjIum4hi0AsFqvQnEf1l/8fXca+rNHjMk=;
+ b=dpRC0L0/Wmk+TZFT/QLfRAxoW1XESWH+ehDWbbOzTVy/vhkUmk4kruFZveunGSDkJNG/whbKy8R5GxqI3bnZF3BLjHSl7QAK2KIjTjexM3oOExglg7k/x3g5vSPLGBLIjqgPHu016NDsfuwiOzKIu5FYFG39noc8fWQRaO5aWis=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=analogixsemi.com;
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
+ by DM5PR04MB0173.namprd04.prod.outlook.com (2603:10b6:3:75::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.15; Mon, 7 Mar
+ 2022 09:10:09 +0000
+Received: from BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::a865:6d10:c4a9:1142]) by BY5PR04MB6739.namprd04.prod.outlook.com
+ ([fe80::a865:6d10:c4a9:1142%9]) with mapi id 15.20.5038.027; Mon, 7 Mar 2022
+ 09:10:09 +0000
+From:   Xin Ji <xji@analogixsemi.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>, Xin Ji <xji@analogixsemi.com>
+Cc:     bliang@analogixsemi.com, qwen@analogixsemi.com,
+        jli@analogixsemi.com, Rob Herring <robh@kernel.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v7 2/3] dt-bindings: usb: Add analogix anx7411 PD binding
+Date:   Mon,  7 Mar 2022 17:09:27 +0800
+Message-Id: <20220307090929.701137-2-xji@analogixsemi.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20220307090929.701137-1-xji@analogixsemi.com>
+References: <20220307090929.701137-1-xji@analogixsemi.com>
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220111174805.223732-3-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: HK2P15301CA0016.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:202:1::26) To BY5PR04MB6739.namprd04.prod.outlook.com
+ (2603:10b6:a03:229::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 68ac86de-5fbd-4431-2308-08da001a476b
+X-MS-TrafficTypeDiagnostic: DM5PR04MB0173:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR04MB017322E28335FFCF4C81529EC7089@DM5PR04MB0173.namprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: XRTvKyLN7jhpxJeazzzMJBSxKiShz8Zs1nP9/4TNTU22dKOjNJ0bbWn+EGvV224MVMXNPwri9qUz2QymnyarRp0fzefpW9y8Dl6eSL0tkflNZZGAbbQIdgNgZt4P7ZaTR8IH1PEm5r6kCGhDx/5zt+CLu9Gm7ee8WAgllJf5B74cETzJfXu2S+07WD1Ng81Gn++124ZAvuWmJrE5ikphXcR2rUtRE37Gla8CV+4fORero7oGkbAqhm3u93xbyNGxnW9eZvKRgUaj/xkjsBkqzC8/Ahky5MVPVlvJkXHLrwEqpx2xeEbGSRxZ52M570zfikR4yMawJZf0DtAxgrJCHuYKLGMmJNHciggfkcrNWWuzVQUsNO9YtelwQloxKeA6oosQursw0DgSLfvb+CAD170wRO/2YpdmR4mRqpYxOo5jys9D8z2PiFq82qbsCaXOArx/5X0fAZ/mHDM6LwTa3ZxqAhItrw4FcpqIcFVyf7DQ8OA5ShGzQpbEQeF44CQl9Ik+ZabSR7f2eZMhW0KKge7udlEF8HNjKCYxrGR17vE5/x4VVKmbxaWSxFuKIJ9XDgIcMDbPjuFvYj8AfqF3g0sZBPnz/2utd9NoOy5SG07BCHEPyI3f5m2FRDewrqsEQ+WXcPZeuKJVxbLA4jJHEMsOwW8OpfLoyBBzJGfzlU0PBrTVKzArZoLlC1z/f2gCDF8svouLJ9Bep+io+qfeClOt4imF/Z3oaTp1BFumP6D6/gwhuP5d+8l5cflBV8sgYhJIqcaeee7z4AOuK449hcRgm0glzzX4ChIrPrBJSy0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(186003)(110136005)(26005)(6506007)(6512007)(55236004)(52116002)(8936002)(66946007)(6486002)(2616005)(38350700002)(7049001)(38100700002)(6666004)(86362001)(1076003)(36756003)(498600001)(4326008)(8676002)(5660300002)(66476007)(66556008)(2906002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fyP3LdATo2rp+nkw93P98p6Qtp5EIijG2Vq+cmpsoQdaPP9klhHXy9D/FLUK?=
+ =?us-ascii?Q?cYX3utIwECZK6gkgyrqZR5OuAEuHjicTKpYjhtzryILprHr4Xt4HMWXrKqVs?=
+ =?us-ascii?Q?8d1Lr5B2ieQqajVLk2CI1QThxrTRTnocOfLfHAci3lwlHcDYJNposE5tly8L?=
+ =?us-ascii?Q?StUrXAGNHcsRKwTc4I/5BNAX2BgqzS13Ccm1m6qVZL0rUdnU5uCowY8xLxFL?=
+ =?us-ascii?Q?m6vDUDYNm9omdXOmxP/PgluG/8kuyagSWGVaDa0ixbec4uYTC+Ze467FWZxv?=
+ =?us-ascii?Q?Ltj5XmqsJpSbRtg7LtKvkNs04zs2ur0392rb3XA+rhjNWOs9WKRHGKtRBDZL?=
+ =?us-ascii?Q?g4ytDq30mR9JQ2aNc6lg0/XSIkYcw5LnONLrsxaTddxC2MJB5QqYbRvhoPgi?=
+ =?us-ascii?Q?hCfR8epdFMDT2saD71GcqUT4AvhHcZS4Nz1Dpw3g6uncuqHuaAfFESzbro5K?=
+ =?us-ascii?Q?/q02aNKNO/qykAk88FWs2fL/RXpS8Il1yMm6mFsWJWWlWWdk6tx9i50+kI1v?=
+ =?us-ascii?Q?fqfmnRI0chxQZU5dRoZWHCfqcnpedOFt2Qc8et8q8tGFQNP04U/D3AYTUNV+?=
+ =?us-ascii?Q?s/lZ2ux2IFMBI2nSxc3E1fzuvBlUXR7suAIvwEG0IK5+BBl9d61q5YTop6u6?=
+ =?us-ascii?Q?09LDdm2e6/ZLTLIZ4XlTTN+q5XPOmOEmKsU7Is78oULOxpDFGWy5MspuFIxl?=
+ =?us-ascii?Q?rSXdmovn/IqlBxrt9gGkD/zJrynEc0ZX73c1h75BuqQojnNNM4B/zkBweMlJ?=
+ =?us-ascii?Q?qS6ahKU4JG7n0ZdvyQsoTzS5zPEOnYuM2k0O1C3LyURuyG70sCoQ9e4+PwxB?=
+ =?us-ascii?Q?A5hueBZcrF1TaEDXBOOv1+sCLQZq5A7usT+FxakPHvoSIbpCR3i3j14ZQj4z?=
+ =?us-ascii?Q?vYr3jS+ce9A3vY4tTAgS/82kPlOiOnjKa6zjNR4J5K6fgHgGFbRjmqssB08T?=
+ =?us-ascii?Q?NIioVhmI8NUqHZcCFBh/VT2Zp6NY8jUil6w3kOAS5TylaklIHsJFtO/udA8Q?=
+ =?us-ascii?Q?HAzWsE47QOEv31+Q7ZflgWbZNDnewu+JQMb44B2Wx2fzrCOsBr7D1HaZPHuK?=
+ =?us-ascii?Q?uHGigR3gCL4V9G87dv7XzWXATRjkygwp6Qyqhi4ZWiH41Z55GIExQoIG+Dmm?=
+ =?us-ascii?Q?tWEIKRF4uWltmHzHv/asACen6TwCocaYmApki72SY8/g6qPrE7sbOiYB5nMB?=
+ =?us-ascii?Q?9FsekvwFqALr6x+tXhAFiSgYXohPnj02VKqY/HDtHLYwlATG++QLFrh+a2lQ?=
+ =?us-ascii?Q?ghZDsrRncJVEHXgut5FOGQNMJQpkZ6FHJ0CYQo52E0UFdpvczMzPvRF15wgt?=
+ =?us-ascii?Q?hwiSOHX47V7spdHgA6NLT4EN/3NOLLpMk7N/E7E4qcJQXZSOP4WkwRw1MpTm?=
+ =?us-ascii?Q?YDUIj8kwISl3wbH3CVYWcFcq7oGxGtXPI3ctuY3HK4YRxFhxmSEkinl8VUrh?=
+ =?us-ascii?Q?/FcB8ihx1/jH2d2qpgFWBey7qPUwvTS1ASzoxE4G2bfwujyE5L1S6vrQheie?=
+ =?us-ascii?Q?SFXNLyoh/RVSL5VIoXe6Hm4VAOTZrjQIcQiKC32wXN41nD2yIePSTP+l25ZJ?=
+ =?us-ascii?Q?aqYiSjoZWnahC9G/f2Zox8Zz0cUQ2iIzLlSLyaymXvkjoxOv23OL9VP1nay+?=
+ =?us-ascii?Q?11EWgqiiYwdo5gr3XSnwtsE=3D?=
+X-OriginatorOrg: analogixsemi.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68ac86de-5fbd-4431-2308-08da001a476b
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2022 09:10:09.5730
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: kcq0EHFVytGAl1UEay6VIJUUB7lGS8/9fR1CGkS6yda7BqNWn5NbD9jWDMc0AlV0fv9RFMfj2oCGefmQCAQLcw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0173
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jan 2022, Krzysztof Kozlowski wrote:
+Add analogix PD chip anx7411 device binding
 
-> Document the bindings for MAX77843 MUIC/extcon driver, based on
-> Exynos5433 TM2 devicetree.  These are neither accurate nor finished
-> bindings but at least allow parsing existing DTS files.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/extcon/maxim,max77843.yaml       | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Xin Ji <xji@analogixsemi.com>
+---
+ .../bindings/usb/analogix,anx7411.yaml        | 76 +++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
 
-Applied, thanks.
-
+diff --git a/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+new file mode 100644
+index 000000000000..c5c6d5a9dc17
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/analogix,anx7411.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/usb/analogix,anx7411.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Analogix ANX7411 Type-C controller bindings
++
++maintainers:
++  - Xin Ji <xji@analogixsemi.com>
++
++properties:
++  compatible:
++    enum:
++      - analogix,anx7411
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  connector:
++    type: object
++
++    allOf:
++      - $ref: ../connector/usb-connector.yaml
++
++    properties:
++      compatible:
++        const: usb-c-connector
++
++      power-role: true
++
++      data-role: true
++
++      try-power-role: true
++
++    required:
++      - compatible
++
++required:
++  - compatible
++  - reg
++  - connector
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        typec: anx7411@2C {
++            compatible = "analogix,anx7411";
++            reg = <0x2C>;
++            interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-parent = <&gpio0>;
++
++            typec_con: connector {
++                compatible = "usb-c-connector";
++                power-role = "dual";
++                data-role = "dual";
++                try-power-role = "source";
++
++                port {
++                    typec_con_ep: endpoint {
++                        remote-endpoint = <&usbotg_hs_ep>;
++                    };
++                };
++            };
++        };
++    };
++...
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.25.1
+
