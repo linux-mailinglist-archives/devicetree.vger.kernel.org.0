@@ -2,63 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9240C4D0689
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:29:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B38174D0690
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 19:30:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239490AbiCGSa2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 13:30:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36562 "EHLO
+        id S244799AbiCGSbu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 13:31:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239445AbiCGSa1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:30:27 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ACECB29CAE;
-        Mon,  7 Mar 2022 10:29:31 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C01F153B;
-        Mon,  7 Mar 2022 10:29:31 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5F0793FA45;
-        Mon,  7 Mar 2022 10:29:30 -0800 (PST)
-Date:   Mon, 7 Mar 2022 18:29:28 +0000
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+        with ESMTP id S244798AbiCGSbt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 13:31:49 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 321895F4C4
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 10:30:55 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 063803F222
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:30:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646677852;
+        bh=7XKTjYGWAy5ocS9c+MyCrdo52ak0FW1Oc/1++V3LAOg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=Ac7JRjYuMsI5dSAEOzsL9ORH69M9y/qDxss4vk7FXkHPzpXiHC3SI56t0QebdnEDQ
+         N/WZddoMgG6jAks6KBTzwCZIP15fX6hw59ePNlJ2+pBAnGsrSBp9AfUnegRxVAzhXR
+         /QK4i7mvnPN3MHVe7N2LSUv10WZ+BsGAW17U1LknTD9ZgGBXilv0SGQUjOEHsoUXJ+
+         pKITXpzFS7JAcz3BzaFWreoM71f+Crm1WzYxQrSm2hqTql1ZYsXv6BnI2JeYEn+wb0
+         gJpIbXT/ZxCKOBS3Lz5yy0PG15KcuMmp1ZciQznlf/s7/+SnBELNbVSg7UVnYGzWD+
+         v+gWo6H8VTOeA==
+Received: by mail-ed1-f70.google.com with SMTP id i17-20020aa7c711000000b00415ecaefd07so6766233edq.21
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 10:30:52 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7XKTjYGWAy5ocS9c+MyCrdo52ak0FW1Oc/1++V3LAOg=;
+        b=1xlAtFV2k30fsPWLqtq1+W1NnzKf4eQcTRIJE9e8ktpbZyewiiD3awJacEdpKrfHky
+         f8GuUJkC2ydA4IK/njBsFuKAS1in0Ih1PFfkfUwdBfHvrOHZSg9+euvxs4Ss1jX0X7l4
+         fqkJcB9pj8dWehreR7/dDjV9NeZTNn9gVAzHSIrXykD+gYejg5NIOrAaP3UxX2pXxM2C
+         McGrTGOcz2w8ma8nphHRej/3rSOdWqJ0454JZ7TNbQufGnmzKRFbJeTOcLRva3fRVJf8
+         VZTipDJul2A0RSsfS5W/SVPJyRJueCWiFoJO98ZliC4OZM8zdJj2bz2ej2QDtCFZvEHZ
+         BSdw==
+X-Gm-Message-State: AOAM5314Rh22HwgJH8tGyKf45QBkTGY90dJu8iwGM9maUJwQ/VyFZZJr
+        uoL+DMzDYG5EzjBQh1J2f2faQ/QOFBV92DirW3E5kMUlSiwZj3itPzHNGcgZWq2QN1UtvL2/ndQ
+        +cSyFKeKLihVtgcT7m1WcEGbi7BgX0A+t+tzXDro=
+X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr9906306ejd.253.1646677851702;
+        Mon, 07 Mar 2022 10:30:51 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzhU1uDNMUFnOAb3RXndJwPwDDKZbEEivbUeVrrthqF+GoSNwRiY2DLiZ0L4y4Hk76EzwyTLg==
+X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr9906294ejd.253.1646677851551;
+        Mon, 07 Mar 2022 10:30:51 -0800 (PST)
+Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id e5-20020a170906374500b006d5825520a7sm5037411ejc.71.2022.03.07.10.30.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 10:30:49 -0800 (PST)
+Message-ID: <22274a25-460a-75c1-91c1-e1bb321a7aeb@canonical.com>
+Date:   Mon, 7 Mar 2022 19:30:48 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] arm64: dts: juno: align pl330 node name with dtschema
+Content-Language: en-US
+To:     Sudeep Holla <sudeep.holla@arm.com>
 Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
         Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: juno: align pl330 node name with dtschema
-Message-ID: <YiZPCHtpmzNPEKt3@bogus>
 References: <20220129175621.299254-1-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220129175621.299254-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+ <YiZPCHtpmzNPEKt3@bogus>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YiZPCHtpmzNPEKt3@bogus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 29, 2022 at 06:56:21PM +0100, Krzysztof Kozlowski wrote:
-> Fixes dtbs_check warning:
+On 07/03/2022 19:29, Sudeep Holla wrote:
+> On Sat, Jan 29, 2022 at 06:56:21PM +0100, Krzysztof Kozlowski wrote:
+>> Fixes dtbs_check warning:
+>>
+>>   dma@7ff00000: $nodename:0: 'dma@7ff00000' does not match '^dma-controller(@.*)?$'
+>>
 > 
->   dma@7ff00000: $nodename:0: 'dma@7ff00000' does not match '^dma-controller(@.*)?$'
->
+> Sorry for the delay, obviously I missed this. Looks fine for me.
+> I see you have already sent pull request which is good as I don't
+> have any other juno DTS patch at the moment.
+> 
+> Just in case it helps SoC team to pull you PR,
+> 
+> Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+> 
 
-Sorry for the delay, obviously I missed this. Looks fine for me.
-I see you have already sent pull request which is good as I don't
-have any other juno DTS patch at the moment.
+Thanks!
 
-Just in case it helps SoC team to pull you PR,
 
-Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-
---
-Regards,
-Sudeep
+Best regards,
+Krzysztof
