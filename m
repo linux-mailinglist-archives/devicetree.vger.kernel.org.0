@@ -2,60 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE4524CFF33
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:54:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6783A4CFF62
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:00:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236276AbiCGMz0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 07:55:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55386 "EHLO
+        id S241289AbiCGNBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 08:01:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44120 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234390AbiCGMzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:55:25 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F81C5C36B
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 04:54:31 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nRCsb-0005Xn-Fq; Mon, 07 Mar 2022 13:54:25 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nRCsX-0004Aq-Vo; Mon, 07 Mar 2022 13:54:21 +0100
-Date:   Mon, 7 Mar 2022 13:54:21 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v7 22/24] drm: rockchip: Add VOP2 driver
-Message-ID: <20220307125421.GD405@pengutronix.de>
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-23-s.hauer@pengutronix.de>
- <bb077f34-333e-a07a-1fcb-702a6807f941@rock-chips.com>
+        with ESMTP id S239938AbiCGNBv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:01:51 -0500
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C18BC8A32B
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:00:56 -0800 (PST)
+Received: by mail-wr1-x433.google.com with SMTP id e24so10162346wrc.10
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 05:00:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=pSHEpDDbP3cBBq52zYK0sNbU+pR3WMacBq6FSVuCsuM=;
+        b=LCuu2kJ2WK3apjNwfJaaGKw3LfWQxq3nVjKl4XDn7Zd/ZudKYJlRYR6C0RsPt/mC4i
+         Ci3QvmMl8EGMpHDTBjYa8ojuUgfUd+kyP2WqDIeIgLTDgSV6td5MCe3Z5/jsf9iruK+T
+         VQ/7Cdzpn0qGtDTC8PPsCqnFoXxH/HwVguTAlkQDZZfXg4+btoyaqlDy6OCsaQG7M8/g
+         SLfhrDqZfdBr73m+NnDep1iIv5uPI4mJJ9hP5SkNhb3O0SaR5wf1wsc2L8VZaoKpL35D
+         nzTo5ycCw9N9Mwg3vZ3ib3MEavB5YTwHx6D+l/0IVBj9dI7ZdkeKQF2WmJmtlJtcFLNH
+         ckfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pSHEpDDbP3cBBq52zYK0sNbU+pR3WMacBq6FSVuCsuM=;
+        b=eknsfYgxsPtrCSobYkioZ7am2eeNHR5JlSrtRpaLCFbMrtajcIuTeQysj6XH848FsR
+         HxvvEzWXz7pIVVgYq/rfaSwJLFRQ4Aj+Lb3s9//ravqOUONX+Pz5ErAdzmVHxyGyLZTD
+         tri7a2wGCvRev0S+fPJZ7zjtQEsJ2aAR9t7jyLSgVqTvoxEXNEuljHKk8RAsO+R7qjg+
+         bneqTmBjgVbhdeKo4DhV28Rl9vW8FmJIXwhmCtfr006d1Udt4alKZ27a7eSmyj1G4HtJ
+         dqudGY4vH8NrDeFmj0ETkSgc1PrIplT8XR74ZJhDFa8BKadNMHEAUPe8wkfai+pPE3Z9
+         Irbw==
+X-Gm-Message-State: AOAM533FVyNoUEUSmT8Xo6zEK1IVce2Q3IE9vTH1TPO2jJNPKuAWb7i9
+        52a/wPWl5A6T/uSOV7kLw22QUQ==
+X-Google-Smtp-Source: ABdhPJzQ2zK+BHalBN2ZGLsmib6HHXicnCDWmEggfQLtbjc0cgr3mMIlGK04NE7s/VBEZJTjHJu/uQ==
+X-Received: by 2002:a05:6000:1ac8:b0:1f1:f808:fb5b with SMTP id i8-20020a0560001ac800b001f1f808fb5bmr3916828wry.560.1646658055340;
+        Mon, 07 Mar 2022 05:00:55 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id q125-20020a1c4383000000b003899720641dsm6821115wma.30.2022.03.07.05.00.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 05:00:54 -0800 (PST)
+Date:   Mon, 7 Mar 2022 13:00:53 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/2] regulator/mfd: dt-bindings: maxim,max77802:
+ convert to dtschema
+Message-ID: <YiYCBdT8bpRrW/gx@google.com>
+References: <20220215075344.31421-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <bb077f34-333e-a07a-1fcb-702a6807f941@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 13:50:40 up 86 days, 21:36, 86 users,  load average: 0.14, 0.11,
- 0.13
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220215075344.31421-1-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,48 +75,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Enjoy!
 
-On Mon, Mar 07, 2022 at 08:18:08PM +0800, Andy Yan wrote:
-> Hi Sascha:
-> 
-> On 2/25/22 15:51, Sascha Hauer wrote:
-> > From: Andy Yan <andy.yan@rock-chips.com>
-> > 
-> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
-> > It replaces the VOP unit found in the older Rockchip SoCs.
-> > 
-> > This driver has been derived from the downstream Rockchip Kernel and
-> > heavily modified:
-> > 
-> > - All nonstandard DRM properties have been removed
-> > - dropped struct vop2_plane_state and pass around less data between
-> >    functions
-> > - Dropped all DRM_FORMAT_* not known on upstream
-> > - rework register access to get rid of excessively used macros
-> > - Drop all waiting for framesyncs
-> > 
-> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
-> > board. Overlay support is tested with the modetest utility. AFBC support
-> > on the cluster windows is tested with weston-simple-dmabuf-egl on
-> > weston using the (yet to be upstreamed) panfrost driver support.
-> 
-> 
-> When run a weston 10.0.0:
+The following changes since commit e783362eb54cd99b2cac8b3a9aeac942e6f6ac07:
 
-I used weston 9.0.90 during testing. I'll try to reproduce the issue
-with weston 10.
+  Linux 5.17-rc1 (2022-01-23 10:12:53 +0200)
 
-Could you maybe have a look at the HCLK issue we are discussing? This
-thread could use some input from someone who has contact to the hardware
-guys.
+are available in the Git repository at:
 
-Regards,
-  Sascha
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-spi-dt-v5.18
 
+for you to fetch changes up to 172e611b54e813c49a35b6b74bccaa99f27bf566:
+
+  dt-bindings: mfd: maxim,max77802: Convert to dtschema (2022-03-07 12:55:59 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD, SPI and DT  due for the v5.18 merge window
+
+----------------------------------------------------------------
+Krzysztof Kozlowski (13):
+      dt-bindings: extcon: maxim,max77843: Add MAX77843 bindings
+      regulator: dt-bindings: maxim,max77843: Add MAX77843 bindings
+      dt-bindings: mfd: maxim,max77843: Add MAX77843 bindings
+      MAINTAINERS: mfd: Cover MAX77843 by Maxim PMIC/MUIC for Exynos boards entry
+      spi: dt-bindings: samsung: Convert to dtschema
+      mfd: dt-bindings: google,cros-ec: Reference Samsung SPI bindings
+      mfd: dt-bindings: google,cros-ec: Fix indentation in example
+      spi: s3c64xx: Allow controller-data to be optional
+      dt-bindings: power: supply: maxim,max14577: Convert to dtschema
+      regulator: dt-bindings: maxim,max14577: Convert to dtschema
+      dt-bindings: mfd: maxim,max14577: Convert to dtschema
+      regulator: dt-bindings: maxim,max77802: Convert to dtschema
+      dt-bindings: mfd: maxim,max77802: Convert to dtschema
+
+ .../devicetree/bindings/extcon/maxim,max77843.yaml |  40 +++++
+ .../devicetree/bindings/mfd/google,cros-ec.yaml    |  31 ++--
+ Documentation/devicetree/bindings/mfd/max14577.txt | 147 ----------------
+ Documentation/devicetree/bindings/mfd/max77802.txt |  25 ---
+ .../devicetree/bindings/mfd/maxim,max14577.yaml    | 195 +++++++++++++++++++++
+ .../devicetree/bindings/mfd/maxim,max77802.yaml    | 194 ++++++++++++++++++++
+ .../devicetree/bindings/mfd/maxim,max77843.yaml    | 144 +++++++++++++++
+ .../bindings/power/supply/maxim,max14577.yaml      |  84 +++++++++
+ .../devicetree/bindings/regulator/max77802.txt     | 111 ------------
+ .../bindings/regulator/maxim,max14577.yaml         |  78 +++++++++
+ .../bindings/regulator/maxim,max77802.yaml         |  85 +++++++++
+ .../bindings/regulator/maxim,max77843.yaml         |  65 +++++++
+ .../bindings/soc/samsung/exynos-usi.yaml           |   2 +-
+ .../bindings/spi/samsung,spi-peripheral-props.yaml |  33 ++++
+ .../devicetree/bindings/spi/samsung,spi.yaml       | 187 ++++++++++++++++++++
+ .../bindings/spi/spi-peripheral-props.yaml         |   1 +
+ .../devicetree/bindings/spi/spi-samsung.txt        | 122 -------------
+ MAINTAINERS                                        |   9 +-
+ drivers/spi/spi-s3c64xx.c                          |  14 +-
+ 19 files changed, 1136 insertions(+), 431 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max14577.txt
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max14577.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77802.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77843.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-samsung.txt
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
