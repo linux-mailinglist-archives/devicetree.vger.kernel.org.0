@@ -2,72 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 650B24D0793
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:22:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5789D4D077D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:19:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245098AbiCGTXP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 14:23:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55600 "EHLO
+        id S237059AbiCGTUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 14:20:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245092AbiCGTXO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:23:14 -0500
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 883646579C;
-        Mon,  7 Mar 2022 11:22:17 -0800 (PST)
-Received: by mail-lj1-x22b.google.com with SMTP id z26so13784678lji.8;
-        Mon, 07 Mar 2022 11:22:17 -0800 (PST)
+        with ESMTP id S237648AbiCGTUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:20:22 -0500
+Received: from mail-pf1-x42c.google.com (mail-pf1-x42c.google.com [IPv6:2607:f8b0:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DADD201AC;
+        Mon,  7 Mar 2022 11:19:28 -0800 (PST)
+Received: by mail-pf1-x42c.google.com with SMTP id z15so15097012pfe.7;
+        Mon, 07 Mar 2022 11:19:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=WCLp1U16xs02tluzmhE3Ivorry4CiooG9a0A5sM8k0Q=;
-        b=dshBjD6Jy5UVNJiUV8rotuD0nugDrt6o8bam8sD0BfrOZ3KbE2n1Eb1dim1LEqmuZY
-         RkjA0Xi1YuArAhka/6aqLJIP1UKkqANHF/ZFzz821Wd3B9xrd7dAobW2TthgrV/+bD3W
-         POhUc/SgEBhBGaTJdEYbhsdw6NDHSrCoXF4r4q86JhTKvQ6NNSEKQdbHIac0YphtT3qI
-         a4uH73iumCv1OA3hd/iVSOCYvfMjLPDApN4dAMAdwH0S4BqTfZ92L7LNT3W74jmkcz/V
-         g2c1B6vpuCG39FgEpttbH6LjgEAlgritfdTIH+k/bk7e9PBmyXvP+gX9ao5JCHcbGcjf
-         Qg8A==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=lOZW5pkqy2TV2ethaCBn0EQ6/ovM+WxW5CYEaBMXdvA=;
+        b=dPzrZqcx4umQIHSndsddGoYcCqRqZDmD+BMg0InGyj8am3DJc+hxvfiI+qEJOKmZ+J
+         lhJR2Ed5tvKPjh9Ko2nmwUF+cosJ/QP3OsKdmXc96gVyMq9j0D7gnl68oNobz7gFQV8B
+         op6Z6BkFyV1qXgDFvbVR8bscHumChTHf1DkYEUYAKAKDSICZ5XK4StZn98VQPPOJX9UA
+         vrT4ABhc7mf39oBisadxmb0/Il+EqPdQAelGa0qKrRbHZLQD/sOH4O7d2+mzzCAOaO32
+         z3VbhTWMmZfUNXKHiW/YmHlQTqi21AZd/dHmKkedd0AviqL9eKeq/ZcLWXvCNnyh3yMa
+         c2kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=WCLp1U16xs02tluzmhE3Ivorry4CiooG9a0A5sM8k0Q=;
-        b=WPsjp1MZ1V1ceP9MgCsGz7z/n9z8hQT5firlB8LTZp1jVoFJFZ33OLYlAclNt8jxxG
-         PFErIYh3NVC1O4fkPug8cscJr84R9k6+MlLP3HlaEq4AHsbC1yNCE4A63GWidAAJAR51
-         4Bu4xnQcfI0+Sh10LyS0iyNpSqQM9vNobRbYy1JHGUd7KeIYeugGBfdyYRanjxthKWNi
-         DmwVZmGMyMdgikEtx6OPPQinMxzjmYJyxsSWoyoIi2pZwoNoaJcRxxhvCE4dcvdMzkej
-         TNMyfpPJ2+82lZCG0VcCYNEA9xXtRLzb+/zdJlKRmdT1NwE9s5h7kwvvwBiwI3gU+DZA
-         yVLg==
-X-Gm-Message-State: AOAM5306RAOPutwwLVi5nBRdcfsZCtyBY3ywHmzUG5PYvfgxJI+HZXgG
-        0+EP3vn4YQJxKLiOBLrU9SlqD/x59idPVg==
-X-Google-Smtp-Source: ABdhPJyBhgst0hVqdSgXerPO6zY4iMbKfUr5zwvj7uJlpEpF0w/iNswoXCId2i7Z2lYDLAMv4mlxfA==
-X-Received: by 2002:a2e:8708:0:b0:246:12b7:e67d with SMTP id m8-20020a2e8708000000b0024612b7e67dmr8377010lji.24.1646680935032;
-        Mon, 07 Mar 2022 11:22:15 -0800 (PST)
-Received: from localhost.localdomain (adsa4.neoplus.adsl.tpnet.pl. [79.185.186.4])
-        by smtp.gmail.com with ESMTPSA id v12-20020a056512096c00b004437e92a5e8sm2995671lft.105.2022.03.07.11.22.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 11:22:14 -0800 (PST)
-From:   Adam Skladowski <a39.skl@gmail.com>
-To:     phone-devel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        Adam Skladowski <a39.skl@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] firmware: qcom_scm: Add compatible for MSM8976 SoC
-Date:   Mon,  7 Mar 2022 20:17:25 +0100
-Message-Id: <20220307191726.10869-5-a39.skl@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307191726.10869-1-a39.skl@gmail.com>
-References: <20220307191726.10869-1-a39.skl@gmail.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=lOZW5pkqy2TV2ethaCBn0EQ6/ovM+WxW5CYEaBMXdvA=;
+        b=ZooPy11FhnzgFrT9C86Ys4w/bxXOXCLde7/iVf7oB5FHBBE+Hnky0BPNjOs0VNklI1
+         YhW8Cgixx4g41La+TeDcrYSKtP4rONGaaQ288Dfn5tHg2uHSKMx2JC2ZaK1gRoKasRAr
+         Mbl9EcnJ7rPKFtDwGfQBgz1jOM8F6/JcsI5FpzlGQlAeRGtpmaHmffhs5mJ4WtNQcsIK
+         Nldb/SwvSgrySYtzHMPCaWVMx3trIPFrdbOjHU8Z9zoR5udGT/wnUWNtgvNWzVHoSa+q
+         IT5O1ofA64uas0BBYfxn9ytjhVyU05NtNwKyZMM6p9NuBlbFcE+AjbDAW5xT5iKkBWI3
+         uIEQ==
+X-Gm-Message-State: AOAM533d+Mr0mVGrcZrnCRDATOQkKCBQrCPmxL94PgbAO1Tgg0MRhOoZ
+        7yecBZEd1yrSViVTd8s5A/g=
+X-Google-Smtp-Source: ABdhPJzFyICYLnK7OsGVnyCmU9ajih0U1JjUNoh8Rn7niSj9uFgU/qycMEVbPuZmgxYbb613ypUTKg==
+X-Received: by 2002:a05:6a00:1acb:b0:4f7:7c8:8818 with SMTP id f11-20020a056a001acb00b004f707c88818mr5506527pfv.42.1646680767944;
+        Mon, 07 Mar 2022 11:19:27 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id j7-20020a056a00130700b004b9f7cd94a4sm16664421pfu.56.2022.03.07.11.19.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 11:19:27 -0800 (PST)
+Subject: Re: [PATCH 1/3] MAINTAINERS: Update git tree for broadcom IPROC
+ boards
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Scott Branden <sbranden@broadcom.com>, Ray Jui <rjui@broadcom.com>
+References: <20220307182101.84730-1-singh.kuldeep87k@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <e08f2e52-0684-89b7-b1df-f27e4c0d74f2@gmail.com>
+Date:   Mon, 7 Mar 2022 11:19:20 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220307182101.84730-1-singh.kuldeep87k@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,28 +75,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for SCM on MSM8976.
+On 3/7/22 10:20 AM, Kuldeep Singh wrote:
+> Current git tree for broadcom boards is pretty outdated as it's not
+> updated for a long time. Fix the reference.
+> 
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 
-Signed-off-by: Adam Skladowski <a39.skl@gmail.com>
----
- drivers/firmware/qcom_scm.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-index 491bbf70c94a2..3163660fa8e29 100644
---- a/drivers/firmware/qcom_scm.c
-+++ b/drivers/firmware/qcom_scm.c
-@@ -1379,6 +1379,10 @@ static const struct of_device_id qcom_scm_dt_match[] = {
- 							     SCM_HAS_IFACE_CLK |
- 							     SCM_HAS_BUS_CLK)
- 	},
-+	{ .compatible = "qcom,scm-msm8976", .data = (void *)(SCM_HAS_CORE_CLK |
-+							     SCM_HAS_IFACE_CLK |
-+							     SCM_HAS_BUS_CLK)
-+	},
- 	{ .compatible = "qcom,scm-msm8994" },
- 	{ .compatible = "qcom,scm-msm8996" },
- 	{ .compatible = "qcom,scm" },
--- 
-2.25.1
-
+Applied to maintainers/next. Please use scripts/get_maintainers.pl next
+time though, our internal mailing list was not copied, thus our
+patchwork instance did not pick up the patch.
+--
+Florian
