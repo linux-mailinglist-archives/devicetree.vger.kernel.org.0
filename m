@@ -2,116 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B07C4D0A64
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 22:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E0A4D0A86
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 23:06:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245545AbiCGV6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 16:58:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39252 "EHLO
+        id S234667AbiCGWG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 17:06:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244971AbiCGV6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 16:58:39 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C99E6DF9F
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:57:43 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 859473F1AF
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 21:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646690262;
-        bh=NxDi+UT9lvHm2aSJIDurc6O5CK6Ez2p3jyCT14Sol58=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=hgYNgUXBaqUsT5mx21LZZb6N4NjFaQyOpqsnDQaC5lTxy9GQXuIILMtm+uSadtACP
-         2qO07oY0v3VdroxX4loCKoqR17kxdEGlP6Ww2TG0DVGhyeSpVX4hWn1M8kOeb9edQe
-         PniJ3THOuJttCrR03bWfdS1fJf1mB3X9nCrKfPw1xojWErhmTqUPYYarYb1KSUtd2L
-         az/ZzVSctxUKKexBg48TwYjQfLFg1G45CTgbTX5AHazw08xti2Z+BHzF1yEEi+eAyb
-         +ztIr8sXE8ugjWcLyVAJNiM+/9sHW9Id/GAXMi4de0vIdKnIo0DHfXCXBKZKg7xM8F
-         Y1x/Y2g6bPEkA==
-Received: by mail-ed1-f72.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so9413845edb.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 13:57:42 -0800 (PST)
+        with ESMTP id S230076AbiCGWGz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 17:06:55 -0500
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD8398B6FE;
+        Mon,  7 Mar 2022 14:06:00 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id e25-20020a0568301e5900b005b236d5d74fso2683249otj.0;
+        Mon, 07 Mar 2022 14:06:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NxDi+UT9lvHm2aSJIDurc6O5CK6Ez2p3jyCT14Sol58=;
-        b=bJ1P8LQ24W4vzFPIcQP8WGgtMxdZySSFnKw2Rtq8QljeGHKJmrWiI+yU0ilf5O7iFz
-         1qIP1Xq7WtmLSb2gksxtcdur9iA7HaAGDXlMXVvk2lX1zFHohfKuuq5vm5QREGqylzdM
-         NwW0gMOgpXvgFEY53dsGjz/FbE0vpgfQzeFLens75++qwOUyqcgHBW1UQdlIpV6yzEJ7
-         PhIJ0uZbBDCNiNBj7t5oljAYb+vqeoEdJXeRSfICub9TxfhKxMG8rwV/Nyof6JiF+QP9
-         jVp8Nv5rn5WpzEu3704FDmA1z6uvHkKqPkjf9dPYdS8C03VzV9hqAOw7DBaXWmxdCX8U
-         doGA==
-X-Gm-Message-State: AOAM5334VE730f6tPNrp7hZFKIWp/4FhvZHvYvLWoEMZ55Q8nAigjIUH
-        gAOmBXYfp7g22iNuhBQ2n0EHSVI84HApKuSf55sEwKSQ1h9FQZbzvqaRx7H7vCurgu/hSO9cKRV
-        8cXyNW7rIDnz97xeh0lLtofqMs2066kogRM/z1JU=
-X-Received: by 2002:a05:6402:492:b0:404:c4bf:8b7e with SMTP id k18-20020a056402049200b00404c4bf8b7emr12818671edv.318.1646690262270;
-        Mon, 07 Mar 2022 13:57:42 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzim1Spkv48A25JYT7H0oFuStVw4lhQAp7LqWwICzqvsj7tcIbOfmWprDPVB25xXa6yLkPnNQ==
-X-Received: by 2002:a05:6402:492:b0:404:c4bf:8b7e with SMTP id k18-20020a056402049200b00404c4bf8b7emr12818663edv.318.1646690262124;
-        Mon, 07 Mar 2022 13:57:42 -0800 (PST)
-Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id hz7-20020a1709072ce700b006db4bd52016sm4545ejc.144.2022.03.07.13.57.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 13:57:41 -0800 (PST)
-Message-ID: <f686aeeb-e033-927f-89bf-fad239ad70df@canonical.com>
-Date:   Mon, 7 Mar 2022 22:57:40 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=eN8whrQFP0dYkqOwrVQzZHnY72AuM1tzrD2ytbHKbko=;
+        b=XwM7znvFo9IZgXmog0jrq7ch+XnDcJFW7bI2Q3hPRjFYRSIfrDPVIiPHq8Qcks0cUO
+         Xq4Z2T6lhpwI0xcaVNM0QxT8LGf0y9I4pM01dyzIdqknQVBCb8Ju3aty95sytwH3oSy+
+         dWC2xbtPEI3hadyuJccq5h3luwZfpzROFH1Qh9lN+7kbrYqB+vqSB/8qQfFZ0T2vfvW7
+         swdElualzRujtfSYgi3t6tejxNcd6fjmpzaKULkTxQ7SD4PckCF8nuZgl/b/QD0vO8dL
+         Rvb/L37n7hyU8mIEjPoUGhlynTT6MhhZtm/UTwOrUfBWqymGpPv7nIn54Q04fIVg3bFz
+         WPSA==
+X-Gm-Message-State: AOAM533BiSYrxUjBiBBk/AGO10bqxrSXHJ397Fxl8ftBh6Vn0UQ/ar5o
+        alC9YFWS85hXDrlr26k3tw==
+X-Google-Smtp-Source: ABdhPJzaxyPUrJTHCdqLA7RrZr2+t3jQsud03nitRdse3TmUb7Vuh3JuOoIRO1whdI4e1Ug360NpaA==
+X-Received: by 2002:a05:6830:16ca:b0:5af:6a75:c7b1 with SMTP id l10-20020a05683016ca00b005af6a75c7b1mr6716291otr.292.1646690760148;
+        Mon, 07 Mar 2022 14:06:00 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id az10-20020a056808164a00b002d9c98e551bsm2320172oib.36.2022.03.07.14.05.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 14:05:59 -0800 (PST)
+Received: (nullmailer pid 3324008 invoked by uid 1000);
+        Mon, 07 Mar 2022 22:05:58 -0000
+Date:   Mon, 7 Mar 2022 16:05:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: Aw: Re: Re: [PATCH v5 1/5] dt-bindings: ata: ahci-platform:
+ Convert DT bindings to yaml
+Message-ID: <YiaBxlBkpav/7mug@robh.at.kernel.org>
+References: <20220305112607.257734-1-linux@fw-web.de>
+ <20220305112607.257734-2-linux@fw-web.de>
+ <a2839b00-d195-131f-b2a7-d2f030a5bd95@canonical.com>
+ <trinity-9ef9e0d3-e70c-45d9-bdd8-e43d1c89a8c9-1646560070497@3c-app-gmx-bs46>
+ <b8553651-3cd0-845c-efbf-d2341d5506b3@canonical.com>
+ <trinity-d42352e1-d778-40dd-9464-90a145653f74-1646563315484@3c-app-gmx-bs46>
+ <18f4dc19-b8a4-015e-48c8-923326cc7932@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] arm: dts: integrator: Update spi node properties
-Content-Language: en-US
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>
-References: <20220307205357.66322-1-singh.kuldeep87k@gmail.com>
- <20220307205357.66322-3-singh.kuldeep87k@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307205357.66322-3-singh.kuldeep87k@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <18f4dc19-b8a4-015e-48c8-923326cc7932@canonical.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 21:53, Kuldeep Singh wrote:
-> SPI clock name for pl022 is "sspclk" and not "spiclk".
-> Fix below dtc warning:
-> clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+On Sun, Mar 06, 2022 at 12:15:39PM +0100, Krzysztof Kozlowski wrote:
+> On 06/03/2022 11:41, Frank Wunderlich wrote:
+> >> Gesendet: Sonntag, 06. März 2022 um 11:27 Uhr
+> >> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@canonical.com>
+> >>>     add compatibles used together with generic-ahci
+> >>>       - marvell,berlin2-ahci
+> >>
+> >> This is fine, just mention it in commit msg.
+> >>
+> >>>       - qcom,apq8064-ahci
+> >>>       - qcom,ipq806x-ahci
+> >>
+> >> These you need to consult with qcom-sata.txt. This could be a following
+> >> commit which will integrate qcom-sata.txt and remove it.
+> > 
+> > this depends on Robs opinion
 > 
-> Also, update node name to spi instead of ssp to enable spi bindings
-> check.
+> Then maybe precise the question for Rob...
+
+I would leave qcom separate, but the warnings should be fixed. For that 
+you need a custom 'select' schema that lists everything but 
+'generic-ahci'. Adding the berlin compatible looks right.
+
+> >> Either you have
+> >> binding document for all devices or you create a common part, like for UFS:
+> >> https://lore.kernel.org/linux-devicetree/20220222145854.358646-1-krzysztof.kozlowski@canonical.com/
+> >> https://github.com/krzk/linux/commits/n/dt-bindings-ufs-v2
+> >>
+> >> The choice depends more or less on complexity of bindings, IOW, how big
+> >> and complicated bindings would be if you combine everything to one YAML.
+> >>
+> >> In the case of UFS, the devices differ - by clocks, resets, phys and
+> >> sometimes supplies. Therefore it easier to have one common shared part
+> >> and several device bindings.
+> >>
+> >> AHCI looks more consistent - except that Qualcomm - so maybe better to
+> >> have one document.
+> >>
+> >>>     increase reg-count to 2 (used in omap5-l4.dtsi)
+> >>>     increase clock-count to 5 (used in qcom-apq8064.dtsi)
+> >>
+> >> This would need allOf+if.
+> > 
+> > if i get ok from rob i add only the berlin-compatible and skip the 
+> > qcom+reg/clock-change in the first applied version. Adding the 
+> > allOf/if (and making it right) will only delay the sata-binding/dts-change.
 > 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> ---
->  arch/arm/boot/dts/integratorap-im-pd1.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/integratorap-im-pd1.dts b/arch/arm/boot/dts/integratorap-im-pd1.dts
-> index d47bfb66d069..ebe938556645 100644
-> --- a/arch/arm/boot/dts/integratorap-im-pd1.dts
-> +++ b/arch/arm/boot/dts/integratorap-im-pd1.dts
-> @@ -178,12 +178,12 @@ uart@200000 {
->  		clock-names = "uartclk", "apb_pclk";
->  	};
->  
-> -	ssp@300000 {
-> +	ssp0: spi@300000 {
+> I don't get what is the problem with delaying this patch for the time
+> needed to make the bindings correct? Especially that alternative is to
+> add bindings document which soon will need to be modified, e.g. split
+> into common part. Is there a particular hurry with these bindings
+> conversion?
 
-Is the alias used anywhere? Why adding it?
+Qcom doesn't use sata-port nodes, so I don't think there is anything to 
+share. And if it did, that's already in sata-common.yaml.
 
+Rob
 
-
-Best regards,
-Krzysztof
