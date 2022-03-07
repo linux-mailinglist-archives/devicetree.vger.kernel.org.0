@@ -2,87 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B9A4D0008
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:27:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A01284D0068
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:48:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242871AbiCGN2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 08:28:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60468 "EHLO
+        id S241772AbiCGNtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 08:49:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242869AbiCGN2i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:28:38 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E622E4F
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:27:44 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1B54D3F5F1
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:27:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646659663;
-        bh=0p+VuFDj8xL9U854Xhzlb2R5Iw4DSHVh49A3ct6TpJY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=l+e8PpiUUo9XwQz7tFOXTa/s7Jql5gnoQzadCMjbO7SIePiFPMwC03GPxGEGjQ0x2
-         /SjtfoVwUu3yyUC4gFV3qO28cYl0toPlSCbnvfmFyPGkQMOm7gd2VHSROCwRS95Cnu
-         P+qFTQzjUXFtZyne13jrUon4v8YEI5SVQ3v+D/IaV+/e9VmHSUbGy66OWoR+DigjEI
-         3sND7eEmUmkJZf5hAV8qoErtxfFKDx1uA4YmzKRAIGCi8LaLSdnSUY2hrQQaYMgrJJ
-         MsiqXwwjIgAK7MUoVi5xeBAUCXlnKdJulShcwNqBbvxUN1gNrF3PJ7CcZMVh9XY82c
-         DERkkcMmsySsQ==
-Received: by mail-ed1-f70.google.com with SMTP id u28-20020a50d51c000000b004159ffb8f24so8620310edi.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 05:27:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=0p+VuFDj8xL9U854Xhzlb2R5Iw4DSHVh49A3ct6TpJY=;
-        b=D8WvA+aCSjI+BHzGSEBEVfJMyDqXhJ1T2beTlYMYGbjUFcGCTG8FN5wK6izKCG6r0B
-         Jh06rlvigiAn1qG2PBu/bGsK8gfHmaeQ2gcIsbL1p9ZV1fOFP4GYQVUOrUedIcvsJSdv
-         c3Nh0ATgiWnbHp4HX1fTAqf868Oa53Qy6Z6r5k9FDytqQFdgcv2BPO4vZK67tbSiIUgg
-         KCKp6ab0Vi642vLpD9no0Zc3m5JfvITnT1fF7JADs9mU4M/7QCD34JOzTVmPJbMY+mDf
-         JpcGj5ImkFpO6Hmxr4Kl5Yewo5fLdf5mdV2nOpFpdjlZEXuDflNoEzL0AtxvlmD+JmbS
-         yQDA==
-X-Gm-Message-State: AOAM531GOci02kVgM/TF06nNSWlBfke1vu5SllY+OT03ORXF5k9hbElR
-        cYYPYKAEglLIz+Hgiyyei/F/y+Vuih9dIyd4uHG99DfwcQz8auds1K6MKwpG+PMLwWazAFG03Tm
-        ZrlK+Hv0L6sDqkLbbeFQgQ3i6s0wFalu1azcgiZc=
-X-Received: by 2002:aa7:d708:0:b0:416:67d:5e07 with SMTP id t8-20020aa7d708000000b00416067d5e07mr11332751edq.166.1646659661049;
-        Mon, 07 Mar 2022 05:27:41 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxROn5oRRrVhYMnIFfX1j+2EeerLJmDS9wAaPDjifZ9sXyeRLKRZqzm4A9FlkGfkFICnqDwaA==
-X-Received: by 2002:aa7:d708:0:b0:416:67d:5e07 with SMTP id t8-20020aa7d708000000b00416067d5e07mr11332734edq.166.1646659660859;
-        Mon, 07 Mar 2022 05:27:40 -0800 (PST)
-Received: from [192.168.0.142] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170906b10500b006ce6fa4f510sm4707518ejy.165.2022.03.07.05.27.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 05:27:40 -0800 (PST)
-Message-ID: <060968dc-9460-1b75-12a7-cb0bbe9563cc@canonical.com>
-Date:   Mon, 7 Mar 2022 14:27:39 +0100
+        with ESMTP id S240795AbiCGNtJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:49:09 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A1852AE32
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:48:14 -0800 (PST)
+Received: from mail-wm1-f53.google.com ([209.85.128.53]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1M730b-1nWSAf2e2J-008d4S; Mon, 07 Mar 2022 14:43:06 +0100
+Received: by mail-wm1-f53.google.com with SMTP id 7-20020a05600c228700b00385fd860f49so8466386wmf.0;
+        Mon, 07 Mar 2022 05:43:06 -0800 (PST)
+X-Gm-Message-State: AOAM5325uxvMeZJhs7tB3Wtt5JfYsN7qiVM3AFXkR9JirypI050qM5Fa
+        3A/XNWfBuZ1A473NuecMAoI87I8FySHyK39B2f0=
+X-Google-Smtp-Source: ABdhPJyTtGPr9s9B1mZzmqCrZmSsLyAz3eETwOB51BFC6zHOSBf2jVQeZcONFBUofjQXajeBJF0dq7rq6IexZ7L5htw=
+X-Received: by 2002:a05:600c:3b89:b0:389:a466:43bf with SMTP id
+ n9-20020a05600c3b8900b00389a46643bfmr4690265wms.1.1646660586211; Mon, 07 Mar
+ 2022 05:43:06 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT5190A PMIC
-Content-Language: en-US
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1646647704-2331-1-git-send-email-u0084500@gmail.com>
- <1646647704-2331-2-git-send-email-u0084500@gmail.com>
- <1e6893ca-69f4-a2ed-6ecc-23507c04002b@canonical.com>
- <CADiBU3_jC_+P4d-gjMRGpP0uBejUkCY-axNd4nh1Y_=95iav3A@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CADiBU3_jC_+P4d-gjMRGpP0uBejUkCY-axNd4nh1Y_=95iav3A@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <cover.1646629400.git.tonyhuang.sunplus@gmail.com> <c6b959b3ac966f0c95487df0f9b9efc79c93983f.1646629400.git.tonyhuang.sunplus@gmail.com>
+In-Reply-To: <c6b959b3ac966f0c95487df0f9b9efc79c93983f.1646629400.git.tonyhuang.sunplus@gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 7 Mar 2022 14:42:49 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a2TmizZhkqxqB9DnmjnwzRZwWH+90Wc7WWaCMCm7KP7pg@mail.gmail.com>
+Message-ID: <CAK8P3a2TmizZhkqxqB9DnmjnwzRZwWH+90Wc7WWaCMCm7KP7pg@mail.gmail.com>
+Subject: Re: [PATCH v10 2/2] misc: Add iop driver for Sunplus SP7021
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Derek Kiernan <derek.kiernan@xilinx.com>,
+        Dragan Cvetic <Dragan.cvetic@xilinx.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        gregkh <gregkh@linuxfoundation.org>,
+        =?UTF-8?B?V2VsbHMgTHUg5ZGC6Iqz6aiw?= <wells.lu@sunplus.com>,
+        Tony Huang <tony.huang@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:TIlCeZuYCAYIf5zfU2gE4gAe0V+zbE19DN5Yj0Da3T5+OQk8Uac
+ mYR2nvqJJ6ImE6V2C6IoPjcHQG76bdQ1uLdMlxFH6eAemp9IL0AMcEbvLLqo39t0qO7VCm/
+ 2ZZAFRupBX4kLwPMw9n7bu1Wxp7BkRG6O1BMqGHvwEdcXFaWK6HXYwhyYeQVjB25iCKN6Pm
+ nS1Nm8ucrfh9YlMF5DdWA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:mjaziVJGN/c=:qi46tcjce8QqCsgPrwom7F
+ INBv+gIfyYRCzoG2xAk2ZpvE0m7VoqbtQRkWX3sqB2mu1tsiT7kJ24IC02Pah5ZsNHbOYjvfy
+ m4odEI+2AX5SOJbVRmSYxrLMeBncDFZ1L7DCq4SKaYoQQ+/xNhC7LhRaGXY3YBpgWgRBukdsP
+ cW7wmyvSvXDMVI8T6kogT1ERQ3BclL1piCjjw/nQPy5ZsuIqulz/EzJ6xCfEs8bVszeez735p
+ 4DJnOHQhCCynbWo7E2zIik/gvUdhyaoVvGU620UetsuuORHIT1Ewv2w/BqR0E1WcxS6X5F0SB
+ /URcgQMd/ALc0XXUZfzpAl0c+OkeHvtScxoQqhrTgWOY9+Toml4fli9X8uHwNWEg7rIpUD0dH
+ BHB2P6u5PJOHW4tkNeVv9jkb95lnAUA/QGEj48KBIHm7kKxs+ST8h+quBw45lcToaCNh4SWAJ
+ BB/DCZI9KE10ZxCQcZQY3tXbmAGUlo8T4A82DQlSbUtbpbvVcK7fSVKmyCgogGmwqkyT2VJI0
+ gw1ChbyuJZDYxJWw0ih28bbqI2nSOpU120PLyKFSD8YV4SMy4Mhhj6LaoIYLcFdq5+rpJz/Ca
+ Q2EfQ18htw1VwETvpX2yJ3q11wTUzKBURcIVhmeQ+FmbMhDDVGSwVtalpELEw3s0NN7ZqA9iH
+ knxsASkf4jtgtr06qBwTEdsvs4Opi4mydNfiLtIBCA7jyvJsXNejkItJTv695lEPPU6ZJI8/w
+ tGykACSpjP2/cJCN44oW0XDQPDBPwrZANm9FUegL3nrfle286HLvMAw+zDzF9uicj12XxPCJM
+ CMhAaoe3VPIklpmO+cN/Cc8EDAtRwdyp2fUZBNNwQKT1BWy9m8=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,85 +70,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 14:21, ChiYuan Huang wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> 於 2022年3月7日 週一 下午7:14寫道：
->>
->> On 07/03/2022 11:08, cy_huang wrote:
->>> From: ChiYuan Huang <cy_huang@richtek.com>
->>>
->>> Add bindings for Richtek RT5190A PMIC.
->>>
->>> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
->>> ---
->>>  .../regulator/richtek,rt5190a-regulator.yaml       | 138 +++++++++++++++++++++
->>>  1 file changed, 138 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
->>> new file mode 100644
->>> index 00000000..b9f5836
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
->>> @@ -0,0 +1,138 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/regulator/richtek,rt5190a-regulator.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Richtek RT5190A PMIC Regulator
->>> +
->>> +maintainers:
->>> +  - ChiYuan Huang <cy_huang@richtek.com>
->>> +
->>> +description: |
->>> +  The RT5190A integrates 1 channel buck controller, 3 channels high efficiency
->>> +  synchronous buck converters, 1 LDO, I2C control interface and peripherial
->>> +  logical control.
->>> +
->>> +  It also supports mute AC OFF depop sound and quick setting storage while
->>> +  input power is removed.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - richtek,rt5190a
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  vin2-supply:
->>> +    description: phandle to buck2 input voltage.
->>> +
->>> +  vin3-supply:
->>> +    description: phandle to buck3 input voltage.
->>> +
->>> +  vin4-supply:
->>> +    description: phandle to buck4 input voltage.
->>> +
->>> +  vinldo-supply:
->>> +    description: phandle to ldo input voltage
->>> +
->>> +  richtek,buck1-fixed-microvolt:
->>> +    description: buck1 fixed voltage that depends on the external resistor.
->>> +    $ref: "/schemas/types.yaml#/definitions/uint32"
->>
->> You should use standard bindings for it.
->>
-> Sorry, I didn't get the point for the meaning 'standard binding'.
-> Do you mean to change 'richtek,buck1-fixed-microvolt' or 'uint32' definition?
-> This voltage depends on the external resistor selection. It's 'fixed'
-> by the application.
+On Mon, Mar 7, 2022 at 6:25 AM Tony Huang <tonyhuang.sunplus@gmail.com> wrote:
+>
+> This driver is load 8051 bin code.
+> Processor for I/O control:
+> SP7021 has its own GPIO device driver.
+> The user can configure the gpio pin for 8051 use.
+> The 8051 support wake-up with IR key after system poweroff.
+>
+> Monitor RTC interrupt:
+> SP7021 system has its own RTC device driver (rtc-sunplus.c).
+> The user can set the RTC wake-up time through rtc-sunplus.c.
+> The IOP code does not need to increase the RTC subsystem function,
+> set the RTC register.   When the linux kernel system is poweroff.
+> Only the 8051 CPU has power and can monitor the RTC wake-up interrupt.
+>
+> PMC in power management purpose:
+> Add sp_iop_poweroff() function. pm_power_off=sp_iop_poweroff.
+> When the poweroff command is executed.
+> The 8051 has a register to control the power-on and power-off
+> of the system. If you turn off the power through the 8051
+> register(DEF_PWR_EN_0=0). The current measured by the circuit
+> board is 0.4mA only. In order to save power.
+> Changes in v10:
+>  - Added sp_iop_poweroff function for poweroff command.
+>
 
-I meant that you should not have dedicated binding to set regulator
-voltage, but use regulator-min/max-microvolt instead, within one
-regulator node. Just set min/max to same level and handle it in the
-driver. See for example:
-drivers/regulator/scmi-regulator.c
+Thank you for finally adding support for one of the functions of the
+hardware!
+
+> diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+> index 0f5a49f..3106f15 100644
+> --- a/drivers/misc/Kconfig
+> +++ b/drivers/misc/Kconfig
+> @@ -470,6 +470,42 @@ config HISI_HIKEY_USB
+>           switching between the dual-role USB-C port and the USB-A host ports
+>           using only one USB controller.
+>
+> +config SUNPLUS_IOP
+> +       tristate "Sunplus IOP support"
+> +       default ARCH_SUNPLUS
+> +       help
+> +         This driver is load 8051 bin code.
+> +         Processor for I/O control:
+> +         SP7021 has its own GPIO device driver.
+> +         The user can configure the gpio pin for 8051 use.
+> +         8051 support wake-up with IR key after system poweroff.
+> +
+> +         Monitor RTC interrupt:
+> +         SP7021 system has its own RTC device driver (rtc-sunplus.c).
+> +         The user can set the RTC wake-up time through rtc-sunplus.c.
+> +         The IOP code does not need to increase the RTC subsystem function,
+> +         set the RTC register. When the linux kernel system is poweroff.
+> +         Only the 8051 CPU has power and can monitor the RTC wake-up interrupt.
+> +
+> +         PMC in power management purpose:
+> +         Add sp_iop_poweroff() function. pm_power_off=sp_iop_poweroff.
+> +         When the poweroff command is executed.
+> +         The 8051 has a register to control the power-on and power-off of the system.
+> +         If you turn off the power through the 8051 register(DEF_PWR_EN_0=0),
+> +         The current measured by the circuit board is 0.4mA only. In order to save power.
+
+The description sounds misleading here: At the moment, you only add
+support for poweroff, not for system suspend.
+
+Maybe leave out the description about the RTC and power savings here
+and only describe the bits that the driver actually implements. Can you
+add some text to the patch changelog to describe what your plans are
+for supporting suspend mode, and clarify which functions are implemented
+already, compared to those that are possible in hardware but not part
+of this patch series?
 
 
-Best regards,
-Krzysztof
+> +static void sp_iop_run_standby_code(struct sp_iop *iop)
+> +{
+> +       void __iomem *iop_kernel_base;
+> +       unsigned long reg;
+> +
+> +       iop_kernel_base = ioremap(iop->iop_mem_start, STANDBY_CODE_MAX_SIZE);
+> +       memset(iop_kernel_base, 0, STANDBY_CODE_MAX_SIZE);
+> +       memcpy(iop_kernel_base, iop->iop_standby_code, STANDBY_CODE_MAX_SIZE);
+
+'standby' mode usually refers to 'suspend-to-ram' mode, which is something
+the driver does not (yet) support. Can you clarify whether that means you
+want to add it later, or you just used the wrong term here?
+
+> +
+> +/* 8051 informs linux kerenl. 8051 has been switched to standby.bin code. */
+> +#define IOP_READY      0x0004
+> +#define RISC_READY     0x0008
+> +
+> +/* System linux kernel tells 8051 which  gpio pin to wake-up through. */
+> +#define WAKEUP_PIN     0xFE02
+> +
+> +/* System linux kernel tells 8051 to execute S1 or S3 mode. */
+> +#define S1     0x5331
+> +#define S3     0x5333
+
+Again, the names here seem misleading: in power management terms,
+'s1' and 's3' typically refer to types of system power saving modes that
+are different from power-off or suspend-to-disk. Maybe try to use less
+confusing terms here?
+
+> +       /* IOP Hardware IP reset */
+> +       reg = readl(iop->moon0_regs + IOP_RESET0);
+> +       reg |= 0x10;
+> +       writel(reg, (iop->moon0_regs + IOP_RESET0));
+> +       reg &= ~(0x10);
+> +       writel(reg, (iop->moon0_regs + IOP_RESET0));
+
+This looks like you are writing individual bits into a shared
+clock/reset controller that is part of the SoC. If this is the case,
+it would be better to make that a separate driver that owns
+the moon0_regs registers and exposes them through the
+clk and reset subsystem interfaces (drivers/clk, drivers/reset).
+
+> +static void sp_iop_poweroff(void)
+> +{
+> +       struct sp_iop *iop = iop_poweroff;
+> +       unsigned int ret, value;
+> +
+> +       value = readl(iop->iop_regs + IOP_DATA11);
+> +       sp_iop_run_standby_code(iop);
+> +
+> +       ret = readl_poll_timeout(iop->iop_regs + IOP_DATA0, value,
+> +                                value == 0x2222, 1000, 100000);
+> +       if (ret)
+> +               dev_warn(iop->dev, "timed out\n");
+> +
+> +       if (value == S1)
+> +               sp_iop_s1mode(iop->dev, iop);
+> +       else
+> +               sp_iop_s3mode(iop->dev, iop);
+> +}
+
+The power-off logic should probably be a separate driver in drivers/power/reset/
+that calls into the common driver.
+
+        Arnd
