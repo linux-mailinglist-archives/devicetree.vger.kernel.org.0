@@ -2,150 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C9E8D4CF3FA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:51:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D5AEA4CF41F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:56:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233754AbiCGIv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 03:51:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35322 "EHLO
+        id S231614AbiCGI5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 03:57:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233851AbiCGIv5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:51:57 -0500
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C80711C13;
-        Mon,  7 Mar 2022 00:51:01 -0800 (PST)
+        with ESMTP id S231222AbiCGI5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:57:01 -0500
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BC462019D;
+        Mon,  7 Mar 2022 00:56:06 -0800 (PST)
+Received: by mail-wr1-x432.google.com with SMTP id u1so21996118wrg.11;
+        Mon, 07 Mar 2022 00:56:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1646643063;
-  x=1678179063;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=ytKQtShjwa35NIFSZwwjBXyX3q9doQnHdIn7CTmZOnE=;
-  b=itMBBlJLc5ATqGMPf2RjsNgsvdlgfKitS22SB/CD7/cylMt0By0ZSrd+
-   ZYhmJZ9QDs2ncC1DuIiLw0xLLKK8XA1XoRyKwRTTVR1rfwzf5UykJxJBd
-   qeDEVhUmyRT0l3ws8oQpuA9MmsmMp55RUnkHGfxd6Korf+AN3zU/Hixls
-   ILZRiJiP9yJ79ebacAgtdu44bxTcdZcsd+FqaAEhiXSHEmfFEThCEUHzG
-   5qjyGO/W+x1BQRvHTdTnY6Z8ENfIS5sWy2PeK0zxAH39bEfQeeG+IyCtA
-   2DC1NL8JuCmZQ42vHidHNJwQ2YY9of9yI7U7CnUXQ4N9eU/4Es4oOm+88
-   A==;
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>,
-        <krzysztof.kozlowski@canonical.com>
-CC:     <kernel@axis.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <linux-samsung-soc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>,
-        <alim.akhtar@samsung.com>,
-        Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: [PATCH 2/2] tty: serial: samsung: Add ARTPEC-8 support
-Date:   Mon, 7 Mar 2022 09:50:53 +0100
-Message-ID: <20220307085053.1636475-3-vincent.whitchurch@axis.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220307085053.1636475-1-vincent.whitchurch@axis.com>
-References: <20220307085053.1636475-1-vincent.whitchurch@axis.com>
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=JAuL6YepBIXFjvPpdz3/zKExoKESbH/f50M7nxlrs1I=;
+        b=nGao1OzYTY4jN+ZzN5oA5UmzE02b79yw/mCAIi5DnpU+5BC56C1OhsISLwcJ2FGV2X
+         qFtfLM0IW/j+SMgI5cE6PFXVOKstMwjxmHov02cKZcsRbqeZEC0kmqp6Ra896qQr/CYg
+         p6SLvoIumq63ElpdFWzCHXap6ABNysbFWJy1hhgTIVK2LIK3QJbFiKBOoHgDxnA/uBMM
+         6zY1GA3KlafZax0xHREzDs5N4SMZCRepsKC2dDZaladCiJalofs90/aAp+WBvAiFcM/D
+         u0ndNfHUlgtt67M4VK+r/OAl7yxGptV2hSsZG1UL3NfACqGC19Xu6nMVC3ZLWx3uxBeg
+         WBmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=JAuL6YepBIXFjvPpdz3/zKExoKESbH/f50M7nxlrs1I=;
+        b=1tw8FCvzi4K/YhDLbxkq/GC8wNqHXno8DhlmYmsbrtGb6OmTUUqYOH60bTu2Aqg5sN
+         EwOnMIAyY5dq3pLLZ/Eyu7YC8GyxaWfn53T/BzAdOjUbNpMrWig+BAV2xKq5v/evi7fo
+         wbMJD36OczJ2Smtwku1JHDIBEFCCXSE6zc7U/ThoOBBs9eftSHoLw0cdZFMcIgEUJToH
+         3zmSoLKW804UQ9IZRbqERVpSiLqWduEsqWUoN2Fa2Rluo9gwrbS7wAAfZTd7qNmSuZnx
+         nkInQV9RHUPxY3DwiZcuxG+HwIKaucDXgy/IJpXq4IugIc8/PhKKjdtkM68nqOYGS5u8
+         dGfg==
+X-Gm-Message-State: AOAM530ICkEEmIFD9U6apNk/fj695imLBeLxH8nQbM4qcaP87X7q0tpP
+        7tJtJnIw1tvDTqoDTz/l2YKw5utvC6dcpDVo
+X-Google-Smtp-Source: ABdhPJzPdzD3vG9myUxu4TceAdws6H8czXcxAxloDB5YBr/EYyckRyrzZIUUvQtTHFjqsl21N5t8EA==
+X-Received: by 2002:a5d:452a:0:b0:1f0:48ce:97e0 with SMTP id j10-20020a5d452a000000b001f048ce97e0mr7375807wra.225.1646643364638;
+        Mon, 07 Mar 2022 00:56:04 -0800 (PST)
+Received: from tp440p.steeds.sam ([41.215.158.40])
+        by smtp.gmail.com with ESMTPSA id j20-20020a5d6e54000000b001f0642807cfsm15052968wrz.117.2022.03.07.00.56.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 00:56:03 -0800 (PST)
+Date:   Mon, 7 Mar 2022 10:55:56 +0200
+From:   Sicelo <absicsz@gmail.com>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v2 0/3] Support LIS302DL in st_accel
+Message-ID: <YiXInAKKwWRsWh40@tp440p.steeds.sam>
+References: <20220301225432.60844-1-absicsz@gmail.com>
+ <20220305155955.000075eb@Huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220305155955.000075eb@Huawei.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the UART on the ARTPEC-8 SoC.
+On Sat, Mar 05, 2022 at 03:59:55PM +0000, Jonathan Cameron wrote:
+> Other the the issues Andy raised around the tag and also
+> adding SPI support this looks good to me. 
+> 
+> We are very late in this cycle, so it is now material for 5.19.
+> Plenty of time to make those final little tidy ups and get this
+> queued early in the next cycle.
+> 
 
-Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
----
- drivers/tty/serial/Kconfig       |  2 +-
- drivers/tty/serial/samsung_tty.c | 38 ++++++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+), 1 deletion(-)
+Thank you so much. I will prepare next version of patches soon.
 
-diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-index e952ec5c7a7c..ae120d3d933a 100644
---- a/drivers/tty/serial/Kconfig
-+++ b/drivers/tty/serial/Kconfig
-@@ -237,7 +237,7 @@ config SERIAL_CLPS711X_CONSOLE
- 
- config SERIAL_SAMSUNG
- 	tristate "Samsung SoC serial support"
--	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || ARCH_APPLE || COMPILE_TEST
-+	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || ARCH_APPLE || ARCH_ARTPEC || COMPILE_TEST
- 	select SERIAL_CORE
- 	help
- 	  Support for the on-chip UARTs on the Samsung
-diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-index d002a4e48ed9..4f9e74c6bcef 100644
---- a/drivers/tty/serial/samsung_tty.c
-+++ b/drivers/tty/serial/samsung_tty.c
-@@ -2837,6 +2837,36 @@ static struct s3c24xx_serial_drv_data s5l_serial_drv_data = {
- #define S5L_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
- #endif
- 
-+#if defined(CONFIG_ARCH_ARTPEC)
-+static struct s3c24xx_serial_drv_data artpec8_serial_drv_data = {
-+	.info = &(struct s3c24xx_uart_info) {
-+		.name		= "Axis ARTPEC-8 UART",
-+		.type		= TYPE_S3C6400,
-+		.port_type	= PORT_S3C6400,
-+		.fifosize	= 128,
-+		.has_divslot	= 1,
-+		.rx_fifomask	= S5PV210_UFSTAT_RXMASK,
-+		.rx_fifoshift	= S5PV210_UFSTAT_RXSHIFT,
-+		.rx_fifofull	= S5PV210_UFSTAT_RXFULL,
-+		.tx_fifofull	= S5PV210_UFSTAT_TXFULL,
-+		.tx_fifomask	= S5PV210_UFSTAT_TXMASK,
-+		.tx_fifoshift	= S5PV210_UFSTAT_TXSHIFT,
-+		.def_clk_sel	= S3C2410_UCON_CLKSEL0,
-+		.num_clks	= 1,
-+		.clksel_mask	= 0,
-+		.clksel_shift	= 0,
-+	},
-+	.def_cfg = &(struct s3c2410_uartcfg) {
-+		.ucon		= S5PV210_UCON_DEFAULT,
-+		.ufcon		= S5PV210_UFCON_DEFAULT,
-+		.has_fracval	= 1,
-+	}
-+};
-+#define ARTPEC8_SERIAL_DRV_DATA ((kernel_ulong_t)&artpec8_serial_drv_data)
-+#else
-+#define ARTPEC8_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
-+#endif
-+
- static const struct platform_device_id s3c24xx_serial_driver_ids[] = {
- 	{
- 		.name		= "s3c2410-uart",
-@@ -2866,6 +2896,10 @@ static const struct platform_device_id s3c24xx_serial_driver_ids[] = {
- 		.name		= "exynos850-uart",
- 		.driver_data	= EXYNOS850_SERIAL_DRV_DATA,
- 	},
-+	{
-+		.name		= "artpec8-uart",
-+		.driver_data	= ARTPEC8_SERIAL_DRV_DATA,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(platform, s3c24xx_serial_driver_ids);
-@@ -2888,6 +2922,8 @@ static const struct of_device_id s3c24xx_uart_dt_match[] = {
- 		.data = (void *)EXYNOS5433_SERIAL_DRV_DATA },
- 	{ .compatible = "apple,s5l-uart",
- 		.data = (void *)S5L_SERIAL_DRV_DATA },
-+	{ .compatible = "axis,artpec8-uart",
-+		.data = (void *)ARTPEC8_SERIAL_DRV_DATA },
- 	{ .compatible = "samsung,exynos850-uart",
- 		.data = (void *)EXYNOS850_SERIAL_DRV_DATA },
- 	{},
-@@ -3043,6 +3079,8 @@ OF_EARLYCON_DECLARE(s5pv210, "samsung,s5pv210-uart",
- 			s5pv210_early_console_setup);
- OF_EARLYCON_DECLARE(exynos4210, "samsung,exynos4210-uart",
- 			s5pv210_early_console_setup);
-+OF_EARLYCON_DECLARE(artpec8, "axis,artpec8-uart",
-+			s5pv210_early_console_setup);
- 
- /* Apple S5L */
- static int __init apple_s5l_early_console_setup(struct earlycon_device *device,
--- 
-2.34.1
-
+Sincerely
+Sicelo
