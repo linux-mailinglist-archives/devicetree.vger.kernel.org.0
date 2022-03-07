@@ -2,104 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8FC24D031E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 16:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 933734D0338
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 16:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241481AbiCGPmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 10:42:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41512 "EHLO
+        id S231766AbiCGPrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 10:47:11 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233151AbiCGPmT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 10:42:19 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D504F73076;
-        Mon,  7 Mar 2022 07:41:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646667686; x=1678203686;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=XlQwsZSDIaDfWV/087cdbqswb5XX5+Ou9ZV0yaZmxrE=;
-  b=UGBYK5svF3juTh1kCxlXM2GkpmbRt4hnsFKtsk3Y3k5OD3JdhPKO1yA0
-   Ywn+QKRAlU475INVtJAD4ZNU0LasuvFsJZNbCgmUHsdwPuUe0mDtkbdQA
-   uvkQ/hfFFOej12EY3qAxI8FS+yJQnGpltBJaW89zItrmzQM4flP4QpoR6
-   rC0gKhE6Ihcf0hqv1vPjyVq+8+YyzUEh6V2NI5TfsEB5euCa5SLQh/NT8
-   VaXgULSMuh2o/a3il/6nlzT9Gg1LHP1TNBjHk45NN9NVJ3YDViMSF7TqR
-   0rNb63r0YZDyeq6IwSRmt+QDOglIwClIolI2Hq68mGdUiROw6kfwr2xfk
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
-   d="scan'208";a="155514444"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 08:41:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Mar 2022 08:41:23 -0700
-Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 08:41:19 -0700
-From:   Sergiu Moga <sergiu.moga@microchip.com>
-To:     <claudiu.beznea@microchip.com>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>
-Subject: [PATCH v3 2/2] dt-bindings: pwm: at91: Add SAMA7G5 compatible strings list
-Date:   Mon, 7 Mar 2022 17:36:56 +0200
-Message-ID: <20220307153656.177589-3-sergiu.moga@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307153656.177589-1-sergiu.moga@microchip.com>
-References: <20220307153656.177589-1-sergiu.moga@microchip.com>
+        with ESMTP id S240966AbiCGPrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 10:47:10 -0500
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 073747EB0D
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 07:46:16 -0800 (PST)
+Received: by mail-ed1-x532.google.com with SMTP id g3so8314755edu.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 07:46:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O2robocWX/4eX3h0HkkMwskjpGu6tvHElNahbn7kKFw=;
+        b=G9xK+pOQDnRlW9TPM9PfZSJ+HE03a8E0WnxkTNwtnH+cVBA4mObITDp5hePOIoBiHz
+         HYtUXJ7pLhIiprdZUmnfyFeDFg9XE1B4vwemp1DbGxIsiBy1dCmVIJt29Cx3DY9+a8mJ
+         /cJnrDju5fawzi4IbBHnHrL7LhiBTpm3TLeZ8cxuEsDy4SpKPrM6lC6mh2iKEaYuZLeB
+         2kmyKFWpFtmrNBhF6IVYcmWMBZ4vHoJtkLu1OfpI9HVuaxkGBZxWIRAps2tQiL0GiFGf
+         5xfhwIRGIPstbdmIMj8GVeaHkZSknqdypmELx3xdjPyZmE0TeEYanW4fWbFbpBuOjc/h
+         Z8UA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O2robocWX/4eX3h0HkkMwskjpGu6tvHElNahbn7kKFw=;
+        b=VPX86TpXnArKIWK2dVVtIZ0fH9nTyea9h+igtZv+ElyhJgb8N1y4M1Fsr+BclbwP2t
+         pak//IS1O3MLqddX7A2qzWPe277KiowfP+u8WVvEquGlc1BNAD8Pa3z31XGBj3aWidzQ
+         +lt88LKlOWbM5vwNls/aRZFOhYdXLi5EwxCTl0SiCvVoX7OQZAQSBdNgiEHFcbloH0so
+         nnPeL77NPrNknvKD7C68Tfl5PCL3+KfB+X3IJmJu1urXxjhshy8rY28DBodG5CaUbejZ
+         rmB206c4onkimFhwvZrsKH+DUHV2viSlHmfarwwqDY0nTaSKf2maojoqDwUL2X97Y/dK
+         +Y4g==
+X-Gm-Message-State: AOAM530YrVF9+FHp75t3c3PZkY11nkHbyFZouvtHIKeM2eitbTDUb/Zm
+        pgGT1mfyujmF4lBV+Zz0cGA60w==
+X-Google-Smtp-Source: ABdhPJzIFSku8aVjJrO50LvyMLTMndzAvl2LadpIo5JOvunKayfQxPpk+9wCWH705xaBAJv5DVyZ6w==
+X-Received: by 2002:aa7:c4cf:0:b0:416:e28:45b9 with SMTP id p15-20020aa7c4cf000000b004160e2845b9mr11805955edr.319.1646667974548;
+        Mon, 07 Mar 2022 07:46:14 -0800 (PST)
+Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
+        by smtp.gmail.com with ESMTPSA id e12-20020a056402190c00b0041615cd434csm4210747edz.60.2022.03.07.07.46.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 07:46:13 -0800 (PST)
+From:   Robert Foss <robert.foss@linaro.org>
+To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, robert.foss@linaro.org,
+        xji@analogixsemi.com, hsinyi@chromium.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: [PATCH v1 0/2] Revert vendor property from anx7625 bindings
+Date:   Mon,  7 Mar 2022 16:45:56 +0100
+Message-Id: <20220307154558.2505734-1-robert.foss@linaro.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings list for SAMA7G5.
+An issue[1] related to how the V4L2_FWNODE_BUS_TYPE_PARALLEL flag is mis-used
+was found in recent addition to the anx7625 driver.
 
-Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../bindings/pwm/atmel,at91sam-pwm.yaml           | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+In order to not introduce this issue into the ABI, let's revert the changes
+to the anx7625 dt-binding related to this.
 
-diff --git a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
-index 5e8bb5a8095d..ab45df80345d 100644
---- a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
-@@ -15,11 +15,16 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - atmel,at91sam9rl-pwm
--      - atmel,sama5d3-pwm
--      - atmel,sama5d2-pwm
--      - microchip,sam9x60-pwm
-+    oneOf:
-+      - items:
-+          - enum:
-+              - atmel,at91sam9rl-pwm
-+              - atmel,sama5d3-pwm
-+              - atmel,sama5d2-pwm
-+              - microchip,sam9x60-pwm
-+      - items:
-+          - const: microchip,sama7g5-pwm
-+          - const: atmel,sama5d2-pwm
- 
-   reg:
-     maxItems: 1
+[1] https://lore.kernel.org/all/YiTruiCIkyxs3jTC@pendragon.ideasonboard.com/
+
+Robert Foss (2):
+  Revert "dt-bindings:drm/bridge:anx7625:add vendor define"
+  Revert "arm64: dts: mt8183: jacuzzi: Fix bus properties in anx's DSI
+    endpoint"
+
+ .../display/bridge/analogix,anx7625.yaml      | 65 +------------------
+ .../dts/mediatek/mt8183-kukui-jacuzzi.dtsi    |  2 -
+ 2 files changed, 2 insertions(+), 65 deletions(-)
+
 -- 
-2.25.1
+2.32.0
 
