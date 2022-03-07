@@ -2,169 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1CA14D0216
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:53:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F240E4D0226
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:55:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243579AbiCGOyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 09:54:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49290 "EHLO
+        id S234760AbiCGO4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 09:56:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243551AbiCGOxs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:53:48 -0500
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DED35DED;
-        Mon,  7 Mar 2022 06:52:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646664773; x=1678200773;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=d/3k4mHvlZwTsHccmScqQ+aEtnwgFzJWdq9diAD46iw=;
-  b=EW+xC8wu/RN1SOmZiDloMXefskH/qZxfu2Fk1duvFJQIA2UOupxz29aW
-   faXtvtArfoWkdspdYTIbRU58P/mlJQunIdPsm4/gqKoNhth8vM8jJp0WG
-   MjdBSEQ/K/KQ6jwT2skTgk7cPPiQNN+Gs+ywuHCDV07bHWzCuwW8o47Mq
-   U6GmI0fiSk/M4SAG9s0WXgo61/J1lXtATwZKBYDkZ48HJrnVN/aYgTJW5
-   vHZrPjl+240/A45NGd5h2iJiFW60iTXNbm83zpZ5acloPbvaLAx2z/K+4
-   RkEM17MhfKaWIcUYF82+Mrhf7QvoAKsTk7gRNDVDdhTHHiG2NjKi3Bg28
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="254136272"
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="254136272"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 06:52:50 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="687559044"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 07 Mar 2022 06:52:46 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 07 Mar 2022 16:52:45 +0200
-Date:   Mon, 7 Mar 2022 16:52:45 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 3/7] usb: typec: mux: Check dev_set_name() return value
-Message-ID: <YiYcPa2XE2MlKVQU@kuha.fi.intel.com>
-References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
- <20220307034040.1111107-3-bjorn.andersson@linaro.org>
- <YiXZkqPQxqQ9I0VH@smile.fi.intel.com>
- <YiYXywEEz7WZQhfd@ripper>
+        with ESMTP id S235966AbiCGO4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:56:11 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC27C9027B
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 06:55:16 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 641913F5FA
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 14:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646664915;
+        bh=C8pfnsecsrezK4Nb7IRuKxjSY5+ji8Ej5U+DGoorANw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=WJt3+JH5GgdWW887A6G1YWpLfGkR0tH4I3f1/i69wAy/cgVWX1yWUUUK47vF4307+
+         gizh6u1POkIM0+gaqLwqIyV+UOGh7wIfXYzB0lLKr/Icey16HXPyu+4TLSP118wr/R
+         z+t+M7zvnnLln+JxLJhO213UNO56dtQtqolyfYIJnxBF7LWJOTlHvJSqDO+s7/dnLE
+         w83+eeHrco70R9vTgyc5MaMABrlR36+50e3wFvVmtNUwWQFFLsFw4eGriduBtN7IQV
+         BilMGPpmCYFzzvwE4IJ3ZADr/QQpd3yXR9WenIaM9AcK2aNLq/slyuJ1a57aUbrEvT
+         +j8ZsjHZncAGw==
+Received: by mail-ed1-f71.google.com with SMTP id l8-20020a056402028800b0041636072ef0so2718809edv.13
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 06:55:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=C8pfnsecsrezK4Nb7IRuKxjSY5+ji8Ej5U+DGoorANw=;
+        b=ZUqXLSj2khAKUhiEu19POMlsoMEQGZa0oUVOcy+AD5zP9eSP5muNvobJzDvVHZQfZS
+         HvQN9Q2DGUgHfg3Cyj8SlZjHjuIaXIwuJK8ikjlBX+pX3oZypKaJiyClMmsRyc8ly/C9
+         RUEMiokhwEjcqtyebGq8rlMiFChLdq08axBkOCOImtpVWPGagCZOgJnE6XAhUIz62WFs
+         PnBbnTyPOlFltHHlpSeRTYZniUVeCllSNTYWG/MKKjnDNhHWZlsu2MzNTA8aGhPgzV4k
+         BucChzc7DGfkZEQvCoEuL0QBIF883iji0Y2JcdjPH+GrOMF4yem2SlwELrmjq9gL+FeS
+         W75A==
+X-Gm-Message-State: AOAM533iKJX9EWqqVvQ7hgw61OvVxE/GwbjDXWnrOTFKHJvMUEVrbvZC
+        z0HL83Htsr/f4Rbc2fNTFvVJeHeObJSaNbaIvTlHJOPX7u3ZL6JPgOyGqB9Ymw3akh0R/lwbcQi
+        2ksJrMWSRCp6FlOrAt0GwZrnFESbLc0tGq9qLu2M=
+X-Received: by 2002:a17:906:6a0f:b0:6d7:1021:2bd2 with SMTP id qw15-20020a1709066a0f00b006d710212bd2mr9960424ejc.395.1646664915109;
+        Mon, 07 Mar 2022 06:55:15 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx0lnoIbRB64+BxucbKOyxrxZ+MR5/YF75HAstgYp2zaexCX+E0Y4T2gxNY+oCkTIf2TYVxVA==
+X-Received: by 2002:a17:906:6a0f:b0:6d7:1021:2bd2 with SMTP id qw15-20020a1709066a0f00b006d710212bd2mr9960403ejc.395.1646664914823;
+        Mon, 07 Mar 2022 06:55:14 -0800 (PST)
+Received: from [192.168.0.142] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id z92-20020a509e65000000b00416466dc220sm1749452ede.87.2022.03.07.06.55.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 06:55:13 -0800 (PST)
+Message-ID: <4e137401-4b8c-0abc-0c50-d784d579a991@canonical.com>
+Date:   Mon, 7 Mar 2022 15:55:12 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiYXywEEz7WZQhfd@ripper>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: convert atmel pwm to json-schema
+Content-Language: en-US
+To:     Sergiu Moga <sergiu.moga@microchip.com>,
+        claudiu.beznea@microchip.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220307144652.162706-1-sergiu.moga@microchip.com>
+ <20220307144652.162706-2-sergiu.moga@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220307144652.162706-2-sergiu.moga@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 06:33:47AM -0800, Bjorn Andersson wrote:
-> On Mon 07 Mar 02:08 PST 2022, Andy Shevchenko wrote:
+On 07/03/2022 15:46, Sergiu Moga wrote:
+> Convert PWM binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
 > 
-> > On Sun, Mar 06, 2022 at 07:40:36PM -0800, Bjorn Andersson wrote:
-> > > It's possible that dev_set_name() returns -ENOMEM, catch and handle this.
-> > 
-> > Thanks!
-> > Shouldn't we have a Fixes tag and be sent separately for this cycle?
-> > 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../bindings/pwm/atmel,at91sam-pwm.yaml       | 42 +++++++++++++++++++
+>  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 ----------------
+>  2 files changed, 42 insertions(+), 35 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
 > 
-> It seems appropriate to add:
-> 
-> Fixes: 3370db35193b ("usb: typec: Registering real device entries for the muxes")
-> 
-> 
-> If the maintainer would prefer to get this into v5.18, it could either
-> be picked ahead of the rest of the series, or I can resubmit it on its
-> own. I don't think it's a critical fix though.
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+> new file mode 100644
+> index 000000000000..2d5dd51a6a55
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+> @@ -0,0 +1,42 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/atmel,at91sam-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel/Microchip PWM controller
+> +
+> +allOf:
+> +  - $ref: "pwm.yaml#"
 
-Me neither.
+allOf by convention should go between maintaners and properties.
 
-Acked-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+> +
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91sam9rl-pwm
+> +      - atmel,sama5d3-pwm
+> +      - atmel,sama5d2-pwm
+> +      - microchip,sam9x60-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: true
 
-> > > Reported-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > ---
-> > > 
-> > > Changes since v3:
-> > > - New patch
-> > > 
-> > >  drivers/usb/typec/mux.c | 14 ++++++++++----
-> > >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> > > index c8340de0ed49..d2aaf294b649 100644
-> > > --- a/drivers/usb/typec/mux.c
-> > > +++ b/drivers/usb/typec/mux.c
-> > > @@ -131,8 +131,11 @@ typec_switch_register(struct device *parent,
-> > >  	sw->dev.class = &typec_mux_class;
-> > >  	sw->dev.type = &typec_switch_dev_type;
-> > >  	sw->dev.driver_data = desc->drvdata;
-> > > -	dev_set_name(&sw->dev, "%s-switch",
-> > > -		     desc->name ? desc->name : dev_name(parent));
-> > > +	ret = dev_set_name(&sw->dev, "%s-switch", desc->name ? desc->name : dev_name(parent));
-> > 
-> > We may use shorten form of the ternary
-> > 
-> > 	ret = dev_set_name(&sw->dev, "%s-switch", desc->name ?: dev_name(parent));
-> > 
-> > at the same time, but it's up to you.
-> > 
-> 
-> I looked at it, but felt it was an unrelated change and decided to leave
-> it as is.
-> 
-> > Either way code looks good to me,
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > 
-> 
-> Thanks,
-> Bjorn
-> 
-> > > +	if (ret) {
-> > > +		put_device(&sw->dev);
-> > > +		return ERR_PTR(ret);
-> > > +	}
-> > >  
-> > >  	ret = device_add(&sw->dev);
-> > >  	if (ret) {
-> > > @@ -338,8 +341,11 @@ typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
-> > >  	mux->dev.class = &typec_mux_class;
-> > >  	mux->dev.type = &typec_mux_dev_type;
-> > >  	mux->dev.driver_data = desc->drvdata;
-> > > -	dev_set_name(&mux->dev, "%s-mux",
-> > > -		     desc->name ? desc->name : dev_name(parent));
-> > > +	ret = dev_set_name(&mux->dev, "%s-mux", desc->name ? desc->name : dev_name(parent));
-> > 
-> > Ditto.
-> > 
-> > > +	if (ret) {
-> > > +		put_device(&mux->dev);
-> > > +		return ERR_PTR(ret);
-> > > +	}
-> > >  
-> > >  	ret = device_add(&mux->dev);
-> > >  	if (ret) {
-> > > -- 
-> > > 2.33.1
-> > > 
-> > 
-> > -- 
-> > With Best Regards,
-> > Andy Shevchenko
-> > 
-> > 
+This has to be either additionalProperties:false or
+"unevaluatedProperties:false".
 
--- 
-heikki
+> +
+> +examples:
+> +  - |
+> +        pwm0: pwm@f8034000 {
+> +                compatible = "atmel,at91sam9rl-pwm";
+> +                reg = <0xf8034000 0x400>;
+> +                #pwm-cells = <3>;
+
+Also please change indentation to 2 or 4 spaces (like we use for all DTS
+examples). Four is preferred (only personally).
+
+You also need to update the path in MAINTAINERS.
+
+Best regards,
+Krzysztof
