@@ -2,70 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB264CF151
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 06:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F534CF1AD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 07:13:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235395AbiCGFpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 00:45:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
+        id S235473AbiCGGNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 01:13:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235406AbiCGFpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 00:45:39 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E35D4B425
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 21:44:42 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id s1so12795898plg.12
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 21:44:42 -0800 (PST)
+        with ESMTP id S235288AbiCGGNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 01:13:49 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30E3F6420
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 22:12:56 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id bc27so12735611pgb.4
+        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 22:12:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=SjzY9j/Keh5kcP1plUzMyATlCp3344jlI/9GvjcvYoo=;
-        b=H3ukiKpOjrWALA8cOGscza/eG7Y9H2VLma85d2rXV3BXdDxL23AADulFiqldBByUvF
-         WT8geB6FfT0goNe7T7/ASGaN1cwQlt950sSp9K3T3FyagkBawU++fkoDTJ2WEYkQ58MI
-         u2zlWVYRjMM4RFgRkJTVEc8HLTG835uxlwm3VLCxckYcnJl5S7+o4cVvSr0Be4cAbixI
-         IojXvz0/AEovaZpUoitVfkC0P1dp3LchCuHwZWp3okcn/ivmURm5SGsScCSuQ2aQHZbg
-         nZHdTH3xFtJOZxWtnStzka2lW4RKhHGLFSyKabTYgkBm1y9JJy1AuXOQ9JhkDlDhwZVO
-         Dkaw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nphVZGk3IRt95221bT7nfSyXQcqcrjz0Ux2hJDzPmMw=;
+        b=ifi3tEd+jUJc9itlg1Xoweu6CKrVulnxsqqlasH2SskzDA+aIdNk7OLrpFeGdVti39
+         ICRKw31jdbcyCePqW8r/u9kG021jyloq1SQ5LsyS6jm6YYfXPc4nzwpP+vjvkAj3QfQ6
+         I8bKLZKELQ52QHAZQBYhCRqgAcKejZjKTfjC8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=SjzY9j/Keh5kcP1plUzMyATlCp3344jlI/9GvjcvYoo=;
-        b=2QKcS+Rw05EjTB0k2IS61UK/bKW392q+YHKRNxof4ypNgWpBriVGn3jPS1ZekK77UN
-         Rel827y2qcpe1DtBZarUvptlgCHeo0NAm0BN7oLnX+WcdoaaW5bkn2q2qOQnMYB77IV3
-         SkIPakvl72vFdwLUu1y5ixUcfKjckDu6rk6rop/9/qMQBp9UjUpy41s7dnhGxDQ8eYmH
-         +zOkkkWlRe2lwZ4IyyDxt79zFZuOcmD9fCtRuh+F5W5tu9qyMvF0baSUCr1W7R4OeKTr
-         kPU7awnqoY142YW8UFDVXWOMU3qn5bzrEKzehkedTLOGYqZCuiyRSDnq5DjK7WE5vPN+
-         OYXQ==
-X-Gm-Message-State: AOAM532Yoni4MOSGMyFLp5LPsb0zLbbtmrXhQ8MefyMPGMQD0sS2vNpd
-        6G/1ZB3pMD9fU/1qsXw8W6cDbg==
-X-Google-Smtp-Source: ABdhPJwmsg2NvIPGJKgc2QYAjoAgRREp5vq1gE8kB+AJyhWvnd21cTaR/lWtZMx27QIwQX1NVuEHUQ==
-X-Received: by 2002:a17:90a:950b:b0:1bf:4f9b:710e with SMTP id t11-20020a17090a950b00b001bf4f9b710emr6343302pjo.241.1646631882007;
-        Sun, 06 Mar 2022 21:44:42 -0800 (PST)
-Received: from hsinchu16.internal.sifive.com (59-124-168-89.hinet-ip.hinet.net. [59.124.168.89])
-        by smtp.gmail.com with ESMTPSA id k1-20020a056a00168100b004e0e45a39c6sm14447385pfc.181.2022.03.06.21.44.38
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nphVZGk3IRt95221bT7nfSyXQcqcrjz0Ux2hJDzPmMw=;
+        b=bMcRbfzAKSbDoLZ8vIY2d1zPtwuYQuJsx0AAxOiS4uPRb9J2KkSJuQssrfDHvZpZo1
+         aH5vfjWT9tnd2hthP/tYLpxH8f6MkO0hSLeIZ3vkCmlvM8goZWKL0T909IkjHGvrTASX
+         z4BP26g/t4bfT2E3vv36UG9Zeky5GSralRvF+81xTAXROY2eTfD0GMTpB1HppPO2kkdf
+         VbPWL6lYYEuxwo4FPWGp+wpYYMYhnTXzfdgFYVBC8ehNphxfjXGeEnq8H7ljZV8hsPC3
+         UO7LZ+t5B9eSmL+rdUwXLm5Pclfro5uGn8PamnYR6aPSixn4I6aYOnNUpUhhmK2NYnHa
+         Uxrg==
+X-Gm-Message-State: AOAM532lOXWaCZplf4D5xLkgYSTdOIDYQveIZubB0oEVP/JorUBQ8rkr
+        NTft2yoAAJsfp0G9S51R56E7mg==
+X-Google-Smtp-Source: ABdhPJwbS4tHwgK4DS3o62V8oPKsTJMVUVN3CHN8/+075fpx4MAoYZjrJmfkAUcQfL8G/bf+YYFFhw==
+X-Received: by 2002:a63:1c8:0:b0:380:189b:1e66 with SMTP id 191-20020a6301c8000000b00380189b1e66mr5916458pgb.71.1646633575694;
+        Sun, 06 Mar 2022 22:12:55 -0800 (PST)
+Received: from google.com ([2401:fa00:1:10:40e5:90aa:d4b:2ad9])
+        by smtp.gmail.com with ESMTPSA id x6-20020a17090aa38600b001bce781ce03sm11488297pjp.18.2022.03.06.22.12.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Mar 2022 21:44:41 -0800 (PST)
-From:   Zong Li <zong.li@sifive.com>
-To:     robh+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, krzysztof.kozlowski@canonical.com,
-        conor.dooley@microchip.com, geert@linux-m68k.org,
-        bin.meng@windriver.com, green.wan@sifive.com, vkoul@kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Zong Li <zong.li@sifive.com>, Palmer Dabbelt <palmer@rivosinc.com>
-Subject: [PATCH v7 3/3] dmaengine: sf-pdma: Get number of channel by device tree
-Date:   Mon,  7 Mar 2022 13:44:26 +0800
-Message-Id: <73fcb88608aa18c02e92f1641441c073a7912ea3.1646631717.git.zong.li@sifive.com>
-X-Mailer: git-send-email 2.31.1
-In-Reply-To: <cover.1646631717.git.zong.li@sifive.com>
-References: <cover.1646631717.git.zong.li@sifive.com>
+        Sun, 06 Mar 2022 22:12:55 -0800 (PST)
+Date:   Mon, 7 Mar 2022 14:12:50 +0800
+From:   Chen-Yu Tsai <wenst@chromium.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        =?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado 
+        <nfraprado@collabora.com>
+Cc:     Xin Ji <xji@analogixsemi.com>, a.hajda@samsung.com,
+        narmstrong@baylibre.com, dan.carpenter@oracle.com,
+        robert.foss@linaro.org, jonas@kwiboo.se, jernej.skrabec@gmail.com,
+        airlied@linux.ie, daniel@ffwll.ch, sam@ravnborg.org,
+        pihsun@chromium.org, tzungbi@google.com, maxime@cerno.tech,
+        drinkcat@google.com, hsinyi@chromium.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        bliang@analogixsemi.com, qwen@analogixsemi.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v12 3/4] drm/bridge: anx7625: add MIPI DPI input feature
+Message-ID: <YiWiYpEfTOOqgyAN@google.com>
+References: <20211105031904.2641088-1-xji@analogixsemi.com>
+ <20211105031904.2641088-3-xji@analogixsemi.com>
+ <YiTruiCIkyxs3jTC@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YiTruiCIkyxs3jTC@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,105 +77,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It currently assumes that there are always four channels, it would
-cause the error if there is actually less than four channels. Change
-that by getting number of channel from device tree.
+On Sun, Mar 06, 2022 at 07:13:30PM +0200, Laurent Pinchart wrote:
+> Hello Xin,
+> 
+> (Question for Rob below, and I'm afraid this is urgent as we need to
+> merge a fix in v5.17).
+> 
+> On Fri, Nov 05, 2021 at 11:19:03AM +0800, Xin Ji wrote:
+> > The basic anx7625 driver only support MIPI DSI rx signal input.
+> > This patch add MIPI DPI rx input configuration support, after apply
+> > this patch, the driver can support DSI rx or DPI rx by adding
+> > 'bus-type' in DT.
+> > 
+> > Reviewed-by: Robert Foss <robert.foss@linaro.org>
+> > Signed-off-by: Xin Ji <xji@analogixsemi.com>
+> > ---
+> >  drivers/gpu/drm/bridge/analogix/anx7625.c | 247 ++++++++++++++++------
+> >  drivers/gpu/drm/bridge/analogix/anx7625.h |  18 +-
+> >  2 files changed, 205 insertions(+), 60 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > index f48e91134c20..f7c3386c8929 100644
+> > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
+> > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
 
-For backwards-compatibility, it uses the default value (i.e. 4) when
-there is no 'dma-channels' information in dts.
+[...]
 
-Signed-off-by: Zong Li <zong.li@sifive.com>
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
----
- drivers/dma/sf-pdma/sf-pdma.c | 24 ++++++++++++++++--------
- drivers/dma/sf-pdma/sf-pdma.h |  8 ++------
- 2 files changed, 18 insertions(+), 14 deletions(-)
+> >  static int anx7625_parse_dt(struct device *dev,
+> >  			    struct anx7625_platform_data *pdata)
+> >  {
+> > -	struct device_node *np = dev->of_node;
+> > +	struct device_node *np = dev->of_node, *ep0;
+> >  	struct drm_panel *panel;
+> >  	int ret;
+> > +	int bus_type, mipi_lanes;
+> > +
+> > +	anx7625_get_swing_setting(dev, pdata);
+> >  
+> > +	pdata->is_dpi = 1; /* default dpi mode */
+> >  	pdata->mipi_host_node = of_graph_get_remote_node(np, 0, 0);
+> >  	if (!pdata->mipi_host_node) {
+> >  		DRM_DEV_ERROR(dev, "fail to get internal panel.\n");
+> >  		return -ENODEV;
+> >  	}
+> >  
+> > -	DRM_DEV_DEBUG_DRIVER(dev, "found dsi host node.\n");
+> > +	bus_type = V4L2_FWNODE_BUS_TYPE_PARALLEL;
+> > +	mipi_lanes = MAX_LANES_SUPPORT;
+> > +	ep0 = of_graph_get_endpoint_by_regs(np, 0, 0);
+> > +	if (ep0) {
+> > +		if (of_property_read_u32(ep0, "bus-type", &bus_type))
+> > +			bus_type = 0;
+> > +
+> > +		mipi_lanes = of_property_count_u32_elems(ep0, "data-lanes");
+> > +	}
+> > +
+> > +	if (bus_type == V4L2_FWNODE_BUS_TYPE_PARALLEL) /* bus type is Parallel(DSI) */
+> 
+> This is not correct *at all*. V4L2_FWNODE_BUS_TYPE_PARALLEL has nothing
+> to do with DSI. DSI stands for Digital *Serial* Interface. If anything,
+> the V4L2_FWNODE_BUS_TYPE_PARALLEL type would map better to DPI, even if
+> it's not an exact match.
+> 
+> This patch has landed in v5.17-rc1, along with the corresponding
+> bindings. As DT bindings are an ABI, we should really fix this before
+> v5.17 is released. There is no DSI bus types defined in DT, and adding
+> one as a fix so late in the v5.17-rc cycle seems a bit of a stretch to
+> me (unless Rob disagrees).
+> 
+> It would seem best to revert this series and the corresponding bindings,
+> and retry in v5.18.
 
-diff --git a/drivers/dma/sf-pdma/sf-pdma.c b/drivers/dma/sf-pdma/sf-pdma.c
-index f12606aeff87..db5a4ef76077 100644
---- a/drivers/dma/sf-pdma/sf-pdma.c
-+++ b/drivers/dma/sf-pdma/sf-pdma.c
-@@ -482,23 +482,30 @@ static void sf_pdma_setup_chans(struct sf_pdma *pdma)
- static int sf_pdma_probe(struct platform_device *pdev)
- {
- 	struct sf_pdma *pdma;
--	struct sf_pdma_chan *chan;
- 	struct resource *res;
--	int len, chans;
--	int ret;
-+	int ret, n_chans;
- 	const enum dma_slave_buswidth widths =
- 		DMA_SLAVE_BUSWIDTH_1_BYTE | DMA_SLAVE_BUSWIDTH_2_BYTES |
- 		DMA_SLAVE_BUSWIDTH_4_BYTES | DMA_SLAVE_BUSWIDTH_8_BYTES |
- 		DMA_SLAVE_BUSWIDTH_16_BYTES | DMA_SLAVE_BUSWIDTH_32_BYTES |
- 		DMA_SLAVE_BUSWIDTH_64_BYTES;
- 
--	chans = PDMA_NR_CH;
--	len = sizeof(*pdma) + sizeof(*chan) * chans;
--	pdma = devm_kzalloc(&pdev->dev, len, GFP_KERNEL);
-+	ret = of_property_read_u32(pdev->dev.of_node, "dma-channels", &n_chans);
-+	if (ret) {
-+		/* backwards-compatibility for no dma-channels property */
-+		dev_dbg(&pdev->dev, "set number of channels to default value: 4\n");
-+		n_chans = PDMA_MAX_NR_CH;
-+	} else if (n_chans > PDMA_MAX_NR_CH) {
-+		dev_err(&pdev->dev, "the number of channels exceeds the maximum\n");
-+		return -EINVAL;
-+	}
-+
-+	pdma = devm_kzalloc(&pdev->dev, struct_size(pdma, chans, n_chans),
-+			    GFP_KERNEL);
- 	if (!pdma)
- 		return -ENOMEM;
- 
--	pdma->n_chans = chans;
-+	pdma->n_chans = n_chans;
- 
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	pdma->membase = devm_ioremap_resource(&pdev->dev, res);
-@@ -556,7 +563,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 	struct sf_pdma_chan *ch;
- 	int i;
- 
--	for (i = 0; i < PDMA_NR_CH; i++) {
-+	for (i = 0; i < pdma->n_chans; i++) {
- 		ch = &pdma->chans[i];
- 
- 		devm_free_irq(&pdev->dev, ch->txirq, ch);
-@@ -574,6 +581,7 @@ static int sf_pdma_remove(struct platform_device *pdev)
- 
- static const struct of_device_id sf_pdma_dt_ids[] = {
- 	{ .compatible = "sifive,fu540-c000-pdma" },
-+	{ .compatible = "sifive,pdma0" },
- 	{},
- };
- MODULE_DEVICE_TABLE(of, sf_pdma_dt_ids);
-diff --git a/drivers/dma/sf-pdma/sf-pdma.h b/drivers/dma/sf-pdma/sf-pdma.h
-index 0c20167b097d..dcb3687bd5da 100644
---- a/drivers/dma/sf-pdma/sf-pdma.h
-+++ b/drivers/dma/sf-pdma/sf-pdma.h
-@@ -22,11 +22,7 @@
- #include "../dmaengine.h"
- #include "../virt-dma.h"
- 
--#define PDMA_NR_CH					4
--
--#if (PDMA_NR_CH != 4)
--#error "Please define PDMA_NR_CH to 4"
--#endif
-+#define PDMA_MAX_NR_CH					4
- 
- #define PDMA_BASE_ADDR					0x3000000
- #define PDMA_CHAN_OFFSET				0x1000
-@@ -118,7 +114,7 @@ struct sf_pdma {
- 	void __iomem            *membase;
- 	void __iomem            *mappedbase;
- 	u32			n_chans;
--	struct sf_pdma_chan	chans[PDMA_NR_CH];
-+	struct sf_pdma_chan	chans[];
- };
- 
- #endif /* _SF_PDMA_H */
--- 
-2.31.1
+There is a DT patch using this property that is already queued up for 5.17
+in the soc tree:
 
+https://lore.kernel.org/all/20220214200507.2500693-1-nfraprado@collabora.com/
+
+merged here:
+
+http://git.kernel.org/soc/soc/c/32568ae37596b529628ac09b875f4874e614f63f
+
+We will need to revert that one as well.
+
+ChenYu
