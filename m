@@ -2,362 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BAF14CFCFF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 12:33:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4ECA4CFD12
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 12:35:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240772AbiCGLeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 06:34:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45934 "EHLO
+        id S232165AbiCGLfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 06:35:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238943AbiCGLdw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 06:33:52 -0500
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA504E43;
-        Mon,  7 Mar 2022 03:31:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646652718; x=1678188718;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references;
-  bh=TGTg79fQZTWT0RA9AG/+IKlJgw6M0XTzATLGsWQCGkw=;
-  b=jTNIjvRTDi/LmNVuL5Xc97z24CSf3kg3np3mBC28gXMdU5ZegUEw8dj8
-   LsByEPA7mYaet2r7xJiXd+z7PQdkxDov0DXirYBK+Ba7R+h7/LWdyoFkg
-   RMOuHFccJvIcNyCMu54q/atXD/hy78qCp92FC8Tu0/LifucqCOkaEIVKV
-   n77rs54/Y3K876xyv9vP43hy4CgT2rVZWLkthhCwddaZBvrIpdn8TmCDB
-   9/Q79SVarX1BZk9tc5dNQpBn/YKqnTGSpUFI0qbRI0vKSvPzrTv0Ax2j+
-   lH/jbhRpzZWD3xkcX0cAODWTOCjDQR/2l4608LYU0TU7IYy80WyfYvHIh
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="234324471"
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="234324471"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 03:31:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="643212702"
-Received: from gio-01395267462.iind.intel.com ([10.49.4.124])
-  by orsmga004.jf.intel.com with ESMTP; 07 Mar 2022 03:31:55 -0800
-From:   shruthi.sanil@intel.com
-To:     daniel.lezcano@linaro.org, tglx@linutronix.de, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        srikanth.thokala@intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        mallikarjunappa.sangannavar@intel.com, shruthi.sanil@intel.com
-Subject: [PATCH v9 2/2] clocksource: Add Intel Keem Bay timer support
-Date:   Mon,  7 Mar 2022 17:01:47 +0530
-Message-Id: <20220307113147.19496-3-shruthi.sanil@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220307113147.19496-1-shruthi.sanil@intel.com>
-References: <20220307113147.19496-1-shruthi.sanil@intel.com>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231178AbiCGLfg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 06:35:36 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E96297;
+        Mon,  7 Mar 2022 03:34:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646652882; x=1678188882;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=J9Fd9dG/R2XPntSrlJZkFMae+p0Q9dV5Gbhw3VkAXZo=;
+  b=LBVLcLw02nM2Ygi4s8RBTIS3Yw5SkiDvtqFUWjlgP/kt6pD3DwneCa7N
+   K0EKyXuZGgX2aNSes9+JHOrAbQLzlKdI1r+tvam/1MN270DwGTggtZ+ew
+   ZG+VeIsT2oupxwQplq6ObYXan3QW7uK/HokOc1VZmbCUWDW0Q8lZ+XfWA
+   aFoG7UWNQnM1SemtHSkF2n9H/YTC7iKereSgcU2O3OGOGT5vh4wuMHGOv
+   QX94LpBiZxBa0QHIug3L6Q8saWFIMgZ75kwESFcN5dJlxnX8QZUg9pA2P
+   WjSw5huzXih6ytKNRlxcmPSDGulwb5/4PK/pqDcs98Ij7eOfhe3BoHP/X
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
+   d="scan'208";a="155938490"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 04:34:41 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 7 Mar 2022 04:34:41 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
+ Transport; Mon, 7 Mar 2022 04:34:41 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cJNNpfRDdJoqu9lpnTQ/Rost199G8m5BZC/tsd+C5Va98nc8CQhP740IjoZhAiWS56wkET5HciJDG5zByIqdh6VouEdJBCgVbs2XanUOrJYTbKGw7YC+wzExAFSz276sa20lBtHXuWlkZayDTxhw0N1jyoolj446nd52wFR8UD7vqhHDXMHeYO3IhFnxoDo50hKHOMtD6r7prdokP5Y4QzSduYknZRNLSkqycAnX0vK3RBZHKyR97kQPfqRfXewe67aupAPQ5HFja5wp1fthAx4PZcGNRcbiCEniiw6ff8Fp5a2b7BSpG/rcYQZNfNJYkTFxGtX3uPHdu7WFYancqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=J9Fd9dG/R2XPntSrlJZkFMae+p0Q9dV5Gbhw3VkAXZo=;
+ b=lM4L9S4qJEF/hX4qokQjkyxh8EW8ZjHmxh4TqI78B/baE1vx+zo++qq8hRihV/ldKgEka0rY2JdfeoTKG5twTB8UsEG1DR/kbYx8oaebVNioEM9ciaoCiZlxPaXAEvt0S53yccMzLZfnsElhCHhRo+TZlqEifsPqZ8yn2FhmV8GqFqLCiaVIE0fU5rxlvww0HWCo4YGUwoZlUuh+0gdYS239dvSMTLW8nyR6s37NQXPJIYidNy4lBRHe+G8y3TLBCQVNRUehT/DdFBeEwl27ZI73zV+5GXKEuEy/D7L8OwdpCM9iZ6d4795nRGxq2HaanulkrvEMIl2agLxabZGkiw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=J9Fd9dG/R2XPntSrlJZkFMae+p0Q9dV5Gbhw3VkAXZo=;
+ b=fOf4HP4u7w0evOoGAezmlfQIL3X5EJp8w5L2hBvd/RSvWNbiLL7PfcG8qVj1j2pM+vKPpnH6zWwKzaUQu2zfJXamsBr4xIfN6YaXsIqvI9zIXsMHK+2dIKg9/ZrONAxthAweUejKRB8lJReYUpwDOI8pgCJiyPNfMfERr90MdYk=
+Received: from DM8PR11MB5687.namprd11.prod.outlook.com (2603:10b6:8:22::7) by
+ BY5PR11MB4420.namprd11.prod.outlook.com (2603:10b6:a03:1c9::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.16; Mon, 7 Mar
+ 2022 11:34:36 +0000
+Received: from DM8PR11MB5687.namprd11.prod.outlook.com
+ ([fe80::fc32:96a4:933f:194f]) by DM8PR11MB5687.namprd11.prod.outlook.com
+ ([fe80::fc32:96a4:933f:194f%4]) with mapi id 15.20.5038.027; Mon, 7 Mar 2022
+ 11:34:35 +0000
+From:   <Codrin.Ciubotariu@microchip.com>
+To:     <krzysztof.kozlowski@canonical.com>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <lars@metafoo.de>, <broonie@kernel.org>, <perex@perex.cz>,
+        <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <Nicolas.Ferre@microchip.com>
+Subject: Re: [PATCH v2 2/6] ASoC: dt-bindings: Document Microchip's PDMC
+Thread-Topic: [PATCH v2 2/6] ASoC: dt-bindings: Document Microchip's PDMC
+Thread-Index: AQHYMgsIeRF6oOqfs0WNMbNC9KoCXKyzxggAgAAEhoA=
+Date:   Mon, 7 Mar 2022 11:34:35 +0000
+Message-ID: <38975dd7-2f54-8920-af28-0a002f0faf5e@microchip.com>
+References: <20220307100428.2227511-1-codrin.ciubotariu@microchip.com>
+ <20220307100428.2227511-3-codrin.ciubotariu@microchip.com>
+ <73c49f2b-ef2e-5ed8-f3d5-aa696f9af9e6@canonical.com>
+In-Reply-To: <73c49f2b-ef2e-5ed8-f3d5-aa696f9af9e6@canonical.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f939842f-0cb2-4d54-3463-08da002e752a
+x-ms-traffictypediagnostic: BY5PR11MB4420:EE_
+x-microsoft-antispam-prvs: <BY5PR11MB4420B37EDA9AB90AE75C31FBE7089@BY5PR11MB4420.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OD1bSYAwaTMXx9VL1spg6F3yIOYcQrqo4W/wVfzcycD6+EzDpyyaRC1SLEkk4Req1EvOS6BaBpMfa3wsy69KmtLDKgZfpXa2IFLNcq4melkQeURsAwqjoR/3bmS61e59nVxsCezu+6+FzXvea8uFNyhptmyu7KNfgaHbrzRszGPf3knHGsRaUJdupNEil+b/swiSVAdMtkdIra4lRazJY99NcsQPUxdl89DURZnaulvkQsrEvhwKssDEXtYNUII3837Eo99V+4XGFubV9CI4TIOehMqevEyct2kwGdWl/VDgiq2L4ACiZ981HdQWHHbNcs0GaaS9EykUvlIri7GfIl2zCOn757i2GSrApSJBHfpIFMSViQXQ3KwiLeHRYOUs/igKADRDVguQ0jx4+YNFewD+MWyrJjOpMKKHRFBaF1pNzA6y/6tNZaQXxUFRN+xos2SLAKfl3LPFsRE5YQ2kL3dLpoH6UGqIWAKXq64h7FJClXKyvhyAYVrhKWnFXxX3xK5zD1T3Qjup/ZK0gMDPU88DZvYMSmEaA5Fq69RVUx90MBOk+lnGN52TbmiyPg0JPd8McoVPOIwnv0td4KwaJnxZUVvN1zW2uW948ybo15XRWsnXzdvjbO3jCHVttqeFJXssWpxi4woLcY/uvDvVSSQZhgZi3USkPCvxKA+2q7kJGhpULptPATcTD1C0cDCGdPrKg+4+edzRQmCt82gLx0Ece0GdCjGkpK0sm6Vrt7bXF9TtmVVZ8/bPdtILIK5ArVbTdkXJKqlJt1gNRSb0xg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM8PR11MB5687.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(66446008)(316002)(86362001)(4326008)(66476007)(66556008)(8676002)(64756008)(38100700002)(31686004)(31696002)(2616005)(26005)(186003)(107886003)(53546011)(36756003)(54906003)(110136005)(71200400001)(6506007)(6512007)(5660300002)(76116006)(91956017)(122000001)(38070700005)(6486002)(66946007)(8936002)(83380400001)(7416002)(2906002)(508600001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eFhEeEM2T2VRc2U3UkxCdGNCWllwYnVpcS9RK3NpakxUck1UUWJyeFR0Sldn?=
+ =?utf-8?B?ZWsyNFQwWUZ1VmUvbElpTDhZNjVsWnlwMGdyOTdod0JKakFFRldFbzN5MzlJ?=
+ =?utf-8?B?c0UrTG9KN21WRjNxQnl3Si8vL1cwcXNwcjIyc0ZOdDJEZHU4U29taEp0TDNt?=
+ =?utf-8?B?T3dMSDNhQ0R5eUh5ZEZrcFBaMElLSGViL1d1d2p6ck94UFQ0L0ZRSWRudGdB?=
+ =?utf-8?B?cHcxdlRBdnBmM0h1YllGalhuejJlMlF4YWVWQVR3Z25Wb3Q2TU9xdmpSblhq?=
+ =?utf-8?B?ZnB0bWF5aXV0L3p4QlppK0NGRHJOMUxBZnA1UjFKbnRrUTFLV21wOG9mTUVL?=
+ =?utf-8?B?Rm54N1RFNkEzMkZhNkRqd0Fma3JuMm10Tzh5UEh4M1E2QTlqZjFyWW5maDZF?=
+ =?utf-8?B?bmVwNHN0QjMxdi8zM0RXbkxSOTBISlI1SkMwclNMSHM5Vng0UDJrZXp6aVdR?=
+ =?utf-8?B?eTlwbEoyNXp6OE16Q05lQzNTOWxpTXR5V3FpdlFtQjIvdE4xR0JaQno3c0l4?=
+ =?utf-8?B?aWJFNHVNbWVJaTZjNDgwbGhTMXhjMVF1Y2QwQTZTdXhaKzV5dHBZRndzWjBq?=
+ =?utf-8?B?YzdzMUdmWkh2M2NYcWlhcUp5ZmYwdW1SZ2w0Lzd1S0Z3a0RBN1JDK0dLeWdE?=
+ =?utf-8?B?UHhwMVNBcjR4Y1B4TVNWTU1ZY3dTNm1heXAxUkNuRUxzazVRWHFZb1lWKzVi?=
+ =?utf-8?B?cnRGcUxBQnkrbnpENUJoamc5bG1xVWtvalhXTFVoQmU3U0FFVk41V0hJb09v?=
+ =?utf-8?B?RjczK21GTXJmdG9CZmZCQ2hQUnhmWm1OTzdXWXFodUo0U0taWnVHa0RpTDF3?=
+ =?utf-8?B?bUJlMzU3b2FWUjFJVlNmTlgzZU1aWDFHZlFkRjlaQytQV0hlaUNFc1JlT084?=
+ =?utf-8?B?N0dYSWZFYzdiS3ZtMDhtVUU2d0Z5L1BQcGcxWVpNZDdYQ0ZGZG5kNzNPMlN0?=
+ =?utf-8?B?YldYd2cra1JKQWozVk9rTHczYlpvbys5UnI4S3pIVzRtWVNlOC9ZKzlHZFZR?=
+ =?utf-8?B?SHVNR0lpOEdaQWRIVFNDOTVPejRaWXhqQ2RkcTB1bHJhVXovcVdCRGZjc25a?=
+ =?utf-8?B?MnNEcE9Ra3RmVStwZWVvQ0xzdEg2LzBhdjIzTVdxd0NIZDd6Z0MrL1BSVXdR?=
+ =?utf-8?B?czNxZndOaFhCSG83bTU5V2dDN2FEeW84OWU4N0svbXJmZnJDV1FTRTM5Tkkw?=
+ =?utf-8?B?V1FKOW55Qy8wbnpGbUxGaVlSY2RQZFRwcHpOL2UxY0tlTGJaSUhZRElDU1RV?=
+ =?utf-8?B?bnRMckVzNTUyT0hmcUluZ0g1N1BRa2Q4YTgzSTdhZW0yOWZLSUNEV0hBaysv?=
+ =?utf-8?B?dDNtTTF0Q3F0QUI5MWhwbTNDK3ZnTWdMK0ZuQXRNNHJNbU5GV0pVT3ZoejFV?=
+ =?utf-8?B?OVRZMU1PRENUT05pWEV5WVhtWUtaMHc3UGh6UmNyQ0xmQXhyQTc2bGM2KzJF?=
+ =?utf-8?B?RVFGbDZNM1pTaU9qQjFkVWlFOXhoeXJNTWsvUTdNK21valJNVEJnTHd5K0Rl?=
+ =?utf-8?B?bHEyS0lNTGxWa01ZMGtjd3lGYVBzMkZqWkJDc2Z2clBGajBLV0RKU3ExcEVq?=
+ =?utf-8?B?aDB6RzVjUWVTb3pyYmwveGRycDlOM3p6Zjc1YmZXRVJxekdlTmEzWEVma1R5?=
+ =?utf-8?B?YS8wVjZFWG9GaTBkR29VcjRWenJRVXFHRHVFMDJNUkVsOW9RZXgzMkwvSWFa?=
+ =?utf-8?B?ZE5yaDVoU09CMkc3QkFyNkJGRzQzY2tEK240K2pGaUM1TDUvUWtsMnF3R2pi?=
+ =?utf-8?B?bU5IWkhjcFdHb0hBeWdnVGpZT0pKMExtRWJzZDg3cHEvQytkUTZDRzVMMlha?=
+ =?utf-8?B?R0Z4Vlc2MlR1ako1eUlMQ0lkdFdzSzNrdTcybFA4Q1lLNzRORWIrOG8yOFpO?=
+ =?utf-8?B?QkNxZUpkaU9HWE5yN29VRXE3VjJickNpaENtVnVGUEtQR0F2MHJEUFNiL000?=
+ =?utf-8?B?LzFaQjVXdUNTcy9URXVhRDd5d2hrOGRBa1lrQ0xaVXp4cmNmNGlzczM2WG5B?=
+ =?utf-8?B?Qjk0ZHloT2RuMWhDbmwwU1hLN05IR2IzbUdXTExrTVFqNjAwT2JUVUxLOGNv?=
+ =?utf-8?B?d2p0NTdOQWp1Z0Rnc2xKK3pSRjNOZEZIdCtRYzdEVUhqamhHTGcwZjJKZnl1?=
+ =?utf-8?B?UnNMOWVvT3ZDc3l6dldlV3lYUzFmcE1uNDRtT09FK0h6RStUUzNnLzhjeEt2?=
+ =?utf-8?B?S3IzR1R6RFZieDhCL1BrUy9RUmk2dm5jS3Q5UmRLM2NkYUYwTUZQRkhJQm9R?=
+ =?utf-8?B?NEtPNFkrOU1xRFFuVUNyNXlCRHFBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <CD73BCDF98BEA74CA638DBD8F16EA550@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5687.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f939842f-0cb2-4d54-3463-08da002e752a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2022 11:34:35.7417
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vSbme614zhiLgueOIW3P2DjuTCjzX6Ws9HiWxPTJHQVDWe+oD1Kof3DDW49WUWETOgZhweedBgOWZ4/ziO/lsSZxzuMhjq+bEtuj3Z9+T2U=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4420
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Shruthi Sanil <shruthi.sanil@intel.com>
-
-The Intel Keem Bay timer driver supports clocksource and clockevent
-features for the timer IP used in Intel Keem Bay SoC.
-The timer block supports 1 free running counter and 8 timers.
-The free running counter can be used as a clocksource and
-the timers can be used as clockevent. Each timer is capable of
-generating individual interrupt.
-Both the features are enabled through the timer general config register.
-
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-Signed-off-by: Shruthi Sanil <shruthi.sanil@intel.com>
----
- MAINTAINERS                         |   6 +
- drivers/clocksource/Kconfig         |  11 ++
- drivers/clocksource/Makefile        |   1 +
- drivers/clocksource/timer-keembay.c | 227 ++++++++++++++++++++++++++++
- 4 files changed, 245 insertions(+)
- create mode 100644 drivers/clocksource/timer-keembay.c
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 05fd080b82f3..90af9439d529 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9791,6 +9791,12 @@ F:	drivers/crypto/keembay/keembay-ocs-hcu-core.c
- F:	drivers/crypto/keembay/ocs-hcu.c
- F:	drivers/crypto/keembay/ocs-hcu.h
- 
-+INTEL KEEM BAY TIMER DRIVER
-+M:	Shruthi Sanil <shruthi.sanil@intel.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/timer/intel,keembay-timer.yaml
-+F:	drivers/clocksource/timer-keembay.c
-+
- INTEL THUNDER BAY EMMC PHY DRIVER
- M:	Nandhini Srikandan <nandhini.srikandan@intel.com>
- M:	Rashmi A <rashmi.a@intel.com>
-diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index cfb8ea0df3b1..65b6cf916e5a 100644
---- a/drivers/clocksource/Kconfig
-+++ b/drivers/clocksource/Kconfig
-@@ -721,4 +721,15 @@ config MICROCHIP_PIT64B
- 	  modes and high resolution. It is used as a clocksource
- 	  and a clockevent.
- 
-+config KEEMBAY_TIMER
-+	bool "Intel Keem Bay timer"
-+	depends on ARCH_KEEMBAY || COMPILE_TEST
-+	select TIMER_OF
-+	help
-+	  This option enables the support for the Intel Keem Bay
-+	  general purpose timer and free running counter driver.
-+	  Each timer can generate an individual interrupt and
-+	  supports oneshot and periodic modes.
-+	  The 64-bit counter can be used as a clock source.
-+
- endmenu
-diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index fa5f624eadb6..dff6458ef9e5 100644
---- a/drivers/clocksource/Makefile
-+++ b/drivers/clocksource/Makefile
-@@ -89,3 +89,4 @@ obj-$(CONFIG_GX6605S_TIMER)		+= timer-gx6605s.o
- obj-$(CONFIG_HYPERV_TIMER)		+= hyperv_timer.o
- obj-$(CONFIG_MICROCHIP_PIT64B)		+= timer-microchip-pit64b.o
- obj-$(CONFIG_MSC313E_TIMER)		+= timer-msc313e.o
-+obj-$(CONFIG_KEEMBAY_TIMER)		+= timer-keembay.o
-diff --git a/drivers/clocksource/timer-keembay.c b/drivers/clocksource/timer-keembay.c
-new file mode 100644
-index 000000000000..385863c064cd
---- /dev/null
-+++ b/drivers/clocksource/timer-keembay.c
-@@ -0,0 +1,227 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Intel Keem Bay Timer driver
-+ *
-+ * Copyright (C) 2020 Intel Corporation
-+ */
-+
-+#include <linux/bitops.h>
-+#include <linux/interrupt.h>
-+#include <linux/io-64-nonatomic-lo-hi.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/sizes.h>
-+#include <linux/slab.h>
-+#include <linux/regmap.h>
-+
-+#include "timer-of.h"
-+
-+/* Timer register offset */
-+#define TIM_CNT_VAL_OFFSET		0x0
-+#define TIM_RELOAD_VAL_OFFSET		0x4
-+#define TIM_CONFIG_OFFSET		0x8
-+
-+/* Bit fields of timer general config register */
-+#define TIM_CONFIG_PRESCALER_ENABLE	BIT(2)
-+#define TIM_CONFIG_COUNTER_ENABLE	BIT(0)
-+
-+/* Bit fields of timer config register */
-+#define TIM_CONFIG_INTERRUPT_PENDING	BIT(4)
-+#define TIM_CONFIG_INTERRUPT_ENABLE	BIT(2)
-+#define TIM_CONFIG_RESTART		BIT(1)
-+#define TIM_CONFIG_ENABLE		BIT(0)
-+
-+#define TIM_GEN_MASK			GENMASK(31, 12)
-+#define TIM_RATING			200
-+#define TIM_CLKSRC_MASK_BITS		64
-+
-+#define TIMER_NAME_SIZE			25
-+
-+static inline void keembay_timer_enable(void __iomem *base, u32 flags)
-+{
-+	writel(TIM_CONFIG_ENABLE | flags, base + TIM_CONFIG_OFFSET);
-+}
-+
-+static inline void keembay_timer_disable(void __iomem *base)
-+{
-+	writel(0x0, base + TIM_CONFIG_OFFSET);
-+}
-+
-+static inline void keembay_timer_update_counter(void __iomem *base, u32 val)
-+{
-+	writel(val, base + TIM_CNT_VAL_OFFSET);
-+	writel(val, base + TIM_RELOAD_VAL_OFFSET);
-+}
-+
-+static inline void keembay_timer_clear_pending_int(void __iomem *base)
-+{
-+	u32 val;
-+
-+	val = readl(base + TIM_CONFIG_OFFSET);
-+	val &= ~TIM_CONFIG_INTERRUPT_PENDING;
-+	writel(val, base + TIM_CONFIG_OFFSET);
-+}
-+
-+static int keembay_timer_set_next_event(unsigned long evt, struct clock_event_device *ce)
-+{
-+	u32 flags = TIM_CONFIG_INTERRUPT_ENABLE;
-+	struct timer_of *to = to_timer_of(ce);
-+	void __iomem *tim_base = timer_of_base(to);
-+
-+	keembay_timer_disable(tim_base);
-+	keembay_timer_update_counter(tim_base, evt);
-+	keembay_timer_enable(tim_base, flags);
-+
-+	return 0;
-+}
-+
-+static int keembay_timer_periodic(struct clock_event_device *ce)
-+{
-+	u32 flags = TIM_CONFIG_INTERRUPT_ENABLE | TIM_CONFIG_RESTART;
-+	struct timer_of *to = to_timer_of(ce);
-+	void __iomem *tim_base = timer_of_base(to);
-+
-+	keembay_timer_disable(tim_base);
-+	keembay_timer_update_counter(tim_base, timer_of_period(to));
-+	keembay_timer_enable(tim_base, flags);
-+
-+	return 0;
-+}
-+
-+static int keembay_timer_shutdown(struct clock_event_device *ce)
-+{
-+	struct timer_of *to = to_timer_of(ce);
-+
-+	keembay_timer_disable(timer_of_base(to));
-+
-+	return 0;
-+}
-+
-+static irqreturn_t keembay_timer_isr(int irq, void *dev_id)
-+{
-+	struct clock_event_device *evt = dev_id;
-+	struct timer_of *to = to_timer_of(evt);
-+	void __iomem *tim_base = timer_of_base(to);
-+	u32 val;
-+
-+	val = readl(tim_base + TIM_CONFIG_OFFSET);
-+
-+	if (val & TIM_CONFIG_RESTART) {
-+		/* Periodic Timer */
-+		keembay_timer_clear_pending_int(tim_base);
-+	} else {
-+		/* One-Shot Timer */
-+		keembay_timer_disable(tim_base);
-+	}
-+
-+	evt->event_handler(evt);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static struct timer_of keembay_ce_to = {
-+	.flags = TIMER_OF_IRQ | TIMER_OF_BASE | TIMER_OF_CLOCK,
-+	.clkevt = {
-+		.name		    = "keembay_sys_clkevt",
-+		.cpumask	    = cpu_possible_mask,
-+		.features	    = CLOCK_EVT_FEAT_PERIODIC |
-+				      CLOCK_EVT_FEAT_ONESHOT  |
-+				      CLOCK_EVT_FEAT_DYNIRQ,
-+		.rating		    = TIM_RATING,
-+		.set_next_event	    = keembay_timer_set_next_event,
-+		.set_state_periodic = keembay_timer_periodic,
-+		.set_state_shutdown = keembay_timer_shutdown,
-+	},
-+	.of_irq = {
-+		.handler = keembay_timer_isr,
-+		.flags   = IRQF_TIMER,
-+	},
-+};
-+
-+static int __init keembay_clockevent_init(struct device_node *np)
-+{
-+	struct regmap *regmap;
-+	int ret;
-+	u32 val;
-+
-+	regmap = device_node_to_regmap(np->parent);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	ret = regmap_read(regmap, TIM_CONFIG_OFFSET, &val);
-+	if (ret)
-+		return ret;
-+
-+	/* Prescaler bit must be enabled for the timer to function */
-+	if (!(val & TIM_CONFIG_PRESCALER_ENABLE)) {
-+		pr_err("%pOF: FW_BUG: Prescaler is not enabled\n", np);
-+		ret = -ENODEV;
-+	}
-+
-+
-+	ret = timer_of_init(np, &keembay_ce_to);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(regmap, TIM_RELOAD_VAL_OFFSET, &val);
-+	if (ret)
-+		return ret;
-+
-+	keembay_ce_to.of_clk.rate = keembay_ce_to.of_clk.rate / (val + 1);
-+
-+	clockevents_config_and_register(&keembay_ce_to.clkevt,
-+					timer_of_rate(&keembay_ce_to),
-+					1,
-+					U32_MAX);
-+
-+	return 0;
-+}
-+
-+static struct timer_of keembay_cs_to = {
-+	.flags	= TIMER_OF_BASE | TIMER_OF_CLOCK,
-+};
-+
-+static u64 notrace keembay_clocksource_read(struct clocksource *cs)
-+{
-+	return lo_hi_readq(timer_of_base(&keembay_cs_to));
-+}
-+
-+static struct clocksource keembay_counter = {
-+	.name	= "keembay_sys_counter",
-+	.rating	= TIM_RATING,
-+	.read	= keembay_clocksource_read,
-+	.mask	= CLOCKSOURCE_MASK(TIM_CLKSRC_MASK_BITS),
-+	.flags	= CLOCK_SOURCE_IS_CONTINUOUS |
-+		  CLOCK_SOURCE_SUSPEND_NONSTOP,
-+};
-+
-+static int __init keembay_clocksource_init(struct device_node *np)
-+{
-+	struct regmap *regmap;
-+	u32 val;
-+	int ret;
-+
-+	regmap = device_node_to_regmap(np->parent);
-+	if (IS_ERR(regmap))
-+		return PTR_ERR(regmap);
-+
-+	ret = regmap_read(regmap, TIM_CONFIG_OFFSET, &val);
-+	if (ret)
-+		return ret;
-+
-+	/* Free Running Counter bit must be enabled for counter to function */
-+	if (!(val & TIM_CONFIG_COUNTER_ENABLE)) {
-+		pr_err("%pOF: FW_BUG: free running counter is not enabled\n", np);
-+		return -ENODEV;
-+	}
-+
-+	ret = timer_of_init(np, &keembay_cs_to);
-+	if (ret)
-+		return ret;
-+
-+	return clocksource_register_hz(&keembay_counter, timer_of_rate(&keembay_cs_to));
-+}
-+
-+TIMER_OF_DECLARE(keembay_clockevent, "intel,keembay-timer", keembay_clockevent_init);
-+TIMER_OF_DECLARE(keembay_clocksource, "intel,keembay-counter", keembay_clocksource_init);
--- 
-2.17.1
-
+T24gMDcuMDMuMjAyMiAxMzoxOCwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gT24gMDcv
+MDMvMjAyMiAxMTowNCwgQ29kcmluIENpdWJvdGFyaXUgd3JvdGU6DQo+PiArZGVzY3JpcHRpb246
+DQo+PiArICBUaGUgTWljcm9jaGlwIFB1bHNlIERlbnNpdHkgTWljcm9waG9uZSBDb250cm9sbGVy
+IChQRE1DKSBpbnRlcmZhY2VzIHVwIHRvIDQgZGlnaXRhbCBtaWNyb3Bob25lcw0KPj4gKyAgaGF2
+aW5nIFB1bHNlIERlbnNpdHkgTW9kdWxhdGVkIChQRE0pIG91dHB1dHMuDQo+IA0KPiBUaGlzIGV4
+Y2VlZHMgODAgY2hhcmFjdGVycy4NCg0KSSB0aG91Z2h0IGl0IHdhcyByYWlzZWQgdG8gMTAwLiBj
+aGVja3BhdGNoIGRvZXNuJ3QgcmVwb3J0IGFueXRoaW5nIGFsc28uDQoNCj4+ICsgIG1pY3JvY2hp
+cCxtaWMtcG9zOg0KPj4gKyAgICBkZXNjcmlwdGlvbjogfA0KPj4gKyAgICAgIFBvc2l0aW9uIG9m
+IFBETSBtaWNyb3Bob25lcyBvbiB0aGUgRFMgbGluZSBhbmQgdGhlIHNhbXBsaW5nIGVkZ2UgKHJp
+c2luZyBvciBmYWxsaW5nKSBvZiB0aGUNCj4+ICsgICAgICBDTEsgbGluZS4gQSBtaWNyb3Bob25l
+IGlzIHJlcHJlc2VudGVkIGFzIGEgcGFpciBvZiBEUyBsaW5lIGFuZCB0aGUgc2FtcGxpbmcgZWRn
+ZS4gVGhlIGZpcnN0DQo+PiArICAgICAgbWljcm9waG9uZSBpcyBtYXBwZWQgdG8gY2hhbm5lbCAw
+LCB0aGUgc2Vjb25kIHRvIGNoYW5uZWwgMSwgZXRjLg0KPiANCj4gVGhpcyBpcyBhbHNvIHRvbyBs
+b25nLCB3cmFwIGF0IDgwLg0KDQpvay4uLg0KDQo+PiArICAgIHBkbWM6IHNvdW5kQGUxNjA4MDAw
+IHsNCj4+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWljcm9jaGlwLHNhbWE3ZzUtcGRtYyI7DQo+
+PiArICAgICAgICAjc291bmQtZGFpLWNlbGxzID0gPDA+Ow0KPj4gKyAgICAgICAgcmVnID0gPDB4
+ZTE2MDgwMDAgMHg0MDAwPjsNCj4gDQo+IEluIERUUyBzb3VyY2VzOiBjb21wYXRpYmxlIHRoZW4g
+cmVnLiBJIG1lbnRpb25lZCBpdCBpbiBwcmV2aW91cyB2ZXJzaW9uLg0KDQpyaWdodCwgZm9yZ290
+IGFib3V0IHJlZywgc29ycnkuDQoNCj4gQmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg0KV2ls
+bCBzZW5kIHYzLCB0aGFua3MgYWdhaW4gZm9yIHlvdXIgcmV2aWV3Lg0KDQpCZXN0IHJlZ2FyZHMs
+DQpDb2RyaW4NCg0K
