@@ -2,97 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3204CF3D3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:41:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FD604CF3D8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:42:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233527AbiCGImY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 03:42:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42692 "EHLO
+        id S231643AbiCGInF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 03:43:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233408AbiCGImX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:42:23 -0500
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76D363522
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 00:41:28 -0800 (PST)
-Received: by mail-wr1-x42f.google.com with SMTP id n15so7847963wra.6
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 00:41:28 -0800 (PST)
+        with ESMTP id S236225AbiCGIm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:42:59 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A6754F88;
+        Mon,  7 Mar 2022 00:42:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jgpf11r6JREUakzcMH7I1ug/w8r11Lg1Dun9m6fhLxk=;
-        b=K8x6OwcGNWTlorJJiD/N18xtHzZK/Ig7ebH2isVXcBYEW6Vh/nngKYaeeD+TbJWPpU
-         yCHC/2+8iN0gG1SwUBAWRiP3bqGmG4F5FH4aQAP4L4+wWWpYYCZFSIYREts+X9ATHrP0
-         iENdErazQZAzjUTWp5OagwltQZ+9+ViJVYqyG+LZi/KjwjO42o2/E8c7l6js+M/3oRxm
-         T4EqD0cn4mCDLMzW0PMlgJ25cKEmaEgGLvMHIFc8L1TXRs6Bx9NeTdV9Uy/W6jAUmIGE
-         mVCD5oezfk6e1LqyMOg45vNfs0J+9ZeY05vp1pzOM6OJntRoNPRBGt/n763nJS/Mwo+c
-         wR3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jgpf11r6JREUakzcMH7I1ug/w8r11Lg1Dun9m6fhLxk=;
-        b=A0guMWcd7cqFD1acqHwxjdb8jnWmEZKwBdwPVq4xAppQQAqWtAFQQ8B0uRZC5lhSd1
-         RM/2WiU+hS7slb199cj+ToqEfTqCZexRwjkzkU140Xr14dKjYBuh83TdMlLU159rOlta
-         vRG85FKs+NgVhgGqko49Pe0eAhJxwA8tNgCNyGKX8/9/rN5ws2Nfho1yNYtY/cvdZ+VU
-         zem05bLDFPpn6pzdXxDBSq7cN3+oG1Ptk4WzCkkn2khd1GGtm75WMd6BchB1dhHRrwZp
-         yDN/Q/sf3AHIJQB7zFfm0DjU/Bkb8DHq/hx5alqfp/kvNA9FnwCFuMATvNl26PLfGw/O
-         9YUg==
-X-Gm-Message-State: AOAM5315y/dZyMdaKJnhn1l13eh+EDIfZG/65HUqYzRm/mwSlIRtp07D
-        ytvWz48b8Q0kIUIz3b9ZpAPe2Q==
-X-Google-Smtp-Source: ABdhPJwXlGvZQmeKxxCzapULuFc47U/oA64bW7VjZL07iz9SNIdOFm0DOjZntjE6xGt6PUKhLZoYFQ==
-X-Received: by 2002:a05:6000:1569:b0:1f0:47eb:eafa with SMTP id 9-20020a056000156900b001f047ebeafamr7381021wrz.194.1646642487195;
-        Mon, 07 Mar 2022 00:41:27 -0800 (PST)
-Received: from localhost.localdomain ([2001:861:44c0:66c0:1451:71b4:fefe:6096])
-        by smtp.gmail.com with ESMTPSA id l12-20020a5d6d8c000000b001efd2c071dbsm11199969wrs.20.2022.03.07.00.41.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 00:41:26 -0800 (PST)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Shunzhou.Jiang" <shunzhou.jiang@amlogic.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, martin.blumenstingl@googlemail.com,
-        jbrunet@baylibre.com, khilman@baylibre.com
-Subject: Re: [PATCH V6 0/2] Power: meson-s4: add s4 power domain driver
-Date:   Mon,  7 Mar 2022 09:41:27 +0100
-Message-Id: <164664248244.1285549.14653525234263258346.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307025357.1368673-1-shunzhou.jiang@amlogic.com>
-References: <20220307025357.1368673-1-shunzhou.jiang@amlogic.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646642525; x=1678178525;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=CYDp9LwY8E/w662Qpkpqpqip6bbcmYnqEj5DmkGb4wM=;
+  b=oRhqUzCiOdjF6yNFfqoquLHZyZWaF2Fp7E7GKimLrU6TvJlpNhbeja0+
+   yfIAosqyubI/T/Q8GesV4WsSdW2NOoO2WeGIcYgTWHCc1ovaR6QV0FG9f
+   uhevzcESzgIeQVbvzwWGWZcWpkHPqM8m1XcEGr5IxyfFLqi7VtLAgz8ER
+   lb7hjz+S1gQhDqAV3xOwwLAxUdN62uJOzfjMLcSFm8nW7TMpTrr8Usld1
+   rS6SEP/F3BicsCmHJStBWFt0IM2wLGoORriliRThFuWbNPtjm34H1PN8U
+   vikS9j9G5b1s1LzMqoPQfkMhymR8iYlLbQcM1Bgf/tulx7dFfBYQESrs1
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,161,1643670000"; 
+   d="scan'208";a="22485416"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Mar 2022 09:42:02 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 07 Mar 2022 09:42:02 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 07 Mar 2022 09:42:02 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646642522; x=1678178522;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=CYDp9LwY8E/w662Qpkpqpqip6bbcmYnqEj5DmkGb4wM=;
+  b=XsUPiSpIxXBaHYHnEX5+oduK7QnMuBHScuscsvGLdy+NF6BI4tbyKwZv
+   FKYD5pVJ5BZ8H0unWq8nNX1NSNKCNsGlg1EoQLkIJt1GHbdBn86svbP6a
+   Q/o2N/OkifvcP1HVfq47+ynB8gyS2WH+11obCky4pP882FCBoE3VwgQOI
+   zQ5QjBsx4DTOx/19guWn9XFxiCn8vQ+l5bfvLc1Ewvb96DomeRYTY1X0b
+   ZMMyrXAPfwVmyC+nZ4RT+RljKlhuv5LGIjDo/PV5VUY6PTe37yNnzCYWo
+   47XjUlTm00gzYPdaIFkXwz1V+o2HV1UeZV4v4wL5DthqBvP2flUc/u8SU
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,161,1643670000"; 
+   d="scan'208";a="22485415"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Mar 2022 09:42:02 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 83C39280065;
+        Mon,  7 Mar 2022 09:42:02 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Hongxing Zhu <hongxing.zhu@nxp.com>
+Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: (EXT) RE: (EXT) [PATCH v1 4/7] dt-bindings: imx6q-pcie: Add iMX8MP PCIe compatible string
+Date:   Mon, 07 Mar 2022 09:42:02 +0100
+Message-ID: <4386341.LvFx2qVVIh@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <AS8PR04MB8676905699E85011E625BFE68C089@AS8PR04MB8676.eurprd04.prod.outlook.com>
+References: <1646634556-23779-1-git-send-email-hongxing.zhu@nxp.com> <11939148.O9o76ZdvQC@steina-w> <AS8PR04MB8676905699E85011E625BFE68C089@AS8PR04MB8676.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Richard,
 
-On Mon, 7 Mar 2022 10:53:55 +0800, Shunzhou.Jiang wrote:
-> From: Shunzhou Jiang <shunzhou.jiang@amlogic.com>
-> 
-> This patchset adds Power controller driver support for Meson-S4 SoC
-> Likes Meson-A1, the power domains register only can access in secure world
-> 
-> Shunzhou Jiang (2):
->   dt-bindings: power: add Amlogic s4 power domains bindings
->   soc: s4: Add support for power domains controller
-> 
-> [...]
+Am Montag, 7. M=C3=A4rz 2022, 09:19:52 CET schrieb Hongxing Zhu:
+> > -----Original Message-----
+> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Sent: 2022=E5=B9=B43=E6=9C=887=E6=97=A5 16:03
+> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
+> > Cc: p.zabel@pengutronix.de; l.stach@pengutronix.de; bhelgaas@google.com;
+> > lorenzo.pieralisi@arm.com; robh@kernel.org; shawnguo@kernel.org;
+> > linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org;
+> > linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > linux-kernel@vger.kernel.org; kernel@pengutronix.de; dl-linux-imx
+> > <linux-imx@nxp.com>; Hongxing Zhu <hongxing.zhu@nxp.com>
+> > Subject: Re: (EXT) [PATCH v1 4/7] dt-bindings: imx6q-pcie: Add iMX8MP
+> > PCIe
+> > compatible string
+> >=20
+> > Hi Richard,
+> >=20
+> > thanks for providing a patch supporting PCie on iMX8MP.
+> >=20
+> > Am Montag, 7. M=C3=A4rz 2022, 07:29:13 CET schrieb Richard Zhu:
+> >=20
+> > > Add i.MX8MP PCIe compatible string.
+> > >
+> > >
+> > >
+> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> > > ---
+> > >=20
+> > >  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > >
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+> > > 36c8a06d17a0..252e5b72aee0 100644
+> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> > > @@ -26,6 +26,7 @@ properties:
+> > >=20
+> > >        - fsl,imx7d-pcie
+> > >        - fsl,imx8mq-pcie
+> > >        - fsl,imx8mm-pcie
+> > >=20
+> > > +      - fsl,imx8mp-pcie
+> > >
+> > >
+> > >
+> > >    reg:
+> > >   =20
+> > >      items:
+> >=20
+> >=20
+> > Which branch is this based on? I don't have 'fsl,imx8mm-pcie' entry in =
+my
+> > tree.
+ Another patch 7 also doesn't apply cleanly.
+> >=20
+>=20
+> Hi Alexander:
+> Thanks for your quick reply.
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v5.18/drivers)
+Thanks for your fast response. I just wanted to give it a try on our own=20
+custom iMX8MP board. I did see the PCIe RC, but not EP (yet), no link up fo=
+r=20
+now.
 
-[1/2] dt-bindings: power: add Amlogic s4 power domains bindings
-      https://git.kernel.org/amlogic/c/40b358f6156ac516e33e5252a8769737054da24e
-[2/2] soc: s4: Add support for power domains controller
-      https://git.kernel.org/amlogic/c/f2b03c1056ef5c0829678f51273eace3e6327884
+> In the past days, I had summit some patches, and wait for ack or reviewed
+> tags.
+ But they might have some conflictions when do the codes merge.
+> I'm waiting for the ack, and will re-base them in a proper sequence later.
+>=20
+> About the #4 patch apply, it's better to pick the following commit, since=
+ it
+> had
+ Lucas' Reviewed-by tag, and wait for merge.
+> https://patchwork.ozlabs.org/project/linux-pci/patch/1646293805-18248-1-g=
+it-> send-email-hongxing.zhu@nxp.com/
+=20
+> About the #7 patch, I do the changes based on the following patch-set.
+> https://patchwork.ozlabs.org/project/linux-pci/cover/1645760667-10510-1-g=
+it-> send-email-hongxing.zhu@nxp.com/
+=20
+> I would add the dependency patch-set later in the cover-letter later.
+> Sorry to bring in-conveniency to you.
 
--- 
-Neil
+Thanks I'll retry with the dependencies updated, so I hopefully won't miss=
+=20
+something.
+
+> BTW, If you want to tests PCIe on i.MX8MM EVK board too, the following dts
+> changes should be cherry-picked from Shawn's git.
+> b4d36c10bf17 arm64: dts: imx8mm-evk: Add the pcie support on imx8mm evk
+> board
+ aaeba6a8e226 arm64: dts: imx8mm: Add the pcie support
+> cfc5078432ca arm64: dts: imx8mm: Add the pcie phy support
+
+Thanks I'll keep the imx8mm support in mind.
+
+Best regards
+Alexander
+
+
+
