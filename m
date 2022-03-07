@@ -2,93 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 896AB4CFBD1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 11:49:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9C94CFBB7
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 11:44:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238475AbiCGKuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 05:50:10 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60096 "EHLO
+        id S241233AbiCGKpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 05:45:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242173AbiCGKsn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 05:48:43 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B451344E5;
-        Mon,  7 Mar 2022 02:08:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646647703; x=1678183703;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=Kq5xDzu5rUqchBeOZqlyFeo3FlKSAv+x/053mDkH74c=;
-  b=EKkWHiZpgqTDVY+pvM9I9T48llDAmCRcZMdTO30d47N8iXvVMDhCWvqE
-   xLrrdj/tQp+kOkQtDpHNhTz+eWWfAishNJLOtXIeNqHXuC99RJ6wu/2mh
-   kiO0WxmD8Aih5bB9zDHho9Gg1eZEV9mVrYZYinmonlJNO9QETCueSPK2Y
-   au7dNBCK9otzlnaiXrrIDh/n8L7Lcq7WyjOFCs5ppNDjQt+gX0XIbb8Bz
-   O/+JiP1rP6tK2qA9fVfA2RjUR6U9iIftRrALMxkTa36oZ6HVmt3/2vTjT
-   /8l95pLNR6if2gaiTEbCQwzSR561ixq9ffje/yWmXYWjFdl4u6+HEW+Vu
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,161,1643698800"; 
-   d="scan'208";a="155475226"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 03:06:16 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Mar 2022 03:06:15 -0700
-Received: from rob-ult-m19940.amer.actel.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 03:06:12 -0700
-From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-To:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <lars@metafoo.de>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>,
-        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
-Subject: [PATCH v2 6/6] ARM: configs: at91: sama7_defconfig: add MCHP PDMC and DMIC drivers
-Date:   Mon, 7 Mar 2022 12:04:28 +0200
-Message-ID: <20220307100428.2227511-7-codrin.ciubotariu@microchip.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220307100428.2227511-1-codrin.ciubotariu@microchip.com>
-References: <20220307100428.2227511-1-codrin.ciubotariu@microchip.com>
+        with ESMTP id S241264AbiCGKox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 05:44:53 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D08CB9BAD2;
+        Mon,  7 Mar 2022 02:06:22 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id DB3A31F4141A
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646647518;
+        bh=4n43d/kwvXqgTtP2E2cl7YjIgZdAaaHm4+szh2o0Gxc=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=EwoW0mzvhNAswzPhTZJMoUfN4KfgilCcPX4NOgtYoxJLCP1weeZ+RwOo4byFk1vKF
+         fiaCMGPSktCLa2+cxO9t6SrLW/+DQohFOCQHiKdYMpzDBNd/xXNS6BkzH22VYYCKll
+         t2QWOvkWgb3aL0gI399BWdl697lUu9afHg455bkHhnj9wjhNSwT8gvr+HOOJ5jzWJB
+         zs8YNXL91r4jQw6HKEna8XG3NwDrL+6jj/AHhxZzMzUv4G8wPsKV+QNolanEmcU2ip
+         kvvG0SJzKShZCkWm9LVj0q450AA6PkkQREXP7cRZMuvejSxQdNlAtSQx6rfL9wIyW8
+         +Ru/yufyPPP/Q==
+Message-ID: <e9b5aeb6-84e0-3bb7-f955-c986c8278320@collabora.com>
+Date:   Mon, 7 Mar 2022 11:05:15 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v16 2/8] dt-bindings: arm: mediatek: mmsys: add power and
+ gce properties
+Content-Language: en-US
+To:     "jason-jh.lin" <jason-jh.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        hsinyi@chromium.org, fshao@chromium.org, moudy.ho@mediatek.com,
+        roy-cw.yeh@mediatek.com, CK Hu <ck.hu@mediatek.com>,
+        Fabien Parent <fparent@baylibre.com>, nancy.lin@mediatek.com,
+        singo.chang@mediatek.com, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220307032859.3275-1-jason-jh.lin@mediatek.com>
+ <20220307032859.3275-3-jason-jh.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220307032859.3275-3-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable drivers needed for Microchip's PDMC and PDM microphones.
+Il 07/03/22 04:28, jason-jh.lin ha scritto:
+> Power:
+> 1. Add description for power-domains property.
+> 
+> GCE:
+> 1. Add description for mboxes property.
+> 2. Add description for mediatek,gce-client-reg property.
+> 
+> Signed-off-by: jason-jh.lin <jason-jh.lin@mediatek.com>
 
-Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
----
-
-Changes in v2:
- - none;
-
- arch/arm/configs/sama7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index 0368068e04d9..bc29badab890 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -138,6 +138,8 @@ CONFIG_SND_SOC_MIKROE_PROTO=m
- CONFIG_SND_MCHP_SOC_I2S_MCC=y
- CONFIG_SND_MCHP_SOC_SPDIFTX=y
- CONFIG_SND_MCHP_SOC_SPDIFRX=y
-+CONFIG_SND_MCHP_SOC_PDMC=y
-+CONFIG_SND_SOC_DMIC=y
- CONFIG_SND_SOC_PCM5102A=y
- CONFIG_SND_SOC_SPDIF=y
- CONFIG_SND_SIMPLE_CARD=y
--- 
-2.32.0
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
