@@ -2,85 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D9AFB4CFFE7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:24:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F08224CFFF1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:26:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237215AbiCGNZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 08:25:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54490 "EHLO
+        id S238411AbiCGN1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 08:27:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232476AbiCGNZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:25:17 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5504F7D039
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:24:23 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 244083F60F
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:24:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646659462;
-        bh=TWixiBTEz7rcA6T3mO7kCyQ+X/3c1epPubayeGIJFlY=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=KhT2SXIg4hEZshD0ROWwDjCI37gNHAbw2WMQVMvMtuzA0nGe0puZlGxAdflf8uHq6
-         0VaxoruV1JX5vR6H26G6nZ+YQ/4KMxZFnqx06dYSMFbF+io+Ekftt0sGuSR15tIMRu
-         LtZ07KjyIkGbuN1rynr4K+B+LkGsE+IKrA/P+ah+Bzntqk7oojdMioqh7yicHD9qkd
-         1ggj8Z6QNJxv3FrXWbu6Gz067qg+Q3mGS23YbP4MBtP17/QiIaGX1Y0f2pxe2Ac1bs
-         fM4JdknGhTghCnhuedbvOrBuu7BFYr1Odk2gaAFTZnaAEWgSwqHLMeNbR/9/JcesM0
-         201E5kjM/0F+A==
-Received: by mail-ed1-f72.google.com with SMTP id n11-20020aa7c68b000000b0041641550e11so2228121edq.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 05:24:22 -0800 (PST)
+        with ESMTP id S230076AbiCGN1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:27:01 -0500
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6DA8A328;
+        Mon,  7 Mar 2022 05:26:04 -0800 (PST)
+Received: by mail-wm1-x329.google.com with SMTP id i66so9166233wma.5;
+        Mon, 07 Mar 2022 05:26:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OitVX9DAaNlroauyFMcBr/uj8TTgZYNkoujJpxXQGEU=;
+        b=ZJZoMK3O/e8Eukz/MSC2p9dHh0lEuOCMNLhPZEB2P0PoROk4P/RoT3n2PpJ27RL27Q
+         SFnDzrKKdeneEGqQJt78EQMe6Qh4Y2jfpZe4oZJvHj1HAa4hbd9f+zTsZQHez0N4I70w
+         Fs+oKZ9o4eKXi1mJHEEodPYK3wCyuYEja15PBvJVQhjdo28NMj03l6GliJcuQywZZaeS
+         sdAbmSj4APHPUgx+rBuSs5Q4fnn5BNzB3Mj7CFqCtN2Mu4k8UmY0kp4drRur9ynDMga7
+         9wPOBaUVwWVPWiWo3a22JHHwO8dtrQ2uAereDXS2Wipk5iG9bo2/NtVr/hwfc10dQ2uH
+         gnSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=TWixiBTEz7rcA6T3mO7kCyQ+X/3c1epPubayeGIJFlY=;
-        b=mpynaHk97EBDaZeWiBdo1cxntSgy1G6fhKJ37cViKqRBQ93fF8ldZ7uBJmvrN9y32f
-         wLp60FLgi5WVAUCuAdJSIy/dpGnyIVierxoOnBZgusRsovmXhaIXBlQ540boT84sQIpA
-         UwRbfyuGk6SU8XB0oMCwhpDFLzAtTazu2tEo1C7D2tqBXrrI9Ws4RobxPwbm6RCcYtzb
-         5+6NYYAJ+6C607hqJ3opULy06Eu5Hc3IZW7ZNt5HabpN32mTMMsnKBWwkDamZGVo2G/D
-         42QeOiw4AtPgIV05DX9mSVNeV9bzH0E2InZVyJg18I8jGC/gQ0i2TcsQ42nb9vcI0gqj
-         pQTA==
-X-Gm-Message-State: AOAM530v9VIAgvH9DoazZCKNAm+ALFt1ZEBJ6S8WQ4tY73Zsz1GjpZQD
-        6WSjKzN2R1nTmC0ITWxCh5kJFySazHi3s5ixVGo6Cgm1qEsjCYNgy34k5x6qfCQ8o41iOqepaFd
-        +wcMlGjhe7kQiNKKf/2HoBKblQYVCZ9IXg7wU8Ug=
-X-Received: by 2002:a17:907:72c3:b0:6da:b4d1:415a with SMTP id du3-20020a17090772c300b006dab4d1415amr8875405ejc.709.1646659461914;
-        Mon, 07 Mar 2022 05:24:21 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzXFDqly0FiEeOHc3R4bhal9n6ckTpaeqOa1nkibv9p5B+fqdjoW3nuQz7GB8OTn482i+rCng==
-X-Received: by 2002:a17:907:72c3:b0:6da:b4d1:415a with SMTP id du3-20020a17090772c300b006dab4d1415amr8875391ejc.709.1646659461759;
-        Mon, 07 Mar 2022 05:24:21 -0800 (PST)
-Received: from [192.168.0.142] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id h17-20020a05640250d100b004162ee0a7aesm2787166edb.38.2022.03.07.05.24.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 05:24:20 -0800 (PST)
-Message-ID: <a0b62141-0d5a-6b66-3238-eb5ba429644c@canonical.com>
-Date:   Mon, 7 Mar 2022 14:24:20 +0100
+        bh=OitVX9DAaNlroauyFMcBr/uj8TTgZYNkoujJpxXQGEU=;
+        b=fqpQ08viZ6dmzMyZdKdVpQxuXJ/GsbU0terRBqS2EZ8YR3e/ofqQhGWnhmMLjbs4Ft
+         M9J309+7dh+uvmmaHCMBR3dHmAja/ir/erQ4F7nnj4iWpSQbfunSMIAIJ/IiRg9I5oWm
+         DTpMJBYxiBwvryMvBrKLnr7ZzIwcNOEa8ZtlDtfrEQyc3rDDNRgjg2+yPnsxW1NsmFjo
+         1mUunMo/Qz/rKUQy1EkUUVpEC2IiXcdUOAkZp8It/ydmc8vkIxv+1lJgYIQ7X0zTyMzg
+         0n4z4aOIHmFNSLzXHkwr5sPOchqYDtgGw/QG17yskTrIRBfO9Cu4tKIZrUUBb4AlDhdg
+         se3Q==
+X-Gm-Message-State: AOAM5326q5IBY+wnyu1x5VHUILOYG1FUJJTtH/ArCH6PXMwanQt3flqp
+        6+JksYQHza16r4DgZjGf0bM=
+X-Google-Smtp-Source: ABdhPJzbFLfOreGlr5m0cOp9NZMsfe9sOBZzqVPAa9apzdx2H8H/Ut8SN46Jo/asHW+3ep8VGBCLgQ==
+X-Received: by 2002:a1c:ed18:0:b0:37e:7a1d:a507 with SMTP id l24-20020a1ced18000000b0037e7a1da507mr18265821wmh.187.1646659563412;
+        Mon, 07 Mar 2022 05:26:03 -0800 (PST)
+Received: from tpt440p.steeds.sam ([41.84.249.145])
+        by smtp.gmail.com with ESMTPSA id r2-20020a5d6942000000b001f0485057c4sm11524965wrw.74.2022.03.07.05.25.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 05:26:02 -0800 (PST)
+From:   "Sicelo A. Mhlongo" <absicsz@gmail.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Denis Ciocca <denis.ciocca@st.com>, linux-iio@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        maemo-leste@lists.dyne.org, "Sicelo A. Mhlongo" <absicsz@gmail.com>
+Subject: [PATCH v3 0/3] Support LIS302DL in st_accel
+Date:   Mon,  7 Mar 2022 15:24:59 +0200
+Message-Id: <20220307132502.73854-1-absicsz@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] dt-bindings: pwm: at91: Add SAMA7G5 compatible
- strings list
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>,
-        claudiu.beznea@microchip.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220307130307.106102-1-sergiu.moga@microchip.com>
- <20220307130307.106102-3-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307130307.106102-3-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,18 +72,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 14:03, Sergiu Moga wrote:
-> Add compatible strings list for SAMA7G5.
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
->  .../devicetree/bindings/pwm/atmel-pwm.yaml        | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
-> 
+Hi,
+
+The ST Microelectronics LIS302DL is currently only supported in the
+evdev framework driver in drivers/misc/lis3lv02d. This series enables
+support for it in the iio framework.
+
+Regards,
+Sicelo
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
+Sicelo A. Mhlongo (3):
+  dt-bindings: iio: st,st-sensors add LIS302DL
+  iio: accel: Remove unused enum in st_accel
+  iio: accel: add support for LIS302DL variant
 
-Best regards,
-Krzysztof
+ .../bindings/iio/st,st-sensors.yaml           |  1 +
+ drivers/iio/accel/st_accel.h                  | 26 +------------------
+ drivers/iio/accel/st_accel_core.c             |  1 +
+ drivers/iio/accel/st_accel_i2c.c              |  5 ++++
+ drivers/iio/accel/st_accel_spi.c              |  5 ++++
+ 5 files changed, 13 insertions(+), 25 deletions(-)
+
+-- 
+2.35.1
+
