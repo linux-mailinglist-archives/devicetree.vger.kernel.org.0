@@ -2,106 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DBCE4D0C2D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:42:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 093EF4D0C5B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:00:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241595AbiCGXnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 18:43:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43082 "EHLO
+        id S229681AbiCHAAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 19:00:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239450AbiCGXnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:43:21 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446842194;
-        Mon,  7 Mar 2022 15:42:26 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id w127so6681098oig.10;
-        Mon, 07 Mar 2022 15:42:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=EsKRRIoThK3MQ1H0laF62b7WY6ong2NDteh+bOwJmMY=;
-        b=uNGJNvEZ3c7sUj690++lMeWOHEdSGjYbdfeXseO49lI5v08xyDyCVxkiSoLG2wp9Et
-         qRp95WV95eKK8TDQ3FV3MsseuK0o5/RCG+Bj+rxeVvi1imgYsJS2+29DCKQQ3hX/3OqS
-         cPnPJcYuwoG8oJm/9TZ5k5FWukQHXN10W4+RAcRQlN0D77BFhVLqkL5o+9Pap2jv7I9+
-         ThmWs/fSddbdId1+OM/9cZFRjxmE2QAJaeOoQM7wlMH9/wtJ8IDEd4jNaiwpgmsp55Bk
-         l5Cu/c7rPzLiVpotvs2wsIdEpzmNgvqekozcowGgBDy4eKbtOCbwLhqNbZCfPvTSJ4it
-         4uOQ==
-X-Gm-Message-State: AOAM530eX0SExzoU+CYNLuZemMrVsJMtVFZXE15K1K4/WzH847fmHJVt
-        NnTIekTiyHPmPyhrZfcLlA==
-X-Google-Smtp-Source: ABdhPJwirVFf7NgTIaWCdemavUPZ6EK5UqamWYmsiMJjOCqd6t3G8W+ppN3LvgLKqKkNIV99E6Sjxg==
-X-Received: by 2002:a05:6808:14cc:b0:2d9:a01a:48ac with SMTP id f12-20020a05680814cc00b002d9a01a48acmr946191oiw.247.1646696545606;
-        Mon, 07 Mar 2022 15:42:25 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id w4-20020a4adec4000000b0032109de628esm1060794oou.6.2022.03.07.15.42.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 15:42:24 -0800 (PST)
-Received: (nullmailer pid 3487473 invoked by uid 1000);
-        Mon, 07 Mar 2022 23:42:23 -0000
-Date:   Mon, 7 Mar 2022 17:42:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Leilk Liu <leilk.liu@mediatek.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH V3 6/7] dt-bindings: spi: support spi-hclk
-Message-ID: <YiaYXwj0C8NeWjzz@robh.at.kernel.org>
-References: <20220307065230.12655-1-leilk.liu@mediatek.com>
- <20220307065230.12655-7-leilk.liu@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220307065230.12655-7-leilk.liu@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S243800AbiCHAAx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:00:53 -0500
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com [64.147.123.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284E033E23
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 15:59:57 -0800 (PST)
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailout.west.internal (Postfix) with ESMTP id 7F12D3200B25;
+        Mon,  7 Mar 2022 18:59:54 -0500 (EST)
+Received: from imap49 ([10.202.2.99])
+  by compute3.internal (MEProxy); Mon, 07 Mar 2022 18:59:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=cc
+        :cc:content-transfer-encoding:content-type:date:date:from:from
+        :in-reply-to:in-reply-to:message-id:mime-version:references
+        :reply-to:sender:subject:subject:to:to; s=fm2; bh=V7i6d1/zoSIj8y
+        jrC94ahJsp08pYVQsAAj6J5U58ios=; b=Pk4G7FjgiLwBM+Zjzd2NDKgEZox8Kx
+        5LN9D5bAjVml767nD5tWFhZlGUb3xoSF3uwvJD9MsGAqXVkihWCuuaMY62nsbsJT
+        8JoD3H0LcWGt132QyEkOB3VNuWjZykvnVO4yHMQgXpBSEU3mhOwhyoaalHb+bhS+
+        3GJ2x+dxbwCoFJhVET0Nxl9PQ/uzot+IzAjr6P5zMmBhs2bF5GKNtolK4DJDpj1X
+        NE/e//5CbmHaBA5Hlh/Gyt1NY68X+aJdP6DhYGCoIPPxaF7Kko1+rFsbcVzz2py+
+        sN94AmbqZnyYwZhIklvIzx/dRbEPxMJmdZOjSx8F6kTp/p+0t9YdzOLQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-transfer-encoding
+        :content-type:date:date:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; bh=V7i6d1/zoSIj8yjrC94ahJsp08pYVQsAAj6J5U58i
+        os=; b=ObwHECK+TEjc0RWRUZdmdwX7CKOvDgeoO1MRBRmvvSOGHVv1KoycUqSMN
+        jgbKOzyxgYQn1doPN/Ha1Bpzo7ROtz748rLEUcSHGbr7HC8P1ECGZ8K+x+DtICRi
+        rmeYBvQJeB124H/SgtpUSBE7wNoDG5LnS2lpsw241djqCtJryrRhfoOA/bUV+lzg
+        Tcj3BbGriJmxNmOPiGstXpCHwuo91Zi/3+z3w6vK1dUUKhEf25j4gW6/qfi1xl0d
+        mEfLThtVzzMRJ6d1or13gsGWmvTeQROkavDzqD09CrrdZWmiw5flDc1sWuSj87lW
+        sdbk1Lt9CvfrJOJTfMLInGWeY/emQ==
+X-ME-Sender: <xms:eZwmYvVx1gDFSYaBGGGypuURHHPU_0IHDVUdou6_GkpPi_IlTZ6Neg>
+    <xme:eZwmYnm_gtFhdMi7E05gCRmdHEhClRKmFIJo-6A505Nrt_fmhd3pOk-CcsFG3CeBx
+    ek35g5F3pR5EM5Vww>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudduhedgudegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgfgsehtqhertderreejnecuhfhrohhmpedftehn
+    ughrvgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtf
+    frrghtthgvrhhnpedvgeekheegfedvhfethefhudetteegueeggfeiieegueehkedugedt
+    kefglefgheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpegrnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:eZwmYraUnhWbFGrcbuNEDrHLxDTx2vmZXucqZoQl-iGpMZ7sVFZVZA>
+    <xmx:eZwmYqVBzN6e5uL5PV3MQNP8HuHjAOS9Y0hO_jH-qrdxydb2shDtig>
+    <xmx:eZwmYpn1UTYpUuAN9d2-iJl_HJNIxNJ_E0MhvlgccJM8ALMal4YPDA>
+    <xmx:epwmYpv8SahdjUnvIi5E8eT5BKok5i7ZZQLKpYgI_R_8mKNik5Cvnw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 8C016F6007E; Mon,  7 Mar 2022 18:59:53 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.5.0-alpha0-4778-g14fba9972e-fm-20220217.001-g14fba997
+Mime-Version: 1.0
+Message-Id: <22db3bbf-9796-43ac-84a4-081977827ac5@www.fastmail.com>
+In-Reply-To: <20220304011010.974863-1-joel@jms.id.au>
+References: <20220304011010.974863-1-joel@jms.id.au>
+Date:   Tue, 08 Mar 2022 10:29:33 +1030
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Joel Stanley" <joel@jms.id.au>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH] ARM: dts: aspeed: Fix AST2600 quad spi group
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 02:52:29PM +0800, Leilk Liu wrote:
-> this patch support spi-hclk.
-> 
-> Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> ---
->  .../devicetree/bindings/spi/mediatek,spi-mt65xx.yaml          | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> index a8a15a9a6c46..195793aa79b7 100644
-> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-> @@ -51,16 +51,20 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> +    minItems: 3
->      items:
->        - description: clock used for the parent clock
->        - description: clock used for the muxes clock
->        - description: clock used for the clock gate
-> +      - description: clock used for the AHB bus, this clock is optional
->  
->    clock-names:
-> +    minItems: 3
->      items:
->        - const: parent-clk
->        - const: sel-clk
->        - const: spi-clk
-> +      - const: spi-hclk
 
-'spi' is redundant. Just 'hclk'.
 
->  
->    mediatek,pad-select:
->      $ref: /schemas/types.yaml#/definitions/uint32-array
-> -- 
-> 2.25.1
-> 
-> 
+On Fri, 4 Mar 2022, at 11:40, Joel Stanley wrote:
+> Requesting quad mode for the FMC resulted in an error:
+>
+>   &fmc {
+>          status =3D "okay";
+>  +       pinctrl-names =3D "default";
+>  +       pinctrl-0 =3D <&pinctrl_fwqspi_default>'
+>
+> [    0.742963] aspeed-g6-pinctrl 1e6e2000.syscon:pinctrl: invalid=20
+> function FWQSPID in map table
+> =EF=BF=BC
+>
+> This is because the quad mode pins are a group of pins, not a function.
+>
+> After applying this patch we can request the pins and the QSPI data
+> lines are muxed:
+>
+>  # cat=20
+> /sys/kernel/debug/pinctrl/1e6e2000.syscon\:pinctrl-aspeed-g6-pinctrl/p=
+inmux-pins=20
+> |grep 1e620000.spi
+>  pin 196 (AE12): device 1e620000.spi function FWSPID group FWQSPID
+>  pin 197 (AF12): device 1e620000.spi function FWSPID group FWQSPID
+>  pin 240 (Y1): device 1e620000.spi function FWSPID group FWQSPID
+>  pin 241 (Y2): device 1e620000.spi function FWSPID group FWQSPID
+>  pin 242 (Y3): device 1e620000.spi function FWSPID group FWQSPID
+>  pin 243 (Y4): device 1e620000.spi function FWSPID group FWQSPID
+>
+> Fixes: f510f04c8c83 ("ARM: dts: aspeed: Add AST2600 pinmux nodes")
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+
+Looks good to me.
+
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
