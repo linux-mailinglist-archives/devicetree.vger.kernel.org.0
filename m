@@ -2,233 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4234CF240
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 07:53:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E10E4CF2F4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 08:51:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235683AbiCGGxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 01:53:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36664 "EHLO
+        id S235955AbiCGHw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 02:52:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234872AbiCGGxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 01:53:40 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72DFB1FCEB;
-        Sun,  6 Mar 2022 22:52:45 -0800 (PST)
-X-UUID: 5d3aaacd6a2f4934a8126380694a1089-20220307
-X-UUID: 5d3aaacd6a2f4934a8126380694a1089-20220307
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 719419815; Mon, 07 Mar 2022 14:52:39 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 7 Mar 2022 14:52:39 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 7 Mar 2022 14:52:38 +0800
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Subject: [PATCH V3 7/7] spi: mediatek: support spi-hclk
-Date:   Mon, 7 Mar 2022 14:52:30 +0800
-Message-ID: <20220307065230.12655-8-leilk.liu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307065230.12655-1-leilk.liu@mediatek.com>
-References: <20220307065230.12655-1-leilk.liu@mediatek.com>
+        with ESMTP id S235941AbiCGHwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 02:52:25 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D08960D90
+        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 23:51:31 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 594B23F5FA
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 07:51:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646639490;
+        bh=XlVD8ETmzuRKAuObKkkpDzusQxU46RvngqfrRmzaIqs=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=sVW7sITh7ysZFd3cH/mEJPvf/TOPuMVbHKUyuWTSrNouHA6dE5PhP61cpPZUGD1BY
+         sNud+drKaWioshiO4zem0hSDOb+O5wcgOtugyell0tpx87hDa3FxHA8Lb2B8Cl87tY
+         Xi6i86QZ1y5lrz9b7ECID5U5fRgzUrwMIgxXNVRHKtX7Op5qLwUnWJJF5n5VPk+Gtb
+         lbS+vEJNQHyQrWmM8PsgZajS9fwpKhObbRYzwvEyK8CfwHEPlXB6VXfJDPouv4jQAK
+         J3CmtwGM5Us44d2qo1mc4DD+oA4btvEp3nBikPe2woKPEs3pbyt7Llm7aawzsTrJA4
+         U2HIj55hSKufA==
+Received: by mail-ej1-f71.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so6532247ejw.9
+        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 23:51:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XlVD8ETmzuRKAuObKkkpDzusQxU46RvngqfrRmzaIqs=;
+        b=ExAA2ZfjyDuN/vFJqDrKepMP1N3i1JMu4Ph/t7zJD2yoQH6DcTzSyTy7Z6Vn8Yaq60
+         739d2mUb4SKzln1fgzsA3xS/l2QChqIly4cp4OVAwF0WfSyUiCzyrJCiTocAC2tcOmL6
+         r6nB+LF81FzKej1EWMD3pq8lupxsJxjoupsTdarQpPwVUfwRCkPSl/K6/hU5+nP4xySp
+         tBatQHEPsjBuHyOvv9M77Abj7kERa+MCWutUw5u2LI+qRnH6DkmGgwkucBEZwRpmzyTP
+         83wV78YQeUFOUqBf1N34ijoCLUX+yX9wODAtWavaSdLNJcIunrEWjIRNi8a6XPHZGgfP
+         u6uw==
+X-Gm-Message-State: AOAM530E1iKOYSTOTo3wom9Zf1F6idlQ/4q8eGB2TZQjKIqoFnv7UhIw
+        dGGXDICBAAGOZoxTcf9dQ6LtX+ckv2+MkNrEMHaNeP3cKveL36cv+uqavAjv9q+tAlEmMWv4D44
+        z4dRp2Rhgkc+M5Te2tLczShozEUoFO/XHaFPQ64k=
+X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr10147096edx.12.1646639489420;
+        Sun, 06 Mar 2022 23:51:29 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwKLYHzHLgwcRR6YV+jIDam77Vs4E7ym+wLWv9MySUNujpMFX33hcbnUCj4pdEcEWM9PALIZQ==
+X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr10147089edx.12.1646639489280;
+        Sun, 06 Mar 2022 23:51:29 -0800 (PST)
+Received: from [192.168.0.140] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id p4-20020a50d884000000b004128cf5fe2asm5793891edj.79.2022.03.06.23.51.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Mar 2022 23:51:28 -0800 (PST)
+Message-ID: <bcf0567c-b17a-4c39-4a34-6da2d9edb20f@canonical.com>
+Date:   Mon, 7 Mar 2022 08:51:27 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
+ PWM Driver
+Content-Language: en-US
+To:     hammer hsieh <hammerh0314@gmail.com>
+Cc:     thierry.reding@gmail.com,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
+        lee.jones@linaro.org, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, wells.lu@sunplus.com,
+        "hammer.hsieh" <hammer.hsieh@sunplus.com>
+References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
+ <1646374812-2988-2-git-send-email-hammerh0314@gmail.com>
+ <9113e319-58a2-fd90-6887-fb32eb21fd18@canonical.com>
+ <CAOX-t55sXVg8Fj_G_xzxWTStxZXOwKo46=_R0LkfHnMS051KaQ@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAOX-t55sXVg8Fj_G_xzxWTStxZXOwKo46=_R0LkfHnMS051KaQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-this patch adds spi-hclk support.
+On 07/03/2022 05:18, hammer hsieh wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> 於 2022年3月4日 週五
+> 下午11:01寫道：
+>>
+>> On 04/03/2022 07:20, Hammer Hsieh wrote:
+>>> Add bindings doc for Sunplus SoC PWM Driver
+>>
+>> You miss spaces in the subject.
+>>
+> 
+> ok, will modify it.
+> 
+>>>
+>>> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
+>>> ---
+>>> Changes in v2:
+>>>  - Addressed all comments from Rob Herring.
+>>>    modify author's mail match Signed-off-by.
+>>>  - rebase kernel to 5.17 rc5
+>>>
+>>>  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 40 ++++++++++++++++++++++
+>>>  MAINTAINERS                                        |  5 +++
+>>>  2 files changed, 45 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+>>> new file mode 100644
+>>> index 0000000..19fe5d5
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+>>> @@ -0,0 +1,40 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +# Copyright (C) Sunplus Co., Ltd. 2021
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
+>>
+>> Is it going to be one binding for all Sunplus SoCs? Existing and future?
+>>
+> 
+> yes, that was my first plan.
+> but not all sunplus SoCs use the same IP-based,
+> so I will change file name form 'pwm-sunplus.yaml' to
+> 'sunplus,sp7021-pwm.yaml' in  next patch.
 
-Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
----
- drivers/spi/spi-mt65xx.c | 85 ++++++++++++++++++++++++++++++++--------
- 1 file changed, 69 insertions(+), 16 deletions(-)
+Yes, that might be better approach,
 
-diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-index 2f09b9d7a998..902013ec1223 100644
---- a/drivers/spi/spi-mt65xx.c
-+++ b/drivers/spi/spi-mt65xx.c
-@@ -132,7 +132,7 @@ struct mtk_spi {
- 	u32 state;
- 	int pad_num;
- 	u32 *pad_sel;
--	struct clk *parent_clk, *sel_clk, *spi_clk;
-+	struct clk *parent_clk, *sel_clk, *spi_clk, *spi_hclk;
- 	struct spi_transfer *cur_transfer;
- 	u32 xfer_len;
- 	u32 num_xfered;
-@@ -1221,25 +1221,38 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 		goto err_put_master;
- 	}
- 
-+	mdata->spi_hclk = devm_clk_get(&pdev->dev, "spi-hclk");
-+	if (!IS_ERR(mdata->spi_hclk)) {
-+		ret = clk_prepare_enable(mdata->spi_hclk);
-+		if (ret < 0) {
-+			dev_err(&pdev->dev, "failed to enable spi_hclk (%d)\n", ret);
-+			goto err_put_master;
-+		}
-+	}
-+
- 	ret = clk_prepare_enable(mdata->spi_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to enable spi_clk (%d)\n", ret);
--		goto err_put_master;
-+		goto err_disable_spi_hclk;
- 	}
- 
- 	ret = clk_set_parent(mdata->sel_clk, mdata->parent_clk);
- 	if (ret < 0) {
- 		dev_err(&pdev->dev, "failed to clk_set_parent (%d)\n", ret);
--		clk_disable_unprepare(mdata->spi_clk);
--		goto err_put_master;
-+		goto err_disable_spi_clk;
- 	}
- 
- 	mdata->spi_clk_hz = clk_get_rate(mdata->spi_clk);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	pm_runtime_enable(&pdev->dev);
- 
-@@ -1279,6 +1292,11 @@ static int mtk_spi_probe(struct platform_device *pdev)
- 
- err_disable_runtime_pm:
- 	pm_runtime_disable(&pdev->dev);
-+err_disable_spi_clk:
-+	clk_disable_unprepare(mdata->spi_clk);
-+err_disable_spi_hclk:
-+	if (!IS_ERR(mdata->spi_hclk))
-+		clk_disable_unprepare(mdata->spi_hclk);
- err_put_master:
- 	spi_master_put(master);
- 
-@@ -1294,8 +1312,11 @@ static int mtk_spi_remove(struct platform_device *pdev)
- 
- 	mtk_spi_reset(mdata);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_unprepare(mdata->spi_clk);
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1311,8 +1332,11 @@ static int mtk_spi_suspend(struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	if (!pm_runtime_suspended(dev))
-+	if (!pm_runtime_suspended(dev)) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1329,11 +1353,23 @@ static int mtk_spi_resume(struct device *dev)
- 			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
- 			return ret;
- 		}
-+
-+		if (!IS_ERR(mdata->spi_hclk)) {
-+			clk_prepare_enable(mdata->spi_hclk);
-+			if (ret < 0) {
-+				dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+				clk_disable_unprepare(mdata->spi_clk);
-+				return ret;
-+			}
-+		}
- 	}
- 
- 	ret = spi_master_resume(master);
--	if (ret < 0)
-+	if (ret < 0) {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return ret;
- }
-@@ -1345,10 +1381,15 @@ static int mtk_spi_runtime_suspend(struct device *dev)
- 	struct spi_master *master = dev_get_drvdata(dev);
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		clk_disable(mdata->spi_clk);
--	else
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable(mdata->spi_hclk);
-+	} else {
- 		clk_disable_unprepare(mdata->spi_clk);
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_disable_unprepare(mdata->spi_hclk);
-+	}
- 
- 	return 0;
- }
-@@ -1359,13 +1400,25 @@ static int mtk_spi_runtime_resume(struct device *dev)
- 	struct mtk_spi *mdata = spi_master_get_devdata(master);
- 	int ret;
- 
--	if (mdata->dev_comp->no_need_unprepare)
-+	if (mdata->dev_comp->no_need_unprepare) {
- 		ret = clk_enable(mdata->spi_clk);
--	else
-+		if (!IS_ERR(mdata->spi_hclk))
-+			clk_enable(mdata->spi_hclk);
-+	} else {
- 		ret = clk_prepare_enable(mdata->spi_clk);
--	if (ret < 0) {
--		dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
--		return ret;
-+		if (ret < 0) {
-+			dev_err(dev, "failed to enable spi_clk (%d)\n", ret);
-+			return ret;
-+		}
-+
-+		if (!IS_ERR(mdata->spi_hclk)) {
-+			ret = clk_prepare_enable(mdata->spi_hclk);
-+			if (ret < 0) {
-+				dev_err(dev, "failed to enable spi_hclk (%d)\n", ret);
-+				clk_disable_unprepare(mdata->spi_clk);
-+				return ret;
-+			}
-+		}
- 	}
- 
- 	return 0;
--- 
-2.25.1
 
+
+Best regards,
+Krzysztof
