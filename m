@@ -2,91 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8728E4CFDC7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9220D4CFDA1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:04:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241925AbiCGMHf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 07:07:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43300 "EHLO
+        id S232575AbiCGMFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 07:05:44 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242011AbiCGMHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:07:33 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BC2D75E64;
-        Mon,  7 Mar 2022 04:06:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646654797; x=1678190797;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=jUmH2oh1/zhKA8uW9ugTgURaA0thp3pCRTkRTiYZ7ys=;
-  b=aBUGDX517Bekm2hg3z1VnwQqL3qi5gzoZsu5R/6IKTykKtA0rL+da+6b
-   4G5MMvE/lxyd0jplbuN+7urgcSr4UjH+YUMDoXoQP1u5AKtSmbcqEsUzn
-   JfDsqr4DRsVlCdh5KYFaPHQ9fpscO10sYj5ANF1vQQORLrv7hmjmUzjKJ
-   iZS+cp/1xdWS4qGqK/uuMGQjQLIyedXB9HbjBLyN7imFhXozZQltRAXR1
-   1H5id5YByBS5vebweUZUdEeYknvj3VLIEWQUUU2Nn08BceHpOu/fZJWav
-   6HYwC2svl7B/DuVOq5+fSMF/pAg1L/jRMcBBHhs3D+V6r+zVaXrnrd3pG
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
-   d="scan'208";a="155486091"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 05:06:37 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Mar 2022 05:06:36 -0700
-Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 05:06:33 -0700
-From:   Eugen Hristev <eugen.hristev@microchip.com>
-To:     <linux-media@vger.kernel.org>, <jacopo@jmondi.org>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <claudiu.beznea@microchip.com>, <hverkuil-cisco@xs4all.nl>,
-        <nicolas.ferre@microchip.com>,
-        Eugen Hristev <eugen.hristev@microchip.com>
-Subject: [PATCH v7 13/13] ARM: multi_v7_defconfig: add atmel video pipeline modules
-Date:   Mon, 7 Mar 2022 14:04:23 +0200
-Message-ID: <20220307120423.2427631-14-eugen.hristev@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307120423.2427631-1-eugen.hristev@microchip.com>
-References: <20220307120423.2427631-1-eugen.hristev@microchip.com>
+        with ESMTP id S234746AbiCGMFn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:05:43 -0500
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 918D86EB09;
+        Mon,  7 Mar 2022 04:04:48 -0800 (PST)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id DE1A62223A;
+        Mon,  7 Mar 2022 13:04:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1646654686;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=nG3Uult3QUrmEBI/29xWk62uJTgK9WBGo1PMeAJ45F8=;
+        b=YCgWV+5UVQYW7R0+/OxWFQk9C2NjAxvrmB0LjDT0Iv1x6Fh2XdYhzuBAyuO25xwq5v7zpW
+        3znUg7wmgpXhOzQsA9KGdJXXrl2dHFJv+0ph9kOSPcB1LBvG+xqZgeI1dEVGr3QUMDwZpf
+        KbPrFlq8dkrDMRcfUaGAo6h+nfo/sDg=
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+Date:   Mon, 07 Mar 2022 13:04:45 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Claudiu.Beznea@microchip.com
+Cc:     Kavyasree.Kotagiri@microchip.com, Nicolas.Ferre@microchip.com,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com, alexandre.belloni@bootlin.com
+Subject: Re: [PATCH v1 3/6] ARM: dts: lan966x: add all flexcom usart nodes
+In-Reply-To: <bf005cd2-4c83-1552-8282-d229eacc51f3@microchip.com>
+References: <20220303160323.3316317-1-michael@walle.cc>
+ <20220303160323.3316317-4-michael@walle.cc>
+ <a33f0c73-df49-5a22-14b3-0059f7d6b827@microchip.com>
+ <2e0aefc90a80bdf13df0e59857c52ca7@walle.cc>
+ <bf005cd2-4c83-1552-8282-d229eacc51f3@microchip.com>
+User-Agent: Roundcube Webmail/1.4.12
+Message-ID: <219ffd086373c453d5d0aad897cd2d41@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add drivers for the atmel video capture pipeline: atmel isc, xisc and
-microchip csi2dc.
+Am 2022-03-07 12:53, schrieb Claudiu.Beznea@microchip.com:
+> On 04.03.2022 13:01, Michael Walle wrote:
+>> EXTERNAL EMAIL: Do not click links or open attachments unless you know 
+>> the
+>> content is safe
+>> 
+>> Hi,
+>> 
+>> thanks for the quick review.
+>> 
+>> Am 2022-03-04 09:30, schrieb Claudiu.Beznea@microchip.com:
+>>> On 03.03.2022 18:03, Michael Walle wrote:
+>>>> EXTERNAL EMAIL: Do not click links or open attachments unless you 
+>>>> know
+>>>> the content is safe
+>>>> 
+>>>> Add all the usart nodes for the flexcom block. There was already
+>>>> an usart node for the flexcom3 block. But it missed the DMA
+>>>> channels.
+>>> 
+>>> And it would be good to go though a different patch.
+>> 
+>> sure
+>> 
+>>>> Although the DMA channels are specified, DMA is not
+>>>> enabled by default because break detection doesn't work with DMA.
+>>>> 
+>>>> Keep the nodes disabled by default.
+>>>> 
+>>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>>> ---
+>>>>  arch/arm/boot/dts/lan966x.dtsi | 55
+>>>> ++++++++++++++++++++++++++++++++++
+>>>>  1 file changed, 55 insertions(+)
+>>>> 
+>>>> diff --git a/arch/arm/boot/dts/lan966x.dtsi
+>>>> b/arch/arm/boot/dts/lan966x.dtsi
+>>>> index a7d46a2ca058..bea69b6d2749 100644
+>>>> --- a/arch/arm/boot/dts/lan966x.dtsi
+>>>> +++ b/arch/arm/boot/dts/lan966x.dtsi
+>>>> @@ -92,6 +92,19 @@ flx0: flexcom@e0040000 {
+>>>>                         #size-cells = <1>;
+>>>>                         ranges = <0x0 0xe0040000 0x800>;
+>>>>                         status = "disabled";
+>>>> +
+>>>> +                       usart0: serial@200 {
+>>>> +                               compatible =
+>>>> "atmel,at91sam9260-usart";
+>>> 
+>>> Are the usart blocks in lan966x 1:1 compatible with what is is 
+>>> sam9260?
+>>> In
+>>> case not it may worth to have a new compatible here, for lan966x, 
+>>> such
+>>> that
+>>> when new features will be implemented in usart driver for lan966x the
+>>> old
+>>> DT (this one) will work with the new kernel implementation.
+>> 
+>> During my review of the inital dtsi patch, I've asked the same 
+>> question
+>> [1]
+>> and I was told they are the same.
+>> 
+>> At least this exact usart compatible is already in this file. I was
+>> under
+>> the impression, that was the least controversial compatible :)
+> 
+> OK.
+> 
+>> 
+>> But you'll need to tell me if they are the same or not, I don't have
+>> any clue what microchip has reused.
+> 
+> From software point of view comparing registers should be good, as far 
+> as I
+> can tell. All AT91 datasheet should be available. I though you have 
+> checked
+> one against LAN966. At the moment I don't have a DS for LAN966. I'll 
+> find
+> one and have a look.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/configs/multi_v7_defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+So my train of thought was like: even if the registers are the same I
+cannot be sure that it is the exact same IP and will behave the same.
+Therefore, it is something only microchip can answer.
 
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index 8863fa969ede..b768abad8df0 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -639,7 +639,10 @@ CONFIG_VIDEO_S5P_MIPI_CSIS=m
- CONFIG_VIDEO_EXYNOS_FIMC_LITE=m
- CONFIG_VIDEO_EXYNOS4_FIMC_IS=m
- CONFIG_VIDEO_RCAR_VIN=m
-+CONFIG_VIDEO_ATMEL_ISC=m
-+CONFIG_VIDEO_ATMEL_XISC=m
- CONFIG_VIDEO_ATMEL_ISI=m
-+CONFIG_VIDEO_MICROCHIP_CSI2DC=m
- CONFIG_V4L_MEM2MEM_DRIVERS=y
- CONFIG_VIDEO_SAMSUNG_S5P_JPEG=m
- CONFIG_VIDEO_SAMSUNG_S5P_MFC=m
--- 
-2.25.1
+You can find the registers at
+https://microchip-ung.github.io/lan9668_reginfo/reginfo_LAN9668.html
 
+I'm not aware of any "classic" datasheet.
+
+-michael
