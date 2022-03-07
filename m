@@ -2,247 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76FE04CFFD9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:21:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1754CFFE3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:23:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234826AbiCGNWS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 08:22:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46362 "EHLO
+        id S240622AbiCGNXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 08:23:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231971AbiCGNWR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:22:17 -0500
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C2779397;
-        Mon,  7 Mar 2022 05:21:22 -0800 (PST)
-Received: by mail-lf1-x12b.google.com with SMTP id bu29so26262141lfb.0;
-        Mon, 07 Mar 2022 05:21:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=sLcucPpxL9xylt1wEHMJm21D4vcmzPmOGwMENuWyav8=;
-        b=MMAMvWOqGAoEob9QfNBLxp7moVDA3Zk1uh+ELT0MXGpXw7KjOXkwBn8y5egC8h119B
-         dWyok83LFulsXp2QtvsKw98hu9Ibvwg7Sn4fT0wslTcSWZDkJOG6lywWyM6WlnSD8Tp4
-         jX1SaIOxZdDd1ia6T2g2cdRMCtJ9DOSqqkEodaF/3Dne9NARXPUn55uXCrPYCrtGrqHC
-         7FvujQYpfJVN0XDxF5QGVPbXdJtfM/n8ckPA0vfMyjIDm6VpPFxX82O7c7zB0A2g6lFk
-         EA2I+NEHxc0VlRiWTKMJSjZEGqDoVCubTyRvezmJ9ka/8ph6dibo6mc8uNiZYenQuFMh
-         iQhw==
+        with ESMTP id S241339AbiCGNXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:23:50 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9188831DC7
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:22:55 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E0BB73F614
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:22:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646659373;
+        bh=7DE3CIcjsEOWGArllLnE/4SYWb481DICc4ujcmpZMCo=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=qjWjgBR93wT+o+qNT1KqeEZVG2DjP1b1QwOatp9pgfYo5tkVl1LJfRhbSIO0Ev1oF
+         nDXUG4CMXN2wpZXlxn5BBn44fVYkBwsLkJ1aLbDTPcGRL7NDYBzDeGSHD538JTNfKV
+         IlNaqrwfRHNAuSuZytCKjUdxs+eRgQNjzPyyo6tR8IURb9gfeKVk0qZyAqFHfvEnaZ
+         /a3B6TIa6cdXsBDl0g76mCZgKa/8m97QGcOyUiRzNIl+KydWehk9PdX/uuqFt6Rg25
+         hAGVNP+OjY+8/WerHRMyJK1Uyq+rVvWD9RifrU2/e++pOLQeicgAr1aYNHkwZfePFC
+         0GhjZZ0zNUMRg==
+Received: by mail-ed1-f70.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso8570160edt.20
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 05:22:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=sLcucPpxL9xylt1wEHMJm21D4vcmzPmOGwMENuWyav8=;
-        b=kCNwHsmyb1j2mETxUhr5Wv2Rx7roBITpXGoxB4vaHzgPetDYCKoeIBK//NtA7ZFXe1
-         xvS5joFg8duSFom/jbs4QpbOw1bHhZlKw2HXcM7MOg/MoYvGC5+RDd0X5OIb/oeu56A5
-         2D9HipQodgb/8uR0omWW4RcMgDCPGvb+ose8MdZLVaV9iKFTaI/k0s4uKDieZiY8b5ur
-         FZ483Aa+yKQp9pckJFSXjs/zHwRre0iG3ElwsD/+as7D5uyRzmqvnVazNVPL6oJkoLFj
-         +SrNjTrLgelAs05/4kXt+mLxlJ6zvG0un5KxHYDX+9Jq0VWdwiGchpd4JNVPeF9AeL+a
-         utsQ==
-X-Gm-Message-State: AOAM533XpoPgxOPPZ/VnFUOpMRGGCNFuRl1KbD7Ip2sfztVHx4/qcFD8
-        mYvDHx5j6t0DMdfcE1SLHZR/lZNHhpKVDd+x0UY=
-X-Google-Smtp-Source: ABdhPJwhiTzKf526SMMoHnxGJaw5TFjBVrHKeQdx+H0cL7PAiYH8ypz7zGtr3dAcKk5XsTbpByJ3e5f7VTu3VntUQqg=
-X-Received: by 2002:a05:6512:3152:b0:448:2622:e77f with SMTP id
- s18-20020a056512315200b004482622e77fmr6506171lfi.407.1646659278437; Mon, 07
- Mar 2022 05:21:18 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7DE3CIcjsEOWGArllLnE/4SYWb481DICc4ujcmpZMCo=;
+        b=yHisoXGK9NcbpmnGznICs6ki5aWtGcZjlDV4bSRQEhl6RbOnDugESoDpDkq8Kn67A3
+         NsaZ8H9Urnh9kRGRJjCTQtqWfrlx4cpiKm2r2guk31QlhfOSaiAeIp0V/LEcZYrZcn33
+         B25KVOqFk4HYlREkHwKEV5RqRWvQ8dk9wEXwMTuFEyXFWSbmEnYRQ+HjxF6iyThjtL0K
+         pUoCkhE2MHZD5n5XdAf0AJlM+BmF0Fx3zl7TCOD5d7i4oCeUDXfJS+2p2sCNb2R14pOb
+         bnc5NAzVGLFm/Q8pezVwrkYQoxZCa6/Cpyn8Tiwq4nvnwvJv3ns6TVYxX/xEK//r3uog
+         PYzw==
+X-Gm-Message-State: AOAM5332ncFxDhOTENV/VGBZ09Ya3LP/mLo07iWX7ksCYc9KD/DOYoLK
+        2XHxW34U+7+tvvYgkjrbAvksYkungjF90bhF6HghYQgFfZ+2yY17+bsuw1xwoeMTSIikQL/FLOZ
+        ZjfNmmTXUgvDZq+NWbsuZQ5CPh5wcFOx24PqKdsg=
+X-Received: by 2002:aa7:cfd2:0:b0:416:b04:bb60 with SMTP id r18-20020aa7cfd2000000b004160b04bb60mr10963243edy.76.1646659373523;
+        Mon, 07 Mar 2022 05:22:53 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwXxXeGEOYJaGgvq6dvSvl0b5LmE61OYrDSUPzwb/dvNqBwiKbTp6gV0bV0ZRCQ+AuRolvpWQ==
+X-Received: by 2002:aa7:cfd2:0:b0:416:b04:bb60 with SMTP id r18-20020aa7cfd2000000b004160b04bb60mr10963234edy.76.1646659373332;
+        Mon, 07 Mar 2022 05:22:53 -0800 (PST)
+Received: from [192.168.0.142] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id h17-20020a05640250d100b004162ee0a7aesm2785236edb.38.2022.03.07.05.22.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 05:22:52 -0800 (PST)
+Message-ID: <9e565eba-7678-1399-3cae-5335dc026e2c@canonical.com>
+Date:   Mon, 7 Mar 2022 14:22:51 +0100
 MIME-Version: 1.0
-References: <1646647704-2331-1-git-send-email-u0084500@gmail.com>
- <1646647704-2331-2-git-send-email-u0084500@gmail.com> <1e6893ca-69f4-a2ed-6ecc-23507c04002b@canonical.com>
-In-Reply-To: <1e6893ca-69f4-a2ed-6ecc-23507c04002b@canonical.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Mon, 7 Mar 2022 21:21:06 +0800
-Message-ID: <CADiBU3_jC_+P4d-gjMRGpP0uBejUkCY-axNd4nh1Y_=95iav3A@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT5190A PMIC
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        cy_huang <cy_huang@richtek.com>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: pwm: convert atmel pwm to json-schema
+Content-Language: en-US
+To:     Sergiu Moga <sergiu.moga@microchip.com>,
+        claudiu.beznea@microchip.com, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        robh+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com
+Cc:     linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220307130307.106102-1-sergiu.moga@microchip.com>
+ <20220307130307.106102-2-sergiu.moga@microchip.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220307130307.106102-2-sergiu.moga@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
-=B9=B43=E6=9C=887=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=887:14=E5=AF=
-=AB=E9=81=93=EF=BC=9A
->
-> On 07/03/2022 11:08, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add bindings for Richtek RT5190A PMIC.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  .../regulator/richtek,rt5190a-regulator.yaml       | 138 +++++++++++++=
-++++++++
-> >  1 file changed, 138 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/richtek=
-,rt5190a-regulator.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/richtek,rt5190=
-a-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rt51=
-90a-regulator.yaml
-> > new file mode 100644
-> > index 00000000..b9f5836
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/richtek,rt5190a-regul=
-ator.yaml
-> > @@ -0,0 +1,138 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/richtek,rt5190a-regulator=
-.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Richtek RT5190A PMIC Regulator
-> > +
-> > +maintainers:
-> > +  - ChiYuan Huang <cy_huang@richtek.com>
-> > +
-> > +description: |
-> > +  The RT5190A integrates 1 channel buck controller, 3 channels high ef=
-ficiency
-> > +  synchronous buck converters, 1 LDO, I2C control interface and periph=
-erial
-> > +  logical control.
-> > +
-> > +  It also supports mute AC OFF depop sound and quick setting storage w=
-hile
-> > +  input power is removed.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - richtek,rt5190a
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  vin2-supply:
-> > +    description: phandle to buck2 input voltage.
-> > +
-> > +  vin3-supply:
-> > +    description: phandle to buck3 input voltage.
-> > +
-> > +  vin4-supply:
-> > +    description: phandle to buck4 input voltage.
-> > +
-> > +  vinldo-supply:
-> > +    description: phandle to ldo input voltage
-> > +
-> > +  richtek,buck1-fixed-microvolt:
-> > +    description: buck1 fixed voltage that depends on the external resi=
-stor.
-> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
->
-> You should use standard bindings for it.
->
-Sorry, I didn't get the point for the meaning 'standard binding'.
-Do you mean to change 'richtek,buck1-fixed-microvolt' or 'uint32' definitio=
-n?
-This voltage depends on the external resistor selection. It's 'fixed'
-by the application.
-> > +
-> > +  richtek,buck4-fixed-microvolt:
-> > +    description: buck4 fixed voltage that depends on the external resi=
-stor.
-> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> > +
-> > +  richtek,ldo-fixed-microvolt:
-> > +    description: ldo fixed voltage that depends on the external resist=
-or.
-> > +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> > +
-> > +  richtek,mute-enable:
-> > +    description: this can be used to enable mute function.
->
-> Please describe what is "mute" function". Your description copied
-> property name, so it is not useful.
->
-OK, I'll describe more detailed.
-> > +    type: boolean
-> > +
-> > +  regulators:
-> > +    type: object
-> > +
-> > +    patternProperties:
-> > +      "^buck[1-4]$|^ldo$":
-> > +        type: object
-> > +        $ref: regulator.yaml#
-> > +        description: |
-> > +          regulator description for buck[1-4] and ldo.
-> > +
-> > +        properties:
-> > +          richtek,latchup-enable:
-> > +            type: boolean
-> > +            description: |
-> > +              If specified, undervolt protection mode changes from the=
- default
-> > +              hiccup to latchup.
-> > +
-> > +        unevaluatedProperties: false
-> > +
-> > +    additionalProperties: false
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - richtek,buck1-fixed-microvolt
-> > +  - richtek,buck4-fixed-microvolt
-> > +  - richtek,ldo-fixed-microvolt
-> > +  - regulators
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      rt5190a@64 {
->
-> Generic node name, so "pmic".
->
-Ack in next.
-> > +        compatible =3D "richtek,rt5190a";
-> > +        reg =3D <0x64>;
-> > +        interrupts-extended =3D <&gpio26 0 IRQ_TYPE_LEVEL_LOW>;
-> > +        vin2-supply =3D <&rt5190_buck1>;
-> > +        vin3-supply =3D <&rt5190_buck1>;
-> > +        vin4-supply =3D <&rt5190_buck1>;
-> > +        richtek,buck1-fixed-microvolt =3D <5090000>;
-> > +        richtek,buck4-fixed-microvolt =3D <850000>;
-> > +        richtek,ldo-fixed-microvolt =3D <1200000>;
-> > +
-> > +        regulators {
-> > +          rt5190_buck1: buck1 {
-> > +            regulator-name =3D "rt5190a-buck1";
-> > +            regulator-allowed-modes =3D <0 1>;
->
-> Please describe these in header file in bindings and mention as one of
-> regulator properties with description and enum.
->
-OK, will add one dt-binding header file for the constant and mentioned
-as one regulator property.
-Ack in next.
->
->
-> Best regards,
-> Krzysztof
+On 07/03/2022 14:03, Sergiu Moga wrote:
+> Convert PWM binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
+> 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 -----------
+>  .../devicetree/bindings/pwm/atmel-pwm.yaml    | 62 +++++++++++++++++++
+>  2 files changed, 62 insertions(+), 35 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel-pwm.txt b/Documentation/devicetree/bindings/pwm/atmel-pwm.txt
+> deleted file mode 100644
+> index fbb5325be1f0..000000000000
+> --- a/Documentation/devicetree/bindings/pwm/atmel-pwm.txt
+
+I would prefer for new files to switch to common DT conversion:
+vendor,name.yaml
+
+You have there another PWM bindings for Atmel, so the name should not be
+just "pwm" but something more specific, maybe "at91sam-pwm"?
+
+> +++ /dev/null
+> @@ -1,35 +0,0 @@
+> -Atmel PWM controller
+> -
+> -Required properties:
+> -  - compatible: should be one of:
+> -    - "atmel,at91sam9rl-pwm"
+> -    - "atmel,sama5d3-pwm"
+> -    - "atmel,sama5d2-pwm"
+> -    - "microchip,sam9x60-pwm"
+> -  - reg: physical base address and length of the controller's registers
+> -  - #pwm-cells: Should be 3. See pwm.yaml in this directory for a
+> -    description of the cells format.
+> -
+> -Example:
+> -
+> -	pwm0: pwm@f8034000 {
+> -		compatible = "atmel,at91sam9rl-pwm";
+> -		reg = <0xf8034000 0x400>;
+> -		#pwm-cells = <3>;
+> -	};
+> -
+> -	pwmleds {
+> -		compatible = "pwm-leds";
+> -
+> -		d1 {
+> -			label = "d1";
+> -			pwms = <&pwm0 3 5000 0>
+> -			max-brightness = <255>;
+> -		};
+> -
+> -		d2 {
+> -			label = "d2";
+> -			pwms = <&pwm0 1 5000 1>
+> -			max-brightness = <255>;
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
+> new file mode 100644
+> index 000000000000..f5378a2226bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/atmel-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Atmel PWM controller
+
+title: Atmel/Microchip PWM controller
+
+> +
+> +maintainers:
+> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
+> +
+
+allOf including pwm.yaml
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - atmel,at91sam9rl-pwm
+> +      - atmel,sama5d3-pwm
+> +      - atmel,sama5d2-pwm
+> +      - microchip,sam9x60-pwm
+> +
+> +  reg:
+> +    description: |
+> +      Physical base address and length of the controller's
+> +      registers
+
+Skip description, it's obvious.
+
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    description: |
+> +      Should be 3. See pwm.yaml in this directory for a
+> +      description of the cells format.
+
+Skip description, it's obvious.
+
+> +    const: 3
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#pwm-cells"
+
+Skip pwm-cells, required by pwm.yaml.
+
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +        pwm0: pwm@f8034000 {
+> +                compatible = "atmel,at91sam9rl-pwm";
+> +                reg = <0xf8034000 0x400>;
+> +                #pwm-cells = <3>;
+> +        };
+> +
+> +        pwmleds {
+
+Skip this node. No actual benefit. All clients are the same.
+
+> +                compatible = "pwm-leds";
+> +
+> +                led-1 {
+> +                        label = "led-1";
+> +                        pwms = <&pwm0 3 5000 0>;
+> +                        max-brightness = <255>;
+> +                };
+> +
+> +                led-2 {
+> +                        label = "led-2";
+> +                        pwms = <&pwm0 1 5000 1>;
+> +                        max-brightness = <255>;
+> +                };
+> +        };
+
+
+Best regards,
+Krzysztof
