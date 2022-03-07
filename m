@@ -2,95 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA7F4D0B82
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 23:52:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 940774D0BA7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:04:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240093AbiCGWxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 17:53:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35858 "EHLO
+        id S245600AbiCGXFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 18:05:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343500AbiCGWxk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 17:53:40 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5D8DBE8;
-        Mon,  7 Mar 2022 14:52:40 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id w127so6565760oig.10;
-        Mon, 07 Mar 2022 14:52:40 -0800 (PST)
+        with ESMTP id S235963AbiCGXFE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:05:04 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCF5046141;
+        Mon,  7 Mar 2022 15:04:07 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id w17-20020a056830111100b005b22c584b93so4074407otq.11;
+        Mon, 07 Mar 2022 15:04:07 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=A2csD67qXGoEvqs1Prld6d2oP9SlviApXy9zPbagNDQ=;
-        b=6YLk8fpAzvanY92PEGJjijjIQ5io9yEC7LQVBJEoD9lYrPKaU7eGFWncBDgmPiCWO7
-         tuUioOVhrYGXhkQ5LBeyqJYMw/I22ARMzOOQs/WtGSMVhX98GpTWJJ14/UwKXdOx6PhO
-         C8uqWYCXdFRyon8QvvdCKg0VTEln8qtaSk9dsd2XHNSezWXxDbAFZVeRIaUnDEzStUxB
-         lZju5NA7btg4is2vfzck2eUPkqCPZ6led9priSd7lBX9gni2GlevzmkN6AnO7Tfkh0lB
-         ci2KAo+sHiesdUjyJz7ZlNhPaYOl4AvPidelu4nYW9hsLk8+VBzkW65WohM3dL9m1A5e
-         h1Mw==
-X-Gm-Message-State: AOAM531YHfzQQFEBWC6OGcD6Sq+Nu4Ledz0lZHAV1ke65x3nu3106Yk3
-        kS6Pv7yA/vDOgNafplQbVA==
-X-Google-Smtp-Source: ABdhPJzwg6DunqXDMtn0yEvy0iRyMNFCMs9Y1knxfp1LMKwv8i7Tzf+hrKkDYPkVFGhsJAaNvBDOcQ==
-X-Received: by 2002:a05:6808:f92:b0:2d9:d230:221c with SMTP id o18-20020a0568080f9200b002d9d230221cmr865229oiw.96.1646693560192;
-        Mon, 07 Mar 2022 14:52:40 -0800 (PST)
+        bh=4E9eRweUplMzQvU1VSUF8PEGvHk+pON6U7CEEhUI86Y=;
+        b=miuhwy58r/iMMtno8xjQiTvxTOX6Z4WTIs7ut0eC9cNOxzwbAl3S/jyMAQ9CHoR4cP
+         QPBPFr+x/gEOpnVPLBOSS4LJSuJpxGYLXDwxzg9fbYHkEnocsFENzQYnWuHd77m+QOoP
+         GSwdwvwAnsWlIZSwakpmFdr5/jwUDjQPMNqds2gfTPpmL83wuegSK7vk68+nyKUaE/zQ
+         s39rsQLBk8F5F6QMHEaVwQh31zPM9OZnWoW7Cbf8NLNSEpSeexfYlji25pIHoRwx+B01
+         3BdE+VTxLNoOF1ODhUnauSRuj3nzx9ZJUo5M0tshwXoufoehh7TI8TiwBuuZ8tdBEgi1
+         okJQ==
+X-Gm-Message-State: AOAM5337IPnc+0Dz4uS9OTG3o5aI0PUQ3kmWXqu2tL4fUmrQEnl4wpDO
+        keOUG0K79JCvrY3mgWZOsg==
+X-Google-Smtp-Source: ABdhPJwnRiwH1OmVRJThFCgiwfgEMg7WN043TMcx7tqaSeEny0pEoEWRHNdff7N7BXb71XSzJp4iNg==
+X-Received: by 2002:a9d:462:0:b0:5af:9183:44bd with SMTP id 89-20020a9d0462000000b005af918344bdmr7033688otc.21.1646694247151;
+        Mon, 07 Mar 2022 15:04:07 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bb39-20020a05680816a700b002d9a8eb89fasm3558038oib.46.2022.03.07.14.52.38
+        by smtp.gmail.com with ESMTPSA id q62-20020a4a3341000000b00320f8a179d0sm1480227ooq.30.2022.03.07.15.04.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 14:52:39 -0800 (PST)
-Received: (nullmailer pid 3405258 invoked by uid 1000);
-        Mon, 07 Mar 2022 22:52:38 -0000
-Date:   Mon, 7 Mar 2022 16:52:38 -0600
+        Mon, 07 Mar 2022 15:04:06 -0800 (PST)
+Received: (nullmailer pid 3424006 invoked by uid 1000);
+        Mon, 07 Mar 2022 23:04:04 -0000
+Date:   Mon, 7 Mar 2022 17:04:04 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Charles Mirabile <cmirabil@redhat.com>
-Cc:     Miguel Ojeda <ojeda@kernel.org>,
-        Serge Schneider <serge@raspberrypi.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mwesigwa Guma <mguma@redhat.com>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Stefan Wahren <stefan.wahren@i2se.com>,
-        linux-rpi-kernel@lists.infradead.org,
-        Mattias Brugger <mbrugger@suse.com>,
-        linux-input@vger.kernel.org, Joel Savitz <jsavitz@redhat.com>,
-        fedora-rpi@googlegroups.com,
-        Nicolas Saenz Julienne <nsaenzju@redhat.com>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v7 4/6] dt-bindings: mfd: sensehat: Add Raspberry Pi
- Sense HAT schema
-Message-ID: <YiaMtu901yHS+3Ql@robh.at.kernel.org>
-References: <20220303173935.100622-1-cmirabil@redhat.com>
- <20220303173935.100622-5-cmirabil@redhat.com>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org, daniel@ffwll.ch,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        fparent@baylibre.com, robh+dt@kernel.org,
+        yongqiang.niu@mediatek.com, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, linux-arm-kernel@lists.infradead.org,
+        p.zabel@pengutronix.de, dri-devel@lists.freedesktop.org,
+        airlied@linux.ie, jassisinghbrar@gmail.com,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RESEND V6 1/5] dt-bindings: display: mediatek: add aal binding
+ for MT8183
+Message-ID: <YiaPZGzf5F542nZb@robh.at.kernel.org>
+References: <20220303065725.23384-1-rex-bc.chen@mediatek.com>
+ <20220303065725.23384-2-rex-bc.chen@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220303173935.100622-5-cmirabil@redhat.com>
+In-Reply-To: <20220303065725.23384-2-rex-bc.chen@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Mar 2022 12:39:33 -0500, Charles Mirabile wrote:
-> This patch adds the device tree bindings for the Sense HAT
-> and each of its children devices in yaml form.
+On Thu, 03 Mar 2022 14:57:21 +0800, Rex-BC Chen wrote:
+> Add aal binding for MT8183.
 > 
-> Co-developed-by: Mwesigwa Guma <mguma@redhat.com>
-> Signed-off-by: Mwesigwa Guma <mguma@redhat.com>
-> Co-developed-by: Joel Savitz <jsavitz@redhat.com>
-> Signed-off-by: Joel Savitz <jsavitz@redhat.com>
-> Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
 > ---
->  .../raspberrypi,sensehat-display.yaml         | 27 ++++++++
->  .../input/raspberrypi,sensehat-joystick.yaml  | 33 +++++++++
->  .../bindings/mfd/raspberrypi,sensehat.yaml    | 69 +++++++++++++++++++
->  3 files changed, 129 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/raspberrypi,sensehat-display.yaml
->  create mode 100644 Documentation/devicetree/bindings/input/raspberrypi,sensehat-joystick.yaml
->  create mode 100644 Documentation/devicetree/bindings/mfd/raspberrypi,sensehat.yaml
+>  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
