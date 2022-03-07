@@ -2,162 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F240E4D0226
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:55:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BA33A4D0273
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 16:07:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234760AbiCGO4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 09:56:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32840 "EHLO
+        id S237859AbiCGPIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 10:08:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235966AbiCGO4L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:56:11 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC27C9027B
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 06:55:16 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 641913F5FA
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 14:55:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646664915;
-        bh=C8pfnsecsrezK4Nb7IRuKxjSY5+ji8Ej5U+DGoorANw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=WJt3+JH5GgdWW887A6G1YWpLfGkR0tH4I3f1/i69wAy/cgVWX1yWUUUK47vF4307+
-         gizh6u1POkIM0+gaqLwqIyV+UOGh7wIfXYzB0lLKr/Icey16HXPyu+4TLSP118wr/R
-         z+t+M7zvnnLln+JxLJhO213UNO56dtQtqolyfYIJnxBF7LWJOTlHvJSqDO+s7/dnLE
-         w83+eeHrco70R9vTgyc5MaMABrlR36+50e3wFvVmtNUwWQFFLsFw4eGriduBtN7IQV
-         BilMGPpmCYFzzvwE4IJ3ZADr/QQpd3yXR9WenIaM9AcK2aNLq/slyuJ1a57aUbrEvT
-         +j8ZsjHZncAGw==
-Received: by mail-ed1-f71.google.com with SMTP id l8-20020a056402028800b0041636072ef0so2718809edv.13
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 06:55:15 -0800 (PST)
+        with ESMTP id S239155AbiCGPIN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 10:08:13 -0500
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14B9891364
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 07:07:18 -0800 (PST)
+Received: by mail-il1-x12a.google.com with SMTP id i14so11757871ilv.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 07:07:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=CeuyqRrXNSdquVg5FveGWsvDvkTa3Q6Ik81MSfLVaZI=;
+        b=jWG8wK1nsves6+PiPzBBkP9X0Ib2iIxhFNQsitJY/bhNPNZcLThy9swJPFepaPsFYM
+         VvhT6VokdTM4Pslyf6HGT/ivLMAhSxxhautWexK0ujMnCYucIDXVAwplonxS4PIcdRH0
+         Q35Wz3fPJBVRgWckwlFaU8vgkjI9sksOezr6sbCJ/FXAFGzyLmDIhebMmjm55AFvSHnk
+         HF8ODxciUCbq/4jja2YtG9emNW6pYpRLZZ/a5tI7RjhFmu9CDnJq9omw1Jdt+KsyhnjU
+         oXDegMTJ4FzVhDySGOShFmmGvebPM/OXRH21rEyExdH8sxwRlVmJ3yjvoeRGQw8+j0Xg
+         KuCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=C8pfnsecsrezK4Nb7IRuKxjSY5+ji8Ej5U+DGoorANw=;
-        b=ZUqXLSj2khAKUhiEu19POMlsoMEQGZa0oUVOcy+AD5zP9eSP5muNvobJzDvVHZQfZS
-         HvQN9Q2DGUgHfg3Cyj8SlZjHjuIaXIwuJK8ikjlBX+pX3oZypKaJiyClMmsRyc8ly/C9
-         RUEMiokhwEjcqtyebGq8rlMiFChLdq08axBkOCOImtpVWPGagCZOgJnE6XAhUIz62WFs
-         PnBbnTyPOlFltHHlpSeRTYZniUVeCllSNTYWG/MKKjnDNhHWZlsu2MzNTA8aGhPgzV4k
-         BucChzc7DGfkZEQvCoEuL0QBIF883iji0Y2JcdjPH+GrOMF4yem2SlwELrmjq9gL+FeS
-         W75A==
-X-Gm-Message-State: AOAM533iKJX9EWqqVvQ7hgw61OvVxE/GwbjDXWnrOTFKHJvMUEVrbvZC
-        z0HL83Htsr/f4Rbc2fNTFvVJeHeObJSaNbaIvTlHJOPX7u3ZL6JPgOyGqB9Ymw3akh0R/lwbcQi
-        2ksJrMWSRCp6FlOrAt0GwZrnFESbLc0tGq9qLu2M=
-X-Received: by 2002:a17:906:6a0f:b0:6d7:1021:2bd2 with SMTP id qw15-20020a1709066a0f00b006d710212bd2mr9960424ejc.395.1646664915109;
-        Mon, 07 Mar 2022 06:55:15 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx0lnoIbRB64+BxucbKOyxrxZ+MR5/YF75HAstgYp2zaexCX+E0Y4T2gxNY+oCkTIf2TYVxVA==
-X-Received: by 2002:a17:906:6a0f:b0:6d7:1021:2bd2 with SMTP id qw15-20020a1709066a0f00b006d710212bd2mr9960403ejc.395.1646664914823;
-        Mon, 07 Mar 2022 06:55:14 -0800 (PST)
-Received: from [192.168.0.142] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id z92-20020a509e65000000b00416466dc220sm1749452ede.87.2022.03.07.06.55.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 06:55:13 -0800 (PST)
-Message-ID: <4e137401-4b8c-0abc-0c50-d784d579a991@canonical.com>
-Date:   Mon, 7 Mar 2022 15:55:12 +0100
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=CeuyqRrXNSdquVg5FveGWsvDvkTa3Q6Ik81MSfLVaZI=;
+        b=417uguIrZkCxceMDm94w4nXiTL6w9kT6nEH7CtZZqVFQe+zg9ux/E+EwknehWA2tZG
+         +4ETBgmFRB4s3j3PBh1BsqfCupVSy3J3HAf24oZBLl72hu+PRca5c+rvHo6pgVUhuhhI
+         fzSBMBfSkpLhDDs4umFoVgmv2D5DcWzoAYualy6JUH3h2XKnn0h4L9C73ZEIBaMY0TvL
+         P9CTlpjZYgSQZ718FM5cQV5un5qm+Bs8um8hdej1kq9EPMlBp5A3EAmqaVR+JYl6ARgm
+         OeVMYsaWEdCJZ9WryyCBhdjFmTezHjcBv0SgG3RwnDzu8EtjB1GVn45/h83cKmkN7YU7
+         vFgw==
+X-Gm-Message-State: AOAM530WpeGgR/d2dqx5N6sbHvG/mvrLT53mLi0jdctdfAf0XCuNefm7
+        rNtrPfmsrDNNLT3IEUJFlVD9aP7cGw+jjqqZZtc=
+X-Google-Smtp-Source: ABdhPJwQQT6YrOmogFXpxmTlrMqPoT8pVN6oP7Fgs/dg9pxfKuxYwmYQpRdiB3w5OxCEakSXea3Ce2aER6VEdQWnkpI=
+X-Received: by 2002:a05:6e02:524:b0:2c6:3a2b:7004 with SMTP id
+ h4-20020a056e02052400b002c63a2b7004mr7299937ils.15.1646665637556; Mon, 07 Mar
+ 2022 07:07:17 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: convert atmel pwm to json-schema
-Content-Language: en-US
-To:     Sergiu Moga <sergiu.moga@microchip.com>,
-        claudiu.beznea@microchip.com, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com
-Cc:     linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220307144652.162706-1-sergiu.moga@microchip.com>
- <20220307144652.162706-2-sergiu.moga@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307144652.162706-2-sergiu.moga@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Received: by 2002:a5d:8d02:0:0:0:0:0 with HTTP; Mon, 7 Mar 2022 07:07:17 -0800 (PST)
+Reply-To: blessingbrown.017@gmail.com
+From:   Blessing Brown <fredrickfrance2@gmail.com>
+Date:   Mon, 7 Mar 2022 15:07:17 +0000
+Message-ID: <CALHaDua5Q+WOdm4eUp2qAKzK7_n2ZtMTvdikkMukqdh=ofMrDA@mail.gmail.com>
+Subject: Hi
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=4.9 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        UNDISC_FREEM autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ****
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 15:46, Sergiu Moga wrote:
-> Convert PWM binding for Atmel/Microchip SoCs to Device Tree Schema
-> format.
-> 
-> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
-> ---
->  .../bindings/pwm/atmel,at91sam-pwm.yaml       | 42 +++++++++++++++++++
->  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 ----------------
->  2 files changed, 42 insertions(+), 35 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
-> new file mode 100644
-> index 000000000000..2d5dd51a6a55
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2022 Microchip Technology, Inc. and its subsidiaries
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pwm/atmel,at91sam-pwm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Atmel/Microchip PWM controller
-> +
-> +allOf:
-> +  - $ref: "pwm.yaml#"
+I'm Mrs Blessing Brown.I wish to communicate with you.
 
-allOf by convention should go between maintaners and properties.
+I wait for your response.
 
-> +
-> +maintainers:
-> +  - Claudiu Beznea <claudiu.beznea@microchip.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - atmel,at91sam9rl-pwm
-> +      - atmel,sama5d3-pwm
-> +      - atmel,sama5d2-pwm
-> +      - microchip,sam9x60-pwm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 3
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: true
-
-This has to be either additionalProperties:false or
-"unevaluatedProperties:false".
-
-> +
-> +examples:
-> +  - |
-> +        pwm0: pwm@f8034000 {
-> +                compatible = "atmel,at91sam9rl-pwm";
-> +                reg = <0xf8034000 0x400>;
-> +                #pwm-cells = <3>;
-
-Also please change indentation to 2 or 4 spaces (like we use for all DTS
-examples). Four is preferred (only personally).
-
-You also need to update the path in MAINTAINERS.
-
-Best regards,
-Krzysztof
+Mrs Blessing Brown
