@@ -2,60 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F2F34D0915
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 21:57:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A6E14D0928
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 22:03:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241703AbiCGU5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 15:57:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55792 "EHLO
+        id S234681AbiCGVEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 16:04:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41480 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237444AbiCGU5p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 15:57:45 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2A5F2C12C;
-        Mon,  7 Mar 2022 12:56:50 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id z8so13291574oix.3;
-        Mon, 07 Mar 2022 12:56:50 -0800 (PST)
+        with ESMTP id S239423AbiCGVEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 16:04:04 -0500
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 152B7522FB
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:03:07 -0800 (PST)
+Received: by mail-oo1-xc2a.google.com with SMTP id w3-20020a4ac183000000b0031d806bbd7eso19404476oop.13
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 13:03:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=TZE4y2o5AxnkMZnRpncg3DqjupwmSSHQnjBBKyyAtNE=;
+        b=vJKoBSejYsc3f9Klw0q/k6zLApJALiY1z7DV1dR6c+uES9Tn0j9yg8PHZjneHAzja3
+         CFdcEApqBeuTwu71vmCNyVKq6RfL7lNOuObDzkC722PGJP/lxY4YmLCCEIjPdxWGVp9K
+         8qD6H30X3FQkgWQdqYV+dlVH+wEyDA1hlvWAUTUYazwYES09RYO+dXaM0uXw+vdLq4YZ
+         x6gh/dRhx4vH8LdYMwYr77WgVKVZDf09aWc/8Q4FjJ/KIrLPK/8vCqsqlHGIlLcpKbyE
+         ZnwP5xDWPyiqu43n+NCWn42TFQg6+0+DOOGOSnpj5pELR0vT8MuD7iQE7kF8blmBeYD2
+         06Tg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=N3tlFPBMHtWcn0iYUzj3qnhmmykFEumeuwZz6QLguzw=;
-        b=ERF5/HkofH5dCafGcarj8X6AHVhWkZLsyWg2aTHsHyN0jW6Vy/+xJ7d6noPPa+JHbw
-         7lq0bLLczc4pjiO4+xIRK7X9VCW5w4gaMTiEr0K69ol+IJW+EOqemQUUQHAE+t43Nhn0
-         Msx3Yfv4RwTpbacOK5xo9LmXNcv7tX63dkwp8uIxMYCCNe/RRY4iqcfo3kE3JvZZ0lFL
-         Le41/P6JkD4aD3Huh+AtSbrnqJTtlvHsB28ebKrPcV+LyUQ14KGzp127a4ys7qyj4y4i
-         oMldDo56FaSG5fngNneoA8kUBbbP+3ByCXv6gkCKVDdhJQYu/gmurObK05S/YnUuAP8V
-         dM1A==
-X-Gm-Message-State: AOAM531XyIYteqGIp5E3BmkLRcppMrSEvMjCjTQu9d68tNweRMyEDIm3
-        pBAN5kWW0MaNBqqvelHSnQ==
-X-Google-Smtp-Source: ABdhPJzDLCgdPyR34NOXygDObosWM9xRC5QKLx/VwasrcQ1zel824ZI6Ao1CL/ffw63L2Rx5CojpFQ==
-X-Received: by 2002:a05:6808:159d:b0:2d9:a9a8:f896 with SMTP id t29-20020a056808159d00b002d9a9a8f896mr562260oiw.171.1646686609939;
-        Mon, 07 Mar 2022 12:56:49 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id u7-20020a05687036c700b000da4bcdae42sm1892045oak.13.2022.03.07.12.56.48
+        bh=TZE4y2o5AxnkMZnRpncg3DqjupwmSSHQnjBBKyyAtNE=;
+        b=4faLb7ET0xqctgEhGIqhTd8XXa7QqIaMgd8cxXx6lEglob/OWihCTdfxPP/WUKl6Ls
+         zxSG0g3gDYOvIuXzvqakdIH5ulbSxEf/GhOj7oD1FAx50uAhv2/YjosxHpHf2WVsF90S
+         5e6vNKliLYeZR4o3kSG6/FyQEtpv3ojRZMjw+qJ74TfMRBqfsZETt1mbEwo5CPELxukY
+         pE8Ham21j4TQOPkbxjWA5ePTBRVgBh6EtaVPMsoOuBJesHlW+1tZXp7JjXfNBtc4w29d
+         F57KSfutD8li47SfzvmcH2lqFdZMmMQaxoAmMrQi2vYVXlDuYp/9uvs079h8CWmjRd4j
+         +iCg==
+X-Gm-Message-State: AOAM530Ph1wO9F3iBgpnAhdl3wiw4c/DFjC3qCttjoR0+QfR94BIXbWs
+        Qoz8r1/W8iz/td6pZMTkXDb17xedJWaHKQ==
+X-Google-Smtp-Source: ABdhPJz8dtqAUl9Wa+QMR22Za4hY/xZ2fVhIBORMjTKKuZxeVipzASzjf0KTjPPgr33ClAzWHw47aQ==
+X-Received: by 2002:a05:6870:911f:b0:d9:ad78:203c with SMTP id o31-20020a056870911f00b000d9ad78203cmr528955oae.91.1646686986315;
+        Mon, 07 Mar 2022 13:03:06 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id q9-20020a4ae649000000b00320d35fc91dsm2814437oot.24.2022.03.07.13.03.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 12:56:49 -0800 (PST)
-Received: (nullmailer pid 3208776 invoked by uid 1000);
-        Mon, 07 Mar 2022 20:56:48 -0000
-Date:   Mon, 7 Mar 2022 14:56:48 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] MAINTAINERS: dt-bindings: update Krzysztof Kozlowski's
- email
-Message-ID: <YiZxkKrngFonoXH5@robh.at.kernel.org>
-References: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
+        Mon, 07 Mar 2022 13:03:05 -0800 (PST)
+Date:   Mon, 7 Mar 2022 13:04:50 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Hans de Goede <hdegoede@redhat.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH v4 7/7] usb: typec: mux: Add On Semi fsa4480 driver
+Message-ID: <YiZzco76Nrxbxz95@ripper>
+References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
+ <20220307034040.1111107-7-bjorn.andersson@linaro.org>
+ <YiXbg4QwgIgLh3LW@smile.fi.intel.com>
+ <YiYbOQpX4+fP8S1W@ripper>
+ <YiYvMf5X+S0WZ9lO@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220307172901.156929-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <YiYvMf5X+S0WZ9lO@smile.fi.intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,25 +80,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 18:29:01 +0100, Krzysztof Kozlowski wrote:
-> Use Krzysztof Kozlowski's @kernel.org account in dt-bindings maintainer
-> entry.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> 
-> ---
-> 
-> Hi Rob,
-> 
-> Could you take this one directly (optionally squash with the patch
-> adding me as maintainer)?
-> 
-> My email address also appears in the bindings. For now mailmap will
-> handle it (see my other commit). I will change it after merge window,
-> because some of the bindings are in separate for-next branches.
-> ---
->  MAINTAINERS | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Mon 07 Mar 08:13 PST 2022, Andy Shevchenko wrote:
 
-Applied, thanks!
+> On Mon, Mar 07, 2022 at 06:48:25AM -0800, Bjorn Andersson wrote:
+> > On Mon 07 Mar 02:16 PST 2022, Andy Shevchenko wrote:
+> > > On Sun, Mar 06, 2022 at 07:40:40PM -0800, Bjorn Andersson wrote:
+> 
+> ...
+> 
+> > > > +		/* 15us to allow the SBU switch to turn off */
+> > > > +		usleep_range(15, 1000);
+> > > 
+> > > This is quite unusual range.
+> > > 
+> > > If you are fine with the long delay, why to stress the system on it?
+> > > Otherwise the use of 1000 is unclear.
+> > > 
+> > > That said, I would expect one of the below:
+> > > 
+> > > 		usleep_range(15, 30);
+> > > 		usleep_range(500, 1000);
+> > 
+> > Glad you asked about that, as you say the typical form is to keep the
+> > range within 2x of the lower value, or perhaps lower + 5.
+> > 
+> > But if the purpose is to specify a minimum time and then give a max to
+> > give the system some flexibility in it's decision of when to wake up.
+> > And in situations such as this, we're talking about someone connecting a
+> > cable, so we're in "no rush" and I picked the completely arbitrary 1ms
+> > as the max.
+> > 
+> > Do you see any drawback of this much higher number? (Other than it
+> > looking "wrong")
+> 
+> I see the drawback of low number.
+
+15us is based on the data sheet and if the kernel is ready to serve us
+after 15us then let's do that.
+
+> The 1000 makes not much sense to me with the minimum 66x times less.
+> If there is no rush, use some reasonable values,
+> what about
+> 
+> 		usleep_range(100, 1000);
+> 
+> ? 10x is way better than 66x.
+
+I don't agree, and in particular putting 100 here because it's 1/10 of
+the number I just made up doesn't sounds like a good reason. The
+datasheet says 15us, so that is at least based on something real.
+
+
+In https://www.kernel.org/doc/Documentation/timers/timers-howto.txt
+I find the following:
+
+    With the introduction of a range, the scheduler is
+    free to coalesce your wakeup with any other wakeup
+    that may have happened for other reasons, or at the
+    worst case, fire an interrupt for your upper bound.
+
+    The larger a range you supply, the greater a chance
+    that you will not trigger an interrupt; this should
+    be balanced with what is an acceptable upper bound on
+    delay / performance for your specific code path. Exact
+    tolerances here are very situation specific, thus it
+    is left to the caller to determine a reasonable range.
+
+Which to me says that the wider range is perfectly reasonable. In
+particular 15, 30 (which seems to be quite common) makes the available
+range to the scheduler unnecessarily narrow.
+
+And it's clear that whatever the upper bound it's going to be some
+arbitrary number, but 1ms should ensure that there are other hrtimer
+interrupts to piggy back on.
+
+Regards,
+Bjorn
