@@ -2,182 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EE8D4CF1CE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 07:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D480F4CF1E3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 07:27:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235525AbiCGGYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 01:24:38 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59722 "EHLO
+        id S235523AbiCGG2t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 01:28:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234270AbiCGGYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 01:24:36 -0500
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA9934649;
-        Sun,  6 Mar 2022 22:23:42 -0800 (PST)
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 30AFF1A1427;
-        Mon,  7 Mar 2022 07:23:41 +0100 (CET)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F7F51A004C;
-        Mon,  7 Mar 2022 07:23:40 +0100 (CET)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id C81A1183AC94;
-        Mon,  7 Mar 2022 14:23:38 +0800 (+08)
-From:   Richard Zhu <hongxing.zhu@nxp.com>
-To:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
-        shawnguo@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        Richard Zhu <hongxing.zhu@nxp.com>
-Subject: [RFC 7/7] PCI: imx6: Add the iMX8MP PCIe support
-Date:   Mon,  7 Mar 2022 14:14:36 +0800
-Message-Id: <1646633676-23535-8-git-send-email-hongxing.zhu@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1646633676-23535-1-git-send-email-hongxing.zhu@nxp.com>
-References: <1646633676-23535-1-git-send-email-hongxing.zhu@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235547AbiCGG2s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 01:28:48 -0500
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27DF7617F;
+        Sun,  6 Mar 2022 22:27:54 -0800 (PST)
+Received: by mail-lf1-x12c.google.com with SMTP id g17so936015lfh.2;
+        Sun, 06 Mar 2022 22:27:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=RXvSF5PPqX/AJr1eUEGpLvV9dSVW9b88AcbQSFrOFDw=;
+        b=GtiwXi+OA03rnUu+6AhoLosNuBEaGLli68h72T0mGjzlJmTMDrDfkQDvEyKxaQUeXR
+         x8NxhmeK+eEPah2dLbXI8Gc1tJTIkz0XatFldnLjm4SY5JXH/joPD//+ipMIUbxzyvR9
+         JXFgfhO4VT68F3amNOvfRny5GjQ9XrDf5y63/9/ZEp1xxz7yvqAbYZJ35NFKZjUZBmwd
+         mEm67Dt/EQEu+59NPpnhS7AtgXx7MbbHwJFGEQpLZFEk6bcxm58R3DapuuJEI97vBhSg
+         Cs8Mdcc5gA4y7AOcG3463OlbOoqwpZxUasZzgeDVxHsqd2Ujbhm6VQ/3uzq9LHX8xcxU
+         vGWA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=RXvSF5PPqX/AJr1eUEGpLvV9dSVW9b88AcbQSFrOFDw=;
+        b=fvV9n+6zDh6BKlQMvQEUwd2hnwRP+kutJXyzIqn09b62lP6W4HhIA1tHxBo8LVcsWN
+         wsZn4oYyGbyItxNAQQ7TwnE8B3beLBDyUPf3ZGkNPfIAF2pMcj1JpVNjTInheDQApxUn
+         4Qmp1OQQHAbyYomrW5jPn79QK/LwIMo4oFaWQM+w8CNOorI2qp2vegJb7fm1BueFAlGG
+         gdKv5vW8JvyjMegJtB3M71LtZFySoMdVa8yMu+sbVicnBP2Xrgdtit7kvw6bA+G++C75
+         TbBFtgwYf0YO2421IQRENnM1+L4OoYKlX3592778MJLq+hqRHip1k/JZnoRbaKLaSbRc
+         yysA==
+X-Gm-Message-State: AOAM530fvd1J9S7n57u9FcaaOywVMI12001R+JxqhiA4CABusXTBCZ+s
+        CvWklf92tNsnf4mG6T4ZAzQ=
+X-Google-Smtp-Source: ABdhPJy27nT0AsdmjVaspUe7ODTrN5pPXXiZW+Wxt59sk6jm9bj2gB8mbnunAmOeqVK/fFFwsjYuzQ==
+X-Received: by 2002:a05:6512:a93:b0:442:5d43:7b21 with SMTP id m19-20020a0565120a9300b004425d437b21mr6828367lfu.427.1646634472332;
+        Sun, 06 Mar 2022 22:27:52 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id i27-20020a0565123e1b00b00443b9eb1b58sm2673604lfv.99.2022.03.06.22.27.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 06 Mar 2022 22:27:51 -0800 (PST)
+Message-ID: <1ca1d83d-9803-77a3-e5bb-2380a2dc03b0@gmail.com>
+Date:   Mon, 7 Mar 2022 07:27:49 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: leds: add Broadcom's BCM63138
+ controller
+To:     Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        Rob Herring <robh@kernel.org>
+References: <20211227145905.2905-1-zajec5@gmail.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <20211227145905.2905-1-zajec5@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the i.MX8MP PCIe support.
+On 27.12.2021 15:59, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> Broadcom used 2 LEDs hardware blocks for their BCM63xx SoCs:
+> 1. Older one (BCM6318, BCM6328, BCM6362, BCM63268, BCM6838)
+> 2. Newer one (BCM6848, BCM6858, BCM63138, BCM63148, BCM63381, BCM68360)
+> 
+> The newer one was also later also used on BCM4908 SoC.
+> 
+> Old block is already documented in the leds-bcm6328.yaml. This binding
+> documents the new one which uses different registers & programming. It's
+> first used in BCM63138 thus the binding name.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 
-Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
----
- drivers/pci/controller/dwc/pci-imx6.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
+Ping?
 
-diff --git a/drivers/pci/controller/dwc/pci-imx6.c b/drivers/pci/controller/dwc/pci-imx6.c
-index bb662f90d4f3..fcf7638d5071 100644
---- a/drivers/pci/controller/dwc/pci-imx6.c
-+++ b/drivers/pci/controller/dwc/pci-imx6.c
-@@ -51,6 +51,7 @@ enum imx6_pcie_variants {
- 	IMX7D,
- 	IMX8MQ,
- 	IMX8MM,
-+	IMX8MP,
- };
- 
- #define IMX6_PCIE_FLAG_IMX6_PHY			BIT(0)
-@@ -379,6 +380,7 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- 		reset_control_assert(imx6_pcie->pciephy_reset);
- 		fallthrough;
- 	case IMX8MM:
-+	case IMX8MP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	case IMX6SX:
-@@ -407,7 +409,8 @@ static void imx6_pcie_assert_core_reset(struct imx6_pcie *imx6_pcie)
- static unsigned int imx6_pcie_grp_offset(const struct imx6_pcie *imx6_pcie)
- {
- 	WARN_ON(imx6_pcie->drvdata->variant != IMX8MQ &&
--		imx6_pcie->drvdata->variant != IMX8MM);
-+		imx6_pcie->drvdata->variant != IMX8MM &&
-+		imx6_pcie->drvdata->variant != IMX8MP);
- 	return imx6_pcie->controller_id == 1 ? IOMUXC_GPR16 : IOMUXC_GPR14;
- }
- 
-@@ -448,6 +451,7 @@ static int imx6_pcie_enable_ref_clk(struct imx6_pcie *imx6_pcie)
- 		break;
- 	case IMX8MM:
- 	case IMX8MQ:
-+	case IMX8MP:
- 		ret = clk_prepare_enable(imx6_pcie->pcie_aux);
- 		if (ret) {
- 			dev_err(dev, "unable to enable pcie_aux clock\n");
-@@ -503,6 +507,7 @@ static int imx6_pcie_clk_enable(struct imx6_pcie *imx6_pcie)
- 
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX8MM:
-+	case IMX8MP:
- 		if (phy_power_on(imx6_pcie->phy))
- 			dev_err(dev, "unable to power on PHY\n");
- 		break;
-@@ -603,8 +608,10 @@ static int imx6_pcie_deassert_core_reset(struct imx6_pcie *imx6_pcie)
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
- 		break;
- 	case IMX8MM:
-+	case IMX8MP:
- 		if (phy_init(imx6_pcie->phy))
- 			dev_err(dev, "waiting for phy ready timeout!\n");
-+		return -ENODEV;
- 		break;
- 	case IMX7D:
- 		reset_control_deassert(imx6_pcie->pciephy_reset);
-@@ -678,6 +685,7 @@ static void imx6_pcie_init_phy(struct imx6_pcie *imx6_pcie)
- {
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX8MM:
-+	case IMX8MP:
- 		/*
- 		 * The PHY initialization had been done in the PHY
- 		 * driver, break here directly.
-@@ -823,6 +831,7 @@ static void imx6_pcie_ltssm_enable(struct device *dev)
- 	case IMX7D:
- 	case IMX8MQ:
- 	case IMX8MM:
-+	case IMX8MP:
- 		reset_control_deassert(imx6_pcie->apps_reset);
- 		break;
- 	}
-@@ -938,6 +947,7 @@ static void imx6_pcie_host_exit(struct pcie_port *pp)
- 		imx6_pcie_clk_disable(imx6_pcie);
- 		switch (imx6_pcie->drvdata->variant) {
- 		case IMX8MM:
-+		case IMX8MP:
- 			if (phy_power_off(imx6_pcie->phy))
- 				dev_err(dev, "unable to power off phy\n");
- 			phy_exit(imx6_pcie->phy);
-@@ -972,6 +982,7 @@ static void imx6_pcie_ltssm_disable(struct device *dev)
- 		break;
- 	case IMX7D:
- 	case IMX8MM:
-+	case IMX8MP:
- 		reset_control_assert(imx6_pcie->apps_reset);
- 		break;
- 	default:
-@@ -1028,6 +1039,7 @@ static int imx6_pcie_suspend_noirq(struct device *dev)
- 	imx6_pcie_clk_disable(imx6_pcie);
- 	switch (imx6_pcie->drvdata->variant) {
- 	case IMX8MM:
-+	case IMX8MP:
- 		if (phy_power_off(imx6_pcie->phy))
- 			dev_err(dev, "unable to power off PHY\n");
- 		phy_exit(imx6_pcie->phy);
-@@ -1177,6 +1189,7 @@ static int imx6_pcie_probe(struct platform_device *pdev)
- 		}
- 		break;
- 	case IMX8MM:
-+	case IMX8MP:
- 		imx6_pcie->pcie_aux = devm_clk_get(dev, "pcie_aux");
- 		if (IS_ERR(imx6_pcie->pcie_aux))
- 			return dev_err_probe(dev, PTR_ERR(imx6_pcie->pcie_aux),
-@@ -1327,6 +1340,10 @@ static const struct imx6_pcie_drvdata drvdata[] = {
- 		.variant = IMX8MM,
- 		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
- 	},
-+	[IMX8MP] = {
-+		.variant = IMX8MP,
-+		.flags = IMX6_PCIE_FLAG_SUPPORTS_SUSPEND,
-+	},
- };
- 
- static const struct of_device_id imx6_pcie_of_match[] = {
-@@ -1336,6 +1353,7 @@ static const struct of_device_id imx6_pcie_of_match[] = {
- 	{ .compatible = "fsl,imx7d-pcie",  .data = &drvdata[IMX7D],  },
- 	{ .compatible = "fsl,imx8mq-pcie", .data = &drvdata[IMX8MQ], },
- 	{ .compatible = "fsl,imx8mm-pcie", .data = &drvdata[IMX8MM], },
-+	{ .compatible = "fsl,imx8mp-pcie", .data = &drvdata[IMX8MP], },
- 	{},
- };
- 
--- 
-2.25.1
-
+Pavel: can I get this patchset finally accepted, please?
