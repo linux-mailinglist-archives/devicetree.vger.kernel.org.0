@@ -2,367 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D6184CF06F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 04:39:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DCF34CF09D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 05:18:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235129AbiCGDkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Mar 2022 22:40:00 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60372 "EHLO
+        id S235153AbiCGETe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Mar 2022 23:19:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235113AbiCGDjy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 22:39:54 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA094EA23
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 19:39:01 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id a6so13867182oid.9
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 19:39:01 -0800 (PST)
+        with ESMTP id S231947AbiCGETd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Mar 2022 23:19:33 -0500
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 791E120F40;
+        Sun,  6 Mar 2022 20:18:39 -0800 (PST)
+Received: by mail-yb1-xb35.google.com with SMTP id u61so28479574ybi.11;
+        Sun, 06 Mar 2022 20:18:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=49L7WLNCDMugCqX6fsdECZs0GVJID2sbYVWyG32rCpw=;
-        b=Tx6KfbiJuFYkqkl/CBjrqJFb7VDjM4fGn5H8eUrcLSVrmbTKPX5aQ/BbdiItNh4Tcg
-         VT3gFp3QPX9XEIesM1Le8LEflQITkEkS1ok7D805kIWtS5FW7EEFqhTv+ITH1XGWgvk9
-         8yuy64GDDIhUaqwpxz7DkdEGOAppZ7w6rBVvTrIzvsiacOZrYuV5qdX887U0Wd0/4omZ
-         nCBlw1sUhs6W3qU+8ZroPS+cDLCQ82V+azMrIeirUZvIqIE64Cn0LdbjSrP1lactiY0C
-         qcOCeMozci+AGvRIqr73XxGoVdETpWz/3336A4evyzAdr8MnU8EsBwLbP8TXSztwxVYs
-         0LdA==
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=70QANHuilS/DlNxXzeIJU0v7aYUQYFYcd/4PORiu+uY=;
+        b=Rfkg5uXdxfhsC2SowUbgLkhAxsUQJPxW6TxbLfbGeQzbEpaduiyaXYCxHPSUp1dSzS
+         mKEcqEgK8DiBhNJgIicaA4WqVJaEtYukMYaeFwwigVKKg2m9a9OpEmseSmFwUIxRmeks
+         2zFUwxlditEuf4BdMXjLC//Hi2AOcbq2fny4YuTvYjpxhzMuje7B/g3uskDkGP0b9az2
+         L5eUyzf6DursWQcam2ME8qfQbt2kaUAMlAEkv7A2RKkgEgIQ4b4G0gveGHV0M8Kp52R4
+         6xMcgaT5iweciEUVvk2F2JjGFyVwR58gtOQk6vwnbeINGjlmFGho8k3r/87to+B/pJaO
+         +y0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=49L7WLNCDMugCqX6fsdECZs0GVJID2sbYVWyG32rCpw=;
-        b=vE3Ri/HdQh7kIlTDcohQohJANlbAWcRpBKUn1SZjkGgvaQTDkl/pljMBN8nAK8NqkX
-         ufq4oiQkka7Fz8I26qPHkc5+vyuRB2HeAOm7y1E02gSztOXO6a2l7MF7RV+Iwm2NzyD8
-         IQyk0T1kxhVvM1hfivoqaKlQEBS2qu1tWnnlfUnATdlnvawv+LzCekNuQ8NG7lWgdek0
-         R1ygFZ/I/2GGN6xJP7kGmTtKUXbKjjEdR3yqLy9RThho2PHUqt9uzo+T6Zut5OD/ksFE
-         eLEEK58NKYpd/u1Beapue63x+uW3/ZXkZVqlsAWFsh5uYQ9KrPLG9fiBJH2k/Bd0Wt8R
-         cRRA==
-X-Gm-Message-State: AOAM532GGm/Je6mzoTI4sAnMT335I8cNDgUbiB907TwcmzHoSz6lxVny
-        WDWA7gRZy0+3w/n/07Cw+ETyJA==
-X-Google-Smtp-Source: ABdhPJyX2BXF3WJ65qS0nhgl/lTvKjLYe+ljR3L17V/GVwnZXMDGrtI5cuhIRDfC5MxwA0yIA+9Cmg==
-X-Received: by 2002:a05:6808:2022:b0:2d4:752b:dfb5 with SMTP id q34-20020a056808202200b002d4752bdfb5mr5841086oiw.174.1646624340640;
-        Sun, 06 Mar 2022 19:39:00 -0800 (PST)
-Received: from ripper.. ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id o2-20020a05687072c200b000d9ae3e1fabsm5005172oak.12.2022.03.06.19.38.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Mar 2022 19:39:00 -0800 (PST)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>
-Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v4 7/7] usb: typec: mux: Add On Semi fsa4480 driver
-Date:   Sun,  6 Mar 2022 19:40:40 -0800
-Message-Id: <20220307034040.1111107-7-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
-References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=70QANHuilS/DlNxXzeIJU0v7aYUQYFYcd/4PORiu+uY=;
+        b=rMjVjimQbKPqB4RdNsq4sbwXLshMv73cmKUxUdmJYbkTJOiNi5rbPXOlBOzsDWJkfm
+         CFLs4fr2MIUgd3tS5EThS9qZ4eJu/LgVWragP0Jf+lSxUbtP9yYFefNm66fOM/v4xqbH
+         wBMc8HtbZl7snKUyEbEjLR2YIeX92b5HI+hVIoENdhIhE8IrRSjDDMS6cjIXt7T86G/z
+         Ru0/j43LIiYv/RpGel4n8jQAek62tI5IWSXZdReQZil6SbNRjqSIhbaVkQC8WzxnRYpT
+         Iod8f/oFLHAFExdlEXdeXBDRmqm4H4biQmP8kmUFkCDjkyVWDoVGy7EAlmCBWMLpuW5T
+         UD4Q==
+X-Gm-Message-State: AOAM533sEdwpKsIlXtfCPgRWyHPbm74y4FRwnEn0n7U+QUhyEjdIFZKs
+        XyDBJ4BglFrpEH7jNUDp231MUrF5ftxU3FzStgY=
+X-Google-Smtp-Source: ABdhPJw7BijN/ynaHoEV5vwHawxOUNKoamH/zSoxJcsIt541xlSgaj1LP3N2cCntuQmBAgX0TLkhqF2P7dEoq/TmXnw=
+X-Received: by 2002:a25:e697:0:b0:629:1f4a:5a3c with SMTP id
+ d145-20020a25e697000000b006291f4a5a3cmr4998993ybh.228.1646626718685; Sun, 06
+ Mar 2022 20:18:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
+ <1646374812-2988-2-git-send-email-hammerh0314@gmail.com> <9113e319-58a2-fd90-6887-fb32eb21fd18@canonical.com>
+In-Reply-To: <9113e319-58a2-fd90-6887-fb32eb21fd18@canonical.com>
+From:   hammer hsieh <hammerh0314@gmail.com>
+Date:   Mon, 7 Mar 2022 12:18:56 +0800
+Message-ID: <CAOX-t55sXVg8Fj_G_xzxWTStxZXOwKo46=_R0LkfHnMS051KaQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
+ PWM Driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     thierry.reding@gmail.com,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, lee.jones@linaro.org,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        wells.lu@sunplus.com, "hammer.hsieh" <hammer.hsieh@sunplus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ON Semiconductor FSA4480 is a USB Type-C port multimedia switch with
-support for analog audio headsets. It allows sharing a common USB Type-C
-port to pass USB2.0 signal, analog audio, sideband use wires and analog
-microphone signal.
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
+=B9=B43=E6=9C=884=E6=97=A5 =E9=80=B1=E4=BA=94
+=E4=B8=8B=E5=8D=8811:01=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 04/03/2022 07:20, Hammer Hsieh wrote:
+> > Add bindings doc for Sunplus SoC PWM Driver
+>
+> You miss spaces in the subject.
+>
 
-Due to lacking upstream audio support for testing, the audio muxing is
-left untouched, but implementation of muxing the SBU lines is provided
-as a pair of Type-C mux and switch devices. This provides the necessary
-support for enabling the DisplayPort altmode on devices with this
-circuit.
+ok, will modify it.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
+> >
+> > Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
+> > ---
+> > Changes in v2:
+> >  - Addressed all comments from Rob Herring.
+> >    modify author's mail match Signed-off-by.
+> >  - rebase kernel to 5.17 rc5
+> >
+> >  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 40 ++++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |  5 +++
+> >  2 files changed, 45 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.y=
+aml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/D=
+ocumentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> > new file mode 100644
+> > index 0000000..19fe5d5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
+> > @@ -0,0 +1,40 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) Sunplus Co., Ltd. 2021
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
+>
+> Is it going to be one binding for all Sunplus SoCs? Existing and future?
+>
 
-Changes since v3:
-- None
+yes, that was my first plan.
+but not all sunplus SoCs use the same IP-based,
+so I will change file name form 'pwm-sunplus.yaml' to
+'sunplus,sp7021-pwm.yaml' in  next patch.
 
-Changes since v2:
-- Expanded Kconfig help text.
-- Fixed copyright year
-- Fixed spelling mistakes in comments
-- Introduce FSA4480_MAX_REGISTER
-- Use dev_err_probe()
-- Removed some useless blank lines.
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Sunplus SoC PWM Controller
+> > +
+> > +maintainers:
+> > +  - Hammer Hsieh <hammerh0314@gmail.com>
+> > +
+>
+> allOf with pwm.yaml
+> Then unevaluatedProperties instead of additionalProperties.
+>
 
-Changes since v1:
-- None
+ok , will add it.
 
- drivers/usb/typec/mux/Kconfig   |  10 ++
- drivers/usb/typec/mux/Makefile  |   1 +
- drivers/usb/typec/mux/fsa4480.c | 216 ++++++++++++++++++++++++++++++++
- 3 files changed, 227 insertions(+)
- create mode 100644 drivers/usb/typec/mux/fsa4480.c
+>
+> > +properties:
+> > +  '#pwm-cells':
+> > +    const: 2
+> > +
+> > +  compatible:
+>
+> Commpatible goes first. Rest of properties you could order
+> alphabetically. Similar approach in required.
+>
+>
 
-diff --git a/drivers/usb/typec/mux/Kconfig b/drivers/usb/typec/mux/Kconfig
-index edead555835e..5eb2c17d72c1 100644
---- a/drivers/usb/typec/mux/Kconfig
-+++ b/drivers/usb/typec/mux/Kconfig
-@@ -2,6 +2,16 @@
- 
- menu "USB Type-C Multiplexer/DeMultiplexer Switch support"
- 
-+config TYPEC_MUX_FSA4480
-+	tristate "ON Semi FSA4480 Analog Audio Switch driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  Driver for the ON Semiconductor FSA4480 Analog Audio Switch, which
-+	  provides support for muxing analog audio and sideband signals on a
-+	  common USB Type-C connector.
-+	  If compiled as a module, the module will be named fsa4480.
-+
- config TYPEC_MUX_PI3USB30532
- 	tristate "Pericom PI3USB30532 Type-C cross switch driver"
- 	depends on I2C
-diff --git a/drivers/usb/typec/mux/Makefile b/drivers/usb/typec/mux/Makefile
-index 280a6f553115..e52a56c16bfb 100644
---- a/drivers/usb/typec/mux/Makefile
-+++ b/drivers/usb/typec/mux/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_TYPEC_MUX_FSA4480)		+= fsa4480.o
- obj-$(CONFIG_TYPEC_MUX_PI3USB30532)	+= pi3usb30532.o
- obj-$(CONFIG_TYPEC_MUX_INTEL_PMC)	+= intel_pmc_mux.o
-diff --git a/drivers/usb/typec/mux/fsa4480.c b/drivers/usb/typec/mux/fsa4480.c
-new file mode 100644
-index 000000000000..ab8d014a6b79
---- /dev/null
-+++ b/drivers/usb/typec/mux/fsa4480.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021-2022 Linaro Ltd.
-+ * Copyright (C) 2018-2020 The Linux Foundation
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/mutex.h>
-+#include <linux/regmap.h>
-+#include <linux/usb/typec_dp.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define FSA4480_SWITCH_ENABLE	0x04
-+#define FSA4480_SWITCH_SELECT	0x05
-+#define FSA4480_SWITCH_STATUS1	0x07
-+#define FSA4480_SLOW_L		0x08
-+#define FSA4480_SLOW_R		0x09
-+#define FSA4480_SLOW_MIC	0x0a
-+#define FSA4480_SLOW_SENSE	0x0b
-+#define FSA4480_SLOW_GND	0x0c
-+#define FSA4480_DELAY_L_R	0x0d
-+#define FSA4480_DELAY_L_MIC	0x0e
-+#define FSA4480_DELAY_L_SENSE	0x0f
-+#define FSA4480_DELAY_L_AGND	0x10
-+#define FSA4480_RESET		0x1e
-+#define FSA4480_MAX_REGISTER	0x1f
-+
-+#define FSA4480_ENABLE_DEVICE	BIT(7)
-+#define FSA4480_ENABLE_SBU	GENMASK(6, 5)
-+#define FSA4480_ENABLE_USB	GENMASK(4, 3)
-+
-+#define FSA4480_SEL_SBU_REVERSE	GENMASK(6, 5)
-+#define FSA4480_SEL_USB		GENMASK(4, 3)
-+
-+struct fsa4480 {
-+	struct i2c_client *client;
-+
-+	/* used to serialize concurrent change requests */
-+	struct mutex lock;
-+
-+	struct typec_switch_dev *sw;
-+	struct typec_mux_dev *mux;
-+
-+	struct regmap *regmap;
-+
-+	u8 cur_enable;
-+	u8 cur_select;
-+};
-+
-+static const struct regmap_config fsa4480_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = FSA4480_MAX_REGISTER,
-+};
-+
-+static int fsa4480_switch_set(struct typec_switch_dev *sw,
-+			      enum typec_orientation orientation)
-+{
-+	struct fsa4480 *fsa = typec_switch_get_drvdata(sw);
-+	u8 new_sel;
-+
-+	mutex_lock(&fsa->lock);
-+	new_sel = FSA4480_SEL_USB;
-+	if (orientation == TYPEC_ORIENTATION_REVERSE)
-+		new_sel |= FSA4480_SEL_SBU_REVERSE;
-+
-+	if (new_sel == fsa->cur_select)
-+		goto out_unlock;
-+
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		/* Disable SBU output while re-configuring the switch */
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE,
-+			     fsa->cur_enable & ~FSA4480_ENABLE_SBU);
-+
-+		/* 35us to allow the SBU switch to turn off */
-+		usleep_range(35, 1000);
-+	}
-+
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, new_sel);
-+	fsa->cur_select = new_sel;
-+
-+	if (fsa->cur_enable & FSA4480_ENABLE_SBU) {
-+		regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+		/* 15us to allow the SBU switch to turn on again */
-+		usleep_range(15, 1000);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
-+
-+	return 0;
-+}
-+
-+static int fsa4480_mux_set(struct typec_mux_dev *mux, struct typec_mux_state *state)
-+{
-+	struct fsa4480 *fsa = typec_mux_get_drvdata(mux);
-+	u8 new_enable;
-+
-+	mutex_lock(&fsa->lock);
-+
-+	new_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	if (state->mode >= TYPEC_DP_STATE_A)
-+		new_enable |= FSA4480_ENABLE_SBU;
-+
-+	if (new_enable == fsa->cur_enable)
-+		goto out_unlock;
-+
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, new_enable);
-+	fsa->cur_enable = new_enable;
-+
-+	if (new_enable & FSA4480_ENABLE_SBU) {
-+		/* 15us to allow the SBU switch to turn off */
-+		usleep_range(15, 1000);
-+	}
-+
-+out_unlock:
-+	mutex_unlock(&fsa->lock);
-+
-+	return 0;
-+}
-+
-+static int fsa4480_probe(struct i2c_client *client)
-+{
-+	struct device *dev = &client->dev;
-+	struct typec_switch_desc sw_desc = { };
-+	struct typec_mux_desc mux_desc = { };
-+	struct fsa4480 *fsa;
-+
-+	fsa = devm_kzalloc(dev, sizeof(*fsa), GFP_KERNEL);
-+	if (!fsa)
-+		return -ENOMEM;
-+
-+	fsa->client = client;
-+	mutex_init(&fsa->lock);
-+
-+	fsa->regmap = devm_regmap_init_i2c(client, &fsa4480_regmap_config);
-+	if (IS_ERR(fsa->regmap))
-+		return dev_err_probe(dev, PTR_ERR(fsa->regmap), "failed to initialize regmap\n");
-+
-+	fsa->cur_enable = FSA4480_ENABLE_DEVICE | FSA4480_ENABLE_USB;
-+	fsa->cur_select = FSA4480_SEL_USB;
-+
-+	/* set default settings */
-+	regmap_write(fsa->regmap, FSA4480_SLOW_L, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_SLOW_GND, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_R, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_MIC, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_SENSE, 0x00);
-+	regmap_write(fsa->regmap, FSA4480_DELAY_L_AGND, 0x09);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_SELECT, fsa->cur_select);
-+	regmap_write(fsa->regmap, FSA4480_SWITCH_ENABLE, fsa->cur_enable);
-+
-+	sw_desc.drvdata = fsa;
-+	sw_desc.fwnode = dev->fwnode;
-+	sw_desc.set = fsa4480_switch_set;
-+
-+	fsa->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(fsa->sw))
-+		return dev_err_probe(dev, PTR_ERR(fsa->sw), "failed to register typec switch\n");
-+
-+	mux_desc.drvdata = fsa;
-+	mux_desc.fwnode = dev->fwnode;
-+	mux_desc.set = fsa4480_mux_set;
-+
-+	fsa->mux = typec_mux_register(dev, &mux_desc);
-+	if (IS_ERR(fsa->mux)) {
-+		typec_switch_unregister(fsa->sw);
-+		return dev_err_probe(dev, PTR_ERR(fsa->mux), "failed to register typec mux\n");
-+	}
-+
-+	i2c_set_clientdata(client, fsa);
-+	return 0;
-+}
-+
-+static int fsa4480_remove(struct i2c_client *client)
-+{
-+	struct fsa4480 *fsa = i2c_get_clientdata(client);
-+
-+	typec_mux_unregister(fsa->mux);
-+	typec_switch_unregister(fsa->sw);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id fsa4480_table[] = {
-+	{ "fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, fsa4480_table);
-+
-+static const struct of_device_id fsa4480_of_table[] = {
-+	{ .compatible = "fcs,fsa4480" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, fsa4480_of_table);
-+
-+static struct i2c_driver fsa4480_driver = {
-+	.driver = {
-+		.name = "fsa4480",
-+		.of_match_table = fsa4480_of_table,
-+	},
-+	.probe_new	= fsa4480_probe,
-+	.remove		= fsa4480_remove,
-+	.id_table	= fsa4480_table,
-+};
-+module_i2c_driver(fsa4480_driver);
-+
-+MODULE_DESCRIPTION("ON Semiconductor FSA4480 driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.33.1
+ok, will modify it.
 
+> > +    items:
+> > +      - const: sunplus,sp7021-pwm
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +required:
+>
+> compatible
+>
+> > +  - reg
+> > +  - clocks
+>
+>
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    pwm: pwm@9c007a00 {
+> > +      #pwm-cells =3D <2>;
+> > +      compatible =3D "sunplus,sp7021-pwm";
+>
+> compatible goes first, then reg.
+>
+
+ok, will modify it.
+
+>
+> Best regards,
+> Krzysztof
