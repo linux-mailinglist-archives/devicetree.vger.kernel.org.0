@@ -2,64 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ACE1E4D0BE2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:18:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96D694D0BF0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:21:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232022AbiCGXTN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 18:19:13 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39120 "EHLO
+        id S237824AbiCGXWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 18:22:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47924 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231462AbiCGXTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:19:10 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D5392FFE6;
-        Mon,  7 Mar 2022 15:18:16 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id h16-20020a4a6f10000000b00320507b9ccfso19884586ooc.7;
-        Mon, 07 Mar 2022 15:18:16 -0800 (PST)
+        with ESMTP id S234371AbiCGXWc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:22:32 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 406656450;
+        Mon,  7 Mar 2022 15:21:37 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id n5-20020a4a9545000000b0031d45a442feso19855970ooi.3;
+        Mon, 07 Mar 2022 15:21:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1eYH5LzkgdU6jpG2HhAfPxnYbI/wmwp3XDqYY0cCFis=;
-        b=5fuouBviDbhAhV1DEzXDeLsxqFTVU9oO7Gd2r+zjSrwHIB2s1RtNx3jK9I62edeeZo
-         in0D8mA3iBaRRN8ol8fIy7x8ulFmOUoZfF72eGubNMj3tryYQlSBJgUSHdWBxRKRCBkE
-         ZYDeY1inUYCjjldXnltWNaIxvPz8bOEqbCFk5YMgQolI+Gnuk36aaKbSIX2XaU17SyCu
-         q956DN5vEPWMh9lnlfM5puD1bSlPaaikVRVc1F1CL5hzenzuMXmCD3voXuTw7XrEcAPW
-         GxNQy89yf4CMVnZB01k+FvBjysSAY97sz+A+c1e3gjmfQyDV+YSajpjXFiEWNjoOrYk/
-         482g==
-X-Gm-Message-State: AOAM533HBNtjple75iVOf4G9RxQrnNt3BF60UO/HTmFhh5b3fiaOvAEB
-        XKoLJoQC3O5KNYPsG3pU+Q==
-X-Google-Smtp-Source: ABdhPJxtAt0kquLQKafmRDFI779u0QNiU3qKgeI3NW63XN5lJ8QdUhYcl74kj2jxq9JNC0EhE6OHNQ==
-X-Received: by 2002:a05:6870:a986:b0:da:b3f:3279 with SMTP id ep6-20020a056870a98600b000da0b3f3279mr746426oab.297.1646695095451;
-        Mon, 07 Mar 2022 15:18:15 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=GwqBsAiwDA57OzBbnIQApP2KsOEcfE99XASAzmUckUs=;
+        b=Wy//6Z68zjnAA5Y71EKIdbLiAgDKvdqMCDXutIY1lpFcaNm0TOAPQRFKyPxAwDZ2BJ
+         TTl/xe9C9IsnAbiNsvr1/H/lZADPtwM34QSBM1TcNifRq2jOnRoRaNrKQdevc9zOI7q8
+         RIosBpDIAHl9HkCH6Z/rjP1+Ts2vJBwxDd0mnlp+JC6eog3WwzgNzn+n5w+FR9kztrsQ
+         HxXLsgguUaMUsqf3ZNGrux+rUPSFQdiTmqATyDjSrJ5tNUiOvikiKcR3VkJpIVJPlOqx
+         UR/haiaEj9UQwpsHpWhYhspYF0y0gUtPGnutWc7Dh49j7nh6sYxV0jTtmQXq/U+44bQW
+         CCQA==
+X-Gm-Message-State: AOAM5321JlyRnwTKn9j6T5UJ5q5itaNPaqpU90ICO9ymDh7GZbH+bFSZ
+        eFkSqgtkM8AWs6bdnRQOtQ==
+X-Google-Smtp-Source: ABdhPJw/AE1EhWJP6qxkDyeRTJYp+la3lVDGzD9DakazOBHyOJ9Qw5nCO7bMG8JD6/2WWxv5bamQjg==
+X-Received: by 2002:a05:6870:d151:b0:da:4cd6:552e with SMTP id f17-20020a056870d15100b000da4cd6552emr788011oac.136.1646695296565;
+        Mon, 07 Mar 2022 15:21:36 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id t40-20020a05680815a800b002d48ffad94bsm7598050oiw.2.2022.03.07.15.18.14
+        by smtp.gmail.com with ESMTPSA id ay44-20020a056808302c00b002d9d2b564absm2177987oib.43.2022.03.07.15.21.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 15:18:14 -0800 (PST)
-Received: (nullmailer pid 3447775 invoked by uid 1000);
-        Mon, 07 Mar 2022 23:18:13 -0000
-Date:   Mon, 7 Mar 2022 17:18:13 -0600
+        Mon, 07 Mar 2022 15:21:35 -0800 (PST)
+Received: (nullmailer pid 3453254 invoked by uid 1000);
+        Mon, 07 Mar 2022 23:21:34 -0000
+Date:   Mon, 7 Mar 2022 17:21:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Tom Rini <trini@konsulko.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
-        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
- binding
-Message-ID: <YiaStXmE8nYjBHqF@robh.at.kernel.org>
-References: <20220228131250.16943-1-zajec5@gmail.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH RFC v3 1/8] of: Mark interconnects property supplier as
+ optional
+Message-ID: <YiaTfsMDs7RGob2N@robh.at.kernel.org>
+References: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
+ <20220302211100.65264-2-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220228131250.16943-1-zajec5@gmail.com>
+In-Reply-To: <20220302211100.65264-2-paul.kocialkowski@bootlin.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -71,39 +73,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 02:12:50PM +0100, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> U-Boot uses environment variables for storing device setup data. It
-> usually needs to be accessed by a bootloader, kernel and often
-> user-space.
-> 
-> This binding allows describing environment data located in a raw flash
-> partition. It's treated as NVMEM device and can be reused later for
-> other storage devices.
-> 
-> Using DT should be cleaner than hardcoding & duplicating such info in
-> multiple places. Bootloader & kernel can share DTS and user-space can
-> try reading it too or just have correct data exposed by a kernel.
-> 
-> A custom "compatible" string allows system to automatically load
-> relevant NVMEM driver but phandle can be also used for reading raw
-> location.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Update descriptions to don't make this binding MTD (flash partition)
->     specific. Mention multiple possible storage ways.
-> V3: Drop
->     allOf:
->       - $ref: nvmem.yaml#
->     as we don't use anything rom the nvmem.yaml. Thanks Rob.
-> ---
->  .../devicetree/bindings/nvmem/u-boot,env.yaml | 62 +++++++++++++++++++
->  MAINTAINERS                                   |  5 ++
->  2 files changed, 67 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
++Saravana
 
-A u-boot maintainer should ack this.
-
-Rob
+On Wed, Mar 02, 2022 at 10:10:53PM +0100, Paul Kocialkowski wrote:
+> In order to set their correct DMA address offset, some devices rely on
+> the device-tree interconnects property which identifies an
+> interconnect node that provides a dma-ranges property that can be used
+> to set said offset.
+> 
+> Since that logic is all handled by the generic openfirmware and driver
+> code, the device-tree description could be enough to properly set
+> the offset.
+> 
+> However the interconnects property is currently not marked as
+> optional, which implies that a driver for the corresponding node
+> must be loaded as a requirement. When no such driver exists, this
+> results in an endless EPROBE_DEFER which gets propagated to the
+> calling driver. This ends up in the driver never loading.
+> 
+> Marking the interconnects property as optional makes it possible
+> to load the driver in that situation, since the EPROBE_DEFER return
+> code will no longer be propagated to the driver.
+> 
+> There might however be undesirable consequences with this change,
+> which I do not fully grasp at this point.
+> 
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> ---
+>  drivers/of/property.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/property.c b/drivers/of/property.c
+> index 8e90071de6ed..ef7c56b510e8 100644
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1365,7 +1365,7 @@ static struct device_node *parse_interrupts(struct device_node *np,
+>  
+>  static const struct supplier_bindings of_supplier_bindings[] = {
+>  	{ .parse_prop = parse_clocks, },
+> -	{ .parse_prop = parse_interconnects, },
+> +	{ .parse_prop = parse_interconnects, .optional = true,},
+>  	{ .parse_prop = parse_iommus, .optional = true, },
+>  	{ .parse_prop = parse_iommu_maps, .optional = true, },
+>  	{ .parse_prop = parse_mboxes, },
+> -- 
+> 2.35.1
+> 
+> 
