@@ -2,74 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D254D0144
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:32:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2513F4D015D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:34:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237481AbiCGOc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 09:32:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55676 "EHLO
+        id S238679AbiCGOfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 09:35:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235538AbiCGOc6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:32:58 -0500
-Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1BFF79384
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 06:32:03 -0800 (PST)
-Received: by mail-oi1-x236.google.com with SMTP id l25so15308875oic.13
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 06:32:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=jAOEfcrHxWTEhg7BxTnoFSoh64ur+frJb+7Etlx9rtQ=;
-        b=GJ/zew/2c/T7gmBh99VfzZLRMIr1lWxgtwiRGpln7n6kXctT05678TBF1YPo8K/nyU
-         xOL/GNqnsexBZCu2VL/N3mTeUDMxf6kTPDvrzocCn/XswBlLdtp+GJzmpSxz7sqo4KXt
-         4wr7xC63ca5frxTj5uJRTgnPWTe6M+mGV6zRZ5vAST0uEDv9m+LWK0h2mFrEPzjBt1Yt
-         /X9IYwbSusvVKxyEyVqgZsa1ageF3DyBQDHldMq/hndd38A4zi/b6Iqeqx6a4+T4eW9U
-         S8DmT71hgMF8+wgDwfhNOqN3TjxkzV0ImuTqjRWVDS5YjPGK9jGaPbiZxzs0TVQ8sY7R
-         7MFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jAOEfcrHxWTEhg7BxTnoFSoh64ur+frJb+7Etlx9rtQ=;
-        b=FBpHK47FvzQxHm7j12hR6uq3KrjKzmIV35+7zD3NCOqm8HNosIA7dIJAjgG2mcStOL
-         UFXdpDEvIFm9dv2CmRA4OIklp0uxnhjUxGyD4hOYAKmHTly2PZNlfgnoVQDgUU2k3i5r
-         0cuFFCLc8ItRMANIJBQQEaNSu++TgvwKJRi3XNwfxDqyZbDrOuLL3u3r7ariidRux8I8
-         3cF0TMKYzTCTzNIlcIWhQEvODMrhlogkg7yGgHxopzg8EhvHZd8WzEik8hKn0RAVR7pR
-         BLnPZyPdnv/PAU2XTeneFoLUCe1eCk98uiSFh89cSwGQIC+DSJnMXTx4YUC0q/4Y4HMv
-         1HJA==
-X-Gm-Message-State: AOAM530/jg3U8qta9SZcAIi9O46AHFCevTu46mUrncgsK4/vHrLBkSee
-        4cOuTtdsr6XpKTvV/Fbiw8ML6g==
-X-Google-Smtp-Source: ABdhPJzqOXx5kooaXG2dVnX2vpjZX9hB4LZw1mzfujLDchjIhcK0otseZB2nycRu3BZ28DFHpurG6A==
-X-Received: by 2002:a05:6808:23ca:b0:2d9:bb42:81e with SMTP id bq10-20020a05680823ca00b002d9bb42081emr5269110oib.141.1646663523111;
-        Mon, 07 Mar 2022 06:32:03 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id o10-20020a0568080f8a00b002d726c76b77sm6442939oiw.15.2022.03.07.06.32.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 06:32:02 -0800 (PST)
-Date:   Mon, 7 Mar 2022 06:33:47 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+        with ESMTP id S232847AbiCGOfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:35:22 -0500
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 94D447CDCA
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 06:34:28 -0800 (PST)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1DB53ED1;
+        Mon,  7 Mar 2022 06:34:28 -0800 (PST)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.196.172])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 55C763F66F;
+        Mon,  7 Mar 2022 06:34:26 -0800 (PST)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 3/7] usb: typec: mux: Check dev_set_name() return value
-Message-ID: <YiYXywEEz7WZQhfd@ripper>
-References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
- <20220307034040.1111107-3-bjorn.andersson@linaro.org>
- <YiXZkqPQxqQ9I0VH@smile.fi.intel.com>
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH 00/14] ARM: suniv: dts: update Allwinner F1C100
+Date:   Mon,  7 Mar 2022 14:34:07 +0000
+Message-Id: <20220307143421.1106209-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiXZkqPQxqQ9I0VH@smile.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,93 +47,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 07 Mar 02:08 PST 2022, Andy Shevchenko wrote:
+The Allwinner F1C100 SoC didn't see much love since its initial merge in
+2018: the originally submitted .dts files were very basic, and didn't
+cover such simple peripherals as MMC and SPI.
+On top of that the watchdog compatible string was wrong, leading to a
+non-functional watchdog and reset functionality.
 
-> On Sun, Mar 06, 2022 at 07:40:36PM -0800, Bjorn Andersson wrote:
-> > It's possible that dev_set_name() returns -ENOMEM, catch and handle this.
-> 
-> Thanks!
-> Shouldn't we have a Fixes tag and be sent separately for this cycle?
-> 
+This series aims to fix that, after the series MMC and SPI work, and
+make dtbs_check comes back clean.
+This was tested with mounting a filesystem on /dev/mmcblk0 on a
+LicheePi Nano, also with accessing the SPI flash through /dev/mtdblock
+and mtd_debug. Reboot and watchdog now also work.
 
-It seems appropriate to add:
+Mainline U-Boot recently gained F1C100 support, and those DT updates are
+needed there as well to get full MMC and SPI access.
 
-Fixes: 3370db35193b ("usb: typec: Registering real device entries for the muxes")
+The series is structured as follows:
+- Patches 01/14 and 02/14 fix the watchdog, which allows to properly
+  reboot the system.
+- Patches 03-06 fix some shortcomings of the existing DT files, to make
+  them DT binding compliant.
+- Patches 07-09 are Jesse's recent MMC patches, with the comments from
+  the last version addressed [1].
+- Patches 10-12 add SPI support, to enable access to the SPI flash on
+  the LicheePi Nano board.
+- The final two patches (13/14 and 14/14) add the F1C100 platform to
+  the multi_v5_defconfig, since it was not covered by any other
+  defconfig before, and an ARMv5 compliant kernel is not commonly
+  offered by distributions.
 
+I saw George's series from two years ago to add USB support[2], that
+looks good on the first glance, I will comment on that once I did some
+testing on that.
 
-If the maintainer would prefer to get this into v5.18, it could either
-be picked ahead of the rest of the series, or I can resubmit it on its
-own. I don't think it's a critical fix though.
+Cheers,
+Andre
 
-> > Reported-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > ---
-> > 
-> > Changes since v3:
-> > - New patch
-> > 
-> >  drivers/usb/typec/mux.c | 14 ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/usb/typec/mux.c b/drivers/usb/typec/mux.c
-> > index c8340de0ed49..d2aaf294b649 100644
-> > --- a/drivers/usb/typec/mux.c
-> > +++ b/drivers/usb/typec/mux.c
-> > @@ -131,8 +131,11 @@ typec_switch_register(struct device *parent,
-> >  	sw->dev.class = &typec_mux_class;
-> >  	sw->dev.type = &typec_switch_dev_type;
-> >  	sw->dev.driver_data = desc->drvdata;
-> > -	dev_set_name(&sw->dev, "%s-switch",
-> > -		     desc->name ? desc->name : dev_name(parent));
-> > +	ret = dev_set_name(&sw->dev, "%s-switch", desc->name ? desc->name : dev_name(parent));
-> 
-> We may use shorten form of the ternary
-> 
-> 	ret = dev_set_name(&sw->dev, "%s-switch", desc->name ?: dev_name(parent));
-> 
-> at the same time, but it's up to you.
-> 
+Changelog for the MMC patches [1]:
+- bindings doc: extend commit message
+- .dtsi: extend commit message, re-order mmc0_pins node, add
+  drive-strength
+- .dts: extend commit message, add alias, regulator and disable-wp
 
-I looked at it, but felt it was an unrelated change and decided to leave
-it as is.
+[1] https://lore.kernel.org/linux-arm-kernel/20220130220325.1983918-1-Mr.Bossman075@gmail.com/
+[2] https://lore.kernel.org/linux-usb/20200331170219.267732-1-thirtythreeforty@gmail.com/
 
-> Either way code looks good to me,
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> 
+Andre Przywara (10):
+  dt-bindings: watchdog: sunxi: fix F1C100s compatible
+  ARM: dts: suniv: F1C100: fix watchdog compatible
+  dt-bindings: arm: sunxi: document LicheePi Nano name
+  ARM: dts: suniv: F1C100: fix CPU node
+  ARM: dts: suniv: F1C100: fix timer node
+  dt-bindings: spi: sunxi: document F1C100 controllers
+  ARM: dts: suniv: F1C100: add SPI support
+  ARM: dts: suniv: licheepi-nano: add SPI flash
+  ARM: configs: sync multi_v5_defconfig from savedefconfig
+  ARM: configs: multi_v5: Enable Allwinner F1C100
 
-Thanks,
-Bjorn
+Jesse Taube (4):
+  ARM: dts: suniv: F1C100: add clock and reset macros
+  dt-bindings: mmc: sunxi: add Allwinner F1c100s compatible
+  ARM: dts: suniv: F1C100: add MMC controllers
+  ARM: dts: suniv: licheepi-nano: add microSD card
 
-> > +	if (ret) {
-> > +		put_device(&sw->dev);
-> > +		return ERR_PTR(ret);
-> > +	}
-> >  
-> >  	ret = device_add(&sw->dev);
-> >  	if (ret) {
-> > @@ -338,8 +341,11 @@ typec_mux_register(struct device *parent, const struct typec_mux_desc *desc)
-> >  	mux->dev.class = &typec_mux_class;
-> >  	mux->dev.type = &typec_mux_dev_type;
-> >  	mux->dev.driver_data = desc->drvdata;
-> > -	dev_set_name(&mux->dev, "%s-mux",
-> > -		     desc->name ? desc->name : dev_name(parent));
-> > +	ret = dev_set_name(&mux->dev, "%s-mux", desc->name ? desc->name : dev_name(parent));
-> 
-> Ditto.
-> 
-> > +	if (ret) {
-> > +		put_device(&mux->dev);
-> > +		return ERR_PTR(ret);
-> > +	}
-> >  
-> >  	ret = device_add(&mux->dev);
-> >  	if (ret) {
-> > -- 
-> > 2.33.1
-> > 
-> 
-> -- 
-> With Best Regards,
-> Andy Shevchenko
-> 
-> 
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../bindings/mmc/allwinner,sun4i-a10-mmc.yaml |   3 +
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml |   1 +
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     |   2 +-
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  |  31 ++++++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          | 102 ++++++++++++++++--
+ arch/arm/configs/multi_v5_defconfig           |  25 ++---
+ 7 files changed, 140 insertions(+), 29 deletions(-)
+
+-- 
+2.25.1
+
