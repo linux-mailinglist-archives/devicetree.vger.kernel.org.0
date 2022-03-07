@@ -2,149 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A5F64D0784
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:20:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D974D0782
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 20:20:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245078AbiCGTVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 14:21:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54388 "EHLO
+        id S245060AbiCGTUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 14:20:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54004 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245071AbiCGTU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:20:57 -0500
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 442365DA45;
-        Mon,  7 Mar 2022 11:20:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646680790;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
-    From:Subject:Sender;
-    bh=fU2AT1DmaXjZbwSnr14Fi5UUMevEUVajWKWw4VNmtVU=;
-    b=rVQ8m9B+gDSJekq4iPAF7G+lHD1yAFNUI3gBuE/Nd5wbKv1A27WSkIFLtlurutTXiC
-    W+YpCQnQS885PCK01seblKsqKTTQXBQ1rQ5MG/QWTqBxAjJhFdcTJThRFhzmkKyOO8x9
-    CPFdkc3vAO2sE0v98cZzElWwD2NXWbAs4B2KtrtrMmS5LD95/IONgMj3VDIZvlOh/9d8
-    SLNVXbRCmJfLtPRingPcjVUHPbDTFJQm82tyLjVsDbganBKRwXc1hxqCiEnq9LcqKz2Y
-    ssM9VuScQ+RbdIYowcsYO9xjXlzcp3vP6mLMkic/EOQv/izoJwIuUpU0I6s7J54ccCRP
-    OvEw==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHWElw43pw1w="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-    by smtp.strato.de (RZmta 47.40.1 DYNA|AUTH)
-    with ESMTPSA id n729cey27JJnME3
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
-        (Client did not present a certificate);
-    Mon, 7 Mar 2022 20:19:49 +0100 (CET)
-Content-Type: text/plain;
-        charset=us-ascii
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
-Subject: Re: [PATCH] ARM: dts: am33xx-l4: Add missing touchscreen clock
- properties
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20220307111413.8903-1-miquel.raynal@bootlin.com>
-Date:   Mon, 7 Mar 2022 20:19:48 +0100
-Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <511C8854-13D9-4B52-ACA7-6F519A9B3048@goldelico.com>
-References: <20220307111413.8903-1-miquel.raynal@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-X-Mailer: Apple Mail (2.3445.104.21)
+        with ESMTP id S245063AbiCGTUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 14:20:50 -0500
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D159580D7;
+        Mon,  7 Mar 2022 11:19:56 -0800 (PST)
+Received: by mail-pj1-x1035.google.com with SMTP id cx5so14931916pjb.1;
+        Mon, 07 Mar 2022 11:19:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=43yabkppNO1PYVoZMxx6aJIsWh5rjZqMAPLH7WugjRk=;
+        b=gAB8T444wB7Mh38B4y1SkZReGMb4ut0xn15c48uhCW0o2oiqj5oLtAPPLgMWJWIfj2
+         pw9CMnhGBZYICeKMka1rYLfdLaYpO5SyQbGSH4FwtgoLOaEf/WfOBqxawsv/76L2rAP5
+         v78oIo00Mjvcvn3FHRAmDPVqerrQS6YFUZzGTNBN+0nmDuIA9Ow6PppXfmnZL2z4rSOe
+         KH0MymGoRBsM3isOGizSiP4CAlYs7M21bhWWOU0bayZBm6UynoNj6ScieCXcktlC6bT7
+         QMtWDLQ8EpohttZoj+azZJLFejmcXUMAsXKdDI01Mxq8uGMeJY90rZbDLlrzg/cMVWWg
+         P+qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=43yabkppNO1PYVoZMxx6aJIsWh5rjZqMAPLH7WugjRk=;
+        b=Ygl1CgJjzeOTSt+dBjaa0B0GpgtxIMY+ueLgiO39VUuYR2Fmo8OKtHXralU38Aa43f
+         sGgqagvYC85uOd3CFauPpXj44RriwPcBrVPz7bnsCFVrL18zw4mtg3h24UGy2hjyxWcp
+         eQgMm505/KFTkpaOv4joLXmD5dHnBXptpp78aRKZLG61E8ZG/7YY62vmsxNAqI7PmnJs
+         ftXATw3F6QWUx7M8lEIILK3QNyUV3VFU6kpXB9/lok4jFKu5pbCzqX0VqO9hFRXFxnht
+         /wnHHDeQugAyP0FQTVEtFGpoR+Z4cUWUwtd8MoISh9DAFwIhmzWFoEgkhcN4RXsOeKch
+         7PHQ==
+X-Gm-Message-State: AOAM530sunYtFFu79NLB5nfeg85FGSMWkCfBrX9+qW3b7Nx8DnSZmnWs
+        cA0No8BqTpj8xy5iFYCmAUI=
+X-Google-Smtp-Source: ABdhPJxTztg7pSgIOr+O567tI0a6HSEtde66cbpaHl3qywr4SQaWo6uWdOq+i1MwS/Asw5tS0VXZHQ==
+X-Received: by 2002:a17:903:183:b0:151:af32:890d with SMTP id z3-20020a170903018300b00151af32890dmr13740248plg.0.1646680795806;
+        Mon, 07 Mar 2022 11:19:55 -0800 (PST)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id h2-20020a056a00218200b004f66d50f054sm16837209pfi.158.2022.03.07.11.19.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 11:19:55 -0800 (PST)
+Subject: Re: [PATCH 3/3] arm64: dts: stingray: Fix spi clock name
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Scott Branden <sbranden@broadcom.com>, Ray Jui <rjui@broadcom.com>
+References: <20220307182101.84730-1-singh.kuldeep87k@gmail.com>
+ <20220307182101.84730-3-singh.kuldeep87k@gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a99fdd2b-96ee-df1a-6c56-632ad7334bc6@gmail.com>
+Date:   Mon, 7 Mar 2022 11:19:52 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <20220307182101.84730-3-singh.kuldeep87k@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
-some tiny typos...
+On 3/7/22 10:21 AM, Kuldeep Singh wrote:
+> SPI clock name for pl022 is "sspclk" and not "spiclk".
+> Also fix below dtc warning:
+> clock-names:0: 'spiclk' is not one of ['SSPCLK', 'sspclk']
+> 
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 
-> Am 07.03.2022 um 12:14 schrieb Miquel Raynal =
-<miquel.raynal@bootlin.com>:
->=20
-> When adding support for TI magadc, the MFD driver (common to the
-
-"magadc"?
-
-> touchscreen and the ADC) got updated to ease the insertion of a new DT
-> node for the ADC, with its own compatible, clocks, etc. Commit
-> 235a96e92c16 ("mfd: ti_am335x_tscadc: Don't search the tree for our
-> clock") removed one compatible specific information which was the =
-clock
-> name, because the clock was looked up from scratch in the DT while =
-this
-> hardware block was only fed by a single clock, already defined and
-> properly filled in the DT.
->=20
-> Problem is, this change was only validated with an am437x-based board,
-> where the clocks are effectively correctly defined and referenced. But
-> on am33xx, the ADC clock is also correctly defined but is not =
-referenced
-> with a clock phandle as it out to be.
-
-maybe you mean "ought to be"?
-
->=20
-> The touchscreen bindings clearly state that the clocks/clock-names
-> properties are mandatory, but they have been forgotten in one DTSI. =
-This
-> was probably not noticed in the first place because of the clock
-> actually existing and the clk_get() call going through all the tree
-> anyway.
->=20
-> Add the missing clock phandles in the am33xx touchscreen description.
-
-Yes, makes touch on BeagleBoard Black with Chipsee 4"3 panel work again!
-
->=20
-> Reported-by: H. Nikolaus Schaller <hns@goldelico.com>
-> Fixes: 235a96e92c16 ("mfd: ti_am335x_tscadc: Don't search the tree for =
-our clock")
-Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
->=20
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->=20
-> Hello Nikolaus, as I told you I don't have the relevant hardware to
-> verify that this actually fixes your situation but I am rather
-> confident. Could you please give this a try?
-> Thanks! Miquel
-
->=20
-> arch/arm/boot/dts/am33xx-l4.dtsi | 2 ++
-> 1 file changed, 2 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi =
-b/arch/arm/boot/dts/am33xx-l4.dtsi
-> index c9629cb5ccd1..7da42a5b959c 100644
-> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
-> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-> @@ -263,6 +263,8 @@ tscadc: tscadc@0 {
-> 				compatible =3D "ti,am3359-tscadc";
-> 				reg =3D <0x0 0x1000>;
-> 				interrupts =3D <16>;
-> +				clocks =3D <&adc_tsc_fck>;
-> +				clock-names =3D "fck";
-> 				status =3D "disabled";
-> 				dmas =3D <&edma 53 0>, <&edma 57 0>;
-> 				dma-names =3D "fifo0", "fifo1";
-> --=20
-> 2.27.0
->=20
-
-BR and thanks,
-Nikolaus
-
-
+Applied to deviceree-arm64/next
+-- 
+Florian
