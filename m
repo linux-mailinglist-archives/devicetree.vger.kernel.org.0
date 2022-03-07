@@ -2,131 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BB334CF432
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:04:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E545F4CF46C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 10:16:34 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbiCGJFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 04:05:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38836 "EHLO
+        id S236298AbiCGJR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 04:17:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39658 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231935AbiCGJFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:05:33 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD5644742
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 01:04:38 -0800 (PST)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 9E7D33F4C2
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 09:04:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646643877;
-        bh=bCGKnBRm9v2sKeJoewgF99EVSOj1eSTH2ia4hbNzqfc=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=I0h56zhE/VsyJCNOvhSi4Yq4KsPB3ExPWkf91UojSiA5sn4VaiuxS7gFipiu5BPp2
-         GNK8DaYnfFoIMicVZTy+8+nZV95DWbogA0KcL1BYr8+8J3kNgENE7GRCwWCJ+uyNlI
-         JXCkCYcvXVFM+9UQ5y1OSHXNZHjuyTGrBMmgZY//JPjq4wqcW70b4JXSvepghlLtKS
-         E8XIhoL5djU4gpnrYqrK2mfQR7i42kITOUB/p34Q81zNUzlHpc8M42VDEzdQFwPM+W
-         t+I+L1iYC9NOuAU8pCRwss9ydcJMXFbBx+WEYs/o4fTWi85BxZPI8QwijMWADyHHjG
-         nTrHfFqycsl3w==
-Received: by mail-ed1-f70.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso8207560edt.20
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 01:04:37 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=bCGKnBRm9v2sKeJoewgF99EVSOj1eSTH2ia4hbNzqfc=;
-        b=yiqVFDvR+0xf5QqUKc/Qu2FOt5jpzsAo+LuT3uP5PhxC+BcduXECIE591JOqjr79zJ
-         pwiIw3TceEt2LFH5Nlkfstb0TVZPnTYHSjywBfnRe4dy9xr6NlkwL7jRNdvUkXzBsvoz
-         Vs6Ou5KVczz7LsuvhMrw78sxdRvJpN2WTNL9kYLYbgi1VQRfasPeliMPhXuPUc1LR+3g
-         WfC4lH7JSkCcAujXJveV9qUf+6nS3KTjIj3yvaVDrSFBI3GT9COLcRxJXxOKEB6Qoblx
-         sHsrGGUkaKVpJofr9wp908gZlttk6xvZN2eRcWOxagkXOJ4rVjbyXX39Hnd3OLtRccRO
-         juAg==
-X-Gm-Message-State: AOAM530wxdzubEbZ4l2/uu7cpFJ8VPF99rseXYtY3G5LnbRqmZG5iWZi
-        6v2y3DZfYRFETzdFQncpdHzgCH8AokwgeyXBEr4jueUmzsPGnh1j0KTRhPCDZdt+rTqg2gNsOsB
-        OLmqiWTGlKEyKSZ6gVTHIQKYkv/iuyZZgGnGd9qg=
-X-Received: by 2002:a17:906:3803:b0:6cf:56b9:60a9 with SMTP id v3-20020a170906380300b006cf56b960a9mr7974949ejc.716.1646643876974;
-        Mon, 07 Mar 2022 01:04:36 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJznp/n2u6f3ACuFsi3tn3Y52SEoSIz1Qz9ikaklDE2Cdic0VgHikeNWUnubx67cDnGPPuwgvQ==
-X-Received: by 2002:a17:906:3803:b0:6cf:56b9:60a9 with SMTP id v3-20020a170906380300b006cf56b960a9mr7974939ejc.716.1646643876806;
-        Mon, 07 Mar 2022 01:04:36 -0800 (PST)
-Received: from [192.168.0.141] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id et3-20020a170907294300b006d6534ef273sm4435569ejc.156.2022.03.07.01.04.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 01:04:36 -0800 (PST)
-Message-ID: <30db9e75-5176-e8e2-6a2c-1ef4022ba9f7@canonical.com>
-Date:   Mon, 7 Mar 2022 10:04:35 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] tty: serial: samsung: Add ARTPEC-8 support
-Content-Language: en-US
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        gregkh@linuxfoundation.org, jirislaby@kernel.org
-Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        alim.akhtar@samsung.com
-References: <20220307085053.1636475-1-vincent.whitchurch@axis.com>
- <20220307085053.1636475-3-vincent.whitchurch@axis.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220307085053.1636475-3-vincent.whitchurch@axis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S236297AbiCGJR1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 04:17:27 -0500
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72FA86515F;
+        Mon,  7 Mar 2022 01:16:32 -0800 (PST)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0D7011A21DF;
+        Mon,  7 Mar 2022 10:16:31 +0100 (CET)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B80421A005F;
+        Mon,  7 Mar 2022 10:16:30 +0100 (CET)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id BF67B183AD67;
+        Mon,  7 Mar 2022 17:16:28 +0800 (+08)
+From:   Richard Zhu <hongxing.zhu@nxp.com>
+To:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        alexander.stein@ew.tq-group.com
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: [PATCH v2 0/7] Add the iMX8MP PCIe support
+Date:   Mon,  7 Mar 2022 17:07:27 +0800
+Message-Id: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 09:50, Vincent Whitchurch wrote:
-> Add support for the UART on the ARTPEC-8 SoC.
-> 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
-> ---
->  drivers/tty/serial/Kconfig       |  2 +-
->  drivers/tty/serial/samsung_tty.c | 38 ++++++++++++++++++++++++++++++++
->  2 files changed, 39 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/tty/serial/Kconfig b/drivers/tty/serial/Kconfig
-> index e952ec5c7a7c..ae120d3d933a 100644
-> --- a/drivers/tty/serial/Kconfig
-> +++ b/drivers/tty/serial/Kconfig
-> @@ -237,7 +237,7 @@ config SERIAL_CLPS711X_CONSOLE
->  
->  config SERIAL_SAMSUNG
->  	tristate "Samsung SoC serial support"
-> -	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || ARCH_APPLE || COMPILE_TEST
-> +	depends on PLAT_SAMSUNG || ARCH_S5PV210 || ARCH_EXYNOS || ARCH_APPLE || ARCH_ARTPEC || COMPILE_TEST
->  	select SERIAL_CORE
->  	help
->  	  Support for the on-chip UARTs on the Samsung
-> diff --git a/drivers/tty/serial/samsung_tty.c b/drivers/tty/serial/samsung_tty.c
-> index d002a4e48ed9..4f9e74c6bcef 100644
-> --- a/drivers/tty/serial/samsung_tty.c
-> +++ b/drivers/tty/serial/samsung_tty.c
-> @@ -2837,6 +2837,36 @@ static struct s3c24xx_serial_drv_data s5l_serial_drv_data = {
->  #define S5L_SERIAL_DRV_DATA ((kernel_ulong_t)NULL)
->  #endif
->  
-> +#if defined(CONFIG_ARCH_ARTPEC)
-> +static struct s3c24xx_serial_drv_data artpec8_serial_drv_data = {
+Based on the i.MX8MP GPC and blk-ctrl patch-set[1] issued by Lucas and the
+following commits.
+  - one codes refine patch-set[5].
+  - two Fixes[2],[3].
+  - one binding commit[4].
+  - some dts changes in Shawn's git if you want to test PCIe on i.MX8MM EVK.
+    b4d36c10bf17 arm64: dts: imx8mm-evk: Add the pcie support on imx8mm evk board
+    aaeba6a8e226 arm64: dts: imx8mm: Add the pcie support
+    cfc5078432ca arm64: dts: imx8mm: Add the pcie phy support
 
-This will conflict with my constifying patches:
-https://lore.kernel.org/all/20220307080810.53847-1-krzysztof.kozlowski@canonical.com/T/#t
+Sorry about that there may be some conflictions when do the codes merge.
+I'm waiting for the ack now, and will re-base them in a proper sequence later.
 
-The code itself looks good.
+This series patches add the i.MX8MP PCIe support and tested on i.MX8MM EVK and
+i.MX8MP EVk boards. The PCIe NVME works fine on both boards.
 
+- i.MX8MP PCIe PHY has two resets refer to the i.MX8MM PCIe PHY.
+  Add one more PHY reset for i.MX8MP PCIe PHY accordingly.
+- Add the i.MX8MP PCIe PHY support in the i.MX8M PCIe PHY driver.
+  And share as much as possible codes with i.MX8MM PCIe PHY.
+- Add the i.MX8MP PCIe support in binding document, DTS files, and PCIe
+  driver.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Main changes v1-->v2:
+- It's my fault forget including Vinod, re-send v2 after include Vinod
+  and linux-phy@lists.infradead.org.
+- List the basements of this patch-set. The branch, codes changes and so on.
+- Clean up some useless register and bit definitions in #3 patch.
 
-Best regards,
-Krzysztof
+[1]https://patchwork.kernel.org/project/linux-arm-kernel/cover/20220228201731.3330192-1-l.stach@pengutronix.de/
+[2]https://patchwork.ozlabs.org/project/linux-pci/patch/1646289275-17813-1-git-send-email-hongxing.zhu@nxp.com/
+[3]https://patchwork.ozlabs.org/project/linux-pci/patch/1645672013-8949-1-git-send-email-hongxing.zhu@nxp.com/
+[4]https://patchwork.ozlabs.org/project/linux-pci/patch/1646293805-18248-1-git-send-email-hongxing.zhu@nxp.com/
+[5]https://patchwork.ozlabs.org/project/linux-pci/cover/1645760667-10510-1-git-send-email-hongxing.zhu@nxp.com/
+
+NOTE:
+Based git <git://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.git>
+Based branch <pci/imx6>
+
+Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   1 +
+Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |   4 +-
+arch/arm64/boot/dts/freescale/imx8mp-evk.dts                 |  55 ++++++++++++++++++++++
+arch/arm64/boot/dts/freescale/imx8mp.dtsi                    |  46 ++++++++++++++++++-
+drivers/pci/controller/dwc/pci-imx6.c                        |  19 +++++++-
+drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 205 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-----------------
+drivers/reset/reset-imx7.c                                   |   1 +
+7 files changed, 286 insertions(+), 45 deletions(-)
+
+[PATCH v2 1/7] reset: imx7: Add the iMX8MP PCIe PHY PERST support
+[PATCH v2 2/7] dt-binding: phy: Add iMX8MP PCIe PHY binding
+[PATCH v2 3/7] phy: freescale: imx8m-pcie: Add iMX8MP PCIe PHY
+[PATCH v2 4/7] dt-bindings: imx6q-pcie: Add iMX8MP PCIe compatible
+[PATCH v2 5/7] arm64: dts: imx8mp: add the iMX8MP PCIe support
+[PATCH v2 6/7] arm64: dts: imx8mp-evk: Add PCIe support
+[PATCH v2 7/7] PCI: imx6: Add the iMX8MP PCIe support
