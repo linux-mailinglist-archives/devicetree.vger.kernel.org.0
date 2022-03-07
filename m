@@ -2,124 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E0E4D0962
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 22:33:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D97F84D0A27
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 22:43:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245280AbiCGVeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 16:34:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60154 "EHLO
+        id S232072AbiCGVoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 16:44:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243335AbiCGVep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 16:34:45 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79CEA50B36;
-        Mon,  7 Mar 2022 13:33:50 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id n7so7007671oif.5;
-        Mon, 07 Mar 2022 13:33:50 -0800 (PST)
+        with ESMTP id S241331AbiCGVoN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 16:44:13 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F6210E4
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 13:42:49 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 809EF3F1C9
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 21:42:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646689367;
+        bh=MhNMfDbHr8DyNFMUPNwO39VGUJ2PygUUS2WxU9QRbWs=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=X3IYl4HwkFhSuunCBe5htAwBsP0AIeAWDnP+EpaHzL315bXKeJuaa0+HJG3SzeL75
+         8XNtDCDc/WLdGWgzV9lvsOHT1VQFzpQMahzK2n24xI2xeq54nbhfNOIB6LBBuChlIY
+         3Y+On9GmUOiRSw0rB2PtiYDb8PTJxJUcH5tmjLDCEmXMWgw73C5Lk8z3Axr8jdnb8W
+         8jzhAjJ2gvbspuENvyjfA/4fRuiNDC/Iw4xh0U1B5I4mR9aB+Gy45YQtVZcLia4WeC
+         X7sSR1aXYgYB2706fJwGdKhZ/PjkMhHtnhJ6/Zx682nJDElqNqnL5WqfGErpuIcbj1
+         6goEa6sEV6hWw==
+Received: by mail-ej1-f70.google.com with SMTP id k21-20020a1709063e1500b006d0777c06d6so7615312eji.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 13:42:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=xKi3HHKVGpmeKTbiXrMkXO/qpORJuIc2PskVIUh7Ul0=;
-        b=O8aegdWK3BCJSA8bBQo8H3LN+HCz7hI2BOQXXi1FYx0pHe8QngpkxpJqS5U0sLHmFv
-         cpA+EEMvvZkK1H3zktJU+7CCpEqsOJALsd9LADuNBAp7wLVqqYn0MNFj5E47kfu2ZPd3
-         cvbPrusPoIE+1s/wuCfiH77eNh5UNh1Lo/HzqMNqmplj5P0/PQkLWNYYlROfK8FxJkR0
-         XpP52z3r30ve2IpyOSTGjG02rOpZdA3hG8KMrSjULxV9TuhR7x1tuvlTgG1YxOrScGV/
-         o+eU5UrKivtKm/0k/nFhwyhiLv5ab90UXglvkr3hOWOp7FpxuuaZa+RjMTaaZiM1WMsa
-         /2wg==
-X-Gm-Message-State: AOAM531BubLfNQQl4M9ci3ud+nQEmgbApyiaxcPFEI+oUKVfXh0lXoMI
-        YiLxNAjs/pT5xZoe7PCYp2epYnryhA==
-X-Google-Smtp-Source: ABdhPJyHk1wozNhDsnc/eHiJaIyeWDdPzrh66zQ5MVd7xtFTOvAmcAjd/8AMsWAwi96QsdyLTm8wjA==
-X-Received: by 2002:a05:6808:1983:b0:2d7:7fc:9e9b with SMTP id bj3-20020a056808198300b002d707fc9e9bmr649909oib.133.1646688829667;
-        Mon, 07 Mar 2022 13:33:49 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p14-20020a056830304e00b005b246b673f2sm811780otr.71.2022.03.07.13.33.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 13:33:48 -0800 (PST)
-Received: (nullmailer pid 3270524 invoked by uid 1000);
-        Mon, 07 Mar 2022 21:33:47 -0000
-Date:   Mon, 7 Mar 2022 15:33:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Divya Koppera <Divya.Koppera@microchip.com>
-Cc:     netdev@vger.kernel.org, andrew@lunn.ch, hkallweit1@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, kuba@kernel.org,
-        devicetree@vger.kernel.org, richardcochran@gmail.com,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        madhuri.sripada@microchip.com, manohar.puri@microchip.com
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <YiZ6O2GeLIVEqgvY@robh.at.kernel.org>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-3-Divya.Koppera@microchip.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=MhNMfDbHr8DyNFMUPNwO39VGUJ2PygUUS2WxU9QRbWs=;
+        b=i6Py8dghPLbYKC4myYmodxLxd3gqu3E2O7cp9TG9Ya0poUrUyZman0nqCa/8fXHfaL
+         Zn/92hUyIlBqPL6IsDuItCwQTBftav/msnElghABDbzebHCGfORGTu9K7BkjfOmC3hV8
+         DcPHJVRuTGWbeevdVxUtTHTLCY8tPm2C6WB5oII8pc7H5ME6PuELcqY7JgD/cpJ6BEk2
+         ayhzmjemkZvSWrs67J8vtFqGIcvF3gUgq8WxJLOVruwvFDyMUJKCSbpj5qRORoOyFBEY
+         bSNn9jedYNV0IwGBl6NUsZDzDQ7wUl8CaNEwdTKiTngkuBzuQgNmawQXAimXt1FuXCrT
+         9WVA==
+X-Gm-Message-State: AOAM532+1OV4RLaPu882BtZhOuGO/FiQ9G8ZMXj/zbESDNMb4eeTmXZ2
+        q/AELtmh1816tN0ucFn6UzYD/uYW0rTnnPdrXUMGOLKJ94vDDq5WvONRx3VML4uts1qqDfZPR6l
+        QtZsWf/Iumqrq779KTwFO7wmmDA1CJscNOMFBgHc=
+X-Received: by 2002:a17:907:60ca:b0:6da:8f25:7983 with SMTP id hv10-20020a17090760ca00b006da8f257983mr10532829ejc.106.1646689367153;
+        Mon, 07 Mar 2022 13:42:47 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwYdGvNdcQTcQgY1xPFW9oHn64MaAA5xJnmohahgMntl3auBJxf8s7T1mVacTWUqEeHAeQ7HA==
+X-Received: by 2002:a17:907:60ca:b0:6da:8f25:7983 with SMTP id hv10-20020a17090760ca00b006da8f257983mr10532814ejc.106.1646689366933;
+        Mon, 07 Mar 2022 13:42:46 -0800 (PST)
+Received: from [192.168.0.143] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id x1-20020a05640226c100b0041668b404basm234923edd.0.2022.03.07.13.42.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 13:42:45 -0800 (PST)
+Message-ID: <bf418e08-2e32-5e61-abd8-abb0d8f5c080@canonical.com>
+Date:   Mon, 7 Mar 2022 22:42:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220304093418.31645-3-Divya.Koppera@microchip.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/3] dt-bindings: devfreq: mediatek: add mtk cci devfreq
+ dt-bindings
+Content-Language: en-US
+To:     Tim Chang <jia-wei.chang@mediatek.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        fan.chen@mediatek.com, louis.yu@mediatek.com,
+        roger.lu@mediatek.com, Allen-yy.Lin@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        hsinyi@google.com,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+References: <20220307122513.11822-1-jia-wei.chang@mediatek.com>
+ <20220307122513.11822-2-jia-wei.chang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220307122513.11822-2-jia-wei.chang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 04, 2022 at 03:04:17PM +0530, Divya Koppera wrote:
-> Supports configuring latency values and also adds
-> check for phy timestamping feature.
-> 
-> Signed-off-by: Divya Koppera<Divya.Koppera@microchip.com>
+On 07/03/2022 13:25, Tim Chang wrote:
+> add devicetree binding of mtk cci devfreq on MediaTek SoC.
 
-should be a space here:       ^
+Start with capital letter.
+
+> 
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+
+This does not match your From. Please fix this in all your submissions.
 
 > ---
->  .../devicetree/bindings/net/micrel.txt          | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-
-Please convert this to DT schema.
-
+>  .../devicetree/bindings/devfreq/mtk-cci.yaml  | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/net/micrel.txt b/Documentation/devicetree/bindings/net/micrel.txt
-> index 8d157f0295a5..c5ab62c39133 100644
-> --- a/Documentation/devicetree/bindings/net/micrel.txt
-> +++ b/Documentation/devicetree/bindings/net/micrel.txt
-> @@ -45,3 +45,20 @@ Optional properties:
->  
->  	In fiber mode, auto-negotiation is disabled and the PHY can only work in
->  	100base-fx (full and half duplex) modes.
+> diff --git a/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> new file mode 100644
+> index 000000000000..e64ac4c56758
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/devfreq/mtk-cci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> + - lan8814,ignore-ts: If present the PHY will not support timestamping.
+> +title: Mediatek Cache Coherent Interconnect (CCI) Devfreq driver Device Tree Bindings
 
-'lan8814' is not a vendor and the format for properties is 
-<vendor>,<propname>.
+Similarly to your other patches - the title describes hardware. Please
+fix it in all your submissions of all your series.
 
-Is this configuration or lack of h/w feature? IOW, instead of 'will 
-not', 'does not' or 'timestamping is disabled.'. As configuration, that 
-seems like common property. For (lack of) h/w features, that should be 
-implied by the compatible or VID/PID.
-
-> +	This option acts as check whether Timestamping is supported by
-> +	hardware or not. LAN8814 phy support hardware tmestamping.
-> +
-> + - lan8814,latency_rx_10: Configures Latency value of phy in ingress at 10 Mbps.
-
-s/_/-/
-
-What are the units here? Is this a common feature of PHYs?
+Remove "driver Device Tree Bindings". "Devfreq" is Linuxism, so this
+maybe "bus frequency scaling"? Although later you call the device node
+as cci.
 
 > +
-> + - lan8814,latency_tx_10: Configures Latency value of phy in egress at 10 Mbps.
+> +maintainers:
+> +  - Jia-Wei Chang <jia-wei.chang@mediatek.com>
 > +
-> + - lan8814,latency_rx_100: Configures Latency value of phy in ingress at 100 Mbps.
+> +description: |
+> +  This module is used to create CCI DEVFREQ.
+> +  The performance will depend on both CCI frequency and CPU frequency.
+> +  For MT8186, CCI co-buck with Little core.
+> +  Contain CCI opp table for voltage and frequency scaling.
+
+Half of this description (first and last sentence) does not describe the
+actual hardware. Please describe hardware, not driver.
+
 > +
-> + - lan8814,latency_tx_100: Configures Latency value of phy in egress at 100 Mbps.
+> +properties:
+> +  compatible:
+> +    const: "mediatek,mt8186-cci"
+
+No need for quotes.
+
 > +
-> + - lan8814,latency_rx_1000: Configures Latency value of phy in ingress at 1000 Mbps.
+> +  clocks:
+> +    items:
+> +      - description:
+> +          The first one is the multiplexer for clock input of CPU cluster.
+> +      - description:
+> +          The other is used as an intermediate clock source when the original
+> +          CPU is under transition and not stable yet.
 > +
-> + - lan8814,latency_tx_1000: Configures Latency value of phy in egress at 1000 Mbps.
-> -- 
-> 2.17.1
-> 
-> 
+> +  clock-names:
+> +    items:
+> +      - const: "cci"
+> +      - const: "intermediate"
+
+No need for quotes.
+
+> +
+> +  operating-points-v2:
+> +    description:
+> +      For details, please refer to
+> +      Documentation/devicetree/bindings/opp/opp-v2.yaml
+> +
+> +  opp-table: true
+
+Same comments as your CPU freq bindings apply.
+
+> +
+> +  proc-supply:
+> +    description:
+> +      Phandle of the regulator for CCI that provides the supply voltage.
+> +
+> +  sram-supply:
+> +    description:
+> +      Phandle of the regulator for sram of CCI that provides the supply
+> +      voltage. When present, the cci devfreq driver needs to do
+> +      "voltage tracking" to step by step scale up/down Vproc and Vsram to fit
+> +      SoC specific needs. When absent, the voltage scaling flow is handled by
+> +      hardware, hence no software "voltage tracking" is needed.
+> +
+> +required:
+> +  - compatible
+> +  - clocks
+> +  - clock-names
+> +  - operating-points-v2
+> +  - proc-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/mt8186-clk.h>
+> +    cci: cci {
+
+Node names should be generic and describe type of device. Are you sure
+this is a CCI? Maybe "interconnect" suits it better?
+
+> +      compatible = "mediatek,mt8186-cci";
+> +      clocks = <&mcusys CLK_MCU_ARMPLL_BUS_SEL>, <&apmixedsys CLK_APMIXED_MAINPLL>;
+> +      clock-names = "cci", "intermediate";
+> +      operating-points-v2 = <&cci_opp>;
+> +      proc-supply = <&mt6358_vproc12_reg>;
+> +      sram-supply = <&mt6358_vsram_proc12_reg>;
+> +    };
+
+
+Best regards,
+Krzysztof
