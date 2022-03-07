@@ -2,56 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E78624D0C1A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:38:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DBCE4D0C2D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237374AbiCGXjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 18:39:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59562 "EHLO
+        id S241595AbiCGXnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 18:43:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343926AbiCGXjL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:39:11 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1A312757;
-        Mon,  7 Mar 2022 15:38:15 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 89477B81752;
-        Mon,  7 Mar 2022 23:38:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C564EC340E9;
-        Mon,  7 Mar 2022 23:38:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646696293;
-        bh=jhGr9NkWZt9zE+HHj57EU6ZdMbZueXf/ABsXGJyFl8E=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=Q1gTJo6Celg3YmEn631kbFQ6bxwhIiW/O63/pkg6HJt5mKOKXEtkSqRG7zBxv/+PZ
-         FPnRRY3C7Z2bYccvfzpAmq6TNRrXT5n1lYRjWs8/pj1fUt1f16a+QXFJ35PIaH8zwT
-         QNDsb2ii9fJvtU7eznqNs66gYdQ76nNmsQtE/4EvDJd0P+XHfZX62XGGyt8khWXRZ4
-         Rka0qWLzbt7vIuW9hfsqaeshlb+AF34BGwAVdEbtyHaYfACzQvYV3Ka4OULkvaIAIU
-         nSayQKzbihvPdBUk09mp4cAk8aHBOD2AuPqyzl3kQW6XQqSpUPHfUrQSwDpdHRIYvB
-         cUHjuAbJvINLw==
-Date:   Mon, 7 Mar 2022 15:38:12 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
- description for SCMI
-In-Reply-To: <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
-Message-ID: <alpine.DEB.2.22.394.2203071530510.3261@ubuntu-linux-20-04-desktop>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com> <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S239450AbiCGXnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:43:21 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 446842194;
+        Mon,  7 Mar 2022 15:42:26 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id w127so6681098oig.10;
+        Mon, 07 Mar 2022 15:42:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=EsKRRIoThK3MQ1H0laF62b7WY6ong2NDteh+bOwJmMY=;
+        b=uNGJNvEZ3c7sUj690++lMeWOHEdSGjYbdfeXseO49lI5v08xyDyCVxkiSoLG2wp9Et
+         qRp95WV95eKK8TDQ3FV3MsseuK0o5/RCG+Bj+rxeVvi1imgYsJS2+29DCKQQ3hX/3OqS
+         cPnPJcYuwoG8oJm/9TZ5k5FWukQHXN10W4+RAcRQlN0D77BFhVLqkL5o+9Pap2jv7I9+
+         ThmWs/fSddbdId1+OM/9cZFRjxmE2QAJaeOoQM7wlMH9/wtJ8IDEd4jNaiwpgmsp55Bk
+         l5Cu/c7rPzLiVpotvs2wsIdEpzmNgvqekozcowGgBDy4eKbtOCbwLhqNbZCfPvTSJ4it
+         4uOQ==
+X-Gm-Message-State: AOAM530eX0SExzoU+CYNLuZemMrVsJMtVFZXE15K1K4/WzH847fmHJVt
+        NnTIekTiyHPmPyhrZfcLlA==
+X-Google-Smtp-Source: ABdhPJwirVFf7NgTIaWCdemavUPZ6EK5UqamWYmsiMJjOCqd6t3G8W+ppN3LvgLKqKkNIV99E6Sjxg==
+X-Received: by 2002:a05:6808:14cc:b0:2d9:a01a:48ac with SMTP id f12-20020a05680814cc00b002d9a01a48acmr946191oiw.247.1646696545606;
+        Mon, 07 Mar 2022 15:42:25 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id w4-20020a4adec4000000b0032109de628esm1060794oou.6.2022.03.07.15.42.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 15:42:24 -0800 (PST)
+Received: (nullmailer pid 3487473 invoked by uid 1000);
+        Mon, 07 Mar 2022 23:42:23 -0000
+Date:   Mon, 7 Mar 2022 17:42:23 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Leilk Liu <leilk.liu@mediatek.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH V3 6/7] dt-bindings: spi: support spi-hclk
+Message-ID: <YiaYXwj0C8NeWjzz@robh.at.kernel.org>
+References: <20220307065230.12655-1-leilk.liu@mediatek.com>
+ <20220307065230.12655-7-leilk.liu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220307065230.12655-7-leilk.liu@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,98 +65,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Mar 2022, Oleksii Moisieiev wrote:
-> Document xen,scmi-devid property for the devices, using SCMI protocol
-> to work with clocks/resets/power-domains etc. This property is intended
-> to set the device_id, which should be used to manage device permissions
-> in the Firmware. Device permissions management described in DEN 0056,
-> Section 4.2.2.10 [0].
+On Mon, Mar 07, 2022 at 02:52:29PM +0800, Leilk Liu wrote:
+> this patch support spi-hclk.
 > 
-> This property is used by Xen hypervisor, which works as trusted Agent, to
-> set permissions for the devices, passed-through to the Guest Domains,
-> which are non-trusted Agents. Trusted and non-trusted Agent terms described
-> in Section 4.1.1 [0].
-> 
-> [0] https://developer.arm.com/documentation/den0056/latest
-
-Aside from minor grammar improvements (see below), I don't have any
-feedback. This is OK from my point of view.
-
-
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
 > ---
->  .../bindings/firmware/xen,scmi-devid.yaml     | 42 +++++++++++++++++++
->  1 file changed, 42 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml
+>  .../devicetree/bindings/spi/mediatek,spi-mt65xx.yaml          | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml b/Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml
-> new file mode 100644
-> index 000000000000..49dc9951b54d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml
-> @@ -0,0 +1,42 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2022 EPAM Systems.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/xen,scmi-devid.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Xen SCMI (System Control and Management Interface) Device ID binding
-> +
-> +maintainers:
-> +  - Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> +
-> +select: true
-> +
-> +description: |
-> +  SCMI device_id property is intended to set the device id, needed to manage
-> +  the device permissions via SCMI protocol in the firmware. The device_id
-> +  should match device ids, defined in the firmware so the device permissions
-> +  can be requested by sending BASE_SET_DEVICE_PERMISSIONS (see 4.2.2.10 of [0]).
+> diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> index a8a15a9a6c46..195793aa79b7 100644
+> --- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> +++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
+> @@ -51,16 +51,20 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> +    minItems: 3
+>      items:
+>        - description: clock used for the parent clock
+>        - description: clock used for the muxes clock
+>        - description: clock used for the clock gate
+> +      - description: clock used for the AHB bus, this clock is optional
+>  
+>    clock-names:
+> +    minItems: 3
+>      items:
+>        - const: parent-clk
+>        - const: sel-clk
+>        - const: spi-clk
+> +      - const: spi-hclk
 
-I would say:
+'spi' is redundant. Just 'hclk'.
 
-The xen,scmi-devid property is the SCMI device id, which is needed to
-manage device permissions with the SCMI protocol. The xen,scmi-devid
-property should match device ids as defined in firmware, so that device
-permissions can be requested with BASE_SET_DEVICE_PERMISSIONS (see
-4.2.2.10 of [0]).
-
-
-> +  This property is used by Xen hypervisor to set the device permissions for
-> +  the Guest Domains. Where Xen is trusted Agent and Guest Domains are
-> +  non-trusted Agents.
-
-I would say:
-
-This property is used by a Trusted Agent, e.g. the Xen hypervisor, to
-set device permissions for non-trusted Agents, e.g. Xen domains.
-
-
-> +  [0] https://developer.arm.com/documentation/den0056/latest
-> +
-> +properties:
-> +  xen,scmi-devid:
-> +    description: Identifier of the device, matching device id, defined in
-> +      the firmware.
-
-description: Identifier of the device, matching the SCMI device id as
-defined in firmware
-
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +additionalProperties: true
-> +
-> +examples:
-> +  - |
-> +    ohci1: usb@ee0a0000 {
-> +        /* ... */
-> +        reg = <0xee0a0000 0x100>;
-> +        xen,scmi-devid = <11>;
-> +        clocks = <&scmi_clock 4>;
-> +    };
+>  
+>    mediatek,pad-select:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
 > -- 
-> 2.27.0
+> 2.25.1
+> 
 > 
