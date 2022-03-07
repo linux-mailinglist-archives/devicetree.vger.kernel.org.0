@@ -2,206 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE4314D0433
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 17:33:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 625FF4D0444
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 17:38:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240856AbiCGQem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 11:34:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54982 "EHLO
+        id S234917AbiCGQjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 11:39:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237696AbiCGQel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 11:34:41 -0500
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48C9E70319;
-        Mon,  7 Mar 2022 08:33:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646670823; x=1678206823;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=pzMSnL7Qfb1S+QjQQ3tsKZYU6byz2cGvmVZMjYlMGcg=;
-  b=R/E6+7uKwXzANHU7yk68l0YmNVywe/5vWNsINKJ4MZBzU90efKINDvDz
-   AefltzcFDW5kVGLKX+7cKaErrf0BXE1hVOiAMh5trjbNCesCp4XhA4UH0
-   Jzf23EyMBMN1KjnJUTp/07nrj9b2eDIoJ+dgjMUKplgeI77PgLU5qZuc+
-   xvjYek+yR5H2LUFOTwptNChrm4iXUBu4BjUhCy8TWshIg6679apPzAVlv
-   p14qS3vmkqECCj1JnmUIbmRM9QOAk1L4VjhkqKNeNYQ7902QuaKsXct1v
-   WVcYYV9Cg9IKx6+LuUKyGGh/DNJDeI2lBKZusZjH3if51JC33sjVqKvjD
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="254628074"
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="254628074"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 08:33:42 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="643309522"
-Received: from fmsmsx606.amr.corp.intel.com ([10.18.126.86])
-  by orsmga004.jf.intel.com with ESMTP; 07 Mar 2022 08:33:42 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx606.amr.corp.intel.com (10.18.126.86) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Mon, 7 Mar 2022 08:33:41 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21 via Frontend Transport; Mon, 7 Mar 2022 08:33:41 -0800
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.49) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2308.21; Mon, 7 Mar 2022 08:33:41 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fgzyYD+v6llk1rkmW6vMKx8YbFv4YG2V6gTiTuYrDJ3G5jRk/+OPfNh2Om0viX3nYVfcj3NbtOA4svLsAdUH58fhIXk1PqXwUhCGoE1BJkURiGvJ2H8uZmMDcR1dlHZmTSMd8n0kX1zs2ukqWp7uFSYcQk5Nw6srRjtCtQCrOYJhwBurgPWWsJZyRWlxkHHBi6RCL15i7YIZVVcicBLJoss3rWDuGPtumEO0ZPjTmSOn7m5e/uLoEwXqRKH8ze/vzrXv6/vHlxTZ+fgsiDFxeRmuOwY+1uPfiEpkkO+AFoxZFPjnOxpmXqvF8Ma68HqzFSrYGsDnpz+RqXRTJpei1g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wDTeqgbW7KphpV7xxIa9UUxkzCJr6chd0HgYLuZb3yc=;
- b=K9JGHyhmJo2zCQ9o4FUWcMALYUnh6i0LpYXU7G1J8ASg7+hpRy1gtuT2GB9/ZhTLcqtOlex9BsUyWAKcPcn145HOhtfRJfAxZ9/8MSNzsxME25zqVwVOyt/OKp8F5f8/4Wv79rvn863/35iu/Fo/W2tQC2TsG4HqPLtiMnxG166EGMbNV5BnyxZOOASHd03ymykzQe2srCTURsiiHRrmJIcSBR8kmwmWdZgxh8+e91hvfPmgmIi9CeZa/6TwKlBciAOgwWfgztI87Qo0DAon86pztKc6k6zCVIdKKQxcsvsZeTbhG4YMO0Horylw3p3W3bm3cXHa7ke/Y5lkIPZ+2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from BN9PR11MB5545.namprd11.prod.outlook.com (2603:10b6:408:102::19)
- by DM5PR11MB1515.namprd11.prod.outlook.com (2603:10b6:4:11::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Mon, 7 Mar
- 2022 16:33:39 +0000
-Received: from BN9PR11MB5545.namprd11.prod.outlook.com
- ([fe80::8548:a26:d677:6e0e]) by BN9PR11MB5545.namprd11.prod.outlook.com
- ([fe80::8548:a26:d677:6e0e%7]) with mapi id 15.20.5038.027; Mon, 7 Mar 2022
- 16:33:39 +0000
-From:   "Sanil, Shruthi" <shruthi.sanil@intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-CC:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mgross@linux.intel.com" <mgross@linux.intel.com>,
-        "Thokala, Srikanth" <srikanth.thokala@intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        "Sangannavar, Mallikarjunappa" 
-        <mallikarjunappa.sangannavar@intel.com>
-Subject: RE: [PATCH v9 2/2] clocksource: Add Intel Keem Bay timer support
-Thread-Topic: [PATCH v9 2/2] clocksource: Add Intel Keem Bay timer support
-Thread-Index: AQHYMhb+C0go31lR+E21PIr/qChAaKyz7u0AgAAu1EA=
-Date:   Mon, 7 Mar 2022 16:33:38 +0000
-Message-ID: <BN9PR11MB5545C28013C6FD435154FB1BF1089@BN9PR11MB5545.namprd11.prod.outlook.com>
-References: <20220307113147.19496-1-shruthi.sanil@intel.com>
- <20220307113147.19496-3-shruthi.sanil@intel.com>
- <YiYMYuENpb1VJV9G@smile.fi.intel.com>
-In-Reply-To: <YiYMYuENpb1VJV9G@smile.fi.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.6.401.20
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cc990969-a7a1-4b37-98bf-08da00583c13
-x-ms-traffictypediagnostic: DM5PR11MB1515:EE_
-x-microsoft-antispam-prvs: <DM5PR11MB1515F39661E197982BFEC678F1089@DM5PR11MB1515.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Wq3qfWQvOo1EGv1Ld+cKyWPYmfsj6nrMRgu2dDhkylSZ9wVnBQA4nOsp/K5RFw6A+Ub9ntEby9GnLLn2aIOP5a7KJxe4AuB71P51wqsZKRSlmGFUdMd1cED+HVyRObkwNirsN1amj/LvqjYGxBa/prmdR1tXtZszqDcuXpwyeWhdr68+yvY1fKrR7b0BikXn2eDQPSFsa0KHGWGSkB5XOAoKmZoYJRfImHUVuoL6yRQSZ4Z7hu0F/i6Jv2HXdh7SVKRdFTpyrm9wg1YCz7WvE2sJkXF7J7jJUr1tTJvhldQmW8dEEVCU8R7jNqYNyFhqn3f6gaKBAWNaLh+RaDBKUsrmTC55WXZ0AOBu/UZdPXI/e1gEqBb+n7LR21J3WedUl7IAY5dhm+au+IpINpkbFVYdzYPW9OICFgoxCAHb4YRA2PQu4fYaswikn4y6Z1McOxWf2YCknf3KkuqDG4EcI8ihOpgjNcyKtJKK/oGi566CLYYW+6C8YIB+DsVNRrhnKb4ddCsTfdwe3l89avWGA/eK79Zv7+k22lvq5MKKdrR2osOrIVQnenvwNfdQutVlZJTWrVqooQNbM69AGxECA+gdgJpPXAM/CqMCyU9IHk30uA6qDnx0w1QIWY8RFz0HM3pYwz5DBM5AH8VA4scN9GwgBl0s7i9Sy+reXCzfF1UwsQsvi71yEJkDqlEiop1PrII338naLptSKUd8+8zynA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN9PR11MB5545.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(2906002)(8936002)(52536014)(316002)(508600001)(9686003)(71200400001)(6916009)(54906003)(33656002)(7696005)(6506007)(5660300002)(55016003)(53546011)(38070700005)(86362001)(122000001)(38100700002)(82960400001)(26005)(186003)(64756008)(66476007)(66446008)(66556008)(4326008)(66946007)(8676002)(76116006)(83380400001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?dzmtW/ITbmMQQSxdPkSl3zKfyZvR4E6l5Iq0wMBZYOXcDlPTWwCZpLZoGVeK?=
- =?us-ascii?Q?s0J/upAE6BT/00eZmt2SK1SqYOemhPsTA+AENTcYXi8IbsiVBkjjYCsBCX0s?=
- =?us-ascii?Q?G33yDZ9p1gJRBtcH/r0q7bsUHGeCZJ0otKn5vSM4NUtqHCnJEUW6/eOHUv3I?=
- =?us-ascii?Q?0Gt82+RkrBz4Gg1xCOGJeNwi/eoEsq/il4INYWbBOCfSmaqN9A/W2ehrju51?=
- =?us-ascii?Q?9yFSkf0++Wl6zVFZg5aEY0TEJpkM+ZvlzhlN01+4LagsTTM0gA0O292Urgly?=
- =?us-ascii?Q?ESDAYWtrIlrzhaSCeuj5+aejJG5eOTeR0slgK2PJOuTWVcqMkNB1TJrUy8nh?=
- =?us-ascii?Q?MXQ14EJNLVcUzrZfzEO5/YHXVPuMo3V+Zpn1aEKrLZaiFKVSbep448EofpuR?=
- =?us-ascii?Q?VBV9h3L9ghaThGHq4MyPTNZtDambv8wrdMEIlZJ9AMT07cED1jsaKxfc957L?=
- =?us-ascii?Q?cT+QphTyTjsLhyZijufbTKaiuTJtR0ythY40jomLha19uhygIMwzLxq63e6N?=
- =?us-ascii?Q?4Y9vhPeIzFN/4s4xDdkncRCmMU/o3UsUoQ3uujj8F4Kaps//SEZKhJ5jZNxB?=
- =?us-ascii?Q?Q5ofwQ6i1Gzv14rtm6rJQDxsbTPyd7zf2kvjS0uA9aptX8E1SXd/lE9kSBTe?=
- =?us-ascii?Q?gD2vzmVt7ereDKBPcb3MgX3is/mky69TuCfKU1WdSSid0lO2JaN5K3I5eODW?=
- =?us-ascii?Q?FyET21f9oRjkHjNgbJ+vAcaHJKq6gtBNB52u0dZumId0QKAlFQQ9QsArT82D?=
- =?us-ascii?Q?Xj4paY4U3YU8d+d+IWxQGYw2PcBSqQSqy0R+8/DLkJ/wBb6ImSwSGWgjVY9S?=
- =?us-ascii?Q?L2+evn7Ij25IZ3tbIBbfukNpEUbygNDxlIuEdfsSpgH2uQYww5IphWcQaR9x?=
- =?us-ascii?Q?+kPmu1x9gvcqiOeAwGtmFdIx6wUNzJ/ghc48+nBamcXhml1P89a1Hm6iLa82?=
- =?us-ascii?Q?iveSrpR93yD5+SnReHJDrh+mXAYhdPJv3EWiBNcbP2p+fC1OnJB1apSvsHaj?=
- =?us-ascii?Q?l+M7r5nnB/45Q9lcSI+lhfrKeGF3bGw6RtfT/UtitceLyNYNMXnEcOhx1dFc?=
- =?us-ascii?Q?8PTobr17UBWAQOto/yMHjlUlf2dsUQGKwIZBzVhOJCZh4ZOslx4NqBOGzrg7?=
- =?us-ascii?Q?+zgGktWBZme7EVaSqqDK7rCjIDkmQJ7CINU6qfB6Ez9e7VGxegdxcRmgw3lU?=
- =?us-ascii?Q?0qrPYu2RJPR6GZjTqxtkoeer4xGAv8bIhlDPOFXGLGri8aVv+vhD4eEGDATE?=
- =?us-ascii?Q?Jsp3QevyZpcyy8TH5scrx1yqMWuf1j0o50yw07EHLDFwWO6qpfuLHQccOXxq?=
- =?us-ascii?Q?TIaCZ0eEBUEeQa7AR94k8HLM5wgk1VVW1mUVaaxVaSrUQMMkmuqwDFe5Lxmq?=
- =?us-ascii?Q?H79U72FeGzVVN+dD6R6yC/w4CNg1KdFhw1IDCo4hDveixkmPQitG4gigon4c?=
- =?us-ascii?Q?Hn58PD8PhOar51JE08t4IezlUp3Pi8a1ZmJqZUWzAQnIKITSZNIuMDeykDqz?=
- =?us-ascii?Q?acAE5r1oL+zBFnQZjqHiMROpKjOtQOhxR0rALTAn3Qseb5qYGFmEwj9tz/GA?=
- =?us-ascii?Q?guQhS7w4tx3Q3nSLnMDZVDuy8NZkSrt0XnV1mC9SheVCG/swSLB/87BZ3LEe?=
- =?us-ascii?Q?+mSsitXml1VMfZT6aK29eQU=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231786AbiCGQjb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 11:39:31 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E3C2AE20;
+        Mon,  7 Mar 2022 08:38:35 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id a7-20020a9d5c87000000b005ad1467cb59so13376018oti.5;
+        Mon, 07 Mar 2022 08:38:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=G2URj90cYLqtG2lIJusw4O3o8WOwpC5yHpCp8rYs1A8=;
+        b=shc5CjXuquEnkVxrFlpdGVzQ6qySMEn6Wh5yQDunCxNpM+motu68YV0+tUx5dgKf+W
+         719atx8FPTbNnhtNV6UFaxOZVwrlJqvKBBcXp8BnFDYPjEREedktZNpkb+CowJ9tZf9G
+         rA0VU1IIR0aisFEHZIGFnC6PpaE3c7uLvsbYcydWDPx0ThxRvrePitUpZQbECAjTFKWK
+         vvwYHtCBL6K7OagaVi2izr1fEapJ8bQ9wQUZ654pu+/9LHETulkrX4NK30EXxmYHzCUi
+         GJTl26+fFBAw4OaRngnN37PvfXbAPUjamzA6Bqf1IAM406mA9baXMlESWuhJKJzhA9OD
+         Kq7g==
+X-Gm-Message-State: AOAM531HqO9Rn90yqFyBnoqfEWmm9O4WctzgBEIlKdJZBb9s/J+sWCIJ
+        7+zB4WwAfLdN5sPQ7YIA4w==
+X-Google-Smtp-Source: ABdhPJwG6TQ1eVLmDZC3HPSQcHalxWCETuB8YBMN2NdaUXdQXdZEWF19x+Z006sW1YkSwErpjfaY6g==
+X-Received: by 2002:a9d:6047:0:b0:5b2:4003:cfcb with SMTP id v7-20020a9d6047000000b005b24003cfcbmr1164225otj.59.1646671114763;
+        Mon, 07 Mar 2022 08:38:34 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id bb33-20020a056820162100b00320ecc89402sm1427379oob.36.2022.03.07.08.38.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 08:38:33 -0800 (PST)
+Received: (nullmailer pid 2723434 invoked by uid 1000);
+        Mon, 07 Mar 2022 16:38:32 -0000
+Date:   Mon, 7 Mar 2022 10:38:32 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     airlied@linux.ie, daniel@ffwll.ch, matthias.bgg@gmail.com,
+        xji@analogixsemi.com, hsinyi@chromium.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Subject: Re: [PATCH v1 1/2] Revert "dt-bindings:drm/bridge:anx7625:add vendor
+ define"
+Message-ID: <YiY1CP6DkfgU4re/@robh.at.kernel.org>
+References: <20220307154558.2505734-1-robert.foss@linaro.org>
+ <20220307154558.2505734-2-robert.foss@linaro.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5545.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cc990969-a7a1-4b37-98bf-08da00583c13
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2022 16:33:38.9511
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2rU/Vu5ts4M+oTwkdK9KlqxytWM+B7EGeNP+yFvvQ3dLdOnKYTmpZ0e80pHkhBcPfjYlVPaG5Kr/HjRK0IXMaw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1515
-X-OriginatorOrg: intel.com
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220307154558.2505734-2-robert.foss@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Sent: Monday, March 7, 2022 7:15 PM
-> To: Sanil, Shruthi <shruthi.sanil@intel.com>
-> Cc: daniel.lezcano@linaro.org; tglx@linutronix.de; robh+dt@kernel.org;
-> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org;
-> mgross@linux.intel.com; Thokala, Srikanth <srikanth.thokala@intel.com>;
-> Raja Subramanian, Lakshmi Bai <lakshmi.bai.raja.subramanian@intel.com>;
-> Sangannavar, Mallikarjunappa <mallikarjunappa.sangannavar@intel.com>
-> Subject: Re: [PATCH v9 2/2] clocksource: Add Intel Keem Bay timer support
->=20
-> On Mon, Mar 07, 2022 at 05:01:47PM +0530, shruthi.sanil@intel.com wrote:
-> > From: Shruthi Sanil <shruthi.sanil@intel.com>
-> >
-> > The Intel Keem Bay timer driver supports clocksource and clockevent
-> > features for the timer IP used in Intel Keem Bay SoC.
-> > The timer block supports 1 free running counter and 8 timers.
-> > The free running counter can be used as a clocksource and the timers
-> > can be used as clockevent. Each timer is capable of generating
-> > individual interrupt.
-> > Both the features are enabled through the timer general config register=
-.
->=20
-> ...
->=20
-> > +		pr_err("%pOF: FW_BUG: Prescaler is not enabled\n", np);
->=20
-> FW_BUG is a macro. The above is an incorrect use of it.
+On Mon, Mar 07, 2022 at 04:45:57PM +0100, Robert Foss wrote:
+> This reverts commit a43661e7e819b100e1f833a35018560a1d9abb39.
 
-Oh! I'll correct it and send the updated patch.
+S-o-b and reason for the revert?
 
->=20
-> ...
->=20
-> > +		pr_err("%pOF: FW_BUG: free running counter is not
-> enabled\n", np);
->=20
-> Ditto.
->=20
-> --
-> With Best Regards,
-> Andy Shevchenko
->=20
+> ---
+>  .../display/bridge/analogix,anx7625.yaml      | 65 +------------------
+>  1 file changed, 2 insertions(+), 63 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> index 1d3e88daca041..ab48ab2f4240d 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+> @@ -43,70 +43,14 @@ properties:
+>    vdd33-supply:
+>      description: Regulator that provides the supply 3.3V power.
+>  
+> -  analogix,lane0-swing:
+> -    $ref: /schemas/types.yaml#/definitions/uint8-array
+> -    minItems: 1
+> -    maxItems: 20
+> -    description:
+> -      an array of swing register setting for DP tx lane0 PHY.
+> -      Registers 0~9 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
+> -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
+> -      Swing1_Pre2, Swing0_Pre3, they are for [Boost control] and
+> -      [Swing control] setting.
+> -      Registers 0~9, bit 3:0 is [Boost control], these bits control
+> -      post cursor manual, increase the [Boost control] to increase
+> -      Pre-emphasis value.
+> -      Registers 0~9, bit 6:4 is [Swing control], these bits control
+> -      swing manual, increase [Swing control] setting to add Vp-p value
+> -      for each Swing, Pre.
+> -      Registers 10~19 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
+> -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
+> -      Swing1_Pre2, Swing0_Pre3, they are for [R select control] and
+> -      [R Termination control] setting.
+> -      Registers 10~19, bit 4:0 is [R select control], these bits are
+> -      compensation manual, increase it can enhance IO driven strength
+> -      and Vp-p.
+> -      Registers 10~19, bit 5:6 is [R termination control], these bits
+> -      adjust 50ohm impedance of DP tx termination. 00:55 ohm,
+> -      01:50 ohm(default), 10:45 ohm, 11:40 ohm.
+> -
+> -  analogix,lane1-swing:
+> -    $ref: /schemas/types.yaml#/definitions/uint8-array
+> -    minItems: 1
+> -    maxItems: 20
+> -    description:
+> -      an array of swing register setting for DP tx lane1 PHY.
+> -      DP TX lane1 swing register setting same with lane0
+> -      swing, please refer lane0-swing property description.
 
+These apply to the DP side, so no need to revert this part.
+
+> -
+> -  analogix,audio-enable:
+> -    type: boolean
+> -    description: let the driver enable audio HDMI codec function or not.
+> -
+
+Not sure on this one...
+
+>    ports:
+>      $ref: /schemas/graph.yaml#/properties/ports
+>  
+>      properties:
+>        port@0:
+> -        $ref: /schemas/graph.yaml#/$defs/port-base
+> -        unevaluatedProperties: false
+> +        $ref: /schemas/graph.yaml#/properties/port
+>          description:
+> -          MIPI DSI/DPI input.
+> -
+> -        properties:
+> -          endpoint:
+> -            $ref: /schemas/media/video-interfaces.yaml#
+> -            type: object
+> -            additionalProperties: false
+> -
+> -            properties:
+> -              remote-endpoint: true
+> -
+> -              bus-type:
+> -                enum: [1, 5]
+
+I think the error here is really 1 should be 4 which corresponds to 
+D-PHY which is used by both CSI and DSI. Otherwise, I don't really see 
+the issue with bus-type being shared between CSI and DSI.
+
+> -                default: 1
+> -
+> -              data-lanes: true
+> +          Video port for MIPI DSI input.
+>  
+>        port@1:
+>          $ref: /schemas/graph.yaml#/properties/port
+> @@ -143,9 +87,6 @@ examples:
+>              vdd10-supply = <&pp1000_mipibrdg>;
+>              vdd18-supply = <&pp1800_mipibrdg>;
+>              vdd33-supply = <&pp3300_mipibrdg>;
+> -            analogix,audio-enable;
+> -            analogix,lane0-swing = /bits/ 8 <0x14 0x54 0x64 0x74>;
+> -            analogix,lane1-swing = /bits/ 8 <0x14 0x54 0x64 0x74>;
+>  
+>              ports {
+>                  #address-cells = <1>;
+> @@ -155,8 +96,6 @@ examples:
+>                      reg = <0>;
+>                      anx7625_in: endpoint {
+>                          remote-endpoint = <&mipi_dsi>;
+> -                        bus-type = <5>;
+> -                        data-lanes = <0 1 2 3>;
+>                      };
+>                  };
+>  
+> -- 
+> 2.32.0
+> 
+> 
