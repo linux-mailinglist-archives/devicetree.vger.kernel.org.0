@@ -2,131 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA9314D0180
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:36:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE204D01BF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 15:49:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243289AbiCGOhZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 09:37:25 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39628 "EHLO
+        id S239591AbiCGOuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 09:50:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41284 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243285AbiCGOhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:37:25 -0500
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05B7F7E590;
-        Mon,  7 Mar 2022 06:36:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646663790; x=1678199790;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=RhzWHO29ZNU2Nsn9nHyfYfEHvrdiuDbT4BJYyRMuu0I=;
-  b=Aayj+mL0YZ+JlNuMti7p6qo1lj2/g9CDkPg4kqbuRAEcglkNv6TFKeT9
-   0+bfa2RmMM7Z5KwiBtjmoZzLvCtD6/GuKgXSlvIOVso0sdaR9NEq/LeRt
-   7p56BpZnAp+PAmN3cjrt66PGtfufIA9AE7Y+gLx6ACgnUdyYF3sJZk+mK
-   CptZBx8yUMTErTDVvGGLQ4tQn15w6BcOEu78XQ2GPV8RFJKWs/DZm2aP6
-   Nl+AsdtveUb/cN5Y/d0B5HoXPfb2zKy3mDUXTHZfAoe8IhzvH7dhxQsXl
-   xCo3KG2k3kKa3v9oZ/Z7D7oRgpRtUjpM0S00t8HvN16r370GmP3PeOnWe
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10278"; a="235012360"
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="235012360"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 06:36:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,162,1643702400"; 
-   d="scan'208";a="687555371"
-Received: from kuha.fi.intel.com ([10.237.72.185])
-  by fmsmga001.fm.intel.com with SMTP; 07 Mar 2022 06:36:27 -0800
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 07 Mar 2022 16:36:27 +0200
-Date:   Mon, 7 Mar 2022 16:36:27 +0200
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?B?77+9aXByYWdh?= <alsi@bang-olufsen.dk>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/4] usb: typec: add TUSB320xA driver
-Message-ID: <YiYYa7GkknJ+CAuL@kuha.fi.intel.com>
-References: <20220301132010.115258-1-alvin@pqrs.dk>
- <20220301132010.115258-4-alvin@pqrs.dk>
+        with ESMTP id S232588AbiCGOuA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 09:50:00 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482B27E09A;
+        Mon,  7 Mar 2022 06:49:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646664543; x=1678200543;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=4aWIRFI8XlQrJ3FoHqdftAf5Mm43XBh+8uTq/2kna44=;
+  b=t+WPUhpvHdAYKJTwgsiPiCJotrpLfwhyXg/Sr6Zx+92bjakii4o/uqLV
+   5aHe6B/6XPqNUzhHLdAGSa41FiEXxDeOle7G7qxyWp1EJNmo09aH8Qyqj
+   AAOcW99kO85kevHiHa2xDcLVTnHV88S/JjOEUwDghHQ9PcdyN2S/VuUtT
+   vg4Fkd0zi8f0wjhiaMD+gWHWgADnyL4hRGEPsHFLr+f64q10I+4xBKPQY
+   O2MFO6zbBY3DeNPI+dttRacx15r3AfhwyT4E3bnygFz46UF7crAd/dTOH
+   B3JKvKwwo1keLm1GpB795Se9WauCcZOxfpaaSOvUUMaXvuXjKVgicfd35
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
+   d="scan'208";a="148334220"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 07:49:02 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Mon, 7 Mar 2022 07:49:01 -0700
+Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 07:48:57 -0700
+From:   Sergiu Moga <sergiu.moga@microchip.com>
+To:     <claudiu.beznea@microchip.com>, <thierry.reding@gmail.com>,
+        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
+        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Sergiu Moga <sergiu.moga@microchip.com>
+Subject: [PATCH v2 0/2] dt-bindings: pwm: convert atmel pwm to json-schema
+Date:   Mon, 7 Mar 2022 16:46:50 +0200
+Message-ID: <20220307144652.162706-1-sergiu.moga@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220301132010.115258-4-alvin@pqrs.dk>
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patch series addresses the conversion of the Atmel PWM DT
+binding to the DT Schema format and adds the SAMA7G5 compatible to
+the respective converted binding.
 
-On Tue, Mar 01, 2022 at 02:20:07PM +0100, Alvin Šipraga wrote:
-> From: Alvin Šipraga <alsi@bang-olufsen.dk>
-> 
-> The TUSB320LA and TUSB320HA (or LAI, HAI) chips are I2C controlled
-> non-PD Type-C port controllers. They support detection of cable
-> orientation, port attachment state, and role, including Audio Accessory
-> and Debug Accessory modes. Add a typec class driver for this family.
-> 
-> Note that there already exists an extcon driver for the TUSB320 (a
-> slightly older revision that does not support setting role preference or
-> disabling the CC state machine). This driver is loosely based on that
-> one.
+Changes since v1:
+- Name the file `atmel,at91sam-pwm.yaml` instead of `atmel-pwm.yaml`
+- Removed unnecessary descriptions of the `reg` and `#pwm-cells`
+properties
+- Remove unnecessary `pwmleds` node
+- Remove `#pwm-cells` property from the list of required properties
+- Add `allOf` including `pwm.yaml`
+- Rename title from `Atmel PWM Controller` to `Atmel/Microchip PWM
+  controller`
 
-This looked mostly OK to me. There is one question below.
+Sergiu Moga (2):
+  dt-bindings: pwm: convert atmel pwm to json-schema
+  dt-bindings: pwm: at91: Add SAMA7G5 compatible strings list
 
-<snip>
-
-> +static int tusb320xa_check_signature(struct tusb320xa *tusb)
-> +{
-> +	static const char sig[] = { '\0', 'T', 'U', 'S', 'B', '3', '2', '0' };
-> +	unsigned int val;
-> +	int i, ret;
-> +
-> +	mutex_lock(&tusb->lock);
-> +
-> +	for (i = 0; i < sizeof(sig); i++) {
-> +		ret = regmap_read(tusb->regmap, sizeof(sig) - 1 - i, &val);
-> +		if (ret)
-> +			goto done;
-> +
-> +		if (val != sig[i]) {
-> +			dev_err(tusb->dev, "signature mismatch!\n");
-> +			ret = -ENODEV;
-> +			goto done;
-> +		}
-> +	}
-> +
-> +done:
-> +	mutex_unlock(&tusb->lock);
-> +
-> +	return ret;
-> +}
-
-Couldn't that be done with a single read?
-
-        char sig[8];
-        u64 val;
-
-        strcpy(sig, "TUSB320")
-
-        mutex_lock(&tusb->lock);
-
-        ret = regmap_raw_read(tusb->regmap, 0, &val, sizeof(val));
-        ...
-        if (val != cpu_to_le64(*(u64 *)sig)) {
-        ...
-
-Something like that?
-
-thanks,
+ .../bindings/pwm/atmel,at91sam-pwm.yaml       | 47 +++++++++++++++++++
+ .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 --------------
+ 2 files changed, 47 insertions(+), 35 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
 
 -- 
-heikki
+2.25.1
+
