@@ -2,142 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E10E4CF2F4
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 08:51:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7234CF320
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 09:03:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235955AbiCGHw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 02:52:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59818 "EHLO
+        id S236028AbiCGIEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 03:04:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235941AbiCGHwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 02:52:25 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D08960D90
-        for <devicetree@vger.kernel.org>; Sun,  6 Mar 2022 23:51:31 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S233973AbiCGID7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 03:03:59 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB66D2BB29;
+        Mon,  7 Mar 2022 00:03:03 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646640184; x=1678176184;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=XwvBg13gYha3GKzUexcw4i2Qs97JLoPQKDu0q5vkeoU=;
+  b=p4ZMYeqIyA7m4N4mlj53NtnU1Qjy26k2Td2EGvE9d9JBYE59GWzklCDy
+   JpG+JxacLuYtPCWKCZC9EQ6SDyLSKClTgQ+UpVV2kJ11QfS5tgAcN6xjt
+   lGeIzLdWQrTQMzUcrCaW/jjQQp/91ezdYywJd4nEbVFW7aJejHo8d0FBS
+   vCyJSL956+jv/7ilyn/waG1JBbRhRloVYQjMvxA/KEDLid0CjNvSnAV4c
+   LVTkjWaBDgF1UWtsiWmhcZ+VoauXY7ZBy9cjr+HESnslMq20KN+e50Bav
+   CGmuwYIW4orgkh0KRuMapb5RDVFcnYHwEKVlCahXfTEPtdbeCLBXfYsrA
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,161,1643670000"; 
+   d="scan'208";a="22482837"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 07 Mar 2022 09:03:00 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Mon, 07 Mar 2022 09:03:00 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Mon, 07 Mar 2022 09:03:00 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646640180; x=1678176180;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=XwvBg13gYha3GKzUexcw4i2Qs97JLoPQKDu0q5vkeoU=;
+  b=MJfcm0OOYbqBM6snxtJdUUdtEdNVdEpTFmOMMdgauHUkO9CFPPg0dl4j
+   sf7Ra6s/URzXAjeo9RVfMvBrg2qXVOGybTLwDWwda3PnsURD9R+EZmfcB
+   9L8XvyXVm0b//tC4ouMWGv6lr3ZAQ14IXea3mZ5qoOD2vSQNoMkUl4Ob6
+   1gIPfVcxo3rpZJlqx63dj3RJzFBLTbiZJcpE9hC3bnbz7g3Q6yUilVrCs
+   oCBc7AsBRHlbr+Nwt6UXe9W4f8tLhh1HK4QaKMU4ESLaeCLfF/VJFQ3TV
+   gFrw2/HCsya527QclKgCDfrrHP3a5EBJoZP2rDyhA7zu4077AUsYfjl67
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,161,1643670000"; 
+   d="scan'208";a="22482836"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Mar 2022 09:03:00 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 594B23F5FA
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 07:51:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646639490;
-        bh=XlVD8ETmzuRKAuObKkkpDzusQxU46RvngqfrRmzaIqs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=sVW7sITh7ysZFd3cH/mEJPvf/TOPuMVbHKUyuWTSrNouHA6dE5PhP61cpPZUGD1BY
-         sNud+drKaWioshiO4zem0hSDOb+O5wcgOtugyell0tpx87hDa3FxHA8Lb2B8Cl87tY
-         Xi6i86QZ1y5lrz9b7ECID5U5fRgzUrwMIgxXNVRHKtX7Op5qLwUnWJJF5n5VPk+Gtb
-         lbS+vEJNQHyQrWmM8PsgZajS9fwpKhObbRYzwvEyK8CfwHEPlXB6VXfJDPouv4jQAK
-         J3CmtwGM5Us44d2qo1mc4DD+oA4btvEp3nBikPe2woKPEs3pbyt7Llm7aawzsTrJA4
-         U2HIj55hSKufA==
-Received: by mail-ej1-f71.google.com with SMTP id 13-20020a170906328d00b006982d0888a4so6532247ejw.9
-        for <devicetree@vger.kernel.org>; Sun, 06 Mar 2022 23:51:30 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=XlVD8ETmzuRKAuObKkkpDzusQxU46RvngqfrRmzaIqs=;
-        b=ExAA2ZfjyDuN/vFJqDrKepMP1N3i1JMu4Ph/t7zJD2yoQH6DcTzSyTy7Z6Vn8Yaq60
-         739d2mUb4SKzln1fgzsA3xS/l2QChqIly4cp4OVAwF0WfSyUiCzyrJCiTocAC2tcOmL6
-         r6nB+LF81FzKej1EWMD3pq8lupxsJxjoupsTdarQpPwVUfwRCkPSl/K6/hU5+nP4xySp
-         tBatQHEPsjBuHyOvv9M77Abj7kERa+MCWutUw5u2LI+qRnH6DkmGgwkucBEZwRpmzyTP
-         83wV78YQeUFOUqBf1N34ijoCLUX+yX9wODAtWavaSdLNJcIunrEWjIRNi8a6XPHZGgfP
-         u6uw==
-X-Gm-Message-State: AOAM530E1iKOYSTOTo3wom9Zf1F6idlQ/4q8eGB2TZQjKIqoFnv7UhIw
-        dGGXDICBAAGOZoxTcf9dQ6LtX+ckv2+MkNrEMHaNeP3cKveL36cv+uqavAjv9q+tAlEmMWv4D44
-        z4dRp2Rhgkc+M5Te2tLczShozEUoFO/XHaFPQ64k=
-X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr10147096edx.12.1646639489420;
-        Sun, 06 Mar 2022 23:51:29 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwKLYHzHLgwcRR6YV+jIDam77Vs4E7ym+wLWv9MySUNujpMFX33hcbnUCj4pdEcEWM9PALIZQ==
-X-Received: by 2002:a05:6402:16d6:b0:415:ed41:8606 with SMTP id r22-20020a05640216d600b00415ed418606mr10147089edx.12.1646639489280;
-        Sun, 06 Mar 2022 23:51:29 -0800 (PST)
-Received: from [192.168.0.140] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id p4-20020a50d884000000b004128cf5fe2asm5793891edj.79.2022.03.06.23.51.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 06 Mar 2022 23:51:28 -0800 (PST)
-Message-ID: <bcf0567c-b17a-4c39-4a34-6da2d9edb20f@canonical.com>
-Date:   Mon, 7 Mar 2022 08:51:27 +0100
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 7069B280065;
+        Mon,  7 Mar 2022 09:03:00 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        kernel@pengutronix.de, linux-imx@nxp.com,
+        Richard Zhu <hongxing.zhu@nxp.com>
+Subject: Re: (EXT) [PATCH v1 4/7] dt-bindings: imx6q-pcie: Add iMX8MP PCIe compatible string
+Date:   Mon, 07 Mar 2022 09:02:58 +0100
+Message-ID: <11939148.O9o76ZdvQC@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <1646634556-23779-5-git-send-email-hongxing.zhu@nxp.com>
+References: <1646634556-23779-1-git-send-email-hongxing.zhu@nxp.com> <1646634556-23779-5-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings:pwm:Add bindings doc for Sunplus SoC
- PWM Driver
-Content-Language: en-US
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     thierry.reding@gmail.com,
-        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
-        lee.jones@linaro.org, robh+dt@kernel.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, wells.lu@sunplus.com,
-        "hammer.hsieh" <hammer.hsieh@sunplus.com>
-References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
- <1646374812-2988-2-git-send-email-hammerh0314@gmail.com>
- <9113e319-58a2-fd90-6887-fb32eb21fd18@canonical.com>
- <CAOX-t55sXVg8Fj_G_xzxWTStxZXOwKo46=_R0LkfHnMS051KaQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAOX-t55sXVg8Fj_G_xzxWTStxZXOwKo46=_R0LkfHnMS051KaQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/03/2022 05:18, hammer hsieh wrote:
-> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> 於 2022年3月4日 週五
-> 下午11:01寫道：
->>
->> On 04/03/2022 07:20, Hammer Hsieh wrote:
->>> Add bindings doc for Sunplus SoC PWM Driver
->>
->> You miss spaces in the subject.
->>
-> 
-> ok, will modify it.
-> 
->>>
->>> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
->>> ---
->>> Changes in v2:
->>>  - Addressed all comments from Rob Herring.
->>>    modify author's mail match Signed-off-by.
->>>  - rebase kernel to 5.17 rc5
->>>
->>>  .../devicetree/bindings/pwm/pwm-sunplus.yaml       | 40 ++++++++++++++++++++++
->>>  MAINTAINERS                                        |  5 +++
->>>  2 files changed, 45 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
->>> new file mode 100644
->>> index 0000000..19fe5d5
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pwm/pwm-sunplus.yaml
->>> @@ -0,0 +1,40 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +# Copyright (C) Sunplus Co., Ltd. 2021
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/pwm/pwm-sunplus.yaml#
->>
->> Is it going to be one binding for all Sunplus SoCs? Existing and future?
->>
-> 
-> yes, that was my first plan.
-> but not all sunplus SoCs use the same IP-based,
-> so I will change file name form 'pwm-sunplus.yaml' to
-> 'sunplus,sp7021-pwm.yaml' in  next patch.
+Hi Richard,
 
-Yes, that might be better approach,
+thanks for providing a patch supporting PCie on iMX8MP.
+
+Am Montag, 7. M=E4rz 2022, 07:29:13 CET schrieb Richard Zhu:
+> Add i.MX8MP PCIe compatible string.
+>=20
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml index
+> 36c8a06d17a0..252e5b72aee0 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - fsl,imx7d-pcie
+>        - fsl,imx8mq-pcie
+>        - fsl,imx8mm-pcie
+> +      - fsl,imx8mp-pcie
+>=20
+>    reg:
+>      items:
+
+Which branch is this based on? I don't have 'fsl,imx8mm-pcie' entry in my=20
+tree. Another patch 7 also doesn't apply cleanly.
+
+Regards
+Alexander
 
 
-
-Best regards,
-Krzysztof
