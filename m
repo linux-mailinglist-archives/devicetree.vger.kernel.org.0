@@ -2,93 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5299F4CFE32
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:23:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFCD4CFE57
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 13:25:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242180AbiCGMYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 07:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50296 "EHLO
+        id S235268AbiCGM0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 07:26:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242216AbiCGMYC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:24:02 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74DAA58E52;
-        Mon,  7 Mar 2022 04:23:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646655783; x=1678191783;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=yhcV1xA/GCoaV0qxID8U5MSYsK0/vgW50L/YM9WNuBw=;
-  b=QZ/vq7FhEqEGOV83BhAh8KrhQT4Gjf5qsGJ9HA3WZZ8tOB7rXyKYwYlt
-   fZvuNHN/bxyPOZXc0fosd/gzCoBKWiLEJ4Vij/A4upvMf/AiIP9En/C7j
-   iSCo80zFsTRqXj4/LUZL03rBwb0XF+PG/bS//PKR9q/bzu39aWnO5h8Xh
-   tVEkvx4an404tRiZtvN2ijrjU6H2dTUBmrBBjVGa6k1DR4VCz4ytrBOXL
-   J6mFSwHkb6avDCXdiKLBNk8BemgTyngKyu6ATlRDiZ5Fbx8SLdh5lWOAR
-   8WgNfPEZU6XA5ChnIunfEzYOik1USV0iEN0WaGLIyV5QioEfYzc6FM0oa
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
-   d="scan'208";a="155487952"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 05:23:02 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Mar 2022 05:23:00 -0700
-Received: from rob-ult-m19940.amer.actel.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 05:22:58 -0700
-From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
-To:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <lars@metafoo.de>, <broonie@kernel.org>, <perex@perex.cz>,
-        <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <nicolas.ferre@microchip.com>,
-        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
-Subject: [PATCH v3 6/6] ARM: configs: at91: sama7_defconfig: add MCHP PDMC and DMIC drivers
-Date:   Mon, 7 Mar 2022 14:22:02 +0200
-Message-ID: <20220307122202.2251639-7-codrin.ciubotariu@microchip.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
-References: <20220307122202.2251639-1-codrin.ciubotariu@microchip.com>
+        with ESMTP id S232966AbiCGM0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 07:26:16 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A607DAA7;
+        Mon,  7 Mar 2022 04:25:21 -0800 (PST)
+X-UUID: b9b3713de332428c870e7a68727f2a51-20220307
+X-UUID: b9b3713de332428c870e7a68727f2a51-20220307
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jia-wei.chang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 2142253048; Mon, 07 Mar 2022 20:25:15 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 7 Mar 2022 20:25:14 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 7 Mar
+ 2022 20:25:14 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 7 Mar 2022 20:25:13 +0800
+From:   Tim Chang <jia-wei.chang@mediatek.com>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Liam Girdwood" <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Jia-Wei Chang" <jia-wei.chang@mediatek.com>
+CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <fan.chen@mediatek.com>,
+        <louis.yu@mediatek.com>, <roger.lu@mediatek.com>,
+        <Allen-yy.Lin@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <hsinyi@google.com>
+Subject: [PATCH 0/3] devfreq: mediatek: introduce MTK cci devfreq
+Date:   Mon, 7 Mar 2022 20:25:10 +0800
+Message-ID: <20220307122513.11822-1-jia-wei.chang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable drivers needed for Microchip's PDMC and PDM microphones.
+The Cache Coherent Interconnect (CCI) is the management of cache
+coherency by hardware. CCI DEVFREQ is DVFS driver for power saving by
+scaling clock frequency and supply voltage of CCI. CCI uses the same
+input clock source and power rail as LITTLE CPUs on Mediatek SoCs.
 
-Signed-off-by: Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
----
+Jia-Wei Chang (3):
+  dt-bindings: devfreq: mediatek: add mtk cci devfreq dt-bindings
+  devfreq: mediatek: add mt8183 cci devfreq driver
+  devfreq: mediatek: add platform data to support mt8186
 
-Changes in v2,v3:
- - none;
+ .../devicetree/bindings/devfreq/mtk-cci.yaml  |  73 +++
+ drivers/devfreq/Kconfig                       |  11 +-
+ drivers/devfreq/Makefile                      |   2 +-
+ drivers/devfreq/mtk-cci-devfreq.c             | 481 ++++++++++++++++++
+ 4 files changed, 565 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/mtk-cci.yaml
+ create mode 100644 drivers/devfreq/mtk-cci-devfreq.c
 
- arch/arm/configs/sama7_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defconfig
-index 0368068e04d9..bc29badab890 100644
---- a/arch/arm/configs/sama7_defconfig
-+++ b/arch/arm/configs/sama7_defconfig
-@@ -138,6 +138,8 @@ CONFIG_SND_SOC_MIKROE_PROTO=m
- CONFIG_SND_MCHP_SOC_I2S_MCC=y
- CONFIG_SND_MCHP_SOC_SPDIFTX=y
- CONFIG_SND_MCHP_SOC_SPDIFRX=y
-+CONFIG_SND_MCHP_SOC_PDMC=y
-+CONFIG_SND_SOC_DMIC=y
- CONFIG_SND_SOC_PCM5102A=y
- CONFIG_SND_SOC_SPDIF=y
- CONFIG_SND_SIMPLE_CARD=y
 -- 
-2.32.0
+2.18.0
 
