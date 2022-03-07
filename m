@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 038414D0C0A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:30:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 17A714D0C16
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:33:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243612AbiCGXbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 18:31:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43254 "EHLO
+        id S243462AbiCGXd6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 18:33:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48180 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230175AbiCGXbG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:31:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 571EA3A734;
-        Mon,  7 Mar 2022 15:30:11 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 0D877B8174B;
-        Mon,  7 Mar 2022 23:30:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73FE3C340E9;
-        Mon,  7 Mar 2022 23:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646695808;
-        bh=xVnmU8N4F52iJ2qBcVlwuT2W+P6GcxqA0v7auOO+e14=;
-        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
-        b=uOhY4UMq+E9XMXgKGLPJHmWKaFWSFRTlRzimtHRNghZWCrE9V6lnWEtTCcDPZYQBo
-         sATHM0BZ/yXkR527/o9r7Cg/RlFulGPkVAY9esemOmVxWFIVjgi4eVjn6HBguTRIyX
-         pNRimXywaNCOHFupdSqGDn5x8HLeSLfbHs/bRcUri6m9KihVVAR5IrQBV0ZtWyWZIM
-         Lsnbc8eFyZ7BSQSSI0pi2SN3f0tU5D8hFzoNrtEDvvi7Dfp/7PTt5irpY+nuzR0dqw
-         /raFjYlvQFBJmdWDfkKLsjiZ0fq2TpakujPf27IIUW6MJlHwFZ5wKsDlZaA4oFu+Sa
-         Sfgb4jDWjGwsw==
-Date:   Mon, 7 Mar 2022 15:30:07 -0800 (PST)
-From:   Stefano Stabellini <sstabellini@kernel.org>
-X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Xen
- hypervisor
-In-Reply-To: <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com>
-Message-ID: <alpine.DEB.2.22.394.2203071529380.3261@ubuntu-linux-20-04-desktop>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com> <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
+        with ESMTP id S243902AbiCGXd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 18:33:57 -0500
+Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C647B5549A
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 15:33:01 -0800 (PST)
+Received: by mail-oo1-f51.google.com with SMTP id k13-20020a4a948d000000b003172f2f6bdfso19947634ooi.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 15:33:01 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=MMFvv+A8EpZWIQh+l11k5XPjimtRgswqGHQotND/lwY=;
+        b=OyaelwwngExQH4Qmxw3aHtOcIukevNa7zr9/ti8EzGA8SG1D/Hwf9C1t/zeMc1iGb7
+         P/ereaGkXxmLRI7eHWBKkpo68jxSTEcLx8zj9OjmBOGkSjMuYSrlAmy01PkVlsf+sX7a
+         JS7b1PiEIbCw4uQgr5rtBnDJ7qAnEF+9ptfVtNMOiAOYUFDeQilZ29MoCWvqnJFWdpu/
+         k9N9zNJzjMbF6mK0bwLE2WtKyfZlum5WGHgfI8PlKIyHlD1PyTeKF1L27PLN9dQ+ndj4
+         bFryRUhY/gZbS3On5Im91nKO2FbaGm7HTMprHF7qi//uLaevM0tsOgT670tPBQF8rV08
+         AHvQ==
+X-Gm-Message-State: AOAM533kZEccROE1vau2ryUp3dmAHwoKhFVYb7bv/xi7aCLU21SijXFQ
+        Ys5Owhj4E1NH8o4lP5jm1w==
+X-Google-Smtp-Source: ABdhPJz9uuu/bb+uGVeQCedRpt1336Cmy3Vq6EP+ZSw5UR3pIqTaDOUphnklb82Hx9iiqwixa6i9ZA==
+X-Received: by 2002:a05:6870:1682:b0:da:b3f:3255 with SMTP id j2-20020a056870168200b000da0b3f3255mr789618oae.261.1646695981151;
+        Mon, 07 Mar 2022 15:33:01 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id m5-20020a056870194500b000d9a0818925sm6106997oak.25.2022.03.07.15.32.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 15:33:00 -0800 (PST)
+Received: (nullmailer pid 3472110 invoked by uid 1000);
+        Mon, 07 Mar 2022 23:32:59 -0000
+Date:   Mon, 7 Mar 2022 17:32:59 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Robert Foss <robert.foss@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org, Maxime Ripard <maxime@cerno.tech>
+Subject: Re: [PATCH V3 01/13] dt-bindings: display: bridge: icn6211: Document
+ DSI data-lanes property
+Message-ID: <YiaWK8QqwE0Wa6Pr@robh.at.kernel.org>
+References: <20220304002508.75676-1-marex@denx.de>
+ <20220304002508.75676-2-marex@denx.de>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1674660485-1646695809=:3261"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220304002508.75676-2-marex@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323329-1674660485-1646695809=:3261
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-
-On Mon, 7 Mar 2022, Oleksii Moisieiev wrote:
-> Xen is an open source stage-1 hypervisor.
-                        ^ type-1
-
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-
-With the minor correction:
-
-Reviewed-by: Stefano Stabellini <sstabellini@kernel.org>
-
-
+On Fri, 04 Mar 2022 01:24:56 +0100, Marek Vasut wrote:
+> It is necessary to specify the number of connected/used DSI data lanes when
+> using the DSI input port of this bridge. Document the 'data-lanes' property
+> of the DSI input port.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Jagan Teki <jagan@amarulasolutions.com>
+> Cc: Maxime Ripard <maxime@cerno.tech>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Robert Foss <robert.foss@linaro.org>
+> Cc: Sam Ravnborg <sam@ravnborg.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> To: dri-devel@lists.freedesktop.org
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> V3: New patch
+> ---
+>  .../display/bridge/chipone,icn6211.yaml        | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 294093d45a23..0d10a55df910 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -1360,6 +1360,8 @@ patternProperties:
->      description: Wanchanglong Electronics Technology（SHENZHEN）Co.，Ltd.
->    "^x-powers,.*":
->      description: X-Powers
-> +  "^xen,.*":
-> +    description: Xen Hypervisor
->    "^xes,.*":
->      description: Extreme Engineering Solutions (X-ES)
->    "^xiaomi,.*":
-> -- 
-> 2.27.0
-> 
---8323329-1674660485-1646695809=:3261--
+
+Reviewed-by: Rob Herring <robh@kernel.org>
