@@ -2,103 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B83D14CFF82
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:04:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 961324CFF7A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 14:04:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242292AbiCGNFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 08:05:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54746 "EHLO
+        id S242527AbiCGNE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 08:04:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242740AbiCGNFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:05:10 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033298AE4E;
-        Mon,  7 Mar 2022 05:04:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646658256; x=1678194256;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=0le0xn3d1vkwFX3wOCoHwX5VTqLPR6D4Yyf2PZhCSDY=;
-  b=jMnPjU/VMZgIDHoUZlmh1pGcqpyy5DfBDfodEQECIV3VNtWUy6SaDM21
-   5I1bXAxAdKxqRcFbDOAqTvOzQNMpnVxxKGGc2sg3IJ/m0gZHiQS60hTP+
-   Sd0roowj/Be9lniCwOJ1A+dUIoCMDtS5wFq4G/L0GQhpLYuy/OeGj3PYb
-   7pj3YnVWr3hxNVaIwMe1B9BsYYU3z17gCCKMmFJjPxXCAJJpF2t8r5foz
-   8dON5Cw5ketct5v3AIQaAfdGaH1gO4A3zMi0jkHHrfjILPfDgoOrGefpg
-   NJV80j26MFEOnqdTW7hPBR1yXBLqZmThewNs8FA7A21RmhvJG5EN2/fjC
-   A==;
-X-IronPort-AV: E=Sophos;i="5.90,162,1643698800"; 
-   d="scan'208";a="148323686"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 07 Mar 2022 06:04:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Mon, 7 Mar 2022 06:04:14 -0700
-Received: from ROB-ULT-M68701.amer.actel.com (10.10.115.15) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2375.17 via Frontend Transport; Mon, 7 Mar 2022 06:04:07 -0700
-From:   Sergiu Moga <sergiu.moga@microchip.com>
-To:     <claudiu.beznea@microchip.com>, <thierry.reding@gmail.com>,
-        <u.kleine-koenig@pengutronix.de>, <lee.jones@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski@canonical.com>,
-        <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-pwm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Sergiu Moga <sergiu.moga@microchip.com>
-Subject: [PATCH 2/2] dt-bindings: pwm: at91: Add SAMA7G5 compatible strings list
-Date:   Mon, 7 Mar 2022 15:03:07 +0200
-Message-ID: <20220307130307.106102-3-sergiu.moga@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220307130307.106102-1-sergiu.moga@microchip.com>
-References: <20220307130307.106102-1-sergiu.moga@microchip.com>
+        with ESMTP id S239342AbiCGNE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 08:04:56 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 030408AE4F
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 05:04:02 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id l1-20020a05600c4f0100b00389645443d2so6395853wmq.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 05:04:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=pSHEpDDbP3cBBq52zYK0sNbU+pR3WMacBq6FSVuCsuM=;
+        b=lEyjhp0FKvJ9cyn+Cm7Hv5psgSCRwSDD5d+n6tgI9FYAv/WsSTdc3xwTHRUAcxqtMG
+         zkInt4KD4lSlbfM75JZTqp5GalPnY6ZYw0JgOFUXP0WeuklE3uYh+NMYpAvxE7CK8mql
+         mHk7mTU0WQzoBV1eIMANMCjafPQ4uarYNyqf+IrCCNRX9p7SQdYZfFrC8D/a4E6pdz63
+         DfNmqoUauu71RdSxPSVL/7hsGlubdCXj0326JPu4XthjhZ9p3rf3QIZgJGEiyyd4wt+0
+         D3pe7c6I2li66/nlL97rigXO70zNrjhqLCQt4hGFXbd7uTxQoz6Zanwa2UeYTYxf4Ojr
+         eKHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=pSHEpDDbP3cBBq52zYK0sNbU+pR3WMacBq6FSVuCsuM=;
+        b=IlizwRLgVg9ATJ7T7gbRI1M/gaE4zc5888Bw041jPe9W3bmNkOeg82wirUGX3zeRGg
+         K3sAvP5XYkEtee6uJazywKvW6Hll2TQ0S26UcDk94W2Y8PJvSlAxc3y4Bsa/Gw5Aipwm
+         wgMS7sMl1AXVF7ivqfEk9mhYpPOo3yakCleBl1Dd3rBR9Ws00Y4P8AhlJdz99OqIpyvz
+         TKTuB45Hja8L+5bWe5OyJBDusqJIq5c1SG2nKRCTcmgwDclxC+LQuONs41F9wAvICUB8
+         o7SGJOeBOXUklZfQFDzDWasXyMk3gT94SWzYN48JtwSs3Xt9pVlNXvh5jd2OpTFMQQMy
+         motg==
+X-Gm-Message-State: AOAM533DtcdqI4WdhHc21BbATjSzSst6SR2pJkJaz08qYbETvEsKe2EP
+        qHNILKFv0cT75Nfv9qk5cvqk9w==
+X-Google-Smtp-Source: ABdhPJzLVcA7qBP2Lke70Pkrbh5ieyS9z/kxVkQ/DbMFElu7PyUeAvGDLw6bvia/bpEjh5zPHNxrBw==
+X-Received: by 2002:a7b:c2aa:0:b0:389:891f:1fd1 with SMTP id c10-20020a7bc2aa000000b00389891f1fd1mr11411322wmk.138.1646658240568;
+        Mon, 07 Mar 2022 05:04:00 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id f7-20020a5d4dc7000000b001f1d99e9441sm6699454wru.106.2022.03.07.05.03.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 05:04:00 -0800 (PST)
+Date:   Mon, 7 Mar 2022 13:03:58 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andi Shyti <andi@etezian.org>, Mark Brown <broonie@kernel.org>,
+        Sam Protsenko <semen.protsenko@linaro.org>,
+        Pratyush Yadav <p.yadav@ti.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-spi@vger.kernel.org
+Subject: [GIT PULL] Immutable branch between MFD, SPI and DT  due for the
+ v5.18 merge window
+Message-ID: <YiYCvsdgG5o2DpuN@google.com>
+References: <20220124082347.32747-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220124082347.32747-1-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible strings list for SAMA7G5.
+Enjoy!
 
-Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
----
- .../devicetree/bindings/pwm/atmel-pwm.yaml        | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+The following changes since commit e783362eb54cd99b2cac8b3a9aeac942e6f6ac07:
 
-diff --git a/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml b/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
-index f5378a2226bd..55d40973e6a9 100644
---- a/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
-+++ b/Documentation/devicetree/bindings/pwm/atmel-pwm.yaml
-@@ -12,11 +12,16 @@ maintainers:
- 
- properties:
-   compatible:
--    enum:
--      - atmel,at91sam9rl-pwm
--      - atmel,sama5d3-pwm
--      - atmel,sama5d2-pwm
--      - microchip,sam9x60-pwm
-+    oneOf:
-+      - items:
-+          - enum:
-+              - atmel,at91sam9rl-pwm
-+              - atmel,sama5d3-pwm
-+              - atmel,sama5d2-pwm
-+              - microchip,sam9x60-pwm
-+      - items:
-+          - const: microchip,sama7g5-pwm
-+          - const: atmel,sama5d2-pwm
- 
-   reg:
-     description: |
+  Linux 5.17-rc1 (2022-01-23 10:12:53 +0200)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git ib-mfd-spi-dt-v5.18
+
+for you to fetch changes up to 172e611b54e813c49a35b6b74bccaa99f27bf566:
+
+  dt-bindings: mfd: maxim,max77802: Convert to dtschema (2022-03-07 12:55:59 +0000)
+
+----------------------------------------------------------------
+Immutable branch between MFD, SPI and DT  due for the v5.18 merge window
+
+----------------------------------------------------------------
+Krzysztof Kozlowski (13):
+      dt-bindings: extcon: maxim,max77843: Add MAX77843 bindings
+      regulator: dt-bindings: maxim,max77843: Add MAX77843 bindings
+      dt-bindings: mfd: maxim,max77843: Add MAX77843 bindings
+      MAINTAINERS: mfd: Cover MAX77843 by Maxim PMIC/MUIC for Exynos boards entry
+      spi: dt-bindings: samsung: Convert to dtschema
+      mfd: dt-bindings: google,cros-ec: Reference Samsung SPI bindings
+      mfd: dt-bindings: google,cros-ec: Fix indentation in example
+      spi: s3c64xx: Allow controller-data to be optional
+      dt-bindings: power: supply: maxim,max14577: Convert to dtschema
+      regulator: dt-bindings: maxim,max14577: Convert to dtschema
+      dt-bindings: mfd: maxim,max14577: Convert to dtschema
+      regulator: dt-bindings: maxim,max77802: Convert to dtschema
+      dt-bindings: mfd: maxim,max77802: Convert to dtschema
+
+ .../devicetree/bindings/extcon/maxim,max77843.yaml |  40 +++++
+ .../devicetree/bindings/mfd/google,cros-ec.yaml    |  31 ++--
+ Documentation/devicetree/bindings/mfd/max14577.txt | 147 ----------------
+ Documentation/devicetree/bindings/mfd/max77802.txt |  25 ---
+ .../devicetree/bindings/mfd/maxim,max14577.yaml    | 195 +++++++++++++++++++++
+ .../devicetree/bindings/mfd/maxim,max77802.yaml    | 194 ++++++++++++++++++++
+ .../devicetree/bindings/mfd/maxim,max77843.yaml    | 144 +++++++++++++++
+ .../bindings/power/supply/maxim,max14577.yaml      |  84 +++++++++
+ .../devicetree/bindings/regulator/max77802.txt     | 111 ------------
+ .../bindings/regulator/maxim,max14577.yaml         |  78 +++++++++
+ .../bindings/regulator/maxim,max77802.yaml         |  85 +++++++++
+ .../bindings/regulator/maxim,max77843.yaml         |  65 +++++++
+ .../bindings/soc/samsung/exynos-usi.yaml           |   2 +-
+ .../bindings/spi/samsung,spi-peripheral-props.yaml |  33 ++++
+ .../devicetree/bindings/spi/samsung,spi.yaml       | 187 ++++++++++++++++++++
+ .../bindings/spi/spi-peripheral-props.yaml         |   1 +
+ .../devicetree/bindings/spi/spi-samsung.txt        | 122 -------------
+ MAINTAINERS                                        |   9 +-
+ drivers/spi/spi-s3c64xx.c                          |  14 +-
+ 19 files changed, 1136 insertions(+), 431 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max14577.txt
+ delete mode 100644 Documentation/devicetree/bindings/mfd/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77802.yaml
+ create mode 100644 Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
+ create mode 100644 Documentation/devicetree/bindings/power/supply/maxim,max14577.yaml
+ delete mode 100644 Documentation/devicetree/bindings/regulator/max77802.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max14577.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77802.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77843.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi-peripheral-props.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/samsung,spi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-samsung.txt
+
 -- 
-2.25.1
-
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
