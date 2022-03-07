@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625FF4D0444
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 17:38:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B6334D045E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 17:43:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234917AbiCGQjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 11:39:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39064 "EHLO
+        id S242183AbiCGQoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 11:44:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231786AbiCGQjb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 11:39:31 -0500
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E3C2AE20;
-        Mon,  7 Mar 2022 08:38:35 -0800 (PST)
-Received: by mail-ot1-f42.google.com with SMTP id a7-20020a9d5c87000000b005ad1467cb59so13376018oti.5;
-        Mon, 07 Mar 2022 08:38:35 -0800 (PST)
+        with ESMTP id S242874AbiCGQoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 11:44:21 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 428056E8E1;
+        Mon,  7 Mar 2022 08:43:25 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id h16-20020a4a6f10000000b00320507b9ccfso18448031ooc.7;
+        Mon, 07 Mar 2022 08:43:25 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=G2URj90cYLqtG2lIJusw4O3o8WOwpC5yHpCp8rYs1A8=;
-        b=shc5CjXuquEnkVxrFlpdGVzQ6qySMEn6Wh5yQDunCxNpM+motu68YV0+tUx5dgKf+W
-         719atx8FPTbNnhtNV6UFaxOZVwrlJqvKBBcXp8BnFDYPjEREedktZNpkb+CowJ9tZf9G
-         rA0VU1IIR0aisFEHZIGFnC6PpaE3c7uLvsbYcydWDPx0ThxRvrePitUpZQbECAjTFKWK
-         vvwYHtCBL6K7OagaVi2izr1fEapJ8bQ9wQUZ654pu+/9LHETulkrX4NK30EXxmYHzCUi
-         GJTl26+fFBAw4OaRngnN37PvfXbAPUjamzA6Bqf1IAM406mA9baXMlESWuhJKJzhA9OD
-         Kq7g==
-X-Gm-Message-State: AOAM531HqO9Rn90yqFyBnoqfEWmm9O4WctzgBEIlKdJZBb9s/J+sWCIJ
-        7+zB4WwAfLdN5sPQ7YIA4w==
-X-Google-Smtp-Source: ABdhPJwG6TQ1eVLmDZC3HPSQcHalxWCETuB8YBMN2NdaUXdQXdZEWF19x+Z006sW1YkSwErpjfaY6g==
-X-Received: by 2002:a9d:6047:0:b0:5b2:4003:cfcb with SMTP id v7-20020a9d6047000000b005b24003cfcbmr1164225otj.59.1646671114763;
-        Mon, 07 Mar 2022 08:38:34 -0800 (PST)
+        bh=6ahRBp9yt0ZPpBFG2Tzui7hdIn/8fP27GT8DryPqqNA=;
+        b=BEZjuzVKmBIVzC5et7bQJ/zG7qxAgFJwhePePnLG76JizQSq+PHtoSVaiPS4rxmZ0E
+         JSpFF+TyNyrBOwNUB5knDd1L4/ebBWpsU7jby4gEFD0l1CGOsa/T6YpKqjGhw1NinWe5
+         MTGpGjzjk0HXQA0qIzzp+MvlUmO5w0fC3b0QLqT5zNNoIM+g2V1fFoyV/CKDbO7NfjmH
+         pV9IASbYcyIT18NX8U+82ELycLQQkWuIcmxnzjkUxKXDMqCYqPNBO9Khq7z2hidEtNBR
+         C27I3Ks8YwsKXJyiKb6Hy9gQ8dQi5bAw9oV3NaXwTt/u7bK7oWj+LFMvy93HqT49jTfb
+         iIRQ==
+X-Gm-Message-State: AOAM5303jBsyDiIV0AXjvM5N2yaSMqrC80CtdtghFkca6XI66zJymnTy
+        8n9a5QTfEhGVo11A/aLcOw==
+X-Google-Smtp-Source: ABdhPJwK7Z8VahsxmcSCvl23V4RUpi+Y1xGPVc+4r9GinlZLpWcbqoisF16Xe98HLqEc7r2Fua2VNA==
+X-Received: by 2002:a05:6870:315:b0:d9:a20e:c0bf with SMTP id m21-20020a056870031500b000d9a20ec0bfmr6530459oaf.128.1646671404592;
+        Mon, 07 Mar 2022 08:43:24 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bb33-20020a056820162100b00320ecc89402sm1427379oob.36.2022.03.07.08.38.33
+        by smtp.gmail.com with ESMTPSA id g2-20020a9d5f82000000b005af678c9cfdsm6527808oti.41.2022.03.07.08.43.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 08:38:33 -0800 (PST)
-Received: (nullmailer pid 2723434 invoked by uid 1000);
-        Mon, 07 Mar 2022 16:38:32 -0000
-Date:   Mon, 7 Mar 2022 10:38:32 -0600
+        Mon, 07 Mar 2022 08:43:23 -0800 (PST)
+Received: (nullmailer pid 2731161 invoked by uid 1000);
+        Mon, 07 Mar 2022 16:43:22 -0000
+Date:   Mon, 7 Mar 2022 10:43:22 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Robert Foss <robert.foss@linaro.org>
 Cc:     airlied@linux.ie, daniel@ffwll.ch, matthias.bgg@gmail.com,
@@ -48,15 +48,15 @@ Cc:     airlied@linux.ie, daniel@ffwll.ch, matthias.bgg@gmail.com,
         linux-mediatek@lists.infradead.org,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v1 1/2] Revert "dt-bindings:drm/bridge:anx7625:add vendor
- define"
-Message-ID: <YiY1CP6DkfgU4re/@robh.at.kernel.org>
+Subject: Re: [PATCH v1 2/2] Revert "arm64: dts: mt8183: jacuzzi: Fix bus
+ properties in anx's DSI endpoint"
+Message-ID: <YiY2KiXz1qsFQvuM@robh.at.kernel.org>
 References: <20220307154558.2505734-1-robert.foss@linaro.org>
- <20220307154558.2505734-2-robert.foss@linaro.org>
+ <20220307154558.2505734-3-robert.foss@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220307154558.2505734-2-robert.foss@linaro.org>
+In-Reply-To: <20220307154558.2505734-3-robert.foss@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,123 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 04:45:57PM +0100, Robert Foss wrote:
-> This reverts commit a43661e7e819b100e1f833a35018560a1d9abb39.
-
-S-o-b and reason for the revert?
-
+On Mon, Mar 07, 2022 at 04:45:58PM +0100, Robert Foss wrote:
+> This reverts commit 32568ae37596b529628ac09b875f4874e614f63f.
 > ---
->  .../display/bridge/analogix,anx7625.yaml      | 65 +------------------
->  1 file changed, 2 insertions(+), 63 deletions(-)
+>  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> index 1d3e88daca041..ab48ab2f4240d 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-> @@ -43,70 +43,14 @@ properties:
->    vdd33-supply:
->      description: Regulator that provides the supply 3.3V power.
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> index e8f133dc96b95..8f7bf33f607da 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> @@ -171,8 +171,6 @@ port@0 {
 >  
-> -  analogix,lane0-swing:
-> -    $ref: /schemas/types.yaml#/definitions/uint8-array
-> -    minItems: 1
-> -    maxItems: 20
-> -    description:
-> -      an array of swing register setting for DP tx lane0 PHY.
-> -      Registers 0~9 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
-> -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
-> -      Swing1_Pre2, Swing0_Pre3, they are for [Boost control] and
-> -      [Swing control] setting.
-> -      Registers 0~9, bit 3:0 is [Boost control], these bits control
-> -      post cursor manual, increase the [Boost control] to increase
-> -      Pre-emphasis value.
-> -      Registers 0~9, bit 6:4 is [Swing control], these bits control
-> -      swing manual, increase [Swing control] setting to add Vp-p value
-> -      for each Swing, Pre.
-> -      Registers 10~19 are Swing0_Pre0, Swing1_Pre0, Swing2_Pre0,
-> -      Swing3_Pre0, Swing0_Pre1, Swing1_Pre1, Swing2_Pre1, Swing0_Pre2,
-> -      Swing1_Pre2, Swing0_Pre3, they are for [R select control] and
-> -      [R Termination control] setting.
-> -      Registers 10~19, bit 4:0 is [R select control], these bits are
-> -      compensation manual, increase it can enhance IO driven strength
-> -      and Vp-p.
-> -      Registers 10~19, bit 5:6 is [R termination control], these bits
-> -      adjust 50ohm impedance of DP tx termination. 00:55 ohm,
-> -      01:50 ohm(default), 10:45 ohm, 11:40 ohm.
-> -
-> -  analogix,lane1-swing:
-> -    $ref: /schemas/types.yaml#/definitions/uint8-array
-> -    minItems: 1
-> -    maxItems: 20
-> -    description:
-> -      an array of swing register setting for DP tx lane1 PHY.
-> -      DP TX lane1 swing register setting same with lane0
-> -      swing, please refer lane0-swing property description.
+>  			anx7625_in: endpoint {
+>  				remote-endpoint = <&dsi_out>;
+> -				bus-type = <5>;
+> -				data-lanes = <0 1 2 3>;
 
-These apply to the DP side, so no need to revert this part.
+Well, this was clearly wrong. Connected to a DSI output, but parallel 
+interface with lanes...
 
-> -
-> -  analogix,audio-enable:
-> -    type: boolean
-> -    description: let the driver enable audio HDMI codec function or not.
-> -
+We should have a schema to disallow this combination.
 
-Not sure on this one...
-
->    ports:
->      $ref: /schemas/graph.yaml#/properties/ports
->  
->      properties:
->        port@0:
-> -        $ref: /schemas/graph.yaml#/$defs/port-base
-> -        unevaluatedProperties: false
-> +        $ref: /schemas/graph.yaml#/properties/port
->          description:
-> -          MIPI DSI/DPI input.
-> -
-> -        properties:
-> -          endpoint:
-> -            $ref: /schemas/media/video-interfaces.yaml#
-> -            type: object
-> -            additionalProperties: false
-> -
-> -            properties:
-> -              remote-endpoint: true
-> -
-> -              bus-type:
-> -                enum: [1, 5]
-
-I think the error here is really 1 should be 4 which corresponds to 
-D-PHY which is used by both CSI and DSI. Otherwise, I don't really see 
-the issue with bus-type being shared between CSI and DSI.
-
-> -                default: 1
-> -
-> -              data-lanes: true
-> +          Video port for MIPI DSI input.
->  
->        port@1:
->          $ref: /schemas/graph.yaml#/properties/port
-> @@ -143,9 +87,6 @@ examples:
->              vdd10-supply = <&pp1000_mipibrdg>;
->              vdd18-supply = <&pp1800_mipibrdg>;
->              vdd33-supply = <&pp3300_mipibrdg>;
-> -            analogix,audio-enable;
-> -            analogix,lane0-swing = /bits/ 8 <0x14 0x54 0x64 0x74>;
-> -            analogix,lane1-swing = /bits/ 8 <0x14 0x54 0x64 0x74>;
->  
->              ports {
->                  #address-cells = <1>;
-> @@ -155,8 +96,6 @@ examples:
->                      reg = <0>;
->                      anx7625_in: endpoint {
->                          remote-endpoint = <&mipi_dsi>;
-> -                        bus-type = <5>;
-> -                        data-lanes = <0 1 2 3>;
->                      };
->                  };
->  
-> -- 
-> 2.32.0
-> 
-> 
+Rob
