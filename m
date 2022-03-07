@@ -2,94 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DD14D088F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 21:40:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6784D090A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Mar 2022 21:55:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245388AbiCGUks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 15:40:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42536 "EHLO
+        id S245487AbiCGU4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 15:56:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245358AbiCGUkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 15:40:40 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B2587B562;
-        Mon,  7 Mar 2022 12:39:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 19E756150B;
-        Mon,  7 Mar 2022 20:39:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 485ECC340EF;
-        Mon,  7 Mar 2022 20:39:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646685584;
-        bh=mZvkk4eExyyshNaj1KkfsbMVNXCaa6NAACmHjXogaa8=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=GIrCUnOhLb7pfVCwvXPpt8dnoS+MokHmtSh3YR2uHJZ/4wim7fXxYTx8AZWAQ7CMI
-         lUzB5E6I5sYQPVFI4uCL64CAubi3e8nml1IqfH4lWhvx8vz4OXzvwyUnIcxoUinfrG
-         meF2kFpQlf1PZSilnA3L0J4wvz1hAf32HvW/KSzig0//tcbBw+MAXvPcXcuJ2QPx7M
-         KZ7KU6ieJN+h5GVcyYPy9wIbrXiy9jBeEpMJff6np/eijZaeRTlifIFNGPgUNoLhZU
-         xD5gpGlwRcPEnq9SzHFpU75u/+87icOHtyixrdWRjToteDe7GkJJFtRFxqFAVq7wqy
-         ATS3Gxc+XrAbw==
-From:   Mark Brown <broonie@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org
-In-Reply-To: <20220307113529.315685-1-jonathanh@nvidia.com>
-References: <20220307113529.315685-1-jonathanh@nvidia.com>
-Subject: Re: [PATCH] dt-bindings: spi: Fix Tegra QSPI example
-Message-Id: <164668558302.3137564.11139957927665508409.b4-ty@kernel.org>
-Date:   Mon, 07 Mar 2022 20:39:43 +0000
+        with ESMTP id S245516AbiCGUzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 15:55:39 -0500
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E3C40E6C;
+        Mon,  7 Mar 2022 12:54:02 -0800 (PST)
+Received: by mail-pj1-x102e.google.com with SMTP id c16-20020a17090aa61000b001befad2bfaaso360768pjq.1;
+        Mon, 07 Mar 2022 12:54:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2zkCQnU25vRaG4W9nWnsmXVac+hU6z1UCzvKbgfJvzA=;
+        b=U53JBAMIieK91+S22DJEVApF7fJAZxw9nHcYsFrR1c3KXK6Dcq/hPOMGtfc8q6E+kL
+         YmX+dLPFv21yCzsgWaqarfHat8mwGZK+zTVRg/qM00FAh0ewS5u8lSKVur9WwuGDfsS2
+         CBs7Ntp7crtLgx1nIcj0Mboa+aWRXqGZ8WCejG/K4YwK+A/BaKCfbotDBfrcMfsdRHnj
+         fIOEtM7LDzAtdKRnu9+hH/c8oKphH4rQr52Ex6nT0vIQ/Y4/rbY21N7xTb6vyq5Hces5
+         sxhMIfUwjS25PVkSkAjOfHD9kK8VLKCKX0bKqsxXi0259u9leM87SEW2jVnVLfH7D/8L
+         kKBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2zkCQnU25vRaG4W9nWnsmXVac+hU6z1UCzvKbgfJvzA=;
+        b=rGDBvJQZamPmwke3mv6uXplFHj7RTPBYdAUvBVNuQeXBI02smJiy40MTuwgn0D9Tr4
+         23+jE0mbOjvA4U0t7nA+QtlPkzdjK5OMSjJXfQ3IrCvHn404PiIZnze2O6patXthYmB/
+         f/eMr8KuQgUcY/XQ0Rwm6KS6p776IJdMSxyWE7BOTn755odLu9+3Pxmr95454mC3RV/x
+         MU5dqe4I93TeBTkyUfGrZG049EglZ3/Sb4wMBMeObMS7hxVpPLmSgcEt+8phzplCXbKu
+         /tXjlVGfkcH69XecwwcandN/R09hHh1xt8XX7CWO4ywvv5opBBGx1nFOmLuOXHSaRhTr
+         rikQ==
+X-Gm-Message-State: AOAM533Trrvp/kNjDHNlbswj+nAAAjvSjcHk982wCYqRcyBy8exLfymR
+        ZEgY1p95S+OnNULE9IMpbp0=
+X-Google-Smtp-Source: ABdhPJx7hHxAzDxxnL4yDIF89UWxmfKGRm7I2TUno0NUHasHgjVx/wj21gWZ/5ewllOfCE3ZRAtYFA==
+X-Received: by 2002:a17:902:a98b:b0:14f:ae28:c660 with SMTP id bh11-20020a170902a98b00b0014fae28c660mr14300370plb.94.1646686442277;
+        Mon, 07 Mar 2022 12:54:02 -0800 (PST)
+Received: from localhost.localdomain ([122.161.53.68])
+        by smtp.gmail.com with ESMTPSA id a12-20020a056a000c8c00b004e1a76f0a8asm17676794pfv.51.2022.03.07.12.54.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 12:54:02 -0800 (PST)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH 0/2] Arm based platforms dtc fixes for pl022
+Date:   Tue,  8 Mar 2022 02:23:55 +0530
+Message-Id: <20220307205357.66322-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Mar 2022 11:35:29 +0000, Jon Hunter wrote:
-> When running dt_binding_check on the nvidia,tegra210-quad.yaml binding
-> document the following error is reported ...
-> 
->  nvidia,tegra210-quad.example.dt.yaml:0:0: /example-0/spi@70410000/flash@0:
->  	failed to match any schema with compatible: ['spi-nor']
-> 
-> Update the example in the binding document to fix the above error.
-> 
-> [...]
+This patchset is an attempt to fix device trees and resolve bindings
+warning for pl022. This requires updation in clock name to keep alignment
+with other platforms and spi node properties for integrator platform.
 
-Applied to
+This patch is based on
+git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git,
+master
+Since, these patches are based on same tree, so i added them in series
+for seamless application.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Kuldeep Singh (2):
+  arm: dts: realview/versatile/ste: Update spi clock name
+  arm: dts: integrator: Update spi node properties
 
-Thanks!
+ arch/arm/boot/dts/arm-realview-eb.dtsi    |  2 +-
+ arch/arm/boot/dts/arm-realview-pb1176.dts |  2 +-
+ arch/arm/boot/dts/arm-realview-pb11mp.dts |  2 +-
+ arch/arm/boot/dts/arm-realview-pbx.dtsi   |  2 +-
+ arch/arm/boot/dts/integratorap-im-pd1.dts |  4 ++--
+ arch/arm/boot/dts/ste-dbx5x0.dtsi         | 12 ++++++------
+ arch/arm/boot/dts/versatile-ab.dts        |  2 +-
+ 7 files changed, 13 insertions(+), 13 deletions(-)
 
-[1/1] dt-bindings: spi: Fix Tegra QSPI example
-      commit: 320689a1b543ca1396b3ed43bb18045e4a7ffd79
+-- 
+2.25.1
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
