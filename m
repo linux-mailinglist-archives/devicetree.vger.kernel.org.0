@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9033A4D1C2C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:44:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 11F404D1C4F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:50:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240775AbiCHPpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:45:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35720 "EHLO
+        id S1347932AbiCHPvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 10:51:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236232AbiCHPpo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:45:44 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EE24EF63
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 07:44:48 -0800 (PST)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nRc0q-0003S5-KN; Tue, 08 Mar 2022 16:44:36 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nRc0p-003TO2-5V; Tue, 08 Mar 2022 16:44:34 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nRc0n-007pR8-GD; Tue, 08 Mar 2022 16:44:33 +0100
-Date:   Tue, 8 Mar 2022 16:44:29 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     hammer hsieh <hammerh0314@gmail.com>
-Cc:     linux-pwm@vger.kernel.org, wells.lu@sunplus.com,
-        devicetree@vger.kernel.org,
-        "hammer.hsieh" <hammer.hsieh@sunplus.com>,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        thierry.reding@gmail.com, kernel@pengutronix.de,
-        lee.jones@linaro.org
-Subject: Re: [PATCH v2 2/2] pwm:sunplus-pwm:Add Sunplus SoC PWM Driver
-Message-ID: <20220308154429.ztv3l42euu2hf3ye@pengutronix.de>
-References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
- <1646374812-2988-3-git-send-email-hammerh0314@gmail.com>
- <20220304185702.i6csx2r3mokfmr6o@pengutronix.de>
- <CAOX-t56cycXMga_grJcpmSG68ve5-RuTsbtaEQi9Ui0A+5uhSg@mail.gmail.com>
- <20220307131018.6wrdsiixmgdtnodt@pengutronix.de>
- <CAOX-t56F2u_1=tA4N4Wvicw-e9J4ksN__J70QZtjZwJRjgesUQ@mail.gmail.com>
+        with ESMTP id S1348001AbiCHPvW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:51:22 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A244F45C;
+        Tue,  8 Mar 2022 07:50:25 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id B9FB5B81A49;
+        Tue,  8 Mar 2022 15:50:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76CE1C340EB;
+        Tue,  8 Mar 2022 15:50:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646754623;
+        bh=+lkMBgVLm+jH8x95EsB3ayX724E8SPmBBqaxqcA8SzM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mYj+WAYy9F5hTcRbygc5tB+udV1UMLnHv8ZniT42jEfFz4p0Tst87WnGH4z1KLIPI
+         C1Dyau7dKuvXqpYoxxarxJonTSlZPr26QSQXd4z+9wWVEB3MJuQVxI9CA9Binwn3Mv
+         jDNAuYHdAV1GMPKgidDOPSk+Y7EMNeVztuzwxj7zrInerPbl+ml/GfLYkuH2e228Tt
+         cloNFFb7GuOsCzuucW2OQLS8MiblbcL/9EIsEz36sdxbwvGlWEI6rYbhrn6cn89VuM
+         dhEZE9f0BwLRzkiTCSJSkP810b2w+0sfzXo/IHgOT/NAAQJaHHf3Tmds75dfD5H9s8
+         bqJsBhw3E6+iA==
+Received: by mail-ed1-f47.google.com with SMTP id o1so24000507edc.3;
+        Tue, 08 Mar 2022 07:50:23 -0800 (PST)
+X-Gm-Message-State: AOAM530Pdl1lD95nrAYctQsrGnIFh3PZnzJUvCYj53vSjjopO2FkdxSI
+        XykSFnfWCXphTzkPfrhzXmoSxBicggFSLjN1Qw==
+X-Google-Smtp-Source: ABdhPJy9UZE5EsZvGS0pOWeAVrM+jBKKZ+tr2GX+09bj7WIDu4kWUw7uvBx7JK9Ef4qd27fgNd/9DAg+0iaQQrsOnUY=
+X-Received: by 2002:a05:6402:438a:b0:416:1b04:2b58 with SMTP id
+ o10-20020a056402438a00b004161b042b58mr16810424edc.280.1646754621771; Tue, 08
+ Mar 2022 07:50:21 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6f3hgpz5jb2dmeu5"
-Content-Disposition: inline
-In-Reply-To: <CAOX-t56F2u_1=tA4N4Wvicw-e9J4ksN__J70QZtjZwJRjgesUQ@mail.gmail.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
+ <20220206091643.276833-2-sakari.ailus@linux.intel.com> <YgaG6sQjKs+ZxNm6@robh.at.kernel.org>
+ <YgaMaYeC8q7IZlcW@smile.fi.intel.com>
+In-Reply-To: <YgaMaYeC8q7IZlcW@smile.fi.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 8 Mar 2022 09:50:09 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+k+3FVaF4wpFGbi31f9Dxc41=X1P7iHFBvnat5Tyu4PA@mail.gmail.com>
+Message-ID: <CAL_Jsq+k+3FVaF4wpFGbi31f9Dxc41=X1P7iHFBvnat5Tyu4PA@mail.gmail.com>
+Subject: Re: [PATCH 1/4] device property: Convert device_{dma_supported,get_dma_attr}
+ to fwnode
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Scally <djrscally@gmail.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,54 +69,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---6f3hgpz5jb2dmeu5
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-On Tue, Mar 08, 2022 at 08:03:55PM +0800, hammer hsieh wrote:
-> > IMHO yes. (Though the most likely error -ENOMEM, in this case no error
-> > message should be emitted.)
+On Fri, Feb 11, 2022 at 10:19 AM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
+>
+> On Fri, Feb 11, 2022 at 09:55:22AM -0600, Rob Herring wrote:
+> > On Sun, Feb 06, 2022 at 11:16:40AM +0200, Sakari Ailus wrote:
+> > > Make the device_dma_supported and device_get_dma_attr functions to use the
+> > > fwnode ops, and move the implementation to ACPI and OF frameworks.
+> > >
+> > > Depends-on: ("device property: Don't split fwnode_get_irq*() APIs in the code")
 > >
->=20
->  ok, will add error message like below.
->         if (ret < 0) {
->                 dev_err(dev, "failed to release clock: %d\n", ret);
->                 return ret;
->         }
-> or should i modify like
->         if (ret < 0) {
->                 dev_err(dev, "failed to release clock: %d\n", ret);
->                 return ERR_PTR(ret);
->         }
-> i didn't find reference code for it, not sure which one is better?
+> > Is this some new convention?
+>
+> % git log --oneline --no-merges --grep Depends-on | wc -l
+> 83
 
-It depends if you return a pointer or an int. Also please make use of
-%pe instead of %d for error codes to make it easier to understand.
+With 10k+ commits per cycle that's not really compelling.
 
-Best regards
-Uwe
+> Or I misunderstood your question?
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+% git grep 'Depends-on' | wc -l
+0
 
---6f3hgpz5jb2dmeu5
-Content-Type: application/pgp-signature; name="signature.asc"
+What I mean is where's the documentation for using this? Or even a discussion?
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmInedoACgkQwfwUeK3K
-7AkJKQgAhvEhvRse9Q9dBf2kr2xCcHcFD66QcDDAt8vq4hxZNJPKwmx19iZRE+En
-TbbFIYldZshOH3eQvl6C9eEGtO5xiW3MKWgWRxjy0dngINIO3UqyxmmwnlY4FgWF
-69sWMjvx0yB3zw14/zU+UgPsc7j03yb8DwpLGFWCgKgzzLb1n+nCLrupYe33Ph1n
-BJWMD2Y97/GYlH4Q8OKsO3IyYr6qkoNB4jYVupb40JHI046EBjWQ1u2xUxGsuKcn
-cCylifL66UXWsVs8Cl6n9hpiwg0jKM04H1Jwqz99ak2hz2OKcrbYGjdPtxYL3LzN
-VIVavWS6prPerd+iJD+vDMd2B4fm7A==
-=4RJz
------END PGP SIGNATURE-----
-
---6f3hgpz5jb2dmeu5--
+Rob
