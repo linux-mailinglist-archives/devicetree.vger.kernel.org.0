@@ -2,117 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 526CE4D13DD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 48ECF4D13E6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:53:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbiCHJxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 04:53:15 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
+        id S235770AbiCHJyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 04:54:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345520AbiCHJw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:52:57 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5539841FA3
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 01:52:01 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nRWVX-00065y-Ic; Tue, 08 Mar 2022 10:51:55 +0100
-Message-ID: <2b4442d9-fb10-36ee-585d-4103b76abbbb@pengutronix.de>
-Date:   Tue, 8 Mar 2022 10:51:54 +0100
+        with ESMTP id S232116AbiCHJyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:54:11 -0500
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E68EE34B93;
+        Tue,  8 Mar 2022 01:53:15 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id a14so2726584qtx.12;
+        Tue, 08 Mar 2022 01:53:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RhnnNRTUQhZ66DiV0sFKGErrjIL8uzqVLKi9U1XyIMU=;
+        b=67a9/olw7Lui86qnC8r6WCSUTlNFBD0ajR0SUMXISia9ODkBCfvNeRfofNmEZKM3wU
+         zDCHfZjeNcE51Y+rIfZtoeh64Ek8cs041+xk79xvFB1faSqYa2Il9hoIKBi7bMPrbSkx
+         EYcCTMf4uepmb+APeBRENBhregIFFjDBelaf7AeFtVvHiEbOHRZNGE1c1uXiVEoYx3v6
+         6knwe9cBfs4YulG4ccg/QPGx0S9yIZEiGiR5HDyZQnqkIyWmuMZ/LV+RKdGRCC7LG9/n
+         nAhY6SP6o9Ymf+WKPP62r7A+06iWr2qyEL8Tggq4vsgOdk3NgyMxRItwCos6Fy8HLqRQ
+         lF5g==
+X-Gm-Message-State: AOAM530U7UFY/BnhldFP4JaDouWev2xOIXT+oFW7tIOpskuwIkysGtNl
+        K5IzFEZ9ml/yrbjt7V928qLB32IOrpowMg==
+X-Google-Smtp-Source: ABdhPJxAM/RrpROx9BNYQugwuKU7LEzbGQw+a4KKOhS0kVbUseOgmmL9XBqkF5xN8JzSmUEOcP/v0Q==
+X-Received: by 2002:a05:622a:164b:b0:2e0:769e:fa2a with SMTP id y11-20020a05622a164b00b002e0769efa2amr404124qtj.343.1646733194799;
+        Tue, 08 Mar 2022 01:53:14 -0800 (PST)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id n13-20020ac85b4d000000b002de6fe91d2fsm10228796qtw.68.2022.03.08.01.53.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Mar 2022 01:53:14 -0800 (PST)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2dbfe58670cso195106257b3.3;
+        Tue, 08 Mar 2022 01:53:14 -0800 (PST)
+X-Received: by 2002:a0d:f1c7:0:b0:2db:d2bc:be11 with SMTP id
+ a190-20020a0df1c7000000b002dbd2bcbe11mr11992421ywf.62.1646733193799; Tue, 08
+ Mar 2022 01:53:13 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Content-Language: en-US
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Etienne Carriere <etienne.carriere@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20211028140009.23331-1-etienne.carriere@linaro.org>
- <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de>
- <Yh4304unzMxrQtoL@bogus>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <Yh4304unzMxrQtoL@bogus>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20220301190400.1644150-1-robh@kernel.org> <CAMuHMdXqsvQy_6+6w8DVCtqNiFERPV29xd3HRqtyz9RY3KXOYw@mail.gmail.com>
+ <CAL_JsqKX7XrSS1OktT6OfPgyxte6_+AcGh4uV0Abdf2Wi4eCFg@mail.gmail.com>
+In-Reply-To: <CAL_JsqKX7XrSS1OktT6OfPgyxte6_+AcGh4uV0Abdf2Wi4eCFg@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Mar 2022 10:53:02 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdXzNpjSjhT3crdN3XzcFNXd8Uojqo8gA7Y=Qtz8utH6Mw@mail.gmail.com>
+Message-ID: <CAMuHMdXzNpjSjhT3crdN3XzcFNXd8Uojqo8gA7Y=Qtz8utH6Mw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: renesas: Make example 'clocks' parsable
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sudeep,
+Hi Rob,
 
-On 01.03.22 16:12, Sudeep Holla wrote:
-> 
-> Hi Ahmad,
-> 
-> On Mon, Feb 28, 2022 at 05:01:39PM +0100, Ahmad Fatoum wrote:
->> Hello Etienne,
->>
->> On 28.10.21 16:00, Etienne Carriere wrote:
->>> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
->>> based on an OP-TEE service invocation. The compatible mandates a
->>> channel ID defined with property "linaro,optee-channel-id".
->>
-> 
-> Not sure if Etienne's reply addressed your queries/concerns correctly.
-> I thought I will add my view anyways.
-> 
->> I just found this thread via the compatible in the STM32MP131 patch set:
->> https://lore.kernel.org/all/20220225133137.813919-1-gabriel.fernandez@foss.st.com/
->>
->> Linux doesn't care whether PSCI is provided by TF-A, OP-TEE or something
->> else, so there is just the arm,psci* compatible.
->>
-> 
-> Correct, the interface to the kernel is fixed and hence we must be able
-> to manage with the standard and fixed sole set of bindings for the same.
-> 
->> What's different about SCMI that this is not possible? Why couldn't the
->> existing binding and driver be used to communicate with OP-TEE as secure
->> monitor as well?
->>
-> 
-> However with SCMI, the spec concentrates and standardises all the aspects
-> of the protocol used for the communication while it allows the transport
-> used for such a communication to be implementation specific. It does
-> address some standard transports like mailbox and PCC(ACPI). However,
-> because of the flexibility and also depending on the hardware(or VM),
-> different transports have been added to the list. SMC/HVC was the one,
-> followed by the virtio and OPTEE. While I agree SMC/HVC and OPTEE seem
-> to have lot of common and may have avoided separate bindings.
-> 
-> However the FIDs for SMC/HVC is vendor defined(the spec doesn't cover this
-> and hence we utilised/exploited DT). Some vendors wanted interrupt support
-> too which got added. OPTEE eliminates the need for FID and can also provide
-> dynamic shared memory info. In short, it does differ in a way that the driver
-> needs to understand the difference and act differently with each of the
-> unique transports defined in the binding.
-> 
-> Hope that explains and addresses your concern.
+On Fri, Mar 4, 2022 at 2:28 PM Rob Herring <robh@kernel.org> wrote:
+> On Fri, Mar 4, 2022 at 3:09 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> > On Tue, Mar 1, 2022 at 8:04 PM Rob Herring <robh@kernel.org> wrote:
+> > > 'clocks' in the example is not parsable with the 0 phandle value
+> > > because the number of #clock-cells is unknown in the previous entry.
+> > > Solve this by adding the clock provider node. Only 'cpg_clocks' is
+> > > needed as the examples are built with fixups which can be used to
+> > > identify phandles.
+> > >
+> > > This is in preparation to support schema validation on .dtb files.
+> > >
+> > > Signed-off-by: Rob Herring <robh@kernel.org>
+> >
+> > Thanks for your patch!
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> >
+> > Do you want me to queue this in renesas-clk-for-v5.19, or do you
+> > want to take it yourself, together with the validation patches?
+> > Please let me know.
+>
+> You can take it.
 
-Thanks for the elaborate answer. I see now why it's beneficial to have
-an OP-TEE transport in general. I don't yet see the benefit to use it
-in the STM32MP13x instead of SMCs like with STM32MP15x, but that a discussion
-that I need to have in the aforementioned thread.
+Thanks, queuing in renesas-clk-for-v5.19.
 
-Thanks again!
-Ahmad
+Gr{oetje,eeting}s,
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
