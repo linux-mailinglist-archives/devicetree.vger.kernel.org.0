@@ -2,99 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB264D18C1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:09:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CDF74D18EB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:16:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232146AbiCHNKn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 08:10:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51840 "EHLO
+        id S244942AbiCHNRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 08:17:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235037AbiCHNKm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:10:42 -0500
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF188B850
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 05:09:45 -0800 (PST)
-Received: by mail-wm1-x335.google.com with SMTP id r187-20020a1c2bc4000000b003810e6b192aso1457401wmr.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 05:09:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=jIHKyDto3VNe0jan3Q4InEbXVdDFGcIeT9QW9S/Z1yA=;
-        b=jbpt5SwnC5KT4ZXh7IxtNsrgGcj7VVb16w1WO4pHVIMxgFqMDC2JVfEPhSd28qEdum
-         FEhf6akwghJ1GAdNEziVNhjKIH5oZhPKAHZWQn6kvsYB/rvdJu07tyfVVUP6n59UEdZk
-         a+sTDSQY7s5diyafXaq1avAkL4tv1Cp+14rasUL2eS3xOajI9/1d7j8SnSIO6wy42QFf
-         DzGN68fI4s1xdo+a7Oa3NAQYmyxk0T39uRam8sUb6a5aU3aUStstOpNCALE5ceUStn7d
-         e9YqUUHzXiq0Fu2QMKF1xi1HYTKkgTe6tmCUVMcZV3yg/ygNVYX8oG0ShH4xujfam9L2
-         B5nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=jIHKyDto3VNe0jan3Q4InEbXVdDFGcIeT9QW9S/Z1yA=;
-        b=qd7slBzOz5yC09G5Z6ezPV5+BExDzmh2C92NLArpv6tCffAOZ0kA237VGd9RcG8k+M
-         oXalcq1xIZxQYwtzUpcgvj+6b8aHdldz69uy38S4SOgYUjVtEK71kcMumjUa8iFgk7xT
-         1cY4X1+sBDmCXLh66U1fCc/3vJoR8TmE8vRwMaUxb+U3jVPCi3qsGOZJIUYAEsYFHYmn
-         TrycJsdxkyxpIQn2wjXGPtXIKi5VEJ8EA3zvCFwjhWuecw08Fa0VhrZK086RObUsqxYo
-         H8q+mgCQ7XjSN/OUdQcUByeLhoX1/sS/P4hPwD+4xpNYbDD5xRTyVsZAq/RxjmG9y8UQ
-         uFDA==
-X-Gm-Message-State: AOAM533dMolwLKKx10te05t6v6tywXbPW7vm5gkboriwz8Z9iYNEKPMI
-        leUXPaeMePiteFVlAqOtfkjj4Q==
-X-Google-Smtp-Source: ABdhPJyMETb54ZQiFJs9pNCVwtDVfsBQoRRZgo7hsLXgxVZq02upIxNHSYYzogAJuAPCDIJ/7we1ew==
-X-Received: by 2002:a1c:3b8a:0:b0:380:e40a:289 with SMTP id i132-20020a1c3b8a000000b00380e40a0289mr3481063wma.17.1646744984144;
-        Tue, 08 Mar 2022 05:09:44 -0800 (PST)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id z6-20020adfd0c6000000b001f1ffd04672sm4048217wrh.12.2022.03.08.05.09.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 05:09:43 -0800 (PST)
-Date:   Tue, 8 Mar 2022 13:09:41 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Johnson Wang <johnson.wang@mediatek.com>, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [GIT PULL - FAO MARK BROWN]: Immutable branch for MediaTek
- MT6366 due for the v5.18 merge window
-Message-ID: <YidVlV8Rg8N5TT8A@google.com>
-References: <20220106065407.16036-1-johnson.wang@mediatek.com>
- <YicTu6FwOR7zIC6I@google.com>
- <YidQvkIYsacSPsXv@sirena.org.uk>
+        with ESMTP id S241499AbiCHNRp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:17:45 -0500
+Received: from esa5.hgst.iphmx.com (esa5.hgst.iphmx.com [216.71.153.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3E648E49
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 05:16:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1646745408; x=1678281408;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=ZP3bLw7WQ/HhvaI9yMpHfJIa+2/cxLdLg1awgjT8VpI=;
+  b=GaF3Bwo0ca0fVA3yiktcGa0O6gOrjf/vl2xIVYli1ZknOl8KKhjKAoUt
+   9QLlblqigoVqJKKK7jZ8ET/tI3/gSHk5wIA0rnY6KARVckXU1PcSs32G6
+   VqwKlEJClGIOn/HMA8IFDqEZx+XhxskfPvPAcMBVxu4l9okumu9FjG0Tp
+   PW+cTHrXnrtfPCQHEda3pRFD44Y+oGdiZhMglHXmbYHa+KPRQbw8KUizZ
+   r/dX7tQua7Z7/RBuw5BblxH3JEj7450TUoLjTU4KG4haLkeD9m3M/vYLQ
+   xycJulICXz84jdoHbdaaZW1n7Vx6VcwEnUl5yp/fUZ4uEAYW69SXaizEP
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,164,1643644800"; 
+   d="scan'208";a="194759595"
+Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
+  by ob1.hgst.iphmx.com with ESMTP; 08 Mar 2022 21:16:47 +0800
+IronPort-SDR: b3zzWX5bplEg36yJBY/l5rs504u183yZaqmy9yaDMpQ1WeE4KfWxDbeKiKgDGMwI8/jQt8ll7l
+ +aemIo4jxpglgGGb3xZ8bwHRZko/Z44XwLkEAmkx2VK6l2wSUrY7zU7VFRE+tCEEEyQpOEJwYI
+ HT32m3092dEIvOa53NEhGtZzVFyz1GF5kOgU2tzePHRGV4AxHoUuvUcqydKFsgMIAQG0iSUavx
+ 6KEPkN6bfLiuy2GERZfoE9GKJ4wnVtNK/0707JLxCw/4aH0JUsThuxtBfpkP9OV5cMjZQwhJ+D
+ RQHyAmvKidexrVb6DBLQ6ccP
+Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
+  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 04:48:04 -0800
+IronPort-SDR: cl4pNCkaoF5QL7TzeeRusgtT0wbXl2dhf9SoGKE9/kzNKlxGWUi8KYbZ5pKI78loYn9MXHAKl9
+ 1r9GV4HFd6G95WCe08LR9eSvgfA181OvdrXItrIZubXB7wX4qDJKl1dvOpanX1XZqpCgdXsYNk
+ s3A0ndivOeFpUSovOk8MYrhKcOqhzFwCJEH9vzJWZ635LBO0qJJlU+DjM/o82wmWaRU2rKDhbI
+ +Ol7KLlhVhY5kTCxWvjO9MtLTyyKjHPfDLo7M/FQbucmhKUbYz4/y9BQOQ+fV4u/mklm78gFMA
+ dro=
+WDCIronportException: Internal
+Received: from unknown (HELO x1-carbon.lan) ([10.225.164.69])
+  by uls-op-cesaip01.wdc.com with ESMTP; 08 Mar 2022 05:16:45 -0800
+From:   Niklas Cassel <Niklas.Cassel@wdc.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>
+Cc:     damien.lemoal@opensource.wdc.com,
+        Niklas Cassel <niklas.cassel@wdc.com>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: [PATCH] riscv: dts: canaan: Fix SPI3 bus width
+Date:   Tue,  8 Mar 2022 14:16:42 +0100
+Message-Id: <20220308131642.95374-1-Niklas.Cassel@wdc.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <YidQvkIYsacSPsXv@sirena.org.uk>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 08 Mar 2022, Mark Brown wrote:
+From: Niklas Cassel <niklas.cassel@wdc.com>
 
-> On Tue, Mar 08, 2022 at 08:28:43AM +0000, Lee Jones wrote:
-> > Mark,
-> > 
-> > This one is just for you, so you can merge the other patches.
-> 
-> I don't know what the other patches you're referring to here are,
-> someone's going to need to resend them.
-> 
-> I'm also not sure things like like "FAO MARK BROWN" in the subject line
-> of the e-mail, I can already see if a message has been sent to me from
-> the To and it means less of the actual subject is wrapped out of sight
-> in my inbox.
+According to the K210 Standalone SDK Programming guide:
+https://canaan-creative.com/wp-content/uploads/2020/03/kendryte_standalone_programming_guide_20190311144158_en.pdf
 
-Might be time to upgrade your VT100!
+Section 15.4.3.3:
+SPI0 and SPI1 supports: standard, dual, quad and octal transfers.
+SPI3 supports: standard, dual and quad transfers (octal is not supported).
 
+In order to support quad transfers (Quad SPI), SPI3 must have four IO wires
+connected to the SPI flash.
+
+Update the device tree to specify the correct bus width.
+
+Tested on maix bit, maix dock and maixduino, which all have the same
+SPI flash (gd25lq128d) connected to SPI3. maix go is untested, but it
+would not make sense for this k210 board to be designed differently.
+
+Signed-off-by: Niklas Cassel <niklas.cassel@wdc.com>
+---
+ arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts  | 2 ++
+ arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts | 2 ++
+ arch/riscv/boot/dts/canaan/sipeed_maix_go.dts   | 2 ++
+ arch/riscv/boot/dts/canaan/sipeed_maixduino.dts | 2 ++
+ 4 files changed, 8 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
+index 984872f3d3a9..ff71ec35f4e4 100644
+--- a/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
++++ b/arch/riscv/boot/dts/canaan/sipeed_maix_bit.dts
+@@ -204,6 +204,8 @@ flash@0 {
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
+ 		m25p,fast-read;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
+ 		broken-flash-reset;
+ 	};
+ };
+diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+index 7ba99b4da304..8d23401b0bbb 100644
+--- a/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
++++ b/arch/riscv/boot/dts/canaan/sipeed_maix_dock.dts
+@@ -205,6 +205,8 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
+ 		broken-flash-reset;
+ 	};
+diff --git a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+index be9b12c9b374..24fd83b43d9d 100644
+--- a/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
++++ b/arch/riscv/boot/dts/canaan/sipeed_maix_go.dts
+@@ -213,6 +213,8 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
+ 		broken-flash-reset;
+ 	};
+diff --git a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
+index 031c0c28f819..25341f38292a 100644
+--- a/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
++++ b/arch/riscv/boot/dts/canaan/sipeed_maixduino.dts
+@@ -178,6 +178,8 @@ flash@0 {
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-max-frequency = <50000000>;
++		spi-tx-bus-width = <4>;
++		spi-rx-bus-width = <4>;
+ 		m25p,fast-read;
+ 		broken-flash-reset;
+ 	};
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.35.1
+
