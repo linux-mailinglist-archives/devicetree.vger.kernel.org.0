@@ -2,157 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DAAA4D1BED
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:40:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9033A4D1C2C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:44:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245733AbiCHPlv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:41:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54194 "EHLO
+        id S240775AbiCHPpp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 10:45:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345898AbiCHPlu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:41:50 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 365B14ECD4;
-        Tue,  8 Mar 2022 07:40:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646754054; x=1678290054;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NzNzwhD5Vp7SgosRFhjzNuPWzbCIrT4UeOhxKam0WG4=;
-  b=NGOiX0Fd9hrBl+o/4/zVCLvz6J1wwLig9uUeFbEphxRuXedKxIBG4vr+
-   CAK0VGZaCi9cM10o2U9E2IXSfhUc+N+0U73be8Xh2CMFDnqpN/rGbutjT
-   4wvc8K2SdaD4gwSBRSSlVR5lsVT2TTafIvIuJskiaKRB2CuhIvtIaMyHv
-   giCxOlY7jP/l7zwXmcB0AdHzm+r5oo85Y78igu1Q/TG+YWwx4963CDXuj
-   G8iRCAu8xb/7GIWF8aL/uwxatgKl+/+GWQ+iDCTPmLvNrdO91Gl6zrUjX
-   OXp8TXKOOobxxUi/JRMCnjXq4QOHOpXixZHIR7FHJgLw8R3PJpWkMUMuw
-   w==;
-X-IronPort-AV: E=Sophos;i="5.90,165,1643698800"; 
-   d="scan'208";a="164948629"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Mar 2022 08:40:53 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 8 Mar 2022 08:40:53 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Tue, 8 Mar 2022 08:40:53 -0700
-Date:   Tue, 8 Mar 2022 16:43:45 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     <Divya.Koppera@microchip.com>, <netdev@vger.kernel.org>,
-        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <richardcochran@gmail.com>,
-        <linux-kernel@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
-        <Madhuri.Sripada@microchip.com>, <Manohar.Puri@microchip.com>
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-3-Divya.Koppera@microchip.com>
- <YiILJ3tXs9Sba42B@lunn.ch>
- <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
- <YiYD2kAFq5EZhU+q@lunn.ch>
- <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
- <YidgHT8CLWrmhbTW@lunn.ch>
+        with ESMTP id S236232AbiCHPpo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:45:44 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80EE24EF63
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 07:44:48 -0800 (PST)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nRc0q-0003S5-KN; Tue, 08 Mar 2022 16:44:36 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nRc0p-003TO2-5V; Tue, 08 Mar 2022 16:44:34 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1nRc0n-007pR8-GD; Tue, 08 Mar 2022 16:44:33 +0100
+Date:   Tue, 8 Mar 2022 16:44:29 +0100
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     hammer hsieh <hammerh0314@gmail.com>
+Cc:     linux-pwm@vger.kernel.org, wells.lu@sunplus.com,
+        devicetree@vger.kernel.org,
+        "hammer.hsieh" <hammer.hsieh@sunplus.com>,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        thierry.reding@gmail.com, kernel@pengutronix.de,
+        lee.jones@linaro.org
+Subject: Re: [PATCH v2 2/2] pwm:sunplus-pwm:Add Sunplus SoC PWM Driver
+Message-ID: <20220308154429.ztv3l42euu2hf3ye@pengutronix.de>
+References: <1646374812-2988-1-git-send-email-hammerh0314@gmail.com>
+ <1646374812-2988-3-git-send-email-hammerh0314@gmail.com>
+ <20220304185702.i6csx2r3mokfmr6o@pengutronix.de>
+ <CAOX-t56cycXMga_grJcpmSG68ve5-RuTsbtaEQi9Ui0A+5uhSg@mail.gmail.com>
+ <20220307131018.6wrdsiixmgdtnodt@pengutronix.de>
+ <CAOX-t56F2u_1=tA4N4Wvicw-e9J4ksN__J70QZtjZwJRjgesUQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="6f3hgpz5jb2dmeu5"
 Content-Disposition: inline
-In-Reply-To: <YidgHT8CLWrmhbTW@lunn.ch>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAOX-t56F2u_1=tA4N4Wvicw-e9J4ksN__J70QZtjZwJRjgesUQ@mail.gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
 
-The 03/08/2022 14:54, Andrew Lunn wrote:
-> 
-> > > Thanks for the reply, but you did not answer my question:
-> > >
-> > >   Does this mean the hardware itself cannot tell you it is missing the
-> > >   needed hardware?
-> > >
-> > > Don't you have different IDs in register 2 and 3 for those devices with clock
-> > > register and those without?
-> > >
+--6f3hgpz5jb2dmeu5
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Tue, Mar 08, 2022 at 08:03:55PM +0800, hammer hsieh wrote:
+> > IMHO yes. (Though the most likely error -ENOMEM, in this case no error
+> > message should be emitted.)
 > >
-> 
-> > The purpose of this option is, if both PHY and MAC supports
-> > timestamping then always timestamping is done in PHY.  If
-> > timestamping need to be done in MAC we need a way to stop PHY
-> > timestamping. If this flag is used then timestamping is taken care
-> > by MAC.
-> 
-> This is not a valid use of DT, since this is configuration, not
-> describing the hardware. There has been recent extension in the UAPI
-> to allow user space to do this configuration. Please look at that
-> work.
+>=20
+>  ok, will add error message like below.
+>         if (ret < 0) {
+>                 dev_err(dev, "failed to release clock: %d\n", ret);
+>                 return ret;
+>         }
+> or should i modify like
+>         if (ret < 0) {
+>                 dev_err(dev, "failed to release clock: %d\n", ret);
+>                 return ERR_PTR(ret);
+>         }
+> i didn't find reference code for it, not sure which one is better?
 
-Ah ... now we have found Richard patch series.
-So we will remove this option and once Richard's patch series will be
-accepted we will use that.
+It depends if you return a pointer or an int. Also please make use of
+%pe instead of %d for error codes to make it easier to understand.
 
-> 
-> > Sorry I answered wrong. Latency values vary depending on the position of PHY in board.
-> > We have used this PHY in different hardware's, where latency values differs based on PHY positioning.
-> > So we used latency option in DTS file.
-> > If you have other ideas or I'm wrong please let me know?
-> 
-> So this is a function of the track length between the MAC and the PHY?
+Best regards
+Uwe
 
-Nope.
-This latency represents the time it takes for the frame to travel from RJ45
-module to the timestamping unit inside the PHY. To be more precisely,
-the timestamping unit will do the timestamp when it detects the end of
-the start of the frame. So it represents the time from when the frame
-reaches the RJ45 to when the end of start of the frame reaches the
-timestamping unit inside the PHY.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-And because each board manufacture could put the same PHY but in
-different places, then each of them would have a different latency.
-That is the main reason why we put this latencies in the DT and not put
-them inside the driver. Because we think each board manufacture will
-need to use different values.
+--6f3hgpz5jb2dmeu5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Another reason is that we want the board manufacture to determine these
-values and not the end users. I have seen that also Richard commenting
-on this, saying that the latencies should not be in DT.
-Currently I don't know where else they can be. I know that ptp4l has
-these option in SW to update the ingress/egress latencies but if someone
-else is running another application, what will they do?
+-----BEGIN PGP SIGNATURE-----
 
-> How do you determine these values?
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmInedoACgkQwfwUeK3K
+7AkJKQgAhvEhvRse9Q9dBf2kr2xCcHcFD66QcDDAt8vq4hxZNJPKwmx19iZRE+En
+TbbFIYldZshOH3eQvl6C9eEGtO5xiW3MKWgWRxjy0dngINIO3UqyxmmwnlY4FgWF
+69sWMjvx0yB3zw14/zU+UgPsc7j03yb8DwpLGFWCgKgzzLb1n+nCLrupYe33Ph1n
+BJWMD2Y97/GYlH4Q8OKsO3IyYr6qkoNB4jYVupb40JHI046EBjWQ1u2xUxGsuKcn
+cCylifL66UXWsVs8Cl6n9hpiwg0jKM04H1Jwqz99ak2hz2OKcrbYGjdPtxYL3LzN
+VIVavWS6prPerd+iJD+vDMd2B4fm7A==
+=4RJz
+-----END PGP SIGNATURE-----
 
-This is a little bit more complicated.
-So first you will need a device that you know already that is
-calibrated. Then you connect the device that you want to calibrate to
-the calibrated one with a known length cable. We presume that there is a
-5ns delay per meter of the cable. And then basically we run ptp4l on
-each device where the master will be the calibrated one and the slave
-will be the device that will be calibrated. When we run ptp4l we can see
-mean path delay, and we subtract the delay introduced by the cable(5ns)
-and then we take this value and divided by 2. And then
-the result is added to the current rx latency and subtracted from tx
-latency.
-This is how we have calculated the values.
-
-> There is no point having
-> configuration values if you don't document how to determine what value
-> should be used.
-
-I agree, we should do a better job at this and also explaining what
-these values represent. Definitely we will do that in the next patch.
-
-> 
->        Andrew
-
--- 
-/Horatiu
+--6f3hgpz5jb2dmeu5--
