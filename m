@@ -2,167 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 56DE44D0FD7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 07:15:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E4C6F4D0FB7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 07:04:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344058AbiCHGQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 01:16:01 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44582 "EHLO
+        id S244089AbiCHGFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 01:05:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233516AbiCHGQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 01:16:00 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E921829837;
-        Mon,  7 Mar 2022 22:15:04 -0800 (PST)
+        with ESMTP id S230162AbiCHGFW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 01:05:22 -0500
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC8D7338B2
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 22:04:25 -0800 (PST)
+Received: by mail-wm1-x32a.google.com with SMTP id l1-20020a05600c4f0100b00389645443d2so787242wmq.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 22:04:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646720105; x=1678256105;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=1XOqnXLpeVJlC4KyK0YuUmJ4jg+OeQyDZQ+E0RW+bRE=;
-  b=UPBfvD/LRXpOymuspj6M0c+Ty8CJtlwurqbbaC2qaNy4Oa9/27Ex6OES
-   yTwkMkdBXqlGC3cqEcKhqPR4xqOpSJggDmKYvUJBggt8JGvUV8cPq62BO
-   4/YyaHvNbg95eGfXDX1oZsgDU4r+XoiM4FEHR1sXderav5wpFm2MS8cc2
-   U=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 07 Mar 2022 22:01:02 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 22:01:01 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 7 Mar 2022 22:01:01 -0800
-Received: from [10.216.19.10] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 7 Mar 2022
- 22:00:56 -0800
-Message-ID: <d7884804-6bc2-058b-c373-8b2005fd2811@quicinc.com>
-Date:   Tue, 8 Mar 2022 11:30:51 +0530
+        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gypJnXKyk9NshERI4nfF8ZEDV8trASXrbOi5IrTSOLA=;
+        b=pqDG1nxeUutTXZzudpqy83iLiRKTNr6xpPWrPhs5WHeW2PDOZ7vKRnES02adLmi6PO
+         fe409jwV8BB7VDLICnY7+iW9sBsgeWxNu6Wi75vvlmyC72ovzWbTlV3nHwRR+4Yk7GFk
+         /tom3ibJsgbmfcvqcAKomiSXgi83HvcOsLgobDjAI8UU2Adg0vN7bTZVOE9oMdZG5RmM
+         0luSDnIsCEOgUDAd72wLxkvxLUdWG8wjws9RlE4KrSHIiH9V5GV3TQTWkUFupWaFmPgX
+         Tpr/PnSZ4GJZe1ib+94H+W6LNY08/zfReJwqTNomZrfenJAoyK/0J1ciVBtPxSr3Zctu
+         yGMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gypJnXKyk9NshERI4nfF8ZEDV8trASXrbOi5IrTSOLA=;
+        b=lSHiCm8k8CgKRhcdAoFyFVsxiEELlVy+MdTYui2wRWSTq9ALjsf66GgrKwp8drgyjL
+         BUakxDs3wHv3mH17CiMo9NLnjrAwrVCDbqKvAnFO2JEt983686/loe+u4pwsKxl6VxQQ
+         56g/3nml/5O/ZrDzvCqabvyTLLQeB+F+6TLhd9REsVIX0NZ9HRRhRes5XmWHoTpRqzJN
+         0WbUKNT2KEd/xFCwTsEKA975KAq1EUKifdU4VTMc2pqUqoMdjROVa8nfRu+XC16TDJsy
+         M47DNxa9DubWxCGhBOzQJaQtdODzNpkSnPyeVtY+dNo2hR3qetnyPIfmPMruuf2vyAZX
+         XiwQ==
+X-Gm-Message-State: AOAM532WWneZlVFz3/rA4lyYCfvvN5cIQAVFzO/HonV72hNxyJRY9is9
+        PMPShwXGB7i9M4m8nym/smX7q/j2tYhlzYs4J813GA==
+X-Google-Smtp-Source: ABdhPJzRz4DwgVkyJporm08OweviRnbnm0JVnkNLjzWdJzrtBWUuvyqaFt6iT1WmV1eDrhikQfJCtxoah1070AlbFes=
+X-Received: by 2002:a7b:cc0d:0:b0:381:220e:a3a0 with SMTP id
+ f13-20020a7bcc0d000000b00381220ea3a0mr2112937wmh.59.1646719464236; Mon, 07
+ Mar 2022 22:04:24 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2 02/19] ath11k: Refactor PCI code to support hybrid bus
- devices
-Content-Language: en-US
-From:   Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
-To:     Kalle Valo <kvalo@kernel.org>
-CC:     <ath11k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <robh@kernel.org>
-References: <1642337235-8618-1-git-send-email-quic_mpubbise@quicinc.com>
- <1642337235-8618-3-git-send-email-quic_mpubbise@quicinc.com>
- <87ee4sgo7l.fsf@kernel.org>
- <41f8fd92-70e4-def6-0bd1-c764b1445d68@quicinc.com>
-In-Reply-To: <41f8fd92-70e4-def6-0bd1-c764b1445d68@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220210054947.170134-1-apatel@ventanamicro.com>
+ <20220210054947.170134-5-apatel@ventanamicro.com> <CAAhSdy3jK26WFhG8Q=Up8hhHPpJCCkA09EKOi+B-Kp0U9Rwg7w@mail.gmail.com>
+In-Reply-To: <CAAhSdy3jK26WFhG8Q=Up8hhHPpJCCkA09EKOi+B-Kp0U9Rwg7w@mail.gmail.com>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Tue, 8 Mar 2022 11:34:12 +0530
+Message-ID: <CAAhSdy3q+NcuVsdGQ+KoY=CTO-zAfprY0XJkUbOTpD6u5VZCTQ@mail.gmail.com>
+Subject: Re: [PATCH v11 4/8] RISC-V: Add SBI HSM suspend related defines
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Anup Patel <apatel@ventanamicro.com>,
+        "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Sandeep Tripathy <milun.tripathy@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        Liush <liush@allwinnertech.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        kvm-riscv@lists.infradead.org, Guo Ren <guoren@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2/25/2022 11:20 AM, Manikanta Pubbisetty wrote:
-> On 1/28/2022 3:46 PM, Kalle Valo wrote:
->> Manikanta Pubbisetty <quic_mpubbise@quicinc.com> writes:
->>
->>> Unlike other ATH11K PCIe devices which are enumerated by APSS
->>> processor (Application Processor SubSystem), WCN6750 gets
->>> enumerated by the WPSS Q6 processor (Wireless Processor SubSystem);
->>> In simple terms, though WCN6750 is PCIe device, it is not attached
->>> to the APSS processor, APSS will not know of such a device being
->>> present in the system and therefore WCN6750 will be registered as
->>> a platform device to the kernel core like other supported AHB
->>> devices.
->>>
->>> WCN6750 uses both AHB and PCI APIs for it's operation, it uses
->>> AHB APIs for device probe/boot and PCI APIs for device setup
->>> and register accesses; Because of this nature, it is referred
->>> as a hybrid bus device.
->>>
->>> Refactor PCI code to support hybrid bus devices like WCN6750.
->>>
->>> Tested-on: WCN6750 hw1.0 AHB WLAN.MSL.1.0.1-00573-QCAMSLSWPLZ-1
->>> Tested-on: WCN6855 hw2.0 PCI 
->>> WLAN.HSP.1.1-01720.1-QCAHSPSWPL_V1_V2_SILICONZ_LITE-1
->>> Tested-on: QCN9074 hw1.0 PCI WLAN.HK.2.5.0.1-01100-QCAHKSWPL_SILICONZ-1
->>> Tested-on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00192-QCAHKSWPL_SILICONZ-1
->>>
->>> Signed-off-by: Manikanta Pubbisetty <quic_mpubbise@quicinc.com>
->>
->> [...]
->>
->>> --- a/drivers/net/wireless/ath/ath11k/Makefile
->>> +++ b/drivers/net/wireless/ath/ath11k/Makefile
->>> @@ -29,7 +29,7 @@ obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->>>   ath11k_ahb-y += ahb.o
->>>   obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
->>> -ath11k_pci-y += mhi.o pci.o
->>> +ath11k_pci-y += mhi.o pci.o pci_cmn.o
->>
->> So the end result looks like this:
->>
->> obj-$(CONFIG_ATH11K_AHB) += ath11k_ahb.o
->> ath11k_ahb-y += ahb.o pci_cmn.o
->>
->> obj-$(CONFIG_ATH11K_PCI) += ath11k_pci.o
->> ath11k_pci-y += mhi.o pci.o pci_cmn.o
->>
->> Linking pci_cmn.o to both ath11k_pci.ko and ath11k_ahb.ko looks wrong.
->> Does that even compile if ath11k is linked to the kernel, eg. with
->> allyesconfig?
->>
-> 
-> I did try compiling the kernel with allyesconfig after your comment, 
-> compilation went through without any hiccups.
-> 
->> One way to solve is to link pci_cmn.o to ath11k.ko. But for another
->> approach, for a long time I have been thinking about what's the point to
->> have separate ath11k_pci.ko and ath11k_ahb.ko modules?,They are very
->> small anyway compared to ath11k.ko. So my ideais that should we have
->> just one ath11k.ko module, it contains all AHB and PCI code as well, and
->> ath11k_pci.ko and ath11k_ahb.ko would not be created anymore. It would
->> simplify things a bit, especially here.
->>
->> Thoughts?
->>
-> 
-> I see some concerns going with single module combining both AHB and PCI 
-> modules into ath11k.ko
-> 
-> 1) AHB and PCI drivers make use of completely different kernel 
-> frameworks, for example AHB driver needs remoteproc APIs for booting and 
-> require CONFIG_REMOTEPROC to be compiled in to the kernel. Similarly, 
-> PCI driver needs MHI APIs and also dependent on CONFIG_PCI. Both MHI and 
-> PCI bus frameworks need to be compiled for PCI to work. If we club all 
-> of this into single module, I see that unnecessarily additional modules 
-> will be compiled into the kernel which IMO is not so good idea.
-> 
-> 
-> 2) Secondly, there is high chance of writing bad code all over the 
-> driver. For example, there are chances that developers put AHB/PCI 
-> specific code all over the driver creating a big mess.
-> Though this can be avoided with stringent code review, but why to
-> give the chance.
-> 
-> Though AHB and PCI drivers are smaller in size, IMHO let AHB and PCI be 
-> independent drivers, code looks cleaner and properly segregated by 
-> keeping them as it is today.
-> 
-> Regarding the compilation of PCI common code, shall we move it into 
-> ath11k.ko? What is your opinion on this.
-> 
+Hi Palmer,
 
-Hi Kalle,
+On Wed, Feb 23, 2022 at 12:32 PM Anup Patel <anup@brainfault.org> wrote:
+>
+> Hi Palmer
+>
+> On Thu, Feb 10, 2022 at 11:20 AM Anup Patel <apatel@ventanamicro.com> wrote:
+> >
+> > From: Anup Patel <anup.patel@wdc.com>
+> >
+> > We add defines related to SBI HSM suspend call and also
+> > update HSM states naming as-per latest SBI specification.
+> >
+> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
+> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> > Reviewed-by: Guo Ren <guoren@kernel.org>
+>
+> This patch is shared with "KVM RISC-V SBI v0.3 support".
+> (https://lore.kernel.org/all/20220201082227.361967-2-apatel@ventanamicro.com/T/)
+>
+> How do you want to handle this ?
+>
+> One option is that I take this patch through the KVM RISC-V tree
+> and you can send this series (minus this patch) for 5.18 after the
+> KVM RISC-V changes have been merged.
 
-Any thoughts about the idea proposed?
+I have queued this patch for 5.18. Let me know if you want to
+handle this patch differently.
 
 Thanks,
-Manikanta
+Anup
+
+>
+> Regards,
+> Anup
+>
+> > ---
+> >  arch/riscv/include/asm/sbi.h    | 27 ++++++++++++++++++++++-----
+> >  arch/riscv/kernel/cpu_ops_sbi.c |  2 +-
+> >  arch/riscv/kvm/vcpu_sbi_hsm.c   |  4 ++--
+> >  3 files changed, 25 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
+> > index d1c37479d828..06133b4f8e20 100644
+> > --- a/arch/riscv/include/asm/sbi.h
+> > +++ b/arch/riscv/include/asm/sbi.h
+> > @@ -71,15 +71,32 @@ enum sbi_ext_hsm_fid {
+> >         SBI_EXT_HSM_HART_START = 0,
+> >         SBI_EXT_HSM_HART_STOP,
+> >         SBI_EXT_HSM_HART_STATUS,
+> > +       SBI_EXT_HSM_HART_SUSPEND,
+> >  };
+> >
+> > -enum sbi_hsm_hart_status {
+> > -       SBI_HSM_HART_STATUS_STARTED = 0,
+> > -       SBI_HSM_HART_STATUS_STOPPED,
+> > -       SBI_HSM_HART_STATUS_START_PENDING,
+> > -       SBI_HSM_HART_STATUS_STOP_PENDING,
+> > +enum sbi_hsm_hart_state {
+> > +       SBI_HSM_STATE_STARTED = 0,
+> > +       SBI_HSM_STATE_STOPPED,
+> > +       SBI_HSM_STATE_START_PENDING,
+> > +       SBI_HSM_STATE_STOP_PENDING,
+> > +       SBI_HSM_STATE_SUSPENDED,
+> > +       SBI_HSM_STATE_SUSPEND_PENDING,
+> > +       SBI_HSM_STATE_RESUME_PENDING,
+> >  };
+> >
+> > +#define SBI_HSM_SUSP_BASE_MASK                 0x7fffffff
+> > +#define SBI_HSM_SUSP_NON_RET_BIT               0x80000000
+> > +#define SBI_HSM_SUSP_PLAT_BASE                 0x10000000
+> > +
+> > +#define SBI_HSM_SUSPEND_RET_DEFAULT            0x00000000
+> > +#define SBI_HSM_SUSPEND_RET_PLATFORM           SBI_HSM_SUSP_PLAT_BASE
+> > +#define SBI_HSM_SUSPEND_RET_LAST               SBI_HSM_SUSP_BASE_MASK
+> > +#define SBI_HSM_SUSPEND_NON_RET_DEFAULT                SBI_HSM_SUSP_NON_RET_BIT
+> > +#define SBI_HSM_SUSPEND_NON_RET_PLATFORM       (SBI_HSM_SUSP_NON_RET_BIT | \
+> > +                                                SBI_HSM_SUSP_PLAT_BASE)
+> > +#define SBI_HSM_SUSPEND_NON_RET_LAST           (SBI_HSM_SUSP_NON_RET_BIT | \
+> > +                                                SBI_HSM_SUSP_BASE_MASK)
+> > +
+> >  enum sbi_ext_srst_fid {
+> >         SBI_EXT_SRST_RESET = 0,
+> >  };
+> > diff --git a/arch/riscv/kernel/cpu_ops_sbi.c b/arch/riscv/kernel/cpu_ops_sbi.c
+> > index dae29cbfe550..2e16f6732cdf 100644
+> > --- a/arch/riscv/kernel/cpu_ops_sbi.c
+> > +++ b/arch/riscv/kernel/cpu_ops_sbi.c
+> > @@ -111,7 +111,7 @@ static int sbi_cpu_is_stopped(unsigned int cpuid)
+> >
+> >         rc = sbi_hsm_hart_get_status(hartid);
+> >
+> > -       if (rc == SBI_HSM_HART_STATUS_STOPPED)
+> > +       if (rc == SBI_HSM_STATE_STOPPED)
+> >                 return 0;
+> >         return rc;
+> >  }
+> > diff --git a/arch/riscv/kvm/vcpu_sbi_hsm.c b/arch/riscv/kvm/vcpu_sbi_hsm.c
+> > index 2e383687fa48..1ac4b2e8e4ec 100644
+> > --- a/arch/riscv/kvm/vcpu_sbi_hsm.c
+> > +++ b/arch/riscv/kvm/vcpu_sbi_hsm.c
+> > @@ -60,9 +60,9 @@ static int kvm_sbi_hsm_vcpu_get_status(struct kvm_vcpu *vcpu)
+> >         if (!target_vcpu)
+> >                 return -EINVAL;
+> >         if (!target_vcpu->arch.power_off)
+> > -               return SBI_HSM_HART_STATUS_STARTED;
+> > +               return SBI_HSM_STATE_STARTED;
+> >         else
+> > -               return SBI_HSM_HART_STATUS_STOPPED;
+> > +               return SBI_HSM_STATE_STOPPED;
+> >  }
+> >
+> >  static int kvm_sbi_ext_hsm_handler(struct kvm_vcpu *vcpu, struct kvm_run *run,
+> > --
+> > 2.25.1
+> >
