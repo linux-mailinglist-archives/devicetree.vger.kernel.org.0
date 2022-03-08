@@ -2,175 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7B44D16DE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 13:07:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3494D16F2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 13:12:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241074AbiCHMIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 07:08:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42684 "EHLO
+        id S240956AbiCHMMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 07:12:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237539AbiCHMIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 07:08:52 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8437C1D30A
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 04:07:55 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4955AD6E;
-        Tue,  8 Mar 2022 04:07:55 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2DC2F3FA5D;
-        Tue,  8 Mar 2022 04:07:53 -0800 (PST)
-Date:   Tue, 8 Mar 2022 12:07:50 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev, Russell King <linux@armlinux.org.uk>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>
-Subject: Re: [PATCH 13/14] ARM: configs: sync multi_v5_defconfig from
- savedefconfig
-Message-ID: <20220308120750.0bbe0122@donnerap.cambridge.arm.com>
-In-Reply-To: <CAK8P3a1FxfZj0=T=cvLNfagP+c_d+SEYYuV30+-UTU+B+HVXmQ@mail.gmail.com>
-References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-14-andre.przywara@arm.com>
- <CAK8P3a1FxfZj0=T=cvLNfagP+c_d+SEYYuV30+-UTU+B+HVXmQ@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S1346710AbiCHMMw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 07:12:52 -0500
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3249B3ED0E
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 04:11:55 -0800 (PST)
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+        by mailout2.samsung.com (KnoxPortal) with ESMTP id 20220308121153epoutp0291dce23265624d13b395b0809585382a~aZq6OP1yw2059420594epoutp02Y
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 12:11:53 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20220308121153epoutp0291dce23265624d13b395b0809585382a~aZq6OP1yw2059420594epoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1646741513;
+        bh=nbpUiPJb6DAB35cqz3m0Iso2I5r9whjfQKQ36UphvM4=;
+        h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+        b=ODn8ESy4BhkAsgJkLxX5udXfbAbpRvkiadUQX0XPtd1qg1dyfgZ0wlmAan/nDc1Of
+         kQAiZD9B2iD2cyiUyqUJhBhzEGihj47540JHCuom7NJkuqjZTyswmtQ4Pd/5OTb80h
+         a9rCrXxEFdPIQJUuVCBifUDFsZxmcvdSWX75JnHQ=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20220308121152epcas5p382b2493083563f7570bdf116c457fa2c~aZq5T9r6P2162121621epcas5p3p;
+        Tue,  8 Mar 2022 12:11:52 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.181]) by
+        epsnrtp4.localdomain (Postfix) with ESMTP id 4KCZ1v5gJpz4x9Q1; Tue,  8 Mar
+        2022 12:11:47 +0000 (GMT)
+Received: from epcas5p4.samsung.com ( [182.195.41.42]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        A9.92.06423.1F747226; Tue,  8 Mar 2022 21:11:29 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+        20220308121129epcas5p3d75125bb41b8a1dff64aaf3a5e39233c~aZqjuVJ-A1148011480epcas5p3y;
+        Tue,  8 Mar 2022 12:11:29 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220308121129epsmtrp172f5ed8d3668975f9cfaf3c7bf8ac186~aZqjthJwS0976509765epsmtrp13;
+        Tue,  8 Mar 2022 12:11:29 +0000 (GMT)
+X-AuditID: b6c32a49-b13ff70000001917-64-622747f17b1d
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        66.F0.03370.1F747226; Tue,  8 Mar 2022 21:11:29 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220308121127epsmtip1e9e971685fe88f2fbdad4bc95a12be13~aZqiCxuKO1793517935epsmtip1N;
+        Tue,  8 Mar 2022 12:11:27 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Mark Brown'" <broonie@kernel.org>,
+        "'Lee Jones'" <lee.jones@linaro.org>
+Cc:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski@canonical.com>,
+        <linux-samsung-soc@vger.kernel.org>, <pankaj.dubey@samsung.com>,
+        <andi@etezian.org>, <linux-spi@vger.kernel.org>
+In-Reply-To: <YfABHDjdTgxytcUY@sirena.org.uk>
+Subject: RE: [PATCH v3 0/3] Add FSD SPI support
+Date:   Tue, 8 Mar 2022 17:41:26 +0530
+Message-ID: <00ec01d832e5$a44f7540$ecee5fc0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJV3yAl5ku9A9ijKFdi1q5JHbSM/QF8HCEnAbm4M2OroF1WYA==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrDJsWRmVeSWpSXmKPExsWy7bCmlu5Hd/Ukg59zzSwW/3jOZDH14RM2
+        i/lHzrFabHz7g8ni/tejjBZT/ixnstj0+BqrxeVdc9gsZpzfx2TR+PEmu8WirV/YLVr3HmF3
+        4PGY1dDL5nF9ySdmj02rOtk87lzbw+axeUm9R9+WVYwenzfJBbBHZdtkpCampBYppOYl56dk
+        5qXbKnkHxzvHm5oZGOoaWlqYKynkJeam2iq5+AToumXmAB2qpFCWmFMKFApILC5W0rezKcov
+        LUlVyMgvLrFVSi1IySkwKdArTswtLs1L18tLLbEyNDAwMgUqTMjOWLJnM2vBYt6K9x9mMTYw
+        bubuYuTkkBAwkdh2+ykbiC0ksJtR4u8agy5GLiD7E6PEzT1/WSGcz4wSu/vOscB0HPuwmR0i
+        sYtR4vvsc1BVLxklzt37zwpSxSagK7FjcRvYXBEBf4mDuyeygBQxC+xkkti17QY7SIITqOj0
+        tgdgtrCAvsSKN5vBGlgEVCQ2dJ9gArF5BSwlTjTcY4OwBSVOznwCdgazgLzE9rdzmCFOUpD4
+        +XQZK8QyJ4mt755B1YhLvDx6BOxUCYEzHBIbDm5kg2hwkVi76RpUs7DEq+Nb2CFsKYmX/W1A
+        NgeQnS3Rs8sYIlwjsXTeMaj37SUOXJnDAlLCLKApsX6XPsQqPone30+YIDp5JTrahCCqVSWa
+        312F6pSWmNjdzQphe0hs6vvEPoFRcRaSx2YheWwWkgdmISxbwMiyilEytaA4Nz212LTAMC+1
+        HB7fyfm5mxjByVjLcwfj3Qcf9A4xMnEwHmKU4GBWEuG9f14lSYg3JbGyKrUoP76oNCe1+BCj
+        KTC0JzJLiSbnA/NBXkm8oYmlgYmZmZmJpbGZoZI47+n0DYlCAumJJanZqakFqUUwfUwcnFIN
+        TLMCTzgE+uWEBJdpM2o0WT4R33fKj33eD0GXkns1f89v6laIO2biXvr2zDffLT9O3Uq8ffOx
+        f/P6rSmbCuvvimkd1KjrOdLJc51lXm3UpYPfPPyUWxbHcD3cs9BwduYXc8vM/8kGybta2iW2
+        zmfexMZzxKlHYoJJcRlzxTTX5ulCv4pOcG3Uye2t4v6qlLVg56r4r6c2rPT8vuv9+2nnZyea
+        ab/cw34pYkNTnrCC7aygR00Jp2NOzoy12e9zlDvx48odH1vWSwv+fC+UH7h42tppLOu4l7pP
+        FONIb34/79WGP7s5F8fsUOhfeXrRH++Ncn4NAlf7VJi8I9deK/J0N5NNn7ekfXa8RmGUg7hj
+        oRJLcUaioRZzUXEiADlKaWlPBAAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrCIsWRmVeSWpSXmKPExsWy7bCSnO5Hd/Ukg/UPJCwW/3jOZDH14RM2
+        i/lHzrFabHz7g8ni/tejjBZT/ixnstj0+BqrxeVdc9gsZpzfx2TR+PEmu8WirV/YLVr3HmF3
+        4PGY1dDL5nF9ySdmj02rOtk87lzbw+axeUm9R9+WVYwenzfJBbBHcdmkpOZklqUW6dslcGUs
+        2bOZtWAxb8X7D7MYGxg3c3cxcnJICJhIHPuwmb2LkYtDSGAHo8S8bfvYIRLSEtc3ToCyhSVW
+        /nsOVfScUeL2/6NMIAk2AV2JHYvb2EBsEQF/ia//u1lBipgFDjNJ7GjbwgKSEBJYzyix6b8u
+        iM0J1HB62wOwqcIC+hIr3mwGa2YRUJHY0H0CbCivgKXEiYZ7bBC2oMTJmU+A5nAADdWTaNvI
+        CBJmFpCX2P52DjPEcQoSP58uY4W4wUli67tnLBA14hIvjx5hn8AoPAvJpFkIk2YhmTQLSccC
+        RpZVjJKpBcW56bnFhgVGeanlesWJucWleel6yfm5mxjBEamltYNxz6oPeocYmTgYDzFKcDAr
+        ifDeP6+SJMSbklhZlVqUH19UmpNafIhRmoNFSZz3QtfJeCGB9MSS1OzU1ILUIpgsEwenVAOT
+        P0uo0eKPXRL7JXds2dxRU3aosn/LGSOxgL1n7M5GMGX/2rBD8AV3a2Fz56vsmoX8t+R3qb+y
+        W7pi1gLHZV91jUWXs3hNVexcG8+lsCIj9Fezt9YEp/i4KyYreBaW/2/z+dfP+l6nNmPrHKnm
+        J5utFNm35M+ZPKmhSvqp4GZWS/7bdS49bTYbmibG8ds7cVw8MWXexOON05MLyr09bpUaHFky
+        X0GtOJSV0XY5n6Oz0o2vq5yl3z6f6LM3dWbWjGRp02LObZvvzyhV1t4svlLqVMnpqUvErBT/
+        V566XPjkjsdzpY5ZCTkqctPDXA6kbT2TeWdKT87J3O2xnPpud1bw7hd9MnF618qDzvsDvCYq
+        sRRnJBpqMRcVJwIAJYYXkjcDAAA=
+X-CMS-MailID: 20220308121129epcas5p3d75125bb41b8a1dff64aaf3a5e39233c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220125032811epcas5p3ef7b2f4e4906c1da8ccb4a0b3ed9a591
+References: <CGME20220125032811epcas5p3ef7b2f4e4906c1da8ccb4a0b3ed9a591@epcas5p3.samsung.com>
+        <20220125031604.76009-1-alim.akhtar@samsung.com>
+        <YfABHDjdTgxytcUY@sirena.org.uk>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Mar 2022 10:38:37 +0100
-Arnd Bergmann <arnd@arndb.de> wrote:
+Hi Mark and Lee Jones
 
-Hi Arnd,
+>-----Original Message-----
+>From: Mark Brown [mailto:broonie@kernel.org]
+>Sent: Tuesday, January 25, 2022 7:25 PM
+>To: Alim Akhtar <alim.akhtar@samsung.com>
+>Cc: linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org;
+>devicetree@vger.kernel.org; linus.walleij@linaro.org; robh+dt@kernel.org;
+>krzysztof.kozlowski@canonical.com; linux-samsung-soc@vger.kernel.org;
+>pankaj.dubey@samsung.com; andi@etezian.org; linux-spi@vger.kernel.org
+>Subject: Re: [PATCH v3 0/3] Add FSD SPI support
+>
+>On Tue, Jan 25, 2022 at 08:46:01AM +0530, Alim Akhtar wrote:
+>
+>> Note: This series is depended on [1] patches which adds support of FSD
+>> SoC and on Krzysztof's v6 [2] of spi schema changes
+>>
+>> [1]
+>> https://protect2.fireeye.com/v1/url?k=43e76061-1c7c5970-43e6eb2e-0cc47
+>> a31cdbc-d2d9ba5a4358198f&q=1&e=9e61db9b-cfb7-4110-a13c-
+>a1cb0d92a251&u=
+>> https%3A%2F%2Flkml.org%2Flkml%2F2022%2F1%2F24%2F583
+>> [2]
+>> https://protect2.fireeye.com/v1/url?k=e2ddfc2b-bd46c53a-e2dc7764-0cc47
+>> a31cdbc-0d6dbb90b0110bab&q=1&e=9e61db9b-cfb7-4110-a13c-
+>a1cb0d92a251&u=
+>> https%3A%2F%2Flkml.org%2Flkml%2F2022%2F1%2F24%2F120
+>
+>Please resend this when it can be applied, either wait until the
+dependencies
+>are in place or rebase on top of current code.  In general only build time
+>dependencies matter here, the SoC support being merged shouldn't be an
+>issue one way or another.
 
-thanks for having a look. I was a bit unsure about the policy of those
-changes, so glad to have the discussion.
+I re-send these patches (couple of them) as I see the dependencies has
+landed into MFD tree.
+Because of the immutable branch between MFD, SPI and DT due to the current
+merge window, I assume this will go via MFD tree. Let me know if any
+concerns. 
+Thanks!
 
-> On Mon, Mar 7, 2022 at 3:34 PM Andre Przywara <andre.przywara@arm.com> wrote:
-> >
-> > Some Kconfig options have changed, some other platforms have been
-> > removed.  
-> 
-> Please split this up into logical chunks: list the platforms that were removed
-> and remove only the lines corresponding to those platforms in one patch,
-> do functional changes in separate patches each with a reason for doing them,
-> and cleanups (moving lines to match the savedefconfig output, removing lines
-> that are now the default) in one final patch.
-
-Actually this patch is meant to be only about the last past: to sync
-multi_v5_defconfig with the output of "make savedefconfig". .config stays
-the same. I initially tried to chase down the reason for each line change,
-but gave up quickly, because it becomes tedious to learn about this,
-especially about symbols that got *removed*. Also Kconfig is somewhat
-sensitive, a single "select" or "default" change in one random Kconfig can
-affect the result of savedefconfig.
-
-As I noted in the commit message, the .config does *not* change as a result
-of this patch, the whole purpose is just to make the next patch clearer.
-
-So I can try find the reason for each removal, if you like, but I am not
-sure that's worthwhile? It is my understanding that Kconfig changes tend
-to accumulate cruft in the various defconfigs over time. In U-Boot we gave
-up on reasoning, and just regularly sync the output of savedefconfig over
-to the *_defconfigs, to keep them minimal and meaningful.
-
-And I found Olof's commit 30b10c77837c ("ARM: defconfig: re-run
-savedefconfig on multi_v* configs") as a precedence for this kind of cleanup.
-
-> >  CONFIG_AEABI=y
-> >  CONFIG_HIGHMEM=y
-> > -CONFIG_ZBOOT_ROM_TEXT=0x0
-> > -CONFIG_ZBOOT_ROM_BSS=0x0
-> >  CONFIG_ARM_APPENDED_DTB=y
-> >  CONFIG_ARM_ATAG_DTB_COMPAT=y
-> >  CONFIG_CPU_FREQ=y  
-> 
-> These were not removed, what happened here is that 'savedefconfig'
-> no longer produces the lines because they now match the defaults.
-
-Yes, I understand. Is there some policy here, for instance to keep
-those in, for clarity?
-
-> > @@ -159,7 +151,6 @@ CONFIG_I2C_ASPEED=m
-> >  CONFIG_I2C_AT91=y
-> >  CONFIG_I2C_IMX=y
-> >  CONFIG_I2C_MV64XXX=y
-> > -CONFIG_I2C_NOMADIK=y
-> >  CONFIG_SPI=y
-> >  CONFIG_SPI_ATMEL=y
-> >  CONFIG_SPI_IMX=y  
-> 
-> This one is still there. Not sure why it's no longer enabled.
-
-It's not in the current .config. From what I can see, it depends on
-ARCH_AMBA, which is selected by ARCH_NOMADIK, but that one is not enabled
-by multi_v5_defconfig. Not sure if that is an oversight, or a change, a
-the dependency is bogus, or something else.
-
-If you find that useful, I can try to find those dependency chains for the
-other options, but I definitely lack the knowledge about the history of
-those old platforms, so I can't reason about them. But I could present you
-the findings and you can then say what to do?
-
-> >  CONFIG_REGULATOR_FIXED_VOLTAGE=y
-> >  CONFIG_MEDIA_SUPPORT=y
-> >  CONFIG_MEDIA_CAMERA_SUPPORT=y
-> > -CONFIG_V4L_PLATFORM_DRIVERS=y
-> > -CONFIG_VIDEO_ASPEED=m
-> > -CONFIG_VIDEO_ATMEL_ISI=m
-> >  CONFIG_DRM=y
-> >  CONFIG_DRM_ATMEL_HLCDC=m
-> > -CONFIG_DRM_PANEL_SIMPLE=y
-> > -CONFIG_DRM_PANEL_EDP=y
-> >  CONFIG_DRM_ASPEED_GFX=m
-> > -CONFIG_FB_IMX=y
-> > -CONFIG_FB_ATMEL=y
-> > -CONFIG_BACKLIGHT_ATMEL_LCDC=y  
-> 
-> This doesn't look right at all. If you want to disable graphics support,
-> please do that in a separate patch and explain why we can't have those
-> any more. Are you running into problems with the vmlinux size?
-
-As I mentioned, the .config didn't change at all, so those options are
-already not included in mainline anymore.
-
-AFAICS, those last options depend on CONFIG_FB, which isn't enabled. Is
-that a regression due to the recent fbdev changes?
-
-Cheers,
-Andre
-
-> 
-> >  CONFIG_LIBCRC32C=y
-> >  CONFIG_DEBUG_INFO=y
-> > -CONFIG_DEBUG_FS=y
-> >  CONFIG_MAGIC_SYSRQ=y
-> > +CONFIG_DEBUG_FS=y
-> >  CONFIG_DEBUG_KERNEL=y
-> >  # CONFIG_SCHED_DEBUG is not set
-> >  # CONFIG_DEBUG_PREEMPT is not set  
-> 
-> This should probably go along with the ZBOOT_ROM change, it's
-> only cosmetic.
-> 
->         Arnd
 
