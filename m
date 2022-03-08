@@ -2,99 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E9C64D0D47
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 02:07:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DFBD4D0D5B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 02:14:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344201AbiCHBIw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 20:08:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39536 "EHLO
+        id S229906AbiCHBPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 20:15:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344190AbiCHBIs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 20:08:48 -0500
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A76321ADA8;
-        Mon,  7 Mar 2022 17:07:53 -0800 (PST)
-Received: by mail-oo1-f45.google.com with SMTP id x26-20020a4a9b9a000000b003211029e80fso3637901ooj.5;
-        Mon, 07 Mar 2022 17:07:53 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
-         :message-id;
-        bh=rxea/dYu/ELTNOWQBZ1ss1F6Twz4ycLAC2ZHEe2uUro=;
-        b=qN9Py46ldMhjbS9TpTzWvqrfEaSBVr7QcR6Mo5H3n51p3qKBfGS9b9ZSHlOuHUuRri
-         GRCHJWSy5hgMK1Ne/WCm3JEw0Xc83Jg3wOZvXcvxBrVexyfFQz6gTXZ2cV4VA+WxD6jH
-         IiMs7H08DC3eBfjIkq7+Pwqb19MpSBn35EAiZsgXyIXtA3qE7bes0nSMlPdP3gHO/tCu
-         96O9/fFPZR+1BnBZynjBvIyTKL/OpPnEnjFU13NbtD+ZsXqJx7CH/B8Ua1ypWC8dAkW6
-         ETQOxfElgknTlDHTWimzCjOrVdq+t6XdJjRnXEmHxcipn9l6n95ASaExzgIzNTiv/Exl
-         hJtQ==
-X-Gm-Message-State: AOAM531AJKgYznoYxEpD4y+s6v2xZ2NM0u/E93VAvTf+gJS0SrBB93AP
-        AlMZ+oYf1AaoCokIWVLGz1RfYIRgNQ==
-X-Google-Smtp-Source: ABdhPJwuxBaYxiksU+rwdZLeIIANxi6L3vYW7ckdeo06O7RfTIGcy0DoTwNbwJESrg/gvsNx+NDLhA==
-X-Received: by 2002:a05:6870:60a0:b0:d3:a3f7:8b59 with SMTP id t32-20020a05687060a000b000d3a3f78b59mr1004731oae.94.1646701672984;
-        Mon, 07 Mar 2022 17:07:52 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p21-20020a4a2f15000000b00320fca09b74sm1377596oop.1.2022.03.07.17.07.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 17:07:51 -0800 (PST)
-Received: (nullmailer pid 3624778 invoked by uid 1000);
-        Tue, 08 Mar 2022 01:07:40 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     kernel@pengutronix.de, linux-phy@lists.infradead.org,
-        shawnguo@kernel.org, linux-pci@vger.kernel.org,
-        alexander.stein@ew.tq-group.com, bhelgaas@google.com,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de,
-        lorenzo.pieralisi@arm.com, devicetree@vger.kernel.org,
-        vkoul@kernel.org, l.stach@pengutronix.de, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <1646644054-24421-3-git-send-email-hongxing.zhu@nxp.com>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com> <1646644054-24421-3-git-send-email-hongxing.zhu@nxp.com>
-Subject: Re: [PATCH v2 2/7] dt-binding: phy: Add iMX8MP PCIe PHY binding
-Date:   Mon, 07 Mar 2022 19:07:40 -0600
-Message-Id: <1646701660.888371.3624774.nullmailer@robh.at.kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S242880AbiCHBPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 20:15:20 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995FC366AA;
+        Mon,  7 Mar 2022 17:14:23 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E47D66147F;
+        Tue,  8 Mar 2022 01:14:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5078EC340F3;
+        Tue,  8 Mar 2022 01:14:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646702062;
+        bh=1qglWE6Qyntp4+5iBqYJn9FSC7zLrYE2uBaysE+LVpo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Ln45tEvKKN7bmzDSLbiFD4I3kG6fo2hX5nwyoCraisBoIuyAQTYL6e7eRnT7Yld/U
+         xwaRL3SqHpiXxEWzdg8SyfE5G0qrZFkO860eujO98yaAFvsPLigWRD0mUj5vU2WgxX
+         YnknDPrv1D9uaOHjqz9rCuyjiYDInAhddeo8Wqdoh4loc6HcKU3aKLUj1mfI5diehG
+         Fq7n1pSvwaVa1OoOBazxOSRHi6V8ZxPiulzMEGL9m9CjuqVv0ilDwipH79zq6nNse9
+         tMsr91B8Vk3XQrOxDRQ4xkNpk21ktoupJSZkHsahjcHZibowtcSCh2RPvJdC7aeblC
+         drPrlW/BEq2eQ==
+Received: by mail-ej1-f48.google.com with SMTP id d10so35746342eje.10;
+        Mon, 07 Mar 2022 17:14:22 -0800 (PST)
+X-Gm-Message-State: AOAM532yLXRZbB5vMZFxR/jiyd9vLFQND8BQxDjc0AVHyCGq1XYmtLMx
+        SrsZi87bwt25rWIQOec4uIn/G6pvPLDT+NsTmA==
+X-Google-Smtp-Source: ABdhPJyDHQjQfv0hzPL91QLaRsWHNwv3Fsy1tXZozucl9SqIpik9BRrNCcIH7/f0RN1O7newERjcOlAjFmPhaOfcGdg=
+X-Received: by 2002:a17:906:a38e:b0:6da:a1f9:f9ee with SMTP id
+ k14-20020a170906a38e00b006daa1f9f9eemr10648069ejz.27.1646702060536; Mon, 07
+ Mar 2022 17:14:20 -0800 (PST)
+MIME-Version: 1.0
+References: <20220307205357.66322-1-singh.kuldeep87k@gmail.com> <20220307205357.66322-2-singh.kuldeep87k@gmail.com>
+In-Reply-To: <20220307205357.66322-2-singh.kuldeep87k@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 7 Mar 2022 19:14:09 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKrq-NtkPF=p8Qn-_63qE80_0FSQkbY5WxCfJUcrNxJuA@mail.gmail.com>
+Message-ID: <CAL_JsqKrq-NtkPF=p8Qn-_63qE80_0FSQkbY5WxCfJUcrNxJuA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm: dts: realview/versatile/ste: Update spi clock name
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 17:07:29 +0800, Richard Zhu wrote:
-> Add i.MX8MP PCIe PHY binding.
-> 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> ---
->  Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
+On Mon, Mar 7, 2022 at 2:54 PM Kuldeep Singh <singh.kuldeep87k@gmail.com> wrote:
+>
+> SPI clock for pl022 is "sspclk" and meanwhile few platforms such as
+> realview, versatile etc. specify "SSPCLK" as clock name. Even though
+> bindings checks don't differentiate between the two names still keep
+> same convention throughout i.e sspclk to align with other platforms.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+I don't see the point in worrying about this. The binding already
+allows both. Why? Because I wrote the schema and checked it against
+all the in tree users. The resulting warnings are what should be fixed
+in the dts files IMO. What's not warning doesn't need to be fixed.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.example.dt.yaml: pcie-phy@32f00000: resets: [[4294967295, 26]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.example.dt.yaml: pcie-phy@32f00000: reset-names: ['pciephy'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/patch/1601963
-
-This check can fail if there are any dependencies. The base for a patch
-series is generally the most recent rc1.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit.
-
+Rob
