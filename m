@@ -2,267 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30A3E4D13E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:53:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DA554D13F1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:55:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345477AbiCHJy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 04:54:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36802 "EHLO
+        id S240476AbiCHJzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 04:55:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345527AbiCHJyY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:54:24 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A437A35250
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 01:53:27 -0800 (PST)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1nRWWv-0006GR-Hn; Tue, 08 Mar 2022 10:53:21 +0100
-Message-ID: <e57382ab-44fa-c141-98f6-8047aa96a6fb@pengutronix.de>
-Date:   Tue, 8 Mar 2022 10:53:20 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
-Content-Language: en-US
-To:     Etienne Carriere <etienne.carriere@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-References: <20211028140009.23331-1-etienne.carriere@linaro.org>
- <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de>
- <CAN5uoS_DQNkG8J0C-oT8aC-Xfozy9hgwAge_x2e4S-HOhSn5=w@mail.gmail.com>
- <CAN5uoS8QotrsoWYX3rCjxCKQFJNhFBXHc6JDYAn1rcX6N5mj4w@mail.gmail.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <CAN5uoS8QotrsoWYX3rCjxCKQFJNhFBXHc6JDYAn1rcX6N5mj4w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S235300AbiCHJzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:55:42 -0500
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27ABD42494;
+        Tue,  8 Mar 2022 01:54:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646733277;
+    s=strato-dkim-0002; d=goldelico.com;
+    h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:Cc:Date:
+    From:Subject:Sender;
+    bh=wjjSK7dEE22rrGMows8/A+m4W60RJvkYkoSVymWJKTk=;
+    b=AnrLLV+LPCJCsxpvdzY+Gpa8c6MXV3FxMzoKgqiZIj8oXD8JjgTSbeKvUbwdzLLAlX
+    nFsjW+Uuk/kBBkzG4gctP91cARKNcHBN/UQYKm//9W4NRgm8mwLof6eHuMxhR5+rFUJA
+    /uzYnlujcfrgW/dSBj6Zia2LRhwjSbdf7tkNL0ttXDXXQKlGycQjS2QT2CMEcFIqZd8F
+    QYPO6n3FxqQL+OrJpiEKEIr6ZT+jLZTnSHgNolNo5NdGRBvVKG6RKDMXeIeN6AeWt0H1
+    Yw4NxN1v1aABGLzqKXKqQN0wpDvNN6WsOBjpxS68vkCmgtuaVWoyUvN3/cisEQqaRGJK
+    ++zQ==
+Authentication-Results: strato.com;
+    dkim=none
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH/jrwDqoZQ=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+    by smtp.strato.de (RZmta 47.40.1 DYNA|AUTH)
+    with ESMTPSA id n729cey289sbREg
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+    Tue, 8 Mar 2022 10:54:37 +0100 (CET)
+Content-Type: text/plain;
+        charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.21\))
+Subject: Re: [PATCH] ARM: dts: am33xx-l4: Add missing touchscreen clock
+ properties
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20220308104843.23142c85@xps13>
+Date:   Tue, 8 Mar 2022 10:54:36 +0100
+Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <E3122758-2031-47B3-9C18-0DFBE4D5C4CD@goldelico.com>
+References: <20220307111413.8903-1-miquel.raynal@bootlin.com>
+ <511C8854-13D9-4B52-ACA7-6F519A9B3048@goldelico.com>
+ <20220308104843.23142c85@xps13>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+X-Mailer: Apple Mail (2.3445.104.21)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hell Etienne,
+Hi Miquel,
 
-On 01.03.22 15:11, Etienne Carriere wrote:
-> Hi sorry,
-> 
-> I sent the mail while i was still typing it...
-> Here is with the full answer.
+> Am 08.03.2022 um 10:48 schrieb Miquel Raynal =
+<miquel.raynal@bootlin.com>:
+>=20
+> Hi H.,
+>=20
+> hns@goldelico.com wrote on Mon, 7 Mar 2022 20:19:48 +0100:
+>=20
+>> Hi Miquel,
+>> some tiny typos...
+>>=20
+>>> Am 07.03.2022 um 12:14 schrieb Miquel Raynal =
+<miquel.raynal@bootlin.com>:
+>>>=20
+>>> When adding support for TI magadc, the MFD driver (common to the =20
+>>=20
+>> "magadc"?
+>=20
+> It's actually the name of the hardware block. It stands for 'magnetic
+> stripe reader and/or ADC', very much like the first ADC which has a
+> specific Touchscreen hardware feature as well. You can wire X lines to
+> a touchscreen, and TOTAL - X lines to the ADC, same applies to the
+> magnetic stripe reader.
+>=20
+> I can s|magadc|Magnetic Stripe Reader/second ADC| to clarify.
 
-Thanks for taking the time.
+Ok, I see. I had googled and grepped through the kernel logs and found
+no hint about "magadc". But if support is newly added, this explains.
 
-> On Tue, 1 Mar 2022 at 15:05, Etienne Carriere
-> <etienne.carriere@linaro.org> wrote:
->>
->> Hello Ahmad,
->>
->> On Mon, 28 Feb 2022 at 17:01, Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
->>>
->>> Hello Etienne,
->>>
->>> On 28.10.21 16:00, Etienne Carriere wrote:
->>>> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
->>>> based on an OP-TEE service invocation. The compatible mandates a
->>>> channel ID defined with property "linaro,optee-channel-id".
->>>
->>> I just found this thread via the compatible in the STM32MP131 patch set:
->>> https://lore.kernel.org/all/20220225133137.813919-1-gabriel.fernandez@foss.st.com/
->>>
->>> Linux doesn't care whether PSCI is provided by TF-A, OP-TEE or something
->>> else, so there is just the arm,psci* compatible.
->>>
->>> What's different about SCMI that this is not possible? Why couldn't the
->>> existing binding and driver be used to communicate with OP-TEE as secure
->>> monitor as well?
->>
->> Compatible "linaro,scmi-optee" denote a alternate SCMI transport to
->> those already in v5.16.
-> 
-> It is names scmi-optee because the interface exposed to access SCMI services is
-> based on TEE's interface (UUID to open a session with and invoke commands).
+>=20
+>>> touchscreen and the ADC) got updated to ease the insertion of a new =
+DT
+>>> node for the ADC, with its own compatible, clocks, etc. Commit
+>>> 235a96e92c16 ("mfd: ti_am335x_tscadc: Don't search the tree for our
+>>> clock") removed one compatible specific information which was the =
+clock
+>>> name, because the clock was looked up from scratch in the DT while =
+this
+>>> hardware block was only fed by a single clock, already defined and
+>>> properly filled in the DT.
+>>>=20
+>>> Problem is, this change was only validated with an am437x-based =
+board,
+>>> where the clocks are effectively correctly defined and referenced. =
+But
+>>> on am33xx, the ADC clock is also correctly defined but is not =
+referenced
+>>> with a clock phandle as it out to be. =20
+>>=20
+>> maybe you mean "ought to be"?
+>=20
+> I knew there was something wrong with it, but not what exactly :)
 
-I gathered as much, but I didn't understand why it had to be an extra transport
-when SCMI over SMC already exists. Sudeep cleared this point up for me.
+That is what peer review is good for...
 
-Cheers,
-Ahmad
+>=20
+>>> The touchscreen bindings clearly state that the clocks/clock-names
+>>> properties are mandatory, but they have been forgotten in one DTSI. =
+This
+>>> was probably not noticed in the first place because of the clock
+>>> actually existing and the clk_get() call going through all the tree
+>>> anyway.
+>>>=20
+>>> Add the missing clock phandles in the am33xx touchscreen =
+description. =20
+>>=20
+>> Yes, makes touch on BeagleBoard Black with Chipsee 4"3 panel work =
+again!
+>>=20
+>>>=20
+>>> Reported-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>> Fixes: 235a96e92c16 ("mfd: ti_am335x_tscadc: Don't search the tree =
+for our clock") =20
+>> Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
+>=20
+> Thanks!
+> Miqu=C3=A8l
 
-> 
-> The compatible is described in the Linux Documentation but not yet
-> merged in the linux-next.
-> It can be found in the tree of arm_scmi driver maintainers:
-> https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git/log/?h=for-linux-next
-> 
-> This commit:
-> https://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git/commit/?h=for-linux-next&id=b7d2cf7c817b86e705b97f72c6be192a6760a14f
-> 
-> Br,
-> Etienne
-> 
->>
->>
->>>
->>> Cheers,
->>> Ahmad
->>>
->>>>
->>>> Cc: devicetree@vger.kernel.org
->>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>> Signed-off-by: Etienne Carriere <etienne.carriere@linaro.org>
->>>> ---
->>>> Changes since v6:
->>>>  - Remove maxItems from linaro,optee-channel-id description
->>>>
->>>> No change since v5
->>>>
->>>> Changes since v4:
->>>>  - Fix sram node name in DTS example: s/-shm-/-sram-/
->>>>
->>>> Changes since v3:
->>>>  - Add description for linaro,optee-channel-id in patternProperties
->>>>    specifying protocol can optionaly define a dedicated channel id.
->>>>  - Fix DTS example (duplicated phandles issue, subnodes ordering)
->>>>  - Fix typo in DTS example and description comments.
->>>>
->>>> Changes since v2:
->>>>  - Define mandatory property linaro,optee-channel-id
->>>>  - Rebased on yaml description file
->>>>
->>>> Changes since v1:
->>>>  - Removed modification regarding mboxes property description.
->>>> ---
->>>>  .../bindings/firmware/arm,scmi.yaml           | 65 +++++++++++++++++++
->>>>  1 file changed, 65 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->>>> index 5c4c6782e052..eae15df36eef 100644
->>>> --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->>>> +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
->>>> @@ -38,6 +38,9 @@ properties:
->>>>                       The virtio transport only supports a single device.
->>>>          items:
->>>>            - const: arm,scmi-virtio
->>>> +      - description: SCMI compliant firmware with OP-TEE transport
->>>> +        items:
->>>> +          - const: linaro,scmi-optee
->>>>
->>>>    interrupts:
->>>>      description:
->>>> @@ -83,6 +86,11 @@ properties:
->>>>      description:
->>>>        SMC id required when using smc or hvc transports
->>>>
->>>> +  linaro,optee-channel-id:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description:
->>>> +      Channel specifier required when using OP-TEE transport.
->>>> +
->>>>    protocol@11:
->>>>      type: object
->>>>      properties:
->>>> @@ -195,6 +203,12 @@ patternProperties:
->>>>          minItems: 1
->>>>          maxItems: 2
->>>>
->>>> +      linaro,optee-channel-id:
->>>> +        $ref: /schemas/types.yaml#/definitions/uint32
->>>> +        description:
->>>> +          Channel specifier required when using OP-TEE transport and
->>>> +          protocol has a dedicated communication channel.
->>>> +
->>>>      required:
->>>>        - reg
->>>>
->>>> @@ -226,6 +240,16 @@ else:
->>>>        - arm,smc-id
->>>>        - shmem
->>>>
->>>> +  else:
->>>> +    if:
->>>> +      properties:
->>>> +        compatible:
->>>> +          contains:
->>>> +            const: linaro,scmi-optee
->>>> +    then:
->>>> +      required:
->>>> +        - linaro,optee-channel-id
->>>> +
->>>>  examples:
->>>>    - |
->>>>      firmware {
->>>> @@ -340,7 +364,48 @@ examples:
->>>>                  reg = <0x11>;
->>>>                  #power-domain-cells = <1>;
->>>>              };
->>>> +        };
->>>> +    };
->>>> +
->>>> +  - |
->>>> +    firmware {
->>>> +        scmi {
->>>> +            compatible = "linaro,scmi-optee";
->>>> +            linaro,optee-channel-id = <0>;
->>>> +
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <0>;
->>>> +
->>>> +            scmi_dvfs1: protocol@13 {
->>>> +                reg = <0x13>;
->>>> +                linaro,optee-channel-id = <1>;
->>>> +                shmem = <&cpu_optee_lpri0>;
->>>> +                #clock-cells = <1>;
->>>> +            };
->>>> +
->>>> +            scmi_clk0: protocol@14 {
->>>> +                reg = <0x14>;
->>>> +                #clock-cells = <1>;
->>>> +            };
->>>> +        };
->>>> +    };
->>>>
->>>> +    soc {
->>>> +        #address-cells = <2>;
->>>> +        #size-cells = <2>;
->>>> +
->>>> +        sram@51000000 {
->>>> +            compatible = "mmio-sram";
->>>> +            reg = <0x0 0x51000000 0x0 0x10000>;
->>>> +
->>>> +            #address-cells = <1>;
->>>> +            #size-cells = <1>;
->>>> +            ranges = <0 0x0 0x51000000 0x10000>;
->>>> +
->>>> +            cpu_optee_lpri0: optee-sram-section@0 {
->>>> +                compatible = "arm,scmi-shmem";
->>>> +                reg = <0x0 0x80>;
->>>> +            };
->>>>          };
->>>>      };
->>>>
->>>
->>>
->>> --
->>> Pengutronix e.K.                           |                             |
->>> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
->>> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
->>> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> 
+BR and thanks,
+Nikolaus
 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
