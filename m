@@ -2,608 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E06F74D118F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 09:06:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C92C34D121D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 09:22:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344755AbiCHIHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 03:07:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54720 "EHLO
+        id S1344975AbiCHIWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 03:22:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344752AbiCHIHB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 03:07:01 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDEFB3EAA8
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 00:06:00 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id e13so16370742plh.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 00:06:00 -0800 (PST)
+        with ESMTP id S1344993AbiCHIWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 03:22:43 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1D13F889;
+        Tue,  8 Mar 2022 00:21:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646727692; x=1678263692;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=L32U9avNG4O9VvaurRh+xAzeSnzdHvL870euA3k8dlg=;
+  b=QfvZ3NbZzTgNR/B7ZQbJDjjpIodRmwfkqSRgVKu7njpnL7lIMy4WI57e
+   p4kBVWKn9gMxnIzE+y5ZTt8viDY53WeORzLmCLsdUeag0E5bJXKXROn6E
+   tcaZLq/NcsYlgkCun3mE5ejeKc/UyuPoWAA2nj6/FHkMRLoNaq/nobubk
+   TeRcdinLiprJTW+PqXCtFf4NbdDMIbEontVuqpidDHskUOM6dCrhoAdzE
+   2+N+9R3oXEKAk4kmBj8I2lStDaUI/1+SnvxATfwhV93PittxphjP6jV0R
+   rJZbXoPN671/NzI+3f28fj7EOP8XIy5BuvajYc/gBXh9tXfk9GgSpJOk7
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,163,1643698800"; 
+   d="scan'208";a="156065367"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Mar 2022 01:21:31 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Tue, 8 Mar 2022 01:21:31 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
+ Transport; Tue, 8 Mar 2022 01:21:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HDnZ//CXHoCYKFpiSHavTicSoaWhpX8eoE/WnrXnBYO1XVL/4naYCbIlvnEQKF38UT5nVXzHOQUXfIYZ12XK3CksSVbqrIiR6EWZbcyP9ZhcOud6T8sfdVJHCxYNRImVUlcp/yoXktqvGcWgHDwpzOaL9QbQ7ACqCOFh0ziTC1UNa556Q2BW4k06JOf9e0dvyyeMu3IvE1w+33ikUh5hLH7DZ1bgWNXfbIeI0XeohHn35NStxqHEryeCjugVPPFnEdsxPIHNs/ugI+6nu04Va44/+jnF9PdhA5WsYTFjcuEZ4X8uQLIRhhlgMhBrzTFMq22aJuXdbPGkuwgrL47t4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L32U9avNG4O9VvaurRh+xAzeSnzdHvL870euA3k8dlg=;
+ b=GEM+mok2ugxXTf9jhvUui1b1pKYhz2QJ2FzddWZ+rDLHRg0NeCsnLeESAws+1WMFZ1PVg0fcNXxyUXyRldtXw2nGK9b+zHYSTAfMNvWsO1H8qlRFfmomvpuHYVTlh36E5lLYmrt/skFpyqqqWLfpC4qt+d2nF+9f5S6FkvahmqC2XvPQQ+waMXwdXrjxlZB7IU6r3BuhOuxLkDzYt3VrqrJ2hY9O/4YkvBt2Bs2/R9bssteePlcNTjI+CgLb8msmaxewIGLu7AyzQU6cNgEuf2dHJiFd+ydFLOjLuu9ZO32bmt8CyaVDc4sSUglu5EyieVInPhdAkx/zbb6Jgc1wow==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=OM+KJBsH9Nk9/dP7AdpY3xriXov/Uf2R66yHm1Z0a18=;
-        b=G0ah3v0m2DwYcnRWo25ULH2EoPS0SAc2/vkZ4NTwJJowjoay/zRH7C7UoYn7rDQAxH
-         qIpxu7p9gowrIR9qzx7j1JOyEUzfMedJHqL4AJJaSTrgHsSC9RubslRd2QUfm6ugaJvW
-         Nnh+1hkx9x90q2j4tgkkFlYVCnW/S/Y7ExqlOpznRlNDHxjI+TwS1Zaf1f/S2DtFZYXx
-         ZDaA4EhPnNq0gY/Y6/+19qoxcQXxuQpv/cWJv9I1NwPSCIo3fRruOi/xF97I1fKhFrqM
-         m1Hhywje61dgEG3Inm4qp99NuMdzae3Hde/sdG40M+bT0FPSTXwtDU8wsuXJPZbhepfu
-         WG6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=OM+KJBsH9Nk9/dP7AdpY3xriXov/Uf2R66yHm1Z0a18=;
-        b=FMBsn6dhymStIc0Ceg3hmhdn5RXK5HeMqDEj4d/hosSm5fx1p/6DfzggH5jL345pao
-         Xo4BqYX2/N2gIzToD0xESkMk14PMCKAuWzh+KnufOM0ORPUOdtQIVKq1yea7+Jxd0iv4
-         Ff8QWx9sEx9E6fgy0LBEfxUJwJHnMZqnP5+gSN7VOu+hEMI2WaJKLNZ1kAZ4z2+InTWS
-         YN/GQaSlfEqsaG70KMS6UpBoLZRRHHjdFZSKmTxAM7DvXlJ8KQPrjdE593ZXgdSmka+c
-         pUEpDob2cZoLgTrlYF5jxxkIdfx3I7ap102Zlqg/zIMBa9v1bT/DBfrb/kv7oGCE4/mA
-         N9rg==
-X-Gm-Message-State: AOAM530p0yQ4gKZ+/mpldF1tJy6TGOObBuBzOriT2XErTsY6yB6rOFoe
-        +DaD+s1o2pchShTjQg4I1xTI2Q==
-X-Google-Smtp-Source: ABdhPJwSjYl+1ktEIH+hfPnLGLHdKLQIzUTfEym0kgwQ5LxvFfbsJ9C+SfZz4MFKLis2524j6EaViA==
-X-Received: by 2002:a17:902:7b8d:b0:14b:8884:b4ad with SMTP id w13-20020a1709027b8d00b0014b8884b4admr16411438pll.120.1646726760119;
-        Tue, 08 Mar 2022 00:06:00 -0800 (PST)
-Received: from localhost.localdomain (80.251.214.228.16clouds.com. [80.251.214.228])
-        by smtp.gmail.com with ESMTPSA id om17-20020a17090b3a9100b001bf0fffee9bsm1944212pjb.52.2022.03.08.00.05.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 00:05:59 -0800 (PST)
-From:   Shawn Guo <shawn.guo@linaro.org>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Maulik Shah <quic_mkshah@quicinc.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Shawn Guo <shawn.guo@linaro.org>
-Subject: [PATCH v8 2/2] irqchip: Add Qualcomm MPM controller driver
-Date:   Tue,  8 Mar 2022 16:05:34 +0800
-Message-Id: <20220308080534.3384532-3-shawn.guo@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220308080534.3384532-1-shawn.guo@linaro.org>
-References: <20220308080534.3384532-1-shawn.guo@linaro.org>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=L32U9avNG4O9VvaurRh+xAzeSnzdHvL870euA3k8dlg=;
+ b=QOlZPxI6Ya4PpBsnoV34frKJGfJZtH8hDxduYuhqUc+MfIjAp90BH603d/8AyyY3Rj9M0Hxj20ht5y5RqvGty0GolkXNyEBqvBRRY4CaxbO3MMUGqlwXhwGscyBk/OXZWUCo7jtGqAQRn8eS8yszJPui6q7tW6v05D/NAVuU3TU=
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
+ by BN7PR11MB2673.namprd11.prod.outlook.com (2603:10b6:406:b7::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.13; Tue, 8 Mar
+ 2022 08:21:24 +0000
+Received: from SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::dc94:3c7c:8ef8:21b9]) by SA2PR11MB4874.namprd11.prod.outlook.com
+ ([fe80::dc94:3c7c:8ef8:21b9%6]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
+ 08:21:24 +0000
+From:   <Tudor.Ambarus@microchip.com>
+To:     <Eugen.Hristev@microchip.com>, <Nicolas.Ferre@microchip.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <Claudiu.Beznea@microchip.com>,
+        <robh+dt@kernel.org>
+Subject: Re: [PATCH] ARM: dts: at91: sama7g5ek: enable pull-up on flexcom3
+ console lines
+Thread-Topic: [PATCH] ARM: dts: at91: sama7g5ek: enable pull-up on flexcom3
+ console lines
+Thread-Index: AQHYMsV/s2WdRnKidECAAxXEB22tbA==
+Date:   Tue, 8 Mar 2022 08:21:23 +0000
+Message-ID: <d16673c8-3a19-fcbf-63d0-2d2090fc7318@microchip.com>
+References: <20220307113827.2419331-1-eugen.hristev@microchip.com>
+In-Reply-To: <20220307113827.2419331-1-eugen.hristev@microchip.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fd5799a6-79b6-4f59-faed-08da00dca234
+x-ms-traffictypediagnostic: BN7PR11MB2673:EE_
+x-microsoft-antispam-prvs: <BN7PR11MB2673E4F56949CA295663CB36F0099@BN7PR11MB2673.namprd11.prod.outlook.com>
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 8EGcuR/MTpzeabmnW198hIpkfNUwEvAyjIzHntKpa3Ze0q6nIVsBof2Vu4gki+dj+lQgmfF1s1I94j4HwyS5gTePXOQ+yXz4k1s0xfrr9DijQjiwSP1akZtRJ2jegj3UrJzcOWr7TI5vou1UGs4IBS77tWgNC0NfRgPN8U+Ac4nsn+X5yD12WanV/xsreZfmd+2N2sOJ+cBn99RJq7OhMfE54RI+9KRT4uuTH+dNgV6C4nbTOpgZLBQpQwuTbrVJcRu1P6LO1ftOAYEI3Z5phIe2WkRIzcnI87mUIoCbnRuD+BYfXinsZOzCXrbqGCXXYRxjntSdstoluRrSc6fymC3DjsdRAwiBjCi+tWMLwcMkmyPqM0PnUP2RABa5Jw0Cm55HHFXjDSPHpDbpJeyEHm5ZfnMl2c0ZDQ3NuLXb8noOsQjbfkhB4muDj5zO618/qtCqefu4MGUkohMr4+oO5ZfDclieOUgC8rfZ+5KyeP5xU4hjJiibCI7aDi27UiYgPhQ3NMLmJ/1zO3jPj8mHTB6/1NtNoS5pMcrPDR6OGXZgYwRq/Ic8l/GCcrQPJwm0my0iwx8clhmjWjj91sp0ku0eicyicjEWao97dt3AtoanQImK5OnxWj7DzVvBCx4p3KfJqMsktN0PUosZxGVdCIf2n+NTfIfZdWbYU+5XSXb0zTE7lEZWtdGcOZwoJRwG7Q6OpfP4YgIt9dJdFF6g+QkSGVtYSqIoDrAOlj3ZchvBy1Tm6CmjauL+Ix4xurPNDQet46M9nUtbS09f4rrWhg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(76116006)(66556008)(66946007)(4744005)(316002)(5660300002)(6512007)(8936002)(26005)(54906003)(91956017)(64756008)(508600001)(66476007)(110136005)(66446008)(4326008)(122000001)(86362001)(6636002)(186003)(31696002)(6486002)(8676002)(36756003)(53546011)(38100700002)(6506007)(71200400001)(83380400001)(38070700005)(2906002)(31686004)(2616005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cXdaTkgrRnRZbCtZZ0JtZVpOUXFhbFhVWEZVSSsvOUNCTTVIbzFhVU5OWkRz?=
+ =?utf-8?B?TWZuVDZocXZtRnBnNk1lalNoN3B2a1I1eFU2ZzJMRFRsZTFpRDNiVEVoQ3B0?=
+ =?utf-8?B?WE93aTJyL2tHVzZVMCswcldRejVaMTMrMWJRc2VYVGlVNUJENkVpaEdwZVlD?=
+ =?utf-8?B?WUZVWmMwQXlBSWVBWGNIQzFIOHhIRHo3YVVNWlRieFRRcmtMWEpWL3krY2Ro?=
+ =?utf-8?B?Mkd6S0ozVEQ4YXZlUnJJV3ZDdTJKTTVTcDl5UjZMZ0JiYU90SzVERkJzYmJw?=
+ =?utf-8?B?MEFoUmtmMW95ajZmcTdGRGZjQml1MG1rQTVUdlUyM3loei9wcUJ0N3htOHA1?=
+ =?utf-8?B?RVhDdDE0c0w1b0ljb2JKNk81RURMQUo5ZzlKbTlmOGJ4NEVoaFNYdTdHSis4?=
+ =?utf-8?B?cW45RklsQjFpWGx3QTBXaDFsNU94a09LeEVqRFZucDNvS2ErQXpkY3FGa1g1?=
+ =?utf-8?B?VmtBaFlnK3M2RWRFYXBzTzkrSi80MlhkVExkNGU4ek1NSGIwR0VJK1BUbDdW?=
+ =?utf-8?B?WEsxNVRpemlmczhpUnhBSUJEdmZrM2wyNVFvRXNhRktCR0lSc0cxZVlVSzZv?=
+ =?utf-8?B?Y255aGMvZUxzeG1jL1BORXdnbU1HdmloL3krcVJuZmtmMzBKbGV4UzRtNEM5?=
+ =?utf-8?B?Rnd4Vk5rS3JyVzNNaFUySHAxcnlPM29hQ3R1RXdaaWgreDdLU3RIRGx2N0Zm?=
+ =?utf-8?B?NEQvSzNOdVNaangvTXJ0ZFRKVFhOS3lkV01JRy9kelRtU0tkZ2hwalYxaCtm?=
+ =?utf-8?B?Q3ExMWpZYVBrQjJWNXg2K3hiODVpeGkyL2RoMXU2djZ4VDFya052cmh2NUdm?=
+ =?utf-8?B?L1ptemZEQ0tDVUpBdFRWSzJTdGF2SnFSNWpVclRkb1hvb0swemd2L3ltZWtE?=
+ =?utf-8?B?Vit0VS9LMlhJbDllSWxSTzlnMEpZZ0w4QjVKZEx1MXhZY0hSdDFiSXpLcEpP?=
+ =?utf-8?B?MlBEL0dCa1JZNExoNC94ZGNHV21hY25TOWM0ZUpjNXp4cVlJbmZtbkorcy91?=
+ =?utf-8?B?MWl5ZTFPVlErZzIwWHplRUh6MHZydXUyZnZob1NkUnFqOEZXK1FnRVl6LzRK?=
+ =?utf-8?B?UlZkNHNxdWVHSzZVMXo1b0Nwck8wWUtQMFhyMU5CdklLT3ZjMDk3ejBPWFlD?=
+ =?utf-8?B?cDdCZmFvUHpyRVJONE5RUW9GWm05NkdOMlJpeGZTOUhwSWRtSGpQRTZtWk5F?=
+ =?utf-8?B?T0luQnRMRW5EdXNxVmVZaEZSNG1QZjZZamVJbmpsVnZYQjkwamZoTHc3OU1I?=
+ =?utf-8?B?eEdUM1NBN0VST2RTZVZKaG5tRngrV1hjcWJjd0U3MmFKTkNOME5DbDAxRzl5?=
+ =?utf-8?B?cG1HelNoUjhUaGZNYXhFSDhUcHlpY3B2TDBCT1JWYkhLVzNXRk5NdlJRK0h1?=
+ =?utf-8?B?eWJrTU5VRkhYMDd4UnJXVkdrSXN4SnZldU5KTXVkVmRHcVdOdzFXWmRlNFBV?=
+ =?utf-8?B?czVHTlp5RGdzZkI1ZkNiNFNZbmhocXYzWmNQdlVZTXl2SDdyeFVsS1c3Q2Ju?=
+ =?utf-8?B?Nzl1L05jUStOd0k3eHZwY2U5NFVNRGZQbWg3UlYzMDNobFF6NlhNa1E0Q04v?=
+ =?utf-8?B?UVo5VGhXMCtPYUt4M1duaWpoN3dhVFVDK2RqTnFTNU1UWG1nc2wzTW53c3VH?=
+ =?utf-8?B?a205K0xEVDhyWFdaVmRmd2N3b3lnSVdWQWw5cklUZDJhdDdURUNzL3BBRThj?=
+ =?utf-8?B?UUFUYnVucDBKelI0bU1pK0gxcEZyVklnanNVdlBuTzg3L3RyYnJ1eFBxNWVG?=
+ =?utf-8?B?bEhVTXk4OW1LWTJCZU9TRkw0SHNZeW1VRHJkZ2xBa1o4QktLZGJ5alVUSGRV?=
+ =?utf-8?B?d09saHREMzdpUDFreEJKME5zbTNURTZBb3ZobHpxQ0hzV0ZIa294cFlwSlVI?=
+ =?utf-8?B?UVJaNUN1WjJtQmpDdE9aN1VZM29DcU1MRUhmdkNKNHdCSFhoa0xPZUdXbUlD?=
+ =?utf-8?B?dmV3TDNtTFMxSlNockNYNm83RmZGd3ZNVFR1RUpISHNJZU9yYzJmd3JlWEl3?=
+ =?utf-8?B?VmF0ZS9xdUo4Wmp6Smd2d29uWllFSmNVUlhic0NEeloxdk1QSy9ZYll3Um1U?=
+ =?utf-8?B?cUs0ZFU1cjkyeGFjL1J4YTdlRUVIMzIzZXNHTkdWVDJjK0RrMGhsOGh4WDZX?=
+ =?utf-8?B?V3ZhMXBvNGdYN0dGcHFJaW5PSitTR0lPSmRIWjF1cVJhVTJKT2MrS2lyeVl0?=
+ =?utf-8?B?NVdvZG84bGlYdU84OW9uQmlCUFd4am5Vd3BleEllKzhEeWFDTnlNSldJQnh6?=
+ =?utf-8?B?cWlpWWVWMXdNQmdnTFVqeHpWREFBPT0=?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8C055E9ADAC93E4791EBD3626C6A9E69@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd5799a6-79b6-4f59-faed-08da00dca234
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2022 08:21:24.0063
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CrGQ9F/P4lXCN4ytB2g7yP9zxcJ70ip2BLbesY+ZhuMn4hApoOQooxj3727TQ4ZNLkptNPE4vemWsPP19liCEOkvxB3l98HbIEnc4NFh4Qc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR11MB2673
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm SoCs based on the RPM architecture have a MSM Power Manager (MPM)
-in always-on domain. In addition to managing resources during sleep, the
-hardware also has an interrupt controller that monitors the interrupts
-when the system is asleep, wakes up the APSS when one of these interrupts
-occur and replays it to GIC after it becomes operational.
-
-It adds an irqchip driver for this interrupt controller, and here are
-some notes about it.
-
-- For given SoC, a fixed number of MPM pins are supported, e.g. 96 pins
-  on QCM2290.  Each of these MPM pins can be either a MPM_GIC pin or
-  a MPM_GPIO pin. The mapping between MPM_GIC pin and GIC interrupt
-  is defined by SoC, as well as the mapping between MPM_GPIO pin and
-  GPIO number.  The former mapping is retrieved from device tree, while
-  the latter is defined in TLMM pinctrl driver.
-
-- The power domain (PD) .power_off hook is used to notify RPM that APSS
-  is about to power collapse.  This requires MPM PD be the parent PD of
-  CPU cluster.
-
-- When SoC gets awake from sleep mode, the driver will receive an
-  interrupt from RPM, so that it can replay interrupt for particular
-  polarity.
-
-Signed-off-by: Shawn Guo <shawn.guo@linaro.org>
----
- drivers/irqchip/Kconfig        |   8 +
- drivers/irqchip/Makefile       |   1 +
- drivers/irqchip/irq-qcom-mpm.c | 461 +++++++++++++++++++++++++++++++++
- 3 files changed, 470 insertions(+)
- create mode 100644 drivers/irqchip/irq-qcom-mpm.c
-
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 7038957f4a77..680d2fcf2686 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -430,6 +430,14 @@ config QCOM_PDC
- 	  Power Domain Controller driver to manage and configure wakeup
- 	  IRQs for Qualcomm Technologies Inc (QTI) mobile chips.
- 
-+config QCOM_MPM
-+	tristate "QCOM MPM"
-+	depends on ARCH_QCOM
-+	select IRQ_DOMAIN_HIERARCHY
-+	help
-+	  MSM Power Manager driver to manage and configure wakeup
-+	  IRQs for Qualcomm Technologies Inc (QTI) mobile chips.
-+
- config CSKY_MPINTC
- 	bool
- 	depends on CSKY
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index c1f611cbfbf8..1f8990f812f1 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -94,6 +94,7 @@ obj-$(CONFIG_MESON_IRQ_GPIO)		+= irq-meson-gpio.o
- obj-$(CONFIG_GOLDFISH_PIC) 		+= irq-goldfish-pic.o
- obj-$(CONFIG_NDS32)			+= irq-ativic32.o
- obj-$(CONFIG_QCOM_PDC)			+= qcom-pdc.o
-+obj-$(CONFIG_QCOM_MPM)			+= irq-qcom-mpm.o
- obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
- obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
- obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
-diff --git a/drivers/irqchip/irq-qcom-mpm.c b/drivers/irqchip/irq-qcom-mpm.c
-new file mode 100644
-index 000000000000..eea5a753618c
---- /dev/null
-+++ b/drivers/irqchip/irq-qcom-mpm.c
-@@ -0,0 +1,461 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2021, Linaro Limited
-+ * Copyright (c) 2010-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/irqchip.h>
-+#include <linux/irqdomain.h>
-+#include <linux/mailbox_client.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_domain.h>
-+#include <linux/slab.h>
-+#include <linux/soc/qcom/irq.h>
-+#include <linux/spinlock.h>
-+
-+/*
-+ * This is the driver for Qualcomm MPM (MSM Power Manager) interrupt controller,
-+ * which is commonly found on Qualcomm SoCs built on the RPM architecture.
-+ * Sitting in always-on domain, MPM monitors the wakeup interrupts when SoC is
-+ * asleep, and wakes up the AP when one of those interrupts occurs.  This driver
-+ * doesn't directly access physical MPM registers though.  Instead, the access
-+ * is bridged via a piece of internal memory (SRAM) that is accessible to both
-+ * AP and RPM.  This piece of memory is called 'vMPM' in the driver.
-+ *
-+ * When SoC is awake, the vMPM is owned by AP and the register setup by this
-+ * driver all happens on vMPM.  When AP is about to get power collapsed, the
-+ * driver sends a mailbox notification to RPM, which will take over the vMPM
-+ * ownership and dump vMPM into physical MPM registers.  On wakeup, AP is woken
-+ * up by a MPM pin/interrupt, and RPM will copy STATUS registers into vMPM.
-+ * Then AP start owning vMPM again.
-+ *
-+ * vMPM register map:
-+ *
-+ *    31                              0
-+ *    +--------------------------------+
-+ *    |            TIMER0              | 0x00
-+ *    +--------------------------------+
-+ *    |            TIMER1              | 0x04
-+ *    +--------------------------------+
-+ *    |            ENABLE0             | 0x08
-+ *    +--------------------------------+
-+ *    |              ...               | ...
-+ *    +--------------------------------+
-+ *    |            ENABLEn             |
-+ *    +--------------------------------+
-+ *    |          FALLING_EDGE0         |
-+ *    +--------------------------------+
-+ *    |              ...               |
-+ *    +--------------------------------+
-+ *    |            STATUSn             |
-+ *    +--------------------------------+
-+ *
-+ *    n = DIV_ROUND_UP(pin_cnt, 32)
-+ *
-+ */
-+
-+#define MPM_REG_ENABLE		0
-+#define MPM_REG_FALLING_EDGE	1
-+#define MPM_REG_RISING_EDGE	2
-+#define MPM_REG_POLARITY	3
-+#define MPM_REG_STATUS		4
-+
-+/* MPM pin map to GIC hwirq */
-+struct mpm_gic_map {
-+	int pin;
-+	irq_hw_number_t hwirq;
-+};
-+
-+struct qcom_mpm_priv {
-+	void __iomem *base;
-+	raw_spinlock_t lock;
-+	struct mbox_client mbox_client;
-+	struct mbox_chan *mbox_chan;
-+	struct mpm_gic_map *maps;
-+	unsigned int map_cnt;
-+	unsigned int reg_stride;
-+	struct irq_domain *domain;
-+	struct generic_pm_domain genpd;
-+};
-+
-+static u32 qcom_mpm_read(struct qcom_mpm_priv *priv, unsigned int reg,
-+			 unsigned int index)
-+{
-+	unsigned int offset = (reg * priv->reg_stride + index + 2) * 4;
-+
-+	return readl_relaxed(priv->base + offset);
-+}
-+
-+static void qcom_mpm_write(struct qcom_mpm_priv *priv, unsigned int reg,
-+			   unsigned int index, u32 val)
-+{
-+	unsigned int offset = (reg * priv->reg_stride + index + 2) * 4;
-+
-+	writel_relaxed(val, priv->base + offset);
-+
-+	/* Ensure the write is completed */
-+	wmb();
-+}
-+
-+static void qcom_mpm_enable_irq(struct irq_data *d, bool en)
-+{
-+	struct qcom_mpm_priv *priv = d->chip_data;
-+	int pin = d->hwirq;
-+	unsigned int index = pin / 32;
-+	unsigned int shift = pin % 32;
-+	unsigned long flags, val;
-+
-+	raw_spin_lock_irqsave(&priv->lock, flags);
-+
-+	val = qcom_mpm_read(priv, MPM_REG_ENABLE, index);
-+	__assign_bit(shift, &val, en);
-+	qcom_mpm_write(priv, MPM_REG_ENABLE, index, val);
-+
-+	raw_spin_unlock_irqrestore(&priv->lock, flags);
-+}
-+
-+static void qcom_mpm_mask(struct irq_data *d)
-+{
-+	qcom_mpm_enable_irq(d, false);
-+
-+	if (d->parent_data)
-+		irq_chip_mask_parent(d);
-+}
-+
-+static void qcom_mpm_unmask(struct irq_data *d)
-+{
-+	qcom_mpm_enable_irq(d, true);
-+
-+	if (d->parent_data)
-+		irq_chip_unmask_parent(d);
-+}
-+
-+static void mpm_set_type(struct qcom_mpm_priv *priv, bool set, unsigned int reg,
-+			 unsigned int index, unsigned int shift)
-+{
-+	unsigned long flags, val;
-+
-+	raw_spin_lock_irqsave(&priv->lock, flags);
-+
-+	val = qcom_mpm_read(priv, reg, index);
-+	__assign_bit(shift, &val, set);
-+	qcom_mpm_write(priv, reg, index, val);
-+
-+	raw_spin_unlock_irqrestore(&priv->lock, flags);
-+}
-+
-+static int qcom_mpm_set_type(struct irq_data *d, unsigned int type)
-+{
-+	struct qcom_mpm_priv *priv = d->chip_data;
-+	int pin = d->hwirq;
-+	unsigned int index = pin / 32;
-+	unsigned int shift = pin % 32;
-+
-+	if (type & IRQ_TYPE_EDGE_RISING)
-+		mpm_set_type(priv, true, MPM_REG_RISING_EDGE, index, shift);
-+	else
-+		mpm_set_type(priv, false, MPM_REG_RISING_EDGE, index, shift);
-+
-+	if (type & IRQ_TYPE_EDGE_FALLING)
-+		mpm_set_type(priv, true, MPM_REG_FALLING_EDGE, index, shift);
-+	else
-+		mpm_set_type(priv, false, MPM_REG_FALLING_EDGE, index, shift);
-+
-+	if (type & IRQ_TYPE_LEVEL_HIGH)
-+		mpm_set_type(priv, true, MPM_REG_POLARITY, index, shift);
-+	else
-+		mpm_set_type(priv, false, MPM_REG_POLARITY, index, shift);
-+
-+	if (!d->parent_data)
-+		return 0;
-+
-+	if (type & IRQ_TYPE_EDGE_BOTH)
-+		type = IRQ_TYPE_EDGE_RISING;
-+
-+	if (type & IRQ_TYPE_LEVEL_MASK)
-+		type = IRQ_TYPE_LEVEL_HIGH;
-+
-+	return irq_chip_set_type_parent(d, type);
-+}
-+
-+static struct irq_chip qcom_mpm_chip = {
-+	.name			= "mpm",
-+	.irq_eoi		= irq_chip_eoi_parent,
-+	.irq_mask		= qcom_mpm_mask,
-+	.irq_unmask		= qcom_mpm_unmask,
-+	.irq_retrigger		= irq_chip_retrigger_hierarchy,
-+	.irq_set_type		= qcom_mpm_set_type,
-+	.irq_set_affinity	= irq_chip_set_affinity_parent,
-+	.flags			= IRQCHIP_MASK_ON_SUSPEND |
-+				  IRQCHIP_SKIP_SET_WAKE,
-+};
-+
-+static struct mpm_gic_map *get_mpm_gic_map(struct qcom_mpm_priv *priv, int pin)
-+{
-+	struct mpm_gic_map *maps = priv->maps;
-+	int i;
-+
-+	for (i = 0; i < priv->map_cnt; i++) {
-+		if (maps[i].pin == pin)
-+			return &maps[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+static int qcom_mpm_alloc(struct irq_domain *domain, unsigned int virq,
-+			  unsigned int nr_irqs, void *data)
-+{
-+	struct qcom_mpm_priv *priv = domain->host_data;
-+	struct irq_fwspec *fwspec = data;
-+	struct irq_fwspec parent_fwspec;
-+	struct mpm_gic_map *map;
-+	irq_hw_number_t pin;
-+	unsigned int type;
-+	int  ret;
-+
-+	ret = irq_domain_translate_twocell(domain, fwspec, &pin, &type);
-+	if (ret)
-+		return ret;
-+
-+	ret = irq_domain_set_hwirq_and_chip(domain, virq, pin,
-+					    &qcom_mpm_chip, priv);
-+	if (ret)
-+		return ret;
-+
-+	map = get_mpm_gic_map(priv, pin);
-+	if (map == NULL)
-+		return irq_domain_disconnect_hierarchy(domain->parent, virq);
-+
-+	if (type & IRQ_TYPE_EDGE_BOTH)
-+		type = IRQ_TYPE_EDGE_RISING;
-+
-+	if (type & IRQ_TYPE_LEVEL_MASK)
-+		type = IRQ_TYPE_LEVEL_HIGH;
-+
-+	parent_fwspec.fwnode = domain->parent->fwnode;
-+	parent_fwspec.param_count = 3;
-+	parent_fwspec.param[0] = 0;
-+	parent_fwspec.param[1] = map->hwirq;
-+	parent_fwspec.param[2] = type;
-+
-+	return irq_domain_alloc_irqs_parent(domain, virq, nr_irqs,
-+					    &parent_fwspec);
-+}
-+
-+static const struct irq_domain_ops qcom_mpm_ops = {
-+	.alloc		= qcom_mpm_alloc,
-+	.free		= irq_domain_free_irqs_common,
-+	.translate	= irq_domain_translate_twocell,
-+};
-+
-+/* Triggered by RPM when system resumes from deep sleep */
-+static irqreturn_t qcom_mpm_handler(int irq, void *dev_id)
-+{
-+	struct qcom_mpm_priv *priv = dev_id;
-+	unsigned long enable, pending;
-+	irqreturn_t ret = IRQ_NONE;
-+	unsigned long flags;
-+	int i, j;
-+
-+	for (i = 0; i < priv->reg_stride; i++) {
-+		raw_spin_lock_irqsave(&priv->lock, flags);
-+		enable = qcom_mpm_read(priv, MPM_REG_ENABLE, i);
-+		pending = qcom_mpm_read(priv, MPM_REG_STATUS, i);
-+		pending &= enable;
-+		raw_spin_unlock_irqrestore(&priv->lock, flags);
-+
-+		for_each_set_bit(j, &pending, 32) {
-+			unsigned int pin = 32 * i + j;
-+			struct irq_desc *desc = irq_resolve_mapping(priv->domain, pin);
-+			struct irq_data *d = &desc->irq_data;
-+
-+			if (!irqd_is_level_type(d))
-+				irq_set_irqchip_state(d->irq,
-+						IRQCHIP_STATE_PENDING, true);
-+			ret = IRQ_HANDLED;
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static int mpm_pd_power_off(struct generic_pm_domain *genpd)
-+{
-+	struct qcom_mpm_priv *priv = container_of(genpd, struct qcom_mpm_priv,
-+						  genpd);
-+	int i, ret;
-+
-+	for (i = 0; i < priv->reg_stride; i++)
-+		qcom_mpm_write(priv, MPM_REG_STATUS, i, 0);
-+
-+	/* Notify RPM to write vMPM into HW */
-+	ret = mbox_send_message(priv->mbox_chan, NULL);
-+	if (ret < 0)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static bool gic_hwirq_is_mapped(struct mpm_gic_map *maps, int cnt, u32 hwirq)
-+{
-+	int i;
-+
-+	for (i = 0; i < cnt; i++)
-+		if (maps[i].hwirq == hwirq)
-+			return true;
-+
-+	return false;
-+}
-+
-+static int qcom_mpm_init(struct device_node *np, struct device_node *parent)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(np);
-+	struct device *dev = &pdev->dev;
-+	struct irq_domain *parent_domain;
-+	struct generic_pm_domain *genpd;
-+	struct qcom_mpm_priv *priv;
-+	unsigned int pin_cnt;
-+	int i, irq;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	ret = of_property_read_u32(np, "qcom,mpm-pin-count", &pin_cnt);
-+	if (ret) {
-+		dev_err(dev, "failed to read qcom,mpm-pin-count: %d\n", ret);
-+		return ret;
-+	}
-+
-+	priv->reg_stride = DIV_ROUND_UP(pin_cnt, 32);
-+
-+	ret = of_property_count_u32_elems(np, "qcom,mpm-pin-map");
-+	if (ret < 0) {
-+		dev_err(dev, "failed to read qcom,mpm-pin-map: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (ret % 2) {
-+		dev_err(dev, "invalid qcom,mpm-pin-map\n");
-+		return -EINVAL;
-+	}
-+
-+	priv->map_cnt = ret / 2;
-+	priv->maps = devm_kcalloc(dev, priv->map_cnt, sizeof(*priv->maps),
-+				  GFP_KERNEL);
-+	if (!priv->maps)
-+		return -ENOMEM;
-+
-+	for (i = 0; i < priv->map_cnt; i++) {
-+		u32 pin, hwirq;
-+
-+		of_property_read_u32_index(np, "qcom,mpm-pin-map", i * 2, &pin);
-+		of_property_read_u32_index(np, "qcom,mpm-pin-map", i * 2 + 1, &hwirq);
-+
-+		if (gic_hwirq_is_mapped(priv->maps, i, hwirq)) {
-+			dev_warn(dev, "failed to map pin %d as GIC hwirq %d is already mapped\n",
-+				 pin, hwirq);
-+			continue;
-+		}
-+
-+		priv->maps[i].pin = pin;
-+		priv->maps[i].hwirq = hwirq;
-+	}
-+
-+	raw_spin_lock_init(&priv->lock);
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (!priv->base)
-+		return PTR_ERR(priv->base);
-+
-+	for (i = 0; i < priv->reg_stride; i++) {
-+		qcom_mpm_write(priv, MPM_REG_ENABLE, i, 0);
-+		qcom_mpm_write(priv, MPM_REG_FALLING_EDGE, i, 0);
-+		qcom_mpm_write(priv, MPM_REG_RISING_EDGE, i, 0);
-+		qcom_mpm_write(priv, MPM_REG_POLARITY, i, 0);
-+		qcom_mpm_write(priv, MPM_REG_STATUS, i, 0);
-+	}
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	genpd = &priv->genpd;
-+	genpd->flags = GENPD_FLAG_IRQ_SAFE;
-+	genpd->power_off = mpm_pd_power_off;
-+
-+	genpd->name = devm_kasprintf(dev, GFP_KERNEL, "%s", dev_name(dev));
-+	if (!genpd->name)
-+		return -ENOMEM;
-+
-+	ret = pm_genpd_init(genpd, NULL, false);
-+	if (ret) {
-+		dev_err(dev, "failed to init genpd: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = of_genpd_add_provider_simple(np, genpd);
-+	if (ret) {
-+		dev_err(dev, "failed to add genpd provider: %d\n", ret);
-+		goto remove_genpd;
-+	}
-+
-+	priv->mbox_client.dev = dev;
-+	priv->mbox_chan = mbox_request_channel(&priv->mbox_client, 0);
-+	if (IS_ERR(priv->mbox_chan)) {
-+		ret = PTR_ERR(priv->mbox_chan);
-+		dev_err(dev, "failed to acquire IPC channel: %d\n", ret);
-+		return ret;
-+	}
-+
-+	parent_domain = irq_find_host(parent);
-+	if (!parent_domain) {
-+		dev_err(dev, "failed to find MPM parent domain\n");
-+		ret = -ENXIO;
-+		goto free_mbox;
-+	}
-+
-+	priv->domain = irq_domain_create_hierarchy(parent_domain,
-+				IRQ_DOMAIN_FLAG_QCOM_MPM_WAKEUP, pin_cnt,
-+				of_node_to_fwnode(np), &qcom_mpm_ops, priv);
-+	if (!priv->domain) {
-+		dev_err(dev, "failed to create MPM domain\n");
-+		ret = -ENOMEM;
-+		goto free_mbox;
-+	}
-+
-+	irq_domain_update_bus_token(priv->domain, DOMAIN_BUS_WAKEUP);
-+
-+	ret = devm_request_irq(dev, irq, qcom_mpm_handler, IRQF_NO_SUSPEND,
-+			       "qcom_mpm", priv);
-+	if (ret) {
-+		dev_err(dev, "failed to request irq: %d\n", ret);
-+		goto remove_domain;
-+	}
-+
-+	return 0;
-+
-+remove_domain:
-+	irq_domain_remove(priv->domain);
-+free_mbox:
-+	mbox_free_channel(priv->mbox_chan);
-+remove_genpd:
-+	pm_genpd_remove(genpd);
-+	return ret;
-+}
-+
-+IRQCHIP_PLATFORM_DRIVER_BEGIN(qcom_mpm)
-+IRQCHIP_MATCH("qcom,mpm", qcom_mpm_init)
-+IRQCHIP_PLATFORM_DRIVER_END(qcom_mpm)
-+MODULE_DESCRIPTION("Qualcomm Technologies, Inc. MSM Power Manager");
-+MODULE_LICENSE("GPL v2");
--- 
-2.25.1
-
+T24gMy83LzIyIDEzOjM4LCBFdWdlbiBIcmlzdGV2IHdyb3RlOg0KPiBGbGV4Y29tMyBpcyB1c2Vk
+IGFzIGJvYXJkIGNvbnNvbGUgc2VyaWFsLiBUaGVyZSBhcmUgbm8gcHVsbC11cHMgb24gdGhlc2UN
+Cj4gbGluZXMgb24gdGhlIGJvYXJkLiBUaGlzIG1lYW5zIHRoYXQgaWYgYSBjYWJsZSBpcyBub3Qg
+Y29ubmVjdGVkICh0aGF0IGhhcw0KPiBwdWxsLXVwcyBpbmNsdWRlZCksIHN0cmF5IGNoYXJhY3Rl
+cnMgY291bGQgYXBwZWFyIG9uIHRoZSBjb25zb2xlIGFzIHRoZQ0KPiBmbG9hdGluZyBwaW5zIHZv
+bHRhZ2UgbGV2ZWxzIGFyZSBpbnRlcnByZXRlZCBhcyBpbmNvbWluZyBjaGFyYWN0ZXJzLg0KPiBU
+byBhdm9pZCB0aGlzIHByb2JsZW0sIGVuYWJsZSB0aGUgaW50ZXJuYWwgcHVsbC11cHMgb24gdGhl
+c2UgbGluZXMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBFdWdlbiBIcmlzdGV2IDxldWdlbi5ocmlz
+dGV2QG1pY3JvY2hpcC5jb20+DQoNClJldmlld2VkLWJ5OiBUdWRvciBBbWJhcnVzIDx0dWRvci5h
+bWJhcnVzQG1pY3JvY2hpcC5jb20+DQoNCj4gLS0tDQo+ICBhcmNoL2FybS9ib290L2R0cy9hdDkx
+LXNhbWE3ZzVlay5kdHMgfCAyICstDQo+ICAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyks
+IDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9hdDkx
+LXNhbWE3ZzVlay5kdHMgYi9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE3ZzVlay5kdHMNCj4g
+aW5kZXggMDg2ODVhMTBlZGExZC4uZGQwNDdhODUyMzkwNyAxMDA2NDQNCj4gLS0tIGEvYXJjaC9h
+cm0vYm9vdC9kdHMvYXQ5MS1zYW1hN2c1ZWsuZHRzDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRz
+L2F0OTEtc2FtYTdnNWVrLmR0cw0KPiBAQCAtNDk1LDcgKzQ5NSw3IEBAIHBpbmN0cmxfZmx4MF9k
+ZWZhdWx0OiBmbHgwX2RlZmF1bHQgew0KPiAgCXBpbmN0cmxfZmx4M19kZWZhdWx0OiBmbHgzX2Rl
+ZmF1bHQgew0KPiAgCQlwaW5tdXggPSA8UElOX1BEMTZfX0ZMRVhDT00zX0lPMD4sDQo+ICAJCQkg
+PFBJTl9QRDE3X19GTEVYQ09NM19JTzE+Ow0KPiAtCQliaWFzLWRpc2FibGU7DQo+ICsJCWJpYXMt
+cHVsbC11cDsNCj4gIAl9Ow0KPiAgDQo+ICAJcGluY3RybF9mbHg0X2RlZmF1bHQ6IGZseDRfZGVm
+YXVsdCB7DQoNCg==
