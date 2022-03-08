@@ -2,694 +2,517 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E978A4D1F93
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 19:00:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D9714D1F9C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 19:03:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349361AbiCHSBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 13:01:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34252 "EHLO
+        id S245496AbiCHSEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 13:04:20 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349354AbiCHSB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 13:01:28 -0500
-Received: from mail-oi1-x22d.google.com (mail-oi1-x22d.google.com [IPv6:2607:f8b0:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 154FC4ECC4
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 10:00:29 -0800 (PST)
-Received: by mail-oi1-x22d.google.com with SMTP id b188so1441105oia.13
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 10:00:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=PjgRF7Y8l2pYekuBP6fbGy2G9m7mP7DoyOuHeRY8zWA=;
-        b=ccfxmLtCe7cP/6PDVA50j0nFWDZZSbNlWqMP8VTGvWgCqNGcB7QH5KIZ/l6Y7qC5YD
-         ET5/iTh5viYBv3aPC2P3rrlU64chXFXmm+0LrRsX8LHy9ISHol7zvHVok6IjRNgDxxzo
-         3ND3455Bm341I9EXumT0lg5QSYJRc1ZYa6gzGg1lNKzwzXzsf5UbZCv/pv1bow65k0mJ
-         bj89XFJLZenZfYNob0KlM9IQ8E5WPI7ZRjN5/P9iyDtX8W95nenyYQEAJoPuhTgH8AOe
-         6v6nXRAGY+Tyt8CnEYkUqEnnWj/QoUZT+BcxSvAsgjKote+sX8/Uxg7owmLdMllXK8ty
-         HLcg==
+        with ESMTP id S238356AbiCHSET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 13:04:19 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD60D35DD1
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 10:03:20 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id E9A473F623
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 18:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646762598;
+        bh=Tisl+WndR9fLfj1x+KURxGQSHZvDWzQQbcBNVfUBQDA=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=PRN+f2QZ79NihFau02ECzdU0MqtPA7NANH4Q/w/IliI8abagVsQ8qWgyOr2H9fieu
+         SRftTjXCG3Ub2rUpFPe50Iwxf/qTXNBQtJuP3szOIO6LQruFnp1DwXTE8NYANlYdw/
+         qjXVG0LSear+02n+UY6LMHSJPXnNmXgizsvo+oekUBYKl63mgslnR16eZ3eLyImvka
+         CUx7K0rzbOAfgr1IVXVXVkwXhWrZ1IO0OvxkvItzh/dkx7ZcLetHypi29cPZ6mwPBX
+         w2Q2ldlH6yLw288MgugowWS7ORWZIGJP4C2fmX+IxBKpHQgi1Xj9L0weVwDaPRj7H8
+         XKZypemGfMjNw==
+Received: by mail-ed1-f69.google.com with SMTP id i5-20020a056402054500b00415ce7443f4so10125209edx.12
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 10:03:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=PjgRF7Y8l2pYekuBP6fbGy2G9m7mP7DoyOuHeRY8zWA=;
-        b=2ms3RR7ocwl6iLvIpXEvvy3zO2xWcL3e8izI54ruprwYo99L+vnNB/HL6wAmUniJ+E
-         1DEeHxtWtzXn6Ekgt5hDNXk9FAzdF1FH6eEQjr7zJOsc9epoQUZXaipCOKB0x1cRd7MO
-         pDMFwyJJHEXATB9VPPhTZ4SQ02mbkDthRBmGZEgyOM4O72bL7h+njsFHu5LFRkixm2QZ
-         8O6NC7WWaStgB3+kcHXdxYlp32aBXTKEAFKJcccrFol5lyzWFCncJCtApL52i0GeOifC
-         6E5KS38obwsa+t35JXDYVN6KQxh1hapfCvMnIyvScUx7Mi9/WUA6qoDZ0bIvYeH1BZKJ
-         TC1w==
-X-Gm-Message-State: AOAM5326TAs2Y9ALHUvUtxGqGTCwdJN3T74bIAXNsvwIOMWDP68iN0vl
-        TPd6AvKf2qeygE9u8oLDjuDlNA==
-X-Google-Smtp-Source: ABdhPJzokS4xeMGUeoXlRwNt7ByfpewLs4r9cjLntJx9VBO/qR/YADO2waOgwK4aHf/L2cNxqcOlRg==
-X-Received: by 2002:a05:6808:14c8:b0:2d9:be61:def9 with SMTP id f8-20020a05680814c800b002d9be61def9mr3421231oiw.293.1646762428150;
-        Tue, 08 Mar 2022 10:00:28 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id w11-20020a056808140b00b002c0966d9521sm8592197oiv.10.2022.03.08.10.00.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 10:00:27 -0800 (PST)
-Date:   Tue, 8 Mar 2022 10:02:10 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v10 5/7] pinctrl: qcom: Extract chip specific LPASS LPI
- code
-Message-ID: <YieaIi7UfiahXTHS@ripper>
-References: <1646737394-4740-1-git-send-email-quic_srivasam@quicinc.com>
- <1646737394-4740-6-git-send-email-quic_srivasam@quicinc.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=Tisl+WndR9fLfj1x+KURxGQSHZvDWzQQbcBNVfUBQDA=;
+        b=tqNXX5bV/d5jcNhQf4DKsGgqOVpVyim57LITMMikESDFKCBMEpvr3UUIGrTySEn9Y0
+         xWQYndNjN88YCF82V65+JJrUhPPADcw2XGf0/TN0QdeCg6HZRaIU/iAtu/f0F7xHaGy2
+         qJ+VEdAdljydcBswgP4tEGv6GtjovSWGaGOBwC+5G+bIl3qREJ5ALKrdsDrm9cQrCYk0
+         XZiq09ptO8TjmMuzZiw1zZ+a+MigV8kGUhobKrDqgj/rwoJa5bXjdqIgU6nYlbnkQ5wz
+         gOLBhgpvn6ahR3C18UaAuKCshT2N8/ii/ZxIzbrJ8rM98mXtgCsCiT+SkBxer+B3Q+aI
+         cDgQ==
+X-Gm-Message-State: AOAM531anW+cpkcEGMP8aTeUXI1KJ8pYFeNtXtJqJc8BesFoWTh/S3d8
+        fsC0NFWgCOZZFCIEn/kLL50e2rskIhVFApJJ2F93/dyFJQPU0wYdyyoFW8ZRqOSELG8DxKbTcwc
+        LS3InGx31gid8orebi4okxDgK6dBA8XyI2p4by6k=
+X-Received: by 2002:a05:6402:1341:b0:407:cece:49f8 with SMTP id y1-20020a056402134100b00407cece49f8mr17549295edw.152.1646762598292;
+        Tue, 08 Mar 2022 10:03:18 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJzzWIShLsLMuMK417z7vwAMWu0SqY3qjifpkylutmMwc9NdrSIMrun4fkCbePE9o4994GbZHA==
+X-Received: by 2002:a05:6402:1341:b0:407:cece:49f8 with SMTP id y1-20020a056402134100b00407cece49f8mr17549230edw.152.1646762597802;
+        Tue, 08 Mar 2022 10:03:17 -0800 (PST)
+Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id kv9-20020a17090778c900b006da693d5e91sm6056225ejc.122.2022.03.08.10.03.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Mar 2022 10:03:16 -0800 (PST)
+Message-ID: <bf59a2bc-a708-27de-866a-346085dcee7d@canonical.com>
+Date:   Tue, 8 Mar 2022 19:03:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1646737394-4740-6-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 01/15] dt-bindings: devfreq: rk3399_dmc: Convert to
+ YAML
+Content-Language: en-US
+To:     Brian Norris <briannorris@chromium.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lin Huang <hl@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+        Derek Basehore <dbasehore@chromium.org>,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20220308000945.706701-1-briannorris@chromium.org>
+ <20220307160918.v3.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220307160918.v3.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Mar 03:03 PST 2022, Srinivasa Rao Mandadapu wrote:
-
-> Extract the chip specific SM8250 data from the LPASS LPI pinctrl driver
-> to allow reusing the common code in the addition of subsequent
-> platforms.
+On 08/03/2022 01:09, Brian Norris wrote:
+> I want to add, deprecate, and bugfix some properties, as well as add the
+> first users. This is easier with a proper schema.
 > 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-
-I don't believe that lkp reported something that resulted in you writing
-this patch.
-
+> The transformation is mostly straightforward, plus a few notable tweaks:
+> 
+>  * Renamed rockchip,dram_speed_bin to rockchip,ddr3_speed_bin. The
+>    driver code and the example matched, but the description was
+>    different. I went with the implementation. Note that this property is
+>    also slated for deprecation/deletion in the subsequent patches.
+> 
+>  * Drop upthreshold and downdifferential properties from the example.
+>    These were undocumented (so, wouldn't pass validation), but were
+>    representing software properties (governor tweaks). I drop them from
+>    the driver in subsequent patches.
+> 
+>  * Rename clock from pclk_ddr_mon to dmc_clk. The driver, DT example,
+>    and all downstream users matched -- the binding definition was the
+>    exception. Anyway, "dmc_clk" is a more appropriately generic name.
+> 
+> Signed-off-by: Brian Norris <briannorris@chromium.org>
 > ---
->  drivers/pinctrl/qcom/Kconfig                    |   8 +
->  drivers/pinctrl/qcom/Makefile                   |   1 +
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.c        | 233 +-----------------------
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.h        |  85 +++++++++
->  drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c | 165 +++++++++++++++++
->  5 files changed, 264 insertions(+), 228 deletions(-)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
 > 
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index 31c4aa6..3c7b163 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -329,6 +329,14 @@ config PINCTRL_SM8250
->  	  Qualcomm Technologies Inc TLMM block found on the Qualcomm
->  	  Technologies Inc SM8250 platform.
->  
-> +config PINCTRL_SM8250_LPASS_LPI
-> +	tristate "Qualcomm Technologies Inc SM8250 LPASS LPI pin controller driver"
-> +	select PINCTRL_LPASS_LPI
-
-You shouldn't select user selectable options, so this should be "depends
-on PINCTRL_LPASS_LPI".
-
-That said, PINCTRL_LPASS_LPI doesn't actually do anything on its own, so
-it would would be nicer to make PINCTRL_LPASS_LPI not be user selectable
-and keep the select PINCTRL_LPASS_LPI here. (You would also need depends
-on GPIOLIB here though).
-
-With that I think this patch looks good.
-
-Regards,
-Bjorn
-
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-> +	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
-> +
->  config PINCTRL_SM8350
->  	tristate "Qualcomm Technologies Inc SM8350 pin controller driver"
->  	depends on PINCTRL_MSM
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index 709882f..39650d6 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -38,6 +38,7 @@ obj-$(CONFIG_PINCTRL_SM6350) += pinctrl-sm6350.o
->  obj-$(CONFIG_PINCTRL_SDX65) += pinctrl-sdx65.o
->  obj-$(CONFIG_PINCTRL_SM8150) += pinctrl-sm8150.o
->  obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
-> +obj-$(CONFIG_PINCTRL_SM8250_LPASS_LPI) += pinctrl-sm8250-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM8350) += pinctrl-sm8350.o
->  obj-$(CONFIG_PINCTRL_SM8450) += pinctrl-sm8450.o
->  obj-$(CONFIG_PINCTRL_LPASS_LPI) += pinctrl-lpass-lpi.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> index 54750ba..1ab572f 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> @@ -4,91 +4,15 @@
->   * Copyright (c) 2020 Linaro Ltd.
->   */
->  
-> -#include <linux/bitops.h>
-> -#include <linux/bitfield.h>
->  #include <linux/clk.h>
->  #include <linux/gpio/driver.h>
-> -#include <linux/io.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> -#include <linux/of.h>
->  #include <linux/pinctrl/pinconf-generic.h>
->  #include <linux/pinctrl/pinconf.h>
->  #include <linux/pinctrl/pinmux.h>
-> -#include <linux/platform_device.h>
-> -#include <linux/slab.h>
-> -#include <linux/types.h>
-> -#include "../core.h"
->  #include "../pinctrl-utils.h"
-> -
-> -#define LPI_SLEW_RATE_CTL_REG		0xa000
-> -#define LPI_TLMM_REG_OFFSET		0x1000
-> -#define LPI_SLEW_RATE_MAX		0x03
-> -#define LPI_SLEW_BITS_SIZE		0x02
-> -#define LPI_SLEW_RATE_MASK		GENMASK(1, 0)
-> -#define LPI_GPIO_CFG_REG		0x00
-> -#define LPI_GPIO_PULL_MASK		GENMASK(1, 0)
-> -#define LPI_GPIO_FUNCTION_MASK		GENMASK(5, 2)
-> -#define LPI_GPIO_OUT_STRENGTH_MASK	GENMASK(8, 6)
-> -#define LPI_GPIO_OE_MASK		BIT(9)
-> -#define LPI_GPIO_VALUE_REG		0x04
-> -#define LPI_GPIO_VALUE_IN_MASK		BIT(0)
-> -#define LPI_GPIO_VALUE_OUT_MASK		BIT(1)
-> -
-> -#define LPI_GPIO_BIAS_DISABLE		0x0
-> -#define LPI_GPIO_PULL_DOWN		0x1
-> -#define LPI_GPIO_KEEPER			0x2
-> -#define LPI_GPIO_PULL_UP		0x3
-> -#define LPI_GPIO_DS_TO_VAL(v)		(v / 2 - 1)
-> -#define LPI_NO_SLEW				-1
-> -
-> -#define LPI_FUNCTION(fname)			                \
-> -	[LPI_MUX_##fname] = {		                \
-> -		.name = #fname,				\
-> -		.groups = fname##_groups,               \
-> -		.ngroups = ARRAY_SIZE(fname##_groups),	\
-> -	}
-> -
-> -#define LPI_PINGROUP(id, soff, f1, f2, f3, f4)		\
-> -	{						\
-> -		.group.name = "gpio" #id,			\
-> -		.group.pins = gpio##id##_pins,		\
-> -		.pin = id,				\
-> -		.slew_offset = soff,			\
-> -		.group.num_pins = ARRAY_SIZE(gpio##id##_pins),	\
-> -		.funcs = (int[]){			\
-> -			LPI_MUX_gpio,			\
-> -			LPI_MUX_##f1,			\
-> -			LPI_MUX_##f2,			\
-> -			LPI_MUX_##f3,			\
-> -			LPI_MUX_##f4,			\
-> -		},					\
-> -		.nfuncs = 5,				\
-> -	}
-> -
-> -struct lpi_pingroup {
-> -	struct group_desc group;
-> -	unsigned int pin;
-> -	/* Bit offset in slew register for SoundWire pins only */
-> -	int slew_offset;
-> -	unsigned int *funcs;
-> -	unsigned int nfuncs;
-> -};
-> -
-> -struct lpi_function {
-> -	const char *name;
-> -	const char * const *groups;
-> -	unsigned int ngroups;
-> -};
-> -
-> -struct lpi_pinctrl_variant_data {
-> -	const struct pinctrl_pin_desc *pins;
-> -	int npins;
-> -	const struct lpi_pingroup *groups;
-> -	int ngroups;
-> -	const struct lpi_function *functions;
-> -	int nfunctions;
-> -};
-> +#include "pinctrl-lpass-lpi.h"
->  
->  #define MAX_LPI_NUM_CLKS	2
->  
-> @@ -104,136 +28,6 @@ struct lpi_pinctrl {
->  	const struct lpi_pinctrl_variant_data *data;
->  };
->  
-> -/* sm8250 variant specific data */
-> -static const struct pinctrl_pin_desc sm8250_lpi_pins[] = {
-> -	PINCTRL_PIN(0, "gpio0"),
-> -	PINCTRL_PIN(1, "gpio1"),
-> -	PINCTRL_PIN(2, "gpio2"),
-> -	PINCTRL_PIN(3, "gpio3"),
-> -	PINCTRL_PIN(4, "gpio4"),
-> -	PINCTRL_PIN(5, "gpio5"),
-> -	PINCTRL_PIN(6, "gpio6"),
-> -	PINCTRL_PIN(7, "gpio7"),
-> -	PINCTRL_PIN(8, "gpio8"),
-> -	PINCTRL_PIN(9, "gpio9"),
-> -	PINCTRL_PIN(10, "gpio10"),
-> -	PINCTRL_PIN(11, "gpio11"),
-> -	PINCTRL_PIN(12, "gpio12"),
-> -	PINCTRL_PIN(13, "gpio13"),
-> -};
-> -
-> -enum sm8250_lpi_functions {
-> -	LPI_MUX_dmic1_clk,
-> -	LPI_MUX_dmic1_data,
-> -	LPI_MUX_dmic2_clk,
-> -	LPI_MUX_dmic2_data,
-> -	LPI_MUX_dmic3_clk,
-> -	LPI_MUX_dmic3_data,
-> -	LPI_MUX_i2s1_clk,
-> -	LPI_MUX_i2s1_data,
-> -	LPI_MUX_i2s1_ws,
-> -	LPI_MUX_i2s2_clk,
-> -	LPI_MUX_i2s2_data,
-> -	LPI_MUX_i2s2_ws,
-> -	LPI_MUX_qua_mi2s_data,
-> -	LPI_MUX_qua_mi2s_sclk,
-> -	LPI_MUX_qua_mi2s_ws,
-> -	LPI_MUX_swr_rx_clk,
-> -	LPI_MUX_swr_rx_data,
-> -	LPI_MUX_swr_tx_clk,
-> -	LPI_MUX_swr_tx_data,
-> -	LPI_MUX_wsa_swr_clk,
-> -	LPI_MUX_wsa_swr_data,
-> -	LPI_MUX_gpio,
-> -	LPI_MUX__,
-> -};
-> -
-> -static int gpio0_pins[] = { 0 };
-> -static int gpio1_pins[] = { 1 };
-> -static int gpio2_pins[] = { 2 };
-> -static int gpio3_pins[] = { 3 };
-> -static int gpio4_pins[] = { 4 };
-> -static int gpio5_pins[] = { 5 };
-> -static int gpio6_pins[] = { 6 };
-> -static int gpio7_pins[] = { 7 };
-> -static int gpio8_pins[] = { 8 };
-> -static int gpio9_pins[] = { 9 };
-> -static int gpio10_pins[] = { 10 };
-> -static int gpio11_pins[] = { 11 };
-> -static int gpio12_pins[] = { 12 };
-> -static int gpio13_pins[] = { 13 };
-> -static const char * const swr_tx_clk_groups[] = { "gpio0" };
-> -static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
-> -static const char * const swr_rx_clk_groups[] = { "gpio3" };
-> -static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-> -static const char * const dmic1_clk_groups[] = { "gpio6" };
-> -static const char * const dmic1_data_groups[] = { "gpio7" };
-> -static const char * const dmic2_clk_groups[] = { "gpio8" };
-> -static const char * const dmic2_data_groups[] = { "gpio9" };
-> -static const char * const i2s2_clk_groups[] = { "gpio10" };
-> -static const char * const i2s2_ws_groups[] = { "gpio11" };
-> -static const char * const dmic3_clk_groups[] = { "gpio12" };
-> -static const char * const dmic3_data_groups[] = { "gpio13" };
-> -static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-> -static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-> -static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4" };
-> -static const char * const i2s1_clk_groups[] = { "gpio6" };
-> -static const char * const i2s1_ws_groups[] = { "gpio7" };
-> -static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-> -static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-> -static const char * const wsa_swr_data_groups[] = { "gpio11" };
-> -static const char * const i2s2_data_groups[] = { "gpio12", "gpio12" };
-> -
-> -static const struct lpi_pingroup sm8250_groups[] = {
-> -	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-> -	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-> -	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-> -	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-> -	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-> -	LPI_PINGROUP(5, 12, swr_tx_data, swr_rx_data, _, _),
-> -	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> -	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> -	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> -	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
-> -	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-> -	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-> -	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> -	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
-> -};
-> -
-> -static const struct lpi_function sm8250_functions[] = {
-> -	LPI_FUNCTION(dmic1_clk),
-> -	LPI_FUNCTION(dmic1_data),
-> -	LPI_FUNCTION(dmic2_clk),
-> -	LPI_FUNCTION(dmic2_data),
-> -	LPI_FUNCTION(dmic3_clk),
-> -	LPI_FUNCTION(dmic3_data),
-> -	LPI_FUNCTION(i2s1_clk),
-> -	LPI_FUNCTION(i2s1_data),
-> -	LPI_FUNCTION(i2s1_ws),
-> -	LPI_FUNCTION(i2s2_clk),
-> -	LPI_FUNCTION(i2s2_data),
-> -	LPI_FUNCTION(i2s2_ws),
-> -	LPI_FUNCTION(qua_mi2s_data),
-> -	LPI_FUNCTION(qua_mi2s_sclk),
-> -	LPI_FUNCTION(qua_mi2s_ws),
-> -	LPI_FUNCTION(swr_rx_clk),
-> -	LPI_FUNCTION(swr_rx_data),
-> -	LPI_FUNCTION(swr_tx_clk),
-> -	LPI_FUNCTION(swr_tx_data),
-> -	LPI_FUNCTION(wsa_swr_clk),
-> -	LPI_FUNCTION(wsa_swr_data),
-> -};
-> -
-> -static struct lpi_pinctrl_variant_data sm8250_lpi_data = {
-> -	.pins = sm8250_lpi_pins,
-> -	.npins = ARRAY_SIZE(sm8250_lpi_pins),
-> -	.groups = sm8250_groups,
-> -	.ngroups = ARRAY_SIZE(sm8250_groups),
-> -	.functions = sm8250_functions,
-> -	.nfunctions = ARRAY_SIZE(sm8250_functions),
-> -};
-> -
->  static int lpi_gpio_read(struct lpi_pinctrl *state, unsigned int pin,
->  			 unsigned int addr)
->  {
-> @@ -580,7 +374,7 @@ static const struct gpio_chip lpi_gpio_template = {
->  	.dbg_show		= lpi_gpio_dbg_show,
->  };
->  
-> -static int lpi_pinctrl_probe(struct platform_device *pdev)
-> +int lpi_pinctrl_probe(struct platform_device *pdev)
->  {
->  	const struct lpi_pinctrl_variant_data *data;
->  	struct device *dev = &pdev->dev;
-> @@ -659,8 +453,9 @@ static int lpi_pinctrl_probe(struct platform_device *pdev)
->  
->  	return ret;
->  }
-> +EXPORT_SYMBOL_GPL(lpi_pinctrl_probe);
->  
-> -static int lpi_pinctrl_remove(struct platform_device *pdev)
-> +int lpi_pinctrl_remove(struct platform_device *pdev)
->  {
->  	struct lpi_pinctrl *pctrl = platform_get_drvdata(pdev);
->  
-> @@ -669,25 +464,7 @@ static int lpi_pinctrl_remove(struct platform_device *pdev)
->  
->  	return 0;
->  }
-> +EXPORT_SYMBOL_GPL(lpi_pinctrl_remove);
->  
-> -static const struct of_device_id lpi_pinctrl_of_match[] = {
-> -	{
-> -	       .compatible = "qcom,sm8250-lpass-lpi-pinctrl",
-> -	       .data = &sm8250_lpi_data,
-> -	},
-> -	{ }
-> -};
-> -MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-> -
-> -static struct platform_driver lpi_pinctrl_driver = {
-> -	.driver = {
-> -		   .name = "qcom-lpass-lpi-pinctrl",
-> -		   .of_match_table = lpi_pinctrl_of_match,
-> -	},
-> -	.probe = lpi_pinctrl_probe,
-> -	.remove = lpi_pinctrl_remove,
-> -};
-> -
-> -module_platform_driver(lpi_pinctrl_driver);
->  MODULE_DESCRIPTION("QTI LPI GPIO pin control driver");
->  MODULE_LICENSE("GPL");
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-> new file mode 100644
-> index 0000000..afbac2a
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-> @@ -0,0 +1,85 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020 Linaro Ltd.
-> + */
-> +#ifndef __PINCTRL_LPASS_LPI_H__
-> +#define __PINCTRL_LPASS_LPI_H__
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/bitfield.h>
-> +#include "../core.h"
-> +
-> +#define LPI_SLEW_RATE_CTL_REG	0xa000
-> +#define LPI_TLMM_REG_OFFSET		0x1000
-> +#define LPI_SLEW_RATE_MAX		0x03
-> +#define LPI_SLEW_BITS_SIZE		0x02
-> +#define LPI_SLEW_RATE_MASK		GENMASK(1, 0)
-> +#define LPI_GPIO_CFG_REG		0x00
-> +#define LPI_GPIO_PULL_MASK		GENMASK(1, 0)
-> +#define LPI_GPIO_FUNCTION_MASK		GENMASK(5, 2)
-> +#define LPI_GPIO_OUT_STRENGTH_MASK	GENMASK(8, 6)
-> +#define LPI_GPIO_OE_MASK		BIT(9)
-> +#define LPI_GPIO_VALUE_REG		0x04
-> +#define LPI_GPIO_VALUE_IN_MASK		BIT(0)
-> +#define LPI_GPIO_VALUE_OUT_MASK		BIT(1)
-> +
-> +#define LPI_GPIO_BIAS_DISABLE		0x0
-> +#define LPI_GPIO_PULL_DOWN		0x1
-> +#define LPI_GPIO_KEEPER			0x2
-> +#define LPI_GPIO_PULL_UP		0x3
-> +#define LPI_GPIO_DS_TO_VAL(v)		(v / 2 - 1)
-> +#define LPI_NO_SLEW				-1
-> +
-> +#define LPI_FUNCTION(fname)			                \
-> +	[LPI_MUX_##fname] = {		                \
-> +		.name = #fname,				\
-> +		.groups = fname##_groups,               \
-> +		.ngroups = ARRAY_SIZE(fname##_groups),	\
-> +	}
-> +
-> +#define LPI_PINGROUP(id, soff, f1, f2, f3, f4)		\
-> +	{						\
-> +		.group.name = "gpio" #id,			\
-> +		.group.pins = gpio##id##_pins,		\
-> +		.pin = id,				\
-> +		.slew_offset = soff,			\
-> +		.group.num_pins = ARRAY_SIZE(gpio##id##_pins),	\
-> +		.funcs = (int[]){			\
-> +			LPI_MUX_gpio,			\
-> +			LPI_MUX_##f1,			\
-> +			LPI_MUX_##f2,			\
-> +			LPI_MUX_##f3,			\
-> +			LPI_MUX_##f4,			\
-> +		},					\
-> +		.nfuncs = 5,				\
-> +	}
-> +
-> +struct lpi_pingroup {
-> +	struct group_desc group;
-> +	unsigned int pin;
-> +	/* Bit offset in slew register for SoundWire pins only */
-> +	int slew_offset;
-> +	unsigned int *funcs;
-> +	unsigned int nfuncs;
-> +};
-> +
-> +struct lpi_function {
-> +	const char *name;
-> +	const char * const *groups;
-> +	unsigned int ngroups;
-> +};
-> +
-> +struct lpi_pinctrl_variant_data {
-> +	const struct pinctrl_pin_desc *pins;
-> +	int npins;
-> +	const struct lpi_pingroup *groups;
-> +	int ngroups;
-> +	const struct lpi_function *functions;
-> +	int nfunctions;
-> +};
-> +
-> +int lpi_pinctrl_probe(struct platform_device *pdev);
-> +int lpi_pinctrl_remove(struct platform_device *pdev);
-> +
-> +#endif /*__PINCTRL_LPASS_LPI_H__*/
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
-> new file mode 100644
-> index 0000000..fb7dbb3
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sm8250-lpass-lpi.c
-> @@ -0,0 +1,165 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2020 Linaro Ltd.
-> + */
-> +
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pinctrl-lpass-lpi.h"
-> +
-> +enum lpass_lpi_functions {
-> +	LPI_MUX_dmic1_clk,
-> +	LPI_MUX_dmic1_data,
-> +	LPI_MUX_dmic2_clk,
-> +	LPI_MUX_dmic2_data,
-> +	LPI_MUX_dmic3_clk,
-> +	LPI_MUX_dmic3_data,
-> +	LPI_MUX_i2s1_clk,
-> +	LPI_MUX_i2s1_data,
-> +	LPI_MUX_i2s1_ws,
-> +	LPI_MUX_i2s2_clk,
-> +	LPI_MUX_i2s2_data,
-> +	LPI_MUX_i2s2_ws,
-> +	LPI_MUX_qua_mi2s_data,
-> +	LPI_MUX_qua_mi2s_sclk,
-> +	LPI_MUX_qua_mi2s_ws,
-> +	LPI_MUX_swr_rx_clk,
-> +	LPI_MUX_swr_rx_data,
-> +	LPI_MUX_swr_tx_clk,
-> +	LPI_MUX_swr_tx_data,
-> +	LPI_MUX_wsa_swr_clk,
-> +	LPI_MUX_wsa_swr_data,
-> +	LPI_MUX_gpio,
-> +	LPI_MUX__,
-> +};
-> +
-> +static int gpio0_pins[] = { 0 };
-> +static int gpio1_pins[] = { 1 };
-> +static int gpio2_pins[] = { 2 };
-> +static int gpio3_pins[] = { 3 };
-> +static int gpio4_pins[] = { 4 };
-> +static int gpio5_pins[] = { 5 };
-> +static int gpio6_pins[] = { 6 };
-> +static int gpio7_pins[] = { 7 };
-> +static int gpio8_pins[] = { 8 };
-> +static int gpio9_pins[] = { 9 };
-> +static int gpio10_pins[] = { 10 };
-> +static int gpio11_pins[] = { 11 };
-> +static int gpio12_pins[] = { 12 };
-> +static int gpio13_pins[] = { 13 };
-> +
-> +
-> +/* sm8250 variant specific data */
-> +static const struct pinctrl_pin_desc sm8250_lpi_pins[] = {
-> +	PINCTRL_PIN(0, "gpio0"),
-> +	PINCTRL_PIN(1, "gpio1"),
-> +	PINCTRL_PIN(2, "gpio2"),
-> +	PINCTRL_PIN(3, "gpio3"),
-> +	PINCTRL_PIN(4, "gpio4"),
-> +	PINCTRL_PIN(5, "gpio5"),
-> +	PINCTRL_PIN(6, "gpio6"),
-> +	PINCTRL_PIN(7, "gpio7"),
-> +	PINCTRL_PIN(8, "gpio8"),
-> +	PINCTRL_PIN(9, "gpio9"),
-> +	PINCTRL_PIN(10, "gpio10"),
-> +	PINCTRL_PIN(11, "gpio11"),
-> +	PINCTRL_PIN(12, "gpio12"),
-> +	PINCTRL_PIN(13, "gpio13"),
-> +};
-> +
-> +static const char * const swr_tx_clk_groups[] = { "gpio0" };
-> +static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
-> +static const char * const swr_rx_clk_groups[] = { "gpio3" };
-> +static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-> +static const char * const dmic1_clk_groups[] = { "gpio6" };
-> +static const char * const dmic1_data_groups[] = { "gpio7" };
-> +static const char * const dmic2_clk_groups[] = { "gpio8" };
-> +static const char * const dmic2_data_groups[] = { "gpio9" };
-> +static const char * const i2s2_clk_groups[] = { "gpio10" };
-> +static const char * const i2s2_ws_groups[] = { "gpio11" };
-> +static const char * const dmic3_clk_groups[] = { "gpio12" };
-> +static const char * const dmic3_data_groups[] = { "gpio13" };
-> +static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-> +static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-> +static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4" };
-> +static const char * const i2s1_clk_groups[] = { "gpio6" };
-> +static const char * const i2s1_ws_groups[] = { "gpio7" };
-> +static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-> +static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-> +static const char * const wsa_swr_data_groups[] = { "gpio11" };
-> +static const char * const i2s2_data_groups[] = { "gpio12", "gpio12" };
-> +
-> +static const struct lpi_pingroup sm8250_groups[] = {
-> +	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-> +	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-> +	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(5, 12, swr_tx_data, swr_rx_data, _, _),
-> +	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> +	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> +	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> +	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
-> +	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-> +	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-> +	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> +	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
-> +};
-> +
-> +static const struct lpi_function sm8250_functions[] = {
-> +	LPI_FUNCTION(dmic1_clk),
-> +	LPI_FUNCTION(dmic1_data),
-> +	LPI_FUNCTION(dmic2_clk),
-> +	LPI_FUNCTION(dmic2_data),
-> +	LPI_FUNCTION(dmic3_clk),
-> +	LPI_FUNCTION(dmic3_data),
-> +	LPI_FUNCTION(i2s1_clk),
-> +	LPI_FUNCTION(i2s1_data),
-> +	LPI_FUNCTION(i2s1_ws),
-> +	LPI_FUNCTION(i2s2_clk),
-> +	LPI_FUNCTION(i2s2_data),
-> +	LPI_FUNCTION(i2s2_ws),
-> +	LPI_FUNCTION(qua_mi2s_data),
-> +	LPI_FUNCTION(qua_mi2s_sclk),
-> +	LPI_FUNCTION(qua_mi2s_ws),
-> +	LPI_FUNCTION(swr_rx_clk),
-> +	LPI_FUNCTION(swr_rx_data),
-> +	LPI_FUNCTION(swr_tx_clk),
-> +	LPI_FUNCTION(swr_tx_data),
-> +	LPI_FUNCTION(wsa_swr_clk),
-> +	LPI_FUNCTION(wsa_swr_data),
-> +};
-> +
-> +static const struct lpi_pinctrl_variant_data sm8250_lpi_data = {
-> +	.pins = sm8250_lpi_pins,
-> +	.npins = ARRAY_SIZE(sm8250_lpi_pins),
-> +	.groups = sm8250_groups,
-> +	.ngroups = ARRAY_SIZE(sm8250_groups),
-> +	.functions = sm8250_functions,
-> +	.nfunctions = ARRAY_SIZE(sm8250_functions),
-> +};
-> +
-> +static const struct of_device_id lpi_pinctrl_of_match[] = {
-> +	{
-> +	       .compatible = "qcom,sm8250-lpass-lpi-pinctrl",
-> +	       .data = &sm8250_lpi_data,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-> +
-> +static struct platform_driver lpi_pinctrl_driver = {
-> +	.driver = {
-> +		   .name = "qcom-sm8250-lpass-lpi-pinctrl",
-> +		   .of_match_table = lpi_pinctrl_of_match,
-> +	},
-> +	.probe = lpi_pinctrl_probe,
-> +	.remove = lpi_pinctrl_remove,
-> +};
-> +
-> +module_platform_driver(lpi_pinctrl_driver);
-> +MODULE_DESCRIPTION("QTI SM8250 LPI GPIO pin control driver");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.7.4
+> Changes in v3:
+>  * Add |maxItems| for devfreq-events
+>  * Improve deprecation notes
 > 
+> Changes in v2:
+>  * rename to 'memory-controller' in example
+>  * place 'required' after properties
+>  * drop superluous free-form references and repetitions of other
+>    bindings
+>  * fix for yamllint
+
+Apologies for jumping in late in discussion, but how about moving it to
+memory-controllers or interconnect directory? devfreq is Linux specific
+and DMC sounds a lot like dynamic memory controller.
+
+> 
+>  .../bindings/devfreq/rk3399_dmc.txt           | 212 -------------
+>  .../bindings/devfreq/rk3399_dmc.yaml          | 294 ++++++++++++++++++
+
+file name:
+rockchip,rk3399-dmc.yaml
+
+>  2 files changed, 294 insertions(+), 212 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+>  create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+> deleted file mode 100644
+> index 58fc8a6cebc7..000000000000
+> --- a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+> +++ /dev/null
+> @@ -1,212 +0,0 @@
+> -* Rockchip rk3399 DMC (Dynamic Memory Controller) device
+> -
+> -Required properties:
+> -- compatible:		 Must be "rockchip,rk3399-dmc".
+> -- devfreq-events:	 Node to get DDR loading, Refer to
+> -			 Documentation/devicetree/bindings/devfreq/event/
+> -			 rockchip-dfi.txt
+> -- clocks:		 Phandles for clock specified in "clock-names" property
+> -- clock-names :		 The name of clock used by the DFI, must be
+> -			 "pclk_ddr_mon";
+> -- operating-points-v2:	 Refer to Documentation/devicetree/bindings/opp/opp-v2.yaml
+> -			 for details.
+> -- center-supply:	 DMC supply node.
+> -- status:		 Marks the node enabled/disabled.
+> -- rockchip,pmu:		 Phandle to the syscon managing the "PMU general register
+> -			 files".
+> -
+> -Optional properties:
+> -- interrupts:		 The CPU interrupt number. The interrupt specifier
+> -			 format depends on the interrupt controller.
+> -			 It should be a DCF interrupt. When DDR DVFS finishes
+> -			 a DCF interrupt is triggered.
+> -- rockchip,pmu:		 Phandle to the syscon managing the "PMU general register
+> -			 files".
+> -
+> -Following properties relate to DDR timing:
+> -
+> -- rockchip,dram_speed_bin :	  Value reference include/dt-bindings/clock/rk3399-ddr.h,
+> -				  it selects the DDR3 cl-trp-trcd type. It must be
+> -				  set according to "Speed Bin" in DDR3 datasheet,
+> -				  DO NOT use a smaller "Speed Bin" than specified
+> -				  for the DDR3 being used.
+> -
+> -- rockchip,pd_idle :		  Configure the PD_IDLE value. Defines the
+> -				  power-down idle period in which memories are
+> -				  placed into power-down mode if bus is idle
+> -				  for PD_IDLE DFI clock cycles.
+> -
+> -- rockchip,sr_idle :		  Configure the SR_IDLE value. Defines the
+> -				  self-refresh idle period in which memories are
+> -				  placed into self-refresh mode if bus is idle
+> -				  for SR_IDLE * 1024 DFI clock cycles (DFI
+> -				  clocks freq is half of DRAM clock), default
+> -				  value is "0".
+> -
+> -- rockchip,sr_mc_gate_idle :	  Defines the memory self-refresh and controller
+> -				  clock gating idle period. Memories are placed
+> -				  into self-refresh mode and memory controller
+> -				  clock arg gating started if bus is idle for
+> -				  sr_mc_gate_idle*1024 DFI clock cycles.
+> -
+> -- rockchip,srpd_lite_idle :	  Defines the self-refresh power down idle
+> -				  period in which memories are placed into
+> -				  self-refresh power down mode if bus is idle
+> -				  for srpd_lite_idle * 1024 DFI clock cycles.
+> -				  This parameter is for LPDDR4 only.
+> -
+> -- rockchip,standby_idle :	  Defines the standby idle period in which
+> -				  memories are placed into self-refresh mode.
+> -				  The controller, pi, PHY and DRAM clock will
+> -				  be gated if bus is idle for standby_idle * DFI
+> -				  clock cycles.
+> -
+> -- rockchip,dram_dll_dis_freq :	  Defines the DDR3 DLL bypass frequency in MHz.
+> -				  When DDR frequency is less than DRAM_DLL_DISB_FREQ,
+> -				  DDR3 DLL will be bypassed. Note: if DLL was bypassed,
+> -				  the odt will also stop working.
+> -
+> -- rockchip,phy_dll_dis_freq :	  Defines the PHY dll bypass frequency in
+> -				  MHz (Mega Hz). When DDR frequency is less than
+> -				  DRAM_DLL_DISB_FREQ, PHY DLL will be bypassed.
+> -				  Note: PHY DLL and PHY ODT are independent.
+> -
+> -- rockchip,ddr3_odt_dis_freq :	  When the DRAM type is DDR3, this parameter defines
+> -				  the ODT disable frequency in MHz (Mega Hz).
+> -				  when the DDR frequency is  less then ddr3_odt_dis_freq,
+> -				  the ODT on the DRAM side and controller side are
+> -				  both disabled.
+> -
+> -- rockchip,ddr3_drv :		  When the DRAM type is DDR3, this parameter defines
+> -				  the DRAM side driver strength in ohms. Default
+> -				  value is 40.
+> -
+> -- rockchip,ddr3_odt :		  When the DRAM type is DDR3, this parameter defines
+> -				  the DRAM side ODT strength in ohms. Default value
+> -				  is 120.
+> -
+> -- rockchip,phy_ddr3_ca_drv :	  When the DRAM type is DDR3, this parameter defines
+> -				  the phy side CA line (incluing command line,
+> -				  address line and clock line) driver strength.
+> -				  Default value is 40.
+> -
+> -- rockchip,phy_ddr3_dq_drv :	  When the DRAM type is DDR3, this parameter defines
+> -				  the PHY side DQ line (including DQS/DQ/DM line)
+> -				  driver strength. Default value is 40.
+> -
+> -- rockchip,phy_ddr3_odt : 	  When the DRAM type is DDR3, this parameter defines
+> -				  the PHY side ODT strength. Default value is 240.
+> -
+> -- rockchip,lpddr3_odt_dis_freq : When the DRAM type is LPDDR3, this parameter defines
+> -				  then ODT disable frequency in MHz (Mega Hz).
+> -				  When DDR frequency is less then ddr3_odt_dis_freq,
+> -				  the ODT on the DRAM side and controller side are
+> -				  both disabled.
+> -
+> -- rockchip,lpddr3_drv :		  When the DRAM type is LPDDR3, this parameter defines
+> -				  the DRAM side driver strength in ohms. Default
+> -				  value is 34.
+> -
+> -- rockchip,lpddr3_odt :		  When the DRAM type is LPDDR3, this parameter defines
+> -				  the DRAM side ODT strength in ohms. Default value
+> -				  is 240.
+> -
+> -- rockchip,phy_lpddr3_ca_drv :	  When the DRAM type is LPDDR3, this parameter defines
+> -				  the PHY side CA line (including command line,
+> -				  address line and clock line) driver strength.
+> -				  Default value is 40.
+> -
+> -- rockchip,phy_lpddr3_dq_drv :	  When the DRAM type is LPDDR3, this parameter defines
+> -				  the PHY side DQ line (including DQS/DQ/DM line)
+> -				  driver strength. Default value is 40.
+> -
+> -- rockchip,phy_lpddr3_odt : 	  When dram type is LPDDR3, this parameter define
+> -				  the phy side odt strength, default value is 240.
+> -
+> -- rockchip,lpddr4_odt_dis_freq : When the DRAM type is LPDDR4, this parameter
+> -				  defines the ODT disable frequency in
+> -				  MHz (Mega Hz). When the DDR frequency is less then
+> -				  ddr3_odt_dis_freq, the ODT on the DRAM side and
+> -				  controller side are both disabled.
+> -
+> -- rockchip,lpddr4_drv :		  When the DRAM type is LPDDR4, this parameter defines
+> -				  the DRAM side driver strength in ohms. Default
+> -				  value is 60.
+> -
+> -- rockchip,lpddr4_dq_odt : 	  When the DRAM type is LPDDR4, this parameter defines
+> -				  the DRAM side ODT on DQS/DQ line strength in ohms.
+> -				  Default value is 40.
+> -
+> -- rockchip,lpddr4_ca_odt :	  When the DRAM type is LPDDR4, this parameter defines
+> -				  the DRAM side ODT on CA line strength in ohms.
+> -				  Default value is 40.
+> -
+> -- rockchip,phy_lpddr4_ca_drv :	  When the DRAM type is LPDDR4, this parameter defines
+> -				  the PHY side CA line (including command address
+> -				  line) driver strength. Default value is 40.
+> -
+> -- rockchip,phy_lpddr4_ck_cs_drv : When the DRAM type is LPDDR4, this parameter defines
+> -				  the PHY side clock line and CS line driver
+> -				  strength. Default value is 80.
+> -
+> -- rockchip,phy_lpddr4_dq_drv :	  When the DRAM type is LPDDR4, this parameter defines
+> -				  the PHY side DQ line (including DQS/DQ/DM line)
+> -				  driver strength. Default value is 80.
+> -
+> -- rockchip,phy_lpddr4_odt :	  When the DRAM type is LPDDR4, this parameter defines
+> -				  the PHY side ODT strength. Default value is 60.
+> -
+> -Example:
+> -	dmc_opp_table: dmc_opp_table {
+> -		compatible = "operating-points-v2";
+> -
+> -		opp00 {
+> -			opp-hz = /bits/ 64 <300000000>;
+> -			opp-microvolt = <900000>;
+> -		};
+> -		opp01 {
+> -			opp-hz = /bits/ 64 <666000000>;
+> -			opp-microvolt = <900000>;
+> -		};
+> -	};
+> -
+> -	dmc: dmc {
+> -		compatible = "rockchip,rk3399-dmc";
+> -		devfreq-events = <&dfi>;
+> -		interrupts = <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&cru SCLK_DDRC>;
+> -		clock-names = "dmc_clk";
+> -		operating-points-v2 = <&dmc_opp_table>;
+> -		center-supply = <&ppvar_centerlogic>;
+> -		upthreshold = <15>;
+> -		downdifferential = <10>;
+> -		rockchip,ddr3_speed_bin = <21>;
+> -		rockchip,pd_idle = <0x40>;
+> -		rockchip,sr_idle = <0x2>;
+> -		rockchip,sr_mc_gate_idle = <0x3>;
+> -		rockchip,srpd_lite_idle	= <0x4>;
+> -		rockchip,standby_idle = <0x2000>;
+> -		rockchip,dram_dll_dis_freq = <300>;
+> -		rockchip,phy_dll_dis_freq = <125>;
+> -		rockchip,auto_pd_dis_freq = <666>;
+> -		rockchip,ddr3_odt_dis_freq = <333>;
+> -		rockchip,ddr3_drv = <40>;
+> -		rockchip,ddr3_odt = <120>;
+> -		rockchip,phy_ddr3_ca_drv = <40>;
+> -		rockchip,phy_ddr3_dq_drv = <40>;
+> -		rockchip,phy_ddr3_odt = <240>;
+> -		rockchip,lpddr3_odt_dis_freq = <333>;
+> -		rockchip,lpddr3_drv = <34>;
+> -		rockchip,lpddr3_odt = <240>;
+> -		rockchip,phy_lpddr3_ca_drv = <40>;
+> -		rockchip,phy_lpddr3_dq_drv = <40>;
+> -		rockchip,phy_lpddr3_odt = <240>;
+> -		rockchip,lpddr4_odt_dis_freq = <333>;
+> -		rockchip,lpddr4_drv = <60>;
+> -		rockchip,lpddr4_dq_odt = <40>;
+> -		rockchip,lpddr4_ca_odt = <40>;
+> -		rockchip,phy_lpddr4_ca_drv = <40>;
+> -		rockchip,phy_lpddr4_ck_cs_drv = <80>;
+> -		rockchip,phy_lpddr4_dq_drv = <80>;
+> -		rockchip,phy_lpddr4_odt = <60>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+> new file mode 100644
+> index 000000000000..ddddddc5c6fb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+> @@ -0,0 +1,294 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# %YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/devfreq/rk3399_dmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Rockchip rk3399 DMC (Dynamic Memory Controller) device
+> +
+> +maintainers:
+> +  - Brian Norris <briannorris@chromium.org>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - rockchip,rk3399-dmc
+> +
+> +  devfreq-events:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    minItems: 1
+> +    maxItems: 1
+
+Rob previously asked about max, but it seems it is only one phandle,
+right? Then the type - 'phandle'.
+
+> +    description:
+> +      Node to get DDR loading. Refer to
+> +      Documentation/devicetree/bindings/devfreq/event/rockchip-dfi.txt.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: dmc_clk
+> +
+> +  operating-points-v2: true
+> +
+> +  center-supply:
+> +    description:
+> +      DMC regulator supply.
+> +
+> +  rockchip,pmu:
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    description:
+> +      Phandle to the syscon managing the "PMU general register files".
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description:
+> +      The CPU interrupt number. It should be a DCF interrupt. When DDR DVFS
+> +      finishes, a DCF interrupt is triggered.
+> +
+> +  rockchip,ddr3_speed_bin:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      For values, reference include/dt-bindings/clock/rk3399-ddr.h. Selects the
+> +      DDR3 cl-trp-trcd type. It must be set according to "Speed Bin" in DDR3
+> +      datasheet; DO NOT use a smaller "Speed Bin" than specified for the DDR3
+> +      being used.
+> +
+> +  rockchip,pd_idle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Configure the PD_IDLE value. Defines the power-down idle period in which
+> +      memories are placed into power-down mode if bus is idle for PD_IDLE DFI
+> +      clock cycles.
+> +
+> +  rockchip,sr_idle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Configure the SR_IDLE value. Defines the self-refresh idle period in
+> +      which memories are placed into self-refresh mode if bus is idle for
+> +      SR_IDLE * 1024 DFI clock cycles (DFI clocks freq is half of DRAM clock).
+> +      Default value is "0".
+> +
+> +  rockchip,sr_mc_gate_idle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Defines the memory self-refresh and controller clock gating idle period.
+> +      Memories are placed into self-refresh mode and memory controller clock
+> +      arg gating started if bus is idle for sr_mc_gate_idle*1024 DFI clock
+> +      cycles.
+> +
+> +  rockchip,srpd_lite_idle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Defines the self-refresh power down idle period in which memories are
+> +      placed into self-refresh power down mode if bus is idle for
+> +      srpd_lite_idle * 1024 DFI clock cycles. This parameter is for LPDDR4
+> +      only.
+> +
+> +  rockchip,standby_idle:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Defines the standby idle period in which memories are placed into
+> +      self-refresh mode. The controller, pi, PHY and DRAM clock will be gated
+> +      if bus is idle for standby_idle * DFI clock cycles.
+> +
+> +  rockchip,dram_dll_dis_freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Defines the DDR3 DLL bypass frequency in MHz. When DDR frequency is less
+> +      than DRAM_DLL_DISB_FREQ, DDR3 DLL will be bypassed.
+> +      Note: if DLL was bypassed, the odt will also stop working.
+> +
+> +  rockchip,phy_dll_dis_freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      Defines the PHY dll bypass frequency in MHz (Mega Hz). When DDR frequency
+> +      is less than DRAM_DLL_DISB_FREQ, PHY DLL will be bypassed.
+> +      Note: PHY DLL and PHY ODT are independent.
+> +
+> +  rockchip,auto_pd_dis_freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Defines the auto PD disable frequency in MHz.
+> +
+> +  rockchip,ddr3_odt_dis_freq:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      When the DRAM type is DDR3, this parameter defines the ODT disable
+> +      frequency in MHz (Mega Hz). When the DDR frequency is less then
+> +      ddr3_odt_dis_freq, the ODT on the DRAM side and controller side are both
+> +      disabled.
+> +
+> +  rockchip,ddr3_drv:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      When the DRAM type is DDR3, this parameter defines the DRAM side drive
+> +      strength in ohms. Default value is 40.
+> +
+> +  rockchip,ddr3_odt:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      When the DRAM type is DDR3, this parameter defines the DRAM side ODT
+> +      strength in ohms. Default value is 120.
+
+Here and in all other places - instead of describing default value in
+description, just add "default: 120".
+
+> +
+> +  rockchip,phy_ddr3_ca_drv:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      When the DRAM type is DDR3, this parameter defines the phy side CA line
+> +      (incluing command line, address line and clock line) drive strength.
+> +      Default value is 40.
+> +
+
+
+Best regards,
+Krzysztof
