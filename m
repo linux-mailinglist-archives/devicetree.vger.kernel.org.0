@@ -2,87 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E07D24D1CCA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 17:08:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DA84D1CD1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 17:09:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235920AbiCHQJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 11:09:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53436 "EHLO
+        id S235623AbiCHQKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 11:10:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348183AbiCHQJW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 11:09:22 -0500
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CC484B843;
-        Tue,  8 Mar 2022 08:08:20 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id z8so15976572oix.3;
-        Tue, 08 Mar 2022 08:08:20 -0800 (PST)
+        with ESMTP id S233693AbiCHQKu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 11:10:50 -0500
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700625046F
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 08:09:53 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id x26-20020a4a9b9a000000b003211029e80fso6115803ooj.5
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 08:09:53 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fIYdhkRgnd5IrdDqw6cSIJSdZy8FeYm4lCYJZq5beHQ=;
-        b=CZgim5qb5gtg0bs19bJ3reUh8fp/x0PbTPozpA0HSCWtLd8xFz3cuDiZXmfsjleFMJ
-         +0rRnn/zcE8B7S5vYqiVow1DSMcsNTRVbPog8KMTnL85W56v798PZjysZcvImrAgSrzU
-         pH9HS+xOHhmVFHaMmtTma2IWILt9ztMp7O2tBN+AW0OGLhF7ytjDhgjdPv9i9s4iAWNw
-         FYzc6I6kXF8WKYbnLFmbANpQfApRTNHu58YMRJyByfftwyIruQzEXKglCSF+R8JOxtTu
-         TE9BN8Cvl1U9ve4zYUGhUtO8H4zxEFAT3+jFYlQWComEDGxDugCJzkcj33m4vgmTqNmo
-         BzRw==
-X-Gm-Message-State: AOAM532jgigVIrEYWHjyAECE7NDxllel5HF0ML2C2SxoISc4RA7Y+CKQ
-        kof3xXAI5hWDWynHpwJ1lQ==
-X-Google-Smtp-Source: ABdhPJyIzxkFrakrSZDtNlGtYK1sQFfMMuwRA141r44tBdCLEzkLpuro9a8jdegDXPKy1BT7Ta7sDg==
-X-Received: by 2002:a05:6808:148c:b0:2d9:a01a:4ba5 with SMTP id e12-20020a056808148c00b002d9a01a4ba5mr3090427oiw.204.1646755699624;
-        Tue, 08 Mar 2022 08:08:19 -0800 (PST)
+        bh=gksQ+ySfVzX/BzWqaFxCpK+7H0a13SWGbxXt2Z5JHuI=;
+        b=n7PDlT2OijW/eC8AvEgws5RitqKbC58Bydr8ErcpR2gb5r2SSdb//vsSqKWfmPJ7+m
+         2PROdea4Vjj/XuCvQUQ0AEjlYbFr3iY9BKu+Av4UY/YAdeHkvs0IKD792McWQMx9zPfv
+         lgZv4Fmt5LK/9T3vueCIQESV6lmwcCq8VKWICmL7lubKrITso5fBxoGSmuMcbsikHsAo
+         i/IdLIktTbUO88SQEwkfOBXKQumtLrtTrSj9dLItXHrI0lQ1GmlsFNjOOO++ACRvbNxd
+         jQMA/GQF97oR0OVvSy2fvQ4C5AbQC/nJaY/pFWVdanXupB4uKr7npLOyXgzxQJFLm42t
+         v6MQ==
+X-Gm-Message-State: AOAM531LwoEWNVEmCuCStMGRQo/JZ3yESrt/aqtOxa9Z/l1M0JLtF4CI
+        AyY74q6VqaOIcEMAQhEGuw==
+X-Google-Smtp-Source: ABdhPJzLHug0HYSICR5UmoCceM/A96yu7TBizOs7JaMiLXdJSNLB8LT3kVLLyPOnkEYOaS36hCMFTg==
+X-Received: by 2002:a05:6870:c588:b0:da:3d88:de58 with SMTP id ba8-20020a056870c58800b000da3d88de58mr2890938oab.32.1646755792766;
+        Tue, 08 Mar 2022 08:09:52 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g18-20020a9d6c52000000b005af7c7cb702sm7555976otq.34.2022.03.08.08.08.18
+        by smtp.gmail.com with ESMTPSA id 60-20020a9d0642000000b005b22a82458csm4268370otn.55.2022.03.08.08.09.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 08:08:18 -0800 (PST)
-Received: (nullmailer pid 847079 invoked by uid 1000);
-        Tue, 08 Mar 2022 16:08:17 -0000
-Date:   Tue, 8 Mar 2022 10:08:17 -0600
+        Tue, 08 Mar 2022 08:09:51 -0800 (PST)
+Received: (nullmailer pid 849717 invoked by uid 1000);
+        Tue, 08 Mar 2022 16:09:50 -0000
+Date:   Tue, 8 Mar 2022 10:09:50 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        linux-sunxi@lists.linux.dev, linux-watchdog@vger.kernel.org,
+Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
+        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
+        Maxime Ripard <mripard@kernel.org>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
         Mesih Kilinc <mesihkilinc@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH 01/14] dt-bindings: watchdog: sunxi: fix F1C100s
- compatible
-Message-ID: <Yid/cY2eWlHKp7YN@robh.at.kernel.org>
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Subject: Re: [PATCH 03/14] dt-bindings: arm: sunxi: document LicheePi Nano
+ name
+Message-ID: <Yid/zlFb2fqNsKEQ@robh.at.kernel.org>
 References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-2-andre.przywara@arm.com>
+ <20220307143421.1106209-4-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220307143421.1106209-2-andre.przywara@arm.com>
+In-Reply-To: <20220307143421.1106209-4-andre.przywara@arm.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 14:34:08 +0000, Andre Przywara wrote:
-> The F1C100 series actually features a newer generation watchdog IP, so
-> the compatible string was wrong.
+On Mon, 07 Mar 2022 14:34:10 +0000, Andre Przywara wrote:
+> The top level LicheePi Nano compatible name was never documented in the
+> bindings, so add the currently used string.
+> 
+> It looks like the manufacturer might be "sipeed" as well, but I will go
+> with the "licheepi" string that is in the actual .dts for years now.
 > 
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
