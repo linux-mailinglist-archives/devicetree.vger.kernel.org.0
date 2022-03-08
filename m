@@ -2,72 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B93474D20EB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 20:06:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 022624D20F6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 20:09:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349833AbiCHTHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 14:07:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46058 "EHLO
+        id S238022AbiCHTKH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 14:10:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52836 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349849AbiCHTHu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 14:07:50 -0500
-Received: from mail-pj1-x102c.google.com (mail-pj1-x102c.google.com [IPv6:2607:f8b0:4864:20::102c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67FE553E0E
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 11:06:53 -0800 (PST)
-Received: by mail-pj1-x102c.google.com with SMTP id e3so58752pjm.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 11:06:53 -0800 (PST)
+        with ESMTP id S235070AbiCHTKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 14:10:06 -0500
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B55344CD
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 11:09:09 -0800 (PST)
+Received: by mail-pf1-x430.google.com with SMTP id a5so214532pfv.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 11:09:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fKKD+3hXAeIEEWs0Yh0fwesV2YwX9bcSV9zNUsAN1go=;
-        b=TiAz7VQN6cqOR+YCGQONQ1puu9/mIbyi+3VaF2Y+0BaZGeb5d0zwRpgV+wE8vfCZR2
-         Pgq+thE1e9/4lXjLiLuSG2aKfs9V+qPTceSPGx1VZpZ/g/nRHQ1xsr06c/+SZh0uL6ZD
-         l59TPYzzVMS9JLJRtFAh9Cax5j2QTPG0/KiPc=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WfeJ5Z/28d4DwwwwEjo+Xl8PsAuc47UIF+v9aMkJPaE=;
+        b=g4Kn+knbxPcL2nDhbYO7LeofqDCYGIzYat8Uyvm4hBnk/d5333G7ySljmfyQYE/UX1
+         Rw+7tkAdrzG/RAZVqapYRbjzY81SexLEMmsu+AwVUsO5KzHEud+nHcFxU7lkjYurEV2L
+         AzXJs1J0+S7c90q2nf41z2xJzeZ0Vdp76lXtA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fKKD+3hXAeIEEWs0Yh0fwesV2YwX9bcSV9zNUsAN1go=;
-        b=dsNwq71iTypAUIrux4JO/kQFlSpwvGfxZPUHyhTrU5ECMl5mXz54nO4UvCjjTV2ypt
-         3aUiCQ0ovDd9C+1cVjKxXiHGzHkZcBJkXqRpSGIBR29LujIxXSMYmueJo3HEtu4IqZes
-         N+o1vLE4+/D3Yz+zxT4T4b1+z3gzzgN5nEU+hLqeH1Ur4cFkR2x6mhtunxw5kJM+v4yB
-         luwYUId9VOVQfBb5YjfnC2ZXEc6rdocrBwXrmsagMbkMf0ySMN+DDazAgqir4lW9/xHl
-         8sB+lmcl1XfgIR9SdgvsdVDWrpI/AWZ47AfFexR5eTNgG73uZ/K5c/q/BhVBOPkmYZl4
-         hpgQ==
-X-Gm-Message-State: AOAM530bnl82TpAyZvuLffK98CEXR1YCKXX5A9TOjH8Kb2pXJBxtkDKq
-        Xx4QHSkd+c9wb36t6AEc3MU8yw==
-X-Google-Smtp-Source: ABdhPJwSOD+gGbHatfnouDV590+C0yrq8QOnBDEG0WOdkHpfzRz+TxjH6jpl1Ho2oEWdFX5xJuG7yw==
-X-Received: by 2002:a17:90a:aa8c:b0:1bf:5273:ba28 with SMTP id l12-20020a17090aaa8c00b001bf5273ba28mr6261331pjq.226.1646766412904;
-        Tue, 08 Mar 2022 11:06:52 -0800 (PST)
-Received: from google.com ([2620:15c:202:201:b3e3:a188:cbfc:3a0e])
-        by smtp.gmail.com with ESMTPSA id x29-20020aa79a5d000000b004f0ef1822d3sm19910654pfj.128.2022.03.08.11.06.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 11:06:52 -0800 (PST)
-Date:   Tue, 8 Mar 2022 11:06:49 -0800
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=WfeJ5Z/28d4DwwwwEjo+Xl8PsAuc47UIF+v9aMkJPaE=;
+        b=2gJQh9F2dQgn94FN8nawX3vIVwTvMVlNfwDzsO/coJ9jBm+KwMmcOIJatugw9qX1Zb
+         hiUaZsK3NM/V5z8qWNbzYFogR8gAQlaSFclwXl6gBNAJ6c14/jiQJGm5rAZ02DTxOZ92
+         hyKrUeZMpVerAJnRpdt/hjZlmQXuAVL5gJyGh5AX9Y1Ku8ORdeai8/ZRbv8d2nGDeBzw
+         Vz8Ff19n6YkD96mf3qZEsFlFWubczsShjyf6K4JrvBnwY2pTaDMpVDPCY2E5NULmveda
+         VBnmRZmLfmjDGDobO0dzwJHqTRr6G6QTODKjIeyJEFWR6Ywa1PBqHRlVe73kHifDKMja
+         RVXQ==
+X-Gm-Message-State: AOAM530bIHOKBrWaFKEBBQa1Yh4mEM4TrRvmBGTkK8gk53mdWMghMFBd
+        4hzxNk3b/HxKUFczDWN7S5FtJ6jkQzJUBQ==
+X-Google-Smtp-Source: ABdhPJzS5q/sqiq5fTsLk+gxrR8BJqiWX5haq34jcz+ml+GBnO2cRbA1Joomrpy3ASNpNH9qD/103A==
+X-Received: by 2002:a63:fd4e:0:b0:378:7d6f:d7e9 with SMTP id m14-20020a63fd4e000000b003787d6fd7e9mr15410471pgj.440.1646766549462;
+        Tue, 08 Mar 2022 11:09:09 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:b3e3:a188:cbfc:3a0e])
+        by smtp.gmail.com with UTF8SMTPSA id e11-20020a17090a280b00b001bf23a472c7sm3680868pjd.17.2022.03.08.11.09.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Mar 2022 11:09:08 -0800 (PST)
 From:   Brian Norris <briannorris@chromium.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Kyungmin Park <kyungmin.park@samsung.com>,
         Chanwoo Choi <cw00.choi@samsung.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lin Huang <hl@rock-chips.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Derek Basehore <dbasehore@chromium.org>,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 01/15] dt-bindings: devfreq: rk3399_dmc: Convert to
- YAML
-Message-ID: <YiepSZXhmUZVwjKo@google.com>
-References: <20220308000945.706701-1-briannorris@chromium.org>
- <20220307160918.v3.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
- <bf59a2bc-a708-27de-866a-346085dcee7d@canonical.com>
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Derek Basehore <dbasehore@chromium.org>,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Lin Huang <hl@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH v4 00/15] rk3399: Clean up and enable DDR DVFS
+Date:   Tue,  8 Mar 2022 11:08:46 -0800
+Message-Id: <20220308190901.3144566-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.35.1.616.g0bdcbb4464-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <bf59a2bc-a708-27de-866a-346085dcee7d@canonical.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -78,58 +72,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 07:03:15PM +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2022 01:09, Brian Norris wrote:
- 
-> Apologies for jumping in late in discussion, but how about moving it to
-> memory-controllers or interconnect directory? devfreq is Linux specific
-> and DMC sounds a lot like dynamic memory controller.
+This series covers 2 primary tasks:
 
-Sure! Will do in v4.
+1) Resubmit prior work:
 
-> > 
-> >  .../bindings/devfreq/rk3399_dmc.txt           | 212 -------------
-> >  .../bindings/devfreq/rk3399_dmc.yaml          | 294 ++++++++++++++++++
-> 
-> file name:
-> rockchip,rk3399-dmc.yaml
+[RESEND PATCH v5 3/4] arm64: dts: rockchip: Enable dmc and dfi nodes on gru.
+https://lore.kernel.org/lkml/20210308233858.24741-2-daniel.lezcano@linaro.org/
+[RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+https://lore.kernel.org/lkml/20210308233858.24741-3-daniel.lezcano@linaro.org/
 
-Ack.
+This series was partially merged a while back, but the remaining 2
+patches were blocked mostly on stylistic grounds (alpha/numerical
+ordering).
 
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+2) Integrate many updates, bugfixes, and clarifications that were done
+by Rockchip and Google engineers when first launching this platform.
+Many of these were not integrated in the earlier series (e.g., the OPPs
+changed before production; earlier patchsets used pre-production
+numbers).
 
-> > +  devfreq-events:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > +    minItems: 1
-> > +    maxItems: 1
-> 
-> Rob previously asked about max, but it seems it is only one phandle,
-> right? Then the type - 'phandle'.
+Along the way, it seemed worthwhile to convert the binding docs to a
+schema. Among other reasons, it actually helped catch several errors and
+omissions in translation between downstream device trees and the version
+that actually landed upstream.
 
-Sure! Don't know why I didn't notice that.
-
-> > +  rockchip,ddr3_odt:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      When the DRAM type is DDR3, this parameter defines the DRAM side ODT
-> > +      strength in ohms. Default value is 120.
-> 
-> Here and in all other places - instead of describing default value in
-> description, just add "default: 120".
-
-Yep. Most of these properties are actually deprecated in the end, but
-doesn't hurt to use the facilities available.
-
-> Best regards,
-> Krzysztof
-
-Thanks for the reviews! I'll roll them all into v4 shortly.
-
-While I'm at it: I think I have Reviewed-by's for all the DT patches
-(except this one). Given it also touches Rockchip device trees, maybe
-this all needs to go through Heiko / linux-rockchip? Or if not, it'd be
-nice if Heiko spoke up to tell the devfreq maintainers instead.
+See the patches for further details.
 
 Regards,
 Brian
+
+Changes in v4:
+ * Update .yaml to use more "default" entries, instead of free-form text
+ * s/phandle-array/phandle/
+ * Move to .../memory-controllers, update filename
+
+Changes in v3:
+ * Add |maxItems| for devfreq-events
+ * Improve deprecation notes
+ * Add Reviewed-by tags
+ * Collect some Acked/Reviewed tags
+
+Changes in v2:
+ * Fix yamllint issues
+ * Adapt to various review comments (use of *-hz, hyphens, node naming)
+ * Add a few new bugfixes
+ * Add some new properties (ported from downstream kernels) required for
+   stability
+ * Convert more properties from "cycles" to "nanoseconds"
+
+Brian Norris (13):
+  dt-bindings: devfreq: rk3399_dmc: Convert to YAML
+  dt-bindings: devfreq: rk3399_dmc: Deprecate unused/redundant
+    properties
+  dt-bindings: devfreq: rk3399_dmc: Fix Hz units
+  dt-bindings: devfreq: rk3399_dmc: Specify idle params in nanoseconds
+  dt-bindings: devfreq: rk3399_dmc: Add more disable-freq properties
+  PM / devfreq: rk3399_dmc: Drop undocumented ondemand DT props
+  PM / devfreq: rk3399_dmc: Drop excess timing properties
+  PM / devfreq: rk3399_dmc: Use bitfield macro definitions for ODT_PD
+  PM / devfreq: rk3399_dmc: Support new disable-freq properties
+  PM / devfreq: rk3399_dmc: Support new *-ns properties
+  PM / devfreq: rk3399_dmc: Disable edev on remove()
+  PM / devfreq: rk3399_dmc: Use devm_pm_opp_of_add_table()
+  PM / devfreq: rk3399_dmc: Avoid static (reused) profile
+
+Lin Huang (2):
+  arm64: dts: rk3399: Add dfi and dmc nodes
+  arm64: dts: rockchip: Enable dmc and dfi nodes on gru
+
+ .../bindings/devfreq/rk3399_dmc.txt           | 212 ----------
+ .../rockchip,rk3399-dmc.yaml                  | 384 ++++++++++++++++++
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |   7 +
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  12 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  28 ++
+ .../boot/dts/rockchip/rk3399-op1-opp.dtsi     |  25 ++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  19 +
+ drivers/devfreq/rk3399_dmc.c                  | 299 ++++++--------
+ 8 files changed, 609 insertions(+), 377 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+ create mode 100644 Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+
+-- 
+2.35.1.616.g0bdcbb4464-goog
+
