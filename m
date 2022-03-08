@@ -2,117 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E0C24D1E30
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 18:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 923144D1E75
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 18:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348648AbiCHRKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 12:10:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38044 "EHLO
+        id S241190AbiCHRTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 12:19:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348621AbiCHRKp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 12:10:45 -0500
-Received: from mail-qv1-xf34.google.com (mail-qv1-xf34.google.com [IPv6:2607:f8b0:4864:20::f34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB74045AE0
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 09:09:48 -0800 (PST)
-Received: by mail-qv1-xf34.google.com with SMTP id hu12so690764qvb.6
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 09:09:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UQsloRHTSaGiGetdbDWoxqQEJYsHpKTImpl+EXTJaU0=;
-        b=H2042iFn8zbvVMiOulmTBRC55hfhpLFhLPRiEwvUGuLHJeAjSulrbb/dnZ+gGOGpdx
-         z+nEoUPsD5v9kA7aLyUd3mh/+c+OPht0WtwZz7SUgG5EpIxXKtD33/rrpjJgBRLOZ+Wc
-         +w4Ng70uS1XwbnLD2GxLQoEqEPlzd/G0Nj4DbBPsF4RU+8mYeOajlGGlmH85BpFpMHq4
-         V9pj+HOsO1K0j7YJzSI1eVB8yORUl7FQ0K4fuwqcZEq2hj4nu6kvqSciK8Z1UvqSgnGX
-         2Gg1wU8u+siIqzrk0fumIX8gcdhjob0cCaqDCKEe8NWqBvwoktmRCHASmW+vII/XTqBi
-         SkNg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UQsloRHTSaGiGetdbDWoxqQEJYsHpKTImpl+EXTJaU0=;
-        b=wtvU5yoUJAsG4/mcYEA2MP94xD7nyT7QY/XpgD28jZZnK6jUF2Zz26nvmvCWyuHfa3
-         BcER1l8KClLOitpqwJTNCEU4IEsdYyO7kVXBMQzGz0LoDWguaTrTSN0hI8BJ5+vdSzWS
-         zqQ2aukO7kMhOjCrJqaAakWgj5aoN5NHiuCN6gIPwSu0I3QHPX8sS6dNgslvvcatCA0e
-         D0mZtfrQVCsWENfkEgZg2qwQ6XeyHcHL86fPNZM0cXc1K/QiCKjpU7OqdnqOSit2oAYZ
-         HJYYcdtn1CUeoaFeeOi1DsZO+G0biUDAdMq7l87Bt9LsWWpfYAbcq0fw63DqmsjyuLuZ
-         0bOQ==
-X-Gm-Message-State: AOAM533ytzB5eSJMmJGRDRHFk0ymWnoFk/x8cw/vPWkgJz0EjQ2HBKsO
-        3kkLjTv1XUGOAx/HZYTJPOvBbkixc0bMtSQqbRFlRg==
-X-Google-Smtp-Source: ABdhPJziwHM3mwjCjwO4Ib9qlCcqXaMHab7YQ1KRTIBpOJvcb8c3ZW4vgDTtKRTvbt8UU9j7WWhqwP7KKAN7SmM4acc=
-X-Received: by 2002:a05:6214:1bcf:b0:435:4c86:607a with SMTP id
- m15-20020a0562141bcf00b004354c86607amr12909937qvc.122.1646759386744; Tue, 08
- Mar 2022 09:09:46 -0800 (PST)
+        with ESMTP id S1348841AbiCHRTo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 12:19:44 -0500
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DC7A53B59;
+        Tue,  8 Mar 2022 09:18:32 -0800 (PST)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 228FxtbT015166;
+        Tue, 8 Mar 2022 11:17:33 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=ct6f8v+b3c9iZFTsuJ+tCBScraovnh0qwyDJ/LoPqIQ=;
+ b=JX/h4EoiuTDt10EmzTVbV+r8ONYg9fFWniIVfFpV4nQPLgZ8qzxRDvBvOA6xz1FFQvCy
+ ST3FKXcN1FenpIvJV1HJl8lYYCKnvx3VkCvBgXjqTtb6RZoG0y92tyfr9xFvMHR61Ftw
+ 5n8t0otRTzmWA3CFPw1SNA2O6HTlYuJXjBFRzR4pGMwV46akpgVjgDVPRqvzE4lsetis
+ ozijxSHwdmjK6o2QHtErc7izMqXcvqWWxhfnzsl1bfWZSM+jHfC0zSvz3+zVPoTdtI5Z
+ JOVeJSof6JTMABKy2zYTBmntQI/+qb8wr9WNviMPL9b3tasvaxZDqjaOZ/JSNXuGcDRG EA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3em55svhnr-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 08 Mar 2022 11:17:33 -0600
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Tue, 8 Mar
+ 2022 17:17:31 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Tue, 8 Mar 2022 17:17:31 +0000
+Received: from aryzen.ad.cirrus.com (unknown [198.61.65.38])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3C312B06;
+        Tue,  8 Mar 2022 17:17:31 +0000 (UTC)
+From:   Lucas Tanure <tanureal@opensource.cirrus.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Lucas Tanure <tanureal@opensource.cirrus.com>
+Subject: [PATCH v3 00/16] Support external boost at CS35l41 ASoC driver
+Date:   Tue, 8 Mar 2022 17:17:14 +0000
+Message-ID: <20220308171730.454587-1-tanureal@opensource.cirrus.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com> <1646758500-3776-6-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1646758500-3776-6-git-send-email-quic_vpolimer@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 8 Mar 2022 20:09:35 +0300
-Message-ID: <CAA8EJprgJvOGCU_PvAHCNoMvSam8QV4x9N2ZEm+oer5d7B-cPA@mail.gmail.com>
-Subject: Re: [PATCH v5 5/5] drm/msm/disp/dpu1: set mdp clk to the maximum
- frequency in opp table during probe
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: XR-m0K5S2IcWeMonhctnAFUFDN43nhlM
+X-Proofpoint-GUID: XR-m0K5S2IcWeMonhctnAFUFDN43nhlM
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Mar 2022 at 19:55, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
->
-> use max clock during probe/bind sequence from the opp table.
-> The clock will be scaled down when framework sends an update.
->
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> ---
->  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> index d550f90..d9922b9 100644
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
-> @@ -1221,6 +1221,7 @@ static int dpu_bind(struct device *dev, struct device *master, void *data)
->         struct dpu_kms *dpu_kms;
->         struct dss_module_power *mp;
->         int ret = 0;
-> +       unsigned long max_freq = ULONG_MAX;
->
->         dpu_kms = devm_kzalloc(&pdev->dev, sizeof(*dpu_kms), GFP_KERNEL);
->         if (!dpu_kms)
-> @@ -1243,6 +1244,8 @@ static int dpu_bind(struct device *dev, struct device *master, void *data)
->                 return ret;
->         }
->
-> +       dev_pm_opp_find_freq_floor(dev, &max_freq);
+Move the support for CS35L41 external boost to its shared library
+for ASoC use.
+This move resulted in cs35l41_hda_reg_sequence being removed,
+and its steps were broken down into regmap writes or functions
+from the library. And hardware configuration struct was unified
+for its use in the shared lib.
+While at it, some minor bugs were found and fixed it.
 
-You leak a reference to the opp here. The function returns a value,
-which should be dev_pm_opp_put().
-Moreover judging from the dev_pm_opp_set_rate() code I think you don't
-have to find an exact frequency, as it will call
-clk_round_rate()/_find_freq_ceil() anyway.
-Could you please check that it works?
+v3 changelog:
+ - Remove patches already accepted
+ - Improved logic in documentation patch
+ - Documentation patch goes before its code
+ - Fixed missing Signed-off-by
+ - Fixed subject for HDA patches
 
-> +       dev_pm_opp_set_rate(dev, max_freq);
->         platform_set_drvdata(pdev, dpu_kms);
->
->         ret = msm_kms_init(&dpu_kms->base, &kms_funcs);
-> --
-> 2.7.4
->
+v2 changelog:
+ - Instead of removing the log, playback actions will log the last regmap access.
+ - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
+ provided example.
 
+Previous versions:
+ v1: https://lkml.org/lkml/2022/3/3/759
+ v2: https://lkml.org/lkml/2022/3/4/743
+
+David Rhodes (1):
+  ASoC: dt-bindings: cs35l41: Document CS35l41 External Boost
+
+Lucas Tanure (15):
+  sound: cs35l41: Unify hardware configuration
+  sound: cs35l41: Check hw_config before using it
+  sound: cs35l41: Move cs35l41_gpio_config to shared lib
+  ALSA: hda: cs35l41: Fix I2S params comments
+  ALSA: hda: cs35l41: Always configure the DAI
+  ALSA: hda: cs35l41: Add Boost type flag
+  hda: cs35l41: Put the device into safe mode for external boost
+  hda: cs35l41: Mute the device before shutdown
+  sound: cs35l41: Enable Internal Boost in shared lib
+  ALSA: hda: cs35l41: Move boost config to initialization code
+  ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+  ALSA: hda: cs35l41: Reorganize log for playback actions
+  ALSA: hda: cs35l41: Handle all external boost setups the same way
+  ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
+  ASoC: cs35l41: Support external boost
+
+ .../bindings/sound/cirrus,cs35l41.yaml        |  44 ++-
+ include/sound/cs35l41.h                       |  53 +++-
+ sound/pci/hda/cs35l41_hda.c                   | 295 ++++++------------
+ sound/pci/hda/cs35l41_hda.h                   |  27 +-
+ sound/soc/codecs/cs35l41-i2c.c                |   4 +-
+ sound/soc/codecs/cs35l41-lib.c                | 190 ++++++++++-
+ sound/soc/codecs/cs35l41-spi.c                |   4 +-
+ sound/soc/codecs/cs35l41.c                    | 166 +++++-----
+ sound/soc/codecs/cs35l41.h                    |   5 +-
+ 9 files changed, 437 insertions(+), 351 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.35.1
+
