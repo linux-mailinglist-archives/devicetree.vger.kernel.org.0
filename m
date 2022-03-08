@@ -2,64 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD7F84D0D1E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:57:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0A44D0D24
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239933AbiCHA6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 19:58:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53924 "EHLO
+        id S243861AbiCHA7E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 19:59:04 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241660AbiCHA6f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:58:35 -0500
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2A0FDFF8
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:57:36 -0800 (PST)
-Received: by mail-oi1-f174.google.com with SMTP id z7so17266990oid.4
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 16:57:36 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gq59UE3cTSs3qNXLzpjqXYkCpDSstIwAsqV4QUkUf5U=;
-        b=mvomc6HWJ3N1lJCglBxdTqwRHPr6SFQkDq5PNuPqIrRUm2G6aEpB6Z4SdnKEac8w2X
-         /OS/VHhc5ps5Fhk1JvJ554gihurYOtJuDdxkHMD4Nk5i9PSUWcYTDuD8TOvQa596FBRa
-         hQY/nN9gjbk2fY+ga8yxG8G95L40Jg03wnYoimIDUef/WEEJtt44pUGRxkA/Xt00DnBe
-         EN5ABX/tnFpjgaQGBg84fj02/8NR2diA0XeVphEvV+krqMhK9siqkPwVubXdyDYJ06/a
-         acbA++d6pRgaCPPRmdtUcUNxUP3+bPyPqOOQJYSMC9v6EVnS6XhQ/u5oinEq6FMMzav7
-         hz3Q==
-X-Gm-Message-State: AOAM532r6qBIB6Yq6k3BcqKYpscD+QKXSjJywvDbQUg8cxsZFpubb+Db
-        Jcy/ILRZUu9v5xGaSRwLaw==
-X-Google-Smtp-Source: ABdhPJyNzfmC3eXDfqkGUdgxXQi9iFr9d6NGbT86dkIYFRYjW7BxPs5o55rCdVmWsq7DztwRgxOOLg==
-X-Received: by 2002:a05:6808:169f:b0:2d7:9bbd:ae82 with SMTP id bb31-20020a056808169f00b002d79bbdae82mr1085492oib.136.1646701056249;
-        Mon, 07 Mar 2022 16:57:36 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id o2-20020a05687072c200b000d9ae3e1fabsm6217940oak.12.2022.03.07.16.57.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 16:57:35 -0800 (PST)
-Received: (nullmailer pid 3606977 invoked by uid 1000);
-        Tue, 08 Mar 2022 00:57:33 -0000
-Date:   Mon, 7 Mar 2022 18:57:33 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: gpu: Convert aspeed-gfx bindings to
- yaml
-Message-ID: <Yiap/f48pLUXzaQ0@robh.at.kernel.org>
-References: <20220304000311.970267-1-joel@jms.id.au>
- <20220304000311.970267-3-joel@jms.id.au>
- <44308465-db4c-80e7-2beb-b0f676d16edf@canonical.com>
+        with ESMTP id S236142AbiCHA7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:59:04 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC24921E17;
+        Mon,  7 Mar 2022 16:58:08 -0800 (PST)
+X-UUID: 96c3cc759b7a49578fd364f526b76411-20220308
+X-UUID: 96c3cc759b7a49578fd364f526b76411-20220308
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1022482826; Tue, 08 Mar 2022 08:58:02 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Tue, 8 Mar 2022 08:58:01 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 8 Mar 2022 08:58:00 +0800
+Message-ID: <7cd27b814c67b32ca2d3eebfd81688612c93d886.camel@mediatek.com>
+Subject: Re: [PATCH v1 2/2] i2c: mediatek: Add i2c compatible for Mediatek
+ MT8168
+From:   Qii Wang <qii.wang@mediatek.com>
+To:     Kewei Xu <kewei.xu@mediatek.com>, <wsa@the-dreams.de>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <liguo.zhang@mediatek.com>, <caiyu.chen@mediatek.com>,
+        <housong.zhang@mediatek.com>, <yuhan.wei@mediatek.com>
+Date:   Tue, 8 Mar 2022 08:58:00 +0800
+In-Reply-To: <20220307033649.11564-3-kewei.xu@mediatek.com>
+References: <20220307033649.11564-1-kewei.xu@mediatek.com>
+         <20220307033649.11564-3-kewei.xu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <44308465-db4c-80e7-2beb-b0f676d16edf@canonical.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,86 +58,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 05, 2022 at 10:49:05PM +0100, Krzysztof Kozlowski wrote:
-> On 04/03/2022 01:03, Joel Stanley wrote:
-> > Convert the bindings to yaml and add the ast2600 compatible string.
-> > 
-> > The legacy mfd description was put in place before the gfx bindings
-> > existed, to document the compatible that is used in the pinctrl
-> > bindings.
-> > 
-> > Signed-off-by: Joel Stanley <joel@jms.id.au>
-> > ---
-> >  .../devicetree/bindings/gpu/aspeed,gfx.yaml   | 69 +++++++++++++++++++
-> >  .../devicetree/bindings/gpu/aspeed-gfx.txt    | 41 -----------
-> >  .../devicetree/bindings/mfd/aspeed-gfx.txt    | 17 -----
-> >  3 files changed, 69 insertions(+), 58 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/gpu/aspeed-gfx.txt
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/aspeed-gfx.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
-> > new file mode 100644
-> > index 000000000000..8ddc4fa6e8e4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpu/aspeed,gfx.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpu/aspeed,gfx.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ASPEED GFX display device
-> > +
-> > +maintainers:
-> > +  - Joel Stanley <joel@jms.id.au>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - aspeed,ast2400-gfx
-> > +          - aspeed,ast2500-gfx
-> > +          - aspeed,ast2600-gfx
+On Mon, 2022-03-07 at 11:36 +0800, Kewei Xu wrote:
+> Add i2c compatible for MT8168. Compare to MT2712 i2c controller,
+> MT8168 need to synchronize signal with dma.
 > 
-> That's different than original bindings - new patch. It's not currently
-> supported, so adding it is more than just updating bindings to current
-> state.
-> 
-> > +      - const: syscon
-> > +
-> > +  reg:
-> > +    minItems: 1
-> 
-> maxItems?
-> 
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  memory-region: true
+> Signed-off-by: Kewei Xu <kewei.xu@mediatek.com>
 
-Also need to define how many (maxItems: 1).
+Reviewed-by: Qii Wang <qii.wang@mediatek.com>
 
-> > +
-> > +  syscon: true
+> ---
+>  drivers/i2c/busses/i2c-mt65xx.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> You need at least description. I see old bindings did not mention it
-> (except that it is required)... I think you also need a type, because it
-> is not a standard property.
 > 
-> > +
-> > +  reg-io-width: true
-> 
-> Some constraints? Can it be anything from syscon schema?
-> 
-> Best regards,
-> Krzysztof
-> 
+
