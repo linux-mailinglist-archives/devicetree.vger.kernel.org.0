@@ -2,142 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1FA34D1F57
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 18:44:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A444D1F67
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 18:49:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230505AbiCHRp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 12:45:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35480 "EHLO
+        id S1348693AbiCHRuJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 12:50:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345805AbiCHRpZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 12:45:25 -0500
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AC5E46B01
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 09:44:28 -0800 (PST)
-Received: by mail-oi1-x233.google.com with SMTP id h10so3515oia.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 09:44:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LWBHo8zyRbtdgwtvZ69Wg4Ge808fFLN2tC6X5Zn9ZkA=;
-        b=aDCxkrA6yFPydxBcxmDwIW0PjIDqrTBzHkAdiRd9zZtESMHM6/XNtBZ2HVZV1HjtZr
-         iu/5YMOzeJBcov436XH1FbQ6ShbJGMgIeiTEI8Hg6WPEAII6pCfcLL695yjiR2WoZSBe
-         PmK5cwoG3mPRN/vBYNW7DTw8YI/Xc0AGHfHA7wpaqcVQzeUNMxbkYViIjoyH8cliUXz0
-         IpIpyGWV6eN0YYbxtq2bmhmlbfsgterUKbHbYPPWCK9Ryl8+5/2Ss9JTibdIxOcT1hQy
-         jXZ3Om/LFm+g95bwfVQ8DhdPDr/3VwR/NY35q/FymjdgvjUtSWp11xARAQHlwrjP113c
-         OcLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LWBHo8zyRbtdgwtvZ69Wg4Ge808fFLN2tC6X5Zn9ZkA=;
-        b=f5i0kI/nn0vuvbQaaFCrJiBmsX4KmLlDEIylq6ZTZBLuoEs7n5DDO/H0gJ40T+aMZ1
-         jFQlW89qc0QX8pbwgr9GhJMnWK40o02nozjmCfpPfBQtiTPYlbJFELLVE/qFuNgwTRBh
-         /KnDOyF1GuhejEDnY9g9uWz4HOYkQDCcFqAjskRHoN4bZH9HeQp/SFeTYy6vNSGZAEJC
-         4/wM7hvLkaUiZZar3IuUXCnpuPuubux0QTEmFlOIr6kED3KUvKnHEVKiZM1ZDBMZrEfi
-         OXD7Bkv3hEYX0ptvvL8jczmGhH/Vgy/eXy960jMKEyuYdRVHZL1C586yl4qHu+ke356T
-         0YzA==
-X-Gm-Message-State: AOAM531u/y8g9rR5QSpudPCbhgQVrn8xv6rqmIfL3eG1aJJzbWH5c0M6
-        RvIVj4nwJv2iQBOcfPBDp/VIsw==
-X-Google-Smtp-Source: ABdhPJwAg6e9dMfVsqqM7of4Q4JH4WF/O8PgvyZH6AwlM7Xy7iK9Wv14Io5Dt/gTtcDvPi7FPeA2Hg==
-X-Received: by 2002:a05:6808:10c8:b0:2d4:a070:d20b with SMTP id s8-20020a05680810c800b002d4a070d20bmr3370323ois.88.1646761467535;
-        Tue, 08 Mar 2022 09:44:27 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id r4-20020a9d5cc4000000b005af6f4ff5e2sm7982132oti.61.2022.03.08.09.44.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 09:44:27 -0800 (PST)
-Date:   Tue, 8 Mar 2022 09:46:10 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v10 3/7] pinctrl: qcom: Update macro name to LPI specific
-Message-ID: <YieWYtK5gCCIaPA+@ripper>
-References: <1646737394-4740-1-git-send-email-quic_srivasam@quicinc.com>
- <1646737394-4740-4-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1347124AbiCHRuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 12:50:09 -0500
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [IPv6:2a02:1800:120:4::f00:13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF013483B3
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 09:49:11 -0800 (PST)
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed40:6100:2d37:4115:c358])
+        by baptiste.telenet-ops.be with bizsmtp
+        id 3tp72700V1Yj8bA01tp7Qb; Tue, 08 Mar 2022 18:49:09 +0100
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan.of.borg with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nRdxL-003DQP-4j; Tue, 08 Mar 2022 18:49:07 +0100
+Received: from geert by rox.of.borg with local (Exim 4.93)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1nRdxK-006gpQ-H6; Tue, 08 Mar 2022 18:49:06 +0100
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] dt-bindings: firmware: arm,scpi: Add missing maxItems to mboxes/shmem
+Date:   Tue,  8 Mar 2022 18:49:02 +0100
+Message-Id: <58b7c706f259f88a61bfe82d9106fe0a93a9838d.1646761693.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1646737394-4740-4-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Mar 03:03 PST 2022, Srinivasa Rao Mandadapu wrote:
+"make dt_binding_check":
 
-> Update NO_SLEW macro to LPI_NO_SLEW macro as this driver lpi specific.
-> 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+    Documentation/devicetree/bindings/firmware/arm,scpi.example.dt.yaml: scpi: shmem: [[2], [1]] is too long
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Fix this by adding a proper maxItems value to the shmem property,
+and to the related mboxes property.
 
-Regards,
-Bjorn
+Fix the grouping of the "mboxes" property in the example.
 
-> ---
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 16 ++++++++--------
->  1 file changed, 8 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> index 2f19ab4..3c15f80 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> @@ -40,7 +40,7 @@
->  #define LPI_GPIO_KEEPER			0x2
->  #define LPI_GPIO_PULL_UP		0x3
->  #define LPI_GPIO_DS_TO_VAL(v)		(v / 2 - 1)
-> -#define NO_SLEW				-1
-> +#define LPI_NO_SLEW				-1
->  
->  #define LPI_FUNCTION(fname)			                \
->  	[LPI_MUX_##fname] = {		                \
-> @@ -193,14 +193,14 @@ static const struct lpi_pingroup sm8250_groups[] = {
->  	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
->  	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
->  	LPI_PINGROUP(5, 12, swr_tx_data, swr_rx_data, _, _),
-> -	LPI_PINGROUP(6, NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> -	LPI_PINGROUP(7, NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> -	LPI_PINGROUP(8, NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> -	LPI_PINGROUP(9, NO_SLEW, dmic2_data, i2s1_data, _, _),
-> +	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> +	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> +	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> +	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
->  	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
->  	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-> -	LPI_PINGROUP(12, NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> -	LPI_PINGROUP(13, NO_SLEW, dmic3_data, i2s2_data, _, _),
-> +	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> +	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
->  };
->  
->  static const struct lpi_function sm8250_functions[] = {
-> @@ -435,7 +435,7 @@ static int lpi_config_set(struct pinctrl_dev *pctldev, unsigned int group,
->  			}
->  
->  			slew_offset = g->slew_offset;
-> -			if (slew_offset == NO_SLEW)
-> +			if (slew_offset == LPI_NO_SLEW)
->  				break;
->  
->  			mutex_lock(&pctrl->slew_access_lock);
-> -- 
-> 2.7.4
-> 
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+---
+Exposed by commit 39bd2b6a3783b899 ("dt-bindings: Improve phandle-array
+schemas").
+
+v2:
+  - Change limit from 2 to 4, as requested by Sudeep,
+  - Add Acked-by,
+  - Add maxItems to mboxes properties,
+  - Group mboxes in example.
+---
+ Documentation/devicetree/bindings/firmware/arm,scpi.yaml | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+index 800417a76bda0bd9..1f9322925e7c9f2d 100644
+--- a/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
++++ b/Documentation/devicetree/bindings/firmware/arm,scpi.yaml
+@@ -43,6 +43,7 @@ properties:
+       by remote SCP firmware for use by SCPI message protocol should be
+       specified in any order.
+     minItems: 1
++    maxItems: 4
+ 
+   shmem:
+     description:
+@@ -51,6 +52,7 @@ properties:
+       be any memory reserved for the purpose of this communication between the
+       processors.
+     minItems: 1
++    maxItems: 4
+ 
+   power-controller:
+     type: object
+@@ -235,7 +237,7 @@ examples:
+     firmware {
+         scpi {
+             compatible = "amlogic,meson-gxbb-scpi", "arm,scpi-pre-1.0";
+-            mboxes = <&mailbox 1 &mailbox 2>;
++            mboxes = <&mailbox 1>, <&mailbox 2>;
+             shmem = <&cpu_scp_lpri>, <&cpu_scp_hpri>;
+ 
+             scpi_sensors1: sensors {
+-- 
+2.25.1
+
