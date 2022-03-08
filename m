@@ -2,96 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B07CA4D0DD1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 03:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AC674D0E1A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 03:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238140AbiCHCFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 21:05:46 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34840 "EHLO
+        id S244996AbiCHCpS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 21:45:18 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233419AbiCHCFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 21:05:45 -0500
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D74A337A91
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:04:49 -0800 (PST)
-Received: by mail-ej1-x635.google.com with SMTP id d10so35923250eje.10
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 18:04:49 -0800 (PST)
+        with ESMTP id S245003AbiCHCpS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 21:45:18 -0500
+Received: from mail-qt1-x82e.google.com (mail-qt1-x82e.google.com [IPv6:2607:f8b0:4864:20::82e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B532AE2C
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 18:44:20 -0800 (PST)
+Received: by mail-qt1-x82e.google.com with SMTP id bc10so15057461qtb.5
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 18:44:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=5+oocItIt02OkdY+m5813Z7pgg3BMDr/tC5w+npdJZg=;
-        b=ZW4WxSWvlPpd7aNaIKs89/QxbI5rDV/3bd8dAb/3Q0TrIwzzlu0cHhteumycb1ho2t
-         LmYmHepnCW43Clq6J8/vzMuPL5pfRuJ9lOU/Vnm8DO3eM/Zn4VJHWQzKpC+UW6J2ihFp
-         ftPKnlWO00H5rKvTIGBGwL29ZJesVm3hd7G8M/8rLJMPeufqOU8zJXfmTOwL5kptnDUv
-         NIrFSV3SuNw2wpRoOD66uu7lax8jIZgDLjXStylyW1SsLOpqIvfV6GV4eZITd7i3Uj7h
-         qXISwM6uRArOF3Kme+P16ZauuKLA1KM9GNfZXo3mEOri+9G/hyGujHfY8WsVG1kaF0Gg
-         CIWw==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=bhENzDdHrN2DokNz2Fb31SuHCi/J23yQsA1QonmyvpM=;
+        b=MfQeaW6RS98qckng+Yug2t+xcoUC1O/VNi+lpGCTIMkOH5VHuRamycX0iOPeLnV4oX
+         6G6uU9s0NeG0Klk87SOCMqus6vChkkZ99IBmqGE1F1TNh88QmiM+0JAxL8TlgUC6WJmx
+         XT3NJfUEO6OtKEgwNEGA2pJYshfH1TYqM+BoKwTeNsodL7Dd8IGP5njNuGAcvHxXWnCu
+         Xust+Gx87+NUxTCB3g1mBy7xqvIB5AfTJPdKiv8NYLn1w2vIpIO6AYDbWdZLYJ2RSIiW
+         MaV8ecZ0Y7FrbsZfyZcAOdLlWjKKI4Bpm1TGEpwiyNVVkJOu8BkMXfJi8XD8cWZkKe5W
+         UTvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=5+oocItIt02OkdY+m5813Z7pgg3BMDr/tC5w+npdJZg=;
-        b=3GSCI28ItS/i6xFTmN4ls3AW+eV5lE6jSPJOoDStSJ7GS5Vr0OVvIeuYXGYtGEmAMj
-         mlLk/FntIJ6e/SxFHfMCPu8p6hJFv5Tl0bpmlafhXN637dbAlrZqbb85vk3dP6INOQhl
-         f8fGc3KPGErkKD55tDUe1zyku+Lb8i3SfwHsiOqlWznMR3zokzxEErBkbfVqK+L5MYrL
-         ItJHrWuXylxU8L1VKuZp5wGJ0kF+i0YRSZZ7u25+DkiKN25d4YNKWanid2IRElR9JgfZ
-         2k+C4BcfspBqVyKoLwUtKXK1yMtNRbRJu794e9Qd2aGEhnPWvXDC071n0TN5abk9GgbS
-         O+/Q==
-X-Gm-Message-State: AOAM533HF+T0R6LDnB8OY4l9S6b4ky7uozFpjX6i1Ecbt2JIWE+7tkYf
-        DbMed9MdBsWZyv1cu7biBWv+FV0xJTD12xmIZrc=
-X-Google-Smtp-Source: ABdhPJz90hyIVYYFelvIBQ+OC8kAaXj7QFM15WfxxndIauPy0CltebewlB185oe1AmUUL6A2b4y/jeGY2ixYuNeScBQ=
-X-Received: by 2002:a17:906:b1d0:b0:6cf:7f39:50e0 with SMTP id
- bv16-20020a170906b1d000b006cf7f3950e0mr11690306ejb.760.1646705088493; Mon, 07
- Mar 2022 18:04:48 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=bhENzDdHrN2DokNz2Fb31SuHCi/J23yQsA1QonmyvpM=;
+        b=jJwI2rTpNoohDg/mt8zb/OIc1ma1UwDTCHCcRvNUyyHDYeF/j7W4lzj96cMx2t1+NC
+         7YdjQuX4z9pYTH/cUgq1HUzihwHHBhLzNdY87tq1WN1PhffL38J8MOQEqDvg25KyiiR8
+         drFkNSQ67F8ct06h8gM7lUgaCN6qlCyAAgY+cOm9WU8KFKPJm+XZu2HAlN7ZG8iiRfQm
+         7cl//19Qa6cotpAadI1SadzOcsBR42HuORCLvK1n6r/NLanz9bRpzL1/nw21Yu3XFAP6
+         RmXWdvspXGTHoG0THgtVMUau9aw4bWx0fWNPCHwpsjG5pDyQt/vpmGtFd2+2sOwoKgs5
+         mbAA==
+X-Gm-Message-State: AOAM531Fvyr+XRJvO6Bs6dnwyLBzJl/B8tLL3qObIr6AALPkPRKRN5Tt
+        fqzkGRviG/gOghg3m+W8u+PFaYEjG84=
+X-Google-Smtp-Source: ABdhPJwLq6+8oojHd8xy1pMytRtGVdrjymfBCXGMLkmCUNACI134C1OTjgzTX6MVwzaRtb/n/XkSjw==
+X-Received: by 2002:a05:622a:410:b0:2df:f32b:c03e with SMTP id n16-20020a05622a041000b002dff32bc03emr12135104qtx.607.1646707459922;
+        Mon, 07 Mar 2022 18:44:19 -0800 (PST)
+Received: from [10.4.10.38] (146-115-144-188.s4282.c3-0.nwt-cbr1.sbo-nwt.ma.cable.rcncustomer.com. [146.115.144.188])
+        by smtp.gmail.com with ESMTPSA id v9-20020a05622a144900b002dfedb4dccasm10012267qtx.66.2022.03.07.18.44.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 18:44:19 -0800 (PST)
+Message-ID: <526e09f8-6006-643a-70c6-d9b85e6cdb75@gmail.com>
+Date:   Mon, 7 Mar 2022 21:44:15 -0500
 MIME-Version: 1.0
-Received: by 2002:a54:38c1:0:0:0:0:0 with HTTP; Mon, 7 Mar 2022 18:04:47 -0800 (PST)
-Reply-To: fatibaro01@yahoo.com
-From:   Fatimah Baro <imanosose@gmail.com>
-Date:   Tue, 8 Mar 2022 03:04:48 +0100
-Message-ID: <CAFEyOE6Wj+AtEUqfPQGx+_u=UiM013Qxbb=u14aPA0bbMzggAQ@mail.gmail.com>
-Subject: Business invitation
-To:     imanosose <imanosose@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.3 required=5.0 tests=ADVANCE_FEE_3_NEW,BAYES_50,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        FREEMAIL_REPLYTO,FREEMAIL_REPLYTO_END_DIGIT,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:635 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.4369]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [imanosose[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-        *      digit
-        *      [fatibaro01[at]yahoo.com]
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain
-        *      different freemails
-        *  3.5 ADVANCE_FEE_3_NEW Appears to be advance fee fraud (Nigerian
-        *      419)
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 05/14] ARM: dts: suniv: F1C100: fix CPU node
+Content-Language: en-US
+To:     Andre Przywara <andre.przywara@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+References: <20220307143421.1106209-1-andre.przywara@arm.com>
+ <20220307143421.1106209-6-andre.przywara@arm.com>
+From:   Jesse Taube <mr.bossman075@gmail.com>
+In-Reply-To: <20220307143421.1106209-6-andre.przywara@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Greetings from Burkina Faso,
-I need you to stand as my foreign partner for investment in your
-country. Please reply immediately if you are interested, so that I can
-give you more information.
-Fatimah Baro
+
+
+On 3/7/22 09:34, Andre Przywara wrote:
+> The /cpu node in the f1c100s.dtsi is not spec compliant, it's missing
+> the reg property, and the corresponding address and size cells
+> properties.
+> 
+> Add them to make the bindings check pass.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>   arch/arm/boot/dts/suniv-f1c100s.dtsi | 4 ++++
+>   1 file changed, 4 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> index 922efd5e9457..43d342eaf661 100644
+> --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
+> @@ -29,9 +29,13 @@ osc32k: clk-32k {
+>   	};
+>   
+>   	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+>   		cpu {
+cpu@0
+
+also is memory node required?
+
+Thanks,
+jesse
+>   			compatible = "arm,arm926ej-s";
+>   			device_type = "cpu";
+> +			reg = <0x0>;
+>   		};
+>   	};
+>   
