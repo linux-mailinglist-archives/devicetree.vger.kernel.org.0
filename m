@@ -2,146 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25ECD4D1483
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:14:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 400BA4D1499
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:18:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244073AbiCHKPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 05:15:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49192 "EHLO
+        id S235310AbiCHKT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 05:19:26 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234202AbiCHKPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:15:35 -0500
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A319E3EA8B;
-        Tue,  8 Mar 2022 02:14:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1646734477; x=1678270477;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=hpi9pMWKnJ5oF5T0+PXi9Fqc8FlAAugNzaNHUKCMea0=;
-  b=CoaHFOET6u0MQV8BOZ8ftmZVddA/AWpUSVXjwGSPMfTBtMppNynKwm9C
-   Sq82oqoaLlAJXMZoCJV7OYD6O02uRdK2y7xgk3zntE34++GueRSvPnPIf
-   2N5DDKMo6NMQwKZ1Y/wj79ZGGI4OPR0/SoI1MID3nSwgWso1Gu53W3Bpg
-   8PMnu3a3YzvnQhIDH3yqDVB21W6axRgs0oeBMuzM1dFcwTsbT3oCqT9+N
-   E9w61wPcTVvoORU5z+wI+gOQtafXs8cWbhmNTYN5dBt6psXaiv0o5Przj
-   fC7kDHPPAoAQR0LyKYuUv3ms+d4rbRqkYaaregQwoRMysUtOF4frCIw5O
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="315363348"
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
-   d="scan'208";a="315363348"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 02:14:37 -0800
-X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
-   d="scan'208";a="595839404"
-Received: from smile.fi.intel.com ([10.237.72.59])
-  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 02:14:34 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.95)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1nRWqk-00DI7W-CK;
-        Tue, 08 Mar 2022 12:13:50 +0200
-Date:   Tue, 8 Mar 2022 12:13:50 +0200
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     shruthi.sanil@intel.com,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Mark Gross <mgross@linux.intel.com>,
-        srikanth.thokala@intel.com,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>,
-        mallikarjunappa.sangannavar@intel.com
-Subject: Re: [PATCH v8 1/2] dt-bindings: timer: Add bindings for Intel Keem
- Bay SoC Timer
-Message-ID: <YicsXm9JboW2b+5f@smile.fi.intel.com>
-References: <20220222095654.9097-1-shruthi.sanil@intel.com>
- <20220222095654.9097-2-shruthi.sanil@intel.com>
- <YhVuJaf3AJ1c6TpT@robh.at.kernel.org>
- <YhYa3tlTEcLct2xu@smile.fi.intel.com>
- <CAL_JsqK_k49eKZ+Z+uw29GdY9KFVJL9o5xkzg=1=yF-oEt+JRg@mail.gmail.com>
+        with ESMTP id S1344149AbiCHKTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:19:25 -0500
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6759F21E29
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 02:18:29 -0800 (PST)
+Received: by mail-ej1-x633.google.com with SMTP id d10so38032064eje.10
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 02:18:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nJRzJEaEiciL+Nan42l5Fbs3eLckPdHReRoJIMrSaeM=;
+        b=cSn0n/IpRFUfcdpnyJ8hYV0UqfK2rGdYVl3t+GDWwQoB2iG5FHHYhb9yJb/CK9KXUj
+         LG14tTWxRXl+gZP98W1BiHviVmCj1tr1Mv7yyLJ0WxGu6IoJ7R0sfB8rdzoljmM73tXZ
+         +UvXfohmxeRu6Bjvk0kr74K+G1MKkaWK02+l55kiZ1kP/gDUeqxdbAxmuSq8CU5fkccx
+         iQotqdnw+NvUjKg+DLOOM2INPtac0GCTcnPqDGbizhyyWJizk0cop3bVDV3ruXMm8Gxo
+         r5547ZH+sr2133o1B8WiMpETiemGPyixP/qshju3Qws9dcSBcvvAZRpEOiZt3Ie3DoZf
+         v85Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nJRzJEaEiciL+Nan42l5Fbs3eLckPdHReRoJIMrSaeM=;
+        b=su9/l4VjOoAp2ZsXW4ZyNJSuJmgfwFJBSOSJ6iSGAaSPH3Of4kAs2RRQEuMLbvh5R7
+         nDi/ioWIAx4L/XNyYK/a9lgtI2b+Vl3eQS5GXaTVPfB4gt9qwDPiWEr8jSSVyi3zKY98
+         SlF91GxDItNNj8XPjisqjRiNiUyEcnkuGR75Z7aHoKZe6y6F4X/qejxh84k7vZFlsJYi
+         h4jTUkbqtJffvA6EZ5Cchodl+111Fjoae0qxnMkgpGDYVPLaExZrrtNOo0P0VZnAFWEz
+         7pp70u4INI3W/RfBEqGeFCVTdnzbsyqgt781Vmu3r9PeqsIWfexGreV3jmh2umtuK/Kt
+         GEZg==
+X-Gm-Message-State: AOAM531idBS0lMgWUqb34jpEi4BZLEQ3Qd7xMxH4CpHrT1Z6LJPnHCGm
+        BfV07y/FS5BmDfWrLky8ABuYGdvb/bc65ZtD86FLkQ==
+X-Google-Smtp-Source: ABdhPJx3EQL/icr/MX5fhItL/ji0+anuY7+ku8SlMkyxeZTkF8Vvr8t6wm0oIlFkujJGnmsMLrRgwxyHfsxeS4dg4PQ=
+X-Received: by 2002:a17:906:c1d6:b0:6d6:e0a3:bbc7 with SMTP id
+ bw22-20020a170906c1d600b006d6e0a3bbc7mr12548180ejb.484.1646734707884; Tue, 08
+ Mar 2022 02:18:27 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK_k49eKZ+Z+uw29GdY9KFVJL9o5xkzg=1=yF-oEt+JRg@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20211028140009.23331-1-etienne.carriere@linaro.org>
+ <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de> <Yh4304unzMxrQtoL@bogus>
+ <2b4442d9-fb10-36ee-585d-4103b76abbbb@pengutronix.de>
+In-Reply-To: <2b4442d9-fb10-36ee-585d-4103b76abbbb@pengutronix.de>
+From:   Etienne Carriere <etienne.carriere@linaro.org>
+Date:   Tue, 8 Mar 2022 11:18:16 +0100
+Message-ID: <CAN5uoS9eBfzezPZdjemBHbGRe4e50zm4=DDst-UCenN5ouQCoA@mail.gmail.com>
+Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+Cc:     Sudeep Holla <sudeep.holla@arm.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 04:33:23PM -0600, Rob Herring wrote:
-> On Wed, Feb 23, 2022 at 5:31 AM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
+Hello Ahmad,
+
+On Tue, 8 Mar 2022 at 10:51, Ahmad Fatoum <a.fatoum@pengutronix.de> wrote:
+>
+> Hello Sudeep,
+>
+> On 01.03.22 16:12, Sudeep Holla wrote:
 > >
-> > On Tue, Feb 22, 2022 at 05:13:41PM -0600, Rob Herring wrote:
-> > > On Tue, Feb 22, 2022 at 03:26:53PM +0530, shruthi.sanil@intel.com wrote:
-> > > > From: Shruthi Sanil <shruthi.sanil@intel.com>
-> > > >
-> > > > Add Device Tree bindings for the Timer IP, which can be used as
-> > > > clocksource and clockevent device in the Intel Keem Bay SoC.
+> > Hi Ahmad,
 > >
-> > ...
+> > On Mon, Feb 28, 2022 at 05:01:39PM +0100, Ahmad Fatoum wrote:
+> >> Hello Etienne,
+> >>
+> >> On 28.10.21 16:00, Etienne Carriere wrote:
+> >>> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+> >>> based on an OP-TEE service invocation. The compatible mandates a
+> >>> channel ID defined with property "linaro,optee-channel-id".
+> >>
 > >
-> > > > +    soc {
-> > > > +        #address-cells = <0x2>;
-> > > > +        #size-cells = <0x2>;
-> > > > +
-> > > > +        gpt@20331000 {
-> > > > +            compatible = "intel,keembay-gpt-creg", "simple-mfd";
-> > >
-> > > It looks like you are splitting things based on Linux implementation
-> > > details. Does this h/w block have different combinations of timers and
-> > > counters? If not, then you don't need the child nodes at all. There's
-> > > plenty of h/w blocks that get used as both a clocksource and clockevent.
-> > >
-> > > Maybe I already raised this, but assume I don't remember and this patch
-> > > needs to address any questions I already asked.
+> > Not sure if Etienne's reply addressed your queries/concerns correctly.
+> > I thought I will add my view anyways.
 > >
-> > I dunno if I mentioned that hardware seems to have 5 or so devices behind
-> > the block, so ideally it should be one device node that represents the global
-> > register spaces and several children nodes.
-> 
-> Is it 5 devices or 9 devices?
+> >> I just found this thread via the compatible in the STM32MP131 patch set:
+> >> https://lore.kernel.org/all/20220225133137.813919-1-gabriel.fernandez@foss.st.com/
+> >>
+> >> Linux doesn't care whether PSCI is provided by TF-A, OP-TEE or something
+> >> else, so there is just the arm,psci* compatible.
+> >>
+> >
+> > Correct, the interface to the kernel is fixed and hence we must be able
+> > to manage with the standard and fixed sole set of bindings for the same.
+> >
+> >> What's different about SCMI that this is not possible? Why couldn't the
+> >> existing binding and driver be used to communicate with OP-TEE as secure
+> >> monitor as well?
+> >>
+> >
+> > However with SCMI, the spec concentrates and standardises all the aspects
+> > of the protocol used for the communication while it allows the transport
+> > used for such a communication to be implementation specific. It does
+> > address some standard transports like mailbox and PCC(ACPI). However,
+> > because of the flexibility and also depending on the hardware(or VM),
+> > different transports have been added to the list. SMC/HVC was the one,
+> > followed by the virtio and OPTEE. While I agree SMC/HVC and OPTEE seem
+> > to have lot of common and may have avoided separate bindings.
+> >
+> > However the FIDs for SMC/HVC is vendor defined(the spec doesn't cover this
+> > and hence we utilised/exploited DT). Some vendors wanted interrupt support
+> > too which got added. OPTEE eliminates the need for FID and can also provide
+> > dynamic shared memory info. In short, it does differ in a way that the driver
+> > needs to understand the difference and act differently with each of the
+> > unique transports defined in the binding.
+> >
+> > Hope that explains and addresses your concern.
+>
+> Thanks for the elaborate answer. I see now why it's beneficial to have
+> an OP-TEE transport in general. I don't yet see the benefit to use it
+> in the STM32MP13x instead of SMCs like with STM32MP15x, but that a discussion
+> that I need to have in the aforementioned thread.
 
-5 devices, one of which is a timer block out of 8 timers.
-You may count them as 12 altogether.
+Some SCMI operations in OP-TEE need to execute in a threaded context
+(preemptible, ...).
+There is no SMC function ID defined for an SCMI thread entry in
+OP-TEE. We rather use standard invocation of a TEE service: opening a
+session and invoking commands.
+Invoked commands are executed in an OP-TEE native threaded context.
+The service accessed is referred to as the OP-TEE SCMI PTA.
 
-> > However, I am not familiar with the established practices in DT world, but
-> > above seems to me the right thing to do since it describes the hardware as
-> > is (without any linuxisms).
-> 
-> The Linuxism in these cases defining 1 node per driver because that's
-> what is convenient for automatic probing. That appears to be exactly
-> the case here. The red flag is nodes with a compatible and nothing
-> else. The next question is whether the sub-devices are blocks that
-> will be assembled in varying combinations and quantities. If not, then
-> not much point subdividing the h/w blocks.
+As for STM32MP15x, one willing to extend resources assigned to secure
+world may also need to move mp15 SCMI from SMC transport to optee
+transport.
 
-AFAIU the hardware architecture the amount of timers is dependent on
-the IP synthesis configuration. On this platform it's 8, but it may be
-1 or 2, for example.
+Regards,
+Etienne
 
-> There's also many cases of having multiple 'identical' timers and
-> wanting to encode which timer gets assigned to clocksource vs.
-> clockevent. But those 'identical' timers aren't if you care about
-> which timer gets assigned where. I *think* that's not the case here
-> unless you are trying to pick the timer for the clockevent by not
-> defining the other timers.
-> 
-> Without having a complete picture of what's in 'gpt-creg', I can't
-> give better advice.
-
-I guess they need to share TRM, if possible, to show what this
-block is.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+>
+> Thanks again!
+> Ahmad
+>
+> --
+> Pengutronix e.K.                           |                             |
+> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
