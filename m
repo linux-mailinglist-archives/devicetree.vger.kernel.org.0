@@ -2,99 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F8C44D21C8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 20:43:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EA5D4D2227
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 21:05:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346209AbiCHToF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 14:44:05 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50280 "EHLO
+        id S1350123AbiCHUGj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 15:06:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344473AbiCHToF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 14:44:05 -0500
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61D1038DBC;
-        Tue,  8 Mar 2022 11:43:08 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so263841ooj.2;
-        Tue, 08 Mar 2022 11:43:08 -0800 (PST)
+        with ESMTP id S1349809AbiCHUGi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 15:06:38 -0500
+Received: from mail-oo1-xc34.google.com (mail-oo1-xc34.google.com [IPv6:2607:f8b0:4864:20::c34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 314C94A3F6
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 12:05:41 -0800 (PST)
+Received: by mail-oo1-xc34.google.com with SMTP id w3-20020a4ac183000000b0031d806bbd7eso261991oop.13
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 12:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=QX67c8/LWZdvLCoz7zI9uFhqDQjOSWv595jQDqaaHvw=;
+        b=AoYICMH8irjSWwtZb+Z4eLYjCkWJeNSak3Ym+tkyXo7JKkBgfi/ApgCW8h+4uiTLk4
+         9/ZBh92aXPInfCxmDlAWVb4MzPrC9fWhQAXR1EaTZrKwakYnK4HXEBRhrYs3Ep5zfB2E
+         sF7dLTDPwJru+Mre8SMqknSkzXsiym3TOgeUA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition;
-        bh=2pNVkw2O4MogMAq4jHIFwlqhZv9BXG1M2wr/av8wc0U=;
-        b=5fmjgqeQLLewNibVcFEpejC3HljaPcYPkWC+/Jf3hgNCMz6D3/JZuVBZ7cQnyz51hd
-         5nK+cOZdsmanx877zsjdr4uwx4nmvZEiqKh46fa/VSKv0WFRldf2P+qjSuZagzuMvRDe
-         KjngEyB7B1TSdh2c3NiYWa5GZO7Twj/Wk05dWevLrk9UlDNZfDp7ligrK2UjZXeO01ua
-         CnOvHtLUVn1OLb/MldVQF6Zq8GifeAmdx/z6FReH8fa+j1t5xYm1QqtMCuoDqb4zTLgo
-         zFCL4xeeDF0duKUKUDfo9LRskC0iyr/8wACvPwBpGlVpThZY/7/KeoeIWdktTy/6fXam
-         Jlng==
-X-Gm-Message-State: AOAM530fPlBjqhGCtUwdff8qJ2wBMGb1KIJ18bkWll0CqZX+XzrJpq9S
-        evtzu3AfJQiy8cKQnWsR7Q==
-X-Google-Smtp-Source: ABdhPJyr51kvJkKJU5/H9gq4cqrtCiTe93NGryR8JfOOumqEu0fUQVdEe0UP0F+8B5XsyhBYRIermQ==
-X-Received: by 2002:a05:6870:e0ce:b0:da:b3f:2b31 with SMTP id a14-20020a056870e0ce00b000da0b3f2b31mr3486762oab.208.1646768587714;
-        Tue, 08 Mar 2022 11:43:07 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a23-20020a056830101700b005ad0bd6fe0csm8286135otp.47.2022.03.08.11.43.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 11:43:06 -0800 (PST)
-Received: (nullmailer pid 1227241 invoked by uid 1000);
-        Tue, 08 Mar 2022 19:43:06 -0000
-Date:   Tue, 8 Mar 2022 13:43:06 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v5.17, take 3
-Message-ID: <YiexypCIC3q8dHPZ@robh.at.kernel.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=QX67c8/LWZdvLCoz7zI9uFhqDQjOSWv595jQDqaaHvw=;
+        b=Tvtqq54gePmPu0+H98RWekP5o5Sttiga7RccJvWODI7rGXFimMty4y1ZAoU5D+EDd0
+         4hUe8nqYmoCZoXwzIQnaQvkRgB8pUOr/TVUlmM4LxQbagx97iUpZWWEcTTXs9MvpHnQ1
+         Wvh4EEE70sSSNKdDPMmOjU5uGPW2RjmMKpymTZwTv+dGo1livfippZk052ii/tiio8xI
+         4JsY2aA0xCKzNncfAw+8L+RLvIs2j+heJKs2prKn4riYrEdUcmrcILUNQHOt6gRc8kiA
+         giVQ7Q7lhrFVhzbXqEdw1Pj/H8wVcunrXOufYPO58OIajz8nSunByr3SK3NF5IsNQ2Wq
+         dyZw==
+X-Gm-Message-State: AOAM533NrUOKPekd1V/6QzjrOE/q06bpLoO7LeK115rP+Zlx3oWBv472
+        w9mWWiAyQbwgczq90pZuAYhzQwWNpiONElM/5ezPrg==
+X-Google-Smtp-Source: ABdhPJxFRuIHirmuMcP8JQW2CiIQQrW1zixcggRe6oOvjNpt2ZWhCvmWo6ALkosrHI8M9jLM4bLDX5HuCCoQWjlEW1Q=
+X-Received: by 2002:a05:6870:d250:b0:da:b3f:3211 with SMTP id
+ h16-20020a056870d25000b000da0b3f3211mr3425601oac.193.1646769940572; Tue, 08
+ Mar 2022 12:05:40 -0800 (PST)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 8 Mar 2022 12:05:39 -0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
+References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com> <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 8 Mar 2022 12:05:39 -0800
+Message-ID: <CAE-0n51bfqWs8yOiyQ-A_bEQ7CZSqavz8epcFEWYyZxxoRYFHg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-rate
+ property for mdp clk
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, quic_kalyant@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Quoting Vinod Polimera (2022-03-08 08:54:56)
+> Kernel clock driver assumes that initial rate is the
+> max rate for that clock and was not allowing it to scale
+> beyond the assigned clock value.
 
-Please pull 2 more fixes for v5.17.
+How? I see ftbl_disp_cc_mdss_mdp_clk_src[] has multiple frequencies and
+clk_rcg2_shared_ops so it doesn't look like anything in the clk driver
+is preventing the frequency from changing beyond the assigned value.
 
-Rob
+>
+> Drop the assigned clock rate property and vote on the mdp clock as per
+> calculated value during the usecase.
+>
+> Changes in v2:
+> - Remove assigned-clock-rate property and set mdp clk during resume sequence.
+> - Add fixes tag.
+>
+> Changes in v3:
+> - Remove extra line after fixes tag.(Stephen Boyd)
 
+This changelog should be removed.
 
-The following changes since commit 0c0822bcb73f154d96ee648644ec5a8628e3b864:
+>
+> Fixes: 62fbdce91("arm64: dts: qcom: sc7280: add display dt nodes")
 
-  dt-bindings: update Roger Quadros email (2022-02-22 16:06:31 -0600)
+I thought folks were saying that this is bad to keep? I don't really
+mind either way, but I guess it's better to drop the fixes tag because
+this is largely a performance improvement?
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-3
-
-for you to fetch changes up to f6eafa4022dd61e029205bea4d4147d26e69fef2:
-
-  dt-bindings: phy: ti,tcan104x-can: Document mux-states property (2022-03-08 10:41:32 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.17, take 3:
-
-- Fix pinctrl node name warnings in examples
-
-- Add missing 'mux-states' property in ti,tcan104x-can binding
-
-----------------------------------------------------------------
-Aswath Govindraju (1):
-      dt-bindings: phy: ti,tcan104x-can: Document mux-states property
-
-Rob Herring (1):
-      dt-bindings: mfd: Fix pinctrl node name warnings
-
- Documentation/devicetree/bindings/mfd/brcm,cru.yaml          | 4 ++--
- Documentation/devicetree/bindings/mfd/cirrus,lochnagar.yaml  | 6 +++---
- Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml   | 7 +++++++
- Documentation/devicetree/bindings/pinctrl/cirrus,madera.yaml | 3 ---
- 4 files changed, 12 insertions(+), 8 deletions(-)
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
