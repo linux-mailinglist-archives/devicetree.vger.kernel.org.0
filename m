@@ -2,69 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C54A44D1C96
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:58:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CE4764D1CA4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 17:01:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234961AbiCHP7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:59:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58898 "EHLO
+        id S234866AbiCHQCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 11:02:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348832AbiCHP6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:58:41 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 268FD20F66;
-        Tue,  8 Mar 2022 07:57:41 -0800 (PST)
-Received: (Authenticated sender: alexandre.belloni@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 255A420007;
-        Tue,  8 Mar 2022 15:57:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646755060;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=3BgP3y4Wp+MpBJ8ILVTsKQK/gjfpJQE//ZntTh5TT1o=;
-        b=gXEof1UQ3IyZ+hU1QEjgiRt1ohjCnuvVFYQ480fsMsaD2tecN6s7HWOVhSl5ICU+g3pSB0
-        Uan1AOlbdMw0dsEh5vhYI/SzbmHzCHrmC5sxBgDiBMla0/shK/P2Q2EjbkmsXSQ00aVCt9
-        ZiHK64jAFnt16Dc5588NNNmQcTnn1jN23pzKvWCy8v8FgDagRpKVYW3fuW64kt6VlwG3di
-        bbiyW+GkU38GvdpTfCK85xTd15e8Tcd1fIuIv/EFJ2dtUkcADLj8w5JzRykCR6AjQS7dCa
-        vuKZD637NLckzCmmJKotF/ZyFsLJD6s3gJkQnGucIn3+09WCa6NfCvl2I65jrQ==
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>
-Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: rtc: at91: rename rtt bindings file
-Date:   Tue,  8 Mar 2022 16:57:35 +0100
-Message-Id: <20220308155735.54146-1-alexandre.belloni@bootlin.com>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1348217AbiCHQBW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 11:01:22 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78689506C4;
+        Tue,  8 Mar 2022 07:59:24 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id r4so7368103lfr.1;
+        Tue, 08 Mar 2022 07:59:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=NaE7cTQwn70u1r2AKLM8OGzQ4OE9faei/DLoyJgl9jA=;
+        b=VRPHWSeVxAe0zzcub9Ifrphfq3vr9WDr5L4YHSLIsd11VDwIpBZDRvRH8IbcY1OT72
+         z9WZmwfmji8cFr3J12q5XmZqUEurVI2+O4IyvYE8GN5U2dxsGhx4onik/dTh2hVwYkFD
+         85+7dOQJ5eJaXGacmAl3cAcqlVZdEJUSwiBB9SLFAAnpRWy0b7WhHdqmNurFl+2KUoZj
+         NQu8CGHAskOJBctsWFmOCOE4gQcryo5tmKdNAxwqehxyP3mZLz9iWu5D3kaMZ5cis5LD
+         ggjjXeyJ7zulpzmDNNGzijx1dbfzeaG3QH3r0TGrk5WZ/fdO18mDjoVcnBNRVl50zOLG
+         V/QQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NaE7cTQwn70u1r2AKLM8OGzQ4OE9faei/DLoyJgl9jA=;
+        b=fl/jFdnCXzPqUgZIeayY2yaQlUDzevTF/Ysf/IM+c8vvrCvQtyPxi5FIeAshId83i+
+         wT4HKWML3Zb+N2a3bV1ALPlZP3JbNtvNR11W79ErhmQLB+ypc7J76GHUr31xC0hyNBwe
+         bqQUhZ/3r5ySyBzpcNwPMYcvV2emcyRRrkGyDZ6TfDxN1D0KTd78vPt7dVO81CoBpc/L
+         llZKf3qG6+E6zWpk3Iongrc0U/s5JEUFXdz7neNq4SzgsTCFN86drggjXMLdqpt24Ugk
+         i6739UOQ/HL6mMimsBfB6+AbMlGnW7kb9yckGx45YgIN1AbgCVbipSMHqE63uoSEA0Jk
+         VaWA==
+X-Gm-Message-State: AOAM530lQR0J9JNaR26f/r9YrKbTb8zbA5hcmiVRsudiiZep91HHDOt/
+        mvu6wJbvGPEiWgrn64Q2a+M=
+X-Google-Smtp-Source: ABdhPJz3GlGEMEtV6DBobJaEdrCeckQzYNCFVzAA4bMQl2QX29aS9D+umGV5hV0A6B1ySdUHX2ipjg==
+X-Received: by 2002:a05:6512:33c6:b0:446:e0ce:5c3c with SMTP id d6-20020a05651233c600b00446e0ce5c3cmr11894879lfg.26.1646755152081;
+        Tue, 08 Mar 2022 07:59:12 -0800 (PST)
+Received: from orome (p200300e41f181700000000000000043a.dip0.t-ipconnect.de. [2003:e4:1f18:1700::43a])
+        by smtp.gmail.com with ESMTPSA id p8-20020a2ea408000000b00247e5087157sm1471161ljn.101.2022.03.08.07.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Mar 2022 07:59:10 -0800 (PST)
+Date:   Tue, 8 Mar 2022 16:59:05 +0100
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm-smmu: Document
+ nvidia,memory-controller property
+Message-ID: <Yid9SWbpPQQhNgA4@orome>
+References: <20211209163600.609613-1-thierry.reding@gmail.com>
+ <Ygz7QD4EJX3vZJtD@orome>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rFDGFzVNzKne2qqP"
+Content-Disposition: inline
+In-Reply-To: <Ygz7QD4EJX3vZJtD@orome>
+User-Agent: Mutt/2.2.1 (c8109e14) (2022-02-19)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-atmel,at91sam9-rtc is a confuing name for this file as it is documenting
-the RTT used as an RTC and not the other regular RTC (atmel,at91rm9200-rtc
-and atmel,at91sam9x5-rtc)
 
-Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
----
- .../rtc/{atmel,at91sam9-rtc.yaml => atmel,at91sam9260-rtt.yaml}   | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename Documentation/devicetree/bindings/rtc/{atmel,at91sam9-rtc.yaml => atmel,at91sam9260-rtt.yaml} (100%)
+--rFDGFzVNzKne2qqP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml b/Documentation/devicetree/bindings/rtc/atmel,at91sam9260-rtt.yaml
-similarity index 100%
-rename from Documentation/devicetree/bindings/rtc/atmel,at91sam9-rtc.yaml
-rename to Documentation/devicetree/bindings/rtc/atmel,at91sam9260-rtt.yaml
--- 
-2.35.1
+On Wed, Feb 16, 2022 at 02:25:20PM +0100, Thierry Reding wrote:
+> On Thu, Dec 09, 2021 at 05:35:57PM +0100, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > On NVIDIA SoC's the ARM SMMU needs to interact with the memory
+> > controller in order to map memory clients to the corresponding stream
+> > IDs. Document how the nvidia,memory-controller property can be used to
+> > achieve this.
+> >=20
+> > Note that this is a backwards-incompatible change that is, however,
+> > necessary to ensure correctness. Without the new property, most of the
+> > devices would still work but it is not guaranteed that all will.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> > Changes in v2:
+> > - clarify why the new nvidia,memory-controller property is required
+> >=20
+> >  .../devicetree/bindings/iommu/arm,smmu.yaml     | 17 +++++++++++++++++
+> >  1 file changed, 17 insertions(+)
+>=20
+> Hi Joerg,
+>=20
+> can you pick up patches 1-3 of this series? DT bindings have been
+> reviewed by Rob and Will acked the ARM SMMU change. I can take the
+> device tree changes (patch 4) through the Tegra tree.
 
+Will, Robin, Joerg,
+
+I haven't seen this show up in linux-next yet but was hoping to see this
+go in for v5.18. Anything I can do to help this move along?
+
+Thanks,
+Thierry
+
+--rFDGFzVNzKne2qqP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmInfUkACgkQ3SOs138+
+s6G49w//Ygjl2iHsMwI94cYoUH9dcGuDS8MJQNrU1Cnul3dW5pIzNyFYD6S2n3AU
+gK/YYeZA1Ik8G4Q/Um+xmNSC0ZOVMng6fVmjpL2xVdOv1qeN135Hue1QZuUXzFV9
+6fas+Y260jHRvPG1t0oS/HEvzmlRwDiYoKQe7h26kH9BpdLj/H0aMWhlu3Cb/coi
+UnypSm2sScPaIuCY1/cPlb50NrgxqQ4R/LrNa6Aud/x+HsZTPCMHCOLPnQUvkYyR
+Q/DEIFW8lyqJeOskopyuOqd43fPpzY+1Y0NwJuZhcpk0x4ikt8hh3J04eaEHsP67
+af0twj+ENQvJ4fKiH0I1E38xtPi5uhtAKlTHU0hJs5LgZyoGLTvhiNAp7oOgSZXy
+0I61nD65TBAqiv6AmpgFkXNRMBaS17BlkuhrwbKtbCwI+hbV8ppZSSbJr/AVQoDi
+oo6QaGhkMYNVRUnXRA7Vi5mA32vxOf/5328W4SS9OTs7kV7xeRNsfHe6ZXOtqzc+
+f2WUOfSJ3FgCEoAITsCCMK9NI6oaqMBSQOFsTG4yuXgYn2Px3PdgfRVE6X7cBbYr
+0aTiGmzx3Im8dUSm82LZovu55yDlJZ0Q0/EU+zNLfQC2rs2biLhJyNqcRgD6fCmH
+2W0sB+udBwSjicEc3XNRzk70i3J++uk7f1oQ6Ak+gL0Dvl2YBBY=
+=z2UF
+-----END PGP SIGNATURE-----
+
+--rFDGFzVNzKne2qqP--
