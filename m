@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B474D0D30
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 02:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F0DAB4D0D49
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 02:07:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241216AbiCHBFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 20:05:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36698 "EHLO
+        id S1344205AbiCHBIx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 20:08:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239094AbiCHBFr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 20:05:47 -0500
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7821DAE41
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 17:04:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1646701492; x=1678237492;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Jo4Puq3dirXjk+QWemEQMFfxj9JzhyoaneicmY/Nuu0=;
-  b=VMkcosCiCvGTkDopME4ym62LKRPSA/ne4dIB3OUBEPV0q74YSfNQrvvL
-   GouVsj6R2xny6NsZpGnfrIM4PLXF5/Zw3kIdBAnA6OXHGn5ZOgMqL8YwN
-   E44CzSFZO3iP6efG0nGuWSyoXBrloAi4EuyipfYePYIiwJCbtJV6YdCiP
-   o=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 07 Mar 2022 17:04:52 -0800
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 17:04:51 -0800
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 7 Mar 2022 17:04:51 -0800
-Received: from [10.110.30.142] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 7 Mar 2022
- 17:04:50 -0800
-Message-ID: <b7aea3d4-6384-23e9-3b6a-71ba18ae161f@quicinc.com>
-Date:   Mon, 7 Mar 2022 17:04:49 -0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.3.2
-Subject: Re: [PATCH] pinctrl: aspeed: Add FWQSPI pinmux
-Content-Language: en-US
-To:     Andrew Jeffery <andrew@aj.id.au>, Joel Stanley <joel@jms.id.au>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     Jamie Iles <quic_jiles@quicinc.com>,
-        Graeme Gregory <quic_ggregory@quicinc.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>,
-        Johnny Huang <johnny_huang@aspeedtech.com>
-References: <20220308003136.3930466-1-quic_jaehyoo@quicinc.com>
- <d2f125d8-07d1-4bff-8718-7dfba4d8fdb3@www.fastmail.com>
- <73a487ed-312b-72b3-4e64-dc580ba80704@quicinc.com>
- <e541828f-f0bc-419a-a5fc-d8aefe97832d@www.fastmail.com>
-From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
-In-Reply-To: <e541828f-f0bc-419a-a5fc-d8aefe97832d@www.fastmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S1344204AbiCHBIr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 20:08:47 -0500
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A5582C139;
+        Mon,  7 Mar 2022 17:07:47 -0800 (PST)
+Received: by mail-ot1-f42.google.com with SMTP id j3-20020a9d7683000000b005aeed94f4e9so14358840otl.6;
+        Mon, 07 Mar 2022 17:07:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=12XEWrfJJHySa9ucL9RV1LRbnMaoGn2lDS/BPBwPCdA=;
+        b=oyCV5pYIffvCOSztct8FhFe0CtPc8n7o8N+7iUMQclafWzJchwElG2yIkvi7iEMA5I
+         M6XodMntztfzMWY9UrBYyOg7hmhI9oZWqic5cmUwwlOmPNXTwSZwJshiyFTgK71NldLO
+         XoaGdJFUbBQhTmkd/z+8Cl/OK/5mZnTNOQOjJMJapWzu10O9mHQuQ/KBbaGK4qnjeyiZ
+         hl8tidevVlX+X8YjC5BZFriKf3lDfQmgvYjQ2GNDqbU7hcjMAeCG7m0KyOmnzOxCNmPO
+         +5ykN4LpiA33Zh1xkvuL3anKpBRzgeZ9HDtrNAsFfXcYnPoSiuwtSHIKnq5iYObNKSRf
+         2P0A==
+X-Gm-Message-State: AOAM532gJxnW/xqoDW6um5oqJUI9A0+L7rEubYOjoGO74TtFci8bByhh
+        9WQjjMforLb6ldkKQfCF2Q==
+X-Google-Smtp-Source: ABdhPJxoKDNYYs7TzAhFqVTY+CLyhokQvtKcTTgQtR/V+xGGld1FpDXFhldfCDGd6NVMb+Yz67QBJA==
+X-Received: by 2002:a05:6830:2aa7:b0:5b2:2086:d608 with SMTP id s39-20020a0568302aa700b005b22086d608mr6099000otu.159.1646701667031;
+        Mon, 07 Mar 2022 17:07:47 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id b63-20020acab242000000b002d9ddf4596fsm1836035oif.49.2022.03.07.17.07.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Mar 2022 17:07:46 -0800 (PST)
+Received: (nullmailer pid 3624794 invoked by uid 1000);
+        Tue, 08 Mar 2022 01:07:40 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+Cc:     claudiu.beznea@microchip.com, thierry.reding@gmail.com,
+        robh+dt@kernel.org, alexandre.belloni@bootlin.com,
+        u.kleine-koenig@pengutronix.de, nicolas.ferre@microchip.com,
+        lee.jones@linaro.org, krzysztof.kozlowski@canonical.com,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+In-Reply-To: <20220307153656.177589-2-sergiu.moga@microchip.com>
+References: <20220307153656.177589-1-sergiu.moga@microchip.com> <20220307153656.177589-2-sergiu.moga@microchip.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: convert atmel pwm to json-schema
+Date:   Mon, 07 Mar 2022 19:07:40 -0600
+Message-Id: <1646701660.903645.3624793.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 3/7/2022 5:02 PM, Andrew Jeffery wrote:
+On Mon, 07 Mar 2022 17:36:55 +0200, Sergiu Moga wrote:
+> Convert PWM binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
 > 
+> Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> ---
+>  .../bindings/pwm/atmel,at91sam-pwm.yaml       | 42 +++++++++++++++++++
+>  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 ----------------
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 43 insertions(+), 36 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
 > 
-> On Tue, 8 Mar 2022, at 11:16, Jae Hyun Yoo wrote:
->> Hi Andrew,
->>
->> On 3/7/2022 4:41 PM, Andrew Jeffery wrote:
->>>
->>>
->>> On Tue, 8 Mar 2022, at 11:01, Jae Hyun Yoo wrote:
->>>> From: Johnny Huang <johnny_huang@aspeedtech.com>
->>>>
->>>> AST2600 FW SPI quad mode only need to set AE12 and AF12, no need
->>>> to set Y1~Y4. FW SPI cs, clk, mosi and miso pins are dedicated.
->>>
->>> They're not dedicated according to the datasheet?
->>>
->>> Can you please look at this patch?
->>>
->>> https://lore.kernel.org/all/20220304011010.974863-1-joel@jms.id.au/
->>
->> Sorry. Please ignore this patch.
->> I mistakenly sent this patch while making a patch series.
->>
->> Please check this patch series instead.
->> https://lore.kernel.org/linux-arm-kernel/20220308003745.3930607-1-quic_jaehyoo@quicinc.com/T/#t
-> 
-> No worries, I'll take a look though it might be a couple of days due to chasing some other issues.
 
-Thanks a lot, Andrew!
+Running 'make dtbs_check' with the schema in this patch gives the
+following warnings. Consider if they are expected or the schema is
+incorrect. These may not be new warnings.
 
--Jae
+Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+This will change in the future.
+
+Full log is available here: https://patchwork.ozlabs.org/patch/1602300
+
+
+pwm@e1604000: compatible:0: 'microchip,sama7g5-pwm' is not one of ['atmel,at91sam9rl-pwm', 'atmel,sama5d3-pwm', 'atmel,sama5d2-pwm', 'microchip,sam9x60-pwm']
+	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
+
+pwm@e1604000: compatible: ['microchip,sama7g5-pwm', 'atmel,sama5d2-pwm'] is too long
+	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
+
