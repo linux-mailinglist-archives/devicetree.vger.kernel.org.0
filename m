@@ -2,112 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 792924D0EF9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 06:22:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C26A4D0F2B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 06:27:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236213AbiCHFW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 00:22:56 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
+        id S243631AbiCHF2B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 00:28:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232026AbiCHFWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 00:22:55 -0500
-Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC0239839;
-        Mon,  7 Mar 2022 21:22:00 -0800 (PST)
-Received: by mail-pg1-x530.google.com with SMTP id q19so2851470pgm.6;
-        Mon, 07 Mar 2022 21:22:00 -0800 (PST)
+        with ESMTP id S237523AbiCHF2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 00:28:01 -0500
+Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 504763BA41
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 21:27:05 -0800 (PST)
+Received: by mail-pg1-x52d.google.com with SMTP id bc27so15480390pgb.4
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 21:27:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
+        d=google.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=CtARMaggSSWrV7NfHcUkCG/o5DV3pdLuaH3FfGzHsUQ=;
-        b=TeL1lTuGrYSDnbTg9AnrJ2wbZVa9iOcJD5ZeFwd6ollVYkfUAgGm8jcv/1P4YLmfG2
-         ruECfE63kUt83ZD5BppjnGaAfUkUaawbgz7kgLLiaYxf3dbowbnekamT5MDaW8YymMe7
-         iScuiXSz+F/+0GucHpXUyA+NSHo8vhgIkBpbKHBzmAQGZydj8BJPvTF3ezJxBTixz7m7
-         ikNvpNfYsYqY3VGC60MKXNnkmV+wNaipUbH8hD6nmTOPfxkftdBnaoC8LixMaFrYpQ4h
-         r6LCqsbsMgJwdfcOv2vK0zH86KxJOQW+dax0xIvnUILYGTfj1bAa78jaTEOb158hneqi
-         60tQ==
+        bh=oPr7jbEQjZcFbPcnfK3KFYS7eLKVUp4KxioDBpQLsHE=;
+        b=KFudWe1Vy5F9opv/soKhgh7FbpSJlX8UMUatuMgFRoPStXK8BeJYII3IzceeF4CUsE
+         tbZtmjAemFX5zvbE6wUAsuHZbZjxHyMXZWeEZcotbpQPuVRvG0M7k6VpuXKY6pkei48H
+         zXfV9NCW2jKEE17DZ9Ra4LgaKKzI3Af1gO2wcA7ElXQGZWb4NCyLsLzkpbYM8UT9vsEO
+         pUu9p56Gp1SA3gnsGePgMqiQbP60EhVUK9DOvNBmk8vIgN7nMuOBxQ+IB8iUaUiYu2Qb
+         2Pna2NPt9syIKgvHRHKvIJRPlI6Fu620/j9bCtoglu3IB7vYM/lS7I1CEm9Rb4f9/4gY
+         lvcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CtARMaggSSWrV7NfHcUkCG/o5DV3pdLuaH3FfGzHsUQ=;
-        b=0vmVPve3rbtpdERBrXKFg4kK03/1TBG0V3bd2F/IadYEhQPnKw7C3a1Et5Q1touJqP
-         9eW8pdesANDnV9s4onLBrYRjra/IMTLfRdrZZhxnfmEJmIUBd+aepCqp+yzLODUH72qn
-         OGbgN9zeaO9aK+AP/LrpDhtSbpmcU9rQANo9cBcf6/pWpGiirdkeZHBPL3jiPOFbJ9JI
-         hLhmoYpvn0gJSzebBIwWVaNz+K/QEjtutQYOuy/HpLDujh3uxR2HpsAQbV1BciU4FiGi
-         PdERLwkdS4MluCpY8IcVSMHfV74W8ZQ8ITLD4kXc78J03j83hmKEh0Bpnkc6rZD9Za8F
-         KbFQ==
-X-Gm-Message-State: AOAM532tXlVsRFq36JD8KO0yU2hB+0kQL57Jhmd20LeUvUNL0KtsBMr5
-        FEcs7NtO78xlNU9jUIPtVXY=
-X-Google-Smtp-Source: ABdhPJwFp20jh0dkQmrm0tlgd1cRevvUdzaAUabVETOsI+kNcyzJK+T91/tTKf+OrXCSUMyX1lNb4A==
-X-Received: by 2002:a63:5214:0:b0:373:8aca:7453 with SMTP id g20-20020a635214000000b003738aca7453mr12446013pgb.574.1646716919702;
-        Mon, 07 Mar 2022 21:21:59 -0800 (PST)
-Received: from 9a2d8922b8f1 ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id a32-20020a631a20000000b003756899829csm13464044pga.58.2022.03.07.21.21.56
+        bh=oPr7jbEQjZcFbPcnfK3KFYS7eLKVUp4KxioDBpQLsHE=;
+        b=idI9PqfjHAnNsumEn2Ck/1NsXSkTG/S4uY6jPP03dQrLZXILEr/DiNKr2YdHw/NfNh
+         BqLRRCmXuSruDkqGZ/UBu1CYGwILorbR9r9NGK3UQZfO6+BmZJV+8xam02pGBFBPX/0J
+         7LGf3lS8CZGCBfD1sRzO/4phtB029X4EUwsyHX9aceglR/OIP+YFOIDoces3WotYml7c
+         nESQTgShGcDj0RTuHQfekFU+UBEEXiolxTau6Na22N/yeg5LlRIMsg3rBGqqP+AJd4s5
+         hF1D5nm8gjhGEQfCChryEFPyz1NAp+30Iuu4n3SVgzQTeqz7iNM3yS3Vu2d8XvTgzofS
+         tVBQ==
+X-Gm-Message-State: AOAM532GMw/UqNHFh+ar5TlEdkU7HzirFrfzx79INe2bgaZjHiuXx0S2
+        kQKHYV3i+KbuGvOtDqdP+E6Akg==
+X-Google-Smtp-Source: ABdhPJyH9JQVBjUGI9YE7QPYpbcBryWFyGEZ7zSUSAdXkhoivPgJwH+prK8BW8Uov0OvBfEDSxptFQ==
+X-Received: by 2002:a63:d018:0:b0:374:a3c1:dfed with SMTP id z24-20020a63d018000000b00374a3c1dfedmr12888737pgf.155.1646717224619;
+        Mon, 07 Mar 2022 21:27:04 -0800 (PST)
+Received: from google.com (223.103.125.34.bc.googleusercontent.com. [34.125.103.223])
+        by smtp.gmail.com with ESMTPSA id b2-20020a056a000a8200b004e1414f0bb1sm18580376pfl.135.2022.03.07.21.27.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 21:21:59 -0800 (PST)
-Date:   Tue, 8 Mar 2022 10:51:53 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: spi: Update clocks property for ARM
- pl022
-Message-ID: <20220308052153.GA67357@9a2d8922b8f1>
-References: <20220307203745.65210-1-singh.kuldeep87k@gmail.com>
- <f157651b-07c7-43ee-372a-81bd5d615d5d@canonical.com>
+        Mon, 07 Mar 2022 21:27:04 -0800 (PST)
+Date:   Tue, 8 Mar 2022 05:26:59 +0000
+From:   Chun-Tse Shao <ctshao@google.com>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Nick Desaulniers <ndesaulniers@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
+ override pkg-config
+Message-ID: <YibpI1MkqVUvEl9h@google.com>
+References: <20220306223016.2239094-1-ctshao@google.com>
+ <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
+ <YiaMJCHOOuujHwiK@google.com>
+ <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f157651b-07c7-43ee-372a-81bd5d615d5d@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 10:55:52PM +0100, Krzysztof Kozlowski wrote:
-> On 07/03/2022 21:37, Kuldeep Singh wrote:
-> > Add missing minItems property to clocks in ARM pl022 bindings.
-> > 
-> > This helps in resolving below warnings:
-> > clocks: [[4]] is too short
-> > clock-names: ['apb_pclk'] is too short
-> > 
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > ---
-> >  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> 
-> I saw these series in the past... please do not send the same version again.
-> 
-> You need to version your series (git format-patch -v2 -2) and add
-> changelog in cover letter (or for small patches after '---' in commits).
+On Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
+> On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
+> >
+> > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
+> > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > >
+> > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
+> > > > what pkg-config and parameters are used.
+> > >
+> > > Sorry, kind a late thought here for v4, but we don't seem to prefix
+> > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
+> > > PYTHON3, etc.  Maybe just having the variable identifier be simply
+> > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
+> > > list in the top level Makefile after ZSTD (i.e. the list of host
+> > > tools)?  There's HOST_ prefixes when there's more than one tool
+> > > involved (i.e. host compiler vs target compiler), but I suspect
+> > > there's no such distinction for the existing uses of pkg-config?
+> > >
+> > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
+> > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
+> > work on it and submit a new patch.
+> >
+>
+> Please hold on.
+>
+> I was also wondering what to do with the "HOST" prefix.
+>
+> Libraries are usually arch-dependent.
+> (in other words, pkg-config should return different library paths
+> for $(CC) and $(HOSTCC) )
+>
+> You already understood this, so you added "HOST" prefix.
+>
+>
+> Please let me take time for further discussion.
+> I will come back to this when I get some time.
+>
+>
+> In the meantime,
+>   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
+> as reference info if you have not seen it.
+>
+>
+> How many distros support something like
+> "aarch64-linux-gnu-pkg-config"  ?
+>
+> Ubuntu 18.04 and 20.04 seem to support it.
+> I do not know for others.
+>
+>
+>
+>
+>
+> --
+> Best Regards
+>
+> Masahiro Yamada
 
-Ahh no. I completely missed out updating series number before sending.
-Actually I have been struggling to get mutt client setup with gmail
-account to send replies but it doesn't seem to work properly. Gmail
-labels has been hardest part. In between these hurdles, I rolled out
-patches and missed out this important thing.
+Thanks Masahiro! Will wait for your suggestion.
 
-Kindly consider these 2 patches as deprecated.
-
-> 
-> How did you resolve the comments that the DTS might be wrong? It looks
-> like you simply resent it...
-
-Few broadcom boards(stingray and ns2) require DT updation for which I
-sent patches and received Florain's blessings. Those patches are now
-available in github.com/Broadcom/stblinux, devicetree-arm64
-
-There are several other updations(in realview, versatile etc.) required
-which I couldn't mention before as they are part of different tree.
+-CT
