@@ -2,282 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1B654D142D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:05:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25ECD4D1483
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:14:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345576AbiCHKGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 05:06:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
+        id S244073AbiCHKPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 05:15:36 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231400AbiCHKGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:06:13 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C66E240919;
-        Tue,  8 Mar 2022 02:05:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646733914; x=1678269914;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=/CuB+cj7wIAwDipqyjRs9f2gsUIjoXrtXDbpqEqnzYM=;
-  b=0VwEs1RZEIx5ydMPJ3DbB4FFiSzCUJG0dXGESVk8UnyyXR5QQ6E24N2f
-   T0A0tJ53pNxHFElShQY2emIOQjS4CwJSn4oWUj7IgerQcHK12Bh9DqIF9
-   dOrYL8xZQaGg5fM7DUXlEmmsk2hvNJ7xQbURdcqWdajxThOOCgEj1dcyB
-   F7304JjC/L5sHdqVU0146/UDKwGZPiQwAqt4U7TosBVNHVK2fbc92u85M
-   PdgbbnMkJyWqc8yxy8DYCahZM9gC72d84/oT/nXYfEmgrkLsqvUBKSBZH
-   CX8AKDkteTsJBhAfy9f0yV4qYImvheuJs4M3e9zr6o/rSkdP0ukg7gNbJ
+        with ESMTP id S234202AbiCHKPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:15:35 -0500
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A319E3EA8B;
+        Tue,  8 Mar 2022 02:14:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646734477; x=1678270477;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=hpi9pMWKnJ5oF5T0+PXi9Fqc8FlAAugNzaNHUKCMea0=;
+  b=CoaHFOET6u0MQV8BOZ8ftmZVddA/AWpUSVXjwGSPMfTBtMppNynKwm9C
+   Sq82oqoaLlAJXMZoCJV7OYD6O02uRdK2y7xgk3zntE34++GueRSvPnPIf
+   2N5DDKMo6NMQwKZ1Y/wj79ZGGI4OPR0/SoI1MID3nSwgWso1Gu53W3Bpg
+   8PMnu3a3YzvnQhIDH3yqDVB21W6axRgs0oeBMuzM1dFcwTsbT3oCqT9+N
+   E9w61wPcTVvoORU5z+wI+gOQtafXs8cWbhmNTYN5dBt6psXaiv0o5Przj
+   fC7kDHPPAoAQR0LyKYuUv3ms+d4rbRqkYaaregQwoRMysUtOF4frCIw5O
    Q==;
-X-IronPort-AV: E=Sophos;i="5.90,164,1643698800"; 
-   d="scan'208";a="151222886"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 08 Mar 2022 03:05:13 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Tue, 8 Mar 2022 03:05:13 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.17 via Frontend
- Transport; Tue, 8 Mar 2022 03:05:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oY4a7uMXWnnHR+Qeo1HcN4kim6VNI79zsLOijPGPcAqU8JJW6hgY7r+bWVvm3F9hCOWMJKRRtLOcZYc+8KQoAw5mQlwMrYTDOkOoD4MJKRxkaH/pIsDsjZIZAmV9UVWmyR1n5/mg7d3c6+g2/5bO5UIuEbCD/s/7JWPDR35yPxapaFtmHyCostcM3lVeTL2B+1jzi0Nx68YkDXA4yDwyMoZD0LWqPPSr2PvvBpu+xZaOWrEH78exkYVBbcHGu6kI3f5n87iayKSNh2OVTvYc1LQC4LWi1NwiORnYFeAYHZ10F4LH7F0rVVvIIk8YizfC4670zJO/AKV7GQjKEixt0w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DKjNlqSh67e8kagNslwztgfvYGoWUEI7L/CpdlyBe9s=;
- b=O3bFbRQcmQP0lTyGjU1DTej3p1uoRM9BBugMra9R2E/A+h9XGSuV9YwRWxdFBUPkQbTRJSda8as9r4GsN8oCIa7IGWgVQo9z+Lds11ZXrG8SSsP/WuzK0mgIYZONVIr2ZmHmFZ1bbpoXzglSxTUPfR910CvYUbpUgLaMGIL/9Q8YgYT5IJqmbvXjuQrsy3QwS/+MKqsNHFOcqovceiAWLWbX9Enxkmsl2x/szyE3nzWE68kmmcyrVJ/rSp9LbSoPE+/kowgxwYmSYPI47TJQL82/kPoOUuGQ5X3k33dFXevDKMMrO0hBCqQUxYwbqE4tQg3XQmRzX3eWAhoC4HGxrw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DKjNlqSh67e8kagNslwztgfvYGoWUEI7L/CpdlyBe9s=;
- b=PMKOD+KTm6S2fjWOOP6zVGpN5QdR3sXJpWE9L+Ou8GVhzXGcT/VzDqfmX4CAcFLKlR9nxKImN8DozEkQcttyu7eXfzFgDspb/tuQnj1P++dvTX5RvqZntv8Vzpto0NmAzsyi9Q1xI7t1IMCsBAJedzqnRUuveD7Di9fH1y4DVIE=
-Received: from CO1PR11MB4771.namprd11.prod.outlook.com (2603:10b6:303:9f::9)
- by BYAPR11MB3656.namprd11.prod.outlook.com (2603:10b6:a03:f8::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.15; Tue, 8 Mar
- 2022 10:05:08 +0000
-Received: from CO1PR11MB4771.namprd11.prod.outlook.com
- ([fe80::7861:c716:b171:360]) by CO1PR11MB4771.namprd11.prod.outlook.com
- ([fe80::7861:c716:b171:360%3]) with mapi id 15.20.5038.027; Tue, 8 Mar 2022
- 10:05:08 +0000
-From:   <Divya.Koppera@microchip.com>
-To:     <andrew@lunn.ch>
-CC:     <netdev@vger.kernel.org>, <hkallweit1@gmail.com>,
-        <linux@armlinux.org.uk>, <davem@davemloft.net>, <kuba@kernel.org>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <richardcochran@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Madhuri.Sripada@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: RE: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Thread-Topic: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Thread-Index: AQHYL6tdGiDfF8muKUy6jpI4YK/Ta6yvLZmAgAQXZ7CAAKSZAIABWZAA
-Date:   Tue, 8 Mar 2022 10:05:08 +0000
-Message-ID: <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
-References: <20220304093418.31645-1-Divya.Koppera@microchip.com>
- <20220304093418.31645-3-Divya.Koppera@microchip.com>
- <YiILJ3tXs9Sba42B@lunn.ch>
- <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
- <YiYD2kAFq5EZhU+q@lunn.ch>
-In-Reply-To: <YiYD2kAFq5EZhU+q@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 125cbc08-396a-4182-06f1-08da00eb2014
-x-ms-traffictypediagnostic: BYAPR11MB3656:EE_
-x-microsoft-antispam-prvs: <BYAPR11MB36566F5B8B7C1E62EEB9C823E2099@BYAPR11MB3656.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: GcVBt614fXuK3E3Hlkr6y5xNhhSNygM0+svdIbJ3kYTxtAcOXgvFmLhYgrkPGU4ymF6jK2IAWL0MQ7tiznvTM03bm0mTVzSQQwKZ372bOkqBjV7lVS0ELAcyJBfYhIpepH9VkrwIN0+aQitoAQzDmJFi6D/xcydpwJxW590+MywdmFk1UQNe3z0YIq/CgIHK9i3kvPALY1LrdeitDotP8TuqjwL56ajJ8QlAcdcD14JvDx1/wl8/DBrNGTO0CkEyGDIUbfWuAY1WdAzkiFpRja0j/gsRruqJk8J4b0ic0l8C8HccsSXg89SW5PwgDGYThva9UQw8qqwlzrlI9fbaQcfvLCiOu7zLxQ/Ms51SyvGRtdz6J5zeYLiQde4HJwk76hCHB96o3UjOFuwuFcMl9YxLj461XBCjzLQAa+fiFsC/gBf0dikdAHBQ4lzY8yTxEFifhP6Rulj1n1iXwfZYz1uNkz7i0cmJjM/Y4dyc0nrzbxBdBqRaxY+A3A4k3pL8lLQ+JhJOI0+F+UYyvq5zfBbI8dCCpd+yScqrE3ytcHCoTgnfDHANGS9rKoB7Eh8B+OOvVta/LXWEEwKLoMVhRdfnTxdlNV05BrV+1j0Zh07drGGC5Y7SpufsYfr+5KgMaswyUXTAP2fERzYPGBHd52cgroXjXl1yoDkMARn2VLVRfosGiz+YoiGr4ixZUrcQeWT1ptlh3dg1HeLZVWV/3Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4771.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(7696005)(38070700005)(6916009)(54906003)(66556008)(76116006)(66946007)(26005)(186003)(122000001)(6506007)(316002)(9686003)(53546011)(71200400001)(8936002)(52536014)(33656002)(38100700002)(83380400001)(86362001)(55016003)(7416002)(4326008)(8676002)(107886003)(64756008)(66446008)(2906002)(66476007)(5660300002)(508600001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?nCh9TnrvSRvT4ZOWZlsNEaLCHiL5fntzDk4517p9rvL6E1sxa437oopWMUJo?=
- =?us-ascii?Q?dp0gDkfKl0lN4JbtOoDc0GyIptNHlsJVcTeQ7/F5rlPnRnRABXyNynycLsGk?=
- =?us-ascii?Q?ERQwPZ+wlnOuDYpsEM492Vu1YC7ftdXj5KStzhpvg4PZ3NAKjPZ4cY4IELdp?=
- =?us-ascii?Q?dIBVxgaUEL7+yjdlUbcusg9uypnCpj+kW+TiZFEefbWF3xJTN6PA9trwVkop?=
- =?us-ascii?Q?XR88m3TcLefNiAwRdzKThd2h39omgDkNvhe/e4x9gAJ965Ly4oMnz7VOMxan?=
- =?us-ascii?Q?LZYTb2WxxM/R4DUZUj9l4hEFUUVLomnGjdDEGhwIuBbEd9qt94YmVSkfa/XA?=
- =?us-ascii?Q?J1uhkEGUei+GyUxcqYxXnrnWYvkLnY43RPsOSvYIJ4gPVBkn0CeVTB55wZ6Y?=
- =?us-ascii?Q?zcL1/0bvmb+j5AazLmCCyKiToRL0kAgmeje1g0tHKWt4zn8YVuq70gsRqmQT?=
- =?us-ascii?Q?5Dmu4quEDGdF3Xt2ZIQca85ve58Is/Tp/M8FKhi6KO5MyHsEnACz5IkrGUuQ?=
- =?us-ascii?Q?3qUPLCbqDmq1FWWfAZQt2JFCsF10BVDd51Bqf1li15h7bJvNSVioNDWzQYcP?=
- =?us-ascii?Q?HvIYezysYMBb1bGAOeryvlMTF2xxttbL3Gl7jmbXTNGb5zmM5caMowYi1trF?=
- =?us-ascii?Q?SfjOtWIJbPvRnzUPMtu/2pANr4yBeQ9u7iA4J/OLh2+VICi8WORoCR2S8pCF?=
- =?us-ascii?Q?a8Qnm4xdxH9h0f61SYlvkW+eoTvx0Vxki23qZ9vnbAtEiZKrnhu0yFBfZ0lj?=
- =?us-ascii?Q?0B0MapTFF895mYHeaYvVEAhA9ehaZHO3VI8A+HDz9Lyx2q0fWxKevFtKXOcb?=
- =?us-ascii?Q?YyhVsxhsbwrjzmSL8HYxCg9YJWh7hMsP/lO+VGzpXpcxuwfOYCUHgGOiCvdP?=
- =?us-ascii?Q?JwwOICfd4wK3lZ5z7DfSGGeXQaPghwXha1121Y5JUDuEizgkLZALMmx2id3l?=
- =?us-ascii?Q?jwMSq0ShZJa46UNMuKFzRGGLd2cZa7IfecEIctyzX24RTrd5yZ87AsY/q78X?=
- =?us-ascii?Q?i2J2IBCFxSa3tzPh/xs6mECRGbJw7sPZHV/qcw7VPVOoJN3PSHNYo1Sfrqn6?=
- =?us-ascii?Q?E8HGeR1fNWrNLqZm48ul5v7EYLDO47wANiQR2yqT34uTDLy2ItT1JPOIELxS?=
- =?us-ascii?Q?d4PPwUS7VFUUy2Xz9yLyxW+9L+w59ZQ/H9FvFwfIBQmjwjJgCSxKTNloh9hE?=
- =?us-ascii?Q?lgY2a5sFvT1ZSOmfFgLymPOjCkkokYhXfXQMDGm1NiAcGcaeJFY3E1IVim+h?=
- =?us-ascii?Q?EeOCE5C4ZokHpq+7rQbTMrkYJrKZywmn9FQshkrK+9gxL5cjIQPFNN4I2Aqs?=
- =?us-ascii?Q?AvSf3LuLLOqRAivKcXpd1RgWDYHcfWx17YaIUKC3YcSuCHyJ44VYr/+tPus4?=
- =?us-ascii?Q?MQ6RXqXXN6+lqKKOxK22VhmcohnHzz4EIl8tv4LrlTbhEjlXZGTiaq670Uda?=
- =?us-ascii?Q?zO1Ho5VeU3bQpYDxB2Nk9NXJ16LF50ziu2RM2iEW96PXtKPI/XF1c+/6IIBk?=
- =?us-ascii?Q?TX5a+83zaEC5ReK9wtlFzUTFr0qHhmE3/mgkDdmmZebHjyMbgws36Dw8m/20?=
- =?us-ascii?Q?OewwhBh64icSTNZV5gh1Y5/A+3rg9GsT4ie/3H3jjTMVLkIrW1PYWICfopfm?=
- =?us-ascii?Q?znPNoSujs4bYvj/rQeWEtB8tLypdnNCajMvGHJ8ulX84OAf2n5ZVSbrk2yc2?=
- =?us-ascii?Q?LJptQw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="315363348"
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+   d="scan'208";a="315363348"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 02:14:37 -0800
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+   d="scan'208";a="595839404"
+Received: from smile.fi.intel.com ([10.237.72.59])
+  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 02:14:34 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.95)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1nRWqk-00DI7W-CK;
+        Tue, 08 Mar 2022 12:13:50 +0200
+Date:   Tue, 8 Mar 2022 12:13:50 +0200
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     shruthi.sanil@intel.com,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Mark Gross <mgross@linux.intel.com>,
+        srikanth.thokala@intel.com,
+        "Raja Subramanian, Lakshmi Bai" 
+        <lakshmi.bai.raja.subramanian@intel.com>,
+        mallikarjunappa.sangannavar@intel.com
+Subject: Re: [PATCH v8 1/2] dt-bindings: timer: Add bindings for Intel Keem
+ Bay SoC Timer
+Message-ID: <YicsXm9JboW2b+5f@smile.fi.intel.com>
+References: <20220222095654.9097-1-shruthi.sanil@intel.com>
+ <20220222095654.9097-2-shruthi.sanil@intel.com>
+ <YhVuJaf3AJ1c6TpT@robh.at.kernel.org>
+ <YhYa3tlTEcLct2xu@smile.fi.intel.com>
+ <CAL_JsqK_k49eKZ+Z+uw29GdY9KFVJL9o5xkzg=1=yF-oEt+JRg@mail.gmail.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4771.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 125cbc08-396a-4182-06f1-08da00eb2014
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2022 10:05:08.0438
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vfM6qDnLKtgjbGvxxqMK3/OjncK6nPAaCBSfL0KlE3pz1k11Ntnb69tPpWqPJY2K7LbU5NvhGDTgihVY6K7nPtAeE7xcJzb4icgkGw8MrP0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3656
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqK_k49eKZ+Z+uw29GdY9KFVJL9o5xkzg=1=yF-oEt+JRg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Andrew Lunn <andrew@lunn.ch>
-> Sent: Monday, March 7, 2022 6:39 PM
-> To: Divya Koppera - I30481 <Divya.Koppera@microchip.com>
-> Cc: netdev@vger.kernel.org; hkallweit1@gmail.com; linux@armlinux.org.uk;
-> davem@davemloft.net; kuba@kernel.org; robh+dt@kernel.org;
-> devicetree@vger.kernel.org; richardcochran@gmail.com; linux-
-> kernel@vger.kernel.org; UNGLinuxDriver <UNGLinuxDriver@microchip.com>;
-> Madhuri Sripada - I34878 <Madhuri.Sripada@microchip.com>; Manohar Puri -
-> I30488 <Manohar.Puri@microchip.com>
-> Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure lat=
-ency
-> values and timestamping check for LAN8814 phy
->=20
-> EXTERNAL EMAIL: Do not click links or open attachments unless you know th=
-e
-> content is safe
->=20
-> > > > +
-> > > > + - lan8814,ignore-ts: If present the PHY will not support timestam=
-ping.
-> > > > +
-> > > > +     This option acts as check whether Timestamping is supported b=
-y
-> > > > +     hardware or not. LAN8814 phy support hardware tmestamping.
-> > >
-> > > Does this mean the hardware itself cannot tell you it is missing the
-> > > needed hardware? What happens when you forget to add this flag? Does
-> > > the driver timeout waiting for hardware which does not exists?
-> > >
+On Mon, Mar 07, 2022 at 04:33:23PM -0600, Rob Herring wrote:
+> On Wed, Feb 23, 2022 at 5:31 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
 > >
-> > If forgot to add this flag, driver will try to register ptp_clock that
-> > needs access to clock related registers, which in turn fails if those r=
-egisters
-> doesn't exists.
->=20
-> Thanks for the reply, but you did not answer my question:
->=20
->   Does this mean the hardware itself cannot tell you it is missing the
->   needed hardware?
->=20
-> Don't you have different IDs in register 2 and 3 for those devices with c=
-lock
-> register and those without?
->=20
-
-The purpose of this option is, if both PHY and MAC supports timestamping th=
-en always timestamping is done in PHY.
-If timestamping need to be done in MAC we need a way to stop PHY timestampi=
-ng. If this flag is used then timestamping is taken care by MAC.
-
-> > > > + - lan8814,latency_rx_10: Configures Latency value of phy in
-> > > > + ingress at 10
-> > > Mbps.
-> > > > +
-> > > > + - lan8814,latency_tx_10: Configures Latency value of phy in
-> > > > + egress at 10
-> > > Mbps.
-> > > > +
-> > > > + - lan8814,latency_rx_100: Configures Latency value of phy in
-> > > > + ingress at 100
-> > > Mbps.
-> > > > +
-> > > > + - lan8814,latency_tx_100: Configures Latency value of phy in
-> > > > + egress at 100
-> > > Mbps.
-> > > > +
-> > > > + - lan8814,latency_rx_1000: Configures Latency value of phy in
-> > > > + ingress at
-> > > 1000 Mbps.
-> > > > +
-> > > > + - lan8814,latency_tx_1000: Configures Latency value of phy in
-> > > > + egress at
-> > > 1000 Mbps.
-> > >
-> > > Why does this need to be configured, rather than hard coded? Why
-> > > would the latency for a given speed change? I would of thought
-> > > though you would take the average length of a PTP packet and divide i=
-s by
-> the link speed.
-> > >
+> > On Tue, Feb 22, 2022 at 05:13:41PM -0600, Rob Herring wrote:
+> > > On Tue, Feb 22, 2022 at 03:26:53PM +0530, shruthi.sanil@intel.com wrote:
+> > > > From: Shruthi Sanil <shruthi.sanil@intel.com>
+> > > >
+> > > > Add Device Tree bindings for the Timer IP, which can be used as
+> > > > clocksource and clockevent device in the Intel Keem Bay SoC.
 > >
-> > This latency values could be different for different phy's. So hardcodi=
-ng will
-> not work here.
->=20
-> But you do actually have hard coded defaults. Those odd hex values i poin=
-ted
-> out.
->=20
-> By different PHYs do you mean different PHY versions? So you can look at
-> register 2 and 3, determine what PHY it is, and so from that what default=
-s
-> should be used? Or do you mean different boards with the same PHY?
->=20
-> In general, the less tunables you have, the better. If the driver can fig=
-ure it out,
-> it is better to not have DT properties. The PHY will then also work with =
-ACPI
-> and USB etc, where there is no DT. Implementing the user space API Richar=
-d
-> pointed out will also allow your PHY to work with none DP systems.
->=20
+> > ...
+> >
+> > > > +    soc {
+> > > > +        #address-cells = <0x2>;
+> > > > +        #size-cells = <0x2>;
+> > > > +
+> > > > +        gpt@20331000 {
+> > > > +            compatible = "intel,keembay-gpt-creg", "simple-mfd";
+> > >
+> > > It looks like you are splitting things based on Linux implementation
+> > > details. Does this h/w block have different combinations of timers and
+> > > counters? If not, then you don't need the child nodes at all. There's
+> > > plenty of h/w blocks that get used as both a clocksource and clockevent.
+> > >
+> > > Maybe I already raised this, but assume I don't remember and this patch
+> > > needs to address any questions I already asked.
+> >
+> > I dunno if I mentioned that hardware seems to have 5 or so devices behind
+> > the block, so ideally it should be one device node that represents the global
+> > register spaces and several children nodes.
+> 
+> Is it 5 devices or 9 devices?
 
-Sorry I answered wrong. Latency values vary depending on the position of PH=
-Y in board.=20
-We have used this PHY in different hardware's, where latency values differs=
- based on PHY positioning.=20
-So we used latency option in DTS file.
-If you have other ideas or I'm wrong please let me know?
+5 devices, one of which is a timer block out of 8 timers.
+You may count them as 12 altogether.
 
-> > Yes in our case latency values depends on port speed. It is delay
-> > between network medium and PTP timestamp point.
->=20
-> What are the units. You generally have the units in the property name. So=
- e.g.
-> lan8814,latency_tx_1000_ns. If need be, the driver then converts to whate=
-ver
-> value you place into the register.
->=20
-> If you do keep them, please make it clear that these values are optional,=
- and
-> state what value will be used when the property is not present.
->=20
+> > However, I am not familiar with the established practices in DT world, but
+> > above seems to me the right thing to do since it describes the hardware as
+> > is (without any linuxisms).
+> 
+> The Linuxism in these cases defining 1 node per driver because that's
+> what is convenient for automatic probing. That appears to be exactly
+> the case here. The red flag is nodes with a compatible and nothing
+> else. The next question is whether the sub-devices are blocks that
+> will be assembled in varying combinations and quantities. If not, then
+> not much point subdividing the h/w blocks.
 
-Yes units are Nanoseconds.
+AFAIU the hardware architecture the amount of timers is dependent on
+the IP synthesis configuration. On this platform it's 8, but it may be
+1 or 2, for example.
 
->         Andrew
+> There's also many cases of having multiple 'identical' timers and
+> wanting to encode which timer gets assigned to clocksource vs.
+> clockevent. But those 'identical' timers aren't if you care about
+> which timer gets assigned where. I *think* that's not the case here
+> unless you are trying to pick the timer for the clockevent by not
+> defining the other timers.
+> 
+> Without having a complete picture of what's in 'gpt-creg', I can't
+> give better advice.
+
+I guess they need to share TRM, if possible, to show what this
+block is.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
