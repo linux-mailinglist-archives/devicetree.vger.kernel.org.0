@@ -2,143 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6406D4D0E5D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 04:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 056684D0E76
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 04:48:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244521AbiCHDf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 22:35:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55466 "EHLO
+        id S236315AbiCHDtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 22:49:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243538AbiCHDf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 22:35:56 -0500
-Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5A333342
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 19:35:00 -0800 (PST)
-Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-2dc242a79beso177237587b3.8
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 19:35:00 -0800 (PST)
+        with ESMTP id S232753AbiCHDtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 22:49:01 -0500
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7852A2F006
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 19:48:05 -0800 (PST)
+Received: by mail-yb1-xb2f.google.com with SMTP id w16so35170960ybi.12
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 19:48:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Z8YcLICd5ozOotLHacoo6o3IiMpV2MGmEAAbrOhugvs=;
-        b=E6bg8mbI/8B/nte9RAMX4UNf4tzDxc/13fNgc1359WYoXXBJhgU2AHy1Mt5dmk6ORV
-         CZqWREQJdED5OsAd1DZ5/pahBNk2JABS9Dh5CDvx+PAQ8JdyJhk49uVPPEfmAN7yJXCJ
-         c2j5jsDZP/cEoE98KPj9mxU6rGVBeWLoquYAV9n43PFXgnhSgCkJbC7W3YPSDcuIijDH
-         n5NAn/WZzemkI56p7sfCBO8NUhxjIpU3oAIgcx+Cfc0TSYTGFA/z2gUua5zY3viHPNv/
-         rGeXmQiR54M2xlSvwsF78wCgbiI7GqLOZe3cwDcI94mif1dFm24jA4du/mAtKFu6LnkV
-         MDmw==
+        bh=SB1pR6R36cG/5vqUJ9L1OYX7dRask2g/0weyNuOkOYQ=;
+        b=Aqt++puDVTDcltryRW77a9cwhFd1XciMKNs9AsjManml5e4eEQPtDOB/5nEXjsn+P9
+         GkEs/gI5+4vK3gNMFYbQocu8XMlxE9wCZPPoS8OfoPNDIE6avBWb/hU6LMu1/Cf2whCu
+         FFb8lEOczvnEeE5kzWcvCMw/ecWn+5SZxlX2s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Z8YcLICd5ozOotLHacoo6o3IiMpV2MGmEAAbrOhugvs=;
-        b=tYI+uFmyWEgHfr4PTOEIvnpxGG2XBZX5lqnA4Sa5Pj3b7r10zU9f12zvj+3O3LVIFH
-         in5/HVZjNVuT9onwP9+RX7tYQroqS+P21jyikTULpix9EWbdCnLC+lW+3YZ5jJHWx8OI
-         DiVPJJYM4o+uFRulr0MuG29ho4k9jEHtFBxfPXgNl389meHewetvnuDIel7WjCUV+dSu
-         6OmjmeXHFRYDZWAhcAq4Rz6WQ5BMJgjvRAw0ZIT6D4M+EvYx/awsBmO1y7jF/oULRzKC
-         w5R6WK2Cg1JkFdCtoXAEIEvFvgxO0PIBfia3/JUbL2e9iOP4Aw2iFd39LztSQSrBTJii
-         qYZQ==
-X-Gm-Message-State: AOAM532RceoS4hG2DRY1k9U/hFfBAJyFlPJNyD2zoK+aISAdX8Qv1bat
-        gvj31OVAWUZKHYQAljrRPX637mIvd6ytwqrUVPXSWA==
-X-Google-Smtp-Source: ABdhPJzo2dG+eNHZZX2iQtBwAtX7u8Wf3lG3tlRUrepurBhu4QFhvCI+Dq6HKWsqieO1b+2teU4IBJik9JBgYFkNdXU=
-X-Received: by 2002:a0d:f844:0:b0:2db:972c:56e0 with SMTP id
- i65-20020a0df844000000b002db972c56e0mr11333696ywf.126.1646710498872; Mon, 07
- Mar 2022 19:34:58 -0800 (PST)
+        bh=SB1pR6R36cG/5vqUJ9L1OYX7dRask2g/0weyNuOkOYQ=;
+        b=X2fTsBtugeuxVZzBdBvPBt5mzJaC3YyKv+hDvIsNY/ra1FoKv7qfYJmwOxgtQAVPIs
+         Xx9dDf9MxnB3d6UqV6yU5Gf3ZW+gVZlgV4lTcE3HFWoT/lE+Ukd3C3DUPAZFtet0+Pwk
+         xi8h95Q4gxM/vT1zXXSyaZbBkcsa4IKBK5zP2x7KAdgYRdRi7g6srAVVuWeR0OU9ZIPx
+         WnsV1vD21mFpsaY47YWqsYlWVtmAyDAHnkp8PCf6mZtwLSMh3MNiyVFTnVh25CZVs5HZ
+         WDf9444moihlnwEAqnyhYhHDRvCEYkdxTqxUmycaGA4P/WmRf/L6hrZj/gNQRrqf7xPt
+         H/bA==
+X-Gm-Message-State: AOAM531+MIUNdRJ3pYdEGOjmdRddmjwQj97qfz/ui71V/CRRJbJoOrik
+        FOoMrJA1g+7WXpV9c6T/oP2I4Rm2FNZYdh/uZBoPNQ==
+X-Google-Smtp-Source: ABdhPJyuGeWIUlb3utDkOR1PhipoTjIrNi/Cf0gmscf2NmU/0KOasS7EzcBrtPdNSmwisXmV8F84klzvCTpKGd/lH2w=
+X-Received: by 2002:a25:d449:0:b0:628:945d:713c with SMTP id
+ m70-20020a25d449000000b00628945d713cmr11205541ybf.164.1646711284731; Mon, 07
+ Mar 2022 19:48:04 -0800 (PST)
 MIME-Version: 1.0
-References: <20220302211100.65264-1-paul.kocialkowski@bootlin.com>
- <20220302211100.65264-2-paul.kocialkowski@bootlin.com> <YiaTfsMDs7RGob2N@robh.at.kernel.org>
-In-Reply-To: <YiaTfsMDs7RGob2N@robh.at.kernel.org>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 7 Mar 2022 19:34:22 -0800
-Message-ID: <CAGETcx9u9RO_5nSp+=qgwDGY=jL_Q1hAcj+RfVN=q-H_8iuT4w@mail.gmail.com>
-Subject: Re: [PATCH RFC v3 1/8] of: Mark interconnects property supplier as optional
-To:     Rob Herring <robh@kernel.org>
-Cc:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20220307154558.2505734-1-robert.foss@linaro.org>
+ <20220307154558.2505734-3-robert.foss@linaro.org> <CAG3jFytGV3NNfkEPqx_rZX9O9aZjTjzo2tpeSK8mFimOrYt9zw@mail.gmail.com>
+In-Reply-To: <CAG3jFytGV3NNfkEPqx_rZX9O9aZjTjzo2tpeSK8mFimOrYt9zw@mail.gmail.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Tue, 8 Mar 2022 11:47:53 +0800
+Message-ID: <CAGXv+5H7RvczEeAyLEmJ-RNAwqV1G71FhsG3Kpi0r+qPkXVaeQ@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] Revert "arm64: dts: mt8183: jacuzzi: Fix bus
+ properties in anx's DSI endpoint"
+To:     Robert Foss <robert.foss@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>
+Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, xji@analogixsemi.com, hsinyi@chromium.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 7, 2022 at 3:21 PM Rob Herring <robh@kernel.org> wrote:
+On Tue, Mar 8, 2022 at 12:20 AM Robert Foss <robert.foss@linaro.org> wrote:
 >
-> +Saravana
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+
+I think we need to send this directly to the soc maintainers to get it
+picked up before the final 5.17 release?
+
 >
-> On Wed, Mar 02, 2022 at 10:10:53PM +0100, Paul Kocialkowski wrote:
-> > In order to set their correct DMA address offset, some devices rely on
-> > the device-tree interconnects property which identifies an
-> > interconnect node that provides a dma-ranges property that can be used
-> > to set said offset.
+> On Mon, 7 Mar 2022 at 16:46, Robert Foss <robert.foss@linaro.org> wrote:
 > >
-> > Since that logic is all handled by the generic openfirmware and driver
-> > code, the device-tree description could be enough to properly set
-> > the offset.
-> >
-> > However the interconnects property is currently not marked as
-> > optional, which implies that a driver for the corresponding node
-> > must be loaded as a requirement. When no such driver exists, this
-> > results in an endless EPROBE_DEFER which gets propagated to the
-> > calling driver. This ends up in the driver never loading.
-> >
-> > Marking the interconnects property as optional makes it possible
-> > to load the driver in that situation, since the EPROBE_DEFER return
-> > code will no longer be propagated to the driver.
-> >
-> > There might however be undesirable consequences with this change,
-> > which I do not fully grasp at this point.
-
-Temporary NACK till I get a bit more time to take a closer look. I
-really don't like the idea of making interconnects optional. IOMMUs
-and DMAs were exceptions. Also, we kinda discuss similar issues in
-LPC. We had some consensus on how to handle these and I noted them all
-down with a lot of details -- let me go take a look at those notes
-again and see if I can send a more generic patch.
-
-Paul,
-
-Can you point to the DTS (not DTSI) file that corresponds to this?
-Also, if it's a builtin kernel, I'd recommend setting
-deferred_probe_timeout=1 and that should take care of it too.
-
--Saravana
-
-> >
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > This reverts commit 32568ae37596b529628ac09b875f4874e614f63f.
 > > ---
-> >  drivers/of/property.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >  arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 --
+> >  1 file changed, 2 deletions(-)
 > >
-> > diff --git a/drivers/of/property.c b/drivers/of/property.c
-> > index 8e90071de6ed..ef7c56b510e8 100644
-> > --- a/drivers/of/property.c
-> > +++ b/drivers/of/property.c
-> > @@ -1365,7 +1365,7 @@ static struct device_node *parse_interrupts(struct device_node *np,
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> > index e8f133dc96b95..8f7bf33f607da 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
+> > @@ -171,8 +171,6 @@ port@0 {
 > >
-> >  static const struct supplier_bindings of_supplier_bindings[] = {
-> >       { .parse_prop = parse_clocks, },
-> > -     { .parse_prop = parse_interconnects, },
-> > +     { .parse_prop = parse_interconnects, .optional = true,},
-> >       { .parse_prop = parse_iommus, .optional = true, },
-> >       { .parse_prop = parse_iommu_maps, .optional = true, },
-> >       { .parse_prop = parse_mboxes, },
+> >                         anx7625_in: endpoint {
+> >                                 remote-endpoint = <&dsi_out>;
+> > -                               bus-type = <5>;
+> > -                               data-lanes = <0 1 2 3>;
+> >                         };
+> >                 };
+> >
 > > --
-> > 2.35.1
-> >
+> > 2.32.0
 > >
