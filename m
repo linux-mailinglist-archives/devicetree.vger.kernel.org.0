@@ -2,121 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC174D1621
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 12:21:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D86AE4D169D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 12:49:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346464AbiCHLWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 06:22:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40464 "EHLO
+        id S1346503AbiCHLuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 06:50:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49002 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346463AbiCHLWj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 06:22:39 -0500
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150524579C;
-        Tue,  8 Mar 2022 03:21:43 -0800 (PST)
-Received: by mail-qt1-f179.google.com with SMTP id bt3so15846198qtb.0;
-        Tue, 08 Mar 2022 03:21:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=F4/6/jNoigqZsZr9XYglGbTplLVuMWJmgJ5Lyc0Enx4=;
-        b=S+PKWVC4Zmy0ZUCBkUv/3n5Q8Ass0kX7DTLun6UTI1BymCfqihoc0+6wLL9p5Yp6pu
-         LK2z6PsmReLrnAn26Iqn/SQ9sk6Hl2H7PSpNj4GGAwNL5PGOBuHE3SJ+FffBmWE2Dut6
-         TobjsyAAO1m6e1U6c3NqBt7cmKcuaiZ7CngpfFWVzXXJNlWgZ6oDYKmtpuWB3fRZxYyA
-         jBX/9IPYTk0Wbn/KSPxy/9vG/iZ9fj+/QtnXcLCym6zVFpDW/KHkC20E0RZHfF8wEpZ8
-         wLq8gFdR10NgA87SuSGzLuq4bNKGvSnOvGSAw+Ezo8iQgmjh1YmpQp24B5+hRW2jAPeM
-         pHRw==
-X-Gm-Message-State: AOAM531gcOq3lpYpT0hp0oTofEK8nG8LzN9wxNaEzZPc2X1oyGpoRJJ6
-        GyRJUPkekFDMITZEbPNbR8NoLGWzhyPCdw==
-X-Google-Smtp-Source: ABdhPJwtNf3sO/CJmVmqr+ZA2Tl5NCrBx+U8Rxd9yGik7ssiW9A8Le8BPzZBwiImwfRhlwJQuRptjg==
-X-Received: by 2002:a05:622a:406:b0:2e0:9838:6b58 with SMTP id n6-20020a05622a040600b002e098386b58mr102157qtx.607.1646738501920;
-        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
-        by smtp.gmail.com with ESMTPSA id f19-20020ac859d3000000b002de4d014733sm10428486qtf.13.2022.03.08.03.21.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
-Received: by mail-yb1-f182.google.com with SMTP id l2so17568936ybe.8;
-        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
-X-Received: by 2002:a25:bc8f:0:b0:628:8649:5c4b with SMTP id
- e15-20020a25bc8f000000b0062886495c4bmr11278520ybk.207.1646738500973; Tue, 08
- Mar 2022 03:21:40 -0800 (PST)
+        with ESMTP id S235291AbiCHLub (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 06:50:31 -0500
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12B22E084;
+        Tue,  8 Mar 2022 03:49:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1646740171; x=1678276171;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=hptAeT1aRWP2UIvZ3fkUSKXBKuDV4uGYtvodri9TAc4=;
+  b=fSA7nw4dIwFXAJWNA5QOX5x/1P/ZWKvBzR6j5ASQF8eHw7m1Qz+4OaoQ
+   aXuEbCVXIgGsQT6Sa3yT0c/OzkREOSkRr5FK22Ws4GFCQuK4ryLP+8m0h
+   82td6G00Btk2LcrHSZzxS5SE9Yf73Li/myZt0KUM/2nZfgU+A4b+MR90P
+   9mcnbsguh3CFmTVUHP5F30DW/ncK61CVpwkfzOi8tJoT2PYJH0a1se6JZ
+   2ANDGGaw3oOON/pddAau6HWs8rbYifOyvcUIxSpc91OD51s0roy8WdGNg
+   BVVWWlItEd+OlaKQnLfbzuiBG2dUQHHM9tco4yKWqfggSsdKFpAt+nz9j
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10279"; a="252236217"
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+   d="scan'208";a="252236217"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2022 03:49:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,164,1643702400"; 
+   d="scan'208";a="687896769"
+Received: from kuha.fi.intel.com ([10.237.72.185])
+  by fmsmga001.fm.intel.com with SMTP; 08 Mar 2022 03:49:28 -0800
+Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 08 Mar 2022 13:49:27 +0200
+Date:   Tue, 8 Mar 2022 13:49:27 +0200
+From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
+To:     Alvin =?utf-8?Q?=C5=A0ipraga?= <ALSI@bang-olufsen.dk>
+Cc:     Alvin =?utf-8?Q?=C5=A0ipraga?= <alvin@pqrs.dk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/4] usb: typec: add TUSB320xA driver
+Message-ID: <YidCx7Vi3ob8vquD@kuha.fi.intel.com>
+References: <20220301132010.115258-1-alvin@pqrs.dk>
+ <20220301132010.115258-4-alvin@pqrs.dk>
+ <YiYYa7GkknJ+CAuL@kuha.fi.intel.com>
+ <87lexlcsrj.fsf@bang-olufsen.dk>
 MIME-Version: 1.0
-References: <20220124121009.108649-1-alistair@alistair23.me> <20220124121009.108649-6-alistair@alistair23.me>
-In-Reply-To: <20220124121009.108649-6-alistair@alistair23.me>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 8 Mar 2022 12:21:29 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
-Message-ID: <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
-Subject: Re: [PATCH v18 5/8] hwmon: sy7636a: Add temperature driver for sy7636a
-To:     Alistair Francis <alistair@alistair23.me>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
-        Zhang Rui <rui.zhang@intel.com>, alistair23@gmail.com,
-        Amit Kucheria <amitk@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87lexlcsrj.fsf@bang-olufsen.dk>
+X-Spam-Status: No, score=-7.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alistair,
+On Mon, Mar 07, 2022 at 10:17:04PM +0000, Alvin Šipraga wrote:
+> Hi Heikki,
+> 
+> Heikki Krogerus <heikki.krogerus@linux.intel.com> writes:
+> 
+> > Hi,
+> >
+> > On Tue, Mar 01, 2022 at 02:20:07PM +0100, Alvin Šipraga wrote:
+> >> From: Alvin Šipraga <alsi@bang-olufsen.dk>
+> >> 
+> >> The TUSB320LA and TUSB320HA (or LAI, HAI) chips are I2C controlled
+> >> non-PD Type-C port controllers. They support detection of cable
+> >> orientation, port attachment state, and role, including Audio Accessory
+> >> and Debug Accessory modes. Add a typec class driver for this family.
+> >> 
+> >> Note that there already exists an extcon driver for the TUSB320 (a
+> >> slightly older revision that does not support setting role preference or
+> >> disabling the CC state machine). This driver is loosely based on that
+> >> one.
+> >
+> > This looked mostly OK to me. There is one question below.
+> >
+> > <snip>
+> >
+> >> +static int tusb320xa_check_signature(struct tusb320xa *tusb)
+> >> +{
+> >> +	static const char sig[] = { '\0', 'T', 'U', 'S', 'B', '3', '2', '0' };
+> >> +	unsigned int val;
+> >> +	int i, ret;
+> >> +
+> >> +	mutex_lock(&tusb->lock);
+> >> +
+> >> +	for (i = 0; i < sizeof(sig); i++) {
+> >> +		ret = regmap_read(tusb->regmap, sizeof(sig) - 1 - i, &val);
+> >> +		if (ret)
+> >> +			goto done;
+> >> +
+> >> +		if (val != sig[i]) {
+> >> +			dev_err(tusb->dev, "signature mismatch!\n");
+> >> +			ret = -ENODEV;
+> >> +			goto done;
+> >> +		}
+> >> +	}
+> >> +
+> >> +done:
+> >> +	mutex_unlock(&tusb->lock);
+> >> +
+> >> +	return ret;
+> >> +}
+> >
+> > Couldn't that be done with a single read?
+> >
+> >         char sig[8];
+> >         u64 val;
+> >
+> >         strcpy(sig, "TUSB320")
+> >
+> >         mutex_lock(&tusb->lock);
+> >
+> >         ret = regmap_raw_read(tusb->regmap, 0, &val, sizeof(val));
+> >         ...
+> >         if (val != cpu_to_le64(*(u64 *)sig)) {
+> >         ...
+> >
+> > Something like that?
+> 
+> I think it's a bit cryptic - are you sure it's worth it just to save 8
+> one-off regmap_read()s? I could also just remove this check... I see it
+> mostly as a courtesy to the user in case the I2C address in his device
+> tree mistakenly points to some other unsuspecting chip.
+> 
+> BTW, do you have any feedback on the device tree bindings of this
+> series? Rob had some questions and I am not sure that my proposed
+> bindings are fully aligned with the typec subsystem expectations. Any
+> feedback would be welcome.
 
-On Mon, Jan 24, 2022 at 1:25 PM Alistair Francis <alistair@alistair23.me> wrote:
-> This is a multi-function device to interface with the sy7636a
-> EPD PMIC chip from Silergy.
->
-> Signed-off-by: Alistair Francis <alistair@alistair23.me>
-> Acked-by: Guenter Roeck <linux@roeck-us.net>
+I don't think I understand DT well enough to comment. I'm not
+completely sure what he's asking..
 
-Thanks for your patch, which is now commit de34a40532507814 ("hwmon:
-sy7636a: Add temperature driver for sy7636a") in mfd/for-mfd-next.
+> I will wait for more comments and send a v2 in ~a week.
 
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -1672,6 +1672,15 @@ config SENSORS_SIS5595
->           This driver can also be built as a module. If so, the module
->           will be called sis5595.
->
-> +config SENSORS_SY7636A
-> +       tristate "Silergy SY7636A"
-> +       help
-> +         If you say yes here you get support for the thermistor readout of
-> +         the Silergy SY7636A PMIC.
+thanks,
 
-As this is an i2c mfd device, you do need a dependency on MFD and I2C,
-or some other symbol, unless compile-testing?
-
-> +
-> +         This driver can also be built as a module.  If so, the module
-> +         will be called sy7636a-hwmon.
-> +
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+-- 
+heikki
