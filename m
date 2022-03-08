@@ -2,79 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 323174D0C59
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 00:59:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E214E4D0C75
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:10:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239909AbiCHAAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 19:00:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33254 "EHLO
+        id S243897AbiCHALA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 19:11:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234154AbiCHAAg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:00:36 -0500
-Received: from mail-oo1-xc2e.google.com (mail-oo1-xc2e.google.com [IPv6:2607:f8b0:4864:20::c2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9662333E00
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 15:59:39 -0800 (PST)
-Received: by mail-oo1-xc2e.google.com with SMTP id 189-20020a4a03c6000000b003179d7b30d8so20025242ooi.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 15:59:39 -0800 (PST)
+        with ESMTP id S229906AbiCHAK7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:10:59 -0500
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8038312A9E
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:10:04 -0800 (PST)
+Received: by mail-pj1-x1032.google.com with SMTP id fs4-20020a17090af28400b001bf5624c0aaso828783pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 16:10:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KEKG+0hooW1zM7qhTU6cSghfN5cLCif35DDe+3mMJLQ=;
-        b=qFLO6hAIpl06N4GNLGqecP/zlZwavKJvd+C2rXjxnNQPO4w64M+806hqjlD7t5TC6g
-         BNcZsQmoORx6UJxpnwD9nzyJsEPGkmb0zpT0utUZNkmvIvTQPsNqjE/ItkaeHXwNtLfY
-         efsTbuorX+m2WMmD3Euhws5BSxUNtK+/decBRrARGms/jFqz8lQbCru/seLE4bzH+M9f
-         D9u3UAjiDwhUSEja4sQILVR7zt0gV81PgQ7xKfOLlmw9jXZIVArFCZHhQ1up67wWc9fZ
-         2Jf8M3tT8faHc4vRoIoMP8KxFQi8dtC4xe0MCaKN1gJY+MWmOar9FEoBxNxjw6Fq0f3r
-         8CfA==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Nn87tDnvGv7OSX+fx7BgpaSZEoHCAFqg9zr3N4CuzSM=;
+        b=SNkZ77KXm9TDAmC6IViNJBK5BRVhvxf+LuzTh1Fyhvr6rdO4Y9SdqHibqv2o60wOrS
+         9K59MfwQiCSqMbosa6EkcVrOtp6cwX+4xu67VbZCvW5gdYIOgsqvaGMr6EBDU2Hue6Nb
+         S85FSIWNOdu9UiD/DNtHOVECLYAbPnztNE6H0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KEKG+0hooW1zM7qhTU6cSghfN5cLCif35DDe+3mMJLQ=;
-        b=HURiPJ4rvCStn2xAP9/UgWOuIUK0Cd9d+CGNZElDn3mANMnzgx0SUYg/YtDaglu7cM
-         mkY1R5hz/5+h2/OS+LSBYXNqCyJ+Pfh42RZwfmId/t1Cv6nIK6BwaSPJmfYdaxLI407V
-         XxROYOMYesOjrsd0TjOrphemh8qaF1QMGM1OXjPnTtBQonHI6t/rE4zO/PLwDZFoKPy9
-         JR0OWiP8CRsYGOy/2jy80wis/sGr88Y4HACOHSzk0ey/dT2RBUAv/vChgRAU/WvTcSY9
-         SVbpegmqod6DUzNB0uwUtIUxdORh4TgruGyRftbFauxTDT5ickaVhZtHn5QpH3qG84OD
-         T12g==
-X-Gm-Message-State: AOAM533kexrseN/kESmD7JxJHG6vqegPFn4I3tFFR/GtcxxuLQcO3E6Y
-        U5kMNPN1JK92GQ8Wy4wcbpdlWA==
-X-Google-Smtp-Source: ABdhPJytmm6mXDFw5YmoLtk0zA0zRvReKCgSL+J2N0/BnKQabYOOJvsgpbE9CnKc9Mj8U2BLGCcYMA==
-X-Received: by 2002:a05:6870:a189:b0:da:b3f:2b83 with SMTP id a9-20020a056870a18900b000da0b3f2b83mr870514oaf.290.1646697578856;
-        Mon, 07 Mar 2022 15:59:38 -0800 (PST)
-Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
-        by smtp.gmail.com with ESMTPSA id l4-20020a4a94c4000000b002ea822fbac8sm6381033ooi.21.2022.03.07.15.59.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 15:59:38 -0800 (PST)
-Date:   Mon, 7 Mar 2022 16:01:22 -0800
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH v4 7/7] usb: typec: mux: Add On Semi fsa4480 driver
-Message-ID: <Yiac0h4RX8VxDtZ7@ripper>
-References: <20220307034040.1111107-1-bjorn.andersson@linaro.org>
- <20220307034040.1111107-7-bjorn.andersson@linaro.org>
- <YiXbg4QwgIgLh3LW@smile.fi.intel.com>
- <YiYbOQpX4+fP8S1W@ripper>
- <YiYvMf5X+S0WZ9lO@smile.fi.intel.com>
- <YiZzco76Nrxbxz95@ripper>
- <YiaDd+quwXgbuz5D@smile.fi.intel.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Nn87tDnvGv7OSX+fx7BgpaSZEoHCAFqg9zr3N4CuzSM=;
+        b=2vxdzD/Yz2UJZGESOKGuhk64MTIpQib2XOekfCHJVgqHxF70mlxfSScf6F/I2wXNV6
+         Gsj2zz0BrK2zx2fLN2p86eWGTFDkv/6Mxm5VF7g3RDDx1rlVRzORhZVPnpYehxP0u2qm
+         1VwChMJ5m42Q23gs9MNcPq/p4fni4VBD9tp/XBdlfoZ5vL+Fy/p//7ZqYfr0O4a7aXPI
+         f2HdUrBwPILDwjEoAKwXWoVj0tCOMNmhrjYiNC5nO6ChGrFirQj55J4OWr5TvFB6tv+K
+         r1nSeWz5Tke9dpZj3FvRE+M1wCuu5ReOj8nKF1VM5FbodslDtxCo+03lPoT06+bxr9Uj
+         RZKA==
+X-Gm-Message-State: AOAM531fdsV486aiucpPThq9CeudyO+l7IaG1LGHjndfDCmFXpvzyfpc
+        JjbYmSvYQxPO3BWkS3k0OVAxRg==
+X-Google-Smtp-Source: ABdhPJz1ralX9qOcr9TOi/L1wMWVp6Zl1h9OZu4ylYSwFzToc98tvA1ZZGEW8BvLFUdlYIU9BD+Ilw==
+X-Received: by 2002:a17:902:c3cd:b0:151:806d:1b9b with SMTP id j13-20020a170902c3cd00b00151806d1b9bmr15351414plj.98.1646698204021;
+        Mon, 07 Mar 2022 16:10:04 -0800 (PST)
+Received: from localhost ([2620:15c:202:201:e551:44dc:2842:57f1])
+        by smtp.gmail.com with UTF8SMTPSA id bi29-20020a056a00311d00b004f6fa51e70dsm5177381pfb.196.2022.03.07.16.10.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Mar 2022 16:10:03 -0800 (PST)
+From:   Brian Norris <briannorris@chromium.org>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Lin Huang <hl@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
+        Derek Basehore <dbasehore@chromium.org>,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Brian Norris <briannorris@chromium.org>
+Subject: [PATCH v3 00/15] rk3399: Clean up and enable DDR DVFS
+Date:   Mon,  7 Mar 2022 16:09:30 -0800
+Message-Id: <20220308000945.706701-1-briannorris@chromium.org>
+X-Mailer: git-send-email 2.35.1.616.g0bdcbb4464-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <YiaDd+quwXgbuz5D@smile.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,88 +72,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 07 Mar 14:13 PST 2022, Andy Shevchenko wrote:
+This series covers 2 primary tasks:
 
-> On Mon, Mar 07, 2022 at 01:04:50PM -0800, Bjorn Andersson wrote:
-> > On Mon 07 Mar 08:13 PST 2022, Andy Shevchenko wrote:
-> > > On Mon, Mar 07, 2022 at 06:48:25AM -0800, Bjorn Andersson wrote:
-> > > > On Mon 07 Mar 02:16 PST 2022, Andy Shevchenko wrote:
-> > > > > On Sun, Mar 06, 2022 at 07:40:40PM -0800, Bjorn Andersson wrote:
-> 
-> ...
-> 
-> > > > > > +		/* 15us to allow the SBU switch to turn off */
-> > > > > > +		usleep_range(15, 1000);
-> > > > > 
-> > > > > This is quite unusual range.
-> > > > > 
-> > > > > If you are fine with the long delay, why to stress the system on it?
-> > > > > Otherwise the use of 1000 is unclear.
-> > > > > 
-> > > > > That said, I would expect one of the below:
-> > > > > 
-> > > > > 		usleep_range(15, 30);
-> > > > > 		usleep_range(500, 1000);
-> > > > 
-> > > > Glad you asked about that, as you say the typical form is to keep the
-> > > > range within 2x of the lower value, or perhaps lower + 5.
-> > > > 
-> > > > But if the purpose is to specify a minimum time and then give a max to
-> > > > give the system some flexibility in it's decision of when to wake up.
-> > > > And in situations such as this, we're talking about someone connecting a
-> > > > cable, so we're in "no rush" and I picked the completely arbitrary 1ms
-> > > > as the max.
-> > > > 
-> > > > Do you see any drawback of this much higher number? (Other than it
-> > > > looking "wrong")
-> > > 
-> > > I see the drawback of low number.
-> > 
-> > 15us is based on the data sheet and if the kernel is ready to serve us
-> > after 15us then let's do that.
-> > 
-> > > The 1000 makes not much sense to me with the minimum 66x times less.
-> > > If there is no rush, use some reasonable values,
-> > > what about
-> > > 
-> > > 		usleep_range(100, 1000);
-> > > 
-> > > ? 10x is way better than 66x.
-> > 
-> > I don't agree, and in particular putting 100 here because it's 1/10 of
-> > the number I just made up doesn't sounds like a good reason. The
-> > datasheet says 15us, so that is at least based on something real.
-> > 
-> > In https://www.kernel.org/doc/Documentation/timers/timers-howto.txt
-> > I find the following:
-> > 
-> >     With the introduction of a range, the scheduler is
-> >     free to coalesce your wakeup with any other wakeup
-> >     that may have happened for other reasons, or at the
-> >     worst case, fire an interrupt for your upper bound.
-> > 
-> >     The larger a range you supply, the greater a chance
-> >     that you will not trigger an interrupt; this should
-> >     be balanced with what is an acceptable upper bound on
-> >     delay / performance for your specific code path. Exact
-> >     tolerances here are very situation specific, thus it
-> >     is left to the caller to determine a reasonable range.
-> > 
-> > Which to me says that the wider range is perfectly reasonable. In
-> > particular 15, 30 (which seems to be quite common) makes the available
-> > range to the scheduler unnecessarily narrow.
-> > 
-> > And it's clear that whatever the upper bound it's going to be some
-> > arbitrary number, but 1ms should ensure that there are other hrtimer
-> > interrupts to piggy back on.
-> 
-> Okay, I have grepped for usleep_range(x[x], yyyy) and there are 9 modules
-> use it. A few commit messages call 1000 as "reasonable upper limit".
-> 
+1) Resubmit prior work:
 
-Right, we usually see a much more narrow range, as you say 2x or perhaps
-10x, and this why I said I was glad you asked. I have been wondering
-about this in a few different cases...
+[RESEND PATCH v5 3/4] arm64: dts: rockchip: Enable dmc and dfi nodes on gru.
+https://lore.kernel.org/lkml/20210308233858.24741-2-daniel.lezcano@linaro.org/
+[RESEND PATCH v5 2/4] arm64: dts: rk3399: Add dfi and dmc nodes.
+https://lore.kernel.org/lkml/20210308233858.24741-3-daniel.lezcano@linaro.org/
 
-Thanks,
-Bjorn
+This series was partially merged a while back, but the remaining 2
+patches were blocked mostly on stylistic grounds (alpha/numerical
+ordering).
+
+2) Integrate many updates, bugfixes, and clarifications that were done
+by Rockchip and Google engineers when first launching this platform.
+Many of these were not integrated in the earlier series (e.g., the OPPs
+changed before production; earlier patchsets used pre-production
+numbers).
+
+Along the way, it seemed worthwhile to convert the binding docs to a
+schema. Among other reasons, it actually helped catch several errors and
+omissions in translation between downstream device trees and the version
+that actually landed upstream.
+
+See the patches for further details.
+
+Regards,
+Brian
+
+Changes in v3:
+ * Add |maxItems| for devfreq-events
+ * Improve deprecation notes
+ * Collect some Acked/Reviewed tags
+
+Changes in v2:
+ * Fix yamllint issues
+ * Adapt to various review comments (use of *-hz, hyphens, node naming)
+ * Add a few new bugfixes
+ * Add some new properties (ported from downstream kernels) required for
+   stability
+ * Convert more properties from "cycles" to "nanoseconds"
+
+Brian Norris (13):
+  dt-bindings: devfreq: rk3399_dmc: Convert to YAML
+  dt-bindings: devfreq: rk3399_dmc: Deprecate unused/redundant
+    properties
+  dt-bindings: devfreq: rk3399_dmc: Fix Hz units
+  dt-bindings: devfreq: rk3399_dmc: Specify idle params in nanoseconds
+  dt-bindings: devfreq: rk3399_dmc: Add more disable-freq properties
+  PM / devfreq: rk3399_dmc: Drop undocumented ondemand DT props
+  PM / devfreq: rk3399_dmc: Drop excess timing properties
+  PM / devfreq: rk3399_dmc: Use bitfield macro definitions for ODT_PD
+  PM / devfreq: rk3399_dmc: Support new disable-freq properties
+  PM / devfreq: rk3399_dmc: Support new *-ns properties
+  PM / devfreq: rk3399_dmc: Disable edev on remove()
+  PM / devfreq: rk3399_dmc: Use devm_pm_opp_of_add_table()
+  PM / devfreq: rk3399_dmc: Avoid static (reused) profile
+
+Lin Huang (2):
+  arm64: dts: rk3399: Add dfi and dmc nodes
+  arm64: dts: rockchip: Enable dmc and dfi nodes on gru
+
+ .../bindings/devfreq/rk3399_dmc.txt           | 212 ----------
+ .../bindings/devfreq/rk3399_dmc.yaml          | 371 ++++++++++++++++++
+ .../dts/rockchip/rk3399-gru-chromebook.dtsi   |   7 +
+ .../boot/dts/rockchip/rk3399-gru-scarlet.dtsi |  12 +
+ arch/arm64/boot/dts/rockchip/rk3399-gru.dtsi  |  28 ++
+ .../boot/dts/rockchip/rk3399-op1-opp.dtsi     |  25 ++
+ arch/arm64/boot/dts/rockchip/rk3399.dtsi      |  19 +
+ drivers/devfreq/rk3399_dmc.c                  | 299 +++++++-------
+ 8 files changed, 596 insertions(+), 377 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
+ create mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.yaml
+
+-- 
+2.35.1.616.g0bdcbb4464-goog
+
