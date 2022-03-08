@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B3BA4D1B81
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:18:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A0054D1BCC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:35:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238232AbiCHPTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:19:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
+        id S1347834AbiCHPgu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 10:36:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41906 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231816AbiCHPTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:19:13 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0DD4A928
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 07:18:15 -0800 (PST)
-Received: from mail-wm1-f52.google.com ([209.85.128.52]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MAOVx-1nK9Ta3GOp-00BrpQ for <devicetree@vger.kernel.org>; Tue, 08 Mar
- 2022 16:18:13 +0100
-Received: by mail-wm1-f52.google.com with SMTP id l1-20020a05600c4f0100b00389645443d2so1734893wmq.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 07:18:13 -0800 (PST)
-X-Gm-Message-State: AOAM531mRH29tcZV1plsCQ73X08QwpN+dg1dDlvi/skudW6xNaqlzK1P
-        fTEnOgSfChRUim8SONENmpYHPquUz7RXeN+uLJc=
-X-Google-Smtp-Source: ABdhPJwWnege0B89hH2GkrjFsd8ZOdfeG5z/xIwKnV2rzC8zB4ilKLYWFNkX7PGEBAA7XOORN9saQgPD0j03zWqy5ZY=
-X-Received: by 2002:a05:600c:154b:b0:381:8148:64d with SMTP id
- f11-20020a05600c154b00b003818148064dmr4020960wmg.98.1646752693479; Tue, 08
- Mar 2022 07:18:13 -0800 (PST)
+        with ESMTP id S1347829AbiCHPgu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:36:50 -0500
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D72694E3A5
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 07:35:52 -0800 (PST)
+Received: by mail-wm1-x32e.google.com with SMTP id k8-20020a05600c1c8800b003899c7ac55dso1325231wms.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 07:35:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=FFfN3QwTXpZEEydH4Dw318ViohtLD0q25q7VNgA043Q=;
+        b=q0q3FKMYmpXp6Vo8YguOocX+0fxxKvZeHlWnzv6IRNnAtdQ8S6BmItOAU0LfnBXooe
+         jdKwVfXpNs0ZDes0JNm+9aB948rif8vb8hIj5Njm1GyNtcUDnAmoXQTRSXvssOYKvRNB
+         7GV7fcoDP7u+6UxKKuYYN/NKUpaFiI4SOI38PKw4EaA8EbhU9J7p8TOR+kW+gm6XaU3X
+         JRgPsSjox3FUvCpNka7Y3i4XcfjRPKvLOcwv5ZxnL45Sg8Z7Rokej9umddf4QjTtn4tY
+         1cByh8M8bEPCATdReHnr6McSYhnWGr0zPyioWwizL43p2+92gqOxbWtJNO31GXCZBgeD
+         O/1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=FFfN3QwTXpZEEydH4Dw318ViohtLD0q25q7VNgA043Q=;
+        b=xJQhE3zE377ayowShSj1rW8lftjmv3kHstq2n3YtTeEsvrI3rhZnh+ZlD1HgH1CEgN
+         hLgVvCPeQA2kPo/Jjpf5qrjdnhoyJlfCshG4dMil8HlVv9rGwvxB0i88KTdoCNKa2Yda
+         mhBg2UtFG1ziK9AZmlc0nG8tkfhdrLVVMuEaKNTbYlQcQ5iiqAfatiLKjWqF9Dgc8FLp
+         2vpjreBgG32/V1IrTXIEsbHNjJXL1oBDAWMF/GV+72qnJay79KL5IIwNbV04oxrsGO2B
+         V03e8Z2Vhgwu5q+CZC0W52WkUVGUXr+WlGCROKbuc4uFpRS0fzVLzCIw1UWAOkzUKrLI
+         EsYQ==
+X-Gm-Message-State: AOAM5335UkCR+3uSPBRoLRQXJOw5PwC2anXXEqHVmTfRvTbwDdviMMd2
+        2y+9vEjoELFlcwnJqQ7Q/czuJtpUm3Pn+0W2
+X-Google-Smtp-Source: ABdhPJxfIn23wUihncDqqZVYLYdtQidJTz+X7ddXzfusg0GRpC7ODv6hu4iQUu8fm7PVB628rmCZrA==
+X-Received: by 2002:a05:600c:4fd0:b0:382:716a:c5fc with SMTP id o16-20020a05600c4fd000b00382716ac5fcmr4051006wmq.81.1646753751398;
+        Tue, 08 Mar 2022 07:35:51 -0800 (PST)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id c11-20020a05600c0a4b00b0037c91e085ddsm3059749wmq.40.2022.03.08.07.35.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Mar 2022 07:35:50 -0800 (PST)
+Date:   Tue, 8 Mar 2022 15:35:48 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linus.walleij@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
+        andi@etezian.org, linux-spi@vger.kernel.org, linux-fsd@tesla.com,
+        'Adithya K V' <adithya.kv@samsung.com>
+Subject: Re: [RESEND PATCH v3 1/2] spi: dt-bindings: samsung: Add fsd spi
+ compatible
+Message-ID: <Yid31AK5BlZEgmoA@google.com>
+References: <CGME20220308120701epcas5p3d3d2f5c01055e8c1721ae0ec6c2aa681@epcas5p3.samsung.com>
+ <20220308121640.27344-1-alim.akhtar@samsung.com>
+ <YidY+ncMVhp7bBvh@sirena.org.uk>
+ <Yidg64QGGzIbduQ2@google.com>
+ <YidosChLIwIAKDmG@sirena.org.uk>
+ <010901d832fb$212124f0$63636ed0$@samsung.com>
+ <Yidv5aGB3CljCEWg@sirena.org.uk>
 MIME-Version: 1.0
-References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-14-andre.przywara@arm.com> <CAK8P3a1FxfZj0=T=cvLNfagP+c_d+SEYYuV30+-UTU+B+HVXmQ@mail.gmail.com>
- <20220308120750.0bbe0122@donnerap.cambridge.arm.com> <99029bae-cf1b-c3c1-004e-8a6795d19f7f@microchip.com>
-In-Reply-To: <99029bae-cf1b-c3c1-004e-8a6795d19f7f@microchip.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 8 Mar 2022 16:17:57 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0ogA_b57N_yOjARfh9Gmox+KUrOcP5eE_frSD5YXJJsw@mail.gmail.com>
-Message-ID: <CAK8P3a0ogA_b57N_yOjARfh9Gmox+KUrOcP5eE_frSD5YXJJsw@mail.gmail.com>
-Subject: Re: [PATCH 13/14] ARM: configs: sync multi_v5_defconfig from savedefconfig
-To:     Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev, Russell King <linux@armlinux.org.uk>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:EtSGxTBTnVutohwlLPkLT6V09HjgR27Df9whsgpOo2Qr3CtrnFo
- hwCFaeHfsFSTBxab6d4ipwN8gFUDfjQpWcBpPCO2R/WPK/1DBbzJbj3uGMkyKSqwZRr1Hxh
- g4APnfbzqM9Plijg9GqpRCSVoV6oF4tiA81YeK7uPM+nzYgQMcXPsa0PzD6yin6o2V1McWp
- No9bd0gM1mW5HNLEr/C4w==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:aZlBlb9bkgw=:iuf0d8uPZOlElRw/HnhuQG
- 6HHdQy3mjvOc5UP3HwNom7jejKVH933kh+HB91IQrhU/jEU142DUYMHHdIuMJS99q6wC3Hc6N
- OYPAq4wt8o1mZRuG7Q/hz5wYecfJV69MsHCxAi2jDL+aFPFTZQx12Ae6e1t3/kpQy465L+dXY
- iWDRIszc2oFEmuo/l2JFkqMuHToh4uRWbsy/ZkKqqjoEn0LKRg7umMQB1J3aP9Zh8CETtSQSw
- 84GK1PnZctRwASkOfXpPBF4kxL7MpPmkxvemniRiOin44qWLocqsbK0Oi2/hMZpVlp1ntRAIw
- pf8VSqLrGWzQDkaMkYmJb45/faJ/NqNCNtHnWFVp23JosAEwsO0OK9X4eyLmgHs44anknq2n4
- C/HQ1kp/2EmmIdFWx6Ir/y6IPWJ1b2p3tuuyfzUPvSOQXwOAK19J9U5AJAPX1MxAS4FuXdQUp
- E/SSmDejPf9ElglLFG53VumqUDl/eKYN5ciRwd1oh43ylL/nC8gbLxMFdKmq4gqK8K/CZ6kop
- Oe7N3ZYrhlHgWZdvVIHp61ubef1jaOGIQbreh+k2LKTa1E9lPdty63+0TzdY9Bv8GAA7rWbt6
- ANJJL67X0gmmCDZmxs5NLpPouamAd0cXAd2eXb299jvfzNnjPVxA+c0nxqQnF5IhkClcgIiwC
- 9S0OmZiey+LXKOaVu0QG8k9hGIdelEPyxSNV+FOXjoglP8Q4JvVqy1UvtHR1q9V5vhAg=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Yidv5aGB3CljCEWg@sirena.org.uk>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,28 +83,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 8, 2022 at 3:30 PM Nicolas Ferre
-<nicolas.ferre@microchip.com> wrote:
-> On 08/03/2022 at 13:07, Andre Przywara wrote:
->
-> As far as I'm concerned and only talking about the drivers, I would
-> prefer that we keep the following config options activated in the .config:
->
-> CONFIG_VIDEO_ATMEL_ISI=m
-> CONFIG_DRM_PANEL_SIMPLE=y
-> CONFIG_FB_ATMEL=y
-> CONFIG_BACKLIGHT_ATMEL_LCDC=y
->
-> The question to know if they are activated by default or not and if the
-> associated stack is selected or not, well... I lost track of this, sorry.
+On Tue, 08 Mar 2022, Mark Brown wrote:
 
-These are actually missing, I think the two options we need to
-enable are:
+> On Tue, Mar 08, 2022 at 08:15:15PM +0530, Alim Akhtar wrote:
+> 
+> > >There were changes adding the FSD SoC as well as DT stuff IIRC.
+> 
+> > FSD SoC DT changes are already in -next.
+> > I think this can go with MFD tree because of immutable
+> > branch between MFD, SPI and DT due for the v5.18 merge windows.
+> > I am not sure if there are better ways to handle this.
+> 
+> I need the changes that are hard dependencies to actually be in my tree
+> so my tree is not broken, -next isn't good enough here.  If there are
+> dependencies for things you're posting you should explicitly say what
+> they are when you post (not just vauge statements that there are
+> dependencies), and when you post things that will be dependencies for
+> other trees it's good to mention this so that people can think about
+> putting them on a separate branch for easier cross merging.
 
-CONFIG_MEDIA_PLATFORM_SUPPORT=y
-CONFIG_FB=y
+Right.
 
-All the other options that get removed are either now the default,
-or are no longer part of the kernel.
+Which patch(es) contain the dependencies please Alim?
 
-         Arnd
+I tend to send out pull-requests for cross-subsystem changes I merge.
+
+Not sure I see anything relevant in my tree currently.
+
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
