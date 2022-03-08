@@ -2,65 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 27DA84D1CD1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 17:09:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 162494D1CD6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 17:10:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235623AbiCHQKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 11:10:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56092 "EHLO
+        id S234940AbiCHQLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 11:11:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233693AbiCHQKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 11:10:50 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 700625046F
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 08:09:53 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id x26-20020a4a9b9a000000b003211029e80fso6115803ooj.5
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 08:09:53 -0800 (PST)
+        with ESMTP id S1348172AbiCHQLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 11:11:22 -0500
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63CA7506DA;
+        Tue,  8 Mar 2022 08:10:26 -0800 (PST)
+Received: by mail-ot1-f48.google.com with SMTP id o106-20020a9d2273000000b005b21f46878cso6822953ota.3;
+        Tue, 08 Mar 2022 08:10:26 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gksQ+ySfVzX/BzWqaFxCpK+7H0a13SWGbxXt2Z5JHuI=;
-        b=n7PDlT2OijW/eC8AvEgws5RitqKbC58Bydr8ErcpR2gb5r2SSdb//vsSqKWfmPJ7+m
-         2PROdea4Vjj/XuCvQUQ0AEjlYbFr3iY9BKu+Av4UY/YAdeHkvs0IKD792McWQMx9zPfv
-         lgZv4Fmt5LK/9T3vueCIQESV6lmwcCq8VKWICmL7lubKrITso5fBxoGSmuMcbsikHsAo
-         i/IdLIktTbUO88SQEwkfOBXKQumtLrtTrSj9dLItXHrI0lQ1GmlsFNjOOO++ACRvbNxd
-         jQMA/GQF97oR0OVvSy2fvQ4C5AbQC/nJaY/pFWVdanXupB4uKr7npLOyXgzxQJFLm42t
-         v6MQ==
-X-Gm-Message-State: AOAM531LwoEWNVEmCuCStMGRQo/JZ3yESrt/aqtOxa9Z/l1M0JLtF4CI
-        AyY74q6VqaOIcEMAQhEGuw==
-X-Google-Smtp-Source: ABdhPJzLHug0HYSICR5UmoCceM/A96yu7TBizOs7JaMiLXdJSNLB8LT3kVLLyPOnkEYOaS36hCMFTg==
-X-Received: by 2002:a05:6870:c588:b0:da:3d88:de58 with SMTP id ba8-20020a056870c58800b000da3d88de58mr2890938oab.32.1646755792766;
-        Tue, 08 Mar 2022 08:09:52 -0800 (PST)
+        bh=KyPMfupEleyChJaoF32kD8RM8iDdBNnSag4/WPn+wSg=;
+        b=bzt8X3xcdOg/HgtivZ4sumE7NTmxPvMdzAUbSXQSMmFSiOON+8e5sWx1LNe+RhNv/A
+         ValLr0RhKJhQ/def9dpVFdxa23Sz1FoezGnLVtLvHAsWyRVexnBGKdLa6KjONXcRZykv
+         il6bHCPZ7AekM6HWTF8EUxs0qZY3tTzeCyoUHEsk+kPPCtI/UtHNSHKy+RpgeEfIErpz
+         KqOE1QdctzrT7Z2yBOuA30zWThELcHRS3lvqmGAuK9btEuGKYgksNSmqifH6aBiw9S/b
+         mmW9XhZMTi99axl0RslceqRfYQfdAzMN1Y/+4CLae0XKXx7s6hmabwedmn8+96u7DDXd
+         I3uA==
+X-Gm-Message-State: AOAM532KlZT+0FlJ/NQhrfQS0cbznXaunXEr+kecqC53tAQUPzYV3bGA
+        RAlJ4QDCPkYNaIGnKEYyGQ==
+X-Google-Smtp-Source: ABdhPJyXTiJ+e/GeI6w1oVwRWDTza1x93/zx+7ZIjP9/OFj7HfNrCrfoNhNES3iqqkqU+ttk3AmrXg==
+X-Received: by 2002:a9d:20ca:0:b0:5ad:3241:47f0 with SMTP id x68-20020a9d20ca000000b005ad324147f0mr8737395ota.269.1646755825679;
+        Tue, 08 Mar 2022 08:10:25 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 60-20020a9d0642000000b005b22a82458csm4268370otn.55.2022.03.08.08.09.51
+        by smtp.gmail.com with ESMTPSA id f10-20020a4a8f4a000000b00320e5ecfecdsm2957842ool.46.2022.03.08.08.10.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 08:09:51 -0800 (PST)
-Received: (nullmailer pid 849717 invoked by uid 1000);
-        Tue, 08 Mar 2022 16:09:50 -0000
-Date:   Tue, 8 Mar 2022 10:09:50 -0600
+        Tue, 08 Mar 2022 08:10:24 -0800 (PST)
+Received: (nullmailer pid 850672 invoked by uid 1000);
+        Tue, 08 Mar 2022 16:10:23 -0000
+Date:   Tue, 8 Mar 2022 10:10:23 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Samuel Holland <samuel@sholland.org>,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Maxime Ripard <mripard@kernel.org>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi@lists.linux.dev, Maxime Ripard <mripard@kernel.org>,
         Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH 03/14] dt-bindings: arm: sunxi: document LicheePi Nano
- name
-Message-ID: <Yid/zlFb2fqNsKEQ@robh.at.kernel.org>
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        linux-arm-kernel@lists.infradead.org,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        linux-mmc@vger.kernel.org,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, Mesih Kilinc <mesihkilinc@gmail.com>
+Subject: Re: [PATCH 07/14] dt-bindings: mmc: sunxi: add Allwinner F1c100s
+ compatible
+Message-ID: <Yid/7wGcnK6kFu3H@robh.at.kernel.org>
 References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-4-andre.przywara@arm.com>
+ <20220307143421.1106209-8-andre.przywara@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220307143421.1106209-4-andre.przywara@arm.com>
+In-Reply-To: <20220307143421.1106209-8-andre.przywara@arm.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -72,17 +73,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 14:34:10 +0000, Andre Przywara wrote:
-> The top level LicheePi Nano compatible name was never documented in the
-> bindings, so add the currently used string.
+On Mon, 07 Mar 2022 14:34:14 +0000, Andre Przywara wrote:
+> From: Jesse Taube <mr.bossman075@gmail.com>
 > 
-> It looks like the manufacturer might be "sipeed" as well, but I will go
-> with the "licheepi" string that is in the actual .dts for years now.
+> The Allwinner F1C100 series contains two MMC controller blocks. From
+> comparing the data sheets, they seem to be compatible with the one used
+> in the Allwinner A20: the register layout is the same, and they use the
+> same separate sample and output clocks design.
+> The only difference is the missing reset line in the A20 version, but
+> both the binding and the Linux driver make this optional, so it's still
+> a fit.
 > 
+> Add the new SoC specific name and require it to be paired with the A20
+> fallback name, as this is all the driver needs to care about.
+> 
+> Signed-off-by: Jesse Taube <Mr.Bossman075@gmail.com>
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml       | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
