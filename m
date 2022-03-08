@@ -2,70 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 633C94D0C9F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FE684D0CD0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:32:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344095AbiCHALn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 19:11:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
+        id S244613AbiCHAdC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 19:33:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40044 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344096AbiCHALl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:11:41 -0500
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1337377F8
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:10:39 -0800 (PST)
-Received: by mail-pl1-x635.google.com with SMTP id n15so5531904plh.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 16:10:39 -0800 (PST)
+        with ESMTP id S244187AbiCHAcz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:32:55 -0500
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 393C212ADA
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:32:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ExeMvBUYf18gUbw3oNoBhQIqfKznu+dtCvkD2ZUwMDI=;
-        b=dUSKXKD2oLryc1nruR3FNcnsYYhThzA308IDtnm37tWHi+DdqgeCtz4xqfUo6Nt7UW
-         fI4qPKxksSC65tT0l7YkCINT05BtyR+OAL8TSWjGo/RlhyavUD+bacUAkumZNAfYZZ52
-         goJj0JVvFwvvujDp0z90ZPeHro8+w88DMROGA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ExeMvBUYf18gUbw3oNoBhQIqfKznu+dtCvkD2ZUwMDI=;
-        b=oYFzSvvxUwSsSbxWkBjiiJMN1ru5HjsbOIKmEMPbMPrG9nl4XhYbBIT4EAGRVA2t/Q
-         in3+92u7Xq2vEViakLjbRlCfPFEeUTy15jntEu+gpkSpg2O4/Ilq9N9GFziqwkGkLBr4
-         Nx79cn00EN0yLZHGLRq2YjNYuy7vYWWa5OCidWAAlVzG+mCdz7oitFbklJ80730HvAFv
-         AIP7cVA7H1WQxBRhMgbqVDCFX4XoXfMQ/Nu5bLr4TH0+P2S2eTbstYWFqsvsHq4z4VFQ
-         yi3LntNe0eqMdjlT4aoTkhY3I4Qy/HwLeTRGzvK7eTmmgOhHDriCIOVxRlnbQyiCgap1
-         T71Q==
-X-Gm-Message-State: AOAM5337ztQnKmsvBotCS6mhJUmYF2Nfj7OztQ/aM9bQJjBBHphIfvs6
-        3e7B6r7WmgboziBOze6Cqw4nDw==
-X-Google-Smtp-Source: ABdhPJyrcw+XhrxMuU5ct7+AqtGPHqcx+ajYHdkXRnnV0rz1xXVGUvlzhLNfmp1oAPTEeWB/2Df2Ag==
-X-Received: by 2002:a17:902:ed82:b0:151:d081:3832 with SMTP id e2-20020a170902ed8200b00151d0813832mr14035788plj.165.1646698239237;
-        Mon, 07 Mar 2022 16:10:39 -0800 (PST)
-Received: from localhost ([2620:15c:202:201:e551:44dc:2842:57f1])
-        by smtp.gmail.com with UTF8SMTPSA id p25-20020a637419000000b0037fa57520adsm8884252pgc.27.2022.03.07.16.10.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 16:10:38 -0800 (PST)
-From:   Brian Norris <briannorris@chromium.org>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Lin Huang <hl@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
-        Derek Basehore <dbasehore@chromium.org>,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Brian Norris <briannorris@chromium.org>
-Subject: [PATCH v3 15/15] PM / devfreq: rk3399_dmc: Avoid static (reused) profile
-Date:   Mon,  7 Mar 2022 16:09:45 -0800
-Message-Id: <20220307160918.v3.15.I8d71e9555aca1fa7e532d22dd1ef27976f21799d@changeid>
-X-Mailer: git-send-email 2.35.1.616.g0bdcbb4464-goog
-In-Reply-To: <20220308000945.706701-1-briannorris@chromium.org>
-References: <20220308000945.706701-1-briannorris@chromium.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1646699520; x=1678235520;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=EMjDuD5QVz9yQTqyFCo02zQZPRqFSAMCtKG5upULYGQ=;
+  b=r4pouJ+mo6PSnbfM2Zmg/dhm3VQnVRPzk5hfNM8Exn8BpEEIn5lcErwy
+   1W+QaLIw3YuXOTBF58qSoDw+9Dr662UuTlpqD6G/bzJt+oV/lP2SwNz2J
+   TFyD8o5olCnLUOzXszRMmUIolv1mWxwCaQbARxE3gts2JUy22N0070VAX
+   k=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 07 Mar 2022 16:32:00 -0800
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Mar 2022 16:31:59 -0800
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 7 Mar 2022 16:31:59 -0800
+Received: from maru.qualcomm.com (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.15; Mon, 7 Mar 2022
+ 16:31:57 -0800
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+To:     Joel Stanley <joel@jms.id.au>, Rob Herring <robh+dt@kernel.org>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+Subject: [PATCH] pinctrl: aspeed: Add FWQSPI pinmux
+Date:   Mon, 7 Mar 2022 16:31:36 -0800
+Message-ID: <20220308003136.3930466-1-quic_jaehyoo@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,67 +67,56 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This static struct can get reused if the device gets removed/reprobed,
-and that causes use-after-free in its ->freq_table.
+From: Johnny Huang <johnny_huang@aspeedtech.com>
 
-Let's just move the struct to our dynamic allocation.
+AST2600 FW SPI quad mode only need to set AE12 and AF12, no need
+to set Y1~Y4. FW SPI cs, clk, mosi and miso pins are dedicated.
 
-Signed-off-by: Brian Norris <briannorris@chromium.org>
+Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
 ---
+ drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
-(no changes since v2)
-
-Changes in v2:
- * New patch
-
- drivers/devfreq/rk3399_dmc.c | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
-
-diff --git a/drivers/devfreq/rk3399_dmc.c b/drivers/devfreq/rk3399_dmc.c
-index 9615658d04ae..e494d1497d60 100644
---- a/drivers/devfreq/rk3399_dmc.c
-+++ b/drivers/devfreq/rk3399_dmc.c
-@@ -38,6 +38,7 @@
- struct rk3399_dmcfreq {
- 	struct device *dev;
- 	struct devfreq *devfreq;
-+	struct devfreq_dev_profile profile;
- 	struct devfreq_simple_ondemand_data ondemand_data;
- 	struct clk *dmc_clk;
- 	struct devfreq_event_dev *edev;
-@@ -228,13 +229,6 @@ static int rk3399_dmcfreq_get_cur_freq(struct device *dev, unsigned long *freq)
- 	return 0;
- }
+diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+index 54064714d73f..80838dc54b3a 100644
+--- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
++++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+@@ -1236,12 +1236,17 @@ FUNC_GROUP_DECL(SALT8, AA12);
+ FUNC_GROUP_DECL(WDTRST4, AA12);
  
--static struct devfreq_dev_profile rk3399_devfreq_dmc_profile = {
--	.polling_ms	= 200,
--	.target		= rk3399_dmcfreq_target,
--	.get_dev_status	= rk3399_dmcfreq_get_dev_status,
--	.get_cur_freq	= rk3399_dmcfreq_get_cur_freq,
--};
--
- static __maybe_unused int rk3399_dmcfreq_suspend(struct device *dev)
- {
- 	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
-@@ -422,10 +416,16 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
- 	data->volt = dev_pm_opp_get_voltage(opp);
- 	dev_pm_opp_put(opp);
+ #define AE12 196
++SIG_EXPR_LIST_DECL_SESG(AE12, FWSPIQ2, FWQSPI, SIG_DESC_SET(SCU438, 4));
+ SIG_EXPR_LIST_DECL_SESG(AE12, GPIOY4, GPIOY4);
+-PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, GPIOY4));
++PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, FWSPIQ2),
++	  SIG_EXPR_LIST_PTR(AE12, GPIOY4));
  
--	rk3399_devfreq_dmc_profile.initial_freq = data->rate;
-+	data->profile = (struct devfreq_dev_profile) {
-+		.polling_ms	= 200,
-+		.target		= rk3399_dmcfreq_target,
-+		.get_dev_status	= rk3399_dmcfreq_get_dev_status,
-+		.get_cur_freq	= rk3399_dmcfreq_get_cur_freq,
-+		.initial_freq	= data->rate,
-+	};
+ #define AF12 197
++SIG_EXPR_LIST_DECL_SESG(AF12, FWSPIQ3, FWQSPI, SIG_DESC_SET(SCU438, 5));
+ SIG_EXPR_LIST_DECL_SESG(AF12, GPIOY5, GPIOY5);
+-PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, GPIOY5));
++PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, FWSPIQ3),
++	  SIG_EXPR_LIST_PTR(AF12, GPIOY5));
++FUNC_GROUP_DECL(FWQSPI, AE12, AF12);
  
- 	data->devfreq = devm_devfreq_add_device(dev,
--					   &rk3399_devfreq_dmc_profile,
-+					   &data->profile,
- 					   DEVFREQ_GOV_SIMPLE_ONDEMAND,
- 					   &data->ondemand_data);
- 	if (IS_ERR(data->devfreq)) {
+ #define AC12 198
+ SSSF_PIN_DECL(AC12, GPIOY6, FWSPIABR, SIG_DESC_SET(SCU438, 6));
+@@ -1911,6 +1916,7 @@ static const struct aspeed_pin_group aspeed_g6_groups[] = {
+ 	ASPEED_PINCTRL_GROUP(FSI2),
+ 	ASPEED_PINCTRL_GROUP(FWSPIABR),
+ 	ASPEED_PINCTRL_GROUP(FWSPID),
++	ASPEED_PINCTRL_GROUP(FWQSPI),
+ 	ASPEED_PINCTRL_GROUP(FWSPIWP),
+ 	ASPEED_PINCTRL_GROUP(GPIT0),
+ 	ASPEED_PINCTRL_GROUP(GPIT1),
+@@ -2152,6 +2158,7 @@ static const struct aspeed_pin_function aspeed_g6_functions[] = {
+ 	ASPEED_PINCTRL_FUNC(FSI2),
+ 	ASPEED_PINCTRL_FUNC(FWSPIABR),
+ 	ASPEED_PINCTRL_FUNC(FWSPID),
++	ASPEED_PINCTRL_FUNC(FWQSPI),
+ 	ASPEED_PINCTRL_FUNC(FWSPIWP),
+ 	ASPEED_PINCTRL_FUNC(GPIT0),
+ 	ASPEED_PINCTRL_FUNC(GPIT1),
 -- 
-2.35.1.616.g0bdcbb4464-goog
+2.25.1
 
