@@ -2,58 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F1304D1986
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:45:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 00A404D19A8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:53:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236380AbiCHNqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 08:46:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56658 "EHLO
+        id S1347162AbiCHNyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 08:54:33 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239093AbiCHNqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:46:35 -0500
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF94F2E0B4
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 05:45:37 -0800 (PST)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 228DjPPS061569;
-        Tue, 8 Mar 2022 07:45:25 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1646747125;
-        bh=Qkpt8a4FyuPvg3hvFYSaeowav3MC81NKwVRofLlajvU=;
-        h=From:To:CC:Subject:Date;
-        b=Shqg0QiE8aUrdh74VionMorrDLtIy6o8Vyi9jTMsMlPTGWuKZi2aIa4alBKlsx5t0
-         9AAIImn7+mxviJi/6W78h8FkF6PlV6XO6asL7AAEgfeIlhGxXAuG5dSRvx8/9vs40C
-         35tYUZLElZRa1x0rUVf9LEJzYWZLXACnVXoSHqGM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 228DjPpi058995
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 8 Mar 2022 07:45:25 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14; Tue, 8
- Mar 2022 07:45:24 -0600
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2308.14 via
- Frontend Transport; Tue, 8 Mar 2022 07:45:24 -0600
-Received: from localhost.localdomain (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 228DjJ42031553;
-        Tue, 8 Mar 2022 07:45:20 -0600
-From:   Georgi Vlaev <g-vlaev@ti.com>
-To:     <krzysztof.kozlowski@canonical.com>, <devicetree@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <ldewangan@nvidia.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        Georgi Vlaev <g-vlaev@ti.com>
-Subject: [PATCH v3] dt-bindings: regulator: Convert TPS62360 binding to json-schema
-Date:   Tue, 8 Mar 2022 15:44:54 +0200
-Message-ID: <20220308134454.14504-1-g-vlaev@ti.com>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S1347143AbiCHNyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:54:32 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279F849C81;
+        Tue,  8 Mar 2022 05:53:36 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D18CDB817D0;
+        Tue,  8 Mar 2022 13:53:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90AACC340EE;
+        Tue,  8 Mar 2022 13:53:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646747613;
+        bh=kKuMXY/kWFSEwzOQtBmx7VatX+a2ZHwU2N6wSzEqcP8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Oa5hkzpmXwNAti5EpS06CldZNsUwpV8quKSv/Xq4a/0cBSgHioYKjsh2dqRvjpywB
+         yxperyflVotiv7FEAewxEIEIMSEmKLl9oYdwZwNPCgUncPJVUHNl1FO0u4vLlg7pPo
+         wJGIPRvZcNFHyef6P4tOq0cLs0mqSLp+93CoJKLAWdt5ajCqwTVgkQpzeQqNX7EHUe
+         QIP9E8ncohi/UAVgTMXuDvr21shroLq+XfAguy7TURInnnntNPOAh3SOhnQ6aJ237e
+         MYn4G1gWUTTtkR9AUS9l+rwaiVZVSi+BL1GiFRcNdQ55GtDFkEW6bx5Rjz7AgObkEv
+         eKzEOqhWJsgdg==
+Received: by mail-ej1-f48.google.com with SMTP id bi12so26288795ejb.3;
+        Tue, 08 Mar 2022 05:53:33 -0800 (PST)
+X-Gm-Message-State: AOAM531J8t8FoIfXZf203iTrtln9qdg2n1UKDnkQxNCAWeddi5cu5lq4
+        Af+xmrrMoQDmA9A7NvTwSJ4quxomsthBx/cqzw==
+X-Google-Smtp-Source: ABdhPJzboOw2MvvOqexJGjBvi3QJGsITzv7M/nIKxqkOwm4WPxLh9N4kBnOgz8nMdZEHDlkXjaC9jzahExCVprRjbfM=
+X-Received: by 2002:a17:906:9913:b0:6d6:dc48:5d49 with SMTP id
+ zl19-20020a170906991300b006d6dc485d49mr13522321ejb.325.1646747611776; Tue, 08
+ Mar 2022 05:53:31 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+References: <20220308094911.2680291-1-robert.foss@linaro.org> <20220308094911.2680291-2-robert.foss@linaro.org>
+In-Reply-To: <20220308094911.2680291-2-robert.foss@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 8 Mar 2022 07:53:20 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLL9j77ym0ZTsBwsW==9E8x2jf7A-R-VaSE_yYR5Y=QJg@mail.gmail.com>
+Message-ID: <CAL_JsqLL9j77ym0ZTsBwsW==9E8x2jf7A-R-VaSE_yYR5Y=QJg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: drm/bridge: anx7625: Revert DPI support
+To:     Robert Foss <robert.foss@linaro.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Xin Ji <xji@analogixsemi.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Chen-Yu Tsai <wenst@chromium.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -62,180 +72,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the TPS62360 regulator binding to DT schema format
-using json-schema.
+On Tue, Mar 8, 2022 at 3:49 AM Robert Foss <robert.foss@linaro.org> wrote:
+>
+> Revert DPI support from binding.
+>
+> DPI support relies on the bus-type enum which does not yet support
+> Mipi DPI, since no v4l2_fwnode_bus_type has been defined for this
+> bus type.
+>
+> When DPI for anx7625 was initially added, it assumed that
+> V4L2_FWNODE_BUS_TYPE_PARALLEL was the correct bus type for
+> representing DPI, which it is not.
+>
+> In order to prevent adding this mis-usage to the ABI, let's revert
+> the support.
+>
+> Signed-off-by: Robert Foss <robert.foss@linaro.org>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+>
+> Changes since v1:
+> - Rob: Instead of reverting the entire commit introducing this,
+>        do a partial revert of only the relevant parts.
+>
+>  .../display/bridge/analogix,anx7625.yaml      | 19 +------------------
+>  1 file changed, 1 insertion(+), 18 deletions(-)
 
-This also removes redundant "ti,enable-force-pwm" property
-from the example. The property description was removed from the
-original text binding file by commit 9a00630c3db8 ("regulator:
-tps62360: support force PWM mode via regulator mode"), but a
-reference to it remained in the example.
-
-Signed-off-by: Georgi Vlaev <g-vlaev@ti.com>
----
-V1 -> V2: Make the example indentation consistent.
-V2 -> V3: Remove redundant property from the example.
-
- .../bindings/regulator/ti,tps62360.yaml       | 98 +++++++++++++++++++
- .../bindings/regulator/tps62360-regulator.txt | 44 ---------
- 2 files changed, 98 insertions(+), 44 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
- delete mode 100644 Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
-
-diff --git a/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml b/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
-new file mode 100644
-index 000000000000..12aeddedde05
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/ti,tps62360.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/ti,tps62360.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TPS6236x Voltage Regulators
-+
-+maintainers:
-+  - Laxman Dewangan <ldewangan@nvidia.com>
-+
-+description: |
-+  The TPS6236x are a family of step down dc-dc converter with
-+  an input voltage range of 2.5V to 5.5V. The devices provide
-+  up to 3A peak load current, and an output voltage range of
-+  0.77V to 1.4V (TPS62360/62) and 0.5V to 1.77V (TPS62361B/63).
-+
-+  Datasheet is available at:
-+  https://www.ti.com/lit/gpn/tps62360
-+
-+allOf:
-+  - $ref: "regulator.yaml#"
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tps62360
-+      - ti,tps62361
-+      - ti,tps62362
-+      - ti,tps62363
-+
-+  reg:
-+    maxItems: 1
-+
-+  ti,vsel0-gpio:
-+    description: |
-+      GPIO for controlling VSEL0 line. If this property
-+      is missing, then assume that there is no GPIO for
-+      VSEL0 control.
-+    maxItems: 1
-+
-+  ti,vsel1-gpio:
-+    description: |
-+      GPIO for controlling VSEL1 line. If this property
-+      is missing, then assume that there is no GPIO for
-+      VSEL1 control.
-+    maxItems: 1
-+
-+  ti,enable-vout-discharge:
-+    description: Enable output discharge.
-+    type: boolean
-+
-+  ti,enable-pull-down:
-+    description: Enable pull down.
-+    type: boolean
-+
-+  ti,vsel0-state-high:
-+    description: |
-+      Initial state of VSEL0 input is high. If this property
-+      is missing, then assume the state as low.
-+    type: boolean
-+
-+  ti,vsel1-state-high:
-+    description: |
-+      Initial state of VSEL1 input is high. If this property
-+      is missing, then assume the state as low.
-+    type: boolean
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        regulator@60 {
-+            compatible = "ti,tps62361";
-+            reg = <0x60>;
-+            regulator-name = "tps62361-vout";
-+            regulator-min-microvolt = <500000>;
-+            regulator-max-microvolt = <1500000>;
-+            regulator-boot-on;
-+            ti,vsel0-gpio = <&gpio1 16 GPIO_ACTIVE_HIGH>;
-+            ti,vsel1-gpio = <&gpio1 17 GPIO_ACTIVE_HIGH>;
-+            ti,vsel0-state-high;
-+            ti,vsel1-state-high;
-+            ti,enable-pull-down;
-+            ti,enable-vout-discharge;
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt b/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
-deleted file mode 100644
-index 1b20c3dbcdb8..000000000000
---- a/Documentation/devicetree/bindings/regulator/tps62360-regulator.txt
-+++ /dev/null
-@@ -1,44 +0,0 @@
--TPS62360 Voltage regulators
--
--Required properties:
--- compatible: Must be one of the following.
--	"ti,tps62360"
--	"ti,tps62361",
--	"ti,tps62362",
--	"ti,tps62363",
--- reg: I2C slave address
--
--Optional properties:
--- ti,enable-vout-discharge: Enable output discharge. This is boolean value.
--- ti,enable-pull-down: Enable pull down. This is boolean value.
--- ti,vsel0-gpio: GPIO for controlling VSEL0 line.
--  If this property is missing, then assume that there is no GPIO
--  for vsel0 control.
--- ti,vsel1-gpio: Gpio for controlling VSEL1 line.
--  If this property is missing, then assume that there is no GPIO
--  for vsel1 control.
--- ti,vsel0-state-high: Initial state of vsel0 input is high.
--  If this property is missing, then assume the state as low (0).
--- ti,vsel1-state-high: Initial state of vsel1 input is high.
--  If this property is missing, then assume the state as low (0).
--
--Any property defined as part of the core regulator binding, defined in
--regulator.txt, can also be used.
--
--Example:
--
--	abc: tps62360 {
--		compatible = "ti,tps62361";
--		reg =  <0x60>;
--		regulator-name = "tps62361-vout";
--		regulator-min-microvolt = <500000>;
--		regulator-max-microvolt = <1500000>;
--		regulator-boot-on
--		ti,vsel0-gpio = <&gpio1 16 0>;
--		ti,vsel1-gpio = <&gpio1 17 0>;
--		ti,vsel0-state-high;
--		ti,vsel1-state-high;
--		ti,enable-pull-down;
--		ti,enable-force-pwm;
--		ti,enable-vout-discharge;
--	};
--- 
-2.30.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
