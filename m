@@ -2,72 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB49C4D141D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 636824D1429
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:05:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345586AbiCHKBb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 05:01:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53308 "EHLO
+        id S233810AbiCHKF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 05:05:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345587AbiCHKB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:01:28 -0500
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20290427C8
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 02:00:32 -0800 (PST)
-Received: by mail-pj1-x1032.google.com with SMTP id mr24-20020a17090b239800b001bf0a375440so1732123pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 02:00:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=w3pwSt00P8dq6UBwqoWZplPcJrIB0Twk+vNu1P1BFVs=;
-        b=L7srTIOZ8D0DZTGnRZ7EHHRoCmawxSsPAQyn/J9KoAPqsTr+S5L+A2Wrx55SIn5X+H
-         l6oRFyDkbe2VZLF9uHm4CqDRJpfC5E6s8qTi5CGq5NTLl1ZXQ+2ngxCTbu5MoLwZRCjX
-         FE/dnSTMzKVHzHr3G41DX6xkQb5EMUvQquStOPuzl0jSHoi1yequGbqPgo7XswP6tjh8
-         z74qBjieToCxyJ8JyCVa9UOomtKdiXwHHMoJ4TpefldBA93npQYduoRrrD3eFEfeBaeB
-         va8s4KKAXSXJDOMFpKFb+v+rbgCCQ+4j4Z4qzKQPxE/ArYrt1PYwb0Jcme81inWNactP
-         Zs6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=w3pwSt00P8dq6UBwqoWZplPcJrIB0Twk+vNu1P1BFVs=;
-        b=GqjeDTsJcXHKPuC4Sxpa3UbrNmiFXQMzEkwvpJv9dSZNyNPb5ZYyfcXRtOHYvd0Pmn
-         mPrFlBUBTlP4lZCuWiZA5bVyYOxTOoIOVxeKc2EVOughi4F8TCz408lHV3rysdgk/SMf
-         t/8g5osiqza64bg78ZXh40Udx80cMQzI5pS8nkRoBADI+CpW1pIwyGpBXP0kczHeIAj9
-         6M5z9CNm6zfxqxCISR8YkJ9uK9Pow4+201yVIwdoUxoET9Ip2n0zbEESFQ2yQ61xiNzv
-         iJF1dzkzIeCnmDc+PDDCkWZr4KwGTiy9J7wamPi94fLKnDlLInTkvEd9L35MVJ10+t5j
-         yvMQ==
-X-Gm-Message-State: AOAM532pYlZBoHJshvQNh4QwiHpT4pmXhIqfsg/L9fZ4trEIOdyG41YO
-        3jIldNjRZdBtNoaBEh9BWHRsffhTsWsVFzlTlosECA==
-X-Google-Smtp-Source: ABdhPJzXQqAcXnz/aS3XETnYjpLXEoBzJ29ntiGDh/VQ4OO+pWZTDXDaij3GjfN1QM1mGyOkybVK52zKUs0tJl9KZPs=
-X-Received: by 2002:a17:90b:906:b0:1be:e765:882 with SMTP id
- bo6-20020a17090b090600b001bee7650882mr3815408pjb.152.1646733631227; Tue, 08
- Mar 2022 02:00:31 -0800 (PST)
-MIME-Version: 1.0
-References: <20211105031904.2641088-1-xji@analogixsemi.com>
- <20211105031904.2641088-3-xji@analogixsemi.com> <YiTruiCIkyxs3jTC@pendragon.ideasonboard.com>
- <YiWiYpEfTOOqgyAN@google.com> <CAG3jFys-BYsBp07AAFQ2O_TFsXOwhcVDnsOh8WVNNSag3HZw+Q@mail.gmail.com>
-In-Reply-To: <CAG3jFys-BYsBp07AAFQ2O_TFsXOwhcVDnsOh8WVNNSag3HZw+Q@mail.gmail.com>
-From:   Robert Foss <robert.foss@linaro.org>
-Date:   Tue, 8 Mar 2022 11:00:20 +0100
-Message-ID: <CAG3jFyu47cv8oSecONM95KVoP=NOvgwafAp4TQ33CZ0Y4zWmnQ@mail.gmail.com>
-Subject: Re: [PATCH v12 3/4] drm/bridge: anx7625: add MIPI DPI input feature
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>, Xin Ji <xji@analogixsemi.com>,
-        a.hajda@samsung.com, narmstrong@baylibre.com,
-        dan.carpenter@oracle.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
-        sam@ravnborg.org, pihsun@chromium.org, tzungbi@google.com,
-        maxime@cerno.tech, drinkcat@google.com, hsinyi@chromium.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        bliang@analogixsemi.com, qwen@analogixsemi.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
+        with ESMTP id S229559AbiCHKF5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:05:57 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCABF3FD9D
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 02:04:59 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1nRWi0-00088q-RU; Tue, 08 Mar 2022 11:04:48 +0100
+Message-ID: <74995646cc0e2157d012e148f581d73b6b338e14.camel@pengutronix.de>
+Subject: Re: [PATCH v2 3/7] phy: freescale: imx8m-pcie: Add iMX8MP PCIe PHY
+ support
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Richard Zhu <hongxing.zhu@nxp.com>, p.zabel@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        alexander.stein@ew.tq-group.com
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Date:   Tue, 08 Mar 2022 11:04:46 +0100
+In-Reply-To: <1646644054-24421-4-git-send-email-hongxing.zhu@nxp.com>
+References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
+         <1646644054-24421-4-git-send-email-hongxing.zhu@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Evolution 3.40.4 (3.40.4-1.fc34) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,103 +52,325 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Mar 2022 at 16:49, Robert Foss <robert.foss@linaro.org> wrote:
->
-> On Mon, 7 Mar 2022 at 07:12, Chen-Yu Tsai <wenst@chromium.org> wrote:
-> >
-> > On Sun, Mar 06, 2022 at 07:13:30PM +0200, Laurent Pinchart wrote:
-> > > Hello Xin,
-> > >
-> > > (Question for Rob below, and I'm afraid this is urgent as we need to
-> > > merge a fix in v5.17).
-> > >
-> > > On Fri, Nov 05, 2021 at 11:19:03AM +0800, Xin Ji wrote:
-> > > > The basic anx7625 driver only support MIPI DSI rx signal input.
-> > > > This patch add MIPI DPI rx input configuration support, after apply
-> > > > this patch, the driver can support DSI rx or DPI rx by adding
-> > > > 'bus-type' in DT.
-> > > >
-> > > > Reviewed-by: Robert Foss <robert.foss@linaro.org>
-> > > > Signed-off-by: Xin Ji <xji@analogixsemi.com>
-> > > > ---
-> > > >  drivers/gpu/drm/bridge/analogix/anx7625.c | 247 ++++++++++++++++------
-> > > >  drivers/gpu/drm/bridge/analogix/anx7625.h |  18 +-
-> > > >  2 files changed, 205 insertions(+), 60 deletions(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/bridge/analogix/anx7625.c b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > > > index f48e91134c20..f7c3386c8929 100644
-> > > > --- a/drivers/gpu/drm/bridge/analogix/anx7625.c
-> > > > +++ b/drivers/gpu/drm/bridge/analogix/anx7625.c
-> >
-> > [...]
-> >
-> > > >  static int anx7625_parse_dt(struct device *dev,
-> > > >                         struct anx7625_platform_data *pdata)
-> > > >  {
-> > > > -   struct device_node *np = dev->of_node;
-> > > > +   struct device_node *np = dev->of_node, *ep0;
-> > > >     struct drm_panel *panel;
-> > > >     int ret;
-> > > > +   int bus_type, mipi_lanes;
-> > > > +
-> > > > +   anx7625_get_swing_setting(dev, pdata);
-> > > >
-> > > > +   pdata->is_dpi = 1; /* default dpi mode */
-> > > >     pdata->mipi_host_node = of_graph_get_remote_node(np, 0, 0);
-> > > >     if (!pdata->mipi_host_node) {
-> > > >             DRM_DEV_ERROR(dev, "fail to get internal panel.\n");
-> > > >             return -ENODEV;
-> > > >     }
-> > > >
-> > > > -   DRM_DEV_DEBUG_DRIVER(dev, "found dsi host node.\n");
-> > > > +   bus_type = V4L2_FWNODE_BUS_TYPE_PARALLEL;
-> > > > +   mipi_lanes = MAX_LANES_SUPPORT;
-> > > > +   ep0 = of_graph_get_endpoint_by_regs(np, 0, 0);
-> > > > +   if (ep0) {
-> > > > +           if (of_property_read_u32(ep0, "bus-type", &bus_type))
-> > > > +                   bus_type = 0;
-> > > > +
-> > > > +           mipi_lanes = of_property_count_u32_elems(ep0, "data-lanes");
-> > > > +   }
-> > > > +
-> > > > +   if (bus_type == V4L2_FWNODE_BUS_TYPE_PARALLEL) /* bus type is Parallel(DSI) */
-> > >
-> > > This is not correct *at all*. V4L2_FWNODE_BUS_TYPE_PARALLEL has nothing
-> > > to do with DSI. DSI stands for Digital *Serial* Interface. If anything,
-> > > the V4L2_FWNODE_BUS_TYPE_PARALLEL type would map better to DPI, even if
-> > > it's not an exact match.
-> > >
-> > > This patch has landed in v5.17-rc1, along with the corresponding
-> > > bindings. As DT bindings are an ABI, we should really fix this before
-> > > v5.17 is released. There is no DSI bus types defined in DT, and adding
-> > > one as a fix so late in the v5.17-rc cycle seems a bit of a stretch to
-> > > me (unless Rob disagrees).
-> > >
-> > > It would seem best to revert this series and the corresponding bindings,
-> > > and retry in v5.18.
-> >
-> > There is a DT patch using this property that is already queued up for 5.17
-> > in the soc tree:
-> >
-> > https://lore.kernel.org/all/20220214200507.2500693-1-nfraprado@collabora.com/
-> >
-> > merged here:
-> >
-> > http://git.kernel.org/soc/soc/c/32568ae37596b529628ac09b875f4874e614f63f
-> >
-> > We will need to revert that one as well.
->
-> I just submitted a series reverting the dt-binding change + the
-> related commit to "mt8183: jacuzzi".
-> Can I get a quick r-b/a-b in order to get this into v5.17.
->
-> https://lore.kernel.org/all/20220307154558.2505734-3-robert.foss@linaro.org/
->
+Hi Richard,
 
-v2 of revert submitted.
+Am Montag, dem 07.03.2022 um 17:07 +0800 schrieb Richard Zhu:
+> Add the i.MX8MP PCIe PHY support
+> 
+> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> ---
+>  drivers/phy/freescale/phy-fsl-imx8m-pcie.c | 205 ++++++++++++++++-----
+>  1 file changed, 163 insertions(+), 42 deletions(-)
+> 
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> index 04b1aafb29f4..3d01da4323a6 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8m-pcie.c
+> @@ -11,6 +11,8 @@
+>  #include <linux/mfd/syscon.h>
+>  #include <linux/mfd/syscon/imx7-iomuxc-gpr.h>
+>  #include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+> @@ -30,12 +32,10 @@
+>  #define IMX8MM_PCIE_PHY_CMN_REG065	0x194
+>  #define  ANA_AUX_RX_TERM		(BIT(7) | BIT(4))
+>  #define  ANA_AUX_TX_LVL			GENMASK(3, 0)
+> -#define IMX8MM_PCIE_PHY_CMN_REG75	0x1D4
+> -#define  PCIE_PHY_CMN_REG75_PLL_DONE	0x3
+> +#define IMX8MM_PCIE_PHY_CMN_REG075	0x1D4
+> +#define  ANA_PLL_DONE			0x3
+>  #define PCIE_PHY_TRSV_REG5		0x414
+> -#define  PCIE_PHY_TRSV_REG5_GEN1_DEEMP	0x2D
+>  #define PCIE_PHY_TRSV_REG6		0x418
+> -#define  PCIE_PHY_TRSV_REG6_GEN2_DEEMP	0xF
+>  
+>  #define IMX8MM_GPR_PCIE_REF_CLK_SEL	GENMASK(25, 24)
+>  #define IMX8MM_GPR_PCIE_REF_CLK_PLL	FIELD_PREP(IMX8MM_GPR_PCIE_REF_CLK_SEL, 0x3)
+> @@ -46,16 +46,43 @@
+>  #define IMX8MM_GPR_PCIE_SSC_EN		BIT(16)
+>  #define IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE	BIT(9)
+>  
+> +#define IMX8MP_GPR_REG0			0x0
+> +#define IMX8MP_GPR_CLK_MOD_EN		BIT(0)
+> +#define IMX8MP_GPR_PHY_APB_RST		BIT(4)
+> +#define IMX8MP_GPR_PHY_INIT_RST		BIT(5)
+> +#define IMX8MP_GPR_REG1			0x4
+> +#define IMX8MP_GPR_PM_EN_CORE_CLK	BIT(0)
+> +#define IMX8MP_GPR_PLL_LOCK		BIT(13)
+> +#define IMX8MP_GPR_REG2			0x8
+> +#define IMX8MP_GPR_P_PLL_MASK		GENMASK(5, 0)
+> +#define IMX8MP_GPR_M_PLL_MASK		GENMASK(15, 6)
+> +#define IMX8MP_GPR_S_PLL_MASK		GENMASK(18, 16)
+> +#define IMX8MP_GPR_P_PLL		(0xc << 0)
+> +#define IMX8MP_GPR_M_PLL		(0x320 << 6)
+> +#define IMX8MP_GPR_S_PLL		(0x4 << 16)
+> +#define IMX8MP_GPR_REG3			0xc
+> +#define IMX8MP_GPR_PLL_CKE		BIT(17)
+> +#define IMX8MP_GPR_PLL_RST		BIT(31)
+> +
+> +enum imx8_pcie_phy_type {
+> +	IMX8MM,
+> +	IMX8MP,
+> +};
+> +
+>  struct imx8_pcie_phy {
+>  	void __iomem		*base;
+> +	struct device		*dev;
+>  	struct clk		*clk;
+>  	struct phy		*phy;
+> +	struct regmap		*hsio_blk_ctrl;
+>  	struct regmap		*iomuxc_gpr;
+>  	struct reset_control	*reset;
+> +	struct reset_control	*perst;
+>  	u32			refclk_pad_mode;
+>  	u32			tx_deemph_gen1;
+>  	u32			tx_deemph_gen2;
+>  	bool			clkreq_unused;
+> +	enum imx8_pcie_phy_type	variant;
+>  };
+>  
+>  static int imx8_pcie_phy_init(struct phy *phy)
+> @@ -67,6 +94,87 @@ static int imx8_pcie_phy_init(struct phy *phy)
+>  	reset_control_assert(imx8_phy->reset);
+>  
+>  	pad_mode = imx8_phy->refclk_pad_mode;
+> +	switch (imx8_phy->variant) {
+> +	case IMX8MM:
+> +		/* Tune PHY de-emphasis setting to pass PCIe compliance. */
+> +		if (imx8_phy->tx_deemph_gen1)
+> +			writel(imx8_phy->tx_deemph_gen1,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG5);
+> +		if (imx8_phy->tx_deemph_gen2)
+> +			writel(imx8_phy->tx_deemph_gen2,
+> +			       imx8_phy->base + PCIE_PHY_TRSV_REG6);
+> +		break;
+> +	case IMX8MP:
+> +		reset_control_assert(imx8_phy->perst);
+> +		/* Set P=12,M=800,S=4 and must set ICP=2'b01. */
+> +		regmap_update_bits(imx8_phy->hsio_blk_ctrl, IMX8MP_GPR_REG2,
+> +				   IMX8MP_GPR_P_PLL_MASK |
+> +				   IMX8MP_GPR_M_PLL_MASK |
+> +				   IMX8MP_GPR_S_PLL_MASK,
+> +				   IMX8MP_GPR_P_PLL |
+> +				   IMX8MP_GPR_M_PLL |
+> +				   IMX8MP_GPR_S_PLL);
+> +		/* wait greater than 1/F_FREF =1/2MHZ=0.5us */
+> +		udelay(1);
+> +
+> +		regmap_update_bits(imx8_phy->hsio_blk_ctrl, IMX8MP_GPR_REG3,
+> +				   IMX8MP_GPR_PLL_RST,
+> +				   IMX8MP_GPR_PLL_RST);
+> +		udelay(10);
+> +
+> +		/* Set 1 to pll_cke of GPR_REG3 */
+> +		regmap_update_bits(imx8_phy->hsio_blk_ctrl, IMX8MP_GPR_REG3,
+> +				   IMX8MP_GPR_PLL_CKE,
+> +				   IMX8MP_GPR_PLL_CKE);
+> +
+> +		/* Lock time should be greater than 300cycle=300*0.5us=150us */
+> +		ret = regmap_read_poll_timeout(imx8_phy->hsio_blk_ctrl,
+> +					     IMX8MP_GPR_REG1, val,
+> +					     val & IMX8MP_GPR_PLL_LOCK,
+> +					     10, 1000);
+> +		if (ret) {
+> +			dev_err(imx8_phy->dev, "PCIe PLL lock timeout\n");
+> +			return ret;
+> +		}
 
-https://lore.kernel.org/all/20220308094911.2680291-1-robert.foss@linaro.org/
+As far as I understand the reference manual, this PLL is not exclusive
+to the PCIe core, but can be used as a alternate reference clock for
+the USB PHYs. I think we should not poke the PLL registers from the
+PCIe PHY driver, but should make this PLL a real clock provided by the
+HSIO blk-ctrl.
 
-Xin: Will you spin a series that adds DPI support and re-enables DPI
-for anx7625? Additionally, "mt8183: jacuzzi" will have to have DPI
-re-enabled.
+It's probably a good prove of concept for other clocks that need to be
+provided by the blk-ctrls, as the audio blk-ctrl has much more of this
+secondary clock controller functionality.
+
+Do you want to give it a shot at integrating this into the blk-ctrl
+driver, or should I take a look?
+
+Regards,
+Lucas
+
+> +
+> +		/* pcie_clock_module_en */
+> +		regmap_update_bits(imx8_phy->hsio_blk_ctrl, IMX8MP_GPR_REG0,
+> +				   IMX8MP_GPR_CLK_MOD_EN,
+> +				   IMX8MP_GPR_CLK_MOD_EN);
+> +		udelay(10);
+> +
+> +		reset_control_deassert(imx8_phy->reset);
+> +		reset_control_deassert(imx8_phy->perst);
+> +
+> +		/* release pcie_phy_apb_reset and pcie_phy_init_resetn */
+> +		regmap_update_bits(imx8_phy->hsio_blk_ctrl, IMX8MP_GPR_REG0,
+> +				   IMX8MP_GPR_PHY_APB_RST |
+> +				   IMX8MP_GPR_PHY_INIT_RST,
+> +				   IMX8MP_GPR_PHY_APB_RST |
+> +				   IMX8MP_GPR_PHY_INIT_RST);
+> +		break;
+> +	}
+> +
+> +	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT) {
+> +		/* Configure the pad as input */
+> +		val = readl(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> +		writel(val & ~ANA_PLL_CLK_OUT_TO_EXT_IO_EN,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> +	} else if (pad_mode == IMX8_PCIE_REFCLK_PAD_OUTPUT) {
+> +		/* Configure the PHY to output the refclock via pad */
+> +		writel(ANA_PLL_CLK_OUT_TO_EXT_IO_EN,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> +		writel(ANA_PLL_CLK_OUT_TO_EXT_IO_SEL,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG062);
+> +		writel(AUX_PLL_REFCLK_SEL_SYS_PLL,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG063);
+> +		val = ANA_AUX_RX_TX_SEL_TX | ANA_AUX_TX_TERM;
+> +		writel(val | ANA_AUX_RX_TERM_GND_EN,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG064);
+> +		writel(ANA_AUX_RX_TERM | ANA_AUX_TX_LVL,
+> +		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG065);
+> +	}
+> +
+>  	/* Set AUX_EN_OVERRIDE 1'b0, when the CLKREQ# isn't hooked */
+>  	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+>  			   IMX8MM_GPR_PCIE_AUX_EN_OVERRIDE,
+> @@ -91,42 +199,30 @@ static int imx8_pcie_phy_init(struct phy *phy)
+>  	regmap_update_bits(imx8_phy->iomuxc_gpr, IOMUXC_GPR14,
+>  			   IMX8MM_GPR_PCIE_CMN_RST,
+>  			   IMX8MM_GPR_PCIE_CMN_RST);
+> -	usleep_range(200, 500);
+>  
+> -	if (pad_mode == IMX8_PCIE_REFCLK_PAD_INPUT) {
+> -		/* Configure the pad as input */
+> -		val = readl(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> -		writel(val & ~ANA_PLL_CLK_OUT_TO_EXT_IO_EN,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> -	} else if (pad_mode == IMX8_PCIE_REFCLK_PAD_OUTPUT) {
+> -		/* Configure the PHY to output the refclock via pad */
+> -		writel(ANA_PLL_CLK_OUT_TO_EXT_IO_EN,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG061);
+> -		writel(ANA_PLL_CLK_OUT_TO_EXT_IO_SEL,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG062);
+> -		writel(AUX_PLL_REFCLK_SEL_SYS_PLL,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG063);
+> -		val = ANA_AUX_RX_TX_SEL_TX | ANA_AUX_TX_TERM;
+> -		writel(val | ANA_AUX_RX_TERM_GND_EN,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG064);
+> -		writel(ANA_AUX_RX_TERM | ANA_AUX_TX_LVL,
+> -		       imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG065);
+> +	switch (imx8_phy->variant) {
+> +	case IMX8MM:
+> +		reset_control_deassert(imx8_phy->reset);
+> +		usleep_range(200, 500);
+> +		break;
+> +
+> +	case IMX8MP:
+> +		/* wait for core_clk enabled */
+> +		ret = regmap_read_poll_timeout(imx8_phy->hsio_blk_ctrl,
+> +					     IMX8MP_GPR_REG1, val,
+> +					     val & IMX8MP_GPR_PM_EN_CORE_CLK,
+> +					     10, 20000);
+> +		if (ret) {
+> +			dev_err(imx8_phy->dev, "PCIe CORE CLK enable failed\n");
+> +			return ret;
+> +		}
+> +
+> +		break;
+>  	}
+>  
+> -	/* Tune PHY de-emphasis setting to pass PCIe compliance. */
+> -	if (imx8_phy->tx_deemph_gen1)
+> -		writel(imx8_phy->tx_deemph_gen1,
+> -		       imx8_phy->base + PCIE_PHY_TRSV_REG5);
+> -	if (imx8_phy->tx_deemph_gen2)
+> -		writel(imx8_phy->tx_deemph_gen2,
+> -		       imx8_phy->base + PCIE_PHY_TRSV_REG6);
+> -
+> -	reset_control_deassert(imx8_phy->reset);
+> -
+>  	/* Polling to check the phy is ready or not. */
+> -	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG75,
+> -				 val, val == PCIE_PHY_CMN_REG75_PLL_DONE,
+> -				 10, 20000);
+> +	ret = readl_poll_timeout(imx8_phy->base + IMX8MM_PCIE_PHY_CMN_REG075,
+> +				 val, val == ANA_PLL_DONE, 10, 20000);
+>  	return ret;
+>  }
+>  
+> @@ -153,18 +249,33 @@ static const struct phy_ops imx8_pcie_phy_ops = {
+>  	.owner		= THIS_MODULE,
+>  };
+>  
+> +static const struct of_device_id imx8_pcie_phy_of_match[] = {
+> +	{.compatible = "fsl,imx8mm-pcie-phy", .data = (void *)IMX8MM},
+> +	{.compatible = "fsl,imx8mp-pcie-phy", .data = (void *)IMX8MP},
+> +	{ },
+> +};
+> +MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
+> +
+>  static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  {
+>  	struct phy_provider *phy_provider;
+>  	struct device *dev = &pdev->dev;
+> +	const struct of_device_id *of_id;
+>  	struct device_node *np = dev->of_node;
+>  	struct imx8_pcie_phy *imx8_phy;
+>  	struct resource *res;
+>  
+> +	of_id = of_match_device(imx8_pcie_phy_of_match, dev);
+> +	if (!of_id)
+> +		return -EINVAL;
+> +
+>  	imx8_phy = devm_kzalloc(dev, sizeof(*imx8_phy), GFP_KERNEL);
+>  	if (!imx8_phy)
+>  		return -ENOMEM;
+>  
+> +	imx8_phy->dev = dev;
+> +	imx8_phy->variant = (enum imx8_pcie_phy_type)of_id->data;
+> +
+>  	/* get PHY refclk pad mode */
+>  	of_property_read_u32(np, "fsl,refclk-pad-mode",
+>  			     &imx8_phy->refclk_pad_mode);
+> @@ -201,6 +312,22 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  		dev_err(dev, "Failed to get PCIEPHY reset control\n");
+>  		return PTR_ERR(imx8_phy->reset);
+>  	}
+> +	if (imx8_phy->variant == IMX8MP) {
+> +		/* Grab HSIO MIX config register range */
+> +		imx8_phy->hsio_blk_ctrl =
+> +			 syscon_regmap_lookup_by_compatible("fsl,imx8mp-hsio-blk-ctrl");
+> +		if (IS_ERR(imx8_phy->hsio_blk_ctrl)) {
+> +			dev_err(dev, "unable to find hsio mix registers\n");
+> +			return PTR_ERR(imx8_phy->hsio_blk_ctrl);
+> +		}
+> +
+> +		imx8_phy->perst =
+> +			devm_reset_control_get_exclusive(dev, "perst");
+> +		if (IS_ERR(imx8_phy->perst)) {
+> +			dev_err(dev, "Failed to get PCIEPHY perst control\n");
+> +			return PTR_ERR(imx8_phy->perst);
+> +		}
+> +	}
+>  
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	imx8_phy->base = devm_ioremap_resource(dev, res);
+> @@ -218,12 +345,6 @@ static int imx8_pcie_phy_probe(struct platform_device *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>  
+> -static const struct of_device_id imx8_pcie_phy_of_match[] = {
+> -	{.compatible = "fsl,imx8mm-pcie-phy",},
+> -	{ },
+> -};
+> -MODULE_DEVICE_TABLE(of, imx8_pcie_phy_of_match);
+> -
+>  static struct platform_driver imx8_pcie_phy_driver = {
+>  	.probe	= imx8_pcie_phy_probe,
+>  	.driver = {
+
+
