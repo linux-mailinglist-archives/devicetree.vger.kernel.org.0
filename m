@@ -2,66 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0D44D0EDF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 05:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 792924D0EF9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 06:22:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238813AbiCHEzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 23:55:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60372 "EHLO
+        id S236213AbiCHFW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 00:22:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230105AbiCHEzn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 23:55:43 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7039133A17;
-        Mon,  7 Mar 2022 20:54:48 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id d17so7508240pfv.6;
-        Mon, 07 Mar 2022 20:54:48 -0800 (PST)
+        with ESMTP id S232026AbiCHFWz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 00:22:55 -0500
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC0239839;
+        Mon,  7 Mar 2022 21:22:00 -0800 (PST)
+Received: by mail-pg1-x530.google.com with SMTP id q19so2851470pgm.6;
+        Mon, 07 Mar 2022 21:22:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=+mhDsYXIh6KsERGGuN7btucncjAhTz1j8z/Nt9vm2cY=;
-        b=QNbZAwA0rjFRZyjubU45PCGK/FyoRJXi6KpwyZeOqUEUFdWBDTtsQrNyf2WxAMd8c9
-         fC8wHCEkiPnF9mcYki9HVANH6VUz66Mq4Kw+Ly3Jk1qc9kFMOzuEPry4QLrdesuVyxtF
-         XaIap+/557La4Bw/pZ9CrpPEdZKhg6xpl9W7GI/a+XLgHstLSnWItlpm4PpnJ7IWKvzb
-         bFOy1wIC197H0LWlp6EDY+Be9g71Sjp0ci4dDbMNcby83cp3tFlNM2lggC5Jx4FZXpGN
-         w6LYmO1xAGR2E9j60+TN3YrWej6KwXUG2O1RxKt43MLCabIrm/zLJosgz9wPZCdgiY4V
-         xlcA==
+        bh=CtARMaggSSWrV7NfHcUkCG/o5DV3pdLuaH3FfGzHsUQ=;
+        b=TeL1lTuGrYSDnbTg9AnrJ2wbZVa9iOcJD5ZeFwd6ollVYkfUAgGm8jcv/1P4YLmfG2
+         ruECfE63kUt83ZD5BppjnGaAfUkUaawbgz7kgLLiaYxf3dbowbnekamT5MDaW8YymMe7
+         iScuiXSz+F/+0GucHpXUyA+NSHo8vhgIkBpbKHBzmAQGZydj8BJPvTF3ezJxBTixz7m7
+         ikNvpNfYsYqY3VGC60MKXNnkmV+wNaipUbH8hD6nmTOPfxkftdBnaoC8LixMaFrYpQ4h
+         r6LCqsbsMgJwdfcOv2vK0zH86KxJOQW+dax0xIvnUILYGTfj1bAa78jaTEOb158hneqi
+         60tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+mhDsYXIh6KsERGGuN7btucncjAhTz1j8z/Nt9vm2cY=;
-        b=1D4EgmcS6t3ta9XPAqmBwVn/AVw0hSUOcTVqXAtRE4YDMVnxmV+xWhqmNqgJdVhF2N
-         ZnwMavLuFdRcGcaIKhUP/slxGFC+UkGjWsLAytJWm0g5OWr0EBOq0IgXRWx34S/hMFav
-         LJ+VgDIDZ63NaO3EsrUisHMluBhwDUHR29ROwNLfdeTT9H1uupcrN3xFiCGp7sgVILrf
-         kggHSUsdYyYyz9AXDwvEJZ4XqaKO40XImMPBctgAHunWzaNBZhrDZSln5J/2Mk6cTd93
-         12xNNWnCSvF4PhD+4W0UgHhlVqK7u9+DFdlwabeh5SC/YIwxoApiOt40mn2AI12d6X25
-         ibgQ==
-X-Gm-Message-State: AOAM531UiFpUBNBt8G2W59Y90r12xRjx145nnmogLEorShVobrSkGo+7
-        8Sw8ugU5Ha3QoTio9tfIC9Z64LJU5Lwmaw==
-X-Google-Smtp-Source: ABdhPJz2utjtm1oDtXkQkzQXlbjYXtYs9e5zG0XjM8qwBfYpnPSjsmgu6EoTWd1CPgdCJ+K1DL0aaQ==
-X-Received: by 2002:a63:5826:0:b0:37e:d37f:bd8e with SMTP id m38-20020a635826000000b0037ed37fbd8emr12520760pgb.433.1646715287914;
-        Mon, 07 Mar 2022 20:54:47 -0800 (PST)
+        bh=CtARMaggSSWrV7NfHcUkCG/o5DV3pdLuaH3FfGzHsUQ=;
+        b=0vmVPve3rbtpdERBrXKFg4kK03/1TBG0V3bd2F/IadYEhQPnKw7C3a1Et5Q1touJqP
+         9eW8pdesANDnV9s4onLBrYRjra/IMTLfRdrZZhxnfmEJmIUBd+aepCqp+yzLODUH72qn
+         OGbgN9zeaO9aK+AP/LrpDhtSbpmcU9rQANo9cBcf6/pWpGiirdkeZHBPL3jiPOFbJ9JI
+         hLhmoYpvn0gJSzebBIwWVaNz+K/QEjtutQYOuy/HpLDujh3uxR2HpsAQbV1BciU4FiGi
+         PdERLwkdS4MluCpY8IcVSMHfV74W8ZQ8ITLD4kXc78J03j83hmKEh0Bpnkc6rZD9Za8F
+         KbFQ==
+X-Gm-Message-State: AOAM532tXlVsRFq36JD8KO0yU2hB+0kQL57Jhmd20LeUvUNL0KtsBMr5
+        FEcs7NtO78xlNU9jUIPtVXY=
+X-Google-Smtp-Source: ABdhPJwFp20jh0dkQmrm0tlgd1cRevvUdzaAUabVETOsI+kNcyzJK+T91/tTKf+OrXCSUMyX1lNb4A==
+X-Received: by 2002:a63:5214:0:b0:373:8aca:7453 with SMTP id g20-20020a635214000000b003738aca7453mr12446013pgb.574.1646716919702;
+        Mon, 07 Mar 2022 21:21:59 -0800 (PST)
 Received: from 9a2d8922b8f1 ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id nm14-20020a17090b19ce00b001bf2404fd9dsm1016245pjb.31.2022.03.07.20.54.45
+        by smtp.gmail.com with ESMTPSA id a32-20020a631a20000000b003756899829csm13464044pga.58.2022.03.07.21.21.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Mar 2022 20:54:47 -0800 (PST)
-Date:   Tue, 8 Mar 2022 10:24:42 +0530
+        Mon, 07 Mar 2022 21:21:59 -0800 (PST)
+Date:   Tue, 8 Mar 2022 10:51:53 +0530
 From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Scott Branden <sbranden@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>
-Subject: Re: [PATCH 1/3] MAINTAINERS: Update git tree for broadcom IPROC
- boards
-Message-ID: <20220308045442.GA67274@9a2d8922b8f1>
-References: <20220307182101.84730-1-singh.kuldeep87k@gmail.com>
- <e08f2e52-0684-89b7-b1df-f27e4c0d74f2@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: spi: Update clocks property for ARM
+ pl022
+Message-ID: <20220308052153.GA67357@9a2d8922b8f1>
+References: <20220307203745.65210-1-singh.kuldeep87k@gmail.com>
+ <f157651b-07c7-43ee-372a-81bd5d615d5d@canonical.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e08f2e52-0684-89b7-b1df-f27e4c0d74f2@gmail.com>
+In-Reply-To: <f157651b-07c7-43ee-372a-81bd5d615d5d@canonical.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -72,20 +74,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 11:19:20AM -0800, Florian Fainelli wrote:
-> On 3/7/22 10:20 AM, Kuldeep Singh wrote:
-> > Current git tree for broadcom boards is pretty outdated as it's not
-> > updated for a long time. Fix the reference.
+On Mon, Mar 07, 2022 at 10:55:52PM +0100, Krzysztof Kozlowski wrote:
+> On 07/03/2022 21:37, Kuldeep Singh wrote:
+> > Add missing minItems property to clocks in ARM pl022 bindings.
+> > 
+> > This helps in resolving below warnings:
+> > clocks: [[4]] is too short
+> > clock-names: ['apb_pclk'] is too short
 > > 
 > > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
 > 
-> Applied to maintainers/next. Please use scripts/get_maintainers.pl next
-> time though, our internal mailing list was not copied, thus our
-> patchwork instance did not pick up the patch.
+> I saw these series in the past... please do not send the same version again.
+> 
+> You need to version your series (git format-patch -v2 -2) and add
+> changelog in cover letter (or for small patches after '---' in commits).
 
-Ahh i see. Though I ran get_maintainers.pl, but couldn't cc internal mailing
-list. I'll take care next time. 
-Thanks!
+Ahh no. I completely missed out updating series number before sending.
+Actually I have been struggling to get mutt client setup with gmail
+account to send replies but it doesn't seem to work properly. Gmail
+labels has been hardest part. In between these hurdles, I rolled out
+patches and missed out this important thing.
 
-Regards
-Kuldeep
+Kindly consider these 2 patches as deprecated.
+
+> 
+> How did you resolve the comments that the DTS might be wrong? It looks
+> like you simply resent it...
+
+Few broadcom boards(stingray and ns2) require DT updation for which I
+sent patches and received Florain's blessings. Those patches are now
+available in github.com/Broadcom/stblinux, devicetree-arm64
+
+There are several other updations(in realview, versatile etc.) required
+which I couldn't mention before as they are part of different tree.
