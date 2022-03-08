@@ -2,103 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 904014D1963
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA6764D1966
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:42:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234369AbiCHNly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 08:41:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48090 "EHLO
+        id S235485AbiCHNnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 08:43:00 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233002AbiCHNlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:41:53 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F83A496B4
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 05:40:57 -0800 (PST)
-Received: from mail-wr1-f43.google.com ([209.85.221.43]) by
- mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1Mirb8-1o4C5j2P5A-00ewqR for <devicetree@vger.kernel.org>; Tue, 08 Mar
- 2022 14:40:55 +0100
-Received: by mail-wr1-f43.google.com with SMTP id r10so28638131wrp.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 05:40:55 -0800 (PST)
-X-Gm-Message-State: AOAM5322/Ta3ee/SZwGVcl79/edkeXoEq7tyih8PAQDOQwwL3gJ5Bs2f
-        CcJ61juyJkRKXe8/CpM/QhurkuRNuA7Qec4pPa8=
-X-Google-Smtp-Source: ABdhPJy4i4S2Td2DIwViO6a2d4Sf3lMdP84U7BC96iZ7illHQ8jOEHBv73Ig/cIeTLgrsoD3sDhn22NUtkKMGcU2wFI=
-X-Received: by 2002:adf:d081:0:b0:1ef:9378:b7cc with SMTP id
- y1-20020adfd081000000b001ef9378b7ccmr13058079wrh.407.1646746855181; Tue, 08
- Mar 2022 05:40:55 -0800 (PST)
+        with ESMTP id S233002AbiCHNnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:43:00 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE54849917;
+        Tue,  8 Mar 2022 05:42:03 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 81A161F433C1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646746922;
+        bh=AUBI82xQKetEKH7Mx6YE728kuNJKmLzt6+6XJDt5Mes=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LazTXcR5ieNSLqwAi7CvqlhlkxdusS1kLqhWCbbWDNGvDtf73NxW2k32sig2YH7+4
+         GLYm8HrYCD6x+iqYT5U9irK2VsD+Y2zqI+EeHsG+K+mnRmgtIxTqcITz/plNDMnKXu
+         J0kKsWjXYi8Luy2djuEPVK0xZBMe5vq5Gu33jZZcXUPWLW690Gsfmw7CHvUeK+H81a
+         9bkNClUh/ZOb+j4qw0FIjmkpLy8KDYMzznDGN6cbMuRziOyaABvtQHkj4eIo1mdLK+
+         saSo8MTM+2oX2+3K0CsB3yB30X5KEolCGxlY0Vi19Jtz4n6BDQywKRgr6t0B4WGT4M
+         r1X37uN96bv5Q==
+Message-ID: <d6fa28ef-fdbb-2b6c-acaa-4c35bb631ab4@collabora.com>
+Date:   Tue, 8 Mar 2022 14:41:59 +0100
 MIME-Version: 1.0
-References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-14-andre.przywara@arm.com> <CAK8P3a1FxfZj0=T=cvLNfagP+c_d+SEYYuV30+-UTU+B+HVXmQ@mail.gmail.com>
- <20220308120750.0bbe0122@donnerap.cambridge.arm.com>
-In-Reply-To: <20220308120750.0bbe0122@donnerap.cambridge.arm.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 8 Mar 2022 14:40:39 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a3g_zPW5xEFRku3TsZTdovevwyxyWVaN_=eD+FN2G8YLg@mail.gmail.com>
-Message-ID: <CAK8P3a3g_zPW5xEFRku3TsZTdovevwyxyWVaN_=eD+FN2G8YLg@mail.gmail.com>
-Subject: Re: [PATCH 13/14] ARM: configs: sync multi_v5_defconfig from savedefconfig
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [RESEND v13 07/22] soc: mediatek: mmsys: specify 64BIT dependency
+ for MTK_MMSYS
+Content-Language: en-US
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-sunxi@lists.linux.dev, Russell King <linux@armlinux.org.uk>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:I5c7y3Hrngi+S0kHZQcgfnZSQJzZ6Q7l0D7IW/r76z8Dn/8cgbP
- jNPBAWf783QOPqMMHpZnirsOcaCKE30Kdpg110clSKeCMrhCu2lbDNqOiskMt9+rKMY0Jum
- ljNQzyQmAAQSQj7LSHngV2gSsirmPxpiJnu2aGhSkDM34kEdXfvoj98sL+6VKaQqejUt/cx
- OFG8d04nGH+gHxaXydxrQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Uss587I9zlI=:79HCpjC8V9wiD31FQ7X/cQ
- 5NKvwUEXLZ7ZAb7arnWmpql3bC4SfOXQad4XTx4o5SnqVFszPqeoz3NFayCxi4BLu8P6eX8eh
- AmROqyp13YtKHwD3fJsB2E5qDm55kkGljsqWeLlYWeFI1T5giwkpXoRVSJxHl5APLdg8Wdtl5
- MD52ZsDdPp/gcHxEh9nPAWls6SeaiYS+4UtW0p7sEPjks8k/2y1W77I8Oy08halFc3yLi85Ud
- KltOnX+A+CFNIZ7B+3B74NnT+OEaHqNh//+M18TLQiTgkSnM5XsmnlLvDYCHkNAmgYqOqOeDz
- A+N14NQg5Jmyvt0ZQdW2mQK8MDTMkFilljrf5cWnlB1gPI6vxqFKZxM5AjBsjy54tsJ+taAfI
- ceAGBEz7pGjahuEDSwGB6m+IIxQ6vsXgiLuEdRnj3HiBc+sHUojZROZ7rP3AtKM+t09456Sb8
- zOR+oyosuKor6lkAvn3BJLdP6HubQkPeLGHRvkhIHozqX8fnjypA4kMpxFhD+u9PU5FznWZ1f
- Dkti5Kih8eknXRNdrEbG2yXAUo5DI1ydhPeO1ETfgppZPi05sZLG+dnX3TcFpCjnRqVTgYmMW
- NPHvyH//7oHoIle8xB4/pbaDH8mZq0p+EtOby/zJzpx3LJLlbi6YKZa3Chcnv4AXMsZ4U5uVn
- 8Q/CcwzlHn1yUCjFBEuwcAtinrEtwqbulLoltVIyxpnFIXiHu///ql7qU8JwzX0/Anu7kForL
- zISKFdfxrtlmoH4dkzueM2pA3OsnEOsu2LB0tJ9Dvs6IX7OITwCK8fsLZaRLjikPzQdJOKOb8
- cyvY+ystdmxnDX9YMMh+pUZCLzUW29qLSUmKa61FFnUKIGq8Uo=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        linux@roeck-us.net
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220308093018.24189-1-nancy.lin@mediatek.com>
+ <20220308093018.24189-8-nancy.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220308093018.24189-8-nancy.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 8, 2022 at 1:07 PM Andre Przywara <andre.przywara@arm.com> wrote:
-> If you find that useful, I can try to find those dependency chains for the
-> other options, but I definitely lack the knowledge about the history of
-> those old platforms, so I can't reason about them. But I could present you
-> the findings and you can then say what to do?
+Il 08/03/22 10:30, Nancy.Lin ha scritto:
+> Because mtk-mutex change to use unsigned long mutex module type,
+> it should depend 64BIT. This is a preparation for adding support for
+> mt8195 vdosys1 mutex.
+> 
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+> ---
+>   drivers/soc/mediatek/Kconfig | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/soc/mediatek/Kconfig b/drivers/soc/mediatek/Kconfig
+> index fdd8bc08569e..24f792c46444 100644
+> --- a/drivers/soc/mediatek/Kconfig
+> +++ b/drivers/soc/mediatek/Kconfig
+> @@ -68,6 +68,7 @@ config MTK_SCPSYS_PM_DOMAINS
+>   config MTK_MMSYS
+>   	bool "MediaTek MMSYS Support"
+>   	default ARCH_MEDIATEK
+> +	depends on 64BIT
+>   	depends on HAS_IOMEM
+>   	help
+>   	  Say yes here to add support for the MediaTek Multimedia
 
-Back to this point: the most interesting ones are those that broke because of
-some added dependency, or an option that got renamed. This is what I would
-use to find the root cause in a scripted way (after identifying the last "good"
-version):
+Breaking old platforms is forbidden.
 
-$ git bisect run bash -c "make -s O=obj-arm ARCH=arm
-multi_v5_defconfig && grep CONFIG_DRM_PANEL_SIMPLE  obj-arm/.config"
+MT2701 and MT7623N are 32-bit ARM SoCs and:
+- mt2701 needs mmsys only; but
+- mt7623n needs mmsys and mutex.
 
-You can group the ones that went away because of a deleted platform
-or driver, or those that are just default-enabled now, but for cases that
-no longer use a driver that may be needed by some platform, just
-having the information about what patch broke them usually tells us
-what happened. We still need to decide on an appropriate action then,
-which could be to include the new dependency explicitly, or to remove
-the entire platform that used the driver because we find that the maintainers
-never noticed it breaking.
-
-         Arnd
+Besides, this is an easy fix: just change your unsigned long to a fixed size u64.
