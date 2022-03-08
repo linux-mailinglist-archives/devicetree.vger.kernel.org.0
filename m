@@ -2,45 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D2CE04D2230
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 21:09:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A65C4D223E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 21:10:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244531AbiCHUKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 15:10:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49766 "EHLO
+        id S1350135AbiCHUKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 15:10:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239591AbiCHUKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 15:10:12 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A7F396A7
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 12:09:15 -0800 (PST)
+        with ESMTP id S1350138AbiCHUKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 15:10:21 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F0C4419B2;
+        Tue,  8 Mar 2022 12:09:22 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9688CB81D55
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 20:09:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE5BC340F5;
-        Tue,  8 Mar 2022 20:09:11 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 61B87B81D5A;
+        Tue,  8 Mar 2022 20:09:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C195C340EB;
+        Tue,  8 Mar 2022 20:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646770153;
-        bh=pkH5xEpTcwC8GLw+ij4JZqgXdc2urQc8Jr4n56zjEqo=;
+        s=k20201202; t=1646770160;
+        bh=KhuRevfaH9djHGc6N9bgsokQXeii825ORL4zHqAYP2Y=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=FyOjbWM7dLscuc+nWLcF8Ez+hH5sNYGky2yqWs6inl1ZWX1AQCaG0BzuSMVZOH2aL
-         bmC3wRIHfUdHB5Q0OJU4zSZzf4tSl0z8QSop5OYGii2iR2D2VoePM4K9l+lBff2ix8
-         r0jEQWZoaE4IBtibLvsLMFpiuyNk/Fi/kuF7nqZ2Vazj10TbDiobgsAGUFdTBhCrl5
-         X13taMvNYxFm7fUzsJQapEDPmIN+M5AB35dRDdm6zU9fL9/P7e+f9FAZ3mL3XsN9jX
-         99ZkpjAJTDGk/l+StBpb4V5cVEKMCtTKN1FM3qtSA80Hv+RdLzveyF+35Mb/bueDRc
-         yiybWpxnIxNAA==
+        b=VwiaPaLb6n3RlKd+FeNxd/LbP1sOxEs+W0abJjf/J+XHfODoDT/0JLH8YhTmRI2EY
+         Mueiad0x1IVN23U9lijk8+1cLk4HA/UERtijnGJh2kQ9TdLAFQ5md2TlcHy9q2K/om
+         aAn6Asb+rpHiFib2zdmquIt4TrQxqxn6E/Mtp5eQtDhrqGIlMfGQCEneWiEiplKi+s
+         1vjjthORfIonTozkZGHvoVLQE6xS/Qb8FkgM36+ZXh1zmhVjkhBJhnEfC8oawaJ0z1
+         uATNbSDE5vcuJT6CkK3ZDcwLNQb65sSTog4Nt7xMaGfgrPoDRvc6ky+t1X+ICJKmgS
+         pMvYmQHhPcwqg==
 From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, Georgi Vlaev <g-vlaev@ti.com>,
-        krzysztof.kozlowski@canonical.com
-Cc:     vigneshr@ti.com, ldewangan@nvidia.com, lgirdwood@gmail.com,
-        robh+dt@kernel.org, nm@ti.com
-In-Reply-To: <20220308134454.14504-1-g-vlaev@ti.com>
-References: <20220308134454.14504-1-g-vlaev@ti.com>
-Subject: Re: [PATCH v3] dt-bindings: regulator: Convert TPS62360 binding to json-schema
-Message-Id: <164677015083.3181783.11088662239637994003.b4-ty@kernel.org>
-Date:   Tue, 08 Mar 2022 20:09:10 +0000
+To:     linux-arm-kernel@lists.infradead.org,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-kernel@vger.kernel.org
+Cc:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        andi@etezian.org, pankaj.dubey@samsung.com,
+        linus.walleij@linaro.org, krzysztof.kozlowski@canonical.com,
+        linux-spi@vger.kernel.org, robh+dt@kernel.org
+In-Reply-To: <20220120192438.25555-1-alim.akhtar@samsung.com>
+References: <CGME20220120193608epcas5p466c73dfdcc7eb5cdcd52516a635fca79@epcas5p4.samsung.com> <20220120192438.25555-1-alim.akhtar@samsung.com>
+Subject: Re: (subset) [PATCH v2 0/3] Add FSD SPI support
+Message-Id: <164677015776.3181837.8136121419686603738.b4-ty@kernel.org>
+Date:   Tue, 08 Mar 2022 20:09:17 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -54,26 +57,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Mar 2022 15:44:54 +0200, Georgi Vlaev wrote:
-> Convert the TPS62360 regulator binding to DT schema format
-> using json-schema.
+On Fri, 21 Jan 2022 00:54:35 +0530, Alim Akhtar wrote:
+> Adds support for SPI controller found in Tesla FSD SoC
 > 
-> This also removes redundant "ti,enable-force-pwm" property
-> from the example. The property description was removed from the
-> original text binding file by commit 9a00630c3db8 ("regulator:
-> tps62360: support force PWM mode via regulator mode"), but a
-> reference to it remained in the example.
+> -Changes since v1
+> * Splited SPI changes from a larger inital patch set
+> * Rebased on Krzysztof's latest (v5) SPI schema changes
+> * Added tag
 > 
 > [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] dt-bindings: regulator: Convert TPS62360 binding to json-schema
-      commit: 2594703044ad2ef7ea7d463bf2cf82a13f7fc266
+[1/3] spi: dt-bindings: samsung: Add fsd spi compatible
+      commit: 363d3c51bc5b3243b5b035a1f50d6d994a1b203f
+[2/3] spi: s3c64xx: Add spi port configuration for Tesla FSD SoC
+      commit: 4ebb15a15799da4954f1d4926fcd3263ea46e417
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
