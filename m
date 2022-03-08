@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B054D0C9D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:11:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 633C94D0C9F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 01:11:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242260AbiCHALp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 7 Mar 2022 19:11:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52628 "EHLO
+        id S1344095AbiCHALn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 7 Mar 2022 19:11:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344089AbiCHALj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:11:39 -0500
-Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8986D377FB
-        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:10:37 -0800 (PST)
-Received: by mail-pl1-x62e.google.com with SMTP id p17so15506870plo.9
-        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 16:10:37 -0800 (PST)
+        with ESMTP id S1344096AbiCHALl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 7 Mar 2022 19:11:41 -0500
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1337377F8
+        for <devicetree@vger.kernel.org>; Mon,  7 Mar 2022 16:10:39 -0800 (PST)
+Received: by mail-pl1-x635.google.com with SMTP id n15so5531904plh.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Mar 2022 16:10:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=3vcQ7E3QlJ5EMbZ1LFMqprOJOYHlzqtxgL896kYiqOo=;
-        b=iYeKTGT4dlyZ/4cNXE6cfNS9XrK9+jF+QC2NeyIzykXCNsGl3wNW47bpL5UUCEoJ7P
-         xpuZm4eeGE0nwrgiheytLeqFqVXXoveIvwCNOAyEyRoygFWlx8Y6M5txM4ctoJlTuc+d
-         eWGi3Sq2FexM2KHNohtPvHfVCCTq0KYB6fX8M=
+        bh=ExeMvBUYf18gUbw3oNoBhQIqfKznu+dtCvkD2ZUwMDI=;
+        b=dUSKXKD2oLryc1nruR3FNcnsYYhThzA308IDtnm37tWHi+DdqgeCtz4xqfUo6Nt7UW
+         fI4qPKxksSC65tT0l7YkCINT05BtyR+OAL8TSWjGo/RlhyavUD+bacUAkumZNAfYZZ52
+         goJj0JVvFwvvujDp0z90ZPeHro8+w88DMROGA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=3vcQ7E3QlJ5EMbZ1LFMqprOJOYHlzqtxgL896kYiqOo=;
-        b=JtYt0M/EU88nLjEeM1DEMPnfzlqxj7gYelt6GcsnoQYdbUhOcNmDYLyt/9bX3f9CUE
-         EZJpCiyLnyAXMaR6y8VhBY0di4mOVzr3t+RvcLFdf6sARb025wacFL8DfQoO/lloOWUe
-         CYRmj/IDV2AwRB34wCAa/xXJmdt/hIe+8d+/KuGg715cVEyqT9awDzFUrViV0epjWNmV
-         fhWwGS5/FanKLNkS7MRhtSI/IrNDOFL1dqVlxaRRKTmmc3h2Y2ozNAbbIT9I27EpC1IO
-         jdP3vmADqebfzMmynp4xEspX7LM28anHOgxs17n6xa6P9Z42K3hpJMONGm/ORb2OY8PL
-         Hi3A==
-X-Gm-Message-State: AOAM532BNOLwLNWv8/sZpxkm0lMq46yUQfH2l4DHl82m5g07029md5w/
-        sa3O2N0rVCuETnlIYKv5rR5Bew==
-X-Google-Smtp-Source: ABdhPJz1pr5t9xbmu7C/GASb4Drasky8f6mYutfdkoI2dep7+myru1QSijt9H+r6gLIYzInYwl9ZEw==
-X-Received: by 2002:a17:90b:4f92:b0:1bf:25e2:f6af with SMTP id qe18-20020a17090b4f9200b001bf25e2f6afmr1687730pjb.98.1646698237105;
-        Mon, 07 Mar 2022 16:10:37 -0800 (PST)
+        bh=ExeMvBUYf18gUbw3oNoBhQIqfKznu+dtCvkD2ZUwMDI=;
+        b=oYFzSvvxUwSsSbxWkBjiiJMN1ru5HjsbOIKmEMPbMPrG9nl4XhYbBIT4EAGRVA2t/Q
+         in3+92u7Xq2vEViakLjbRlCfPFEeUTy15jntEu+gpkSpg2O4/Ilq9N9GFziqwkGkLBr4
+         Nx79cn00EN0yLZHGLRq2YjNYuy7vYWWa5OCidWAAlVzG+mCdz7oitFbklJ80730HvAFv
+         AIP7cVA7H1WQxBRhMgbqVDCFX4XoXfMQ/Nu5bLr4TH0+P2S2eTbstYWFqsvsHq4z4VFQ
+         yi3LntNe0eqMdjlT4aoTkhY3I4Qy/HwLeTRGzvK7eTmmgOhHDriCIOVxRlnbQyiCgap1
+         T71Q==
+X-Gm-Message-State: AOAM5337ztQnKmsvBotCS6mhJUmYF2Nfj7OztQ/aM9bQJjBBHphIfvs6
+        3e7B6r7WmgboziBOze6Cqw4nDw==
+X-Google-Smtp-Source: ABdhPJyrcw+XhrxMuU5ct7+AqtGPHqcx+ajYHdkXRnnV0rz1xXVGUvlzhLNfmp1oAPTEeWB/2Df2Ag==
+X-Received: by 2002:a17:902:ed82:b0:151:d081:3832 with SMTP id e2-20020a170902ed8200b00151d0813832mr14035788plj.165.1646698239237;
+        Mon, 07 Mar 2022 16:10:39 -0800 (PST)
 Received: from localhost ([2620:15c:202:201:e551:44dc:2842:57f1])
-        by smtp.gmail.com with UTF8SMTPSA id c30-20020a63725e000000b0037c8bf5b630sm10695427pgn.12.2022.03.07.16.10.35
+        by smtp.gmail.com with UTF8SMTPSA id p25-20020a637419000000b0037fa57520adsm8884252pgc.27.2022.03.07.16.10.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Mar 2022 16:10:36 -0800 (PST)
+        Mon, 07 Mar 2022 16:10:38 -0800 (PST)
 From:   Brian Norris <briannorris@chromium.org>
 To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
         Kyungmin Park <kyungmin.park@samsung.com>,
@@ -55,9 +55,9 @@ Cc:     Lin Huang <hl@rock-chips.com>, Heiko Stuebner <heiko@sntech.de>,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
         Brian Norris <briannorris@chromium.org>
-Subject: [PATCH v3 14/15] PM / devfreq: rk3399_dmc: Use devm_pm_opp_of_add_table()
-Date:   Mon,  7 Mar 2022 16:09:44 -0800
-Message-Id: <20220307160918.v3.14.I3df48ceacbf299549501a44433039d46e0a275ea@changeid>
+Subject: [PATCH v3 15/15] PM / devfreq: rk3399_dmc: Avoid static (reused) profile
+Date:   Mon,  7 Mar 2022 16:09:45 -0800
+Message-Id: <20220307160918.v3.15.I8d71e9555aca1fa7e532d22dd1ef27976f21799d@changeid>
 X-Mailer: git-send-email 2.35.1.616.g0bdcbb4464-goog
 In-Reply-To: <20220308000945.706701-1-briannorris@chromium.org>
 References: <20220308000945.706701-1-briannorris@chromium.org>
@@ -65,7 +65,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,7 +73,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This simplifies error-cleanup and remove().
+This static struct can get reused if the device gets removed/reprobed,
+and that causes use-after-free in its ->freq_table.
+
+Let's just move the struct to our dynamic allocation.
 
 Signed-off-by: Brian Norris <briannorris@chromium.org>
 ---
@@ -81,64 +84,56 @@ Signed-off-by: Brian Norris <briannorris@chromium.org>
 (no changes since v2)
 
 Changes in v2:
- - New patch
+ * New patch
 
- drivers/devfreq/rk3399_dmc.c | 14 +++-----------
- 1 file changed, 3 insertions(+), 11 deletions(-)
+ drivers/devfreq/rk3399_dmc.c | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/devfreq/rk3399_dmc.c b/drivers/devfreq/rk3399_dmc.c
-index fca9fcbd4249..9615658d04ae 100644
+index 9615658d04ae..e494d1497d60 100644
 --- a/drivers/devfreq/rk3399_dmc.c
 +++ b/drivers/devfreq/rk3399_dmc.c
-@@ -401,7 +401,7 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
- 	 * We add a devfreq driver to our parent since it has a device tree node
- 	 * with operating points.
- 	 */
--	if (dev_pm_opp_of_add_table(dev)) {
-+	if (devm_pm_opp_of_add_table(dev)) {
- 		dev_err(dev, "Invalid operating-points in device tree.\n");
- 		ret = -EINVAL;
- 		goto err_edev;
-@@ -415,7 +415,7 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
- 	opp = devfreq_recommended_opp(dev, &data->rate, 0);
- 	if (IS_ERR(opp)) {
- 		ret = PTR_ERR(opp);
--		goto err_free_opp;
-+		goto err_edev;
- 	}
- 
- 	data->rate = dev_pm_opp_get_freq(opp);
-@@ -430,7 +430,7 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
- 					   &data->ondemand_data);
- 	if (IS_ERR(data->devfreq)) {
- 		ret = PTR_ERR(data->devfreq);
--		goto err_free_opp;
-+		goto err_edev;
- 	}
- 
- 	devm_devfreq_register_opp_notifier(dev, data->devfreq);
-@@ -440,8 +440,6 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
- 
- 	return 0;
- 
--err_free_opp:
--	dev_pm_opp_of_remove_table(&pdev->dev);
- err_edev:
- 	devfreq_event_disable_edev(data->edev);
- 
-@@ -454,12 +452,6 @@ static int rk3399_dmcfreq_remove(struct platform_device *pdev)
- 
- 	devfreq_event_disable_edev(dmcfreq->edev);
- 
--	/*
--	 * Before remove the opp table we need to unregister the opp notifier.
--	 */
--	devm_devfreq_unregister_opp_notifier(dmcfreq->dev, dmcfreq->devfreq);
--	dev_pm_opp_of_remove_table(dmcfreq->dev);
--
+@@ -38,6 +38,7 @@
+ struct rk3399_dmcfreq {
+ 	struct device *dev;
+ 	struct devfreq *devfreq;
++	struct devfreq_dev_profile profile;
+ 	struct devfreq_simple_ondemand_data ondemand_data;
+ 	struct clk *dmc_clk;
+ 	struct devfreq_event_dev *edev;
+@@ -228,13 +229,6 @@ static int rk3399_dmcfreq_get_cur_freq(struct device *dev, unsigned long *freq)
  	return 0;
  }
  
+-static struct devfreq_dev_profile rk3399_devfreq_dmc_profile = {
+-	.polling_ms	= 200,
+-	.target		= rk3399_dmcfreq_target,
+-	.get_dev_status	= rk3399_dmcfreq_get_dev_status,
+-	.get_cur_freq	= rk3399_dmcfreq_get_cur_freq,
+-};
+-
+ static __maybe_unused int rk3399_dmcfreq_suspend(struct device *dev)
+ {
+ 	struct rk3399_dmcfreq *dmcfreq = dev_get_drvdata(dev);
+@@ -422,10 +416,16 @@ static int rk3399_dmcfreq_probe(struct platform_device *pdev)
+ 	data->volt = dev_pm_opp_get_voltage(opp);
+ 	dev_pm_opp_put(opp);
+ 
+-	rk3399_devfreq_dmc_profile.initial_freq = data->rate;
++	data->profile = (struct devfreq_dev_profile) {
++		.polling_ms	= 200,
++		.target		= rk3399_dmcfreq_target,
++		.get_dev_status	= rk3399_dmcfreq_get_dev_status,
++		.get_cur_freq	= rk3399_dmcfreq_get_cur_freq,
++		.initial_freq	= data->rate,
++	};
+ 
+ 	data->devfreq = devm_devfreq_add_device(dev,
+-					   &rk3399_devfreq_dmc_profile,
++					   &data->profile,
+ 					   DEVFREQ_GOV_SIMPLE_ONDEMAND,
+ 					   &data->ondemand_data);
+ 	if (IS_ERR(data->devfreq)) {
 -- 
 2.35.1.616.g0bdcbb4464-goog
 
