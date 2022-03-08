@@ -2,86 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CC14D188E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:00:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C37024D18A5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 14:05:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235568AbiCHNBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 08:01:30 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38694 "EHLO
+        id S241948AbiCHNGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 08:06:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235812AbiCHNB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:01:29 -0500
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [81.169.146.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE9072BB36;
-        Tue,  8 Mar 2022 05:00:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1646744422;
-    s=strato-dkim-0002; d=goldelico.com;
-    h=Message-Id:Date:Subject:Cc:To:From:Cc:Date:From:Subject:Sender;
-    bh=VtDYvUnQRbgLODj+rX79mLvwKSW8TYtJTAsBlNabCFw=;
-    b=rafLf+uUZEtqViDhU6H6lF3wCMqQdZHfkaZ9B3xnaIeBK+1vLLLm3piTpF+rIVy1bB
-    QwigEkw39QsCqnackRhQS2N5SAeMEQ7qfu0XmmiDAlPiFC+cnD7iSnuU1rbrHjRLPZgC
-    asH/4prv8EySixlwtOT1kZm8oYH9C1P/OhAP0HzGlWyqZBzzbF4qDA1ucxFyFnx1bsUQ
-    WFucOqejH0svlG83BoOz9tPGSCvtqIbDxrrK9hcNH78zd4ieEnNQ9DUDgiMQPs7bMQZR
-    UuUZ4deah2JueGccJGipdAxJQKxrOmXw9m8Jd0zn5ejfYstnqAWSLaJVycAZIqPjQomE
-    zP9Q==
-Authentication-Results: strato.com;
-    dkim=none
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UMf2MwPVbpc9Y="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-    by smtp.strato.de (RZmta 47.40.1 DYNA|AUTH)
-    with ESMTPSA id n729cey28D0LSJD
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Tue, 8 Mar 2022 14:00:21 +0100 (CET)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH] ARM: dts: Fix mmc order for omap3-gta04
-Date:   Tue,  8 Mar 2022 14:00:20 +0100
-Message-Id: <dc9173ee3d391d9e92b7ab8ed4f84b29f0a21c83.1646744420.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.33.0
+        with ESMTP id S232603AbiCHNGS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 08:06:18 -0500
+X-Greylist: delayed 573 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 08 Mar 2022 05:05:20 PST
+Received: from smtp-out.xnet.cz (smtp-out.xnet.cz [178.217.244.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E683C47AEE;
+        Tue,  8 Mar 2022 05:05:20 -0800 (PST)
+Received: from meh.true.cz (meh.true.cz [108.61.167.218])
+        (Authenticated sender: petr@true.cz)
+        by smtp-out.xnet.cz (Postfix) with ESMTPSA id 800163ED0;
+        Tue,  8 Mar 2022 13:55:45 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=true.cz; s=xnet;
+        t=1646744145; bh=IQtZfpMDBgNq+XqyyqcXkjpmhkMzPfrWtiIPXWEftkA=;
+        h=From:To:Cc:Subject:Date;
+        b=V5hxtIpNw/RdC4vprgPE1HhlvLfGbHUa5Tk2RyGpT+nY+b83oDxPMgcfj4vD6ZE2q
+         8y7IzJPJQwUvH1syMkj1OUpsAUlQW7EpTcSAfeQXMqxKkLgOhM/sr0aWclNPacgOy+
+         WTW7GwtOyIUCkK40klQ4OwlNiRTIeS5XFZVDaazY=
+Received: by meh.true.cz (OpenSMTPD) with ESMTP id 78341216;
+        Tue, 8 Mar 2022 13:55:20 +0100 (CET)
+From:   =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>
+Cc:     =?UTF-8?q?Petr=20=C5=A0tetiar?= <ynezz@true.cz>,
+        stable@vger.kernel.org,
+        =?UTF-8?q?Bastien=20Roucari=C3=A8s?= <rouca@debian.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: [PATCH] Revert "ARM: dts: sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode"
+Date:   Tue,  8 Mar 2022 13:55:30 +0100
+Message-Id: <20220308125531.27305-1-ynezz@true.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit a1ebdb374199 ("ARM: dts: Fix swapped mmc order for omap3")
+This reverts commit 55dd7e059098ce4bd0a55c251cb78e74604abb57 as it
+breaks network on my A20-olinuxino-lime2 hardware revision "K" which has
+Micrel KSZ9031RNXCC-TR Gigabit PHY. Bastien has probably some previous
+hardware revisions which were based on RTL8211E-VB-CG1 PHY and thus this
+fix was working on his board.
 
-introduces general mmc aliases. Let's tailor them to the need
-of the GTA04 board which does not make use of mmc2 and mmc3 interfaces.
-
-Fixes: commit a1ebdb374199 ("ARM: dts: Fix swapped mmc order for omap3")
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+Cc: stable@vger.kernel.org
+Cc: Bastien Roucariès <rouca@debian.org>
+References: https://github.com/openwrt/openwrt/issues/9153
+References: https://github.com/OLIMEX/OLINUXINO/blob/master/HARDWARE/A20-OLinuXino-LIME2/hardware_revision_changes_log.txt
+Signed-off-by: Petr Štetiar <ynezz@true.cz>
 ---
- arch/arm/boot/dts/omap3-gta04.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 7e3d8147e2c1..0365f06165e9 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -31,6 +31,8 @@ chosen {
- 	aliases {
- 		display0 = &lcd;
- 		display1 = &tv0;
-+		/delete-property/ mmc2;
-+		/delete-property/ mmc3;
- 	};
+diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+index ecb91fb899ff..8077f1716fbc 100644
+--- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
++++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+@@ -112,7 +112,7 @@ &gmac {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&gmac_rgmii_pins>;
+ 	phy-handle = <&phy1>;
+-	phy-mode = "rgmii-id";
++	phy-mode = "rgmii";
+ 	status = "okay";
+ };
  
- 	ldo_3v3: fixedregulator {
--- 
-2.33.0
-
