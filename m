@@ -2,95 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11F404D1C4F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:50:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 64E634D1C5C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:54:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347932AbiCHPvX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:51:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46694 "EHLO
+        id S1347981AbiCHPzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 10:55:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348001AbiCHPvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:51:22 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A244F45C;
-        Tue,  8 Mar 2022 07:50:25 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B9FB5B81A49;
-        Tue,  8 Mar 2022 15:50:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76CE1C340EB;
-        Tue,  8 Mar 2022 15:50:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646754623;
-        bh=+lkMBgVLm+jH8x95EsB3ayX724E8SPmBBqaxqcA8SzM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mYj+WAYy9F5hTcRbygc5tB+udV1UMLnHv8ZniT42jEfFz4p0Tst87WnGH4z1KLIPI
-         C1Dyau7dKuvXqpYoxxarxJonTSlZPr26QSQXd4z+9wWVEB3MJuQVxI9CA9Binwn3Mv
-         jDNAuYHdAV1GMPKgidDOPSk+Y7EMNeVztuzwxj7zrInerPbl+ml/GfLYkuH2e228Tt
-         cloNFFb7GuOsCzuucW2OQLS8MiblbcL/9EIsEz36sdxbwvGlWEI6rYbhrn6cn89VuM
-         dhEZE9f0BwLRzkiTCSJSkP810b2w+0sfzXo/IHgOT/NAAQJaHHf3Tmds75dfD5H9s8
-         bqJsBhw3E6+iA==
-Received: by mail-ed1-f47.google.com with SMTP id o1so24000507edc.3;
-        Tue, 08 Mar 2022 07:50:23 -0800 (PST)
-X-Gm-Message-State: AOAM530Pdl1lD95nrAYctQsrGnIFh3PZnzJUvCYj53vSjjopO2FkdxSI
-        XykSFnfWCXphTzkPfrhzXmoSxBicggFSLjN1Qw==
-X-Google-Smtp-Source: ABdhPJy9UZE5EsZvGS0pOWeAVrM+jBKKZ+tr2GX+09bj7WIDu4kWUw7uvBx7JK9Ef4qd27fgNd/9DAg+0iaQQrsOnUY=
-X-Received: by 2002:a05:6402:438a:b0:416:1b04:2b58 with SMTP id
- o10-20020a056402438a00b004161b042b58mr16810424edc.280.1646754621771; Tue, 08
- Mar 2022 07:50:21 -0800 (PST)
+        with ESMTP id S233754AbiCHPzj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:55:39 -0500
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CC1443E3;
+        Tue,  8 Mar 2022 07:54:41 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id 157141BF20D;
+        Tue,  8 Mar 2022 15:54:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1646754880;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=bQIGMPI1EYq0Q9kdu5YhozNi+/JkEaWlrg54hIn3HQ8=;
+        b=ga43l58sVkxJG1355l/YLiqLwBEIIVIQVvTio7PE3sKcSFlSOQ4X20vmQJOsU1kDGkaIG2
+        uH+5JWN6H6JQ2VZP7QAaOzZoc8+bjwfeNHIOjluEZMf3rqX28+HSIti4zUa+4hkFzKMZtE
+        uczeJw1JDOtXXi4hDcnMc3AKY/h1yN/8hNRqOyKKOPH7nUS7li9zRNQxr0P6X3q72PA8F8
+        Y1gGfBLK/h51pr+rFEn0lngNWFXkSwYXKnE5vQlxY4bBZC0a5DbglIJo+oZdCuH7UvH8/0
+        Wa52vGBkBK2TQ+CemtjigWe1H9oOrvy8Qxhvyb896o572OzN7hRXacsDlhHRnw==
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     krzysztof.kozlowski@canonical.com, robh+dt@kernel.org,
+        Sergiu Moga <sergiu.moga@microchip.com>,
+        nicolas.ferre@microchip.com, a.zummo@towertech.it,
+        claudiu.beznea@microchip.com
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v4 3/4] dt-bindings: rtc: convert at91sam9 bindings to json-schema
+Date:   Tue,  8 Mar 2022 16:54:37 +0100
+Message-Id: <164675486932.53531.14421337093728185066.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220304161159.147784-4-sergiu.moga@microchip.com>
+References: <20220304161159.147784-1-sergiu.moga@microchip.com> <20220304161159.147784-4-sergiu.moga@microchip.com>
 MIME-Version: 1.0
-References: <20220206091643.276833-1-sakari.ailus@linux.intel.com>
- <20220206091643.276833-2-sakari.ailus@linux.intel.com> <YgaG6sQjKs+ZxNm6@robh.at.kernel.org>
- <YgaMaYeC8q7IZlcW@smile.fi.intel.com>
-In-Reply-To: <YgaMaYeC8q7IZlcW@smile.fi.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 8 Mar 2022 09:50:09 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+k+3FVaF4wpFGbi31f9Dxc41=X1P7iHFBvnat5Tyu4PA@mail.gmail.com>
-Message-ID: <CAL_Jsq+k+3FVaF4wpFGbi31f9Dxc41=X1P7iHFBvnat5Tyu4PA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] device property: Convert device_{dma_supported,get_dma_attr}
- to fwnode
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        "open list:ACPI FOR ARM64 (ACPI/arm64)" <linux-acpi@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Scally <djrscally@gmail.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Feb 11, 2022 at 10:19 AM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Fri, Feb 11, 2022 at 09:55:22AM -0600, Rob Herring wrote:
-> > On Sun, Feb 06, 2022 at 11:16:40AM +0200, Sakari Ailus wrote:
-> > > Make the device_dma_supported and device_get_dma_attr functions to use the
-> > > fwnode ops, and move the implementation to ACPI and OF frameworks.
-> > >
-> > > Depends-on: ("device property: Don't split fwnode_get_irq*() APIs in the code")
-> >
-> > Is this some new convention?
->
-> % git log --oneline --no-merges --grep Depends-on | wc -l
-> 83
+On Fri, 4 Mar 2022 18:11:58 +0200, Sergiu Moga wrote:
+> Convert RTC binding for Atmel/Microchip SoCs to Device Tree Schema
+> format.
+> 
+> 
 
-With 10k+ commits per cycle that's not really compelling.
+Applied, thanks!
 
-> Or I misunderstood your question?
+[3/4] dt-bindings: rtc: convert at91sam9 bindings to json-schema
+      commit: 5b05198b3108d5d287da8c457183855fb91ae4cc
 
-% git grep 'Depends-on' | wc -l
-0
-
-What I mean is where's the documentation for using this? Or even a discussion?
-
-Rob
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
