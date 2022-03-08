@@ -2,108 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 342474D14FA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:43:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ED02A4D153B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 11:53:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235952AbiCHKn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 05:43:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54668 "EHLO
+        id S1346022AbiCHKyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 05:54:51 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243474AbiCHKn7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:43:59 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 075A73F309
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 02:43:02 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B4FAA1FB;
-        Tue,  8 Mar 2022 02:43:02 -0800 (PST)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F25BE3FA45;
-        Tue,  8 Mar 2022 02:43:00 -0800 (PST)
-Date:   Tue, 8 Mar 2022 10:42:58 +0000
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Jesse Taube <mr.bossman075@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 05/14] ARM: dts: suniv: F1C100: fix CPU node
-Message-ID: <20220308104258.67d09e25@donnerap.cambridge.arm.com>
-In-Reply-To: <526e09f8-6006-643a-70c6-d9b85e6cdb75@gmail.com>
-References: <20220307143421.1106209-1-andre.przywara@arm.com>
-        <20220307143421.1106209-6-andre.przywara@arm.com>
-        <526e09f8-6006-643a-70c6-d9b85e6cdb75@gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        with ESMTP id S1346017AbiCHKyu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 05:54:50 -0500
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECC1041303;
+        Tue,  8 Mar 2022 02:53:53 -0800 (PST)
+Received: by mail-qk1-f182.google.com with SMTP id q194so720807qke.5;
+        Tue, 08 Mar 2022 02:53:53 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y3UjhnfNllI0p7H4Pz4n1OpkqRIkGKtHIsAtcWmQ56k=;
+        b=wVHo5IQ5bciRSAK0P1M09x6mXHwaDOhfHfSGVE7HnYRYSs8WMMSRJAevSGGA8CmSdj
+         O7v/i1pSIl5ROilAe8XMd51r6D7irrPDX8HlU9jdfuFjlsL9zdNoBqtAvZBTG8NFXiPl
+         ozZosREixJ7X703acFawjiuztlP2BOSKtwyGoaDzVKY9ROCTtuj6XPFgrcrW/p9vAcHu
+         vsN3NpOgLQVnQ1c8KPWkpv6dIWM1mdN8PZzttfhhCh2T7CkC1Q80HORK3ip4QDkchMVL
+         qPlk7p7DAXv8WyithiJvif5fDegJEGbp+1JzAcNtLe6njEjFRSJXJlOM74J6B5xO0mi0
+         GhUA==
+X-Gm-Message-State: AOAM530Psmd0RiXDuKZA+f6oz6WnsmVADtWrZYpASFRWNKdFzCLR1f85
+        v4/Dd0CDgEPyFjZuxsxtNa9XKyiicv57xA==
+X-Google-Smtp-Source: ABdhPJyaD6taEO+1bVn3Egmp6kNMQdMy0Ml9Ar+8QirDSJHZvhJ4Kp4/462N9EEFattiblNPh5ZoTQ==
+X-Received: by 2002:a05:620a:2589:b0:67b:d0c:71bc with SMTP id x9-20020a05620a258900b0067b0d0c71bcmr8343413qko.570.1646736832493;
+        Tue, 08 Mar 2022 02:53:52 -0800 (PST)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id z3-20020ac87f83000000b002deae661c08sm10069704qtj.33.2022.03.08.02.53.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Mar 2022 02:53:51 -0800 (PST)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-2dbc48104beso196634157b3.5;
+        Tue, 08 Mar 2022 02:53:51 -0800 (PST)
+X-Received: by 2002:a81:618b:0:b0:2db:d952:8a39 with SMTP id
+ v133-20020a81618b000000b002dbd9528a39mr12190538ywb.132.1646736830798; Tue, 08
+ Mar 2022 02:53:50 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220124121009.108649-1-alistair@alistair23.me> <20220124121009.108649-3-alistair@alistair23.me>
+In-Reply-To: <20220124121009.108649-3-alistair@alistair23.me>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Mar 2022 11:53:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVNgVQzjrdybbnfCEr+G5Q4ztjRCC29RF9HwGnhKkPn3Q@mail.gmail.com>
+Message-ID: <CAMuHMdVNgVQzjrdybbnfCEr+G5Q4ztjRCC29RF9HwGnhKkPn3Q@mail.gmail.com>
+Subject: Re: [PATCH v18 2/8] mfd: simple-mfd-i2c: Add a Kconfig name
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Zhang Rui <rui.zhang@intel.com>, alistair23@gmail.com,
+        Amit Kucheria <amitk@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 7 Mar 2022 21:44:15 -0500
-Jesse Taube <mr.bossman075@gmail.com> wrote:
+Hi Alistair,
 
-Hi,
+Thanks for your patch, which is now commit bae5a4acef67db88
+("mfd: simple-mfd-i2c: Add a Kconfig name") in mfd/for-mfd-next.
 
-> On 3/7/22 09:34, Andre Przywara wrote:
-> > The /cpu node in the f1c100s.dtsi is not spec compliant, it's missing
-> > the reg property, and the corresponding address and size cells
-> > properties.
-> > 
-> > Add them to make the bindings check pass.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >   arch/arm/boot/dts/suniv-f1c100s.dtsi | 4 ++++
-> >   1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/suniv-f1c100s.dtsi b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > index 922efd5e9457..43d342eaf661 100644
-> > --- a/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > +++ b/arch/arm/boot/dts/suniv-f1c100s.dtsi
-> > @@ -29,9 +29,13 @@ osc32k: clk-32k {
-> >   	};
-> >   
-> >   	cpus {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +
-> >   		cpu {  
-> cpu@0
+On Mon, Jan 24, 2022 at 1:24 PM Alistair Francis <alistair@alistair23.me> wrote:
+> Add a Kconfig name to the "Simple Multi-Functional Device support (I2C)"
+> device so that it can be enabled via menuconfig.
 
-Right, thanks for spotting this. Wondering why make dtbs and make
-dtbs_check didn't warn.
+Which still does not explain why this would be needed...
 
-> also is memory node required?
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
-As Icenowy said, it's added by U-Boot anyway, filled with the actual
-amount of memory. This means you can have a F1C200s instead and it will
-work automatically.
+> --- a/drivers/mfd/Kconfig
+> +++ b/drivers/mfd/Kconfig
+> @@ -1188,7 +1188,7 @@ config MFD_SI476X_CORE
+>           module will be called si476x-core.
+>
+>  config MFD_SIMPLE_MFD_I2C
+> -       tristate
+> +       tristate "Simple Multi-Functional Device support (I2C)"
+>         depends on I2C
+>         select MFD_CORE
+>         select REGMAP_I2C
 
-Cheers,
-Andre
+The help text states:
 
-> 
-> Thanks,
-> jesse
-> >   			compatible = "arm,arm926ej-s";
-> >   			device_type = "cpu";
-> > +			reg = <0x0>;
-> >   		};
-> >   	};
-> >     
-> 
+| This driver creates a single register map with the intention for it
+| to be shared by all sub-devices.
 
+Yes, that's what MFD does?
+
+| Once the register map has been successfully initialised, any
+| sub-devices represented by child nodes in Device Tree will be
+| subsequently registered.
+
+OK...?
+
+Still, no clue about what this driver really does, and why and when
+it would be needed.
+
+There is one driver symbol that selects MFD_SIMPLE_MFD_I2C.
+There are no driver symbols that depend on this symbol.
+
+If you have a driver in the pipeline that can make use of this,
+can't it just select MFD_SIMPLE_MFD_I2C, so the symbol itself can
+stay invisible?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
