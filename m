@@ -2,63 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F27324D1B46
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:02:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B3BA4D1B81
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 16:18:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238685AbiCHPDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 10:03:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60056 "EHLO
+        id S238232AbiCHPTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 10:19:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347778AbiCHPDD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:03:03 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90F0D4D9C9;
-        Tue,  8 Mar 2022 07:02:06 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 3ABC3B818F0;
-        Tue,  8 Mar 2022 15:02:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 053E7C340EF;
-        Tue,  8 Mar 2022 15:02:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646751723;
-        bh=lbiOCENiKzV0l6VKyrVyuJsQgczqHpyQAumIADRX13w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NdcQyOVs9Fby8nijGaLbuWWzj6UwhNyJLRkmo51z74unpAStHy6pXGZLp3zNbr5ec
-         sP4qx+y+f/V1HNQlrGcPR7zsZ9XItIsEGMcgC3HMSMec1FWWPhNTDIJrNzjSdyY0Mu
-         aUN2PGXmZVFPXPwqpM1Oax33cr9UrhBMraDqBLezWSAGqwxMwPkEZ7+TisPMhILuKC
-         9/YQbMay7EEwyWR8PMhI5uxb7zvv9hxK6adoicxlUD8gpypyuoEnb7wD+7CpAFNYWW
-         UqJXF9MPcdI/NsM8dWRVxeABQtV6D5esmBjLnE19FZJEbFbTBWtWKkVfnjqygi+USO
-         YIRiWzEbpqm4Q==
-Date:   Tue, 8 Mar 2022 15:01:57 +0000
-From:   Mark Brown <broonie@kernel.org>
-To:     Alim Akhtar <alim.akhtar@samsung.com>
-Cc:     'Lee Jones' <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linus.walleij@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        linux-samsung-soc@vger.kernel.org, pankaj.dubey@samsung.com,
-        andi@etezian.org, linux-spi@vger.kernel.org, linux-fsd@tesla.com,
-        'Adithya K V' <adithya.kv@samsung.com>
-Subject: Re: [RESEND PATCH v3 1/2] spi: dt-bindings: samsung: Add fsd spi
- compatible
-Message-ID: <Yidv5aGB3CljCEWg@sirena.org.uk>
-References: <CGME20220308120701epcas5p3d3d2f5c01055e8c1721ae0ec6c2aa681@epcas5p3.samsung.com>
- <20220308121640.27344-1-alim.akhtar@samsung.com>
- <YidY+ncMVhp7bBvh@sirena.org.uk>
- <Yidg64QGGzIbduQ2@google.com>
- <YidosChLIwIAKDmG@sirena.org.uk>
- <010901d832fb$212124f0$63636ed0$@samsung.com>
+        with ESMTP id S231816AbiCHPTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 10:19:13 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.10])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0DD4A928
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 07:18:15 -0800 (PST)
+Received: from mail-wm1-f52.google.com ([209.85.128.52]) by
+ mrelayeu.kundenserver.de (mreue108 [213.165.67.113]) with ESMTPSA (Nemesis)
+ id 1MAOVx-1nK9Ta3GOp-00BrpQ for <devicetree@vger.kernel.org>; Tue, 08 Mar
+ 2022 16:18:13 +0100
+Received: by mail-wm1-f52.google.com with SMTP id l1-20020a05600c4f0100b00389645443d2so1734893wmq.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 07:18:13 -0800 (PST)
+X-Gm-Message-State: AOAM531mRH29tcZV1plsCQ73X08QwpN+dg1dDlvi/skudW6xNaqlzK1P
+        fTEnOgSfChRUim8SONENmpYHPquUz7RXeN+uLJc=
+X-Google-Smtp-Source: ABdhPJwWnege0B89hH2GkrjFsd8ZOdfeG5z/xIwKnV2rzC8zB4ilKLYWFNkX7PGEBAA7XOORN9saQgPD0j03zWqy5ZY=
+X-Received: by 2002:a05:600c:154b:b0:381:8148:64d with SMTP id
+ f11-20020a05600c154b00b003818148064dmr4020960wmg.98.1646752693479; Tue, 08
+ Mar 2022 07:18:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="jzZHKask1XwDH5wi"
-Content-Disposition: inline
-In-Reply-To: <010901d832fb$212124f0$63636ed0$@samsung.com>
-X-Cookie: Dental health is next to mental health.
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20220307143421.1106209-1-andre.przywara@arm.com>
+ <20220307143421.1106209-14-andre.przywara@arm.com> <CAK8P3a1FxfZj0=T=cvLNfagP+c_d+SEYYuV30+-UTU+B+HVXmQ@mail.gmail.com>
+ <20220308120750.0bbe0122@donnerap.cambridge.arm.com> <99029bae-cf1b-c3c1-004e-8a6795d19f7f@microchip.com>
+In-Reply-To: <99029bae-cf1b-c3c1-004e-8a6795d19f7f@microchip.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 8 Mar 2022 16:17:57 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a0ogA_b57N_yOjARfh9Gmox+KUrOcP5eE_frSD5YXJJsw@mail.gmail.com>
+Message-ID: <CAK8P3a0ogA_b57N_yOjARfh9Gmox+KUrOcP5eE_frSD5YXJJsw@mail.gmail.com>
+Subject: Re: [PATCH 13/14] ARM: configs: sync multi_v5_defconfig from savedefconfig
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Andre Przywara <andre.przywara@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-sunxi@lists.linux.dev, Russell King <linux@armlinux.org.uk>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:EtSGxTBTnVutohwlLPkLT6V09HjgR27Df9whsgpOo2Qr3CtrnFo
+ hwCFaeHfsFSTBxab6d4ipwN8gFUDfjQpWcBpPCO2R/WPK/1DBbzJbj3uGMkyKSqwZRr1Hxh
+ g4APnfbzqM9Plijg9GqpRCSVoV6oF4tiA81YeK7uPM+nzYgQMcXPsa0PzD6yin6o2V1McWp
+ No9bd0gM1mW5HNLEr/C4w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:aZlBlb9bkgw=:iuf0d8uPZOlElRw/HnhuQG
+ 6HHdQy3mjvOc5UP3HwNom7jejKVH933kh+HB91IQrhU/jEU142DUYMHHdIuMJS99q6wC3Hc6N
+ OYPAq4wt8o1mZRuG7Q/hz5wYecfJV69MsHCxAi2jDL+aFPFTZQx12Ae6e1t3/kpQy465L+dXY
+ iWDRIszc2oFEmuo/l2JFkqMuHToh4uRWbsy/ZkKqqjoEn0LKRg7umMQB1J3aP9Zh8CETtSQSw
+ 84GK1PnZctRwASkOfXpPBF4kxL7MpPmkxvemniRiOin44qWLocqsbK0Oi2/hMZpVlp1ntRAIw
+ pf8VSqLrGWzQDkaMkYmJb45/faJ/NqNCNtHnWFVp23JosAEwsO0OK9X4eyLmgHs44anknq2n4
+ C/HQ1kp/2EmmIdFWx6Ir/y6IPWJ1b2p3tuuyfzUPvSOQXwOAK19J9U5AJAPX1MxAS4FuXdQUp
+ E/SSmDejPf9ElglLFG53VumqUDl/eKYN5ciRwd1oh43ylL/nC8gbLxMFdKmq4gqK8K/CZ6kop
+ Oe7N3ZYrhlHgWZdvVIHp61ubef1jaOGIQbreh+k2LKTa1E9lPdty63+0TzdY9Bv8GAA7rWbt6
+ ANJJL67X0gmmCDZmxs5NLpPouamAd0cXAd2eXb299jvfzNnjPVxA+c0nxqQnF5IhkClcgIiwC
+ 9S0OmZiey+LXKOaVu0QG8k9hGIdelEPyxSNV+FOXjoglP8Q4JvVqy1UvtHR1q9V5vhAg=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,41 +78,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Mar 8, 2022 at 3:30 PM Nicolas Ferre
+<nicolas.ferre@microchip.com> wrote:
+> On 08/03/2022 at 13:07, Andre Przywara wrote:
+>
+> As far as I'm concerned and only talking about the drivers, I would
+> prefer that we keep the following config options activated in the .config:
+>
+> CONFIG_VIDEO_ATMEL_ISI=m
+> CONFIG_DRM_PANEL_SIMPLE=y
+> CONFIG_FB_ATMEL=y
+> CONFIG_BACKLIGHT_ATMEL_LCDC=y
+>
+> The question to know if they are activated by default or not and if the
+> associated stack is selected or not, well... I lost track of this, sorry.
 
---jzZHKask1XwDH5wi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+These are actually missing, I think the two options we need to
+enable are:
 
-On Tue, Mar 08, 2022 at 08:15:15PM +0530, Alim Akhtar wrote:
+CONFIG_MEDIA_PLATFORM_SUPPORT=y
+CONFIG_FB=y
 
-> >There were changes adding the FSD SoC as well as DT stuff IIRC.
+All the other options that get removed are either now the default,
+or are no longer part of the kernel.
 
-> FSD SoC DT changes are already in -next.
-> I think this can go with MFD tree because of immutable
-> branch between MFD, SPI and DT due for the v5.18 merge windows.
-> I am not sure if there are better ways to handle this.
-
-I need the changes that are hard dependencies to actually be in my tree
-so my tree is not broken, -next isn't good enough here.  If there are
-dependencies for things you're posting you should explicitly say what
-they are when you post (not just vauge statements that there are
-dependencies), and when you post things that will be dependencies for
-other trees it's good to mention this so that people can think about
-putting them on a separate branch for easier cross merging.
-
---jzZHKask1XwDH5wi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmInb+QACgkQJNaLcl1U
-h9CDLgf9GwB+d+ke1yyxR+lxSveYjvqXqsOiAoVeXlpr1AE2KMzU72/apoLlE8YJ
-F8gFctTU9Qk9atjp0TWQf6TiovyZVmPtGNcWJT80z2wZHADJvV1TPh63MJOoqdHK
-Yr8aTu5Dv/uMaIVKQvkn/Ds+JD9ssGzR4Okn6SaMJmAMa5Q1rvM/injJPLIWGeUk
-HOxJC4XdX2vgpgMbjcDlNhrhidwlnYsLSdxyUAoNo1ZW82modnuoX++7nBOgsnxf
-p0WjSr462KANi0dH2egxA0wbypxJ6r8/l+qmzcaZv9w2uFvtUPFAXOLc856ynGTZ
-GGyTEzC+9lHlmcTwV3x8vu/Luj4j7w==
-=PZ4j
------END PGP SIGNATURE-----
-
---jzZHKask1XwDH5wi--
+         Arnd
