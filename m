@@ -2,107 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A34814D15F9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 12:15:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ABC174D1621
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 12:21:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242517AbiCHLQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 06:16:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34336 "EHLO
+        id S1346464AbiCHLWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 06:22:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346385AbiCHLQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 06:16:41 -0500
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDBC441625
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 03:15:44 -0800 (PST)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nRXoO-0001bV-04; Tue, 08 Mar 2022 12:15:28 +0100
-Received: from ore by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1nRXoM-0000Ry-4J; Tue, 08 Mar 2022 12:15:26 +0100
-Date:   Tue, 8 Mar 2022 12:15:26 +0100
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Scott Branden <sbranden@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Tony Lindgren <tony@atomide.com>, kernel@pengutronix.de,
-        bcm-kernel-feedback-list@broadcom.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH v5 5/9] ARM: dts: exynos: fix ethernet node name for
- different odroid boards
-Message-ID: <20220308111526.GA1086@pengutronix.de>
-References: <20220216074927.3619425-1-o.rempel@pengutronix.de>
- <20220216074927.3619425-6-o.rempel@pengutronix.de>
- <bbb7e8fa-757a-64c6-640e-c24bf3e56b82@canonical.com>
+        with ESMTP id S1346463AbiCHLWj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 06:22:39 -0500
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 150524579C;
+        Tue,  8 Mar 2022 03:21:43 -0800 (PST)
+Received: by mail-qt1-f179.google.com with SMTP id bt3so15846198qtb.0;
+        Tue, 08 Mar 2022 03:21:43 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=F4/6/jNoigqZsZr9XYglGbTplLVuMWJmgJ5Lyc0Enx4=;
+        b=S+PKWVC4Zmy0ZUCBkUv/3n5Q8Ass0kX7DTLun6UTI1BymCfqihoc0+6wLL9p5Yp6pu
+         LK2z6PsmReLrnAn26Iqn/SQ9sk6Hl2H7PSpNj4GGAwNL5PGOBuHE3SJ+FffBmWE2Dut6
+         TobjsyAAO1m6e1U6c3NqBt7cmKcuaiZ7CngpfFWVzXXJNlWgZ6oDYKmtpuWB3fRZxYyA
+         jBX/9IPYTk0Wbn/KSPxy/9vG/iZ9fj+/QtnXcLCym6zVFpDW/KHkC20E0RZHfF8wEpZ8
+         wLq8gFdR10NgA87SuSGzLuq4bNKGvSnOvGSAw+Ezo8iQgmjh1YmpQp24B5+hRW2jAPeM
+         pHRw==
+X-Gm-Message-State: AOAM531gcOq3lpYpT0hp0oTofEK8nG8LzN9wxNaEzZPc2X1oyGpoRJJ6
+        GyRJUPkekFDMITZEbPNbR8NoLGWzhyPCdw==
+X-Google-Smtp-Source: ABdhPJwtNf3sO/CJmVmqr+ZA2Tl5NCrBx+U8Rxd9yGik7ssiW9A8Le8BPzZBwiImwfRhlwJQuRptjg==
+X-Received: by 2002:a05:622a:406:b0:2e0:9838:6b58 with SMTP id n6-20020a05622a040600b002e098386b58mr102157qtx.607.1646738501920;
+        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id f19-20020ac859d3000000b002de4d014733sm10428486qtf.13.2022.03.08.03.21.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id l2so17568936ybe.8;
+        Tue, 08 Mar 2022 03:21:41 -0800 (PST)
+X-Received: by 2002:a25:bc8f:0:b0:628:8649:5c4b with SMTP id
+ e15-20020a25bc8f000000b0062886495c4bmr11278520ybk.207.1646738500973; Tue, 08
+ Mar 2022 03:21:40 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <bbb7e8fa-757a-64c6-640e-c24bf3e56b82@canonical.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:14:51 up 87 days, 20:00, 87 users,  load average: 0.94, 0.50,
- 0.31
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20220124121009.108649-1-alistair@alistair23.me> <20220124121009.108649-6-alistair@alistair23.me>
+In-Reply-To: <20220124121009.108649-6-alistair@alistair23.me>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 8 Mar 2022 12:21:29 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
+Message-ID: <CAMuHMdUe-z-6_=W5AFtWMug-cqTZKJhd-iLbdoRnSKoXwm27Uw@mail.gmail.com>
+Subject: Re: [PATCH v18 5/8] hwmon: sy7636a: Add temperature driver for sy7636a
+To:     Alistair Francis <alistair@alistair23.me>
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Zhang Rui <rui.zhang@intel.com>, alistair23@gmail.com,
+        Amit Kucheria <amitk@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 12:02:29PM +0100, Krzysztof Kozlowski wrote:
-> On 16/02/2022 08:49, Oleksij Rempel wrote:
-> > The node name of Ethernet controller should be "ethernet" instead of
-> > "usbether" as required by Ethernet controller devicetree schema:
-> >  Documentation/devicetree/bindings/net/ethernet-controller.yaml
-> > 
-> > This patch can potentially affect boot loaders patching against full
-> > node path instead of using device aliases.
-> > 
-> > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > ---
-> >  arch/arm/boot/dts/exynos4412-odroidu3.dts       | 2 +-
-> >  arch/arm/boot/dts/exynos4412-odroidx.dts        | 2 +-
-> >  arch/arm/boot/dts/exynos5410-odroidxu.dts       | 2 +-
-> >  arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts | 2 +-
-> >  arch/arm/boot/dts/exynos5422-odroidxu3.dts      | 2 +-
-> >  5 files changed, 5 insertions(+), 5 deletions(-)
-> > 
-> 
-> Hi Oleksij,
-> 
-> Both Exynos patches look good, unfortunately I forgot about them a week
-> ago when I was preparing late pull request and now it is too late for
-> this cycle. I will pick them up after the merge window. Sorry, for this.
+Hi Alistair,
 
-No problem. Thank you for the feedback :)
+On Mon, Jan 24, 2022 at 1:25 PM Alistair Francis <alistair@alistair23.me> wrote:
+> This is a multi-function device to interface with the sy7636a
+> EPD PMIC chip from Silergy.
+>
+> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+> Acked-by: Guenter Roeck <linux@roeck-us.net>
 
-Regards,
-Oleksij
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Thanks for your patch, which is now commit de34a40532507814 ("hwmon:
+sy7636a: Add temperature driver for sy7636a") in mfd/for-mfd-next.
+
+> --- a/drivers/hwmon/Kconfig
+> +++ b/drivers/hwmon/Kconfig
+> @@ -1672,6 +1672,15 @@ config SENSORS_SIS5595
+>           This driver can also be built as a module. If so, the module
+>           will be called sis5595.
+>
+> +config SENSORS_SY7636A
+> +       tristate "Silergy SY7636A"
+> +       help
+> +         If you say yes here you get support for the thermistor readout of
+> +         the Silergy SY7636A PMIC.
+
+As this is an i2c mfd device, you do need a dependency on MFD and I2C,
+or some other symbol, unless compile-testing?
+
+> +
+> +         This driver can also be built as a module.  If so, the module
+> +         will be called sy7636a-hwmon.
+> +
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
