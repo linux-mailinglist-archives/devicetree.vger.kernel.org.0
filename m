@@ -2,63 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 195774D225F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 21:15:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9D54D2264
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 21:18:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbiCHUPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 15:15:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56584 "EHLO
+        id S1349915AbiCHURJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 15:17:09 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230134AbiCHUPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 15:15:54 -0500
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E71B9506FD;
-        Tue,  8 Mar 2022 12:14:57 -0800 (PST)
-Received: by mail-oi1-f181.google.com with SMTP id k2so476967oia.2;
-        Tue, 08 Mar 2022 12:14:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=b/MXAgvq/rdJKSEVV2W4r8JzxE4/nK0FpMsd9Gokb74=;
-        b=KDFf8snO67sqdcqsW/6pedXDS4jZZT0yuON7i0u1nSOgPQf37T24VVaxD7sPI1ZeU1
-         8dNh6++gzw/Rbi37S/8f0ptmILZHU52LlUevJaxh3OffVEYVyP2pDVDP1tHuTqf5vT9h
-         BN/ZXknDKAD1jiIt/9LuWrgiSCQu5tzHcn4sw+ORNDoV1D+na4fkWnsdWfO4VFc1Me6w
-         t6z/YqlqPT5WhH3REcHyV7j0VncQG5KiAyeITrjjCiGyhZtJZvHLUIPamk9cAJ/nvzpU
-         +jqVj66hHxkC5SV0dXXaV8aylT1Ic7rc9hggOJdogvRPYRRfAPMlCsMlPMwyYxecg88B
-         advQ==
-X-Gm-Message-State: AOAM533jWeGbYuWKehU5KvFaocx9QXkX6/uYQWvA9o2tzX9L7sNcaiXS
-        PoWOM8Mz/j93I+rWHzoZ1dKuIfzlww==
-X-Google-Smtp-Source: ABdhPJwmeir9SpiLK5lK1K6N0BA0E77D2BKJjy9MfXCnjpDDvgoJgAf4qikuXm0HRfRJRwwjgfeCug==
-X-Received: by 2002:a05:6808:e90:b0:2d9:a01a:486d with SMTP id k16-20020a0568080e9000b002d9a01a486dmr3954889oil.184.1646770497161;
-        Tue, 08 Mar 2022 12:14:57 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id c26-20020a056830349a00b005af30960c75sm8458694otu.38.2022.03.08.12.14.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 12:14:56 -0800 (PST)
-Received: (nullmailer pid 1278207 invoked by uid 1000);
-        Tue, 08 Mar 2022 20:14:55 -0000
-Date:   Tue, 8 Mar 2022 14:14:55 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Xen hypervisor
-Message-ID: <Yie5P/vcBz44QcPd@robh.at.kernel.org>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
- <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        with ESMTP id S1349932AbiCHURJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 15:17:09 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03A05130E;
+        Tue,  8 Mar 2022 12:16:12 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 45BCEB81D5E;
+        Tue,  8 Mar 2022 20:16:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 082D0C340EB;
+        Tue,  8 Mar 2022 20:16:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646770570;
+        bh=UET9JUnGo2TFqvGUJxqNHq0Mc0f6+oonLVedVCPPto0=;
+        h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+        b=Vuol1LqvJP9gJvWfXPbmB870zm0iP8slirXcgDBRslBzD1hnruyFTosOpGglMbAOG
+         vR+ma5244L8gmU0ug8RTzWVTA8ov2BmlFvK2xDqU18UTPCQae7giXPXfS9+6WvYmMV
+         U/OXm9Tc+fJHKArkGgIPcHhTGtTKzVs1BiAW0yL3vx/WxJwQzZwMjOfgAG3N7vfpTp
+         PSPGaxV3Bi5qti4L1wS+MqhzU8d6oBeQ+QKguwZ8Un3iD9rCRToy/EPy6AfGmNQdBk
+         zlFa0ByainWs88LPi4VO/QKjF8CWNIRQttuithOhzgMmTlj3sQh0B/k17l2rtGeh46
+         7gh9NjXgkrh2A==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E8045E6D3DD;
+        Tue,  8 Mar 2022 20:16:09 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v5.17, take 3
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <YiexypCIC3q8dHPZ@robh.at.kernel.org>
+References: <YiexypCIC3q8dHPZ@robh.at.kernel.org>
+X-PR-Tracked-List-Id: <devicetree.vger.kernel.org>
+X-PR-Tracked-Message-Id: <YiexypCIC3q8dHPZ@robh.at.kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-3
+X-PR-Tracked-Commit-Id: f6eafa4022dd61e029205bea4d4147d26e69fef2
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: 4f86a6b46e5377a300b1d49f51c687450f72fb6d
+Message-Id: <164677056994.13922.3321050391472310921.pr-tracker-bot@kernel.org>
+Date:   Tue, 08 Mar 2022 20:16:09 +0000
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,16 +62,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 08:17:43 +0000, Oleksii Moisieiev wrote:
-> Xen is an open source stage-1 hypervisor.
-> 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+The pull request you sent on Tue, 8 Mar 2022 13:43:06 -0600:
 
-As 'xen' has been missing regardless of patch 2, I fixed up the commit 
-message and applied, thanks!
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.17-3
 
-Rob
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/4f86a6b46e5377a300b1d49f51c687450f72fb6d
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
