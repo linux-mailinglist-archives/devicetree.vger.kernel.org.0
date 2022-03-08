@@ -2,100 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A66ED4D13C3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 526CE4D13DD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Mar 2022 10:52:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239173AbiCHJuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 04:50:16 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56796 "EHLO
+        id S229659AbiCHJxP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 04:53:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345316AbiCHJuP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:50:15 -0500
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAC99340C4
-        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 01:49:18 -0800 (PST)
-Received: by mail-wr1-x42b.google.com with SMTP id j17so27621030wrc.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Mar 2022 01:49:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=6Vptup9snjTByrwJQ9zSJpQbWeuT9OeToRX24egqXZE=;
-        b=ZkvqwDQcHKwDX84OOnDMiAlBzjBS5NMVrq2VBIAW9dRo+lZGFGg3x8XK1DFS0RuYw1
-         jkV5mgBKgGBFp5ULdFQWgj/rYPEFcRog/8vMTiSd1HDGyxrndTzswnzycMaUOgt3FaSq
-         Si4oRF2seEYg/4ywLp4m+dCSVQ21bFYQs4tdSA/h9Zqw8dlrlIjX/8JZ7tHQoslw4+BM
-         mfZcM7JvwHmpjVfSeSZpYHdOEViNZa1ftqdyTxnwads01Am5McQdyroikyUjnWjDG/ZM
-         vas1/rV6+k4Du8d0onFwDWKgrEL58IWmFBTXPLQ14vSzHRBVn/5T7oAtbmci3wBzyYAN
-         RkWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=6Vptup9snjTByrwJQ9zSJpQbWeuT9OeToRX24egqXZE=;
-        b=d12niRVE4juCOUGKqP8QOsXGs0jsYghHVxlgx88dcrp2bUH3a/LgyZZER/XbMapa7i
-         fZ5P/5IhozL8a6AJoWSc7kqEQDDhYXcMIvUY5T8W7ZM4XCgX57EslLCMTpL0NJJvS5pA
-         ASJk/aA/QmrFOBQ+u8h/OCSV1cc7SWgwqs2WFkcmcYA/MhMeTu49RuhIxo0MJjWXFQ9z
-         BAHs2CwgRivPR4c2xAGaqxAriobLnOJ7IXNdpBn9E0wh+pXimlunp+MQdVNBdbCerZk3
-         ZRsg0Mxzr571nb7QD8Rp71UgvmR3lw8I5XSYbwezyaHyHpzgHz3Dhx0VIzUzgk6kn+ST
-         QvWg==
-X-Gm-Message-State: AOAM533NLD8lNDNatEIlm10764z+G8fSaujgz0gwjLRjZRNt0byJogov
-        kCsFNHufR6Dsz3hJgS4nfYG0wA==
-X-Google-Smtp-Source: ABdhPJwyHtSnI5DdyZsEddgf/hq4aj4GLJcAaVuxD5wI/kt3z5s/DN1pKpabP9/LthhErPegg06whQ==
-X-Received: by 2002:a5d:6e0f:0:b0:1ea:9418:c2a5 with SMTP id h15-20020a5d6e0f000000b001ea9418c2a5mr11280082wrz.244.1646732957483;
-        Tue, 08 Mar 2022 01:49:17 -0800 (PST)
-Received: from prec5560.. (freifunk-gw.bsa1-cpe1.syseleven.net. [176.74.57.43])
-        by smtp.gmail.com with ESMTPSA id z3-20020a1cf403000000b0037d1f4a2201sm1684885wma.21.2022.03.08.01.49.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 01:49:17 -0800 (PST)
-From:   Robert Foss <robert.foss@linaro.org>
-To:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, robert.foss@linaro.org,
-        laurent.pinchart@ideasonboard.com, xji@analogixsemi.com,
-        hsinyi@chromium.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>, arnd@arndb.de
-Subject: [PATCH v2 2/2] Revert "arm64: dts: mt8183: jacuzzi: Fix bus properties in anx's DSI endpoint"
-Date:   Tue,  8 Mar 2022 10:49:11 +0100
-Message-Id: <20220308094911.2680291-3-robert.foss@linaro.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220308094911.2680291-1-robert.foss@linaro.org>
-References: <20220308094911.2680291-1-robert.foss@linaro.org>
+        with ESMTP id S1345520AbiCHJw5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 04:52:57 -0500
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5539841FA3
+        for <devicetree@vger.kernel.org>; Tue,  8 Mar 2022 01:52:01 -0800 (PST)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1nRWVX-00065y-Ic; Tue, 08 Mar 2022 10:51:55 +0100
+Message-ID: <2b4442d9-fb10-36ee-585d-4103b76abbbb@pengutronix.de>
+Date:   Tue, 8 Mar 2022 10:51:54 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v8 1/2] dt-bindings: arm: Add OP-TEE transport for SCMI
+Content-Language: en-US
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Etienne Carriere <etienne.carriere@linaro.org>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+References: <20211028140009.23331-1-etienne.carriere@linaro.org>
+ <58a0e791-9573-99c2-0cc5-3920a1048113@pengutronix.de>
+ <Yh4304unzMxrQtoL@bogus>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <Yh4304unzMxrQtoL@bogus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit 32568ae37596b529628ac09b875f4874e614f63f.
+Hello Sudeep,
 
-Signed-off-by: Robert Foss <robert.foss@linaro.org>
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+On 01.03.22 16:12, Sudeep Holla wrote:
+> 
+> Hi Ahmad,
+> 
+> On Mon, Feb 28, 2022 at 05:01:39PM +0100, Ahmad Fatoum wrote:
+>> Hello Etienne,
+>>
+>> On 28.10.21 16:00, Etienne Carriere wrote:
+>>> Introduce compatible "linaro,scmi-optee" for SCMI transport channel
+>>> based on an OP-TEE service invocation. The compatible mandates a
+>>> channel ID defined with property "linaro,optee-channel-id".
+>>
+> 
+> Not sure if Etienne's reply addressed your queries/concerns correctly.
+> I thought I will add my view anyways.
+> 
+>> I just found this thread via the compatible in the STM32MP131 patch set:
+>> https://lore.kernel.org/all/20220225133137.813919-1-gabriel.fernandez@foss.st.com/
+>>
+>> Linux doesn't care whether PSCI is provided by TF-A, OP-TEE or something
+>> else, so there is just the arm,psci* compatible.
+>>
+> 
+> Correct, the interface to the kernel is fixed and hence we must be able
+> to manage with the standard and fixed sole set of bindings for the same.
+> 
+>> What's different about SCMI that this is not possible? Why couldn't the
+>> existing binding and driver be used to communicate with OP-TEE as secure
+>> monitor as well?
+>>
+> 
+> However with SCMI, the spec concentrates and standardises all the aspects
+> of the protocol used for the communication while it allows the transport
+> used for such a communication to be implementation specific. It does
+> address some standard transports like mailbox and PCC(ACPI). However,
+> because of the flexibility and also depending on the hardware(or VM),
+> different transports have been added to the list. SMC/HVC was the one,
+> followed by the virtio and OPTEE. While I agree SMC/HVC and OPTEE seem
+> to have lot of common and may have avoided separate bindings.
+> 
+> However the FIDs for SMC/HVC is vendor defined(the spec doesn't cover this
+> and hence we utilised/exploited DT). Some vendors wanted interrupt support
+> too which got added. OPTEE eliminates the need for FID and can also provide
+> dynamic shared memory info. In short, it does differ in a way that the driver
+> needs to understand the difference and act differently with each of the
+> unique transports defined in the binding.
+> 
+> Hope that explains and addresses your concern.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-index e8f133dc96b95..8f7bf33f607da 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi.dtsi
-@@ -171,8 +171,6 @@ port@0 {
- 
- 			anx7625_in: endpoint {
- 				remote-endpoint = <&dsi_out>;
--				bus-type = <5>;
--				data-lanes = <0 1 2 3>;
- 			};
- 		};
- 
+Thanks for the elaborate answer. I see now why it's beneficial to have
+an OP-TEE transport in general. I don't yet see the benefit to use it
+in the STM32MP13x instead of SMCs like with STM32MP15x, but that a discussion
+that I need to have in the aforementioned thread.
+
+Thanks again!
+Ahmad
+
 -- 
-2.32.0
-
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
