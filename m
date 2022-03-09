@@ -2,138 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A814D30A6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 14:58:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4A354D30AE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 15:00:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229505AbiCIN6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 08:58:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54716 "EHLO
+        id S231503AbiCIOAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 09:00:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233396AbiCIN6l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 08:58:41 -0500
-Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 748F462DF;
-        Wed,  9 Mar 2022 05:57:41 -0800 (PST)
-Received: by mail-pl1-x62a.google.com with SMTP id m2so2055268pll.0;
-        Wed, 09 Mar 2022 05:57:41 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=faIIfTxQAdrbYwzah/aXL8R3vzKjdbBY0/6Hv4kojO4=;
-        b=ba7FoR/sP7LQDzjdOdh904xFCN5OCpME0XYdqUUPWFsQqPIyZdWJ9D2U7967Qd2wPM
-         shujyXE3lX67ic5tFWgsfPcoB5Iy3CU/KsE83wxIDppLDo7ifwYHPWiKvcCDC8jkDVxn
-         cMKBNHxGu2va0/R9F6EdN05AUbkNxcnjEsLXLlYP1y56Do/hjlEHb7gbQT8zRCJ7zl13
-         IGCZl7WSP1Qmx4SMAQzhO/IIh82NIXq/oMmTNiSpFEGUGXFSYm5iMCcwIfK5ciUPjf0n
-         nXrO25hM6xwS64LhBlNI3OdaKh+6JjBE9DV1SjUozCu5ylJhEREeGXVbVERd8pFzLD2L
-         Xg4w==
+        with ESMTP id S230470AbiCIOAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 09:00:05 -0500
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E8465BD3C;
+        Wed,  9 Mar 2022 05:59:06 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id k9-20020a056830242900b005ad25f8ebfdso1778654ots.7;
+        Wed, 09 Mar 2022 05:59:06 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=faIIfTxQAdrbYwzah/aXL8R3vzKjdbBY0/6Hv4kojO4=;
-        b=L/taCVsjDgU57ZyLRDStohWqTNlt2XqAFLCZ0WGO5WAF2Uq+ifShYYVjPusJMWXjJk
-         c1Gzyax7CVLEmRPAc/oDSrupCekh9Gr3OqvWclEOq10RWpncy7oUgMc62dJ+nhR9wHTk
-         okqyzQetO2jzfIshXveXHR1o/ooBV1DIgNX7huFWbca2YhMdtvL7VvGXz0tLgiEWECxW
-         y/ngpIxNpqqZBhKum9xjdjSwqQKdmE8v/huWv7kW7tMQdS2hwfOr3N1vl4vQnlElbaxC
-         2uvl38e4anVRshnIEYg6j/LDxUFedBxDrYmbAfolsPlRtvDJQnW6NHcRUpdRmYz2CJFQ
-         KhlA==
-X-Gm-Message-State: AOAM532gKjPAfxF8PI4btsdFsi+Doh8kfXX/NPY7/BreD3MuDUUIUbI4
-        57b4rLTAhQnwotqbNtRnsMc=
-X-Google-Smtp-Source: ABdhPJxNl9iNPU4HIEro6FlW6Jac4RZUF7NPRzFtZKB+VP7mfRKYdbEoz+zBYnqrki4rdFud5EnLEw==
-X-Received: by 2002:a17:90a:a591:b0:1bc:8015:4c9e with SMTP id b17-20020a17090aa59100b001bc80154c9emr10303253pjq.154.1646834260513;
-        Wed, 09 Mar 2022 05:57:40 -0800 (PST)
-Received: from 9a2d8922b8f1 ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id c18-20020a056a000ad200b004f0f9696578sm3571032pfl.141.2022.03.09.05.57.37
+        bh=9WQKUq5qEG5jbo/MSG1p6dhiqJZzacE/65VAuqXyMI8=;
+        b=xa3SXitqsSSgxuJxllJ4K3pHyrOWxcLYQM7QUm32lJesf3ZYiqo2G8xda9Sm98WIQi
+         whBKBvAxhpAp7hcl1BbNK8n371KiUgemtreAOunAyCpIHh7iyLvdUMWl5Ncumj6ZmEgK
+         CN+wP55b4KZOlWtEcIo0B/SH8VoW61EMTsX6peNuREh0bZ7H8GimR36X01wzRTjV454P
+         jU1HHDCRF1ZAcscZl8Lr+S/roJiA24URuBYcaPLA0SQf/hoDNbDi4opEv8kIomGwuktT
+         2WMeH4x5RnJ0MRi2bGPfwBDFiHlLQK7xnIHC1v64Wwt6H8kbFLAhKMkk7VqimqHMROVp
+         6v5w==
+X-Gm-Message-State: AOAM530FVUL5fTAhubzJ3C/Da4u9Y+3aQ4w/rqoIs8mXSLr51huXQHpK
+        BH4OnKi8uf5+lfdM04iXWQ==
+X-Google-Smtp-Source: ABdhPJyIdw5ufiYGJL0AhzWJGoQk9y5LeODaq2SRRogv/yy+DGd+T6GkLzBW7LpSkOVWfkrCfnPzuw==
+X-Received: by 2002:a05:6830:2055:b0:5b2:5659:542f with SMTP id f21-20020a056830205500b005b25659542fmr3189142otp.189.1646834345759;
+        Wed, 09 Mar 2022 05:59:05 -0800 (PST)
+Received: from rob (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id s82-20020acadb55000000b002d9ce64bea0sm967979oig.48.2022.03.09.05.59.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Mar 2022 05:57:40 -0800 (PST)
-Date:   Wed, 9 Mar 2022 19:27:34 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Update clocks property for ARM
- pl022
-Message-ID: <20220309135734.GA87543@9a2d8922b8f1>
-References: <20220308072125.38381-1-singh.kuldeep87k@gmail.com>
- <f9fa1045-c0a4-97fa-16ee-20530b404381@canonical.com>
+        Wed, 09 Mar 2022 05:59:05 -0800 (PST)
+Received: (nullmailer pid 2792610 invoked by uid 1000);
+        Wed, 09 Mar 2022 13:59:04 -0000
+Date:   Wed, 9 Mar 2022 06:59:04 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Petko Manolov <petko.manolov@konsulko.com>
+Cc:     linux-media@vger.kernel.org, sakari.ailus@iki.fi,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 2/2] dt-bindings: media: add ovti,ovm6211 bindings
+Message-ID: <20220309135904.GA2790178@robh.at.kernel.org>
+References: <20220309102215.891001-1-petko.manolov@konsulko.com>
+ <20220309102215.891001-3-petko.manolov@konsulko.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f9fa1045-c0a4-97fa-16ee-20530b404381@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220309102215.891001-3-petko.manolov@konsulko.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 09:27:48AM +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2022 08:21, Kuldeep Singh wrote:
-> > Add missing minItems property to clocks in ARM pl022 bindings.
-> > 
-> > This helps in resolving below warnings:
-> > clocks: [[4]] is too short
-> > clock-names: ['apb_pclk'] is too short
-> > 
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > ---
-> > v2:
-> > - Keep actual warning and remove path to file
-> > - Reword commit message a bit
+On Wed, Mar 09, 2022 at 12:22:15PM +0200, Petko Manolov wrote:
+> Omnivision OVM6211 MIPI CSI-2 sensor bindings.
 > 
-> It still misses information whether it is actually correct from PL022
-> point of view to have just one clock.
-> 
-> If the DTS are wrong, do not change the bindings to match such wrong
-> DTS. If the DTS is correct, please explain why bindings are wrong.
- 
-Thanks Krzysztof for pointing it out.
-So far I was wondering spiclk clock-name was the only culprit there and
-had different perception w.r.t number of clocks.
+> Signed-off-by: Petko Manolov <petko.manolov@konsulko.com>
+> ---
+>  .../devicetree/bindings/media/i2c/ovm6211.txt | 49 +++++++++++++++++++
 
-Anyway, below reference is from pl022 point of view:
-https://documentation-service.arm.com/static/5e8e3bc7fd977155116a936d?token=
-https://developer.arm.com/documentation/ddi0194/h/functional-overview/primecell-ssp-operation/clock-ratios
+Not sure how you got to v5 already, but bindings must be in DT schema 
+format now.
 
-The reference no where mention that single clock can exist.
-So far Amd seattle and LG platforms don't comply with binding and define
-single clock which require updations.
-
-So now from bindings perspective, I am looking forward to keep only one
-notation of sspclk and will respin a patch. Kindly provide comments on
-the same.
-
-Regards
-Kuldeep
-
-> > 
-> >  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> > index 6d633728fc2b..7d36e15db5b3 100644
-> > --- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> > +++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> > @@ -34,6 +34,7 @@ properties:
-> >      maxItems: 1
-> >  
-> >    clocks:
-> > +    minItems: 1
-> >      maxItems: 2
-> 
-> This does not match clock-names which requires two clocks. It's not
-> correct now.
-> 
-> >  
-> >    clock-names:
-> 
-> 
-> Best regards,
-> Krzysztof
+Rob
