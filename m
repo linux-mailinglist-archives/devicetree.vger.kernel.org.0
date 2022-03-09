@@ -2,109 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC9604D35B0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:42:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B35B4D368A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:43:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236363AbiCIRBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 12:01:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41516 "EHLO
+        id S236900AbiCIRUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 12:20:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59254 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236888AbiCIRAu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 12:00:50 -0500
+        with ESMTP id S237110AbiCIRUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 12:20:01 -0500
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02E211045BC
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 08:47:50 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8195CD5FB
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 09:18:49 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 916D83F62E
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 16:47:36 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BF73D3F1AF
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 17:18:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646844456;
-        bh=t5qKAKCgLHNfxioPnEDa1ge5OiEhv8KjWelueqMtl/A=;
+        s=20210705; t=1646846324;
+        bh=H8Ivl0XLyOS7GNgoia0im1pfPz2SRotfVrPwXjnk3/c=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=G7udQNwdlDinVLi4lSkcaXkUxmniovasE/ECkS5s8BfpVoHxOIbT57dx69hRPYPwL
-         eMgXM4coGsl5N5MnQX2Hrfct+epBo4F1GVKlpnw3fZdW/OkbE2j7Ca2q/whBpX9ckp
-         I6FkxHn/2LTjHcg9pkjliN2BCoxjVb3KFLKAdfEFHdn2SAIiLvkxfFR7jUvAC2vEWM
-         34kGfDSUYOzHngURxXmp7F/u7S9hMPa4FNwcG+FdAjz2BJyRDalTN7ee3sCv4CKWk2
-         JTsDhnXvp1GY2AEeRqLWaPTAVZIBh1qANPfAROeWmOSGDXpqL4hNXnso/gA0yxgtu9
-         rddIdiDrb1+sQ==
-Received: by mail-ej1-f71.google.com with SMTP id og24-20020a1709071dd800b006dab87bec4fso1635628ejc.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 08:47:36 -0800 (PST)
+        b=skfAzQurnGVDBoYR3TBZ8UY2SO7EeK2ILGG02shS9b75zwGYO42u/quib01t3ocPF
+         ifyqS6J3hKX9wLI4jwc9XBb07FZJPoI+eyiQ83iF5bdzIAIxgR6Olja3DGhZwoZSqR
+         5y6ARD7cPimoBd1BA8ZdEJxyuY9ysSGGVox/3G+38nclqo+1YWXEMxmwFCcqVSKShQ
+         YlbQ/r2M2SwvgX6BN50oxuJ3U0UE+97aWiyANwuYuKFxxIQjbrUrirRcnfnPd0oP7k
+         HIp2yxRXkGtCqGqojLatOCMEwRC/4TlHfFqd9tqSHbsijMf+0cFxAc+zXj83LbxjNq
+         VXQpItKVuImxA==
+Received: by mail-ed1-f70.google.com with SMTP id co2-20020a0564020c0200b00415f9fa6ca8so1648218edb.6
+        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 09:18:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=t5qKAKCgLHNfxioPnEDa1ge5OiEhv8KjWelueqMtl/A=;
-        b=qD7iLR60X4PafvPgjsmgRdryxZWYcv2lPon6tgFy4hffKs2fGrni/9260B2+0mxc9M
-         faeUoQYW3UJLQJyG5CnoWG4SdDj0qtaYy61cSIVjMHx2d4QyUaNIZu59MQZXLnkUGuBZ
-         lW+iubkgU4woWTNh5WE7qfwim0qznabdgr+LxZkUtm+hck3souUoVrwleB4MaWQDLk9h
-         vIBZROzcxMg4532JcaCtz6hl8lFFrcdgXanK3xBctYhbFixBd/d1k+92aNCyut2mUY3L
-         FKosEtZcOLaQAAVpYL5VF6E7LdFnA2h5BgaesQdWqUvhK21LdLZKd+QkkkepNqSixD4K
-         hWCg==
-X-Gm-Message-State: AOAM530A801nwamlMnxHWSi9yG17Y6G8NLvRPdg1vEzC/TnJw//iZk4v
-        LLG6srzVnQS0CoCUYXgxXPUym1yorpC7eoSY/4+FQGXwdmXR5biNsTrD261TCFU0Cie/gWxAu18
-        5GoYuZgJESpCLw6OytW9XT72oixONXlht9QwDfW0=
-X-Received: by 2002:a05:6402:486:b0:413:bd00:4f3f with SMTP id k6-20020a056402048600b00413bd004f3fmr326522edv.103.1646844456273;
-        Wed, 09 Mar 2022 08:47:36 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwsZlug/Jtbf8IyQ3h7CW4SbOa236xZgNhxscDPorwlpm36emowHe5wTeYyk+ubVgN2NAc0dw==
-X-Received: by 2002:a05:6402:486:b0:413:bd00:4f3f with SMTP id k6-20020a056402048600b00413bd004f3fmr326496edv.103.1646844456025;
-        Wed, 09 Mar 2022 08:47:36 -0800 (PST)
+        bh=H8Ivl0XLyOS7GNgoia0im1pfPz2SRotfVrPwXjnk3/c=;
+        b=EBycCPLQf6TYjnPlbtZow2MFLjcnfOGgt4LSXvW6Oq9OmJaunBLR1swrGvhccCORcz
+         /rdFS8b6dDO6ciS/lv90NoRJ1VqzLcqS+xxIF1uDvz+U+1EgBBtXxi7f0HYfdQXMQoLO
+         TeTTHVBrqaBgwNkLEstr6C5mFDhU29yw+K++UgpKUxq5JdHK82MpSkzPWmT3WtWbYL5V
+         w84o+Gr0f6cP1BAGUKT/yqVNaYkEebCxSYMhc0WKYwlBrZEYHaSxgT/NIm0EMLhHeOLr
+         V9XowlLdQQ210XjQJKzZPAM6z3986QfZMzJSBc51IqNEzv9iZAEROHzUdcW6BzkW9Ib7
+         7/Zw==
+X-Gm-Message-State: AOAM530KTJuk/Ke70YtjFwvzsSpXc8b3FlIG4G6p5ODZ/XxDajK+MRPO
+        txM9tXU/A2M1HoG1UB211Vs+mkx8+xfGchFqx8q/qtxiX1kqToSkjhcbAIyCRXb3qT7ZizOa523
+        b99DnF8R2XXCKCKa7l2DO78r8wlYIAdPifIdhIXs=
+X-Received: by 2002:a17:906:3cf1:b0:6cf:86c6:8a12 with SMTP id d17-20020a1709063cf100b006cf86c68a12mr749675ejh.202.1646846321157;
+        Wed, 09 Mar 2022 09:18:41 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxoD6omDe6HZFAnJP+cvkzbuKcGFkT8i7+ULUKxhNjWehKZ6E0AiATCG5uWRGdE3yK+Z3N7TA==
+X-Received: by 2002:a17:906:3cf1:b0:6cf:86c6:8a12 with SMTP id d17-20020a1709063cf100b006cf86c68a12mr749653ejh.202.1646846320969;
+        Wed, 09 Mar 2022 09:18:40 -0800 (PST)
 Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id o2-20020a50d802000000b00410d7f0c52csm1062084edj.8.2022.03.09.08.47.35
+        by smtp.gmail.com with ESMTPSA id gl2-20020a170906e0c200b006a767d52373sm969225ejb.182.2022.03.09.09.18.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Mar 2022 08:47:35 -0800 (PST)
-Message-ID: <ba4c44bd-81d7-afd4-3a4a-6a1c6fec6692@canonical.com>
-Date:   Wed, 9 Mar 2022 17:47:34 +0100
+        Wed, 09 Mar 2022 09:18:40 -0800 (PST)
+Message-ID: <b7ae988c-b420-83bc-0a4a-e82393d1549f@canonical.com>
+Date:   Wed, 9 Mar 2022 18:18:39 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/2] dt-bindings: cpufreq: cpufreq-qcom-hw: Convert to
- YAML bindings
+Subject: Re: [PATCH V2 1/6] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QXP
 Content-Language: en-US
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        rafael@kernel.org, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        krzk+dt@kernel.org
-Cc:     bjorn.andersson@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org,
-        Rob Herring <robh@kernel.org>
-References: <20220309151541.139511-1-manivannan.sadhasivam@linaro.org>
- <20220309151541.139511-3-manivannan.sadhasivam@linaro.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+        bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        robh+dt@kernel.org
+Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+References: <20220309102118.8131-1-peng.fan@oss.nxp.com>
+ <20220309102118.8131-2-peng.fan@oss.nxp.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220309151541.139511-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20220309102118.8131-2-peng.fan@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2022 16:15, Manivannan Sadhasivam wrote:
-> Convert Qualcomm cpufreq devicetree binding to YAML.
+On 09/03/2022 11:21, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Add i.MX8QXP compatible
+> 
+> Add a new property rsrc-id(resource id) for SoC which supports
+> SCFW(System Controller Firmware). SCFW manages resources using resource
+> id, here the rsrc-id is used to check whether remote process is under
+> control of Linux or not.
+> 
+> To i.MX8QM/QXP, when M4 is in the same hardware partition with Cortex-A
+> cores, need power up M4 through SCFW, then M4 could start. So introduce
+> power-domains property.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../bindings/cpufreq/cpufreq-qcom-hw.txt      | 172 ---------------
->  .../bindings/cpufreq/cpufreq-qcom-hw.yaml     | 201 ++++++++++++++++++
->  2 files changed, 201 insertions(+), 172 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt
->  create mode 100644 Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.yaml
+>  .../bindings/remoteproc/fsl,imx-rproc.yaml        | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index fc16d903353e..f25c203dd2f9 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - fsl,imx8mm-cm4
+>        - fsl,imx8mn-cm7
+>        - fsl,imx8mp-cm7
+> +      - fsl,imx8qxp-cm4
+>        - fsl,imx8ulp-cm33
+>        - fsl,imx7d-cm4
+>        - fsl,imx7ulp-cm4
+> @@ -27,6 +28,11 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  entry:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Does not look like a generic property, so please add vendor prefix.
+Suffix also would look good, so:
+"fsl,entry-address"
+
+> +    description: |
+> +      Specify cpu entry address for SCU enabled processor.
+
+s/cpu/CPU/
+
+> +
+>    syscon:
+>      $ref: /schemas/types.yaml#/definitions/phandle
+>      description:
+> @@ -59,6 +65,15 @@ properties:
+>        Indicate whether need to load the default firmware and start the remote
+>        processor automatically.
+>  
+> +  power-domains:
+> +    maxItems: 8
+> +
+> +  rsrc-id:
+> +    description:
+> +      This property is to specify the resource id of the remote processor in SoC
+> +      which supports SCFW
+
+Needs type, vendor prefix.
+
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>  
 
 
 Best regards,
