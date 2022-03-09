@@ -2,154 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 136274D2FB7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 14:11:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DBF3B4D2FD5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 14:21:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbiCINMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 08:12:39 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51514 "EHLO
+        id S229781AbiCINWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 08:22:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229861AbiCINMi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 08:12:38 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C26EB128DCC;
-        Wed,  9 Mar 2022 05:11:37 -0800 (PST)
+        with ESMTP id S229738AbiCINWw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 08:22:52 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC273179250;
+        Wed,  9 Mar 2022 05:21:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1646831497; x=1678367497;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=j7VdN+2X6lvvJjZT4T7zCKIQyrV6Oo6yDIxUnukH/60=;
-  b=FdyuHupb8UR+1YXq5xnNikfEsZcinES7w13wv1CVFGhwLXAwMUjk2I5F
-   itshRq0YQtMFjsJSzziIywFyLqzgVKdKlJFkqU7O2zUj3qP3FoHFllZ8S
-   LB3kIhlkCzhH/wl2+IF7QNp12zJyFNhr8nyhINSsBv4zUmN0jojwV3nh4
-   vslE6mRJc+o2BpTtgsTsyPhIjlcvnPQVdJwiyW02MCuyoQLhic+4pRqcw
-   JOXYljroQ+THyeKI3/Sk4WQNnTsKiHRiUoPu40r50E2s2+5SkHqEJ8/Uc
-   iNg95Y69qXKGD4adkta6sSNEM2VXuY0CozbHU5bUFQgpdxbX9DZhhW7/O
-   g==;
+  t=1646832112; x=1678368112;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tTDgNztZKtwKkjKcjqCPLfR/uvNtEaC1J22Ey8KVphM=;
+  b=TdQIckVhIfOVQBFKZUoP8+B2dyKJiYAi9DT0imznNlRRdyTtNuyPJ4RJ
+   tXs9B9lMzhzEM5OmYSEQstgkcCecp4z9T2ac4r4Ou+NuQ/iETlDa552TA
+   nt+/7cR1djtEM8hzOYQSiHvQEvlxx+TTqQtKYlwlCdjyl5BvYSX8Np8n5
+   qTxo0QtS9+QBRwTQCT6xJFpSIlCXs+HiWxVFxi0i2CwtcfT0yxUeLI405
+   YR1AD7rtHF45ddr9SclkwUEUrrWXG9a3GqECOUTNPqceXZ1t5C9dX6S4V
+   GT95I7b+uq2pl8s0BA0dWHK75dRedG4jx4e/HwmfaPwIZ2cGjOV+5rNck
+   A==;
 X-IronPort-AV: E=Sophos;i="5.90,167,1643698800"; 
-   d="scan'208";a="156258471"
+   d="scan'208";a="151404825"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2022 06:11:15 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2022 06:21:51 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Wed, 9 Mar 2022 06:11:15 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17 via Frontend Transport; Wed, 9 Mar 2022 06:11:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d8LYoTV1pAPwBdXjCfWuY6UUx90pgpYrX+yApub192VqLBYttTwku9gorO1zKohHuvt0nPztEJBYoW598NoQXZcAq0Y7FRpmgzRe5qcvP41kBm44gLObGTjx3WCgLhIgoiV7jf7pioGslVrc0h1lfyx31nJCkX5awMKZKaXkF78HWnndAu2sKP8tflI/WxEbTo9Qeg30dIvNZuufmekjlYYXowdKrA2izvYrPtSFmW721qo9Lg/34Ew/ZI//yDZzwh99ZdUvh2k/8BjqQ6Y6ZnB1pu3k9CkJiQXRK+9+6YJ9deUn1qx/3lqYiFZrsCdIxv8SfhlEsZxYpw6kUqmjIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=j7VdN+2X6lvvJjZT4T7zCKIQyrV6Oo6yDIxUnukH/60=;
- b=eGVNWN0UVMbF7xZ2COrl3C5b2hKButka3yKRDLorN8gUaNGz0A9Uy5bnjadHVKnc4a+/hUfjOIKxaUs7L/ablSjzPpHdbxYx7VHsdMzqIPpvLCoDgLL6bc8YJU97Vv/RL8MMc3D2gtS/F787DThGNQdjZLgPLGdYgsUTPc3lmNtO5FS2cTfqq8+B66tTjpJ/yq0dkRHPWxUMhO8zxvmcg77WhxCUfkgexqQsmN3cATyxGoILev+nmwWNmELsrViwwI0Atknldkv4Wy33BU5Yjq/gNtE/gN8lbR+zAGy5q+2mev81tZqzRFb2GQfcEoNIeAI7ZMjsAXqMotSwZ/TFAQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j7VdN+2X6lvvJjZT4T7zCKIQyrV6Oo6yDIxUnukH/60=;
- b=mpvPq+sVWec8wI6y7O76VzzSguX+xZ6jVg42K5SIHJ1JUhZyKZOJsVb5e0UxC6+ep8uuGwsVz1cMkXLbOpimiagbvvBTypF1AaZBJd2iBAXJp3VyK0KqN5S8b5kFVEg/R9BJVFYwWWqrj1w0tE1AAfUdCKwxyfLYqBLDFQSa7Y4=
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com (2603:10b6:806:f9::23)
- by BY5PR11MB3896.namprd11.prod.outlook.com (2603:10b6:a03:187::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.21; Wed, 9 Mar
- 2022 13:11:13 +0000
-Received: from SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::dc94:3c7c:8ef8:21b9]) by SA2PR11MB4874.namprd11.prod.outlook.com
- ([fe80::dc94:3c7c:8ef8:21b9%6]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
- 13:11:12 +0000
-From:   <Tudor.Ambarus@microchip.com>
-To:     <Sergiu.Moga@microchip.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski@canonical.com>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <Claudiu.Beznea@microchip.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>
-Subject: Re: [PATCH 1/3] ARM: dts: at91: sama7g5: Swap `rx` and `tx` for `i2c`
- nodes
-Thread-Topic: [PATCH 1/3] ARM: dts: at91: sama7g5: Swap `rx` and `tx` for
- `i2c` nodes
-Thread-Index: AQHYM7cmzBrXcW4RLkOaOCtEH4u7zQ==
-Date:   Wed, 9 Mar 2022 13:11:12 +0000
-Message-ID: <03f0c9de-578c-4f4f-b67b-3eabd930d8e1@microchip.com>
-References: <20220309120714.51393-1-sergiu.moga@microchip.com>
- <20220309120714.51393-2-sergiu.moga@microchip.com>
-In-Reply-To: <20220309120714.51393-2-sergiu.moga@microchip.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: cfd91a13-6889-456c-1f00-08da01ce48f9
-x-ms-traffictypediagnostic: BY5PR11MB3896:EE_
-x-microsoft-antispam-prvs: <BY5PR11MB3896CE1040BC93E79896D38DF00A9@BY5PR11MB3896.namprd11.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: jY8BGnuIsRiUyWQjaNVWWjsBQ6uTmDR54FTcyjNw/RF2yGgOARP6KnZNFQVgqh11uYI5+ndGiBFYhJE5/KVShrrUGMgu3FMHkmaKX+Bh9w6p87L55/17XzNAsR32+PD8maM0aiCh6WoXqQ1ATPIVor8lUy/ycVDV6fsHn2e6WN4GDOw56Jkoo/ic16ckQHThT4GCr8Q20V3179dteWu6XJmI2nFqvM+0X5EkAAyG5IKBqxm3o72Qz8pHXFHX60R5AfTxmORCW+8C/4n2X8a5DFbR9xWtE6adfaw3q/fXRhHsfM/9D0hOaNs3P+rfoPG7B4AJ0h62T4blMgM4zpT+pGuBPkF65e1uMQYoNzSbD2axoX0cI5Qo1R6q0AU54ytg+jo77O4jjSgeNvsssRybnFxyqbvlPku343XIkRuvm478YF9tWmjBujLg5yN2Er8c5IaW6Wthr+bkc9VQPq7ITI12GitYfJF6HmQSj0Wv8p1p8E1VHGOKRZUyjKjOTZIF+DyAwmL5S4/67BaDiCotzRQTywL3gkG3p35T0DXHvyZEiZB17/NEJj+1bFTJ9x25vBBytn63xzRQie/04CIxTuqK230QODNsbWeK3zWHBIU8U7pJg4MGiW+W3zO4wQsslH3KJZ5bZ1Ql1FPPI9GFuqiNHVQXXwXvfj9JW1jMSrZHlsWDiH6YbSW0l59fnI/oVbivurcWjUjQt4EzM8+aPDOpDC1I2rgq/1xcR3iJ8oGrO4MoBpHDQXEVsnxNX0EPILsbw7abT8mIyrlT8b1PMzLJv6g1dGaLiF22zRzLEof1bJAt3VV8quy4J6aeuPgFHjhc7iTybWIp2ca6xFuB6cTuEAPLHqm3wdsDMN9GV7I0NvSwmwPM90j0jCFAslvz
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA2PR11MB4874.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(38100700002)(91956017)(966005)(66556008)(66476007)(66446008)(64756008)(122000001)(76116006)(6486002)(66946007)(186003)(26005)(2616005)(6506007)(6512007)(110136005)(316002)(53546011)(6636002)(54906003)(508600001)(71200400001)(38070700005)(86362001)(2906002)(5660300002)(36756003)(8936002)(31686004)(83380400001)(8676002)(4326008)(31696002)(81973001)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VGhtdUJSU25TblZFNkJiS285WGF2WDBmaFhuT1RCNEtqRXdaVEYzQS9KdGpK?=
- =?utf-8?B?dGxDV0FoWklEOHZZVEN1SnNEL29WZjZ6OW5xWDgzMEJMaDRPdm53MTJDN2pI?=
- =?utf-8?B?eThKcCtZV01TRGVxRGtqZHpBU1dBc1BtQWpYaEZubjMwS3RpVnJTVFJkcnUw?=
- =?utf-8?B?VjNhbld5QVdpdzdLTUYySjVWL3ZoZXFwMTRxUWcvNFZ2ZXhmaDlGbUtiR1Q4?=
- =?utf-8?B?ZWJqRUNwUGVOTm93WXVBWFVsWGV0NnB1RHo5dUhoRzg5OWFGanpGVjJuWXdG?=
- =?utf-8?B?eUdhT20ySlhuNkIvY0JMaGVSU2swdFFlTUNMUm1oa0F5QzNTTkxGNEl2QmhU?=
- =?utf-8?B?aXNOcXFFRnBsc3VVQUoyM20vWU1OTk5XMnM2Rmc2MDd2MlR0L00xSkVkL081?=
- =?utf-8?B?ZDJoTnZKZGZUV0RNY3U2enlnMHZHb2JzN0dkQkJLeDBXR2h5MmZoNFplVU45?=
- =?utf-8?B?cmVlSEJtdkdiMkt5d3RjeDRXU3BoNGV4eUI0VzJ3cHhsdWwrZHhidFRrd2t5?=
- =?utf-8?B?VEFmUitSZ1JRN3krbkQ2Vm5JOVZFZmtBbWhkYlh5ZXNVK3NTVHJTT2tWOWty?=
- =?utf-8?B?MzVPaUZYcE5LRjkrR25QbnVOdFNhbGx1VXRPQmdTZzI1elpRUVllNkl6YTRI?=
- =?utf-8?B?bEZSU21hN3ZqUm55S2dFbXlyYjJLSHVqQWk4NS9ITmZqK0hzYnN2UHp6RmZK?=
- =?utf-8?B?RUlEWlZpTm42cUtKWGlsNWN0dGFDVDd6MUhjZlV2OGt5c3pTbjdzc014QTh3?=
- =?utf-8?B?L2lCNnNkTU5NRnlQTTlPcW9XN1c0cC9TRE41R1NWWWVWOWJjbi91VFFnLzdy?=
- =?utf-8?B?RmpBSWY5L0gxWUpPbko1RCtZK2pBWW84c2NHL1pCSXFPVy82UnY0K1ZzV3Vw?=
- =?utf-8?B?a2JkVGtqRzVLdk8zM01TbitkYzlkbHlFSjdsMFRkZC9Tc2NERTZ5b2p3MHZS?=
- =?utf-8?B?V3oyb1ppWno5WGtyeHFXcHJkZ1dYQUZhZ3pIWEFzMFEvNGFSakNBZnpsQ0hy?=
- =?utf-8?B?SnNhK3pVcmZlMUNHaW05QTB3dHg4ZmRzU1hySlNNbktzYWd6VENTSm05a1Vy?=
- =?utf-8?B?ZkI0S0g0eFh0R2toaStyUU5EYmhlNFNOQW03QWxkZkU1OHZqMVJ5MzVXdzl4?=
- =?utf-8?B?ZGxQNC94UFRqTXFBdzZuNTFRY3ZOMGpVUVdCRGZKb0QwamNXZ3BHL0xpZzJS?=
- =?utf-8?B?M0dCdzB2V09MR1dVTU5tUGsybjNhQkNkS0VaTER6K2NYZEpiMDRsemhtbDRy?=
- =?utf-8?B?Z25Va0dTa3lDblV3dkxQbXFEdUJDQW15QS9QTy9TQ2xkK0xTWU9OZmZwTmgz?=
- =?utf-8?B?bGRjbGFUNWxremgvWW50T3BSV1hwUytNSFNSTjdQTlRVeWFLMmRCQmxSZEVP?=
- =?utf-8?B?anBIbTJVRGxtUE42Qkk4OXdiK2xyTFdRaHA1aDlHUHlQcUpCZm1yVE9ndERC?=
- =?utf-8?B?UXFxNWR1aXVhS1VpNjE1NjN3dWI5ZmZ1WUk1a080UkozK1prUjNPMTA5OGRQ?=
- =?utf-8?B?T0E1TlZZWXBlMVp3dDhXa0xmL0VQWlh1bWdMQlJNOWYxbkZqdUUzYitFOVNZ?=
- =?utf-8?B?Q2ZqS1VkRGw5R0hEZHFOUU1BYTJSa1ByaTNwUEZNeCtON2R1Tk43NkpaNDdL?=
- =?utf-8?B?QkpvN0Z4T1JMdDlmRzNJNjFBTUc0NmxBbWtvMkR6M3NuMVJEbjJma0NVTDIz?=
- =?utf-8?B?WTBTcjRDUlBKOExubXRPcFl2bGhqaSt1Y1dmWDF1WWQvZktrWDFnYzc2VVNw?=
- =?utf-8?B?aG5UWUlOSTVFQ0lKQnY2bjVqOWlKRHRwWmNYQjluYUU3MUIxYVlGR1Y0YzE0?=
- =?utf-8?B?aStJdkdEVFVuckh6aUlUUmxwUlBLRDB2cEVLeCs3UlNCODRtWi9YL1RsS2Zl?=
- =?utf-8?B?RnRwNnd6ZkdqeWZRK1pDY0lPWE0zWitxU0w4bnBoZUJBNHo1OWl4TzJrYUln?=
- =?utf-8?B?SnAyVjRReWRyUFljaUNOSjRHbVhnSGNBb0NtemwyaERuR1RLandNbGtHK2NR?=
- =?utf-8?B?aENuUGl3ZS93PT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <94DF76FC17D3AE43AF4DC4893A01626A@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ 15.1.2375.17; Wed, 9 Mar 2022 06:21:51 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Wed, 9 Mar 2022 06:21:50 -0700
+Date:   Wed, 9 Mar 2022 14:24:43 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     <Divya.Koppera@microchip.com>, <netdev@vger.kernel.org>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <richardcochran@gmail.com>,
+        <linux-kernel@vger.kernel.org>, <UNGLinuxDriver@microchip.com>,
+        <Madhuri.Sripada@microchip.com>, <Manohar.Puri@microchip.com>
+Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
+ values and timestamping check for LAN8814 phy
+Message-ID: <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
+References: <20220304093418.31645-3-Divya.Koppera@microchip.com>
+ <YiILJ3tXs9Sba42B@lunn.ch>
+ <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
+ <YiYD2kAFq5EZhU+q@lunn.ch>
+ <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
+ <YidgHT8CLWrmhbTW@lunn.ch>
+ <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
+ <YiecBKGhVui1Gtb/@lunn.ch>
+ <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
+ <YifoltDp4/Fs+9op@lunn.ch>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SA2PR11MB4874.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfd91a13-6889-456c-1f00-08da01ce48f9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2022 13:11:12.4416
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F+YcVMJa89mX4cLX9GX4etoHokH1OvK5B1kU+Ebt4Ba3p9ZG/uyH9WC7DlvWH40qBU0PWgLDqrnUTb7JOlgNf4C2faj39gCN+24nyyh0nGg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB3896
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <YifoltDp4/Fs+9op@lunn.ch>
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
         T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -158,60 +74,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMy85LzIyIDE0OjA3LCBTZXJnaXUgTW9nYSB3cm90ZToNCj4gRVhURVJOQUwgRU1BSUw6IERv
-IG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5b3Uga25vdyB0aGUg
-Y29udGVudCBpcyBzYWZlDQo+IA0KPiBTd2FwIGByeGAgYW5kIGB0eGAgZm9yIHRoZSBgZG1hLW5h
-bWVzYCBwcm9wZXJ0eSBvZiB0aGUgYGkyY2Agbm9kZXMNCj4gaW4gb3JkZXIgdG8gbWFpbnRhaW4g
-Y29uc2lzdGVuY3kgYWNyb3NzIE1pY3JvY2hpcC9BdG1lbCBTb0MgZmlsZXMuDQo+IA0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBTZXJnaXUgTW9nYSA8c2VyZ2l1Lm1vZ2FAbWljcm9jaGlwLmNvbT4NCg0KUmV2
-aWV3ZWQtYnk6IFR1ZG9yIEFtYmFydXMgPHR1ZG9yLmFtYmFydXNAbWljcm9jaGlwLmNvbT4NCg0K
-PiAtLS0NCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL3NhbWE3ZzUuZHRzaSB8IDE4ICsrKysrKysrKy0t
-LS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgOSBkZWxldGlvbnMo
-LSkNCj4gDQo+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LmR0c2kgYi9h
-cmNoL2FybS9ib290L2R0cy9zYW1hN2c1LmR0c2kNCj4gaW5kZXggNGRlY2QzYTkxYTc2Li5mNjkx
-YzhmMDhkMDQgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL3NhbWE3ZzUuZHRzaQ0K
-PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9zYW1hN2c1LmR0c2kNCj4gQEAgLTYwMSw5ICs2MDEs
-OSBAQCBpMmMxOiBpMmNANjAwIHsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAj
-c2l6ZS1jZWxscyA9IDwwPjsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbG9j
-a3MgPSA8JnBtYyBQTUNfVFlQRV9QRVJJUEhFUkFMIDM5PjsNCj4gICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICBhdG1lbCxmaWZvLXNpemUgPSA8MzI+Ow0KPiAtICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIGRtYXMgPSA8JmRtYTAgQVQ5MV9YRE1BQ19EVF9QRVJJRCg3KT4sDQo+
-IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8JmRtYTAgQVQ5MV9YRE1B
-Q19EVF9QRVJJRCg4KT47DQo+IC0gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG1hLW5h
-bWVzID0gInJ4IiwgInR4IjsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkbWFz
-ID0gPCZkbWEwIEFUOTFfWERNQUNfRFRfUEVSSUQoOCk+LA0KPiArICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgPCZkbWEwIEFUOTFfWERNQUNfRFRfUEVSSUQoNyk+Ow0KPiAr
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRtYS1uYW1lcyA9ICJ0eCIsICJyeCI7DQo+
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdHVzID0gImRpc2FibGVkIjsNCj4g
-ICAgICAgICAgICAgICAgICAgICAgICAgfTsNCj4gICAgICAgICAgICAgICAgIH07DQo+IEBAIC03
-ODYsOSArNzg2LDkgQEAgaTJjODogaTJjQDYwMCB7DQo+ICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgI3NpemUtY2VsbHMgPSA8MD47DQo+ICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgY2xvY2tzID0gPCZwbWMgUE1DX1RZUEVfUEVSSVBIRVJBTCA0Nj47DQo+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgYXRtZWwsZmlmby1zaXplID0gPDMyPjsNCj4gLSAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICBkbWFzID0gPCZkbWEwIEFUOTFfWERNQUNfRFRfUEVS
-SUQoMjEpPiwNCj4gLSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmZG1h
-MCBBVDkxX1hETUFDX0RUX1BFUklEKDIyKT47DQo+IC0gICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgZG1hLW5hbWVzID0gInJ4IiwgInR4IjsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBkbWFzID0gPCZkbWEwIEFUOTFfWERNQUNfRFRfUEVSSUQoMjIpPiwNCj4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwmZG1hMCBBVDkxX1hETUFDX0RUX1BF
-UklEKDIxKT47DQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZG1hLW5hbWVzID0g
-InR4IiwgInJ4IjsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBzdGF0dXMgPSAi
-ZGlzYWJsZWQiOw0KPiAgICAgICAgICAgICAgICAgICAgICAgICB9Ow0KPiAgICAgICAgICAgICAg
-ICAgfTsNCj4gQEAgLTgxMCw5ICs4MTAsOSBAQCBpMmM5OiBpMmNANjAwIHsNCj4gICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4gICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JnBtYyBQTUNfVFlQRV9QRVJJUEhFUkFMIDQ3
-PjsNCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdG1lbCxmaWZvLXNpemUgPSA8
-MzI+Ow0KPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRtYXMgPSA8JmRtYTAgQVQ5
-MV9YRE1BQ19EVF9QRVJJRCgyMyk+LA0KPiAtICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgPCZkbWEwIEFUOTFfWERNQUNfRFRfUEVSSUQoMjQpPjsNCj4gLSAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICBkbWEtbmFtZXMgPSAicngiLCAidHgiOw0KPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgIGRtYXMgPSA8JmRtYTAgQVQ5MV9YRE1BQ19EVF9QRVJJRCgy
-NCk+LA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPCZkbWEwIEFU
-OTFfWERNQUNfRFRfUEVSSUQoMjMpPjsNCj4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICBkbWEtbmFtZXMgPSAidHgiLCAicngiOw0KPiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgIHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ICAgICAgICAgICAgICAgICAgICAgICAgIH07DQo+
-ICAgICAgICAgICAgICAgICB9Ow0KPiAtLQ0KPiAyLjI1LjENCj4gDQo+IA0KPiBfX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiBsaW51eC1hcm0ta2VybmVs
-IG1haWxpbmcgbGlzdA0KPiBsaW51eC1hcm0ta2VybmVsQGxpc3RzLmluZnJhZGVhZC5vcmcNCj4g
-aHR0cDovL2xpc3RzLmluZnJhZGVhZC5vcmcvbWFpbG1hbi9saXN0aW5mby9saW51eC1hcm0ta2Vy
-bmVsDQoNCg==
+The 03/09/2022 00:36, Andrew Lunn wrote:
+> 
+> On Tue, Mar 08, 2022 at 11:14:04PM +0100, Horatiu Vultur wrote:
+> > The 03/08/2022 19:10, Andrew Lunn wrote:
+> > >
+> > > > > So this is a function of the track length between the MAC and the PHY?
+> > > >
+> > > > Nope.
+> > > > This latency represents the time it takes for the frame to travel from RJ45
+> > > > module to the timestamping unit inside the PHY. To be more precisely,
+> > > > the timestamping unit will do the timestamp when it detects the end of
+> > > > the start of the frame. So it represents the time from when the frame
+> > > > reaches the RJ45 to when the end of start of the frame reaches the
+> > > > timestamping unit inside the PHY.
+> > >
+> > > I must be missing something here. How do you measure the latency
+> > > difference for a 1 meter cable vs a 100m cable?
+> >
+> > In the same way because the end result will be the same.
+> 
+> The latency from the RJ45 to the PHY will be the same. But the latency
+> from the link peer PHY to the local PHY will be much more, 500ns. In
+> order for this RJ45 to PHY delay to be meaningful, don't you also need
+> to know the length of the cable? Is there a configuration knob
+> somewhere for the cable length?
+> 
+> I'm assuming the ptp protocol does not try to measure the cable delay,
+> since if it did, there would be no need to know the RJ45-PHY delay, it
+> would be part of that.
+> 
+> > > Isn't this error all just in the noise?
+> >
+> > I am not sure I follow this question.
+> 
+> At minimum, you expect to have a 1m cable. The RJ45-PHY track length
+> is maybe 2cm? So 2% of the overall length. So you are trying to
+> correct the error this 2% causes. If you have a 100m cable, 0.02% is
+> RJ45-PHY part that you are trying to correct the error on. These
+> numbers seem so small, it seems pointless. It only seems to make sense
+> if you know the length of the cable, and to an accuracy of a few cm.
+
+I am not trying to adjust for the length of the cable.
+If we have the following drawing:
+
+ MAC                     PHY                    RJ45
+-----       --------------------------       --------
+|   |       |                        |       |       |
+|   |<----->|timestamp | FIFO | GPHY |<----->|       |<------> Peer
+|   |       |   unit                 |       |       |
+-----       --------------------------       --------
+                 ^                                   ^
+                 |            latency                |
+                 -------------------------------------
+
+I am trying to calculate this latency, which includes a 2cm of track +
+latency inside the PHY. As Richard mentioned also the PHY introduce some
+latency which can be microseconds.
+
+I understand if we consider that this latency should not be in the DT
+and be part of the driver because the latency over the 2cm or 1.5cm of track
+is almost nothing. But then what about the case when we want to add these
+latencies to a MAC? They will depend on the latency inside the PHY so
+those should come from DT.
+
+So it really doesn't matter to me if I use a 1m cable or 100m cable.
+What it matters is to see that mean path delay will be ~5ns for 1m cable
+and ~500ns for 100m cable. And if is not, then I need to update the
+register to calculate correctly the latency from RJ45 to timestamp unit
+in the PHY.
+
+> 
+
+>    Andrew
+
+-- 
+/Horatiu
