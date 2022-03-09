@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B64C24D2B71
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 10:09:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2294D2B7E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 10:12:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231841AbiCIJKC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 04:10:02 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49082 "EHLO
+        id S231737AbiCIJNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 04:13:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbiCIJKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 04:10:01 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C6AF14F9A5
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 01:09:03 -0800 (PST)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7A6B93F222
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 09:09:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646816941;
-        bh=WzHkSBUQpjp6lbzAQCdNWpRnWZNKxL9bPgaE1U5jbzc=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=iTMWEx5kqBub5kJk/mV3kyM3geHDAgrzoNcdYEak3SoCnDTQ7lHFRgjAmjBFTsSg2
-         Dux6BtpJmqELIWrRMpmKxnq79C9qqmfCGn9AjU/mZjwgdMXy8FB5AM7eo5VG350mCO
-         k93aSHfKHGMvY6kGN9yzM1tWdHRTk7zO1iPVQ+fVneVT+aF/TazfH/kSmD9Ni55r4t
-         9XxeG7imH8nvyZ9sWob3kLooBpkw33Dlc6QNg61qoZpM7bafu5no5GNMgxFpo5mK2l
-         /w8SGb1T+LzyCeMQYGw9JDi0KYhQrGOrimMOC9rG11JONAGo5LDoDQHApLpJmtPU9E
-         rXFrzqPbumo5A==
-Received: by mail-ej1-f71.google.com with SMTP id ga31-20020a1709070c1f00b006cec400422fso926270ejc.22
-        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 01:09:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=WzHkSBUQpjp6lbzAQCdNWpRnWZNKxL9bPgaE1U5jbzc=;
-        b=EBKylWHNwDwgBIUW1iHJPqPN4lgj+H8E0PjK/kosOF+6sDTuimkRCjuslOlgvd3WO1
-         PLS5NTS+QUtR7Ny9d0wHlhn/tXaGXszDTatCp2uITC0sWBiy9qEUVjq1pN1ydzGJaJE7
-         ivJ9IbiUi3266fRLRyrgxuLXxXNpY2VvBm0Qff+IpXKLlu37v1wV1gnwR1jDC4+g+xvq
-         MtigOcxUu+CwWwRGdVGAGGmw8VcjjaEvQjg11ew+93gbhL3SouDfvM4hMfzTK/UHVqFt
-         f6ncIHY71ytfXDx/VY0dtLuyz5F80mxV8bNqs/0jwEo2Dfwrai4xy18VBpZOn1vaoDZF
-         WIsg==
-X-Gm-Message-State: AOAM530YMvKzA9l+ZGBkwD3WQrONVSyb8vuuK5I9g4UN/QEx3H44QjwG
-        6bximq+Kc7wAZ21myRX7KVLLFMC3OAKeIkWvOvALnZwcqfMGBboOxwZ6mGV1CrVpQbKcatAtaiC
-        lGpiuov/nqPPzCTs5hVWwX7KfwGwg5OWaV01Ubdk=
-X-Received: by 2002:a17:906:31c1:b0:6c9:cfb3:4dd3 with SMTP id f1-20020a17090631c100b006c9cfb34dd3mr16530545ejf.392.1646816940954;
-        Wed, 09 Mar 2022 01:09:00 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyokg1UCn/6f42J+LUZN2KQU+wzLO/g3QE5jQNu/CJVwGdXXaVXsl0iCLmJT1kJ7fjTkbU2tQ==
-X-Received: by 2002:a17:906:31c1:b0:6c9:cfb3:4dd3 with SMTP id f1-20020a17090631c100b006c9cfb34dd3mr16530530ejf.392.1646816940747;
-        Wed, 09 Mar 2022 01:09:00 -0800 (PST)
-Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id dz10-20020a0564021d4a00b0041665989a9csm533969edb.41.2022.03.09.01.08.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Mar 2022 01:08:59 -0800 (PST)
-Message-ID: <730c8fd2-111e-e028-43d0-0942df2ce188@canonical.com>
-Date:   Wed, 9 Mar 2022 10:08:59 +0100
+        with ESMTP id S231869AbiCIJMx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 04:12:53 -0500
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 083E516DAC1;
+        Wed,  9 Mar 2022 01:11:54 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 5E87280C1;
+        Wed,  9 Mar 2022 09:10:30 +0000 (UTC)
+Date:   Wed, 9 Mar 2022 11:11:52 +0200
+From:   Tony Lindgren <tony@atomide.com>
+To:     Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, jan.kiszka@siemens.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nishanth Menon <nm@ti.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am65: disable optional
+ peripherals by default
+Message-ID: <YihvWFdr1cT7cyk5@atomide.com>
+References: <20220203140240.973690-1-matthias.schiffer@ew.tq-group.com>
+ <20220204143108.653qk2ihnlhsr5aa@prior>
+ <YgDCLaBHA3DDQAUd@atomide.com>
+ <5944ba0ce568eaf507917799b1dfd89a3d0ca492.camel@ew.tq-group.com>
+ <YgEBml9HvFzSl289@atomide.com>
+ <9923df6525212389b86cb635624bcfb5c27a8bc5.camel@ew.tq-group.com>
+ <YgJZbdOlazrde7O/@atomide.com>
+ <1356e93cd5b101c3d896e35250c66959ed631544.camel@ew.tq-group.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/2] dt-bindings: regulator: Add bindings for Richtek
- RT5190A PMIC
-Content-Language: en-US
-To:     cy_huang <u0084500@gmail.com>, broonie@kernel.org,
-        robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <1646812903-32496-1-git-send-email-u0084500@gmail.com>
- <1646812903-32496-2-git-send-email-u0084500@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <1646812903-32496-2-git-send-email-u0084500@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1356e93cd5b101c3d896e35250c66959ed631544.camel@ew.tq-group.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2022 09:01, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
+Hi,
+
+* Matthias Schiffer <matthias.schiffer@ew.tq-group.com> [220228 10:29]:
+> AFAICT, disabling non-operatational devices in the board DTS instead of
+> the SoC DTSI is worse than the alternatives in every way:
 > 
-> Add bindings for Richtek RT5190A PMIC.
-> 
-> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> ---
->  .../regulator/richtek,rt5190a-regulator.yaml       | 141 +++++++++++++++++++++
->  .../regulator/richtek,rt5190a-regulator.h          |  15 +++
->  2 files changed, 156 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rt5190a-regulator.yaml
->  create mode 100644 include/dt-bindings/regulator/richtek,rt5190a-regulator.h
-> 
+> - Verbose board DTS: You have to think about all the devices that exist
+> in the SoC, not just the ones you want to use
+> - Adding new nodes without `status = "disabled" to SoC DTSI can
+> potentially cause issues on dependent boards
+> - It doesn't solve the issues that not having `status = "disabled"` in
+> the DTSI is supposed to solve
 
+My preference is the least amount of tinkering in the dts files
+naturally :) It really does not matter if the extra dts churn is to
+enable or disable devices, it should not be needed at all.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To summarize, my main point really is the following:
 
+There should not be any need to tag the SoC internal devices with anything
+in the dts files. The device drivers should be able to just deal with the
+situation. IMO devices should be tagged with disabled or reserved when
+they are not accessible for example because of being used by secure mode
+for example. If the the status needs to be set to anything, it really is
+a symptom of incomplete handling somewhere.
 
-Best regards,
-Krzysztof
+Regards,
+
+Tony
