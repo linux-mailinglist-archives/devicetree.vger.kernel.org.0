@@ -2,165 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F07774D2FFB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 14:32:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 44EBA4D3025
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 14:42:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232819AbiCINd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 08:33:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53984 "EHLO
+        id S231996AbiCINnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 08:43:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233161AbiCINd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 08:33:26 -0500
-Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.140.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0DC1254;
-        Wed,  9 Mar 2022 05:32:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=qti.qualcomm.com; i=@qti.qualcomm.com; q=dns/txt;
-  s=qccesdkim1; t=1646832745; x=1647437545;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=fU5XX6lr2X2rBT8ggergtJZwyZn1exyB3febI2YY2P4=;
-  b=2rCSW9TvE6zCQ1bC984GoE93P7lanKt4lFhEBzS0oh0kLhSbJTkXnleG
-   bb29ik86nt2aChhtnxg3P3Njth3y2uX74+81yzn8BWxn/xnX+GNTp/lKi
-   wvBtinW4/xlgbhlf+V5JzrnThrbb5m+1TTt3rZLbwSQjvjkEha/LeLI5o
-   Q=;
-Received: from mail-co1nam11lp2170.outbound.protection.outlook.com (HELO NAM11-CO1-obe.outbound.protection.outlook.com) ([104.47.56.170])
-  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Mar 2022 13:32:23 +0000
+        with ESMTP id S233273AbiCINnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 08:43:49 -0500
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2074.outbound.protection.outlook.com [40.107.96.74])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03095C12DD;
+        Wed,  9 Mar 2022 05:42:50 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZVIKxrNwiB4N7jlZZ6JJvajCGQSb5ludfyKZx22rxAUGVNudDN737oyMxGy6r2P86MlSm3Ss5Nc/+fZ1mVBkklnKC3C4XXVhfkJ8HkeJCmH1uO5UhJtmDUkl+S7k2bWPDNWX2omKN5frNfYNb5iRy/2JtcyHcRURhPsJCGmn2+sP3JmQTz0WrKyfKZe9lvNmrz1K+tNK8kF/jU7KSa3SH9yTXnDDxyw998F+Lhf1Wncrsb7QGy4vC82L84/e1OR1gWkBO5lfYvIq4AdjcbHaXYBmroMPg2pjqgic9VW+Ny+RjpXsrT4ov41qarrH94NrwNlhBLU8k1vBgw0MxY/IeQ==
+ b=lIJEApFRPfW+wwpYWUbDDjC3XGs6IYA0RO5bpyEhsfRy2SHsLVSeM7MY+35Q57WwUqCGyLhiIwGQGZa6zXMgQKaapc66hSb4VhQdiccr8nCr+OJ2lNRmMiv1qXafAWPJWEMUbIB06Y05SmrkvhqhdhcKIbzBWWNzntbRYcT5iRPsmcGnq6Q1KVXTmvq/KVg0TAJ1iwnjyRTjkygooOCvXTK2vHVrtLmcWbr1X1k3wNalCHYmuNlCsu/ltttLdmTKSa0s91ohCu2N+hYr/XCuDnxh/J0XPwJ+WRgeI4EL+qOOMG5b6RO3iPlEbMTbJADJs2Ush3qVs6TQQQKD3z13Hw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fU5XX6lr2X2rBT8ggergtJZwyZn1exyB3febI2YY2P4=;
- b=RIl/t8834hd6PjdezHJ5KYwVZ6VpsWWyEtBfqVnUgVIJBY2NhOYB8evngBBEWX1Na7vGGYuMUzcSnMh9CEBhZfUWSHSkixm/Zo2xGeiLwNPdQR6gZGiP9Q05dgYeSMXydXhADBcpsMx9rqy/qFtr8kdodOtfKEOjY9H7h42VT5fanG7lmT3ZRuwpQieSClaFmKIHUUpUHHA9ObMIYgcBPdSG/rcmbC7wwGTckjob12NmMZRUBe/KbKQeti4YRO4J5oDv6njS+VKQUiEsZ2OQb0pz0FRPV4NMR4WppmFiKsD1XzjLor3EBGSB3H2D2m/PuHsI3TAgIpLCXfB8woXq7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=qti.qualcomm.com; dmarc=pass action=none
- header.from=qti.qualcomm.com; dkim=pass header.d=qti.qualcomm.com; arc=none
-Received: from BYAPR02MB4565.namprd02.prod.outlook.com (2603:10b6:a03:15::17)
- by SN6PR02MB4591.namprd02.prod.outlook.com (2603:10b6:805:b0::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.17; Wed, 9 Mar
- 2022 13:32:18 +0000
-Received: from BYAPR02MB4565.namprd02.prod.outlook.com
- ([fe80::a0d3:236a:537d:118]) by BYAPR02MB4565.namprd02.prod.outlook.com
- ([fe80::a0d3:236a:537d:118%4]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
- 13:32:18 +0000
-From:   "Vijaya Krishna Nivarthi (Temp)" <vnivarth@qti.qualcomm.com>
-To:     "Vijaya Krishna Nivarthi (Temp) (QUIC)" <quic_vnivarth@quicinc.com>,
-        Doug Anderson <dianders@chromium.org>
-CC:     Andy Gross <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Mukesh Savaliya <msavaliy@qti.qualcomm.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dilip Kammath <dkammath@qti.qualcomm.com>
-Subject: RE: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
- bias-disable for sc7280-idp
-Thread-Topic: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
- bias-disable for sc7280-idp
-Thread-Index: AQHYIaNir99tB67bpEut/O2NV51De6ysZZ+AgAMmebCAB6PVkA==
-Date:   Wed, 9 Mar 2022 13:32:18 +0000
-Message-ID: <BYAPR02MB45650334FEF776E0C6CBFF1AFA0A9@BYAPR02MB4565.namprd02.prod.outlook.com>
-References: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
- <CAD=FV=XtkXganjG=ddgaq4-p+cAK1c4jqG=8Ux_xxdUrPpXhVA@mail.gmail.com>
- <BL0PR02MB456421F83B9C88139514399EFA059@BL0PR02MB4564.namprd02.prod.outlook.com>
-In-Reply-To: <BL0PR02MB456421F83B9C88139514399EFA059@BL0PR02MB4564.namprd02.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=qti.qualcomm.com;
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f6bb779d-81d3-4380-8cf4-08da01d13ba4
-x-ms-traffictypediagnostic: SN6PR02MB4591:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <SN6PR02MB45918EA3D4F73274D8E61B9EFA0A9@SN6PR02MB4591.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: QMKqiysT4LxWti60LZ12kgHOw7JtrLyP88QXsptesCt+/N0J6CTqr4jv5dAHW4glVe1JZcAuELweZugemT66ycrw7M6YL6QSih7cjnSJIwYrrCL6lxPmCPd35IkhijdLQplUaUO9d+lQQ7KRcg1ZMaBieJEFAf935yqWts7E8trn0PxmA8oDxPE3jTCwxe8ETo5qX6wkvqrcct2e2RdOkGabtTSByLC9TaTQ2tesqVM3zJGw1EkpikCkHby7beuuaA2Bl9gcexcTAK9Sx+73Pndhl0iPn1uT55lKs1uzg7xgRH02owlJd7DFfhQh5wRkj74ABpIP6v0aHs95iwIDuPXj44CMcfgVyMb6gSSeJEiIfMm4EQ8K2L35x+RLyZ/TGCi0qChguUYnAtaU7MzyPSNmzz9Km/9V2Wn+uLhqytOFhNIEl9F1RbkmEKeImJ47QwK1t4WXLWY7My3oEYusdnfyV9wNtLcxbt1gnVb79UabSXawaYDQnBui/o3yzmuK/mqJ4ceMG5w8/aWkDBwnPilBO2x2/dRrOWqm3aaNt1iD/P4BmHqNB/eda1uTPMmfTHArHHEpMAQ55h3FE9tOSHkQLnnf0b5CungGmo+RPAlvLbT4XC1YxG7Va7QZ4wuHepf8L1YXlZdw3X4v9vcX5Ugfpctl0/PeGS8osbr27W6ulSJiFHjOeiq7GhA+7Erho63kGYK2vsSR+6PRp81F5w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB4565.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66946007)(52536014)(4326008)(66446008)(8676002)(64756008)(66476007)(66556008)(76116006)(33656002)(508600001)(2906002)(5660300002)(8936002)(316002)(110136005)(54906003)(4744005)(38100700002)(122000001)(38070700005)(86362001)(186003)(107886003)(53546011)(71200400001)(6506007)(55016003)(9686003)(7696005)(83380400001)(26005);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZlUyUW12eVQ1MncwdlpYdU5FU2JCWnVPbVRramxya2JCYUtUblZKaWIvdzBD?=
- =?utf-8?B?SkZMS0hDSlVHVW03dXZKQjRnbVdLZGdPN3BYSWgwRE5QZVpveDJTeTRXY0hT?=
- =?utf-8?B?TytLU0M5YzE3VGhvemxmbStTQmd5dEFHU3hyVFQ2Rm01bXh6RWIwNTJhMlRI?=
- =?utf-8?B?VER5MVVvcGFSalJXMGEwd0JlZDVHN0dPT1RVR3VrODc5SDBDVXl2Y3h1MnN2?=
- =?utf-8?B?cFdXcUErcHBGWjNOYzVRbVphQkttU3F6aU5kT2EzU1B6UERqekd3VEovd2VW?=
- =?utf-8?B?RFNQaHVGZllTVk5hNVRrQ2gyUGMrTGFQaC95OERpeFdwcXdSSGJJUnY1VUhI?=
- =?utf-8?B?eEg1MGlCQ21GVjJObksxenYxS0paNnAyb21SSnZBei9NSURVdHlrdFJ6b1pT?=
- =?utf-8?B?bTgwUUVpcGlTdHNic1FLOUVnRVZreEJ4WFc5VnJuMkRvVkZFNnpIR25ta2d2?=
- =?utf-8?B?QkhBQlYvVkNiRUI1V0tMaXRoell0Qm9oZkY1b0VOSTZsS0hmelVKUllyK1Nv?=
- =?utf-8?B?cnQvWitKcmVFU1l5M1BPMVNMQUhhT0ltR1BhUWhNRGYyd04zTmJvRURJaEJo?=
- =?utf-8?B?OC8rWC9jQSs0WlpGdVV2QlFBN3N0M1hrd1lJNlBDdStKU1dFazc2c09IQXVB?=
- =?utf-8?B?dDdiaFd1SGZDN09lbldoZjhZM3Z4TmtkZ3FCMVZyZTY3dXFjbU45V29CWU1P?=
- =?utf-8?B?dk1oRmRZZlRBaElUSW9wcFdNUGNXRHVKeGZPbzJoNjdZVEFUaW84VXdEczBi?=
- =?utf-8?B?cWJlR0FibVZvZXZ1MkM4ai9OVlJBSHlBeU1zWlhqeEE0bDdGekQwM0hNaXlW?=
- =?utf-8?B?cmRIdm9DVmZveEpIRWtEUVpNUER3bXhNSFZiTzN1Q0pneHpTWFlkL2U1bUg3?=
- =?utf-8?B?dEk0R3F3L0UxN3pWRUZxVU56b2RyVGgrYnVuMWtaWlRCUm16TmhQSEZxdnFy?=
- =?utf-8?B?U2U3TWkzM0g2Tm1hc0lqT2l4ZGVrZjU3LzB3TnFURDZpeE5lQUZBRUlIRUZX?=
- =?utf-8?B?NC9lUTdGUTlnT0VPZnpWVnlNWHVSZG9semFtbVdhNGx3UjhZWWdOMlgyY1ha?=
- =?utf-8?B?NU5PLzhPWXU1UXlWRng4QmNoQXJPRG9mT0Q1YjBhTk5vTEx4MWliZEF1RW1U?=
- =?utf-8?B?U0F3KzI5bkQyZ0JWbzJwamwxTTV2ZnVMVXVnRXRSYU4yWHFudVFqMWxGWUNa?=
- =?utf-8?B?VTh3Q1JPa3Ixc3kxaWxrbVpRTW5YNGxZSHpyQjFpQkJQbkJRUmhzZkNiUHNR?=
- =?utf-8?B?Snk3akVmK1JBL3JoM0FhZUcxbVJNM1VHdHdmYXBaMXBhOTZVR252THJOSmMw?=
- =?utf-8?B?UDIyL3Jkcms2eUlIbXAzNS9YWGwvUzJGa3FkYjh3TWR0bUxZMFRnUmh2VzBP?=
- =?utf-8?B?MllNWHFNVXdiZTY4czV1L2ZuZlBZUHp0L01xWW5nRFp6NDNKaGROazBrTFl1?=
- =?utf-8?B?VU5hTExRNlNrdHBrK1ZwOVJ4N0U2T1FGd0RMNVJXS0hwakVTNk9SQ1Ztc2d2?=
- =?utf-8?B?cm9wZzB5d3hpMmtnbE52ZW9RSVBIT1R3N3V2MjVwRG1adzVCa3U4QVBobzZ2?=
- =?utf-8?B?RGJuZ2NBb2hvS1hVVmMvamZYNXI4WmdveWtNV3lnOHZsR1pKUzZsekxuUkxp?=
- =?utf-8?B?N2Z2ZWVPWDBuODgwR1FzT3Eyb1Z3aWlnRXU3R1VVR1RmbkdsTTlnNmtOa1JW?=
- =?utf-8?B?MDJZVC9pRmxpbnliaTk5TnJ1K3RPbE8wMlFZTzFiczNqNENrSHBERDBxRHY1?=
- =?utf-8?B?L0J3YVpUREd4alBYMHlEeVZCZGNPNkw4dmpwZkcyQ2FWc2N2TnV3VHRzYXp3?=
- =?utf-8?B?YllCNmNJc0VaSXhpeHYxUTBodWhhZm5aMS9yVkcyN1VyVDhITXlzTzhNN3Zj?=
- =?utf-8?B?ZC9jTXBLbEdqNVpnajlCdS8wU1R1RC8rb2lHSUFhaFFHcm5WTDY5QVhzU1RJ?=
- =?utf-8?B?ZFlwSkFPMWV6cnR5QWpkcm9VUkljNk15WHpFSlV4YXVqam5CL2EzOWkyZGVP?=
- =?utf-8?B?d0tvc2VtKytPcmNaeXhyNDZsbGJacWRXVDVkM3duM2pvaUREZXh2ZjlrME8y?=
- =?utf-8?B?Sm94ZTlFclRiL2dsby8rdENrT20zT1V3RWpxQk1obklqa2hscU1Nc0hMcXdJ?=
- =?utf-8?B?eFBBN1lhUkV3RVA0ZHhrVlkrOEIwa3E0TlQ1eWxRalNVSUNpbmhKMWNHWkwr?=
- =?utf-8?B?NTI4SXM1QUdyVWtRZVFhVUVFVW1oV1h4ZjQ2S0ZHaGZMS3NWM25KV0JoSWFW?=
- =?utf-8?B?K3Jwb1JpWU00aGlVbDhFb3p2NkJnPT0=?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ bh=OfXKSTDsfaM8fZRwULHj2z/dqYmvN4Q2/+WSbqYWSQA=;
+ b=hHrhmvRXFMq/bwopPRuDMtw6m9oQaK7ycL7KaCg3Z9lM2XLVmD5a/JsGyJpF5md8Gyw6Z+sI/AREfFpGQNUO1cgKZ4oBpcr5xaLQI/npW8dqAuuOcwIZv7icSoLBOnQ59us6j92rcQi8MfOajk4nBjorrobxoUum2zL1cjuGOMwYoL+MU37nUsB0UpWrD6NSeI4kuD9dkI2fyFXQLIbHVG5T1MUw6vLhrTDC8KKk4QDYhFzokig3psBmAcIV1RxcPGkUf41agdtvLNhnOY1J4ChlkIrPo9nRk8m7I+dwcKmTbVhJKHi7FgEh3Sp4Mo/D6XFfTRXNXqo9ruQu+wAdbw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=gmail.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OfXKSTDsfaM8fZRwULHj2z/dqYmvN4Q2/+WSbqYWSQA=;
+ b=FfPuPM4R/2mMDveXma8r0hwmz07LYZ/YpPQ3nN+epXR9fz2Bd6+7f8mcjoZjpjHMlM68y0I7LjFF+ZkQM6vuA18Eq+D5BNEgGIQrlJAw3K2V72YYY0aqz2Lhd0NJzzyMlZ8DzMuephAwoeMgo8JvfgaJIQlg92R9vMyLQO9NreY=
+Received: from DM6PR07CA0063.namprd07.prod.outlook.com (2603:10b6:5:74::40) by
+ DM5PR02MB2331.namprd02.prod.outlook.com (2603:10b6:3:57::17) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5038.17; Wed, 9 Mar 2022 13:42:48 +0000
+Received: from DM3NAM02FT041.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:5:74:cafe::9d) by DM6PR07CA0063.outlook.office365.com
+ (2603:10b6:5:74::40) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.20 via Frontend
+ Transport; Wed, 9 Mar 2022 13:42:48 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ DM3NAM02FT041.mail.protection.outlook.com (10.13.5.133) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5038.14 via Frontend Transport; Wed, 9 Mar 2022 13:42:48 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 9 Mar 2022 05:42:47 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 9 Mar 2022 05:42:47 -0800
+Envelope-to: zajec5@gmail.com,
+ robh+dt@kernel.org,
+ trini@konsulko.com,
+ sjg@chromium.org,
+ srinivas.kandagatla@linaro.org,
+ krzysztof.kozlowski@canonical.com,
+ ricardo@foundries.io,
+ jorge@foundries.io,
+ seanga2@gmail.com,
+ devicetree@vger.kernel.org,
+ u-boot@lists.denx.de,
+ linux-kernel@vger.kernel.org,
+ rafal@milecki.pl
+Received: from [10.254.241.50] (port=55666)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1nRwaV-0005MV-7L; Wed, 09 Mar 2022 05:42:47 -0800
+Message-ID: <578e243d-2273-add3-898c-959888c2a155@xilinx.com>
+Date:   Wed, 9 Mar 2022 14:42:43 +0100
 MIME-Version: 1.0
-X-OriginatorOrg: qti.qualcomm.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB4565.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f6bb779d-81d3-4380-8cf4-08da01d13ba4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2022 13:32:18.5060
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
+ binding
+Content-Language: en-US
+To:     =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tom Rini <trini@konsulko.com>, Simon Glass <sjg@chromium.org>
+CC:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ricardo Salveti <ricardo@foundries.io>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Jorge Ramirez-Ortiz <jorge@foundries.io>,
+        Sean Anderson <seanga2@gmail.com>,
+        <devicetree@vger.kernel.org>, <u-boot@lists.denx.de>,
+        <linux-kernel@vger.kernel.org>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220228131250.16943-1-zajec5@gmail.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+In-Reply-To: <20220228131250.16943-1-zajec5@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3983d298-4301-4d72-33ca-08da01d2b2d0
+X-MS-TrafficTypeDiagnostic: DM5PR02MB2331:EE_
+X-Microsoft-Antispam-PRVS: <DM5PR02MB2331A49341274A644121C0A1C60A9@DM5PR02MB2331.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: d8K0slqyuMU4ecqFOgSdvN1PN6LCKa8Jy/a1K0X0UWV84mGg4OV116V56xa3ySDearqQAMryavxx5UoRnD4eNrNHICrXpe1iFIec/cFL+JUq+G/Ic5HY56pifJyfhJpRaBnZwFsoDzOzJvNBtDyimv99i22PYx1mwZjJkfAA4jVke30UuZUXUb7YNjZTXEfqeAAPQNxC+fuArm//WpqzD0Xg8DW7x/xjhy+geF2NREAesAylnIntMC642S2PZ+NH3LQo0TEXFDeYRqMpZN8RaNdh4++ozQ+iPCdDRCCHwOriu0/01DNeuV9yvvrHhtxtMwFykQErgZ/rbgujy7/4Gawk5KmxQ+d2WQ7fzy2CqvMR8GtAnUUnVIIren541WSmlEzRdCe8L4uOWj/7mFR8HtgmMLbjq129zfH6468/5DpSY8dFXl7fI1A+E/S6afG0kDoPYn9HsnWgrBkt5jnnmivzXkWOxaW0vLdxzs15k5xmLmdMVtUDbNV/iXaBgAr0krharaU2zZle2qyANeJH3m/d6h9NBNGwcfJ/JdQFVU0WbY6GHLYiPTcAZZW5claMEDXWasSk7ThMMi+Mtl8pmSRVAXcrNxDu4sAWhdYgEEVGDY0hMfWM+QG3NNolucO3iFFRFBAkQLr5gBM6fwmRC1babDY8KZMSY1NxR953TgxzaYyUSeejmqgQnF0wJko2exWJzwwEAEopx5XIFXWTb+scY5OVd3gTVHZa+ftss4OvspIuPgAIKQBlsZTu7tq1fPv7cvO+NiUXgZQAHZcaTyVTAKRlULGJ59DbGNcukVsGt9vyhGbbPZBvs6HqVcERxUAbz4drzO9AtlOCzRjHayrN8mcfox7qZxEG5wOCe+Q=
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(47076005)(8676002)(36860700001)(316002)(82310400004)(31686004)(70586007)(70206006)(110136005)(54906003)(4326008)(36756003)(186003)(31696002)(66574015)(40460700003)(2616005)(5660300002)(356005)(336012)(53546011)(6666004)(966005)(7416002)(7636003)(83380400001)(26005)(508600001)(8936002)(9786002)(2906002)(44832011)(426003)(50156003)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2022 13:42:48.0314
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Da3ppCzNwvm/fD1bNp59LrUYQjxoApC0UWLkUmNe2CRIinIBc7bLN6j4pTTSV8FYYz/WTUYTIRKgXD/q8m0L+T9FM4VVtC1e4tl/S22rows=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR02MB4591
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3983d298-4301-4d72-33ca-08da01d2b2d0
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM3NAM02FT041.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR02MB2331
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-V2UgYXJlIHRlc3RpbmcgcG93ZXIgcmVhZGluZ3Mgd2l0aCBiaWFzLWJ1cy1ob2xkIGNoYW5nZS4N
-CldpbGwgdXBkYXRlIHByb2dyZXNzLg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpG
-cm9tOiBWaWpheWEgS3Jpc2huYSBOaXZhcnRoaSAoVGVtcCkgKFFVSUMpIA0KU2VudDogRnJpZGF5
-LCBNYXJjaCA0LCAyMDIyIDEwOjI4IFBNDQpUbzogRG91ZyBBbmRlcnNvbiA8ZGlhbmRlcnNAY2hy
-b21pdW0ub3JnPjsgVmlqYXlhIEtyaXNobmEgTml2YXJ0aGkgKFRlbXApIChRVUlDKSA8cXVpY192
-bml2YXJ0aEBxdWljaW5jLmNvbT4NCkNjOiBBbmR5IEdyb3NzIDxhZ3Jvc3NAa2VybmVsLm9yZz47
-IGJqb3JuLmFuZGVyc3NvbkBsaW5hcm8ub3JnOyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwu
-b3JnPjsgbGludXgtYXJtLW1zbSA8bGludXgtYXJtLW1zbUB2Z2VyLmtlcm5lbC5vcmc+OyBvcGVu
-IGxpc3Q6T1BFTiBGSVJNV0FSRSBBTkQgRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdTIDxk
-ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZz47IExLTUwgPGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5l
-bC5vcmc+OyBNdWtlc2ggU2F2YWxpeWEgPG1zYXZhbGl5QHF0aS5xdWFsY29tbS5jb20+OyBNYXR0
-aGlhcyBLYWVobGNrZSA8bWthQGNocm9taXVtLm9yZz47IFN0ZXBoZW4gQm95ZCA8c3dib3lkQGNo
-cm9taXVtLm9yZz47IERpbGlwIEthbW1hdGggPGRrYW1tYXRoQHF0aS5xdWFsY29tbS5jb20+DQpT
-dWJqZWN0OiBSRTogW1BBVENIXSBhcm02NDogZHRzOiBxY29tOiBzYzcyODA6IENvbmZpZ3VyZSBj
-dHMgc2xlZXAgcGluY3RybCB0byBiaWFzLWRpc2FibGUgZm9yIHNjNzI4MC1pZHANCg0KVGhhbmsg
-eW91IHZlcnkgbXVjaCBmb3IgdmVyeSB1c2VmdWwgaW5wdXRzLg0KV2Ugd2lsbCBkaXNjdXNzIGZ1
-cnRoZXIgYW5kIGdldCBiYWNrIGFzIHNvb24gYXMgcG9zc2libGUuDQoNCi1WaWpheS8NCg0K
+
+
+On 2/28/22 14:12, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> U-Boot uses environment variables for storing device setup data. It
+> usually needs to be accessed by a bootloader, kernel and often
+> user-space.
+> 
+> This binding allows describing environment data located in a raw flash
+> partition. It's treated as NVMEM device and can be reused later for
+> other storage devices.
+> 
+> Using DT should be cleaner than hardcoding & duplicating such info in
+> multiple places. Bootloader & kernel can share DTS and user-space can
+> try reading it too or just have correct data exposed by a kernel.
+> 
+> A custom "compatible" string allows system to automatically load
+> relevant NVMEM driver but phandle can be also used for reading raw
+> location.
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> V2: Update descriptions to don't make this binding MTD (flash partition)
+>      specific. Mention multiple possible storage ways.
+> V3: Drop
+>      allOf:
+>        - $ref: nvmem.yaml#
+>      as we don't use anything rom the nvmem.yaml. Thanks Rob.
+> ---
+>   .../devicetree/bindings/nvmem/u-boot,env.yaml | 62 +++++++++++++++++++
+>   MAINTAINERS                                   |  5 ++
+>   2 files changed, 67 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> new file mode 100644
+> index 000000000000..e70b2a60cb9a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: U-Boot environment variables
+> +
+> +description: |
+> +  U-Boot uses environment variables to store device parameters and
+> +  configuration. They may be used for booting process, setup or keeping end user
+> +  info.
+> +
+> +  Data is stored using U-Boot specific formats (variant specific header and NUL
+> +  separated key-value pairs).
+> +
+> +  Environment data can be stored on various storage entities, e.g.:
+> +  1. Raw flash partition
+> +  2. UBI volume
+> +
+> +  This binding allows marking storage device (as containing env data) and
+> +  specifying used format.
+> +
+> +  Right now only flash partition case is covered but it may be extended to e.g.
+> +  UBI volumes in the future.
+> +
+> +maintainers:
+> +  - Rafał Miłecki <rafal@milecki.pl>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - description: A standalone env data block
+> +        const: u-boot,env
+> +      - description: Two redundant blocks with active one flagged
+> +        const: u-boot,env-redundant-bool
+> +      - description: Two redundant blocks with active having higher counter
+> +        const: u-boot,env-redundant-count
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    partitions {
+> +        compatible = "fixed-partitions";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        partition@0 {
+> +            reg = <0x0 0x40000>;
+> +            label = "u-boot";
+> +            read-only;
+> +        };
+> +
+> +        env: partition@40000 {
+> +            compatible = "u-boot,env";
+> +            reg = <0x40000 0x10000>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index db8052bc1d26..24fc181a7e6c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -19958,6 +19958,11 @@ W:	http://linuxtv.org
+>   T:	git git://linuxtv.org/media_tree.git
+>   F:	drivers/media/pci/tw686x/
+>   
+> +U-BOOT ENVIRONMENT VARIABLES
+> +M:	Rafał Miłecki <rafal@milecki.pl>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+> +
+>   UACCE ACCELERATOR FRAMEWORK
+>   M:	Zhangfei Gao <zhangfei.gao@linaro.org>
+>   M:	Zhou Wang <wangzhou1@hisilicon.com>
+
+I think that parsing these partitions is quite sw intensive process and I can't 
+still see the value to have compatible string here.
+I would prefer to have just any link from u-boot node to partition instead.
+
+But up to Simon or Tom to decide.
+
+Thanks,
+Michal
