@@ -2,73 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DE54D3BA0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 22:00:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3944B4D3BAB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 22:04:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238314AbiCIVBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 16:01:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60830 "EHLO
+        id S235548AbiCIVFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 16:05:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238308AbiCIVBj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 16:01:39 -0500
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D1D03B572
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 13:00:40 -0800 (PST)
-Received: by mail-ed1-x531.google.com with SMTP id y12so4439872edt.9
-        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 13:00:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=B/SsSko0/xEOe0BScbcgOZHUGbhB1OsrlOPsnqrWEkSM2mkE1aouuwQjNsnIeY1z/r
-         SL9gQ4Nn7hndmhotYsBkrCCvUf9TX2rt6bW4C2KAfJq62J+nFpk5Z9k+0kdKn0dC+FB0
-         F9IjuR2fGdswMRSSqegNmW6N3XBnNIa2RC5bB+k67PVasaO9RE4/honB9ji4eb7va81/
-         9Uegc8R/EFVlVJ6zBCa/92svNvXDjEDDv7e9h0G0xBKDP9lEXMgsddxHLRQ8aUtR/GHc
-         jX+lF3BtjbuZUbRzJ1eWnYh5q7Er1Rs1TMtzUwxtOdFQr3b9RgjFwc2xHyzi42BFR6n9
-         gNFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=60je+LDflCDSpm+PbhIAk73PJa9MombVHWRyiPaaQWE=;
-        b=OY6/ytZOdBCleMBdYA/WVv4ojQwewOnn2yKicksPYMUxHf66mS7kHxfoL1CwGZqJcH
-         Y9malgYhbfrqDBq3R/FLLgssOloiV8J3okp9aClXFnNYd1zO1d0DjGH8KYm7YkE7Mlpf
-         1Uhl3ziPZJwY9s2Q1EY4ktRDn/2ggz9vRVMB77YbM5Qb6liO00DoidavdTGhD0LtlTPC
-         pTjUa25AavBslBCVUYdkUmEg20s8RQMtCwtGyC7gi1yQPNJXLYLDTd8PbAj5VV0jl3Rr
-         xJ+JsXlR6Vf8Fr33EQVRSHGBJUZnSc8PhviS9pFN091RrIu9knW+4W6IkkhY8ryOWMFW
-         XNtg==
-X-Gm-Message-State: AOAM533Iz3UtEYzy9NA7tKuzI9v2dYEuvaJOq43Ck5eYUr4ScMfXo78b
-        XMXn8OykYAS+ob3d6h6igx0NXQ==
-X-Google-Smtp-Source: ABdhPJw2CvIZhbOZesk0K8UFjnLQEilUX3nZUgdGlXHhsBE7dcCrIv0HEoXsjAU9yOpKWKGqMGDuVw==
-X-Received: by 2002:a05:6402:51d3:b0:416:7503:f2e5 with SMTP id r19-20020a05640251d300b004167503f2e5mr1322404edd.51.1646859638611;
-        Wed, 09 Mar 2022 13:00:38 -0800 (PST)
-Received: from localhost.localdomain (cpc78119-cwma10-2-0-cust590.7-3.cable.virginm.net. [81.96.50.79])
-        by smtp.gmail.com with ESMTPSA id l26-20020a1709061c5a00b006da815e14e2sm1114743ejg.37.2022.03.09.13.00.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Mar 2022 13:00:38 -0800 (PST)
-From:   Caleb Connolly <caleb.connolly@linaro.org>
-To:     caleb.connolly@linaro.org, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-Subject: [PATCH v11 9/9] arm64: dts: qcom: sdm845-xiaomi-beryllium: enable rradc
-Date:   Wed,  9 Mar 2022 21:00:14 +0000
-Message-Id: <20220309210014.352267-10-caleb.connolly@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220309210014.352267-1-caleb.connolly@linaro.org>
-References: <20220309210014.352267-1-caleb.connolly@linaro.org>
+        with ESMTP id S235812AbiCIVFC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 16:05:02 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85B0F6663E;
+        Wed,  9 Mar 2022 13:04:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1228461995;
+        Wed,  9 Mar 2022 21:04:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72EA9C340F3;
+        Wed,  9 Mar 2022 21:04:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646859841;
+        bh=RfLA32mA/murgiHE8SOZv5jaYWx/3+9ErBr0WZ4lPTw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=LAx2mQWmWs+5gq+eJaTb2mbiw/sENGorsRSUnloVVu+VWMe31UhBhgv5N42qtb7VK
+         Xf5ZcNMGQfkGGcQKpBjMdaWRq0+FGFlp9y3skfepF6k/DMp0Nbc5OfzrMJh5W/Wqbp
+         YquSBrRpg8FMnJBopqUxJ7xg83N55NUQxr1dmURRJNuuLVIRij98nlhzHjkjYEokWK
+         TF1UVXEi4AMj5v0PJ6nykz9rReRo7sWHCc73dXa1NfuIhVN+fzvNuShYThco0mefKu
+         W6rDBjZn8QkZdIqW8FUuX32+iNj+cDPzVKfYI1R9uWi4AoOpmrnZuRV8i8i/syJOye
+         B4HKWZ16oAVPQ==
+Received: by mail-ej1-f54.google.com with SMTP id hw13so7387342ejc.9;
+        Wed, 09 Mar 2022 13:04:01 -0800 (PST)
+X-Gm-Message-State: AOAM530xga6J5GlhPh1S9LzSlnb9GJcT7R4mgZMIK0cVUGExgbkxF6No
+        KGiwCu9oCJgPd/seX/07oRY0BMnx9VZrs2p4TA==
+X-Google-Smtp-Source: ABdhPJwa+3bXHhGQDGTsXk88j5+6SbD977Mz29I8j6MQNYuu9KBHFEZWTDPTS/5YS11/grej2n2ucE5NbLAYSxOI6PM=
+X-Received: by 2002:a17:907:298f:b0:6da:b3da:19e with SMTP id
+ eu15-20020a170907298f00b006dab3da019emr1506838ejc.423.1646859839710; Wed, 09
+ Mar 2022 13:03:59 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <20220111174805.223732-1-krzysztof.kozlowski@canonical.com> <20220111174805.223732-3-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220111174805.223732-3-krzysztof.kozlowski@canonical.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 9 Mar 2022 15:03:47 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+cNrh=o7RL=2SH5888=YU9m1QhA5q+eCTFXVbbw57oJA@mail.gmail.com>
+Message-ID: <CAL_Jsq+cNrh=o7RL=2SH5888=YU9m1QhA5q+eCTFXVbbw57oJA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: extcon: maxim,max77843: add MAX77843 bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,28 +68,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the PMI8998 RRADC.
+On Tue, Jan 11, 2022 at 11:48 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+>
+> Document the bindings for MAX77843 MUIC/extcon driver, based on
+> Exynos5433 TM2 devicetree.  These are neither accurate nor finished
+> bindings but at least allow parsing existing DTS files.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/extcon/maxim,max77843.yaml       | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml b/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+> new file mode 100644
+> index 000000000000..f9ffe3d6f957
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/extcon/maxim,max77843.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim MAX77843 MicroUSB and Companion Power Management IC Extcon
+> +
+> +maintainers:
+> +  - Chanwoo Choi <cw00.choi@samsung.com>
+> +  - Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> +
+> +description: |
+> +  This is a part of device tree bindings for Maxim MAX77843 MicroUSB
+> +  Integrated Circuit (MUIC).
+> +
+> +  See also Documentation/devicetree/bindings/mfd/maxim,max77843.yaml for
+> +  additional information and example.
+> +
+> +properties:
+> +  compatible:
+> +    const: maxim,max77843-muic
+> +
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/port
 
-Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Now failing in -next:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-index 367389526b41..b3b6aa4e0fa3 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium.dts
-@@ -312,6 +312,10 @@ resin {
- 	};
- };
- 
-+&pmi8998_rradc {
-+	status = "okay";
-+};
-+
- /* QUAT I2S Uses 1 I2S SD Line for audio on TAS2559/60 amplifiers */
- &q6afedai {
- 	qi2s@22 {
--- 
-2.35.1
+Documentation/devicetree/bindings/mfd/maxim,max77843.example.dt.yaml:
+pmic@66: extcon:ports: Unevaluated properties are not allowed ('port'
+was unexpected)
+  From schema: /builds/robherring/linux-dt/Documentation/devicetree/bindings/mfd/maxim,max77843.yaml
 
+s/port/ports/
+
+> +    description:
+> +      Any connector to the data bus of this controller should be modelled using
+> +      the OF graph bindings specified
+> +    properties:
+> +      port:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +
+> +required:
+> +  - compatible
+> +  - connector
+> +
+> +additionalProperties: false
+> --
+> 2.32.0
+>
