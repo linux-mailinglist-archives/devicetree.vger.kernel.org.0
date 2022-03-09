@@ -2,169 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA264D26E1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:06:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 220674D2666
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:05:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbiCIBXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 20:23:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50710 "EHLO
+        id S230356AbiCIBZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 20:25:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231937AbiCIBXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:23:43 -0500
-Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777D0C7920;
-        Tue,  8 Mar 2022 17:22:09 -0800 (PST)
-Received: by mail-oo1-f45.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so1161518ooj.2;
-        Tue, 08 Mar 2022 17:22:09 -0800 (PST)
+        with ESMTP id S229768AbiCIBZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:25:06 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5F03465A;
+        Tue,  8 Mar 2022 17:23:54 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id ay7so1168436oib.8;
+        Tue, 08 Mar 2022 17:23:54 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=eX/AjvgUx7dimDDaqYJ1aR1sSqjm7p16ve0NHEEsMvQ=;
-        b=8DiXPWtfA6N0nw3LJFI3yF6lCTbtE6bAFW46UWcnVdDC62DsieFCjDy6FTw4nbTiOT
-         kMCuww4gSFN5sHqzI56Itbz1FdYeceU9TNMJ/rc8N/rvDe0lRZkS5NjFQDSfdcGruznz
-         vycSyxQf2ppuxU1JbQmyHe+chS4iWoBl5SO02J4YUGgjgodHqWgIXGSqlkiRdiNS4U/J
-         ztfmHZVsYsLpxkOnDQCfSCDeBQiP9tSkDDxwcyyRC8RGQ37kKRj1caBwRF4AJv5ablGY
-         ugYB7PGWK6TPYZswzSwoKAam+nP5ZpxiUjHyd5qceOm8xHDrsDmEpLZ2vyvhL9d2QY22
-         FlSw==
-X-Gm-Message-State: AOAM532G3JHDQH9Twcx5ZwnrSDP/x5ElXGPphCNKInHWGds9IFQxXUjk
-        VM9HznPfxx+mTXeGypZYNmC2S39M/w==
-X-Google-Smtp-Source: ABdhPJyozRXy0py67UpvosCIVPTHDhRZ/ISthdID0JeEIDiUNQKdIMRBpJnzpj2yaajNnIL0DActgw==
-X-Received: by 2002:a05:6870:32ce:b0:d9:a0ee:44b3 with SMTP id r14-20020a05687032ce00b000d9a0ee44b3mr4390721oac.142.1646788845214;
-        Tue, 08 Mar 2022 17:20:45 -0800 (PST)
+        bh=z8phFBGIEyLJdM34Zal+e+8ZhJ9TzDoyxUSohk9RtYQ=;
+        b=fmf78BiAAWUY7EnTs27JroQ/jIQ1/2ZjRlbN/PC5Zij6hkyCGHMiLjlLxQxtZbMPVU
+         9SNGLstn8gXl4OESGu0sToB3lwCypcHSA/d2Ry5xeCPWYDEZl3EmjkLrGqZR/thFwCFT
+         Y3Rb8NIcAiBwU4M4bCvxLwvP/5rJKppF89yCybRBGDFAsXl8apbhOpUcjJ1MCB/C18nZ
+         pCzSsgZy3z7TPXFqVkWvM8LtT5CPelSKgi/lwn4mGH8I0ft9YWD3kGBgx0+t4EmJ9OBX
+         TzBOEUoB7IoHIh2yLthrhJ0j1ccd08O91xAN0HIgktD52KjdGyDphurT7Oxb7CWlAKRM
+         eqJw==
+X-Gm-Message-State: AOAM533RKsAFrCOhG2s6RaPbvTm/j8wUYNfL5aZ6SK94rJVrrb8CH1nU
+        pjmI2I5fcpK8DJQUHXzW1A==
+X-Google-Smtp-Source: ABdhPJzjxTp5MHz1l0h6XpttmVDVM/j27iOw6ZiWKrpQnrsJpno3Hdthex7W7PQnpRle6ofg0N8FBg==
+X-Received: by 2002:a05:6808:1592:b0:2d9:fd1a:1a69 with SMTP id t18-20020a056808159200b002d9fd1a1a69mr4822216oiw.110.1646789033593;
+        Tue, 08 Mar 2022 17:23:53 -0800 (PST)
 Received: from rob (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id z192-20020a4a49c9000000b003213bf4bf0csm235322ooa.31.2022.03.08.17.20.43
+        by smtp.gmail.com with ESMTPSA id v5-20020a544d05000000b002d7652b3c52sm258085oix.25.2022.03.08.17.23.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 17:20:44 -0800 (PST)
-Received: (nullmailer pid 1709815 invoked by uid 1000);
-        Wed, 09 Mar 2022 01:20:43 -0000
-Date:   Tue, 8 Mar 2022 18:20:43 -0700
+        Tue, 08 Mar 2022 17:23:52 -0800 (PST)
+Received: (nullmailer pid 1713949 invoked by uid 1000);
+        Wed, 09 Mar 2022 01:23:50 -0000
+Date:   Tue, 8 Mar 2022 18:23:50 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Lucas Tanure <tanureal@opensource.cirrus.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        David Rhodes <drhodes@opensource.cirrus.com>
-Subject: Re: [PATCH v3 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41
- External Boost
-Message-ID: <20220309012043.GA1694603@robh.at.kernel.org>
-References: <20220308171730.454587-1-tanureal@opensource.cirrus.com>
- <20220308171730.454587-16-tanureal@opensource.cirrus.com>
+To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
+        tomi.valkeinen@ideasonboard.com, nicolas@ndufresne.ca,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 7/9] media: dt-bindings: media: Add i.MX8MP DW100
+ binding
+Message-ID: <20220309012350.GA1710752@robh.at.kernel.org>
+References: <20220308201038.48386-1-xavier.roumegue@oss.nxp.com>
+ <20220308201038.48386-8-xavier.roumegue@oss.nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220308171730.454587-16-tanureal@opensource.cirrus.com>
+In-Reply-To: <20220308201038.48386-8-xavier.roumegue@oss.nxp.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 05:17:29PM +0000, Lucas Tanure wrote:
-> From: David Rhodes <drhodes@opensource.cirrus.com>
+On Tue, Mar 08, 2022 at 09:10:36PM +0100, Xavier Roumegue wrote:
+> Add DT binding documentation for the Vivante DW100 dewarper engine found
+> on NXP i.MX8MP SoC
 > 
-> Document internal and external boost feature for ASoC CS35L41.
-> For internal boost the following properties are required:
-> - cirrus,boost-peak-milliamp
-> - cirrus,boost-ind-nanohenry
-> - cirrus,boost-cap-microfarad
-> 
-> For external boost, the GPIO1 must be configured as output,
-> so the following properties are required:
-> - cirrus,gpio1-src-select = <1>
-> - cirrus,gpio1-output-enable
-> 
-> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
-> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../bindings/sound/cirrus,cs35l41.yaml        | 44 +++++++++++++++++--
->  1 file changed, 41 insertions(+), 3 deletions(-)
+>  .../devicetree/bindings/media/nxp,dw100.yaml  | 69 +++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> index 3235702ce402..09b515924c59 100644
-> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
-> @@ -75,6 +75,19 @@ properties:
->      maximum: 3
->      default: 2
->  
-> +  cirrus,boost-type:
-> +    description:
-> +      Configures the type of Boost being used.
-> +      Internal boost requires boost-peak-milliamp, boost-ind-nanohenry and
-> +      boost-cap-microfarad.
-> +      External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
-> +      enable boost voltage.
-> +      0 = Internal Boost
-> +      1 = External Boost
-> +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> +    minimum: 0
-> +    maximum: 1
+> diff --git a/Documentation/devicetree/bindings/media/nxp,dw100.yaml b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
+> new file mode 100644
+> index 000000000000..2c3b82be0b74
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nxp,dw100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8MP DW100 Dewarper core
+> +
+> +maintainers:
+> +  - Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+> +
+> +description: |-
+> +  The Dewarp Engine provides high-performance dewarp processing for the
+> +  correction of the distortion that is introduced in images produced by fisheye
+> +  and wide angle lenses. It is implemented with a line/tile-cache based
+> +  architecture. With configurable address mapping look up tables and per tile
+> +  processing, it successfully generates a corrected output image.
+> +  The engine can be used to perform scaling, cropping and pixel format
+> +  conversion.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,dw100
 
-What does not present mean? Might be better to make this boolean depending
-on what you are trying to accomplish.
+Version of h/w and features are all discoverable? If so, add a note to 
+that effect. If not, needs to be SoC specific.
 
 > +
->    cirrus,gpio1-polarity-invert:
->      description:
->        Boolean which specifies whether the GPIO1
-> @@ -131,9 +144,32 @@ required:
->    - compatible
->    - reg
->    - "#sound-dai-cells"
-> -  - cirrus,boost-peak-milliamp
-> -  - cirrus,boost-ind-nanohenry
-> -  - cirrus,boost-cap-microfarad
+> +  reg:
+> +    maxItems: 1
 > +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        cirrus,boost-type:
-> +            const: 0
-
-Note that this will be true if cirrus,boost-type is not present. You 
-probably want to add 'required'.
-
-> +    then:
-> +      required:
-> +        - cirrus,boost-peak-milliamp
-> +        - cirrus,boost-ind-nanohenry
-> +        - cirrus,boost-cap-microfarad
-> +    else:
-> +      if:
-> +        properties:
-> +          cirrus,boost-type:
-> +            const: 1
-> +      then:
-> +        required:
-> +          - cirrus,gpio1-output-enable
-> +          - cirrus,gpio1-src-select
-> +        properties:
-> +          cirrus,boost-peak-milliamp: false
-> +          cirrus,boost-ind-nanohenry: false
-> +          cirrus,boost-cap-microfarad: false
-> +          cirrus,gpio1-src-select:
-> +            enum: [1]
->  
->  additionalProperties: false
->  
-> @@ -150,6 +186,8 @@ examples:
->            VA-supply = <&dummy_vreg>;
->            VP-supply = <&dummy_vreg>;
->            reset-gpios = <&gpio 110 0>;
+> +  interrupts:
+> +    maxItems: 1
 > +
-> +          cirrus,boost-type = <0>;
->            cirrus,boost-peak-milliamp = <4500>;
->            cirrus,boost-ind-nanohenry = <1000>;
->            cirrus,boost-cap-microfarad = <15>;
+> +  clocks:
+> +    items:
+> +      - description: The AXI clock
+> +      - description: The AHB clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: axi
+> +      - const: ahb
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mp-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/power/imx8mp-power.h>
+> +
+> +    dewarp: dwe@32e30000 {
+> +            compatible = "nxp,dw100";
+> +            reg = <0x32e30000 0x10000>;
+> +            interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+> +            clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+> +                     <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+> +            clock-names = "axi", "ahb";
+> +            power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_DWE>;
+> +    };
 > -- 
 > 2.35.1
 > 
