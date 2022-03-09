@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DAE74D35A1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:42:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA384D3792
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:45:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234914AbiCIQdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 11:33:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41938 "EHLO
+        id S233936AbiCIQeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 11:34:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237506AbiCIQas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:30:48 -0500
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4504F1768E0;
-        Wed,  9 Mar 2022 08:24:44 -0800 (PST)
+        with ESMTP id S238006AbiCIQbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:31:18 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E16AF192C95;
+        Wed,  9 Mar 2022 08:25:30 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C8F876197E;
-        Wed,  9 Mar 2022 16:24:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47A48C36AE2;
-        Wed,  9 Mar 2022 16:24:07 +0000 (UTC)
+        by ams.source.kernel.org (Postfix) with ESMTPS id D2567B82020;
+        Wed,  9 Mar 2022 16:25:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E701C340E8;
+        Wed,  9 Mar 2022 16:25:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646843050;
-        bh=j7hmCy1CU7rAvVLIg9oPZL7rB5QJwqoUz2WqR3uMxdI=;
+        s=k20201202; t=1646843125;
+        bh=K9gceViHzNAZRZsRqEmIjzn7fQTvsVlXZG/p6NcdhHk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RoyU0aBxqA+XmADrkD4NkO2rtM9oy6zuRhFvl24BrXIjkNZqxgU6VQh7433p7aXQU
-         iE7PDmgnl2eOxjYgMle6K7lcLXNglySZkoU+BUZsolrt1+Tt2cMBTWFmko0F4qEyoQ
-         avM1rsBNdG/0pgNyu55uk/7eC4llnBNzp7I9yLID2PPK7xHARPM+TlIPhrPz1aZZpO
-         eNKt3GO93SSSBBJKH00FBnyQtlafpgkZQQq/TQ1dB+ez1L1wfoj6vNdQDpY2tmc8p/
-         +ajIKaIkO0s8b/XyTbm6aq7MhZDRMDbeUasgFVo5zvfwq5GiWHqq/skqAyt5UuLOdv
-         U3bkNnCg8ufPw==
+        b=oNqnmikp8Wio4YDMmGaqZ4TqlScAIaJ8FpJZMCCGYIjdxfK4i1lGYLWXRpWH7vT/i
+         +2qnVjSRNvi/gzIdyeqxIJ9DvRkdoYyrP3b+ZI9CPK7lDze9roZrSEXWMQQWExUVs0
+         yORXtyGjk/GT6jDup4sis083EFQf4mMwCvferP7FZV+fmyS2un2/AduGfbOlrwOHID
+         5//yL3budJFyTBFvvzymcNT6xb4AK1yC9YA3633A46iZ6PUuEPLzNFwM1Mc52JWasu
+         kjYhEoIkH0x83kZ6Imc4A2BzbxRJE0m724DHM++eqqEtD4WywWl/XY0/ze8myqxN+j
+         1PKKY/Oy13P5g==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Corentin Labbe <clabbe@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+Cc:     Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        Quentin Schulz <foss+kernel@0leil.net>,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 07/19] ARM: dts: rockchip: fix a typo on rk3288 crypto-controller
-Date:   Wed,  9 Mar 2022 11:23:24 -0500
-Message-Id: <20220309162337.136773-7-sashal@kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.19 03/14] arm64: dts: rockchip: fix rk3399-puma eMMC HS400 signal integrity
+Date:   Wed,  9 Mar 2022 11:24:56 -0500
+Message-Id: <20220309162508.137035-3-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220309162337.136773-1-sashal@kernel.org>
-References: <20220309162337.136773-1-sashal@kernel.org>
+In-Reply-To: <20220309162508.137035-1-sashal@kernel.org>
+References: <20220309162508.137035-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -59,35 +60,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Corentin Labbe <clabbe@baylibre.com>
+From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
 
-[ Upstream commit 3916c3619599a3970d3e6f98fb430b7c46266ada ]
+[ Upstream commit 62966cbdda8a92f82d966a45aa671e788b2006f7 ]
 
-crypto-controller had a typo, fix it.
-In the same time, rename it to just crypto
+There are signal integrity issues running the eMMC at 200MHz on Puma
+RK3399-Q7.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Link: https://lore.kernel.org/r/20220209120355.1985707-1-clabbe@baylibre.com
+Similar to the work-around found for RK3399 Gru boards, lowering the
+frequency to 100MHz made the eMMC much more stable, so let's lower the
+frequency to 100MHz.
+
+It might be possible to run at 150MHz as on RK3399 Gru boards but only
+100MHz was extensively tested.
+
+Cc: Quentin Schulz <foss+kernel@0leil.net>
+Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Link: https://lore.kernel.org/r/20220119134948.1444965-1-quentin.schulz@theobroma-systems.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/rk3288.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 658ceb96d8bd..7dcafd0833ba 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -975,7 +975,7 @@ i2s: i2s@ff890000 {
- 		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+index b155f657292b..ce1320e4c106 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+@@ -468,6 +468,12 @@ vcc5v0_host_en: vcc5v0-host-en {
+ };
  
--	crypto: cypto-controller@ff8a0000 {
-+	crypto: crypto@ff8a0000 {
- 		compatible = "rockchip,rk3288-crypto";
- 		reg = <0x0 0xff8a0000 0x0 0x4000>;
- 		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+ &sdhci {
++	/*
++	 * Signal integrity isn't great at 200MHz but 100MHz has proven stable
++	 * enough.
++	 */
++	max-frequency = <100000000>;
++
+ 	bus-width = <8>;
+ 	mmc-hs400-1_8v;
+ 	mmc-hs400-enhanced-strobe;
 -- 
 2.34.1
 
