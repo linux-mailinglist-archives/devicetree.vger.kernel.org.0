@@ -2,211 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E52964D3125
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 15:39:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B46674D3153
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 15:56:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233586AbiCIOjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 09:39:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48740 "EHLO
+        id S233666AbiCIO4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 09:56:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233589AbiCIOja (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 09:39:30 -0500
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130073.outbound.protection.outlook.com [40.107.13.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40262125503;
-        Wed,  9 Mar 2022 06:38:29 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BVBmGFrY9Iv0JH8VQtrEU4Bgs3fRH0Mza1auqwz6aM7IN+n5PAoEjyoZLzNohTv6zSrdDMJhglC6clgy98KZg9uUo/ZJIw20ZsP3LzE42+ccEoZqQk1CI/uke2Dqg17D1JH9QB+S+u2VQbzxtB9IHp07vmW62LTkAY7oa13raeYrVcotrrounYkYIqKcphujpwgHblf9sLOGUO3ldYMnJvYDrPYTQm+TH//SruXvL0AwD5kb17kHfguxkfuzCAkM6EqDxNO4oGSqUneXC1lY89W3FrvFG5zaXjo51QGlO25MuEnTrBMYqStUtvbFEqbPRHaPlal9BzQW9PnD7MkzEg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KDJuJOQYZuQiqqYX7wmpg2yiv9R5YEZtpkfB1ZsDr5c=;
- b=QTA3yl/1a+gOOqNrzRjM26mTxAESMMnUf3BDly4Haw/5jxs50QTv2XXICfTaL2b/WY1jJtsIMUXmyt9ZTqDkBKEYnjPVQNcJXwa3Gr6KzSKnhcZdVj/QbiSCbntJ4k7ExkwS+0I6L56wpfpoIic6IG8X13/JIg0Tgbddi1a++OnrJAQrO6wppqeffPvmWIXud0tPm7XjAqT5j5FxnDg7wax/UQKnkfiofqQoJFFHEncdKDaRaqcqMoVWM9wP2uBhmWqHjJhno+nNmB9bYwLBwgjRWLdHijvJHtbIwY7ITQ4beJ4ltNN0bqLpYY0GohDV9Fe862ZGTWlzEOr7tLG/qg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KDJuJOQYZuQiqqYX7wmpg2yiv9R5YEZtpkfB1ZsDr5c=;
- b=UgsKhRcPlXUu8T43d6bht9mIwtt/ZqNfdp/ZIpmhITRvXhJwxYUOljusVn0zREvxWfHBKgzDrIPgpGcX+nKUlujr/+1v0vfIZfAZEMZ8HJt6gxTrB31Iw7PV+DlzzYLCSp28JXmUGbnUXBmkS2ITXwpunosZgLpjgAs/14ye2Do=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM9PR04MB8555.eurprd04.prod.outlook.com (2603:10a6:20b:436::16)
- by VI1PR04MB6223.eurprd04.prod.outlook.com (2603:10a6:803:fa::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 9 Mar
- 2022 14:38:25 +0000
-Received: from AM9PR04MB8555.eurprd04.prod.outlook.com
- ([fe80::c58c:4cac:5bf9:5579]) by AM9PR04MB8555.eurprd04.prod.outlook.com
- ([fe80::c58c:4cac:5bf9:5579%7]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
- 14:38:25 +0000
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        leoyang.li@nxp.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: [PATCH net-next 8/8] arch: arm64: dts: lx2160a: describe the SerDes block #1
-Date:   Wed,  9 Mar 2022 16:37:51 +0200
-Message-Id: <20220309143751.3362678-9-ioana.ciornei@nxp.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <20220309143751.3362678-1-ioana.ciornei@nxp.com>
-References: <20220309143751.3362678-1-ioana.ciornei@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR02CA0187.eurprd02.prod.outlook.com
- (2603:10a6:20b:28e::24) To AM9PR04MB8555.eurprd04.prod.outlook.com
- (2603:10a6:20b:436::16)
+        with ESMTP id S233651AbiCIO4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 09:56:54 -0500
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A91817E35D;
+        Wed,  9 Mar 2022 06:55:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=DDFO3msfmfMsCk9eo6nmpXP8kD7WaaU6Xf1jlOnbKGw=; b=SbIesQddg81fpXICj6g698RyeH
+        mzBZHB5QiGEBxIasXKxavKSS5t+Ha0nrORs/jZTKqvnYO/StMe1v3XTELVk1CKoHZPo1Qh2nE3UI5
+        cu/47CvMeMSy2m0AXDvCHNXpvQBR+0uzhGxbdGMvjP3yIgZfX2pdK+zbqnh7lKpVy87/pmRMDPQKD
+        T3KW4N5THnM7o1n7bDMfWSPLO+59aMiwC9z40YldTWY1rmuTZQXf5Vp9A41ay6u+BM+EV7aITudSm
+        U/qGartnNqVJB5QZzUF46aW5lgHGU+L0NkqaWB2hVQ0VKs0b7hfbfbY48qXsqWZsdsZfzondf557P
+        egTXMUoQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57742)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1nRxjC-0001xl-UW; Wed, 09 Mar 2022 14:55:51 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1nRxjB-00081l-46; Wed, 09 Mar 2022 14:55:49 +0000
+Date:   Wed, 9 Mar 2022 14:55:49 +0000
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Divya.Koppera@microchip.com,
+        netdev@vger.kernel.org, hkallweit1@gmail.com, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        richardcochran@gmail.com, linux-kernel@vger.kernel.org,
+        UNGLinuxDriver@microchip.com, Madhuri.Sripada@microchip.com,
+        Manohar.Puri@microchip.com
+Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
+ values and timestamping check for LAN8814 phy
+Message-ID: <Yii/9RH67BEjNtLM@shell.armlinux.org.uk>
+References: <YiILJ3tXs9Sba42B@lunn.ch>
+ <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
+ <YiYD2kAFq5EZhU+q@lunn.ch>
+ <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
+ <YidgHT8CLWrmhbTW@lunn.ch>
+ <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
+ <YiecBKGhVui1Gtb/@lunn.ch>
+ <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
+ <YifoltDp4/Fs+9op@lunn.ch>
+ <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 93f1b9cd-a9bd-449c-d75f-08da01da77a5
-X-MS-TrafficTypeDiagnostic: VI1PR04MB6223:EE_
-X-Microsoft-Antispam-PRVS: <VI1PR04MB622328505FDBC875A15BA879E00A9@VI1PR04MB6223.eurprd04.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7PrxvXwtLYMFrlXvx4rbSZ+NGTbBTUQ9lwherUtTLcSmqPn9UxuEwsmbZyXcJxYEtvQBFKJnoviS/yhhL51zgTr3VR6L13Ol7LYdmn5HSqrUmYdRuWfHcZMa48AxsDxCfFC63RpWZYKSHj3EPe59coIHglwjWzUgInjWv/lnNo4LeULMIuNtwHbucCqKdbowZlUY7+7T7QvkTwvoOnCs/gbNi+4M26wMeeiZVXMtkYt1x2aFGmaKxp6RukwE7TOTQM7OemfXfo3y18DGBec7NM5yAJgoFauLmCSReAN/m0W+fFgP03S974B2Hrr+tRkONyMgcosRSw2XUtC6kLUxlbHpx8jKEfx84rfsbB9GPZuulpMA4kBy7gTW+BSFESSJs95oR5PCkBadWF6ya799lR9RdYozYDRslv7ACYNQp3upE7zHW07Md92igpU0E4hMYILkrOKdVwiyMpk09OE6oAPy5fb+tPwGF03MaSd0khXtaSaCd5xBMPyH+2CLI57f/G5EytSIVCJ+LOycbxrv/VotXnRdj/ik6XLcM5j0FFB2iKazTfDdD5dcyp26MyYGy8CIN/kSzRhu+9OB2sgm6DMUl4CD7n6qBygtvC4glEibI3vkfmhOR6KEJZ6b6S4rnaQf/t38XknAfD3Py9UKgSEuqtdVrbLhhS6kFKxZ0QQ/cFAUVxRAZ8KWN8vPOKUSRbF0r9B4mfXW5zSLuwD4D2UPU4sAQIL6qwPMv7krOCQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8555.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6506007)(6512007)(86362001)(44832011)(52116002)(36756003)(66476007)(66556008)(8936002)(66946007)(8676002)(26005)(5660300002)(498600001)(2906002)(4326008)(6666004)(83380400001)(38350700002)(38100700002)(6486002)(2616005)(1076003)(186003)(17413003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?PSPzYMf1qPT0wzo29nb1EC62V6eXzRCjtIS9AwrMTtjHjrEuzobVU+5LdJND?=
- =?us-ascii?Q?l3JsqtjZ098zDH8aCajZvxttn9fOz4NL2mEr88cqghehi3/+Ll9C9qPo8NGq?=
- =?us-ascii?Q?3u9nwIiJa3sbQXutxS1Z2v4sbgkzCpUkhhhY6Et3AsZEd3Trckh+JotMG100?=
- =?us-ascii?Q?4aM03WwuMNme1hqqVjeoiu/0j/B8auN5SMkhKDWdMGNSY66O/I6PM9IZWxUh?=
- =?us-ascii?Q?L0+vmQOuXTip7RsxI3BtZSbuLMZwc4CQgMnqTMEoO6lUe3P/m7OYmzrb+bJL?=
- =?us-ascii?Q?w2njHwAJTcjWVPd8N6ctp51QVUJ0aMkFuC8YsNEm1QSv8Dzp3NSROhHIUDBu?=
- =?us-ascii?Q?YTX5G3/dQfR4mtl0kkbjXZIKfxSh6whfpR8gIfYbBELAxbc1krXLO0m3zYnl?=
- =?us-ascii?Q?81iHqtEZAG0BhJmdXZsf+Ncv+/u4PUVvGrZEtwN3Kfnof8q/LJID5PhWIYPq?=
- =?us-ascii?Q?aTAmjOzQLMGdDW9UW6RwUnLGqLfZxOECz+V4Zy3iHr2FTlThj7SAQZWFjL6+?=
- =?us-ascii?Q?jEoyH2vWH34Ffs0l3wuRUB8YeubuRv5QqUIF4OA70v6NBH0Ln82NmALQMhb7?=
- =?us-ascii?Q?q9pJIHcYy7Ql4EctADLne4k/hp4s37r4KAPpboGGrPXYiuJBz9069WvXzBU4?=
- =?us-ascii?Q?eHNixYc3GYLbFgWO5tAsut/sXeF+APTeYrBkMrB7XuZGJgEh4EdQrklwdzv4?=
- =?us-ascii?Q?21LYXxpdwkJDq03J8PvvNXqNS3MLp7jKED25t762tXLhNv87a3XejEZHBVHd?=
- =?us-ascii?Q?CIj9GE3WOHNGdAYLN+nvsyS6Z3JJRypOaxlIxodye/CsHfYkUCtJur0GLY0s?=
- =?us-ascii?Q?20f38pG8LndTW2Dbsok5jHSfZwE7Ki6Asf2+uFerhxyRNJtwpN6+Gx7aey6G?=
- =?us-ascii?Q?B11KPG4+ApYhq2i4TXGNN992rqAosEAo0F3+XADhKy1dtmzKfoeNaBuPlnDU?=
- =?us-ascii?Q?dyKBAAGRVNgEx4PSfmR+w0FZHhxlKNZ+JCZJlbx85q0Vv3gmcX4Beyw4Apc/?=
- =?us-ascii?Q?wYGiuaexoOGOVhcmgO46qkyPDtnrkSYSsWKeEJB4IrZh+blWkZML14DZvaci?=
- =?us-ascii?Q?yyN0MOrvUf51Cuv0lr9HqyXbtTVxmaoz7N3hyHjZGoEt/f9NIPBO/fbcFxBK?=
- =?us-ascii?Q?MConK1sNuMjNC8F9+poNrG/RECkvIsnan1YTlwoDR6CMhVK9nYMmFloLQjrC?=
- =?us-ascii?Q?4kqvF9iJaexyrHxyRGy5RIrt1i0aFZFWtX3aWl2a/lARO8ojgyXI4mW8Q9A0?=
- =?us-ascii?Q?5Bb+/uy3JJmYKtL8Nw61IcSpP4Hbxof276y2pCyQhEN8f/qyWSKFa+6QxGc4?=
- =?us-ascii?Q?hDG2mWm8Bk/ybl1sstpxOxENAi8ILq9T78MCmpskz2qaaMU0D/wKMcwJgWxG?=
- =?us-ascii?Q?+WwTRd7tf1KEbGt9l1jr9SfIeiyeGQ98/RP9rAIXhd6Utp69UefzHpu8VpJB?=
- =?us-ascii?Q?3ty4Tebrc+pkTZsiOh2u3tPArH6atZsGFvbmjguPUYMNFC+k/1LgHj+dmjpJ?=
- =?us-ascii?Q?AVDub49D3JJmWULhKQVm9qen4a38V0Xo6WLoJaDOe0t87hKYZh7jMXfTDSTE?=
- =?us-ascii?Q?zGgfjRCRJ+10aKySKMt5xrYJjq9czLnUIsAAA/9aD+rzC52aIN1ThRzkLJDE?=
- =?us-ascii?Q?Iyigul4OnSpTewcbpqVGX4A=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93f1b9cd-a9bd-449c-d75f-08da01da77a5
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8555.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2022 14:38:24.9139
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0NmQnAo02NdaFz/eAY/6ZixXDieuVgbnIFa2Yd0I6wzo+bvM6x2+wuk1lrImrB6AIFGi7MpaHFA2MtODaRu/wg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6223
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe the SerDes block #1 using the generic phys infrastructure. This
-way, the ethernet nodes can each reference their serdes lanes
-individually using the 'phys' dts property.
+On Wed, Mar 09, 2022 at 02:24:43PM +0100, Horatiu Vultur wrote:
+> The 03/09/2022 00:36, Andrew Lunn wrote:
+> > 
+> > On Tue, Mar 08, 2022 at 11:14:04PM +0100, Horatiu Vultur wrote:
+> > > The 03/08/2022 19:10, Andrew Lunn wrote:
+> > > >
+> > > > > > So this is a function of the track length between the MAC and the PHY?
+> > > > >
+> > > > > Nope.
+> > > > > This latency represents the time it takes for the frame to travel from RJ45
+> > > > > module to the timestamping unit inside the PHY. To be more precisely,
+> > > > > the timestamping unit will do the timestamp when it detects the end of
+> > > > > the start of the frame. So it represents the time from when the frame
+> > > > > reaches the RJ45 to when the end of start of the frame reaches the
+> > > > > timestamping unit inside the PHY.
+> > > >
+> > > > I must be missing something here. How do you measure the latency
+> > > > difference for a 1 meter cable vs a 100m cable?
+> > >
+> > > In the same way because the end result will be the same.
+> > 
+> > The latency from the RJ45 to the PHY will be the same. But the latency
+> > from the link peer PHY to the local PHY will be much more, 500ns. In
+> > order for this RJ45 to PHY delay to be meaningful, don't you also need
+> > to know the length of the cable? Is there a configuration knob
+> > somewhere for the cable length?
+> > 
+> > I'm assuming the ptp protocol does not try to measure the cable delay,
+> > since if it did, there would be no need to know the RJ45-PHY delay, it
+> > would be part of that.
+> > 
+> > > > Isn't this error all just in the noise?
+> > >
+> > > I am not sure I follow this question.
+> > 
+> > At minimum, you expect to have a 1m cable. The RJ45-PHY track length
+> > is maybe 2cm? So 2% of the overall length. So you are trying to
+> > correct the error this 2% causes. If you have a 100m cable, 0.02% is
+> > RJ45-PHY part that you are trying to correct the error on. These
+> > numbers seem so small, it seems pointless. It only seems to make sense
+> > if you know the length of the cable, and to an accuracy of a few cm.
+> 
+> I am not trying to adjust for the length of the cable.
+> If we have the following drawing:
+> 
+>  MAC                     PHY                    RJ45
+> -----       --------------------------       --------
+> |   |       |                        |       |       |
+> |   |<----->|timestamp | FIFO | GPHY |<----->|       |<------> Peer
+> |   |       |   unit                 |       |       |
+> -----       --------------------------       --------
+>                  ^                                   ^
+>                  |            latency                |
+>                  -------------------------------------
+> 
+> I am trying to calculate this latency, which includes a 2cm of track +
+> latency inside the PHY. As Richard mentioned also the PHY introduce some
+> latency which can be microseconds.
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
- .../freescale/fsl-lx2160a-clearfog-itx.dtsi   |  4 ++
- .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 41 +++++++++++++++++++
- 2 files changed, 45 insertions(+)
+I think we understand this, and compensating for the delay in the PHY
+is quite reasonable, which surely will be a fixed amount irrespective
+of the board.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-index 17f8e733972a..14a6334adff2 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-clearfog-itx.dtsi
-@@ -63,21 +63,25 @@ sfp3: sfp-3 {
- &dpmac7 {
- 	sfp = <&sfp0>;
- 	managed = "in-band-status";
-+	phys = <&serdes1_lane_d>;
- };
- 
- &dpmac8 {
- 	sfp = <&sfp1>;
- 	managed = "in-band-status";
-+	phys = <&serdes1_lane_c>;
- };
- 
- &dpmac9 {
- 	sfp = <&sfp2>;
- 	managed = "in-band-status";
-+	phys = <&serdes1_lane_b>;
- };
- 
- &dpmac10 {
- 	sfp = <&sfp3>;
- 	managed = "in-band-status";
-+	phys = <&serdes1_lane_a>;
- };
- 
- &emdio2 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index 7032505f5ef3..04f29c086512 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -612,6 +612,47 @@ soc {
- 		ranges;
- 		dma-ranges = <0x0 0x0 0x0 0x0 0x10000 0x00000000>;
- 
-+		serdes_1: serdes_phy@1ea0000 {
-+			compatible = "fsl,lynx-28g";
-+			reg = <0x00 0x1ea0000 0x0 0x1e30>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			#phy-cells = <1>;
-+
-+			serdes1_lane_a: phy@0 {
-+				reg = <0>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_b: phy@1 {
-+				reg = <1>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_c: phy@2 {
-+				reg = <2>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_d: phy@3 {
-+				reg = <3>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_e: phy@4 {
-+				reg = <4>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_f: phy@5 {
-+				reg = <5>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_g: phy@6 {
-+				reg = <6>;
-+				#phy-cells = <0>;
-+			};
-+			serdes1_lane_h: phy@7 {
-+				reg = <7>;
-+				#phy-cells = <0>;
-+			};
-+		};
-+
- 		crypto: crypto@8000000 {
- 			compatible = "fsl,sec-v5.0", "fsl,sec-v4.0";
- 			fsl,sec-era = <10>;
+However, Andrew's point is that the latency introduced by the copper
+wire between the PHY and the RJ45 is insignificant, so insignificant
+it's not worth bothering with - and I agree.
+
+> I understand if we consider that this latency should not be in the DT
+> and be part of the driver because the latency over the 2cm or 1.5cm of track
+> is almost nothing. But then what about the case when we want to add these
+> latencies to a MAC? They will depend on the latency inside the PHY so
+> those should come from DT.
+
+If you want to measure it to the MAC, then yes, the latency through
+the PHY needs to be considered, and we probably need some new
+interfaces inside the kernel so that MAC drivers can query phylib
+to discover what the delay is. I don't think this is soemthing that
+should be thrown into firmware, since the delay inside the PHY
+should be constant (depending on what MAC side interface mode is
+selected.)
+
+Having it in firmware means that we're reliant on people ensuring
+that they've looked up the right value for the PHY and its interface
+mode not just once, but for every board out there - and if an error
+is found, it brings up the question whether it should be corrected
+on all boards or just one (and then there'll be questions why some
+people have chosen randomly different values.)
+
+> So it really doesn't matter to me if I use a 1m cable or 100m cable.
+> What it matters is to see that mean path delay will be ~5ns for 1m cable
+> and ~500ns for 100m cable. And if is not, then I need to update the
+> register to calculate correctly the latency from RJ45 to timestamp unit
+> in the PHY.
+
+Does this mean you ask the user how long the cable is? Do you get them
+to measure it to the nearest millimeter?
+
+What about the overlap in the RJ45 connectors, and the height of the
+pins in the RJ45? Some RJ45 connectors have staggered lengths for
+their pins which would affect the true length. What about the total
+length of the conductors in the RJ45 socket to the point that the
+RJ45 plug makes contact? What happens if production then has to
+change the make of RJ45 socket due to supply issues (which given
+what is going on in the world at the moment is not unlikely.)
+
+If you care about the 20mm or so on the board, then you ought to care
+about all these other factors as well, and I suspect you're going to
+be hard pressed to gather all that.
+
 -- 
-2.33.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
