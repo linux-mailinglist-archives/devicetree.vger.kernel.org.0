@@ -2,122 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD9234D252B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 02:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA264D26E1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:06:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbiCIBJx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 20:09:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33898 "EHLO
+        id S230075AbiCIBXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 20:23:49 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbiCIBJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:09:15 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C17DEA33;
-        Tue,  8 Mar 2022 16:50:59 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 07AC5663;
-        Tue,  8 Mar 2022 16:50:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1646787059;
-        bh=P/LG0Tv6Dj5QsLIhvJT27ETgaDgbX6kVZ8POr9JaRLg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OHX3gNLwI0PRnH1RY2/8wXabqkQmOnsL7QRiWRAfrjvCemhP9HZhXgpk3FT1SNP9R
-         lWS0MRG1euHUfRSTybFLYTJsbGp4nCE5l1xeTxBSI4hhyCuiz2RHIBFxORpQuAqB58
-         QT/4u7Xv0HQSQVOmp6E2XG8hyTalNb2mbROHuypw=
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Zev Weiss <zev@bewilderbeest.net>, Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH v2 1/6] dt-bindings: hwmon: Add nuvoton,nct6775
-Date:   Tue,  8 Mar 2022 16:50:42 -0800
-Message-Id: <20220309005047.5107-2-zev@bewilderbeest.net>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220309005047.5107-1-zev@bewilderbeest.net>
-References: <20220309005047.5107-1-zev@bewilderbeest.net>
+        with ESMTP id S231937AbiCIBXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:23:43 -0500
+Received: from mail-oo1-f45.google.com (mail-oo1-f45.google.com [209.85.161.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777D0C7920;
+        Tue,  8 Mar 2022 17:22:09 -0800 (PST)
+Received: by mail-oo1-f45.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so1161518ooj.2;
+        Tue, 08 Mar 2022 17:22:09 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eX/AjvgUx7dimDDaqYJ1aR1sSqjm7p16ve0NHEEsMvQ=;
+        b=8DiXPWtfA6N0nw3LJFI3yF6lCTbtE6bAFW46UWcnVdDC62DsieFCjDy6FTw4nbTiOT
+         kMCuww4gSFN5sHqzI56Itbz1FdYeceU9TNMJ/rc8N/rvDe0lRZkS5NjFQDSfdcGruznz
+         vycSyxQf2ppuxU1JbQmyHe+chS4iWoBl5SO02J4YUGgjgodHqWgIXGSqlkiRdiNS4U/J
+         ztfmHZVsYsLpxkOnDQCfSCDeBQiP9tSkDDxwcyyRC8RGQ37kKRj1caBwRF4AJv5ablGY
+         ugYB7PGWK6TPYZswzSwoKAam+nP5ZpxiUjHyd5qceOm8xHDrsDmEpLZ2vyvhL9d2QY22
+         FlSw==
+X-Gm-Message-State: AOAM532G3JHDQH9Twcx5ZwnrSDP/x5ElXGPphCNKInHWGds9IFQxXUjk
+        VM9HznPfxx+mTXeGypZYNmC2S39M/w==
+X-Google-Smtp-Source: ABdhPJyozRXy0py67UpvosCIVPTHDhRZ/ISthdID0JeEIDiUNQKdIMRBpJnzpj2yaajNnIL0DActgw==
+X-Received: by 2002:a05:6870:32ce:b0:d9:a0ee:44b3 with SMTP id r14-20020a05687032ce00b000d9a0ee44b3mr4390721oac.142.1646788845214;
+        Tue, 08 Mar 2022 17:20:45 -0800 (PST)
+Received: from rob (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id z192-20020a4a49c9000000b003213bf4bf0csm235322ooa.31.2022.03.08.17.20.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Mar 2022 17:20:44 -0800 (PST)
+Received: (nullmailer pid 1709815 invoked by uid 1000);
+        Wed, 09 Mar 2022 01:20:43 -0000
+Date:   Tue, 8 Mar 2022 18:20:43 -0700
+From:   Rob Herring <robh@kernel.org>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        David Rhodes <drhodes@opensource.cirrus.com>
+Subject: Re: [PATCH v3 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41
+ External Boost
+Message-ID: <20220309012043.GA1694603@robh.at.kernel.org>
+References: <20220308171730.454587-1-tanureal@opensource.cirrus.com>
+ <20220308171730.454587-16-tanureal@opensource.cirrus.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220308171730.454587-16-tanureal@opensource.cirrus.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These Super I/O chips have an i2c interface that some systems expose
-to a BMC; the BMC's device tree can now describe that via this
-binding.
+On Tue, Mar 08, 2022 at 05:17:29PM +0000, Lucas Tanure wrote:
+> From: David Rhodes <drhodes@opensource.cirrus.com>
+> 
+> Document internal and external boost feature for ASoC CS35L41.
+> For internal boost the following properties are required:
+> - cirrus,boost-peak-milliamp
+> - cirrus,boost-ind-nanohenry
+> - cirrus,boost-cap-microfarad
+> 
+> For external boost, the GPIO1 must be configured as output,
+> so the following properties are required:
+> - cirrus,gpio1-src-select = <1>
+> - cirrus,gpio1-output-enable
+> 
+> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> ---
+>  .../bindings/sound/cirrus,cs35l41.yaml        | 44 +++++++++++++++++--
+>  1 file changed, 41 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> index 3235702ce402..09b515924c59 100644
+> --- a/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> +++ b/Documentation/devicetree/bindings/sound/cirrus,cs35l41.yaml
+> @@ -75,6 +75,19 @@ properties:
+>      maximum: 3
+>      default: 2
+>  
+> +  cirrus,boost-type:
+> +    description:
+> +      Configures the type of Boost being used.
+> +      Internal boost requires boost-peak-milliamp, boost-ind-nanohenry and
+> +      boost-cap-microfarad.
+> +      External Boost must have GPIO1 as GPIO output. GPIO1 will be set high to
+> +      enable boost voltage.
+> +      0 = Internal Boost
+> +      1 = External Boost
+> +    $ref: "/schemas/types.yaml#/definitions/uint32"
+> +    minimum: 0
+> +    maximum: 1
 
-Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../bindings/hwmon/nuvoton,nct6775.yaml       | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
+What does not present mean? Might be better to make this boolean depending
+on what you are trying to accomplish.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-new file mode 100644
-index 000000000000..7b1054db46b3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+
-+$id: http://devicetree.org/schemas/hwmon/nuvoton,nct6775.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NCT6775 and compatible Super I/O chips
-+
-+maintainers:
-+  - Zev Weiss <zev@bewilderbeest.net>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nuvoton,nct6106
-+      - nuvoton,nct6116
-+      - nuvoton,nct6775
-+      - nuvoton,nct6776
-+      - nuvoton,nct6779
-+      - nuvoton,nct6791
-+      - nuvoton,nct6792
-+      - nuvoton,nct6793
-+      - nuvoton,nct6795
-+      - nuvoton,nct6796
-+      - nuvoton,nct6797
-+      - nuvoton,nct6798
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        superio@4d {
-+            compatible = "nuvoton,nct6779";
-+            reg = <0x4d>;
-+        };
-+    };
--- 
-2.35.1
+> +
+>    cirrus,gpio1-polarity-invert:
+>      description:
+>        Boolean which specifies whether the GPIO1
+> @@ -131,9 +144,32 @@ required:
+>    - compatible
+>    - reg
+>    - "#sound-dai-cells"
+> -  - cirrus,boost-peak-milliamp
+> -  - cirrus,boost-ind-nanohenry
+> -  - cirrus,boost-cap-microfarad
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        cirrus,boost-type:
+> +            const: 0
 
+Note that this will be true if cirrus,boost-type is not present. You 
+probably want to add 'required'.
+
+> +    then:
+> +      required:
+> +        - cirrus,boost-peak-milliamp
+> +        - cirrus,boost-ind-nanohenry
+> +        - cirrus,boost-cap-microfarad
+> +    else:
+> +      if:
+> +        properties:
+> +          cirrus,boost-type:
+> +            const: 1
+> +      then:
+> +        required:
+> +          - cirrus,gpio1-output-enable
+> +          - cirrus,gpio1-src-select
+> +        properties:
+> +          cirrus,boost-peak-milliamp: false
+> +          cirrus,boost-ind-nanohenry: false
+> +          cirrus,boost-cap-microfarad: false
+> +          cirrus,gpio1-src-select:
+> +            enum: [1]
+>  
+>  additionalProperties: false
+>  
+> @@ -150,6 +186,8 @@ examples:
+>            VA-supply = <&dummy_vreg>;
+>            VP-supply = <&dummy_vreg>;
+>            reset-gpios = <&gpio 110 0>;
+> +
+> +          cirrus,boost-type = <0>;
+>            cirrus,boost-peak-milliamp = <4500>;
+>            cirrus,boost-ind-nanohenry = <1000>;
+>            cirrus,boost-cap-microfarad = <15>;
+> -- 
+> 2.35.1
+> 
+> 
