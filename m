@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E4F04D2677
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:05:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 176E34D2659
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:05:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230470AbiCIBru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 20:47:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47134 "EHLO
+        id S231268AbiCIB7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 20:59:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230473AbiCIBrt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:47:49 -0500
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A260847AD1;
-        Tue,  8 Mar 2022 17:46:51 -0800 (PST)
-Received: by mail-pf1-x435.google.com with SMTP id a5so963833pfv.2;
-        Tue, 08 Mar 2022 17:46:51 -0800 (PST)
+        with ESMTP id S231279AbiCIB7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:59:42 -0500
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 338394CD4B;
+        Tue,  8 Mar 2022 17:58:45 -0800 (PST)
+Received: by mail-pf1-x429.google.com with SMTP id z15so960052pfe.7;
+        Tue, 08 Mar 2022 17:58:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=B8bBqTwia7wBMwz5hHXZHCzqohNsptzJRrrGwkJNRS8=;
-        b=nwj7tvDCQhT1tTSZYmeFh97v6ljyhYUeGt5xJaI5O+5JHeo06oneSZyrrLp9BGAYNI
-         pMlEUKTuDpYeL6nlBXoq5WGC1p86052RqBGBeaop9vmCRbk8j+OE7kmswBlOQcWUZYqC
-         ozkE/n0IsZrz/0oiZ1k+8RlL1lvSozFFqulT9DKNgIa3kEZU610qd8SVTBLtq01v3rmq
-         Ces/SsF7xuWX4HjoBhGvS8jbozk85pviU83o6Yw1emBgHCO6Kw0O3HDB//5i7xHSKBRF
-         vUQzWla11q3n6eixTOIm4NrDY5rPuED+sdh3H9ZqRREY9VP0fdsNZEEJtJH3avwR9DQA
-         XYeg==
+        bh=7PG7n6GhwgZymh0wA6094FxRWkefaowHSSxuvDcjabc=;
+        b=R91Qwwy0Cb0xukbPogn0xW4aYwy2Aqq1sxGWvw2CcvjTxDoKHGR6y8lGWPpmwAYGXX
+         0iQIC1YFr0y4ysF43dyTH5hXZbRKxHcXhi4aqNBgX2FdjLtIKn+mZzycbEBe1JZnZoIA
+         tf33wNOcZnhzcBow2xFkB9H7E39ew4sQTNwHz/0PxxsGlyqxF8/SPnfUVKgImxPyic1H
+         caYSjl+/k5sULbq3iwmVZ55qNuSchLni6l9HbNd5aVqxCKwUm9QHaWEKHtrHQzMds3Tw
+         J45+Y/7O/QrY5T6ovlIl64qnJWr7Wg6Qm5EPNY4MfUp5pRRE+6XJTtIanW7UNZrd+JnP
+         3Y6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=B8bBqTwia7wBMwz5hHXZHCzqohNsptzJRrrGwkJNRS8=;
-        b=v0DdGmYv5HUPYgrQ987JVZi1+VnecA/G3OPbP8+uP9WcXUqv4e+a/cF+NaLNg7FoXu
-         HgkAlND6stJBLAM0fJ31vPpU0mV3A74G39Zu/Pzt9mM7tS/RD+EoMjgy3BYPta9KSmVy
-         OBH9nFNeFWPrU77mhop8SbvPgbnvfiWM1jwaHaQU6i2aM1Ir/ZlrZs9d/rzsiAzrxxsC
-         uNqkNuDD7llikinHJ+97sf/hcel0zK5wra+m/WS2v604aMWej+cDSCKeK0FUBQV/CilI
-         OQAzkT30M0jzu8BJbEB7btyLbccoxK1P4re03C3+0Yz0C6ZfaIn2W73F5ccgp8XsdqCs
-         mffw==
-X-Gm-Message-State: AOAM533SasUcdPKCjpC1idsAGoxqEi0E9ylJ46lj10meD4XRj6hpIuxS
-        FrChO2X6eftg9M2RyqnKQl+//7PABbk=
-X-Google-Smtp-Source: ABdhPJzjVo7e2qrmUbNkeL2htyp8gE3ptwnN+rocneGeMxNszSiqfQmZvPVecIgxWwjPCwx68Brb+g==
-X-Received: by 2002:a63:2bc1:0:b0:35e:c54b:3be0 with SMTP id r184-20020a632bc1000000b0035ec54b3be0mr16632074pgr.105.1646790411123;
-        Tue, 08 Mar 2022 17:46:51 -0800 (PST)
+        bh=7PG7n6GhwgZymh0wA6094FxRWkefaowHSSxuvDcjabc=;
+        b=Z8YMhUMFzlNADUqpvxHuIFqJ/UmPO2uhGqVPc9id02MJi3N4F0NqqimdDA+Kgh0Scg
+         ohr95peE7eUMaf4lBLZcAszie6X4Fk5hxFa0tdZf0dL0w04JEtNta8VSHTAV01Tig1BT
+         zDZ6Z7Eg+142l9JlK/rFiXJKTFDEEy5weAQeURY45usHEgZkJQvRcEhPbZDeENKdFRJN
+         rolf3ImPUoCo1ifNSKXE5iw5/IPE7uA4fZ9ZL/DqTdyT4PF+e1T1hoCjXMfp/sPamXsB
+         EQGohXYEBpyawL34pQ1Pm12pZaTp3HWCNI9Iw38HYniHDtMAavKcmSwP4z1bmejpfWOH
+         e2Uw==
+X-Gm-Message-State: AOAM530rr5qSfU96TSvMXDgL7CpSMMoGeSmLLzkZz+/VtqbGnJiI2PeP
+        hycN7UPLE3rMUulXFcYQ9GA=
+X-Google-Smtp-Source: ABdhPJzJjgOdKTS8G8Lg4WHgrtnaFnKyVgFZgmCMHdFTAsAdtEUV0ecvjEho8Jsy2RKPy26VWbwXsQ==
+X-Received: by 2002:a05:6a00:1152:b0:4be:ab79:fcfa with SMTP id b18-20020a056a00115200b004beab79fcfamr20964596pfm.3.1646791124720;
+        Tue, 08 Mar 2022 17:58:44 -0800 (PST)
 Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id o185-20020a6341c2000000b0036fb987b25fsm358271pga.38.2022.03.08.17.46.49
+        by smtp.gmail.com with ESMTPSA id b1-20020a630c01000000b003758d1a40easm371184pgl.19.2022.03.08.17.58.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 17:46:50 -0800 (PST)
-Date:   Tue, 8 Mar 2022 17:46:47 -0800
+        Tue, 08 Mar 2022 17:58:44 -0800 (PST)
+Date:   Tue, 8 Mar 2022 17:58:41 -0800
 From:   Richard Cochran <richardcochran@gmail.com>
 To:     Andrew Lunn <andrew@lunn.ch>
 Cc:     Horatiu Vultur <horatiu.vultur@microchip.com>,
@@ -58,9 +58,8 @@ Cc:     Horatiu Vultur <horatiu.vultur@microchip.com>,
         Madhuri.Sripada@microchip.com, Manohar.Puri@microchip.com
 Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
  values and timestamping check for LAN8814 phy
-Message-ID: <20220309014647.GB24366@hoboy.vegasvil.org>
-References: <20220304093418.31645-3-Divya.Koppera@microchip.com>
- <YiILJ3tXs9Sba42B@lunn.ch>
+Message-ID: <20220309015841.GC24366@hoboy.vegasvil.org>
+References: <YiILJ3tXs9Sba42B@lunn.ch>
  <CO1PR11MB4771237FE3F53EBE43B614F6E2089@CO1PR11MB4771.namprd11.prod.outlook.com>
  <YiYD2kAFq5EZhU+q@lunn.ch>
  <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
@@ -69,10 +68,11 @@ References: <20220304093418.31645-3-Divya.Koppera@microchip.com>
  <YiecBKGhVui1Gtb/@lunn.ch>
  <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
  <YifoltDp4/Fs+9op@lunn.ch>
+ <20220309014647.GB24366@hoboy.vegasvil.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <YifoltDp4/Fs+9op@lunn.ch>
+In-Reply-To: <20220309014647.GB24366@hoboy.vegasvil.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -84,21 +84,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 09, 2022 at 12:36:54AM +0100, Andrew Lunn wrote:
+On Tue, Mar 08, 2022 at 05:46:47PM -0800, Richard Cochran wrote:
+> The problem with uncorrected PHY time stamps is that they affect the
+> boundary point between the node and the network.  A static error there
+> will create a path asymmetry that can neither be measured nor
+> corrected by the PTP, and a variable error degrades the time signal.
 
-> I'm assuming the ptp protocol does not try to measure the cable delay,
-> since if it did, there would be no need to know the RJ45-PHY delay, it
-> would be part of that.
+And FWIW, the imperfections in the cable *also* introduce path
+asymmetry and thus uncorrected offsets.  The twisted pairs are never
+exactly the same length in both directions, for example.
 
-The PTP does indeed measure the cable delay.  With a well tuned
-system, you can tell the copper cable length directly from the
-measured delay.
-
-The problem with uncorrected PHY time stamps is that they affect the
-boundary point between the node and the network.  A static error there
-will create a path asymmetry that can neither be measured nor
-corrected by the PTP, and a variable error degrades the time signal.
-
+However the PHY delays can be in the microseconds, but cable delay
+deltas in the nanoseconds, so correcting PHY delay is much more
+important.
 
 Thanks,
 Richard
