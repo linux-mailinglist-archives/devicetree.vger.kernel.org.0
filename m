@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 220674D2666
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:05:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B4EE4D271D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 05:06:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230356AbiCIBZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Mar 2022 20:25:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33830 "EHLO
+        id S230489AbiCIBpN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Mar 2022 20:45:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbiCIBZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:25:06 -0500
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B5F03465A;
-        Tue,  8 Mar 2022 17:23:54 -0800 (PST)
-Received: by mail-oi1-f176.google.com with SMTP id ay7so1168436oib.8;
-        Tue, 08 Mar 2022 17:23:54 -0800 (PST)
+        with ESMTP id S230459AbiCIBpN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Mar 2022 20:45:13 -0500
+Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E664A98F59;
+        Tue,  8 Mar 2022 17:44:13 -0800 (PST)
+Received: by mail-oi1-f174.google.com with SMTP id 12so1179231oix.12;
+        Tue, 08 Mar 2022 17:44:13 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=z8phFBGIEyLJdM34Zal+e+8ZhJ9TzDoyxUSohk9RtYQ=;
-        b=fmf78BiAAWUY7EnTs27JroQ/jIQ1/2ZjRlbN/PC5Zij6hkyCGHMiLjlLxQxtZbMPVU
-         9SNGLstn8gXl4OESGu0sToB3lwCypcHSA/d2Ry5xeCPWYDEZl3EmjkLrGqZR/thFwCFT
-         Y3Rb8NIcAiBwU4M4bCvxLwvP/5rJKppF89yCybRBGDFAsXl8apbhOpUcjJ1MCB/C18nZ
-         pCzSsgZy3z7TPXFqVkWvM8LtT5CPelSKgi/lwn4mGH8I0ft9YWD3kGBgx0+t4EmJ9OBX
-         TzBOEUoB7IoHIh2yLthrhJ0j1ccd08O91xAN0HIgktD52KjdGyDphurT7Oxb7CWlAKRM
-         eqJw==
-X-Gm-Message-State: AOAM533RKsAFrCOhG2s6RaPbvTm/j8wUYNfL5aZ6SK94rJVrrb8CH1nU
-        pjmI2I5fcpK8DJQUHXzW1A==
-X-Google-Smtp-Source: ABdhPJzjxTp5MHz1l0h6XpttmVDVM/j27iOw6ZiWKrpQnrsJpno3Hdthex7W7PQnpRle6ofg0N8FBg==
-X-Received: by 2002:a05:6808:1592:b0:2d9:fd1a:1a69 with SMTP id t18-20020a056808159200b002d9fd1a1a69mr4822216oiw.110.1646789033593;
-        Tue, 08 Mar 2022 17:23:53 -0800 (PST)
+        bh=ALkCbf8MuhMJodp57Ej8qON6XmpBkZSCiYrZoQVas08=;
+        b=AxUUXixCUd5Vka4iI7yC9Dj9P8dXHAT+Qd1ARBSiNkXlSy5Jyj149jD7fvS5190hJp
+         9nhbBOYfuMBZULarMyFn24LLMUk5KCNWvSBGi3zCmMKt1J73ksDpa6vdGNDtDZqnhWUK
+         lk0+iFadl/arQEuxrhC09ni8rGL8pdwUkCVRnBxMmICwkpGePh06IIs1a4jIxYiZwN0M
+         GoLaE6la7vpcw8qWfdMMh7JpZEi6q3SD/JR3L44KjXqTONYLSmIbGlWCimaFi29GDhOk
+         nlbWLc+FcpBcmQeoLUMRLsZW2hL5QmWlFUbQ/lwWC7b2dMlWNWo4Al0LPShEK2K1HhPG
+         3fLw==
+X-Gm-Message-State: AOAM533tjYog/DLG2M/YhfohXb4a0NY+ST//0udVYDeOf+KQ4ZDPSMAe
+        WmhJ+Cytj7bj1W9N67WUtA==
+X-Google-Smtp-Source: ABdhPJzkQoJUy7fj4/Xv/jJzuFahiq5iE8LnS7VsFRB7lnay6JTi7wT4vnvsbqhOSD23Trg9tyBCBQ==
+X-Received: by 2002:a05:6808:14cc:b0:2d9:a01a:48ac with SMTP id f12-20020a05680814cc00b002d9a01a48acmr4660064oiw.247.1646790253013;
+        Tue, 08 Mar 2022 17:44:13 -0800 (PST)
 Received: from rob (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v5-20020a544d05000000b002d7652b3c52sm258085oix.25.2022.03.08.17.23.51
+        by smtp.gmail.com with ESMTPSA id t11-20020a4ae40b000000b0031cc933b418sm253018oov.40.2022.03.08.17.43.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Mar 2022 17:23:52 -0800 (PST)
-Received: (nullmailer pid 1713949 invoked by uid 1000);
-        Wed, 09 Mar 2022 01:23:50 -0000
-Date:   Tue, 8 Mar 2022 18:23:50 -0700
+        Tue, 08 Mar 2022 17:43:51 -0800 (PST)
+Received: (nullmailer pid 1742460 invoked by uid 1000);
+        Wed, 09 Mar 2022 01:43:47 -0000
+Date:   Tue, 8 Mar 2022 18:43:47 -0700
 From:   Rob Herring <robh@kernel.org>
-To:     Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
-        tomi.valkeinen@ideasonboard.com, nicolas@ndufresne.ca,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 7/9] media: dt-bindings: media: Add i.MX8MP DW100
- binding
-Message-ID: <20220309012350.GA1710752@robh.at.kernel.org>
-References: <20220308201038.48386-1-xavier.roumegue@oss.nxp.com>
- <20220308201038.48386-8-xavier.roumegue@oss.nxp.com>
+To:     Sergiu Moga <sergiu.moga@microchip.com>
+Cc:     claudiu.beznea@microchip.com, thierry.reding@gmail.com,
+        alexandre.belloni@bootlin.com, u.kleine-koenig@pengutronix.de,
+        nicolas.ferre@microchip.com, lee.jones@linaro.org,
+        krzysztof.kozlowski@canonical.com, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: convert atmel pwm to json-schema
+Message-ID: <20220309014347.GA1740998@robh.at.kernel.org>
+References: <20220307153656.177589-1-sergiu.moga@microchip.com>
+ <20220307153656.177589-2-sergiu.moga@microchip.com>
+ <1646701660.903645.3624793.nullmailer@robh.at.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220308201038.48386-8-xavier.roumegue@oss.nxp.com>
+In-Reply-To: <1646701660.903645.3624793.nullmailer@robh.at.kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,97 +67,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 09:10:36PM +0100, Xavier Roumegue wrote:
-> Add DT binding documentation for the Vivante DW100 dewarper engine found
-> on NXP i.MX8MP SoC
+On Mon, Mar 07, 2022 at 07:07:40PM -0600, Rob Herring wrote:
+> On Mon, 07 Mar 2022 17:36:55 +0200, Sergiu Moga wrote:
+> > Convert PWM binding for Atmel/Microchip SoCs to Device Tree Schema
+> > format.
+> > 
+> > Signed-off-by: Sergiu Moga <sergiu.moga@microchip.com>
+> > ---
+> >  .../bindings/pwm/atmel,at91sam-pwm.yaml       | 42 +++++++++++++++++++
+> >  .../devicetree/bindings/pwm/atmel-pwm.txt     | 35 ----------------
+> >  MAINTAINERS                                   |  2 +-
+> >  3 files changed, 43 insertions(+), 36 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/atmel,at91sam-pwm.yaml
+> >  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-pwm.txt
+> > 
 > 
-> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../devicetree/bindings/media/nxp,dw100.yaml  | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
+> Running 'make dtbs_check' with the schema in this patch gives the
+> following warnings. Consider if they are expected or the schema is
+> incorrect. These may not be new warnings.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/nxp,dw100.yaml b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
-> new file mode 100644
-> index 000000000000..2c3b82be0b74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/nxp,dw100.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP i.MX8MP DW100 Dewarper core
-> +
-> +maintainers:
-> +  - Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> +
-> +description: |-
-> +  The Dewarp Engine provides high-performance dewarp processing for the
-> +  correction of the distortion that is introduced in images produced by fisheye
-> +  and wide angle lenses. It is implemented with a line/tile-cache based
-> +  architecture. With configurable address mapping look up tables and per tile
-> +  processing, it successfully generates a corrected output image.
-> +  The engine can be used to perform scaling, cropping and pixel format
-> +  conversion.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,dw100
+> Note that it is not yet a requirement to have 0 warnings for dtbs_check.
+> This will change in the future.
+> 
+> Full log is available here: https://patchwork.ozlabs.org/patch/1602300
+> 
+> 
+> pwm@e1604000: compatible:0: 'microchip,sama7g5-pwm' is not one of ['atmel,at91sam9rl-pwm', 'atmel,sama5d3-pwm', 'atmel,sama5d2-pwm', 'microchip,sam9x60-pwm']
+> 	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
+> 
+> pwm@e1604000: compatible: ['microchip,sama7g5-pwm', 'atmel,sama5d2-pwm'] is too long
+> 	arch/arm/boot/dts/at91-sama7g5ek.dt.yaml
 
-Version of h/w and features are all discoverable? If so, add a note to 
-that effect. If not, needs to be SoC specific.
+Disregard, I see patch 2 addresses this.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: The AXI clock
-> +      - description: The AHB clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: ahb
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/imx8mp-power.h>
-> +
-> +    dewarp: dwe@32e30000 {
-> +            compatible = "nxp,dw100";
-> +            reg = <0x32e30000 0x10000>;
-> +            interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
-> +            clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
-> +                     <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
-> +            clock-names = "axi", "ahb";
-> +            power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_DWE>;
-> +    };
-> -- 
-> 2.35.1
-> 
-> 
+Rob
