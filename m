@@ -2,211 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 998844D2A38
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 09:00:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F3E4D2A27
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 09:00:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231142AbiCIH6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 02:58:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53358 "EHLO
+        id S230092AbiCIH6u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 02:58:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231651AbiCIH6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 02:58:06 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 132DC16A595;
-        Tue,  8 Mar 2022 23:56:45 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        with ESMTP id S231907AbiCIH6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 02:58:22 -0500
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 547E4163072;
+        Tue,  8 Mar 2022 23:57:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646812630; x=1678348630;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=aZlR3V5nWOBvDPK9gJV01W4WbYt70nLP2OxZKb/+mUw=;
+  b=aLwECnsk1po3RyCbI/+Tz44Cvkd4nMxa/x5h6PA53lwFJV8viWTjfOCm
+   u1dz6q/AY1hFSgEnZD2z6fUDtt/qXGTKX3Z51KTOM/nriQS+097N0Xgb3
+   1uysEH8FyZI3B871S+XyoRM6bkCFBOvIc0MfoBzepEWOiO/qd6+3gJcuL
+   vQ3tbOsCxTTxmMz/8Gu+DU5ALNAqLYgk2cFgv+Oc0ZB1qOm0fuF3ewn0V
+   akZtnQtK78jpG1Xw0UCOKV9NRgPk0wIzM7ulcptqqjCppjeJPS1kJVGIA
+   Ngfjagxl+LZUh6/rIakdcaI/EXQsqeyVDD4aEzKitgs3u62rDDWLXh2kx
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,167,1643670000"; 
+   d="scan'208";a="22544451"
+Received: from unknown (HELO tq-pgp-pr1.tq-net.de) ([192.168.6.15])
+  by mx1-pgp.tq-group.com with ESMTP; 09 Mar 2022 08:57:08 +0100
+Received: from mx1.tq-group.com ([192.168.6.7])
+  by tq-pgp-pr1.tq-net.de (PGP Universal service);
+  Wed, 09 Mar 2022 08:57:08 +0100
+X-PGP-Universal: processed;
+        by tq-pgp-pr1.tq-net.de on Wed, 09 Mar 2022 08:57:08 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1646812628; x=1678348628;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=aZlR3V5nWOBvDPK9gJV01W4WbYt70nLP2OxZKb/+mUw=;
+  b=Iz9GJDsFsbHvUMh0pLrQbbDH4q1lirwAkZfxoRvmzTYSudDzWtv/gnjt
+   D1tRHMQmtslkIAiGxZBaqfc6Ef4iDrbTVXgBt8YQJYw8JFBvFB2mCNg73
+   tjxm5gMjNriaxCrAkHIEU0punMESwZL73/LHdppF8ey2sd/kFW9Z3COrA
+   d9l1YxTwrLbJfO0j19hAqbsW5ZPReevArZpaAYAPHYV2Tmb/SCtRJzGXy
+   DH6HiaGRwvc7vOeRrkUSt/v4Vf7WA4MuiH2X9r4ECsLItFnda5W1Yhu1M
+   0laeu1Rpqya6wYytNdBpEw3G+R/BDxOcEPanCOPBx55zrYN7Po1Ya2iKP
+   A==;
+X-IronPort-AV: E=Sophos;i="5.90,167,1643670000"; 
+   d="scan'208";a="22544450"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 09 Mar 2022 08:57:08 +0100
+Received: from steina-w.localnet (unknown [10.123.49.12])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 8FCEDB81FEB;
-        Wed,  9 Mar 2022 07:56:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58358C36AF4;
-        Wed,  9 Mar 2022 07:56:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646812603;
-        bh=vSiQIpNhcZaMMK6brddWstUw5Q0bgZrXYlMHRYATWFs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=M6jAhByhAD2U56JWMoKivaUsoeeC7YnZ7K6cvGBcBJXFcmIJjv/fU6rEqQwUcycqz
-         jMZUI4LRQGu6RL1/jZNM50M7D9tQyZalxiBrjFRkOOyA86CNQ77rfUIE/K0CcZIeaF
-         7eLUZU+Kb1OmaTTuB1vS996a3nriF23IOyghHSj4nYPzzOMK6ZWMTuhkgxDIv58ZQF
-         tnd+4ZBR41106aG1BauD6ldDH/YD95yPNTjWkcoKYWWgdSx0X47bwQFfyI+p245uWZ
-         QhGVg30eCQkNftQDpBbw/LjOi3tGa3oUCalj1S4szHwCB+9W2GLITapPyerpLr+/ky
-         ViLH2ODEN9FzA==
-Received: by mail-vk1-f182.google.com with SMTP id w128so829724vkd.3;
-        Tue, 08 Mar 2022 23:56:43 -0800 (PST)
-X-Gm-Message-State: AOAM532a72mS4udw7dpvVWuq9ffZcblT5NpbCOyTeLov2iuZfzfuZist
-        abZTijAl0voIj5D2m6itaYYHAy9b0gK4/wqGWRM=
-X-Google-Smtp-Source: ABdhPJzMXc9YRIc4Pf7+ezNcKvkgBK+1tmciBOGXjLIl0yFLW5B6EU+m/7bu29v9BP6Sbveb2WXHhw/aopFCL2nkhpo=
-X-Received: by 2002:a1f:1dce:0:b0:337:2726:d30f with SMTP id
- d197-20020a1f1dce000000b003372726d30fmr7908443vkd.2.1646812602000; Tue, 08
- Mar 2022 23:56:42 -0800 (PST)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 26BAC280065;
+        Wed,  9 Mar 2022 08:57:08 +0100 (CET)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Richard Zhu <hongxing.zhu@nxp.com>
+Cc:     p.zabel@pengutronix.de, l.stach@pengutronix.de,
+        bhelgaas@google.com, lorenzo.pieralisi@arm.com, robh@kernel.org,
+        shawnguo@kernel.org, vkoul@kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com
+Subject: Re: (EXT) [PATCH v2 0/7] Add the iMX8MP PCIe support
+Date:   Wed, 09 Mar 2022 08:57:05 +0100
+Message-ID: <4743587.31r3eYUQgx@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
+References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
 MIME-Version: 1.0
-References: <20220209123800.269774-1-heiko@sntech.de>
-In-Reply-To: <20220209123800.269774-1-heiko@sntech.de>
-From:   Guo Ren <guoren@kernel.org>
-Date:   Wed, 9 Mar 2022 15:56:31 +0800
-X-Gmail-Original-Message-ID: <CAJF2gTRRF-=GCsRRm5+JZ=uHXSX=mwE0anQsRtRXEDPPBkDB7w@mail.gmail.com>
-Message-ID: <CAJF2gTRRF-=GCsRRm5+JZ=uHXSX=mwE0anQsRtRXEDPPBkDB7w@mail.gmail.com>
-Subject: Re: [PATCH v6 00/14] riscv: support for Svpbmt and D1 memory types
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Wei Fu <wefu@redhat.com>,
-        liush <liush@allwinnertech.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Drew Fustini <drew@beagleboard.org>,
-        Christoph Hellwig <hch@lst.de>, Arnd Bergmann <arnd@arndb.de>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime@cerno.tech>,
-        Greg Favor <gfavor@ventanamicro.com>,
-        Andrea Mondelli <andrea.mondelli@huawei.com>,
-        Jonathan Behrens <behrensj@mit.edu>,
-        "Xinhaoqu (Freddie)" <xinhaoqu@huawei.com>,
-        Bill Huffman <huffman@cadence.com>,
-        Nick Kossifidis <mick@ics.forth.gr>,
-        Allen Baum <allen.baum@esperantotech.com>,
-        Josh Scheid <jscheid@ventanamicro.com>,
-        Richard Trauben <rtrauben@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Christoph Muellner <cmuellner@linux.com>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After trying it on my SMP 4*910 platform, it could boot normally.
+Hello Richard,
 
-Tested-by: Guo Ren <guoren@kernel.org>
+Am Montag, 7. M=E4rz 2022, 10:07:27 CET schrieb Richard Zhu:
+> Based on the i.MX8MP GPC and blk-ctrl patch-set[1] issued by Lucas and the
+> following commits.
+>   - one codes refine patch-set[5].
+>   - two Fixes[2],[3].
+>   - one binding commit[4].
+>   - some dts changes in Shawn's git if you want to test PCIe on i.MX8MM E=
+VK.
+> b4d36c10bf17 arm64: dts: imx8mm-evk: Add the pcie support on imx8mm evk
+> board aaeba6a8e226 arm64: dts: imx8mm: Add the pcie support
+>     cfc5078432ca arm64: dts: imx8mm: Add the pcie phy support
+>=20
+> Sorry about that there may be some conflictions when do the codes merge.
+> I'm waiting for the ack now, and will re-base them in a proper sequence
+> later.
 
-On Wed, Feb 9, 2022 at 8:38 PM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Svpbmt is an extension defining "Supervisor-mode: page-based memory types"
-> for things like non-cacheable pages or I/O memory pages.
->
->
-> So this is my 2nd try at implementing Svpbmt (and the diverging D1 memory
-> types) using the alternatives framework.
->
-> This includes a number of changes to the alternatives mechanism itself.
-> The biggest one being the move to a more central location, as I expect
-> in the future, nearly every chip needing some sort of patching, be it
-> either for erratas or for optional features (svpbmt or others).
->
-> The dt-binding for svpbmt itself is of course not finished and is still
-> using the binding introduced in previous versions, as where to put
-> a svpbmt-property in the devicetree is still under dicussion.
-> Atish seems to be working on a framework for extensions [0],
->
-> The series also introduces support for the memory types of the D1
-> which are implemented differently to svpbmt. But when patching anyway
-> it's pretty clean to add the D1 variant via ALTERNATIVE_2 to the same
-> location.
->
-> The only slightly bigger difference is that the "normal" type is not 0
-> as with svpbmt, so kernel patches for this PMA type need to be applied
-> even before the MMU is brought up, so the series introduces a separate
-> stage for that.
->
->
-> In theory this series is 3 parts:
-> - sbi cache-flush / null-ptr
-> - alternatives improvements
-> - svpbmt+d1
->
-> So expecially patches from the first 2 areas could be applied when
-> deemed ready, I just thought to keep it together to show-case where
-> the end-goal is and not requiring jumping between different series.
->
->
-> The sbi cache-flush patch is based on Atish's sparse-hartid patch [1],
-> as it touches a similar area in mm/cacheflush.c
->
->
-> I picked the recipient list from the previous version, hopefully
-> I didn't forget anybody.
->
-> changes in v6:
-> - rebase onto 5.17-rc1
-> - handle sbi null-ptr differently
-> - improve commit messages
-> - use riscv,mmu as property name
->
-> changes in v5:
-> - move to use alternatives for runtime-patching
-> - add D1 variant
->
->
-> [0] https://lore.kernel.org/r/20211224211632.1698523-1-atishp@rivosinc.com
-> [1] https://lore.kernel.org/r/20220120090918.2646626-1-atishp@rivosinc.com
->
->
-> Heiko Stuebner (12):
->   riscv: prevent null-pointer dereference with sbi_remote_fence_i
->   riscv: integrate alternatives better into the main architecture
->   riscv: allow different stages with alternatives
->   riscv: implement module alternatives
->   riscv: implement ALTERNATIVE_2 macro
->   riscv: extend concatenated alternatives-lines to the same length
->   riscv: prevent compressed instructions in alternatives
->   riscv: move boot alternatives to a slightly earlier position
->   riscv: Fix accessing pfn bits in PTEs for non-32bit variants
->   riscv: add cpufeature handling via alternatives
->   riscv: remove FIXMAP_PAGE_IO and fall back to its default value
->   riscv: add memory-type errata for T-Head
->
-> Wei Fu (2):
->   dt-bindings: riscv: add MMU Standard Extensions support for Svpbmt
->   riscv: add RISC-V Svpbmt extension support
->
->  .../devicetree/bindings/riscv/cpus.yaml       |  10 ++
->  arch/riscv/Kconfig.erratas                    |  29 ++--
->  arch/riscv/Kconfig.socs                       |   1 -
->  arch/riscv/Makefile                           |   2 +-
->  arch/riscv/errata/Makefile                    |   2 +-
->  arch/riscv/errata/sifive/errata.c             |  10 +-
->  arch/riscv/errata/thead/Makefile              |   1 +
->  arch/riscv/errata/thead/errata.c              |  85 +++++++++++
->  arch/riscv/include/asm/alternative-macros.h   | 114 ++++++++-------
->  arch/riscv/include/asm/alternative.h          |  16 ++-
->  arch/riscv/include/asm/errata_list.h          |  52 +++++++
->  arch/riscv/include/asm/fixmap.h               |   2 -
->  arch/riscv/include/asm/pgtable-32.h           |  17 +++
->  arch/riscv/include/asm/pgtable-64.h           |  79 +++++++++-
->  arch/riscv/include/asm/pgtable-bits.h         |  10 --
->  arch/riscv/include/asm/pgtable.h              |  53 +++++--
->  arch/riscv/include/asm/vendorid_list.h        |   1 +
->  arch/riscv/kernel/Makefile                    |   1 +
->  arch/riscv/{errata => kernel}/alternative.c   |  48 ++++++-
->  arch/riscv/kernel/cpufeature.c                | 136 +++++++++++++++++-
->  arch/riscv/kernel/head.S                      |   2 +
->  arch/riscv/kernel/module.c                    |  29 ++++
->  arch/riscv/kernel/sbi.c                       |  10 +-
->  arch/riscv/kernel/smpboot.c                   |   4 -
->  arch/riscv/kernel/traps.c                     |   2 +-
->  arch/riscv/mm/init.c                          |   1 +
->  26 files changed, 606 insertions(+), 111 deletions(-)
->  create mode 100644 arch/riscv/errata/thead/Makefile
->  create mode 100644 arch/riscv/errata/thead/errata.c
->  rename arch/riscv/{errata => kernel}/alternative.c (59%)
->
-> --
-> 2.30.2
->
+Thanks for providing the dependency list. Unfortunately they did not apply=
+=20
+without error on my local tree, but this is caused by other patches I track.
+I managed to fix the conflicts, I think.
+Eventually I was able to get a PCIe M.2 ethernet interface working on my=20
+TQMa8MPxL based board. iperf showed >900MBit/s Tx and > 700 MBit/s Rx.
+Thanks for your effort. Once the depenencies and reviews are settled, you'l=
+l=20
+get my tested-by.
+
+Thanks again and regards
+Alexander
+
+> This series patches add the i.MX8MP PCIe support and tested on i.MX8MM EVK
+> and i.MX8MP EVk boards. The PCIe NVME works fine on both boards.
+>=20
+> - i.MX8MP PCIe PHY has two resets refer to the i.MX8MM PCIe PHY.
+>   Add one more PHY reset for i.MX8MP PCIe PHY accordingly.
+> - Add the i.MX8MP PCIe PHY support in the i.MX8M PCIe PHY driver.
+>   And share as much as possible codes with i.MX8MM PCIe PHY.
+> - Add the i.MX8MP PCIe support in binding document, DTS files, and PCIe
+>   driver.
+>=20
+> Main changes v1-->v2:
+> - It's my fault forget including Vinod, re-send v2 after include Vinod
+>   and linux-phy@lists.infradead.org.
+> - List the basements of this patch-set. The branch, codes changes and so =
+on.
+> - Clean up some useless register and bit definitions in #3 patch.
+>=20
+> [1]https://patchwork.kernel.org/project/linux-arm-kernel/cover/2022022820=
+173
+> 1.3330192-1-l.stach@pengutronix.de/
+> [2]https://patchwork.ozlabs.org/project/linux-pci/patch/1646289275-17813-=
+1-> git-send-email-hongxing.zhu@nxp.com/
+> [3]https://patchwork.ozlabs.org/project/linux-pci/patch/1645672013-8949-1=
+=2Dg
+> it-send-email-hongxing.zhu@nxp.com/
+> [4]https://patchwork.ozlabs.org/project/linux-pci/patch/1646293805-18248-=
+1-> git-send-email-hongxing.zhu@nxp.com/
+> [5]https://patchwork.ozlabs.org/project/linux-pci/cover/1645760667-10510-=
+1-> git-send-email-hongxing.zhu@nxp.com/
+>=20
+> NOTE:
+> Based git <git://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.g=
+it>
+> Based branch <pci/imx6>
+>=20
+> Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml    |   1 +
+> Documentation/devicetree/bindings/phy/fsl,imx8-pcie-phy.yaml |   4 +-
+> arch/arm64/boot/dts/freescale/imx8mp-evk.dts                 |  55
+> ++++++++++++++++++++++ arch/arm64/boot/dts/freescale/imx8mp.dtsi         =
+ =20
+>         |  46 ++++++++++++++++++- drivers/pci/controller/dwc/pci-imx6.c  =
+ =20
+>                    |  19 +++++++-
+> drivers/phy/freescale/phy-fsl-imx8m-pcie.c                   | 205
+> +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--------=
+=2D-
+> ------- drivers/reset/reset-imx7.c                                   |   =
+1 +
+> 7 files changed, 286 insertions(+), 45 deletions(-)
+>=20
+> [PATCH v2 1/7] reset: imx7: Add the iMX8MP PCIe PHY PERST support
+> [PATCH v2 2/7] dt-binding: phy: Add iMX8MP PCIe PHY binding
+> [PATCH v2 3/7] phy: freescale: imx8m-pcie: Add iMX8MP PCIe PHY
+> [PATCH v2 4/7] dt-bindings: imx6q-pcie: Add iMX8MP PCIe compatible
+> [PATCH v2 5/7] arm64: dts: imx8mp: add the iMX8MP PCIe support
+> [PATCH v2 6/7] arm64: dts: imx8mp-evk: Add PCIe support
+> [PATCH v2 7/7] PCI: imx6: Add the iMX8MP PCIe support
 
 
--- 
-Best Regards
- Guo Ren
 
-ML: https://lore.kernel.org/linux-csky/
+
