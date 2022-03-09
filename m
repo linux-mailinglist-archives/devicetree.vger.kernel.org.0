@@ -2,54 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E684D2D34
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 11:37:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 061DD4D2D6A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 11:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230380AbiCIKiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 05:38:21 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56156 "EHLO
+        id S229962AbiCIKww (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 05:52:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229953AbiCIKiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 05:38:20 -0500
-Received: from smtp.domeneshop.no (smtp.domeneshop.no [IPv6:2a01:5b40:0:3005::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE47814866C;
-        Wed,  9 Mar 2022 02:37:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=tronnes.org
-        ; s=ds202112; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=h2eDy6oU9ZtZAY6GjBi61uPbJyUlQd/vuRaD0dkUSUg=; b=TLRPeRJSHdtfkkpxVAf6z4CPal
-        EY49yjkYWIHx1qeAbDMgxRCovA/f8cKtUF8q9J1FV4NQ/bBPTCG7YBOyHeHVtXT+MWNZICDZURwny
-        swS0XRK0QI5wlF4Qiz5XEV7mSOXEWEkxcue9DeRA096m5SfjOhl8wWxX5c+9SifglFZntpcgCFHsX
-        z86qK9DDuRWtNmHRjPADgDSwYJm1yCTm0nOw0reswomuCmDQMN9Oay3a2hYtmpoqfibj1on8wqB/2
-        v1l7Lg1YCsylKVItRP07G31R0Kv7GvPsw+Vk7kL4H3szv+UiJCq0G3HK7ypxkpTlPtwH34OneOksc
-        qC9TDaGg==;
-Received: from 211.81-166-168.customer.lyse.net ([81.166.168.211]:64253 helo=[192.168.10.61])
-        by smtp.domeneshop.no with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <noralf@tronnes.org>)
-        id 1nRth1-0005xU-9w; Wed, 09 Mar 2022 11:37:19 +0100
-Message-ID: <c8ac19a6-fab9-b627-b4c1-6321066a10f9@tronnes.org>
-Date:   Wed, 9 Mar 2022 11:37:15 +0100
+        with ESMTP id S229740AbiCIKwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 05:52:50 -0500
+Received: from EUR03-AM5-obe.outbound.protection.outlook.com (mail-eopbgr30068.outbound.protection.outlook.com [40.107.3.68])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61558106B26;
+        Wed,  9 Mar 2022 02:51:51 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nn8EFS1Hld0IB1WUL7j1aQH2wBtnQoLcEz3CCskbVbhuWvO3NiMzgQwHSLesMaoJrDBvRibWiG3Obwf8vU7pcJgc59fnoZHD1CCuSVgFzwr/MJ8rxf1KXXRjgaJUtLgBn67xNt5VRTsu11xMNElC2J0dW/zkrwVb6FmRNgnfTa0HtdU2v85AeEPg5VJanI3v9O9Z31GBwLX/ZyzBsI4L7nPG8GANP0GVftsiWwmijZzZ+KAFl/JsM4T4bkO1Ad0xMYNo8OucurcLC+S3jibX0WW3ou/W9X+OrSzPjegsI//2oytkZ1i/K9gQN410SWCbhxLFNusNi+4DgOAviDvKBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EcL+/EPjOweOfYfSyvGyJifpoOJ9z2CjMN67usN2Twc=;
+ b=Az/tjGsg4HgaCa4vEQs66VUoHY2Zew8vWbvEnTxMNDwvk24l99kb5zCukqiotXo4bDXntLRhu9zoV0fjvOz14WvHKZ9oiSjGOB/nKS845NEvRYIVikG5fD4ZtgLT6ZsVL9YF5AOVbqn0UPHC1UTZ2di0cdH9yQMAdLyXtFq9HVF3EhCRb9jJJHK9Sry6Ulh/+l7vt1P0eIpojPGNY10VhCDUEN6iNJD0q5NdbQxdi7SvHjQgoNou1dcUXDn8CbN4OaClSIxAEbQswIrqzXsANOd6737IcBRnadN3hqi8om3s0G4av8Zkc6ZYyx6lGTqNbPIpXR3JBihD8ur3QOuwcw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EcL+/EPjOweOfYfSyvGyJifpoOJ9z2CjMN67usN2Twc=;
+ b=Io50zhHyAj/24hJKSY2jU+fj4Qa+JVOXKVMAJKiGLz41z1/xNIHnBSzD4dcpK0fedWASy1jJslPlb8RcZdrcIBP/tkLQ0Bjtgr6RUUGveK4gjM4518XV8Uq09i91Q7HSD/DJZ8S4gbHo30jLgeXw5dSI3vTgnGLJE3J3vshUYLM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8703.eurprd04.prod.outlook.com (2603:10a6:102:21e::22)
+ by DB6PR04MB3189.eurprd04.prod.outlook.com (2603:10a6:6:3::31) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5038.26; Wed, 9 Mar 2022 10:51:47 +0000
+Received: from PAXPR04MB8703.eurprd04.prod.outlook.com
+ ([fe80::a037:bc8:44b:5965]) by PAXPR04MB8703.eurprd04.prod.outlook.com
+ ([fe80::a037:bc8:44b:5965%3]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
+ 10:51:47 +0000
+Message-ID: <4be5c5be-9bd6-fbbb-cf02-f4c289193603@oss.nxp.com>
+Date:   Wed, 9 Mar 2022 11:51:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 7/9] media: dt-bindings: media: Add i.MX8MP DW100
+ binding
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
+        tomi.valkeinen@ideasonboard.com, nicolas@ndufresne.ca,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220308201038.48386-1-xavier.roumegue@oss.nxp.com>
+ <20220308201038.48386-8-xavier.roumegue@oss.nxp.com>
+ <20220309012350.GA1710752@robh.at.kernel.org>
+From:   "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>
+In-Reply-To: <20220309012350.GA1710752@robh.at.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PR1P264CA0035.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:102:19f::22) To PAXPR04MB8703.eurprd04.prod.outlook.com
+ (2603:10a6:102:21e::22)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH 0/6] drm/tiny/st7735r: Match up with staging/fbtft driver
-To:     david@lechnology.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-fbdev@vger.kernel.org, linux-staging@lists.linux.dev,
-        dave.stevenson@raspberrypi.com, maxime@cerno.tech,
-        robh+dt@kernel.org
-References: <20211124150757.17929-1-noralf@tronnes.org>
-From:   =?UTF-8?Q?Noralf_Tr=c3=b8nnes?= <noralf@tronnes.org>
-In-Reply-To: <20211124150757.17929-1-noralf@tronnes.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c025e904-43a9-4923-2d11-08da01bacf03
+X-MS-TrafficTypeDiagnostic: DB6PR04MB3189:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <DB6PR04MB3189407B6A96D88B9E3F302BBA0A9@DB6PR04MB3189.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tGC7s+LR22GnusgKFOYXQhkgjCsj25WHafh6UDDC9JeyUAJJySgs0MZWPtrRQLonrsG5hUGjz348a3Fmqgu4H3wOctw+6clH0g6sv5/jr6CZiRxX1wFJI0263VJ0XmsdVQRIHcjHkFjVxZVdKruTFQ04N9zyjqHWmdXuJsDrfiK6M4uDgXhqIbVdy1AGddzHNHxxllexWlUgvrJCKENSDgXCA3zTiY7Zy2/WMtiN1UEhsjFGBH8OuZW5dqQcZWjec/pZegZFmNL6l5RgTiY36iVhMMBqmoCsHtgqjzy1sUp5E4/55rs44Q7hVuX+mBDgNsfJzYLwc7bb7MUM5CFyvyYlA6qkUmXXCCxnP8PpsqI/IIFAvwyKh1xA6fFRfvhU2iIi3hJtxe3GRZIFvMXJYzKrhjwh7WywzR05A8Pk8VWC0NnsP1ImVif7AOeeNzzWKr3Ncp54MkVIItV0BI6clFvoUq365YfkgNpUOJAoouBr652FfsdxGgBMCy+KMCVxO1wKGI0QOdd0HMEQCXZKVSMKpP5p9ZK49DdBRZjjpBAW9UiRlFCQzkRrjndLzC9bSLob/2DwoNvdZUsa8OxeVpU0YVsB/Btr+F+MeRBc+EjDZBfD2gi7aJA06sSMsqF3umo0zBiBh5IM5/ncYk6rICmR3MKX1z1ggV0uyJQ6kOOmzbM47ZJ5S0jDU8xgJ680t27/KEpPMlOTs2FzSuL0b9+23CWIEEjGHknUEhp9eAZj2j1qNCJZM91If66Tm+wrKdZH3cc0qFVqZPMHmEX4DjMYK6cN8ZnACYkMmySCVSeRrD0M/OdPTJO+GxVsKJOLuasPPSaQaUgv1wJGPG/ATHgkYikbAqPhajpYz4btrZ8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8703.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(52116002)(31696002)(86362001)(966005)(6486002)(53546011)(6512007)(6506007)(186003)(2616005)(498600001)(83380400001)(4326008)(66946007)(8676002)(66476007)(66556008)(5660300002)(31686004)(8936002)(2906002)(38100700002)(6916009)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUU1VEcxejBJY3ZvZUwycEp3Q0pQWGNNNnZIeG9xbkdVQ3FVc1lrTWx0ZkJh?=
+ =?utf-8?B?YmR0Wkk0NmtPZllYbm9sVUhuVzFUeE92WG85d2k4WG9GcGRuZkhwQ3poOGlr?=
+ =?utf-8?B?T2o2SjcyYVRRSlN0L29TKzU2dFRJZllkNzdoSG1nUmlRUEVwSHo0NXhrM2Rx?=
+ =?utf-8?B?TjBTQ3BTbDFjVHNuTnY2bTJPaXlpYnBucStwMVFKbVNXSktqRFVlRllYakky?=
+ =?utf-8?B?cUZSS1BqMEhNRmVpM2p2ZTdnenFBMFR4eG93ZCtmZnJEN2sxK2FpZjJwYXph?=
+ =?utf-8?B?a05vTjk0RW5CcWFzU3hjdVcvN3dKTE12RTN0K0l1WE5vZ3dSRmZBOGQxWjEz?=
+ =?utf-8?B?QkZidmgycnRjVndCcWJTMGJlZXQ0K1RBUjd4R3k0Y0lBWE8xcDRidlFyUGpH?=
+ =?utf-8?B?eGFmRXB2eWNOZDR6RU5UTzRXM1NFVUJqS3hQZ29EUUJaUkVyTjQzRUJJdzRx?=
+ =?utf-8?B?YU9NLzI1bmpMVGp4eS9CcS9PUlhZWEFOQVNVaEFZVUk0Ri9hNDBuTGxQY2h2?=
+ =?utf-8?B?MzY5TWlSbEd0RFpGWUN5bUx2TDIvYW9tNHhjWEM3N0YrTEkzRiszTmxBYmh5?=
+ =?utf-8?B?anNzZlBNMThQY2pEQmRWbVhSTmpHZ0hwMExNUHN2SXV0c0o5clNsR2VjMmVq?=
+ =?utf-8?B?ZC9WNHlYRkI1RzJURlE2Nmxwc0lPNUNNRWU0TU5BMW82ZzhBUkxoTFVDSk9h?=
+ =?utf-8?B?RGhjeW00OVdMNWtvd002c2lXL1ZXbGNwdGcvZkJVRHdwSU1TbmVmMnpTV3VQ?=
+ =?utf-8?B?ckxsblBMaFpYS2xTa3ZDaDhzYkkyOVdJRUJxaXdUazBGVElYbUFDdXRlQ20x?=
+ =?utf-8?B?SXZ5cEdyUEUrVTlUNm54dUN6R1hkM3VsYzdKTXFYTnAvczN5bkhNRC94bW9y?=
+ =?utf-8?B?Q1YySjkxZ1pFdkJYVGZ4bk1YeGRZd0MvWUVSMEI5RElMeFBlWUhyNHpaQWND?=
+ =?utf-8?B?eVJ6eTJkVmpGeFdVbG04ZUFEblRTUmVzVFNMQ3pmNzNua3FwVmVwWHFZeUhN?=
+ =?utf-8?B?aGhwdmhPSmFCYzhqbi9qYURhUWUxS0RLNHJJS1pXa0dwMUVpZXoybVkxOGls?=
+ =?utf-8?B?UTU5Zm16dzAzWno2Ym5aZXNFcStHU3c1VUZMbzMwNktxbit4OFZaaHhNUWND?=
+ =?utf-8?B?UU00eXp4bDZxVDNPT0RyYzV3RVFiR0R2RHd2T2pqMWpVN0h6NDFsU0tiSjc5?=
+ =?utf-8?B?QlI0aHgwdUJwcGk1NnJidkNHVnFwZ01yS1NnZDBoZW5FTEEyUW94bk1XclBK?=
+ =?utf-8?B?ZWNQeWJUK2g4SXZSb1BDUmZpUTJWR215RVBSaHlJL3dvQWtEYnVnWTU4S3N6?=
+ =?utf-8?B?ck5haExpZ3JmSzYzRGJhSi9HMkI5V0MyVWVsUzh1bHAxblhHMzVlZTFQcmxa?=
+ =?utf-8?B?OG5PbzV4K1pVQUdyVmdLMFl3LzZDRUdkTVMrVWhmSnRkZXIyT0daUHhIQjlR?=
+ =?utf-8?B?TzlueUUxc1BnZW0rQXM2ZnBQNFVjbW40UmlPNFE4YUZyTHFqRjVoeldCcCs5?=
+ =?utf-8?B?b1hJNVZIQzU5TmQvcFFDTE1VR3hqOEM3KzdBM1ZKL0FyK2hoRHl3WHFXWnZK?=
+ =?utf-8?B?Yms5WW9MRzQ5dWpsOFIyVytQdWlLTzh5anRPWTlNWFBjYUVJWDY5bUN0YkxU?=
+ =?utf-8?B?TlkrVG04VHpURVFCait3VnFKRWFXbE9ZSGdjS28zZHRPc0ZLV05VczBEWkxh?=
+ =?utf-8?B?K0lPOS9qNE5lMzl1UWlYcjlDSzFHcm03NEJDM29ndFJhQkRKcmhPN0ZqbjE2?=
+ =?utf-8?B?dU5kZGFma1F3TllpREpJaUh5cEVzV3VRYkVJUnliWThwUENWYmllVjVyd0lX?=
+ =?utf-8?B?M2o5VWoyOUpVOHBIZWVSKzUyVFVPVzRYNTg2bFphZGNDVFlLNlJzeFRJWmxC?=
+ =?utf-8?B?RmhPVS9pdlRjVDNtTUZaOWl1SktnOEVtNFkvaE9hUWlnQmNxaGZYNURNTnhK?=
+ =?utf-8?B?WEQ1WDc4bVBJZHQrdjlZMVpYeVpreUJJdFNRczJ4QUNKbENSdEMzaFdvL001?=
+ =?utf-8?B?MUpQRDc2RWk3SWQ4aXB1WHE1ZVE4bFlTVktxcmpYWVRVTUdWYU1mbWJqbGdv?=
+ =?utf-8?B?cmJwSXBmN05ZVXZiTkxrcFV2T2xhcWU2a1FCd1lGZno5UnVYK3U1NStxWjRI?=
+ =?utf-8?B?aGNFai9kY1dqalY3UVZJdnZHTlJIMnFFOGxVUHBNSzFXNFROQlFkL3FZSDZP?=
+ =?utf-8?B?ZUNYSS84Tk1hODhpRUtiSnpGVEtXZ3RoR3BYajNKOUxvNU9VYy9DUFBzWWZJ?=
+ =?utf-8?Q?qMPLGXuPDfNuNKwlmEoV06HsM4AHNgt2AqnrlpzCpk=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c025e904-43a9-4923-2d11-08da01bacf03
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8703.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2022 10:51:47.7014
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c+AY6Kzee1bqH8Q/zELLjn6yFFGy8ApVSbWi7h9/jjkBeeE3heEhQl598JuO7O/eQOqDbWBLH/XFVuA32U6dfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3189
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,95 +135,107 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-Den 24.11.2021 16.07, skrev Noralf Trønnes:
-> Hi,
+On 3/9/22 02:23, Rob Herring wrote:
+> On Tue, Mar 08, 2022 at 09:10:36PM +0100, Xavier Roumegue wrote:
+>> Add DT binding documentation for the Vivante DW100 dewarper engine found
+>> on NXP i.MX8MP SoC
+>>
+>> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+>> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>> ---
+>>   .../devicetree/bindings/media/nxp,dw100.yaml  | 69 +++++++++++++++++++
+>>   1 file changed, 69 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/media/nxp,dw100.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/nxp,dw100.yaml b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
+>> new file mode 100644
+>> index 000000000000..2c3b82be0b74
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/nxp,dw100.yaml
+>> @@ -0,0 +1,69 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/nxp,dw100.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NXP i.MX8MP DW100 Dewarper core
+>> +
+>> +maintainers:
+>> +  - Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+>> +
+>> +description: |-
+>> +  The Dewarp Engine provides high-performance dewarp processing for the
+>> +  correction of the distortion that is introduced in images produced by fisheye
+>> +  and wide angle lenses. It is implemented with a line/tile-cache based
+>> +  architecture. With configurable address mapping look up tables and per tile
+>> +  processing, it successfully generates a corrected output image.
+>> +  The engine can be used to perform scaling, cropping and pixel format
+>> +  conversion.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nxp,dw100
 > 
-> This patchset adds a missing piece for decommissioning the
-> staging/fbtft/fb_st7735r.c driver namely a way to configure the
-> controller from Device Tree.
-> 
-> All fbtft drivers have builtin support for one display panel and all
-> other panels using that controller are configured using the Device Tree
-> 'init' property. This property is supported by all fbtft drivers and
-> provides a generic way to set register values or issue commands
-> (depending on the type of controller).
-> 
-> It is common for these types of displays to have a datasheet listing the
-> necessary controller settings/commands or some example code doing the
-> same.
-> 
-> This is how the panel directly supported by the fb_st7735r staging
-> driver is described using Device Tree with that driver:
-> 
->     width = <160>;
->     height = <128>;
-> 
->     init = <0x1000001
->             0x2000096
->             0x1000011
->             0x20000ff
->             0x10000B1 0x01 0x2C 0x2D
->             0x10000B4 0x07
->             0x10000C0 0xA2 0x02 0x84
->             0x10000C1 0xC5
->             0x10000C2 0x0A 0x00
->             0x10000C5 0x0E
->             0x100003a 0x55
->             0x1000036 0x60
->             0x10000E0 0x0F 0x1A 0x0F 0x18 0x2F 0x28 0x20 0x22
->                       0x1F 0x1B 0x23 0x37 0x00 0x07 0x02 0x10
->             0x10000E1 0x0F 0x1B 0x0F 0x17 0x33 0x2C 0x29 0x2E
->                       0x30 0x30 0x39 0x3F 0x00 0x07 0x03 0x10
->             0x1000029
->             0x2000064>;
-> 
-> 
-> This is how the same panel is described using the st7735r drm driver and
-> this patchset:
-> 
->     width = <160>;
->     height = <128>;
-> 
->     frmctr1 = [ 01 2C 2D ];
->     invctr = [ 07 ];
->     pwctr1 = [ A2 02 84 ];
->     pwctr2 = [ C5 ];
->     pwctr3 = [ 0A 00 ];
->     vmctr1 = [ 0E ];
->     madctl = [ 60 ];
->     gamctrp1 = [ 0F 1A 0F 18 2F 28 20 22 1F 1B 23 37 00 07 02 10 ];
->     gamctrn1 = [ 0F 1B 0F 17 33 2C 29 2E 30 30 39 3F 00 07 03 10 ];
-> 
-> 
-> Back when the fbtft drivers were added to staging I asked on the DT
-> mailinglist if it was OK to use the 'init' property but it was turned
-> down. In this patchset I'm trying the same approach used by the
-> solomon,ssd1307fb.yaml binding in describing the attached panel. That
-> binding prefixes the properties with the vendor name, not sure why that
-> is and I think it looks strange so I try without it.
-> 
-> Noralf.
-> 
-> 
-> Noralf Trønnes (6):
->   dt-bindings: display: sitronix,st7735r: Fix backlight in example
->   dt-bindings: display: sitronix,st7735r: Make reset-gpios optional
->   dt-bindings: display: sitronix,st7735r: Remove spi-max-frequency limit
+> Version of h/w and features are all discoverable? If so, add a note to
+> that effect. If not, needs to be SoC specific.
+The id register is not used as it turns out to be RW, with 0 as reset 
+value..Hence not used by the driver. According to the IP vendor, this 
+version is a single variant IP.
+Following this rationale, I would have been more accurate to suggest 
+"nxp,dw100-v1" as compatible string.
 
-Patches 1-3 applied, thanks for reviewing.
+Unless you prefer "nxp,dw100-v1", I will go for "nxp,imx8mp-dw100" in 
+the next series.
 
-The change to the driver has been replaced by a new generic driver
-panel-mipi-dbi.
-
-Noralf.
-
->   dt-bindings: display: sitronix,st7735r: Add initialization properties
->   drm/mipi-dbi: Add device property functions
->   drm: tiny: st7735r: Support DT initialization of controller
 > 
->  .../bindings/display/sitronix,st7735r.yaml    | 122 ++++++++++++++-
->  drivers/gpu/drm/drm_mipi_dbi.c                | 139 ++++++++++++++++++
->  drivers/gpu/drm/tiny/st7735r.c                |  87 +++++++++--
->  include/drm/drm_mipi_dbi.h                    |   3 +
->  4 files changed, 334 insertions(+), 17 deletions(-)
-> 
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: The AXI clock
+>> +      - description: The AHB clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: axi
+>> +      - const: ahb
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - clock-names
+>> +  - power-domains
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/imx8mp-clock.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/power/imx8mp-power.h>
+>> +
+>> +    dewarp: dwe@32e30000 {
+>> +            compatible = "nxp,dw100";
+>> +            reg = <0x32e30000 0x10000>;
+>> +            interrupts = <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>;
+>> +            clocks = <&clk IMX8MP_CLK_MEDIA_AXI_ROOT>,
+>> +                     <&clk IMX8MP_CLK_MEDIA_APB_ROOT>;
+>> +            clock-names = "axi", "ahb";
+>> +            power-domains = <&media_blk_ctrl IMX8MP_MEDIABLK_PD_DWE>;
+>> +    };
+>> -- 
+>> 2.35.1
+>>
+>>
