@@ -2,107 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4F804D3BBC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 22:09:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3794D3CD0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 23:21:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237429AbiCIVKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 16:10:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57956 "EHLO
+        id S238609AbiCIWWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 17:22:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233585AbiCIVKx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 16:10:53 -0500
-Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFEB2BB38;
-        Wed,  9 Mar 2022 13:09:53 -0800 (PST)
-Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-2dbc48104beso37582987b3.5;
-        Wed, 09 Mar 2022 13:09:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SHLpaCDabk6UVYQs8CpJ48dsCLpU1oWOF4RtdySvC5Q=;
-        b=pFmS/RzST3I09Hy16iYpLdQMT/xbrr+WbU8JftfckdHtYSZVA46yxhvOzSwu7uDhYX
-         Z9XDLUAIckIL81UHQz/RqmR0dGCWSSzHRRmmTbcE8ec7cCLMpMS8EyEqQHh40N1EK4AT
-         7jtXhp+cBvwC3KHfxBK+GvAgDmVcTPOYRPGp+e3K9r52vFNGMcz+MWbTBLufabvuMFii
-         a4ZtIbVZf/0rotQkVX3fKvIoVvKIeV5wiSqZyHS1VwOcawkEqMwUUdnIMsv4B1J9HL9P
-         wfzoFTS1wC5ts34SGFkNTgDX1IRIFL665UQkAuxIW5Q2pr1V+oG5ZrP70kDDUgbrSPTP
-         P6eQ==
+        with ESMTP id S238607AbiCIWWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 17:22:00 -0500
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928F6119859;
+        Wed,  9 Mar 2022 14:21:00 -0800 (PST)
+Received: by mail-oi1-f180.google.com with SMTP id h10so4138007oia.4;
+        Wed, 09 Mar 2022 14:21:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SHLpaCDabk6UVYQs8CpJ48dsCLpU1oWOF4RtdySvC5Q=;
-        b=gAEe8aOcGqsN0vf1Xr2qc7e7QFk2moC03rVCWijWiQAcuI9+DN05/cUwru4mGG7c05
-         Cgaal4ZUxJWv8wmN5HwAQTpcYVXJv5RP6f5nXv6a+Acf3uCGIEQ8TXf0rgToOicIa7bz
-         YXxg6ki9RxqQiTZkdmpJ8NjMGg0UWopZiUOZiwIkmcQaqPleOlTnCY6sYIPEwAxtaWbD
-         cHZqTcnu6bS0lJmeZTgypZeoNxlSW8CCXbzQY7QGDJGXqo4AlgR0t3lwhM9soNoGMhyM
-         DxF2CNt40ktgvcb8qQa3lm98qtFakxxzpp7nGvUoJ+tRo0ar6Z/jwMoBXelzThVoMcXL
-         NQpQ==
-X-Gm-Message-State: AOAM533GTU2WIQujQRiQAK3RpOhUejD65VaLPylHqEvqvxqVn9L1sPu3
-        GFTLzhRo+BlKj/nUQAo8UHeLAGi9Abf91hvvKR8=
-X-Google-Smtp-Source: ABdhPJxa9s4dEQx/Nwr9xQ5VDC+dkpeL7n6faqVSZT+njfoqEtsE1h0LMcn8FD4WT7EeUb23m945VcgU0MOm1NOSCOY=
-X-Received: by 2002:a0d:d80a:0:b0:2dc:1f1d:878d with SMTP id
- a10-20020a0dd80a000000b002dc1f1d878dmr1503559ywe.16.1646860192963; Wed, 09
- Mar 2022 13:09:52 -0800 (PST)
-MIME-Version: 1.0
-References: <20211209001056.29774-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <d290850bf95f4bdf0c329f278db458c7@kernel.org> <CA+V-a8vUCXQa38NmYu9znakcq4A=Uedyn8w5+hXQ_WKf58oHRQ@mail.gmail.com>
- <875yry1316.wl-maz@kernel.org>
-In-Reply-To: <875yry1316.wl-maz@kernel.org>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 9 Mar 2022 21:09:27 +0000
-Message-ID: <CA+V-a8s-2VK-ibD683Pt1mAF-GT5Vo+DUWcQCOWVmkFoh-ffLQ@mail.gmail.com>
-Subject: Re: [RFC PATCH] of: platform: Skip mapping of interrupts in of_device_alloc()
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=yF9ediEFayMfZ9+RKb1DdVRXctEVXCbctlmQh++NDoU=;
+        b=O8ysOKVGsDFy1drHQ98EfAeupj15+4hTGT5w8p+GU3RswYdEJEcNv7G+CQDnx05p4F
+         4paI2O6JfXJEDWQKo7CVv1/xAqU3Vu+EbEcKnsmBL/MKsv2t04D8talnIIjN64wCS1iO
+         zZp6WDxGgJ1L6G2e3gHKT3Zf6yHLiMEaXdVgw1ileDQqS9NhSLib3t3UQn9onUHESAar
+         EkmQGrGR8xwdDY6VtQfO4sBeqSsCqkViQbzUGVEhv2gsWe5amNAu2LM7bhGb78gCKMMy
+         8KkRiuVP9fNZVuINfKNVKBjClAtGaTcIDiJBa+wzTCD83mRg2QSCm8djid0N+tRZ0OJb
+         qAhg==
+X-Gm-Message-State: AOAM531H4BU/inUGworbUNq/Y227wkDw+M2fayex8QB9VkWEEamw1/vE
+        1eAKDDpoHV21Jsc5T2WJ+g==
+X-Google-Smtp-Source: ABdhPJw+dfId+0ndY8HM1NpzRpBMl/Yi9AFqGIRET9W7tu2Mw2RRu3B73M+BSL7CSoIjQlqwsDaCFw==
+X-Received: by 2002:a05:6808:2394:b0:2d9:d2ad:c85c with SMTP id bp20-20020a056808239400b002d9d2adc85cmr1187861oib.4.1646864459865;
+        Wed, 09 Mar 2022 14:20:59 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id o45-20020a9d2230000000b005b2426c3577sm1527948ota.79.2022.03.09.14.20.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Mar 2022 14:20:59 -0800 (PST)
+Received: (nullmailer pid 326443 invoked by uid 1000);
+        Wed, 09 Mar 2022 22:20:55 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     linux-phy@lists.infradead.org, vkoul@kernel.org,
+        davem@davemloft.net, leoyang.li@nxp.com,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        netdev@vger.kernel.org, shawnguo@kernel.org, hongxing.zhu@nxp.com,
+        kishon@ti.com, linux@armlinux.org.uk, kuba@kernel.org
+In-Reply-To: <20220309172748.3460862-3-ioana.ciornei@nxp.com>
+References: <20220309172748.3460862-1-ioana.ciornei@nxp.com> <20220309172748.3460862-3-ioana.ciornei@nxp.com>
+Subject: Re: [PATCH net-next v2 2/8] dt-bindings: phy: add the "fsl,lynx-28g" compatible
+Date:   Wed, 09 Mar 2022 16:20:55 -0600
+Message-Id: <1646864455.145844.326442.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+On Wed, 09 Mar 2022 19:27:42 +0200, Ioana Ciornei wrote:
+> Describe the "fsl,lynx-28g" compatible used by the Lynx 28G SerDes PHY
+> driver on Layerscape based SoCs.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+> Changes in v2:
+> 	- none
+> 
+>  .../devicetree/bindings/phy/fsl,lynx-28g.yaml | 71 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+> 
 
-On Thu, Dec 9, 2021 at 10:33 AM Marc Zyngier <maz@kernel.org> wrote:
->
-> On Thu, 09 Dec 2021 10:00:44 +0000,
-> "Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> >
-> > > The root of the issue is that all the resource allocation is done
-> > > upfront, way before we even have a driver that could potentially
-> > > deal with this device. This is a potential waste of resource, and
-> > > it triggers the issue you noticed.
-> > >
-> > > If you delay the resource allocation until there is an actual
-> > > match with a driver, you could have a per-driver flag telling you
-> > > whether the IRQ allocation should be performed before the probe()
-> > > function is called.
-> > >
-> > As suggested by Rob, if we switch the drivers to use
-> > platform_get_resource(pdev, IORESOURCE_IRQ, n) call with
-> > platform_get_irq() this code should go away and with this switch the
-> > resource allocation will happen demand. Is this approach OK?
->
-> If you get rid of of_irq_to_resource_table() altogether, then yes,
-> this has a fighting chance to work.
->
-To clarify, did you mean to get rid of_irq_to_resource_table()
-completely or just from the drivers/of/platform.c ([0])?
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[0]  https://elixir.bootlin.com/linux/latest/source/drivers/of/platform.c#L143
+yamllint warnings/errors:
 
-Cheers,
-Prabhakar
+dtschema/dtc warnings/errors:
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,lynx-28g.example.dt.yaml: example-0: serdes_phy@1ea0000:reg:0: [0, 32112640, 0, 7728] is too long
+	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,lynx-28g.example.dt.yaml: serdes_phy@1ea0000: #phy-cells:0:0: 0 was expected
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,lynx-28g.example.dt.yaml: serdes_phy@1ea0000: '#address-cells', '#size-cells', 'phy@0', 'phy@1', 'phy@2', 'phy@3', 'phy@4', 'phy@5', 'phy@6', 'phy@7' do not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1603505
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
