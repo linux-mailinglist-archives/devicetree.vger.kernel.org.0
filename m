@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B6A4D37BA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:45:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C0A4D37F0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:45:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235544AbiCIQdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 11:33:54 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44340 "EHLO
+        id S235599AbiCIQdz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 11:33:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238092AbiCIQbV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:31:21 -0500
+        with ESMTP id S238827AbiCIQbv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:31:51 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18458192E23;
-        Wed,  9 Mar 2022 08:25:38 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BE191A276C;
+        Wed,  9 Mar 2022 08:26:31 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7DD446184D;
-        Wed,  9 Mar 2022 16:25:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05A36C340F3;
-        Wed,  9 Mar 2022 16:25:32 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A77EE616F3;
+        Wed,  9 Mar 2022 16:26:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB0EFC340E8;
+        Wed,  9 Mar 2022 16:26:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646843135;
-        bh=0DvuFx9PPeHyq7CmIC/s91cfM2NemeyY3+9c8q8Dv3E=;
+        s=k20201202; t=1646843190;
+        bh=rl1icRboHEyesR24+3jywPHSGv79vG6tiCm8J9VLWLY=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=f9qc+bfX8CSL1WiCZIHDMEAfDqJTVytU1PQ6UM4RT61VCa0uYNnEFI03ecmWTgK0S
-         II8GclRMkGEChGWdPNS8niH7nsnIgVIjJnR24tKhI9spayZRbsmNlAlDV2q4C2bqLn
-         P5uWeTSQbSSfVAoDg8r5bldKgU71nMDTf5QE9+eJzZMLxbgVJNjBo1yA6AZ0ms/rg9
-         vcag0v3/M31yaWRvEiXFEZxupO0P0LU2eBOqCB/MMyo8CWwwCL59rBoYGLz0maGSTv
-         6DRk/u5QqJO92H7q9J30vj1yKO3ROOG+Fad9+vzVehCDiWzWwKaLw41YGGoQ2wczhW
-         CwgJdsVQvXeNw==
+        b=lw9LJzjLcJiQz++swD0ySDkzLfH/GvOcHtOMCm7Aqb0yPkJbrk5TnORH+Q1L1lg9E
+         5uXr7mgUQgZjwZ9MfZNCSr3zaP4p/zsGdWU+aidiOvdSV0YSOOR6IyZGv4KPn01Icg
+         hMqh7/R+86pmH6Hx9HnnGo3DACktwucDaS3R8usTdMYcupQWIEl+mfrEvZx/SjqP1+
+         GzUYFKkH9y2Zm0MSCdf43s7ZqXOhnXOe1WvP5jJH1hHmBl64nNiEjtT0GSMELpsSj5
+         /PDOGzmaFyx9TME1lqOdetryvBuCse8vDKj7LEoydKBXD/9yPnZCQ2zOWUlPqITY6o
+         GsiYJCpmJLGGg==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Corentin Labbe <clabbe@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+Cc:     Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>,
+        Quentin Schulz <foss+kernel@0leil.net>,
+        Quentin Schulz <quentin.schulz@theobroma-systems.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 05/14] ARM: dts: rockchip: fix a typo on rk3288 crypto-controller
-Date:   Wed,  9 Mar 2022 11:24:58 -0500
-Message-Id: <20220309162508.137035-5-sashal@kernel.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH AUTOSEL 4.14 02/12] arm64: dts: rockchip: fix rk3399-puma eMMC HS400 signal integrity
+Date:   Wed,  9 Mar 2022 11:26:07 -0500
+Message-Id: <20220309162618.137226-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220309162508.137035-1-sashal@kernel.org>
-References: <20220309162508.137035-1-sashal@kernel.org>
+In-Reply-To: <20220309162618.137226-1-sashal@kernel.org>
+References: <20220309162618.137226-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -59,35 +60,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Corentin Labbe <clabbe@baylibre.com>
+From: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
 
-[ Upstream commit 3916c3619599a3970d3e6f98fb430b7c46266ada ]
+[ Upstream commit 62966cbdda8a92f82d966a45aa671e788b2006f7 ]
 
-crypto-controller had a typo, fix it.
-In the same time, rename it to just crypto
+There are signal integrity issues running the eMMC at 200MHz on Puma
+RK3399-Q7.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Link: https://lore.kernel.org/r/20220209120355.1985707-1-clabbe@baylibre.com
+Similar to the work-around found for RK3399 Gru boards, lowering the
+frequency to 100MHz made the eMMC much more stable, so let's lower the
+frequency to 100MHz.
+
+It might be possible to run at 150MHz as on RK3399 Gru boards but only
+100MHz was extensively tested.
+
+Cc: Quentin Schulz <foss+kernel@0leil.net>
+Signed-off-by: Jakob Unterwurzacher <jakob.unterwurzacher@theobroma-systems.com>
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+Link: https://lore.kernel.org/r/20220119134948.1444965-1-quentin.schulz@theobroma-systems.com
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/rk3288.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 2ff81f3736c8..e442bf7427ae 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -957,7 +957,7 @@ i2s: i2s@ff890000 {
- 		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+index 0d5679380b2a..70fe6013d17c 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+@@ -484,6 +484,12 @@ vcc5v0_host_en: vcc5v0-host-en {
+ };
  
--	crypto: cypto-controller@ff8a0000 {
-+	crypto: crypto@ff8a0000 {
- 		compatible = "rockchip,rk3288-crypto";
- 		reg = <0x0 0xff8a0000 0x0 0x4000>;
- 		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+ &sdhci {
++	/*
++	 * Signal integrity isn't great at 200MHz but 100MHz has proven stable
++	 * enough.
++	 */
++	max-frequency = <100000000>;
++
+ 	bus-width = <8>;
+ 	mmc-hs400-1_8v;
+ 	mmc-hs400-enhanced-strobe;
 -- 
 2.34.1
 
