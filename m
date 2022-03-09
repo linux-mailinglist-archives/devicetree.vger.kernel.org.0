@@ -2,92 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 186054D3577
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:42:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 689CF4D3800
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 18:45:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235876AbiCIQeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 11:34:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
+        id S235370AbiCIQpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 11:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239586AbiCIQdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:33:05 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40D581AD956;
-        Wed,  9 Mar 2022 08:28:47 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 42CADB82212;
-        Wed,  9 Mar 2022 16:27:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0257EC340F5;
-        Wed,  9 Mar 2022 16:27:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646843248;
-        bh=kfxM39evKeZ0QqD/rr54pHLg7pCY1s/mZnHlo1A++H8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=s1/1muW/guoYlmTZk0koyWfJIMg1hjRTuBTu7n4IMAraJs+zOoNiTpa8Lc60Guhw6
-         g3n44cWucxEaRaTT7+1LpbKimmqWGun8I9m1fUP5iMt/Wu/2fBoBiL/6Sl2xzpaH0S
-         muMSicAJ3hGteSwNMpH+f6nd+6d5BCHBlnFhSsJEcuZ70Ovbz0xGSw/XqRrOhra5vB
-         cXwjSOUhuOVqn3mEPYqVh6OMqwEgzEYGlmyxyYyn9aT1bgDziWvk8YaBLSn8QzkU81
-         aCpwZtgHCoiteurFyhc8HvUK1JBzuDeqmg79jcA9Re+7TgM/GfSP8vDUo2vtT6smcy
-         zZTiR6KyuHnPg==
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Corentin Labbe <clabbe@baylibre.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 02/11] ARM: dts: rockchip: fix a typo on rk3288 crypto-controller
-Date:   Wed,  9 Mar 2022 11:27:07 -0500
-Message-Id: <20220309162716.137399-2-sashal@kernel.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220309162716.137399-1-sashal@kernel.org>
-References: <20220309162716.137399-1-sashal@kernel.org>
+        with ESMTP id S235297AbiCIQnt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 11:43:49 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DE0626C8;
+        Wed,  9 Mar 2022 08:38:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646843892; x=1678379892;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=HQ/1ekkK2Glo5J9Tadu/4CMzDFw9pCNql8ud3BmoP9Y=;
+  b=IOOPX+ILQ0aiBP1DchYlU8v3mhVGWlnfY5rn//rLI0CZy2wNJu0sD45D
+   9wCFy+NujVkQbvfElaG8jw7m5g9p4KhrnLLcomQIj78HoNqw+wRYnsufh
+   1XxhKWsHXk/CKINAz21CLHu2GFeQ18X+E2PHmgQSUJi4R2S1cqBHLLvCd
+   sh9gsNuTgP6+yg+NP+iYJWDEHfe9NR3fPzR1p9MXj/6uUGAtMGzlMhxq4
+   tBd9lloK7L6SI1oJGQdsZ5FVh9G03NXi9bG4luDG/MExxtdtyZvy+HNaz
+   zr+y6god+2P5h11tbJ7DfRcM5u8Q/DpS0uYCZT9awCSJzaezLLCUG1yQN
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,167,1643698800"; 
+   d="scan'208";a="151431904"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 09 Mar 2022 09:38:12 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Wed, 9 Mar 2022 09:38:11 -0700
+Received: from ROB-ULT-M18282.microchip.com (10.10.115.15) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Wed, 9 Mar 2022 09:38:05 -0700
+From:   Eugen Hristev <eugen.hristev@microchip.com>
+To:     <linux-media@vger.kernel.org>, <jacopo@jmondi.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <claudiu.beznea@microchip.com>, <robh+dt@kernel.org>,
+        <nicolas.ferre@microchip.com>,
+        Eugen Hristev <eugen.hristev@microchip.com>
+Subject: [PATCH v8 00/13] media: atmel: atmel-isc: implement media controller
+Date:   Wed, 9 Mar 2022 18:37:45 +0200
+Message-ID: <20220309163758.2672727-1-eugen.hristev@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Corentin Labbe <clabbe@baylibre.com>
 
-[ Upstream commit 3916c3619599a3970d3e6f98fb430b7c46266ada ]
+This series is the v8 series that attempts to support media controller in the
+atmel ISC and XISC drivers.
+The CSI2DC driver was accepted thus removed from the patch series, together with
+other patches.
 
-crypto-controller had a typo, fix it.
-In the same time, rename it to just crypto
+Important note: this series applies on top of current media_staging tree, as it
+relies on previous patches in the series which were accepted.
 
-Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Link: https://lore.kernel.org/r/20220209120355.1985707-1-clabbe@baylibre.com
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/rk3288.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Thanks to everyone who reviewed my work !
 
-diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
-index 7b727d738b69..4702aa980ef8 100644
---- a/arch/arm/boot/dts/rk3288.dtsi
-+++ b/arch/arm/boot/dts/rk3288.dtsi
-@@ -918,7 +918,7 @@ i2s: i2s@ff890000 {
- 		status = "disabled";
- 	};
- 
--	crypto: cypto-controller@ff8a0000 {
-+	crypto: crypto@ff8a0000 {
- 		compatible = "rockchip,rk3288-crypto";
- 		reg = <0xff8a0000 0x4000>;
- 		interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+Eugen
+
+Changes in v8:
+-> scaler: modified crop bounds to have the exact source size
+
+Changes in v7:
+-> scaler: modified crop bounds to have maximum isc size
+-> format propagation: did small changes as per Jacopo review
+
+
+Changes in v6:
+-> worked a bit on scaler, added try crop and other changes as per Jacopo review
+-> worked on isc-base enum_fmt , reworked as per Jacopo review
+
+Changes in v5:
+-> removed patch that removed the 'stop' variable as it was still required
+-> added two new trivial patches
+-> reworked some parts of the scaler and format propagation after discussions with Jacopo
+
+
+Changes in v4:
+-> as reviewed by Hans, added new patch to remove the 'stop' variable and reworked
+one patch that was using it
+-> as reviewed by Jacopo, reworked some parts of the media controller implementation
+
+
+Changes in v3:
+- change in bindings, small fixes in csi2dc driver and conversion to mc
+for the isc-base.
+- removed some MAINTAINERS patches and used patterns in MAINTAINERS
+
+Changes in v2:
+- integrated many changes suggested by Jacopo in the review of the v1 series.
+- add a few new patches
+
+
+Eugen Hristev (13):
+  media: atmel: atmel-isc-base: use streaming status when queueing
+    buffers
+  media: atmel: atmel-isc-base: replace is_streaming call in
+    s_fmt_vid_cap
+  media: atmel: atmel-isc: remove redundant comments
+  media: atmel: atmel-isc: implement media controller
+  media: atmel: atmel-sama5d2-isc: fix wrong mask in YUYV format check
+  media: atmel: atmel-isc-base: use mutex to lock awb workqueue from
+    streaming
+  media: atmel: atmel-isc: compact the controller formats list
+  media: atmel: atmel-isc: change format propagation to subdev into only
+    verification
+  media: atmel: atmel-sama7g5-isc: remove stray line
+  dt-bindings: media: microchip,xisc: add bus-width of 14
+  ARM: dts: at91: sama7g5: add nodes for video capture
+  ARM: configs: at91: sama7: add xisc and csi2dc
+  ARM: multi_v7_defconfig: add atmel video pipeline modules
+
+ .../bindings/media/microchip,xisc.yaml        |   2 +-
+ arch/arm/boot/dts/sama7g5.dtsi                |  49 ++
+ arch/arm/configs/multi_v7_defconfig           |   3 +
+ arch/arm/configs/sama7_defconfig              |   2 +
+ drivers/media/platform/atmel/Makefile         |   2 +-
+ drivers/media/platform/atmel/atmel-isc-base.c | 518 ++++++++++--------
+ .../media/platform/atmel/atmel-isc-scaler.c   | 267 +++++++++
+ drivers/media/platform/atmel/atmel-isc.h      |  58 +-
+ .../media/platform/atmel/atmel-sama5d2-isc.c  |  87 +--
+ .../media/platform/atmel/atmel-sama7g5-isc.c  |  93 ++--
+ 10 files changed, 754 insertions(+), 327 deletions(-)
+ create mode 100644 drivers/media/platform/atmel/atmel-isc-scaler.c
+
 -- 
-2.34.1
+2.25.1
 
