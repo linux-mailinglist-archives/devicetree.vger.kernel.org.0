@@ -2,252 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A1274D3CDB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 23:23:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 123F44D3DB9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 00:48:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233869AbiCIWYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 17:24:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50144 "EHLO
+        id S236820AbiCIXtz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 18:49:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46616 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229843AbiCIWYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 17:24:14 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D36F36A072
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 14:23:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1646864594;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=Zhhts/oGDUWHDg+NawCvM+Mq5JONWcCcE3XBLs6on8o=;
-        b=hFE3FSExD3z6pCy8rZPRCU2vwADpcLNgTlGYIEiWbJrjtyG+8Duje45A9cXyYMFplyWGcW
-        rj32TUgdVlYTGTjFwc4bVai4na2A71fcoCqgzhSAWXcr1/3JqWcdkAR11cjP+p89ojDmyr
-        HLOXeLZdImeckz7orTUmTvXRy0kc2AU=
-Received: from mail-oo1-f69.google.com (mail-oo1-f69.google.com
- [209.85.161.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-2-JleHKAxRN1WWhHz66kbMcQ-1; Wed, 09 Mar 2022 17:23:12 -0500
-X-MC-Unique: JleHKAxRN1WWhHz66kbMcQ-1
-Received: by mail-oo1-f69.google.com with SMTP id r10-20020a4a700a000000b0031bf70c4866so2770867ooc.12
-        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 14:23:12 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Zhhts/oGDUWHDg+NawCvM+Mq5JONWcCcE3XBLs6on8o=;
-        b=5nhh0QjJ50/p7a5LApy5OF7sgEpytF3J4CyC7/ligkNOn4Q7wKRQKQv1GHJRatgC12
-         3x/KoZqcKTfbusiZWrJ60S0PUNcAi3F4c0MPxGfG9lIwC9ENI38JwT9Xs7FSV1UKXHK2
-         +MNrPajuhvFaoKQII69d0Nw0oNMGuRUeeU7Gh5rtzrVfBBtsWbc8ROiY0hPeGQ3LS8/G
-         BLawDYeJaORA91pLQzWni6CKs5FydSBfNMPnUhQSfQR8n0w+D6khN4fSPHOYwgncd6Ew
-         85XzLSqdl5UOny6azJy8dCAmH7sVW/ztuq6++xSm/9S+by9ZfVm7rogtIhZQkqZFPmSb
-         VBNw==
-X-Gm-Message-State: AOAM533G4BtEwrdwPfEneKMt0IqmOHmlIbSLX5jTmjdBOhaCS7VDCEZL
-        IrfunWvVzJ8r/HMMAdbrtYvub8eDR1ZlYy6P9JKOK5UJfdNTNWK9IJu4/H8AWpDw80anUz+diDN
-        7FpFvMvF66Rgog5r/dL2EZw==
-X-Received: by 2002:a05:6870:4582:b0:da:b3f:3221 with SMTP id y2-20020a056870458200b000da0b3f3221mr1019123oao.209.1646864591918;
-        Wed, 09 Mar 2022 14:23:11 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJx6yYPMYox15vablq5HrgmBlUFo96cy1+xfMCp1uiwN8WKVvpaQrgY1X2l8RSy/eS72PRmQVw==
-X-Received: by 2002:a05:6870:4582:b0:da:b3f:3221 with SMTP id y2-20020a056870458200b000da0b3f3221mr1019105oao.209.1646864591691;
-        Wed, 09 Mar 2022 14:23:11 -0800 (PST)
-Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com. [24.205.208.113])
-        by smtp.gmail.com with ESMTPSA id k13-20020a056830150d00b005af8c9f399esm1533712otp.50.2022.03.09.14.23.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Mar 2022 14:23:11 -0800 (PST)
-From:   trix@redhat.com
-To:     robh+dt@kernel.org, krzk+dt@kernel.org, paulburton@kernel.org,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, Tom Rix <trix@redhat.com>
-Subject: [PATCH] dt-bindings: clk: cleanup comments
-Date:   Wed,  9 Mar 2022 14:23:02 -0800
-Message-Id: <20220309222302.1114561-1-trix@redhat.com>
-X-Mailer: git-send-email 2.26.3
+        with ESMTP id S234174AbiCIXty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 18:49:54 -0500
+X-Greylist: delayed 1505 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Mar 2022 15:48:54 PST
+Received: from gateway20.websitewelcome.com (gateway20.websitewelcome.com [192.185.68.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03C611C7C6
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 15:48:54 -0800 (PST)
+Received: from cm14.websitewelcome.com (cm14.websitewelcome.com [100.42.49.7])
+        by gateway20.websitewelcome.com (Postfix) with ESMTP id 80395400CC521
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 17:02:53 -0600 (CST)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id S5KXn4Lm5HnotS5KXnRp00; Wed, 09 Mar 2022 17:02:53 -0600
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
+        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
+        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=/E4QRft2wGBO0a9Wvaf6Y1EmpcR+nckbhrH9ovhYHHQ=; b=CkXCCVHB29d3LEjOS2UK9U2yLM
+        plV4p1UzLLEOMDV28uYKD6qtQiGpAe3IAef4N+qOSqSSYn7ESVMEj4tGI9uD5u+PkMlhqIPLIHwXG
+        WUqGX7GeTuFG47SIjWGWJmeVqaSyBe/Xh+KkcRri5qVKO9pAr8jQrUz0iUPeM68ij/4PTNZyvvANx
+        sXsJ7TDpvLSzc5urnBVaLAe+qnNzkynNcgUTyqTcD48pSn7OLdHZwhXcS3BtVfQdDDd+68KuEwI4J
+        1zI9u5Sw3sPicAGGFOJz6iJkbLq941wK6RiV/ONqCVi4oOsOlng0Zaerr4BU0wlZLRoBIL57Z1aVp
+        qmaZ8lpw==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:57400 helo=localhost)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nS5KW-000Boi-Ci; Wed, 09 Mar 2022 23:02:52 +0000
+Date:   Wed, 9 Mar 2022 15:02:51 -0800
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        linux-watchdog@vger.kernel.org
+Subject: Re: [PATCH 01/14] dt-bindings: watchdog: sunxi: fix F1C100s
+ compatible
+Message-ID: <20220309230251.GA3801394@roeck-us.net>
+References: <20220307143421.1106209-1-andre.przywara@arm.com>
+ <20220307143421.1106209-2-andre.przywara@arm.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220307143421.1106209-2-andre.przywara@arm.com>
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nS5KW-000Boi-Ci
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:57400
+X-Source-Auth: guenter@roeck-us.net
+X-Email-Count: 5
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tom Rix <trix@redhat.com>
+On Mon, Mar 07, 2022 at 02:34:08PM +0000, Andre Przywara wrote:
+> The F1C100 series actually features a newer generation watchdog IP, so
+> the compatible string was wrong.
+> 
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 
-For spdx, first line /* */ for *.h, change tab to space
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-Replacements
-devider to divider
-Comunications to Communications
-periphrals to peripherals
-supportted to supported
-wich to which
-Documentatoin to Documentation
-
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- include/dt-bindings/clock/alphascale,asm9260.h    | 2 +-
- include/dt-bindings/clock/axis,artpec6-clkctrl.h  | 2 +-
- include/dt-bindings/clock/boston-clock.h          | 3 +--
- include/dt-bindings/clock/marvell,mmp2.h          | 4 ++--
- include/dt-bindings/clock/marvell,pxa168.h        | 4 ++--
- include/dt-bindings/clock/marvell,pxa910.h        | 4 ++--
- include/dt-bindings/clock/nuvoton,npcm7xx-clock.h | 2 +-
- include/dt-bindings/clock/stm32fx-clock.h         | 4 ++--
- include/dt-bindings/clock/stratix10-clock.h       | 2 +-
- 9 files changed, 13 insertions(+), 14 deletions(-)
-
-diff --git a/include/dt-bindings/clock/alphascale,asm9260.h b/include/dt-bindings/clock/alphascale,asm9260.h
-index d3871c63308be..f53f8b16883d6 100644
---- a/include/dt-bindings/clock/alphascale,asm9260.h
-+++ b/include/dt-bindings/clock/alphascale,asm9260.h
-@@ -55,7 +55,7 @@
- #define CLKID_AHB_I2S1		45
- #define CLKID_AHB_MAC1		46
- 
--/* devider */
-+/* divider */
- #define CLKID_SYS_CPU		47
- #define CLKID_SYS_AHB		48
- #define CLKID_SYS_I2S0M		49
-diff --git a/include/dt-bindings/clock/axis,artpec6-clkctrl.h b/include/dt-bindings/clock/axis,artpec6-clkctrl.h
-index b1f4971642e6f..14e424a7c08c2 100644
---- a/include/dt-bindings/clock/axis,artpec6-clkctrl.h
-+++ b/include/dt-bindings/clock/axis,artpec6-clkctrl.h
-@@ -2,7 +2,7 @@
- /*
-  * ARTPEC-6 clock controller indexes
-  *
-- * Copyright 2016 Axis Comunications AB.
-+ * Copyright 2016 Axis Communications AB.
-  */
- 
- #ifndef DT_BINDINGS_CLK_ARTPEC6_CLKCTRL_H
-diff --git a/include/dt-bindings/clock/boston-clock.h b/include/dt-bindings/clock/boston-clock.h
-index a6f0098211378..38140fa87b09d 100644
---- a/include/dt-bindings/clock/boston-clock.h
-+++ b/include/dt-bindings/clock/boston-clock.h
-@@ -1,7 +1,6 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * Copyright (C) 2016 Imagination Technologies
-- *
-- * SPDX-License-Identifier:	GPL-2.0
-  */
- 
- #ifndef __DT_BINDINGS_CLOCK_BOSTON_CLOCK_H__
-diff --git a/include/dt-bindings/clock/marvell,mmp2.h b/include/dt-bindings/clock/marvell,mmp2.h
-index 87f5ad5df72f4..f0819d66b2306 100644
---- a/include/dt-bindings/clock/marvell,mmp2.h
-+++ b/include/dt-bindings/clock/marvell,mmp2.h
-@@ -32,7 +32,7 @@
- #define MMP2_CLK_I2S0			31
- #define MMP2_CLK_I2S1			32
- 
--/* apb periphrals */
-+/* apb peripherals */
- #define MMP2_CLK_TWSI0			60
- #define MMP2_CLK_TWSI1			61
- #define MMP2_CLK_TWSI2			62
-@@ -60,7 +60,7 @@
- #define MMP3_CLK_THERMAL2		84
- #define MMP3_CLK_THERMAL3		85
- 
--/* axi periphrals */
-+/* axi peripherals */
- #define MMP2_CLK_SDH0			101
- #define MMP2_CLK_SDH1			102
- #define MMP2_CLK_SDH2			103
-diff --git a/include/dt-bindings/clock/marvell,pxa168.h b/include/dt-bindings/clock/marvell,pxa168.h
-index caf90436b8483..db2b41f1b1272 100644
---- a/include/dt-bindings/clock/marvell,pxa168.h
-+++ b/include/dt-bindings/clock/marvell,pxa168.h
-@@ -23,7 +23,7 @@
- #define PXA168_CLK_UART_PLL		27
- #define PXA168_CLK_USB_PLL		28
- 
--/* apb periphrals */
-+/* apb peripherals */
- #define PXA168_CLK_TWSI0		60
- #define PXA168_CLK_TWSI1		61
- #define PXA168_CLK_TWSI2		62
-@@ -45,7 +45,7 @@
- #define PXA168_CLK_SSP4			78
- #define PXA168_CLK_TIMER		79
- 
--/* axi periphrals */
-+/* axi peripherals */
- #define PXA168_CLK_DFC			100
- #define PXA168_CLK_SDH0			101
- #define PXA168_CLK_SDH1			102
-diff --git a/include/dt-bindings/clock/marvell,pxa910.h b/include/dt-bindings/clock/marvell,pxa910.h
-index 7bf46238946eb..c9018ab354d06 100644
---- a/include/dt-bindings/clock/marvell,pxa910.h
-+++ b/include/dt-bindings/clock/marvell,pxa910.h
-@@ -23,7 +23,7 @@
- #define PXA910_CLK_UART_PLL		27
- #define PXA910_CLK_USB_PLL		28
- 
--/* apb periphrals */
-+/* apb peripherals */
- #define PXA910_CLK_TWSI0		60
- #define PXA910_CLK_TWSI1		61
- #define PXA910_CLK_TWSI2		62
-@@ -43,7 +43,7 @@
- #define PXA910_CLK_TIMER0		76
- #define PXA910_CLK_TIMER1		77
- 
--/* axi periphrals */
-+/* axi peripherals */
- #define PXA910_CLK_DFC			100
- #define PXA910_CLK_SDH0			101
- #define PXA910_CLK_SDH1			102
-diff --git a/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h b/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
-index f21522605b94b..3e0a9b68933df 100644
---- a/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
-+++ b/include/dt-bindings/clock/nuvoton,npcm7xx-clock.h
-@@ -1,7 +1,7 @@
- /* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * Nuvoton NPCM7xx Clock Generator binding
-- * clock binding number for all clocks supportted by nuvoton,npcm7xx-clk
-+ * clock binding number for all clocks supported by nuvoton,npcm7xx-clk
-  *
-  * Copyright (C) 2018 Nuvoton Technologies tali.perry@nuvoton.com
-  *
-diff --git a/include/dt-bindings/clock/stm32fx-clock.h b/include/dt-bindings/clock/stm32fx-clock.h
-index 1cc89c548578b..e5dad050d518a 100644
---- a/include/dt-bindings/clock/stm32fx-clock.h
-+++ b/include/dt-bindings/clock/stm32fx-clock.h
-@@ -7,10 +7,10 @@
-  */
- 
- /*
-- * List of clocks wich are not derived from system clock (SYSCLOCK)
-+ * List of clocks which are not derived from system clock (SYSCLOCK)
-  *
-  * The index of these clocks is the secondary index of DT bindings
-- * (see Documentatoin/devicetree/bindings/clock/st,stm32-rcc.txt)
-+ * (see Documentation/devicetree/bindings/clock/st,stm32-rcc.txt)
-  *
-  * e.g:
- 	<assigned-clocks = <&rcc 1 CLK_LSE>;
-diff --git a/include/dt-bindings/clock/stratix10-clock.h b/include/dt-bindings/clock/stratix10-clock.h
-index 08b98e20b7cc7..636498f9e08ee 100644
---- a/include/dt-bindings/clock/stratix10-clock.h
-+++ b/include/dt-bindings/clock/stratix10-clock.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier:	GPL-2.0 */
-+/* SPDX-License-Identifier: GPL-2.0 */
- /*
-  * Copyright (C) 2017, Intel Corporation
-  */
--- 
-2.26.3
-
+> ---
+>  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> index 43afa24513b9..d90655418d0e 100644
+> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
+> @@ -29,7 +29,7 @@ properties:
+>            - const: allwinner,sun6i-a31-wdt
+>        - items:
+>            - const: allwinner,suniv-f1c100s-wdt
+> -          - const: allwinner,sun4i-a10-wdt
+> +          - const: allwinner,sun6i-a31-wdt
+>        - const: allwinner,sun20i-d1-wdt
+>        - items:
+>            - const: allwinner,sun20i-d1-wdt-reset
