@@ -2,358 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE4CC4D3920
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 19:47:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1DEF4D39BB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 20:16:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234989AbiCISrg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 13:47:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45368 "EHLO
+        id S237359AbiCITQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 14:16:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231233AbiCISrf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 13:47:35 -0500
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32619C73;
-        Wed,  9 Mar 2022 10:46:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=jYNOrrhFwYjgYrOlgqQat5/1gyh0XbIYmSvMg/1KoYU=; b=aVANFpGjYe41AjoMHPfOM5XipA
-        SZPSGhqHq8gcIRbq7g851R+l0Vu+pPjT1SzneSOkHddCaABE9sSe7AIDzCZ9tQTahxKYZBeHVnqAb
-        SuGxnepRu+H4zA7AC/zhN3bpD9Bs7i2BCmH8jmtQ+dQjGFqFsl4+Y16ggyzpe329CNu+wOg+Q5cAr
-        LQGofl+D1PcojBYc8nKb4/UG7qX3sK/+j+5T3n9EzZ6+2FH7oQGJ4+1ue5laOnqp3eB+N4TFjmxHj
-        K6MTRMT2907RQJhtgxV0P70m3u1gxt5sGIQ5sXnNnBQ2Cp2vjLO7wPclHq2U6PAT/xku//dKzkC6u
-        vQITHyUg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:57750)
-        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1nS1KP-0002O7-Jn; Wed, 09 Mar 2022 18:46:29 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1nS1KM-0008Bi-Np; Wed, 09 Mar 2022 18:46:26 +0000
-Date:   Wed, 9 Mar 2022 18:46:26 +0000
-From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        leoyang.li@nxp.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, shawnguo@kernel.org,
-        hongxing.zhu@nxp.com
-Subject: Re: [PATCH net-next v2 7/8] dpaa2-mac: configure the SerDes phy on a
- protocol change
-Message-ID: <Yij2AlJte0bG7eJr@shell.armlinux.org.uk>
-References: <20220309172748.3460862-1-ioana.ciornei@nxp.com>
- <20220309172748.3460862-8-ioana.ciornei@nxp.com>
+        with ESMTP id S237353AbiCITQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 14:16:16 -0500
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E93F010EC77;
+        Wed,  9 Mar 2022 11:15:15 -0800 (PST)
+Received: by mail-wm1-x333.google.com with SMTP id 7-20020a05600c228700b00385fd860f49so2112920wmf.0;
+        Wed, 09 Mar 2022 11:15:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+9maJ1V25mJdFx9ur9GjoHx/zoOZrNdScGBRyVYH6oI=;
+        b=a6I549TNzCCZZ6BzjvdBSuem6v0dkxjN0jV1r8qXeKoqN5yHrAbYTbL+g4ZleXy/NA
+         32aW0r27YbuX3DIS4IT+TBJS+TKilynvZitW5c9yLKs9Ie5qlNNU2ISzgAZ8988tytXB
+         hfL1JpBGc/xVc+fKtLqTwVl1ohM4q+EOhCW2uM8tCS7HqWlPfWGu+uy3u/B1M97l7JK1
+         8CNyXQu3eUOh/PDLDnHu/65/CbEgo/7osPCTGp0WnC4sokaiqMh2dKoGAXzViY2DXu8J
+         Ig0GT/VnAcnbVnKB6ZnPuwegLfo5iC2aCW3rtY69SLchj7HeCmsCCfrRgt59l+4bWdfa
+         oraw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+9maJ1V25mJdFx9ur9GjoHx/zoOZrNdScGBRyVYH6oI=;
+        b=IogfvLdBqiW+S8X0Mk3K3gUmhJDO9q5ePOz9iAEpnUQ0GhrfjaZ3BDVduQNjbq96ix
+         8ormWare5NiuQ8oEEc4jBONw5ZpcWiJLwOcdphgvgguxGOtlpXyICmiE5xOIEhX5Ju3b
+         aG9ENWNkyiyVwO5x60SQdOEFXbrP7SFci0axBvtfGWOQs0UA4gukH7gnLhc7qx7zBR1c
+         /Rinz3x0Bfq3ObrQSvCk4I18CL1ItTcvFHDglpcuXIPjLMLSwxn+A+s5LYIOHwDy9QuR
+         kmeCukS0HCuiBs71Gv2leDUm+0MlHmuWlzRxOjX5rvsPwn+yU5IbubidsuJ3tOfOkW2H
+         QGig==
+X-Gm-Message-State: AOAM530AwIMdPFMo7lavAxR4+d3nXFXC8WqvxXwKT1w9N4LCFBG2jlug
+        5NW62/tO3/e6NO4Uau3mzU4=
+X-Google-Smtp-Source: ABdhPJzBoVmlKArcBkUNkclq8mlbvc8PlvuUCAhujMehIveAomIBFKvYT60Bdz2eJptQU1hRx/CEwg==
+X-Received: by 2002:a1c:7212:0:b0:389:9f29:4e28 with SMTP id n18-20020a1c7212000000b003899f294e28mr8690638wmc.165.1646853314110;
+        Wed, 09 Mar 2022 11:15:14 -0800 (PST)
+Received: from Ansuel-xps.localdomain (host-79-47-249-147.retail.telecomitalia.it. [79.47.249.147])
+        by smtp.googlemail.com with ESMTPSA id w6-20020a5d6806000000b002036515dda7sm2396699wru.33.2022.03.09.11.15.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Mar 2022 11:15:12 -0800 (PST)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>
+Subject: [PATCH v3 00/18] Multiple addition to ipq8064 dtsi
+Date:   Wed,  9 Mar 2022 20:01:34 +0100
+Message-Id: <20220309190152.7998-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220309172748.3460862-8-ioana.ciornei@nxp.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ioana,
+This try to complete the ipq8064 dtsi and introduce 2 new dtsi
+ipq8064-v2 and ipq8065. While some node are still missing (cpufreq node,
+l2 scale node, fab scale node) this would add most of the missing node
+to make ipq8064 actually usable.
 
-On Wed, Mar 09, 2022 at 07:27:47PM +0200, Ioana Ciornei wrote:
-> This patch integrates the dpaa2-eth driver with the generic PHY
-> infrastructure in order to search, find and reconfigure the SerDes lanes
-> in case of a protocol change.
-> 
-> On the .mac_config() callback, the phy_set_mode_ext() API is called so
-> that the Lynx 28G SerDes PHY driver can change the lane's configuration.
-> In the same phylink callback the MC firmware is called so that it
-> reconfigures the MAC side to run using the new protocol.
-> 
-> The consumer drivers - dpaa2-eth and dpaa2-switch - are updated to call
-> the dpaa2_mac_start/stop functions newly added which will
-> power_on/power_off the associated SerDes lane.
-> 
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> ---
-> Changes in v2:
-> 	- none
-> 
->  .../net/ethernet/freescale/dpaa2/dpaa2-eth.c  |  5 +-
->  .../net/ethernet/freescale/dpaa2/dpaa2-mac.c  | 91 +++++++++++++++++++
->  .../net/ethernet/freescale/dpaa2/dpaa2-mac.h  |  6 ++
->  .../ethernet/freescale/dpaa2/dpaa2-switch.c   |  5 +-
->  4 files changed, 105 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c b/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c
-> index 939fa9db6a2e..b87369f0605f 100644
-> --- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c
-> +++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-eth.c
-> @@ -2077,8 +2077,10 @@ static int dpaa2_eth_open(struct net_device *net_dev)
->  		goto enable_err;
->  	}
->  
-> -	if (dpaa2_eth_is_type_phy(priv))
-> +	if (dpaa2_eth_is_type_phy(priv)) {
->  		phylink_start(priv->mac->phylink);
-> +		dpaa2_mac_start(priv->mac);
+Some of the changes are the fix for the pci IO that cause any secondary
+wifi card with ath10k to fail init.
+Adds regulators definition for RPM.
+Adds many missing gsbi nodes used by all the devices.
+Enable the usb phy by default as they are actually enabled internally by
+xlate only if the dwc3 driver is used.
+Add opp table and declare idle state for ipq8064.
+Fix some dtc warning.
 
-Is this safe? Shouldn't dpaa2_mac_start() come before phylink_start()
-in case phylink determines that the link is somehow already up? I'm
-a big fan of teardown being in the reverse order of setup so having
-the start and stop below in the same order just doesn't look right.
+This also add the ipq8064-v2.0 dtsi and the ipq8065 dtsi used by more
+recent devices based on this SoC.
 
-> +	}
->  
->  	return 0;
->  
-> @@ -2153,6 +2155,7 @@ static int dpaa2_eth_stop(struct net_device *net_dev)
->  
->  	if (dpaa2_eth_is_type_phy(priv)) {
->  		phylink_stop(priv->mac->phylink);
-> +		dpaa2_mac_stop(priv->mac);
->  	} else {
->  		netif_tx_stop_all_queues(net_dev);
->  		netif_carrier_off(net_dev);
-> diff --git a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> index e6e758eaafea..bd90acc49cdb 100644
-> --- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> +++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.c
-> @@ -3,6 +3,7 @@
->  
->  #include <linux/acpi.h>
->  #include <linux/pcs-lynx.h>
-> +#include <linux/phy/phy.h>
->  #include <linux/property.h>
->  
->  #include "dpaa2-eth.h"
-> @@ -60,6 +61,26 @@ static int phy_mode(enum dpmac_eth_if eth_if, phy_interface_t *if_mode)
->  	return 0;
->  }
->  
-> +static enum dpmac_eth_if dpmac_eth_if_mode(phy_interface_t if_mode)
-> +{
-> +	switch (if_mode) {
-> +	case PHY_INTERFACE_MODE_RGMII:
+v3:
+- Fix error in rb3011 dts
+- Add tested-by tag on the entire series
+v2:
+- Added missing patch
+- Added additional gsbi6 spi
+- Added extra description for L2 cache opp
+- Fxied smb208 enabled by default that is problematic for rb3011 devices
 
-Shouldn't this also include the other RGMII modes (which, from the MAC
-point of view, are all synonymous?
+Ansuel Smith (18):
+  ARM: dts: qcom: add multiple missing pin definition for ipq8064
+  ARM: dts: qcom: add gsbi6 missing definition for ipq8064
+  ARM: dts: qcom: add missing rpm regulators and cells for ipq8064
+  ARM: dts: qcom: disable smb208 regulators for ipq8064-rb3011
+  ARM: dts: qcom: add missing snps,dwmac compatible for gmac ipq8064
+  ARM: dts: qcom: enable usb phy by default for ipq8064
+  ARM: dts: qcom: reduce pci IO size to 64K for ipq8064
+  ARM: dts: qcom: fix dtc warning for missing #address-cells for ipq8064
+  ARM: dts: qcom: add smem node for ipq8064
+  ARM: dts: qcom: add saw for l2 cache and kraitcc for ipq8064
+  ARM: dts: qcom: add sic non secure node for ipq8064
+  ARM: dts: qcom: fix and add some missing gsbi node for ipq8064
+  ARM: dts: qcom: add opp table for cpu and l2 for ipq8064
+  ARM: dts: qcom: add speedbin efuse nvmem binding
+  ARM: dts: qcom: add multiple missing binding for cpu and l2 for
+    ipq8064
+  ARM: dts: qcom: remove redundant binding from ipq8064 rb3011 dts
+  ARM: dts: qcom: add ipq8064-v2.0 dtsi
+  ARM: dts: qcom: add ipq8065 dtsi
 
-> +		return DPMAC_ETH_IF_RGMII;
-> +	case PHY_INTERFACE_MODE_USXGMII:
-> +		return DPMAC_ETH_IF_USXGMII;
-> +	case PHY_INTERFACE_MODE_QSGMII:
-> +		return DPMAC_ETH_IF_QSGMII;
-> +	case PHY_INTERFACE_MODE_SGMII:
-> +		return DPMAC_ETH_IF_SGMII;
-> +	case PHY_INTERFACE_MODE_10GBASER:
-> +		return DPMAC_ETH_IF_XFI;
-> +	case PHY_INTERFACE_MODE_1000BASEX:
-> +		return DPMAC_ETH_IF_1000BASEX;
-> +	default:
-> +		return DPMAC_ETH_IF_MII;
-> +	}
-> +}
-> +
->  static struct fwnode_handle *dpaa2_mac_get_node(struct device *dev,
->  						u16 dpmac_id)
->  {
-> @@ -147,6 +168,19 @@ static void dpaa2_mac_config(struct phylink_config *config, unsigned int mode,
->  	if (err)
->  		netdev_err(mac->net_dev, "%s: dpmac_set_link_state() = %d\n",
->  			   __func__, err);
-> +
-> +	if (!mac->serdes_phy)
-> +		return;
-> +
-> +	/* This happens only if we support changing of protocol at runtime */
-> +	err = dpmac_set_protocol(mac->mc_io, 0, mac->mc_dev->mc_handle,
-> +				 dpmac_eth_if_mode(state->interface));
-> +	if (err)
-> +		netdev_err(mac->net_dev,  "dpmac_set_protocol() = %d\n", err);
-> +
-> +	err = phy_set_mode_ext(mac->serdes_phy, PHY_MODE_ETHERNET, state->interface);
-> +	if (err)
-> +		netdev_err(mac->net_dev, "phy_set_mode_ext() = %d\n", err);
->  }
->  
->  static void dpaa2_mac_link_up(struct phylink_config *config,
-> @@ -200,12 +234,21 @@ static void dpaa2_mac_link_down(struct phylink_config *config,
->  		netdev_err(mac->net_dev, "dpmac_set_link_state() = %d\n", err);
->  }
->  
-> +static int dpaa2_mac_prepare(struct phylink_config *config, unsigned int mode,
-> +			     phy_interface_t interface)
-> +{
-> +	dpaa2_mac_link_down(config, mode, interface);
-
-You should never see a reconfiguration while the link is up. However,
-if the link is in in-band mode, then obviously the link could come up
-at any moment, and in that case, forcing it down in mac_prepare() is
-a good idea - but that forcing needs to be removed in mac_finish()
-to allow in-band to work again. Not sure that your firmware allows
-that though, and I'm not convinced that calling the above function
-achieves any of those guarantees.
-
-> +
-> +	return 0;
-> +}
-> +
->  static const struct phylink_mac_ops dpaa2_mac_phylink_ops = {
->  	.validate = phylink_generic_validate,
->  	.mac_select_pcs = dpaa2_mac_select_pcs,
->  	.mac_config = dpaa2_mac_config,
->  	.mac_link_up = dpaa2_mac_link_up,
->  	.mac_link_down = dpaa2_mac_link_down,
-> +	.mac_prepare = dpaa2_mac_prepare,
->  };
->  
->  static int dpaa2_pcs_create(struct dpaa2_mac *mac,
-> @@ -259,6 +302,8 @@ static void dpaa2_pcs_destroy(struct dpaa2_mac *mac)
->  
->  static void dpaa2_mac_set_supported_interfaces(struct dpaa2_mac *mac)
->  {
-> +	int intf, err;
-> +
->  	/* We support the current interface mode, and if we have a PCS
->  	 * similar interface modes that do not require the SerDes lane to be
->  	 * reconfigured.
-> @@ -278,12 +323,40 @@ static void dpaa2_mac_set_supported_interfaces(struct dpaa2_mac *mac)
->  			break;
->  		}
->  	}
-> +
-> +	if (!mac->serdes_phy)
-> +		return;
-> +
-> +	/* In case we have access to the SerDes phy/lane, then ask the SerDes
-> +	 * driver what interfaces are supported based on the current PLL
-> +	 * configuration.
-> +	 */
-> +	for (intf = 0; intf < PHY_INTERFACE_MODE_MAX; intf++) {
-
-You probably want to avoid PHY_INTERFACE_MODE_NA here, even though your
-driver may reject it anyway.
-
-> +		err = phy_validate(mac->serdes_phy, PHY_MODE_ETHERNET, intf, NULL);
-> +		if (err)
-> +			continue;
-> +
-> +		__set_bit(intf, mac->phylink_config.supported_interfaces);
-> +	}
-> +}
-> +
-> +void dpaa2_mac_start(struct dpaa2_mac *mac)
-> +{
-> +	if (mac->serdes_phy)
-> +		phy_power_on(mac->serdes_phy);
-> +}
-> +
-> +void dpaa2_mac_stop(struct dpaa2_mac *mac)
-> +{
-> +	if (mac->serdes_phy)
-> +		phy_power_off(mac->serdes_phy);
->  }
->  
->  int dpaa2_mac_connect(struct dpaa2_mac *mac)
->  {
->  	struct net_device *net_dev = mac->net_dev;
->  	struct fwnode_handle *dpmac_node;
-> +	struct phy *serdes_phy = NULL;
->  	struct phylink *phylink;
->  	int err;
->  
-> @@ -300,6 +373,22 @@ int dpaa2_mac_connect(struct dpaa2_mac *mac)
->  		return -EINVAL;
->  	mac->if_mode = err;
->  
-> +	if (mac->features & DPAA2_MAC_FEATURE_PROTOCOL_CHANGE &&
-> +	    !phy_interface_mode_is_rgmii(mac->if_mode) &&
-> +	    is_of_node(dpmac_node)) {
-> +		serdes_phy = of_phy_get(to_of_node(dpmac_node), NULL);
-> +
-> +		if (IS_ERR(serdes_phy)) {
-> +			if (PTR_ERR(serdes_phy) == -ENODEV)
-> +				serdes_phy = NULL;
-> +			else
-> +				return PTR_ERR(serdes_phy);
-> +		} else {
-> +			phy_init(serdes_phy);
-> +		}
-> +	}
-> +	mac->serdes_phy = serdes_phy;
-> +
->  	/* The MAC does not have the capability to add RGMII delays so
->  	 * error out if the interface mode requests them and there is no PHY
->  	 * to act upon them
-> @@ -363,6 +452,8 @@ void dpaa2_mac_disconnect(struct dpaa2_mac *mac)
->  	phylink_disconnect_phy(mac->phylink);
->  	phylink_destroy(mac->phylink);
->  	dpaa2_pcs_destroy(mac);
-> +	of_phy_put(mac->serdes_phy);
-> +	mac->serdes_phy = NULL;
->  }
->  
->  int dpaa2_mac_open(struct dpaa2_mac *mac)
-> diff --git a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.h b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.h
-> index d2e51d21c80c..a58cab188a99 100644
-> --- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.h
-> +++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-mac.h
-> @@ -26,6 +26,8 @@ struct dpaa2_mac {
->  	enum dpmac_link_type if_link_type;
->  	struct phylink_pcs *pcs;
->  	struct fwnode_handle *fw_node;
-> +
-> +	struct phy *serdes_phy;
->  };
->  
->  bool dpaa2_mac_is_type_fixed(struct fsl_mc_device *dpmac_dev,
-> @@ -45,4 +47,8 @@ void dpaa2_mac_get_strings(u8 *data);
->  
->  void dpaa2_mac_get_ethtool_stats(struct dpaa2_mac *mac, u64 *data);
->  
-> +void dpaa2_mac_start(struct dpaa2_mac *mac);
-> +
-> +void dpaa2_mac_stop(struct dpaa2_mac *mac);
-> +
->  #endif /* DPAA2_MAC_H */
-> diff --git a/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c b/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c
-> index 9a561072aa4a..e4f8f927e223 100644
-> --- a/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c
-> +++ b/drivers/net/ethernet/freescale/dpaa2/dpaa2-switch.c
-> @@ -703,8 +703,10 @@ static int dpaa2_switch_port_open(struct net_device *netdev)
->  
->  	dpaa2_switch_enable_ctrl_if_napi(ethsw);
->  
-> -	if (dpaa2_switch_port_is_type_phy(port_priv))
-> +	if (dpaa2_switch_port_is_type_phy(port_priv)) {
->  		phylink_start(port_priv->mac->phylink);
-> +		dpaa2_mac_start(port_priv->mac);
-
-Same comments as for dpaa2-mac.
-
-> +	}
->  
->  	return 0;
->  }
-> @@ -717,6 +719,7 @@ static int dpaa2_switch_port_stop(struct net_device *netdev)
->  
->  	if (dpaa2_switch_port_is_type_phy(port_priv)) {
->  		phylink_stop(port_priv->mac->phylink);
-> +		dpaa2_mac_stop(port_priv->mac);
->  	} else {
->  		netif_tx_stop_all_queues(netdev);
->  		netif_carrier_off(netdev);
-> -- 
-> 2.33.1
-> 
->
-
-Thanks!
+ arch/arm/boot/dts/qcom-ipq8064-rb3011.dts |  21 +-
+ arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi  |  70 ++++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi       | 375 +++++++++++++++++++++-
+ arch/arm/boot/dts/qcom-ipq8065.dtsi       | 168 ++++++++++
+ 4 files changed, 603 insertions(+), 31 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8064-v2.0.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom-ipq8065.dtsi
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 40Mbps down 10Mbps up. Decent connectivity at last!
+2.34.1
+
