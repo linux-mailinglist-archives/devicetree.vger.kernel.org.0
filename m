@@ -2,225 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5430A4D30D1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 15:08:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49FBB4D3111
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 15:38:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231241AbiCIOIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 09:08:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56112 "EHLO
+        id S230427AbiCIOjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 09:39:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230390AbiCIOIN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 09:08:13 -0500
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EFBC177D11;
-        Wed,  9 Mar 2022 06:07:11 -0800 (PST)
-Received: by mail-lj1-x234.google.com with SMTP id q5so3238684ljb.11;
-        Wed, 09 Mar 2022 06:07:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:to:cc:references
-         :from:in-reply-to:content-transfer-encoding;
-        bh=xxfxU0/+N2c7ag5iF0ND2CSoktRFw/36L814u7xJMSM=;
-        b=eXzLxN58FhsB8OTDoH92CoaNBlI24Gn3jCMUdxhtfqWnYAfePKPC9Ajke352kewhYQ
-         JPrO59ouTXOfzPPk7H10fUG/P8YBNVnMdH+UKqfy3jqyO50/hytulo6Iy4NeSjM7AbKx
-         iZTrGXy36LywxOpg9E5YxY67y2e2DoFzstJ+lfRzSgK5Blsp3KvJPtJqeNQd/rTAwBA4
-         3GjSBF8ssUVOGFyZPDPZ8/KYzhWPh63Y4+TGJ1RhafGQbWGjgwSQWTqZE5vYQDD1Ng2Z
-         /fOqOIZHnVcv2HEmsqdcbOLq4ZEjtFqipPAbWIW8Z+wJFM3M7MJTP/tYJ087GB9XfD7b
-         FDzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :to:cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=xxfxU0/+N2c7ag5iF0ND2CSoktRFw/36L814u7xJMSM=;
-        b=j9fLH1FwBLYSNDOkgOONV0RTJeN+vLevMsUw8Bpx2IKfbUWpJ/nm+nOd9KPbeWhz0t
-         f3NTVz6yX/s/vkOub9HEk8cPMzmcNymAYtSVoHMmT06Q6uDwu26GoOplzV2qk9gfDH7Q
-         njsQZ05/diCvPf8Mc5TgmbeN3nHYRFsbznq1ge3ij4rQzLcBUTCndNMIlPFhB1durR/P
-         MIYk4WOSTOPYv2cKeTlM66DxB3Z0WUARFbFzyFtr14G4F12XaqxxCVNl/2HvmXSJkyIe
-         0qCAPHOsX3wt+E6QxRA8Y8otMBbQHmZwvTrQtHUWqBojtqv8vlFzca7OuMb8IZAXSMhE
-         HZeg==
-X-Gm-Message-State: AOAM530hlYYBqZnVX0tL9cRyInD/tQYt5WLTsFZ8ul2g/RRYR4fKQ9Iv
-        bTpdD/KracUNsYwwgOwN5xw=
-X-Google-Smtp-Source: ABdhPJw1Pj1zvOkWm3Hacnnf4CF4L5JOnwbEIh46fkJuDpqvc3ifCDFMpj5fAASPelDzl/NZidwoAA==
-X-Received: by 2002:a2e:594:0:b0:247:ec86:8b9b with SMTP id 142-20020a2e0594000000b00247ec868b9bmr6136123ljf.310.1646834818443;
-        Wed, 09 Mar 2022 06:06:58 -0800 (PST)
-Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
-        by smtp.googlemail.com with ESMTPSA id h7-20020a19ca47000000b0044829144111sm415470lfj.26.2022.03.09.06.06.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Mar 2022 06:06:57 -0800 (PST)
-Message-ID: <7f389c1e-cc36-1cce-6be2-27f18b2be7d3@gmail.com>
-Date:   Wed, 9 Mar 2022 15:06:56 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
- Thunderbird/96.0
-Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
- binding
-To:     Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tom Rini <trini@konsulko.com>, Simon Glass <sjg@chromium.org>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Ricardo Salveti <ricardo@foundries.io>,
-        Jorge Ramirez-Ortiz <jorge@foundries.io>,
-        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
-        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
-        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20220228131250.16943-1-zajec5@gmail.com>
- <578e243d-2273-add3-898c-959888c2a155@xilinx.com>
-From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-In-Reply-To: <578e243d-2273-add3-898c-959888c2a155@xilinx.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        with ESMTP id S229919AbiCIOjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 09:39:19 -0500
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130073.outbound.protection.outlook.com [40.107.13.73])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF817122F74;
+        Wed,  9 Mar 2022 06:38:19 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RChnBvB3+0+6ft38gpc+9NPv9ZePISCTAYTdBKiFqGZ5PVgbErPJ9x0o94lAWCX6cJNvgrRJU7Ol9M7lk7R+XVoPcw21chb72S93GxpHNgXZoN4QwSfuPceFot3cugR6uO4lv5C4M92Ea6+DUFBs8r08OTBfrrmIJaQ5NO0otHa5hS2JZvfnSVPJPbSLA7lGGCvRnlrNzzhQG5K6dnO3v/o6MeQ4ORggC4CbGYfeVl4PzR2eYRXdMpANpLpMXsL8khEo2FBsivf8XtmQGpr1BO95iEDDbNbt3PbKBIoKX+aI2L2QaJbYNEf/ylt1kZQXiivtFsqeDyEJsDXG9OOMIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0VCasTUXaeikggrAN81JeYfa2grSxUwVk1CW6TATm0I=;
+ b=VsVZM4BbQ0rBUqlsPR8Xyu3oHhfuX4tskloeE3V6xRmbrMX/3WtzeHl7DlDvJ5d2tJwOcBkdhtPXR3CZMRhHFfvKd9iNpuOl2O4JqF314U0gP1791Vo5AJH/PzODvq4YKKwOZr3geM0u64ZB+QGSfWDnLxi0Yl+37hkMM/t2R0d/AaBYyTBt5fKgTyP/+qriuBlndeP5pCorsgpHdsKaH5e+em6Y2UpizHlYktjvDOEn6duNC4eiBqrnLDO2V+NgEc06nFEOjYyV63OVHrgdzj8z49PWzcGNCTD9Eyi6VdITWjM/yljyBMwhrjIFq0hckdWxOgAxaMSZOZd/WdVkmQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0VCasTUXaeikggrAN81JeYfa2grSxUwVk1CW6TATm0I=;
+ b=C19uuXhbg0E81fO8/79ACaJak4q1D3s6DeWcuquit4xDNJmITrO2CQAwD6LRbujlaUmqaqeetCDx2keVzae0+ks5qW4dM4YHvGfoW0H77TE2klti0dzlURk8kevb2mP9OXKTa5KLH1hYmdXAXXcXSeyMAN1MIjKIJpOkC+XQ/20=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM9PR04MB8555.eurprd04.prod.outlook.com (2603:10a6:20b:436::16)
+ by VI1PR04MB6223.eurprd04.prod.outlook.com (2603:10a6:803:fa::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Wed, 9 Mar
+ 2022 14:38:17 +0000
+Received: from AM9PR04MB8555.eurprd04.prod.outlook.com
+ ([fe80::c58c:4cac:5bf9:5579]) by AM9PR04MB8555.eurprd04.prod.outlook.com
+ ([fe80::c58c:4cac:5bf9:5579%7]) with mapi id 15.20.5038.027; Wed, 9 Mar 2022
+ 14:38:17 +0000
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org
+Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
+        leoyang.li@nxp.com, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: [PATCH net-next 0/8] dpaa2-mac: add support for changing the protocol at runtime
+Date:   Wed,  9 Mar 2022 16:37:43 +0200
+Message-Id: <20220309143751.3362678-1-ioana.ciornei@nxp.com>
+X-Mailer: git-send-email 2.33.1
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR02CA0187.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28e::24) To AM9PR04MB8555.eurprd04.prod.outlook.com
+ (2603:10a6:20b:436::16)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3dc4170c-3462-4fcd-56b1-08da01da72f6
+X-MS-TrafficTypeDiagnostic: VI1PR04MB6223:EE_
+X-Microsoft-Antispam-PRVS: <VI1PR04MB6223C8069314543A91894672E00A9@VI1PR04MB6223.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: rnnrRrRNpNMjLTa8egYJS6iYtEPvliQn/xT3VEkA+Lb65PjdjhUXD3CiFXGKDYp1UEPr24/vAZMxJhv4uQoq9NFp3ArszJPGCsDBQSqFPEQI8zlM0dIFoidzWEuYT4DfaDVnHaC4x8P1/s7yzEx3Dt/gnq10Q0+LJAqw4sUgXP6RgGbqy7pX4lzoJuPkkH0Dw7TkiRMhhyu7bR8OnLa5dAYZd99QIOAHJdDI2yQl1ixKo/rBxTZvrbgJxoa9Ax2qbFNMkh3nFO0XAJep21s3X2iTqNBxMdT+1gUJ7wYRJfbZ58fVjZbxHmo0ZrZHDzZVVyY9eO1xq8YE9M6oP1ip31nJABZ2n9EBy6avTt6xAxKZbhaSWmmQSP0pokwhi9yUOfRCaQvGqrzW3Auem0jPuL7nvUDSiMYz5/kMNYREpAJuW4t6g1dyQIBCzhtq15O+o/7fjjVw86nI4jo88GBWSh0S0HUk8Z7AsfdBlSxCf1g4yz7/VMiQ8JfpXbNlJcMkoEqn+072tEag9/2/NxTkx3sHunM/SMW/e+ZshAFy20CLSa92WinfsM1QP6a+H+qiMPlx7fEkIulubvVCXw1wPqDdBf9O9Nb1c3sW81FdKmwJsjXzzY5d//18nrAqDczy5GC6Se4iRu9PEbt7g7ZUtvI3jy/RjoncqIubF4hVND+oec1gYBcumxquLbBW17O8vZVXY4gNlQDTNSQ/LE+pRA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8555.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6506007)(6512007)(86362001)(44832011)(52116002)(36756003)(66476007)(66556008)(8936002)(66946007)(8676002)(26005)(5660300002)(498600001)(2906002)(4326008)(6666004)(83380400001)(38350700002)(38100700002)(6486002)(2616005)(1076003)(186003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?s0wkzB3d4xr4kw/jHQPkW8FKXT5k/Ige0HeXpcKLnqxMh3Cr59NLCfs5hr8U?=
+ =?us-ascii?Q?L9Re5re9ucUq72xrW20Ur+7Umj1FNQpz6ppv4aZHCFmzyPwvXllqIAIKzneY?=
+ =?us-ascii?Q?QOLZpolp520jPd4PsSrIxSCpbSSRbMOSyky/5wBueqK5uAVkz3u4JljHLr9s?=
+ =?us-ascii?Q?jYACgXWVvS8TKksSUUDq8+yPwdpgn1JZ/NDgsl25mZ1OqgzHYagoEPegyDhE?=
+ =?us-ascii?Q?Gmul5TSexCxQOCZSFeP3yef9Uko32z1V0VXjPIvCz/cg9+IR7CnsWDKqlXrI?=
+ =?us-ascii?Q?jdWtwCv2D5ddzDutFzCLYNfuKiIjemhoGj8LLzXDekqxqzkSCVyrfq4PVK1E?=
+ =?us-ascii?Q?yTKNd3WEdXC52FHFaLEcfHxgmrNXJRqk45P8XjUIS+7mo9sQNB8pFyEThwGq?=
+ =?us-ascii?Q?jckxlfD6ShRYn2qXUZe+MwVdg9vQ1BMbR3WQbhtXj1GCGr+avaOiYhMkosk1?=
+ =?us-ascii?Q?LLNeRrPNQAsTiJDP9haIA2UBbX3l6H3LaSsL4MBwh+5BqdElHLpKbwvWwmvH?=
+ =?us-ascii?Q?7cfk5e6VhsyZJXHvGobuuqG5DPGoMaFjMCI3X2v3C8/f+LhlqLiPuEWGm40m?=
+ =?us-ascii?Q?sbxhOrKJ/gwyYWpEGRRQACgXClkckTbrk1eXx2uMJaNpbI2El5KaW3F+MjJw?=
+ =?us-ascii?Q?tjS7cBxucATpU+1gHcRtnfFg1TUn61najHTUZIr/+uHNjTT8mPid6uNLFNs0?=
+ =?us-ascii?Q?lBqVezjlKxHGu/JR5qoA/BWzjTd6TIJqmtu2JPsRXg9v8LQW2gkd+qtXNtS0?=
+ =?us-ascii?Q?GSFuHZzGn03xsmeye4QkQ9bZ/Dwv+jJ28Ikauj/grkT1j+QkW/0OjtZAdewa?=
+ =?us-ascii?Q?N/ShnSfM7AjPlwyKgBGeKq7Bz/YLPkqOh3gmS7lCuF4z+s+8Dq+7zrNTF/5V?=
+ =?us-ascii?Q?Nu4sqAs+1GUwd3XTvRlwAmY3qGWCVrLgtP5auVbSTMV30IJVwIPeLj+3FcQR?=
+ =?us-ascii?Q?OOF6d0IbgKj6WrGxUkAF2jScDqPVHWSjv7dgWh8J1od4DB16EUtt24LBVU8t?=
+ =?us-ascii?Q?iUec9Es90tO8f5iGhgoTxp0KfZlbY55IULloPTqIDS9EY4SuPqv3dt4AeUKc?=
+ =?us-ascii?Q?8SzZ3h25lBFWhmLnRkkEY+ANwU/RT0whpxdjh0JKihQYR6xgDn1f8xJ+Wd36?=
+ =?us-ascii?Q?0DqX+crVTo8JWB/Xg/yEjj+P7ohgtl0fH6OsduB1ovDhUA/SjnVOGYfNiGln?=
+ =?us-ascii?Q?M6PLsGyhTJWoTwBtqezA7N45rhEwRjga0QkttaScZXgAI+DZ0f2kCqREdh5E?=
+ =?us-ascii?Q?MwNB3Z/s4RR8y8kIpW5kYLI2QxVdkqU0b34xqqpqGwymejZMW/nW2wDESCaD?=
+ =?us-ascii?Q?/U1Id0lC31efNZmCHUGkCAddAy0ZwwnIgfK3I0QW5jVmiDSg+lO9KKc4lesi?=
+ =?us-ascii?Q?CYkQkCiQOt4r/6+QDrTM2hPCR9lysYRkIOg8zO7EuPQOn2YlOdpNJr5to2ni?=
+ =?us-ascii?Q?Cg6R3lC7HPT78hUgd9Gg91oipPBbJJPYkZ3E4L5ObwBYCxGsoZc2SZwR6tel?=
+ =?us-ascii?Q?4AJV/4jrKM2Hps+vnU8NWAmjyD8WsfcfqoWOdM10ZBuNKbVoegXU7nCYsDVz?=
+ =?us-ascii?Q?cS4QppF6q/h/tohT2kqTyB5fL5FxtWbXqjdHjaPeWO5NmuSr3CKWTqnQRXrg?=
+ =?us-ascii?Q?498+cPWGyMBiTiB5ZpKafBw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3dc4170c-3462-4fcd-56b1-08da01da72f6
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8555.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2022 14:38:17.0997
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: f6dC57Dxxee1deflqqEq1Bu3NGQBWYHJNu8/v3MlGH6vskGr/WtvBuc+7bNUmZqsUyhE/sjLyegV0Wo8tVXJ0w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6223
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9.03.2022 14:42, Michal Simek wrote:
-> On 2/28/22 14:12, Rafał Miłecki wrote:
->> From: Rafał Miłecki <rafal@milecki.pl>
->>
->> U-Boot uses environment variables for storing device setup data. It
->> usually needs to be accessed by a bootloader, kernel and often
->> user-space.
->>
->> This binding allows describing environment data located in a raw flash
->> partition. It's treated as NVMEM device and can be reused later for
->> other storage devices.
->>
->> Using DT should be cleaner than hardcoding & duplicating such info in
->> multiple places. Bootloader & kernel can share DTS and user-space can
->> try reading it too or just have correct data exposed by a kernel.
->>
->> A custom "compatible" string allows system to automatically load
->> relevant NVMEM driver but phandle can be also used for reading raw
->> location.
->>
->> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
->> ---
->> V2: Update descriptions to don't make this binding MTD (flash partition)
->>      specific. Mention multiple possible storage ways.
->> V3: Drop
->>      allOf:
->>        - $ref: nvmem.yaml#
->>      as we don't use anything rom the nvmem.yaml. Thanks Rob.
->> ---
->>   .../devicetree/bindings/nvmem/u-boot,env.yaml | 62 +++++++++++++++++++
->>   MAINTAINERS                                   |  5 ++
->>   2 files changed, 67 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
->> new file mode 100644
->> index 000000000000..e70b2a60cb9a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
->> @@ -0,0 +1,62 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: U-Boot environment variables
->> +
->> +description: |
->> +  U-Boot uses environment variables to store device parameters and
->> +  configuration. They may be used for booting process, setup or keeping end user
->> +  info.
->> +
->> +  Data is stored using U-Boot specific formats (variant specific header and NUL
->> +  separated key-value pairs).
->> +
->> +  Environment data can be stored on various storage entities, e.g.:
->> +  1. Raw flash partition
->> +  2. UBI volume
->> +
->> +  This binding allows marking storage device (as containing env data) and
->> +  specifying used format.
->> +
->> +  Right now only flash partition case is covered but it may be extended to e.g.
->> +  UBI volumes in the future.
->> +
->> +maintainers:
->> +  - Rafał Miłecki <rafal@milecki.pl>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - description: A standalone env data block
->> +        const: u-boot,env
->> +      - description: Two redundant blocks with active one flagged
->> +        const: u-boot,env-redundant-bool
->> +      - description: Two redundant blocks with active having higher counter
->> +        const: u-boot,env-redundant-count
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    partitions {
->> +        compatible = "fixed-partitions";
->> +        #address-cells = <1>;
->> +        #size-cells = <1>;
->> +
->> +        partition@0 {
->> +            reg = <0x0 0x40000>;
->> +            label = "u-boot";
->> +            read-only;
->> +        };
->> +
->> +        env: partition@40000 {
->> +            compatible = "u-boot,env";
->> +            reg = <0x40000 0x10000>;
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index db8052bc1d26..24fc181a7e6c 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -19958,6 +19958,11 @@ W:    http://linuxtv.org
->>   T:    git git://linuxtv.org/media_tree.git
->>   F:    drivers/media/pci/tw686x/
->> +U-BOOT ENVIRONMENT VARIABLES
->> +M:    Rafał Miłecki <rafal@milecki.pl>
->> +S:    Maintained
->> +F:    Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
->> +
->>   UACCE ACCELERATOR FRAMEWORK
->>   M:    Zhangfei Gao <zhangfei.gao@linaro.org>
->>   M:    Zhou Wang <wangzhou1@hisilicon.com>
-> 
-> I think that parsing these partitions is quite sw intensive process and I can't still see the value to have compatible string here.
-> I would prefer to have just any link from u-boot node to partition instead.
-> 
-> But up to Simon or Tom to decide.
+This patch set adds support for changing the Ethernet protocol at
+runtime on Layerscape SoCs which have the Lynx 28G SerDes block.
 
-In the first place DT should describe hardware / platform / device as it
-is. Without taking shortcuts. If environment data can be stored in flash
-device partition it should be described exactly as that.
+The first two patches add a new generic PHY driver for the Lynx 28G and
+the bindings file associated. The driver reads the PLL configuration at
+probe time (the frequency provided to the lanes) and determines what
+protocols can be supported.
+Based on this the driver can deny or approve a request from the
+dpaa2-mac to setup a new protocol.
 
-Systems like Linux can benefit from that.
+The next 2 patches add some MC APIs for inquiring what is the running
+version of firmware and setting up a new protocol on the MAC.
 
-If some systems (e.g. a bootloader - U-Boot or any other one) can't
-afford parsing / covering whole DT structure due to some limitations -
-then we can come with helpers. I've no objections here.
+Moving along, we extract the code for setting up the supported
+interfaces on a MAC on a different function since in the next patches
+will update the logic.
 
-In dt-schema [1] we have place for U-Boot specific options. Please see
-0986f729eff0 ("dt-bindings: u-boot: Add an initial binding for config").
+In the next patch, the dpaa2-mac is updated so that it retrieves the
+SerDes PHY based on the OF node and in case of a major reconfig, call
+the PHY driver to set up the new protocol on the associated lane and the
+MC firmware to reconfigure the MAC side of things.
 
-We can add support e.g. for
-u-boot {
-         (...)
-         u-boot,env = <&env>;
-};
+Finally, the LX2160A dtsi is annotated with the SerDes PHY nodes for the
+1st SerDes block. Beside this, the LX2160A Clearfog dtsi is annotated
+with the 'phys' property for the exposed SFP cages.
 
-[1] https://github.com/devicetree-org/dt-schema
-[2] https://github.com/devicetree-org/dt-schema/commit/0986f729eff0f40a66e85ab9dfb37681bf025ac4
+Ioana Ciornei (8):
+  phy: add support for the Layerscape SerDes 28G
+  dt-bindings: phy: add the "fsl,lynx-28g" compatible
+  dpaa2-mac: add the MC API for retrieving the version
+  dpaa2-mac: add the MC API for reconfiguring the protocol
+  dpaa2-mac: retrieve API version and detect features
+  dpaa2-mac: move setting up supported_interfaces into a function
+  dpaa2-mac: configure the SerDes phy on a protocol change
+  arch: arm64: dts: lx2160a: describe the SerDes block #1
+
+ .../devicetree/bindings/phy/fsl,lynx-28g.yaml |  71 ++
+ MAINTAINERS                                   |   7 +
+ .../freescale/fsl-lx2160a-clearfog-itx.dtsi   |   4 +
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi |  41 ++
+ .../net/ethernet/freescale/dpaa2/dpaa2-eth.c  |   5 +-
+ .../net/ethernet/freescale/dpaa2/dpaa2-mac.c  | 164 ++++-
+ .../net/ethernet/freescale/dpaa2/dpaa2-mac.h  |   8 +
+ .../ethernet/freescale/dpaa2/dpaa2-switch.c   |   5 +-
+ .../net/ethernet/freescale/dpaa2/dpmac-cmd.h  |  12 +
+ drivers/net/ethernet/freescale/dpaa2/dpmac.c  |  54 ++
+ drivers/net/ethernet/freescale/dpaa2/dpmac.h  |   5 +
+ drivers/phy/freescale/Kconfig                 |  10 +
+ drivers/phy/freescale/Makefile                |   1 +
+ drivers/phy/freescale/phy-fsl-lynx-28g.c      | 629 ++++++++++++++++++
+ 14 files changed, 995 insertions(+), 21 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+ create mode 100644 drivers/phy/freescale/phy-fsl-lynx-28g.c
+
+-- 
+2.33.1
+
