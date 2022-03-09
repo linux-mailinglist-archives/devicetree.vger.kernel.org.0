@@ -2,51 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8C94D2DEE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 12:26:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 423444D2E0F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 12:32:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232020AbiCIL0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 06:26:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53780 "EHLO
+        id S232256AbiCILcb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 06:32:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231896AbiCIL0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 06:26:53 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD2C16A58F;
-        Wed,  9 Mar 2022 03:25:53 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id C1CA5B820BC;
-        Wed,  9 Mar 2022 11:25:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18D35C340E8;
-        Wed,  9 Mar 2022 11:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646825150;
-        bh=pi/I+f8oAdMPiZ00hqEd4Ori4d69XCBM0oR4J3iG4Uc=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=FK/dDSqoq8Xsvhj4ooyEUYZckolVVsXt1KFHMDZRO0jeurQVkMc18XT8/6tf3quko
-         6bYURW33hASZHe0qn+7POw4VgmH1DRATQv+G+IL+o6W5BORIQF3jhlxd66EIOjUf6D
-         KzSIR+ovdHwhWcf7Qymn22pbw66FPBpXIqzLjLUbK/23htI62XMkOfH3sFF4jYRVSf
-         jHxQpkETsyUUP6OOuzHjO8Uy7O0HY2JqLjyfrFwCNXZIxiMDulJ0f2oZDj3wAYVTz+
-         IAyQp3VOp2KbvkbUc/8iekTNtV9IONimHaB6xkptGMXLp+Y1zErHm1c83ZDhvalZq0
-         au90zhS7i64bw==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] MAINTAINERS: add devicetree bindings entry for mt76
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <8cbfeceef642ede408b4922c363953cb243cd87f.1646766851.git.lorenzo@kernel.org>
-References: <8cbfeceef642ede408b4922c363953cb243cd87f.1646766851.git.lorenzo@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     nbd@nbd.name, linux-wireless@vger.kernel.org,
-        lorenzo.bianconi@redhat.com, devicetree@vger.kernel.org,
-        robh@kernel.org
-User-Agent: pwcli/0.1.0-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <164682514615.8809.15088883190596586692.kvalo@kernel.org>
-Date:   Wed,  9 Mar 2022 11:25:48 +0000 (UTC)
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        with ESMTP id S230468AbiCILcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 06:32:23 -0500
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BB214FFD8
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 03:31:24 -0800 (PST)
+Received: by mail-wm1-x32d.google.com with SMTP id c192so1164473wma.4
+        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 03:31:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=SbpJdgeFl8FPUDGJdHtMj/2irciJ6OreFRE7fGfvGh8=;
+        b=knd2Ao1yAGdUdzAOg0aNuSFZLz5tp1fWJsxGz/FL3uAqmiGEVawxvgCd4gPa2t6EIY
+         IAmnXEiPZus4tz6eF/M/AIOFcIL0tm1Ep+crwpf7uHxuwTGCw4ObaFLPTAUtEesTOd0F
+         ZGQisoC/1vxLDr8ajvL+Jsnbat9bB4pCvdODlXf9QvheeQH3z+5zwtEh04K5/nDdaE5X
+         mXNWM1SiVBXn6UbTF8Oj2HA8t6DIkNJcxComGV509Sd/S4jEEafpANiCKHwBMgi+R0tj
+         dr8NoUiuM1u0GxFnIelh4qNV59JV5w3twbV1U4qqUamC7oRLksBCs5igkZTqEQMBzUNV
+         mDvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=SbpJdgeFl8FPUDGJdHtMj/2irciJ6OreFRE7fGfvGh8=;
+        b=zhz4U0O3BiJTaXmX4dmzaeBTJaejMa+m/qDmrlKagNpBzsQkvcYaVVIdbCDUwOnAvD
+         EC+t2opMRnj084sOV9V8iYRfiPN6z9f93tJqbgBvhua57dK++EQbrhD3GJOwckTrhJcn
+         5vOxvoT2difkXXfUXBXRNXpoyjtxsSi77PyH0/m6j2i7+bLP4K9QyAbGyVJubpOM0AKK
+         Fog1lcF+6u6EenuwWI6SBH90JwYV5nLL26DdgJ3i5p08VjfEONfPOdsqPFIg8xgOYQFw
+         J6kDTHEjOIOotE2qMb8XgD2sykIDEQyoHwTSA2w/2l4bZ5+A4HWRFHewRuUoCtz9RWiZ
+         qcuA==
+X-Gm-Message-State: AOAM530/AJ4t4Q2pxfUbtZCXUULRev7iPOtKNBYh/TPFeXt+PudAxHT1
+        Rx4jUt7QfvNcyA00J/2B3L3FZg==
+X-Google-Smtp-Source: ABdhPJyZMDAfCZtX12MryC40zWqN64VWMATbqd7xW1WXC0cNO9FpW0f13MvAv7X9CzF9oa3X10xxGQ==
+X-Received: by 2002:a05:600c:1c87:b0:389:9dda:af17 with SMTP id k7-20020a05600c1c8700b003899ddaaf17mr7191864wms.27.1646825483099;
+        Wed, 09 Mar 2022 03:31:23 -0800 (PST)
+Received: from linaro.org ([2a00:23c5:6809:2201:546d:7d59:1703:bf96])
+        by smtp.gmail.com with ESMTPSA id o11-20020adf9d4b000000b001f0077ea337sm1503812wre.22.2022.03.09.03.31.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Mar 2022 03:31:22 -0800 (PST)
+From:   Mike Leach <mike.leach@linaro.org>
+To:     liviu.dudau@arm.com, sudeep.holla@arm.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        coresight@lists.linaro.org, linux-kernel@vger.kernel.org,
+        lorenzo.pieralisi@arm.com
+Cc:     mathieu.poirier@linaro.org, suzuki.poulose@arm.com,
+        robh+dt@kernel.org, Mike Leach <mike.leach@linaro.org>
+Subject: [PATCH RESEND 0/1] arm64: dts: Juno CTI device tree additions
+Date:   Wed,  9 Mar 2022 11:31:16 +0000
+Message-Id: <20220309113117.1126-1-mike.leach@linaro.org>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -55,16 +66,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
+This is a resend of a patch from some time ago (04/2020)[1] which seems to have fallen through
+the cracks - most likely as last time I mistakenly tagged it as dt-bindings: rather than dts:
 
-> Specify devicetree bindings entry for mt76 driver.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+I am planning a release of additional CTI configuration examples, which include some for
+Juno - so this is now needed upstream to support that work.
 
-Felix, I would like to apply this directly to wireless-next. Ok?
+Patch unchanged, other than a correction to the subject.
+
+[1] https://lore.kernel.org/linux-arm-kernel/20200415201330.15894-1-mike.leach@linaro.org/
+
+
+Mike Leach (1):
+  arm64: dts: arm:  Juno - add CTI entries to device tree
+
+ arch/arm64/boot/dts/arm/juno-base.dtsi    | 162 +++++++++++++++++++++-
+ arch/arm64/boot/dts/arm/juno-cs-r1r2.dtsi |  37 ++++-
+ arch/arm64/boot/dts/arm/juno-r1.dts       |  25 ++++
+ arch/arm64/boot/dts/arm/juno-r2.dts       |  25 ++++
+ arch/arm64/boot/dts/arm/juno.dts          |  25 ++++
+ 5 files changed, 269 insertions(+), 5 deletions(-)
 
 -- 
-https://patchwork.kernel.org/project/linux-wireless/patch/8cbfeceef642ede408b4922c363953cb243cd87f.1646766851.git.lorenzo@kernel.org/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+2.17.1
 
