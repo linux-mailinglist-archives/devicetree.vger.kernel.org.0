@@ -2,144 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0BD54D2C29
-	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 10:35:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7B024D2C31
+	for <lists+devicetree@lfdr.de>; Wed,  9 Mar 2022 10:36:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231160AbiCIJf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 04:35:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
+        id S232176AbiCIJgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 04:36:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229601AbiCIJf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 04:35:29 -0500
+        with ESMTP id S232080AbiCIJgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 04:36:41 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8B937004B
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 01:34:30 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4CE216F956
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 01:35:41 -0800 (PST)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 91D473FA7E
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 09:34:29 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1AA5E40338
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 09:35:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646818469;
-        bh=S6D+Jxwx9oQJfCitKNvGiSNhxjD326sJadhtw3SVqMU=;
+        s=20210705; t=1646818540;
+        bh=vZNj5AOQLPTuv9G9otKx/fIrGoW3MMRzM1nMje3Rtek=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=LSDoZue8+Xj9wg7iTc7Kl1u1lDqalkcZ0lRypsv1N6OH/QljMx/m8/UncUMCr657c
-         fQf3g3H6DPkqw3U75/dX3mL5hU/SpVVDn7MOiN+coAyk1eWr4aIh9Jxat3iWHLjqZV
-         ZOSItpOvVWanddPdPQwmh2Bw+XDLsocQrDLycTvEy82b0yM8OnSRxwzDvdn2fENt8y
-         kCRUgOd2ca/m7fi3w5k+kf0jkGMqZrCBce9Ni4Hh6G5/OclKsZjtszetrogjbqroS4
-         GWNymMKzB7DmOl9R+vnNI0Kgq0vEkIElKkd8lhNBmvT11cFryeXc/Xg0gcDJo6f7pS
-         RmXgc9wMFGkbg==
-Received: by mail-ed1-f72.google.com with SMTP id co2-20020a0564020c0200b00415f9fa6ca8so981263edb.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 01:34:29 -0800 (PST)
+        b=XMUkOq6Ei2nqIz1jj62FpgVvCQFwTiJoMLJib5CjwxlX9DZop4kRezwkqxEBTtfoc
+         aFlLEiaazdBInqUc0TpPqgO17OT4ogugOuJH4mXAkUZ4HdKtN3Pw+kXZCcCT4rzomD
+         WeVB7vvgjhnuyAKQ75KU/kAv080hCgWPZoawNoJKmeCf1OW5j3M3V7pJ2oR84XQoQj
+         vVRsrCc3cv3xPcbFRQZIcqUb7VV2n72fvpYYsyoLbf8tqNGhvvmsOGGlMpzxl+p+jU
+         E6IwQM7xYWeyMRdy6EdENyNgw4tF2dM+9bX6MqG/cT62UDeEEH+m6LBvPZaI2+pPyG
+         vCX4YustN2ZgA==
+Received: by mail-ed1-f70.google.com with SMTP id l14-20020a056402344e00b0041593c729adso965337edc.18
+        for <devicetree@vger.kernel.org>; Wed, 09 Mar 2022 01:35:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=S6D+Jxwx9oQJfCitKNvGiSNhxjD326sJadhtw3SVqMU=;
-        b=fTtUmMImWQG0cXROoBlKq93xKHpJemjeINpbYxTcEIpOADKjM87gyW804emgcJfDhS
-         3UeWPllpauYhcFFN0rrWyc+p+miMlqP6xx9t9yWELUTCLW6sfi91GaHhyrZY2Bhl2ZPe
-         8GUE5gfm8BlLGg2c7SmCTEDjiTP6ZdH2MI5BUnCoFbFwbE3p8XXsXGcpEc7xXVo4dm12
-         cmMBCOYLlc4VBHVo6X4dkgCVHQwVUGbrCsmcDo8FqB6VHrb7WC05GU008CvIiSCuOvPX
-         UxlGwQNLuHQVY0sP1CU3LAOZTXyy6gaMm0a7j22iEGZG7Om1S3agKDu4kxd4cRsmxUYF
-         nT6w==
-X-Gm-Message-State: AOAM531vmK0vYLhEuUb9xHXZqhEza29bthImNsM4xjPeXqtQ/Kubf7qN
-        vn2c3yGE7xQDWJGwjKr/JnKgoRWCt/BOlSCKdGDURE/ZdtaM9WLYQAwt69Ez9Hl88maVT9SYE5Z
-        BGVQM5VoTDo5cZVgIWOWssqnMPaG9uFRCk7Cy2Xc=
-X-Received: by 2002:a17:907:7815:b0:6ce:5242:1280 with SMTP id la21-20020a170907781500b006ce52421280mr16604623ejc.217.1646818469155;
-        Wed, 09 Mar 2022 01:34:29 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyJBwFDEI5sp3k042uTjXHZy93eWqTa5ABGASxo2gwT/EKB/jU2Sf2/c7jQShucPz75BXludA==
-X-Received: by 2002:a17:907:7815:b0:6ce:5242:1280 with SMTP id la21-20020a170907781500b006ce52421280mr16604610ejc.217.1646818468954;
-        Wed, 09 Mar 2022 01:34:28 -0800 (PST)
+        bh=vZNj5AOQLPTuv9G9otKx/fIrGoW3MMRzM1nMje3Rtek=;
+        b=EGgZslzVwFvXXhHRUI3kt3EFQ0tVG41/WWYrLNBuKl4IYH6SZJKGqag3jAwOMInS+i
+         tzzrlKKeJKnG1usqrBlfg1b/ZViUVMS3E46r/DYPzm/0BYdfOntLyf48xTkmUR+c0tZc
+         bvPqV13A2JgLL6Znjaix1GREcUmk366YobDLRd/HvaJMBMI9FfO9Tbfmx0Fthmy8zUKd
+         YYLO34XtXK8faL1QrzG1MtVrImE51y6n60B8n1SOZED4TSwZpuWSjcfj4WuhnVPxGmLl
+         Yuzq/W3ao7xLh6EQ1sLjgj2xQDG4yqMF6gP1CpMElwfry4iympGIx46BsNWVh6Z+qnUG
+         Jnfw==
+X-Gm-Message-State: AOAM533XYozdO15tBRp1Nnv6C+FVnEc9bk93ZTySChdSGseAvkX8KsW6
+        09qaqlyNzW6JIjmnanipNjXaBgkYC80DtNa+j+VN0g33swHbZUPbNIbclJh4xDDLv8hpSRBmsJA
+        eO4k0uoCGsoe+hAqhzsr18I0SKvlzfGT6tQ3QvjA=
+X-Received: by 2002:a05:6402:7cb:b0:415:f059:c817 with SMTP id u11-20020a05640207cb00b00415f059c817mr20177221edy.364.1646818535455;
+        Wed, 09 Mar 2022 01:35:35 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwXuptgodm9OL5uPUDYx9cNzg0ceJIG4EMX1apioKtXckPfC/v1b6SG5RCfGXrS472kMiCZlw==
+X-Received: by 2002:a05:6402:7cb:b0:415:f059:c817 with SMTP id u11-20020a05640207cb00b00415f059c817mr20177199edy.364.1646818535293;
+        Wed, 09 Mar 2022 01:35:35 -0800 (PST)
 Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id er12-20020a056402448c00b00413d03ac4a2sm520468edb.69.2022.03.09.01.34.28
+        by smtp.gmail.com with ESMTPSA id m25-20020a170906161900b006d43be5b95fsm510405ejd.118.2022.03.09.01.35.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Mar 2022 01:34:28 -0800 (PST)
-Message-ID: <bfec6388-bb84-f053-18b3-a0ef556b5f97@canonical.com>
-Date:   Wed, 9 Mar 2022 10:34:27 +0100
+        Wed, 09 Mar 2022 01:35:34 -0800 (PST)
+Message-ID: <caf415f2-7b85-1653-7db1-623048a23b3e@canonical.com>
+Date:   Wed, 9 Mar 2022 10:35:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v4 01/15] dt-bindings: devfreq: rk3399_dmc: Convert to
- YAML
+Subject: Re: [PATCH] dt-bindings: thermal: rzg2l-thermal: Document RZ/V2L
+ bindings
 Content-Language: en-US
-To:     Brian Norris <briannorris@chromium.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Derek Basehore <dbasehore@chromium.org>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Lin Huang <hl@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-References: <20220308190901.3144566-1-briannorris@chromium.org>
- <20220308110825.v4.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220308212315.4551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220308110825.v4.1.I875ab8f28c5155a7d2f103316191954d4b07ac13@changeid>
+In-Reply-To: <20220308212315.4551-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/03/2022 20:08, Brian Norris wrote:
-> I want to add, deprecate, and bugfix some properties, as well as add the
-> first users. This is easier with a proper schema.
+On 08/03/2022 22:23, Lad Prabhakar wrote:
+> Document RZ/V2L TSU bindings. The TSU block on RZ/V2L is identical to one
+> found on RZ/G2L SoC. No driver changes are required as generic compatible
+> string "renesas,rzg2l-tsu" will be used as a fallback.
 > 
-> The transformation is mostly straightforward, plus a few notable tweaks:
-> 
->  * Renamed rockchip,dram_speed_bin to rockchip,ddr3_speed_bin. The
->    driver code and the example matched, but the description was
->    different. I went with the implementation. Note that this property is
->    also slated for deprecation/deletion in the subsequent patches.
-> 
->  * Drop upthreshold and downdifferential properties from the example.
->    These were undocumented (so, wouldn't pass validation), but were
->    representing software properties (governor tweaks). I drop them from
->    the driver in subsequent patches.
-> 
->  * Rename clock from pclk_ddr_mon to dmc_clk. The driver, DT example,
->    and all downstream users matched -- the binding definition was the
->    exception. Anyway, "dmc_clk" is a more appropriately generic name.
-> 
->  * Choose a better filename and location (this is a memory controller).
-> 
-> Signed-off-by: Brian Norris <briannorris@chromium.org>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
-> 
-> Changes in v4:
->  * Update .yaml to use more "default" entries, instead of free-form text
->  * s/phandle-array/phandle/
->  * Move to .../memory-controllers, update filename
-> 
-> Changes in v3:
->  * Add |maxItems| for devfreq-events
->  * Improve deprecation notes
-> 
-> Changes in v2:
->  * rename to 'memory-controller' in example
->  * place 'required' after properties
->  * drop superluous free-form references and repetitions of other
->    bindings
->  * fix for yamllint
-> 
->  .../bindings/devfreq/rk3399_dmc.txt           | 212 ------------
->  .../rockchip,rk3399-dmc.yaml                  | 306 ++++++++++++++++++
->  2 files changed, 306 insertions(+), 212 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/devfreq/rk3399_dmc.txt
->  create mode 100644 Documentation/devicetree/bindings/memory-controllers/rockchip,rk3399-dmc.yaml
+>  Documentation/devicetree/bindings/thermal/rzg2l-thermal.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
 
 Best regards,
 Krzysztof
