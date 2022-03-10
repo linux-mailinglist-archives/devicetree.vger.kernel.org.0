@@ -2,75 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C4E04D46FE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 13:30:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 76AB94D474B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 13:52:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233734AbiCJMak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 07:30:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47816 "EHLO
+        id S233423AbiCJMwp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 07:52:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242021AbiCJMah (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 07:30:37 -0500
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71D9B818A5;
-        Thu, 10 Mar 2022 04:29:36 -0800 (PST)
-Received: by mail-ej1-x62b.google.com with SMTP id p15so11698819ejc.7;
-        Thu, 10 Mar 2022 04:29:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bvM9bpVqadFGT6cTj1FgeTbHx/untvfyWRFVU5A7JsI=;
-        b=SrcrDgBhBKn4+VnFUMlAEETG43sIlaSqOgAHopzDVTrptjvyakX8mQdXxW99D7Cadp
-         uRjTTytvfVQ9+vjrrvmMI1Pud2XIytkDFyt8JxDpnuOgMLp1BjClFjlIeQ8mqv0OSNNh
-         lCTYmoGDqb6IwjPPP0Sfuv/n6nkZl1qvMc7DiViPcxx9l7s4CjlVAzxPDXc1hCaT4Gx8
-         LuJ1l5J4CGaiLwZ+tdk+PMTsvTPk37GwP5G/i/DqRjnBg3DuQS2S+DxWriW2Kv1gujZP
-         BhZmwOoz0EQSed0flzuxhxqqP4fTNxIcwiWgPtjRyO1iU7Mv4dS+jEoRxpJWLTnli2oT
-         W0nw==
+        with ESMTP id S231586AbiCJMwo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 07:52:44 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A48149942
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 04:51:43 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CA3673F321
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 12:51:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646916700;
+        bh=TQz+s86WSRF8JD18DoYGMl9h0Gp5VNc55zA58BrovNE=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=G4ucPY7QpAuGwqq+gML/vjnxTR7TcEGAMuQ4qNS+ikutduRIR072eZPgGNsyC0yXA
+         vcyPkDoeop1eWlFvcPXmcJ1mxTN374fbJPmr4DOxutPFJYzLLB6D8xnSfqQcXD/L5P
+         sOOIyv/WogTrmFRLcgBdYNajADatSaej/OVCdg9IThIiBOkCO9q95D+Xge0cBXuP+f
+         l4p9ATbHbwsEVM+j2X72iOkzE5sj98Fw5WB7B6i1gMF9yB1h3DFdJgF7q5uQcFSi2D
+         T3bVp4OMlH6aW2AxU2w5D+sUn9f6jCE+Tb8tutCEvSWj4IVdZvny+XTkWNs94EYHsy
+         Xy8nILi3yYrkQ==
+Received: by mail-ej1-f72.google.com with SMTP id hq34-20020a1709073f2200b006d677c94909so3065749ejc.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 04:51:40 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bvM9bpVqadFGT6cTj1FgeTbHx/untvfyWRFVU5A7JsI=;
-        b=TGbB7eWih1K4FAZ6PtnhpOVYLwSZwl4ZYw6z1xLfbNJ+21Nf/8Ndp1dd1Rsl0EUn3F
-         s4SjJGsOI7m+Rbr0L4HjaPLn3pcSjQCiLNWlAW2UYCID9YTnAmCr7zhittXf/9bgnp/g
-         dzvY72Xxzp4D7/OdEs2+SPwu09pqDk0BvO+CGtaKqzI9jsCJ6K6WK4lALCG0jhRzdBgr
-         Q38qlOL6azoLnjonkB9IeUbL04jyoUS1OIZkC1S9fEyd50G7jyJ32XYvDzm92RjhGeNa
-         gvxQkKW6SpHDEuvAuvsTzx3KjWX2XTDaa6rb4FN0oMR4NS9OXIMJ7/L2Slz1QTB1qIKJ
-         8jEw==
-X-Gm-Message-State: AOAM532Cn7z74rBDLbOB5nqP8RVKgqyETgBxzvUAfP2ub5ZX2y9m+HGJ
-        5Yy57rlJsbAs0+Ogk6I+L4bCQnTaqlxjRnz8w/U=
-X-Google-Smtp-Source: ABdhPJwbtiAMQz9G/jYe3ISah8jTsiGU5IhD7/7DVnW8LV+hNJXY6XvlTpAK2teBoBh7TYw/ra5mYNoltIFfd2cu8dA=
-X-Received: by 2002:a17:907:7f06:b0:6d6:f8f7:2655 with SMTP id
- qf6-20020a1709077f0600b006d6f8f72655mr4010142ejc.658.1646915374966; Thu, 10
- Mar 2022 04:29:34 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=TQz+s86WSRF8JD18DoYGMl9h0Gp5VNc55zA58BrovNE=;
+        b=WrSAeuyLG2QYM0dzWcbe9LIwMu97LpOF30n1nB0Gg1RbdXLzgSWM1fxjLGW6Y2lymu
+         KM0xMysTpj6cBLSWevzju7+d9YmgGhiUQjf6HTaRQ9MvhaQyaKUpiznG5fOpzFCND3Ei
+         r2xAjlLmOKPvWA/cTeEeABeQU33R6Qw9befBaf99SVV8QOpgLm+z56IwyoEtP3b1dM8d
+         YU83b9P+35j60nsP+CkhfHdAj5teIjcjOpQtsL7t1l2e1sIMjIJcLuuiduu9NBtvrS7i
+         2BrCe4qenp4oni7HDJKBFMxjryynE2cUMTI38600yVfjAwgMMN1M0Ghnt22AzlkWWVwV
+         9OLA==
+X-Gm-Message-State: AOAM531CKQeQB4IkV6HZrNyoB68Vv/rQ56jgki6HfolABlZ2QS/nnrwT
+        mRcfEzDTPM0t06VTZ4BIv1mUQtoJd3O+yzfVDarz/Me5x+aJ4A26vU/L8aMbv1GB9WQe/qj5IeE
+        RPRurBDXb+9j9IoP9E87GZQc6LLBCfeQluq2qiho=
+X-Received: by 2002:a05:6402:cb:b0:410:8094:872b with SMTP id i11-20020a05640200cb00b004108094872bmr4293525edu.378.1646916700509;
+        Thu, 10 Mar 2022 04:51:40 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyGbKpPr7brplhUtze/R2VoXUIp2jvGlg5y1FoUnr4MNZLvDWAUUfEoDuoqQwNR5nCBqQnqgg==
+X-Received: by 2002:a05:6402:cb:b0:410:8094:872b with SMTP id i11-20020a05640200cb00b004108094872bmr4293511edu.378.1646916700360;
+        Thu, 10 Mar 2022 04:51:40 -0800 (PST)
+Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id zb5-20020a17090687c500b006ce2a98f715sm1718595ejb.117.2022.03.10.04.51.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Mar 2022 04:51:39 -0800 (PST)
+Message-ID: <d683043f-dfcf-8254-4457-c56359e4c0de@canonical.com>
+Date:   Thu, 10 Mar 2022 13:51:39 +0100
 MIME-Version: 1.0
-References: <20220210134049.32576-1-ariel.dalessandro@collabora.com> <20220210134049.32576-2-ariel.dalessandro@collabora.com>
-In-Reply-To: <20220210134049.32576-2-ariel.dalessandro@collabora.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 10 Mar 2022 09:29:23 -0300
-Message-ID: <CAOMZO5DuB4d1243H46d1=heiNiz+pQVkjrGU+zV_r3GFKRTZfQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mn-bsh-smm-s2pro: Add
- tlv320aic31xx audio card node
-To:     "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/6] dt-bindings: iio: adc: ti,ads1015: Add missing
+ ADS1115 compatible string
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, linux-iio@vger.kernel.org
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220310003402.490478-1-marex@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220310003402.490478-1-marex@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,39 +86,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ariel,
+On 10/03/2022 01:33, Marek Vasut wrote:
+> Add missing ti,ads1115 compatible string. This compatible string is
+> supported by the Linux kernel driver and the ads1015 is a 12bit ADC
+> while ads1115 is 16bit ADC. Add the missing compatible string.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
 
-On Thu, Feb 10, 2022 at 10:41 AM Ariel D'Alessandro
-<ariel.dalessandro@collabora.com> wrote:
 
-> +&i2c2 {
-> +       clock-frequency = <400000>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_i2c2>;
-> +       status = "okay";
-> +
-> +       codec: tlv320dac3101@18 {
-> +               #sound-dai-cells = <0>;
-> +               compatible = "ti,tlv320dac3101";
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_dac_rst>;
-> +               reg = <0x18>;
-> +
-> +               ai31xx-micbias-vg = <MICBIAS_AVDDV>;
-> +
-> +               HPVDD-supply = <&buck4_reg>;
-> +               SPRVDD-supply = <&vdd_input>;
-> +               SPLVDD-supply = <&vdd_input>;
-> +               AVDD-supply = <&buck4_reg>;
-> +               IOVDD-supply = <&buck4_reg>;
-> +               DVDD-supply = <&buck5_reg>;
-> +               reset-gpios = <&gpio1 6 GPIO_ACTIVE_LOW>;
-> +
-> +               clocks = <&clk IMX8MN_CLK_SAI3_ROOT>;
-> +               clock-names = "mclk";
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-The clocks and clock-names properties are not documented in the codec bindings.
 
-Also, the driver does not use call clk_get() on this mclk clock.
-
-You should drop the clocks and clock-names properties.
+Best regards,
+Krzysztof
