@@ -2,96 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D5A4D3F30
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 03:12:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EAB394D3F76
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 04:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229774AbiCJCNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 21:13:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S237631AbiCJDBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 22:01:52 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233430AbiCJCNd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 21:13:33 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B3B6311147;
-        Wed,  9 Mar 2022 18:12:33 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id s207so4556472oie.11;
-        Wed, 09 Mar 2022 18:12:33 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=tS3l5dyv6iEtlmALFxQ3ouIPA92mybhqp9cn+Az+v3o=;
-        b=bzx3iqq3WWr62snyOqU0fk70emKCt+7ePouDpuqRFw3e0rbUxJocSWgJ0WgTBbX09Z
-         l+QwDq+xN49a4xajT0nMZaTnmDvr6S7Qn1yYldxVx7QJB9Lm8/1d/HwQVsoIz1ncgUxM
-         w45UEFFc5cj28bkpbi2OG3EsqR3xn58DUz45jjQbskVApux5uTAGQuyE42ubHoGP5rFZ
-         Q7njke7miQOrCA0XeH8sQ+GyNSUt6GjMx8vYkl6RVvTcNNqu6ziuIWu1S7cf8sYjrcvc
-         yM+g1FEVoL0weBS78ivsqYWeJpTYiQmJD0YwK5dGP64gm/7mo+XJxIvSEzc/pJQCkn0T
-         l8uA==
-X-Gm-Message-State: AOAM530bGZSbSZ39Yu3EU13W1lTQ4kPSnE21jhrHufH2YOEmgS2Cd330
-        B6ox3UMaJ4nkJ0VctFfICw==
-X-Google-Smtp-Source: ABdhPJxG8Srsb9UPYkF3u10xlvHRZWXyFAvFkGI+jXbie6TLmXp59NVffaMP9vQHjhKA35jSSIiicA==
-X-Received: by 2002:a05:6808:15a9:b0:2da:5978:4a43 with SMTP id t41-20020a05680815a900b002da59784a43mr1135977oiw.30.1646878352942;
-        Wed, 09 Mar 2022 18:12:32 -0800 (PST)
-Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.googlemail.com with ESMTPSA id l15-20020a4ab0cf000000b0031c0494981csm1872051oon.9.2022.03.09.18.12.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Mar 2022 18:12:32 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: Add QEMU virt machine compatible
-Date:   Wed,  9 Mar 2022 20:12:24 -0600
-Message-Id: <20220310021224.599398-1-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
+        with ESMTP id S237368AbiCJDBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 22:01:49 -0500
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB061255B9
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 19:00:46 -0800 (PST)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D042F2C0676;
+        Thu, 10 Mar 2022 03:00:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1646881243;
+        bh=ssg+WNeSXSjip5E5FzNx/K8I5KRUwLfchkkahr8WXcs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JD6Pdck0+azTMqVM/ufEu0hk82MCZTtHpEo6FYlc17ctcHTEA6zw1UuuzyBwiazsk
+         302cjpuD1hFbJ/nwzLCdcR/qSruprhzcJQdiylHHoKoM1fPYoduvlR+RZORQAD3/kf
+         9hmDVytxncQ34s8KpGPTQ1LlBKxzEWtP/bAOB7Y8uLQ52AQn81HpffAPkdAHYWBwNQ
+         tKGJZLqGHs23HJaKui8iy4p7dSoDwQzWZqDGAQpr40u245cAynTbFnq8WbjsE4ws0q
+         AU3yUyOA/Dap6V4u589CBq9eBzfNv66CPtSkl0gXkal4y3gxR4Pje7nnTllQsEYYS1
+         OPT037Tp6aqCA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B622969db0000>; Thu, 10 Mar 2022 16:00:43 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 92F2413EDD7;
+        Thu, 10 Mar 2022 16:00:43 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id A165A2A00D4; Thu, 10 Mar 2022 16:00:41 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v1 0/4] arm64: mvebu: Support for Marvell 98DX2530 (and variants)
+Date:   Thu, 10 Mar 2022 16:00:35 +1300
+Message-Id: <20220310030039.2833808-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=jGREw9QuPlHGdXEqdN8A:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The top level QEMU virt machine compatible, linux,dummy-virt, has been
-in use for a long time, but never documented. Add a schema for it.
+This series adds support for the Marvell 98DX2530 SoC which is the Contro=
+l and
+Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+switches.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/arm/linux,dummy-virt.yaml        | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/linux,dummy-virt.yaml
+The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
 
-diff --git a/Documentation/devicetree/bindings/arm/linux,dummy-virt.yaml b/Documentation/devicetree/bindings/arm/linux,dummy-virt.yaml
-new file mode 100644
-index 000000000000..c7c5eb48fc7e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/linux,dummy-virt.yaml
-@@ -0,0 +1,20 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/linux,dummy-virt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: QEMU virt machine
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+
-+properties:
-+  $nodename:
-+    const: "/"
-+  compatible:
-+    const: linux,dummy-virt
-+
-+additionalProperties: true
-+
-+...
--- 
-2.32.0
+This is fairly similar to the Armada-3700 SoC so most of the required
+peripherals are already supported. This series adds a devicetree and pinc=
+trl
+driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
+
+Chris Packham (4):
+  dt-bindings: pinctrl: mvebu: Document bindings for AC5
+  pinctrl: mvebu: pinctrl driver for 98DX2530 SoC
+  arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+  arm64: marvell: enable the 98DX2530 pinctrl driver
+
+ .../bindings/pinctrl/marvell,ac5-pinctrl.yaml |  73 +++
+ arch/arm64/Kconfig.platforms                  |   2 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-98dx2530.dtsi     | 459 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  27 ++
+ drivers/pinctrl/mvebu/Kconfig                 |   4 +
+ drivers/pinctrl/mvebu/Makefile                |   1 +
+ drivers/pinctrl/mvebu/pinctrl-ac5.c           | 226 +++++++++
+ 8 files changed, 793 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5=
+-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+ create mode 100644 drivers/pinctrl/mvebu/pinctrl-ac5.c
+
+--=20
+2.35.1
 
