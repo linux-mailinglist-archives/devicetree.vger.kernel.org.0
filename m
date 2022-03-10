@@ -2,146 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D0434D524B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 20:44:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8984B4D524F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 20:44:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245568AbiCJSrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 13:47:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47582 "EHLO
+        id S238188AbiCJS6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 13:58:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245567AbiCJSrs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 13:47:48 -0500
-Received: from relay12.mail.gandi.net (relay12.mail.gandi.net [IPv6:2001:4b98:dc4:8::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD56B19D74B;
-        Thu, 10 Mar 2022 10:46:45 -0800 (PST)
-Received: (Authenticated sender: miquel.raynal@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 169C7200005;
-        Thu, 10 Mar 2022 18:46:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1646938004;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=hZU6SVWgpj28SgSGWMJlq8dkif2ZOccvFZ1KeCDp1sk=;
-        b=FAOz01qqILI59eL5ElxRP3GT03NPc1HH1ll9vqDcFFee61xZTV22Khog1bIExta4/W41i1
-        NUMhmPFfsPJS6vs0mUmrZu72ekB4YcH6MopkfDsKEBR4j8Hl93ITk5Se6QQgc6ak2JyxOV
-        TUglNrbYgTnAs4Sirkex6I0Mhw4Arwz2vRoOo7rBDprDvjAdHmHFHW+ZkYpHLEm0um6x3P
-        AfkAIMXhXUxrg++lgicu7PioRmhyDVv3C55LyUoQTdWUkDv23TotkWH6jyib1s55ubi66i
-        PGFS3oo5C4KE2woLLEZjXvqB80EXt2/daOQNVm8j8P2CPcKjmqUtJPQDIilXSA==
-Date:   Thu, 10 Mar 2022 19:46:40 +0100
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Ilpo =?UTF-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-clk@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, dmaengine@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        Herve Codina <herve.codina@bootlin.com>,
-        Clement Leger <clement.leger@bootlin.com>
-Subject: Re: [PATCH v4 7/9] dma: dw: Avoid partial transfers
-Message-ID: <20220310194640.4bc6e604@xps13>
-In-Reply-To: <Yio6UWYIDZWXx2Ux@smile.fi.intel.com>
-References: <20220310155755.287294-1-miquel.raynal@bootlin.com>
-        <20220310155755.287294-8-miquel.raynal@bootlin.com>
-        <Yio6UWYIDZWXx2Ux@smile.fi.intel.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.7 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S234025AbiCJS6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 13:58:30 -0500
+Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0354FBCC
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 10:57:25 -0800 (PST)
+Received: from email.seznam.cz
+        by email-smtpc23b.ko.seznam.cz (email-smtpc23b.ko.seznam.cz [10.53.18.31])
+        id 52bb75b409b521dd5312b9ea;
+        Thu, 10 Mar 2022 19:56:48 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
+        t=1646938608; bh=tLpYhaeFkQ8eZyycAn3jbsGk/bo3h3JaFofWfu13Srg=;
+        h=Received:Message-ID:Date:MIME-Version:User-Agent:Subject:
+         Content-Language:To:Cc:References:From:In-Reply-To:Content-Type:
+         Content-Transfer-Encoding:X-szn-frgn:X-szn-frgc;
+        b=Dajhl0b0elZKuVDaqjwFA4i8fpp5qORk1Pd9qKK7GFcJu3hf0/9myYcsQIY80oii7
+         PjJ/FGaBb5969eSUCfU0NlCClWYPIpLNI4OPQQdUHSiBSMKdiSKDCN0oee3z1noMrr
+         fBWJEMvGyKrQJS7S7OXbUZc55jVChFFj8Dt3vgXk=
+Received: from [192.168.88.151] (ip-111-27.static.ccinternet.cz [147.161.27.111])
+        by email-relay4.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
+        Thu, 10 Mar 2022 19:56:46 +0100 (CET)  
+Message-ID: <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
+Date:   Thu, 10 Mar 2022 19:56:44 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+ <20220310133938.2495-2-michael.srba@seznam.cz>
+ <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+From:   Michael Srba <Michael.Srba@seznam.cz>
+In-Reply-To: <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-szn-frgn: <135fa290-378a-47e1-90e3-50c66bb08bfa>
+X-szn-frgc: <0>
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi,
+the thing is, the only reason the different compatible is needed at all
+is that the chip presents a different WHOAMI, and the invensense,icm20608
+compatible seems to imply the non-D WHOAMI value.
+I'm not sure how the driver would react to both compatibles being present,
+and looking at the driver code, it seems that icm20608d is not the only
+fully icm20608-compatible (to the extent of features supported by
+the driver, and excluding the WHOAMI value) invensense IC, yet none
+of these other ICs add the invensense,icm20608 compatible, so I guess I
+don't see a good reason to do something different.
 
-andriy.shevchenko@linux.intel.com wrote on Thu, 10 Mar 2022 19:50:09
-+0200:
+Regards,
+Michael
 
-> +Cc: Ilpo who is currently doing adjoining stuff.
->=20
-> Ilpo, this one affects Intel Bay Trail and Cherry Trail platforms.
-> Not sure if it's in scope of your interest right now, but it might
-> be useful to see how DMA <--> 8250 UART functioning.
->=20
-> On Thu, Mar 10, 2022 at 04:57:53PM +0100, Miquel Raynal wrote:
-> > As investigated by Phil Edworthy <phil.edworthy@renesas.com> on RZN1 a =
-=20
->=20
-> Email can be dropped as you put it below, just (full) name is enough.
+On 10. 03. 22 17:34, Krzysztof Kozlowski wrote:
+> On 10/03/2022 14:39, michael.srba@seznam.cz wrote:
+>> From: Michael Srba <Michael.Srba@seznam.cz>
+>>
+>> ICM-20608-D differs from the other ICM-20608 variants by having
+>> a DMP (Digital Motion Processor) core tacked on.
+>> Despite having a different WHOAMI register, this variant is
+>> completely interchangeable with the other ICM-20608 variants
+>> by simply pretending the DMP core doesn't exist.
+> I wonder now why not using generic invensense,icm20608 compatible as
+> fallback? Why only having one specific compatible?
+>
+>> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+>> ---
+>>   .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml          | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+>> index d69595a524c1..6784cc140323 100644
+>> --- a/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+>> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,mpu6050.yaml
+>> @@ -17,6 +17,7 @@ properties:
+>>       enum:
+>>         - invensense,iam20680
+>>         - invensense,icm20608
+>> +      - invensense,icm20608d
+>>         - invensense,icm20609
+>>         - invensense,icm20689
+>>         - invensense,icm20602
+>
+> Best regards,
+> Krzysztof
 
-Sure.
-
-> I'm wondering if Phil or anybody else who possess the hardware can
-> test / tested this.
-
-I have a board with an RZN1 SoC but I don't have exactly the same setup
-as Phil (I only have one port with DMA working, while he used two as a
-loopback device). I tried to reproduce the error with no luck so far. I
-however verified that there was apparently no performance hit
-whatsoever due to this change. IIRC Phil does not have the hardware
-anymore.
-
-> > while ago, pausing a partial transfer only causes data to be written to
-> > memory that is a multiple of the memory width setting. Such a situation
-> > can happen eg. because of a char timeout interrupt on a UART. In this
-> > case, the current ->terminate_all() implementation does not always flush
-> > the remaining data as it should.
-> >=20
-> > In order to workaround this, a solutions is to resume and then pause
-> > again the transfer before termination. The resume call in practice
-> > actually flushes the remaining data. =20
->=20
-> Perhaps Fixes tag?
-
-I don't know exactly what hardware can suffer from this, hence I
-decided not to add a Fixes tag given the fact that it was only observed
-on RZN1 (which was until now not yet supported upstream).
-
-> > Reported-by: Phil Edworthy <phil.edworthy@renesas.com>
-> > Suggested-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  drivers/dma/dw/core.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >=20
-> > diff --git a/drivers/dma/dw/core.c b/drivers/dma/dw/core.c
-> > index 7ab83fe601ed..2f6183177ba5 100644
-> > --- a/drivers/dma/dw/core.c
-> > +++ b/drivers/dma/dw/core.c
-> > @@ -862,6 +862,10 @@ static int dwc_terminate_all(struct dma_chan *chan)
-> > =20
-> >  	clear_bit(DW_DMA_IS_SOFT_LLP, &dwc->flags);
-> > =20
-> > +	/* Ensure the last byte(s) are drained before disabling the channel */
-> > +	if (test_bit(DW_DMA_IS_PAUSED, &dwc->flags))
-> > +		dwc_chan_resume(dwc, true);
-> > +
-> >  	dwc_chan_pause(dwc, true);
-> > =20
-> >  	dwc_chan_disable(dw, dwc);
-> > --=20
-> > 2.27.0
-> >  =20
->=20
-
-
-Thanks,
-Miqu=C3=A8l
