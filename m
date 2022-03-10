@@ -2,108 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7AE54D547D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:19:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FD024D547E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:19:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344357AbiCJWTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 17:19:41 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53058 "EHLO
+        id S232736AbiCJWUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 17:20:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236742AbiCJWTk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:19:40 -0500
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8ED94F456;
-        Thu, 10 Mar 2022 14:18:38 -0800 (PST)
-Received: by mail-ot1-f46.google.com with SMTP id o106-20020a9d2273000000b005b21f46878cso5036537ota.3;
-        Thu, 10 Mar 2022 14:18:38 -0800 (PST)
+        with ESMTP id S229716AbiCJWUl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:20:41 -0500
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2AD5A595
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 14:19:39 -0800 (PST)
+Received: by mail-lf1-x12e.google.com with SMTP id n19so11893728lfh.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 14:19:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ltAEZbyZLVfVeVrk0Wt85llgsjn+pNs+1t+/8KbJndU=;
+        b=XnNrZ0UqLC58u+TifWhc5txCIpvFo4ANJoB8b59nUJBUoBu0czMi4jST3aZMWpehaD
+         7oxR53YLZclgvH4tHgPEz+0jWCwMaK1yOuBSkJJLIMuwDZKyKzXP3FEyV6JlGA3MMcXI
+         hy3CFi/Fc4byqyk5yOopO0y67FmsPpKs0gZriIS9Eh2hZz7J3mlxgH9iPnDoEdTrg9Au
+         lPvadla5Vpf/u1y7wqDCjLNAPpfM6RgsDPDszh+LODzWj2E2D7sIPgTWcFNEdTqknZ/s
+         F1UG/SlITzxrGx0mTrOui5Jsu+YmaRxX89SSsXOe/x/TyN+Qr9uAOtR3lVbROBA9mItz
+         mo8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uVBl4IjExhMMGQyqVZdtBYxJhbtlhf7V3EID45rNLsk=;
-        b=WIfaa4MTWFgPdWVPTIhscW20nxEv2YZRBZ6MKNUK6tA6jh7CuKuXJza6CnlyBR5zII
-         YH37ztxy/f5SihWbQpbvht0FiVj5DQco41fFOGD0bUC9CQ4CIp7J8cjjHO+FO7RvlgSo
-         Y30P8PLWwTLXveBxecjVxrn492bZhaj+a2B7ZHqwfk1IqqPMmHFioSGnGZNq+Vd+WXUK
-         6JxXYSH3IES2Hhy1Qx3RfUnWdsy8t7iEmWK/W0JSHqmeFOmgzEEqNa1XPOhRMPCFhHop
-         aFlU5bPBlR1zUCYhHwkuxufBGOqnpctoeNXMiyrJBK6GC3f3D8De0LWjk/KeR3kGVv3U
-         xdbQ==
-X-Gm-Message-State: AOAM533cVcQ4qmfod0yfrIYWqpiXMRoxHy9KqWpBpqeU8tBaG/3GOoPM
-        NhNOml8Dvh4HIi7xji62mg==
-X-Google-Smtp-Source: ABdhPJymVHkEV5XxQpBNmw5S/gpv0K8uSPo3RhUKisPITsq2PFiS19pD2qkEoukGiphCl2E24hUkYQ==
-X-Received: by 2002:a9d:77d7:0:b0:5b2:29b0:70cb with SMTP id w23-20020a9d77d7000000b005b229b070cbmr3556144otl.276.1646950718003;
-        Thu, 10 Mar 2022 14:18:38 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id i126-20020acab884000000b002d9f958bceesm2925916oif.41.2022.03.10.14.18.36
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ltAEZbyZLVfVeVrk0Wt85llgsjn+pNs+1t+/8KbJndU=;
+        b=PyMeCelgH73n9pYR5LNbbudi8nGV+IQGF6kb7nQY3RNhXXatmaen/Gy8Se007xJyhI
+         prMfwBS9BgECRgoauqHBK8ZqMMzIDqHMAOaCM3XcUdeWl7wFMcMbXoqNhZOh01Z5Esgl
+         msaou8a7C33Of2E9YHCRFfkSREME+fXsUejHfB0gpyVEogL94Xs9npC1BFmyFBMzU1zb
+         VZPM1oGSYXnpKvrZIgaf86ScdckCcPvztsZpIto9rEwpfZsC8VAUXDwxs+PgQCy0jVXW
+         E2h2WB+V1d0/cPOJueaODNkxnh3pfZdeYObZc7jZmjK0xHR3MOsBRgN23UuLYt24r2DC
+         yQxQ==
+X-Gm-Message-State: AOAM531m9bBP1OvPbm00Alf4U/X4JhwLyaDn91liS90vd1Wfu28nKJw5
+        mSE2NERhDmm7n/yR+WeD2EpRW0J2pQxkbFAP
+X-Google-Smtp-Source: ABdhPJxVgE47WDGfVsj/7torO5HeN59Y32gauwo2qntSel9Tv4qolvpa7Vemyu7JKFVMOzgRpdYPgg==
+X-Received: by 2002:a19:8c54:0:b0:448:2271:57d3 with SMTP id i20-20020a198c54000000b00448227157d3mr4444610lfj.482.1646950777725;
+        Thu, 10 Mar 2022 14:19:37 -0800 (PST)
+Received: from localhost.localdomain (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id q15-20020a196e4f000000b004482f75404asm1204598lfk.237.2022.03.10.14.19.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 14:18:36 -0800 (PST)
-Received: (nullmailer pid 2185267 invoked by uid 1000);
-        Thu, 10 Mar 2022 22:18:35 -0000
-Date:   Thu, 10 Mar 2022 16:18:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Trevor Wu <trevor.wu@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
-        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, aaronyu@google.com,
-        yc.hung@mediatek.com
-Subject: Re: [PATCH 5/5] dt-bindings: mediatek: mt8195: add
- mt8195-mt6359-max98390-rt5682 document
-Message-ID: <Yip5O3t0Ymyc2h+p@robh.at.kernel.org>
-References: <20220308072435.22460-1-trevor.wu@mediatek.com>
- <20220308072435.22460-6-trevor.wu@mediatek.com>
+        Thu, 10 Mar 2022 14:19:37 -0800 (PST)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of UFS node
+Date:   Fri, 11 Mar 2022 00:19:34 +0200
+Message-Id: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220308072435.22460-6-trevor.wu@mediatek.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 03:24:35PM +0800, Trevor Wu wrote:
-> This patch adds document for mt8195 board with mt6359, max98390 and
-> rt5682.
-> 
-> Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> ---
->  .../sound/mt8195-mt6359-max98390-rt5682.yaml  | 61 +++++++++++++++++++
->  1 file changed, 61 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mt8195-mt6359-max98390-rt5682.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-max98390-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8195-mt6359-max98390-rt5682.yaml
-> new file mode 100644
-> index 000000000000..7ec14d61b109
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-max98390-rt5682.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mt8195-mt6359-max98390-rt5682.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT8195 with MT6359, MAX98390 and RT5682 ASoC sound card driver
-> +
-> +maintainers:
-> +  - Trevor Wu <trevor.wu@mediatek.com>
-> +
-> +description:
-> +  This binding describes the MT8195 sound card.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8195_mt6359_max98390_rt5682
+All interconnect device tree nodes on sm8450 are 2-cells, however in
+UFS node they are handled as 1-cells, fix it.
 
-You have nodes for each of these components, why do we need new 
-compatible string for each combination. You can figure out the 
-combination by looking at each of those nodes.
+Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Second, why does each combination need a new schema doc?
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 0cd5af8c03bd..bbd38b55e976 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
+ 
+ 			iommus = <&apps_smmu 0xe0 0x0>;
+ 
+-			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
+-					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
++			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
++					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
+ 			interconnect-names = "ufs-ddr", "cpu-ufs";
+ 			clock-names =
+ 				"core_clk",
+-- 
+2.33.0
 
-Rob
