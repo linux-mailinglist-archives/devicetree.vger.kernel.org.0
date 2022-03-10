@@ -2,436 +2,380 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A433E4D4D66
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 16:43:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4024D4D5D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 16:43:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239955AbiCJPj3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 10:39:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33434 "EHLO
+        id S234520AbiCJPkX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 10:40:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239517AbiCJPj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 10:39:28 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3CC3E3C7A;
-        Thu, 10 Mar 2022 07:38:23 -0800 (PST)
-X-UUID: 2166a87b8a6a46bca50d25ee5b1b94fa-20220310
-X-UUID: 2166a87b8a6a46bca50d25ee5b1b94fa-20220310
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1510018417; Thu, 10 Mar 2022 23:38:17 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Mar 2022 23:38:16 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 10 Mar 2022 23:38:15 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        with ESMTP id S233760AbiCJPkX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 10:40:23 -0500
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (mail-sn1anam02on2067.outbound.protection.outlook.com [40.107.96.67])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0CE3180D32;
+        Thu, 10 Mar 2022 07:39:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HiCp9qdmfs6zW8vI0NOVUUmr1RSUWI1oCdt4Fbnvo1NF5Ro1PGXm7jQYVWGgPLUU22wbggzvzFZZ8K8JzjvjeEKl5mE7L5hNGhg17bGxMgeGoLUnrOJ4O2TBwoJboCmKO7CXe34FQnj+K4ihOlUVQKPwrKIfyQe1l/vBV1W/u1OlcL1SmdljkC9AKgysBso9hfKuoKswwBJ1bo4CoMj8fxD4knfsLELexg1z7a0aEQvKG6LIaTgkgx829DHSe8OR/JCe8+lOCFIkSOysmQbHeor72GcYFAFTcqPf7vLnen76/TleZjPKLMlZhT94eq+9BViYgzci/lMLkPr/PCTaFA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SQ+BFbICNAvVEOHug11pkOHzBy0M7gSUISiUaHxXpyg=;
+ b=E/EZFQUij4BXEgeW1thzng5w+3bXDsQS1vP4XJpp7CtVfhNS7g76bxY3z1vTeF82kr6Q7OXkKfrV0HHO+rrd0kczF4d5ySCzwb3CKwPllcoraxAEPQYj+JaIXtG+MbsaMR1+haRjzyqxLRRuW/DWf71EyTyGWCFxH2pzMPXB+gsFf7dXFr2AotM8hlICPa0poiMTwth6UrqVpBdtX37jHYo3vc7izE9sEaefKV/EQmNwWa3US965scmdhXDyLdRooTR631KTi0MIxAkZReIWykBAUXL7Lk1HLnCTbyLpy11AM3zrhIol/2sV0Ziz67QIM+Q34jI3tPYkLFAkspCodg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=grandegger.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SQ+BFbICNAvVEOHug11pkOHzBy0M7gSUISiUaHxXpyg=;
+ b=Y03oA2/XekROrZGNlxTUWtnquKtU7FMRMAnrahMY8AVbKBojx/4vDVf9jj2L/y7ZiVmKSUfmuqfDI+YwCfaXZUBl2LvXtjhc/b0jupVy5jwHCkYl7ewmICzv92vhkHdyJU85tZANR6+apSsNcBFZBL0k6jLu/M6YPi3yZ4idwcg=
+Received: from SA9PR10CA0015.namprd10.prod.outlook.com (2603:10b6:806:a7::20)
+ by SA2PR02MB7594.namprd02.prod.outlook.com (2603:10b6:806:140::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Thu, 10 Mar
+ 2022 15:39:20 +0000
+Received: from SN1NAM02FT0033.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:806:a7:cafe::40) by SA9PR10CA0015.outlook.office365.com
+ (2603:10b6:806:a7::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14 via Frontend
+ Transport; Thu, 10 Mar 2022 15:39:19 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch02.xlnx.xilinx.com;
+Received: from xsj-pvapexch02.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0033.mail.protection.outlook.com (10.97.5.40) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5061.22 via Frontend Transport; Thu, 10 Mar 2022 15:39:19 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Thu, 10 Mar 2022 07:39:16 -0800
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Thu, 10 Mar 2022 07:39:16 -0800
+Envelope-to: git@xilinx.com,
+ wg@grandegger.com,
+ mkl@pengutronix.de,
+ kuba@kernel.org,
+ robh+dt@kernel.org,
+ linux-can@vger.kernel.org,
+ netdev@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Received: from [10.140.6.18] (port=57574 helo=xhdlakshmis40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <amit.kumar-mahapatra@xilinx.com>)
+        id 1nSKsl-000ACT-JN; Thu, 10 Mar 2022 07:39:16 -0800
+From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+To:     <wg@grandegger.com>, <mkl@pengutronix.de>, <kuba@kernel.org>,
+        <robh+dt@kernel.org>, <appana.durga.rao@xilinx.com>
+CC:     <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: [v2 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Date:   Thu, 10 Mar 2022 23:37:07 +0800
-Message-ID: <20220310153707.29722-3-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220310153707.29722-1-jiaxin.yu@mediatek.com>
-References: <20220310153707.29722-1-jiaxin.yu@mediatek.com>
+        <linux-kernel@vger.kernel.org>, <michal.simek@xilinx.com>,
+        <git@xilinx.com>, <akumarma@xilinx.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Subject: [PATCH v3] dt-bindings: can: xilinx_can: Convert Xilinx CAN binding to YAML
+Date:   Thu, 10 Mar 2022 21:09:09 +0530
+Message-ID: <20220310153909.30933-1-amit.kumar-mahapatra@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: bfd0aa79-e8e8-4add-7fbe-08da02ac247b
+X-MS-TrafficTypeDiagnostic: SA2PR02MB7594:EE_
+X-Microsoft-Antispam-PRVS: <SA2PR02MB75947CC8F15BA54E0F82103BBA0B9@SA2PR02MB7594.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: OLzHqkkhshaQ5im3/jT9nJ8nsje3A3iPyOODV5IxAr/mZzuD/2AR5HdkOlsxzGlU2IkP9dAi7iTDh+5pSRT6MP1exmRZVDcSjD/JkAAI2J1gap4pUjQnWnizqWqEE1ZwmvqdMUQ9Hb3YqEyyOOEuEE3vzF5D3HVU4eDAqsmfC0a3xL0tPJ/BbPfOUsSyaNf/vXSdGeU0S3O38KzZFFh5ETaTSbPGZw+QzZ0JEg6TQIO+wR5Cmb8HutgyWY4Cg6Qzoafcsoz8oZMnZ6faDybpiRWJYKjShUyhYRhwk2HqBfbbBWOV19a1Wxz0rwOrGHeYG58LMrZcUOYRUl+P2a5t9yy24H6CEgFRVsOORSXt63b6/N3B/fZ3nb6k28gUugPU+swdoDaAyy/DI4H4wVVbusLkijy0qTxhrflUhafyGn6P5si1CtRr4fjZoHitTIAhXDnrLrj4aKAD13jNaWRKyOtDLZb+8IYsStTNtqPEbWM1yLfurqAzsDX3YUyaNStF05zHiWG6VZvCr+kqTS5+btsvuxwx4diiRVyJadQ/XtaMiQp+4FL3d6kVrRXKlnlA22WtjPj4WxXmhqgAONWlx5oVOtQV8FEXGq8AGMWRMRAQVP22LqFwpHI4qxrojoUOGOrfKIDd4indUn7KvDwJRF+Sqj9P79koFH73ESQoRt4QDQ83m19wBHPxq8bUG5xOcS0n6LJY73+wfV8yX/x55dIBK63hfnWpsaDEeDy8wHrVXeaDToxtSlG1ksnndiby0Ug/EiKJ0v3pdgd0MNd0N4ieiL6c07JZNLO//w6MP7lBGmJW29bbHik25aJuSwm5nxPCHrSCGh0ecYY8GHgYJQ==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch02.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(46966006)(40470700004)(36840700001)(356005)(6636002)(54906003)(110136005)(316002)(9786002)(186003)(70206006)(70586007)(7636003)(8676002)(36756003)(36860700001)(107886003)(966005)(508600001)(4326008)(5660300002)(6666004)(1076003)(26005)(40460700003)(83380400001)(2616005)(8936002)(47076005)(336012)(426003)(7696005)(2906002)(82310400004)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 15:39:19.5112
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: bfd0aa79-e8e8-4add-7fbe-08da02ac247b
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch02.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0033.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR02MB7594
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Supports machines with rt1015p and rt5682s. Uses new proposed compatible
-string "mt8192_mt6359_rt1015p_rt5682s". Using define to simplifies card
-name and compatible name, and uses the snd_soc_of_get_dai_link_codecs()
-to complete the configuration of dai_link's codecs.
+Convert Xilinx CAN binding documentation to YAML.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
 ---
- sound/soc/mediatek/Kconfig                    |   1 +
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 204 +++++++++++-------
- 2 files changed, 128 insertions(+), 77 deletions(-)
+BRANCH: yaml
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index d515613a79da..cacfbab4262d 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -176,6 +176,7 @@ config SND_SOC_MT8192_MT6359_RT1015_RT5682
- 	select SND_SOC_RT1015
- 	select SND_SOC_RT1015P
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_RT5682S
- 	select SND_SOC_DMIC
- 	help
- 	  This adds ASoC driver for Mediatek MT8192 boards
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index ee91569c0911..1a3fd99b1b7e 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -28,8 +28,13 @@
- #define RT1015_DEV0_NAME	"rt1015.1-0028"
- #define RT1015_DEV1_NAME	"rt1015.1-0029"
- 
--#define RT5682_CODEC_DAI	"rt5682-aif1"
--#define RT5682_DEV0_NAME	"rt5682.1-001a"
-+#define RT1015_RT5682_CARD_NAME "mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_CARD_NAME "mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_CARD_NAME "mt8192_mt6359_rt1015p_rt5682s"
+Changes in v2:
+ - Added reference to can-controller.yaml
+ - Added example node for canfd-2.0
+
+Changes in v3:
+ - Changed yaml file name from xilinx_can.yaml to xilinx,can.yaml
+ - Added "power-domains" to fix dts_check warnings
+ - Grouped "clock-names" and "clocks" together
+ - Added type $ref for all non-standard fields
+ - Defined compatible strings as enum
+ - Used defines,instead of hard-coded values, for GIC interrupts
+ - Droped unused labels in examples
+ - Droped description for standard feilds
+---
+ .../bindings/net/can/xilinx,can.yaml          | 161 ++++++++++++++++++
+ .../bindings/net/can/xilinx_can.txt           |  61 -------
+ 2 files changed, 161 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/can/xilinx_can.txt
+
+diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+new file mode 100644
+index 000000000000..78398826677d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+@@ -0,0 +1,161 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/xilinx,can.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#define RT1015_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682s"
- 
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
-@@ -71,8 +76,8 @@ static int mt8192_rt1015_i2s_hw_params(struct snd_pcm_substream *substream,
- 	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
- }
- 
--static int mt8192_rt5682_i2s_hw_params(struct snd_pcm_substream *substream,
--				       struct snd_pcm_hw_params *params)
-+static int mt8192_rt5682x_i2s_hw_params(struct snd_pcm_substream *substream,
-+					struct snd_pcm_hw_params *params)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
- 	struct snd_soc_card *card = rtd->card;
-@@ -121,8 +126,8 @@ static const struct snd_soc_ops mt8192_rt1015_i2s_ops = {
- 	.hw_params = mt8192_rt1015_i2s_hw_params,
- };
- 
--static const struct snd_soc_ops mt8192_rt5682_i2s_ops = {
--	.hw_params = mt8192_rt5682_i2s_hw_params,
-+static const struct snd_soc_ops mt8192_rt5682x_i2s_ops = {
-+	.hw_params = mt8192_rt5682x_i2s_hw_params,
- };
- 
- static int mt8192_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
-@@ -604,17 +609,9 @@ SND_SOC_DAILINK_DEFS(i2s2,
- 		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
--SND_SOC_DAILINK_DEFS(i2s3_rt1015,
--		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT1015_DEV0_NAME,
--						   RT1015_CODEC_DAI),
--					COMP_CODEC(RT1015_DEV1_NAME,
--						   RT1015_CODEC_DAI)),
--		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
++title:
++  Xilinx Axi CAN/Zynq CANPS controller
++
++maintainers:
++  - Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
++
++properties:
++  compatible:
++    enum:
++      - xlnx,zynq-can-1.0
++      - xlnx,axi-can-1.00.a
++      - xlnx,canfd-1.0
++      - xlnx,canfd-2.0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    maxItems: 2
++
++  power-domains:
++    maxItems: 1
++
++  tx-fifo-depth:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Tx fifo depth (Zynq, Axi CAN).
++
++  rx-fifo-depth:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Rx fifo depth (Zynq, Axi CAN, CAN FD in sequential Rx mode)
++
++  tx-mailbox-count:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Tx mailbox buffer count (CAN FD)
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++additionalProperties: false
++
++allOf:
++  - $ref: can-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,zynq-can-1.0
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: pclk
++      required:
++        - tx-fifo-depth
++        - rx-fifo-depth
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,axi-can-1.00.a
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: s_axi_aclk
++      required:
++        - tx-fifo-depth
++        - rx-fifo-depth
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,canfd-1.0
++              - xlnx,canfd-2.0
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: s_axi_aclk
++      required:
++        - tx-mailbox-count
++        - rx-fifo-depth
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    can@e0008000 {
++        compatible = "xlnx,zynq-can-1.0";
++        clocks = <&clkc 19>, <&clkc 36>;
++        clock-names = "can_clk", "pclk";
++        reg = <0xe0008000 0x1000>;
++        interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-parent = <&intc>;
++        tx-fifo-depth = <0x40>;
++        rx-fifo-depth = <0x40>;
++    };
++
++  - |
++    can@40000000 {
++        compatible = "xlnx,axi-can-1.00.a";
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk","s_axi_aclk" ;
++        reg = <0x40000000 0x10000>;
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-fifo-depth = <0x40>;
++        rx-fifo-depth = <0x40>;
++    };
++
++  - |
++    can@40000000 {
++        compatible = "xlnx,canfd-1.0";
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk", "s_axi_aclk";
++        reg = <0x40000000 0x2000>;
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-mailbox-count = <0x20>;
++        rx-fifo-depth = <0x20>;
++    };
++
++  - |
++    can@ff060000 {
++        compatible = "xlnx,canfd-2.0";
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk", "s_axi_aclk";
++        reg = <0xff060000 0x6000>;
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-mailbox-count = <0x20>;
++        rx-fifo-depth = <0x40>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/can/xilinx_can.txt b/Documentation/devicetree/bindings/net/can/xilinx_can.txt
+deleted file mode 100644
+index 100cc40b8510..000000000000
+--- a/Documentation/devicetree/bindings/net/can/xilinx_can.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-Xilinx Axi CAN/Zynq CANPS controller Device Tree Bindings
+----------------------------------------------------------
 -
--SND_SOC_DAILINK_DEFS(i2s3_rt1015p,
-+SND_SOC_DAILINK_DEFS(i2s3,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC("rt1015p", "HiFi")),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(i2s5,
-@@ -634,14 +631,12 @@ SND_SOC_DAILINK_DEFS(i2s7,
- 
- SND_SOC_DAILINK_DEFS(i2s8,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S8")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(i2s9,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S9")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(connsys_i2s,
-@@ -929,6 +924,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.dpcm_playback = 1,
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
-+		SND_SOC_DAILINK_REG(i2s3),
- 	},
- 	{
- 		.name = "I2S5",
-@@ -962,7 +958,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.init = mt8192_rt5682_init,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s8),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "I2S9",
-@@ -971,7 +967,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s9),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "CONNSYS_I2S",
-@@ -1051,7 +1047,7 @@ static struct snd_soc_codec_conf rt1015_amp_conf[] = {
- };
- 
- static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015_rt5682",
-+	.name = RT1015_RT5682_CARD_NAME,
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-@@ -1066,13 +1062,13 @@ static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
- };
- 
- static const struct snd_soc_dapm_widget
--mt8192_mt6359_rt1015p_rt5682_widgets[] = {
-+mt8192_mt6359_rt1015p_rt5682x_widgets[] = {
- 	SND_SOC_DAPM_SPK("Speakers", NULL),
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
--static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
-+static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682x_routes[] = {
- 	/* speaker */
- 	{ "Speakers", NULL, "Speaker" },
- 	/* headset */
-@@ -1081,74 +1077,112 @@ static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
- 	{ "IN1P", NULL, "Headset Mic" },
- };
- 
--static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682_controls[] = {
-+static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682x_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Speakers"),
- 	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
- 	SOC_DAPM_PIN_SWITCH("Headset Mic"),
- };
- 
--static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015p_rt5682",
-+static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682x_card = {
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
--	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
--	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
--	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
--	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
--	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
--	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-+	.controls = mt8192_mt6359_rt1015p_rt5682x_controls,
-+	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_controls),
-+	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682x_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_widgets),
-+	.dapm_routes = mt8192_mt6359_rt1015p_rt5682x_routes,
-+	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_routes),
- };
- 
-+static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
-+					  struct snd_soc_dai_link *link,
-+					  struct device_node *node,
-+					  char *link_name)
-+{
-+	int ret;
-+
-+	if (node && strcmp(link->name, link_name) == 0) {
-+		ret = snd_soc_of_get_dai_link_codecs(card->dev, node, link);
-+		if (ret < 0) {
-+			dev_err(card->dev, "get dai link codecs fail\n");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
--	struct device_node *platform_node, *hdmi_codec;
-+	struct device_node *platform_node, *hdmi_codec, *headset_codec, *speaker_codec;
- 	int ret, i;
- 	struct snd_soc_dai_link *dai_link;
- 	struct mt8192_mt6359_priv *priv;
-+	struct device *dev;
- 
--	platform_node = of_parse_phandle(pdev->dev.of_node,
--					 "mediatek,platform", 0);
--	if (!platform_node) {
--		dev_err(&pdev->dev, "Property 'platform' missing or invalid\n");
-+	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
-+	if (!card)
- 		return -EINVAL;
-+	card->dev = &pdev->dev;
-+	dev = &pdev->dev;
-+
-+	if (of_device_is_compatible(dev->of_node, RT1015P_RT5682_OF_NAME))
-+		card->name = RT1015P_RT5682_CARD_NAME;
-+	else if (of_device_is_compatible(dev->of_node, RT1015P_RT5682S_OF_NAME))
-+		card->name = RT1015P_RT5682S_CARD_NAME;
-+	else
-+		dev_dbg(dev, "No need to set card name\n");
-+
-+	platform_node = of_parse_phandle(dev->of_node, "mediatek,platform", 0);
-+	if (!platform_node) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'platform' missing or invalid\n");
-+		goto err_platform_node;
- 	}
- 
--	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
--	if (!card) {
-+	hdmi_codec = of_parse_phandle(dev->of_node, "mediatek,hdmi-codec", 0);
-+	if (!hdmi_codec) {
- 		ret = -EINVAL;
--		goto put_platform_node;
-+		dev_err_probe(dev, ret, "Property 'hdmi-codec' missing or invalid\n");
-+		goto err_hdmi_codec;
- 	}
--	card->dev = &pdev->dev;
- 
--	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
--				      "mediatek,hdmi-codec", 0);
-+	speaker_codec = of_get_child_by_name(dev->of_node, "mediatek,speaker-codec");
-+	if (!speaker_codec) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'speaker_codec' missing or invalid\n");
-+		goto err_speaker_codec;
-+	}
-+
-+	headset_codec = of_get_child_by_name(dev->of_node, "mediatek,headset-codec");
-+	if (!headset_codec) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'headset_codec' missing or invalid\n");
-+		goto err_headset_codec;
-+	}
- 
- 	for_each_card_prelinks(card, i, dai_link) {
--		if (strcmp(dai_link->name, "I2S3") == 0) {
--			if (card == &mt8192_mt6359_rt1015_rt5682_card) {
--				dai_link->ops = &mt8192_rt1015_i2s_ops;
--				dai_link->cpus = i2s3_rt1015_cpus;
--				dai_link->num_cpus =
--					ARRAY_SIZE(i2s3_rt1015_cpus);
--				dai_link->codecs = i2s3_rt1015_codecs;
--				dai_link->num_codecs =
--					ARRAY_SIZE(i2s3_rt1015_codecs);
--				dai_link->platforms = i2s3_rt1015_platforms;
--				dai_link->num_platforms =
--					ARRAY_SIZE(i2s3_rt1015_platforms);
--			} else if (card == &mt8192_mt6359_rt1015p_rt5682_card) {
--				dai_link->cpus = i2s3_rt1015p_cpus;
--				dai_link->num_cpus =
--					ARRAY_SIZE(i2s3_rt1015p_cpus);
--				dai_link->codecs = i2s3_rt1015p_codecs;
--				dai_link->num_codecs =
--					ARRAY_SIZE(i2s3_rt1015p_codecs);
--				dai_link->platforms = i2s3_rt1015p_platforms;
--				dai_link->num_platforms =
--					ARRAY_SIZE(i2s3_rt1015p_platforms);
--			}
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, speaker_codec, "I2S3");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set speaker_codec fail\n",
-+				      __func__, dai_link->name);
-+			goto err_probe;
-+		}
-+
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S8");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set headset_codec fail\n",
-+				      __func__, dai_link->name);
-+			goto err_probe;
-+		}
-+
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S9");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set %s headset_codec fail\n",
-+				      __func__, dai_link->name);
-+			goto err_probe;
- 		}
- 
- 		if (hdmi_codec && strcmp(dai_link->name, "TDM") == 0) {
-@@ -1156,6 +1190,9 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 			dai_link->ignore = 0;
- 		}
- 
-+		if (strcmp(dai_link->codecs[0].dai_name, RT1015_CODEC_DAI) == 0)
-+			dai_link->ops = &mt8192_rt1015_i2s_ops;
-+
- 		if (!dai_link->platforms->name)
- 			dai_link->platforms->of_node = platform_node;
- 	}
-@@ -1163,34 +1200,47 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv) {
- 		ret = -ENOMEM;
--		goto put_hdmi_codec;
-+		goto err_probe;
- 	}
- 	snd_soc_card_set_drvdata(card, priv);
- 
- 	ret = mt8192_afe_gpio_init(&pdev->dev);
- 	if (ret) {
--		dev_err(&pdev->dev, "init gpio error %d\n", ret);
--		goto put_hdmi_codec;
-+		dev_err_probe(&pdev->dev, ret, "%s init gpio error\n", __func__);
-+		goto err_probe;
- 	}
- 
- 	ret = devm_snd_soc_register_card(&pdev->dev, card);
+-Required properties:
+-- compatible		: Should be:
+-			  - "xlnx,zynq-can-1.0" for Zynq CAN controllers
+-			  - "xlnx,axi-can-1.00.a" for Axi CAN controllers
+-			  - "xlnx,canfd-1.0" for CAN FD controllers
+-			  - "xlnx,canfd-2.0" for CAN FD 2.0 controllers
+-- reg			: Physical base address and size of the controller
+-			  registers map.
+-- interrupts		: Property with a value describing the interrupt
+-			  number.
+-- clock-names		: List of input clock names
+-			  - "can_clk", "pclk" (For CANPS),
+-			  - "can_clk", "s_axi_aclk" (For AXI CAN and CAN FD).
+-			  (See clock bindings for details).
+-- clocks		: Clock phandles (see clock bindings for details).
+-- tx-fifo-depth		: Can Tx fifo depth (Zynq, Axi CAN).
+-- rx-fifo-depth		: Can Rx fifo depth (Zynq, Axi CAN, CAN FD in
+-                          sequential Rx mode).
+-- tx-mailbox-count	: Can Tx mailbox buffer count (CAN FD).
+-- rx-mailbox-count	: Can Rx mailbox buffer count (CAN FD in mailbox Rx
+-			  mode).
 -
--put_hdmi_codec:
-+	if (ret)
-+		dev_err_probe(&pdev->dev, ret,
-+			      "%s snd_soc_register_card fail\n", __func__);
-+
-+err_probe:
-+	of_node_put(headset_codec);
-+err_headset_codec:
-+	of_node_put(speaker_codec);
-+err_speaker_codec:
- 	of_node_put(hdmi_codec);
--put_platform_node:
-+err_hdmi_codec:
- 	of_node_put(platform_node);
-+err_platform_node:
-+
- 	return ret;
- }
- 
- #ifdef CONFIG_OF
- static const struct of_device_id mt8192_mt6359_dt_match[] = {
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
-+		.compatible = RT1015_RT5682_OF_NAME,
- 		.data = &mt8192_mt6359_rt1015_rt5682_card,
- 	},
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
--		.data = &mt8192_mt6359_rt1015p_rt5682_card,
-+		.compatible = RT1015P_RT5682_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
-+	},
-+	{
-+		.compatible = RT1015P_RT5682S_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
- 	},
- 	{}
- };
+-
+-Example:
+-
+-For Zynq CANPS Dts file:
+-	zynq_can_0: can@e0008000 {
+-			compatible = "xlnx,zynq-can-1.0";
+-			clocks = <&clkc 19>, <&clkc 36>;
+-			clock-names = "can_clk", "pclk";
+-			reg = <0xe0008000 0x1000>;
+-			interrupts = <0 28 4>;
+-			interrupt-parent = <&intc>;
+-			tx-fifo-depth = <0x40>;
+-			rx-fifo-depth = <0x40>;
+-		};
+-For Axi CAN Dts file:
+-	axi_can_0: axi-can@40000000 {
+-			compatible = "xlnx,axi-can-1.00.a";
+-			clocks = <&clkc 0>, <&clkc 1>;
+-			clock-names = "can_clk","s_axi_aclk" ;
+-			reg = <0x40000000 0x10000>;
+-			interrupt-parent = <&intc>;
+-			interrupts = <0 59 1>;
+-			tx-fifo-depth = <0x40>;
+-			rx-fifo-depth = <0x40>;
+-		};
+-For CAN FD Dts file:
+-	canfd_0: canfd@40000000 {
+-			compatible = "xlnx,canfd-1.0";
+-			clocks = <&clkc 0>, <&clkc 1>;
+-			clock-names = "can_clk", "s_axi_aclk";
+-			reg = <0x40000000 0x2000>;
+-			interrupt-parent = <&intc>;
+-			interrupts = <0 59 1>;
+-			tx-mailbox-count = <0x20>;
+-			rx-fifo-depth = <0x20>;
+-		};
 -- 
-2.18.0
+2.17.1
 
