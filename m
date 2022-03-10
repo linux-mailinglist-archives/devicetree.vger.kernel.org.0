@@ -2,122 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96F104D45B0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 12:31:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AAAC14D45C6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 12:35:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241595AbiCJLcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 06:32:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48476 "EHLO
+        id S241684AbiCJLgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 06:36:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240349AbiCJLcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 06:32:55 -0500
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 71C20141E2E;
-        Thu, 10 Mar 2022 03:31:53 -0800 (PST)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1F0F81691;
-        Thu, 10 Mar 2022 03:31:53 -0800 (PST)
-Received: from [10.57.43.53] (unknown [10.57.43.53])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 700AC3F7D7;
-        Thu, 10 Mar 2022 03:31:47 -0800 (PST)
-Message-ID: <3021738c-06e4-6760-5a70-5b3dc57f1e96@arm.com>
-Date:   Thu, 10 Mar 2022 11:31:41 +0000
+        with ESMTP id S241659AbiCJLgg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 06:36:36 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD12414235E;
+        Thu, 10 Mar 2022 03:35:35 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7A3EA6165C;
+        Thu, 10 Mar 2022 11:35:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A8EBC340E8;
+        Thu, 10 Mar 2022 11:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646912134;
+        bh=pkk4N3eCD0H/JMi6+p8qQuPegRrrIJ1gxJThJ3WAz7Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Nck9PWgTGt9VgQJiLBMk/E9xtUhXAQU0MI8dImqhzOCPyKGigBYqMgLnvL3Qqoj3f
+         Zh2ncEh/f9gWX8HLYrHcb5Dt32AkmiAFkSLWI0zwFa13eUCL3HCZfAs1vMjbQfYIcC
+         E3BfMl5PXHuUUss6ee45f2i++98qX8ALuV03hrnY0KVUyLkq2XnYtaBDKHPCSA4hQp
+         LCdsCAnIXDTzmRGL7irJZGlBm8b54o96FZE2XiwYtrNk1KLgMcTpp44fY9ISh0PQoZ
+         g0k4cQJhwEIkiNmzNTOhYpMh2C472s7kHFmOr1NB6GY1adZxUmPvNlXUCCieHf1OKu
+         o2jHOZ2LuHHvA==
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, cy_huang <u0084500@gmail.com>
+Cc:     cy_huang@richtek.com, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, krzysztof.kozlowski@canonical.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <1646812903-32496-1-git-send-email-u0084500@gmail.com>
+References: <1646812903-32496-1-git-send-email-u0084500@gmail.com>
+Subject: Re: [PATCH v2 0/2] Add Richtek RT5190A PMIC support
+Message-Id: <164691213322.14059.3681107079269316589.b4-ty@kernel.org>
+Date:   Thu, 10 Mar 2022 11:35:33 +0000
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [EXT] RE: [PATCH] media: amphion: fix some error related with
- undefined reference to __divdi3
-Content-Language: en-GB
-To:     Ming Qian <ming.qian@nxp.com>,
-        David Laight <David.Laight@ACULAB.COM>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220309050221.971-1-ming.qian@nxp.com>
- <ab877a4470324d20b558538b52f69391@AcuMS.aculab.com>
- <AM6PR04MB63417FD1C3EE77BBE1649B47E70B9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <AM6PR04MB63417FD1C3EE77BBE1649B47E70B9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-10 08:36, Ming Qian wrote:
->> -----Original Message-----
->> From: David Laight [mailto:David.Laight@ACULAB.COM]
->> Sent: Wednesday, March 9, 2022 9:27 PM
->> To: Ming Qian <ming.qian@nxp.com>; mchehab@kernel.org;
->> shawnguo@kernel.org; robh+dt@kernel.org; s.hauer@pengutronix.de
->> Cc: hverkuil-cisco@xs4all.nl; kernel@pengutronix.de; festevam@gmail.com;
->> dl-linux-imx <linux-imx@nxp.com>; Aisheng Dong <aisheng.dong@nxp.com>;
->> linux-media@vger.kernel.org; linux-kernel@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org
->> Subject: [EXT] RE: [PATCH] media: amphion: fix some error related with
->> undefined reference to __divdi3
->>
->> Caution: EXT Email
->>
->> From: Ming Qian
->>> Sent: 09 March 2022 05:02
->> ...
->>> 3. use 'val >> 1' instead of ' val / 2'
->>
->> The compiler should do that anyway.
->>
->> Especially for unsigned values.
->> And it has the wrong (different) rounding for negative values.
->>
->>          David
->>
+On Wed, 9 Mar 2022 16:01:41 +0800, cy_huang wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Hi David,
->      Yes, you are right, if the value is negative, the behavior is wrong.
->      But here, the value type is u32, so I think it's OK.
+> This patch series add Richtek RT5190A PMIC support.
+> 
+> v2:
+> 1. use standard bindings regulator-min/max-microvolt to replace
+>    fixed-microvolt property
+> 2. change dt-bindings sample node name from rt5190a@64 to pmic@64.
+> 3. add dt-binding header to defin e the opmode mapping number.
+> 4. refine 'richtek,mute-enable' description in dt-binding.
+> 4. due to fixed-microvolt property removal, use of_regulator_match to get
+>    the regulator init data.
+> 5. fix checkpatch warning and error.
+> 
+> [...]
 
-Well, it depends on the semantic intent, really. If you're packing a 
-bitfield which encodes bits 31:1 of some value then a shift is the most 
-appropriate operation. However if you're literally calculating half of a 
-value for, say, a 50% threshold level, or the number of 16-bit words 
-represented by a byte length, then semantically it's a division, so it 
-should use the divide operator rather than obfuscating it behind a 
-shift. Constant division is something that even the most basic 
-optimising compiler should handle with ease.
+Applied to
 
-One more thing that's not the fault of this patch, but stood out in the 
-context:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-@@ -1566,7 +1568,7 @@ static bool vpu_malone_check_ready(struct 
-vpu_shared_addr *shared, u32 instance)
-  	u32 wptr = desc->wptr;
-  	u32 used = (wptr + size - rptr) % size;
+Thanks!
 
--	if (!size || used < size / 2)
-+	if (!size || used < (size >> 1))
-  		return true;
+[1/2] dt-bindings: regulator: Add bindings for Richtek RT5190A PMIC
+      commit: b77e70f6b8f2cc62fba847f3008a430a09ef275d
+[2/2] regulator: rt5190a: Add support for Richtek RT5190A PMIC
+      commit: 760423dfad53877b468490758fe7ea968ded9402
 
-  	return false;
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-That's not safe: if "size" is 0 then the undefined behaviour has already 
-happened before the "!size" check is reached. If "size" really can be 0, 
-then it needs to be checked *before* it is used as a divisor to 
-calculate "used".
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-Robin.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
