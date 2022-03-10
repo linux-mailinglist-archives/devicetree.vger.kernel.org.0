@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F3DBE4D553C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:22:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E07D44D5547
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:25:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344577AbiCJXXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 18:23:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
+        id S235482AbiCJX0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 18:26:21 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343572AbiCJXXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:23:32 -0500
-Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF0D21BC;
-        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
-Received: by mail-oo1-f53.google.com with SMTP id l24-20020a4a8558000000b00320d5a1f938so8662892ooh.8;
-        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
+        with ESMTP id S1344626AbiCJX0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:26:20 -0500
+Received: from mail-oo1-f41.google.com (mail-oo1-f41.google.com [209.85.161.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 968E4199D4F;
+        Thu, 10 Mar 2022 15:25:18 -0800 (PST)
+Received: by mail-oo1-f41.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so8657547oos.9;
+        Thu, 10 Mar 2022 15:25:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=QxaQQz9lOMso9LFniZ3e9gms+zpAX5bMoBiGaq2NQ80=;
-        b=PFElRQYGPOh3vw7twASS65kLbVEGmpv1hKe8jqdIFZb3iscFnSO9bsO0Xh82iiS4K0
-         0HoiG8nBkgZ9nlEsFUr5AL/BDqjufpSaUmGv3NgNN2FEPGhvun14Wr2ozW42Im3b+NG3
-         cBXOMLwT7hyG/kAOXKnu3E+JYuZDS6SZLev7xA9jSwWnOmnunJ9FIrHSmQbYjQqZJlry
-         wX4JD1fDbywcBDcLBrCujIIysB2eVCj0RnWYuj2a4BKIAGtgpFPCzg5pZA3/k6MvssiX
-         3fkM6P3L+jIteRoWdrjw/oH4ziZC/+9uCz4hlgiQ4ueMN5KFUntxupm+riMqckqxhFGU
-         zakA==
-X-Gm-Message-State: AOAM531RLMwsKDgJ92LlNVNXfJLUUPkp9Vdcs4PSphLou37YDFD4arUk
-        Pc3AJjJfeqOLxcuTxKoHVA==
-X-Google-Smtp-Source: ABdhPJwFNsTJVQACKTaShwctSIDZiz2m99HjBzfGEBRTiXcYlYBa4o1rP9aU6sHuo0rtftWCEpnoWw==
-X-Received: by 2002:a05:6870:a2c6:b0:da:b3f:2b2a with SMTP id w6-20020a056870a2c600b000da0b3f2b2amr9626676oak.201.1646954549150;
-        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
+        bh=6w+O5WHCDjl5wbn5DykYEU1YA3lse6HoQ4X4n2SBQ0E=;
+        b=J+i4uYHKChdyvoeOwlEpvTxygenISaQqBC4Z7mFUgRaBY+cVVXUQwb4Vqg4zvBNBO3
+         4eBdDYmGnwOumfnOCgyZeN/5naHbkBybxt/dEEH/ZbkxNUyU0vO3jD5GPShMc/lw7J6I
+         AzGRAVt6b6UkIF9HqhfuELZs6+ZTbZanjhOoYb6w7f57aCqNViaoAVdyG8H+aGgbB+m8
+         1YBtLZ53wjhDbCNaEqpyX2oIuARTJuH6D3Mnkba0vm+i3RCSm8deoBUe+DbopVvRZ9JV
+         SOrjYfZyCGAWkP4lTKGf/HfO/+J+wjiqAqhkzjOst5JIr/yBXCeCilH46/QSxw7muItx
+         /yVA==
+X-Gm-Message-State: AOAM531P8MT1e89ysVRgTCxdsXfz0cXoLPW29rHuaLKFHL9Y2jJXsFox
+        Wfa57Cc5XBeigGlH85E+IQ==
+X-Google-Smtp-Source: ABdhPJw93wspnZY5lHnUvT+I+4Eho5yHyZHour2RJDedXvX/kod1RlNzg/cMBeVPl0llJZbBUOlpeQ==
+X-Received: by 2002:a05:6870:f70a:b0:da:bbb7:ab59 with SMTP id ej10-20020a056870f70a00b000dabbb7ab59mr2269545oab.93.1646954717912;
+        Thu, 10 Mar 2022 15:25:17 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id n6-20020a9d6f06000000b005b266e43c92sm2567768otq.73.2022.03.10.15.22.27
+        by smtp.gmail.com with ESMTPSA id x7-20020a4a8687000000b003191a2edc67sm3245292ooh.7.2022.03.10.15.25.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 15:22:28 -0800 (PST)
-Received: (nullmailer pid 2287090 invoked by uid 1000);
-        Thu, 10 Mar 2022 23:22:27 -0000
-Date:   Thu, 10 Mar 2022 17:22:27 -0600
+        Thu, 10 Mar 2022 15:25:17 -0800 (PST)
+Received: (nullmailer pid 2291916 invoked by uid 1000);
+        Thu, 10 Mar 2022 23:25:16 -0000
+Date:   Thu, 10 Mar 2022 17:25:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     trix@redhat.com
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, tmaimon77@gmail.com,
-        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
-        avifishman70@gmail.com, venture@google.com,
-        benjaminfair@google.com, linux-stm32@st-md-mailman.stormreply.com,
-        yuenn@google.com, tali.perry1@gmail.com,
-        alexandre.torgue@foss.st.com, mcoquelin.stm32@gmail.com,
-        paulburton@kernel.org, linux-arm-kernel@lists.infradead.org,
-        krzk+dt@kernel.org
-Subject: Re: [PATCH] dt-bindings: clk: cleanup comments
-Message-ID: <YiqIMxCBFY8Aq5p4@robh.at.kernel.org>
-References: <20220309222302.1114561-1-trix@redhat.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        andrew@lunn.ch, gregory.clement@bootlin.com,
+        sebastian.hesselbarth@gmail.com, kostap@marvell.com,
+        robert.marko@sartura.hr, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 1/4] dt-bindings: pinctrl: mvebu: Document bindings
+ for AC5
+Message-ID: <YiqI3Gjcf8AFVQYL@robh.at.kernel.org>
+References: <20220310030039.2833808-1-chris.packham@alliedtelesis.co.nz>
+ <20220310030039.2833808-2-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220309222302.1114561-1-trix@redhat.com>
+In-Reply-To: <20220310030039.2833808-2-chris.packham@alliedtelesis.co.nz>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,31 +67,103 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Mar 2022 14:23:02 -0800, trix@redhat.com wrote:
-> From: Tom Rix <trix@redhat.com>
+On Thu, Mar 10, 2022 at 04:00:36PM +1300, Chris Packham wrote:
+> Add JSON schema for marvell,ac5-pinctrl present on the Marvell 98DX2530
+> SoC.
 > 
-> For spdx, first line /* */ for *.h, change tab to space
-> 
-> Replacements
-> devider to divider
-> Comunications to Communications
-> periphrals to peripherals
-> supportted to supported
-> wich to which
-> Documentatoin to Documentation
-> 
-> Signed-off-by: Tom Rix <trix@redhat.com>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  include/dt-bindings/clock/alphascale,asm9260.h    | 2 +-
->  include/dt-bindings/clock/axis,artpec6-clkctrl.h  | 2 +-
->  include/dt-bindings/clock/boston-clock.h          | 3 +--
->  include/dt-bindings/clock/marvell,mmp2.h          | 4 ++--
->  include/dt-bindings/clock/marvell,pxa168.h        | 4 ++--
->  include/dt-bindings/clock/marvell,pxa910.h        | 4 ++--
->  include/dt-bindings/clock/nuvoton,npcm7xx-clock.h | 2 +-
->  include/dt-bindings/clock/stm32fx-clock.h         | 4 ++--
->  include/dt-bindings/clock/stratix10-clock.h       | 2 +-
->  9 files changed, 13 insertions(+), 14 deletions(-)
+>  .../bindings/pinctrl/marvell,ac5-pinctrl.yaml | 73 +++++++++++++++++++
+>  1 file changed, 73 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
+> new file mode 100644
+> index 000000000000..c7ab3d0e8420
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
+> @@ -0,0 +1,73 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/marvell,ac5-pinctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell AC5 pin controller
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +description:
+> +  Bindings for Marvell's AC5 memory-mapped pin controller.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: marvell,ac5-pinctrl
+> +      - const: syscon
+> +      - const: simple-mfd
 
-Applied, thanks!
+How is this a 'syscon' or 'simple-mfd' For syscon, what other 
+functions/registers does it have? For simple-mfd, what other functions? 
+You haven't defined them in the schema.
+
+blank line needed here.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    $ref: pinmux-node.yaml#
+> +
+> +    properties:
+> +      marvell,function:
+> +        $ref: "/schemas/types.yaml#/definitions/string"
+> +        description:
+> +          Indicates the function to select.
+> +        enum: [ gpio, i2c0, i2c1, nand, sdio, spi0, spi1, uart0, uart1, uart2, uart3 ]
+> +
+> +      marvell,pins:
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+> +        description:
+> +          Array of MPP pins to be used for the given function.
+> +        minItems: 1
+> +        items:
+> +          enum: [ mpp0, mpp1, mpp2, mpp3, mpp4, mpp5, mpp6, mpp7, mpp8, mpp9,
+> +                  mpp10, mpp11, mpp12, mpp13, mpp14, mpp15, mpp16, mpp17, mpp18, mpp19,
+> +                  mpp20, mpp21, mpp22, mpp23, mpp24, mpp25, mpp26, mpp27, mpp28, mpp29,
+> +                  mpp30, mpp31, mpp32, mpp33, mpp34, mpp35, mpp36, mpp37, mpp38, mpp39,
+> +                  mpp40, mpp41, mpp42, mpp43, mpp44, mpp45 ]
+> +
+> +allOf:
+> +  - $ref: "pinctrl.yaml#"
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pinctrl@80020100 {
+> +      compatible = "marvell,ac5-pinctrl",
+> +      "syscon", "simple-mfd";
+> +      reg = <0x80020100 0x20>;
+> +
+> +      i2c0_pins: i2c0-pins {
+> +        marvell,pins = "mpp26", "mpp27";
+> +        marvell,function = "i2c0";
+> +      };
+> +
+> +      i2c0_gpio: i2c0-gpio-pins {
+> +        marvell,pins = "mpp26", "mpp27";
+> +        marvell,function = "gpio";
+> +      };
+> +    };
+> -- 
+> 2.35.1
+> 
+> 
