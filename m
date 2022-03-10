@@ -2,88 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 406054D5388
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 22:20:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B70304D538E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 22:24:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233866AbiCJVU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 16:20:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
+        id S244459AbiCJVZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 16:25:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237947AbiCJVU5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 16:20:57 -0500
+        with ESMTP id S241506AbiCJVZH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 16:25:07 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA62063BD3
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:19:55 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4BCEACEA05
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:24:06 -0800 (PST)
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 355F23F312
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 21:19:47 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1ECD93F043
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 21:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646947187;
-        bh=9DmBnTPJmgfr8wJC4s2tQqC5+M2g/VQlbp1lfsPPtrg=;
+        s=20210705; t=1646947445;
+        bh=zeer/ZZp0Mz01D/gyl/OYzcIfYG9F75Pjm36xkioFtY=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=TbYxkSGDGpB+9LWMIcVrg/bKxfcGPedih+1jROjbklTGSPGnT8HSP3sgc8bZ6/LkS
-         rOyeRbCE4m31eogGMA8HknzxDE9ntuUwsfoqtUL4XLQR3K/uIlBPg8tJQqjgeWwPNg
-         NFyle0JOpc7uViUfkSixVt881DBA2mfBmfIu2ZOr7wIyKO7hxXCEIN6RTqu/IEOMaa
-         uiob7bceabyF7HlIlNWLngGVTisQgQIgJx5IPZExaKB6xe7jAh178Hv930En95ltg8
-         lmxguayBsyolhw/kyqh5IY45ySP8KH4OJX3aF8QfVpRr7EYLuj2G9ythIqYZILjIl6
-         8I+KsxVWG/vhg==
-Received: by mail-ej1-f72.google.com with SMTP id l24-20020a170906a41800b006da873d66b6so3774796ejz.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:19:47 -0800 (PST)
+        b=utoTnEnMi/CO0PTNzwPt0t6hlXnfHja2hNITi1WLDXNIqfPVcds1PpKQwenOJQYw2
+         GDSg3GVzsRiJQ/IIQuTDn04wAdblcKMZkt09ZQkaHwNI5bWgaeHHCQxf3ec+BU6+tG
+         dSNzD++y2X+m5jNbaVqSvZ8EPWL9eZbwo57sDqB6yEEvqpVt2m1f6UtH0PHdEovoW+
+         +rcAwgghIj5CeV0GMJ+mwEHhDXaLIokGnOUtEkj8/HD7qaruuODvLxnk7PyK59KreP
+         LXqPlyzOAiJmoj7H4DqbFBBNVr486lZyZtcF+8d4IIBgknz6PPyKUVyTVf4tcMDFgf
+         6umQrDzQ8zdlg==
+Received: by mail-ed1-f71.google.com with SMTP id s7-20020a508dc7000000b0040f29ccd65aso3809573edh.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:24:05 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=9DmBnTPJmgfr8wJC4s2tQqC5+M2g/VQlbp1lfsPPtrg=;
-        b=dX+wJD9p7kcbjWWqo3A6zTCjwXRTTyavKl5CQ82NYCZcT4zK5aYN5OUOeBxq3k+p+c
-         HyU2I28FAW2GOG5LT1MG5FKQZ+yEbWJKDD2Qcnue5N90T9QCOJtDp40qbr69m86GjvnT
-         YPr0EnHc8wmF+TEFNQ8qvu/PJGkKQbrowp3Aqm2dbLrD2vMb0w6W7P8nJQx5nDpVLktv
-         fQQH46l8qdrKZrmt+4mju3p/ZfVMpiILwrk8ub8rg79xPupSunnj3o/cL8TX790jvjsx
-         Mt4ZitLG7+lClRLzUuvJmvoMeMA8Ahtt6+75ktt2oJjQE1aZVBACgC602VQBgLfuUngy
-         QL5w==
-X-Gm-Message-State: AOAM531oekpXLQirH0gWuOJIQGGbgjVWMwx7Hkm33jrNCN88VnToQObx
-        Npl/3+jJUoVAguEKjhaHgLnPnXvNOzadFPOcU2EaBTU0W4U2xHslk2UpfRQ1L1R1bOTg08LBl9P
-        Y0fg+x1fRy2kJzdbhpAZQmPPHURU9On1FBI6Yi0w=
-X-Received: by 2002:a17:906:4108:b0:6db:867c:f3ab with SMTP id j8-20020a170906410800b006db867cf3abmr4064713ejk.708.1646947186744;
-        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJwpPhoEYeMm5ZEZqUHmwNDHKl/pnXpf7yeFjdCLVUvg18iW5ZSftFmEY3A2p0wQ8bC7jpG3FA==
-X-Received: by 2002:a17:906:4108:b0:6db:867c:f3ab with SMTP id j8-20020a170906410800b006db867cf3abmr4064700ejk.708.1646947186550;
-        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
+        bh=zeer/ZZp0Mz01D/gyl/OYzcIfYG9F75Pjm36xkioFtY=;
+        b=PBG78CgZIqA/Z54jRFP4JVeWN/kxO+Yz79B8vjhzgLttYy0y5naDmjKvsCo74XioK7
+         BHCYy9f4f/pfm24bM02/JkvGXQ0Vi+b9ct3yEiOrkSMoLPTpoe3vBav5ylyahte3Quph
+         PBxhM0eM1TqRVzrviuRJu0q0iOaSz2LGxsQpWvU3YJVnWb48bWJWA+zFOsp8D1oAimGD
+         y2oe7wZTGhrbnIrlk5IfR7lNf9AHJUxVhTowBnsxhPFnrnPSziom/8PzV0zZ+Q9B0VEy
+         slLzB1u9ATHc9ISHdfP4yxc8TH/RxoNjX8doOYSSPHv6LClGS5gsHU3DCx49mL/QkAMr
+         EDzQ==
+X-Gm-Message-State: AOAM531phFIteU3RDvNbYh5/8uhFR99tYeWuTG0goM/W5Sou39BNT++Q
+        Vw15aa74UqCWt1xfn23JsGoxg48429rfON6zkklAgoslJwhoxvJlhmSZBDNPg1YKVxfWz54KQIj
+        X63kZzA+7WYWF8WoroOPzZe33HznNFm2kKRpG0H8=
+X-Received: by 2002:a50:bb2c:0:b0:415:a2d4:72ca with SMTP id y41-20020a50bb2c000000b00415a2d472camr6307986ede.216.1646947444798;
+        Thu, 10 Mar 2022 13:24:04 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxWCK5bpvfRf9NFEXcSTjvhVttJdwvliw2R5rFZzIlGeRw6k3eXdG7wZAjBzCCiEfAhXouI8A==
+X-Received: by 2002:a50:bb2c:0:b0:415:a2d4:72ca with SMTP id y41-20020a50bb2c000000b00415a2d472camr6307976ede.216.1646947444638;
+        Thu, 10 Mar 2022 13:24:04 -0800 (PST)
 Received: from [192.168.0.147] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm2114790ejb.187.2022.03.10.13.19.45
+        by smtp.gmail.com with ESMTPSA id h7-20020a1709066d8700b006d4b4d137fbsm2217445ejt.50.2022.03.10.13.24.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
-Message-ID: <c5791ed0-1bde-3b55-1237-822111bd6251@canonical.com>
-Date:   Thu, 10 Mar 2022 22:19:45 +0100
+        Thu, 10 Mar 2022 13:24:04 -0800 (PST)
+Message-ID: <145bddd6-0a7e-95f4-5282-b1900f020d88@canonical.com>
+Date:   Thu, 10 Mar 2022 22:24:03 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH net-next v3 2/8] dt-bindings: phy: add the "fsl,lynx-28g"
- compatible
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
 Content-Language: en-US
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Hongxing Zhu <hongxing.zhu@nxp.com>
-References: <20220310145200.3645763-1-ioana.ciornei@nxp.com>
- <20220310145200.3645763-3-ioana.ciornei@nxp.com>
- <a32fa8df-bd07-8040-41cd-92484420756d@canonical.com>
- <20220310173223.pl2asv55iqfmbasq@skbuf>
+To:     Michael Srba <Michael.Srba@seznam.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+ <20220310133938.2495-2-michael.srba@seznam.cz>
+ <707f995e-9b09-ea23-5fc7-74239792dcbd@canonical.com>
+ <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220310173223.pl2asv55iqfmbasq@skbuf>
+In-Reply-To: <2af7be38-7784-96af-aa3f-84b87d983b38@seznam.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -96,67 +89,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2022 18:32, Ioana Ciornei wrote:
-> On Thu, Mar 10, 2022 at 05:47:31PM +0100, Krzysztof Kozlowski wrote:
->> On 10/03/2022 15:51, Ioana Ciornei wrote:
->>> Describe the "fsl,lynx-28g" compatible used by the Lynx 28G SerDes PHY
->>> driver on Layerscape based SoCs.
->>
->> The message is a bit misleading, because it suggests you add only
->> compatible to existing bindings. Instead please look at the git log how
->> people usually describe it in subject and message.
-> 
-> Sure, I can change the title and commit message.
-> 
->>> +patternProperties:
->>> +  '^phy@[0-9a-f]$':
->>> +    type: object
->>> +    properties:
->>> +      reg:
->>> +        description:
->>> +          Number of the SerDes lane.
->>> +        minimum: 0
->>> +        maximum: 7
->>> +
->>> +      "#phy-cells":
->>> +        const: 0
->>
->> Why do you need all these children? You just enumerated them, without
->> statuses, resources or any properties. This should be rather just index
->> of lynx-28g phy.
-> 
-> I am just describing each lane of the SerDes block so that each ethernet
-> dts node references it directly.
+On 10/03/2022 19:56, Michael Srba wrote:
+> Hi,
+> the thing is, the only reason the different compatible is needed at all
+> is that the chip presents a different WHOAMI, and the invensense,icm20608
+> compatible seems to imply the non-D WHOAMI value.
 
-Instead, phy user should reference phy device node and phy ID. Just like
-we do for other providers (everything with #xxxxx-cells).
+But this is a driver implementation issue, not related to bindings.
+Bindings describe the hardware.
 
-> Since I am new to the generic PHY infrastructure I was using the COMPHY
-> for the Marvell MVEBU SoCs (phy-mvebu-comphy.txt) as a loose example.
+> I'm not sure how the driver would react to both compatibles being present,
+> and looking at the driver code, it seems that icm20608d is not the only
+> fully icm20608-compatible (to the extent of features supported by
+> the driver, and excluding the WHOAMI value) invensense IC, yet none
+> of these other ICs add the invensense,icm20608 compatible, so I guess I
+> don't see a good reason to do something different.
 
-I don't know it but it might not be the best example... Just because we
-have already some solution it does not mean it is good. :)
+Probably my question should be asked earlier, when these other
+compatibles were added in such way.
 
-> Each lane there is described as a different child node as well. The only
-> difference from the COMPHY is that Lynx 28G does not need #phy-cells =
-> <1> to reference the input port, we just use '#phy-cells = <0>' on each
-> lane.
-> 
-> What is wrong with this approach? Or better, is there an easier way to
-> do this?
+Skipping the DMP core, the new device is fully backwards compatible with
+icm20608. Therefore extending the compatible makes sense. This is not
+only correct from devicetree point of view, but also is friendly towards
+out of tree users of bindings.
 
-Because the nodes look artificial. It looks like you have nodes only
-differentiate by index. As I said before - there are no other properties
-in these nodes.
+The Linux driver behavior about whoami register does not matter here.
+Not mentioning that it would be easy for driver to accept multiple
+values of whoami.
 
-Imagine now a clock provider with 500 clocks like this...
-
-The easier approach, especially since you have a shared registers, is to
-use phy-cells = 1, without artificial nodes just to pass the index.
-
-It would be entirely different if you actually had any properties in the
-children. IOW, if these were actually some blocks with their own
-characteristics and programming model.
 
 Best regards,
 Krzysztof
