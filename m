@@ -2,128 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0E14D47B3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:06:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 527CA4D47BB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:09:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238524AbiCJNGz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 08:06:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55470 "EHLO
+        id S242287AbiCJNJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 08:09:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242285AbiCJNGy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:06:54 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FB014CCA9
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:05:53 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 8669B3F1A8
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:05:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646917551;
-        bh=FKB4VlQOufpKotMV20xHpYkdGltyIjnCzZMMtH1boRQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=a0pk3jR9hLq6KRt29/yCUKm0vGEJB+dBrzngQpQUEMi4DRb2rg8Jg+LtV7Kg3Q2tE
-         4fA4gr9WqCMVEajtw7KOYlwvjKUt11NL2k8ge5NH0rERWfLTHbOGqdJ55Mnv3uvHau
-         eJf0qH+GvjODMMVrq0z2GKB20kDe7zdaydDMPP0l7eQPLBdPTsiIf1psjCZf4DcJ3y
-         OdngFWkgmtCVTucppiCAk365Do1Eym9C/kIxUg0EfGwfx7bOhdcuzijulBq4GnlkYr
-         5yG6VqLZV0JK61G4DXBa/h2X5rbrICxB2w8cfNLGi+nI/RvvE2GBxC0gHF2RtlJA0h
-         g2orhncxyzteA==
-Received: by mail-ej1-f70.google.com with SMTP id m4-20020a170906160400b006be3f85906eso3058260ejd.23
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:05:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FKB4VlQOufpKotMV20xHpYkdGltyIjnCzZMMtH1boRQ=;
-        b=jEXYDGTjUv+UEregnUhK5DI0e5spTpjLwkPMI/7Q4hgsptwJn59IaV60EEKX91Zm1Q
-         MPIBGwzwfsb1NwPU2Nbh07+GV1ijgLyYVZy26hBnw187FCP0P8Ma79J31E/i1u6+mPLV
-         4nJMyeYqKEWGkd5W909kd7j3NpiCorAsjIH/zOFA55cVEAjTPiADIUW4IWO+t+Wgktxh
-         i/hZayuEIW+XDOixpSGGnWavEs/PFTMulvrUgaJQx3bucTvDdCf0ZIi5s+Cs6ZNnbUGh
-         Rn1lXCTjOcDISsui+yci+Wy+/oIpMaAZ3JlQ/enDCH21z0A72sTG6LGpoxwqXPr/4zmc
-         FdEQ==
-X-Gm-Message-State: AOAM530ww+VDnyFUWu+g1PpqZBy4qiUFFJkGD9IrLcuMao7TC2irjReZ
-        56JAZgFyWxm7VHvq1l24KVbZwFFSXK84fAnCb06bqc+eAxUeYQS50v+g31ghkbPnhhj8b0ba/W/
-        tRNjWOIBcuL3g2q1akgTsV2/32EkHU3C0iS5xN8g=
-X-Received: by 2002:a17:906:6144:b0:6cf:bb2e:a2e1 with SMTP id p4-20020a170906614400b006cfbb2ea2e1mr4221128ejl.299.1646917551077;
-        Thu, 10 Mar 2022 05:05:51 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxiRc5O0Gtppn95CAjgppoU5NcKydy5dEEbUl0JLUUdM1jWq9BY0CaVuFjFQ/Gd7ZN8/q87Xg==
-X-Received: by 2002:a17:906:6144:b0:6cf:bb2e:a2e1 with SMTP id p4-20020a170906614400b006cfbb2ea2e1mr4221113ejl.299.1646917550899;
-        Thu, 10 Mar 2022 05:05:50 -0800 (PST)
-Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id g9-20020aa7c849000000b00412fc6bf26dsm2032975edt.80.2022.03.10.05.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 05:05:50 -0800 (PST)
-Message-ID: <e1d09845-d543-b826-b833-4fabe2967f59@canonical.com>
-Date:   Thu, 10 Mar 2022 14:05:49 +0100
+        with ESMTP id S233180AbiCJNJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:09:48 -0500
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EA644771;
+        Thu, 10 Mar 2022 05:08:46 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id DBF4F20009;
+        Thu, 10 Mar 2022 13:08:42 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        jeanmichel.hautbois@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
+        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org (open list:OMNIVISION OV5670 SENSOR DRIVER),
+        robh@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
+Date:   Thu, 10 Mar 2022 14:08:24 +0100
+Message-Id: <20220310130829.96001-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220310130829.96001-1-jacopo@jmondi.org>
+References: <20220310130829.96001-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: drm: bridge: adi,adv7533: Document
- adi,disable-lanes-override property
-Content-Language: en-US
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-References: <20220309151109.20957-1-biju.das.jz@bp.renesas.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220309151109.20957-1-biju.das.jz@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2022 16:11, Biju Das wrote:
-> On Renesas RZ/{G2L,V2L} platforms changing the lanes from 4 to 3 at
-> lower frequencies causes display instability. On such platforms, it
-> is better to avoid switching lanes from 4 to 3 as it needs different
-> set of PLL parameter constraints to make the display stable with 3
-> lanes.
-> 
-> This patch introduces 'adi,disable-lanes-override' property to disable
-> lane switching at lower frequencies.
-> 
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
->  .../devicetree/bindings/display/bridge/adi,adv7533.yaml      | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> index f36209137c8a..2dc378039d21 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml
-> @@ -84,6 +84,11 @@ properties:
->        timings for HDMI output.
->      type: boolean
->  
-> +  adi,disable-lanes-override:
-> +    description:
-> +      Disables the overriding lanes at lower frequencies.
-> +    type: boolean
+Provide the bindings documentation for Omnivision OV5670 image sensor.
 
-The bindings should not focus on desired feature/functionality of
-driver, but hardware. You are now encoding the driver behavior in the
-bindings.
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
+ 1 file changed, 93 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+new file mode 100644
+index 000000000000..dc4a3297bf6f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Omnivision OV5670 5 Megapixels raw image sensor
++
++maintainers:
++  - Jacopo Mondi <jacopo@jmondi.org>
++
++description: |-
++  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
++  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
++  controlled through an I2C compatible control bus.
++
++properties:
++  compatible:
++    const: ovti,ov5670
++
++  reg:
++    maxItems: 1
++
++  clock-frequency:
++    description: Frequency of the xclk clock.
++
++  pwdn-gpios:
++    description: Reference to the GPIO connected to the PWDNB pin. Active low.
++
++  reset-gpios:
++    description:
++      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
++
++  avdd-supply:
++    description: Analog circuit power. Typically 2.8V.
++
++  dvdd-supply:
++    description: Digital circuit power. Typically 1.2V.
++
++  dovdd-supply:
++    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            description: The sensor supports 1 or 2 data lanes operations.
++            minItems: 1
++            maxItems: 2
++            items:
++              maximum: 2
++
++          clock-noncontinuous: true
++
++required:
++  - compatible
++  - reg
++  - clock-frequency
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov5670: sensor@36 {
++            compatible = "ovti,ov5670";
++            reg = <0x36>;
++
++            clock-frequency=<19200000>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&csi_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
++                };
++            };
++        };
++    };
++
++...
++
+--
+2.35.1
+
