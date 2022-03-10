@@ -2,393 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8144D53F4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 22:53:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D031F4D540F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:00:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232982AbiCJVxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 16:53:47 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36388 "EHLO
+        id S230387AbiCJWA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 17:00:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245595AbiCJVxp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 16:53:45 -0500
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EF8061A07
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:52:43 -0800 (PST)
-Received: by mail-qk1-x730.google.com with SMTP id s16so5599748qks.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:52:43 -0800 (PST)
+        with ESMTP id S1344208AbiCJWAy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:00:54 -0500
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F0C194A9C;
+        Thu, 10 Mar 2022 13:59:52 -0800 (PST)
+Received: by mail-wm1-x332.google.com with SMTP id c192so4079563wma.4;
+        Thu, 10 Mar 2022 13:59:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20210112.gappssmtp.com; s=20210112;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=XoNS7bNckVqBdGF7uX6abypolgbd5rV9QDIOVKHm6/I=;
-        b=xz4XY5Zfo+NZjO3UUnmb6VJlkmCxff5edkzV0EaNdhHTkWMwwMJFYPP8uwxSRO6OGD
-         2A0/CgN+clQWN6ARq3FrZ+elNGxtk1vWMai12iXkC2DBo5PPmavheXfb24NDO1DJ2vbL
-         mZAV265ZQQKGjho08S9GQlcIfkP7j5V0YOp/sdfZE0BVwQF9AgJ8xhLP9IaPUvHalHVv
-         vp7NZs+tc4T1JfhjzxnktQFl2qQXgiTmWVDUlm+3hNx90Neyrx/cf9D0GQa04eY6Jt1y
-         UYqEYX+lLjFWYjs3DmrJmHYHGk/6iEFRQ9jl44XCowywzoC4yv8YR2ljq9HYaMwD62s6
-         g3bA==
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ATGsKfsEtSYY26wkV1+kYw4dYxXJQNfEMLPoJWHhAhM=;
+        b=l2ib4k03ezr3E+w+uSGlgSZaXyowvxEhVU+P6ySILubSAD8FmOhnXsPkzfP0JT0JQT
+         nCz7H55yKli6hwWPXrpKClt0qWQokGsHGBViNX3SDqVd9Sgj5L115cMM7IOSHauaHQbl
+         LEkjN/PDy2CKlM9IxPEWsp8LiG3MNg0d2M4R9C5/5zbJrbLMKFFjgayJTCXJD5izB8RX
+         LY7H8i49u9b9wzRTSUOeVI4EQ24/6LJGtvAqkJz5GzADkEeb0hcHGZWyXsXPxgZFpmD6
+         /ZMiJ9KwSON1RQJEwLmUKp7XAoxY67j++ehaQEr5YCkE8Nj/Utc4udnOOTYDMSef/Wsp
+         TR6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=XoNS7bNckVqBdGF7uX6abypolgbd5rV9QDIOVKHm6/I=;
-        b=UYRZSiCFx2jNCwUIo/ywhR6eJuIM43rrhTVR9a5ILn5xhk6/qEIgxyWNM8hzcTNQFU
-         GtotgSbbtXzYDS158rJQ3exJt00gXiqaBKGDcQhcyFW3LOerYilT6A/PWazzSP38q32o
-         7DsYeM1e3WlgcXNB6/UfJzRQvmnBp07uRPYaiIbEk3uA4304s005lGUXedyf4icd5aS7
-         A/mD6uaE3lWzj28oTuS9olqfg75JsO4+frh0P/aivebas7aTwrduv+Z3KW5A1wf7lngS
-         j5TR1H32rucVRXCDjDiPVzt0Uj8tl6JuwmDcSjNFnI9Mad5KAonA84TztfopbVMqaR+A
-         qyMg==
-X-Gm-Message-State: AOAM532XN2YU+b82k4Do/c/L2Dqik6QVV6HldQmuibqbpsh5W3FpgpPN
-        Bd+hcntKH3KH0NtFAKoBAyIPT17SV/eeAg==
-X-Google-Smtp-Source: ABdhPJyadnPvLaRy/Ev2KYCly6LAV1pwaAzdBaQ34qneHGxwL7+NY9FsL1WvTVWQdbJ0g/d/jdfEgA==
-X-Received: by 2002:a37:bc04:0:b0:5e9:796a:8e76 with SMTP id m4-20020a37bc04000000b005e9796a8e76mr4515104qkf.647.1646949162121;
-        Thu, 10 Mar 2022 13:52:42 -0800 (PST)
-Received: from nicolas-tpx395.localdomain (173-246-12-168.qc.cable.ebox.net. [173.246.12.168])
-        by smtp.gmail.com with ESMTPSA id u16-20020a05620a0c5000b0067af598be2esm3143819qki.136.2022.03.10.13.52.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ATGsKfsEtSYY26wkV1+kYw4dYxXJQNfEMLPoJWHhAhM=;
+        b=ZzPXmuZA1ndpL/sGBDI+UuKEBmYT05YIangJUR4opXnZYoSGeQlklS5K0tehPpcmxx
+         bRaJWL5YAFJ9IubNswaQT4UlIsuckLbv27UUiT7pI3BnQnRa5c/pGUaD7L+zPsypYHCm
+         4i/LhY53aelLcjsKT3/3ZBdlmXqWzG6yriZVRmdn2nidolsA/qT2gx1ev5M82tjsob0f
+         GiPP2UhTJc1bPykPMOtsd1/jtsj9ih/GxlEkSFyRo3GtUPYif/bnlvuvdctMiTitFZ8w
+         eksOoGLNBAD/Y37vjNzmUR7GVyWxpsj93w2hmKw8j8PjFleiCBqQJyM2eCn0ArzTiH3H
+         i42w==
+X-Gm-Message-State: AOAM5315hy79IkLQw9qWmd/gQl7eQmgY7b5W7vt02KetXtyh4PqSLJtz
+        UBa8t00zvnLyktyGDH9cQTY=
+X-Google-Smtp-Source: ABdhPJyFmW0nbFLa/DkX7XyMVXKmus0uuq3D6mmfhOwRhVHwnKbgAncpyTTWuKNzBGM01KrULtLFdw==
+X-Received: by 2002:a05:600c:21d1:b0:381:4fed:159a with SMTP id x17-20020a05600c21d100b003814fed159amr5265987wmj.143.1646949590579;
+        Thu, 10 Mar 2022 13:59:50 -0800 (PST)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.gmail.com with ESMTPSA id o12-20020adfa10c000000b001efb97fae48sm5378277wro.80.2022.03.10.13.59.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 13:52:41 -0800 (PST)
-Message-ID: <2adbb0c29d3951edd953c4738affb40d32cf1d3d.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 6/9] media: uapi: Add a control for DW100 driver
-From:   Nicolas Dufresne <nicolas@ndufresne.ca>
-To:     "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>,
-        mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
-        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
-        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org
-Date:   Thu, 10 Mar 2022 16:52:40 -0500
-In-Reply-To: <d48e2863-0098-41bf-3bc5-2fdf14aa8a11@oss.nxp.com>
-References: <20220308184829.38242-1-xavier.roumegue@oss.nxp.com>
-         <20220308184829.38242-7-xavier.roumegue@oss.nxp.com>
-         <1b2f72c783e7a83956acc788888c539bb83fe995.camel@ndufresne.ca>
-         <986c4b3c-e346-e5b5-7fc9-497d8a4fc89f@oss.nxp.com>
-         <5a43a326a270051df1f7b8402d07b443b02331b6.camel@ndufresne.ca>
-         <d4d170c3-b4df-47ee-28b1-09a4c8ebc5f6@oss.nxp.com>
-         <8d7db603e85b2bf1f1d7d581028e7d9f578ec643.camel@ndufresne.ca>
-         <d48e2863-0098-41bf-3bc5-2fdf14aa8a11@oss.nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.3 (3.42.3-1.fc35) 
+        Thu, 10 Mar 2022 13:59:50 -0800 (PST)
+Date:   Thu, 10 Mar 2022 22:59:49 +0100
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     kernel test robot <lkp@intel.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, llvm@lists.linux.dev,
+        kbuild-all@lists.01.org, Jonathan McDowell <noodles@earth.li>
+Subject: Re: [PATCH v3 10/18] ARM: dts: qcom: add saw for l2 cache and
+ kraitcc for ipq8064
+Message-ID: <Yip01cebik6drIbT@Ansuel-xps.localdomain>
+References: <20220309190152.7998-11-ansuelsmth@gmail.com>
+ <202203101733.hkbTGp6Y-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,LONG_TERM_PRICE,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202203101733.hkbTGp6Y-lkp@intel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le jeudi 10 mars 2022 à 13:20 +0100, Xavier Roumegue (OSS) a écrit :
+On Thu, Mar 10, 2022 at 05:46:31PM +0800, kernel test robot wrote:
+> Hi Ansuel,
 > 
-> On 3/9/22 21:08, Nicolas Dufresne wrote:
-> > Le mercredi 09 mars 2022 à 00:16 +0100, Xavier Roumegue (OSS) a écrit :
-> > > 
-> > > On 3/8/22 21:28, Nicolas Dufresne wrote:
-> > > > Le mardi 08 mars 2022 à 20:42 +0100, Xavier Roumegue (OSS) a écrit :
-> > > > > Hello Nicolas,
-> > > > > 
-> > > > > On 3/8/22 20:15, Nicolas Dufresne wrote:
-> > > > > > Le mardi 08 mars 2022 à 19:48 +0100, Xavier Roumegue a écrit :
-> > > > > > > The DW100 driver gets the dewarping mapping as a binary blob from the
-> > > > > > > userspace application through a custom control.
-> > > > > > > The blob format is hardware specific so create a dedicated control for
-> > > > > > > this purpose.
-> > > > > > > 
-> > > > > > > Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
-> > > > > > > ---
-> > > > > > >     Documentation/userspace-api/media/drivers/dw100.rst |  7 +++++++
-> > > > > > >     include/uapi/linux/dw100.h                          | 11 +++++++++++
-> > > > > > >     2 files changed, 18 insertions(+)
-> > > > > > >     create mode 100644 include/uapi/linux/dw100.h
-> > > > > > > 
-> > > > > > > diff --git a/Documentation/userspace-api/media/drivers/dw100.rst b/Documentation/userspace-api/media/drivers/dw100.rst
-> > > > > > > index 20aeae63a94f..3abad05849ad 100644
-> > > > > > > --- a/Documentation/userspace-api/media/drivers/dw100.rst
-> > > > > > > +++ b/Documentation/userspace-api/media/drivers/dw100.rst
-> > > > > > > @@ -20,4 +20,11 @@ match the expected size inherited from the destination image resolution.
-> > > > > > >     More details on the DW100 hardware operations can be found in
-> > > > > > >     *chapter 13.15 DeWarp* of IMX8MP_ reference manuel.
-> > > > > > >     
-> > > > > > > +The Vivante DW100 m2m driver implements the following driver-specific control:
-> > > > > > > +
-> > > > > > > +``V4L2_CID_DW100_MAPPING (integer)``
-> > > > > > > +    Specifies to DW100 driver its dewarping map (aka LUT) blob as described in
-> > > > > > > +    *chapter 13.15.2.3 Dewarping Remap* of IMX8MP_ reference manual as an U32
-> > > > > > > +    dynamic array.
-> > > > > > > +
-> > > > > > >     .. _IMX8MP: https://www.nxp.com/webapp/Download?colCode=IMX8MPIEC
-> > > > > > 
-> > > > > > This point to a document names "i.MX 8M Plus Applications Processor Datasheet
-> > > > > > for Industrial Products" which does not contain that reference.
-> > > > > My bad.. Wrong link. :)
-> > > > > Will repost with correct link.
-> > > > 
-> > > > Thanks. What I wanted to check is if it actually made sense to expose the
-> > > > synthetized HW LUT. But for this, one need to share the parameters / algo needed
-> > > > to generate them.
-> > > There is no special dewarping algorithm which strictly depends on the
-> > > dw100 IP, or optimized for the IP capabilities.
-> > > 
-> > >    This way we can compare against other popular dewarp
-> > > > algorithms / API and see if they have something in common.
-> > > The dw100 hw lut description is rather close to a how you implement
-> > > dewarping with openGL taking benefit of the shader pipeline stage.
-> > > The main differences with OpenGL implementation are:
-> > > - Fixed vertices coordinates (16x16) vs any
-> > > - Limited resolution on input (texture) coordinates (UQ12.4) vs float
-> > > 
-> > > Standard routines from OpenCV such as initUndistortRectifyMap()
-> > > https://docs.opencv.org/4.5.5/d9/d0c/group__calib3d.html#ga7dfb72c9cf9780a347fbe3d1c47e5d5a
-> > > can be used to generate the binary blob, with an additional decimation
-> > > processing stage to satisfy the 16x16 macro block vertices grid and the
-> > > fixed point format.
-> > > 
-> > > > 
-> > > > The issue I see with this control is relate to the message it gives. When adding
-> > > > controls for the prosperity, we want these control to actually be usable. This
-> > > > is possible if the documentation makes its usage obvious, or if there is Open
-> > > > Source userland to support that.
-> > > So yes, most famous vision opensource project such OpenCV can be used to
-> > > generate the blob.
-> > > > 
-> > > > None of this is met, so as a side effect, this looks like NXP sneaking in
-> > > > private blob control into a publicly maintained Open Source project.
-> > > I then disagree with this statement considering my previous comments.
-> > > 
-> > > I plan to release publicly some programming examples on how to generate
-> > > the dewarping map only using openCV library routines and aligned with
-> > > lenses calibration state of the art method.
-> > > A dedicated openCV module taking benefit of the DW100 will be published
-> > > as well.
-> > > 
-> > > A long term target is to add its support in libcamera, combined with all
-> > > media components (CSI, ISP, ISI) pulled from upstream kernel tree.
-> > > 
-> > >    This isn't
-> > > > truly aligned with how V4L2 controls are meant to be. Doing trivial lut
-> > > > synthesis in the kernel could be fine though.
-> > > I am not sure what you meant with this comment.
-> > > 
-> > > As part of this patch series, an identity map is generated in the driver
-> > > which should be enough for anyone familiar with dewarping process.
-> > > If you meant to generate the remapping table from the lens calibration
-> > > data, I don't think this is a reasonable option considering the
-> > > NP-completeness of the problem.
-> > > 
-> > > If this is the idea of binary blob (despite its public format
-> > > description) which hurts you, the map can be exposed to the kernel in a
-> > > more human readable format such Image_in(xin, yin) -> Image_out(xout,
-> > > yout) in UQ1.31 format but will add extra processing at runtime for
-> > > something which has to be done anyway offline, and memory overhead. But
-> > > I don't think we can end with a generic v4l2 control considering the
-> > > hardware restrictions (vertices position, limited fixed point
-> > > resolution, etc..).
-> > 
-> > Please avoid implication that I would be *hurt* by your patchset. Your
-> > imagination will make you read my comment as saying something it is not. My
-> > comment are strictly scoped within the information you have provided with the
-> > patchset to justify adding a vendor control in contrast to providing controls
-> > that would be reused by another driver later. I'm not into lense or anything, I
-> > strictly review the userland APIs that you submitted with care on documentation
-> > and usability.
-> > 
-> > Try and ignore everything you know and the inner of this hardware design, and
-> > perhaps about dewarping technique and you may endup with a different read of
-> > your patchset. My impression while reading it is that I would not be able to use
-> > it due to lack of example. And if NXP website would stop hosting the
-> > documentation, this would make it just impossible. Time have showed that vendor
-> > controls are rarely the solution and should only be added with great care and
-> > good documentation. For a first driver supporting a technology like this one, it
-> > could be acceptable, assuming it is documented in a future proof way.
-> I fully understand uapi changes have to be handle with care, and that 
-> was the reason I was initially willing to use a private custom control 
-> (as few drivers are doing), without being aware of the current policy 
-> with this regards.
+> Thank you for the patch! Yet something to improve:
 > 
-> I was willing to share the details of the hardware specification through 
-> NXP website such as one could get all public details available on the 
-> IP, and I was (wrongly) thinking the code was talking by itself to give 
-> indication on its format (finally pretty simple). Again, I understand 
-> one could be mistrustful with documentation hosted out of kernel tree 
-> for the reasons you mentioned, even though the risk is pretty small as 
-> NXP (as most of the vendors) has some long term maintenance legal 
-> contracts to fulfill.
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on linux/master linus/master v5.17-rc7 next-20220309]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
 > 
-> > 
-> > All the information and the rationale you are adding in this reply can be added
-> > in the next submission. What I think you should strictly address:
-> > 
-> > - The LUT format and meaning should be documented directly in the Linux Kernel
-> > documentation. Having to register an account with NXP in order to download the
-> > documentation is not acceptable and not future safe.
-> Will do, and will provide a short script example to generate the LUT.
-> > - You forgot to provide the output of v4l2-compliance, I didn't mention yet, but
-> > that would have come of course.
-> The v4l2-compliance report is actually in the cover letter of the patchset.
-> > 
-> > The rest are just nice to have, though generally wanted.
-> > 
-> > - The name of the control could be made more descriptive. The lut is mapping
-> > what in one word ? And that word could be added to the name.
-> I am running out of imagination for figuring out the good word to use.
-> The LUT is mapping "input pixels coordinates" to "output pixels 
-> coordinates".
-> Using OpenGL semantic, this maps textures coordinates to vertices 
-> coordinates. Any naming suggestions are welcome.
+> url:    https://github.com/0day-ci/linux/commits/Ansuel-Smith/Multiple-addition-to-ipq8064-dtsi/20220310-031750
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> config: arm-defconfig (https://download.01.org/0day-ci/archive/20220310/202203101733.hkbTGp6Y-lkp@intel.com/config)
+> compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project 276ca87382b8f16a65bddac700202924228982f6)
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # install arm cross compiling tool for clang build
+>         # apt-get install binutils-arm-linux-gnueabi
+>         # https://github.com/0day-ci/linux/commit/52c3b4af226c7a50772c40012b3789b5348e49b5
+>         git remote add linux-review https://github.com/0day-ci/linux
+>         git fetch --no-tags linux-review Ansuel-Smith/Multiple-addition-to-ipq8064-dtsi/20220310-031750
+>         git checkout 52c3b4af226c7a50772c40012b3789b5348e49b5
+>         # save the config file to linux build tree
+>         mkdir build_dir
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm SHELL=/bin/bash
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+> >> ERROR: Input tree has errors, aborting (use -f to force output)
+> 
+> ---
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
-I just read the 2 paragraph of doc in the 7K pages TRM, and indeed this is
-simple. The table is relocating/remapping vertex (tiles) not pixels. Is my
-reading correct ?
+Just as an info this error comes from the fact that we require
+pxo_board, introduced by another series already merged in linux-arm-msm.
 
-So it's basically an array of 32bit X/Y coordinate. Each coordinate are 16 bit
-fixed point, with 12bit for the rational, 4bit fractionnal (convient considering
-we have 16 x 16 vertex, as it got a step of 1/16). And the size of the control
-will vary depending on the resolution of the incoming stream. Basically rounded
-up form of width/16 x height/16 * 32bit. Right and bottom most tile are just
-missing pixels if the image size is not aligned, at least that was my reading of
-the doc.
+I didn't find how to propose this series directly to the linux-arm-msm
+branch.
 
-The coordinate points to the middle of the tile/vertex, and relocate with
-interpolation toward the specified coordinate. Basically stretching the image in
-that direction.
-
-Some naming ideas:
-
-- DW100_DEWARPING_MAP
-
-Just the doc wording, no detail.
-
-- DW100_DEWARPING_GRID_MAP
-
-Another wording used in the doc.
-
-- DW100_DEWARPING_16x16_VERTEX_MAP
-
-A little more detail, still using mostly doc wording.
-
-- DW100_DEWARPING_16x16_TILE_MAP
-
-Using tile ? I simply use the term tile before because of my background, but
-vextex might speak better to folks used to do this in vertex shaders ?
-
-- DW100_DEWARPING_16x16_GRID_MAP
-
-That basically avoid both tiles and vertex, grid is also a wording used in the
-doc.
-
-Just some ideas. I kept the DW100 since its likely going to be classified as
-vendor. I would not make it private though.
-
-> 
-> > - The patchset could mention userland code that uses it, which show that this is
-> > actually tested*
-> 
-> Will do.
-> Custom control was tested with a gst pipelone using a (hacky) 
-> gstv4l2transform element and a opencv script using custom module which 
-> will be shared publicly.
-> 
-> 
-> 
-> > - There is other feature you mention, unrelated to the dewarp feature. You
-> > haven't said with what userland these have been tested. M2M scaling, csc and
-> > crop are generic should just work with existing userland. You could use
-> > GStreamer as an example.
-> v4l2-ctl and gst pipeline using (vanilla) gstv4l2transform have been 
-> used for testing.
-> 
-> Unfortunately, I had to apply oneliner patches on v4l2-ctl to get the 
-> cropping working to prevent the use of read_write_padded_frame() for 
-> FWHT cases which is applying a sw cropping/compose if I got it right, 
-> which seems incorrect for generic m2m.
-> 
-> https://git.linuxtv.org/v4l-utils.git/tree/utils/v4l2-ctl/v4l2-ctl-streaming.cpp#n1112
-> 
-> https://git.linuxtv.org/v4l-utils.git/tree/utils/v4l2-ctl/v4l2-ctl-streaming.cpp#n1372
-> 
-> I will open a thread on v4l2-utils to discuss this.
-> 
-> 
-> > 
-> > * You'll find this funny, or perhaps even insulting at first, but you'd be
-> > surprise how much code (specially from ARM SoC vendors) that get sent every year
-> > that don't even compile or have never been tested after being up-ported from an
-> > older tree. And that is only scratching the surface of the problem we have to
-> > deal with. Notably drivers were only 1 pixel format out of let's say 10 have
-> > been tested that comes with broken stride and memory buffer size calculation
-> > causing much larger troubles in the system.
-> This certainly does not ensure the driver to be bug-free, but I swear I 
-> tested all in/out pixel format combinations and driver compilation is 
-> W=12 warnings free :)
-> > 
-> > > 
-> > > Adding a generic dewarping API to V4L2 is possible but this was not the
-> > > scope of this patchset, and anyway missing data on any existing public
-> > > dewarp hardware implementation supported by the kernel is somehow a
-> > > blocker for this.
-> > 
-> > I was asking to share about your research that made you opt-out any kind of non-
-> > vendor control for this feature. From your original submission, it would have
-> > been ill advised for me to assume anything. Note that programming interface for
-> > a V4L2 driver does not need to be based on other hardware vendor interface. I'm
-> > not in this industry, but there could have been an industry standard for
-> > expressing lense correction, produce through a a calibration process. The one
-> > thing I've been assuming is that you are in the industry and would be able to
-> > share a bit on that.
-> I am looking on dewarp stuff for 3 months but I can share for sure my 
-> undersanding whatever it worths.
-> The optical system can be mathematically described using a set of 
-> matrices and lenses distorsion parameters which are estimated during 
-> your calibration stage.
-> 
-> https://docs.opencv.org/4.5.5/dc/dbb/tutorial_py_calibration.html
-> 
-> Then it's a matter of resolving a non linear system (ouch) to get the 
-> remapping lut correcting the distorsion. OpenCV computes a 1:1 pixel 
-> (re)mapping.
-> 
-> This is obviously impossible to perform those software computation in 
-> the kernel.
-> One could imagine that some hw dewarpers might have implemented mapping 
-> lut computation in hardware, and if so, the control api could have been 
-> inherited from those calibration parameters. I have no idea if such 
-> hardware exists.
-> 
-> Another alternative is to consider the remapping LUT as an input which 
-> seems more reasonable applying divide and conquer concepts.
-> I would rather go for such option if a generic v4l2 interface should be 
-> designed and combined with a library. And this would likely help to get 
-> synergies with openGL implementation from the application standpoint.
-> 
-> The driver would have to expose its mapping capabilities (mainly 
-> vertices coordinates constraints (x:y mapping) and float resolution).
-> But this might worth waiting a bit to check the availability trend on 
-> such capable hardware.
-> 
-> 
-> 
-> > 
-> > > 
-> > > > 
-> > > > > > 
-> > > > > > > diff --git a/include/uapi/linux/dw100.h b/include/uapi/linux/dw100.h
-> > > > > > > new file mode 100644
-> > > > > > > index 000000000000..0ef926c61cf0
-> > > > > > > --- /dev/null
-> > > > > > > +++ b/include/uapi/linux/dw100.h
-> > > > > > > @@ -0,0 +1,11 @@
-> > > > > > > +/* SPDX-License-Identifier: GPL-2.0-only WITH Linux-syscall-note */
-> > > > > > > +/* Copyright 2022 NXP */
-> > > > > > > +
-> > > > > > > +#ifndef __UAPI_DW100_H__
-> > > > > > > +#define __UAPI_DW100_H__
-> > > > > > > +
-> > > > > > > +#include <linux/v4l2-controls.h>
-> > > > > > > +
-> > > > > > > +#define V4L2_CID_DW100_MAPPING		(V4L2_CID_USER_DW100_BASE + 1)
-> > > > > > > +
-> > > > > > > +#endif
-> > > > > > 
-> > > > 
-> > 
-
+-- 
+	Ansuel
