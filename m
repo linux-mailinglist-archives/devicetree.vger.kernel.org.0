@@ -2,128 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A8A4D5568
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:31:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CEC14D557E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:33:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239922AbiCJXb7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 18:31:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39888 "EHLO
+        id S1344798AbiCJXeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 18:34:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239112AbiCJXb7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:31:59 -0500
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E86019CCC3;
-        Thu, 10 Mar 2022 15:30:57 -0800 (PST)
-Received: by mail-oi1-f170.google.com with SMTP id k2so7650181oia.2;
-        Thu, 10 Mar 2022 15:30:57 -0800 (PST)
+        with ESMTP id S1344799AbiCJXep (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:34:45 -0500
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B28EA1520D1;
+        Thu, 10 Mar 2022 15:33:43 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id n5-20020a4a9545000000b0031d45a442feso8723427ooi.3;
+        Thu, 10 Mar 2022 15:33:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ocTCqqrDPX9cRK9RPGuN5bEfKehsuGdaZayXyJQvr38=;
-        b=ffEhtEU3au0LUwZ4g0XaXUzeVzlvuLrol0JpVT4890PlMPyXk6VzARGZ0493QSOxns
-         p5jDm4DV2IWcdEFz+xUw/5wpIypc2Kw02fUGxrNsNxgQeOj4j2RR7iAVWYlx0lOSNBMc
-         50zibUV13c9d8Be3kswZAND3/S+V92TOZSgzXT/4htMgM1x4eSaQLf9GTiegq+NRLzL9
-         tKeXCKWTccCpuP2oGaTupo0AGxOzqM3nRAIe9Tbhr0cPCvAPI2vaXTb6m8RVpSvH8fi5
-         28URoV0YJUKM7S/gMiZ+MCBJOg8eItb1pbeCqNdmVVIE93bwqMXKgnQyU459CgJFafg5
-         BWfA==
-X-Gm-Message-State: AOAM533E5EHM2Dxf/7kQFS54UkLEqjCFTwz5nFU5PcRcrme9dUQ7QZVO
-        leoLUkHAqDgV4iquqO1H3KzBmcXSxA==
-X-Google-Smtp-Source: ABdhPJzMcb39ssoqPYbIkrQ0/a/eZGPIWoyjuesDwYVqQtSmHOff5M6fyJUVptL7S8fI2mbYdzCw5Q==
-X-Received: by 2002:a05:6808:1982:b0:2da:b57:16cc with SMTP id bj2-20020a056808198200b002da0b5716ccmr4904136oib.37.1646955056843;
-        Thu, 10 Mar 2022 15:30:56 -0800 (PST)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mMcGjRsIiT+Ovsq+iXrTNfC/ZKe9wCeHYBkp/8KF7YE=;
+        b=CylYORRUoK6QKLA7X1QdCa43ij4opUcyid3YJrK52gClfpFjYCgKApKR/U1gBnIAKn
+         7YJSYpRfHYJyHv2reE80mpm8ufljgGub2NE/pMc5LfsrOrZwgK3SdcWYfC2TpAZtmiVO
+         NCNXLv0C8H9r+9tfLABIi9AtAbyMPYa03eu3VHR4kSkjtclq4XoUgPW9V03xEm03AqON
+         Y9o+INLn/ixo3q2dih2gX+dPesTBgdIojxerhifmXfXD2CPX+2F+ulaJur7lAX1LDiWR
+         S+YB3je7VpEy1yjDtXsV080pIhRubv658aqoRZxMBiKMk8TIGJRFxrgJA9QgMfxqBEfB
+         ujMg==
+X-Gm-Message-State: AOAM530c6kE7tZ+i7W2gL50Ccmh+VKRzRFkv1NLPLjaVMyV7523MxjHV
+        he3PTKaXh+3XvaAbS9Bejw==
+X-Google-Smtp-Source: ABdhPJwZL226YGWciO/E+md1fMIxHYJLbzCMP6BUz75y4bhrEx+2JfZJLfAOLzljUBBFQ4C0zfiYjg==
+X-Received: by 2002:a4a:d047:0:b0:321:1ab0:e461 with SMTP id x7-20020a4ad047000000b003211ab0e461mr3517317oor.20.1646955222961;
+        Thu, 10 Mar 2022 15:33:42 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a19-20020a056808099300b002da1428db03sm2916384oic.7.2022.03.10.15.30.55
+        by smtp.gmail.com with ESMTPSA id 4-20020a4ae1a4000000b003215cb3d53dsm1201015ooy.4.2022.03.10.15.33.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 15:30:56 -0800 (PST)
-Received: (nullmailer pid 2306669 invoked by uid 1000);
-        Thu, 10 Mar 2022 23:30:55 -0000
-Date:   Thu, 10 Mar 2022 17:30:55 -0600
+        Thu, 10 Mar 2022 15:33:42 -0800 (PST)
+Received: (nullmailer pid 2320068 invoked by uid 1000);
+        Thu, 10 Mar 2022 23:33:41 -0000
+Date:   Thu, 10 Mar 2022 17:33:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
-Message-ID: <YiqKL45VLlhNl2Gn@robh.at.kernel.org>
-References: <20220310130829.96001-1-jacopo@jmondi.org>
- <20220310130829.96001-2-jacopo@jmondi.org>
- <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
- <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
- <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     linux-gpio@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, erkin.bozoglu@xeront.com
+Subject: Re: [PATCH] dt-bindings: pinctrl: rt2880: add missing pin groups and
+ functions
+Message-ID: <YiqK1SVqnYT5QAJA@robh.at.kernel.org>
+References: <20220310140542.7483-1-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220310140542.7483-1-arinc.unal@arinc9.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 10, 2022 at 06:26:02PM +0100, Krzysztof Kozlowski wrote:
-> On 10/03/2022 18:16, Jacopo Mondi wrote:
-> > Hi Krzysztof
-> > 
-> > On Thu, Mar 10, 2022 at 03:29:24PM +0100, Krzysztof Kozlowski wrote:
-> >> On 10/03/2022 14:08, Jacopo Mondi wrote:
-> >>> Provide the bindings documentation for Omnivision OV5670 image sensor.
-> >>>
-> >>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> >>> ---
-> >>>  .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
-> >>
-> >> Add the file to maintainers entry.
-> >>
-> > 
-> > Right
-> > 
-> >>>  1 file changed, 93 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..dc4a3297bf6f
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>
-> >> Missing vendor prefix in file name.
-> >>
-> > 
-> > Right x2
-> > 
-> >>> @@ -0,0 +1,93 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Omnivision OV5670 5 Megapixels raw image sensor
-> >>> +
-> >>> +maintainers:
-> >>> +  - Jacopo Mondi <jacopo@jmondi.org>
-> >>
-> >> Please add also driver maintainer.
-> >>
-> > 
-> > I never got what the policy was, if the maintainer entries here only
-> > refer to the binding file or to the driver too
+On Thu, 10 Mar 2022 17:05:42 +0300, Arınç ÜNAL wrote:
+> Add the missing pin groups:
+> jtag, wdt
 > 
-> It is a person responsible for the bindings, so indeed it might not feed
-> existing maintainer.
+> Add the missing functions:
+> i2s, jtag, pcie refclk, pcie rst, pcm, spdif2, spdif3, wdt refclk, wdt rst
+> 
+> Sort pin groups and functions in alphabetical order. Fix a typo.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+> I didn't know the order to put the missing groups and functions so I sorted
+> them in alphabetical order, let me know if it's not ok.
+> 
+> Arınç
+> 
+> ---
+>  .../bindings/pinctrl/ralink,rt2880-pinmux.yaml        | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+> 
 
-No need for a MAINTAINERS entry as get_maintainers.pl will pick it up 
-from here.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
