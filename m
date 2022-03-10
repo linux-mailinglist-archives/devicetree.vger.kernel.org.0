@@ -2,97 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E114D552F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:19:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F3DBE4D553C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:22:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241371AbiCJXUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 18:20:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41076 "EHLO
+        id S1344577AbiCJXXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 18:23:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236297AbiCJXUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:20:09 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1ABF7C12C4;
-        Thu, 10 Mar 2022 15:19:07 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B75D3B82958;
-        Thu, 10 Mar 2022 23:19:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50DBDC340E8;
-        Thu, 10 Mar 2022 23:19:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646954344;
-        bh=V4wnjvY4L2Bz4KbOd372AkNLQFQqJB/gYFyf2CbrAPY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=V7OfqB2HgEAfy/XIE/6MNNrzxwNkKKdMG1if4kqM8Xb3YcYe9BTNq7v1cKkcAw+37
-         nL8azRKEeaV8W/ImP7+jAdPAktJg0QELfw312GWfajTimQ3S8h8s4j4520cSmmsnPR
-         ZioKvp4ioZ8tM7KerdVAcqpBuU5PXvtCyLLWEWXORZ0VCP+LelslbUoiI2k7LwYPqC
-         prep9kbc87SthFLJxs5ilYSBH15vLgLazsnI9UnW//brk1wgrwrWeiqd1DmXBAHuGW
-         nEUQU1KpEsvygKmFWTYpcr7AnsI83dOlmwBcbAlJVGmlUQLJTK7AOgn8GoRGUjfRNv
-         YyvAX+NbLhBkw==
-Received: by mail-ed1-f46.google.com with SMTP id b24so8886278edu.10;
-        Thu, 10 Mar 2022 15:19:04 -0800 (PST)
-X-Gm-Message-State: AOAM532PooI/8eQfKRMF1EcqdmlzVmn5ItitJnYWSKhNvXndGIvENOVG
-        VtdmvJg071J7RchfRKpz7mPvwFnULGb0XehB2A==
-X-Google-Smtp-Source: ABdhPJxp5bzTn1l2vSAMzoBAlG+a+dzRRbgefEAQj1lm2OxzmVsKHXuPiu56tHVQ2UwYQ4D6aHBqV8vPXCoNGMDSloU=
-X-Received: by 2002:aa7:d355:0:b0:415:f703:569 with SMTP id
- m21-20020aa7d355000000b00415f7030569mr6593519edr.215.1646954342540; Thu, 10
- Mar 2022 15:19:02 -0800 (PST)
+        with ESMTP id S1343572AbiCJXXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:23:32 -0500
+Received: from mail-oo1-f53.google.com (mail-oo1-f53.google.com [209.85.161.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EF0D21BC;
+        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
+Received: by mail-oo1-f53.google.com with SMTP id l24-20020a4a8558000000b00320d5a1f938so8662892ooh.8;
+        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=QxaQQz9lOMso9LFniZ3e9gms+zpAX5bMoBiGaq2NQ80=;
+        b=PFElRQYGPOh3vw7twASS65kLbVEGmpv1hKe8jqdIFZb3iscFnSO9bsO0Xh82iiS4K0
+         0HoiG8nBkgZ9nlEsFUr5AL/BDqjufpSaUmGv3NgNN2FEPGhvun14Wr2ozW42Im3b+NG3
+         cBXOMLwT7hyG/kAOXKnu3E+JYuZDS6SZLev7xA9jSwWnOmnunJ9FIrHSmQbYjQqZJlry
+         wX4JD1fDbywcBDcLBrCujIIysB2eVCj0RnWYuj2a4BKIAGtgpFPCzg5pZA3/k6MvssiX
+         3fkM6P3L+jIteRoWdrjw/oH4ziZC/+9uCz4hlgiQ4ueMN5KFUntxupm+riMqckqxhFGU
+         zakA==
+X-Gm-Message-State: AOAM531RLMwsKDgJ92LlNVNXfJLUUPkp9Vdcs4PSphLou37YDFD4arUk
+        Pc3AJjJfeqOLxcuTxKoHVA==
+X-Google-Smtp-Source: ABdhPJwFNsTJVQACKTaShwctSIDZiz2m99HjBzfGEBRTiXcYlYBa4o1rP9aU6sHuo0rtftWCEpnoWw==
+X-Received: by 2002:a05:6870:a2c6:b0:da:b3f:2b2a with SMTP id w6-20020a056870a2c600b000da0b3f2b2amr9626676oak.201.1646954549150;
+        Thu, 10 Mar 2022 15:22:29 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id n6-20020a9d6f06000000b005b266e43c92sm2567768otq.73.2022.03.10.15.22.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Mar 2022 15:22:28 -0800 (PST)
+Received: (nullmailer pid 2287090 invoked by uid 1000);
+        Thu, 10 Mar 2022 23:22:27 -0000
+Date:   Thu, 10 Mar 2022 17:22:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     trix@redhat.com
+Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, tmaimon77@gmail.com,
+        openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+        avifishman70@gmail.com, venture@google.com,
+        benjaminfair@google.com, linux-stm32@st-md-mailman.stormreply.com,
+        yuenn@google.com, tali.perry1@gmail.com,
+        alexandre.torgue@foss.st.com, mcoquelin.stm32@gmail.com,
+        paulburton@kernel.org, linux-arm-kernel@lists.infradead.org,
+        krzk+dt@kernel.org
+Subject: Re: [PATCH] dt-bindings: clk: cleanup comments
+Message-ID: <YiqIMxCBFY8Aq5p4@robh.at.kernel.org>
+References: <20220309222302.1114561-1-trix@redhat.com>
 MIME-Version: 1.0
-References: <20220309182403.12968-1-singh.kuldeep87k@gmail.com>
-In-Reply-To: <20220309182403.12968-1-singh.kuldeep87k@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 10 Mar 2022 17:18:51 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+k+ridWTkdy4xwTC7VxUTU8tu+Q2BA9kbQVA222PWvZw@mail.gmail.com>
-Message-ID: <CAL_Jsq+k+ridWTkdy4xwTC7VxUTU8tu+Q2BA9kbQVA222PWvZw@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Make DTs compliant with bindings
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Chanho Min <chanho.min@lge.com>,
-        Tom Lendacky <thomas.lendacky@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220309222302.1114561-1-trix@redhat.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Mar 9, 2022 at 12:24 PM Kuldeep Singh
-<singh.kuldeep87k@gmail.com> wrote:
->
-> These patches are an attempt to fix DTs which are not in compliant with
-> pl022 binding.
-> LG1312, LG1313 and amd seattle platforms require fix in clock
-> properties.
-> https://lore.kernel.org/linux-spi/20220309171847.5345-1-singh.kuldeep87k@gmail.com/T/#u
->
-> Based on git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git,
-> master.
-> Rob, could you please help in picking these patches as git tree is not
-> specified in MAINTAINERS.
+On Wed, 09 Mar 2022 14:23:02 -0800, trix@redhat.com wrote:
+> From: Tom Rix <trix@redhat.com>
+> 
+> For spdx, first line /* */ for *.h, change tab to space
+> 
+> Replacements
+> devider to divider
+> Comunications to Communications
+> periphrals to peripherals
+> supportted to supported
+> wich to which
+> Documentatoin to Documentation
+> 
+> Signed-off-by: Tom Rix <trix@redhat.com>
+> ---
+>  include/dt-bindings/clock/alphascale,asm9260.h    | 2 +-
+>  include/dt-bindings/clock/axis,artpec6-clkctrl.h  | 2 +-
+>  include/dt-bindings/clock/boston-clock.h          | 3 +--
+>  include/dt-bindings/clock/marvell,mmp2.h          | 4 ++--
+>  include/dt-bindings/clock/marvell,pxa168.h        | 4 ++--
+>  include/dt-bindings/clock/marvell,pxa910.h        | 4 ++--
+>  include/dt-bindings/clock/nuvoton,npcm7xx-clock.h | 2 +-
+>  include/dt-bindings/clock/stm32fx-clock.h         | 4 ++--
+>  include/dt-bindings/clock/stratix10-clock.h       | 2 +-
+>  9 files changed, 13 insertions(+), 14 deletions(-)
+> 
 
-I don't take dts files. Resend to soc@kernel.org asking them to apply.
-
->
-> Kuldeep Singh (2):
->   arm64: dts: lg131x: Update spi clock properties
->   arm64: dts: seattle: Update spi node properties
-
-Acked-by: Rob Herring <robh@kernel.org>
-
->
->  arch/arm64/boot/dts/amd/amd-seattle-soc.dtsi | 8 ++++----
->  arch/arm64/boot/dts/lg/lg1312.dtsi           | 8 ++++----
->  arch/arm64/boot/dts/lg/lg1313.dtsi           | 8 ++++----
->  3 files changed, 12 insertions(+), 12 deletions(-)
->
-> --
-> 2.25.1
->
+Applied, thanks!
