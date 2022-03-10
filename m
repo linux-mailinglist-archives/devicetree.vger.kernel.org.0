@@ -2,101 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A785E4D438F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 10:29:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 492674D4397
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 10:34:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240818AbiCJJa0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 04:30:26 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34614 "EHLO
+        id S234473AbiCJJfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 04:35:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236413AbiCJJaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 04:30:25 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAD8650B07
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 01:29:24 -0800 (PST)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 05B983F1AF
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 09:29:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646904563;
-        bh=1NdJWh/PvB3rUR4jNqgZINU0/6CuntLvKcmqadFgqrk=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=sD3ZSrIw6zS7xEvkIZE+IV7l1z4P4JvHaLTIFwm979ZbvC28oxEy6i6C1J0FcAmED
-         2rCj5QzrJ4Gq2qBzT2hu5ksHOg8vjbkNhLVRt0IHmsEtYj7yIG1dcpyZeXXsvxyeyA
-         dEd2Yj6U7L2MBcxwfw7x38D5NwapFyXjUyqozvJlzpeKU4k7O6ulZgCPElRXoI4a6l
-         hHgvJRZMJR839LCwDpfPiruwprM5ADsuMfDDIUVpEJ3peQcG2SizFsBGNxaTSdGTjl
-         clifU3eI3eKdnDUHaUnpolqSMZeGHfLrAxVdJGTWCn2MXwD+naocZW8G7TegF+cSX7
-         xGyJcebUzVKTQ==
-Received: by mail-ed1-f71.google.com with SMTP id bd4-20020a056402206400b004162b6d8618so2745416edb.19
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 01:29:22 -0800 (PST)
+        with ESMTP id S230107AbiCJJfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 04:35:13 -0500
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DBDE5425;
+        Thu, 10 Mar 2022 01:34:12 -0800 (PST)
+Received: by mail-lj1-x22a.google.com with SMTP id h11so6877606ljb.2;
+        Thu, 10 Mar 2022 01:34:12 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=message-id:date:mime-version:user-agent:subject:to:cc:references
+         :from:in-reply-to:content-transfer-encoding;
+        bh=Xsz2Lkc59BEsun7yjrO91nkFvMRDtNpNPTs688heElw=;
+        b=nCf1DdLQyptXs38LgEvsF/o3PS7VluBDu4YHfX/AlwCyZwxsbCNMVOFyJ1kQsbwKFZ
+         y1AgzsybGfgx+/4bwTjBoDhsJc7Q54hdRyT7TYKW7tF/jw7t4xtyO3Hd4l9uH6SQjFZT
+         0Z1sicd12qoreNXIWx3RhqjUy7t/1PzRpmO9VibO6KRp0sLqzElp6MxHRmk8XmvwFrOQ
+         1VQaUhCia0AO5VO6PodBRbhdHXss95vaizkS2Cw/TYW0S0tNLnpfLPAMcpLwqf70zESd
+         qHmNVvBbthLwvCsil5cI0aZhTQKzeZAoTERDXq6oYbUSkD88mq3dUbcw5c4p+KULCNan
+         LjbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=1NdJWh/PvB3rUR4jNqgZINU0/6CuntLvKcmqadFgqrk=;
-        b=xo2AToDlGrsztZ/zrvl0/ILiwLhkKx/XD8Z/717VVnNyrmdznw1sxi43Ag5DhFOSOd
-         lQDakKX8y4OWJylGrEvxV1ffPjadWkgq90esJBp3lEv2ZOia88FWN5D2S+uchNMeLg1I
-         dRxjQtJgvfHs3U0/yUABNBzyQUngOwlLgBVdEvvvV46OIQUp18psupU4ur+Q2TejPhH9
-         WrijXlsPsp/EuHyVhf7dONalGBZYgoq35b5Q/G0Z5hm3+6Ec7x4pka1Pv8qaTSeGC1id
-         N9+XdoQMI8pu9aIvKfKTcvrFFMcyZt0KwbgEVXyUcM7heo2Oq+jmbihOUaocQXFnfhxe
-         lgtA==
-X-Gm-Message-State: AOAM5321SzYp462k8MHblNNzPuhI6RCHHhGOAHro+q4wt3r6q2VzPMY3
-        eJGOQv+RgjOkbZZSeq06YDKEZ+xaWv9tIhYKbtQ7vTV6ynPWHHwrKT3TNBhlwBvqhyVO+Hp8/GN
-        iZxE+fro/ZnFvluugL6yQDpinKFJhvO99opQzzcM=
-X-Received: by 2002:a17:906:a210:b0:6d5:9fa:11ce with SMTP id r16-20020a170906a21000b006d509fa11cemr3628265ejy.172.1646904562603;
-        Thu, 10 Mar 2022 01:29:22 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxsL/hVWFJ2S2dnF40xaxa9bw6b0lYz8CaZYtyrcNxk8PiNss5Y44G6uC1XRYU2bqtrqXyM6A==
-X-Received: by 2002:a17:906:a210:b0:6d5:9fa:11ce with SMTP id r16-20020a170906a21000b006d509fa11cemr3628254ejy.172.1646904562431;
-        Thu, 10 Mar 2022 01:29:22 -0800 (PST)
-Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id u9-20020aa7db89000000b0041372781e69sm1775343edt.52.2022.03.10.01.29.21
+         :to:cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=Xsz2Lkc59BEsun7yjrO91nkFvMRDtNpNPTs688heElw=;
+        b=QCxRyPaz9PQ7IQj0xx+cEtn1pq2eessRnNdJWFljY7Y3rJU0evAvQvA0W6UYbsY9jv
+         zug6azOtEMmbTbON8vm8qoL7UjL5FT604XqzN8nuOjDrkKXskAWmnlXxWx/P9EXLhoIF
+         l1pZ+B0F5f9gd3lHCqe4E3gsJS32rkBplK2HlfgOQT+oI/1idmgxMeWFR7LqulAm4ru5
+         /ysDt7HYhT+bWZAMg+EJfmAHKFZMCbtZ9qfvZtlO/7mpWbyOLXAGcnbnGyJcO1h+jVza
+         4tfClM1Gu3bkEN9J6BpWwRq44VyiFgaGVkIRMmwyNHFmsDeynr1hfktM23iAwbH/+DF6
+         5t6w==
+X-Gm-Message-State: AOAM532OuCJBh3I9PU7osqmb7of2BVXZra0mfRB1faZYSGe8783hhPQL
+        sCFoOCHZ9dNUviWHTog+5Dk=
+X-Google-Smtp-Source: ABdhPJynDR8G6YjqNDHeNOobpf4mBwK4aHzv/8zLIsk/ASWSGtX7HiGWpj9bSk8i8WlncJrJMWyf1w==
+X-Received: by 2002:a2e:a586:0:b0:247:e785:49cd with SMTP id m6-20020a2ea586000000b00247e78549cdmr2425999ljp.503.1646904850417;
+        Thu, 10 Mar 2022 01:34:10 -0800 (PST)
+Received: from [192.168.26.149] (ip-194-187-74-233.konfederacka.maverick.com.pl. [194.187.74.233])
+        by smtp.googlemail.com with ESMTPSA id u13-20020a056512094d00b0043e6c108925sm875010lft.136.2022.03.10.01.34.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 01:29:22 -0800 (PST)
-Message-ID: <8e531efa-1619-a337-0d54-5f0cc24404f7@canonical.com>
-Date:   Thu, 10 Mar 2022 10:29:21 +0100
+        Thu, 10 Mar 2022 01:34:10 -0800 (PST)
+Message-ID: <2ddb9373-82b6-8ea8-e880-52e25ed8c7f6@gmail.com>
+Date:   Thu, 10 Mar 2022 10:34:08 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: Add QEMU virt machine compatible
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220310021224.599398-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220310021224.599398-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:96.0) Gecko/20100101
+ Thunderbird/96.0
+Subject: Re: [PATCH V3] dt-bindings: nvmem: add U-Boot environment variables
+ binding
+To:     Michal Simek <michal.simek@xilinx.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     Tom Rini <trini@konsulko.com>, Simon Glass <sjg@chromium.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Ricardo Salveti <ricardo@foundries.io>,
+        Jorge Ramirez-Ortiz <jorge@foundries.io>,
+        Sean Anderson <seanga2@gmail.com>, devicetree@vger.kernel.org,
+        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+References: <20220228131250.16943-1-zajec5@gmail.com>
+ <578e243d-2273-add3-898c-959888c2a155@xilinx.com>
+ <20220309154041.GA3202199@robh.at.kernel.org>
+ <9e340aaf-8d26-24fb-7097-9bcce63ea07e@xilinx.com>
+From:   =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+In-Reply-To: <9e340aaf-8d26-24fb-7097-9bcce63ea07e@xilinx.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2022 03:12, Rob Herring wrote:
-> The top level QEMU virt machine compatible, linux,dummy-virt, has been
-> in use for a long time, but never documented. Add a schema for it.
+On 10.03.2022 09:45, Michal Simek wrote:
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/arm/linux,dummy-virt.yaml        | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/linux,dummy-virt.yaml
 > 
+> On 3/9/22 16:40, Rob Herring wrote:
+>> On Wed, Mar 09, 2022 at 02:42:43PM +0100, Michal Simek wrote:
+>>>
+>>>
+>>> On 2/28/22 14:12, Rafał Miłecki wrote:
+>>>> From: Rafał Miłecki <rafal@milecki.pl>
+>>>>
+>>>> U-Boot uses environment variables for storing device setup data. It
+>>>> usually needs to be accessed by a bootloader, kernel and often
+>>>> user-space.
+>>>>
+>>>> This binding allows describing environment data located in a raw flash
+>>>> partition. It's treated as NVMEM device and can be reused later for
+>>>> other storage devices.
+>>>>
+>>>> Using DT should be cleaner than hardcoding & duplicating such info in
+>>>> multiple places. Bootloader & kernel can share DTS and user-space can
+>>>> try reading it too or just have correct data exposed by a kernel.
+>>>>
+>>>> A custom "compatible" string allows system to automatically load
+>>>> relevant NVMEM driver but phandle can be also used for reading raw
+>>>> location.
+>>>>
+>>>> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+>>>> ---
+>>>> V2: Update descriptions to don't make this binding MTD (flash partition)
+>>>>       specific. Mention multiple possible storage ways.
+>>>> V3: Drop
+>>>>       allOf:
+>>>>         - $ref: nvmem.yaml#
+>>>>       as we don't use anything rom the nvmem.yaml. Thanks Rob.
+>>>> ---
+>>>>    .../devicetree/bindings/nvmem/u-boot,env.yaml | 62 +++++++++++++++++++
+>>>>    MAINTAINERS                                   |  5 ++
+>>>>    2 files changed, 67 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..e70b2a60cb9a
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+>>>> @@ -0,0 +1,62 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/nvmem/u-boot,env.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: U-Boot environment variables
+>>>> +
+>>>> +description: |
+>>>> +  U-Boot uses environment variables to store device parameters and
+>>>> +  configuration. They may be used for booting process, setup or keeping end user
+>>>> +  info.
+>>>> +
+>>>> +  Data is stored using U-Boot specific formats (variant specific header and NUL
+>>>> +  separated key-value pairs).
+>>>> +
+>>>> +  Environment data can be stored on various storage entities, e.g.:
+>>>> +  1. Raw flash partition
+>>>> +  2. UBI volume
+>>>> +
+>>>> +  This binding allows marking storage device (as containing env data) and
+>>>> +  specifying used format.
+>>>> +
+>>>> +  Right now only flash partition case is covered but it may be extended to e.g.
+>>>> +  UBI volumes in the future.
+>>>> +
+>>>> +maintainers:
+>>>> +  - Rafał Miłecki <rafal@milecki.pl>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>> +      - description: A standalone env data block
+>>>> +        const: u-boot,env
+>>>> +      - description: Two redundant blocks with active one flagged
+>>>> +        const: u-boot,env-redundant-bool
+>>>> +      - description: Two redundant blocks with active having higher counter
+>>>> +        const: u-boot,env-redundant-count
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    partitions {
+>>>> +        compatible = "fixed-partitions";
+>>>> +        #address-cells = <1>;
+>>>> +        #size-cells = <1>;
+>>>> +
+>>>> +        partition@0 {
+>>>> +            reg = <0x0 0x40000>;
+>>>> +            label = "u-boot";
+>>>> +            read-only;
+>>>> +        };
+>>>> +
+>>>> +        env: partition@40000 {
+>>>> +            compatible = "u-boot,env";
+>>>> +            reg = <0x40000 0x10000>;
+>>>> +        };
+>>>> +    };
+>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>> index db8052bc1d26..24fc181a7e6c 100644
+>>>> --- a/MAINTAINERS
+>>>> +++ b/MAINTAINERS
+>>>> @@ -19958,6 +19958,11 @@ W:    http://linuxtv.org
+>>>>    T:    git git://linuxtv.org/media_tree.git
+>>>>    F:    drivers/media/pci/tw686x/
+>>>> +U-BOOT ENVIRONMENT VARIABLES
+>>>> +M:    Rafał Miłecki <rafal@milecki.pl>
+>>>> +S:    Maintained
+>>>> +F:    Documentation/devicetree/bindings/nvmem/u-boot,env.yaml
+>>>> +
+>>>>    UACCE ACCELERATOR FRAMEWORK
+>>>>    M:    Zhangfei Gao <zhangfei.gao@linaro.org>
+>>>>    M:    Zhou Wang <wangzhou1@hisilicon.com>
+>>>
+>>> I think that parsing these partitions is quite sw intensive process and I
+>>> can't still see the value to have compatible string here.
+>>
+>> It's always good to know what a node represents.
+> 
+> Also agree but isn't it enough to use proper label for it?
+
+Let me quote Rob here:
+
+ > 'label' is supposed to correspond to a sticker on a port or something
+ > human identifiable
+
+^^ https://patchwork.ozlabs.org/comment/2812214/
+
+"label" is already abused for naming MTD partitions, I don't think it's
+a good idea to abuse it even more for different purposes. Also
+"compatible" is a standard way for describing hardware blocks & various
+entities (identifying them).
 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-
-Best regards,
-Krzysztof
+I'm also wondering if using "label" instead of "compatible" wouldn't
+require breaking changes in some DT files. What if someone uses a random
+"label" (e.g. "ub00tenv") and has user-space based on that MTD partition
+name?
+If we require changing "label" that will require people to also update
+names in other places (user-space).
+I'm not sure how valid is that argument, just wondering.
