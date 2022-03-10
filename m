@@ -2,250 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BA884D4E12
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 17:07:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07F7B4D4EB2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 17:20:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239364AbiCJQG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 11:06:29 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44306 "EHLO
+        id S237664AbiCJQUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 11:20:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239706AbiCJQGX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 11:06:23 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3F3B18645C;
-        Thu, 10 Mar 2022 08:05:21 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id w3-20020a4ac183000000b0031d806bbd7eso7218497oop.13;
-        Thu, 10 Mar 2022 08:05:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PdFrUf+INh35GayN7dpMNmxJiWP8mD1xY7Ss28Z++S0=;
-        b=bAa6bTyDz27918Y+R6hOBrkegJHXMCsOvLzK9dbRN+/QSY7bcQpPuLzD83oGA+hLvy
-         IO/LVVcFp0TGiO4x16NUSGHN6tfmbS4bWx9w4ibLJ1t7Ha8kOL1Kgf2rz/gmm5fW1SwF
-         4Z8nIbzHUGYFBSznAH1HNUt9qTDtqjNOanMwNMYGxvVEOiCBngPxSE+6k0InmmF/1MK9
-         5ColHL6GCYLbe3vKtzfYKAuCm4j45WkJQNOQwo+1TS7dVEIfqFVcWq7Mw/Vy2rhe3lV5
-         P1wzjHUZtQXH57CtdvxYX2wjIK+vmn7YNfKoZz7OmFidgLi7vxiqiZyozd1PmPSs6zO8
-         bp4w==
-X-Gm-Message-State: AOAM5303l7CYTwY5esj/yFZXTSJ7GJB6NGzfLHSjFB/7+TooyvnGurQY
-        ZidYag4h4OhNEps6r93Nng==
-X-Google-Smtp-Source: ABdhPJyVa95VoA/cvB+GOq1Gu0MbtaRZul/cPjJTzHCdHh71P43Ms/dWlyX537UIRG2fl8E6T8mjYA==
-X-Received: by 2002:a05:6870:a2c6:b0:da:b3f:3212 with SMTP id w6-20020a056870a2c600b000da0b3f3212mr3090042oak.194.1646928320952;
-        Thu, 10 Mar 2022 08:05:20 -0800 (PST)
-Received: from xps15.. ([2607:fb90:20d2:449c:e413:94ed:2767:f2c4])
-        by smtp.googlemail.com with ESMTPSA id s21-20020a056870629500b000d9a2291d2fsm2395413oan.30.2022.03.10.08.05.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 08:05:20 -0800 (PST)
-From:   Rob Herring <robh@kernel.org>
-To:     Masahiro Yamada <masahiroy@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Maxime Ripard <maxime@cerno.tech>
-Subject: [PATCH v2 2/2] dt-bindings: kbuild: Use DTB files for validation
-Date:   Thu, 10 Mar 2022 10:05:13 -0600
-Message-Id: <20220310160513.1708182-3-robh@kernel.org>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220310160513.1708182-1-robh@kernel.org>
-References: <20220310160513.1708182-1-robh@kernel.org>
-MIME-Version: 1.0
+        with ESMTP id S242260AbiCJQUj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 11:20:39 -0500
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-eopbgr80087.outbound.protection.outlook.com [40.107.8.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 847DA191400;
+        Thu, 10 Mar 2022 08:18:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a7k4T1VXmv5LUS1j3nax0UxN+qaOqT9m73dRaf8t6IHuauD+jDeutig8fmrtZ1PlvrWvlQ/4UcPE6NJp0fovhigHjTzJNaluN9fW4CsLMYN/vRpYOCaXFIE8wD4UG3vBmTjJyAOPoNl34Tpn3mhriB4jRHAUKfP2gQQzSc3ugpB78/s69ppF0WdyLKeWZojQD+lyydc9faq1yZZ+WoRA9jPECYBp4IjWqnQ+yzyAnHPKNbHUy3WP6s+lAi7lnvs6oGg17WGOxJUgXJWvQxnYtHQQ+HDWuNj/jtuXdOI4GZzcSeptOPaTE1G8ke+euHL9V/wH97VsZWeteh3iBiMSQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YthHlYbEq2x4Hmi4Qol/lLvDmVH3bGFYRaByqeEABHg=;
+ b=f3JJ1o+yR0p29AM98BYeigQ7wNZ0yu4TQyVSHtVe81wTZFPeO5LfBA+4n8AJuv+nyYiKqSYh+jfKPgc4cAdkksRYuSBIERRE2eqRaYvJdl3ziMH3bQZ4gHk8NExJ03N2q/E6HHUIMFT8om5O/AzSuyqNkQDQdkZmsquI4o28Fl/fjdBSuC14dnQJEY9GQgAz6/XdsgV+Yqis6BNeCiy0+amZkkqCP27eFQntirOC9ACAquU0PmEfTt6XckB0c4QwT2E8vWnTGSPpmCM0J9vcmzXhw0DQCQ1ZkIQSBwjyRicJ+1A2nzj+MjmnNp/tSlB6/YvgBL7mztpe1hEEqjhAIA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YthHlYbEq2x4Hmi4Qol/lLvDmVH3bGFYRaByqeEABHg=;
+ b=j3ek4UOgirYQdfBmudagcVdnQPQH+UhKZ3tveXYQviMm3L8hgwD0NbDQUYgVVAZpzS9/dvtSi+JzWq4q7QH9oZvUqqIOG5OBMBGBJIxaBcbawnIkDP//jBMZ1bUh5pt/R6J31hDZzbq+IzCTUB1RP5kcQR/nCj9QCl93L5s1HHA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8703.eurprd04.prod.outlook.com (2603:10a6:102:21e::22)
+ by HE1PR0402MB3531.eurprd04.prod.outlook.com (2603:10a6:7:83::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Thu, 10 Mar
+ 2022 16:18:38 +0000
+Received: from PAXPR04MB8703.eurprd04.prod.outlook.com
+ ([fe80::a037:bc8:44b:5965]) by PAXPR04MB8703.eurprd04.prod.outlook.com
+ ([fe80::a037:bc8:44b:5965%3]) with mapi id 15.20.5061.022; Thu, 10 Mar 2022
+ 16:18:36 +0000
+Message-ID: <a041cf2f-896b-5231-8d36-da2e27f3fc50@oss.nxp.com>
+Date:   Thu, 10 Mar 2022 17:18:34 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: (EXT) [PATCH v3 8/9] media: dw100: Add i.MX8MP dw100 dewarper
+ driver
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     mchehab@kernel.org, hverkuil-cisco@xs4all.nl,
+        stanimir.varbanov@linaro.org, laurent.pinchart@ideasonboard.com,
+        tomi.valkeinen@ideasonboard.com, robh+dt@kernel.org,
+        nicolas@ndufresne.ca, linux-arm-kernel@lists.infradead.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220308201038.48386-1-xavier.roumegue@oss.nxp.com>
+ <20220308201038.48386-9-xavier.roumegue@oss.nxp.com>
+ <10066981.nUPlyArG6x@steina-w>
+From:   "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>
+In-Reply-To: <10066981.nUPlyArG6x@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-ClientProxiedBy: PR3PR09CA0019.eurprd09.prod.outlook.com
+ (2603:10a6:102:b7::24) To PAXPR04MB8703.eurprd04.prod.outlook.com
+ (2603:10a6:102:21e::22)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: c305a497-1680-4a6e-aab2-08da02b1a11d
+X-MS-TrafficTypeDiagnostic: HE1PR0402MB3531:EE_
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-Microsoft-Antispam-PRVS: <HE1PR0402MB3531CDE0369F17762C805D58BA0B9@HE1PR0402MB3531.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HODUzRTzIOEHG6Ubzd8opuzwZCd0mGtDtjVFTVeF1zMD2mouuDE6jZWtjSvsfNMt3gxWruenfoDaI6+qbqJLnTM+xYbKqu7yeVnRGLsMCRwJ8/mJQEpONTSkTQNYm/jWt7McwU39pfWWaJmJICucLcL37h+hs07omUVIqsa+NVSf4rXyb1W3LGvxC2yEbeWl7Afo2sEF9jFLYeM1rB8Srrc/EpByMOFc41N7SFon7wn1ADppRk5OB/QAxnOKwGDouWmhsUyYSpXUkfsetRPXUIzJcYoLngqo6HtT/bMHtb4wyuBNyE1Hvn4hLwX6oQ1LLFmtCuUAZUjBj36aPo6nU0kJxM+whun6gzUw6jSJZyiXJ+5RrffBsw99Mhyl/aKGV3US+EMlry3SFka4L1JxGgv1tdlK4uSJSZALrvsCEAQBXL6E74oGaCFEMZd0hNzn5+cJm5Ui/+l8kFcd6xo4m6ZkrXdQ0x6nUy3yoS7mpc632hDAj6ZeAQtfsvsoVF/+0ma3QR9KV44GRu39LYuLxHzZqh6KHZXNCCFzUbMF0Qsz1OF9dh5TSYxa1X62OjJKnBXsBqiLiH3NNW7tdYua/JfFbo/fQHAP730jNfckInsRrmA2ly+2n35ZFnlHOWLbTr1clxgJ83yX2FWGCU4Rkf0wdmLdTfsjTaOiJtm05Aizbxjz6IW3zoKozRmk7H59DLYf+DzrKi9ilQe8wPxWFCvdzKTTLiUPvHJKjJ9WGe4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8703.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66556008)(5660300002)(8676002)(2906002)(38100700002)(4326008)(66476007)(53546011)(52116002)(8936002)(6506007)(83380400001)(66946007)(7416002)(31696002)(6512007)(86362001)(2616005)(186003)(6486002)(498600001)(31686004)(6916009)(66574015)(45980500001)(43740500002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TitaN0lZY0tUcWNtUzdkR0lDZTY4SmZ5d3g5K0I4RjVTOEJYNUx3M1ZCa3Vu?=
+ =?utf-8?B?YjA4L21aa2R1dHB2MlF5NlA0MnhVTnUrQ1VJZ2xRam1sd2R1blhxT0FwZEZt?=
+ =?utf-8?B?UG95ekloeDhkT0hTREZGaWg5cnpxQ1dzU2twTVdhZ2hWTGxmTUNWRFdjTjJs?=
+ =?utf-8?B?Zk90V2pvclJtU29oK0p5VUZld05NODRRYTI1emswRStXQnhEL0Jkb3BvckpN?=
+ =?utf-8?B?QUtMRTFzREpwc1VnQjhEU1FEcThjUjVPVWNCWTdlbEpYd29oR3JHUWlBRXBz?=
+ =?utf-8?B?OU1GQjRwc2RjdXlhMVhrajl1VklQZ2FMR0RRZ0xRL0pyUVNqOHU1djRuV202?=
+ =?utf-8?B?TCtseDZXa1VIWUZKdUpxM1V1ZWhHd05RS2FCc09ETFRxQkxoOEh2QTJhUHdS?=
+ =?utf-8?B?NTlGeVBrcHhFdk41bk9HdmJidzExdmJDeG9IeHJXMmFhSVlyTHdrdkR6U1RD?=
+ =?utf-8?B?WGd3cmVuTjBRUDdLbE9pZ0RNYm8rRHZZVUgrNDJzMHd2V0FPRFh1Uk9hMWpI?=
+ =?utf-8?B?RWN0K1RZQVFPNkk5a2VXNDVCM01DcW8zRTFLSVpMSE13eUxnVnhWcnVGNnJK?=
+ =?utf-8?B?VTR5K1hDYkhzZTdIMzZveTZjaUxpTzJTbGFTVkppaDFRcWhpY1hnWUVCSWxl?=
+ =?utf-8?B?aWNNSWl1aGtveDhHMy9iNU0yS0ZLSnNwYVR4WnhxMGp6ZzdlNXJUNHRidFND?=
+ =?utf-8?B?aHJxYzRkNC9QK3BrYm1UKzlITWEyTDBUaHZNYVBSbmdXL1VqSzY0T29nSEJr?=
+ =?utf-8?B?bXUzcXlaa2svanFSSnlvNUZOOFJENFNMMXVYNWlBV1UrR2U3b29BVm9jSTdl?=
+ =?utf-8?B?NDhoaWtVdVNKejVQdWtxZlpIZGlFVHVvMWRSOC9CS1EzZC9EUGFCV3VJVFNu?=
+ =?utf-8?B?SDR2T3VHOXFqMHRxSW92UVhmSU92bmpYZ3ZHQTl4Mjh0MFNXeUtMSC9FdzRh?=
+ =?utf-8?B?bUlyMHNHMzBEeFlIZ2lkeURFT0s3UGpyZDl3M2tTTDJOUHYrQlVYbWJCY1F4?=
+ =?utf-8?B?dlhGTEN2K2t1Ri92QzRCUmFIZHpmdkdZSkgxWkFIczJSNmZUaHNxZVJ4TW0z?=
+ =?utf-8?B?UU9CYnRJQTVNWHhOaFJnZ2dkOHJGM2pEeGxEdEtCWm1HeG9oNXE1SmYzaHRv?=
+ =?utf-8?B?cXQ1NGkybDYzMHBiWk9TcmttTzBtN3JqSUdQOTVoRnlQczhKV2RnWjE0Y2ZG?=
+ =?utf-8?B?RlFURGpYVGJZMXlGWXRpSlVpTTVmU2hOQStsWC9yMmNhSkozZDJsODl5MEFx?=
+ =?utf-8?B?UG5mRlAvTnJNSTlHNGxqU0pLVDlZUWFqeW54ZVBibDRmLzkxRmwrYjNOVm9K?=
+ =?utf-8?B?RnAzdGpPRDZqc1VNN1kzUjJZN3RjRmlHMGlnT2c0VGkvWGRySDJrVWlFL2li?=
+ =?utf-8?B?UU1GbEtTbHBOY3ArZzc4ckJpL1NHcEV0bTB5bWFRRDBXelc3WXZqNTBZTVJx?=
+ =?utf-8?B?b2IzY29heHpNQnpJWGJLZWdvWUs2a3BxZWE5SEJ3bFpRTEEwTHhwOFF0dmYw?=
+ =?utf-8?B?UUhndC9WYmtUZEM5R3VqTjhEb2YwQVR3T2hjT2ZpWkJiY2tqeGkxVUt1bzkw?=
+ =?utf-8?B?VWEvaTdBSCs5MExBckNSdlFlU1NrL21GRWxMQVRtQk9KV1dEMjBMY0t1Ujc3?=
+ =?utf-8?B?eXdFRUZyTUI1Si9oWHpRK3dYeFMvKzRkYnFCamFuaHgvbUlyWmhVaVJSdFpP?=
+ =?utf-8?B?WktKS2tXUmNKS0tpcGFvWEl3YjFpYkljbVBqdHV6bjM1V2I3TjdnNDJTRmNW?=
+ =?utf-8?B?QWExaXAvYzRZWW1jc2pJREo0dE5HNC8yQ1Q5d3dJNWptbFk0T3dxYzVHUldt?=
+ =?utf-8?B?N1FKaTJZbWVYQTE1blpiSm1GWlVhajMyWFZBSXVUN3I2dGFEWVdXUHRKN1Vk?=
+ =?utf-8?B?b1hXdlNiaWJDSWJxd3M4Rm8zbG5uVlRHMnBTZUU1cWpGU3BZUTJ6dzBGUFVR?=
+ =?utf-8?B?UVNNL0VWbURTaTZvUlNDOW5MdXhDWUdXVlFEaExxSmZXVkRxdkVMNE5kZDZk?=
+ =?utf-8?B?SCtEOXAvblM3elcyQzJmbzZ4YlpXQXhuaHVDdjJ5dW51MlB3RUYxTysvbFMr?=
+ =?utf-8?B?V014Ynh6KzZZSE9IT0I3TEhKM3FFcTVBUkc2UmhOZXMydnRsaVpsdzU4a2p1?=
+ =?utf-8?B?RExEWFJpazVibUJPVmNSUjVJN3VCVG92QmRVMXlRdlRyVU5iWE4xTmNTdjVm?=
+ =?utf-8?B?QUxPRlJDOHM1U01TZ0NvK2g1eWJJVUFTRmNmc3h1Yk12Y0xTNkYwS0Q3eitR?=
+ =?utf-8?Q?45LlLIY0vd/2k6j/bM+3wKK4Yk1rEm8HXVuO2xekbI=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c305a497-1680-4a6e-aab2-08da02b1a11d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8703.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 16:18:36.4701
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QqCatnQAQcqfitGAZhUT0/ceEGDg1Nz3bhMa9+ZRXMG5BGNkMRd8aYhFGODB1ws3BUBNMsARHzguQR28mFnFrQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB3531
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the DT validation to use DTB files directly instead of a DTS to
-YAML conversion.
+Hello Alexander,
 
-The original motivation for supporting validation on DTB files was to
-enable running validation on a running system (e.g. 'dt-validate
-/sys/firmware/fdt') or other cases where the original source DTS is not
-available.
+On 3/10/22 08:21, Alexander Stein wrote:
+> Hello Xavier,
+> 
+> thanks for trying to mainline this hardware support.
+> 
+> Am Dienstag, 8. März 2022, 21:10:37 CET schrieb Xavier Roumegue:
+>> Add a V4L2 mem-to-mem driver for the Vivante DW100 Dewarp Processor IP
+>> core found on i.MX8MP SoC.
+>>
+>> The processor core applies a programmable geometrical transformation on
+>> input image to correct distorsion introduced by lenses.
+>> The transformation function is exposed as a grid map with 16x16 pixel
+>> macroblocks indexed using X, Y vertex coordinates.
+>>
+>> The dewarping map can be set from application through dedicated a v4l2
+>> control. If not set or invalid, the driver computes an identity map
+>> prior to start the processing engine.
+>>
+>> The driver supports scaling, cropping and pixel format conversion.
+>>
+>> Signed-off-by: Xavier Roumegue <xavier.roumegue@oss.nxp.com>
+>> ---
+>> [snip]
+>> diff --git a/drivers/media/platform/dw100/dw100.c
+>> b/drivers/media/platform/dw100/dw100.c new file mode 100644
+>> index 000000000000..7e1fcdfe5b91
+>> --- /dev/null
+>> +++ b/drivers/media/platform/dw100/dw100.c
+>> @@ -0,0 +1,1744 @@
+>> +// SPDX-License-Identifier: GPL-2.0+
+>> +/*
+>> + * DW100 Hardware dewarper
+>> + *
+>> + * Copyright 2022 NXP
+>> + * Author: Xavier Roumegue (xavier.roumegue@oss.nxp.com)
+>> + *
+>> + */
+>> [snip]
+>> +static const struct v4l2_ctrl_config ctrl_custom_lut = {
+>> +	.id = V4L2_CID_DW100_MAPPING,
+>> +	.name = "Look-Up Table",
+>> +	.type = V4L2_CTRL_TYPE_U32,
+>> +	.min = 0x00000000,
+>> +	.max = 0xFFFFFFFF,
+>> +	.step = 1,
+>> +	.def = 0,
+>> +	.dims = { DW100_MAX_LUT_NELEMS },
+>> +	.flags = V4L2_CTRL_FLAG_DYNAMIC_ARRAY,
+>> +};
+> 
+> I know right now there is only one control, but you are reserving 16 controls
+> in PATCH 5/9. So for me it seems sensible to make this an array already, so
+> that additional controls can be added here easily.
+Good point, will implement it in the next series.
+Note that 16 is likely too much. I might decrease it.
 
-The YAML format was not without issues. Using DTBs with the schema type
-information solves some of those problems. The YAML format relies on the
-DTS source level information including bracketing of properties, size
-directives, and phandle tags all of which are lost in a DTB file. While
-standardizing the bracketing is a good thing, it does cause a lot of
-extra warnings and churn to fix them.
+> 
+>> [snip]
+>> +	hdl = &ctx->hdl;
+>> +	v4l2_ctrl_handler_init(hdl, 1);
+>> +	v4l2_ctrl_new_custom(hdl, &ctrl_custom_lut, NULL);
+> 
+> IMHO this won't need any further changes if an array is already being used.
+> I'm eager to try it once you can provide an example how to use it.
 
-Another issue has been signed types are not validated correctly as sign
-information is not propagated to YAML. Using the schema type information
-allows for proper handling of signed types. YAML also can't represent
-the full range of 64-bit integers as numbers are stored as floats by
-most/all parsers.
+I will provide as part of the driver documentation a simple python 
+script example how to generate a LUT.
 
-The DTB validation works by decoding property values using the type
-information in the schemas themselves. The main corner case this does
-not work for is matrix types where neither dimension is fixed. For
-now, checking the dimensions in these cases are skipped.
+Releasing examples through NXP github will take few days, but you can 
+have a try without a user specified LUT, using the identiy map computed 
+by the driver.
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Dependency on processed-schema.json needs to be conditional
----
- Documentation/devicetree/bindings/Makefile    |  7 +++----
- .../devicetree/bindings/writing-schema.rst    | 12 -----------
- scripts/Makefile.lib                          | 20 +++++++------------
- scripts/dtc/Makefile                          | 13 ------------
- scripts/dtc/update-dtc-source.sh              |  2 +-
- 5 files changed, 11 insertions(+), 43 deletions(-)
+#! /usr/bin/env bash
 
-diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
-index 2716f7b9e25e..e594e5898be0 100644
---- a/Documentation/devicetree/bindings/Makefile
-+++ b/Documentation/devicetree/bindings/Makefile
-@@ -26,8 +26,7 @@ $(obj)/%.example.dts: $(src)/%.yaml check_dtschema_version FORCE
- 	$(call if_changed,extract_ex)
- 
- find_all_cmd = find $(srctree)/$(src) \( -name '*.yaml' ! \
--		-name 'processed-schema*' ! \
--		-name '*.example.dt.yaml' \)
-+		-name 'processed-schema*' \)
- 
- find_cmd = $(find_all_cmd) | grep -F "$(DT_SCHEMA_FILES)"
- CHK_DT_DOCS := $(shell $(find_cmd))
-@@ -72,9 +71,9 @@ $(obj)/processed-schema.json: $(DT_DOCS) $(src)/.yamllint check_dtschema_version
- 
- always-y += processed-schema.json
- always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dts, $(CHK_DT_DOCS))
--always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dt.yaml, $(CHK_DT_DOCS))
-+always-$(CHECK_DT_BINDING) += $(patsubst $(srctree)/$(src)/%.yaml,%.example.dtb, $(CHK_DT_DOCS))
- 
- # Hack: avoid 'Argument list too long' error for 'make clean'. Remove most of
- # build artifacts here before they are processed by scripts/Makefile.clean
- clean-files = $(shell find $(obj) \( -name '*.example.dts' -o \
--			-name '*.example.dt.yaml' \) -delete 2>/dev/null)
-+			-name '*.example.dtb' \) -delete 2>/dev/null)
-diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
-index 3b00fe981494..b4258bf81be5 100644
---- a/Documentation/devicetree/bindings/writing-schema.rst
-+++ b/Documentation/devicetree/bindings/writing-schema.rst
-@@ -123,18 +123,6 @@ project can be installed with pip::
- Several executables (dt-doc-validate, dt-mk-schema, dt-validate) will be
- installed. Ensure they are in your PATH (~/.local/bin by default).
- 
--dtc must also be built with YAML output support enabled. This requires that
--libyaml and its headers be installed on the host system. For some distributions
--that involves installing the development package, such as:
--
--Debian::
--
--  apt-get install libyaml-dev
--
--Fedora::
--
--  dnf -y install libyaml-devel
--
- Running checks
- ~~~~~~~~~~~~~~
- 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index c8c6f1745d03..9d5320a47ef8 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -87,11 +87,6 @@ base-dtb-y := $(foreach m, $(multi-dtb-y), $(firstword $(call suffix-search, $m,
- 
- always-y			+= $(dtb-y)
- 
--ifneq ($(CHECK_DTBS),)
--always-y += $(patsubst %.dtb,%.dt.yaml, $(real-dtb-y))
--always-y += $(patsubst %.dtbo,%.dt.yaml, $(real-dtb-y))
--endif
--
- # Add subdir path
- 
- extra-y		:= $(addprefix $(obj)/,$(extra-y))
-@@ -347,12 +342,6 @@ cmd_dtc = $(HOSTCC) -E $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-tmp) $< ;
- 		-d $(depfile).dtc.tmp $(dtc-tmp) ; \
- 	cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depfile)
- 
--$(obj)/%.dtb: $(src)/%.dts $(DTC) FORCE
--	$(call if_changed_dep,dtc)
--
--$(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
--	$(call if_changed_dep,dtc)
--
- quiet_cmd_fdtoverlay = DTOVL   $@
-       cmd_fdtoverlay = $(objtree)/scripts/dtc/fdtoverlay -o $@ -i $(real-prereqs)
- 
-@@ -360,22 +349,27 @@ $(multi-dtb-y): FORCE
- 	$(call if_changed,fdtoverlay)
- $(call multi_depend, $(multi-dtb-y), .dtb, -dtbs)
- 
-+ifneq ($(CHECK_DTBS)$(CHECK_DT_BINDING),)
- DT_CHECKER ?= dt-validate
- DT_CHECKER_FLAGS ?= $(if $(DT_SCHEMA_FILES),-l $(DT_SCHEMA_FILES),-m)
- DT_BINDING_DIR := Documentation/devicetree/bindings
- DT_TMP_SCHEMA := $(objtree)/$(DT_BINDING_DIR)/processed-schema.json
- 
- quiet_cmd_dtb_check =	CHECK   $@
--      cmd_dtb_check =	$(DT_CHECKER) $(DT_CHECKER_FLAGS) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@
-+      cmd_dtb_check =	$(DT_CHECKER) $(DT_CHECKER_FLAGS) -u $(srctree)/$(DT_BINDING_DIR) -p $(DT_TMP_SCHEMA) $@ || true
-+endif
- 
- define rule_dtc
- 	$(call cmd_and_fixdep,dtc)
- 	$(call cmd,dtb_check)
- endef
- 
--$(obj)/%.dt.yaml: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
-+$(obj)/%.dtb: $(src)/%.dts $(DTC) $(DT_TMP_SCHEMA) FORCE
- 	$(call if_changed_rule,dtc)
- 
-+$(obj)/%.dtbo: $(src)/%.dts $(DTC) FORCE
-+	$(call if_changed_dep,dtc)
-+
- dtc-tmp = $(subst $(comma),_,$(dot-target).dts.tmp)
- 
- # Bzip2
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 1cba78e1dce6..4d32b9497da9 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -17,20 +17,7 @@ fdtoverlay-objs	:= $(libfdt) fdtoverlay.o util.o
- 
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS += -I $(srctree)/$(src)/libfdt
--
--ifeq ($(shell pkg-config --exists yaml-0.1 2>/dev/null && echo yes),)
--ifneq ($(CHECK_DT_BINDING)$(CHECK_DTBS),)
--$(error dtc needs libyaml for DT schema validation support. \
--	Install the necessary libyaml development package.)
--endif
- HOST_EXTRACFLAGS += -DNO_YAML
--else
--dtc-objs	+= yamltree.o
--# To include <yaml.h> installed in a non-default path
--HOSTCFLAGS_yamltree.o := $(shell pkg-config --cflags yaml-0.1)
--# To link libyaml installed in a non-default path
--HOSTLDLIBS_dtc	:= $(shell pkg-config --libs yaml-0.1)
--endif
- 
- # Generated files need one more search path to include headers in source tree
- HOSTCFLAGS_dtc-lexer.lex.o := -I $(srctree)/$(src)
-diff --git a/scripts/dtc/update-dtc-source.sh b/scripts/dtc/update-dtc-source.sh
-index 32ff17ffd089..94627541533e 100755
---- a/scripts/dtc/update-dtc-source.sh
-+++ b/scripts/dtc/update-dtc-source.sh
-@@ -32,7 +32,7 @@ DTC_UPSTREAM_PATH=`pwd`/../dtc
- DTC_LINUX_PATH=`pwd`/scripts/dtc
- 
- DTC_SOURCE="checks.c data.c dtc.c dtc.h flattree.c fstree.c livetree.c srcpos.c \
--		srcpos.h treesource.c util.c util.h version_gen.h yamltree.c \
-+		srcpos.h treesource.c util.c util.h version_gen.h \
- 		dtc-lexer.l dtc-parser.y"
- LIBFDT_SOURCE="fdt.c fdt.h fdt_addresses.c fdt_empty_tree.c \
- 		fdt_overlay.c fdt_ro.c fdt_rw.c fdt_strerror.c fdt_sw.c \
--- 
-2.32.0
+SRC_FMT=NV12
+SINK_FMT=NV16
 
+SW=640
+SH=480
+DW=320
+DH=240
+
+
+gst-launch-1.0 \
+     -v videotestsrc pattern=18  num-buffers=1000 !\
+     video/x-raw,format=NV16,width=${SW},height=${SH} !\
+     v4l2convert !\
+     video/x-raw,format=NV12,width=${DW},height=${DH} !\
+     waylandsink window-width=${DW} window-height=${DH}
+
+Regards,
+Xavier
