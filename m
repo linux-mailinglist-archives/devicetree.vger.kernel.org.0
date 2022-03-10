@@ -2,61 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FB124D52EC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 21:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F37EF4D5331
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 21:44:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238767AbiCJUL7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 15:11:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36714 "EHLO
+        id S245039AbiCJUpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 15:45:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233319AbiCJUL6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 15:11:58 -0500
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3747E9BBAA;
-        Thu, 10 Mar 2022 12:10:57 -0800 (PST)
-Received: by mail-ot1-f41.google.com with SMTP id t8-20020a0568301e2800b005b235a56f2dso4818551otr.9;
-        Thu, 10 Mar 2022 12:10:57 -0800 (PST)
+        with ESMTP id S233044AbiCJUpp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 15:45:45 -0500
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F3B013C279;
+        Thu, 10 Mar 2022 12:44:44 -0800 (PST)
+Received: by mail-ot1-f50.google.com with SMTP id o106-20020a9d2273000000b005b21f46878cso4884073ota.3;
+        Thu, 10 Mar 2022 12:44:44 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=6UR/WFOFq3EqUbPef1y1xYnsL6gNNVdISGkg2vViX9w=;
-        b=jSOjD66O9efOSNd39a/Mwrnin8brCNeIHaiB3s6dDJ+C78WDD+zhH5jol0lg7ficLK
-         4a+v7sGAlIq5RpzIuLUDQXBFd85PETFKapRsTGz7wzIEFQGaQXYv9GR0TIWo4fxIBVOk
-         FoVnxmgVB0A2OyGN+NDT1TwGTfUQ2GouHTICHtA63o1aOBSFDLovfTgrqkMPfn0Dywae
-         i65PQ9KjmjMu83j3y7kHBzUvikq8Yf+LZsa/AN/G81wuDtvpYMc9qF9RxEa1cCTLqarX
-         25BS5CH8vVPkvkgLSWr8p8PPjjYnyfzOc39YkHAkm96mgrXQgTxwZXnykWzrCmIDp7Qx
-         pVrw==
-X-Gm-Message-State: AOAM532SiSZJ/7TtU+suHAp6/GopoEZW1Hrn6UzRE7Wnrew1vtKCUWw0
-        lASZLvBYOUEP47f4o1GL4w==
-X-Google-Smtp-Source: ABdhPJxL7g6Qf3ansWpLK6G9FxO6gNGunWkYCEA8ijqWIMaeMWYNdpuYZ1hvk+PT1yUf71ucL/d07Q==
-X-Received: by 2002:a05:6830:31ad:b0:599:7af5:d470 with SMTP id q13-20020a05683031ad00b005997af5d470mr3373087ots.50.1646943056529;
-        Thu, 10 Mar 2022 12:10:56 -0800 (PST)
+        bh=eHD+QEEE7WXDBy+HR8ki9zNPunEiiwpvW7wALZuHn0U=;
+        b=cvtiUhpnXEs8YB/ed6MHtKP6vf85hzGsA/3dy28C5m+8Pvpbetkvg9jl5Kawc2j/Cm
+         n1CGZmi3RU6oUcJGNx+Phl2qXlBciZ6ixgauZ20oVqhR7KYqOzI1EUJAYAEOVcWgg1Nb
+         SLns19Xg16kyFjir1wxgjp7Yu/godpO78KneKcEFFfUifWmllXDfaiYhrJa84NacHLT9
+         hPRBeqXsD+tggAwTI1InV4kT8HDaj4Z1KNvFrOz4mgS+2XWWB0nzsi/XG9ewmsy8Uz7t
+         gUOQ1AMS1gd6piIwCuxuo2VpNMALfxTcK8cHi5Lu9ZVEl/NpJW4vDt62or7bwOS/aYAu
+         sYHA==
+X-Gm-Message-State: AOAM533zFjTykbvaF5EbzmmtY3FGvoWBWP4EsAEzDmvnOOkGuaWashZU
+        5AD5NiiA969d9g0Zi+mzbQ==
+X-Google-Smtp-Source: ABdhPJy3TwiukHGegqsMqO5kZKdbFiV+T89f8ON8hygQNaY6t2GB85ddp3G6Dcem5mUuTRtykYoulQ==
+X-Received: by 2002:a05:6830:1ac4:b0:5b2:319a:8c3 with SMTP id r4-20020a0568301ac400b005b2319a08c3mr3511801otc.203.1646945083574;
+        Thu, 10 Mar 2022 12:44:43 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a14-20020a544e0e000000b002d97bda3874sm2705452oiy.57.2022.03.10.12.10.55
+        by smtp.gmail.com with ESMTPSA id l3-20020a056830268300b005b21c30a3c5sm2975223otu.29.2022.03.10.12.44.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 12:10:55 -0800 (PST)
-Received: (nullmailer pid 1982443 invoked by uid 1000);
-        Thu, 10 Mar 2022 20:10:54 -0000
-Date:   Thu, 10 Mar 2022 14:10:54 -0600
+        Thu, 10 Mar 2022 12:44:42 -0800 (PST)
+Received: (nullmailer pid 2036124 invoked by uid 1000);
+        Thu, 10 Mar 2022 20:44:41 -0000
+Date:   Thu, 10 Mar 2022 14:44:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     linux-phy@lists.infradead.org, alexander.stein@ew.tq-group.com,
-        shawnguo@kernel.org, l.stach@pengutronix.de, linux-imx@nxp.com,
-        p.zabel@pengutronix.de, vkoul@kernel.org,
-        devicetree@vger.kernel.org, lorenzo.pieralisi@arm.com,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        bhelgaas@google.com
-Subject: Re: [PATCH v2 4/7] dt-bindings: imx6q-pcie: Add iMX8MP PCIe
- compatible string
-Message-ID: <YipbTpT1B6dHSpt2@robh.at.kernel.org>
-References: <1646644054-24421-1-git-send-email-hongxing.zhu@nxp.com>
- <1646644054-24421-5-git-send-email-hongxing.zhu@nxp.com>
+To:     Tim Chang <jia-wei.chang@mediatek.com>
+Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, fan.chen@mediatek.com,
+        louis.yu@mediatek.com, roger.lu@mediatek.com,
+        Allen-yy.Lin@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        hsinyi@google.com,
+        Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
+Subject: Re: [PATCH 2/4] dt-bindings: cpufreq: mediatek: add mt8186 cpufreq
+ dt-bindings
+Message-ID: <YipjOXdCNUxdy+ey@robh.at.kernel.org>
+References: <20220307122151.11666-1-jia-wei.chang@mediatek.com>
+ <20220307122151.11666-3-jia-wei.chang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1646644054-24421-5-git-send-email-hongxing.zhu@nxp.com>
+In-Reply-To: <20220307122151.11666-3-jia-wei.chang@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -68,13 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Mar 2022 17:07:31 +0800, Richard Zhu wrote:
-> Add i.MX8MP PCIe compatible string.
+On Mon, Mar 07, 2022 at 08:21:49PM +0800, Tim Chang wrote:
+> 1. add cci property.
+> 2. add example of MT8186.
 > 
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
+> Signed-off-by: Jia-Wei Chang <jia-wei.chang@mediatek.corp-partner.google.com>
 > ---
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../bindings/cpufreq/cpufreq-mediatek.yaml    | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
+> index 584946eb3790..d3ce17fd8fcf 100644
+> --- a/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
+> +++ b/Documentation/devicetree/bindings/cpufreq/cpufreq-mediatek.yaml
+> @@ -48,6 +48,10 @@ properties:
+>        When absent, the voltage scaling flow is handled by hardware, hence no
+>        software "voltage tracking" is needed.
+>  
+> +  cci:
+> +    description:
+> +      Phandle of the cci to be linked with the phandle of CPU if present.
 
-Applied, thanks!
+We already have a binding for this. See cci-control-port.
+
+> +
+>    "#cooling-cells":
+>      description:
+>        For details, please refer to
