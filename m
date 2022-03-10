@@ -2,242 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B04E44D500F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 18:17:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A83844D5042
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 18:26:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234293AbiCJRRm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 12:17:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45900 "EHLO
+        id S244522AbiCJRV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 12:21:56 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236213AbiCJRRm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 12:17:42 -0500
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B48E186219;
-        Thu, 10 Mar 2022 09:16:40 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id B78DA240009;
-        Thu, 10 Mar 2022 17:16:36 +0000 (UTC)
-Date:   Thu, 10 Mar 2022 18:16:34 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, robh@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
-Message-ID: <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
-References: <20220310130829.96001-1-jacopo@jmondi.org>
- <20220310130829.96001-2-jacopo@jmondi.org>
- <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
+        with ESMTP id S244495AbiCJRVy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 12:21:54 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53404198EE5;
+        Thu, 10 Mar 2022 09:20:47 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id DDB20B82717;
+        Thu, 10 Mar 2022 17:20:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28BABC340E8;
+        Thu, 10 Mar 2022 17:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646932843;
+        bh=aqZ6qfSaJ4ZT3MvuYHmkAUdH5yODv/pa6W9FZCUG3jY=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=XVN+3gV/pjdKqqFKUwH9gg20w19VyJManoJeniyXzKCG/8ijSP6zG6EulhfFAWNp0
+         WMuECX5DL+uDY+0cgk5HMkLALQ99sUflLJaMB0XWivClUxZhKop8gcCuuf7iyzND9d
+         reXmrMrmSFWZdnIzbbPJCJrSYwUHk6TqqbUP2TnXk9nQvdYb9B1e11gnyJ1DLOBEx9
+         9iJ0KFAxIepQ6YjI3/L2j9A3rNwGsTMHgIR83We9evNLG/YTykrktTMylze5vA9baV
+         86wWHaaEefN6xQHMXEivmld/ddBezH/d008w2/7Ql/WF8xwBolkdWbBUUdismvYVa9
+         3B8NLM9eagatA==
+Date:   Thu, 10 Mar 2022 09:20:42 -0800 (PST)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@ubuntu-linux-20-04-desktop
+To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
+cc:     Rob Herring <robh@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Stefano Stabellini <sstabellini@kernel.org>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Xen
+ hypervisor
+In-Reply-To: <20220310113833.GA187897@EPUAKYIW015D>
+Message-ID: <alpine.DEB.2.22.394.2203100919410.3261@ubuntu-linux-20-04-desktop>
+References: <cover.1646639462.git.oleksii_moisieiev@epam.com> <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com> <Yie5P/vcBz44QcPd@robh.at.kernel.org> <20220310113833.GA187897@EPUAKYIW015D>
+User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
+On Thu, 10 Mar 2022, Oleksii Moisieiev wrote:
+> On Tue, Mar 08, 2022 at 02:14:55PM -0600, Rob Herring wrote:
+> > On Mon, 07 Mar 2022 08:17:43 +0000, Oleksii Moisieiev wrote:
+> > > Xen is an open source stage-1 hypervisor.
+> > > 
+> > > Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > > 
+> > 
+> > As 'xen' has been missing regardless of patch 2, I fixed up the commit 
+> > message and applied, thanks!
+> 
+> So IIUC - this patch is already applied and I don't need to add it v3?
 
-On Thu, Mar 10, 2022 at 03:29:24PM +0100, Krzysztof Kozlowski wrote:
-> On 10/03/2022 14:08, Jacopo Mondi wrote:
-> > Provide the bindings documentation for Omnivision OV5670 image sensor.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > ---
-> >  .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
->
-> Add the file to maintainers entry.
->
-
-Right
-
-> >  1 file changed, 93 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> > new file mode 100644
-> > index 000000000000..dc4a3297bf6f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
->
-> Missing vendor prefix in file name.
->
-
-Right x2
-
-> > @@ -0,0 +1,93 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Omnivision OV5670 5 Megapixels raw image sensor
-> > +
-> > +maintainers:
-> > +  - Jacopo Mondi <jacopo@jmondi.org>
->
-> Please add also driver maintainer.
->
-
-I never got what the policy was, if the maintainer entries here only
-refer to the binding file or to the driver too
-
-> > +
-> > +description: |-
-> > +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-> > +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-> > +  controlled through an I2C compatible control bus.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ovti,ov5670
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clock-frequency:
-> > +    description: Frequency of the xclk clock.
->
-> Is the xclk external clock coming to the sensor? If yes, there should be
-> a "clocks" property.
->
-
-To be honest I was not sure about this, as clock-frequency is already
-used by the driver for the ACPI part, but it seems to in DT bindings
-it is a property meant to be specified in the clock providers, even if
-Documentation/devicetree/bindings/clock/clock-bindings.txt doesn't
-really clarify this
-
-Clock consumer should rather use 'clocks' and point to the provider's
-phandle if my understanding is right.
-
-> > +
-> > +  pwdn-gpios:
-> > +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
->
-> maxItems
->
-
-I thought it was not necessary with a single description: entry. But
-looking at the dt-schema source I fail to find any commit mentioning
-that.
-
-> > +
-> > +  reset-gpios:
-> > +    description:
-> > +      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
->
-> maxItems
->
-> > +
-> > +  avdd-supply:
-> > +    description: Analog circuit power. Typically 2.8V.
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital circuit power. Typically 1.2V.
-> > +
-> > +  dovdd-supply:
-> > +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-> > +
-> > +  port:
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes:
-> > +            description: The sensor supports 1 or 2 data lanes operations.
-> > +            minItems: 1
-> > +            maxItems: 2
-> > +            items:
-> > +              maximum: 2
->
-> Is '0' also allowed? If not then maybe 'enum: [ 1, 2 ]'
-
-No 0 is not allowed, but the data-lanes properties should accept any
-of the following combinations
-        <1>
-        <1 2>
-        <2 1>
-
-As the chip seems to support lane re-ordering.
-
-using enum would allow to between <1> or <2> if I got it right?
-
-as the data-lane property is defined in video-interfaces.yaml
-
-  data-lanes:
-    $ref: /schemas/types.yaml#/definitions/uint32-array
-    minItems: 1
-    maxItems: 8
-    items:
-      # Assume up to 9 physical lane indices
-      maximum: 8
-    description:
-      An array of physical data lane indexes. Position of an entry determines
-      the logical lane number, while the value of an entry indicates physical
-      lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
-      assuming the clock lane is on hardware lane 0. If the hardware does not
-      support lane reordering, monotonically incremented values shall be used
-      from 0 or 1 onwards, depending on whether or not there is also a clock
-      lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
-
-I did the same but restricted the max number of items to 2, and the
-maximum value to 2 as well
-
->
-> no clock-lanes?
->
-
-clock lane is fixed on lane #0 afaict
-`
-> > +
-> > +          clock-noncontinuous: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - clock-frequency
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    i2c0 {
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        ov5670: sensor@36 {
-> > +            compatible = "ovti,ov5670";
-> > +            reg = <0x36>;
-> > +
-> > +            clock-frequency=<19200000>;
->
-> Missing spaces around '='.
-
-ouch, thanks for spotting
-
-Thanks
-  j
-
->
->
->
-> Best regards,
-> Krzysztof
+Yes, that's right. Congratulations for your first official device tree
+binding change :-)
