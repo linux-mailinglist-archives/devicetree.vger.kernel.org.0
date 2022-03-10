@@ -2,202 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2368A4D52B6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 20:58:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8112F4D518B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 20:43:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343751AbiCJT7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 14:59:55 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36108 "EHLO
+        id S1343578AbiCJT2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 14:28:10 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244294AbiCJT7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 14:59:54 -0500
-X-Greylist: delayed 1501 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Mar 2022 11:58:53 PST
-Received: from gateway30.websitewelcome.com (gateway30.websitewelcome.com [192.185.180.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F80B3B297
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 11:58:53 -0800 (PST)
-Received: from cm11.websitewelcome.com (cm11.websitewelcome.com [100.42.49.5])
-        by gateway30.websitewelcome.com (Postfix) with ESMTP id 638F63F23D
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:13:44 -0600 (CST)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id SOEKnSojUdx86SOEKnWJyT; Thu, 10 Mar 2022 13:13:44 -0600
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=In-Reply-To:Content-Type:MIME-Version:References
-        :Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding
-        :Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=mb2llu6cUqKPxTlbEIr1Yx2wzBP2FczZ/P1WdCDimwo=; b=icOiBMOVuWpAcU57dA4s8wdshx
-        IA9xojyJTcwSPcVILmNhsMjlBz30tPcOCQBz9XVzj61RMgs+SOIhAwC64md/R/MlRqG34uvgh+rEu
-        sJHIeyDQeUcCozNULY/wqGo1azEog6vdBGH7U7KZfI3fH5Dbat0Fo0/Ta5vglwEgf/uhEidQR0k5p
-        DaqAiM+pmMmFqMY86j44may4ioxUCayWX2NxNh318QRFbtkC5W+JblazESYXiTqRU+O1cCYZARF5Q
-        Ey9c+7Jxmd4cJfkBsQF1IC7tGEKCXujsiCvyfTB89CXXLoiNexwlE73avvDMtC5PT3WEIJWD8LTOJ
-        PRUwN7dA==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:57420 helo=localhost)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nSOEJ-001yY6-NT; Thu, 10 Mar 2022 19:13:43 +0000
-Date:   Thu, 10 Mar 2022 11:13:42 -0800
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     Jean Delvare <jdelvare@suse.com>, linux-hwmon@vger.kernel.org,
-        Renze Nicolai <renze@rnplus.nl>,
-        Oleksandr Natalenko <oleksandr@natalenko.name>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] hwmon: (nct6775) Convert to regmap, add i2c
- support
-Message-ID: <20220310191342.GB803893@roeck-us.net>
-References: <20220309005047.5107-1-zev@bewilderbeest.net>
+        with ESMTP id S241699AbiCJT2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 14:28:08 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E01E914F28A;
+        Thu, 10 Mar 2022 11:27:06 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 888ED60A0F;
+        Thu, 10 Mar 2022 19:27:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1532C340E8;
+        Thu, 10 Mar 2022 19:27:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646940426;
+        bh=cq4m75PSl/PZoVhBD9Cn+gsQ1zqz5E2ip47wizl6wRY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=pFPQS8/vCCA3HW9ICoay5pubWy9elfiojpUvxzNbNGnsiuV6/XPsctQtHADD0HRQr
+         hKx2Bq0XQWvkCl3u/v+HwWYSovPzktVSfuv37iw+CgIFeFyp6zD6cHVm4GAscLCex2
+         Wc1ALmOBGu4ukTOeZ+RQz6IRmDLeAES7U7W9WjPdcQ06OsZcXPz5HZRnSV9h1eWS7B
+         qidphy2Z6mtcu+Oq67tFeQCk4cK8tG7OG+w4NRiMmEVcAgeTY5r60sLAVxyd9gneR6
+         ckVz0nx4JsafMYEzb1aiVg1GcK0ffNVNLHvLAkT86MlgrmguK15bHASXFEJMAZA8Na
+         G8Jacj/v9ZKCA==
+Date:   Thu, 10 Mar 2022 13:27:04 -0600
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Lizhi Hou <lizhi.hou@xilinx.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, yilun.xu@intel.com, maxz@xilinx.com,
+        sonal.santan@xilinx.com, yliu@xilinx.com, michal.simek@xilinx.com,
+        stefanos@xilinx.com, trix@redhat.com, mdf@kernel.org,
+        dwmw2@infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V1 RESEND 0/4] Infrastructure to define apertures in a
+ PCIe device with a flattened device tree
+Message-ID: <20220310192704.GA168467@bhelgaas>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220309005047.5107-1-zev@bewilderbeest.net>
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nSOEJ-001yY6-NT
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net (localhost) [108.223.40.66]:57420
-X-Source-Auth: guenter@roeck-us.net
-X-Email-Count: 6
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220305052304.726050-1-lizhi.hou@xilinx.com>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Tue, Mar 08, 2022 at 04:50:41PM -0800, Zev Weiss wrote:
+On Fri, Mar 04, 2022 at 09:23:00PM -0800, Lizhi Hou wrote:
 > Hello,
-> 
-> This is v2 of my patches to add i2c support to the nct6775 driver.
-> 
 
-Just to let you know, I won't have time to review - much less test - the series 
-before the commit window opens. Also, it is way too late for the upcoming release;
-the changes are substantial enough to warrant a large soak time in linux-next.
-The series will have to wait for v5.19.
+Why is this a resend?  I see
+https://lore.kernel.org/r/20220305051105.725838-1-lizhi.hou@xilinx.com,
+which looks like it was posted just a few minutes before this.  I
+assume this "RESEND" is identical?
 
-Guenter
+> This V1 of patch series is to provide the required pci OF interfaces for
+> the PCIe device which uses flattened device tree to describe apertures in
+> its PCIe BARs. e.g, Xilinx Alveo PCIe accelerator. This requires a base
+> device tree which contains nodes for PCIe devices. A PCIe device driver
+> can then overlay a flattened device tree on the PCIe device tree node.
+> There are two separate parts for this to work. First, not all system has
+> a base device tree created by default. Thus, a patch to create an empty
+> device tree root node has been submitted.
+>   https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
+> Second, PCIe is self discoverable bus and there might not be a device tree
+> node created for PCIe device. This patch provides a new interface to create
+> a ‘pci-ep-bus’ node under the base device tree root node. PCIe device
+> driver may call this interface in its probe routine to create device tree
+> node, then overlays its device tree to the node.
+> For the overlayed device tree nodes, each node presents a hardware aperture
+> implemented in its PCIe BARs. The aperture register address consists of BAR
+> index and offset. It uses the following encoding:
+>   0xIooooooo 0xoooooooo
+> Where:
+>   I = BAR index
+>   ooooooo oooooooo = BAR offset
+> The ‘pci-ep-bus’ node been created is compatible with ‘simple-bus’ and
+> contains ‘ranges’ property for translating aperture address to CPU address.
+> The last patch enhances of_overlay_fdt_apply(). The ‘pci-ep-bus’ device
+> node is created dynamically. The flattened device tree may not specify an
+> fixed target overlay path in front. Instead, a relative path to the
+> ‘pci-ep-bus’ node is specified in the flattened tree. Thus, a new
+> parameter is added to point the target base node which is ‘pci-ep-bus’
+> node in this case. Then the entire overlay target path is target base node
+> path plus the relative path specified in the flattened device tree.
 
-> Changes since v1 [0]:
->  - Added preparatory patch converting driver to regmap API [Guenter]
->  - Replaced ENOSPC with ENOBUFS and removed WARN_ON() in
->    nct6775_add_attr_group() [Guenter]
->  - Added dedicated symbol namespace [Guenter]
->  - Removed nct6775_write_temp() and nct6775_update_device() symbol
->    exports [Guenter]
->  - Reordered patches to put dt-bindings patch first [Krzysztof]
-> 
-> The nct6775-platform and nct6775-i2c drivers have both been tested on
-> the NCT6779D in an ASRock ROMED8HM3 system and the NCT6798 [1] in an
-> ASRock X570-D4U (the latter thanks to Renze, CCed); both seem to work
-> as expected on both systems.  I don't have access to any asuswmi
-> hardware, so testing of the nct6775-platform driver on that to ensure
-> it doesn't break there would be appreciated (Oleksandr, perhaps?).
-> 
-> [0] https://lore.kernel.org/linux-hwmon/20220226133047.6226-1-zev@bewilderbeest.net/
-> [1] Though it's physically labeled (mislabeled?) as an NCT6796, for
->     what that's worth.
-> 
-> A slightly edited version of the previous cover letter follows:
-> 
-> 
-> This patch series augments the existing nct6775 driver with support
-> for the hardware's i2c interface; along the way it converts the driver
-> to use the regmap API, and splits the LPC-specific platform driver
-> into a separate module from the interface-independent core.
-> 
-> Thus far the nct6775 driver has only supported the LPC interface,
-> which is the main interface by which the Super-I/O chip is typically
-> connected to the host (x86) processor.
-> 
-> However, these chips also provide an i2c interface, which can provide
-> a way for a BMC to also monitor sensor readings from them.  On some
-> systems (such as the ASRock Rack ROMED8HM3 and X570-D4U) this may be
-> the only way for the BMC to monitor host CPU temperatures (e.g. to
-> indirectly access a TSI interface); this functionality is thus an
-> important component of enabling OpenBMC to support such systems.
-> 
-> In such an arrangement the Super-I/O chip is simultaneously controlled
-> by two independent processors (the host and the BMC) which typically
-> do not coordinate their accesses with each other.  In order to avoid
-> conflicts between the two, the i2c driver avoids all writes to the
-> device, since the BMC's needs with the hardware are merely that it be
-> able to retrieve sensor readings.  This allows the host processor to
-> remain ultimately in control of the chip and unaware of the BMC's use
-> of it at all.
-> 
-> The sole exception to the "no writes" rule for the i2c driver is for
-> the bank-select register -- while I haven't been able to find any
-> explicit statement in the Nuvoton datasheets guaranteeing this,
-> testing via manual register accesses (as detailed in [2]) has
-> indicated that, as one might hope, the i2c interface has its own
-> bank-select register independent of the one used by the LPC interface.
-> 
-> In terms of code structure, the approach taken in this series is to
-> first convert the driver's register accesses to the regmap API, and
-> then split the LPC-specific parts of it out into a separate module
-> (called nct6775-platform), leaving the interface-independent parts in
-> a generic driver (called nct6775-core).  The nct6775-i2c driver is
-> then added as an additional consumer of the nct6775-core module's
-> functionality (essentially just providing its own set of regmap
-> read/write callback functions).
-> 
-> The first patch provides DT bindings for the nct6775, the second
-> contains the change to convert all register accesses to use a regmap.
-> The third and fourth patches make some relatively small
-> infrastructural changes to the driver.  The core/platform driver split
-> is in the fifth patch, and the final patch adds the i2c driver itself.
-> 
-> 
-> Thanks,
-> Zev
-> 
-> [2] https://lore.kernel.org/linux-hwmon/YhttzgDtGpcTniyw@hatter.bewilderbeest.net/
-> 
-> Zev Weiss (6):
->   dt-bindings: hwmon: Add nuvoton,nct6775
->   hwmon: (nct6775) Convert register access to regmap API
->   hwmon: (nct6775) Rearrange attr-group initialization
->   hwmon: (nct6775) Add read-only mode
->   hwmon: (nct6775) Split core and platform driver
->   hwmon: (nct6775) Add i2c driver
-> 
->  .../bindings/hwmon/nuvoton,nct6775.yaml       |   48 +
->  MAINTAINERS                                   |   12 +-
->  drivers/hwmon/Kconfig                         |   32 +-
->  drivers/hwmon/Makefile                        |    4 +-
->  drivers/hwmon/{nct6775.c => nct6775-core.c}   | 2310 +++++------------
->  drivers/hwmon/nct6775-i2c.c                   |  179 ++
->  drivers/hwmon/nct6775-platform.c              | 1232 +++++++++
->  drivers/hwmon/nct6775.h                       |  252 ++
->  8 files changed, 2382 insertions(+), 1687 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
->  rename drivers/hwmon/{nct6775.c => nct6775-core.c} (69%)
->  create mode 100644 drivers/hwmon/nct6775-i2c.c
->  create mode 100644 drivers/hwmon/nct6775-platform.c
->  create mode 100644 drivers/hwmon/nct6775.h
-> 
-> -- 
-> 2.35.1
-> 
+s/pci/PCI/ (capitalize acronyms above, also in other subjects, commit
+logs, and code comments)
+
+s/PCIe/PCI/ (in most cases, the above is not PCIe-specific)
+
+Please add blank lines between paragraphs to make this easier to read.
+
+The above tells *what* this series does, but not *why* we need it.
+
+Apparently you want to describe PCI BARs in DT.  Normally the PCI core
+discovers devices and BARs using the PCI enumeration process (read
+config space looking for a Device ID, read standard BAR locations
+(unimplemented BARs are hardwired to zero)).  Obviously you know all
+of this.  What we need here (and in the commit log for the relevant
+patch) is some explanation about why this standard process doesn't
+work and you need to do something via DT.
+
+I'm guessing this is for the case where Linux is running *on* the
+endpoint, so instead of enumerating devices from the perspective of a
+PCI host controller, it's on the "other" side of the device, e.g., as
+described in Documentation/PCI/endpoint/pci-endpoint.rst
+
+So the commit log should mention that and explain why we need this new
+DT support.  The endpoint support has been around for a while, so this
+should explain what's different about Xilinx Alveo and why it needs
+this new stuff.
+
+Bjorn
