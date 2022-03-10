@@ -2,159 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BE544D4B57
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 15:56:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D8FB4D4AA1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 15:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243229AbiCJOVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 09:21:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54452 "EHLO
+        id S235340AbiCJOei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 09:34:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245203AbiCJOUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 09:20:52 -0500
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9116A10D6;
-        Thu, 10 Mar 2022 06:19:51 -0800 (PST)
-Received: by mail-oo1-f54.google.com with SMTP id l24-20020a4a8558000000b00320d5a1f938so6859142ooh.8;
-        Thu, 10 Mar 2022 06:19:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3W/Ki5qpGDEFWKMk7J7E8+Sx1qx4QiEdndntXWsLJJo=;
-        b=Ip0WAWLy+dn1sMctdsuJo5pDUkIl9qdZgYX38nAjIUWhur9Y1uGlNtmBSUlY9dbUGM
-         yb10n122GLmhFpCXq+hWNPe0TCtX8TNcmhkyD2F5lzBWTwtoaLWdSpH76nsnMY2paHvF
-         pHbPmpHhlT2QiqEbO4+eX2/5/N27A/hAZyj/C35dRxvxw2rP9Bq2PV3i3lP42WVN72uc
-         YJlYaBi3U8bgBvI0KeTNwh479d+bUOgz08EJarCfwLd3Wutn3L4hbVlFcTKQT0c9QQ74
-         rK7sREFgO8BeRrEzgt+hJ50VdX1VK7z/OpptoYBX9SI9bJ+9iooikTrb8hRMt+AS7w/h
-         TT9Q==
-X-Gm-Message-State: AOAM531xlm+JxmJc0dPjggMGm0X/hMYtlMzpEwF2qHfYn1kLj2P+rKRe
-        7nRkd/+11zJfOqp3QlEc5eIQngxFJg==
-X-Google-Smtp-Source: ABdhPJzLQb+1MVtYdE1o45AtniXUkVnyGAHMsHASWKW9w52BpjEdb/3jkpPrqvjFst6yafyQZQu4tw==
-X-Received: by 2002:a05:6870:796:b0:da:3d6a:101d with SMTP id en22-20020a056870079600b000da3d6a101dmr2781905oab.20.1646921990718;
-        Thu, 10 Mar 2022 06:19:50 -0800 (PST)
-Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id 68-20020a9d0a4a000000b005ad3287033csm2451415otg.44.2022.03.10.06.19.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 06:19:50 -0800 (PST)
-Received: (nullmailer pid 1611493 invoked by uid 1000);
-        Thu, 10 Mar 2022 14:19:49 -0000
-Date:   Thu, 10 Mar 2022 08:19:49 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Laszlo Ersek <lersek@redhat.com>
-Cc:     Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: Convert QEMU fw-cfg to DT schema
-Message-ID: <YioJBWPxuE+T9g9g@robh.at.kernel.org>
-References: <20220310013552.549590-1-robh@kernel.org>
- <9651bc36-3da0-4e2b-1d29-bb4b3ce1389d@redhat.com>
+        with ESMTP id S245759AbiCJOax (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 09:30:53 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A20A186BB6;
+        Thu, 10 Mar 2022 06:26:51 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=X+z54Gq/Kh0PoKxHLLeQbmlP658ai3SMxXoXeIbzp88=; b=UF7VNzrBw+MgOPrTTrt86DqHf9
+        yfuXVm0+wA5PHjD/wcSGjxcR/eLBRatyK9mipxXSRFmEikACiHeyoj6ZnfJRbSDZm8yhvnVE5eNWt
+        ocCLxQgk9LabkFtUDr+X4Ltk/Xz7aduFICybsHliO23Sgp6lwI6WXjwzka9HowCWcieA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nSJk2-00A8zy-Kx; Thu, 10 Mar 2022 15:26:10 +0100
+Date:   Thu, 10 Mar 2022 15:26:10 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        catalin.marinas@arm.com, will@kernel.org,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 3/4] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Message-ID: <YioKgjhEnqylB24M@lunn.ch>
+References: <20220310030039.2833808-1-chris.packham@alliedtelesis.co.nz>
+ <20220310030039.2833808-4-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9651bc36-3da0-4e2b-1d29-bb4b3ce1389d@redhat.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <20220310030039.2833808-4-chris.packham@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 10, 2022 at 10:05:04AM +0100, Laszlo Ersek wrote:
-> On 03/10/22 02:35, Rob Herring wrote:
-> > Convert the QEMU fw-cfg binding to DT schema format. As this binding is
-> > also used on Risc-V now, drop any architecture references and move to a
-> > common location. The fw-cfg interface has also gained some DMA support
-> > which is coherent, so add the missing 'dma-coherent'.
-> > 
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../devicetree/bindings/arm/fw-cfg.txt        | 38 -------------
-> >  .../bindings/firmware/qemu,fw-cfg-mmio.yaml   | 54 +++++++++++++++++++
-> >  2 files changed, 54 insertions(+), 38 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/fw-cfg.txt
-> >  create mode 100644 Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fw-cfg.txt b/Documentation/devicetree/bindings/arm/fw-cfg.txt
-> > deleted file mode 100644
-> > index fd54e1db2156..000000000000
-> > --- a/Documentation/devicetree/bindings/arm/fw-cfg.txt
-> > +++ /dev/null
-> > @@ -1,38 +0,0 @@
-> > -* QEMU Firmware Configuration bindings for ARM
-> > -
-> > -QEMU's arm-softmmu and aarch64-softmmu emulation / virtualization targets
-> > -provide the following Firmware Configuration interface on the "virt" machine
-> > -type:
-> > -
-> > -- A write-only, 16-bit wide selector (or control) register,
-> > -- a read-write, 64-bit wide data register.
-> > -
-> > -QEMU exposes the control and data register to ARM guests as memory mapped
-> > -registers; their location is communicated to the guest's UEFI firmware in the
-> > -DTB that QEMU places at the bottom of the guest's DRAM.
-> > -
-> > -The authoritative guest-side hardware interface documentation to the fw_cfg
-> > -device can be found in "docs/specs/fw_cfg.txt" in the QEMU source tree.
-> > -
-> > -
-> > -Required properties:
-> > -
-> > -- compatible: "qemu,fw-cfg-mmio".
-> > -
-> > -- reg: the MMIO region used by the device.
-> > -  * Bytes 0x0 to 0x7 cover the data register.
-> > -  * Bytes 0x8 to 0x9 cover the selector register.
-> > -  * Further registers may be appended to the region in case of future interface
-> > -    revisions / feature bits.
-> > -
-> > -Example:
-> > -
-> > -/ {
-> > -	#size-cells = <0x2>;
-> > -	#address-cells = <0x2>;
-> > -
-> > -	fw-cfg@9020000 {
-> > -		compatible = "qemu,fw-cfg-mmio";
-> > -		reg = <0x0 0x9020000 0x0 0xa>;
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml b/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
-> > new file mode 100644
-> > index 000000000000..3aac9448e7f1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/firmware/qemu,fw-cfg-mmio.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: QEMU Firmware Configuration bindings
-> > +
-> > +maintainers:
-> > +  - Laszlo Ersek <lersek@redhat.com>
+On Thu, Mar 10, 2022 at 04:00:38PM +1300, Chris Packham wrote:
+> The 98DX2530 SoC is the Control and Management CPU integrated into
+> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
+> referred to as AlleyCat5 and AlleyCat5X).
 > 
-> Ugh :) I guess this is based on my authorship of historical commit
-> 53275a61bc7a ("devicetree: document ARM bindings for QEMU's Firmware
-> Config interface", 2015-01-13), and prehaps my R-b on commit
-> 92aed5d6ba90 ("devicetree: update documentation for fw_cfg ARM
-> bindings", 2016-02-09).
+> These files have been taken from the Marvell SDK and lightly cleaned
+> up with the License and copyright retained.
 > 
-> However -- I totally can't maintain this file. (I mean I've probably not
-> done anything related to it in the past seven years, so I guess it's
-> time to admit that fact!)
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
 > 
-> Rob, would you please consider taking it over?
+> Notes:
+>     This has a number of undocumented compatible strings. I've got the SDK
+>     source so I'll either bring through whatever drivers are needed or look
+>     at for an in-tree alternative (e.g. there is SDK code for a ac5-gpio but
+>     the existing marvell,orion-gpio seems to cover what is needed if you use
+>     an appropriate binding).
 
-Yeah, no problem.
+Hi Chris
 
-> With my name+email replaced with yours:
-> 
-> Acked-by: Laszlo Ersek <lersek@redhat.com>
-> 
-> Thank you!
-> Laszlo
+My understand is, you don't add nodes for which there is no
+driver. The driver and its binding needs to be reviewed and accepted
+before users of it are added.
+
+> +	mvDma {
+> +		compatible = "marvell,mv_dma";
+> +		memory-region = <&prestera_rsvd>;
+> +		status = "okay";
+> +	};
+
+Is this different to the existing Marvell XOR engine?
+
+> +			mdio: mdio@20000 {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +				compatible = "marvell,orion-mdio";
+> +				reg = <0x22004 0x4>;
+> +				clocks = <&core_clock>;
+> +				phy0: ethernet-phy@0 {
+> +					reg = < 0 0 >;
+> +				};
+
+This embedded PHY looks wrong. reg should be a single value.
+
+Is the PHY internal? Generally, the PHY is put in the .dts file, but
+if it is internal, that the .dtsi would be correct.
+
+> +				sdhci0: sdhci@805c0000 {
+> +					compatible = "marvell,ac5-sdhci", "marvell,armada-ap806-sdhci";
+
+This additional compatible should be added to the existing binding
+document.
+
+> +			eth0: ethernet@20000 {
+> +				compatible = "marvell,armada-ac5-neta";
+
+So it is not compatible with plain nata?
+
+> +				reg = <0x0 0x20000 0x0 0x4000>;
+> +				interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&core_clock>;
+> +				status = "disabled";
+> +				phy-mode = "sgmii";
+> +			};
+> +
+> +			eth1: ethernet@24000 {
+> +				compatible = "marvell,armada-ac5-neta";
+> +				reg = <0x0 0x24000 0x0 0x4000>;
+> +				interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&core_clock>;
+> +				status = "disabled";
+> +				phy-mode = "sgmii";
+> +				fixed-link {
+> +					speed = <100>;
+> +					full-duplex;
+> +				};
+
+Fast Ethernet? Yet SGMII?
+
+> +			/* USB0 is a host USB */
+> +			usb0: usb@80000 {
+> +				compatible = "marvell,ac5-ehci", "marvell,orion-ehci";
+
+Please add this compatible to the binding.
+
+> +		pcie0: pcie@800a0000 {
+> +			compatible = "marvell,ac5-pcie", "snps,dw-pcie";
+
+Please add this ...
+
+> +			spiflash0: spi-flash@0 {
+> +				compatible = "spi-nor";
+> +				spi-max-frequency = <50000000>;
+> +				spi-tx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
+> +				spi-rx-bus-width = <1>; /* 1-single, 2-dual, 4-quad */
+> +				reg = <0>;
+> +
+> +				#address-cells = <1>;
+> +				#size-cells = <1>;
+> +
+> +				partition@0 {
+> +					label = "spi_flash_part0";
+> +					reg = <0x0 0x800000>;
+> +				};
+> +
+> +				parition@1 {
+> +					label = "spi_flash_part1";
+> +					reg = <0x800000 0x700000>;
+> +				};
+> +
+> +				parition@2 {
+> +					label = "spi_flash_part2";
+> +					reg = <0xF00000 0x100000>;
+> +				};
+
+The partitioning of the flash i would expect to be board specific, so
+belongs on the .dts file.
+
+> +		nand: nand@805b0000 {
+> +			compatible = "marvell,ac5-nand-controller";
+
+The current NAND driver does not work?
+
+> +		prestera {
+> +			compatible = "marvell,armada-ac5-switch";
+> +			interrupts = <GIC_SPI 0x23 IRQ_TYPE_LEVEL_HIGH>;
+> +			status = "okay";
+> +		};
+
+Here we have to be careful with naming. I assume Marvell in kernel
+Pretera driver does not actually work on the prestera hardware? That
+driver assumes you are running Marvell firmware on this SoC, and have
+a host running that driver which talks to the SoC firmware?
+
+The name perstera seems O.K, and the compatible
+marvell,armada-ac5-switch makes it clear the prestera driver cannot be
+used. However, until we do actually have a driver, i don't think this
+node should be added.
+
+> +		watchdog@80216000 {
+> +			compatible = "marvell,ac5-wd";
+
+Not compatible with the existing watchdog driver?
+
+    Andrew
