@@ -2,205 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0069C4D5369
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 22:07:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 406054D5388
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 22:20:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244529AbiCJVIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 16:08:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38338 "EHLO
+        id S233866AbiCJVU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 16:20:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230183AbiCJVIj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 16:08:39 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 59355E0B3
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:07:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1646946456;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=w7m4E6jL7xlLzbh+pfcUCA3woKLs1+1bhIXxJOhu8B4=;
-        b=FCFlN7wfkH00hUdyg8Upo3N8EthAVxufxoqBCR/xRjbq26GVFHulWjnGFWb5C5uHGYXIzp
-        orZHTcJar3VpsmSTKbnACZYs5FqTlW4VbEVxjCGf9Tiz7yQlnTYjBK6QDayRf8/NK5vZ88
-        z/GzYNddDTErHraczDv/0OJk94CRkCA=
-Received: from mail-oi1-f200.google.com (mail-oi1-f200.google.com
- [209.85.167.200]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-175-CNoMsFHzOBqT9JoAh0dSuw-1; Thu, 10 Mar 2022 16:07:35 -0500
-X-MC-Unique: CNoMsFHzOBqT9JoAh0dSuw-1
-Received: by mail-oi1-f200.google.com with SMTP id 9-20020aca1009000000b002d9a9f48c79so4661195oiq.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:07:35 -0800 (PST)
+        with ESMTP id S237947AbiCJVU5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 16:20:57 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA62063BD3
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:19:55 -0800 (PST)
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 355F23F312
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 21:19:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646947187;
+        bh=9DmBnTPJmgfr8wJC4s2tQqC5+M2g/VQlbp1lfsPPtrg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=TbYxkSGDGpB+9LWMIcVrg/bKxfcGPedih+1jROjbklTGSPGnT8HSP3sgc8bZ6/LkS
+         rOyeRbCE4m31eogGMA8HknzxDE9ntuUwsfoqtUL4XLQR3K/uIlBPg8tJQqjgeWwPNg
+         NFyle0JOpc7uViUfkSixVt881DBA2mfBmfIu2ZOr7wIyKO7hxXCEIN6RTqu/IEOMaa
+         uiob7bceabyF7HlIlNWLngGVTisQgQIgJx5IPZExaKB6xe7jAh178Hv930En95ltg8
+         lmxguayBsyolhw/kyqh5IY45ySP8KH4OJX3aF8QfVpRr7EYLuj2G9ythIqYZILjIl6
+         8I+KsxVWG/vhg==
+Received: by mail-ej1-f72.google.com with SMTP id l24-20020a170906a41800b006da873d66b6so3774796ejz.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:19:47 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=w7m4E6jL7xlLzbh+pfcUCA3woKLs1+1bhIXxJOhu8B4=;
-        b=t2hkyI4cuC9KPdnSmcvpzaiEAkcAOfozUvcUGEm+EnfCgSjGwor8U7ApHVbnibBiEV
-         SoJ7V7LO/6tamvQkqdrWBjreEj7tEWZ5sYyNItsLbGi7aLfiMl96hWUcLKeWtgUZpQKt
-         /lly4o+186IoB0ucug+enwU5Bk0hCCRlhO7/G82dFt+sxhp2iiUv3z8l2DAJ3QEFPvcn
-         Njz6ARBjqys4hzRKk88ChF5c19c6OZ1U1ctpn04+8t0ARVjLXirdnKNTNz16Ftntfshr
-         iUaF6AOZrcO6nuue8XQewz33X1GDYvgNyyzGz0gZco2XgcBZgQk9J3znwb97K1KCwFlT
-         FzlQ==
-X-Gm-Message-State: AOAM530xwi30pFOYW01baAg3uYnokd766axmnzT1ZCsK1Y2gfveEe9XI
-        /LaD9mspOmn+Fi6EItONiKFpKszMaxNvm0u+TPcsRWSQQxmmCuj69eyXSBGpiar62Dqk6cH5cwq
-        OekLokuEaFNiLqsS0+nAQkA==
-X-Received: by 2002:a05:6830:2906:b0:5b2:2564:6e89 with SMTP id z6-20020a056830290600b005b225646e89mr3539952otu.43.1646946454216;
-        Thu, 10 Mar 2022 13:07:34 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJy17yKutbgcFZ2UmS2pg8JBd2ar6+zrTWdwhm/1bWAs2QX/F4ULtses8yn2hSGknsFneQ2K9w==
-X-Received: by 2002:a05:6830:2906:b0:5b2:2564:6e89 with SMTP id z6-20020a056830290600b005b225646e89mr3539935otu.43.1646946453985;
-        Thu, 10 Mar 2022 13:07:33 -0800 (PST)
-Received: from localhost.localdomain.com (024-205-208-113.res.spectrum.com. [24.205.208.113])
-        by smtp.gmail.com with ESMTPSA id b188-20020aca34c5000000b002da579c994dsm1666092oia.31.2022.03.10.13.07.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 13:07:33 -0800 (PST)
-From:   trix@redhat.com
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzk+dt@kernel.org, linus.walleij@linaro.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Tom Rix <trix@redhat.com>
-Subject: [PATCH] ARM: dts: cleanup comments
-Date:   Thu, 10 Mar 2022 13:07:28 -0800
-Message-Id: <20220310210728.1217291-1-trix@redhat.com>
-X-Mailer: git-send-email 2.26.3
+        bh=9DmBnTPJmgfr8wJC4s2tQqC5+M2g/VQlbp1lfsPPtrg=;
+        b=dX+wJD9p7kcbjWWqo3A6zTCjwXRTTyavKl5CQ82NYCZcT4zK5aYN5OUOeBxq3k+p+c
+         HyU2I28FAW2GOG5LT1MG5FKQZ+yEbWJKDD2Qcnue5N90T9QCOJtDp40qbr69m86GjvnT
+         YPr0EnHc8wmF+TEFNQ8qvu/PJGkKQbrowp3Aqm2dbLrD2vMb0w6W7P8nJQx5nDpVLktv
+         fQQH46l8qdrKZrmt+4mju3p/ZfVMpiILwrk8ub8rg79xPupSunnj3o/cL8TX790jvjsx
+         Mt4ZitLG7+lClRLzUuvJmvoMeMA8Ahtt6+75ktt2oJjQE1aZVBACgC602VQBgLfuUngy
+         QL5w==
+X-Gm-Message-State: AOAM531oekpXLQirH0gWuOJIQGGbgjVWMwx7Hkm33jrNCN88VnToQObx
+        Npl/3+jJUoVAguEKjhaHgLnPnXvNOzadFPOcU2EaBTU0W4U2xHslk2UpfRQ1L1R1bOTg08LBl9P
+        Y0fg+x1fRy2kJzdbhpAZQmPPHURU9On1FBI6Yi0w=
+X-Received: by 2002:a17:906:4108:b0:6db:867c:f3ab with SMTP id j8-20020a170906410800b006db867cf3abmr4064713ejk.708.1646947186744;
+        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwpPhoEYeMm5ZEZqUHmwNDHKl/pnXpf7yeFjdCLVUvg18iW5ZSftFmEY3A2p0wQ8bC7jpG3FA==
+X-Received: by 2002:a17:906:4108:b0:6db:867c:f3ab with SMTP id j8-20020a170906410800b006db867cf3abmr4064700ejk.708.1646947186550;
+        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
+Received: from [192.168.0.147] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm2114790ejb.187.2022.03.10.13.19.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Mar 2022 13:19:46 -0800 (PST)
+Message-ID: <c5791ed0-1bde-3b55-1237-822111bd6251@canonical.com>
+Date:   Thu, 10 Mar 2022 22:19:45 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH net-next v3 2/8] dt-bindings: phy: add the "fsl,lynx-28g"
+ compatible
+Content-Language: en-US
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Hongxing Zhu <hongxing.zhu@nxp.com>
+References: <20220310145200.3645763-1-ioana.ciornei@nxp.com>
+ <20220310145200.3645763-3-ioana.ciornei@nxp.com>
+ <a32fa8df-bd07-8040-41cd-92484420756d@canonical.com>
+ <20220310173223.pl2asv55iqfmbasq@skbuf>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220310173223.pl2asv55iqfmbasq@skbuf>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Tom Rix <trix@redhat.com>
+On 10/03/2022 18:32, Ioana Ciornei wrote:
+> On Thu, Mar 10, 2022 at 05:47:31PM +0100, Krzysztof Kozlowski wrote:
+>> On 10/03/2022 15:51, Ioana Ciornei wrote:
+>>> Describe the "fsl,lynx-28g" compatible used by the Lynx 28G SerDes PHY
+>>> driver on Layerscape based SoCs.
+>>
+>> The message is a bit misleading, because it suggests you add only
+>> compatible to existing bindings. Instead please look at the git log how
+>> people usually describe it in subject and message.
+> 
+> Sure, I can change the title and commit message.
+> 
+>>> +patternProperties:
+>>> +  '^phy@[0-9a-f]$':
+>>> +    type: object
+>>> +    properties:
+>>> +      reg:
+>>> +        description:
+>>> +          Number of the SerDes lane.
+>>> +        minimum: 0
+>>> +        maximum: 7
+>>> +
+>>> +      "#phy-cells":
+>>> +        const: 0
+>>
+>> Why do you need all these children? You just enumerated them, without
+>> statuses, resources or any properties. This should be rather just index
+>> of lynx-28g phy.
+> 
+> I am just describing each lane of the SerDes block so that each ethernet
+> dts node references it directly.
 
-For spdx, // style, move to first line, remove extra space
+Instead, phy user should reference phy device node and phy ID. Just like
+we do for other providers (everything with #xxxxx-cells).
 
-Replacements
-th to the
-Devive to Device
-Suppport to Support
+> Since I am new to the generic PHY infrastructure I was using the COMPHY
+> for the Marvell MVEBU SoCs (phy-mvebu-comphy.txt) as a loose example.
 
-Signed-off-by: Tom Rix <trix@redhat.com>
----
- arch/arm/boot/dts/am335x-pdu001.dts              | 2 +-
- arch/arm/boot/dts/arm-realview-eb-mp.dtsi        | 2 +-
- arch/arm/boot/dts/armada-370-synology-ds213j.dts | 2 +-
- arch/arm/boot/dts/armada-xp-synology-ds414.dts   | 2 +-
- arch/arm/boot/dts/omap3-sbc-t3517.dts            | 2 +-
- arch/arm/boot/dts/omap3-sbc-t3530.dts            | 2 +-
- arch/arm/boot/dts/omap3-sbc-t3730.dts            | 2 +-
- arch/arm/boot/dts/omap5-sbc-t54.dts              | 2 +-
- 8 files changed, 8 insertions(+), 8 deletions(-)
+I don't know it but it might not be the best example... Just because we
+have already some solution it does not mean it is good. :)
 
-diff --git a/arch/arm/boot/dts/am335x-pdu001.dts b/arch/arm/boot/dts/am335x-pdu001.dts
-index ce6cc2b96654f..ce99f2b2d17f3 100644
---- a/arch/arm/boot/dts/am335x-pdu001.dts
-+++ b/arch/arm/boot/dts/am335x-pdu001.dts
-@@ -1,3 +1,4 @@
-+// SPDX-License-Identifier: GPL-2.0+
- /*
-  * pdu001.dts
-  *
-@@ -7,7 +8,6 @@
-  *
-  * Copyright (C) 2011, Texas Instruments, Incorporated - https://www.ti.com/
-  *
-- * SPDX-License-Identifier:  GPL-2.0+
-  */
- 
- /dts-v1/;
-diff --git a/arch/arm/boot/dts/arm-realview-eb-mp.dtsi b/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
-index 26783d053ac7f..50aed64c59087 100644
---- a/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
-+++ b/arch/arm/boot/dts/arm-realview-eb-mp.dtsi
-@@ -72,7 +72,7 @@ L2: cache-controller {
- 			 * Override default cache size, sets and
- 			 * associativity as these may be erroneously set
- 			 * up by boot loader(s), probably for safety
--			 * since th outer sync operation can cause the
-+			 * since the outer sync operation can cause the
- 			 * cache to hang unless disabled.
- 			 */
- 			cache-size = <1048576>; // 1MB
-diff --git a/arch/arm/boot/dts/armada-370-synology-ds213j.dts b/arch/arm/boot/dts/armada-370-synology-ds213j.dts
-index 64f2ce254fb6c..6ac62806f5a18 100644
---- a/arch/arm/boot/dts/armada-370-synology-ds213j.dts
-+++ b/arch/arm/boot/dts/armada-370-synology-ds213j.dts
-@@ -14,7 +14,7 @@
-  * not be able to directly boot a kernel based on this Device Tree. In
-  * that case, the preferred solution is to update your bootloader (e.g.
-  * by upgrading to latest version of DSM, or building a new one and
-- * installing it from u-boot prompt) or adjust the Devive Tree
-+ * installing it from u-boot prompt) or adjust the Device Tree
-  * (s/0xf1000000/0xd0000000/ in 'ranges' below).
-  */
- 
-diff --git a/arch/arm/boot/dts/armada-xp-synology-ds414.dts b/arch/arm/boot/dts/armada-xp-synology-ds414.dts
-index 809e821d7399d..c3016c2a3bf9b 100644
---- a/arch/arm/boot/dts/armada-xp-synology-ds414.dts
-+++ b/arch/arm/boot/dts/armada-xp-synology-ds414.dts
-@@ -14,7 +14,7 @@
-  * not be able to directly boot a kernel based on this Device Tree. In
-  * that case, the preferred solution is to update your bootloader (e.g.
-  * by upgrading to latest version of DSM, or building a new one and
-- * installing it from u-boot prompt) or adjust the Devive Tree
-+ * installing it from u-boot prompt) or adjust the Device Tree
-  * (s/0xf1000000/0xd0000000/ in 'ranges' below).
-  */
- 
-diff --git a/arch/arm/boot/dts/omap3-sbc-t3517.dts b/arch/arm/boot/dts/omap3-sbc-t3517.dts
-index a69d328604219..5101c783ffa6e 100644
---- a/arch/arm/boot/dts/omap3-sbc-t3517.dts
-+++ b/arch/arm/boot/dts/omap3-sbc-t3517.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Suppport for CompuLab SBC-T3517 with CM-T3517
-+ * Support for CompuLab SBC-T3517 with CM-T3517
-  */
- 
- #include "omap3-cm-t3517.dts"
-diff --git a/arch/arm/boot/dts/omap3-sbc-t3530.dts b/arch/arm/boot/dts/omap3-sbc-t3530.dts
-index 24bf3fd86641f..d57d137c9ea27 100644
---- a/arch/arm/boot/dts/omap3-sbc-t3530.dts
-+++ b/arch/arm/boot/dts/omap3-sbc-t3530.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Suppport for CompuLab SBC-T3530 with CM-T3530
-+ * Support for CompuLab SBC-T3530 with CM-T3530
-  */
- 
- #include "omap3-cm-t3530.dts"
-diff --git a/arch/arm/boot/dts/omap3-sbc-t3730.dts b/arch/arm/boot/dts/omap3-sbc-t3730.dts
-index eb3893b9535e6..58b65bafc4da3 100644
---- a/arch/arm/boot/dts/omap3-sbc-t3730.dts
-+++ b/arch/arm/boot/dts/omap3-sbc-t3730.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Suppport for CompuLab SBC-T3730 with CM-T3730
-+ * Support for CompuLab SBC-T3730 with CM-T3730
-  */
- 
- #include "omap3-cm-t3730.dts"
-diff --git a/arch/arm/boot/dts/omap5-sbc-t54.dts b/arch/arm/boot/dts/omap5-sbc-t54.dts
-index 657df46251c2e..3e01b60acb158 100644
---- a/arch/arm/boot/dts/omap5-sbc-t54.dts
-+++ b/arch/arm/boot/dts/omap5-sbc-t54.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * Suppport for CompuLab CM-T54 on SB-T54 baseboard
-+ * Support for CompuLab CM-T54 on SB-T54 baseboard
-  */
- 
- #include "omap5-cm-t54.dts"
--- 
-2.26.3
+> Each lane there is described as a different child node as well. The only
+> difference from the COMPHY is that Lynx 28G does not need #phy-cells =
+> <1> to reference the input port, we just use '#phy-cells = <0>' on each
+> lane.
+> 
+> What is wrong with this approach? Or better, is there an easier way to
+> do this?
 
+Because the nodes look artificial. It looks like you have nodes only
+differentiate by index. As I said before - there are no other properties
+in these nodes.
+
+Imagine now a clock provider with 500 clocks like this...
+
+The easier approach, especially since you have a shared registers, is to
+use phy-cells = 1, without artificial nodes just to pass the index.
+
+It would be entirely different if you actually had any properties in the
+children. IOW, if these were actually some blocks with their own
+characteristics and programming model.
+
+Best regards,
+Krzysztof
