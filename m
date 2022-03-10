@@ -2,96 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B104D3F74
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 04:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E27F74D411F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 07:32:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237793AbiCJDBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 22:01:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
+        id S239781AbiCJGdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 01:33:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237155AbiCJDBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 22:01:48 -0500
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215C9125500
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 19:00:46 -0800 (PST)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 376552C0C61;
-        Thu, 10 Mar 2022 03:00:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1646881244;
-        bh=bhyF/NCDXANrCw6v9FLOgZoyTG+XDLRL020LrUJIdEo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nqdCnlxNG74lIoOiQsoGhAnF2YXVFhcPabOttpOFU0cyA2I7uzLfmIwLPoU+J8iWk
-         nFAbVhw6wfr954swdBfDqCF7pym3uWlS9Q9Lw5g2jkqF0lzmqzx4yh1V6iQ9lz1O6A
-         3UUvy8ifLBcB4a7qEFjI8Skq165QGVtsSl3zVsgVGenVSKpytQNkjnibhqJNxBQqoI
-         YnmhIe+jjhiCmJHvbh1Oev2h7A5MyjOD4jy1wfKm8JGyYPLHNv1lKN3ilzn1VZceOJ
-         u4opikFZBYhXtmHDEUu3700binh2Qk8iDexMJmVvxtuUmbnAjiib6vI8Ql9NJk9e/y
-         +ZrmAjjFepSqg==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B622969db0004>; Thu, 10 Mar 2022 16:00:43 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 9C82913EE9C;
-        Thu, 10 Mar 2022 16:00:43 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id ACBCF2A00D4; Thu, 10 Mar 2022 16:00:41 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     linus.walleij@linaro.org, robh+dt@kernel.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v1 4/4] arm64: marvell: enable the 98DX2530 pinctrl driver
-Date:   Thu, 10 Mar 2022 16:00:39 +1300
-Message-Id: <20220310030039.2833808-5-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220310030039.2833808-1-chris.packham@alliedtelesis.co.nz>
-References: <20220310030039.2833808-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S239779AbiCJGdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 01:33:06 -0500
+Received: from mx1.cqplus1.com (unknown [113.204.237.245])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 54AAC12E16E
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 22:31:55 -0800 (PST)
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 172.28.114.216
+        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(26038:0:AUTH_RELAY)
+        (envelope-from <qinjian@cqplus1.com>); Thu, 10 Mar 2022 14:28:59 +0800 (CST)
+From:   Qin Jian <qinjian@cqplus1.com>
+To:     robh+dt@kernel.org
+Cc:     krzk@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, p.zabel@pengutronix.de,
+        linux@armlinux.org.uk, broonie@kernel.org, arnd@arndb.de,
+        stefan.wahren@i2se.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
+Subject: [PATCH v10 00/10] Add Sunplus SP7021 SoC Support
+Date:   Thu, 10 Mar 2022 14:28:39 +0800
+Message-Id: <cover.1646892810.git.qinjian@cqplus1.com>
+X-Mailer: git-send-email 2.33.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=XQcNo-tEeLJW46c85tUA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit makes sure the drivers for the 98DX2530 pin controller is
-enabled.
+This patch series add Sunplus SP7021 SoC support.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
- arch/arm64/Kconfig.platforms | 2 ++
- 1 file changed, 2 insertions(+)
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates many
+peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and etc.) into a
+single chip. It is designed for industrial control.
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 21697449d762..6bbb56901794 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -183,11 +183,13 @@ config ARCH_MVEBU
- 	select PINCTRL_ARMADA_37XX
- 	select PINCTRL_ARMADA_AP806
- 	select PINCTRL_ARMADA_CP110
-+	select PINCTRL_AC5
- 	help
- 	  This enables support for Marvell EBU familly, including:
- 	   - Armada 3700 SoC Family
- 	   - Armada 7K SoC Family
- 	   - Armada 8K SoC Family
-+	   - 98DX2530 SoC Family
-=20
- config ARCH_MXC
- 	bool "ARMv8 based NXP i.MX SoC family"
---=20
-2.35.1
+SP7021 consists of two chips (dies) in a package. One is called C-chip
+(computing chip). It is a 4-core ARM Cortex A7 CPU. It adopts high-level
+process (22 nm) for high performance computing. The other is called P-
+chip (peripheral chip). It has many peripherals and an ARM A926 added
+especially for real-time control. P-chip is made for customers. It adopts
+low-level process (ex: 0.11 um) to reduce cost.
+
+Refer to (for documentations):
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+
+Refer to (applications):
+https://tibbo.com/store/plus1.html
+
+Refer to (applications):
+http://www.sinovoip.com.cn/ecp_view.asp?id=586
+
+Changes in v10:
+- arm/sunplus,sp7021.yaml: Add SoC compatible: "sunplus,sp7021"
+- clock/sunplus,sp7021-clkc.yaml: Remove the internal clock parent from DTS
+- clk-sp7021.c: Refine the macro DBG_CLK
+- clk-sp7021.c: Refine the clock_parent_data
+
+Changes in v9:
+- clk/Kconfig: fix the comments form Stephen Boyd
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v8:
+- clk-sp7021.c: fix the comments form Stephen Boyd
+
+Changes in v7:
+- sunplus,sp7021-clkc.yaml: Add clocks & clock-names
+- clk-sp7021.c: fix the comments form Stephen Boyd
+- irq-sp7021-intc.c: fix the comments from Marc
+
+Changes in v6:
+- reset-sunplus.c: fix the comments from Philipp
+- irq-sp7021-intc.c: fix the comments from Marc
+- mach-sunplus: fix the comments from Arnd
+
+Changes in v5:
+- reset-sunplus.c: fix strict checks
+- clk/Kconfig: fix spell
+- clk-sp7021.c: using bitfield ops, fix strict checks
+- irqchip/Kconfig: fix spell
+- irq-sp7021-intc.c: cleanup error path in probe, fix strict checks
+- arm/Kconfig: fix spell & typo, remove CONFIG_SERIAL_SUNPLUS
+- mach-sunplus/Kconfig: fix typo
+- sp7021_defconfig: add CONFIG_SERIAL_SUNPLUS
+
+Changes in v4:
+- mach-sunplus: add initial support for SP7021
+- sp7021_defconfig: add generic SP7021 defconfig
+- reset-sunplus: remove Q645 support
+- reset-sunplus.c: refine code based on Philipp's review
+- clk-sp7021: clock defines add prefix, more clean up
+
+Changes in v3:
+- sp7021-intc: remove primary controller mode due to P-chip running Linux
+  not supported any more.
+- sp7021-intc.h: removed, not set ext through the DT but sp_intc_set_ext()
+- sunplus,sp7021-intc.yaml: update descriptions for above changes
+- irq-sp7021-intc.c: more cleanup based on Marc's review
+- all driver's Kconfig removed default, it's selected by platform config
+
+Changes in v2:
+- sunplus,sp7021-intc.yaml: add descrption for "#interrupt-cells", interrupts
+- sunplus,sp7021-intc.yaml: drop "ext0-mask"/"ext1-mask" from DT
+- sunplus,sp7021-intc.yaml: fix example.dt too long error
+- irq-sp7021-intc.c: major rewrite
+- all files with dual license
+
+Qin Jian (10):
+  dt-bindings: vendor-prefixes: Add Sunplus
+  dt-bindings: arm: sunplus: Add bindings for Sunplus SP7021 SoC boards
+  dt-bindings: reset: Add bindings for SP7021 reset driver
+  reset: Add Sunplus SP7021 reset driver
+  dt-bindings: clock: Add bindings for SP7021 clock driver
+  clk: Add Sunplus SP7021 clock driver
+  dt-bindings: interrupt-controller: Add bindings for SP7021 interrupt
+    controller
+  irqchip: Add Sunplus SP7021 interrupt controller driver
+  ARM: sunplus: Add initial support for Sunplus SP7021 SoC
+  ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
+
+ .../bindings/arm/sunplus,sp7021.yaml          |  28 +
+ .../bindings/clock/sunplus,sp7021-clkc.yaml   |  39 +
+ .../sunplus,sp7021-intc.yaml                  |  62 ++
+ .../bindings/reset/sunplus,reset.yaml         |  38 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ MAINTAINERS                                   |  17 +
+ arch/arm/Kconfig                              |   2 +
+ arch/arm/Makefile                             |   1 +
+ arch/arm/configs/multi_v7_defconfig           |   1 +
+ arch/arm/configs/sp7021_defconfig             |  61 ++
+ arch/arm/mach-sunplus/Kconfig                 |  26 +
+ arch/arm/mach-sunplus/Makefile                |   9 +
+ arch/arm/mach-sunplus/sp7021.c                |  16 +
+ drivers/clk/Kconfig                           |  10 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-sp7021.c                      | 741 ++++++++++++++++++
+ drivers/irqchip/Kconfig                       |   9 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-sp7021-intc.c             | 288 +++++++
+ drivers/reset/Kconfig                         |   9 +
+ drivers/reset/Makefile                        |   1 +
+ drivers/reset/reset-sunplus.c                 | 130 +++
+ include/dt-bindings/clock/sp-sp7021.h         | 112 +++
+ include/dt-bindings/reset/sp-sp7021.h         |  97 +++
+ 24 files changed, 1701 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
+ create mode 100644 Documentation/devicetree/bindings/reset/sunplus,reset.yaml
+ create mode 100644 arch/arm/configs/sp7021_defconfig
+ create mode 100644 arch/arm/mach-sunplus/Kconfig
+ create mode 100644 arch/arm/mach-sunplus/Makefile
+ create mode 100644 arch/arm/mach-sunplus/sp7021.c
+ create mode 100644 drivers/clk/clk-sp7021.c
+ create mode 100644 drivers/irqchip/irq-sp7021-intc.c
+ create mode 100644 drivers/reset/reset-sunplus.c
+ create mode 100644 include/dt-bindings/clock/sp-sp7021.h
+ create mode 100644 include/dt-bindings/reset/sp-sp7021.h
+
+-- 
+2.33.1
 
