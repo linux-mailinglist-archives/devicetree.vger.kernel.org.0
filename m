@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1217E4D54D8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:49:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B8D94D550F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:09:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344482AbiCJWuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 17:50:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42202 "EHLO
+        id S244449AbiCJXKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 18:10:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344479AbiCJWud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:50:33 -0500
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44643CFB94
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 14:49:30 -0800 (PST)
-Received: by mail-ot1-x334.google.com with SMTP id e25-20020a0568301e5900b005b236d5d74fso5134135otj.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 14:49:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=x/TT8dLlww2cRMcFnTjGyOogDZ68YWOXUbd7KMIvLHk=;
-        b=l3RsfuUFBqBo0l9fCiJUOTYGsMxKeX/1SHoTtDTNvMQ9mDDBYCku7C7xT5Ts+8m2gX
-         DDaLjCvuNRU5pTbxORwk2t04mJzR0RAr70A3voytdFWRhl+5JH4ohYvQ7JwizVo1U0F4
-         24XSl7nqILv6Yhv6Te78UPQ9zza04eomRcklA=
+        with ESMTP id S243519AbiCJXKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:10:31 -0500
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C59199E18;
+        Thu, 10 Mar 2022 15:09:30 -0800 (PST)
+Received: by mail-ot1-f43.google.com with SMTP id j3-20020a9d7683000000b005aeed94f4e9so5113293otl.6;
+        Thu, 10 Mar 2022 15:09:30 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=x/TT8dLlww2cRMcFnTjGyOogDZ68YWOXUbd7KMIvLHk=;
-        b=Ra5r1lL3qoErsQfYkftzkJ6dk//9uG45Vzn3JgXDA5k+w2Ewm5qFz41RpFvsz1tfTj
-         GnxCv3L7wLYoJSYExZdn/4sZUPTI6nWGGCrwTclkRKpy0ln1i0pEzGbGS9QYX8O/c0BA
-         feAJnwtjTwqs7GqulgbNFKafk9S0ZxlUzfdENm27eXVdpzZ0u8xUsA6oGUlICOFFZ9VD
-         6tHniuso1VtFu7siMCxDMw3xRQRrgJTZQVG4BwUtjHS0VjPjS6Ejp2oGCxbYEZgNIA7Y
-         fVhA/hT8zfrdylDM8lvgSDBNx9mPEpokZKeuyUYm09Jy5qiDPjFI31K+qYQ1jBh0SSF4
-         JvRA==
-X-Gm-Message-State: AOAM532Mk+qp49mIrvRdtefQoejjhsrOltk3XPrQ9ogHKFNaI3C3xseV
-        uS51YAm87pCv0MCtMAwZgu2RIQDOv553VmOVUi79Hg==
-X-Google-Smtp-Source: ABdhPJzkXMg76oLKwe91cD8Tb3qxaJYxjvruGUgDXA2xW/l+a06C+/Ddx2bCt1A7PKq/8Vj0NmTf/d1aldPMMl8z6Rw=
-X-Received: by 2002:a9d:5a01:0:b0:5b2:5b6c:232b with SMTP id
- v1-20020a9d5a01000000b005b25b6c232bmr3546448oth.159.1646952569988; Thu, 10
- Mar 2022 14:49:29 -0800 (PST)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Thu, 10 Mar 2022 17:49:29 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=XksAC2LsaUpFUYISiC85YDy12CfZUY+BfAjOruDPrI8=;
+        b=bn22AlwPgW+VjZOqneggTRz5ASTfu5GrM5tDKU9WSHysr8dMvoW5VB7eFqeRsn3RcJ
+         T5U5RFR9Wyh9yCRNlPHQiovdd8yY08wJGCGKWmyvJYs7GxsmqFSBruMfUJzzAgc2mX/Y
+         7zBy9nnKGhq7c5gyuG2bhOk6DE4FMEkXUWJn28GIx5Mbkv1743jambmyeaMLYASWwYzZ
+         VGmFLCF1dT3yqYHSERUBnArSRdFptsJ43wBVg8j+UcOPUSVwHOuWqBZQ7V7SlP7TiOJQ
+         bkLr6+umQ3068MVhb28MpyqbG41WFjXynL1/6yrFvSSwn+c29VgQm3wNCzws4BtsXogu
+         EWJA==
+X-Gm-Message-State: AOAM531NCir94QFjj0IJxtRcOKfae/f6tDIzAeYbMOFR2zoIIjfnd6C1
+        DhlY2K+7c3MszDPNWm7HoA==
+X-Google-Smtp-Source: ABdhPJxE/niFMjlw9YLuU12WYIz7yl2knTfT1RoTNVsWv8hMToO+k0ql1+QK+BAtS/YsOln5O30vxg==
+X-Received: by 2002:a05:6830:187:b0:5b2:2092:836 with SMTP id q7-20020a056830018700b005b220920836mr3770395ota.323.1646953769321;
+        Thu, 10 Mar 2022 15:09:29 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id q6-20020a056870028600b000d9be0ee766sm2751638oaf.57.2022.03.10.15.09.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Mar 2022 15:09:28 -0800 (PST)
+Received: (nullmailer pid 2266309 invoked by uid 1000);
+        Thu, 10 Mar 2022 23:09:27 -0000
+Date:   Thu, 10 Mar 2022 17:09:27 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc:     bjorn.andersson@linaro.org, mathieu.poirier@linaro.org,
+        krzysztof.kozlowski@canonical.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH V2 2/6] dt-bindings: remoteproc: imx_rproc: support
+ i.MX8QM
+Message-ID: <YiqFJ+1l/h7XCQkN@robh.at.kernel.org>
+References: <20220309102118.8131-1-peng.fan@oss.nxp.com>
+ <20220309102118.8131-3-peng.fan@oss.nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <20220310130429.1.Id41fda1d7f5d9230bc45c1b85b06b0fb0ddd29af@changeid>
-References: <20220310130429.1.Id41fda1d7f5d9230bc45c1b85b06b0fb0ddd29af@changeid>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Thu, 10 Mar 2022 17:49:29 -0500
-Message-ID: <CAE-0n53zZ6aMu2ztu5sObyrQRbpfML22OmxK1eFx76P_PWdZ+w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280-herobrine: Fix PCIe regulator
- glitch at bootup
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220309102118.8131-3-peng.fan@oss.nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2022-03-10 13:04:34)
-> While scoping signals, we found that the PCIe signals weren't
-> compliant at bootup. Specifically, the bootloader was setting up PCIe
-> and leaving it configured, then jumping to the kernel. The kernel was
-> turning off the regulator while leaving the PCIe clock running, which
-> was a violation.
->
-> In the regulator bindings (and the Linux kernel driver that uses
-> them), there's currently no way to specify that a GPIO-controlled
-> regulator should keep its state at bootup. You've got to pick either
-> "on" or "off". Let's switch it so that the PCIe regulator defaults to
-> "on" instead of "off". This should be a much safer way to go and
-> avoids the timing violation. The regulator will still be turned off
-> later if there are no users.
->
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> ---
+On Wed, Mar 09, 2022 at 06:21:14PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> Add i.MX8QM compatible
+> 
+> There are two general purpose M4, so add reg property to indicate the
+> id.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Where does the id come from? Is this just an index?
+
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> index f25c203dd2f9..41d366cff3cd 100644
+> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+> @@ -20,6 +20,7 @@ properties:
+>        - fsl,imx8mn-cm7
+>        - fsl,imx8mp-cm7
+>        - fsl,imx8qxp-cm4
+> +      - fsl,imx8qm-cm4
+>        - fsl,imx8ulp-cm33
+>        - fsl,imx7d-cm4
+>        - fsl,imx7ulp-cm4
+> @@ -68,6 +69,9 @@ properties:
+>    power-domains:
+>      maxItems: 8
+>  
+> +  reg:
+> +    maxItems: 1
+> +
+>    rsrc-id:
+>      description:
+>        This property is to specify the resource id of the remote processor in SoC
+> -- 
+> 2.30.0
+> 
+> 
