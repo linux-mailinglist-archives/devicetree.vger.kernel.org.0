@@ -2,150 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 571154D4122
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 07:32:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E88F54D4145
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 07:41:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239780AbiCJGdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 01:33:09 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43630 "EHLO
+        id S238027AbiCJGmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 01:42:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238736AbiCJGdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 01:33:06 -0500
-Received: from mx1.cqplus1.com (unknown [113.204.237.245])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5490612E169
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 22:31:55 -0800 (PST)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 172.28.114.216
-        by mx1.cqplus1.com with MailGates ESMTP Server V5.0(26038:0:AUTH_RELAY)
-        (envelope-from <qinjian@cqplus1.com>); Thu, 10 Mar 2022 14:29:01 +0800 (CST)
-From:   Qin Jian <qinjian@cqplus1.com>
-To:     robh+dt@kernel.org
-Cc:     krzk@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, p.zabel@pengutronix.de,
-        linux@armlinux.org.uk, broonie@kernel.org, arnd@arndb.de,
-        stefan.wahren@i2se.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, Qin Jian <qinjian@cqplus1.com>
-Subject: [PATCH v10 10/10] ARM: sp7021_defconfig: Add Sunplus SP7021 defconfig
-Date:   Thu, 10 Mar 2022 14:28:49 +0800
-Message-Id: <5a50d0eeab42823bc0fe4a51ff762f0b15fe1556.1646892811.git.qinjian@cqplus1.com>
-X-Mailer: git-send-email 2.33.1
-In-Reply-To: <cover.1646892810.git.qinjian@cqplus1.com>
-References: <cover.1646892810.git.qinjian@cqplus1.com>
-MIME-Version: 1.0
+        with ESMTP id S231231AbiCJGmL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 01:42:11 -0500
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70075.outbound.protection.outlook.com [40.107.7.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DB7E33B3;
+        Wed,  9 Mar 2022 22:41:10 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XclMlPPVKT+dFXpsvA2/Kqea1g5RJJem/7Xljz/qlkN+XnjIfXQDMbmG5WeSGrS3iEWfNeMxt2KhyvFcIneQ0G+/MEgJ4j6pTe1hLtymlN5Ym0moDr1NqB2zp5wuf8Mcf/cdNgfwUi4+4OfG+huJqj2u1GhGDsI8VRrx7aoCB+pp+cAsUch8VTgAEmyTUYh7NPGMJhZyLKZEnnBtyoZoqj0Nu2m1AEKbaOSfy/5bWORkPJ5jiqdWf554VeKHMYe+V9HUPbVGjDyIoqn0CAlzOgBHWF14xI+lehWaocSqhqgiQJvVLyYOhy4nC88ecjWQi1BflNZoWeu4t2rydWngOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cEKR7q+Irl2plfgWI7IAGt9uGr3G5B3IZzpRWiKcakU=;
+ b=F92wyOvDSecAqzk+b5ac+nQh66Bg3WoAK/w7MHgUHxYFRKlNszauYL/4T7/ilvPZd18G74MLwxSSUd1rQ/f7OCWnZbQHmhjaMx++43wO/mkRMEEq/eZlaQYT4mOAJfxv/6R3jXf2nKo7SFASXeDRf/gSSxQSEBhvPtTaz7Prb8hDJcy0BtG0WCN27BZVDdSMfN+LoXGX103CFmjlGCxVVujnLY3LAde6TkipCQAsaAyHkxOVYB+JUp77cq9dL//R5SczS0C6bC+zwZ8fLCQtWpqT7Z9NRwOhMoA0OCwTpX+KnMLg+nFQdlnLzgoBYVynGI/GZ5FQVxJMJTNyEJWyqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cEKR7q+Irl2plfgWI7IAGt9uGr3G5B3IZzpRWiKcakU=;
+ b=P2MQXawxk6no3lmlXIMLoxE7DrJ/z10E/UQt4VpLOleiMBY+nHtlfbN33tnpwl9pJGHLk/raW3O05wXYLJh1OGlbk1sr7HtYKvM604uzzNE27b5pOLLix5xbZqnFcnY1UBpcvTd5SUMb6xDMqb8HKuYBcl5VvthgnLeJqm6U2Nc=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by AM8PR04MB7235.eurprd04.prod.outlook.com (2603:10a6:20b:1d1::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Thu, 10 Mar
+ 2022 06:41:08 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967%5]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
+ 06:41:08 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] media: amphion: fix an issue that using pm_runtime_get_sync incorrectly
+Date:   Thu, 10 Mar 2022 14:38:56 +0800
+Message-Id: <20220310063856.9627-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.33.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR04CA0215.apcprd04.prod.outlook.com
+ (2603:1096:4:187::14) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 5e8cd16c-1cbf-48af-5b01-08da0260f540
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7235:EE_
+X-Microsoft-Antispam-PRVS: <AM8PR04MB7235B59D540978B89C4C21EEE70B9@AM8PR04MB7235.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4Y/KriuGpg73cg9DTu/oicK9rRTM5n1OVOqtM095o2mPvX91JrdyHw1jbiG5jgE4ZFaG00DKO8xcnwHhgjQc+Rz/zeTTgH9boDU+rlnXBYFpBGrOPwOCtg0iG05O+dUEJzZAg4NtqJHUzlTgd9/QgmcsA/oqLzdwltxFb42upsamjaU9ydxFCdOBt+LMUW0BogwdoLv4J2X/csdMXC2E3MMlmqreFeY+RdlRi3r7BIl0aTRiTZs/eks4dcatOEERhIEOdJlqA95BMJa9qN0e36PxqXcygwshlvfNjbR9pNc/LT/p1TsVfm0gyjScqHW7oK0R9zFcGBUI90TYFRaRR0etZzIEptYqRbJommLdaKdevaD3LuaYfyT0LtgKaJjySN/PM5lkdtNxiQ5geEuJuWvJpIOx4x4eX98uFVOcJmzFSZjAeH1pPHeIdIPE5n56f9IhHh9AHrFt7eJ9Ftixd/u5Ro0jfAVvtNcc3EZ5YYIr5H+c86NszWoLyp5M3A+QPssYpx/WU4qs/5Yi843NXNupcQ3LfIfejFvJzol/TIfjHIhg9WzhfyJu6C/1shFUsFR3S2UdMXrl8wvLnct1psAmwsyCTNdMbMBQtZNXJ9S5rss9yx64PObdWZ8X27G1+pf3HMIKe8z/Bkk0SOupZGMBsWRSKDcFWDye0/V3Jk8nyq7s7T69eXCEbLXKiCnuII5c/4+Ts8aq52+kI+iGeg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(86362001)(66946007)(6506007)(52116002)(83380400001)(316002)(38100700002)(66476007)(38350700002)(66556008)(8676002)(4326008)(6512007)(6666004)(2906002)(1076003)(36756003)(2616005)(44832011)(7416002)(26005)(6486002)(5660300002)(186003)(508600001)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4NSr15Gufh4+b9z2Kppl6pmFqWBuQKv/BurbHKyBZ79mTcVS44l/HVXsv7bL?=
+ =?us-ascii?Q?x0mk3oHhDRJ/fLkG+F8gaLklagTelGsBOy/AZQPklilAb5KEAOUGrfT70FAi?=
+ =?us-ascii?Q?oBoRDMxC7arSev55Te3mBRffV4pzKUQ5wbSWXv0nFJOITFEousD9SRM3eF8q?=
+ =?us-ascii?Q?gh2Qke9s80jyvZjw5Eg+9DNzksGDIBuMqIuljbKvY8a1mYAZpQ1dKohY/Bdr?=
+ =?us-ascii?Q?Tp/tfoZBUo/4K9lYOLmfRkgdtqRCs9PdmEDw8EUPNysJFX6mtDF268Lm0ZbW?=
+ =?us-ascii?Q?h+7GJgszAf0nWu9NcDfbGZ6n6fBtLToIWWR0ey0VYnDTf7Mqb3w5q/0QkQEX?=
+ =?us-ascii?Q?x4m57dDUIQcDB05W0BVy23ZD1V6CdD5iUVLJOgyuH+QpQ6ugxefpPYJOwPOK?=
+ =?us-ascii?Q?NCNv3PJtL/+AXDmJA44T18a/FzCpfRCqgVXAJip8e7J2CQs5OcwErFimiCPv?=
+ =?us-ascii?Q?HIHn04eZveHZV5DJWVMPIfKf4eRkpRMqPQIW/OTwTzfhayuoKvDAcVi5V5ih?=
+ =?us-ascii?Q?C1qeaq6YOx7kD/xnl/kcSSmzoYgxbN1oPCn2uXYNgM7zsnp59Jwfa0tprHVd?=
+ =?us-ascii?Q?ioyL8uSNxCjNOoogWYkuOKGhOjEyUJq1VcuC2fI0FAu80/MB+QSxwLU4xP8c?=
+ =?us-ascii?Q?+W2jXrWbsLwTK1G0lV2LhK1OYPv7lw8PpeapmYhvS5JRmNX3aQSWECxQCLwa?=
+ =?us-ascii?Q?fOMLm3l4nP/GaTMMz/1T7mKha+yMHm40fgP5ZcZ2w3oAAdbfFh8bQa4kju1i?=
+ =?us-ascii?Q?LHlahZnOJUVIFpBrQZFduRoYzoVWyLeNekdPrNpsKBj3AKFJLQqVzaDEPyTH?=
+ =?us-ascii?Q?OiyDSBqn8sBzjE1RUDn2Gh1aCU9J+eSdF16MijD/EpCHVqx8tsYw8lk7H7M+?=
+ =?us-ascii?Q?YU6+Gy/giEshyfTpntQ+ED43MOuyp8LmviMRRVzZKsqX0OIZBqcALkyDbtGp?=
+ =?us-ascii?Q?YoZro5CFOuC9R1mvboAQJ9vqTSISAteVPX0ACbUNme6MbXwLKpkrAi7o9Y04?=
+ =?us-ascii?Q?dDX0scOCX2Qozn538JRNNx1xttYZHQNQewkfi9E2XDCv8ZqgWyE7hMViPbjm?=
+ =?us-ascii?Q?NrrgCKT7RQK6g7dmzK6wo+bffC7Br8jj18t7T8x8iUhljU7/AMP1CXwo7Dzc?=
+ =?us-ascii?Q?4M0uXnwqlDxuczfGWw9KZiFwnBpxIuvFbxno6DiOVzrGoFzbyU4e5zlLIaNV?=
+ =?us-ascii?Q?Gr6bPt0NT477+DDuce+hCnwt8Jo9hzbHk3oYomYkkert9yLZkliM5w4nNUkh?=
+ =?us-ascii?Q?fohxwL+YrKwS8uxmHbK58nWptEyFWWz+1Y7u0GljuqfbAguyDg8mfFi1ShA4?=
+ =?us-ascii?Q?ml7/f7/xiLG0Tka3RTN6XY1qBMzKYyOQUTvOocXjRJLi1eE/CRSHadG21bEI?=
+ =?us-ascii?Q?CmtcRb12t1SUGErm/Fc8QcfngC87aLo6B1enA0lH9HYiRhyIWmLrhT5iX/LP?=
+ =?us-ascii?Q?zchir8njFSWOkmJlXNpnVEtkV1TWsrQ3?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e8cd16c-1cbf-48af-5b01-08da0260f540
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 06:41:08.4066
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Zf38kXT7N7IK2oKG6nlqBErYNgkD7JH/9Eqgz/N1BPFfu22KIb4gJL98I4XBD2TLqH9pWqRsfgdmsM/VWQajXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7235
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add generic Sunplus SP7021 based board defconfig
+pm_runtime_get_sync() also returns 1 on success.
+The documentation for pm_runtime_get_sync() suggests using
+pm_runtime_resume_and_get() instead
 
-Reviewed-by: Arnd Bergmann <arnd@arndb.de>
-Signed-off-by: Qin Jian <qinjian@cqplus1.com>
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
 ---
- MAINTAINERS                         |  1 +
- arch/arm/configs/multi_v7_defconfig |  1 +
- arch/arm/configs/sp7021_defconfig   | 61 +++++++++++++++++++++++++++++
- 3 files changed, 63 insertions(+)
- create mode 100644 arch/arm/configs/sp7021_defconfig
+ drivers/media/platform/amphion/vpu_core.c | 8 ++++----
+ drivers/media/platform/amphion/vpu_dbg.c  | 2 +-
+ drivers/media/platform/amphion/vpu_drv.c  | 6 ------
+ 3 files changed, 5 insertions(+), 11 deletions(-)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0ae537a41..9340f8760 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2664,6 +2664,7 @@ F:	Documentation/devicetree/bindings/arm/sunplus,sp7021.yaml
- F:	Documentation/devicetree/bindings/clock/sunplus,sp7021-clkc.yaml
- F:	Documentation/devicetree/bindings/interrupt-controller/sunplus,sp7021-intc.yaml
- F:	Documentation/devicetree/bindings/reset/sunplus,reset.yaml
-+F:	arch/arm/configs/sp7021_*defconfig
- F:	arch/arm/mach-sunplus/
- F:	drivers/clk/clk-sp7021.c
- F:	drivers/irqchip/irq-sp7021-intc.c
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index b4f74454f..585e3b5d3 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -87,6 +87,7 @@ CONFIG_MACH_SPEAR1310=y
- CONFIG_MACH_SPEAR1340=y
- CONFIG_ARCH_STI=y
- CONFIG_ARCH_STM32=y
-+CONFIG_ARCH_SUNPLUS=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_TEGRA=y
- CONFIG_ARCH_UNIPHIER=y
-diff --git a/arch/arm/configs/sp7021_defconfig b/arch/arm/configs/sp7021_defconfig
-new file mode 100644
-index 000000000..cda16d33a
---- /dev/null
-+++ b/arch/arm/configs/sp7021_defconfig
-@@ -0,0 +1,61 @@
-+CONFIG_SYSVIPC=y
-+CONFIG_NO_HZ_IDLE=y
-+CONFIG_HIGH_RES_TIMERS=y
-+CONFIG_PREEMPT=y
-+CONFIG_IKCONFIG=y
-+CONFIG_IKCONFIG_PROC=y
-+CONFIG_LOG_BUF_SHIFT=14
-+# CONFIG_RD_GZIP is not set
-+# CONFIG_RD_BZIP2 is not set
-+# CONFIG_RD_LZMA is not set
-+# CONFIG_RD_XZ is not set
-+# CONFIG_RD_LZO is not set
-+# CONFIG_RD_LZ4 is not set
-+CONFIG_CC_OPTIMIZE_FOR_SIZE=y
-+CONFIG_PERF_EVENTS=y
-+CONFIG_SLAB=y
-+CONFIG_ARCH_SUNPLUS=y
-+# CONFIG_VDSO is not set
-+CONFIG_SMP=y
-+CONFIG_HAVE_ARM_ARCH_TIMER=y
-+CONFIG_THUMB2_KERNEL=y
-+CONFIG_FORCE_MAX_ZONEORDER=12
-+CONFIG_VFP=y
-+CONFIG_NEON=y
-+CONFIG_MODULES=y
-+CONFIG_MODULE_UNLOAD=y
-+CONFIG_MODVERSIONS=y
-+# CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
-+CONFIG_UEVENT_HELPER=y
-+CONFIG_UEVENT_HELPER_PATH="/sbin/hotplug"
-+CONFIG_DEVTMPFS=y
-+CONFIG_DEVTMPFS_MOUNT=y
-+CONFIG_BLK_DEV_LOOP=y
-+CONFIG_INPUT_SPARSEKMAP=y
-+CONFIG_INPUT_EVDEV=y
-+# CONFIG_INPUT_KEYBOARD is not set
-+# CONFIG_INPUT_MOUSE is not set
-+# CONFIG_LEGACY_PTYS is not set
-+# CONFIG_HW_RANDOM is not set
-+# CONFIG_HWMON is not set
-+CONFIG_STAGING=y
-+# CONFIG_IOMMU_SUPPORT is not set
-+CONFIG_RESET_CONTROLLER=y
-+CONFIG_EXT4_FS=y
-+# CONFIG_DNOTIFY is not set
-+CONFIG_FANOTIFY=y
-+CONFIG_VFAT_FS=y
-+CONFIG_FAT_DEFAULT_IOCHARSET="utf8"
-+CONFIG_EXFAT_FS=y
-+CONFIG_TMPFS=y
-+CONFIG_TMPFS_POSIX_ACL=y
-+# CONFIG_MISC_FILESYSTEMS is not set
-+CONFIG_NLS_CODEPAGE_437=y
-+CONFIG_NLS_ASCII=y
-+CONFIG_NLS_ISO8859_1=y
-+CONFIG_NLS_UTF8=y
-+CONFIG_PRINTK_TIME=y
-+CONFIG_DYNAMIC_DEBUG=y
-+CONFIG_MAGIC_SYSRQ=y
-+CONFIG_DEBUG_FS=y
-+CONFIG_DEBUG_USER=y
+diff --git a/drivers/media/platform/amphion/vpu_core.c b/drivers/media/platform/amphion/vpu_core.c
+index 016554387f3f..968b578700e3 100644
+--- a/drivers/media/platform/amphion/vpu_core.c
++++ b/drivers/media/platform/amphion/vpu_core.c
+@@ -359,7 +359,7 @@ struct vpu_core *vpu_request_core(struct vpu_dev *vpu, enum vpu_core_type type)
+ 		goto exit;
+ 
+ 	mutex_lock(&core->lock);
+-	pm_runtime_get_sync(core->dev);
++	pm_runtime_resume_and_get(core->dev);
+ 
+ 	if (core->state == VPU_CORE_DEINIT) {
+ 		ret = vpu_core_boot(core, true);
+@@ -650,7 +650,7 @@ static int vpu_core_probe(struct platform_device *pdev)
+ 	vpu_iface_set_log_buf(core, &core->log);
+ 
+ 	pm_runtime_enable(dev);
+-	ret = pm_runtime_get_sync(dev);
++	ret = pm_runtime_resume_and_get(dev);
+ 	if (ret) {
+ 		pm_runtime_put_noidle(dev);
+ 		pm_runtime_set_suspended(dev);
+@@ -682,7 +682,7 @@ static int vpu_core_remove(struct platform_device *pdev)
+ 	int ret;
+ 
+ 	vpu_core_remove_dbgfs_file(core);
+-	ret = pm_runtime_get_sync(dev);
++	ret = pm_runtime_resume_and_get(dev);
+ 	WARN_ON(ret < 0);
+ 
+ 	vpu_core_shutdown(core);
+@@ -746,7 +746,7 @@ static int __maybe_unused vpu_core_resume(struct device *dev)
+ 	int ret = 0;
+ 
+ 	mutex_lock(&core->lock);
+-	pm_runtime_get_sync(dev);
++	pm_runtime_resume_and_get(dev);
+ 	vpu_core_get_vpu(core);
+ 	if (core->state != VPU_CORE_SNAPSHOT)
+ 		goto exit;
+diff --git a/drivers/media/platform/amphion/vpu_dbg.c b/drivers/media/platform/amphion/vpu_dbg.c
+index 3c12320e1708..376196bea178 100644
+--- a/drivers/media/platform/amphion/vpu_dbg.c
++++ b/drivers/media/platform/amphion/vpu_dbg.c
+@@ -344,7 +344,7 @@ static ssize_t vpu_dbg_core_write(struct file *file,
+ 	struct seq_file *s = file->private_data;
+ 	struct vpu_core *core = s->private;
+ 
+-	pm_runtime_get_sync(core->dev);
++	pm_runtime_resume_and_get(core->dev);
+ 	mutex_lock(&core->lock);
+ 	if (core->state != VPU_CORE_DEINIT && !core->instance_mask) {
+ 		dev_info(core->dev, "reset\n");
+diff --git a/drivers/media/platform/amphion/vpu_drv.c b/drivers/media/platform/amphion/vpu_drv.c
+index 834ec39640e5..f19f823d4b8c 100644
+--- a/drivers/media/platform/amphion/vpu_drv.c
++++ b/drivers/media/platform/amphion/vpu_drv.c
+@@ -118,11 +118,6 @@ static int vpu_probe(struct platform_device *pdev)
+ 		return -ENODEV;
+ 
+ 	pm_runtime_enable(dev);
+-	ret = pm_runtime_get_sync(dev);
+-	if (ret)
+-		goto err_runtime_disable;
+-
+-	pm_runtime_put_sync(dev);
+ 
+ 	ret = v4l2_device_register(dev, &vpu->v4l2_dev);
+ 	if (ret)
+@@ -149,7 +144,6 @@ static int vpu_probe(struct platform_device *pdev)
+ 	vpu_remove_func(&vpu->decoder);
+ 	v4l2_device_unregister(&vpu->v4l2_dev);
+ err_vpu_deinit:
+-err_runtime_disable:
+ 	pm_runtime_set_suspended(dev);
+ 	pm_runtime_disable(dev);
+ 
 -- 
-2.33.1
+2.33.0
 
