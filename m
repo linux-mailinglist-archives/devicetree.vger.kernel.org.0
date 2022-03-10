@@ -2,95 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EEAE4D3E5D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 01:47:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9E544D3ED0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 02:35:44 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239122AbiCJAsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Mar 2022 19:48:06 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
+        id S229755AbiCJBgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Mar 2022 20:36:41 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238658AbiCJArx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 19:47:53 -0500
-Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8937124C32
-        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 16:46:53 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-        by mailout.west.internal (Postfix) with ESMTP id 56ABD3200A6A;
-        Wed,  9 Mar 2022 19:46:49 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute1.internal (MEProxy); Wed, 09 Mar 2022 19:46:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        cc:cc:content-transfer-encoding:content-type:date:date:from:from
-        :in-reply-to:in-reply-to:message-id:mime-version:references
-        :reply-to:sender:subject:subject:to:to; s=fm2; bh=qMB067cjzKW0O+
-        0cerGYMqbUb9WGf9tnnpdSgxJ6Iuc=; b=sCNxXDgHCFLSYJ/1eFeMj6bZIiWNwl
-        dRukwkAEM8cDpQph80Ic/1h/Mg2Bd26QgA2LB+olvFfRBDEkJ3XGw/drAJzvD59M
-        xRw/RspdCFYPylBPqbYP6JWC4VZWl+iqh0iHZ/ExY3CRTRYhK/9BABg0gS8f4Va0
-        SsrPtyM+re1TSDOyPCgnGfPEJLH3X4FxwlY8ov7OHrGLDHbD31fXlV0ZIb82MnBR
-        /LC2ZroXGNA3HQWU3CTKsYiMxZJQNfaAWcRHPdTtTm3rpYQJGEJC7UP70IMK+xrh
-        C+1hFjs7dl2IXaT/2qUExOMjfCM8H4g+tCECMIYFfhAXAiWfm32vr2VA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-transfer-encoding
-        :content-type:date:date:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; bh=qMB067cjzKW0O+0cerGYMqbUb9WGf9tnnpdSgxJ6I
-        uc=; b=HCJRd39Hi39pqlsoNzEjEL9sAMfY34B8TpvC9/H6kORkjNrKNFAvO4USh
-        XcHjYRbRQDY/8HURpBOZDRCV0vV51kpwoJAiBROZP4CxzuPHYCinRefYjqck2LPK
-        Vm/kF6cjoUEHiBKK0fKhX0SvOu0wdZPWGQAHnC+V5jjji0/HWYSc8SWZTJyeCvkz
-        dDElsdjRPVd4/o8un3o5aG3bg8JOFrvE/sZ/0rSTNVvknc7caf54YfZbeCmcXY1F
-        9JoN7wu0DeRMVUbQFjpFJm1Zjb36ee6s7IxiGtu3iBBPYKaI5jZ99PFoEEOZ0MeN
-        8keW17lATFeFwyNbmWLXcm148Fs0g==
-X-ME-Sender: <xms:d0opYiQIiTSYXj62HHFu2uiStbvxuYcmknR1Xz0UZquLzgFSoIoANw>
-    <xme:d0opYnzrznzL0Zf9gR2YYni23dDyLberQGKFU00sfiY2ywMf7A_URWkNGgf5te3UP
-    e_4VN6m45DDw9xp9A>
-X-ME-Received: <xmr:d0opYv0DXKGtaPRbHcGTQpVBI_EBt5Io6fUbpxUmwHNPG7pK34A04BzxSJ4pswhD6-VWJRaql0SvmxbjNb7AB7M9WfQyjbtEfXMM9cc_QZljGQeucH7BxVz7YA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvvddrudduledgvdegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthejredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepgfevffetleehffejueekvdekvdeitdehveegfeekheeuieeiueet
-    uefgtedtgeegnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrh
-    homhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:d0opYuBs4rccbORgiqZb5kwPa8aqymj4X1xEgrad5PMgI7APACt5ZQ>
-    <xmx:d0opYrhf_ZPlAMNpJZZLQBathZ-2KmyugyvClvMexI7AqlgGBc5zkA>
-    <xmx:d0opYqqtZ_WmP-xKV2aPb6M5G5gtqv089_Da3NFKGaeE4RKcFHLgFA>
-    <xmx:eEopYr4tfSP1gOZ6hj3pikuZ-DoJ2RbaGaa84m1gmBL6foAS04vIUg>
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 9 Mar 2022 19:46:47 -0500 (EST)
-Subject: Re: [PATCH 01/14] dt-bindings: watchdog: sunxi: fix F1C100s
- compatible
-To:     Andre Przywara <andre.przywara@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mesih Kilinc <mesihkilinc@gmail.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Jesse Taube <mr.bossman075@gmail.com>,
-        Giulio Benetti <giulio.benetti@benettiengineering.com>,
-        George Hilliard <thirtythreeforty@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-watchdog@vger.kernel.org
-References: <20220307143421.1106209-1-andre.przywara@arm.com>
- <20220307143421.1106209-2-andre.przywara@arm.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <661806b7-d63f-a7cf-9192-f67c4cd79f29@sholland.org>
-Date:   Wed, 9 Mar 2022 18:46:46 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+        with ESMTP id S229744AbiCJBgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Mar 2022 20:36:40 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D861275DD;
+        Wed,  9 Mar 2022 17:35:37 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id x193so4576698oix.0;
+        Wed, 09 Mar 2022 17:35:37 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5UzCHhypSkLJprIXAcMJhvJcBDOhuIsnr/TqtkFrZpo=;
+        b=nkcUU9jyuCDHQcemk/fY/d43WDO/fHwlrT+cP6IRSRRb4DKWNgXiboc20XR3KQz/gi
+         e3VFutzD4cXdP0gsr08k9WBoSYypSnmza2Sug0I514ajVr25o9Wpvv2Jdw3gCQqGnClB
+         DHau/mE1PFJDFGMo3ILi9KxD9QXOBZKTSAgytQgu4GTZGqjG7+L8s1+wsfioy+QM6963
+         C1PtwjioFqng4jIQ7KvZ3+TqZvL+wF7K4jKA6C7zbE3dfv2/7dxDxhMVevL/VTqLtAql
+         JN6EvoQnIwYZ3h9rpsL7EbXYXWfCGePJGyCCeRd+oeBOkCS5c6UvbWQFR24eLpqqam5I
+         Ruww==
+X-Gm-Message-State: AOAM532s0XDgwJphMxORsp1pfP/MmVla3YYvn/B6Uapo/8I7WHKBR/EV
+        YW3I2Td9yrKIslWjrnwH/oxLyZ+g+w==
+X-Google-Smtp-Source: ABdhPJzXxezvZ337NuQsQzgroJveKS/fHqg0+gFbTkvhk/uJ9k69i1LpQrABuKsRN0em6jlNQ/6aSg==
+X-Received: by 2002:a05:6808:114d:b0:2d9:c932:d713 with SMTP id u13-20020a056808114d00b002d9c932d713mr7802966oiu.210.1646876136599;
+        Wed, 09 Mar 2022 17:35:36 -0800 (PST)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id ds3-20020a0568705b0300b000d9c70e5275sm1627152oab.54.2022.03.09.17.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Mar 2022 17:35:35 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     "Michael S. Tsirkin" <mst@redhat.com>,
+        Jason Wang <jasowang@redhat.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Jean-Philippe Brucker <jean-philippe@linaro.org>
+Cc:     virtualization@lists.linux-foundation.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: virtio,mmio: Allow setting devices 'dma-coherent'
+Date:   Wed,  9 Mar 2022 19:35:27 -0600
+Message-Id: <20220310013528.549030-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-In-Reply-To: <20220307143421.1106209-2-andre.przywara@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,45 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
+'virtio,mmio' devices are always coherent within a guest. As Arm DTs
+are default non-coherent, the 'dma-coherent' property needs to be set on
+the virtio device to mark them as such. This aligns with the QEMU 'virt'
+machine DTB.
 
-On 3/7/22 8:34 AM, Andre Przywara wrote:
-> The F1C100 series actually features a newer generation watchdog IP, so
-> the compatible string was wrong.
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/virtio/mmio.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-The F1C100s watchdog seems to be unique in that it uses LOSC/osc32k as its only
-clock source instead of HOSC/osc24M. The current binding requires that the first
-clock is "hosc", so it seems that the binding needs to be relaxed to allow for
-this case.
-
-As long as there's only one clock source available, we don't really care where
-it comes from. They are both divided to be approximately 32 kHz. So I don't
-think this difference prevents using A31 as a fallback compatible.
-
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> ---
->  .../devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml   | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> index 43afa24513b9..d90655418d0e 100644
-> --- a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -29,7 +29,7 @@ properties:
->            - const: allwinner,sun6i-a31-wdt
->        - items:
->            - const: allwinner,suniv-f1c100s-wdt
-> -          - const: allwinner,sun4i-a10-wdt
-> +          - const: allwinner,sun6i-a31-wdt
-
-This can be combined with the enum of other compatibles that fall back to
-allwinner,sun6i-a31-wdt (earlier in the file).
-
-Regards,
-Samuel
-
->        - const: allwinner,sun20i-d1-wdt
->        - items:
->            - const: allwinner,sun20i-d1-wdt-reset
-> 
+diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+index 4b7a0273181c..10c22b5bd16a 100644
+--- a/Documentation/devicetree/bindings/virtio/mmio.yaml
++++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+@@ -20,6 +20,8 @@ properties:
+   reg:
+     maxItems: 1
+ 
++  dma-coherent: true
++
+   interrupts:
+     maxItems: 1
+ 
+-- 
+2.32.0
 
