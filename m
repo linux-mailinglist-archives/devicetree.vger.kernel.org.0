@@ -2,204 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E88F54D4145
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 07:41:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F964D416F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 07:59:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238027AbiCJGmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 01:42:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33604 "EHLO
+        id S239945AbiCJHAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 02:00:08 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231231AbiCJGmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 01:42:11 -0500
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-eopbgr70075.outbound.protection.outlook.com [40.107.7.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1DB7E33B3;
-        Wed,  9 Mar 2022 22:41:10 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XclMlPPVKT+dFXpsvA2/Kqea1g5RJJem/7Xljz/qlkN+XnjIfXQDMbmG5WeSGrS3iEWfNeMxt2KhyvFcIneQ0G+/MEgJ4j6pTe1hLtymlN5Ym0moDr1NqB2zp5wuf8Mcf/cdNgfwUi4+4OfG+huJqj2u1GhGDsI8VRrx7aoCB+pp+cAsUch8VTgAEmyTUYh7NPGMJhZyLKZEnnBtyoZoqj0Nu2m1AEKbaOSfy/5bWORkPJ5jiqdWf554VeKHMYe+V9HUPbVGjDyIoqn0CAlzOgBHWF14xI+lehWaocSqhqgiQJvVLyYOhy4nC88ecjWQi1BflNZoWeu4t2rydWngOQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cEKR7q+Irl2plfgWI7IAGt9uGr3G5B3IZzpRWiKcakU=;
- b=F92wyOvDSecAqzk+b5ac+nQh66Bg3WoAK/w7MHgUHxYFRKlNszauYL/4T7/ilvPZd18G74MLwxSSUd1rQ/f7OCWnZbQHmhjaMx++43wO/mkRMEEq/eZlaQYT4mOAJfxv/6R3jXf2nKo7SFASXeDRf/gSSxQSEBhvPtTaz7Prb8hDJcy0BtG0WCN27BZVDdSMfN+LoXGX103CFmjlGCxVVujnLY3LAde6TkipCQAsaAyHkxOVYB+JUp77cq9dL//R5SczS0C6bC+zwZ8fLCQtWpqT7Z9NRwOhMoA0OCwTpX+KnMLg+nFQdlnLzgoBYVynGI/GZ5FQVxJMJTNyEJWyqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cEKR7q+Irl2plfgWI7IAGt9uGr3G5B3IZzpRWiKcakU=;
- b=P2MQXawxk6no3lmlXIMLoxE7DrJ/z10E/UQt4VpLOleiMBY+nHtlfbN33tnpwl9pJGHLk/raW3O05wXYLJh1OGlbk1sr7HtYKvM604uzzNE27b5pOLLix5xbZqnFcnY1UBpcvTd5SUMb6xDMqb8HKuYBcl5VvthgnLeJqm6U2Nc=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by AM8PR04MB7235.eurprd04.prod.outlook.com (2603:10a6:20b:1d1::8) with
+        with ESMTP id S239944AbiCJHAH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 02:00:07 -0500
+X-Greylist: delayed 65 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Mar 2022 22:59:05 PST
+Received: from eu-smtp-delivery-197.mimecast.com (eu-smtp-delivery-197.mimecast.com [185.58.85.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8F36F12F408
+        for <devicetree@vger.kernel.org>; Wed,  9 Mar 2022 22:59:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=camlingroup.com;
+        s=mimecast20210310; t=1646895543;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=31Yb/q49RoXfCeMj0XVQIlpQ3f2CH/ohtpF5v2+etvk=;
+        b=iq69iMzk3yknwrEywhXCVQOU8KhCuUFIoiqv8mOwJKjq7ziinDEfST2SUxA1bicqzhnEEF
+        Lq3h8gaxs3xJFwtO7gyirmimTBnqkfQ3n9Gf9Lh4j2lihS+PSp3Tqin+X5tfyVihS0EGmN
+        d4ETSZ5ojQ49/GLcG4o/klPSOB6chOE=
+Received: from GBR01-CWL-obe.outbound.protection.outlook.com
+ (mail-cwlgbr01lp2051.outbound.protection.outlook.com [104.47.20.51]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-36-HTUsmH-vOF-NxuCAfmP04w-1; Thu, 10 Mar 2022 06:57:57 +0000
+X-MC-Unique: HTUsmH-vOF-NxuCAfmP04w-1
+Received: from LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:213::11)
+ by CWLP123MB3266.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:4a::11) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Thu, 10 Mar
- 2022 06:41:08 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c39:69cf:c4ea:967]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c39:69cf:c4ea:967%5]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
- 06:41:08 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
-        s.hauer@pengutronix.de
-Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] media: amphion: fix an issue that using pm_runtime_get_sync incorrectly
-Date:   Thu, 10 Mar 2022 14:38:56 +0800
-Message-Id: <20220310063856.9627-1-ming.qian@nxp.com>
-X-Mailer: git-send-email 2.33.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR04CA0215.apcprd04.prod.outlook.com
- (2603:1096:4:187::14) To AM6PR04MB6341.eurprd04.prod.outlook.com
- (2603:10a6:20b:d8::14)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.21; Thu, 10 Mar
+ 2022 06:57:56 +0000
+Received: from LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::7441:6280:dede:964f]) by LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::7441:6280:dede:964f%5]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
+ 06:57:55 +0000
+Message-ID: <5a233ff1-cde4-b432-a170-86379bec972c@camlingroup.com>
+Date:   Thu, 10 Mar 2022 07:57:53 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+X-Mozilla-News-Host: news://nntp.lore.kernel.org:119
+From:   =?UTF-8?Q?Tomasz_Mo=c5=84?= <tomasz.mon@camlingroup.com>
+Subject: Detecting invalid gpio keys configuration
+To:     linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Drobi=c5=84ski?= 
+        <k.drobinski@camlintechnologies.com>,
+        Lech Perczak <l.perczak@camlintechnologies.com>,
+        =?UTF-8?Q?Tomasz_Mo=c5=84?= <tomasz.mon@camlingroup.com>
+X-ClientProxiedBy: LO2P265CA0325.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:a4::25) To LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:600:213::11)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 5e8cd16c-1cbf-48af-5b01-08da0260f540
-X-MS-TrafficTypeDiagnostic: AM8PR04MB7235:EE_
-X-Microsoft-Antispam-PRVS: <AM8PR04MB7235B59D540978B89C4C21EEE70B9@AM8PR04MB7235.eurprd04.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 8d0e004a-6d7c-41b4-b460-08da02634d72
+X-MS-TrafficTypeDiagnostic: CWLP123MB3266:EE_
+X-Microsoft-Antispam-PRVS: <CWLP123MB32669167605FFAD31B380780920B9@CWLP123MB3266.GBRP123.PROD.OUTLOOK.COM>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 4Y/KriuGpg73cg9DTu/oicK9rRTM5n1OVOqtM095o2mPvX91JrdyHw1jbiG5jgE4ZFaG00DKO8xcnwHhgjQc+Rz/zeTTgH9boDU+rlnXBYFpBGrOPwOCtg0iG05O+dUEJzZAg4NtqJHUzlTgd9/QgmcsA/oqLzdwltxFb42upsamjaU9ydxFCdOBt+LMUW0BogwdoLv4J2X/csdMXC2E3MMlmqreFeY+RdlRi3r7BIl0aTRiTZs/eks4dcatOEERhIEOdJlqA95BMJa9qN0e36PxqXcygwshlvfNjbR9pNc/LT/p1TsVfm0gyjScqHW7oK0R9zFcGBUI90TYFRaRR0etZzIEptYqRbJommLdaKdevaD3LuaYfyT0LtgKaJjySN/PM5lkdtNxiQ5geEuJuWvJpIOx4x4eX98uFVOcJmzFSZjAeH1pPHeIdIPE5n56f9IhHh9AHrFt7eJ9Ftixd/u5Ro0jfAVvtNcc3EZ5YYIr5H+c86NszWoLyp5M3A+QPssYpx/WU4qs/5Yi843NXNupcQ3LfIfejFvJzol/TIfjHIhg9WzhfyJu6C/1shFUsFR3S2UdMXrl8wvLnct1psAmwsyCTNdMbMBQtZNXJ9S5rss9yx64PObdWZ8X27G1+pf3HMIKe8z/Bkk0SOupZGMBsWRSKDcFWDye0/V3Jk8nyq7s7T69eXCEbLXKiCnuII5c/4+Ts8aq52+kI+iGeg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(86362001)(66946007)(6506007)(52116002)(83380400001)(316002)(38100700002)(66476007)(38350700002)(66556008)(8676002)(4326008)(6512007)(6666004)(2906002)(1076003)(36756003)(2616005)(44832011)(7416002)(26005)(6486002)(5660300002)(186003)(508600001)(8936002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam: BCL:0
+X-Microsoft-Antispam-Message-Info: tOyY/4/t2EoBrPF1GwY0OKszCYjU2MNhEx6TWY6/wSBm8M4+GPG74if1UefRv3Up3E20L+2cQ4maAjehu1NtRcnBdFon8/yKNgNKQxB9+FtG6b/iIpVxI6cJYFEFUmlsA4nknxYa/lG6yi/tVINlA7uDe5yaXZSSADNyOzvPxWmrlN+RXwdpYHhHtbjc1tbA4t3sfGDbhRjcw2HP+XUOBszhM//O2C7BirDDlBdmkjF1bjsLQlmu41YLEn0iPaEetElEZ/WNXPLW5AF4o8JaImItsNkHlJ0As6DN/lLHrWH6g1IklP806zAv8syckEDcglcHA+1w001gMaF9Cb5rqhA54zrLd61N0LG8RpdOs/a2DjPPPBZX9lWBjUSYb9c705VfQHFlKwERyVSqfBtC9ss93nEiUCrJSWyQmlxyXJGTsdL+bXXnlxNEiWc8mFbtzYHdp4xe/ARtFNZmVLtUPNiMX5BNX6m1nLDHFoZiB9MadxKhYzvItcni9fHMwQhxDySRCEirepE9sdztdiK7fPCAk+ZBatbLhsmtpoQwFU7+MeJ7TbEcCWS2h0a8wcWNWeLxaQMEfxgcX/atFHxwubbHAJF5IY0f+t3tFoNK4CkvMYpnElRg/D2KmKKe+cPgztHqzWBpgjD3HZ92uCO0EkVONrqEFeSOlNyNJR1ajUs6AZED2kdY+e9rMj/PkY4eoSfCi1gbVpy2GKrtfPeb+CKTUibkLCh9GGbtkIrVrAPso3In2o/1T/zTqwxQb7cp
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(366004)(5660300002)(86362001)(107886003)(508600001)(6512007)(31696002)(4326008)(8676002)(38100700002)(6486002)(2616005)(66946007)(66556008)(66476007)(31686004)(316002)(36756003)(26005)(54906003)(186003)(6506007)(83380400001)(2906002)(8936002)(45980500001)(43740500002);DIR:OUT;SFP:1101
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4NSr15Gufh4+b9z2Kppl6pmFqWBuQKv/BurbHKyBZ79mTcVS44l/HVXsv7bL?=
- =?us-ascii?Q?x0mk3oHhDRJ/fLkG+F8gaLklagTelGsBOy/AZQPklilAb5KEAOUGrfT70FAi?=
- =?us-ascii?Q?oBoRDMxC7arSev55Te3mBRffV4pzKUQ5wbSWXv0nFJOITFEousD9SRM3eF8q?=
- =?us-ascii?Q?gh2Qke9s80jyvZjw5Eg+9DNzksGDIBuMqIuljbKvY8a1mYAZpQ1dKohY/Bdr?=
- =?us-ascii?Q?Tp/tfoZBUo/4K9lYOLmfRkgdtqRCs9PdmEDw8EUPNysJFX6mtDF268Lm0ZbW?=
- =?us-ascii?Q?h+7GJgszAf0nWu9NcDfbGZ6n6fBtLToIWWR0ey0VYnDTf7Mqb3w5q/0QkQEX?=
- =?us-ascii?Q?x4m57dDUIQcDB05W0BVy23ZD1V6CdD5iUVLJOgyuH+QpQ6ugxefpPYJOwPOK?=
- =?us-ascii?Q?NCNv3PJtL/+AXDmJA44T18a/FzCpfRCqgVXAJip8e7J2CQs5OcwErFimiCPv?=
- =?us-ascii?Q?HIHn04eZveHZV5DJWVMPIfKf4eRkpRMqPQIW/OTwTzfhayuoKvDAcVi5V5ih?=
- =?us-ascii?Q?C1qeaq6YOx7kD/xnl/kcSSmzoYgxbN1oPCn2uXYNgM7zsnp59Jwfa0tprHVd?=
- =?us-ascii?Q?ioyL8uSNxCjNOoogWYkuOKGhOjEyUJq1VcuC2fI0FAu80/MB+QSxwLU4xP8c?=
- =?us-ascii?Q?+W2jXrWbsLwTK1G0lV2LhK1OYPv7lw8PpeapmYhvS5JRmNX3aQSWECxQCLwa?=
- =?us-ascii?Q?fOMLm3l4nP/GaTMMz/1T7mKha+yMHm40fgP5ZcZ2w3oAAdbfFh8bQa4kju1i?=
- =?us-ascii?Q?LHlahZnOJUVIFpBrQZFduRoYzoVWyLeNekdPrNpsKBj3AKFJLQqVzaDEPyTH?=
- =?us-ascii?Q?OiyDSBqn8sBzjE1RUDn2Gh1aCU9J+eSdF16MijD/EpCHVqx8tsYw8lk7H7M+?=
- =?us-ascii?Q?YU6+Gy/giEshyfTpntQ+ED43MOuyp8LmviMRRVzZKsqX0OIZBqcALkyDbtGp?=
- =?us-ascii?Q?YoZro5CFOuC9R1mvboAQJ9vqTSISAteVPX0ACbUNme6MbXwLKpkrAi7o9Y04?=
- =?us-ascii?Q?dDX0scOCX2Qozn538JRNNx1xttYZHQNQewkfi9E2XDCv8ZqgWyE7hMViPbjm?=
- =?us-ascii?Q?NrrgCKT7RQK6g7dmzK6wo+bffC7Br8jj18t7T8x8iUhljU7/AMP1CXwo7Dzc?=
- =?us-ascii?Q?4M0uXnwqlDxuczfGWw9KZiFwnBpxIuvFbxno6DiOVzrGoFzbyU4e5zlLIaNV?=
- =?us-ascii?Q?Gr6bPt0NT477+DDuce+hCnwt8Jo9hzbHk3oYomYkkert9yLZkliM5w4nNUkh?=
- =?us-ascii?Q?fohxwL+YrKwS8uxmHbK58nWptEyFWWz+1Y7u0GljuqfbAguyDg8mfFi1ShA4?=
- =?us-ascii?Q?ml7/f7/xiLG0Tka3RTN6XY1qBMzKYyOQUTvOocXjRJLi1eE/CRSHadG21bEI?=
- =?us-ascii?Q?CmtcRb12t1SUGErm/Fc8QcfngC87aLo6B1enA0lH9HYiRhyIWmLrhT5iX/LP?=
- =?us-ascii?Q?zchir8njFSWOkmJlXNpnVEtkV1TWsrQ3?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e8cd16c-1cbf-48af-5b01-08da0260f540
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U3EzRU1Ob3B4TitpSys5emRITk9MYXJaZHVuZXZpaWJsaG9Ja0VmdkdIeXZB?=
+ =?utf-8?B?VG9UaTkvdGNuODNZWWxad1FPNVBHWmRWN04weTV5dnAzZjRlOTdjcWh4WFVV?=
+ =?utf-8?B?R3RpZkZHRHU4QkVDWUJKcENra2lBTzlWeXhaSXBIN2RCclE3SS8wZXZsVkt4?=
+ =?utf-8?B?TEhvalEyWGYvRWVQWUJhaE5SOWQyNCtXd2ZmL1B0TitTcENwOHRXdU03bUNa?=
+ =?utf-8?B?RFRmZmtMVXFTdERLUElwSVRiSW5KQkxSajhpUkZpWjhWRHBQenA1OStGRVFt?=
+ =?utf-8?B?NXo2UHJqc3dVMGIrbEtvSklOa0dHYkg5Sm5lT0I4R2xvNHNxN0RLdmJ3Ylhv?=
+ =?utf-8?B?eDB2UTVnUDVDclVxd0JxYmdQc0ErYk9ueG1icTVxRVFpdFRzRks1R2Y1TWUw?=
+ =?utf-8?B?YXllZ2F0Q2FXajRidHA5ckwwNkRQL3V0WEpLb2FVbjdDVHNFdTMrRnVOWXBW?=
+ =?utf-8?B?L1BGY3lsejhjOENUTDYrRUVZTytIM2JSNiszOU84aHpBbTR6VTJIVnhDMXBV?=
+ =?utf-8?B?eWZVSHpRalJMQjJXUXpCNldDWmpaSkUzZjJBaWtrV1FhSGtmcnNURkJZWFNl?=
+ =?utf-8?B?b1dMd0hmdFRYWkpmNWkycFJQOU5IRVBZLzBUU2tBSlk5TUFqVlhxMThOcVBj?=
+ =?utf-8?B?N1h3NitqemZ2U3JEOFBqZlUzMUJHT3JjSFZtSzBiZ1ZmUjZiVys4OWg4MW0x?=
+ =?utf-8?B?VStKY0o3YTJVN0N1cHRtbmo3cWxqQlRCTzVZOFhSQWp3K3E5eVVvOXpscjM5?=
+ =?utf-8?B?cEdkeTMrRlJYVXRIaWIvTkRiL2I1b1Z0V05FM3V3VDZnTFlyYWZmTDQ1RTZ5?=
+ =?utf-8?B?UjlmLzE1YUlYR0VvNnNiN1Q2VEdIemdLQ2hqTXNwcFFlTEk3ZE1NOGhxbHdS?=
+ =?utf-8?B?Z3p1NGp6bTNLWUJlZ2RDejVCZStJckJ1cTdHaDlyVHFJdlRvN05rVHRNNkFQ?=
+ =?utf-8?B?ZFFMZGduTDRmbVkxa0o1VTVlVEVyTTB2S2NMWWJIOGhhcDdVL3A3akZJeFBZ?=
+ =?utf-8?B?YlhBdEVLYU9KN3cvcHczNzJPTCtaRzVRSmZjTE03cmorMWhnSURJeHhaU1hO?=
+ =?utf-8?B?bXJzaEVxbjIwVytUVU1kODBsZmNEd1NmMFFEeHF3Q2VtOUdWTmI5dWJudWZw?=
+ =?utf-8?B?UGowUFNaaFZnamZXNXQ0ZVErZ0xQZ0dGU2ZNRk9LNk02WmZVOXF3TzNGaWJQ?=
+ =?utf-8?B?TnNocUhzOUE0QmEvL2IwWDNnbjNWTWVLRHFlUnZlU3VKVStrbGtYRkI3eTBP?=
+ =?utf-8?B?ZEJZMnR3M09sRmxlMy9GeFpXQlhHMmx1WDNxT2M2ZFVqUjg2RG1kQ3B4b2Zp?=
+ =?utf-8?B?T2kzMGhxTzlWRW1zQUFrdWZ3dlN1THFkZTUzTGFTMHp6SHA3WVN4TVpsQ2l5?=
+ =?utf-8?B?WEV3RWt0SjhiODE4Q2liVVk0YVFMWmJkb0RNMHA5SGo4TGg5NXBmNjZtUWtt?=
+ =?utf-8?B?Y0xkZ01WMnZGZmtmQXRQQ2tDMi9CVGZwZUtLeFphTVR5MTFTNmVRMDBUM0Q5?=
+ =?utf-8?B?YXJMZnpJL3BuWWlNaWpsRWJjRDhURVFneEdIZVRVN0JxZzEyY2g5QkZwS1E5?=
+ =?utf-8?B?SitjNmtSMS91NzVKeExHZnc4ZkRiY2NFK1RXd3Q5ZTJhUDdlY3JJZ3BsOGpV?=
+ =?utf-8?B?aUpMSnlNVGxoZ3Z1eHo0VWk3RUlPSHJnNlZtV1A2dUIrSmZNaWx5SFU4NW5D?=
+ =?utf-8?B?VWEzbko4TkpFOERZUTNmeXBwR2NrMCs3QWtyTXh1NmJaS3Z6aHRTSkRZaFR5?=
+ =?utf-8?B?RG9jQnkxTGpUT1N0QXpIUmlyWS9OMUVNbXpvSnNaQ3BKUzFaOVVwdFl3VHlG?=
+ =?utf-8?B?VmptRVZXSkhlTi94RkhoRW5qcCtQZ2dwMGNRUjVVQTVaRjcyR2NhS0ZGTmZU?=
+ =?utf-8?B?MjloK2FsOHcyREgyaVJpUzU1T3h3VDlSejFEWlFKekZ4WXJ1bjlhODhYOE1v?=
+ =?utf-8?B?a2xKWWpncW5NdVFuRFliRmI5VlhuNFFTbktCR3ErRDAxTEgyRENZYUxWZ1VR?=
+ =?utf-8?B?Yzlzd1BidDFBPT0=?=
+X-OriginatorOrg: camlingroup.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d0e004a-6d7c-41b4-b460-08da02634d72
+X-MS-Exchange-CrossTenant-AuthSource: LO0P123MB5583.GBRP123.PROD.OUTLOOK.COM
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 06:41:08.4066
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 06:57:55.2289
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-Id: fd4b1729-b18d-46d2-9ba0-2717b852b252
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Zf38kXT7N7IK2oKG6nlqBErYNgkD7JH/9Eqgz/N1BPFfu22KIb4gJL98I4XBD2TLqH9pWqRsfgdmsM/VWQajXw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7235
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: wElgDjGU8zF6p0NcMo9sSG14l6OtLcf5vlufM8QYVeZo/VFrS7nsUxQ2VqA3lj5AbECwzx4LAIzomVMUE6cvnZ9Z69sgwRNOBWI8MaHknMw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP123MB3266
+Authentication-Results: relay.mimecast.com;
+        auth=pass smtp.auth=CUK97A341 smtp.mailfrom=tomasz.mon@camlingroup.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: camlingroup.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pm_runtime_get_sync() also returns 1 on success.
-The documentation for pm_runtime_get_sync() suggests using
-pm_runtime_resume_and_get() instead
+Hello,
 
-Signed-off-by: Ming Qian <ming.qian@nxp.com>
----
- drivers/media/platform/amphion/vpu_core.c | 8 ++++----
- drivers/media/platform/amphion/vpu_dbg.c  | 2 +-
- drivers/media/platform/amphion/vpu_drv.c  | 6 ------
- 3 files changed, 5 insertions(+), 11 deletions(-)
+I have recently come across following invalid entry:
+=09gpio-keys {
+=09=09compatible =3D "gpio-keys";
+=09=09servicing-sw {
+=09=09=09label =3D "servicing-sw";
+=09=09=09gpios =3D <&gpio3 1 GPIO_ACTIVE_LOW>;
+=09=09=09linux,code =3D <BTN_0>;
+=09=09=09linux,input-type =3D <EV_SW>;
+=09=09=09debounce-interval =3D <50>;
+=09=09};
+=09};
 
-diff --git a/drivers/media/platform/amphion/vpu_core.c b/drivers/media/platform/amphion/vpu_core.c
-index 016554387f3f..968b578700e3 100644
---- a/drivers/media/platform/amphion/vpu_core.c
-+++ b/drivers/media/platform/amphion/vpu_core.c
-@@ -359,7 +359,7 @@ struct vpu_core *vpu_request_core(struct vpu_dev *vpu, enum vpu_core_type type)
- 		goto exit;
- 
- 	mutex_lock(&core->lock);
--	pm_runtime_get_sync(core->dev);
-+	pm_runtime_resume_and_get(core->dev);
- 
- 	if (core->state == VPU_CORE_DEINIT) {
- 		ret = vpu_core_boot(core, true);
-@@ -650,7 +650,7 @@ static int vpu_core_probe(struct platform_device *pdev)
- 	vpu_iface_set_log_buf(core, &core->log);
- 
- 	pm_runtime_enable(dev);
--	ret = pm_runtime_get_sync(dev);
-+	ret = pm_runtime_resume_and_get(dev);
- 	if (ret) {
- 		pm_runtime_put_noidle(dev);
- 		pm_runtime_set_suspended(dev);
-@@ -682,7 +682,7 @@ static int vpu_core_remove(struct platform_device *pdev)
- 	int ret;
- 
- 	vpu_core_remove_dbgfs_file(core);
--	ret = pm_runtime_get_sync(dev);
-+	ret = pm_runtime_resume_and_get(dev);
- 	WARN_ON(ret < 0);
- 
- 	vpu_core_shutdown(core);
-@@ -746,7 +746,7 @@ static int __maybe_unused vpu_core_resume(struct device *dev)
- 	int ret = 0;
- 
- 	mutex_lock(&core->lock);
--	pm_runtime_get_sync(dev);
-+	pm_runtime_resume_and_get(dev);
- 	vpu_core_get_vpu(core);
- 	if (core->state != VPU_CORE_SNAPSHOT)
- 		goto exit;
-diff --git a/drivers/media/platform/amphion/vpu_dbg.c b/drivers/media/platform/amphion/vpu_dbg.c
-index 3c12320e1708..376196bea178 100644
---- a/drivers/media/platform/amphion/vpu_dbg.c
-+++ b/drivers/media/platform/amphion/vpu_dbg.c
-@@ -344,7 +344,7 @@ static ssize_t vpu_dbg_core_write(struct file *file,
- 	struct seq_file *s = file->private_data;
- 	struct vpu_core *core = s->private;
- 
--	pm_runtime_get_sync(core->dev);
-+	pm_runtime_resume_and_get(core->dev);
- 	mutex_lock(&core->lock);
- 	if (core->state != VPU_CORE_DEINIT && !core->instance_mask) {
- 		dev_info(core->dev, "reset\n");
-diff --git a/drivers/media/platform/amphion/vpu_drv.c b/drivers/media/platform/amphion/vpu_drv.c
-index 834ec39640e5..f19f823d4b8c 100644
---- a/drivers/media/platform/amphion/vpu_drv.c
-+++ b/drivers/media/platform/amphion/vpu_drv.c
-@@ -118,11 +118,6 @@ static int vpu_probe(struct platform_device *pdev)
- 		return -ENODEV;
- 
- 	pm_runtime_enable(dev);
--	ret = pm_runtime_get_sync(dev);
--	if (ret)
--		goto err_runtime_disable;
--
--	pm_runtime_put_sync(dev);
- 
- 	ret = v4l2_device_register(dev, &vpu->v4l2_dev);
- 	if (ret)
-@@ -149,7 +144,6 @@ static int vpu_probe(struct platform_device *pdev)
- 	vpu_remove_func(&vpu->decoder);
- 	v4l2_device_unregister(&vpu->v4l2_dev);
- err_vpu_deinit:
--err_runtime_disable:
- 	pm_runtime_set_suspended(dev);
- 	pm_runtime_disable(dev);
- 
--- 
-2.33.0
+While the entry is clearly invalid, no tools currently detect it.
+Documentation/devicetree/bindings/input/gpio-keys.yaml allows any uint32
+as linux,code. The actual allowed values do depend on linux,input-type.
+Should the gpio-keys.yaml be updated to actually restrict the range
+based on linux,input-type?
+
+If the yaml should validate range, it would have to be updated each time
+new input event code is added. Is it acceptable? Or is there some way to
+use the definitions from include/uapi/linux/input-event-codes.h in yaml?
+
+The code does not sanitize the linux,code values. On 32-bit arm system,
+the above example causes kernel panic due to memory corruption:
+  * gpio_keys_setup_key() in drivers/input/keyboard/gpio_keys.c calls
+    input_set_capability(input, EV_SW, BTN_0)
+  * input_set_capability() in drivers/input/input.c calls
+    __set_bit(BTN_0, dev->swbit)
+  * The setbit changes poller pointer least significant bit
+  * input_register_device() calls input_dev_poller_finalize(dev->poller)
+  * input_dev_poller_finalize() accesses memory at address 0x00000005
+
+While provided example hopefully crashes every time making the issue
+obvious, other code values can cause much more subtle issues.
+Should the input_set_capability() warn if code is outside bitmap range?
+
+Best Regards,
+Tomasz Mon
 
