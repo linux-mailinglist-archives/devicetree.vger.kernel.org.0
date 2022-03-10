@@ -2,135 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D884F4D4817
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:33:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A253C4D4822
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:36:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242413AbiCJNeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 08:34:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39364 "EHLO
+        id S238386AbiCJNhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 08:37:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242412AbiCJNeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:34:23 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E9D14D72F
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:33:23 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D22E63F202
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:33:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646919201;
-        bh=pf7ItnfaW7ig7cvFz3o50P7qA0KQs4HS2dTOLYB9BVI=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=o8efPZql+rP+zbs70OTRjhErME2z6DNP9NugHfxTGflcNah9dG5x+ydJs6omeftKG
-         6fVrlIX5+v5RCXha5DWZZKKx0Mspa6FzoEkZDh9bviWvwQX3x1T/INNtygWkLxhf6H
-         5vzZtX0ZrifjMLkcGy/C0AqRqz4r8n+/Fnzs4dHP07Ml5N9BFrWGmScylWZMBizZP5
-         kQzc0v/fe43L0rdOQCGUsbJEio8xFRWz/WE6jblSXj25y5y12utICH+BO1Y3oB1YkO
-         o1SslPsTmP7zqzYoTod1Lqpr459Km/e6d3opUtiLcLPIwrsjPdpT3TPbLZ5Gob6S91
-         bAGroNkVjU8Pw==
-Received: by mail-ej1-f72.google.com with SMTP id h22-20020a1709060f5600b006b11a2d3dcfso3122665ejj.4
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:33:21 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=pf7ItnfaW7ig7cvFz3o50P7qA0KQs4HS2dTOLYB9BVI=;
-        b=GAy+qYpzKaw9HscrzuK22VKN3d1mpZ32JuyrNtYTVZeh0vCtg3TOn/5b7bmECXLd7X
-         fKqJDdvmpkXwnJ5uJcQ+0ALApzn1MD85ikAyY5suPUI/7Is81kBHXKW3YMS5WtX3gAAE
-         wVD3KncgV1c8SSsEVzb5yeBamcv6dCpjzzNWfz2/jZX/0TVB/Uln9A9XRagcUEOjkJSh
-         hmO21+iiPw4c4A8PHzlVshzLQgZR/3JUOYRGipAUYZ0tKOcIa/9/6p4Hx30dP72lJAdq
-         kqRwD57JNB6epYGb2y58HD6mQT+TPlQlGOTLXW9+7DaGrYlhpXytUhbe4djrC8T4W7nX
-         A3pw==
-X-Gm-Message-State: AOAM531HKfEBcRmYXnKFOR2ztaLR3pUKdM3+s09AXBOI9ODfSL0+hSHY
-        7C/sgOewn3X4Imx1Sd3qVzyQ8lIcGv+7617kbscJauNOXasC1oJ3u6F/Ds98qb9U0ARnRF0+SOB
-        o3xy4Q3XNikZdqU2L55rMNx5Mq2twvg4FQ4IfVuQ=
-X-Received: by 2002:a17:906:74c3:b0:6da:be6d:d64b with SMTP id z3-20020a17090674c300b006dabe6dd64bmr4324838ejl.695.1646919201542;
-        Thu, 10 Mar 2022 05:33:21 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzCCnILWS6O8NF0QccmUIZKB7piFBemuWv5RosCsexSn5KFanUN3loK37T97Thy/V43ongQTg==
-X-Received: by 2002:a17:906:74c3:b0:6da:be6d:d64b with SMTP id z3-20020a17090674c300b006dabe6dd64bmr4324818ejl.695.1646919201311;
-        Thu, 10 Mar 2022 05:33:21 -0800 (PST)
-Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id fx3-20020a170906b74300b006daecedee44sm1821076ejb.220.2022.03.10.05.33.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 05:33:20 -0800 (PST)
-Message-ID: <75695818-3d74-b809-bd40-ffbf4724df47@canonical.com>
-Date:   Thu, 10 Mar 2022 14:33:19 +0100
+        with ESMTP id S242445AbiCJNhk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:37:40 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1623D14E958;
+        Thu, 10 Mar 2022 05:36:34 -0800 (PST)
+X-UUID: bea02a7fddde472dbc27cfea5490503d-20220310
+X-UUID: bea02a7fddde472dbc27cfea5490503d-20220310
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 265800282; Thu, 10 Mar 2022 21:36:29 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Thu, 10 Mar 2022 21:36:27 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 10 Mar 2022 21:36:27 +0800
+Message-ID: <d80c89fd5fb704ed03244a7e333d59d0ee972e8f.camel@mediatek.com>
+Subject: Re: [PATCH v2 01/15] dt-bindings: ARM: Mediatek: Add new document
+ bindings of MT8186 clock
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 10 Mar 2022 21:36:27 +0800
+In-Reply-To: <YhkmnnIApvU7gRlZ@robh.at.kernel.org>
+References: <20220221015258.913-1-chun-jie.chen@mediatek.com>
+         <20220221015258.913-2-chun-jie.chen@mediatek.com>
+         <YhkmnnIApvU7gRlZ@robh.at.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-cpm: Add Versal CPM5 Root
- Port
-Content-Language: en-US
-To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, michals@xilinx.com,
-        robh@kernel.org
-References: <20220309120025.6721-1-bharat.kumar.gogada@xilinx.com>
- <20220309120025.6721-2-bharat.kumar.gogada@xilinx.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220309120025.6721-2-bharat.kumar.gogada@xilinx.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09/03/2022 13:00, Bharat Kumar Gogada wrote:
-> Xilinx Versal Premium series has CPM5 block which supports Root Port
-> functioning at Gen5 speed.
+On Fri, 2022-02-25 at 12:57 -0600, Rob Herring wrote:
+> On Mon, Feb 21, 2022 at 09:52:44AM +0800, Chun-Jie Chen wrote:
+> > This patch adds the new binding documentation for system clock
+> > and functional clock on Mediatek MT8186.
+> > 
+> > Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > ---
+> >  .../arm/mediatek/mediatek,mt8186-clock.yaml   |  56 +++
+> >  .../mediatek/mediatek,mt8186-sys-clock.yaml   |  54 +++
+> >  include/dt-bindings/clock/mt8186-clk.h        | 445
+> > ++++++++++++++++++
+> >  3 files changed, 555 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > clock.yaml
+> >  create mode 100644
+> > Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-
+> > clock.yaml
+> >  create mode 100644 include/dt-bindings/clock/mt8186-clk.h
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > clock.yaml
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > clock.yaml
+> > new file mode 100644
+> > index 000000000000..373e8a100da3
+> > --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > clock.yaml
+> > @@ -0,0 +1,56 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,mt8186-clock.yaml*__;Iw!!CTRNKA9wMg0ARbw!xKDeg6ddrFWd8p__fZiG7r5F5Py9NVWCmi7zVue5fUzuxKtvqHCSu_pslcpXRWfJmMCT$
+> >  "
+> > +$schema: "
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xKDeg6ddrFWd8p__fZiG7r5F5Py9NVWCmi7zVue5fUzuxKtvqHCSu_pslcpXRfM3OA21$
+> >  "
+> > +
+> > +title: Mediatek Functional Clock Controller for MT8186
+> > +
+> > +maintainers:
+> > +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > +
+> > +description:
 > 
-> Add support for YAML schemas documentation for Versal CPM5 Root Port driver.
+> You need a '|' to preserve the formatting.
 > 
-> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
-> ---
->  .../bindings/pci/xilinx-versal-cpm.yaml       | 47 ++++++++++++++++---
->  1 file changed, 40 insertions(+), 7 deletions(-)
+> > +  The clock architecture in Mediatek like below
+> > +  PLLs -->
+> > +          dividers -->
+> > +                      muxes
+> > +                           -->
+> > +                              clock gate
+> > +
+> > +  The devices provide clock gate control in different IP blocks.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - mediatek,mt8186-imp_iic_wrap
+> > +          - mediatek,mt8186-mfgsys
+> > +          - mediatek,mt8186-wpesys
+> > +          - mediatek,mt8186-imgsys1
+> > +          - mediatek,mt8186-imgsys2
+> > +          - mediatek,mt8186-vdecsys
+> > +          - mediatek,mt8186-vencsys
+> > +          - mediatek,mt8186-camsys
+> > +          - mediatek,mt8186-camsys_rawa
+> > +          - mediatek,mt8186-camsys_rawb
+> > +          - mediatek,mt8186-mdpsys
+> > +          - mediatek,mt8186-ipesys
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    imp_iic_wrap: clock-controller@11017000 {
+> > +        compatible = "mediatek,mt8186-imp_iic_wrap";
+> > +        reg = <0x11017000 0x1000>;
+> > +        #clock-cells = <1>;
+> > +    };
+> > diff --git
+> > a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > sys-clock.yaml
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > sys-clock.yaml
+> > new file mode 100644
+> > index 000000000000..4c071dd66b76
+> > --- /dev/null
+> > +++
+> > b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-
+> > sys-clock.yaml
+> > @@ -0,0 +1,54 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "
+> > https://urldefense.com/v3/__http://devicetree.org/schemas/arm/mediatek/mediatek,mt8186-sys-clock.yaml*__;Iw!!CTRNKA9wMg0ARbw!xKDeg6ddrFWd8p__fZiG7r5F5Py9NVWCmi7zVue5fUzuxKtvqHCSu_pslcpXRRtmGvUx$
+> >  "
+> > +$schema: "
+> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!xKDeg6ddrFWd8p__fZiG7r5F5Py9NVWCmi7zVue5fUzuxKtvqHCSu_pslcpXRfM3OA21$
+> >  "
+> > +
+> > +title: Mediatek System Clock Controller for MT8186
+> > +
+> > +maintainers:
+> > +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> > +
+> > +description:
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> index 32f4641085bc..97c7229d7f91 100644
-> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
-> @@ -14,17 +14,21 @@ allOf:
->  
->  properties:
->    compatible:
-> -    const: xlnx,versal-cpm-host-1.00
-> +    contains:
-> +      enum:
-> +        - xlnx,versal-cpm-host-1.00
-> +        - xlnx,versal-cpm5-host-1.00
->  
->    reg:
-> -    items:
-> -      - description: Configuration space region and bridge registers.
-> -      - description: CPM system level control and status registers.
-> +    description: |
-> +      Should contain cpm_slcr, cfg registers location and length.
-> +      For xlnx,versal-cpm5-host-1.00, it should also contain cpm_csr.
-> +    minItems: 2
-> +    maxItems: 3
->  
->    reg-names:
-> -    items:
-> -      - const: cfg
-> -      - const: cpm_slcr
-> +    minItems: 2
-> +    maxItems: 3
->  
+> And here.
+> 
+> With that,
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 
-One more thought - it seems three items are required on cpm5, so you
-miss later proper allOf-if: which enforces this.
+Ok, I will fix it in next version.
 
-Best regards,
-Krzysztof
+Thanks!
+
+> > +  The clock architecture in Mediatek like below
+> > +  PLLs -->
+> > +          dividers -->
+> > +                      muxes
+> > +                           -->
+> > +                              clock gate
+> > +
+> > +  The apmixedsys provides most of PLLs which generated from SoC
+> > 26m.
+> > +  The topckgen provides dividers and muxes which provide the clock
+> > source to other IP blocks.
+> > +  The infracfg_ao provides clock gate in peripheral and
+> > infrastructure IP blocks.
+> > +  The mcusys provides mux control to select the clock source in AP
+> > MCU.
+> > +  The device nodes also provide the system control capacity for
+> > configuration.
+
