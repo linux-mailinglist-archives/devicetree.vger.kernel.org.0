@@ -2,171 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 615254D5597
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:45:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D210D4D55DC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 00:52:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239157AbiCJXqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 18:46:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44280 "EHLO
+        id S234514AbiCJXv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 18:51:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232493AbiCJXqT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:46:19 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20F66C12E3;
-        Thu, 10 Mar 2022 15:45:13 -0800 (PST)
-X-UUID: 8eb3cdbf9b844ea48027def2f2d42723-20220311
-X-UUID: 8eb3cdbf9b844ea48027def2f2d42723-20220311
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <miles.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 2135811672; Fri, 11 Mar 2022 07:45:10 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Fri, 11 Mar 2022 07:45:09 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 11 Mar 2022 07:45:09 +0800
-From:   Miles Chen <miles.chen@mediatek.com>
-To:     <chun-jie.chen@mediatek.com>
-CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <devicetree@vger.kernel.org>, <drinkcat@chromium.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>, <sboyd@kernel.org>,
-        <srv_heupstream@mediatek.com>
-Subject: Re: [PATCH v2 01/15] dt-bindings: ARM: Mediatek: Add new document bindings of MT8186 clock
-Date:   Fri, 11 Mar 2022 07:45:09 +0800
-Message-ID: <20220310234509.32636-1-miles.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220221015258.913-2-chun-jie.chen@mediatek.com>
-References: <20220221015258.913-2-chun-jie.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
-        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
-        autolearn=no autolearn_force=no version=3.4.6
+        with ESMTP id S234012AbiCJXv6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 18:51:58 -0500
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6516019E0B6
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 15:50:56 -0800 (PST)
+Received: by mail-pf1-x42e.google.com with SMTP id z15so6460657pfe.7
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 15:50:56 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20210112.gappssmtp.com; s=20210112;
+        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
+         :content-transfer-encoding;
+        bh=INgj8rTXvSAzUwJnpuawPcVUdKw6g6SAvhUFGBPa20w=;
+        b=fbWHVX62vUa8exJGyTct1ga0AZuEMcW93/RSwfhyfYd0KV0/zdmtLALmkjeYXPDWBs
+         kVyY27sewIxi+DJ45gNPp8FKm7OtDu3KUc4Zu3hgB/jx93UbW4Cm6klaLOF/3BlcVsXj
+         jLIs9bXJviSUvp4Aml/5x3hoGyv1EEgB/YH+i8JofknAH1oJkjoqPccSSeHuVQmUjl+b
+         WiILqgKpC4/Y3CPPcUpXAISKldi2IQ/WB350w3s4+n3jSuzL34+1DZ1PrYGYFHSIAXB4
+         TkkyKLi5OV11krzpmH4qHSIMxhFyAoD1GKADP6w6hemtbWDK4o/69nNypA2n7RB2+H0g
+         U2Gw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
+         :mime-version:content-transfer-encoding;
+        bh=INgj8rTXvSAzUwJnpuawPcVUdKw6g6SAvhUFGBPa20w=;
+        b=tAkrN964HCBYqwLV9eHtyG2a76JM39uygB0dQ8McMIWoAaxfGuYfscNm+mtjU02Kx7
+         mun9fC2qQNPcx2Tl6xXXmirfFJCtdXJoWuXNGdWcmgsQ+87qI7I5x98mOe1mywUxXYpy
+         Y978a2PsV+da7PuSrdnpd+6ZSwpBzm/Ao1QqLjIt4HW1UI/V9kWymcCY1SPZHm3/G1MK
+         Xhb0rApjroM3SkX8ZnsaXLEQLwWq8SXXgmyFDn2xfVkmEYrtUNpO/WMBWz248Quz/pxF
+         Sme0R751AnNPqSSNnpX+t8sIaTeoKpPfSPe7w65fYw5EPVU+E4UZYOLmxCyisVAuM+3g
+         QMLg==
+X-Gm-Message-State: AOAM532acSl9+FH3xS1uOmVZonovzV7Gwrr4Uub+670KaueUtxGJsqWN
+        r2yPuRO/Rl/NgqDNR/w/i2tvCg==
+X-Google-Smtp-Source: ABdhPJwXJfHEQvMlhBajppaP3JQkQ/qujHp3qSdGTjciaGZUR7sqgIGDkyhI60/Ju+m1lkZSnfOJQw==
+X-Received: by 2002:a63:1c58:0:b0:380:bfd8:9e10 with SMTP id c24-20020a631c58000000b00380bfd89e10mr6183633pgm.422.1646956255724;
+        Thu, 10 Mar 2022 15:50:55 -0800 (PST)
+Received: from localhost ([12.3.194.138])
+        by smtp.gmail.com with ESMTPSA id rm8-20020a17090b3ec800b001bcd57956desm7006323pjb.51.2022.03.10.15.50.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Mar 2022 15:50:55 -0800 (PST)
+Date:   Thu, 10 Mar 2022 15:50:55 -0800 (PST)
+X-Google-Original-Date: Thu, 10 Mar 2022 15:49:44 PST (-0800)
+Subject:     Re: [PATCH v5 0/6] Provide a fraemework for RISC-V ISA extensions 
+In-Reply-To: <20220222204811.2281949-1-atishp@rivosinc.com>
+CC:     linux-kernel@vger.kernel.org, Atish Patra <atishp@rivosinc.com>,
+        aou@eecs.berkeley.edu, atishp@atishpatra.org, anup@brainfault.org,
+        damien.lemoal@wdc.com, devicetree@vger.kernel.org,
+        jszhang@kernel.org, krzysztof.kozlowski@canonical.com,
+        linux-riscv@lists.infradead.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Atish Patra <atishp@rivosinc.com>
+Message-ID: <mhng-4593ea1e-503d-47df-8e55-d2ef06f01518@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chun-Jie,
-
-> [PATCH v2 01/15] dt-bindings: ARM: Mediatek: Add new document bindings of MT8186 clock
-
-s/Mediatek/MediaTek/
-
-> This patch adds the new binding documentation for system clock
-> and functional clock on Mediatek MT8186.
-
-s/Mediatek/MediaTek/
-> 
-> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> ---
->  .../arm/mediatek/mediatek,mt8186-clock.yaml   |  56 +++
->  .../mediatek/mediatek,mt8186-sys-clock.yaml   |  54 +++
->  include/dt-bindings/clock/mt8186-clk.h        | 445 ++++++++++++++++++
->  3 files changed, 555 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml
->  create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml
->  create mode 100644 include/dt-bindings/clock/mt8186-clk.h
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml
-> new file mode 100644
-> index 000000000000..373e8a100da3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml
-> @@ -0,0 +1,56 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt8186-clock.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Mediatek Functional Clock Controller for MT8186
-
-s/Mediatek/MediaTek/
-
-> +
-> +maintainers:
-> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +description:
-> +  The clock architecture in Mediatek like below
-
-s/Mediatek/MediaTek/
-
-> +  PLLs -->
-> +          dividers -->
-> +                      muxes
-> +                           -->
-> +                              clock gate
-> +
-> +  The devices provide clock gate control in different IP blocks.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - mediatek,mt8186-imp_iic_wrap
-> +          - mediatek,mt8186-mfgsys
-> +          - mediatek,mt8186-wpesys
-> +          - mediatek,mt8186-imgsys1
-> +          - mediatek,mt8186-imgsys2
-> +          - mediatek,mt8186-vdecsys
-> +          - mediatek,mt8186-vencsys
-> +          - mediatek,mt8186-camsys
-> +          - mediatek,mt8186-camsys_rawa
-> +          - mediatek,mt8186-camsys_rawb
-> +          - mediatek,mt8186-mdpsys
-> +          - mediatek,mt8186-ipesys
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    imp_iic_wrap: clock-controller@11017000 {
-> +        compatible = "mediatek,mt8186-imp_iic_wrap";
-> +        reg = <0x11017000 0x1000>;
-> +        #clock-cells = <1>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml
-> new file mode 100644
-> index 000000000000..4c071dd66b76
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/arm/mediatek/mediatek,mt8186-sys-clock.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Mediatek System Clock Controller for MT8186
+On Tue, 22 Feb 2022 12:48:05 PST (-0800), Atish Patra wrote:
+> This series implements a generic framework to parse multi-letter ISA
+> extensions. This series is based on Tsukasa's v3 isa extension improvement
+> series[1]. I have fixed few bugs and improved comments from that series
+> (PATCH1-3). I have not used PATCH 4 from that series as we are not using
+> ISA extension versioning as of now. We can add that later if required.
 >
-s/Mediatek/MediaTek/
+> PATCH 4 allows the probing of multi-letter extensions via a macro.
+> It continues to use the common isa extensions between all the harts.
+> Thus hetergenous hart systems will only see the common ISA extensions.
+>
+> PATCH 6 improves the /proc/cpuinfo interface for the available ISA extensions
+> via /proc/cpuinfo.
+>
+> Here is the example output of /proc/cpuinfo:
+> (with debug patches in Qemu and Linux kernel)
+>
+> # cat /proc/cpuinfo
+> processor	: 0
+> hart		: 0
+> isa		: rv64imafdch
+> isa-ext		: svpbmt svnapot svinval
 
-> +
-> +maintainers:
-> +  - Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +description:
-> +  The clock architecture in Mediatek like below
+I know it might seem a bit pedantic, but I really don't want to 
+introduce a new format for encoding ISA extensions -- doubly so if this 
+is the only way we're giving this info to userspace, as then we're just 
+asking folks to turn this into a defacto ABI.  Every time we try to do 
+something that's sort of like an ISA string but not exactly what's in 
+the spec we end up getting burned, and while I don't see a specific way 
+that could happen here that's what's happened so many times before I 
+just don't want to risk it.
 
-s/Mediatek/MediaTek/
+I've gone ahead and removed some of this information (isa-ext, and all 
+the single-letter extensions we can't properly turn on yet) from 
+/proc/cpuinfo, modifying the last patch to do so.  It's at 
+palmer/riscv-isa, LMK if that's OK.
 
-Thanks,
-Miles
+I'm not opposed to doing something here, I just really don't want to 
+rush into it as we've already got enough complexity around the various 
+flavors of ISA strings.  I don't see a big pressing need to provide this 
+information to userspace, but having the rest of this sorted out is 
+great (and there's some dependencies on this) so I'd prefer to just 
+stick to what we know is good.
+
+> mmu		: sv48
+>
+> processor	: 1
+> hart		: 1
+> isa		: rv64imafdch
+> isa-ext		: svpbmt svnapot svinval
+> mmu		: sv48
+>
+> processor	: 2
+> hart		: 2
+> isa		: rv64imafdch
+> isa-ext		: svpbmt svnapot svinval
+> mmu		: sv48
+>
+> processor	: 3
+> hart		: 3
+> isa		: rv64imafdch
+> isa-ext		: svpbmt svnapot svinval
+> mmu		: sv48
+>
+> Anybody adding support for any new multi-letter extensions should add an
+> entry to the riscv_isa_ext_id and the isa extension array.
+> E.g. The patch[2] adds the support for various ISA extensions.
+>
+> [1] https://lore.kernel.org/all/0f568515-a05e-8204-aae3-035975af3ee8@irq.a4lg.com/T/
+> [2] https://github.com/atishp04/linux/commit/e9e240c9a854dceb434ceb53bdbe82a657bee5f2
+>
+> Changes from v4->v5:
+> 1. Improved the /proc/cpuinfo to include only valid & enabled extensions
+> 2. Improved the multi-letter parsing by skipping the 'su' modes generated in
+>    Qemu as suggested by Tsukasa.
+>
+> Changes from v3->v4:
+> 1. Changed temporary variable for current hart isa to a bitmap
+> 2. Added reviewed-by tags.
+> 3. Improved comments
+>
+> Changes from v2->v3:
+> 1. Updated comments to mark clearly a fix required for Qemu only.
+> 2. Fixed a bug where the 1st multi-letter extension can be present without _
+> 3. Added Tested by tags.
+>
+> Changes from v1->v2:
+> 1. Instead of adding a separate DT property use the riscv,isa property.
+> 2. Based on Tsukasa's v3 isa extension improvement series.
+>
+> Atish Patra (3):
+> RISC-V: Implement multi-letter ISA extension probing framework
+> RISC-V: Do no continue isa string parsing without correct XLEN
+> RISC-V: Improve /proc/cpuinfo output for ISA extensions
+>
+> Tsukasa OI (3):
+> RISC-V: Correctly print supported extensions
+> RISC-V: Minimal parser for "riscv, isa" strings
+> RISC-V: Extract multi-letter extension names from "riscv, isa"
+>
+> arch/riscv/include/asm/hwcap.h |  25 +++++++
+> arch/riscv/kernel/cpu.c        |  51 ++++++++++++-
+> arch/riscv/kernel/cpufeature.c | 130 +++++++++++++++++++++++++++------
+> 3 files changed, 183 insertions(+), 23 deletions(-)
