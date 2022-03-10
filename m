@@ -2,195 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 887CA4D4848
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:43:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF034D4840
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:40:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241482AbiCJNoY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 08:44:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59962 "EHLO
+        id S237219AbiCJNln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 08:41:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58710 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235855AbiCJNoW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:44:22 -0500
-Received: from mxd2.seznam.cz (mxd2.seznam.cz [IPv6:2a02:598:2::210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7608214E958
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:43:21 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc4a.ng.seznam.cz (email-smtpc4a.ng.seznam.cz [10.23.10.105])
-        id 3f2fdbe164218f883e8617bf;
-        Thu, 10 Mar 2022 14:42:48 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1646919768; bh=8Y2ucPBnS67MlUNtnZLeSA2RGnEzTG3ThSzf0rh3wn8=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=JPoSFVy2ZMX8fODCK8S0tu1acsCbuN5tbTv39u1xO/wIxL6u0jW6Z3nDNrupdpwHO
-         SEYZZ2WVGma/KVvDvVAiYTHk63q6gaAd0vquHgwppuOzgc8Ut2uWkDv7DSZSg6ziaV
-         eaidNsq54XUKiTCplyXpivu2G5UPWmwZsVWeComI=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay27.ng.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Thu, 10 Mar 2022 14:42:46 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>
-Subject: [PATCH 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
-Date:   Thu, 10 Mar 2022 14:39:38 +0100
-Message-Id: <20220310133938.2495-3-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220310133938.2495-1-michael.srba@seznam.cz>
-References: <20220310133938.2495-1-michael.srba@seznam.cz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <f7d31c4b-21ff-4b86-af56-c946f65a735b>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S241052AbiCJNlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:41:42 -0500
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.220.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B017C3DA7A;
+        Thu, 10 Mar 2022 05:40:41 -0800 (PST)
+Received: from relay2.suse.de (relay2.suse.de [149.44.160.134])
+        by smtp-out1.suse.de (Postfix) with ESMTP id 5D01E21106;
+        Thu, 10 Mar 2022 13:40:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1646919640; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=s0WfDHnB3qQWf1YP5uxdfwdYs8AdzWWU3Bje0Q+7OV4=;
+        b=NAlFcq6v6X84cvG50ghJERg2gd+7VRyccxdqIjUK8tb/V4+tuRfK2ZQ091kkhYR5QjqLci
+        y/ZI7Nkz8X5iG0l76/f19dfW6gaehRPPmeTMLJ0pbNUBIsvZs52aOhwii2Hm96vcWca+YD
+        c7fFVZLnJF973Oj9RoZb9wqOUWODpXA=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1646919640;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=s0WfDHnB3qQWf1YP5uxdfwdYs8AdzWWU3Bje0Q+7OV4=;
+        b=PRGjmFb2jd+ug6p3zxEGQeZVWnB7OHfUFbLnBx0Wb1GAx6oxQhDANgZMiIKRCXvNzxWllb
+        cF/7g5FKY3LoHBAA==
+Received: from alsa1.suse.de (alsa1.suse.de [10.160.4.42])
+        by relay2.suse.de (Postfix) with ESMTP id 4B8FEA3B87;
+        Thu, 10 Mar 2022 13:40:40 +0000 (UTC)
+Date:   Thu, 10 Mar 2022 14:40:40 +0100
+Message-ID: <s5hcziuexif.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>
+Subject: Re: [PATCH v3 03/16] sound: cs35l41: Move cs35l41_gpio_config to shared lib
+In-Reply-To: <20220308171730.454587-4-tanureal@opensource.cirrus.com>
+References: <20220308171730.454587-1-tanureal@opensource.cirrus.com>
+        <20220308171730.454587-4-tanureal@opensource.cirrus.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI/1.14.6 (Maruoka)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 Emacs/25.3
+ (x86_64-suse-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI 1.14.6 - "Maruoka")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+On Tue, 08 Mar 2022 18:17:17 +0100,
+Lucas Tanure wrote:
+> 
+> ASoC and HDA can use a single function to configure the chip gpios.
+> 
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
+> Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-The difference between the ICM-20608-D and the other ICM-20608
-variants is the addition of a DMP (Digital Motion Processor) core.
-This difference is deemed substantial enough to change the WHOAMI
-register value.
-Since this driver doesn't currently acknowledge the exisence of
-something like a DMP core, simply copy ICM-20608 except for the
-aforementioned WHOAMI register.
+Just use "ALSA:" prefix for the subject instead of "sound:" in case
+both ALSA HD-audio and ASoC are covered in the patch.
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
----
- drivers/iio/imu/inv_mpu6050/Kconfig        | 4 ++--
- drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 9 +++++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c  | 6 ++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h  | 2 ++
- drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c  | 5 +++++
- 5 files changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/iio/imu/inv_mpu6050/Kconfig b/drivers/iio/imu/inv_mpu6050/Kconfig
-index 9c625517173a..3636b1bc90f1 100644
---- a/drivers/iio/imu/inv_mpu6050/Kconfig
-+++ b/drivers/iio/imu/inv_mpu6050/Kconfig
-@@ -16,7 +16,7 @@ config INV_MPU6050_I2C
- 	select REGMAP_I2C
- 	help
- 	  This driver supports the Invensense MPU6050/9150,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over I2C.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-i2c.
-@@ -28,7 +28,7 @@ config INV_MPU6050_SPI
- 	select REGMAP_SPI
- 	help
- 	  This driver supports the Invensense MPU6000,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over SPI.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-spi.
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-index 597768c29a72..86fbbe904050 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-@@ -217,6 +217,15 @@ static const struct inv_mpu6050_hw hw_info[] = {
- 		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
- 		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
- 	},
-+	{
-+		.whoami = INV_ICM20608D_WHOAMI_VALUE,
-+		.name = "ICM20608D",
-+		.reg = &reg_set_6500,
-+		.config = &chip_config_6500,
-+		.fifo_size = 512,
-+		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
-+		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
-+	},
- 	{
- 		.whoami = INV_ICM20609_WHOAMI_VALUE,
- 		.name = "ICM20609",
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-index fe03707ec2d3..ed52b27409ac 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-@@ -29,6 +29,7 @@ static bool inv_mpu_i2c_aux_bus(struct device *dev)
- 
- 	switch (st->chip_type) {
- 	case INV_ICM20608:
-+	case INV_ICM20608D:
- 	case INV_ICM20609:
- 	case INV_ICM20689:
- 	case INV_ICM20602:
-@@ -182,6 +183,7 @@ static const struct i2c_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -225,6 +227,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-index c6aa36ee966a..8e14f20b1314 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-@@ -76,6 +76,7 @@ enum inv_devices {
- 	INV_MPU9250,
- 	INV_MPU9255,
- 	INV_ICM20608,
-+	INV_ICM20608D,
- 	INV_ICM20609,
- 	INV_ICM20689,
- 	INV_ICM20602,
-@@ -394,6 +395,7 @@ struct inv_mpu6050_state {
- #define INV_MPU9255_WHOAMI_VALUE		0x73
- #define INV_MPU6515_WHOAMI_VALUE		0x74
- #define INV_ICM20608_WHOAMI_VALUE		0xAF
-+#define INV_ICM20608D_WHOAMI_VALUE		0xAE
- #define INV_ICM20609_WHOAMI_VALUE		0xA6
- #define INV_ICM20689_WHOAMI_VALUE		0x98
- #define INV_ICM20602_WHOAMI_VALUE		0x12
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-index 6800356b25fb..ce8ab6db2bf2 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-@@ -74,6 +74,7 @@ static const struct spi_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -113,6 +114,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
--- 
-2.34.1
+thanks,
 
+Takashi
