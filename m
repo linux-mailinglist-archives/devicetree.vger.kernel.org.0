@@ -2,281 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 442E94D5065
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 18:26:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D544E4D5084
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 18:29:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241736AbiCJR1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 12:27:11 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40910 "EHLO
+        id S241890AbiCJR2r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 12:28:47 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238522AbiCJR1I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 12:27:08 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32A8225593
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 09:26:06 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 002ED3F321
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 17:26:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646933165;
-        bh=uqyFTSemI9/cH6f7bE6a+tAm1VhsT+/e17pHuuHIz6Y=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=HgyIicL4XwTx4Xp1F1KOJ0xlwIMr3JlXlkR8dF0367DU5OGJTMRYCX+j39kNYzX2I
-         NhdY4ErSVjRDwwKjIoOWymzAQ+4rB+LsYccHX/gZ7yLQJfRdw+fzh30OFtuBGVgXQ2
-         iJ50Tbvna97fW/8Rk1CZaXOUBy4yLKoBrpsX7XTrLHjOGrQDcrB1LzXXYI4kv07fkX
-         JzIP9Gv0SIaJ6Lce3heuyKYkBF+W0yYOB2ycsow3tToAR912PEcfYZcDNC8FTAGcOk
-         pnJoBrnvk4PSyDa/T/FEsNu5Nyw2ltuhEoTRG8sgdR26BPwkLBcqSIBSzBn1vLG9Ql
-         BGRTZ6oRN8z/Q==
-Received: by mail-ed1-f69.google.com with SMTP id l24-20020a056402231800b00410f19a3103so3492240eda.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 09:26:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=uqyFTSemI9/cH6f7bE6a+tAm1VhsT+/e17pHuuHIz6Y=;
-        b=a5QQWccD+8IOkbJo/IEV0ga8wP/JVI0HZ95KW6R7Q75WlzSa6jrT1ijMueCwt2pm+f
-         bPphgYRAj4bHLeZXNFxK8clRwYFMq1gKjhcvv0z53jfAK9HxjrSDpkLbRTA/tprwDsGC
-         X+i1PQTcB76R2TFLhCtxNyFj4uFv/EBJUNpUB3BR3yexEN9Mr+65qzJ7jUWln1XphPUz
-         DjNrZ1LFdD9pZXzU2l4Mk9Qv/mO4JG0F5sbsQ1PUpm4c0UbHS1qpUXhkwl9LccKT0xKe
-         M6ZV5+aQDgiX32HI+knYpQ9cDTPcZ80Gpt2Md3FCjhTC/ly3BeB1x5bp5cwHBgYIcM5P
-         xz3g==
-X-Gm-Message-State: AOAM533ICYLiY2Q0lL75Ys9yJWyHwNvIgftaktIxtK2QZOOaErZdVeGo
-        wyUgtM01Mx8Zk3SmJxj2Bgr6sFLMsJp6A54l0x/VqKGYg2miwJPhYxYmK8LDGmceLqlXZxbKASy
-        wk5//RmE3rDtviM7USCjhOD9KGv+amLI0I5HLzDk=
-X-Received: by 2002:a05:6402:6c3:b0:415:ffc9:3a09 with SMTP id n3-20020a05640206c300b00415ffc93a09mr5409303edy.403.1646933163867;
-        Thu, 10 Mar 2022 09:26:03 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyLzGlfcKH7FfVFJiUSulm+6aK3FOqSIKdewDsnBdfE62vB/CvhDh+FLBtgu0wroxckeEHn4Q==
-X-Received: by 2002:a05:6402:6c3:b0:415:ffc9:3a09 with SMTP id n3-20020a05640206c300b00415ffc93a09mr5409282edy.403.1646933163599;
-        Thu, 10 Mar 2022 09:26:03 -0800 (PST)
-Received: from [192.168.0.147] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id j5-20020a056402238500b00416c32d548esm523027eda.59.2022.03.10.09.26.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 09:26:03 -0800 (PST)
-Message-ID: <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
-Date:   Thu, 10 Mar 2022 18:26:02 +0100
+        with ESMTP id S244401AbiCJR2q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 12:28:46 -0500
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E0BDB3E5F;
+        Thu, 10 Mar 2022 09:27:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1646933264; x=1678469264;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=UIbApzBbc+Vluf22x9IDYn+1LabeJBGdywRMKw75SoA=;
+  b=wKkZr47gF7MuidYPkJFVO1SfeFHxtEn0Dv1HgddNNb8U8T+4wb6ml9mV
+   UgUarHpeHu2SZP81YVNA/PdxbdYqU64jnKAzBqnifp2zgnlH/nX5NAxuk
+   908hMm2/VtMULusG3cLSNxqX8Y7Nxy5oaNwiZc2DSCJADNctsrW4HB9Mr
+   GEueAyNu4sR/Ii5GD+dcdkx0qNrPwg9304Nj4WQ0iJHIY4Qz3FcNG2lTX
+   sZafgnV9v6WK0n97hH9Op1h54gPfkXBNjJ0DN74eXwpcOmy4zYagLn8ua
+   Pfy2jo3kODjT62t0Gb6G9xDTrlBQC7QGpqrWZ0AF8Lr0E7bgbcXY8/t6+
+   g==;
+X-IronPort-AV: E=Sophos;i="5.90,171,1643698800"; 
+   d="scan'208";a="165312186"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Mar 2022 10:27:43 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 10 Mar 2022 10:27:42 -0700
+Received: from CHE-LT-I21427LX.microchip.com (10.10.115.15) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2375.17 via Frontend Transport; Thu, 10 Mar 2022 10:27:36 -0700
+Message-ID: <5e6a9cc0d6c1c6928cafd83fe34c8a545198c3d9.camel@microchip.com>
+Subject: Re: [PATCH v8 net-next 01/10] dt-bindings: net: dsa: dt bindings
+ for microchip lan937x
+From:   Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>, <robh+dt@kernel.org>
+CC:     <UNGLinuxDriver@microchip.com>, <woojung.huh@microchip.com>,
+        <hkallweit1@gmail.com>, <linux@armlinux.org.uk>,
+        <davem@davemloft.net>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <vivien.didelot@gmail.com>,
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        <andrew@lunn.ch>, <netdev@vger.kernel.org>, <olteanv@gmail.com>
+Date:   Thu, 10 Mar 2022 22:57:36 +0530
+In-Reply-To: <1300f84832ef1c43ecb9edb311fb817e3aab5420.camel@microchip.com>
+References: <20220207172204.589190-1-prasanna.vengateshan@microchip.com>
+         <20220207172204.589190-2-prasanna.vengateshan@microchip.com>
+         <88caec5c-c509-124e-5f6b-22b94f968aea@gmail.com>
+         <ebf1b233da821e2cd3586f403a1cdc2509671cde.camel@microchip.com>
+         <d8e5f6a8-a7e1-dabd-f4b4-ea8ea21d0a1d@gmail.com>
+         <1300f84832ef1c43ecb9edb311fb817e3aab5420.camel@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.40.0-1 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
-Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, robh@kernel.org,
-        devicetree@vger.kernel.org
-References: <20220310130829.96001-1-jacopo@jmondi.org>
- <20220310130829.96001-2-jacopo@jmondi.org>
- <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
- <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2022 18:16, Jacopo Mondi wrote:
-> Hi Krzysztof
-> 
-> On Thu, Mar 10, 2022 at 03:29:24PM +0100, Krzysztof Kozlowski wrote:
->> On 10/03/2022 14:08, Jacopo Mondi wrote:
->>> Provide the bindings documentation for Omnivision OV5670 image sensor.
->>>
->>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
->>> ---
->>>  .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
->>
->> Add the file to maintainers entry.
->>
-> 
-> Right
-> 
->>>  1 file changed, 93 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
->>> new file mode 100644
->>> index 000000000000..dc4a3297bf6f
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
->>
->> Missing vendor prefix in file name.
->>
-> 
-> Right x2
-> 
->>> @@ -0,0 +1,93 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Omnivision OV5670 5 Megapixels raw image sensor
->>> +
->>> +maintainers:
->>> +  - Jacopo Mondi <jacopo@jmondi.org>
->>
->> Please add also driver maintainer.
->>
-> 
-> I never got what the policy was, if the maintainer entries here only
-> refer to the binding file or to the driver too
+Hi Rob/Florian,
 
-It is a person responsible for the bindings, so indeed it might not feed
-existing maintainer.
+On Wed, 2022-03-02 at 17:11 +0530, Prasanna Vengateshan wrote:
+> Hi Rob and Florian,
+> 
+> On Fri, 2022-02-11 at 19:56 -0800, Florian Fainelli wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the
+> > content is safe
+> > 
+> > On 2/9/2022 3:58 AM, Prasanna Vengateshan wrote:
+> > > On Mon, 2022-02-07 at 18:53 -0800, Florian Fainelli wrote:
+> > > > EXTERNAL EMAIL: Do not click links or open attachments unless you know
+> > > > the
+> > > > content is safe
+> > > > 
+> > > > On 2/7/2022 9:21 AM, Prasanna Vengateshan wrote:
+> > > > > Documentation in .yaml format and updates to the MAINTAINERS
+> > > > > Also 'make dt_binding_check' is passed.
+> > > > > 
+> > > > > RGMII internal delay values for the mac is retrieved from
+> > > > > rx-internal-delay-ps & tx-internal-delay-ps as per the feedback from
+> > > > > v3 patch series.
+> > > > > https://lore.kernel.org/netdev/20210802121550.gqgbipqdvp5x76ii@skbuf/
+> > > > > 
+> > > > > It supports only the delay value of 0ns and 2ns.
+> > > > > 
+> > > > > Signed-off-by: Prasanna Vengateshan <
+> > > > > prasanna.vengateshan@microchip.com>
+> > > > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > > > ---
+> > > > >    .../bindings/net/dsa/microchip,lan937x.yaml   | 179
+> > > > > ++++++++++++++++++
+> > > > >    MAINTAINERS                                   |   1 +
+> > > > >    2 files changed, 180 insertions(+)
+> > > > >    create mode 100644
+> > > > > Documentation/devicetree/bindings/net/dsa/microchip,lan937x.yaml
+> > > > > 
+> > > > > +    maxItems: 1
+> > > > > +
+> > > > > +  mdio:
+> > > > > +    $ref: /schemas/net/mdio.yaml#
+> > > > > +    unevaluatedProperties: false
+> > > > 
+> > > > This should be moved to dsa.yaml since this is about describing the
+> > > > switch's internal MDIO bus controller. This is applicable to any switch,
+> > > > really.
+> > > 
+> > > Thanks for your review and feedback. Do you mean that 'mdio' to be added
+> > > in
+> > > dsa.yaml instead adding here?
+> > 
+> > Yes indeed, since this is a common property of all DSA switches, it can
+> > be defined or not depending on whether the switch does have an internal
+> > MDIO bus controller or not.
+> > 
+> > > 
+> > > > 
+> > > > > +
+> > > > > +patternProperties:
+> > > > > +  "^(ethernet-)?ports$":
+> > > > > +    patternProperties:
+> > > > > +      "^(ethernet-)?port@[0-7]+$":
+> > > > > +        allOf:
+> > > > > +          - if:
+> > > > > +              properties:
+> > > > > +                phy-mode:
+> > > > > +                  contains:
+> > > > > +                    enum:
+> > > > > +                      - rgmii
+> > > > > +                      - rgmii-rxid
+> > > > > +                      - rgmii-txid
+> > > > > +                      - rgmii-id
+> > > > > +            then:
+> > > > > +              properties:
+> > > > > +                rx-internal-delay-ps:
+> > > > > +                  $ref: "#/$defs/internal-delay-ps"
+> > > > > +                tx-internal-delay-ps:
+> > > > > +                  $ref: "#/$defs/internal-delay-ps"
+> > > > 
+> > > > Likewise, this should actually be changed in ethernet-controller.yaml
+> > > 
+> > > There is *-internal-delay-ps property defined for mac in ethernet-
+> > > controller.yaml. Should that be changed like above?
+> > 
+> > It seems to me that these properties override whatever 'phy-mode'
+> > property is defined, but in premise you are right that this is largely
+> > applicable to RGMII only. I seem to recall that the QCA8K driver had
+> > some sort of similar delay being applied even in SGMII mode but I am not
+> > sure if we got to the bottom of this.
+> > 
+> > Please make sure that this does not create regressions for other DTS in
+> > the tree before going with that change in ethernet-controller.yaml.
+> > 
+> 
+> I just tried changing rx-internal-delay-ps & tx-internal-delay-ps on
+> conditional
+> basis like above in the ethernet-controller.yaml and it passed 'make
+> dt_binding_check' as well. 
+> 
+> It would be like below if existing *-internal-delay-ps are removed from
+> ethernet-controller.yaml.
+> 
+> allOf:
+>   - if:
+>       properties:
+>         phy-mode:
+>           contains:
+>             enum:
+>               - rgmii
+>               - rgmii-rxid
+>               - rgmii-txid
+>               - rgmii-id
+>             then:
+>               properties:
+>                 rx-internal-delay-ps:
+>                   description:
+>                     RGMII Receive Clock Delay defined in pico seconds.This is 
+>                     used for controllers that have configurable RX internal 
+>                     delays. If this property is present then the MAC applies 
+>                     the RX delay.
+>                 tx-internal-delay-ps:
+>                   description:
+>                     RGMII Transmit Clock Delay defined in pico seconds.This is
+>                     used for controllers that have configurable TX internal
+>                     delays. If this property is present then the MAC applies
+>                     the TX delay.   
+> 
+> After the above changes, these two properties descriptions are different
+> compare
+> to other properties. So i just wanted to know whether i am following the right
+> approach or are there any other proposal available? Thanks.
+> 
+> Prasanna V
+> 
+Is the above method looking good? Your feedback will be helpful. Thanks.
 
-> 
->>> +
->>> +description: |-
->>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
->>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
->>> +  controlled through an I2C compatible control bus.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: ovti,ov5670
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clock-frequency:
->>> +    description: Frequency of the xclk clock.
->>
->> Is the xclk external clock coming to the sensor? If yes, there should be
->> a "clocks" property.
->>
-> 
-> To be honest I was not sure about this, as clock-frequency is already
-> used by the driver for the ACPI part, but it seems to in DT bindings
-> it is a property meant to be specified in the clock providers, even if
-> Documentation/devicetree/bindings/clock/clock-bindings.txt doesn't
-> really clarify this
-> 
-> Clock consumer should rather use 'clocks' and point to the provider's
-> phandle if my understanding is right.
+Prasanna V
 
-This is a clock-frequency, not clock reference. For external clocks, a
-clock phandles + assigned-clock-rates should be rather used. However for
-internal clocks, this is a perfectly valid property.
-
-Therefore the question is - what is the "xclk"?
-
-> 
->>> +
->>> +  pwdn-gpios:
->>> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
->>
->> maxItems
->>
-> 
-> I thought it was not necessary with a single description: entry. But
-> looking at the dt-schema source I fail to find any commit mentioning
-> that.
-
-The purpose of maxItems is to constrain the number of GPIOs, so two
-would be incorrect.
-
-> 
->>> +
->>> +  reset-gpios:
->>> +    description:
->>> +      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
->>
->> maxItems
->>
->>> +
->>> +  avdd-supply:
->>> +    description: Analog circuit power. Typically 2.8V.
->>> +
->>> +  dvdd-supply:
->>> +    description: Digital circuit power. Typically 1.2V.
->>> +
->>> +  dovdd-supply:
->>> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
->>> +
->>> +  port:
->>> +    $ref: /schemas/graph.yaml#/$defs/port-base
->>> +    additionalProperties: false
->>> +
->>> +    properties:
->>> +      endpoint:
->>> +        $ref: /schemas/media/video-interfaces.yaml#
->>> +        unevaluatedProperties: false
->>> +
->>> +        properties:
->>> +          data-lanes:
->>> +            description: The sensor supports 1 or 2 data lanes operations.
->>> +            minItems: 1
->>> +            maxItems: 2
->>> +            items:
->>> +              maximum: 2
->>
->> Is '0' also allowed? If not then maybe 'enum: [ 1, 2 ]'
-> 
-> No 0 is not allowed, but the data-lanes properties should accept any
-> of the following combinations
->         <1>
->         <1 2>
->         <2 1>
-> 
-> As the chip seems to support lane re-ordering.
-> 
-> using enum would allow to between <1> or <2> if I got it right?
-
-Yeah, enum would be equivalent. I find it more readable, than min+max,
-but it's not a strong preference.
-
-> 
-> as the data-lane property is defined in video-interfaces.yaml
-> 
->   data-lanes:
->     $ref: /schemas/types.yaml#/definitions/uint32-array
->     minItems: 1
->     maxItems: 8
->     items:
->       # Assume up to 9 physical lane indices
->       maximum: 8
->     description:
->       An array of physical data lane indexes. Position of an entry determines
->       the logical lane number, while the value of an entry indicates physical
->       lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
->       assuming the clock lane is on hardware lane 0. If the hardware does not
->       support lane reordering, monotonically incremented values shall be used
->       from 0 or 1 onwards, depending on whether or not there is also a clock
->       lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
-> 
-> I did the same but restricted the max number of items to 2, and the
-> maximum value to 2 as well
-
-Makes sense, but you should also restrict the minimum (so not 0). enum
-solves this.
-
-> 
->>
->> no clock-lanes?
->>
-> 
-> clock lane is fixed on lane #0 afaict
-
-ok
-
-
-Best regards,
-Krzysztof
