@@ -2,268 +2,538 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBD44D442A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 11:03:24 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 636404D4445
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 11:07:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237612AbiCJKEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 05:04:23 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40614 "EHLO
+        id S234325AbiCJKIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 05:08:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231982AbiCJKEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 05:04:22 -0500
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B279D31ED;
-        Thu, 10 Mar 2022 02:03:20 -0800 (PST)
-Received: from pps.filterd (m0246630.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.16.1.2/8.16.1.2) with SMTP id 22A79xrb002635;
-        Thu, 10 Mar 2022 10:03:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : content-type : in-reply-to : mime-version;
- s=corp-2021-07-09; bh=3w3LzEDLsZtzGyBLl6Xu5SOAEPTNoU2k688dwbHvc+A=;
- b=1N/V0wyF/bPCRufdBKJv6vgs8TF9BXUXrgejj2ab7icKTDYLvUMzAw9Is53+sGIwwT+B
- aJfG1hEIMTQhcLzmKS65x33IDQCcov3S/RqoBR/pGbJjEafH+udsyNR/4jLB8BHNmwRn
- p2/MN3X/8rLTgcuPG8eSzZ913jZRKts+Janm4ef8mW8RR3YQ7mDd2icOa+xvfrXGLZKy
- 7T18QYkTuw9VEa0O54mjSD+hPxCYviZVN0PYTLz7ZjM0WSAxpxaFOHxeTkkGRUwI5tZk
- lxUIvkaCgznSnNNZN1rpGK4NAF8RYtqp9/6nzgWrmcrXepayadiP7ZiO1sbEkvusyGSV HQ== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by mx0b-00069f02.pphosted.com with ESMTP id 3ekx9cmj0q-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 10 Mar 2022 10:03:09 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.1.2/8.16.1.2) with SMTP id 22AA0QS4055481;
-        Thu, 10 Mar 2022 10:03:08 GMT
-Received: from nam11-co1-obe.outbound.protection.outlook.com (mail-co1nam11lp2170.outbound.protection.outlook.com [104.47.56.170])
-        by userp3030.oracle.com with ESMTP id 3ekvywkwcy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 10 Mar 2022 10:03:08 +0000
+        with ESMTP id S232268AbiCJKIx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 05:08:53 -0500
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2047.outbound.protection.outlook.com [40.107.21.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11DEE12609;
+        Thu, 10 Mar 2022 02:07:50 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tn06a+27prlryaD9DO6K1Y9gqW4Fwq++7H6mbGQdtLx1bEpHdqGNrrR7Ya/0PfKYO2w06uSeTI5/1byaC0bCHaIAh12sLbEhIUGcxL88Op7qXdYcu63vGazu+SB7tHAiT0hRWmjBp2l9YUkN7UWdg4q7GOcG84gPbsxtzurm9midAPlm2b6KNOwEEQzhN9vtSICfZ8e5VQjzPBBxKYPi9Ov6+21qL70QyCmfZsBjJDIVGY6y8qq5nMrlrRb5o9AK8qcwtWgz4Wif8J+P5omZCE1Bs5+z/cqSncrKw4krU/3N9pUmDOo1IOlve6RlJc7BT9vOGwpKzrJYd5l6JGvOZg==
+ b=Wl6EzDqVQGWsvomz2YF02pqAqVLHO4oBbw6LsU50HKzH7cLyxGTOSAuelTirW3A3cIGdeDZNPHX3D9F58u7MfN+DpCebyi09XG+suoW+se0SucLC6gSC6s+ot2wEGBx4me3i8Ixr3KtfVsXbRm2V/sO+GO4omafWBGdoUgJM6eJI7uNBMKzdqEzopydKbLHOoruKdICGYMvmcxcfSyoH/LbB3d5Dl+Zpoql373GcvWqMqemtZlaBF+xgbxquk1ZUZTzyLZuMrgoH5zcnfn0Y7/74Iz+GSGfw9BcMQV9K6cMpG79eMyicpl3P7FbzLvxH4uoGOtGYzqvlDVwjlZk2Sw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3w3LzEDLsZtzGyBLl6Xu5SOAEPTNoU2k688dwbHvc+A=;
- b=H3CtFQ+UIY9I+9/bLbeHx3tfc8mJRiZ1WR60VPXR08Yct+X/oxqdls8Zmuc47rgnem5gQUzx5YOow9HajEQJXXwngyKu+4B+Z9Et0Cbf8jDV0sjeJjmJq/ZYhlnUrvicQVyje+cdsxEQ59AhBZyrTIpI8ip/bmaDSuI4XExcdeIUf6bjejnNr52QEjUoTMgSpJHhmkq5AQrAc/jQAd5ErpJwzYt7h4mJEFCvVyBCQ50C3rFSph1PP84cDYHgJ739z1Y1o3tgPj4V/APviChXxBhQZzPyFEG11j/xRc1/mwnxBRvz7tYLxNzYeVzeeVzgBSbG7kAJnAzTGoHuh92V7w==
+ bh=QVSYOdtcA7TmJ9SGDzUoTRPtxRlN6jgQ83xVhLMfPts=;
+ b=XL655tsekXBUhf4OFkrTiyGyGKoNiZnaNK6Nhe9Zr1xCsTzIvzwUWSeBgopMngXanxRNUjpXSEq0PJJGMUMjX/YwVmtRdN+dnX16oef0cfYtlJQ38Z1tskXU7Pv17eXudyGDUH3dFa42utxve+EWEgL65D8Vh6416+3UhCctKUpVnlshEh7jUltjigqhvfxo46FoWki7NigZnJ4/JotB8Pyr5G/AXb24TeMgcuH4fqeepaU50pjtaiu4pgUNfy54B7W5EhWkLYwznCMlmUqbdgc4pwAtWfafsvnyO1C/ln3CkHdAkbdPSweHFatuBYxh5ypJT2pn7BP4YJDnAkr/sQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oracle.com; dmarc=pass action=none header.from=oracle.com;
- dkim=pass header.d=oracle.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oracle.onmicrosoft.com; s=selector2-oracle-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3w3LzEDLsZtzGyBLl6Xu5SOAEPTNoU2k688dwbHvc+A=;
- b=d5rejkFZmPPOr4zQp3djNPGuVPvcXg3gKM/Hg0jgHO7/q2QK93A45ooEHahqGboEoGhGeGagHaq9l7kXBEiXkWxsYiFJMKP512PZ0czBYHgCMOtoqokuBrmJo6D6EXlM2cGf7WYsZx+Vc74dWzOE4BimAJMecEnvNh3GTaorDMU=
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- (2603:10b6:301:2d::28) by DM6PR10MB3689.namprd10.prod.outlook.com
- (2603:10b6:5:154::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.17; Thu, 10 Mar
- 2022 10:03:05 +0000
-Received: from MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::2c3d:92b5:42b3:c1c5]) by MWHPR1001MB2365.namprd10.prod.outlook.com
- ([fe80::2c3d:92b5:42b3:c1c5%4]) with mapi id 15.20.5061.022; Thu, 10 Mar 2022
- 10:03:05 +0000
-Date:   Thu, 10 Mar 2022 13:02:40 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     kbuild@lists.01.org, Lizhi Hou <lizhi.hou@xilinx.com>,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org
-Cc:     lkp@intel.com, kbuild-all@lists.01.org,
-        Lizhi Hou <lizhi.hou@xilinx.com>, yilun.xu@intel.com,
-        maxz@xilinx.com, sonal.santan@xilinx.com, yliu@xilinx.com,
-        michal.simek@xilinx.com, stefanos@xilinx.com, trix@redhat.com,
-        mdf@kernel.org, dwmw2@infradead.org, linux-kernel@vger.kernel.org,
-        Max Zhen <max.zhen@xilinx.com>
-Subject: Re: [PATCH V1 RESEND 1/4] pci: add interface to create pci-ep device
- tree node
-Message-ID: <202203100338.8jox1rCr-lkp@intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220305052304.726050-2-lizhi.hou@xilinx.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-ClientProxiedBy: JNAP275CA0025.ZAFP275.PROD.OUTLOOK.COM (2603:1086:0:4d::18)
- To MWHPR1001MB2365.namprd10.prod.outlook.com (2603:10b6:301:2d::28)
+ bh=QVSYOdtcA7TmJ9SGDzUoTRPtxRlN6jgQ83xVhLMfPts=;
+ b=CRPn1BzvtstPGb69tLN2dmaUhSn05iEcnaG+9aMdUv8tieLFsKQ6SUnmWMDXt4qC3p2R7Wpue1FaRSag0tGDAuRg8azacBVD8PEgDNQusBEaJi2eSGyKYYolpPL/nD7nwOroemyfdhJmVrLOTjACMqaFIq2xqrexo9X3ob+N6tU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by DB6PR0401MB2677.eurprd04.prod.outlook.com (2603:10a6:4:38::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.19; Thu, 10 Mar
+ 2022 10:07:47 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967%5]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
+ 10:07:46 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, robh+dt@kernel.org,
+        s.hauer@pengutronix.de
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, aisheng.dong@nxp.com,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] media: amphion: fix some issues to improve robust
+Date:   Thu, 10 Mar 2022 18:07:31 +0800
+Message-Id: <20220310100731.5417-1-ming.qian@nxp.com>
+X-Mailer: git-send-email 2.33.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0013.apcprd02.prod.outlook.com
+ (2603:1096:4:194::21) To AM6PR04MB6341.eurprd04.prod.outlook.com
+ (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 547d96de-4906-4370-c644-08da027d2b5f
-X-MS-TrafficTypeDiagnostic: DM6PR10MB3689:EE_
-X-Microsoft-Antispam-PRVS: <DM6PR10MB368909F77F622928B20ABFEA8E0B9@DM6PR10MB3689.namprd10.prod.outlook.com>
+X-MS-Office365-Filtering-Correlation-Id: 1f6e3435-aac9-4b45-1820-08da027dd354
+X-MS-TrafficTypeDiagnostic: DB6PR0401MB2677:EE_
+X-Microsoft-Antispam-PRVS: <DB6PR0401MB2677FEF706BD0DAC1AB89F14E70B9@DB6PR0401MB2677.eurprd04.prod.outlook.com>
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3l/yEj2yyDlzsJJSMq5WPv7MxAJh4UTmIcR0Q6/TCKwlmQ2zdK0rSTW/eSLk+DA3b7UVGZXCKqju4jqaR0cNVCAtLmVEu2Bt2p0djO8k46/qN15QGuJNKcZD+zkSPoJDmcQUcSVt6invYG4ekovBdYWRqMt8YmTJlwK1OEVGijTjCJfISvMRNGAnxUrDMoIoHtZtBRzWWYvYELkJud1q5nEmbY6FIrFM9iuIy5zIO0qmldpUlfRRId+cvonPdQvjWEovB1xvSMAg8lz5FU8pkI/3gh6jCwFYEYudlauv1aTGGm5gpV2yJ789iqvhxsj5dcMs8BuAITUNQ9Bk0Tbu1zJGn5J80Q8Rd7w6qauhygr7mswu6Kon2HEWDK+VL1JbvGtKJgmU/qwAtpw3coczwb+iC46jPs8aNIp1xhn5xzeN2Ldn3+8AGuAC0sD4gLswmzcsD6shhsGmp5lyJXYRqJRDydwoM+VHwoyQopl7EKBtzcraduBOj5i16zsY/dN3LY6/YYZ/iNbtEfSUF12v/wa+EFPktcTGUudu7yi8rk9lxB6JI4gwFuVgzL/rudRcKg5GKZB+oN4QXp3kMoE7zif6aWQWunUIhJU/8r/sojYrtrVnRnHSZiQoG09sJWdP0JqpstlPZHLT65Ce32Zpa4SY2zEaQHOW9vkemsOZdJTOwouFWegmuMtBWWDFBKr1wBgMs3RVJ4zYuQPjOOVkA5KAZaEixfo3SnIX8anwEBcWoHnuPKswbVv2TZJjSkoD59BlEzAW+CH1C9n3v4Fo7PG25J15JDBTyXK6NebtdmD/BSHCtVKDuaJOajWZ3BvxLiuP2IvwgGp+H7K1yMtc0A==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MWHPR1001MB2365.namprd10.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(366004)(316002)(38100700002)(9686003)(8936002)(5660300002)(38350700002)(86362001)(54906003)(7416002)(52116002)(6512007)(6666004)(6506007)(44832011)(4326008)(8676002)(36756003)(26005)(66556008)(66476007)(186003)(83380400001)(1076003)(66946007)(508600001)(966005)(6486002)(2906002);DIR:OUT;SFP:1101;
+X-Microsoft-Antispam-Message-Info: tw/MDyn0plhEmKVaKy+5DWDeuIog+8lYICo3ajG1piWrFBjaspF8gSDdRGnUUhkBwkU90yyvqHF9QRZG/xf8cR7gxrJAbuB3zZTlGNGFJDK0WYLSW3G4Rl0i5TmImz2VmqiL6hB44OH6rmYsJL4SnbD25cKFldf5LGPgjRUqKMEH7abOoZ/vk8LbYM+yfgviXLtWPfm6QdMkt/IxRO8LTxYe+FxOsBmyBtC+utAHGtNyjRPnaMFcTMzMJQV5/GKfUUOHxVrF4pGidAZXfKXoCZVqBVD5RiouDtnjDy7KvuohR9G2NSiKUfvG2xo1gKJceHiVFukeZhxShvVmDsENLLHq1PJBmFUQDfIk1zxtforP6ox6IBhwdonLYY23ktC/UJrf6m7CWccuRNdLfFu7MJY7YZ+nmAiMuedJPrqyo/USa3ZVPa077smEQuIDx0lbcZe7GchzAM2irFG2+38btUAoEBpa3ewgj/6zPhIFTP/2QYVhVGBO5RoszBrqmZ8LRazWkKEUMlEQnbYTgRyaLzz/eq3iwBkFVOcShRzxDzsGq10xS+CR/oQrhwnzwp3CWrbPthDK1c7+2tonZXcd3SdyZFzHiDH44ytiMQZYRn+fBP938zWiA7xRGehDo2yvde3Fjy/a6PjklfSHqX1+WaQgpJYBXrvRI4ICAspDvFCZymKI71ON1ZaqJPe5CGYKXDo31ttK725awW6zj08OtA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(66556008)(66476007)(8676002)(5660300002)(4326008)(86362001)(6666004)(66946007)(30864003)(316002)(7416002)(2906002)(38350700002)(8936002)(38100700002)(44832011)(1076003)(2616005)(36756003)(26005)(186003)(6512007)(6506007)(52116002)(508600001)(83380400001)(6486002);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vNR+qSojtP3y8QpEc5OAq1JTwqswL+9SIQEHUMPyxk+fzFg4snsGjzHOYRle?=
- =?us-ascii?Q?/AJpAtL8PIoEzMmKGNt+lVzfBsaYGJzO8Lnpg6CauZvjLc8UW5cb354I0vLr?=
- =?us-ascii?Q?X/ylnnJf3hJJx1I7nogD+QpqOGBDbRenqfzXaatLsolAo0gCWSioHL2Af5wX?=
- =?us-ascii?Q?7eOIUtUXf3fW5Hx5W4kEgbTjfdS84cQDDPq+0Z43qiADATaejpTEhpEEt5Ms?=
- =?us-ascii?Q?SetzJUoapVx3/6xYM0uxSgZMPvOoizRxkypH+XMlPvjFV0wls1xKhA4lbe0Z?=
- =?us-ascii?Q?lEs0mNV6V2RZmEXexHjomp2jnlkLSVnE5TkbWWMRtXcDzzVRIek3A3zlN2Vp?=
- =?us-ascii?Q?6iYOE8GLPzxoLbdWN6zJv4VB4Onn6yYy0UBV8onkGIxsQLHcDwf69HcF6Mai?=
- =?us-ascii?Q?Fg59JrsYQ+zT2vt340gd/NkcbvHfmsGS8SEixpA8G1xfbxV/d8fQEVVDVNof?=
- =?us-ascii?Q?gpFUiEB6ClMJx6WYriiFJetqa4kP9aBREIOlUf0MCfUjCP9XNQ+cni/QWkX2?=
- =?us-ascii?Q?a3R9bLmWiYnfU9LJeiEoMxqUXBLxQyxVHjxq/n+Y6GdYdfuBNvR+RKZmSkYH?=
- =?us-ascii?Q?cWYhCGMyp9dpPEixkt0P9UEA+Lqjt6w3Tbzq0wnZ3JyUBKVCAfP4nXB+I7n2?=
- =?us-ascii?Q?ez6AowJxmSsXPIEs85vgUQ8Z8kporBB6AUaXdsUNUB/OVWnL6gts5nGVCu6W?=
- =?us-ascii?Q?jaYwcPVBl4pWqg92/3v258ZuMQk54ceWofAzwNQ7adJsegS3oW/mAvHvTrFs?=
- =?us-ascii?Q?N2IGnnHfv3Qe6wknxzycgrmNwoq4044XD8wEPY+zOuQvib2QJKFTd8bCM2XF?=
- =?us-ascii?Q?DEgt3vc1B1oOfuHbo943oXQuSdf4fL1Nl1SZhhbiEXhlh+rZ8nMBe6qFRhqZ?=
- =?us-ascii?Q?iX8wGynyT7+3FPvlE1OU8QD4+iEW0qlZWTkFBUI6dPeUzyMzT6d+IQqIgYAN?=
- =?us-ascii?Q?5Upmfq88TjzhBd9N7OHQuUHiDoin5Jt35UaGrkhSLqfajnemIs65wQGQHvIO?=
- =?us-ascii?Q?qxNBZTbIVGW1h9JtqdoJnjfU26isfARjoE0Dw5AZqlm5QFzXK0EWc4YlDnw0?=
- =?us-ascii?Q?PJboLlmHUipV6leiSbDsGfiDxW//n6HZ3UmFI7TFTvESaizvpq76Qpir23bz?=
- =?us-ascii?Q?PTt1tn8UefZNFqUp52FjvkZ+pD1gutgU4dTki4/BF4rqb9RJMpzAWlFSEgQU?=
- =?us-ascii?Q?jY4FSEmEwSeCGNMvHopDyLxs6wGmgI5eYArhEpEbVFRiHT7MZcOFCRtV0Zrz?=
- =?us-ascii?Q?BwClqhAlmgPXkE4cY0jUiOFXZUkwtfTR5CBmsYMbxPnSbahqacrhhlYV2Mce?=
- =?us-ascii?Q?sB53YRPcYcQUI12Hgzfm2j8m19BjkyOEf/r3dh45jBW0m/6IKhR9Ss77nPx3?=
- =?us-ascii?Q?bay24S6FfvaIpDqaacjgJ+rnJLigRZx9Tk+FBbYZ8u6TTZEJH+3Iv/7Smx4W?=
- =?us-ascii?Q?UBnsPkvqiAFt+T5tvNmju77xefDLopv848EG0yXVLjBIdBIVLx75dHTwnboV?=
- =?us-ascii?Q?dc6L+HYVRVWdLyQ2ga2dpzrWeEgkNA76EsIl7bOdzPoLBCxEftZv/RxAc7vm?=
- =?us-ascii?Q?2e57FG60W7SLKyXt61iPOB3ZoT59t4ehFhD6e0dUNKvPlElRGQs5b5dZu3Pi?=
- =?us-ascii?Q?tn5SeNDrijCCwnpG62HkZzKMZTo/HG0JSjckYxn4oJ4ILDxa4VtBKCWSwuOg?=
- =?us-ascii?Q?lhsaLg=3D=3D?=
-X-OriginatorOrg: oracle.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 547d96de-4906-4370-c644-08da027d2b5f
-X-MS-Exchange-CrossTenant-AuthSource: MWHPR1001MB2365.namprd10.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?fSaaxKeBc8KeGN+2k7Xvz0sY/V40UbY9xzrND7hCeXAcWTMehmN3iY+j1Bkf?=
+ =?us-ascii?Q?d2hkd4BtxGSFNd7NJZV1xt1EDWILeFm7j19xVfdbqmap3HjQnd6uZ8qWT0ZC?=
+ =?us-ascii?Q?cguHluHXZwMePyT++z3BEqtNk2T4bVZ2LVc/fT4hhYZA0wY+RnwqCyHgIPBW?=
+ =?us-ascii?Q?fSVj+yEnP6EHgDV2fyJ4BR23hXi3Z+f8+38Ty9+gysqugk/Kyx9kVT/sBPLB?=
+ =?us-ascii?Q?EeOsk4/Bp6i7jD5oHqytSE7DmfjxSmVuq2PCz+LOrAC04bz+bXDTL3Nnu23G?=
+ =?us-ascii?Q?50ibfgKExrByZOILJXV3v6OdrHI8jOdEB5RNdae7A2IIqvHyx5msia9M0Smt?=
+ =?us-ascii?Q?fc7tqo0Ybx9G1zcWGZYWrNHG0O3UVuyp4ALL0LE8k2a/lYwvsGB2rQbEA1Fi?=
+ =?us-ascii?Q?dSNJ1hfjCJTpmosLNJCbVA6GrmLvZ7VmsGi/GTBV93yFiYEEywnTDo93hVMw?=
+ =?us-ascii?Q?RxJ1t0uXkl/qC4EW8GSkA83oz778KFB3N/MkiTI99FGTExnGQchqU2EktYbP?=
+ =?us-ascii?Q?ovYxyTGaeo2EuemQfbcu5OLW+cx7rDOIY2efxTwpxtJZpmxvpOrbx3FODG+r?=
+ =?us-ascii?Q?1klHAjjBccDwdxLXCkF/dUYdAyNQngLZVK3pQjrHhMnpSDSLXZ8xhcEigRiV?=
+ =?us-ascii?Q?174SVtd0QjMo9WgDZQDZu8yO1yTW5zufczjgeP5B73mFy4jHBMOl7rAl1Qlx?=
+ =?us-ascii?Q?4BVRx5RG7UZ+YwlLv8FIKEExRCzBGLM2VVsKciNKiafjJwuCveyEqpwLpMiP?=
+ =?us-ascii?Q?GU7jDSQUHCTL8xB8XNJ23coZv2sx3heaYgO3X/dNf3GTDjwf8VD1WZ7XmhG1?=
+ =?us-ascii?Q?VhA+HygeblqbclGT5vsG4iHey7jGPTX+hrh3ee8xS/B0mHeU6Ave4Hy0ZSyu?=
+ =?us-ascii?Q?jN7JQySxALPox953YviCtpqAtIR6s4pPktnhFHR9Ql749k9coCya2SMC9L/t?=
+ =?us-ascii?Q?D9ZnlFnRJc9hTbTkIZeQPN2UyXVYIXvp149BVkU/sgV1Em4vpF24sjeREflJ?=
+ =?us-ascii?Q?0mgxYA6j4T28IJOuHbVNpLYcwFaIr7NovnX/WEgMXAL1fyRmgx78P4np2qTj?=
+ =?us-ascii?Q?asaWxJf9JLXTjC4KUJcLk6M9Cu/Jk20xDUF6HTDuBH1kGSy+D+Ci2FDDz266?=
+ =?us-ascii?Q?4TyrqUVDVK/TScUplOlpFPenNJtsleELeygnoZaBorjpBuywaY8BS27FgQpX?=
+ =?us-ascii?Q?kTRNX6fJGvW0s4cZSgAiWhKvYyv7tRt+ij6aZV4fYNS6nY93C/JsriJiGzna?=
+ =?us-ascii?Q?FO8uZKXn27wjhFxmacxk1fRFMxujR9tE9esWXx8cj26rYc4ulXzXic0bm6+l?=
+ =?us-ascii?Q?XD1RvuglF+JnFXlZHvntU8z8ypTvzBTyA15/FBLEtSoJpCjkoBC9HRP5NsBM?=
+ =?us-ascii?Q?on8w72o69N6ZTR2pxwvZyJi3364ZO5NshQZJ3+FZBwfRor3pl5OV3LwW3lRg?=
+ =?us-ascii?Q?aPfKrFlq0l6ug/rUrTELr6+Uz6N55ZruvDqYsQy5iWgET68v9AQ0BB9ZpXEM?=
+ =?us-ascii?Q?dmffkLhugCyxtxYW+Ay3hr1zcZbzY4qM74PunLNbzac6iCJkRDXsA8JM4eK3?=
+ =?us-ascii?Q?FGUc9PHIn1bPalA5MfQnQyHUe8iTqo6QRFArbQXqAab/Xb+kA6DiCnFqRX4/?=
+ =?us-ascii?Q?SHWPWS4TO7tYdKnblFl3pmw=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1f6e3435-aac9-4b45-1820-08da027dd354
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 10:03:04.9929
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 10:07:46.8517
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4e2c6054-71cb-48f1-bd6c-3a9705aca71b
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: FJ4YYbYzQXMMAtAJGGz3//KEDTMJVUnrUM9Ko7Sstgqq1nN3nDlSXX2ItZP4Zh6DapTWc/H2NGfns2WPKpNcVIEfiZmwr0EHhLwV2onKA1g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR10MB3689
-X-Proofpoint-Virus-Version: vendor=nai engine=6300 definitions=10281 signatures=692062
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 mlxscore=0
- suspectscore=0 bulkscore=0 mlxlogscore=999 adultscore=0 spamscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203100053
-X-Proofpoint-ORIG-GUID: ijonzfI-6uMPzPkMZ_1JdJLjwgTmM0BQ
-X-Proofpoint-GUID: ijonzfI-6uMPzPkMZ_1JdJLjwgTmM0BQ
-X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FAKE_REPLY_C,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-UserPrincipalName: 77Q3qBfT9rPV+miK3rV4i3s3nzyuNe1n5jgZocJt5/E7pMc1NQoP3j4SbU776EH1CHN2zBJoLrNEs6dOY28yrQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0401MB2677
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lizhi,
+fix some issues reported by Dan,
+1. fix some signedness bug
+2. don't use u32 as function return value
+3. prevent a divide by zero bug
+4. Just return zero on success, don't return a known parameter
+5. check the validity of some variables
+6. reset buffer state when return buffers
 
-url:    https://github.com/0day-ci/linux/commits/Lizhi-Hou/Infrastructure-to-define-apertures-in-a-PCIe-device-with-a-flattened-device-tree/20220307-141939
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: i386-randconfig-m021-20220307 (https://download.01.org/0day-ci/archive/20220310/202203100338.8jox1rCr-lkp@intel.com/config)
-compiler: gcc-9 (Debian 9.3.0-22) 9.3.0
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Signed-off-by: Ming Qian <ming.qian@nxp.com>
 Reported-by: Dan Carpenter <dan.carpenter@oracle.com>
-
-smatch warnings:
-drivers/pci/of.c:762 devm_of_pci_create_bus_endpoint() error: double free of 'prop'
-
-vim +/prop +762 drivers/pci/of.c
-
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  677  int devm_of_pci_create_bus_endpoint(struct pci_dev *pdev)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  678  {
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  679  	struct property *proplist = NULL;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  680  	struct device *dev = &pdev->dev;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  681  	int range_ncells, addr_ncells;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  682  	struct device_node *node;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  683  	void *prop = NULL;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  684  	u32 *range_cell;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  685  	__be32 val;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  686  	int i, ret;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  687  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  688  	node = of_ep_alloc_node(pdev, "pci-ep-bus");
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  689  	if (!node)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  690  		return -ENOMEM;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  691  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  692  	/* the endpoint node works as 'simple-bus' to translate aperture addresses. */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  693  	prop = "simple-bus";
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  694  	ret = of_ep_add_property(dev, &proplist, "compatible", strlen(prop) + 1, prop);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  695  	if (ret)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  696  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  697  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  698  	/* The address and size cells of nodes underneath are 2 */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  699  	val = cpu_to_be32(2);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  700  	ret = of_ep_add_property(dev, &proplist, "#address-cells", sizeof(u32), &val);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  701  	if (ret)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  702  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  703  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  704  	ret = of_ep_add_property(dev, &proplist, "#size-cells", sizeof(u32), &val);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  705  	if (ret)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  706  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  707  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  708  	/* child address format: 0xIooooooo oooooooo, I = bar index, o = offset on bar */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  709  	addr_ncells = of_n_addr_cells(node);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  710  	if (addr_ncells > 2) {
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  711  		/* does not support number of address cells greater than 2 */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  712  		ret = -EINVAL;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  713  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  714  	}
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  715  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  716  	/* range cells include <node addr cells> <child addr cells> <child size cells> */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  717  	range_ncells = addr_ncells + 4;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  718  	prop = kzalloc(range_ncells * sizeof(u32) * PCI_STD_NUM_BARS, GFP_KERNEL);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  719  	if (!prop) {
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  720  		ret = -ENOMEM;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  721  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  722  	}
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  723  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  724  	range_cell = prop;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  725  	for (i = 0; i < PCI_STD_NUM_BARS; i++) {
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  726  		if (!pci_resource_len(pdev, i))
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  727  			continue;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  728  		/* highest 4 bits of address are bar index */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  729  		*(__be64 *)range_cell = cpu_to_be64((u64)i << 60);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  730  		range_cell += 2;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  731  		if (addr_ncells == 2)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  732  			*(__be64 *)range_cell = cpu_to_be64((u64)pci_resource_start(pdev, i));
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  733  		else
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  734  			*(__be32 *)range_cell = cpu_to_be32((u32)pci_resource_start(pdev, i));
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  735  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  736  		range_cell += addr_ncells;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  737  		*(__be64 *)range_cell = cpu_to_be64((u64)pci_resource_len(pdev, i));
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  738  		range_cell += 2;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  739  	}
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  740  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  741  	/* error out if there is not PCI BAR been found */
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  742  	if ((void *)range_cell == prop) {
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  743  		ret = -EINVAL;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  744  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  745  	}
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  746  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  747  	ret = of_ep_add_property(dev, &proplist, "ranges", (void *)range_cell - prop, prop);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  748  	kfree(prop);
-                                                ^^^^^^^^^^^^
-Free
-
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  749  	if (ret)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  750  		goto cleanup;
-                                                        ^^^^^^^^^^^^^
-Double free after goto.
-
-
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  751  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  752  	node->properties = proplist;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  753  	ret = of_attach_node(node);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  754  	if (ret)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  755  		goto cleanup;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  756  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  757  	devres_add(dev, node);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  758  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  759  	return 0;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  760  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  761  cleanup:
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04 @762  	kfree(prop);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  763  	if (node)
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  764  		devres_free(node);
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  765  
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  766  	return ret;
-3a2c08c0f0ef77 Lizhi Hou 2022-03-04  767  }
-
 ---
-0-DAY CI Kernel Test Service, Intel Corporation
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ drivers/media/platform/amphion/vpu_core.c    |  2 +-
+ drivers/media/platform/amphion/vpu_helpers.c | 13 +++--
+ drivers/media/platform/amphion/vpu_helpers.h |  6 +-
+ drivers/media/platform/amphion/vpu_imx8q.c   |  2 +-
+ drivers/media/platform/amphion/vpu_imx8q.h   |  2 +-
+ drivers/media/platform/amphion/vpu_malone.c  | 59 ++++++++++++--------
+ drivers/media/platform/amphion/vpu_msgs.c    |  6 +-
+ drivers/media/platform/amphion/vpu_rpc.c     |  4 +-
+ drivers/media/platform/amphion/vpu_rpc.h     |  4 +-
+ drivers/media/platform/amphion/vpu_v4l2.c    |  8 ++-
+ drivers/media/platform/amphion/vpu_windsor.c |  6 ++
+ 11 files changed, 69 insertions(+), 43 deletions(-)
+
+diff --git a/drivers/media/platform/amphion/vpu_core.c b/drivers/media/platform/amphion/vpu_core.c
+index 968b578700e3..a5dcb4abf954 100644
+--- a/drivers/media/platform/amphion/vpu_core.c
++++ b/drivers/media/platform/amphion/vpu_core.c
+@@ -472,7 +472,7 @@ struct vpu_inst *vpu_core_find_instance(struct vpu_core *core, u32 index)
+ 	struct vpu_inst *tmp;
+ 
+ 	mutex_lock(&core->lock);
+-	if (!test_bit(index, &core->instance_mask))
++	if (index >= core->supported_instance_count || !test_bit(index, &core->instance_mask))
+ 		goto exit;
+ 	list_for_each_entry(tmp, &core->instances, list) {
+ 		if (tmp->id == index) {
+diff --git a/drivers/media/platform/amphion/vpu_helpers.c b/drivers/media/platform/amphion/vpu_helpers.c
+index 768abf89e606..e9aeb3453dfc 100644
+--- a/drivers/media/platform/amphion/vpu_helpers.c
++++ b/drivers/media/platform/amphion/vpu_helpers.c
+@@ -197,7 +197,7 @@ u32 vpu_helper_get_plane_size(u32 fmt, u32 w, u32 h, int plane_no,
+ 	}
+ }
+ 
+-u32 vpu_helper_copy_from_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_copy_from_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				       u32 *rptr, u32 size, void *dst)
+ {
+ 	u32 offset;
+@@ -227,10 +227,11 @@ u32 vpu_helper_copy_from_stream_buffer(struct vpu_buffer *stream_buffer,
+ 	}
+ 
+ 	*rptr = vpu_helper_step_walk(stream_buffer, offset, size);
+-	return size;
++
++	return 0;
+ }
+ 
+-u32 vpu_helper_copy_to_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_copy_to_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				     u32 *wptr, u32 size, void *src)
+ {
+ 	u32 offset;
+@@ -260,10 +261,10 @@ u32 vpu_helper_copy_to_stream_buffer(struct vpu_buffer *stream_buffer,
+ 
+ 	*wptr = vpu_helper_step_walk(stream_buffer, offset, size);
+ 
+-	return size;
++	return 0;
+ }
+ 
+-u32 vpu_helper_memset_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_memset_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				    u32 *wptr, u8 val, u32 size)
+ {
+ 	u32 offset;
+@@ -297,7 +298,7 @@ u32 vpu_helper_memset_stream_buffer(struct vpu_buffer *stream_buffer,
+ 
+ 	*wptr = offset;
+ 
+-	return size;
++	return 0;
+ }
+ 
+ u32 vpu_helper_get_free_space(struct vpu_inst *inst)
+diff --git a/drivers/media/platform/amphion/vpu_helpers.h b/drivers/media/platform/amphion/vpu_helpers.h
+index 130d1357c032..bc28350958be 100644
+--- a/drivers/media/platform/amphion/vpu_helpers.h
++++ b/drivers/media/platform/amphion/vpu_helpers.h
+@@ -19,11 +19,11 @@ u32 vpu_helper_valid_frame_width(struct vpu_inst *inst, u32 width);
+ u32 vpu_helper_valid_frame_height(struct vpu_inst *inst, u32 height);
+ u32 vpu_helper_get_plane_size(u32 fmt, u32 width, u32 height, int plane_no,
+ 			      u32 stride, u32 interlaced, u32 *pbl);
+-u32 vpu_helper_copy_from_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_copy_from_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				       u32 *rptr, u32 size, void *dst);
+-u32 vpu_helper_copy_to_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_copy_to_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				     u32 *wptr, u32 size, void *src);
+-u32 vpu_helper_memset_stream_buffer(struct vpu_buffer *stream_buffer,
++int vpu_helper_memset_stream_buffer(struct vpu_buffer *stream_buffer,
+ 				    u32 *wptr, u8 val, u32 size);
+ u32 vpu_helper_get_free_space(struct vpu_inst *inst);
+ u32 vpu_helper_get_used_space(struct vpu_inst *inst);
+diff --git a/drivers/media/platform/amphion/vpu_imx8q.c b/drivers/media/platform/amphion/vpu_imx8q.c
+index 606cc53125f8..f14c2b8312a8 100644
+--- a/drivers/media/platform/amphion/vpu_imx8q.c
++++ b/drivers/media/platform/amphion/vpu_imx8q.c
+@@ -165,7 +165,7 @@ int vpu_imx8q_on_firmware_loaded(struct vpu_core *core)
+ 	return 0;
+ }
+ 
+-u32 vpu_imx8q_check_memory_region(dma_addr_t base, dma_addr_t addr, u32 size)
++int vpu_imx8q_check_memory_region(dma_addr_t base, dma_addr_t addr, u32 size)
+ {
+ 	const struct vpu_rpc_region_t imx8q_regions[] = {
+ 		{0x00000000, 0x08000000, VPU_CORE_MEMORY_CACHED},
+diff --git a/drivers/media/platform/amphion/vpu_imx8q.h b/drivers/media/platform/amphion/vpu_imx8q.h
+index d63a2747e29c..9deffd7dde42 100644
+--- a/drivers/media/platform/amphion/vpu_imx8q.h
++++ b/drivers/media/platform/amphion/vpu_imx8q.h
+@@ -108,7 +108,7 @@ int vpu_imx8q_set_system_cfg_common(struct vpu_rpc_system_config *config, u32 re
+ int vpu_imx8q_boot_core(struct vpu_core *core);
+ int vpu_imx8q_get_power_state(struct vpu_core *core);
+ int vpu_imx8q_on_firmware_loaded(struct vpu_core *core);
+-u32 vpu_imx8q_check_memory_region(dma_addr_t base, dma_addr_t addr, u32 size);
++int vpu_imx8q_check_memory_region(dma_addr_t base, dma_addr_t addr, u32 size);
+ bool vpu_imx8q_check_codec(enum vpu_core_type type);
+ bool vpu_imx8q_check_fmt(enum vpu_core_type type, u32 pixelfmt);
+ 
+diff --git a/drivers/media/platform/amphion/vpu_malone.c b/drivers/media/platform/amphion/vpu_malone.c
+index d9cecbb42b2a..1212f7919957 100644
+--- a/drivers/media/platform/amphion/vpu_malone.c
++++ b/drivers/media/platform/amphion/vpu_malone.c
+@@ -1006,8 +1006,8 @@ static int vpu_malone_add_padding_scode(struct vpu_buffer *stream_buffer,
+ 					u32 pixelformat, u32 scode_type)
+ {
+ 	u32 wptr;
+-	u32 size;
+-	u32 total_size = 0;
++	int size;
++	int total_size = 0;
+ 	const struct malone_padding_scode *ps;
+ 	const u32 padding_size = 4096;
+ 	int ret;
+@@ -1024,7 +1024,7 @@ static int vpu_malone_add_padding_scode(struct vpu_buffer *stream_buffer,
+ 
+ 	size = sizeof(ps->data);
+ 	ret = vpu_helper_copy_to_stream_buffer(stream_buffer, &wptr, size, (void *)ps->data);
+-	if (ret < size)
++	if (ret < 0)
+ 		return -EINVAL;
+ 	total_size += size;
+ 
+@@ -1234,12 +1234,15 @@ static int vpu_malone_insert_scode_seq(struct malone_scode_t *scode, u32 codec_i
+ 					       &scode->wptr,
+ 					       sizeof(hdr),
+ 					       hdr);
+-	return ret;
++	if (ret < 0)
++		return ret;
++	return sizeof(hdr);
+ }
+ 
+ static int vpu_malone_insert_scode_pic(struct malone_scode_t *scode, u32 codec_id, u32 ext_size)
+ {
+ 	u8 hdr[MALONE_PAYLOAD_HEADER_SIZE];
++	int ret;
+ 
+ 	set_payload_hdr(hdr,
+ 			SCODE_PICTURE,
+@@ -1247,10 +1250,13 @@ static int vpu_malone_insert_scode_pic(struct malone_scode_t *scode, u32 codec_i
+ 			ext_size + vb2_get_plane_payload(scode->vb, 0),
+ 			scode->inst->out_format.width,
+ 			scode->inst->out_format.height);
+-	return vpu_helper_copy_to_stream_buffer(&scode->inst->stream_buffer,
+-						&scode->wptr,
+-						sizeof(hdr),
+-						hdr);
++	ret = vpu_helper_copy_to_stream_buffer(&scode->inst->stream_buffer,
++					       &scode->wptr,
++					       sizeof(hdr),
++					       hdr);
++	if (ret < 0)
++		return ret;
++	return sizeof(hdr);
+ }
+ 
+ static int vpu_malone_insert_scode_vc1_g_pic(struct malone_scode_t *scode)
+@@ -1258,6 +1264,7 @@ static int vpu_malone_insert_scode_vc1_g_pic(struct malone_scode_t *scode)
+ 	struct vb2_v4l2_buffer *vbuf;
+ 	u8 nal_hdr[MALONE_VC1_NAL_HEADER_LEN];
+ 	u32 *data = NULL;
++	int ret;
+ 
+ 	vbuf = to_vb2_v4l2_buffer(scode->vb);
+ 	data = vb2_plane_vaddr(scode->vb, 0);
+@@ -1268,10 +1275,13 @@ static int vpu_malone_insert_scode_vc1_g_pic(struct malone_scode_t *scode)
+ 		return 0;
+ 
+ 	create_vc1_nal_pichdr(nal_hdr);
+-	return vpu_helper_copy_to_stream_buffer(&scode->inst->stream_buffer,
+-						&scode->wptr,
+-						sizeof(nal_hdr),
+-						nal_hdr);
++	ret = vpu_helper_copy_to_stream_buffer(&scode->inst->stream_buffer,
++					       &scode->wptr,
++					       sizeof(nal_hdr),
++					       nal_hdr);
++	if (ret < 0)
++		return ret;
++	return sizeof(nal_hdr);
+ }
+ 
+ static int vpu_malone_insert_scode_vc1_l_seq(struct malone_scode_t *scode)
+@@ -1282,8 +1292,7 @@ static int vpu_malone_insert_scode_vc1_l_seq(struct malone_scode_t *scode)
+ 
+ 	scode->need_data = 0;
+ 
+-	ret = vpu_malone_insert_scode_seq(scode, MALONE_CODEC_ID_VC1_SIMPLE,
+-					  sizeof(rcv_seqhdr));
++	ret = vpu_malone_insert_scode_seq(scode, MALONE_CODEC_ID_VC1_SIMPLE, sizeof(rcv_seqhdr));
+ 	if (ret < 0)
+ 		return ret;
+ 	size = ret;
+@@ -1299,7 +1308,7 @@ static int vpu_malone_insert_scode_vc1_l_seq(struct malone_scode_t *scode)
+ 
+ 	if (ret < 0)
+ 		return ret;
+-	size += ret;
++	size += sizeof(rcv_seqhdr);
+ 	return size;
+ }
+ 
+@@ -1322,7 +1331,7 @@ static int vpu_malone_insert_scode_vc1_l_pic(struct malone_scode_t *scode)
+ 					       rcv_pichdr);
+ 	if (ret < 0)
+ 		return ret;
+-	size += ret;
++	size += sizeof(rcv_pichdr);
+ 	return size;
+ }
+ 
+@@ -1346,7 +1355,7 @@ static int vpu_malone_insert_scode_vp8_seq(struct malone_scode_t *scode)
+ 					       ivf_hdr);
+ 	if (ret < 0)
+ 		return ret;
+-	size += ret;
++	size += sizeof(ivf_hdr);
+ 
+ 	return size;
+ }
+@@ -1369,7 +1378,7 @@ static int vpu_malone_insert_scode_vp8_pic(struct malone_scode_t *scode)
+ 					       ivf_hdr);
+ 	if (ret < 0)
+ 		return ret;
+-	size += ret;
++	size += sizeof(ivf_hdr);
+ 
+ 	return size;
+ }
+@@ -1470,9 +1479,9 @@ static int vpu_malone_input_frame_data(struct vpu_malone_str_buffer __iomem *str
+ 					       &wptr,
+ 					       vb2_get_plane_payload(vb, 0),
+ 					       vb2_plane_vaddr(vb, 0));
+-	if (ret < vb2_get_plane_payload(vb, 0))
++	if (ret < 0)
+ 		return -ENOMEM;
+-	size += ret;
++	size += vb2_get_plane_payload(vb, 0);
+ 
+ 	vpu_malone_update_wptr(str_buf, wptr);
+ 
+@@ -1500,7 +1509,7 @@ static int vpu_malone_input_stream_data(struct vpu_malone_str_buffer __iomem *st
+ 					       &wptr,
+ 					       vb2_get_plane_payload(vb, 0),
+ 					       vb2_plane_vaddr(vb, 0));
+-	if (ret < vb2_get_plane_payload(vb, 0))
++	if (ret < 0)
+ 		return -ENOMEM;
+ 
+ 	vpu_malone_update_wptr(str_buf, wptr);
+@@ -1566,9 +1575,13 @@ static bool vpu_malone_check_ready(struct vpu_shared_addr *shared, u32 instance)
+ 	u32 size = desc->end - desc->start;
+ 	u32 rptr = desc->rptr;
+ 	u32 wptr = desc->wptr;
+-	u32 used = (wptr + size - rptr) % size;
++	u32 used;
++
++	if (!size)
++		return true;
+ 
+-	if (!size || used < (size >> 1))
++	used = (wptr + size - rptr) % size;
++	if (used < (size >> 1))
+ 		return true;
+ 
+ 	return false;
+diff --git a/drivers/media/platform/amphion/vpu_msgs.c b/drivers/media/platform/amphion/vpu_msgs.c
+index 68df43913904..58502c51ddb3 100644
+--- a/drivers/media/platform/amphion/vpu_msgs.c
++++ b/drivers/media/platform/amphion/vpu_msgs.c
+@@ -214,7 +214,7 @@ static int vpu_session_handle_msg(struct vpu_inst *inst, struct vpu_rpc_event *m
+ 
+ static bool vpu_inst_receive_msg(struct vpu_inst *inst, struct vpu_rpc_event *pkt)
+ {
+-	u32 bytes = sizeof(struct vpu_rpc_event_header);
++	unsigned long bytes = sizeof(struct vpu_rpc_event_header);
+ 	u32 ret;
+ 
+ 	memset(pkt, 0, sizeof(*pkt));
+@@ -246,7 +246,7 @@ void vpu_inst_run_work(struct work_struct *work)
+ 
+ static void vpu_inst_handle_msg(struct vpu_inst *inst, struct vpu_rpc_event *pkt)
+ {
+-	u32 bytes;
++	unsigned long bytes;
+ 	u32 id = pkt->hdr.id;
+ 	int ret;
+ 
+@@ -337,7 +337,7 @@ void vpu_msg_delayed_work(struct work_struct *work)
+ {
+ 	struct vpu_core *core;
+ 	struct delayed_work *dwork;
+-	u32 bytes = sizeof(bytes);
++	unsigned long bytes = sizeof(u32);
+ 	u32 i;
+ 
+ 	if (!work)
+diff --git a/drivers/media/platform/amphion/vpu_rpc.c b/drivers/media/platform/amphion/vpu_rpc.c
+index 6e01abaa5d16..18a164766409 100644
+--- a/drivers/media/platform/amphion/vpu_rpc.c
++++ b/drivers/media/platform/amphion/vpu_rpc.c
+@@ -20,7 +20,7 @@
+ #include "vpu_windsor.h"
+ #include "vpu_malone.h"
+ 
+-u32 vpu_iface_check_memory_region(struct vpu_core *core, dma_addr_t addr, u32 size)
++int vpu_iface_check_memory_region(struct vpu_core *core, dma_addr_t addr, u32 size)
+ {
+ 	struct vpu_iface_ops *ops = vpu_core_get_iface(core);
+ 
+@@ -63,6 +63,8 @@ static int vpu_rpc_send_cmd_buf(struct vpu_shared_addr *shared, struct vpu_rpc_e
+ 	u32 wptr;
+ 	u32 i;
+ 
++	if (cmd->hdr.num > 0xff || cmd->hdr.num >= ARRAY_SIZE(cmd->data))
++		return -EINVAL;
+ 	desc = shared->cmd_desc;
+ 	space = vpu_rpc_check_buffer_space(desc, true);
+ 	if (space < (((cmd->hdr.num + 1) << 2) + 16))
+diff --git a/drivers/media/platform/amphion/vpu_rpc.h b/drivers/media/platform/amphion/vpu_rpc.h
+index c764ff52d026..5ea4f8aff846 100644
+--- a/drivers/media/platform/amphion/vpu_rpc.h
++++ b/drivers/media/platform/amphion/vpu_rpc.h
+@@ -43,7 +43,7 @@ struct vpu_iface_ops {
+ 	bool (*check_codec)(enum vpu_core_type type);
+ 	bool (*check_fmt)(enum vpu_core_type type, u32 pixelfmt);
+ 	u32 (*get_data_size)(void);
+-	u32 (*check_memory_region)(dma_addr_t base, dma_addr_t addr, u32 size);
++	int (*check_memory_region)(dma_addr_t base, dma_addr_t addr, u32 size);
+ 	int (*boot_core)(struct vpu_core *core);
+ 	int (*shutdown_core)(struct vpu_core *core);
+ 	int (*restore_core)(struct vpu_core *core);
+@@ -113,7 +113,7 @@ struct vpu_rpc_region_t {
+ 
+ struct vpu_iface_ops *vpu_core_get_iface(struct vpu_core *core);
+ struct vpu_iface_ops *vpu_inst_get_iface(struct vpu_inst *inst);
+-u32 vpu_iface_check_memory_region(struct vpu_core *core, dma_addr_t addr, u32 size);
++int vpu_iface_check_memory_region(struct vpu_core *core, dma_addr_t addr, u32 size);
+ 
+ static inline bool vpu_iface_check_codec(struct vpu_core *core)
+ {
+diff --git a/drivers/media/platform/amphion/vpu_v4l2.c b/drivers/media/platform/amphion/vpu_v4l2.c
+index 6fe077a685e8..9c0704cd5766 100644
+--- a/drivers/media/platform/amphion/vpu_v4l2.c
++++ b/drivers/media/platform/amphion/vpu_v4l2.c
+@@ -403,11 +403,15 @@ void vpu_vb2_buffers_return(struct vpu_inst *inst, unsigned int type, enum vb2_b
+ 	struct vb2_v4l2_buffer *buf;
+ 
+ 	if (V4L2_TYPE_IS_OUTPUT(type)) {
+-		while ((buf = v4l2_m2m_src_buf_remove(inst->fh.m2m_ctx)))
++		while ((buf = v4l2_m2m_src_buf_remove(inst->fh.m2m_ctx))) {
++			vpu_set_buffer_state(buf, VPU_BUF_STATE_IDLE);
+ 			v4l2_m2m_buf_done(buf, state);
++		}
+ 	} else {
+-		while ((buf = v4l2_m2m_dst_buf_remove(inst->fh.m2m_ctx)))
++		while ((buf = v4l2_m2m_dst_buf_remove(inst->fh.m2m_ctx))) {
++			vpu_set_buffer_state(buf, VPU_BUF_STATE_IDLE);
+ 			v4l2_m2m_buf_done(buf, state);
++		}
+ 	}
+ }
+ 
+diff --git a/drivers/media/platform/amphion/vpu_windsor.c b/drivers/media/platform/amphion/vpu_windsor.c
+index a056ad624e9b..1526af2ef9da 100644
+--- a/drivers/media/platform/amphion/vpu_windsor.c
++++ b/drivers/media/platform/amphion/vpu_windsor.c
+@@ -818,12 +818,18 @@ int vpu_windsor_config_memory_resource(struct vpu_shared_addr *shared,
+ 
+ 	switch (type) {
+ 	case MEM_RES_ENC:
++		if (index >= ARRAY_SIZE(pool->enc_frames))
++			return -EINVAL;
+ 		res = &pool->enc_frames[index];
+ 		break;
+ 	case MEM_RES_REF:
++		if (index >= ARRAY_SIZE(pool->ref_frames))
++			return -EINVAL;
+ 		res = &pool->ref_frames[index];
+ 		break;
+ 	case MEM_RES_ACT:
++		if (index)
++			return -EINVAL;
+ 		res = &pool->act_frame;
+ 		break;
+ 	default:
+-- 
+2.33.0
 
