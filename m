@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4E74D542E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:08:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 525704D5459
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 23:12:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243738AbiCJWJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 17:09:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58026 "EHLO
+        id S231897AbiCJWNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 17:13:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbiCJWJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:09:46 -0500
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E0C25FF0B;
-        Thu, 10 Mar 2022 14:08:44 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id i5so7467876oih.1;
-        Thu, 10 Mar 2022 14:08:44 -0800 (PST)
+        with ESMTP id S1343995AbiCJWNi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 17:13:38 -0500
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF5962DFB;
+        Thu, 10 Mar 2022 14:12:33 -0800 (PST)
+Received: by mail-oi1-f178.google.com with SMTP id o83so2441oif.0;
+        Thu, 10 Mar 2022 14:12:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GztXpK6SPTIyxzIRwB00EenGjs45KWX35sMuyhlmPpU=;
-        b=GZ75RRYfoVt+a2ZrusJwWltreHe5l+V6aVFQl9kog+uJyH6SamfT2u2zBusSZ2kLQ5
-         iYA8ki1IG/OCjaoo1dsgzvDYD6cReUFwTQaMYFpjTm0d2rQ9++7ePRulwJks+WK2ZuSP
-         ilMOKCwOGxfWZlYjEewxwBYI6rvSTZPAsVkKr5anMno+yGwz4NGzLvFUSmIcdj0FVx0N
-         2YVBfl3aGxwYvcUZL9gI6RadbLWnDU0P2sIYYJiqWJOd2aUHDRT4ZJenNpwwZg2yYAhD
-         N0hwURvUZTvAHk6O3jGCntHvCmZYADvqkYB2xzZAb+CMmqqAOQWE7nTGK5PNIu+amrG3
-         3YZg==
-X-Gm-Message-State: AOAM532bl+OKbBX/PoGe+YMRY0WxX9g8yrvmPLxYSjn13wlBfVcmt+JM
-        xLSjLoOqdtXoEU2+0TeORA==
-X-Google-Smtp-Source: ABdhPJwgQc+zfIEQEAib3LEcQDo2r5x+1lCXfEqstYLiqQlMBshBEb5XHipt1XA35c6g6Y5b5JH66w==
-X-Received: by 2002:a05:6808:1205:b0:2d4:6eed:edd1 with SMTP id a5-20020a056808120500b002d46eededd1mr4493480oil.154.1646950123843;
-        Thu, 10 Mar 2022 14:08:43 -0800 (PST)
+        bh=omjoz0M9biHPr5EKrbgbc5QfautyWsC0HyZJaIjRDEg=;
+        b=X7GYqySPrMybM2edaDOQg6w5BlZ4iKFQyUoYrAIU7nNp3ipMAYq/4b6Ot1e6yuwZtd
+         VtAxqOyUY0Wm4aAD/KXfcCDpovUcnuHT7trlywzq3VgJqJAfGn9RhwQJPxg4GAh74Yby
+         NvRxRqvoQ9e0F1zy8p2najFsNLLlrHvALF1OQbPAHyjOXW8jkWlEwq3LjtaOlu9lnk5Z
+         0a6ptiOz5wifrk3+btkK6aHYIjJUwTMdBoP3rFS7IvDN546n5TYOJaZ8OaIlHfnB1l+Z
+         FUngKREGoBFnZWZ1bJKj9t9FRgDAklU/1bnfAaxHTrNuhUS3J00Hx9uE9BSTj50HsY7I
+         StVQ==
+X-Gm-Message-State: AOAM533KrarHS3fgEtxRslyDTPHwXJgbzQEbVe/hVb2xrnj07P8D/uFD
+        gcuPUMJ8//kh+xE0uBLcIw==
+X-Google-Smtp-Source: ABdhPJxHna6A8giuUalT7X77knNuIyLF0eFu5RYM8FUTp80V2T9F0GnnEXgbqAyoeBJg75biyF6+tw==
+X-Received: by 2002:a05:6808:1528:b0:2da:7f1d:f847 with SMTP id u40-20020a056808152800b002da7f1df847mr1796358oiw.85.1646950353167;
+        Thu, 10 Mar 2022 14:12:33 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id a27-20020a4ae93b000000b0031be7c7d2d3sm3050672ooe.0.2022.03.10.14.08.42
+        by smtp.gmail.com with ESMTPSA id c14-20020a056870b28e00b000d7d5962242sm2821551oao.35.2022.03.10.14.12.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 14:08:43 -0800 (PST)
-Received: (nullmailer pid 2169492 invoked by uid 1000);
-        Thu, 10 Mar 2022 22:08:42 -0000
-Date:   Thu, 10 Mar 2022 16:08:42 -0600
+        Thu, 10 Mar 2022 14:12:32 -0800 (PST)
+Received: (nullmailer pid 2175473 invoked by uid 1000);
+        Thu, 10 Mar 2022 22:12:31 -0000
+Date:   Thu, 10 Mar 2022 16:12:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: spi: Update clock-names property for
- ARM pl022
-Message-ID: <Yip26uBIHgt42PDf@robh.at.kernel.org>
-References: <20220308072125.38381-1-singh.kuldeep87k@gmail.com>
- <20220308072125.38381-2-singh.kuldeep87k@gmail.com>
+To:     Trevor Wu <trevor.wu@mediatek.com>
+Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, aaronyu@google.com,
+        yc.hung@mediatek.com
+Subject: Re: [PATCH 2/5] dt-bindings: mediatek: mt8195: add reset property
+Message-ID: <Yip3z3XoarN8TeMn@robh.at.kernel.org>
+References: <20220308072435.22460-1-trevor.wu@mediatek.com>
+ <20220308072435.22460-3-trevor.wu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220308072125.38381-2-singh.kuldeep87k@gmail.com>
+In-Reply-To: <20220308072435.22460-3-trevor.wu@mediatek.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -66,53 +65,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 12:51:25PM +0530, Kuldeep Singh wrote:
-> Pl022 clock-names can be one of following:
-> ['apb_pclk'] or ['sspclk', 'apb_pclk']
-> 
-> The current schema refers to second case only. Make necessary changes to
-> incorporate both the cases and resolve below dtc warning:
-> clock-names: 'apb_pclk' is not one of ['sspclk']
-> 
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> ---
-> v2:
-> - Reword commit message
-> - Drop SSPCLK
-> 
->  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 10 ++++++----
->  1 file changed, 6 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> index 7d36e15db5b3..6cfab948624e 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
-> @@ -38,11 +38,13 @@ properties:
->      maxItems: 2
->  
->    clock-names:
-> -    items:
-> +    oneOf:
->        - enum:
-> -          - SSPCLK
-> -          - sspclk
-> -      - const: apb_pclk
-> +          - apb_pclk
+On Tue, Mar 08, 2022 at 03:24:32PM +0800, Trevor Wu wrote:
+> Add required properties "resets" and "reset_names", which are used to
+> specify audiosys hw reset for mt8195 afe driver.
 
-Are you going to make the driver work with no SPI clock? Because this 
-change is saying that it is valid to have the APB bus clock and no SPI 
-clock.
+The subject needs to be more specific and indicate this applies to ASoC 
+and mt8195-afe-pcm. Try to write subjects that could only ever appear 
+once as you can never make the same change twice.
 
 Rob
-
-> +      - items:
-> +          - enum:
-> +              - sspclk
-> +          - const: apb_pclk
->  
->    pl022,autosuspend-delay:
->      description: delay in ms following transfer completion before the
-> -- 
-> 2.25.1
-> 
-> 
