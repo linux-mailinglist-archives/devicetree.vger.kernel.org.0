@@ -2,203 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FED24D430A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 10:05:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 298C54D433C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 10:15:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237710AbiCJJGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 04:06:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43482 "EHLO
+        id S233803AbiCJJQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 04:16:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbiCJJGN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 04:06:13 -0500
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0BD0B137744
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 01:05:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1646903111;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=sAYCq9czLIZzoXPdYqqCAowC2htPopAKPdrkAbY8Cbo=;
-        b=JwXMsmw+FLdmqNGqQ0Lh7EMQmBiHI9JmeojpSGdQ8EoJgZk17qz0YM+aEtnWhNGjQAfidq
-        NY0Z61oBGDVtkG0ff47pFNfgVdWbTV7SqCytgyvrJRCFkOG9NsNkNFrF7hQlb9JfoSVpzc
-        clgBhwpsXw01qMills+CIESXyGlW/5A=
-Received: from mimecast-mx01.redhat.com (mimecast-mx01.redhat.com
- [209.132.183.4]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-462-_ju_elblO9-AfG_HY91MiA-1; Thu, 10 Mar 2022 04:05:08 -0500
-X-MC-Unique: _ju_elblO9-AfG_HY91MiA-1
-Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.phx2.redhat.com [10.5.11.22])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mimecast-mx01.redhat.com (Postfix) with ESMTPS id F06D91006AA5;
-        Thu, 10 Mar 2022 09:05:06 +0000 (UTC)
-Received: from lacos-laptop-7.usersys.redhat.com (unknown [10.39.194.252])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id B0C741059157;
-        Thu, 10 Mar 2022 09:05:05 +0000 (UTC)
-Subject: Re: [PATCH] dt-bindings: arm: Convert QEMU fw-cfg to DT schema
-To:     Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220310013552.549590-1-robh@kernel.org>
-From:   Laszlo Ersek <lersek@redhat.com>
-Message-ID: <9651bc36-3da0-4e2b-1d29-bb4b3ce1389d@redhat.com>
-Date:   Thu, 10 Mar 2022 10:05:04 +0100
+        with ESMTP id S233039AbiCJJQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 04:16:50 -0500
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8407A12E9F7;
+        Thu, 10 Mar 2022 01:15:48 -0800 (PST)
+X-UUID: 96bdbec796c24e49bc8fab5fcf09007a-20220310
+X-UUID: 96bdbec796c24e49bc8fab5fcf09007a-20220310
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <rex-bc.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 47384453; Thu, 10 Mar 2022 17:15:41 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 10 Mar 2022 17:15:40 +0800
+Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 10 Mar 2022 17:15:40 +0800
+Message-ID: <0a05150360b7d5ec075396820ee7339c49fb5367.camel@mediatek.com>
+Subject: Re: [RESEND V2 0/3] Add watchdog support for MT8186 SoC
+From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
+To:     <wim@linux-watchdog.org>, <linux@roeck-us.net>,
+        <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <p.zabel@pengutronix.de>
+CC:     <runyang.chen@mediatek.com>, <linux-watchdog@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 10 Mar 2022 17:15:40 +0800
+In-Reply-To: <b2195d5a5d9e7c18eb5e2269a04cb9b8ce431d90.camel@mediatek.com>
+References: <20220301054405.25021-1-rex-bc.chen@mediatek.com>
+         <b2195d5a5d9e7c18eb5e2269a04cb9b8ce431d90.camel@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-In-Reply-To: <20220310013552.549590-1-robh@kernel.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.84 on 10.5.11.22
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/10/22 02:35, Rob Herring wrote:
-> Convert the QEMU fw-cfg binding to DT schema format. As this binding is
-> also used on Risc-V now, drop any architecture references and move to a
-> common location. The fw-cfg interface has also gained some DMA support
-> which is coherent, so add the missing 'dma-coherent'.
+On Thu, 2022-03-10 at 16:34 +0800, Rex-BC Chen wrote:
+> On Tue, 2022-03-01 at 13:44 +0800, Rex-BC Chen wrote:
+> > resend v2:
+> > 1. Fix topic to V2.
+> > 
+> > v2:
+> > 1. Squash [1] into [2] in v1.
+> > 2. Add tags of acked-by and reviewed-by.
+> > 
+> > [1]: [3/4] dt-bindings: reset: mt8186: add DSI reset bit for MMSYS
+> > [2]: [2/4] dt-bindings: reset: mt8186: add toprgu reset-controller
+> > header file
+> > 
+> > v1:
+> > 1. Add mt8186-resets.h to define definition of reset bits.
+> > 2. Add wdt compatible for MT8186.
+> > 
+> > Rex-BC Chen (1):
+> >   dt-bindings: watchdog: Add compatible for MediaTek MT8186
+> > 
+> > Runyang Chen (2):
+> >   dt-bindings: reset: mt8186: add reset-controller header file
+> >   watchdog: mediatek: mt8186: add wdt support
+> > 
+> >  .../devicetree/bindings/watchdog/mtk-wdt.txt  |  1 +
+> >  drivers/watchdog/mtk_wdt.c                    |  6 ++++
+> >  include/dt-bindings/reset/mt8186-resets.h     | 36
+> > +++++++++++++++++++
+> >  3 files changed, 43 insertions(+)
+> >  create mode 100644 include/dt-bindings/reset/mt8186-resets.h
+> > 
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/arm/fw-cfg.txt        | 38 -------------
->  .../bindings/firmware/qemu,fw-cfg-mmio.yaml   | 54 +++++++++++++++++++
->  2 files changed, 54 insertions(+), 38 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/fw-cfg.txt
->  create mode 100644 Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
+> Hello Guenter,
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/fw-cfg.txt b/Documentation/devicetree/bindings/arm/fw-cfg.txt
-> deleted file mode 100644
-> index fd54e1db2156..000000000000
-> --- a/Documentation/devicetree/bindings/arm/fw-cfg.txt
-> +++ /dev/null
-> @@ -1,38 +0,0 @@
-> -* QEMU Firmware Configuration bindings for ARM
-> -
-> -QEMU's arm-softmmu and aarch64-softmmu emulation / virtualization targets
-> -provide the following Firmware Configuration interface on the "virt" machine
-> -type:
-> -
-> -- A write-only, 16-bit wide selector (or control) register,
-> -- a read-write, 64-bit wide data register.
-> -
-> -QEMU exposes the control and data register to ARM guests as memory mapped
-> -registers; their location is communicated to the guest's UEFI firmware in the
-> -DTB that QEMU places at the bottom of the guest's DRAM.
-> -
-> -The authoritative guest-side hardware interface documentation to the fw_cfg
-> -device can be found in "docs/specs/fw_cfg.txt" in the QEMU source tree.
-> -
-> -
-> -Required properties:
-> -
-> -- compatible: "qemu,fw-cfg-mmio".
-> -
-> -- reg: the MMIO region used by the device.
-> -  * Bytes 0x0 to 0x7 cover the data register.
-> -  * Bytes 0x8 to 0x9 cover the selector register.
-> -  * Further registers may be appended to the region in case of future interface
-> -    revisions / feature bits.
-> -
-> -Example:
-> -
-> -/ {
-> -	#size-cells = <0x2>;
-> -	#address-cells = <0x2>;
-> -
-> -	fw-cfg@9020000 {
-> -		compatible = "qemu,fw-cfg-mmio";
-> -		reg = <0x0 0x9020000 0x0 0xa>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml b/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
-> new file mode 100644
-> index 000000000000..3aac9448e7f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/qemu,fw-cfg-mmio.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/qemu,fw-cfg-mmio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: QEMU Firmware Configuration bindings
-> +
-> +maintainers:
-> +  - Laszlo Ersek <lersek@redhat.com>
-
-Ugh :) I guess this is based on my authorship of historical commit
-53275a61bc7a ("devicetree: document ARM bindings for QEMU's Firmware
-Config interface", 2015-01-13), and prehaps my R-b on commit
-92aed5d6ba90 ("devicetree: update documentation for fw_cfg ARM
-bindings", 2016-02-09).
-
-However -- I totally can't maintain this file. (I mean I've probably not
-done anything related to it in the past seven years, so I guess it's
-time to admit that fact!)
-
-Rob, would you please consider taking it over?
-
-With my name+email replaced with yours:
-
-Acked-by: Laszlo Ersek <lersek@redhat.com>
-
-Thank you!
-Laszlo
-
-
-> +
-> +description: |
-> +  Various QEMU emulation / virtualization targets provide the following
-> +  Firmware Configuration interface on the "virt" machine type:
-> +
-> +  - A write-only, 16-bit wide selector (or control) register,
-> +  - a read-write, 64-bit wide data register.
-> +
-> +  QEMU exposes the control and data register to guests as memory mapped
-> +  registers; their location is communicated to the guest's UEFI firmware in the
-> +  DTB that QEMU places at the bottom of the guest's DRAM.
-> +
-> +  The authoritative guest-side hardware interface documentation to the fw_cfg
-> +  device can be found in "docs/specs/fw_cfg.txt" in the QEMU source tree.
-> +
-> +
-> +properties:
-> +  compatible:
-> +    const: qemu,fw-cfg-mmio
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      * Bytes 0x0 to 0x7 cover the data register.
-> +      * Bytes 0x8 to 0x9 cover the selector register.
-> +      * Further registers may be appended to the region in case of future interface
-> +        revisions / feature bits.
-> +
-> +  dma-coherent: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +
-> +    fw-cfg@9020000 {
-> +        compatible = "qemu,fw-cfg-mmio";
-> +        reg = <0x9020000 0xa>;
-> +    };
-> +...
+> All patches are reviewed-by and acked-by.
+> Do you have any suggestion for this series?
 > 
+> Thanks!
+> 
+> BRs,
+> Rex
+> 
+Hello Guenter,
+
+I am sorry that I did not notice this series is in watchdog-next.
+Thanks for accepting this series!
+
+BRs,
+Rex
 
