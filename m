@@ -2,157 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A7484D45E3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 12:38:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC69F4D45F3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 12:42:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236432AbiCJLjw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 06:39:52 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35858 "EHLO
+        id S241677AbiCJLnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 06:43:01 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232882AbiCJLjv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 06:39:51 -0500
-Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com [148.163.133.242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F6713D43;
-        Thu, 10 Mar 2022 03:38:50 -0800 (PST)
-Received: from pps.filterd (m0174679.ppops.net [127.0.0.1])
-        by mx0a-0039f301.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22ABJ6Mu003522;
-        Thu, 10 Mar 2022 11:38:38 GMT
-Received: from eur04-he1-obe.outbound.protection.outlook.com (mail-he1eur04lp2056.outbound.protection.outlook.com [104.47.13.56])
-        by mx0a-0039f301.pphosted.com (PPS) with ESMTPS id 3eqgbmr260-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Mar 2022 11:38:38 +0000
+        with ESMTP id S241682AbiCJLmw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 06:42:52 -0500
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2138.outbound.protection.outlook.com [40.107.243.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4612C144F6C;
+        Thu, 10 Mar 2022 03:41:51 -0800 (PST)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fEv9ARC1G45pwQrQ7g7HeA+rhxEp2dQNd4Q1lXIiG7PcytC4wOUH15Vh8NpKuwMimQrxMdMQMf1q4qR2c5lihcgpBaH0sXD4kIaSPnaAGkvmABr+7sttWURNlZwBVFZGWOLrckpeAh8lp7awzsLnP2nl/KhqMRnQ8GnjvN8c1pyqqCrBvm2duns5jFjbAhMxu5N3adSQd7refIoUzdDsLH3o/8BpeddOMuiQkKYSYbUYdL0mRY/PY+9h6vtjniM4sDB7qje6RC4TyIJb5IaasrPZ2yxLyEtzgcPo0j6WHydNbm9hqIQqiA15VxNyZEwqHPpXkJYa0tpQTNLrpLUBNg==
+ b=YQl4BLY6w9o0U9hr1rseWdbh9rJ0v2+fxf9Fh/avgcwiBsxGH0zhowhdw3zWgFe80Sov76VZoz21B8dJeWJ0FUBGIvChVcFUaGl2YCBatT8jYS0/LJo0H0hPjTUXVMfZ2W8tGmFcSkLj1Ax56Ig1ABFODPYJJgr/LQnfbmwUUk5zICSRohBOEuf1xTl6r63JLPqpNCQvWFDTZIroY8NtnjiATnYU9N/NLt4NO2msICZCVkUlbPkaGUkcHyYaWnHTYlvkFtHDYGiQXr4BVvOv4Uae9ZHpabgASpyv4Q5rVGh7IPQhOqllGOIwSIhRxem5mJaKHQx1k0Y8J2kGfNnWlw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TAAGGCbWRyhblMDzORG60I5hTcmFhzlOj/eCLM6IDV8=;
- b=V0iKxy+2XQhq9NRgshB3MKc1CSP1Ysy6f0UGPAiCbTtvQdItICryboQTGrmdqMe0JhTm4DPlhMc2y3OepXyrKX4MJXaFklHpEF4gE6vb78UxfNpXB0nYq5DVSiOz6fzZ/5oK5v3QwXpNnNShD+JX4iKHBWqXNx2VvdqtwdlItFLCJ+TjcT+Emd7V+rrvF8rVCaHIjH+8k9VFg/qlmyAEddUgxWGRBhy01WAUoPdcfilJ1ctkRdftVRngLAaXULZpXCOpbQalyQLmS6hLvSMa7RGxT/PV888/wP7mtxuVRhQTuZ+R+GDDIYzWEi9Z22kh8wMcDBSjDgFh3t0W0AB6pA==
+ bh=AcXyPO1Uz98fuoGSTH6S1bkbX95D4KrDYZ5T1HchXOo=;
+ b=LbmEs4Uu+Tw8QW9heDdobDS6B6PZI0c27JoS3/D6RjqYitmUFCR8K5rQnf7KKuqqP/c0U+YpOz0PJPM370U7i8O6iYsdUW9+w5kvNTDavwyK23FOQ46+FDsUke5jw6y1pqr1uMgq9IT4oKAN0CYfnE/FLYH39zmdFVFa/kgLget46nP8kkk/9Db7wkl5V6/cXzGo4wPx2jU9Apc04igN5aWSs+fHC6P/nI7kF1froV+0ns4NKkqgp0DKtirWX+aOAdd+lZlbPVGUX/Flhs33N6AUSMmXiofwYePnA7C2Kx1AzFBeZj7S1uXIHLKpxs//DlGf5uCDyMrplaMCnyOUkQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
- dkim=pass header.d=epam.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector2;
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TAAGGCbWRyhblMDzORG60I5hTcmFhzlOj/eCLM6IDV8=;
- b=L/unSBhb5C4MSTOEIx1zrTkbW/QK/KI45+2FFBpsxhZ6W1dAj+4uXnZw401qXpfMMNLgapwFchyCAK98bVI5y1X4evElJmrWLilsx2FTKFSXk8RuAD85lyrScOoSwKFMlfdWiP18q6Yp4GbIhxhkB4NEK3dgPAfbXsr629r1tlgXj56j29oF6bn6xAWMDvBcYWUI2hwkfGNoNV3+DuC2x2QQusSpX7FcLlQ56g+VtxJgWfSqGlqpuZb9oJ9BoquUGFOnDoZgVKmOYK2hp7Zm4f/QhR2db0k8D0ckByf+wObXnxJ+3PnulMV8CUwQk840//OCsFMRSH3EQXRT0Ju6mw==
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com (2603:10a6:102:ea::23)
- by DB7PR03MB3611.eurprd03.prod.outlook.com (2603:10a6:5:5::20) with Microsoft
+ bh=AcXyPO1Uz98fuoGSTH6S1bkbX95D4KrDYZ5T1HchXOo=;
+ b=frRlcky3s4xc9yAwLrKseub1Xf3eYgDpTspai3hmUEsrVa7n5Vyk606LVs510T8/ceggNTgdvj66V3bfQaxMxINj6O75w6ZN2BT7HV+E9abxIbdbrqWLRpNuZKlVmWO7XCBPrft6I3+uXE6erQpaN6gLe33cOOjNDcJmR9F977U=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ BL0PR01MB4305.prod.exchangelabs.com (2603:10b6:208:4d::23) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.5038.14; Thu, 10 Mar 2022 11:38:34 +0000
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::b12a:5b52:7c19:fbc]) by PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::b12a:5b52:7c19:fbc%5]) with mapi id 15.20.5061.022; Thu, 10 Mar 2022
- 11:38:34 +0000
-From:   Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Xen hypervisor
-Thread-Topic: [PATCH v2 1/2] dt-bindings: Add vendor prefix for Xen hypervisor
-Thread-Index: AQHYMfvSuP8YiJuDk0OiMGC/BZe6B6y17mKAgAKUZIA=
-Date:   Thu, 10 Mar 2022 11:38:34 +0000
-Message-ID: <20220310113833.GA187897@EPUAKYIW015D>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
- <aece6fd976980131120456800de3558e1e2308a0.1646639462.git.oleksii_moisieiev@epam.com>
- <Yie5P/vcBz44QcPd@robh.at.kernel.org>
-In-Reply-To: <Yie5P/vcBz44QcPd@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 27d16d02-1bdc-42ae-7ece-08da028a827e
-x-ms-traffictypediagnostic: DB7PR03MB3611:EE_
-x-microsoft-antispam-prvs: <DB7PR03MB3611B6338F3F321997882810E30B9@DB7PR03MB3611.eurprd03.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: AlvqMv6CUg21B6GIImZkpdLM8vDCY9bI0R64vdgjUbLtROR3WbC1ptycY2aP+z84qwPaM29bE3xc/FpOMH4b/pQ+fZjQzJtDetkjiBLC3zuQQJK4+NX7S2sCJiVQaznrsZ42d4y9xBr+619FnX3MOa/gEvmCFVCnP4q7R+SWzFsdUTnJUNvp4rQzRnt8pNzdrjnz6ui6NfCVK+bzUCbEHtPQPfPzrOB/BLgGkDmkAO8y+8ZuerN90tRNRbyZMFXZIqRaZhu1DZ/Cjb91KXpaHrjmA2zBYCFTxBBkZbQqNCT8K9fQIGhFjB3zD/aa/R25SIqenWp4z1/CzTl6WIa+lPLcR63Or6KwDKWyZTWxFV7l0gqpmrXmxaUmFMRArR48ja38VZvmeTHRg5JhGub/xkzvg1hEO3LfvR7lRyUFiVDdtFKOsOmoRUMgfvhaigfpm0SYzOGdVfUHQdcX/tC756tOh6OsXhDIw50XvRPtPsTEO5jsbfQ+jhPjxwVNDgyA2BBCZtNEBWPA8Kkr4zgUlcXJJVBO0MGFN4ZnfI/zl5A0+QVUEmLN5geKKjQZUQiSfL+fR3i3JTbxeuWy3pxOpz/KSqE5T7E38cFw6EP+hIDLxeKKn9iOYtwo5Xs88kqOLnuLsRdWTalRoX6i/M8MXGVdTvHcy9W6d879IJmScUB5/A7FKwJpA9EeJSLYc67jxyQuYVIyHzbUgVn/t3/FKw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR03MB7136.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(7916004)(4636009)(366004)(66946007)(66476007)(26005)(2906002)(186003)(66446008)(316002)(66556008)(54906003)(6916009)(33656002)(8676002)(38070700005)(71200400001)(508600001)(9686003)(6512007)(6506007)(55236004)(1076003)(4326008)(122000001)(83380400001)(38100700002)(64756008)(4744005)(6486002)(76116006)(5660300002)(91956017)(33716001)(86362001)(8936002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?98npYEttNFXg3qtw8uWvVozjpoumMfNOIBp7STpZnKdcsGjqzmy5+vxqDB6R?=
- =?us-ascii?Q?P9dyGgggmIpe0iXBYN2STDYLCeYFjVc909zI0gsTKYHdhClVsbRlrXKP5ID5?=
- =?us-ascii?Q?/hsNhm/SMmnCwIdZN8sfJchYvqwKcK1CYtOtAh+P4u+ZGQ9AqFS5X6SfZfAc?=
- =?us-ascii?Q?qiSR5EeNhdMLLbthM/HRe3YgGICZQYWvbw9L6LKzcxvfrUwVK4YoKpiljpjC?=
- =?us-ascii?Q?b4oA9q61CKDtnlFByw895hCNPvcC96sjE1m3gffe8unoJ64Qqa/fm8MO1pJA?=
- =?us-ascii?Q?ShnUtjEjPG+vyvxrRoUz4hyZFsQh+o06CdYToYSGwUGWyp7bvPawiMwi/g+G?=
- =?us-ascii?Q?zWh/GSz4jq+dP2PaKtCEB9ShW+TwgE301a+pySNZf8vDjI4kGWIk/r2Kf+YF?=
- =?us-ascii?Q?oILv9NE4J3shT0oeZHTe589oc6cjtCxd4EPUg7EGT+EE2pscmdaDJdpbguVc?=
- =?us-ascii?Q?pKLAzJ/pDdSnuvfxrXrrzBlHjTVnl1BeGuUxSNA3jAJUcouKi9l6m5cptu+P?=
- =?us-ascii?Q?ewaNhARrETvJ7eRBeLGFuAhY3n2KYgcuzgQmRkQBriMcmEfGh9TFRMTQ9Euh?=
- =?us-ascii?Q?YKu0U466ne59cXaevzwLPpvEbQNQ3LMC8htltPObLTtT2QBfTgx4VthGlLsZ?=
- =?us-ascii?Q?FBuqVfjYSvLBbqFP8Qh6VE4ZFkW+/lGs2k4i9tfaB6oen/vWFn9IZhQCv9F8?=
- =?us-ascii?Q?0g8iCDRsLfTWDMA/4jiW3o+As693ETeQxnCCtazTsxpevheuVwRh2qbns4S8?=
- =?us-ascii?Q?Oumqae8bIeOcGYB8SpWW8lIr8OAWrlkLgXyfJvrw/hIqpN36H5c5lHYq39tJ?=
- =?us-ascii?Q?xfx+VUwg9R/900l4r7/N4x+f9asqYPH3kSZ1APmdCvZ5PoyqCoJ5BM/qLYIx?=
- =?us-ascii?Q?ZNt6ITMBx88kNJ/Lalu+FYBLUBCbj39vhNFkFoeGkZNLJqv877nHw1Nvz2HS?=
- =?us-ascii?Q?YKie3/6CHsgRNl2U9feTuHRJ7UVwKoHxcyjdYpb4xsY1qgU9VHunogyqw1VR?=
- =?us-ascii?Q?ryuL4bXOG+WqOHhlOhlLWqLENqcPtMY824DJ1kj/XkO2Aa4I6OqiqzwhlbQH?=
- =?us-ascii?Q?vVXbUzGGvcrOgmkg0s52l+idsMZEMCX7RdFQPSx8URvYKcyBjfTER7Wl594x?=
- =?us-ascii?Q?B5aMyofyuIP1QoOqu5XifvRgCWWuf1QfHcyGLivKrykZbBC1lWubBCvEIBN4?=
- =?us-ascii?Q?3FQL4QvEFA6o8ZgwngqzQqW4MOu+ms/WJURacjI8sGgVGI0adw+Q2193pqTR?=
- =?us-ascii?Q?TZndZoTRSdZNo+h3bfRYewHoqZD7QHt7L7OudNjSmPRmw6oaHpeCKtLTuquC?=
- =?us-ascii?Q?f5w6eR2n2iZv9KtNdxFsIE0t4QZeW4lIlPRiz1N8j2s/MVojS/pMW9uQG8BY?=
- =?us-ascii?Q?8Q4ydDgnYbS6SKZmQld8g+zD4ItGIlgchI/Lh/7KSAIHTE18+UH81OX/NmDm?=
- =?us-ascii?Q?6xm3EcCfiCSzkvUOoyol3A+A2RcpWIYyAQr8I/X6gVlSwThdB3BZUxOOlT6C?=
- =?us-ascii?Q?8QwBJSL4nd7cJujwR/xWBeA7j/+iVsF3Lo/VNYiiT2zPyQ4VO+jOOTBCaSib?=
- =?us-ascii?Q?PFAwv55d5C2v+1C/8Gl9fd0vxJMMqPVjBBHDkvANWwuLwTNfGAcgWfrFuIUH?=
- =?us-ascii?Q?7QGoG0QX77Ljv+mn1UYFSw301pTiWCw1w7fJM1Vks3ZuEmwKKHkPG0x0X2B6?=
- =?us-ascii?Q?pKkd5AMezbK4/s7p+UN6ikrLe3Q=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A9250671E015FD4AB2D29D151565D55C@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ 15.20.5061.22; Thu, 10 Mar 2022 11:41:48 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6%6]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
+ 11:41:48 +0000
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+To:     Corey Minyard <minyard@acm.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc:     Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+Subject: [PATCH v6 0/4] Add SSIF BMC driver
+Date:   Thu, 10 Mar 2022 18:41:15 +0700
+Message-Id: <20220310114119.13736-1-quan@os.amperecomputing.com>
+X-Mailer: git-send-email 2.35.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0125.apcprd02.prod.outlook.com
+ (2603:1096:4:188::13) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
 MIME-Version: 1.0
-X-OriginatorOrg: epam.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 49ac4a4c-2da5-4473-611a-08da028af5e3
+X-MS-TrafficTypeDiagnostic: BL0PR01MB4305:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR01MB4305B9DCD554C1DFBEC94E36F20B9@BL0PR01MB4305.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 5+1WnDvA5i44nFiQSwDPa0IRUWhoFkE6Rw0FF0ou98xI+D7UilEEwoZBUUABVM1cVT7XaGphI2KXQuBeLQLRYI+ylynnHxxn/a8EAhztOnaiZRBc2cC203FwReOyYu62HJB5ZKH0fQBP4BTkpJ0yun8pbOZdbyo8dBaDHir0cLKW3G+wGlvNF6g7e1nzlpZjyocZaWqWGVpaMpjC1YkTkVPL1gAArIE/mItQz9Lrwu0BlrSOcI75mBVymIkLBhU89/TDDiwrXNAdCeRIhvLT7AouAQdYCuiP/81R8lG4O1QMpDSxya2KtfhfY3h3ts1kQSOj/eEUPT0l/mdER3eUg3dmlVX9gw41O1UvJgzurDdRPDrWkKaUMc4aZ4ImfCVCEyp6XueAyg0b0Vch2KROSxI/eUCCEeTugZzgAQ0ib+bs6A4FbbabO/EA1bMHzcCcbj0xDVHd5Lpw8F98q2DH6BXgfkAA5bZ3AyN7m08mi3KofjkZsgknIv7VZx2h/siOy7/URXCBNLapf0qCatsWW/pSr1COA604bFrZjQNgREb4sS2+tcT5JpaOAu1ImNgNlrYFWy7OJOHoTBAr/gQFo+zqsqTHExfBEMy8RGuwxL6SgE+FNczqZenpaZETO5Y707EaiUKrbONobviqaF6AZYAAyuwWo6laHCWWbfJTTpJ8l8FAOPot2r7RyiFr8rCK6fMXPKFROXwdkhhJccRSvPScVEBRlGhfB8OgNtdmpKJ9G+ukbnExuUtp3iHUQxjjxmO4k89jGL49Wd8wWnj0vQU9F7hVaI4V0U3+KD7OzdJXR11o6+sT7ZdayYmcITOO
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(107886003)(6666004)(66556008)(66476007)(66946007)(1076003)(5660300002)(2616005)(7416002)(316002)(38350700002)(38100700002)(86362001)(4326008)(8676002)(8936002)(83380400001)(26005)(186003)(921005)(2906002)(52116002)(6512007)(508600001)(110136005)(6506007)(6486002)(966005)(54906003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?5CGCWEzuqjvXZspVdaxmMYOt0khNlWYVhsfR1gLdx+aMdZCcvIb7X6wSWeP6?=
+ =?us-ascii?Q?QG8rZx3BEbVRyOnulCPOmiJy1lh7XxjrApUeUDdX9EzEljRON/SC8+0/ZcTA?=
+ =?us-ascii?Q?YgOfVbT8PyqRAUpVR5mPSrbvGHPPXKQ970pdE2cA0eCAqFihboY31KHFhMsL?=
+ =?us-ascii?Q?+HzHTlBcBbMRCkcs/1zy3M/eWETfl81apF8NI2WCFU/G1Ci5BlZ24A+1Zvvo?=
+ =?us-ascii?Q?0P3GtKURPgAJW6vmu/+XaRmWZ6Q9GAXI63eMR14/2g3qgUvwDlou2pQsCkWc?=
+ =?us-ascii?Q?5r4Z1KwypfygBR2EuNUb1Mn4b5YJtKnmBncE3AeFKFn/SNdycAqx5ztiM8lW?=
+ =?us-ascii?Q?duDvY5pnp05s6HTSp04hJjhjASOW+bIcAlV9zRPRt0EEpCOlY9QTn5lt3o+G?=
+ =?us-ascii?Q?T4wCeWPApPO0hw/2mc6QGaRmZl3EL6Dwh/hEkMsIGbZG4bx5ranM73qNvq3A?=
+ =?us-ascii?Q?aDaAnYVT7LLYXr4DxhX8eCIJk5Ypx7xnWiNny59J+y8UzkSzHs3prXGQRPmc?=
+ =?us-ascii?Q?V3JP8HLl7ZW/zdYz/Anzp8pvij0cSTxwL82FRYe/QkDbRjObUqOvm9ICmriU?=
+ =?us-ascii?Q?fJjh08qhPyt806OiTc7Ew8Wd2EHki00Q6JdMhrnq4owt/CjCvsvKMZV2Q3No?=
+ =?us-ascii?Q?ZMxJMg2KtWcK8OBJdbh70xdRbQnoLgVLJI08xh7jwZ2OCszbb8cnpFdHl9cn?=
+ =?us-ascii?Q?cJsottLVb7OtBJ5fdYIb7WLGafo3+sQ1eK+KAvd+G+jPuhI+UqN57OiWqD40?=
+ =?us-ascii?Q?Xl5ums+TdwBlFQhL6tUpF8hiCgPaXjI+CTbgpeTE5mWAhC61lj7wFa3LJ3B0?=
+ =?us-ascii?Q?Gm+yh6YDjMCrlYWErU6yM+AqODwxfUJAYGyQK94F0jgcRs/oqBix1UASSUAe?=
+ =?us-ascii?Q?44owzpaVoWldsYdNi3LLWnh6i3xvXlK40DZgHqQD2R8s3+K7RWrY1RvDYaz+?=
+ =?us-ascii?Q?0yFhdITy4QxqLHvOMUwtxagnOjpxuES16juzqrTdnC4FcnJb0i2FbYaGcxD2?=
+ =?us-ascii?Q?Id7hqGhou/jAJaNzdfuMqfgqV51HLEU7BVBHHsG6GdCDdFo2wPsZrhWkndAG?=
+ =?us-ascii?Q?Y+4MhXorwIF1wzxKFgE+oScE8p336JB2hXSrYyVUWA3jFEkbGXjrq0tySVZE?=
+ =?us-ascii?Q?5J3VWixXFeejGvFo1YDHcbcUJbrQoD7+EQBS+Lp78w9JxkJruqBqfLih7qQb?=
+ =?us-ascii?Q?W/6kv3mUUsq290YwSpOot7ppsC/RxsSXiDOUzsHneNsyJRMjh3J9Plgy+Yhm?=
+ =?us-ascii?Q?KirKqBpqQjm+am+SBahEb9pQO/WDJNQV3RcmUmiqcrbbOme1lT55c26g8q+0?=
+ =?us-ascii?Q?YHTYBtNsJ9+TzY7LGbTUSWWp2T/bEB/xhcIL8RO4mlkg9p0UvO2USxvqfyGN?=
+ =?us-ascii?Q?rVi7JC0rnzcikmWNomZUTwleU0XXog/yeQUbzPb5L4TeKLX0ufAb0pzcdGYU?=
+ =?us-ascii?Q?PCpQRLHhpuWm4IooqJ7y79kgCxbWqWhfBmY+Jzl7u6xcOPeTrvv9lYjFrWVW?=
+ =?us-ascii?Q?oKDE/3HBWgy7Zh4=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 49ac4a4c-2da5-4473-611a-08da028af5e3
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR03MB7136.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27d16d02-1bdc-42ae-7ece-08da028a827e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2022 11:38:34.3011
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2022 11:41:48.4938
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AdIChTSqiYcT2J6fCidjoRj8IBs9BilYzM8I6hraMFh4INsg+VP8/4ebNnY8hTh7x/Rnrg+jjdKJapMWO/18Ym92d+He9nsiVYChytbSV1U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR03MB3611
-X-Proofpoint-GUID: 5R-FwF5WAlzeTJrh48RbwS5UvaPS8RY6
-X-Proofpoint-ORIG-GUID: 5R-FwF5WAlzeTJrh48RbwS5UvaPS8RY6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-10_03,2022-03-09_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0
- clxscore=1015 mlxlogscore=854 suspectscore=0 adultscore=0 phishscore=0
- mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203100061
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hqE5GNkY0MbP54b4ZIn9hWTKEYPrbsUSXycB90nhRNiLK9lsepcp4QE4VejSs30RqL7OzHQcNW1/0wno6WLU24Ixu2LW3gechQB1KuX2uxk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR01MB4305
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+This series add support the SSIF BMC driver which is to perform in-band
+IPMI communication with their host in management (BMC) side.
 
-On Tue, Mar 08, 2022 at 02:14:55PM -0600, Rob Herring wrote:
-> On Mon, 07 Mar 2022 08:17:43 +0000, Oleksii Moisieiev wrote:
-> > Xen is an open source stage-1 hypervisor.
-> >=20
-> > Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >=20
->=20
-> As 'xen' has been missing regardless of patch 2, I fixed up the commit=20
-> message and applied, thanks!
+SSIF BMC driver in this series is tested with Aspeed AST2500.
 
-So IIUC - this patch is already applied and I don't need to add it v3?
+Discussion for v5: https://lkml.org/lkml/2021/7/13/868
 
-Best regards,
-Oleksii.=
+v6:
+  + Drop the use of slave_enable()                             [Wolfram]
+  + Make i2c-aspeed to issue RxCmdLast command on all
+  I2C_SLAVE_WRITE_REQUESTED event to assert NAK when slave busy   [Quan]
+  + Make i2c slave to return -EBUSY when it's busy                [Quan]
+  + Drop the aborting feature as return Completion Code 0xFF may stop
+  host to retry and make ipmi_ssif.so fails to load               [Quan]
+  + Add timer to recover slave from busy state when no response   [Quan]
+  + Clean request/response buffer appropriately                   [Quan]
+  + Add some minor change on error and warning messages           [Quan]
+
+v5:
+  + Correct the patches order to fix the bisect issue found by
+  kernel build robot
+
+v4:
+  + Fix recursive spinlock                                      [Graeme]
+  + Send response with Completion code 0xFF when aborting         [Quan]
+  + Fix warning with dt_binding_check                              [Rob]
+  + Change aspeed-ssif-bmc.yaml to ssif-bmc.yaml                  [Quan]
+  + Added bounding check on SMBus writes and the whole request     [Dan]
+  + Moved buffer to end of struct ssif_bmc_ctx to avoid context
+    corruption if somehow buffer is written past the end           [Dan]
+  + Return -EINVAL if userspace buffer too small, dont
+    silence truncate                                       [Corey, Joel]
+  + Not necessary to check NONBLOCK in lock                      [Corey]
+  + Enforce one user at a time                                    [Joel]
+  + Reject write with invalid response length from userspace     [Corey]
+  + Add state machines for better ssif bmc state handling         [Quan]
+  + Drop ssif_bmc_aspeed.c and make ssif_bmc.c is generic
+    SSIF BMC driver                                               [Quan]
+  + Change compatible string "aspeed,ast2500-ssif-bmc" to
+    "ampere,ssif-bmc"                                             [Quan]
+  + Toggle Slave enable in i2c-aspeed to turn on/off slave mode   [Ryan]
+  + Added slave_enable() to struct i2c_algorithm to control
+    slave mode and to address the recursive spinlock      [Graeme, Ryan]
+  + Abort current request with invalid SMBus write or
+    invalid command                                               [Quan]
+  + Abort all request if there is pending response                [Quan]
+  + Changed validate_pec() to validate_request()                  [Quan]
+  + Add unsupported_smbus_cmd() to handle unknown SMBus command   [Quan]
+  + Print internal state string for ease investigating issue      [Quan]
+  + Move to READY state on SLAVE_STOP event                       [Quan]
+  + Change initilize_transfer() to process_smbus_cmd()            [Quan]
+  + Introduce functions for each slave event                      [Quan]
+
+v3:
+  + Switched binding doc to use DT schema format                   [Rob]
+  + Splited into generic ssif_bmc and aspeed-specific      [Corey, Joel]
+  + Removed redundant license info                                [Joel]
+  + Switched to use traditional if-else                           [Joel]
+  + Removed unused ssif_bmc_ioctl()                               [Joel]
+  + Made handle_request()/complete_response() to return void      [Joel]
+  + Refactored send_ssif_bmc_response() and
+  receive_ssif_bmc_request()                                     [Corey]
+  + Remove mutex                                                 [Corey]
+  + Use spin_lock/unlock_irqsave/restore in callback             [Corey]
+  + Removed the unnecessary memset                               [Corey]
+  + Switch to use dev_err()                                      [Corey]
+  + Combine mask/unmask two interrupts together                  [Corey]
+  + Fixed unhandled Tx done with NAK                              [Quan]
+  + Late ack'ed Tx done w/wo Ack irq                              [Quan]
+  + Use aspeed-specific exported aspeed_set_slave_busy() when
+  slave busy to fix the deadlock                 [Graeme, Philipp, Quan]
+  + Clean buffer for last multipart read                          [Quan]
+  + Handle unknown incoming command                               [Quan]
+
+v2:
+  + Fixed compiling error with COMPILE_TEST for arc
+
+Dan Carpenter (1):
+  ipmi: ssif_bmc: Return -EFAULT if copy_from_user() fails
+
+Quan Nguyen (3):
+  ipmi: ssif_bmc: Add SSIF BMC driver
+  bindings: ipmi: Add binding for SSIF BMC driver
+  i2c: aspeed: Assert NAK when slave is busy
+
+ .../devicetree/bindings/ipmi/ssif-bmc.yaml    |  38 +
+ drivers/char/ipmi/Kconfig                     |  11 +
+ drivers/char/ipmi/Makefile                    |   1 +
+ drivers/char/ipmi/ssif_bmc.c                  | 790 ++++++++++++++++++
+ drivers/char/ipmi/ssif_bmc.h                  | 102 +++
+ drivers/i2c/busses/i2c-aspeed.c               |   5 +-
+ 6 files changed, 946 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/ipmi/ssif-bmc.yaml
+ create mode 100644 drivers/char/ipmi/ssif_bmc.c
+ create mode 100644 drivers/char/ipmi/ssif_bmc.h
+
+-- 
+2.35.1
+
