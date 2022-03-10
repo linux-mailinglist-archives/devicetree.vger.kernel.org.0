@@ -2,176 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3C04D484E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:45:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB924D4BDD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 16:01:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242508AbiCJNp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 08:45:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60736 "EHLO
+        id S242907AbiCJOVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 09:21:32 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241878AbiCJNp5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:45:57 -0500
-Received: from EUR03-DB5-obe.outbound.protection.outlook.com (mail-eopbgr40069.outbound.protection.outlook.com [40.107.4.69])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F82214EF59;
-        Thu, 10 Mar 2022 05:44:56 -0800 (PST)
+        with ESMTP id S245049AbiCJOUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 09:20:21 -0500
+X-Greylist: delayed 1194 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 10 Mar 2022 06:18:28 PST
+Received: from mx0a-00549402.pphosted.com (mx0a-00549402.pphosted.com [205.220.166.134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51762AD104;
+        Thu, 10 Mar 2022 06:18:27 -0800 (PST)
+Received: from pps.filterd (m0233778.ppops.net [127.0.0.1])
+        by mx0b-00549402.pphosted.com (8.17.1.5/8.17.1.5) with ESMTP id 22A8PqOn030696;
+        Thu, 10 Mar 2022 13:58:06 GMT
+Received: from deu01-be0-obe.outbound.protection.outlook.com (mail-be0deu01lp2173.outbound.protection.outlook.com [104.47.7.173])
+        by mx0b-00549402.pphosted.com (PPS) with ESMTPS id 3ekx7wv3m5-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 10 Mar 2022 13:58:05 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oVp0Bid+uoTjmQ9K01IpqVTiKsyYk+Mm2nWU73oCRxyrQVT5y9BT9huQHK/F//lDLLVO0td7BRPCWytG1ccCZnHIVQ8Ey/8S8hNPcJU5FLg5baf0DqYjAiz6ZdATAZZhGuS9A431Otv9DRYkcWX0QfgQCoZOtkbOfJEDjAJXwZgRH9ut6djSnx0VGUaRw2cQucqenrJp+OHlf3jfU3M8qfZ1d+ZDhAi3xAqi4ugSAX1s1+Yh20tdIepvFkuJJXeTq4wny14Jpss9sU4BupfL1EER3lg3rSJKDnwktZ4CSIQAU0H/rCVJHCqwvDU03J5p/Iv+5ekNMd8rSqv9wNrYZQ==
+ b=n4rZn2fcHJTzXNaof/fCOpem2MfWf/ics6722o/5OtxwCsvGzSilIXRmRiaLEtlicaEa9rny37GSgJzzcPPuWGu43pxfZjJC9MCQv9yujYXcWaQXtp8E0EsTtjTRv6KXfnIeqMBSH74W0YsGSOat59uv1t4M1iW/mAuuq/qxcZbMBKLufu7utBEQ6nqWqp9oHDT49OaZcXxfCPAjfvGtTyF8HjBsqMveNS0SVlDGZNqUQsYCioo/A7d0dATHdovqW5Ko1EBo6OGMitK/2WIAzUWTS311oZyFlqotbP/yWv9NaDejL2n0SBVGo2lGXmE0aLAEWljydpo6o/DLkGHlvw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B5rQCl849uWtqNffU8whWXmsnqfEhInvGyqDFZIO5x0=;
- b=GcN/CAN2tvCKTihZnhriyvDr5fh0+oH9c70R3AMppW2XbDbDFl2995H73NKXcm6z+OiW0DH/W9iZWY9QcflZWLg/3WTz1DKCYwQkh11mi5u3ZkzTofrtZJvhvdTMLt3oivjEEwUi4445Eal//jfOVZ9LQCG+yK2RV1OGy57AJVLnhI7kpV+9zj2vfCOupNaMzXaCRAXcJMixwVsdcyjx/jaoyyNtnXkHPotRNLdqTXXr1DaIpUKUsi7gfC13nkaxNhsMGea6XbcAdkSYgiP6uOm35X3FpxWRMUw47Ig8lJJHQUCD8nwIwx5vVpRYxR9nu0V4jiTh1qyXzlpzWoBnlg==
+ bh=9J1y/+s0xZl71sDIHvYUWldrZNf4IQ5VLIh0PeD8Eb0=;
+ b=QGgZQXL4urlHeuwXd5iITjTjIvjyBWC5xZfBFcB05HCjBX540kl7eVlCglgyV2Cs39MTBajZO2ljcYEcG6adS/++cUW/I365dNIUTiO+RGUW30GQACK+5vCY4A26TugABeBOJv4gyGY0O0/SzBweFg6FUqIncpxHZAwTr5/0V5BQShJD6I/LLGnLy1ewlvjjz/AMlQpTrq5eeSD0nLnjAH73sEIw8CbtIBobVDk7lzMT/WDsuDki4r1EboxDCUv8EuSolBVsOG8/XCsDSM7kfRjt9Z9vqo5LuwBYzIwUOd0KAk8NyUR33n1Bi5hzyfjmu3UiW5/YLMdFIWCnrt6otg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=tdk.com; dmarc=pass action=none header.from=tdk.com; dkim=pass
+ header.d=tdk.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tdk.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B5rQCl849uWtqNffU8whWXmsnqfEhInvGyqDFZIO5x0=;
- b=Za1sIh9ZyhBetMSuMP5ZQL7kVgGz9WPV+ddRccpVH4XptVexW3UgOL3pw0yJu/J07VUxUiGsCtOo5pmgl6OujBXNVy3HDV3fIiUQHArDhvFjAAZp9/SF0SPWgOb7JYIfGjrgVrvXVGUP1ySkzkML8tfnmpkhHUIgAqV8wMZPuR0=
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
- by DB8PR04MB7036.eurprd04.prod.outlook.com (2603:10a6:10:12f::21) with
+ bh=9J1y/+s0xZl71sDIHvYUWldrZNf4IQ5VLIh0PeD8Eb0=;
+ b=iCJnRolI+K5o8I7OOP+DCr2mWuvSELtbWpEXnZejnpmGZxHjGXtd10/dpQKxkRNTlosQ3mRvMBVyYq721ShFuIuUKlvP1BpF7X2DewbdMyHz+r8CtDMSXPNSarelJdu7HCSG+wS9Th3odz2goZ4lQ91luRzRbrm7qDlThoRfbm+RoUgvU3wCc3UV0HbfOqESqad7hQTBU1MV2WSK27LG+867bkIP2yLtpXB0VYtJf5eYs9rWUDwPMCrX10oxOJsJcphc8Lq3vNTo3EsLH2eVtigTy6xtyY6N0JUEcgZbQnFBjJAEFMvz7vlWRpeU+Zd/eWXBpr2dBeLfcn0aVpgNsw==
+Received: from FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:34::10)
+ by FRYP281MB0941.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10:72::6) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Thu, 10 Mar
- 2022 13:44:51 +0000
-Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c39:69cf:c4ea:967]) by AM6PR04MB6341.eurprd04.prod.outlook.com
- ([fe80::c39:69cf:c4ea:967%5]) with mapi id 15.20.5038.027; Thu, 10 Mar 2022
- 13:44:51 +0000
-From:   Ming Qian <ming.qian@nxp.com>
-To:     Robin Murphy <robin.murphy@arm.com>,
-        David Laight <David.Laight@ACULAB.COM>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-CC:     "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: =?utf-8?B?5Zue5aSNOiBbRVhUXSBSRTogW1BBVENIXSBtZWRpYTogYW1waGlvbjogZml4?=
- =?utf-8?B?IHNvbWUgZXJyb3IgcmVsYXRlZCB3aXRoIHVuZGVmaW5lZCByZWZlcmVuY2Ug?=
- =?utf-8?B?dG8gX19kaXZkaTM=?=
-Thread-Topic: [EXT] RE: [PATCH] media: amphion: fix some error related with
- undefined reference to __divdi3
-Thread-Index: AQHYM3L1b6GUtwI3e0GOXsa95t9Coay3C94AgAFAbMCAADGjgIAAI9Ng
-Date:   Thu, 10 Mar 2022 13:44:50 +0000
-Message-ID: <AM6PR04MB634123A8D9F9F60567C979D4E70B9@AM6PR04MB6341.eurprd04.prod.outlook.com>
-References: <20220309050221.971-1-ming.qian@nxp.com>
- <ab877a4470324d20b558538b52f69391@AcuMS.aculab.com>
- <AM6PR04MB63417FD1C3EE77BBE1649B47E70B9@AM6PR04MB6341.eurprd04.prod.outlook.com>
- <3021738c-06e4-6760-5a70-5b3dc57f1e96@arm.com>
-In-Reply-To: <3021738c-06e4-6760-5a70-5b3dc57f1e96@arm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: zh-CN
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.7; Thu, 10 Mar
+ 2022 13:58:03 +0000
+Received: from FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::d9b4:af3c:b98f:27c9]) by FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM
+ ([fe80::d9b4:af3c:b98f:27c9%7]) with mapi id 15.20.5061.018; Thu, 10 Mar 2022
+ 13:58:03 +0000
+From:   Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>
+To:     "michael.srba@seznam.cz" <michael.srba@seznam.cz>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
+Thread-Topic: [PATCH 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
+Thread-Index: AQHYNITEmoYezx8gQUKC5cBMrab61Ky4pHDx
+Date:   Thu, 10 Mar 2022 13:58:02 +0000
+Message-ID: <FR3P281MB05376BFB1C5DF7C5DD5DEA5BCE0B9@FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM>
+References: <20220310133938.2495-1-michael.srba@seznam.cz>
+ <20220310133938.2495-3-michael.srba@seznam.cz>
+In-Reply-To: <20220310133938.2495-3-michael.srba@seznam.cz>
+Accept-Language: en-US, fr-FR
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
+suggested_attachment_session_id: 5c3f47d3-6209-08ea-a43c-fadb22ecc9d5
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5c7ff4b3-2a92-46ca-62f0-08da029c2687
-x-ms-traffictypediagnostic: DB8PR04MB7036:EE_
-x-microsoft-antispam-prvs: <DB8PR04MB703646D1C9DD5418DDDE66F4E70B9@DB8PR04MB7036.eurprd04.prod.outlook.com>
+x-ms-office365-filtering-correlation-id: 07103349-8a26-4627-8faa-08da029dfed3
+x-ms-traffictypediagnostic: FRYP281MB0941:EE_
+x-microsoft-antispam-prvs: <FRYP281MB09415348FE30851419D43CDDCE0B9@FRYP281MB0941.DEUP281.PROD.OUTLOOK.COM>
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: QO0tAz+DZBiJN/je6IvPZVsXJs3whHHM19u9z+j6vnd+fFO6KbBOG6OrEkLWydXizLehcYlOMvUDuyualGJAia3I4PdSeV+PZyN4wV6z3F1mE8CSCRjaeWRCOXLBzOFIyVjn41JIgeLHMRtV3ooXloiibuZ2oxiD6C2HTuCysTG/blpGp9T2dQN8o+LO4QNbrQUsIrDjfjkq4hNAGz38QKzzjB9VxZa8sa88XVV62YP4G2CLif2FbKEMgwc+IQ31flXwEuymNkZ5VZDQB0izwTo9VhcqV3Xf3tVERFI2j5wLDSjpz3XfHA1R2OP5MGPuyfgv3EpzXgMny43llxOyIklbzqienVdbQ18wAPVDYaC8oTcc4FPZKuNl6UJmcvuCQ8T/mV8Gi9otS7ScB+8uI64MzAShAqCBQ56Mb+dvN2vmB62PJGKB8S1Q6ZnvzFeQ/MnfGMkat5rewhaKK4AMaouwsM6bJNVjx615wJrvV2YXrDub+smHe+OOSKRnyd6IM3yBHgle7HmWwaRaFtlEjPXjbDfTFi0Mi3MnxY7O25poQV3ImcekFAYMYUGJ8Wx+8deCW+c3ThwGdE/ppOhbUyyYE+EVrLB+bLlvW0DRTe1mm9+Tu6gD1oB6vVo0aZ+gfNbSKcI4iQMLszwaxqi+m2FPZTcjuO+mgHJaEuranEDcxjDfBPTfawEFh8Jp+b8QIAIQuDgyj3cgngBjEhdABg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2906002)(4326008)(33656002)(224303003)(5660300002)(7416002)(86362001)(66446008)(64756008)(66476007)(66556008)(76116006)(66946007)(52536014)(44832011)(8936002)(38070700005)(498600001)(110136005)(186003)(26005)(54906003)(38100700002)(7696005)(9686003)(122000001)(55016003)(71200400001)(6506007);DIR:OUT;SFP:1101;
+x-microsoft-antispam-message-info: vDJLyZQzjOyjrO51R5EfYQxWrrmeVZCnXbOd55oq3dT38PeMZ+RJ66ZoyeH+40NcIICdL14gM0TQnB9jFFSUOB4CfMeq/QSu3wQm340Sz0K15Cace32q9lKEqEVB3uXgiV3V8HXqJGy/hJZBSAKg36jEb+ztjT8wHVO53V764SlNCTjnxTvIzPcQhB77zk0GeulwmL7Q9JMs6z+bdMbyR95geSjrC/AnAN81WJ0unNdP0gFELCxi+8N5ZowDoHa0Ho6YfDKHIrOVPN26iDz6s0UoWBfoCAmShdOZU1k6H7p9z5vUlGzRJQS3ldPfOGMS4tZCOxBfkEM/9Fw4xrHdLobHq/0QVlcmWDjhAcalD5XjUjsL0rmZB9IGFLSQvlCHA04T/fDWNIDeUsej9dCIZ11LBAJ3VjhN0CZgkLXVD86/+nyS69hXl1Lk43MvK60UlGkfo+qJcgkacyV5vA0slBSLv9HsXMg5dMUQigWyusAwE+UYNHCG2kEXZ0b4JP2mdfYmqNhuYV7tXqvgXNakWi7tGtDxawBnT7bE/xEsU4vKDbkqToa6fXc9IsL4vhrbB/0ncfnfq4fnPV9xJcrHcfc6Q/eAeKESwwmn7lWbZj1mesXgLxxP5lLHjUAGkNsRFSTmh1MBC0au7cwCjBz7HvNzS13lVHcVT4eK5nt3qDlfqxOGrqVIRltPt1qHHE9i9N/Qo0kSqVa0rnH6w+HAIg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8676002)(316002)(508600001)(64756008)(4326008)(2906002)(38070700005)(9686003)(122000001)(8936002)(110136005)(5660300002)(38100700002)(7696005)(54906003)(71200400001)(6506007)(55016003)(53546011)(52536014)(91956017)(66556008)(66446008)(76116006)(66476007)(66946007)(26005)(186003)(83380400001)(86362001)(33656002);DIR:OUT;SFP:1101;
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?d0sxMG92WUVmNlJhMmYvaElKVlZQdVdONkN4ZDVjYUE4YjZuNGMwMVRETVg3?=
- =?utf-8?B?MFkzb0NZVXBjOWFtR0ZsczNycUZNdW5NaVB2bElrdWVQbitKZVI4ZVpmK3E5?=
- =?utf-8?B?eUhVdU41K2xnMDZTcGNpY3l2QTVhNEZ0Qy9ITThLeHp1dTQycWJzZ2FFQzNh?=
- =?utf-8?B?NmMzU083c1k1YkZITzhTdzhMalJoTmRWMVhuZlppUEJRVVRvSGt4dWZQQWFZ?=
- =?utf-8?B?RmFIZFNXczFLeW04Vk8vYzQrNXRJMzJjTTYxRit6eUpqaHNHUWltT3RteUl1?=
- =?utf-8?B?MTUyNUhDajYzcmFWYzZmbWZydXJXQVhoQUZ0WWRpY1NFVnMzOVlYeE84OTdT?=
- =?utf-8?B?cGx4bCs3a3phVCtsNHJMKytSUE9YY2JUcnViQmdRZm1YZU9hemk0bkw5OFZK?=
- =?utf-8?B?NWRYZXNjRzZFRzgzUHUwYS9Mc0tTRkZsSHM0bEZwMm5SekU5bkc4bEIrTjdB?=
- =?utf-8?B?SlhDUnVLVUs5QlBiaHY4MGIyNkJ3YTJyNjVJRkJKalVFNzBJTVdkcTRTWlBO?=
- =?utf-8?B?T2hpR2dDbk5qbVdlbHV2dFlxUXE0RUhyYWpyUG1tY1pFNFhiN3prcFdtelN3?=
- =?utf-8?B?ckRENmwrUlpldHNPcDU3OTBFcUFQVTNHYjZuV2VQSlhMZEkrQ3NnbnREdHB6?=
- =?utf-8?B?bkRzUkhwdmwyU2xDVEdScDRXdXYxU1hqK1pUV3lwWk1WUFFmNTRjYWltcis5?=
- =?utf-8?B?Z2RScEc5TWpDTTRJL3hJajRndTg4MG1PWFNaK2xRcXZTTTY1NXBmVnQxRC9k?=
- =?utf-8?B?VS9YTEdEczluSU9GRkYxZmxxU1hxK2d4aHB4Zkk1M3JjYkltZThlalVHTDk3?=
- =?utf-8?B?QkVTOE53QVRTNTV1a2U5TldBblRmQitmcEV0ZE9qMXUwVE01ZVdma1JmNGdG?=
- =?utf-8?B?OWk4eUNDeXh0T2N5dTFMREdsUW5CTXZsS0hFdktEZlBEaDcvUVFkV1NUc1g0?=
- =?utf-8?B?Q1dXUlNqWC9KUHpXdlVwQ2plbnE2c3NpampPb2o5OXliaCtWdVBLcjY5U0Nv?=
- =?utf-8?B?eEpmUnZvT2o5SG80M2NsVThOdnI2eHR1UWRIam01eTRpaW03YmErK082cGZv?=
- =?utf-8?B?TER5ODF4TTI0bTZoMGFKbGh2N3RRbWViQjNDVEpoeVlUM2xXYWRVUzRnbWNw?=
- =?utf-8?B?ODAwSXMzVU1IeUNpVDBSSFpua0htS1NJeGJOWGFzUXphdGlSMlV6Z1pWOG9W?=
- =?utf-8?B?ckhldzhCUDZEWXBlWGFUdTBmUU9HVnVEUEtEN2E0dktWa0dabGVObTZ2ZXdY?=
- =?utf-8?B?NUJ5Vy9tdlFRQ1RZVkpjc3gvTE9aWnRRRGI4NzI1eFNtNG1KN3JhWEE1UGJD?=
- =?utf-8?B?MWZPbENzeWZ1S0NncU9hNHBVTlZPRnVYaFk3MGs2cUVqK2MrSzllMElBYVZj?=
- =?utf-8?B?a3M3WVphNWNjMk9qSlBRUi9vTk1NeWw4MmJKK0tkZzUra0NnMTcyUWxlUFNT?=
- =?utf-8?B?a0tMUmMxV3ZBSjBVb2F0cTZGZ21hbHhUVm50MmZJMXpoOWx0ZXdpalQrb0U5?=
- =?utf-8?B?bGIzZHJvcjV0T05LMVdVVTVyUFg2K1pETlFtM1BaaHBCcGtiVTRKSDNkZ2pw?=
- =?utf-8?B?VkxuQWFzcFl0aDBCWjVIRzRjd25DR1FuRC9wSm9FVkZVZmc3OC9kQzlxeFo1?=
- =?utf-8?B?ZEVHZlJPQ0NOT3RVb3lvWDYreUpLYWRHbXFWNkdxTU83S0tqbEZzWUZYaVl2?=
- =?utf-8?B?RHUzSjNtMUF3WjNnWUtocnpINlhpRkF1a1hkZEt2RjJuOSt0K3oxRWxnTGRE?=
- =?utf-8?B?SEE5blplZjgrSmJpek53NXJBMlBZTTdLWXRXZ1dzckNqcVB5b1Z2U1RKdXhZ?=
- =?utf-8?B?ZkxHZUtibHpDaDRpZ0pLMGFDUFVQRHd6VCtJZCt3UWwxbURFL1ZrVHFWS1hR?=
- =?utf-8?B?MjVOenpkdVFpbHdCRTJMdGhJNmFtQU1zaldqSWpCL1FXTHlwU2h2cVpBN1dX?=
- =?utf-8?Q?kS3M8vRWALE=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?A8uwkRBKNSo+9dTf36o3cKCRFLjI35zvnOeER1vaq74WU0JfKlnvQ3/Zu/?=
+ =?iso-8859-1?Q?Hz2cDRtSoClCtlzXGIMmGFY7H5Ly1wi8Q82PK5v7XvDSz/qonUoBqSb3e5?=
+ =?iso-8859-1?Q?pd+PB75X2xiybHyIn+rxoXErmD+/j8A/s7eNqsnxs6UFmloQWhLAaSf3mt?=
+ =?iso-8859-1?Q?+5FnzuXeJdeE+YHBSvfXUOhfhme932GNDSa6Aa9mQ+Y8TcWE5cWbbh8/Uv?=
+ =?iso-8859-1?Q?daiDg44h65cM7JmUmZh6HrwjtaSiTI2ugMWhTxntzNjRAonAxqdDTn3mRZ?=
+ =?iso-8859-1?Q?s+DKjZlUSO+yWGdIr7K25R6E/glWY9rjllg3dnqfNvNhVYij2WSpHsaFSo?=
+ =?iso-8859-1?Q?ScwdJ2zXlDMIG0m0LrnklbB5lriRhI+++e2lSSQNEsJ/U5rk87YQqkA8+u?=
+ =?iso-8859-1?Q?p8yjLiMzTvzRq0vqv+6hdigwHsoBnzIEqpbjamEJBq+bucY8/mAp+eJ+n9?=
+ =?iso-8859-1?Q?XsNm/nO11Xp5mBeqi3VDPgSpapUt2azcVnqY5QMIE1bvJwQWW4FKcQPS34?=
+ =?iso-8859-1?Q?rCxWYWqMCg/+QRZByTrCo8SdgBg7Pyarl9vQLAPzs+MqdYAiFvPHndlvlN?=
+ =?iso-8859-1?Q?9W7TSnUFEf6ChwI03GN3ZcUc4197praKVcp5+c5uKn6k5Ohbiy1p0n5EHQ?=
+ =?iso-8859-1?Q?O58/J2v+qkzMv3e3ifoSbZCZ7JOd8efKhSHsI7olifxWBW8PjffCFOYf5b?=
+ =?iso-8859-1?Q?nsgG/DdDupqPlpNImoVxCl0vhJlc5U2TvRBFSRMDPcedeY+KhWgZZu02vC?=
+ =?iso-8859-1?Q?qPKon6Ue5UelxR1q4PdOdTsqwnjX85yVRBFS+QZ7dnvdAHbweiIzhytzF9?=
+ =?iso-8859-1?Q?PZI1K+qLfpDvoCsITmBldnr2ClQ432GfF9qvBwPHivVkVqeLZOZRN2cD7+?=
+ =?iso-8859-1?Q?jQPHf9eiYe1Vo1ljPeyp6YonbVfEzslBULQWnvIHcxYy0N/XCDOtxCZQSy?=
+ =?iso-8859-1?Q?t6R5TJAcSH0YUeex7/tkHET5Sg7T7VTA+GznqoFxNMw6dcdV5aFQtb2R9F?=
+ =?iso-8859-1?Q?3iPFaplzfWHI55aAhriqSGfWzVKU13lqfZ6eB3yOD3Sln2KH0SB+1m0brF?=
+ =?iso-8859-1?Q?22UHCcjcjT62+UQItZ8dueO3tCxM3v/q6/TkiYNIBZgz1pIV3F16r+cQ2J?=
+ =?iso-8859-1?Q?w2f3EIoEspiWhR/xcbhzXtR7i0uEMClb11AyJgDIZNR+6BNKMpPRyOUn5r?=
+ =?iso-8859-1?Q?20fcz3IaipdiyXg4Up6keBVDe/qJFrStq/ALQdQXRz0dCLFEPrBEue5u9k?=
+ =?iso-8859-1?Q?O700dojdWX7z93D8cnpS0fuioj7RJNzoY1TuKEmbKuEUeW6SSvS5Q6uGwv?=
+ =?iso-8859-1?Q?4hyEinLluwkP8fIDKFbd4XPM5gHwmQM5gAWr0RJ8lj2h+PeOF1jzDJU15V?=
+ =?iso-8859-1?Q?cf+FwNp3izNUC1Sz7GL/4tR30htmG/PCguLuPOPiHQ0TsfUnZtcMIt9PVx?=
+ =?iso-8859-1?Q?I7jdMNfL9WqPRq+ir6v+tZsJweX68ekpdF4OsPj4W10jI8CMg2YNeIr2P/?=
+ =?iso-8859-1?Q?/KQQTChCmqUefgZ15vlWZzz/ROy/4XZegd4499tqekDg=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
+X-OriginatorOrg: tdk.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c7ff4b3-2a92-46ca-62f0-08da029c2687
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2022 13:44:51.0125
+X-MS-Exchange-CrossTenant-AuthSource: FR3P281MB0537.DEUP281.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07103349-8a26-4627-8faa-08da029dfed3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2022 13:58:02.9902
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 7e452255-946f-4f17-800a-a0fb6835dc6c
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6DJv67cy14phA1FlOw9ozUR51Knmh17ftYvlOYExGqAY7GcQDXEqd4paPrXUkfuB+e45jgoqM3BVagAHzkS1+A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7036
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-userprincipalname: 0JUG+Qw30MPgQOJkN4IJuKppFsBPoYvRKoErpuuUsyzl/1vLX0S+AqxFjPHlxjdKKQTuQqAoxr8QzYWulxj0vHkDE78gjcybRRS0RtRSRBg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: FRYP281MB0941
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.816,Hydra:6.0.425,FMLib:17.11.64.514
+ definitions=2022-03-10_03,2022-03-09_01,2022-02-23_01
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+Pg0KPiA+PiBGcm9tOiBNaW5nIFFpYW4NCj4gPj4+IFNlbnQ6IDA5IE1hcmNoIDIwMjIgMDU6
-MDINCj4gPj4gLi4uDQo+ID4+PiAzLiB1c2UgJ3ZhbCA+PiAxJyBpbnN0ZWFkIG9mICcgdmFsIC8g
-MicNCj4gPj4NCj4gPj4gVGhlIGNvbXBpbGVyIHNob3VsZCBkbyB0aGF0IGFueXdheS4NCj4gPj4N
-Cj4gPj4gRXNwZWNpYWxseSBmb3IgdW5zaWduZWQgdmFsdWVzLg0KPiA+PiBBbmQgaXQgaGFzIHRo
-ZSB3cm9uZyAoZGlmZmVyZW50KSByb3VuZGluZyBmb3IgbmVnYXRpdmUgdmFsdWVzLg0KPiA+Pg0K
-PiA+PiAgICAgICAgICBEYXZpZA0KPiA+Pg0KPiA+DQo+ID4gSGkgRGF2aWQsDQo+ID4gICAgICBZ
-ZXMsIHlvdSBhcmUgcmlnaHQsIGlmIHRoZSB2YWx1ZSBpcyBuZWdhdGl2ZSwgdGhlIGJlaGF2aW9y
-IGlzIHdyb25nLg0KPiA+ICAgICAgQnV0IGhlcmUsIHRoZSB2YWx1ZSB0eXBlIGlzIHUzMiwgc28g
-SSB0aGluayBpdCdzIE9LLg0KPiANCj4gV2VsbCwgaXQgZGVwZW5kcyBvbiB0aGUgc2VtYW50aWMg
-aW50ZW50LCByZWFsbHkuIElmIHlvdSdyZSBwYWNraW5nIGEgYml0ZmllbGQNCj4gd2hpY2ggZW5j
-b2RlcyBiaXRzIDMxOjEgb2Ygc29tZSB2YWx1ZSB0aGVuIGEgc2hpZnQgaXMgdGhlIG1vc3QgYXBw
-cm9wcmlhdGUNCj4gb3BlcmF0aW9uLiBIb3dldmVyIGlmIHlvdSdyZSBsaXRlcmFsbHkgY2FsY3Vs
-YXRpbmcgaGFsZiBvZiBhIHZhbHVlIGZvciwgc2F5LCBhIDUwJQ0KPiB0aHJlc2hvbGQgbGV2ZWws
-IG9yIHRoZSBudW1iZXIgb2YgMTYtYml0IHdvcmRzIHJlcHJlc2VudGVkIGJ5IGEgYnl0ZSBsZW5n
-dGgsDQo+IHRoZW4gc2VtYW50aWNhbGx5IGl0J3MgYSBkaXZpc2lvbiwgc28gaXQgc2hvdWxkIHVz
-ZSB0aGUgZGl2aWRlIG9wZXJhdG9yIHJhdGhlcg0KPiB0aGFuIG9iZnVzY2F0aW5nIGl0IGJlaGlu
-ZCBhIHNoaWZ0LiBDb25zdGFudCBkaXZpc2lvbiBpcyBzb21ldGhpbmcgdGhhdCBldmVuDQo+IHRo
-ZSBtb3N0IGJhc2ljIG9wdGltaXNpbmcgY29tcGlsZXIgc2hvdWxkIGhhbmRsZSB3aXRoIGVhc2Uu
-DQo+DQpIaSBSb2JpbiwNCg0KICAgIFRoYW5rcyBmb3IgdGhlIGRldGFpbGVkIGV4cGxhbmF0aW9u
-LCBhbmQgSSBhZ3JlZSB3aXRoIHlvdSwgSSB3aWxsIHVzZSAiIC8gMiIgaW4gdGhlIHYyIHBhdGNo
-IGFzIGl0J3MgaW5kZWVkIGNhbGN1bGF0aW5nIGhhbGYgb2YgYSB2YWx1ZS4NCiANCg0KPiBPbmUg
-bW9yZSB0aGluZyB0aGF0J3Mgbm90IHRoZSBmYXVsdCBvZiB0aGlzIHBhdGNoLCBidXQgc3Rvb2Qg
-b3V0IGluIHRoZQ0KPiBjb250ZXh0Og0KPiANCj4gQEAgLTE1NjYsNyArMTU2OCw3IEBAIHN0YXRp
-YyBib29sIHZwdV9tYWxvbmVfY2hlY2tfcmVhZHkoc3RydWN0DQo+IHZwdV9zaGFyZWRfYWRkciAq
-c2hhcmVkLCB1MzIgaW5zdGFuY2UpDQo+ICAgICAgICAgdTMyIHdwdHIgPSBkZXNjLT53cHRyOw0K
-PiAgICAgICAgIHUzMiB1c2VkID0gKHdwdHIgKyBzaXplIC0gcnB0cikgJSBzaXplOw0KPiANCj4g
-LSAgICAgICBpZiAoIXNpemUgfHwgdXNlZCA8IHNpemUgLyAyKQ0KPiArICAgICAgIGlmICghc2l6
-ZSB8fCB1c2VkIDwgKHNpemUgPj4gMSkpDQo+ICAgICAgICAgICAgICAgICByZXR1cm4gdHJ1ZTsN
-Cj4gDQo+ICAgICAgICAgcmV0dXJuIGZhbHNlOw0KPiANCj4gVGhhdCdzIG5vdCBzYWZlOiBpZiAi
-c2l6ZSIgaXMgMCB0aGVuIHRoZSB1bmRlZmluZWQgYmVoYXZpb3VyIGhhcyBhbHJlYWR5DQo+IGhh
-cHBlbmVkIGJlZm9yZSB0aGUgIiFzaXplIiBjaGVjayBpcyByZWFjaGVkLiBJZiAic2l6ZSIgcmVh
-bGx5IGNhbiBiZSAwLCB0aGVuIGl0DQo+IG5lZWRzIHRvIGJlIGNoZWNrZWQgKmJlZm9yZSogaXQg
-aXMgdXNlZCBhcyBhIGRpdmlzb3IgdG8gY2FsY3VsYXRlICJ1c2VkIi4NCj4gDQo+IFJvYmluLg0K
-DQpZZXMsIGl0J3MgcHJvYmxlbSwgYW5kIERhbiBoYXMgYWxzbyBwb2ludGVkIGl0LCBJICdsbCBm
-aXggaXQgaW4gYW5vdGhlciBwYXRjaC4NCg0KTWluZw0K
+Hello,=0A=
+=0A=
+you're all right, thanks for the patch.=0A=
+=0A=
+Acked-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>=0A=
+=0A=
+=0A=
+From: michael.srba@seznam.cz <michael.srba@seznam.cz>=0A=
+Sent: Thursday, March 10, 2022 14:39=0A=
+To: Jonathan Cameron <jic23@kernel.org>; Lars-Peter Clausen <lars@metafoo.d=
+e>; Rob Herring <robh+dt@kernel.org>=0A=
+Cc: Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>; linux-iio@vger.kerne=
+l.org <linux-iio@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@v=
+ger.kernel.org>; Michael Srba <Michael.Srba@seznam.cz>=0A=
+Subject: [PATCH 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D =0A=
+=A0=0A=
+=A0CAUTION: This email originated from outside of the organization. Please =
+make sure the sender is who they say they are and do not click links or ope=
+n attachments unless you recognize the sender and know the content is safe.=
+=0A=
+=0A=
+From: Michael Srba <Michael.Srba@seznam.cz>=0A=
+=0A=
+The difference between the ICM-20608-D and the other ICM-20608=0A=
+variants is the addition of a DMP (Digital Motion Processor) core.=0A=
+This difference is deemed substantial enough to change the WHOAMI=0A=
+register value.=0A=
+Since this driver doesn't currently acknowledge the exisence of=0A=
+something like a DMP core, simply copy ICM-20608 except for the=0A=
+aforementioned WHOAMI register.=0A=
+=0A=
+Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>=0A=
+---=0A=
+=A0drivers/iio/imu/inv_mpu6050/Kconfig=A0=A0=A0=A0=A0=A0=A0 | 4 ++--=0A=
+=A0drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 9 +++++++++=0A=
+=A0drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c=A0 | 6 ++++++=0A=
+=A0drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h=A0 | 2 ++=0A=
+=A0drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c=A0 | 5 +++++=0A=
+=A05 files changed, 24 insertions(+), 2 deletions(-)=0A=
+=0A=
+diff --git a/drivers/iio/imu/inv_mpu6050/Kconfig b/drivers/iio/imu/inv_mpu6=
+050/Kconfig=0A=
+index 9c625517173a..3636b1bc90f1 100644=0A=
+--- a/drivers/iio/imu/inv_mpu6050/Kconfig=0A=
++++ b/drivers/iio/imu/inv_mpu6050/Kconfig=0A=
+@@ -16,7 +16,7 @@ config INV_MPU6050_I2C=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 select REGMAP_I2C=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 help=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This driver supports the Invensense MPU6050/=
+9150,=0A=
+-=A0=A0=A0=A0=A0=A0=A0=A0 MPU6500/6515/6880/9250/9255, ICM20608/20609/20689=
+, ICM20602/ICM20690=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0 MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20=
+689, ICM20602/ICM20690=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 and IAM20680 motion tracking devices over I2=
+C.=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This driver can be built as a module. The mo=
+dule will be called=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 inv-mpu6050-i2c.=0A=
+@@ -28,7 +28,7 @@ config INV_MPU6050_SPI=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 select REGMAP_SPI=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 help=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This driver supports the Invensense MPU6000,=
+=0A=
+-=A0=A0=A0=A0=A0=A0=A0=A0 MPU6500/6515/6880/9250/9255, ICM20608/20609/20689=
+, ICM20602/ICM20690=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0 MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20=
+689, ICM20602/ICM20690=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 and IAM20680 motion tracking devices over SP=
+I.=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 This driver can be built as a module. The mo=
+dule will be called=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 inv-mpu6050-spi.=0A=
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/i=
+nv_mpu6050/inv_mpu_core.c=0A=
+index 597768c29a72..86fbbe904050 100644=0A=
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c=0A=
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c=0A=
+@@ -217,6 +217,15 @@ static const struct inv_mpu6050_hw hw_info[] =3D {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .temp =3D {INV_ICM20608_TE=
+MP_OFFSET, INV_ICM20608_TEMP_SCALE},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .startup_time =3D {INV_MPU=
+6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 },=0A=
++=A0=A0=A0=A0=A0=A0 {=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .whoami =3D INV_ICM20608D_WHOAM=
+I_VALUE,=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .name =3D "ICM20608D",=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .reg =3D &reg_set_6500,=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .config =3D &chip_config_6500,=
+=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .fifo_size =3D 512,=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .temp =3D {INV_ICM20608_TEMP_OF=
+FSET, INV_ICM20608_TEMP_SCALE},=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .startup_time =3D {INV_MPU6500_=
+GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},=0A=
++=A0=A0=A0=A0=A0=A0 },=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .whoami =3D INV_ICM20609_W=
+HOAMI_VALUE,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .name =3D "ICM20609",=0A=
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c b/drivers/iio/imu/in=
+v_mpu6050/inv_mpu_i2c.c=0A=
+index fe03707ec2d3..ed52b27409ac 100644=0A=
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c=0A=
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c=0A=
+@@ -29,6 +29,7 @@ static bool inv_mpu_i2c_aux_bus(struct device *dev)=0A=
+=A0=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 switch (st->chip_type) {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 case INV_ICM20608:=0A=
++=A0=A0=A0=A0=A0=A0 case INV_ICM20608D:=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 case INV_ICM20609:=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 case INV_ICM20689:=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 case INV_ICM20602:=0A=
+@@ -182,6 +183,7 @@ static const struct i2c_device_id inv_mpu_id[] =3D {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"mpu9250", INV_MPU9250},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"mpu9255", INV_MPU9255},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20608", INV_ICM20608},=0A=
++=A0=A0=A0=A0=A0=A0 {"icm20608d", INV_ICM20608D},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20609", INV_ICM20609},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20689", INV_ICM20689},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20602", INV_ICM20602},=0A=
+@@ -225,6 +227,10 @@ static const struct of_device_id inv_of_match[] =3D {=
+=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensens=
+e,icm20608",=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM2=
+0608=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 },=0A=
++=A0=A0=A0=A0=A0=A0 {=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensense,icm=
+20608d",=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM20608D=
+=0A=
++=A0=A0=A0=A0=A0=A0 },=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensens=
+e,icm20609",=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM2=
+0609=0A=
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/in=
+v_mpu6050/inv_mpu_iio.h=0A=
+index c6aa36ee966a..8e14f20b1314 100644=0A=
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h=0A=
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h=0A=
+@@ -76,6 +76,7 @@ enum inv_devices {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_MPU9250,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_MPU9255,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_ICM20608,=0A=
++=A0=A0=A0=A0=A0=A0 INV_ICM20608D,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_ICM20609,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_ICM20689,=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 INV_ICM20602,=0A=
+@@ -394,6 +395,7 @@ struct inv_mpu6050_state {=0A=
+=A0#define INV_MPU9255_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 0x73=0A=
+=A0#define INV_MPU6515_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 0x74=0A=
+=A0#define INV_ICM20608_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 0xAF=0A=
++#define INV_ICM20608D_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0xA=
+E=0A=
+=A0#define INV_ICM20609_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 0xA6=0A=
+=A0#define INV_ICM20689_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 0x98=0A=
+=A0#define INV_ICM20602_WHOAMI_VALUE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 0x12=0A=
+diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c b/drivers/iio/imu/in=
+v_mpu6050/inv_mpu_spi.c=0A=
+index 6800356b25fb..ce8ab6db2bf2 100644=0A=
+--- a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c=0A=
++++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c=0A=
+@@ -74,6 +74,7 @@ static const struct spi_device_id inv_mpu_id[] =3D {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"mpu9250", INV_MPU9250},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"mpu9255", INV_MPU9255},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20608", INV_ICM20608},=0A=
++=A0=A0=A0=A0=A0=A0 {"icm20608d", INV_ICM20608D},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20609", INV_ICM20609},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20689", INV_ICM20689},=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {"icm20602", INV_ICM20602},=0A=
+@@ -113,6 +114,10 @@ static const struct of_device_id inv_of_match[] =3D {=
+=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensens=
+e,icm20608",=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM2=
+0608=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 },=0A=
++=A0=A0=A0=A0=A0=A0 {=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensense,icm=
+20608d",=0A=
++=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM20608D=
+=0A=
++=A0=A0=A0=A0=A0=A0 },=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0 {=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .compatible =3D "invensens=
+e,icm20609",=0A=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .data =3D (void *)INV_ICM2=
+0609=0A=
+-- =0A=
+2.34.1=0A=
