@@ -2,154 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 527CA4D47BB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:09:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 104CE4D4801
+	for <lists+devicetree@lfdr.de>; Thu, 10 Mar 2022 14:25:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242287AbiCJNJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 08:09:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60354 "EHLO
+        id S242387AbiCJNZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 08:25:50 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46952 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233180AbiCJNJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:09:48 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9EA644771;
-        Thu, 10 Mar 2022 05:08:46 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id DBF4F20009;
-        Thu, 10 Mar 2022 13:08:42 +0000 (UTC)
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-media@vger.kernel.org (open list:OMNIVISION OV5670 SENSOR DRIVER),
-        robh@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
-Date:   Thu, 10 Mar 2022 14:08:24 +0100
-Message-Id: <20220310130829.96001-2-jacopo@jmondi.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220310130829.96001-1-jacopo@jmondi.org>
-References: <20220310130829.96001-1-jacopo@jmondi.org>
+        with ESMTP id S239480AbiCJNZt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 08:25:49 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8214D4C85
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:24:48 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2F0BB3F4BC
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 13:24:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646918687;
+        bh=AC2QV+BOHtvgXwOifEM5ca7aMnsr4tiE4ebM/MHFh6A=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=qyHJdoGNlIK0srWqi4VrDXjZsdZ9cWdy7a87s78PZy32tSo2ZAktOA2rI8z+fMNm+
+         +saeeae/TAO2ttLDHFHqzUu/9aphnYtcsgypfsBP7sxGcuAaKO8NmfVwKVYSigYByf
+         Sshb7APxwH4ydWUVWyt0TUtm4SdFxJJjvjlSlBOXBDHJzazFY6uaOmjV2hhSMGMvHl
+         x0rW+PoOurcjywDK+1XQg82Hae0rDxfYB8BGsdtlIfaOYAyczU2lzIuwlheDrLdCSp
+         CLKYIwDlPhubJQYkW8oDPdm7jjqqCiV7D+R2PdBH+hmkn0WeTYAxH59Rk/hFV4zG+c
+         v714aKTmfD1PQ==
+Received: by mail-ej1-f71.google.com with SMTP id ga31-20020a1709070c1f00b006cec400422fso3074619ejc.22
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 05:24:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=AC2QV+BOHtvgXwOifEM5ca7aMnsr4tiE4ebM/MHFh6A=;
+        b=14USRaLIA+MGI1xxG9GRQ6ZwpMMrBMM6i8lTdjFUUBSsD1dJvwMMJVR6wGmXfe2b/c
+         Gej8VKLGI/YPZlSEQyJFmE00OduR/2asLE+KFyIs3Yrz115s8V4Vh9ldtmK2x6S1WUyJ
+         uhVwTi0GrltFkBeJLwdmvsozubXvVjVDnxDFCTs5waW1yDl8yW89/kIev8VZv4JFPiDt
+         pgQtQkLWWKQ62UbPBYpxh7pqtUF8XNKUrRa0BGqJ04Nt+SkF24NI4EOMxua1pwKwAd+1
+         Q0QeNhWdpO2mDx99XXGz5wmYnJUzW6ahMoWGbZerhYrVhoKzxrc+FCFVT3yVxQ9CXt2F
+         nIlA==
+X-Gm-Message-State: AOAM532bwzHzK535/aDI3YJSYlrRvQUVRqkDuZOOW9+YyY5wvSZLVpJy
+        jEenw6XlLg10VE2OtaXn9srmiyz8oZvXE+B9ql8x2dP6sVfNiszntjMfIX/OFUtKnQyZI5nrMEI
+        XqfwZl0b2FLKJFgFrgyWncU91TCWac8zY/7LWW74=
+X-Received: by 2002:a17:907:c16:b0:6db:682:c8c9 with SMTP id ga22-20020a1709070c1600b006db0682c8c9mr4311071ejc.153.1646918686628;
+        Thu, 10 Mar 2022 05:24:46 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxh96pIcaZjepw8fDG5gEIFBY3lCXTrIeHF6wSWe/4lVWb3KtEgtjp2SDkTN4L1ahVqkj5lJg==
+X-Received: by 2002:a17:907:c16:b0:6db:682:c8c9 with SMTP id ga22-20020a1709070c1600b006db0682c8c9mr4311039ejc.153.1646918686230;
+        Thu, 10 Mar 2022 05:24:46 -0800 (PST)
+Received: from [192.168.0.144] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id m24-20020a170906161800b006d420027b63sm1780101ejd.18.2022.03.10.05.24.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Mar 2022 05:24:45 -0800 (PST)
+Message-ID: <6f34f80e-da06-337d-167e-2410309e0f4d@canonical.com>
+Date:   Thu, 10 Mar 2022 14:24:45 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: xilinx-cpm: Add Versal CPM5 Root
+ Port
+Content-Language: en-US
+To:     Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, michals@xilinx.com,
+        robh@kernel.org
+References: <20220309120025.6721-1-bharat.kumar.gogada@xilinx.com>
+ <20220309120025.6721-2-bharat.kumar.gogada@xilinx.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220309120025.6721-2-bharat.kumar.gogada@xilinx.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Provide the bindings documentation for Omnivision OV5670 image sensor.
+On 09/03/2022 13:00, Bharat Kumar Gogada wrote:
+> Xilinx Versal Premium series has CPM5 block which supports Root Port
+> functioning at Gen5 speed.
+> 
+> Add support for YAML schemas documentation for Versal CPM5 Root Port driver.
+> 
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@xilinx.com>
+> ---
+>  .../bindings/pci/xilinx-versal-cpm.yaml       | 47 ++++++++++++++++---
+>  1 file changed, 40 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> index 32f4641085bc..97c7229d7f91 100644
+> --- a/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> +++ b/Documentation/devicetree/bindings/pci/xilinx-versal-cpm.yaml
+> @@ -14,17 +14,21 @@ allOf:
+>  
+>  properties:
+>    compatible:
+> -    const: xlnx,versal-cpm-host-1.00
+> +    contains:
+> +      enum:
+> +        - xlnx,versal-cpm-host-1.00
+> +        - xlnx,versal-cpm5-host-1.00
+>  
+>    reg:
+> -    items:
+> -      - description: Configuration space region and bridge registers.
+> -      - description: CPM system level control and status registers.
+> +    description: |
+> +      Should contain cpm_slcr, cfg registers location and length.
+> +      For xlnx,versal-cpm5-host-1.00, it should also contain cpm_csr.
+> +    minItems: 2
+> +    maxItems: 3
 
-Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
----
- .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
- 1 file changed, 93 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+You removed here list of items, which should stay. See also
+https://elixir.bootlin.com/linux/latest/source/Documentation/devicetree/bindings/example-schema.yaml#L91
+how to do it.
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-new file mode 100644
-index 000000000000..dc4a3297bf6f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Omnivision OV5670 5 Megapixels raw image sensor
-+
-+maintainers:
-+  - Jacopo Mondi <jacopo@jmondi.org>
-+
-+description: |-
-+  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-+  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-+  controlled through an I2C compatible control bus.
-+
-+properties:
-+  compatible:
-+    const: ovti,ov5670
-+
-+  reg:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description: Frequency of the xclk clock.
-+
-+  pwdn-gpios:
-+    description: Reference to the GPIO connected to the PWDNB pin. Active low.
-+
-+  reset-gpios:
-+    description:
-+      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
-+
-+  avdd-supply:
-+    description: Analog circuit power. Typically 2.8V.
-+
-+  dvdd-supply:
-+    description: Digital circuit power. Typically 1.2V.
-+
-+  dovdd-supply:
-+    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-+
-+  port:
-+    $ref: /schemas/graph.yaml#/$defs/port-base
-+    additionalProperties: false
-+
-+    properties:
-+      endpoint:
-+        $ref: /schemas/media/video-interfaces.yaml#
-+        unevaluatedProperties: false
-+
-+        properties:
-+          data-lanes:
-+            description: The sensor supports 1 or 2 data lanes operations.
-+            minItems: 1
-+            maxItems: 2
-+            items:
-+              maximum: 2
-+
-+          clock-noncontinuous: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clock-frequency
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        ov5670: sensor@36 {
-+            compatible = "ovti,ov5670";
-+            reg = <0x36>;
-+
-+            clock-frequency=<19200000>;
-+
-+            port {
-+                endpoint {
-+                    remote-endpoint = <&csi_ep>;
-+                    data-lanes = <1 2>;
-+                    clock-noncontinuous;
-+                };
-+            };
-+        };
-+    };
-+
-+...
-+
---
-2.35.1
+>  
+>    reg-names:
+> -    items:
+> -      - const: cfg
+> -      - const: cpm_slcr
+> +    minItems: 2
+> +    maxItems: 3
 
+The same.
+
+
+Best regards,
+Krzysztof
