@@ -2,62 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D50E34D5D21
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6EED4D5D26
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:19:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229703AbiCKIS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 03:18:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43668 "EHLO
+        id S231601AbiCKIUm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 03:20:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51136 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229620AbiCKIS1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:18:27 -0500
-Received: from mout.kundenserver.de (mout.kundenserver.de [217.72.192.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444C41B8CB5;
-        Fri, 11 Mar 2022 00:17:24 -0800 (PST)
-Received: from mail-wr1-f46.google.com ([209.85.221.46]) by
- mrelayeu.kundenserver.de (mreue107 [213.165.67.113]) with ESMTPSA (Nemesis)
- id 1MpUpW-1nwThm1qzk-00prhv; Fri, 11 Mar 2022 09:17:22 +0100
-Received: by mail-wr1-f46.google.com with SMTP id u1so11704418wrg.11;
-        Fri, 11 Mar 2022 00:17:22 -0800 (PST)
-X-Gm-Message-State: AOAM533ellch/TqZN+Q5xc7nIy2XGsw4SOZkbtAe2aIAgWPned9+a5kF
-        ciI7Qx6ZWqDCPpFBjni1jjy4SHTxj2VdampZyLw=
-X-Google-Smtp-Source: ABdhPJxW9i4kWyg9zMNuwRBJdGfRXF75+O2MaNREzCYFAU5RyTteMHh2HAc2KSsF8wE4U2Ykbk+U4J8RF+irfdK2wIA=
-X-Received: by 2002:a5d:6d0f:0:b0:203:9157:1c48 with SMTP id
- e15-20020a5d6d0f000000b0020391571c48mr3565281wrq.192.1646986642028; Fri, 11
- Mar 2022 00:17:22 -0800 (PST)
+        with ESMTP id S229531AbiCKIUm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:20:42 -0500
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 224111B3A5D;
+        Fri, 11 Mar 2022 00:19:38 -0800 (PST)
+Received: from mail-wr1-f52.google.com ([209.85.221.52]) by
+ mrelayeu.kundenserver.de (mreue011 [213.165.67.97]) with ESMTPSA (Nemesis) id
+ 1M2w4S-1nRUZB0z4W-003JZk; Fri, 11 Mar 2022 09:19:37 +0100
+Received: by mail-wr1-f52.google.com with SMTP id u1so11711576wrg.11;
+        Fri, 11 Mar 2022 00:19:37 -0800 (PST)
+X-Gm-Message-State: AOAM532rgpXhBShZrOQdXJ4Q6esGn7jjbOndTtDF0yRG1uR96PSmDKQH
+        jJZyp4OOdqJ6yZmlqACUOaMF53SHjoAyeoMghuk=
+X-Google-Smtp-Source: ABdhPJxWyOrVHPAd6W5M2rcxGMy+ZmZs2SFgKCrOVAaFDflfl6gItQqEvF+hSHJSQdSa0qDb39ePN/xMvFTNUGT9Yz4=
+X-Received: by 2002:adf:f606:0:b0:203:8dff:f4ac with SMTP id
+ t6-20020adff606000000b002038dfff4acmr4269722wrp.12.1646986776850; Fri, 11 Mar
+ 2022 00:19:36 -0800 (PST)
 MIME-Version: 1.0
-References: <20220310195229.109477-1-nick.hawkins@hpe.com> <20220310195229.109477-9-nick.hawkins@hpe.com>
-In-Reply-To: <20220310195229.109477-9-nick.hawkins@hpe.com>
+References: <20220310195123.109359-1-nick.hawkins@hpe.com>
+In-Reply-To: <20220310195123.109359-1-nick.hawkins@hpe.com>
 From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 11 Mar 2022 09:17:06 +0100
-X-Gmail-Original-Message-ID: <CAK8P3a0Wsd31DhPKZefm9742M-4B3ofg=CsS9+P4nXxM=4HsVg@mail.gmail.com>
-Message-ID: <CAK8P3a0Wsd31DhPKZefm9742M-4B3ofg=CsS9+P4nXxM=4HsVg@mail.gmail.com>
-Subject: Re: [PATCH v3 09/10] arch: arm: boot: dts: Introduce HPE GXP Device tree
+Date:   Fri, 11 Mar 2022 09:19:21 +0100
+X-Gmail-Original-Message-ID: <CAK8P3a1z6bCfhMUzqjDNaNWky52vH+NjQA5Qpo=0tABv4Z1Ocw@mail.gmail.com>
+Message-ID: <CAK8P3a1z6bCfhMUzqjDNaNWky52vH+NjQA5Qpo=0tABv4Z1Ocw@mail.gmail.com>
+Subject: Re: [PATCH v3 00/10] ARM: Introduce HPE GXP Architecture
 To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
 Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Russell King - ARM Linux <linux@armlinux.org.uk>,
         Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        SoC Team <soc@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        SoC Team <soc@kernel.org>, DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        LINUXWATCHDOG <linux-watchdog@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:8cocoZevybXR4kFILZyRCw0eiL4NGtsI9VyU2vmi95kWWuEXy08
- LnHCZ7jFwXvyZIE6sbWIQVLGPqhu67xmWBJ8tdfeJdwURslZg58LFxwz09eHPUwJO3aUWD1
- Lhtcc14o8TwF4LdZpk7xBMDW7roRqW95Zc/gVXU5AXdllx+arD4NpZg1UHAbpESsSRsmfh0
- GqTxCqL4ValazBMydxwzA==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:79isolIR82c=:W2atddsB7BLkCvWXUgr6Lu
- u/kFoy3wDM2y1+6UrOcieW7yJi4B/TpURGNAOLahn2lYxfvhUMq/OZxbeojL0b0wLF6Ky3n/d
- qyEj5jVzgy1S4Dj9PZ9RCapN6NzBJEWmVD2HS5ERTp+DlL2I/LIgnFL5bRHYxeIRUnOYRsGFl
- HHWl0oimivPlcgUF/+IBSTlxih74yfGm1LSdaYkEuD+ucCOyaiy7gGGVNH4FIRFJzcf3mN8P6
- Ea83TDGNBGvIhkADVFJL+cZ0OeyZjaE08wH00cJFA2slA7IrSTEfx0K2ucOns7FCeoTUAkMUl
- S+12RLEwk2qChqAxAG0gfwEeNT82sT2hCxrqoHPS58s67YYUvuGa5ryhtmUqXKjtjIKl2t3h6
- ydA1A0pjwLXRRheb8SJHB93BdrCglMMM1LdyPRePX0zMaBw2zejP+TqgotoaPGkTGzpTYMRqo
- bnwq1QsIV1C6iffxutwbYQ/jkhoN6uYm7rgFhvfkxhbUIzgQ5tzcmudyThKWtooYnlSiNNQPU
- 8qfs1CR7IsMoRNA/f2C3ik+hLdanlQMy5DqPJsiAG86DA6M0vFVOLUn5YuWPlT83Abc8ziRpV
- 74C31+CqaU8n824srPfFgWZnUHol2jYAEOySxqlrfcO9UlLDLJilmIN4Yh1VqiAZrL15RHSHp
- gBB/0uMqa58ShOayJ8DrDSqxGt7KWMoOmPINDPTaR1rLiwzL935FoJQ1p+HbMuCRs3vHNJeD7
- iomSYQtycGyo6Dz4R08Hb1LTyG4BE19U3BHIZIwbBuluc+RL6K63az2i3iPaDicn/CGHZAgcm
- 4lGWIP8cjL0rEqeiWtblAQ0xcOuDKbmWjF0tiPU2jVYglA2UOY=
+X-Provags-ID: V03:K1:ziDwfFtTkLuUoe0kpElF7+aylqnFrBKJHdKAQTnZAMeCZiJnoR7
+ vBDunRWTaeqUZazAYYaVO9yFeHFIuRZviwmlZmt3l34REitNEqB0m22M3DIfwKweHQoxl7P
+ xaWYVzknTn+576XmsQjEwHX/VrqfakLliWkK511V4sO+4WQXNCaIYPJiqJGkxa+4KQSMBGy
+ xGe2im0WgMrpNhJ+ycOmA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:GIhOawk0cjI=:lvL5EdyDm3ebaUaiAAnMG+
+ H8Autp7mML077zviMO2lu1lgnsvmCMTMMyj1DnB41c8EuxVx5QlDdNn8ROuOv/DGjJLKkm1FS
+ T9zc91JZAqJC7TsMDuwwV7OmI1Og/KJD1qs9ALA47CWzTY6YRy/wwuxQJGzcjr+4os+b2PDbP
+ A+CFX556AjG2OniKOLBUciON78ptU8uIbqnFe+YxHmPx/rMJ+S3a5Kj0w5wHr1DkKFfRly0qK
+ nl62anqUZ9Ga8YYMvk8dlJr37UCr5JIGxKObAQef0wlsXgDUtKX0knkzw/zPZPo3GOdptbRKj
+ D3RuwZMAJ8gqCpJo6Ax6Qe2gfr/XHDkera54OUcWODvPSzfrsbDlN4HHQKbWOyFd/Gwqq3MrH
+ Ml54hZ0eCImMyPoJIJHJMfuw3CqGu5XRo5ZN/caqmkCW0gNwjBprfI9QptYRJon4a9Sp3feB0
+ layPZoUogfOOEc1E+4ReW6/JCy0zmmL/jYmImnJ7AZWQeNnag8/OQvW8hdJPUEMj83Fzhor9+
+ 3C3ElA43ouE8i8L7GgBN7HqX0GwYz7zOGHkso0MHcGbnW8WIGBkhFr9Y+lTDsPXsLTqLVo35R
+ 3eMnpOlKfabqoGN827GqkM5R4U5nULoHG20B0AY34A8JFw4mYdn6UrOqYGSwA2sIvLAF6O42d
+ /kLbR5qpmMQl/U4g0yoFLUqKQO1/Amp8P4ajVF6fjxWde0HUchb+8WBPkHgtdHjavAmuUUvYU
+ BivhNPGY0kevzleJBLtUMrCrzuUXIN4oBD/jld4CccCEeoIdj8B1OWpE5XjOwgul1S5+lTvkS
+ 4oceWKET0/5Jbggqw81Gr/By7ul7GHZtqXsJpZJB7UsD6vFPSY=
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
@@ -67,112 +73,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 10, 2022 at 8:52 PM <nick.hawkins@hpe.com> wrote:
+On Thu, Mar 10, 2022 at 8:51 PM <nick.hawkins@hpe.com> wrote:
 >
 > From: Nick Hawkins <nick.hawkins@hpe.com>
 >
-> The HPE SoC is new to linux. This patch
-> creates the basic device tree layout with minimum required
-> for linux to boot. This includes timer and watchdog
-> support.
+> Changes since v2:
+>  *Reduced size of changes, put them into pathset format
 >
-> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
-> +/ {
-> +       #address-cells = <1>;
-> +       #size-cells = <1>;
-> +       compatible = "hpe,gxp";
-> +       model = "Hewlett Packard Enterprise ProLiant dl360 Gen10";
-> +
-> +       chosen {
-> +               bootargs = "earlyprintk console=ttyS2,115200";
-> +       };
+> Changes since v1:
+>  *Fix compiler warnings
+>
+> The GXP is the HPE BMC SoC that is used in the majority
+> of HPE Generation 10 servers. Traditionally the asic will
+> last multiple generations of server before being replaced.
+>
+> Info about SoC:
+>
+>   HPE GXP is the name of the HPE Soc. This SoC is used to implement
+>   many BMC features at HPE. It supports ARMv7 architecture based on
+>   the Cortex A9 core. It is capable of using an AXI bus to which
+>   a memory controller is attached. It has multiple SPI interfaces
+>   to connect boot flash and BIOS flash. It uses a 10/100/1000 MAC
+>   for network connectivity. It has multiple i2c engines to drive
+>   connectivity with a host infrastructure. The initial patches
+>   enable the watchdog and timer enabling the host to be able to
+>   boot.
 
-Please drop the bootargs here, you definitely should not have 'earlyprintk'
-in the bootargs because that is incompatible with cross-platform kernels.
-
-Instead of passing the console in the bootargs, use the "stdout-path"
-property.
-
-The "compatible" property should be a list that contains at least the specific
-SoC variant and an identifier for the board. "hpe,gxp" is way too generic
-to be the only property here.
-> +       gxp-init@cefe0010 {
-> +               compatible = "hpe,gxp-cpu-init";
-> +               reg = <0xcefe0010 0x04>;
-> +       };
-> +
-> +       memory@40000000 {
-> +               device_type = "memory";
-> +               reg = <0x40000000 0x20000000>;
-> +       };
-> +
-> +       ahb {
-> +               compatible = "simple-bus";
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               device_type = "soc";
-> +               ranges;
-> +
-> +               vic0: interrupt-controller@ceff0000 {
-> +                       compatible = "arm,pl192-vic";
-> +                       interrupt-controller;
-> +                       reg = <0xceff0000 0x1000>;
-> +                       #interrupt-cells = <1>;
-> +               };
-
-I don't think this represents the actual hierarchy of the devices:
-the register range of the "vic0" and the "gxp-init" is very close
-together, which usually indicates that they are also on the same
-bus.
-
-
-
-> +               vic1: interrupt-controller@80f00000 {
-> +                       compatible = "arm,pl192-vic";
-> +                       interrupt-controller;
-> +                       reg = <0x80f00000 0x1000>;
-> +                       #interrupt-cells = <1>;
-> +               };
-> +
-> +               timer0: timer@c0000080 {
-> +                       compatible = "hpe,gxp-timer";
-> +                       reg = <0xc0000080 0x1>, <0xc0000094 0x01>, <0xc0000088 0x08>;
-> +                       interrupts = <0>;
-> +                       interrupt-parent = <&vic0>;
-> +                       clock-frequency = <400000000>;
-> +               };
-> +
-> +               uarta: serial@c00000e0 {
-> +                       compatible = "ns16550a";
-> +                       reg = <0xc00000e0 0x8>;
-> +                       interrupts = <17>;
-> +                       interrupt-parent = <&vic0>;
-> +                       clock-frequency = <1846153>;
-> +                       reg-shift = <0>;
-> +               };
-
-In turn, you seem to have a lot of other devices on low addresses
-of the 0xc0000000 range, which would be an indication that these
-are on a different bus from the others.
-
-Please see if you can find an internal datasheet that describes the
-actual device hierarchy, and then try to model this in the device tree.
-
-Use non-empty "ranges" properties to describe the address ranges
-and how they get translated between these buses, and add
-"dma-ranges" for any high-speed buses that have DMA master
-capable devices like USB on them.
-
-> +               i2cg: syscon@c00000f8 {
-> +                       compatible = "simple-mfd", "syscon";
-> +                       reg = <0xc00000f8 0x08>;
-> +               };
-> +       };
-
-It's odd to have a "syscon" device that only has 8 bytes worth of registers.
-
-What are the contents of this? Is it possible to have a proper abstraction
-for it as something that has a specific purpose rather than being a
-random collection of individual bits?
+This looks much better already, thanks for following the normal
+submission procedures. With the timing for the merge window, this
+is now too late for 5.18, but let's try to get it into 5.19 then.
 
        Arnd
