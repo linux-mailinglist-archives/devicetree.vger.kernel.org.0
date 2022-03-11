@@ -2,150 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6666F4D61CC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 13:52:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B33A4D61C9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 13:51:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348663AbiCKMxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 07:53:18 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55368 "EHLO
+        id S1348654AbiCKMw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 07:52:59 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348649AbiCKMxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 07:53:17 -0500
-X-Greylist: delayed 562 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Mar 2022 04:52:09 PST
-Received: from mailgate.ics.forth.gr (mailgate.ics.forth.gr [139.91.1.2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31F5B1B6E33
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 04:52:08 -0800 (PST)
-Received: from av3.ics.forth.gr (av3in.ics.forth.gr [139.91.1.77])
-        by mailgate.ics.forth.gr (8.15.2/ICS-FORTH/V10-1.8-GATE) with ESMTP id 22BCggPN038482
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 14:42:42 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; d=ics.forth.gr; s=av; c=relaxed/simple;
-        q=dns/txt; i=@ics.forth.gr; t=1647002557; x=1649594557;
-        h=From:Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=u5iax0bPoVIojUOUZZR2XGY8KQMpedcYRWJVPYiMZH0=;
-        b=uzkTrBmEE/WI0x55scdRW3+aWDx5mzDbfAy7rwqZGbqPK9gj0A9Ha6aIroxSbkhH
-        AEch1W0IKw7mz2COPXBV0GoguEiDWcwWcWchlt5v5DsHEtp/vuptGA0VWTD2cRKB
-        /R754oPKU2+q6v+qTjeRrMaujUx2HW4vlpF6iWNVaNKuGmDP2+kefdvPwIP7FTMH
-        oIa00rxLPuqbVxwVV5jcaR0AQfxsJiHC/9vM6Nmsu04NODv7MRjz4AaifV8kv0vO
-        PeREWnBBh+g2BrunDGcGsyBPnr/mriw6imV/iZSBiORmuq1lRNqcZ2RYIM3fqBU3
-        AtL4YeJYeB7eAEhcAZwD2w==;
-X-AuditID: 8b5b014d-feeaa700000035db-85-622b43bd8380
-Received: from enigma.ics.forth.gr (enigma.ics.forth.gr [139.91.151.35])
-        by av3.ics.forth.gr (Symantec Messaging Gateway) with SMTP id 50.27.13787.DB34B226; Fri, 11 Mar 2022 14:42:37 +0200 (EET)
-X-ICS-AUTH-INFO: Authenticated user:  at ics.forth.gr
+        with ESMTP id S1348651AbiCKMw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 07:52:58 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 634A31B6E09
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 04:51:55 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 671763F1A8
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 12:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647003108;
+        bh=sIH/nw87aweAmAQLqAzIP/TZcavVp/TlhUgamFHUSgY=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=esdae9CkvtjpLJY/QugCFXzBCaDFKb227QrXDOss/IrqBGDtAR+cbQe36c3uVBULK
+         HXxoMJOf+kq1AxcD3uH/pOClQwdfw/HnvN5Bg6/xbJ21E2EJJ8ojQfxTBaBxoGZzWR
+         CRn7FnDpv3x3Pk2sILMyeEzsb3gorbjb6zI1zyWOz6Gc+ykUgf27PwveeQ3bMmWT5y
+         YP4lMrWfyE+MTMBr4w19LLWUqmg8aZBeiCx3wobKf90r8R9foNU2IZ8mZla8wLvfaa
+         F+43fMSAzvVjdAVtC4UUGjbMRBg8k8X/wZl8U78ZKkfeSifb1/F8Ac6FGttKkeaU54
+         lE8E7Bm3mYogg==
+Received: by mail-ed1-f69.google.com with SMTP id b9-20020aa7d489000000b0041669cd2cbfso4806335edr.16
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 04:51:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=sIH/nw87aweAmAQLqAzIP/TZcavVp/TlhUgamFHUSgY=;
+        b=ZTl2D9V8N85LVPKTFchEZGe1Jpxbkfb3OwMbZdm9ivESp1jQvVu8RLCnCkMaL4Cbpy
+         9CnQstFLhSA8Lj8NfPwwN1RyW07Spb3APiwKFmVH/cdo3qnf3Qch0qsrh//l1atEv3io
+         5ymCtPyBSRzDwSMGYP7Usla9Exm6z9zxzL82WCFu5cgQxFZJ8qU50kdM+QiuvHot1gtS
+         +3ZHYGlmlCGddQTd0clad9ZW5kGUn6lm/Cxx2xtgFVQRYEMi+nZKlB5iaIHd6zTbQzgj
+         Af9u7dbxhGi8dtsW2ZR4vEXtxLHtUj+J7AzjGHPTMQJmdDN0HjrYh/pafwNTFfrR6zFA
+         qkxg==
+X-Gm-Message-State: AOAM530/b5DSHUbSXML7XrhqXV/f/dsDIjCxBfyzoXnZQoKHzF4FTag7
+        Af7iVN0NjKlWZEldxVRGBon4pU7GFbpgsRvTfFs3u/AIdO8ZjZQ1B0Gbq+7gXLcYI+W7yP/qCg5
+        ncxBRKSRLmq5boT0mwodFXxs1Em/LrSH92CMqWYo=
+X-Received: by 2002:a05:6402:5192:b0:415:c6e6:23b with SMTP id q18-20020a056402519200b00415c6e6023bmr8844072edd.336.1647003108008;
+        Fri, 11 Mar 2022 04:51:48 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwbU5SYJkuKpQTbRCfYqLBZibZifI+8r07PwQMlyxzomP76itjmbDnqogO/XmojoU85iAG/Fg==
+X-Received: by 2002:a05:6402:5192:b0:415:c6e6:23b with SMTP id q18-20020a056402519200b00415c6e6023bmr8844055edd.336.1647003107774;
+        Fri, 11 Mar 2022 04:51:47 -0800 (PST)
+Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id ce12-20020a170906b24c00b006da824011eesm2924624ejb.166.2022.03.11.04.51.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 04:51:46 -0800 (PST)
+Message-ID: <69be9f88-b69b-c149-4387-c5002219bf0a@canonical.com>
+Date:   Fri, 11 Mar 2022 13:51:45 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Date:   Fri, 11 Mar 2022 14:42:35 +0200
-From:   Nick Kossifidis <mick@ics.forth.gr>
-To:     Atish Kumar Patra <atishp@rivosinc.com>
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Tomsich <philipp.tomsich@vrull.eu>
-Subject: Re: [PATCH v5 0/6] Provide a fraemework for RISC-V ISA extensions
-Organization: FORTH
-In-Reply-To: <CAHBxVyHaFk6mx_uTUcOG1d+XGokT_-Y3_Y1kVJixAnGGmLjAxg@mail.gmail.com>
-References: <20220222204811.2281949-1-atishp@rivosinc.com>
- <mhng-4593ea1e-503d-47df-8e55-d2ef06f01518@palmer-ri-x1c9>
- <CAHBxVyHaFk6mx_uTUcOG1d+XGokT_-Y3_Y1kVJixAnGGmLjAxg@mail.gmail.com>
-Message-ID: <d8d4fedad13ef063b672aadfe2ee0aff@mailhost.ics.forth.gr>
-X-Sender: mick@mailhost.ics.forth.gr
-User-Agent: Roundcube Webmail/1.3.16
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprKIsWRmVeSWpSXmKPExsXSHT1dWXevs3aSweJnvBYtH96xWmz9PYvd
-        ouOcm8Xm/1+YLVrbvzFZzD9yjtWi+dh6NouNb38wWVzeNYfNYtvnFjaLl5d7mC3aZvFbdK+s
-        tmjde4Tdgc/jWsdGFo+pv8+weMxq6GXzePPyJYvH4Y4v7B6bVnWyeWxeUu9xY1aEx6Xm6+we
-        nzfJeey8/ZDJo/1AN1MATxSXTUpqTmZZapG+XQJXxrKzf9gKJohVXO+vaGCcK9jFyMkhIWAi
-        8fjeRLYuRi4OIYEjjBJPXs1jh0iYSsze28kIYvMKCEqcnPmEBcRmFrCQmHplPyOELS/RvHU2
-        M4jNIqAq0X3lIFgNm4CmxPxLIDYHh4iAtsStLdwg85kFprNK/GyaADZfWMBL4uGjE2D1/ALC
-        Ep/uXmQFsTkFAiX2ty9mhDhoH6PEicurWCCOcJG4c7SJGeI4FYkPvx+wgywQBbI3z1WawCg4
-        C8mps5CcOgvJqQsYmVcxCiSWGetlJhfrpeUXlWTopRdtYgTHHKPvDsbbm9/qHWJk4mA8xCjB
-        wawkwtsUqpEkxJuSWFmVWpQfX1Sak1p8iFGag0VJnJflmkySkEB6YklqdmpqQWoRTJaJg1Oq
-        gYnT5oEef13SjHUh7SZPF4q93Wx18K7k7Jufev6HGQfxRFyoFJw25fKpngUp33c5HHHlq3Z6
-        /szXTcBn+uTZOfM/ls5ceizu6ETtw9Vuj4/Yu/X8Evjh3nP2Qc3Tct9F97QcNV9xB1gf8Uhs
-        itpruliB+9wT1d7KbKbtkur/TG5mtQvblbw+HNncWSU/16Rb6uMSnojFS5p81R8mCnR49Rkc
-        inFIent2+qc/lRuZGbL/ty+vlOaZNNE58zO7ztqLfx0nvmUOmnrPwUCv68PJyujP3fdXbhPr
-        P/vw6uKM+/wT/bzzHtrd89RIF2LP1Dv84Gfr71PH3h7ZZPNlvgnv/qsKkpEMXHpv09/1f57e
-        mqrEUpyRaKjFXFScCAAB0LWVKAMAAA==
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 3/4] clocksource/drivers/exynos_mct: Support
+ local-timer-index property
+Content-Language: en-US
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     "tglx@linutronix.de" <tglx@linutronix.de>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        kernel <kernel@axis.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+References: <20220308142410.3193729-1-vincent.whitchurch@axis.com>
+ <20220308142410.3193729-4-vincent.whitchurch@axis.com>
+ <226dcb1b-d141-f0d3-68c4-11d2466ca571@canonical.com>
+ <20220311113543.GA17877@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220311113543.GA17877@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Στις 2022-03-11 02:21, Atish Kumar Patra έγραψε:
-> On Thu, Mar 10, 2022 at 3:50 PM Palmer Dabbelt <palmer@dabbelt.com> 
-> wrote:
->> 
->> On Tue, 22 Feb 2022 12:48:05 PST (-0800), Atish Patra wrote:
->> > This series implements a generic framework to parse multi-letter ISA
->> > extensions. This series is based on Tsukasa's v3 isa extension improvement
->> > series[1]. I have fixed few bugs and improved comments from that series
->> > (PATCH1-3). I have not used PATCH 4 from that series as we are not using
->> > ISA extension versioning as of now. We can add that later if required.
->> >
->> > PATCH 4 allows the probing of multi-letter extensions via a macro.
->> > It continues to use the common isa extensions between all the harts.
->> > Thus hetergenous hart systems will only see the common ISA extensions.
->> >
->> > PATCH 6 improves the /proc/cpuinfo interface for the available ISA extensions
->> > via /proc/cpuinfo.
->> >
->> > Here is the example output of /proc/cpuinfo:
->> > (with debug patches in Qemu and Linux kernel)
->> >
->> > # cat /proc/cpuinfo
->> > processor     : 0
->> > hart          : 0
->> > isa           : rv64imafdch
->> > isa-ext               : svpbmt svnapot svinval
->> 
->> I know it might seem a bit pedantic, but I really don't want to
->> introduce a new format for encoding ISA extensions -- doubly so if 
->> this
->> is the only way we're giving this info to userspace, as then we're 
->> just
->> asking folks to turn this into a defacto ABI.  Every time we try to do
->> something that's sort of like an ISA string but not exactly what's in
->> the spec we end up getting burned, and while I don't see a specific 
->> way
+On 11/03/2022 12:35, Vincent Whitchurch wrote:
+> On Tue, Mar 08, 2022 at 03:57:55PM +0100, Krzysztof Kozlowski wrote:
+>> On 08/03/2022 15:24, Vincent Whitchurch wrote:
+>>> diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
+>>> index f29c812b70c9..5f8b516614eb 100644
+>>> --- a/drivers/clocksource/exynos_mct.c
+>>> +++ b/drivers/clocksource/exynos_mct.c
+>>> @@ -33,7 +33,7 @@
+>>>  #define EXYNOS4_MCT_G_INT_ENB		EXYNOS4_MCTREG(0x248)
+>>>  #define EXYNOS4_MCT_G_WSTAT		EXYNOS4_MCTREG(0x24C)
+>>>  #define _EXYNOS4_MCT_L_BASE		EXYNOS4_MCTREG(0x300)
+>>> -#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * x))
+>>> +#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * (x)))
+>>>  #define EXYNOS4_MCT_L_MASK		(0xffffff00)
+>>>  
+>>>  #define MCT_L_TCNTB_OFFSET		(0x00)
+>>> @@ -75,6 +75,7 @@ enum {
+>>>  static void __iomem *reg_base;
+>>>  static unsigned long clk_rate;
+>>>  static unsigned int mct_int_type;
+>>> +static unsigned int mct_local_idx;
+>>
+>> No more static variables. This was wrong design, happens, but let's not
+>> grow the list.
+>>
+>> I propose to conditionally (depending on property samsung,frc-shared)
+>> assign .resume callback to NULL or exynos4_frc_resume. The init can
+>> receive an argument whether to call frc_start().
 > 
-> I agree that this is an ABI change/improvement which is impossible to
-> modify later.
-> However, this is a Linux specific ABI. Do you think the RISC-V spec
-> will ever say anything about how /proc/cpuinfo is shown to the user ?
+> Could we just add the skip-write-register-if-already-started change in
+> exynos4_mct_frc_start() uncondtionally?  Perhaps it could be in a
+> separate patch too?  I was probably being over-cautious when I did it
+> conditionally on mct_local_idx.  Doing it uncondtionally would make it
+> easier to remove the global variable.
 > 
+> On my system the FRC is actually started long before Linux, and I assume
+> it's similar on other chips.
 
-Actually there was a discussion on chairs at some point on how isa 
-extensions will be represented as a single string. If I recall correctly 
-they wanted a way to compare features between implementations so this 
-was something the user should be able to read as well. I'm ccing Philipp 
-from the Software HC in case he has more details on this.
++Cc Marek,
 
-I also believe we need to discuss this a bit further, also I thought we 
-agreed that having everything as a single string (riscv-isa) on the 
-device tree doesn't scale, there were some other suggestions regarding 
-for example mmu extensions being declared inside an mmu sub-node etc. 
-This patch series will not only make it hard to change /proc/cpuinfo 
-output in the future, but also establishes a device-tree binding for all 
-isa extensions through the riscv-isa string that we also won't be able 
-to modify later on.
+Maybe we could skip it, I don't know. It could be enabled by early boot
+code or by trusted firmware. This would require more testing, on few
+different platforms.
 
-Regards,
-Nick
+On my Exynos5422 HC1 board the MCT is not running upon boot. The
+EXYNOS4_MCT_G_TCON starts with a reset value (0x0).
+
+> 
+>>
+>>>  static int mct_irqs[MCT_NR_IRQS];
+>>>  
+>>>  struct mct_clock_event_device {
+>>> @@ -157,6 +158,17 @@ static void exynos4_mct_frc_start(void)
+>>>  	u32 reg;
+>>>  
+>>>  	reg = readl_relaxed(reg_base + EXYNOS4_MCT_G_TCON);
+>>> +
+>>> +	/*
+>>> +	 * If the FRC is already running, we don't need to start it again.  We
+>>> +	 * could probably just do this on all systems, but, to avoid any risk
+>>> +	 * for regressions, we only do it on systems where it's absolutely
+>>> +	 * necessary (i.e., on systems where writes to the global registers
+>>> +	 * need to be avoided).
+>>> +	 */
+>>> +	if (mct_local_idx && (reg & MCT_G_TCON_START))
+>>
+>> This contradicts your intentions in commit #2 msg, where you described
+>> that A53 will be started first.
+> 
+> Yes, you're right.  The case of the FRC not being running when the A5
+> starts up is only ever hit in our simulation environment where we are
+> able to start Linux on the A5 directly, without having to go via the
+> A53.
+> 
+>> 1. If A53 is always started first, is it possible to be here from A5?
+>> 2. If above is possible, how do you handle locking? For example:
+>> a. A53 started with some delay, entered exynos4_mct_frc_start() pass
+>> this check;
+>> b. A5 gets to exynos4_mct_frc_start(), check is still false, so A5
+>> enables the FRC,
+>> c. A53 also enables the FRC.
+> 
+> The A5 is normally started from Linux on the A53 (using the remoteproc
+> framework).  This is long after exynos4_mct_frc_start() has been called
+> on the A53.
+
+If it is 100% like this, let's make it explicit - if it is A53 (lack of
+dedicated property), let's start it. If it A5 (property present), skip it.
+
+Let's wait for Marek thoughts, he was digging the MCT a lot.
+
+
+Best regards,
+Krzysztof
