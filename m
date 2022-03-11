@@ -2,127 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8A64D5912
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:32:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C9C654D5928
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:34:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233660AbiCKDck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 22:32:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
+        id S238525AbiCKDfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 22:35:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343915AbiCKDcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:32:39 -0500
-Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B30F4629;
-        Thu, 10 Mar 2022 19:31:21 -0800 (PST)
-Received: by mail-pg1-x52b.google.com with SMTP id e6so6401089pgn.2;
-        Thu, 10 Mar 2022 19:31:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=imNBSIwjSlC6ItQ14TLvh/vdfAlGhNku+y9tGsB5/7E=;
-        b=gVobWzDkBrAo+hw4n9VuzK5+h5agn58l1RW4JxQd078MoX0q92ou/neAtOD9QSXZWE
-         6DPpTbQ3uPOr0JI6Xb5U9xXEgh3w546jVUsSJ1fD1IG4DSL3N2JiEgFXd4eq3vr2ZFWl
-         /wiiEu+BVpr6Lj+m8X38R2A1f1GPOBvtUkVY5bUez1TFKlMh459M14hgiApzWZ/R2bQq
-         31AGfynKM7iqLLmgj0ui6aSEelBRH/yu6pR6j8v4iqPa8qgYtpFgxeVm6Mbob1Nccd3e
-         V2h5c83YHxBcazrd0g4VEbJarTAfuGnCjSP9rnACJtnKXjiX+2Se50dT0QzWxXb3U4Wl
-         9LiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=imNBSIwjSlC6ItQ14TLvh/vdfAlGhNku+y9tGsB5/7E=;
-        b=jL30adcSZFuQE8qCFSbV7nZ1vlwVGkwPSjeQFN6g2EUJBDDMnZIjgunBRYGLyvDDQt
-         IaasBMFaE2yLVr4KPiHfOXkUvuKIimHWbs71IBkPURUpz6+R27QhhK3thtPq/DmKvaN8
-         Fr1WEP74JspvhmatxtCT5uvRqFTHiXqcMWkwuT7mZC1k1TIqxbDmBR9GvX+IGrdUsdfr
-         Ft2Kh4MCfovPXgE5V5rSn2UVMMTeBvAv2Z71f8lmm1rvLIVoQ/5IYSXuK8lPY5/Gkh9w
-         Esbo7Sa6NR+mA9G1tWx72rz/bhbUv4KfFhi8++3JoINf1GcpF8hm18luA7K8wo3VRqWO
-         BrcA==
-X-Gm-Message-State: AOAM5316L06eAjzobPJIXHBilPdLi5fF5dnihCSAjR3GWME4T+GtpXkI
-        t+8Kn6yYJ2tTxoCa6SjpcpA=
-X-Google-Smtp-Source: ABdhPJwP3rQzh9FHLMFEruTIGTsCLsEHHjoOf1bZkvHQ/h8cbul5OSBu/iFTOzYa5Gom6BPhxyC8Hw==
-X-Received: by 2002:a05:6a00:2166:b0:4f6:67fe:a336 with SMTP id r6-20020a056a00216600b004f667fea336mr8321867pff.17.1646969480464;
-        Thu, 10 Mar 2022 19:31:20 -0800 (PST)
-Received: from 9a2d8922b8f1 ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id z16-20020a056a00241000b004f3a647ae89sm8132847pfh.174.2022.03.10.19.31.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 19:31:20 -0800 (PST)
-Date:   Fri, 11 Mar 2022 09:01:14 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Update clocks property for ARM
- pl022
-Message-ID: <20220311033114.GA91368@9a2d8922b8f1>
-References: <20220308072125.38381-1-singh.kuldeep87k@gmail.com>
- <Yip2MZdQNjMz/Cos@robh.at.kernel.org>
- <20220311025502.GB54098@9a2d8922b8f1>
+        with ESMTP id S232854AbiCKDfm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:35:42 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 353BE13A1C5;
+        Thu, 10 Mar 2022 19:34:40 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C44F3617B9;
+        Fri, 11 Mar 2022 03:34:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15316C340EC;
+        Fri, 11 Mar 2022 03:34:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1646969679;
+        bh=L0G2uUum1A0vGO1F5MD0nxA7WJHI+KOKoF0tIpcFA4U=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=QzS6OzshhYvZvXnSbrDHcWJgY5WV2pIjTSvPLIKwCTbZkOFemELwugOXxI7VSgSmX
+         LYqU7v32X0+5PTPrB+a85yn/YAbq47tXlRENWX5KWVMGypyFjDARTPoY8MH1DA4CV5
+         vjeN//vl8YW7iLUQSSxqtBy6hKKUjz5Zwr0x4QWABbkO8me+3nWPFT0tBXabLwnwa1
+         1pnPrFGWSD+eJcaK+pjoLyztaWO4gStZv4vpYwFgwsJcsbbyDi/RUtf4r2BALoh0BE
+         /uEQLg31HThaPljrtV6kkxpveF9QeYnp58iB6bfD+9JzPrKh+siUtVT2YdVdX3blwr
+         i4Znp+GuuRnBQ==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220311025502.GB54098@9a2d8922b8f1>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20220204084339.12341-2-tony@atomide.com>
+References: <20220204084339.12341-1-tony@atomide.com> <20220204084339.12341-2-tony@atomide.com>
+Subject: Re: [PATCH 1/5] ARM: dts: Add clock-output-names for omap4
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     =?utf-8?q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+        linux-clk@vger.kernel.org
+To:     Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org
+Date:   Thu, 10 Mar 2022 19:34:37 -0800
+User-Agent: alot/0.10
+Message-Id: <20220311033439.15316C340EC@smtp.kernel.org>
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 08:25:02AM +0530, Kuldeep Singh wrote:
-> On Thu, Mar 10, 2022 at 04:05:37PM -0600, Rob Herring wrote:
-> > On Tue, Mar 08, 2022 at 12:51:24PM +0530, Kuldeep Singh wrote:
-> > > Add missing minItems property to clocks in ARM pl022 bindings.
-> > > 
-> > > This helps in resolving below warnings:
-> > > clocks: [[4]] is too short
-> > > clock-names: ['apb_pclk'] is too short
-> > 
-> > Again, the error is in the dts files, not the schema.
-> 
-> Rob, kindly note this series number is deprecated and I have sent v3
-> version some time back. Here's the link:
-> 
-> https://lore.kernel.org/linux-spi/20220309171847.5345-1-singh.kuldeep87k@gmail.com/T/#u
-> 
-> > 
-> > 
-> > There's 2 possible answers. First, both clock inputs use the same source 
-> > clock. That's an easy fix. List the clock twice. Second, one clock is 
-> > not described in DT or visible to s/w. It still has to be in the h/w and 
-> > could be described as a 'fixed-clock'. A DT should either be all in with 
-> > clocks or not use the clock binding IMO. Describing some clocks and not 
-> > others is not a good solution.
-> > 
-> > For example, let's look at bcm-cygnus as one of the single clock 
-> > examples. The first thing I notice is there is a apb_pclk already 
-> > defined. The pl330 uses it. The watchdog (also Primecell) lists the 
-> > source clock twice. So what should pl022 be? IDK, ask the Broadcom 
-> > folks. If they don't know, then list the source clock twice. That's 
-> > effectively no change from what we have now.
+Quoting Tony Lindgren (2022-02-04 00:43:35)
+> To stop using the non-standard node name based clock naming, let's
+> first add the clock-output-names property. This allows us to stop using
+> the internal legacy clock naming and unify the naming for the TI SoCs in
+> the following patches.
+>=20
+> Note that we must wait on fixing the node naming issues until after the
+> internal clock names have been updated to avoid adding name translation
+> unnecessarily.
+>=20
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Tero Kristo <kristo@kernel.org>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
 
-I just noticed not all platforms possessing single clock are raising
-'dtbs_check' warning. For example, bcm-cygnus and lpc32xx passes check
-even though their DT clock entry has just "apb_pclk".
+I assume I don't merge this through clk tree.
 
-Any reason why they pass successfully through checks?
+>  arch/arm/boot/dts/omap443x-clocks.dtsi |   1 +
+>  arch/arm/boot/dts/omap446x-clocks.dtsi |   2 +
+>  arch/arm/boot/dts/omap44xx-clocks.dtsi | 165 +++++++++++++++++++++++++
+>  3 files changed, 168 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/omap443x-clocks.dtsi b/arch/arm/boot/dts/o=
+map443x-clocks.dtsi
+> --- a/arch/arm/boot/dts/omap443x-clocks.dtsi
+> +++ b/arch/arm/boot/dts/omap443x-clocks.dtsi
+> @@ -8,6 +8,7 @@ &prm_clocks {
+>         bandgap_fclk: bandgap_fclk@1888 {
+>                 #clock-cells =3D <0>;
+>                 compatible =3D "ti,gate-clock";
+> +               clock-output-names =3D "bandgap_fclk";
 
-> 
-> Yes, I took motivation from sp805 watchdog(primecell) while resolving DT
-> conflicts. I found LG and amd seattle platform with single clock in DT
-> for which I have sent patches. Link is below:
-> 
-> https://lore.kernel.org/linux-devicetree/CAL_Jsq+k+ridWTkdy4xwTC7VxUTU8tu+Q2BA9kbQVA222PWvZw@mail.gmail.com/
-> 
-> Moreover, I observed that clocks and clock-names are not required
-> properties for pl022. I am wondering reason behind the same when you
-> first made changes. Any specific reason not adding them which I am not
-> aware of or it just got missed?
-> 
-> - Kuldeep
+At this point clock-output-names is basically a debug feature. It would
+be better to use clocks property in consumer nodes and then use
+clk_parent_data to link up the clk tree. Not sure if that matters here
+though? I can understand the desire to have "usable" names vs. some
+not very useful name be auto generated..
+
+>                 clocks =3D <&sys_32k_ck>;
+>                 ti,bit-shift =3D <8>;
+>                 reg =3D <0x1888>;
