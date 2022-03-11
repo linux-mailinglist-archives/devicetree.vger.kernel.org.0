@@ -2,155 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4685F4D5FD9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 11:38:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 52CE04D5FE3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 11:41:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236627AbiCKKjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 05:39:17 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47012 "EHLO
+        id S1347944AbiCKKlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 05:41:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56978 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239718AbiCKKjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 05:39:16 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1FEBD117C87;
-        Fri, 11 Mar 2022 02:38:12 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.90,173,1643641200"; 
-   d="scan'208";a="113220915"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 11 Mar 2022 19:38:12 +0900
-Received: from localhost.localdomain (unknown [10.226.93.53])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 76CFB40062CC;
-        Fri, 11 Mar 2022 19:38:09 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 1/3] media: dt-bindings: media: renesas,vsp1: Document RZ/{G2L,V2L} VSPD bindings
-Date:   Fri, 11 Mar 2022 10:38:01 +0000
-Message-Id: <20220311103803.25239-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220311103803.25239-1-biju.das.jz@bp.renesas.com>
-References: <20220311103803.25239-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1344028AbiCKKlx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 05:41:53 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B58161C2D9F
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 02:40:50 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2F3133F19E
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 10:40:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646995248;
+        bh=X21HZt8T3IqWraDQ7iGgx+oLbWN9WZTETBwQGf+ZZUQ=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=KdcjXER4uQ15ZhxmI3i0zIVeFSQKIZek5+hagVNE5I56vSdFzQfUtno6aqjCUJqMh
+         5H/SNAtPMBlQaHJkY4PVYaXBSN1btJzNBrvDMdFcA2EFDyv6o2FTTzwwun92FlsZik
+         m0nqjITOhYvTMauZdBCkHM6jGTpPTRxBmcsa1cGrusJ9drPiayPdTousE6D+jTNCKN
+         s+ZKT/K1kzfCzbddPTnTLIiyl9mBhkhLiSYlRMsLhNrEWytMEYJ5ZKfa/aT9fgnrP4
+         ABzi/i0Y1rSzJFrVrm3KouQzgsFNYDX3WVGGxNk6NsFY4bb+JMPk2kCygAFSyE7uQM
+         aQUBr+aAQELJw==
+Received: by mail-ej1-f70.google.com with SMTP id el10-20020a170907284a00b006db9df1f3bbso1312089ejc.5
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 02:40:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=X21HZt8T3IqWraDQ7iGgx+oLbWN9WZTETBwQGf+ZZUQ=;
+        b=qTKgKjwvbs414+N7WMTZIsoFBj7aQ53dxXeeiL7Vp8yMPx9AI1gQoxSQ8AnbeHBwqa
+         0NRV5wgEnrgnm7vrHrLNA32SW7tEwV/o5AMy/hMR68JaCMnJ1ZjdipmY3Jv8pC26moqx
+         sxjDurTLmDLsFclR/GskoMwS/9HaxLSorSqTL6E2CpABmFh2ZoODETpZccXkoOcnShcx
+         US4x2t7RH3+Jp1FcMxRgu+VZcoV1QBJG8ekb4KZVdKxNXeU42ndOfCY6bIIKZAJjnZ9w
+         xYGO4yE+jYLH6E0Jx50Mk2CiOwo3KO2ite1x9C8a5PiwC2aVAYrFgSXv6GnCcFdsAF/B
+         01pA==
+X-Gm-Message-State: AOAM532cwLyO/BVfvwOqIyvJwefW/s8SqrD5p9yKC26oq+bIhJr853U7
+        R9cohzTAL03BAz1a7n2kAgOUZt8lCpyRDTlXjWnGvwZoPN+BGlib39CyddUjK7mCl8gaBv+S6FD
+        I5/t/OHvcR4CMwqsR+p9t/0bFBm3Rk5sFIll4KnE=
+X-Received: by 2002:a05:6402:68e:b0:415:d29e:dfe8 with SMTP id f14-20020a056402068e00b00415d29edfe8mr8020400edy.351.1646995247918;
+        Fri, 11 Mar 2022 02:40:47 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJx44n4lTaDW21Sf5vUfjbgKehNameHRuZxjI/VFFs7cXlR4x7K02XzPeqdOLSqhYmJx/XlfIw==
+X-Received: by 2002:a05:6402:68e:b0:415:d29e:dfe8 with SMTP id f14-20020a056402068e00b00415d29edfe8mr8020389edy.351.1646995247762;
+        Fri, 11 Mar 2022 02:40:47 -0800 (PST)
+Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id m25-20020a170906161900b006d43be5b95fsm2830773ejd.118.2022.03.11.02.40.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 02:40:47 -0800 (PST)
+Message-ID: <46c82688-79fd-fe65-b740-ac72a809f189@canonical.com>
+Date:   Fri, 11 Mar 2022 11:40:46 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/2] dt-bindings: serial: samsung: Add ARTPEC-8 UART
+Content-Language: en-US
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        gregkh@linuxfoundation.org, jirislaby@kernel.org,
+        krzysztof.kozlowski@canonical.com
+Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        alim.akhtar@samsung.com
+References: <20220311094515.3223023-1-vincent.whitchurch@axis.com>
+ <20220311094515.3223023-2-vincent.whitchurch@axis.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220311094515.3223023-2-vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document VSPD found in RZ/G2L and RZ/V2L family SoC's. VSPD block is
-similar to VSP2-D found on R-Car SoC's, but it does not have a version
-register and it has 3 clocks compared to 1 clock on vsp1 and vsp2.
+On 11/03/2022 10:45, Vincent Whitchurch wrote:
+> Add a compatible for the UART on the ARTPEC-8 SoC.  This hardware block
+> is closely related to the variants used on the Exynos chips.  The
+> register layout is identical to Exynos850 et al but the fifo size is
+> different (64 bytes in each direction for all instances).
+> 
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> ---
+> 
 
-This patch introduces a new compatible 'renesas,rzg2l-vsp2' to handle
-these differences.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
-v2->v3:
- * Added Rb tag from Krzysztof.
-v1->v2:
- * Changed compatible from vsp2-rzg2l->rzg2l-vsp2
-RFC->v1:
- * Updated commit description
- * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
- * Defined the clocks
- * Clock max Items is based on SoC Compatible string
-RFC:
- * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
----
- .../bindings/media/renesas,vsp1.yaml          | 52 ++++++++++++++-----
- 1 file changed, 39 insertions(+), 13 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-index 990e9c1dbc43..2696a4582251 100644
---- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-@@ -19,6 +19,7 @@ properties:
-     enum:
-       - renesas,vsp1 # R-Car Gen2 and RZ/G1
-       - renesas,vsp2 # R-Car Gen3 and RZ/G2
-+      - renesas,rzg2l-vsp2 # RZ/G2L and RZ/V2L
- 
-   reg:
-     maxItems: 1
-@@ -26,8 +27,8 @@ properties:
-   interrupts:
-     maxItems: 1
- 
--  clocks:
--    maxItems: 1
-+  clocks: true
-+  clock-names: true
- 
-   power-domains:
-     maxItems: 1
-@@ -50,17 +51,42 @@ required:
- 
- additionalProperties: false
- 
--if:
--  properties:
--    compatible:
--      items:
--        - const: renesas,vsp1
--then:
--  properties:
--    renesas,fcp: false
--else:
--  required:
--    - renesas,fcp
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,vsp1
-+    then:
-+      properties:
-+        renesas,fcp: false
-+    else:
-+      required:
-+        - renesas,fcp
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,rzg2l-vsp2
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: LCDC Main clock
-+            - description: LCDC Register Access Clock
-+            - description: LCDC Video Clock
-+        clock-names:
-+          items:
-+            - const: du.0
-+            - const: pclk
-+            - const: vclk
-+      required:
-+        - clock-names
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
- 
- examples:
-   # R8A7790 (R-Car H2) VSP1-S
--- 
-2.17.1
 
+Best regards,
+Krzysztof
