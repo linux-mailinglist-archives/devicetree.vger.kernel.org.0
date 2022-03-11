@@ -2,151 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4016F4D647F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:24:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 756CB4D648B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:28:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346975AbiCKPZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 10:25:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35792 "EHLO
+        id S241911AbiCKP3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 10:29:06 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234259AbiCKPZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:25:47 -0500
-Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DA661B65E2;
-        Fri, 11 Mar 2022 07:24:44 -0800 (PST)
-Received: by mail-oi1-f178.google.com with SMTP id n7so9658969oif.5;
-        Fri, 11 Mar 2022 07:24:44 -0800 (PST)
+        with ESMTP id S233904AbiCKP3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:29:05 -0500
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E862074622;
+        Fri, 11 Mar 2022 07:28:00 -0800 (PST)
+Received: by mail-oo1-f46.google.com with SMTP id 6-20020a4a0906000000b0031d7eb98d31so10841801ooa.10;
+        Fri, 11 Mar 2022 07:28:00 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Wj8G09tyyau5yMZxls0yIJBXoGqCQIhnO/G1icNodFU=;
-        b=dQzcaKSHwxCf38e73Xc5fEA62HPy5u2Ofw0f3oetRWPwRkcRr8xKFB3CcxWlJDdV0D
-         mCLSPxhLVk7h2zTZvZbsWmMi58O9UqnQV7QLtDtNWECOkwoL/qIRRTy8BLS7Dr6udlTh
-         WSifpb7vgf3+n6hlfsFRTtgluki0waB7SExGjtUn35MBs4Gbtx5M5uq3itjmEzObZdV6
-         sJPmRtu+J22qa1YgamaL0U55lnvENEZy7hC7EkgAqiaqanF9kqzdWkygIOU9K9ZNY41s
-         eMLAvzCEdnSu8+Pzid4A5qpifHouIhqPhXHrERBSikKH+5NfSNqBtSxHKSVS7IusQkE2
-         827g==
-X-Gm-Message-State: AOAM530Zo5fc56Qk3qssdT6avMwSbkO/CQ6NSFPCSE2mBFpWYhGTe8yB
-        gSYghPaZMEr/IhnxsYsWMw==
-X-Google-Smtp-Source: ABdhPJzzQzQLbkCyppMXDo/APn8Hm72RdGKl9lKuHngLjJNbvlPq/mreKAsrBqheGl31MgPNNCLJMA==
-X-Received: by 2002:a05:6808:2122:b0:2da:3444:9908 with SMTP id r34-20020a056808212200b002da34449908mr7203108oiw.207.1647012283302;
-        Fri, 11 Mar 2022 07:24:43 -0800 (PST)
+        bh=+AZuxr9cOspuT2haPxrkmYdQhFq329SVlyo5zkA8oOI=;
+        b=2GAgokVSWyljV7CuzMc2fP8RjVdHNVc7BXoTlaqqSxTXpslajMdcCBldXZ1FzT25Lb
+         W/HZlTty2rfiZrYDAeAqOtr7rRPkDbMLchoBDIl8Spok2Pd2lmN5vw3yu80XEe3xsdSu
+         w9yEwW4WWFKmXJhKOnOfp2niFotu1hJT/iUzuQyeWaLXHFZXTJ7PRXVDPfQaeoZj3TtG
+         2FM+IWB3FgWSDcRltfhLELBkVDqmHLIrSft4pQbPBs1HH8+IpVqpjHwObX2RfGwZPCgK
+         BwTNLMDIR0cakKVHIUNLiAFrhJIUtvErm61QHQXxMyE20ByPQwq75XiPZ6S4ftw05hMB
+         xneA==
+X-Gm-Message-State: AOAM533upulOJCQ1bk0ZxlUw9AAMz2QYP/CIR2TSAl9wlCPybbDaVWg2
+        LkLP5hCBxfe1w1o54eEXsA==
+X-Google-Smtp-Source: ABdhPJzeXNB+ACWkU1gQILoMP7v0kLbYNlNjIsYcD3d7jUqamA/HUApr+Kr7+1ffYn+ajA5/rJWt9w==
+X-Received: by 2002:a05:6870:51d0:b0:d7:1e2a:2587 with SMTP id b16-20020a05687051d000b000d71e2a2587mr5622107oaj.176.1647012480197;
+        Fri, 11 Mar 2022 07:28:00 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id p21-20020a4a2f15000000b00320fca09b74sm3765248oop.1.2022.03.11.07.24.42
+        by smtp.gmail.com with ESMTPSA id 69-20020a9d0bcb000000b005af83322c6asm3644360oth.12.2022.03.11.07.27.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 07:24:42 -0800 (PST)
-Received: (nullmailer pid 3824535 invoked by uid 1000);
-        Fri, 11 Mar 2022 15:24:41 -0000
-Date:   Fri, 11 Mar 2022 09:24:41 -0600
+        Fri, 11 Mar 2022 07:27:59 -0800 (PST)
+Received: (nullmailer pid 3830119 invoked by uid 1000);
+        Fri, 11 Mar 2022 15:27:57 -0000
+Date:   Fri, 11 Mar 2022 09:27:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Zev Weiss <zev@bewilderbeest.net>
-Cc:     devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add power-efuse binding
-Message-ID: <YitpuR+SlDiKh4eq@robh.at.kernel.org>
-References: <20220308011811.10353-1-zev@bewilderbeest.net>
- <20220308011811.10353-2-zev@bewilderbeest.net>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Jimmy Lalande <jimmy.lalande@se.com>, dmaengine@vger.kernel.org,
+        Herve Codina <herve.codina@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Phil Edworthy <phil.edworthy@renesas.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Milan Stevanovic <milan.stevanovic@se.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Gareth Williams <gareth.williams.jx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        linux-clk@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Clement Leger <clement.leger@bootlin.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Pascal Eberhard <pascal.eberhard@se.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v4 1/9] dt-bindings: dma: Introduce RZN1 dmamux bindings
+Message-ID: <YitqfeO/JLFybDNU@robh.at.kernel.org>
+References: <20220310155755.287294-1-miquel.raynal@bootlin.com>
+ <20220310155755.287294-2-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220308011811.10353-2-zev@bewilderbeest.net>
+In-Reply-To: <20220310155755.287294-2-miquel.raynal@bootlin.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 07, 2022 at 05:18:09PM -0800, Zev Weiss wrote:
-> This can be used to describe a power output supplied by a regulator
-> device that the system controls.
+On Thu, 10 Mar 2022 16:57:47 +0100, Miquel Raynal wrote:
+> The Renesas RZN1 DMA IP is based on a DW core, with eg. an additional
+> dmamux register located in the system control area which can take up to
+> 32 requests (16 per DMA controller). Each DMA channel can be wired to
+> two different peripherals.
 > 
-> Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/misc/power-efuse.yaml | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
+>  .../bindings/dma/renesas,rzn1-dmamux.yaml     | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/renesas,rzn1-dmamux.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-> new file mode 100644
-> index 000000000000..5f8f0b21af0e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Generic power efuse device
-> +
-> +maintainers:
-> +  - Zev Weiss <zev@bewilderbeest.net>
-> +
-> +description: |
-> +  This binding describes a physical power output supplied by a
-> +  regulator providing efuse functionality (manual on/off control, and
-> +  auto-shutoff if current, voltage, or thermal limits are exceeded).
-> +
-> +  These may be found on systems such as "smart" network PDUs, and
-> +  typically supply power to devices entirely separate from the system
-> +  described by the device-tree by way of an external connector such as
-> +  an Open19 power cable:
-> +
-> +  https://www.open19.org/marketplace/coolpower-cable-assembly-8ru/
 
-Not really a helpful link...
-
-I still don't understand what the h/w looks like here. At least I now 
-understand we're talking a fuse on power rail, not efuses in an SoC 
-used as OTP bits or feature disables.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: power-efuse
-> +
-> +  vout-supply:
-> +    description:
-> +      phandle to the regulator providing power for the efuse
-
-Vout is a supply to the efuse and not the rail being fused? 
-
-Sorry, I know nothing about how an efuse is implemented so you are going 
-to have to explain or draw it.
-
-> +
-> +  error-flags-cache-ttl-ms:
-> +    description:
-> +      The number of milliseconds the vout-supply regulator's error
-> +      flags should be cached before re-fetching them.
-
-How does one fetch/read? the error flags?
-
-> +
-> +required:
-> +  - compatible
-> +  - vout-supply
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    efuse {
-> +        compatible = "power-efuse";
-> +        vout-supply = <&efuse_reg>;
-> +        error-flags-cache-ttl-ms = <500>;
-> +    };
-> -- 
-> 2.35.1
-> 
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
