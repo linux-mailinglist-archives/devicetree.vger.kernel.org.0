@@ -2,120 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DD54D6ACF
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 00:27:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0594D6A34
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 00:26:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229470AbiCKXND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 18:13:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36822 "EHLO
+        id S229925AbiCKWvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 17:51:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230091AbiCKXMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 18:12:51 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E652692A2;
-        Fri, 11 Mar 2022 15:11:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647040306; x=1678576306;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=TII6J4aKIbWXaAC0bycqdUuzXY20aYHTjj7YIZmiAvQ=;
-  b=iwSI8WJCcqWOByyFTliGfNDJf+uhbBfP9YiD6yYuX0uec3yb9Lz0/d2P
-   rSNHUVV14RQ8o1iyYSeDPcUi8bgdrq5Hkh6FV4fX+5LQP+qAZ0t0yJZ/R
-   WpB1Lxt7jHQQ1Mi3JRCEtI+1wHmFCSEkfRirYY/2FNLWUrSmUBRkiZyj1
-   qgoySM7Ga1/jLcG+ssUJcdmOKhz8DAlxoSFKqFh/m8PPu/rf0VA/O/dHF
-   ifX7CCjv5zVMorHlS4Rq63fj6OzWTFWbWvKfW9MsM0vhQccsC/3g3w23D
-   xoFoSZ0iDU1zHRPWrz0Oy0hJNan8GgozKmxjb02i8ePLx8L5Rkub26NFm
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="237832400"
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; 
-   d="scan'208";a="237832400"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2022 13:51:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,174,1643702400"; 
-   d="scan'208";a="496890795"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 11 Mar 2022 13:51:12 -0800
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nSnAG-00079K-09; Fri, 11 Mar 2022 21:51:12 +0000
-Date:   Sat, 12 Mar 2022 05:50:54 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Michael Riesch <michael.riesch@wolfvision.net>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     kbuild-all@lists.01.org, Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, Levin Du <djw@t-chip.com.cn>,
-        Tianling Shen <cnsztl@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Alex Bee <knaerzche@gmail.com>, Liang Chen <cl@rock-chips.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: add basic dts for the radxa
- rock3 model a
-Message-ID: <202203120525.muN78AQX-lkp@intel.com>
-References: <20220310210352.451136-3-michael.riesch@wolfvision.net>
+        with ESMTP id S229756AbiCKWvL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 17:51:11 -0500
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E09A2CEA4E;
+        Fri, 11 Mar 2022 14:25:09 -0800 (PST)
+Received: by mail-il1-x143.google.com with SMTP id r2so2044007ilh.0;
+        Fri, 11 Mar 2022 14:25:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=GyRIcZoZdI7XJjcQT5Ld8APIti4p48Wxyfw1hBRxBYU=;
+        b=dS5amww75jfn2iQvjxVUBXupGO2l6Bys4O6ss8C+vdIfjfPMJaujEm9TMdOfi7JJyn
+         dbbcd0UFSTRfv2jADGOoSFe/5DqenzhVZiNNC5D7pcNNV5fNMn6qY9YozZdE73LxFZtI
+         pnveBYNUf9BYXlTbd1eXM3UPGIUa98Z7uBLitXc8JdYSGBw9ETqBFQmoAbHVTtll4cyU
+         K/KBDNv6YGh/NENGPHCdN9wCmBkbzE/D2e0bK4dxrorUsqRcpcKs9cG9AgxQA5ylD2nc
+         RtdafaGoBCkTZ1oFaqNQ1swY2EvaLzVFAERsNeGJjn6VO9ThV34v6kZ9RrIh6DJTNqRs
+         LhkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GyRIcZoZdI7XJjcQT5Ld8APIti4p48Wxyfw1hBRxBYU=;
+        b=q+awXIar1gg5IRwQ055ABjExUa7TeEs48GnmcmJ4MTpSFrpNf4jELE//OxvnGrx6NR
+         cT3Us+oqcaUtI12Cy2qRlbeCivmzwAhCJwKv6P+FwrpEaDEZS5km/IJEJp44AfCPthxC
+         UuoFYTVW1oHHgydw+Roxl+IVKGiJm2W910l5yyg9ATMxgj4WUX+vzn8a1L+iGl02ex8R
+         CWRAk6oT7azrShwexgsUaaBThtVbcdOk+2gFabiWE0fWXFugSIj4gMxHRiXVoeXsbCHp
+         ISnXNcGqaH7k6Hy0bkDA1pYztTuoQjBHTQF8eyFS9U9hRceGDAZIH2H18ZelOmPGTM5G
+         WpmA==
+X-Gm-Message-State: AOAM533t2h8LTChWPbT5qrj1D9NNHU5xXh740ir+ib4bnz1rqFvGFNnq
+        m2tWEajYjzzteENgb6QhgDh5S5zLwV976MBJHiM=
+X-Google-Smtp-Source: ABdhPJxZl3L+TKpxjt4oWEG4AolAgkwpnkj2tGpgqjLVYdjTm0XEwk6syLuzVL7BUndaT96BlC3Ga8o+TnZXMlpD/Yc=
+X-Received: by 2002:a05:6e02:20c3:b0:2c2:9e23:8263 with SMTP id
+ 3-20020a056e0220c300b002c29e238263mr9686933ilq.248.1647037508686; Fri, 11 Mar
+ 2022 14:25:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220310210352.451136-3-michael.riesch@wolfvision.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220311132906.32292-1-steve.lee.analog@gmail.com> <Yit5v+JkYDiWz0z0@sirena.org.uk>
+In-Reply-To: <Yit5v+JkYDiWz0z0@sirena.org.uk>
+From:   Lee Steve <steve.lee.analog@gmail.com>
+Date:   Sat, 12 Mar 2022 07:24:57 +0900
+Message-ID: <CA+Fz0PY9bi7cJpbmD4LSMRyDFEyJ4JQPqWWNoV-PZm01=KboNw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] ASoC: max98390: Add reset gpio control
+To:     Mark Brown <broonie@kernel.org>
+Cc:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, ryans.lee@maximintegrated.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
+On Sat, Mar 12, 2022 at 1:33 AM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Fri, Mar 11, 2022 at 10:29:05PM +0900, Steve Lee wrote:
+> >  Add reset gpio control to support RESET PIN connected to gpio.
+>
+> This doesn't apply against current code, please check and resend.
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on arm/for-next xilinx-xlnx/master arm64/for-next/core shawnguo/for-next clk/clk-next kvmarm/next keystone/next v5.17-rc7]
-[cannot apply to rockchip/for-next soc/for-next next-20220310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Michael-Riesch/arm64-dts-rockchip-add-basic-dts-for-the-radxa-rock3-model-a/20220311-050612
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-config: arm64-buildonly-randconfig-r002-20220310 (https://download.01.org/0day-ci/archive/20220312/202203120525.muN78AQX-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/8d0dad8b66056847b8a2e95272ee74ca4b12fd29
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Michael-Riesch/arm64-dts-rockchip-add-basic-dts-for-the-radxa-rock3-model-a/20220311-050612
-        git checkout 8d0dad8b66056847b8a2e95272ee74ca4b12fd29
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm64 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-Note: the linux-review/Michael-Riesch/arm64-dts-rockchip-add-basic-dts-for-the-radxa-rock3-model-a/20220311-050612 HEAD c217f194b7a9cbdb7cbb8149ae1f6e8c2faf6e3f builds fine.
-      It only hurts bisectability.
-
-All errors (new ones prefixed by >>):
-
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:132.1-5 Label or path gpu not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:473.1-16 Label or path usb_host0_ehci not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:477.1-16 Label or path usb_host0_ohci not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:481.1-16 Label or path usb_host1_ehci not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:485.1-16 Label or path usb_host1_ohci not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:489.1-10 Label or path usb2phy1 not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:493.1-15 Label or path usb2phy1_host not found
->> Error: arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts:498.1-14 Label or path usb2phy1_otg not found
->> FATAL ERROR: Syntax error parsing input tree
-
----
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+I will check and resend patch.
