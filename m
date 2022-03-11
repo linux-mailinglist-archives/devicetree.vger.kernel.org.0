@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CDADD4D5D64
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:33:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 432B04D5D69
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:33:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231492AbiCKIek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 03:34:40 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53432 "EHLO
+        id S229646AbiCKIen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 03:34:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229646AbiCKIek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:34:40 -0500
+        with ESMTP id S232193AbiCKIem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:34:42 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32888188A2C
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 00:33:37 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12A5618BA55
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 00:33:40 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nSaiI-0000aO-FB; Fri, 11 Mar 2022 09:33:30 +0100
+        id 1nSaiL-0000aP-6s; Fri, 11 Mar 2022 09:33:33 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nSaiE-0040go-IH; Fri, 11 Mar 2022 09:33:26 +0100
+        id 1nSaiE-0040gy-In; Fri, 11 Mar 2022 09:33:26 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -32,10 +32,11 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v8 10/24] dt-bindings: display: rockchip: dw-hdmi: Add additional clock
-Date:   Fri, 11 Mar 2022 09:33:09 +0100
-Message-Id: <20220311083323.887372-11-s.hauer@pengutronix.de>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v8 11/24] dt-bindings: display: rockchip: dw-hdmi: Add regulator support
+Date:   Fri, 11 Mar 2022 09:33:10 +0100
+Message-Id: <20220311083323.887372-12-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220311083323.887372-1-s.hauer@pengutronix.de>
 References: <20220311083323.887372-1-s.hauer@pengutronix.de>
@@ -54,57 +55,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The rk3568 HDMI has an additional clock that needs to be enabled for the
-HDMI controller to work. It is not needed for the HDMI controller
-itself, but to make the SoC internal busses work.
+The RK3568 has HDMI_TX_AVDD0V9 and HDMI_TX_AVDD_1V8 supply inputs
+needed for the HDMI port. Add the binding for these supplies.
 
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
 
 Notes:
-    Changes since v7:
-    - rename hclk to niu
+    Changes since v4:
+    - Add Robs Ack
 
- .../bindings/display/rockchip/rockchip,dw-hdmi.yaml        | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ .../bindings/display/rockchip/rockchip,dw-hdmi.yaml   | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-index e6b8437a1e2d1..1df61cb420744 100644
+index 1df61cb420744..a48b0e842218f 100644
 --- a/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
 +++ b/Documentation/devicetree/bindings/display/rockchip/rockchip,dw-hdmi.yaml
-@@ -33,12 +33,13 @@ properties:
-     items:
-       - {}
-       - {}
--      # The next three clocks are all optional, but shall be specified in this
-+      # The next four clocks are all optional, but shall be specified in this
-       # order when present.
-       - description: The HDMI CEC controller main clock
-       - description: Power for GRF IO
-       - description: External clock for some HDMI PHY (old clock name, deprecated)
-       - description: External clock for some HDMI PHY (new name)
-+      - description: NIU clock, needed on rk356x for SoC internal bus circuitry
+@@ -28,6 +28,17 @@ properties:
+   reg-io-width:
+     const: 4
  
-   clock-names:
++  avdd-0v9-supply:
++    description:
++      A 0.9V supply that powers up the SoC internal circuitry. The actual pin name
++      varies between the different SoCs and is usually HDMI_TX_AVDD_0V9 or sometimes
++      HDMI_AVDD_1V0.
++
++  avdd-1v8-supply:
++    description:
++      A 1.8V supply that powers up the SoC internal circuitry. The pin name on the
++      SoC usually is HDMI_TX_AVDD_1V8.
++
+   clocks:
      minItems: 2
-@@ -50,13 +51,17 @@ properties:
-           - grf
-           - vpll
-           - ref
-+          - niu
-       - enum:
-           - grf
-           - vpll
-           - ref
-+          - niu
-       - enum:
-           - vpll
-           - ref
-+          - niu
-+      - const: niu
- 
-   ddc-i2c-bus:
-     $ref: /schemas/types.yaml#/definitions/phandle
+     items:
 -- 
 2.30.2
 
