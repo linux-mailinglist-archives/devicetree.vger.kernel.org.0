@@ -2,88 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 921854D6543
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:53:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 039AE4D6541
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:53:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242488AbiCKPyd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 10:54:33 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
+        id S235031AbiCKPyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 10:54:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350112AbiCKPw6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:52:58 -0500
-Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDFB21CCB27;
-        Fri, 11 Mar 2022 07:51:22 -0800 (PST)
-Received: by mail-oo1-f46.google.com with SMTP id r41-20020a4a966c000000b0031bf85a4124so11018115ooi.0;
-        Fri, 11 Mar 2022 07:51:22 -0800 (PST)
+        with ESMTP id S1350285AbiCKPxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:53:52 -0500
+Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F16B51CD9D7;
+        Fri, 11 Mar 2022 07:51:52 -0800 (PST)
+Received: by mail-oi1-f176.google.com with SMTP id w2so1686125oie.2;
+        Fri, 11 Mar 2022 07:51:52 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=hPWhM8gN2fHMMyrikld9pWWRJCFMx1eu3IDjtAq9vSg=;
-        b=bLNnlcmx1yY6tkxKNV3LaAIdIQU6jPji20D8dn7YJwjQeTnClhMeCwfcrngDe9g69F
-         IZ386x1tODjpNYj6U+UD5bWff7MPBv7Ex2zHVMTitHhJVxIKTFBspl/JBvlOYY+sDAa5
-         hRU2PookygcbD38u6mURCI17Kt6IZtVZUPjrrUh9mJq5pSVtyBOeELPDw1SDZoQu5xkd
-         RyRMHbSzFYXVgCtUWXzxg1YKQaeza+oeSiYnny8DRxfKeC78Ebcd1ZvKYbL4N5EQALpI
-         sT0NoFkSn+YaHIQ1TCf07vllAmyaHKicS66Am3y/QjV66vVcxUW3Un5PiZBvmLMjKVIi
-         oWPQ==
-X-Gm-Message-State: AOAM5303M7LlIazYskOyALGS0S8ekEQNjxrO/wHliatRO9Rz6HO/N0aj
-        kWiZ3Wp0lBx/dATHIht3NA==
-X-Google-Smtp-Source: ABdhPJz2sr1dPO2TtCSOl0PyLmP0mZIX3n1FVaxV/vXDtF9QhVnqHd4tRPJROZ4bwmk+VGMkC8zkjw==
-X-Received: by 2002:a05:6870:2318:b0:d9:a0fb:cec5 with SMTP id w24-20020a056870231800b000d9a0fbcec5mr11325663oao.77.1647013875390;
-        Fri, 11 Mar 2022 07:51:15 -0800 (PST)
+        bh=aFQmY8Q3Xcs50vqeMZuNuMuDo4MjkwmEEkUJ4NeBy6w=;
+        b=bsQFtUu11nacc7Cv0yQLN2cLXRQeUo57ZUQmugMBB7HjIWYAuZ71sTPS9BlEp2h6IQ
+         Ar/xpTbSm4gePcgZIBMOI0y0NizOYto9mCMjbXqanS1iLg03NWIwJ9YC4Q3dO272Xjxt
+         2nmde3gwFDJ1l9nrn6bwHAMj4GyS0rw45HDiAABFvZuYZjqjomZiS6rYDX8J8gWl/yFk
+         p0aD2xJwZrZMa43/bWcWbfc5cHPJlctiWHgLQXwv2HZf9o0wZza1rHOOprquPMFc9GLp
+         RFL4AkWBEj2YsBQLOXTPp3gl5XKFg7HGtRGZSVcNz2TT0dAj+08f6z5f64PHdgR+ukgE
+         f1fw==
+X-Gm-Message-State: AOAM531w1g+ptjMY8OwiYkmbmiPxLt2eUFp/jfVqQaOmc9zsPr7As7F9
+        37S4BzB3lrZmi5h0Yp4U9w==
+X-Google-Smtp-Source: ABdhPJxOckzuMfoeKLRh2uMhfA7547OHTQ+38S+0GQ+35G6dShSqk8U+eYRPpxG5WGYqgKkP1XXYIg==
+X-Received: by 2002:a05:6808:218b:b0:2da:5fd1:a85b with SMTP id be11-20020a056808218b00b002da5fd1a85bmr5388120oib.71.1647013902733;
+        Fri, 11 Mar 2022 07:51:42 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v10-20020a9d7d0a000000b005b229f99815sm3660710otn.80.2022.03.11.07.51.14
+        by smtp.gmail.com with ESMTPSA id r21-20020a05683002f500b005b249ffa43fsm3856004ote.22.2022.03.11.07.51.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 07:51:14 -0800 (PST)
-Received: (nullmailer pid 3868129 invoked by uid 1000);
-        Fri, 11 Mar 2022 15:51:13 -0000
-Date:   Fri, 11 Mar 2022 09:51:13 -0600
+        Fri, 11 Mar 2022 07:51:42 -0800 (PST)
+Received: (nullmailer pid 3868935 invoked by uid 1000);
+        Fri, 11 Mar 2022 15:51:41 -0000
+Date:   Fri, 11 Mar 2022 09:51:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-watchdog@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>,
-        hsinyi@chromium.org, Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] dt-bindings: arm: Add compatible for Mediatek
- MT8186
-Message-ID: <Yitv8TKk8KJkVg9Y@robh.at.kernel.org>
-References: <20220311130732.22706-1-allen-kh.cheng@mediatek.com>
- <20220311130732.22706-4-allen-kh.cheng@mediatek.com>
+To:     Steve Lee <steve.lee.analog@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, broonie@kernel.org,
+        lgirdwood@gmail.com, ryans.lee@maximintegrated.com,
+        alsa-devel@alsa-project.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [V2 2/2] ASoC: dt-bindings: max98390: add reset gpio bindings
+Message-ID: <YitwDaQcXUApGKW4@robh.at.kernel.org>
+References: <20220311132906.32292-1-steve.lee.analog@gmail.com>
+ <20220311132906.32292-2-steve.lee.analog@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220311130732.22706-4-allen-kh.cheng@mediatek.com>
+In-Reply-To: <20220311132906.32292-2-steve.lee.analog@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 21:07:31 +0800, Allen-KH Cheng wrote:
-> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+On Fri, 11 Mar 2022 22:29:06 +0900, Steve Lee wrote:
+>  This adds support for the reset gpio binding.
 > 
-> This commit adds dt-binding documentation for the Mediatek MT8186
-> reference board.
-> 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+> Signed-off-by: Steve Lee <steve.lee.analog@gmail.com>
 > ---
->  Documentation/devicetree/bindings/arm/mediatek.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/sound/maxim,max98390.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
