@@ -2,98 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B75474D5919
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:32:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8A64D5912
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:32:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235175AbiCKDcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 22:32:36 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44524 "EHLO
+        id S233660AbiCKDck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 22:32:40 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44858 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346310AbiCKDca (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:32:30 -0500
-Received: from mail-pj1-x102d.google.com (mail-pj1-x102d.google.com [IPv6:2607:f8b0:4864:20::102d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D9501AAA6E
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 19:31:06 -0800 (PST)
-Received: by mail-pj1-x102d.google.com with SMTP id gj15-20020a17090b108f00b001bef86c67c1so7036393pjb.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 19:31:06 -0800 (PST)
+        with ESMTP id S1343915AbiCKDcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:32:39 -0500
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5B30F4629;
+        Thu, 10 Mar 2022 19:31:21 -0800 (PST)
+Received: by mail-pg1-x52b.google.com with SMTP id e6so6401089pgn.2;
+        Thu, 10 Mar 2022 19:31:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=PjEzHXhBQw4nuatCRH1QTW/Mg4fDvrKguLcxURaCjB0=;
-        b=NsXj1fBbaZ+OGfMXqGmARi8JawvRSOc/kXdAbRi8A2vjdxtPYquBVky+s3t1JYgc69
-         BjJqw6euLBCyQfXXeppjLrpV2neKMna6Y/cs+c9E4EaGpNbpAdrYJqgXHIx6bRSRvj6/
-         u1Us6HHV/0gaJvAR3iMoKlI/ViHg8pQE8PF0ilezZJ7iloRVJ09yBRX8cZ5isxhhEpdG
-         kkTbkio2cpT/8f7Rx/EplTZ4qkdTMCK3FbS0hkVIITxVR6DMlejNx4GaxsImKFyo+akg
-         3VrR9KtoRkcm+MjWBGDZvKTVwxZ19NEb2IEw6peH3I+nSZN3mN8WLq3VMeWT38N8joiA
-         881A==
+         :content-disposition:in-reply-to;
+        bh=imNBSIwjSlC6ItQ14TLvh/vdfAlGhNku+y9tGsB5/7E=;
+        b=gVobWzDkBrAo+hw4n9VuzK5+h5agn58l1RW4JxQd078MoX0q92ou/neAtOD9QSXZWE
+         6DPpTbQ3uPOr0JI6Xb5U9xXEgh3w546jVUsSJ1fD1IG4DSL3N2JiEgFXd4eq3vr2ZFWl
+         /wiiEu+BVpr6Lj+m8X38R2A1f1GPOBvtUkVY5bUez1TFKlMh459M14hgiApzWZ/R2bQq
+         31AGfynKM7iqLLmgj0ui6aSEelBRH/yu6pR6j8v4iqPa8qgYtpFgxeVm6Mbob1Nccd3e
+         V2h5c83YHxBcazrd0g4VEbJarTAfuGnCjSP9rnACJtnKXjiX+2Se50dT0QzWxXb3U4Wl
+         9LiA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PjEzHXhBQw4nuatCRH1QTW/Mg4fDvrKguLcxURaCjB0=;
-        b=1p281oXSgQQy+5JWyVyp4woGfiYcWAaL1xL9STH+na2ewCEy0HvSWM30W+wuvxywVk
-         n9X0wul35hVuAPG2N8/76g/NzuIX09FsPLTcy4fjCXNB+lwjj/irMpNvVNTM8RfF/Fpn
-         s/9RzDTn+0aFulSDwK9+HWb6owuFsxqmGmTYiv3eR2o6QYKnX8Zel3E6ho+0xNoNsv8R
-         3sff9RrLLxuP4FY3pVDYpoMCZINr98DDI8PGGKXOn4WWGRxpzO+h0R0fZ84Q506gL4/B
-         3KirB0Q/kneY7rRi9LuS5yBoCvmUjB8NQDXk0th/CKdN8NepkafDGuSjy6KWTXPKnGYw
-         UGbw==
-X-Gm-Message-State: AOAM533Cq5v1evohjVnPvdOkhVcGOVG53N5BbUjZaJLoJrTXMsRt0I91
-        2jOXyvPOcEIVkBZ3koY/mdZyHA==
-X-Google-Smtp-Source: ABdhPJyIGPNOxQUuhY18oStH37LoB+iKWWQ+PAEg3o1jJBEmifnj84y5wRWsOvFdb/QlXely9NH2wg==
-X-Received: by 2002:a17:902:ea09:b0:151:f547:90a with SMTP id s9-20020a170902ea0900b00151f547090amr8384778plg.63.1646969463989;
-        Thu, 10 Mar 2022 19:31:03 -0800 (PST)
-Received: from localhost ([223.184.83.228])
-        by smtp.gmail.com with ESMTPSA id q12-20020a17090a178c00b001bd036e11fdsm11104982pja.42.2022.03.10.19.31.03
+         :mime-version:content-disposition:in-reply-to;
+        bh=imNBSIwjSlC6ItQ14TLvh/vdfAlGhNku+y9tGsB5/7E=;
+        b=jL30adcSZFuQE8qCFSbV7nZ1vlwVGkwPSjeQFN6g2EUJBDDMnZIjgunBRYGLyvDDQt
+         IaasBMFaE2yLVr4KPiHfOXkUvuKIimHWbs71IBkPURUpz6+R27QhhK3thtPq/DmKvaN8
+         Fr1WEP74JspvhmatxtCT5uvRqFTHiXqcMWkwuT7mZC1k1TIqxbDmBR9GvX+IGrdUsdfr
+         Ft2Kh4MCfovPXgE5V5rSn2UVMMTeBvAv2Z71f8lmm1rvLIVoQ/5IYSXuK8lPY5/Gkh9w
+         Esbo7Sa6NR+mA9G1tWx72rz/bhbUv4KfFhi8++3JoINf1GcpF8hm18luA7K8wo3VRqWO
+         BrcA==
+X-Gm-Message-State: AOAM5316L06eAjzobPJIXHBilPdLi5fF5dnihCSAjR3GWME4T+GtpXkI
+        t+8Kn6yYJ2tTxoCa6SjpcpA=
+X-Google-Smtp-Source: ABdhPJwP3rQzh9FHLMFEruTIGTsCLsEHHjoOf1bZkvHQ/h8cbul5OSBu/iFTOzYa5Gom6BPhxyC8Hw==
+X-Received: by 2002:a05:6a00:2166:b0:4f6:67fe:a336 with SMTP id r6-20020a056a00216600b004f667fea336mr8321867pff.17.1646969480464;
+        Thu, 10 Mar 2022 19:31:20 -0800 (PST)
+Received: from 9a2d8922b8f1 ([122.161.53.68])
+        by smtp.gmail.com with ESMTPSA id z16-20020a056a00241000b004f3a647ae89sm8132847pfh.174.2022.03.10.19.31.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Mar 2022 19:31:03 -0800 (PST)
-Date:   Fri, 11 Mar 2022 09:01:01 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     rafael@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org,
-        bjorn.andersson@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        angelogioacchino.delregno@somainline.org
-Subject: Re: [PATCH v2 0/2] Convert Qcom CPUFREQ HW binding to YAML
-Message-ID: <20220311033101.p5n3a5ik5i4nzrc6@vireshk-i7>
-References: <20220309151541.139511-1-manivannan.sadhasivam@linaro.org>
+        Thu, 10 Mar 2022 19:31:20 -0800 (PST)
+Date:   Fri, 11 Mar 2022 09:01:14 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: spi: Update clocks property for ARM
+ pl022
+Message-ID: <20220311033114.GA91368@9a2d8922b8f1>
+References: <20220308072125.38381-1-singh.kuldeep87k@gmail.com>
+ <Yip2MZdQNjMz/Cos@robh.at.kernel.org>
+ <20220311025502.GB54098@9a2d8922b8f1>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220309151541.139511-1-manivannan.sadhasivam@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20220311025502.GB54098@9a2d8922b8f1>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-03-22, 20:45, Manivannan Sadhasivam wrote:
-> Hi,
+On Fri, Mar 11, 2022 at 08:25:02AM +0530, Kuldeep Singh wrote:
+> On Thu, Mar 10, 2022 at 04:05:37PM -0600, Rob Herring wrote:
+> > On Tue, Mar 08, 2022 at 12:51:24PM +0530, Kuldeep Singh wrote:
+> > > Add missing minItems property to clocks in ARM pl022 bindings.
+> > > 
+> > > This helps in resolving below warnings:
+> > > clocks: [[4]] is too short
+> > > clock-names: ['apb_pclk'] is too short
+> > 
+> > Again, the error is in the dts files, not the schema.
 > 
-> Patch 2/2 was submitted separately [1] but Rob's bot reported errors related to
-> the performance domain binding that used Qcom CPUFREQ as an example. But Qcom
-> CPUFREQ driver doesn't support the generic performance domains yet.
+> Rob, kindly note this series number is deprecated and I have sent v3
+> version some time back. Here's the link:
 > 
-> So I've added a patch 1/2 that fixes the warning by using MediaTek CPUFREQ as
-> the example and added both patches to this series.
+> https://lore.kernel.org/linux-spi/20220309171847.5345-1-singh.kuldeep87k@gmail.com/T/#u
 > 
-> Thanks,
-> Mani
-> 
-> [1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20211005044920.78544-1-manivannan.sadhasivam@linaro.org/
-> 
-> Changes in v2:
-> 
-> * Moved dvfs binding patch to 1/2 for avoiding DT Bot error.
-> * Added Krzysztof to "To" list.
+> > 
+> > 
+> > There's 2 possible answers. First, both clock inputs use the same source 
+> > clock. That's an easy fix. List the clock twice. Second, one clock is 
+> > not described in DT or visible to s/w. It still has to be in the h/w and 
+> > could be described as a 'fixed-clock'. A DT should either be all in with 
+> > clocks or not use the clock binding IMO. Describing some clocks and not 
+> > others is not a good solution.
+> > 
+> > For example, let's look at bcm-cygnus as one of the single clock 
+> > examples. The first thing I notice is there is a apb_pclk already 
+> > defined. The pl330 uses it. The watchdog (also Primecell) lists the 
+> > source clock twice. So what should pl022 be? IDK, ask the Broadcom 
+> > folks. If they don't know, then list the source clock twice. That's 
+> > effectively no change from what we have now.
 
-Applied. Thanks.
+I just noticed not all platforms possessing single clock are raising
+'dtbs_check' warning. For example, bcm-cygnus and lpc32xx passes check
+even though their DT clock entry has just "apb_pclk".
 
--- 
-viresh
+Any reason why they pass successfully through checks?
+
+> 
+> Yes, I took motivation from sp805 watchdog(primecell) while resolving DT
+> conflicts. I found LG and amd seattle platform with single clock in DT
+> for which I have sent patches. Link is below:
+> 
+> https://lore.kernel.org/linux-devicetree/CAL_Jsq+k+ridWTkdy4xwTC7VxUTU8tu+Q2BA9kbQVA222PWvZw@mail.gmail.com/
+> 
+> Moreover, I observed that clocks and clock-names are not required
+> properties for pl022. I am wondering reason behind the same when you
+> first made changes. Any specific reason not adding them which I am not
+> aware of or it just got missed?
+> 
+> - Kuldeep
