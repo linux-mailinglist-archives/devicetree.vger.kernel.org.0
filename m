@@ -2,141 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 119194D6413
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:48:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 77E8C4D6420
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:52:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232088AbiCKOtY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 09:49:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37378 "EHLO
+        id S1349385AbiCKOxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 09:53:53 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229586AbiCKOtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:49:23 -0500
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28F8F4160A;
-        Fri, 11 Mar 2022 06:48:20 -0800 (PST)
-Received: by mail-oi1-f180.google.com with SMTP id z8so9559213oix.3;
-        Fri, 11 Mar 2022 06:48:20 -0800 (PST)
+        with ESMTP id S1349439AbiCKOxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:53:52 -0500
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com [209.85.161.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5EA619CCC5;
+        Fri, 11 Mar 2022 06:52:48 -0800 (PST)
+Received: by mail-oo1-f49.google.com with SMTP id x26-20020a4a621a000000b00320d7d4af22so10752922ooc.4;
+        Fri, 11 Mar 2022 06:52:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=fv+NRm7Kc2RfkzcNyEkqZdH7J66FM5BfTas0lBIwSps=;
-        b=m2dRkdkiU9uUG54l8MjYBMPiClDu5SuL0VldJEsRq1rdBN0r3RuAwG1lLqFIkAarMa
-         zu7Ee0DhR4mFpSUriCfIYOsOTciCVZIA9zadEuhLjARiYqM7HONv5HrGQ0R45Fb3k82G
-         SWqVDtplNMXLpkLwYfeJV2rbA8v79Yu88ZNXfuXCBinAdEUMg5/4P5JNTnTIshahyZVU
-         B+441KzQ0IWe8AB3FTKHdFnu2CXAHJI6sGjlbFcUEIdkCUnreTeOXu3jhA28lTXknFyo
-         GI1qRMPtt0TNVNjTB10InXl/RiLsx35fdDP5h2M+KZA34994TmAy/0TdvZubsgCXq+/J
-         JKQw==
-X-Gm-Message-State: AOAM5316x6m6w4mOSSYI+54h1ALKO6OIUWZ0VMQMU3Noyxl8OPyaP3lk
-        w8JKT+2NyrABG8v8+stAmecEsls7Hw==
-X-Google-Smtp-Source: ABdhPJwnDf3xsURTeS/hpUraIhvvIEM5ils/aDazPsL5Vb4miQqrSP7mZzDNGETgedvqA4BpScnJTA==
-X-Received: by 2002:a05:6808:14cc:b0:2d9:a01a:48ac with SMTP id f12-20020a05680814cc00b002d9a01a48acmr13154340oiw.247.1647010099291;
-        Fri, 11 Mar 2022 06:48:19 -0800 (PST)
+         :mime-version:content-disposition:in-reply-to;
+        bh=XouDAonvXlO6XU2IHSFCooSQTQ5SzgR1sMybojkfzAI=;
+        b=EgY27qioBEkTd8PkRaG91a6dO58+0mM0YqJZbufrDf+r2acEGmywtBFL+mwM/YN9iP
+         GnuHRhJ6jRxZXkq8P0pfbFeUZd4Zn+PHz4jpwn57vjY7iA+aeR59C7UzUlHgurDw0UYQ
+         0aIarLUAhdvbTHUIiTR4jfZNc9iDG1Jj36m/CPb0XK/lSmO9aaJwTGySM+TRN6glpRRA
+         XHzfeLmHAhiuroYzESqa9OOpES38e61np89jTkHby/N0xDPtccBMpdOCtu/1L1TV2185
+         mVOZzm7wnkwGkLXDOV3UCi1iS+KZojIThTMy4KvJ3YEhCmw3pLQQtt6Qv1F20HS/pvUT
+         H1Ng==
+X-Gm-Message-State: AOAM532z8ewZSADPxQDfzg2jL7PY2WIO9u8LdIZA3n4+iwhNivW/zsbK
+        x1gVWwjGAySV2m9td8oiag==
+X-Google-Smtp-Source: ABdhPJwVM00FBPusKKPXsuJpjuUgFPFT6v1xv+HzGc+G1sqBrbm5F+Ukz/YBeNSj5BBqeajDFr8FEg==
+X-Received: by 2002:a05:6870:3927:b0:da:34c1:560c with SMTP id b39-20020a056870392700b000da34c1560cmr10991064oap.176.1647010367441;
+        Fri, 11 Mar 2022 06:52:47 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id v18-20020a056830091200b005c928debf84sm1838802ott.75.2022.03.11.06.48.17
+        by smtp.gmail.com with ESMTPSA id b63-20020acab242000000b002d9ddf4596fsm3929216oif.49.2022.03.11.06.52.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 06:48:18 -0800 (PST)
-Received: (nullmailer pid 3764520 invoked by uid 1000);
-        Fri, 11 Mar 2022 14:48:17 -0000
-Date:   Fri, 11 Mar 2022 08:48:17 -0600
+        Fri, 11 Mar 2022 06:52:46 -0800 (PST)
+Received: (nullmailer pid 3772694 invoked by uid 1000);
+        Fri, 11 Mar 2022 14:52:45 -0000
+Date:   Fri, 11 Mar 2022 08:52:45 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     "Neumann, Bastian" <Bastian.Neumann@dentsplysirona.com>,
-        Tommaso Merciai <tomm.merciai@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Richard Leitner <richard.leitner@skidata.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: usb: USB2512x boost value for up- and
- downstream ports
-Message-ID: <YithMVvcOKbq76OU@robh.at.kernel.org>
-References: <PH0PR17MB48481AC6D6B808D2C106C4AA8E0C9@PH0PR17MB4848.namprd17.prod.outlook.com>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     krzysztof.kozlowski@canonical.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, jirislaby@kernel.org,
+        kernel@axis.com, linux-kernel@vger.kernel.org,
+        alim.akhtar@samsung.com, linux-serial@vger.kernel.org,
+        robh+dt@kernel.org, gregkh@linuxfoundation.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: serial: samsung: Add ARTPEC-8 UART
+Message-ID: <YitiPSZp4thtal8D@robh.at.kernel.org>
+References: <20220311094515.3223023-1-vincent.whitchurch@axis.com>
+ <20220311094515.3223023-2-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PH0PR17MB48481AC6D6B808D2C106C4AA8E0C9@PH0PR17MB4848.namprd17.prod.outlook.com>
+In-Reply-To: <20220311094515.3223023-2-vincent.whitchurch@axis.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 12:09:42PM +0000, Neumann, Bastian wrote:
-> This patch adds devicetree documentation for signal boosting properties.
+On Fri, 11 Mar 2022 10:45:14 +0100, Vincent Whitchurch wrote:
+> Add a compatible for the UART on the ARTPEC-8 SoC.  This hardware block
+> is closely related to the variants used on the Exynos chips.  The
+> register layout is identical to Exynos850 et al but the fifo size is
+> different (64 bytes in each direction for all instances).
 > 
-> Signed-off-by: Bastian Neumann <bastian.neumann@dentsplysirona.com>
+> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
 > ---
->  .../devicetree/bindings/usb/usb251xb.txt      | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
+> 
+> Notes:
+>     v2:
+>     - Expand commit message.
+>     - Define required clocks.
+> 
+>  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
 
-A popular feature all the sudden. Which one are we supposed to apply? 
-This one or this[1]?
-
-Rob
-
-[1] https://lore.kernel.org/all/20220306184720.5350-1-tomm.merciai@gmail.com/
-
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/usb251xb.txt b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> index 1a934eab175e..538ae49fc31d 100644
-> --- a/Documentation/devicetree/bindings/usb/usb251xb.txt
-> +++ b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> @@ -68,6 +68,26 @@ Optional properties :
->   - swap-dx-lanes : Specifies the ports which will swap the differential-pair
->         (D+/D-), default is not-swapped.
-> 
-> +Electrical signal boosting
-> +The controller supplies a "boosting" functionality to drive up the USB
-> +electrical signals. This could result in non-USB compliant parameters
-> +(one example would be J/K level test). This should be <0x00> unless specific
-> +implementation issues requiew additional signal boosting to correct for deraded
-> +USB signaling levels:
-> + - <0x00> : Normal electrical drive strength (no boost)
-> + - <0x01> : Elevated drive strength low (~4% boost)
-> + - <0x02> : Elevated drive strength medium (~8% boost)
-> + - <0x03> : Elevated drive strength high (~12% boost)
-> +
-> + - boost-up : USB electrical signaling drive strength boost for upstream port.
-> + - boost-1 :  USB electrical signaling drive strength boost for port 1.
-> + - boost-2 :  USB electrical signaling drive strength boost for port 2.
-> + - boost-3 :  USB electrical signaling drive strength boost for port 3.
-> + - boost-4 :  USB electrical signaling drive strength boost for port 4.
-> + - boost-5 :  USB electrical signaling drive strength boost for port 5.
-> + - boost-6 :  USB electrical signaling drive strength boost for port 6.
-> + - boost-7 :  USB electrical signaling drive strength boost for port 7.
-> +
->  Examples:
->         usb2512b@2c {
->                 compatible = "microchip,usb2512b";
-> @@ -86,4 +106,6 @@ Examples:
->                 serial = "1234567890A";
->                 /* correct misplaced usb connectors on port 1,2 */
->                 swap-dx-lanes = <1 2>;
-> +               boost-up = <0x00>; /* no boost for upstream port */
-> +               boost-1 = <0x02>; /* medium boost on port 1 */
->         };
-> --
-> 2.30.2
-> 
-> 
-> -----------------------------------------------------------------------------------------------------------
-> Sirona Dental Systems GmbH
-> Sitz der Gesellschaft / registered address: Fabrikstraße 31, 64625 Bensheim
-> Registergericht / court of registry: Amtsgericht Darmstadt, HRB 24948
-> Geschäftsführer / Managing Director: Dr. Cord Stähler, Jan Siefert, Rainer Raschke
-> Aufsichtsratsvorsitzender / Chairman of the Supervisory Board: Dr. Alexander Voelcker
-> 
-> -----------------------------------------------------------------------------------------------------------
-> 
-> 
-> Diese E-Mail ist ausschliesslich fuer den angesprochenen Adressaten
-> bestimmt und kann vertrauliche Informationen beinhalten.
-> --
-> This e-mail is intended only for the designated recipient(s). It may
-> contain confidential or proprietary information.
-> ------------------------------------------------------------------------------------------------------------
+Reviewed-by: Rob Herring <robh@kernel.org>
