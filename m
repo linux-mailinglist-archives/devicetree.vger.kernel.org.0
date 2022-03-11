@@ -2,134 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7574D625C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 14:28:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C67924D6260
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 14:28:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348227AbiCKN3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 08:29:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45300 "EHLO
+        id S1348890AbiCKN3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 08:29:54 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47788 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240969AbiCKN3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 08:29:07 -0500
-X-Greylist: delayed 410 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 11 Mar 2022 05:28:05 PST
-Received: from mail.mleia.com (mleia.com [178.79.152.223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1769D5C646
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 05:28:03 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-        t=1647004842; bh=J7/vKcyix+nji45hqGrcjszxF1kSDnocg442Y//BGKo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=tOhHJisO0eoVBxXAyJJVaphOYMMSeBqvEeikezoAsTuQxuXP/DrQ/jRcRmrk3F1v5
-         S0PPiGSE7VOj6V778ZCTCqxgsFWcb6Dfp14kJOZsRDKIYe/8SP5vnlUXNPc6QY3Fip
-         cCSpCjcyhDXrCINmTirV/w3AyWfvAe1U2kSm13yo2S3m2XlTc2A0fSCK76NffTgmyR
-         F1n1tMZnOzuY5SHDKuFymCG9lCh06Z+NmDuY/NjoSiwW2KTZDQhU8fo7MoNfMwba33
-         zx76vIdgTDlmZ+c/BYTDigElSyh3SZud/P5+zbnxDMZpkzwjOnHfw4W+XWzZgPDTwc
-         WeM/PBJLVyPmA==
-Received: from mail.mleia.com (localhost [127.0.0.1])
-        by mail.mleia.com (Postfix) with ESMTP id 138F439E948;
-        Fri, 11 Mar 2022 13:20:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
-        t=1647004842; bh=J7/vKcyix+nji45hqGrcjszxF1kSDnocg442Y//BGKo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=tOhHJisO0eoVBxXAyJJVaphOYMMSeBqvEeikezoAsTuQxuXP/DrQ/jRcRmrk3F1v5
-         S0PPiGSE7VOj6V778ZCTCqxgsFWcb6Dfp14kJOZsRDKIYe/8SP5vnlUXNPc6QY3Fip
-         cCSpCjcyhDXrCINmTirV/w3AyWfvAe1U2kSm13yo2S3m2XlTc2A0fSCK76NffTgmyR
-         F1n1tMZnOzuY5SHDKuFymCG9lCh06Z+NmDuY/NjoSiwW2KTZDQhU8fo7MoNfMwba33
-         zx76vIdgTDlmZ+c/BYTDigElSyh3SZud/P5+zbnxDMZpkzwjOnHfw4W+XWzZgPDTwc
-         WeM/PBJLVyPmA==
-Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi [88.113.46.102])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by mail.mleia.com (Postfix) with ESMTPSA id AA1DF39E937;
-        Fri, 11 Mar 2022 13:20:41 +0000 (UTC)
-Subject: Re: [PATCH v2 3/3] ARM: dts: lpc32xx: Update spi clock properties
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        soc@kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20220311093800.18778-1-singh.kuldeep87k@gmail.com>
- <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
-From:   Vladimir Zapolskiy <vz@mleia.com>
-Message-ID: <4aae560d-d266-d0d0-136f-32891b15bc01@mleia.com>
-Date:   Fri, 11 Mar 2022 15:20:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.6.1
-MIME-Version: 1.0
-In-Reply-To: <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20220311_132042_108857_54C47694 
-X-CRM114-Status: GOOD (  20.88  )
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        with ESMTP id S1348876AbiCKN3x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 08:29:53 -0500
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0B405D5E1;
+        Fri, 11 Mar 2022 05:28:48 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id j3-20020a9d7683000000b005aeed94f4e9so6251315otl.6;
+        Fri, 11 Mar 2022 05:28:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=DqWgVz4mscQx7VQZPkY837R3TSNSLttxQeZWV9I4qb4=;
+        b=tI1D7Djk9/hipqQSZZhI5yR0TSGDEDK/6gDK02Mg6DDYkBBxzt5m/9N2UgG3Mrtou7
+         OW90wZVr+FWmdYHxX+Pwrby7QsVwH1+Ahci7bJkoGajQpHADvYJsnUvdAuH8/dVxCppv
+         ITs1Ev05yKzwYt5OZG30NOyf8jrxuJjLO/ZtbawliqH8am6zjn+F+8osoUQ7qpWmkCYz
+         aXum3g3ZiuLREmMIL5T8pZz+A0AEEnqC6zAwJ+UXyydzwPKsPOhXl/PJ224BPBtnZGQd
+         pMjdSjP/fOx5LBZCEO6T/Wxne7w9FgAtN9SrGJvqS60GZNu+a4aLEJSNsVPYb86LPArF
+         +/iw==
+X-Gm-Message-State: AOAM531u9cY1wMhV2ve6091KWC7GW15dCWiBKBqvJm76FMwHEbSLzlV8
+        rq6OaYq0VYJ/WtHmmL56sg==
+X-Google-Smtp-Source: ABdhPJyW3etsHadVks+qdx/NCSOI597tN0DpxS5HBRpw1Cqr6gc/YxuiIbex7hKaXujqBfrqa3jSPw==
+X-Received: by 2002:a05:6830:438d:b0:5c4:f0f:70ac with SMTP id s13-20020a056830438d00b005c40f0f70acmr4240041otv.111.1647005327910;
+        Fri, 11 Mar 2022 05:28:47 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id r23-20020a056830237700b005b2610517c8sm3613104oth.56.2022.03.11.05.28.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Mar 2022 05:28:47 -0800 (PST)
+Received: (nullmailer pid 3638165 invoked by uid 1000);
+        Fri, 11 Mar 2022 13:28:45 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Medad CChien <medadyoung@gmail.com>
+Cc:     tony.luck@intel.com, KWLIU@nuvoton.com, devicetree@vger.kernel.org,
+        james.morse@arm.com, ctcchien@nuvoton.com, tali.perry1@gmail.com,
+        robh+dt@kernel.org, JJLIU0@nuvoton.com, venture@google.com,
+        mchehab@kernel.org, tmaimon77@gmail.com, yuenn@google.com,
+        benjaminfair@google.com, avifishman70@gmail.com,
+        linux-edac@vger.kernel.org, KFTING@nuvoton.com,
+        linux-kernel@vger.kernel.org, bp@alien8.de, YSCHU@nuvoton.com,
+        rric@kernel.org, openbmc@lists.ozlabs.org
+In-Reply-To: <20220311014245.4612-3-ctcchien@nuvoton.com>
+References: <20220311014245.4612-1-ctcchien@nuvoton.com> <20220311014245.4612-3-ctcchien@nuvoton.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: edac: nuvoton,npcm-memory-controller.yaml
+Date:   Fri, 11 Mar 2022 07:28:45 -0600
+Message-Id: <1647005325.599595.3638164.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/11/22 11:38 AM, Kuldeep Singh wrote:
-> PL022 binding require two clocks to be defined but lpc platform doesn't
-> comply with bindings and define only one clock i.e apb_pclk.
+On Fri, 11 Mar 2022 09:42:44 +0800, Medad CChien wrote:
+> Add device tree bindings for NPCM memory controller.
 > 
-> Update spi clocks and clocks-names property by adding appropriate clock
-> reference to make it compliant with bindings.
-> 
-> CC: Vladimir Zapolskiy <vz@mleia.com>
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
 > ---
-> v2:
-> - New patch with similar changeset
-> - Send to soc ML
-> 
->   arch/arm/boot/dts/lpc32xx.dtsi | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
-> index c87066d6c995..30958e02d5e2 100644
-> --- a/arch/arm/boot/dts/lpc32xx.dtsi
-> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
-> @@ -178,8 +178,8 @@ ssp0: spi@20084000 {
->   				compatible = "arm,pl022", "arm,primecell";
->   				reg = <0x20084000 0x1000>;
->   				interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
-> -				clocks = <&clk LPC32XX_CLK_SSP0>;
-> -				clock-names = "apb_pclk";
-> +				clocks = <&clk LPC32XX_CLK_SSP0>, <&clk LPC32XX_CLK_SSP0>;
-> +				clock-names = "sspclk", "apb_pclk";
-
-In fact I'm uncertain if it is the right change, could it happen that the commit
-cc0f6e96c4fd ("spi: dt-bindings: Convert Arm pl022 to json-schema") sets a wrong
-schema pattern?
-
-Apparently just one clock is wanted on all observed platforms and cases, this
-is implicitly confirmed by clock handling in the drivers/spi/spi-pl022.c :
-
-	pl022->clk = devm_clk_get(&adev->dev, NULL);
-
-So, I would vote to fix the device tree bindings schema.
-
->   				#address-cells = <1>;
->   				#size-cells = <0>;
->   				status = "disabled";
-> @@ -202,8 +202,8 @@ ssp1: spi@2008c000 {
->   				compatible = "arm,pl022", "arm,primecell";
->   				reg = <0x2008c000 0x1000>;
->   				interrupts = <21 IRQ_TYPE_LEVEL_HIGH>;
-> -				clocks = <&clk LPC32XX_CLK_SSP1>;
-> -				clock-names = "apb_pclk";
-> +				clocks = <&clk LPC32XX_CLK_SSP1>, <&clk LPC32XX_CLK_SSP1>;
-> +				clock-names = "sspclk", "apb_pclk";
->   				#address-cells = <1>;
->   				#size-cells = <0>;
->   				status = "disabled";
+>  .../edac/nuvoton,npcm-memory-controller.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
 > 
 
---
-Best wishes,
-Vladimir
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/edac/nuvoton,npcm-memory-controller.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/patch/1604217
+
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
