@@ -2,47 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C12C64D6839
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 19:00:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EB0144D6848
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 19:07:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350019AbiCKSBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 13:01:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56702 "EHLO
+        id S1348527AbiCKSIH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 13:08:07 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239458AbiCKSBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 13:01:34 -0500
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2928C1D3DAA;
-        Fri, 11 Mar 2022 10:00:29 -0800 (PST)
-Received: (Authenticated sender: jacopo@jmondi.org)
-        by mail.gandi.net (Postfix) with ESMTPSA id 5577C20003;
-        Fri, 11 Mar 2022 18:00:25 +0000 (UTC)
-Date:   Fri, 11 Mar 2022 19:00:24 +0100
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, robh@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
-Message-ID: <20220311180024.duxcap6yjv6slx2t@uno.localdomain>
-References: <20220310130829.96001-1-jacopo@jmondi.org>
- <20220310130829.96001-2-jacopo@jmondi.org>
- <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
- <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
- <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
- <20220311160524.wyfk5vj33xt4umgi@uno.localdomain>
- <5f81a066-0d28-59ed-ec55-3861766025e6@canonical.com>
+        with ESMTP id S232941AbiCKSIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 13:08:06 -0500
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 85AAF1BA17B;
+        Fri, 11 Mar 2022 10:07:02 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 178EB61E70;
+        Fri, 11 Mar 2022 18:07:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2AEBC340E9;
+        Fri, 11 Mar 2022 18:06:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647022021;
+        bh=FbqNvOscYJ7Bfr/Vx00UgkhPaUqUnhlZCF+USYAVP7s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vOMJW+v9J+BqQYR/PnmJ698oQuG3E+dq1i4rfVycrdqD+cso8RQTZa5pT2Yo4F9LD
+         1xtdIuzSSBeZcdQ96Kbk9RN5+OYHpfdue+UzoY3aB6SU5fKqE1TQlTGFMJygCFc1EP
+         pFK3kzS7x2d1SfpMUz5b+96BnjndaCnL3HRyaSVI2TFYBQToCgbIz0lSWd9CWrq8bG
+         LVLkcTRBT+tWtgdRhTNsce+EUu/l7QLK7ZlZFGRCDcw+jPkopTFWyLAE5KrPS6espp
+         J/DSeNVhR/jDSNkGi6xHavFIrUTqc4sN119HRZv1mFz+qnkc2xwSt8J5xD6WvekkeU
+         gzrqZFrmzJR1w==
+Date:   Fri, 11 Mar 2022 18:06:54 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
+Cc:     linux-kernel@vger.kernel.org, kernel@axis.com,
+        devicetree@vger.kernel.org, linux-um@lists.infradead.org,
+        shuah@kernel.org, brendanhiggins@google.com,
+        linux-kselftest@vger.kernel.org, jic23@kernel.org,
+        linux-iio@vger.kernel.org, lgirdwood@gmail.com,
+        a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        linux-rtc@vger.kernel.org, corbet@lwn.net,
+        linux-doc@vger.kernel.org
+Subject: Re: [RFC v1 09/10] regulator: tps62864: add roadtest
+Message-ID: <YiuPvkQroV/WdFpx@sirena.org.uk>
+References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
+ <20220311162445.346685-10-vincent.whitchurch@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MolxjZU9V35M/+dw"
 Content-Disposition: inline
-In-Reply-To: <5f81a066-0d28-59ed-ec55-3861766025e6@canonical.com>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220311162445.346685-10-vincent.whitchurch@axis.com>
+X-Cookie: A fool and his money are soon popular.
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -50,241 +62,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof
 
-On Fri, Mar 11, 2022 at 05:11:47PM +0100, Krzysztof Kozlowski wrote:
-> On 11/03/2022 17:05, Jacopo Mondi wrote:
-> > Hi Krzysztof,
-> >
-> > On Thu, Mar 10, 2022 at 06:26:02PM +0100, Krzysztof Kozlowski wrote:
-> >> On 10/03/2022 18:16, Jacopo Mondi wrote:
-> >>> Hi Krzysztof
-> >>>
-> >>> On Thu, Mar 10, 2022 at 03:29:24PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 10/03/2022 14:08, Jacopo Mondi wrote:
-> >>>>> Provide the bindings documentation for Omnivision OV5670 image sensor.
-> >>>>>
-> >>>>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> >>>>> ---
-> >>>>>  .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
-> >>>>
-> >>>> Add the file to maintainers entry.
-> >>>>
-> >>>
-> >>> Right
-> >>>
-> >>>>>  1 file changed, 93 insertions(+)
-> >>>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>>>> new file mode 100644
-> >>>>> index 000000000000..dc4a3297bf6f
-> >>>>> --- /dev/null
-> >>>>> +++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
-> >>>>
-> >>>> Missing vendor prefix in file name.
-> >>>>
-> >>>
-> >>> Right x2
-> >>>
-> >>>>> @@ -0,0 +1,93 @@
-> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>>> +%YAML 1.2
-> >>>>> +---
-> >>>>> +$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
-> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>>> +
-> >>>>> +title: Omnivision OV5670 5 Megapixels raw image sensor
-> >>>>> +
-> >>>>> +maintainers:
-> >>>>> +  - Jacopo Mondi <jacopo@jmondi.org>
-> >>>>
-> >>>> Please add also driver maintainer.
-> >>>>
-> >>>
-> >>> I never got what the policy was, if the maintainer entries here only
-> >>> refer to the binding file or to the driver too
-> >>
-> >> It is a person responsible for the bindings, so indeed it might not feed
-> >> existing maintainer.
-> >>
-> >>>
-> >>>>> +
-> >>>>> +description: |-
-> >>>>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-> >>>>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-> >>>>> +  controlled through an I2C compatible control bus.
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    const: ovti,ov5670
-> >>>>> +
-> >>>>> +  reg:
-> >>>>> +    maxItems: 1
-> >>>>> +
-> >>>>> +  clock-frequency:
-> >>>>> +    description: Frequency of the xclk clock.
-> >>>>
-> >>>> Is the xclk external clock coming to the sensor? If yes, there should be
-> >>>> a "clocks" property.
-> >>>>
-> >>>
-> >>> To be honest I was not sure about this, as clock-frequency is already
-> >>> used by the driver for the ACPI part, but it seems to in DT bindings
-> >>> it is a property meant to be specified in the clock providers, even if
-> >>> Documentation/devicetree/bindings/clock/clock-bindings.txt doesn't
-> >>> really clarify this
-> >>>
-> >>> Clock consumer should rather use 'clocks' and point to the provider's
-> >>> phandle if my understanding is right.
-> >>
-> >> This is a clock-frequency, not clock reference. For external clocks, a
-> >
-> > Yes, I was suggesting to replace clock-frequency with clocks, that
-> > accepts a phandle.
-> >
-> > The thing is, the driver parses 'clock-frequency'
-> > 	device_property_read_u32(&client->dev, "clock-frequency", &input_clk);
-> >
-> > which I assume comes from ACPI (as the driver was developed for an
-> > ACPI platform).
-> >
-> > If in DTS we don't use it, I then need to
-> >
-> > #ifdef CONFIG_ACPI
-> >
-> > #elif defined CONFIG_OF
-> >
-> > #endif
-> >
-> > Which I would really like to avoid.
-> >
-> > Anyone with ACPI experience that knows where clock-frequency comes
-> > from ?
->
-> I would assume that ACPI simply does not support common clock framework,
-> so it had to use clock-frequency. Several of such drivers were added by
-> folks from Intel which use ACPI, not Devicetree.
->
-> >
-> >> clock phandles + assigned-clock-rates should be rather used. However for
-> >> internal clocks, this is a perfectly valid property.
-> >>
-> >> Therefore the question is - what is the "xclk"?
-> >
-> > xclk is the clock fed to the sensor, which which all its internal
-> > clocks are generated, so it's indeed an 'external' clock. As I've
-> > said, clock-frequency seems to be meant for clock providers, and
-> > the image sensor is a clock consumer.
->
-> Regardless whether clock-frequency stays or not, you need the clocks
-> property in such case.
->
+--MolxjZU9V35M/+dw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Yes, I will have to ifdef in the driver if no better alternatives
+On Fri, Mar 11, 2022 at 05:24:44PM +0100, Vincent Whitchurch wrote:
 
-> >
-> >>
-> >>>
-> >>>>> +
-> >>>>> +  pwdn-gpios:
-> >>>>> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
-> >>>>
-> >>>> maxItems
-> >>>>
-> >>>
-> >>> I thought it was not necessary with a single description: entry. But
-> >>> looking at the dt-schema source I fail to find any commit mentioning
-> >>> that.
-> >>
-> >> The purpose of maxItems is to constrain the number of GPIOs, so two
-> >> would be incorrect.
-> >>
-> >
-> > I recall that with a single description entry then maxItems: 1 was
-> > assumed by the dt-schema validator, but I cannot find references to
-> > any commit, so I'll add it.
-> >
-> >>>
-> >>>>> +
-> >>>>> +  reset-gpios:
-> >>>>> +    description:
-> >>>>> +      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
-> >>>>
-> >>>> maxItems
-> >>>>
-> >>>>> +
-> >>>>> +  avdd-supply:
-> >>>>> +    description: Analog circuit power. Typically 2.8V.
-> >>>>> +
-> >>>>> +  dvdd-supply:
-> >>>>> +    description: Digital circuit power. Typically 1.2V.
-> >>>>> +
-> >>>>> +  dovdd-supply:
-> >>>>> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
-> >>>>> +
-> >>>>> +  port:
-> >>>>> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> >>>>> +    additionalProperties: false
-> >>>>> +
-> >>>>> +    properties:
-> >>>>> +      endpoint:
-> >>>>> +        $ref: /schemas/media/video-interfaces.yaml#
-> >>>>> +        unevaluatedProperties: false
-> >>>>> +
-> >>>>> +        properties:
-> >>>>> +          data-lanes:
-> >>>>> +            description: The sensor supports 1 or 2 data lanes operations.
-> >>>>> +            minItems: 1
-> >>>>> +            maxItems: 2
-> >>>>> +            items:
-> >>>>> +              maximum: 2
-> >>>>
-> >>>> Is '0' also allowed? If not then maybe 'enum: [ 1, 2 ]'
-> >>>
-> >>> No 0 is not allowed, but the data-lanes properties should accept any
-> >>> of the following combinations
-> >>>         <1>
-> >>>         <1 2>
-> >>>         <2 1>
-> >>>
-> >>> As the chip seems to support lane re-ordering.
-> >>>
-> >>> using enum would allow to between <1> or <2> if I got it right?
-> >>
-> >> Yeah, enum would be equivalent. I find it more readable, than min+max,
-> >> but it's not a strong preference.
-> >>
-> >
-> > I don't think enum is equivalent, as it specifies a set of valid values
-> > a property can assume, but it does not support arrays.
->
-> It is equivalent, just has to be used in equivalent way.
->
-> >
-> > https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.16.1.2.
-> >
-> > enum
-> >   The value of this keyword MUST be an array. This array SHOULD have
-> >   at least one element. Elements in the array SHOULD be unique.
-> >
-> >   An instance validates successfully against this keyword if its value
-> >   is equal to one of the elements in this keyword's array value.
-> > > In facts:
->
-> That's not good usage. See for example:
-> Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+This looks like it could be useful, modulo the general concerns with
+mocking stuff.  I've not looked at the broader framework stuff in any
+meanigful way.
 
-Thanks, you're right.
+> +    @classmethod
+> +    def setUpClass(cls) -> None:
+> +        insmod("tps6286x-regulator")
 
-        items:
-          enum: [1, 2]
+Shouldn't this get figured out when the device gets created in DT (if it
+doesn't I guess the tests found a bug...)?
 
-validates correctly.
+> +    def setUp(self) -> None:
+> +        self.driver = I2CDriver("tps6286x")
+> +        self.hw = Hardware("i2c")
+> +        self.hw.load_model(TPS62864)
 
-Thanks for the suggestion!
+This feels like there could be some syntactic sugar to say "create this
+I2C device" in one call?  In general a lot of the frameworkish stuff
+feels verbose.
 
->
->
-> Best regards,
-> Krzysztof
+> +    def test_voltage(self) -> None:
+> +        with (
+> +            self.driver.bind(self.dts["normal"]),
+> +            PlatformDriver("reg-virt-consumer").bind(
+> +                "tps62864_normal_consumer"
+> +            ) as consumerdev,
+> +        ):
+> +            maxfile = consumerdev.path / "max_microvolts"
+> +            minfile = consumerdev.path / "min_microvolts"
+> +
+> +            write_int(maxfile, 1675000)
+> +            write_int(minfile, 800000)
+> +
+> +            mock = self.hw.update_mock()
+> +            mock.assert_reg_write_once(self, REG_CONTROL, 1 << 5)
+> +            mock.assert_reg_write_once(self, REG_VOUT1, 0x50)
+> +            mock.reset_mock()
+
+Some comments about the assertations here would seem to be in order.
+It's not altogether clear what this is testing - it looks to be
+verifying that the regulator is enabled with the voltage set to 800mV
+mapping to 0x50 in VOUT1 but I'm not sure that the idle reader would
+pick that up.
+
+> +            mV = 1000
+> +            data = [
+> +                (400 * mV, 0x00),
+> +                (900 * mV, 0x64),
+> +                (1675 * mV, 0xFF),
+> +            ]
+> +
+> +            for voltage, val in data:
+> +                write_int(minfile, voltage)
+> +                mock = self.hw.update_mock()
+> +                mock.assert_reg_write_once(self, REG_VOUT1, val)
+> +                mock.reset_mock()
+
+For covering regulators in general (especially those like this that use
+the generic helpers) I'd be inclined to go through every single voltage
+that can be set which isn't so interesting for this driver with it's
+linear voltage control but more interesting for something that's not
+continuous.  I'd also put a cross check in that the voltage and enable
+state that's reported via the read interface in sysfs is the one that we
+think we've just set, that'd validate that the framework's model of
+what's going on matches both what the driver did to the "hardware" and
+what the running kernel thinks is going on so we're joined up top to
+bottom (for the regulator framework the read values come from the
+driver so it is actually covering the driver).
+
+This all feels like it could readily be factored out into a generic
+helper, much as the actual drivers are especially when they're more data
+driven.  Ideally with the ability to override the default I/O operations
+for things with sequences that need to be followed instead of just a
+bitfield to update.  Callbacks to validate enable state, voltage, mode
+and so on in the hardware.  If we did that then rather than open coding
+every single test for every single device we could approach things at
+the framework level and give people working on a given device a pile of
+off the shelf tests which are more likely to catch things that an
+individual driver author might've missed, it also avoids the test
+coverage being more laborious than writing the actual driver.
+
+This does raise the questions I mentioned about how useful the testing
+really is of course, even more so when someone works out how to generate
+the data tables for the test and the driver from the same source, but
+that's just generally an issue for mocked tests at the conceptual level
+and clearly it's an approach that's fairly widely used and people get
+value from.
+
+--MolxjZU9V35M/+dw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIrj70ACgkQJNaLcl1U
+h9D1Rgf9Ftqa1fE0HqpChhmXg9bevuB0hQF8ey0T0Ypw/UorQPenedWbtt0/waZY
+K8rGaxJFPJbpC26PeXga6PnVPe7rm+uJtKQe7kICGvkvdCzVfqEH6uNxUfMwPki3
+zD2nhS1EvX7bB4NUDP8a3BgrFu8KWh6Npx2yj1cUKUoKFAPBhktCFs/wP5xfhvDV
+16sVYMN3QInL8IERk5F+lJSZHHOqfyt0lu7hgW70d+GoAlix/NwXL67ezPMykft/
+iyATJkFPB6KoBG2IChUzCFOzMN8KVfjXMCcl5JxOgSpER4jqMeDIbjTsv4uilzFf
+LUaSWbjwsd5iJoc7O2UJ+5I6S6vUDA==
+=X5TK
+-----END PGP SIGNATURE-----
+
+--MolxjZU9V35M/+dw--
