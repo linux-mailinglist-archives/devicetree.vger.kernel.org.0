@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66D7A4D5D7C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:33:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70F1D4D5D66
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:33:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235451AbiCKIe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 03:34:58 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54752 "EHLO
+        id S232193AbiCKIen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 03:34:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235321AbiCKIe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:34:58 -0500
+        with ESMTP id S232004AbiCKIen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:34:43 -0500
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0B291B6086
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 00:33:55 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A09B18C78F
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 00:33:40 -0800 (PST)
 Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <sha@pengutronix.de>)
-        id 1nSaiL-0000aS-Cg; Fri, 11 Mar 2022 09:33:33 +0100
+        id 1nSaiL-0000aT-6u; Fri, 11 Mar 2022 09:33:33 +0100
 Received: from sha by dude02.hi.pengutronix.de with local (Exim 4.94.2)
         (envelope-from <sha@pengutronix.de>)
-        id 1nSaiE-0040hF-KQ; Fri, 11 Mar 2022 09:33:26 +0100
+        id 1nSaiE-0040hI-Kv; Fri, 11 Mar 2022 09:33:26 +0100
 From:   Sascha Hauer <s.hauer@pengutronix.de>
 To:     dri-devel@lists.freedesktop.org
 Cc:     linux-arm-kernel@lists.infradead.org,
@@ -32,12 +32,11 @@ Cc:     linux-arm-kernel@lists.infradead.org,
         Sandy Huang <hjc@rock-chips.com>,
         =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
         Peter Geis <pgwipeout@gmail.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Yakir Yang <ykk@rock-chips.com>,
+        Nickey Yang <nickey.yang@rock-chips.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v8 14/24] drm/rockchip: dw_hdmi: Set cur_ctr to 0 always
-Date:   Fri, 11 Mar 2022 09:33:13 +0100
-Message-Id: <20220311083323.887372-15-s.hauer@pengutronix.de>
+Subject: [PATCH v8 15/24] drm/rockchip: dw_hdmi: add default 594Mhz clk for 4K@60hz
+Date:   Fri, 11 Mar 2022 09:33:14 +0100
+Message-Id: <20220311083323.887372-16-s.hauer@pengutronix.de>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20220311083323.887372-1-s.hauer@pengutronix.de>
 References: <20220311083323.887372-1-s.hauer@pengutronix.de>
@@ -56,15 +55,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Douglas Anderson <dianders@chromium.org>
+From: Nickey Yang <nickey.yang@rock-chips.com>
 
-Jitter was improved by lowering the MPLL bandwidth to account for high
-frequency noise in the rk3288 PLL.  In each case MPLL bandwidth was
-lowered only enough to get us a comfortable margin.  We believe that
-lowering the bandwidth like this is safe given sufficient testing.
+add 594Mhz configuration parameters in rockchip_phy_config
 
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Yakir Yang <ykk@rock-chips.com>
+Signed-off-by: Nickey Yang <nickey.yang@rock-chips.com>
 Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 ---
 
@@ -72,36 +67,21 @@ Notes:
     Changes since v3:
     - new patch
 
- drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 16 ++--------------
- 1 file changed, 2 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-index 4f912cbea73bb..f56c79c60d149 100644
+index f56c79c60d149..081a2740be645 100644
 --- a/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
 +++ b/drivers/gpu/drm/rockchip/dw_hdmi-rockchip.c
-@@ -181,20 +181,8 @@ static const struct dw_hdmi_mpll_config rockchip_mpll_cfg[] = {
- static const struct dw_hdmi_curr_ctrl rockchip_cur_ctr[] = {
- 	/*      pixelclk    bpp8    bpp10   bpp12 */
- 	{
--		40000000,  { 0x0018, 0x0018, 0x0018 },
--	}, {
--		65000000,  { 0x0028, 0x0028, 0x0028 },
--	}, {
--		66000000,  { 0x0038, 0x0038, 0x0038 },
--	}, {
--		74250000,  { 0x0028, 0x0038, 0x0038 },
--	}, {
--		83500000,  { 0x0028, 0x0038, 0x0038 },
--	}, {
--		146250000, { 0x0038, 0x0038, 0x0038 },
--	}, {
--		148500000, { 0x0000, 0x0038, 0x0038 },
--	}, {
-+		600000000, { 0x0000, 0x0000, 0x0000 },
-+	},  {
- 		~0UL,      { 0x0000, 0x0000, 0x0000},
- 	}
+@@ -192,6 +192,7 @@ static const struct dw_hdmi_phy_config rockchip_phy_config[] = {
+ 	{ 74250000,  0x8009, 0x0004, 0x0272},
+ 	{ 148500000, 0x802b, 0x0004, 0x028d},
+ 	{ 297000000, 0x8039, 0x0005, 0x028d},
++	{ 594000000, 0x8039, 0x0000, 0x019d},
+ 	{ ~0UL,	     0x0000, 0x0000, 0x0000}
  };
+ 
 -- 
 2.30.2
 
