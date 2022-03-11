@@ -2,73 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7DD34D648D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:28:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D43344D649A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 16:30:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233904AbiCKP3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 10:29:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43008 "EHLO
+        id S1346603AbiCKPbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 10:31:38 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237999AbiCKP3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:29:35 -0500
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24618FFF8F;
-        Fri, 11 Mar 2022 07:28:31 -0800 (PST)
-Received: by mail-ot1-f43.google.com with SMTP id a7-20020a9d5c87000000b005ad1467cb59so6488790oti.5;
-        Fri, 11 Mar 2022 07:28:31 -0800 (PST)
+        with ESMTP id S235632AbiCKPbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 10:31:38 -0500
+Received: from mail-oo1-f42.google.com (mail-oo1-f42.google.com [209.85.161.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A3361AD3B7;
+        Fri, 11 Mar 2022 07:30:35 -0800 (PST)
+Received: by mail-oo1-f42.google.com with SMTP id n5-20020a4a9545000000b0031d45a442feso10901097ooi.3;
+        Fri, 11 Mar 2022 07:30:35 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fVQbBvLLXqH/Q9m03XHQmvLHErefNOtNz6jtQubmBRk=;
-        b=aouCdMh2zaHj5YEYirDzSSza+NEawXDEbzQ1aET1JYZw61an23SaCuquHc02SSUtdk
-         e61OpsVphEyHipw8lJ4tq6ZurDeq52owCdWbGkXwHZrkTvwyPgEqFQ+UjSdiEgg4QGdX
-         TSf+ZC2GPU7E2fFoNGVZ48H7QkL4Z65gvV3f3f1369aNGfLMw8OlkTGAfEcQ0JbsZaLR
-         ty5q5YtP73h/Dz3FgFAWyRzr3xGt94AsUWDFvkLPtK0OoF9ZVrAWSBSMmRZFGry7SaaT
-         5fzSYe9Xihwy0zTwy8wgON1hGbmuxrWnEa/CtGoKePaIRQ/oIK7k3SegdK+j8KUSETa1
-         PsEw==
-X-Gm-Message-State: AOAM5317fEVZcN9l/FIJ+E4//sh1La2wdw821+czH47I9b/DLTPUejpw
-        UofqUD0bCdsghppqvMaEwA==
-X-Google-Smtp-Source: ABdhPJyfKLnc1dGeGbKzyhR0XfjTaXl8qlcPkbj/arGQoP6ETWvk7fWctcNmtdOf1yMHtXIf3/aN/g==
-X-Received: by 2002:a05:6830:20cc:b0:5ad:95:66e3 with SMTP id z12-20020a05683020cc00b005ad009566e3mr5034633otq.347.1647012510443;
-        Fri, 11 Mar 2022 07:28:30 -0800 (PST)
+        bh=q8XI+4Iss5k+7LUf9y/wUHl96+m30olu3rf2rc/5Tp0=;
+        b=podi3LVIMtmzknx4F2vtxHX1HJ6lh3zZCcZ4zUOqfhNDzyfgKm+TuPiurj1r/NL/ut
+         Mtoy2TwgWnslONxiN9Obqx0b7HjlFyf8as4Pz4kt7+j0ra3Da0382j1beorPBdrzkZYe
+         LdCAX+ZsZNDm6dWEXo9ghxnpP/86ouUyWYCG9ISWXbWOhCYXOkdUV06V0rWW0koauMjd
+         q9Jb9+iv/icLfwWrqVDFvgFR7xW4DCAGe5G+zZ8pHH9M7qLlXGjfvjyTIQNN0utCnxKq
+         rSE+PC2NH4ZzLA51H/FyrE4ML+hU8nt7jlhFAynrquauLkQEossoODlDY8PHDxIoU7p/
+         RAjg==
+X-Gm-Message-State: AOAM533WtPwuHFT7GGW+mA1JnqUDvNJ9dPI8QX98Ix3Ch8QZzjtHXyBQ
+        8zSXD1v+jAbNs57jCCutIA==
+X-Google-Smtp-Source: ABdhPJwT4Tr9y3eJPSVY9aRVc5cu5v4TEk7bu2x1P2u937ujZQSEO/818pFnvJFxGpbUjNUyXCZm4w==
+X-Received: by 2002:a05:6870:3283:b0:da:609c:f385 with SMTP id q3-20020a056870328300b000da609cf385mr12031170oac.261.1647012634668;
+        Fri, 11 Mar 2022 07:30:34 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id g18-20020a9d6c52000000b005af7c7cb702sm3551979otq.34.2022.03.11.07.28.28
+        by smtp.gmail.com with ESMTPSA id 69-20020a9d0bcb000000b005af83322c6asm3647239oth.12.2022.03.11.07.30.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 07:28:29 -0800 (PST)
-Received: (nullmailer pid 3831009 invoked by uid 1000);
-        Fri, 11 Mar 2022 15:28:28 -0000
-Date:   Fri, 11 Mar 2022 09:28:28 -0600
+        Fri, 11 Mar 2022 07:30:33 -0800 (PST)
+Received: (nullmailer pid 3834454 invoked by uid 1000);
+        Fri, 11 Mar 2022 15:30:32 -0000
+Date:   Fri, 11 Mar 2022 09:30:32 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Clement Leger <clement.leger@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
         Geert Uytterhoeven <geert@linux-m68k.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jimmy Lalande <jimmy.lalande@se.com>,
-        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
-        Herve Codina <herve.codina@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Pascal Eberhard <pascal.eberhard@se.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Gareth Williams <gareth.williams.jx@renesas.com>,
-        Milan Stevanovic <milan.stevanovic@se.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Phil Edworthy <phil.edworthy@renesas.com>
-Subject: Re: [PATCH v4 2/9] dt-bindings: clock: r9a06g032-sysctrl: Reference
- the DMAMUX subnode
-Message-ID: <YitqnBkwEorn2dGk@robh.at.kernel.org>
-References: <20220310155755.287294-1-miquel.raynal@bootlin.com>
- <20220310155755.287294-3-miquel.raynal@bootlin.com>
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Masahiro Yamada <masahiroy@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: kbuild: Pass DT_SCHEMA_FILES to
+ dt-validate
+Message-ID: <YitrGFz09dKVduRi@robh.at.kernel.org>
+References: <20220310160513.1708182-1-robh@kernel.org>
+ <20220310160513.1708182-2-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220310155755.287294-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20220310160513.1708182-2-robh@kernel.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
@@ -80,15 +68,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Mar 2022 16:57:48 +0100, Miquel Raynal wrote:
-> This system controller contains several registers that have nothing to
-> do with the clock handling, like the DMA mux register. Describe this
-> part of the system controller as a subnode.
+On Thu, 10 Mar 2022 10:05:12 -0600, Rob Herring wrote:
+> In preparation for supporting validation of DTB files, the full
+> processed schema will always be needed in order to extract type
+> information from it. Therefore, the processed schema containing only
+> what DT_SCHEMA_FILES specifies won't work. Instead, dt-validate has
+> gained an option, -l or --limit, to specify which schema(s) to use for
+> validation.
 > 
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> As the command line option is new, we the minimum dtschema version must be
+> updated.
+> 
+> Cc: Masahiro Yamada <masahiroy@kernel.org>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/clock/renesas,r9a06g032-sysctrl.yaml     | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> v2:
+>  - Change DT_TMP_SCHEMA from '?=' to ':='
+> ---
+>  Documentation/devicetree/bindings/Makefile | 28 +++-------------------
+>  scripts/Makefile.lib                       |  5 ++--
+>  2 files changed, 5 insertions(+), 28 deletions(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
