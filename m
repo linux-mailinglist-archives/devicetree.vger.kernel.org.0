@@ -2,439 +2,314 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 625A34D65FE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:22:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 422204D661A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:25:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350218AbiCKQX2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 11:23:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57248 "EHLO
+        id S1350397AbiCKQ0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 11:26:48 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236822AbiCKQX1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:23:27 -0500
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A3871D17AD;
-        Fri, 11 Mar 2022 08:22:23 -0800 (PST)
-X-UUID: d29245aabc5c419d9c5a0f40e7bf4b03-20220312
-X-UUID: d29245aabc5c419d9c5a0f40e7bf4b03-20220312
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 775471799; Sat, 12 Mar 2022 00:22:19 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sat, 12 Mar 2022 00:22:17 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 12 Mar 2022 00:22:16 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        kernel test robot <lkp@intel.com>
-Subject: [v4 2/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
-Date:   Sat, 12 Mar 2022 00:22:13 +0800
-Message-ID: <20220311162213.6942-3-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220311162213.6942-1-jiaxin.yu@mediatek.com>
-References: <20220311162213.6942-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S1350342AbiCKQ0g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:26:36 -0500
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F41F1B8BF7;
+        Fri, 11 Mar 2022 08:25:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1647015902;
+  x=1678551902;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=eqHYnpjKDOMF1TwiA1Bf1WVBNshhdDSbtR3z1p21pAk=;
+  b=LkpaT22z9yzvNZbzx0/U1CPCP2w2+HflUInWlFPV5q44tzUtQbOhBmWT
+   LJVC/RPbvDDO9siDFpGN6BLms1CZOz6Ab+h0tZFH2O2hTk7Pi/Mqu39yg
+   alOd7kEXNLs6jq6a6zuQGQfLvzlF69e0m0vT/q+TBmlntQW7A+Lp3y7b3
+   WAJSlvzconIXizP5VIR0cIs1t+WnsIvIndtVhFaGkpcpu0xuxeVwMfPXR
+   369R4GwH+Qjsx/4JHbFoy6SuHzeFqMj7Om0gZ1VCBCLZrrTE8396ujnCT
+   7UD6NFa/9w2g2PWK7MD+nZUHRnkVKjEUxUl3VMnsSIN8wzx70y/K5MKaQ
+   Q==;
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     <linux-kernel@vger.kernel.org>
+CC:     <kernel@axis.com>,
+        Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        <devicetree@vger.kernel.org>, <linux-um@lists.infradead.org>,
+        <shuah@kernel.org>, <brendanhiggins@google.com>,
+        <linux-kselftest@vger.kernel.org>, <jic23@kernel.org>,
+        <linux-iio@vger.kernel.org>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <a.zummo@towertech.it>,
+        <alexandre.belloni@bootlin.com>, <linux-rtc@vger.kernel.org>,
+        <corbet@lwn.net>, <linux-doc@vger.kernel.org>
+Subject: [RFC v1 00/10] roadtest: a driver testing framework
+Date:   Fri, 11 Mar 2022 17:24:35 +0100
+Message-ID: <20220311162445.346685-1-vincent.whitchurch@axis.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Supports machines with rt1015p and rt5682s. Uses new proposed compatible
-string "mt8192_mt6359_rt1015p_rt5682s". Using define to simplifies card
-name and compatible name, and uses the snd_soc_of_get_dai_link_codecs()
-to complete the configuration of dai_link's codecs.
+This patchset proposes roadtest, a device-driver testing framework.  Drivers
+are tested under User Mode Linux (UML) and interact with mocked/modelled
+hardware.  The tests and hardware models are written in Python, the former
+using Python's built-in unittest framework.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
-Reported-by: kernel test robot <lkp@intel.com>
----
- sound/soc/mediatek/Kconfig                    |   1 +
- .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 204 +++++++++++-------
- 2 files changed, 128 insertions(+), 77 deletions(-)
+Drivers are tested via their userspace interfaces.  The hardware models allow
+tests to inject values into registers and assert that drivers control the
+hardware in the right way and react as expected to stimuli.
 
-diff --git a/sound/soc/mediatek/Kconfig b/sound/soc/mediatek/Kconfig
-index 0d154350f180..bb774dfe867f 100644
---- a/sound/soc/mediatek/Kconfig
-+++ b/sound/soc/mediatek/Kconfig
-@@ -179,6 +179,7 @@ config SND_SOC_MT8192_MT6359_RT1015_RT5682
- 	select SND_SOC_RT1015
- 	select SND_SOC_RT1015P
- 	select SND_SOC_RT5682_I2C
-+	select SND_SOC_RT5682S
- 	select SND_SOC_DMIC
- 	help
- 	  This adds ASoC driver for Mediatek MT8192 boards
-diff --git a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-index ee91569c0911..c140d3a5978e 100644
---- a/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-+++ b/sound/soc/mediatek/mt8192/mt8192-mt6359-rt1015-rt5682.c
-@@ -28,8 +28,13 @@
- #define RT1015_DEV0_NAME	"rt1015.1-0028"
- #define RT1015_DEV1_NAME	"rt1015.1-0029"
- 
--#define RT5682_CODEC_DAI	"rt5682-aif1"
--#define RT5682_DEV0_NAME	"rt5682.1-001a"
-+#define RT1015_RT5682_CARD_NAME "mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_CARD_NAME "mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_CARD_NAME "mt8192_mt6359_rt1015p_rt5682s"
-+
-+#define RT1015_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015_rt5682"
-+#define RT1015P_RT5682_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682"
-+#define RT1015P_RT5682S_OF_NAME "mediatek,mt8192_mt6359_rt1015p_rt5682s"
- 
- struct mt8192_mt6359_priv {
- 	struct snd_soc_jack headset_jack;
-@@ -71,8 +76,8 @@ static int mt8192_rt1015_i2s_hw_params(struct snd_pcm_substream *substream,
- 	return snd_soc_dai_set_sysclk(cpu_dai, 0, mclk_fs, SND_SOC_CLOCK_OUT);
- }
- 
--static int mt8192_rt5682_i2s_hw_params(struct snd_pcm_substream *substream,
--				       struct snd_pcm_hw_params *params)
-+static int mt8192_rt5682x_i2s_hw_params(struct snd_pcm_substream *substream,
-+					struct snd_pcm_hw_params *params)
- {
- 	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
- 	struct snd_soc_card *card = rtd->card;
-@@ -121,8 +126,8 @@ static const struct snd_soc_ops mt8192_rt1015_i2s_ops = {
- 	.hw_params = mt8192_rt1015_i2s_hw_params,
- };
- 
--static const struct snd_soc_ops mt8192_rt5682_i2s_ops = {
--	.hw_params = mt8192_rt5682_i2s_hw_params,
-+static const struct snd_soc_ops mt8192_rt5682x_i2s_ops = {
-+	.hw_params = mt8192_rt5682x_i2s_hw_params,
- };
- 
- static int mt8192_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
-@@ -604,17 +609,9 @@ SND_SOC_DAILINK_DEFS(i2s2,
- 		     DAILINK_COMP_ARRAY(COMP_DUMMY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
--SND_SOC_DAILINK_DEFS(i2s3_rt1015,
--		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT1015_DEV0_NAME,
--						   RT1015_CODEC_DAI),
--					COMP_CODEC(RT1015_DEV1_NAME,
--						   RT1015_CODEC_DAI)),
--		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
--
--SND_SOC_DAILINK_DEFS(i2s3_rt1015p,
-+SND_SOC_DAILINK_DEFS(i2s3,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S3")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC("rt1015p", "HiFi")),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(i2s5,
-@@ -634,14 +631,12 @@ SND_SOC_DAILINK_DEFS(i2s7,
- 
- SND_SOC_DAILINK_DEFS(i2s8,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S8")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(i2s9,
- 		     DAILINK_COMP_ARRAY(COMP_CPU("I2S9")),
--		     DAILINK_COMP_ARRAY(COMP_CODEC(RT5682_DEV0_NAME,
--						   RT5682_CODEC_DAI)),
-+		     DAILINK_COMP_ARRAY(COMP_EMPTY()),
- 		     DAILINK_COMP_ARRAY(COMP_EMPTY()));
- 
- SND_SOC_DAILINK_DEFS(connsys_i2s,
-@@ -929,6 +924,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.dpcm_playback = 1,
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
-+		SND_SOC_DAILINK_REG(i2s3),
- 	},
- 	{
- 		.name = "I2S5",
-@@ -962,7 +958,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.init = mt8192_rt5682_init,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s8),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "I2S9",
-@@ -971,7 +967,7 @@ static struct snd_soc_dai_link mt8192_mt6359_dai_links[] = {
- 		.ignore_suspend = 1,
- 		.be_hw_params_fixup = mt8192_i2s_hw_params_fixup,
- 		SND_SOC_DAILINK_REG(i2s9),
--		.ops = &mt8192_rt5682_i2s_ops,
-+		.ops = &mt8192_rt5682x_i2s_ops,
- 	},
- 	{
- 		.name = "CONNSYS_I2S",
-@@ -1051,7 +1047,7 @@ static struct snd_soc_codec_conf rt1015_amp_conf[] = {
- };
- 
- static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015_rt5682",
-+	.name = RT1015_RT5682_CARD_NAME,
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
-@@ -1066,13 +1062,13 @@ static struct snd_soc_card mt8192_mt6359_rt1015_rt5682_card = {
- };
- 
- static const struct snd_soc_dapm_widget
--mt8192_mt6359_rt1015p_rt5682_widgets[] = {
-+mt8192_mt6359_rt1015p_rt5682x_widgets[] = {
- 	SND_SOC_DAPM_SPK("Speakers", NULL),
- 	SND_SOC_DAPM_HP("Headphone Jack", NULL),
- 	SND_SOC_DAPM_MIC("Headset Mic", NULL),
- };
- 
--static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
-+static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682x_routes[] = {
- 	/* speaker */
- 	{ "Speakers", NULL, "Speaker" },
- 	/* headset */
-@@ -1081,74 +1077,112 @@ static const struct snd_soc_dapm_route mt8192_mt6359_rt1015p_rt5682_routes[] = {
- 	{ "IN1P", NULL, "Headset Mic" },
- };
- 
--static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682_controls[] = {
-+static const struct snd_kcontrol_new mt8192_mt6359_rt1015p_rt5682x_controls[] = {
- 	SOC_DAPM_PIN_SWITCH("Speakers"),
- 	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
- 	SOC_DAPM_PIN_SWITCH("Headset Mic"),
- };
- 
--static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682_card = {
--	.name = "mt8192_mt6359_rt1015p_rt5682",
-+static struct snd_soc_card mt8192_mt6359_rt1015p_rt5682x_card = {
- 	.owner = THIS_MODULE,
- 	.dai_link = mt8192_mt6359_dai_links,
- 	.num_links = ARRAY_SIZE(mt8192_mt6359_dai_links),
--	.controls = mt8192_mt6359_rt1015p_rt5682_controls,
--	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_controls),
--	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682_widgets,
--	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_widgets),
--	.dapm_routes = mt8192_mt6359_rt1015p_rt5682_routes,
--	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682_routes),
-+	.controls = mt8192_mt6359_rt1015p_rt5682x_controls,
-+	.num_controls = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_controls),
-+	.dapm_widgets = mt8192_mt6359_rt1015p_rt5682x_widgets,
-+	.num_dapm_widgets = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_widgets),
-+	.dapm_routes = mt8192_mt6359_rt1015p_rt5682x_routes,
-+	.num_dapm_routes = ARRAY_SIZE(mt8192_mt6359_rt1015p_rt5682x_routes),
- };
- 
-+static int mt8192_mt6359_card_set_be_link(struct snd_soc_card *card,
-+					  struct snd_soc_dai_link *link,
-+					  struct device_node *node,
-+					  char *link_name)
-+{
-+	int ret;
-+
-+	if (node && strcmp(link->name, link_name) == 0) {
-+		ret = snd_soc_of_get_dai_link_codecs(card->dev, node, link);
-+		if (ret < 0) {
-+			dev_err(card->dev, "get dai link codecs fail\n");
-+			return ret;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
- static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- {
- 	struct snd_soc_card *card;
--	struct device_node *platform_node, *hdmi_codec;
-+	struct device_node *platform_node, *hdmi_codec, *headset_codec, *speaker_codec;
- 	int ret, i;
- 	struct snd_soc_dai_link *dai_link;
- 	struct mt8192_mt6359_priv *priv;
-+	struct device *dev;
- 
--	platform_node = of_parse_phandle(pdev->dev.of_node,
--					 "mediatek,platform", 0);
--	if (!platform_node) {
--		dev_err(&pdev->dev, "Property 'platform' missing or invalid\n");
-+	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
-+	if (!card)
- 		return -EINVAL;
-+	card->dev = &pdev->dev;
-+	dev = &pdev->dev;
-+
-+	if (of_device_is_compatible(dev->of_node, RT1015P_RT5682_OF_NAME))
-+		card->name = RT1015P_RT5682_CARD_NAME;
-+	else if (of_device_is_compatible(dev->of_node, RT1015P_RT5682S_OF_NAME))
-+		card->name = RT1015P_RT5682S_CARD_NAME;
-+	else
-+		dev_dbg(dev, "No need to set card name\n");
-+
-+	platform_node = of_parse_phandle(dev->of_node, "mediatek,platform", 0);
-+	if (!platform_node) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'platform' missing or invalid\n");
-+		goto err_platform_node;
- 	}
- 
--	card = (struct snd_soc_card *)of_device_get_match_data(&pdev->dev);
--	if (!card) {
-+	hdmi_codec = of_parse_phandle(dev->of_node, "mediatek,hdmi-codec", 0);
-+	if (!hdmi_codec) {
- 		ret = -EINVAL;
--		goto put_platform_node;
-+		dev_err_probe(dev, ret, "Property 'hdmi-codec' missing or invalid\n");
-+		goto err_hdmi_codec;
- 	}
--	card->dev = &pdev->dev;
- 
--	hdmi_codec = of_parse_phandle(pdev->dev.of_node,
--				      "mediatek,hdmi-codec", 0);
-+	speaker_codec = of_get_child_by_name(dev->of_node, "mediatek,speaker-codec");
-+	if (!speaker_codec) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'speaker_codec' missing or invalid\n");
-+		goto err_speaker_codec;
-+	}
-+
-+	headset_codec = of_get_child_by_name(dev->of_node, "mediatek,headset-codec");
-+	if (!headset_codec) {
-+		ret = -EINVAL;
-+		dev_err_probe(dev, ret, "Property 'headset_codec' missing or invalid\n");
-+		goto err_headset_codec;
-+	}
- 
- 	for_each_card_prelinks(card, i, dai_link) {
--		if (strcmp(dai_link->name, "I2S3") == 0) {
--			if (card == &mt8192_mt6359_rt1015_rt5682_card) {
--				dai_link->ops = &mt8192_rt1015_i2s_ops;
--				dai_link->cpus = i2s3_rt1015_cpus;
--				dai_link->num_cpus =
--					ARRAY_SIZE(i2s3_rt1015_cpus);
--				dai_link->codecs = i2s3_rt1015_codecs;
--				dai_link->num_codecs =
--					ARRAY_SIZE(i2s3_rt1015_codecs);
--				dai_link->platforms = i2s3_rt1015_platforms;
--				dai_link->num_platforms =
--					ARRAY_SIZE(i2s3_rt1015_platforms);
--			} else if (card == &mt8192_mt6359_rt1015p_rt5682_card) {
--				dai_link->cpus = i2s3_rt1015p_cpus;
--				dai_link->num_cpus =
--					ARRAY_SIZE(i2s3_rt1015p_cpus);
--				dai_link->codecs = i2s3_rt1015p_codecs;
--				dai_link->num_codecs =
--					ARRAY_SIZE(i2s3_rt1015p_codecs);
--				dai_link->platforms = i2s3_rt1015p_platforms;
--				dai_link->num_platforms =
--					ARRAY_SIZE(i2s3_rt1015p_platforms);
--			}
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, speaker_codec, "I2S3");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set speaker_codec fail\n",
-+				      dai_link->name);
-+			goto err_probe;
-+		}
-+
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S8");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set headset_codec fail\n",
-+				      dai_link->name);
-+			goto err_probe;
-+		}
-+
-+		ret = mt8192_mt6359_card_set_be_link(card, dai_link, headset_codec, "I2S9");
-+		if (ret) {
-+			dev_err_probe(&pdev->dev, ret, "%s set headset_codec fail\n",
-+				      dai_link->name);
-+			goto err_probe;
- 		}
- 
- 		if (hdmi_codec && strcmp(dai_link->name, "TDM") == 0) {
-@@ -1156,6 +1190,9 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 			dai_link->ignore = 0;
- 		}
- 
-+		if (strcmp(dai_link->codecs[0].dai_name, RT1015_CODEC_DAI) == 0)
-+			dai_link->ops = &mt8192_rt1015_i2s_ops;
-+
- 		if (!dai_link->platforms->name)
- 			dai_link->platforms->of_node = platform_node;
- 	}
-@@ -1163,34 +1200,47 @@ static int mt8192_mt6359_dev_probe(struct platform_device *pdev)
- 	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv) {
- 		ret = -ENOMEM;
--		goto put_hdmi_codec;
-+		goto err_probe;
- 	}
- 	snd_soc_card_set_drvdata(card, priv);
- 
- 	ret = mt8192_afe_gpio_init(&pdev->dev);
- 	if (ret) {
--		dev_err(&pdev->dev, "init gpio error %d\n", ret);
--		goto put_hdmi_codec;
-+		dev_err_probe(&pdev->dev, ret, "%s init gpio error\n", __func__);
-+		goto err_probe;
- 	}
- 
- 	ret = devm_snd_soc_register_card(&pdev->dev, card);
--
--put_hdmi_codec:
-+	if (ret)
-+		dev_err_probe(&pdev->dev, ret,
-+			      "%s snd_soc_register_card fail\n", __func__);
-+
-+err_probe:
-+	of_node_put(headset_codec);
-+err_headset_codec:
-+	of_node_put(speaker_codec);
-+err_speaker_codec:
- 	of_node_put(hdmi_codec);
--put_platform_node:
-+err_hdmi_codec:
- 	of_node_put(platform_node);
-+err_platform_node:
-+
- 	return ret;
- }
- 
- #ifdef CONFIG_OF
- static const struct of_device_id mt8192_mt6359_dt_match[] = {
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015_rt5682",
-+		.compatible = RT1015_RT5682_OF_NAME,
- 		.data = &mt8192_mt6359_rt1015_rt5682_card,
- 	},
- 	{
--		.compatible = "mediatek,mt8192_mt6359_rt1015p_rt5682",
--		.data = &mt8192_mt6359_rt1015p_rt5682_card,
-+		.compatible = RT1015P_RT5682_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
-+	},
-+	{
-+		.compatible = RT1015P_RT5682S_OF_NAME,
-+		.data = &mt8192_mt6359_rt1015p_rt5682x_card,
- 	},
- 	{}
- };
+Roadtest is meant to be used for relatively simple drivers, such as the ones
+part of the IIO, regulator and RTC subsystems.
+
+Questions and answers:
+
+= Why do we need this?
+
+There are a large amount of these kind of drivers in the kernel.  Most of the
+hardware is not available in current CI systems so most drivers can only, at
+best, be build-tested there.  Even basic soundness such as a driver
+successfully probing and binding to the devices it tries to be support cannot
+be tested.  Drivers cannot be easily regression-tested to ensure that bugs
+fixed once do not get reintroduced.
+
+Many drivers support multiple related hardware variants, and far from all patch
+submitters have access to all the variants which the driver that they are
+patching supports, so there is no way for them to easily verify that they
+haven't broken something basic on a variant which they do not own.
+
+Furthermore, hardware can be used in many different configurations with drivers
+supporting many different devicetree properties, so even just having access to
+all the variants would be insufficient.
+
+On top of that, some of the chips measure environmental conditions such as
+temperature, so testing extreme cases may not be simple even if one has access
+to the hardware.
+
+All this makes development, modification, maintenance, and reviewing of these
+drivers harder than it necessarily needs to be.  Roadtest hopes to make some of
+these things slightly easier by providing a framework to create hardware
+models/mocks and to write testcases which exercise drivers using these models.
+
+= Do you have some specific examples of the kind of code this could be used to
+  test?
+
+Here is an example of a patch which can easily be regression-tested using
+roadtest (in fact, this series includes such a regression test) but is much
+harder to do so automatically with real hardware since it requires specific
+environmental conditions:
+
+ iio: light: opt3001: Fixed timeout error when 0 lux
+ https://lore.kernel.org/lkml/20210920125351.6569-1-valek@2n.cz/
+
+Here is another example.  This driver has code which correctly parses a
+documented devicetree property (amstaos,proximity-diodes) but which then fails
+to actually communicate this setting to the hardware in any way.  Such code can
+be easily tested with roadtest since the framework integrates devicetree
+support and provides functions to assert that drivers writes expected registers
+with expected values:
+
+ drivers/iio/light/tsl2772.c tsl2772_read_prox_diodes()
+
+(Both the above examples happen to be from the same subsystem but that should
+in no way be taken to imply that such issues are unique to that subsystem or
+that that subsystem has more of them.)
+
+= How does this relate to kselftests?
+
+Tests in kselftests also test kernel code using the userspace interfaces, but
+that's about what's common between the frameworks.  kselftests has other goals
+and does not provide any kind of mechanism for hardware mocking.
+
+= How does this relate to kunit?
+
+Kunit is for unit testing of functions in kernel code, and is not meant for
+testing kernel code via userspace interfaces.  It could in theory be used to
+test some of the simple drivers too, but that would require (1) a large amount
+of mocking code in various kernel frameworks, and, more importantly, (2)
+refactoring of the drivers to be tested.
+
+This can be contrasted with roadtest which works with mostly unmodified drivers
+and which mocks the hardware at the lowest level without having to change
+kernel frameworks.
+
+= How do I use it?
+
+See Documentation/dev-tools/roadtest.rst added by the documentation patch for
+more information about running and writing tests using this framework.
+
+= What's included in the patchset?
+
+The current framework allows developing tests for hardware which uses the I2C
+bus.  Hardware models can also control GPIOs and use them to trigger
+interrupts.
+
+This series includes tests for some IIO, regulator and RTC drivers.  The
+regulator and RTC tests depend on a few driver patches which are either in
+review or in linux-next.  These are noted in the commit messages.
+
+The entire patch set, including the required dependencies, is also available in
+a git tree:
+
+ https://github.com/vwax/linux/commits/roadtest/rfc-v1
+
+Cc: linux-kernel@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-um@lists.infradead.org
+
+Cc: shuah@kernel.org
+Cc: brendanhiggins@google.com
+Cc: linux-kselftest@vger.kernel.org
+
+Cc: jic23@kernel.org
+Cc: linux-iio@vger.kernel.org
+
+Cc: lgirdwood@gmail.com
+Cc: broonie@kernel.org
+
+Cc: a.zummo@towertech.it
+Cc: alexandre.belloni@bootlin.com
+Cc: linux-rtc@vger.kernel.org
+
+Cc: corbet@lwn.net
+Cc: linux-doc@vger.kernel.org
+
+Vincent Whitchurch (10):
+  roadtest: import libvhost-user from QEMU
+  roadtest: add C backend
+  roadtest: add framework
+  roadtest: add base config
+  roadtest: add build files
+  roadtest: add documentation
+  iio: light: opt3001: add roadtest
+  iio: light: vcnl4000: add roadtest
+  regulator: tps62864: add roadtest
+  rtc: pcf8563: add roadtest
+
+ Documentation/dev-tools/index.rst             |    1 +
+ Documentation/dev-tools/roadtest.rst          |  669 ++++
+ tools/testing/roadtest/.gitignore             |    2 +
+ tools/testing/roadtest/Dockerfile             |   25 +
+ tools/testing/roadtest/Makefile               |   84 +
+ tools/testing/roadtest/init.sh                |   19 +
+ tools/testing/roadtest/pyproject.toml         |   10 +
+ tools/testing/roadtest/requirements.txt       |    4 +
+ tools/testing/roadtest/roadtest/__init__.py   |    2 +
+ .../roadtest/roadtest/backend/__init__.py     |    0
+ .../roadtest/roadtest/backend/backend.py      |   32 +
+ .../testing/roadtest/roadtest/backend/gpio.py |  111 +
+ .../testing/roadtest/roadtest/backend/i2c.py  |  123 +
+ .../testing/roadtest/roadtest/backend/main.py |   13 +
+ .../testing/roadtest/roadtest/backend/mock.py |   20 +
+ .../roadtest/roadtest/backend/test_gpio.py    |   98 +
+ .../roadtest/roadtest/backend/test_i2c.py     |   84 +
+ .../testing/roadtest/roadtest/cmd/__init__.py |    0
+ tools/testing/roadtest/roadtest/cmd/main.py   |  146 +
+ tools/testing/roadtest/roadtest/cmd/remote.py |   48 +
+ .../roadtest/roadtest/core/__init__.py        |    0
+ .../testing/roadtest/roadtest/core/control.py |   52 +
+ .../roadtest/roadtest/core/devicetree.py      |  155 +
+ .../roadtest/roadtest/core/hardware.py        |   94 +
+ tools/testing/roadtest/roadtest/core/log.py   |   42 +
+ .../testing/roadtest/roadtest/core/modules.py |   38 +
+ .../testing/roadtest/roadtest/core/opslog.py  |   35 +
+ tools/testing/roadtest/roadtest/core/proxy.py |   48 +
+ tools/testing/roadtest/roadtest/core/suite.py |  286 ++
+ tools/testing/roadtest/roadtest/core/sysfs.py |   77 +
+ .../roadtest/roadtest/core/test_control.py    |   35 +
+ .../roadtest/roadtest/core/test_devicetree.py |   31 +
+ .../roadtest/roadtest/core/test_hardware.py   |   41 +
+ .../roadtest/roadtest/core/test_log.py        |   54 +
+ .../roadtest/roadtest/core/test_opslog.py     |   27 +
+ .../roadtest/roadtest/tests/__init__.py       |    0
+ .../roadtest/roadtest/tests/base/config       |   84 +
+ .../roadtest/roadtest/tests/iio/__init__.py   |    0
+ .../roadtest/roadtest/tests/iio/config        |    1 +
+ .../roadtest/roadtest/tests/iio/iio.py        |  112 +
+ .../roadtest/tests/iio/light/__init__.py      |    0
+ .../roadtest/roadtest/tests/iio/light/config  |    2 +
+ .../roadtest/tests/iio/light/test_opt3001.py  |   95 +
+ .../roadtest/tests/iio/light/test_vcnl4000.py |  132 +
+ .../roadtest/tests/iio/light/test_vcnl4010.py |  282 ++
+ .../roadtest/tests/iio/light/test_vcnl4040.py |  104 +
+ .../roadtest/tests/iio/light/test_vcnl4200.py |   96 +
+ .../roadtest/tests/regulator/__init__.py      |    0
+ .../roadtest/roadtest/tests/regulator/config  |    4 +
+ .../roadtest/tests/regulator/test_tps62864.py |  187 ++
+ .../roadtest/roadtest/tests/rtc/__init__.py   |    0
+ .../roadtest/roadtest/tests/rtc/config        |    1 +
+ .../roadtest/roadtest/tests/rtc/rtc.py        |   73 +
+ .../roadtest/tests/rtc/test_pcf8563.py        |  348 ++
+ tools/testing/roadtest/src/.gitignore         |    1 +
+ tools/testing/roadtest/src/backend.c          |  884 +++++
+ .../src/libvhost-user/include/atomic.h        |  310 ++
+ .../src/libvhost-user/libvhost-user.c         | 2885 +++++++++++++++++
+ .../src/libvhost-user/libvhost-user.h         |  691 ++++
+ 59 files changed, 8798 insertions(+)
+ create mode 100644 Documentation/dev-tools/roadtest.rst
+ create mode 100644 tools/testing/roadtest/.gitignore
+ create mode 100644 tools/testing/roadtest/Dockerfile
+ create mode 100644 tools/testing/roadtest/Makefile
+ create mode 100755 tools/testing/roadtest/init.sh
+ create mode 100644 tools/testing/roadtest/pyproject.toml
+ create mode 100644 tools/testing/roadtest/requirements.txt
+ create mode 100644 tools/testing/roadtest/roadtest/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/backend.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/gpio.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/i2c.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/main.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/mock.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/test_gpio.py
+ create mode 100644 tools/testing/roadtest/roadtest/backend/test_i2c.py
+ create mode 100644 tools/testing/roadtest/roadtest/cmd/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/cmd/main.py
+ create mode 100644 tools/testing/roadtest/roadtest/cmd/remote.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/control.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/devicetree.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/hardware.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/log.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/modules.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/opslog.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/proxy.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/suite.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/sysfs.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/test_control.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/test_devicetree.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/test_hardware.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/test_log.py
+ create mode 100644 tools/testing/roadtest/roadtest/core/test_opslog.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/base/config
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/config
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/iio.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/config
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/test_opt3001.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/test_vcnl4000.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/test_vcnl4010.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/test_vcnl4040.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/iio/light/test_vcnl4200.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/regulator/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/regulator/config
+ create mode 100644 tools/testing/roadtest/roadtest/tests/regulator/test_tps62864.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/rtc/__init__.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/rtc/config
+ create mode 100644 tools/testing/roadtest/roadtest/tests/rtc/rtc.py
+ create mode 100644 tools/testing/roadtest/roadtest/tests/rtc/test_pcf8563.py
+ create mode 100644 tools/testing/roadtest/src/.gitignore
+ create mode 100644 tools/testing/roadtest/src/backend.c
+ create mode 100644 tools/testing/roadtest/src/libvhost-user/include/atomic.h
+ create mode 100644 tools/testing/roadtest/src/libvhost-user/libvhost-user.c
+ create mode 100644 tools/testing/roadtest/src/libvhost-user/libvhost-user.h
+
 -- 
-2.18.0
+2.34.1
 
