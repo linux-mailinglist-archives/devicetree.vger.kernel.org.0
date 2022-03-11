@@ -2,152 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E12E4D621D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 14:09:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 725674D6224
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 14:11:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233587AbiCKNKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 08:10:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40908 "EHLO
+        id S1348784AbiCKNLp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 08:11:45 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230203AbiCKNKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 08:10:12 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 579A91C230D
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 05:09:09 -0800 (PST)
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id F379D3F5FC
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 13:09:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647004148;
-        bh=NV42Tsh6ksYymUGQsb6VXgBFoYR1XLFl1LciE1oosJM=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=rP9pNcjjWbPQtLknj3V27NBGG4+PbYwi9PkEOh4LOKsYQyf2dw6E0nS8wwrdvvw3j
-         1Y5vkj/kkts2U75NNxE/tsMw9BlH1Lu+rK5cUtofg5TCF7F2+htdK0Gp/yULRKWYln
-         bryaXz5eazzasdUJ2r0nwbAoI+XTMNG82oSgTKJ12Z3+ypk4/pxzGoBD2Eob3VdH+R
-         yNJ87IiZVKoov3e0ZAtbRWU2b8b0sAcTGB1ewF3iulJpeF5MSjQ+m4FDwpr1eFgfiP
-         NoD8AbQvc1VKhuBS9L5setf6FeLfhCKyFWjiZTQYV04c8lB6ZhhXjkJJuvr1TrpnIX
-         c5Ou/Q7mc4jUw==
-Received: by mail-wm1-f71.google.com with SMTP id f189-20020a1c38c6000000b0037d1bee4847so5477020wma.9
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 05:09:07 -0800 (PST)
+        with ESMTP id S1347958AbiCKNLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 08:11:44 -0500
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35D771C2D8F
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 05:10:41 -0800 (PST)
+Received: by mail-lf1-x134.google.com with SMTP id e6so8346243lfc.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 05:10:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=1zLYRFICp/9YNZ3C/JM0L5WZ5qjBhMXFH4zYngCLz0k=;
+        b=ipz8gco+55GK0rSfRsuzxgY9EQVCMIwj2GHWKxq3MizJnLDEkxPQljV15yw764Zm8F
+         XmLgGYBG1v9yIcweK/5W8k2o7O4FpjTEZXoaYvL3FqwfXVRtz/KhaNphSB7gHFiub9Dm
+         XGJMd22wCooz8mO0cXNEqoLu1lAp/DICy8o1EVFD5JRC4B+Q9GqoejI9zH7thQz/W6eS
+         P/Pre2BkamthiLAyFOy5V0xMoVsHsTQDjTndFhyT8aH/0I3n1SBmGAov6GMpps1QKVW/
+         sAuhPEUuBOpVXngOk45pQo6rui2tJNa6mQJmMU+M1jlzovIOAqjsPpEDmK+pex1Hh+gq
+         FWjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=NV42Tsh6ksYymUGQsb6VXgBFoYR1XLFl1LciE1oosJM=;
-        b=hZUouaij1WKnJku9VMvEFpQlRxnYUZCjRRAmQn5WwCdnh5nWzBCI8EhsvOpleAw8ZU
-         MPVtrH+SNcfaJLqDalh7itnxvrP49GgeNjsnY9mpWimxcRgCatop8pvv8tX6HYmkcwgn
-         wOOeIr2D7PLoDGRUViObIV2tjJ5uFMctwCvBpjehYUkZDZLLTyQgyqcHYBeQNbYwApX3
-         W8SXsx7jZ9n1YIHiKH6m72dzXtRKIcYcMntAETq26v/HeLuSY96/UBoasnOSIC8HrN1z
-         rspWbFNmSdknltkdDKFGmwqSjwBN0hqzkZoWyRYMgmhLHFFQJVqTiaf57frKgjj91ieF
-         OaAw==
-X-Gm-Message-State: AOAM530Pzus2QYaHf56Xl22DXu06tVtr6pd900p8xkxlEW6plHANKBoG
-        1PUvKaFdLIAb/IHhkPSyK/3eCKBBJfl8b70hSo0q3blBNDLmdVBJfY2ZO0NoMKamkdroYTmt/rm
-        TvpDBUI320Sg+j1K81afNOTIDE9grk8t1+vSce9Y=
-X-Received: by 2002:a5d:4310:0:b0:1ef:fb60:e1d8 with SMTP id h16-20020a5d4310000000b001effb60e1d8mr7275967wrq.92.1647004147555;
-        Fri, 11 Mar 2022 05:09:07 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyED6dgMrjY9eXx4ZHgAWm3pzIMZBlOht4JOuqN8JwR2d+4/pCQ98QGDhdAY9JgnNNKanzqDA==
-X-Received: by 2002:a5d:4310:0:b0:1ef:fb60:e1d8 with SMTP id h16-20020a5d4310000000b001effb60e1d8mr7275953wrq.92.1647004147242;
-        Fri, 11 Mar 2022 05:09:07 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id g26-20020a05600c4c9a00b00389a48b68bdsm6715945wmp.10.2022.03.11.05.09.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 05:09:06 -0800 (PST)
-Message-ID: <f782bf45-3a69-18b4-de0b-f53669aec546@canonical.com>
-Date:   Fri, 11 Mar 2022 14:09:05 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=1zLYRFICp/9YNZ3C/JM0L5WZ5qjBhMXFH4zYngCLz0k=;
+        b=svLOr/TPRo/+gXCuQ3lyFjSA7zVW7aE7Ttk4loDwPW7hgJgoB0FHXWH/MEjLwfwnlG
+         k1FRXPYSCAgKylo8ew0Lp4YKEitfOlxViKGtxRmzuFTL6oS+kWyb7jggxKMLylczxLpF
+         0wyiVjyZx1fvHT6S/pGFZzvZQYqnnCE/Ru4h8/qBjsUk+UQf4a+VnVe2gtptr48MPVjP
+         efGPGqxrejxr7UF0w0AYSgos7DT9qJIlwDKvrjg1sohQetdPL2uVV+9ALj72xGIX5Zp4
+         dvvXKUdsRgYaOQXlDiMRfZE7FITOhJ5DQeB1TqauORjsCGib0NAKT8lik46EQEykWnt4
+         1QKQ==
+X-Gm-Message-State: AOAM533MiM3m2jy/7ac8eftLgzMtQPN9nt9Oqhyb+fPOEWFI0UJZoJZ8
+        2346j0JPV1L05/1PtRiFaaQ4OqWk45FZyiFVreZeslnjNggaiw==
+X-Google-Smtp-Source: ABdhPJw8d+Eupsr/72x4wRsKG4WURFHxUpziwGdPCq7z7GnXpzTcZkwbs48/yGlotHpniBkmpww0hE2GyL2F/8YcUyg=
+X-Received: by 2002:ac2:4146:0:b0:441:efd2:365d with SMTP id
+ c6-20020ac24146000000b00441efd2365dmr6194423lfi.100.1647004239469; Fri, 11
+ Mar 2022 05:10:39 -0800 (PST)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH net-next v4 2/8] dt-bindings: phy: add the "fsl,lynx-28g"
- compatible
-Content-Language: en-US
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
-        kuba@kernel.org, netdev@vger.kernel.org
-Cc:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        leoyang.li@nxp.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk,
-        shawnguo@kernel.org, hongxing.zhu@nxp.com
-References: <20220311125437.3854483-1-ioana.ciornei@nxp.com>
- <20220311125437.3854483-3-ioana.ciornei@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311125437.3854483-3-ioana.ciornei@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220222204811.2281949-1-atishp@rivosinc.com> <mhng-4593ea1e-503d-47df-8e55-d2ef06f01518@palmer-ri-x1c9>
+ <CAHBxVyHaFk6mx_uTUcOG1d+XGokT_-Y3_Y1kVJixAnGGmLjAxg@mail.gmail.com> <d8d4fedad13ef063b672aadfe2ee0aff@mailhost.ics.forth.gr>
+In-Reply-To: <d8d4fedad13ef063b672aadfe2ee0aff@mailhost.ics.forth.gr>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Fri, 11 Mar 2022 18:40:28 +0530
+Message-ID: <CAK9=C2WZCp2aKnFTVN0iDqDxVgV6WMFzsM+a9a1Q8Go_n6iMkw@mail.gmail.com>
+Subject: Re: [PATCH v5 0/6] Provide a fraemework for RISC-V ISA extensions
+To:     Nick Kossifidis <mick@ics.forth.gr>
+Cc:     Atish Kumar Patra <atishp@rivosinc.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Atish Patra <atishp@atishpatra.org>,
+        Anup Patel <anup@brainfault.org>,
+        Damien Le Moal <damien.lemoal@wdc.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Jisheng Zhang <jszhang@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Tomsich <philipp.tomsich@vrull.eu>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 13:54, Ioana Ciornei wrote:
-> Describe the "fsl,lynx-28g" compatible used by the Lynx 28G SerDes PHY
-> driver on Layerscape based SoCs.
-> 
-> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> ---
-> Changes in v2:
-> 	- none
-> Changes in v3:
-> 	- 2/8: fix 'make dt_binding_check' errors
-> Changes in v4:
-> 	- 2/8: remove the lane DT nodes
-> 
->  .../devicetree/bindings/phy/fsl,lynx-28g.yaml | 40 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> new file mode 100644
-> index 000000000000..dd1adf7b3c05
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> @@ -0,0 +1,40 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/fsl,lynx-28g.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Freescale Lynx 28G SerDes PHY binding
-> +
-> +maintainers:
-> +  - Ioana Ciornei <ioana.ciornei@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - fsl,lynx-28g
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#phy-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +      serdes_1: serdes_phy@1ea0000 {
+On Fri, Mar 11, 2022 at 6:13 PM Nick Kossifidis <mick@ics.forth.gr> wrote:
+>
+> =CE=A3=CF=84=CE=B9=CF=82 2022-03-11 02:21, Atish Kumar Patra =CE=AD=CE=B3=
+=CF=81=CE=B1=CF=88=CE=B5:
+> > On Thu, Mar 10, 2022 at 3:50 PM Palmer Dabbelt <palmer@dabbelt.com>
+> > wrote:
+> >>
+> >> On Tue, 22 Feb 2022 12:48:05 PST (-0800), Atish Patra wrote:
+> >> > This series implements a generic framework to parse multi-letter ISA
+> >> > extensions. This series is based on Tsukasa's v3 isa extension impro=
+vement
+> >> > series[1]. I have fixed few bugs and improved comments from that ser=
+ies
+> >> > (PATCH1-3). I have not used PATCH 4 from that series as we are not u=
+sing
+> >> > ISA extension versioning as of now. We can add that later if require=
+d.
+> >> >
+> >> > PATCH 4 allows the probing of multi-letter extensions via a macro.
+> >> > It continues to use the common isa extensions between all the harts.
+> >> > Thus hetergenous hart systems will only see the common ISA extension=
+s.
+> >> >
+> >> > PATCH 6 improves the /proc/cpuinfo interface for the available ISA e=
+xtensions
+> >> > via /proc/cpuinfo.
+> >> >
+> >> > Here is the example output of /proc/cpuinfo:
+> >> > (with debug patches in Qemu and Linux kernel)
+> >> >
+> >> > # cat /proc/cpuinfo
+> >> > processor     : 0
+> >> > hart          : 0
+> >> > isa           : rv64imafdch
+> >> > isa-ext               : svpbmt svnapot svinval
+> >>
+> >> I know it might seem a bit pedantic, but I really don't want to
+> >> introduce a new format for encoding ISA extensions -- doubly so if
+> >> this
+> >> is the only way we're giving this info to userspace, as then we're
+> >> just
+> >> asking folks to turn this into a defacto ABI.  Every time we try to do
+> >> something that's sort of like an ISA string but not exactly what's in
+> >> the spec we end up getting burned, and while I don't see a specific
+> >> way
+> >
+> > I agree that this is an ABI change/improvement which is impossible to
+> > modify later.
+> > However, this is a Linux specific ABI. Do you think the RISC-V spec
+> > will ever say anything about how /proc/cpuinfo is shown to the user ?
+> >
+>
+> Actually there was a discussion on chairs at some point on how isa
+> extensions will be represented as a single string. If I recall correctly
+> they wanted a way to compare features between implementations so this
+> was something the user should be able to read as well. I'm ccing Philipp
+> from the Software HC in case he has more details on this.
+>
+> I also believe we need to discuss this a bit further, also I thought we
+> agreed that having everything as a single string (riscv-isa) on the
+> device tree doesn't scale, there were some other suggestions regarding
+> for example mmu extensions being declared inside an mmu sub-node etc.
+> This patch series will not only make it hard to change /proc/cpuinfo
+> output in the future, but also establishes a device-tree binding for all
+> isa extensions through the riscv-isa string that we also won't be able
+> to modify later on.
 
-Comment from v3 still unresolved. Rest looks good.
+Initially we can just follow the ISA string approach because this
+is what RISC-V unpric spec defines.
 
-Best regards,
-Krzysztof
+Specifying ISA extensions via DT or ACPI, can be incrementally
+done in future.
+
+We have a lot of patches (Svpbmt, Sstc, Scofpmf, Zcboxyz, etc)
+blocked because we don't have a way to detect multi-letter
+extensions in Linux.
+
+Regards,
+Anup
+
+>
+> Regards,
+> Nick
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
