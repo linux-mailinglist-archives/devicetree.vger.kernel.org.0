@@ -2,204 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E610F4D5E65
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:27:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1A944D5E71
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:31:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242316AbiCKJ0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 04:26:43 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57950 "EHLO
+        id S241909AbiCKJcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 04:32:15 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346526AbiCKJ0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:26:41 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA718118601
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:25:38 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3EBAA3F1E8
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:25:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646990734;
-        bh=D1XtJyL/qqPN2xLVrq6WSrUWrKPZ0qDx4WjygrxcxL4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=MWi8bO+EMw9545+2buiID51o0JJ/VUKhsxW4TFk039+JvZgrfYeyY5E1nkTqmLSEx
-         yKEcL3SMBYAhfTRA9g0niz3okPC+qg6CavJroFdCGCs9Wo5rgUWqdF0ln64J6F+3gI
-         utligUyJwoZs+dzURHm9tjv3Bi02WS2XObbaEVeo64ScJJVFVOgUTXDDg6OsOphZji
-         oUKVya7l3hPolUD+3bW8rnzSudSSnaBnF9cliRXY2nStgrOEMW+iF70VLmXCcVKbQB
-         5eR24BV+r23hLu2DF+nB+X01xQXNYzaiIDL+DvmIJyrzPTw89yLe1iEa318656tI7U
-         IjQEU9g+JugXg==
-Received: by mail-ej1-f70.google.com with SMTP id hq34-20020a1709073f2200b006d677c94909so4644544ejc.8
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:25:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=D1XtJyL/qqPN2xLVrq6WSrUWrKPZ0qDx4WjygrxcxL4=;
-        b=S0n+UabxVluyuRU+LoCwo6jmowVk3h+OiCcJ0+FQdNd7vKbHsvGlasqYART8tyge2W
-         tx+RO6nS6w/ad/wCZCT7Zyv6IRXJPc1XfvUUvizeygWaYTXdeuYEsYjBOHPQQpIu4kFL
-         iQ4Xva3Uw762iYb5muGxs5iKROwiVvSVl/Ih3WiJyCttThzi6phxd4L/HjSihves9cz4
-         YbLJ1cUZYbn2Hcv9xEZ4Df0FhIzBvNtAqT1pyGujwzgcD5IUiBQseqOYL6zQH8TL68PM
-         ZmANH3IS1AxL+6TzSYYGZJPtui7DRzqkO2C6Rp+8FHkynlH4hksrvOnhlWsZ2FeIU/WZ
-         mMHA==
-X-Gm-Message-State: AOAM5308R3nCoiEAeqrK5fpff2TuDBbCs5Gdt1qbCKXQ4ijlw4rNXkY2
-        23wiUDii2errVCWCOf9gXmZd4g/IqaDlk1wQaWUAS+V5zdRaTF37rVeGHKytrjJcD3N80mUMNeK
-        hk3dwSTZ7TcrEXA61dUjD1c2BLfh/4GgWBQN5Uto=
-X-Received: by 2002:aa7:c54b:0:b0:415:c714:7a1f with SMTP id s11-20020aa7c54b000000b00415c7147a1fmr7914980edr.385.1646990733007;
-        Fri, 11 Mar 2022 01:25:33 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyHiW2gWM85UR5m9XbGbjsYu5M4yHXr5ZVuoNQ8b/CLVDoNmQC144ImvZc/fVRESprMrS3lzg==
-X-Received: by 2002:aa7:c54b:0:b0:415:c714:7a1f with SMTP id s11-20020aa7c54b000000b00415c7147a1fmr7914962edr.385.1646990732722;
-        Fri, 11 Mar 2022 01:25:32 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id m13-20020a056402510d00b00416ca731b5fsm986108edd.9.2022.03.11.01.25.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 01:25:31 -0800 (PST)
-Message-ID: <49b19cf0-a4aa-69c3-a609-422a8b3f9798@canonical.com>
-Date:   Fri, 11 Mar 2022 10:25:30 +0100
+        with ESMTP id S232599AbiCKJcO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:32:14 -0500
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 489371BE0C9;
+        Fri, 11 Mar 2022 01:31:11 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id A01EE1F4648B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1646991070;
+        bh=8RCQviM0W1Pt/BRbjJaaMonMEQR44D+N89LwIichuDs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fZPhMZ2PUdwYLtdcdhTVypXcWOSfx0jYBWpOLppNtIF3Gkvp5zKWhwRtaDdfaacr5
+         VRAIQ41PjvYJG8xVDFrqRKSG3dZYUCvyNDSsLNVq699ZW5O36wcKxEyWIbq8kWYaGa
+         QT9pm7XUUE53qU22izZZAXkDQ5C20SyoL2TwbIkHJDwOStyWinvFKFP93V2XDBl5X4
+         rAeje5RZ5z8QTqI3Q1a6LLUdIQO7OYm1MX23LsU1jSdzpfMF9Ldcnxts5i3jYNe7Fg
+         1uqEe/3sc4ENcjpo621475Dp9GrmxvUzPnR9H1L8aKtcnH1q5sfeA8r3lGgnV5CfTx
+         Nwk5cmwo7kqKw==
+Message-ID: <7e31d769-3a22-eebc-5025-af56bf104c81@collabora.com>
+Date:   Fri, 11 Mar 2022 10:31:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: support Nuvoton sgpio
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v15 01/22] dt-bindings: mediatek: add vdosys1 RDMA
+ definition for mt8195
 Content-Language: en-US
-To:     jimliu2 <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
-        KWLIU@nuvoton.com, linus.walleij@linaro.org, brgl@bgdev.pl,
-        robh+dt@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, CTCCHIEN@nuvoton.com
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20220311060936.10663-1-JJLIU0@nuvoton.com>
- <20220311060936.10663-3-JJLIU0@nuvoton.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311060936.10663-3-JJLIU0@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8
+To:     "Nancy.Lin" <nancy.lin@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, wim@linux-watchdog.org,
+        linux@roeck-us.net
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Nathan Chancellor <nathan@kernel.org>,
+        Nick Desaulniers <ndesaulniers@google.com>,
+        "jason-jh . lin" <jason-jh.lin@mediatek.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+        singo.chang@mediatek.com, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220311015506.11232-1-nancy.lin@mediatek.com>
+ <20220311015506.11232-2-nancy.lin@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220311015506.11232-2-nancy.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 07:09, jimliu2 wrote:
-> Add nuvoton sgpio yaml in dt-bindings
-
-Missing full stop.
-
-Subject: missing prefix. Check git log history.
-
+Il 11/03/22 02:54, Nancy.Lin ha scritto:
+> Add vdosys1 RDMA definition.
 > 
-> Signed-off-by: jimliu2 <JJLIU0@nuvoton.com>
+> Signed-off-by: Nancy.Lin <nancy.lin@mediatek.com>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 > ---
->  .../bindings/gpio/nuvoton,sgpio.yaml          | 78 +++++++++++++++++++
->  1 file changed, 78 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+>   .../arm/mediatek/mediatek,mdp-rdma.yaml       | 86 +++++++++++++++++++
+>   1 file changed, 86 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mdp-rdma.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mdp-rdma.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mdp-rdma.yaml
 > new file mode 100644
-> index 000000000000..8766e1fa4528
+> index 000000000000..6ab773569462
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
-> @@ -0,0 +1,78 @@
+> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mdp-rdma.yaml
+> @@ -0,0 +1,86 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/gpio/nuvoton,sgpio.yaml#
+> +$id: http://devicetree.org/schemas/arm/mediatek/mediatek,mdp-rdma.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Nuvoton SGPIO controller
+> +title: Mediatek MDP RDMA
 > +
 > +maintainers:
-> +  - Jim LIU <JJLIU0@nuvoton.com>
+> +  - Matthias Brugger <matthias.bgg@gmail.com>
 > +
-> +description:
-> +  This SGPIO controller is for NUVOTON NPCM7xx and NPCM8xx SoC,
-> +  NPCM7xx/NPCM8xx have two sgpio module each module can support up
-> +  to 64 output pins,and up to 64 input pin.
-> +  GPIO pins can be programmed to support the following options
-> +  - Support interrupt option for each input port and various interrupt
-> +    sensitivity option (level-high, level-low, edge-high, edge-low)
-> +  - Directly connected to APB bus and its shift clock is from APB bus clock
-> +    divided by a programmable value.
-> +  - ngpios is number of nin_gpios GPIO lines and nout_gpios GPIO lines.
+> +description: |
+> +  The mediatek MDP RDMA stands for Read Direct Memory Access.
+> +  It provides real time data to the back-end panel driver, such as DSI,
+> +  DPI and DP_INTF.
+> +  It contains one line buffer to store the sufficient pixel data.
+> +  RDMA device node must be siblings to the central MMSYS_CONFIG node.
+> +  For a description of the MMSYS_CONFIG binding, see
+> +  Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml for details.
 > +
 > +properties:
 > +  compatible:
-> +    enum:
-> +      - nuvoton,npcm750-sgpio
-> +      - nuvoton,npcm845-sgpio
+> +    oneOf:
+> +      - items:
+> +          - const: mediatek,mt8195-vdo1-rdma
 > +
 > +  reg:
 > +    maxItems: 1
 > +
-> +  gpio-controller: true
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
 > +  interrupts:
 > +    maxItems: 1
 > +
+> +  power-domains:
+> +    description: A phandle and PM domain specifier as defined by bindings of
+> +      the power controller specified by phandle. See
+> +      Documentation/devicetree/bindings/power/power-domain.yaml for details.
+> +
 > +  clocks:
+> +    items:
+> +      - description: RDMA Clock
+> +
+> +  iommus:
+> +    description:
+> +      This property should point to the respective IOMMU block with master port as argument,
+> +      see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml for details.
+> +
+> +  mediatek,gce-client-reg:
+> +    description:
+> +      The register of display function block to be set by gce. There are 4 arguments,
+> +      such as gce node, subsys id, offset and register size. The subsys id that is
+> +      mapping to the register of display function blocks is defined in the gce header
+> +      include/include/dt-bindings/gce/<chip>-gce.h of each chips.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
 > +    maxItems: 1
-> +
-> +  nin_gpios: true
-> +
-> +  nout_gpios: true
-
-Both do not look like proper property. No description, no vendor prefix,
-no type, wrong value (true).
-
-> +
-> +  bus-frequency: true
-
-Why a GPIO controller needs this legacy bus-frequency property? Which
-bus frequency is it? Internal? APB? If APB, use assigned-clocks.
-
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - gpio-controller
-> +  - '#gpio-cells'
-> +  - interrupts
-> +  - nin_gpios
-> +  - nout_gpios
+> +  - power-domains
 > +  - clocks
-> +  - bus-frequency
+> +  - iommus
 > +
 > +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
 > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    sgpio1: sgpio@101000 {
-
-Generic node name, so "gpio".
-
-> +        compatible = "nuvoton,npcm750-sgpio";
-> +        gpio-controller;
-> +        #gpio-cells = <2>;
-> +        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +        reg = <0x101000 0x200>;
-
-reg goes after compatible.
-
-> +        clocks = <&clk NPCM7XX_CLK_APB3>;
-> +        pinctrl-names = "default";
-> +        pinctrl-0 = <&iox1_pins>;
-> +        nin_gpios = <64>;
-> +        nout_gpios = <64>;
-> +        bus-frequency = <16000000>;
+> +    #include <dt-bindings/clock/mt8195-clk.h>
+> +    #include <dt-bindings/power/mt8195-power.h>
+> +    #include <dt-bindings/gce/mt8195-gce.h>
+> +    #include <dt-bindings/memory/mt8195-memory-port.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        vdo1_rdma0: mdp-rdma@1c104000 {
+> +            compatible = "mediatek,mt8195-vdo1-rdma";
+> +            reg = <0 0x1c104000 0 0x1000>;
+> +            interrupts = <GIC_SPI 495 IRQ_TYPE_LEVEL_HIGH 0>;
+> +            clocks = <&vdosys1 CLK_VDO1_MDP_RDMA0>;
+> +            power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
+> +            iommus = <&iommu_vdo M4U_PORT_L2_MDP_RDMA0>;
+> +            mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x4000 0x1000>;
+> +        };
 > +    };
-
-
-Best regards,
-Krzysztof
