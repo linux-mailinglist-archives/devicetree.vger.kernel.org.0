@@ -2,90 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 713DA4D5A1F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 05:56:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA3234D5B7D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 07:17:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238053AbiCKE5D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 23:57:03 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33060 "EHLO
+        id S235974AbiCKGSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 01:18:39 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236467AbiCKE5C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 23:57:02 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1C1EF7B3;
-        Thu, 10 Mar 2022 20:56:00 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 659D8B82A4E;
-        Fri, 11 Mar 2022 04:55:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AA7EC340EC;
-        Fri, 11 Mar 2022 04:55:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646974558;
-        bh=lAGnjdaVIpu+qVHYqg+esd+iu/gEs7nkw3886AUCd7E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JMTanZJGUVYjqqgYgCUwnIoKc/WS3OsaRgQYP/avXI7+SeMpqr0UzDap0B7/+sXTI
-         d2dauTzf1OT8kcOgLmv2CT/OsMcoRa83ryouqrEDJo/A2pQYRpuy2NC+WelCPqagKy
-         t3QO1z4wV4F5TNXV4fiA5OBZPusDvMZsjnVsbT6xYIdA0bRAq0FCvoIYntplJP6XUv
-         KImxGUHIPiXv9sk4XQMX78S1N8Ikrao6VIxE0AVkKgBiTuCwfzacklDy4Fy2CeJlDh
-         vKQDO+NxAS0tYX0l8ve1ApYaHBbM3mslMaoWo8kU6+WsXpmFDJW51BYbwu73mN6qG/
-         T8OigDvtvyVVQ==
-Date:   Fri, 11 Mar 2022 10:25:54 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: fix interconnects property of
- UFS node
-Message-ID: <YirWWmm7twjNlTxU@matsya>
-References: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220310221934.1560729-1-vladimir.zapolskiy@linaro.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S237369AbiCKGSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 01:18:38 -0500
+Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CD42182E;
+        Thu, 10 Mar 2022 22:17:33 -0800 (PST)
+Received: by mail-pg1-x529.google.com with SMTP id 6so6712712pgg.0;
+        Thu, 10 Mar 2022 22:17:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=A7pAy++gE6Sf24glsPSuwiIhYjaba9pQjOIqVLpC6lY=;
+        b=pRcYO6tJNwMTlM04j9EYiq+iHMveHk+7BaoWF0Bq6k6ihtdUuQYRWMX57QXqc/cgwT
+         3soYCIiJMzJDPxP1LAxR7W/urMID0UPDO2mU5BSp19D5aRTQmOebNhAekpRFmrkJBEU2
+         uw5F1LyuTQIVhzyTfFosft17eNwOGqnWyo5T5FsXPK8Ws4Aus0ueDtcHp09VuNYhu6CK
+         JTHE/JkXnXD7hiqFljjEy/SupHRewvx83T/dTiDzxcRpnfnl/rkXDHxKdkLm1yN6R4gT
+         V3vtNJCcNSpx87joQ9YliJ6QGCu29m9w6tcD2bvxOZXBF4yjRlv4fevpPnZ5JekVOj8m
+         5Xug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=A7pAy++gE6Sf24glsPSuwiIhYjaba9pQjOIqVLpC6lY=;
+        b=iNayzeHDpdkT4rSBTgSoSRdRHHEdhRsOzWuUhAlSCKIF5wsOl/opuHuWcgSlMHKNWp
+         exM3oX5ifCCyQ3AV5c/0XlMRdl3H1TD+KHxxAt8E97enNEnP8qcXEf/BrtyzhghmrfTb
+         L+xa+CC3ZiHu/UY4n0+60/pGMV0kVk4BCnr1g8BYXlHwpo5ToASiBr3g3p7NqQUdsXDi
+         5KoUQXDpCA1kpkL9h5DzR3yv+xg+RQkcHoAgEHUSi6Cbh5ah5QvRaq070mwm2QVC6Iyr
+         9VmCT1BswvNxIkqP0w8whJSr4EGFE/K5zkYC6AoZRjVHmqK5nXRXMVIwkcKG0slrzp+y
+         hDGA==
+X-Gm-Message-State: AOAM532YX1eG/XTMTS/gDjXqy8Z/HcTWdSn2+2HWArpRAVwK9O24gRI3
+        7yR3F3au6L97OcO2gjbjPJw=
+X-Google-Smtp-Source: ABdhPJy1fJA4WkmniCGtgE/gxQ9bvOZVEhlL1C4xif5vmxgIgz7POBtlmcziW3Q4qioutsVd86x+oA==
+X-Received: by 2002:a05:6a00:1a4d:b0:4f7:b86:fd1e with SMTP id h13-20020a056a001a4d00b004f70b86fd1emr8387142pfv.65.1646979453413;
+        Thu, 10 Mar 2022 22:17:33 -0800 (PST)
+Received: from localhost.localdomain ([116.89.135.255])
+        by smtp.gmail.com with ESMTPSA id d20-20020a056a0010d400b004f7093700c4sm9101764pfu.76.2022.03.10.22.17.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Mar 2022 22:17:33 -0800 (PST)
+From:   jimliu2 <jim.t90615@gmail.com>
+X-Google-Original-From: jimliu2 <JJLIU0@nuvoton.com>
+To:     JJLIU0@nuvoton.com, KWLIU@nuvoton.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, jim.t90615@gmail.com,
+        CTCCHIEN@nuvoton.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: [PATCH v1 0/3]sgpio:nuvoton:add support for Nuvoton NPCM SoCs
+Date:   Fri, 11 Mar 2022 14:09:33 +0800
+Message-Id: <20220311060936.10663-1-JJLIU0@nuvoton.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-03-22, 00:19, Vladimir Zapolskiy wrote:
-> All interconnect device tree nodes on sm8450 are 2-cells, however in
-> UFS node they are handled as 1-cells, fix it.
+Add sgpio feature for Nuvoton NPCM SoCs
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+jimliu2 (3):
+  dts: add Nuvoton sgpio feature
+  dt-bindings: support Nuvoton sgpio
+  gpio:gpio-npcm-sgpio: Add Nuvoton sgpio driver
 
-> 
-> Fixes: aa2d0bf04a3c ("arm64: dts: qcom: sm8450: add interconnect nodes")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8450.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> index 0cd5af8c03bd..bbd38b55e976 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-> @@ -1376,8 +1376,8 @@ ufs_mem_hc: ufshc@1d84000 {
->  
->  			iommus = <&apps_smmu 0xe0 0x0>;
->  
-> -			interconnects = <&aggre1_noc MASTER_UFS_MEM &mc_virt SLAVE_EBI1>,
-> -					<&gem_noc MASTER_APPSS_PROC &config_noc SLAVE_UFS_MEM_CFG>;
-> +			interconnects = <&aggre1_noc MASTER_UFS_MEM 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_UFS_MEM_CFG 0>;
->  			interconnect-names = "ufs-ddr", "cpu-ufs";
->  			clock-names =
->  				"core_clk",
-> -- 
-> 2.33.0
+ .../bindings/gpio/nuvoton,sgpio.yaml          |  78 +++
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |  30 +
+ drivers/gpio/Kconfig                          |  12 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-npcm-sgpio.c                | 634 ++++++++++++++++++
+ 5 files changed, 755 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+ create mode 100644 drivers/gpio/gpio-npcm-sgpio.c
 
 -- 
-~Vinod
+2.17.1
+
