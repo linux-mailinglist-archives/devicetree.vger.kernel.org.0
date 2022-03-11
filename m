@@ -2,85 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D224D5C63
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 08:34:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BD6F4D5CB6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 08:52:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347197AbiCKHfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 02:35:04 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32934 "EHLO
+        id S1347026AbiCKHxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 02:53:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347051AbiCKHfD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 02:35:03 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C0C31B7193
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 23:34:00 -0800 (PST)
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 06C373F7E7
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 07:33:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646984039;
-        bh=FwIsaa6346BnNKKT5tvMxkFu/0GEn2QQ2fVNeegANkg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=ShhO7QVpj2/qqVow6bIhgZNzFEqbMy2QEJjLd8Xwd1rNOpCsy55FfvM8CUu6XtvUW
-         tmVBg1XcMlqhPHM7+QS66DMFy/S4G6a6F3S6Bilr8tvqPhq8q37iLbYa8sJ5c6jsAI
-         fb9vCzNRO95GTApYtTgkNuyDA36Splp/Mca55Db0vWhTXrcVQRTR7Qu152Xl+o6qjf
-         XxpnnjmCmEfb8a4oDwfo4JrylNI2lKlE/e1WOgKuQ6+fhkv9z6fb7xpY9UvWG78/SY
-         lei90kTq0xg1oLC0ifJWXbnAfAOJN1A93xBxkQsZFE44p7ASPdXRkZ/ja94svoR3rM
-         emJ1iWECDfjsg==
-Received: by mail-ej1-f70.google.com with SMTP id ey18-20020a1709070b9200b006da9614af58so4475644ejc.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 23:33:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FwIsaa6346BnNKKT5tvMxkFu/0GEn2QQ2fVNeegANkg=;
-        b=qm8r2byZdNiCc7tXZNqHVuG9SDqWiR4bAm8Sd7vh6QMJ7lfYUZ6atseEc/3wuxytUz
-         /4GDe1aNN59fSaXrJghu6roeRTYrbQZrECahgPBmMcXwtRZrlb0QAG4wqhOAVKQOu64q
-         lAa7SKJEi+h+L+JmyWSUSF44z87o73KO4onAjqBltlrOqM8j0yczbupTb6kL4u7e4G6e
-         GtWsCQuHQM1a+5oYvRPxuwFDNb/IbHQ+Fb6Opxso2s3HfkQJ0MjTIUsrQO+UvpG1JLGM
-         oSOlj/CiYS+peXxklOMvowlg1RDrpIY9Eb11esC3hVh3etfFR9HKwWrdQ34sSVg18Is5
-         cPbA==
-X-Gm-Message-State: AOAM530tXtM14foF8K2ieMFbBI/cH7f+dMkIRVcNUE6ugiScrpa0rwv2
-        Rdz0T+VBT3bxwQG5aMJpa89KsM4RXiSeBQj2srmJSGEhA4ZGGpxgpsfK3078kDqJht8h9IeAnUW
-        2mKsXXdzQ/iCbCypdQ9ljeZrjca7d2rdFFBUicFE=
-X-Received: by 2002:a17:907:72ce:b0:6db:aed5:833e with SMTP id du14-20020a17090772ce00b006dbaed5833emr400587ejc.420.1646984036606;
-        Thu, 10 Mar 2022 23:33:56 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJzHSkeNxfQPFajgsgZR2Yv3RA/WJuoMeMF7qYuAnmerumRUXFThKxmJtDF/IuTUkeXY1Sj4WA==
-X-Received: by 2002:a17:907:72ce:b0:6db:aed5:833e with SMTP id du14-20020a17090772ce00b006dbaed5833emr400571ejc.420.1646984036392;
-        Thu, 10 Mar 2022 23:33:56 -0800 (PST)
-Received: from [192.168.0.147] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id p14-20020aa7cc8e000000b0040f13865fa9sm2908347edt.3.2022.03.10.23.33.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Mar 2022 23:33:55 -0800 (PST)
-Message-ID: <ef965982-0c21-9cc7-1e5a-69726671ba1f@canonical.com>
-Date:   Fri, 11 Mar 2022 08:33:54 +0100
+        with ESMTP id S1346780AbiCKHxc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 02:53:32 -0500
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2087.outbound.protection.outlook.com [40.107.22.87])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA2BC13DD4;
+        Thu, 10 Mar 2022 23:52:26 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=O50dgFTW0pUvVPOpWr1N7PjjnR2TFmkYu0NEIlU9qmDwCS6I/GYrYRyLiOFDif++jDPd2lUiHsF1T7KSc3vo0YRvs6Olu3btef6taHpMIeVSdh0rhX23FPrShUYYvEepKsxAgcs0ocn8PRRDW4SLl6pZIeqSxPJOpDxf5YqSgAAO5drFGQNjK8LGXtkScCkhH9tcKUgptr4PD52bcJCB+zAIXf6vItXoltKeQbrZYRU40cu7jWxVxiv02G/esG33Lr3lXSbfhJiMft0FfHtwUhPdpek4RBRgL1HK47w9Jw4GqurvXkqVQnnXSFgafOgdm7vbmwumJR9Jj7laIGJRRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=/lawJqNZ6hdwDYs9c7BvLscNDPHGUczrKIhcGXLn5cI=;
+ b=JHVIaZevdrE9XBSRcYtYOm0WudtocTxBH6QG6kqqddG/VSfyeXPCJ55MXCbEIEPS4vGv+nYSBqAcrc5njlNgYth5vD9eST1l3dpC+9ES3Do/33bZwx7qKVRR2m4l9i9He5nZQORF2zHFeJYgPJsU5s5sv8m8ygml2VEBHAGEx4gStyHs2ZmdGwLHTR8zLjncrysroDLvyjGYc3QuTaWevUku8sXOqpcC0fJGh5cAWaopwNRf3KEimcz1piq2Zw2kDnclAulrMmScNw8zN1mEcyOSUHzbG4dJEPx0kJlhhvVN3cKcleNm4uv1CvqQ/R/SeI1bcZwPUzWSc09kaY8z2g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=/lawJqNZ6hdwDYs9c7BvLscNDPHGUczrKIhcGXLn5cI=;
+ b=mQ/I+N3mt8vfiF2uLF0KS8eKgnuHQxbrVLg4PXZ9PLF4tVUi7y/ktE9mIcX91gId62mMyEhGVyBUxb1/EE2/6lmD1ZIGrDO2CdoHFfjeFoAMjmLmEwI00bHrpS+G5RfdGwMrAA6ERohBSG+Pgcqr3/XvA0Yrgezw8TrCBhbngvY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
+ by DB7PR04MB4443.eurprd04.prod.outlook.com (2603:10a6:5:32::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5038.14; Fri, 11 Mar
+ 2022 07:52:24 +0000
+Received: from AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967]) by AM6PR04MB6341.eurprd04.prod.outlook.com
+ ([fe80::c39:69cf:c4ea:967%5]) with mapi id 15.20.5061.022; Fri, 11 Mar 2022
+ 07:52:24 +0000
+From:   Ming Qian <ming.qian@nxp.com>
+To:     mchehab@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        mirela.rabulea@oss.nxp.com
+Cc:     hverkuil-cisco@xs4all.nl, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] imx-jpeg: Support dynamic resolution change
+Date:   Fri, 11 Mar 2022 15:51:42 +0800
+Message-Id: <cover.1646983646.git.ming.qian@nxp.com>
+X-Mailer: git-send-email 2.33.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SGXP274CA0015.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::27)
+ To AM6PR04MB6341.eurprd04.prod.outlook.com (2603:10a6:20b:d8::14)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] MAINTAINERS: sifive: drop Yash Shah
-Content-Language: en-US
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        lee.jones@linaro.org, aou@eecs.berkeley.edu,
-        p.zabel@pengutronix.de, sagar.kadam@sifive.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <mhng-b01b9acc-de77-4d1d-9cdc-f3830a6c569a@palmer-ri-x1c9>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <mhng-b01b9acc-de77-4d1d-9cdc-f3830a6c569a@palmer-ri-x1c9>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e67075cb-7ab7-429a-a68a-08da0334140b
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4443:EE_
+X-Microsoft-Antispam-PRVS: <DB7PR04MB4443DDDBD6DC5D913775B304E70C9@DB7PR04MB4443.eurprd04.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: he3yYK0gWvH0s0acYHtvM+vSrDI7U4HM//i48SGUx7eAIracn7INaMXMI2xyZ7JIgw8eLJuh+nvg0daPL5XVe0iMViipIKQsGohtZ/+X8uRCYbnxBm2/FC88kUMVlUl1JMzP2/tHzqqmQex7r75eH73IY973VrK4Atxr89xmj++kFcCg04NwvnbZlRVy5MKxwAeovxOFE6qeEpPPZ65aDf1pLRZs8sk+Ky6fFjpZ+leedp95W+VHvMR6yKOAMXyGddvq53EYvxvPl51IdriMHNEAcZ2IW0z1vtjI6PJlwLYwEGvJ8UIuJ6aqfL3ZAS92RBHIbL5xdIcdpsdAaX9XkHMIyrjx89Hrl08I/QaQ+LAs8jFe/Q3myabOakzhFbMhJJ7YMirjnTeg0OigotPiRNHt6GnbLtZnpjHxjHbi33KrMvDxClRrEerX6dGcYdYGrkZ/oD35gnadxPo3UtB5c4yvljPK0k98Wjaf4GM1l8yui2LEPB5dnUqRjoW7A2hhv3RQitYNDaKTlwASq7idjnFJHFOJQHOi6UYOv4zq63gHgA44HHoMbg2dJnLSwm0caDrl8NcQVSCQ9EOKC3VY8UoTFLlIpmRxxLR4T8uaawIx98ubQM3YE7s85qvoGIBQDnjBhlilDMSJ7kd4kqlcib4IudzXJWweq+hsc0abXVAPSgwVLu3POWlTGJY+SH/f+FMtDlYB3vuio2f3qaMUIA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB6341.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(4744005)(7416002)(8936002)(26005)(52116002)(44832011)(2906002)(8676002)(6486002)(2616005)(508600001)(86362001)(4326008)(186003)(66946007)(6512007)(6506007)(5660300002)(66556008)(38350700002)(6666004)(38100700002)(66476007)(316002)(83380400001)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4lf1vtrFPs4sYzmUyZR9YGC2IIY2G9N5Zal3pu0orXBd3XA8kZT13DeyOVJd?=
+ =?us-ascii?Q?WhQOpf5TJGvM3weXXmSoSGlRMcpOs9gYrEIR6jYM3dqNCqQODa6frgr6OPTe?=
+ =?us-ascii?Q?JQ6CXfNE7eGYJA2belLMCoTAmQgSV2WC2I1SgCadZGJCMndpWKHrRvI7SImX?=
+ =?us-ascii?Q?uS67Yixw5Srvx1KO7EOy8Ufmw4L20+zNCR+zY8nFy7KkACra+1K0mq1+eS3Y?=
+ =?us-ascii?Q?404o+b9q74NfX/uuNh+ccKlfCDtq8+zMbee3DuZWLSO4x+h8Uc62lzr1xmk2?=
+ =?us-ascii?Q?nhxtKMhiCmLVX6tX8blKTBcQuakm84Sr9f0LkRO0zsGwhqU4gq9H3XfusEys?=
+ =?us-ascii?Q?nXy3aBBSURDumJiqfGV8BdfxxyWt6jSBa8S2tVg41xSBITlxAN1kxCmzK+y2?=
+ =?us-ascii?Q?2jZgtdVrQr9dGk7V9K8SLUPpPHJPW87Y/ZMKwQQfqcRigxRJ6benenXQawS5?=
+ =?us-ascii?Q?tyvEufMSeERLuv4WpOwX4bDXo+x5c1PpchT8Zy/AnI68F/0bgGECwb2XjBik?=
+ =?us-ascii?Q?UCIE3z/ZUCHmlfrZuLFCPaCRemZ3eTiWyUmM4iPAwn+EoZ4y2dPrOB2uK1/7?=
+ =?us-ascii?Q?qb7b0GkpUdZL8Y62TQKqtQB4hcUcPdoRYu7M5OL1AEn7EA8Suct5Y19jA3Ef?=
+ =?us-ascii?Q?h+9PazdTWeYSMUgH8ftzGZMxFZ/1sHSBN4GXyit2yS0cCEkWexx77VVaU86t?=
+ =?us-ascii?Q?rcDRBHlgswLK+75oRM+jM4LTFbbSzseDPWp24HFx8BoQISI7ciLZItC9Gew8?=
+ =?us-ascii?Q?b46mqkE0FP/OrLgjyA3ZQjmP/l9Zbe2C+qLSCLaBfvL5RMMv4zaE5SQLNG8l?=
+ =?us-ascii?Q?uJYw7RFFgmCOdG2QwTjJO8PuBXex0CsQqA/EDSLTRah5VD5d8S+e/FzX822x?=
+ =?us-ascii?Q?yQb+YxflAzBu1RPXyUKb4N1gRJC0+LYCA+2RdUxvn/uJ0eDOX2ZwiztjVX7O?=
+ =?us-ascii?Q?rVRTtweVw8xJBqW7cInNFFDC7lv2fTDiRynz8ovo/hGhqCqo9tQZ+rSxOc6O?=
+ =?us-ascii?Q?nhr+Br8rrc/+lRI1ZDy9rfOVOko2+KyY6jvmMlaTI5jsob6lXSxHwOpdksD7?=
+ =?us-ascii?Q?b0Wcy11Neg8FQYEShHbStmu7rFINEPbnUxTD2ygTS5EEZUi+rthvTgXPpEF+?=
+ =?us-ascii?Q?DmcaLykUOFaAiSNN1HdzKEdGifQu/fAAbgBoD+ZxHzPJnpV/RK/ySMBxwFxy?=
+ =?us-ascii?Q?yR++pi/XVtXEXjJkvoHShBWRAjfHugt2zcrApybqWRaN8+6Zma4iZmZq0UXe?=
+ =?us-ascii?Q?YIcGeedsk3JMfOAysH5aZqaisJOypVUAQEm8NmNYto4CJyhfwFMicIHoL9c1?=
+ =?us-ascii?Q?PyO+7gRiiUc6CfvCraf1i5xpnz/mY7No26pFUooP3+IyYVIe6D2doMXSOLl0?=
+ =?us-ascii?Q?13ca4lNpzdEm+GNReb0mub+7mdglb3zN81pcfm9KeABNMRVF+5B3MQUVSfR8?=
+ =?us-ascii?Q?7MJ4xaYw3gsHXqrUAUNP0WEKavVbOBmIP7V8sAw7chfiSoVUon/f8LhD59JD?=
+ =?us-ascii?Q?4acqKRw+X3fMj7NBq5kLP+EK+rMPPwy/LUI+wwD7usdpKdOfC+Mv3L9a7caz?=
+ =?us-ascii?Q?ZiOd/CazZLvdovYF9c28Gu4ywqQVrKxxC5SX1W03JuzcZx82yTLKEwYgQHoG?=
+ =?us-ascii?Q?YPdWsbQ6e/TwxOw0nHLYV6g=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e67075cb-7ab7-429a-a68a-08da0334140b
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB6341.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2022 07:52:23.9274
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N+P4xKCspROiGpe691KXciLIDx+b5MnVcHJlkirCGCc1LkB44WVQbbCkncCxqyZzDiBZeRTjT1Zcs9BBMFHNYw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4443
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,79 +114,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 04:14, Palmer Dabbelt wrote:
-> On Mon, 14 Feb 2022 00:23:49 PST (-0800), krzysztof.kozlowski@canonical.com wrote:
->> Emails to Yash Shah bounce with "The email account that you tried to
->> reach does not exist.", so drop him from all maintainer entries.
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
->> ---
->>  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml     | 1 -
->>  Documentation/devicetree/bindings/pwm/pwm-sifive.yaml       | 1 -
->>  .../devicetree/bindings/riscv/sifive-l2-cache.yaml          | 1 -
->>  MAINTAINERS                                                 | 6 ------
->>  4 files changed, 9 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
->> index e04349567eeb..427c5873f96a 100644
->> --- a/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
->> +++ b/Documentation/devicetree/bindings/gpio/sifive,gpio.yaml
->> @@ -7,7 +7,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>  title: SiFive GPIO controller
->>
->>  maintainers:
->> -  - Yash Shah <yash.shah@sifive.com>
->>    - Paul Walmsley <paul.walmsley@sifive.com>
->>
->>  properties:
->> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
->> index 676b2160bada..605c1766dba8 100644
->> --- a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
->> +++ b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
->> @@ -8,7 +8,6 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
->>  title: SiFive PWM controller
->>
->>  maintainers:
->> -  - Yash Shah <yash.shah@sifive.com>
->>    - Sagar Kadam <sagar.kadam@sifive.com>
->>    - Paul Walmsley <paul.walmsley@sifive.com>
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
->> index 2b1f91603897..e2d330bd4608 100644
->> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
->> @@ -9,7 +9,6 @@ title: SiFive L2 Cache Controller
->>
->>  maintainers:
->>    - Sagar Kadam <sagar.kadam@sifive.com>
->> -  - Yash Shah <yash.shah@sifive.com>
->>    - Paul Walmsley  <paul.walmsley@sifive.com>
->>
->>  description:
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index ebf7a75a6bec..87eeac970ca2 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -7090,12 +7090,6 @@ L:	linux-edac@vger.kernel.org
->>  S:	Maintained
->>  F:	drivers/edac/sb_edac.c
->>
->> -EDAC-SIFIVE
->> -M:	Yash Shah <yash.shah@sifive.com>
->> -L:	linux-edac@vger.kernel.org
->> -S:	Supported
->> -F:	drivers/edac/sifive_edac.c
-> 
-> Looks like that leaves this unmaintained?  I'm happy to volunteer, I've 
-> got the boards lying around somewhere and sort of feel on the hook to 
-> keep this stuff alive given that whatever's in there is partially my 
-> fault.  That said, I'm happy to stay out of it so if it's OK to have 
-> otherwise unmaintained EDAC drivers that works for me so
-> 
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+These patchset are to support dynamic resolution change.
+Avoid decoding error or even kernel panic.
+Otherwise, the Gstreamer v4l2videodec will fail to decode jpeg
+who is not decoded to yuyv.
 
-The patch was already merged. EDAC SiFive is now covered by generic EDAC
-and SIFIVE entries. Feel free to restore the entry with yourself.
+Ming Qian (5):
+  media: imx-jpeg: Refactor function mxc_jpeg_parse
+  media: imx-jpeg: Identify and handle precision correctly
+  media: imx-jpeg: Propagate the output frame size to the capture side
+  media: imx-jpeg: Handle source change in a function
+  media: imx-jpeg: Support dynamic resolution change
 
-Best regards,
-Krzysztof
+ drivers/media/platform/imx-jpeg/mxc-jpeg.c | 244 ++++++++++++++-------
+ drivers/media/platform/imx-jpeg/mxc-jpeg.h |   3 +
+ 2 files changed, 169 insertions(+), 78 deletions(-)
+
+-- 
+2.33.0
+
