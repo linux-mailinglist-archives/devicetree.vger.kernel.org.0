@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 711704D65E9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:18:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BDD14D65FC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:22:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350176AbiCKQTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 11:19:53 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50278 "EHLO
+        id S237154AbiCKQX1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 11:23:27 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240035AbiCKQTw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:19:52 -0500
-Received: from mxd1.seznam.cz (mxd1.seznam.cz [IPv6:2a02:598:a::78:210])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E01D1CD7E6;
-        Fri, 11 Mar 2022 08:18:45 -0800 (PST)
-Received: from email.seznam.cz
-        by email-smtpc21b.ko.seznam.cz (email-smtpc21b.ko.seznam.cz [10.53.18.27])
-        id 732ddcdc282388b572841082;
-        Fri, 11 Mar 2022 17:18:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1647015502; bh=+SW7gvP/Lj8jgIjjy9F4j1gSQrTfgZOYTRmKc2+iewE=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding:X-szn-frgn:
-         X-szn-frgc;
-        b=AA8YgM41U/reS56yOeHlVqGucN3innKpwQtCIqMEr18w4SE27EE+oybUpVgw5Wkbp
-         nst9MqQGirDAtGJQwRLnSqz8fH9Oaw/iN8E0pDECpwJH4M6biz4ZpwhDxVbME5py+u
-         qEiKnU40B4HnA2Q2+VMLyPFna+VcdOx9eXnvOe2s=
-Received: from localhost.localdomain (ip-111-27.static.ccinternet.cz [147.161.27.111])
-        by email-relay29.ko.seznam.cz (Seznam SMTPD 1.3.136) with ESMTP;
-        Fri, 11 Mar 2022 17:18:17 +0100 (CET)  
-From:   michael.srba@seznam.cz
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-Subject: [PATCH v2 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
-Date:   Fri, 11 Mar 2022 17:16:00 +0100
-Message-Id: <20220311161600.1469-3-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220311161600.1469-1-michael.srba@seznam.cz>
-References: <20220311161600.1469-1-michael.srba@seznam.cz>
+        with ESMTP id S233165AbiCKQXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:23:24 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACC81D17A3;
+        Fri, 11 Mar 2022 08:22:20 -0800 (PST)
+X-UUID: 94ce9022ee8d4ed5844060cefb30fbbf-20220312
+X-UUID: 94ce9022ee8d4ed5844060cefb30fbbf-20220312
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1884727560; Sat, 12 Mar 2022 00:22:16 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 12 Mar 2022 00:22:15 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sat, 12 Mar
+ 2022 00:22:15 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 12 Mar 2022 00:22:14 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
+        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [v4 0/2] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Sat, 12 Mar 2022 00:22:11 +0800
+Message-ID: <20220311162213.6942-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-szn-frgn: <277e48de-6894-46fe-a3ab-fdc9f1a88712>
-X-szn-frgc: <0>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,145 +58,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
-The difference between the ICM-20608-D and the other ICM-20608
-variants is the addition of a DMP (Digital Motion Processor) core.
-This difference is deemed substantial enough to change the WHOAMI
-register value.
-Since this driver doesn't currently acknowledge the exisence of
-something like a DMP core, simply copy ICM-20608 except for the
-aforementioned WHOAMI register.
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Acked-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
----
-changes:
- - v2: none
----
- drivers/iio/imu/inv_mpu6050/Kconfig        | 4 ++--
- drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 9 +++++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c  | 6 ++++++
- drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h  | 2 ++
- drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c  | 5 +++++
- 5 files changed, 24 insertions(+), 2 deletions(-)
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
 
-diff --git a/drivers/iio/imu/inv_mpu6050/Kconfig b/drivers/iio/imu/inv_mpu6050/Kconfig
-index 9c625517173a..3636b1bc90f1 100644
---- a/drivers/iio/imu/inv_mpu6050/Kconfig
-+++ b/drivers/iio/imu/inv_mpu6050/Kconfig
-@@ -16,7 +16,7 @@ config INV_MPU6050_I2C
- 	select REGMAP_I2C
- 	help
- 	  This driver supports the Invensense MPU6050/9150,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over I2C.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-i2c.
-@@ -28,7 +28,7 @@ config INV_MPU6050_SPI
- 	select REGMAP_SPI
- 	help
- 	  This driver supports the Invensense MPU6000,
--	  MPU6500/6515/6880/9250/9255, ICM20608/20609/20689, ICM20602/ICM20690
-+	  MPU6500/6515/6880/9250/9255, ICM20608(D)/20609/20689, ICM20602/ICM20690
- 	  and IAM20680 motion tracking devices over SPI.
- 	  This driver can be built as a module. The module will be called
- 	  inv-mpu6050-spi.
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-index 597768c29a72..86fbbe904050 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_core.c
-@@ -217,6 +217,15 @@ static const struct inv_mpu6050_hw hw_info[] = {
- 		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
- 		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
- 	},
-+	{
-+		.whoami = INV_ICM20608D_WHOAMI_VALUE,
-+		.name = "ICM20608D",
-+		.reg = &reg_set_6500,
-+		.config = &chip_config_6500,
-+		.fifo_size = 512,
-+		.temp = {INV_ICM20608_TEMP_OFFSET, INV_ICM20608_TEMP_SCALE},
-+		.startup_time = {INV_MPU6500_GYRO_STARTUP_TIME, INV_MPU6500_ACCEL_STARTUP_TIME},
-+	},
- 	{
- 		.whoami = INV_ICM20609_WHOAMI_VALUE,
- 		.name = "ICM20609",
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-index fe03707ec2d3..ed52b27409ac 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c
-@@ -29,6 +29,7 @@ static bool inv_mpu_i2c_aux_bus(struct device *dev)
- 
- 	switch (st->chip_type) {
- 	case INV_ICM20608:
-+	case INV_ICM20608D:
- 	case INV_ICM20609:
- 	case INV_ICM20689:
- 	case INV_ICM20602:
-@@ -182,6 +183,7 @@ static const struct i2c_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -225,6 +227,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-index c6aa36ee966a..8e14f20b1314 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h
-@@ -76,6 +76,7 @@ enum inv_devices {
- 	INV_MPU9250,
- 	INV_MPU9255,
- 	INV_ICM20608,
-+	INV_ICM20608D,
- 	INV_ICM20609,
- 	INV_ICM20689,
- 	INV_ICM20602,
-@@ -394,6 +395,7 @@ struct inv_mpu6050_state {
- #define INV_MPU9255_WHOAMI_VALUE		0x73
- #define INV_MPU6515_WHOAMI_VALUE		0x74
- #define INV_ICM20608_WHOAMI_VALUE		0xAF
-+#define INV_ICM20608D_WHOAMI_VALUE		0xAE
- #define INV_ICM20609_WHOAMI_VALUE		0xA6
- #define INV_ICM20689_WHOAMI_VALUE		0x98
- #define INV_ICM20602_WHOAMI_VALUE		0x12
-diff --git a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-index 6800356b25fb..ce8ab6db2bf2 100644
---- a/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-+++ b/drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c
-@@ -74,6 +74,7 @@ static const struct spi_device_id inv_mpu_id[] = {
- 	{"mpu9250", INV_MPU9250},
- 	{"mpu9255", INV_MPU9255},
- 	{"icm20608", INV_ICM20608},
-+	{"icm20608d", INV_ICM20608D},
- 	{"icm20609", INV_ICM20609},
- 	{"icm20689", INV_ICM20689},
- 	{"icm20602", INV_ICM20602},
-@@ -113,6 +114,10 @@ static const struct of_device_id inv_of_match[] = {
- 		.compatible = "invensense,icm20608",
- 		.data = (void *)INV_ICM20608
- 	},
-+	{
-+		.compatible = "invensense,icm20608d",
-+		.data = (void *)INV_ICM20608D
-+	},
- 	{
- 		.compatible = "invensense,icm20609",
- 		.data = (void *)INV_ICM20609
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
+
+Jiaxin Yu (2):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible for using rt1015p
+    and rt5682
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |   1 +
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 204 +++++++++++-------
+ 3 files changed, 129 insertions(+), 77 deletions(-)
+
 -- 
-2.34.1
+2.18.0
 
