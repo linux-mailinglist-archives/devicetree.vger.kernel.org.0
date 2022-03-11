@@ -2,119 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E8564D675D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 18:16:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id EF74D4D6764
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 18:17:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350636AbiCKRRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 12:17:31 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42902 "EHLO
+        id S1350689AbiCKRSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 12:18:16 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350617AbiCKRRa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 12:17:30 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DAE91AD941
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:16:27 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S1350669AbiCKRSK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 12:18:10 -0500
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3C0F1C65C8;
+        Fri, 11 Mar 2022 09:17:05 -0800 (PST)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 26AD43F799
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 17:16:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647018986;
-        bh=3ix8XaEwqnXAxmcHs/PYiSgYguAbESAsak2MuFDuRRs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=GGel9XU41L8AGcLm105EgExuQjXMelTWvd1lySXa0wRLAmRlWA5hWdeggdy9BDc8N
-         0wMjRldjGErJjqMaDylHKO3Q8M9JB0QUWJk5VgBOy5CF3U+AHliNVR0gsi+uMWM7ml
-         d7cN54FtWxw9JpOklUx1Qmh6wk1wO2b55DhvgT0eucEa7vADFy+3SkI1tDb8aQm8Wf
-         4Dz0pbfFNFeuPIy5zXLZhtKsWaaHIirg4v40a6nhcSvs6q1Awnvgdsw85rKgg42mIl
-         Ei6/7HnicJgL9fzgeib2LrqKeFang2+BRBC4vComhUL6S4F5nyUDW9FBEZTWydAVLH
-         xekLEM2pcmPzQ==
-Received: by mail-ed1-f69.google.com with SMTP id cm27-20020a0564020c9b00b004137effc24bso5215501edb.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:16:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=3ix8XaEwqnXAxmcHs/PYiSgYguAbESAsak2MuFDuRRs=;
-        b=crp5ymOS99D0gPUkfjtfVSpxVRpCtJnVfn+om/NxliTBKRQrxo2dcezMl2ZIZxOYIf
-         8/Pam4PwUBX3/mAkK8H0eRsacSC/+7yQjgTUEo6YLgE/35125UEdxvWqRvt/qYKqxioS
-         VBk5cggDWQ8VHUaZFRCYCyr6T7qdl7UiR188akhn2PF+sLVRRZWHJmiXCb6DwhaF3DSG
-         SfWXMbML6X/CFvym/n016K0F9Dn1H7pJrHMWcDeqyG3nKS1gjZPA/m8VHDIelR1EFwqX
-         Tfvf9i9AM7DrrW4BtwjEUiVKvrswhKL3HASsL5fqRty0gT9tBfc79dutAZ+vjy9zmfsn
-         MCww==
-X-Gm-Message-State: AOAM531op8Ffc83Jh0YvQyqPHxyc8d8v2Ph3IWmZlX16OdMdc4VB/Xs8
-        OIV1bjm3SzRqpmvQMaAWUfd8CSlhihTCdEoKBmlH20kvIaJ7tS4DIZNovifgNeOQZdrQ10mZkte
-        +wRqnsWbR/Jc5Ck48Bu1eapqbgApnBTb5VaLe5dA=
-X-Received: by 2002:a50:e081:0:b0:401:8823:c9a8 with SMTP id f1-20020a50e081000000b004018823c9a8mr9802458edl.401.1647018985808;
-        Fri, 11 Mar 2022 09:16:25 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJw6Ejk8Ndl1YbVPjkJj6LbZfXV9rwKw5bSN2C9ns9NB8rRIz5kdDXUU5AylbFw5L3AsJUNmJA==
-X-Received: by 2002:a50:e081:0:b0:401:8823:c9a8 with SMTP id f1-20020a50e081000000b004018823c9a8mr9802440edl.401.1647018985642;
-        Fri, 11 Mar 2022 09:16:25 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id q15-20020a1709060e4f00b006cdf4535cf2sm3170766eji.67.2022.03.11.09.16.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 09:16:25 -0800 (PST)
-Message-ID: <ace67429-5982-a905-de96-b89abc97d36a@canonical.com>
-Date:   Fri, 11 Mar 2022 18:16:24 +0100
+        by ams.source.kernel.org (Postfix) with ESMTPS id A6FE5B82854;
+        Fri, 11 Mar 2022 17:17:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3049DC340F4;
+        Fri, 11 Mar 2022 17:17:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647019023;
+        bh=443SiYGJGUDaMgpUN+vix0hHpSMSvx4CLDcgACriZt0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uu5+tGzYAjUd7aKyPyz734orEl9bVHujIe/+7Bo9jR0kAOE27Kl2UJRQk8Ld24pRF
+         ej8rmZOZzlHI58r1gyCGmlRH10ITP6M+gIZN0yujTAg9GcdP0C/dYsqN3g8+cPTASs
+         rJKnGVycgSVxaV2JJMjDiaO24qZlvQ2vxkJNVWRDyay6u+0zr1fRS3/FAsaUmNEE1w
+         7a9ynvFrgKpHqDsZidhlTtEhSMSWybAjMaoCoHLQeTcFPi6wUMEV2HdOpU9JufGlt6
+         d5p2LR0Mk1UdCanpOlclbk1qSbGMDwZXysxKCKDTrVxanATa9xTFslNthHcHs6wcDZ
+         h8/o//sAF+VWw==
+Date:   Fri, 11 Mar 2022 17:16:56 +0000
+From:   Mark Brown <broonie@kernel.org>
+To:     Alifer Moraes <alifer.m@variscite.com>
+Cc:     linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, eran.m@variscite.com,
+        festevam@gmail.com, lgirdwood@gmail.com,
+        linuxppc-dev@lists.ozlabs.org, nicoleotsuka@gmail.com,
+        patches@opensource.cirrus.com, perex@perex.cz,
+        pierluigi.p@variscite.com, robh+dt@kernel.org,
+        shengjiu.wang@gmail.com, tiwai@suse.com, Xiubo.Lee@gmail.com
+Subject: Re: [PATCH 1/4] ASoC: fsl-asoc-card: add WM8904 support
+Message-ID: <YiuECMoS3S54dfeF@sirena.org.uk>
+References: <20220307141041.27538-1-alifer.m@variscite.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 2/2] iio: imu: inv_mpu6050: Add support for ICM-20608-D
-Content-Language: en-US
-To:     michael.srba@seznam.cz, Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-References: <20220311161600.1469-1-michael.srba@seznam.cz>
- <20220311161600.1469-3-michael.srba@seznam.cz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311161600.1469-3-michael.srba@seznam.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="b8SEATCHD1iXnOvu"
+Content-Disposition: inline
+In-Reply-To: <20220307141041.27538-1-alifer.m@variscite.com>
+X-Cookie: PIZZA!!
+X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 17:16, michael.srba@seznam.cz wrote:
-> From: Michael Srba <Michael.Srba@seznam.cz>
-> 
-> The difference between the ICM-20608-D and the other ICM-20608
-> variants is the addition of a DMP (Digital Motion Processor) core.
-> This difference is deemed substantial enough to change the WHOAMI
-> register value.
-> Since this driver doesn't currently acknowledge the exisence of
-> something like a DMP core, simply copy ICM-20608 except for the
-> aforementioned WHOAMI register.
-> 
-> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-> Acked-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
-> ---
-> changes:
->  - v2: none
-> ---
->  drivers/iio/imu/inv_mpu6050/Kconfig        | 4 ++--
->  drivers/iio/imu/inv_mpu6050/inv_mpu_core.c | 9 +++++++++
->  drivers/iio/imu/inv_mpu6050/inv_mpu_i2c.c  | 6 ++++++
->  drivers/iio/imu/inv_mpu6050/inv_mpu_iio.h  | 2 ++
->  drivers/iio/imu/inv_mpu6050/inv_mpu_spi.c  | 5 +++++
->  5 files changed, 24 insertions(+), 2 deletions(-)
-> 
 
-FWIW:
+--b8SEATCHD1iXnOvu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+On Mon, Mar 07, 2022 at 11:10:38AM -0300, Alifer Moraes wrote:
+> From: Pierluigi Passaro <pierluigi.p@variscite.com>
+>=20
+> The codec WM8904 can use internal FLL as PLL source.
+> Whenever the PLL source is not an external MCLK, this source
+> must be setup during hw_params callback otherwise the BCLK
+> could be wrongly evaluated.
+> The SND_SOC_BIAS_PREPARE event is raised after the hw_params
+> callback, so there is no need to set again PLL and SYSCLK and
+> actually there's no need at all the set_bias_level function.
+> Also, when esai is used, a dedicated snd_soc_dai_set_tdm_slot
+
+> Signed-off by: Alifer Moraes <alifer.m@variscite.com>
+>=20
+> Signed-off-by: Pierluigi Passaro <pierluigi.p@variscite.com>
+
+When you're sending a mail your signoff should come at the end of the
+chain of signoffs - see submitting-patches.rst for details.
+
+This breaks an arm64 defconfig build:
+
+/mnt/kernel/sound/soc/fsl/fsl-asoc-card.c: In function 'fsl_asoc_card_hw_fr=
+ee':
+/mnt/kernel/sound/soc/fsl/fsl-asoc-card.c:265:37: error: 'struct snd_soc_pc=
+m_runtime' has no member named 'cpu_dai'
+  265 |   ret =3D snd_soc_dai_set_tdm_slot(rtd->cpu_dai, 0, 0, 2,
+      |                                     ^~
+/mnt/kernel/sound/soc/fsl/fsl-asoc-card.c:266:35: error: 'params' undeclare=
+d (first use in this function); did you mean 'parameq'?
+  266 |             params_physical_width(params));
+      |                                   ^~~~~~
+      |                                   parameq
+/mnt/kernel/sound/soc/fsl/fsl-asoc-card.c:266:35: note: each undeclared ide=
+ntifier is reported only once for each function it appears in
 
 
-Best regards,
-Krzysztof
+--b8SEATCHD1iXnOvu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmIrhAcACgkQJNaLcl1U
+h9CnVgf/Wr9SUVAFGV9OWF89sPv7dvpJRJTpALOk5PGWPIvkKsyMl54WVqeNMbb5
+aRfcFiNedP7SPyS9WJlGAt7MOa3mSG9qaFM1EkPJhLcQ5Bx1MGOEmAPt+lIuXTMz
+janQOk3NRv6wUBzS+RtQET2qCcjHkhLXJl24gvWoEQUX/qChPB3+Es3UBOkbIHWC
+Zxx/O6wQZVPqsYzoqUoDQAXlXrIrvYSwEsJXFNptivsOxr/ZkmZQWEIZ12FsnRQF
+wW1RquHMD1cr2Fx4CC9Yq8i9lgzJWFzd+k3+74c70kiHQXUJpXwdHVfIjZAvaAjk
+Shq9tKOFh/8wv7exJK4Dd+n/1PZPkg==
+=UvIJ
+-----END PGP SIGNATURE-----
+
+--b8SEATCHD1iXnOvu--
