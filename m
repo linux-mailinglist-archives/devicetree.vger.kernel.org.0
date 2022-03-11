@@ -2,206 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DDE54D6AE5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 00:27:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8398B4D6B1A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 00:55:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229460AbiCKX1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 18:27:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
+        id S229966AbiCKXtW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 18:49:22 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229519AbiCKX1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 18:27:06 -0500
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E379199D5F;
-        Fri, 11 Mar 2022 15:26:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647041162; x=1678577162;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FhLI30JK+BcSkM8Wok3yK+8l0ZbaHT6oDrtnpTgbszc=;
-  b=m8B27ayD/7OISSMPiu3ZaeELECmxjGivtoLI4UoW6/fYAvEYmwP5LbFv
-   nqZvvyFBlmzL3JKEtM9OZnLrXPzm6AZiyvGjmClkUWCDmXJuX8ahMDEDX
-   fEYAuOD3zFF/9lr1XsldRUpj9H7m3lnQxdcKe5LIKRIB8in2s70fY2t3o
-   +NkeGHcGLFsQWpwIg8F6Ml2V17iFiUbgUVRPYfEJZ/6MLX1IGJOseofhD
-   mJ0Id1IV6ZtykBkUuX0jvSB+Kx2w4EA9A90kfSVVF1wIeetOpMLO7tRUa
-   JlKuXgA1UAyocXLS/mXZSMWfW2CHGSULDtNDwIC+aqufxXlNTzhz+jJnC
-   A==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="237843541"
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; 
-   d="scan'208";a="237843541"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2022 15:26:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; 
-   d="scan'208";a="579448467"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga001.jf.intel.com with ESMTP; 11 Mar 2022 15:25:56 -0800
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nSodv-0007FQ-CD; Fri, 11 Mar 2022 23:25:55 +0000
-Date:   Sat, 12 Mar 2022 07:25:37 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
-        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
-        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        ctcchien@nuvoton.com
-Cc:     kbuild-all@lists.01.org, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Message-ID: <202203120713.ExrZZZo2-lkp@intel.com>
-References: <20220311014245.4612-4-ctcchien@nuvoton.com>
+        with ESMTP id S229606AbiCKXtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 18:49:21 -0500
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FE642E0;
+        Fri, 11 Mar 2022 15:48:17 -0800 (PST)
+Received: by mail-oi1-f177.google.com with SMTP id j83so11118148oih.6;
+        Fri, 11 Mar 2022 15:48:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x6lwOUs0d65LCqBi3QipuhYyxDJ9eIewRF/1SecNNVk=;
+        b=yffyoz8VzCntSreC5fdhKB/KhtzaN3vp3KJDDSQVe1EJlWtKF0liID182gW2Mg0H7h
+         GT6m8U9FmUUZm1kWhrr3esZODmRauWH9NERPQkfwhDy7V6n7bOPZQ0mKps0LMDMcnoNH
+         9Tm2CMmtw1ZXLd+F1wrwqEMOBot/6CAiXX/pPlyjLmb4NUCxX5dDZ5cFX5epVosRe2rX
+         1RGgXpDX9qUhmT4jVQ/BCpALhGtl9JsdtMHPZelyL/K+sJ42gwF4t6EoNnVkstQaFGq+
+         Haf9o+d08O6EyONCCLlrKt+tJ+qHod5Lc+dq8+Lg2cK99pC18WvF2ZjHct0fDzCrTvnB
+         2Ypg==
+X-Gm-Message-State: AOAM531VtS2Lh6zAmJOj1zzmHZp/c1X3exqVqjay2IMPJ5UPJQG58ORh
+        zB3PPD21MVX1RYy/daVIo94XPibe+Q==
+X-Google-Smtp-Source: ABdhPJyvZ0r+1P93joNo0ptbuIsXbm7FYq3d7tYAdY68/bzI93gYnyJbwvMNDQDUCKsJKaNoyhXoNg==
+X-Received: by 2002:a05:6808:2013:b0:2d9:dbed:6999 with SMTP id q19-20020a056808201300b002d9dbed6999mr14493688oiw.30.1647042496534;
+        Fri, 11 Mar 2022 15:48:16 -0800 (PST)
+Received: from xps15.. (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.googlemail.com with ESMTPSA id o21-20020a056870e81500b000d9b2ba714asm3942423oan.21.2022.03.11.15.48.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Mar 2022 15:48:15 -0800 (PST)
+From:   Rob Herring <robh@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: Fix patternProperties with fixed strings
+Date:   Fri, 11 Mar 2022 17:48:01 -0600
+Message-Id: <20220311234802.417610-1-robh@kernel.org>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220311014245.4612-4-ctcchien@nuvoton.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Medad,
+The simple-audio-card and renesas,rsnd bindings used 'patternProperties'
+with fixed strings to work-around a dtschema meta-schema limitation. This
+is now fixed and the schemas can be fixed to use 'properties' instead.
 
-Thank you for the patch! Yet something to improve:
-
-[auto build test ERROR on ras/edac-for-next]
-[also build test ERROR on robh/for-next v5.17-rc7 next-20220310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
-
-url:    https://github.com/0day-ci/linux/commits/Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220311-094500
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git edac-for-next
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20220312/202203120713.ExrZZZo2-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/6cb0bb6039e1ce83a8d67c6d571abd2a45e82b10
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220311-094500
-        git checkout 6cb0bb6039e1ce83a8d67c6d571abd2a45e82b10
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=arm SHELL=/bin/bash arch/arm/kernel/ arch/arm/mach-imx/ arch/arm/mach-omap2/ arch/arm/mach-socfpga/ arch/arm/mach-tegra/ drivers/edac/
-
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All errors (new ones prefixed by >>):
-
-   drivers/edac/npcm_edac.c: In function 'forced_ecc_error_store':
-   drivers/edac/npcm_edac.c:370:13: warning: suggest parentheses around operand of '!' or change '&' to '&&' or '!' to '~' [-Wparentheses]
-     370 |         if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
->> drivers/edac/npcm_edac.c:386:92: error: macro "edac_printk" requires 4 arguments, but only 2 given
-     386 |                                 edac_printk(KERN_INFO, "bit_no for checkcode must be 0~7\n");
-         |                                                                                            ^
-   In file included from drivers/edac/edac_module.h:14,
-                    from drivers/edac/npcm_edac.c:15:
-   drivers/edac/edac_mc.h:48: note: macro "edac_printk" defined here
-      48 | #define edac_printk(level, prefix, fmt, arg...) \
-         | 
->> drivers/edac/npcm_edac.c:386:33: error: 'edac_printk' undeclared (first use in this function); did you mean '_dev_printk'?
-     386 |                                 edac_printk(KERN_INFO, "bit_no for checkcode must be 0~7\n");
-         |                                 ^~~~~~~~~~~
-         |                                 _dev_printk
-   drivers/edac/npcm_edac.c:386:33: note: each undeclared identifier is reported only once for each function it appears in
-   drivers/edac/npcm_edac.c:395:88: error: macro "edac_printk" requires 4 arguments, but only 2 given
-     395 |                                 edac_printk(KERN_INFO, "bit_no for data must be 0~63\n");
-         |                                                                                        ^
-   In file included from drivers/edac/edac_module.h:14,
-                    from drivers/edac/npcm_edac.c:15:
-   drivers/edac/edac_mc.h:48: note: macro "edac_printk" defined here
-      48 | #define edac_printk(level, prefix, fmt, arg...) \
-         | 
-   drivers/edac/npcm_edac.c: In function 'npcm_edac_mc_probe':
-   drivers/edac/npcm_edac.c:583:9: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
-     583 |         u32 ecc_en = readl(reg + npcm_chip->ecc_ctl_en_reg);
-         |         ^~~
-
-
-vim +/edac_printk +386 drivers/edac/npcm_edac.c
-
-   352	
-   353	static ssize_t forced_ecc_error_store(struct device *dev,
-   354					      struct device_attribute *mattr,
-   355					      const char *data, size_t count)
-   356	{
-   357		struct mem_ctl_info *mci = to_mci(dev);
-   358		struct priv_data *priv = mci->pvt_info;
-   359		const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-   360		int	args_cnt;
-   361		int	ret;
-   362		char	**args;
-   363		u32	regval;
-   364		u8	bit_no;
-   365	
-   366		/* Split string buffer into separate parameters */
-   367		args = argv_split(GFP_KERNEL, data, &args_cnt);
-   368	
-   369		/* Check ecc enabled */
-   370		if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
-   371			return count;
-   372	
-   373		/* Check no write operation pending to controller*/
-   374		while (readl(priv->reg + npcm_chip->ddr_ctl_controller_busy_reg) &
-   375				CTL_CONTROLLER_BUSY_FLAG) {
-   376			usleep_range(1000, 10000);
-   377		}
-   378	
-   379		/* Write appropriate syndrome to xor_check_bit*/
-   380		if (!strcmp(args[0], "CE") && args_cnt == 3) {
-   381			ret = kstrtou8(args[2], 0, &bit_no);
-   382			if (ret)
-   383				return ret;
-   384			if (!strcmp(args[1], "checkcode")) {
-   385				if (bit_no > 7) {
- > 386					edac_printk(KERN_INFO, "bit_no for checkcode must be 0~7\n");
-   387					return count;
-   388				}
-   389				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   390				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   391					(check_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-   392				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   393			} else if (!strcmp(args[1], "data")) {
-   394				if (bit_no > 63) {
-   395					edac_printk(KERN_INFO, "bit_no for data must be 0~63\n");
-   396					return count;
-   397				}
-   398				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   399				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   400						 (data_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-   401				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   402			}
-   403			/* Enable the ECC writeback_en for corrected error */
-   404			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   405			writel((regval | NPCM_ECC_CTL_AUTO_WRITEBACK_EN),
-   406			       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   407		} else if (!strcmp(args[0], "UE")) {
-   408			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   409			regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   410					 (ECC_DOUBLE_MULTI_ERR_SYND << XOR_CHECK_BIT_SPLIT_WIDTH);
-   411			writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   412		}
-   413	
-   414		/* Assert fwc */
-   415		writel((NPCM_ECC_CTL_FORCE_WC | readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg)),
-   416		       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   417	
-   418		return count;
-   419	}
-   420	
-
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+ .../bindings/sound/renesas,rsnd.yaml          | 16 ++++---
+ .../bindings/sound/simple-card.yaml           | 42 +++++++++----------
+ 2 files changed, 28 insertions(+), 30 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+index c2930d65728e..e17c0245f77a 100644
+--- a/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
++++ b/Documentation/devicetree/bindings/sound/renesas,rsnd.yaml
+@@ -123,9 +123,7 @@ properties:
+     $ref: audio-graph-port.yaml#
+     unevaluatedProperties: false
+ 
+-# use patternProperties to avoid naming "xxx,yyy" issue
+-patternProperties:
+-  "^rcar_sound,dvc$":
++  rcar_sound,dvc:
+     description: DVC subnode.
+     type: object
+     patternProperties:
+@@ -141,7 +139,7 @@ patternProperties:
+           - dma-names
+     additionalProperties: false
+ 
+-  "^rcar_sound,mix$":
++  rcar_sound,mix:
+     description: MIX subnode.
+     type: object
+     patternProperties:
+@@ -150,7 +148,7 @@ patternProperties:
+         # no properties
+     additionalProperties: false
+ 
+-  "^rcar_sound,ctu$":
++  rcar_sound,ctu:
+     description: CTU subnode.
+     type: object
+     patternProperties:
+@@ -159,7 +157,7 @@ patternProperties:
+         # no properties
+     additionalProperties: false
+ 
+-  "^rcar_sound,src$":
++  rcar_sound,src:
+     description: SRC subnode.
+     type: object
+     patternProperties:
+@@ -182,7 +180,7 @@ patternProperties:
+           - dma-names
+     additionalProperties: false
+ 
+-  "^rcar_sound,ssiu$":
++  rcar_sound,ssiu:
+     description: SSIU subnode.
+     type: object
+     patternProperties:
+@@ -202,7 +200,7 @@ patternProperties:
+           - dma-names
+     additionalProperties: false
+ 
+-  "^rcar_sound,ssi$":
++  rcar_sound,ssi:
+     description: SSI subnode.
+     type: object
+     patternProperties:
+@@ -239,7 +237,7 @@ patternProperties:
+     additionalProperties: false
+ 
+   # For DAI base
+-  "^rcar_sound,dai$":
++  rcar_sound,dai:
+     description: DAI subnode.
+     type: object
+     patternProperties:
+diff --git a/Documentation/devicetree/bindings/sound/simple-card.yaml b/Documentation/devicetree/bindings/sound/simple-card.yaml
+index 45fd9fd9eb54..103044bd32eb 100644
+--- a/Documentation/devicetree/bindings/sound/simple-card.yaml
++++ b/Documentation/devicetree/bindings/sound/simple-card.yaml
+@@ -156,45 +156,45 @@ properties:
+     description: User specified audio sound card name.
+     $ref: /schemas/types.yaml#/definitions/string
+ 
+-# use patternProperties to avoid naming "xxx,yyy" issue
+-patternProperties:
+-  "^simple-audio-card,widgets$":
++  simple-audio-card,widgets:
+     $ref: "#/definitions/widgets"
+-  "^simple-audio-card,routing$":
++  simple-audio-card,routing:
+     $ref: "#/definitions/routing"
+-  "^simple-audio-card,cpu(@[0-9a-f]+)?":
+-    $ref: "#/definitions/dai"
+-  "^simple-audio-card,codec(@[0-9a-f]+)?":
+-    $ref: "#/definitions/dai"
+ 
+   # common properties
+-  "^simple-audio-card,frame-master$":
++  simple-audio-card,frame-master:
+     $ref: "#/definitions/frame-master"
+-  "^simple-audio-card,bitclock-master$":
++  simple-audio-card,bitclock-master:
+     $ref: "#/definitions/bitclock-master"
+-  "^simple-audio-card,frame-inversion$":
++  simple-audio-card,frame-inversion:
+     $ref: "#/definitions/frame-inversion"
+-  "^simple-audio-card,bitclock-inversion$":
++  simple-audio-card,bitclock-inversion:
+     $ref: "#/definitions/bitclock-inversion"
+-  "^simple-audio-card,format$":
++  simple-audio-card,format:
+     $ref: "#/definitions/format"
+-  "^simple-audio-card,mclk-fs$":
++  simple-audio-card,mclk-fs:
+     $ref: "#/definitions/mclk-fs"
+-  "^simple-audio-card,aux-devs$":
++  simple-audio-card,aux-devs:
+     $ref: "#/definitions/aux-devs"
+-  "^simple-audio-card,convert-rate$":
++  simple-audio-card,convert-rate:
+     $ref: "#/definitions/convert-rate"
+-  "^simple-audio-card,convert-channels$":
++  simple-audio-card,convert-channels:
+     $ref: "#/definitions/convert-channels"
+-  "^simple-audio-card,prefix$":
++  simple-audio-card,prefix:
+     $ref: "#/definitions/prefix"
+-  "^simple-audio-card,pin-switches$":
++  simple-audio-card,pin-switches:
+     $ref: "#/definitions/pin-switches"
+-  "^simple-audio-card,hp-det-gpio$":
++  simple-audio-card,hp-det-gpio:
+     maxItems: 1
+-  "^simple-audio-card,mic-det-gpio$":
++  simple-audio-card,mic-det-gpio:
+     maxItems: 1
+ 
++patternProperties:
++  "^simple-audio-card,cpu(@[0-9a-f]+)?$":
++    $ref: "#/definitions/dai"
++  "^simple-audio-card,codec(@[0-9a-f]+)?$":
++    $ref: "#/definitions/dai"
++
+   "^simple-audio-card,dai-link(@[0-9a-f]+)?$":
+     description: |
+       Container for dai-link level properties and the CPU and CODEC sub-nodes.
+-- 
+2.32.0
+
