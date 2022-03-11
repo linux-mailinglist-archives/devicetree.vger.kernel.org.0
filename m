@@ -2,85 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CE64D65AC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:02:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B7C04D65BA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 17:05:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241900AbiCKQDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 11:03:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37190 "EHLO
+        id S238838AbiCKQGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 11:06:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1350347AbiCKQD0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:03:26 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFC6C1CD7E6
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 08:02:21 -0800 (PST)
-Received: from mail-wr1-f69.google.com (mail-wr1-f69.google.com [209.85.221.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CE04D3F4BC
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 16:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647014539;
-        bh=UNc/A2NkHfI/MDvTtXK2iKRGzrcW0EmiCWnPUlUtzqg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=CnQ2EjHE0d22l7rAM3jUe8Et/0ombzBTQZaM/jti3Ww4XOOcyEEWtdU244/3c0Obo
-         sHQULjxWLrw1Y0FVSrMr8G5UBtWzkUJ0afWoMZsFYAwvTrzdm4UPyS5Fr7XgFmngJJ
-         jc9J86SsM7RNU/vWQWmzORmLFknHUBrv9JRtyPvjfxHww7bjgheuKoJk7P5Atc7shp
-         JwjsJTdb9/EWPOOm6xUBhuFhRiMFIfAlDzPjVSzv2SqfTJyZvUDA8gX0nJaiw+wFEd
-         ne41xSNmVQ2gqEiVW1dXC3W6hBWB/kA9lqN2L4rlieNO4YvFriYXVVmh61HpRtKEzx
-         WdcQJKBTw+1Xw==
-Received: by mail-wr1-f69.google.com with SMTP id f9-20020a5d58e9000000b001f0247e5e96so2960062wrd.15
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 08:02:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=UNc/A2NkHfI/MDvTtXK2iKRGzrcW0EmiCWnPUlUtzqg=;
-        b=eCak7ntd7K8P5J1nqZMFJUiR+llIRZIIpslaVOZ3iW23HbZaGooPRHsG5UNF9iN1Fo
-         RRHzQhV6JVJk/yQDrfor4uzy4za5K7sYusvN3aISy+FHozolVmYp5VSpFb7Xh/7VsACD
-         21z7cDUlwOjGuDIWRL+FJnWh29/hNAIgLjuik30sZ9G1bUVVBQkig4Irk1LpSDzzcKUi
-         ojypahyzW6+alvjYPdUE2EtSbyAZ8bqU8gzMi6H/KFXvu/M1FyXk1NkLAG883npwzIYg
-         PnKpPpH3qXmyJITr25oannvIHAEzwEy5fJvzmvo/UW7Sps5/rOuu1BaZ/FARQKZ3OGKg
-         W1Fw==
-X-Gm-Message-State: AOAM533VZ2ZZYTdnR/sDNbovLOTjiBUAqZDr5OEdv161PF5PGzGQe8jA
-        u6QtZH6hhMT3HhQOZCCV/+Hou+EZ5BFIbZ5/mZenCs9jowZi+ZWRwMuQoYhBRX76fwERQLEbNWs
-        C3J+VhM0/Bn8jTaSyRR2fI/HXlWqEiDqDkJGtkVI=
-X-Received: by 2002:adf:a199:0:b0:1f0:20f5:8f79 with SMTP id u25-20020adfa199000000b001f020f58f79mr7411795wru.296.1647014538338;
-        Fri, 11 Mar 2022 08:02:18 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxO6WlYipveD4yWnHVjjdeY6YAOdfN5uEThitxjq7eqYG1VfQ6lDfa8Z5M4QxU6WAinebGk4g==
-X-Received: by 2002:adf:a199:0:b0:1f0:20f5:8f79 with SMTP id u25-20020adfa199000000b001f020f58f79mr7411700wru.296.1647014537370;
-        Fri, 11 Mar 2022 08:02:17 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id r4-20020a5d4984000000b001f97df6c85bsm6934690wrq.1.2022.03.11.08.02.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 08:02:16 -0800 (PST)
-Message-ID: <bab0c381-8c40-6f9c-3d9e-675f91090e2b@canonical.com>
-Date:   Fri, 11 Mar 2022 17:02:13 +0100
+        with ESMTP id S1350093AbiCKQGf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 11:06:35 -0500
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6EAF1D0D46;
+        Fri, 11 Mar 2022 08:05:29 -0800 (PST)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id D9F4B1C0006;
+        Fri, 11 Mar 2022 16:05:25 +0000 (UTC)
+Date:   Fri, 11 Mar 2022 17:05:24 +0100
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        jeanmichel.hautbois@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
+        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
+        <linux-media@vger.kernel.org>, robh@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/6] media: dt-bindings: i2c: Document ov5670
+Message-ID: <20220311160524.wyfk5vj33xt4umgi@uno.localdomain>
+References: <20220310130829.96001-1-jacopo@jmondi.org>
+ <20220310130829.96001-2-jacopo@jmondi.org>
+ <d7e2a189-2773-b37a-7449-0b5138e45ded@canonical.com>
+ <20220310171634.qiqnq376qizrqhw5@uno.localdomain>
+ <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] ARM: dts: imx6q: Add Variscite MX6 Custom board
- support
-Content-Language: en-US
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>
-References: <20220311153614.2191584-1-gregory.clement@bootlin.com>
- <20220311153614.2191584-3-gregory.clement@bootlin.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311153614.2191584-3-gregory.clement@bootlin.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7eb33fe1-2470-7096-b77b-d147c2e55fec@canonical.com>
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -88,317 +48,283 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 16:36, Gregory CLEMENT wrote:
-> This patch adds support for the Variscite MX6 SoM Carrier Board.
-> 
-> This Carrier-Board has the following :
-> - LVDS interface for the VLCD-CAP-GLD-LVDS 7" LCD 800 x 480 touch display
-> - HDMI Connector
-> - USB Host + USB OTG Connector
-> - 10/100/1000 Mbps Ethernet
-> - miniPCI-Express slot
-> - SD Card connector
-> - Audio Headphone/Line In jack connectors
-> - S-ATA
-> - On-board DMIC
-> - RS485 Header
-> - CAN bus header
-> - SPI header
-> - Camera Interfaces header
-> - OnBoard RTC with Coin Backup battery socket
-> - RS232 Debug Header (IDC10)
-> - RS232 DTE
-> 
-> Product Page : https://www.variscite.com/product/single-board-computers/var-mx6customboard
-> 
-> The dts file based on the ones provided by Variscite on their own
-> kernel, but adapted for mainline.
-> 
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  .../arm/boot/dts/imx6q-var-mx6customboard.dts | 241 ++++++++++++++++++
->  2 files changed, 242 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6q-var-mx6customboard.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index 235ad559acb2..ef3c9d6a8322 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -631,6 +631,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
->  	imx6q-udoo.dtb \
->  	imx6q-utilite-pro.dtb \
->  	imx6q-var-dt6customboard.dtb \
-> +	imx6q-var-mx6customboard.dtb \
->  	imx6q-vicut1.dtb \
->  	imx6q-wandboard.dtb \
->  	imx6q-wandboard-revb1.dtb \
-> diff --git a/arch/arm/boot/dts/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
-> new file mode 100644
-> index 000000000000..8137a8cfc209
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6q-var-mx6customboard.dts
-> @@ -0,0 +1,241 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +//
-> +// Copyright 2016 Variscite, Ltd. All Rights Reserved
-> +// Copyright 2022 Bootlin
-> +
-> +#include "imx6qdl-var-som.dtsi"
-> +#include <dt-bindings/pwm/pwm.h>
-> +/ {
-> +	model = "Variscite MX6 Custom Board";
+Hi Krzysztof,
 
-Missing compatible, missing bindings. You also did not post bindings for
-first patch.
+On Thu, Mar 10, 2022 at 06:26:02PM +0100, Krzysztof Kozlowski wrote:
+> On 10/03/2022 18:16, Jacopo Mondi wrote:
+> > Hi Krzysztof
+> >
+> > On Thu, Mar 10, 2022 at 03:29:24PM +0100, Krzysztof Kozlowski wrote:
+> >> On 10/03/2022 14:08, Jacopo Mondi wrote:
+> >>> Provide the bindings documentation for Omnivision OV5670 image sensor.
+> >>>
+> >>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> >>> ---
+> >>>  .../devicetree/bindings/media/i2c/ov5670.yaml | 93 +++++++++++++++++++
+> >>
+> >> Add the file to maintainers entry.
+> >>
+> >
+> > Right
+> >
+> >>>  1 file changed, 93 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..dc4a3297bf6f
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+> >>
+> >> Missing vendor prefix in file name.
+> >>
+> >
+> > Right x2
+> >
+> >>> @@ -0,0 +1,93 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/media/i2c/ov5670.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Omnivision OV5670 5 Megapixels raw image sensor
+> >>> +
+> >>> +maintainers:
+> >>> +  - Jacopo Mondi <jacopo@jmondi.org>
+> >>
+> >> Please add also driver maintainer.
+> >>
+> >
+> > I never got what the policy was, if the maintainer entries here only
+> > refer to the binding file or to the driver too
+>
+> It is a person responsible for the bindings, so indeed it might not feed
+> existing maintainer.
+>
+> >
+> >>> +
+> >>> +description: |-
+> >>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
+> >>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
+> >>> +  controlled through an I2C compatible control bus.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: ovti,ov5670
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  clock-frequency:
+> >>> +    description: Frequency of the xclk clock.
+> >>
+> >> Is the xclk external clock coming to the sensor? If yes, there should be
+> >> a "clocks" property.
+> >>
+> >
+> > To be honest I was not sure about this, as clock-frequency is already
+> > used by the driver for the ACPI part, but it seems to in DT bindings
+> > it is a property meant to be specified in the clock providers, even if
+> > Documentation/devicetree/bindings/clock/clock-bindings.txt doesn't
+> > really clarify this
+> >
+> > Clock consumer should rather use 'clocks' and point to the provider's
+> > phandle if my understanding is right.
+>
+> This is a clock-frequency, not clock reference. For external clocks, a
 
-> +
-> +	regulators {
-> +
+Yes, I was suggesting to replace clock-frequency with clocks, that
+accepts a phandle.
 
-Skip such line breaks.
+The thing is, the driver parses 'clock-frequency'
+	device_property_read_u32(&client->dev, "clock-frequency", &input_clk);
 
-All comments from patch #1 about regulators are valid here as well.
+which I assume comes from ACPI (as the driver was developed for an
+ACPI platform).
 
-> +		reg_usb_otg_vbus: regulator-usb-otg-vbus {
-> +			compatible = "regulator-fixed";
-> +			regulator-name = "usb_otg_vbus";
-> +			regulator-min-microvolt = <5000000>;
-> +			regulator-max-microvolt = <5000000>;
-> +		};
-> +
-> +		reg_usb_h1_vbus: regulator-usb-h1-vbud {
-> +			compatible = "regulator-fixed";
-> +			regulator-name = "usb_h1_vbus";
-> +			regulator-min-microvolt = <5000000>;
-> +			regulator-max-microvolt = <5000000>;
-> +		};
-> +
-> +		reg_audio: regulator-audio {
-> +			compatible = "regulator-fixed";
-> +			regulator-name = "tlv320aic3x-supply";
-> +			enable-active-high;
-> +		};
-> +
-> +	};
-> +
-> +	panel {
-> +		compatible =  "panel-lvds";
-> +		backlight = <&backlight_lvds>;
-> +		width-mm = <152>;
-> +		height-mm = <91>;
-> +		label = "etm070001adh6";
-> +		data-mapping = "jeida-18";
-> +
-> +		panel-timing {
-> +				clock-frequency = <32000000>;
-> +				hactive = <800>;
-> +				vactive = <480>;
-> +				hback-porch = <39>;
-> +				hfront-porch = <39>;
-> +				vback-porch = <29>;
-> +				vfront-porch = <13>;
-> +				hsync-len = <47>;
-> +				vsync-len = <2>;
-> +			};
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lvds0_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	backlight_lvds: backlight-lvds {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm2 0 50000 0>;
-> +		brightness-levels = <0 4 8 16 32 64 128 255>;
-> +		default-brightness-level = <7>;
-> +		status = "okay";
-> +	};
-> +
+If in DTS we don't use it, I then need to
 
-Eh. No such line breaks.
+#ifdef CONFIG_ACPI
 
-> +};
-> +
-> +&i2c3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c3_3>;
-> +	status = "okay";
-> +
-> +	touchscreen@38 {
-> +		compatible = "edt,edt-ft5x06";
-> +		reg = <0x38>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-> +		touchscreen-size-x = <1800>;
-> +		touchscreen-size-y = <1000>;
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	imx6qdl-var-som-mx6 {
-> +
-> +		pinctrl_ipu1: ipu1grp {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x10
-> +				MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x10
-> +				MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x10
-> +				MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x10
-> +				MX6QDL_PAD_DI0_PIN4__IPU1_DI0_PIN04		0x80000000
-> +				MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x10
-> +				MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x10
-> +				MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x10
-> +				MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x10
-> +				MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x10
-> +				MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x10
-> +				MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x10
-> +				MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x10
-> +				MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x10
-> +				MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x10
-> +				MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x10
-> +				MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x10
-> +				MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x10
-> +				MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x10
-> +				MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x10
-> +				MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x10
-> +				MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x10
-> +				MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x10
-> +				MX6QDL_PAD_DISP0_DAT18__IPU1_DISP0_DATA18	0x10
-> +				MX6QDL_PAD_DISP0_DAT19__IPU1_DISP0_DATA19	0x10
-> +				MX6QDL_PAD_DISP0_DAT20__IPU1_DISP0_DATA20	0x10
-> +				MX6QDL_PAD_DISP0_DAT21__IPU1_DISP0_DATA21	0x10
-> +				MX6QDL_PAD_DISP0_DAT22__IPU1_DISP0_DATA22	0x10
-> +				MX6QDL_PAD_DISP0_DAT23__IPU1_DISP0_DATA23	0x10
-> +			>;
-> +		};
-> +
-> +		pinctrl_ipu1_2: ipu1grp-2 { /* parallel camera */
-> +			fsl,pins = <
-> +				MX6QDL_PAD_CSI0_DAT12__IPU1_CSI0_DATA12		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT13__IPU1_CSI0_DATA13		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT14__IPU1_CSI0_DATA14		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT15__IPU1_CSI0_DATA15		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT16__IPU1_CSI0_DATA16		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT17__IPU1_CSI0_DATA17		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT18__IPU1_CSI0_DATA18		0x80000000
-> +				MX6QDL_PAD_CSI0_DAT19__IPU1_CSI0_DATA19		0x80000000
-> +				MX6QDL_PAD_CSI0_DATA_EN__IPU1_CSI0_DATA_EN	0x80000000
-> +				MX6QDL_PAD_CSI0_PIXCLK__IPU1_CSI0_PIXCLK	0x80000000
-> +				MX6QDL_PAD_CSI0_MCLK__IPU1_CSI0_HSYNC		0x80000000
-> +				MX6QDL_PAD_CSI0_VSYNC__IPU1_CSI0_VSYNC		0x80000000
-> +			>;
-> +		};
-> +
-> +		pinctrl_usbotg_var: usbotggrp-3 {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_GPIO_4__GPIO1_IO04 		0x17059
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc1_1: usdhc1grp {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_SD1_CMD__SD1_CMD		0x17071
-> +				MX6QDL_PAD_SD1_CLK__SD1_CLK		0x10071
-> +				MX6QDL_PAD_SD1_DAT0__SD1_DATA0		0x17071
-> +				MX6QDL_PAD_SD1_DAT1__SD1_DATA1		0x17071
-> +				MX6QDL_PAD_SD1_DAT2__SD1_DATA2		0x17071
-> +				MX6QDL_PAD_SD1_DAT3__SD1_DATA3		0x17071
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc2_2: usdhc2grp {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_SD2_CMD__SD2_CMD		0x17059
-> +				MX6QDL_PAD_SD2_CLK__SD2_CLK		0x10059
-> +				MX6QDL_PAD_SD2_DAT0__SD2_DATA0		0x17059
-> +				MX6QDL_PAD_SD2_DAT1__SD2_DATA1		0x17059
-> +				MX6QDL_PAD_SD2_DAT2__SD2_DATA2		0x17059
-> +				MX6QDL_PAD_SD2_DAT3__SD2_DATA3		0x17059
-> +			>;
-> +		};
-> +		pinctrl_flexcan1_3: flexcan1grp {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_GPIO_7__FLEXCAN1_TX		0x80000000
-> +				MX6QDL_PAD_GPIO_8__FLEXCAN1_RX		0x80000000
-> +			>;
-> +		};
-> +	};
-> +};
-> +
-> +&mipi_csi {
-> +	status = "okay";
-> +	ipu_id = <0>;
-> +	csi_id = <1>;
-> +	v_channel = <0>;
-> +	lanes = <2>;
-> +};
-> +
-> +&usbh1 {
-> +	vbus-supply = <&reg_usb_h1_vbus>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg {
-> +	vbus-supply = <&reg_usb_otg_vbus>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg_var>;
-> +	disable-over-current;
-> +	/* dr_mode: One of "host", "peripheral" or "otg". Defaults to "otg" */
-> +	dr_mode = "host" ;
-> +	status = "okay";
-> +};
-> +
-> +&usbphy1 {
-> +	tx-d-cal = <0x5>;
-> +};
-> +
-> +&usbphy2 {
-> +	tx-d-cal = <0x5>;
-> +};
-> +
-> +&usdhc1 {	/* uSDHC1, eMMC */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc1_1>;
-> +	non-removable;
-> +	keep-power-in-suspend;
-> +	enable-sdio-wakeup;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {	/* uSDHC2, MMC/SD card */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc2_2>;
-> +	cd-gpios = <&gpio4 14 GPIO_ACTIVE_LOW>;
-> +	wp-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
-> +	status = "okay";
-> +};
-> +
-> +&ldb {
+#elif defined CONFIG_OF
 
-Same comment about ordering of node-overrides as in patch #1.
+#endif
 
-> +	status = "okay";
-> +
-> +	lvds-channel@0 {
-> +		fsl,data-mapping = "spwg";
-> +		fsl,data-width = <24>;
-> +		status = "okay";
+Which I would really like to avoid.
 
-Why do you need status?
+Anyone with ACPI experience that knows where clock-frequency comes
+from ?
 
-> +		primary;
-> +		port@4 {
-> +			reg = <4>;
-> +
-> +			lvds0_out: endpoint {
-> +				remote-endpoint = <&panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
+> clock phandles + assigned-clock-rates should be rather used. However for
+> internal clocks, this is a perfectly valid property.
+>
+> Therefore the question is - what is the "xclk"?
+
+xclk is the clock fed to the sensor, which which all its internal
+clocks are generated, so it's indeed an 'external' clock. As I've
+said, clock-frequency seems to be meant for clock providers, and
+the image sensor is a clock consumer.
+
+>
+> >
+> >>> +
+> >>> +  pwdn-gpios:
+> >>> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
+> >>
+> >> maxItems
+> >>
+> >
+> > I thought it was not necessary with a single description: entry. But
+> > looking at the dt-schema source I fail to find any commit mentioning
+> > that.
+>
+> The purpose of maxItems is to constrain the number of GPIOs, so two
+> would be incorrect.
+>
+
+I recall that with a single description entry then maxItems: 1 was
+assumed by the dt-schema validator, but I cannot find references to
+any commit, so I'll add it.
+
+> >
+> >>> +
+> >>> +  reset-gpios:
+> >>> +    description:
+> >>> +      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
+> >>
+> >> maxItems
+> >>
+> >>> +
+> >>> +  avdd-supply:
+> >>> +    description: Analog circuit power. Typically 2.8V.
+> >>> +
+> >>> +  dvdd-supply:
+> >>> +    description: Digital circuit power. Typically 1.2V.
+> >>> +
+> >>> +  dovdd-supply:
+> >>> +    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
+> >>> +
+> >>> +  port:
+> >>> +    $ref: /schemas/graph.yaml#/$defs/port-base
+> >>> +    additionalProperties: false
+> >>> +
+> >>> +    properties:
+> >>> +      endpoint:
+> >>> +        $ref: /schemas/media/video-interfaces.yaml#
+> >>> +        unevaluatedProperties: false
+> >>> +
+> >>> +        properties:
+> >>> +          data-lanes:
+> >>> +            description: The sensor supports 1 or 2 data lanes operations.
+> >>> +            minItems: 1
+> >>> +            maxItems: 2
+> >>> +            items:
+> >>> +              maximum: 2
+> >>
+> >> Is '0' also allowed? If not then maybe 'enum: [ 1, 2 ]'
+> >
+> > No 0 is not allowed, but the data-lanes properties should accept any
+> > of the following combinations
+> >         <1>
+> >         <1 2>
+> >         <2 1>
+> >
+> > As the chip seems to support lane re-ordering.
+> >
+> > using enum would allow to between <1> or <2> if I got it right?
+>
+> Yeah, enum would be equivalent. I find it more readable, than min+max,
+> but it's not a strong preference.
+>
+
+I don't think enum is equivalent, as it specifies a set of valid values
+a property can assume, but it does not support arrays.
+
+https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.16.1.2.
+
+enum
+  The value of this keyword MUST be an array. This array SHOULD have
+  at least one element. Elements in the array SHOULD be unique.
+
+  An instance validates successfully against this keyword if its value
+  is equal to one of the elements in this keyword's array value.
+
+In facts:
+
+--- a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+@@ -52,10 +52,7 @@ properties:
+         properties:
+           data-lanes:
+             description: The sensor supports 1 or 2 data lanes operations.
+-            minItems: 1
+-            maxItems: 2
+-            items:
+-              maximum: 2
++            enum: [1, 2]
 
 
-Best regards,
-Krzysztof
+Results in:
+
+Documentation/devicetree/bindings/media/i2c/ov5670.example.dt.yaml: sensor@36: port:endpoint:data-lanes:0: [1, 2] is too long
+
+If instead
+
+--- a/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
++++ b/Documentation/devicetree/bindings/media/i2c/ov5670.yaml
+@@ -54,8 +54,7 @@ properties:
+             description: The sensor supports 1 or 2 data lanes operations.
+             minItems: 1
+             maxItems: 2
+-            items:
+-              maximum: 2
++            enum: [1, 2]
+
+I get
+Documentation/devicetree/bindings/media/i2c/ov5670.yaml:
+properties:port:properties:endpoint:properties:data-lanes:
+'enum' should not be valid under {'enum': ['const', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'minimum', 'maximum', 'multipleOf', 'pattern']}
+	hint: Scalar and array keywords cannot be mixed
+	from schema $id: http://devicetree.org/meta-schemas/keywords.yaml#
+
+Thanks
+   j
+
+> >
+> > as the data-lane property is defined in video-interfaces.yaml
+> >
+> >   data-lanes:
+> >     $ref: /schemas/types.yaml#/definitions/uint32-array
+> >     minItems: 1
+> >     maxItems: 8
+> >     items:
+> >       # Assume up to 9 physical lane indices
+> >       maximum: 8
+> >     description:
+> >       An array of physical data lane indexes. Position of an entry determines
+> >       the logical lane number, while the value of an entry indicates physical
+> >       lane, e.g. for 2-lane MIPI CSI-2 bus we could have "data-lanes = <1 2>;",
+> >       assuming the clock lane is on hardware lane 0. If the hardware does not
+> >       support lane reordering, monotonically incremented values shall be used
+> >       from 0 or 1 onwards, depending on whether or not there is also a clock
+> >       lane. This property is valid for serial busses only (e.g. MIPI CSI-2).
+> >
+> > I did the same but restricted the max number of items to 2, and the
+> > maximum value to 2 as well
+>
+> Makes sense, but you should also restrict the minimum (so not 0). enum
+> solves this.
+>
+> >
+> >>
+> >> no clock-lanes?
+> >>
+> >
+> > clock lane is fixed on lane #0 afaict
+>
+> ok
+>
+>
+> Best regards,
+> Krzysztof
