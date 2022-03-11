@@ -2,47 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0104D695F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 21:22:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2247F4D6962
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 21:23:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231236AbiCKUXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 15:23:44 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57944 "EHLO
+        id S1351229AbiCKUYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 15:24:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344828AbiCKUXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 15:23:43 -0500
+        with ESMTP id S1348009AbiCKUYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 15:24:01 -0500
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D9E43EC2;
-        Fri, 11 Mar 2022 12:22:39 -0800 (PST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C259811A36;
+        Fri, 11 Mar 2022 12:22:57 -0800 (PST)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3DD5161F72;
-        Fri, 11 Mar 2022 20:22:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E7A0C340EC;
-        Fri, 11 Mar 2022 20:22:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5DDD561F75;
+        Fri, 11 Mar 2022 20:22:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64346C340E9;
+        Fri, 11 Mar 2022 20:22:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647030158;
-        bh=ij5VNrvsFSwVimJAGBzflRTGoXGWzMpxgzmX4BZ5YPM=;
+        s=k20201202; t=1647030176;
+        bh=hGX9MsfyNkk7q3/BlkAl2hVFK1xekhCsP3ahf/1eBZ0=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=HHNaw7dTrZhU8k9UkXkpKfOG0tJZfuBuqv9Cnw/jdFmXn7Roa1c5D0seA0jWQQE3+
-         PPperXekmJv4dIX8v++kZu5+di4c56v490qAun1wq/d2+gvDWT42ko/5Hck3Ac9VF3
-         5hroXOwdq3hyDD+PpEvHbgi7iDGJea/QZ2BPhuxIHTAhiTRPVQchCF3adPou0k2X0d
-         KCaRlbsFteozlEa0juMWWUChr1gWNL0Py1EA5ReWQuqsP5ireRzSV4ZvjOe5Ka6+e9
-         pby/qGRugO9UdzPT6P3j4XCQnHSejOORcX8XORNW+iuIhmeMhyQW5JafYtRWmCx4rr
-         9NnHSLA9zMqYg==
+        b=FZzy1vAB32AauL3AM70HR1hnX/R8uBfnFcrLuxNFJ4LdBrP9hRWNqjgcNYG1J910+
+         kcAri5HLRJBA8JFJ9aCMIdsF98nNIGg/RNiNxDDK3Z8os9YY6XwQEpWFDpqJz3kIRk
+         pUpK/bxQXOMUiu27vQt6Ob4btlk81yQIU6W52k4pbNM0cF9KK5+oSp/hCTs0DAHDN6
+         7HIObJDUhp6ALhn1Evz9oSegoPYoXaJuE/PYWY8Fbghhng20eSNEsTTaPvwQi33uhx
+         hRssiLji+0majkXHLAHJ2cdqbsGHjevGMKK7ZXdAzdgSmuvIyNDdNg13jwFW8lB2LM
+         wmkX3ROltPnbQ==
 From:   Mark Brown <broonie@kernel.org>
-To:     Trevor Wu <trevor.wu@mediatek.com>, tiwai@suse.com,
-        matthias.bgg@gmail.com, robh+dt@kernel.org
-Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        aaronyu@google.com, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, yc.hung@mediatek.com
-In-Reply-To: <20220308072435.22460-1-trevor.wu@mediatek.com>
-References: <20220308072435.22460-1-trevor.wu@mediatek.com>
-Subject: Re: (subset) [PATCH 0/5] ASoC: mediatek: Add support for MT8195 sound card with max98390 and rt5682
-Message-Id: <164703015624.264137.9730451216130586080.b4-ty@kernel.org>
-Date:   Fri, 11 Mar 2022 20:22:36 +0000
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+In-Reply-To: <20220309171847.5345-1-singh.kuldeep87k@gmail.com>
+References: <20220309171847.5345-1-singh.kuldeep87k@gmail.com>
+Subject: Re: [PATCH v3] spi: Update clock-names property for arm pl022
+Message-Id: <164703017513.264521.4229870520812086440.b4-ty@kernel.org>
+Date:   Fri, 11 Mar 2022 20:22:55 +0000
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -56,28 +55,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 8 Mar 2022 15:24:30 +0800, Trevor Wu wrote:
-> This series of patches adds support for mt8195 board with mt6359, max98390
-> and rt5682.
+On Wed, 9 Mar 2022 22:48:47 +0530, Kuldeep Singh wrote:
+> PL022 has two input clocks named sspclk and apb_pclk. Current schema
+> refers to two notations of sspclk which are indeed same and thus one can
+> be dropped. Update clock-names property to reflect the same.
 > 
-> Reset controller is included because mt8195 etdm is used to play sound via
-> max98390 before kernel boot.
 > 
-> In addition, the common part of machine driver is extracted for
-> simplification.
-> 
-> [...]
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/5] ASoC: mediatek: mt8195: add reset controller
-      commit: f67084148dac015d059c64f25e57abd0ab18946c
-[2/5] dt-bindings: mediatek: mt8195: add reset property
-      commit: ee7f79a81a27c47088fe0af95788621644826d91
+[1/1] spi: Update clock-names property for arm pl022
+      commit: 1889421a891ff439b25495011b8b75f81660abca
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
