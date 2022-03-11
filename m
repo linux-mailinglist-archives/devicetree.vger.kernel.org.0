@@ -2,53 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 662B34D592D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:36:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B8204D594C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 04:54:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241865AbiCKDhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Mar 2022 22:37:22 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41754 "EHLO
+        id S1344028AbiCKDzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Mar 2022 22:55:05 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40456 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232854AbiCKDhV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:37:21 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8E8F13C39F;
-        Thu, 10 Mar 2022 19:36:19 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 9D15FB82A09;
-        Fri, 11 Mar 2022 03:36:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5712AC340EE;
-        Fri, 11 Mar 2022 03:36:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1646969777;
-        bh=O3R6bSOedl+qgvgkLo7GLoSPK+/4Iyazj7tBF2rtkWc=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=uh3E2bKj0fftfZiYuB+9giOgnzFY1pHFWh12DvtY8kDcISqRmpjOQQhWVzn5ByHX6
-         TBiGWuto8BeFZjUtUpgiCyjK8yTuJshfP4abDlJw/pAlAVp682ngJkzByicyRQMywO
-         OE8sIk/KyMMPFV3pIekql4RJcX0+SSsAVXxR1bFPhnlHlWnj573h1TrRGwPmR4wE1K
-         MGAj4rO1KfMUzVKl2vhRppt/uSn5LML1KQa9p3wghuY0PlcDVouYtGQq57TnvyDogH
-         /wrkQS/9MdjO2CQ38+hWoHoeC7t6Yw+m3SErh91ypMsyflDq0gjqO6oC9nAtM5FyO/
-         NX4gAvtGsXbnA==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S236527AbiCKDzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Mar 2022 22:55:04 -0500
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF15718FAE5
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 19:54:02 -0800 (PST)
+Received: by mail-oo1-xc35.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so9236151oos.9
+        for <devicetree@vger.kernel.org>; Thu, 10 Mar 2022 19:54:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sZfHvkJKS8yaHN8WYfqJ8pOq4+GXhz/qEgdhfNSZgv8=;
+        b=aLaPHpvNyMznOcG5oNJBuMxmVHIoRSaUoXA89DDdjr8P1y9SK+/3WYQo8rhP4YtxUB
+         tQlyaD2sSjQ8PDznA6dUnLfUr0BX1rwfEFmdZn/eXb30R6ghq3d7ljxNOX6ppKgtlCld
+         6jus8xLKu4kaFsdPwgdsrabiPJvKf9qUwkkb1noPU2ajzR08nxleacxV6t68FJfALOnu
+         mPj05vYXUX7+G4RcTsqN47r2JK+2ie2yg43gv6hWrTdIY04QS53afjbdrUZ0v50/rwEA
+         F7ZG/l8joqToOC1I5Y00aSRvq/5GnjkLJQptK/hSS7vH9g0XsrUWfN/Uzhu917CmRLBJ
+         TfRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sZfHvkJKS8yaHN8WYfqJ8pOq4+GXhz/qEgdhfNSZgv8=;
+        b=Br3GgB3RLB5sNR/9eeaj39B4wla+PTYg9cIj2ee8vFzfflfAC+aMkCtOtYe+aAc2EL
+         A7kgXEppIYaBiN749W89O6PB0HJOGFImOlbi/t54J3SZ1OZgpdvSqGI7aMbb+hksqyoZ
+         ISw2mRvIZTvUsPrf7ugjY50W12wJ+etInnLmJzzj22DjF87lwt+F25Xq/b28zrEZwm5u
+         YWvRtqKyye/oCnc3TiGwAdKVyfYDefi5pmny8XvlOQL9r1fvaND5L4u3B2F7bazxIZW6
+         /sWWrer0mFWBMWpfWoacKE72qWgtGnlEB4Q/MFz/0AcztgJxdTheUvb7SHTnUvjYyWWj
+         WsKQ==
+X-Gm-Message-State: AOAM533LQI9gQ/KFc/BIZhfORcy9av1hi661oSPk6iI10/efnbs3wwu6
+        OjYENvQBN6WFZMX7NbGksNIbIA==
+X-Google-Smtp-Source: ABdhPJxRbXUuC1D2tO1Q3R2NddgYYD1/BgTSRkCtqLU52Nw8td9E5ZesoOy8gtYZoFPkrwTJc+TKrQ==
+X-Received: by 2002:a05:6870:559f:b0:da:b3f:320d with SMTP id n31-20020a056870559f00b000da0b3f320dmr4606119oao.189.1646970841846;
+        Thu, 10 Mar 2022 19:54:01 -0800 (PST)
+Received: from ripper ([2600:1700:a0:3dc8:205:1bff:fec0:b9b3])
+        by smtp.gmail.com with ESMTPSA id l7-20020acabb07000000b002da34f9ffc3sm3312505oif.37.2022.03.10.19.54.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Mar 2022 19:54:01 -0800 (PST)
+Date:   Thu, 10 Mar 2022 19:55:41 -0800
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Cc:     krzk+dt@kernel.org, agross@kernel.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_asutoshd@quicinc.com,
+        quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sartgarg@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_sayalil@quicinc.com
+Subject: Re: [PATCH V2] arm64: dts: qcom: sc7280: Enable gcc HW reset
+Message-ID: <YirIPRvcSSYhxiNv@ripper>
+References: <1646923503-28847-1-git-send-email-quic_c_sbhanu@quicinc.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220203085618.16043-1-tony@atomide.com>
-References: <20220203085618.16043-1-tony@atomide.com>
-Subject: Re: [PATCH 0/3] Drop TI compatibility clocks
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@codeaurora.org>,
-        Tero Kristo <t-kristo@ti.com>, linux-omap@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-To:     Tony Lindgren <tony@atomide.com>, linux-clk@vger.kernel.org
-Date:   Thu, 10 Mar 2022 19:36:15 -0800
-User-Agent: alot/0.10
-Message-Id: <20220311033617.5712AC340EE@smtp.kernel.org>
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URG_BIZ autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1646923503-28847-1-git-send-email-quic_c_sbhanu@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,15 +73,65 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Tony Lindgren (2022-02-03 00:56:15)
-> Hi all,
->=20
-> In order to prepare the TI clocks for fixing lots of devicetree warnings,
-> let's first drop the now unused compatibility clocks.
->=20
-> The dra7 changes depend on my still pending omap-for-v5.17/fixes-not-urge=
-nt
-> pull request that did not make it for v5.17-rc series so far.
->=20
+On Thu 10 Mar 06:45 PST 2022, Shaik Sajida Bhanu wrote:
 
-What should I do with this one though?
+Without looking at what Krzysztof suggested, I think $subject should
+reflect the fact that it's the reset of the two SDCC controllers that
+you're adding.
+
+Something like "arm64: dts:qcom: Add resets for SDCC controllers" would allow me to grasp the full
+purpose of the patch by only reading the subject.
+
+> Enable gcc HW reset for eMMC and SD card.
+> 
+> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+> ---
+> 
+> Changes since V1:
+> 	- Updated commit message, subject and comments in dtsi file as
+> 	  suggested by Krzysztof Kozlowski.
+> ---
+>  arch/arm64/boot/dts/qcom/sc7280.dtsi | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> index c07765d..721abf5 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+> @@ -881,6 +881,9 @@
+>  			mmc-hs400-1_8v;
+>  			mmc-hs400-enhanced-strobe;
+>  
+> +			/* Add gcc hw reset dt entry for eMMC */
+
+When you read this comment 2 weeks from now it won't add any value.
+
+> +			resets = <&gcc GCC_SDCC1_BCR>;
+> +			reset-names = "core_reset";
+
+Doesn't seem that this binding has been converted to YAML, but the .txt
+binding doesn't mention "resets" and I don't see a reason for having a
+reset-names for a single reset.
+
+And please keep the empty line before the opp-table.
+
+Regards,
+Bjorn
+
+>  			sdhc1_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+> @@ -2686,6 +2689,9 @@
+>  
+>  			qcom,dll-config = <0x0007642c>;
+>  
+> +			/* Add gcc hw reset dt entry for SD card */
+> +			resets = <&gcc GCC_SDCC2_BCR>;
+> +			reset-names = "core_reset";
+>  			sdhc2_opp_table: opp-table {
+>  				compatible = "operating-points-v2";
+>  
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
