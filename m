@@ -2,137 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BAC004D60BB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 12:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F794D60C5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 12:43:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348303AbiCKLgt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 06:36:49 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36196 "EHLO
+        id S234120AbiCKLoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 06:44:12 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348289AbiCKLgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 06:36:49 -0500
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E3D82186BA9;
-        Fri, 11 Mar 2022 03:35:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1646998546;
-  x=1678534546;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ePdSlJGdNO1CPKcwOdopJLY1Ek3GzVO2ZQn/333Vrac=;
-  b=Kl4AO5TjZEN8rmyxtfrSoX1SaiFGiIUqiEibbWFjcy3tP/1NXIdbuYIv
-   rM8Bj50mBOwwMg5ZFkg6On2zeOdooo+pqIMiuGYqha4qR+5qbrdXk8io8
-   0Hmg6HLrZr3FxaVQXZ0IVKDLx2sTDd37PVVxz7COqHBwZyjJFppvZu8iE
-   uYvTWIofQh16Mp/yDY5JKpqAx+65jlKau+p23YZcccxiaf5WO2wQI/JYH
-   UdRi5InFZdtJi+Vu8SUuTXhc5Mv/xCAhbBViTbTqrWmbe8vzi7mQQ6WoJ
-   EuacI3uGO+oTkJRv8/+pxBjcxAkuy9tt2U2OP/XXkimVFjhiRdg1yImuG
-   A==;
-Date:   Fri, 11 Mar 2022 12:35:43 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     "tglx@linutronix.de" <tglx@linutronix.de>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        kernel <kernel@axis.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 3/4] clocksource/drivers/exynos_mct: Support
- local-timer-index property
-Message-ID: <20220311113543.GA17877@axis.com>
-References: <20220308142410.3193729-1-vincent.whitchurch@axis.com>
- <20220308142410.3193729-4-vincent.whitchurch@axis.com>
- <226dcb1b-d141-f0d3-68c4-11d2466ca571@canonical.com>
+        with ESMTP id S1348356AbiCKLoJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 06:44:09 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76403EF7AF;
+        Fri, 11 Mar 2022 03:43:03 -0800 (PST)
+X-UUID: 9d1fefeada8846f59e4b55df5cd243db-20220311
+X-UUID: 9d1fefeada8846f59e4b55df5cd243db-20220311
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
+        (envelope-from <chun-jie.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1851308506; Fri, 11 Mar 2022 19:42:57 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 11 Mar 2022 19:42:56 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Mar 2022 19:42:56 +0800
+From:   Chun-Jie Chen <chun-jie.chen@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3 00/15] MediaTek MT8186 clock support
+Date:   Fri, 11 Mar 2022 19:42:14 +0800
+Message-ID: <20220311114229.32504-1-chun-jie.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <226dcb1b-d141-f0d3-68c4-11d2466ca571@canonical.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 08, 2022 at 03:57:55PM +0100, Krzysztof Kozlowski wrote:
-> On 08/03/2022 15:24, Vincent Whitchurch wrote:
-> > diff --git a/drivers/clocksource/exynos_mct.c b/drivers/clocksource/exynos_mct.c
-> > index f29c812b70c9..5f8b516614eb 100644
-> > --- a/drivers/clocksource/exynos_mct.c
-> > +++ b/drivers/clocksource/exynos_mct.c
-> > @@ -33,7 +33,7 @@
-> >  #define EXYNOS4_MCT_G_INT_ENB		EXYNOS4_MCTREG(0x248)
-> >  #define EXYNOS4_MCT_G_WSTAT		EXYNOS4_MCTREG(0x24C)
-> >  #define _EXYNOS4_MCT_L_BASE		EXYNOS4_MCTREG(0x300)
-> > -#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * x))
-> > +#define EXYNOS4_MCT_L_BASE(x)		(_EXYNOS4_MCT_L_BASE + (0x100 * (x)))
-> >  #define EXYNOS4_MCT_L_MASK		(0xffffff00)
-> >  
-> >  #define MCT_L_TCNTB_OFFSET		(0x00)
-> > @@ -75,6 +75,7 @@ enum {
-> >  static void __iomem *reg_base;
-> >  static unsigned long clk_rate;
-> >  static unsigned int mct_int_type;
-> > +static unsigned int mct_local_idx;
-> 
-> No more static variables. This was wrong design, happens, but let's not
-> grow the list.
-> 
-> I propose to conditionally (depending on property samsung,frc-shared)
-> assign .resume callback to NULL or exynos4_frc_resume. The init can
-> receive an argument whether to call frc_start().
+this patch series is based on 5.17-rc1 and depends on
+[1]"clk: mediatek: Cleanups and Improvements - Part 1"
 
-Could we just add the skip-write-register-if-already-started change in
-exynos4_mct_frc_start() uncondtionally?  Perhaps it could be in a
-separate patch too?  I was probably being over-cautious when I did it
-conditionally on mct_local_idx.  Doing it uncondtionally would make it
-easier to remove the global variable.
+chagnes since v2:
+- add '|' to preserve the formatting in binding document
+- change 'Mediatek'to 'MediaTek'
 
-On my system the FRC is actually started long before Linux, and I assume
-it's similar on other chips.
+changes since v1:
+- combine dt-binding documents as a single patch
+- remove redundant example in binding document
+- change to dual license in binding document
+- add more clock error handle based on interface provided in [1]
 
-> 
-> >  static int mct_irqs[MCT_NR_IRQS];
-> >  
-> >  struct mct_clock_event_device {
-> > @@ -157,6 +158,17 @@ static void exynos4_mct_frc_start(void)
-> >  	u32 reg;
-> >  
-> >  	reg = readl_relaxed(reg_base + EXYNOS4_MCT_G_TCON);
-> > +
-> > +	/*
-> > +	 * If the FRC is already running, we don't need to start it again.  We
-> > +	 * could probably just do this on all systems, but, to avoid any risk
-> > +	 * for regressions, we only do it on systems where it's absolutely
-> > +	 * necessary (i.e., on systems where writes to the global registers
-> > +	 * need to be avoided).
-> > +	 */
-> > +	if (mct_local_idx && (reg & MCT_G_TCON_START))
-> 
-> This contradicts your intentions in commit #2 msg, where you described
-> that A53 will be started first.
+[1]https://patchwork.kernel.org/project/linux-mediatek/list/?series=612171
 
-Yes, you're right.  The case of the FRC not being running when the A5
-starts up is only ever hit in our simulation environment where we are
-able to start Linux on the A5 directly, without having to go via the
-A53.
+Chun-Jie Chen (15):
+  dt-bindings: ARM: MediaTek: Add new document bindings of MT8186 clock
+  clk: mediatek: Add MT8186 mcusys clock support
+  clk: mediatek: Add MT8186 topckgen clock support
+  clk: mediatek: Add MT8186 infrastructure clock support
+  clk: mediatek: Add MT8186 apmixedsys clock support
+  clk: mediatek: Add MT8186 imp i2c wrapper clock support
+  clk: mediatek: Add MT8186 mfgsys clock support
+  clk: mediatek: Add MT8186 mmsys clock support
+  clk: mediatek: Add MT8186 wpesys clock support
+  clk: mediatek: Add MT8186 imgsys clock support
+  clk: mediatek: Add MT8186 vdecsys clock support
+  clk: mediatek: Add MT8186 vencsys clock support
+  clk: mediatek: Add MT8186 camsys clock support
+  clk: mediatek: Add MT8186 mdpsys clock support
+  clk: mediatek: Add MT8186 ipesys clock support
 
-> 1. If A53 is always started first, is it possible to be here from A5?
-> 2. If above is possible, how do you handle locking? For example:
-> a. A53 started with some delay, entered exynos4_mct_frc_start() pass
-> this check;
-> b. A5 gets to exynos4_mct_frc_start(), check is still false, so A5
-> enables the FRC,
-> c. A53 also enables the FRC.
+ .../arm/mediatek/mediatek,mt8186-clock.yaml   |  56 ++
+ .../mediatek/mediatek,mt8186-sys-clock.yaml   |  54 ++
+ drivers/clk/mediatek/Kconfig                  |   8 +
+ drivers/clk/mediatek/Makefile                 |   5 +
+ drivers/clk/mediatek/clk-mt8186-apmixedsys.c  | 133 +++
+ drivers/clk/mediatek/clk-mt8186-cam.c         |  90 ++
+ drivers/clk/mediatek/clk-mt8186-img.c         |  68 ++
+ .../clk/mediatek/clk-mt8186-imp_iic_wrap.c    |  67 ++
+ drivers/clk/mediatek/clk-mt8186-infra_ao.c    | 216 +++++
+ drivers/clk/mediatek/clk-mt8186-ipe.c         |  55 ++
+ drivers/clk/mediatek/clk-mt8186-mcu.c         | 106 +++
+ drivers/clk/mediatek/clk-mt8186-mdp.c         |  80 ++
+ drivers/clk/mediatek/clk-mt8186-mfg.c         |  48 ++
+ drivers/clk/mediatek/clk-mt8186-mm.c          | 111 +++
+ drivers/clk/mediatek/clk-mt8186-topckgen.c    | 780 ++++++++++++++++++
+ drivers/clk/mediatek/clk-mt8186-vdec.c        |  88 ++
+ drivers/clk/mediatek/clk-mt8186-venc.c        |  51 ++
+ drivers/clk/mediatek/clk-mt8186-wpe.c         |  51 ++
+ include/dt-bindings/clock/mt8186-clk.h        | 445 ++++++++++
+ 19 files changed, 2512 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mt8186-sys-clock.yaml
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-apmixedsys.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-img.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-imp_iic_wrap.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-infra_ao.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-ipe.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-mcu.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-mdp.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-mfg.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-topckgen.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-vdec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-venc.c
+ create mode 100644 drivers/clk/mediatek/clk-mt8186-wpe.c
+ create mode 100644 include/dt-bindings/clock/mt8186-clk.h
 
-The A5 is normally started from Linux on the A53 (using the remoteproc
-framework).  This is long after exynos4_mct_frc_start() has been called
-on the A53.
+-- 
+2.18.0
+
