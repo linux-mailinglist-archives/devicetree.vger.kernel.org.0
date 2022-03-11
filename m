@@ -2,112 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A67F74D6362
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:25:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BB124D6371
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:28:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235504AbiCKO02 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 09:26:28 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36874 "EHLO
+        id S1349253AbiCKO3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 09:29:37 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbiCKO01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:26:27 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A9B91C7EBD;
-        Fri, 11 Mar 2022 06:25:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1647008724; x=1678544724;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FJzf77sp+R4AKDyJrAnw7tSJq2oomw6VdBOt0zeISec=;
-  b=iUahQ6qQlg2AOiUwLhZkP7AR9HbNXqVuL64NzBNR4DyTCltMY7Eminte
-   MQAsOIzKWDRXKDitEMBMHxM/8F4IptPo4QdhWMrIJMdZSZeIEUlPmpumL
-   H2ny3gbtn3s+sDeO4oH2HjuEr+9xUmKxMJtaUtoa9Q3DHXPCjQyMRBNgT
-   Xi1O/3DBCIGFZUogXvFVK80fItQ7SKAmngzQS6DIkpUVT3yZEzGr0CdoA
-   0NwinSU+85WecqEmcjvx3Vvt6k4n/o59x48n8nQ/hSwc5a5FacjYkdi98
-   EpbA1W0KW2DVj7DGin+IrYzkcq+Up9CLO7Y3ZdUzZurGFUVVn0+E59YjT
-   Q==;
-X-IronPort-AV: E=Sophos;i="5.90,174,1643698800"; 
-   d="scan'208";a="156123161"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Mar 2022 07:25:23 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Fri, 11 Mar 2022 07:25:22 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Fri, 11 Mar 2022 07:25:22 -0700
-Date:   Fri, 11 Mar 2022 15:28:14 +0100
-From:   Horatiu Vultur <horatiu.vultur@microchip.com>
-To:     Richard Cochran <richardcochran@gmail.com>
-CC:     "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, <Divya.Koppera@microchip.com>,
-        <netdev@vger.kernel.org>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Madhuri.Sripada@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <20220311142814.z3h5nystnrkvbzek@soft-dev3-1.localhost>
-References: <YiYD2kAFq5EZhU+q@lunn.ch>
- <CO1PR11MB4771F7C1819E033EC613E262E2099@CO1PR11MB4771.namprd11.prod.outlook.com>
- <YidgHT8CLWrmhbTW@lunn.ch>
- <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
- <YiecBKGhVui1Gtb/@lunn.ch>
- <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
- <YifoltDp4/Fs+9op@lunn.ch>
- <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
- <Yii/9RH67BEjNtLM@shell.armlinux.org.uk>
- <20220309195252.GB9663@hoboy.vegasvil.org>
+        with ESMTP id S243114AbiCKO3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:29:36 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F34EACA9
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:28:32 -0800 (PST)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CF60F3F60F
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 14:28:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647008910;
+        bh=PdIndayzdh0p1erKParNfrZ1poZ/AkWCjFd9nsPB1bM=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=S987aXtzxnc0F6va7ZxIQ738MXvanDyrXuV98nZZJTiw0w8peWrDQS20Sa8MPkNg5
+         tGUsk27hV1VBit12Z/Ees/5zJ7qAEmPDzHMeQOmBg2tTI4sr0YM0TmT040ps0Vass9
+         vQNYS3VvtM7eA98s31QIHibb+8WGkjvHCd+F+O6z1FA4X/TC+yPFOeBtDwdM0W9AtL
+         mAu3ywmOXb6Hd11BChR5nEMsg6MBEJWcApjsYfeUeyMR6LXQUYz+K7DmZvzqOj6FU/
+         UNSqykcvmQLM7VNeZa2tbHJCORM0eQ3RFFokS8lY2uJgz4ziFENNALLZ4tmtI+mdpp
+         sK80FEr4rbGcA==
+Received: by mail-ed1-f69.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so4967446edb.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:28:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=PdIndayzdh0p1erKParNfrZ1poZ/AkWCjFd9nsPB1bM=;
+        b=CMt6bqFCfkgopf/T1emp8DG53kGHjMFFQ9a8u+5siAK3BaUCSoYGJE+Obri4NGzmlY
+         9wYzuoP9S1O1IgdgQpQJLWPQj2skR8E5/YZZVLDeTMPd5OyCiOFeZRJjeepvfL5ejWft
+         lHSHhTHA15RTRNVPP/xo3rp5LbVwAd14le6Lte8eZsMeQ1d0Mqqw9Qc/OJt23uONFobQ
+         3I8qcE1QGnVEhRJ9sbi4OIY0SpV2FAyPT96tZQ8qUmbhKly3PPg0noYrkj7rprrCkd3c
+         3VZl6SFTgJy1MlXF1/jEG4YusvBKDFSWdE3Z3KbaGVU4cmkkL6dZZJ1qsH1ZaFXbDwRy
+         +R6w==
+X-Gm-Message-State: AOAM533t4G3f1zTN6rT6ZbqJrtpVFW02L9If89OdPKerEGvrPKL0yCwS
+        oMlvfSm0TOhTHKTx1GbN4vge9wFCu+5LPnXHuHsnalLqvmP11D/9U8OzQ8WaaWwxMCOt4C0phdV
+        dzTyDH66tz/eC2Ee8tWi886nqo3FPwKs3d56HuEM=
+X-Received: by 2002:a17:906:40a:b0:6db:3e2a:a7ce with SMTP id d10-20020a170906040a00b006db3e2aa7cemr8563509eja.255.1647008910476;
+        Fri, 11 Mar 2022 06:28:30 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxu7HRELcvW932dJyiTM8RcnBlSViVbwCdvsfEGJ7B4Ej6w1K6mhpjwwmEC8B/O6gJR4wVowQ==
+X-Received: by 2002:a17:906:40a:b0:6db:3e2a:a7ce with SMTP id d10-20020a170906040a00b006db3e2aa7cemr8563494eja.255.1647008910276;
+        Fri, 11 Mar 2022 06:28:30 -0800 (PST)
+Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id z7-20020a05640240c700b00416cee953dasm1089877edb.24.2022.03.11.06.28.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 06:28:29 -0800 (PST)
+Message-ID: <0454647b-7aa3-ed70-0b92-1e5c98d0adc0@canonical.com>
+Date:   Fri, 11 Mar 2022 15:28:28 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20220309195252.GB9663@hoboy.vegasvil.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] dt-bindings: phy: mediatek: Add YAML schema for PCIe
+ PHY
+Content-Language: en-US
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
+        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
+        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
+References: <20220311133527.5914-1-jianjun.wang@mediatek.com>
+ <20220311133527.5914-3-jianjun.wang@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220311133527.5914-3-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 03/09/2022 11:52, Richard Cochran wrote:
+On 11/03/2022 14:35, Jianjun Wang wrote:
+> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
 > 
-> On Wed, Mar 09, 2022 at 02:55:49PM +0000, Russell King (Oracle) wrote:
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> ---
+>  .../bindings/phy/mediatek,pcie-phy.yaml       | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
 > 
-> > I think we understand this, and compensating for the delay in the PHY
-> > is quite reasonable, which surely will be a fixed amount irrespective
-> > of the board.
-> 
-> The PHY delays are not fixed.  They can be variable, even packet to packet.
-> 
-> https://www.researchgate.net/publication/260434179_Measurement_of_egress_and_ingress_delays_of_PTP_clocks
-> 
-> https://www.researchgate.net/publication/265731050_Experimental_verification_of_the_egress_and_ingress_latency_correction_in_PTP_clocks
-> 
-> Some PHYs are well behaved.  Some are not.
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> new file mode 100644
+> index 000000000000..da15b4bf3117
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek PCIe PHY Device Tree Binding
 
-What about adding only some sane values in the driver like here [1].
-And the allow the user to use linuxptp to fine tune all this.
+Title is for hardware, so s/Device Tree Binding//
 
-> 
-> In any case, the linuxptp user space stack supports the standardized
-> method of correcting a system's delay asymmetry.  IMO it makes no
-> sense to even try to let kernel device drivers correct these delays.
-> Driver authors will get it wrong, and indeed they have already tried
-> and failed.  And when the magic numbers change from one kernel release
-> to another, it only makes the end user's job harder, because they will
-> have to update their scripts to correct the bogus numbers.
-> 
-> Thanks,
-> Richard
-> 
+> +
+> +maintainers:
+> +  - Jianjun Wang <jianjun.wang@mediatek.com>
+> +
+> +description: |
+> +  The PCIe PHY supports physical layer functionality for PCIe Gen3 port.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,pcie-phy
 
-[1] https://elixir.bootlin.com/linux/v5.17-rc7/source/drivers/net/phy/mscc/mscc_ptp.c#L245
+Is it going to be exactly one pcie-phy for all Mediatek chipsets for
+next years? Are you sure about that? It sounds highly unlikely....
 
--- 
-/Horatiu
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  reg-names:
+> +    items:
+> +      - const: sif
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  nvmem-cells:
+> +    maxItems: 7
+> +    description:
+> +      Phandles to nvmem cell that contains the efuse data, if unspecified,
+> +      default value is used.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: glb_intr
+> +      - const: tx_ln0_pmos
+> +      - const: tx_ln0_nmos
+> +      - const: rx_ln0
+> +      - const: tx_ln1_pmos
+> +      - const: tx_ln1_nmos
+> +      - const: rx_ln1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pciephy: phy@11e80000 {
+> +        compatible = "mediatek,pcie-phy";
+> +        #phy-cells = <0>;
+> +        reg = <0x11e80000 0x10000>;
+> +        reg-names = "sif";
+> +        nvmem-cells = <&pciephy_glb_intr>,
+> +                      <&pciephy_tx_ln0_pmos>,
+> +                      <&pciephy_tx_ln0_nmos>,
+> +                      <&pciephy_rx_ln0>,
+> +                      <&pciephy_tx_ln1_pmos>,
+> +                      <&pciephy_tx_ln1_nmos>,
+> +                      <&pciephy_rx_ln1>;
+> +        nvmem-cell-names = "glb_intr", "tx_ln0_pmos",
+> +                           "tx_ln0_nmos", "rx_ln0",
+> +                           "tx_ln1_pmos", "tx_ln1_nmos",
+> +                           "rx_ln1";
+> +    };
+
+
+Best regards,
+Krzysztof
