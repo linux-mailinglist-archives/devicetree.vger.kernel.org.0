@@ -2,194 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A9314D5E5C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:24:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E610F4D5E65
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:27:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347457AbiCKJX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 04:23:57 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48360 "EHLO
+        id S242316AbiCKJ0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 04:26:43 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347464AbiCKJXz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:23:55 -0500
-Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CB5E9A981
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:22:49 -0800 (PST)
-Received: by mail-qt1-x831.google.com with SMTP id c4so6858447qtx.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:22:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5yB2ssbuBZx5F0u4321kFXuP4TmIeDrCq6d7hvGDPTg=;
-        b=cmhwVxbwFxNLFe88VcQKADx1bM2QPDytOUGUzFpRUf6kfONBxDn3fCJJOWbMgyIjs6
-         3yt7nNySNS+pzTrYw7kFmgPCgeP0SelBrffzhy6vkhYUV0d1GxoU4+IP8ni5VXNhmUoK
-         YQ55VpIVgQaGYdtng2Eeo7b4RnlHMaLiEy74J5StS34Vh/N6krSkcs4cei7tRYFp0d80
-         xuLVy+IBziQVmOGUOBjc7ZYIzcOs46V4I6n7GWZfn99mNWEZbJs+YFt8c0Na1fELKSvr
-         3sz+5TA/n9KvE8/j+epguoOl7q2qml6OHE+q3Iiyuz2taFl3vqChrstWFhg02cyHpE5v
-         tarw==
+        with ESMTP id S1346526AbiCKJ0l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:26:41 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA718118601
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:25:38 -0800 (PST)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3EBAA3F1E8
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:25:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646990734;
+        bh=D1XtJyL/qqPN2xLVrq6WSrUWrKPZ0qDx4WjygrxcxL4=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=MWi8bO+EMw9545+2buiID51o0JJ/VUKhsxW4TFk039+JvZgrfYeyY5E1nkTqmLSEx
+         yKEcL3SMBYAhfTRA9g0niz3okPC+qg6CavJroFdCGCs9Wo5rgUWqdF0ln64J6F+3gI
+         utligUyJwoZs+dzURHm9tjv3Bi02WS2XObbaEVeo64ScJJVFVOgUTXDDg6OsOphZji
+         oUKVya7l3hPolUD+3bW8rnzSudSSnaBnF9cliRXY2nStgrOEMW+iF70VLmXCcVKbQB
+         5eR24BV+r23hLu2DF+nB+X01xQXNYzaiIDL+DvmIJyrzPTw89yLe1iEa318656tI7U
+         IjQEU9g+JugXg==
+Received: by mail-ej1-f70.google.com with SMTP id hq34-20020a1709073f2200b006d677c94909so4644544ejc.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:25:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5yB2ssbuBZx5F0u4321kFXuP4TmIeDrCq6d7hvGDPTg=;
-        b=fPNemh5TdXcbcE44BYbpWY4XsxrA5UCVUSsJS4cGWzzCWsS4gohOAmjICuNi8q1nv9
-         pcy2fmrY+gLCzXjFmIzzIZ0F2gRgwVI7FaqWg9J7qG4Fwvar3v62V9T/2XuOsLGt20tz
-         03XIvyvycKXBwikcYFCFsOS5f7wCXMEfUxscU4Qb4Hi01XU1ugApn34xyC2Dw50riN01
-         soPK1yrME/I5+SketpOEYP441no5kjA5otLEd8loaLHnunwTNwdxGy1mVe4VsTUHrd32
-         BRzMKr47TcrQasqxbYfowgVdIkvHUKaFCZGGIaf+H0PceRbFcyGZkSo1zEqUuXt3WvkV
-         xRTg==
-X-Gm-Message-State: AOAM533yU2NG3sUMtIWl9C/Mp96f8N6RBn7H7xEGt/2k+8GBJrqr0noL
-        HOA+yUqKkSYazRrlYCMh/ffr1CYuTvvzP8Ty/3ZlYA==
-X-Google-Smtp-Source: ABdhPJzOrg/mWzHuLqY4b86LL9GlAgWC/OwT3yStEwxtsa3p088p8nFS7JNBlBKBc5nLmwxCu/dm/rrw7Goxu+n5yFg=
-X-Received: by 2002:ac8:7d0a:0:b0:2e0:4e16:d3fb with SMTP id
- g10-20020ac87d0a000000b002e04e16d3fbmr7249289qtb.295.1646990568534; Fri, 11
- Mar 2022 01:22:48 -0800 (PST)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=D1XtJyL/qqPN2xLVrq6WSrUWrKPZ0qDx4WjygrxcxL4=;
+        b=S0n+UabxVluyuRU+LoCwo6jmowVk3h+OiCcJ0+FQdNd7vKbHsvGlasqYART8tyge2W
+         tx+RO6nS6w/ad/wCZCT7Zyv6IRXJPc1XfvUUvizeygWaYTXdeuYEsYjBOHPQQpIu4kFL
+         iQ4Xva3Uw762iYb5muGxs5iKROwiVvSVl/Ih3WiJyCttThzi6phxd4L/HjSihves9cz4
+         YbLJ1cUZYbn2Hcv9xEZ4Df0FhIzBvNtAqT1pyGujwzgcD5IUiBQseqOYL6zQH8TL68PM
+         ZmANH3IS1AxL+6TzSYYGZJPtui7DRzqkO2C6Rp+8FHkynlH4hksrvOnhlWsZ2FeIU/WZ
+         mMHA==
+X-Gm-Message-State: AOAM5308R3nCoiEAeqrK5fpff2TuDBbCs5Gdt1qbCKXQ4ijlw4rNXkY2
+        23wiUDii2errVCWCOf9gXmZd4g/IqaDlk1wQaWUAS+V5zdRaTF37rVeGHKytrjJcD3N80mUMNeK
+        hk3dwSTZ7TcrEXA61dUjD1c2BLfh/4GgWBQN5Uto=
+X-Received: by 2002:aa7:c54b:0:b0:415:c714:7a1f with SMTP id s11-20020aa7c54b000000b00415c7147a1fmr7914980edr.385.1646990733007;
+        Fri, 11 Mar 2022 01:25:33 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyHiW2gWM85UR5m9XbGbjsYu5M4yHXr5ZVuoNQ8b/CLVDoNmQC144ImvZc/fVRESprMrS3lzg==
+X-Received: by 2002:aa7:c54b:0:b0:415:c714:7a1f with SMTP id s11-20020aa7c54b000000b00415c7147a1fmr7914962edr.385.1646990732722;
+        Fri, 11 Mar 2022 01:25:32 -0800 (PST)
+Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id m13-20020a056402510d00b00416ca731b5fsm986108edd.9.2022.03.11.01.25.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 01:25:31 -0800 (PST)
+Message-ID: <49b19cf0-a4aa-69c3-a609-422a8b3f9798@canonical.com>
+Date:   Fri, 11 Mar 2022 10:25:30 +0100
 MIME-Version: 1.0
-References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com>
- <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n51bfqWs8yOiyQ-A_bEQ7CZSqavz8epcFEWYyZxxoRYFHg@mail.gmail.com> <BN0PR02MB8173F2E408848216D489D503E40C9@BN0PR02MB8173.namprd02.prod.outlook.com>
-In-Reply-To: <BN0PR02MB8173F2E408848216D489D503E40C9@BN0PR02MB8173.namprd02.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 11 Mar 2022 12:22:37 +0300
-Message-ID: <CAA8EJppt_NjOdJWGrP=8zwG1yEAyJBtnv4G5vLW3CHZ8WrGFvw@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-rate
- property for mdp clk
-To:     Vinod Polimera <vpolimer@qti.qualcomm.com>
-Cc:     Stephen Boyd <swboyd@chromium.org>,
-        quic_vpolimer <quic_vpolimer@quicinc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        "dianders@chromium.org" <dianders@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v1 2/3] dt-bindings: support Nuvoton sgpio
+Content-Language: en-US
+To:     jimliu2 <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
+        KWLIU@nuvoton.com, linus.walleij@linaro.org, brgl@bgdev.pl,
+        robh+dt@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, CTCCHIEN@nuvoton.com
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+References: <20220311060936.10663-1-JJLIU0@nuvoton.com>
+ <20220311060936.10663-3-JJLIU0@nuvoton.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220311060936.10663-3-JJLIU0@nuvoton.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 at 11:06, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Stephen Boyd <swboyd@chromium.org>
-> > Sent: Wednesday, March 9, 2022 1:36 AM
-> > To: quic_vpolimer <quic_vpolimer@quicinc.com>;
-> > devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> > freedreno@lists.freedesktop.org; linux-arm-msm@vger.kernel.org
-> > Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
-> > dianders@chromium.org; quic_kalyant <quic_kalyant@quicinc.com>
-> > Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-
-> > rate property for mdp clk
-> >
-> > WARNING: This email originated from outside of Qualcomm. Please be wary
-> > of any links or attachments, and do not enable macros.
-> >
-> > Quoting Vinod Polimera (2022-03-08 08:54:56)
-> > > Kernel clock driver assumes that initial rate is the
-> > > max rate for that clock and was not allowing it to scale
-> > > beyond the assigned clock value.
-> >
-> > How? I see ftbl_disp_cc_mdss_mdp_clk_src[] has multiple frequencies and
-> > clk_rcg2_shared_ops so it doesn't look like anything in the clk driver
-> > is preventing the frequency from changing beyond the assigned value.
->
-> Folowing the comment of Stephen, i have checked a bit more. it appears that clock driver is not setting the max clock from assgined clocks, dpu driver is doing that.
-> i am planning to fix it as below.
-> 1) assign ULONG_MAX to max_rate while initializing clock in dpu driver.
-> 2) remove unnecessary checks in the core_perf library. If rate doesn't match with the entries in the opp table, it will throw error, hence furthur checks are not needed.
-> 3) no changes in dt are required. (we can drop all the posted ones)
+On 11/03/2022 07:09, jimliu2 wrote:
+> Add nuvoton sgpio yaml in dt-bindings
 
-Why? They made perfect sense. The dts assignments should be replaced
-by the opp setting in the bind function, as this would also set the
-performance point of the respective power domain.
+Missing full stop.
 
->
-> Changes :
-> ```--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-> @@ -284,17 +284,6 @@ void dpu_core_perf_crtc_release_bw(struct drm_crtc *crtc)
->         }
->  }
->
-> -static int _dpu_core_perf_set_core_clk_rate(struct dpu_kms *kms, u64 rate)
-> -{
-> -       struct dss_clk *core_clk = kms->perf.core_clk;
-> -
-> -       if (core_clk->max_rate && (rate > core_clk->max_rate))
-> -               rate = core_clk->max_rate;
-> -
-> -       core_clk->rate = rate;
-> -       return dev_pm_opp_set_rate(&kms->pdev->dev, core_clk->rate);
-> -}
-> -
->  static u64 _dpu_core_perf_get_core_clk_rate(struct dpu_kms *kms)
->  {
->         u64 clk_rate = kms->perf.perf_tune.min_core_clk;
-> @@ -405,7 +394,7 @@ int dpu_core_perf_crtc_update(struct drm_crtc *crtc,
->
->                 trace_dpu_core_perf_update_clk(kms->dev, stop_req, clk_rate);
->
-> -               ret = _dpu_core_perf_set_core_clk_rate(kms, clk_rate);
-> +               ret = dev_pm_opp_set_rate(&kms->pdev->dev, clk_rate);
->                 if (ret) {
->                         DPU_ERROR("failed to set %s clock rate %llu\n",
->                                         kms->perf.core_clk->clk_name, clk_rate);
-> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
-> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
+Subject: missing prefix. Check git log history.
 
-This file has been removed in msm/next
+> 
+> Signed-off-by: jimliu2 <JJLIU0@nuvoton.com>
+> ---
+>  .../bindings/gpio/nuvoton,sgpio.yaml          | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> new file mode 100644
+> index 000000000000..8766e1fa4528
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/gpio/nuvoton,sgpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Nuvoton SGPIO controller
+> +
+> +maintainers:
+> +  - Jim LIU <JJLIU0@nuvoton.com>
+> +
+> +description:
+> +  This SGPIO controller is for NUVOTON NPCM7xx and NPCM8xx SoC,
+> +  NPCM7xx/NPCM8xx have two sgpio module each module can support up
+> +  to 64 output pins,and up to 64 input pin.
+> +  GPIO pins can be programmed to support the following options
+> +  - Support interrupt option for each input port and various interrupt
+> +    sensitivity option (level-high, level-low, edge-high, edge-low)
+> +  - Directly connected to APB bus and its shift clock is from APB bus clock
+> +    divided by a programmable value.
+> +  - ngpios is number of nin_gpios GPIO lines and nout_gpios GPIO lines.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nuvoton,npcm750-sgpio
+> +      - nuvoton,npcm845-sgpio
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  nin_gpios: true
+> +
+> +  nout_gpios: true
 
-> @@ -175,7 +175,7 @@ int msm_dss_parse_clock(struct platform_device *pdev,
->                         continue;
->                 mp->clk_config[i].rate = rate;
->                 mp->clk_config[i].type = DSS_CLK_PCLK;
-> -               mp->clk_config[i].max_rate = rate;
-> +               mp->clk_config[i].max_rate = ULONG_MAX;
->         }
->
->         mp->num_clk = num_clk;
-> --```
->
-> Thanks,
-> Vinod.
->
-> >
-> > >
-> > > Drop the assigned clock rate property and vote on the mdp clock as per
-> > > calculated value during the usecase.
-> > >
-> > > Changes in v2:
-> > > - Remove assigned-clock-rate property and set mdp clk during resume
-> > sequence.
-> > > - Add fixes tag.
-> > >
-> > > Changes in v3:
-> > > - Remove extra line after fixes tag.(Stephen Boyd)
-> >
-> > This changelog should be removed.
-> >
-> > >
-> > > Fixes: 62fbdce91("arm64: dts: qcom: sc7280: add display dt nodes")
-> >
-> > I thought folks were saying that this is bad to keep? I don't really
-> > mind either way, but I guess it's better to drop the fixes tag because
-> > this is largely a performance improvement?
-> >
-> > > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> > > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Both do not look like proper property. No description, no vendor prefix,
+no type, wrong value (true).
+
+> +
+> +  bus-frequency: true
+
+Why a GPIO controller needs this legacy bus-frequency property? Which
+bus frequency is it? Internal? APB? If APB, use assigned-clocks.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - interrupts
+> +  - nin_gpios
+> +  - nout_gpios
+> +  - clocks
+> +  - bus-frequency
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    sgpio1: sgpio@101000 {
+
+Generic node name, so "gpio".
+
+> +        compatible = "nuvoton,npcm750-sgpio";
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> +        reg = <0x101000 0x200>;
+
+reg goes after compatible.
+
+> +        clocks = <&clk NPCM7XX_CLK_APB3>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&iox1_pins>;
+> +        nin_gpios = <64>;
+> +        nout_gpios = <64>;
+> +        bus-frequency = <16000000>;
+> +    };
 
 
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
