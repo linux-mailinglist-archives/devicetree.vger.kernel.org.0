@@ -2,123 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA92D4D5D9F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:41:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AA1664D5DAA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 09:45:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235463AbiCKImY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 03:42:24 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40990 "EHLO
+        id S236476AbiCKIqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 03:46:03 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231156AbiCKImY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:42:24 -0500
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C43431BA166;
-        Fri, 11 Mar 2022 00:41:21 -0800 (PST)
-Received: by mail-pf1-x42b.google.com with SMTP id h2so3323029pfh.6;
-        Fri, 11 Mar 2022 00:41:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jLqx+cpswbXRaJQWL8k1lvJijI81uoOijIjOKiOB33s=;
-        b=qVDMOLe/Tf6QBjkIYvzkyxTvQ0MHI11VqwIykRP5UiB1tqBtW38wwjpGgk/WmBlKkb
-         kBKqziLXVZHZet6ALTshfADoYe1jSyBjbZIQXE4+hG0viWbKxxwYZ8N9Rm+lsozrhGG2
-         kmD7mjTazJN9/0JUHMSBqBqey/KnqSoQqlODwvJ/Jgcc6SEGkPa8wcM8LmV6YJHjqMus
-         NLdFFRDakywnC5uZc7ndM+W9MxvXkBcXUECoqdaMEdsJL2OVwSom/yeDxSn5NAvnGiyI
-         NR9JE4icFVEZFWcis4bP10ScvXgbpiMh2gI7lxx1U1xp+LVyLfg5cFPdKGE4KOpt8Mmx
-         3mDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=jLqx+cpswbXRaJQWL8k1lvJijI81uoOijIjOKiOB33s=;
-        b=m0tjTK7f+ZeOcHdbfeUgYacEgs/QgUULagEJDyZ+IOm+gPCMuphmNT6rDJnQC+eLC1
-         H0jh2WEUcE4+rQxIpjOr8YGE7y3EOMIlenjlhJP3C02GLpEGC29WJxMbGbFXMrYAc4mS
-         vCNe3imCNqNh0jgKai64KHGtsvpmtgaMjh3WLvPJWmycN/0ZQI8Tj/l3K1/J2dXCwSdS
-         NECdFG1XxO8luqMZzsyeYun0h3rd0KXw+fsC5djotiZ+1E25QIrNHuEPxlmiUbbsUNXx
-         kpx+ci/guyibpzfDY8VLrmwSzIKbGvX1l0p5S4dqtxyIEqJGEi3nbyWMbSmG8XVLjg05
-         1GAw==
-X-Gm-Message-State: AOAM533tbRJXyd7th/cT8eKq+87teim8sFN1Rq+0v/bCJIpucyOngFZr
-        vSiMwJojfm41feeLwBmYgpSjUChhrmKkfA==
-X-Google-Smtp-Source: ABdhPJzOutp4T4k5/Wpo3DYmvq4XO0WOg9QK4oHp+K4P3WHU2agjTWvllPfMbK3wm7cAJyj9Wv9wSA==
-X-Received: by 2002:a63:82c1:0:b0:37c:9950:2fec with SMTP id w184-20020a6382c1000000b0037c99502fecmr7320950pgd.13.1646988081221;
-        Fri, 11 Mar 2022 00:41:21 -0800 (PST)
-Received: from localhost.localdomain ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id f7-20020a056a0022c700b004e11d3d0459sm10146467pfj.65.2022.03.11.00.41.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 00:41:20 -0800 (PST)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: bcm-cygnus: Update spi clock properties
-Date:   Fri, 11 Mar 2022 14:11:14 +0530
-Message-Id: <20220311084114.16408-1-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229893AbiCKIqB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 03:46:01 -0500
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B118B1BA902;
+        Fri, 11 Mar 2022 00:44:58 -0800 (PST)
+Received: from [192.168.1.111] (91-156-85-209.elisa-laajakaista.fi [91.156.85.209])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 58E5D488;
+        Fri, 11 Mar 2022 09:44:55 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1646988296;
+        bh=KgOKt2nWZu2AcU+7tnzzHwEa8LX7GDuJltucb9VdrQY=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kda77LiVqWEGyPlTPFHynCYpX00jg8J58P6Cq24u4kK8kbz+78K81RNp01KgX9TP+
+         UyzfHke337r48ynzKle2oU/ugM+jo4awVYMp6ATZ+9tj0w5GaUdpl0ANtCgMzwXhRv
+         zs6Q2dFUwe2Yb/176LLov8WxhfGpP6+Ccmt2Ljx0=
+Message-ID: <00538a2f-fcbf-321a-1ce0-645913836e73@ideasonboard.com>
+Date:   Fri, 11 Mar 2022 10:44:52 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] arm64: dts: ti: k3-j721e-common-proc-board: add DP to
+ j7 evm
+Content-Language: en-US
+To:     Rahul T R <r-ravikumar@ti.com>, nm@ti.com
+Cc:     vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, laurent.pinchart@ideasonboard.com
+References: <20220222163230.1566-1-r-ravikumar@ti.com>
+ <20220222163230.1566-3-r-ravikumar@ti.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20220222163230.1566-3-r-ravikumar@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PL022 binding require two clocks to be defined but broadcom cygnus
-platform doesn't comply with bindings and define only one clock.
+On 22/02/2022 18:32, Rahul T R wrote:
+> From: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> 
+> Add the endpoint nodes to describe connection from
+> DSS => MHDP => DisplayPort connector.
+> Also add the required pinmux nodes for hotplug.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> ---
+>   .../dts/ti/k3-j721e-common-proc-board.dts     | 66 +++++++++++++++++--
+>   1 file changed, 62 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> index 2d7596911b27..fe20c193f299 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+> @@ -148,6 +148,28 @@
+>   		pinctrl-0 = <&main_mcan2_gpio_pins_default>;
+>   		standby-gpios = <&main_gpio0 127 GPIO_ACTIVE_HIGH>;
+>   	};
+> +
+> +	dp_pwr_3v3: fixedregulator-dp-prw {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dp-pwr";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&exp4 0 0>;	/* P0 - DP0_PWR_SW_EN */
+> +		enable-active-high;
+> +	};
+> +
+> +	dp0: connector {
+> +		compatible = "dp-connector";
+> +		label = "DP0";
+> +		type = "full-size";
+> +		dp-pwr-supply = <&dp_pwr_3v3>;
+> +
+> +		port {
+> +			dp_connector_in: endpoint {
+> +				remote-endpoint = <&dp0_out>;
+> +			};
+> +		};
+> +	};
+>   };
+>   
+>   &main_pmx0 {
+> @@ -190,6 +212,12 @@
+>   		>;
+>   	};
+>   
+> +	dp0_pins_default: dp0-pins-default {
+> +		pinctrl-single,pins = <
+> +			J721E_IOPAD(0x1c4, PIN_INPUT, 5) /* SPI0_CS1.DP0_HPD */
+> +		>;
+> +	};
+> +
+>   	main_i2c1_exp4_pins_default: main-i2c1-exp4-pins-default {
+>   		pinctrl-single,pins = <
+>   			J721E_IOPAD(0x230, PIN_INPUT, 7) /* (U2) ECAP0_IN_APWM_OUT.GPIO1_11 */
+> @@ -660,6 +688,40 @@
+>   				 <&k3_clks 152 18>;	/* PLL23_HSDIV0 */
+>   };
+>   
+> +&dss_ports {
+> +	port@0 {
+> +		reg = <0>;
+> +
+> +		dpi0_out: endpoint {
+> +			remote-endpoint = <&dp0_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&mhdp {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&dp0_pins_default>;
+> +};
+> +
+> +&dp0_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	port@0 {
+> +		reg = <0>;
+> +		dp0_in: endpoint {
+> +			remote-endpoint = <&dpi0_out>;
+> +		};
+> +	};
+> +
+> +	port@4 {
+> +		reg = <4>;
+> +		dp0_out: endpoint {
+> +			remote-endpoint = <&dp_connector_in>;
+> +		};
+> +	};
+> +};
+> +
+>   &mcasp0 {
+>   	status = "disabled";
+>   };
+> @@ -845,10 +907,6 @@
+>   	status = "disabled";
+>   };
+>   
+> -&dss {
+> -	status = "disabled";
+> -};
+> -
+>   &icssg0_mdio {
+>   	status = "disabled";
+>   };
 
-Update spi clocks and clocks-names property by adding appropriate clock
-reference to make it compliant with bindings.
+Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
 
-CC: Florian Fainelli <f.fainelli@gmail.com>
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
- arch/arm/boot/dts/bcm-cygnus.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
-
-diff --git a/arch/arm/boot/dts/bcm-cygnus.dtsi b/arch/arm/boot/dts/bcm-cygnus.dtsi
-index ad65be871938..f9f79ed82518 100644
---- a/arch/arm/boot/dts/bcm-cygnus.dtsi
-+++ b/arch/arm/boot/dts/bcm-cygnus.dtsi
-@@ -397,8 +397,8 @@ spi0: spi@18028000 {
- 			#size-cells = <0>;
- 			interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-0 = <&spi_0>;
--			clocks = <&axi81_clk>;
--			clock-names = "apb_pclk";
-+			clocks = <&axi81_clk>, <&axi81_clk>;
-+			clock-names = "sspclk", "apb_pclk";
- 			status = "disabled";
- 		};
- 
-@@ -409,8 +409,8 @@ spi1: spi@18029000 {
- 			#size-cells = <0>;
- 			interrupts = <GIC_SPI 79 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-0 = <&spi_1>;
--			clocks = <&axi81_clk>;
--			clock-names = "apb_pclk";
-+			clocks = <&axi81_clk>, <&axi81_clk>;
-+			clock-names = "sspclk", "apb_pclk";
- 			status = "disabled";
- 		};
- 
-@@ -421,8 +421,8 @@ spi2: spi@1802a000 {
- 			#size-cells = <0>;
- 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
- 			pinctrl-0 = <&spi_2>;
--			clocks = <&axi81_clk>;
--			clock-names = "apb_pclk";
-+			clocks = <&axi81_clk>, <&axi81_clk>;
-+			clock-names = "sspclk", "apb_pclk";
- 			status = "disabled";
- 		};
- 
--- 
-2.25.1
-
+  Tomi
