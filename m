@@ -2,190 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BB124D6371
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:28:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4979B4D6378
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 15:33:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349253AbiCKO3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 09:29:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41590 "EHLO
+        id S1349078AbiCKOeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 09:34:17 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243114AbiCKO3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:29:36 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97F34EACA9
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:28:32 -0800 (PST)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        with ESMTP id S245567AbiCKOeQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 09:34:16 -0500
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD464171285
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:33:12 -0800 (PST)
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id CF60F3F60F
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 14:28:30 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id BC6503F321
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 14:33:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647008910;
-        bh=PdIndayzdh0p1erKParNfrZ1poZ/AkWCjFd9nsPB1bM=;
+        s=20210705; t=1647009189;
+        bh=OnW6EN46n7vaYBFSgg2vgSftb7Rx3mwGGTomxWm4iNQ=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=S987aXtzxnc0F6va7ZxIQ738MXvanDyrXuV98nZZJTiw0w8peWrDQS20Sa8MPkNg5
-         tGUsk27hV1VBit12Z/Ees/5zJ7qAEmPDzHMeQOmBg2tTI4sr0YM0TmT040ps0Vass9
-         vQNYS3VvtM7eA98s31QIHibb+8WGkjvHCd+F+O6z1FA4X/TC+yPFOeBtDwdM0W9AtL
-         mAu3ywmOXb6Hd11BChR5nEMsg6MBEJWcApjsYfeUeyMR6LXQUYz+K7DmZvzqOj6FU/
-         UNSqykcvmQLM7VNeZa2tbHJCORM0eQ3RFFokS8lY2uJgz4ziFENNALLZ4tmtI+mdpp
-         sK80FEr4rbGcA==
-Received: by mail-ed1-f69.google.com with SMTP id bq19-20020a056402215300b0040f276105a4so4967446edb.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:28:30 -0800 (PST)
+        b=H58iF8vpgjYOwIrIh2zAdBqFSmYVYnf7Z1rFTJD93+bJ2V5auzDC8s+Zgi5ZdM4bP
+         Dkd11n5C5gcnrYy6Rjl+PDo+oU3593fKnb9l91aSiNJ5kB9cTzfdK5R5rGNiej8bAh
+         7joxwIJr6h0EzWk9DxP5PctybDyEdTIgO+qkZWhv9y4HGwvWQuTRVqMkHxjb2KQdq3
+         z06HULQUgEbmcF5oChr/m+i05UEAM+MmEXBcr2ziBuByjeXAbHdzthR21daQfOQwDc
+         Ywde3meaIYkXnMOVIwh9OfMfAAbBhp/0BpijRD5/J8kwRlJ1F/glBjbMCwo6EcgOfo
+         nfU6T9/GWNktQ==
+Received: by mail-wm1-f72.google.com with SMTP id k41-20020a05600c1ca900b00389a2b983efso3040718wms.4
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 06:33:09 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=PdIndayzdh0p1erKParNfrZ1poZ/AkWCjFd9nsPB1bM=;
-        b=CMt6bqFCfkgopf/T1emp8DG53kGHjMFFQ9a8u+5siAK3BaUCSoYGJE+Obri4NGzmlY
-         9wYzuoP9S1O1IgdgQpQJLWPQj2skR8E5/YZZVLDeTMPd5OyCiOFeZRJjeepvfL5ejWft
-         lHSHhTHA15RTRNVPP/xo3rp5LbVwAd14le6Lte8eZsMeQ1d0Mqqw9Qc/OJt23uONFobQ
-         3I8qcE1QGnVEhRJ9sbi4OIY0SpV2FAyPT96tZQ8qUmbhKly3PPg0noYrkj7rprrCkd3c
-         3VZl6SFTgJy1MlXF1/jEG4YusvBKDFSWdE3Z3KbaGVU4cmkkL6dZZJ1qsH1ZaFXbDwRy
-         +R6w==
-X-Gm-Message-State: AOAM533t4G3f1zTN6rT6ZbqJrtpVFW02L9If89OdPKerEGvrPKL0yCwS
-        oMlvfSm0TOhTHKTx1GbN4vge9wFCu+5LPnXHuHsnalLqvmP11D/9U8OzQ8WaaWwxMCOt4C0phdV
-        dzTyDH66tz/eC2Ee8tWi886nqo3FPwKs3d56HuEM=
-X-Received: by 2002:a17:906:40a:b0:6db:3e2a:a7ce with SMTP id d10-20020a170906040a00b006db3e2aa7cemr8563509eja.255.1647008910476;
-        Fri, 11 Mar 2022 06:28:30 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxu7HRELcvW932dJyiTM8RcnBlSViVbwCdvsfEGJ7B4Ej6w1K6mhpjwwmEC8B/O6gJR4wVowQ==
-X-Received: by 2002:a17:906:40a:b0:6db:3e2a:a7ce with SMTP id d10-20020a170906040a00b006db3e2aa7cemr8563494eja.255.1647008910276;
-        Fri, 11 Mar 2022 06:28:30 -0800 (PST)
+        bh=OnW6EN46n7vaYBFSgg2vgSftb7Rx3mwGGTomxWm4iNQ=;
+        b=50Zd4UUiMXeteSoxl1pwROtvQpocAIhHlxK6jKQ+UkNkBwBZScihRAwyzWnqQSLI2K
+         +K4OwTgDGy+PFi6z5LNU+lrnFk0WmvSKX5Ku9bEvgkmXKBhc6uadWIZGEMoUylXkke0I
+         s5C5Oq6Qy/f91uEku+bj+mZ59A6DW2zxn3/VqWzQRyxItQVyu7jYdnmSy6Nr2fngTlo6
+         rYrIiaMungB5NxIzpXKHPjGuKYc5hGc78C6hzw4HpA4ft/b+814pIUnbTNo6oUMVg+C7
+         pBiOE8YGnfPW3IvyoDQefuU9fwwfhZzRtblHD4gqZ9tEZ+pv3OdowOaVICAtTt853bO2
+         EmZg==
+X-Gm-Message-State: AOAM532Lq+LCMdqkvNoCIXRveJ+Q6heXGF7QWeef/Vp6MFLyqX2J9nTY
+        UbiLB8AK8NxeR0OjKe/0yoeRcs3CBdEeNZyLJSNbvLVYnUqugx9OMnvT98YHsJQVGnyx3bwltCm
+        85cyaPskFxSnORtBafJw8UpbMwVF4x9amyJcgzUA=
+X-Received: by 2002:a05:600c:34c4:b0:389:a4c3:c4b1 with SMTP id d4-20020a05600c34c400b00389a4c3c4b1mr7607583wmq.65.1647009188077;
+        Fri, 11 Mar 2022 06:33:08 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyFzx1SPSweAq4eva3FzBdIfwL59AEbdj699V43mjce3zliJKeU+w5FN7C7Zd5dBSf5kORNAg==
+X-Received: by 2002:a05:600c:34c4:b0:389:a4c3:c4b1 with SMTP id d4-20020a05600c34c400b00389a4c3c4b1mr7607573wmq.65.1647009187861;
+        Fri, 11 Mar 2022 06:33:07 -0800 (PST)
 Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id z7-20020a05640240c700b00416cee953dasm1089877edb.24.2022.03.11.06.28.29
+        by smtp.gmail.com with ESMTPSA id 10-20020adf808a000000b001edd413a952sm6726713wrl.95.2022.03.11.06.33.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 06:28:29 -0800 (PST)
-Message-ID: <0454647b-7aa3-ed70-0b92-1e5c98d0adc0@canonical.com>
-Date:   Fri, 11 Mar 2022 15:28:28 +0100
+        Fri, 11 Mar 2022 06:33:07 -0800 (PST)
+Message-ID: <2f53f17a-427c-62d6-a0c6-4a3962ab01f0@canonical.com>
+Date:   Fri, 11 Mar 2022 15:33:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 2/2] dt-bindings: phy: mediatek: Add YAML schema for PCIe
- PHY
+Subject: Re: [PATCH v2 3/3] ARM: dts: lpc32xx: Update spi clock properties
 Content-Language: en-US
-To:     Jianjun Wang <jianjun.wang@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+To:     Vladimir Zapolskiy <vz@mleia.com>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-References: <20220311133527.5914-1-jianjun.wang@mediatek.com>
- <20220311133527.5914-3-jianjun.wang@mediatek.com>
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220311093800.18778-1-singh.kuldeep87k@gmail.com>
+ <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
+ <4aae560d-d266-d0d0-136f-32891b15bc01@mleia.com>
+ <CAK8P3a3a_WXbDKN-jJUt_Wuvop0rfaUs4ytwyhogOxdtJAPx0w@mail.gmail.com>
+ <4f39f086-1932-1729-8761-d5c533356812@mleia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311133527.5914-3-jianjun.wang@mediatek.com>
+In-Reply-To: <4f39f086-1932-1729-8761-d5c533356812@mleia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 14:35, Jianjun Wang wrote:
-> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
+On 11/03/2022 15:07, Vladimir Zapolskiy wrote:
+> On 3/11/22 3:38 PM, Arnd Bergmann wrote:
+>> On Fri, Mar 11, 2022 at 2:20 PM Vladimir Zapolskiy <vz@mleia.com> wrote:
+>>>
+>>> On 3/11/22 11:38 AM, Kuldeep Singh wrote:
+>>>> PL022 binding require two clocks to be defined but lpc platform doesn't
+>>>> comply with bindings and define only one clock i.e apb_pclk.
+>>>>
+>>>> Update spi clocks and clocks-names property by adding appropriate clock
+>>>> reference to make it compliant with bindings.
+>>>>
+>>>> CC: Vladimir Zapolskiy <vz@mleia.com>
+>>>> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+>>>> ---
+>>>> v2:
+>>>> - New patch with similar changeset
+>>>> - Send to soc ML
+>>>>
+>>>>    arch/arm/boot/dts/lpc32xx.dtsi | 8 ++++----
+>>>>    1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>> index c87066d6c995..30958e02d5e2 100644
+>>>> --- a/arch/arm/boot/dts/lpc32xx.dtsi
+>>>> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>> @@ -178,8 +178,8 @@ ssp0: spi@20084000 {
+>>>>                                compatible = "arm,pl022", "arm,primecell";
+>>>>                                reg = <0x20084000 0x1000>;
+>>>>                                interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+>>>> -                             clocks = <&clk LPC32XX_CLK_SSP0>;
+>>>> -                             clock-names = "apb_pclk";
+>>>> +                             clocks = <&clk LPC32XX_CLK_SSP0>, <&clk LPC32XX_CLK_SSP0>;
+>>>> +                             clock-names = "sspclk", "apb_pclk";
+>>>
+>>> In fact I'm uncertain if it is the right change, could it happen that the commit
+>>> cc0f6e96c4fd ("spi: dt-bindings: Convert Arm pl022 to json-schema") sets a wrong
+>>> schema pattern?
+>>
+>> Good pointm this doesn't quite seem right: it is unlikely that the same clock
+>> is used for both the SPI bus and the APB bus.
+>>
+>>> Apparently just one clock is wanted on all observed platforms and cases, this
+>>> is implicitly confirmed by clock handling in the drivers/spi/spi-pl022.c :
+>>>
+>>>          pl022->clk = devm_clk_get(&adev->dev, NULL);
+>>>
+>>> So, I would vote to fix the device tree bindings schema.
+
+Drivers do not describe the hardware. Bindings should not be modeled on
+drivers, but on actual hardware, so the example is not convincing.
+
+>>
+>> Isn't this just using the wrong name? The name of the macro
+>> LPC32XX_CLK_SSP0 might indicate that this is indeed the SPI clock
+>> rather than the APB clock, so we only need to change clock-names
+>> property here and leave it unchanged otherwise.
 > 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> ---
->  .../bindings/phy/mediatek,pcie-phy.yaml       | 71 +++++++++++++++++++
->  1 file changed, 71 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> Yes, the name is wrong, here I'm ready to take the blame:
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> new file mode 100644
-> index 000000000000..da15b4bf3117
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> @@ -0,0 +1,71 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek PCIe PHY Device Tree Binding
+> Fixes: 93898eb775e5 ("arm: dts: lpc32xx: add clock properties to device nodes")
+> 
+> Noteworthy the commit above presets the same clock name to other PrimeCell
+> controllers, namely pl110 (LCD), pl080 (DMA), pl175 (EMC) and pl18x (SD),
+> plus this one pl022 (SSP), and all but SSP and SD are AHB slaves in fact.
+> 
+> On LPC32xx the bus clock source and function clock source for SSP is HCLK.
+> 
+> My guess is that the misnamed "apb_pclk" migrated into the schema from
+> the lpc32xx.dtsi, so I'd suggest, unless some platform really needs it,
+> firstly fix the schema by removing "apb_pclk" clock. It will leave just one
+> clock, so "clock-names" property can be set as optional, and the drop
+> the property from the lpc32xx.dtsi.
+> 
+>> Looking at the driver, I also see that this refers to the clock as
+>> "SSP/SPI bus clock", and it reads the rate from that.
+> 
+> Yes, that's correct, it's a SPI bus clock with an option to set a rate.
 
-Title is for hardware, so s/Device Tree Binding//
-
-> +
-> +maintainers:
-> +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> +
-> +description: |
-> +  The PCIe PHY supports physical layer functionality for PCIe Gen3 port.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,pcie-phy
-
-Is it going to be exactly one pcie-phy for all Mediatek chipsets for
-next years? Are you sure about that? It sounds highly unlikely....
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  reg-names:
-> +    items:
-> +      - const: sif
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  nvmem-cells:
-> +    maxItems: 7
-> +    description:
-> +      Phandles to nvmem cell that contains the efuse data, if unspecified,
-> +      default value is used.
-> +
-> +  nvmem-cell-names:
-> +    items:
-> +      - const: glb_intr
-> +      - const: tx_ln0_pmos
-> +      - const: tx_ln0_nmos
-> +      - const: rx_ln0
-> +      - const: tx_ln1_pmos
-> +      - const: tx_ln1_nmos
-> +      - const: rx_ln1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    pciephy: phy@11e80000 {
-> +        compatible = "mediatek,pcie-phy";
-> +        #phy-cells = <0>;
-> +        reg = <0x11e80000 0x10000>;
-> +        reg-names = "sif";
-> +        nvmem-cells = <&pciephy_glb_intr>,
-> +                      <&pciephy_tx_ln0_pmos>,
-> +                      <&pciephy_tx_ln0_nmos>,
-> +                      <&pciephy_rx_ln0>,
-> +                      <&pciephy_tx_ln1_pmos>,
-> +                      <&pciephy_tx_ln1_nmos>,
-> +                      <&pciephy_rx_ln1>;
-> +        nvmem-cell-names = "glb_intr", "tx_ln0_pmos",
-> +                           "tx_ln0_nmos", "rx_ln0",
-> +                           "tx_ln1_pmos", "tx_ln1_nmos",
-> +                           "rx_ln1";
-> +    };
+It seems versioning of this patchset lacks proper references to previous
+discussions:
+https://lore.kernel.org/linux-devicetree/Yip2MZdQNjMz%2FCos@robh.at.kernel.org/
 
 
 Best regards,
