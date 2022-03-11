@@ -2,67 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 345AB4D5E39
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:18:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9394D5E40
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 10:20:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241266AbiCKJTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 04:19:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38770 "EHLO
+        id S1347377AbiCKJUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 04:20:46 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345042AbiCKJTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:19:34 -0500
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E6DE1BBF7E
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:18:31 -0800 (PST)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
+        with ESMTP id S243086AbiCKJUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 04:20:46 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64A01BD048
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:19:43 -0800 (PST)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5D3A73F1A4
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:18:29 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 90C7C3F19E
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:19:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1646990309;
-        bh=IxdbcL7k69aeR5PAgcBMvpQeQoS7r//O6hQJcwASqCA=;
+        s=20210705; t=1646990382;
+        bh=Av5kn9IVqiEMwOUuim1I4aokjkuB5Y7LLwWdVqqCtTY=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=oRJl62yIxnAqlW3Pfe8iUM7YjHKH0G+Tg9V5Iu6HsXFxrHeGfjx0JLXs+X5iQQ2m0
-         WBhEQGJjb2ITi3Uu4CTvc1Jfm7/uQuL/k14fa9vvhsEgk4xeDKyjV04qRDNG/bz4Qu
-         uuqEQKt5WaV5Is2FMx+4lsnE6NfW8aAM7DzpBS/bETco8EB92QTxIvT6V2D1WtXdTA
-         lj02D8jCHrXMraW1VZDxQiLDneknQ/coQXR0pPKpg0AyYGzHpFHSDDF5aHW4xzaBOs
-         G5olOHKLdarZjAUDiaHcVdRvQ7s4bfxRWfHwBjrGjK7TRBkHlyaL04ZniOi8x8879i
-         jtOk3K3Fgut6A==
-Received: by mail-ej1-f72.google.com with SMTP id q22-20020a1709064cd600b006db14922f93so4623117ejt.7
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:18:29 -0800 (PST)
+        b=m7CGnH6myAdKEIc3BhRHHelU+fuZ58/yNAr6gdoBuHCljYCJId8mdQYmmeZUBNmHD
+         atWz6+6S8rkWTeG53sxQzMrZ7SMQzZPY4mZcEZfZTTYrkPCA8zL7GGrSdRgqAL3AOq
+         Z2Q7Rk7PCei2eREuyb14tkzsoWCBNvpKwotREMn+VXjbZcq9Q5RJK+4AHYFAzRZ84d
+         NCy/dVASrpkWDsEFbnKLf5540Evjtvedf1LZHRM6tD8/hI3WpB4u/s75VapHCGInD2
+         vc8nmyhjOqQ9k5uG5eiGSc3ZiW+Lf6EWnBHbx57N2mgW7WQfVMPw2Rb43HR40she41
+         PA5UnwPdmFMOw==
+Received: by mail-ed1-f72.google.com with SMTP id cf6-20020a0564020b8600b00415e9b35c81so4510334edb.9
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 01:19:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=IxdbcL7k69aeR5PAgcBMvpQeQoS7r//O6hQJcwASqCA=;
-        b=r46b2iy0+tJWJrVAobSIdRyfHEyW97mllRGvAC25vpN6zfSyamXlu6yLP7Ux1SLt1a
-         ZJBi9a+E6npkNwVE0DhgJFUWqjjPi51HULEfp0UBuud3qDnR+jbm8Bju9lyv9KTNresl
-         cjY8fz9acVX1vtxG7VRqPyhjRhyfwi6UVLjOoNsEkM0MLJ/lU0AYVfj5ZxrjCGbtdEoM
-         FE8L7H/+4mRAeM7eNBCps9PjOTePP90PRESpv0a/Ffgq0GzLxFVnndI4/k9nFceWRBaz
-         hl87WLDp3aaaAVmJBY7fi3nnvBe1CwO+VOuZwB67ZTVhlXJkb0YKhQsQ33QY3+ltxxlP
-         GR7Q==
-X-Gm-Message-State: AOAM531EyLHSGiGFUNV6UmxqhcNppcoCmMw2iFKIcgSDTE/Q+3AFRFvm
-        lY9R0mI2LJPmhXP6BvbNDpJ56HL/1XNz3KotgQEw3ckmbprUBse4xhn+F9FifH11qNeWZsv3H1r
-        YkYEn/N6CSQUs0pfP7rOdS9ql5mOsuug687v+M30=
-X-Received: by 2002:a05:6402:10d5:b0:408:f881:f0f3 with SMTP id p21-20020a05640210d500b00408f881f0f3mr7969313edu.112.1646990309093;
-        Fri, 11 Mar 2022 01:18:29 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJxJx30zZcpXpgPnCtN4/x64kV31WgzQQ1W7CmqqYo9CyZbalXQfJsGU39fnHARIBZSBH2iX0Q==
-X-Received: by 2002:a05:6402:10d5:b0:408:f881:f0f3 with SMTP id p21-20020a05640210d500b00408f881f0f3mr7969298edu.112.1646990308915;
-        Fri, 11 Mar 2022 01:18:28 -0800 (PST)
+        bh=Av5kn9IVqiEMwOUuim1I4aokjkuB5Y7LLwWdVqqCtTY=;
+        b=M7nruP+YEmzzT10veIfyaTYF0UrjF1WDs2gNE7LB5Me25BB5CP0BYXcMlWV1DIXByR
+         66gN2atYO1DKL7MIOulcomZoBD2mCZnKdgLJFvdV6FVxL8WQIY4PtqZngJT+hRrjpQqQ
+         oHF63zV128hBuT6ul5gTZeeFQaLQvJVc9AxroCDG56s5dOLy3neP84NhrhL3JOsCe9Bu
+         vQh4EOmeOfx5w6YanALHYiu2vQ5HMj+moPeyFDRVErNyxb4qrRq6+n02H2X/PVElCCUG
+         u35gLn7/arHjnAQ+I2cONSZG2dADl1VTISKrKr4SGeKs0pB+v8z5cEBmL5ih1TcZNTDX
+         jI6w==
+X-Gm-Message-State: AOAM531Z6+mNJwUIrkeP24O7Mdr2zfFroYBxpBj0a94vG9yQpchQutKW
+        cG+BGw+Mq1KbsbB3C7JS5oSITrzv+2llB8pejxCXrbUF8/+wpqLtHMpm9Ia0XA9iIffqqQBb3tg
+        uRVib6jwcA8knf3+5zXsPfi6Gwp+7UZmTjIzVD8g=
+X-Received: by 2002:a17:906:7952:b0:6da:94c9:cccb with SMTP id l18-20020a170906795200b006da94c9cccbmr7637828ejo.469.1646990382313;
+        Fri, 11 Mar 2022 01:19:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJyRKm1a5/uP3YrjyiVawWXoAkJeYr2NNxwI/Wq9OKmU1+1AG8kKCcxyamOntOnZjVkmmrvOxg==
+X-Received: by 2002:a17:906:7952:b0:6da:94c9:cccb with SMTP id l18-20020a170906795200b006da94c9cccbmr7637825ejo.469.1646990382159;
+        Fri, 11 Mar 2022 01:19:42 -0800 (PST)
 Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id l9-20020a170906078900b006dac5f336f8sm2712366ejc.124.2022.03.11.01.18.27
+        by smtp.gmail.com with ESMTPSA id cf17-20020a170906b2d100b006daa59af421sm2741808ejb.149.2022.03.11.01.19.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 01:18:28 -0800 (PST)
-Message-ID: <3f77c8c8-4bba-007b-fae9-5fb47f44719c@canonical.com>
-Date:   Fri, 11 Mar 2022 10:18:27 +0100
+        Fri, 11 Mar 2022 01:19:41 -0800 (PST)
+Message-ID: <b0489963-4ddb-ec7f-ef0d-e48f99004be5@canonical.com>
+Date:   Fri, 11 Mar 2022 10:19:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v1 1/3] dts: add Nuvoton sgpio feature
+Subject: Re: [PATCH v1 0/3]sgpio:nuvoton:add support for Nuvoton NPCM SoCs
 Content-Language: en-US
 To:     jimliu2 <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
         KWLIU@nuvoton.com, linus.walleij@linaro.org, brgl@bgdev.pl,
@@ -72,9 +72,8 @@ To:     jimliu2 <jim.t90615@gmail.com>, JJLIU0@nuvoton.com,
 Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
 References: <20220311060936.10663-1-JJLIU0@nuvoton.com>
- <20220311060936.10663-2-JJLIU0@nuvoton.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220311060936.10663-2-JJLIU0@nuvoton.com>
+In-Reply-To: <20220311060936.10663-1-JJLIU0@nuvoton.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -88,38 +87,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 11/03/2022 07:09, jimliu2 wrote:
-> add Nuvoton sgpio feature
+> Add sgpio feature for Nuvoton NPCM SoCs
 > 
-> Signed-off-by: jimliu2 <JJLIU0@nuvoton.com>
-> ---
->  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+
+1. Explain what is SGPIO.
+2. Fix all subjects to match subsystems.
+3. Check git log to see what subjects are being used and how they are
+formatted.
+
+> jimliu2 (3):
+>   dts: add Nuvoton sgpio feature
+>   dt-bindings: support Nuvoton sgpio
+>   gpio:gpio-npcm-sgpio: Add Nuvoton sgpio driver
+
+Space missing after ':'.
+
 > 
-> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> index 3696980a3da1..58f4b463c745 100644
-> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> @@ -329,6 +329,36 @@
->  				status = "disabled";
->  			};
->  
-> +			sgpio1: sgpio@101000 {
+>  .../bindings/gpio/nuvoton,sgpio.yaml          |  78 +++
+>  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi |  30 +
+>  drivers/gpio/Kconfig                          |  12 +
+>  drivers/gpio/Makefile                         |   1 +
+>  drivers/gpio/gpio-npcm-sgpio.c                | 634 ++++++++++++++++++
+>  5 files changed, 755 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/nuvoton,sgpio.yaml
+>  create mode 100644 drivers/gpio/gpio-npcm-sgpio.c
+> 
 
-Generic node name.
-
-> +				clocks = <&clk NPCM7XX_CLK_APB3>;
-> +				compatible = "nuvoton,npcm750-sgpio";
-> +				interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
-> +				gpio-controller;
-> +				#gpio-cells = <2>;
-> +				pinctrl-names = "default";
-> +				pinctrl-0 = <&iox1_pins>;
-> +				bus-frequency = <16000000>;
-> +				nin_gpios = <64>;
-> +				nout_gpios = <64>;
-> +				reg = <0x101000 0x200>;
-
-In each node first goes compatible, then reg.
 
 Best regards,
 Krzysztof
