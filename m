@@ -2,67 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A762C4D5FCC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 11:37:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B5F754D5FD4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 11:38:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234712AbiCKKiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 05:38:20 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44028 "EHLO
+        id S231529AbiCKKjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 05:39:02 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348090AbiCKKhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 05:37:55 -0500
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10A6F1C232A;
-        Fri, 11 Mar 2022 02:36:51 -0800 (PST)
-Received: by mail-pj1-x102f.google.com with SMTP id b8so7792972pjb.4;
-        Fri, 11 Mar 2022 02:36:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=EP/SVWsoRg9qx+eTBIrNOE+5ZwuyKTmThSiBQtkA/sk=;
-        b=mdi8s0LYAMdHFiZZwJ2tNK6B+uPloNGuk13iXDTS7oFdjDkpBkILTKVnb6k5KaVWbD
-         VBxiIO/pPsUrs7rCFI1/k8BovDJGhHfHO7D+Bg4/w40sVDu5A9dLlFT3kjw40clHppbB
-         xHIoaZ+pdpt6nzgWpafrI8T1kGCC2uVIEOGS/BqG1WJq+AhhBsuUdQSG80ztXEDvXP5N
-         dkUVdvHDLgwHPPcWJBoaEZgA2TBOBVQsuNs5j7niONcjz8a+rRMlPKEsbrjVIYeJ2yvn
-         mN4FwaZjCBlWs74/H+o6IgF4+l4rqttZewlyOb8b69L252zQgt4SOwZLIVWlwIPhVhU+
-         cY/Q==
+        with ESMTP id S239718AbiCKKjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 05:39:01 -0500
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99C892185
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 02:37:44 -0800 (PST)
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2406B3F19E
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 10:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1646995063;
+        bh=h9mhN1l0jEg81Bw1okmoM1euKZTWPDCOflq/7RGt514=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=riMPFMPTXKr6Znx9Oo+arl3YVQhSBrZo2EqNDdKShKzsBwvR0EASh9ts/nD7sroBP
+         WGxLO6cFWaJR+NP/chXsDDarhtHO6ZOc9l85skiSroxxLnmpT/H5fIwXCABGGuCJjq
+         JoM0nI/Tp5bAVSfZDSeMOhwKnyTezJU6Gmndsaw+YY00l4Jo+gYfnKgj6N0u9nhboO
+         CoXKDpJ9XwpwPsfhQVAhO0AkhpQh+xjELENgEmeHKqjn46BJetKd2RkdpvkJVjNX9J
+         3QAS8wfkZiWFEd80+AJsMaUKzK8Mjkufrh1FrAFybwsz+HwtbmjcX6NzAy95tcilon
+         qMyCgCs+Ggj3g==
+Received: by mail-ej1-f69.google.com with SMTP id le4-20020a170907170400b006dab546bc40so4706255ejc.15
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 02:37:43 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=EP/SVWsoRg9qx+eTBIrNOE+5ZwuyKTmThSiBQtkA/sk=;
-        b=wCX0Kt5D+U9W8gj7qgsIRj/GRAC9m3Oy94MrJ20AORi8T6kX5sdAQcEK/Fnbv1G5ri
-         vpwqwbQmoS1TM7pNbd409LcBAdTipKlvcl6O+tH1T6b61L/iWia0LPJV6QWfbeAsooEX
-         6dFLi7I1otC2BNf4LcsOxdq+wZdSW8Nabn1H7bb9l57ZqL6msohgyZAjZ+aFNXX8oYqN
-         Qz9MNetTsd21Ent5VYAdNQWjEVDOXlYLkjB3dmHWc0v/c3SatKOnalW1lH18CKGs5dJC
-         Hy4wjcvme99wrpmLGhOPurK+++6d4ufQ21VKTRHg92o7/uLezG/pJ+l+RiTZTB+Bge+x
-         TCvQ==
-X-Gm-Message-State: AOAM530yYryYYJn9DXfW85sg1WN9DxvZHncWTh35JYGLmSdZ19lugId8
-        8RkJS3JtYn8QEv8YXPEFe60=
-X-Google-Smtp-Source: ABdhPJzw4L706pa8K1vQiMZhHMt5+ByC0r9wN80pe2K0eIk6HJIjKXy1D13BmT0Ss/q1qOAzHUfXnA==
-X-Received: by 2002:a17:903:248f:b0:14f:acf5:a5c2 with SMTP id p15-20020a170903248f00b0014facf5a5c2mr9484771plw.167.1646995010506;
-        Fri, 11 Mar 2022 02:36:50 -0800 (PST)
-Received: from localhost.localdomain ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id u10-20020a63b54a000000b00380ea901cd2sm4445892pgo.6.2022.03.11.02.36.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 02:36:50 -0800 (PST)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 4/4] ARM: dts: ste-dbx: Update spi clock name
-Date:   Fri, 11 Mar 2022 16:06:35 +0530
-Message-Id: <20220311103635.39849-5-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220311103635.39849-1-singh.kuldeep87k@gmail.com>
-References: <20220311103635.39849-1-singh.kuldeep87k@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=h9mhN1l0jEg81Bw1okmoM1euKZTWPDCOflq/7RGt514=;
+        b=eAWoaIy+sR1H7y8M08FO73l1iUZHXyQbax+hxqNRcGqA6qhC7UC8EmgwJIViBjSyV5
+         bfYmQfyk8T3FN4dMR0kY6KSqDBkuMb2KqJ9TkwpjoIa+xmNW3Y8po+5Co/f0FKie7I8X
+         5z1e5clfWBJB2W5toxFewBZJSMwqhlN8oALgJoW/2LsFdR/n3o2eoQoGYPVJd00Ukd4N
+         q8b6x2/0mAmxsT/RVD6LkffMMU5db5ve97h7ZXwsi9B48ENiOWH/cNFq1xfN1SyDlWze
+         FcWLasko749XKG9O32WisHRs+DuMOtQVCucoEKsKYcEncBQCkK2M1aBt3lMcs7svYYpI
+         VdSQ==
+X-Gm-Message-State: AOAM531BvaDOLnJM/N6tWFrSz8Wsjm39mWPimXc1rCSnqNPWWvZPaxdn
+        7XHayL7mnxHTGDO9V2CkS2dyRoREwzKslkMyGWu/88WG+3pLIAl5jNZpdm8YIbrOvngh1sXX/PX
+        ce6iJjHImgfoTaz025OriL1cGie5TisqRvIqSV6c=
+X-Received: by 2002:a17:907:3e98:b0:6d7:7c21:529f with SMTP id hs24-20020a1709073e9800b006d77c21529fmr8241311ejc.104.1646995062772;
+        Fri, 11 Mar 2022 02:37:42 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJySUrEllRvzUKMm8nuZ24/WPj5ahUOL3vYX386ifl7LfzzG3qWE67RngRL+w4jFgklVI7KbKQ==
+X-Received: by 2002:a17:907:3e98:b0:6d7:7c21:529f with SMTP id hs24-20020a1709073e9800b006d77c21529fmr8241294ejc.104.1646995062569;
+        Fri, 11 Mar 2022 02:37:42 -0800 (PST)
+Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id p3-20020a1709060e8300b006d0e8ada804sm2742975ejf.127.2022.03.11.02.37.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Mar 2022 02:37:42 -0800 (PST)
+Message-ID: <3a9258c3-0555-0de5-f8fb-06f542f55855@canonical.com>
+Date:   Fri, 11 Mar 2022 11:37:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] usb: usb251xb: Set boost value for up- and downstream
+ ports
+Content-Language: en-US
+To:     "Neumann, Bastian" <Bastian.Neumann@dentsplysirona.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <PH0PR17MB48487D4BC9BB0D3C38D8EED38E0C9@PH0PR17MB4848.namprd17.prod.outlook.com>
+ <PH0PR17MB4848F60C6E91ECB7CDF308138E0C9@PH0PR17MB4848.namprd17.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <PH0PR17MB4848F60C6E91ECB7CDF308138E0C9@PH0PR17MB4848.namprd17.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,78 +84,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SPI clock for pl022 is "sspclk" and meanwhile ST Ericsson platform
-specify "SSPCLK" as clock name. Even though binding check don't
-differentiate the two names, better to keep same convention throughout
-i.e sspclk to align with other platforms.
+On 11/03/2022 11:04, Neumann, Bastian wrote:
+> This patch adds devicetree properties to enable signal boosting on USB ports.
+> 
+> Signed-off-by: Bastian Neumann <bastian.neumann@dentsplysirona.com>
+> ---
+>  .../devicetree/bindings/usb/usb251xb.txt      | 22 +++++++++++++
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
-v2:
-- Separate out patches for various platforms
-- Rebase to top
+Please split the bindings change. scripts/checkpatch did not complain?
 
- arch/arm/boot/dts/ste-dbx5x0.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+You also need to Cc maintainers. Use scripts/get_maintainer.pl for this.
 
-diff --git a/arch/arm/boot/dts/ste-dbx5x0.dtsi b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-index dc0bcc7020f1..c28b32640254 100644
---- a/arch/arm/boot/dts/ste-dbx5x0.dtsi
-+++ b/arch/arm/boot/dts/ste-dbx5x0.dtsi
-@@ -755,7 +755,7 @@ ssp0: spi@80002000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			clocks = <&prcc_kclk 3 1>, <&prcc_pclk 3 1>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 8 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 8 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
-@@ -772,7 +772,7 @@ ssp1: spi@80003000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			clocks = <&prcc_kclk 3 2>, <&prcc_pclk 3 2>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 9 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 9 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
-@@ -790,7 +790,7 @@ spi0: spi@8011a000 {
- 			#size-cells = <0>;
- 			/* Same clock wired to kernel and pclk */
- 			clocks = <&prcc_pclk 2 8>, <&prcc_pclk 2 8>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 0 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 0 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
-@@ -807,7 +807,7 @@ spi1: spi@80112000 {
- 			#size-cells = <0>;
- 			/* Same clock wired to kernel and pclk */
- 			clocks = <&prcc_pclk 2 2>, <&prcc_pclk 2 2>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 35 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 35 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
-@@ -824,7 +824,7 @@ spi2: spi@80111000 {
- 			#size-cells = <0>;
- 			/* Same clock wired to kernel and pclk */
- 			clocks = <&prcc_pclk 2 1>, <&prcc_pclk 2 1>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 33 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 33 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
-@@ -841,7 +841,7 @@ spi3: spi@80129000 {
- 			#size-cells = <0>;
- 			/* Same clock wired to kernel and pclk */
- 			clocks = <&prcc_pclk 1 7>, <&prcc_pclk 1 7>;
--			clock-names = "SSPCLK", "apb_pclk";
-+			clock-names = "sspclk", "apb_pclk";
- 			dmas = <&dma 40 0 0x2>, /* Logical - DevToMem */
- 			       <&dma 40 0 0x0>; /* Logical - MemToDev */
- 			dma-names = "rx", "tx";
--- 
-2.25.1
+Read:
+https://elixir.bootlin.com/linux/v5.13/source/Documentation/process/submitting-patches.rst
 
+Best regards,
+Krzysztof
