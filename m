@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8484B4D674F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 18:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D214D6756
+	for <lists+devicetree@lfdr.de>; Fri, 11 Mar 2022 18:15:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349343AbiCKRO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 12:14:59 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37072 "EHLO
+        id S1350620AbiCKRQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 12:16:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348722AbiCKRO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 12:14:58 -0500
+        with ESMTP id S234943AbiCKRQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 12:16:22 -0500
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42ECE19533B
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:13:55 -0800 (PST)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE8FE198EC8
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:15:18 -0800 (PST)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 2AC003F338
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 17:13:53 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 66C713F1E8
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 17:15:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647018833;
-        bh=RfqNtSnj7KKKappRytqaJ2yaBytssi4EFd5mt0OX61o=;
+        s=20210705; t=1647018917;
+        bh=Gc6o0dauMHLl2STaeWokUxRcXEEeDCCMBhTEPo6BQBk=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=iTKMULHw0VSM/mQTOwU6K9A/dmM99yp0YiRjgxKj4kksoYJuKQElBd1PDnjGTd/9V
-         biME75E4YyMee/jn2jX/XwAl7HNKsK5o5Kg+Xfy4Y3cIYW2MF1tpeqRWc6UOSA/CYn
-         eyh8Ked5z0NAcVRakGtznLrNj/jMkqMA9p2xiN35w8tV3Mvs4lqrOcKMI7Ed0R+8bi
-         8bVpgJjaJAI+pPdT8IZPRIMLo4S7HWxaxOrw+/6j6EFfNeP/zFaE9pW0U+AfcRuTuN
-         wnDqTCjLNIVEotAtz0AnJWDpIfidQxU+VNpOD05D0HhsfkUkb5AOcptE1y0js8Y5cT
-         cgmL/BZAVfPrw==
-Received: by mail-ed1-f72.google.com with SMTP id l8-20020a056402028800b0041636072ef0so5157556edv.13
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:13:53 -0800 (PST)
+        b=nLoSZhMTClwjYAvHHm8lNAG61KmYWDLgXEdkqQ7wYwekvgvOsXeZqpYEEFrJdJp8N
+         wvHKg55bgZjhX9K7dqNgejDJ2ChZMRsiuVDFDqP6jMDEkEOelG42QBqVQC+0n+Xpel
+         8LUg4YH6MxmrpiHScKCQBqO7EhbgnXaF0Wf1Ca8vnT8CBE8DBOaskuYPLBu7oXqdCd
+         nH03aB8I/Gr4+41U2D8AgFYktfoSBq0p1QqnZv5oWnHJlxUJIzyvdRuKVGMzEFNVbJ
+         R+vxXXwYfMri5ecB1uPfbQcRh+jq30WNgfyD6Wc3CqP3aWeHUOkuCccpOCOb1AwAf8
+         B4pS5ZpKm0eLQ==
+Received: by mail-ej1-f71.google.com with SMTP id l24-20020a170906a41800b006da873d66b6so5253003ejz.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 09:15:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=RfqNtSnj7KKKappRytqaJ2yaBytssi4EFd5mt0OX61o=;
-        b=fLH/KTmCuc2LehHR8lh4CgYibgm8ELeFh9qkxkt4ofFNpiuLNH9wj3LImBOJovVJjl
-         dmU2dt2zfyDZAMnz1HsJ5hkLdDwhd2lsN0kJQ7B3WOrt6RhO9UlhiWV2HbJtvr0o2ZyT
-         vCQ7vBpSx3lqJX24qx25wSmZLXyUrkrO20Of2euFAe66XzmCnlMZZixw+LGOL2tkDv2B
-         A8UbgaXHd9He9rolzgvGEDzl2QR0EmLwXd+ZOhEj6G1nFUhl2uARPUwpACNUxiCHdStT
-         yYUABzfFRpyueEpBkwy/1UF5ju5zdvUHuJlucgR1fm/7lbiIJ/rOXLuESmgxyyMMGxea
-         ycNA==
-X-Gm-Message-State: AOAM532+Cfv0TUMKoJBzMNlVZ/WDlMtGqiifcQbVr7HdcNGrs0qwd+Sq
-        oHTU6WslpeqIhwbbxrNRY+o7AVWBoiNYgC1XSvnXawVz3oVA9tiKTnwyuZjXqz62Hivypo08+L6
-        V2C9x4sl5epeY50JCcfS4cDqfluZIt0o+RvRDv0k=
-X-Received: by 2002:a17:907:97c7:b0:6da:b3ba:6d9f with SMTP id js7-20020a17090797c700b006dab3ba6d9fmr9858772ejc.256.1647018832691;
-        Fri, 11 Mar 2022 09:13:52 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyRIzUayyIxbwvakLgZFmLbT5KgaaaJ42ffeJIr0rYpRuq1vd6YDm0FwIL/67DY8Vy2zzgkGQ==
-X-Received: by 2002:a17:907:97c7:b0:6da:b3ba:6d9f with SMTP id js7-20020a17090797c700b006dab3ba6d9fmr9858747ejc.256.1647018832433;
-        Fri, 11 Mar 2022 09:13:52 -0800 (PST)
+        bh=Gc6o0dauMHLl2STaeWokUxRcXEEeDCCMBhTEPo6BQBk=;
+        b=1czrZ2zJpgjEhdcFySH2tgyLRqmgdQtpL+uI45oQQ6lsdsy/dlfCc4Se6iluZT+ryC
+         bBbP1AE08rySDSV+inylg9xlp+TBOCYzQOdSeJgHJMi3GfU5YpuJB0YpaopZOVb/iJDT
+         QwndIL8edUYea2SZ5DeJOjVlohPwym6WYJcurMhtuDk/6aENYbnpMVdI1vZ67zl8YN6D
+         DqU4Jo708gVlGee2T0pNHvo9X/siaJb+06alQ31gtWIyGyxnyWA9y6owbXNZ80lgdsdx
+         BiwFa4h8BxbqT9+fAhr0SqRLdQj3ayGkIaJPF/yFv7vVyZy/pKtOMA66Wz3jWlO8a22+
+         YeFA==
+X-Gm-Message-State: AOAM532GWzmYoztNYoBs5hO/E1s3tlzuHbA5m5wE4JJBLGhxHmFucBTB
+        uzwTznn0Xohhld3b9eNEFXzKMI6y/FVJJ7OfVwIxoKD/hdiDXtfaBi9TE90HQFmwSSu3ebhYelM
+        h5bRqkX9tlqVQV6Ujv/ctqPkme9VN2K8dLrp32IA=
+X-Received: by 2002:a17:907:72ce:b0:6db:aed5:833e with SMTP id du14-20020a17090772ce00b006dbaed5833emr2360558ejc.420.1647018917074;
+        Fri, 11 Mar 2022 09:15:17 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJwWC3BNaoCDDBdVXvwFBdb9cwHbA2vuKv+B1Eq7wiK2TARd6INYgWvkDRlyfEkVilx8u7a0rQ==
+X-Received: by 2002:a17:907:72ce:b0:6db:aed5:833e with SMTP id du14-20020a17090772ce00b006dbaed5833emr2360548ejc.420.1647018916905;
+        Fri, 11 Mar 2022 09:15:16 -0800 (PST)
 Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id hz7-20020a1709072ce700b006db4bd52016sm3254706ejc.144.2022.03.11.09.13.51
+        by smtp.gmail.com with ESMTPSA id ky5-20020a170907778500b006d1b2dd8d4csm3126784ejc.99.2022.03.11.09.15.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Mar 2022 09:13:52 -0800 (PST)
-Message-ID: <9cebbeb7-3914-6a7a-def1-06b5ee71932f@canonical.com>
-Date:   Fri, 11 Mar 2022 18:13:51 +0100
+        Fri, 11 Mar 2022 09:15:16 -0800 (PST)
+Message-ID: <e9f0024a-461f-9f64-aa19-94b5ccf35be3@canonical.com>
+Date:   Fri, 11 Mar 2022 18:15:06 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v3 05/10] dt-bindings: timer: Add HPE GXP Timer Binding
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: imu: mpu6050: Document
+ invensense,icm20608d
 Content-Language: en-US
-To:     "Hawkins, Nick" <nick.hawkins@hpe.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     "Verdun, Jean-Marie" <verdun@hpe.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20220310195229.109477-1-nick.hawkins@hpe.com>
- <20220310195229.109477-5-nick.hawkins@hpe.com>
- <YittU9MfIFye9e2p@robh.at.kernel.org>
- <PH0PR84MB1718CAA1172CE891AA4E361C880C9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+To:     michael.srba@seznam.cz, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220311161600.1469-1-michael.srba@seznam.cz>
+ <20220311161600.1469-2-michael.srba@seznam.cz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <PH0PR84MB1718CAA1172CE891AA4E361C880C9@PH0PR84MB1718.NAMPRD84.PROD.OUTLOOK.COM>
+In-Reply-To: <20220311161600.1469-2-michael.srba@seznam.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -89,97 +86,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 17:22, Hawkins, Nick wrote:
-> On Thu, Mar 10, 2022 at 01:52:24PM -0600, nick.hawkins@hpe.com wrote:
->>> From: Nick Hawkins <nick.hawkins@hpe.com>>
->>>
->>> Creating binding for gxp timer in device tree hpe,gxp-timer Although 
->>> there are multiple times on the SoC we are only enabling one at this 
->>> time.
->>>
->>> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>>
->>>
->>> ----
->>>
->>> v2:
->>>  *Removed maintainer change from patch  *Verified there was no 
->>> compilation errors  *Added reference code in separate patch of 
->>> patchset
->>> ---
->>>  .../bindings/timer/hpe,gxp-timer.yaml         | 45 +++++++++++++++++++
->>>  1 file changed, 45 insertions(+)
->>>  create mode 100644 
->>> Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml 
->>> b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
->>> new file mode 100644
->>> index 000000000000..1f4e345c5fb8
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/timer/hpe,gxp-timer.yaml
->>> @@ -0,0 +1,45 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
->>> +---
->>> +$id: 
->>> +INVALID URI REMOVED
->>> +xp-timer.yaml*__;Iw!!NpxR!yaItMPvjqEf3fKyp1xDQAzawRQDd8uDGTNKMlVPpn5Y
->>> +56IUABMYbali7jonBl20K$
->>> +$schema: 
->>> +INVALID URI REMOVED
->>> +aml*__;Iw!!NpxR!yaItMPvjqEf3fKyp1xDQAzawRQDd8uDGTNKMlVPpn5Y56IUABMYba
->>> +li7jmX565-G$
->>> +
->>> +title: HPE GXP TIMER
->>> +
->>> +maintainers:
->>> +  - Nick Hawkins <nick.hawkins@hpe.com>>
->>> +  - Jean-Marie Verdun <verdun@hpe.com>>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: hpe,gxp-timer
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: T0CNT register
->>> +      - description: T0CS register
->>> +      - description: TIMELO register
+On 11/03/2022 17:15, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
 > 
->> Is the spec public to know what T0CNT, T0CS, and TIMELO are?
-> No it is not, should I not mention the register descriptions at all?
+> ICM-20608-D differs from the other ICM-20608 variants by having
+> a DMP (Digital Motion Processor) core tacked on.
+> Despite having a different WHOAMI register, this variant is
+> completely interchangeable with the other ICM-20608 variants
+> by simply pretending the DMP core doesn't exist.
 > 
->>> +
->>> +  interrupts:
->>> +    maxItems: 1
->>> +
->>> +  clock-frequency:
->>> +    description: The frequency of the clock that drives the counter, in Hz.
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - interrupts
->>> +  - clock-frequency
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    timer@10003000 {
->>> +        compatible = "hpe,gxp-timer";
->>> +        reg = <0xc0000080 0x1>>, <0xc0000094 0x01>>, <0xc0000088 0x08>>;
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> ---
+> changelog:
+>  - v2: require specifying "invensense,icm20608" as a fallback compatible
+> ---
+>  .../bindings/iio/imu/invensense,mpu6050.yaml  | 34 +++++++++++--------
+>  1 file changed, 19 insertions(+), 15 deletions(-)
 > 
->> Based on the driver these are 4 bytes, 1 byte, 4 bytes in size.
-> 
->> Are there other registers in 0x80-0x95 range or do these offsets change in other chips? If not, just 1 entry covering the whole thing would be better.
-> There are other registers in this range that cover different timers/clocks, for the most part between chip generations the offsets remain the same unless there is an architectural issue.
-> Can you provide a quick example of what one entry would be?
 
-arch/arm/boot/dts/versatile-ab.dts
 
-and actually 90% of DTS... it's rather a challange to find such
-fine-grained iomap.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+
 
 Best regards,
 Krzysztof
