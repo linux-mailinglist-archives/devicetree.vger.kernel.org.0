@@ -2,71 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC6954D6C53
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 04:45:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 01C174D6C5B
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 04:47:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230294AbiCLDqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 22:46:51 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45664 "EHLO
+        id S230289AbiCLDsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 22:48:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230284AbiCLDqs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 22:46:48 -0500
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7201C23A1A3;
-        Fri, 11 Mar 2022 19:45:42 -0800 (PST)
-Received: by mail-oi1-f171.google.com with SMTP id o83so4093779oif.0;
-        Fri, 11 Mar 2022 19:45:42 -0800 (PST)
+        with ESMTP id S229679AbiCLDsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 22:48:22 -0500
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6545C2396BD;
+        Fri, 11 Mar 2022 19:47:18 -0800 (PST)
+Received: by mail-oi1-f179.google.com with SMTP id w127so11512978oig.10;
+        Fri, 11 Mar 2022 19:47:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=vd8wRMirH20qZ3MunPMpjYuLCrOwOqi3XC/b/3pYVHA=;
-        b=AEmN4XziGjGnoCm2ZOC3TnGCMEVjdx8ZtBsIlRiMDnCNOyDJrI+9Lkfuo3PbeSuRJk
-         fe4FRxHpzdqkWoemzW3AZ6uO8Cxu4vM7TcbXwyFvL/jXSUwFTyrGA4OViFbWyQRxSLwF
-         wozG+oD+XfWNPCmHx5WEHCC/r53889vugYyIzyYeLNPbhQ2QiRiFGlYG6gJ5idyNHIhV
-         4OHx9oGojvI01S78Ky2+/XeXyp/qkx7pfeCBRMghWrtBFaaK7Cmr1FFuUwKmb/OqWzIb
-         EitQZN+Z7z/0C1R9DSTqSyiT8+HWojNpGgITgx9NQnoL5bUEaBfF1fxUxRzU71JXFTur
-         5qMw==
-X-Gm-Message-State: AOAM532e8Gey1RntpjRgBuSsE873F8zCe8wZj986dSknc/BHwEst9cV4
-        m49NQlOgClBr1c3q/4LQVQ==
-X-Google-Smtp-Source: ABdhPJx4byST3cn01Iwsrcdl0TxymdYn3svPvMQkqG/bJhnL9oRUPuCxQhxOTuMBuuFJbDX7dtHbZg==
-X-Received: by 2002:a05:6808:d4:b0:2da:503b:40a with SMTP id t20-20020a05680800d400b002da503b040amr8863995oic.121.1647056741712;
-        Fri, 11 Mar 2022 19:45:41 -0800 (PST)
+        bh=94UTeEsxQuooHcLqoJmGpm1RqHEvtqCyl7TCKVVAmBw=;
+        b=zTRp+sca5kv7Ii3UsP1Jv2frkMPiTFJ6UZ2h09vR9hiG2XVdRJnLpgF3hHbZGNdS6e
+         KQqPSTGTdIeAwdbXAIvADZTAgqzZ8bTY9iN/U+jvagHWti5N/9uL9R5dQkPLzLgpHK5b
+         J2kiRSPuZr1nCwlryzetrv9i8pQI0J7PU3H2ToKxA5u8TPqFHDbN8Olb1fNgEayvIAuM
+         DqLmSpFWUrhbONvTwFGSmnad+AaJRdmlR13AbaihFJVN1M+YGMyhNN75EOJQ/r7JsraW
+         bmIGKS4YDhWBE4PQAisGjQt4b+uHjBQcV/bCTur4e0d/sDNOIwGd2dI4FTnX5sKD6tmV
+         S1gw==
+X-Gm-Message-State: AOAM5336grwEXgMj9Y+atrt8rqj+Dn/FgM856ew/nHu3LezYIlS5fdhk
+        3reHshq1TON1qNAeK0nakw==
+X-Google-Smtp-Source: ABdhPJx24b680DkwCLg7OQiUAd6Fu1rngGBgr+3t7LTwV5jrOQ3Up0BSQcCoCG9PmVjlG40knsS6Xg==
+X-Received: by 2002:a05:6808:1208:b0:2cf:48c1:bfb9 with SMTP id a8-20020a056808120800b002cf48c1bfb9mr15004632oil.15.1647056837728;
+        Fri, 11 Mar 2022 19:47:17 -0800 (PST)
 Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
-        by smtp.gmail.com with ESMTPSA id bb39-20020a05680816a700b002d9a8eb89fasm4515278oib.46.2022.03.11.19.45.40
+        by smtp.gmail.com with ESMTPSA id t7-20020a9d5907000000b005afa4058a4csm4543405oth.1.2022.03.11.19.47.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 19:45:41 -0800 (PST)
-Received: (nullmailer pid 730936 invoked by uid 1000);
-        Sat, 12 Mar 2022 03:45:39 -0000
-Date:   Fri, 11 Mar 2022 21:45:39 -0600
+        Fri, 11 Mar 2022 19:47:16 -0800 (PST)
+Received: (nullmailer pid 733348 invoked by uid 1000);
+        Sat, 12 Mar 2022 03:47:14 -0000
+Date:   Fri, 11 Mar 2022 21:47:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Frank Wunderlich <linux@fw-web.de>
-Cc:     Michael Riesch <michael.riesch@wolfvision.net>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+To:     Christophe Branchereau <cbranchereau@gmail.com>
+Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        dri-devel@lists.freedesktop.org, Sam Ravnborg <sam@ravnborg.org>,
+        Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-ide@vger.kernel.org, Jens Axboe <axboe@kernel.dk>,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-kernel@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        soc@kernel.org, Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org,
-        Viresh Kumar <vireshk@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v6 5/6] dt-bindings: ata: ahci-platform: Add
- rk3568-dwc-ahci compatible
-Message-ID: <YiwXY6/JVwMUfa71@robh.at.kernel.org>
-References: <20220311210357.222830-1-linux@fw-web.de>
- <20220311210357.222830-6-linux@fw-web.de>
+        David Airlie <airlied@linux.ie>
+Subject: Re: [PATCH v4 4/4] dt-bindings: display/panel: Add Leadtek
+ ltk035c5444t
+Message-ID: <YiwXwlFJgSKaBFqI@robh.at.kernel.org>
+References: <20220311170240.173846-1-cbranchereau@gmail.com>
+ <20220311170240.173846-5-cbranchereau@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20220311210357.222830-6-linux@fw-web.de>
+In-Reply-To: <20220311170240.173846-5-cbranchereau@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -78,19 +68,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 22:03:56 +0100, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Fri, 11 Mar 2022 18:02:40 +0100, Christophe Branchereau wrote:
+> Add binding for the leadtek ltk035c5444t, which is a 640x480
+> mipi-dbi over spi / 24-bit RGB panel based on the newvision
+> NV03052C chipset.
 > 
-> Add SoC specific compatible for rk3568 ahci controller
+> It is found in the Anbernic RG350M mips handheld.
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Signed-off-by: Christophe Branchereau <cbranchereau@gmail.com>
 > ---
-> v6:
->   change subject to dwc instead of dwc3
-> ---
->  Documentation/devicetree/bindings/ata/ahci-platform.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  .../display/panel/leadtek,ltk035c5444t.yaml   | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/leadtek,ltk035c5444t.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
