@@ -2,67 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E7B724D704B
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 19:06:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 796A74D7054
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 19:12:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232385AbiCLSHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 13:07:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54722 "EHLO
+        id S230184AbiCLSNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 13:13:42 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232381AbiCLSHd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 13:07:33 -0500
-Received: from mail-pg1-x52d.google.com (mail-pg1-x52d.google.com [IPv6:2607:f8b0:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A4070CDB;
-        Sat, 12 Mar 2022 10:06:28 -0800 (PST)
-Received: by mail-pg1-x52d.google.com with SMTP id q19so10193948pgm.6;
-        Sat, 12 Mar 2022 10:06:28 -0800 (PST)
+        with ESMTP id S229565AbiCLSNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 13:13:41 -0500
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964FC1DF847;
+        Sat, 12 Mar 2022 10:12:35 -0800 (PST)
+Received: by mail-lj1-x232.google.com with SMTP id 25so16333234ljv.10;
+        Sat, 12 Mar 2022 10:12:35 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p0GzujtrGM9Z+sUlTt2clDdUTuQkuCPOBQNUOQ7491g=;
-        b=JMoKF9I+mRFfMuK0T25u/ur8rVBEIOJGM/i02jlg13o5RMotmChfNNixCR57t0Zye9
-         pvn7EzqX0tpt/14Pth37E42Twkvv8+2Wmxi9HIZuPtAh7cCnCQUJO2jYDhj9tw5qvtN2
-         is3gU+XiPUjGNazWT1sYwkYyV9MwW2ZfcLeiYG1y6u9+yf/LVavP2eLBmAu+m67a0mCq
-         5YOztOkUY65BA3fU9LklrlaFi6hPkAI2knZI+C2pmkVd4D1LWZUb7E+FgSOG3IMoGAF9
-         l7fkMBP8iMlVc/p11LkxYMhePEOVs1+CrvFnAhVjJKbjuOmCd8LGw2vK9RtjhfSzPEqc
-         UAAA==
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=k2rzdAvd062YWQZphahXNpHBoTUA0G/kUu5FJsmYidI=;
+        b=cLIch6UNGEWBwpXkAfGnrMnkGP8hmmnuf7HiuH+uAu625SU0QmoGlc2SVrOSwdtHHB
+         Ow2OyVUaeaCPY96YSOm8M/19K6KTez6AWn/3d/zmgIar9rkof3FPKnm87lO8kwKM2+1b
+         3dX/gghLidF9HFV9HA0dXTkHfSUl/emasVYkGBa1cGvsdyxcncX44/2QpeLKqMLtYM/n
+         XVvI3R378Ml+kG+Udza0rBX+dQPpqIuyderqiQEZniZbeF54vps152YPilKfdRClGtCi
+         +cDeXVjFwu8Q7m3gLbXHxzTrBZXLNfwWgOyNtQU1Fpf00ssSL7uReonjyQonkmPSXM34
+         Y7Dg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p0GzujtrGM9Z+sUlTt2clDdUTuQkuCPOBQNUOQ7491g=;
-        b=WE7J/7uQY4N/SV0V5yPc1DstG6iyBESTIyVbHKN/oJ8yGzwkVGCeZujOsAM+/PueGf
-         tzwRxtCkXRNqLUjlGr1quiVKhm8BqB37pSe58q4k35zAEvz7skNv4ATzuUILHbjaoavR
-         AejaQW8TfB7PrWhg4XAezXShSDcM2rRo5TnP+HJpncijkMuK6Il2MJ44Hn5RHZWAp1k3
-         tXJ2mPkI8S7nNqglfJ1+krPsZ13Gjpst2XbMyGaJDnFoS/kxxugQgCC5NA5tgA9xp1sn
-         j32LWagO/lGNM9bnMTK2RseKpvuRkQzwsFfuHvxJvFqs4B0a0xGUYTtMGQJ0/Bc7vW9P
-         LbNA==
-X-Gm-Message-State: AOAM530xllwbty1Kx19Jl1XsKgpY+01kh2KFZbEtJc2MInNhesQzpf9h
-        wR2cGIvQBpoXz1eZU3I+hZ1rsem5rYI=
-X-Google-Smtp-Source: ABdhPJyF9kO3rvea9Hls8NcNDo5E9gu1t9UmoheAdi6EQE8QSPmyP5CHKblJH4//un/nzAQtzI1eSw==
-X-Received: by 2002:a63:4412:0:b0:372:f29e:3108 with SMTP id r18-20020a634412000000b00372f29e3108mr13209087pga.354.1647108387749;
-        Sat, 12 Mar 2022 10:06:27 -0800 (PST)
-Received: from localhost.localdomain ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id z72-20020a627e4b000000b004f70cbcb06esm14017951pfc.49.2022.03.12.10.06.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Mar 2022 10:06:27 -0800 (PST)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vladimir Zapolskiy <vz@mleia.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: lpc18xx: Update SPI dma properties
-Date:   Sat, 12 Mar 2022 23:36:15 +0530
-Message-Id: <20220312180615.68929-3-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220312180615.68929-1-singh.kuldeep87k@gmail.com>
-References: <20220312180615.68929-1-singh.kuldeep87k@gmail.com>
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=k2rzdAvd062YWQZphahXNpHBoTUA0G/kUu5FJsmYidI=;
+        b=pNA80S4loR1jLbS6iYDYoiBF9f1LtcGJ9cOwMflI/xsDpMYj69HxeSu/kf593RnaPW
+         zO2y3j//fj0ui2cHNvkO++uW4mky9QWsW+qF5ei4h2jpcxhbzFFFQEGtubD09hv3bASD
+         mIPD68eTjruGjfZ4ba5XFYl24PWnXbEslebp+wd0TfiXpJXAByKADFEooGrHXu0qPu0L
+         Ks4FS3gMEgxFRtCHlUks9gkZ210UcPvoSfR5LhnGpJSH+Azz4nSFMEUmAbKbO+vYxB00
+         CfWXGfJaqMWRr1STciM/GzHJ1NT9N92A0xdmTYP09Hz2FMxNjTm5CkCdgBKPUNwB5Vps
+         pEOg==
+X-Gm-Message-State: AOAM531Vroghesi9rERdOlot7xLFmS7eSXMsLBhXV9hJKSRERsQ+tSIO
+        E+k1FaKEc/1wuhRGStf60t4=
+X-Google-Smtp-Source: ABdhPJxKzGvN1o8WcEOhsd6BTrlU/Lny5O/iTIWdGCHtEoNj9ujCnMKIsvOKhUi0uhP9YsrKpfM9og==
+X-Received: by 2002:a2e:2d0a:0:b0:248:7c35:28b4 with SMTP id t10-20020a2e2d0a000000b002487c3528b4mr8155470ljt.175.1647108753844;
+        Sat, 12 Mar 2022 10:12:33 -0800 (PST)
+Received: from [192.168.2.145] (109-252-136-171.dynamic.spd-mgts.ru. [109.252.136.171])
+        by smtp.googlemail.com with ESMTPSA id g19-20020a2e3913000000b00247dea5b468sm2571838lja.115.2022.03.12.10.12.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Mar 2022 10:12:33 -0800 (PST)
+Message-ID: <45e5f833-b492-30df-a1ed-108e05a2b465@gmail.com>
+Date:   Sat, 12 Mar 2022 21:12:31 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v4 3/9] gpu: host1x: Add context device management code
+Content-Language: en-US
+To:     cyndis@kapsi.fi, thierry.reding@gmail.com, jonathanh@nvidia.com,
+        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com
+Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Mikko Perttunen <mperttunen@nvidia.com>
+References: <20220301161455.4037062-1-cyndis@kapsi.fi>
+ <20220301161455.4037062-4-cyndis@kapsi.fi>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20220301161455.4037062-4-cyndis@kapsi.fi>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,53 +78,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SPI pl022 describes dma-names as RX,TX.
-Reorder dmas and dma-names properties to follow specified convention.
-And while at it, also fix entries order within dma pairs.
+01.03.2022 19:14, cyndis@kapsi.fi пишет:
+> +/* host1x context devices */
+> +
+> +struct host1x_context {
+> +	struct host1x *host;
+> +
+> +	refcount_t ref;
+> +	struct pid *owner;
+> +
+> +	struct device dev;
+> +	u64 dma_mask;
+> +	u32 stream_id;
+> +};
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-CC: soc@kernel.org
----
- arch/arm/boot/dts/lpc18xx.dtsi | 19 +++++++------------
- 1 file changed, 7 insertions(+), 12 deletions(-)
+I'm still not very happy about the "context" names. For example here
+it's only about the "memory context", then why not to name struct as
+host1x_memory_context or host1x_memctx?
 
-diff --git a/arch/arm/boot/dts/lpc18xx.dtsi b/arch/arm/boot/dts/lpc18xx.dtsi
-index 10b8249b8ab6..b3070cc927b7 100644
---- a/arch/arm/boot/dts/lpc18xx.dtsi
-+++ b/arch/arm/boot/dts/lpc18xx.dtsi
-@@ -317,8 +317,7 @@ ssp0: spi@40083000 {
- 			clocks = <&ccu2 CLK_APB0_SSP0>, <&ccu1 CLK_CPU_SSP0>;
- 			clock-names = "sspclk", "apb_pclk";
- 			resets = <&rgu 50>;
--			dmas = <&dmamux  9 0 2
--				&dmamux 10 0 2>;
-+			dmas = <&dmamux  10 0 2>, <&dmamux 9 0 2>;
- 			dma-names = "rx", "tx";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
-@@ -424,16 +423,12 @@ ssp1: spi@400c5000 {
- 			clocks = <&ccu2 CLK_APB2_SSP1>, <&ccu1 CLK_CPU_SSP1>;
- 			clock-names = "sspclk", "apb_pclk";
- 			resets = <&rgu 51>;
--			dmas = <&dmamux 11 2 2
--				&dmamux 12 2 2
--				&dmamux  3 3 2
--				&dmamux  4 3 2
--				&dmamux  5 2 2
--				&dmamux  6 2 2
--				&dmamux 13 2 2
--				&dmamux 14 2 2>;
--			dma-names = "rx", "tx", "tx", "rx",
--				    "tx", "rx", "rx", "tx";
-+			dmas = <&dmamux 12 2 2>, <&dmamux 11 2 2>,
-+					<&dmamux  4 3 2>, <&dmamux  3 3 2>,
-+					<&dmamux  6 2 2>, <&dmamux  5 2 2>,
-+					<&dmamux 14 2 2>, <&dmamux 13 2 2>;
-+			dma-names = "rx", "tx", "rx", "tx",
-+						"rx", "tx", "rx", "tx";
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			status = "disabled";
--- 
-2.25.1
-
+It's not good to use generic names for a special things, it hurts
+readability of the code. It's important to choose good names.
