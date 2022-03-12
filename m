@@ -2,135 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471864D708E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 20:36:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EDCD4D7095
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 20:42:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232184AbiCLThc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 14:37:32 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39162 "EHLO
+        id S232482AbiCLTne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 14:43:34 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230463AbiCLTha (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 14:37:30 -0500
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3C7B1E5A41;
-        Sat, 12 Mar 2022 11:36:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1647113782; x=1678649782;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Lz8K0dUPGpc/1uRH8Zcl398VD5Ti2+GvTusojZY7Lz4=;
-  b=Sy5WXcuPH/cSFTiY8y9kgo5US3JfEsKk7SVf/oTzFSqedIEaS90BZ4FF
-   FBerzNS5+gYtpTeBFnQP5PpSsL/10IeBvN3f5sWZJgTFJ1Rn2J/jlwN4+
-   1vyYldLpGPZ+yRuozbKM8twfUMxM/6xQ+kufokK6nxA0jh4gfi/Je7m07
-   08WeVP8yhj3+aWsDHSkpyVXzPRSyziY8WhHXSoY0AyhmL0ggIEdOqqeAf
-   nvhbMvzCR9qwPseAulf/zs6cQwQRhJ2X6vsNrnZ3yLWvz7ZKOwRfMXF9X
-   15wPFSyw1Wd80N/AZIK7E52r60JYY7aAiiHHWIlLCUlPCvImWTeTmJpIW
-   g==;
-X-IronPort-AV: E=Sophos;i="5.90,177,1643698800"; 
-   d="scan'208";a="165542644"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Mar 2022 12:36:21 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2375.17; Sat, 12 Mar 2022 12:36:21 -0700
-Received: from localhost (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
- Transport; Sat, 12 Mar 2022 12:36:21 -0700
-Date:   Sat, 12 Mar 2022 20:36:20 +0100
-From:   "Allan W. Nielsen" <allan.nielsen@microchip.com>
-To:     Richard Cochran <richardcochran@gmail.com>
-CC:     Horatiu Vultur <horatiu.vultur@microchip.com>,
-        "Russell King (Oracle)" <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, <Divya.Koppera@microchip.com>,
-        <netdev@vger.kernel.org>, <hkallweit1@gmail.com>,
-        <davem@davemloft.net>, <kuba@kernel.org>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <UNGLinuxDriver@microchip.com>, <Madhuri.Sripada@microchip.com>,
-        <Manohar.Puri@microchip.com>
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <20220312193620.owhfd43dzzxtytgs@den-dk-m31684h>
-References: <YidgHT8CLWrmhbTW@lunn.ch>
- <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
- <YiecBKGhVui1Gtb/@lunn.ch>
- <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
- <YifoltDp4/Fs+9op@lunn.ch>
- <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
- <Yii/9RH67BEjNtLM@shell.armlinux.org.uk>
- <20220309195252.GB9663@hoboy.vegasvil.org>
- <20220311142814.z3h5nystnrkvbzek@soft-dev3-1.localhost>
- <20220311150842.GC7817@hoboy.vegasvil.org>
+        with ESMTP id S232479AbiCLTnc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 14:43:32 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 398DD1E95D5;
+        Sat, 12 Mar 2022 11:42:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1647114122;
+        bh=gmHjb3GM7NBI5PlcZhbgVcZM3tG+NqIz10+ZQFuyclk=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=Y5ZMg1hw7oFoPr+CFrrvDC+BxdBMDFXWEwaWVzC3693ZoXaEmrDRy1NYOCaN+9ZXZ
+         VG6JynJFzjSsrGl2f8Idp6H3l556r2u6lud1XBWmVimr1OfrCVsv7KU/7M4Gexcuqe
+         8GWQNbPYpYupuNt0m+IvEqdSBmaabV25D3jKhjIE=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([185.66.193.43]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mz9Yv-1oOusc37v1-00wDxs; Sat, 12
+ Mar 2022 20:42:01 +0100
+Date:   Sat, 12 Mar 2022 20:41:59 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alistair@alistair23.me,
+        samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: Re: [RFC PATCH 2/6] drm: Add skeleton for EPDC driver
+Message-ID: <Yiz3h0GYcyD/hgX3@latitude>
+References: <20220206080016.796556-1-andreas@kemnade.info>
+ <20220206080016.796556-3-andreas@kemnade.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uMoMbLT3WzEqMEI6"
 Content-Disposition: inline
-In-Reply-To: <20220311150842.GC7817@hoboy.vegasvil.org>
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
-        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220206080016.796556-3-andreas@kemnade.info>
+X-Provags-ID: V03:K1:6RMJz1gIrCwfqHTO27MOtOn8HQvVJNHPrD278kDlI88ZiS+B9m3
+ UF2lmuXG+bYI//TpkzX7JnwQKFvghalzTmPLdXNU2fY/oM5ggNuf8zL8xe/RaXAi6qvVAuv
+ YuYJ3SE0ehiEdkofwWCTEaTv5U8295/BQ8ukf2DihcYM1ipPxx5jTFHnqeDlDV7p0nlRfK/
+ sti09F5JQikBhdv+uzjAg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:rYTTcnp4vEc=:ev7zb8eTPJRCa5hLFhmiLc
+ R1Wyq8I8jy10R5gez+xLFqYBZjlyq7zVTczqIJuCJnXbA8YOgo56dUzUsLBJ74z2E4cqqaNT6
+ x7dih/7/vW0/Om83aTsAVfC2wBM9GljkrWlbkYblpx5hALROMTRG93Pbf7mnvabc+cDJlFBqd
+ RzuLu4+ovWwivKLMXuhY8pjYgNLSrs38DGJCbnNDM0tDtJrouRM799ufrBBWqvwYzyyxqVFDe
+ UwrEyVcvjTbf12FzJo4qXKlOLDBA3sNZpH5mQPoHlCD7xReERbwiawBjndg3qZu/gRh5gDevV
+ ZUe2cOhWXDBwFSiEkyeO8F7XNIdZ5Cy5Xj2V+Bv1MxRtfpjRD1gpeSVXb519lReyDN9pW3ciO
+ EE2WDNVvBfucquf9g8Yc/CBekHIUSu1cZPRGq9aukZkz+WLB373W71Bel6pyR09TZx/9xsqbC
+ +WjbZzHFjUu8x0BsHY12K+4ph1Yk02MrUzmMFmUyivz6jW3Bp2R8t1TkK5MYqhw8E5NqF2xIL
+ DDX2Wmr9fbHFxwiZSdS/w6KhLj68W/pXp1uiijP05nbTpjAklK0nZjnVrh3zdAUjeXEEKmMXu
+ Nbz3FBYlU/ANdTu+AgxuZQvya/sWxLRNsd7Xf3kxTVQnFnuj1vJDJvdL/8WKDyLfMtuHS2EdD
+ 9Af0slaGunpRLBQo/8Tq29RVxViCP3OH9DnFNA6BIoaeey3kHU+RAqezExZKMqWEVrJQpRc/N
+ Hq/Ug02w1rObaGbrrxLLFqnIM6383qMMwBOzUYmfglChgUoxxNxJLfszwAmJ0j4Epu2j45wmx
+ jsvrQzaMcOb6np0t2frENzDfd0g1OjEw+0SU7H4NHWGO9jUKBMH0C5wCnrw/9X/6bAZMUU0JY
+ sI9q7Xvh8I7PPZns+3CzV1CRFOXMt7OHeF0mhyB/em9bOFg90nEvqDBxDNi5GnhB6L1nWOxfy
+ IHrBH0N8cgh1l7fHblC8WqX659NvScokjXCqiB4LyMejl1XU3q4VN7ErAnXctiIHwc7h/y6SD
+ j3kFUP0QYo4Mi4lP9Y+wUcKpbNeVCzjOrca79xLmanRrlp5i327S8DQHYL+gcdGohiGUMwIX+
+ 5p1WF97sGUGfkc=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Richard,
 
-On Fri, Mar 11, 2022 at 07:08:42AM -0800, Richard Cochran wrote:
-> On Fri, Mar 11, 2022 at 03:28:14PM +0100, Horatiu Vultur wrote:
-> 
-> > What about adding only some sane values in the driver like here [1].
-> > And the allow the user to use linuxptp to fine tune all this.
-> 
-> I mean, that is the point.  Users will surely have to tune it
-> themselves, second guessing the driver in any case.  So having hard
-> coded constants in the driver is useless.
-> 
-> Probably even the tuned values will differ by link speed, so having
-> the per-link speed constants in the driver doesn't help either.
-> 
-> (And yes, linuxptp should offer configuration variables per link
-> speed, monitor actual link speed, and switch automatically.  So far no
-> one is demanding that loudly)
+--uMoMbLT3WzEqMEI6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I did skim through the articles, and as you hinted he does find small
-latency differences across different packets. (but as I understood, very
-few PHYs was tested).
+On Sun, Feb 06, 2022 at 09:00:12AM +0100, Andreas Kemnade wrote:
+> This driver is for the EPD controller in the i.MX SoCs. Add a skeleton
+> and basic things for the driver
+>=20
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  drivers/gpu/drm/Kconfig                 |   2 +
+>  drivers/gpu/drm/Makefile                |   1 +
+>  drivers/gpu/drm/mxc-epdc/Kconfig        |  15 +
+>  drivers/gpu/drm/mxc-epdc/Makefile       |   5 +
+>  drivers/gpu/drm/mxc-epdc/epdc_regs.h    | 442 ++++++++++++++++++++++++
+>  drivers/gpu/drm/mxc-epdc/mxc_epdc.h     |  20 ++
+>  drivers/gpu/drm/mxc-epdc/mxc_epdc_drv.c | 248 +++++++++++++
+>  7 files changed, 733 insertions(+)
+>  create mode 100644 drivers/gpu/drm/mxc-epdc/Kconfig
+>  create mode 100644 drivers/gpu/drm/mxc-epdc/Makefile
+>  create mode 100644 drivers/gpu/drm/mxc-epdc/epdc_regs.h
+>  create mode 100644 drivers/gpu/drm/mxc-epdc/mxc_epdc.h
+>  create mode 100644 drivers/gpu/drm/mxc-epdc/mxc_epdc_drv.c
+>=20
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index b1f22e457fd0..6b6b44ff7556 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -390,6 +390,8 @@ source "drivers/gpu/drm/gud/Kconfig"
+> =20
+>  source "drivers/gpu/drm/sprd/Kconfig"
+> =20
+> +source "drivers/gpu/drm/mxc-epdc/Kconfig"
 
-Also, I know that we (Vitesse -> Microsemi -> Microchip) have been
-offering ways to calibrate the individual PHYs in other PTP-SW products.
-So, this makes good sense.
+I'd put it under gpu/drm/imx/epdc, perhaps.
 
-With this in mind, I do agree with you that it does not make much sense
-to compensate they few cm of PCB tracks without also calibrating for
-differences from packet to packet.
+> +int mxc_epdc_output(struct drm_device *drm)
+> +{
+> +	struct mxc_epdc *priv =3D to_mxc_epdc(drm);
+> +	int ret;
+> +
+> +	priv->connector.dpms =3D DRM_MODE_DPMS_OFF;
+> +	priv->connector.polled =3D 0;
+> +	drm_connector_helper_add(&priv->connector,
+> +				 &mxc_epdc_connector_helper_funcs);
+> +	ret =3D drm_connector_init(drm, &priv->connector,
+> +				 &mxc_epdc_connector_funcs,
+> +				 DRM_MODE_CONNECTOR_Unknown);
+> +	if (ret)
+> +		return ret;
+> +	ret =3D of_get_display_timing(drm->dev->of_node, "timing", &priv->timin=
+g);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return 0;
 
-But this is not really an argument for not having _default_ values
-hard-coded in the driver (or DT, but lets forget about DT for now).
-Looking at the default compensation numbers provided in the driver, they
-are a lot larger than what we expect to find in calibration.
+Possible to simplify to:
 
-As pointed out by other, most users will not care about the small error
-introduced by the few cm PCB track. My claim is that if we provide
-default hard-coded delay values in the driver, most users will not care
-about the few ns noise that each packet differs. And those who do care,
-have all the hooks and handle to calibrate further by using PTP4L.
+	return of_get_display_timing(drm->dev->of_node, "timing", &priv->timing);
 
-If we do not offer default delays directly in the driver, everybody will
-have to calibrate all boards just to have decent results, we will not
-have a good way to provide default delay numbers, and this will be
-different from what is done in other drivers.
 
-I do understand that you have a concern that these numbers may change in
-future updates. But this has not been a problem in other drivers doing
-the same. But if this is still a concern, we can add a comment to say
-that these numbers must be treated as UAPI, and chancing them, may
-cause regressions on calibrated PHYs.
 
-Long story short, I can see any real down-sides of adding these delay
-numbers, and I see plenty in not doing so.
+Jonathan
 
-/Allan
+--uMoMbLT3WzEqMEI6
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIs91QACgkQCDBEmo7z
+X9su8hAApRBwjE74IrtIOWKR416R4XLl1lYHwoeDX5IkWqkKKXQF8nCYB64nSxMf
+WVEwd9tp38bm+xZ5Yex8OMlTFtwNzcMcnYAWv8gHSN2dQGOEnGXQfxIOsmoiEaS2
+1Oiz8c3rxkw5JUlGXANOeDVgvkiTGaSiXvBze4bAKYU5kpeovfGH8Vd7NlsW+6B4
+oudpLG4Cc9VaO8wrN0ch85njP32ctCCphWwR8gfZW76y/1a7lIlZevb+2aIaotPt
+BGwk6qOUzArVroHvkdKXmCJg3K1luPA0q3c68GVydewfAR5TBENsLBWjIaQUcTSi
+y4Run6OpF7AKOBi8JxpRjSoPDe3MitKMtA9vlL9nlo2CW7DE4ScYb7yxgzLwcOAx
+Oz8Ul0qI4e60AKhfEDs1Ugf0FCVF7SK1Kna5sjxOTqL9aeau96H9E44xaKbY+X5a
+azx54txrPBQHQxY4h8OS8EOrUNhq/JQzJCMbHZxPSVqcHYruKjQ4poYuRiWlrhaB
+RBrkwpfnA77IjjRSjKXEgChVxopS6vYHA+YvFX8QS1u3z7jYvdPx+hIK2WgWGQ9A
+D/wsjEjtvBHezCgABsas7pDJJULig5pp89CF9tjIIJWMOHP1bZckzvY+WB7p1gCs
+XWfS+v4ZrV/lwVYoKTE160ztJTqyuRLxDvGUfsX5lGS/Pig092s=
+=dV4g
+-----END PGP SIGNATURE-----
+
+--uMoMbLT3WzEqMEI6--
