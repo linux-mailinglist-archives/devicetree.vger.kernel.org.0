@@ -2,124 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DCC84D6F85
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 15:20:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5674D6FF6
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 17:15:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229791AbiCLOVf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 09:21:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39584 "EHLO
+        id S231601AbiCLQQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 11:16:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52584 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbiCLOVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 09:21:35 -0500
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDD9260A9E;
-        Sat, 12 Mar 2022 06:20:28 -0800 (PST)
-X-UUID: 3f792280c01248ee9e0fd8e9dcc7048b-20220312
-X-UUID: 3f792280c01248ee9e0fd8e9dcc7048b-20220312
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 891404891; Sat, 12 Mar 2022 22:20:23 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Sat, 12 Mar 2022 22:20:21 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sat, 12 Mar 2022 22:20:21 +0800
-Message-ID: <fc3c76ab274c12bea9be9e17823fcb4f80ddf764.camel@mediatek.com>
-Subject: Re: [PATCH 5/5] dt-bindings: mediatek: mt8195: add
- mt8195-mt6359-max98390-rt5682 document
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <broonie@kernel.org>, <tiwai@suse.com>, <matthias.bgg@gmail.com>,
-        <alsa-devel@alsa-project.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <aaronyu@google.com>, <yc.hung@mediatek.com>
-Date:   Sat, 12 Mar 2022 22:20:21 +0800
-In-Reply-To: <Yip5O3t0Ymyc2h+p@robh.at.kernel.org>
-References: <20220308072435.22460-1-trevor.wu@mediatek.com>
-         <20220308072435.22460-6-trevor.wu@mediatek.com>
-         <Yip5O3t0Ymyc2h+p@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229470AbiCLQQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 11:16:56 -0500
+Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00BF658E68;
+        Sat, 12 Mar 2022 08:15:50 -0800 (PST)
+Received: by mail-pg1-x52a.google.com with SMTP id c11so10022282pgu.11;
+        Sat, 12 Mar 2022 08:15:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id;
+        bh=9CbMZvtOfJ3n4M+E2dtBWDEfEEf3yzdNF+4NVPhNito=;
+        b=Vd4rzCgwzqxuQSR6ljlnIWkFJzGYJdXRTFD+Fhi4v+SHG0LV18OAFPnzOhrvhcsmYO
+         Q/Xc9O+VvuzJzntlNoBHk33jrmBB3FfOuYF6ygBCwCeodJLRt1CfQmWR+3N9T0vtpdsw
+         nK3p8tzQOwAF17s5dYedF9z4BL0KMN0JCEOAtI30j9pYdegpjODHqNR/m1pSnF2/G+n1
+         oDlXoSV779a/oBM52bXJnauykJdOYXQVoEYA88g8RXGJilpmf6YTJhVIXDNPuPKLKAt/
+         /kK6N3j33fXK4r33UWujuZG1Zbh8uo+PIU5iksiFYsnC1EbO/iiox2Nc+nbMqvW4r77V
+         5stg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9CbMZvtOfJ3n4M+E2dtBWDEfEEf3yzdNF+4NVPhNito=;
+        b=3B1oAJg+XW4P1S7nnu0gY17r8mycgbTpkUNfEc+UAu/LNv/NDvqmUZS/uk+F2Sm9QP
+         BgnzKVfGhf2ZQnizCMbx1qS+CMejN5hznIHHlY3iIGBcoQrS8lxxPAxaUFLibqXar4/q
+         mF9XXtVOpq6ll//HDORfJgeZ7PBYTODKp9lez4q3taDR4dF1soE3Nr2DIKDa9KUCzKvY
+         E5/e9a2IlnuxQHBASk1heMSzBfpeocc53tH31Rvgd2CUV69Guv9mpsekmzJcHJo8GDxC
+         KgRncg6u6t43xluhFMPW5Bi08vDPg+PqbYhqWnTstdNvH92/kp7nggsyHlevw6faTkqh
+         oy+w==
+X-Gm-Message-State: AOAM5326rSkrOX/JFlTcNmLEFwoXC5vaf2vLtoaUzLXYzptVBaDO7L84
+        nbf064lFT2GJCzlkIThVJTk=
+X-Google-Smtp-Source: ABdhPJztY7lT2vmDBJ5ZpV/C9faTm2OZGGUx60BHZismJEGnbnxYZrHMZep1mkqn/G9k/vXHPtXgEg==
+X-Received: by 2002:a05:6a00:16d3:b0:4f7:68db:5e17 with SMTP id l19-20020a056a0016d300b004f768db5e17mr15584573pfc.6.1647101750474;
+        Sat, 12 Mar 2022 08:15:50 -0800 (PST)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id js15-20020a17090b148f00b001bfc8614b93sm9735079pjb.1.2022.03.12.08.15.47
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 12 Mar 2022 08:15:49 -0800 (PST)
+From:   Tony Huang <tonyhuang.sunplus@gmail.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, krzysztof.kozlowski@canonical.com
+Cc:     wells.lu@sunplus.com, tony.huang@sunplus.com,
+        Tony Huang <tonyhuang.sunplus@gmail.com>
+Subject: [PATCH v11 0/2] Add iop driver for Sunplus SP7021
+Date:   Sun, 13 Mar 2022 00:16:03 +0800
+Message-Id: <cover.1647095774.git.tonyhuang.sunplus@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-03-10 at 16:18 -0600, Rob Herring wrote:
-> On Tue, Mar 08, 2022 at 03:24:35PM +0800, Trevor Wu wrote:
-> > This patch adds document for mt8195 board with mt6359, max98390 and
-> > rt5682.
-> > 
-> > Signed-off-by: Trevor Wu <trevor.wu@mediatek.com>
-> > ---
-> >  .../sound/mt8195-mt6359-max98390-rt5682.yaml  | 61
-> > +++++++++++++++++++
-> >  1 file changed, 61 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/mt8195-
-> > mt6359-max98390-rt5682.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/mt8195-mt6359-
-> > max98390-rt5682.yaml
-> > b/Documentation/devicetree/bindings/sound/mt8195-mt6359-max98390-
-> > rt5682.yaml
-> > new file mode 100644
-> > index 000000000000..7ec14d61b109
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/mt8195-mt6359-
-> > max98390-rt5682.yaml
-> > @@ -0,0 +1,61 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: 
-> > https://urldefense.com/v3/__http://devicetree.org/schemas/sound/mt8195-mt6359-max98390-rt5682.yaml*__;Iw!!CTRNKA9wMg0ARbw!zb7eaqdAQfuyPpP5m31L3Q5pdCulclJgnygkkMgYh2M6segUZedd-cYz51-5Q2XDCA$
-> >  
-> > +$schema: 
-> > https://urldefense.com/v3/__http://devicetree.org/meta-schemas/core.yaml*__;Iw!!CTRNKA9wMg0ARbw!zb7eaqdAQfuyPpP5m31L3Q5pdCulclJgnygkkMgYh2M6segUZedd-cYz5187C1ArQA$
-> >  
-> > +
-> > +title: Mediatek MT8195 with MT6359, MAX98390 and RT5682 ASoC sound
-> > card driver
-> > +
-> > +maintainers:
-> > +  - Trevor Wu <trevor.wu@mediatek.com>
-> > +
-> > +description:
-> > +  This binding describes the MT8195 sound card.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: mediatek,mt8195_mt6359_max98390_rt5682
-> 
-> You have nodes for each of these components, why do we need new 
-> compatible string for each combination. You can figure out the 
-> combination by looking at each of those nodes.
-> 
-> Second, why does each combination need a new schema doc?
-> 
-> Rob
+Add iop driver for Sunplus SP7021 SOC
 
-Hi Rob,
+This is a patch series for iop driver for Sunplus SP7021 SOC.
 
-I'm not sure whether I can reuse the old schema doc because of the doc
-name and compatible string seems to be specifically for the codec
-combination.
-If I want to reuse the old schema doc, should I change the doc name or
-compatible string? Make the naming more general.
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART, I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
 
-Thanks,
-Trevor   
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
 
+Tony Huang (2):
+  dt-bindings: misc: Add iop yaml file for Sunplus SP7021
+  misc: Add iop driver for Sunplus SP7021
+
+ .../devicetree/bindings/misc/sunplus,iop.yaml      |  78 ++++
+ MAINTAINERS                                        |   6 +
+ drivers/misc/Kconfig                               |  23 ++
+ drivers/misc/Makefile                              |   1 +
+ drivers/misc/sunplus_iop.c                         | 411 +++++++++++++++++++++
+ 5 files changed, 519 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/misc/sunplus,iop.yaml
+ create mode 100644 drivers/misc/sunplus_iop.c
+
+-- 
+2.7.4
 
