@@ -2,86 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BCEC44D6E69
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 12:24:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 571754D6E75
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 12:29:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229519AbiCLLZH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 06:25:07 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49068 "EHLO
+        id S230243AbiCLLaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 06:30:19 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbiCLLZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 06:25:05 -0500
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D5B06315;
-        Sat, 12 Mar 2022 03:24:00 -0800 (PST)
-Received: by mail-ed1-f45.google.com with SMTP id g20so13862607edw.6;
-        Sat, 12 Mar 2022 03:24:00 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=OSf1OwJ7magl6qu7qroFSGgkU8xwtM3u7m6pE+i/ZuY=;
-        b=2xDVGXcqM84Oy2dPsCXRgpHFDXfHFA51svmuCdavaplV+1RWfzOE7EwL0olvHrAwko
-         HZdsLttzAnXcMcPs227jZvVuY652iSdcGKE72mRvZ+1b85TPSYogrUE+f6v2jsls5MFM
-         wLEm7m+d95DAXpCglj+HxpvfyTzbVGO8WZQ43CblzgPrpHfB0pJIzvEQt4zXxA2qtgdj
-         ylp+TKxA7H0evIDr5UgI7cuKFUr2fmCgDH8H5JMqp3Ifuo5OXFudjRVig8VmmQwQufjg
-         uj+EVisZZvnrP24TUouo04CiiBDr6OjmwfSerKenBi89ZIOP19XpiBcqFv15fDbNUqXL
-         EiWA==
-X-Gm-Message-State: AOAM531KEzM03z8c1bUqwV/AmqT8FK6jTs/g1/xS3HU86ihb4WR3//ka
-        /nodgT1KAQ3CelH1xnhjS7c=
-X-Google-Smtp-Source: ABdhPJwNOq5DkxOgDmvFW1pYBkpqCGq0vx2MY/WBchfflM8IP0pOMftZ8a2mga9NeAkMM5ra2LlHpQ==
-X-Received: by 2002:a05:6402:11ce:b0:418:633b:ed95 with SMTP id j14-20020a05640211ce00b00418633bed95mr2058091edw.0.1647084239107;
-        Sat, 12 Mar 2022 03:23:59 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id v2-20020a17090606c200b006a728f4a9bcsm4210406ejb.148.2022.03.12.03.23.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Mar 2022 03:23:58 -0800 (PST)
-Message-ID: <c80eed69-088b-cfaa-a041-cdd6d5fe160c@kernel.org>
-Date:   Sat, 12 Mar 2022 12:23:57 +0100
+        with ESMTP id S230228AbiCLLaS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 06:30:18 -0500
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8C10C35;
+        Sat, 12 Mar 2022 03:29:09 -0800 (PST)
+Received: (Authenticated sender: alexandre.belloni@bootlin.com)
+        by mail.gandi.net (Postfix) with ESMTPSA id C3BDD240006;
+        Sat, 12 Mar 2022 11:29:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1647084548;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=jOH08bKV9K2o0RK2gMfpuKKcHc4JTuayEfTcXVSyoKg=;
+        b=SoqJe68LgVq4CRgKPCCveLY+ejVgYCvL/1qfwaBt5hGH0BPknjJBopP4JIp6xYiQQwyVla
+        RvQUc2jDlwa0548Y5tV4gOvIWASgxS3dUJEYSJ6E0oTUtTlpw0qO+Xx9putEeqr3oNgpFU
+        D4O+5sF3hDydCnEqR9tpM2RY9SbnsL8taQVzwxMmeEFDqFtPvgyFsGxW7EPaCfp4wgD0a+
+        p44rqi3d7vJiQs2CZjhc+Ewj80jlPXDPLNxXKMPbcdaKiavaysDalf4c2VzGLNNXZ85rET
+        ThhkrG9VhzsMGyIPf55tjdihiPTxn5KyIOoPtctgGk8UpirGVca1xxQPtArF7w==
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Maxime Ripard <mripard@kernel.org>, linux-sunxi@lists.linux.dev,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-rtc@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>
+Subject: Re: [PATCH v3 0/6] clk: sunxi-ng: Add a RTC CCU driver
+Date:   Sat, 12 Mar 2022 12:29:04 +0100
+Message-Id: <164708452927.194759.8728581507803680066.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220203021736.13434-1-samuel@sholland.org>
+References: <20220203021736.13434-1-samuel@sholland.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] ASoC: dt-bindings: Fix patternProperties with fixed
- strings
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220311234802.417610-1-robh@kernel.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220311234802.417610-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2022 00:48, Rob Herring wrote:
-> The simple-audio-card and renesas,rsnd bindings used 'patternProperties'
-> with fixed strings to work-around a dtschema meta-schema limitation. This
-> is now fixed and the schemas can be fixed to use 'properties' instead.
+On Wed, 2 Feb 2022 20:17:30 -0600, Samuel Holland wrote:
+> This patch series adds a CCU driver for the RTC in the H616, R329 and
+> D1. The extra patch at the end of this series shows how it would be
+> explanded to additional hardware variants.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/sound/renesas,rsnd.yaml          | 16 ++++---
->  .../bindings/sound/simple-card.yaml           | 42 +++++++++----------
->  2 files changed, 28 insertions(+), 30 deletions(-)
+> The driver is intended to support the existing binding used for the H6,
+> but also an updated binding which includes all RTC input clocks.
 > 
+> [...]
 
+Applied, thanks!
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-
+[1/6] dt-bindings: rtc: sun6i: Clean up repetition
+      (no commit info)
+[2/6] dt-bindings: rtc: sun6i: Add H616, R329, and D1 support
+      (no commit info)
+[3/6] rtc: sun6i: Enable the bus clock when provided
+      (no commit info)
+[4/6] clk: sunxi-ng: mux: Allow muxes to have keys
+      commit: b6e649834afa1fc6fd856b287e808cebe2c6fb8e
+[5/6] clk: sunxi-ng: Add support for the sun6i RTC clocks
+      commit: df8925adc02f1cb2c87582d688dd8991aaabf8b2
+[6/6] clk: sunxi-ng: sun6i-rtc: Add support for H6
+      commit: dc1d63a697304fbd246e24901e0635885856ef63
 
 Best regards,
-Krzysztof
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
