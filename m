@@ -2,74 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 796A74D7054
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 19:12:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C0B574D7067
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 19:42:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230184AbiCLSNm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 13:13:42 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
+        id S232415AbiCLSnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 13:43:14 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229565AbiCLSNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 13:13:41 -0500
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964FC1DF847;
-        Sat, 12 Mar 2022 10:12:35 -0800 (PST)
-Received: by mail-lj1-x232.google.com with SMTP id 25so16333234ljv.10;
-        Sat, 12 Mar 2022 10:12:35 -0800 (PST)
+        with ESMTP id S229565AbiCLSnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 13:43:13 -0500
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 944B86A019;
+        Sat, 12 Mar 2022 10:42:07 -0800 (PST)
+Received: by mail-lf1-x133.google.com with SMTP id s25so20445313lfs.10;
+        Sat, 12 Mar 2022 10:42:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=k2rzdAvd062YWQZphahXNpHBoTUA0G/kUu5FJsmYidI=;
-        b=cLIch6UNGEWBwpXkAfGnrMnkGP8hmmnuf7HiuH+uAu625SU0QmoGlc2SVrOSwdtHHB
-         Ow2OyVUaeaCPY96YSOm8M/19K6KTez6AWn/3d/zmgIar9rkof3FPKnm87lO8kwKM2+1b
-         3dX/gghLidF9HFV9HA0dXTkHfSUl/emasVYkGBa1cGvsdyxcncX44/2QpeLKqMLtYM/n
-         XVvI3R378Ml+kG+Udza0rBX+dQPpqIuyderqiQEZniZbeF54vps152YPilKfdRClGtCi
-         +cDeXVjFwu8Q7m3gLbXHxzTrBZXLNfwWgOyNtQU1Fpf00ssSL7uReonjyQonkmPSXM34
-         Y7Dg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b55LCMkhp264TmQP51h/ZIvxnLYYXWKUvwb4L66CZlA=;
+        b=Y8tNNNxJ9veM1vUsWyMvuqwsP756l+1Va1viWJeEl4MNn7vWx9Jy+5fPSBqym1J/6r
+         /Sic1ChYNa59HhWWX61eA3j94pAvEFsxsi56+25o4JCBQqK1AhogY6eKlAQnSkxnxu2K
+         OhrCMB9Vu5zSkyaLwi22Ob2OavkGF6aWQHSNyf4IT+INoLG6eXEaFDmkhx5cbC+b0x4u
+         geIicvNDaHGcpBcrHiGlZn7jx2eqDKFwJGSPrPCIWi2lLxpLaOnCj6X5C6DlkHStYY7t
+         DdX23zEvXhcwU7tEMxU/9pi0oLRi7i0WAcSKec87mMv4fcx7OIpd3Vs0r4V9vUZ5I9FS
+         hOFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=k2rzdAvd062YWQZphahXNpHBoTUA0G/kUu5FJsmYidI=;
-        b=pNA80S4loR1jLbS6iYDYoiBF9f1LtcGJ9cOwMflI/xsDpMYj69HxeSu/kf593RnaPW
-         zO2y3j//fj0ui2cHNvkO++uW4mky9QWsW+qF5ei4h2jpcxhbzFFFQEGtubD09hv3bASD
-         mIPD68eTjruGjfZ4ba5XFYl24PWnXbEslebp+wd0TfiXpJXAByKADFEooGrHXu0qPu0L
-         Ks4FS3gMEgxFRtCHlUks9gkZ210UcPvoSfR5LhnGpJSH+Azz4nSFMEUmAbKbO+vYxB00
-         CfWXGfJaqMWRr1STciM/GzHJ1NT9N92A0xdmTYP09Hz2FMxNjTm5CkCdgBKPUNwB5Vps
-         pEOg==
-X-Gm-Message-State: AOAM531Vroghesi9rERdOlot7xLFmS7eSXMsLBhXV9hJKSRERsQ+tSIO
-        E+k1FaKEc/1wuhRGStf60t4=
-X-Google-Smtp-Source: ABdhPJxKzGvN1o8WcEOhsd6BTrlU/Lny5O/iTIWdGCHtEoNj9ujCnMKIsvOKhUi0uhP9YsrKpfM9og==
-X-Received: by 2002:a2e:2d0a:0:b0:248:7c35:28b4 with SMTP id t10-20020a2e2d0a000000b002487c3528b4mr8155470ljt.175.1647108753844;
-        Sat, 12 Mar 2022 10:12:33 -0800 (PST)
-Received: from [192.168.2.145] (109-252-136-171.dynamic.spd-mgts.ru. [109.252.136.171])
-        by smtp.googlemail.com with ESMTPSA id g19-20020a2e3913000000b00247dea5b468sm2571838lja.115.2022.03.12.10.12.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Mar 2022 10:12:33 -0800 (PST)
-Message-ID: <45e5f833-b492-30df-a1ed-108e05a2b465@gmail.com>
-Date:   Sat, 12 Mar 2022 21:12:31 +0300
+        bh=b55LCMkhp264TmQP51h/ZIvxnLYYXWKUvwb4L66CZlA=;
+        b=j8aCh1wwrsFfI/qt9XuU96jdR8rBr91P4DeYRJ/yJSxY+Ap34m1iglJqMBcUfmvmUo
+         EJ+Tq1j7mSQuv/bgYNNAdRpV9tYb/V5l6lZH+OD4GZ4lDJOv/88NuIZE6oJzwLujG4+Q
+         9sR1m+7SbKkZWPz3yGi6iTf2eZpQJULzv3R9yo1uM4jleJ7Lp2HiWwIffIXqF0+Z3njv
+         Y5S21Zcb1HIIytIZbuaRreUg9+ebGjGqjmxtPFv0z3+1V0YWYTUc1xrveFrZjaJ4PMc/
+         G76C+tvoYHKFK5wkPAY64WtJnrwzPWZ43BmQEuTLS+bz7m1IJ9FNJ2EeUXFfeyzIzIRo
+         Yz7g==
+X-Gm-Message-State: AOAM533T947WWy2Nz6+104V+IKB5JOt9/xflG887gP13SQEwyKduOJkz
+        aHH7FQpOFIyYanZxPSNuYSrmquzVfmjMfBKl
+X-Google-Smtp-Source: ABdhPJyvzDBUgCjC5xEwO8lH0I8NchXV44z/pltS4lJSaO91RQigadrLJyR8unoNXTWLczrvjqXlVQ==
+X-Received: by 2002:ac2:4e64:0:b0:448:5df6:5938 with SMTP id y4-20020ac24e64000000b004485df65938mr8893111lfs.402.1647110525723;
+        Sat, 12 Mar 2022 10:42:05 -0800 (PST)
+Received: from localhost.localdomain ([194.39.226.133])
+        by smtp.gmail.com with ESMTPSA id b1-20020ac247e1000000b0044842b76861sm2311236lfp.140.2022.03.12.10.42.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Mar 2022 10:42:05 -0800 (PST)
+From:   Markuss Broks <markuss.broks@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     phone-devel@vger.kernel.org, ~postmarketos-upstreaming@lists.sr.ht,
+        Markuss Broks <markuss.broks@gmail.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 0/2] Add support for SM5703 MUIC unit
+Date:   Sat, 12 Mar 2022 20:41:52 +0200
+Message-Id: <20220312184156.24912-1-markuss.broks@gmail.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v4 3/9] gpu: host1x: Add context device management code
-Content-Language: en-US
-To:     cyndis@kapsi.fi, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com
-Cc:     linux-tegra@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Mikko Perttunen <mperttunen@nvidia.com>
-References: <20220301161455.4037062-1-cyndis@kapsi.fi>
- <20220301161455.4037062-4-cyndis@kapsi.fi>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20220301161455.4037062-4-cyndis@kapsi.fi>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,23 +72,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-01.03.2022 19:14, cyndis@kapsi.fi пишет:
-> +/* host1x context devices */
-> +
-> +struct host1x_context {
-> +	struct host1x *host;
-> +
-> +	refcount_t ref;
-> +	struct pid *owner;
-> +
-> +	struct device dev;
-> +	u64 dma_mask;
-> +	u32 stream_id;
-> +};
+This series adds support for MUIC unit of Silicon Mitus SM5703 MFD.
+The MUIC unit re-uses the register map of SM5502's MUIC unit.
 
-I'm still not very happy about the "context" names. For example here
-it's only about the "memory context", then why not to name struct as
-host1x_memory_context or host1x_memctx?
+Markuss Broks (2):
+  dt-bindings: extcon: bindings for SM5703
+  extcon: sm5502: Add support for SM5703
 
-It's not good to use generic names for a special things, it hurts
-readability of the code. It's important to choose good names.
+ .../devicetree/bindings/extcon/siliconmitus,sm5502-muic.yaml | 5 +++--
+ drivers/extcon/Kconfig                                       | 2 +-
+ drivers/extcon/extcon-sm5502.c                               | 2 ++
+ 3 files changed, 6 insertions(+), 3 deletions(-)
+
+-- 
+2.35.1
+
