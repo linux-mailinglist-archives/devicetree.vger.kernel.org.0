@@ -2,88 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 285474D6C92
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 06:04:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9DDE4D6CC3
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 06:26:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230030AbiCLFF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 00:05:27 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54584 "EHLO
+        id S230402AbiCLF13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 00:27:29 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbiCLFF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 00:05:26 -0500
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26D1F22C8A8;
-        Fri, 11 Mar 2022 21:04:22 -0800 (PST)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id BACF4B80EF1;
-        Sat, 12 Mar 2022 05:04:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AB91C340EE;
-        Sat, 12 Mar 2022 05:04:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647061459;
-        bh=Ue4yGDXPhseqkb7NonFZ7wOtLCloicTmJQv1n7hvKLI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=U2Ozyoki/RwE2daCf2ud5cDLVUzVJ4k9DnOBSjotDahLzjOjTNQf0uyUwomOHG2CX
-         fuxCleaxIxGvvBHs0zdo/MsvO9jNSDjXXofG99LtDRS/nmzqO4wYenDX9kDZyGB3wV
-         OQdQ8+3ppLIzu1u7TH9DD1y60Nsz2q9J8wrQp6fPKat+QMLAJwSK/SsCKtA/++QQeJ
-         fDfwcxc+KwgEMAkbzTmjCzNhhQaG8khPQ7GMlJoLs9C4TLa6u+ba0Idg/EJnobr/+e
-         l+4UyHYKoNQGqc9kngtEtQ1hIJbH0kWxlOZsVN/g5odZPwPBjoR3xitirO+VP19FWs
-         BN4HJLiyQrDOQ==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229379AbiCLF12 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 00:27:28 -0500
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DAD31C945F;
+        Fri, 11 Mar 2022 21:26:22 -0800 (PST)
+Received: by mail-pg1-x532.google.com with SMTP id q19so9168565pgm.6;
+        Fri, 11 Mar 2022 21:26:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ArakzioBrqK8o1Rg//BoZTjKcCVB6ojSonL6m8+DLrA=;
+        b=F+4gI4YFnK1Z2PIY+QM9FiLfp/ImHLfBOKGROysUnYzRCSI7mMFKEo++PE3FqxgrA8
+         HFtve2DUgZmMd6Z1cqDA/ImK6jta8AuBUXGzKMMC6QxYo1rCzR4D/k/yfjtlJONpGc2Q
+         Wm3Ar+1qq2dnB93IiAT2zi1wdTuINQrBcKIhEKNySHubFDpvBfOT23WEsOhOTUNbBaYI
+         JsrMxgK6xOlm84UHNSADMxBn/SeHuYEcdZUoiA9Zai3yLHC0FARJWSR4aib+9vT4oQjf
+         QjoDT8Pksnol0St/prkAew/Cnnofi+IKlk0dli+4DhNGeqIiZdvYHacxM3S80gySHvyY
+         0ceA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ArakzioBrqK8o1Rg//BoZTjKcCVB6ojSonL6m8+DLrA=;
+        b=gnWtYvf1XjwGlSRLSbEhrphElIkUqrzJvZwzOSzcvDtL+c2Z59C1YziLPIQ9PnNlDX
+         22LE3AktKSyEhkzwxWRO8GbMCgqZSnGF6sazIMAVpVcwyRX0Q/sLXcW3uP5HNDf0/KTT
+         jlZLKNnsGiI9RAwcmMJ0hEVjRmLCtUMTonwNlfjZ9UJp85/ERqVu/lkMFRBQq5O5iMpA
+         j+NvBpdZkmoA4CODp2qRyNebby3eeU+u/eltzoPvdqhFmoeUyHiTMXF9qUv+VSTFzhha
+         mkPzs4Nq821IvAZ/VPsHyaCdRPYb22uj32O+AZyXy2/MPjPeM3amB8NPj4nlTmK37RPQ
+         ZboA==
+X-Gm-Message-State: AOAM532b2iOk7RJz45xUqDEiEpgVXJyYmWkzcbBPf7F+HMdkWp2snCRd
+        FaZHKvuCGZnG4pIri0ccQyI=
+X-Google-Smtp-Source: ABdhPJwxwL+dXotlHPMkJ3SCeDXiR4mCL0gOJBL05ntje/d/N2nzkctJJ4uYmMWtJ92XH7MhcJ09qA==
+X-Received: by 2002:a63:1350:0:b0:378:7fb4:63eb with SMTP id 16-20020a631350000000b003787fb463ebmr11246291pgt.457.1647062781984;
+        Fri, 11 Mar 2022 21:26:21 -0800 (PST)
+Received: from 9a2d8922b8f1 ([122.161.53.68])
+        by smtp.gmail.com with ESMTPSA id n18-20020a628f12000000b004f743724c75sm11977684pfd.53.2022.03.11.21.26.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Mar 2022 21:26:21 -0800 (PST)
+Date:   Sat, 12 Mar 2022 10:56:17 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/4] DT fixes for pl022 for Arm realview, versatile
+ platforms
+Message-ID: <20220312052617.GA13444@9a2d8922b8f1>
+References: <20220311103635.39849-1-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4f1b946d-ee82-bd0e-c51e-100c23b87fdf@denx.de>
-References: <20220215084412.8090-1-marex@denx.de> <20220215084412.8090-2-marex@denx.de> <20220217222328.7F7B3C340E8@smtp.kernel.org> <77c85470-5378-8c8b-8e5f-d57c83773ed6@denx.de> <4f1b946d-ee82-bd0e-c51e-100c23b87fdf@denx.de>
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-To:     Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org
-Date:   Fri, 11 Mar 2022 21:04:17 -0800
-User-Agent: alot/0.10
-Message-Id: <20220312050419.2AB91C340EE@smtp.kernel.org>
-X-Spam-Status: No, score=-7.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220311103635.39849-1-singh.kuldeep87k@gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Marek Vasut (2022-03-09 12:54:35)
-> On 2/21/22 01:58, Marek Vasut wrote:
-> > On 2/17/22 23:23, Stephen Boyd wrote:
-> >=20
-> >> I see that there isn't any more 'clock-critical' in the kernel's dts so
-> >> I wonder if we would be able to get rid of that function or at least
-> >> hollow it out and see if anyone complains. Either way, what is the
-> >> actual problem trying to be solved? If the crystal oscillator isn't us=
-ed
-> >> anywhere in the kernel why are we registering it with the clk framewor=
-k?
-> >=20
-> > The problem is the other way around -- the SoC clock IPs often have a=20
-> > couple of general purpose clock routed to various SoC IO pins, those=20
-> > clock can be used for any purpose, and those are already registered wit=
-h=20
-> > kernel clock framework. Some devices save on BoM and use those general =
+On Fri, Mar 11, 2022 at 04:06:31PM +0530, Kuldeep Singh wrote:
+> This patchset is an attempt to fix device trees and resolve binding
+> warning for pl022. This requires updation in clock name to keep
+> alignment with other platforms and spi node properties for integratorap
+> platform.
+> 
+> This patchset is based on
+> git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-nomadik.git,
+> master
+> 
+> Kuldeep Singh (4):
+>   ARM: dts: integratorap: Update spi node properties
+>   ARM: dts: realview: Update spi clock name
+>   ARM: dts: versatile: Update spi clock name
+>   ARM: dts: ste-dbx: Update spi clock name
+> 
 
-> > purpose clock to supply clock networks which are otherwise not=20
-> > interacting with the kernel, like some CPLD for example. Since from the=
-=20
-> > kernel point of view, those clock are unused, the kernel can turn those=
-=20
-> > clock OFF and that will make the entire device fail.
-> >=20
-> > So this critical-clocks property permits marking clock which must not=20
-> > ever be turned OFF accordingly.
->=20
-> How can we proceed here ?
+Hi,
 
-Why are we registering the clks with the framework on device that are
-saving on BoM and using them outside of the kernel. What is the use of
-kernel memory for struct clk_core that aren't ever used?
+Commit description for patches 2-4 is incorrect.
+As 'make dtbs_check' has always been working correctly and can identify
+character casing proficiently, it's just that I had some mistake in my
+build environment because of which no warning was observed. Kindly
+consider this version as obsolete. I will update commit description
+properly in next series. Thanks for your time and sorry for
+inconvenience.
+
+Regards
+Kuldeep
+
+>  arch/arm/boot/dts/arm-realview-eb.dtsi    |  2 +-
+>  arch/arm/boot/dts/arm-realview-pb1176.dts |  2 +-
+>  arch/arm/boot/dts/arm-realview-pb11mp.dts |  2 +-
+>  arch/arm/boot/dts/arm-realview-pbx.dtsi   |  2 +-
+>  arch/arm/boot/dts/integratorap-im-pd1.dts |  4 ++--
+>  arch/arm/boot/dts/ste-dbx5x0.dtsi         | 12 ++++++------
+>  arch/arm/boot/dts/versatile-ab.dts        |  2 +-
+>  7 files changed, 13 insertions(+), 13 deletions(-)
+> 
+> -- 
+> 2.25.1
+> 
