@@ -2,59 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 129C64D70AA
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 21:04:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 49D0C4D70B4
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 21:13:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232192AbiCLUFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 15:05:45 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42316 "EHLO
+        id S232571AbiCLUOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 15:14:23 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231804AbiCLUFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 15:05:45 -0500
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68C44532F1;
-        Sat, 12 Mar 2022 12:04:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=rGqBRcNw4s56JzIh4WiyNNxrcGXW+DdMyOtuGHG9ozs=; b=Th
-        q7cmAGUFE8nRztSu7eUZNV1O7EeMSsqNdrjI7WI0cQIeFuv1kPRsRUaRvYA/UY7L5Tt3Q0ZoidFMw
-        XmV+pmrS23Qb/0J6GhIRUbv+cKaLmt2leNehEFa7JYwmSxqNoQzGBgLmhyce+dzrBbqVuKqPKjFlX
-        ph1KD5vJHJVUG90=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nT7yZ-00AVKz-Qt; Sat, 12 Mar 2022 21:04:31 +0100
-Date:   Sat, 12 Mar 2022 21:04:31 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     Woojung.Huh@microchip.com, linux@armlinux.org.uk,
-        Horatiu.Vultur@microchip.com, Divya.Koppera@microchip.com,
-        netdev@vger.kernel.org, hkallweit1@gmail.com, davem@davemloft.net,
-        kuba@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
-        Madhuri.Sripada@microchip.com, Manohar.Puri@microchip.com
-Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
- values and timestamping check for LAN8814 phy
-Message-ID: <Yiz8z3UPqNANa5zA@lunn.ch>
-References: <YidgHT8CLWrmhbTW@lunn.ch>
- <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
- <YiecBKGhVui1Gtb/@lunn.ch>
- <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
- <YifoltDp4/Fs+9op@lunn.ch>
- <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
- <Yii/9RH67BEjNtLM@shell.armlinux.org.uk>
- <20220309195252.GB9663@hoboy.vegasvil.org>
- <BL0PR11MB291347C0E4699E3B202B96DDE70C9@BL0PR11MB2913.namprd11.prod.outlook.com>
- <20220312024828.GA15046@hoboy.vegasvil.org>
+        with ESMTP id S231804AbiCLUOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 15:14:23 -0500
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 796072C132;
+        Sat, 12 Mar 2022 12:13:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1647115968;
+        bh=iyCaHnkVX4kPAM0u0xeT+75CDDgVUy9GfJ21v4ThaiY=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=gtAsg1tmkE0B/dVfaWc0Wfj6t5umRjsWe67K4+GpcUq0M2vQ0PtY3yfw6HMRXxC6e
+         vrcE/4tm5pSHvgL7LjnPYacwWfRYjzTKU2NYuovqyNhihBGh860SYc+Z7LV9MjUZZD
+         QSHvKNeGeRrjSegz6GyQFQWaVSoD1y2u0NxOz5h4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([85.197.41.77]) by mail.gmx.net (mrgmx004
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1N6sn7-1oCmOF1XEV-018Gm0; Sat, 12
+ Mar 2022 21:12:48 +0100
+Date:   Sat, 12 Mar 2022 21:12:46 +0100
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alistair@alistair23.me,
+        samuel@sholland.org, josua.mayer@jm0.eu,
+        letux-kernel@openphoenux.org
+Subject: Re: [RFC PATCH 3/6] drm: mxc-epdc: Add display and waveform
+ initialisation
+Message-ID: <Yiz+vvnkfn9hemJg@latitude>
+References: <20220206080016.796556-1-andreas@kemnade.info>
+ <20220206080016.796556-4-andreas@kemnade.info>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uD2AzuFRXoVuvUY3"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220312024828.GA15046@hoboy.vegasvil.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+In-Reply-To: <20220206080016.796556-4-andreas@kemnade.info>
+X-Provags-ID: V03:K1:0N6gIHfBj0Vf8LtRxNxkFhxEM441nNBXuu0cSw7ebjqbIPS+85n
+ KcAv8o+kY2GStdXGyVVVMRkmbyVEf0O9JERcJgQh0Ed9DJdmnVC7g3iybuYj6wTgIXAHYPP
+ gMcPAt/E9BOTVgGVeNHVvcs/eeUDx8LNFvLILoL0+kr45ShHiTw/wwILq5eKI4JMMDE281G
+ 0emsVwbI2d9yZjWCy9eOA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:9cdA3M2jQOE=:glxd3vXgErdaljLlW6kbzY
+ RTjdeGM/4vGOl/aItjz/hoH0UtIcnXBtW7A7Ee0Qlpb+U0Aq60fgEjsiT+FR+RK/Cd2V28sqk
+ KZyuOBvw+yZgQ/6WGJGerAQQbIkX3XAoVDEgiyUjU6Ry9zqMY8jG15jhAsWquu0+OhGKdCLp/
+ J8l+tZci4yN+M1CcDXtsTWC++xqZ/oty+EJHe7+me2cO+QT3Wi8XNXl3IFWM3iIUxq0szuab9
+ aY4J/rgOKAD4m4+VgM3tTJBV1xOKB0qLqnNWmsbA7jHhUFduB6efjtqIng1MGKZdaZqFULZnr
+ ACeIpUwcNDtjsm52hThyvocWiXPpkWR6IzJDEnKt9nVZGTdJAPAYsBpdg1dtGpImih65cTsph
+ NEP8TWakM8h0VzhC1aE1VqSi5hbSLY/WIiBKEx9GEB4G7L5GNhmn6ryUK1PAORIp7Fyxf3Q5+
+ UQBvnuRGFelpU+ZgOhmU+joZQu6+EBHm+yFMD3jG+5QXcY66t8uHGQ26cR9iVTGJmKwV0L64M
+ WEvyD1f2XZ/o9ZXCYQI3YkChoWbhY9cHFyDW6kjFCxitLQgufNDwref5zYFknCGXeWfZrsUp3
+ 7OLu3+WgWLGVKi0FgKtndp/WyVD1FWFXzH1gUAYJCklCo6rm3azkFbhDy4X5M4LSOeNlc/aE7
+ 4IO/FIX8/vpXNvoSIVCOnKNghr3iDszac5inUGYZwKiI2Dwg3UXn4dpMKX4dnzZfZ4xR1AzDU
+ /0Latb57rA1ENj77Nvnm+ZB5HMzZ7ngvF5E7Zo2WAUxR3jA0S0rNwwGqBH5iqQ5RCmArtfn44
+ 67j7dm05whO9JaZcnkCEPXqnS63SFCWeZNbYG46ohiK4oL2/8hC7DtJNnfVAotyORXDq42uHn
+ 2rKTaIN8Zbvk13d4RBVAEJgwJTUn6t1+tft0sCk10WfFeaexINY+JcVhbTX1k3TflL7tu3sX3
+ 9fNB71fjrHT8WTxaxqvi0RtnfJ4NESNmgZCWjhHIlPeBcEjL8xlN9o26cgNZUws/h1Opg+ag0
+ Wl0LV2yz8G+IrI77yCQEWBbMuX7u++l4rua5iGvmnfgoMM0/gRk1zVhfGgQWDVrYaIPsnfCc/
+ jKQK6ACI+MM+Oo=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,32 +78,206 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->        PTP4l(8)                    System Manager's Manual                   PTP4l(8)
-> 
->        NAME
->            ptp4l - PTP Boundary/Ordinary/Transparent Clock
-> 
->        ...
-> 
->        egressLatency
->               Specifies  the  difference  in  nanoseconds  between  the actual
->               transmission time at the reference plane and the reported trans‐
->               mit  time  stamp. This value will be added to egress time stamps
->               obtained from the hardware.  The default is 0.
-> 
->        ingressLatency
->               Specifies the difference in nanoseconds between the reported re‐
->               ceive  time  stamp  and  the  actual reception time at reference
->               plane. This value will be subtracted from  ingress  time  stamps
->               obtained from the hardware.  The default is 0.
-> 
 
-Hi Richard
+--uD2AzuFRXoVuvUY3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Do these get passed to the kernel so the hardware can act on them, or
-are they used purely in userspace by ptp4l?
+On Sun, Feb 06, 2022 at 09:00:13AM +0100, Andreas Kemnade wrote:
+> Adds display parameter initialisation, display power up/down and
+> waveform loading
+>=20
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+[...]
+> +	/* Enable the v3p3 regulator */
+> +	ret =3D regulator_enable(priv->v3p3_regulator);
+> +	if (IS_ERR((void *)ret)) {
 
-If they has passed to the kernel, could we provide a getter as well as
-a setter, so the defaults hard coded in the driver can be read back?
+	if (ret < 0)   is common enough to be understood.
 
-	Andrew
+> +		dev_err(priv->drm.dev,
+> +			"Unable to enable V3P3 regulator. err =3D 0x%x\n",
+> +			ret);
+> +		mutex_unlock(&priv->power_mutex);
+> +		return;
+> +	}
+> +
+> +	usleep_range(1000, 2000);
+> +
+> +	pm_runtime_get_sync(priv->drm.dev);
+> +
+> +	/* Enable clocks to EPDC */
+> +	clk_prepare_enable(priv->epdc_clk_axi);
+> +	clk_prepare_enable(priv->epdc_clk_pix);
+> +
+> +	epdc_write(priv, EPDC_CTRL_CLEAR, EPDC_CTRL_CLKGATE);
+> +
+> +	/* Enable power to the EPD panel */
+> +	ret =3D regulator_enable(priv->display_regulator);
+> +	if (IS_ERR((void *)ret)) {
+
+dito
+
+> +		dev_err(priv->drm.dev,
+> +			"Unable to enable DISPLAY regulator. err =3D 0x%x\n",
+> +			ret);
+> +		mutex_unlock(&priv->power_mutex);
+> +		return;
+> +	}
+> +
+> +	ret =3D regulator_enable(priv->vcom_regulator);
+> +	if (IS_ERR((void *)ret)) {
+
+dito
+
+> +		dev_err(priv->drm.dev,
+> +			"Unable to enable VCOM regulator. err =3D 0x%x\n",
+> +			ret);
+> +		mutex_unlock(&priv->power_mutex);
+> +		return;
+> +	}
+> +
+> +	priv->powered =3D true;
+> +
+> +	mutex_unlock(&priv->power_mutex);
+> +}
+
+[...]
+> +	priv->rev =3D ((val & EPDC_VERSION_MAJOR_MASK) >>
+> +				EPDC_VERSION_MAJOR_OFFSET) * 10
+> +			+ ((val & EPDC_VERSION_MINOR_MASK) >>
+> +				EPDC_VERSION_MINOR_OFFSET);
+
+Instead of this transformation it might be (1) safer against unexpected
+versions and (2) simpler, to store the EPDC_VERSION register content
+directly.
+
+Instead of
+
+	if (priv->rev =3D=3D 20) { ... }
+
+we'd have
+
+	if (priv->rev =3D=3D 0x02000000) { ... }
+
+or perhaps something along the lines of
+
+	if (priv->rev =3D=3D EPDC_REV(2, 0, 0)) { ... }
+
+(using a macro that does the proper bitshifts).
+
+> +	dev_dbg(priv->drm.dev, "EPDC version =3D %d\n", priv->rev);
+> +
+> +	if (priv->rev <=3D 20) {
+> +		dev_err(priv->drm.dev, "Unsupported version (%d)\n", priv->rev);
+> +		return -ENODEV;
+> +	}
+> +
+> +	/* Initialize EPDC pins */
+> +	pinctrl =3D devm_pinctrl_get_select_default(priv->drm.dev);
+> +	if (IS_ERR(pinctrl)) {
+> +		dev_err(priv->drm.dev, "can't get/select pinctrl\n");
+> +		return PTR_ERR(pinctrl);
+> +	}
+> +
+> +	mutex_init(&priv->power_mutex);
+> +
+> +	return 0;
+> +}
+
+[...]
+> diff --git a/drivers/gpu/drm/mxc-epdc/epdc_waveform.h b/drivers/gpu/drm/m=
+xc-epdc/epdc_waveform.h
+> new file mode 100644
+> index 000000000000..c5c461b975cb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/mxc-epdc/epdc_waveform.h
+> @@ -0,0 +1,7 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/* Copyright (C) 2022 Andreas Kemnade */
+> +int mxc_epdc_fb_get_temp_index(struct mxc_epdc *priv, int temp);
+> +int mxc_epdc_prepare_waveform(struct mxc_epdc *priv,
+> +			      const u8 *waveform, size_t size);
+> +void mxc_epdc_set_update_waveform(struct mxc_epdc *priv,
+> +				  struct mxcfb_waveform_modes *wv_modes);
+> diff --git a/drivers/gpu/drm/mxc-epdc/mxc_epdc.h b/drivers/gpu/drm/mxc-ep=
+dc/mxc_epdc.h
+> index c5f5280b574f..f7b1cbc4cc4e 100644
+> --- a/drivers/gpu/drm/mxc-epdc/mxc_epdc.h
+> +++ b/drivers/gpu/drm/mxc-epdc/mxc_epdc.h
+> @@ -8,6 +8,32 @@
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_connector.h>
+>  #include <drm/drm_simple_kms_helper.h>
+> +#include <linux/thermal.h>
+> +#include "epdc_regs.h"
+> +
+> +#define TEMP_USE_AMBIENT			0x1000
+
+What's the significance of 0x1000 here? Is it a register value?
+
+
+>  static void mxc_epdc_pipe_update(struct drm_simple_display_pipe *pipe,
+> @@ -187,6 +267,7 @@ static struct drm_driver mxc_epdc_driver =3D {
+>  static int mxc_epdc_probe(struct platform_device *pdev)
+>  {
+>  	struct mxc_epdc *priv;
+> +	const struct firmware *firmware;
+>  	int ret;
+> =20
+>  	priv =3D devm_drm_dev_alloc(&pdev->dev, &mxc_epdc_driver, struct mxc_ep=
+dc, drm);
+> @@ -195,6 +276,19 @@ static int mxc_epdc_probe(struct platform_device *pd=
+ev)
+> =20
+>  	platform_set_drvdata(pdev, priv);
+> =20
+> +	ret =3D mxc_epdc_init_hw(priv);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D request_firmware(&firmware, "imx/epdc/epdc.fw", priv->drm.dev);
+
+Thinking ahead to the point when we'll have multiple waveforms for
+different modes...  What's your idea for a naming scheme to distinguish
+the different waveform files, and should the default name be epdc.fw, or
+perhaps something more specific?
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D mxc_epdc_prepare_waveform(priv, firmware->data, firmware->size);
+> +	release_firmware(firmware);
+> +	if (ret)
+> +		return ret;
+> +
+>  	mxc_epdc_setup_mode_config(&priv->drm);
+> =20
+>  	ret =3D mxc_epdc_output(&priv->drm);
+
+
+Jonathan
+
+--uD2AzuFRXoVuvUY3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIs/p0ACgkQCDBEmo7z
+X9svPg/+OL4D1gwnQuMC1jKKa1HHwROE2fd/xV2gC/5F+52t1t+rjYcMcp7UtIJe
+X9q0wiuOOYNLa8LW3kX6HFVlRWpsMZ7XI14AeHwGzdPqtACpRwfnmtamSvp4QrG/
+XddVB5wPnfmnFzjuHqQXb/ekIDZCYk2V5rNNyi7ZJ2ESpCxxAUVzws4172PIFAJL
+h7NquhDpCKFjrxO+7/NDQ7+hRFb0yW6rPx5WnrgHrVIcBSskH5lZxP7XYticAElq
+GxHg57wXN3OW9oYmZ9sCQ8GmzVCPeTAprdOc6mqh/ZKA/sTh1IpRnSa0wDSQGo5n
+yiFYtYcGJ0VAplDbRk4U4J55om3AJC4z7PB6LFuebSrRAINHUJinwC2qiqfBMzBV
+jkxzB6xPaONjAiREDtGziYf6Py1nv3/uaqd2gEORiiHX4DJxZi3aoeEcc3xGieaB
+ZfQ5EmLWIbx79ijoX6ZTcl1CXeVJ7d7yOJYTBRlx7f2VYl6gA/P3n9Jzj1E2Lqmk
+5K0O3j+CieKPuIroS6nKJtuFgsWb8Hl5sReMbNlJK55KxN0AX90oi6ZEvXHb9GxC
+hkqfiuvY1oWmNnLWD3GQXrGaPN8FjMbEL3E5qQbYHR2wyFCjveNZn4cLf64zWdv2
+7urZ4VDlg+x8wOK/DWAaZXQQqrkkSQVM2QLRq+ewhRiRRIzstgQ=
+=nc/z
+-----END PGP SIGNATURE-----
+
+--uD2AzuFRXoVuvUY3--
