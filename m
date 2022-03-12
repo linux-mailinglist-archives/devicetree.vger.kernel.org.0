@@ -2,123 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 135114D6B1F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 00:55:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A89294D6B49
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 01:08:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229567AbiCKXys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 18:54:48 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
+        id S229646AbiCLAJ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 19:09:58 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbiCKXyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 18:54:47 -0500
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FE1A218CF0
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 15:53:42 -0800 (PST)
-Received: by mail-lj1-x22e.google.com with SMTP id 25so14156088ljv.10
-        for <devicetree@vger.kernel.org>; Fri, 11 Mar 2022 15:53:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=do39Oz4z5cm/eFjvgfCPpR0wRWkB79WWOdbN7dhR3Do=;
-        b=yBAaCwJ21lTh/ytTeuz+MWsQ+aJ8NseaoBhS+n8hX9EeqKirdxHeRE2E3uBKt16aFl
-         aW+kC4wCIlT9ARHvfzfcQ4tchn48iJjrQKNv5f1fiWj258/5Bacq2wAglr8gX2LcD0w0
-         g4Hdl5HgELBBlJQ33f25fjIgAZ+eT+tJhWyLahoEcYK2Wj+qjiRx6BGQbGFVsGbWOxiC
-         uO1sp4TM8h0dy4DFmXbvxDAqle/GhvQtpjlbtPkIk8fWh4q9qqTVFTq7hI8+5M6Y2xuK
-         HXJcFoxNQ+zRf69rVVzEdunRgFdYEqnYGyy4KyrsjvXBaFJ68w9AQfDD4Hl0hcZIIBz7
-         jvhQ==
+        with ESMTP id S229448AbiCLAJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 19:09:57 -0500
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FF622635A;
+        Fri, 11 Mar 2022 16:08:50 -0800 (PST)
+Received: by mail-oo1-f44.google.com with SMTP id u30-20020a4a6c5e000000b00320d8dc2438so12373196oof.12;
+        Fri, 11 Mar 2022 16:08:50 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=do39Oz4z5cm/eFjvgfCPpR0wRWkB79WWOdbN7dhR3Do=;
-        b=DX7OuqjtZHsgNAswnLzmlTLolLzDGSuQV1BHnDKP2FQs5drhb6IhxqV2xJTeQJFvik
-         ptfLmUuTYaOrKdGfUpAjkzcqx9Zmnx7NM5oGfRKW7IQ48oIjBaMS+fst8NgupuUbEqmh
-         Ry5Dh1nMDEX1YSkUKSF76l28R85S/yf7xn4q9uhHxeww/RtsYzlWREO7B9uvmmaktgWI
-         w9XqKrCsisXZzAz2AZr1dyynWE0bCaN9DVT+Qq0mhJkzamSxwbRH3YvbS7012wYRGlWe
-         mH0z/gQhHiIT6unyYAKK652BabBUN5zcpgNst/JijN6rJFuwm9Mlnbnh3k850g9Yh78i
-         cC+w==
-X-Gm-Message-State: AOAM533QYBL16vVZaa6kLJFBTBvuysWh0ka1EvbIqwsqE1/KY8h2aX5f
-        /pr7VZDJflQpobJp4JLfuJQkdA==
-X-Google-Smtp-Source: ABdhPJww2h5Jcm6Ny2GEicR7Ujuyvd8mKctvvXai+Ps8mrprX3DSdwK3lpQ9jN8m5UZga2XOr0APdQ==
-X-Received: by 2002:a05:651c:386:b0:246:c7e:bb1e with SMTP id e6-20020a05651c038600b002460c7ebb1emr7451654ljp.161.1647042820593;
-        Fri, 11 Mar 2022 15:53:40 -0800 (PST)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id 8-20020a2e1548000000b002463639d0f2sm1967691ljv.68.2022.03.11.15.53.39
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=O+ZowuaGpChH9k7dXrO+pQwCk5UuyOxTNI7OLQVdPlw=;
+        b=HnogdFWeuUfOHy4wp4FG9lhBQrDHhAlNHvBlkQntWIKWP1d7OR41oEThEUnuq8qCkq
+         hoGNrxRs2reFTEynEoAuKk/7UauHhjtGIMGcbCeOWRiLYBGaeV5hroxfTc1qSksIY2QW
+         zW3y3XOOOdB1t7Y3k/ExGUpcTq8Kif1rF7pyTJQXDeGtm2FJxi9MtV+Cxmr0xPcXEue2
+         WuICvwAWWL9R50QjJi/2PrMJ+J5J0q/mDgq9s4iLMNb3ACgFWpiTNQih+i/FIWVVs57a
+         qwuEoSSDzdiWNjjO6/G7WjG6hsEz7+w0toJmU7/X9hMVsyrppfeZmbKuavxkolCRKph7
+         POaw==
+X-Gm-Message-State: AOAM5334pxmx8Oh1VRp/TwDkmdzEp05zfzjjA6PKool13eCe5uDZ/lwy
+        HzkJboHmd2r4t6aWei+voA==
+X-Google-Smtp-Source: ABdhPJxKJfen2kigP0gnh/8VFptrw0maG5VWC2hBhKLIhJu+QNoF9eXdi5I/avYm4FAyN1IQGZsxTg==
+X-Received: by 2002:a05:6871:890:b0:da:6895:1b41 with SMTP id r16-20020a056871089000b000da68951b41mr12065172oaq.74.1647043729574;
+        Fri, 11 Mar 2022 16:08:49 -0800 (PST)
+Received: from robh.at.kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id p21-20020a4a2f15000000b00320fca09b74sm4282072oop.1.2022.03.11.16.08.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Mar 2022 15:53:40 -0800 (PST)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Johan Hovold <johan@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: gnss: Add two more chips
-Date:   Sat, 12 Mar 2022 00:51:19 +0100
-Message-Id: <20220311235119.523374-4-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220311235119.523374-1-linus.walleij@linaro.org>
-References: <20220311235119.523374-1-linus.walleij@linaro.org>
+        Fri, 11 Mar 2022 16:08:48 -0800 (PST)
+Received: (nullmailer pid 445165 invoked by uid 1000);
+        Sat, 12 Mar 2022 00:08:47 -0000
+Date:   Fri, 11 Mar 2022 18:08:47 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Zev Weiss <zev@bewilderbeest.net>
+Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: Add power-efuse binding
+Message-ID: <YivkjyFhpW61VmJ2@robh.at.kernel.org>
+References: <20220308011811.10353-1-zev@bewilderbeest.net>
+ <20220308011811.10353-2-zev@bewilderbeest.net>
+ <YitpuR+SlDiKh4eq@robh.at.kernel.org>
+ <YivDpkajrJk3KfBM@hatter.bewilderbeest.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <YivDpkajrJk3KfBM@hatter.bewilderbeest.net>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The CSR GSD4t is a CSR product using the SiRFstarIV core, and
-the CSR CSRG05TA03-ICJE-R is a CSR product using the SiRFstarV
-core.
+On Fri, Mar 11, 2022 at 01:48:22PM -0800, Zev Weiss wrote:
+> On Fri, Mar 11, 2022 at 07:24:41AM PST, Rob Herring wrote:
+> > On Mon, Mar 07, 2022 at 05:18:09PM -0800, Zev Weiss wrote:
+> > > This can be used to describe a power output supplied by a regulator
+> > > device that the system controls.
+> > > 
+> > > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
+> > > ---
+> > >  .../devicetree/bindings/misc/power-efuse.yaml | 49 +++++++++++++++++++
+> > >  1 file changed, 49 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
+> > > new file mode 100644
+> > > index 000000000000..5f8f0b21af0e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
+> > > @@ -0,0 +1,49 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Generic power efuse device
+> > > +
+> > > +maintainers:
+> > > +  - Zev Weiss <zev@bewilderbeest.net>
+> > > +
+> > > +description: |
+> > > +  This binding describes a physical power output supplied by a
+> > > +  regulator providing efuse functionality (manual on/off control, and
+> > > +  auto-shutoff if current, voltage, or thermal limits are exceeded).
+> > > +
+> > > +  These may be found on systems such as "smart" network PDUs, and
+> > > +  typically supply power to devices entirely separate from the system
+> > > +  described by the device-tree by way of an external connector such as
+> > > +  an Open19 power cable:
+> > > +
+> > > +  https://www.open19.org/marketplace/coolpower-cable-assembly-8ru/
+> > 
+> > Not really a helpful link...
+> > 
+> > I still don't understand what the h/w looks like here. At least I now
+> > understand we're talking a fuse on power rail, not efuses in an SoC
+> > used as OTP bits or feature disables.
+> > 
+> 
+> The systems this would actually be used for would be things like these:
+>  - https://www.open19.org/marketplace/delta-16kw-power-shelf/
+>  - https://www.open19.org/marketplace/inspur-open19-power-shelf-ob19200l1/
 
-These chips have a SRESETN line that can be pulled low to hard
-reset the chip and in some designs this is connected to a GPIO,
-so add this as an optional property.
+Those still don't help show me what the h/w looks like. High level 
+schematics is what I'm looking for.
 
-Update the example with a reset line so users see that it need
-to be tagged as active low.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- Documentation/devicetree/bindings/gnss/sirfstar.yaml | 7 +++++++
- 1 file changed, 7 insertions(+)
+> The rightmost pictures on those pages show the four black connectors where
+> the cable assembly linked in the patch plugs in, each of which provides the
+> outputs from 12 such efuses, on 12 pairs of ground and +12VDC pins.  (There
+> are also two more single outputs off to the side.)
+> 
+> It essentially just amounts to an external power output supplied by a
+> regulator, with the regulator providing an on/off switch, overcurrent
+> protection, etc.
+> 
+> And yes, the ambiguity of the "efuse" terminology is unfortunate (the
+> "power-" prefix was an attempt to clarify it slightly).  That's the term
+> used in the documentation for the hardware and hence is what I've called it
+> here, but I'd be open to using a different name if that would help.
+> 
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: power-efuse
+> > > +
+> > > +  vout-supply:
+> > > +    description:
+> > > +      phandle to the regulator providing power for the efuse
+> > 
+> > Vout is a supply to the efuse and not the rail being fused?
+> 
+> Yeah, that was a fairly muddled description -- it's really the latter.
+> Perhaps:
+> 
+>   phandle to the regulator providing power for the output rail
+>   controlled by the efuse
+> 
+> ?
+> 
+> > 
+> > Sorry, I know nothing about how an efuse is implemented so you are going
+> > to have to explain or draw it.
+> > 
+> > > +
+> > > +  error-flags-cache-ttl-ms:
+> > > +    description:
+> > > +      The number of milliseconds the vout-supply regulator's error
+> > > +      flags should be cached before re-fetching them.
+> > 
+> > How does one fetch/read? the error flags?
+> > 
+> 
+> In the specific case I'm dealing with, via PMBus STATUS_* commands, though I
+> was aiming to keep this more generic so it could potentially be used to
+> describe non-PMBus arrangements (in the Linux case, via whatever mechanism
+> the implementation of the regulator's .get_error_flags() function uses).
 
-diff --git a/Documentation/devicetree/bindings/gnss/sirfstar.yaml b/Documentation/devicetree/bindings/gnss/sirfstar.yaml
-index 91874241d0f3..e2ad1f01f9f3 100644
---- a/Documentation/devicetree/bindings/gnss/sirfstar.yaml
-+++ b/Documentation/devicetree/bindings/gnss/sirfstar.yaml
-@@ -25,6 +25,8 @@ description:
- properties:
-   compatible:
-     enum:
-+      - csr,gsd4t
-+      - csr,csrg05ta03-icje-r
-       - fastrax,uc430
-       - linx,r4
-       - wi2wi,w2sg0004
-@@ -39,6 +41,10 @@ properties:
-     description:
-       Main voltage regulator, pin names such as 3V3_IN, VCC, VDD.
- 
-+  reset-gpios:
-+    description: An optional active low reset line, should be flagged with
-+      GPIO_ACTIVE_LOW.
-+
-   timepulse-gpios:
-     description: Comes with pin names such as 1PPS or TM
- 
-@@ -66,6 +72,7 @@ examples:
-         gnss {
-             compatible = "wi2wi,w2sg0084i";
-             vcc-supply = <&gnss_vcc_reg>;
-+            reset-gpios = <&gpio0 15 GPIO_ACTIVE_LOW>;
-             sirf,onoff-gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
-             sirf,wakeup-gpios = <&gpio0 17 GPIO_ACTIVE_HIGH>;
-             current-speed = <38400>;
--- 
-2.35.1
+PMBus is I2C (subset). What device(s) is on the PMBus?
 
+Here's what I've got for connections so far:
+
+Vout(regulator)-->|efuse|-->12V
+
+Host-->PMbus--->????
+
+Rob
