@@ -2,143 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 420AA4D702A
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 18:36:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D5E4D7049
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 19:06:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232321AbiCLRhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 12:37:37 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36554 "EHLO
+        id S232377AbiCLSHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 13:07:31 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229491AbiCLRhf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 12:37:35 -0500
-Received: from mail-oo1-xc2f.google.com (mail-oo1-xc2f.google.com [IPv6:2607:f8b0:4864:20::c2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60CE4B821F
-        for <devicetree@vger.kernel.org>; Sat, 12 Mar 2022 09:36:29 -0800 (PST)
-Received: by mail-oo1-xc2f.google.com with SMTP id y27-20020a4a9c1b000000b0032129651bb0so14643378ooj.2
-        for <devicetree@vger.kernel.org>; Sat, 12 Mar 2022 09:36:29 -0800 (PST)
+        with ESMTP id S230183AbiCLSH3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 13:07:29 -0500
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8810070CE4;
+        Sat, 12 Mar 2022 10:06:21 -0800 (PST)
+Received: by mail-pg1-x533.google.com with SMTP id q19so10193765pgm.6;
+        Sat, 12 Mar 2022 10:06:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iRAZJoZoZh3qRV/UYKwJwKogthRoGQB0qt95Y42xJ0o=;
-        b=oKm0ZN3ZKvIZN/GefFAARdns9WrE3x4XoBJ1uXZNjdXYJBaoCaTRVBtd93sMGwI+wb
-         p8+Rmdi0ffArNKC5tXIP3YZaSq6/DeK62G9RbnTr32gMAG+JgcMDg+JdNv++AmYUV1Df
-         O/HZTYKLa5nkt0j7LQvGtgOghhLEbfRLRX/FE9l+m8hY+tB0hxUqoUtufFnw1e6szCRd
-         JAfZbCuLpYAvWUxWJlNGHYM84N582JIcLYdIYqJWPblubxZzIUmM93j3yCcHmtdVpNJX
-         ZzlMrZWr4rSZLALOPDVB2B3L7jmmV2Ran9m0xNL+HRRM0xboeJumYwhCKmr7ZVJI1CyN
-         gxgA==
+        d=gmail.com; s=20210112;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NvNq+45Cgx0F9RlJNbV6eVIGlsmW+8HM1hn3gRVvPWk=;
+        b=BdFHcOFjPNbp1ClgSl4cyaGkb5MGKSVWZdY+OtHHZfGHtXKxN28jZZxVPQtkBFiS06
+         GZEUZR1GSzIdkVQsh83Bixkp1BHYgQ6ZGzl/tIytqspcbY48Kf8UwKgCPmEHFn3pI97n
+         REiy22FPkON3FN0ck3/jcmt9VssS8fG/wH4NA9Duxpsk5Itm5EgH2Pvq6MhkNLc4HG8J
+         8rwHl/9WEGKrsvw02JwZ5GtUPV08BFaJ6/xMBbqobumoBuR8rox2TaDALeattwmyita9
+         7opxYp+bS+wauBOBa0m8kurcBLW5yaFusZ8PhrG67B8Ei7bc/yZClni0yL9C4gPhlthM
+         IxYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iRAZJoZoZh3qRV/UYKwJwKogthRoGQB0qt95Y42xJ0o=;
-        b=PdEWE6LNXnQI67HXy2JmV0hWS360NjtNCPCxwPxahleQCStFxKNoBAvBPRLIbNlQL0
-         PAKRE27B+FSHz5TxdHchHk9BzXuKEQyo6IyDz9BJdQq5ZyXXEnbns6csiDt4sqg2NTdI
-         ZRhFvDcrJmzXygf0gezIiHGt49iuSaHW4scPay7Guy0cJQKBQRMGKtuakpScqZNomNBl
-         DfIxip5K4O+GTGunpelhrAVkDCRrBOdNaptYhyS15oomWZHuFK9GlpYHBMYgg8TI9SW0
-         mlyKEWuwVoUG5eQcSCscgqRf5jICiPa4cq/fwQsB79XXTWmHhKg1pH1RUKSyJCi8WXC9
-         QOig==
-X-Gm-Message-State: AOAM533mxZ+r1B0LnwVQCx9WRPXVdtPcFhM9D+sUiFDRnjBJhQHNBCOp
-        btHHmMp7N3UTVayZRVw013e8Tg==
-X-Google-Smtp-Source: ABdhPJyn9jljunqjT976KNT5QT5bTu3YoYxtUp/Qci2+b4frJrNNW1FUWyYNGk3vpCQ8IWOrnRf9uA==
-X-Received: by 2002:a4a:6b5d:0:b0:321:493c:edcb with SMTP id h29-20020a4a6b5d000000b00321493cedcbmr7108644oof.81.1647106588714;
-        Sat, 12 Mar 2022 09:36:28 -0800 (PST)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id q16-20020a9d4b10000000b005b22b93d468sm5105250otf.74.2022.03.12.09.36.27
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=NvNq+45Cgx0F9RlJNbV6eVIGlsmW+8HM1hn3gRVvPWk=;
+        b=QneDIVJQckv1qEf05FyvdFGX9hVJ82yNIij68bBFjCDLX7eYG9kzvH3gbVgDrfcrpX
+         T6F42dwY7LGx1AmlBsODwjV3ojbkdh+4ARUe+hjIzulTe0IzS4qEk0toWu/LrX1qkVOd
+         JIhb+j47pXCBOMRv22dGfMxU0C9v1RDp6ATLTnpj09y0RkIfg/ObhCq7al155lngifLe
+         R6iPETStRA4TwQ0tAdKO/59mZ+T8olf7O97QbigNK5Wwt5c50FH+zLsy8BZYE91McUZT
+         DnONI9Q/dKUWUwHpunRpE3PTc8ltmbZ0Kq2hmHFtRQJjkXNb5Ket8sAGDbrR/OAIFdC0
+         ZHag==
+X-Gm-Message-State: AOAM533tehFGpaflFGWh12AXbwt8CQ5XGMakdWAiQN9mXizuTLuMTqV9
+        ZvVpyeRCYVSHUWRfQxt0dRbYos0e7hs=
+X-Google-Smtp-Source: ABdhPJxyh0A25Tmu6u5SH/ooAqZ5mdXki0nzOSIzCUFbTtXvAoNYNvhzqX1hQjol5DBouIIcS5LXqg==
+X-Received: by 2002:a05:6a00:2444:b0:4f7:73bb:7582 with SMTP id d4-20020a056a00244400b004f773bb7582mr14509995pfj.39.1647108380870;
+        Sat, 12 Mar 2022 10:06:20 -0800 (PST)
+Received: from localhost.localdomain ([122.161.53.68])
+        by smtp.gmail.com with ESMTPSA id z72-20020a627e4b000000b004f70cbcb06esm14017951pfc.49.2022.03.12.10.06.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Mar 2022 09:36:28 -0800 (PST)
-Date:   Sat, 12 Mar 2022 11:36:26 -0600
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dianders@chromium.org, swboyd@chromium.org,
-        quic_kalyant@quicinc.com
-Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-rate
- property for mdp clk
-Message-ID: <YizaGgCLxH0D9MRF@builder.lan>
-References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com>
- <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
+        Sat, 12 Mar 2022 10:06:20 -0800 (PST)
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     soc@kernel.org, Arnd Bergmann <arnd@arndb.de>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] More DT fixes for arm,pl022
+Date:   Sat, 12 Mar 2022 23:36:13 +0530
+Message-Id: <20220312180615.68929-1-singh.kuldeep87k@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 08 Mar 10:54 CST 2022, Vinod Polimera wrote:
+As per spi pl022 binding, spear and lpc18 platform require fix in dma
+properties to resolve dtbs_check warning.
 
-Please run:
+Patch 1(spear): just reorder entries to resolve warning.
+Patch 2(lpc): require reorder of dma pairs, and also within pairs.
+In general, dmas follow below convention:
+<rx,tx> = <x+1,x>
+Keeping this mind, I updated entries for dma pairs.
 
-  git log --oneline --no-decorate -- arch/arm64/boot/dts/qcom/sc7280.dtsi
+This patchset is based on
+git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git, arm/dt
 
-and make sure your $subject is prefixed according to all other
-sc7280-specific changes.
+Kuldeep Singh (2):
+  ARM: dts: spear13xx: Update SPI dma properties
+  ARM: dts: lpc18xx: Update SPI dma properties
 
-> Kernel clock driver assumes that initial rate is the
-> max rate for that clock and was not allowing it to scale
-> beyond the assigned clock value.
-> 
-> Drop the assigned clock rate property and vote on the mdp clock as per
-> calculated value during the usecase.
-> 
-> Changes in v2:
-> - Remove assigned-clock-rate property and set mdp clk during resume sequence.
-> - Add fixes tag.
-> 
-> Changes in v3:
-> - Remove extra line after fixes tag.(Stephen Boyd)
+ arch/arm/boot/dts/lpc18xx.dtsi   | 19 +++++++------------
+ arch/arm/boot/dts/spear13xx.dtsi |  5 ++---
+ 2 files changed, 9 insertions(+), 15 deletions(-)
 
-It's only in drivers/drm that the changelog goes in the commit message,
-so please move this below the ---.
+-- 
+2.25.1
 
-Thanks,
-Bjorn
-
-> 
-> Fixes: 62fbdce91("arm64: dts: qcom: sc7280: add display dt nodes")
-> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index baf1653..408cf6c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -2856,9 +2856,6 @@
->  				      "ahb",
->  				      "core";
->  
-> -			assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
-> -			assigned-clock-rates = <300000000>;
-> -
->  			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
->  			interrupt-controller;
->  			#interrupt-cells = <1>;
-> @@ -2892,11 +2889,9 @@
->  					      "lut",
->  					      "core",
->  					      "vsync";
-> -				assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
-> -						<&dispcc DISP_CC_MDSS_VSYNC_CLK>,
-> +				assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>,
->  						<&dispcc DISP_CC_MDSS_AHB_CLK>;
-> -				assigned-clock-rates = <300000000>,
-> -							<19200000>,
-> +				assigned-clock-rates = <19200000>,
->  							<19200000>;
->  				operating-points-v2 = <&mdp_opp_table>;
->  				power-domains = <&rpmhpd SC7280_CX>;
-> -- 
-> 2.7.4
-> 
