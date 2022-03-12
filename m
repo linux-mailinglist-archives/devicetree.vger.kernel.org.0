@@ -2,157 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 925B84D6DFA
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 11:23:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 270134D6E00
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 11:26:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbiCLKYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 05:24:50 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35644 "EHLO
+        id S231713AbiCLK12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 05:27:28 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230338AbiCLKYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 05:24:48 -0500
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA04A6351A
-        for <devicetree@vger.kernel.org>; Sat, 12 Mar 2022 02:23:22 -0800 (PST)
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S231233AbiCLK11 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 05:27:27 -0500
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A28B1D2B75;
+        Sat, 12 Mar 2022 02:26:21 -0800 (PST)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BE3783F60F
-        for <devicetree@vger.kernel.org>; Sat, 12 Mar 2022 10:23:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647080600;
-        bh=xDCJmkuolk+37CRthskXGD5BwRwajHEJ6ASCw/gpw94=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=mEWZmVT6h+ici+6Gy60hl2LX9D/dfEf/amdLJBLfwyExj/vIYR7erTk5gW0bhaiN/
-         qDcBOZjq0GPl6W2RewK6fE1TPGr0Buw6z2081gF97oJ/LH2mB6UhthLtIjpuzryt3E
-         PifLQEivOncia3yiET25uWcfWHntadbL1JZyLGCpglCn2nDNiNkzELYxgm9gsA0xD5
-         CwNG9iHkxLeOYZphlUvSn7l8Xr2Ty5qxCGHbKB8s1djbn7pu5MDH6WuQVFVZZuRBuy
-         +s6hYMNWPqQK7HbYY8A1az4gw/i8hG2Hi19vDKuu/J8m5B0eSgs1kfucep5jRg2Xw6
-         GAJVtVu5p1b9w==
-Received: by mail-wm1-f69.google.com with SMTP id r133-20020a1c448b000000b00385c3f3defaso3485768wma.3
-        for <devicetree@vger.kernel.org>; Sat, 12 Mar 2022 02:23:20 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=xDCJmkuolk+37CRthskXGD5BwRwajHEJ6ASCw/gpw94=;
-        b=kT2Qmik7QErdrZR72QITixpKoehvYKALL9b5TCnewB2m4/2uTQs2v4N2lNAcdGSxnV
-         XS5ZyG4x64J/pC1eLS6/yc3aBmkqqFbZ67OB9sScvCjE2uOAm2R3RPmWm/c7kKSTtspk
-         cGfx+ek98rA8n9RVB4D+a+Fk/pyy4gGs4RBd2zNyz8G1pkLR7InrKifrvg+WuitCUOBz
-         rd5D1WaSLCxicHs2YGarLgdEAuxXOZ2oyTXJ7yMSYnyWhvrNO8jm6h7UwbRLcuxYNlCp
-         YUtYgfJ8u2Kcw0Nc6m7oe+3Y7GvjUsvFQvWv0gZq9/Qc2GLmYpUEZEYvnD701+/H0Te9
-         9yuQ==
-X-Gm-Message-State: AOAM532Nnudhu6A4iQonLwBqigu1RiWONqJ1fLe111ekksbtbg9NO8lR
-        M1ofp3vDa+WQLr70XfGug/rPTx/Az0KejB0lBcMbaFWNsW1H4OXzxfUr+c4VoVHVhOHl3J8vKBc
-        pLjnaHvylY0IpB8MnAQ+a8uS8115a79sbaCEkRlo=
-X-Received: by 2002:a5d:55c5:0:b0:1f0:7672:637d with SMTP id i5-20020a5d55c5000000b001f07672637dmr10456074wrw.170.1647080600366;
-        Sat, 12 Mar 2022 02:23:20 -0800 (PST)
-X-Google-Smtp-Source: ABdhPJyFIGW8or/HGHeWCNJyi2pEy+yZaNExUDX0cSktJR/WW3PJOCLqu9GeD9VB0AwoAH5nNBQyPA==
-X-Received: by 2002:a5d:55c5:0:b0:1f0:7672:637d with SMTP id i5-20020a5d55c5000000b001f07672637dmr10456048wrw.170.1647080600043;
-        Sat, 12 Mar 2022 02:23:20 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id r5-20020a5d4945000000b001f06372fa9fsm13157691wrs.54.2022.03.12.02.23.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Mar 2022 02:23:19 -0800 (PST)
-Message-ID: <e0da4fbc-b72c-60a0-5a5f-99d18653c294@canonical.com>
-Date:   Sat, 12 Mar 2022 11:23:18 +0100
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 3FDF883AE6;
+        Sat, 12 Mar 2022 11:26:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1647080778;
+        bh=+SIpbN1h62mK1m8ERiHpYNLT4Fclt7J2/nx1fzIBje8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=SsMarSwmceMhqU/AVSSt1wuMGBmEdSfmNnRqtR9Or7IK4nwfjMyGGBOYjfftnXj9m
+         ggqfVB/2IN7gMURdSgKz+pFx9pQEEnQH7i0vIG9Uv3MOKHGh1KjcuB3frU5FZw++7g
+         kuhHGaEjJQkma1g6vI5SkdFwYed7USi67L0NH6UCUrerhdfWkk3DL6bzMlzDNEZ7xW
+         R3jP2rjH5SRscKZlqyAHWdg+XqeDe7j92eUa3c6YgzJ2/IuMfichd5t9qGoamTaYKZ
+         MfutNEF9poFLqznVle1sEL56KUPlH9gGCkLuuYtct6C9enklqV7M1w9W3DUsxKp+1W
+         +RcHSrRcJAHPw==
+Message-ID: <00479d7f-1124-de8b-d125-40f8139331f1@denx.de>
+Date:   Sat, 12 Mar 2022 11:26:17 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/3] ARM: dts: lpc32xx: Update spi clock properties
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
 Content-Language: en-US
-To:     Vladimir Zapolskiy <vz@mleia.com>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20220311093800.18778-1-singh.kuldeep87k@gmail.com>
- <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
- <4aae560d-d266-d0d0-136f-32891b15bc01@mleia.com>
- <CAK8P3a3a_WXbDKN-jJUt_Wuvop0rfaUs4ytwyhogOxdtJAPx0w@mail.gmail.com>
- <4f39f086-1932-1729-8761-d5c533356812@mleia.com>
- <2f53f17a-427c-62d6-a0c6-4a3962ab01f0@canonical.com>
- <9f4e3cdc-f5e2-7102-949e-7b3032118e63@mleia.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <9f4e3cdc-f5e2-7102-949e-7b3032118e63@mleia.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20220215084412.8090-1-marex@denx.de>
+ <20220215084412.8090-2-marex@denx.de>
+ <20220217222328.7F7B3C340E8@smtp.kernel.org>
+ <77c85470-5378-8c8b-8e5f-d57c83773ed6@denx.de>
+ <4f1b946d-ee82-bd0e-c51e-100c23b87fdf@denx.de>
+ <20220312050419.2AB91C340EE@smtp.kernel.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <20220312050419.2AB91C340EE@smtp.kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/03/2022 22:26, Vladimir Zapolskiy wrote:
-> On 3/11/22 4:33 PM, Krzysztof Kozlowski wrote:
->> On 11/03/2022 15:07, Vladimir Zapolskiy wrote:
->>> On 3/11/22 3:38 PM, Arnd Bergmann wrote:
->>>> On Fri, Mar 11, 2022 at 2:20 PM Vladimir Zapolskiy <vz@mleia.com> wrote:
->>>>>
->>>>> On 3/11/22 11:38 AM, Kuldeep Singh wrote:
->>>>>> PL022 binding require two clocks to be defined but lpc platform doesn't
->>>>>> comply with bindings and define only one clock i.e apb_pclk.
->>>>>>
->>>>>> Update spi clocks and clocks-names property by adding appropriate clock
->>>>>> reference to make it compliant with bindings.
->>>>>>
->>>>>> CC: Vladimir Zapolskiy <vz@mleia.com>
->>>>>> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
->>>>>> ---
->>>>>> v2:
->>>>>> - New patch with similar changeset
->>>>>> - Send to soc ML
->>>>>>
->>>>>>     arch/arm/boot/dts/lpc32xx.dtsi | 8 ++++----
->>>>>>     1 file changed, 4 insertions(+), 4 deletions(-)
->>>>>>
->>>>>> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
->>>>>> index c87066d6c995..30958e02d5e2 100644
->>>>>> --- a/arch/arm/boot/dts/lpc32xx.dtsi
->>>>>> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
->>>>>> @@ -178,8 +178,8 @@ ssp0: spi@20084000 {
->>>>>>                                 compatible = "arm,pl022", "arm,primecell";
->>>>>>                                 reg = <0x20084000 0x1000>;
->>>>>>                                 interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
->>>>>> -                             clocks = <&clk LPC32XX_CLK_SSP0>;
->>>>>> -                             clock-names = "apb_pclk";
->>>>>> +                             clocks = <&clk LPC32XX_CLK_SSP0>, <&clk LPC32XX_CLK_SSP0>;
->>>>>> +                             clock-names = "sspclk", "apb_pclk";
->>>>>
->>>>> In fact I'm uncertain if it is the right change, could it happen that the commit
->>>>> cc0f6e96c4fd ("spi: dt-bindings: Convert Arm pl022 to json-schema") sets a wrong
->>>>> schema pattern?
->>>>
->>>> Good pointm this doesn't quite seem right: it is unlikely that the same clock
->>>> is used for both the SPI bus and the APB bus.
->>>>
->>>>> Apparently just one clock is wanted on all observed platforms and cases, this
->>>>> is implicitly confirmed by clock handling in the drivers/spi/spi-pl022.c :
->>>>>
->>>>>           pl022->clk = devm_clk_get(&adev->dev, NULL);
->>>>>
->>>>> So, I would vote to fix the device tree bindings schema.
+On 3/12/22 06:04, Stephen Boyd wrote:
+> Quoting Marek Vasut (2022-03-09 12:54:35)
+>> On 2/21/22 01:58, Marek Vasut wrote:
+>>> On 2/17/22 23:23, Stephen Boyd wrote:
+>>>
+>>>> I see that there isn't any more 'clock-critical' in the kernel's dts so
+>>>> I wonder if we would be able to get rid of that function or at least
+>>>> hollow it out and see if anyone complains. Either way, what is the
+>>>> actual problem trying to be solved? If the crystal oscillator isn't used
+>>>> anywhere in the kernel why are we registering it with the clk framework?
+>>>
+>>> The problem is the other way around -- the SoC clock IPs often have a
+>>> couple of general purpose clock routed to various SoC IO pins, those
+>>> clock can be used for any purpose, and those are already registered with
+>>> kernel clock framework. Some devices save on BoM and use those general
+>>> purpose clock to supply clock networks which are otherwise not
+>>> interacting with the kernel, like some CPLD for example. Since from the
+>>> kernel point of view, those clock are unused, the kernel can turn those
+>>> clock OFF and that will make the entire device fail.
+>>>
+>>> So this critical-clocks property permits marking clock which must not
+>>> ever be turned OFF accordingly.
 >>
->> Drivers do not describe the hardware. Bindings should not be modeled on
->> drivers, but on actual hardware, so the example is not convincing.
+>> How can we proceed here ?
 > 
-> My concern is that fixing the bindings can break the driver and all its users,
-> is it clear enough how it can happen in assumption that the driver uses just
-> one clock at the moment?
+> Why are we registering the clks with the framework on device that are
+> saving on BoM and using them outside of the kernel. What is the use of
+> kernel memory for struct clk_core that aren't ever used?
 
-You meant fixing the DTS? We do not consider here "fixing bindings"
-because they look correct. About DTS, using the same clock twice should
-not cause negative effect.
+Those clock may be used to supply a device in DT on another hardware 
+using the same SoC.
 
+Take e.g. this random git grep result:
 
-Best regards,
-Krzysztof
+arch/arm/boot/dts/imx7d-remarkable2.dts
+/ {
+   wifi_pwrseq {
+     ...
+     clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
+     ...
+   };
+};
+
+This IMX7D_CLKO2_ROOT_DIV is one such general purpose clock output. In 
+the aforementioned case, it is used to supply 32 kHz clock to a WiFi 
+chip, i.e. it has a consumer in DT. These clock are registered by the 
+platform clock driver:
+
+drivers/clk/imx/clk-imx7d.c
+
+But those clock can also be used to supply e.g. CPLD which has no other 
+connection to the SoC but the clock. That is where it needs this 
+critical-clocks property. Because then there is no consumer in DT. So 
+the kernel will now think the clock are not used and will turn them off 
+after boot, thus e.g. crashing such platform.
+
+So in the later case, the DT would contain the following to avoid the crash:
+&clks {
+   critical-clocks = <IMX7D_CLKO2_ROOT_DIV>;
+};
