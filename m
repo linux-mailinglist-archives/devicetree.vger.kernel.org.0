@@ -2,137 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA9A4D7126
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 22:54:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC60D4D7156
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 00:00:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231602AbiCLVze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 16:55:34 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44702 "EHLO
+        id S232829AbiCLXBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 18:01:55 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbiCLVzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 16:55:33 -0500
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A4B5D2A70F;
-        Sat, 12 Mar 2022 13:54:27 -0800 (PST)
-X-IronPort-AV: E=Sophos;i="5.90,177,1643641200"; 
-   d="scan'208";a="113308968"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 13 Mar 2022 06:54:27 +0900
-Received: from localhost.localdomain (unknown [10.226.92.30])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 9E8214007521;
-        Sun, 13 Mar 2022 06:54:24 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH 1/7] dt-bindings: display: renesas,du: Document r9a07g044l bindings
-Date:   Sat, 12 Mar 2022 21:54:11 +0000
-Message-Id: <20220312215417.8023-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220312215417.8023-1-biju.das.jz@bp.renesas.com>
-References: <20220312215417.8023-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230380AbiCLXBz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 18:01:55 -0500
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 139E836693;
+        Sat, 12 Mar 2022 15:00:43 -0800 (PST)
+X-UUID: 9950cb7027d44bccab14f1d2a6ed57ce-20220313
+X-UUID: 9950cb7027d44bccab14f1d2a6ed57ce-20220313
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <miles.chen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 682348720; Sun, 13 Mar 2022 07:00:36 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sun, 13 Mar 2022 07:00:34 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 13 Mar 2022 07:00:34 +0800
+From:   Miles Chen <miles.chen@mediatek.com>
+To:     <chun-jie.chen@mediatek.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>, <drinkcat@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
+        <robh+dt@kernel.org>, <sboyd@kernel.org>,
+        <srv_heupstream@mediatek.com>
+Subject: Re: [PATCH v3 02/15] clk: mediatek: Add MT8186 mcusys clock support
+Date:   Sun, 13 Mar 2022 07:00:34 +0800
+Message-ID: <20220312230034.31580-1-miles.chen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <20220311114229.32504-3-chun-jie.chen@mediatek.com>
+References: <20220311114229.32504-3-chun-jie.chen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,MAY_BE_FORGED,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the Renesas DU display bindings to support the r9a07g044l
-RZ/G2L LCDC.
+> Add MT8186 mcusys clock controller which provides muxes
+> to select the clock source of APMCU.
+> 
+> Signed-off-by: Chun-Jie Chen <chun-jie.chen@mediatek.com>
+> Acked-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-RFC->v1:
- * Changed  minItems->maxItems for renesas,vsps.
-RFC:
- https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-18-biju.das.jz@bp.renesas.com/
----
- .../bindings/display/renesas,du.yaml          | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/renesas,du.yaml b/Documentation/devicetree/bindings/display/renesas,du.yaml
-index 13efea574584..cdd54ea32401 100644
---- a/Documentation/devicetree/bindings/display/renesas,du.yaml
-+++ b/Documentation/devicetree/bindings/display/renesas,du.yaml
-@@ -40,6 +40,7 @@ properties:
-       - renesas,du-r8a77990 # for R-Car E3 compatible DU
-       - renesas,du-r8a77995 # for R-Car D3 compatible DU
-       - renesas,du-r8a779a0 # for R-Car V3U compatible DU
-+      - renesas,du-r9a07g044l # for RZ/G2L compatible DU
- 
-   reg:
-     maxItems: 1
-@@ -824,6 +825,59 @@ allOf:
-         - reset-names
-         - renesas,vsps
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,du-r9a07g044l
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: LCDC Main clock
-+            - description: LCDC Register Access Clock
-+            - description: LCDC Video Clock
-+
-+        clock-names:
-+          items:
-+            - const: du.0
-+            - const: pclk
-+            - const: vclk
-+
-+        interrupts:
-+          maxItems: 1
-+
-+        resets:
-+          maxItems: 1
-+
-+        reset-names:
-+          items:
-+            - const: du.0
-+
-+        ports:
-+          properties:
-+            port@0:
-+              description: DPAD 0
-+            port@1:
-+              description: DSI 0
-+            port@2: false
-+            port@3: false
-+
-+          required:
-+            - port@0
-+            - port@1
-+
-+        renesas,vsps:
-+          maxItems: 1
-+
-+      required:
-+        - clock-names
-+        - interrupts
-+        - resets
-+        - reset-names
-+        - renesas,vsps
-+
- additionalProperties: false
- 
- examples:
--- 
-2.17.1
-
+Reviewed-by: Miles Chen <miles.chen@mediatek.com>
