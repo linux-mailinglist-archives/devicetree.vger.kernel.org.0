@@ -2,192 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 173E14D6B79
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 01:39:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2934C4D6B40
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 01:04:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229749AbiCLAkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Mar 2022 19:40:14 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50850 "EHLO
+        id S229472AbiCLAF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Mar 2022 19:05:57 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbiCLAkN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 19:40:13 -0500
-Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4399D26B5B8;
-        Fri, 11 Mar 2022 16:39:09 -0800 (PST)
-Received: from hatter.bewilderbeest.net (174-21-187-98.tukw.qwest.net [174.21.187.98])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: zev)
-        by thorn.bewilderbeest.net (Postfix) with ESMTPSA id AE39C531;
-        Fri, 11 Mar 2022 16:39:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
-        s=thorn; t=1647045548;
-        bh=HtlsTwz17UXvyufh1vIWE2ju5pkzj9Qx42xNXiD/wTQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QNJmzpKXdKZqrdj7y7lIyN5Pes05LDrKzH7vmJkbe8GzkadKS7/HvUAyjtns8fxEX
-         +c6J3rv3W8cSwsASZYfwy9GbSRk62NhK0avXHoqE8E8Zl7ggxZyD/FyriK1JXvHJGs
-         wsu1NwCFtizAkrMZ3Lbq4kL9dSIYUTwyQsHjlfHY=
-Date:   Fri, 11 Mar 2022 16:39:05 -0800
-From:   Zev Weiss <zev@bewilderbeest.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add power-efuse binding
-Message-ID: <YivrqQA4r2hQ+xSL@hatter.bewilderbeest.net>
-References: <20220308011811.10353-1-zev@bewilderbeest.net>
- <20220308011811.10353-2-zev@bewilderbeest.net>
- <YitpuR+SlDiKh4eq@robh.at.kernel.org>
- <YivDpkajrJk3KfBM@hatter.bewilderbeest.net>
- <YivkjyFhpW61VmJ2@robh.at.kernel.org>
+        with ESMTP id S229457AbiCLAF4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Mar 2022 19:05:56 -0500
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7A765B3;
+        Fri, 11 Mar 2022 16:04:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1647043492; x=1678579492;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=Vzl/jEjfdsCi6JqP7iVxxwjdQOR17jrD8nYVD6RvPHA=;
+  b=f80zCXrzovfVuIly0lqebq4dddAaAR0M4sqDbncJHMSsCg2hknRD8LK7
+   MdQQfjMrFe5xI+JPCP4ekSjIAmcqzNip69SloTg/CBIGpKjohpUgA1MR7
+   6qtdspWOrVBdHerzmDeEsWNSaTj5XlAv0keBO5a1Fs0aS3gV79nuQ8POV
+   FX6rnWvPRHaNzUigxHHNB62sQCRb9+pmfxZLq0xUZWPSe/logQ9X2sGzX
+   FisODOCGqWA3RPiXm7phD0nMyNw0mvW5BgmA+lrcm+uCfhTHyAk+QHVPH
+   SBMHjHWZ5GBxdiuSkyxYgOH+OTv6M+KIPq5Eg1tH7QniZkTN3CUWg8e/0
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10283"; a="342104383"
+X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; 
+   d="scan'208";a="342104383"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2022 16:04:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,175,1643702400"; 
+   d="scan'208";a="645097476"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.87])
+  by orsmga004.jf.intel.com with ESMTP; 11 Mar 2022 16:04:50 -0800
+From:   tien.sung.ang@intel.com
+To:     dinguyen@kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     niravkumar.l.rabara@intel.com
+Subject: [PATCH] arm64: dts: intel: add device tree for n6010
+Date:   Sat, 12 Mar 2022 16:01:27 +0800
+Message-Id: <20220312080127.1528190-1-tien.sung.ang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <YivkjyFhpW61VmJ2@robh.at.kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_06_12,
+        DKIMWL_WL_HIGH,DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 04:08:47PM PST, Rob Herring wrote:
->On Fri, Mar 11, 2022 at 01:48:22PM -0800, Zev Weiss wrote:
->> On Fri, Mar 11, 2022 at 07:24:41AM PST, Rob Herring wrote:
->> > On Mon, Mar 07, 2022 at 05:18:09PM -0800, Zev Weiss wrote:
->> > > This can be used to describe a power output supplied by a regulator
->> > > device that the system controls.
->> > >
->> > > Signed-off-by: Zev Weiss <zev@bewilderbeest.net>
->> > > ---
->> > >  .../devicetree/bindings/misc/power-efuse.yaml | 49 +++++++++++++++++++
->> > >  1 file changed, 49 insertions(+)
->> > >  create mode 100644 Documentation/devicetree/bindings/misc/power-efuse.yaml
->> > >
->> > > diff --git a/Documentation/devicetree/bindings/misc/power-efuse.yaml b/Documentation/devicetree/bindings/misc/power-efuse.yaml
->> > > new file mode 100644
->> > > index 000000000000..5f8f0b21af0e
->> > > --- /dev/null
->> > > +++ b/Documentation/devicetree/bindings/misc/power-efuse.yaml
->> > > @@ -0,0 +1,49 @@
->> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> > > +%YAML 1.2
->> > > +---
->> > > +$id: http://devicetree.org/schemas/misc/power-efuse.yaml#
->> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> > > +
->> > > +title: Generic power efuse device
->> > > +
->> > > +maintainers:
->> > > +  - Zev Weiss <zev@bewilderbeest.net>
->> > > +
->> > > +description: |
->> > > +  This binding describes a physical power output supplied by a
->> > > +  regulator providing efuse functionality (manual on/off control, and
->> > > +  auto-shutoff if current, voltage, or thermal limits are exceeded).
->> > > +
->> > > +  These may be found on systems such as "smart" network PDUs, and
->> > > +  typically supply power to devices entirely separate from the system
->> > > +  described by the device-tree by way of an external connector such as
->> > > +  an Open19 power cable:
->> > > +
->> > > +  https://www.open19.org/marketplace/coolpower-cable-assembly-8ru/
->> >
->> > Not really a helpful link...
->> >
->> > I still don't understand what the h/w looks like here. At least I now
->> > understand we're talking a fuse on power rail, not efuses in an SoC
->> > used as OTP bits or feature disables.
->> >
->>
->> The systems this would actually be used for would be things like these:
->>  - https://www.open19.org/marketplace/delta-16kw-power-shelf/
->>  - https://www.open19.org/marketplace/inspur-open19-power-shelf-ob19200l1/
->
->Those still don't help show me what the h/w looks like. High level
->schematics is what I'm looking for.
->
->
->> The rightmost pictures on those pages show the four black connectors where
->> the cable assembly linked in the patch plugs in, each of which provides the
->> outputs from 12 such efuses, on 12 pairs of ground and +12VDC pins.  (There
->> are also two more single outputs off to the side.)
->>
->> It essentially just amounts to an external power output supplied by a
->> regulator, with the regulator providing an on/off switch, overcurrent
->> protection, etc.
->>
->> And yes, the ambiguity of the "efuse" terminology is unfortunate (the
->> "power-" prefix was an attempt to clarify it slightly).  That's the term
->> used in the documentation for the hardware and hence is what I've called it
->> here, but I'd be open to using a different name if that would help.
->>
->> > > +
->> > > +properties:
->> > > +  compatible:
->> > > +    const: power-efuse
->> > > +
->> > > +  vout-supply:
->> > > +    description:
->> > > +      phandle to the regulator providing power for the efuse
->> >
->> > Vout is a supply to the efuse and not the rail being fused?
->>
->> Yeah, that was a fairly muddled description -- it's really the latter.
->> Perhaps:
->>
->>   phandle to the regulator providing power for the output rail
->>   controlled by the efuse
->>
->> ?
->>
->> >
->> > Sorry, I know nothing about how an efuse is implemented so you are going
->> > to have to explain or draw it.
->> >
->> > > +
->> > > +  error-flags-cache-ttl-ms:
->> > > +    description:
->> > > +      The number of milliseconds the vout-supply regulator's error
->> > > +      flags should be cached before re-fetching them.
->> >
->> > How does one fetch/read? the error flags?
->> >
->>
->> In the specific case I'm dealing with, via PMBus STATUS_* commands, though I
->> was aiming to keep this more generic so it could potentially be used to
->> describe non-PMBus arrangements (in the Linux case, via whatever mechanism
->> the implementation of the regulator's .get_error_flags() function uses).
->
->PMBus is I2C (subset). What device(s) is on the PMBus?
->
->Here's what I've got for connections so far:
->
->Vout(regulator)-->|efuse|-->12V
->
->Host-->PMbus--->????
->
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-On the hardware I'm currently working with (the Delta unit linked 
-above), the PMBus device is a TI LM25066 with various other components 
-(MOSFET, thermal diode, sense resistor, etc.) in the surrounding 
-circuitry.  My understanding is that "efuse" as used by the manufacturer 
-refers to the combined circuit, including the LM25066.
+Add a dts file for the Silicom FPGA SmartNIC N6010/N6011,
+which is based on the Intel Agliex platform.
 
-Is that a sufficient "high level schematic", or is there additional 
-information you're looking for?  I do have access to a detailed 
-schematic of the circuit, but unfortunately I don't think I'm at liberty 
-to share it.
+Acked-by: Dinh Nguyen <dinguyen@kernel.org>
+Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+---
+ arch/arm64/boot/dts/intel/Makefile            |  1 +
+ .../boot/dts/intel/socfpga_agilex_n6010.dts   | 83 +++++++++++++++++++
+ 2 files changed, 84 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6010.dts
 
-(I don't know exactly what the Inspur unit uses because I haven't dealt 
-with that one first-hand, but I'd guess it's probably broadly similar.)
-
-
-Thanks,
-Zev
+diff --git a/arch/arm64/boot/dts/intel/Makefile b/arch/arm64/boot/dts/intel/Makefile
+index 0b5477442263..a05a610a4006 100644
+--- a/arch/arm64/boot/dts/intel/Makefile
++++ b/arch/arm64/boot/dts/intel/Makefile
+@@ -1,5 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ dtb-$(CONFIG_ARCH_INTEL_SOCFPGA) += socfpga_agilex_socdk.dtb \
+ 				socfpga_agilex_socdk_nand.dtb \
++				socfpga_agilex_n6010.dtb \
+ 				socfpga_n5x_socdk.dtb
+ dtb-$(CONFIG_ARCH_KEEMBAY) += keembay-evm.dtb
+diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_n6010.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_n6010.dts
+new file mode 100644
+index 000000000000..c105f0621eb4
+--- /dev/null
++++ b/arch/arm64/boot/dts/intel/socfpga_agilex_n6010.dts
+@@ -0,0 +1,83 @@
++// SPDX-License-Identifier:     GPL-2.0
++/*
++ * Copyright (C) 2022, Intel Corporation
++ */
++#include "socfpga_agilex.dtsi"
++
++/ {
++	model = "SoCFPGA Agilex n6010";
++
++	aliases {
++		serial0 = &uart0;
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++		ethernet2 = &gmac2;
++	};
++
++	chosen {
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory {
++		device_type = "memory";
++		/* We expect the bootloader to fill in the reg */
++		reg = <0 0 0 0>;
++	};
++
++	soc {
++		clocks {
++			osc1 {
++				clock-frequency = <25000000>;
++			};
++		};
++                agilex_hps_bridges: bridge@80000000 {
++                        compatible = "simple-bus";
++                        reg = <0x80000000 0x60000000>,
++                                <0xf9000000 0x00100000>;
++                        reg-names = "axi_h2f", "axi_h2f_lw";
++                        #address-cells = <0x2>;
++                        #size-cells = <0x1>;
++                        ranges = <0x00000000 0x00000000 0xf9000000 0x00001000>,
++                                <0x00000001 0x02001000 0x82001000 0x00000800>,
++                                <0x00000001 0x02080000 0x82080000 0x00004000>,
++                                <0x00000001 0x02100000 0x82100000 0x00080000>,
++                                <0x00000001 0x02000040 0x82000040 0x00000020>,
++                                <0x00000001 0x02000800 0x82000800 0x00000020>,
++                                <0x00000001 0x02000820 0x82000820 0x00000020>,
++                                <0x00000001 0x02000900 0x82000900 0x00000020>,
++                                <0x00000001 0x02000920 0x82000920 0x00000020>,
++                                <0x00000001 0x02000940 0x82000940 0x00000020>,
++                                <0x00000001 0x00000300 0xf9000300 0x00000010>,
++                                <0x00000001 0x02000000 0x82000000 0x00000010>;
++
++                        uio_cp_eng@0xf9000000 {
++                                compatible = "generic-uio";
++                                reg = <0x00000000 0x00000000 0x00001000>;
++                                status = "okay";
++                        };
++		};
++	};
++};
++
++&uart0 {
++	status = "okay";
++};
++
++&spi0 {
++	status = "okay";
++
++	spidev: spidev@0 {
++		status = "okay";
++		compatible = "linux,spidev";
++		spi-max-frequency = <25000000>;
++		reg = <0>;
++	};
++};
++
++&watchdog0 {
++	status = "okay";
++};
++
++&fpga_mgr {
++	status = "disabled";
++};
+-- 
+2.25.1
 
