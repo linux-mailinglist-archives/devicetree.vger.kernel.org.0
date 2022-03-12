@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24E254D6E92
-	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 13:05:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9477D4D6EA9
+	for <lists+devicetree@lfdr.de>; Sat, 12 Mar 2022 13:26:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230429AbiCLMGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 07:06:12 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43664 "EHLO
+        id S230153AbiCLM1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 07:27:35 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229505AbiCLMGL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 07:06:11 -0500
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 991C23C48E;
-        Sat, 12 Mar 2022 04:05:05 -0800 (PST)
-Received: by mail-wr1-f48.google.com with SMTP id j26so16782207wrb.1;
-        Sat, 12 Mar 2022 04:05:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ZKGaYYerdbWBJGeucH7XwXR+zyNCr4xDH2MU71MfP98=;
-        b=m6ur3o9A/AvOSdxm3RkzRz7QyxNB00D78rHz0Yyr5Gsc30vPXLbuzruONyblCartoo
-         +FZVEPeMiM6vuU3GniTRAmw7VeOMIpRM5dGdQktPM9c+GYacSWNSTiHNF+FELlGGCKob
-         yboy+b7FctPTH0fBcmv2hXRjunI/7TBPDT6teuRoGb9HnuzJvA7itKCBNLyu9H7TWGuO
-         pIvGtupds+2+Eq5wpC8JS/H/JhDuC/sX9l4Lp1cRgaZCM7qm/0aHdt87crli5T3Em1hP
-         5cq9odaPmUKB/rJ3E+Dl0I+rYDC4QB9IiOZ3R1Dp/Qgqb2Qc78klr7GOG2XXwISYauri
-         fVeg==
-X-Gm-Message-State: AOAM5332/UfTwe6POoJsQjWX9mDd+Hrr8+CGTuQ3Ejq5cjpOAQA8P91V
-        gRZH/XLU32d7pv+d/pK1rwU=
-X-Google-Smtp-Source: ABdhPJwirxuw/aJHDS9bJW/y6AhtTClHMwW2mGG40jIKmVoUrPhfF2PEvdlz3c+4KvcE+F3Oed9cFw==
-X-Received: by 2002:a05:6000:144c:b0:1f1:f24b:a70b with SMTP id v12-20020a056000144c00b001f1f24ba70bmr10696191wrx.541.1647086704156;
-        Sat, 12 Mar 2022 04:05:04 -0800 (PST)
-Received: from [192.168.0.148] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id h15-20020a05600c350f00b00389e7897190sm5795435wmq.3.2022.03.12.04.05.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Mar 2022 04:05:03 -0800 (PST)
-Message-ID: <2a4bddac-dca3-0e9a-5d84-00dc39b31699@kernel.org>
-Date:   Sat, 12 Mar 2022 13:05:02 +0100
+        with ESMTP id S229745AbiCLM1e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 07:27:34 -0500
+Received: from mail.mleia.com (mleia.com [178.79.152.223])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 875E274DD7;
+        Sat, 12 Mar 2022 04:26:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+        t=1647087985; bh=g13EmdZxu+uLRpV+kyaRzAukTxiJf6X3eNAGmWIHgAo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=CPnErHe4YEwRBekyBp89em3A6FstmaMFoVzhG4gIDx0dr/UrgvKNIejKbv36zEXT+
+         4s5bRvAUM4vpCI9MgzvafySLRtu29/sz4kwmtZpNCvJniC2S0sO+1JK45MBn5Tv0t3
+         vOIhvQfSIxQgDBVeccTpunjOPlcYYTeXas0n/3HLt1+6ug/jjuVhHGk/cz22hLeu8P
+         1OuY2e4QhzlYQmqqZ2k+gYCvaNpN4Ze7HufNj3+k39ejyuoFklHrnKXM2cY+Oa1Dnb
+         5NgfrIEJ+ULEErViYlhMKWqfPFmnESkLzp+cxaz12dRSHlp32R3VVlHHTIa8fNKH4l
+         Alk7eqhtu+RAQ==
+Received: from mail.mleia.com (localhost [127.0.0.1])
+        by mail.mleia.com (Postfix) with ESMTP id 3297239ED25;
+        Sat, 12 Mar 2022 12:26:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mleia.com; s=mail;
+        t=1647087985; bh=g13EmdZxu+uLRpV+kyaRzAukTxiJf6X3eNAGmWIHgAo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=CPnErHe4YEwRBekyBp89em3A6FstmaMFoVzhG4gIDx0dr/UrgvKNIejKbv36zEXT+
+         4s5bRvAUM4vpCI9MgzvafySLRtu29/sz4kwmtZpNCvJniC2S0sO+1JK45MBn5Tv0t3
+         vOIhvQfSIxQgDBVeccTpunjOPlcYYTeXas0n/3HLt1+6ug/jjuVhHGk/cz22hLeu8P
+         1OuY2e4QhzlYQmqqZ2k+gYCvaNpN4Ze7HufNj3+k39ejyuoFklHrnKXM2cY+Oa1Dnb
+         5NgfrIEJ+ULEErViYlhMKWqfPFmnESkLzp+cxaz12dRSHlp32R3VVlHHTIa8fNKH4l
+         Alk7eqhtu+RAQ==
+Received: from [192.168.1.102] (88-113-46-102.elisa-laajakaista.fi [88.113.46.102])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.mleia.com (Postfix) with ESMTPSA id B6B5D39E5F9;
+        Sat, 12 Mar 2022 12:26:24 +0000 (UTC)
+Subject: Re: [PATCH v2 3/3] ARM: dts: lpc32xx: Update spi clock properties
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Arnd Bergmann <arnd@arndb.de>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220311093800.18778-1-singh.kuldeep87k@gmail.com>
+ <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
+ <4aae560d-d266-d0d0-136f-32891b15bc01@mleia.com>
+ <CAK8P3a3a_WXbDKN-jJUt_Wuvop0rfaUs4ytwyhogOxdtJAPx0w@mail.gmail.com>
+ <4f39f086-1932-1729-8761-d5c533356812@mleia.com>
+ <2f53f17a-427c-62d6-a0c6-4a3962ab01f0@canonical.com>
+ <9f4e3cdc-f5e2-7102-949e-7b3032118e63@mleia.com>
+ <e0da4fbc-b72c-60a0-5a5f-99d18653c294@canonical.com>
+From:   Vladimir Zapolskiy <vz@mleia.com>
+Message-ID: <d3e4e548-47c9-7488-26bc-f42be5e3c62a@mleia.com>
+Date:   Sat, 12 Mar 2022 14:26:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.6.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH] arm64: dts: intel: add device tree for n6010
+In-Reply-To: <e0da4fbc-b72c-60a0-5a5f-99d18653c294@canonical.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-To:     tien.sung.ang@intel.com, dinguyen@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     niravkumar.l.rabara@intel.com
-References: <20220312080127.1528190-1-tien.sung.ang@intel.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220312080127.1528190-1-tien.sung.ang@intel.com>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
+X-CRM114-CacheID: sfid-20220312_122625_237657_4D9DD867 
+X-CRM114-Status: GOOD (  22.68  )
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,22 +81,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/03/2022 09:01, tien.sung.ang@intel.com wrote:
-> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+On 3/12/22 12:23 PM, Krzysztof Kozlowski wrote:
+> On 11/03/2022 22:26, Vladimir Zapolskiy wrote:
+>> On 3/11/22 4:33 PM, Krzysztof Kozlowski wrote:
+>>> On 11/03/2022 15:07, Vladimir Zapolskiy wrote:
+>>>> On 3/11/22 3:38 PM, Arnd Bergmann wrote:
+>>>>> On Fri, Mar 11, 2022 at 2:20 PM Vladimir Zapolskiy <vz@mleia.com> wrote:
+>>>>>>
+>>>>>> On 3/11/22 11:38 AM, Kuldeep Singh wrote:
+>>>>>>> PL022 binding require two clocks to be defined but lpc platform doesn't
+>>>>>>> comply with bindings and define only one clock i.e apb_pclk.
+>>>>>>>
+>>>>>>> Update spi clocks and clocks-names property by adding appropriate clock
+>>>>>>> reference to make it compliant with bindings.
+>>>>>>>
+>>>>>>> CC: Vladimir Zapolskiy <vz@mleia.com>
+>>>>>>> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+>>>>>>> ---
+>>>>>>> v2:
+>>>>>>> - New patch with similar changeset
+>>>>>>> - Send to soc ML
+>>>>>>>
+>>>>>>>      arch/arm/boot/dts/lpc32xx.dtsi | 8 ++++----
+>>>>>>>      1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>>> index c87066d6c995..30958e02d5e2 100644
+>>>>>>> --- a/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>>> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>>> @@ -178,8 +178,8 @@ ssp0: spi@20084000 {
+>>>>>>>                                  compatible = "arm,pl022", "arm,primecell";
+>>>>>>>                                  reg = <0x20084000 0x1000>;
+>>>>>>>                                  interrupts = <20 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>>> -                             clocks = <&clk LPC32XX_CLK_SSP0>;
+>>>>>>> -                             clock-names = "apb_pclk";
+>>>>>>> +                             clocks = <&clk LPC32XX_CLK_SSP0>, <&clk LPC32XX_CLK_SSP0>;
+>>>>>>> +                             clock-names = "sspclk", "apb_pclk";
+>>>>>>
+>>>>>> In fact I'm uncertain if it is the right change, could it happen that the commit
+>>>>>> cc0f6e96c4fd ("spi: dt-bindings: Convert Arm pl022 to json-schema") sets a wrong
+>>>>>> schema pattern?
+>>>>>
+>>>>> Good pointm this doesn't quite seem right: it is unlikely that the same clock
+>>>>> is used for both the SPI bus and the APB bus.
+>>>>>
+>>>>>> Apparently just one clock is wanted on all observed platforms and cases, this
+>>>>>> is implicitly confirmed by clock handling in the drivers/spi/spi-pl022.c :
+>>>>>>
+>>>>>>            pl022->clk = devm_clk_get(&adev->dev, NULL);
+>>>>>>
+>>>>>> So, I would vote to fix the device tree bindings schema.
+>>>
+>>> Drivers do not describe the hardware. Bindings should not be modeled on
+>>> drivers, but on actual hardware, so the example is not convincing.
+>>
+>> My concern is that fixing the bindings can break the driver and all its users,
+>> is it clear enough how it can happen in assumption that the driver uses just
+>> one clock at the moment?
 > 
-> Add a dts file for the Silicom FPGA SmartNIC N6010/N6011,
-> which is based on the Intel Agliex platform.
-> 
-> Acked-by: Dinh Nguyen <dinguyen@kernel.org>
-> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
-> ---
->  arch/arm64/boot/dts/intel/Makefile            |  1 +
->  .../boot/dts/intel/socfpga_agilex_n6010.dts   | 83 +++++++++++++++++++
->  2 files changed, 84 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex_n6010.dts
-> 
+> You meant fixing the DTS? We do not consider here "fixing bindings"
 
-I understand this one should be abandoned?
+Yes, I meant fixing the DTS, sorry for confusion.
 
-Best regards,
-Krzysztof
+> because they look correct. About DTS, using the same clock twice should
+> not cause negative effect.
+
+But it is erroneous to specify the SSP clock as APB clock, so this v2 is
+incorrect, and I've mentioned above in the discussion that the APB clock
+shall be HCLK on the platform.
+
+To avoid any unpleasant uncertainties I expect to get a change in the
+driver firstly, the driver shall work according to the bindings, at
+the moment it is obviously broken.
+
+--
+Best wishes,
+Vladimir
