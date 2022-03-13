@@ -2,138 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA9B34D76C6
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 17:30:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB5CA4D76CD
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 17:32:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234515AbiCMQbr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 12:31:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55804 "EHLO
+        id S235021AbiCMQdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 12:33:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbiCMQbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 12:31:46 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5CD201AC;
-        Sun, 13 Mar 2022 09:30:38 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 2C07F22238;
-        Sun, 13 Mar 2022 17:30:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647189036;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mw7ua8bm47fSMOjBOWnSCPNMt3SK4yr5lqTmvLcR1t4=;
-        b=cF/58OMBU/4htvb/BgKkVeVxAhzy13qrKC37ZZ6qy+Uoyt4WoViG94H5fsPmpxBGr0tezn
-        hIwyc41YjBG9GtN5lCbU7tMN4b4q6+PxVB8qyKxNu5ZQk7KLh9ImY+bq8LwpBxSyZccbPA
-        GmX8asMq/Fmf8gQlBHNvTmZJoy2ml+U=
+        with ESMTP id S235023AbiCMQdk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 12:33:40 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0D7451E7F
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 09:32:32 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id w7so23155997lfd.6
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 09:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MgbGltuaJRuITqNo6niNlVF62PUXiwOYLBSZYU1DMZY=;
+        b=HavKRC7e7SCp/3v05JphI4/Yz7bPK7gwb8+Df9JEKBuE7/JkdMsZJSL9kMd2cn1Kjm
+         Glg7VkMXOTEPAMd2Yc3IXAZ1MdptomgRPgppe1ltEzHQTBbBDiL4oJKjoppDx1aoZOTD
+         341LeLMT7W8/nKRFkcv2QkUL0CWh9xnZOBw9E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MgbGltuaJRuITqNo6niNlVF62PUXiwOYLBSZYU1DMZY=;
+        b=XPrqsN1PYKH7nX9xNr8Z/xcEHmZ7AZtdaFJtIzYnZkZtO6mGqZ0BcOF7EI8YIqBUWo
+         S8lqRIoz6O/YV3pa2m6BZea+x5JN5cFlugJu+prF2yp691/ph+UVFANsOJgeYAO/waB+
+         XMrwR2sN8JjiD0hKrx17CvKp1f/yq3paCvoRyplaM5LzCNHkk/tyiHuY8E/J8dRlt/VG
+         vCi1+LcOm4kpfgxiJTr1oKooqF72OyA4DywN9eLgBB9+/tbTN2MQ0rr2P+2LupeY+0p4
+         c+EYmO7H4S6httTd99KyMa9IJGYvOvxMNPXrX7biPykLF4iUio0vwfVuoWuu/koWL7tl
+         DiBA==
+X-Gm-Message-State: AOAM5310prhvztKid82nG6zv2JZEQH7E6KFuOAna7PTO+XhzJkn9+Jor
+        vxEvYKe0CQQCoEit6sBednhRwi107slfewv+3rDA3Q==
+X-Google-Smtp-Source: ABdhPJzST1eUNK0xE/Hz0ZdqgE+l5aHR3jttA2qgChiJRwiYskuy/WzQ5S7vXdDtSk9wjGiEFoZf5azBb3KRXlY9L6s=
+X-Received: by 2002:a05:6512:22d4:b0:448:61b9:e61d with SMTP id
+ g20-20020a05651222d400b0044861b9e61dmr10744148lfu.662.1647189150954; Sun, 13
+ Mar 2022 09:32:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sun, 13 Mar 2022 17:30:35 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>
-Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: mscc-miim: add lan966x
- compatible
-In-Reply-To: <2d35127c-d4ef-6644-289a-5c10bcbbbf84@kernel.org>
-References: <20220313002536.13068-1-michael@walle.cc>
- <20220313002536.13068-2-michael@walle.cc>
- <08b89b3f-d0d3-e96f-d1c3-80e8dfd0798f@kernel.org>
- <d18291ff8d81f03a58900935d92115f2@walle.cc>
- <2d35127c-d4ef-6644-289a-5c10bcbbbf84@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <145fc079ce8c266b8c2265aacfd3b077@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20220217165559.313366-1-dario.binacchi@amarulasolutions.com>
+ <20220217165559.313366-2-dario.binacchi@amarulasolutions.com> <YhgGZylBoxlou9ka@robh.at.kernel.org>
+In-Reply-To: <YhgGZylBoxlou9ka@robh.at.kernel.org>
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Date:   Sun, 13 Mar 2022 17:32:20 +0100
+Message-ID: <CABGWkvqerAqEn4y-WHvxjhmZXtuiP8ptDib5qktso1BMnsMfhw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: input: touchscreen: edt-ft5x06: add report-rate
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[adding Horatiu and Kavyasree from Microchip]
+Hi Rob,
 
-Am 2022-03-13 17:10, schrieb Krzysztof Kozlowski:
-> On 13/03/2022 11:47, Michael Walle wrote:
->> Am 2022-03-13 10:47, schrieb Krzysztof Kozlowski:
->>> On 13/03/2022 01:25, Michael Walle wrote:
->>>> The MDIO controller has support to release the internal PHYs from
->>>> reset
->>>> by specifying a second memory resource. This is different between 
->>>> the
->>>> currently supported SparX-5 and the LAN966x. Add a new compatible to
->>>> distiguish between these two.
-> 
-> Typo here, BTW.
-> 
->>>> 
->>>> Signed-off-by: Michael Walle <michael@walle.cc>
->>>> ---
->>>>  Documentation/devicetree/bindings/net/mscc-miim.txt | 2 +-
->>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>> 
->>>> diff --git a/Documentation/devicetree/bindings/net/mscc-miim.txt
->>>> b/Documentation/devicetree/bindings/net/mscc-miim.txt
->>>> index 7104679cf59d..a9efff252ca6 100644
->>>> --- a/Documentation/devicetree/bindings/net/mscc-miim.txt
->>>> +++ b/Documentation/devicetree/bindings/net/mscc-miim.txt
->>>> @@ -2,7 +2,7 @@ Microsemi MII Management Controller (MIIM) / MDIO
->>>>  =================================================
->>>> 
->>>>  Properties:
->>>> -- compatible: must be "mscc,ocelot-miim"
->>>> +- compatible: must be "mscc,ocelot-miim" or "mscc,lan966x-miim"
->>> 
->>> No wildcards, use one, specific compatible.
->> 
->> I'm in a kind of dilemma here, have a look yourself:
->> grep -r "lan966[28x]-" Documentation
->> 
->> Should I deviate from the common "name" now? To make things
->> worse, there was a similar request by Arnd [1]. But the
->> solution feels like cheating ("lan966x" -> "lan966") ;)
-> 
-> The previous 966x cases were added by one person from Microchip, so he
-> actually might know something. But do you know whether lan966x will
-> cover all current and future designs from Microchip? E.g. lan9669 (if
-> ever made) will be the same? Avoiding wildcard is the easiest, just
-> choose one implementation, e.g. "lan9662".
+On Thu, Feb 24, 2022 at 11:27 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Feb 17, 2022 at 05:55:53PM +0100, Dario Binacchi wrote:
+> > It allows to change the M06/M12 default scan rate.
+> >
+> > Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
+> > Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
+> > Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  .../devicetree/bindings/input/touchscreen/edt-ft5x06.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> > index 2e8da7470513..aa8517c6f65b 100644
+> > --- a/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> > +++ b/Documentation/devicetree/bindings/input/touchscreen/edt-ft5x06.yaml
+> > @@ -85,6 +85,14 @@ properties:
+> >      minimum: 0
+> >      maximum: 80
+> >
+> > +  report-rate:
+>
+> Use property unit suffix: report-rate-hz
+>
+> This should probably be moved to touchscreen.yaml as it seems common.
 
-So if Microchip would review/ack this it would be ok? I don't really
-have a strong opinion, I just want to avoid any inconsistencies. If no
-one from Microchip will answer, I'll use microchip,lan9668-miim.
+I did some checks but IMHO I think it's better to consider it as a
+property of the
+driver.
 
-> Different topic is that all current lan966[28] are from Microchip and
-> you still add Microsemi, even though it was acquired by Microchip.
-> That's an inconsistency which should be rather fixed.
+Thanks and regards
+Dario
 
-Agreed, that was an oversight by me.
+>
+> > +    description: Allows setting the scan rate.
+> > +                 M06 supports range from 3 (30 Hz) to 14 (140 Hz).
+>
+> You're using 3 or 30 in this case? Should be 30, but it's not clear. I'd
+> just list the range in Hz and leave the conversion detail to the driver.
+>
+> > +                 M12 supports range from 1 (1 Hz) to 255 (255 Hz).
+>
+> Use '|' if formatting (newline) is significant.
+>
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 1
+> > +    maximum: 255
+> > +
+> >    touchscreen-size-x: true
+> >    touchscreen-size-y: true
+> >    touchscreen-fuzz-x: true
+> > --
+> > 2.32.0
+> >
+> >
 
->> On a side note, I understand that there should be no wildcards,
->> because the compatible should target one specific implementation,
->> right? But then the codename "ocelot" represents a whole series of
->> chips. Therefore, names for whole families shouldn't be used neither,
->> right?
-> 
-> You're not adding "ocelot" now, so it is separate topic. However a
-> compatible like "mscc,ocelot" feels wrong, unless it is used as a
-> fallback (see: git grep 'apple,').
 
-Sure, it was just a question for my understanding, not to make a
-point for a discussion.
 
--michael
+-- 
+
+Dario Binacchi
+
+Embedded Linux Developer
+
+dario.binacchi@amarulasolutions.com
+
+__________________________________
+
+
+Amarula Solutions SRL
+
+Via Le Canevare 30, 31100 Treviso, Veneto, IT
+
+T. +39 042 243 5310
+info@amarulasolutions.com
+
+www.amarulasolutions.com
