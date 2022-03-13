@@ -2,73 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 973C74D71E7
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 01:31:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 51B6A4D71F7
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 01:52:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230291AbiCMAcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 19:32:35 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
+        id S232294AbiCMAxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 19:53:13 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229799AbiCMAce (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 19:32:34 -0500
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F056652D6;
-        Sat, 12 Mar 2022 16:31:28 -0800 (PST)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id A904C22239;
-        Sun, 13 Mar 2022 01:31:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647131487;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=RiKaWuq8n5WP+rhaqikQEfq/nFpidm8bltW6Njsl3Lk=;
-        b=bqKfp7W0hDbwvgS5ed17pyoPY87GeJzK7cj4WMgMhXtG5i7sw+HsCCGmedbN/pfNwH3y6M
-        b7UGEH8ZJIOd2ky7c5zohFd9+24VR+hQwiMnc21JPNLPFmSuN4QPrqxw/pHjJKuIMLOmff
-        z3Vin1+e8XfnxwJxyH1kJQpLZG3/tAA=
-From:   Michael Walle <michael@walle.cc>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH] dt-bindings: mfd: syscon: add microchip,lan966x-cpu-syscon compatible
-Date:   Sun, 13 Mar 2022 01:31:22 +0100
-Message-Id: <20220313003122.19155-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
+        with ESMTP id S231848AbiCMAxN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 19:53:13 -0500
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7627F79394;
+        Sat, 12 Mar 2022 16:52:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=8YUvNG06bdboNHMBPrOG/45tQcIFayxAcvabE0tp0us=; b=4wjB5bN6N1QJzm9WC7CrWBWPvt
+        JgqRWW0XBaQHdz38aqrT24KRFLPAcxunhOyT2Aek9XfB4KcJ/qPES17lwGOq21vbL+BAZnW9N19iP
+        2hgdSb6dRSY8q80vwNwA2ZoTwVf+p92bzQKb0CNo84sXVmBJH6kHZVg/bbcBBvBuNgg8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nTCSi-00AXeO-U2; Sun, 13 Mar 2022 01:51:56 +0100
+Date:   Sun, 13 Mar 2022 01:51:56 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <michael@walle.cc>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next 2/3] net: mdio: mscc-miim: replace magic numbers
+ for the bus reset
+Message-ID: <Yi1ALN6hN9aV1VrA@lunn.ch>
+References: <20220313002153.11280-1-michael@walle.cc>
+ <20220313002153.11280-3-michael@walle.cc>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220313002153.11280-3-michael@walle.cc>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the Microchip LAN966x CPU system registers compatible.
+> diff --git a/drivers/net/mdio/mdio-mscc-miim.c b/drivers/net/mdio/mdio-mscc-miim.c
+> index 64fb76c1e395..7773d5019e66 100644
+> --- a/drivers/net/mdio/mdio-mscc-miim.c
+> +++ b/drivers/net/mdio/mdio-mscc-miim.c
+> @@ -158,18 +158,18 @@ static int mscc_miim_reset(struct mii_bus *bus)
+>  {
+>  	struct mscc_miim_dev *miim = bus->priv;
+>  	int offset = miim->phy_reset_offset;
+> +	int mask = PHY_CFG_PHY_ENA | PHY_CFG_PHY_COMMON_RESET |
+> +		   PHY_CFG_PHY_RESET;
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- Documentation/devicetree/bindings/mfd/syscon.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> -		ret = regmap_write(miim->phy_regs,
+> -				   MSCC_PHY_REG_PHY_CFG + offset, 0x1ff);
+> +		ret = regmap_write(miim->phy_regs, offset, mask);
 
-diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
-index eeac1cbc5a17..5aa0daa55533 100644
---- a/Documentation/devicetree/bindings/mfd/syscon.yaml
-+++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
-@@ -44,6 +44,7 @@ properties:
-               - hisilicon,hi6220-sramctrl
-               - hisilicon,pcie-sas-subctrl
-               - hisilicon,peri-subctrl
-+              - microchip,lan966x-cpu-syscon
-               - microchip,sparx5-cpu-syscon
-               - mstar,msc313-pmsleep
-               - rockchip,px30-qos
--- 
-2.30.2
+Is mask the correct name? It is not being used in the typical way for
+a mask.
 
+  Andrew
