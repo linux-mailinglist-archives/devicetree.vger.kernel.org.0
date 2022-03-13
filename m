@@ -2,62 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 234064D768A
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 16:47:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ABC54D7698
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 16:55:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234852AbiCMPsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 11:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59844 "EHLO
+        id S232144AbiCMP4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 11:56:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234843AbiCMPsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 11:48:40 -0400
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2415EDF2B
-        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 08:47:32 -0700 (PDT)
-Received: by mail-ej1-f42.google.com with SMTP id gb39so28874342ejc.1
-        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 08:47:32 -0700 (PDT)
+        with ESMTP id S231297AbiCMP4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 11:56:20 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 482535F4D9;
+        Sun, 13 Mar 2022 08:55:12 -0700 (PDT)
+Received: by mail-ej1-f54.google.com with SMTP id yy13so29074316ejb.2;
+        Sun, 13 Mar 2022 08:55:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+J66zNpFvN8CMM3eFxF/kEqoRx1HJ2YiAzWmUAb6vO8=;
-        b=axnp5Ku2kIOWOpoy0DnSuTL7/rCzh7m/Y/4ynsYCKHjBsudJa4dMOtv0sbMMUVt6b2
-         c564jOv3CLZuCXfqL0BtgxE/JLpAAG3rdVdX5Ypc5pmTj5NzmA17FLoa4Ni+QvR6/GsW
-         Sep2cKkujJE0rE87Sbvo32nl3+lKU03T2rtej3PiH4j5sVkCAijTvivLi73UgUGimeRH
-         NCMcxlswrgRY8r/DLUdpj9zjnsNRQRiab3J/PiXs0Zrww8m95ryby7n5+JyQOTZonJsx
-         NT4t65qQappwbOsgvIIGO2UJvFsR6P+8uvFQa7QoFLgcopH3wPKJ1kCPp7V7GkOEmDcX
-         4F8g==
-X-Gm-Message-State: AOAM532NHJapEXuwHu6Mkse4D910muiwZ9SgkhQzAAmDdw6/2MOkrv3v
-        qDXFp0hB3DP7BIhDNwHYdk0=
-X-Google-Smtp-Source: ABdhPJzynD+14kn/ewgktDK8H2gtiMqqONT47lKLXWhLW0uOF3q+DOzEebJV/+b2qHrEwT9fS6yuXA==
-X-Received: by 2002:a17:907:7b8b:b0:6da:bad3:88b6 with SMTP id ne11-20020a1709077b8b00b006dabad388b6mr15521339ejc.360.1647186451068;
-        Sun, 13 Mar 2022 08:47:31 -0700 (PDT)
+        bh=Lppl2q49qeslrHl4lbbUkfz5RBuPxkaME3WqV+QucHI=;
+        b=Aze/xnfgdubpjIVvq27Obt8JzI+LFswuqU6lOMF44goINqDwvlCCJHbGHc8NDxJqo7
+         0DXza7DLeIpXDdyi4ptnlpjkQ7ZxjOWShq51HajKr6PfxxvU9hC3IgPz+52sghAE51jW
+         lT06Ffvb3cG40bXxWwQioodNE/2eXiIbQv4LGrHAtnDew5un0dGloElMpbD5opftArva
+         zAppTplDxzBEXNEAj7v85NqCu2nw09e3iN1fYs+ZkMvKCsgzKOkz80QBg1x3E1wPP75c
+         0x+la6BWl5lWancDodJSuXbsy6M8WeM+29Lkibz0XieYlDD1OSSR+JlO7fS3KlgYRXX5
+         Ynrw==
+X-Gm-Message-State: AOAM532So/U3bks1q7pCYqb5NYalySJj/3og2+3AKbsM4USIUMLGGo1g
+        t7pfy7lFdL3uxvvB4Ican4A=
+X-Google-Smtp-Source: ABdhPJzy6ExQ70F33nYsMreky8RZw37LDLJGudGbeTrCpk+Nihs/opiYugSPYk3GitqeOuJs+sHjYw==
+X-Received: by 2002:a17:907:7845:b0:6cd:f2f4:cf00 with SMTP id lb5-20020a170907784500b006cdf2f4cf00mr15345462ejc.388.1647186910621;
+        Sun, 13 Mar 2022 08:55:10 -0700 (PDT)
 Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id y6-20020a056402358600b004166413d27bsm6428246edc.97.2022.03.13.08.47.29
+        by smtp.googlemail.com with ESMTPSA id g13-20020a50bf4d000000b00410d407da2esm6507407edk.13.2022.03.13.08.55.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 13 Mar 2022 08:47:30 -0700 (PDT)
-Message-ID: <9bda9a09-ec0a-0b6f-56b1-dff18821aa5d@kernel.org>
-Date:   Sun, 13 Mar 2022 16:47:29 +0100
+        Sun, 13 Mar 2022 08:55:10 -0700 (PDT)
+Message-ID: <869d4fda-e943-1817-17cd-df7b323a1fef@kernel.org>
+Date:   Sun, 13 Mar 2022 16:55:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: ldb: Implement simple
- NXP i.MX8M LDB bridge
+Subject: Re: [PATCH v1 8/8] dt-bindings: pinctrl: convert ocelot-pinctrl to
+ YAML format
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, dri-devel@lists.freedesktop.org
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Maxime Ripard <maxime@cerno.tech>, Peng Fan <peng.fan@nxp.com>,
+To:     Michael Walle <michael@walle.cc>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Robby Cai <robby.cai@nxp.com>,
-        Robert Foss <robert.foss@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        devicetree@vger.kernel.org
-References: <20220313123852.207257-1-marex@denx.de>
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
+References: <20220313152924.61931-1-michael@walle.cc>
+ <20220313152924.61931-9-michael@walle.cc>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220313123852.207257-1-marex@denx.de>
+In-Reply-To: <20220313152924.61931-9-michael@walle.cc>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -71,125 +78,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2022 13:38, Marek Vasut wrote:
-> The i.MX8MP contains two syscon registers which are responsible
-> for configuring the on-SoC DPI-to-LVDS serializer. Add DT binding
-> which represents this serializer as a bridge.
+On 13/03/2022 16:29, Michael Walle wrote:
+> Convert the ocelot-pinctrl device tree binding to the new YAML format.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Cc: Lucas Stach <l.stach@pengutronix.de>
-> Cc: Maxime Ripard <maxime@cerno.tech>
-> Cc: Peng Fan <peng.fan@nxp.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Robby Cai <robby.cai@nxp.com>
-> Cc: Robert Foss <robert.foss@linaro.org>
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> To: dri-devel@lists.freedesktop.org
+> Signed-off-by: Michael Walle <michael@walle.cc>
 > ---
->  .../bindings/display/bridge/nxp,ldb.yaml      | 99 +++++++++++++++++++
->  1 file changed, 99 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+>  .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  | 42 ---------
+>  .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 94 +++++++++++++++++++
+>  2 files changed, 94 insertions(+), 42 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+> deleted file mode 100644
+> index 5d84fd299ccf..000000000000
+> --- a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+> +++ /dev/null
+> @@ -1,42 +0,0 @@
+> -Microsemi Ocelot pin controller Device Tree Bindings
+> -----------------------------------------------------
+> -
+> -Required properties:
+> - - compatible		: Should be "mscc,ocelot-pinctrl",
+> -			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
+> -			  "mscc,luton-pinctrl", "mscc,serval-pinctrl",
+> -			  "microchip,lan966x-pinctrl" or "mscc,servalt-pinctrl"
+> - - reg			: Address and length of the register set for the device
+> - - gpio-controller	: Indicates this device is a GPIO controller
+> - - #gpio-cells		: Must be 2.
+> -			  The first cell is the pin number and the
+> -			  second cell specifies GPIO flags, as defined in
+> -			  <dt-bindings/gpio/gpio.h>.
+> - - gpio-ranges		: Range of pins managed by the GPIO controller.
+> -
+> -
+> -The ocelot-pinctrl driver uses the generic pin multiplexing and generic pin
+> -configuration documented in pinctrl-bindings.txt.
+> -
+> -The following generic properties are supported:
+> - - function
+> - - pins
+> -
+> -Example:
+> -	gpio: pinctrl@71070034 {
+> -		compatible = "mscc,ocelot-pinctrl";
+> -		reg = <0x71070034 0x28>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		gpio-ranges = <&gpio 0 0 22>;
+> -
+> -		uart_pins: uart-pins {
+> -				pins = "GPIO_6", "GPIO_7";
+> -				function = "uart";
+> -		};
+> -
+> -		uart2_pins: uart2-pins {
+> -				pins = "GPIO_12", "GPIO_13";
+> -				function = "uart2";
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
 > new file mode 100644
-> index 0000000000000..a05dd05547836
+> index 000000000000..40148aef4ecf
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/nxp,ldb.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +++ b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+> @@ -0,0 +1,94 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/bridge/nxp,ldb.yaml#
-
-In title, description and commit msg you point this is specific to
-i.MX8M, so maybe reflect it in the file name as well.
-
+> +$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NXP i.MX8M DPI to LVDS bridge chip
+> +title: Microsemi Ocelot pin controller Device Tree Bindings
+
+s/Device Tree Bindings//
+
 > +
 > +maintainers:
-> +  - Marek Vasut <marex@denx.de>
+> +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+> +  - Lars Povlsen <lars.povlsen@microchip.com>
 > +
-> +description: |
-> +  The i.MX8MP contains two syscon registers which are responsible
-> +  for configuring the on-SoC DPI-to-LVDS serializer. This describes
-> +  those registers as bridge within the DT.
+> +allOf:
+> +  - $ref: "pinctrl.yaml#"
 > +
 > +properties:
 > +  compatible:
-> +    items:
-> +      - const: nxp,imx8mp-ldb
-
-No items.
-
+> +    enum:
+> +      - microchip,lan966x-pinctrl
+> +      - microchip,sparx5-pinctrl
+> +      - mscc,jaguar2-pinctrl
+> +      - mscc,luton-pinctrl
+> +      - mscc,ocelot-pinctrl
+> +      - mscc,serval-pinctrl
+> +      - mscc,servalt-pinctrl
 > +
-> +  clocks:
-> +    minItems: 1
+> +  reg: true
 
 maxItems
 
 > +
-> +  clock-names:
-> +    const: "ldb"
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +  gpio-ranges: true
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: The GPIO parent interrupt.
 
-No quotes
+Skip description, it's obvious.
 
 > +
-> +  syscon:
-
-You need a specific name with vendor prefix.
-
-> +    $ref: /schemas/types.yaml#/definitions/phandle> +    description: A phandle to media block controller.
+> +  interrupt-controller: true
 > +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for DPI input.
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for LVDS Channel-A output (panel or bridge).
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Video port for LVDS Channel-B output (panel or bridge).
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
+> +  "#interrupt-cells":
+> +    const: 2
 > +
 > +required:
 > +  - compatible
-> +  - clocks
-> +  - syscon
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/imx8mp-clock.h>
-> +
-> +    lvds-ldb {
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +  - gpio-ranges
 
-Generic node name, so "bridge" or "display-bridge"
+Put "required:" after "patternProperties:".
 
-> +        #address-cells = <0>;
-> +        #size-cells = <0>;
-
-Why do you need address and size cells? This will complain if you test
-your bindings with proper compatible.
-
-> +        compatible = "fsl,imx8mp-ldb";
-
-This does not look the same as documented here.
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    allOf:
+> +      - $ref: "pinmux-node.yaml"
+> +      - $ref: "pincfg-node.yaml"
 
 
 Best regards,
