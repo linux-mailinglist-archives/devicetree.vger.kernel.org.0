@@ -2,50 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58FE44D769B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 17:01:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DE144D76A5
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 17:10:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232956AbiCMQCU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 12:02:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46096 "EHLO
+        id S234642AbiCMQLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 12:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46212 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231297AbiCMQCT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 12:02:19 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E590E89CE2;
-        Sun, 13 Mar 2022 09:01:11 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id F1D4C22238;
-        Sun, 13 Mar 2022 17:01:09 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647187270;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=BMJ8vMF7BASLVLZYhk3xHd53t++fSBFmJliFAFF8JaE=;
-        b=CDBuG19+Bhs0Cigf+XXpXCutMGKS2/ppu+6XG75xS1VKPL3rTUJQhFCoyu3sq4Cf4iNyh9
-        aILsLyOkdgdTWrQ66swx4wVKaeO5C4oOHVyuuZCRGi7ncfOjkh0pnO+eL7PfqrpaZZwhlI
-        BpwDaq543ixJhc8yUTetTEPKFd4w0uQ=
-From:   Michael Walle <michael@walle.cc>
-To:     horatiu.vultur@microchip.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, robh@kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH 1/2] dt-bindings: reset: lan966x phy reset driver bindings
-Date:   Sun, 13 Mar 2022 17:00:56 +0100
-Message-Id: <20220313160056.8767-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20211029125848.k4vwmzxpljbwlve6@soft-dev3-1.localhost>
-References: <20211029125848.k4vwmzxpljbwlve6@soft-dev3-1.localhost>
+        with ESMTP id S229543AbiCMQLN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 12:11:13 -0400
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75D7626564;
+        Sun, 13 Mar 2022 09:10:05 -0700 (PDT)
+Received: by mail-ed1-f47.google.com with SMTP id t1so16498225edc.3;
+        Sun, 13 Mar 2022 09:10:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=u8bQocCu7+BWd2wXu/r5WL7YQLXrKPOJ0zyslcPG8rg=;
+        b=RBSOCQKoZXiub3rmTcCWiDkoZA7YoOdiCV9DVh1rRwPdSryCJAtIkANZHEDOJS872E
+         sHXFRYGpoHS8SLE0rm39QPdOLK5tWG93zCXtxxhITSjHM9x06TLVdyMGxOH3yHX4kCwE
+         5vDbHuaZ18MmskpwYx2hIl/NXvmKtLR0DU0RhAy/ZgNrtxN/7jg2B5FYGhk8iMKc55GO
+         n8RckuJxhvbLwnQebowE4X94vp3htcyEBoMmZBm5PUzFi0vO+iWSmT64pzhJxwWqJDKe
+         5NQBjltufOCSOFkn22tXy1QlwQuSwavUtTjdCkMyBaOAaKgNc45E6xWW8R3jTKARiv6Q
+         AHzA==
+X-Gm-Message-State: AOAM531PgPvaZ939/7I+eSZSM4bk1scAtEZ0Qm4rVxy5DvIXo+UAEU/Q
+        DEQ26smb5VayStnIIa40OP5GnlAEWKM=
+X-Google-Smtp-Source: ABdhPJzEWGkwnv6d819epLuSt1JobOIpBGfSTwGt4yj9R+qVneNoFCVpjowCAJIw0oFiC1VR5TKewA==
+X-Received: by 2002:a50:d550:0:b0:416:2ac8:b98e with SMTP id f16-20020a50d550000000b004162ac8b98emr17167215edj.236.1647187803964;
+        Sun, 13 Mar 2022 09:10:03 -0700 (PDT)
+Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.googlemail.com with ESMTPSA id i6-20020a17090685c600b006daecf0b350sm5689279ejy.75.2022.03.13.09.10.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 13 Mar 2022 09:10:03 -0700 (PDT)
+Message-ID: <2d35127c-d4ef-6644-289a-5c10bcbbbf84@kernel.org>
+Date:   Sun, 13 Mar 2022 17:10:02 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: mscc-miim: add lan966x
+ compatible
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20220313002536.13068-1-michael@walle.cc>
+ <20220313002536.13068-2-michael@walle.cc>
+ <08b89b3f-d0d3-e96f-d1c3-80e8dfd0798f@kernel.org>
+ <d18291ff8d81f03a58900935d92115f2@walle.cc>
+In-Reply-To: <d18291ff8d81f03a58900935d92115f2@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -53,74 +71,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Horatiu,
-
-> > On Tue, Oct 19, 2021 at 01:52:04PM +0200, Horatiu Vultur wrote:
-> > > Document the lan966x phy reset device driving bindings.
-> > > It is using register access for the internal PHYs and toggles
-> > > GPIO for external PHYs.
-> > >
-> > > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > ---
-> > >  .../bindings/reset/lan966x-phy,rst.yaml       | 53 +++++++++++++++++++
-> > >  1 file changed, 53 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
-> > > new file mode 100644
-> > > index 000000000000..35a32458cafe
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/reset/lan966x-phy,rst.yaml
-> > > @@ -0,0 +1,53 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/reset/lan966x-phy,rst.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Microchip Lan966x PHY Reset
-> > > +
-> > > +maintainers:
-> > > +  - Horatiu Vultur <horatiu.vultur@microchip.com>
-> > > +
-> > > +description: |
-> > > +  The Microchip Lan966x Switch provides 2 internal PHY which needs to be
-> > > +  released from reset before they can be accessed. Also it might have external
-> > > +  PHYs which requires to toggle a GPIO before the access to the PHYs.
-
-I don't think this driver is needed at all. See more below.
-
-> > > +  external-phy-reset-gpios:
-> > > +    description: used for release of reset of the external PHY
-> > > +    maxItems: 1
-> > 
-> > This belongs in the external PHY's node.
+On 13/03/2022 11:47, Michael Walle wrote:
+> Hi Krzysztof,
 > 
-> My problem is if I put this in the external PHY's node, once the switch
-> gets reset it would reset also the GPIO pin and then it can't connect
-> to the external PHYs anymore.
+> Am 2022-03-13 10:47, schrieb Krzysztof Kozlowski:
+>> On 13/03/2022 01:25, Michael Walle wrote:
+>>> The MDIO controller has support to release the internal PHYs from 
+>>> reset
+>>> by specifying a second memory resource. This is different between the
+>>> currently supported SparX-5 and the LAN966x. Add a new compatible to
+>>> distiguish between these two.
 
-But this will only solve your use case. If there is anything else
-connected on the GPIO it will be reset, too. So you'd loose GPIO state
-and you just 'fix' the exernal PHY reset lines here.
+Typo here, BTW.
 
-Fortunately, this is already solved by the shared reset lines. See [1]
-for my proposal. Once the GPIO controller isn't reset anymore, we can
-describe the reset line to the external PHYs by using the "reset-gpios"
-property of the MDIO controller.
+>>>
+>>> Signed-off-by: Michael Walle <michael@walle.cc>
+>>> ---
+>>>  Documentation/devicetree/bindings/net/mscc-miim.txt | 2 +-
+>>>  1 file changed, 1 insertion(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/mscc-miim.txt 
+>>> b/Documentation/devicetree/bindings/net/mscc-miim.txt
+>>> index 7104679cf59d..a9efff252ca6 100644
+>>> --- a/Documentation/devicetree/bindings/net/mscc-miim.txt
+>>> +++ b/Documentation/devicetree/bindings/net/mscc-miim.txt
+>>> @@ -2,7 +2,7 @@ Microsemi MII Management Controller (MIIM) / MDIO
+>>>  =================================================
+>>>
+>>>  Properties:
+>>> -- compatible: must be "mscc,ocelot-miim"
+>>> +- compatible: must be "mscc,ocelot-miim" or "mscc,lan966x-miim"
+>>
+>> No wildcards, use one, specific compatible.
+> 
+> I'm in a kind of dilemma here, have a look yourself:
+> grep -r "lan966[28x]-" Documentation
+> 
+> Should I deviate from the common "name" now? To make things
+> worse, there was a similar request by Arnd [1]. But the
+> solution feels like cheating ("lan966x" -> "lan966") ;)
 
-> The switch will need anyway to call this driver to release the reset of
-> the internal PHYs, so I was thinking to put also the release of the
-> external PHYs in the same driver.
+The previous 966x cases were added by one person from Microchip, so he
+actually might know something. But do you know whether lan966x will
+cover all current and future designs from Microchip? E.g. lan9669 (if
+ever made) will be the same? Avoiding wildcard is the easiest, just
+choose one implementation, e.g. "lan9662".
 
-There is already support for this in the MDIO driver, see [2]. This
-is already used on the Ocelot series.
+Different topic is that all current lan966[28] are from Microchip and
+you still add Microsemi, even though it was acquired by Microchip.
+That's an inconsistency which should be rather fixed.
 
-> Initially we wanted to extend the 'sparx5-switch-reset' driver to do
-> this but the output of that discussion was to have 2 different drivers,
-> one for the switch and one for the PHYs.
+> 
+> On a side note, I understand that there should be no wildcards,
+> because the compatible should target one specific implementation,
+> right? But then the codename "ocelot" represents a whole series of
+> chips. Therefore, names for whole families shouldn't be used neither,
+> right?
 
--michael
+You're not adding "ocelot" now, so it is separate topic. However a
+compatible like "mscc,ocelot" feels wrong, unless it is used as a
+fallback (see: git grep 'apple,').
 
-[1] https://lore.kernel.org/linux-devicetree/20220313154640.63813-1-michael@walle.cc/
-[2] https://lore.kernel.org/netdev/20220313002153.11280-1-michael@walle.cc/
+
+Best regards,
+Krzysztof
