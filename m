@@ -2,290 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47B0D4D7780
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 20:00:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DECE4D7789
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 20:05:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235286AbiCMTBQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 15:01:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46216 "EHLO
+        id S234594AbiCMTGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 15:06:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235267AbiCMTBQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 15:01:16 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD2F13DDEF;
-        Sun, 13 Mar 2022 12:00:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647198007; x=1678734007;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7A56rvBq2Ze2rosgzGpqZSzGRYf4vonTsoVqZ1kpJGA=;
-  b=T1y3Jtn2gJ1oqfc1BfZn2X1dPsRd8BVxjdrWX/d3deci+JiA4F9sVIR3
-   BUoSvPdU988HZ3xOtESb74fcc7KrTJAVV+sCAvMHyelyPKtr+wE+JyraF
-   vFjBNKkZMgRFbCutUrD1ws0CUS95VUKPPILOt+MA9EDDLrzerhCnWi9vE
-   A7EwOruYVpIq4UPl0Jq2fxoKRI4u1nTtrdgWW+tL2DEtmlsLQQMS4JXR+
-   yN9e+TZWDXdJ+BeBt5CoCzqK+7SslBeoVMhhHX5G1Fcqz7Mb7kxEAuZQ8
-   Kv7mD8V1x/79E2Vh/sB6xKcu88ghQOoRrqEYeYXCHwYhOe2hPQQrqWGmg
-   w==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10285"; a="255843777"
-X-IronPort-AV: E=Sophos;i="5.90,179,1643702400"; 
-   d="scan'208";a="255843777"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2022 12:00:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,179,1643702400"; 
-   d="scan'208";a="612673907"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by fmsmga004.fm.intel.com with ESMTP; 13 Mar 2022 12:00:03 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nTTRi-0009DE-LF; Sun, 13 Mar 2022 19:00:02 +0000
-Date:   Mon, 14 Mar 2022 02:59:45 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
-        robh+dt@kernel.org, angelogioacchino.delregno@collabora.com
-Cc:     kbuild-all@lists.01.org, aaronyu@google.com,
-        matthias.bgg@gmail.com, trevor.wu@mediatek.com, tzungbi@google.com,
-        julianbraha@gmail.com, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: Re: [v3 13/19] ASoC: mediatek: mt8186: add platform driver
-Message-ID: <202203140250.ob821GmA-lkp@intel.com>
-References: <20220313151023.21229-14-jiaxin.yu@mediatek.com>
+        with ESMTP id S233322AbiCMTGL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 15:06:11 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC9F4AE02;
+        Sun, 13 Mar 2022 12:05:02 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id yy13so29628733ejb.2;
+        Sun, 13 Mar 2022 12:05:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O8sAh0i3YjlYvKWfabfn4UdLz5/JsZ1Iy5tseKB2bG4=;
+        b=czxUROYtAK4hsfgsXXbFmUfDqNRlnzdsN/MziKzMsbXWLs2aoef/dnTsf2q+W8V+kO
+         tZzf1NU5lyukUTbvs9KEjxIez92axE0JHwozQhB/1WsUEl1eUDNLkdV9tpFmXjH1q0SB
+         108xgrKljhpsEbdTnncWBkjrci+fdLoBmxZha93vjMy6YVlSdyKiME2Yx1s2ivTiF3lv
+         /ry9UGen0Yx/n65BgkUlQ9Au1ufI5oB7vznDOIWGMbqTR9Kx3LW3scTTXzdG/96cnNAy
+         74Xi/h7WJ+T/kO8gvti4x7QHnclPjFH097E+HAw30HUGBK/Jx5tVrJRD6CMpazHiGVU1
+         ed0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O8sAh0i3YjlYvKWfabfn4UdLz5/JsZ1Iy5tseKB2bG4=;
+        b=VER9nEA07J9ElQ339ZKGaCte/PnZU5DoqPHiqEO7FfpG147AKUlef7HQhkBa6lpHUF
+         dhilaY5dSGZY46xGkI5r7ND7xB3+Ug+GT5DVsU/BQsf/9eW1jdv8sSD7Xbk+f3Ms3bO+
+         QTAvWmDoAWLxt2Mq7Y2ugfCBAL3110hN3iLW5ntzkQTZZcb42u7UOivk3M2inM4osYxB
+         g+vmju0rrNGRhKyahPzBRiBkwybmrEKoP727haYaoYt6qKvAoOVOoQpVU3FT9vVOJWjt
+         7McJJNRSTxzz7isEJMv8r+75+5Oqr6kG8Ep2LlfHOhhgiUFjKW84Em7J2du31SzyLOf6
+         x87w==
+X-Gm-Message-State: AOAM533eYFI2xUfH5KWgcaAH4OLKgBew7GvHUah8yBYOLtFB/0LPmVAl
+        +HZkrmSFwWPW1T+QXstXRAI=
+X-Google-Smtp-Source: ABdhPJzeNZFkZWhTuKPfPVuyIk1NAL3F9lQTXKRNLdMpk3apUn+jBTH/T+mPIGE30tnU8iW4ibJWqA==
+X-Received: by 2002:a17:906:7185:b0:6cd:e09c:e5f5 with SMTP id h5-20020a170906718500b006cde09ce5f5mr15999024ejk.287.1647198300742;
+        Sun, 13 Mar 2022 12:05:00 -0700 (PDT)
+Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
+        by smtp.googlemail.com with ESMTPSA id n13-20020a170906724d00b006cedd6d7e24sm5856697ejk.119.2022.03.13.12.04.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Mar 2022 12:05:00 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Ansuel Smith <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 00/16] Modernize rest of the krait drivers
+Date:   Sun, 13 Mar 2022 20:04:03 +0100
+Message-Id: <20220313190419.2207-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220313151023.21229-14-jiaxin.yu@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jiaxin,
+This is a follow-up to the ipq806x gcc modernize series. Manu cleanup
+changes and also some discoveries of wrong definition notice only with
+all these conversions.
 
-Thank you for the patch! Yet something to improve:
+The first patch is an improvement of the clk_hw_get_parent_index. The
+original idea of clk_hw_get_parent_index was to give a way to access the
+parent index but for some reason the final version limited it to the
+current index. We change it to give the current parent if is not
+provided and to give the requested parent if provided. Any user of this
+function is updated to follow the new implementation.
 
-[auto build test ERROR on broonie-sound/for-next]
-[also build test ERROR on broonie-spi/for-next robh/for-next v5.17-rc7 next-20220310]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+The patch 2 and 3 are some additional fixes for gcc.
+The first one is a fix that register the pxo and cxo fixed clock only if
+they are not defined in DTS.
+The patch 3 require some explaination. In short is a big HACK to prevent
+kernel panic with this series.
 
-url:    https://github.com/0day-ci/linux/commits/Jiaxin-Yu/ASoC-mediatek-Add-support-for-MT8186-SoC/20220313-231330
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20220314/202203140250.ob821GmA-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 11.2.0
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/0day-ci/linux/commit/088850061de683cf1cac329e1187f45fb1d25085
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Jiaxin-Yu/ASoC-mediatek-Add-support-for-MT8186-SoC/20220313-231330
-        git checkout 088850061de683cf1cac329e1187f45fb1d25085
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-11.2.0 make.cross O=build_dir ARCH=m68k SHELL=/bin/bash
+The kpss-xcc driver is a mess.
+The Documentation declare that the clocks should be provided but for some
+reason it was never followed.
+In fact in the ipq8064 DTSI only the clocks for l2cc are declared but
+for cpu0 and cpu1 the clocks are not defined.
+The kpss-xcc driver use parent_names so the clks are ignored and never
+used so till now it wasn't a problem (ignoring the fact that they
+doesn't follow documentation at all)
+On top of that, the l2cc node declare the pxo clock in a really strange
+way. It's declared using the PXO_SRC gcc clock that is never defined in
+the gcc ipq8064 clock table. (the correct way was to declare a fixed
+clock in dts and reference that)
+To prevent any kind of problem we use the patch 3 and provide the clk
+for PXO_SRC in the gcc clock table. We manually provide the clk after
+gcc probe.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+Patch 4 is just a minor cleanup where we use the poll macro
 
-All errors (new ones prefixed by >>):
+Patch 5 is the actually kpss-xcc conversion to parent data
 
-   In file included from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:7,
-                    from sound/soc/mediatek/mt8186/mt8186-afe-pcm.c:9:
-   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c: In function 'mt8186_afe_pcm_dev_probe':
->> sound/soc/mediatek/mt8186/mt8186-afe-pcm.c:2914:40: error: 'struct dev_pm_info' has no member named 'runtime_error'
-    2914 |                         ret, dev->power.runtime_error);
-         |                                        ^
-   include/linux/dev_printk.h:110:37: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                                     ^~~~~~~~~~~
-   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c:2913:17: note: in expansion of macro 'dev_err'
-    2913 |                 dev_err(dev, "get_ret:%d, rpm_error:%d\n",
-         |                 ^~~~~~~
-   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c:2948:40: error: 'struct dev_pm_info' has no member named 'runtime_error'
-    2948 |                         ret, dev->power.runtime_error);
-         |                                        ^
-   include/linux/dev_printk.h:110:37: note: in definition of macro 'dev_printk_index_wrap'
-     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
-         |                                     ^~~~~~~~~~~
-   sound/soc/mediatek/mt8186/mt8186-afe-pcm.c:2947:17: note: in expansion of macro 'dev_err'
-    2947 |                 dev_err(dev, "put_ret:%d, rpm_error:%d\n",
-         |                 ^~~~~~~
+Patch 6-7 should be a fixup of a real conver case
 
+Patch 8 converts the krait-cc to parent_data
+Patch 9 give some love to the code with some minor fixup
+Patch 10 drop the hardcoded safe sel and use the new
+clk_hw_get_parent_index to get the safe parent index.
+(also I discovered that the parent order was wrong)
 
-vim +2914 sound/soc/mediatek/mt8186/mt8186-afe-pcm.c
+Patch 11 is an additional fixup to force the reset of the muxes even
+more.
 
-  2803	
-  2804	static int mt8186_afe_pcm_dev_probe(struct platform_device *pdev)
-  2805	{
-  2806		struct mtk_base_afe *afe;
-  2807		struct mt8186_afe_private *afe_priv;
-  2808		struct resource *res;
-  2809		struct reset_control *rstc;
-  2810		struct device *dev = &pdev->dev;
-  2811		int i, ret, irq_id;
-  2812	
-  2813		ret = dma_set_mask_and_coherent(dev, DMA_BIT_MASK(34));
-  2814		if (ret)
-  2815			return ret;
-  2816	
-  2817		afe = devm_kzalloc(dev, sizeof(*afe), GFP_KERNEL);
-  2818		if (!afe)
-  2819			return -ENOMEM;
-  2820		platform_set_drvdata(pdev, afe);
-  2821	
-  2822		afe->platform_priv = devm_kzalloc(dev, sizeof(*afe_priv), GFP_KERNEL);
-  2823		if (!afe->platform_priv)
-  2824			return -ENOMEM;
-  2825	
-  2826		afe_priv = afe->platform_priv;
-  2827		afe->dev = &pdev->dev;
-  2828	
-  2829		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-  2830		afe->base_addr = devm_ioremap_resource(&pdev->dev, res);
-  2831		if (IS_ERR(afe->base_addr))
-  2832			return PTR_ERR(afe->base_addr);
-  2833	
-  2834		/* init audio related clock */
-  2835		ret = mt8186_init_clock(afe);
-  2836		if (ret) {
-  2837			dev_err(dev, "init clock error, ret %d\n", ret);
-  2838			return ret;
-  2839		}
-  2840	
-  2841		/* init memif */
-  2842		afe->memif_32bit_supported = 0;
-  2843		afe->memif_size = MT8186_MEMIF_NUM;
-  2844		afe->memif = devm_kcalloc(dev, afe->memif_size, sizeof(*afe->memif),
-  2845					  GFP_KERNEL);
-  2846	
-  2847		if (!afe->memif)
-  2848			return -ENOMEM;
-  2849	
-  2850		for (i = 0; i < afe->memif_size; i++) {
-  2851			afe->memif[i].data = &memif_data[i];
-  2852			afe->memif[i].irq_usage = memif_irq_usage[i];
-  2853			afe->memif[i].const_irq = 1;
-  2854		}
-  2855	
-  2856		mutex_init(&afe->irq_alloc_lock);	/* needed when dynamic irq */
-  2857	
-  2858		/* init irq */
-  2859		afe->irqs_size = MT8186_IRQ_NUM;
-  2860		afe->irqs = devm_kcalloc(dev, afe->irqs_size, sizeof(*afe->irqs),
-  2861					 GFP_KERNEL);
-  2862	
-  2863		if (!afe->irqs)
-  2864			return -ENOMEM;
-  2865	
-  2866		for (i = 0; i < afe->irqs_size; i++)
-  2867			afe->irqs[i].irq_data = &irq_data[i];
-  2868	
-  2869		/* request irq */
-  2870		irq_id = platform_get_irq(pdev, 0);
-  2871		if (irq_id <= 0)
-  2872			return dev_err_probe(dev, irq_id < 0 ? irq_id : -ENXIO,
-  2873					     "no irq found");
-  2874	
-  2875		ret = devm_request_irq(dev, irq_id, mt8186_afe_irq_handler,
-  2876				       IRQF_TRIGGER_NONE,
-  2877				       "Afe_ISR_Handle", (void *)afe);
-  2878		if (ret)
-  2879			return dev_err_probe(dev, ret, "could not request_irq for Afe_ISR_Handle\n");
-  2880	
-  2881		ret = enable_irq_wake(irq_id);
-  2882		if (ret < 0)
-  2883			return dev_err_probe(dev, ret, "enable_irq_wake %d\n", irq_id);
-  2884	
-  2885		/* init sub_dais */
-  2886		INIT_LIST_HEAD(&afe->sub_dais);
-  2887	
-  2888		for (i = 0; i < ARRAY_SIZE(dai_register_cbs); i++) {
-  2889			ret = dai_register_cbs[i](afe);
-  2890			if (ret)
-  2891				return dev_err_probe(dev, ret, "dai register i %d fail\n", i);
-  2892		}
-  2893	
-  2894		/* init dai_driver and component_driver */
-  2895		ret = mtk_afe_combine_sub_dai(afe);
-  2896		if (ret)
-  2897			return dev_err_probe(dev, ret, "mtk_afe_combine_sub_dai fail\n");
-  2898	
-  2899		/* reset controller to reset audio regs before regmap cache */
-  2900		rstc = devm_reset_control_get_exclusive(dev, "audiosys");
-  2901		if (IS_ERR(rstc))
-  2902			return dev_err_probe(dev, PTR_ERR(rstc), "could not get audiosys reset\n");
-  2903	
-  2904		ret = reset_control_reset(rstc);
-  2905		if (ret)
-  2906			return dev_err_probe(dev, ret, "failed to trigger audio reset\n");
-  2907	
-  2908		/* enable clock for regcache get default value from hw */
-  2909		afe_priv->pm_runtime_bypass_reg_ctl = true;
-  2910		pm_runtime_enable(dev);
-  2911		ret = pm_runtime_get_sync(dev);
-  2912		if (ret)
-  2913			dev_err(dev, "get_ret:%d, rpm_error:%d\n",
-> 2914				ret, dev->power.runtime_error);
-  2915	
-  2916		afe->regmap = devm_regmap_init_mmio(dev, afe->base_addr,
-  2917						    &mt8186_afe_regmap_config);
-  2918		if (IS_ERR(afe->regmap)) {
-  2919			ret = PTR_ERR(afe->regmap);
-  2920			goto err_pm_disable;
-  2921		}
-  2922	
-  2923		/* others */
-  2924		afe->mtk_afe_hardware = &mt8186_afe_hardware;
-  2925		afe->memif_fs = mt8186_memif_fs;
-  2926		afe->irq_fs = mt8186_irq_fs;
-  2927		afe->get_dai_fs = mt8186_get_dai_fs;
-  2928		afe->get_memif_pbuf_size = mt8186_get_memif_pbuf_size;
-  2929	
-  2930		afe->runtime_resume = mt8186_afe_runtime_resume;
-  2931		afe->runtime_suspend = mt8186_afe_runtime_suspend;
-  2932	
-  2933		/* register platform */
-  2934		dev_info(dev, "%s(), devm_snd_soc_register_component\n", __func__);
-  2935	
-  2936		ret = devm_snd_soc_register_component(dev,
-  2937						      &mt8186_afe_component,
-  2938						      afe->dai_drivers,
-  2939						      afe->num_dai_drivers);
-  2940		if (ret) {
-  2941			dev_err(dev, "err_dai_component\n");
-  2942			goto err_pm_disable;
-  2943		}
-  2944	
-  2945		ret = pm_runtime_put_sync(dev);
-  2946		if (ret)
-  2947			dev_err(dev, "put_ret:%d, rpm_error:%d\n",
-  2948				ret, dev->power.runtime_error);
-  2949		afe_priv->pm_runtime_bypass_reg_ctl = false;
-  2950	
-  2951		regcache_cache_only(afe->regmap, true);
-  2952		regcache_mark_dirty(afe->regmap);
-  2953	
-  2954		return 0;
-  2955	
-  2956	err_pm_disable:
-  2957		pm_runtime_put_sync(dev);
-  2958		pm_runtime_disable(dev);
-  2959	
-  2960		return ret;
-  2961	}
-  2962	
+Patch 12-13 are some additiona taken from the qsdk that were missing in
+the upstream driver
 
----
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+Patch 14 converts krait-cc to yaml (should i also convert the kpss-scc
+driver?)
+
+Patch 15 finally adds all this stuff to the ipq8064 dtsi (and fix the
+stupid PXO_SRC phandle)
+
+Patch 16 conver the kpss driver to yaml and fix some Docuemntation errors
+
+I tested this series on a ipq8064 SoC by running a cache benchmark test
+to make sure the changes are correct and we don't silently cause
+regressions. Also I compared the output of the clk_summary every time
+and we finally have a sane output where the mux are correctly placed in
+the correct parent. (till now we had the cpu aux clock all over the
+place, probably never cause problems but who knows.)
+
+Ansuel Smith (16):
+  clk: permit to define a custom parent for clk_hw_get_parent_index
+  clk: qcom: gcc-ipq806x: skip pxo/cxo fixed clk if already present
+  clk: qcom: gcc-ipq806x: add PXO_SRC in clk table
+  clk: qcom: clk-hfpll: use poll_timeout macro
+  clk: qcom: kpss-xcc: convert to parent data API
+  clk: qcom: clk-krait: unlock spin after mux completion
+  clk: qcom: clk-krait: add hw_parent check for div2_round_rate
+  clk: qcom: krait-cc: convert to parent_data API
+  clk: qcom: krait-cc: drop pr_info and register qsb only if needed
+  clk: qcom: krait-cc: drop hardcoded safe_sel
+  clk: qcom: krait-cc: force sec_mux to QSB
+  clk: qcom: clk-krait: add 8064 errata workaround
+  clk: qcom: clk-krait: add enable disable ops
+  dt-bindings: clock: Convert qcom,krait-cc to yaml
+  dts: qcom-ipq8064: add missing krait-cc compatible and clocks
+  dt-bindings: arm: msm: Convert kpss driver Documentation to yaml
+
+ .../bindings/arm/msm/qcom,kpss-acc.txt        |  49 -----
+ .../bindings/arm/msm/qcom,kpss-acc.yaml       |  97 +++++++++
+ .../bindings/arm/msm/qcom,kpss-gcc.txt        |  44 ----
+ .../bindings/arm/msm/qcom,kpss-gcc.yaml       |  62 ++++++
+ .../bindings/clock/qcom,krait-cc.txt          |  34 ---
+ .../bindings/clock/qcom,krait-cc.yaml         |  63 ++++++
+ arch/arm/boot/dts/qcom-ipq8064.dtsi           |  20 +-
+ drivers/clk/clk.c                             |  14 +-
+ drivers/clk/qcom/clk-hfpll.c                  |  13 +-
+ drivers/clk/qcom/clk-krait.c                  |  44 +++-
+ drivers/clk/qcom/clk-krait.h                  |   1 +
+ drivers/clk/qcom/gcc-ipq806x.c                |  27 ++-
+ drivers/clk/qcom/kpss-xcc.c                   |  25 +--
+ drivers/clk/qcom/krait-cc.c                   | 201 ++++++++++--------
+ drivers/clk/tegra/clk-periph.c                |   2 +-
+ drivers/clk/tegra/clk-sdmmc-mux.c             |   2 +-
+ drivers/clk/tegra/clk-super.c                 |   4 +-
+ include/linux/clk-provider.h                  |   2 +-
+ 18 files changed, 448 insertions(+), 256 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-acc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/msm/qcom,kpss-gcc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,krait-cc.yaml
+
+-- 
+2.34.1
+
