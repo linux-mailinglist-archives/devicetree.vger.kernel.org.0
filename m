@@ -2,63 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E124D7239
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 03:47:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2834D7264
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 05:04:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233473AbiCMCsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Mar 2022 21:48:08 -0500
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59092 "EHLO
+        id S233508AbiCMEFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Mar 2022 23:05:25 -0500
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232220AbiCMCsB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 21:48:01 -0500
-Received: from mail-pl1-x636.google.com (mail-pl1-x636.google.com [IPv6:2607:f8b0:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D83BD100768;
-        Sat, 12 Mar 2022 18:46:49 -0800 (PST)
-Received: by mail-pl1-x636.google.com with SMTP id p17so10844087plo.9;
-        Sat, 12 Mar 2022 18:46:49 -0800 (PST)
+        with ESMTP id S229796AbiCMEFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Mar 2022 23:05:24 -0500
+Received: from mail-pj1-x1033.google.com (mail-pj1-x1033.google.com [IPv6:2607:f8b0:4864:20::1033])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD5D28BF3A;
+        Sat, 12 Mar 2022 20:04:16 -0800 (PST)
+Received: by mail-pj1-x1033.google.com with SMTP id bx5so11542742pjb.3;
+        Sat, 12 Mar 2022 20:04:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=doSnwMu8htsob8pfOwt7IniOWL6XjgE9eeH6vrd3mUs=;
-        b=eXQahQGkeXDwkojYaldQkULuCOdZz4hEAek1HQY2mWksFO1gYZJBzBcRyuaCajKN/h
-         qQU0RkVAy+PwKYbvi8danUIs4F+63HNdrg6YcXHzBUAfur44etSmcOP+pSsqTcXsAojH
-         dkUavgcjbOOAM4v9dW0fFvRvN1LzXvE374X3swuhL4ADFcyZnT/jOP4TYsYZKGAxiJjN
-         U8M3lThX41rEs5wWmJFgNDo0lq9Cn7M1udQoXFT25TH0lusyl/HpK+I2nsKfuAqwVFnS
-         54DrpFuOvlQvD3XdHI/ULHbeUIqBT5lRI8xPENZ8JRoQs0ybo7sGMDIrze2DfW3Usytc
-         y/vw==
+        bh=uksUDscG18pH8EI9uIGKs4R4Dd0p9gKfak1RBaRXBys=;
+        b=AHhiVJ3UBkF49PV21p3KrPS9TLHac4Wb9F+3IGlTDZiDKwNLoLSCK7ymCrBjA/FB8g
+         ymqHVMjFIl9JYl7Iu1Ge3wb3XNw1xesgT+ryR1GjrpuDxeEHCCnl/042FiL+/OS2evHF
+         H2V5167S7Y3CWJhqaFveCWGFGyVfHP0NcfRZJhxMby5oCauTRuR1WBhhdjKstiqu2YSn
+         WPfwG36Ugd7IBxh6uLZbE5y06m7q3+bl68he0wEMpT387ke8irt00/kGEHuLMJjmB82o
+         qUlZlOvCSgw0wcF4AOuTUkD5jDpebm8oh77B/OQEvPMro3s/wrqUTUbCNGnRB9EeSHsJ
+         kuYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=doSnwMu8htsob8pfOwt7IniOWL6XjgE9eeH6vrd3mUs=;
-        b=6qd1UuUhaKKyfAfxF0bmLsLv8VNWnbHmklyeyvrXT1dPVbzta7uNtW2eJHjMk09D+P
-         0LidwwIkBoybO3bIdQ1C9bW1ZlmfVG4R/uov62z0neQrtvAnAqi4gP3le8vociG4Uyc0
-         OXC19VZ9jTdhhMFSDT816l6LHDFXaig2yQOMLgglopHVEjf+7WhVyHP7c3H0hldkfQgW
-         gXdMnfePzUlsE/S9Khd9muybLc07KeJjEjRP6Dp6q0E1ofm8qL4HzH15jtfIdoMY9Iei
-         hKiGi+4BpEJL6fERc+pMXX8oYuE3nFYfeKcnNYHEui/GjdgreJ0kacVe87Uf83aCfOtq
-         xDNw==
-X-Gm-Message-State: AOAM5327xOKpu0sKGAi5av8ldHu3QJpqx1bXNJx1stHE+jBhslP/rjIR
-        K9ImLMltlL3w467CzuyE9qk=
-X-Google-Smtp-Source: ABdhPJxnUs3P5hj2nLnRMPNJ9u6MzjkJbAuvZOXRppbA0CQRJv9NqJMjl2CQbrlqH7Cbhna7hI1lmw==
-X-Received: by 2002:a17:902:ea08:b0:153:35e8:7947 with SMTP id s8-20020a170902ea0800b0015335e87947mr10466131plg.112.1647139609424;
-        Sat, 12 Mar 2022 18:46:49 -0800 (PST)
+        bh=uksUDscG18pH8EI9uIGKs4R4Dd0p9gKfak1RBaRXBys=;
+        b=c8WkZiLo0k3jBta5YwQVQJ1rhPBO+Bw0yC2xA/8jbBgpfYmYfZqrFF8JQp5BLXNv1a
+         fOU1aeWRza6MGH+3qHby3+G5iVKZXv8A7t+GNhVbVCMtuXRl/MRjKVW4iSVqCBGPIM35
+         ZW4olnH2BPpD+u+K+Bp6J04bH6Sr5lwQv42MRs3VrOrU4OP6b1xPS4GlkoRJUOliAvk2
+         EjY/mQj1se9X4gcvJXtSSgheqn3YjY0m836/WTZF/oSR6NJv/Jw1klEi1kz3A9rqd+Oq
+         SFezF/uibq69uQSFz24vxel6zxsLaMJtZfhGbf8x0D4CsLLzdjYpKcsPACq1wEdgowA3
+         5ncw==
+X-Gm-Message-State: AOAM530LgWfI2jgjbvMih3+gjVHZ1bbtVMyiyhi6gbhyg+/Da1GrN3yE
+        xXlnhudAr9+dTTpnCb4/PRI=
+X-Google-Smtp-Source: ABdhPJwpTnJVzXK4pQicWpojH8vBxMFMcbQP0DV2GLcxezgDZ5yuqgt8CS65wXuElZO48wwKZGX+vg==
+X-Received: by 2002:a17:903:124a:b0:153:47d7:de49 with SMTP id u10-20020a170903124a00b0015347d7de49mr5921852plh.81.1647144256165;
+        Sat, 12 Mar 2022 20:04:16 -0800 (PST)
 Received: from hoboy.vegasvil.org ([2601:640:8200:33:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id l13-20020a056a00140d00b004e13da93eaasm15245824pfu.62.2022.03.12.18.46.47
+        by smtp.gmail.com with ESMTPSA id oo17-20020a17090b1c9100b001bf0ccc59c2sm18337904pjb.16.2022.03.12.20.04.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 12 Mar 2022 18:46:48 -0800 (PST)
-Date:   Sat, 12 Mar 2022 18:46:46 -0800
+        Sat, 12 Mar 2022 20:04:15 -0800 (PST)
+Date:   Sat, 12 Mar 2022 20:04:12 -0800
 From:   Richard Cochran <richardcochran@gmail.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Woojung.Huh@microchip.com, linux@armlinux.org.uk,
-        Horatiu.Vultur@microchip.com, Divya.Koppera@microchip.com,
+To:     "Allan W. Nielsen" <allan.nielsen@microchip.com>
+Cc:     Horatiu Vultur <horatiu.vultur@microchip.com>,
+        "Russell King (Oracle)" <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>, Divya.Koppera@microchip.com,
         netdev@vger.kernel.org, hkallweit1@gmail.com, davem@davemloft.net,
         kuba@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, UNGLinuxDriver@microchip.com,
         Madhuri.Sripada@microchip.com, Manohar.Puri@microchip.com
 Subject: Re: [PATCH net-next 2/3] dt-bindings: net: micrel: Configure latency
  values and timestamping check for LAN8814 phy
-Message-ID: <20220313024646.GC29538@hoboy.vegasvil.org>
+Message-ID: <20220313040412.GA30488@hoboy.vegasvil.org>
 References: <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
  <YiecBKGhVui1Gtb/@lunn.ch>
  <20220308221404.bwhujvsdp253t4g3@soft-dev3-1.localhost>
@@ -66,13 +67,13 @@ References: <20220308154345.l4mk2oab4u5ydn5r@soft-dev3-1.localhost>
  <20220309132443.axyzcsc5kyb26su4@soft-dev3-1.localhost>
  <Yii/9RH67BEjNtLM@shell.armlinux.org.uk>
  <20220309195252.GB9663@hoboy.vegasvil.org>
- <BL0PR11MB291347C0E4699E3B202B96DDE70C9@BL0PR11MB2913.namprd11.prod.outlook.com>
- <20220312024828.GA15046@hoboy.vegasvil.org>
- <Yiz8z3UPqNANa5zA@lunn.ch>
+ <20220311142814.z3h5nystnrkvbzek@soft-dev3-1.localhost>
+ <20220311150842.GC7817@hoboy.vegasvil.org>
+ <20220312193620.owhfd43dzzxtytgs@den-dk-m31684h>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Yiz8z3UPqNANa5zA@lunn.ch>
+In-Reply-To: <20220312193620.owhfd43dzzxtytgs@den-dk-m31684h>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
@@ -84,27 +85,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 12, 2022 at 09:04:31PM +0100, Andrew Lunn wrote:
-> Do these get passed to the kernel so the hardware can act on them, or
-> are they used purely in userspace by ptp4l?
+On Sat, Mar 12, 2022 at 08:36:20PM +0100, Allan W. Nielsen wrote:
+> I did skim through the articles, and as you hinted he does find small
+> latency differences across different packets. (but as I understood, very
+> few PHYs was tested).
 
-user space only.
+There is also previous work cited in those articles.
  
-> If they has passed to the kernel, could we provide a getter as well as
-> a setter, so the defaults hard coded in the driver can be read back?
+> But this is not really an argument for not having _default_ values
+> hard-coded in the driver (or DT, but lets forget about DT for now).
 
-Any hard coded defaults in the kernel are a nuisance.
+You put them in the DTS.  That means you expect them to need changes.
 
-I mean, do you want user space to say,
+DTS is the WRONG place for such things.
 
-   "okay, so I know the correct value is X.  But the drivers may offer
-   random values according to kernel version.  So, I'll read out the
-   driver value Y, and then apply X-Y."
+If your numbers are perfect, then do the corrections in silicon/firmware.
 
-Insanity.
+If the numbers aren't 100% perfect, then provide your customers with a
+test report providing the recommended numbers.  Include a proper
+explanation of the test methodology and assumptions used in your
+analysis.  Heck, you can even given them linuxptp config snippets (and
+other for other popular PTP stacks, Oregano, ixat, ptpd, etc)
 
-(not to mention that this fails for older kernels without the proposed
-interface)
+Don't hard code random, changing numbers into kernel drivers.
 
 Thanks,
 Richard
