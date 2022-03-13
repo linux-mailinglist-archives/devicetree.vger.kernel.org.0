@@ -2,57 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EDD474D744A
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 11:47:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BF6944D7516
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 13:00:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232250AbiCMKsi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 06:48:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57966 "EHLO
+        id S233466AbiCMMBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 08:01:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230260AbiCMKsh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 06:48:37 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22518114FC3;
-        Sun, 13 Mar 2022 03:47:28 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 7B54922239;
-        Sun, 13 Mar 2022 11:47:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647168446;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=wIZiFEsZAeYnOqGs2+bUuvQH61Nh7FBJ6q0NJr//BIc=;
-        b=Jsqb8R27K4Qb9rhh2kkLgl4QF30L8Zoir/MEJOYpBLov6Da5zXRUtfV+p+nGRhKbvGTnwF
-        4Lb61D5TLrpwVDwpyDGWfpEDpMqzJDkq/3IQ2AZ2Lh/Uc0xSmioHscQLiXleTN7XG8PXKq
-        Wb9AV4OIWFUGZw+ADvWBDNImlOWbAMk=
+        with ESMTP id S230181AbiCMMBS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 08:01:18 -0400
+Received: from benson.default.arb33.bv.iomart.io (benson.default.arb33.bv.iomart.io [IPv6:2001:41c9:1:41d::16])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58DAF25E88
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 05:00:07 -0700 (PDT)
+Received: from cpc91210-cmbg18-2-0-cust57.5-4.cable.virginm.net ([81.102.44.58] helo=dagon.hellion.org.uk)
+        by benson.default.arb33.bv.iomart.io with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <ijc@hellion.org.uk>)
+        id 1nTMtG-0007N8-6z; Sun, 13 Mar 2022 12:00:02 +0000
+Message-ID: <677bf0dcf6b17eb7fb5489524e0c4ac4ad450ff0.camel@hellion.org.uk>
+Subject: Re: Broken devicetree-rebasing history
+From:   Ian Campbell <ijc@hellion.org.uk>
+To:     Hector Martin <marcan@marcan.st>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>, Janne Grunau <j@jannau.net>,
+        Sven Peter <sven@svenpeter.dev>,
+        Mark Kettenis <mark.kettenis@xs4all.nl>
+Date:   Sun, 13 Mar 2022 12:00:00 +0000
+In-Reply-To: <82ba9727b15e99f47488e3b2db4423a51a05bc35.camel@hellion.org.uk>
+References: <9f6a2553-2145-c955-0ece-6c05fa060e50@marcan.st>
+         <82ba9727b15e99f47488e3b2db4423a51a05bc35.camel@hellion.org.uk>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.42.2-1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
 Content-Transfer-Encoding: 7bit
-Date:   Sun, 13 Mar 2022 11:47:26 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: mscc-miim: add lan966x
- compatible
-In-Reply-To: <08b89b3f-d0d3-e96f-d1c3-80e8dfd0798f@kernel.org>
-References: <20220313002536.13068-1-michael@walle.cc>
- <20220313002536.13068-2-michael@walle.cc>
- <08b89b3f-d0d3-e96f-d1c3-80e8dfd0798f@kernel.org>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <d18291ff8d81f03a58900935d92115f2@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -61,49 +44,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Fri, 2022-03-11 at 09:01 +0000, Ian Campbell wrote:
+> Thanks for the heads up, I'll (hopefully) take a look over the
+> weekend.
 
-Am 2022-03-13 10:47, schrieb Krzysztof Kozlowski:
-> On 13/03/2022 01:25, Michael Walle wrote:
->> The MDIO controller has support to release the internal PHYs from 
->> reset
->> by specifying a second memory resource. This is different between the
->> currently supported SparX-5 and the LAN966x. Add a new compatible to
->> distiguish between these two.
->> 
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->>  Documentation/devicetree/bindings/net/mscc-miim.txt | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/Documentation/devicetree/bindings/net/mscc-miim.txt 
->> b/Documentation/devicetree/bindings/net/mscc-miim.txt
->> index 7104679cf59d..a9efff252ca6 100644
->> --- a/Documentation/devicetree/bindings/net/mscc-miim.txt
->> +++ b/Documentation/devicetree/bindings/net/mscc-miim.txt
->> @@ -2,7 +2,7 @@ Microsemi MII Management Controller (MIIM) / MDIO
->>  =================================================
->> 
->>  Properties:
->> -- compatible: must be "mscc,ocelot-miim"
->> +- compatible: must be "mscc,ocelot-miim" or "mscc,lan966x-miim"
-> 
-> No wildcards, use one, specific compatible.
+My first attempt at rerunning the conversion still had the problem (I
+think I didn't wind the state branch back far enough). A second one is
+running now and looks to have avoided the issue. I think it'll finish
+later on today but I may not have a chance to check and push the
+results until later in the week.
 
-I'm in a kind of dilemma here, have a look yourself:
-grep -r "lan966[28x]-" Documentation
+Obviously this is going to involve a force push and a whole new pile of
+updated tags in the repo on kernel.org, I'll send an heads up to the
+list when I get as far as actually pushing.
 
-Should I deviate from the common "name" now? To make things
-worse, there was a similar request by Arnd [1]. But the
-solution feels like cheating ("lan966x" -> "lan966") ;)
+FYI the new mirror will be
+https://github.com/ijc/devicetree-rebasing-v3 and the new state repo
+will be https://github.com/ijc/devicetree-conversion-state-v3. The old
+state repo will remain frozen.
 
-On a side note, I understand that there should be no wildcards,
-because the compatible should target one specific implementation,
-right? But then the codename "ocelot" represents a whole series of
-chips. Therefore, names for whole families shouldn't be used neither,
-right?
-
--michael
-
-[1] 
-https://lore.kernel.org/lkml/CAK8P3a2kRhCOoXnvcMyqS-zK2WDZjtUq4aqOzE5VV=VMg=pVOA@mail.gmail.com/
+Cheers,
+Ian.
