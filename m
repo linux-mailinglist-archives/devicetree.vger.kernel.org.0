@@ -2,149 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 564144D782D
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 21:22:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A9F64D78BB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 00:31:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235556AbiCMUXj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 16:23:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42900 "EHLO
+        id S231550AbiCMXck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 19:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230136AbiCMUXi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 16:23:38 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C1F77A9B1;
-        Sun, 13 Mar 2022 13:22:30 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id s29so2386494lfb.13;
-        Sun, 13 Mar 2022 13:22:30 -0700 (PDT)
+        with ESMTP id S235674AbiCMXcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 19:32:39 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C76CBC99
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 16:31:31 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 3so24218029lfr.7
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 16:31:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=I9y+xQerG7o8f0xpkTQNL0kHWd//IRK7WsRPUjIKkRY=;
-        b=mcqLMkH9PsDkMfugEJIKsysEpBRkET8V2q9fT6Xb+C4iqUZTceNDngLFzMArtKycoh
-         CNzZIdYYLAAZsq7yPv1l5e6SX7hHLg7L0FfUo+pi4WZ6152TWqQkSI5O851RRpjCS0sd
-         Hir2QKaoRnszVL/JtyndIXQJTXCUq7k8QVvgDau6WmzTZxZ981gN7fX0PwJ99hNFFp1a
-         Ryz1IS4fLtrrR5y3SlH63wBNcWvVIcZRDkb0HyhM4UCq/jXUA+f3VjmVeBmvFO/G62BO
-         6iT/V12g/PdhhSno1o7muIFmxYSLSpwpDbSce/7KvIxkB90WMUe9S3mwgXbpT8FN4lLq
-         7f5g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o2RZReJpJ2jgwoZl2JXrTpWA6xmRBqRPwQO+M+cOYDw=;
+        b=Inni7TzGS5a8Eb/1QxF1L7l0qymA3xqTfSP4DT97AmvRws+1eSHOMq08TSRlK24qxW
+         9lr1STjDb0pak8c79ZuRmCdsmFP1ecb5os4mpC2sEaJf4j2tFCANPC7bJnx2ZqK+xk/J
+         4bQHj9+lPVaZDFOSy/L5Id6DbP7T6h+D6SByxiz2zBD2CotRkoTpgMISZg1uOdpJWbHA
+         6ucPUioc1sb4OXNsztIVRCppbIuAEYNlnRWH2QPNp+zzzzs19sSQSc4Aag0pyHUtEdBM
+         7Z5+2bEYvx+MUm2wZjzdI2UjFxNvwCu48hk60oAtzfr1eJzRP/sW8R3oAwkfm/dryWvq
+         +hfw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=I9y+xQerG7o8f0xpkTQNL0kHWd//IRK7WsRPUjIKkRY=;
-        b=3GLaGxKJAMfgHzgVMhUNL/5OObjijrrSakkHDU68OvVICIIu/V2CuMYHhRsChOtTEk
-         ABB3GAMpAe7VjnK3QWvlh519kkDBEp52047GuB5UHMwAVdKCU4gqic9wXo6JietI7kjg
-         IAV4EeNCbC9KI1Kn2LWttsMQwTVkpGdbLGN0MI+8hY6QkAuW6SBP6bXzfG8HUnRRLfug
-         iBTht+1Ef7dQdh5v7tMMHBv+6YOdGJlK+fE6oyNLhkQVZsJ/Zw4p/a7JmbVtXrc/IMWr
-         71RWlj7wzDmpCsE7Ky7+4ipKkmzky8cepuNXOWDs59ta1rdbXvMB/zsSp9Em7aHPFxyc
-         ocww==
-X-Gm-Message-State: AOAM5304TUztqWvfgOhywUw7YRY6AQDb0osidrLpk129KNMDZ8eBUDoy
-        JDKbWI6MzGSrz9UeDTJ0qamHZp56nOZ2fv966A==
-X-Google-Smtp-Source: ABdhPJxhZHoUdofDUetTejGKDGs97K7es5I2NpHzVQXbOgFXN4QeOorOIohQEZKVBrZTuQ3Kjjkl2YDcxUYjICHnppM=
-X-Received: by 2002:a05:6512:2243:b0:448:6830:ee82 with SMTP id
- i3-20020a056512224300b004486830ee82mr9663503lfu.262.1647202948325; Sun, 13
- Mar 2022 13:22:28 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o2RZReJpJ2jgwoZl2JXrTpWA6xmRBqRPwQO+M+cOYDw=;
+        b=cSNEFjsvM6zUsbXYFDtWH8JH63QfVNfAJLQQ4pRMkleLIeT7DxxrfxXK5hY/6ca8aE
+         HMb7iGd9iVhM7cDK3D7Mr51zOyLCJRF3DB81ZiCdghTfYeHf6RC+287aMZ6DITH+10xF
+         /nUp3mHIg0rF1yOmwuUAkKc2xB4FnT63UEc1T6xWu/gevfZ53xEH4fUgbIJrOm120T8l
+         fp80S1e1C7oJdx32OHyVZ35JMmrlOhYNQdi5GBtvDwlo6Fml6eCejdTxk+sxzuhSIPru
+         IZM0wsnyUT2vN0XJJyavH1ZmllRipSLU0kCcSrJkeinp4ozlRVUHVORqpw8zYxgeNfFS
+         DhcA==
+X-Gm-Message-State: AOAM532f58Y7FkFAJ+/u7hTpPrD7jGm8bdAWFM95LXvpn9Defp8yb7MT
+        cmFm0cgazs2880vor2PwQkBI6g==
+X-Google-Smtp-Source: ABdhPJxxMTuacDPD/hh3Hys/xhuumTmUZfWcHGQdtVdgT//yJlj0wEraS8j6JKjOfmYlkbE/f7cNRw==
+X-Received: by 2002:a05:6512:a8f:b0:448:1f28:c8d8 with SMTP id m15-20020a0565120a8f00b004481f28c8d8mr12272007lfu.525.1647214288593;
+        Sun, 13 Mar 2022 16:31:28 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id i16-20020a2e5410000000b0024647722a4asm3496408ljb.29.2022.03.13.16.31.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Mar 2022 16:31:28 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clock: u8500: Add clkout clock bindings
+Date:   Mon, 14 Mar 2022 00:29:25 +0100
+Message-Id: <20220313232926.1004842-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220311014245.4612-1-ctcchien@nuvoton.com> <20220311014245.4612-4-ctcchien@nuvoton.com>
- <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
-In-Reply-To: <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
-From:   Avi Fishman <avifishman70@gmail.com>
-Date:   Sun, 13 Mar 2022 22:22:17 +0200
-Message-ID: <CAKKbWA7Pr8Gi-rU5_BZ32y5aiLV0tSM19WkRe+zF8spWdk5zMg@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
-        James Morse <james.morse@arm.com>, tony.luck@intel.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 11:15 AM Krzysztof Kozlowski
-<krzysztof.kozlowski@canonical.com> wrote:
->
-> On 11/03/2022 02:42, Medad CChien wrote:
-> > Add support for Nuvoton NPCM SoC.
-> >
-> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> > ---
-> >  drivers/edac/Kconfig     |   9 +
-> >  drivers/edac/Makefile    |   1 +
-> >  drivers/edac/npcm_edac.c | 714 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 724 insertions(+)
-> >  create mode 100644 drivers/edac/npcm_edac.c
-> >
-> > diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> > index 58ab63642e72..757e1d160640 100644
-> > --- a/drivers/edac/Kconfig
-> > +++ b/drivers/edac/Kconfig
-> > @@ -539,4 +539,13 @@ config EDAC_DMC520
-> >         Support for error detection and correction on the
-> >         SoCs with ARM DMC-520 DRAM controller.
-> >
-> > +config EDAC_NPCM
-> > +     tristate "Nuvoton NPCM DDR Memory Controller"
-> > +     depends on ARCH_NPCM
->
-> || COMPILE_TEST
-> (and test if it compiles)
->
-> (...)
->
-> > +
-> > +MODULE_DEVICE_TABLE(of, npcm_edac_of_match);
-> > +
-> > +static int npcm_edac_mc_probe(struct platform_device *pdev)
-> > +{
-> > +     const struct npcm_edac_platform_data *npcm_chip;
-> > +     struct device *dev = &pdev->dev;
-> > +     struct edac_mc_layer layers[1];
-> > +     const struct of_device_id *id;
-> > +     struct priv_data *priv_data;
-> > +     struct mem_ctl_info *mci;
-> > +     struct resource *res;
-> > +     void __iomem *reg;
-> > +     int ret = -ENODEV;
-> > +     int irq;
-> > +
-> > +     id = of_match_device(npcm_edac_of_match, &pdev->dev);
-> > +     if (!id)
-> > +             return -ENODEV;
->
-> Why do you need it? How such case is even possible?
->
-> > +
-> > +     npcm_chip = of_device_get_match_data(&pdev->dev);
-> > +     if (!npcm_chip)
-> > +             return -ENODEV;
->
-> I wonder, how is it possible to have here NULL?
->
-Both of_match_device() and of_device_get_match_data() can return NULL,
-are we missing something?
+This adds device tree bindings for the externally routed clocks
+CLKOUT1 and CLKOUT2 clocks found in the DB8500.
 
-> Best regards,
-> Krzysztof
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+ .../bindings/clock/stericsson,u8500-clks.yaml   | 16 ++++++++++++++++
+ include/dt-bindings/clock/ste-db8500-clkout.h   | 17 +++++++++++++++++
+ 2 files changed, 33 insertions(+)
+ create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
 
+diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+index 9bc95a308477..afd049be948a 100644
+--- a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
++++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+@@ -109,6 +109,22 @@ properties:
+ 
+     additionalProperties: false
+ 
++  clkout-clock:
++    description: A subnode with three clock cells for externally routed clocks,
++      output clocks. These are two PRCMU-internal clocks that can be divided and
++      muxed out on the pads of the DB8500 SoC. The first cell indicates which
++      output clock we are using, possible values are 0 (CLKOUT1) and 1 (CLKOUT2).
++      The second cell indicates which clock we want to use as source, possible
++      values are 0 thru 7, see the defines for the different source clocks.
++      The third cell is a divider, legal values are 1 thru 63.
++    type: object
++
++    properties:
++      '#clock-cells':
++        const: 3
++
++    additionalProperties: false
++
+ required:
+   - compatible
+   - reg
+diff --git a/include/dt-bindings/clock/ste-db8500-clkout.h b/include/dt-bindings/clock/ste-db8500-clkout.h
+new file mode 100644
+index 000000000000..ca07cb2bd1bc
+--- /dev/null
++++ b/include/dt-bindings/clock/ste-db8500-clkout.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __STE_CLK_DB8500_CLKOUT_H__
++#define __STE_CLK_DB8500_CLKOUT_H__
++
++#define DB8500_CLKOUT_1			0
++#define DB8500_CLKOUT_2			1
++
++#define DB8500_CLKOUT_SRC_CLK38M	0
++#define DB8500_CLKOUT_SRC_ACLK		1
++#define DB8500_CLKOUT_SRC_SYSCLK	2
++#define DB8500_CLKOUT_SRC_LCDCLK	3
++#define DB8500_CLKOUT_SRC_SDMMCCLK	4
++#define DB8500_CLKOUT_SRC_TVCLK		5
++#define DB8500_CLKOUT_SRC_TIMCLK	6
++#define DB8500_CLKOUT_SRC_CLK009	7
++
++#endif
 -- 
-Regards,
-Avi
+2.35.1
+
