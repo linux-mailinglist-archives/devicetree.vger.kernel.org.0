@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97E954D7624
-	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 16:11:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id ECB5C4D7655
+	for <lists+devicetree@lfdr.de>; Sun, 13 Mar 2022 16:29:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234834AbiCMPMU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 11:12:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40648 "EHLO
+        id S234761AbiCMPbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 11:31:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234828AbiCMPMI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 11:12:08 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8DD888D6;
-        Sun, 13 Mar 2022 08:10:53 -0700 (PDT)
-X-UUID: c6224603de6f45a1b82afd12952ba3ab-20220313
-X-UUID: c6224603de6f45a1b82afd12952ba3ab-20220313
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <jiaxin.yu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 118659618; Sun, 13 Mar 2022 23:10:46 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Sun, 13 Mar 2022 23:10:44 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 13 Mar
- 2022 23:10:44 +0800
-Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 13 Mar 2022 23:10:43 +0800
-From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <angelogioacchino.delregno@collabora.com>
-CC:     <aaronyu@google.com>, <matthias.bgg@gmail.com>,
-        <trevor.wu@mediatek.com>, <tzungbi@google.com>,
-        <julianbraha@gmail.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>
-Subject: [v3 19/19] ASoC: mediatek: mt6358: add missing EXPORT_SYMBOLs
-Date:   Sun, 13 Mar 2022 23:10:23 +0800
-Message-ID: <20220313151023.21229-20-jiaxin.yu@mediatek.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220313151023.21229-1-jiaxin.yu@mediatek.com>
-References: <20220313151023.21229-1-jiaxin.yu@mediatek.com>
+        with ESMTP id S232555AbiCMPbA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 11:31:00 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57AE427CC0;
+        Sun, 13 Mar 2022 08:29:48 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 39CDC22238;
+        Sun, 13 Mar 2022 16:29:44 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647185385;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=thrnb94/ICCp7bDqYxQzY7ZZwtZvmddmHTgT7F76JX4=;
+        b=so0einbshdNaW3wd7EixWOPh8a5LJubFBq9N1MCzKDJtf2Zzu/UuwyYi9Khkk0iPli5HzJ
+        owF5F+euywZEiJXzRiMSQJ3aihn6qQRSjVRUwIGL5p+JOU8bcvw+8tUMPcS6QGAF33RiZd
+        BeFsBXP03p5fydd+jr5PGh+S0xkHCcc=
+From:   Michael Walle <michael@walle.cc>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v1 0/8] pinctrl: ocelot: convert to YAML format
+Date:   Sun, 13 Mar 2022 16:29:16 +0100
+Message-Id: <20220313152924.61931-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following build errors when mt6358 is configured as module:
+Convert the pinctrl ocelot binding to the new YAML format. Pin
+configuration nodes should have a "-pins" postfix. But unfortunately,
+there are many device trees which don't follow this. First rename
+all these nodes and then convert the binding to the YAML format so
+that the validation will pass.
 
->> ERROR: modpost: "mt6358_set_mtkaif_protocol"
->> [sound/soc/mediatek/mt8186/mt8186-mt6366-rt1019-rt5682s.ko] undefined!
->> ERROR: modpost: "mt6358_set_mtkaif_protocol"
->> [sound/soc/mediatek/mt8186/mt8186-mt6366-da7219-max98357.ko] undefined!
+Because there were no maintainers before and there is none in
+MAINTAINERS I added Alexandre Belloni and Lars Povlsen, juding by
+the commits - to the binding as maintainers. Please tell me if you
+disagree.
 
-Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
----
- sound/soc/codecs/mt6358.c | 4 ++++
- 1 file changed, 4 insertions(+)
+Michael Walle (8):
+  MIPS: mscc: jaguar2: fix pinctrl nodes
+  MIPS: mscc: ocelot: fix MIIM1 pinctrl node name
+  MIPS: mscc: ocelot: fix PHY interrupt pinctrl node name
+  MIPS: mscc: ocelot: fix load/save GPIO pinctrl name
+  MIPS: mscc: serval: fix pinctrl node names
+  arm64: dts: sparx5: fix pinctrl node names
+  ARM: dts: lan9662-pcb8291: fix pinctrl node name
+  dt-bindings: pinctrl: convert ocelot-pinctrl to YAML format
 
-diff --git a/sound/soc/codecs/mt6358.c b/sound/soc/codecs/mt6358.c
-index 1fdd2f8cf877..61f2a7632fd4 100644
---- a/sound/soc/codecs/mt6358.c
-+++ b/sound/soc/codecs/mt6358.c
-@@ -107,6 +107,7 @@ int mt6358_set_mtkaif_protocol(struct snd_soc_component *cmpnt,
- 	priv->mtkaif_protocol = mtkaif_protocol;
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(mt6358_set_mtkaif_protocol);
- 
- static void playback_gpio_set(struct mt6358_priv *priv)
- {
-@@ -273,6 +274,7 @@ int mt6358_mtkaif_calibration_enable(struct snd_soc_component *cmpnt)
- 			   1 << RG_AUD_PAD_TOP_DAT_MISO_LOOPBACK_SFT);
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(mt6358_mtkaif_calibration_enable);
- 
- int mt6358_mtkaif_calibration_disable(struct snd_soc_component *cmpnt)
- {
-@@ -296,6 +298,7 @@ int mt6358_mtkaif_calibration_disable(struct snd_soc_component *cmpnt)
- 	capture_gpio_reset(priv);
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(mt6358_mtkaif_calibration_disable);
- 
- int mt6358_set_mtkaif_calibration_phase(struct snd_soc_component *cmpnt,
- 					int phase_1, int phase_2)
-@@ -310,6 +313,7 @@ int mt6358_set_mtkaif_calibration_phase(struct snd_soc_component *cmpnt,
- 			   phase_2 << RG_AUD_PAD_TOP_PHASE_MODE2_SFT);
- 	return 0;
- }
-+EXPORT_SYMBOL_GPL(mt6358_set_mtkaif_calibration_phase);
- 
- /* dl pga gain */
- enum {
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  | 42 ---------
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 94 +++++++++++++++++++
+ arch/arm/boot/dts/lan966x-pcb8291.dts         |  2 +-
+ .../dts/microchip/sparx5_pcb134_board.dtsi    | 26 ++---
+ .../dts/microchip/sparx5_pcb135_board.dtsi    | 10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    | 10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    | 10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |  6 +-
+ arch/mips/boot/dts/mscc/ocelot.dtsi           |  4 +-
+ arch/mips/boot/dts/mscc/ocelot_pcb120.dts     |  6 +-
+ arch/mips/boot/dts/mscc/serval_common.dtsi    | 14 +--
+ 11 files changed, 138 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+
 -- 
-2.18.0
+2.30.2
 
