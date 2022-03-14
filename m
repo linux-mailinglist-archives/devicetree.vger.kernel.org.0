@@ -2,89 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0324C4D8818
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 16:31:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E1E824D882D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 16:35:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235246AbiCNPdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 11:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41762 "EHLO
+        id S233835AbiCNPfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 11:35:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233435AbiCNPdG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 11:33:06 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF17C1AF19
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 08:31:55 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 662FE2E0;
-        Mon, 14 Mar 2022 16:31:53 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1647271913;
-        bh=cjLsMLMLLBC+rtHJuogpXwhiENyrw9S1uWicbC7/J9k=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jfpALFxbprbXqqV/W6anJvbaT8gikDFSfnvn6xx9RHI00k0HVKQuB9/8a+2pST3ye
-         5Y28fdWO7xt4pgE27GSBzi9Mq/BtK/lXG3inSdpYv/6ZhyrMWpVLo6kTMVV4XQK4Ex
-         BCxENX0/31gv0SZQm1lD1HPcj8VBrBgDTddIpB9U=
-Date:   Mon, 14 Mar 2022 17:31:35 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, patchwork-lst@pengutronix.de
-Subject: Re: [PATCH v3 0/7] i.MX8MP GPC and blk-ctrl
-Message-ID: <Yi9f1+Y9bfOD5Vac@pendragon.ideasonboard.com>
-References: <20220228201731.3330192-1-l.stach@pengutronix.de>
- <YinqAq/QsW1rhJb2@pendragon.ideasonboard.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YinqAq/QsW1rhJb2@pendragon.ideasonboard.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S242545AbiCNPfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 11:35:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4693521267;
+        Mon, 14 Mar 2022 08:34:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8861E612B3;
+        Mon, 14 Mar 2022 15:34:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E602CC340EE;
+        Mon, 14 Mar 2022 15:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647272058;
+        bh=Bnod0IaDodE5BPjyT8EujzYwnAusdu53AQQMt9y+ho0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=t73gaSIorFbG9uLRYGMqM/SKSnxBXcquakW7oZSLnr5fn/xbNlsCcEZUc3nUf5wEg
+         h86fWkK9Mnr72d+gKXGBvnXJLii41dy44LTzrSUbwNdE3o2Di/+Ey50oC0PK5nmKvp
+         BQprk6DEzypkv4Pt5ukLAnIKwDGPd50xPB0Yft5cKc+1BoZGEFv9Fv18e0onClDcSm
+         jVP543t8JjYbhewEHMtmHfU0I5Mv+3Ih/lC5tCXtQAqChKb95MY2dI3jskRNa8di9z
+         ah7gQD3sLQgiM8QaAZfYd4HbsGiIvglUI5BGm4rE6FlehO6CuYu43MIiUI/PwfGMUJ
+         ayOONeHPot1Rw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nTmi7-00EOSv-HQ; Mon, 14 Mar 2022 15:34:15 +0000
+Date:   Mon, 14 Mar 2022 15:34:15 +0000
+Message-ID: <87k0cwzgy0.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Vladimir Oltean <vladimir.oltean@nxp.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Biwen Li <biwen.li@nxp.com>,
+        Zhiqiang Hou <Zhiqiang.Hou@nxp.com>,
+        Kurt Kanzenbach <kurt@linutronix.de>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH v2 devicetree] Revert "arm64: dts: freescale: Fix 'interrupt-map' parent address cells"
+In-Reply-To: <CAL_JsqLuD97y=rqRRUw5owvoetLh926ebkmMdGut+gyqTS5hWQ@mail.gmail.com>
+References: <20211214135852.2934670-1-vladimir.oltean@nxp.com>
+        <CAL_JsqLuD97y=rqRRUw5owvoetLh926ebkmMdGut+gyqTS5hWQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: robh+dt@kernel.org, vladimir.oltean@nxp.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, shawnguo@kernel.org, leoyang.li@nxp.com, biwen.li@nxp.com, Zhiqiang.Hou@nxp.com, kurt@linutronix.de, linux@rasmusvillemoes.dk, arnd@arndb.de
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 10, 2022 at 02:07:32PM +0200, Laurent Pinchart wrote:
-> Hi Shawn,
+On Mon, 14 Mar 2022 15:15:15 +0000,
+Rob Herring <robh+dt@kernel.org> wrote:
 > 
-> Is there still a chance this could get merged in v5.18 ?
+> On Tue, Dec 14, 2021 at 6:59 AM Vladimir Oltean <vladimir.oltean@nxp.com> wrote:
+> > Therefore, the premise of the patch being reverted here is invalid.
+> > It doesn't matter whether the driver, in its non-standard use of the
+> > property, complies to the standard format or not, since this property
+> > isn't expected to be used for interrupt translation by the core.
+> 
+> I disagree. The non-standard part is that 'interrupt-map' translation
+> is not transparent. 'interrupt-map' that can't be parsed in the
+> standard way is just wrong, and I imagine was never the intention
+> here. We simply cannot have platforms defining their own format for
+> standard properties.
 
-Ping ? Time is running out.
+That ship sailed a long while ago. We have a list of offenders, and we
+can make sure we don't get additional ones.
 
-> On Mon, Feb 28, 2022 at 09:17:24PM +0100, Lucas Stach wrote:
-> > Hi all,
-> > 
-> > third and hopefully last revision of this patchset. The dt-binding
-> > patches are dropped, as Shawn already picked them up. I fixed up all
-> > the review comments received by Laurent and Marek.
-> > 
-> > Regards,
-> > Lucas
-> > 
-> > Lucas Stach (7):
-> >   soc: imx: gpcv2: add PGC control register indirection
-> >   soc: imx: gpcv2: add support for i.MX8MP power domains
-> >   soc: imx: add i.MX8MP HSIO blk-ctrl
-> >   dt-bindings: usb: dwc3-imx8mp: add power domain property
-> >   arm64: dts: imx8mp: add HSIO power-domains
-> >   arm64: dts: imx8mp: add GPU power domains
-> >   arm64: dts: imx8mp: add GPU nodes
-> > 
-> >  .../bindings/usb/fsl,imx8mp-dwc3.yaml         |   6 +
-> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi     | 129 ++++-
-> >  drivers/soc/imx/Makefile                      |   1 +
-> >  drivers/soc/imx/gpcv2.c                       | 430 ++++++++++++++++-
-> >  drivers/soc/imx/imx8mp-blk-ctrl.c             | 446 ++++++++++++++++++
-> >  5 files changed, 994 insertions(+), 18 deletions(-)
-> >  create mode 100644 drivers/soc/imx/imx8mp-blk-ctrl.c
+> Reverting this will cause dtc warnings now (IIRC) and just kicks the
+> can down the road. Reverting is fine for now (I gave Arnd the okay on
+> IRC), but I think the parsing will need to be updated to honor
+> #address-cells and detect an old DT (probably by looking at the total
+> size of 'interrupt-map') and mark that change for stable. That would
+> only leave a new dt with an old kernel without stable updates broken.
+> Seems unlikely a device is getting firmware updates, but not OS
+> updates.
+
+Being able to rollback firmware and OS independently is important. The
+tooling can be taught about the broken instances, which should be
+enough.  Adding to the parsing only makes things harder to maintain,
+for no real gain.
+
+	M.
 
 -- 
-Regards,
-
-Laurent Pinchart
+Without deviation from the norm, progress is not possible.
