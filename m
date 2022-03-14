@@ -2,79 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D824D8C36
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 20:19:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BF7B4D8C58
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 20:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243991AbiCNTU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 15:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48106 "EHLO
+        id S244024AbiCNT1H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 15:27:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232224AbiCNTUZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 15:20:25 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 460F0E01C
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:19:15 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id s25so23419243lji.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:19:15 -0700 (PDT)
+        with ESMTP id S244026AbiCNT1G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 15:27:06 -0400
+Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 111893B3C4
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:25:56 -0700 (PDT)
+Received: by mail-qk1-x733.google.com with SMTP id g8so10135159qke.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=TjvDabmipcoDVAowxyOIFgn1uuT4hi0ow4KrPPUg6D4=;
-        b=S/rZzB/TDKyf3X2mQGLC8ujbKUEER7DEPaN0ikq6Pk1hyxxZEmgym3bC7rAz2KUHiZ
-         49fx9kVfTB9XFd8rFcJ4T6W/FpxJlDSQHiXJfat+uxXkwNLIPmJ5BHN9rcni9iJ7RqQA
-         uoHf7uQnNmQhozpb3GRZDxBHakYHt5ycw7loLCdXJzVHjqJya/TkpiwhVbu8OaU5skwD
-         FohPPTUsXCLEgZgFrE2ed4wKkWumJDPk9BUXDbgnLdsSdRWIsZHORYI1gFaa03bBKN2J
-         DpQJfRZLLoxFaPgUw6a1eSmYRQKWQAapsBdamFdhw8bwM6cLGa1cyWPjfx7tdoSGStKT
-         N26A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ghXEBznY5vyHF7+fdWoY5v3OsItcalBlY/KG9K7yOhU=;
+        b=e2Ud08S0Q7pZF215eRKz7vixHUKMgQNfUK9aOMWNfqStkSdZvWC5Mszd1gEoj/cIZz
+         IrZAiRKPJytuFVu+isbnZ5e2rAWsyFV79zcMh9/gmlkX6+VS8y5uGJTay/iSQjW/XKar
+         ayFug9ECos7jYnvjtc0aR6Qmtns5qgU5i4/dof+t3R4fwNzT32kHj5wHd1lmFVGOpo3c
+         VzjLN9YEOS+PZOQ5vDnQHZ+wSvqk5QfEgoYhbfvKDBo0BAVVKdSnMYOyilpqGop0zHsL
+         5HjdxNO1dsVE598rdiHBPM9joHRTxK2XG7aFr29FLlMOR3LRz/PPhkSKnpJmFSQHlnr4
+         N8sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=TjvDabmipcoDVAowxyOIFgn1uuT4hi0ow4KrPPUg6D4=;
-        b=te94Lt9PIpTMavY9oSuTUORaigYs/iglbMIwhOKgTlL/IZUcpGh9dbRlG4BT8z6H+T
-         p7etUEA0J4Xp53AYSIMqpR/Gjk9BlhKYdI8qbKxaLxeNoK5WfIk9OkR8MmhPAKbYewQS
-         fdY73+DF8EDIdulOCzxtpaZMxKDlZp+RbzsIrwmYY9XMzF0uWpWFYfRkdBnqh5mmiaWx
-         c2JIcc41WJFpYTEc+zEcVZUB7BPqil+zHaIDo0YilO0Z8u1cZJVEruAdYxrUH6I7hAGD
-         oCv+IPMme7Z43J1KSt4V+0Q2uANbh1cNZkjXDwdZDEJxcqUbo/cWoFoVasBhqyEEdTho
-         nSWA==
-X-Gm-Message-State: AOAM532Z6pBrZIf/MOvke/WMyOACC/jhWtC3i3/PkyfowEeTzcvR5pWr
-        2i23Ms67kP78Fkr0vBPaX+Fspw==
-X-Google-Smtp-Source: ABdhPJxhuKx8oc4rbiN4ALuz3yTIjPTRav3swyG7A2AzuUxZce2+DV9c0nr98TQgOH4sA8dq1b+RYA==
-X-Received: by 2002:a2e:9617:0:b0:247:d94b:c73b with SMTP id v23-20020a2e9617000000b00247d94bc73bmr14939709ljh.78.1647285549670;
-        Mon, 14 Mar 2022 12:19:09 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id g19-20020a2e3913000000b00247dea5b468sm4115825lja.115.2022.03.14.12.19.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 12:19:08 -0700 (PDT)
-Message-ID: <a97aabce-f694-2b20-801e-b9b56cca95a9@linaro.org>
-Date:   Mon, 14 Mar 2022 22:19:08 +0300
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ghXEBznY5vyHF7+fdWoY5v3OsItcalBlY/KG9K7yOhU=;
+        b=Jna+JS6frygEld58zv/kEQDOJ8B6gNrWnHg82ihXpz1IlreN5gGaJYzpjWbKS5WBq+
+         jeBtQKZAdZNCJHadUrqCPDdXMdI33AF5OXz/2Ytyo9QlVrersEx7Ai+clmVCsUHNqDh5
+         wlMKruBzjdmAo/nGTTotwkoI2yjiiFiSQt7wt6Qi+fLLbOdiMrk8+2VG8WlDk7LUoqaL
+         F7p91Ta9xkEqQRghxeuVJo6otGV0RSUgh+WZ4aW647uwEptTLLpS3yPAKPYeL7efulB+
+         CW/V67P+pFTS9S8DRJk8kI8PfQi7yuzaBuNg+bIuc5uOFjxIbTN6En7HqI4h1Rer04Zh
+         OC/Q==
+X-Gm-Message-State: AOAM533IqMurDbF0p4y+yn7r/WfbIZWdJ7GlR4+nKwy5MsMI/ppure+u
+        jx9Nzij/N0JKXuRDi77V9D695FaBwMRR8tTnMOZ0IQ==
+X-Google-Smtp-Source: ABdhPJyQEYq/aa0gjJEO9Tga4REDnt5I6yrfTmBRW4eRCznjlBUHHMh0lYM73RO7oxgtpMzyqDMXDoNaOp6yMHVijEk=
+X-Received: by 2002:a05:620a:170a:b0:67d:be5c:204a with SMTP id
+ az10-20020a05620a170a00b0067dbe5c204amr5211992qkb.593.1647285955193; Mon, 14
+ Mar 2022 12:25:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v11 3/9] mfd: qcom-spmi-pmic: read fab id on supported
- PMICs
-Content-Language: en-GB
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org
-References: <20220309210014.352267-1-caleb.connolly@linaro.org>
- <20220309210014.352267-4-caleb.connolly@linaro.org>
+References: <1647269217-14064-1-git-send-email-quic_vpolimer@quicinc.com> <1647269217-14064-2-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1647269217-14064-2-git-send-email-quic_vpolimer@quicinc.com>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20220309210014.352267-4-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Date:   Mon, 14 Mar 2022 22:25:44 +0300
+Message-ID: <CAA8EJpr2rw4eSA+PViW7UZ2rVLLDS+ipcuo-1dzOargTcbE2hA@mail.gmail.com>
+Subject: Re: [PATCH v6 1/5] drm/msm/disp/dpu1: set mdp clk to the maximum
+ frequency in opp table during probe
+To:     Vinod Polimera <quic_vpolimer@quicinc.com>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        dianders@chromium.org, quic_kalyant@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -83,57 +68,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/03/2022 00:00, Caleb Connolly wrote:
-> The PMI8998 and PM660 expose the fab_id, this is needed by drivers like
-> the RRADC to calibrate ADC values.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+On Mon, 14 Mar 2022 at 17:47, Vinod Polimera <quic_vpolimer@quicinc.com> wrote:
+>
+> use max clock during probe/bind sequence from the opp table.
+> The clock will be scaled down when framework sends an update.
+>
+> Fixes: 25fdd5933("drm/msm: Add SDM845 DPU support")
+> Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
 > ---
->   drivers/mfd/qcom-spmi-pmic.c      | 7 +++++++
->   include/soc/qcom/qcom-spmi-pmic.h | 1 +
->   2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
-> index bfe1304aee1b..b12a07da6183 100644
-> --- a/drivers/mfd/qcom-spmi-pmic.c
-> +++ b/drivers/mfd/qcom-spmi-pmic.c
-> @@ -19,6 +19,7 @@
->   #define PMIC_REV4		0x103
->   #define PMIC_TYPE		0x104
->   #define PMIC_SUBTYPE		0x105
-> +#define PMIC_FAB_ID		0x1f2
->   
->   #define PMIC_TYPE_VALUE		0x51
->   
-> @@ -175,6 +176,12 @@ static int pmic_spmi_load_revid(struct regmap *map, struct device *dev,
->   	if (ret < 0)
->   		return ret;
->   
-> +	if (pmic->subtype == PMI8998_SUBTYPE || pmic->subtype == PM660_SUBTYPE) {
-> +		ret = regmap_read(map, PMIC_FAB_ID, &pmic->fab_id);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> index e29796c..9c346ce 100644
+> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+> @@ -1202,7 +1202,9 @@ static int dpu_bind(struct device *dev, struct device *master, void *data)
+>         struct platform_device *pdev = to_platform_device(dev);
+>         struct drm_device *ddev = priv->dev;
+>         struct dpu_kms *dpu_kms;
+> +       struct dev_pm_opp *opp;
+>         int ret = 0;
+> +       unsigned long max_freq = ULONG_MAX;
+>
+>         dpu_kms = devm_kzalloc(&pdev->dev, sizeof(*dpu_kms), GFP_KERNEL);
+>         if (!dpu_kms)
+> @@ -1225,6 +1227,12 @@ static int dpu_bind(struct device *dev, struct device *master, void *data)
+>         }
+>         dpu_kms->num_clocks = ret;
+>
+> +       opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
+> +       if (!IS_ERR(opp))
+> +               dev_pm_opp_put(opp);
 > +
->   	/*
->   	 * In early versions of PM8941 and PM8226, the major revision number
->   	 * started incrementing from 0 (eg 0 = v1.0, 1 = v2.0).
-> diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
-> index 5400e6509fe8..ff839b230e62 100644
-> --- a/include/soc/qcom/qcom-spmi-pmic.h
-> +++ b/include/soc/qcom/qcom-spmi-pmic.h
-> @@ -50,6 +50,7 @@ struct qcom_spmi_pmic {
->   	unsigned int major;
->   	unsigned int minor;
->   	unsigned int rev2;
-> +	unsigned int fab_id;
->   	const char *name;
->   };
->   
+> +       dev_pm_opp_set_rate(dev, max_freq);
+> +
+>         platform_set_drvdata(pdev, dpu_kms);
+>
+>         ret = msm_kms_init(&dpu_kms->base, &kms_funcs);
+> --
+> 2.7.4
+>
 
 
 -- 
