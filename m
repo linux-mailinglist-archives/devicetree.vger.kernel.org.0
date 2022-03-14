@@ -2,78 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CE054D7D90
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:24:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1AA4D7DA5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:36:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232521AbiCNIZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 04:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56188 "EHLO
+        id S236937AbiCNIhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 04:37:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231159AbiCNIZx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:25:53 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF2DE092;
-        Mon, 14 Mar 2022 01:24:43 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id q10so20668733ljc.7;
-        Mon, 14 Mar 2022 01:24:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Iq78d1j2Ue+2y6u1MiPwO8kxCr3UFeP2P8LyryGJ4Ic=;
-        b=Dws+yd7pP/4j0pJJ3NzE1FS+WEUDWo+U39fxUZEgwR/+CZjtWUFtDvpHGPP1Opi1d3
-         K8JgF8oICvaNNXvW3XJDL1sVNJvKBYy3Ad5urfijjOX24uX1AcF2hsAdIu5yNsuQx47c
-         +Ze4OWmVoR7A+h9PG1l8C+dHry7A7z0elHPZDRNEHWcUUU+aAmlsdIttF7nK/HXGlb8U
-         G1iiCd6lZ0tGbayACmVI3Yh55JwdqHQZGoL6W1grXKKE7YJc9EJnom6CwTpSr8VBBue8
-         13MHXJH/MeYe9AFjf9cyZLu3bGjKGHyYPfhcDfjJQ3ac75LrWPWdYE1utmyy6lZJ8rE0
-         BBYg==
+        with ESMTP id S236861AbiCNIhT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:37:19 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC8663F330
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:36:06 -0700 (PDT)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7F92B3F338
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 08:36:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647246965;
+        bh=eKjUtd7ByB5BRtEYaGOQ6lKKOtW7nvc1QYzmEKc7RCs=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=P+i4epapW0od3nVrJed4wQwW8DkwOtnnJiauN+RJRoXnFc3SqO7GSEvQfPx2MAOLW
+         NOp1OJda3JpMldAoVVfYCA26cliQ5cZ/O/LJbQ00KfTsyd+ym4Xp2FleRdiVeAauEs
+         sICEcenK4yUUnJg0HwPWlf9blQLFeDA/etnbogY4a7hV/cO16FMS6Z9Mn4/Kb3DOHC
+         oCva5oFdGCLa0GMrFEfTG+tkkswHRw2Ma3w6QrXbzUHHRR9KisscbtBoYAgXr9qUNK
+         YC2eKpsn1qHDb6pH6nfSXu2ugSuFMW3uC8ClnT3voiLRKGjygdUv03Tuf6ecEVG9u3
+         irtVxWPvIoPBQ==
+Received: by mail-ed1-f69.google.com with SMTP id b24-20020a50e798000000b0041631767675so8267854edn.23
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:36:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Iq78d1j2Ue+2y6u1MiPwO8kxCr3UFeP2P8LyryGJ4Ic=;
-        b=RpZUcTACimeZPYSjYSVPKbLKRQTCORkfOYRYCf56falOO8CT19QjuR6puP9DX4n91C
-         WNR4zNFj3JLgtxVVtIp30yt+k+l3K/XTJN959yfVwpZkpkX6iBaDPb5ItPlM87jnf+AA
-         iymns7x47Fj8sbNzzXBrtol0yy8HTzfpeB1g5B7tLzGD0vcDDT4hg7wXA4oxmHP1/HWk
-         e5TX2pcX/J9bp6SLoKNe7A4yY4pfEKgkHF+scOrEWW3GRbMRSSYzbR1hXPxVjJzrCdRz
-         pAal/5T+DfaIEACWp0FAd8drgEEBn3licnc6X1U7517YvT0XCw+4LrUPJC26XnnTrvsQ
-         7vMw==
-X-Gm-Message-State: AOAM531m0R6Nyaubj0Bkr5li88bq6Wve7Lg4AHYJB4rTQA7CN0gotCqs
-        ibyIcrugTzUKK5WjA9wp9pYpb8GI+EyamfpOUzA=
-X-Google-Smtp-Source: ABdhPJzxE2RH8clRVTd3DJzDgV4Zn7Rxw0lvZpFtJUyiP64C1vhUYmtEx0zSbl5qIqZzxSeicOylaVy5JTHvrT+jWUQ=
-X-Received: by 2002:a2e:2202:0:b0:248:684:4476 with SMTP id
- i2-20020a2e2202000000b0024806844476mr13871061lji.64.1647246281586; Mon, 14
- Mar 2022 01:24:41 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=eKjUtd7ByB5BRtEYaGOQ6lKKOtW7nvc1QYzmEKc7RCs=;
+        b=Fi+FFxltgXRngzS9tyN0zME8jqyDBX9raTNUvwrFToCCAlUBFc+bxkj+J3WB6Ql0Uj
+         W1Vm+WODf2e4RTJfRxP544mDF0D/0iYiZQl/7VLYGPqoXQxkt8Es7xlcmfXQIGNRlRpG
+         NX1+yMVpbeTWEj4t2Ulqx3YPCl9WBvZdEhXSw0ut6F0U6Gd+UA69aIlrzhTHs7axhFqt
+         feBMNS4sKwqU9sOca/6kGnusIfiCYFHjwEKdbCPvAjGqvf9yb52Y4rDLPy+vPCx/hlIQ
+         wexrXFIRTmAxyqS4Av5iOYDhJjdt93KhKDLBKMhWQ6gLvpvJtbcf35L060oTetBoD77C
+         NLgQ==
+X-Gm-Message-State: AOAM531QQH+sg5MbT7ewVi1VK/VPxUuAZ56UDIIQkKOr4nMrWcev24Op
+        x9Q5ihVUll7K1Bpd5ywIZa5uA1xyJtzx8EoxEqbByYRZ1cCdu+fgk46NVLZ0Wir0g4/OYYFCMPi
+        KWP2Rsq6NVsojwYgGEd0UV4/BO77DtBfLitJf0xs=
+X-Received: by 2002:aa7:dbd6:0:b0:408:4a31:97a5 with SMTP id v22-20020aa7dbd6000000b004084a3197a5mr19814948edt.186.1647246964835;
+        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyZkFoJYS5BSY8Z5fUfZgL7U2bI7mlWLX45AeUH2LOa4L1NioNNryVlI/34QqHMTfIflzb2bw==
+X-Received: by 2002:aa7:dbd6:0:b0:408:4a31:97a5 with SMTP id v22-20020aa7dbd6000000b004084a3197a5mr19814933edt.186.1647246964581;
+        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
+Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.googlemail.com with ESMTPSA id qt22-20020a170906ecf600b006da6ef9b820sm6500282ejb.112.2022.03.14.01.36.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
+Message-ID: <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
+Date:   Mon, 14 Mar 2022 09:36:02 +0100
 MIME-Version: 1.0
-References: <20220311014245.4612-1-ctcchien@nuvoton.com> <20220311014245.4612-4-ctcchien@nuvoton.com>
- <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com> <CAHpyw9dHau348qJB6g+fCcKqWByUsRHAGwb_mdUg=hjhW+xNsw@mail.gmail.com>
- <143db512-0223-1553-c141-2dc24a23c430@canonical.com>
-In-Reply-To: <143db512-0223-1553-c141-2dc24a23c430@canonical.com>
-From:   Medad Young <medadyoung@gmail.com>
-Date:   Mon, 14 Mar 2022 16:24:30 +0800
-Message-ID: <CAHpyw9dn=3sGfjcqtQN-GwdoCo=dfhOrofTGMZJc+2Jjpr7pAw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     rric@kernel.org, James Morse <james.morse@arm.com>,
-        tony.luck@intel.com, Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Content-Language: en-US
+To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
+Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-usb@vger.kernel.org, quic_ppratap@quicinc.com,
+        quic_kriskura@quicinc.com
+References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
+ <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
+ <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
+ <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
+ <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
+ <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,73 +101,120 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
-=B9=B43=E6=9C=8814=E6=97=A5
-=E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=883:36=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 14/03/2022 06:32, Medad Young wrote:
-> > Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=
-=E5=B9=B43=E6=9C=8811=E6=97=A5
-> > =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:15=E5=AF=AB=E9=81=93=EF=BC=9A
-> >>
-> >> On 11/03/2022 02:42, Medad CChien wrote:
-> >>> Add support for Nuvoton NPCM SoC.
-> >>>
-> >>> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> >>> ---
-> >>>  drivers/edac/Kconfig     |   9 +
-> >>>  drivers/edac/Makefile    |   1 +
-> >>>  drivers/edac/npcm_edac.c | 714 +++++++++++++++++++++++++++++++++++++=
-++
-> >>>  3 files changed, 724 insertions(+)
-> >>>  create mode 100644 drivers/edac/npcm_edac.c
-> >>>
-> >>> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> >>> index 58ab63642e72..757e1d160640 100644
-> >>> --- a/drivers/edac/Kconfig
-> >>> +++ b/drivers/edac/Kconfig
-> >>> @@ -539,4 +539,13 @@ config EDAC_DMC520
-> >>>         Support for error detection and correction on the
-> >>>         SoCs with ARM DMC-520 DRAM controller.
-> >>>
-> >>> +config EDAC_NPCM
-> >>> +     tristate "Nuvoton NPCM DDR Memory Controller"
-> >>> +     depends on ARCH_NPCM
-> >>
-> >> || COMPILE_TEST
-> >> (and test if it compiles)
-> >>
-> >> (...)
-> >>
-> >>> +
-> >>> +MODULE_DEVICE_TABLE(of, npcm_edac_of_match);
-> >>> +
-> >>> +static int npcm_edac_mc_probe(struct platform_device *pdev)
-> >>> +{
-> >>> +     const struct npcm_edac_platform_data *npcm_chip;
-> >>> +     struct device *dev =3D &pdev->dev;
-> >>> +     struct edac_mc_layer layers[1];
-> >>> +     const struct of_device_id *id;
-> >>> +     struct priv_data *priv_data;
-> >>> +     struct mem_ctl_info *mci;
-> >>> +     struct resource *res;
-> >>> +     void __iomem *reg;
-> >>> +     int ret =3D -ENODEV;
-> >>> +     int irq;
-> >>> +
-> >>> +     id =3D of_match_device(npcm_edac_of_match, &pdev->dev);
-> >>> +     if (!id)
-> >>> +             return -ENODEV;
-> >>
-> >> Why do you need it? How such case is even possible?
-> > this driver is used for two nuvoton SOCs, one is NPCM845 and the other
-> > is NPCM750
->
-> Yes and how NULL can happen for OF-only driver? Unless I missed
-> something and this is not an OF-only driver? Do you allow any other
-> matching methods?
+On 14/03/2022 09:16, Pavan Kondeti wrote:
+> Hi Krzysztof,
+> 
+> On Mon, Mar 14, 2022 at 08:39:57AM +0100, Krzysztof Kozlowski wrote:
+>> On 14/03/2022 04:29, Pavan Kondeti wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On Thu, Mar 03, 2022 at 04:59:22PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 03/03/2022 07:13, Sandeep Maheswaram wrote:
+>>>>> Add device tree bindings for SNPS phy tuning parameters.
+>>>>>
+>>>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
+>>>>> ---
+>>>>>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 125 +++++++++++++++++++++
+>>>>>  1 file changed, 125 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> index 0dfe691..227c097 100644
+>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
+>>>>> @@ -50,6 +50,131 @@ properties:
+>>>>>    vdda33-supply:
+>>>>>      description: phandle to the regulator 3.3V supply node.
+>>>>>  
+>>>>> +  qcom,hs-disconnect:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    description:
+>>>>> +      This adjusts the voltage level for the threshold used to
+>>>>> +      detect a disconnect event at the host. Possible values are.
+>>>>
+>>>> ':', instead of full stop.
+>>>>
+>>>>> +      7 -> +21.56%
+>>>>> +      6 -> +17.43%
+>>>>> +      5 -> +13.32%
+>>>>> +      4 -> +9.73%
+>>>>> +      3 -> +6.3
+>>>>> +      2 -> +3.17%
+>>>>> +      1 -> 0, Design default%
+>>>>
+>>>> Use "default:" instead. Here and in other places.
+>>>>
+>>>>> +      0 -> -2.72%
+>>>>
+>>>> In current form this should be an enum... but actually current form is
+>>>> wrong. You should not store register values in DT. What if next version
+>>>> of hardware has a different meaning of these values?
+>>>>
+>>>> Instead, you should store here meaningful values, not register values.
+>>>>
+>>>
+>>> Thanks for the feedback.
+>>>
+>>> The values in % really makes the tuning easy. People look at the eye diagram
+>>> and decided whether to increase/decrease the margin. The absolute values
+>>> may not be that useful. All we need is an "adjustment" here. The databook
+>>> it self does not give any absolute values.
+>>>
+>>> I agree to the "enum" suggestion which we have been following for the
+>>> qusb2 driver already. 
+>>>
+>>> The values have not changed in the last 5 years for this hardware block, so
+>>> defining enums for the % values would be really helpful. 
+>>
+>> I did not say you cannot store here percentages. Quite opposite - store
+>> here the percentages. Just do not store register value. No. Please read
+>> my comment again - meaningful values are needed.
+>>
+> 
+> IIUC, you are asking us to come up with a meaningful values to encode the
+> percentage values. However, all the % increments are not linear, so we can't
+> come up with {min, max} scheme. Lets take an example of hostdisconnect
+> threshold.
+> 
+> As per the data book,
+> 
+> +      7 -> +21.56%
+> +      6 -> +17.43%
+> +      5 -> +13.32%
+> +      4 -> +9.73%
+> +      3 -> +6.3
+> +      2 -> +3.17%
+> +      1 -> 0, Design default%
+> +      0 -> -2.72%
+> 
+> so how do we give meaningful values here? Does the below scheme make sense
+> to you?
 
-I got your point, thanks
+By "meaningful value" I mean something which has a understandable
+meaning to reader of this code or to hardware designer. For example
+percentage values or some units (ms, ns, Hz, mA, mV). The value used in
+register is not meaningful in that way to us because it has a meaning
+only to the hardware block. Storing register values is more difficult to
+read later, non-portable and non-scalable.
 
-> Best regards,
-> Krzysztof
+> 
+> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72	(-272)
+> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	0
+> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17	317
+> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3	63
+
+This is some define in driver, does not look related to bindings.
+
+> In the driver, we have a mapping (which can be per SoC if required in future)
+> that takes these values and convert to the correct values for a given
+> register.
+
+You focus on driver but I am talking here only about bindings.
+
+What could be the meaningful value? Percentage could work. You have
+there a negative value, so I wonder what type of percentage is it? What
+is the formula?
+
+Your defines above look absolute, so maybe encode there absolute uV value?
+
+Best regards,
+Krzysztof
