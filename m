@@ -2,133 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA074D83CD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 13:20:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CDAB4D845C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 13:23:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240793AbiCNMVs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 08:21:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48906 "EHLO
+        id S236670AbiCNMX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 08:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242304AbiCNMS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 08:18:56 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 690464754D;
-        Mon, 14 Mar 2022 05:13:59 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1CE3130B;
-        Mon, 14 Mar 2022 13:13:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1647260036;
-        bh=CCBbr7YW6AtHXNdUGRWrM8dwrLI+DcEe4pseQUM4RHY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RXYeAcOdrMmmaGhWIbNyyLP5lf08OVC6hdRP4viaoEz2/yVqxuzIqgMgFry9LZhjc
-         AYivOazAv5K10ulztR+upt/4qxSvtLw2XYEA8Jqovmm7kHvcJYsqLKzNjseMjl7BMa
-         s21gEzBTRUE5lpROWveHbHI8k+sG8eXrepFTjPJo=
-Date:   Mon, 14 Mar 2022 14:13:38 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 1/3] media: dt-bindings: media: renesas,vsp1: Document
- RZ/{G2L,V2L} VSPD bindings
-Message-ID: <Yi8xcuxSff0UFRaf@pendragon.ideasonboard.com>
-References: <20220312084205.31462-1-biju.das.jz@bp.renesas.com>
- <20220312084205.31462-2-biju.das.jz@bp.renesas.com>
- <Yi39fGVE0f9LgN/1@pendragon.ideasonboard.com>
- <OS0PR01MB592293BC9493DC1DAD1DA0C0860F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CAMuHMdVYYMJvbnR3r-KGtU=3hiKjsiaXH4xyUzhv7vY5Y6MB6A@mail.gmail.com>
+        with ESMTP id S241252AbiCNMV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 08:21:56 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 922FF1CFF0;
+        Mon, 14 Mar 2022 05:20:43 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E3D9713D5;
+        Mon, 14 Mar 2022 05:20:42 -0700 (PDT)
+Received: from [10.57.42.204] (unknown [10.57.42.204])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8207E3F99C;
+        Mon, 14 Mar 2022 05:20:41 -0700 (PDT)
+Message-ID: <faea4c0c-e20b-c043-6f74-95af8177e8bd@arm.com>
+Date:   Mon, 14 Mar 2022 12:20:36 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v2 3/3] ARM: dts: lpc32xx: Update spi clock properties
+Content-Language: en-GB
+To:     Vladimir Zapolskiy <vz@mleia.com>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Olof Johansson <olof@lixom.net>, SoC Team <soc@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+References: <20220311093800.18778-1-singh.kuldeep87k@gmail.com>
+ <20220311093800.18778-4-singh.kuldeep87k@gmail.com>
+ <4aae560d-d266-d0d0-136f-32891b15bc01@mleia.com>
+ <CAK8P3a3a_WXbDKN-jJUt_Wuvop0rfaUs4ytwyhogOxdtJAPx0w@mail.gmail.com>
+ <4f39f086-1932-1729-8761-d5c533356812@mleia.com>
+ <dc599cae-7245-73dc-8050-14ec6c1336b8@arm.com>
+ <f497fb65-3568-cda2-f086-2275b50daf4b@mleia.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <f497fb65-3568-cda2-f086-2275b50daf4b@mleia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdVYYMJvbnR3r-KGtU=3hiKjsiaXH4xyUzhv7vY5Y6MB6A@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On Mon, Mar 14, 2022 at 10:01:14AM +0100, Geert Uytterhoeven wrote:
-> On Mon, Mar 14, 2022 at 9:44 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > > On Sat, Mar 12, 2022 at 08:42:03AM +0000, Biju Das wrote:
-> > > > Document VSPD found in RZ/G2L and RZ/V2L family SoC's. VSPD block is
-> > > > similar to VSP2-D found on R-Car SoC's, but it does not have a version
-> > > > register and it has 3 clocks compared to 1 clock on vsp1 and vsp2.
-> > > >
-> > > > This patch introduces a new compatible 'renesas,rzg2l-vsp2' to handle
-> > > > these differences.
-> > > >
-> > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+On 2022-03-14 11:50, Vladimir Zapolskiy wrote:
+> On 3/14/22 1:43 PM, Robin Murphy wrote:
+>> On 2022-03-11 14:07, Vladimir Zapolskiy wrote:
+>>> On 3/11/22 3:38 PM, Arnd Bergmann wrote:
+>>>> On Fri, Mar 11, 2022 at 2:20 PM Vladimir Zapolskiy <vz@mleia.com> 
+>>>> wrote:
+>>>>>
+>>>>> On 3/11/22 11:38 AM, Kuldeep Singh wrote:
+>>>>>> PL022 binding require two clocks to be defined but lpc platform 
+>>>>>> doesn't
+>>>>>> comply with bindings and define only one clock i.e apb_pclk.
+>>>>>>
+>>>>>> Update spi clocks and clocks-names property by adding appropriate 
+>>>>>> clock
+>>>>>> reference to make it compliant with bindings.
+>>>>>>
+>>>>>> CC: Vladimir Zapolskiy <vz@mleia.com>
+>>>>>> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+>>>>>> ---
+>>>>>> v2:
+>>>>>> - New patch with similar changeset
+>>>>>> - Send to soc ML
+>>>>>>
+>>>>>>     arch/arm/boot/dts/lpc32xx.dtsi | 8 ++++----
+>>>>>>     1 file changed, 4 insertions(+), 4 deletions(-)
+>>>>>>
+>>>>>> diff --git a/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>> b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>> index c87066d6c995..30958e02d5e2 100644
+>>>>>> --- a/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>> +++ b/arch/arm/boot/dts/lpc32xx.dtsi
+>>>>>> @@ -178,8 +178,8 @@ ssp0: spi@20084000 {
+>>>>>>                                 compatible = "arm,pl022",
+>>>>>> "arm,primecell";
+>>>>>>                                 reg = <0x20084000 0x1000>;
+>>>>>>                                 interrupts = <20 
+>>>>>> IRQ_TYPE_LEVEL_HIGH>;
+>>>>>> -                             clocks = <&clk LPC32XX_CLK_SSP0>;
+>>>>>> -                             clock-names = "apb_pclk";
+>>>>>> +                             clocks = <&clk LPC32XX_CLK_SSP0>,
+>>>>>> <&clk LPC32XX_CLK_SSP0>;
+>>>>>> +                             clock-names = "sspclk", "apb_pclk";
+>>>>>
+>>>>> In fact I'm uncertain if it is the right change, could it happen that
+>>>>> the commit
+>>>>> cc0f6e96c4fd ("spi: dt-bindings: Convert Arm pl022 to json-schema")
+>>>>> sets a wrong
+>>>>> schema pattern?
+>>>>
+>>>> Good pointm this doesn't quite seem right: it is unlikely that the
+>>>> same clock
+>>>> is used for both the SPI bus and the APB bus.
+>>>>
+>>>>> Apparently just one clock is wanted on all observed platforms and
+>>>>> cases, this
+>>>>> is implicitly confirmed by clock handling in the
+>>>>> drivers/spi/spi-pl022.c :
+>>>>>
+>>>>>           pl022->clk = devm_clk_get(&adev->dev, NULL);
+>>>>>
+>>>>> So, I would vote to fix the device tree bindings schema.
+>>>>
+>>>> Isn't this just using the wrong name? The name of the macro
+>>>> LPC32XX_CLK_SSP0 might indicate that this is indeed the SPI clock
+>>>> rather than the APB clock, so we only need to change clock-names
+>>>> property here and leave it unchanged otherwise.
+>>>
+>>> Yes, the name is wrong, here I'm ready to take the blame:
+>>>
+>>> Fixes: 93898eb775e5 ("arm: dts: lpc32xx: add clock properties to device
+>>> nodes")
+>>>
+>>> Noteworthy the commit above presets the same clock name to other 
+>>> PrimeCell
+>>> controllers, namely pl110 (LCD), pl080 (DMA), pl175 (EMC) and pl18x 
+>>> (SD),
+>>> plus this one pl022 (SSP), and all but SSP and SD are AHB slaves in 
+>>> fact.
+>>>
+>>> On LPC32xx the bus clock source and function clock source for SSP is 
+>>> HCLK.
+>>>
+>>> My guess is that the misnamed "apb_pclk" migrated into the schema from
+>>> the lpc32xx.dtsi, so I'd suggest, unless some platform really needs it,
+>>> firstly fix the schema by removing "apb_pclk" clock. It will leave 
+>>> just one
+>>> clock, so "clock-names" property can be set as optional, and the drop
+>>> the property from the lpc32xx.dtsi.
+>>
+>> No, "apb_pclk" is part of the common AMBA binding, and is required by
+>> the "arm,primecell" compatible. You won't (usually) find it referenced
+>> in drivers because it's dealt with by amba_get_enable_pclk() via
+>> amba_probe().
+>>
 > 
-> > > > index 990e9c1dbc43..2696a4582251 100644
-> > > > --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> > > > +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
-> 
-> > > > +        clock-names:
-> > > > +          items:
-> > > > +            - const: du.0
-> > >
-> > > Similarly, I'm not sure this is a good name from the point of view of the
-> > > VSP.
-> >
-> > OK, will use the name 'aclk', which is Main clock for this module which is
-> > shared with LCDC. 'du.0' is not valid any more here as we are using different
-> > CRTC implementation for RZ/G2LC.
-> >
-> > > > +            - const: pclk
-> > > > +            - const: vclk
-> > >
-> > > I couldn't find those names in the documentation, where do they come from
-> >
-> > HW manual (page 312) mentions about LCDC_CLK_A, LCDC_CLK_P & LCDC_CLK_D.
-> >
-> > Detailed description is mentioned in Clock list document. Please see below.
-> >
-> >         LCDC_CLK_A      M0φ     PLL3    200     200             LCDC  Main clock
-> >         LCDC_CLK_P      ZTφ     PLL3    100     100             LCDC Register Access Clock
-> >         LCDC_CLK_D      M3φ     SEL_PLL5_4      148.5~5.803     LCDC Video Clock
-> >
-> > > ? Could you maybe share a DT integration example ?
-> >
-> > Please see below,
-> 
-> >
-> > +               du: display@0x10890000 {
-> > +                       compatible = "renesas,du-r9a07g044l";
-> > +                       reg = <0 0x10890000 0 0x10000>;
-> > +                       interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
-> > +                       clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
-> > +                                <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
-> > +                                <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
-> > +                       clock-names = "du.0", "pclk", "vclk";
-> > +                       power-domains = <&cpg>;
-> > +                       resets = <&cpg R9A07G044_LCDC_RESET_N>;
-> > +                       reset-names = "du.0";
-> > +                       renesas,vsps = <&vspd0 0>;
-> 
-> Given the DU driver is no longer shared, perhaps all occurrencies of "du"
-> should be replaced by "lcdc"?
+> Thank you, it explains, why "apb_pclk" is required for all PrimeCell
+> controllers on the SoC. Nevertheless, in commit 93898eb775e5 it was
+> misidentified with the sspclk clock, the latter one is the only clock
+> explicitly utilized by the driver in 2015 and till today. Fixes in dts
+> files should be preceded by a fix in the driver.
 
-The LCDC is the combination of the FCPVD, the VSPD and the DU. The first
-two are similar to the eponymous IP cores used on R-Car Gen3, while the
-DU is a different beast, despite sharing the same name.
+There's nothing to fix in the driver, though. In fact it can only be 
+working today because the Linux driver isn't very strict and simply 
+assumes that the first clock entry is SSPCLK *without* considering its 
+name (other consumers of the binding might be stricter; I don't know), 
+and because presumably the HCLK happens to be enabled already anyway. 
+Changing the driver behaviour would only stand to cause functional 
+regressions.
 
--- 
-Regards,
+There are effectively two bugs in the DTS here, firstly that it only has 
+one clock entry when it should have two, and secondly that the clock 
+entry which *is* present has the wrong name (or the wrong clock 
+specifier, depending on how you look at it). Kuldeep's patch merely 
+fixes the first one by fully describing the way it's currently working 
+in practice, so it's really just a choice of whether to treat "respect 
+the binding" and "describe the hardware correctly" as separate issues 
+and have a follow-up patch to correctly reference HCLK as the second 
+clock, or whether they're trivial enough to squash together.
 
-Laurent Pinchart
+Robin.
