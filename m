@@ -2,258 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952C04D7F6A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 11:08:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 896084D7F80
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 11:11:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235045AbiCNKJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 06:09:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44392 "EHLO
+        id S233897AbiCNKMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 06:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232281AbiCNKJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 06:09:24 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83F4213E85
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 03:08:09 -0700 (PDT)
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com [209.85.218.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 780E93F79B
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 10:08:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647252488;
-        bh=+r4tw3AIRRBCkpVG/g0AlJLi4SN41rvsicv4GMS6cfQ=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=OK20dovGnDlpL81vjd1FpO75ZE7eKWCDRVyBNbgm6MoBBEp7h3lij5QlxI9V7KwMX
-         wxGYZ2Z2u5biU0h6t7VmcqyFlt2CKLVm+qfGDOVsOZ8Wf7Y5FD4PExWt+gqHnQCtok
-         QkLCdjlojQWECMbiRhoOfchA1IP22/4r37c4AveGmNygpLVngFG9qiiGjCdfWpBi4I
-         YHjBChLfBwfObAv7WH84jOjMLcn5TI8oKB7GrUSp5yR5kKDSfSs058TJ1mSz/LUAJf
-         Oa6CK7lOxhftB4UNtV5Hb6ehtSly8PikJFnyrRrfzw37Uz/H/E2NFIYjpJhkW+u2Bq
-         WGSNLhoATetBg==
-Received: by mail-ej1-f72.google.com with SMTP id y5-20020a1709060a8500b006da9258a34cso7687205ejf.21
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 03:08:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=+r4tw3AIRRBCkpVG/g0AlJLi4SN41rvsicv4GMS6cfQ=;
-        b=Hs2hIguFYDH0WtcxRGpn/xwVleodODEkj18Vsh60+de2MHvSeJwU/GjtPZk849V5Lf
-         0QhdHMZKR0u8gSWcFb+y0NH1mF98Q6jsvH8LUeLJhjlIk3aQJbxjD2/3SgM6pndyvNzg
-         Hfg8cukw3o3pldpGfOCjE7PYef5qWKlZK5IUbK4SPGgpnj4HjJ1A4ZfT+cZUbLtEWlvQ
-         v44C6hr3ruvANj8CIbIh7GjCVl2GEpDUu642UMqBRfgDOqn+UJCThnRb1zqXszUORtoj
-         a41mjEsksS5iV5/qCFMxxnMgGMnjZ2pF6EtjHJWTQ/eTXtvkbpRzCJhv85B9glnGYbDI
-         geRQ==
-X-Gm-Message-State: AOAM532nEePp1SGQl0rO2nBGQxCy4SunYoHO1RaRfA7LF/fOzO15nTag
-        nrOrKtiBaULASEDwq8hbyRkSTv2Df+J+eeKZroDTs5gAUNt8t+FnKM+XmJMxPsGA07hEVyKkkUZ
-        +BGDfWsSMrWgjIpdjfeOyeNXcZdIDEtIMpbbAOzc=
-X-Received: by 2002:a17:906:280b:b0:6ce:f3c7:688f with SMTP id r11-20020a170906280b00b006cef3c7688fmr18204819ejc.468.1647252487951;
-        Mon, 14 Mar 2022 03:08:07 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzI3ZzFyIAPUEjWu3adeD7O9BLeA6APF0933yAfK5HzcfK0RO66XgNxL4F3sH+IGjsRiB8sDw==
-X-Received: by 2002:a17:906:280b:b0:6ce:f3c7:688f with SMTP id r11-20020a170906280b00b006cef3c7688fmr18204802ejc.468.1647252487681;
-        Mon, 14 Mar 2022 03:08:07 -0700 (PDT)
-Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id k7-20020aa7c047000000b004132d3b60aasm7616899edo.78.2022.03.14.03.08.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 03:08:07 -0700 (PDT)
-Message-ID: <b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com>
-Date:   Mon, 14 Mar 2022 11:08:05 +0100
+        with ESMTP id S231668AbiCNKMH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 06:12:07 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F26043BF97;
+        Mon, 14 Mar 2022 03:10:57 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 461EA1F43E0C
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647252656;
+        bh=yA8iPc1qudE0RmbWKTE0OXypq9/1bFl/sCJMi3gV1Sw=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=gjrp0g5MeHLNDySyFqs5JRUzilUbUpmVggL+Y3GbxW77VoCvdsRZlx/VqBGFboED6
+         yfnkByKHj6qvp+6voxCecxYBybDBxSZAfpqqUia6Gy4T9Mk7K3XbkHJP8NRzAuT5nT
+         ocWtki6jabAOjuBYMO5NKNZ35Id2JZ6Vg29//qinOyrYTDPxh1jO9W3kE5wN9dxid/
+         gOmOoZOWp2VOfLUEMmv3aV5VW2xVUtbGJ4d6o3CNkjm1Y2J4V7gAyDbhXHhc2dh/al
+         3jSz7ci2EWDlHjyeyDnNmMHCGkplQLBZX66U2rXLdSORd8KC8BXRMCwNZmDY+HG13M
+         ZYCmjz00HgYoQ==
+Message-ID: <2ec34f38-a26a-92c0-0185-cf9cd09c202d@collabora.com>
+Date:   Mon, 14 Mar 2022 11:10:52 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
+ Thunderbird/91.5.1
+Subject: Re: [PATCH V7 5/5] drm/mediatek: add display support for MT8186
 Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com
-References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
- <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
- <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
- <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
- <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
- <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
- <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
- <20220314094054.GB28402@hu-pkondeti-hyd.qualcomm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220314094054.GB28402@hu-pkondeti-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        jassisinghbrar@gmail.com, fparent@baylibre.com,
+        yongqiang.niu@mediatek.com, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220314090033.25773-1-rex-bc.chen@mediatek.com>
+ <20220314090033.25773-6-rex-bc.chen@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220314090033.25773-6-rex-bc.chen@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 10:40, Pavan Kondeti wrote:
-> Hi Krzysztof,
+Il 14/03/22 10:00, Rex-BC Chen ha scritto:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> Thanks for your suggestions and guidance on this.
+> Add mmsys driver data and compatible for MT8186 in mtk_drm_drv.c.
 > 
-> On Mon, Mar 14, 2022 at 09:36:02AM +0100, Krzysztof Kozlowski wrote:
->> On 14/03/2022 09:16, Pavan Kondeti wrote:
->>> Hi Krzysztof,
->>>
->>> On Mon, Mar 14, 2022 at 08:39:57AM +0100, Krzysztof Kozlowski wrote:
->>>> On 14/03/2022 04:29, Pavan Kondeti wrote:
->>>>> Hi Krzysztof,
->>>>>
->>>>> On Thu, Mar 03, 2022 at 04:59:22PM +0100, Krzysztof Kozlowski wrote:
->>>>>> On 03/03/2022 07:13, Sandeep Maheswaram wrote:
->>>>>>> Add device tree bindings for SNPS phy tuning parameters.
->>>>>>>
->>>>>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>>>>>> ---
->>>>>>>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 125 +++++++++++++++++++++
->>>>>>>  1 file changed, 125 insertions(+)
->>>>>>>
->>>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>>>> index 0dfe691..227c097 100644
->>>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>>>> @@ -50,6 +50,131 @@ properties:
->>>>>>>    vdda33-supply:
->>>>>>>      description: phandle to the regulator 3.3V supply node.
->>>>>>>  
->>>>>>> +  qcom,hs-disconnect:
->>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>>>> +    description:
->>>>>>> +      This adjusts the voltage level for the threshold used to
->>>>>>> +      detect a disconnect event at the host. Possible values are.
->>>>>>
->>>>>> ':', instead of full stop.
->>>>>>
->>>>>>> +      7 -> +21.56%
->>>>>>> +      6 -> +17.43%
->>>>>>> +      5 -> +13.32%
->>>>>>> +      4 -> +9.73%
->>>>>>> +      3 -> +6.3
->>>>>>> +      2 -> +3.17%
->>>>>>> +      1 -> 0, Design default%
->>>>>>
->>>>>> Use "default:" instead. Here and in other places.
->>>>>>
->>>>>>> +      0 -> -2.72%
->>>>>>
->>>>>> In current form this should be an enum... but actually current form is
->>>>>> wrong. You should not store register values in DT. What if next version
->>>>>> of hardware has a different meaning of these values?
->>>>>>
->>>>>> Instead, you should store here meaningful values, not register values.
->>>>>>
->>>>>
->>>>> Thanks for the feedback.
->>>>>
->>>>> The values in % really makes the tuning easy. People look at the eye diagram
->>>>> and decided whether to increase/decrease the margin. The absolute values
->>>>> may not be that useful. All we need is an "adjustment" here. The databook
->>>>> it self does not give any absolute values.
->>>>>
->>>>> I agree to the "enum" suggestion which we have been following for the
->>>>> qusb2 driver already. 
->>>>>
->>>>> The values have not changed in the last 5 years for this hardware block, so
->>>>> defining enums for the % values would be really helpful. 
->>>>
->>>> I did not say you cannot store here percentages. Quite opposite - store
->>>> here the percentages. Just do not store register value. No. Please read
->>>> my comment again - meaningful values are needed.
->>>>
->>>
->>> IIUC, you are asking us to come up with a meaningful values to encode the
->>> percentage values. However, all the % increments are not linear, so we can't
->>> come up with {min, max} scheme. Lets take an example of hostdisconnect
->>> threshold.
->>>
->>> As per the data book,
->>>
->>> +      7 -> +21.56%
->>> +      6 -> +17.43%
->>> +      5 -> +13.32%
->>> +      4 -> +9.73%
->>> +      3 -> +6.3
->>> +      2 -> +3.17%
->>> +      1 -> 0, Design default%
->>> +      0 -> -2.72%
->>>
->>> so how do we give meaningful values here? Does the below scheme make sense
->>> to you?
->>
->> By "meaningful value" I mean something which has a understandable
->> meaning to reader of this code or to hardware designer. For example
->> percentage values or some units (ms, ns, Hz, mA, mV). The value used in
->> register is not meaningful in that way to us because it has a meaning
->> only to the hardware block. Storing register values is more difficult to
->> read later, non-portable and non-scalable.
->>
->>>
->>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72	(-272)
->>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	0
->>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17	317
->>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3	63
->>
->> This is some define in driver, does not look related to bindings.
->>
->>> In the driver, we have a mapping (which can be per SoC if required in future)
->>> that takes these values and convert to the correct values for a given
->>> register.
->>
->> You focus on driver but I am talking here only about bindings.
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> ---
+>   drivers/gpu/drm/mediatek/mtk_drm_drv.c | 33 ++++++++++++++++++++++++++
+>   1 file changed, 33 insertions(+)
 > 
-> I was saying we define those defines in include/dt-bindings/phy/... header and
-> use it in the device tree and as well in the driver.
-
-Ah, I did not get it. That's not the solution for this case. defines in
-dt-bindings are for constants which already can be in DT, e.g. IDs. Your
-register values should not be stored in DT.
-
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> index 247c6ff277ef..c5f88295b434 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
+> @@ -158,6 +158,24 @@ static const enum mtk_ddp_comp_id mt8183_mtk_ddp_ext[] = {
+>   	DDP_COMPONENT_DPI0,
+>   };
+>   
+> +static const enum mtk_ddp_comp_id mt8186_mtk_ddp_main[] = {
+> +	DDP_COMPONENT_OVL0,
+> +	DDP_COMPONENT_RDMA0,
+> +	DDP_COMPONENT_COLOR0,
+> +	DDP_COMPONENT_CCORR,
+> +	DDP_COMPONENT_AAL0,
+> +	DDP_COMPONENT_GAMMA,
+> +	DDP_COMPONENT_POSTMASK0,
+> +	DDP_COMPONENT_DITHER,
+> +	DDP_COMPONENT_DSI0,
+> +};
+> +
+> +static const enum mtk_ddp_comp_id mt8186_mtk_ddp_ext[] = {
+> +	DDP_COMPONENT_OVL_2L0,
+> +	DDP_COMPONENT_RDMA1,
+> +	DDP_COMPONENT_DPI0,
+> +};
+> +
+>   static const enum mtk_ddp_comp_id mt8192_mtk_ddp_main[] = {
+>   	DDP_COMPONENT_OVL0,
+>   	DDP_COMPONENT_OVL_2L0,
+> @@ -221,6 +239,13 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data = {
+>   	.ext_len = ARRAY_SIZE(mt8183_mtk_ddp_ext),
+>   };
+>   
+> +static const struct mtk_mmsys_driver_data mt8186_mmsys_driver_data = {
+> +	.main_path = mt8186_mtk_ddp_main,
+> +	.main_len = ARRAY_SIZE(mt8186_mtk_ddp_main),
+> +	.ext_path = mt8186_mtk_ddp_ext,
+> +	.ext_len = ARRAY_SIZE(mt8186_mtk_ddp_ext),
+> +};
+> +
+>   static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
+>   	.main_path = mt8192_mtk_ddp_main,
+>   	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
+> @@ -461,6 +486,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
+>   	  .data = (void *)MTK_DISP_MUTEX },
+>   	{ .compatible = "mediatek,mt8183-disp-mutex",
+>   	  .data = (void *)MTK_DISP_MUTEX },
+> +	{ .compatible = "mediatek,mt8186-disp-mutex",
+> +	  .data = (void *)MTK_DISP_MUTEX },
+>   	{ .compatible = "mediatek,mt8192-disp-mutex",
+>   	  .data = (void *)MTK_DISP_MUTEX },
+>   	{ .compatible = "mediatek,mt8173-disp-od",
+> @@ -509,12 +536,16 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
+>   	  .data = (void *)MTK_DPI },
+>   	{ .compatible = "mediatek,mt8183-dpi",
+>   	  .data = (void *)MTK_DPI },
+> +	{ .compatible = "mediatek,mt8186-dpi",
+> +	  .data = (void *)MTK_DPI },
+>   	{ .compatible = "mediatek,mt2701-dsi",
+>   	  .data = (void *)MTK_DSI },
+>   	{ .compatible = "mediatek,mt8173-dsi",
+>   	  .data = (void *)MTK_DSI },
+>   	{ .compatible = "mediatek,mt8183-dsi",
+>   	  .data = (void *)MTK_DSI },
+> +	{ .compatible = "mediatek,mt8186-dsi",
+> +	  .data = (void *)MTK_DSI },
+>   	{ }
+>   };
+>   
+> @@ -531,6 +562,8 @@ static const struct of_device_id mtk_drm_of_ids[] = {
+>   	  .data = &mt8173_mmsys_driver_data},
+>   	{ .compatible = "mediatek,mt8183-mmsys",
+>   	  .data = &mt8183_mmsys_driver_data},
+> +	{ .compatible = "mediatek,mt8186-mmsys",
+> +	  .data = &mt8186_mmsys_driver_data},
+>   	{ .compatible = "mediatek,mt8192-mmsys",
+>   	  .data = &mt8192_mmsys_driver_data},
+>   	{ }
 > 
->>
->> What could be the meaningful value? Percentage could work. You have
->> there a negative value, so I wonder what type of percentage is it? What
->> is the formula?
-> 
-> I just multiplied by 100 since device tree has no support for floating (as per
-> my knowledge). The negative value represents it lowers the disconnect
-> threshold by 2.72% of the default value. if it makes sense, we could also
-> start from 0 like below.
 
-ok
-
-> 
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72_PCT 0
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	1
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17_PCT	2
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3_PCT	3
-> 
-> The driver can have a table to map these bindings. This looks much better
-> than those x100 formula values.
-
-Again mention driver how he can map it. I mostly don't care about the
-driver. :)
-
-I think we are getting around the problem, so to emphasize again: do not
-store register values in the bindings/DT but its meaning, so in your
-case most likely percentages (or permille or ratio or some other value).
-
-
-Best regards,
-Krzysztof
