@@ -2,197 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 797EF4D79A1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 04:30:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 38F274D79C1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 04:49:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236034AbiCNDbP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Mar 2022 23:31:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
+        id S236108AbiCNDux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Mar 2022 23:50:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231607AbiCNDbO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 23:31:14 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD601245BE;
-        Sun, 13 Mar 2022 20:30:04 -0700 (PDT)
+        with ESMTP id S234516AbiCNDuw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Mar 2022 23:50:52 -0400
+Received: from mail-pj1-x1031.google.com (mail-pj1-x1031.google.com [IPv6:2607:f8b0:4864:20::1031])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D81201A7
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 20:49:43 -0700 (PDT)
+Received: by mail-pj1-x1031.google.com with SMTP id e3so13163499pjm.5
+        for <devicetree@vger.kernel.org>; Sun, 13 Mar 2022 20:49:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647228604; x=1678764604;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=cTigVYPVCkuHRdanPQILHhd3eQaHPFWGn2HDxmows44=;
-  b=KODfWs9QFlw8I5ttSp85pdWFiJ/J9vIhAiZ/xBQeLvdqMTrk8VyjyxNL
-   CHI6TkZMpZ10mMq+iq2Z/6QQKSmEMpsTlgmIcWpzIAKu2yKlbpuYMNdAB
-   paVjJ93Q+SGLXfxYb/dHmoHDlw9yJRJUvN0shh5+9RKCiyIbqr4rLZTWv
-   g=;
-Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 13 Mar 2022 20:30:03 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Mar 2022 20:30:03 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 13 Mar 2022 20:30:02 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Sun, 13 Mar 2022 20:29:56 -0700
-Date:   Mon, 14 Mar 2022 08:59:52 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Mrr28nJUCfgByHsWGp/lHeprSpd4BkVYd9lJAdXUu48=;
+        b=FPB+lPM1wM0el3n1VYmlE5LDbRTs8sdcLP6rhLivQXbvVE/6OaSdvkuxVAWgW3GAS6
+         mCMPT6yPPoLqUIWqzXKaXl49Jt30BLrmJOnguy7j+UnxbQTA0zSY4jNbIQh2b552WMCr
+         BLspIouyPoT0BBBqWpQYuIb1WptiTqYoBJBCZtRSMdx6OIO33LoVdkbeOiVV2NUfmKcM
+         rer+SutQKOCp+tKYwJ2sYviEeAxSgncvatqYsjAeLNOZsxgX3ubUvG6sbjPmA2rMvmLn
+         RVlLSP1bvyDZLSkNDSC4so10uHrNNkh9L3S4BfBy8cytp3VvdbSBQIkc+FaPh13vvfRa
+         R1wQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Mrr28nJUCfgByHsWGp/lHeprSpd4BkVYd9lJAdXUu48=;
+        b=ErFa6XHPiL1RhU9rsnrNEXgdF6eJn7ALsF2UPdW2q7NZDq/9OtvRsZP27zIi+ak020
+         AIYXG2SE/HoJF3cvCkkd4r7mkU51dajvYAjAlp+mWcS/BASfyhAHZ03vmrL719+jUYi0
+         B0RfeMMyb1tdlaTxTay27DqCuqaan0u+mB7sdEKMMotqNcvTU11c2dEkquamlX93OGZO
+         rLIDjnfSj12t+SiymGWGGxPLTEC6UvgJNvl/nd33lw6kkl0v36nMLXBuZkAJJQr0jCOy
+         qPfGMNPtJSDW54+iTYIctqEt9v4HgM4NAaZmNu++QfocTN2HcDF1e8Uq6lOde0tFv+97
+         zZ2w==
+X-Gm-Message-State: AOAM530nGZ63jm1Da3HV79zCAQfVkh3fhVtwxHkL1EOfeqjqvGzW3RQd
+        NUJTF2XkB9xeayDfttUOmr3LZg==
+X-Google-Smtp-Source: ABdhPJxrhB5eKmRl1RqT3UBbRYo79qSooHLNLaD7StOCwa5jF/tglcgSr1X0UJm/D49ONUYxaDhZEA==
+X-Received: by 2002:a17:902:d486:b0:151:8e66:621c with SMTP id c6-20020a170902d48600b001518e66621cmr21648715plg.141.1647229783099;
+        Sun, 13 Mar 2022 20:49:43 -0700 (PDT)
+Received: from localhost ([223.184.83.228])
+        by smtp.gmail.com with ESMTPSA id m12-20020a17090a414c00b001bf6d88870csm15733286pjg.55.2022.03.13.20.49.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Mar 2022 20:49:42 -0700 (PDT)
+Date:   Mon, 14 Mar 2022 09:19:40 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Frank Wunderlich <linux@fw-web.de>
+Cc:     devicetree@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <quic_pkondeti@quicinc.com>,
-        <quic_ppratap@quicinc.com>, <quic_kriskura@quicinc.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Message-ID: <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
-References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
- <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
- <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v6 3/6] ARM: dts: spear13xx: Fix sata node name
+Message-ID: <20220314034940.rxkgue2kllnqhucp@vireshk-i7>
+References: <20220311210357.222830-1-linux@fw-web.de>
+ <20220311210357.222830-4-linux@fw-web.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20220311210357.222830-4-linux@fw-web.de>
+User-Agent: NeoMutt/20180716-391-311a52
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 11-03-22, 22:03, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
+> 
+> After converting the binding to yaml the node name does
+> not match the standard pattern, change it.
+> 
+> arch/arm/boot/dts/spear1340-evb.dt.yaml: ahci@b1000000:
+> $nodename:0: 'ahci@b1000000' does not match '^sata(@.*)?$'
+> 	From schema: Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> 
+> Fixes: 07658d9a659b ("SPEAr13xx: Add dts and dtsi files")
 
-On Thu, Mar 03, 2022 at 04:59:22PM +0100, Krzysztof Kozlowski wrote:
-> On 03/03/2022 07:13, Sandeep Maheswaram wrote:
-> > Add device tree bindings for SNPS phy tuning parameters.
-> > 
-> > Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> > ---
-> >  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 125 +++++++++++++++++++++
-> >  1 file changed, 125 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> > index 0dfe691..227c097 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> > @@ -50,6 +50,131 @@ properties:
-> >    vdda33-supply:
-> >      description: phandle to the regulator 3.3V supply node.
-> >  
-> > +  qcom,hs-disconnect:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      This adjusts the voltage level for the threshold used to
-> > +      detect a disconnect event at the host. Possible values are.
-> 
-> ':', instead of full stop.
-> 
-> > +      7 -> +21.56%
-> > +      6 -> +17.43%
-> > +      5 -> +13.32%
-> > +      4 -> +9.73%
-> > +      3 -> +6.3
-> > +      2 -> +3.17%
-> > +      1 -> 0, Design default%
-> 
-> Use "default:" instead. Here and in other places.
-> 
-> > +      0 -> -2.72%
-> 
-> In current form this should be an enum... but actually current form is
-> wrong. You should not store register values in DT. What if next version
-> of hardware has a different meaning of these values?
-> 
-> Instead, you should store here meaningful values, not register values.
-> 
+I don't think this is correct. The above patch is correct. The first
+patch in this series changes the names and that's where things break.
 
-Thanks for the feedback.
+I think you could have added these patches before changing to yaml and
+then nothing would ever have broken.
 
-The values in % really makes the tuning easy. People look at the eye diagram
-and decided whether to increase/decrease the margin. The absolute values
-may not be that useful. All we need is an "adjustment" here. The databook
-it self does not give any absolute values.
+Since this isn't a big deal anyway, I think you can just drop the
+Fixes tag here, and other dts patches you have.
 
-I agree to the "enum" suggestion which we have been following for the
-qusb2 driver already. 
-
-The values have not changed in the last 5 years for this hardware block, so
-defining enums for the % values would be really helpful. 
-
-> 
-> > +
-> > +  qcom,squelch-detector:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      This adjusts the voltage level for the threshold used to
-> > +      detect valid high-speed data. Possible values are
-> > +      7-> -20.90%
-> > +      6-> -15.60%
-> > +      5-> -10.30%
-> > +      4-> -5.30%
-> > +      3-> 0, Design default%
-> > +      2-> +5.30%
-> > +      1-> +10.60%
-> > +      0-> +15.90%
-> > +
-> > +  qcom,hs-amplitude:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      This adjusts the high-speed DC level voltage.
-> > +      Possible values are
-> > +      15-> +26.70%
-> > +      14-> +24.30%
-> > +      13-> +22.20%
-> > +      12-> +20.00%
-> > +      11-> +17.80%
-> > +      10-> +15.60%
-> > +      9-> +13.30%
-> > +      8-> +11.10%
-> > +      7-> +8.90%
-> > +      6-> +6.50%
-> > +      5-> +4.40%
-> > +      4-> +2.30%
-> > +      3-> 0, Design default%
-> > +      2-> -2.20%
-> > +      1-> -4.40%
-> > +      0-> -6.60%
-> > +
-> > +  qcom,pre-emphasis-duration:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description:
-> > +      This signal controls the duration for which the
-> > +      HS pre-emphasis current is sourced onto DP<#> or DM<#>.
-> > +      The HS Transmitter pre-emphasis duration is defined in terms of
-> > +      unit amounts. One unit of pre-emphasis duration is approximately
-> > +      650 ps and is defined as 1X pre-emphasis duration.
-> > +      Possible values are
-> > +      1-> 1x, short pre-emphasis current duration
-> > +      0-> 2x, long pre-emphasis current duration
-> 
-> I could understand encoding of percentages in way of register value, but
-> a boolean flag is too much.
-> 
-
-Agreed. This needs to be encoded in % as well (100% or 200%).
-
-Thanks,
-Pavan
+-- 
+viresh
