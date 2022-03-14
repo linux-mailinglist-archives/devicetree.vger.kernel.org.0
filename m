@@ -2,103 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C07604D804B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:00:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4464D8050
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:02:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238109AbiCNLBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 07:01:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42880 "EHLO
+        id S236034AbiCNLDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 07:03:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233418AbiCNLBY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:01:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2A5A37BC9;
-        Mon, 14 Mar 2022 04:00:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6CB9C61006;
-        Mon, 14 Mar 2022 11:00:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id C6A85C340ED;
-        Mon, 14 Mar 2022 11:00:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647255613;
-        bh=IiJhlYhZ6g/TA/bacm+eqYg+DkQp9+bkqaktgR5tNaM=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=qZCXU+SIvg6ejPfjxgFwM94cwUr+dGrbSxKdwLCR582qjnMu4VvxbyChoa5R0+Kyy
-         CUhGsIXxr4u5VruBHQBwcQSzebAWtC0e+pt/9IMyEtJpVA/7hixf+ixW8RrsG9rqCz
-         rVgk2dDs7mEghjiR2R4IqYNPLfLzlc22fs0y7t6EHkksjrhqLjBv68PtshoiTwJZ27
-         SHx7PM1I0NLAGBuWurySVzSF/uwHLhrvb4PR5reHMI/VJRm9kXk5BDPpswg5dC02am
-         xkJ6O5ZkijqHch311ICB4xJ7Muq3Oke2n69Cq7pROywKk1sK7GQktXgBJHrA2r9aCT
-         Cnjs16i6Y8jPQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id A7636EAC095;
-        Mon, 14 Mar 2022 11:00:13 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S234345AbiCNLDe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:03:34 -0400
+Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C6743EF8
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:02:23 -0700 (PDT)
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id E4B3FAC0289;
+        Mon, 14 Mar 2022 19:02:20 +0800 (CST)
+Message-ID: <d98782df-43c8-475b-375d-ad6aff4fae44@rock-chips.com>
+Date:   Mon, 14 Mar 2022 19:02:20 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v7 22/24] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+From:   Andy Yan <andy.yan@rock-chips.com>
+To:     Daniel Stone <daniel@fooishbar.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
+ <20220225075150.2729401-23-s.hauer@pengutronix.de>
+ <bb077f34-333e-a07a-1fcb-702a6807f941@rock-chips.com>
+ <CAPj87rO2sztocJrE-CeSQWry9j_cSe2uv9F1Yf81pGnBXdu2Ag@mail.gmail.com>
+ <ae4314db-09c0-049b-ccc9-f6b1c3003dcb@rock-chips.com>
+ <CAPj87rOanNE1wca3ijJx1zXYZkKX1ta9F145GCXM15Nv=POicA@mail.gmail.com>
+ <f3af0286-fc64-f011-bc90-6797e26e3640@rock-chips.com>
+ <30f195d6-e9d7-3da6-89fa-4a064a1f6bf9@rock-chips.com>
+In-Reply-To: <30f195d6-e9d7-3da6-89fa-4a064a1f6bf9@rock-chips.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v5 0/8] dpaa2-mac: add support for changing the
- protocol at runtime
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164725561368.8211.12808979702945617706.git-patchwork-notify@kernel.org>
-Date:   Mon, 14 Mar 2022 11:00:13 +0000
-References: <20220311212228.3918494-1-ioana.ciornei@nxp.com>
-In-Reply-To: <20220311212228.3918494-1-ioana.ciornei@nxp.com>
-To:     Ioana Ciornei <ioana.ciornei@nxp.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, netdev@vger.kernel.org,
-        kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        leoyang.li@nxp.com, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux@armlinux.org.uk,
-        shawnguo@kernel.org, hongxing.zhu@nxp.com
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRpLTktWGElMGE5PGU
+        5OTRlJVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6ECo4Vj4MIygNSk8*Iz8e
+        IU9PFA9VSlVKTU9MSU5OTE9KT0NLVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0xNQzcG
+X-HM-Tid: 0a7f8817e328b039kuuue4b3fac0289
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Daniel:
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+   Remember you said our downstream vop2 driver is very slow on weston.
 
-On Fri, 11 Mar 2022 23:22:20 +0200 you wrote:
-> This patch set adds support for changing the Ethernet protocol at
-> runtime on Layerscape SoCs which have the Lynx 28G SerDes block.
-> 
-> The first two patches add a new generic PHY driver for the Lynx 28G and
-> the bindings file associated. The driver reads the PLL configuration at
-> probe time (the frequency provided to the lanes) and determines what
-> protocols can be supported.
-> Based on this the driver can deny or approve a request from the
-> dpaa2-mac to setup a new protocol.
-> 
-> [...]
+Would you please share the case you run ? or how can i test frame rate 
+on weston?
 
-Here is the summary with links:
-  - [net-next,v5,1/8] phy: add support for the Layerscape SerDes 28G
-    https://git.kernel.org/netdev/net-next/c/8f73b37cf3fb
-  - [net-next,v5,2/8] dt-bindings: phy: add bindings for Lynx 28G PHY
-    https://git.kernel.org/netdev/net-next/c/c553f22e0531
-  - [net-next,v5,3/8] dpaa2-mac: add the MC API for retrieving the version
-    https://git.kernel.org/netdev/net-next/c/38d28b02a08e
-  - [net-next,v5,4/8] dpaa2-mac: add the MC API for reconfiguring the protocol
-    https://git.kernel.org/netdev/net-next/c/332b9ea59e56
-  - [net-next,v5,5/8] dpaa2-mac: retrieve API version and detect features
-    https://git.kernel.org/netdev/net-next/c/dff953813e7d
-  - [net-next,v5,6/8] dpaa2-mac: move setting up supported_interfaces into a function
-    https://git.kernel.org/netdev/net-next/c/aa95c3711241
-  - [net-next,v5,7/8] dpaa2-mac: configure the SerDes phy on a protocol change
-    https://git.kernel.org/netdev/net-next/c/f978fe85b8d1
-  - [net-next,v5,8/8] arch: arm64: dts: lx2160a: describe the SerDes block #1
-    https://git.kernel.org/netdev/net-next/c/3cbe93a1f540
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+On 3/9/22 15:37, Andy Yan wrote:
+> Hi Daniel:
+>
+> On 3/9/22 10:03, Andy Yan wrote:
+>> Hi Daniel:
+>>
+>> On 3/8/22 22:04, Daniel Stone wrote:
+>>> On Tue, 8 Mar 2022 at 08:42, Andy Yan <andy.yan@rock-chips.com> wrote:
+>>>> On 3/7/22 21:09, Daniel Stone wrote:
+>>>>> On Mon, 7 Mar 2022 at 12:18, Andy Yan <andy.yan@rock-chips.com> 
+>>>>> wrote:
+>>>>>> When run a weston 10.0.0:
+>>>>>>
+>>>>>>     # export XDG_RUNTIME_DIR=/tmp
+>>>>>>     # weston --backend=drm-backend.so --use-pixma --tty=2
+>>>>>> --continue=without-input
+>>>>>>
+>>>>>> I got the following error:
+>>>>>>
+>>>>>> drm_atomic_check_only [PLANE:31:Smart0-win0] CRTC set but no FB
+>>>>> Can you please start Weston with --logger-scopes=log,drm-backend and
+>>>>> attach the output?
+>>>> Please see the weston ouput here[0]
+>>> Are you running with musl perhaps?
+>> Do you mean the C library? I chose uClib-ng in buildroot, not use musl.
+>>> Either way, please make sure your
+>>> libdrm build includes commit 79fa377c8bdc84fde99c6a6ac17e554971c617be.
+>>
+>>
+>> The upstream buildroot use libdrm2.4.109, this commit[0] if from 
+>> libdrm2.4.110
+>>
+>> I cherry-pick this patch to my local libdrm, but has no effect, still 
+>> has "atomic: couldn't commit new state" error.
+>>
+>> I have do a search in libdrm and weston, but find no one call 
+>> drmModeAtomicMerge, is that right?
+>>
+>> [0]https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/167
+>>
+>
+> With your patch applied from libdrm2.4.110, I do a make clean for 
+> buidlroot, than build it again,  That's take effect.
+>
+> I can see only the second value (non-zero FB) of plane 31 commit to 
+> the kernel. So this is works.
+>
+> Maybe the buidroot should update libdrm package.
+>
+> Thank you.
+>
+>>>
+>>> Cheers,
+>>> Daniel
+>>
+>> _______________________________________________
+>> Linux-rockchip mailing list
+>> Linux-rockchip@lists.infradead.org
+>> http://lists.infradead.org/mailman/listinfo/linux-rockchip
