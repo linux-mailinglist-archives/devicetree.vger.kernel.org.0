@@ -2,156 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8EE4D7BFC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:34:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C9594D7C03
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:35:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231680AbiCNHf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 03:35:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52442 "EHLO
+        id S236497AbiCNHgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 03:36:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230319AbiCNHf0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:35:26 -0400
-Received: from eu-smtp-delivery-197.mimecast.com (eu-smtp-delivery-197.mimecast.com [185.58.85.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4154A39838
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:34:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=camlingroup.com;
-        s=mimecast20210310; t=1647243253;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=SwSVpdhZAskrbz5koABY9UwZXcplXHiRhFl/wX1tF9w=;
-        b=dgv9ZwAOxGh5xhJoL3JLEezwv6rBw3guNPbGe/MQTsg/+SJuX3/9XgTBg2arp7MXUkfQtA
-        vdTTLd+38cIpwvgyAwZ4uhJ3qNQbFEUhMryVQU9lj/7QhMcFKKqTeYgb+nEb4Dz54evAem
-        2joBLiEpJMnyeI0NQ63nCJxyvUzPrWg=
-Received: from GBR01-LO2-obe.outbound.protection.outlook.com
- (mail-lo2gbr01lp2057.outbound.protection.outlook.com [104.47.21.57]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- uk-mta-260-rSiLCeSROVaaEX000cLyfA-1; Mon, 14 Mar 2022 07:34:12 +0000
-X-MC-Unique: rSiLCeSROVaaEX000cLyfA-1
-Received: from CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:16b::6)
- by LOYP123MB2992.GBRP123.PROD.OUTLOOK.COM (2603:10a6:600:e8::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Mon, 14 Mar
- 2022 07:34:11 +0000
-Received: from CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM
- ([fe80::e0a5:31a:8eee:5040]) by CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM
- ([fe80::e0a5:31a:8eee:5040%9]) with mapi id 15.20.5061.028; Mon, 14 Mar 2022
- 07:34:11 +0000
-Message-ID: <8c32195e-af30-cb8a-1641-77b7ad6e2bd0@camlingroup.com>
-Date:   Mon, 14 Mar 2022 08:34:09 +0100
+        with ESMTP id S235208AbiCNHgb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:36:31 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB8740E4C
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:35:20 -0700 (PDT)
+Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A3E013F1A8
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 07:35:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647243316;
+        bh=7XD/ZCIPD+pSa/ajluyXSHrFnnLxPbj9dv4H6XXzi7o=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=RRjxuZriAsaR77So9xWe6U3lKguXv3h8zPlDoRWaGCNefBEj2hLvSsREqM4viYOna
+         4ax02wxx1bMBZ/0eSeoAatw5HU9rSkW2HY86ZeDuz/u10Oqo184enCuPAUDxegRywC
+         4DDB5qVlzDVl6cepdg1TqmTyERUwyuvLJJe8k0Rrr5VHdKktOx65Z85OTuIyII4lDG
+         hrF9Jch2pR2Vh5jTjKYrH+JZvd7wxy3EvqNYHeM3pKDX1WLYXY97tmweNmljhCDZCi
+         1RmRMn3mDk65Q+cZepjqpHFgG19K2X1hhsEJcObiNFI6cmcS9TJWok1khtl2fgc29x
+         8wBk0NwPz2q4g==
+Received: by mail-ed1-f70.google.com with SMTP id r28-20020a50aadc000000b00418572a365bso3151840edc.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=7XD/ZCIPD+pSa/ajluyXSHrFnnLxPbj9dv4H6XXzi7o=;
+        b=cQBJXn2SZFq0EDBtNeh3D5s/McGuxZn2G6G8km/XzwIz85TyUMH+/G3+HnBYM1AC6a
+         03XSahDBCCxuhlBpFRlp9W2IFAhZG85zspNZHRWrQNSHhbMHEWdiSZy0baBQ1HqLk6pU
+         mnMChfRy2xkSiTXY8poHOVZAV2I50xfdibTxsH6JCNCuPbxwxUC8NftCSi0cAj+nFUWu
+         mTwSnUJlMaTitb3ayrRdpFeKgLzNFdelyp8M3loc/xfIhIpHC+doG67l3UIDodvaPgAN
+         tLU6NURIhVmkAiObb9Jf/HC7Z0SPixCjiic2wyZQAffduLi0NIw+lwO/Quc8f108SjtC
+         CDHQ==
+X-Gm-Message-State: AOAM5323CHt2/NRRM+ZaaBdX6t5LK5OwqYvuGGaTsHvGoAAnPlofI14h
+        VhimEFMs1HhIIRP7gRaVX90nFP29NsHEjY2NuDgH0bqmKIb/DDDIBleeY/fhyrXHJUTnYghmdCd
+        +IlRle94tfPTKOuPOqlv9P7VB4b782E//uy2vrNw=
+X-Received: by 2002:a05:6402:4301:b0:418:585b:cfe1 with SMTP id m1-20020a056402430100b00418585bcfe1mr9566743edc.250.1647243316375;
+        Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyQjBMUwRWUV4MpFNb8hzB27BfL/O3/uSgyWyC0crEVt9Qfy2ep0MNaTkAJB5rcza+jxkL4Mg==
+X-Received: by 2002:a05:6402:4301:b0:418:585b:cfe1 with SMTP id m1-20020a056402430100b00418585bcfe1mr9566734edc.250.1647243316197;
+        Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
+Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.googlemail.com with ESMTPSA id l9-20020a1709066b8900b006daa6015a0dsm6336356ejr.89.2022.03.14.00.35.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Mar 2022 00:35:15 -0700 (PDT)
+Message-ID: <4f8fffa7-631a-9b87-ee0a-0fb7dc1fec66@canonical.com>
+Date:   Mon, 14 Mar 2022 08:35:14 +0100
+MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: Detecting invalid gpio keys configuration
-To:     Jeff LaBundy <jeff@labundy.com>
-CC:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Drobi=c5=84ski?= 
-        <k.drobinski@camlintechnologies.com>,
-        Lech Perczak <l.perczak@camlintechnologies.com>
-References: <5a233ff1-cde4-b432-a170-86379bec972c@camlingroup.com>
- <20220312011100.GA41683@nixie71>
-From:   =?UTF-8?Q?Tomasz_Mo=c5=84?= <tomasz.mon@camlingroup.com>
-In-Reply-To: <20220312011100.GA41683@nixie71>
-X-ClientProxiedBy: LNXP265CA0081.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:76::21) To CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:400:16b::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 809f294d-7a7e-4acb-df09-08da058d0837
-X-MS-TrafficTypeDiagnostic: LOYP123MB2992:EE_
-X-Microsoft-Antispam-PRVS: <LOYP123MB29922B2A2DBDB4115ABBC416920F9@LOYP123MB2992.GBRP123.PROD.OUTLOOK.COM>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0
-X-Microsoft-Antispam-Message-Info: rbrkjLJ9U7AZzWN4GkdGl7dP7BIXRZHMt0aJMF+AiDOmqAJI03igvH34ZggyMTsS7JChC8zi/MxrPZpH7xNQr/i/KY6lBim8TUtU+XkwcNCu2swo8Qrrav0pmgFUqHlXJ5v7sYC+efFed0C1AuINQzdNJq9tT9GOvn6gQLHiQuQ67hGBLuEok6IHO0ntldq4cqKsnIOm8dWQ9AczRwXDvUGtzU5UusIrkqa2Zldu+a2wbUImNnhjSzK01MhDclKJ6ajynTSC29zfTqMVLyo0hEpqerdsZXqDhrXzZAzRz3NHwBKSyQYGvKxJSZ2A6/0Ybdkj4LN7A5ZfZOx+HgPcl9RApHobytVC58S9ciyoDWumjm4kdOzQTk6p9VC8lMW8MjN629LUigwrt8K4oZ0rgJRuCxL+zd37IoPp1PFb3xwZwjP5C5GIL30LmPeY6Ixq/U9xzSTTppm6DlZLzCvZigiQ3U+jrlomq1hN/AdCwqavpicTsZAEG8UFMhQirwxn6J3QlcqDqi7uqtbxyVvgkFaEy0eYTjDLyMejGnx82iOYs6iwVWuCjRcr9/XaXl3M8a6PZZJJZEl+78qhwLTTlw1qZ3gVV3p1+xt+Y7ETQLCIpzK9rqLIS1sffwDsOnr286wKg6Ayer7rIyMFhRWuGpKxoBYoM4naIt9hx2KhacZYgiiKd/S5QtMNOIAO8Mp3bVUsJjFa77Yu5RawHz1Nj9g6eBG1rkLmDgRUFWeZd/JHnLMewT1bNuqXuQUmAdC4
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(366004)(2616005)(107886003)(86362001)(31696002)(8936002)(5660300002)(6486002)(508600001)(6512007)(53546011)(6506007)(2906002)(38100700002)(186003)(26005)(83380400001)(31686004)(66946007)(66476007)(36756003)(66556008)(316002)(4326008)(8676002)(54906003)(6916009)(45980500001)(43740500002);DIR:OUT;SFP:1101
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hpckLpKP+AvC9c+L2EYhsg2fzx995X2YQNuSr1CZZSG6zUPo9Z8N0iqq1FdE?=
- =?us-ascii?Q?gr/chskwdQ2MKnJBcUSZtAcbyjONeDgAxXAwAXlh0SLyVqrBoE/Bddw6L//V?=
- =?us-ascii?Q?0mcbawIYuK4VYQzU34a4DxrmcKyQLcccdQ2S2td9eWobf2rgk53kEj4kuhn5?=
- =?us-ascii?Q?Yxzi1lMltjlmrIvbpX42MlUoFJnDxGn++5eUjHiaiqAztAz9GuyJvIlgw19I?=
- =?us-ascii?Q?bm+8bZpChnQLCMiJ27iYP0tRa6TecNUhgDj0yvlhypuDzzzd3/MXrtsOGjTp?=
- =?us-ascii?Q?3CbnCxZLM0wtHcIaL+6zW7JyqBERV3KF/ipcqTYZE/hQZLyHBbUpxrBVpO81?=
- =?us-ascii?Q?NCSXdEQMW5GDYa53SJRh7yS/ceuCTMMmAvWJK69ceBT5Wmgv2+piWggWUiA8?=
- =?us-ascii?Q?sYlxC8tqzEC1wjb/XpvlT32Tk9RwXve7lTOs4PJJGpnXN+4Uxed/pQNm9s4F?=
- =?us-ascii?Q?D+PvXUkjFr/IByhBW6M+r/B9X4pVKTQvdYLrSqczh7rpaxhuDY0T8o9CoytL?=
- =?us-ascii?Q?yi8WM5w/AReLH4znyu+Ezr/wFNpMzHH5n//ni2mx2XK3dnZQJ2tPT21h8w2A?=
- =?us-ascii?Q?kkHqdKa17JeKlxgdQYYrat/ARYlEoBxCnMWobVgL1ylMlc8FckGC/m31cZz1?=
- =?us-ascii?Q?koKwfN7XEFH+iY8x8lMTZ2sk+hD5K/tkQzdjsumuS7hPc2bf7rO2iumopYFe?=
- =?us-ascii?Q?Y0PerkDe4zxmSIu6IXoOKnEeWkpW20v+iwsgfjs0ZQYjnWchQTjC+TmBQFNa?=
- =?us-ascii?Q?P2tNAGIUzB4iukflbzDOdFexbWALVsabg8sHmpITj2kNm3yq68BtY7tmMiJw?=
- =?us-ascii?Q?G7ZJVMhsylUVbzEBE1hYpT2KLy77yG8mWUIOY7Df7FatU3lWhmnY/RY4N1qW?=
- =?us-ascii?Q?3nB6GlGuOqIzO+npcQb8NEwFf4SSHlS1HNrVnYZYLYR8yJaV0dNWH8ZLhstl?=
- =?us-ascii?Q?DlxbRyNQGbV2GotSfRq7FyBfRIb8W+dbNW28QAw3LO/tJai5SWIlZHeaBBTJ?=
- =?us-ascii?Q?ODisDHxKgNAfuwpL5HcEcvGdVUS52ztXl6OJeO1PyDMFiFKNjiKGpF7AnXTl?=
- =?us-ascii?Q?ZkdtXGfpyHpEAGxUhSwL1dsgSTQBUo1JFhenrouySeqs063CV1A5RupUitXi?=
- =?us-ascii?Q?garzD7YWTr708Ux6chkPAj1KDu2tJwMrB3n4LRz6WtLljd18Cr0TTTHu+B2T?=
- =?us-ascii?Q?vkf+HaDEqPFj4Ov9x7pXdpUn0jNXtDOXbE/WIa3wB2xqHlmOoNWlKKByV/ji?=
- =?us-ascii?Q?9goTgrBA2QsR1MCZRuqCcWhsGnU4Ip8t9AFPXj+eRu/8LPMT1/JPVx9UW72T?=
- =?us-ascii?Q?6XOZbWTa843qGbt03oJm2VON6kff7QRh0wawfMhG5mlTNiAesb1UkTHL7DXL?=
- =?us-ascii?Q?wckvumZ4iRRPsK/ix/s8pEHAwQP8zq+Oy9+/NxIaM1QHP3FZYErnvDcOruYG?=
- =?us-ascii?Q?CsFCBqisG6IQdox4LzGavvRgO7nsZqTHp9I5kpLsR6fqs33I2TFAKw=3D=3D?=
-X-OriginatorOrg: camlingroup.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 809f294d-7a7e-4acb-df09-08da058d0837
-X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB5572.GBRP123.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2022 07:34:11.4159
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: fd4b1729-b18d-46d2-9ba0-2717b852b252
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0U2TQ0sbNpzHCyhqblnEsNgiP9Un/n48f1PaLD/TTUaK93StndS8R9F/YPGZvHW2NJbgQEX/0oQJ+gzQ0tai4RntSGnmoYd+m3zyENEcIeY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LOYP123MB2992
-Authentication-Results: relay.mimecast.com;
-        auth=pass smtp.auth=CUK97A341 smtp.mailfrom=tomasz.mon@camlingroup.com
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: camlingroup.com
+Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
 Content-Language: en-US
+To:     Avi Fishman <avifishman70@gmail.com>
+Cc:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        James Morse <james.morse@arm.com>, tony.luck@intel.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Benjamin Fair <benjaminfair@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        Tomer Maimon <tmaimon77@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
+        linux-edac <linux-edac@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+References: <20220311014245.4612-1-ctcchien@nuvoton.com>
+ <20220311014245.4612-4-ctcchien@nuvoton.com>
+ <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
+ <CAKKbWA7Pr8Gi-rU5_BZ32y5aiLV0tSM19WkRe+zF8spWdk5zMg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <CAKKbWA7Pr8Gi-rU5_BZ32y5aiLV0tSM19WkRe+zF8spWdk5zMg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12.03.2022 02:11, Jeff LaBundy wrote:
-> Hi Tomasz,
-
-Hi Jeff,
-
-> On Thu, Mar 10, 2022 at 07:57:53AM +0100, Tomasz Mo=C5=84 wrote:
->> While provided example hopefully crashes every time making the issue
->> obvious, other code values can cause much more subtle issues.
->> Should the input_set_capability() warn if code is outside bitmap range?
+On 13/03/2022 21:22, Avi Fishman wrote:
+> On Fri, Mar 11, 2022 at 11:15 AM Krzysztof Kozlowski
+> <krzysztof.kozlowski@canonical.com> wrote:
 >>
->> Best Regards,
->> Tomasz Mon
+>> On 11/03/2022 02:42, Medad CChien wrote:
+>>> Add support for Nuvoton NPCM SoC.
+>>>
+>>> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
+>>> ---
+>>>  drivers/edac/Kconfig     |   9 +
+>>>  drivers/edac/Makefile    |   1 +
+>>>  drivers/edac/npcm_edac.c | 714 +++++++++++++++++++++++++++++++++++++++
+>>>  3 files changed, 724 insertions(+)
+>>>  create mode 100644 drivers/edac/npcm_edac.c
+>>>
+>>> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
+>>> index 58ab63642e72..757e1d160640 100644
+>>> --- a/drivers/edac/Kconfig
+>>> +++ b/drivers/edac/Kconfig
+>>> @@ -539,4 +539,13 @@ config EDAC_DMC520
+>>>         Support for error detection and correction on the
+>>>         SoCs with ARM DMC-520 DRAM controller.
+>>>
+>>> +config EDAC_NPCM
+>>> +     tristate "Nuvoton NPCM DDR Memory Controller"
+>>> +     depends on ARCH_NPCM
 >>
->=20
-> What about something like the patch below? It of course can't prevent
-> dts from specifying something like KEY_ESC as a switch, but should at
-> least prevent kernel panic.
+>> || COMPILE_TEST
+>> (and test if it compiles)
+>>
+>> (...)
+>>
+>>> +
+>>> +MODULE_DEVICE_TABLE(of, npcm_edac_of_match);
+>>> +
+>>> +static int npcm_edac_mc_probe(struct platform_device *pdev)
+>>> +{
+>>> +     const struct npcm_edac_platform_data *npcm_chip;
+>>> +     struct device *dev = &pdev->dev;
+>>> +     struct edac_mc_layer layers[1];
+>>> +     const struct of_device_id *id;
+>>> +     struct priv_data *priv_data;
+>>> +     struct mem_ctl_info *mci;
+>>> +     struct resource *res;
+>>> +     void __iomem *reg;
+>>> +     int ret = -ENODEV;
+>>> +     int irq;
+>>> +
+>>> +     id = of_match_device(npcm_edac_of_match, &pdev->dev);
+>>> +     if (!id)
+>>> +             return -ENODEV;
+>>
+>> Why do you need it? How such case is even possible?
+>>
+>>> +
+>>> +     npcm_chip = of_device_get_match_data(&pdev->dev);
+>>> +     if (!npcm_chip)
+>>> +             return -ENODEV;
+>>
+>> I wonder, how is it possible to have here NULL?
+>>
+> Both of_match_device() and of_device_get_match_data() can return NULL,
+> are we missing something?
 
-Your patch does prevent the kernel panic. On top of that, it also makes
-troubleshooting much easier. That is, directly pinpointing the issue in
-error message essentially skips the debugging part.
+I think your driver is OF-only, right? If yes, how is it possible to be
+here in probe() (meaning: being matched by of_device_id) and a few lines
+later do not match the same of_device_id?
 
-I think this is the only place where a code check is missing. The other
-places do already use is_event_supported() that checks if code is below
-or equal to the maximum allowed.
-
-So I am in favor of your patch.
-
-Reviewed-by: Tomasz Mo=C5=84 <tomasz.mon@camlingroup.com>
-
-Best Regards,
-Tomasz Mon
-
+Best regards,
+Krzysztof
