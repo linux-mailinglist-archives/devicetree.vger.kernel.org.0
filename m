@@ -2,75 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DF474D8E59
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 21:39:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B2E864D8EB6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 22:32:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245103AbiCNUkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 16:40:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56978 "EHLO
+        id S245268AbiCNVdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 17:33:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39656 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245105AbiCNUka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 16:40:30 -0400
-Received: from mail-qk1-x72e.google.com (mail-qk1-x72e.google.com [IPv6:2607:f8b0:4864:20::72e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D91D23AA66
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 13:39:18 -0700 (PDT)
-Received: by mail-qk1-x72e.google.com with SMTP id k125so8460538qkf.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 13:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NrEmpomOHclDV+kQuj0wjvwONyoQAm3AKPhEX1ax17s=;
-        b=H5jqZD+ybOPj9jvOGT1khK8EOCXznxHjM7UW3eRCvg1JuQYYgw/3R+pQmi8EHWtWzc
-         4KI9pDN1Ghpgzgglw9kOBN+tyh9VPInf28WNsFo9MJkp6FZEh4EV90UWqAixUqe5AnMZ
-         1+v+ds82XgLi03xfOBbcZP9UOu/4sComMDe2Bg46lqGZvcETO8YitlTCtzcPbdFDhbQb
-         J+q0GWqnlKQ8IlgA1niXGO2RItdxbWCu0XlAs0qWE1Eyg6hJSj61YiRQrW65+heH/PJp
-         N6QGyveZbHaXwuxcQUa2jHIsF+4n5IsjQo/Rx8DlP92qM3JzpfdBFx/ecoLTWvDYPUH+
-         zAgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NrEmpomOHclDV+kQuj0wjvwONyoQAm3AKPhEX1ax17s=;
-        b=Z48Ojyo065zkrE5edEkVUuXeCpwGwbX0YAbGTDDpkdmxjUiVS8zkkzPruaZ4LKXpCz
-         SCa7KKzAr/70YxbuSKHBUq02+dQVC9jiNNW5MgxDUxI7LhHZ5ohT6EN2C99EkMrnUPB0
-         g2jsiPHzXtHNljTZXRhjZoSTDctNIIGBbovljkiHWOnYAWeiuYoF1DmbxWSz1/s3HFfV
-         31qm2a3St6fZpW2wmuNjSHXHlshEDVfZaosp0X94tn1q+lS3BRZKHxGyXXFHEXI6prdZ
-         Pv6gti1LwO3CtN7lX7supvazWL2cVpA7XSlraqAPSZXME7M7o6PS9Aas5AZPoCImzuUD
-         6rPA==
-X-Gm-Message-State: AOAM5300ZsSnTcLTwly+cfehn8eI+t+HqPJqFQ+5+OZaAPkhagroFDZd
-        OEQuVaxlR52m3q/hllRGfE7Bpw==
-X-Google-Smtp-Source: ABdhPJwVXuvZmuG1IiPfArhVLDTUd60rYoPE5F9UgA8JVB+HYCUAnjh6XvDRJvRl58UiYBwc2HxQgw==
-X-Received: by 2002:a05:620a:28c4:b0:67d:c400:a9d7 with SMTP id l4-20020a05620a28c400b0067dc400a9d7mr5186069qkp.369.1647290357916;
-        Mon, 14 Mar 2022 13:39:17 -0700 (PDT)
-Received: from rivos-atish.ba.rivosinc.com (adsl-70-228-75-190.dsl.akrnoh.ameritech.net. [70.228.75.190])
-        by smtp.gmail.com with ESMTPSA id j188-20020a3755c5000000b0067d1c76a09fsm8597023qkb.74.2022.03.14.13.39.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 13:39:17 -0700 (PDT)
-From:   Atish Patra <atishp@rivosinc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atishp@rivosinc.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Anup Patel <anup@brainfault.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        devicetree@vger.kernel.org, Jisheng Zhang <jszhang@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv@lists.infradead.org,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v6 6/6] RISC-V: Improve /proc/cpuinfo output for ISA extensions
-Date:   Mon, 14 Mar 2022 13:38:45 -0700
-Message-Id: <20220314203845.832648-7-atishp@rivosinc.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220314203845.832648-1-atishp@rivosinc.com>
-References: <20220314203845.832648-1-atishp@rivosinc.com>
+        with ESMTP id S245248AbiCNVdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 17:33:22 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 052AB33349
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 14:32:10 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 734802C06C6;
+        Mon, 14 Mar 2022 21:32:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1647293527;
+        bh=RkXxbfpxz60sVinFQqrsDITL8geh/kJ2X57zBM2mDPM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=In19C3dXzVgwGr5PhKZkb5Yy3bTLcfN1vn2xzyL+pbty/VNKEQQXFRyx7/olVmGIt
+         WEGHEwAG4dWs7iiY55QdUv4agc5Ka81npkwUtHzRVJhX91Cln6ht8s7gB3gnjwB0bh
+         9kuaWTiZAiL6N5LJ2+LPUCEYjaqDi7EZZAy6rirdPH8A3G5P73lrNXZ6yy93mEWQMD
+         zvHiG4qdUO2UVqR0BF1J74vI4x7LQOrgnra/xrvQkGBh/QtHf6RKYi+0yYyJ49QanN
+         1nCK2sZ2jXlbrIY7rGAfRB85FzDxu+VjT5dKFBRwQIZOl11xroMrfmaBQKGlHDN/gZ
+         EGFWIl1gfw3Uw==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B622fb4570000>; Tue, 15 Mar 2022 10:32:07 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id 0704C13EE36;
+        Tue, 15 Mar 2022 10:32:07 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id DF60C2A2678; Tue, 15 Mar 2022 10:32:03 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        adrian.hunter@intel.com, thomas.petazzoni@bootlin.com,
+        kostap@marvell.com, robert.marko@sartura.hr
+Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v2 0/8] arm64: mvebu: Support for Marvell 98DX2530 (and variants)
+Date:   Tue, 15 Mar 2022 10:31:35 +1300
+Message-Id: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=vfzu8PMGQmK49s0qG5oA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,127 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, the /proc/cpuinfo outputs the entire riscv,isa string which
-is not ideal when we have multiple ISA extensions present in the ISA
-string. Some of them may not be enabled in kernel as well.
-Same goes for the single letter extensions as well which prints the
-entire ISA string. Some of they may not be valid ISA extensions as
-well (e.g 'su')
+This series adds support for the Marvell 98DX2530 SoC which is the Contro=
+l and
+Management CPU integrated into the AlleyCat5/AlleyCat5X series of Marvell
+switches.
 
-Parse only the valid & enabled ISA extension and print them.
+The CPU core is an ARM Cortex-A55 with neon, simd and crypto extensions.
 
-Tested-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Atish Patra <atishp@rivosinc.com>
----
- arch/riscv/include/asm/hwcap.h |  7 ++++
- arch/riscv/kernel/cpu.c        | 65 ++++++++++++++++++++++++++++++++--
- 2 files changed, 70 insertions(+), 2 deletions(-)
+This is fairly similar to the Armada-3700 SoC so most of the required
+peripherals are already supported. This series adds a devicetree and pinc=
+trl
+driver for the SoC and the RD-AC5X-32G16HVG6HLG reference board.
 
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index 170bd80da520..691fc9c8099b 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -54,6 +54,13 @@ enum riscv_isa_ext_id {
- 	RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
- };
- 
-+struct riscv_isa_ext_data {
-+	/* Name of the extension displayed to userspace via /proc/cpuinfo */
-+	char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
-+	/* The logical ISA extension ID */
-+	unsigned int isa_ext_id;
-+};
-+
- unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
- 
- #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index ad0a7e9f828b..fc115e307ef5 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -6,6 +6,7 @@
- #include <linux/init.h>
- #include <linux/seq_file.h>
- #include <linux/of.h>
-+#include <asm/hwcap.h>
- #include <asm/smp.h>
- #include <asm/pgtable.h>
- 
-@@ -63,12 +64,72 @@ int riscv_of_parent_hartid(struct device_node *node)
- }
- 
- #ifdef CONFIG_PROC_FS
-+#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
-+	{							\
-+		.uprop = #UPROP,				\
-+		.isa_ext_id = EXTID,				\
-+	}
-+/**
-+ * Here are the ordering rules of extension naming defined by RISC-V
-+ * specification :
-+ * 1. All extensions should be separated from other multi-letter extensions
-+ *    from other multi-letter extensions by an underscore.
-+ * 2. The first letter following the 'Z' conventionally indicates the most
-+ *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
-+ *    If multiple 'Z' extensions are named, they should be ordered first
-+ *    by category, then alphabetically within a category.
-+ * 3. Standard supervisor-level extensions (starts with 'S') should be
-+ *    listed after standard unprivileged extensions.  If multiple
-+ *    supervisor-level extensions are listed, they should be ordered
-+ *    alphabetically.
-+ * 4. Non-standard extensions (starts with 'X') must be listed after all
-+ *    standard extensions. They must be separated from other multi-letter
-+ *    extensions by an underscore.
-+ */
-+static struct riscv_isa_ext_data isa_ext_arr[] = {
-+	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
-+};
-+
-+static void print_isa_ext(struct seq_file *f)
-+{
-+	struct riscv_isa_ext_data *edata;
-+	int i = 0, arr_sz;
-+
-+	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
-+
-+	/* No extension support available */
-+	if (arr_sz <= 0)
-+		return;
-+
-+	for (i = 0; i <= arr_sz; i++) {
-+		edata = &isa_ext_arr[i];
-+		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
-+			continue;
-+		seq_printf(f, "_%s", edata->uprop);
-+	}
-+}
-+
-+/**
-+ * These are the only valid base (single letter) ISA extensions as per the spec.
-+ * It also specifies the canonical order in which it appears in the spec.
-+ * Some of the extension may just be a place holder for now (B, K, P, J).
-+ * This should be updated once corresponding extensions are ratified.
-+ */
-+static const char base_riscv_exts[13] = "imafdqcbkjpvh";
- 
- static void print_isa(struct seq_file *f, const char *isa)
- {
--	/* Print the entire ISA as it is */
-+	int i;
-+
- 	seq_puts(f, "isa\t\t: ");
--	seq_write(f, isa, strlen(isa));
-+	/* Print the rv[64/32] part */
-+	seq_write(f, isa, 4);
-+	for (i = 0; i < sizeof(base_riscv_exts); i++) {
-+		if (__riscv_isa_extension_available(NULL, base_riscv_exts[i] - 'a'))
-+			/* Print only enabled the base ISA extensions */
-+			seq_write(f, &base_riscv_exts[i], 1);
-+	}
-+	print_isa_ext(f);
- 	seq_puts(f, "\n");
- }
- 
--- 
-2.30.2
+Chris Packham (8):
+  dt-bindings: pinctrl: mvebu: Document bindings for AC5
+  dt-bindings: net: mvneta: Add marvell,armada-ac5-neta
+  dt-bindings: mmc: xenon: add AC5 compatible string
+  pinctrl: mvebu: pinctrl driver for 98DX2530 SoC
+  net: mvneta: Add support for 98DX2530 Ethernet port
+  mmc: xenon: add AC5 compatible string
+  arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+  arm64: marvell: enable the 98DX2530 pinctrl driver
+
+ .../bindings/mmc/marvell,xenon-sdhci.txt      |  52 +++
+ .../bindings/net/marvell-armada-370-neta.txt  |   1 +
+ .../bindings/pinctrl/marvell,ac5-pinctrl.yaml |  70 ++++
+ arch/arm64/Kconfig.platforms                  |   2 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../boot/dts/marvell/armada-98dx2530.dtsi     | 343 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  62 ++++
+ drivers/mmc/host/sdhci-xenon.c                |   1 +
+ drivers/mmc/host/sdhci-xenon.h                |   3 +-
+ drivers/net/ethernet/marvell/mvneta.c         |  13 +
+ drivers/pinctrl/mvebu/Kconfig                 |   4 +
+ drivers/pinctrl/mvebu/Makefile                |   1 +
+ drivers/pinctrl/mvebu/pinctrl-ac5.c           | 226 ++++++++++++
+ 13 files changed, 778 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5=
+-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+ create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+ create mode 100644 drivers/pinctrl/mvebu/pinctrl-ac5.c
+
+--=20
+2.35.1
 
