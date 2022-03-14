@@ -2,73 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DBB24D8FB8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:43:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B7F44D8FEE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:57:09 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245701AbiCNWoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 18:44:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
+        id S1343551AbiCNW6Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 18:58:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238739AbiCNWop (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:44:45 -0400
-Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D19333A39
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:43:35 -0700 (PDT)
-Received: by mail-yb1-xb30.google.com with SMTP id o5so4934519ybe.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zBz4KR/tbzFCQ7Rg6AbL2tIN/kz8QPBlTu1AMO28qtU=;
-        b=r7NNd/At5KMqFw3i9SvlUx564e3HPd17qxW7CY1V/KYHkMDg2c205EYOqfvZ+Feie0
-         k78b8IkyX6wYfgmqwiJYaa+1N2M3Tc3DuQd210amcQeoZkCentBLNGI7opmuGm1zFmpo
-         kXCRTEs3pkdklEykPP7O3IbVmZrH84YOUuGa9bsDHpjS94GVCLF+z1R6OdlcMcwhpKM9
-         ZCEfs1XlbOpMBbRh6nRznEnzHtaiMfaHSIK4invfukZGxDmq7l6EgYHLk76Efz86Bed0
-         cYcdgIHO4n6h2Ms4mnZJKpewAoUOD+al7/xMp/5P2wRBwOJ3B1tjADUlF3+iqwg3HNZE
-         jjcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zBz4KR/tbzFCQ7Rg6AbL2tIN/kz8QPBlTu1AMO28qtU=;
-        b=WolqZ5u9+JFEOBj9+NQWHei1EW1JSIsbyT/y3k/eZoaLQiFzn+EwhR0hOvX4k4qnCz
-         Kn7tYUFclD94S5lLFKOY4ZfXYwbskPbOc4qPJLtu1+FgDZUTvZnkHCJJ/qX40RbkaizS
-         DAg+bS64DDP6i5RSwfVhIAG8wUEnfmhjDzNXgwr9dQ9fs41NZbZRbJVYE6/MWApjyDcX
-         cYrnAHHPoMwedqEKhIN9iOw9FK3GSqK626fzxiXAmSBQ11dsXd03xXS2iAjW9ttHPTm8
-         2cR+WMJ1sLJ681tbsicMVANkwvM/i38XC9MiPCr8H1Ohh8Ryt/7QJy0hjG/QiKv2SfwV
-         slkQ==
-X-Gm-Message-State: AOAM5305TyX+P/yQmrX5IzXd4hZEORN+NKny5hpx96UUApZChXiMQMtQ
-        vFKUnTTXd+tWu8Iihe9HgRQQ5tv8xkVsd2Mt2vnBJg==
-X-Google-Smtp-Source: ABdhPJzdH5EAlui5zL/pWz9DIDbKqOBoB1cvh3rT4dgsBx/UFynGgA6bujxHdHry3cd2exdH6seuYB8+4pdVXpKfX60=
-X-Received: by 2002:a25:ab64:0:b0:633:6d02:ebc8 with SMTP id
- u91-20020a25ab64000000b006336d02ebc8mr2106711ybi.492.1647297814409; Mon, 14
- Mar 2022 15:43:34 -0700 (PDT)
+        with ESMTP id S237538AbiCNW6Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:58:16 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D0363A5C7;
+        Mon, 14 Mar 2022 15:57:05 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 0A1F5B81062;
+        Mon, 14 Mar 2022 22:57:04 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E38EC340E9;
+        Mon, 14 Mar 2022 22:57:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647298622;
+        bh=1UnoAhS6nh3039wEH/W+Pp88txsDR8HCwYuwWJg8MN0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p3mSGaz5WdNpNkM3AiXL8Ezv/lT4vSUiK1PTyXKB5BSD4QfrBqpxWAGokFNLzBA8A
+         EdjeiOYvjW7AJQBzpPYr8fVw01lIKSe7+jaIMgW/OU7+y55e6KMPo6DVKHOmnoLcsO
+         jWqSgsqykQfoOiSIdTkTOSzxb51CjO/I4y/LrDuzFQJFwc/wT4/MRXpgcWqDHkIQhU
+         geEYYSEurm0yIGll+vVpZaFdyn8n2qmHaZ1ahkh0SzEN53VsmLdGmyJEqgsVGrtF6y
+         MThemVtwkfN0TPISEHgB6alXeB3ZgtkN+LIAt9P7zuDgUo6/BkDF5KlB4Mvhl6KILf
+         54CefY5C5A6Iw==
+Received: by mail-ed1-f50.google.com with SMTP id t1so21766547edc.3;
+        Mon, 14 Mar 2022 15:57:02 -0700 (PDT)
+X-Gm-Message-State: AOAM532NwTnVDns/x4kVnvIp+fFY0KFTozLVZlj/8Qe1VpgGVXNqkDnp
+        J+VszxdR7YcVbG7YZWgyw1SGdNS8nPOIC6NTeg==
+X-Google-Smtp-Source: ABdhPJzEUJXMuE34QfdICf2M+C8JZliVvIOHkVBqItKq7URgb9Uv8HLcRbmSHHafEPruhDFDrveUcp3Y69C0fZBSCGI=
+X-Received: by 2002:aa7:d147:0:b0:415:c68c:f8d6 with SMTP id
+ r7-20020aa7d147000000b00415c68cf8d6mr22808497edo.67.1647298620908; Mon, 14
+ Mar 2022 15:57:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220304135134.47827-1-yann.gautier@foss.st.com> <20220304135134.47827-2-yann.gautier@foss.st.com>
-In-Reply-To: <20220304135134.47827-2-yann.gautier@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 14 Mar 2022 23:43:22 +0100
-Message-ID: <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable DMA LLI
-To:     Yann Gautier <yann.gautier@foss.st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Ludovic Barre <ludovic.barre@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Grzegorz Szymaszek <gszymaszek@short.pl>
+References: <20220314181830.245853-1-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220314181830.245853-1-krzysztof.kozlowski@canonical.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 14 Mar 2022 16:56:49 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJJbQy1DT+MSDTX__V9B0ZVVmD3EeVdBRXyLn6PjxA4GA@mail.gmail.com>
+Message-ID: <CAL_JsqJJbQy1DT+MSDTX__V9B0ZVVmD3EeVdBRXyLn6PjxA4GA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: hcd: correct usb-device path
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        stable <stable@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,30 +66,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-"On Fri, Mar 4, 2022 at 2:52 PM Yann Gautier <yann.gautier@foss.st.com> wrote:
-
-> On STMicroelectronics variant of PL18x, the DMA Linked Lists are supported
-> starting from revision v2 of the peripheral. But it has limitations,
-> as all the buffers should be aligned on block size (except the last one).
-> But this cannot be guaranteed with SDIO. We should then have a property
-> to disable the support of LLI.
+On Mon, Mar 14, 2022 at 12:18 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
 >
-> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
+> The usb-device.yaml reference is absolute so it should use /schemas part
+> in path.
+>
+> Reported-by: Rob Herring <robh@kernel.org>
+> Fixes: 23bf6fc7046c ("dt-bindings: usb: convert usb-device.txt to YAML schema")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> ---
+>  Documentation/devicetree/bindings/usb/usb-hcd.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Actually I think this is present also on the ux500 variants. See:
-commit 2253ed4b36dc876d1598c4dab5587e537ec68c34
-"mmc: mmci: Support any block sizes for ux500v2 and qcom variant"
+Acked-by: Rob Herring <robh@kernel.org>
 
-Spot the variant data "dma_power_of_2".
+I've done a meta-schema and found a few more I'll send a patch for.
 
-So whatever property you add
-to the variant data (not in the device tree please) should
-be added to the ux500 variants as well, it will *VERY* likely
-have a problem with LLI elements not being a power of 2
-as it is the ancestor of later STMicro variants.
-
-It might actually be the reason for some annoying WiFi error
-messages I have seen :/
-
-Yours,
-Linus Walleij
+Rob
