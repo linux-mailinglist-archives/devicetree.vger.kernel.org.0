@@ -2,216 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34BB84D88DD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 17:10:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E754D890B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 17:27:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234215AbiCNQLZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 12:11:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47048 "EHLO
+        id S239769AbiCNQ2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 12:28:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235945AbiCNQLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 12:11:25 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 83EEA3CFED;
-        Mon, 14 Mar 2022 09:10:13 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,181,1643641200"; 
-   d="scan'208";a="113468291"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 15 Mar 2022 01:10:12 +0900
-Received: from localhost.localdomain (unknown [10.226.92.190])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 3DD1F4018E69;
-        Tue, 15 Mar 2022 01:10:10 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH 1/2] dt-bindings: display: bridge: Document RZ/G2L MIPI DSI TX bindings
-Date:   Mon, 14 Mar 2022 16:10:02 +0000
-Message-Id: <20220314161004.14765-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220314161004.14765-1-biju.das.jz@bp.renesas.com>
-References: <20220314161004.14765-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S241796AbiCNQ2k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 12:28:40 -0400
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E898BC06;
+        Mon, 14 Mar 2022 09:27:28 -0700 (PDT)
+Received: (Authenticated sender: jacopo@jmondi.org)
+        by mail.gandi.net (Postfix) with ESMTPSA id DA521240009;
+        Mon, 14 Mar 2022 16:27:24 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        krzysztof.kozlowski@canonical.com,
+        jeanmichel.hautbois@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
+        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-media@vger.kernel.org (open list:OMNIVISION OV5670 SENSOR DRIVER),
+        robh@kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/8] media: dt-bindings: i2c: Document ov5670
+Date:   Mon, 14 Mar 2022 17:27:07 +0100
+Message-Id: <20220314162714.153970-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220314162714.153970-1-jacopo@jmondi.org>
+References: <20220314162714.153970-1-jacopo@jmondi.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RZ/G2L MIPI DSI TX is embedded in the Renesas RZ/G2L family SoC's. It
-can operate in DSI mode, with up to four data lanes.
+Provide the bindings documentation for Omnivision OV5670 image sensor.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-RFC->v1:
- * Added a ref to dsi-controller.yaml.
-RFC:-
- * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-22-biju.das.jz@bp.renesas.com/
----
- .../bindings/display/bridge/renesas,dsi.yaml  | 146 ++++++++++++++++++
- 1 file changed, 146 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
+---
+v1->v2 (comments from Krzysztof)
+
+- Rename to include manufacturer name
+- Add entry to MAINTAINERS
+- Add maxItems: to -gpios properties
+- Use common clock properties
+- Use enum: [1, 2] for data lanes
+- Fix whitespace issue in example
+---
+
+ .../bindings/media/i2c/ovti,ov5670.yaml       | 99 +++++++++++++++++++
+ MAINTAINERS                                   |  1 +
+ 2 files changed, 100 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
 new file mode 100644
-index 000000000000..74bc3782d230
+index 000000000000..73cf72203f17
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi.yaml
-@@ -0,0 +1,146 @@
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+@@ -0,0 +1,99 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/display/bridge/renesas,dsi.yaml#
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Renesas RZ/G2L MIPI DSI Encoder
++title: Omnivision OV5670 5 Megapixels raw image sensor
 +
 +maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
++  - Jacopo Mondi <jacopo@jmondi.org>
 +
-+description: |
-+  This binding describes the MIPI DSI encoder embedded in the Renesas
-+  RZ/G2L family of SoC's. The encoder can operate in DSI mode with up
-+  to four data lanes.
-+
-+allOf:
-+  - $ref: ../dsi-controller.yaml#
++description: |-
++  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
++  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
++  controlled through an I2C compatible control bus.
 +
 +properties:
 +  compatible:
-+    enum:
-+      - renesas,rzg2l-mipi-dsi # RZ/G2L and RZ/V2L
++    const: ovti,ov5670
 +
 +  reg:
-+    items:
-+      - description: Link register
-+      - description: D-PHY register
-+
-+  clocks:
-+    items:
-+      - description: DSI D-PHY PLL multiplied clock
-+      - description: DSI D-PHY system clock
-+      - description: DSI AXI bus clock
-+      - description: DSI Register access clock
-+      - description: DSI Video clock
-+      - description: DSI D_PHY Escape mode Receive clock
-+
-+  clock-names:
-+    items:
-+      - const: pllclk
-+      - const: sysclk
-+      - const: aclk
-+      - const: pclk
-+      - const: vclk
-+      - const: lpclk
-+
-+  power-domains:
 +    maxItems: 1
 +
-+  resets:
-+    items:
-+      - description: MIPI_DSI_CMN_RSTB
-+      - description: MIPI_DSI_ARESET_N
-+      - description: MIPI_DSI_PRESET_N
++  assigned-clocks: true
++  assigned-clock-parents: true
++  assigned-clock-rates: true
 +
-+  reset-names:
-+    items:
-+      - const: rst
-+      - const: arst
-+      - const: prst
++  clocks:
++    description: System clock. From 6 to 27 MHz.
++    maxItems: 1
 +
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
++  pwdn-gpios:
++    description: Reference to the GPIO connected to the PWDNB pin. Active low.
++    maxItems: 1
++
++  reset-gpios:
++    description:
++      Reference to the GPIO connected to the XSHUTDOWN pin. Active low.
++    maxItems: 1
++
++  avdd-supply:
++    description: Analog circuit power. Typically 2.8V.
++
++  dvdd-supply:
++    description: Digital circuit power. Typically 1.2V.
++
++  dovdd-supply:
++    description: Digital I/O circuit power. Typically 2.8V or 1.8V.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
 +
 +    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Parallel input port
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/$defs/port-base
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
 +        unevaluatedProperties: false
-+        description: DSI output port
 +
 +        properties:
-+          endpoint:
-+            $ref: /schemas/media/video-interfaces.yaml#
-+            unevaluatedProperties: false
++          data-lanes:
++            description: The sensor supports 1 or 2 data lanes operations.
++            minItems: 1
++            maxItems: 2
++            items:
++              enum: [1, 2]
 +
-+            properties:
-+              data-lanes:
-+                minItems: 1
-+                maxItems: 4
-+
-+            required:
-+              - data-lanes
-+
-+    required:
-+      - port@0
-+      - port@1
++          clock-noncontinuous: true
 +
 +required:
 +  - compatible
 +  - reg
 +  - clocks
-+  - clock-names
-+  - power-domains
-+  - resets
-+  - reset-names
-+  - ports
++  - port
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/r9a07g044-cpg.h>
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+    dsi0: dsi@10860000 {
-+        compatible = "renesas,rzg2l-mipi-dsi";
-+        reg = <0x10860000 0x10000>,
-+              <0x10850000 0x10000>;
-+        power-domains = <&cpg>;
-+        clocks = <&cpg CPG_MOD R9A07G044_MIPI_DSI_PLLCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_SYSCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_ACLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_PCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_VCLK>,
-+                 <&cpg CPG_MOD R9A07G044_MIPI_DSI_LPCLK>;
-+        clock-names = "pllclk", "sysclk", "aclk", "pclk", "vclk", "lpclk";
-+        resets = <&cpg R9A07G044_MIPI_DSI_CMN_RSTB>,
-+                 <&cpg R9A07G044_MIPI_DSI_ARESET_N>,
-+                 <&cpg R9A07G044_MIPI_DSI_PRESET_N>;
-+        reset-names = "rst", "arst", "prst";
++        ov5670: sensor@36 {
++            compatible = "ovti,ov5670";
++            reg = <0x36>;
++            clocks = <&sensor_xclk>;
 +
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+                dsi0_in: endpoint {
-+                    remote-endpoint = <&du_out_dsi0>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+                dsi0_out: endpoint {
-+                    data-lanes = <1 2 3 4>;
-+                    remote-endpoint = <&adv7535_in>;
++            port {
++                endpoint {
++                    remote-endpoint = <&csi_ep>;
++                    data-lanes = <1 2>;
++                    clock-noncontinuous;
 +                };
 +            };
 +        };
 +    };
++
 +...
--- 
-2.17.1
++
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 83d27b57016f..6aa32609a3cf 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14259,6 +14259,7 @@ M:	Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+ F:	drivers/media/i2c/ov5670.c
+
+ OMNIVISION OV5675 SENSOR DRIVER
+--
+2.35.1
 
