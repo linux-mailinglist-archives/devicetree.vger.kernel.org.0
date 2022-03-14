@@ -2,120 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E024D7B09
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 07:54:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F1BFF4D7B1D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:01:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236479AbiCNGzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 02:55:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33290 "EHLO
+        id S236484AbiCNHCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 03:02:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236474AbiCNGzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 02:55:50 -0400
-Received: from mail-pl1-x634.google.com (mail-pl1-x634.google.com [IPv6:2607:f8b0:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DA593FBED;
-        Sun, 13 Mar 2022 23:54:41 -0700 (PDT)
-Received: by mail-pl1-x634.google.com with SMTP id n18so10047215plg.5;
-        Sun, 13 Mar 2022 23:54:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ty6PwcxLzIVrqLfmu+9Ne928mUjT7ENA64son7AJAZo=;
-        b=ZGY/KZNA9gTe1grOsoHZT2V1gfXNR7zcB/QMdQc0lY0zzvx6LFNO89ToSoVPvcwdKS
-         aMA4qwy4WgaS2gGCJIZUUIszGUL0empqFJVQar4anjnNgukjglDVIzdnng1IkGQ+a4Af
-         gnxIdAI9C9/7KOcV2Wu/WR41fNqYybY4sC3gyrWMH0O/XZICKRSflhJ27SgG4K9U2kLN
-         d3VBgGhPXuB3BT0PWX8sITD/5PRzmNLaEXV1l0U71G5DpPALuwzS6wJ+RIuZ+oOGvddg
-         5z3OwlP+A+BRDd7VtejvLIVjMBrnxDrb9IZoOiCgO1k/m8XL7OC6t2A0k93ZDeaeWxfg
-         TcOw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ty6PwcxLzIVrqLfmu+9Ne928mUjT7ENA64son7AJAZo=;
-        b=YcuHHqbjD83bTnT3xirWmcafeuAIZrmDVyDpZCdpzv3KylKlATz2q6gjuzRH1wanAA
-         z+Sp8dp14E0Ux17KHdeUeYOP2BFt+cFyKHtlNmLkl4lkBJrlEbfeObtyFlXQYLLN8S/X
-         sO+ANnV99RVumV2xOxYdfMAjVxyUtRFV9XxGsyR/O6oUH0ECozF1T2Iev17iX0nnsw0I
-         aq815rfnFHg7cORPCxD/lRGynoRcYsgXSJ2L+zYCO0/BZ4P7eI1cIlrdq6RQu0FOVv4d
-         v2jV0oKaiRyXKt/tj0/Ri+KWRPCMb4ZWj282U3FzOHYR0n1Eas61GYs/69PxykbWX6fU
-         JdlQ==
-X-Gm-Message-State: AOAM5337WFMXLaC00gdZK/8k872OnWKY3l/VEJRkD9SWWh/QBdZcIWTe
-        K3eKeL1GlHBtjbN5s5/rDYNgFOpmvUI=
-X-Google-Smtp-Source: ABdhPJy9dg1ytDwWF5oBI9JRVSns4+X/cV/eUxiu8GWjgUVo7wm+A3Nzdx5ki2X39sTeFdtdRP7LfA==
-X-Received: by 2002:a17:90a:430d:b0:1bc:f340:8096 with SMTP id q13-20020a17090a430d00b001bcf3408096mr23455757pjg.93.1647240880682;
-        Sun, 13 Mar 2022 23:54:40 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.53.68])
-        by smtp.gmail.com with ESMTPSA id p17-20020a639511000000b0038108d69e8fsm9310536pgd.53.2022.03.13.23.54.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Mar 2022 23:54:40 -0700 (PDT)
-Date:   Mon, 14 Mar 2022 12:24:34 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     soc@kernel.org, Arnd Bergmann <arnd@arndb.de>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+        with ESMTP id S231877AbiCNHCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:02:44 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C487F40900;
+        Mon, 14 Mar 2022 00:01:34 -0700 (PDT)
+X-UUID: 4decd2aa2f854a098042a04bf0a4a7e3-20220314
+X-UUID: 4decd2aa2f854a098042a04bf0a4a7e3-20220314
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <biao.huang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 669941624; Mon, 14 Mar 2022 15:01:27 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Mon, 14 Mar 2022 15:01:26 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 14 Mar 2022 15:01:23 +0800
+Message-ID: <2d0ab5290e63069f310987a4423ef2a46f02f1b3.camel@mediatek.com>
+Subject: Re: [PATCH net-next v2 9/9] net: ethernet: mtk-star-emac: separate
+ tx/rx handling with two NAPIs
+From:   Biao Huang <biao.huang@mediatek.com>
+To:     Jakub Kicinski <kuba@kernel.org>
+CC:     David Miller <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] ARM: dts: spear13xx: Update SPI dma properties
-Message-ID: <20220314065434.GA43329@9a2d8922b8f1>
-References: <20220312180615.68929-1-singh.kuldeep87k@gmail.com>
- <20220312180615.68929-2-singh.kuldeep87k@gmail.com>
- <20220314035118.gbjbrwbsywxljjti@vireshk-i7>
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Fabien Parent <fparent@baylibre.com>,
+        Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yinghua Pan <ot_yinghua.pan@mediatek.com>,
+        <srv_heupstream@mediatek.com>,
+        Macpaul Lin <macpaul.lin@mediatek.com>
+Date:   Mon, 14 Mar 2022 15:01:23 +0800
+In-Reply-To: <20220128074454.46d0ca29@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+References: <20220127015857.9868-1-biao.huang@mediatek.com>
+         <20220127015857.9868-10-biao.huang@mediatek.com>
+         <20220127194338.01722b3c@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+         <2bdb6c9b5ec90b6c606b7db8c13f8acb34910b36.camel@mediatek.com>
+         <20220128074454.46d0ca29@kicinski-fedora-pc1c0hjn.dhcp.thefacebook.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220314035118.gbjbrwbsywxljjti@vireshk-i7>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 14, 2022 at 09:21:18AM +0530, Viresh Kumar wrote:
-> On 12-03-22, 23:36, Kuldeep Singh wrote:
-> > Reorder dmas and dma-names property for spi controller node to make it
-> > compliant with bindings.
+Dear Jakub,
+	Thanks for your comments~
+
+On Fri, 2022-01-28 at 07:44 -0800, Jakub Kicinski wrote:
+> On Fri, 28 Jan 2022 15:05:27 +0800 Biao Huang wrote:
+> > > > + * Description : this is the driver interrupt service routine.
+> > > > + * it mainly handles:
+> > > > + *  1. tx complete interrupt for frame transmission.
+> > > > + *  2. rx complete interrupt for frame reception.
+> > > > + *  3. MAC Management Counter interrupt to avoid counter
+> > > > overflow.
+> > > >   */
+> > > >  static irqreturn_t mtk_star_handle_irq(int irq, void *data)
+> > > >  {
+> > > > -	struct mtk_star_priv *priv;
+> > > > -	struct net_device *ndev;
+> > > > +	struct net_device *ndev = data;
+> > > > +	struct mtk_star_priv *priv = netdev_priv(ndev);
+> > > > +	unsigned int intr_status = mtk_star_intr_ack_all(priv);
+> > > > +	unsigned long flags = 0;
+> > > > +
+> > > > +	if (intr_status & MTK_STAR_BIT_INT_STS_FNRC) {
+> > > > +		if (napi_schedule_prep(&priv->rx_napi)) {
+> > > > +			spin_lock_irqsave(&priv->lock, flags);
+> > > > +			/* mask Rx Complete interrupt */
+> > > > +			mtk_star_disable_dma_irq(priv, true,
+> > > > false);
+> > > > +			spin_unlock_irqrestore(&priv->lock,
+> > > > flags);
+> > > > +			__napi_schedule_irqoff(&priv->rx_napi);
+> > > > +		}
+> > > > +	}
+> > > >  
+> > > > -	ndev = data;
+> > > > -	priv = netdev_priv(ndev);
+> > > > +	if (intr_status & MTK_STAR_BIT_INT_STS_TNTC) {
+> > > > +		if (napi_schedule_prep(&priv->tx_napi)) {
+> > > > +			spin_lock_irqsave(&priv->lock, flags);
+> > > > +			/* mask Tx Complete interrupt */
+> > > > +			mtk_star_disable_dma_irq(priv, false,
+> > > > true);
+> > > > +			spin_unlock_irqrestore(&priv->lock,
+> > > > flags);
+> > > > +			__napi_schedule_irqoff(&priv->tx_napi);
+> > > > +		}
+> > > > +	}  
+> > > 
+> > > Seems a little wasteful to retake the same lock twice if two IRQ
+> > > sources fire at the same time.  
 > > 
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> > The TX/RX irq control bits are in the same register,
+> > but they are triggered independently.
+> > So it seems necessary to protect the register
+> > access with a spin lock.
 > 
-> What about a fixes tag ?
-
-Sure, will add one.
-
-> > ---
-> >  arch/arm/boot/dts/spear13xx.dtsi | 5 ++---
-> >  1 file changed, 2 insertions(+), 3 deletions(-)
+> This is what I meant:
+> 
+> rx = (status & RX) && napi_schedule_prep(rx_napi);
+> tx = (status & TX) && napi_schedule_prep(tx_napi);
+> 
+> if (rx || tx) {
+> 	spin_lock()
+> 	disable_irq(priv, rx, tx);	
+> 	spin_unlock();
+> 	if (rx)
+> 		__napi_schedule_irqoff(rx_napi)
+> 	if (tx)
+> 		__napi_schedule_irqoff(tx_napi)
+> }
+> 
+OK, We'll adopt your suggestion, and corresponding modification will be
+added in next send.
+> > > >  	desc_data.dma_addr = mtk_star_dma_map_tx(priv, skb);
+> > > >  	if (dma_mapping_error(dev, desc_data.dma_addr))
+> > > > @@ -1050,18 +1103,10 @@ static int
+> > > > mtk_star_netdev_start_xmit(struct sk_buff *skb,
+> > > >  
+> > > >  	desc_data.skb = skb;
+> > > >  	desc_data.len = skb->len;
+> > > > -
+> > > > -	spin_lock_bh(&priv->lock);
+> > > > 
+> > > >  	mtk_star_ring_push_head_tx(ring, &desc_data);
+> > > >  
+> > > >  	netdev_sent_queue(ndev, skb->len);
+> > > >  
+> > > > -	if (mtk_star_ring_full(ring))
+> > > > -		netif_stop_queue(ndev);  
+> > > 
+> > > Are you stopping the queue in advance somewhere else now? Did you
+> > > only
+> > > test this with BQL enabled? Only place that stops the ring also
+> > > prints
+> > > a loud warning now AFAICS..  
 > > 
-> > diff --git a/arch/arm/boot/dts/spear13xx.dtsi b/arch/arm/boot/dts/spear13xx.dtsi
-> > index c87b881b2c8b..45f0b2a33e02 100644
-> > --- a/arch/arm/boot/dts/spear13xx.dtsi
-> > +++ b/arch/arm/boot/dts/spear13xx.dtsi
-> > @@ -284,9 +284,8 @@ spi0: spi@e0100000 {
-> >  				#size-cells = <0>;
-> >  				interrupts = <0 31 0x4>;
-> >  				status = "disabled";
-> > -				dmas = <&dwdma0 4 0 0>,
-> > -					<&dwdma0 5 0 0>;
-> > -				dma-names = "tx", "rx";
-> > +				dmas = <&dwdma0 5 0 0>, <&dwdma0 4 0 0>;
-> > +				dma-names = "rx", "tx";
+> > No.
+> > 
+> > We modify the ring full condition, and will not invoke
+> > netif_stop_queue
+> > if queue is already stopped.
 > 
-> Why does the order matter here since we have dma-names anyway, which
-> was correct earlier ?
+> I don't understand what you're saying.
+> 
+> > Test pass no matter whether BQL is enabled or disabled.
+> > 
+> > It's much safer to judge queue is full or not at the beginning of
+> > start_xmit() to avoid invalid setting.
+> 
+> Drivers are expected to stop their queues at the end of xmit routine
+> if
+> the ring can't accommodate another frame. It's more efficient to stop
+> the queues early than have to put skbs already dequeued from the
+> qdisc
+> layer back into the qdiscs.
+Yes, if descriptors ring is full, it's meaningful to stop the queue 
+at the end of xmit; 
+But driver seems hard to know how many descriptors the next skb will
+request, e.g. 3 descriptors are available for next round send, but the
+next skb may need 4 descriptors, in this case, we still need judge
+whether descriptors are enough for skb transmission, then decide stop
+the queue or not, at the beginning of xmit routine.
 
-Dma-names order matters here.
-As per pl022 binding, dma-names order specify rx,tx and all DTs which
-have tx,rx as order start raising dtbs_chek warning. Thus, need to
-reverse this order. Please note, no functional change in this patch
-apart from just fixing warning.
+Maybe we should judge ring is full or not at the beginning and the end
+of xmit routine(seems a little redundancy).
 
-Warning:
-'rx' was expected
-'tx' was expected
+Regards~
 
-Regards
-Kuldeep
