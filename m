@@ -2,92 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C759A4D8618
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 14:38:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 24ABC4D8648
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 14:58:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241387AbiCNNj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 09:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36282 "EHLO
+        id S230334AbiCNN7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 09:59:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241865AbiCNNj5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 09:39:57 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C7C9BC2D
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:38:47 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-2dc348dab52so163540907b3.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:38:47 -0700 (PDT)
+        with ESMTP id S237178AbiCNN7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 09:59:19 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C7F1CFEE
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:08 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id kt27so34283469ejb.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=xC+lJiodR+sWpzqzm91V+sLXEyA0MqIpnbN3l1bqwWU=;
-        b=OexWQ2h693u4lZOOUvJTKtfnBVn43v7FMeeMk5qC6Frv256FwjHDfU7eMS1+8nFYmb
-         i3A7P9HN5ayJTyk/xe33mK8GVleqWqW85fUg5rWNLWZ+xDhV/KwCvpDsQeuLdBQR8+Xo
-         czjRV4c3d/fwjqVQ2XYLj8s+A9wfHndMUpwBA/k6f9n+l06tQSRE+rJchhDCTpb9lFqQ
-         4znbk3UIOaTqHlj/AP5CvXd4dAKjjvxE6ZsXyF//gBc3BEmA+n79YsjU8RlWUca2oKok
-         vlzRCH1tajRmDhoakSGDMBw8avYHd3MLbA6mlM0shYCsLfgTuTfM3MyfwgTVrcMLGkb1
-         fIrg==
+        bh=/sGwhFLRtiH/ykUra8RNv5VtPDl39PfWAyeMQdseV4U=;
+        b=E4HfJt2lpl5yMCJkmr268M1C6Xw1SdJiBIbXECMsySpxvvMRbBTqo3MSLg3VnfahpC
+         P7LzLbgUQFA4BE/DsfILmqLQHUV+ASwOd5AcDTChMfwhP9mK0rdOs6tf3pdCjfyIgHEm
+         lfiSNtrZ23gznqQr7osIXvkgdlCoTI2SO5lFQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=xC+lJiodR+sWpzqzm91V+sLXEyA0MqIpnbN3l1bqwWU=;
-        b=fP9V7XAyS3xG96i49xM53gJjIEmvu81SDlCMBEOffjy8Oux6+7p7v4/v7TKwCOFhML
-         AZSVoXfGrM6DPkknJrzocjeEDjVJxVG8725RB/MgrSUxarYkjxrmJioW1tP1RXqM8J0l
-         ZAgoHfvwIiYqqukkU6fYyJ5jUptYHptFFC82Okhg2zw9hFlXMyE0cglxqfM0FlzuoaLM
-         coGMOFhJo4081JcpZ3410p65CHt/0j811YCcG7VSKS46Hd8yJsSUNlnOEkwdBLVY9TKV
-         MjdL0C6THtHX3aBEPKllXAr/G9l6R4bg2Slc59osZsmHCg/dIdH0bCsGS+5orDLvLDP0
-         S5/g==
-X-Gm-Message-State: AOAM530itIV+l+Edp6bnlLIgHdqoc7Oxl1QKehC2rn6DcVutWdVcByk0
-        hyggTAs5+rAf8GeTbm0UDlH6jIQSJ3eB2crzcOuBZg==
-X-Google-Smtp-Source: ABdhPJxR5tRZorPtoK9M8ocNQ9ikdDUGdQA0+NLPUHYqvLKOH7htQyeEib4lFHIQySUWWYAOFtzU3UegfAPAeVz5eBs=
-X-Received: by 2002:a81:1182:0:b0:2dc:4e58:da41 with SMTP id
- 124-20020a811182000000b002dc4e58da41mr18944386ywr.268.1647265126402; Mon, 14
- Mar 2022 06:38:46 -0700 (PDT)
+        bh=/sGwhFLRtiH/ykUra8RNv5VtPDl39PfWAyeMQdseV4U=;
+        b=Z3vVR0jMPbfxy4/XbU6FGEHcC2jsMyuvkKOC8lYAqM4TH+lbFX0h1b+MWjANiG6O7T
+         RGbhKzBTKOv0SoiFNyyg/h+K0VX+eOIwxzW9/yuLwJE4aqwyfDkupSbGHZcbqyDLaWri
+         8vD86YRvHJlheKgPaBroQzkNjp0/1WWgrSpGQ6A00gXN2TSCo2hVwtHz6fkTSDifwql2
+         5Gm/Ljiv69bFIN+d8bFK33nIijmoEDM5dXZSmDL5nMOPKwubtzpJh6KNjSTGYoiHJyby
+         yvyG1WVHqCiNeSjJnI6l0HNaA+OV4e6rF3/Tr6uaM+3pvTdS/x38h5qE/J2Otwmwvdkx
+         rC3A==
+X-Gm-Message-State: AOAM532v8WmaAl/t6zGSOg13E/3kGjCT9d8rHeoYhcU68ts9vM6/udLq
+        RTLM4PtP5JmOFZ8ZTMbdt2T1BiGLsDoOSA==
+X-Google-Smtp-Source: ABdhPJxhrPYofOX6Uy7ZHuoHxochHUTcdO0VrUFy5xJ6pwuViH3zPM/aDATSUKbDIwGT4RS39SLHog==
+X-Received: by 2002:a17:907:7f9f:b0:6db:720b:1232 with SMTP id qk31-20020a1709077f9f00b006db720b1232mr19003750ejc.355.1647266286765;
+        Mon, 14 Mar 2022 06:58:06 -0700 (PDT)
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
+        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm6698435ejb.187.2022.03.14.06.58.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Mar 2022 06:58:06 -0700 (PDT)
+Received: by mail-wm1-f47.google.com with SMTP id bg31-20020a05600c3c9f00b00381590dbb33so9710691wmb.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:05 -0700 (PDT)
+X-Received: by 2002:a05:600c:a53:b0:38a:fc5:3a90 with SMTP id
+ c19-20020a05600c0a5300b0038a0fc53a90mr3788786wmq.15.1647266285495; Mon, 14
+ Mar 2022 06:58:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-23-s.hauer@pengutronix.de> <bb077f34-333e-a07a-1fcb-702a6807f941@rock-chips.com>
- <CAPj87rO2sztocJrE-CeSQWry9j_cSe2uv9F1Yf81pGnBXdu2Ag@mail.gmail.com>
- <ae4314db-09c0-049b-ccc9-f6b1c3003dcb@rock-chips.com> <CAPj87rOanNE1wca3ijJx1zXYZkKX1ta9F145GCXM15Nv=POicA@mail.gmail.com>
- <f3af0286-fc64-f011-bc90-6797e26e3640@rock-chips.com> <30f195d6-e9d7-3da6-89fa-4a064a1f6bf9@rock-chips.com>
- <d98782df-43c8-475b-375d-ad6aff4fae44@rock-chips.com>
-In-Reply-To: <d98782df-43c8-475b-375d-ad6aff4fae44@rock-chips.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Mon, 14 Mar 2022 13:38:35 +0000
-Message-ID: <CAPj87rNXuJ6MQMb7dJHWZcqxaH9cyu1f2_NWidT_zsm44STmaw@mail.gmail.com>
-Subject: Re: [PATCH v7 22/24] drm: rockchip: Add VOP2 driver
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
+References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com>
+ <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
+ <CAE-0n51bfqWs8yOiyQ-A_bEQ7CZSqavz8epcFEWYyZxxoRYFHg@mail.gmail.com>
+ <BN0PR02MB8173F2E408848216D489D503E40C9@BN0PR02MB8173.namprd02.prod.outlook.com>
+ <CAA8EJppt_NjOdJWGrP=8zwG1yEAyJBtnv4G5vLW3CHZ8WrGFvw@mail.gmail.com>
+In-Reply-To: <CAA8EJppt_NjOdJWGrP=8zwG1yEAyJBtnv4G5vLW3CHZ8WrGFvw@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 14 Mar 2022 06:57:51 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wy-ew3sbsQ_ojoAdAXeZPsRzwGJWqNQqpuZDb1GPknfg@mail.gmail.com>
+Message-ID: <CAD=FV=Wy-ew3sbsQ_ojoAdAXeZPsRzwGJWqNQqpuZDb1GPknfg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-rate
+ property for mdp clk
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Vinod Polimera <vpolimer@qti.qualcomm.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        quic_vpolimer <quic_vpolimer@quicinc.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robdclark@gmail.com" <robdclark@gmail.com>,
+        quic_kalyant <quic_kalyant@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi,
 
-On Mon, 14 Mar 2022 at 11:02, Andy Yan <andy.yan@rock-chips.com> wrote:
->    Remember you said our downstream vop2 driver is very slow on weston.
+On Fri, Mar 11, 2022 at 1:22 AM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> Would you please share the case you run ? or how can i test frame rate
-> on weston?
+> On Fri, 11 Mar 2022 at 11:06, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Stephen Boyd <swboyd@chromium.org>
+> > > Sent: Wednesday, March 9, 2022 1:36 AM
+> > > To: quic_vpolimer <quic_vpolimer@quicinc.com>;
+> > > devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
+> > > freedreno@lists.freedesktop.org; linux-arm-msm@vger.kernel.org
+> > > Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
+> > > dianders@chromium.org; quic_kalyant <quic_kalyant@quicinc.com>
+> > > Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-
+> > > rate property for mdp clk
+> > >
+> > > WARNING: This email originated from outside of Qualcomm. Please be wary
+> > > of any links or attachments, and do not enable macros.
+> > >
+> > > Quoting Vinod Polimera (2022-03-08 08:54:56)
+> > > > Kernel clock driver assumes that initial rate is the
+> > > > max rate for that clock and was not allowing it to scale
+> > > > beyond the assigned clock value.
+> > >
+> > > How? I see ftbl_disp_cc_mdss_mdp_clk_src[] has multiple frequencies and
+> > > clk_rcg2_shared_ops so it doesn't look like anything in the clk driver
+> > > is preventing the frequency from changing beyond the assigned value.
+> >
+> > Folowing the comment of Stephen, i have checked a bit more. it appears that clock driver is not setting the max clock from assgined clocks, dpu driver is doing that.
+> > i am planning to fix it as below.
+> > 1) assign ULONG_MAX to max_rate while initializing clock in dpu driver.
+> > 2) remove unnecessary checks in the core_perf library. If rate doesn't match with the entries in the opp table, it will throw error, hence furthur checks are not needed.
+> > 3) no changes in dt are required. (we can drop all the posted ones)
+>
+> Why? They made perfect sense. The dts assignments should be replaced
+> by the opp setting in the bind function, as this would also set the
+> performance point of the respective power domain.
 
-We were able to observe this by just using either waylandsink (using
-dmabuf from the V4L2 rkvdec/rkvpu drivers), or even weston-simple-egl.
-I have not been able to do a full review of Sascha's submission, but
-from what I've seen of it, it should have fixed those issues. (I don't
-have RK3568 hardware to hand anymore.)
+Right. You should still _post_ the dts patches. It's nice to avoid
+unneeded "assigned-clocks" in the dts. The patch description should
+just be clear that it relies on the driver patch and shouldn't land /
+be backported without the driver patch.
 
-Cheers,
-Daniel
+
+> > Changes :
+> > ```--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
+> > @@ -284,17 +284,6 @@ void dpu_core_perf_crtc_release_bw(struct drm_crtc *crtc)
+> >         }
+> >  }
+> >
+> > -static int _dpu_core_perf_set_core_clk_rate(struct dpu_kms *kms, u64 rate)
+> > -{
+> > -       struct dss_clk *core_clk = kms->perf.core_clk;
+> > -
+> > -       if (core_clk->max_rate && (rate > core_clk->max_rate))
+> > -               rate = core_clk->max_rate;
+> > -
+> > -       core_clk->rate = rate;
+> > -       return dev_pm_opp_set_rate(&kms->pdev->dev, core_clk->rate);
+> > -}
+> > -
+> >  static u64 _dpu_core_perf_get_core_clk_rate(struct dpu_kms *kms)
+> >  {
+> >         u64 clk_rate = kms->perf.perf_tune.min_core_clk;
+> > @@ -405,7 +394,7 @@ int dpu_core_perf_crtc_update(struct drm_crtc *crtc,
+> >
+> >                 trace_dpu_core_perf_update_clk(kms->dev, stop_req, clk_rate);
+> >
+> > -               ret = _dpu_core_perf_set_core_clk_rate(kms, clk_rate);
+> > +               ret = dev_pm_opp_set_rate(&kms->pdev->dev, clk_rate);
+> >                 if (ret) {
+> >                         DPU_ERROR("failed to set %s clock rate %llu\n",
+> >                                         kms->perf.core_clk->clk_name, clk_rate);
+> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
+> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
+>
+> This file has been removed in msm/next
+
+To echo Dmitry, please make sure that your patch applies to msm-next,
+As I understand it, that means the branch msm-next on:
+
+https://gitlab.freedesktop.org/drm/msm.git
+
+-Doug
