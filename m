@@ -2,105 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C9594D7C03
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:35:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D08D84D7C0B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:36:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236497AbiCNHgc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 03:36:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56276 "EHLO
+        id S231923AbiCNHha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 03:37:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235208AbiCNHgb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:36:31 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EB8740E4C
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:35:20 -0700 (PDT)
+        with ESMTP id S236717AbiCNHh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:37:29 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0869E40E62
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:36:19 -0700 (PDT)
 Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id A3E013F1A8
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 07:35:16 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 706633F4BE
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 07:36:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647243316;
-        bh=7XD/ZCIPD+pSa/ajluyXSHrFnnLxPbj9dv4H6XXzi7o=;
+        s=20210705; t=1647243378;
+        bh=iAtSOaeLKxQsN9oiK9IKSKgSGPin9K0zGNTzo54gjLk=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=RRjxuZriAsaR77So9xWe6U3lKguXv3h8zPlDoRWaGCNefBEj2hLvSsREqM4viYOna
-         4ax02wxx1bMBZ/0eSeoAatw5HU9rSkW2HY86ZeDuz/u10Oqo184enCuPAUDxegRywC
-         4DDB5qVlzDVl6cepdg1TqmTyERUwyuvLJJe8k0Rrr5VHdKktOx65Z85OTuIyII4lDG
-         hrF9Jch2pR2Vh5jTjKYrH+JZvd7wxy3EvqNYHeM3pKDX1WLYXY97tmweNmljhCDZCi
-         1RmRMn3mDk65Q+cZepjqpHFgG19K2X1hhsEJcObiNFI6cmcS9TJWok1khtl2fgc29x
-         8wBk0NwPz2q4g==
-Received: by mail-ed1-f70.google.com with SMTP id r28-20020a50aadc000000b00418572a365bso3151840edc.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
+        b=ejJ1McrfEU8hBrkyg9HYVguxj9Ylx7vnA1gvJSacWKkxNcaMpB3+GGVONaJg6ZiJd
+         SsdzFwrRTf/skmDfOtZ0p6M+7Gg3ZOVW3jLqnttFuy6bLZE4jj/We1x1GheOwUC9KI
+         lCB3UXDfpdHMBMD5h/mpSGO8JwJRbm8Um4rf13cl03rkQIlySUYmM1n40DMdbhewkc
+         3Hq24WAxYGV4OO3sLM0+tMFzv2njr2YEeEJQzNcLOyCt516n5SPLGTMwHO3Si7NkkV
+         0Wfu39dfl+KmyrYdruN7wtTXHCO2QalQOS9R8UsYkpz9XkZUpAmFtJeOp6Cfby2+zI
+         s7hbpw1ls5T3g==
+Received: by mail-ed1-f70.google.com with SMTP id b9-20020aa7d489000000b0041669cd2cbfso8170586edr.16
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 00:36:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=7XD/ZCIPD+pSa/ajluyXSHrFnnLxPbj9dv4H6XXzi7o=;
-        b=cQBJXn2SZFq0EDBtNeh3D5s/McGuxZn2G6G8km/XzwIz85TyUMH+/G3+HnBYM1AC6a
-         03XSahDBCCxuhlBpFRlp9W2IFAhZG85zspNZHRWrQNSHhbMHEWdiSZy0baBQ1HqLk6pU
-         mnMChfRy2xkSiTXY8poHOVZAV2I50xfdibTxsH6JCNCuPbxwxUC8NftCSi0cAj+nFUWu
-         mTwSnUJlMaTitb3ayrRdpFeKgLzNFdelyp8M3loc/xfIhIpHC+doG67l3UIDodvaPgAN
-         tLU6NURIhVmkAiObb9Jf/HC7Z0SPixCjiic2wyZQAffduLi0NIw+lwO/Quc8f108SjtC
-         CDHQ==
-X-Gm-Message-State: AOAM5323CHt2/NRRM+ZaaBdX6t5LK5OwqYvuGGaTsHvGoAAnPlofI14h
-        VhimEFMs1HhIIRP7gRaVX90nFP29NsHEjY2NuDgH0bqmKIb/DDDIBleeY/fhyrXHJUTnYghmdCd
-        +IlRle94tfPTKOuPOqlv9P7VB4b782E//uy2vrNw=
-X-Received: by 2002:a05:6402:4301:b0:418:585b:cfe1 with SMTP id m1-20020a056402430100b00418585bcfe1mr9566743edc.250.1647243316375;
-        Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyQjBMUwRWUV4MpFNb8hzB27BfL/O3/uSgyWyC0crEVt9Qfy2ep0MNaTkAJB5rcza+jxkL4Mg==
-X-Received: by 2002:a05:6402:4301:b0:418:585b:cfe1 with SMTP id m1-20020a056402430100b00418585bcfe1mr9566734edc.250.1647243316197;
-        Mon, 14 Mar 2022 00:35:16 -0700 (PDT)
+        bh=iAtSOaeLKxQsN9oiK9IKSKgSGPin9K0zGNTzo54gjLk=;
+        b=SWf5xm1wHgG3s5sx8eB38fvyJx1l0N/+ZAFQNOALdWKWmFytnnMqD5/UcmBwpZQntz
+         YWL5AsE4GYaspMlbwZgWX/V/mXvl7DTR3tWQpwyHaBWVvV39srFF1GiiNLcRXxU4G6vg
+         49TZPbZ1j+VfKhEIeZXy0Mb/i6/FN58mZgf9Y+nuJNHOg6n0uXYIdyAKIE5BpmpTbdIN
+         BEwbirpf3ij24rPhirYY/gU+3GWuoAD1pARZW7qrBGjtH1TDQDiuOtjLfFsXkHtXHqFp
+         yO9OnYtBcsO0uAe8qeOaybpNLKuBFsFmlysK2oO1l4Wk6BXgzmy4ztvGN/UVHXKh6En5
+         Zebg==
+X-Gm-Message-State: AOAM5328yvfcydB2meaXCsVABYBY+TbxxKj/m9joaMD0fhBZD7siq2vG
+        Jes98rzAPtKjCDj0RqfXX1epNDNoeyEKYdd5zE8yoaaB3OrYh3+qSUwMh0Tua7w3HhXe/+OSrNh
+        YRfyluSE87O5kygv5hrP1nuAdGOQGHxPabtYg6QU=
+X-Received: by 2002:a17:907:1614:b0:6db:e3f7:2cb4 with SMTP id hb20-20020a170907161400b006dbe3f72cb4mr255447ejc.435.1647243377975;
+        Mon, 14 Mar 2022 00:36:17 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJycCN76EHq9M0eAQGZvA10vpA52jlIoM5/wMGxfvQsd+ClzDaAgk2gAPmK0IIzzn0h6WBnHrQ==
+X-Received: by 2002:a17:907:1614:b0:6db:e3f7:2cb4 with SMTP id hb20-20020a170907161400b006dbe3f72cb4mr255415ejc.435.1647243377741;
+        Mon, 14 Mar 2022 00:36:17 -0700 (PDT)
 Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id l9-20020a1709066b8900b006daa6015a0dsm6336356ejr.89.2022.03.14.00.35.14
+        by smtp.googlemail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm6448816eje.173.2022.03.14.00.36.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 00:35:15 -0700 (PDT)
-Message-ID: <4f8fffa7-631a-9b87-ee0a-0fb7dc1fec66@canonical.com>
-Date:   Mon, 14 Mar 2022 08:35:14 +0100
+        Mon, 14 Mar 2022 00:36:17 -0700 (PDT)
+Message-ID: <143db512-0223-1553-c141-2dc24a23c430@canonical.com>
+Date:   Mon, 14 Mar 2022 08:36:15 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
 Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
 Content-Language: en-US
-To:     Avi Fishman <avifishman70@gmail.com>
-Cc:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
-        James Morse <james.morse@arm.com>, tony.luck@intel.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Medad Young <medadyoung@gmail.com>
+Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
+        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
         Benjamin Fair <benjaminfair@google.com>,
         Nancy Yuen <yuenn@google.com>,
         Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>, ctcchien@nuvoton.com,
-        linux-edac <linux-edac@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org
 References: <20220311014245.4612-1-ctcchien@nuvoton.com>
  <20220311014245.4612-4-ctcchien@nuvoton.com>
  <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
- <CAKKbWA7Pr8Gi-rU5_BZ32y5aiLV0tSM19WkRe+zF8spWdk5zMg@mail.gmail.com>
+ <CAHpyw9dHau348qJB6g+fCcKqWByUsRHAGwb_mdUg=hjhW+xNsw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <CAKKbWA7Pr8Gi-rU5_BZ32y5aiLV0tSM19WkRe+zF8spWdk5zMg@mail.gmail.com>
+In-Reply-To: <CAHpyw9dHau348qJB6g+fCcKqWByUsRHAGwb_mdUg=hjhW+xNsw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/03/2022 21:22, Avi Fishman wrote:
-> On Fri, Mar 11, 2022 at 11:15 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@canonical.com> wrote:
+On 14/03/2022 06:32, Medad Young wrote:
+> Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> 於 2022年3月11日
+> 週五 下午5:15寫道：
 >>
 >> On 11/03/2022 02:42, Medad CChien wrote:
 >>> Add support for Nuvoton NPCM SoC.
@@ -151,20 +146,12 @@ On 13/03/2022 21:22, Avi Fishman wrote:
 >>> +             return -ENODEV;
 >>
 >> Why do you need it? How such case is even possible?
->>
->>> +
->>> +     npcm_chip = of_device_get_match_data(&pdev->dev);
->>> +     if (!npcm_chip)
->>> +             return -ENODEV;
->>
->> I wonder, how is it possible to have here NULL?
->>
-> Both of_match_device() and of_device_get_match_data() can return NULL,
-> are we missing something?
+> this driver is used for two nuvoton SOCs, one is NPCM845 and the other
+> is NPCM750
 
-I think your driver is OF-only, right? If yes, how is it possible to be
-here in probe() (meaning: being matched by of_device_id) and a few lines
-later do not match the same of_device_id?
+Yes and how NULL can happen for OF-only driver? Unless I missed
+something and this is not an OF-only driver? Do you allow any other
+matching methods?
 
 Best regards,
 Krzysztof
