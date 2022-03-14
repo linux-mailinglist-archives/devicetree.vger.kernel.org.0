@@ -2,147 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAF504D8557
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 13:48:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 895394D8574
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 13:51:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236600AbiCNMtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 08:49:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53620 "EHLO
+        id S232544AbiCNMwj convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 14 Mar 2022 08:52:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242347AbiCNMsa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 08:48:30 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2909DE084;
-        Mon, 14 Mar 2022 05:46:05 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id dr20so33281489ejc.6;
-        Mon, 14 Mar 2022 05:46:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=AfEfhobctAMGnNXoz9DFMeE1Ezn5+I06/IwgfEiFWno=;
-        b=NaViX/Ob7EurjojWFVkHCuVX5/dyO3EnUFQ8RfPzSUgNxDNUBgF7cCtrIr+DDwJ7ms
-         KSJFtMOMjj0vCxvc23rmNzyQO5bzAwO/zG64GgfcCFZMrAm9jGERgMocY4x9XvQjZskh
-         yGn2L2k+mxg6yxLVvRC21Nk+nEN2xfZ7gS3VMFlHS+FSBz9y0k179x0luSQ+RPhBTaKF
-         IbR7Rn1rAJlbsruiXG9LhDEqT4xf2wrW0QF0jzr8gnf5r8f3O1eIhrxxZT1AgigVfbgI
-         mZFv4UZ2zwE6p8NjNsO4HHoTOMTT+cbnrIM0WR4sjA+Y5gpuUwUHIvvNhrk1mAaRn1S6
-         ZWFQ==
+        with ESMTP id S231528AbiCNMwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 08:52:38 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B805CEB1;
+        Mon, 14 Mar 2022 05:51:28 -0700 (PDT)
+Received: by mail-qk1-f182.google.com with SMTP id g8so9040847qke.2;
+        Mon, 14 Mar 2022 05:51:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=AfEfhobctAMGnNXoz9DFMeE1Ezn5+I06/IwgfEiFWno=;
-        b=jk0IrdbSlxlXk3zIvYJ7+KwMh6NTByyR4F/LTWOL0GKLX2cNkccCkmfwavOpQGzlya
-         PeDBJ+7RedilrF7sH3k+xhtvgpeuscgOKyFiA4LoiowDBQjz2XOn6GugZA+e0j5hhTNN
-         pWiJ9Uiz/OjdeJr+x2FczId9FnSTEWpS5/Opm1ezBEHY/6/eNYyoxaEY4BEonxj+5rro
-         nirhIzflCxX7me1a9yLyVPBIagvJCmv99zPlnpU7iSkWjBX74S7zjP9ArRAXNY+Fl7Ao
-         Pu3X4x9bMdKgzNKErPK5hDUXuPLpAqytj3uxfllylY6XSNvxsDJvc267VR2M4AL1g9/K
-         /F5w==
-X-Gm-Message-State: AOAM532RINSz3IDWHjXlSUsGqn7WxmDEv0xDxYAU1kFoa6N2S240ii/r
-        u2Qh8M74qnRi9bwGhlq4hr8=
-X-Google-Smtp-Source: ABdhPJwQGEMNdKZIXZb8s4Ify5Z34Z/odEvJCAh4X2AaHEDVr1X24opAoevxRgsgAviJFEl3gvNV3Q==
-X-Received: by 2002:a17:907:1c0b:b0:6db:b756:4267 with SMTP id nc11-20020a1709071c0b00b006dbb7564267mr9181812ejc.147.1647261963250;
-        Mon, 14 Mar 2022 05:46:03 -0700 (PDT)
-Received: from Ansuel-xps.localdomain (93-42-71-246.ip85.fastwebnet.it. [93.42.71.246])
-        by smtp.gmail.com with ESMTPSA id gl2-20020a170906e0c200b006a767d52373sm6759106ejb.182.2022.03.14.05.46.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 05:46:02 -0700 (PDT)
-Date:   Mon, 14 Mar 2022 13:46:01 +0100
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Jonathan McDowell <noodles@earth.li>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 15/15] ARM: dts: qcom: add syscon and cxo/pxo clock to
- gcc node for ipq8064
-Message-ID: <Yi85CWQdY08GLxzp@Ansuel-xps.localdomain>
-References: <20220226135235.10051-1-ansuelsmth@gmail.com>
- <20220226135235.10051-16-ansuelsmth@gmail.com>
- <Yi8SrZkjYdU3W8aj@earth.li>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=R2mGQRlSs2sPNfzIP5enDMwkH/6tUq+UYR9mrMFxdzg=;
+        b=JWMjIDbuI89xhEm/QXVKFCCtozcJ+W4g0x+YdKYg5D4FHkOR10tTqNr3g1QJ+0AZ/z
+         zjcY4Zn5b39bCKen8Qu2o+ew/fOlvlFdSTk6bSfc2LfUuyR+d+w1yz41W7BoUK4qbVUe
+         65yJyD7RGngPMYg1X56ezCPNEE6S7NfwvchWqTyoZOFp7Ea55r0eKNyTkFsUx8Qw6mnd
+         TQyDVz+H6fHn6WdI8Vb9l066wXzJS/WALOlgtPfNXhvo6uBwfHg61KC3mEnKqEPwPjIA
+         dFvVlows/jxgjiAIvUhT77Z8EVE3eLHB1cvTm686aEA7/fcx/EeU4viiS6NlePu9wvup
+         a2Ew==
+X-Gm-Message-State: AOAM533gNS30bhSsrjy7ADPv/XGU3swkHALzsMHcd/2L50T/WlQeXer9
+        MGlon1Bom8IZrKrMkJz3DRRbRywBbLsUbg==
+X-Google-Smtp-Source: ABdhPJw82l+EPoFHJBvUIcD4km/M8KqnhX7LBn0DJZDUdtO1y1iI7Rcdq9lbCwCwplS2uxcVtDkrFA==
+X-Received: by 2002:a37:af81:0:b0:502:7ea:34e7 with SMTP id y123-20020a37af81000000b0050207ea34e7mr14458043qke.737.1647262287238;
+        Mon, 14 Mar 2022 05:51:27 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id n8-20020ac85a08000000b002e06aa02021sm11258188qta.49.2022.03.14.05.51.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Mar 2022 05:51:27 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-2dc348dab52so161674117b3.6;
+        Mon, 14 Mar 2022 05:51:26 -0700 (PDT)
+X-Received: by 2002:a81:c703:0:b0:2d0:cc6b:3092 with SMTP id
+ m3-20020a81c703000000b002d0cc6b3092mr18267309ywi.449.1647262286483; Mon, 14
+ Mar 2022 05:51:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Yi8SrZkjYdU3W8aj@earth.li>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20220312084205.31462-1-biju.das.jz@bp.renesas.com>
+ <20220312084205.31462-2-biju.das.jz@bp.renesas.com> <Yi39fGVE0f9LgN/1@pendragon.ideasonboard.com>
+ <OS0PR01MB592293BC9493DC1DAD1DA0C0860F9@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+ <CAMuHMdVYYMJvbnR3r-KGtU=3hiKjsiaXH4xyUzhv7vY5Y6MB6A@mail.gmail.com> <Yi8xcuxSff0UFRaf@pendragon.ideasonboard.com>
+In-Reply-To: <Yi8xcuxSff0UFRaf@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Mar 2022 13:51:15 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdVjXA_hN53=-B4+4ERbjYz-s=on6NWWXYFXjD0xnPNpoQ@mail.gmail.com>
+Message-ID: <CAMuHMdVjXA_hN53=-B4+4ERbjYz-s=on6NWWXYFXjD0xnPNpoQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] media: dt-bindings: media: renesas,vsp1: Document
+ RZ/{G2L,V2L} VSPD bindings
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 14, 2022 at 10:02:21AM +0000, Jonathan McDowell wrote:
-> AFAICT the rest of the series has been picked up in clk-for-5.18, but I
-> don't see this there or in dts-for-5.18. It's required for a
-> functioning tsens driver on IPQ8064 so it would be nice to see it landed.
+Hi Laurent,
+
+On Mon, Mar 14, 2022 at 1:13 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Mon, Mar 14, 2022 at 10:01:14AM +0100, Geert Uytterhoeven wrote:
+> > On Mon, Mar 14, 2022 at 9:44 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > > > On Sat, Mar 12, 2022 at 08:42:03AM +0000, Biju Das wrote:
+> > > > > Document VSPD found in RZ/G2L and RZ/V2L family SoC's. VSPD block is
+> > > > > similar to VSP2-D found on R-Car SoC's, but it does not have a version
+> > > > > register and it has 3 clocks compared to 1 clock on vsp1 and vsp2.
+> > > > >
+> > > > > This patch introduces a new compatible 'renesas,rzg2l-vsp2' to handle
+> > > > > these differences.
+> > > > >
+> > > > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > > > > index 990e9c1dbc43..2696a4582251 100644
+> > > > > --- a/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/media/renesas,vsp1.yaml
+> >
+> > > > > +        clock-names:
+> > > > > +          items:
+> > > > > +            - const: du.0
+> > > >
+> > > > Similarly, I'm not sure this is a good name from the point of view of the
+> > > > VSP.
+> > >
+> > > OK, will use the name 'aclk', which is Main clock for this module which is
+> > > shared with LCDC. 'du.0' is not valid any more here as we are using different
+> > > CRTC implementation for RZ/G2LC.
+> > >
+> > > > > +            - const: pclk
+> > > > > +            - const: vclk
+> > > >
+> > > > I couldn't find those names in the documentation, where do they come from
+> > >
+> > > HW manual (page 312) mentions about LCDC_CLK_A, LCDC_CLK_P & LCDC_CLK_D.
+> > >
+> > > Detailed description is mentioned in Clock list document. Please see below.
+> > >
+> > >         LCDC_CLK_A      M0φ     PLL3    200     200             LCDC  Main clock
+> > >         LCDC_CLK_P      ZTφ     PLL3    100     100             LCDC Register Access Clock
+> > >         LCDC_CLK_D      M3φ     SEL_PLL5_4      148.5~5.803     LCDC Video Clock
+> > >
+> > > > ? Could you maybe share a DT integration example ?
+> > >
+> > > Please see below,
+> >
+> > >
+> > > +               du: display@0x10890000 {
+> > > +                       compatible = "renesas,du-r9a07g044l";
+> > > +                       reg = <0 0x10890000 0 0x10000>;
+> > > +                       interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>;
+> > > +                       clocks = <&cpg CPG_MOD R9A07G044_LCDC_CLK_A>,
+> > > +                                <&cpg CPG_MOD R9A07G044_LCDC_CLK_P>,
+> > > +                                <&cpg CPG_MOD R9A07G044_LCDC_CLK_D>;
+> > > +                       clock-names = "du.0", "pclk", "vclk";
+> > > +                       power-domains = <&cpg>;
+> > > +                       resets = <&cpg R9A07G044_LCDC_RESET_N>;
+> > > +                       reset-names = "du.0";
+> > > +                       renesas,vsps = <&vspd0 0>;
+> >
+> > Given the DU driver is no longer shared, perhaps all occurrencies of "du"
+> > should be replaced by "lcdc"?
 >
+> The LCDC is the combination of the FCPVD, the VSPD and the DU. The first
+> two are similar to the eponymous IP cores used on R-Car Gen3, while the
+> DU is a different beast, despite sharing the same name.
 
-I think we just have to wait, they said that it was expected a delay
-between the clk and the dts merge. (one of the reason I couldn't drop
-the pxo/cxo fixed clock)
+OK, that's a good reason to keep the DU name.
 
-> On Sat, Feb 26, 2022 at 02:52:35PM +0100, Ansuel Smith wrote:
-> > Add syscon compatible required for tsens driver to correctly probe driver
-> > and access the reg. Also add cxo and pxo tag and declare them as gcc clock
-> > now requires them for the ipq8064 gcc driver that has now been modernized.
-> > 
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> > ---
-> >  arch/arm/boot/dts/qcom-ipq8064.dtsi | 8 +++++---
-> >  1 file changed, 5 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > index 11481313bdb6..5524a68cf3d1 100644
-> > --- a/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > +++ b/arch/arm/boot/dts/qcom-ipq8064.dtsi
-> > @@ -298,13 +298,13 @@ smem: smem@41000000 {
-> >  	};
-> >  
-> >  	clocks {
-> > -		cxo_board {
-> > +		cxo_board: cxo_board {
-> >  			compatible = "fixed-clock";
-> >  			#clock-cells = <0>;
-> >  			clock-frequency = <25000000>;
-> >  		};
-> >  
-> > -		pxo_board {
-> > +		pxo_board: pxo_board {
-> >  			compatible = "fixed-clock";
-> >  			#clock-cells = <0>;
-> >  			clock-frequency = <25000000>;
-> > @@ -736,7 +736,9 @@ tsens_calib_backup: calib_backup@410 {
-> >  		};
-> >  
-> >  		gcc: clock-controller@900000 {
-> > -			compatible = "qcom,gcc-ipq8064";
-> > +			compatible = "qcom,gcc-ipq8064", "syscon";
-> > +			clocks = <&pxo_board>, <&cxo_board>;
-> > +			clock-names = "pxo", "cxo";
-> >  			reg = <0x00900000 0x4000>;
-> >  			#clock-cells = <1>;
-> >  			#reset-cells = <1>;
-> > -- 
-> > 2.34.1
-> > 
-> 
-> J.
-> 
-> -- 
->     I program, therefore I am.     |  .''`.  Debian GNU/Linux Developer
->                                    | : :' :  Happy to accept PGP signed
->                                    | `. `'   or encrypted mail - RSA
->                                    |   `-    key on the keyservers.
+Gr{oetje,eeting}s,
 
--- 
-	Ansuel
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
