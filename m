@@ -2,142 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86F5B4D7A66
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 06:33:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 703234D7A80
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 06:51:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236146AbiCNFeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 01:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46542 "EHLO
+        id S236196AbiCNFwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 01:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235332AbiCNFeE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 01:34:04 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F31412721;
-        Sun, 13 Mar 2022 22:32:53 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id q5so20191067ljb.11;
-        Sun, 13 Mar 2022 22:32:53 -0700 (PDT)
+        with ESMTP id S229696AbiCNFwb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 01:52:31 -0400
+Received: from mail-pj1-x102e.google.com (mail-pj1-x102e.google.com [IPv6:2607:f8b0:4864:20::102e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C3CF3FD8D;
+        Sun, 13 Mar 2022 22:51:21 -0700 (PDT)
+Received: by mail-pj1-x102e.google.com with SMTP id b8so13478577pjb.4;
+        Sun, 13 Mar 2022 22:51:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Bg2tizYqINxLaPAUtFWgOMe6U6P8VVtNtHhthzp+bNk=;
-        b=NfkG+SyIm8tCL/zOPwO1KnVTPxiHAE3v9/ysLSapqVw7bkxmxOhB2gmvGoQj1D55wT
-         yP9JUSKVbEKu1IcCLpsl4a+l/rLJ1YZzTI4MOUwTJZjsZEMlpQ4FDi1/k74Ny59szLHe
-         4GnDZcPErTJ6simgZ2+qeplpmZJQ3FoRm034iGgtalMdQC6mZ5G3p509KKto2DlrjNAs
-         /HemlPuaWhrk7KnKhasu3Fi8CpJMQQoX4+wK6rTItWoHpum3eLd+MefoRUIOwnYtRhFI
-         rixVSeJvqDJoMYq53sw+LBv/EFOcKZPnWCcrUsAGEzWGDheT2jBgW17SNFhWP5yE9QcV
-         YYAA==
+        h=from:to:cc:subject:date:message-id;
+        bh=vWu/ETSZNoHOJrD7BGAJ22j0JvzvgibtxRQEo0x/cEk=;
+        b=WohuxuSd4UsK09plXPhFahmIBDESyrk6S3SGq6ruiOe9IuQXAmeiIsbmF1Fa/Al3af
+         VaTLgc1eb7ecWWBPxZfAJNJ//YWoUfdxfPPs0Bx4oJhRqI2LWhigDTguTuZisvBrLIrp
+         kKn7aYRMO3G+SzyVUpUoG/o//68W20h2ZEYYAhyqn4PYeIC3AP5RcW2hu0htiKz+y12U
+         IwIWLacaxX4zWL/E6lw//0E7fhXkJ5BTQP90LhL/7QRonYogeTx/NHiLx5vEJrHJGbTv
+         d+fulX6EkB/FHNg9/zUydjMPH/BHzCHQCaUoM1GGmpK3M/axDIweA1vN5jmnBeTjgW59
+         jWoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Bg2tizYqINxLaPAUtFWgOMe6U6P8VVtNtHhthzp+bNk=;
-        b=nkJZdqVSpD6zKw554f6Wpjvl6VB+M/YLLaeyFQDTr79u5vAB+hxrXBweW2tXUTp7Gc
-         ebuwtGKy+hGppORI4ctJNex7SdX1n1KY0IQLCIpqGIBjFznK30LEMgNVNQzvtn43VMw6
-         iNsn+ysHRv3idPKowKTsKXlPTxWKBmBHMHltfXllbxnWyVglmePCCLaVrzpSflWnbZze
-         hS/irNMEtItbXcaW2CITDZP/jFhqjx/fHSbESLnJJhkwCnhrINxmnvILv614Ze6Vy75y
-         Lh0lqiYXuTuc2txO3iyqmos01nE0iHOm0drafrSEBtJrh0q3MKBJuAWqlZQ+O9TOYcDl
-         SS3w==
-X-Gm-Message-State: AOAM531LMEMoWb7hdbfmtHO3Zvb2rKyAA5AtXPbWyOcB9aQOwTJgBfIc
-        nYr6TTlqg0x00PW/XHOq0DsWs7SY4kkxzLrYt9k=
-X-Google-Smtp-Source: ABdhPJw99wXJ7VBc1ldLK6Gm+PgQRmnPgXWSIBgfH6KHHKs1ZlA6/QsEtlHm/AWU4bJ5LyqvuX0idpMKmQT55Ln8Vd0=
-X-Received: by 2002:a2e:5009:0:b0:247:d738:3e8e with SMTP id
- e9-20020a2e5009000000b00247d7383e8emr13197832ljb.281.1647235972025; Sun, 13
- Mar 2022 22:32:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220311014245.4612-1-ctcchien@nuvoton.com> <20220311014245.4612-4-ctcchien@nuvoton.com>
- <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
-In-Reply-To: <1f5e1e49-4ab0-5e06-fa8f-2a11b0fd1df9@canonical.com>
-From:   Medad Young <medadyoung@gmail.com>
-Date:   Mon, 14 Mar 2022 13:32:40 +0800
-Message-ID: <CAHpyw9dHau348qJB6g+fCcKqWByUsRHAGwb_mdUg=hjhW+xNsw@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     rric@kernel.org, james.morse@arm.com, tony.luck@intel.com,
-        mchehab@kernel.org, bp@alien8.de, robh+dt@kernel.org,
-        Benjamin Fair <benjaminfair@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Patrick Venture <venture@google.com>, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING <KFTING@nuvoton.com>,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        ctcchien@nuvoton.com, linux-edac@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=vWu/ETSZNoHOJrD7BGAJ22j0JvzvgibtxRQEo0x/cEk=;
+        b=RTiO5Bi6EpcfRsrq8/wxepqZqY2G+RMOr6MyT9RubQY5NimopIyEWab+tPILF037+w
+         v93MIxTcMqTkXhaCBfwGvx2nirtvXBgX0XkXukNvVWsGh1InZCjhnzfGaxWLGyvP+tKO
+         LnkhALmSVRqP7z14vH2oZzfEFQp2dI2Bmeo9JFIxxxtsAUuxbL2kPtf6h3wUeyCRax8K
+         dw/nuak6AnJbGeyfS6IFaYmu4sziCWJH6oPkSa+CSpfXOJ4guY7IpMR0TMJymnFKXfRg
+         E2Ee/R/nqJeQXwAYRQaPRpl7NgGkhzYmd65VeqkcV7BrzRODlUprHjRtANqNGJepBRbV
+         fysQ==
+X-Gm-Message-State: AOAM532pHNpehBVg3nx86duBcha+Iqk2+bMKi0EXpMEl8QNSKRr8G1MX
+        AiN91AbU6YkGpsSZ/HEKj5I=
+X-Google-Smtp-Source: ABdhPJzVOzlqCJDv1HzcCefmoDM4h44gH43NEh+xsBEWPthb5ETAQFkSP1Umr/PZ1jlZBtzZME2kGA==
+X-Received: by 2002:a17:902:7102:b0:151:ef50:32ec with SMTP id a2-20020a170902710200b00151ef5032ecmr22430264pll.50.1647237080527;
+        Sun, 13 Mar 2022 22:51:20 -0700 (PDT)
+Received: from scdiu3.sunplus.com ([113.196.136.192])
+        by smtp.googlemail.com with ESMTPSA id h17-20020a63df51000000b0036b9776ae5bsm15238115pgj.85.2022.03.13.22.51.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 13 Mar 2022 22:51:20 -0700 (PDT)
+From:   Hammer Hsieh <hammerh0314@gmail.com>
+To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        lee.jones@linaro.org, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com,
+        Hammer Hsieh <hammerh0314@gmail.com>
+Subject: [PATCH v3 0/2] Add PWM driver for Suplus SP7021 SoC
+Date:   Mon, 14 Mar 2022 13:51:35 +0800
+Message-Id: <1647237097-29172-1-git-send-email-hammerh0314@gmail.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
-=B9=B43=E6=9C=8811=E6=97=A5
-=E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=885:15=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 11/03/2022 02:42, Medad CChien wrote:
-> > Add support for Nuvoton NPCM SoC.
-> >
-> > Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
-> > ---
-> >  drivers/edac/Kconfig     |   9 +
-> >  drivers/edac/Makefile    |   1 +
-> >  drivers/edac/npcm_edac.c | 714 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 724 insertions(+)
-> >  create mode 100644 drivers/edac/npcm_edac.c
-> >
-> > diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-> > index 58ab63642e72..757e1d160640 100644
-> > --- a/drivers/edac/Kconfig
-> > +++ b/drivers/edac/Kconfig
-> > @@ -539,4 +539,13 @@ config EDAC_DMC520
-> >         Support for error detection and correction on the
-> >         SoCs with ARM DMC-520 DRAM controller.
-> >
-> > +config EDAC_NPCM
-> > +     tristate "Nuvoton NPCM DDR Memory Controller"
-> > +     depends on ARCH_NPCM
->
-> || COMPILE_TEST
-> (and test if it compiles)
->
-> (...)
->
-> > +
-> > +MODULE_DEVICE_TABLE(of, npcm_edac_of_match);
-> > +
-> > +static int npcm_edac_mc_probe(struct platform_device *pdev)
-> > +{
-> > +     const struct npcm_edac_platform_data *npcm_chip;
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct edac_mc_layer layers[1];
-> > +     const struct of_device_id *id;
-> > +     struct priv_data *priv_data;
-> > +     struct mem_ctl_info *mci;
-> > +     struct resource *res;
-> > +     void __iomem *reg;
-> > +     int ret =3D -ENODEV;
-> > +     int irq;
-> > +
-> > +     id =3D of_match_device(npcm_edac_of_match, &pdev->dev);
-> > +     if (!id)
-> > +             return -ENODEV;
->
-> Why do you need it? How such case is even possible?
-this driver is used for two nuvoton SOCs, one is NPCM845 and the other
-is NPCM750
+This is a patch series for PWM driver for Suplus SP7021 SoC.
 
->
-> > +
-> > +     npcm_chip =3D of_device_get_match_data(&pdev->dev);
-> > +     if (!npcm_chip)
-> > +             return -ENODEV;
->
-> I wonder, how is it possible to have here NULL?
->
-> Best regards,
-> Krzysztof
+Sunplus SP7021 is an ARM Cortex A7 (4 cores) based SoC. It integrates
+many peripherals (ex: UART. I2C, SPI, SDIO, eMMC, USB, SD card and
+etc.) into a single chip. It is designed for industrial control.
+
+Refer to:
+https://sunplus-tibbo.atlassian.net/wiki/spaces/doc/overview
+https://tibbo.com/store/plus1.html
+
+Refer to (PWM):
+https://sunplus.atlassian.net/wiki/spaces/doc/pages/461144198/12.+Pulse+Width+Modulation+PWM
+
+Hammer Hsieh (2):
+  dt-bindings: pwm: Add bindings doc for Sunplus SoC SP7021 PWM Driver
+  pwm: sunplus-pwm: Add Sunplus SoC SP7021 PWM Driver
+
+ .../bindings/pwm/sunplus,sp7021-pwm.yaml           |  42 ++++
+ MAINTAINERS                                        |   6 +
+ drivers/pwm/Kconfig                                |  11 +
+ drivers/pwm/Makefile                               |   1 +
+ drivers/pwm/pwm-sunplus.c                          | 232 +++++++++++++++++++++
+ 5 files changed, 292 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sunplus,sp7021-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-sunplus.c
+
+-- 
+2.7.4
+
