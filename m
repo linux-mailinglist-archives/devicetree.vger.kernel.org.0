@@ -2,128 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4464D8050
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:02:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FBC04D8071
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:13:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236034AbiCNLDe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 07:03:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44102 "EHLO
+        id S238619AbiCNLOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 07:14:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234345AbiCNLDe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:03:34 -0400
-Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52C6743EF8
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:02:23 -0700 (PDT)
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id E4B3FAC0289;
-        Mon, 14 Mar 2022 19:02:20 +0800 (CST)
-Message-ID: <d98782df-43c8-475b-375d-ad6aff4fae44@rock-chips.com>
-Date:   Mon, 14 Mar 2022 19:02:20 +0800
+        with ESMTP id S234040AbiCNLOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:14:35 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D3EC61DA76;
+        Mon, 14 Mar 2022 04:13:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647256406; x=1678792406;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VfBrAu+qBaUATnWxIS1MDajha/eQ14Gcbh4gLGvfVKs=;
+  b=ygRPhWKW2zdGa7NWBBZLqwXMJkWlB4dlfuqXPYgQfkQfy03ApqreiRC5
+   ZSvTRcJ/efRXK0yI/W1ixkALcnxCTCQsWLIdynZSy3LItSvdx+VwdL2Pg
+   yVIosPULl8kvvOtHdd5JmK8TaZxbktDP2QPl9wV4ZLuH9lg2GhVeZ0HYq
+   4=;
+Received: from ironmsg08-lv.qualcomm.com ([10.47.202.152])
+  by alexa-out.qualcomm.com with ESMTP; 14 Mar 2022 04:13:25 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg08-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2022 04:13:25 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Mon, 14 Mar 2022 04:13:24 -0700
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Mon, 14 Mar 2022 04:13:18 -0700
+Date:   Mon, 14 Mar 2022 16:43:13 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
+        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Kishon Vijay Abraham I" <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Wesley Cheng <wcheng@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-usb@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_kriskura@quicinc.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
+ override params bindings
+Message-ID: <20220314111313.GA6889@hu-pkondeti-hyd.qualcomm.com>
+References: <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
+ <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
+ <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
+ <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
+ <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
+ <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
+ <20220314094054.GB28402@hu-pkondeti-hyd.qualcomm.com>
+ <b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com>
+ <20220314103045.GA31533@hu-pkondeti-hyd.qualcomm.com>
+ <fadbc93f-8741-58c6-d0e5-dc740e0f0724@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v7 22/24] drm: rockchip: Add VOP2 driver
-Content-Language: en-US
-From:   Andy Yan <andy.yan@rock-chips.com>
-To:     Daniel Stone <daniel@fooishbar.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220225075150.2729401-1-s.hauer@pengutronix.de>
- <20220225075150.2729401-23-s.hauer@pengutronix.de>
- <bb077f34-333e-a07a-1fcb-702a6807f941@rock-chips.com>
- <CAPj87rO2sztocJrE-CeSQWry9j_cSe2uv9F1Yf81pGnBXdu2Ag@mail.gmail.com>
- <ae4314db-09c0-049b-ccc9-f6b1c3003dcb@rock-chips.com>
- <CAPj87rOanNE1wca3ijJx1zXYZkKX1ta9F145GCXM15Nv=POicA@mail.gmail.com>
- <f3af0286-fc64-f011-bc90-6797e26e3640@rock-chips.com>
- <30f195d6-e9d7-3da6-89fa-4a064a1f6bf9@rock-chips.com>
-In-Reply-To: <30f195d6-e9d7-3da6-89fa-4a064a1f6bf9@rock-chips.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWRpLTktWGElMGE5PGU
-        5OTRlJVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PVE6ECo4Vj4MIygNSk8*Iz8e
-        IU9PFA9VSlVKTU9MSU5OTE9KT0NLVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT0xNQzcG
-X-HM-Tid: 0a7f8817e328b039kuuue4b3fac0289
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <fadbc93f-8741-58c6-d0e5-dc740e0f0724@canonical.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel:
+Hi Krzysztof,
 
-   Remember you said our downstream vop2 driver is very slow on weston.
+On Mon, Mar 14, 2022 at 11:41:27AM +0100, Krzysztof Kozlowski wrote:
+> On 14/03/2022 11:30, Pavan Kondeti wrote:
+> > Hi Krzysztof,
+> > 
+> >>
+> >> Ah, I did not get it. That's not the solution for this case. defines in
+> >> dt-bindings are for constants which already can be in DT, e.g. IDs. Your
+> >> register values should not be stored in DT.
+> >>
+> > These are again not register definitions. These are encodings that dT and
+> > driver can use. These would be constants only, no?
+> 
+> What do you mean it is not a register value? I don't have access to
+> datasheet/manual but I can clearly see code:
+> 
+> +	if (or->hs_disconnect.override)
+> +		qcom_snps_hsphy_write_mask(hsphy->base,
+> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
+> +			HS_DISCONNECT_MASK,
+> +			or->hs_disconnect.value << HS_DISCONNECT_SHIFT);
+> 
+> You read the value from DT (e.g. "3" which means 6.3% for hs-disconnect)
+> and you write it to a register. Directly. 3 is a value for the hardware,
+> meaningless outside of it. It has meaning only in this one hardware
+> programming model. For humans it means nothing. For humans 6.3% means
+> something.
+> 
 
-Would you please share the case you run ? or how can i test frame rate 
-on weston?
+Right, This is what I have been saying will change. we don't pass the direct
+register values anymore. Instead I am saying, we pass the percentage
+multiplied by 100. For 6.3%, user will be passing 630 in device tree. for
+-2.75% user will pass (-275).
 
-On 3/9/22 15:37, Andy Yan wrote:
-> Hi Daniel:
->
-> On 3/9/22 10:03, Andy Yan wrote:
->> Hi Daniel:
->>
->> On 3/8/22 22:04, Daniel Stone wrote:
->>> On Tue, 8 Mar 2022 at 08:42, Andy Yan <andy.yan@rock-chips.com> wrote:
->>>> On 3/7/22 21:09, Daniel Stone wrote:
->>>>> On Mon, 7 Mar 2022 at 12:18, Andy Yan <andy.yan@rock-chips.com> 
->>>>> wrote:
->>>>>> When run a weston 10.0.0:
->>>>>>
->>>>>>     # export XDG_RUNTIME_DIR=/tmp
->>>>>>     # weston --backend=drm-backend.so --use-pixma --tty=2
->>>>>> --continue=without-input
->>>>>>
->>>>>> I got the following error:
->>>>>>
->>>>>> drm_atomic_check_only [PLANE:31:Smart0-win0] CRTC set but no FB
->>>>> Can you please start Weston with --logger-scopes=log,drm-backend and
->>>>> attach the output?
->>>> Please see the weston ouput here[0]
->>> Are you running with musl perhaps?
->> Do you mean the C library? I chose uClib-ng in buildroot, not use musl.
->>> Either way, please make sure your
->>> libdrm build includes commit 79fa377c8bdc84fde99c6a6ac17e554971c617be.
->>
->>
->> The upstream buildroot use libdrm2.4.109, this commit[0] if from 
->> libdrm2.4.110
->>
->> I cherry-pick this patch to my local libdrm, but has no effect, still 
->> has "atomic: couldn't commit new state" error.
->>
->> I have do a search in libdrm and weston, but find no one call 
->> drmModeAtomicMerge, is that right?
->>
->> [0]https://gitlab.freedesktop.org/mesa/drm/-/merge_requests/167
->>
->
-> With your patch applied from libdrm2.4.110, I do a make clean for 
-> buidlroot, than build it again,  That's take effect.
->
-> I can see only the second value (non-zero FB) of plane 31 commit to 
-> the kernel. So this is works.
->
-> Maybe the buidroot should update libdrm package.
->
-> Thank you.
->
->>>
->>> Cheers,
->>> Daniel
->>
->> _______________________________________________
->> Linux-rockchip mailing list
->> Linux-rockchip@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+Are we on the same page now?
+
+Thanks,
+Pavan
