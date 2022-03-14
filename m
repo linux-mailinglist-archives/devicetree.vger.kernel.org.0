@@ -2,179 +2,343 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E12B4D8F3D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:05:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C1DC44D8F7C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:24:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235050AbiCNWGQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 18:06:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52572 "EHLO
+        id S245543AbiCNWZc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 18:25:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233894AbiCNWGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:06:16 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C8F112740;
-        Mon, 14 Mar 2022 15:05:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=bpBj1jLPuNXD2bHuGOl7hPinc2wD6kM0zd7V33MycNU=; b=RSyobZrklHqOZU4UMuimLrJIj3
-        t/V9q7Bcww+Anrbeb6sQe5Ano87Y/KjVNON9OzlfNmgFb+bhCUAAt+bKTby0nhyY7LqvpFTwASEM3
-        r/a1cjUYVp2mgNhdl8bMX6cY4Vx/Yo1ZSrnRVoVV6zTvbFZC1JGIbxA2x1B9HwtFLyaM=;
-Received: from p200300ccff0ce9001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0c:e900:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1nTso4-00043u-01; Mon, 14 Mar 2022 23:04:48 +0100
-Date:   Mon, 14 Mar 2022 23:04:46 +0100
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, dri-devel@lists.freedesktop.org,
+        with ESMTP id S239767AbiCNWZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:25:32 -0400
+Received: from mail-oo1-xc32.google.com (mail-oo1-xc32.google.com [IPv6:2607:f8b0:4864:20::c32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B5FB2DC9
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:24:21 -0700 (PDT)
+Received: by mail-oo1-xc32.google.com with SMTP id h16-20020a4a6f10000000b00320507b9ccfso22226864ooc.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VXkgLT4PeK4BJW91saFmU0oIFYB4QFVel8mcjNJiRmM=;
+        b=fwsIaGF4QuCLG0iOgTTV5GoIGnY2aHjoWMpp+AaEV9HELRz9N7G1iK1hkOwie1Zkol
+         Y28F3+urMv3v2rVixyeIAQ2o65BtxSzyrU3gx25E6JRVv6U6yHFRerWRgQJNb5zffoA4
+         ket7miU2iqbcmKor9+1hyAsL/JBc3lqGDvKF33VjYbtrsKmNCvn8sjr7/oxLXM91YF60
+         oXPnMZnaf1vQXjisuorXJmRxM278D8Is8nA+T3O+NWPy3qgGI2IdsAKZ+ahoM2mlFA/U
+         aQ7eOCa5ivMORSiUoJ0DZz8HCBq0GACHimqJYq4iWgAvAHOO4o2jGKdK0NzPEtM1r7zx
+         1PoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VXkgLT4PeK4BJW91saFmU0oIFYB4QFVel8mcjNJiRmM=;
+        b=qOoTT0ksNjKnD7mdui0+9CIgyQwmQ/xzLgpE1SpD37SGq9Jst6pOSXlirlmOD5p3v3
+         kqALUE7WYRoG0hH6bgYAiKYeds48pnkLEOWezI2GBy2ceQZGe7YugMlPbBdMXr8r2emo
+         z1c2CKPxO8YiMZWfUE5t6Y8+2BvXRqxNHGyJcrTiFJEh/KYbYIjT1hw7RtkfW6DFs3ax
+         +c0RJXJ40mm3p7QscT291UvaGo1BIBoh4qyIr0671FjV832v5AtYrTkTqUCydX5VoS3I
+         x+9Bvr/1XfBt+7wRhDhB4pJs/oXEqwbdAyc8QrRbWmqCprMC1BEB7LznH1slQ1gUsUFh
+         FqHw==
+X-Gm-Message-State: AOAM530dl6hD7uWIqlFKSvqNVhbDfHLEUecWzWBp40MlwuebMeZ+dF9h
+        872+jTEc5K10jrfuioQHwshhSA==
+X-Google-Smtp-Source: ABdhPJxsWboDvrA/SAMxOI6sRMS8CGcJCSsKU9LKX+lWQ7SnYyhFHebQojX6n+0d3k+fYy9xgMyUnw==
+X-Received: by 2002:a05:6870:1d4:b0:db:a2b3:cff9 with SMTP id n20-20020a05687001d400b000dba2b3cff9mr37oad.231.1647296660779;
+        Mon, 14 Mar 2022 15:24:20 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id x1-20020a4ae781000000b00320d5d238efsm7968434oov.3.2022.03.14.15.24.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 15:24:20 -0700 (PDT)
+Date:   Mon, 14 Mar 2022 17:24:18 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Alexandre Bailon <abailon@baylibre.com>
+Cc:     ohad@wizery.com, mathieu.poirier@linaro.org, robh+dt@kernel.or,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alistair@alistair23.me,
-        samuel@sholland.org, josua.mayer@jm0.eu,
-        letux-kernel@openphoenux.org
-Subject: Re: [RFC PATCH 1/6] dt-bindings: display: imx: Add EPDC
-Message-ID: <20220314230446.5cc52121@aktux>
-In-Reply-To: <YizzRKSDvHon83ks@latitude>
-References: <20220206080016.796556-1-andreas@kemnade.info>
-        <20220206080016.796556-2-andreas@kemnade.info>
-        <YizzRKSDvHon83ks@latitude>
-X-Mailer: Claws Mail 3.17.8 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stephane.leprovost@mediatek.com, khilman@baylibre.com
+Subject: Re: [PATCH v4 4/7] remoteproc: mtk_apu: Add support of JTAG
+Message-ID: <Yi/AkpIPO94E1qFg@builder.lan>
+References: <20220304161514.994128-1-abailon@baylibre.com>
+ <20220304161514.994128-5-abailon@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220304161514.994128-5-abailon@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 12 Mar 2022 20:23:48 +0100
-Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
+On Fri 04 Mar 10:15 CST 2022, Alexandre Bailon wrote:
 
-> Hello Andreas,
->=20
-> Sorry for the delay, I finally got around to having a look at the
-> patchset.
->=20
-> Some comments from skimming the patches below, and in my other replies.
->=20
->=20
-> On Sun, Feb 06, 2022 at 09:00:11AM +0100, Andreas Kemnade wrote:
-> > Add a binding for the Electrophoretic Display Controller found at least
-> > in the i.MX6.
-> > The timing subnode is directly here to avoid having display parameters
-> > spread all over the plate.
-> >=20
-> > Supplies are organized the same way as in the fbdev driver in the
-> > NXP/Freescale kernel forks. The regulators used for that purpose,
-> > like the TPS65185, the SY7636A and MAX17135 have typically a single bit=
- to
-> > start a bunch of regulators of higher or negative voltage with a
-> > well-defined timing. VCOM can be handled separately, but can also be
-> > incorporated into that single bit.
-> >=20
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> >  .../bindings/display/imx/fsl,mxc-epdc.yaml    | 159 ++++++++++++++++++
-> >  1 file changed, 159 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,m=
-xc-epdc.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc=
-.yaml b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > new file mode 100644
-> > index 000000000000..7e0795cc3f70
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/imx/fsl,mxc-epdc.yaml
-> > @@ -0,0 +1,159 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +--- =20
-> [...]
-> > +  - vscan-holdoff
-> > +  - sdoed-width
-> > +  - sdoed-delay
-> > +  - sdoez-width
-> > +  - sdoez-delay
-> > +  - gdclk-hp-offs
-> > +  - gdsp-offs
-> > +  - gdoe-offs
-> > +  - gdclk-offs
-> > +  - num-ce =20
->=20
-> These parameters should perhaps have sane defaults in the driver, and be
-> optional in the DT.
->=20
-First of all I think I should document them better (as said in an
-earlier review mail)
+> The DSP could be debugged using JTAG.
+> The support of JTAG could enabled at build time and it could be enabled
+> using debugfs.
+> 
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> ---
+>  drivers/remoteproc/Kconfig   |   9 +++
+>  drivers/remoteproc/mtk_apu.c | 147 ++++++++++++++++++++++++++++++++++-
+>  2 files changed, 155 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 959d24e9492c..28140cf04d8a 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -74,6 +74,15 @@ config MTK_APU
+>  
+>  	  It's safe to say N here.
+>  
+> +config MTK_APU_JTAG
+> +	bool "Enable support of JTAG"
+> +	depends on MTK_APU
+> +	help
+> +	  Say y to enable support of JTAG.
+> +	  By default, JTAG will remain disabled until it is enabled using
+> +	  debugfs: remoteproc/remoteproc0/jtag. Write 1 to enable it and
+> +	  0 to disable it.
+> +
+>  config OMAP_REMOTEPROC
+>  	tristate "OMAP remoteproc support"
+>  	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX
+> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
+> index 867b4682b507..3905eb5b7174 100644
+> --- a/drivers/remoteproc/mtk_apu.c
+> +++ b/drivers/remoteproc/mtk_apu.c
+> @@ -5,12 +5,14 @@
+>  
+>  #include <linux/bitops.h>
+>  #include <linux/clk.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/delay.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/iommu.h>
+>  #include <linux/irq.h>
+>  #include <linux/module.h>
+>  #include <linux/of_reserved_mem.h>
+> +#include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/remoteproc.h>
+>  #include <linux/string.h>
+> @@ -45,6 +47,11 @@
+>  #define CORE_DEFAULT1				(0x00000140)
+>  #define CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU	(0x10 << 0)
+>  #define CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU	(0x10 << 5)
+> +#define CORE_DEFAULT2				(0x00000144)
+> +#define CORE_DEFAULT2_DBG_EN			BIT(3)
+> +#define CORE_DEFAULT2_NIDEN			BIT(2)
+> +#define CORE_DEFAULT2_SPNIDEN			BIT(1)
+> +#define CORE_DEFAULT2_SPIDEN			BIT(0)
+>  #define CORE_XTENSA_ALTRESETVEC			(0x000001F8)
+>  
+>  #define VDEV_MEM_COUNT				(3)
+> @@ -59,6 +66,13 @@ struct mtk_apu_rproc {
+>  	struct clk_bulk_data *clks;
+>  	struct iommu_domain *domain;
+>  	struct list_head mappings;
+> +
+> +#ifdef CONFIG_MTK_APU_JTAG
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pinctrl_jtag;
+> +	bool jtag_enabled;
+> +	struct mutex jtag_mutex;
+> +#endif
+>  };
+>  
+>  static const char * const mt8183_clk_names[] = {
+> @@ -355,6 +369,133 @@ static irqreturn_t mtk_apu_rproc_callback(int irq, void *data)
+>  	return IRQ_WAKE_THREAD;
+>  }
+>  
+> +#ifdef CONFIG_MTK_APU_JTAG
 
-I doubt there are sane defaults, in vendor kernels, there is typically a
-definition of these parameters and a video mode per display.
+Is there a strong reason to keep this compiled out? It's not that much
+code and it means that I have to build test both variations...
 
->=20
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/imx6sl-clock.h>
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +    epdc: epdc@20f4000 { =20
-> [...]
-> > +
-> > +        timing {
-> > +                clock-frequency =3D <80000000>;
-> > +                hactive =3D <1448>;
-> > +                hback-porch =3D <16>;
-> > +                hfront-porch =3D <102>;
-> > +                hsync-len =3D <28>;
-> > +                vactive =3D <1072>;
-> > +                vback-porch =3D <4>;
-> > +                vfront-porch =3D <4>;
-> > +                vsync-len =3D <2>;
-> > +        };
-> > +    }; =20
->=20
-> The way you did it here, the timing parameters are directly under the
-> EPDC node in the DT, but I wonder if it would be better to have a
-> separate node for the display panel, which can then provide the timing
-> parameters either in the DT or in the panel driver (selected by compatible
-> string of the panel).
->=20
-IMHO it makes sense to store these timing parameters together with the
-timing parameters from above. If that all somehow comes from a panel
-driver, we need to design an interface for it. So for simplicity I
-added the stuff just to the EPDC node.
+> +
+> +static int apu_enable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&apu_rproc->jtag_mutex);
 
-Vendor kernel has this:
-struct imx_epdc_fb_mode {
-    struct fb_videomode *vmode;
-    int vscan_holdoff;
-    int sdoed_width;
-    int sdoed_delay;
-    int sdoez_width;
-    int sdoez_delay;
-    int gdclk_hp_offs;
-    int gdsp_offs;
-    int gdoe_offs;
-    int gdclk_offs;
-    int num_ce;
-};
+What happens if you perform the below writel() when jtag is already
+enabled? I.e. do you need this mutex or could you simply have
+enable/disable just write the register?
 
-So things are basically combined here.
+> +	if (apu_rproc->jtag_enabled)
+> +		goto err_mutex_unlock;
+> +
+> +	writel(CORE_DEFAULT2_SPNIDEN | CORE_DEFAULT2_SPIDEN |
+> +		CORE_DEFAULT2_NIDEN | CORE_DEFAULT2_DBG_EN,
+> +		apu_rproc->base + CORE_DEFAULT2);
+> +
+> +	apu_rproc->jtag_enabled = 1;
+> +
+> +err_mutex_unlock:
+> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&apu_rproc->jtag_mutex);
+> +	if (!apu_rproc->jtag_enabled)
+> +		goto err_mutex_unlock;
+> +
+> +	writel(0, apu_rproc->base + CORE_DEFAULT2);
+> +
+> +	apu_rproc->jtag_enabled = 0;
+> +
+> +err_mutex_unlock:
+> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t rproc_jtag_read(struct file *filp, char __user *userbuf,
+> +			       size_t count, loff_t *ppos)
+> +{
+> +	struct rproc *rproc = filp->private_data;
+> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+> +	char *buf = apu_rproc->jtag_enabled ? "enabled\n" : "disabled\n";
+> +
+> +	return simple_read_from_buffer(userbuf, count, ppos, buf, strlen(buf));
+
+Per my ask about write below, please make this read 'Y' or 'N'.
+
+> +}
+> +
+> +static ssize_t rproc_jtag_write(struct file *filp, const char __user *user_buf,
+> +				size_t count, loff_t *ppos)
+> +{
+> +	struct rproc *rproc = filp->private_data;
+> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+> +	char buf[10];
+> +	int ret;
+> +
+> +	if (count < 1 || count > sizeof(buf))
+> +		return -EINVAL;
+> +
+> +	ret = copy_from_user(buf, user_buf, count);
+> +	if (ret)
+> +		return -EFAULT;
+> +
+> +	/* remove end of line */
+> +	if (buf[count - 1] == '\n')
+> +		buf[count - 1] = '\0';
+> +
+
+Please use kstrtobool_from_user().
+
+> +	if (!strncmp(buf, "enabled", count))
+> +		ret = apu_enable_jtag(apu_rproc);
+> +	else if (!strncmp(buf, "disabled", count))
+> +		ret = apu_disable_jtag(apu_rproc);
+> +	else
+> +		return -EINVAL;
+> +
+> +	return ret ? ret : count;
+> +}
+> +
+> +static const struct file_operations rproc_jtag_ops = {
+> +	.read = rproc_jtag_read,
+> +	.write = rproc_jtag_write,
+> +	.open = simple_open,
+> +};
+> +
+> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret;
+> +
+> +	if (!apu_rproc->rproc->dbg_dir)
+> +		return -ENODEV;
+> +
+> +	apu_rproc->pinctrl = devm_pinctrl_get(apu_rproc->dev);
+> +	if (IS_ERR(apu_rproc->pinctrl)) {
+> +		dev_warn(apu_rproc->dev, "Failed to find JTAG pinctrl\n");
+
+I believe you failed to find the pinctrl instance for the remoteproc
+driver, not for the JTAG.
+
+> +		return PTR_ERR(apu_rproc->pinctrl);
+> +	}
+> +
+> +	apu_rproc->pinctrl_jtag = pinctrl_lookup_state(apu_rproc->pinctrl,
+> +						       "jtag");
+> +	if (IS_ERR(apu_rproc->pinctrl_jtag))
+> +		return PTR_ERR(apu_rproc->pinctrl_jtag);
+> +
+> +	ret = pinctrl_select_state(apu_rproc->pinctrl,
+> +				   apu_rproc->pinctrl_jtag);
+
+So if the kernel is compiled with MTK_APU_JTAG "jtag" is the new
+"default" for this device?
 
 Regards,
-Andreas
+Bjorn
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	mutex_init(&apu_rproc->jtag_mutex);
+> +
+> +	debugfs_create_file("jtag", 0600, apu_rproc->rproc->dbg_dir,
+> +			    apu_rproc->rproc, &rproc_jtag_ops);
+> +
+> +	return 0;
+> +}
+> +#else
+> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	return 0;
+> +}
+> +#endif /* CONFIG_MTK_APU_JTAG */
+> +
+>  static int mtk_apu_rproc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -442,6 +583,10 @@ static int mtk_apu_rproc_probe(struct platform_device *pdev)
+>  		goto free_rproc;
+>  	}
+>  
+> +	ret = apu_jtag_probe(apu_rproc);
+> +	if (ret)
+> +		dev_warn(dev, "Failed to configure jtag\n");
+
+If devm_pinctrl_get() failed you'll get two warnings, and if the user
+haven't added a "jtag" pinctrl state this warning isn't very
+descriptive. Consider omitting it and add appropriate error messages in
+apu_jtag_probe().
+
+Regards,
+Bjorn
+
+> +
+>  	return 0;
+>  
+>  free_rproc:
+> @@ -457,7 +602,7 @@ static int mtk_apu_rproc_remove(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  
+>  	disable_irq(apu_rproc->irq);
+> -
+> +	apu_disable_jtag(apu_rproc);
+>  	rproc_del(rproc);
+>  	of_reserved_mem_device_release(dev);
+>  	rproc_free(rproc);
+> -- 
+> 2.34.1
+> 
