@@ -2,257 +2,309 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6727C4D7FDD
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 11:31:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A5C4D7FED
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 11:34:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235862AbiCNKcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 06:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39418 "EHLO
+        id S238575AbiCNKfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 06:35:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231730AbiCNKcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 06:32:08 -0400
-Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E3D612747;
-        Mon, 14 Mar 2022 03:30:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647253859; x=1678789859;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AE49BjDKIr7fQ1ylcAJCvf/EmIu4MWN573wR5DDTssM=;
-  b=KazAqrg8+IE6VL7pP5aVklnM3Rhu+y4Nt+eXcUvtwYMjo1pTd6aMnOI2
-   xtDMRvUXJUq7Zbu8JTFk9uWYtPrAKdZRN3wf/KbsxVqG352Yika80tYCB
-   hXFPiBzcnopxL8gyzfANN+ysbv/bu95nAYUhVUhMsOy2lh4pixdhT5r+B
-   k=;
-Received: from unknown (HELO ironmsg05-sd.qualcomm.com) ([10.53.140.145])
-  by alexa-out-sd-01.qualcomm.com with ESMTP; 14 Mar 2022 03:30:58 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg05-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Mar 2022 03:30:56 -0700
-Received: from nalasex01b.na.qualcomm.com (10.47.209.197) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 14 Mar 2022 03:30:55 -0700
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Mon, 14 Mar 2022 03:30:49 -0700
-Date:   Mon, 14 Mar 2022 16:00:45 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        "Kishon Vijay Abraham I" <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_kriskura@quicinc.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Message-ID: <20220314103045.GA31533@hu-pkondeti-hyd.qualcomm.com>
-References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
- <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
- <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
- <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
- <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
- <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
- <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
- <20220314094054.GB28402@hu-pkondeti-hyd.qualcomm.com>
- <b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com>
+        with ESMTP id S238582AbiCNKfi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 06:35:38 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F6F927B01;
+        Mon, 14 Mar 2022 03:34:28 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 41CC61F43B0F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647254067;
+        bh=NDvmjZYnQWqznSyedRPSl/wQ+D9+4vjA/lAgqizfY98=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=I6YlEfdpUsEa48Pi5JMaX0Hp6Ta/m7aIphZKlTbj6jqKOFI14X7kPLe/lB8Z2SO9u
+         dwwmeIYyFn3csID3+l0U1ZwEMSD6UfxgSgHvGPlPWgstjypHioci7zIg6maXYP8cSY
+         i5jOeJIeI894XBqm51exce6kp5fdxjL5qrAsfH0jLgPvcWTEOqyIST7ZhcIEaHQG4c
+         +1Ob6Rg5a0y+XGZcy8pIV5aLtVqU3hqc+66VSC/c3HgaAhaWRdf+a6ODRSCzj+6abn
+         HC6hdgPxazs1rFtj5jfSe+6wervU0afSScuZL0eQQ6dGis/51ChQBsTaz+QxP0CV3U
+         ammt+a0KEqKGA==
+Message-ID: <4c695b65-a30b-f17c-762b-055987c7682e@collabora.com>
+Date:   Mon, 14 Mar 2022 11:34:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [v3 09/19] ASoC: mediatek: mt8186: support src in platform driver
+Content-Language: en-US
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
+        robh+dt@kernel.org
+Cc:     aaronyu@google.com, matthias.bgg@gmail.com, trevor.wu@mediatek.com,
+        tzungbi@google.com, julianbraha@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220313151023.21229-1-jiaxin.yu@mediatek.com>
+ <20220313151023.21229-10-jiaxin.yu@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220313151023.21229-10-jiaxin.yu@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Il 13/03/22 16:10, Jiaxin Yu ha scritto:
+> Add mt8186 src dai driver
+> 
+> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> ---
+>   sound/soc/mediatek/mt8186/mt8186-dai-src.c | 726 +++++++++++++++++++++
+>   1 file changed, 726 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt8186/mt8186-dai-src.c
+> 
+> diff --git a/sound/soc/mediatek/mt8186/mt8186-dai-src.c b/sound/soc/mediatek/mt8186/mt8186-dai-src.c
+> new file mode 100644
+> index 000000000000..0277cb0ad3f2
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt8186/mt8186-dai-src.c
+> @@ -0,0 +1,726 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +//
+> +//  MediaTek ALSA SoC Audio DAI SRC Control
+> +//
+> +// Copyright (c) 2022 MediaTek Inc.
+> +// Author: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> +
+> +#include <linux/regmap.h>
+> +#include "mt8186-afe-common.h"
+> +#include "mt8186-interconnection.h"
+> +
 
-On Mon, Mar 14, 2022 at 11:08:05AM +0100, Krzysztof Kozlowski wrote:
-> On 14/03/2022 10:40, Pavan Kondeti wrote:
-> > Hi Krzysztof,
-> > 
-> > Thanks for your suggestions and guidance on this.
-> > 
-> > On Mon, Mar 14, 2022 at 09:36:02AM +0100, Krzysztof Kozlowski wrote:
-> >> On 14/03/2022 09:16, Pavan Kondeti wrote:
-> >>> Hi Krzysztof,
-> >>>
-> >>> On Mon, Mar 14, 2022 at 08:39:57AM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 14/03/2022 04:29, Pavan Kondeti wrote:
-> >>>>> Hi Krzysztof,
-> >>>>>
-> >>>>> On Thu, Mar 03, 2022 at 04:59:22PM +0100, Krzysztof Kozlowski wrote:
-> >>>>>> On 03/03/2022 07:13, Sandeep Maheswaram wrote:
-> >>>>>>> Add device tree bindings for SNPS phy tuning parameters.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
-> >>>>>>> ---
-> >>>>>>>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 125 +++++++++++++++++++++
-> >>>>>>>  1 file changed, 125 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >>>>>>> index 0dfe691..227c097 100644
-> >>>>>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >>>>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >>>>>>> @@ -50,6 +50,131 @@ properties:
-> >>>>>>>    vdda33-supply:
-> >>>>>>>      description: phandle to the regulator 3.3V supply node.
-> >>>>>>>  
-> >>>>>>> +  qcom,hs-disconnect:
-> >>>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
-> >>>>>>> +    description:
-> >>>>>>> +      This adjusts the voltage level for the threshold used to
-> >>>>>>> +      detect a disconnect event at the host. Possible values are.
-> >>>>>>
-> >>>>>> ':', instead of full stop.
-> >>>>>>
-> >>>>>>> +      7 -> +21.56%
-> >>>>>>> +      6 -> +17.43%
-> >>>>>>> +      5 -> +13.32%
-> >>>>>>> +      4 -> +9.73%
-> >>>>>>> +      3 -> +6.3
-> >>>>>>> +      2 -> +3.17%
-> >>>>>>> +      1 -> 0, Design default%
-> >>>>>>
-> >>>>>> Use "default:" instead. Here and in other places.
-> >>>>>>
-> >>>>>>> +      0 -> -2.72%
-> >>>>>>
-> >>>>>> In current form this should be an enum... but actually current form is
-> >>>>>> wrong. You should not store register values in DT. What if next version
-> >>>>>> of hardware has a different meaning of these values?
-> >>>>>>
-> >>>>>> Instead, you should store here meaningful values, not register values.
-> >>>>>>
-> >>>>>
-> >>>>> Thanks for the feedback.
-> >>>>>
-> >>>>> The values in % really makes the tuning easy. People look at the eye diagram
-> >>>>> and decided whether to increase/decrease the margin. The absolute values
-> >>>>> may not be that useful. All we need is an "adjustment" here. The databook
-> >>>>> it self does not give any absolute values.
-> >>>>>
-> >>>>> I agree to the "enum" suggestion which we have been following for the
-> >>>>> qusb2 driver already. 
-> >>>>>
-> >>>>> The values have not changed in the last 5 years for this hardware block, so
-> >>>>> defining enums for the % values would be really helpful. 
-> >>>>
-> >>>> I did not say you cannot store here percentages. Quite opposite - store
-> >>>> here the percentages. Just do not store register value. No. Please read
-> >>>> my comment again - meaningful values are needed.
-> >>>>
-> >>>
-> >>> IIUC, you are asking us to come up with a meaningful values to encode the
-> >>> percentage values. However, all the % increments are not linear, so we can't
-> >>> come up with {min, max} scheme. Lets take an example of hostdisconnect
-> >>> threshold.
-> >>>
-> >>> As per the data book,
-> >>>
-> >>> +      7 -> +21.56%
-> >>> +      6 -> +17.43%
-> >>> +      5 -> +13.32%
-> >>> +      4 -> +9.73%
-> >>> +      3 -> +6.3
-> >>> +      2 -> +3.17%
-> >>> +      1 -> 0, Design default%
-> >>> +      0 -> -2.72%
-> >>>
-> >>> so how do we give meaningful values here? Does the below scheme make sense
-> >>> to you?
-> >>
-> >> By "meaningful value" I mean something which has a understandable
-> >> meaning to reader of this code or to hardware designer. For example
-> >> percentage values or some units (ms, ns, Hz, mA, mV). The value used in
-> >> register is not meaningful in that way to us because it has a meaning
-> >> only to the hardware block. Storing register values is more difficult to
-> >> read later, non-portable and non-scalable.
-> >>
-> >>>
-> >>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72	(-272)
-> >>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	0
-> >>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17	317
-> >>> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3	63
-> >>
-> >> This is some define in driver, does not look related to bindings.
-> >>
-> >>> In the driver, we have a mapping (which can be per SoC if required in future)
-> >>> that takes these values and convert to the correct values for a given
-> >>> register.
-> >>
-> >> You focus on driver but I am talking here only about bindings.
-> > 
-> > I was saying we define those defines in include/dt-bindings/phy/... header and
-> > use it in the device tree and as well in the driver.
-> 
-> Ah, I did not get it. That's not the solution for this case. defines in
-> dt-bindings are for constants which already can be in DT, e.g. IDs. Your
-> register values should not be stored in DT.
-> 
-These are again not register definitions. These are encodings that dT and
-driver can use. These would be constants only, no?
+..snip..
 
-> > 
-> >>
-> >> What could be the meaningful value? Percentage could work. You have
-> >> there a negative value, so I wonder what type of percentage is it? What
-> >> is the formula?
-> > 
-> > I just multiplied by 100 since device tree has no support for floating (as per
-> > my knowledge). The negative value represents it lowers the disconnect
-> > threshold by 2.72% of the default value. if it makes sense, we could also
-> > start from 0 like below.
-> 
-> ok
-> 
-> > 
-> > #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72_PCT 0
-> > #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	1
-> > #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17_PCT	2
-> > #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3_PCT	3
-> > 
-> > The driver can have a table to map these bindings. This looks much better
-> > than those x100 formula values.
-> 
-> Again mention driver how he can map it. I mostly don't care about the
-> driver. :)
-> 
-> I think we are getting around the problem, so to emphasize again: do not
-> store register values in the bindings/DT but its meaning, so in your
-> case most likely percentages (or permille or ratio or some other value).
-> 
+> +
+> +static const unsigned int *get_iir_coeff(unsigned int rate_in,
+> +					 unsigned int rate_out,
+> +					 unsigned int *param_num)
+> +{
+> +	if (rate_in == 32000 && rate_out == 16000) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_32_to_16);
+> +		return src_iir_coeff_32_to_16;
+> +	} else if (rate_in == 44100 && rate_out == 16000) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_44_to_16);
+> +		return src_iir_coeff_44_to_16;
+> +	} else if (rate_in == 44100 && rate_out == 32000) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_44_to_32);
+> +		return src_iir_coeff_44_to_32;
+> +	} else if ((rate_in == 48000 && rate_out == 16000) ||
+> +		   (rate_in == 96000 && rate_out == 32000)) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_48_to_16);
+> +		return src_iir_coeff_48_to_16;
+> +	} else if (rate_in == 48000 && rate_out == 32000) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_48_to_32);
+> +		return src_iir_coeff_48_to_32;
+> +	} else if (rate_in == 48000 && rate_out == 44100) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_48_to_44);
+> +		return src_iir_coeff_48_to_44;
+> +	} else if (rate_in == 96000 && rate_out == 16000) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_96_to_16);
+> +		return src_iir_coeff_96_to_16;
+> +	} else if ((rate_in == 96000 && rate_out == 44100) ||
+> +		   (rate_in == 48000 && rate_out == 22050)) {
+> +		*param_num = ARRAY_SIZE(src_iir_coeff_96_to_44);
+> +		return src_iir_coeff_96_to_44;
+> +	}
+> +
+> +	*param_num = 0;
+> +	return NULL;
+> +}
+> +
+> +#define DEBUG_COEFF
 
-I am really confused on what is that you mean by not storing the registers
-here. We are only giving enum values for specific percentages supported by
-the PHY. if you see -2.72 corresponds to 0 value on 0:2 bits of a register.
-I did not mention that in the device tree. we are giving constant values
-(enums) for all the possible percentage values. The user can see the
-dt-bindings file and pass the approriate value based on the compliance
-results. What is the objection?
+I think that this debugging hackery unintentionally slipped through... or was
+that intentional?
+In the latter case, if you want to provide a way to debug that, you should
+use debugfs instead...
 
-can you please give an example if you have something in mind? 
+Please, either remove this debugging code, or use debugfs.
 
 Thanks,
-Pavan
+Angelo
+
+> +static int mtk_set_src_1_param(struct mtk_base_afe *afe, int id)
+> +{
+> +	struct mt8186_afe_private *afe_priv = afe->platform_priv;
+> +	struct mtk_afe_src_priv *src_priv = afe_priv->dai_priv[id];
+> +	unsigned int iir_coeff_num;
+> +	unsigned int iir_stage;
+> +	int rate_in = src_priv->dl_rate;
+> +	int rate_out = src_priv->ul_rate;
+> +	unsigned int out_freq_mode = mtk_get_src_freq_mode(afe, rate_out);
+> +	unsigned int in_freq_mode = mtk_get_src_freq_mode(afe, rate_in);
+> +
+> +	/* set out freq mode */
+> +	regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON3,
+> +			   G_SRC_ASM_FREQ_4_MASK_SFT,
+> +			   out_freq_mode << G_SRC_ASM_FREQ_4_SFT);
+> +
+> +	/* set in freq mode */
+> +	regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON4,
+> +			   G_SRC_ASM_FREQ_5_MASK_SFT,
+> +			   in_freq_mode << G_SRC_ASM_FREQ_5_SFT);
+> +
+> +	regmap_write(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON5, 0x3f5986);
+> +	regmap_write(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON5, 0x3f5987);
+> +	regmap_write(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON6, 0x1fbd);
+> +	regmap_write(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON2, 0);
+> +
+> +	/* set iir if in_rate > out_rate */
+> +	if (rate_in > rate_out) {
+> +		int i;
+> +#ifdef DEBUG_COEFF
+> +		int reg_val;
+> +#endif
+> +		const unsigned int *iir_coeff = get_iir_coeff(rate_in, rate_out,
+> +							      &iir_coeff_num);
+> +
+> +		if (iir_coeff_num == 0 || !iir_coeff) {
+> +			dev_err(afe->dev, "%s(), iir coeff error, num %d, coeff %p\n",
+> +				__func__, iir_coeff_num, iir_coeff);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* COEFF_SRAM_CTRL */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON0,
+> +				   G_SRC_COEFF_SRAM_CTRL_MASK_SFT,
+> +				   BIT(G_SRC_COEFF_SRAM_CTRL_SFT));
+> +		/* Clear coeff history to r/w coeff from the first position */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON13,
+> +				   G_SRC_COEFF_SRAM_ADR_MASK_SFT, 0);
+> +		/* Write SRC coeff, should not read the reg during write */
+> +		for (i = 0; i < iir_coeff_num; i++)
+> +			regmap_write(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON12,
+> +				     iir_coeff[i]);
+> +
+> +#ifdef DEBUG_COEFF
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON13,
+> +				   G_SRC_COEFF_SRAM_ADR_MASK_SFT, 0);
+> +
+> +		for (i = 0; i < iir_coeff_num; i++) {
+> +			regmap_read(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON12,
+> +				    &reg_val);
+> +			dev_info(afe->dev, "%s(), i = %d, coeff = 0x%x\n",
+> +				 __func__, i, reg_val);
+> +		}
+> +#endif
+> +		/* disable sram access */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON0,
+> +				   G_SRC_COEFF_SRAM_CTRL_MASK_SFT, 0);
+> +		/* CHSET_IIR_STAGE */
+> +		iir_stage = (iir_coeff_num / 6) - 1;
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_STAGE_MASK_SFT,
+> +				   iir_stage << G_SRC_CHSET_IIR_STAGE_SFT);
+> +		/* CHSET_IIR_EN */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_EN_MASK_SFT,
+> +				   BIT(G_SRC_CHSET_IIR_EN_SFT));
+> +	} else {
+> +		/* CHSET_IIR_EN off */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL1_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_EN_MASK_SFT, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mtk_set_src_2_param(struct mtk_base_afe *afe, int id)
+> +{
+> +	struct mt8186_afe_private *afe_priv = afe->platform_priv;
+> +	struct mtk_afe_src_priv *src_priv = afe_priv->dai_priv[id];
+> +	unsigned int iir_coeff_num;
+> +	unsigned int iir_stage;
+> +	int rate_in = src_priv->dl_rate;
+> +	int rate_out = src_priv->ul_rate;
+> +	unsigned int out_freq_mode = mtk_get_src_freq_mode(afe, rate_out);
+> +	unsigned int in_freq_mode = mtk_get_src_freq_mode(afe, rate_in);
+> +
+> +	/* set out freq mode */
+> +	regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON3,
+> +			   G_SRC_ASM_FREQ_4_MASK_SFT,
+> +			   out_freq_mode << G_SRC_ASM_FREQ_4_SFT);
+> +
+> +	/* set in freq mode */
+> +	regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON4,
+> +			   G_SRC_ASM_FREQ_5_MASK_SFT,
+> +			   in_freq_mode << G_SRC_ASM_FREQ_5_SFT);
+> +
+> +	regmap_write(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON5, 0x3f5986);
+> +	regmap_write(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON5, 0x3f5987);
+> +	regmap_write(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON6, 0x1fbd);
+> +	regmap_write(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON2, 0);
+> +
+> +	/* set iir if in_rate > out_rate */
+> +	if (rate_in > rate_out) {
+> +		int i;
+> +#ifdef DEBUG_COEFF
+> +		int reg_val;
+> +#endif
+> +		const unsigned int *iir_coeff = get_iir_coeff(rate_in, rate_out,
+> +							      &iir_coeff_num);
+> +
+> +		if (iir_coeff_num == 0 || !iir_coeff) {
+> +			dev_err(afe->dev, "%s(), iir coeff error, num %d, coeff %p\n",
+> +				 __func__, iir_coeff_num, iir_coeff);
+> +			return -EINVAL;
+> +		}
+> +
+> +		/* COEFF_SRAM_CTRL */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON0,
+> +				   G_SRC_COEFF_SRAM_CTRL_MASK_SFT,
+> +				   BIT(G_SRC_COEFF_SRAM_CTRL_SFT));
+> +		/* Clear coeff history to r/w coeff from the first position */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON13,
+> +				   G_SRC_COEFF_SRAM_ADR_MASK_SFT, 0);
+> +		/* Write SRC coeff, should not read the reg during write */
+> +		for (i = 0; i < iir_coeff_num; i++)
+> +			regmap_write(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON12,
+> +				     iir_coeff[i]);
+> +
+> +#ifdef DEBUG_COEFF
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON13,
+> +				   G_SRC_COEFF_SRAM_ADR_MASK_SFT, 0);
+> +
+> +		for (i = 0; i < iir_coeff_num; i++) {
+> +			regmap_read(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON12,
+> +				    &reg_val);
+> +			dev_info(afe->dev, "%s(), i = %d, coeff = 0x%x\n",
+> +				 __func__, i, reg_val);
+> +		}
+> +#endif
+> +		/* disable sram access */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON0,
+> +				   G_SRC_COEFF_SRAM_CTRL_MASK_SFT, 0);
+> +		/* CHSET_IIR_STAGE */
+> +		iir_stage = (iir_coeff_num / 6) - 1;
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_STAGE_MASK_SFT,
+> +				   iir_stage << G_SRC_CHSET_IIR_STAGE_SFT);
+> +		/* CHSET_IIR_EN */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_EN_MASK_SFT,
+> +				   BIT(G_SRC_CHSET_IIR_EN_SFT));
+> +	} else {
+> +		/* CHSET_IIR_EN off */
+> +		regmap_update_bits(afe->regmap, AFE_GENERAL2_ASRC_2CH_CON2,
+> +				   G_SRC_CHSET_IIR_EN_MASK_SFT, 0);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+
