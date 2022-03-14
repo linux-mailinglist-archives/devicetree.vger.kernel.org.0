@@ -2,82 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24ABC4D8648
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 14:58:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DE084D8718
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 15:42:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230334AbiCNN7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 09:59:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45576 "EHLO
+        id S236471AbiCNOoG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 10:44:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237178AbiCNN7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 09:59:19 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93C7F1CFEE
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:08 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id kt27so34283469ejb.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/sGwhFLRtiH/ykUra8RNv5VtPDl39PfWAyeMQdseV4U=;
-        b=E4HfJt2lpl5yMCJkmr268M1C6Xw1SdJiBIbXECMsySpxvvMRbBTqo3MSLg3VnfahpC
-         P7LzLbgUQFA4BE/DsfILmqLQHUV+ASwOd5AcDTChMfwhP9mK0rdOs6tf3pdCjfyIgHEm
-         lfiSNtrZ23gznqQr7osIXvkgdlCoTI2SO5lFQ=
+        with ESMTP id S234850AbiCNOoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 10:44:04 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A8E82649;
+        Mon, 14 Mar 2022 07:42:53 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id b16so18507734ioz.3;
+        Mon, 14 Mar 2022 07:42:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/sGwhFLRtiH/ykUra8RNv5VtPDl39PfWAyeMQdseV4U=;
-        b=Z3vVR0jMPbfxy4/XbU6FGEHcC2jsMyuvkKOC8lYAqM4TH+lbFX0h1b+MWjANiG6O7T
-         RGbhKzBTKOv0SoiFNyyg/h+K0VX+eOIwxzW9/yuLwJE4aqwyfDkupSbGHZcbqyDLaWri
-         8vD86YRvHJlheKgPaBroQzkNjp0/1WWgrSpGQ6A00gXN2TSCo2hVwtHz6fkTSDifwql2
-         5Gm/Ljiv69bFIN+d8bFK33nIijmoEDM5dXZSmDL5nMOPKwubtzpJh6KNjSTGYoiHJyby
-         yvyG1WVHqCiNeSjJnI6l0HNaA+OV4e6rF3/Tr6uaM+3pvTdS/x38h5qE/J2Otwmwvdkx
-         rC3A==
-X-Gm-Message-State: AOAM532v8WmaAl/t6zGSOg13E/3kGjCT9d8rHeoYhcU68ts9vM6/udLq
-        RTLM4PtP5JmOFZ8ZTMbdt2T1BiGLsDoOSA==
-X-Google-Smtp-Source: ABdhPJxhrPYofOX6Uy7ZHuoHxochHUTcdO0VrUFy5xJ6pwuViH3zPM/aDATSUKbDIwGT4RS39SLHog==
-X-Received: by 2002:a17:907:7f9f:b0:6db:720b:1232 with SMTP id qk31-20020a1709077f9f00b006db720b1232mr19003750ejc.355.1647266286765;
-        Mon, 14 Mar 2022 06:58:06 -0700 (PDT)
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com. [209.85.128.47])
-        by smtp.gmail.com with ESMTPSA id yy18-20020a170906dc1200b006d6e5c75029sm6698435ejb.187.2022.03.14.06.58.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 06:58:06 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id bg31-20020a05600c3c9f00b00381590dbb33so9710691wmb.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 06:58:05 -0700 (PDT)
-X-Received: by 2002:a05:600c:a53:b0:38a:fc5:3a90 with SMTP id
- c19-20020a05600c0a5300b0038a0fc53a90mr3788786wmq.15.1647266285495; Mon, 14
- Mar 2022 06:58:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <1646758500-3776-1-git-send-email-quic_vpolimer@quicinc.com>
- <1646758500-3776-2-git-send-email-quic_vpolimer@quicinc.com>
- <CAE-0n51bfqWs8yOiyQ-A_bEQ7CZSqavz8epcFEWYyZxxoRYFHg@mail.gmail.com>
- <BN0PR02MB8173F2E408848216D489D503E40C9@BN0PR02MB8173.namprd02.prod.outlook.com>
- <CAA8EJppt_NjOdJWGrP=8zwG1yEAyJBtnv4G5vLW3CHZ8WrGFvw@mail.gmail.com>
-In-Reply-To: <CAA8EJppt_NjOdJWGrP=8zwG1yEAyJBtnv4G5vLW3CHZ8WrGFvw@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 14 Mar 2022 06:57:51 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Wy-ew3sbsQ_ojoAdAXeZPsRzwGJWqNQqpuZDb1GPknfg@mail.gmail.com>
-Message-ID: <CAD=FV=Wy-ew3sbsQ_ojoAdAXeZPsRzwGJWqNQqpuZDb1GPknfg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-rate
- property for mdp clk
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Vinod Polimera <vpolimer@qti.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_vpolimer <quic_vpolimer@quicinc.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robdclark@gmail.com" <robdclark@gmail.com>,
-        quic_kalyant <quic_kalyant@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        h=x-gm-message-state:from:to:cc:in-reply-to:references:subject:date
+         :message-id;
+        bh=P6i4RU/tPZze8eL4r7T4d4lTaUlhqOICZTOabmzGqJo=;
+        b=1J1+B4FOMG7i6YAoYNLXAW9PNAiCiFocpokkyj98SKTZ9Xq0luPQSTumhqsG93ypbt
+         jg89FhT+V6lyM7D8n/MMBLdlurzn7ZOBmT1Vna8yFbucWYKYmoGlt2tTHHZSovKWnksr
+         /bpRPvSqT13aMlr+H3mOxlPYQnjMGaQnjwOomM+FA3gs+VfDxUrTbAr0J2ksiQ+j6K/q
+         TvV2UP7wEXQjqjLxamdDgTVPN68W41L1nTK4El6oLycanqIoLrbAho+FgTEpb0jp1Hwd
+         rrCMk6vHMjFmYaeVVkoV0IbQBQj1fw34Mv4qy1KY3E9lr4hCtpZeVdY1EXbG7MaRP2rm
+         wSyw==
+X-Gm-Message-State: AOAM533SntIRzdE6uvq4uc6E495i5M0kWHMJBnM4Vx6L4bG8LKnrKrT5
+        pGUbW5634Gh8gxWVM9uxqw==
+X-Google-Smtp-Source: ABdhPJx1W+IucDCrXQADrUIvGLf3h0+168Y/wjXCtVEGvr+Aigd/pJ+Wk1AuIprhiK1BehyvzdFPtw==
+X-Received: by 2002:a05:6638:1405:b0:30d:69cd:f44 with SMTP id k5-20020a056638140500b0030d69cd0f44mr20485674jad.208.1647268972747;
+        Mon, 14 Mar 2022 07:42:52 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id p4-20020a92d284000000b002c64436fa71sm9071631ilp.72.2022.03.14.07.42.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 07:42:51 -0700 (PDT)
+Received: (nullmailer pid 12506 invoked by uid 1000);
+        Mon, 14 Mar 2022 14:42:49 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Tony Huang <tonyhuang.sunplus@gmail.com>
+Cc:     tony.huang@sunplus.com, derek.kiernan@xilinx.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, dragan.cvetic@xilinx.com,
+        arnd@arndb.de, krzysztof.kozlowski@canonical.com,
+        gregkh@linuxfoundation.org, wells.lu@sunplus.com
+In-Reply-To: <c0ef91adc0af9fedca2791e4006009fabfdfef2c.1647095774.git.tonyhuang.sunplus@gmail.com>
+References: <cover.1647095774.git.tonyhuang.sunplus@gmail.com> <c0ef91adc0af9fedca2791e4006009fabfdfef2c.1647095774.git.tonyhuang.sunplus@gmail.com>
+Subject: Re: [PATCH v11 1/2] dt-bindings: misc: Add iop yaml file for Sunplus SP7021
+Date:   Mon, 14 Mar 2022 08:42:49 -0600
+Message-Id: <1647268969.313741.12505.nullmailer@robh.at.kernel.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,92 +61,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sun, 13 Mar 2022 00:16:04 +0800, Tony Huang wrote:
+> Add iop yaml file for Sunplus SP7021
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Tony Huang <tonyhuang.sunplus@gmail.com>
+> ---
+> Changes in v11:
+>  - Addressed comments from krzysztof.
+> 
+>  .../devicetree/bindings/misc/sunplus,iop.yaml      | 78 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  5 ++
+>  2 files changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/sunplus,iop.yaml
+> 
 
-On Fri, Mar 11, 2022 at 1:22 AM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> On Fri, 11 Mar 2022 at 11:06, Vinod Polimera <vpolimer@qti.qualcomm.com> wrote:
-> >
-> >
-> >
-> > > -----Original Message-----
-> > > From: Stephen Boyd <swboyd@chromium.org>
-> > > Sent: Wednesday, March 9, 2022 1:36 AM
-> > > To: quic_vpolimer <quic_vpolimer@quicinc.com>;
-> > > devicetree@vger.kernel.org; dri-devel@lists.freedesktop.org;
-> > > freedreno@lists.freedesktop.org; linux-arm-msm@vger.kernel.org
-> > > Cc: linux-kernel@vger.kernel.org; robdclark@gmail.com;
-> > > dianders@chromium.org; quic_kalyant <quic_kalyant@quicinc.com>
-> > > Subject: Re: [PATCH v5 1/5] arm64/dts/qcom/sc7280: remove assigned-clock-
-> > > rate property for mdp clk
-> > >
-> > > WARNING: This email originated from outside of Qualcomm. Please be wary
-> > > of any links or attachments, and do not enable macros.
-> > >
-> > > Quoting Vinod Polimera (2022-03-08 08:54:56)
-> > > > Kernel clock driver assumes that initial rate is the
-> > > > max rate for that clock and was not allowing it to scale
-> > > > beyond the assigned clock value.
-> > >
-> > > How? I see ftbl_disp_cc_mdss_mdp_clk_src[] has multiple frequencies and
-> > > clk_rcg2_shared_ops so it doesn't look like anything in the clk driver
-> > > is preventing the frequency from changing beyond the assigned value.
-> >
-> > Folowing the comment of Stephen, i have checked a bit more. it appears that clock driver is not setting the max clock from assgined clocks, dpu driver is doing that.
-> > i am planning to fix it as below.
-> > 1) assign ULONG_MAX to max_rate while initializing clock in dpu driver.
-> > 2) remove unnecessary checks in the core_perf library. If rate doesn't match with the entries in the opp table, it will throw error, hence furthur checks are not needed.
-> > 3) no changes in dt are required. (we can drop all the posted ones)
->
-> Why? They made perfect sense. The dts assignments should be replaced
-> by the opp setting in the bind function, as this would also set the
-> performance point of the respective power domain.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Right. You should still _post_ the dts patches. It's nice to avoid
-unneeded "assigned-clocks" in the dts. The patch description should
-just be clear that it relies on the driver patch and shouldn't land /
-be backported without the driver patch.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/misc/sunplus,iop.yaml:78:7: [error] no new line character at the end of file (new-line-at-end-of-file)
 
+dtschema/dtc warnings/errors:
+./Documentation/devicetree/bindings/misc/sunplus,iop.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/misc/sunplus,iop.yaml#
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/sunplus,iop.example.dt.yaml: iop@9c000400: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/misc/sunplus,iop.yaml
 
-> > Changes :
-> > ```--- a/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_core_perf.c
-> > @@ -284,17 +284,6 @@ void dpu_core_perf_crtc_release_bw(struct drm_crtc *crtc)
-> >         }
-> >  }
-> >
-> > -static int _dpu_core_perf_set_core_clk_rate(struct dpu_kms *kms, u64 rate)
-> > -{
-> > -       struct dss_clk *core_clk = kms->perf.core_clk;
-> > -
-> > -       if (core_clk->max_rate && (rate > core_clk->max_rate))
-> > -               rate = core_clk->max_rate;
-> > -
-> > -       core_clk->rate = rate;
-> > -       return dev_pm_opp_set_rate(&kms->pdev->dev, core_clk->rate);
-> > -}
-> > -
-> >  static u64 _dpu_core_perf_get_core_clk_rate(struct dpu_kms *kms)
-> >  {
-> >         u64 clk_rate = kms->perf.perf_tune.min_core_clk;
-> > @@ -405,7 +394,7 @@ int dpu_core_perf_crtc_update(struct drm_crtc *crtc,
-> >
-> >                 trace_dpu_core_perf_update_clk(kms->dev, stop_req, clk_rate);
-> >
-> > -               ret = _dpu_core_perf_set_core_clk_rate(kms, clk_rate);
-> > +               ret = dev_pm_opp_set_rate(&kms->pdev->dev, clk_rate);
-> >                 if (ret) {
-> >                         DPU_ERROR("failed to set %s clock rate %llu\n",
-> >                                         kms->perf.core_clk->clk_name, clk_rate);
-> > --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
-> > +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_io_util.c
->
-> This file has been removed in msm/next
+doc reference errors (make refcheckdocs):
 
-To echo Dmitry, please make sure that your patch applies to msm-next,
-As I understand it, that means the branch msm-next on:
+See https://patchwork.ozlabs.org/patch/1604673
 
-https://gitlab.freedesktop.org/drm/msm.git
+This check can fail if there are any dependencies. The base for a patch
+series is generally the most recent rc1.
 
--Doug
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit.
+
