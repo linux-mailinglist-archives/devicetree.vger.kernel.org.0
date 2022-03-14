@@ -2,147 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D71554D7D10
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:04:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B29A24D7D4D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:08:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237189AbiCNIGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 04:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57752 "EHLO
+        id S235065AbiCNIJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 04:09:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48886 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238197AbiCNIDl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:03:41 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1D914579F
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:00:38 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 7-20020a05600c228700b00385fd860f49so9104759wmf.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:00:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=Cfv85awAmoyZzNe4XhXxrHLPFirYqlR4GxEuXMqMPG0=;
-        b=DpH1bJNPog08D3meVY94qXN/ZTbqAbz22x6qEBi18AI0VYBHw6WBAPeMRRQHnLK3ar
-         6HYGEv/sONT9p/YzmzdZ6x0n5bTSIzEpRrq8evBqUfUerZXm9mDecwejCayDb70xdG7A
-         si5mAoEzOlZ9dvqP5coB2biSOtdVjibaVqwRORZpNfXQ1Guq+mQvlEsWdnkKdQ0KiIRS
-         Cw8OHPaLOI7KY6AZESsF9Pl7sTyfKGx+6PnvoM0AbaY+3rToip30Sp2dwCH4yZO/XLXZ
-         n3baygYKvIa3OTUtAteiF+YGnrI3kDcuOZyiUdN+6MMRuuF0d/Ik0M4DmI6pU7V3rkmD
-         HSdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=Cfv85awAmoyZzNe4XhXxrHLPFirYqlR4GxEuXMqMPG0=;
-        b=mmHK9H3easfTGeZ8RX8i4fivG9hBpalFes6CK88UHybhdlBgvvwZePZtzZPxM01tdu
-         QtTuqN8mi9jACXklGxed2UkYVRakR6hHEyHnPdyWONki8YJECOkfFvOaXs4dYq90iVHJ
-         09C2bs0H6PUkC7uDgky1LjfPbyvV2pPe9+WotAmlAx4VYLcA+vjyMEB4iFUM871hfDuE
-         cwGWZ3Ls2TGbRk8ikDFeMbvXKWJQD6Qj0v8jLaCdm3tLrxRcZTafSmeYmlfGUqew8cvf
-         SRH5WBYS0ZqgBNRgeDciwdYYP+emn6XHV583s3X3kirMzKLilMd6TejJv7IVH+P7AuJ5
-         abIQ==
-X-Gm-Message-State: AOAM533r11s8KUj4+XG98X0IuHstmqLE860PmbuLXNEOhuBxHskA9yJt
-        WEcsIDqA585pfxDZo3lRN4gOVg==
-X-Google-Smtp-Source: ABdhPJzbOI0b73c/qadaAd7iEJGOVJ5hLgp/CgtYvpQSgMgQpjxw37Y+EMVduvNyqB6rfHgzaz11tw==
-X-Received: by 2002:a05:600c:4a12:b0:389:9c7d:5917 with SMTP id c18-20020a05600c4a1200b003899c7d5917mr16243062wmp.0.1647244819585;
-        Mon, 14 Mar 2022 01:00:19 -0700 (PDT)
-Received: from localhost ([2a01:cb19:826e:8e00:bcd3:63d9:c9dc:840d])
-        by smtp.gmail.com with ESMTPSA id 10-20020adf808a000000b001edd413a952sm12568861wrl.95.2022.03.14.01.00.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 01:00:19 -0700 (PDT)
-From:   Mattijs Korpershoek <mkorpershoek@baylibre.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S237649AbiCNIJe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:09:34 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E2D42EFD;
+        Mon, 14 Mar 2022 01:08:16 -0700 (PDT)
+X-UUID: 63255d8b8dd943c2b18063c176605d29-20220314
+X-UUID: 63255d8b8dd943c2b18063c176605d29-20220314
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 2090762127; Mon, 14 Mar 2022 16:08:11 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 14 Mar 2022 16:08:10 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 14 Mar 2022 16:08:09 +0800
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Fengping Yu <fengping.yu@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
         Fabien Parent <fparent@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v21 2/3] Input: mt6779-keypad - Add MediaTek keypad driver
-In-Reply-To: <YiIINpi4zbJq/AZE@smile.fi.intel.com>
-References: <20220303154302.252041-1-mkorpershoek@baylibre.com>
- <20220303154302.252041-3-mkorpershoek@baylibre.com>
- <300114e2-6794-db3c-a51c-3f900b6476f9@collabora.com>
- <YiIINpi4zbJq/AZE@smile.fi.intel.com>
-Date:   Mon, 14 Mar 2022 09:00:18 +0100
-Message-ID: <87ee35rmjx.fsf@baylibre.com>
+        Dennis YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>
+Subject: drm/mediatek: fixup ovl vblank callback data null pointer issue
+Date:   Mon, 14 Mar 2022 16:08:07 +0800
+Message-ID: <20220314080808.29370-1-yongqiang.niu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On ven., mars 04, 2022 at 14:38, Andy Shevchenko <andriy.shevchenko@linux.intel.com> wrote:
+base linux v5.17-rc1
 
-> On Fri, Mar 04, 2022 at 11:31:38AM +0100, AngeloGioacchino Del Regno wrote:
->> Il 03/03/22 16:43, Mattijs Korpershoek ha scritto:
->> > From: "fengping.yu" <fengping.yu@mediatek.com>
->> > 
->> > This patch adds matrix keypad support for Mediatek SoCs.
->
->> > +struct mt6779_keypad {
->> > +	struct regmap *regmap;
->> > +	struct input_dev *input_dev;
->> > +	struct clk *clk;
->
->> > +	void __iomem *base;
->
-> Not sure why you need this here.
-You are right. There is no point of keeping this __iomem region as part
-of the structure, since it's only used in the probe() function to create
-the regmap.
+Yongqiang Niu (1):
+  drm/mediatek: fixup ovl vblank callback data null pointer issue
 
-Will send an improvement part of a later series.
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 1 -
+ 1 file changed, 1 deletion(-)
 
->
->> > +	u32 n_rows;
->> > +	u32 n_cols;
->> > +	DECLARE_BITMAP(keymap_state, MTK_KPD_NUM_BITS);
->> > +};
->> > +
->> > +static const struct regmap_config mt6779_keypad_regmap_cfg = {
->> > +	.reg_bits = 32,
->> > +	.val_bits = 32,
->> > +	.reg_stride = sizeof(u32),
->> > +	.max_register = 36,
->> 
->> Are you sure that you can't use .fast_io = true?
->> 
->> Another version for the same question:
->> Are you sure that you need to lock with a mutex here, and not with a spinlock?
->> 
->> Since you're performing reads over a MMIO, I think that there's a very good
->> chance that you can use fast_io.
->> 
->> > +};
->
-> ...
->
->> Please use dev_err_probe() to simplify error handling in probe functions: you've
->> done a great job with adding a devm action for the error cases, avoiding gotos to
->> get out cleanly.. it would be a pity to not finish this to perfection.
->> 
->> I'll give you two examples for this, so that you'll be all set.
->> 
->> 	if (IS_ERR(keypad->regmap))
->> 		return dev_err_probe(&pdev->dev, PTR_ERR(keypad->regmap),
->> 				     "regmap init failed\n");
->> 
->> P.S.: No need for %pe here, as dev_err_probe prints the error number for you!
->
-> Maintainer of the input subsystem is strongly against dev_err_probe() API. See
-> other files there. Ditto for other cases you mentioned below.
->
-> -- 
-> With Best Regards,
-> Andy Shevchenko
+-- 
+2.25.1
+
