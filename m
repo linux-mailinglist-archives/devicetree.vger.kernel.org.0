@@ -2,76 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF254D8BE0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 19:41:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E4BB4D8C2E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 20:17:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240962AbiCNSm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 14:42:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35570 "EHLO
+        id S234586AbiCNTS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 15:18:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43122 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234787AbiCNSm3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 14:42:29 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438383DDDF
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 11:41:19 -0700 (PDT)
-Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 18EF941C4C
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:41:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647283278;
-        bh=twa4BYCzD/GIzllgnltsSCLONxEdjrI922zlGL23Jjc=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=HG30AiV/JsXl2ICAQ8Bv9bw0Vi13R/Pc+K2RaX580M+QO23FGFoCvrM+whEX7ldvX
-         c0FWuQquumAYxmcLSqFNs4Z2yFRGrwmYzs2bqqMjgCduamazoYlQVt37IFHQVk9Ei+
-         XsYJHOztSdplIv76A3RRDUd90xYCK4DYVj2ii6Eaua4nDM4snfizLnQN+koiUWTbDZ
-         0G58HXd57qxTFictw2mKIpOpVq9TQRkHtSpPXEirk9Bp4eqIWWuAmgWLIY2fBi1uRP
-         C3gZkoO2uvfN34MgjBWKv4h2P2RXPN9eAFR9w1XENfv2MlQS3LFsWE33Q4aeIdbyHP
-         KVzoVuEka2eAQ==
-Received: by mail-ed1-f72.google.com with SMTP id i5-20020a056402054500b00415ce7443f4so9302571edx.12
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 11:41:18 -0700 (PDT)
+        with ESMTP id S243974AbiCNTS5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 15:18:57 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59D551FB
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:17:45 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id bu29so29135033lfb.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 12:17:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=FCQfACyUM/b4gg4IFp/i0x7zjQJhlU1cADB2GHrcjNk=;
+        b=ObZhIGxvxNaoveQ5C4fNJeL57RmHTVQkKmyZNL1S7ia6DInL8tt1OK7twIKfYmRdvy
+         Vc+YALsOHobNntqE8nRHU6y1SK6aPxOfyDOe8JIhoKhVDfCq19N46O5t1vzmpBm9y9UX
+         QJWnQNDxGNUU3kEA9jPT+kzSQFCsc19tP3axTKOahQVFFZKq5yTwXdQNDMxgZIlqBaL2
+         6AVzyu7pM5KkNdiBl+b3JofoHmiyiY78Gz0rLi4NprrZAJFnm8sFjomVIUivThGThz8t
+         AbURn1F+mf98zSJMQGrutj1EXOTKgkL4DdyhHdh9NWBMNwZPS2DXryl1kMtlaSMHd6zG
+         KEYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=twa4BYCzD/GIzllgnltsSCLONxEdjrI922zlGL23Jjc=;
-        b=Cyxr3lEM00ieVcG58Wa476AMYt1VYLwHFjVcQQvYYG74TfabU+eyciItfvSvVBqXBj
-         +OEUVqxWvLEaZPlSll96D3AeK1F/TRjIj2wzV/jLNrLf0zX7XrRZK9MvAaXgkhtDNQRE
-         9e73RdK5TBBp+WmRUqkxCWQ2WyMq2VtRfse3xCWfbOFrypmh415UIrR9Th+Ehv1edR9K
-         QumO3+y+UuvFCs4boIrGz+/5v9NQMjg379Pox3PYf0uRI7jHfA6NluPCLaEDAediNpAn
-         ZfTyWhsryu+i7QWBl4VCGLbhbt9UdSZBRnfin4XgUYycbKAgQz+cXb1p8U+K/MWYNomq
-         vavw==
-X-Gm-Message-State: AOAM533Q4HXCbFKZkBDKQKMWvKjvK7eXtqUqQWN1O9hcuuw6IuuOv/uE
-        pQdb3sykqOJXTvntEH48qKIFdzcjM2oYWBQPMsdVaDOtuCv7hOHmt5a2NqGfmQgpo7YJlTm8fYg
-        xXEHdHW9HoLoflR71fI0/uSlFFR9LWH8BFZ1vQdM=
-X-Received: by 2002:a05:6402:440d:b0:412:9e8a:5e51 with SMTP id y13-20020a056402440d00b004129e8a5e51mr22505823eda.362.1647283277573;
-        Mon, 14 Mar 2022 11:41:17 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJw/rA9hTsxiHAKvu85JqEzovAJIEl0PB2/ZQkQ43N1ZDrKyGcfarG14p+fKLfXO8AtY7sKdXA==
-X-Received: by 2002:a05:6402:440d:b0:412:9e8a:5e51 with SMTP id y13-20020a056402440d00b004129e8a5e51mr22505808eda.362.1647283277339;
-        Mon, 14 Mar 2022 11:41:17 -0700 (PDT)
-Received: from localhost.localdomain (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.gmail.com with ESMTPSA id l4-20020a170907914400b006d9e0b46fabsm7076849ejs.193.2022.03.14.11.41.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 11:41:16 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH] ARM: dts: exynos: drop deprecated SFR region from MIPI phy
-Date:   Mon, 14 Mar 2022 19:41:13 +0100
-Message-Id: <20220314184113.251013-1-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
+        bh=FCQfACyUM/b4gg4IFp/i0x7zjQJhlU1cADB2GHrcjNk=;
+        b=1sFae6yBZW73VYHnYKA4rTlG7Soastoxq5BY/i0KsAobnPK81AcfmsGHAMBJAI3JVX
+         t5bXOj31SzNYxpyEhfExBfzK+g5Q9ByoYNlLlgn1E6+mC1R6TnPEHdKC1m7IUJjKyZRN
+         ruLxKGk8tgQNoSWcFy/OzPSxAzECanSl18kfqGqNVXp/qySkSI8hI37MpqtkjjCx1gt8
+         yiLKnSqiFI1mqqaTtZs0SSAoSwHW5JpiJrWe8IWZq+rAQ2FOgAdMBD1TPsnehgcIdAqr
+         FnC4evZR/lzBzA2Ji0mn3In8NOFpkYr3Y3M2cYAE9VnNOSVwVNOiGBJNJhKjfvphgaDH
+         TSkQ==
+X-Gm-Message-State: AOAM530IOs3A82SGzkm4VJr1p9wL8/viwY7Bfa4J8boWFf/MBvmqs6Ae
+        DEOmDST+Ot/UzrstqwniBs9EKA==
+X-Google-Smtp-Source: ABdhPJxKriD6P9r7JKKAWLSszk7rNzbhhamMz0eFzvVFHJ2H0yzBy9DjAnWN82NPgyW14LuMoEKFiw==
+X-Received: by 2002:ac2:4241:0:b0:448:4b83:8372 with SMTP id m1-20020ac24241000000b004484b838372mr14076528lfl.463.1647285462245;
+        Mon, 14 Mar 2022 12:17:42 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id i2-20020a05651c120200b00247d22bc318sm4097905lja.22.2022.03.14.12.17.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Mar 2022 12:17:41 -0700 (PDT)
+Message-ID: <64971159-8fca-ee29-d0d5-59c519ba7a26@linaro.org>
+Date:   Mon, 14 Mar 2022 22:17:30 +0300
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v11 2/9] mfd: qcom-spmi-pmic: expose the PMIC revid
+ information to clients
+Content-Language: en-GB
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
+        john.stultz@linaro.org
+References: <20220309210014.352267-1-caleb.connolly@linaro.org>
+ <20220309210014.352267-3-caleb.connolly@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220309210014.352267-3-caleb.connolly@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,54 +83,431 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Commit e4b3d38088df ("phy: exynos-video-mipi: Fix regression by adding
-support for PMU regmap") deprecated the usage of unit address in MIPI
-phy node, in favor of a syscon phandle.  Deprecating was a correct
-approach because that unit address was actually coming from Power
-Management Unit SFR range so its usage here caused overlapped memory
-mapping.
+On 10/03/2022 00:00, Caleb Connolly wrote:
+> Some PMIC functions such as the RRADC need to be aware of the PMIC
+> chip revision information to implement errata or otherwise adjust
+> behaviour, export the PMIC information to enable this.
+> 
+> This is specifically required to enable the RRADC to adjust
+> coefficients based on which chip fab the PMIC was produced in,
+> this can vary per unique device and therefore has to be read at
+> runtime.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 
-In 2016 commit 26dbadba495f ("phy: exynos-mipi-video: Drop support for
-direct access to PMU") fully removed support for parsing that MIPI phy
-unit address (SFR range) but the address stayed in Exynos5250 DTSI for
-compatibility reasons.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Remove that deprecated unit address from Exynos5250 MIPI phy, because it
-has been almost 6 years since it was deprecated and it causes now DT
-schema validation warnings:
+> ---
+>   drivers/mfd/qcom-spmi-pmic.c      | 268 ++++++++++++++++++++----------
+>   include/soc/qcom/qcom-spmi-pmic.h |  60 +++++++
+>   2 files changed, 238 insertions(+), 90 deletions(-)
+>   create mode 100644 include/soc/qcom/qcom-spmi-pmic.h
+> 
+> diff --git a/drivers/mfd/qcom-spmi-pmic.c b/drivers/mfd/qcom-spmi-pmic.c
+> index 1cacc00aa6c9..bfe1304aee1b 100644
+> --- a/drivers/mfd/qcom-spmi-pmic.c
+> +++ b/drivers/mfd/qcom-spmi-pmic.c
+> @@ -3,11 +3,16 @@
+>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>    */
+>   
+> +#include <linux/device.h>
+> +#include <linux/errno.h>
+> +#include <linux/gfp.h>
+>   #include <linux/kernel.h>
+>   #include <linux/module.h>
+>   #include <linux/spmi.h>
+> +#include <linux/types.h>
+>   #include <linux/regmap.h>
+>   #include <linux/of_platform.h>
+> +#include <soc/qcom/qcom-spmi-pmic.h>
+>   
+>   #define PMIC_REV2		0x101
+>   #define PMIC_REV3		0x102
+> @@ -17,106 +22,158 @@
+>   
+>   #define PMIC_TYPE_VALUE		0x51
+>   
+> -#define COMMON_SUBTYPE		0x00
+> -#define PM8941_SUBTYPE		0x01
+> -#define PM8841_SUBTYPE		0x02
+> -#define PM8019_SUBTYPE		0x03
+> -#define PM8226_SUBTYPE		0x04
+> -#define PM8110_SUBTYPE		0x05
+> -#define PMA8084_SUBTYPE		0x06
+> -#define PMI8962_SUBTYPE		0x07
+> -#define PMD9635_SUBTYPE		0x08
+> -#define PM8994_SUBTYPE		0x09
+> -#define PMI8994_SUBTYPE		0x0a
+> -#define PM8916_SUBTYPE		0x0b
+> -#define PM8004_SUBTYPE		0x0c
+> -#define PM8909_SUBTYPE		0x0d
+> -#define PM8028_SUBTYPE		0x0e
+> -#define PM8901_SUBTYPE		0x0f
+> -#define PM8950_SUBTYPE		0x10
+> -#define PMI8950_SUBTYPE		0x11
+> -#define PM8998_SUBTYPE		0x14
+> -#define PMI8998_SUBTYPE		0x15
+> -#define PM8005_SUBTYPE		0x18
+> -#define PM660L_SUBTYPE		0x1A
+> -#define PM660_SUBTYPE		0x1B
+> -#define PM8150_SUBTYPE		0x1E
+> -#define PM8150L_SUBTYPE		0x1f
+> -#define PM8150B_SUBTYPE		0x20
+> -#define PMK8002_SUBTYPE		0x21
+> -#define PM8009_SUBTYPE		0x24
+> -#define PM8150C_SUBTYPE		0x26
+> -#define SMB2351_SUBTYPE		0x29
+> +struct qcom_spmi_dev {
+> +	int num_usids;
+> +	struct qcom_spmi_pmic pmic;
+> +};
+> +
+> +#define N_USIDS(n)		((void *)n)
+>   
+>   static const struct of_device_id pmic_spmi_id_table[] = {
+> -	{ .compatible = "qcom,pm660",     .data = (void *)PM660_SUBTYPE },
+> -	{ .compatible = "qcom,pm660l",    .data = (void *)PM660L_SUBTYPE },
+> -	{ .compatible = "qcom,pm8004",    .data = (void *)PM8004_SUBTYPE },
+> -	{ .compatible = "qcom,pm8005",    .data = (void *)PM8005_SUBTYPE },
+> -	{ .compatible = "qcom,pm8019",    .data = (void *)PM8019_SUBTYPE },
+> -	{ .compatible = "qcom,pm8028",    .data = (void *)PM8028_SUBTYPE },
+> -	{ .compatible = "qcom,pm8110",    .data = (void *)PM8110_SUBTYPE },
+> -	{ .compatible = "qcom,pm8150",    .data = (void *)PM8150_SUBTYPE },
+> -	{ .compatible = "qcom,pm8150b",   .data = (void *)PM8150B_SUBTYPE },
+> -	{ .compatible = "qcom,pm8150c",   .data = (void *)PM8150C_SUBTYPE },
+> -	{ .compatible = "qcom,pm8150l",   .data = (void *)PM8150L_SUBTYPE },
+> -	{ .compatible = "qcom,pm8226",    .data = (void *)PM8226_SUBTYPE },
+> -	{ .compatible = "qcom,pm8841",    .data = (void *)PM8841_SUBTYPE },
+> -	{ .compatible = "qcom,pm8901",    .data = (void *)PM8901_SUBTYPE },
+> -	{ .compatible = "qcom,pm8909",    .data = (void *)PM8909_SUBTYPE },
+> -	{ .compatible = "qcom,pm8916",    .data = (void *)PM8916_SUBTYPE },
+> -	{ .compatible = "qcom,pm8941",    .data = (void *)PM8941_SUBTYPE },
+> -	{ .compatible = "qcom,pm8950",    .data = (void *)PM8950_SUBTYPE },
+> -	{ .compatible = "qcom,pm8994",    .data = (void *)PM8994_SUBTYPE },
+> -	{ .compatible = "qcom,pm8998",    .data = (void *)PM8998_SUBTYPE },
+> -	{ .compatible = "qcom,pma8084",   .data = (void *)PMA8084_SUBTYPE },
+> -	{ .compatible = "qcom,pmd9635",   .data = (void *)PMD9635_SUBTYPE },
+> -	{ .compatible = "qcom,pmi8950",   .data = (void *)PMI8950_SUBTYPE },
+> -	{ .compatible = "qcom,pmi8962",   .data = (void *)PMI8962_SUBTYPE },
+> -	{ .compatible = "qcom,pmi8994",   .data = (void *)PMI8994_SUBTYPE },
+> -	{ .compatible = "qcom,pmi8998",   .data = (void *)PMI8998_SUBTYPE },
+> -	{ .compatible = "qcom,pmk8002",   .data = (void *)PMK8002_SUBTYPE },
+> -	{ .compatible = "qcom,smb2351",   .data = (void *)SMB2351_SUBTYPE },
+> -	{ .compatible = "qcom,spmi-pmic", .data = (void *)COMMON_SUBTYPE },
+> +	{ .compatible = "qcom,pm660", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm660l", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8004", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8005", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8019", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8028", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8110", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8150", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8150b", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8150c", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8150l", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8226", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8841", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8901", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8909", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8916", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8941", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8950", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8994", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pm8998", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pma8084", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmd9635", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmi8950", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmi8962", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmi8994", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmi8998", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,pmk8002", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,smb2351", .data = N_USIDS(2) },
+> +	{ .compatible = "qcom,spmi-pmic", .data = N_USIDS(1) },
+>   	{ }
+>   };
+>   
+> -static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
+> +#undef N_USIDS
+> +
+> +/*
+> + * A PMIC can be represented by multiple SPMI devices, but
+> + * only the base PMIC device will contain a reference to
+> + * the revision information.
+> + *
+> + * This function takes a pointer to a function device and
+> + * returns a pointer to the base PMIC device.
+> + *
+> + * This only supports PMICs with 1 or 2 USIDs.
+> + */
+> +static struct spmi_device *qcom_pmic_get_base_usid(struct device *dev)
+>   {
+> -	unsigned int rev2, minor, major, type, subtype;
+> -	const char *name = "unknown";
+> -	int ret, i;
+> +	struct spmi_device *sdev;
+> +	struct qcom_spmi_dev *ctx;
+> +	struct device_node *spmi_bus;
+> +	struct device_node *other_usid = NULL;
+> +	int function_parent_usid, ret;
+> +	u32 pmic_addr;
+>   
+> -	ret = regmap_read(map, PMIC_TYPE, &type);
+> -	if (ret < 0)
+> -		return;
+> +	if (!of_match_device(pmic_spmi_id_table, dev))
+> +		return ERR_PTR(-EINVAL);
+> +
+> +	sdev = to_spmi_device(dev);
+> +	ctx = spmi_device_get_drvdata(sdev);
+> +
+> +	dev_info(dev, "CA: num_usids=%d, subtype=0x%x\n", ctx->num_usids,
+> +							ctx->pmic.subtype);
+> +
+> +	/*
+> +	 * Quick return if the function device is already in the base
+> +	 * USID. This will always be hit for PMICs with only 1 USID.
+> +	 */
+> +	if (sdev->usid % ctx->num_usids == 0)
+> +		return sdev;
+> +
+> +	function_parent_usid = sdev->usid;
+> +	dev_info(dev, "CA: function_parent_usid=%d\n", function_parent_usid);
+> +
+> +	/*
+> +	 * Walk through the list of PMICs until we find the sibling USID.
+> +	 * The goal is to find the first USID which is less than the
+> +	 * number of USIDs in the PMIC away, e.g. for a PMIC with 2 USIDs
+> +	 * where the function device is under USID 3, we want to find the
+> +	 * device for USID 2.
+> +	 */
+> +	spmi_bus = of_get_parent(sdev->dev.of_node);
+> +	do {
+> +		other_usid = of_get_next_child(spmi_bus, other_usid);
+> +		ret = of_property_read_u32_index(other_usid, "reg", 0, &pmic_addr);
+> +		dev_info(dev, "CA: other_usid=%s, pmic_addr=0x%x, ret=%d\n",
+> +							other_usid->name, pmic_addr, ret);
+> +		if (ret)
+> +			return ERR_PTR(ret);
+> +		sdev = spmi_device_from_of(other_usid);
+> +		if (sdev == NULL) {
+> +			dev_info(dev, "CA: sdev null");
+> +			/*
+> +			 * If the base USID for this PMIC hasn't probed yet
+> +			 * but the secondary USID has, then we need to defer
+> +			 * the function driver so that it will attempt to
+> +			 * probe again when the base USID is ready.
+> +			 */
+> +			if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
+> +				return ERR_PTR(-EPROBE_DEFER);
+> +
+> +			continue;
+> +		}
+> +
+> +		if (pmic_addr == function_parent_usid  - (ctx->num_usids - 1))
+> +			return sdev;
+> +	} while (other_usid->sibling);
+> +
+> +	return ERR_PTR(-ENODATA);
+> +}
+>   
+> -	if (type != PMIC_TYPE_VALUE)
+> -		return;
+> +static inline void pmic_print_info(struct device *dev, struct qcom_spmi_pmic *pmic)
+> +{
+> +	dev_dbg(dev, "%x: %s v%d.%d\n",
+> +		pmic->subtype, pmic->name, pmic->major, pmic->minor);
+> +}
+> +
+> +static int pmic_spmi_load_revid(struct regmap *map, struct device *dev,
+> +				 struct qcom_spmi_pmic *pmic)
+> +{
+> +	int ret;
+>   
+> -	ret = regmap_read(map, PMIC_SUBTYPE, &subtype);
+> +	ret = regmap_read(map, PMIC_TYPE, &pmic->type);
+>   	if (ret < 0)
+> -		return;
+> +		return ret;
+>   
+> -	for (i = 0; i < ARRAY_SIZE(pmic_spmi_id_table); i++) {
+> -		if (subtype == (unsigned long)pmic_spmi_id_table[i].data)
+> -			break;
+> -	}
+> +	if (pmic->type != PMIC_TYPE_VALUE)
+> +		return ret;
+> +
+> +	ret = regmap_read(map, PMIC_SUBTYPE, &pmic->subtype);
+> +	if (ret < 0)
+> +		return ret;
+>   
+> -	if (i != ARRAY_SIZE(pmic_spmi_id_table))
+> -		name = pmic_spmi_id_table[i].compatible;
+> +	pmic->name = of_match_device(pmic_spmi_id_table, dev)->compatible;
+>   
+> -	ret = regmap_read(map, PMIC_REV2, &rev2);
+> +	ret = regmap_read(map, PMIC_REV2, &pmic->rev2);
+>   	if (ret < 0)
+> -		return;
+> +		return ret;
+>   
+> -	ret = regmap_read(map, PMIC_REV3, &minor);
+> +	ret = regmap_read(map, PMIC_REV3, &pmic->minor);
+>   	if (ret < 0)
+> -		return;
+> +		return ret;
+>   
+> -	ret = regmap_read(map, PMIC_REV4, &major);
+> +	ret = regmap_read(map, PMIC_REV4, &pmic->major);
+>   	if (ret < 0)
+> -		return;
+> +		return ret;
+>   
+>   	/*
+>   	 * In early versions of PM8941 and PM8226, the major revision number
+> @@ -124,16 +181,35 @@ static void pmic_spmi_show_revid(struct regmap *map, struct device *dev)
+>   	 * Increment the major revision number here if the chip is an early
+>   	 * version of PM8941 or PM8226.
+>   	 */
+> -	if ((subtype == PM8941_SUBTYPE || subtype == PM8226_SUBTYPE) &&
+> -	    major < 0x02)
+> -		major++;
+> +	if ((pmic->subtype == PM8941_SUBTYPE || pmic->subtype == PM8226_SUBTYPE) &&
+> +	    pmic->major < 0x02)
+> +		pmic->major++;
+> +
+> +	if (pmic->subtype == PM8110_SUBTYPE)
+> +		pmic->minor = pmic->rev2;
+>   
+> -	if (subtype == PM8110_SUBTYPE)
+> -		minor = rev2;
+> +	pmic_print_info(dev, pmic);
+>   
+> -	dev_dbg(dev, "%x: %s v%d.%d\n", subtype, name, major, minor);
+> +	return 0;
+>   }
+>   
+> +/**
+> + * qcom_pmic_get() - Get a pointer to the base PMIC device
+> + *
+> + * @dev: the pmic function device
+> + * @return: the struct qcom_spmi_pmic* pointer associated with the function device
+> + */
+> +inline const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev)
 
-  video-phy@10040710: 'reg' does not match any of the regexes: 'pinctrl-[0-9]+'
+Nit: Why do you need an inline here?
 
-Any out-of-tree users of Exynos5250 DTSI, should update their code to
-use newer syscon property.
+> +{
+> +	struct spmi_device *sdev = qcom_pmic_get_base_usid(dev->parent);
+> +
+> +	if (IS_ERR(sdev))
+> +		return ERR_CAST(sdev);
+> +
+> +	return &((struct qcom_spmi_dev *)spmi_device_get_drvdata(sdev))->pmic;
+> +}
+> +EXPORT_SYMBOL(qcom_pmic_get);
+> +
+>   static const struct regmap_config spmi_regmap_config = {
+>   	.reg_bits	= 16,
+>   	.val_bits	= 8,
+> @@ -144,14 +220,26 @@ static const struct regmap_config spmi_regmap_config = {
+>   static int pmic_spmi_probe(struct spmi_device *sdev)
+>   {
+>   	struct regmap *regmap;
+> +	struct qcom_spmi_dev *ctx;
+> +	int ret;
+>   
+>   	regmap = devm_regmap_init_spmi_ext(sdev, &spmi_regmap_config);
+>   	if (IS_ERR(regmap))
+>   		return PTR_ERR(regmap);
+>   
+> +	ctx = devm_kzalloc(&sdev->dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ctx->num_usids = (long)of_device_get_match_data(&sdev->dev);
+> +
+>   	/* Only the first slave id for a PMIC contains this information */
+> -	if (sdev->usid % 2 == 0)
+> -		pmic_spmi_show_revid(regmap, &sdev->dev);
+> +	if (sdev->usid % ctx->num_usids == 0) {
+> +		ret = pmic_spmi_load_revid(regmap, &sdev->dev, &ctx->pmic);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
+> +	spmi_device_set_drvdata(sdev, ctx);
+>   
+>   	return devm_of_platform_populate(&sdev->dev);
+>   }
+> diff --git a/include/soc/qcom/qcom-spmi-pmic.h b/include/soc/qcom/qcom-spmi-pmic.h
+> new file mode 100644
+> index 000000000000..5400e6509fe8
+> --- /dev/null
+> +++ b/include/soc/qcom/qcom-spmi-pmic.h
+> @@ -0,0 +1,60 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/* Copyright (c) 2021 Linaro. All rights reserved.
+> + * Copyright (c) 2021 Caleb Connolly <caleb.connolly@linaro.org>
+> + */
+> +
+> +#ifndef __QCOM_SPMI_PMIC_H__
+> +#define __QCOM_SPMI_PMIC_H__
+> +
+> +#define COMMON_SUBTYPE		0x00
+> +#define PM8941_SUBTYPE		0x01
+> +#define PM8841_SUBTYPE		0x02
+> +#define PM8019_SUBTYPE		0x03
+> +#define PM8226_SUBTYPE		0x04
+> +#define PM8110_SUBTYPE		0x05
+> +#define PMA8084_SUBTYPE		0x06
+> +#define PMI8962_SUBTYPE		0x07
+> +#define PMD9635_SUBTYPE		0x08
+> +#define PM8994_SUBTYPE		0x09
+> +#define PMI8994_SUBTYPE		0x0a
+> +#define PM8916_SUBTYPE		0x0b
+> +#define PM8004_SUBTYPE		0x0c
+> +#define PM8909_SUBTYPE		0x0d
+> +#define PM8028_SUBTYPE		0x0e
+> +#define PM8901_SUBTYPE		0x0f
+> +#define PM8950_SUBTYPE		0x10
+> +#define PMI8950_SUBTYPE		0x11
+> +#define PM8998_SUBTYPE		0x14
+> +#define PMI8998_SUBTYPE		0x15
+> +#define PM8005_SUBTYPE		0x18
+> +#define PM660L_SUBTYPE		0x1A
+> +#define PM660_SUBTYPE		0x1B
+> +#define PM8150_SUBTYPE		0x1E
+> +#define PM8150L_SUBTYPE		0x1f
+> +#define PM8150B_SUBTYPE		0x20
+> +#define PMK8002_SUBTYPE		0x21
+> +#define PM8009_SUBTYPE		0x24
+> +#define PM8150C_SUBTYPE		0x26
+> +#define SMB2351_SUBTYPE		0x29
+> +
+> +#define PMI8998_FAB_ID_SMIC	0x11
+> +#define PMI8998_FAB_ID_GF	0x30
+> +
+> +#define PM660_FAB_ID_GF		0x0
+> +#define PM660_FAB_ID_TSMC	0x2
+> +#define PM660_FAB_ID_MX		0x3
+> +
+> +struct qcom_spmi_pmic {
+> +	unsigned int type;
+> +	unsigned int subtype;
+> +	unsigned int major;
+> +	unsigned int minor;
+> +	unsigned int rev2;
+> +	const char *name;
+> +};
+> +
+> +struct device;
+> +
+> +inline const struct qcom_spmi_pmic *qcom_pmic_get(struct device *dev);
+> +
+> +#endif /* __QCOM_SPMI_PMIC_H__ */
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/arm/boot/dts/exynos5250.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
-index 5baaa7eb71a4..d8d401b5ca48 100644
---- a/arch/arm/boot/dts/exynos5250.dtsi
-+++ b/arch/arm/boot/dts/exynos5250.dtsi
-@@ -817,15 +817,14 @@ mixer: mixer@14450000 {
- 			status = "disabled";
- 		};
- 
--		dp_phy: video-phy {
-+		dp_phy: video-phy-0 {
- 			compatible = "samsung,exynos5250-dp-video-phy";
- 			samsung,pmu-syscon = <&pmu_system_controller>;
- 			#phy-cells = <0>;
- 		};
- 
--		mipi_phy: video-phy@10040710 {
-+		mipi_phy: video-phy-1 {
- 			compatible = "samsung,s5pv210-mipi-video-phy";
--			reg = <0x10040710 0x100>;
- 			#phy-cells = <1>;
- 			syscon = <&pmu_system_controller>;
- 		};
 -- 
-2.32.0
-
+With best wishes
+Dmitry
