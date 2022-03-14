@@ -2,70 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AE2B4D7DD8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:52:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC504D7DDC
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:54:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229613AbiCNIxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 04:53:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52054 "EHLO
+        id S232951AbiCNIzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 04:55:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237007AbiCNIxu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:53:50 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C22CA1E3CC
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:52:40 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id q14so22685726wrc.4
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:52:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Ule/aqdhSJr0hH+xLp5cZT0xnq/aSwegNWuPzYz92L4=;
-        b=T7BBQRH0m7boDN0DcNVFe4NFmoUR+7eCxafGF0LGeLpmdNfsI/ql87JmwVUTu4kB0Q
-         /zZtiFX+Qba4BIcY4KZZkMD5HpH0bUY7JMc3A1iLCkvCaaIm6L7bdRs0BUgPU7ZDK3vZ
-         tp2/evm2hU122b7aAmZbTpi8Nd+9B+iKFaiPCHpi1iHBQrG3VmOfJ2HpCicAQcI+KO3M
-         cJzYaBVuQa9/ykGpT/tFDUw9FQJUSkOrvEih+wNhp5vWDjwpQE6gJjkGITKsKrNNCuB4
-         FDXWWeQBihknWvpfxl1fRPiiVN+vhub7i2FSuWNUdspI9xVpRe5gwcx1YPBVYl0y4VV4
-         PV+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Ule/aqdhSJr0hH+xLp5cZT0xnq/aSwegNWuPzYz92L4=;
-        b=5+QY6QyviZa6THxQ+ecqcE+wucdbM1byyX/aMGITHj/xpLR4WFLtvjA3to8BOmOI+n
-         H+4buvJNYLuKeucgybIzJdITu8YiMf3mYPWJ4mhTZ0dU5y0AaBEYgKAFyH3RkOO/SAGp
-         iSEIPwi1M9gPMu3K9zs+TNTLc3xNHWaUWIIu+RCa/10Hu/eypmWtg/vtWjIvNfmXFQ6D
-         Vg0LR32bvd7/+FfQYoz34mJbX3Bm5tZWIqSzyCfb0KkJpi7Uw1vlaBMkdYWn55SrMxEf
-         RCYRJRMjuj/SdZdqUHU7p+EHfGfmXQ+UDB1YMBSTjaUF2N3Ie5zkxDWEq6jKco1Wo91U
-         XVtg==
-X-Gm-Message-State: AOAM533x/CPqRtP5bUtPB4XlO6WEpgTEMsS77CPu52F+BUjvjHezGrEJ
-        4OfHVAKN6vbkBJkWZ7GxMrQ60A==
-X-Google-Smtp-Source: ABdhPJxgRM/53Q0EcYcptUpuK3pXraRfhD+RcQW2uJnjJj8TGW6xRMq1bWHZkr8id8c/2Xey2vL5Gw==
-X-Received: by 2002:adf:f70f:0:b0:1f1:dfb1:ab68 with SMTP id r15-20020adff70f000000b001f1dfb1ab68mr15709197wrp.439.1647247959170;
-        Mon, 14 Mar 2022 01:52:39 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id m34-20020a05600c3b2200b00380e3225af9sm14723947wms.0.2022.03.14.01.52.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 01:52:38 -0700 (PDT)
-Date:   Mon, 14 Mar 2022 08:52:36 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: extcon: maxim,max77843: fix ports type
-Message-ID: <Yi8CVJTRGy6v1CWr@google.com>
-References: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S235648AbiCNIzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:55:36 -0400
+Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B88E20F72;
+        Mon, 14 Mar 2022 01:54:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by sin.source.kernel.org (Postfix) with ESMTPS id E7BA1CE1099;
+        Mon, 14 Mar 2022 08:54:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A70F3C340F6;
+        Mon, 14 Mar 2022 08:54:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647248064;
+        bh=pOJJw1xO8gJXjWgBRnxa5bjvsoFtsXrMDM88AR9YVYs=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=h9yMSvcsMlqsjB/0bz0VkbzBh7ZYDkkImBHp/r5frg0YOIiSdj5e9H8HZydZNAqNG
+         GB5OLl8/ejWx6WR/MTIZxFc4qP+B0uTJfR8v1m1rgbJofLJXslHGY+Jxs+2OVJa4Wl
+         +4WvYgAyStpZVYvyHc7XRrlNB4LK3X0SfWN5HjG2+7OU9bmLOCB5eEyQ3QFen8eVCP
+         oOc16u0ClC7qotQaBYoOh0SrFB6/5VS2qZyXZMN92zM1qgQ9he3foRnl5bFyPquGDc
+         eYZN1dNPeg6wgURs7QAa+BwgfPiYGsOjl8PbcTl7iJFBZkHKLrXR1UGYvDl18hnqQS
+         XaBuUU4nBsTWw==
+From:   Mark Brown <broonie@kernel.org>
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Cc:     alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+In-Reply-To: <20220311234802.417610-1-robh@kernel.org>
+References: <20220311234802.417610-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: Fix patternProperties with fixed strings
+Message-Id: <164724806240.972788.14565468208010113949.b4-ty@kernel.org>
+Date:   Mon, 14 Mar 2022 08:54:22 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220310073258.24060-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,46 +56,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Mar 2022, Krzysztof Kozlowski wrote:
-
-> The "ports" property can contain multiple ports as name suggests, so it
-> should be using "ports" type from device graphs.
+On Fri, 11 Mar 2022 17:48:01 -0600, Rob Herring wrote:
+> The simple-audio-card and renesas,rsnd bindings used 'patternProperties'
+> with fixed strings to work-around a dtschema meta-schema limitation. This
+> is now fixed and the schemas can be fixed to use 'properties' instead.
 > 
-> Reported-by: Rob Herring <robh@kernel.org>
-> Fixes: 9729cad0278b ("dt-bindings: extcon: maxim,max77843: Add MAX77843 bindings")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > 
-> ---
-> 
-> Hi Lee,
-> 
-> This is a fix for a commit in your next branch.
 
-Yes and no.
+Applied to
 
-I sent out a pull-request so that follow-up fixes can go in via their
-respective trees.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-> ---
->  Documentation/devicetree/bindings/extcon/maxim,max77843.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml b/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
-> index f9ffe3d6f957..0216ec868c3e 100644
-> --- a/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
-> +++ b/Documentation/devicetree/bindings/extcon/maxim,max77843.yaml
-> @@ -25,7 +25,7 @@ properties:
->      $ref: /schemas/connector/usb-connector.yaml#
->  
->    ports:
-> -    $ref: /schemas/graph.yaml#/properties/port
-> +    $ref: /schemas/graph.yaml#/properties/ports
->      description:
->        Any connector to the data bus of this controller should be modelled using
->        the OF graph bindings specified
+Thanks!
 
--- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+[1/1] ASoC: dt-bindings: Fix patternProperties with fixed strings
+      commit: 910f42bfe96783fc633196bd975731a420c7a066
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
