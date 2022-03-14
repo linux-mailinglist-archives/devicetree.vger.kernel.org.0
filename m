@@ -2,149 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5FD34D8096
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:21:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C79C74D8180
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 12:44:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238885AbiCNLXC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 07:23:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60868 "EHLO
+        id S239535AbiCNLpD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 07:45:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237703AbiCNLXB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:23:01 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C20F3A5DF
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:21:51 -0700 (PDT)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id B361E405A5
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 11:21:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647256906;
-        bh=W9VMt9fitOMhu9PbN4y31ZgV44fBSNG49uwM8HTR7CI=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=C6eXvayj7U/WIeKlnazwo1Ju8ONqN2yw0jBJPDHDP+MSB8ggJad/EXesuuSTrRJNy
-         6VYiQlzHNCxZlqFgGv0SxI11hIWb+Ts4H5JoE07GomrOYWQ0XhBMMbObFdDI/3M9/s
-         WUi9cUcQKfQbkR7FeVkCioLc5CJvZlJWUnlH156VTtaSj4kZwatUczXXkVIfBNX+iz
-         T6IUof1STRJGMiJKevZKiM+XJ1nVdJ9at97oioLPYFM56nsnVft/2aKlPXH0Xbk0re
-         hwVYq/BRHrQcHimlAFZPoiJ58e+OO5T3Amezbx10nYXL2sxkcsKyFAc7dxBO/S1sOW
-         l2IuhoToRj3yQ==
-Received: by mail-ej1-f69.google.com with SMTP id el10-20020a170907284a00b006db9df1f3bbso4382429ejc.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:21:46 -0700 (PDT)
+        with ESMTP id S240464AbiCNLn5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 07:43:57 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F6E424A9
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:42:16 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 3so26550396lfr.7
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 04:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=h8tEzrxdNc4jjoNSfhM1jc3MU9LSemhGmq+z88lCX5o=;
+        b=ggqnU4YO/MtIU9SDNvfKkqtI7Ty5stK/oQTMQWB8AHI21Hdk+iTYwcmK3GJwj2R+l0
+         tZ7F5HVoEcAvxcQyegUAswfiMsCuBAIY/LA2xxo4BLkT8bPU6T5usDsXiqBf043lS2GF
+         NSUlLXfwrgMjNcQbh0tMUpRyd4TZQf6Q1HabBxpWWhDGns+M8Ht5/S6xkxflme7Rn7Xv
+         Gg2NpXJdPpJSDssoHlKdRfgz4Un4BI3TZVi7A/tBntbkrVchXMc0cR2udshT+rClIMBn
+         063xNfPhfP1v00IbuwsWhgK8iXa1O95E7Mc1bFE+T9h0RJju9GpoLEzj9t0C+RJfD+YY
+         xntA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=W9VMt9fitOMhu9PbN4y31ZgV44fBSNG49uwM8HTR7CI=;
-        b=GxySQO6gtPh8CcWneeUzPWEch8SCD4M0KTy6QdERBZoVMWPHBn6aONyiJBI6+KjAFX
-         pIU42uKCNV8GqYa9PJY6xCiByQwKhvFSPkxOujQMdo0noaTO0LT1KDPvqg/XmzB9Ml0W
-         P6PKd5kNAKE3cSaQwIZ7RwAbjkeupLSY8SfVsh4IKxOMXZbgOL67TOlQlcdoRh+XbRQl
-         67lG0o2xp+mIg6FduZ5oI6QwHMKuo5KUFWsdjSVNjClPZSEW+ysjU8bYQthufDnMpusN
-         IEfWxzrfNbtSMcx6fG9VOOup8BPDnmM9OjP8aViOwoHi52xX4U8qakYbcYf9fA6v1h1P
-         4ibg==
-X-Gm-Message-State: AOAM533mPN5FPkVqZJLnOhD1wtroLSMFb4EErW/3KzvWDtWbRB+gpuw5
-        l0S5J0NCyhr2A+VWLJpkOUDNPmUiqDuH/thI560KJnT+mQIgqN0QLeCQwbwHJVjPCvdmRzLeUFx
-        0t6+T8NvRGRT7hW/dcFkSlbSa+VkD7dhRhMDL+dw=
-X-Received: by 2002:a17:907:6da2:b0:6da:94a9:b7f3 with SMTP id sb34-20020a1709076da200b006da94a9b7f3mr18346500ejc.692.1647256904345;
-        Mon, 14 Mar 2022 04:21:44 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJznZeSz7ppOk/V81jFboc957xuTXOB6UgvnwgrPV/5NzFrdaVAXBT1SidK5IOuXKNsAyX8TzA==
-X-Received: by 2002:a17:907:6da2:b0:6da:94a9:b7f3 with SMTP id sb34-20020a1709076da200b006da94a9b7f3mr18346474ejc.692.1647256904099;
-        Mon, 14 Mar 2022 04:21:44 -0700 (PDT)
-Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id y18-20020aa7ca12000000b0041677910461sm7859672eds.53.2022.03.14.04.21.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 04:21:43 -0700 (PDT)
-Message-ID: <1a43277a-94b9-4f95-314a-876291227982@canonical.com>
-Date:   Mon, 14 Mar 2022 12:21:42 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
+        bh=h8tEzrxdNc4jjoNSfhM1jc3MU9LSemhGmq+z88lCX5o=;
+        b=4M4b8R27+rwIh43BwYEF2JLXUXl0mHm8qbWyvwLVZa/iaJxnev0KESdIMYpgZ6lKMD
+         M/s3PhayJ+kVp2cEwm1sGpUU6ZxFEdVl+Xk/73Ujf+qAvqtambIEmDDUFUC8SjD8ZY+I
+         LVaJWngTUnnyHim7FZDmp/dIewVP+ZRQXVRydGn1MsqIyd/rn+9Kvg5oBIiohv4Vw3Ro
+         cmGGPJVxwAirEizokvP1YJmPtdMXEWCLt9wM7IQ6bBNd8kpYdLVPws+0cVBco8+ap9cs
+         Vy+vJLbTfbE67oBU9j6F2jK5lHdQLLl8MUt2cnWAi+AC/WPmpkulcTr8uhels8Slke2Q
+         NkAA==
+X-Gm-Message-State: AOAM5324QzXPJqa9NSvfk+XolzzY5Qrc2UHEgZJOQ3B3/mNjgzBQ6JUM
+        IvFEN7T26FjIPcWICjlBn9WBpQ==
+X-Google-Smtp-Source: ABdhPJzMrZPGC8buT0pqOE22MRVIe72bNArccD6iWtuauQNVqk1p+xjC26DlMTe82pNybumgK90eJg==
+X-Received: by 2002:a05:6512:22d1:b0:447:5fde:a2ee with SMTP id g17-20020a05651222d100b004475fdea2eemr13696335lfu.115.1647258134540;
+        Mon, 14 Mar 2022 04:42:14 -0700 (PDT)
+Received: from localhost.localdomain (88-113-46-102.elisa-laajakaista.fi. [88.113.46.102])
+        by smtp.gmail.com with ESMTPSA id l11-20020a2e834b000000b00246308690e2sm3893333ljh.85.2022.03.14.04.42.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 04:42:14 -0700 (PDT)
+From:   Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com
-References: <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
- <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
- <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
- <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
- <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
- <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
- <20220314094054.GB28402@hu-pkondeti-hyd.qualcomm.com>
- <b45b3b7e-e1c0-79b6-81c0-53c70427dd10@canonical.com>
- <20220314103045.GA31533@hu-pkondeti-hyd.qualcomm.com>
- <fadbc93f-8741-58c6-d0e5-dc740e0f0724@canonical.com>
- <20220314111313.GA6889@hu-pkondeti-hyd.qualcomm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220314111313.GA6889@hu-pkondeti-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 0/7] clk: qcom: add camera clock controller driver for SM8450 SoC
+Date:   Mon, 14 Mar 2022 13:42:09 +0200
+Message-Id: <20220314114211.1636574-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.33.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 12:13, Pavan Kondeti wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Mar 14, 2022 at 11:41:27AM +0100, Krzysztof Kozlowski wrote:
->> On 14/03/2022 11:30, Pavan Kondeti wrote:
->>> Hi Krzysztof,
->>>
->>>>
->>>> Ah, I did not get it. That's not the solution for this case. defines in
->>>> dt-bindings are for constants which already can be in DT, e.g. IDs. Your
->>>> register values should not be stored in DT.
->>>>
->>> These are again not register definitions. These are encodings that dT and
->>> driver can use. These would be constants only, no?
->>
->> What do you mean it is not a register value? I don't have access to
->> datasheet/manual but I can clearly see code:
->>
->> +	if (or->hs_disconnect.override)
->> +		qcom_snps_hsphy_write_mask(hsphy->base,
->> +			USB2_PHY_USB_PHY_HS_PHY_OVERRIDE_X0,
->> +			HS_DISCONNECT_MASK,
->> +			or->hs_disconnect.value << HS_DISCONNECT_SHIFT);
->>
->> You read the value from DT (e.g. "3" which means 6.3% for hs-disconnect)
->> and you write it to a register. Directly. 3 is a value for the hardware,
->> meaningless outside of it. It has meaning only in this one hardware
->> programming model. For humans it means nothing. For humans 6.3% means
->> something.
->>
-> 
-> Right, This is what I have been saying will change. we don't pass the direct
-> register values anymore. Instead I am saying, we pass the percentage
-> multiplied by 100. For 6.3%, user will be passing 630 in device tree. for
-> -2.75% user will pass (-275).
-> 
-> Are we on the same page now?
+The patchset adds support of a camera clock controller found on
+QCOM SM8450 SoC, noticeably a camcc pll2 is a new "rivian evo"
+type of pll, its generic support is added in the series.
 
-Yes, it sounds good. Thanks!
+Note that SM8450 ES variant has a slightly different configurtion,
+the published version is intended to support SM8450 CS SoC.
 
-Best regards,
-Krzysztof
+Changes from v1 to v2:
+* updated qcom,camcc-sm8450.yaml according to review comments from Rob,
+* changed qcom,camcc-sm8450.h licence to dual one,
+* disabled camcc device tree node by default,
+* added Stephen's tag,
+* rebased the series on top of clk-for-5.18
+
+Vladimir Zapolskiy (7):
+  dt-bindings: clock: add QCOM SM8450 camera clock bindings
+  arm64: dts: qcom: sm8450: Add description of camera clock controller
+  clk: qcom: clk-alpha-pll: fix clk_trion_pll_configure description
+  clk: qcom: clk-alpha-pll: limit exported symbols to GPL licensed code
+  clk: qcom: clk-alpha-pll: export lucid evo PLL configuration interfaces
+  clk: qcom: clk-alpha-pll: add rivian evo PLL configuration interfaces
+  clk: qcom: add camera clock controller driver for SM8450 SoC
+
+ .../bindings/clock/qcom,camcc-sm8450.yaml     |   89 +
+ arch/arm64/boot/dts/qcom/sm8450.dtsi          |   20 +
+ drivers/clk/qcom/Kconfig                      |    7 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/camcc-sm8450.c               | 2869 +++++++++++++++++
+ drivers/clk/qcom/clk-alpha-pll.c              |  145 +-
+ drivers/clk/qcom/clk-alpha-pll.h              |   11 +-
+ include/dt-bindings/clock/qcom,camcc-sm8450.h |  159 +
+ 8 files changed, 3295 insertions(+), 6 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,camcc-sm8450.yaml
+ create mode 100644 drivers/clk/qcom/camcc-sm8450.c
+ create mode 100644 include/dt-bindings/clock/qcom,camcc-sm8450.h
+
+-- 
+2.33.0
+
