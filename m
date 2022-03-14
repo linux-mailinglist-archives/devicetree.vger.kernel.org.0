@@ -2,87 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26B6B4D7B5A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:13:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 910154D7B86
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 08:30:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231392AbiCNHOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 03:14:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38028 "EHLO
+        id S236609AbiCNHbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 03:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbiCNHOh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:14:37 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B336FE092;
-        Mon, 14 Mar 2022 00:13:25 -0700 (PDT)
-X-UUID: b947faf4ac9f42b18b1a2675fa76519b-20220314
-X-UUID: b947faf4ac9f42b18b1a2675fa76519b-20220314
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 1150338590; Mon, 14 Mar 2022 15:13:20 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Mon, 14 Mar 2022 15:13:19 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Mar 2022 15:13:18 +0800
-Message-ID: <2d4eb06df105eb378b0404f4aa49f438f09642d0.camel@mediatek.com>
-Subject: Re: [PATCH net-next v12 7/7] net: dt-bindings: dwmac: add support
- for mt8195
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <angelogioacchino.delregno@collabora.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        <devicetree@vger.kernel.org>,
-        "Maxime Coquelin" <mcoquelin.stm32@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>, <macpaul.lin@mediatek.com>,
-        <dkirjanov@suse.de>, <netdev@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <davem@davemloft.net>
-Date:   Mon, 14 Mar 2022 15:13:18 +0800
-In-Reply-To: <YfnGtWZLujX6SWQD@robh.at.kernel.org>
-References: <20220117070706.17853-1-biao.huang@mediatek.com>
-         <20220117070706.17853-8-biao.huang@mediatek.com>
-         <YfnGtWZLujX6SWQD@robh.at.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S236576AbiCNHbi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 03:31:38 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679FE40937;
+        Mon, 14 Mar 2022 00:30:28 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id D580322238;
+        Mon, 14 Mar 2022 08:30:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647243025;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rkJiyU6SyOytNL9RfBCdscNWweihr5Z98J++VGlbQ1I=;
+        b=FEzSwfih/CXfXuRaID3WdSk3StdtiEAELsPNelCx6IST2HyLncodVeOTs0X91YgwyIcmN0
+        bcxlIerxpB7qLjf07ysv4PKLs3NOGhBU2z2J86U0NZDphrIgXPOHXGUxRo0aeZgCupBNJo
+        huRSom605AjvoEnoidgeVkqYeKN8Nbo=
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Date:   Mon, 14 Mar 2022 08:30:23 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     heiko.thiery@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mn-evk: use proper names for PMIC
+ outputs
+In-Reply-To: <20220224103030.2040048-1-michael@walle.cc>
+References: <20220224103030.2040048-1-michael@walle.cc>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <00a28837f070d0964e55eafa1f2bb3f4@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Rob,
-	Thanks for your comments~
+Hi,
 
-On Tue, 2022-02-01 at 17:48 -0600, Rob Herring wrote:
-> On Mon, 17 Jan 2022 15:07:06 +0800, Biao Huang wrote:
-> > Add binding document for the ethernet on mt8195.
-> > 
-> > Signed-off-by: Biao Huang <biao.huang@mediatek.com>
-> > ---
-> >  .../bindings/net/mediatek-dwmac.yaml          | 28
-> > ++++++++++++++++---
-> >  1 file changed, 24 insertions(+), 4 deletions(-)
-> > 
+Am 2022-02-24 11:30, schrieb Michael Walle:
+> Use the power signal names as given in the schematics of the reference
+> board.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-I'll add reviewed-by info in next send.
+Any news here?
 
-Regards~
-
+-michael
