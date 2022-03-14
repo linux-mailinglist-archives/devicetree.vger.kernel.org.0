@@ -2,219 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C1AA4D7DA5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:36:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B994D7DC3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 09:44:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236937AbiCNIhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 04:37:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49280 "EHLO
+        id S237702AbiCNIpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 04:45:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236861AbiCNIhT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:37:19 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC8663F330
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:36:06 -0700 (PDT)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7F92B3F338
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 08:36:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647246965;
-        bh=eKjUtd7ByB5BRtEYaGOQ6lKKOtW7nvc1QYzmEKc7RCs=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=P+i4epapW0od3nVrJed4wQwW8DkwOtnnJiauN+RJRoXnFc3SqO7GSEvQfPx2MAOLW
-         NOp1OJda3JpMldAoVVfYCA26cliQ5cZ/O/LJbQ00KfTsyd+ym4Xp2FleRdiVeAauEs
-         sICEcenK4yUUnJg0HwPWlf9blQLFeDA/etnbogY4a7hV/cO16FMS6Z9Mn4/Kb3DOHC
-         oCva5oFdGCLa0GMrFEfTG+tkkswHRw2Ma3w6QrXbzUHHRR9KisscbtBoYAgXr9qUNK
-         YC2eKpsn1qHDb6pH6nfSXu2ugSuFMW3uC8ClnT3voiLRKGjygdUv03Tuf6ecEVG9u3
-         irtVxWPvIoPBQ==
-Received: by mail-ed1-f69.google.com with SMTP id b24-20020a50e798000000b0041631767675so8267854edn.23
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 01:36:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=eKjUtd7ByB5BRtEYaGOQ6lKKOtW7nvc1QYzmEKc7RCs=;
-        b=Fi+FFxltgXRngzS9tyN0zME8jqyDBX9raTNUvwrFToCCAlUBFc+bxkj+J3WB6Ql0Uj
-         W1Vm+WODf2e4RTJfRxP544mDF0D/0iYiZQl/7VLYGPqoXQxkt8Es7xlcmfXQIGNRlRpG
-         NX1+yMVpbeTWEj4t2Ulqx3YPCl9WBvZdEhXSw0ut6F0U6Gd+UA69aIlrzhTHs7axhFqt
-         feBMNS4sKwqU9sOca/6kGnusIfiCYFHjwEKdbCPvAjGqvf9yb52Y4rDLPy+vPCx/hlIQ
-         wexrXFIRTmAxyqS4Av5iOYDhJjdt93KhKDLBKMhWQ6gLvpvJtbcf35L060oTetBoD77C
-         NLgQ==
-X-Gm-Message-State: AOAM531QQH+sg5MbT7ewVi1VK/VPxUuAZ56UDIIQkKOr4nMrWcev24Op
-        x9Q5ihVUll7K1Bpd5ywIZa5uA1xyJtzx8EoxEqbByYRZ1cCdu+fgk46NVLZ0Wir0g4/OYYFCMPi
-        KWP2Rsq6NVsojwYgGEd0UV4/BO77DtBfLitJf0xs=
-X-Received: by 2002:aa7:dbd6:0:b0:408:4a31:97a5 with SMTP id v22-20020aa7dbd6000000b004084a3197a5mr19814948edt.186.1647246964835;
-        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyZkFoJYS5BSY8Z5fUfZgL7U2bI7mlWLX45AeUH2LOa4L1NioNNryVlI/34QqHMTfIflzb2bw==
-X-Received: by 2002:aa7:dbd6:0:b0:408:4a31:97a5 with SMTP id v22-20020aa7dbd6000000b004084a3197a5mr19814933edt.186.1647246964581;
-        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
-Received: from [192.168.0.152] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id qt22-20020a170906ecf600b006da6ef9b820sm6500282ejb.112.2022.03.14.01.36.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Mar 2022 01:36:04 -0700 (PDT)
-Message-ID: <c88396f4-4cfe-d375-1dcd-b34a6496cb06@canonical.com>
-Date:   Mon, 14 Mar 2022 09:36:02 +0100
+        with ESMTP id S237660AbiCNIpi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 04:45:38 -0400
+Received: from nbd.name (nbd.name [IPv6:2a01:4f8:221:3d45::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E364639B86;
+        Mon, 14 Mar 2022 01:44:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=nbd.name;
+         s=20160729; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=dOoRnrMcujfIeRM6SMTH0qBYGMOdBjxcajKfKM+54Qc=; b=CO3ZwM0jHy8YSkJhJ43lUHSG3N
+        GnRmA6CdQ+BHonhLoax43Zj4VhtruBfj3s/7pCzuW5h0nYkYTIg51wWthzCeLVOsWqLZAU9IbscyI
+        0LfjY71jIk47EuNs6EBgDTQ+daiFLPaD7z9H7Cr5t0pOK1/+6TtjlCX6VHMblXIopRL8=;
+Received: from p200300daa7204f006c015a90d6b6c4d6.dip0.t-ipconnect.de ([2003:da:a720:4f00:6c01:5a90:d6b6:c4d6] helo=Maecks.lan)
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <nbd@nbd.name>)
+        id 1nTgJP-0002UN-G9; Mon, 14 Mar 2022 09:44:19 +0100
+From:   Felix Fietkau <nbd@nbd.name>
+To:     soc@kernel.org, Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        John Crispin <john@phrozen.org>, Rob Herring <robh@kernel.org>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v10 1/6] dt-bindings: Add en7523-scu device tree binding documentation
+Date:   Mon, 14 Mar 2022 09:44:03 +0100
+Message-Id: <20220314084409.84394-2-nbd@nbd.name>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220314084409.84394-1-nbd@nbd.name>
+References: <20220314084409.84394-1-nbd@nbd.name>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom,usb-snps-femto-v2: Add phy
- override params bindings
-Content-Language: en-US
-To:     Pavan Kondeti <quic_pkondeti@quicinc.com>
-Cc:     Sandeep Maheswaram <quic_c_sanm@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Wesley Cheng <wcheng@codeaurora.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, quic_ppratap@quicinc.com,
-        quic_kriskura@quicinc.com
-References: <1646288011-32242-1-git-send-email-quic_c_sanm@quicinc.com>
- <1646288011-32242-2-git-send-email-quic_c_sanm@quicinc.com>
- <b793195b-1d3d-63b2-19d2-72ae2aec8c0f@canonical.com>
- <20220314032952.GA27561@hu-pkondeti-hyd.qualcomm.com>
- <f1621a67-a0ff-f111-c4da-9401924e7f4a@canonical.com>
- <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220314081613.GA28402@hu-pkondeti-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 09:16, Pavan Kondeti wrote:
-> Hi Krzysztof,
-> 
-> On Mon, Mar 14, 2022 at 08:39:57AM +0100, Krzysztof Kozlowski wrote:
->> On 14/03/2022 04:29, Pavan Kondeti wrote:
->>> Hi Krzysztof,
->>>
->>> On Thu, Mar 03, 2022 at 04:59:22PM +0100, Krzysztof Kozlowski wrote:
->>>> On 03/03/2022 07:13, Sandeep Maheswaram wrote:
->>>>> Add device tree bindings for SNPS phy tuning parameters.
->>>>>
->>>>> Signed-off-by: Sandeep Maheswaram <quic_c_sanm@quicinc.com>
->>>>> ---
->>>>>  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 125 +++++++++++++++++++++
->>>>>  1 file changed, 125 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>> index 0dfe691..227c097 100644
->>>>> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
->>>>> @@ -50,6 +50,131 @@ properties:
->>>>>    vdda33-supply:
->>>>>      description: phandle to the regulator 3.3V supply node.
->>>>>  
->>>>> +  qcom,hs-disconnect:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    description:
->>>>> +      This adjusts the voltage level for the threshold used to
->>>>> +      detect a disconnect event at the host. Possible values are.
->>>>
->>>> ':', instead of full stop.
->>>>
->>>>> +      7 -> +21.56%
->>>>> +      6 -> +17.43%
->>>>> +      5 -> +13.32%
->>>>> +      4 -> +9.73%
->>>>> +      3 -> +6.3
->>>>> +      2 -> +3.17%
->>>>> +      1 -> 0, Design default%
->>>>
->>>> Use "default:" instead. Here and in other places.
->>>>
->>>>> +      0 -> -2.72%
->>>>
->>>> In current form this should be an enum... but actually current form is
->>>> wrong. You should not store register values in DT. What if next version
->>>> of hardware has a different meaning of these values?
->>>>
->>>> Instead, you should store here meaningful values, not register values.
->>>>
->>>
->>> Thanks for the feedback.
->>>
->>> The values in % really makes the tuning easy. People look at the eye diagram
->>> and decided whether to increase/decrease the margin. The absolute values
->>> may not be that useful. All we need is an "adjustment" here. The databook
->>> it self does not give any absolute values.
->>>
->>> I agree to the "enum" suggestion which we have been following for the
->>> qusb2 driver already. 
->>>
->>> The values have not changed in the last 5 years for this hardware block, so
->>> defining enums for the % values would be really helpful. 
->>
->> I did not say you cannot store here percentages. Quite opposite - store
->> here the percentages. Just do not store register value. No. Please read
->> my comment again - meaningful values are needed.
->>
-> 
-> IIUC, you are asking us to come up with a meaningful values to encode the
-> percentage values. However, all the % increments are not linear, so we can't
-> come up with {min, max} scheme. Lets take an example of hostdisconnect
-> threshold.
-> 
-> As per the data book,
-> 
-> +      7 -> +21.56%
-> +      6 -> +17.43%
-> +      5 -> +13.32%
-> +      4 -> +9.73%
-> +      3 -> +6.3
-> +      2 -> +3.17%
-> +      1 -> 0, Design default%
-> +      0 -> -2.72%
-> 
-> so how do we give meaningful values here? Does the below scheme make sense
-> to you?
+From: John Crispin <john@phrozen.org>
 
-By "meaningful value" I mean something which has a understandable
-meaning to reader of this code or to hardware designer. For example
-percentage values or some units (ms, ns, Hz, mA, mV). The value used in
-register is not meaningful in that way to us because it has a meaning
-only to the hardware block. Storing register values is more difficult to
-read later, non-portable and non-scalable.
+Adds device tree binding documentation for clocks in the EN7523 SOC.
 
-> 
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_NEG_2P72	(-272)
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_DEFAULT	0
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_3P17	317
-> #define QCOM_SNPS_FEMTO_HS_DISCONNECT_6P3	63
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Felix Fietkau <nbd@nbd.name>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Felix Fietkau <nbd@nbd.name>
+---
+ .../bindings/clock/airoha,en7523-scu.yaml     | 58 +++++++++++++++++++
+ include/dt-bindings/clock/en7523-clk.h        | 17 ++++++
+ 2 files changed, 75 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+ create mode 100644 include/dt-bindings/clock/en7523-clk.h
 
-This is some define in driver, does not look related to bindings.
+diff --git a/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+new file mode 100644
+index 000000000000..d60e74654809
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/airoha,en7523-scu.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/airoha,en7523-scu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: EN7523 Clock Device Tree Bindings
++
++maintainers:
++  - Felix Fietkau <nbd@nbd.name>
++  - John Crispin <nbd@nbd.name>
++
++description: |
++  This node defines the System Control Unit of the EN7523 SoC,
++  a collection of registers configuring many different aspects of the SoC.
++
++  The clock driver uses it to read and configure settings of the
++  PLL controller, which provides clocks for the CPU, the bus and
++  other SoC internal peripherals.
++
++  Each clock is assigned an identifier and client nodes use this identifier
++  to specify which clock they consume.
++
++  All these identifiers can be found in:
++  [1]: <include/dt-bindings/clock/en7523-clk.h>.
++
++  The clocks are provided inside a system controller node.
++
++properties:
++  compatible:
++    items:
++      - const: airoha,en7523-scu
++
++  reg:
++    maxItems: 2
++
++  "#clock-cells":
++    description:
++      The first cell indicates the clock number, see [1] for available
++      clocks.
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - '#clock-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/en7523-clk.h>
++    scu: system-controller@1fa20000 {
++      compatible = "airoha,en7523-scu";
++      reg = <0x1fa20000 0x400>,
++            <0x1fb00000 0x1000>;
++      #clock-cells = <1>;
++    };
+diff --git a/include/dt-bindings/clock/en7523-clk.h b/include/dt-bindings/clock/en7523-clk.h
+new file mode 100644
+index 000000000000..717d23a5e5ae
+--- /dev/null
++++ b/include/dt-bindings/clock/en7523-clk.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++
++#ifndef _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_
++#define _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_
++
++#define EN7523_CLK_GSW		0
++#define EN7523_CLK_EMI		1
++#define EN7523_CLK_BUS		2
++#define EN7523_CLK_SLIC		3
++#define EN7523_CLK_SPI		4
++#define EN7523_CLK_NPU		5
++#define EN7523_CLK_CRYPTO	6
++#define EN7523_CLK_PCIE		7
++
++#define EN7523_NUM_CLOCKS	8
++
++#endif /* _DT_BINDINGS_CLOCK_AIROHA_EN7523_H_ */
+-- 
+2.35.1
 
-> In the driver, we have a mapping (which can be per SoC if required in future)
-> that takes these values and convert to the correct values for a given
-> register.
-
-You focus on driver but I am talking here only about bindings.
-
-What could be the meaningful value? Percentage could work. You have
-there a negative value, so I wonder what type of percentage is it? What
-is the formula?
-
-Your defines above look absolute, so maybe encode there absolute uV value?
-
-Best regards,
-Krzysztof
