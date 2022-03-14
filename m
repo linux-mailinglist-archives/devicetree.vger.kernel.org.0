@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 907DD4D8F92
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:28:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E24594D8F8E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:28:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238801AbiCNW3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 18:29:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38912 "EHLO
+        id S244288AbiCNW3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 18:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245625AbiCNW3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:29:47 -0400
-Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA2BF1263F
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:28:35 -0700 (PDT)
-Received: by mail-yb1-xb2a.google.com with SMTP id j2so33867143ybu.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:28:35 -0700 (PDT)
+        with ESMTP id S242517AbiCNW3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:29:37 -0400
+Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC5F11A35
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:28:26 -0700 (PDT)
+Received: by mail-oo1-xc35.google.com with SMTP id g5-20020a4ae885000000b003240bc9b2afso9688119ooe.10
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:28:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qWHNUqN4RPuJ+7vYjuCC+61GwajgQBbNJQM7LJ6cllQ=;
-        b=mfx54VUND+tksYeR/vbtsuf8Rqw0eLgWGmJdnX62ExXLEOu9eKylDVL20CFBMls5nT
-         1N7agP7N/TTm0WB5LYMTdDTccZVlrguzVQT1u5Q5OqAa/nxQfZFT1WPSX6VacnvvYc/B
-         NLMnqVmITanUnR3Z2O2fhLb2ZrgeWrXBGE+guyqvKdaqmrQPWMStdEzwXkv5u1Rf5aXJ
-         bdbxr7/wnGLNEXaM4llvK5Xzr9nGt4iQqYBEduQytHE3D3nDsgewItxoJvm6mwPOChRX
-         BOGysxDi60RjHw5e3Bf5SbifZo0p+iW+AXk2ANZeRo6wr9V8URDVRgEVlBoxoWPSdlVN
-         txCw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=nQWuqg+ddOw1oV88Ty6v00QRPKt0GAj8NU+qEDYWO1I=;
+        b=DWIDuPdANPxggwyxysS41MKFKbgxS7fkRxBrxcq4WZhLsEOVoC/190qUjKO0WrcEz2
+         HiK0siER3AD5sgCRTQNgQ8/N5EX2OLxSNRG5cZ0leQS9KUP9kapFMG+dof6VDruanClL
+         hh8qFFy6AiVYFXWrs6N4xXfPTWx6g5ZU1zLrOgwulN+/ejxqi1Pv/GF3zKo/R1ZmghSX
+         yPFU8OfhQva/95dcbXAVEdH9oDcVDxRUT02RDoqZa2FGx3TcjyjRG8U7wOki+KQLldGY
+         XdcI2t/BkHas1esRbgo4ySE9bY98ZY1WelKEct+9PpPijyvyMOujB6o3CErj58wtXgEK
+         C3Ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qWHNUqN4RPuJ+7vYjuCC+61GwajgQBbNJQM7LJ6cllQ=;
-        b=qDPNG+VSs1KLM8sf5uAusZ/KG+SWEbidfwv80s5jwIOZgUDs2qNpUwB3Ox8/caiMHn
-         uXX5URiv21zpX/XRiaxDIgYtaSwzbhj0lj2+UlR6VveqRWN8j4UXCHZK6HuXM8t+gd56
-         TWrvKLVEBGB1aP3jw1L4xGZFmRBVasW/k1bLCDlvEV+fbJN6b8ean0dsVHmwzx0ta3er
-         7iDSrEPVsjcMHrOkBhn98vZt99+uXWcbwm8H6OnF9hGXRXEP6euETT8CNj5fHoy3pgR2
-         DpJZhqBe44gXvbrE8wIUoiba33U5CiV4BGFZ0fXc8eFEDWZNdYABIGMge+FtknDUfpwK
-         z34A==
-X-Gm-Message-State: AOAM530IHXUWXE2krM6HC4F2ZTtH0KMXgZkYN3kC9JMCoHQJQSDV0ORx
-        ZNVpNH1Zu9DSsx2TprmWTHdPoPKnomvioT1ciIK0lQ==
-X-Google-Smtp-Source: ABdhPJxY3aPz3pg9iWcQ54O5HlHHzIhd94s/LV7H9QfgeLcD4LnfyG8oIiLntLd4kof5PBDBI0d0DPOnHZ+ud4Eb2No=
-X-Received: by 2002:a25:f406:0:b0:628:c29b:5c39 with SMTP id
- q6-20020a25f406000000b00628c29b5c39mr20736120ybd.369.1647296914823; Mon, 14
- Mar 2022 15:28:34 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=nQWuqg+ddOw1oV88Ty6v00QRPKt0GAj8NU+qEDYWO1I=;
+        b=FGHZomCxY7LYio9X4pQbVZfojRpmQ51SvATikNBgSF9juqWifYrjbBEKLyPgb2Ieky
+         b3XQ8+HukPfugzpDCG7ugNT+W4T/TwwN/W+VdA80jJM96a1Dr2ADbPEU4Gc7WO3yEeTE
+         IIIGs8Uge2sOvfowrS8OXxCdpIHbIBQbmyRox94vk7GgvrWj/ICR8ZE4JtIwACgVwiFj
+         poSmSBMznNdvRVDQv6/RPtzBwSUvDyOoXh7V8TTtKunRtDljuigmliNVegv45VF3Lho/
+         UiFjJxGpjXpLu2IUKEi/0GnADdihZPLqbmSgRdtlm8GRw+7LPgooT8+wXYkomDqtI9Qs
+         3ZsA==
+X-Gm-Message-State: AOAM533d0uZd1ESmhPLxT1FcAPvHO+U12oNFykCIyCAAX4flzzjp1eSN
+        TodxF8jO2EoRxFEnme8OKan2VQ==
+X-Google-Smtp-Source: ABdhPJwfNTLqkeOQnK1jvXc3XDq+dTSGGjbe07ZUKsKBp7CCf9AnvWDHI5pE6GufZ1uel/pwlnBIow==
+X-Received: by 2002:a05:6870:17a1:b0:da:b3f:3258 with SMTP id r33-20020a05687017a100b000da0b3f3258mr512703oae.264.1647296905949;
+        Mon, 14 Mar 2022 15:28:25 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id n128-20020a4a4086000000b0032118eda64bsm7991304ooa.38.2022.03.14.15.28.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 15:28:25 -0700 (PDT)
+Date:   Mon, 14 Mar 2022 17:28:23 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Alexandre Bailon <abailon@baylibre.com>
+Cc:     ohad@wizery.com, mathieu.poirier@linaro.org, robh+dt@kernel.or,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stephane.leprovost@mediatek.com, khilman@baylibre.com,
+        Julien STEPHAN <jstephan@baylibre.com>
+Subject: Re: [PATCH v4 6/7] remoteproc: mtk-apu: Add support of MT8365
+Message-ID: <Yi/Bh8CsB2bnE9Ca@builder.lan>
+References: <20220304161514.994128-1-abailon@baylibre.com>
+ <20220304161514.994128-7-abailon@baylibre.com>
 MIME-Version: 1.0
-References: <20220312113853.63446-1-singh.kuldeep87k@gmail.com> <20220312113853.63446-5-singh.kuldeep87k@gmail.com>
-In-Reply-To: <20220312113853.63446-5-singh.kuldeep87k@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 14 Mar 2022 23:28:23 +0100
-Message-ID: <CACRpkdaVXMBu9DYca3NF_injHUZ3YWpdqVMNd_6toG-=ZkCkOw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] ARM: dts: ste-dbx: Update spi clock-names property
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220304161514.994128-7-abailon@baylibre.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -66,22 +74,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Mar 12, 2022 at 12:39 PM Kuldeep Singh
-<singh.kuldeep87k@gmail.com> wrote:
+On Fri 04 Mar 10:15 CST 2022, Alexandre Bailon wrote:
 
-> Now that spi pl022 binding only accept "sspclk" as clock name, ST
-> ericsson platform with "SSPCLK" clock name start raising dtbs_check
-> warnings. Make necessary changes to update this property in order to
-> make it compliant with binding.
->
-> clock-names:0: 'sspclk' was expected
->
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> From: Julien STEPHAN <jstephan@baylibre.com>
+> 
+> This adds support of APU available in the MT8365.
+> 
+> Signed-off-by: Julien STEPHAN <jstephan@baylibre.com>
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 > ---
-> v3:
-> - Reword commit message
+>  drivers/remoteproc/mtk_apu.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
+> index deec51b86ba5..57dd73c63d3f 100644
+> --- a/drivers/remoteproc/mtk_apu.c
+> +++ b/drivers/remoteproc/mtk_apu.c
+> @@ -96,6 +96,24 @@ static const struct mtk_apu_conf mt8183_conf = {
+>  	.clk_names = mt8183_clk_names
+>  };
+>  
+> +static const char * const mt8365_clk_names[] = {
+> +	"if_ck",
+> +	"edma",
+> +	"ahb",
+> +	"axi",
+> +	"ipu",
+> +	"jtag",
+> +	"smi_cam",
+> +	"ifr_apu_axi",
+> +};
+> +
+> +static const struct mtk_apu_conf mt8365_conf = {
+> +	.core_default0 = BIT(26) | BIT(20),
+> +	.core_default1 = BIT(3) | BIT(7),
 
-Patch applied to the ux500 tree!
+Would it be possible to get some defines for these bits as well?
 
-Yours,
-Linus Walleij
+Thanks,
+Bjorn
+
+> +	.num_clks = ARRAY_SIZE(mt8365_clk_names),
+> +	.clk_names = mt8365_clk_names
+> +};
+> +
+>  static int mtk_apu_iommu_map(struct rproc *rproc, struct rproc_mem_entry *entry)
+>  {
+>  	struct mtk_apu_rproc *apu_rproc = rproc->priv;
+> @@ -633,6 +651,7 @@ static int mtk_apu_rproc_remove(struct platform_device *pdev)
+>  
+>  static const struct of_device_id mtk_apu_rproc_of_match[] = {
+>  	{ .compatible = "mediatek,mt8183-apu", .data = &mt8183_conf },
+> +	{ .compatible = "mediatek,mt8365-apu", .data = &mt8365_conf },
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, mtk_apu_rproc_of_match);
+> -- 
+> 2.34.1
+> 
