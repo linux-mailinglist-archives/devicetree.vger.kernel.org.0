@@ -2,104 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3111E4D8EC0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 22:32:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DCC4D8F10
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 22:50:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245295AbiCNVd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 17:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39746 "EHLO
+        id S245402AbiCNVvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 17:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245282AbiCNVdY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 17:33:24 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09E033E3B
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 14:32:13 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1A74B2C0C35;
-        Mon, 14 Mar 2022 21:32:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647293528;
-        bh=CCslJI4Upt9ti4sTFV0dF2UZUVjFxXqK24Ghz+BqxaM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KG9fXNXlKNU+snjweKpKj3+rkFkFLy5sEzLpwJKppiUh9KDfKiQ9BWNXy+7c8798A
-         pbbSgP6ErCgJ/U4HzZtVi5oFmFdXrBggmuYeqbedgtzjnxpOqin8pBYR3cJ5d+7zpR
-         gEqXuhDJBMek7iQRpvbo3v2/dXrTr48FQLpFePVO/KCLS7+vZoHBm2NranximxGMiV
-         nPpVgoxTUyiXUyygU0H+tH2zcLXpFFwcyQ8Ktt2sTAOwakCMJwZXIYfxdLqAmFiRRY
-         H1otMOk4Ox1s6XRWJnWEYQfCOjGS38xfQWRunvGqTWNSg9ROlTxlmY8ZllG70auv3J
-         7QzYDPiu/7u2w==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B622fb4570007>; Tue, 15 Mar 2022 10:32:07 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id 1DA3313EE36;
-        Tue, 15 Mar 2022 10:32:07 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 0458E2A2678; Tue, 15 Mar 2022 10:32:04 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org,
-        davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        adrian.hunter@intel.com, thomas.petazzoni@bootlin.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 8/8] arm64: marvell: enable the 98DX2530 pinctrl driver
-Date:   Tue, 15 Mar 2022 10:31:43 +1300
-Message-Id: <20220314213143.2404162-9-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S236193AbiCNVvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 17:51:39 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49FA6344C7;
+        Mon, 14 Mar 2022 14:50:29 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id r11so20014918ioh.10;
+        Mon, 14 Mar 2022 14:50:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=CGEh5iCMps2XS5R44sd7XPYTqLJq0sP1C+L9zYhWYlI=;
+        b=8Kv9xUNbCfhsRri5gbSrC9Tr0i+26T5SBixQtEQn4UxEtcfJWK7+RH37pbAVk+9RxM
+         ES5X3FAP4FDgUGJ+B0iQ9hteG9DtcfwQ3fkKLk1EOO+tN99KaFq9+9gLLJT3/G1Rg/yc
+         r2B1OYK9pRinkxZyVSC6gKj35TllfhPP+NXIbVu7Ky+Tfxdvbtmm4k9zTiP+Pa8CWOZH
+         MqojTJp1Osa9eca4/r/G9MFkQcX7EBWfsRIQHudS+W0PHzesNzDuGE4Iwkk2a1mEY8iT
+         j9s+7aLS+1iJJpfQqEqE4xnXU5Y/au1l2tOUUr49T7C92xhnZSpr1ZYgERAf+SXsZ3vM
+         50jQ==
+X-Gm-Message-State: AOAM530Rlusdxn7t130DM1fknv7n7IqalCB9FAtJ2xk+RUo02nBNAoaT
+        /c22A12SPOaNxL+ZUApQLw==
+X-Google-Smtp-Source: ABdhPJweO3VWhgxdwP7gQ1lIiOQaKbWSgKSaZY/XLgS/m78dLb5ar/Nckf4Npe8/Eq4Iw9CzsqdXRQ==
+X-Received: by 2002:a02:bb8c:0:b0:317:b015:1998 with SMTP id g12-20020a02bb8c000000b00317b0151998mr21388886jan.134.1647294628516;
+        Mon, 14 Mar 2022 14:50:28 -0700 (PDT)
+Received: from robh.at.kernel.org ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id c12-20020a056e02058c00b002c63f71c7dbsm9137733ils.56.2022.03.14.14.50.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Mar 2022 14:50:27 -0700 (PDT)
+Received: (nullmailer pid 623447 invoked by uid 1000);
+        Mon, 14 Mar 2022 21:50:24 -0000
+Date:   Mon, 14 Mar 2022 15:50:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org,
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Jens Axboe <axboe@kernel.dk>, linux-ide@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: Re: [PATCH v6 3/6] ARM: dts: spear13xx: Fix sata node name
+Message-ID: <Yi+4oN5xuS2pq0ru@robh.at.kernel.org>
+References: <20220311210357.222830-1-linux@fw-web.de>
+ <20220311210357.222830-4-linux@fw-web.de>
+ <20220314034940.rxkgue2kllnqhucp@vireshk-i7>
+ <trinity-0f1389c2-6d2b-4499-a2fc-3cb93f4d09cb-1647272336831@3c-app-gmx-bap56>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=XQcNo-tEeLJW46c85tUA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trinity-0f1389c2-6d2b-4499-a2fc-3cb93f4d09cb-1647272336831@3c-app-gmx-bap56>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit makes sure the drivers for the 98DX2530 pin controller is
-enabled.
+On Mon, Mar 14, 2022 at 04:38:56PM +0100, Frank Wunderlich wrote:
+> Hi,
+> 
+> thanks for for checking the spear-patch.
+> 
+> > Gesendet: Montag, 14. März 2022 um 04:49 Uhr
+> > Von: "Viresh Kumar" <viresh.kumar@linaro.org>
+> >
+> > On 11-03-22, 22:03, Frank Wunderlich wrote:
+> > > From: Frank Wunderlich <frank-w@public-files.de>
+> > > 
+> > > After converting the binding to yaml the node name does
+> > > not match the standard pattern, change it.
+> > > 
+> > > arch/arm/boot/dts/spear1340-evb.dt.yaml: ahci@b1000000:
+> > > $nodename:0: 'ahci@b1000000' does not match '^sata(@.*)?$'
+> > > 	From schema: Documentation/devicetree/bindings/ata/ahci-platform.yaml
+> > > 
+> > > Fixes: 07658d9a659b ("SPEAr13xx: Add dts and dtsi files")
+> > 
+> > I don't think this is correct. The above patch is correct. The first
+> > patch in this series changes the names and that's where things break.
+> 
+> it's right that my binding will break it, but the nodes are not named the right way.
+> And i used the commit that introduces the wrong node-names.
+> Maybe fixes-tag is wrong in this case.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+I'm pretty sure Viresh just meant the Fixes tag is not right.
 
-Notes:
-    Changes in v2:
-    - None
-
- arch/arm64/Kconfig.platforms | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 21697449d762..6bbb56901794 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -183,11 +183,13 @@ config ARCH_MVEBU
- 	select PINCTRL_ARMADA_37XX
- 	select PINCTRL_ARMADA_AP806
- 	select PINCTRL_ARMADA_CP110
-+	select PINCTRL_AC5
- 	help
- 	  This enables support for Marvell EBU familly, including:
- 	   - Armada 3700 SoC Family
- 	   - Armada 7K SoC Family
- 	   - Armada 8K SoC Family
-+	   - 98DX2530 SoC Family
-=20
- config ARCH_MXC
- 	bool "ARMv8 based NXP i.MX SoC family"
---=20
-2.35.1
-
+Rob
