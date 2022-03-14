@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD25F4D8FA1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:38:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DBB24D8FB8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Mar 2022 23:43:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237377AbiCNWkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 18:40:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59734 "EHLO
+        id S245701AbiCNWoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 18:44:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbiCNWkD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:40:03 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D64A22B17
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:38:52 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id z8so19052333oix.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:38:52 -0700 (PDT)
+        with ESMTP id S238739AbiCNWop (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 18:44:45 -0400
+Received: from mail-yb1-xb30.google.com (mail-yb1-xb30.google.com [IPv6:2607:f8b0:4864:20::b30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D19333A39
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:43:35 -0700 (PDT)
+Received: by mail-yb1-xb30.google.com with SMTP id o5so4934519ybe.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 15:43:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=YXkFYBEzojBY1qqCl4Kxt1AhbpSUG3Tsb0zDnLNmqZ0=;
-        b=WcVdtBUaKkF+aSmgdLxPUC7etTQfErJlN9YeeS3QKG4zrBeU32ndyFXx7YQQcOwezZ
-         Cokc3VIVYaYOniyJB1OY9nksQwiwSgMs9r+BRfcgRTHmu2QE3i7XJN6yAz3BZRWYOycE
-         jwpygELyZo/gVDQ7EDdKoDZRjg9jKRIieAbuHYqZhdGGGlmEUCfW9fEhVYa4zNfPfZ+k
-         tld4VRBVds/0c1IFje0L21JO3x9fTOIyrLGEnwoy4CiZGEuZI4FsjQYyr287oEYarFDs
-         J4J22Ggs4VI9Yeohday6QNv+N2YyrW1b5JdkZAr/2bZ+vtoV0XrtecU6DEQ1Ylj8cue/
-         cmoQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zBz4KR/tbzFCQ7Rg6AbL2tIN/kz8QPBlTu1AMO28qtU=;
+        b=r7NNd/At5KMqFw3i9SvlUx564e3HPd17qxW7CY1V/KYHkMDg2c205EYOqfvZ+Feie0
+         k78b8IkyX6wYfgmqwiJYaa+1N2M3Tc3DuQd210amcQeoZkCentBLNGI7opmuGm1zFmpo
+         kXCRTEs3pkdklEykPP7O3IbVmZrH84YOUuGa9bsDHpjS94GVCLF+z1R6OdlcMcwhpKM9
+         ZCEfs1XlbOpMBbRh6nRznEnzHtaiMfaHSIK4invfukZGxDmq7l6EgYHLk76Efz86Bed0
+         cYcdgIHO4n6h2Ms4mnZJKpewAoUOD+al7/xMp/5P2wRBwOJ3B1tjADUlF3+iqwg3HNZE
+         jjcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=YXkFYBEzojBY1qqCl4Kxt1AhbpSUG3Tsb0zDnLNmqZ0=;
-        b=cTA93sB6XLgelpD7WsYYI1u/QQahV3pPBLRhw+n+tRD9qQcE11fmU7Nvo/rlH4izZN
-         jbHUPJrm2uO4YCRmuSHA7qPjEjHlixIokz5/9GxM7Cz+VoSZazlTr7yAldjsM6aDL8Sm
-         fhjp/qADbJ4UlVQnTbuEvTgU86Xe+NutJ7JboLZG498ydsyCn6lc7DW2ajF/heeeJ5y8
-         d8IOW6i1WeEeZ9mYsNERGXirwarCkme6CcXEzCS8N51EYKWACuWRv/Bu2qkvFig6KO52
-         w+aHRWXRgC9+kOJF0MuwU+blPl0Boqm1rpDD7ntB2rjMkvMd62bQ5czUy/QzpKgnCVJt
-         0YjQ==
-X-Gm-Message-State: AOAM532N3MrWCNKVVkutziXvBp1Hm8FduxbQiy/X3MbK9VKyE2ScjVw3
-        4MjvqQ0EO38e2mQs9VYnCrmevw==
-X-Google-Smtp-Source: ABdhPJygsq2dL74GG22/VfljFSfGfYJUxf/rqsqC1VFczZCgSv28PIwMQkk48UaxBoaQaGnpC9LIpg==
-X-Received: by 2002:aca:c44:0:b0:2da:45a4:98a2 with SMTP id i4-20020aca0c44000000b002da45a498a2mr602667oiy.220.1647297531426;
-        Mon, 14 Mar 2022 15:38:51 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id bn14-20020a056808230e00b002da0c0f502esm8301688oib.24.2022.03.14.15.38.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Mar 2022 15:38:50 -0700 (PDT)
-Date:   Mon, 14 Mar 2022 17:38:48 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "krzysztof.kozlowski@canonical.com" 
-        <krzysztof.kozlowski@canonical.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH V2 2/6] dt-bindings: remoteproc: imx_rproc: support
- i.MX8QM
-Message-ID: <Yi/D+CmHcm2/8S9B@builder.lan>
-References: <20220309102118.8131-1-peng.fan@oss.nxp.com>
- <20220309102118.8131-3-peng.fan@oss.nxp.com>
- <YiqFJ+1l/h7XCQkN@robh.at.kernel.org>
- <DU0PR04MB9417A914373C466BE76729AB880C9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zBz4KR/tbzFCQ7Rg6AbL2tIN/kz8QPBlTu1AMO28qtU=;
+        b=WolqZ5u9+JFEOBj9+NQWHei1EW1JSIsbyT/y3k/eZoaLQiFzn+EwhR0hOvX4k4qnCz
+         Kn7tYUFclD94S5lLFKOY4ZfXYwbskPbOc4qPJLtu1+FgDZUTvZnkHCJJ/qX40RbkaizS
+         DAg+bS64DDP6i5RSwfVhIAG8wUEnfmhjDzNXgwr9dQ9fs41NZbZRbJVYE6/MWApjyDcX
+         cYrnAHHPoMwedqEKhIN9iOw9FK3GSqK626fzxiXAmSBQ11dsXd03xXS2iAjW9ttHPTm8
+         2cR+WMJ1sLJ681tbsicMVANkwvM/i38XC9MiPCr8H1Ohh8Ryt/7QJy0hjG/QiKv2SfwV
+         slkQ==
+X-Gm-Message-State: AOAM5305TyX+P/yQmrX5IzXd4hZEORN+NKny5hpx96UUApZChXiMQMtQ
+        vFKUnTTXd+tWu8Iihe9HgRQQ5tv8xkVsd2Mt2vnBJg==
+X-Google-Smtp-Source: ABdhPJzdH5EAlui5zL/pWz9DIDbKqOBoB1cvh3rT4dgsBx/UFynGgA6bujxHdHry3cd2exdH6seuYB8+4pdVXpKfX60=
+X-Received: by 2002:a25:ab64:0:b0:633:6d02:ebc8 with SMTP id
+ u91-20020a25ab64000000b006336d02ebc8mr2106711ybi.492.1647297814409; Mon, 14
+ Mar 2022 15:43:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417A914373C466BE76729AB880C9@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20220304135134.47827-1-yann.gautier@foss.st.com> <20220304135134.47827-2-yann.gautier@foss.st.com>
+In-Reply-To: <20220304135134.47827-2-yann.gautier@foss.st.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 14 Mar 2022 23:43:22 +0100
+Message-ID: <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable DMA LLI
+To:     Yann Gautier <yann.gautier@foss.st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        Ludovic Barre <ludovic.barre@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        Marek Vasut <marex@denx.de>, kernel@dh-electronics.com,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Grzegorz Szymaszek <gszymaszek@short.pl>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,69 +77,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 10 Mar 19:58 CST 2022, Peng Fan wrote:
+"On Fri, Mar 4, 2022 at 2:52 PM Yann Gautier <yann.gautier@foss.st.com> wrote:
 
-> > Subject: Re: [PATCH V2 2/6] dt-bindings: remoteproc: imx_rproc: support
-> > i.MX8QM
-> > 
-> > On Wed, Mar 09, 2022 at 06:21:14PM +0800, Peng Fan (OSS) wrote:
-> > > From: Peng Fan <peng.fan@nxp.com>
-> > >
-> > > Add i.MX8QM compatible
-> > >
-> > > There are two general purpose M4, so add reg property to indicate the
-> > > id.
-> > 
-> > Where does the id come from? Is this just an index?
-> 
-> It is software use to identify which is m4_0 and which is m4_1,
-> just an index.
-> 
+> On STMicroelectronics variant of PL18x, the DMA Linked Lists are supported
+> starting from revision v2 of the peripheral. But it has limitations,
+> as all the buffers should be aligned on block size (except the last one).
+> But this cannot be guaranteed with SDIO. We should then have a property
+> to disable the support of LLI.
+>
+> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
 
-"reg" is supposed to represent some sort of identifier on the parent
-bus, as such it doesn't seem to be the appropriate property to provide
-an arbitrary 0 or 1 to identify which of the two m4s this is.
+Actually I think this is present also on the ux500 variants. See:
+commit 2253ed4b36dc876d1598c4dab5587e537ec68c34
+"mmc: mmci: Support any block sizes for ux500v2 and qcom variant"
 
-Regards,
-Bjorn
+Spot the variant data "dma_power_of_2".
 
-> Thanks,
-> Peng.
-> 
-> > 
-> > >
-> > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml         | 4
-> > ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > > b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > > index f25c203dd2f9..41d366cff3cd 100644
-> > > --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > > +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
-> > > @@ -20,6 +20,7 @@ properties:
-> > >        - fsl,imx8mn-cm7
-> > >        - fsl,imx8mp-cm7
-> > >        - fsl,imx8qxp-cm4
-> > > +      - fsl,imx8qm-cm4
-> > >        - fsl,imx8ulp-cm33
-> > >        - fsl,imx7d-cm4
-> > >        - fsl,imx7ulp-cm4
-> > > @@ -68,6 +69,9 @@ properties:
-> > >    power-domains:
-> > >      maxItems: 8
-> > >
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > >    rsrc-id:
-> > >      description:
-> > >        This property is to specify the resource id of the remote
-> > > processor in SoC
-> > > --
-> > > 2.30.0
-> > >
-> > >
+So whatever property you add
+to the variant data (not in the device tree please) should
+be added to the ux500 variants as well, it will *VERY* likely
+have a problem with LLI elements not being a power of 2
+as it is the ancestor of later STMicro variants.
+
+It might actually be the reason for some annoying WiFi error
+messages I have seen :/
+
+Yours,
+Linus Walleij
