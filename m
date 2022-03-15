@@ -2,142 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70BD44D922E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:18:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E7AB64D9239
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:21:30 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344239AbiCOBTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 21:19:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43834 "EHLO
+        id S233749AbiCOBWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 21:22:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344237AbiCOBTJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:19:09 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB8EC13DDD
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:17:55 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 3241C2C081A;
-        Tue, 15 Mar 2022 01:17:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647307073;
-        bh=xFxg4vlJ6QYWPTnApar1C0pT0qlh+5rQD5BrtA8z1hY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=agl/vIISU/DDAW/16d/QPyNjeGWiArTWMyBD3EP2xcLyZxp8yXvY/xapIB0oKshqr
-         wIH0bMWQH/t/RCv4CujynP4nPf3k3pwJRAmQJEQ3FsrxO2fAOp7uGtLfDmtWBbjRYy
-         xvt7zszlAcIXcNtacnDO02rZpCd26HG3fGmuxy+60PHyFfAAG+3j3O9pgCM0TSmfGL
-         x+774+nCUWaPbaLbwZFYwe97Ex+KxlyxcSmKE4gJYA55pqXMIfkarx6dogBepHd1AQ
-         UmsPU1ZSPXWoVBWVq2bJnaFZTqsyOxTNagQwRFe8xE5hUnsi4PD23/WyiIY8N9b7UG
-         Rl3xa/0UlyUFQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B622fe9400002>; Tue, 15 Mar 2022 14:17:52 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id C889A13EE56;
-        Tue, 15 Mar 2022 14:17:52 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id 5AC842A2678; Tue, 15 Mar 2022 14:17:50 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        thomas.petazzoni@bootlin.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH net-next v3 2/2] net: mvneta: Add support for 98DX2530 Ethernet port
-Date:   Tue, 15 Mar 2022 14:17:42 +1300
-Message-Id: <20220315011742.2465356-3-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220315011742.2465356-1-chris.packham@alliedtelesis.co.nz>
-References: <20220315011742.2465356-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S232197AbiCOBWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:22:38 -0400
+Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF92473B2
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:21:27 -0700 (PDT)
+Received: by mail-yb1-xb34.google.com with SMTP id o5so5522672ybe.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:21:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ACQBTbiJyudTuHLv2P7/SRrqHrvj49C/1S4/j95gw9Y=;
+        b=yHIrZlxonQRoX8uaFietSxxyEhLRBDVLG+J0g+eRDJoLgbBAO/rlYgyf58UGQxIWhN
+         JKRKTgpFScPu1ApC6aqZqs/qT3Pu4Niy+vUUVZBLQzJb9qVFhX5ZFTbdlQO2KeoIOP1m
+         Li90CxtlVH6WtfMqNPjFPeMU7vgvZAv6UQqEm1aYMxb16sOP/FHFd0GuhEkbGCrqPgwX
+         j8YRPk6cbpSZooquF5gIvlISBTYEU6UmH8pGWWOJtAjHw7Eeq2R6usUOD7gTnd0prB57
+         F46FBO+LWFqYYQ9vf/qIVtASdqO2Gj9oZPZmh4D1/sVasaeoMF3pmN89d0GH8tjJ8goy
+         E+ew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ACQBTbiJyudTuHLv2P7/SRrqHrvj49C/1S4/j95gw9Y=;
+        b=dHFEEDP8/7jTO22cNhJqdQDF9IIR4Y9Bjxxo4Qi+qv4ySUb+41L0rAI+GEdRpR9VMd
+         UJC5I+TkljKY45ySG3ZSHkowdih1f9X9YxxHNB1HEwll5igbFskB3g/oaQaQffQAeVf/
+         MgwQvCcFS84x9YI+7UNE4wrKZNHLWWgs4OqDiE8Js8TthrrWjrhOUES09zoom4hcJhWu
+         Hq3PSrRcJ+DgSQDJaI/XgjraKCJ2ItQetC6DZ48O8sAAJSfzq8/B0hoGhJCUi3JTErni
+         qprRkXZm8bC+RJOH/oICsSTIHrYYzxgpe5S1rfWE/MqO6KQzxxkj9b0y6Rsfiy8EmRzx
+         iY9g==
+X-Gm-Message-State: AOAM530WGEpIGe6WWzW5JEt+hPoRLmN4i3ib+UWN5WqO+mwvv+Ry6v0/
+        KwVXmeFltGmuEtE5BaLPMzP8Ky4we28rWxzVwlHYo5QJe78=
+X-Google-Smtp-Source: ABdhPJx99c5U8udn983xmnwpOxBzvhzCMlxyP3HiN2d4p2Paf/encCvO/7WsowIdPYmJkzjxqH4ytz4twNe+Ml9NHBI=
+X-Received: by 2002:a25:2308:0:b0:628:9a66:7327 with SMTP id
+ j8-20020a252308000000b006289a667327mr20426355ybj.626.1647307286726; Mon, 14
+ Mar 2022 18:21:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=LxpfyEy1a6e1ozZBTSYA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+References: <20220304000311.970267-1-joel@jms.id.au> <20220304000311.970267-2-joel@jms.id.au>
+In-Reply-To: <20220304000311.970267-2-joel@jms.id.au>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 15 Mar 2022 02:21:15 +0100
+Message-ID: <CACRpkda3q=Rh7Kmi8Cycg4CAYUhzpRxLf+ErwxR_0drtTNTr+g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: aspeed: Update gfx node in example
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 98DX2530 SoC is similar to the Armada 3700 except it needs a
-different MBUS window configuration. Add a new compatible string to
-identify this device and the required MBUS window configuration.
+On Fri, Mar 4, 2022 at 1:03 AM Joel Stanley <joel@jms.id.au> wrote:
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
+> The example needs updating to match the to be added yaml bindings for
+> the gfx node.
+>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
 
-Notes:
-    Changes in v3:
-    - Split from larger series
-    - Add review from Andrew
-    Changes in v2:
-    - New
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
- drivers/net/ethernet/marvell/mvneta.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+I guess you will merge this elsewhere or shall I apply it to the pinctrl tree?
 
-diff --git a/drivers/net/ethernet/marvell/mvneta.c b/drivers/net/ethernet=
-/marvell/mvneta.c
-index 83c8908f0cc7..000929794266 100644
---- a/drivers/net/ethernet/marvell/mvneta.c
-+++ b/drivers/net/ethernet/marvell/mvneta.c
-@@ -76,6 +76,8 @@
- #define MVNETA_WIN_SIZE(w)                      (0x2204 + ((w) << 3))
- #define MVNETA_WIN_REMAP(w)                     (0x2280 + ((w) << 2))
- #define MVNETA_BASE_ADDR_ENABLE                 0x2290
-+#define      MVNETA_AC5_CNM_DDR_TARGET		0x2
-+#define      MVNETA_AC5_CNM_DDR_ATTR		0xb
- #define MVNETA_ACCESS_PROTECT_ENABLE            0x2294
- #define MVNETA_PORT_CONFIG                      0x2400
- #define      MVNETA_UNI_PROMISC_MODE            BIT(0)
-@@ -544,6 +546,7 @@ struct mvneta_port {
-=20
- 	/* Flags for special SoC configurations */
- 	bool neta_armada3700;
-+	bool neta_ac5;
- 	u16 rx_offset_correction;
- 	const struct mbus_dram_target_info *dram_target_info;
- };
-@@ -5272,6 +5275,10 @@ static void mvneta_conf_mbus_windows(struct mvneta=
-_port *pp,
- 			win_protect |=3D 3 << (2 * i);
- 		}
- 	} else {
-+		if (pp->neta_ac5)
-+			mvreg_write(pp, MVNETA_WIN_BASE(0),
-+				    (MVNETA_AC5_CNM_DDR_ATTR << 8) |
-+				    MVNETA_AC5_CNM_DDR_TARGET);
- 		/* For Armada3700 open default 4GB Mbus window, leaving
- 		 * arbitration of target/attribute to a different layer
- 		 * of configuration.
-@@ -5397,6 +5404,11 @@ static int mvneta_probe(struct platform_device *pd=
-ev)
- 	/* Get special SoC configurations */
- 	if (of_device_is_compatible(dn, "marvell,armada-3700-neta"))
- 		pp->neta_armada3700 =3D true;
-+	if (of_device_is_compatible(dn, "marvell,armada-ac5-neta")) {
-+		pp->neta_armada3700 =3D true;
-+		pp->neta_ac5 =3D true;
-+	}
-+
-=20
- 	pp->clk =3D devm_clk_get(&pdev->dev, "core");
- 	if (IS_ERR(pp->clk))
-@@ -5720,6 +5732,7 @@ static const struct of_device_id mvneta_match[] =3D=
- {
- 	{ .compatible =3D "marvell,armada-370-neta" },
- 	{ .compatible =3D "marvell,armada-xp-neta" },
- 	{ .compatible =3D "marvell,armada-3700-neta" },
-+	{ .compatible =3D "marvell,armada-ac5-neta" },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mvneta_match);
---=20
-2.35.1
-
+Yours,
+Linus Walleij
