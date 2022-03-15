@@ -2,674 +2,385 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE8C4D985B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:07:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF774D9890
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:14:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346937AbiCOKI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 06:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34438 "EHLO
+        id S1347098AbiCOKPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 06:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346936AbiCOKIy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:08:54 -0400
-Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43F284F9E5;
-        Tue, 15 Mar 2022 03:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647338861; x=1678874861;
-  h=from:to:cc:subject:date:message-id;
-  bh=JvFjEQvlWEijWhkZ68jlLbMqVHYwtBT8WqpmTfwxYqc=;
-  b=Wxn+ozqk2hyi0xInVnwQ3XsDdo8a/0WKUz8C+K26rKT8eAZR5gUm374V
-   iK86JHLeBCRzMBlSAh/eLbowiZgKG0H6EOctS40Xa7PghVhI+NUvWT+bz
-   IDOYd4lPfNtngrwOdoFXasLXMw0fRiYtyqnLX44/IJCH2MpLYcEkTkI/c
-   k=;
-Received: from ironmsg-lv-alpha.qualcomm.com ([10.47.202.13])
-  by alexa-out.qualcomm.com with ESMTP; 15 Mar 2022 03:07:41 -0700
-X-QCInternal: smtphost
-Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
-  by ironmsg-lv-alpha.qualcomm.com with ESMTP/TLS/AES256-SHA; 15 Mar 2022 03:07:38 -0700
-X-QCInternal: smtphost
-Received: from vpolimer-linux.qualcomm.com ([10.204.67.235])
-  by ironmsg01-blr.qualcomm.com with ESMTP; 15 Mar 2022 15:37:24 +0530
-Received: by vpolimer-linux.qualcomm.com (Postfix, from userid 463814)
-        id 8952D2117; Tue, 15 Mar 2022 15:37:23 +0530 (IST)
-From:   Vinod Polimera <quic_vpolimer@quicinc.com>
-To:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dmitry.baryshkov@linaro.org, dianders@chromium.org,
-        quic_kalyant@quicinc.com
-Subject: [PATCH v5] drm/msm/disp/dpu1: add inline rotation support for sc7280 target
-Date:   Tue, 15 Mar 2022 15:37:21 +0530
-Message-Id: <1647338841-24485-1-git-send-email-quic_vpolimer@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1347045AbiCOKOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:14:53 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45AE13EA0;
+        Tue, 15 Mar 2022 03:13:22 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EA90C2A5;
+        Tue, 15 Mar 2022 11:13:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1647339200;
+        bh=TSCI/jlTrreFhvhlF9Uro+LXlPKdR7g2kIaeukooB9w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TeZeorcDCnIYsfEq/XYQS0hy+pQ1JVfLT6X1/D95RGh0Q88GVELQ3gZg90ZF5OHdz
+         v6EbWQ2bGc42W/AlZATWCh83R9YLezE/VwdVOrsr5ow2HvTQVfPZu0ltzsvAakwX24
+         rP8wjX5YQ05hMi/VzNQpQqCiku40GjeCeY534dP4=
+Date:   Tue, 15 Mar 2022 12:13:03 +0200
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-staging@lists.linux.dev,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Helen Koike <helen.koike@collabora.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 61/66] dt-bindings: media: Add Allwinner A31 ISP
+ bindings documentation
+Message-ID: <YjBmrzPuN3oqW6Hm@pendragon.ideasonboard.com>
+References: <YgqM3ZdMfEz+ZKo/@pendragon.ideasonboard.com>
+ <Ygt8LF8qx3rnxlgp@aptenodytes>
+ <Ygt9j+rwEC+2aUjH@pendragon.ideasonboard.com>
+ <Yh4+E9el5NdQ7qJq@aptenodytes>
+ <YiH/kLakb/GOaYIT@pendragon.ideasonboard.com>
+ <YiIa1SRFhtvURTbN@aptenodytes>
+ <YiIdo4PF/5smLocf@pendragon.ideasonboard.com>
+ <YitZ6y2JoNzeHUrp@aptenodytes>
+ <Yi4YpnMWguEMWYaA@pendragon.ideasonboard.com>
+ <YjBhMNZsJz7crDuX@aptenodytes>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YjBhMNZsJz7crDuX@aptenodytes>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-- Some DPU versions support inline rot90. It is supported only for
-limited amount of UBWC formats.
-- There are two versions of inline rotators, v1 (present on sm8250 and
-sm7250) and v2 (sc7280). These versions differ in the list of supported
-formats and in the scaler possibilities.
+Hi Paul,
 
-Changes in RFC:
-- Rebase changes to the latest code base.
-- Append rotation config variables with v2 and
-remove unused variables.(Dmitry)
-- Move pixel_ext setup separately from scaler3 config.(Dmitry)
-- Add 270 degree rotation to supported rotation list.(Dmitry)
+On Tue, Mar 15, 2022 at 10:49:36AM +0100, Paul Kocialkowski wrote:
+> On Sun 13 Mar 22, 18:15, Laurent Pinchart wrote:
+> > On Fri, Mar 11, 2022 at 03:17:15PM +0100, Paul Kocialkowski wrote:
+> > > On Fri 04 Mar 22, 16:09, Laurent Pinchart wrote:
+> > > > On Fri, Mar 04, 2022 at 02:57:41PM +0100, Paul Kocialkowski wrote:
+> > > > > On Fri 04 Mar 22, 14:01, Laurent Pinchart wrote:
+> > > > > > On Tue, Mar 01, 2022 at 04:38:59PM +0100, Paul Kocialkowski wrote:
+> > > > > > > On Tue 15 Feb 22, 12:16, Laurent Pinchart wrote:
+> > > > > > > > On Tue, Feb 15, 2022 at 11:10:52AM +0100, Paul Kocialkowski wrote:
+> > > > > > > > > On Mon 14 Feb 22, 19:09, Laurent Pinchart wrote:
+> > > > > > > > > > On Mon, Feb 14, 2022 at 05:18:07PM +0100, Paul Kocialkowski wrote:
+> > > > > > > > > > > On Mon 07 Feb 22, 17:51, Laurent Pinchart wrote:
+> > > > > > > > > > > > On Sat, Feb 05, 2022 at 07:54:24PM +0100, Paul Kocialkowski wrote:
+> > > > > > > > > > > > > This introduces YAML bindings documentation for the Allwinner A31 Image
+> > > > > > > > > > > > > Signal Processor (ISP).
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > > > > > > > > > ---
+> > > > > > > > > > > > >  .../media/allwinner,sun6i-a31-isp.yaml        | 117 ++++++++++++++++++
+> > > > > > > > > > > > >  1 file changed, 117 insertions(+)
+> > > > > > > > > > > > >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > > > > > > > > > 
+> > > > > > > > > > > > > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > > > > > > > > > new file mode 100644
+> > > > > > > > > > > > > index 000000000000..2d87022c43ce
+> > > > > > > > > > > > > --- /dev/null
+> > > > > > > > > > > > > +++ b/Documentation/devicetree/bindings/media/allwinner,sun6i-a31-isp.yaml
+> > > > > > > > > > > > > @@ -0,0 +1,117 @@
+> > > > > > > > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > > > > > > > +%YAML 1.2
+> > > > > > > > > > > > > +---
+> > > > > > > > > > > > > +$id: http://devicetree.org/schemas/media/allwinner,sun6i-a31-isp.yaml#
+> > > > > > > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +title: Allwinner A31 Image Signal Processor Driver (ISP) Device Tree Bindings
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +maintainers:
+> > > > > > > > > > > > > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +properties:
+> > > > > > > > > > > > > +  compatible:
+> > > > > > > > > > > > > +    enum:
+> > > > > > > > > > > > > +      - allwinner,sun6i-a31-isp
+> > > > > > > > > > > > > +      - allwinner,sun8i-v3s-isp
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  reg:
+> > > > > > > > > > > > > +    maxItems: 1
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  interrupts:
+> > > > > > > > > > > > > +    maxItems: 1
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  clocks:
+> > > > > > > > > > > > > +    items:
+> > > > > > > > > > > > > +      - description: Bus Clock
+> > > > > > > > > > > > > +      - description: Module Clock
+> > > > > > > > > > > > > +      - description: DRAM Clock
+> > > > > > > > > > > > 
+> > > > > > > > > > > > That's interesting, does the ISP have a dedicated DRAM ?
+> > > > > > > > > > > 
+> > > > > > > > > > > It doesn't, it actually uses the main DRAM with the "mbus" interconnect.
+> > > > > > > > > > > The clock is probably for the DMA engine.
+> > > > > > > > > > > 
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  clock-names:
+> > > > > > > > > > > > > +    items:
+> > > > > > > > > > > > > +      - const: bus
+> > > > > > > > > > > > > +      - const: mod
+> > > > > > > > > > > > > +      - const: ram
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  resets:
+> > > > > > > > > > > > > +    maxItems: 1
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +  ports:
+> > > > > > > > > > > > > +    $ref: /schemas/graph.yaml#/properties/ports
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    properties:
+> > > > > > > > > > > > > +      port@0:
+> > > > > > > > > > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > > > > > > > > > +        description: CSI0 input port
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        properties:
+> > > > > > > > > > > > > +          reg:
+> > > > > > > > > > > > > +            const: 0
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +          endpoint:
+> > > > > > > > > > > > > +            $ref: video-interfaces.yaml#
+> > > > > > > > > > > > > +            unevaluatedProperties: false
+> > > > > > > > > > > > 
+> > > > > > > > > > > > If no other property than remote-endpoint are allowed, I'd write
+> > > > > > > > > > > > 
+> > > > > > > > > > > >           endpoint:
+> > > > > > > > > > > >             $ref: video-interfaces.yaml#
+> > > > > > > > > > > > 	    remote-endpoint: true
+> > > > > > > > > > > >             additionalProperties: false
+> > > > > > > > > > > > 
+> > > > > > > > > > > > Same below.
+> > > > > > > > > > > > 
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        additionalProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +      port@1:
+> > > > > > > > > > > > > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > > > > > > > > > > > > +        description: CSI1 input port
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        properties:
+> > > > > > > > > > > > > +          reg:
+> > > > > > > > > > > > > +            const: 0
+> > > > > > > > > > > > 
+> > > > > > > > > > > > This should be 1.
+> > > > > > > > > > > 
+> > > > > > > > > > > Correct, thanks!
+> > > > > > > > > > > 
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +          endpoint:
+> > > > > > > > > > > > > +            $ref: video-interfaces.yaml#
+> > > > > > > > > > > > > +            unevaluatedProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        additionalProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    anyOf:
+> > > > > > > > > > > > > +      - required:
+> > > > > > > > > > > > > +        - port@0
+> > > > > > > > > > > > > +      - required:
+> > > > > > > > > > > > > +        - port@1
+> > > > > > > > > > > > 
+> > > > > > > > > > > > As ports are an intrinsic property of the ISP, both should be required,
+> > > > > > > > > > > > but they don't have to be connected.
+> > > > > > > > > > > 
+> > > > > > > > > > > Well the ISP does have the ability to source from either CSI0 and CSI1
+> > > > > > > > > > > but I don't really get the point of declaring both ports when only one
+> > > > > > > > > > > of the two controllers is present.
+> > > > > > > > > > 
+> > > > > > > > > > If it's within an SoC I don't mind too much. What I usually insist on is
+> > > > > > > > > > declaring all ports even when no external devices are connected on the
+> > > > > > > > > > board. It may however be easier to implement things on the driver side
+> > > > > > > > > > when all the ports are declared, even for internal devices. I won't
+> > > > > > > > > > insist either way here.
+> > > > > > > > > > 
+> > > > > > > > > > > > By the way, how do you select at runtime which CSI-2 RX the ISP gets its
+> > > > > > > > > > > > image stream from ? Is it configured through registers of the ISP ?
+> > > > > > > > > > > 
+> > > > > > > > > > > Actually what the ISP gets is fully dependent on what is received by the
+> > > > > > > > > > > CSI controller it is connected to (which can be the mipi csi-2 controller
+> > > > > > > > > > > or its direct parallel pins), so the configuration happens on the CSI side.
+> > > > > > > > > > 
+> > > > > > > > > > OK, then how do you select at runtime which CSI the ISP gets its image
+> > > > > > > > > > stream from ? :-)
+> > > > > > > > > 
+> > > > > > > > > What is done in the driver is that all available csi(s) entities pads are linked
+> > > > > > > > > to a single csi sink media pad, which allows userspace to enable one or the
+> > > > > > > > > other. If there's only one, it's enabled by default.
+> > > > > > > > > 
+> > > > > > > > > The actual stream source (isp_dev->proc.source) is selected at link_validate
+> > > > > > > > > time and the source bit is set in sun6i_isp_proc_enable.
+> > > > > > > > > 
+> > > > > > > > > I hope this answers your question!
+> > > > > > > > 
+> > > > > > > > Yes it does, thank you.
+> > > > > > > > 
+> > > > > > > > While this works, it makes life a bit more complicated for userspace, as
+> > > > > > > > switching between the two sources require disabling the link first and
+> > > > > > > > then enabling the new one. This is something that caused issues in the
+> > > > > > > > libcamera simple pipeline handler, I ended up having to implement a
+> > > > > > > > workaround.
+> > > > > > > 
+> > > > > > > That surprises me a bit, I thought this was a typical use-case for links.
+> > > > > > > So the fact that it's a two-step process causes issues somehow?
+> > > > > > 
+> > > > > > It's not so much that the links have to be configured in two steps
+> > > > > > (although it would be nice if that could be fixed), but the fact that
+> > > > > > the order of the operations matter. Userspace has to know what
+> > > > > > combination of links is acceptable in order to determine the order of
+> > > > > > the enable/disable operations, otherwise errors may be returned. That
+> > > > > > makes it more difficult to write generic userspace code.
+> > > > > 
+> > > > > Ah right, I understand that. Now it's pretty much trial-and-error if userspace
+> > > > > doesn't have prior knowledge about the hardware. But to be honest I assumed
+> > > > > that it was more or less understood that there cannot be fully generic
+> > > > > userspace for this and that knowedlege about the driver and pipeline flow
+> > > > > is required to do things right.
+> > > > 
+> > > > You're right, and that's why we have device-specific code in libcamera.
+> > > > However, the more generic-friendly the APIs can be, the more the
+> > > > device-specific userspace code will be able to use generic helpers, so
+> > > > it still matters.
+> > > > 
+> > > > > > > > Could you instead have two sink pads for the ISP, and select the sensor
+> > > > > > > > at stream on time instead of link validation time by checking which link
+> > > > > > > > is enabled ? If no links or both links are enabled, you can then return
+> > > > > > > > an error.
+> > > > > > > 
+> > > > > > > Yes that's totally doable.
+> > > > > > > 
+> > > > > > > There's a similar situation with the sun6i-csi bridge where the source pad
+> > > > > > > has two possible links: one for routing to sun6i-csi capture (video device)
+> > > > > > > and one for routing to the isp entity.
+> > > > > > > 
+> > > > > > > Would that also be best represented as two pads?
+> > > > > > 
+> > > > > > Are the two outputs mutually exclusive ? Sorry if I've asked before.
+> > > > > 
+> > > > > I don't think you have. Yes they are mutually exclusive, only one source
+> > > > > can be selected at a time. Same situation as the ISP where the two CSI unit
+> > > > > inputs are mutually exclusive.
+> > > > 
+> > > > On the sink (input) side that's quite common, if you have two different
+> > > > sources but a single sink, the sink can't (usually) process both sources
+> > > > at the same time. I understand that for the sun6i-csi bridge it's the
+> > > > other way around, with the bridge can output to either a DMA engine or
+> > > > to the ISP, but not both at the same time. That's less common, but can
+> > > > certainly happen. I think I'd go for two source pads in that case too.
+> > > > Sakari, any opinion ?
+> > > 
+> > > As I was reading this thread again, I think there might be a misunderstanding
+> > > here when you said that "switching between the two sources require disabling
+> > > the link first and then enabling the new one".
+> > > 
+> > > The driver is currently not checking the validity of the setup at link_setup
+> > > but at link_validate (which is called at streamon time), so userspace can
+> > > effectively disable/enable links in whichever order and a valid setup is only
+> > > required when streaming starts. I think that's already the situation that you
+> > > want to achieve.
+> > 
+> > That's right. link_validate is probably not the best place though, as
+> > it's meant to validate one link, while here you need to perform
+> > validation of the state of multiple links, right ?
+> 
+> Yeah actually I'm starting to think that unexpected situations may not be
+> correctly handled here. I'll have a closer look at it. It feels like the
+> best approach would be to keep track each source's enabled state with
+> link_setup and check that only one is enabled at streamon time.
 
-Changes in V2:
-- Remove unused macros and fix indentation.
-- Add check if 90 rotation is supported and
-add supported rotations to rot_cfg.
+You don't even necessarily have to keep track in link_setup, you could
+iterate through links at streamon time to ensure one and only one is
+enabled. As this is a common use case, a helper function to do that
+would be useful.
 
-Changes in V3:
-- Fix indentation.
-- Move rot_supported to sspp capabilities. (Dmitry)
-- Config pixel_ext based on src_h/src_w directly. (Dmitry)
-- Misc changes.
+> > > To summarize, the following pads can have multiple links:
+> > > - csi sink (parallel sensor source or mipi csi-2 bridge source)
+> > > - csi source (isp sink or video capture sink)
+> > > - isp sink (csi0 source or csi1 source)
+> > > 
+> > > I'll send my next versions without changes (one pad, multiple links)
+> > > but we can revisit this if there's an issue with that after all.
+> > 
+> > OK.
+> > 
+> > > > > > > > Ideally I'd say such internal routing should use the new V4L2 subdev
+> > > > > > > > routing API that is currently being implemented (see [1]), but I don't
+> > > > > > > > know when it will land, and I don't want to delay your patch series.
+> > > > > > > > 
+> > > > > > > > [1] https://lore.kernel.org/linux-media/20211130141536.891878-28-tomi.valkeinen@ideasonboard.com
+> > > > > > > 
+> > > > > > > I'm still a bit confused what problem this is trying to solve.
+> > > > > > > My understanding was that the current pad/link API allows representing complex
+> > > > > > > topologies and switching different paths with link enable/disable.
+> > > > > > 
+> > > > > > That was the intent of the MEDIA_IOC_SETUP_LINK ioctl, but we ended up
+> > > > > > with something that is fairly ill-defined, and doesn't have the ability
+> > > > > > to set multiple links atomically. It turned out to be less usable for
+> > > > > > userspace than expected. Mistakes happen (and I'll blame myself here,
+> > > > > > having designed that API) when we don't have real test cases during
+> > > > > > kernel development.
+> > > > > 
+> > > > > Yeah it's hard to predict these kinds of things in advance I suppose.
+> > > > > Thanks for the heads up!
+> > > > > 
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +required:
+> > > > > > > > > > > > > +  - compatible
+> > > > > > > > > > > > > +  - reg
+> > > > > > > > > > > > > +  - interrupts
+> > > > > > > > > > > > > +  - clocks
+> > > > > > > > > > > > > +  - clock-names
+> > > > > > > > > > > > > +  - resets
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +additionalProperties: false
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +examples:
+> > > > > > > > > > > > > +  - |
+> > > > > > > > > > > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > > > > > > > > > > +    #include <dt-bindings/clock/sun8i-v3s-ccu.h>
+> > > > > > > > > > > > > +    #include <dt-bindings/reset/sun8i-v3s-ccu.h>
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +    isp: isp@1cb8000 {
+> > > > > > > > > > > > > +        compatible = "allwinner,sun8i-v3s-isp";
+> > > > > > > > > > > > > +        reg = <0x01cb8000 0x1000>;
+> > > > > > > > > > > > > +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> > > > > > > > > > > > > +        clocks = <&ccu CLK_BUS_CSI>,
+> > > > > > > > > > > > > +             <&ccu CLK_CSI1_SCLK>,
+> > > > > > > > > > > > > +             <&ccu CLK_DRAM_CSI>;
+> > > > > > > > > > > > > +        clock-names = "bus", "mod", "ram";
+> > > > > > > > > > > > > +        resets = <&ccu RST_BUS_CSI>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +        ports {
+> > > > > > > > > > > > > +            #address-cells = <1>;
+> > > > > > > > > > > > > +            #size-cells = <0>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +            port@0 {
+> > > > > > > > > > > > > +                reg = <0>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +                isp_in_csi0: endpoint {
+> > > > > > > > > > > > > +                    remote-endpoint = <&csi0_out_isp>;
+> > > > > > > > > > > > > +                };
+> > > > > > > > > > > > > +            };
+> > > > > > > > > > > > > +        };
+> > > > > > > > > > > > > +    };
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +...
 
-Changes in V4:
-- Pass boolean value to sspp blk based on supported rotations for each hw.
-
-Changes in V5:
-- update boolean value to true/false and add it for qcm2290.
-
-Co-developed-by: Kalyan Thota <quic_kalyant@quicinc.com>
-Signed-off-by: Kalyan Thota <quic_kalyant@quicinc.com>
-Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
----
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c | 187 ++++++++++++++-----------
- drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h |  18 +++
- drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c      | 113 ++++++++++++---
- drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h      |   2 +
- 4 files changed, 215 insertions(+), 105 deletions(-)
-
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-index a4fe77c..060bf53 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-@@ -35,6 +35,9 @@
- 	BIT(DPU_SSPP_TS_PREFILL) | BIT(DPU_SSPP_TS_PREFILL_REC1) |\
- 	BIT(DPU_SSPP_CDP) | BIT(DPU_SSPP_EXCL_RECT))
- 
-+#define VIG_SC7280_MASK \
-+	(VIG_SC7180_MASK | BIT(DPU_SSPP_INLINE_ROTATION))
-+
- #define DMA_SDM845_MASK \
- 	(BIT(DPU_SSPP_SRC) | BIT(DPU_SSPP_QOS) | BIT(DPU_SSPP_QOS_8LVL) |\
- 	BIT(DPU_SSPP_TS_PREFILL) | BIT(DPU_SSPP_TS_PREFILL_REC1) |\
-@@ -203,6 +206,11 @@ static const uint32_t plane_formats_yuv[] = {
- 	DRM_FORMAT_YVU420,
- };
- 
-+static const u32 rotation_v2_formats[] = {
-+	DRM_FORMAT_NV12,
-+	/* TODO add formats after validation */
-+};
-+
- /*************************************************************
-  * DPU sub blocks config
-  *************************************************************/
-@@ -642,8 +650,7 @@ static const struct dpu_ctl_cfg qcm2290_ctl[] = {
-  *************************************************************/
- 
- /* SSPP common configuration */
--
--#define _VIG_SBLK(num, sdma_pri, qseed_ver) \
-+#define _VIG_SBLK(num, sdma_pri, qseed_ver, rot_cfg) \
- 	{ \
- 	.maxdwnscale = MAX_DOWNSCALE_RATIO, \
- 	.maxupscale = MAX_UPSCALE_RATIO, \
-@@ -660,6 +667,7 @@ static const struct dpu_ctl_cfg qcm2290_ctl[] = {
- 	.num_formats = ARRAY_SIZE(plane_formats_yuv), \
- 	.virt_format_list = plane_formats, \
- 	.virt_num_formats = ARRAY_SIZE(plane_formats), \
-+	.rotation_cfg = rot_cfg, \
- 	}
- 
- #define _DMA_SBLK(num, sdma_pri) \
-@@ -676,22 +684,28 @@ static const struct dpu_ctl_cfg qcm2290_ctl[] = {
- 	}
- 
- static const struct dpu_sspp_sub_blks msm8998_vig_sblk_0 =
--				_VIG_SBLK("0", 0, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("0", 0, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks msm8998_vig_sblk_1 =
--				_VIG_SBLK("1", 0, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("1", 0, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks msm8998_vig_sblk_2 =
--				_VIG_SBLK("2", 0, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("2", 0, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks msm8998_vig_sblk_3 =
--				_VIG_SBLK("3", 0, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("3", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-+
-+static const struct dpu_rotation_cfg dpu_rot_sc7280_cfg_v2 = {
-+	.rot_maxheight = 1088,
-+	.rot_num_formats = ARRAY_SIZE(rotation_v2_formats),
-+	.rot_format_list = rotation_v2_formats,
-+};
- 
- static const struct dpu_sspp_sub_blks sdm845_vig_sblk_0 =
--				_VIG_SBLK("0", 5, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("0", 5, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks sdm845_vig_sblk_1 =
--				_VIG_SBLK("1", 6, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("1", 6, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks sdm845_vig_sblk_2 =
--				_VIG_SBLK("2", 7, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("2", 7, DPU_SSPP_SCALER_QSEED3, NULL);
- static const struct dpu_sspp_sub_blks sdm845_vig_sblk_3 =
--				_VIG_SBLK("3", 8, DPU_SSPP_SCALER_QSEED3);
-+				_VIG_SBLK("3", 8, DPU_SSPP_SCALER_QSEED3, NULL);
- 
- static const struct dpu_sspp_sub_blks sdm845_dma_sblk_0 = _DMA_SBLK("8", 1);
- static const struct dpu_sspp_sub_blks sdm845_dma_sblk_1 = _DMA_SBLK("9", 2);
-@@ -699,7 +713,7 @@ static const struct dpu_sspp_sub_blks sdm845_dma_sblk_2 = _DMA_SBLK("10", 3);
- static const struct dpu_sspp_sub_blks sdm845_dma_sblk_3 = _DMA_SBLK("11", 4);
- 
- #define SSPP_BLK(_name, _id, _base, _features, \
--		_sblk, _xinid, _type, _clkctrl) \
-+		_sblk, _xinid, _type, _clkctrl, _rotsupported) \
- 	{ \
- 	.name = _name, .id = _id, \
- 	.base = _base, .len = 0x1c8, \
-@@ -707,98 +721,103 @@ static const struct dpu_sspp_sub_blks sdm845_dma_sblk_3 = _DMA_SBLK("11", 4);
- 	.sblk = &_sblk, \
- 	.xin_id = _xinid, \
- 	.type = _type, \
--	.clk_ctrl = _clkctrl \
-+	.clk_ctrl = _clkctrl, \
-+	.rot_supported = _rotsupported ? DRM_MODE_ROTATE_MASK | DRM_MODE_REFLECT_MASK : \
-+			DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180 | DRM_MODE_REFLECT_MASK, \
- 	}
- 
- static const struct dpu_sspp_cfg msm8998_sspp[] = {
--	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_MSM8998_MASK,
--		msm8998_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
--	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_MSM8998_MASK,
--		msm8998_vig_sblk_1, 4,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1),
--	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_MSM8998_MASK,
--		msm8998_vig_sblk_2, 8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2),
--	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_MSM8998_MASK,
--		msm8998_vig_sblk_3, 12,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3),
--	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_MSM8998_MASK,
--		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
--	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_MSM8998_MASK,
--		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1),
--	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_MSM8998_MASK,
--		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
--	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_MSM8998_MASK,
--		sdm845_dma_sblk_3, 13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
-+	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SDM845_MASK, sdm845_vig_sblk_0,
-+		0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, 0),
-+	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_SDM845_MASK, sdm845_vig_sblk_1,
-+		4, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1, 0),
-+	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_SDM845_MASK, sdm845_vig_sblk_2,
-+		8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2, 0),
-+	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_SDM845_MASK, sdm845_vig_sblk_3,
-+		12, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3, 0),
-+	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK, sdm845_dma_sblk_0,
-+		1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, 0),
-+	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_SDM845_MASK, sdm845_dma_sblk_1,
-+		5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1, 0),
-+	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_2,
-+		9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0, 0),
-+	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_3,
-+		13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1, 0),
- };
- 
- static const struct dpu_sspp_cfg sdm845_sspp[] = {
--	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SDM845_MASK,
--		sdm845_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
--	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_SDM845_MASK,
--		sdm845_vig_sblk_1, 4,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1),
--	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_SDM845_MASK,
--		sdm845_vig_sblk_2, 8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2),
--	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_SDM845_MASK,
--		sdm845_vig_sblk_3, 12,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3),
--	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
--	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1),
--	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
--	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_3, 13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
-+	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SDM845_MASK, sdm845_vig_sblk_0,
-+		0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, 0),
-+	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_SDM845_MASK, sdm845_vig_sblk_1,
-+		4, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1, 0),
-+	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_SDM845_MASK, sdm845_vig_sblk_2,
-+		8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2, 0),
-+	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_SDM845_MASK, sdm845_vig_sblk_3,
-+		12, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3, 0),
-+	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK, sdm845_dma_sblk_0,
-+		1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, 0),
-+	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_SDM845_MASK, sdm845_dma_sblk_1,
-+		5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1, 0),
-+	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_2,
-+		9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0, 0),
-+	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_3,
-+		13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1, 0),
- };
- 
- static const struct dpu_sspp_sub_blks sc7180_vig_sblk_0 =
--				_VIG_SBLK("0", 4, DPU_SSPP_SCALER_QSEED4);
-+				_VIG_SBLK("0", 4, DPU_SSPP_SCALER_QSEED4, NULL);
-+
-+static const struct dpu_sspp_sub_blks sc7280_vig_sblk_0 =
-+				_VIG_SBLK("0", 4, DPU_SSPP_SCALER_QSEED4, &dpu_rot_sc7280_cfg_v2);
- 
- static const struct dpu_sspp_cfg sc7180_sspp[] = {
--	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SC7180_MASK,
--		sc7180_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
--	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
--	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
--	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
-+	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SC7180_MASK, sc7180_vig_sblk_0,
-+		0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, 0),
-+	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK, sdm845_dma_sblk_0,
-+		1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, 0),
-+	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_CURSOR_SDM845_MASK,	sdm845_dma_sblk_1,
-+		5, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0, 0),
-+	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_2,
-+		9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1, 0),
- };
- 
- static const struct dpu_sspp_sub_blks sm8250_vig_sblk_0 =
--				_VIG_SBLK("0", 5, DPU_SSPP_SCALER_QSEED3LITE);
-+				_VIG_SBLK("0", 5, DPU_SSPP_SCALER_QSEED3LITE, NULL);
- static const struct dpu_sspp_sub_blks sm8250_vig_sblk_1 =
--				_VIG_SBLK("1", 6, DPU_SSPP_SCALER_QSEED3LITE);
-+				_VIG_SBLK("1", 6, DPU_SSPP_SCALER_QSEED3LITE, NULL);
- static const struct dpu_sspp_sub_blks sm8250_vig_sblk_2 =
--				_VIG_SBLK("2", 7, DPU_SSPP_SCALER_QSEED3LITE);
-+				_VIG_SBLK("2", 7, DPU_SSPP_SCALER_QSEED3LITE, NULL);
- static const struct dpu_sspp_sub_blks sm8250_vig_sblk_3 =
--				_VIG_SBLK("3", 8, DPU_SSPP_SCALER_QSEED3LITE);
-+				_VIG_SBLK("3", 8, DPU_SSPP_SCALER_QSEED3LITE, NULL);
- 
- static const struct dpu_sspp_cfg sm8250_sspp[] = {
--	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SM8250_MASK,
--		sm8250_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
--	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_SM8250_MASK,
--		sm8250_vig_sblk_1, 4,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1),
--	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_SM8250_MASK,
--		sm8250_vig_sblk_2, 8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2),
--	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_SM8250_MASK,
--		sm8250_vig_sblk_3, 12,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3),
--	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
--	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1),
--	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
--	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_3, 13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
-+	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SM8250_MASK, sm8250_vig_sblk_0,
-+		0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, 0),
-+	SSPP_BLK("sspp_1", SSPP_VIG1, 0x6000, VIG_SM8250_MASK, sm8250_vig_sblk_1,
-+		4, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG1, 0),
-+	SSPP_BLK("sspp_2", SSPP_VIG2, 0x8000, VIG_SM8250_MASK, sm8250_vig_sblk_2,
-+		8, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG2, 0),
-+	SSPP_BLK("sspp_3", SSPP_VIG3, 0xa000, VIG_SM8250_MASK, sm8250_vig_sblk_3,
-+		12, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG3, 0),
-+	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK, sdm845_dma_sblk_0,
-+		1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, 0),
-+	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_SDM845_MASK, sdm845_dma_sblk_1,
-+		5, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA1, 0),
-+	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_2,
-+		9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0, 0),
-+	SSPP_BLK("sspp_11", SSPP_DMA3, 0x2a000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_3,
-+		13, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1, 0),
- };
- 
- static const struct dpu_sspp_cfg sc7280_sspp[] = {
--	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SC7180_MASK,
--		sc7180_vig_sblk_0, 0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
--	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
--		sdm845_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
--	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_1, 5, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0),
--	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK,
--		sdm845_dma_sblk_2, 9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1),
-+	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_SC7280_MASK, sc7280_vig_sblk_0,
-+		0,  SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, 1),
-+	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK, sdm845_dma_sblk_0,
-+		1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, 0),
-+	SSPP_BLK("sspp_9", SSPP_DMA1, 0x26000,  DMA_CURSOR_SDM845_MASK,	sdm845_dma_sblk_1,
-+		5, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR0, 0),
-+	SSPP_BLK("sspp_10", SSPP_DMA2, 0x28000,  DMA_CURSOR_SDM845_MASK, sdm845_dma_sblk_2,
-+		9, SSPP_TYPE_DMA, DPU_CLK_CTRL_CURSOR1, 0),
- };
- 
- 
-@@ -820,9 +839,11 @@ static const struct dpu_sspp_sub_blks qcm2290_dma_sblk_0 = _DMA_SBLK("8", 1);
- 
- static const struct dpu_sspp_cfg qcm2290_sspp[] = {
- 	SSPP_BLK("sspp_0", SSPP_VIG0, 0x4000, VIG_QCM2290_MASK,
--		 qcm2290_vig_sblk_0, 0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0),
-+		qcm2290_vig_sblk_0, 0, SSPP_TYPE_VIG, DPU_CLK_CTRL_VIG0, DRM_MODE_ROTATE_0 |
-+		DRM_MODE_ROTATE_180 | DRM_MODE_REFLECT_MASK),
- 	SSPP_BLK("sspp_8", SSPP_DMA0, 0x24000,  DMA_SDM845_MASK,
--		 qcm2290_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0),
-+		qcm2290_dma_sblk_0, 1, SSPP_TYPE_DMA, DPU_CLK_CTRL_DMA0, DRM_MODE_ROTATE_0 |
-+		DRM_MODE_ROTATE_180 | DRM_MODE_REFLECT_MASK),
- };
- 
- /*************************************************************
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-index b85b24b..d009d83 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
-@@ -112,6 +112,7 @@ enum {
-  * @DPU_SSPP_TS_PREFILL      Supports prefill with traffic shaper
-  * @DPU_SSPP_TS_PREFILL_REC1 Supports prefill with traffic shaper multirec
-  * @DPU_SSPP_CDP             Supports client driven prefetch
-+ * @DPU_SSPP_INLINE_ROTATION Support inline rotation
-  * @DPU_SSPP_MAX             maximum value
-  */
- enum {
-@@ -132,6 +133,7 @@ enum {
- 	DPU_SSPP_TS_PREFILL,
- 	DPU_SSPP_TS_PREFILL_REC1,
- 	DPU_SSPP_CDP,
-+	DPU_SSPP_INLINE_ROTATION,
- 	DPU_SSPP_MAX
- };
- 
-@@ -315,6 +317,18 @@ struct dpu_qos_lut_tbl {
- };
- 
- /**
-+ * struct dpu_rotation_cfg - define inline rotation config
-+ * @rot_maxheight: max pre rotated height allowed for rotation
-+ * @rot_num_formats: number of elements in @rot_format_list
-+ * @rot_format_list: list of supported rotator formats
-+ */
-+struct dpu_rotation_cfg {
-+	u32 rot_maxheight;
-+	size_t rot_num_formats;
-+	const u32 *rot_format_list;
-+};
-+
-+/**
-  * struct dpu_caps - define DPU capabilities
-  * @max_mixer_width    max layer mixer line width support.
-  * @max_mixer_blendstages max layer mixer blend stages or
-@@ -369,6 +383,7 @@ struct dpu_caps {
-  * @num_formats: Number of supported formats
-  * @virt_format_list: Pointer to list of supported formats for virtual planes
-  * @virt_num_formats: Number of supported formats for virtual planes
-+ * @dpu_rotation_cfg: inline rotation configuration
-  */
- struct dpu_sspp_sub_blks {
- 	u32 creq_vblank;
-@@ -390,6 +405,7 @@ struct dpu_sspp_sub_blks {
- 	u32 num_formats;
- 	const u32 *virt_format_list;
- 	u32 virt_num_formats;
-+	const struct dpu_rotation_cfg *rotation_cfg;
- };
- 
- /**
-@@ -492,6 +508,7 @@ struct dpu_ctl_cfg {
-  * @xin_id:            bus client identifier
-  * @clk_ctrl           clock control identifier
-  * @type               sspp type identifier
-+ * @rot_supported      allowed rotations
-  */
- struct dpu_sspp_cfg {
- 	DPU_HW_BLK_INFO;
-@@ -499,6 +516,7 @@ struct dpu_sspp_cfg {
- 	u32 xin_id;
- 	enum dpu_clk_ctrl_type clk_ctrl;
- 	u32 type;
-+	u32 rot_supported;
- };
- 
- /**
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-index 6565682..7017fc7 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.c
-@@ -528,11 +528,19 @@ static void _dpu_plane_setup_scaler3(struct dpu_plane *pdpu,
- 		struct dpu_plane_state *pstate,
- 		uint32_t src_w, uint32_t src_h, uint32_t dst_w, uint32_t dst_h,
- 		struct dpu_hw_scaler3_cfg *scale_cfg,
--		struct dpu_hw_pixel_ext *pixel_ext,
- 		const struct dpu_format *fmt,
- 		uint32_t chroma_subsmpl_h, uint32_t chroma_subsmpl_v)
- {
- 	uint32_t i;
-+	bool inline_rotation = pstate->rotation & DRM_MODE_ROTATE_90;
-+
-+	/*
-+	 * For inline rotation cases, scaler config is post-rotation,
-+	 * so swap the dimensions here. However, pixel extension will
-+	 * need pre-rotation settings.
-+	 */
-+	if (inline_rotation)
-+		swap(src_w, src_h);
- 
- 	scale_cfg->phase_step_x[DPU_SSPP_COMP_0] =
- 		mult_frac((1 << PHASE_STEP_SHIFT), src_w, dst_w);
-@@ -571,11 +579,6 @@ static void _dpu_plane_setup_scaler3(struct dpu_plane *pdpu,
- 			scale_cfg->preload_x[i] = DPU_QSEED3_DEFAULT_PRELOAD_H;
- 			scale_cfg->preload_y[i] = DPU_QSEED3_DEFAULT_PRELOAD_V;
- 		}
--
--		pixel_ext->num_ext_pxls_top[i] =
--			scale_cfg->src_height[i];
--		pixel_ext->num_ext_pxls_left[i] =
--			scale_cfg->src_width[i];
- 	}
- 	if (!(DPU_FORMAT_IS_YUV(fmt)) && (src_h == dst_h)
- 		&& (src_w == dst_w))
-@@ -591,6 +594,24 @@ static void _dpu_plane_setup_scaler3(struct dpu_plane *pdpu,
- 	scale_cfg->enable = 1;
- }
- 
-+static void _dpu_plane_setup_pixel_ext(struct dpu_hw_scaler3_cfg *scale_cfg,
-+				struct dpu_hw_pixel_ext *pixel_ext,
-+				uint32_t src_w, uint32_t src_h,
-+				uint32_t chroma_subsmpl_h, uint32_t chroma_subsmpl_v)
-+{
-+	int i;
-+
-+	for (i = 0; i < DPU_MAX_PLANES; i++) {
-+		if (i == DPU_SSPP_COMP_1_2 || i == DPU_SSPP_COMP_2) {
-+			src_w /= chroma_subsmpl_h;
-+			src_h /= chroma_subsmpl_v;
-+		}
-+
-+		pixel_ext->num_ext_pxls_top[i] = src_h;
-+		pixel_ext->num_ext_pxls_left[i] = src_w;
-+	}
-+}
-+
- static const struct dpu_csc_cfg dpu_csc_YUV2RGB_601L = {
- 	{
- 		/* S15.16 format */
-@@ -665,7 +686,12 @@ static void _dpu_plane_setup_scaler(struct dpu_plane *pdpu,
- 			drm_rect_height(&pipe_cfg->src_rect),
- 			drm_rect_width(&pipe_cfg->dst_rect),
- 			drm_rect_height(&pipe_cfg->dst_rect),
--			&scaler3_cfg, &pixel_ext, fmt,
-+			&scaler3_cfg, fmt,
-+			info->hsub, info->vsub);
-+
-+	/* configure pixel extension based on scalar config */
-+	_dpu_plane_setup_pixel_ext(&scaler3_cfg, &pixel_ext,
-+			drm_rect_width(&pipe_cfg->src_rect), drm_rect_height(&pipe_cfg->src_rect),
- 			info->hsub, info->vsub);
- 
- 	if (pdpu->pipe_hw->ops.setup_pe)
-@@ -956,6 +982,41 @@ static bool dpu_plane_validate_src(struct drm_rect *src,
- 		drm_rect_equals(fb_rect, src);
- }
- 
-+static int dpu_plane_check_inline_rotation(struct dpu_plane *pdpu,
-+						const struct dpu_sspp_sub_blks *sblk,
-+						struct drm_rect src, const struct dpu_format *fmt)
-+{
-+	bool found = false;
-+	size_t i, num_formats;
-+	const u32 *supported_formats;
-+
-+	if (drm_rect_width(&src) > sblk->rotation_cfg->rot_maxheight) {
-+		DPU_DEBUG_PLANE(pdpu, "invalid height for inline rot:%d max:%d\n",
-+				src.y2, sblk->rotation_cfg->rot_maxheight);
-+		return -EINVAL;
-+	}
-+
-+	supported_formats = sblk->rotation_cfg->rot_format_list;
-+	num_formats = sblk->rotation_cfg->rot_num_formats;
-+
-+	for (i = 0; i < num_formats; i++) {
-+		/* check for valid formats supported by inline rotation */
-+		if (fmt->base.pixel_format == supported_formats[i] &&
-+			DPU_FORMAT_IS_UBWC(fmt)) {
-+			found = true;
-+			break;
-+		}
-+	}
-+
-+	if (!found || !num_formats) {
-+		DPU_DEBUG_PLANE(pdpu, "supported_format not found num: %zu\n",
-+				num_formats);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int dpu_plane_atomic_check(struct drm_plane *plane,
- 				  struct drm_atomic_state *state)
- {
-@@ -968,15 +1029,18 @@ static int dpu_plane_atomic_check(struct drm_plane *plane,
- 	const struct dpu_format *fmt;
- 	struct drm_rect src, dst, fb_rect = { 0 };
- 	uint32_t min_src_size, max_linewidth;
-+	unsigned int rotation = 0;
-+	const struct dpu_sspp_cfg *pipe_hw_caps = pdpu->pipe_hw->cap;
-+	const struct dpu_sspp_sub_blks *sblk = pdpu->pipe_hw->cap->sblk;
- 
- 	if (new_plane_state->crtc)
- 		crtc_state = drm_atomic_get_new_crtc_state(state,
- 							   new_plane_state->crtc);
- 
--	min_scale = FRAC_16_16(1, pdpu->pipe_hw->cap->sblk->maxupscale);
-+	min_scale = FRAC_16_16(1, sblk->maxupscale);
- 	ret = drm_atomic_helper_check_plane_state(new_plane_state, crtc_state,
- 						  min_scale,
--						  pdpu->pipe_hw->cap->sblk->maxdwnscale << 16,
-+						  sblk->maxdwnscale << 16,
- 						  true, true);
- 	if (ret) {
- 		DPU_DEBUG_PLANE(pdpu, "Check plane state failed (%d)\n", ret);
-@@ -1002,8 +1066,8 @@ static int dpu_plane_atomic_check(struct drm_plane *plane,
- 	min_src_size = DPU_FORMAT_IS_YUV(fmt) ? 2 : 1;
- 
- 	if (DPU_FORMAT_IS_YUV(fmt) &&
--		(!(pdpu->pipe_hw->cap->features & DPU_SSPP_SCALER) ||
--		 !(pdpu->pipe_hw->cap->features & DPU_SSPP_CSC_ANY))) {
-+		(!(pipe_hw_caps->features & DPU_SSPP_SCALER) ||
-+		 !(pipe_hw_caps->features & DPU_SSPP_CSC_ANY))) {
- 		DPU_DEBUG_PLANE(pdpu,
- 				"plane doesn't have scaler/csc for yuv\n");
- 		return -EINVAL;
-@@ -1036,6 +1100,17 @@ static int dpu_plane_atomic_check(struct drm_plane *plane,
- 		return -E2BIG;
- 	}
- 
-+	rotation = drm_rotation_simplify(new_plane_state->rotation,
-+					pipe_hw_caps->rot_supported);
-+
-+	if ((pipe_hw_caps->features & BIT(DPU_SSPP_INLINE_ROTATION)) &&
-+		(rotation & DRM_MODE_ROTATE_90)) {
-+		ret = dpu_plane_check_inline_rotation(pdpu, sblk, src, fmt);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	pstate->rotation = rotation;
- 	pstate->needs_qos_remap = drm_atomic_crtc_needs_modeset(crtc_state);
- 
- 	return 0;
-@@ -1151,21 +1226,19 @@ static void dpu_plane_sspp_atomic_update(struct drm_plane *plane)
- 				pstate->multirect_mode);
- 
- 	if (pdpu->pipe_hw->ops.setup_format) {
--		unsigned int rotation;
-+		unsigned int rotation = pstate->rotation;
- 
- 		src_flags = 0x0;
- 
--		rotation = drm_rotation_simplify(state->rotation,
--						 DRM_MODE_ROTATE_0 |
--						 DRM_MODE_REFLECT_X |
--						 DRM_MODE_REFLECT_Y);
--
- 		if (rotation & DRM_MODE_REFLECT_X)
- 			src_flags |= DPU_SSPP_FLIP_LR;
- 
- 		if (rotation & DRM_MODE_REFLECT_Y)
- 			src_flags |= DPU_SSPP_FLIP_UD;
- 
-+		if (rotation & DRM_MODE_ROTATE_90)
-+			src_flags |= DPU_SSPP_ROT_90;
-+
- 		/* update format */
- 		pdpu->pipe_hw->ops.setup_format(pdpu->pipe_hw, fmt, src_flags,
- 				pstate->multirect_index);
-@@ -1531,11 +1604,7 @@ struct drm_plane *dpu_plane_init(struct drm_device *dev,
- 			BIT(DRM_MODE_BLEND_COVERAGE));
- 
- 	drm_plane_create_rotation_property(plane,
--			DRM_MODE_ROTATE_0,
--			DRM_MODE_ROTATE_0 |
--			DRM_MODE_ROTATE_180 |
--			DRM_MODE_REFLECT_X |
--			DRM_MODE_REFLECT_Y);
-+		    DRM_MODE_ROTATE_0, pdpu->pipe_hw->cap->rot_supported);
- 
- 	drm_plane_enable_fb_damage_clips(plane);
- 
-diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h
-index 50781e2..e146310 100644
---- a/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h
-+++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_plane.h
-@@ -26,6 +26,7 @@
-  * @plane_fetch_bw: calculated BW per plane
-  * @plane_clk: calculated clk per plane
-  * @needs_dirtyfb: whether attached CRTC needs pixel data explicitly flushed
-+ * @rotation: simplified drm rotation hint
-  */
- struct dpu_plane_state {
- 	struct drm_plane_state base;
-@@ -40,6 +41,7 @@ struct dpu_plane_state {
- 	u64 plane_clk;
- 
- 	bool needs_dirtyfb;
-+	unsigned int rotation;
- };
- 
- /**
 -- 
-2.7.4
+Regards,
 
+Laurent Pinchart
