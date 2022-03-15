@@ -2,89 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C33E14D9583
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:42:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D1F4D959F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:51:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345509AbiCOHn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 03:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
+        id S1345652AbiCOHwS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 03:52:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345745AbiCOHnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:43:21 -0400
-Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375224B43D;
-        Tue, 15 Mar 2022 00:42:10 -0700 (PDT)
-Received: by mail-pf1-x42b.google.com with SMTP id p8so18292350pfh.8;
-        Tue, 15 Mar 2022 00:42:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=JvkMr70WJPPuXqL6MLAf4rnX0ShimyVa3ekil/QyEYQ=;
-        b=idUtQSXKngSZiivE9bSKriV7w0fKkHRYCqyMyr4a3qoTPOwkRlpYXone+hQio7n1+0
-         E1UK5BdcCjwDeXf3pe+3ooUdlIPM+HH6F6WbvEI/ZFHoAxgLbSaj8H5cbVhr5FDiK9EW
-         xiSJP5h+jefSoyySIWT+c+ljMIlEnVGe0lsQp+zjBWySsnUzCzdgrsWxx5tinFXHcXuu
-         ZGIpP0Vx+o/OiDt3jqHpBwvwfkK2muNzsxkqzZw+GLDMFBkoIXryI4gzf3bA8Y67tWja
-         uPBj1/LXYzuW+90wXcU73iJK+zMXvXsJRlNPPxGLLF85FdeXeJWEPy8eyIycTLl6hLiV
-         kJDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=JvkMr70WJPPuXqL6MLAf4rnX0ShimyVa3ekil/QyEYQ=;
-        b=pn5e9cMsr1g3dwrmq44X6q7gaEpu8rrWooPYwHAg8W9STv7BEZv1dtIduQPfjglgOK
-         doh6rhDd5/aYO4fKxW6HWplI8cvPSByraEIdNeGXza6twDnWvBGqkMcwl2oXLkMUaRjY
-         E8t7tGEa+hHWWiZS8d1tjwlhzQxpmhmECh85JV+mDj/znvK0+pWFiaJNDSFaVRAbReRt
-         oe8b9lt0+v5qzx25FKY1yg6R6cBTnzeQklUcaEiemooRN5AUhkjxFLcFJEo6+evk7+xa
-         ovJixTg2p7TsgRScMJ/AMlJ29MEl6oUi/B88uARHkGUhXvLXHtrYQAFcpxutVNda9TBR
-         HaDA==
-X-Gm-Message-State: AOAM531+75CZADistzqOWURhd6HPYeZ0tDGTj5FkGdjRp74y4DkaZR0F
-        eMuyZ3QCXpZZF1fmj7xcnQs=
-X-Google-Smtp-Source: ABdhPJxEhyzhWKO7pnstMetgtav0ywjKj7rm9UdPPrXO6uDqvojJLtUFw6Tc17S9/03kxDHDLt8sBw==
-X-Received: by 2002:a05:6a00:2389:b0:4f7:5d29:5148 with SMTP id f9-20020a056a00238900b004f75d295148mr27573971pfc.52.1647330129618;
-        Tue, 15 Mar 2022 00:42:09 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id d11-20020a056a0024cb00b004f725ecf900sm23973058pfv.97.2022.03.15.00.42.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 00:42:09 -0700 (PDT)
-Date:   Tue, 15 Mar 2022 13:12:03 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: bcm-cygnus: Update spi clock properties
-Message-ID: <20220315074203.GA19021@9a2d8922b8f1>
-References: <20220311084114.16408-1-singh.kuldeep87k@gmail.com>
+        with ESMTP id S1345651AbiCOHwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:52:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD37A4B87A;
+        Tue, 15 Mar 2022 00:51:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 418D161466;
+        Tue, 15 Mar 2022 07:51:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B89B2C340E8;
+        Tue, 15 Mar 2022 07:51:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1647330665;
+        bh=WIiE5/Y8InLMDxSnOFGgcjcEamhcDTf2E4cGNCrfJIo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AiRZtNq/KPPzYbiB4dZ/JZFPOoEoitkPYehdbuZxxfVrTv273vcA+98PRkhhW52eh
+         rNOojssfryS72K3iFabfsw1VcgD8oLIUEo2tDjn6bMm6uaPRlC834j9ZVydRIcJvkW
+         9QpEaFFAbCJsdoebJ7/TZvzZLBY0Bdhk10sE+JXo=
+Date:   Tue, 15 Mar 2022 08:51:02 +0100
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Bastien =?iso-8859-1?Q?Roucari=E8s?= <rouca@debian.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, stable@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "ARM: dts: sun7i: A20-olinuxino-lime2: Fix
+ ethernet phy-mode"
+Message-ID: <YjBFZm496HUnvBgQ@kroah.com>
+References: <20220308125531.27305-1-ynezz@true.cz>
+ <20220315072846.GA9129@meh.true.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20220311084114.16408-1-singh.kuldeep87k@gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220315072846.GA9129@meh.true.cz>
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 02:11:14PM +0530, Kuldeep Singh wrote:
-> PL022 binding require two clocks to be defined but broadcom cygnus
-> platform doesn't comply with bindings and define only one clock.
+On Tue, Mar 15, 2022 at 08:28:58AM +0100, Petr Štetiar wrote:
+> Petr Štetiar <ynezz@true.cz> [2022-03-08 13:55:30]:
 > 
-> Update spi clocks and clocks-names property by adding appropriate clock
-> reference to make it compliant with bindings.
+> Hi Greg,
 > 
-> CC: Florian Fainelli <f.fainelli@gmail.com>
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> one week has passed and as I didn't received any feedback, I'm providing more
+> details in a hope to make it more clear, why I think, that this fix is wrong
+> and should be reverted in LTS kernels 5.10 and 5.15.
 
-Florian, this patch was initially based on stblinux,devicetree-arm64. I
-just checked on devicetree branch, and it can apply cleanly anyway. I
-hope there shouldn't be any need to send patch again. Please let me know
-in case something needs to be taken care. Thanks!
+Why not reverted in Linus's tree first?  Shouldn't that be also broken
+here?
 
--Kuldeep
+thanks,
+
+greg k-h
