@@ -2,102 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A2F4D9C80
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E56B84D9CE1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:02:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241115AbiCONmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 09:42:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
+        id S1348955AbiCOODH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 10:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348742AbiCONmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:42:18 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15FF52E60;
-        Tue, 15 Mar 2022 06:41:06 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 777DFB81681;
-        Tue, 15 Mar 2022 13:41:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B45D3C340F4;
-        Tue, 15 Mar 2022 13:41:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647351664;
-        bh=5GoPK5Absvivj6zbGvAbFgfXegOGh3wNX8cSwc4rE2Y=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=FFPImUwRJDbCvfgkde1ZiY2E0xqIjyt/nvkBKcHsOjugP7pKiun2GTEwDpXKDjgWd
-         qUCchZh0HdRwzgcAf45YNfb5V5Rz0QQfy/z7RKj/nkiS1b1VAcpGO6n1yLM9DDdyxg
-         gufGGq0vA4UVMec8WGGNppyO/+ljNlWuD2PGTsbHoVtqcfF952wuzQkx0dcufty8ex
-         7Wt6uJThbhFpuDZhDTSeZOewBpCQGFMtSoAsYXIGxwfLEJ81Wiu4DKSsf6stTOCnFG
-         oTDFe54ar9QIoh2ii89I/+1OHRskZ3kVrM0bZr4Jqlysk4Q5F/2ICmv3ccM1EduMWK
-         0LYb/Ks7S8lqA==
-From:   Mark Brown <broonie@kernel.org>
-To:     Leilk Liu <leilk.liu@mediatek.com>
-Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
-In-Reply-To: <20220315032411.2826-1-leilk.liu@mediatek.com>
-References: <20220315032411.2826-1-leilk.liu@mediatek.com>
-Subject: Re: (subset) [PATCH V4 0/6] spi: mediatek: add single/quad mode support
-Message-Id: <164735166243.3687547.12763908878922774952.b4-ty@kernel.org>
-Date:   Tue, 15 Mar 2022 13:41:02 +0000
+        with ESMTP id S1349013AbiCOODD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:03:03 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD807546BC;
+        Tue, 15 Mar 2022 07:01:44 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id q20so11308801wmq.1;
+        Tue, 15 Mar 2022 07:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=6v123dHCCsOJtTJvGC+VnaP4Nv3UWBYufrflzDBOQBs=;
+        b=lYilOcXdx2VQxAYxa2v/7DNG0Wh4kP2ilXaGAuIrjfEjQNqDr+YImN4ICA8vn65MZO
+         2ngwYfP7mRWfrn34VTPPmJ/BAZ1aF+v2pQj/EHgwbWjHTNedGTwhybaKhrpfad5yZVoN
+         FUM0HxSKoDeFI6N7ZcRU0Uv258orgWaX60Smsi5Fjw0LgMVNbcFyMYxej5CZbXYkzgnx
+         PRTrET13NP6C0/Z9CMnt14csABKzhEwBK+JX31MYU7NOVwqm/17m753CoDpEmolU1g8r
+         zFLGejeAnxvc14XhKh38VBAZYknvqv4LJj7+i57+x/x3Vb2tga6aoG1thEWVpwQ7hcvD
+         f3OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6v123dHCCsOJtTJvGC+VnaP4Nv3UWBYufrflzDBOQBs=;
+        b=uikVOuAzpiPDBoFWs+4mZAz5AbRLsLf95xuw99UGik6284O1i4CkkWtAwjMGm6Od4m
+         wzPR2Eq/0be/7esTNr9zjOTmfUUP4Hs1VYskDagR6emz0B51FFo3QIhInnyAnfwAHcdg
+         RB9KdWxWf3Pr7hz1UALOv0nY6gaPSRXkQlkGKNouMunpCS3ew9S83bYqWhfWR8mJe5kj
+         Gx4IsZLM//U9pczIT6+X+0OVfaBBo8cHY4JhZC8Olu1GZAPIQtF/WgcEJQm9nwc6TAuP
+         1WS3XPcbfZxoTZhrWxjopfhInGtyfvgnT3GI6OiLMWFzrQ1jCmQe/rDnB6+1p/zJTlg7
+         +0Sw==
+X-Gm-Message-State: AOAM5337nGBRLkKqQKsr8c2G1X6nW8gO0/dGV086HdHtfMVYrh0NspUs
+        xObhLfdXmUPJs2e6Fba8430=
+X-Google-Smtp-Source: ABdhPJz/FT85q+INrm11sWSpa461VrEebgeDXHHY2E/V+1vYHeL+7GgLOP/wkEetve8caUeUM8yzvg==
+X-Received: by 2002:a05:600c:4f09:b0:389:cf43:eaf8 with SMTP id l9-20020a05600c4f0900b00389cf43eaf8mr3486624wmq.201.1647352903140;
+        Tue, 15 Mar 2022 07:01:43 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP ([188.123.115.255])
+        by smtp.gmail.com with ESMTPSA id l9-20020a5d6d89000000b00203d62072c4sm1696768wrs.43.2022.03.15.07.01.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 07:01:42 -0700 (PDT)
+Date:   Tue, 15 Mar 2022 15:01:40 +0100
+From:   Stanislav Jakubek <stano.jakubek@gmail.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-unisoc@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Convert rda,8810pl-timer to YAML
+Message-ID: <20220315140140.GA2558@standask-GA-A55M-S2HP>
+References: <20220225173734.GA7573@standask-GA-A55M-S2HP>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220225173734.GA7573@standask-GA-A55M-S2HP>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022 11:24:05 +0800, Leilk Liu wrote:
-> This series of patches are based on spi for-next, and provide 6 patches to support MT7986.
-> 
-> v4:
->  1. fix Rob comment in v3;
->  2. use "mediatek,mt7986-spi-ipm","mediatek,spi-ipm"
-> 
-> v3:
->  1. add Rob Acked-by in "dt-bindings: spi: Add compatible for MT7986 with single mode";
->  2. add a fix patch "spi: mediatek: support tick_delay without enhance_timing";
->  3. fix Angelogioacchino comments;
->  4. use mt7986 instead of ipm in dt-binding.
-> 
-> [...]
+Hi all,
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
-
-Thanks!
-
-[1/6] spi: mediatek: support tick_delay without enhance_timing
-      commit: 03b1be379dcee2e9c866c2a455a1a4a9581b3efd
-[2/6] dt-bindings: spi: Add compatible for MT7986
-      commit: da40a352db2bae470a3eea038cc53454c24e67f3
-[3/6] spi: mediatek: add ipm design support for MT7986
-      commit: 7e963fb2a33ce488e65258ab5be38a4855923033
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+anything holding this back? It's been sitting on the mailing lists
+with 2 R-B's for ~2 weeks.
 
 Thanks,
-Mark
+Stanislav
