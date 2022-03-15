@@ -2,72 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5E9F4D921B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:13:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6816D4D922C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:18:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344174AbiCOBOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 21:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33556 "EHLO
+        id S1344260AbiCOBTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 21:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344187AbiCOBOk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:14:40 -0400
-Received: from mail-qv1-xf35.google.com (mail-qv1-xf35.google.com [IPv6:2607:f8b0:4864:20::f35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E67481FA5C;
-        Mon, 14 Mar 2022 18:13:28 -0700 (PDT)
-Received: by mail-qv1-xf35.google.com with SMTP id 13so3495357qvq.8;
-        Mon, 14 Mar 2022 18:13:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=dwAn3W7JqTFJWnJs64oLAKVQi0GEmuJXd5CMnlgQgRo=;
-        b=Ux34JU5YorjpXisd5AMSmmAtUrKGTm9Mtqprl1tcSJdR9wJtcwpTcX15Y/Z40CP504
-         QCJtfE4Oqkh+sLBjAR7PdLdkn/xyldqxP8XkVHoJDo8eQS53Fo8YOgzvB3YxM7bUnjUh
-         hkaHGxrCmEEfZu9sEkeVL0d/WNJc8Afg4KuVI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dwAn3W7JqTFJWnJs64oLAKVQi0GEmuJXd5CMnlgQgRo=;
-        b=dLeWvFLC4v9tKLP/2+8eGs/UvPmRV49AQPY5kMyEridCGXKN4xOvAvS5Dy8gwjn2ar
-         N1rjLW6JScXQ44pZt2LicYchGN34Ubr6Uw6rfwNdMyVkYi1pf2ObLZtqu2xh10kBNSlV
-         UUUOYYPkLBU0ezuaAiO0BnJUHasXUbRCa9R562MyF4TBXjYjthcokylUgRgmA2xjVBL9
-         Bith7Wmymg8rwtzmbz+e6KKKYzvCI6VzjP099wlCnkr2iHZ0glY1ALOYnAMtIdmt7q2v
-         XLoUzLxxssqqzTMPINg/iXQh9ijxVNxiETWz7yMw2SMw81ooWv6eb7WpCAm33NDDJPK0
-         Ac4g==
-X-Gm-Message-State: AOAM530PwPnDaNoDiQUHD4GAHl+mPDDd0WCFA++9bYFr2vys0kQCxw4k
-        TUICB0UGglUVVoyB4/lny2ZzYO8rjelHs9WnOQ8=
-X-Google-Smtp-Source: ABdhPJytKfY1Xv1hYw9fXk9v623Ig2P8yrtMnEqcEpDjV9v+JQJgqJQZKcLwZoqzgNdI/js1Wht0gpsieyZ3Mom37iY=
-X-Received: by 2002:a05:6214:2a85:b0:439:db71:f630 with SMTP id
- jr5-20020a0562142a8500b00439db71f630mr16198122qvb.65.1647306807951; Mon, 14
- Mar 2022 18:13:27 -0700 (PDT)
+        with ESMTP id S1344238AbiCOBTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:19:09 -0400
+X-Greylist: delayed 13546 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Mar 2022 18:17:57 PDT
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDAC7DF98
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:17:55 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 21E772C072F;
+        Tue, 15 Mar 2022 01:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1647307073;
+        bh=UivpbKymV5CHwwJgz2qOrdXwYdgZWXTFgTeVW/TVydM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aCVY4N27u7p+ilXSVJz9m3XiMJq/r7Ga/qcu7md0eWQu7t9ui23EaYJgP+MoWieWz
+         YJjf2qyNhQo4nC2Nv+mxcHEqUa1agkekYJ3C/41CYM3lsRFAGD0jJLK5+QSxej/hm5
+         0Bz7BlNwVHAIYjDnJo2Hp8STEBY71E3/K1SGEi3VL9HQaQsMX1U/MzCbvdgyf4Kfso
+         7f+v6aCZsQBembYP4oU6lX7PttK0qjfgxhXUsta6OV/yJcpASuYuRJYcaQrNRVHwtx
+         qyTLxPxgtXeIR7C6vyUQJycLch3T9xV8PC6G66NGaUJn8oaDsVOmMsmx8mY8V/6BGO
+         vLkB3jDu9u9jg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B622fe9400000>; Tue, 15 Mar 2022 14:17:52 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id C564813EE2B;
+        Tue, 15 Mar 2022 14:17:52 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 552692A2678; Tue, 15 Mar 2022 14:17:50 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
+        thomas.petazzoni@bootlin.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH net-next v3 0/2] net: mvneta: Armada 98DX2530 SoC
+Date:   Tue, 15 Mar 2022 14:17:40 +1300
+Message-Id: <20220315011742.2465356-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220129115228.2257310-1-j.neuschaefer@gmx.net> <CACRpkdahSbWv4q7hoBAm_4+oKPEui9zX5-4m6wvPWfonWpbZUA@mail.gmail.com>
-In-Reply-To: <CACRpkdahSbWv4q7hoBAm_4+oKPEui9zX5-4m6wvPWfonWpbZUA@mail.gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 15 Mar 2022 01:13:15 +0000
-Message-ID: <CACPK8XeOE9mjmudvOS7uQg1e9Fh2e_cq1KTxkZsftbCo5YLk_A@mail.gmail.com>
-Subject: Re: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=VwQbUJbxAAAA:8 a=fHwNDZncxhfn92sU-sUA:9 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,21 +63,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022 at 00:17, Linus Walleij <linus.walleij@linaro.org> wrot=
-e:
->
-> On Sat, Jan 29, 2022 at 12:57 PM Jonathan Neusch=C3=A4fer
-> <j.neuschaefer@gmx.net> wrote:
->
-> >   dt-bindings: pinctrl: Add Nuvoton WPCM450
-> >   pinctrl: nuvoton: Add driver for WPCM450
->
-> I applied these two to the pinctrl tree. Sorry for taking forever
-> to figure out that I needed to do this :/
+This is split off from [1] to let it go in via net-next rather than waiti=
+ng for
+the rest of the series to land.
 
-Thanks Linus. The device tree changes are queued for v5.18 too, so
-they will all go in at the same time.
+[1] - https://lore.kernel.org/lkml/20220314213143.2404162-1-chris.packham=
+@alliedtelesis.co.nz/
 
-Cheers,
+Chris Packham (2):
+  dt-bindings: net: mvneta: Add marvell,armada-ac5-neta
+  net: mvneta: Add support for 98DX2530 Ethernet port
 
-Joel
+ .../bindings/net/marvell-armada-370-neta.txt        |  1 +
+ drivers/net/ethernet/marvell/mvneta.c               | 13 +++++++++++++
+ 2 files changed, 14 insertions(+)
+
+--=20
+2.35.1
+
