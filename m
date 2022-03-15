@@ -2,53 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90CE54D99D3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 12:00:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F1674D99F0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 12:06:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347734AbiCOLB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 07:01:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46646 "EHLO
+        id S1347808AbiCOLH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 07:07:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244698AbiCOLB5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 07:01:57 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065B73CFC5;
-        Tue, 15 Mar 2022 04:00:44 -0700 (PDT)
-Received: from ip5b412258.dynamic.kabel-deutschland.de ([91.65.34.88] helo=phil.lan)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1nU4ue-0002hT-9o; Tue, 15 Mar 2022 12:00:24 +0100
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Frank Wunderlich <linux@fw-web.de>, devicetree@vger.kernel.org
-Cc:     Heiko Stuebner <heiko@sntech.de>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
-        linux-ide@vger.kernel.org, Russell King <linux@armlinux.org.uk>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Peter Geis <pgwipeout@gmail.com>, Jens Axboe <axboe@kernel.dk>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        linux-rockchip@lists.infradead.org,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        soc@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v6 0/6] Add sata nodes to rk356x
-Date:   Tue, 15 Mar 2022 12:00:21 +0100
-Message-Id: <164734201499.2137788.90858927315746768.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220311210357.222830-1-linux@fw-web.de>
-References: <20220311210357.222830-1-linux@fw-web.de>
+        with ESMTP id S1347718AbiCOLH0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 07:07:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06964C438
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:06:13 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id e6so25673352lfc.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:06:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=message-id:date:mime-version:user-agent:subject:content-language:to
+         :cc:references:from:in-reply-to:content-transfer-encoding;
+        bh=9vmesL8tOTRPsq7x8WZ8qHp+9N985sUYU62HU5s1DPA=;
+        b=BQz08S24DAYEkT+IGa+4wb0s0YRhXdTsYew1zCHGf37CzbZ31CeF3U7REi3L0qixv5
+         iPR6y/RZ4RDDbpfKNB6BAMCHic1HweR/g1tF8HMEnCqzcbe8bROLM1et/y7f7RRbB4Uq
+         Ei2qd5z3v/cAmMfT//Ysh9JKDCP+DOxL5zUeSKTWpSfgUZAa+6b4KrHBPjJyodCePb6m
+         AsLcZA/s5dxvbfY5GLmq7ARiIM9EepI9V6KJH2X+nuw97q6+y+JvrdqOytbdw6pPSyXN
+         AHgoIYarjuDOm2kjxOrxVsJJhrVEmxaYYoaIITwxlJQpOro18grVOZNbaBl6zCHW5sKh
+         bbyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=9vmesL8tOTRPsq7x8WZ8qHp+9N985sUYU62HU5s1DPA=;
+        b=Lv2r3Oh1Cfvr/C8lOhNd11WIJ2sdI5ohnxBgayWh0JexuWxxDb0OtbApUsiFkaN1TX
+         +RcSg2KFGze+CC7FEpE/wmV2VIS7h5+XYXuSIMS8rkx0mERPFcwdeV/JzWrc0v1UjriD
+         bi2XX10phF2YbhS3mwxKbBDaiXLOV8TP5dvNMv9S8+eTe61X429sGSiV4HxGt+Ek3evB
+         Lszem+qzPuyxoTXIDpifX/KPwpDS/5QWDeQT34xyT+PpyG4DdFFwL81API5kLyp2PoKj
+         GkzCEYg5wmMGyfRXqQOjbGrRcpyY1TJXCZYYDq2lBmCJi+NEw6uyPU4LzZcYqItkgifW
+         MwGQ==
+X-Gm-Message-State: AOAM530HVGJk+hjUTFWIcOLHXuKHVDIERCsaYpKHai099oXvGfx2crtx
+        VFV1cC9bdF7hjte/THuNUHCbig==
+X-Google-Smtp-Source: ABdhPJxyt3QkgDtXyI4kP2W7KJlQ2wXPfgzvqLIRRezjetIp30y6HxhxKA7yf8bTgToSlJZiwxUtRw==
+X-Received: by 2002:ac2:5f4d:0:b0:448:7d37:5838 with SMTP id 13-20020ac25f4d000000b004487d375838mr10542297lfz.419.1647342372262;
+        Tue, 15 Mar 2022 04:06:12 -0700 (PDT)
+Received: from [192.168.1.211] ([37.153.55.125])
+        by smtp.gmail.com with ESMTPSA id a24-20020a2eb558000000b0024805e1b758sm4077638ljn.25.2022.03.15.04.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Mar 2022 04:06:11 -0700 (PDT)
+Message-ID: <f345e709-afb3-6078-3a3c-87cafd79cbee@linaro.org>
+Date:   Tue, 15 Mar 2022 14:06:11 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v2] pinctrl: qcom-pmic-gpio: Add support for pm8450
+Content-Language: en-GB
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20220315091106.613153-1-dmitry.baryshkov@linaro.org>
+ <49d116ad-c853-8c15-83fb-ec4e418323ef@canonical.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <49d116ad-c853-8c15-83fb-ec4e418323ef@canonical.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -56,15 +79,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Mar 2022 22:03:51 +0100, Frank Wunderlich wrote:
-> This Series converts the binding for ahci-platform to yaml and adds
-> sata nodes to rockchip rk356x device trees.
+On 15/03/2022 13:33, Krzysztof Kozlowski wrote:
+> On 15/03/2022 10:11, Dmitry Baryshkov wrote:
+>> PM8450 provides 4 GPIOs. Add a compatible entry for this GPIO block.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>> Changes since v1:
+>>   - Added dt-bindings entry to the pinctrl/qcom,pmic-gpio.yaml
+> 
+> This should be a separate patch.
 
-Applied, thanks!
+Quoting Linus Wallej:
+ > I am fine with bindings being fixed in the same patch for this type
+ > of oneliners.
 
-[6/6] arm64: dts: rockchip: Add sata nodes to rk356x
-      commit: b2e5612f6ea23c87397e50f8d976cd8c95e3ed17
+So, I added it to the same patch.
 
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+With best wishes
+Dmitry
