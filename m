@@ -2,74 +2,375 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043154DA236
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 19:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 661344DA23C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 19:22:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245389AbiCOSUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 14:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53848 "EHLO
+        id S1350456AbiCOSXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 14:23:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235913AbiCOSUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 14:20:44 -0400
-Received: from mail-oo1-xc35.google.com (mail-oo1-xc35.google.com [IPv6:2607:f8b0:4864:20::c35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48715A099
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 11:19:32 -0700 (PDT)
-Received: by mail-oo1-xc35.google.com with SMTP id q1-20020a4a7d41000000b003211b63eb7bso25275843ooe.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 11:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=4IEVr2/1gmxz+oM90fTexwyYRQMcLIoaK4jm7NRfQlQ=;
-        b=FNl9ikIv1DqtHmS69pAApjaDZQ9Fz7pb2R35X2MRHlbMB+PbGcrEcdGg/0/T5Ngz7c
-         /TXMQPH+4xzB/K+TlKxuQuLegBdmzE6dmfwBQSb8qQ9HmYOkSFcgLvHXY4wyoB5lOLwg
-         WjyHcHYfRULGP0T0PxmQV4NvwJBeeLjJzCeRI=
+        with ESMTP id S245395AbiCOSXW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 14:23:22 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD0845A0A1
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 11:22:08 -0700 (PDT)
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3B0DE3F4BE
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 18:22:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647368522;
+        bh=o4vBB3byYIgH7wTAStk4E/hm0oFDkpJuAFEqsLoQDWg=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=nDQEbMWmlJhGLiYjUm9lxNQWgDsNAmr25Zx2OlH913M9ICYaVqwyGI3/tG+jwuQL5
+         ps/n777RoGvBMo4Px+OAbqap38FyJjzAxn+A1olIuLCHR4J5dJ+jHlkMn2o8VFLVn3
+         ROXLQDPSPLVGkiSubaTOmjba9aKKBY1+eVkC6EY8pQIoFv50FO1elaT4Tt+HkCSg09
+         E/BwGIj6JUSK5shxDDx9UHa35yeMZuH3KHmdXi/KsK0CFobyxk/tfYRgjVO+Nk8cbU
+         2D0Ke56qucwFSPpdoHu/0mb9Uaqmb9q8trA9JJv2YTTt1x4O9O/7ZPr019RDimTJE1
+         eIXLAhdt+LkXQ==
+Received: by mail-ed1-f69.google.com with SMTP id l14-20020aa7cace000000b003f7f8e1cbbdso11060253edt.20
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 11:22:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=4IEVr2/1gmxz+oM90fTexwyYRQMcLIoaK4jm7NRfQlQ=;
-        b=mJ3NBJMocAZZnK8zQd+jjKaoDLkrt6CyMQKBHtAbvCXMx7mdEcjMKe25T0pszZkR8a
-         I9Nc+2XLmuupbp3HEMs6apcnxyIs2PfkQ73oq/pNlmxr9ejlMja/+aqCXc3Ylv4VsVMh
-         ndnY0V4ChtHwTconLX/rne2nzIPxIKqS3lQSE9X14x2fyv5xEH5s9uwU2QkUA19U3IUc
-         8L1iEi/K+ho3M9Xyk/5R5sjWbxO3jjOEEWMKXTMbL0eiTtJeDa8ObsVqxORA49t12iME
-         MFgLeu4daF+83BR+0ATZFhSMZbob31V+YnSrjOPDXTDIWP3nj5FCqPSEis+ZsC06SxU+
-         8dxQ==
-X-Gm-Message-State: AOAM533XZrjllq9sCLJe2isYTm2eA3PecYxFbf4lOZMrPooIJhGLs5s2
-        dljwMJZjNIs7qrx6HqqYr+MRri9msWatwizSNrKOFQ==
-X-Google-Smtp-Source: ABdhPJxIBr0uQ0VDrctXdxeshiyHfGexxl3DQxRYwtQ5R/HWtKD2D3bvz5ZVe3ncqnb/4N7AD2HjXN7/rM/6cuHlqqg=
-X-Received: by 2002:a05:6870:c0cb:b0:da:2bcc:aa09 with SMTP id
- e11-20020a056870c0cb00b000da2bccaa09mr2128832oad.63.1647368371730; Tue, 15
- Mar 2022 11:19:31 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 15 Mar 2022 13:19:31 -0500
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=o4vBB3byYIgH7wTAStk4E/hm0oFDkpJuAFEqsLoQDWg=;
+        b=2z8bnEBZashsHS+OyvT0L0LVaJBToM/HO8c6kwjKz8wpyxA0q4+UQNRlNkcoPQ90Wq
+         yzfg/F7Teb4H0t4IQF2JrdfzAd1I3VOS+sT1Qm9lsZ5gDT9f/xwl9dpznvO2T1KOuMrr
+         9W1BijIfiRfX81B0Bf/msHLk8ZKIOTnq7KeKOqmV13EZq+BYPhG9WIRm7R7GoBVmCv2O
+         MJMaoatMFkyDaOPMqw1qZWLxuOZA351c8mP2kqZChL1KIKkHZu+9WxD/zTnRGKoi5uLO
+         pO1ZTSv1DVCN7sEPWPqRmvhhpKaHvBIAI5gaa1rzZQLvaGJq6d9DuBx6mVOjcIVm8fCq
+         286w==
+X-Gm-Message-State: AOAM5337p0npkHbrYZIwMphu0g76wjBfJ4kq5kwUZLuBj+SV60UfRZiF
+        Tmf50YHtBwvjFrVmsYrRAVIbQ0L+Qp3MNj9/3vJ7WerFtfwkS/sc1qNDd6CTb2BGJ6wc8atcEk8
+        dYQtyxj2s1BAPxzVP/8Yv5iepYBKwoqrXqX+0NQ0=
+X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr23485943ejd.253.1647368521734;
+        Tue, 15 Mar 2022 11:22:01 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxZ0Qf9HZB+W4hIye+HsaI5LZ49pbRg5RooLgxOjgoaF9U66T8i8zhCvMVgJtsSDnoe/R/xbw==
+X-Received: by 2002:a17:906:1603:b0:6ce:362:c938 with SMTP id m3-20020a170906160300b006ce0362c938mr23485920ejd.253.1647368521425;
+        Tue, 15 Mar 2022 11:22:01 -0700 (PDT)
+Received: from [10.227.148.193] (80-254-69-65.dynamic.monzoon.net. [80.254.69.65])
+        by smtp.googlemail.com with ESMTPSA id f1-20020a056402194100b00416b174987asm8768266edz.35.2022.03.15.11.22.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Mar 2022 11:22:00 -0700 (PDT)
+Message-ID: <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
+Date:   Tue, 15 Mar 2022 19:21:59 +0100
 MIME-Version: 1.0
-In-Reply-To: <20220315173042.1325858-2-gwendal@chromium.org>
-References: <20220315173042.1325858-1-gwendal@chromium.org> <20220315173042.1325858-2-gwendal@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 15 Mar 2022 13:19:31 -0500
-Message-ID: <CAE-0n51+Vyco+drQzF79bE06_UTKHHc3J5Q1wMvxEntqEBpyug@mail.gmail.com>
-Subject: Re: [PATCH 1/7] iio: sx9324: Fix register field spelling
-To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
+Content-Language: en-US
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
+        kuba@kernel.org, netdev@vger.kernel.org
+Cc:     linux@armlinux.org.uk, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Gwendal Grignou (2022-03-15 10:30:36)
-> Field for PROX_CTRL4 should contain PROX_CTRL4.
->
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
+On 15/03/2022 13:33, Ioana Ciornei wrote:
+> Convert the sff,sfp.txt bindings to the DT schema format.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+>  .../devicetree/bindings/net/sff,sfp.txt       |  85 ------------
+>  .../devicetree/bindings/net/sff,sfp.yaml      | 130 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  3 files changed, 131 insertions(+), 85 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/net/sff,sfp.txt
+>  create mode 100644 Documentation/devicetree/bindings/net/sff,sfp.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.txt b/Documentation/devicetree/bindings/net/sff,sfp.txt
+> deleted file mode 100644
+> index 832139919f20..000000000000
+> --- a/Documentation/devicetree/bindings/net/sff,sfp.txt
+> +++ /dev/null
+> @@ -1,85 +0,0 @@
+> -Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
+> -Transceiver
+> -
+> -Required properties:
+> -
+> -- compatible : must be one of
+> -  "sff,sfp" for SFP modules
+> -  "sff,sff" for soldered down SFF modules
+> -
+> -- i2c-bus : phandle of an I2C bus controller for the SFP two wire serial
+> -  interface
+> -
+> -Optional Properties:
+> -
+> -- mod-def0-gpios : GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS)
+> -  module presence input gpio signal, active (module absent) high. Must
+> -  not be present for SFF modules
+> -
+> -- los-gpios : GPIO phandle and a specifier of the Receiver Loss of Signal
+> -  Indication input gpio signal, active (signal lost) high
+> -
+> -- tx-fault-gpios : GPIO phandle and a specifier of the Module Transmitter
+> -  Fault input gpio signal, active (fault condition) high
+> -
+> -- tx-disable-gpios : GPIO phandle and a specifier of the Transmitter Disable
+> -  output gpio signal, active (Tx disable) high
+> -
+> -- rate-select0-gpios : GPIO phandle and a specifier of the Rx Signaling Rate
+> -  Select (AKA RS0) output gpio signal, low: low Rx rate, high: high Rx rate
+> -  Must not be present for SFF modules
+> -
+> -- rate-select1-gpios : GPIO phandle and a specifier of the Tx Signaling Rate
+> -  Select (AKA RS1) output gpio signal (SFP+ only), low: low Tx rate, high:
+> -  high Tx rate. Must not be present for SFF modules
+> -
+> -- maximum-power-milliwatt : Maximum module power consumption
+> -  Specifies the maximum power consumption allowable by a module in the
+> -  slot, in milli-Watts.  Presently, modules can be up to 1W, 1.5W or 2W.
+> -
+> -Example #1: Direct serdes to SFP connection
+> -
+> -sfp_eth3: sfp-eth3 {
+> -	compatible = "sff,sfp";
+> -	i2c-bus = <&sfp_1g_i2c>;
+> -	los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
+> -	mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
+> -	maximum-power-milliwatt = <1000>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
+> -	tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
+> -	tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -&cps_emac3 {
+> -	phy-names = "comphy";
+> -	phys = <&cps_comphy5 0>;
+> -	sfp = <&sfp_eth3>;
+> -};
+> -
+> -Example #2: Serdes to PHY to SFP connection
+> -
+> -sfp_eth0: sfp-eth0 {
+> -	compatible = "sff,sfp";
+> -	i2c-bus = <&sfpp0_i2c>;
+> -	los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
+> -	mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cps_sfpp0_pins>;
+> -	tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
+> -	tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
+> -};
+> -
+> -p0_phy: ethernet-phy@0 {
+> -	compatible = "ethernet-phy-ieee802.3-c45";
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
+> -	reg = <0>;
+> -	interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
+> -	sfp = <&sfp_eth0>;
+> -};
+> -
+> -&cpm_eth0 {
+> -	phy = <&p0_phy>;
+> -	phy-mode = "10gbase-kr";
+> -};
+> diff --git a/Documentation/devicetree/bindings/net/sff,sfp.yaml b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+> new file mode 100644
+> index 000000000000..bceeff5ccedb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/sff,sfp.yaml
+> @@ -0,0 +1,130 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/net/sff,sfp.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Small Form Factor (SFF) Committee Small Form-factor Pluggable (SFP)
+> +  Transceiver
+> +
+> +maintainers:
+> +  - Russell King <linux@armlinux.org.uk>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sff,sfp  # for SFP modules
+> +      - sff,sff  # for soldered down SFF modules
+> +
+> +  i2c-bus:
 
-Any Fixes tag? It's a typo though so not really a big deal.
+Thanks for the conversion.
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+You need here a type because this does not look like standard property.
+
+> +    description:
+> +      phandle of an I2C bus controller for the SFP two wire serial
+> +
+> +  maximum-power-milliwatt:
+> +    maxItems: 1
+> +    description:
+> +      Maximum module power consumption Specifies the maximum power consumption
+> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
+> +      be up to 1W, 1.5W or 2W.
+> +
+> +patternProperties:
+> +  "mod-def0-gpio(s)?":
+
+This should be just "mod-def0-gpios", no need for pattern. The same in
+all other places.
+
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the MOD-DEF0 (AKA Mod_ABS) module
+> +      presence input gpio signal, active (module absent) high. Must not be
+> +      present for SFF modules
+> +
+> +  "los-gpio(s)?":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Receiver Loss of Signal Indication
+> +      input gpio signal, active (signal lost) high
+> +
+> +  "tx-fault-gpio(s)?":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Module Transmitter Fault input gpio
+> +      signal, active (fault condition) high
+> +
+> +  "tx-disable-gpio(s)?":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Transmitter Disable output gpio
+> +      signal, active (Tx disable) high
+> +
+> +  "rate-select0-gpio(s)?":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Rx Signaling Rate Select (AKA RS0)
+> +      output gpio signal, low - low Rx rate, high - high Rx rate Must not be
+> +      present for SFF modules
+> +
+> +  "rate-select1-gpio(s)?":
+> +    maxItems: 1
+> +    description:
+> +      GPIO phandle and a specifier of the Tx Signaling Rate Select (AKA RS1)
+> +      output gpio signal (SFP+ only), low - low Tx rate, high - high Tx rate. Must
+> +      not be present for SFF modules
+
+This and other cases should have a "allOf: if: ...." with a
+"rate-select1-gpios: false", to disallow this property on SFF modules.
+
+> +
+> +required:
+> +  - compatible
+> +  - i2c-bus
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - | # Direct serdes to SFP connection
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    sfp_eth3: sfp-eth3 {
+
+Generic node name please, so maybe "transceiver"? or just "sfp"?
+
+> +      compatible = "sff,sfp";
+> +      i2c-bus = <&sfp_1g_i2c>;
+> +      los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
+> +      mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
+> +      maximum-power-milliwatt = <1000>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
+> +      tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
+> +      tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    cps_emac3 {
+
+This is not related, so please remove.
+
+> +      phy-names = "comphy";
+> +      phys = <&cps_comphy5 0>;
+> +      sfp = <&sfp_eth3>;
+> +    };
+> +
+> +  - | # Serdes to PHY to SFP connection
+> +    #include <dt-bindings/gpio/gpio.h>
+
+Are you sure it works fine? Double define?
+
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    sfp_eth0: sfp-eth0 {
+
+Same node name - generic.
+
+> +      compatible = "sff,sfp";
+> +      i2c-bus = <&sfpp0_i2c>;
+> +      los-gpios = <&cps_gpio1 28 GPIO_ACTIVE_HIGH>;
+> +      mod-def0-gpios = <&cps_gpio1 27 GPIO_ACTIVE_LOW>;
+> +      pinctrl-names = "default";
+> +      pinctrl-0 = <&cps_sfpp0_pins>;
+> +      tx-disable-gpios = <&cps_gpio1 29 GPIO_ACTIVE_HIGH>;
+> +      tx-fault-gpios  = <&cps_gpio1 26 GPIO_ACTIVE_HIGH>;
+> +    };
+> +
+> +    mdio {
+
+Not related.
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      p0_phy: ethernet-phy@0 {
+> +        compatible = "ethernet-phy-ieee802.3-c45";
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&cpm_phy0_pins &cps_phy0_pins>;
+> +        reg = <0>;
+> +        interrupt = <&cpm_gpio2 18 IRQ_TYPE_EDGE_FALLING>;
+> +        sfp = <&sfp_eth0>;
+> +      };
+> +    };
+> +
+> +    cpm_eth0 {
+
+Also not related.
+
+> +      phy = <&p0_phy>;
+> +      phy-mode = "10gbase-kr";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1397a6b039fb..6da4872b4efb 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -17498,6 +17498,7 @@ SFF/SFP/SFP+ MODULE SUPPORT
+>  M:	Russell King <linux@armlinux.org.uk>
+>  L:	netdev@vger.kernel.org
+>  S:	Maintained
+> +F:	Documentation/devicetree/bindings/net/sff,sfp.yaml
+
+Mention this in the commit msg, please.
+
+Thanks!
+
+>  F:	drivers/net/phy/phylink.c
+>  F:	drivers/net/phy/sfp*
+>  F:	include/linux/mdio/mdio-i2c.h
+
+
+Best regards,
+Krzysztof
