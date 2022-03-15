@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D34404DA3BF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 21:09:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E33E4DA3C0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 21:09:47 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351557AbiCOUK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 16:10:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51214 "EHLO
+        id S1351560AbiCOUK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 16:10:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351560AbiCOUK4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 16:10:56 -0400
+        with ESMTP id S230343AbiCOUK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 16:10:57 -0400
 Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 661B93B573
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:09:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5E2DA50E23
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:09:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1647374982;
+        s=mimecast20190719; t=1647374984;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding;
-        bh=cVuRUCzWQ8sHp4iijGuH6jG3CMenp456hE40B3rmy5w=;
-        b=WTWxPsBNVgrjsNcItL4TKpbs2/Jd47s1zOx/cZOi0lKbY0gdyxu8kxVl99Z3BmzJGcWtDN
-        OZ2vTN9JPIfupI8MLVF1SOW8HSH79esBcjK1pWwSzT9iPD3RAukhmdc8tzAaGDFCBvOk2s
-        mV2HytoCqCVzzq/blVnwPr5jOdsilZc=
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197]) by relay.mimecast.com with ESMTP with STARTTLS
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=gzuNLYDsbc4LQ+eCCeLM8v+rRX11qjhaA0tgT5aZNJM=;
+        b=jJse25dlZUPFGwcyBA3kmFiSOR0swrdS0/8ZL3c3mTp9i3nXNn6jnLtWkbNPvPPyzIOLdJ
+        dyFREd1Zs8drPTv06YC4F67hrA/W7SaC5LmwZL/WQaM15WnvgvF0yBO3zqVJ9oKT12lV0k
+        AGHY2RVrvqbFOh26gvhaGNY4zMUxmQQ=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-119-KsNTIP9CPrqhZOdWTNrOvA-1; Tue, 15 Mar 2022 16:09:41 -0400
-X-MC-Unique: KsNTIP9CPrqhZOdWTNrOvA-1
-Received: by mail-qk1-f197.google.com with SMTP id h68-20020a376c47000000b0067e05dade89so246123qkc.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:09:41 -0700 (PDT)
+ us-mta-561-KRlRfrAONUigapIvrsz9XQ-1; Tue, 15 Mar 2022 16:09:43 -0400
+X-MC-Unique: KRlRfrAONUigapIvrsz9XQ-1
+Received: by mail-qt1-f197.google.com with SMTP id f22-20020ac840d6000000b002dd4d87de21so85034qtm.23
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:09:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=cVuRUCzWQ8sHp4iijGuH6jG3CMenp456hE40B3rmy5w=;
-        b=SX4lHSUJFWxV2fRVJkynHctJxLLQyVF+5hdRZ/vPWrEgM9lWk183k3pEZFgYWptXki
-         89aHo/4D2jW/IDFFJ0sL1DUumtRzViSbWAo58IKcrcN8WOKE8LldmoDOArCTG5VPsA43
-         zo09pHnlhN9GtRu3yLrbkhKHbIapehw/d++jBWaVW4HNyIsnP/qXu0Fm071T6yMWKrkO
-         9j/bJkjvxG2fwJk/BupD53U1wss47S04ZVOh5d+gEPSwCqxZkiupBGulOrwjAbRZKkbg
-         IYzSKF9KrLYG2IvKdtilod8pF+lb9Fn/uSt8q829Hc7DRqUmtR7REqg0Ppx5KpBH1dEn
-         VpsA==
-X-Gm-Message-State: AOAM532qZ8WfXf2a0XsqTEjrtO+7E7zhP08nbtWWqc9FYNUe8ouECTgf
-        +mcpg7bN8y2oWLA63cNtPSNe4olQ/9Nt6fgbR2dCNGSKYnBXnpBY6xobUIBD5Phqt8wKrXf8jRY
-        hHZ1Wx8U8bNI9ospx6eYfVA==
-X-Received: by 2002:a05:6214:2689:b0:435:be79:a17e with SMTP id gm9-20020a056214268900b00435be79a17emr22493336qvb.35.1647374981037;
-        Tue, 15 Mar 2022 13:09:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzuPkjuOo9bT0rnQm4l+mCvOeMmKIO0U+oT7rObYdgyQ8gKGTTXcMrZp9grdWrNFpk95GFfDA==
-X-Received: by 2002:a05:6214:2689:b0:435:be79:a17e with SMTP id gm9-20020a056214268900b00435be79a17emr22493322qvb.35.1647374980830;
-        Tue, 15 Mar 2022 13:09:40 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gzuNLYDsbc4LQ+eCCeLM8v+rRX11qjhaA0tgT5aZNJM=;
+        b=gWOrvcMF2cF17RarbZE3jFm8snMaZCPb0Q8eWsgUc8sZZGvX69JSXVvMRrkiTkUr4j
+         2rNYR7dkWGornYrcR6BVT7rhu8Pqmsn2dsBdKJG0+EmPF0m3TBYuPWbiQSzsjx9ZN1qB
+         ec8aBruA4N4Fr8gQTY+GU387XnKI9Uzw2oJGeoNhIQqPz7ZOSO73C8pNshHf1q9Us/QV
+         7w1r7glBFl4/MUOzaDtrGb4QB61e43yCH6AEvn59Oo7SnlGVtiDBRvJn/rlzJDsLNMGF
+         nQW3otaJkZHIlIlNwwN6XSvkcSwoELkBKc/beSGCXREtSDruw6gJR5WN7LGmB6f1Esw4
+         wgxA==
+X-Gm-Message-State: AOAM530NEV1R72inebfWvcJ5S9fJA3QWh4F8dpXYnpOyvNu2ZBqFG+BL
+        9mCHkRAPtRT/mMfcCQNVAjwToL0XHLeRz3s3HRCsYRnXx4GZ+/G5+eR8Jtxr6+C4i4B18zWlNmq
+        ZKnt0jdn8buKyV1zHs2XiaQ==
+X-Received: by 2002:a05:6214:2021:b0:435:c2f0:817c with SMTP id 1-20020a056214202100b00435c2f0817cmr22526822qvf.1.1647374982634;
+        Tue, 15 Mar 2022 13:09:42 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwQGJ2hEhXw4BbiMPJAtVDm4Wh2ugdd8oUEZ2eae1W1C3kjSaJzxn/pmqNT6dQ+bbCeD+X7BA==
+X-Received: by 2002:a05:6214:2021:b0:435:c2f0:817c with SMTP id 1-20020a056214202100b00435c2f0817cmr22526815qvf.1.1647374982483;
+        Tue, 15 Mar 2022 13:09:42 -0700 (PDT)
 Received: from fedora.hitronhub.home (modemcable200.11-22-96.mc.videotron.ca. [96.22.11.200])
-        by smtp.gmail.com with ESMTPSA id 197-20020a3703ce000000b0067af869ffa6sm9582433qkd.127.2022.03.15.13.09.39
+        by smtp.gmail.com with ESMTPSA id 197-20020a3703ce000000b0067af869ffa6sm9582433qkd.127.2022.03.15.13.09.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 13:09:40 -0700 (PDT)
+        Tue, 15 Mar 2022 13:09:42 -0700 (PDT)
 From:   Adrien Thierry <athierry@redhat.com>
 To:     linux-kernel@vger.kernel.org
 Cc:     Adrien Thierry <athierry@redhat.com>,
@@ -69,39 +70,49 @@ Cc:     Adrien Thierry <athierry@redhat.com>,
         Gaston Gonzalez <gascoar@gmail.com>,
         Ojaswin Mujoo <ojaswin98@gmail.com>,
         linux-staging@lists.linux.dev
-Subject: [PATCH 0/2] Add support for bcm2711 in vchiq_arm
-Date:   Tue, 15 Mar 2022 16:09:27 -0400
-Message-Id: <20220315200929.74952-1-athierry@redhat.com>
+Subject: [PATCH 1/2] dt-bindings: soc: bcm: bcm2835-vchiq: Add support for bcm2711
+Date:   Tue, 15 Mar 2022 16:09:28 -0400
+Message-Id: <20220315200929.74952-2-athierry@redhat.com>
 X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220315200929.74952-1-athierry@redhat.com>
+References: <20220315200929.74952-1-athierry@redhat.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The goal of this patch series is to use the bcm2711 compatible string in
-vchiq_arm for the Raspberry Pi 4. This allows using the downstream device
-tree with the upstream kernel.
+Add a new compatible string for BCM2711. This is the chip used on the
+Raspberry Pi 4.
 
-Adrien Thierry (2):
-  dt-bindings: soc: bcm: bcm2835-vchiq: Add support for bcm2711
-  staging: vchiq_arm: Use bcm2711 compatible string for bcm2711-based
-    RPi
-
+Signed-off-by: Adrien Thierry <athierry@redhat.com>
+---
  .../devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml     | 6 ++++++
- arch/arm/boot/dts/bcm2711-rpi.dtsi                          | 1 +
- .../staging/vc04_services/interface/vchiq_arm/vchiq_arm.c   | 5 +++++
- 3 files changed, 12 insertions(+)
+ 1 file changed, 6 insertions(+)
 
-
-base-commit: 09688c0166e76ce2fb85e86b9d99be8b0084cdf9
+diff --git a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+index e04439b3355b..599bd283df1b 100644
+--- a/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
++++ b/Documentation/devicetree/bindings/soc/bcm/brcm,bcm2835-vchiq.yaml
+@@ -27,6 +27,12 @@ properties:
+               - brcm,bcm2836-vchiq
+           - const: brcm,bcm2835-vchiq
+ 
++      - description: BCM2711 based boards
++        items:
++          - enum:
++              - brcm,bcm2711-vchiq
++          - const: brcm,bcm2711-vchiq
++
+   reg:
+     description: Physical base address and length of the doorbell register pair
+     minItems: 1
 -- 
 2.35.1
 
