@@ -2,230 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0B94D9C3A
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:29:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA384D9C4C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:32:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348581AbiCONal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 09:30:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45364 "EHLO
+        id S1348707AbiCONd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 09:33:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347971AbiCONal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:30:41 -0400
-Received: from sender4-op-o14.zoho.com (sender4-op-o14.zoho.com [136.143.188.14])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D4B04A3DF;
-        Tue, 15 Mar 2022 06:29:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1647350942; cv=none; 
-        d=zohomail.com; s=zohoarc; 
-        b=ScvkKBtXG0qdn0mauPdahMW+RjSCyD8vzYY6IXSzGqrqJ0uRruKCYGR41Phb8QjJ3aKV407ZfFYB/fdejI1d+Q9WhdJNfqLekkGWdwpX74l/4A6GPHQ8M7cAtY8BgGMMBZeSuDfDyh28+j39irhywl0CwAM9r4yyXCUgDBM/864=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-        t=1647350942; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:MIME-Version:Message-ID:Subject:To; 
-        bh=sNhaXvyi8YDqFUl3xFmq63+uF4zWI49tDG+hI38O0eo=; 
-        b=cZkUgC/+yvgvb6xdpejJgIhXcJ0icbm4QZBl43GFyfjjHJe2s/lWPErhyd3srDRHlftFTnit3JSyk1SV2vuX7F1hcYifx2FoKb2QaP9nRFiogIwGj9aW4ySMyCJquQT14xGWIGirbcAzCQsZIpMtSawujo40Youomt8fmmFFhyA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-        dkim=pass  header.i=arinc9.com;
-        spf=pass  smtp.mailfrom=arinc.unal@arinc9.com;
-        dmarc=pass header.from=<arinc.unal@arinc9.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1647350942;
-        s=zmail; d=arinc9.com; i=arinc.unal@arinc9.com;
-        h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:Reply-To;
-        bh=sNhaXvyi8YDqFUl3xFmq63+uF4zWI49tDG+hI38O0eo=;
-        b=D+jcP5Krmiwo62ABhcPFRY+6OpnpNyDOG+KbsVeLbpDbsejFzqAYhFKWJrdYWJu+
-        pSi5encngtrTTNnxOIDUgmeuObiPVwZxAzyMpy1rWKP5bqwNiX31nh/D3hP/VQIFNFC
-        esqARFZtTZM0sdQAryi7ci+JxklShiqeVSVTFSaY=
-Received: from arinc9-PC.localdomain (85.117.236.245 [85.117.236.245]) by mx.zohomail.com
-        with SMTPS id 1647350940373463.6171585371825; Tue, 15 Mar 2022 06:29:00 -0700 (PDT)
-From:   =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-To:     Greg KH <gregkh@linuxfoundation.org>,
+        with ESMTP id S1343569AbiCONd0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:33:26 -0400
+Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 343F652E04;
+        Tue, 15 Mar 2022 06:32:14 -0700 (PDT)
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
+        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KHvRm5zvzzfZ0w;
+        Tue, 15 Mar 2022 21:30:44 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 15 Mar 2022 21:32:12 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Tue, 15 Mar 2022 21:32:11 +0800
+Subject: Re: [PATCH v21 1/5] kdump: return -ENOENT if required cmdline option
+ does not exist
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        NeilBrown <neil@brown.name>, DENG Qingfang <dqfext@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Mark Lee <Mark-MC.Lee@mediatek.com>,
-        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
-        erkin.bozoglu@xeront.com
-Cc:     linux-staging@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>
-Subject: [PATCH] mips: dts: ralink: add MT7621 SoC
-Date:   Tue, 15 Mar 2022 16:28:36 +0300
-Message-Id: <20220315132836.1062-1-arinc.unal@arinc9.com>
-X-Mailer: git-send-email 2.25.1
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <20220227030717.1464-2-thunder.leizhen@huawei.com>
+ <YjB/QILintgvo1AL@MiWiFi-R3L-srv> <YjCE0Scp2YiEJXBM@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <d237a2ae-300c-2c51-d97c-417bdfaa5fda@huawei.com>
+Date:   Tue, 15 Mar 2022 21:32:10 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <YjCE0Scp2YiEJXBM@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MT7621 system-on-a-chip includes a 880 MHz MIPS1004Kc dual-core CPU,
-a 5-port 10/100/1000 switch/PHY and one RGMII.
 
-Add the devicetrees for GB-PC1 and GB-PC2 devices which use MT7621 SoC.
 
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
-I'm not sure which repository/branch this patch is supposed to be applied
-to. This patch does changes on top of commit dcd520af4eac ("staging:
-mt7621-dts: fix cpuintc and fixedregulator dtc warnings, fix xhci") which
-is currently applied on gregkh/staging.git staging-next branch.
+On 2022/3/15 20:21, Baoquan He wrote:
+> On 03/15/22 at 07:57pm, Baoquan He wrote:
+>> On 02/27/22 at 11:07am, Zhen Lei wrote:
+>>> The crashkernel=Y,low is an optional command-line option. When it doesn't
+>>> exist, kernel will try to allocate minimum required memory below 4G
+>>> automatically. Give it a unique error code to distinguish it from other
+>>> error scenarios.
+>>>
+>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>> ---
+>>>  kernel/crash_core.c | 3 +--
+>>>  1 file changed, 1 insertion(+), 2 deletions(-)
+>>>
+>>> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
+>>> index 256cf6db573cd09..4d57c03714f4e13 100644
+>>> --- a/kernel/crash_core.c
+>>> +++ b/kernel/crash_core.c
+>>> @@ -243,9 +243,8 @@ static int __init __parse_crashkernel(char *cmdline,
+>>>  	*crash_base = 0;
+>>>  
+>>>  	ck_cmdline = get_last_crashkernel(cmdline, name, suffix);
+>>> -
+>>>  	if (!ck_cmdline)
+>>> -		return -EINVAL;
+>>> +		return -ENOENT;
+>>
+>> Firstly, I am not sure if '-ENOENT' is a right value to return. From the
+>> code comment of ENOENT, it's used for file or dir?
+>> #define ENOENT           2      /* No such file or directory */
 
-Arınç
+This error code does not return to user mode, so there is no problem.
+There are a lot of places in the kernel that are used this way. For example:
 
----
- MAINTAINERS                                           |  7 +++++++
- arch/mips/boot/dts/ralink/Makefile                    |  4 ++++
- .../mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts     |  0
- .../mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts     |  0
- .../mips/boot/dts/ralink}/mt7621.dtsi                 |  0
- arch/mips/ralink/Kconfig                              |  5 +++++
- drivers/staging/Kconfig                               |  2 --
- drivers/staging/Makefile                              |  1 -
- drivers/staging/mt7621-dts/Kconfig                    | 11 -----------
- drivers/staging/mt7621-dts/Makefile                   |  5 -----
- drivers/staging/mt7621-dts/TODO                       |  5 -----
- 11 files changed, 16 insertions(+), 24 deletions(-)
- rename drivers/staging/mt7621-dts/gbpc1.dts => arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts (100%)
- rename drivers/staging/mt7621-dts/gbpc2.dts => arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts (100%)
- rename {drivers/staging/mt7621-dts => arch/mips/boot/dts/ralink}/mt7621.dtsi (100%)
- delete mode 100644 drivers/staging/mt7621-dts/Kconfig
- delete mode 100644 drivers/staging/mt7621-dts/Makefile
- delete mode 100644 drivers/staging/mt7621-dts/TODO
+int stop_one_cpu(unsigned int cpu, cpu_stop_fn_t fn, void *arg)
+{
+	if (!cpu_stop_queue_work(cpu, &work))
+		return -ENOENT;
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 62d6758bf8c4..92eda5adca44 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -16181,6 +16181,13 @@ L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	arch/mips/ralink
- 
-+RALINK MT7621 MIPS ARCHITECTURE
-+M:	Arınç ÜNAL <arinc.unal@arinc9.com>
-+M:	Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+L:	linux-mips@vger.kernel.org
-+S:	Maintained
-+F:	arch/mips/boot/dts/ralink/mt7621*
-+
- RALINK RT2X00 WIRELESS LAN DRIVER
- M:	Stanislaw Gruszka <stf_xl@wp.pl>
- M:	Helmut Schaa <helmut.schaa@googlemail.com>
-diff --git a/arch/mips/boot/dts/ralink/Makefile b/arch/mips/boot/dts/ralink/Makefile
-index 6c26dfa0a903..11732b8c8163 100644
---- a/arch/mips/boot/dts/ralink/Makefile
-+++ b/arch/mips/boot/dts/ralink/Makefile
-@@ -6,4 +6,8 @@ dtb-$(CONFIG_DTB_MT7620A_EVAL)	+= mt7620a_eval.dtb
- dtb-$(CONFIG_DTB_OMEGA2P)	+= omega2p.dtb
- dtb-$(CONFIG_DTB_VOCORE2)	+= vocore2.dtb
- 
-+dtb-$(CONFIG_SOC_MT7621) += \
-+	mt7621-gnubee-gb-pc1.dtb \
-+	mt7621-gnubee-gb-pc2.dtb
-+
- obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .o, $(dtb-y))
-diff --git a/drivers/staging/mt7621-dts/gbpc1.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-similarity index 100%
-rename from drivers/staging/mt7621-dts/gbpc1.dts
-rename to arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts
-diff --git a/drivers/staging/mt7621-dts/gbpc2.dts b/arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-similarity index 100%
-rename from drivers/staging/mt7621-dts/gbpc2.dts
-rename to arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts
-diff --git a/drivers/staging/mt7621-dts/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-similarity index 100%
-rename from drivers/staging/mt7621-dts/mt7621.dtsi
-rename to arch/mips/boot/dts/ralink/mt7621.dtsi
-diff --git a/arch/mips/ralink/Kconfig b/arch/mips/ralink/Kconfig
-index 120adad51d6a..841c0f69a3bf 100644
---- a/arch/mips/ralink/Kconfig
-+++ b/arch/mips/ralink/Kconfig
-@@ -54,10 +54,15 @@ choice
- 		select HAVE_PCI
- 		select PCI_DRIVERS_GENERIC
- 		select SOC_BUS
-+
-+		help
-+		  The MT7621 system-on-a-chip includes a 880 MHz MIPS1004Kc dual-core CPU,
-+		  a 5-port 10/100/1000 switch/PHY and one RGMII.
- endchoice
- 
- choice
- 	prompt "Devicetree selection"
-+	depends on !SOC_MT7621
- 	default DTB_RT_NONE
- 	help
- 	  Select the devicetree.
-diff --git a/drivers/staging/Kconfig b/drivers/staging/Kconfig
-index d1ce500c0319..efa194ec12fb 100644
---- a/drivers/staging/Kconfig
-+++ b/drivers/staging/Kconfig
-@@ -82,8 +82,6 @@ source "drivers/staging/vc04_services/Kconfig"
- 
- source "drivers/staging/pi433/Kconfig"
- 
--source "drivers/staging/mt7621-dts/Kconfig"
--
- source "drivers/staging/axis-fifo/Kconfig"
- 
- source "drivers/staging/fieldbus/Kconfig"
-diff --git a/drivers/staging/Makefile b/drivers/staging/Makefile
-index 82e912a7586f..db876663a1e3 100644
---- a/drivers/staging/Makefile
-+++ b/drivers/staging/Makefile
-@@ -31,7 +31,6 @@ obj-$(CONFIG_KS7010)		+= ks7010/
- obj-$(CONFIG_GREYBUS)		+= greybus/
- obj-$(CONFIG_BCM2835_VCHIQ)	+= vc04_services/
- obj-$(CONFIG_PI433)		+= pi433/
--obj-$(CONFIG_SOC_MT7621)	+= mt7621-dts/
- obj-$(CONFIG_XIL_AXIS_FIFO)	+= axis-fifo/
- obj-$(CONFIG_FIELDBUS_DEV)     += fieldbus/
- obj-$(CONFIG_QLGE)		+= qlge/
-diff --git a/drivers/staging/mt7621-dts/Kconfig b/drivers/staging/mt7621-dts/Kconfig
-deleted file mode 100644
-index 6932ab7acadf..000000000000
---- a/drivers/staging/mt7621-dts/Kconfig
-+++ /dev/null
-@@ -1,11 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--config DTB_GNUBEE1
--	bool "GnuBee1 2.5inch NAS"
--	depends on SOC_MT7621 && DTB_RT_NONE
--	select BUILTIN_DTB
--
--config DTB_GNUBEE2
--	bool "GnuBee2 3.5inch NAS"
--	depends on SOC_MT7621 && DTB_RT_NONE
--	select BUILTIN_DTB
--
-diff --git a/drivers/staging/mt7621-dts/Makefile b/drivers/staging/mt7621-dts/Makefile
-deleted file mode 100644
-index b4ab99fed932..000000000000
---- a/drivers/staging/mt7621-dts/Makefile
-+++ /dev/null
-@@ -1,5 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0
--dtb-$(CONFIG_DTB_GNUBEE1)      += gbpc1.dtb
--dtb-$(CONFIG_DTB_GNUBEE2)      += gbpc2.dtb
--
--obj-y				+= $(patsubst %.dtb, %.dtb.o, $(dtb-y))
-diff --git a/drivers/staging/mt7621-dts/TODO b/drivers/staging/mt7621-dts/TODO
-deleted file mode 100644
-index 1b758e5c84e0..000000000000
---- a/drivers/staging/mt7621-dts/TODO
-+++ /dev/null
-@@ -1,5 +0,0 @@
--
--- ensure all usage matches code
--- ensure all features used are documented
--
--Cc: NeilBrown <neil@brown.name>
+>>
+>> Secondly, we ever discussed the case including
+>>  - no crashkernel=,low is provided;
+>>  - messy code is provied, e.g crashkernel=aaaaaabbbb,low
+> 
+> Checking the 3rd pach, this is handled. Take back my below words,
+> continue reviewing.
+
+Yes.
+
+> 
+>>
+>> The 2nd one is not handled in this patchset. How about taking the
+>> handling into another round of patches. This patchset just adds
+>> crashkernel=,high purely.
+>>
+>>>  
+>>>  	ck_cmdline += strlen(name);
+>>>  
+>>> -- 
+>>> 2.25.1
+>>>
+>>
+> 
+> .
+> 
+
 -- 
-2.25.1
-
+Regards,
+  Zhen Lei
