@@ -2,67 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A44D4D9D07
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:11:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B06E4D9D28
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:14:24 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348867AbiCOOMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 10:12:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55714 "EHLO
+        id S1349054AbiCOOP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 10:15:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34654 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348850AbiCOOMU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:12:20 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C8115468C
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 07:11:07 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 25so26640717ljv.10
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 07:11:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=B5J/aJLfwIlJFiO9Fm9A+DptsdVKj69BbXqtDgcTbh0=;
-        b=DnbEBaXdcq/FUu+zJE4TlRVgH900JAfWn3cUyLX+EpC6oAWigrhIJmrKTlvVvg/Thw
-         sDiuQYNx61dU5n+EzLMRNRmk2Z//FBpIIOKDlSC1yAFj7tcSjLIp8OehlkFYjMXDFDex
-         9X59veUpCRusGkjqqLRd7OMyA9MG1URDxZ4BKTBcTT+6zGKPvcqrsCUOMrnbQ07DwZiE
-         LXqtgtTuVwYXnlsuRT2lFonV+2vYKEs+7oFzGCLxWYZuHNMKXtAG0pxSm15FyWpWRuvz
-         rh8Yd6H1bknNLm4+jyhK7/zh0zar9H5m7yT25DRUDZjnil2hHQaXQsk2Xx9eMREH9FpM
-         gpWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=B5J/aJLfwIlJFiO9Fm9A+DptsdVKj69BbXqtDgcTbh0=;
-        b=erz6WVCQq9uaq4QGuZjF+XZMqaGzMXNq+mMT3OTqzYcQi2Y6p4EnIGY6FUvceGtvnK
-         opfzymrkgMhdj2XwwHIebAZFrZK5XShdqgdVH2boTyuOx9v9XAj/fUXxDRyQKbFeJRoQ
-         6Ai0tZUZnmFseRdoTwr8bXeESecMMtrI9IP3HyXfmO1Qrlm9z+xiQi3kkXLW4wqXKNyB
-         AqIsCEARz0ytp1vrim44GCnA2Rem+uNCNHSTf+MpboORRPHqGvWlUCWLkOG/HOJ01wKu
-         K7/uLXKcDY297BDhp9lhqq4sEgaoRW+syDDLoPHBpcFXh+h0AgNtFtw7raN4ImYZNEQo
-         tHqQ==
-X-Gm-Message-State: AOAM531TRri2E/Zlq0oGTlQhhlu9SVC5aJtvKYqCdXEhqm7v9eeWMD75
-        frKLPFzxgS8nRWDONObOgslHeQ==
-X-Google-Smtp-Source: ABdhPJxPbWblQZTYsvwK2UfV+LUVc2YAAB++YPqAh17gS7uc6rSaVWP8XiO+sEhfeXTIG2rjW7RBSA==
-X-Received: by 2002:a05:651c:1047:b0:247:f205:2911 with SMTP id x7-20020a05651c104700b00247f2052911mr17745888ljm.284.1647353466319;
-        Tue, 15 Mar 2022 07:11:06 -0700 (PDT)
-Received: from eriador.lan ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id c27-20020a2ebf1b000000b00247eba13667sm4324079ljr.16.2022.03.15.07.11.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 07:11:05 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Danny Lin <danny@kdrag0n.dev>
-Subject: [PATCH] arm64: dts: qcom: sdm845: correct dynamic power coefficients
-Date:   Tue, 15 Mar 2022 17:11:04 +0300
-Message-Id: <20220315141104.730235-1-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.35.1
+        with ESMTP id S1349062AbiCOOP1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:15:27 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACDAA506E1;
+        Tue, 15 Mar 2022 07:14:11 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 53E63B81683;
+        Tue, 15 Mar 2022 14:14:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43A83C340E8;
+        Tue, 15 Mar 2022 14:14:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1647353648;
+        bh=AntXOmmORieoC8es+8HghRbUp736ryeXNRnqon591Wo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MaXhJhLcG7oVUPJawpWRTIEfw+5QmIPD9f0vIzXPwvKcRwY1Fu7rY12jGEncxfyoZ
+         DuDJQ34U2rKWRjsawaiv9nOrPMdICVcpcalwYT2EFxfbx9vzMClJFiwPnJ9zlR8BKN
+         1jDWY9/mI56+IJZrkVHLFZwmj4X7Cz+y15XAg6XE=
+Date:   Tue, 15 Mar 2022 15:13:37 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        NeilBrown <neil@brown.name>, DENG Qingfang <dqfext@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mark Lee <Mark-MC.Lee@mediatek.com>,
+        Luiz Angelo Daros de Luca <luizluca@gmail.com>,
+        erkin.bozoglu@xeront.com, linux-staging@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] mips: dts: ralink: add MT7621 SoC
+Message-ID: <YjCfEeIMuhXwfZnj@kroah.com>
+References: <20220315132836.1062-1-arinc.unal@arinc9.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <20220315132836.1062-1-arinc.unal@arinc9.com>
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -71,118 +59,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Following sm8150/sm8250 update sdm845 capacity-dmips-mhz and
-dynamic-power-coefficient based on the measurements [1], [2].
+On Tue, Mar 15, 2022 at 04:28:36PM +0300, Arınç ÜNAL wrote:
+> The MT7621 system-on-a-chip includes a 880 MHz MIPS1004Kc dual-core CPU,
+> a 5-port 10/100/1000 switch/PHY and one RGMII.
+> 
+> Add the devicetrees for GB-PC1 and GB-PC2 devices which use MT7621 SoC.
+> 
+> Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> ---
+> I'm not sure which repository/branch this patch is supposed to be applied
+> to. This patch does changes on top of commit dcd520af4eac ("staging:
+> mt7621-dts: fix cpuintc and fixedregulator dtc warnings, fix xhci") which
+> is currently applied on gregkh/staging.git staging-next branch.
+> 
+> Arınç
+> 
+> ---
+>  MAINTAINERS                                           |  7 +++++++
+>  arch/mips/boot/dts/ralink/Makefile                    |  4 ++++
+>  .../mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts     |  0
+>  .../mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts     |  0
+>  .../mips/boot/dts/ralink}/mt7621.dtsi                 |  0
+>  arch/mips/ralink/Kconfig                              |  5 +++++
+>  drivers/staging/Kconfig                               |  2 --
+>  drivers/staging/Makefile                              |  1 -
+>  drivers/staging/mt7621-dts/Kconfig                    | 11 -----------
+>  drivers/staging/mt7621-dts/Makefile                   |  5 -----
+>  drivers/staging/mt7621-dts/TODO                       |  5 -----
+>  11 files changed, 16 insertions(+), 24 deletions(-)
+>  rename drivers/staging/mt7621-dts/gbpc1.dts => arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dts (100%)
+>  rename drivers/staging/mt7621-dts/gbpc2.dts => arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dts (100%)
+>  rename {drivers/staging/mt7621-dts => arch/mips/boot/dts/ralink}/mt7621.dtsi (100%)
+>  delete mode 100644 drivers/staging/mt7621-dts/Kconfig
+>  delete mode 100644 drivers/staging/mt7621-dts/Makefile
+>  delete mode 100644 drivers/staging/mt7621-dts/TODO
+> 
 
-The energy model dynamic-power-coefficient values were calculated with
-    DPC = µW / MHz / V^2
-for each OPP, and averaged across all OPPs within each cluster for the
-final coefficient. Voltages were obtained from the qcom-cpufreq-hw
-driver that reads voltages from the OSM LUT programmed into the SoC.
+I can take this if the MIPS maintainers say it's good to go.
 
-Normalized DMIPS/MHz capacity scale values for each CPU were calculated
-from CoreMarks/MHz (CoreMark iterations per second per MHz), which
-serves the same purpose. For each CPU, the final capacity-dmips-mhz
-value is the C/MHz value of its maximum frequency normalized to
-SCHED_CAPACITY_SCALE (1024) for the fastest CPU in the system.
+thanks,
 
-For more details on measurement process see the commit message for the
-commit 6aabed5526ee ("arm64: dts: qcom: sm8250: Add CPU capacities and
-energy model").
-
-[1] https://github.com/kdrag0n/freqbench
-[2] https://github.com/kdrag0n/freqbench/tree/master/results/sdm845/main
-
-Cc: Danny Lin <danny@kdrag0n.dev>
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 24 ++++++++++++------------
- 1 file changed, 12 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 41f4e46e1f85..f5932b49877d 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -200,8 +200,8 @@ CPU0: cpu@0 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <607>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <611>;
-+			dynamic-power-coefficient = <290>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -225,8 +225,8 @@ CPU1: cpu@100 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <607>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <611>;
-+			dynamic-power-coefficient = <290>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -247,8 +247,8 @@ CPU2: cpu@200 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <607>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <611>;
-+			dynamic-power-coefficient = <290>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -269,8 +269,8 @@ CPU3: cpu@300 {
- 			cpu-idle-states = <&LITTLE_CPU_SLEEP_0
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			capacity-dmips-mhz = <607>;
--			dynamic-power-coefficient = <100>;
-+			capacity-dmips-mhz = <611>;
-+			dynamic-power-coefficient = <290>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -292,7 +292,7 @@ CPU4: cpu@400 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			dynamic-power-coefficient = <396>;
-+			dynamic-power-coefficient = <442>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -314,7 +314,7 @@ CPU5: cpu@500 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			dynamic-power-coefficient = <396>;
-+			dynamic-power-coefficient = <442>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -336,7 +336,7 @@ CPU6: cpu@600 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			dynamic-power-coefficient = <396>;
-+			dynamic-power-coefficient = <442>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
-@@ -358,7 +358,7 @@ CPU7: cpu@700 {
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
--			dynamic-power-coefficient = <396>;
-+			dynamic-power-coefficient = <442>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gladiator_noc MASTER_APPSS_PROC 3 &mem_noc SLAVE_EBI1 3>,
--- 
-2.35.1
-
+greg k-h
