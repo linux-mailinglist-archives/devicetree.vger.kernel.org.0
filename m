@@ -2,73 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 94A724D956F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:37:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C33E14D9583
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:42:17 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239389AbiCOHiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 03:38:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50684 "EHLO
+        id S1345509AbiCOHn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 03:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235018AbiCOHiV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:38:21 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332D34B40B;
-        Tue, 15 Mar 2022 00:37:10 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id e24so27517594wrc.10;
-        Tue, 15 Mar 2022 00:37:10 -0700 (PDT)
+        with ESMTP id S1345745AbiCOHnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:43:21 -0400
+Received: from mail-pf1-x42b.google.com (mail-pf1-x42b.google.com [IPv6:2607:f8b0:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375224B43D;
+        Tue, 15 Mar 2022 00:42:10 -0700 (PDT)
+Received: by mail-pf1-x42b.google.com with SMTP id p8so18292350pfh.8;
+        Tue, 15 Mar 2022 00:42:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20210112;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=OwoeDvRtQzvS4dvZsnQa2LZQBqsCmVjqhnox0xSOPkw=;
-        b=A/s2nId2x/GkAj2vEU2y8bRnLG9OvetGVYTPr+1AqYHaW2KbbUa3CpX5L18HfhmEeX
-         QrJwSca/SM4hKwYCqLWABiG7HDLqm147giJ1lXnRH0s4eTUnCaCBDT28SmPcvtdVqRO1
-         6d097scoNQkPCkZ7roE+1YKOp85wW3PzQDCG3WndvgOyULIDsh9/R61IWXZ9BLdxUpDL
-         r1Pfqp9DjaJYf/EaeuW2vO7mQr6zXF2pt04vRBauF0Osf2/U5w7ruOTQoyHenQ6Djpe3
-         W5Jzt8yrl6T81gDttWw0R+EHDi4IbxauzND+9DdW7UcyZW88do/68ZOKEA0L7/vDVSPX
-         MQSw==
+         :content-disposition:in-reply-to;
+        bh=JvkMr70WJPPuXqL6MLAf4rnX0ShimyVa3ekil/QyEYQ=;
+        b=idUtQSXKngSZiivE9bSKriV7w0fKkHRYCqyMyr4a3qoTPOwkRlpYXone+hQio7n1+0
+         E1UK5BdcCjwDeXf3pe+3ooUdlIPM+HH6F6WbvEI/ZFHoAxgLbSaj8H5cbVhr5FDiK9EW
+         xiSJP5h+jefSoyySIWT+c+ljMIlEnVGe0lsQp+zjBWySsnUzCzdgrsWxx5tinFXHcXuu
+         ZGIpP0Vx+o/OiDt3jqHpBwvwfkK2muNzsxkqzZw+GLDMFBkoIXryI4gzf3bA8Y67tWja
+         uPBj1/LXYzuW+90wXcU73iJK+zMXvXsJRlNPPxGLLF85FdeXeJWEPy8eyIycTLl6hLiV
+         kJDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=OwoeDvRtQzvS4dvZsnQa2LZQBqsCmVjqhnox0xSOPkw=;
-        b=WsSBmOjHQc8Zb8OSNgNVme5ZshTMwhKgkXzFQnzDsNlJ3uq2TnsFr8W5GaFrsRwyhF
-         yB4M+t2lsczW1QlhzaMYKN9/TmBdQsnlzMkNXsqJPqdfhCVO+8pM30ig9PX5e2ouY9Hm
-         mZnCI1+gxRXPFy060Pn3cDjd9QDx1AwleRW9XCWNAjD6iqH2JrpOz227/AoqAetyjvFv
-         TRj8LvZu6PA2EnzgZ7Qxldk+GTHUUBU6wMVqBXkJ2VaxXfqVigtr7BqwVYb+kgRmTIpi
-         QyQ5204bTPWhOUlaHAYwdOsKEBBAc/CiHamqQPbVisj6iuEtFmp6ShnYD8vRjK2f1Dk4
-         spXA==
-X-Gm-Message-State: AOAM532xXwXaRTHcMBZV9vLoSumcDqHiAUn/H9Kw1swUtHfBXC9rHoso
-        7oPY25NhnZr0nnJFqtESnZM=
-X-Google-Smtp-Source: ABdhPJymNcUXpDAqZozSiaRLyRNNamAjYT4dnA0x5ZUi9ppHEM+ePeFNANf29fx9v1CjoZEtzlv/GQ==
-X-Received: by 2002:a5d:5449:0:b0:1f0:1a0c:963f with SMTP id w9-20020a5d5449000000b001f01a0c963fmr18612606wrv.98.1647329828611;
-        Tue, 15 Mar 2022 00:37:08 -0700 (PDT)
-Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
-        by smtp.googlemail.com with ESMTPSA id u11-20020a05600c19cb00b00389efe9c512sm1574404wmq.23.2022.03.15.00.37.07
+         :mime-version:content-disposition:in-reply-to;
+        bh=JvkMr70WJPPuXqL6MLAf4rnX0ShimyVa3ekil/QyEYQ=;
+        b=pn5e9cMsr1g3dwrmq44X6q7gaEpu8rrWooPYwHAg8W9STv7BEZv1dtIduQPfjglgOK
+         doh6rhDd5/aYO4fKxW6HWplI8cvPSByraEIdNeGXza6twDnWvBGqkMcwl2oXLkMUaRjY
+         E8t7tGEa+hHWWiZS8d1tjwlhzQxpmhmECh85JV+mDj/znvK0+pWFiaJNDSFaVRAbReRt
+         oe8b9lt0+v5qzx25FKY1yg6R6cBTnzeQklUcaEiemooRN5AUhkjxFLcFJEo6+evk7+xa
+         ovJixTg2p7TsgRScMJ/AMlJ29MEl6oUi/B88uARHkGUhXvLXHtrYQAFcpxutVNda9TBR
+         HaDA==
+X-Gm-Message-State: AOAM531+75CZADistzqOWURhd6HPYeZ0tDGTj5FkGdjRp74y4DkaZR0F
+        eMuyZ3QCXpZZF1fmj7xcnQs=
+X-Google-Smtp-Source: ABdhPJxEhyzhWKO7pnstMetgtav0ywjKj7rm9UdPPrXO6uDqvojJLtUFw6Tc17S9/03kxDHDLt8sBw==
+X-Received: by 2002:a05:6a00:2389:b0:4f7:5d29:5148 with SMTP id f9-20020a056a00238900b004f75d295148mr27573971pfc.52.1647330129618;
+        Tue, 15 Mar 2022 00:42:09 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id d11-20020a056a0024cb00b004f725ecf900sm23973058pfv.97.2022.03.15.00.42.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 00:37:08 -0700 (PDT)
-Date:   Tue, 15 Mar 2022 08:37:06 +0100
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Bastien =?iso-8859-1?Q?Roucari=E8s?= <rouca@debian.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, stable@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Revert "ARM: dts: sun7i: A20-olinuxino-lime2: Fix
- ethernet phy-mode"
-Message-ID: <YjBCImqGsbIZ3IF4@Red>
-References: <20220308125531.27305-1-ynezz@true.cz>
- <20220315072846.GA9129@meh.true.cz>
+        Tue, 15 Mar 2022 00:42:09 -0700 (PDT)
+Date:   Tue, 15 Mar 2022 13:12:03 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: bcm-cygnus: Update spi clock properties
+Message-ID: <20220315074203.GA19021@9a2d8922b8f1>
+References: <20220311084114.16408-1-singh.kuldeep87k@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20220315072846.GA9129@meh.true.cz>
+In-Reply-To: <20220311084114.16408-1-singh.kuldeep87k@gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -79,69 +72,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le Tue, Mar 15, 2022 at 08:28:58AM +0100, Petr Štetiar a écrit :
-> Petr Štetiar <ynezz@true.cz> [2022-03-08 13:55:30]:
+On Fri, Mar 11, 2022 at 02:11:14PM +0530, Kuldeep Singh wrote:
+> PL022 binding require two clocks to be defined but broadcom cygnus
+> platform doesn't comply with bindings and define only one clock.
 > 
-> Hi Greg,
+> Update spi clocks and clocks-names property by adding appropriate clock
+> reference to make it compliant with bindings.
 > 
-> one week has passed and as I didn't received any feedback, I'm providing more
-> details in a hope to make it more clear, why I think, that this fix is wrong
-> and should be reverted in LTS kernels 5.10 and 5.15.
-> 
-> > This reverts commit 55dd7e059098ce4bd0a55c251cb78e74604abb57 as it breaks
-> > network on my A20-olinuxino-lime2 hardware revision "K" which has Micrel
-> > KSZ9031RNXCC-TR Gigabit PHY. Bastien has probably some previous hardware
-> > revisions which were based on RTL8211E-VB-CG1 PHY and thus this fix was
-> > working on his board.
-> 
-> Disclaimer, I don't own A20-olinuxino-lime2 board with earlier HW revisions
-> G/G1/G2 utilizing RTL8211E PHY.
-> 
-> My understanding is, that up to kernel version 5.9 and specifically commit
-> bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config") it was
-> likely possible to use same DTS for A20-olinuxino-lime2 with KSZ9031 or
-> RTL8211E PHYs (all HW revisions).
-> 
-> At least I was using my A20-olinuxino-lime2 HW revision K with KSZ9031 PHY
-> just fine with 4.19 kernel. After upgrade to 5.10 LTS kernel my network
-> stopped working, reverting stable backport commit a90398438517 ("ARM: dts:
-> sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode") fixed it.
-> 
-> From my POV proper fix for earlier HW revisions G/G1/G2 is introduction of
-> sun7i-a20-olinuxino-lime2-revG.dts with a proper `phy-mode` for RTL8211E PHY.
-> 
-> Cheers,
-> 
-> Petr
-> 
+> CC: Florian Fainelli <f.fainelli@gmail.com>
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
 
-Hello
+Florian, this patch was initially based on stblinux,devicetree-arm64. I
+just checked on devicetree branch, and it can apply cleanly anyway. I
+hope there shouldn't be any need to send patch again. Please let me know
+in case something needs to be taken care. Thanks!
 
-If your patch is applied, older revisions will stop working, right ?
-
-What about adding a new dtb like sun7i-a20-olinuxino-lime2-revk.dts ?
-
-Regards
-
-> > Cc: stable@vger.kernel.org
-> > Cc: Bastien Roucariès <rouca@debian.org>
-> > References: https://github.com/openwrt/openwrt/issues/9153
-> > References: https://github.com/OLIMEX/OLINUXINO/blob/master/HARDWARE/A20-OLinuXino-LIME2/hardware_revision_changes_log.txt
-> > Signed-off-by: Petr Štetiar <ynezz@true.cz>
-> > ---
-> >  arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > index ecb91fb899ff..8077f1716fbc 100644
-> > --- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > +++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
-> > @@ -112,7 +112,7 @@ &gmac {
-> >  	pinctrl-names = "default";
-> >  	pinctrl-0 = <&gmac_rgmii_pins>;
-> >  	phy-handle = <&phy1>;
-> > -	phy-mode = "rgmii-id";
-> > +	phy-mode = "rgmii";
-> >  	status = "okay";
-> >  };
-> 
+-Kuldeep
