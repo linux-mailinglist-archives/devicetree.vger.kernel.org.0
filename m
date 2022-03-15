@@ -2,86 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B5B694D911F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 01:17:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 327104D912E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 01:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245397AbiCOAS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 20:18:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55832 "EHLO
+        id S238953AbiCOAXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 20:23:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235702AbiCOAS2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 20:18:28 -0400
-Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26B3F41622
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 17:17:17 -0700 (PDT)
-Received: by mail-yb1-xb36.google.com with SMTP id l2so34149192ybe.8
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 17:17:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=1ArQOZVxzenABbqYZHdwfKyfyMVaevwYMywHZpJf/2c=;
-        b=UkQj+FJPHmbwWu93FeD2QPZ0A4J6B+6JMEsDc0esiQoIJHNJtuG4RyGxU2+lfJM040
-         p/4A0MliIJ3y3C8BGQd0Efhv3QUlD1jBG90dISCm9c6iV0oLoeE5NIGFA8ivdG71fjoj
-         CxlBU2P/LyrsCZWFuITbHFk7WIYiPNTMuDns0C7TUqSvkyiK9s4oOguB/5AZgJZs+VjE
-         igr4MruwLNtWN6+b0nb5FkqHbJ2fgXZ2Hh4RQ62LF8VjI4GkYqBEc0QImgoexZvgMdIt
-         BswSgrRPFYvdX/f9a9F+ZVAjCcwzMYVdAYwlmEPCrP0CEsSz/Srk8t9yOuslom5Y664O
-         m0AA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=1ArQOZVxzenABbqYZHdwfKyfyMVaevwYMywHZpJf/2c=;
-        b=SZm/VuW9KaR9y1+5zoaPt+OnAZ/nvER45SZZxmKeWBK7uMT3LhE8I6oRt38gH46qpK
-         txhLZaV+VqriA5P7Sa44rjeKMi+mEmZ1YfiysqoIKSzcCZL51FpDv7T2hxKHdS7JtQ0x
-         La1ztTkR3pC/Jx6oYYww7dXb38rBP/36MrlydydgDNnBux+8blU9yaXs0DkVoVYWUSpk
-         nYYzRJDrcZHN3SxS5GNQd4LUv+NLcyFCQk4MnWlJMgfs4Z8vgLALoDgdG9Yy6u/teRLb
-         wcftZjBiXJNKEWg7qU88fh5OgpP2VyNOGx4ewMlhojypegxiI0DoOf0ruqWbwHSZqP6y
-         OISg==
-X-Gm-Message-State: AOAM531F7M9KWCVjR1ZgbA9I+R1ru3lWfDyESI6bLWKLYST8eYEIpxKH
-        UO5ZEFz7mrfmt+ouBpUFOJGYGHgs2ky/sz0pLtrTQPH61aA=
-X-Google-Smtp-Source: ABdhPJz+8PCSwlfdQdIRRiqji2nDXgp0V81YBZrYP89nUdOUaEu7WIwbyG1lPyLfbQKvd4oNQlgu3RKgTq1/HgIJ0hc=
-X-Received: by 2002:a25:e710:0:b0:633:67d3:7264 with SMTP id
- e16-20020a25e710000000b0063367d37264mr3428789ybh.291.1647303436407; Mon, 14
- Mar 2022 17:17:16 -0700 (PDT)
+        with ESMTP id S238499AbiCOAXw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 20:23:52 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F032841304
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 17:22:40 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id BC9AF2C081A;
+        Tue, 15 Mar 2022 00:22:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1647303757;
+        bh=3BSMiHNhv46WFnBP4H9DcMtsy+ZIbf5DT5ijSgV4nkM=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=RAbMNgxEbeyjaLeWDmSQTldnquZFxFikwmj6iYfWiwuilnOdid2UU0rozyRzVq5nw
+         tlZoOhdUfi7iuGpqOa7y5Xpb0COWbbdGoHvd++W6NeoYpQhSEZdq64eUEUKgHTlCK7
+         ET1ps2a/RQSI87DFbIFhxiPGxza0V+OjQBY66ydI7B4TLNpj53jUQ9zJl/diWtP0G6
+         j7vn+jG3PHF8a/BAewB0gRz+B4xf9J6OOe778BJvJhdLhVu5bif2PZh2xRIq0LKqDQ
+         /GHI/mCc/W0z8Qbvb31izuq8wuJ6qYWpbu7X9XVahDY0JyH1Ar4RBfnG2FY2Kz/JrH
+         ku9GzJ6cSAGGQ==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[2001:df5:b000:bc8::77]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B622fdc4d0001>; Tue, 15 Mar 2022 13:22:37 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1497.32; Tue, 15 Mar 2022 13:22:37 +1300
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1497.033; Tue, 15 Mar 2022 13:22:37 +1300
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     "huziji@marvell.com" <huziji@marvell.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "thomas.petazzoni@bootlin.com" <thomas.petazzoni@bootlin.com>,
+        "kostap@marvell.com" <kostap@marvell.com>,
+        "robert.marko@sartura.hr" <robert.marko@sartura.hr>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings for
+ AC5
+Thread-Topic: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings
+ for AC5
+Thread-Index: AQHYN+r1YarBXjvcwESVFtaA5OJaJay+t6EAgAAEIoA=
+Date:   Tue, 15 Mar 2022 00:22:36 +0000
+Message-ID: <16fa529e-b1ca-11d0-f068-628c7f25a7fa@alliedtelesis.co.nz>
+References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+ <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
+ <Yi/Y0iynQbIOo8C0@lunn.ch>
+In-Reply-To: <Yi/Y0iynQbIOo8C0@lunn.ch>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.32.1.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <61514E2EEEF5B74DB1EDF70FAB50577C@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
-In-Reply-To: <20220129115228.2257310-1-j.neuschaefer@gmx.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 15 Mar 2022 01:17:05 +0100
-Message-ID: <CACRpkdahSbWv4q7hoBAm_4+oKPEui9zX5-4m6wvPWfonWpbZUA@mail.gmail.com>
-Subject: Re: [PATCH v5 0/9] Nuvoton WPCM450 pinctrl and GPIO driver
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Joel Stanley <joel@jms.id.au>, linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=o8Y5sQTvuykA:10 a=rFZ7NDpQmFnp1uEtdQsA:9 a=QEXdDO2ut3YA:10
+X-SEG-SpamProfiler-Score: 0
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jan 29, 2022 at 12:57 PM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
-
->   dt-bindings: pinctrl: Add Nuvoton WPCM450
->   pinctrl: nuvoton: Add driver for WPCM450
-
-I applied these two to the pinctrl tree. Sorry for taking forever
-to figure out that I needed to do this :/
-
-Yours,
-Linus Walleij
+DQpPbiAxNS8wMy8yMiAxMzowNywgQW5kcmV3IEx1bm4gd3JvdGU6DQo+PiArICAgIHByb3BlcnRp
+ZXM6DQo+PiArICAgICAgbWFydmVsbCxmdW5jdGlvbjoNCj4+ICsgICAgICAgICRyZWY6ICIvc2No
+ZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9zdHJpbmciDQo+PiArICAgICAgICBkZXNjcmlw
+dGlvbjoNCj4+ICsgICAgICAgICAgSW5kaWNhdGVzIHRoZSBmdW5jdGlvbiB0byBzZWxlY3QuDQo+
+PiArICAgICAgICBlbnVtOiBbIGdwaW8sIGkyYzAsIGkyYzEsIG5hbmQsIHNkaW8sIHNwaTAsIHNw
+aTEsIHVhcnQwLCB1YXJ0MSwgdWFydDIsIHVhcnQzIF0NCj4+ICsNCj4+ICsgICAgICBtYXJ2ZWxs
+LHBpbnM6DQo+PiArICAgICAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9u
+cy9zdHJpbmctYXJyYXkNCj4+ICsgICAgICAgIGRlc2NyaXB0aW9uOg0KPj4gKyAgICAgICAgICBB
+cnJheSBvZiBNUFAgcGlucyB0byBiZSB1c2VkIGZvciB0aGUgZ2l2ZW4gZnVuY3Rpb24uDQo+PiAr
+ICAgICAgICBtaW5JdGVtczogMQ0KPiBOb3cgdGhhdCBpJ3ZlIGxvb2tlZCBhdCB0aGUgLnR4dCBm
+aWxlcywgaSdtIHdvbmRlcmluZyBpZiB0aGlzIHNob3VsZA0KPiBiZSBzcGxpdCBpbnRvIGEgbWFy
+dmVsbCxtdmVidS1waW5jdHJsLnlhbWwgYW5kDQo+IG1hcnZlbGwsYWM1LXBpbmN0cmwueWFtbD8N
+Cj4NCj4gSSBkb24ndCBrbm93IHlhbWwgd2VsbCBlbm91Z2ggdG8ga25vdyBpZiB0aGlzIGlzIHBv
+c3NpYmxlLiBBbGwgdGhlDQo+IG12ZWJ1IHBpbmN0cmwgZHJpdmVycyBoYXZlIG1hcnZlbGwsZnVu
+Y3Rpb24gYW5kIG1hcnZlbGwscGlucy4gVGhlIGVudW0NCj4gd2lsbCBkaWZmZXIsIHRoaXMgZXRo
+ZXJuZXQgc3dpdGNoIFNvQyBkb2VzIG5vdCBoYXZlIHNhdGEsIGF1ZGlvIGV0YywNCj4gd2hlcmUg
+YXMgdGhlIGdlbmVyYWwgcHVycG9zZSBTb2NzIGRvLiBDYW4gdGhhdCBiZSByZXByZXNlbnRlZCBp
+biB5YW1sPw0KDQpJIHRoaW5rIGl0IGNhbi4gSSB2YWd1ZWx5IHJlbWVtYmVyIHNlZWluZyBjb25k
+aXRpb25hbCBjbGF1c2VzIGJhc2VkIG9uIA0KY29tcGF0aWJsZSBzdHJpbmdzIGluIG90aGVyIHlh
+bWwgYmluZGluZ3MuDQoNCkkgc3RhcnRlZCBhIG5ldyBiaW5kaW5nIGRvY3VtZW50IGJlY2F1c2Ug
+SSBleHBlY3RlZCBhZGRpbmcgc2lnbmlmaWNhbnQgDQphZGRpdGlvbnMgdG8gdGhlIGV4aXN0aW5n
+IC50eHQgZmlsZXMgd291bGQgYmUgcmVqZWN0ZWQuIElmIEkgZ2V0IHNvbWUgDQpjeWNsZXMgSSBj
+b3VsZCBsb29rIGF0IGNvbnZlcnRpbmcgdGhlIGV4aXN0aW5nIGRvY3MgZnJvbSB0eHQgdG8geWFt
+bC4NCg0KSSdtIG5vdCBzdXJlIHRoYXQgdGhlcmUgd2lsbCBiZSBtdWNoIGluIHRoZSB3YXkgb2Yg
+YSBjb21tb24gDQptdmVidS1waW5jdHJsLnlhbWwgYXMgeW91J2QgZW5kIHVwIHJlcGVhdGluZyBt
+b3N0IG9mIHRoZSBjb21tb24gc3R1ZmYgdG8gDQptYWtlIHRoaW5ncyBjb25kaXRpb25hbCBhbnl3
+YXkuDQoNCj4NCj4gICAgICAgIEFuZHJldw==
