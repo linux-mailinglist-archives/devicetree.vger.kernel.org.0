@@ -2,167 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA494D9BB6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:01:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BC874D9BB9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:03:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238912AbiCONDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 09:03:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48990 "EHLO
+        id S240451AbiCONE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 09:04:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50380 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234583AbiCONDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:03:07 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9EA42B24B;
-        Tue, 15 Mar 2022 06:01:54 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 974DA1BBB;
-        Tue, 15 Mar 2022 14:01:52 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1647349312;
-        bh=ioi1BuJwoUIJaDqmBXxNMAk5Q/Eg7oI7DoPOBMJp10U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PIgtItNZHzXqkuaaJpRrVg9VIExIuE/m5c3wPj9e2zcLFAy0dRALUFa9DTCulwBW4
-         knPwBev0+C18r7ZQ4sswwe+E/Uafo+yGa8suAy4yoXEQOtEkdkRkGFF77DwdJ8UVai
-         wXSNJ8Ilo9mIFesJvxuMWNdjpmD+AXOeX470a3ns=
-Date:   Tue, 15 Mar 2022 15:01:35 +0200
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
-        jeanmichel.hautbois@ideasonboard.com,
-        paul.kocialkowski@bootlin.com, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, robh@kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/8] media: dt-bindings: i2c: Document ov5670
-Message-ID: <YjCOL2H33oc2pOWN@pendragon.ideasonboard.com>
-References: <20220314162714.153970-1-jacopo@jmondi.org>
- <20220314162714.153970-2-jacopo@jmondi.org>
- <ba09e048-d619-5bd2-e6c3-da071a6d2ab6@canonical.com>
- <YjBHVY/clnMUlNFj@valkosipuli.retiisi.eu>
- <58745ae2-40be-65f6-bea6-f62d8935719f@canonical.com>
- <YjCK75F7Xmiy8nGF@valkosipuli.retiisi.eu>
+        with ESMTP id S235818AbiCONE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:04:27 -0400
+Received: from EUR01-HE1-obe.outbound.protection.outlook.com (mail-eopbgr130097.outbound.protection.outlook.com [40.107.13.97])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC6519C32;
+        Tue, 15 Mar 2022 06:03:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V8qzEa/hDdWF/TTFPeu5CanMYi9Fax1AY4kqKmhEz+TDlU5UH2HaJlLcp0OutXrrRGjUPq1v+3BZxXqW6X6mt21++n583ZIkq++cUszLZyS+vsUn2pmb6FdWzXMDieZzoa6apFsxSZO1vfdpxtJ+DXN0fKHcpBrRdS4mOigk2CkdItDSswBCCixEhU1dDM2h0EKUrRfmZoNMEzdBHkExY6VrotkNOfQG2kYV+iP89+fui3gjOPXG7xioxPRMPIaFABtCqE1xj0UdPgTbq7utTgV4mRWyntbch1r074DiYxSN7W0vzQtTtDiGs4AxPG56fY4E+IM6Ce67KCfb82duEQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fYhcQzb2ZwwD9RPkL0gE+RKFjJ5agc7pQ1kN2o+eaCg=;
+ b=mClegyf45URvajmeXcfsa1bVOEqgQyM4KV8tua4WGwArDF+t+5pYMW/PSdPR/a4zwhfi0msZ1gIVU6KDBkggywP6wB8KDt1wYnjuOj0vwAm5EsQ6pnLjTlUYCYrBbr/rW/rtRAH6ddPcLJj86vcrBA4lKwjq/BZAVuniuL+I0p5Rw8e/iYpDa4c+Hb/MhTWkEfB0mWopnedwLR6cAS+z41tE0WjUB80h83mJ8SfIT4caoWuBe6HGIh8Wz0T2Sf7fkMDoqFltHOWTUY+fa1ZYcsCdbhNbEXY2SX2Q76qYikLdF2Ne5mskWZgmaPvVCLBR1TdUbu9E0c6bVJSulkGhcA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nokia.com; dmarc=pass action=none header.from=nokia.com;
+ dkim=pass header.d=nokia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com;
+ s=selector1-nokia-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fYhcQzb2ZwwD9RPkL0gE+RKFjJ5agc7pQ1kN2o+eaCg=;
+ b=AA1ZDmknazl9NV2VcmtUj6fOOZNfSW3jSUZJenXijFLG66fz2iRrMIHKGmP17jUw2U6yJKAUV/6JQ1zdJl1eL12LzZ5Rd1FqaMtWoaFZJVHdxUJVLix1G7CFmB2kbV281z2LQ3D43jv5QOvsDJw96l0qrBtUdG+qr7sBIwxrKcM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nokia.com;
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com (2603:10a6:20b:1b4::19)
+ by AM6PR07MB4645.eurprd07.prod.outlook.com (2603:10a6:20b:25::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.13; Tue, 15 Mar
+ 2022 13:03:11 +0000
+Received: from AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::e14c:59c6:7109:de9]) by AM7PR07MB6916.eurprd07.prod.outlook.com
+ ([fe80::e14c:59c6:7109:de9%6]) with mapi id 15.20.5081.014; Tue, 15 Mar 2022
+ 13:03:11 +0000
+Message-ID: <292b2a9c-1f31-c3e3-753b-65a05d341574@nokia.com>
+Date:   Tue, 15 Mar 2022 14:03:07 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v7 2/2] hwmon: Add driver for Texas Instruments TMP464 and
+ TMP468
+Content-Language: en-US
+To:     Guenter Roeck <linux@roeck-us.net>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Adamski, Krzysztof (Nokia - PL/Wroclaw)" 
+        <krzysztof.adamski@nokia.com>
+References: <20220222223610.23098-1-linux@roeck-us.net>
+ <20220222223610.23098-2-linux@roeck-us.net>
+ <51ea03f0-627b-2e9d-5972-2053fa12b9b5@nokia.com>
+ <3dac349c-6470-1673-effb-354da2b52481@roeck-us.net>
+From:   Agathe Porte <agathe.porte@nokia.com>
+In-Reply-To: <3dac349c-6470-1673-effb-354da2b52481@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: HE1PR0101CA0013.eurprd01.prod.exchangelabs.com
+ (2603:10a6:3:77::23) To AM7PR07MB6916.eurprd07.prod.outlook.com
+ (2603:10a6:20b:1b4::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <YjCK75F7Xmiy8nGF@valkosipuli.retiisi.eu>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e7f9ab4d-767f-44e1-ca14-08da0684283b
+X-MS-TrafficTypeDiagnostic: AM6PR07MB4645:EE_
+X-Microsoft-Antispam-PRVS: <AM6PR07MB464533CAAFBD605EE48CC6859B109@AM6PR07MB4645.eurprd07.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +Gtlrj+79b4pRji3lpSy+h8Er/SZO0bDH+vg9hgdb+RqLf9stVY3tKwJ00o/XAupY5v3No9W8Evfz6k/NqmHNFzaYfeLU7pYpDmuO8ZU+9EEdtVElqjHNo+5etzHjTD1xpkiBCTW3FO4FvqwLATnpQShP5/32Ajy04fj88tE35iIlllI+U/rwDpo1iRaky6fcag8v/XcLmUgJbosfsy45TZqI1SdtZ5hj78k3shCPDgQMbhmAKQjttuH2zocy0yaQS2aRCuKZ5fr2Dste1bwUBNuUKJrFhDGbDUDyE7gRnaui1gD4wCCQAoBGgUIeQtnnQHKVB9z++N1H8VAUdHiNXH6Ym8u4/Jz8udQB4CxJpvKgiMLgaSpVPVSURaAMIc+dlhVE+SeoMlbQpz7GArw7wPgrym6D1w5v9WAShrcTvuXYnAfJ1fwirfCONGxKCmCWCB818vq5w9vmnynzqYVTjBK4DNZHuk9VqkZ2Q46t+O6vn4t7sy2iZaZPcR+9B9/fS7TY9TAvJAZGiCR4/5WwVxAmQpln7aEH4yH3mnxOY6Hhzga0HyEDp5AQ7q+qeGgd1mRd1/1GUon9a3dmWNSIoAFCXl1cIczwugqaBISB/WdCgi6YT2QR7XtoJ4bd4oKyfciLgN8PIargXscEuEgkUTaWkhUYkvaoWAG+KfoujcQaFjGc9YgoiruGy803ExIG3nBKmo+Px4cYqpIT019eIOIs/eQYaZ7N03BaWJ7wVVqPqIylX/scJKoKC3Qvs4s
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR07MB6916.eurprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(82960400001)(2616005)(186003)(107886003)(54906003)(110136005)(6666004)(6506007)(316002)(38100700002)(6512007)(26005)(83380400001)(6486002)(508600001)(2906002)(44832011)(5660300002)(31696002)(8936002)(86362001)(36756003)(31686004)(4326008)(66556008)(66476007)(66946007)(8676002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVBLS2JFeU41ZnlRVFR1a1l5ZlVIYnFMVjBXcWtOTkwxdlVuYjNTWnJpR1FV?=
+ =?utf-8?B?Z1dxVHVLZktHQ0pIMjBtNnRzdHlwakgxVDYwbnBBZzRRbnQ0aEhuL3kzSEgv?=
+ =?utf-8?B?SG9wL2xhK3VUTHRWaC85N0trcXIycnBQZHpub2R4aStpZGJSei9OUXppT2JE?=
+ =?utf-8?B?MDB6VlphVFF6RUtQUXhJenlFcC90YmhUekdhY1MvK2hCK3prdGllNHl6NGNt?=
+ =?utf-8?B?NDc2Ukt3ZnFFdnYxa2pyQUppSkkvU3dWM3Zkd2xJZnZ5cFRSdFljM1hPVWJa?=
+ =?utf-8?B?cUFKbndhWWU0T0JPUU13NVc3NnJGWWtrSEhrQU15ZndvNzltcGJBVmJZMHdF?=
+ =?utf-8?B?KytHVys0ZHZIVXdza2NYdWxiM2RJTmM1QmNDM2pMUjdLMHowMW0reEphaUF5?=
+ =?utf-8?B?dGE5aTVIUko3ZzF1RW5PWkpWNkhIRmt3MGd5R1BPdkpZdS9KY24rdXlCbi9S?=
+ =?utf-8?B?WHNHUlhNdTBnQVJGMGhIdGNpWUxzcGsweUhFakhaV041V1RrOEZYQzZRT0Mx?=
+ =?utf-8?B?eEROb3Z4aXdMTFYwSmFaNDJvRTRQYWhqVXEvcGdIMjBpSGxkaEk4Z0RDUkFU?=
+ =?utf-8?B?YjlVSXlTWnoxL1ZQcksrcDlTY2hPTStucHBBT3gzcEtHek8zaldkTmgra1Bt?=
+ =?utf-8?B?eWc3RCtCcDI3RzNhM2hZWWRCaWE1Tjc3eGRjMHVGUzFzQ3RGa1BJOFB1bFJz?=
+ =?utf-8?B?dUFLaU1Cc0pid2N0MkRZaWlLVFB0cE5KY3QzMldaZXRjU1VBNFU1YjJrdWFC?=
+ =?utf-8?B?VGRzcGlyazZaRDZpYXJiaHBQekhiSVJhRk9ybm9uSW1MN3hoT0dsOFVDVVFO?=
+ =?utf-8?B?d2VUNXRNVHRHTzhtZWNJTVNhSGZ2UGJLV25zLzVFNFpxNGNtNE12eHRqMDkx?=
+ =?utf-8?B?UEVjVEpnVVVSODlXejQ3VXgzWjNPZ2hmYmJ1c2tKOFJDSEpxczBvdnhIT0NC?=
+ =?utf-8?B?TEhadEkwbmwyK0MvSTdiUXlYTG9paW5NZVZFNGF2VW10VmdBMFpNT3M5NE95?=
+ =?utf-8?B?UGZjUlBIVTBUMitDQmd5dFNxc2M2aXV5aEJYOXRYZjFnMFdtWGhrNWloVVpN?=
+ =?utf-8?B?ek42RWtqMXRTMTFUV3dQWUNIOG9SUlRVU1hBL0V4VjBiWjF5RXBmWFJoYmov?=
+ =?utf-8?B?ZDM5Y2ZlWmdRVUtCMFdQZVNoYVdTRE9Jd3hqV0JEeUttR0YyWXpEeWNPVnNo?=
+ =?utf-8?B?SnlKYndBeXVUdFd4UTQ1NFJFNDd2UnZuQnVWVFlIYlVMNTM0djV3Q2pQOHpE?=
+ =?utf-8?B?dDU5Q1Yxc2lnMU91Y3hoRUdIRWlHWWJNRjU3VmxLbzVuNGl0Q2crdGFVNkZu?=
+ =?utf-8?B?RHBTWlRvVmQ5Z0tHQkplcnFkK2xkTklhMEFRbVVXUjYxU01SdURwQkZBVkZV?=
+ =?utf-8?B?Nk5UY2V3ZWhKZzk5YmhaSXNiV2UxdTErQWFmWlN5TW00SlNudlZpeVU4bXV5?=
+ =?utf-8?B?bVZmZis1cjAyWGVJV2ExZStEY0wyM3dGK2tzSHN2VWVHSFhNbW9ZOHN4REor?=
+ =?utf-8?B?cVA1V1RpWG5Cb0pqL1hFcFF0REhiWDY3NXBJWG91SlRTb0VFNlJCS05SbGFX?=
+ =?utf-8?B?eUpNUGdOYXZqVWRQbld2c0UzSXl0YXF3c1JNOXEzUTdhbndON1NhUzBZOWRU?=
+ =?utf-8?B?RkpxVlNHc1VsTlNybDRtUVpWUmt5NjlsMlZVaWdTTzJ5aDBnSG9FRmNHSGxF?=
+ =?utf-8?B?UGx4R3BQOXV4ZFRlWFNCNUJMYk96Yk1XekN0VVlUVkI2KzM0MjJwNjZ0OTBN?=
+ =?utf-8?B?QXJMTklWMGlVejlXOUJPU1JUQ0dEMFhkNFhBdktxdk1SQ2ZINlhJdCs0VW1H?=
+ =?utf-8?B?Z3U4SUovSW5uTnEvZjBPekdWSWNZTGJKRWVPWk92OFI2NWRSQ2IvcnkzbVpN?=
+ =?utf-8?B?TjZDTlNBNU1BQlBCMkZwalMwNUJ1VGNWb0VwVTcvcy9oTyszU0dnMGxaQnNn?=
+ =?utf-8?B?bDR3S3NkdmxnU3FqQmR4K051TW85cWVpSjcwWVhYRDRUK3pQL01kQzgwZGIx?=
+ =?utf-8?B?VnN2dWFCSWt3PT0=?=
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e7f9ab4d-767f-44e1-ca14-08da0684283b
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR07MB6916.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2022 13:03:10.9146
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hzo9USwqV+W78ofehazM5Are93OU41tV95d1CaaNBq5UUhh/E9V/pw+WXPkG6NCngih8LrU6iJxqU5Z1nBTa4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR07MB4645
+X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,FORGED_SPF_HELO,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+Hi Guenter,
 
-On Tue, Mar 15, 2022 at 02:47:43PM +0200, Sakari Ailus wrote:
-> On Tue, Mar 15, 2022 at 09:03:41AM +0100, Krzysztof Kozlowski wrote:
-> > On 15/03/2022 08:59, Sakari Ailus wrote:
-> > > On Tue, Mar 15, 2022 at 08:32:58AM +0100, Krzysztof Kozlowski wrote:
-> > >> On 14/03/2022 17:27, Jacopo Mondi wrote:
-> > >>> Provide the bindings documentation for Omnivision OV5670 image sensor.
-> > >>>
-> > >>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
-> > >>>
-> > >>> ---
-> > >>> v1->v2 (comments from Krzysztof)
-> > >>>
-> > >>> - Rename to include manufacturer name
-> > >>> - Add entry to MAINTAINERS
-> > >>> - Add maxItems: to -gpios properties
-> > >>> - Use common clock properties
-> > >>> - Use enum: [1, 2] for data lanes
-> > >>> - Fix whitespace issue in example
-> > >>> ---
-> > >>>
-> > >>>  .../bindings/media/i2c/ovti,ov5670.yaml       | 99 +++++++++++++++++++
-> > >>>  MAINTAINERS                                   |  1 +
-> > >>>  2 files changed, 100 insertions(+)
-> > >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-> > >>> new file mode 100644
-> > >>> index 000000000000..73cf72203f17
-> > >>> --- /dev/null
-> > >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-> > >>> @@ -0,0 +1,99 @@
-> > >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > >>> +%YAML 1.2
-> > >>> +---
-> > >>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
-> > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>> +
-> > >>> +title: Omnivision OV5670 5 Megapixels raw image sensor
-> > >>> +
-> > >>> +maintainers:
-> > >>> +  - Jacopo Mondi <jacopo@jmondi.org>
-> > >>> +
-> > >>> +description: |-
-> > >>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-> > >>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-> > >>> +  controlled through an I2C compatible control bus.
-> > >>> +
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: ovti,ov5670
-> > >>> +
-> > >>> +  reg:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  assigned-clocks: true
-> > >>> +  assigned-clock-parents: true
-> > >>> +  assigned-clock-rates: true
-> > >>
-> > >> You should not need these. These are coming with schema. You can add
-> > >> these to example schema below and double-check.
-> > > 
-> > > They should probably be required actually.
-> > 
-> > Why required? The hardware can work with different clocks, get their
-> > rate and configure internal PLLs/clocks to new value. Having it required
-> > might have sense for current implementation of driver but this is
-> > independent of bindings. Bindings do not describe driver, but hardware.
-> 
-> We've had this discussion before and the result of that was this (see
-> "Handling clocks"):
-> 
-> Documentation/driver-api/media/camera-sensor.rst
+Le 3/15/2022 à 2:22 AM, Guenter Roeck a écrit :
+> If of_property_read_string() returns an error, it will not set the 
+> pointer
+> to &data->channel[channel].label, which by default is NULL because the
+> data structure was allocated with devm_kzalloc(). That means 
+> tmp464_is_visible()
+> will disable the label attribute. I don't see a problem with the current
+> code.
 
-I don't think those properties should be required in the sensor
-bindings. There are platforms where the clock provided to the sensor
-comes from a fixed-frequency oscillator, assigning a rate or parent
-makes no sense for those (assigning a parent would actually be
-impossible).
+Thanks for the explanation. I agree that there is no problem on this point.
 
-Assigning a parent or rate is fine when applicable, but as it can't be
-required, there's also no point in listing the properties here.
+> There are lots of examples in the kernel where the return value from
+> of_property_read_string() is silently ignored. Not a single one of
+> those uses a (void) typecast. I don't really want to start making
+> such changes just to make static analyzers happy.
 
-> > >>> +
-> > >>> +  clocks:
-> > >>> +    description: System clock. From 6 to 27 MHz.
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  pwdn-gpios:
-> > >>> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
-> > >>
-> > >> This does not look like a standard property, so you need a vendor prefix.
-> > > 
-> > > The similarly named property exists elsewhere. I wouldn't use a vendor
-> > > prefix, also for the reason that the functionality is quite common. I guess
-> > > alternative name would be possible, too --- "shutdown" seems to be more
-> > > common.
-> > 
-> > It exists in three bindings, so it is not a standard property...
-> > although something closer to standard is "powerdown-gpios" so maybe just
-> > use that one?
-> 
-> Seems like a better choice.
+I have to disagree here. Because something has always (not) be done in 
+the past should not be a reason to (not) do it in the future out of pure 
+habit. I did not suggest to add the (void) casts in existing code: I 
+agree it would be a burden with no real added value.
 
--- 
-Regards,
+But making static analyzers happy seems justified *for new code*. It 
+also makes *other developers* more confident, because with the cast we 
+are sure that not checking the return value is very intentional.
 
-Laurent Pinchart
+Please enlighten me if there are any downsides that I did not think of 
+and that would block this one-line change.
+
+Best regards,
+
+Agathe.
+
