@@ -2,208 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B20A14D92DA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 04:11:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A310B4D92DF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 04:15:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238498AbiCODMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 23:12:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56526 "EHLO
+        id S234859AbiCODQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 23:16:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232462AbiCODMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 23:12:43 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19E9C3EB89
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 20:11:32 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id j26so26960527wrb.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 20:11:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZMzCXIdLqAyGtaz7rlkDmeg46RvpOTj0ly0PLz7MJt0=;
-        b=pSKVP9N5ahguUkJjtp7SxHsAXpLuCZX3IzElc4APDhBQsxOEXiyyWYYhsQMCx1pn3p
-         WjBzJiqcjzR4STI2FP9gEUCgiLqx5P6Z+2dW6+ReTpSvYzO85sRWMiyzHpYnciB3gp28
-         3CzPGZVh8N4wYM5T1mkRCtBJ36HYMNxpOOGrciPAIUmZiSuMkcmCXjXWCDNIPM5R2sMA
-         BBkzJhO7qv6q4i8g5z/YdRKu2eBdLuX5zgnXCyXMJPqlBMXVTkHPqEXXSi06dvJLpFFP
-         9dY+nJlGFAuURVBJ9kusniyDn3+pCYLynm+0bOX4HKoDXACeBivq9Ac5b6TmOu1KWqZg
-         X82w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZMzCXIdLqAyGtaz7rlkDmeg46RvpOTj0ly0PLz7MJt0=;
-        b=q51pammuHJ+FTBtjxuuRKo85WB6v8pYYznn/msbEymbzMd10ij7UX5FCrSPQlD7A0D
-         sk+x/XRHw7GclJTLaFHEj+3LjDZXBYnqtuzPpyK0ciNfomcjq+qjcz5l2H8yplXuQn7P
-         ka48x93+vYXkM6EbyrmER+hiV5VVrAM9EvuzeOBupVC3+0VBJKLOhgFLWeMJNEKZZNaB
-         8VG+0gLGPH+2mNm0scSk2UZ/lP78J/TWyrHF8aGGhN+bSehjiXASG/iNCFzrRC1liLcm
-         XnZCwG4A+PSkXokbQYog1kOJyzyFdjccDOxxdX9ywA46N29e20KOQrq3TYfVdujYgLUy
-         GcVQ==
-X-Gm-Message-State: AOAM532MhIN6IX3PZJ4TaX5vVrH0dNjnGufjzQtRSQU407s7tTp/vNoa
-        3EBan/O3OPGes4XkdUZT2Iz7G67PN5KOsnTZ27V8ZQ==
-X-Google-Smtp-Source: ABdhPJzZF6NSEHadRn0WzLtO/L7BqiZdjpJJvaXSM7RzJ7jse3Mp+YFHB8JDzSCI/CLynk6yoB+T9SfDP4fW/wOsDP4=
-X-Received: by 2002:adf:b645:0:b0:1e3:bab:7594 with SMTP id
- i5-20020adfb645000000b001e30bab7594mr18998652wre.346.1647313890542; Mon, 14
- Mar 2022 20:11:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20220314203845.832648-1-atishp@rivosinc.com> <20220314203845.832648-7-atishp@rivosinc.com>
-In-Reply-To: <20220314203845.832648-7-atishp@rivosinc.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Tue, 15 Mar 2022 08:41:17 +0530
-Message-ID: <CAAhSdy1SvpAOX063OyE3iZwfAwND_QVxTNeLsB0hQtJWH4o9tw@mail.gmail.com>
-Subject: Re: [PATCH v6 6/6] RISC-V: Improve /proc/cpuinfo output for ISA extensions
-To:     Atish Patra <atishp@rivosinc.com>
-Cc:     "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Atish Patra <atishp@atishpatra.org>,
-        Damien Le Moal <damien.lemoal@wdc.com>,
-        DTML <devicetree@vger.kernel.org>,
-        Jisheng Zhang <jszhang@kernel.org>,
+        with ESMTP id S230445AbiCODQ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 23:16:28 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5456A2A711;
+        Mon, 14 Mar 2022 20:15:13 -0700 (PDT)
+X-UUID: 0bf839b975b74ae2af7fd70c83912443-20220315
+X-UUID: 0bf839b975b74ae2af7fd70c83912443-20220315
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1543633687; Tue, 15 Mar 2022 11:15:09 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
+ Tue, 15 Mar 2022 11:15:09 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Mar 2022 11:15:08 +0800
+Message-ID: <5a797c608b6eb29e6fba41fafc5f78f75b4ba1d3.camel@mediatek.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: mediatek: Add YAML schema for
+ PCIe PHY
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Tue, 15 Mar 2022 11:15:08 +0800
+In-Reply-To: <e7765c888e6fc8eb4b15fa01d19afda335b16c26.camel@mediatek.com>
+References: <20220311133527.5914-1-jianjun.wang@mediatek.com>
+         <20220311133527.5914-3-jianjun.wang@mediatek.com>
+         <0454647b-7aa3-ed70-0b92-1e5c98d0adc0@canonical.com>
+         <e7765c888e6fc8eb4b15fa01d19afda335b16c26.camel@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 2:09 AM Atish Patra <atishp@rivosinc.com> wrote:
->
-> Currently, the /proc/cpuinfo outputs the entire riscv,isa string which
-> is not ideal when we have multiple ISA extensions present in the ISA
-> string. Some of them may not be enabled in kernel as well.
-> Same goes for the single letter extensions as well which prints the
-> entire ISA string. Some of they may not be valid ISA extensions as
-> well (e.g 'su')
->
-> Parse only the valid & enabled ISA extension and print them.
->
-> Tested-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Atish Patra <atishp@rivosinc.com>
+On Mon, 2022-03-14 at 09:42 +0800, Jianjun Wang wrote:
+> Hi Krzysztof,
+> 
+> On Fri, 2022-03-11 at 15:28 +0100, Krzysztof Kozlowski wrote:
+> > On 11/03/2022 14:35, Jianjun Wang wrote:
+> > > Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
+> > > 
+> > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > > ---
+> > >  .../bindings/phy/mediatek,pcie-phy.yaml       | 71
+> > > +++++++++++++++++++
+> > >  1 file changed, 71 insertions(+)
+> > >  create mode 100644
+> > > Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> > > phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> > > phy.yaml
+> > > new file mode 100644
+> > > index 000000000000..da15b4bf3117
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> > > phy.yaml
+> > > @@ -0,0 +1,71 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: MediaTek PCIe PHY Device Tree Binding
+> > 
+> > Title is for hardware, so s/Device Tree Binding//
+> > 
+> > > +
+> > > +maintainers:
+> > > +  - Jianjun Wang <jianjun.wang@mediatek.com>
+> > > +
+> > > +description: |
+> > > +  The PCIe PHY supports physical layer functionality for PCIe
+> > > Gen3
+> > > port.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: mediatek,pcie-phy
+> > 
+> > Is it going to be exactly one pcie-phy for all Mediatek chipsets
+> > for
+> > next years? Are you sure about that? It sounds highly unlikely....
+> 
+> We have only one pcie-phy for now, but if this is not recommended, I
+> will replace it with a specific name in the next version, thanks for
+> your review.
+Prefer to add specific ones
 
-Reviewed-by: Anup Patel <anup@brainfault.org>
+> 
+> Thanks.
+> 
+> > 
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: sif
+> > > +
+> > > +  "#phy-cells":
+> > > +    const: 0
+> > > +
+> > > +  nvmem-cells:
+> > > +    maxItems: 7
+> > > +    description:
+> > > +      Phandles to nvmem cell that contains the efuse data, if
+> > > unspecified,
+> > > +      default value is used.
+> > > +
+> > > +  nvmem-cell-names:
+> > > +    items:
+> > > +      - const: glb_intr
+> > > +      - const: tx_ln0_pmos
+> > > +      - const: tx_ln0_nmos
+> > > +      - const: rx_ln0
+> > > +      - const: tx_ln1_pmos
+> > > +      - const: tx_ln1_nmos
+> > > +      - const: rx_ln1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - reg-names
+> > > +  - "#phy-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    pciephy: phy@11e80000 {
+> > > +        compatible = "mediatek,pcie-phy";
+> > > +        #phy-cells = <0>;
+> > > +        reg = <0x11e80000 0x10000>;
+> > > +        reg-names = "sif";
+> > > +        nvmem-cells = <&pciephy_glb_intr>,
+> > > +                      <&pciephy_tx_ln0_pmos>,
+> > > +                      <&pciephy_tx_ln0_nmos>,
+> > > +                      <&pciephy_rx_ln0>,
+> > > +                      <&pciephy_tx_ln1_pmos>,
+> > > +                      <&pciephy_tx_ln1_nmos>,
+> > > +                      <&pciephy_rx_ln1>;
+> > > +        nvmem-cell-names = "glb_intr", "tx_ln0_pmos",
+> > > +                           "tx_ln0_nmos", "rx_ln0",
+> > > +                           "tx_ln1_pmos", "tx_ln1_nmos",
+> > > +                           "rx_ln1";
+> > > +    };
+> > 
+> > 
+> > Best regards,
+> > Krzysztof
+> 
+> 
 
-Regards,
-Anup
-
-> ---
->  arch/riscv/include/asm/hwcap.h |  7 ++++
->  arch/riscv/kernel/cpu.c        | 65 ++++++++++++++++++++++++++++++++--
->  2 files changed, 70 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 170bd80da520..691fc9c8099b 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -54,6 +54,13 @@ enum riscv_isa_ext_id {
->         RISCV_ISA_EXT_ID_MAX = RISCV_ISA_EXT_MAX,
->  };
->
-> +struct riscv_isa_ext_data {
-> +       /* Name of the extension displayed to userspace via /proc/cpuinfo */
-> +       char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
-> +       /* The logical ISA extension ID */
-> +       unsigned int isa_ext_id;
-> +};
-> +
->  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
->
->  #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index ad0a7e9f828b..fc115e307ef5 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -6,6 +6,7 @@
->  #include <linux/init.h>
->  #include <linux/seq_file.h>
->  #include <linux/of.h>
-> +#include <asm/hwcap.h>
->  #include <asm/smp.h>
->  #include <asm/pgtable.h>
->
-> @@ -63,12 +64,72 @@ int riscv_of_parent_hartid(struct device_node *node)
->  }
->
->  #ifdef CONFIG_PROC_FS
-> +#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
-> +       {                                                       \
-> +               .uprop = #UPROP,                                \
-> +               .isa_ext_id = EXTID,                            \
-> +       }
-> +/**
-> + * Here are the ordering rules of extension naming defined by RISC-V
-> + * specification :
-> + * 1. All extensions should be separated from other multi-letter extensions
-> + *    from other multi-letter extensions by an underscore.
-> + * 2. The first letter following the 'Z' conventionally indicates the most
-> + *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
-> + *    If multiple 'Z' extensions are named, they should be ordered first
-> + *    by category, then alphabetically within a category.
-> + * 3. Standard supervisor-level extensions (starts with 'S') should be
-> + *    listed after standard unprivileged extensions.  If multiple
-> + *    supervisor-level extensions are listed, they should be ordered
-> + *    alphabetically.
-> + * 4. Non-standard extensions (starts with 'X') must be listed after all
-> + *    standard extensions. They must be separated from other multi-letter
-> + *    extensions by an underscore.
-> + */
-> +static struct riscv_isa_ext_data isa_ext_arr[] = {
-> +       __RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
-> +};
-> +
-> +static void print_isa_ext(struct seq_file *f)
-> +{
-> +       struct riscv_isa_ext_data *edata;
-> +       int i = 0, arr_sz;
-> +
-> +       arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
-> +
-> +       /* No extension support available */
-> +       if (arr_sz <= 0)
-> +               return;
-> +
-> +       for (i = 0; i <= arr_sz; i++) {
-> +               edata = &isa_ext_arr[i];
-> +               if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
-> +                       continue;
-> +               seq_printf(f, "_%s", edata->uprop);
-> +       }
-> +}
-> +
-> +/**
-> + * These are the only valid base (single letter) ISA extensions as per the spec.
-> + * It also specifies the canonical order in which it appears in the spec.
-> + * Some of the extension may just be a place holder for now (B, K, P, J).
-> + * This should be updated once corresponding extensions are ratified.
-> + */
-> +static const char base_riscv_exts[13] = "imafdqcbkjpvh";
->
->  static void print_isa(struct seq_file *f, const char *isa)
->  {
-> -       /* Print the entire ISA as it is */
-> +       int i;
-> +
->         seq_puts(f, "isa\t\t: ");
-> -       seq_write(f, isa, strlen(isa));
-> +       /* Print the rv[64/32] part */
-> +       seq_write(f, isa, 4);
-> +       for (i = 0; i < sizeof(base_riscv_exts); i++) {
-> +               if (__riscv_isa_extension_available(NULL, base_riscv_exts[i] - 'a'))
-> +                       /* Print only enabled the base ISA extensions */
-> +                       seq_write(f, &base_riscv_exts[i], 1);
-> +       }
-> +       print_isa_ext(f);
->         seq_puts(f, "\n");
->  }
->
-> --
-> 2.30.2
->
