@@ -2,174 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 920884DA09D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 17:57:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 081BA4DA0B6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 18:02:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1350347AbiCOQ6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 12:58:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43746 "EHLO
+        id S1350316AbiCORDL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 13:03:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349814AbiCOQ6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 12:58:36 -0400
-Received: from mail-oo1-xc2c.google.com (mail-oo1-xc2c.google.com [IPv6:2607:f8b0:4864:20::c2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F54574B2
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:57:23 -0700 (PDT)
-Received: by mail-oo1-xc2c.google.com with SMTP id j7-20020a4ad6c7000000b0031c690e4123so25171990oot.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:57:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=iwyi6l6mAU8+nYjyk/K7oCC0ixMS0VKyBpljmAjIxm0=;
-        b=EtQQA78G9e7DaQ2Bpd2WTtbGypI1MZf7hjLWoX4nrzjd6fi5v2IY5SGEBlkou+L24u
-         dKygIqkA9WrpD6R+7NPqxvFwCcj4UdOE7TTyRzItaiP0y6oT1apVV2M4KJp8KQpdetk3
-         hLBaaAXh5cOaCm/33y2DLPrD/fjJ/192e1fLW94ZLEKRXgjmLUqPpCLFdFZK4aVd0avP
-         YapIkT6wweXDRnGP3BijGy31W8uqrfbtJZYbqDhKU9pm4uArET+9mEJ9TBRC/4XbqyHo
-         LUIO9AhepMFLbJx3Aqwe3dWbIm88glVW0mi97CRZ6nudgs9fJtmkJPljBeA+j4HBncJ5
-         +FNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=iwyi6l6mAU8+nYjyk/K7oCC0ixMS0VKyBpljmAjIxm0=;
-        b=RVmBAJh5QHAxYpYzMfKYfWaiShmrxO9e9xh1k5d+oN13ATI3TKsV/bIXKtZmPtPt3k
-         rEmPCMEA3ioTFGEu90C9Lxjbb0992zxyctX/eK9djOjqnV1pSJoqneCTdPxcELYJIUlW
-         GUXP2Uv/XU5s4mA3fSFltZZL7O04vTAJOUfzpTDU+VuwLpJU5PwXGgk1Rc8YFoLFnchV
-         GPEjiiJvUyx0xdjRzuX9VNoVPqJynwRdt6uel2cuRDCmpgGnv3YrHUer4tgPQDjNAYXb
-         7vuIZXyliMAx1fzla/x4E5y12fWrP2LICxquxlmNF0+PNrT8yKUYHJAqqdQAsuJn+2cw
-         l0Ug==
-X-Gm-Message-State: AOAM533Laj1+YXZkn5+knQRhGQSAw1wfLtfORSgMDBceBlTcg5+GO0na
-        ptM0LL/Bs/vZouSFqY8Vt1lebQ==
-X-Google-Smtp-Source: ABdhPJzzqNiHdVXVH0CXBoLP1udVE9MYmYPmQcCKBtA1PAprIUkgp+/UWSfjGSEtXdadUx3fdyEGxA==
-X-Received: by 2002:a05:6871:60e:b0:da:b3f:2b85 with SMTP id w14-20020a056871060e00b000da0b3f2b85mr2048202oan.292.1647363443260;
-        Tue, 15 Mar 2022 09:57:23 -0700 (PDT)
-Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
-        by smtp.gmail.com with ESMTPSA id l12-20020a056808020c00b002da28c240dfsm9665261oie.16.2022.03.15.09.57.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 09:57:22 -0700 (PDT)
-Date:   Tue, 15 Mar 2022 11:57:20 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc:     agross@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, quic_plai@quicinc.com, bgoswami@codeaurora.org,
-        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, swboyd@chromium.org,
-        judyhsiao@chromium.org, Linus Walleij <linus.walleij@linaro.org>,
-        linux-gpio@vger.kernel.org,
-        Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Subject: Re: [PATCH v11 7/7] pinctrl: qcom: Update clock voting as optional
-Message-ID: <YjDFcJOA8An58iTe@builder.lan>
-References: <1647359413-31662-1-git-send-email-quic_srivasam@quicinc.com>
- <1647359413-31662-8-git-send-email-quic_srivasam@quicinc.com>
+        with ESMTP id S1350475AbiCORDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 13:03:10 -0400
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BB64580C0
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:01:55 -0700 (PDT)
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20220315170149epoutp038b55b5b1848f9cdae5d55b0775c847d1~cnJDY7iZd1445514455epoutp03R
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 17:01:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20220315170149epoutp038b55b5b1848f9cdae5d55b0775c847d1~cnJDY7iZd1445514455epoutp03R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1647363709;
+        bh=APM5XsSU1XQd07vu+tjYn7WYhHEeAhdWMLL1ugsN9XM=;
+        h=From:To:In-Reply-To:Subject:Date:References:From;
+        b=Aw5dAa6R66yRQOdsFj8+XjgfUrkWUrHQPLYHG4lFRvsj5C8hkG5pqEWLzZk9lJOLF
+         1l/d3oQMrKE0CdzPpZElDBrjOGAxQ9GQiDzT6PHO82xuSyI/NyrNQaezCT83nWVWj2
+         yMSKDh0w7ehURj72m0LvlEAIOuot5tBZ6TB/HnN0=
+Received: from epsnrtp1.localdomain (unknown [182.195.42.162]) by
+        epcas5p3.samsung.com (KnoxPortal) with ESMTP id
+        20220315170148epcas5p3197505665d1d45755cd7dff5229a8f16~cnJCOvyQQ0601406014epcas5p3G;
+        Tue, 15 Mar 2022 17:01:48 +0000 (GMT)
+Received: from epsmges5p1new.samsung.com (unknown [182.195.38.174]) by
+        epsnrtp1.localdomain (Postfix) with ESMTP id 4KJ07C6r60z4x9Pp; Tue, 15 Mar
+        2022 17:01:43 +0000 (GMT)
+Received: from epcas5p3.samsung.com ( [182.195.41.41]) by
+        epsmges5p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        28.74.06423.776C0326; Wed, 16 Mar 2022 02:01:43 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+        20220315170143epcas5p2d633d14d347a2c2b2c2743450c08abce~cnI9g0xey1706417064epcas5p2H;
+        Tue, 15 Mar 2022 17:01:43 +0000 (GMT)
+Received: from epsmgms1p2.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20220315170143epsmtrp1e7ed44caa429ca8723d2755ed3faf782~cnI9f_7Ak1691216912epsmtrp1B;
+        Tue, 15 Mar 2022 17:01:43 +0000 (GMT)
+X-AuditID: b6c32a49-b01ff70000001917-61-6230c6774e31
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+        epsmgms1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+        5A.CE.03370.776C0326; Wed, 16 Mar 2022 02:01:43 +0900 (KST)
+Received: from alimakhtar03 (unknown [107.122.12.5]) by epsmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20220315170141epsmtip2eb5d7f4857fca19018b8d7ca1b718367~cnI8LxV9s2201222012epsmtip2T;
+        Tue, 15 Mar 2022 17:01:41 +0000 (GMT)
+From:   "Alim Akhtar" <alim.akhtar@samsung.com>
+To:     "'Krzysztof Kozlowski'" <krzysztof.kozlowski@canonical.com>,
+        "'Greg Kroah-Hartman'" <gregkh@linuxfoundation.org>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+In-Reply-To: <20220314181948.246434-2-krzysztof.kozlowski@canonical.com>
+Subject: RE: [PATCH 2/5] ARM: dts: s5pv210: align EHCI/OHCI nodes with
+ dtschema
+Date:   Tue, 15 Mar 2022 22:31:40 +0530
+Message-ID: <063501d8388e$58a74ba0$09f5e2e0$@samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1647359413-31662-8-git-send-email-quic_srivasam@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQB7dPZKCRCsS+x0KxttMJEPHi23NwGCWbcmAZz2MFCvYTfs4A==
+Content-Language: en-us
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrIJsWRmVeSWpSXmKPExsWy7bCmpm75MYMkgyvrjCzmHznHatG8eD2b
+        xctZ99gsNr79wWSx6fE1VovLu+awWcw4v4/JYtGyVmaL1r1H2B04PWY19LJ5bFrVyeaxf+4a
+        do/NS+o9Pm+SC2CNyrbJSE1MSS1SSM1Lzk/JzEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy
+        8QnQdcvMAbpHSaEsMacUKBSQWFyspG9nU5RfWpKqkJFfXGKrlFqQklNgUqBXnJhbXJqXrpeX
+        WmJlaGBgZApUmJCdsXvrYraCdzwVDesLGxhfcXUxcnJICJhIvFi+nAXEFhLYzSix6Fk5hP2J
+        UeLMBesuRi4g+zOjRM/mG0BFHGANex/VQ8R3MUpMbbvKCuG8ZJS4u+0sE0g3m4CuxI7FbWwg
+        CRGBX0wSaxtusIIkOAU8JHpuLgBbJywQKNE74SpYnEVAVeLf/INsIDavgKXE9VlT2CFsQYmT
+        M5+A1TMLyEtsfzuHGeJsBYmfT5eB9YoIOEnsnPkXqkZc4uXRI+wgiyUEZnJIPL9+EKrBRWJn
+        1xtWCFtY4tXxLewQtpTEy/42dojXsiV6dhlDhGskls47xgJh20scuDIH7HtmAU2J9bv0IVbx
+        SfT+fsIE0ckr0dEmBFGtKtH87ipUp7TExO5uqKUeEhNugVwPCqubjBJXO2cyTWBUmIXky1lI
+        vpyF5JtZCJsXMLKsYpRMLSjOTU8tNi0wzEsth8d2cn7uJkZwWtXy3MF498EHvUOMTByMhxgl
+        OJiVRHjPvNBPEuJNSaysSi3Kjy8qzUktPsRoCgz6icxSosn5wMSeVxJvaGJpYGJmZmZiaWxm
+        qCTOezp9Q6KQQHpiSWp2ampBahFMHxMHp1QDk4z+y+nO66KFkpwP3NnJHlqhwBrBzOIv81HD
+        sTZD7Y9Bl2BrtdT1tIMSXVprXwvreJ/M91TbMqWxrvv+6oOL9JSXKzywXPqxVG+b95LcLEtv
+        yboX7h8LLXbrMNxmPtpqfeW7c1mhq7jY8ntKnjbPt+7K998xr9upXGGVbtymO6dni2/eKbWr
+        3We3x9mzlxOvK66d572FXVTm8evn4arS3/+dufRz20aJlPe2Bz+lbwk0Of2JmV9EuVrL1qil
+        V2rlg3DdlZsenzg6j/PMtIXye+wqTYyXqrw83j05onzG8yWv3qvsanLfejsiws5RT342U7Dl
+        ucSgwLDV6rF//je4fGxZ7azFq+v7Rid1x1kNJZbijERDLeai4kQAa3UgCTQEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDLMWRmVeSWpSXmKPExsWy7bCSvG75MYMkgznL+SzmHznHatG8eD2b
+        xctZ99gsNr79wWSx6fE1VovLu+awWcw4v4/JYtGyVmaL1r1H2B04PWY19LJ5bFrVyeaxf+4a
+        do/NS+o9Pm+SC2CN4rJJSc3JLEst0rdL4MrYvXUxW8E7noqG9YUNjK+4uhg5OCQETCT2Pqrv
+        YuTiEBLYwShxuO86WxcjJ1BcWuL6xgnsELawxMp/z9khip4zSuy92cAKkmAT0JXYsbgNrEFE
+        oIFZ4spjAYiiq4wSN8/9ZgZJcAp4SPTcXMACsk1YwF/ixzwmkDCLgKrEv/kHwXp5BSwlrs+a
+        wg5hC0qcnPkErJxZQE+ibSMjSJhZQF5i+9s5zBD3KEj8fLqMFWKtk8TOmX9ZIGrEJV4ePcI+
+        gVFoFpJJsxAmzUIyaRaSjgWMLKsYJVMLinPTc4sNC4zyUsv1ihNzi0vz0vWS83M3MYIjSEtr
+        B+OeVR/0DjEycTAeYpTgYFYS4T3zQj9JiDclsbIqtSg/vqg0J7X4EKM0B4uSOO+FrpPxQgLp
+        iSWp2ampBalFMFkmDk6pBqaaq6nHksQ46hmsS8Pf7C869drm79lES/fti1t6NybPreq8EVUy
+        MbxEZHdQ/gHVNQuuX655+nvOlDLfJFHrnCPnxBsmvj4qnDRb7VK3YC/7rVn3pP/v+RueEy6a
+        81hKWOnAafFVf+WfP+1ad/vOwf1eYmtE3XJbSgRUt7c8aDpYVbtrwWO912oCny36+YPMeufd
+        fxe3WE/FZX5+1VvZlr9Lgt5GHpRr19j43dOsqs1c+Jzhw0ZvnTf/sqsC15/Qy0ti+GNWK2d+
+        5s9hlbTqWwWx/PO8djyI+sg958rnufc1H4aF9c9g2qXwdWO0vfnvVe0Ot6q0e+W+1p7d8/tD
+        r62NXRyT/LWD5pfeFmov26PEUpyRaKjFXFScCADtBNZmDwMAAA==
+X-CMS-MailID: 20220315170143epcas5p2d633d14d347a2c2b2c2743450c08abce
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20220314182015epcas5p37973443e3daafcab8b5d45a042f6a56c
+References: <20220314181948.246434-1-krzysztof.kozlowski@canonical.com>
+        <CGME20220314182015epcas5p37973443e3daafcab8b5d45a042f6a56c@epcas5p3.samsung.com>
+        <20220314181948.246434-2-krzysztof.kozlowski@canonical.com>
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 15 Mar 10:50 CDT 2022, Srinivasa Rao Mandadapu wrote:
 
-> Update bulk clock voting to optional voting as ADSP bypass platform doesn't
-> need macro and decodec clocks, as these macro and dcodec GDSC switches are
-> maintained as power domains and operated from lpass clock drivers.
-> 
 
-Sorry for missing your reply on my question on the previous version, I
-think this sounds reasonable.
+>-----Original Message-----
+>From: Krzysztof Kozlowski [mailto:krzysztof.kozlowski@canonical.com]
+>Sent: Monday, March 14, 2022 11:50 PM
+>To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>; Rob Herring
+><robh+dt@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Alim
+>Akhtar <alim.akhtar@samsung.com>; linux-usb@vger.kernel.org;
+>devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org
+>Cc: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>Subject: [PATCH 2/5] ARM: dts: s5pv210: align EHCI/OHCI nodes with
+>dtschema
+>
+>The node names should be generic and USB DT schema expects "usb" names.
+>
+>Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+>---
+Probably you can squash this with the 1/5 patch
 
-> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-> ---
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.c        | 12 +++++++++---
->  drivers/pinctrl/qcom/pinctrl-lpass-lpi.h        |  1 +
->  drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c |  1 +
->  3 files changed, 11 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> index 0216ca1..3fc473a 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-> @@ -401,9 +401,15 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
->  		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
->  				     "Slew resource not provided\n");
->  
-> -	ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> -	if (ret)
-> -		return dev_err_probe(dev, ret, "Can't get clocks\n");
-> +	if (data->is_clk_optional) {
-> +		ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Can't get clocks\n");
+Reviewed-by: Alim Akhtar <alim.akhtar@samsung.com>
 
-Dug into the clk_bulk_get() functions, and __clk_bulk_get() will print
-an error telling you which clock it failed to get. So I don't think your
-more generic error here doesn't add any value.
+> arch/arm/boot/dts/s5pv210.dtsi | 4 ++--
+> 1 file changed, 2 insertions(+), 2 deletions(-)
+>
+>diff --git a/arch/arm/boot/dts/s5pv210.dtsi
+b/arch/arm/boot/dts/s5pv210.dtsi
+>index 353ba7b09a0c..a7aca54832d9 100644
+>--- a/arch/arm/boot/dts/s5pv210.dtsi
+>+++ b/arch/arm/boot/dts/s5pv210.dtsi
+>@@ -427,7 +427,7 @@ usbphy: usbphy@ec100000 {
+> 			status = "disabled";
+> 		};
+>
+>-		ehci: ehci@ec200000 {
+>+		ehci: usb@ec200000 {
+> 			compatible = "samsung,exynos4210-ehci";
+> 			reg = <0xec200000 0x100>;
+> 			interrupts = <23>;
+>@@ -444,7 +444,7 @@ port@0 {
+> 			};
+> 		};
+>
+>-		ohci: ohci@ec300000 {
+>+		ohci: usb@ec300000 {
+> 			compatible = "samsung,exynos4210-ohci";
+> 			reg = <0xec300000 0x100>;
+> 			interrupts = <23>;
+>--
+>2.32.0
 
-Just return ret;
 
-> +	} else {
-> +		ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret, "Can't get clocks\n");
-> +	}
-
-Depending on your taste, you could do:
-
-	if (data->is_clk_optional)
-		ret = devm_clk_bulk_get_optional();
-	else
-		ret = devm_clk_bulk_get();
-
-	if (ret)
-		return ret;
-
->  
->  	ret = clk_bulk_prepare_enable(MAX_LPI_NUM_CLKS, pctrl->clks);
->  	if (ret)
-> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-> index afbac2a..3bcede6 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-> @@ -77,6 +77,7 @@ struct lpi_pinctrl_variant_data {
->  	int ngroups;
->  	const struct lpi_function *functions;
->  	int nfunctions;
-> +	int is_clk_optional;
-
-bool here please.
-
->  };
->  
->  int lpi_pinctrl_probe(struct platform_device *pdev);
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> index d67ff25..304d8a2 100644
-> --- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> +++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-> @@ -142,6 +142,7 @@ static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
->  	.ngroups = ARRAY_SIZE(sc7280_groups),
->  	.functions = sc7280_functions,
->  	.nfunctions = ARRAY_SIZE(sc7280_functions),
-> +	.is_clk_optional = 1,
-
-true
-
-Regards,
-Bjorn
-
->  };
->  
->  static const struct of_device_id lpi_pinctrl_of_match[] = {
-> -- 
-> 2.7.4
-> 
