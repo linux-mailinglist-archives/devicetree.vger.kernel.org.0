@@ -2,61 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 799FA4DA3C5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 21:10:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C3AF4DA3E2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 21:21:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349531AbiCOULb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 16:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52698 "EHLO
+        id S1351705AbiCOUXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 16:23:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239744AbiCOUL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 16:11:28 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3353150E2C
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:10:16 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id o64so476243oib.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 13:10:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=qr7mLmy1fKMWDaQiNo+jMIPdyrm4wXIOYIlliEovhEc=;
-        b=JG1Cmyw2xVu1/a0FO4Qhj3E+xam1t3yfP3Hy4l9EmK6pbxymeMrhU9SiRYb6jBN54y
-         TAX/l+1HffWDjcuLDzmnzAb6RsryhOkB0iudhYmAw1HlzBfa5MSj6hLlGRFk9XO4iKGg
-         Ysva+ocHuwzYCkqXCZFqCtjYngzVcyMpca92I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=qr7mLmy1fKMWDaQiNo+jMIPdyrm4wXIOYIlliEovhEc=;
-        b=1bkrZ4Voq4yHKteeF+4Jl5F6X+kcwMDlLo+G0n9Ldx5KQ0Ofrjgym5zDw1LOezVlRF
-         USajpiD84/GQX3xMznZc1WlmDZy41tA0dkccXUfwOTqUYMsCRqt40t+gFHOvWNYNL05h
-         S4VE9b9jdyahBHhimGKQJcJ5s7tQsDa1xNvNqC0h6kamqIFTWeTu808SynoyV+MSTXs8
-         KfnH8zu04v5d3cEPHaqsGRMJcqcJhIBP8E5YNqUE3Ycw8YRhEp2LiFw90YAwTqkWtbbV
-         1DtI4wVuXNfLMPX+NATCybFh2MrDGEB3g4548RbIX4+gWihAdpQ7uAZp3TUsYCZ00DYC
-         7mrQ==
-X-Gm-Message-State: AOAM533LdbgAL6EHK4mo3yqyZ0lFjZ1CbQcMUwBLbV+E7n+DDPEvbITI
-        BJBwW+lgGqlKbSXLfl95LbUbYhyEfDwFOaMs9XwYpA==
-X-Google-Smtp-Source: ABdhPJzxWkhht+qEZSYrN22qZaZlfHnVFOVILsjkLh1X8sD7Prt+0ouxZx/u4AiKtNV1P9mIWyx8isADRbZkZXv2wRs=
-X-Received: by 2002:aca:a9c8:0:b0:2da:45b6:b796 with SMTP id
- s191-20020acaa9c8000000b002da45b6b796mr2355671oie.193.1647375015594; Tue, 15
- Mar 2022 13:10:15 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 15 Mar 2022 13:10:15 -0700
+        with ESMTP id S1351691AbiCOUXD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 16:23:03 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BD4D1B794;
+        Tue, 15 Mar 2022 13:21:51 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CB2B960B16;
+        Tue, 15 Mar 2022 20:21:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0444C340EE;
+        Tue, 15 Mar 2022 20:21:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647375710;
+        bh=obfmGqylSH5u0Q12sqtMoFbJxkTAQ2oft0YJvmwoZY4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=erv2eTaHBIMTXTmzyHX95tf8o2s2Vl0ZLYYtfFOgMLNpuXMuRL1ioK0hd2XUIu/zT
+         F3YJb6y3a6SmNASxqbFpWMWFXDnkPDPmVbkUe38yNtRAZM9OflBFxyIlhfxSaR2Bex
+         3RUctkFotm8WxeNw9fNj2r1dZtFuaG8AbB3nYqtVEB28Q6yLO0P55RiQ8LZbK29gho
+         /3264p1oL5n7rQCLjyK0Qz1xUcKJcPQx4HGK12TfTAT8PDk1EMS6YWNKy6Kw7t9e8f
+         KBwz8Vp/JUePkWHdeny3h7E56/ti4657bAp1zi2YzdaULsKPOjlpg6HFaGY8rVE+cA
+         jFLYXH5UxscOg==
+From:   Nathan Chancellor <nathan@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patches@lists.linux.dev, Nathan Chancellor <nathan@kernel.org>
+Subject: [PATCH -next] dt-bindings:i kbuild: Make DT_SCHEMA_LINT a recursive variable
+Date:   Tue, 15 Mar 2022 13:20:32 -0700
+Message-Id: <20220315202032.538911-1-nathan@kernel.org>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-In-Reply-To: <20220315173042.1325858-8-gwendal@chromium.org>
-References: <20220315173042.1325858-1-gwendal@chromium.org> <20220315173042.1325858-8-gwendal@chromium.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 15 Mar 2022 13:10:15 -0700
-Message-ID: <CAE-0n50HqyY9VJNHTBrVE8W-oZOdPrhv94uRqhkJf8kaDOCVkQ@mail.gmail.com>
-Subject: Re: [PATCH 7/7] iio: sx9360: Add pre-charge resistor setting
-To:     Gwendal Grignou <gwendal@chromium.org>, jic23@kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,11 +52,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Gwendal Grignou (2022-03-15 10:30:42)
-> Add ability to set the precharge internal resistance from the device
-> tree.
->
-> Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
-> ---
+A recent change added a warning when yamllint is not installed, as it is
+needed for 'make dt_binding_check'. However, it also changed
+DT_SCHEMA_LINT to be a simple make variable, which is evaluated when a
+Makefile is evaluated. This causes a warning when running 'make clean',
+as Documentation/devicetree/bindings/Makefile has a "clean-files"
+variable:
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+  $ make -s clean
+  which: no yamllint in (...)
+  warning: python package 'yamllint' not installed, skipping
+
+Make DT_SCHEMA_LINT a recursive variable so it is evaluated only when it
+is used. The warning still triggers when 'make dt_binding_check' is run.
+
+Fixes: b3e664a7f449 ("dt-bindings: kbuild: Print a warning if yamllint is not found")
+Signed-off-by: Nathan Chancellor <nathan@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index e594e5898be0..c9953f86b19d 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -3,7 +3,7 @@ DT_DOC_CHECKER ?= dt-doc-validate
+ DT_EXTRACT_EX ?= dt-extract-example
+ DT_MK_SCHEMA ?= dt-mk-schema
+ 
+-DT_SCHEMA_LINT := $(shell which yamllint || \
++DT_SCHEMA_LINT = $(shell which yamllint || \
+   echo "warning: python package 'yamllint' not installed, skipping" >&2)
+ 
+ DT_SCHEMA_MIN_VERSION = 2022.3
+
+base-commit: 593adaa6459903728cb59392239f2c615b8dadbb
+-- 
+2.35.1
+
