@@ -2,66 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78F594D9728
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 10:08:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B363B4D9735
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 10:10:57 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346008AbiCOJJg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 05:09:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49946 "EHLO
+        id S1344055AbiCOJMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 05:12:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346376AbiCOJJf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 05:09:35 -0400
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E268213F47;
-        Tue, 15 Mar 2022 02:08:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647335302; x=1678871302;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=BOGkV1R9jATnmy60k4Z2w/p9Ncg9ruX8vcR8NretwAE=;
-  b=hMTy10pEa7Fye0HKvuAqLsGr2cqpZZZ9kEPAZib+erD11gZzUyJ9TNsy
-   fpTchjXXMlqy9Bc3Virq1+s0CexVd2aFeG4wDK+lYmu6krNOGGto08e8k
-   S+6rBFQcYb79MeQ+nJalcSrERWWyapxp/Y71wsklzkwVBhlxI33SlRZla
-   D9z25QQn8BTcliQ+WMpzDyTx7wympg8sqP4xs/qVocMjUkxfQ/EUXROsp
-   Vsr8yrwQSXvczs/w5JGsiUrTVTWi2kS6ucTm70d/tqLb33S4iYoZVamGX
-   +i9DjwQ4yifPE3nzkToNLmqrg4LNGnB/8Jdbv+iY7pM+QYMn3JiaDVGpp
-   Q==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="316973356"
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; 
-   d="scan'208";a="316973356"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2022 02:08:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,182,1643702400"; 
-   d="scan'208";a="634518597"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by FMSMGA003.fm.intel.com with ESMTP; 15 Mar 2022 02:08:19 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nU3AA-000AmE-Hz; Tue, 15 Mar 2022 09:08:18 +0000
-Date:   Tue, 15 Mar 2022 17:07:50 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dmitry.baryshkov@linaro.org, dianders@chromium.org,
-        quic_kalyant@quicinc.com
-Subject: Re: [PATCH v4] drm/msm/disp/dpu1: add inline rotation support for
- sc7280 target
-Message-ID: <202203151751.ov7gCUZI-lkp@intel.com>
-References: <1647319394-11426-1-git-send-email-quic_vpolimer@quicinc.com>
+        with ESMTP id S235268AbiCOJMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 05:12:06 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E14E4A930;
+        Tue, 15 Mar 2022 02:10:54 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: kholk11)
+        with ESMTPSA id 15B301F4362D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647335452;
+        bh=NwX7z9yLH6PqPXHH+1YrRwrLzO3ovt+3Z5XpGrvmKS8=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=iWNEK+EpnG3jNZMRjecHpsAmeWU6zFOS6k+qgB74qBXGs+LW7sSjpJOXrcrBqTRQ5
+         dLI9AV5kUClDmqbYN24ZiH0mr0hbYViFwh/2WqETWTP3Ajk6R/rUU3dFCgHiMpi+sb
+         neLKSRxcsKbd/1HU+7Epg43kd8wajdwMQ6rw6dEd/0v3/b22UoNNSPG47j6d8TZLyt
+         Qe3il/g3wzCJYGKiF85wX3Olx/3aj20ncDtHxkYmlve+qojo0dBWdc7Bm3l1PQua81
+         6rZH593fCyvmA99xqjP75hgaht2QjmQGFVMV2pQH7AgF+aQt4BGsI5pym+DPzH6YcZ
+         4pXR7t076RMRg==
+Message-ID: <ed5418b4-e353-d879-f9b0-7a9de8fed862@collabora.com>
+Date:   Tue, 15 Mar 2022 10:10:48 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1647319394-11426-1-git-send-email-quic_vpolimer@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.1
+Subject: Re: [PATCH v13 1/6] soc: mediatek: mutex: add common interface to
+ accommodate multiple modules operationg MUTEX
+Content-Language: en-US
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220315061031.21642-1-moudy.ho@mediatek.com>
+ <20220315061031.21642-2-moudy.ho@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20220315061031.21642-2-moudy.ho@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,105 +75,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+Il 15/03/22 07:10, Moudy Ho ha scritto:
+> In order to allow multiple modules to operate MUTEX hardware through
+> a common interfrace, a flexible index "mtk_mutex_table_index" needs to
+> be added to replace original component ID so that like DDP and MDP
+> can add their own MUTEX table settings independently.
+> 
+> In addition, 4 generic interface "mtk_mutex_set_mod", "mtk_mutex_set_sof",
+> "mtk_mutex_clear_mod" and "mtk_mutex_clear_sof" have been added, which is
+> expected to replace the "mtk_mutex_add_comp" and "mtk_mutex_remove_comp"
+> pair originally dedicated to DDP in the future.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-mutex.c       | 122 +++++++++++++++++++++++++
+>   include/linux/soc/mediatek/mtk-mutex.h |  33 +++++++
+>   2 files changed, 155 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index aaf8fc1abb43..778b01ce9e8f 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -156,6 +156,7 @@ struct mtk_mutex_data {
+>   	const unsigned int *mutex_sof;
+>   	const unsigned int mutex_mod_reg;
+>   	const unsigned int mutex_sof_reg;
+> +	const unsigned long long *mutex_table_mod;
 
-Thank you for the patch! Perhaps something to improve:
+Can we change this to u64 instead?
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on drm-intel/for-linux-next drm-tip/drm-tip drm-exynos/exynos-drm-next next-20220310]
-[cannot apply to tegra-drm/drm/tegra/for-next airlied/drm-next v5.17-rc8]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+With that done,
 
-url:    https://github.com/0day-ci/linux/commits/Vinod-Polimera/drm-msm-disp-dpu1-add-inline-rotation-support-for-sc7280-target/20220315-124423
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-config: arm64-buildonly-randconfig-r002-20220313 (https://download.01.org/0day-ci/archive/20220315/202203151751.ov7gCUZI-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project a6b2f50fb47da3baeee10b1906da6e30ac5d26ec)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install arm64 cross compiling tool for clang build
-        # apt-get install binutils-aarch64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/1582b1f4a0b79f64b61b217ea6c3bb0591da0fab
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Vinod-Polimera/drm-msm-disp-dpu1-add-inline-rotation-support-for-sc7280-target/20220315-124423
-        git checkout 1582b1f4a0b79f64b61b217ea6c3bb0591da0fab
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=arm64 SHELL=/bin/bash drivers/gpu/drm/msm/
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:686:39: warning: unused variable 'msm8998_vig_sblk_0' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_0 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:688:39: warning: unused variable 'msm8998_vig_sblk_1' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_1 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:690:39: warning: unused variable 'msm8998_vig_sblk_2' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_2 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:692:39: warning: unused variable 'msm8998_vig_sblk_3' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_3 =
-                                         ^
-   4 warnings generated.
-
-
-vim +/msm8998_vig_sblk_0 +686 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-
-5334087ee7438fa Loic Poulain               2022-02-14  647  
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  648  /*************************************************************
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  649   * SSPP sub blocks config
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  650   *************************************************************/
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  651  
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  652  /* SSPP common configuration */
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  653  #define _VIG_SBLK(num, sdma_pri, qseed_ver, rot_cfg) \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  654  	{ \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  655  	.maxdwnscale = MAX_DOWNSCALE_RATIO, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  656  	.maxupscale = MAX_UPSCALE_RATIO, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  657  	.smart_dma_priority = sdma_pri, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  658  	.src_blk = {.name = STRCAT("sspp_src_", num), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  659  		.id = DPU_SSPP_SRC, .base = 0x00, .len = 0x150,}, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  660  	.scaler_blk = {.name = STRCAT("sspp_scaler", num), \
-b75ab05a34792fc Shubhashree Dhar           2019-11-27  661  		.id = qseed_ver, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  662  		.base = 0xa00, .len = 0xa0,}, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  663  	.csc_blk = {.name = STRCAT("sspp_csc", num), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  664  		.id = DPU_SSPP_CSC_10BIT, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  665  		.base = 0x1a00, .len = 0x100,}, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  666  	.format_list = plane_formats_yuv, \
-e6b63a7bb6cd9cd Fritz Koenig               2018-12-11  667  	.num_formats = ARRAY_SIZE(plane_formats_yuv), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  668  	.virt_format_list = plane_formats, \
-e6b63a7bb6cd9cd Fritz Koenig               2018-12-11  669  	.virt_num_formats = ARRAY_SIZE(plane_formats), \
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  670  	.rotation_cfg = rot_cfg, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  671  	}
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  672  
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  673  #define _DMA_SBLK(num, sdma_pri) \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  674  	{ \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  675  	.maxdwnscale = SSPP_UNITY_SCALE, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  676  	.maxupscale = SSPP_UNITY_SCALE, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  677  	.smart_dma_priority = sdma_pri, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  678  	.src_blk = {.name = STRCAT("sspp_src_", num), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  679  		.id = DPU_SSPP_SRC, .base = 0x00, .len = 0x150,}, \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  680  	.format_list = plane_formats, \
-e6b63a7bb6cd9cd Fritz Koenig               2018-12-11  681  	.num_formats = ARRAY_SIZE(plane_formats), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  682  	.virt_format_list = plane_formats, \
-e6b63a7bb6cd9cd Fritz Koenig               2018-12-11  683  	.virt_num_formats = ARRAY_SIZE(plane_formats), \
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  684  	}
-25fdd5933e4c0f5 Jeykumar Sankaran          2018-06-27  685  
-94391a14fc27383 AngeloGioacchino Del Regno 2022-01-13 @686  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_0 =
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  687  				_VIG_SBLK("0", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc27383 AngeloGioacchino Del Regno 2022-01-13 @688  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_1 =
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  689  				_VIG_SBLK("1", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc27383 AngeloGioacchino Del Regno 2022-01-13 @690  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_2 =
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  691  				_VIG_SBLK("2", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc27383 AngeloGioacchino Del Regno 2022-01-13 @692  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_3 =
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  693  				_VIG_SBLK("3", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-1582b1f4a0b79f6 Vinod Polimera             2022-03-15  694  
-
----
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
