@@ -2,68 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A154D9F30
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:51:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A9ED04D9F6C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:57:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349783AbiCOPvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 11:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
+        id S240193AbiCOP6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 11:58:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349786AbiCOPvv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:51:51 -0400
-Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C955468E
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:50:35 -0700 (PDT)
-Received: by mail-oo1-xc29.google.com with SMTP id w3-20020a4ac183000000b0031d806bbd7eso24719734oop.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:50:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=I4c51xsdjxSyFom4STgtqxq6o6AKdTW8OLe7O5/jVnI=;
-        b=RdbsXMNlP8wYdG7quqOUWkNI912I8J8v2dI1CpPrFRzvPMlqWvYUjRZcc3CPAOO29S
-         Yge/Doop6f6uEsSFKCqhOIsjsvZ/KqP+eWOLjwNC9rSDGozrfKDRjbcvxa5z0pCPEIve
-         c5NtXIfspKzVJ4hupGwMTdkiQ23FjnfxTBn9w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=I4c51xsdjxSyFom4STgtqxq6o6AKdTW8OLe7O5/jVnI=;
-        b=MTEahZ7VquZWFQil6Xczql6vUTtqZAzXRAM4rbSUnxYFnxoyHgub0u41456KTyjUgG
-         BMlk8Rf7fkkeX+HoLnnmVEzCR3ufaTfhd9LhZF6G9on8u9xxUMulXkVr5cdK6J9Th4Tg
-         gwqBl8FsTaRA3Lg0t6NMO8oLKi83+V/JT/g1c3zzLRLSUe1yHE84+HCW5ZddZAPgnY5L
-         BjF1xnHTpfUp9VZXyBLPIXa8rGeELdIRVui1hnm/M5w6sXa4TR7NKCs3Hbe0L49wTmzT
-         WV2x7QzcJW5YwHeEBKLrAIRN//GMq79YPbJNVtT0qWH2bDNKoN4Z5b4ddZxHP46Yxxyw
-         zmBw==
-X-Gm-Message-State: AOAM531jftBqm/HXGauCNxfVYNFXY1ktH5ebP4qKHe/E60Lqv8w86cVy
-        ut5g8Fp7Jc/XOi4HOzkAlGT9aYFWUwTYDmVIviSoNbTAxS4=
-X-Google-Smtp-Source: ABdhPJyHK2Q+ikMVle/mFHZsw86q2VaSnh4TIjabq9UlQBoV+QZTX64BB1/3Nt6dBd6/Mt4xS0Vdwi/ekXUmIzZbJxQ=
-X-Received: by 2002:a05:6870:c0cb:b0:da:2bcc:aa09 with SMTP id
- e11-20020a056870c0cb00b000da2bccaa09mr1821164oad.63.1647359435184; Tue, 15
- Mar 2022 08:50:35 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 15 Mar 2022 10:50:34 -0500
+        with ESMTP id S230484AbiCOP6f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:58:35 -0400
+Received: from gateway22.websitewelcome.com (gateway22.websitewelcome.com [192.185.47.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AD4E5621D
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:57:22 -0700 (PDT)
+Received: from cm12.websitewelcome.com (cm12.websitewelcome.com [100.42.49.8])
+        by gateway22.websitewelcome.com (Postfix) with ESMTP id 481AE56EAC
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:57:22 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id U9Y1n4vnp9AGSU9Y2nBva7; Tue, 15 Mar 2022 10:57:22 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=4kVQ5GrJXG+XQBsvd7Sp5sVbbiDsI2CU7Suxb3igK0Y=; b=BgE5ldmEA5kL55GjjYn0qoCSBS
+        uzkhZwoTd3UhUSPUXrcmg0M6e/tN27lE4hmgbyRSfBYIHwxwBMIAQg/0GVgHB6MhR68kxCChPqUNR
+        H4c31oTWcAKkkLt+DJ6Fu851wJ/50Bb3pmq8UwU0Y4Zm+5zrLxrY8I2zt4mGWwJdrS4eGc5nyxl6h
+        M1hS9JFJmWoOttURimuRiJaqliU0lHvsx+Mno5/ssLy41hCryDhlG1XPmmeaqHcCpvTpLOfiS3OrP
+        q0c8FaCT9aN2VRle5vYhAjPgMdWC3Uu5Ksj9NriODyFedvgemG1dZOnfzBx13Z2+zyFJDeZFrRoHc
+        hO03RsGQ==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54280)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nU9Y1-001qgu-Fy; Tue, 15 Mar 2022 15:57:21 +0000
+Message-ID: <7e85a7fc-46d9-ae6a-25b1-5554e49a8f76@roeck-us.net>
+Date:   Tue, 15 Mar 2022 08:57:20 -0700
 MIME-Version: 1.0
-In-Reply-To: <CAHNYxRwFYBbgxUqz79jYXbDxSd-r+NdHWQPucEyuNK83U577xw@mail.gmail.com>
-References: <20220314232214.4183078-1-swboyd@chromium.org> <20220314232214.4183078-2-swboyd@chromium.org>
- <CAHNYxRwFYBbgxUqz79jYXbDxSd-r+NdHWQPucEyuNK83U577xw@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 15 Mar 2022 10:50:34 -0500
-Message-ID: <CAE-0n50A2yrSbQJA8EMum3AoLf+w263ddFh6sA5d+tfMMMkarA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
-To:     Alexandru M Stan <amstan@chromium.org>
-Cc:     Benson Leung <bleung@chromium.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        chrome-platform@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Agathe Porte <agathe.porte@nokia.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Adamski, Krzysztof (Nokia - PL/Wroclaw)" 
+        <krzysztof.adamski@nokia.com>
+References: <20220222223610.23098-1-linux@roeck-us.net>
+ <20220222223610.23098-2-linux@roeck-us.net>
+ <51ea03f0-627b-2e9d-5972-2053fa12b9b5@nokia.com>
+ <3dac349c-6470-1673-effb-354da2b52481@roeck-us.net>
+ <292b2a9c-1f31-c3e3-753b-65a05d341574@nokia.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v7 2/2] hwmon: Add driver for Texas Instruments TMP464 and
+ TMP468
+In-Reply-To: <292b2a9c-1f31-c3e3-753b-65a05d341574@nokia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nU9Y1-001qgu-Fy
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54280
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 3
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,32 +89,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Alexandru M Stan (2022-03-14 17:23:38)
-> On Mon, Mar 14, 2022 at 4:22 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > +        compatible = "google,cros-ec-fp";
-> > +        reg = <0>;
-> > +        interrupt-parent = <&gpio_controller>;
-> > +        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-> > +        spi-max-frequency = <3000000>;
-> > +        google,cros-ec-spi-msg-delay = <37>;
-> > +        google,cros-ec-spi-pre-delay = <5>;
-> > +        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
-> > +        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_LOW>;
-> This should say GPIO_ACTIVE_HIGH, since there's no inverting going on
-> either with a real inverter, or the convention (of 'N' being in the
-> pin name).
->
-> It might be easier to reason about if there's no invesion going for this signal.
->
-> Consider it like an enum instead of a verb (unlike active_low
-> reset-gpios which can be considered: in reset if it's set):
->
-> enum boot0 {
->         normal = 0,
->         bootloader = 1,
-> };
+Hi Agathe,
 
-Ok got it! I have in my notes that physically high line means normal
-boot mode and physically low is bootloader mode. I confused myself. I'll
-fix this.
+On 3/15/22 06:03, Agathe Porte wrote:
+> Hi Guenter,
+> 
+> Le 3/15/2022 à 2:22 AM, Guenter Roeck a écrit :
+>> If of_property_read_string() returns an error, it will not set the pointer
+>> to &data->channel[channel].label, which by default is NULL because the
+>> data structure was allocated with devm_kzalloc(). That means tmp464_is_visible()
+>> will disable the label attribute. I don't see a problem with the current
+>> code.
+> 
+> Thanks for the explanation. I agree that there is no problem on this point.
+> 
+>> There are lots of examples in the kernel where the return value from
+>> of_property_read_string() is silently ignored. Not a single one of
+>> those uses a (void) typecast. I don't really want to start making
+>> such changes just to make static analyzers happy.
+> 
+> I have to disagree here. Because something has always (not) be done in the past should not be a reason to (not) do it in the future out of pure habit. I did not suggest to add the (void) casts in existing code: I agree it would be a burden with no real added value.
+> 
+> But making static analyzers happy seems justified *for new code*. It also makes *other developers* more confident, because with the cast we are sure that not checking the return value is very intentional.
+> 
+> Please enlighten me if there are any downsides that I did not think of and that would block this one-line change.
+> 
+
+Changing the code now would require either a separate patch or
+a rebase of the hwmon-next tree. Rebasing the hwmon-next tree
+at this point of the release cycle (a few days before the commit
+window opens) is something I really don't want to do, leaving the
+option to add a separate patch for the change. That makes it
+identical to changing existing code to add the (void).
+
+In addition to that, I do not agree that adding (void) really
+adds value here; it just says "this is done on purpose" because
+the static analyzer doesn't know better. 0-day stopped reporting
+this kind of perceived problem, presumably for good reason.
+Since the result of the function call is implied in setting or not
+setting the passed pointer, a return value check or adding (void)
+is not warranted. This would be different if the property was mandatory,
+but that is not the case here.
+
+There are lots of other functions in the kernel where return values
+are not checked, for a variety of reasons. Functions where checking
+the return value is necessary/mandatory are tagged with __must_check.
+For others it is left to the caller to decide if a return value
+should be checked, and if it makes sense / adds value to add (void).
+
+I'll give you another example: cancel_work_sync() and related functions.
+I am sure your static analyzer will complain about the failure to check
+its return value in almost all cases. A counter-example is, say,
+platform_driver_register(), where the return value should really be
+checked and a (void) typecast should be used if it is not checked on
+purpose. The problem is that static analyzers can not determine if
+the return value check is necessary, and should either leave it alone
+or make reports conditional on some command line option.
+
+Overall we'll have to agree to disagree.
+
+Thanks,
+Guenter
