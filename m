@@ -2,111 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190C54D9B6D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 13:43:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAEA4D9B82
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 13:48:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245326AbiCOMon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 08:44:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35514 "EHLO
+        id S1348446AbiCOMtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 08:49:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235627AbiCOMom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 08:44:42 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6369033EAD
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 05:43:30 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-2dbd97f9bfcso199606887b3.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 05:43:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20210112.gappssmtp.com; s=20210112;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zM7PG/RdRHw9f6iBibZ0hDNw+hF+S/2aL5rwx9V5Hc4=;
-        b=nR1qrXaPmooiwTywf1pOo2XV8jI1aj+ALhV1WYrZn8Bzit9fW9AkhOG0+z7MOxAjh1
-         iqTMLE8f8HzEoR35CgDLZzU0x1YPDlaLtonEqs9Iy91kn52Z/+eCH6IkbFQPKpsL45/t
-         ihJl/3hcliojHC4Bba1/Y7IsjIJX9NCsJ/zUG5GKDT/Wcn7YD0Uwgq2a0kK4ye807Bc5
-         78oVtw5/voG4BakSHOOLW+RH2YpWTZMd21BFkVgioDCwuQq/aj2Wu9gsTzuO67FFaNIu
-         VT9DNke3Hl0zWtAQr554hmchGXyzYveuj+5IJd0+2DUzQ8gqm4qCnQ4KtLqSAJuenwaI
-         eFvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zM7PG/RdRHw9f6iBibZ0hDNw+hF+S/2aL5rwx9V5Hc4=;
-        b=gtkdhmjulxjFxsz7Kr/+cs9u0Uj2uppqcB8XLiHQpwu38V4C9Tsr/tO7tQdF84zjnK
-         6ZdJs17kqQqV4eQ1FJpO02mdb9MVdLEsVtvb5tVBoM705Qi/R1M+Gr/8uLzPwpqFQ8l7
-         HNI9jSBMPCyuLzI1SPajA30gegQYI3wNmCr2wdcv1Wn/2mTuTSyVnH9OhxrBzj/PnZyR
-         xJMyyp3GvjDVILbFVkt+gEQvBBJ4sMEKq6uA/vkSh+po6Ip+FRLWpxj5GtQwY/foO3Qk
-         qI401eO0oAoKCc1VipLWqHMdV5iEQFJGrJP3v9pKbrXm3ukZjq0rfnR96IgXf5OxCTGQ
-         A6iA==
-X-Gm-Message-State: AOAM530x0DAbkGiaXPM2wNCs+8AXu1W2+DLF/OXTfarpddiZ5mg7K7JF
-        7PqEtSccqggh8JBvrCJ0wC8JqhJVTa9tepnnnNnfEn4PWvoyuA==
-X-Google-Smtp-Source: ABdhPJyazqAxW0/G7WqBT80tfyS+1LBtCC3BjhRKfI/GlPsN1UNW//Fy3MNB2ipKA2wpPQtmC2JXOlJLZOMZ75di+uk=
-X-Received: by 2002:a81:1182:0:b0:2dc:4e58:da41 with SMTP id
- 124-20020a811182000000b002dc4e58da41mr24091863ywr.268.1647348209540; Tue, 15
- Mar 2022 05:43:29 -0700 (PDT)
+        with ESMTP id S1348445AbiCOMtL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 08:49:11 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A453BF4C
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 05:47:55 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkvn5pty0gzs3nltj987t-3.rev.dnainternet.fi [IPv6:2001:14ba:4457:9640:1e2d:1f75:a607:ef37])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id C1D4720B35;
+        Tue, 15 Mar 2022 14:47:43 +0200 (EET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1647348463;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=cHbHWIO3v/4uzPK/vNJivbMFMVvCAB+Og4bwZt72Fow=;
+        b=W3VXlMy7kx79MIxDDNfIkNPb6paFeUue6rlQZyIuwaY4yKS/8WR83aBtrXNOmlUiEdeM+p
+        HLpY4EZTirHAQdfg7xG86HsQN3WKlV0LoCJT0yzQe7XoTQiJ8ywI1v3vWoYW16yPdZ8GT+
+        Q6qdfwbqaJ8O3A55JbH1poixw95NGLE=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 4D01B634C91;
+        Tue, 15 Mar 2022 14:47:43 +0200 (EET)
+Date:   Tue, 15 Mar 2022 14:47:43 +0200
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        jeanmichel.hautbois@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
+        paul.elder@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
+        <linux-media@vger.kernel.org>, robh@kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/8] media: dt-bindings: i2c: Document ov5670
+Message-ID: <YjCK75F7Xmiy8nGF@valkosipuli.retiisi.eu>
+References: <20220314162714.153970-1-jacopo@jmondi.org>
+ <20220314162714.153970-2-jacopo@jmondi.org>
+ <ba09e048-d619-5bd2-e6c3-da071a6d2ab6@canonical.com>
+ <YjBHVY/clnMUlNFj@valkosipuli.retiisi.eu>
+ <58745ae2-40be-65f6-bea6-f62d8935719f@canonical.com>
 MIME-Version: 1.0
-References: <20220311083323.887372-1-s.hauer@pengutronix.de>
- <20220311083323.887372-23-s.hauer@pengutronix.de> <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
-In-Reply-To: <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Tue, 15 Mar 2022 12:43:18 +0000
-Message-ID: <CAPj87rM4StzGMqPfK=j5p0-mY2=ENZnZWx9QDL_jo8SzNTXWTQ@mail.gmail.com>
-Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <58745ae2-40be-65f6-bea6-f62d8935719f@canonical.com>
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1647348463; a=rsa-sha256; cv=none;
+        b=ZsUET/5Rqo72w6Hqz65ZwURFh9blVjkyhCeVacvcQV2zz+efufHERVaOrQ4bVK8Gqxmbx9
+        W55P5SsWiDivVlQZV0QjX+bAv/HB5UF8PELWN0ajPPwPJ1sYwXmW/WxXkViIhOKdWhPcJg
+        glLRz0eliq/z/4S19dOFcasTRYxws3Q=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1647348463;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=cHbHWIO3v/4uzPK/vNJivbMFMVvCAB+Og4bwZt72Fow=;
+        b=SXXbz1WCHCpNKWqX6nr8UhZyY4cSzW5fTADHMqpWyjrPRol516TapQOgCwJJ9yuAJW4TNR
+        xuL6YV6DYpE+Cq/Mk2DsEj3hQQBSqWDReINiZ4GJ3CFqo6BxGQO+ox466PMt8MN8WjGpNA
+        WSvBAJWMkLKr/se74AzdWArk0IQCXqk=
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Tue, Mar 15, 2022 at 09:03:41AM +0100, Krzysztof Kozlowski wrote:
+> On 15/03/2022 08:59, Sakari Ailus wrote:
+> > Hi Krzysztof, Jacopo,
+> > 
+> > On Tue, Mar 15, 2022 at 08:32:58AM +0100, Krzysztof Kozlowski wrote:
+> >> On 14/03/2022 17:27, Jacopo Mondi wrote:
+> >>> Provide the bindings documentation for Omnivision OV5670 image sensor.
+> >>>
+> >>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> >>>
+> >>> ---
+> >>> v1->v2 (comments from Krzysztof)
+> >>>
+> >>> - Rename to include manufacturer name
+> >>> - Add entry to MAINTAINERS
+> >>> - Add maxItems: to -gpios properties
+> >>> - Use common clock properties
+> >>> - Use enum: [1, 2] for data lanes
+> >>> - Fix whitespace issue in example
+> >>> ---
+> >>>
+> >>>  .../bindings/media/i2c/ovti,ov5670.yaml       | 99 +++++++++++++++++++
+> >>>  MAINTAINERS                                   |  1 +
+> >>>  2 files changed, 100 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..73cf72203f17
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> >>> @@ -0,0 +1,99 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: Omnivision OV5670 5 Megapixels raw image sensor
+> >>> +
+> >>> +maintainers:
+> >>> +  - Jacopo Mondi <jacopo@jmondi.org>
+> >>> +
+> >>> +description: |-
+> >>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
+> >>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
+> >>> +  controlled through an I2C compatible control bus.
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    const: ovti,ov5670
+> >>> +
+> >>> +  reg:
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  assigned-clocks: true
+> >>> +  assigned-clock-parents: true
+> >>> +  assigned-clock-rates: true
+> >>
+> >> You should not need these. These are coming with schema. You can add
+> >> these to example schema below and double-check.
+> > 
+> > They should probably be required actually.
+> 
+> Why required? The hardware can work with different clocks, get their
+> rate and configure internal PLLs/clocks to new value. Having it required
+> might have sense for current implementation of driver but this is
+> independent of bindings. Bindings do not describe driver, but hardware.
 
-On Tue, 15 Mar 2022 at 06:46, Andy Yan <andy.yan@rock-chips.com> wrote:
-> On 3/11/22 16:33, Sascha Hauer wrote:
-> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
-> > board. Overlay support is tested with the modetest utility. AFBC support
-> > on the cluster windows is tested with weston-simple-dmabuf-egl on
-> > weston using the (yet to be upstreamed) panfrost driver support.
->
-> Do we need some modification to test AFBC by weston-simple-dma-egl ?
->
-> I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
->
-> After launch weston, I run weston-simple-dmabuf-egl, but from the output
->
-> of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0,
-> which is
->
-> a non-AFBC window.
->
-> Do i need to modify the vop2 driver to set one Cluster window as primary
-> plane?
+We've had this discussion before and the result of that was this (see
+"Handling clocks"):
 
-Are you using the open-source Panfrost driver, or the proprietary Arm
-DDK? The DDK was previously using some non-standard modifier tokens
-which have since been corrected upstream.
+Documentation/driver-api/media/camera-sensor.rst
 
-You can see from running `weston-debug drm-backend` (if you start
-Weston with `--debug`) the output as it tries to put client surfaces
-on to overlay planes, and why it can or cannot.
+> 
+> >>
+> >>> +
+> >>> +  clocks:
+> >>> +    description: System clock. From 6 to 27 MHz.
+> >>> +    maxItems: 1
+> >>> +
+> >>> +  pwdn-gpios:
+> >>> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
+> >>
+> >> This does not look like a standard property, so you need a vendor prefix.
+> > 
+> > The similarly named property exists elsewhere. I wouldn't use a vendor
+> > prefix, also for the reason that the functionality is quite common. I guess
+> > alternative name would be possible, too --- "shutdown" seems to be more
+> > common.
+> 
+> It exists in three bindings, so it is not a standard property...
+> although something closer to standard is "powerdown-gpios" so maybe just
+> use that one?
 
-For Weston's own composited output (used when it cannot place client
-surfaces on to planes), it will just use whatever the KMS driver
-declares as the primary plane. Weston does not have any logic to say
-'oh, this plane is AFBC and AFBC is better, so I will use this as my
-primary plane': we just follow what the kernel tells us.
+Seems like a better choice.
 
-Cheers,
-Daniel
+-- 
+Sakari Ailus
