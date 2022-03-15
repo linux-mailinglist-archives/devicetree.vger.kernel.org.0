@@ -2,83 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E484D90C6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 01:04:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC2A54D90DC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 01:08:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S241263AbiCOAFL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 20:05:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55460 "EHLO
+        id S241221AbiCOAJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 20:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240307AbiCOAFK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 20:05:10 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 099A01B79C
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 17:04:00 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-2db2add4516so184397367b3.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 17:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uBOnam2LmZQW2iGFg9CBW+HsB6A0zqMq1JQjc15BdrY=;
-        b=kV6sjpLvuiLYILgw11J6c2F3cs2E6pglb4HQKqoJjPHloObdr+kX2o43qiXd6CwdhT
-         atjIXK8dhLnxY4cePB/3W/hhBeYuGv5EEV4Z033tXRgeIdTY7P3a1d4NYAC3YLxn0Oce
-         ePk6/3qZpAvFWaOgAtmBhd/m80vrd0QpJ8q1Xsiq4XvlVtzm6MmTRCII1wRbPk8jiLz/
-         K4PCHprLOCTacohkWJRrAJ81GB7I+eLOxaSDGMHw7GvGEA/gSOvMiFobg1V3m9sLmYaa
-         Ar/graUrTeugI7AMRIR7gA1w3G6lpcazu5UOWkGGaiaZi6im12ZaTHRhNc5KUOsMs+mM
-         2u0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uBOnam2LmZQW2iGFg9CBW+HsB6A0zqMq1JQjc15BdrY=;
-        b=XSbdRLKyeFuUiW1b7xmIFrkkhwBrd7+NCJwkOGlyA4EFvrTzPvzRjF5ZUJ1xQbI1A4
-         xqACYhCzS9qWTOXqD8EG0vliMMUz7sgpZKk8gfoDw+5pwg6hksin2vsasXsIr4bo97nA
-         A8yKHJqpeKyscP0lF2wRy14eSaMnUpz4oPCghOJsLpfRQnjCACuZ/W+sNzQ05EWMLc1G
-         XPaSQuTuCECRpKYR80VxS67ewQgcS1tVNZujyndoTOU861IdcKD4oX8I89RlRLflrKUC
-         3IKkGSWYcyvx89yQ2D7do6iSWtjztHFkXJTvO0HsNbtOabf5Rb9HyOsrx0A+18Nvf+VI
-         SuMQ==
-X-Gm-Message-State: AOAM532pLJ//QUhaFvSSK3/RdCg2J8hoM5y9Jxy1+aMdac/zupoeTjme
-        bZVts7nnuQfFcvn8+5NlJ1lM//5DKQB0bJVOalAKHQ==
-X-Google-Smtp-Source: ABdhPJwUmMNGA86iugQC3ZrPytxozSLtLfREZBKKlRlmfuMosXaH7HXHMVOD5CEtg7vcd65ZAWzHgWz+UrKe17kgzSA=
-X-Received: by 2002:a05:690c:9b:b0:2e4:da22:2a71 with SMTP id
- be27-20020a05690c009b00b002e4da222a71mr15687703ywb.126.1647302639271; Mon, 14
- Mar 2022 17:03:59 -0700 (PDT)
+        with ESMTP id S234687AbiCOAJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 20:09:19 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 232E812AD4;
+        Mon, 14 Mar 2022 17:08:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=hjc1wSULAHmSnqSWyk1Jh6G8h6LbSfqbgChoiSOzNYY=; b=wYcFHObBr4e8N5sHddrfmp8wtN
+        nSDS3Q+J59ltMaK6iPh77q/yxGiv48RYeQP9VasRwTwu/SDGiC1AjEQbK92rcB7LIper4E/8Ld6zG
+        Gm2ieJxKqtsLsq4SEJi5+RxmISylGLiSYFBwM+WgqRlDtQN/dDs2Mmus69tGQsXqj12M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nTuj4-00ApuJ-St; Tue, 15 Mar 2022 01:07:46 +0100
+Date:   Tue, 15 Mar 2022 01:07:46 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        adrian.hunter@intel.com, thomas.petazzoni@bootlin.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings
+ for AC5
+Message-ID: <Yi/Y0iynQbIOo8C0@lunn.ch>
+References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+ <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-References: <20220228010103.2725893-1-peng.fan@oss.nxp.com> <20220228010103.2725893-2-peng.fan@oss.nxp.com>
-In-Reply-To: <20220228010103.2725893-2-peng.fan@oss.nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 15 Mar 2022 01:03:48 +0100
-Message-ID: <CACRpkdZw9MG-6gphnJqi1R=9YHWffJstxjJHNHu=DrdHYCGsNA@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] pinctrl: imx93: Add pinctrl driver support
-To:     "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc:     aisheng.dong@nxp.com, festevam@gmail.com, shawnguo@kernel.org,
-        stefan@agner.ch, robh+dt@kernel.org, kernel@pengutronix.de,
-        linux-imx@nxp.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jacky Bai <ping.bai@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Feb 28, 2022 at 1:59 AM Peng Fan (OSS) <peng.fan@oss.nxp.com> wrote:
+> +    properties:
+> +      marvell,function:
+> +        $ref: "/schemas/types.yaml#/definitions/string"
+> +        description:
+> +          Indicates the function to select.
+> +        enum: [ gpio, i2c0, i2c1, nand, sdio, spi0, spi1, uart0, uart1, uart2, uart3 ]
+> +
+> +      marvell,pins:
+> +        $ref: /schemas/types.yaml#/definitions/string-array
+> +        description:
+> +          Array of MPP pins to be used for the given function.
+> +        minItems: 1
 
-> From: Jacky Bai <ping.bai@nxp.com>
->
-> Add i.MX93 pinctrl driver
->
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+Now that i've looked at the .txt files, i'm wondering if this should
+be split into a marvell,mvebu-pinctrl.yaml and
+marvell,ac5-pinctrl.yaml?
 
-Patch applied.
+I don't know yaml well enough to know if this is possible. All the
+mvebu pinctrl drivers have marvell,function and marvell,pins. The enum
+will differ, this ethernet switch SoC does not have sata, audio etc,
+where as the general purpose Socs do. Can that be represented in yaml?
 
-Yours,
-Linus Walleij
+      Andrew
