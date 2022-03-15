@@ -2,86 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 458F54D9559
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:33:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94A724D956F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 08:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345452AbiCOHe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 03:34:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40516 "EHLO
+        id S239389AbiCOHiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 03:38:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50684 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345498AbiCOHeZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:34:25 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE771E6A
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 00:33:03 -0700 (PDT)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 7F91940329
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 07:33:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647329581;
-        bh=SV2UTHDm29TdFZJH1h2mBGhiPhGr+9tNpA2QsBF0jyc=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=sUFBwoEiL6EQbh2R8g2wOjizGa4QGkde6OrT4RHRipn7cGISRTx//ehOThcTxGq39
-         SKNI2TzXUqo3T2zCmiN22rO4ejZU7jLnCg8+1eo5sPOl2RK1tUi4A4WraSwNR5gjm/
-         7V8llrS16a+SiC1pKKcgHpQPBT+5iGKRkWghrLwRllNT45iIO7kbFr/WxvIcSzMYpM
-         uU5PSZEL8xIdxd76tqa0QPy+sXZizl3qqtVEdYnv2auV81EcoQ8O1gopfux33GsD9F
-         i7Y89DoFIcxJw+1a47BjRZ6UdWujrGpJGu2cPnPqvdSyMA2pTf77tWxIzHGVZrWwi4
-         dffTzyNhxkzKA==
-Received: by mail-ej1-f69.google.com with SMTP id q22-20020a1709064cd600b006db14922f93so9188635ejt.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 00:33:01 -0700 (PDT)
+        with ESMTP id S235018AbiCOHiV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 03:38:21 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 332D34B40B;
+        Tue, 15 Mar 2022 00:37:10 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id e24so27517594wrc.10;
+        Tue, 15 Mar 2022 00:37:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=OwoeDvRtQzvS4dvZsnQa2LZQBqsCmVjqhnox0xSOPkw=;
+        b=A/s2nId2x/GkAj2vEU2y8bRnLG9OvetGVYTPr+1AqYHaW2KbbUa3CpX5L18HfhmEeX
+         QrJwSca/SM4hKwYCqLWABiG7HDLqm147giJ1lXnRH0s4eTUnCaCBDT28SmPcvtdVqRO1
+         6d097scoNQkPCkZ7roE+1YKOp85wW3PzQDCG3WndvgOyULIDsh9/R61IWXZ9BLdxUpDL
+         r1Pfqp9DjaJYf/EaeuW2vO7mQr6zXF2pt04vRBauF0Osf2/U5w7ruOTQoyHenQ6Djpe3
+         W5Jzt8yrl6T81gDttWw0R+EHDi4IbxauzND+9DdW7UcyZW88do/68ZOKEA0L7/vDVSPX
+         MQSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SV2UTHDm29TdFZJH1h2mBGhiPhGr+9tNpA2QsBF0jyc=;
-        b=eFpeBmcmsie2q2WB+IVpdoYOrWng/isLN31MjGH+WD+MUjDIDoVtR27ssVURw6xrM/
-         p/kXsTv6PGRiuc2h7glQsineutoZ5nnGopYUlUivobnXriLu30QWJ9S2i5FBk+iuUNqH
-         C9ncZhj+hZR3ea631uiELDyZnbA5OsacpQkwnm0s/Z7U1/FG4wpI0R1+QTJ+VBTufiCG
-         Hb2yAI6RVKcr7DyfHeHfkPv2cE0bIIwibt3HX6tG0aHefRC7ZOCqVRcj3tLag+Hy+hKL
-         Tba2851152O2o+H6flpHp3LY0e5RFcaj50lPr/19JXze4O/Dy2iBBviSmrD7VTrCHX4D
-         V7Zw==
-X-Gm-Message-State: AOAM5314TGLBn6c3efZkueKSZaoiGPwoALJ93dbI7zbj+jbLwCefqkYu
-        BUBWSbOlHXe29K6Fixjc7ZpiDUeKxZMr8/uFuvJrZ4y9JUqE6X26BpT2VbaTnJeI9T6SP6aEGhh
-        3v49u1IRcd0qAivkDt6Vt8h73vMb3S1yZfmEKB4Y=
-X-Received: by 2002:a17:907:d20:b0:6d7:1a45:c1ed with SMTP id gn32-20020a1709070d2000b006d71a45c1edmr20855070ejc.447.1647329580324;
-        Tue, 15 Mar 2022 00:33:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyrszn0BOZqvxe77cGVmY2rxwKxvK3Ef/M0iTJ3u9ds3NiixHlWuiMTRgQwWyCGq5KscJeIqw==
-X-Received: by 2002:a17:907:d20:b0:6d7:1a45:c1ed with SMTP id gn32-20020a1709070d2000b006d71a45c1edmr20855059ejc.447.1647329580122;
-        Tue, 15 Mar 2022 00:33:00 -0700 (PDT)
-Received: from [192.168.0.153] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id a1-20020aa7d901000000b00416217c99bcsm9103884edr.65.2022.03.15.00.32.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Mar 2022 00:32:59 -0700 (PDT)
-Message-ID: <ba09e048-d619-5bd2-e6c3-da071a6d2ab6@canonical.com>
-Date:   Tue, 15 Mar 2022 08:32:58 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=OwoeDvRtQzvS4dvZsnQa2LZQBqsCmVjqhnox0xSOPkw=;
+        b=WsSBmOjHQc8Zb8OSNgNVme5ZshTMwhKgkXzFQnzDsNlJ3uq2TnsFr8W5GaFrsRwyhF
+         yB4M+t2lsczW1QlhzaMYKN9/TmBdQsnlzMkNXsqJPqdfhCVO+8pM30ig9PX5e2ouY9Hm
+         mZnCI1+gxRXPFy060Pn3cDjd9QDx1AwleRW9XCWNAjD6iqH2JrpOz227/AoqAetyjvFv
+         TRj8LvZu6PA2EnzgZ7Qxldk+GTHUUBU6wMVqBXkJ2VaxXfqVigtr7BqwVYb+kgRmTIpi
+         QyQ5204bTPWhOUlaHAYwdOsKEBBAc/CiHamqQPbVisj6iuEtFmp6ShnYD8vRjK2f1Dk4
+         spXA==
+X-Gm-Message-State: AOAM532xXwXaRTHcMBZV9vLoSumcDqHiAUn/H9Kw1swUtHfBXC9rHoso
+        7oPY25NhnZr0nnJFqtESnZM=
+X-Google-Smtp-Source: ABdhPJymNcUXpDAqZozSiaRLyRNNamAjYT4dnA0x5ZUi9ppHEM+ePeFNANf29fx9v1CjoZEtzlv/GQ==
+X-Received: by 2002:a5d:5449:0:b0:1f0:1a0c:963f with SMTP id w9-20020a5d5449000000b001f01a0c963fmr18612606wrv.98.1647329828611;
+        Tue, 15 Mar 2022 00:37:08 -0700 (PDT)
+Received: from Red ([2a01:cb1d:3d5:a100:264b:feff:fe03:2806])
+        by smtp.googlemail.com with ESMTPSA id u11-20020a05600c19cb00b00389efe9c512sm1574404wmq.23.2022.03.15.00.37.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 00:37:08 -0700 (PDT)
+Date:   Tue, 15 Mar 2022 08:37:06 +0100
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Petr =?utf-8?Q?=C5=A0tetiar?= <ynezz@true.cz>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Bastien =?iso-8859-1?Q?Roucari=E8s?= <rouca@debian.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, stable@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] Revert "ARM: dts: sun7i: A20-olinuxino-lime2: Fix
+ ethernet phy-mode"
+Message-ID: <YjBCImqGsbIZ3IF4@Red>
+References: <20220308125531.27305-1-ynezz@true.cz>
+ <20220315072846.GA9129@meh.true.cz>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/8] media: dt-bindings: i2c: Document ov5670
-Content-Language: en-US
-To:     Jacopo Mondi <jacopo@jmondi.org>,
-        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>
-Cc:     jeanmichel.hautbois@ideasonboard.com,
-        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
-        sakari.ailus@iki.fi, paul.elder@ideasonboard.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
-        <linux-media@vger.kernel.org>, robh@kernel.org,
-        devicetree@vger.kernel.org
-References: <20220314162714.153970-1-jacopo@jmondi.org>
- <20220314162714.153970-2-jacopo@jmondi.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220314162714.153970-2-jacopo@jmondi.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20220315072846.GA9129@meh.true.cz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,75 +79,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 17:27, Jacopo Mondi wrote:
-> Provide the bindings documentation for Omnivision OV5670 image sensor.
+Le Tue, Mar 15, 2022 at 08:28:58AM +0100, Petr Štetiar a écrit :
+> Petr Štetiar <ynezz@true.cz> [2022-03-08 13:55:30]:
 > 
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> Hi Greg,
 > 
-> ---
-> v1->v2 (comments from Krzysztof)
+> one week has passed and as I didn't received any feedback, I'm providing more
+> details in a hope to make it more clear, why I think, that this fix is wrong
+> and should be reverted in LTS kernels 5.10 and 5.15.
 > 
-> - Rename to include manufacturer name
-> - Add entry to MAINTAINERS
-> - Add maxItems: to -gpios properties
-> - Use common clock properties
-> - Use enum: [1, 2] for data lanes
-> - Fix whitespace issue in example
-> ---
+> > This reverts commit 55dd7e059098ce4bd0a55c251cb78e74604abb57 as it breaks
+> > network on my A20-olinuxino-lime2 hardware revision "K" which has Micrel
+> > KSZ9031RNXCC-TR Gigabit PHY. Bastien has probably some previous hardware
+> > revisions which were based on RTL8211E-VB-CG1 PHY and thus this fix was
+> > working on his board.
 > 
->  .../bindings/media/i2c/ovti,ov5670.yaml       | 99 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 100 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+> Disclaimer, I don't own A20-olinuxino-lime2 board with earlier HW revisions
+> G/G1/G2 utilizing RTL8211E PHY.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-> new file mode 100644
-> index 000000000000..73cf72203f17
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
-> @@ -0,0 +1,99 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Omnivision OV5670 5 Megapixels raw image sensor
-> +
-> +maintainers:
-> +  - Jacopo Mondi <jacopo@jmondi.org>
-> +
-> +description: |-
-> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
-> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
-> +  controlled through an I2C compatible control bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: ovti,ov5670
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  assigned-clocks: true
-> +  assigned-clock-parents: true
-> +  assigned-clock-rates: true
+> My understanding is, that up to kernel version 5.9 and specifically commit
+> bbc4d71d6354 ("net: phy: realtek: fix rtl8211e rx/tx delay config") it was
+> likely possible to use same DTS for A20-olinuxino-lime2 with KSZ9031 or
+> RTL8211E PHYs (all HW revisions).
+> 
+> At least I was using my A20-olinuxino-lime2 HW revision K with KSZ9031 PHY
+> just fine with 4.19 kernel. After upgrade to 5.10 LTS kernel my network
+> stopped working, reverting stable backport commit a90398438517 ("ARM: dts:
+> sun7i: A20-olinuxino-lime2: Fix ethernet phy-mode") fixed it.
+> 
+> From my POV proper fix for earlier HW revisions G/G1/G2 is introduction of
+> sun7i-a20-olinuxino-lime2-revG.dts with a proper `phy-mode` for RTL8211E PHY.
+> 
+> Cheers,
+> 
+> Petr
+> 
 
-You should not need these. These are coming with schema. You can add
-these to example schema below and double-check.
+Hello
 
-> +
-> +  clocks:
-> +    description: System clock. From 6 to 27 MHz.
-> +    maxItems: 1
-> +
-> +  pwdn-gpios:
-> +    description: Reference to the GPIO connected to the PWDNB pin. Active low.
+If your patch is applied, older revisions will stop working, right ?
 
-This does not look like a standard property, so you need a vendor prefix.
+What about adding a new dtb like sun7i-a20-olinuxino-lime2-revk.dts ?
 
-> +    maxItems: 1
-> +
+Regards
 
-Best regards,
-Krzysztof
+> > Cc: stable@vger.kernel.org
+> > Cc: Bastien Roucariès <rouca@debian.org>
+> > References: https://github.com/openwrt/openwrt/issues/9153
+> > References: https://github.com/OLIMEX/OLINUXINO/blob/master/HARDWARE/A20-OLinuXino-LIME2/hardware_revision_changes_log.txt
+> > Signed-off-by: Petr Štetiar <ynezz@true.cz>
+> > ---
+> >  arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> > index ecb91fb899ff..8077f1716fbc 100644
+> > --- a/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> > +++ b/arch/arm/boot/dts/sun7i-a20-olinuxino-lime2.dts
+> > @@ -112,7 +112,7 @@ &gmac {
+> >  	pinctrl-names = "default";
+> >  	pinctrl-0 = <&gmac_rgmii_pins>;
+> >  	phy-handle = <&phy1>;
+> > -	phy-mode = "rgmii-id";
+> > +	phy-mode = "rgmii";
+> >  	status = "okay";
+> >  };
+> 
