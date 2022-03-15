@@ -2,237 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B31D24D9D7E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:27:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 288434D9D7F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:29:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349107AbiCOO2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 10:28:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59490 "EHLO
+        id S245565AbiCOOaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 10:30:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233525AbiCOO2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:28:17 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 32B8655201;
-        Tue, 15 Mar 2022 07:27:05 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.90,183,1643641200"; 
-   d="scan'208";a="113582360"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 15 Mar 2022 23:27:04 +0900
-Received: from localhost.localdomain (unknown [10.226.92.209])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id E97314325469;
-        Tue, 15 Mar 2022 23:27:02 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 7/7] arm64: dts: renesas: Add initial device tree for RZ/G2UL Type-1 SMARC EVK
-Date:   Tue, 15 Mar 2022 14:26:44 +0000
-Message-Id: <20220315142644.17660-8-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220315142644.17660-1-biju.das.jz@bp.renesas.com>
-References: <20220315142644.17660-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S233525AbiCOOaQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:30:16 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1457344779;
+        Tue, 15 Mar 2022 07:29:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=GxMzfNRQtZ04+lHo/O1UCEwaB2Ydbfpf2yzGh5HPxHc=; b=olC8YY+DSx6sXmlZVmrtQDGF50
+        04E3CKz3W/4CMUH8fsWmF8Mu0+RcSMZEzzPIkruCbYjw5rkXzg0lzMSycIvLuXicr9N9VEON67G9l
+        lxmB3rRgBHTIH85AAh/Vjr9VDBs+sZLs3TteZ/CveoanmoAm0TA4/npRKzTXwCXWz8Xg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nU8AM-00AyZC-FB; Tue, 15 Mar 2022 15:28:50 +0100
+Date:   Tue, 15 Mar 2022 15:28:50 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 7/8] arm64: dts: marvell: Add Armada 98DX2530 SoC and
+ RD-AC5X board
+Message-ID: <YjCiot+PSv3ZRS4J@lunn.ch>
+References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+ <20220314213143.2404162-8-chris.packham@alliedtelesis.co.nz>
+ <Yi/cyUJ6oIs96UW2@lunn.ch>
+ <7b78853e-71ec-7c57-4cac-5cd6303f3b13@alliedtelesis.co.nz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7b78853e-71ec-7c57-4cac-5cd6303f3b13@alliedtelesis.co.nz>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for RZ/G2UL SMARC EVK (based on R9A07G043U11):
-- memory
-- External input clock
-- CPG
-- DMA
-- SCIF
+On Tue, Mar 15, 2022 at 02:11:56AM +0000, Chris Packham wrote:
+> 
+> On 15/03/22 13:24, Andrew Lunn wrote:
+> >> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+> >> new file mode 100644
+> >> index 000000000000..ebe464b9ebd2
+> >> --- /dev/null
+> >> +++ b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+> >> @@ -0,0 +1,343 @@
+> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> >> +/*
+> >> + * Device Tree For AC5.
+> >> + *
+> >> + * Copyright (C) 2021 Marvell
+> >> + *
+> >> + */
+> >> +
+> >> +/dts-v1/;
+> >> +	memory@0 {
+> >> +		device_type = "memory";
+> >> +		reg = <0x2 0x00000000 0x0 0x40000000>;
+> >> +		// linux,usable-memory = <0x2 0x00000000 0x0 0x80000000>;
+> >> +	};
+> > Is the memory part of the SoC, or is it on the board? Normally it is
+> > on the board, so should be in the .dts file. But Apple M1 etc...
 
-It shares the same carrier board with RZ/G2L, but the pin mapping is
-different. Disable the device nodes which are not tested and delete the
-corresponding pinctrl definitions.
+> I also wasn't sure about linux,usable-memory. It's commented out so it's 
+> obviously doing nothing but should it? No other in-tree dts files have it.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v2->v3:
- * Replaced CONFIG_ARCH_R9A07G043U->CONFIG_ARCH_R9A07G043
- * Renamed SoC file r9a07g043u.dtsi->r9a07g043.dtsi
-v1->v2:
- * Changed soc compatible from r9a07g043u->r9a07g043.
----
- arch/arm64/boot/dts/renesas/Makefile          |   2 +
- .../boot/dts/renesas/r9a07g043u11-smarc.dts   | 111 ++++++++++++++++++
- .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    |  25 ++++
- 3 files changed, 138 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
- create mode 100644 arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+Hi Chris
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index d000f6b131dc..fa9811251fd7 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -75,6 +75,8 @@ dtb-$(CONFIG_ARCH_R8A77961) += r8a779m3-ulcb-kf.dtb
- 
- dtb-$(CONFIG_ARCH_R8A77965) += r8a779m5-salvator-xs.dtb
- 
-+dtb-$(CONFIG_ARCH_R9A07G043) += r9a07g043u11-smarc.dtb
-+
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044c2-smarc.dtb
- dtb-$(CONFIG_ARCH_R9A07G044) += r9a07g044l2-smarc.dtb
- 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-new file mode 100644
-index 000000000000..aaa29f83e84c
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043u11-smarc.dts
-@@ -0,0 +1,111 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G2UL Type-1 SMARC EVK board
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+/dts-v1/;
-+#include "r9a07g043.dtsi"
-+#include "rzg2ul-smarc-som.dtsi"
-+#include "rz-smarc-common.dtsi"
-+
-+/ {
-+	model = "Renesas SMARC EVK based on r9a07g043u11";
-+	compatible = "renesas,smarc-evk", "renesas,r9a07g043u11", "renesas,r9a07g043";
-+};
-+
-+&canfd {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ehci0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ehci1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&hsusb {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&i2c0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&i2c1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+
-+	wm8978: codec@1a {
-+		compatible = "wlf,wm8978";
-+		#sound-dai-cells = <0>;
-+		reg = <0x1a>;
-+	};
-+};
-+
-+&ohci0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ohci1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&phyrst {
-+	status = "disabled";
-+};
-+
-+&scif0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+};
-+
-+&sdhi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-1;
-+	/delete-property/ pinctrl-names;
-+	/delete-property/ vmmc-supply;
-+	status = "disabled";
-+};
-+
-+&spi1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&ssi0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&usb2_phy0 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-+
-+&usb2_phy1 {
-+	/delete-property/ pinctrl-0;
-+	/delete-property/ pinctrl-names;
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-new file mode 100644
-index 000000000000..3bbb8fcd604c
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
-@@ -0,0 +1,25 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Source for the RZ/G2UL SMARC SOM common parts
-+ *
-+ * Copyright (C) 2022 Renesas Electronics Corp.
-+ */
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
-+
-+/ {
-+	chosen {
-+		bootargs = "ignore_loglevel";
-+	};
-+
-+	memory@48000000 {
-+		device_type = "memory";
-+		/* first 128MB is reserved for secure area. */
-+		reg = <0x0 0x48000000 0x0 0x38000000>;
-+	};
-+};
-+
-+&extal_clk {
-+	clock-frequency = <24000000>;
-+};
--- 
-2.17.1
+I've no idea what it means. Maybe search the SDK and see if they have
+some code and what it does. But i would drop it.
 
+     Andrew
