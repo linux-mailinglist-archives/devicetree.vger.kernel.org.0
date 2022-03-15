@@ -2,145 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DFA384D9C4C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:32:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 28A2F4D9C80
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 14:41:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348707AbiCONd1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 09:33:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50612 "EHLO
+        id S241115AbiCONmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 09:42:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44534 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343569AbiCONd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:33:26 -0400
-Received: from szxga02-in.huawei.com (szxga02-in.huawei.com [45.249.212.188])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 343F652E04;
-        Tue, 15 Mar 2022 06:32:14 -0700 (PDT)
-Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.57])
-        by szxga02-in.huawei.com (SkyGuard) with ESMTP id 4KHvRm5zvzzfZ0w;
-        Tue, 15 Mar 2022 21:30:44 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 15 Mar 2022 21:32:12 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Tue, 15 Mar 2022 21:32:11 +0800
-Subject: Re: [PATCH v21 1/5] kdump: return -ENOENT if required cmdline option
- does not exist
-To:     Baoquan He <bhe@redhat.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
- <20220227030717.1464-2-thunder.leizhen@huawei.com>
- <YjB/QILintgvo1AL@MiWiFi-R3L-srv> <YjCE0Scp2YiEJXBM@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <d237a2ae-300c-2c51-d97c-417bdfaa5fda@huawei.com>
-Date:   Tue, 15 Mar 2022 21:32:10 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        with ESMTP id S1348742AbiCONmS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 09:42:18 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D15FF52E60;
+        Tue, 15 Mar 2022 06:41:06 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 777DFB81681;
+        Tue, 15 Mar 2022 13:41:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B45D3C340F4;
+        Tue, 15 Mar 2022 13:41:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647351664;
+        bh=5GoPK5Absvivj6zbGvAbFgfXegOGh3wNX8cSwc4rE2Y=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=FFPImUwRJDbCvfgkde1ZiY2E0xqIjyt/nvkBKcHsOjugP7pKiun2GTEwDpXKDjgWd
+         qUCchZh0HdRwzgcAf45YNfb5V5Rz0QQfy/z7RKj/nkiS1b1VAcpGO6n1yLM9DDdyxg
+         gufGGq0vA4UVMec8WGGNppyO/+ljNlWuD2PGTsbHoVtqcfF952wuzQkx0dcufty8ex
+         7Wt6uJThbhFpuDZhDTSeZOewBpCQGFMtSoAsYXIGxwfLEJ81Wiu4DKSsf6stTOCnFG
+         oTDFe54ar9QIoh2ii89I/+1OHRskZ3kVrM0bZr4Jqlysk4Q5F/2ICmv3ccM1EduMWK
+         0LYb/Ks7S8lqA==
+From:   Mark Brown <broonie@kernel.org>
+To:     Leilk Liu <leilk.liu@mediatek.com>
+Cc:     devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20220315032411.2826-1-leilk.liu@mediatek.com>
+References: <20220315032411.2826-1-leilk.liu@mediatek.com>
+Subject: Re: (subset) [PATCH V4 0/6] spi: mediatek: add single/quad mode support
+Message-Id: <164735166243.3687547.12763908878922774952.b4-ty@kernel.org>
+Date:   Tue, 15 Mar 2022 13:41:02 +0000
 MIME-Version: 1.0
-In-Reply-To: <YjCE0Scp2YiEJXBM@MiWiFi-R3L-srv>
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2022/3/15 20:21, Baoquan He wrote:
-> On 03/15/22 at 07:57pm, Baoquan He wrote:
->> On 02/27/22 at 11:07am, Zhen Lei wrote:
->>> The crashkernel=Y,low is an optional command-line option. When it doesn't
->>> exist, kernel will try to allocate minimum required memory below 4G
->>> automatically. Give it a unique error code to distinguish it from other
->>> error scenarios.
->>>
->>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>> ---
->>>  kernel/crash_core.c | 3 +--
->>>  1 file changed, 1 insertion(+), 2 deletions(-)
->>>
->>> diff --git a/kernel/crash_core.c b/kernel/crash_core.c
->>> index 256cf6db573cd09..4d57c03714f4e13 100644
->>> --- a/kernel/crash_core.c
->>> +++ b/kernel/crash_core.c
->>> @@ -243,9 +243,8 @@ static int __init __parse_crashkernel(char *cmdline,
->>>  	*crash_base = 0;
->>>  
->>>  	ck_cmdline = get_last_crashkernel(cmdline, name, suffix);
->>> -
->>>  	if (!ck_cmdline)
->>> -		return -EINVAL;
->>> +		return -ENOENT;
->>
->> Firstly, I am not sure if '-ENOENT' is a right value to return. From the
->> code comment of ENOENT, it's used for file or dir?
->> #define ENOENT           2      /* No such file or directory */
-
-This error code does not return to user mode, so there is no problem.
-There are a lot of places in the kernel that are used this way. For example:
-
-int stop_one_cpu(unsigned int cpu, cpu_stop_fn_t fn, void *arg)
-{
-	if (!cpu_stop_queue_work(cpu, &work))
-		return -ENOENT;
-
->>
->> Secondly, we ever discussed the case including
->>  - no crashkernel=,low is provided;
->>  - messy code is provied, e.g crashkernel=aaaaaabbbb,low
+On Tue, 15 Mar 2022 11:24:05 +0800, Leilk Liu wrote:
+> This series of patches are based on spi for-next, and provide 6 patches to support MT7986.
 > 
-> Checking the 3rd pach, this is handled. Take back my below words,
-> continue reviewing.
-
-Yes.
-
+> v4:
+>  1. fix Rob comment in v3;
+>  2. use "mediatek,mt7986-spi-ipm","mediatek,spi-ipm"
 > 
->>
->> The 2nd one is not handled in this patchset. How about taking the
->> handling into another round of patches. This patchset just adds
->> crashkernel=,high purely.
->>
->>>  
->>>  	ck_cmdline += strlen(name);
->>>  
->>> -- 
->>> 2.25.1
->>>
->>
+> v3:
+>  1. add Rob Acked-by in "dt-bindings: spi: Add compatible for MT7986 with single mode";
+>  2. add a fix patch "spi: mediatek: support tick_delay without enhance_timing";
+>  3. fix Angelogioacchino comments;
+>  4. use mt7986 instead of ipm in dt-binding.
 > 
-> .
-> 
+> [...]
 
--- 
-Regards,
-  Zhen Lei
+Applied to
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/6] spi: mediatek: support tick_delay without enhance_timing
+      commit: 03b1be379dcee2e9c866c2a455a1a4a9581b3efd
+[2/6] dt-bindings: spi: Add compatible for MT7986
+      commit: da40a352db2bae470a3eea038cc53454c24e67f3
+[3/6] spi: mediatek: add ipm design support for MT7986
+      commit: 7e963fb2a33ce488e65258ab5be38a4855923033
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
