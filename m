@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEAB24DA483
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 22:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B0B4DA494
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 22:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1351957AbiCOVWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 17:22:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49710 "EHLO
+        id S241865AbiCOV0v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 17:26:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351948AbiCOVWG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 17:22:06 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7AE5BD16;
-        Tue, 15 Mar 2022 14:20:53 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 964461F42BCE
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647379252;
-        bh=qdT4s8k2Bmbtq4iZ3iouM38/nzELTwmnPF7JPOifUkI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=OeBy4qNcs6/B0BhypiDX7M6VKWZ9LYikZyrsTiRYSNdH6Ou81r1jD2cYiYodtoJJ9
-         v2XcSQM7mOtFu4qOVidIn9vS9KcgzHpDuawizS7APeT6ljIaef+nhag2WBiPfQ9nFS
-         3XRxMphMmITsidT0LgpJpUvCHGHl+PA1VZXjYjrgWAJ+yg5RSexvcW0OtF3FmVWMMS
-         orDB5m2HXdey+2Lugil7KoZdE0DcjgzTEXn3/EgCAZuW2agf2wG3flmPAkl1dxQlNw
-         S1D5lCWJPbPiV2VWBkz4MQK7QjlxQhzrt77274K6tT8ohIADkopHJF82N/iZZ8tUyR
-         FrjC1ikDul7jQ==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kernel@collabora.com,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH v1 4/4] dt-bindings: pinctrl: mt8192: Add gpio-line-names property
-Date:   Tue, 15 Mar 2022 17:19:36 -0400
-Message-Id: <20220315211936.442708-5-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220315211936.442708-1-nfraprado@collabora.com>
-References: <20220315211936.442708-1-nfraprado@collabora.com>
+        with ESMTP id S235170AbiCOV0v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 17:26:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EB245BD1F;
+        Tue, 15 Mar 2022 14:25:38 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id C91A2B818C2;
+        Tue, 15 Mar 2022 21:25:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65F90C340E8;
+        Tue, 15 Mar 2022 21:25:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647379535;
+        bh=a1DRy59KBSvpfBS/knLhFJ3ZhRJa4GK/pC3wt82Aazg=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=mFVNMHAbPL6IOWUZTbNqcg30Izqmcnx2wnhHjAwEhbr3Uh1MfOA5Xgveq14jaLmMY
+         +jx8sFq48rQJHZt3tRAUhgYmT5blF0kTKIw/K8RwIkGObtxi7STtKdp3MtspmGCcW0
+         Fos83M9XFosBM23PHGN/AOewfSOBBfFlmsVgPHZZWfMJHXw5tWultRIoEscuIP37O7
+         94MfPrKLYEWRuwDpHkS8VvwZVfqL1R58tEsRNhZGdMZFVFVnUOhhaFLgUHvT5QcKCp
+         ekSfd+c2j/eyGDwv01RrZTz0Go1QVlDZ9lWxGjooXQN5tYbkqpRxYZEnnwbgJLjSly
+         NdyLhc/4qI5Qg==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <YixV85yYNy+xxYEE@atomide.com>
+References: <20220204084339.12341-1-tony@atomide.com> <20220204084339.12341-2-tony@atomide.com> <20220311033439.15316C340EC@smtp.kernel.org> <YixV85yYNy+xxYEE@atomide.com>
+Subject: Re: [PATCH 1/5] ARM: dts: Add clock-output-names for omap4
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-omap@vger.kernel.org,
+        =?utf-8?q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Tero Kristo <kristo@kernel.org>,
+        linux-clk@vger.kernel.org
+To:     Tony Lindgren <tony@atomide.com>
+Date:   Tue, 15 Mar 2022 14:25:32 -0700
+User-Agent: alot/0.10
+Message-Id: <20220315212535.65F90C340E8@smtp.kernel.org>
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,29 +56,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the gpio-line-names optional property to the pinctrl-mt8192 binding
-to prevent dt_binding_check warnings when it is present in the pinctrl
-node in the Devicetree.
+Quoting Tony Lindgren (2022-03-12 00:12:35)
+> Hi,
+>=20
+> * Stephen Boyd <sboyd@kernel.org> [220311 03:33]:
+> > Quoting Tony Lindgren (2022-02-04 00:43:35)
+> > > To stop using the non-standard node name based clock naming, let's
+> > > first add the clock-output-names property. This allows us to stop usi=
+ng
+> > > the internal legacy clock naming and unify the naming for the TI SoCs=
+ in
+> > > the following patches.
+> > >=20
+> > > Note that we must wait on fixing the node naming issues until after t=
+he
+> > > internal clock names have been updated to avoid adding name translati=
+on
+> > > unnecessarily.
+> > >=20
+> > > Cc: Stephen Boyd <sboyd@kernel.org>
+> > > Cc: Tero Kristo <kristo@kernel.org>
+> > > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > > ---
+> >=20
+> > I assume I don't merge this through clk tree.
+>=20
+> AFAIK these won't conflict with other dts changes, so you could merge
+> them if you like and they look OK. Or we can also wait for v5.18-rc1 and
+> then I'll pick up the dts changes.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
-
- Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-index e27cbcc6e8f9..c90a132fbc79 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mt8192.yaml
-@@ -29,6 +29,8 @@ properties:
-     description: gpio valid number range.
-     maxItems: 1
- 
-+  gpio-line-names: true
-+
-   reg:
-     description: |
-       Physical address base for gpio base registers. There are 11 GPIO
--- 
-2.35.1
-
+I'll let you take them through arm-soc.
