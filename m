@@ -2,69 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9B9F4D9DE2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:41:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E85304D9DC5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:37:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242224AbiCOOmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 10:42:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35474 "EHLO
+        id S241855AbiCOOjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 10:39:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239969AbiCOOmV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:42:21 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1869355753;
-        Tue, 15 Mar 2022 07:41:10 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 60ADB1F42F80
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647355269;
-        bh=zG3ISQgXBa0GgHMtE7ZUAA2puxpswZTMQYR0Vz+CGO0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=CHon2w99Nvf6JpJ6msZQtSMqk41bhHpcNZwCq06IQ7xlZopTIgY3n//bkFFndRivI
-         LmAW8v296pfs/G2oS/6xF8HNYs8iAFlMmMPDD7Xj7XX0/N6rInNBU7r21XfqDTQyeX
-         yvM0TpG5vzU7f1G/tTgcYkZdPjn/0UFz07z7Z2jlzBB52AGugNwWcrcCtAqhATy8im
-         c9Ii1r1vJ8qWyLAK0fSmJpBvqxrrkiOop3uA/5ouj1Z43nkYHmaWG1WhkUOY9MNThP
-         29QxYy8JFREO0c9uI9xiY+6QJSf+YMMFHoMChw/TKkaaSjGUcONHMhdBnsL+7TLSOO
-         fvICl7jtNBzOA==
-Message-ID: <9b2e6f63-e8ef-1427-4677-df654e2e7000@collabora.com>
-Date:   Tue, 15 Mar 2022 15:41:06 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v3 17/21] arm64: dts: mt8192: Add dpi node
-Content-Language: en-US
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S244109AbiCOOjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:39:00 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 386F72A6
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 07:37:47 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id s203-20020a4a3bd4000000b003191c2dcbe8so24508634oos.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 07:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=landley-net.20210112.gappssmtp.com; s=20210112;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rpmKOoeraRuQGQUThehNRRx57Aisb5avAtGzINvQREA=;
+        b=btYHhIM/2AcNT2mHGxMQPLP23iKlNVDyc/vZohM3qpDd7+3O/i/a2gd+sL94O0MNmE
+         as02/VxgKVf31ZMRpUKgErJLODlFTaVhOcYu2+ESfiqlzPXtbyWkfTDpNmxPt3xVMhOn
+         iL2pIzOqtP63EW/rpznJdR20E2Czy/P7+hFV+9+d7A9r1IsR6el4+qICVp6d9tudWqyy
+         PU5vc4wCDO0tSwkcVXStOPm02tVPmKINAIcxy/vE4Kljap5BICXGKBemh4RtgicAlEgS
+         ZUA/oAcTydN2vOzeCEFHuwNx1PP/KdrPv2syTmdHRAvKTtjKivWUkdgXTfsJM+NddxMG
+         1msQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rpmKOoeraRuQGQUThehNRRx57Aisb5avAtGzINvQREA=;
+        b=auJhn7+CYb547KSzfd7kVeOOXeF+BzXnBsKtvZR4opC0PfT3QVJZVsXGeVvYruFg8r
+         3Ifnn9XSuVkJVGJl0RWi4ZRu9yRdB2L5IH2DopsftEuYmYCwN4KoYTjmd13AhqWTB6LB
+         ewWn827xFxCor/gqwli3qmN9A1pchzJnlP9PxTiH9JXwKZgJBIBYyUVHMtKbGVDX+eiB
+         qkFI5EzpVh/nJexJGNZoJ3R5NwoqM8yiD9IDieuTBWnz8V6BhZUpRwMpUe2Zh4Ez60x7
+         QzeXThBS7TjgfmTU8e2tpE+DdS6RqLqNJZrncIu5jDuI3IvFrZwdt15YHsrrzWWjKm/O
+         l5+g==
+X-Gm-Message-State: AOAM533CTogyLNFKOp77w/lQyqCekTJyGo4nKCelhVrjoKiOFE0pfBt/
+        19TAC4+CXGzxAygNR3ktLrNl/g==
+X-Google-Smtp-Source: ABdhPJyvcljfmAWOAbxTQiajM8RYB5b1DsFb2rJguap6VrzxZaYDzEGfjeZQOutf0ny2oZHd4aTvXw==
+X-Received: by 2002:a05:6870:4251:b0:d9:b7ee:f0ab with SMTP id v17-20020a056870425100b000d9b7eef0abmr1726880oac.56.1647355066566;
+        Tue, 15 Mar 2022 07:37:46 -0700 (PDT)
+Received: from [192.168.86.188] ([136.62.4.88])
+        by smtp.gmail.com with ESMTPSA id f10-20020a4a8f4a000000b00320e5ecfecdsm8863070ool.46.2022.03.15.07.37.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Mar 2022 07:37:46 -0700 (PDT)
+Subject: Re: [PATCH v13 1/6] soc: mediatek: mutex: add common interface to
+ accommodate multiple modules operationg MUTEX
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Project_Global_Chrome_Upstream_Group@mediatek.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        Chen-Yu Tsai <wenst@chromium.org>,
-        Ryder Lee <ryder.lee@kernel.org>,
-        Hui Liu <hui.liu@mediatek.com>
-References: <20220304130809.12924-1-allen-kh.cheng@mediatek.com>
- <20220304130809.12924-18-allen-kh.cheng@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220304130809.12924-18-allen-kh.cheng@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
+        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        menghui.lin@mediatek.com, sj.huang@mediatek.com,
+        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
+        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
+        river.cheng@mediatek.com, srv_heupstream@mediatek.com,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220315061031.21642-1-moudy.ho@mediatek.com>
+ <20220315061031.21642-2-moudy.ho@mediatek.com>
+ <ed5418b4-e353-d879-f9b0-7a9de8fed862@collabora.com>
+From:   Rob Landley <rob@landley.net>
+Message-ID: <4fa1dd33-adeb-a8ae-0ded-51a813347252@landley.net>
+Date:   Tue, 15 Mar 2022 09:41:25 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
+ Thunderbird/78.14.0
+MIME-Version: 1.0
+In-Reply-To: <ed5418b4-e353-d879-f9b0-7a9de8fed862@collabora.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 04/03/22 14:08, Allen-KH Cheng ha scritto:
-> Add dpi node for mt8192 SoC.
+
+
+On 3/15/22 4:10 AM, AngeloGioacchino Del Regno wrote:
+> Il 15/03/22 07:10, Moudy Ho ha scritto:
+>> In order to allow multiple modules to operate MUTEX hardware through
+>> a common interfrace, a flexible index "mtk_mutex_table_index" needs to
+>> be added to replace original component ID so that like DDP and MDP
+>> can add their own MUTEX table settings independently.
+>> 
+>> In addition, 4 generic interface "mtk_mutex_set_mod", "mtk_mutex_set_sof",
+>> "mtk_mutex_clear_mod" and "mtk_mutex_clear_sof" have been added, which is
+>> expected to replace the "mtk_mutex_add_comp" and "mtk_mutex_remove_comp"
+>> pair originally dedicated to DDP in the future.
+>> 
+>> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+>> ---
+>>   drivers/soc/mediatek/mtk-mutex.c       | 122 +++++++++++++++++++++++++
+>>   include/linux/soc/mediatek/mtk-mutex.h |  33 +++++++
+>>   2 files changed, 155 insertions(+)
+>> 
+>> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+>> index aaf8fc1abb43..778b01ce9e8f 100644
+>> --- a/drivers/soc/mediatek/mtk-mutex.c
+>> +++ b/drivers/soc/mediatek/mtk-mutex.c
+>> @@ -156,6 +156,7 @@ struct mtk_mutex_data {
+>>   	const unsigned int *mutex_sof;
+>>   	const unsigned int mutex_mod_reg;
+>>   	const unsigned int mutex_sof_reg;
+>> +	const unsigned long long *mutex_table_mod;
 > 
-> Signed-off-by: Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+> Can we change this to u64 instead?
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Linux is still LP64, correct?
 
+Rob
