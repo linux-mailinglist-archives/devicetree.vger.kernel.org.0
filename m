@@ -2,373 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8864D99A4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:52:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 34EB14D99C1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:58:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236259AbiCOKxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 06:53:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48246 "EHLO
+        id S1347658AbiCOK7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 06:59:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347217AbiCOKwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:52:40 -0400
+        with ESMTP id S1347749AbiCOK6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:58:06 -0400
 Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2859541A4
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:50:06 -0700 (PDT)
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C6735267
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:56:54 -0700 (PDT)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 645333F94B
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:50:02 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 982623F32D
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:56:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647341402;
-        bh=Ey8drcAf2R1SHpM1HZTEkJQdDVCwzHfEqgUU/nFist8=;
+        s=20210705; t=1647341811;
+        bh=ht8KpCSDXfMeLKk1Iy9OjwDkeWKdnRpzH0Z8PU+F89M=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=wEgr95DVAQKqKspxmQCvvdS7ZucL8jSl4WmM+1juRdRGNkjjb5PXDm6Ds8LaRO2F8
-         FDSEVN+msHKdefpwa6DB/wEacjvuaPNuZIBikN+AKXFHz9s/J2KLvgX0X3r4GgRCIf
-         lsBgQ3qFAxAcpUnzxTiOvrbcv62wmEuqcmjr54HwYs0mSza13S2ZAQtd4kMMJnXag7
-         nD6laUbkwGCfGvbC4c2Z+H79Rt9qzX3zd3zvstwKawcOqRqtqMvxIMzCntuvHKmQqK
-         W/zOboJ44n5k/tUXPR2GsCUU5ir5Iel5iN6wWEErAWyGgQI+PwXm5WL2i7y1lHi8tP
-         Mxt2SATiHxN0Q==
-Received: by mail-ej1-f71.google.com with SMTP id le4-20020a170907170400b006dab546bc40so9437794ejc.15
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:50:02 -0700 (PDT)
+        b=LSDzC0deInfWjrGAItDnx4m/E5k6DCq6tWecLyJ4YhEooqeREvuPhb+4GYTT5NeYG
+         t0tVG2+hX9U9/ytDV/AhjC/oYZFQkbKAyUTzea48+YXxlcCMJYSIoeZBoavgQNDBbP
+         7dc9HdzAWeKM0RVFROooP5t3YgWV00Eh57aRbfXkzXcfyocZRDty2UxtD5muiTdxOa
+         hnsQYy0NHqJAVomjhMv8RieBND6DFGRdFEpxxYKenGzKGMJn6rksDmEZN0Xw/ule0q
+         r6Q1ZYtHCRngqmVDgl6Wvp1Kj8ClUcSVNfcc748Ko8aTE4A3+ZJ55sUh7OAydDiB1b
+         oXlHYbvuYeO2A==
+Received: by mail-ej1-f70.google.com with SMTP id ga31-20020a1709070c1f00b006cec400422fso9435039ejc.22
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:56:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=Ey8drcAf2R1SHpM1HZTEkJQdDVCwzHfEqgUU/nFist8=;
-        b=BJ5Jp5cc3+6qYVI3Ht7PtMZas+87oRtf6XU9byLPWyizNPNg88m5BAO0pAEBgP2cdH
-         Aq5zxZhmE+dD6pTVCPTOIBrVZBRHwJ3zIkKGlm78W7fRgN6fMPdJPCBAuujufP2o5roq
-         UyxkaGUCq7JpbpGzxFGhvL6vX7ZGLgTa/hxf4DkR9eIhB9HXh7RmrYIzSjxU2/9DIdZS
-         9h2GQZC55BvW5Gvs2hPS7CY8e+JsWRiC+ooTFqApTjIaCGhYRJYi7OZa0Fg4bQSEy11E
-         QKqQXoH/a8Z+sQuhSQibyoswfHkm9tvP0Qwu7OsJ9pZULuFx7jW1XRjF8Zls2MW2+bkv
-         EY5A==
-X-Gm-Message-State: AOAM533UvHFWh7lmGlcoUX2jB4gKy2rBM6uja9o93PB9BMGzCgjKCaSN
-        uwc76hrARXg9ymLNMpyV+vBPoLj5ayIM8c+xh6nH/GDhwzwmmIL5Wnr6tdBpXiMi4X6WuFaxGae
-        Vivd+wzvLCB4mTHucKs2EPBGizrPOo3ZFEn6YhiI=
-X-Received: by 2002:a17:906:154c:b0:6ce:21d7:2826 with SMTP id c12-20020a170906154c00b006ce21d72826mr22475586ejd.9.1647341401562;
-        Tue, 15 Mar 2022 03:50:01 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyF9UaD6/CVW3zUoCDdkgb4OFu0x67auCClmiRFX0zBBedOf/2/kXyNEMIzdX3QM2hJInyqOQ==
-X-Received: by 2002:a17:906:154c:b0:6ce:21d7:2826 with SMTP id c12-20020a170906154c00b006ce21d72826mr22475571ejd.9.1647341401319;
-        Tue, 15 Mar 2022 03:50:01 -0700 (PDT)
+        bh=ht8KpCSDXfMeLKk1Iy9OjwDkeWKdnRpzH0Z8PU+F89M=;
+        b=gvMZjn4uPISeFtqdFlW3vRu6FU3Mrolux28V72tI+qR0+focyNrCgkb6qeleka4v9T
+         t74SIJXY/jl3UimleWztDSpGFVPzy5Bvb0cOi8HNHUX5XpbGmFZfcynIlkGEciicr5Yv
+         SOE1Xovz6PzICWH5TE68P5VIIp/65nPi5/XBTZH85CT6kcX/6ZKk8uWfY0Vsu8pqLTui
+         4HhZNb7yKazGfc56kDBDzcWNxL2JNVpaq21F9x+ehgTA778qrpscfkBCYd3HoZ8luM72
+         9OCH1tK4xYw4N4iLZhqDz3C/oM5gIfrkEhkQkUy3yDcX0tS4l+xFis/MYXnPp5ehWhbv
+         fkmA==
+X-Gm-Message-State: AOAM533lpKSAHknaQ42K5Jtx3G0hAK2jeK+bTvFNLF0EDhTmPg25unhy
+        MOd97U5AfQmXe+Mn9lNvNJeZ6kcVlb30Wk1WR0dq6REc75fmuwoucom7dWD7gypx2eyUDjyhodt
+        pt4VY0Ns6unDiiAB8C2kofqJkfT94CUH1Ko31HOA=
+X-Received: by 2002:a17:906:1f11:b0:685:d50e:3bf9 with SMTP id w17-20020a1709061f1100b00685d50e3bf9mr22467088ejj.275.1647341811109;
+        Tue, 15 Mar 2022 03:56:51 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJx1Vc0VBi8iyHSnXP0SjQn1EF5R+EUhGiixvRk7hd4/4ka6soIYQAQL/knRyeFkxKGN4H/zyg==
+X-Received: by 2002:a17:906:1f11:b0:685:d50e:3bf9 with SMTP id w17-20020a1709061f1100b00685d50e3bf9mr22467063ejj.275.1647341810849;
+        Tue, 15 Mar 2022 03:56:50 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id v6-20020a17090651c600b006d5c69301e4sm8012981ejk.202.2022.03.15.03.49.59
+        by smtp.googlemail.com with ESMTPSA id e9-20020a170906c00900b006d4a45869basm8011143ejz.199.2022.03.15.03.56.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Mar 2022 03:50:00 -0700 (PDT)
-Message-ID: <04ed13f1-671f-7416-61d0-0bf452ae862e@canonical.com>
-Date:   Tue, 15 Mar 2022 11:49:59 +0100
+        Tue, 15 Mar 2022 03:56:50 -0700 (PDT)
+Message-ID: <095b4dad-ade6-c742-1993-e5dc89f5cb93@canonical.com>
+Date:   Tue, 15 Mar 2022 11:56:49 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 4/8] pinctrl: mvebu: pinctrl driver for 98DX2530 SoC
+Subject: Re: [PATCH V7 1/5] dt-bindings: display: mediatek: add aal binding
+ for MT8183
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org,
-        davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
-        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
-        adrian.hunter@intel.com, thomas.petazzoni@bootlin.com,
-        kostap@marvell.com, robert.marko@sartura.hr
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
- <20220314213143.2404162-5-chris.packham@alliedtelesis.co.nz>
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        jassisinghbrar@gmail.com, fparent@baylibre.com,
+        yongqiang.niu@mediatek.com, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220314090033.25773-1-rex-bc.chen@mediatek.com>
+ <20220314090033.25773-2-rex-bc.chen@mediatek.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220314213143.2404162-5-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20220314090033.25773-2-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 22:31, Chris Packham wrote:
-> This pinctrl driver supports the 98DX25xx and 98DX35xx family of chips
-> from Marvell. It is based on the Marvell SDK with additions for various
-> (non-gpio) pin configurations based on the datasheet.
+On 14/03/2022 10:00, Rex-BC Chen wrote:
+> Add aal binding for MT8183.
 > 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> Acked-by: Rob Herring <robh@kernel.org>
 > ---
+>  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml      | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> Notes:
->     Changes in v2:
->     - Make pinctrl a child of a syscon node like the armada-7k-pinctrl
-> 
->  drivers/pinctrl/mvebu/Kconfig       |   4 +
->  drivers/pinctrl/mvebu/Makefile      |   1 +
->  drivers/pinctrl/mvebu/pinctrl-ac5.c | 226 ++++++++++++++++++++++++++++
->  3 files changed, 231 insertions(+)
->  create mode 100644 drivers/pinctrl/mvebu/pinctrl-ac5.c
-> 
-> diff --git a/drivers/pinctrl/mvebu/Kconfig b/drivers/pinctrl/mvebu/Kconfig
-> index 0d12894d3ee1..aa5883f09d7b 100644
-> --- a/drivers/pinctrl/mvebu/Kconfig
-> +++ b/drivers/pinctrl/mvebu/Kconfig
-> @@ -45,6 +45,10 @@ config PINCTRL_ORION
->  	bool
->  	select PINCTRL_MVEBU
->  
-> +config PINCTRL_AC5
-> +	bool
-> +	select PINCTRL_MVEBU
-> +
->  config PINCTRL_ARMADA_37XX
->  	bool
->  	select GENERIC_PINCONF
-> diff --git a/drivers/pinctrl/mvebu/Makefile b/drivers/pinctrl/mvebu/Makefile
-> index cd082dca4482..23458ab17c53 100644
-> --- a/drivers/pinctrl/mvebu/Makefile
-> +++ b/drivers/pinctrl/mvebu/Makefile
-> @@ -11,3 +11,4 @@ obj-$(CONFIG_PINCTRL_ARMADA_CP110) += pinctrl-armada-cp110.o
->  obj-$(CONFIG_PINCTRL_ARMADA_XP)  += pinctrl-armada-xp.o
->  obj-$(CONFIG_PINCTRL_ARMADA_37XX)  += pinctrl-armada-37xx.o
->  obj-$(CONFIG_PINCTRL_ORION)  += pinctrl-orion.o
-> +obj-$(CONFIG_PINCTRL_AC5) += pinctrl-ac5.o
-> diff --git a/drivers/pinctrl/mvebu/pinctrl-ac5.c b/drivers/pinctrl/mvebu/pinctrl-ac5.c
-> new file mode 100644
-> index 000000000000..8bc0bbff7c1b
-> --- /dev/null
-> +++ b/drivers/pinctrl/mvebu/pinctrl-ac5.c
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Marvell ac5 pinctrl driver based on mvebu pinctrl core
-> + *
-> + * Copyright (C) 2021 Marvell
-> + *
-> + * Noam Liron <lnoam@marvell.com>
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +
-> +#include "pinctrl-mvebu.h"
-> +
-> +static struct mvebu_mpp_mode ac5_mpp_modes[] = {
-> +	MPP_MODE(0,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d0"),
-> +		 MPP_FUNCTION(2, "nand",  "io4")),
-> +	MPP_MODE(1,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d1"),
-> +		 MPP_FUNCTION(2, "nand",  "io3")),
-> +	MPP_MODE(2,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d2"),
-> +		 MPP_FUNCTION(2, "nand",  "io2")),
-> +	MPP_MODE(3,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d3"),
-> +		 MPP_FUNCTION(2, "nand",  "io7")),
-> +	MPP_MODE(4,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d4"),
-> +		 MPP_FUNCTION(2, "nand",  "io6"),
-> +		 MPP_FUNCTION(3, "uart3", "txd"),
-> +		 MPP_FUNCTION(4, "uart2", "txd")),
-> +	MPP_MODE(5,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d5"),
-> +		 MPP_FUNCTION(2, "nand",  "io5"),
-> +		 MPP_FUNCTION(3, "uart3", "rxd"),
-> +		 MPP_FUNCTION(4, "uart2", "rxd")),
-> +	MPP_MODE(6,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d6"),
-> +		 MPP_FUNCTION(2, "nand",  "io0"),
-> +		 MPP_FUNCTION(3, "i2c1",  "sck")),
-> +	MPP_MODE(7,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "d7"),
-> +		 MPP_FUNCTION(2, "nand",  "io1"),
-> +		 MPP_FUNCTION(3, "i2c1",  "sda")),
-> +	MPP_MODE(8,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "clk"),
-> +		 MPP_FUNCTION(2, "nand",  "wen")),
-> +	MPP_MODE(9,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "cmd"),
-> +		 MPP_FUNCTION(2, "nand",  "ale")),
-> +	MPP_MODE(10,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "ds"),
-> +		 MPP_FUNCTION(2, "nand",  "cle")),
-> +	MPP_MODE(11,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "sdio",  "rst"),
-> +		 MPP_FUNCTION(2, "nand",  "cen")),
-> +	MPP_MODE(12,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "clk")),
-> +	MPP_MODE(13,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "csn")),
-> +	MPP_MODE(14,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "mosi")),
-> +	MPP_MODE(15,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "miso")),
-> +	MPP_MODE(16,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "wpn"),
-> +		 MPP_FUNCTION(2, "nand",  "ren"),
-> +		 MPP_FUNCTION(3, "uart1", "txd")),
-> +	MPP_MODE(17,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "spi0",  "hold"),
-> +		 MPP_FUNCTION(2, "nand",  "rb"),
-> +		 MPP_FUNCTION(3, "uart1", "rxd")),
-> +	MPP_MODE(18,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart2", "rxd")),
-> +	MPP_MODE(19,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart2", "txd")),
-> +	MPP_MODE(20,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "i2c1",  "sck"),
-> +		 MPP_FUNCTION(3, "spi1",  "clk"),
-> +		 MPP_FUNCTION(4, "uart3", "txd")),
-> +	MPP_MODE(21,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "i2c1",  "sda"),
-> +		 MPP_FUNCTION(3, "spi1",  "csn"),
-> +		 MPP_FUNCTION(4, "uart3", "rxd")),
-> +	MPP_MODE(22,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(3, "spi1",  "mosi")),
-> +	MPP_MODE(23,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(3, "spi1",  "miso")),
-> +	MPP_MODE(24,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart2", "txd")),
-> +	MPP_MODE(25,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart2", "rxd")),
-> +	MPP_MODE(26,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "i2c0",  "sck"),
-> +		 MPP_FUNCTION(3, "uart3", "txd")),
-> +	MPP_MODE(27,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "i2c0",  "sda"),
-> +		 MPP_FUNCTION(3, "uart3", "rxd")),
-> +	MPP_MODE(28,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(3, "uart3", "txd")),
-> +	MPP_MODE(29,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(3, "uart3", "rxd")),
-> +	MPP_MODE(30,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(31,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(32,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "uart0", "txd")),
-> +	MPP_MODE(33,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(1, "uart0", "rxd")),
-> +	MPP_MODE(34,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart3", "rxd")),
-> +	MPP_MODE(35,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(2, "uart3", "txd")),
-> +	MPP_MODE(36,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(37,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(38,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(39,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(40,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(41,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(4, "uart2", "txd"),
-> +		 MPP_FUNCTION(5, "i2c1",  "sck")),
-> +	MPP_MODE(42,
-> +		 MPP_FUNCTION(0, "gpio",  NULL),
-> +		 MPP_FUNCTION(4, "uart2", "rxd"),
-> +		 MPP_FUNCTION(5, "i2c1",  "sda")),
-> +	MPP_MODE(43,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(44,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +	MPP_MODE(45,
-> +		 MPP_FUNCTION(0, "gpio",  NULL)),
-> +};
-> +
-> +static struct mvebu_pinctrl_soc_info ac5_pinctrl_info;
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> index 61f0ed1e388f..6c8c83988a24 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> @@ -23,6 +23,8 @@ properties:
+>      oneOf:
+>        - items:
+>            - const: mediatek,mt8173-disp-aal
+> +      - items:
+> +          - const: mediatek,mt8183-disp-aal
 
-You should not have static/file-scope variables, especially that it is
-not actually used in that way.
+Use enum in previous entry. This is weird setup to have items with one
+element and then duplicate it for another oneOf entry.
 
-> +
-> +static const struct of_device_id ac5_pinctrl_of_match[] = {
-> +	{
-> +		.compatible = "marvell,ac5-pinctrl",
-> +	},
-> +	{ },
-> +};
-> +
-> +static const struct mvebu_mpp_ctrl ac5_mpp_controls[] = {
-> +	MPP_FUNC_CTRL(0, 45, NULL, mvebu_regmap_mpp_ctrl), };
-> +
-> +static struct pinctrl_gpio_range ac5_mpp_gpio_ranges[] = {
-> +	MPP_GPIO_RANGE(0,   0,  0, 46), };
-> +
-> +static int ac5_pinctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct mvebu_pinctrl_soc_info *soc = &ac5_pinctrl_info;
-> +	const struct of_device_id *match =
-> +		of_match_device(ac5_pinctrl_of_match, &pdev->dev);
+>        - items:
+>            - enum:
+>                - mediatek,mt2712-disp-aal
 
-Why is this needed? Unusual, dead-code.
-
-> +
-> +	if (!match || !pdev->dev.parent)
-> +		return -ENODEV;
-> +
-> +	soc->variant = 0; /* no variants for ac5 */
-> +	soc->controls = ac5_mpp_controls;
-> +	soc->ncontrols = ARRAY_SIZE(ac5_mpp_controls);
-> +	soc->gpioranges = ac5_mpp_gpio_ranges;
-> +	soc->ngpioranges = ARRAY_SIZE(ac5_mpp_gpio_ranges);
-> +	soc->modes = ac5_mpp_modes;
-> +	soc->nmodes = ac5_mpp_controls[0].npins;
-> +
-> +	pdev->dev.platform_data = soc;
-> +
-> +	return mvebu_pinctrl_simple_regmap_probe(pdev, pdev->dev.parent, 0);
-> +}
-> +
-> +static struct platform_driver ac5_pinctrl_driver = {
-> +	.driver = {
-> +		.name = "ac5-pinctrl",
-> +		.of_match_table = of_match_ptr(ac5_pinctrl_of_match),
-
-of_match_ptr() does not look correct for OF-only platform. This should
-complain in W=1 compile tests on !OF config.
 
 Best regards,
 Krzysztof
