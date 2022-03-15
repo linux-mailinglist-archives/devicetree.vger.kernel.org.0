@@ -2,119 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A924D924F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:47:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A5D4D9243
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:27:11 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242729AbiCOBs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 21:48:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42750 "EHLO
+        id S237575AbiCOB2U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 21:28:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235808AbiCOBsZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:48:25 -0400
-X-Greylist: delayed 1344 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 14 Mar 2022 18:47:14 PDT
-Received: from gateway31.websitewelcome.com (gateway31.websitewelcome.com [192.185.144.96])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D879BDEC2
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:47:14 -0700 (PDT)
-Received: from cm10.websitewelcome.com (cm10.websitewelcome.com [100.42.49.4])
-        by gateway31.websitewelcome.com (Postfix) with ESMTP id 009DD7906D
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 20:24:50 -0500 (CDT)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id TvtgncOwFRnrrTvtgnAGQu; Mon, 14 Mar 2022 20:22:49 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=fc/4aRBBd782zT03Q+OtnIHUlfYCyQpFz9VTJ95xqw0=; b=Aiu4sgtrBZIxQom1IJFTXQlYMf
-        XXEPlmcOo8p2oLHBKqBakYnc/m6R2+1Bs1YAFCGPUv9wiGxMT+zfj1fDo/ctGcbyALGZyohE9Ov3k
-        m3FF6CTCZlluksBwui4rwcBUsJiAI1uvn4xsnFP5yO6bL9e0GgvRRb2ZZQZrrLL0TC+iNaGV1bxqS
-        vwnTfpixjFmG0Hludn9z+JWyMK6BDMSgPiHCn5rEOKEJtcZt6EcgSTtULEkKJftYMFjWMUXdCeA1t
-        Fig+BTUMo6mIFyW1m0EfdAI0ToWtfkNepcUoZEFBRIrdL47brqEBVLwts9JT0Jk8L9dZ7Lo7ptTlp
-        7uzqgc1A==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54266)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nTvtg-004GEG-E6; Tue, 15 Mar 2022 01:22:48 +0000
-Message-ID: <3dac349c-6470-1673-effb-354da2b52481@roeck-us.net>
-Date:   Mon, 14 Mar 2022 18:22:47 -0700
+        with ESMTP id S237244AbiCOB2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:28:19 -0400
+Received: from mail-qt1-x833.google.com (mail-qt1-x833.google.com [IPv6:2607:f8b0:4864:20::833])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA25647540
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:27:08 -0700 (PDT)
+Received: by mail-qt1-x833.google.com with SMTP id f7so2542827qtk.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:27:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+V4iyUGPnF/NQhkHTPBkqtdb3tsV1eLSkglbcthvJjk=;
+        b=F7WlOKX8QUi+Ggrzwp05RoLUrZK+fo2HnWaEve3xfgNOcc+YuoLVSG+IG0CR+xUgog
+         QnPZzCtz76OykGAtwKL/2hT4biTkPTPhOoIbbu5iWjDi2fTNbXWq7Y9tznrrexq98h4E
+         6/eg/XUSas7Az8p0fA2W2jBAEVL8xLswQ3X2c=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+V4iyUGPnF/NQhkHTPBkqtdb3tsV1eLSkglbcthvJjk=;
+        b=EeAQWcVvV+hxA/WR0w1pfCiQE0J2PiIuIDuAhT5GOcgoTgfB2SjP1t5d4KqLraQVTI
+         U3tXPQUab0L4lGB5Kf328J9flRkOe3pEM2BAQLa22kjJmUWeLzFywgRTb/1PFJ1c0PdI
+         eRqhHSYX4OKOWW4veXIOlb9B8Pi3TO8XMSVEOSr0m/W7uajpeZJCLGXsQ0DBzN9pCN3s
+         drYTBtd9LKnovAv4ejfPZVHK+oQJeL1IiV102kVf91jfgkePnuy0f8TLawJ9w02dgSaZ
+         UZaZHT289h4RrPB0Cn2RtFudNrKwr4pNKHkzY9xEC2vOwogfJkoiq7XOGOEaqxRRW2gI
+         4bJg==
+X-Gm-Message-State: AOAM532e/cVWamJG050W5+G2H1hHs23355AYdKHxyiInlBiv/R50Qi91
+        6J0xMO3pH70oN7nhEA5518BaCwBmcjcS96ImRcg=
+X-Google-Smtp-Source: ABdhPJzE6usGxaJAkzghzKID06dDa9XcVgDlW8+O+LojgMNzBWy91SSpCcSY5Qmt4oRq5XcbaMVucMXmRSpOpfRYl8k=
+X-Received: by 2002:a05:622a:14c8:b0:2e1:d626:66ea with SMTP id
+ u8-20020a05622a14c800b002e1d62666eamr4668263qtx.58.1647307627925; Mon, 14 Mar
+ 2022 18:27:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Content-Language: en-US
-To:     Agathe Porte <agathe.porte@nokia.com>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Adamski, Krzysztof (Nokia - PL/Wroclaw)" 
-        <krzysztof.adamski@nokia.com>
-References: <20220222223610.23098-1-linux@roeck-us.net>
- <20220222223610.23098-2-linux@roeck-us.net>
- <51ea03f0-627b-2e9d-5972-2053fa12b9b5@nokia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v7 2/2] hwmon: Add driver for Texas Instruments TMP464 and
- TMP468
-In-Reply-To: <51ea03f0-627b-2e9d-5972-2053fa12b9b5@nokia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nTvtg-004GEG-E6
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54266
-X-Source-Auth: linux@roeck-us.net
-X-Email-Count: 13
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+References: <20220304000311.970267-1-joel@jms.id.au> <20220304000311.970267-2-joel@jms.id.au>
+ <CACRpkda3q=Rh7Kmi8Cycg4CAYUhzpRxLf+ErwxR_0drtTNTr+g@mail.gmail.com>
+In-Reply-To: <CACRpkda3q=Rh7Kmi8Cycg4CAYUhzpRxLf+ErwxR_0drtTNTr+g@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Tue, 15 Mar 2022 01:26:56 +0000
+Message-ID: <CACPK8XetyrHHmpbSiE3rXgtdQt9JTg_ZHfuFhsyOoWdSrCvk=A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: aspeed: Update gfx node in example
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andrew Jeffery <andrew@aj.id.au>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Lee Jones <lee.jones@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Agathe,
+On Tue, 15 Mar 2022 at 01:21, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Fri, Mar 4, 2022 at 1:03 AM Joel Stanley <joel@jms.id.au> wrote:
+>
+> > The example needs updating to match the to be added yaml bindings for
+> > the gfx node.
+> >
+> > Signed-off-by: Joel Stanley <joel@jms.id.au>
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> I guess you will merge this elsewhere or shall I apply it to the pinctrl tree?
 
-On 3/14/22 08:46, Agathe Porte wrote:
-> Hi,
-> 
-> Le 2/22/2022 à 11:36 PM, Guenter Roeck a écrit :
->>   of_property_read_string(child,"label", &data->channel[channel].label);
-> 
-> Upon trying to merge v7 in our codebase, our static analyzer tool detected that the return code of this function was not checked.
-> 
-> As I guess putting a label is optional, maybe we should add a `(void)` on the same line just before the function call to clearly indicate that not checking the return value is intentional and that it is not a coding mistake?
-> 
-> EDIT: As I was reading the implementation of of_property_read_string [1], it will not touch the destination string in case of error. Which means that labels may sit uninitialized and contain garbage data?
-> 
+Feel free to take this one.
 
-Thanks for the feedback.
 
-If of_property_read_string() returns an error, it will not set the pointer
-to &data->channel[channel].label, which by default is NULL because the
-data structure was allocated with devm_kzalloc(). That means tmp464_is_visible()
-will disable the label attribute. I don't see a problem with the current
-code.
-
-There are lots of examples in the kernel where the return value from
-of_property_read_string() is silently ignored. Not a single one of
-those uses a (void) typecast. I don't really want to start making
-such changes just to make static analyzers happy.
-
-Thanks,
-Guenter
+>
+> Yours,
+> Linus Walleij
