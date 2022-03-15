@@ -2,79 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F33F4D98CF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE584D98E6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 11:36:56 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347131AbiCOKe0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 06:34:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33860 "EHLO
+        id S1347148AbiCOKiF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 06:38:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347110AbiCOKeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:34:24 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F417624F
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:33:10 -0700 (PDT)
-Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com [209.85.208.71])
+        with ESMTP id S1347088AbiCOKiE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 06:38:04 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A75664ECD8
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:36:51 -0700 (PDT)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 694CF3F5F3
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:33:09 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 4F91A3F325
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 10:36:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647340389;
-        bh=DJwlGy49fIVp8yCxZTiqXGTs2dFP1ksI/sEeMoJLTLA=;
+        s=20210705; t=1647340609;
+        bh=TEi9FBbJRZ98ujLdP/Lz9ClVk8P7w5er1AYT1Hftf6A=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=jPogXIooAUZXSziPH7j54UeuaF7pOTsp+/203pb6YEGXJMUaG3z/LgVK2Z1V3T4hp
-         R64udueSbOEoIvCLT4eVyGywdqhktlRKd/kawzDIejiud0LDw6SLllZRcZ/OBXydnC
-         xW6KH+NOTNCb6j0ApXr24gN1g4dyuTqzlwD+39IwW0WSjR8iUps/NPLNtrEzHV58b0
-         ilgvLxrV3sQCuayTc9j6XxYHLs5sWtM65xlJbjrrsmRdKwQZUAcL5BQwArri0rCG54
-         4iJKsEVkAanzHh/n0ngUtwOhflGYuTC2YoWCQFjHPC65ZmeNB3thkYKfoyY1Nc2dE1
-         c2og0/LBZ0ZFA==
-Received: by mail-ed1-f71.google.com with SMTP id cm27-20020a0564020c9b00b004137effc24bso10357288edb.10
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:33:09 -0700 (PDT)
+        b=MfwiNKli0xUAvhwoAWkyB2P22xn0Zd7WiLuT0f2DBv7yZ8vKvUNMocqO4NypKd/m2
+         KhaE/vtty+f/XTK/lSBBdUD7HaiES2sdJewEY5l00TQXlcUEM/xic2KhdbL30/LHn4
+         iV/0oQHUMONKcY8WE4nFDbMKyGazxcjiPdiyLDuKRBW7rir7JUWc91jiRobP6FiClR
+         7L1Qw7eC7upNWlhP+NBZ04Y/raoHHfbnK2J4puxvlT9w7VYIQxkH9UE1qqBNiB6xNs
+         8lWK5+zQjH0qdZrLucovfpuHZqvmBkHrryebCZ8KKGA9/KT5sDkAN3cDOnA62szP+D
+         Grc+77YMKCLlg==
+Received: by mail-ed1-f72.google.com with SMTP id l14-20020a056402344e00b0041593c729adso10374793edc.18
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 03:36:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=DJwlGy49fIVp8yCxZTiqXGTs2dFP1ksI/sEeMoJLTLA=;
-        b=EfGdEjtwFAQk9dWRzInzyjBLNb6C2zARG2cC3p3Eb07L9KQGkOLc3BdfWtpnu30bbm
-         pCIXASAwlqawRnNstmEvSqL643PUi39lHwVYVsoberkIYw5LqsslZyG02HER4U5I1QZk
-         Gtzny+y1r8soX8xve7/NSM3GaW1ue9X7UpPt0tXw19MhkaLMrqAS44SExFwY2J8S6Jvb
-         QPDJ+uIpKUvHcTUcEes+SmrjY41Wx2SZbjw1h0aK8ZCmrzz8ISxpmJbC3dYF3XYzAgW4
-         pVTYSEFy2Iy6+ttMMqVido4vh6K25i4SxhYLucltUmlC1kWguYjQt3JzqNPTt1hK/WBd
-         8DdQ==
-X-Gm-Message-State: AOAM530MXOkTfnVTg+Xvm0tSnQ5IH/LSdueA9kCUp7iDld8Jz03hXjGT
-        AmBcp1cxjn3pqg76mXMX00Zn8KqiS2dyuIsBBcPvY2LKaT/Mr73WyHaVYzByXK9a04AQ+Zp1N9C
-        lzTjSZpTfYCX98UwpDZMcMJlP7mNa7NFz+WSTwaE=
-X-Received: by 2002:aa7:d341:0:b0:418:cca7:e57b with SMTP id m1-20020aa7d341000000b00418cca7e57bmr1198690edr.263.1647340388867;
-        Tue, 15 Mar 2022 03:33:08 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyUSrSl3Iv+b+0nRTtbeD5udi+j59+1SgSRW5MoGRXAoku3q7KV/E2w6ndWDA4K1GYpWc2gpw==
-X-Received: by 2002:aa7:d341:0:b0:418:cca7:e57b with SMTP id m1-20020aa7d341000000b00418cca7e57bmr1198668edr.263.1647340388641;
-        Tue, 15 Mar 2022 03:33:08 -0700 (PDT)
+        bh=TEi9FBbJRZ98ujLdP/Lz9ClVk8P7w5er1AYT1Hftf6A=;
+        b=ax23v6D62teFxREhZjz4NhN8vf1GAlw4v7rwuEceW6PATEw0VJRE+JpwldEtrdCvDA
+         WYK3epdQFz2M4H58HZ1fUCNoHivo+s7KDX8v9Pnoj+IdxYfSZAryn6atXraQajaXJe8u
+         W4kmKuuoOUWKIvEWNOwvrpBClCYE44UKweKwUQGXHoWHmm8cMQ+2ue6gE34JKTNSgLZ1
+         LXzRh5ddBmljobce34mk0fFUQNKb0fPsGcIfiPd5MzRWGZIKBvfRrm38raaz5OKwJjXx
+         EP0bDgTeGnYfayQ7eCxHrjT9X9umPtKBiJ8iqZOUUBCHLCmgImo3MB8cEGncs1wpK9VL
+         i+EA==
+X-Gm-Message-State: AOAM533YqJhpNXQdKIasN+VUHqyeRoLCw3FpvS4Nx6YGPjkOcBNDYJ8Q
+        oRcj9ZmJanogtKt6wEDyiibCDWDSeBlAUNxtkzU7vYdLgUdT73xYibiykaC8vn49DyyZFFQjpu+
+        4XPKpMnZfzwJH5rXwU+pokNd1xSaUiOpTR6DiHrE=
+X-Received: by 2002:aa7:d295:0:b0:416:438e:d9c4 with SMTP id w21-20020aa7d295000000b00416438ed9c4mr25157408edq.98.1647340609086;
+        Tue, 15 Mar 2022 03:36:49 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyNAdezzJXlvUWpVXxB4T7w7pvN/7+3r1jrwVFjSzPbTqD5zxBdf5ZWDjZyxsdEDeC/bjygzg==
+X-Received: by 2002:aa7:d295:0:b0:416:438e:d9c4 with SMTP id w21-20020aa7d295000000b00416438ed9c4mr25157391edq.98.1647340608923;
+        Tue, 15 Mar 2022 03:36:48 -0700 (PDT)
 Received: from [192.168.0.155] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
-        by smtp.googlemail.com with ESMTPSA id z8-20020a170906270800b006bbd3efa6b8sm7933855ejc.80.2022.03.15.03.33.07
+        by smtp.googlemail.com with ESMTPSA id o3-20020a17090637c300b006d8631b2935sm7869716ejc.186.2022.03.15.03.36.47
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Mar 2022 03:33:08 -0700 (PDT)
-Message-ID: <49d116ad-c853-8c15-83fb-ec4e418323ef@canonical.com>
-Date:   Tue, 15 Mar 2022 11:33:07 +0100
+        Tue, 15 Mar 2022 03:36:48 -0700 (PDT)
+Message-ID: <bcda63b6-16cd-6514-42e7-fe09f5a5fb34@canonical.com>
+Date:   Tue, 15 Mar 2022 11:36:47 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2] pinctrl: qcom-pmic-gpio: Add support for pm8450
+Subject: Re: [PATCH v4 2/3] dt-bindings: edac: nuvoton: add NPCM memory
+ controller
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220315091106.613153-1-dmitry.baryshkov@linaro.org>
+To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
+        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com
+Cc:     linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
+References: <20220315055504.27671-1-ctcchien@nuvoton.com>
+ <20220315055504.27671-3-ctcchien@nuvoton.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220315091106.613153-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20220315055504.27671-3-ctcchien@nuvoton.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -87,15 +90,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2022 10:11, Dmitry Baryshkov wrote:
-> PM8450 provides 4 GPIOs. Add a compatible entry for this GPIO block.
+On 15/03/2022 06:55, Medad CChien wrote:
+> Added device tree binding documentation for Nuvoton BMC
+> NPCM memory controller.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Medad CChien <ctcchien@nuvoton.com>
 > ---
-> Changes since v1:
->  - Added dt-bindings entry to the pinctrl/qcom,pmic-gpio.yaml
+>  .../edac/nuvoton,npcm-memory-controller.yaml  | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/edac/nuvoton,npcm-memory-controller.yaml
+> 
 
-This should be a separate patch.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
 
 Best regards,
