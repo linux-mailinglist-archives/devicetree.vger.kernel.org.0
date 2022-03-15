@@ -2,204 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4960B4D945F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 07:11:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 783304D94CC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 07:47:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345142AbiCOGMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 02:12:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58718 "EHLO
+        id S1345324AbiCOGsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 02:48:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345150AbiCOGMq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 02:12:46 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D9549F9D;
-        Mon, 14 Mar 2022 23:11:34 -0700 (PDT)
-X-UUID: 230ce68ff8de41ce8536dc9c7ad97e54-20220315
-X-UUID: 230ce68ff8de41ce8536dc9c7ad97e54-20220315
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <moudy.ho@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 2061439537; Tue, 15 Mar 2022 14:11:28 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 15 Mar 2022 14:11:27 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Mar
- 2022 14:11:27 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Mar 2022 14:11:26 +0800
-From:   Moudy Ho <moudy.ho@mediatek.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        <tfiga@chromium.org>, <drinkcat@chromium.org>,
-        <pihsun@chromium.org>, <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
-        <moudy.ho@mediatek.com>, <jason-jh.lin@mediatek.com>,
-        <roy-cw.yeh@mediatek.com>, <river.cheng@mediatek.com>,
-        <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v13 6/6] soc: mediatek: mutex: add functions that operate registers by CMDQ
-Date:   Tue, 15 Mar 2022 14:10:31 +0800
-Message-ID: <20220315061031.21642-7-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220315061031.21642-1-moudy.ho@mediatek.com>
-References: <20220315061031.21642-1-moudy.ho@mediatek.com>
+        with ESMTP id S1345285AbiCOGru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 02:47:50 -0400
+Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B52549933
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 23:46:38 -0700 (PDT)
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id 713ECAC023E;
+        Tue, 15 Mar 2022 14:46:36 +0800 (CST)
+Message-ID: <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
+Date:   Tue, 15 Mar 2022 14:46:35 +0800
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+To:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-23-s.hauer@pengutronix.de>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <20220311083323.887372-23-s.hauer@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUIaGh1WH0IfSE5OHx
+        1PQk5CVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktISkNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6PUk6Ezo*DD5NES9PCBQvEVYT
+        AxJPCxBVSlVKTU9MSElNTEJMS09DVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBSElJTTcG
+X-HM-Tid: 0a7f8c541bd1b039kuuu713ecac023e
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to hardware limitations, MDP3 is necessary to enable MUTEX in
-each frame for SOF triggering and cooperate with CMDQ control to
-reduce the amount of interrupts generated(also, reduce frame latency).
+Hi Sascha:
 
-In response to the above situation, a new interface
-"mtk_mutex_enable_by_cmdq" has been added to achieve the purpose.
+On 3/11/22 16:33, Sascha Hauer wrote:
+> From: Andy Yan <andy.yan@rock-chips.com>
+>
+> The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
+> It replaces the VOP unit found in the older Rockchip SoCs.
+>
+> This driver has been derived from the downstream Rockchip Kernel and
+> heavily modified:
+>
+> - All nonstandard DRM properties have been removed
+> - dropped struct vop2_plane_state and pass around less data between
+>    functions
+> - Dropped all DRM_FORMAT_* not known on upstream
+> - rework register access to get rid of excessively used macros
+> - Drop all waiting for framesyncs
+>
+> The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+> board. Overlay support is tested with the modetest utility. AFBC support
+> on the cluster windows is tested with weston-simple-dmabuf-egl on
+> weston using the (yet to be upstreamed) panfrost driver support.
 
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
----
- drivers/soc/mediatek/mtk-mutex.c       | 42 +++++++++++++++++++++++++-
- include/linux/soc/mediatek/mtk-mutex.h |  2 ++
- 2 files changed, 43 insertions(+), 1 deletion(-)
+Do we need some modification to test AFBC by weston-simple-dma-egl ?
 
-diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
-index 88fb4fc8f216..0d85111cfbe2 100644
---- a/drivers/soc/mediatek/mtk-mutex.c
-+++ b/drivers/soc/mediatek/mtk-mutex.c
-@@ -7,10 +7,16 @@
- #include <linux/iopoll.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/of_address.h>
- #include <linux/platform_device.h>
- #include <linux/regmap.h>
- #include <linux/soc/mediatek/mtk-mmsys.h>
- #include <linux/soc/mediatek/mtk-mutex.h>
-+#include <linux/soc/mediatek/mtk-cmdq.h>
-+
-+#define MTK_MUTEX_ENABLE			BIT(0)
-+#define MTK_MUTEX_MOD_MASK			0x07FFFFFF
-+#define MTK_MUTEX_SOF_MASK			0x00000007
- 
- #define MT2701_MUTEX0_MOD0			0x2c
- #define MT2701_MUTEX0_SOF0			0x30
-@@ -167,6 +173,7 @@ struct mtk_mutex_data {
- 	const unsigned int mutex_sof_reg;
- 	const unsigned long long *mutex_table_mod;
- 	const bool no_clk;
-+	const bool has_gce_client_reg;
- };
- 
- struct mtk_mutex_ctx {
-@@ -175,6 +182,8 @@ struct mtk_mutex_ctx {
- 	void __iomem			*regs;
- 	struct mtk_mutex		mutex[10];
- 	const struct mtk_mutex_data	*data;
-+	phys_addr_t			addr;
-+	struct cmdq_client_reg		cmdq_reg;
- };
- 
- static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-@@ -357,6 +366,7 @@ static const struct mtk_mutex_data mt8183_mutex_driver_data = {
- 	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
- 	.mutex_table_mod = mt8183_mutex_table_mod,
- 	.no_clk = true,
-+	.has_gce_client_reg = true,
- };
- 
- static const struct mtk_mutex_data mt8186_mutex_driver_data = {
-@@ -639,6 +649,22 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
- }
- EXPORT_SYMBOL_GPL(mtk_mutex_enable);
- 
-+void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-+			      struct cmdq_pkt *pkt)
-+{
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-+						 mutex[mutex->id]);
-+
-+	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-+
-+	cmdq_pkt_write_mask(pkt, mtx->cmdq_reg.subsys,
-+			    mtx->aaddr + DISP_REG_MUTEX_EN(mutex->id),
-+			    MTK_MUTEX_ENABLE, MTK_MUTEX_ENABLE);
-+#endif
-+}
-+EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
-+
- void mtk_mutex_disable(struct mtk_mutex *mutex)
- {
- 	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
-@@ -677,7 +703,7 @@ static int mtk_mutex_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct mtk_mutex_ctx *mtx;
--	struct resource *regs;
-+	struct resource *regs, addr;
- 	int i;
- 
- 	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
-@@ -698,6 +724,20 @@ static int mtk_mutex_probe(struct platform_device *pdev)
- 		}
- 	}
- 
-+	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
-+		mtx->addr = 0L;
-+	else
-+		mtx->addr = addr.start;
-+
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	if (mtx->data->has_gce_client_reg) {
-+		if (cmdq_dev_get_client_reg(dev, &mtx->cmdq_reg, 0)) {
-+			dev_err(dev, "No mediatek,gce-client-reg!\n");
-+			return ret;
-+		}
-+	}
-+#endif
-+
- 	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	mtx->regs = devm_ioremap_resource(dev, regs);
- 	if (IS_ERR(mtx->regs)) {
-diff --git a/include/linux/soc/mediatek/mtk-mutex.h b/include/linux/soc/mediatek/mtk-mutex.h
-index c8355bb0e6d6..18a4b1dc3773 100644
---- a/include/linux/soc/mediatek/mtk-mutex.h
-+++ b/include/linux/soc/mediatek/mtk-mutex.h
-@@ -45,6 +45,8 @@ void mtk_mutex_set_mod(struct mtk_mutex *mutex,
- void mtk_mutex_set_sof(struct mtk_mutex *mutex,
- 		       enum mtk_mutex_table_index idx);
- void mtk_mutex_enable(struct mtk_mutex *mutex);
-+void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-+			      struct cmdq_pkt *pkt);
- void mtk_mutex_disable(struct mtk_mutex *mutex);
- void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
- 			   enum mtk_ddp_comp_id id);
--- 
-2.18.0
+I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
+
+After launch weston, I run weston-simple-dmabuf-egl, but from the output
+
+of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0, 
+which is
+
+a non-AFBC window.
+
+Do i need to modify the vop2 driver to set one Cluster window as primary 
+plane?
+
 
