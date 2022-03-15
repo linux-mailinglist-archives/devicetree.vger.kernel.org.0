@@ -2,154 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA944D9B88
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 13:48:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D862F4D9BAC
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 13:57:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1348455AbiCOMtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 08:49:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44400 "EHLO
+        id S1348513AbiCOM6s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 08:58:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348456AbiCOMtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 08:49:16 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21113BF51;
-        Tue, 15 Mar 2022 05:47:59 -0700 (PDT)
-X-UUID: 6176232bef0040b18e8b657291c8e1f8-20220315
-X-UUID: 6176232bef0040b18e8b657291c8e1f8-20220315
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <allen-kh.cheng@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 699758180; Tue, 15 Mar 2022 20:47:53 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Tue, 15 Mar 2022 20:47:51 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Mar 2022 20:47:51 +0800
-From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
-To:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-Subject: [PATCH v6 2/2] remoteproc: mediatek: Support mt8186 scp
-Date:   Tue, 15 Mar 2022 20:47:47 +0800
-Message-ID: <20220315124747.30144-3-allen-kh.cheng@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220315124747.30144-1-allen-kh.cheng@mediatek.com>
-References: <20220315124747.30144-1-allen-kh.cheng@mediatek.com>
+        with ESMTP id S1348500AbiCOM6r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 08:58:47 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CAC94EA15
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 05:57:35 -0700 (PDT)
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 65ED23F4BC
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 12:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647349048;
+        bh=ZmEsikfdsWRUTDBBo8iNgPk0jqSvQopIldifeg/PRlw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=FNPiVyh3O+XQCpRTIjA6ayv4mYce/3GvByYRfs8uGIPCVJomJeGyEB5h0FrshrsI2
+         pFENmLyzDYh56Z/eOey4/LLFdL7DyDIfGCEyEVMz16MZ1EGRoqVljKR0ZLbQCOXr8c
+         8xtqlwzf2Se8+LCGulmqlZalcaZSFA3imMvedNwIWC+HGJbSV+f73sR1/HmiSjELGD
+         1T0kutxC/jLWdOXbmgVdAeGkj3xGguCFpx75yUgX2bFPBvHbI4tPOw+32XP41rE5FL
+         19g9NGfEAkMhiwi5O8Pplt0aroNfcHJvAFmUqBREnQGblLAoEFGZsHlQyj6WNQkHMd
+         RV+TPqKclSIxg==
+Received: by mail-ej1-f70.google.com with SMTP id q22-20020a1709064cd600b006db14922f93so9631736ejt.7
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 05:57:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=ZmEsikfdsWRUTDBBo8iNgPk0jqSvQopIldifeg/PRlw=;
+        b=SS58xCs0OIHu68BNPb7wudjO5Qk5GkEtVyk1fw13s7UIV41MO8d/AYUSjY61dpFwLO
+         SRmZycdHbAOH8cieYuGzh6npcKTHQWb4PleZrQOsW+xTv14MRWQ6bBd2InOKh4tYMioa
+         DGHkQKAxWd1bUU0g2COjpb5iCiZczoR95iyNkZM4fjjZYWLXEFc3dzglMaxyKVjw9B+Y
+         ua3r5UHtvk8/glBflXFiMkknrbd6vyvsVp6Hn17Zyx/h0H8sT7ST2jhhY2dggQ8466BW
+         hDWJagVc8Sv931Rd3Y/9zQpFBVcosmhRXaqnpO3+VSTjCM1zSIoIgBgRK+8SVrJ4otBa
+         AVGw==
+X-Gm-Message-State: AOAM530nVYBciPY864oUB1VE/xJnMoL2XCxGL9vV/zHg4K+UWkNVenaY
+        Hz4ss0p6GEQl3gSAH90epS05UEZ/lNVgv7iyQA0dckZe1RCEhI0elauj1g+Z/pJ26sAqYKj1SwA
+        QRCcOcBnKskc1+49wJKF/GXR51uQUaHEwST2H61k=
+X-Received: by 2002:a05:6402:79a:b0:415:fb66:fb5e with SMTP id d26-20020a056402079a00b00415fb66fb5emr25425640edy.386.1647349047643;
+        Tue, 15 Mar 2022 05:57:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwO0jHkkkaAiXWHQCZ8sizpidbwLoREsrwbrGvP6LqJqmoGHYgqLzgBGVK8s6H5TPlv3UeAVA==
+X-Received: by 2002:a05:6402:79a:b0:415:fb66:fb5e with SMTP id d26-20020a056402079a00b00415fb66fb5emr25425616edy.386.1647349047426;
+        Tue, 15 Mar 2022 05:57:27 -0700 (PDT)
+Received: from [192.168.0.155] (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.googlemail.com with ESMTPSA id d4-20020a056402000400b00412d60fee38sm9616483edu.11.2022.03.15.05.57.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Mar 2022 05:57:26 -0700 (PDT)
+Message-ID: <57bdd2d9-27ea-22f4-3650-503fb0cf920c@canonical.com>
+Date:   Tue, 15 Mar 2022 13:57:26 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v2 1/8] media: dt-bindings: i2c: Document ov5670
+Content-Language: en-US
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Chiranjeevi Rapolu <chiranjeevi.rapolu@intel.com>,
+        jeanmichel.hautbois@ideasonboard.com,
+        laurent.pinchart@ideasonboard.com, paul.kocialkowski@bootlin.com,
+        paul.elder@ideasonboard.com,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "open list:OMNIVISION OV5670 SENSOR DRIVER" 
+        <linux-media@vger.kernel.org>, robh@kernel.org,
+        devicetree@vger.kernel.org
+References: <20220314162714.153970-1-jacopo@jmondi.org>
+ <20220314162714.153970-2-jacopo@jmondi.org>
+ <ba09e048-d619-5bd2-e6c3-da071a6d2ab6@canonical.com>
+ <YjBHVY/clnMUlNFj@valkosipuli.retiisi.eu>
+ <58745ae2-40be-65f6-bea6-f62d8935719f@canonical.com>
+ <YjCK75F7Xmiy8nGF@valkosipuli.retiisi.eu>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YjCK75F7Xmiy8nGF@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
+On 15/03/2022 13:47, Sakari Ailus wrote:
+> On Tue, Mar 15, 2022 at 09:03:41AM +0100, Krzysztof Kozlowski wrote:
+>> On 15/03/2022 08:59, Sakari Ailus wrote:
+>>> Hi Krzysztof, Jacopo,
+>>>
+>>> On Tue, Mar 15, 2022 at 08:32:58AM +0100, Krzysztof Kozlowski wrote:
+>>>> On 14/03/2022 17:27, Jacopo Mondi wrote:
+>>>>> Provide the bindings documentation for Omnivision OV5670 image sensor.
+>>>>>
+>>>>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+>>>>>
+>>>>> ---
+>>>>> v1->v2 (comments from Krzysztof)
+>>>>>
+>>>>> - Rename to include manufacturer name
+>>>>> - Add entry to MAINTAINERS
+>>>>> - Add maxItems: to -gpios properties
+>>>>> - Use common clock properties
+>>>>> - Use enum: [1, 2] for data lanes
+>>>>> - Fix whitespace issue in example
+>>>>> ---
+>>>>>
+>>>>>  .../bindings/media/i2c/ovti,ov5670.yaml       | 99 +++++++++++++++++++
+>>>>>  MAINTAINERS                                   |  1 +
+>>>>>  2 files changed, 100 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..73cf72203f17
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5670.yaml
+>>>>> @@ -0,0 +1,99 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/media/i2c/ovti,ov5670.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Omnivision OV5670 5 Megapixels raw image sensor
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Jacopo Mondi <jacopo@jmondi.org>
+>>>>> +
+>>>>> +description: |-
+>>>>> +  The OV5670 is a 5 Megapixels raw image sensor which provides images in 10-bits
+>>>>> +  RAW BGGR Bayer format on a 2 data lanes MIPI CSI-2 serial interface and is
+>>>>> +  controlled through an I2C compatible control bus.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: ovti,ov5670
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  assigned-clocks: true
+>>>>> +  assigned-clock-parents: true
+>>>>> +  assigned-clock-rates: true
+>>>>
+>>>> You should not need these. These are coming with schema. You can add
+>>>> these to example schema below and double-check.
+>>>
+>>> They should probably be required actually.
+>>
+>> Why required? The hardware can work with different clocks, get their
+>> rate and configure internal PLLs/clocks to new value. Having it required
+>> might have sense for current implementation of driver but this is
+>> independent of bindings. Bindings do not describe driver, but hardware.
+> 
+> We've had this discussion before and the result of that was this (see
+> "Handling clocks"):
+> 
+> Documentation/driver-api/media/camera-sensor.rst
 
-Add SCP support for mt8186
+... and the "Devicetree" chapter explains usage of assigned-clock-xxx.
+None of these explain why it should be in the bindings. The chapter you
+referred explicitly mentions that "clock tree is generally configured by
+the driver", so it has nothing to do with the bindings.
 
-Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/remoteproc/mtk_common.h |  3 +++
- drivers/remoteproc/mtk_scp.c    | 42 +++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
+Bindings describe hardware, not Linux driver implementation. The
+hardware can work with multiple frequencies and can support changing
+these frequencies, probably combined with some reset sequence. Therefore
+hardware does not require the clock frequency to be always fixed and
+defined.
 
-diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-index 5ff3867c72f3..71ce4977cb0b 100644
---- a/drivers/remoteproc/mtk_common.h
-+++ b/drivers/remoteproc/mtk_common.h
-@@ -32,6 +32,9 @@
- #define MT8183_SCP_CACHESIZE_8KB	BIT(8)
- #define MT8183_SCP_CACHE_CON_WAYEN	BIT(10)
- 
-+#define MT8186_SCP_L1_SRAM_PD_P1	0x40B0
-+#define MT8186_SCP_L1_SRAM_PD_p2	0x40B4
-+
- #define MT8192_L2TCM_SRAM_PD_0		0x10C0
- #define MT8192_L2TCM_SRAM_PD_1		0x10C4
- #define MT8192_L2TCM_SRAM_PD_2		0x10C8
-diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-index dcddb33e9997..11be6b4235eb 100644
---- a/drivers/remoteproc/mtk_scp.c
-+++ b/drivers/remoteproc/mtk_scp.c
-@@ -383,6 +383,35 @@ static void mt8192_power_off_sram(void __iomem *addr)
- 		writel(GENMASK(i, 0), addr);
- }
- 
-+static int mt8186_scp_before_load(struct mtk_scp *scp)
-+{
-+	/* Clear SCP to host interrupt */
-+	writel(MT8183_SCP_IPC_INT_BIT, scp->reg_base + MT8183_SCP_TO_HOST);
-+
-+	/* Reset clocks before loading FW */
-+	writel(0x0, scp->reg_base + MT8183_SCP_CLK_SW_SEL);
-+	writel(0x0, scp->reg_base + MT8183_SCP_CLK_DIV_SEL);
-+
-+	/* Turn on the power of SCP's SRAM before using it. Enable 1 block per time*/
-+	mt8192_power_on_sram(scp->reg_base + MT8183_SCP_SRAM_PDN);
-+
-+	/* Initialize TCM before loading FW. */
-+	writel(0x0, scp->reg_base + MT8183_SCP_L1_SRAM_PD);
-+	writel(0x0, scp->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
-+	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
-+	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
-+
-+	/*
-+	 * Set I-cache and D-cache size before loading SCP FW.
-+	 * SCP SRAM logical address may change when cache size setting differs.
-+	 */
-+	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
-+	       scp->reg_base + MT8183_SCP_CACHE_CON);
-+	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
-+
-+	return 0;
-+}
-+
- static int mt8192_scp_before_load(struct mtk_scp *scp)
- {
- 	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
-@@ -874,6 +903,18 @@ static const struct mtk_scp_of_data mt8183_of_data = {
- 	.ipi_buf_offset = 0x7bdb0,
- };
- 
-+static const struct mtk_scp_of_data mt8186_of_data = {
-+	.scp_clk_get = mt8195_scp_clk_get,
-+	.scp_before_load = mt8186_scp_before_load,
-+	.scp_irq_handler = mt8183_scp_irq_handler,
-+	.scp_reset_assert = mt8183_scp_reset_assert,
-+	.scp_reset_deassert = mt8183_scp_reset_deassert,
-+	.scp_stop = mt8183_scp_stop,
-+	.scp_da_to_va = mt8183_scp_da_to_va,
-+	.host_to_scp_reg = MT8183_HOST_TO_SCP,
-+	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
-+};
-+
- static const struct mtk_scp_of_data mt8192_of_data = {
- 	.scp_clk_get = mt8192_scp_clk_get,
- 	.scp_before_load = mt8192_scp_before_load,
-@@ -900,6 +941,7 @@ static const struct mtk_scp_of_data mt8195_of_data = {
- 
- static const struct of_device_id mtk_scp_of_match[] = {
- 	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
-+	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
- 	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
- 	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
- 	{},
--- 
-2.18.0
+Driver requires assigned-clock-xxx, not bindings. Do not put Linux
+implementation specifics into the bindings.
 
+Best regards,
+Krzysztof
