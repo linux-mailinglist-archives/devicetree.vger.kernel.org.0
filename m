@@ -2,129 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5941B4D9625
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 09:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C087F4D9672
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 09:37:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345880AbiCOI17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 04:27:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44596 "EHLO
+        id S1346047AbiCOIil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 04:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239420AbiCOI17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 04:27:59 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 267454BFD7;
-        Tue, 15 Mar 2022 01:26:45 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22F4JVqv027247;
-        Tue, 15 Mar 2022 09:26:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=oDQ0bPSs1kEQPGA4aIXxaRySi/P2J26ASVpVIJPCOfw=;
- b=eCCUCU3ckkjg9JZogaLrJW4bezRHw/mjZBIHhc9DDxaL78yvZ/BafbdZQPDnl81zrBbw
- oD5Gnarfz/xDPmKyulwxiKLb/EbAgrir1PJgnqCHblXu6B7r2oIUym5/jte3hgVn0ZlC
- niCX3zel4DKTke6eYb2627c/hzZxLkv83G93CX5zcfSvIRDqklqNW817kvikFPt1d401
- A8FBfs3AEfWbl/SO0C4Wc1cnYBa2tTz6iiS+VhI2ezSrgY9NxOnn7GY6y0wCOmikD/Fr
- 3SKmphfBhfhbn14vDgjV+W6Hy2LCFfF3DeHYksxjqaeecvvQu6c+4G918U/XsxG8+Z38 bw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3etj2ahghy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 15 Mar 2022 09:26:03 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8560B10002A;
-        Tue, 15 Mar 2022 09:26:02 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7B789212FC5;
-        Tue, 15 Mar 2022 09:26:02 +0100 (CET)
-Received: from [10.201.21.172] (10.75.127.46) by SFHDAG2NODE2.st.com
- (10.75.127.5) with Microsoft SMTP Server (TLS) id 15.0.1497.26; Tue, 15 Mar
- 2022 09:26:01 +0100
-Message-ID: <0bc53018-fce4-4104-fa47-6e60d2367d69@foss.st.com>
-Date:   Tue, 15 Mar 2022 09:26:01 +0100
+        with ESMTP id S1344888AbiCOIik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 04:38:40 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DED34CD6C
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 01:37:28 -0700 (PDT)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 3CE33444ED
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:37:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647333447;
+        bh=a/yCpRvnE6Z0Iz/Nht25pLJ43i4AcmeLmedZOOdutnQ=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=RysRV3qCQuWyil6V1WX6XYlQy2abOMUQBA/p6QPOqiTaDrs5zVBR5NIUtq7FwD5po
+         M3TzkAq9OmQwr0jFEie+aGVOeXiRzLKKasHvPsCU6n0zXlJuhjqs5yiuKdJBPaq38D
+         WpSzxi+xDovdieWro7d1woKe6NpSMR0qxzYOzsD8RuvrzAQs+HydpJkDb2c6rdMYHt
+         qe++8JHu+tWNGJwiHfbkC5FSuxRg6XKCHhlGKAK4m+0xPHsOmxn67JDVYoDYfzkYSo
+         R+lBjQCq2qhMsGwjFTCEUGKFXrji4b+dav7xxLNWwuHW6WHQ3fbrJwFt9S+pJbxjsJ
+         14ZfEqYR61T7w==
+Received: by mail-ej1-f71.google.com with SMTP id x2-20020a1709065ac200b006d9b316257fso9298405ejs.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 01:37:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=a/yCpRvnE6Z0Iz/Nht25pLJ43i4AcmeLmedZOOdutnQ=;
+        b=RqYTNtssQgyGhU8CmrJOpQKAQzAUHKpFhBDCXrsCHsR/kB3hsZDEnWYhdei2rvdaIo
+         XW21PqTAG1bsBIN4C9BIIUkklhQG74xYkwVV2vjebFaQRzANeR7O2bDNqg0/uopBe8vA
+         OMu+audif1xP0A3DDIDUaXLf2iX6dgmhpHUZsDQ7PipPflYOIk9VG1tqdm5ZOPO3WckT
+         UMFJz/jEQO5P5uEjogNf7+JJZiub8j/+vk+79qbmqB8V8kwkL5/2QaYme8T4Ohf20SRG
+         R2TdlgAwHnh9EVe9UTnutonXtFFT/sjmO3dGINt8Y7rmv0MH3lxHHYm7EMwLoJZtBA9h
+         mbug==
+X-Gm-Message-State: AOAM5313vJPEREkaMyGVRm4WiCuEg3LvNkITyT1SCIUawwU9F6hPsH1e
+        r1HRwR5ywOuO40LyaFIIq7DlZTIVfcbzFfmNzKot8xuP99p2bzxhS9Qoc32WsBJMwj/R9EoeXEt
+        80TBRLj4TS5I6B+eoxNRWxUg56NTWMf1TOBWl0F0=
+X-Received: by 2002:a17:906:1e13:b0:6ce:e50c:2a9c with SMTP id g19-20020a1709061e1300b006cee50c2a9cmr21749821ejj.546.1647333446721;
+        Tue, 15 Mar 2022 01:37:26 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJzSHI6Ry/hduxOpl8gsEANgJryT4xs7CGUJPM2MaHtTRnWQG3YdIg+DOsX6nwfAP8ncwCqK5w==
+X-Received: by 2002:a17:906:1e13:b0:6ce:e50c:2a9c with SMTP id g19-20020a1709061e1300b006cee50c2a9cmr21749807ejj.546.1647333446523;
+        Tue, 15 Mar 2022 01:37:26 -0700 (PDT)
+Received: from localhost.localdomain (xdsl-188-155-174-239.adslplus.ch. [188.155.174.239])
+        by smtp.gmail.com with ESMTPSA id h22-20020a1709062dd600b006dac66b8076sm7739964eji.95.2022.03.15.01.37.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 01:37:25 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] dt-bindings: gpio: add common consumer GPIO lines
+Date:   Tue, 15 Mar 2022 09:37:23 +0100
+Message-Id: <20220315083723.97822-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 1/3] dt-bindings: mmc: mmci: add a property to disable DMA
- LLI
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        Ludovic Barre <ludovic.barre@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        Marek Vasut <marex@denx.de>, <kernel@dh-electronics.com>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Grzegorz Szymaszek <gszymaszek@short.pl>
-References: <20220304135134.47827-1-yann.gautier@foss.st.com>
- <20220304135134.47827-2-yann.gautier@foss.st.com>
- <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
-From:   Yann Gautier <yann.gautier@foss.st.com>
-In-Reply-To: <CACRpkdYQz+-im3n-r0_8RKL7so2bHS=aZobty4BbzixmPzms-Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.46]
-X-ClientProxiedBy: SFHDAG2NODE2.st.com (10.75.127.5) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-14_14,2022-03-14_02,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/14/22 23:43, Linus Walleij wrote:
-> "On Fri, Mar 4, 2022 at 2:52 PM Yann Gautier <yann.gautier@foss.st.com> wrote:
-> 
->> On STMicroelectronics variant of PL18x, the DMA Linked Lists are supported
->> starting from revision v2 of the peripheral. But it has limitations,
->> as all the buffers should be aligned on block size (except the last one).
->> But this cannot be guaranteed with SDIO. We should then have a property
->> to disable the support of LLI.
->>
->> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
-> 
-> Actually I think this is present also on the ux500 variants. See:
-> commit 2253ed4b36dc876d1598c4dab5587e537ec68c34
-> "mmc: mmci: Support any block sizes for ux500v2 and qcom variant"
-> 
-> Spot the variant data "dma_power_of_2".
-> 
-> So whatever property you add
-> to the variant data (not in the device tree please) should
-> be added to the ux500 variants as well, it will *VERY* likely
-> have a problem with LLI elements not being a power of 2
-> as it is the ancestor of later STMicro variants.
-> 
-> It might actually be the reason for some annoying WiFi error
-> messages I have seen :/
-> 
-> Yours,
-> Linus Walleij
+Typical GPIO lines like enable, powerdown, reset or wakeup are not
+documented as common, which leads to new variations of these (e.g.
+pwdn-gpios).  Add a common schema which serves also as a documentation
+for preferred naming.
 
-Hi Linus,
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../bindings/gpio/gpio-consumer-common.yaml   | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
 
-The STM32 variant uses an internal DMA, and the DMA functions are in its 
-dedicated file. So I was planning to do the same as what is done in 
-meson-gx-mmc.c: using a bounce buffer to copy from/to in case DMA 
-constraints are not fulfilled. Not sure it can help for Ux500.
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml b/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+new file mode 100644
+index 000000000000..098dc913f9e5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-consumer-common.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-consumer-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common GPIO lines
++
++maintainers:
++  - Bartosz Golaszewski <brgl@bgdev.pl>
++  - Linus Walleij <linus.walleij@linaro.org>
++
++# do not select this schema for GPIO hogs
++select:
++  properties:
++    gpio-hog: false
++
++properties:
++  enable-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  reset-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  powerdown-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++  pwdn-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    description: Use powerdown-gpios
++    deprecated: true
++
++  wakeup-gpios:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++
++additionalProperties: true
+-- 
+2.32.0
 
-Ulf, before I send my new series (although it is not ready yet), would 
-you be OK with the bounce buffer idea?
-
-
-Best regards,
-Yann
