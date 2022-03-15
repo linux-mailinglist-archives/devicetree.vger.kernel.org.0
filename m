@@ -2,76 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F1674D99F0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 12:06:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D6754D9A0B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 12:10:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1347808AbiCOLH1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 07:07:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58748 "EHLO
+        id S1347764AbiCOLLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 07:11:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1347718AbiCOLH0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 07:07:26 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F06964C438
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:06:13 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id e6so25673352lfc.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:06:13 -0700 (PDT)
+        with ESMTP id S1347865AbiCOLLp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 07:11:45 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C4E9434B7
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:10:33 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id p9so28365628wra.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 04:10:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:in-reply-to:content-transfer-encoding;
-        bh=9vmesL8tOTRPsq7x8WZ8qHp+9N985sUYU62HU5s1DPA=;
-        b=BQz08S24DAYEkT+IGa+4wb0s0YRhXdTsYew1zCHGf37CzbZ31CeF3U7REi3L0qixv5
-         iPR6y/RZ4RDDbpfKNB6BAMCHic1HweR/g1tF8HMEnCqzcbe8bROLM1et/y7f7RRbB4Uq
-         Ei2qd5z3v/cAmMfT//Ysh9JKDCP+DOxL5zUeSKTWpSfgUZAa+6b4KrHBPjJyodCePb6m
-         AsLcZA/s5dxvbfY5GLmq7ARiIM9EepI9V6KJH2X+nuw97q6+y+JvrdqOytbdw6pPSyXN
-         AHgoIYarjuDOm2kjxOrxVsJJhrVEmxaYYoaIITwxlJQpOro18grVOZNbaBl6zCHW5sKh
-         bbyw==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=6K23UjVYx8CDoSve9SilwO70F6QmU57lkW6EMzdPtH4=;
+        b=pASCpeJpbdEbqtMdFz/LMDtOLUQPa+1SLdZdZFqouqWBEgo1UsWkoqRKyRExnrYi/j
+         unsGxbVqZeqEYUf2dwqFptm8wPdDmnOVKIJ1HlxyAN7JPQ3iScbHAXrC1Y7rBvsLM2M6
+         kTXyHJVcUnBWSagMQOKoIe/O3phe6V3F9lw/t4OUA8yByQZ2x5wusYYOzZl2oP7rcpwb
+         v4X0lR0Cq7n+5ogn4ZrrUirRjzdDHBi/i4nfjknjg7Mwri3Hf5LF0CKtEvB2s56T2aDx
+         /9+28IDP0p9KrvwIKlwnMu8jPTNu+NdTO63CyWQQ/lafWOGDz1hWxgOjPmOKf3kAina1
+         XAsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=9vmesL8tOTRPsq7x8WZ8qHp+9N985sUYU62HU5s1DPA=;
-        b=Lv2r3Oh1Cfvr/C8lOhNd11WIJ2sdI5ohnxBgayWh0JexuWxxDb0OtbApUsiFkaN1TX
-         +RcSg2KFGze+CC7FEpE/wmV2VIS7h5+XYXuSIMS8rkx0mERPFcwdeV/JzWrc0v1UjriD
-         bi2XX10phF2YbhS3mwxKbBDaiXLOV8TP5dvNMv9S8+eTe61X429sGSiV4HxGt+Ek3evB
-         Lszem+qzPuyxoTXIDpifX/KPwpDS/5QWDeQT34xyT+PpyG4DdFFwL81API5kLyp2PoKj
-         GkzCEYg5wmMGyfRXqQOjbGrRcpyY1TJXCZYYDq2lBmCJi+NEw6uyPU4LzZcYqItkgifW
-         MwGQ==
-X-Gm-Message-State: AOAM530HVGJk+hjUTFWIcOLHXuKHVDIERCsaYpKHai099oXvGfx2crtx
-        VFV1cC9bdF7hjte/THuNUHCbig==
-X-Google-Smtp-Source: ABdhPJxyt3QkgDtXyI4kP2W7KJlQ2wXPfgzvqLIRRezjetIp30y6HxhxKA7yf8bTgToSlJZiwxUtRw==
-X-Received: by 2002:ac2:5f4d:0:b0:448:7d37:5838 with SMTP id 13-20020ac25f4d000000b004487d375838mr10542297lfz.419.1647342372262;
-        Tue, 15 Mar 2022 04:06:12 -0700 (PDT)
-Received: from [192.168.1.211] ([37.153.55.125])
-        by smtp.gmail.com with ESMTPSA id a24-20020a2eb558000000b0024805e1b758sm4077638ljn.25.2022.03.15.04.06.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Mar 2022 04:06:11 -0700 (PDT)
-Message-ID: <f345e709-afb3-6078-3a3c-87cafd79cbee@linaro.org>
-Date:   Tue, 15 Mar 2022 14:06:11 +0300
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=6K23UjVYx8CDoSve9SilwO70F6QmU57lkW6EMzdPtH4=;
+        b=je3dC1/vmNUQHy+RgcRChgwkoFTPurFJSrxlyXrMyRPrgdo7GRuDyD1EYMvuME158y
+         UMLW3FYQ0stBMe1p1v9qIEnsusetPJMZVAzAHYSadL9LVUzIm4jqMRBtftB97HZ63X4i
+         8o9klPiaGs/zvdnZWHVfzob1FbAzNoIEZUveneJUu9nUQjlf/ndF+HNTI6dtMi13F5l5
+         TS1eIyX3ht5Tr9PqCxDSSBxiuclXzwZ31V7YIej9ySZR9WbQtFh6tu4AA8mt+Z2HOxRR
+         olOc7I1Jw7p1BDt44LsCMEdRS5U3gAKkBx1eEjji2b/m9lqHufC0OzKnRQJrHUSAwyIc
+         CY3g==
+X-Gm-Message-State: AOAM5302MP+RhvVwOg2FPyuTyAncZsb6xTTXrjgxJWA5jzTGXJdkYD6b
+        TKxQ0HBnKOGbyF0jM84jeDz70Q==
+X-Google-Smtp-Source: ABdhPJxyo8Tu+cI5LWcdBNsXhITp0l/mJqZADeSg6PkuOku8tvbq6f2IZzB1SrIHrs6Comls0FrYsw==
+X-Received: by 2002:a05:6000:1376:b0:1f0:4966:8d16 with SMTP id q22-20020a056000137600b001f049668d16mr19827484wrz.553.1647342632132;
+        Tue, 15 Mar 2022 04:10:32 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id v13-20020adfe28d000000b0020375f27a5asm16182941wri.4.2022.03.15.04.10.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 04:10:31 -0700 (PDT)
+Date:   Tue, 15 Mar 2022 11:10:28 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Benson Leung <bleung@chromium.org>,
+        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
+Message-ID: <YjB0JOKysPpg2KGF@google.com>
+References: <20220314232214.4183078-1-swboyd@chromium.org>
+ <20220314232214.4183078-2-swboyd@chromium.org>
+ <e7f9466e-03c9-7754-0dc6-a04823d1047a@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.1
-Subject: Re: [PATCH v2] pinctrl: qcom-pmic-gpio: Add support for pm8450
-Content-Language: en-GB
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20220315091106.613153-1-dmitry.baryshkov@linaro.org>
- <49d116ad-c853-8c15-83fb-ec4e418323ef@canonical.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <49d116ad-c853-8c15-83fb-ec4e418323ef@canonical.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e7f9466e-03c9-7754-0dc6-a04823d1047a@canonical.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,23 +80,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2022 13:33, Krzysztof Kozlowski wrote:
-> On 15/03/2022 10:11, Dmitry Baryshkov wrote:
->> PM8450 provides 4 GPIOs. Add a compatible entry for this GPIO block.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->> Changes since v1:
->>   - Added dt-bindings entry to the pinctrl/qcom,pmic-gpio.yaml
+On Tue, 15 Mar 2022, Krzysztof Kozlowski wrote:
+
+> On 15/03/2022 00:22, Stephen Boyd wrote:
+> > Add a binding to describe the fingerprint processor found on Chromeboks
+> > with a fingerprint sensor.
+> > 
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: <devicetree@vger.kernel.org>
+> > Cc: Guenter Roeck <groeck@chromium.org>
+> > Cc: Douglas Anderson <dianders@chromium.org>
+> > Cc: Craig Hesling <hesling@chromium.org>
+> > Cc: Tom Hughes <tomhughes@chromium.org>
+> > Cc: Alexandru M Stan <amstan@chromium.org>
+> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > ---
+> >  .../bindings/mfd/google,cros-ec-fp.yaml       | 89 +++++++++++++++++++
+> >  1 file changed, 89 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/google,cros-ec-fp.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec-fp.yaml
+> > new file mode 100644
+> > index 000000000000..05d2b2b9b713
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec-fp.yaml
+> > @@ -0,0 +1,89 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/google,cros-ec-fp.yaml#
 > 
-> This should be a separate patch.
+> Why is this in the MFD directory? Is it really a Multi Function Device?
+> Description is rather opposite. You also did not CC MFD maintainer.
 
-Quoting Linus Wallej:
- > I am fine with bindings being fixed in the same patch for this type
- > of oneliners.
+A lot of the ChromeOS Embedded Controller support used to be located
+in MFD.  There are still remnants, but most was moved to
+drivers/platform IIRC.
 
-So, I added it to the same patch.
+Please see: drivers/mfd/cros_ec_dev.c
+
+However, yes, I should have been on the recipients list.
 
 -- 
-With best wishes
-Dmitry
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
