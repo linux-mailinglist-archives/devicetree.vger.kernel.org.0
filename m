@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 54A0C4D9FCB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 17:19:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 534EA4D9FCF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 17:19:32 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349977AbiCOQUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 12:20:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47328 "EHLO
+        id S244171AbiCOQUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 12:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349909AbiCOQUT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 12:20:19 -0400
-Received: from mail-oi1-x22b.google.com (mail-oi1-x22b.google.com [IPv6:2607:f8b0:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B43832458B
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:19:04 -0700 (PDT)
-Received: by mail-oi1-x22b.google.com with SMTP id s207so21303423oie.11
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:19:04 -0700 (PDT)
+        with ESMTP id S1349989AbiCOQUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 12:20:31 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9B942A72D
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:19:17 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id 12so21301850oix.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 09:19:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=IcWUs6pXL9TSfsOL915UYAmnTIoLdxHaRaQlaAHskdo=;
-        b=fC7D4ln/VQfMzj10H2cDBMwXHWhwmi/bYBuuiME3ozr3PtrxThNWwSieW9Js8ihLCp
-         ypoQwifiWuUf/ZxU3od5Odj36c/EzCWh45p3wPqqd88bhCGCI6NDW7sDp8vWxBQpZQaA
-         FOhruyBve0+Q8agnJAvdH9HbSOMlR/bQ4B8gY=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=jji1tgDZhiJNyWN5WyuZ3fZEi8EJxLCmUtuKoul6FBo=;
+        b=YTy9nR61OW4lRvjZWSUzAyhlygBXmUQqpsjkPQ8YtRf9dX/0IendoIblPcPA3WWszy
+         2h5k8yhe+HaBIPcmuEOqbx4rRJTp/wzx/j4CrwpVZYBoF/rzCtwWL4jKaqoxkAhKAMZJ
+         G8XUupZ/X0OuHOKvoFsAGvAvBeEp/ajsPKCuNGJNmG+ISsTHYfDR4uVxje9OHQoz/87T
+         ma9tmAbRW1Pn4Ade5fzAEOi3bilnju6Lva0G/GvDtIvq9GUz6fFf7f73g+pUDzXxRH99
+         oE4gW4mmKKeDOQu3G8oGjXwJaObmPXQAtE78dxHQUAbymKcgCRm5BEagcqknIf8F47KL
+         3JEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=IcWUs6pXL9TSfsOL915UYAmnTIoLdxHaRaQlaAHskdo=;
-        b=jUOrkOD1upmIXkTEJh+yYl1sW15PSM7+gjD2p22B76ssAScPhy5Ee1JGPtwDmiOzKB
-         ULMGr2aTnvoNHtyOozQVEqDARVHV/buYsHhPIC8Kz8OZGTPTaHMJebzpV4qFHaxlsd+e
-         9Gh4duiH0qyx5gk1m85aLF8UUEF7kF8f+bZenSh/tn1D7kUWP/riksRZU6QX8XTD5q5D
-         MAUmpwiNRd9eVD6r3QfxRjLDQFCkmI1gMkEXpWgLmLsx8iBtJjKJNbVgpGHQ8e5qSVwl
-         e9xIVEKCV5hh2O1wl/KaCctmwmuT5EKfa2BeCwaILMsNcb5UhuotGExBJXrSvaC91vqN
-         mIbA==
-X-Gm-Message-State: AOAM5300RlGYBzWYb1UQ+5jpkiwVY7Hl1TUp7KGlnpr5fFBs/VyonvSM
-        DBFysrjp72tt4YykL/x7fO5fXb5Gq4g2GiAenn7Gow==
-X-Google-Smtp-Source: ABdhPJzDk4xareUQkBQSNZRxRSYxzoeY5zSgGoPp9z3/x9XlUjsIxuVm1HaN2n2bXuM1Gl/1/KDfzaA7lh5uiELirgc=
-X-Received: by 2002:aca:a9c8:0:b0:2da:45b6:b796 with SMTP id
- s191-20020acaa9c8000000b002da45b6b796mr1986232oie.193.1647361144031; Tue, 15
- Mar 2022 09:19:04 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 15 Mar 2022 11:19:03 -0500
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jji1tgDZhiJNyWN5WyuZ3fZEi8EJxLCmUtuKoul6FBo=;
+        b=LkHTRvasr6VuBO1mttm1aRoEyGjqIWGNspjFAWuGTA7Em255u4oA0w/ZieB6z7pZiW
+         6kg2SOp3LvSamrx9p0dWaTAQlxki4SqNzONrWfiaJKweyNplGkgzIfnvIsSYGZIIqwTP
+         xNWxY0jJZF68LT0Cg7er3yt1L3kltILfo6mPuFr2h94DgoN9NMRvZuHaLQ3yVCLYVVvP
+         5IEQM7A5KRA9sS6l4NE+ogbmRP5/i4XL1BdOPx0JNB2QFWIEaM8FECx/T5/JV2eZkgNm
+         qT8oD1sk08AWzRzBoz7RZ5E0M+Vo3T+yEs57tK161wqwOCqMxmFTeRuliGHaChEvqOQV
+         x12g==
+X-Gm-Message-State: AOAM533U7CAsZ+ITv+v4ela34BAA3Tk2GZhwdSAGmVsWcvg7XM5Npufb
+        A9cekkuYU2H0SxFNn0GVidYtbw==
+X-Google-Smtp-Source: ABdhPJzSSgACVwWZ+cleUvVSPF2LLrix/GamFW+S5D/ZGAhmB5q9+dc/K0kW1R4QzWb98l5HY0CLYw==
+X-Received: by 2002:a05:6808:23c1:b0:2da:30fd:34d9 with SMTP id bq1-20020a05680823c100b002da30fd34d9mr2000204oib.203.1647361157016;
+        Tue, 15 Mar 2022 09:19:17 -0700 (PDT)
+Received: from builder.lan ([2600:1700:a0:3dc8:3697:f6ff:fe85:aac9])
+        by smtp.gmail.com with ESMTPSA id k13-20020a056830150d00b005c942e2281dsm6022432otp.76.2022.03.15.09.19.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 09:19:16 -0700 (PDT)
+Date:   Tue, 15 Mar 2022 11:19:14 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, bhupesh.linux@gmail.com,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, maz@kernel.org,
+        quic_mkshah@quicinc.com, linux-gpio@vger.kernel.org,
+        linus.walleij@linaro.org, robh+dt@kernel.org,
+        Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sm8150: Add PDC as the
+ interrupt parent for tlmm
+Message-ID: <YjC8gnRZnS2V7zI1@builder.lan>
+References: <20220226184028.111566-1-bhupesh.sharma@linaro.org>
+ <20220226184028.111566-5-bhupesh.sharma@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <YjC1OLsB8/JXLEzF@google.com>
-References: <20220314232214.4183078-1-swboyd@chromium.org> <20220314232214.4183078-2-swboyd@chromium.org>
- <e7f9466e-03c9-7754-0dc6-a04823d1047a@canonical.com> <YjB0JOKysPpg2KGF@google.com>
- <9ec3c26a-3b85-4bea-5a5b-de9ac570cfca@canonical.com> <YjB46Sq3IwvgR8MB@google.com>
- <CAE-0n51uDh2Cf_wGpAVH1t=T0A1eTT=+KU3WMtxtyPL3kLDAdA@mail.gmail.com> <YjC1OLsB8/JXLEzF@google.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Tue, 15 Mar 2022 11:19:03 -0500
-Message-ID: <CAE-0n511YyyfXoCOKpzm3ca0-sE9_wpby31XDu-eGQts=-kV2Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Benson Leung <bleung@chromium.org>,
-        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220226184028.111566-5-bhupesh.sharma@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,28 +75,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lee Jones (2022-03-15 08:48:08)
-> On Tue, 15 Mar 2022, Stephen Boyd wrote:
->
-> > Quoting Lee Jones (2022-03-15 04:30:49)
-> > > It's tough to say from what I was sent above.
-> > >
-> > > But yes, sounds like it.
-> > >
-> > > We do not want any device 'functionality' in MFD ideally.
-> > >
-> >
-> > I put it next to the existing cros-ec binding. The existing binding is
-> > there because of historical reasons as far as I know. Otherwise it
-> > didn't seem MFD related so I didn't Cc mfd maintainer/list. New file
-> > additions don't usually conflict with anything and this is in the
-> > bindings directory so the driver side maintainer would be picking up the
-> > binding.
->
-> That's not how it works unfortunately.
->
-> This file is located in the MFD bindings directory, so I would be
-> picking it up (if it ends up staying here).
+On Sat 26 Feb 12:40 CST 2022, Bhupesh Sharma wrote:
 
-The way it works is arbitrary and up to maintainer's choice. I'll move
-it out of the mfd directory :)
+> Several wakeup gpios supported by the Top Level Mode Multiplexer (TLMM)
+> block on sm8150 can be used as interrupt sources and these interrupts
+> are routed to the PDC interrupt controller.
+> 
+> So, specify PDC as the interrupt parent for the TLMM block.
+> 
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> ---
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index aaeacd379460..6e6fa7811c7a 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -1937,6 +1937,7 @@ tlmm: pinctrl@3100000 {
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			wakeup-parent = <&pdc>;
+>  
+>  			qup_i2c0_default: qup-i2c0-default {
+>  				mux {
+> -- 
+> 2.35.1
+> 
