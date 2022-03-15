@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 288434D9D7F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:29:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D1F4D9D95
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 15:29:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245565AbiCOOaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 10:30:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35298 "EHLO
+        id S1349224AbiCOOal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 10:30:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233525AbiCOOaQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:30:16 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1457344779;
-        Tue, 15 Mar 2022 07:29:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=GxMzfNRQtZ04+lHo/O1UCEwaB2Ydbfpf2yzGh5HPxHc=; b=olC8YY+DSx6sXmlZVmrtQDGF50
-        04E3CKz3W/4CMUH8fsWmF8Mu0+RcSMZEzzPIkruCbYjw5rkXzg0lzMSycIvLuXicr9N9VEON67G9l
-        lxmB3rRgBHTIH85AAh/Vjr9VDBs+sZLs3TteZ/CveoanmoAm0TA4/npRKzTXwCXWz8Xg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nU8AM-00AyZC-FB; Tue, 15 Mar 2022 15:28:50 +0100
-Date:   Tue, 15 Mar 2022 15:28:50 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 7/8] arm64: dts: marvell: Add Armada 98DX2530 SoC and
- RD-AC5X board
-Message-ID: <YjCiot+PSv3ZRS4J@lunn.ch>
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
- <20220314213143.2404162-8-chris.packham@alliedtelesis.co.nz>
- <Yi/cyUJ6oIs96UW2@lunn.ch>
- <7b78853e-71ec-7c57-4cac-5cd6303f3b13@alliedtelesis.co.nz>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <7b78853e-71ec-7c57-4cac-5cd6303f3b13@alliedtelesis.co.nz>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1349230AbiCOOad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 10:30:33 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 1E93455220;
+        Tue, 15 Mar 2022 07:29:21 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,183,1643641200"; 
+   d="scan'208";a="114494343"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 15 Mar 2022 23:29:20 +0900
+Received: from localhost.localdomain (unknown [10.226.92.209])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 336BE40062A0;
+        Tue, 15 Mar 2022 23:29:18 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v3 4/7] dt-bindings: clock: renesas: Document RZ/G2UL SoC
+Date:   Tue, 15 Mar 2022 14:29:15 +0000
+Message-Id: <20220315142915.17764-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 02:11:56AM +0000, Chris Packham wrote:
-> 
-> On 15/03/22 13:24, Andrew Lunn wrote:
-> >> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
-> >> new file mode 100644
-> >> index 000000000000..ebe464b9ebd2
-> >> --- /dev/null
-> >> +++ b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
-> >> @@ -0,0 +1,343 @@
-> >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> >> +/*
-> >> + * Device Tree For AC5.
-> >> + *
-> >> + * Copyright (C) 2021 Marvell
-> >> + *
-> >> + */
-> >> +
-> >> +/dts-v1/;
-> >> +	memory@0 {
-> >> +		device_type = "memory";
-> >> +		reg = <0x2 0x00000000 0x0 0x40000000>;
-> >> +		// linux,usable-memory = <0x2 0x00000000 0x0 0x80000000>;
-> >> +	};
-> > Is the memory part of the SoC, or is it on the board? Normally it is
-> > on the board, so should be in the .dts file. But Apple M1 etc...
+Document the device tree binding for the Renesas RZ/G2UL Type-1
+and Type-2 SoC. RZ/G2UL Type-2 has fewer clocks than RZ/G2UL Type-1
+SoC.
 
-> I also wasn't sure about linux,usable-memory. It's commented out so it's 
-> obviously doing nothing but should it? No other in-tree dts files have it.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v2->v3:
+ * Changed the compatible from r9a07g043u-cpg->r9a07g043-cpg
+ * Retained the Rb tag from Rob as it is trivial change.
+v1->v2:
+ * No change
+---
+ .../devicetree/bindings/clock/renesas,rzg2l-cpg.yaml       | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-Hi Chris
+diff --git a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+index bd3af8fc616b..b728a677222e 100644
+--- a/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
++++ b/Documentation/devicetree/bindings/clock/renesas,rzg2l-cpg.yaml
+@@ -10,7 +10,7 @@ maintainers:
+   - Geert Uytterhoeven <geert+renesas@glider.be>
+ 
+ description: |
+-  On Renesas RZ/{G2L,V2L} SoC, the CPG (Clock Pulse Generator) and Module
++  On Renesas RZ/{G2L,V2L}-alike SoC's, the CPG (Clock Pulse Generator) and Module
+   Standby Mode share the same register block.
+ 
+   They provide the following functionalities:
+@@ -23,8 +23,9 @@ description: |
+ properties:
+   compatible:
+     enum:
+-      - renesas,r9a07g044-cpg  # RZ/G2{L,LC}
+-      - renesas,r9a07g054-cpg  # RZ/V2L
++      - renesas,r9a07g043-cpg   # RZ/G2UL{Type-1,Type-2}
++      - renesas,r9a07g044-cpg   # RZ/G2{L,LC}
++      - renesas,r9a07g054-cpg   # RZ/V2L
+ 
+   reg:
+     maxItems: 1
+-- 
+2.17.1
 
-I've no idea what it means. Maybe search the SDK and see if they have
-some code and what it does. But i would drop it.
-
-     Andrew
