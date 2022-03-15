@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90F3C4D91F2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:04:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E2784D91FB
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 02:05:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244577AbiCOBFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Mar 2022 21:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43884 "EHLO
+        id S1344171AbiCOBGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Mar 2022 21:06:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242235AbiCOBFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:05:30 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4F89140B1
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:04:18 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id u10so34263863ybd.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:04:18 -0700 (PDT)
+        with ESMTP id S1344151AbiCOBGG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Mar 2022 21:06:06 -0400
+Received: from mail-yb1-xb2e.google.com (mail-yb1-xb2e.google.com [IPv6:2607:f8b0:4864:20::b2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1D2838796
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:04:54 -0700 (PDT)
+Received: by mail-yb1-xb2e.google.com with SMTP id y142so47103ybe.11
+        for <devicetree@vger.kernel.org>; Mon, 14 Mar 2022 18:04:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=G3dFlqRFL9HlfyNgNPQqYqQNaHrZZteRUE5RE+XDmFo=;
-        b=xHeNq3qL2wnSyQEpGFv10jR9dWRPb48//FYTkZChRDbk6GjpEQ/TlXPk7E9AUWEc9o
-         bclzeHNVl5x0ydjrVG1RdqFQr9ua1cQWKKMYGgi1oB4/gCJybdPvJGgoYkUDI+qCWw+g
-         juAtgNvxt+NQjoPc6ewwv9PGOw39OlQ3Bb4K6Jd5Vn236c+gtJkz++nGNpAXhjhESbVV
-         NAusH5eYB45L6hXc8f11T8gnuUI0zxpyGoojPJ3egcitgbsMRLgV6nNMgCduZAuK36ao
-         CUk8YBUUS5OvXzmcNh4d+VX1r/5D7sTfD6DBHkh+jSa+Pv4vE2rzupca2CSAG05kfmpd
-         TJRg==
+        bh=yAm5OvhWANM70n2iXAUODUmXPNizY/Wk3oobwqvI5vY=;
+        b=XvgktuOwcdRbBdtoKoel2yPRVXVFwM+IWd2UW9qUYwDjWfzWWN9R8DmmJC1KiUj+gE
+         bjAHWY0QxnGZv2MK54CisIBwTlUqNZnZ0p0QeZfJOCDulcicLR2Wfo5H+XmoS0uappZN
+         YKR1N61LTv4GblaJTPOe2mZLMi6jcVgSbMYtTvJPD92xhsHsg905kUInBP+vjFjot9BR
+         6NuZGmWYCww0juYpEGJFx+W+vixcbOtqCt6jPVc/CMB5yIxVEDbMk6kSJo453fKGYlva
+         7NJTs2J8o0BIB4rZBb+4VkLXi16fNORKOhDGK2HtwPHJFyDI3dI0FXxfFug7o01j2WcB
+         THqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=G3dFlqRFL9HlfyNgNPQqYqQNaHrZZteRUE5RE+XDmFo=;
-        b=59l9U7D/SLBdPYTbvjB/OfcCuFZfqyoEA1E8R4NxRBm/HrC1Pw/6V9x1vsmFd7rfn1
-         3fikm2FxdVynUUugqHMyQHe3JPm0ewQz/x5jthXbJ+/YUrIgvhs5SqUCEeMWoClXHp+2
-         kZk/tptEJLpf1gVby4FdnjCAbOxyzCDyExtpVwGGTihR08QeZIMlWj4WhAO1lryvFNWt
-         Tzf/fIEZsLyGBXqY88SUqWHwncuLcQvFIxRg0/fPRJYIW+iLjh+aHnyMChcBK99cCK3W
-         kg5fOOaGv0SO6WhmUjpA5aZJ1EgkAlymP0ToN8S6OTPyzRZHX04kH/Zoq+c5iBHdhHjL
-         n8lg==
-X-Gm-Message-State: AOAM531dJtxs5m+KQhXvNGt+SFR4TSbv/JbC0+gOTiDVRsYyWU5EVRrL
-        6B24yw6YMt22U+SP+UpvDdQDLdGTbkmFM/tQfB0ldw==
-X-Google-Smtp-Source: ABdhPJzcee/3Zb1HhaKysHMmvVuapmBALaDYIGI3ZPQmes767jIHWsrqo+TpcpZ/9cslSe2RX4+gI+gKsFuisV7Tte4=
-X-Received: by 2002:a25:e710:0:b0:633:67d3:7264 with SMTP id
- e16-20020a25e710000000b0063367d37264mr3565636ybh.291.1647306257955; Mon, 14
- Mar 2022 18:04:17 -0700 (PDT)
+        bh=yAm5OvhWANM70n2iXAUODUmXPNizY/Wk3oobwqvI5vY=;
+        b=xeRAEOlvCTYVrQ5CoI6hNqgGPksTGJdv2vZfS7mKaymkApxFxDMDP3F8eV7dbPIUQx
+         cB8YyPLRWL8Qkvk9urO/g7gwACc8ut5Gi0RsmMQeNMtLJyAkd1ITJCMRe67f40BzzJTi
+         iiMCIbu8r8Te/fy1I44peOO9BfKGEIcUmRZYT4H2PHrKbAcafND9yPjtv1ZrKvol3Nhm
+         pEEO0iuIKRKLZ3/Bu0D2LLIl3lXVEMvbYpdgWOHF2tKRDz/wjOIEnSBfc1OHx+OW2Dbe
+         IJIivrCm1DcywTBK6A7/g4PANAq8xjSYtyHmw3q/oQ89B27vxTNmcd8wAx3pRHkKf120
+         I7Ow==
+X-Gm-Message-State: AOAM530G/LKjPRl3m13+ybnIzUp9PdMYqde+TL/ZNAYtuGtGN9DG36ci
+        FQM1G05DS1sgD3mdRsNpuPPEETCNM33o+dEfriBcJQ==
+X-Google-Smtp-Source: ABdhPJwCTLgZvR10g8cOkgwnXUV0ru758i4gMC9avP243uwHJ9kOV3Y2hDoDgVxvAL3bYPi/kFB2JF8ViT9JoQcu10A=
+X-Received: by 2002:a5b:dc5:0:b0:624:f16d:7069 with SMTP id
+ t5-20020a5b0dc5000000b00624f16d7069mr19980767ybr.295.1647306294150; Mon, 14
+ Mar 2022 18:04:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220308221132.1423218-1-bjorn.andersson@linaro.org>
-In-Reply-To: <20220308221132.1423218-1-bjorn.andersson@linaro.org>
+References: <20220308221132.1423218-1-bjorn.andersson@linaro.org> <20220308221132.1423218-2-bjorn.andersson@linaro.org>
+In-Reply-To: <20220308221132.1423218-2-bjorn.andersson@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 15 Mar 2022 02:04:06 +0100
-Message-ID: <CACRpkdbJFtNqtvfmqPffHW-gWJdTD6xa07z33gnDbm=QpJLgMg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add sc8280xp TLMM binding
+Date:   Tue, 15 Mar 2022 02:04:43 +0100
+Message-ID: <CACRpkdbvW0MVdhgFiVCcz+NDJu+mJc=4AgHC3AYnjZy+OOm2qA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Introduce sc8280xp TLMM driver
 To:     Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
@@ -70,9 +70,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Mar 8, 2022 at 11:09 PM Bjorn Andersson
 <bjorn.andersson@linaro.org> wrote:
 
-> The Qualcomm SC8280XP platform contains a single block of registers
-> for the TLMM block. This provides pinconf and pinmux for 228 GPIOs, 2
-> UFS_RESET pins and one SDC interface.
+> The SC8280XP comes, like all other Qualcomm platforms, with a TLMM
+> block, so add a driver for it.
 >
 > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
