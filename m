@@ -2,135 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 829E14D9F43
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:51:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 25A154D9F30
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:51:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349830AbiCOPwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 11:52:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43052 "EHLO
+        id S1349783AbiCOPvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 11:51:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1349800AbiCOPwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:52:40 -0400
-Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9F3F54BFC;
-        Tue, 15 Mar 2022 08:51:20 -0700 (PDT)
+        with ESMTP id S1349786AbiCOPvv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:51:51 -0400
+Received: from mail-oo1-xc29.google.com (mail-oo1-xc29.google.com [IPv6:2607:f8b0:4864:20::c29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4C955468E
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:50:35 -0700 (PDT)
+Received: by mail-oo1-xc29.google.com with SMTP id w3-20020a4ac183000000b0031d806bbd7eso24719734oop.13
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:50:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
-  t=1647359480; x=1678895480;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=2y31Pev9RvJ+AYi2tk5Fqr3q/lIbCqCcRZIraL6KZJU=;
-  b=bJHYitV00NWHApQ4PBRiSE7hLpnYoRVIeDb7+dIP9QY88v7Ghpojt+78
-   QNALDHxm8k2pXMik4PX26a6kXS/Mo509AzFRmhuuYDtEfJTby3RlPW6cJ
-   Z2hxpveVP+UXTWci2o4M2TSqrCkQt1Abu3jVOlez2mq1s9L3U7wmVWfpb
-   Y=;
-Received: from unknown (HELO ironmsg04-sd.qualcomm.com) ([10.53.140.144])
-  by alexa-out-sd-02.qualcomm.com with ESMTP; 15 Mar 2022 08:51:20 -0700
-X-QCInternal: smtphost
-Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
-  by ironmsg04-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2022 08:51:18 -0700
-Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
- nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.15; Tue, 15 Mar 2022 08:51:18 -0700
-Received: from hu-srivasam-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.22; Tue, 15 Mar 2022 08:51:11 -0700
-From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-To:     <agross@kernel.org>, <bjorn.andersson@linaro.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
-        <quic_plai@quicinc.com>, <bgoswami@codeaurora.org>,
-        <perex@perex.cz>, <tiwai@suse.com>,
-        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
-        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>,
-        "Venkata Prasad Potturu" <quic_potturu@quicinc.com>
-Subject: [PATCH v11 7/7] pinctrl: qcom: Update clock voting as optional
-Date:   Tue, 15 Mar 2022 21:20:13 +0530
-Message-ID: <1647359413-31662-8-git-send-email-quic_srivasam@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1647359413-31662-1-git-send-email-quic_srivasam@quicinc.com>
-References: <1647359413-31662-1-git-send-email-quic_srivasam@quicinc.com>
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=I4c51xsdjxSyFom4STgtqxq6o6AKdTW8OLe7O5/jVnI=;
+        b=RdbsXMNlP8wYdG7quqOUWkNI912I8J8v2dI1CpPrFRzvPMlqWvYUjRZcc3CPAOO29S
+         Yge/Doop6f6uEsSFKCqhOIsjsvZ/KqP+eWOLjwNC9rSDGozrfKDRjbcvxa5z0pCPEIve
+         c5NtXIfspKzVJ4hupGwMTdkiQ23FjnfxTBn9w=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=I4c51xsdjxSyFom4STgtqxq6o6AKdTW8OLe7O5/jVnI=;
+        b=MTEahZ7VquZWFQil6Xczql6vUTtqZAzXRAM4rbSUnxYFnxoyHgub0u41456KTyjUgG
+         BMlk8Rf7fkkeX+HoLnnmVEzCR3ufaTfhd9LhZF6G9on8u9xxUMulXkVr5cdK6J9Th4Tg
+         gwqBl8FsTaRA3Lg0t6NMO8oLKi83+V/JT/g1c3zzLRLSUe1yHE84+HCW5ZddZAPgnY5L
+         BjF1xnHTpfUp9VZXyBLPIXa8rGeELdIRVui1hnm/M5w6sXa4TR7NKCs3Hbe0L49wTmzT
+         WV2x7QzcJW5YwHeEBKLrAIRN//GMq79YPbJNVtT0qWH2bDNKoN4Z5b4ddZxHP46Yxxyw
+         zmBw==
+X-Gm-Message-State: AOAM531jftBqm/HXGauCNxfVYNFXY1ktH5ebP4qKHe/E60Lqv8w86cVy
+        ut5g8Fp7Jc/XOi4HOzkAlGT9aYFWUwTYDmVIviSoNbTAxS4=
+X-Google-Smtp-Source: ABdhPJyHK2Q+ikMVle/mFHZsw86q2VaSnh4TIjabq9UlQBoV+QZTX64BB1/3Nt6dBd6/Mt4xS0Vdwi/ekXUmIzZbJxQ=
+X-Received: by 2002:a05:6870:c0cb:b0:da:2bcc:aa09 with SMTP id
+ e11-20020a056870c0cb00b000da2bccaa09mr1821164oad.63.1647359435184; Tue, 15
+ Mar 2022 08:50:35 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Tue, 15 Mar 2022 10:50:34 -0500
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAHNYxRwFYBbgxUqz79jYXbDxSd-r+NdHWQPucEyuNK83U577xw@mail.gmail.com>
+References: <20220314232214.4183078-1-swboyd@chromium.org> <20220314232214.4183078-2-swboyd@chromium.org>
+ <CAHNYxRwFYBbgxUqz79jYXbDxSd-r+NdHWQPucEyuNK83U577xw@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Tue, 15 Mar 2022 10:50:34 -0500
+Message-ID: <CAE-0n50A2yrSbQJA8EMum3AoLf+w263ddFh6sA5d+tfMMMkarA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
+To:     Alexandru M Stan <amstan@chromium.org>
+Cc:     Benson Leung <bleung@chromium.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        chrome-platform@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update bulk clock voting to optional voting as ADSP bypass platform doesn't
-need macro and decodec clocks, as these macro and dcodec GDSC switches are
-maintained as power domains and operated from lpass clock drivers.
+Quoting Alexandru M Stan (2022-03-14 17:23:38)
+> On Mon, Mar 14, 2022 at 4:22 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > +        compatible = "google,cros-ec-fp";
+> > +        reg = <0>;
+> > +        interrupt-parent = <&gpio_controller>;
+> > +        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
+> > +        spi-max-frequency = <3000000>;
+> > +        google,cros-ec-spi-msg-delay = <37>;
+> > +        google,cros-ec-spi-pre-delay = <5>;
+> > +        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
+> > +        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_LOW>;
+> This should say GPIO_ACTIVE_HIGH, since there's no inverting going on
+> either with a real inverter, or the convention (of 'N' being in the
+> pin name).
+>
+> It might be easier to reason about if there's no invesion going for this signal.
+>
+> Consider it like an enum instead of a verb (unlike active_low
+> reset-gpios which can be considered: in reset if it's set):
+>
+> enum boot0 {
+>         normal = 0,
+>         bootloader = 1,
+> };
 
-Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
-Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
----
- drivers/pinctrl/qcom/pinctrl-lpass-lpi.c        | 12 +++++++++---
- drivers/pinctrl/qcom/pinctrl-lpass-lpi.h        |  1 +
- drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c |  1 +
- 3 files changed, 11 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-index 0216ca1..3fc473a 100644
---- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-+++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
-@@ -401,9 +401,15 @@ int lpi_pinctrl_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(pctrl->slew_base),
- 				     "Slew resource not provided\n");
- 
--	ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
--	if (ret)
--		return dev_err_probe(dev, ret, "Can't get clocks\n");
-+	if (data->is_clk_optional) {
-+		ret = devm_clk_bulk_get_optional(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Can't get clocks\n");
-+	} else {
-+		ret = devm_clk_bulk_get(dev, MAX_LPI_NUM_CLKS, pctrl->clks);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "Can't get clocks\n");
-+	}
- 
- 	ret = clk_bulk_prepare_enable(MAX_LPI_NUM_CLKS, pctrl->clks);
- 	if (ret)
-diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-index afbac2a..3bcede6 100644
---- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-+++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.h
-@@ -77,6 +77,7 @@ struct lpi_pinctrl_variant_data {
- 	int ngroups;
- 	const struct lpi_function *functions;
- 	int nfunctions;
-+	int is_clk_optional;
- };
- 
- int lpi_pinctrl_probe(struct platform_device *pdev);
-diff --git a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-index d67ff25..304d8a2 100644
---- a/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-+++ b/drivers/pinctrl/qcom/pinctrl-sc7280-lpass-lpi.c
-@@ -142,6 +142,7 @@ static const struct lpi_pinctrl_variant_data sc7280_lpi_data = {
- 	.ngroups = ARRAY_SIZE(sc7280_groups),
- 	.functions = sc7280_functions,
- 	.nfunctions = ARRAY_SIZE(sc7280_functions),
-+	.is_clk_optional = 1,
- };
- 
- static const struct of_device_id lpi_pinctrl_of_match[] = {
--- 
-2.7.4
-
+Ok got it! I have in my notes that physically high line means normal
+boot mode and physically low is bootloader mode. I confused myself. I'll
+fix this.
