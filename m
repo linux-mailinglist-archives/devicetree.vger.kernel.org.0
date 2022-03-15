@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D6A04D9E65
-	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:13:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DD6F44D9E74
+	for <lists+devicetree@lfdr.de>; Tue, 15 Mar 2022 16:16:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239635AbiCOPPH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 11:15:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50034 "EHLO
+        id S1349516AbiCOPRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 11:17:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237899AbiCOPPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:15:07 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34A3C27CC2
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:13:53 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id mr24-20020a17090b239800b001bf0a375440so2556643pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 08:13:53 -0700 (PDT)
+        with ESMTP id S241716AbiCOPRf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 11:17:35 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E65BD4E3BC;
+        Tue, 15 Mar 2022 08:16:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=f5nlUBLV7MqYfh3uZWTTZlE6PzgMGo6+9eel+nmzmEc=;
-        b=FOwkB/9cds0wWFfxicB/tnGCM5m9Apu7u2pJ9B1T/auQbXakW0HkJaBq35LO7cLx81
-         fjXhiKYXerKnkoS2pnLwW2BFKxFYEqy/DihUnOQtYuffg0GRhC/ssczMhIKCgzOLYCqz
-         XOOwwWfhDHK+MvYre/j3pCg3vn5p2Nyooy8d9elwNJqRPd+njeHvbpD+6iSQwqSrKKwJ
-         aBgYpRwN5T52sPrV9hFqzxZGMhT9JV1vn9TRIzxBm3y6wCgkJv958FD1S6r57UxKViOc
-         YazUs0ItazTbiwfZ/o9QYGuJ6cHmULxnpnwa285vg+0/+ooM61+Jrus0/Bzo4185YXDE
-         BwUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f5nlUBLV7MqYfh3uZWTTZlE6PzgMGo6+9eel+nmzmEc=;
-        b=as0RMKtM19khNAFnP7iO9xeXC/dYtfMEgZk+yY7mCJ9sQ+O5MOXRc01ICAxkO5h+o9
-         2ppjmfrFOUeiA4AJcVpx3lnm53nW8OrXS8usqL9FUi1j5IXflTXOcdfVlFq9+qUT1Jpw
-         2CB43fFgemXD/1n8K73mTKG2bqS7ZkL2OZUJA4pWRW5Kbey6x+YxJHJconVl8Bg2fuf2
-         /u4I9xa3lW4MxtUZDpDW8guoMFz++olrJtrywW1HA1bqvJ4HiJpCsQlP1yQw8+9skAFX
-         coWPL2Romw5d/nsC+NA3QrHgnRMzuVe88AqtkR/OsHnzvt9i9ToomWt8WNiVSn//K+m2
-         Toug==
-X-Gm-Message-State: AOAM530LLr0Shbm0lJbhZgnPGtBJrpJH2mt5bESvaeeSYEtHhTQnyT3L
-        LIk7JxTmL/UkBOobO002KoF1yQ==
-X-Google-Smtp-Source: ABdhPJyCccpeCH49rFaMMSFeIBQyW65dhNtaeYGUV8VzcCpHA9uN79iBq6oEDbJcgl1AlM7YYXcfZg==
-X-Received: by 2002:a17:902:8b87:b0:14b:47b3:c0a2 with SMTP id ay7-20020a1709028b8700b0014b47b3c0a2mr28439314plb.51.1647357232685;
-        Tue, 15 Mar 2022 08:13:52 -0700 (PDT)
-Received: from p14s (S0106889e681aac74.cg.shawcable.net. [68.147.0.187])
-        by smtp.gmail.com with ESMTPSA id a38-20020a056a001d2600b004f72acd4dadsm24861405pfx.81.2022.03.15.08.13.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Mar 2022 08:13:51 -0700 (PDT)
-Date:   Tue, 15 Mar 2022 09:13:49 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        angelogioacchino.delregno@collabora.com
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] remoteproc: mediatek: Support mt8186 scp
-Message-ID: <20220315151349.GA2479752@p14s>
-References: <20220315124747.30144-1-allen-kh.cheng@mediatek.com>
- <20220315124747.30144-3-allen-kh.cheng@mediatek.com>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647357383; x=1678893383;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=K/5VIbFRNZyUAomyRkJcvu1MFWQjXYbL+i+2czloWR4=;
+  b=SMD8zHgMZYwIBnj97DMhDOQ49ebbIw2s54El9kIsRjph3iksRhuODVHv
+   WGmQahLaicmYNjg0ievLMf0z8UZR8a1DAiBXymkvB6dfLPp4YM9S6/KVz
+   aQI7r8U0kJPGwzefClNDYe4//isha20CblcUhH4yVrviLWyNSvieJm78V
+   E=;
+Received: from ironmsg09-lv.qualcomm.com ([10.47.202.153])
+  by alexa-out.qualcomm.com with ESMTP; 15 Mar 2022 08:16:23 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg09-lv.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2022 08:16:21 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 15 Mar 2022 08:16:21 -0700
+Received: from [10.216.59.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 15 Mar
+ 2022 08:16:15 -0700
+Message-ID: <35e43f3a-8d48-5c2a-b5f6-9220cead7ff0@quicinc.com>
+Date:   Tue, 15 Mar 2022 20:46:11 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220315124747.30144-3-allen-kh.cheng@mediatek.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH v10 4/7] pinctrl: qcom: Update lpi pin group structure
+Content-Language: en-US
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+CC:     <agross@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <robh+dt@kernel.org>, <quic_plai@quicinc.com>,
+        <bgoswami@codeaurora.org>, <perex@perex.cz>, <tiwai@suse.com>,
+        <srinivas.kandagatla@linaro.org>, <rohitkr@codeaurora.org>,
+        <linux-arm-msm@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <judyhsiao@chromium.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>,
+        Venkata Prasad Potturu <quic_potturu@quicinc.com>
+References: <1646737394-4740-1-git-send-email-quic_srivasam@quicinc.com>
+ <1646737394-4740-5-git-send-email-quic_srivasam@quicinc.com>
+ <YieYr00MRUfeSE1B@ripper>
+From:   Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+Organization: Qualcomm
+In-Reply-To: <YieYr00MRUfeSE1B@ripper>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,111 +76,135 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 08:47:47PM +0800, Allen-KH Cheng wrote:
-> From: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> 
-> Add SCP support for mt8186
 
-V5 of this patchset is already in rproc-next and as such this one does not
-apply.
-
-> 
-> Signed-off-by: Allen-KH Cheng <Allen-KH.Cheng@mediatek.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-
-As far as I can see from the mailing list interactions, Angelo did not review
-the new section about cache initialisation and yet his RoB is present.  And to
-make matters worse he was not on the recipient list, which I have corrected.
-
-Thanks,
-Mathieu
-
-> ---
->  drivers/remoteproc/mtk_common.h |  3 +++
->  drivers/remoteproc/mtk_scp.c    | 42 +++++++++++++++++++++++++++++++++
->  2 files changed, 45 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/mtk_common.h b/drivers/remoteproc/mtk_common.h
-> index 5ff3867c72f3..71ce4977cb0b 100644
-> --- a/drivers/remoteproc/mtk_common.h
-> +++ b/drivers/remoteproc/mtk_common.h
-> @@ -32,6 +32,9 @@
->  #define MT8183_SCP_CACHESIZE_8KB	BIT(8)
->  #define MT8183_SCP_CACHE_CON_WAYEN	BIT(10)
->  
-> +#define MT8186_SCP_L1_SRAM_PD_P1	0x40B0
-> +#define MT8186_SCP_L1_SRAM_PD_p2	0x40B4
-> +
->  #define MT8192_L2TCM_SRAM_PD_0		0x10C0
->  #define MT8192_L2TCM_SRAM_PD_1		0x10C4
->  #define MT8192_L2TCM_SRAM_PD_2		0x10C8
-> diff --git a/drivers/remoteproc/mtk_scp.c b/drivers/remoteproc/mtk_scp.c
-> index dcddb33e9997..11be6b4235eb 100644
-> --- a/drivers/remoteproc/mtk_scp.c
-> +++ b/drivers/remoteproc/mtk_scp.c
-> @@ -383,6 +383,35 @@ static void mt8192_power_off_sram(void __iomem *addr)
->  		writel(GENMASK(i, 0), addr);
->  }
->  
-> +static int mt8186_scp_before_load(struct mtk_scp *scp)
-> +{
-> +	/* Clear SCP to host interrupt */
-> +	writel(MT8183_SCP_IPC_INT_BIT, scp->reg_base + MT8183_SCP_TO_HOST);
-> +
-> +	/* Reset clocks before loading FW */
-> +	writel(0x0, scp->reg_base + MT8183_SCP_CLK_SW_SEL);
-> +	writel(0x0, scp->reg_base + MT8183_SCP_CLK_DIV_SEL);
-> +
-> +	/* Turn on the power of SCP's SRAM before using it. Enable 1 block per time*/
-> +	mt8192_power_on_sram(scp->reg_base + MT8183_SCP_SRAM_PDN);
-> +
-> +	/* Initialize TCM before loading FW. */
-> +	writel(0x0, scp->reg_base + MT8183_SCP_L1_SRAM_PD);
-> +	writel(0x0, scp->reg_base + MT8183_SCP_TCM_TAIL_SRAM_PD);
-> +	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_P1);
-> +	writel(0x0, scp->reg_base + MT8186_SCP_L1_SRAM_PD_p2);
-> +
-> +	/*
-> +	 * Set I-cache and D-cache size before loading SCP FW.
-> +	 * SCP SRAM logical address may change when cache size setting differs.
-> +	 */
-> +	writel(MT8183_SCP_CACHE_CON_WAYEN | MT8183_SCP_CACHESIZE_8KB,
-> +	       scp->reg_base + MT8183_SCP_CACHE_CON);
-> +	writel(MT8183_SCP_CACHESIZE_8KB, scp->reg_base + MT8183_SCP_DCACHE_CON);
-> +
-> +	return 0;
-> +}
-> +
->  static int mt8192_scp_before_load(struct mtk_scp *scp)
->  {
->  	/* clear SPM interrupt, SCP2SPM_IPC_CLR */
-> @@ -874,6 +903,18 @@ static const struct mtk_scp_of_data mt8183_of_data = {
->  	.ipi_buf_offset = 0x7bdb0,
->  };
->  
-> +static const struct mtk_scp_of_data mt8186_of_data = {
-> +	.scp_clk_get = mt8195_scp_clk_get,
-> +	.scp_before_load = mt8186_scp_before_load,
-> +	.scp_irq_handler = mt8183_scp_irq_handler,
-> +	.scp_reset_assert = mt8183_scp_reset_assert,
-> +	.scp_reset_deassert = mt8183_scp_reset_deassert,
-> +	.scp_stop = mt8183_scp_stop,
-> +	.scp_da_to_va = mt8183_scp_da_to_va,
-> +	.host_to_scp_reg = MT8183_HOST_TO_SCP,
-> +	.host_to_scp_int_bit = MT8183_HOST_IPC_INT_BIT,
-> +};
-> +
->  static const struct mtk_scp_of_data mt8192_of_data = {
->  	.scp_clk_get = mt8192_scp_clk_get,
->  	.scp_before_load = mt8192_scp_before_load,
-> @@ -900,6 +941,7 @@ static const struct mtk_scp_of_data mt8195_of_data = {
->  
->  static const struct of_device_id mtk_scp_of_match[] = {
->  	{ .compatible = "mediatek,mt8183-scp", .data = &mt8183_of_data },
-> +	{ .compatible = "mediatek,mt8186-scp", .data = &mt8186_of_data },
->  	{ .compatible = "mediatek,mt8192-scp", .data = &mt8192_of_data },
->  	{ .compatible = "mediatek,mt8195-scp", .data = &mt8195_of_data },
->  	{},
-> -- 
-> 2.18.0
-> 
+On 3/8/2022 11:25 PM, Bjorn Andersson wrote:
+Thanks for Your Time Bjorn!!!
+> On Tue 08 Mar 03:03 PST 2022, Srinivasa Rao Mandadapu wrote:
+>
+>> Update lpi group structure with core group_desc structure
+>> to avoid redundant struct params.
+>>
+> This fails to express why you're doing that, please see below.
+>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Co-developed-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> Signed-off-by: Venkata Prasad Potturu <quic_potturu@quicinc.com>
+>> ---
+>>   drivers/pinctrl/qcom/Kconfig             |  1 +
+>>   drivers/pinctrl/qcom/pinctrl-lpass-lpi.c | 44 +++++++++++++++-----------------
+>>   2 files changed, 22 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+>> index ca6f68a..31c4aa6 100644
+>> --- a/drivers/pinctrl/qcom/Kconfig
+>> +++ b/drivers/pinctrl/qcom/Kconfig
+>> @@ -351,6 +351,7 @@ config PINCTRL_LPASS_LPI
+>>   	select PINMUX
+>>   	select PINCONF
+>>   	select GENERIC_PINCONF
+>> +	select GENERIC_PINCTRL_GROUPS
+> This allow you to use struct group_desc, but what does that give you?
+>
+> I don't see a change where you're moving to use the common group_desc
+> helpers that the framework supplies. Without that this just replace 3
+> entries in struct lpi_pingroup with 4 entries in struct group_desc.
+>
+>
+> Change looks good, iff it's followed by a transition to replace the
+> driver's custom functions with pinctrl_generic_get_group_*().
+>
+> Regards,
+> Bjorn
+Okay. Will change and re send the patch set.
+>
+>>   	depends on GPIOLIB
+>>   	help
+>>   	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
+>> diff --git a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> index 3c15f80..54750ba 100644
+>> --- a/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> +++ b/drivers/pinctrl/qcom/pinctrl-lpass-lpi.c
+>> @@ -51,11 +51,11 @@
+>>   
+>>   #define LPI_PINGROUP(id, soff, f1, f2, f3, f4)		\
+>>   	{						\
+>> -		.name = "gpio" #id,			\
+>> -		.pins = gpio##id##_pins,		\
+>> +		.group.name = "gpio" #id,			\
+>> +		.group.pins = gpio##id##_pins,		\
+>>   		.pin = id,				\
+>>   		.slew_offset = soff,			\
+>> -		.npins = ARRAY_SIZE(gpio##id##_pins),	\
+>> +		.group.num_pins = ARRAY_SIZE(gpio##id##_pins),	\
+>>   		.funcs = (int[]){			\
+>>   			LPI_MUX_gpio,			\
+>>   			LPI_MUX_##f1,			\
+>> @@ -67,9 +67,7 @@
+>>   	}
+>>   
+>>   struct lpi_pingroup {
+>> -	const char *name;
+>> -	const unsigned int *pins;
+>> -	unsigned int npins;
+>> +	struct group_desc group;
+>>   	unsigned int pin;
+>>   	/* Bit offset in slew register for SoundWire pins only */
+>>   	int slew_offset;
+>> @@ -150,20 +148,20 @@ enum sm8250_lpi_functions {
+>>   	LPI_MUX__,
+>>   };
+>>   
+>> -static const unsigned int gpio0_pins[] = { 0 };
+>> -static const unsigned int gpio1_pins[] = { 1 };
+>> -static const unsigned int gpio2_pins[] = { 2 };
+>> -static const unsigned int gpio3_pins[] = { 3 };
+>> -static const unsigned int gpio4_pins[] = { 4 };
+>> -static const unsigned int gpio5_pins[] = { 5 };
+>> -static const unsigned int gpio6_pins[] = { 6 };
+>> -static const unsigned int gpio7_pins[] = { 7 };
+>> -static const unsigned int gpio8_pins[] = { 8 };
+>> -static const unsigned int gpio9_pins[] = { 9 };
+>> -static const unsigned int gpio10_pins[] = { 10 };
+>> -static const unsigned int gpio11_pins[] = { 11 };
+>> -static const unsigned int gpio12_pins[] = { 12 };
+>> -static const unsigned int gpio13_pins[] = { 13 };
+>> +static int gpio0_pins[] = { 0 };
+>> +static int gpio1_pins[] = { 1 };
+>> +static int gpio2_pins[] = { 2 };
+>> +static int gpio3_pins[] = { 3 };
+>> +static int gpio4_pins[] = { 4 };
+>> +static int gpio5_pins[] = { 5 };
+>> +static int gpio6_pins[] = { 6 };
+>> +static int gpio7_pins[] = { 7 };
+>> +static int gpio8_pins[] = { 8 };
+>> +static int gpio9_pins[] = { 9 };
+>> +static int gpio10_pins[] = { 10 };
+>> +static int gpio11_pins[] = { 11 };
+>> +static int gpio12_pins[] = { 12 };
+>> +static int gpio13_pins[] = { 13 };
+>>   static const char * const swr_tx_clk_groups[] = { "gpio0" };
+>>   static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5" };
+>>   static const char * const swr_rx_clk_groups[] = { "gpio3" };
+>> @@ -262,7 +260,7 @@ static const char *lpi_gpio_get_group_name(struct pinctrl_dev *pctldev,
+>>   {
+>>   	struct lpi_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
+>>   
+>> -	return pctrl->data->groups[group].name;
+>> +	return pctrl->data->groups[group].group.name;
+>>   }
+>>   
+>>   static int lpi_gpio_get_group_pins(struct pinctrl_dev *pctldev,
+>> @@ -272,8 +270,8 @@ static int lpi_gpio_get_group_pins(struct pinctrl_dev *pctldev,
+>>   {
+>>   	struct lpi_pinctrl *pctrl = pinctrl_dev_get_drvdata(pctldev);
+>>   
+>> -	*pins = pctrl->data->groups[group].pins;
+>> -	*num_pins = pctrl->data->groups[group].npins;
+>> +	*pins = pctrl->data->groups[group].group.pins;
+>> +	*num_pins = pctrl->data->groups[group].group.num_pins;
+>>   
+>>   	return 0;
+>>   }
+>> -- 
+>> 2.7.4
+>>
