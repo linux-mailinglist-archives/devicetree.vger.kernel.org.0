@@ -2,105 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 818744DB4A5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 16:14:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id CC1F84DB4B8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 16:19:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1357292AbiCPPPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 11:15:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60228 "EHLO
+        id S1357181AbiCPPU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 11:20:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47256 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1357230AbiCPPPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 11:15:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BAA5EDC6;
-        Wed, 16 Mar 2022 08:13:46 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: nfraprado)
-        with ESMTPSA id 400CC1F44713
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647443625;
-        bh=Y+lkLt3+XMMhoecgGOVlam/wNyWF4vFjgKdH60o7wRY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nC8i0iJlO1gOtgwmNN1OQxY9rC9ayCBImNW2RAkJfnnRQvjhBpVlUTN6YIYCn/ep6
-         PPDO7r57s47zCGcIWxzRTzE/t25MbCWYJOwTteQL5yWYaDleIdM1pZRkvxabiZ8JYr
-         xVo36OwcPqIm1Au6t8GcTxhU3ZNOuhouM+7S2uWq/+AR9T5v6tIbyVclCcmPyypfBj
-         1i2e6Uav28IgiHDJulQJCS1mpB1QJ+pYye9tjz4oBtP9qUMmPxReJYBVqfmZst/k0d
-         5bsvOCyFFcy4h+/nzPGZB8cXP/MyQiL3/iS1naRjL0nI0mWj+j0+5o/Xnm1IacOw/V
-         k7GQzWhuHIyhA==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: [PATCH v1 10/10] arm64: dts: mediatek: spherion: Add keyboard backlight
-Date:   Wed, 16 Mar 2022 11:13:27 -0400
-Message-Id: <20220316151327.564214-11-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220316151327.564214-1-nfraprado@collabora.com>
-References: <20220316151327.564214-1-nfraprado@collabora.com>
+        with ESMTP id S1349067AbiCPPU0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 11:20:26 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 995855714B
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 08:19:11 -0700 (PDT)
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id BCDF73F499
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 15:19:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647443949;
+        bh=n1R86AH40JMDGlhsJXdbdtccHR5xtuigPuTWuYsB7aU=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=UJuuWIeYpKlkSRWZdfyhkgTgFFjXz3peZ0FKAA7w4xF0tqNVoiEyMVZHYhMxp9p9u
+         3XSNNtSRpnmda9d8Oy1SFzSZO0t975j2d/eoBKsSDCk/E+aDMJP95XSxed3SRw7HdA
+         tz6VHZWOwK9/Lnq8jjUIzQYZq3lwWF/HYmP23+fvIPHs6+C7yFWk12VqtgA5DpED+a
+         Cz7F7XLfdYOfFGE52p50wQV99adWZ+ztQnuFhZBdB6iZDunnCS9gPL336rXXdFGKhb
+         vYT70Ylhp20XZWFwTGUZ+e2DkodqT70am2un482Kxo8zrs3moj+38RRZygFhxGmJWj
+         VIJh6aPB0PaCA==
+Received: by mail-wr1-f71.google.com with SMTP id d17-20020adfc3d1000000b00203e2ff73a6so459335wrg.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 08:19:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=n1R86AH40JMDGlhsJXdbdtccHR5xtuigPuTWuYsB7aU=;
+        b=1zc0zl6aBADrFyfN9gO1R3CdMxGvh6TKfTh0F6zC74+UFYPHwzfQByxXaD9Abr/eBu
+         qCh9f0P56DtpyCSJGpPz87LfTTBLlJCSsgAh9N2NuLBx2AfDkVicPviWU1IkL2gwoobc
+         7TrXVLZ/c9tdK+MWaq8HDYyE42ZT3LQazc5wVs+CrjuPPegN/o5zsfG9t5+d9NP+oqBH
+         3w5EAh4DY/rHGDLZ6p0g6njnPFv7HjpHzwxx/puYZ3fZY74RmRRIe0lKoM6n0QGeYXrw
+         SFuxa1XtNLw30yaRPtFui1wL1wkUFwAdER+ORF7+9gEcNwKrWVR4hrNALREZyVW9Qlk2
+         9KTw==
+X-Gm-Message-State: AOAM532aRsJnu5zaMWf/P4aaYmdDuVWq8ZpjbxdYnUeMmyVRsG2xjMS4
+        4+J8YBnug2eIBzijPAugQFyLzz8gGcuUY4MiI6zNRj6BYotE2R4QWActUai/oZLXQTxji/U8E6Y
+        /rqwzbRIjlfZRozJVDzkNTI0RP4uAWB6FoItHfsg=
+X-Received: by 2002:adf:fe81:0:b0:1f0:246e:ae5 with SMTP id l1-20020adffe81000000b001f0246e0ae5mr353636wrr.652.1647443949234;
+        Wed, 16 Mar 2022 08:19:09 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJw7KtAfQn8O30h7vKxDeRV7uri401Yg0lHLAU4i8wtnkZBBAptCPe0PeY+wSBS+LC5ypMwvEw==
+X-Received: by 2002:adf:fe81:0:b0:1f0:246e:ae5 with SMTP id l1-20020adffe81000000b001f0246e0ae5mr353605wrr.652.1647443948978;
+        Wed, 16 Mar 2022 08:19:08 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id v10-20020a056000144a00b00203df06cf9bsm1821028wrx.106.2022.03.16.08.18.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Mar 2022 08:18:41 -0700 (PDT)
+Message-ID: <cf765199-30c3-f963-4d9b-8f225efd5b32@canonical.com>
+Date:   Wed, 16 Mar 2022 16:18:39 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V8 1/5] dt-bindings: display: mediatek: add aal binding
+ for MT8183
+Content-Language: en-US
+To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
+        matthias.bgg@gmail.com, robh+dt@kernel.org
+Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
+        jassisinghbrar@gmail.com, fparent@baylibre.com,
+        yongqiang.niu@mediatek.com, hsinyi@chromium.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20220316115155.17834-1-rex-bc.chen@mediatek.com>
+ <20220316115155.17834-2-rex-bc.chen@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220316115155.17834-2-rex-bc.chen@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Spherion board has keyboard backlight controlled by the PWM signal
-generated by the ChromeOS EC.
+On 16/03/2022 12:51, Rex-BC Chen wrote:
+> Add aal binding for MT8183.
+> 
+> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+> ---
+>  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml    | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> index 61f0ed1e388f..eb0299b80522 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,aal.yaml
+> @@ -22,7 +22,9 @@ properties:
+>    compatible:
+>      oneOf:
+>        - items:
+> -          - const: mediatek,mt8173-disp-aal
+> +          - enum:
+> +              - mediatek,mt8173-disp-aal
+> +              - mediatek,mt8183-disp-aal
 
-Enable PWM output for ChromeOS EC and add a PWM controlled LED node for
-the keyboard backlight.
+This should not be under items. You have just one element here, so
+directly "enum" under oneOf.
 
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
 
- .../dts/mediatek/mt8192-asurada-spherion-r0.dts  | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-index 20ae4a869c63..b9dd5fd2e964 100644
---- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-@@ -4,12 +4,28 @@
-  */
- /dts-v1/;
- #include "mt8192-asurada.dtsi"
-+#include <dt-bindings/leds/common.h>
- 
- / {
- 	model = "MediaTek Spherion (rev0 - 3)";
- 	compatible = "google,spherion-rev3", "google,spherion-rev2",
- 		     "google,spherion-rev1", "google,spherion-rev0",
- 		     "google,spherion", "mediatek,mt8192";
-+
-+	pwmleds {
-+		compatible = "pwm-leds";
-+
-+		led {
-+			function = LED_FUNCTION_KBD_BACKLIGHT;
-+			color = <LED_COLOR_ID_WHITE>;
-+			pwms = <&cros_ec_pwm 0>;
-+			max-brightness = <1023>;
-+		};
-+	};
-+};
-+
-+&cros_ec_pwm {
-+	status = "okay";
- };
- 
- &touchscreen {
--- 
-2.35.1
-
+Best regards,
+Krzysztof
