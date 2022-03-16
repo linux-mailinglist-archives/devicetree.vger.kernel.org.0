@@ -2,132 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFD424DB69E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 17:47:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 815F54DB6EF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 18:11:21 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229488AbiCPQrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 12:47:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34490 "EHLO
+        id S243151AbiCPRMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 13:12:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1348446AbiCPQru (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 12:47:50 -0400
-Received: from mx0a-0039f301.pphosted.com (mx0a-0039f301.pphosted.com [148.163.133.242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E50AF28E37;
-        Wed, 16 Mar 2022 09:46:35 -0700 (PDT)
-Received: from pps.filterd (m0174679.ppops.net [127.0.0.1])
-        by mx0a-0039f301.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22GFnniQ024885;
-        Wed, 16 Mar 2022 16:46:26 GMT
-Received: from eur04-vi1-obe.outbound.protection.outlook.com (mail-vi1eur04lp2057.outbound.protection.outlook.com [104.47.14.57])
-        by mx0a-0039f301.pphosted.com (PPS) with ESMTPS id 3eujvp87t5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Mar 2022 16:46:25 +0000
+        with ESMTP id S237728AbiCPRMc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 13:12:32 -0400
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2042.outbound.protection.outlook.com [40.107.223.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 215A512AEF;
+        Wed, 16 Mar 2022 10:11:18 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iUsJMyQ/NNs+uXG8IzZOkjJpTUvi4Orby13uzoyX+tcSFIbiTHv9CDhkDE7NUqSsq14hVti99lv10jhz2MmPjLoZNQfEepQbf6QDukK9ci/r8O/RPbNSkuhXyZtgrGw+RRK0Fggjicw+pRoDvvuEJ6QYegaA33fo23DsrBOtxeErCRt3pZY+aGoJiutWW1D9x6dMfaJ0DC6l9Gg6S7diEEtEPDaNlrM84TcoAaE1wpHvVbm2+cikj2cCEC2oZ8uA4AOG1CyVICdlkeJWxaONWO7yM+VYkuRV/mrBxz4/2dJQa8vska3+TvHg17INI4hMIqiVOz+pRdB6bUlGXWKEBQ==
+ b=UQEYmpY2sVgpJM1wgkARVOFYY02a1fKQmd5lsn8mv7ZE66MlCCyw36znsdqHaJlQAz776fj68qrZVQftjyzTAbjY88S/CGshxfL+kyiZX8QZrZ5u5x3q9roWxnzElHeaFYBNF9VqZGA6E+hziJFSNuxlwg5URHOl1fH/kkQP5py3k8L0r/6RvwH0WtVJdiivQyanHVA9ne7HaXc14BrVP8ndDPHMRvE+VGfO4DCDTVAosUKQnJykspO2m22/I2ChGK+ud2FbDaX7/i5J/hQXEjpE6fAS3REiPYsW6xAl9d3oe9YPZxuRlkr7XIBVbzyq04ew1VT2dPnC7VRggxSrSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K+KEGKCPCSphI6iWgnTsxLJnqwEHq2k1wFvqeXx3Rg0=;
- b=hM5sb7X6GxPiYB/fTx59e8LYfSA/2/Pah6I61DsqkGnbaWqqyXIByRPjCOuzAqQxxOVtgNxCXUUQNPQvbQh2OCaLPCaGZkmEMiotz9JSkDXKmHUg6rZPAQcTH5UdA5rhxJxUQAXh6SA3EWATEd1SJu75Un9vBRWEIY4CMKGLVvtd++SLUzZLQ00C5ZIBWf5xkf3OBoGbidqj2IkjcWlVxSmophZUVr6pPFpNVjcUcbVFS82x7iQRexS3gIPp0fXC8iMFF4rtwxRL2MmMrWio+NTJohU2K+4fKWGgfCBFoi/tQneuj+OouI8c5AXXM1xEJ8NCF9gc3ldrVx3QViIzAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
- dkim=pass header.d=epam.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector2;
+ bh=CFSyUBwgNdWE08Cy+O7YY2A8zJqd1BO5RQqAu2h54ys=;
+ b=dxe690bjUbiFVjqMG0AzW3lyfkTX3QZgBmlwdVXbnmghoypnBk4wWT04sZM2vyU68K5d/ucjwAkh8g63fn7ESfSJNOho0J1AkvIbSeseJOEDStH0/nCTBAJnyqGQF4fvRnxlc+mI3ZON/miaeBRvfS/PjkfsD4//Cwqn5dizVu00Y/gYBKfEZDLBs3mxvBtDrcHWwmY9c+Ndax9ZpF2ICWpXOPBd9M35K5omDq5OnGEOqRUcMyt710N0eH1B8OAqnAN/gX8TQV3gj44a3Mun46Vw46I/rhermSg1r6Mw1GvK9SEXAzmK37h+sHhP/ItROh9x9xTJOelV5CJ0MqQ2Fw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.62.198) smtp.rcpttodomain=grandegger.com smtp.mailfrom=xilinx.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=xilinx.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K+KEGKCPCSphI6iWgnTsxLJnqwEHq2k1wFvqeXx3Rg0=;
- b=mwinp5QvltB5u53wxLJaB8NhgtAPSfytp7rXjoIpe8RDGlZ2/f4ikz5ibF316NL2nUjl2UcPqdWKibDsSSjp2kocm6Ngl5HVDyXFUqT+ArpjKfQHLrCukMJD6Gib1QCQF9X0eCldHHF/kgdrj1JuipC+oGmLVw5O6u3mlRfxjSNi5YaknzcGOnbXI40G04ORkoneq7miFK2KvPy9qgqUNYYKyveL4kT69Cvsf1e4TEvUdQXO4S2nHQhKFlGv7H0hArBKQ0K1Abuxe6cAYNWE1RnZ5UCsi6Pt31O8PBRrB09JR1ZnId6M9dhXZrDEWMFP4R5PsggZ0duHArPlA/38yA==
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com (2603:10a6:102:ea::23)
- by VE1PR03MB5326.eurprd03.prod.outlook.com (2603:10a6:802:b0::10) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=CFSyUBwgNdWE08Cy+O7YY2A8zJqd1BO5RQqAu2h54ys=;
+ b=Leys4t4z6PQWOpbFvPggfoWOsvR06T1iyAjFg56Xx8DWcSQCBhtRm0dqeAKLUw3k38fBWh3PVcGuPxD6eRtXpSVg9PLjgkz7fkvtDIoIPElbn5K23JYOl5THCWe4cpy7RNlNC678rSguGqOsRx1GjHzNVZRFxdgSgR6Gf00M8iU=
+Received: from SN4PR0701CA0013.namprd07.prod.outlook.com
+ (2603:10b6:803:28::23) by CH2PR02MB6150.namprd02.prod.outlook.com
+ (2603:10b6:610:9::20) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Wed, 16 Mar
- 2022 16:46:20 +0000
-Received: from PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::b12a:5b52:7c19:fbc]) by PA4PR03MB7136.eurprd03.prod.outlook.com
- ([fe80::b12a:5b52:7c19:fbc%6]) with mapi id 15.20.5081.015; Wed, 16 Mar 2022
- 16:46:20 +0000
-From:   Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Stefano Stabellini <sstabellini@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
- description for SCMI
-Thread-Topic: [PATCH v2 2/2] dt-bindings: xen: Add xen,scmi-devid property
- description for SCMI
-Thread-Index: AQHYMfvS+PrMFPR+OUmb9ZzOrE/y56y17gCAgAxYwIA=
-Date:   Wed, 16 Mar 2022 16:46:20 +0000
-Message-ID: <20220316164619.GA3489934@EPUAKYIW015D>
-References: <cover.1646639462.git.oleksii_moisieiev@epam.com>
- <5859bb58c8caf87985deb84d7f6bfc8182bd6a59.1646639462.git.oleksii_moisieiev@epam.com>
- <Yie47a4lqXjVzgxI@robh.at.kernel.org>
-In-Reply-To: <Yie47a4lqXjVzgxI@robh.at.kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4fa3db5c-277f-4e50-2736-08da076c7fa1
-x-ms-traffictypediagnostic: VE1PR03MB5326:EE_
-x-microsoft-antispam-prvs: <VE1PR03MB532698102EB1A7BEBB26545EE3119@VE1PR03MB5326.eurprd03.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ASQRMij0OFz8dTnStWujax1f+lFojug4qLtme+9Smwt8DWd1yjza8bn0IJkRijjxsdClJef83/BsREVvxcnTMgdE8Kx+YdW9n4oHIS1bemB7uKVYiVSfOcabi8ZQvDAmjUTfv3aqX1n9h16s+xyZsS0xOrA9tuBLk9RR3iD0iqii7NYiUgmWIcmmAol8oPlHyEsCzfB6MRw7tPksHNVz0+oeQq1e61oz2K+Ao+2OsSgonAohpH+PcHV1/s7t2Bka6P18LyhYyMhz6BTibuOh5T9jq9tmX7czoJVdW5RzCBWjU7rPrvQFHvswIvSe0VSdKmMEmn2+bOjpG18IXuGTpGgzmYA9aYqJlcombDrT6RkdLx2R3DhWt9tSbfYABUwQUgEKGraWpK22qw0THnNMRFXdTbD5hrrxz7hn8LZcq26C1grIDrFkDMZKaJqwL9b99zD95rDFgFajanDxnBm2iKV25A2uhlk8mddD3VaX2II0i6M5bzpjgPe9JQZdM4CCThTtVLwYl9g7Cx9XfT0xmG9CTvU19xviK/QzVe52fC++aUb/aw06boISWtV2Q/8zx7aB/rLTIlLoGX284v6h3f9PJBGmwEv/5DP2iViuOxL+BtSPwGGmwUegPmrDGoLyj6SAT8Wpi2JTlM80/YnZVaXCXQxaAyWgb0ysBWuljrC5dN5pQawZrb0Qdl4Vo02MNQk2iCivGT2Q76GDY0/zQGaXiiqupowx/Ql4dWH5+imQxBwOgKYgATmeZDn9kmdYLt2S0nvy+QOXKqcY7ZwziMraiD3krxxCDLJRy5SSnIg=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR03MB7136.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(7916004)(366004)(122000001)(508600001)(6486002)(966005)(8936002)(71200400001)(6916009)(5660300002)(2906002)(33716001)(6512007)(91956017)(6506007)(9686003)(316002)(55236004)(54906003)(4326008)(66946007)(38070700005)(76116006)(66556008)(66476007)(66446008)(64756008)(33656002)(83380400001)(38100700002)(86362001)(186003)(1076003)(26005)(8676002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?0vgs1N5W1bb5k09ah5mSoRn1K1yfH9mb61zGjv7aqk64F0w9ewlZ9FVtu5EU?=
- =?us-ascii?Q?aNlGk04sDnv66rlT7/lP8NmcOPQrEBGmWEb00UCPh+WWH9Lvnv9Gs5d/JZVU?=
- =?us-ascii?Q?ZavnFy9Mu0oqNJL+FN+0AFQNRXPJo9v2xmSrm1jFU6dv9xhXJEaK/MnVnYR7?=
- =?us-ascii?Q?AWtVDseHI56YgMc4tekk18tjQB7Hd1tcs4fAmmHg9cXZCd2iC+gt3womBd0c?=
- =?us-ascii?Q?QZudWF6TslPvPoqsFTYvTXukSJ/4wi6cZADd/wpSkKXvIfObQ16PhQr+h1kT?=
- =?us-ascii?Q?f+wD61OaOEtUXzBvefPU7dT1wKkiMOCD+2yZ6YueYG7dwkVH6GN0TAGetitr?=
- =?us-ascii?Q?chWFwE46bvL4y0aMaJJ5E73+ScPqYjJBLoxPz54rO3nAvW6o8dr7HVnKb8IC?=
- =?us-ascii?Q?HYDBSSbzzVNY5JPCUMJ8ApR2PaV9C0Hi7G2aBPsoSl8MNRHLc00DW/9Copr2?=
- =?us-ascii?Q?Fb+rK1i46eeEC8POpB7rvRnId17m7F8lIvbM+y91qCO988t9JDGLmQu3ADAy?=
- =?us-ascii?Q?F2sdLt18i15x6xcg0GzA24u4092crJ/IlTAyxbloD+10K+ByZt4Nxv6GfrY0?=
- =?us-ascii?Q?AaTR3UKksjYNcPAK7yoroxg2Szlr4ztkeY3cLD0IuCE6zTE4tS84KoAGH5lZ?=
- =?us-ascii?Q?jp+JG5rU6+27vmlkVF5U56hP1q0k4RJzcyTKB7ojuZw9FEmraKcFNCBldq42?=
- =?us-ascii?Q?Dx21T0/n0SDDVPBM+AAt5i2zn52D9ghumFFknaXo1drDlJGF1h1tY5Je4CnK?=
- =?us-ascii?Q?JpFxsSyVwwi/J2xkeli9HemR+tbnxfp0WpN5g1hYj5LbCNwdyZ3vgA+VpBoI?=
- =?us-ascii?Q?JwWsDX3CUS4ZJtLhCwmGLweGCaN4ZBLjpvMNfIXA2g2UHRrAB/I+p2HxIODI?=
- =?us-ascii?Q?eSEv75jfRRGZb6TR1TlbqDi4W93/oe3idJV/rRU6jIZKfJ7S5+8AbcJ3jAjF?=
- =?us-ascii?Q?XoYDSL8uGpCoseCbeNryTpveczZK1V1OXKUbOF5VqbBtiQ+ZegxdRArDo+7+?=
- =?us-ascii?Q?CHoD9VeRqIyMvMy40jX1kwtHVHC39kq1GNsjVDkmI2g5dDmy6O7EkbX/Gaph?=
- =?us-ascii?Q?yZy2P41g2SoCR2MoCv8vGolu6sM1Z8z8Ga3kz5e9e937+tWYBn7Qa9HVKYWK?=
- =?us-ascii?Q?GJ3ZlUh69cZVMT6Vswq6gUOOTqRIKw2ifC1bS2xLjBpIJuG8JNTKBHljR6Qm?=
- =?us-ascii?Q?xPnY20MQX8oUSCv81dkmIfWu19hmtYUOAEVmx4Lr5pcxZtYGiGUahUvnnL5O?=
- =?us-ascii?Q?MnSsGL82O+435cJwi6FCzVX+/AvJjK1L/zeihzAb9D8EczS4JtL0SYTA3kV4?=
- =?us-ascii?Q?sORTyniIUSAkJ5RhUFpDS+S6cuG6NRz76MqUskZCMtW33++zUzCtNTJRt9Xi?=
- =?us-ascii?Q?Ss/5J7qcfwgmPhHzLmz1WsBUVGRxXH9q/Oo1wc6L3CeDu5RgPbV2CA1rSpA0?=
- =?us-ascii?Q?Vjg6Af664iBXwY6ORI6YQtzxzTzTaQIBvEIYuB0pY3bVESIXa7FC5Q=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <0841B79E5C037B43B720E2A707FDA885@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ 2022 17:11:13 +0000
+Received: from SN1NAM02FT0026.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:28:cafe::a2) by SN4PR0701CA0013.outlook.office365.com
+ (2603:10b6:803:28::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.25 via Frontend
+ Transport; Wed, 16 Mar 2022 17:11:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.62.198)
+ smtp.mailfrom=xilinx.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.62.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.62.198; helo=xsj-pvapexch01.xlnx.xilinx.com;
+Received: from xsj-pvapexch01.xlnx.xilinx.com (149.199.62.198) by
+ SN1NAM02FT0026.mail.protection.outlook.com (10.97.5.74) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.5081.14 via Frontend Transport; Wed, 16 Mar 2022 17:11:13 +0000
+Received: from xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) by
+ xsj-pvapexch01.xlnx.xilinx.com (172.19.86.40) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2176.14; Wed, 16 Mar 2022 10:11:11 -0700
+Received: from smtp.xilinx.com (172.19.127.96) by
+ xsj-pvapexch02.xlnx.xilinx.com (172.19.86.41) with Microsoft SMTP Server id
+ 15.1.2176.14 via Frontend Transport; Wed, 16 Mar 2022 10:11:11 -0700
+Envelope-to: git@xilinx.com,
+ wg@grandegger.com,
+ mkl@pengutronix.de,
+ davem@davemloft.net,
+ kuba@kernel.org,
+ robh+dt@kernel.org,
+ linux-can@vger.kernel.org,
+ netdev@vger.kernel.org,
+ devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Received: from [10.140.6.18] (port=35714 helo=xhdlakshmis40.xilinx.com)
+        by smtp.xilinx.com with esmtp (Exim 4.90)
+        (envelope-from <amit.kumar-mahapatra@xilinx.com>)
+        id 1nUXB0-000EES-Vt; Wed, 16 Mar 2022 10:11:11 -0700
+From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+To:     <wg@grandegger.com>, <mkl@pengutronix.de>, <davem@davemloft.net>,
+        <kuba@kernel.org>, <robh+dt@kernel.org>,
+        <appana.durga.rao@xilinx.com>
+CC:     <git@xilinx.com>, <michal.simek@xilinx.com>,
+        <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <akumarma@xilinx.com>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+Subject: [PATCH v4] dt-bindings: can: xilinx_can: Convert Xilinx CAN binding to YAML
+Date:   Wed, 16 Mar 2022 22:41:05 +0530
+Message-ID: <20220316171105.17654-1-amit.kumar-mahapatra@xilinx.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-OriginatorOrg: epam.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PA4PR03MB7136.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4fa3db5c-277f-4e50-2736-08da076c7fa1
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2022 16:46:20.4695
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 412bdbfa-4128-47b0-0d8b-08da076ff95f
+X-MS-TrafficTypeDiagnostic: CH2PR02MB6150:EE_
+X-Microsoft-Antispam-PRVS: <CH2PR02MB6150325916FABA2139988E73BA119@CH2PR02MB6150.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LDARUACNbDnS+KahbiLMGNxPzmcXqiTGMLHrjHM7krNWUhqPZ9yeJ7D6yDnNgqGR53fKA0oivQ0HW8j76scaRriD4kDb5Q9ZEcekC8NLwhgkAePJgbcyCkC1v8LwATGTPG6hRFOhv/W2p9YO9se/qy+MydjVrKPoQC+E9smHNkq19gcpuwMxYvXX2iVFCk2EYt7+/mGsOT/bOUIIen9h16kznqbCe9jj9EoVwHFNQHvOKNqXX4zIYN8Xi//qKAz442SDvHLmKXz/udDVil+D/O21nTZhVFsqbUw1MBItrayQpbsmo5JDgghx6W2hLr2+2m98zlJq5c1Tf6IijclpUnT3P2P4qRIxQkQzBm/nd92UFoW7EZqW/2ATmry/TBGDPLdIrD51DY41QwmzPKQdjBAP0yhvb03+6H2D/aRl8OqAjnFlqS5i8A7ZhXze7SXXnJyw8U2HbWUZtRR8qGGZMWeNAsqDayEkNNBCzVYb3rsWY89lCThmGpaFdzPgicSmrWcihbAWdiw7WsiL6CyVwRm7vxi/Y379sH9vxtx37Kw60JssQxROsZnEU+2gyKj54zyRj2nfgvstUYBLv++0tvMXIH0LmfPunp7aFyqRMJCkcgYuRFKrA0bpTuig8HtyAUIa8xk7oI5IecbRUI5LOsdLNDmD8HX2E8LuVRLkXDik7kiVeboyVkTm2d7Gc9SOn4MN0te8HAYj2XMa/IyZYxbp3Pf5Cbyz+67KjW/uWHvc+0NAjpDWJsoeP6YWvUh+HBztBks0Z6TWfYKiTxRlOrKZXPX/ts1zUaFq5gb1AA5SBh+R5aKhPOSFXFLJ76QM0L65yNumrOtm6pJ0/cRjvg==
+X-Forefront-Antispam-Report: CIP:149.199.62.198;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapexch01.xlnx.xilinx.com;PTR:unknown-62-198.xilinx.com;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(40470700004)(46966006)(8676002)(82310400004)(6666004)(7696005)(7416002)(107886003)(2616005)(1076003)(426003)(26005)(336012)(8936002)(186003)(40460700003)(4326008)(2906002)(47076005)(508600001)(83380400001)(5660300002)(36860700001)(70206006)(70586007)(9786002)(7636003)(966005)(54906003)(110136005)(316002)(356005)(6636002)(36756003)(102446001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2022 17:11:13.2085
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fLh6kROkjoZrqLJkNU3GfNbEJAhwZoYQVCyVXyd71410395L3GRPQRzsjey1+6A+Av3b+nZ7fqmw5UCithleYC2mUkUUYNFIXVcZ3rC6yjI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR03MB5326
-X-Proofpoint-ORIG-GUID: 7AY5MMDmcK46-Utj1GHfSioHuqQCCEE1
-X-Proofpoint-GUID: 7AY5MMDmcK46-Utj1GHfSioHuqQCCEE1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-16_06,2022-03-15_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
- phishscore=0 spamscore=0 adultscore=0 impostorscore=0 priorityscore=1501
- mlxlogscore=999 mlxscore=0 lowpriorityscore=0 malwarescore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203160100
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+X-MS-Exchange-CrossTenant-Network-Message-Id: 412bdbfa-4128-47b0-0d8b-08da076ff95f
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.62.198];Helo=[xsj-pvapexch01.xlnx.xilinx.com]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT0026.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6150
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -135,141 +118,270 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Convert Xilinx CAN binding documentation to YAML.
 
+Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@xilinx.com>
+---
+BRANCH: yaml
 
-On Tue, Mar 08, 2022 at 02:13:33PM -0600, Rob Herring wrote:
-> On Mon, Mar 07, 2022 at 08:17:44AM +0000, Oleksii Moisieiev wrote:
-> > Document xen,scmi-devid property for the devices, using SCMI protocol
-> > to work with clocks/resets/power-domains etc. This property is intended
-> > to set the device_id, which should be used to manage device permissions
-> > in the Firmware. Device permissions management described in DEN 0056,
-> > Section 4.2.2.10 [0].
->=20
-> If device_id is a SCMI thing, how is it set for other platforms and=20
-> bindings? With clocks or power-domains, the device_id is the cell value,=
-=20
-> right?
-> =20
-> Since we don't yet have a device assignment, security, or partitioning=20
-> binding, you've come up with some Xen specific solution. Given I know=20
-> multiple people want some sort of binding for this, I'm not going to=20
-> accept anything short of a common binding addressing the various needs.
->=20
+Changes in v2:
+ - Added reference to can-controller.yaml
+ - Added example node for canfd-2.0
 
-Hi Sudeep,
+Changes in v3:
+ - Changed yaml file name from xilinx_can.yaml to xilinx,can.yaml
+ - Added "power-domains" to fix dts_check warnings
+ - Grouped "clock-names" and "clocks" together
+ - Added type $ref for all non-standard fields
+ - Defined compatible strings as enum
+ - Used defines,instead of hard-coded values, for GIC interrupts
+ - Droped unused labels in examples
+ - Droped description for standard fields
 
-On your email from 3/4/2022 you wrote:
+Changes in v4:
+ - Replaced additionalProperties with unevaluatedProperties
+ - Moved reg property just after compatible in all examples
+---
+ .../bindings/net/can/xilinx,can.yaml          | 161 ++++++++++++++++++
+ .../bindings/net/can/xilinx_can.txt           |  61 -------
+ 2 files changed, 161 insertions(+), 61 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/can/xilinx_can.txt
 
-> The fact that we don't need this to be part of SCMI OSPM user bindings,
-> it is not addressed and can be considered as a gap.
+diff --git a/Documentation/devicetree/bindings/net/can/xilinx,can.yaml b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+new file mode 100644
+index 000000000000..65af8183cb9c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/xilinx,can.yaml
+@@ -0,0 +1,161 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/xilinx,can.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title:
++  Xilinx Axi CAN/Zynq CANPS controller
++
++maintainers:
++  - Appana Durga Kedareswara rao <appana.durga.rao@xilinx.com>
++
++properties:
++  compatible:
++    enum:
++      - xlnx,zynq-can-1.0
++      - xlnx,axi-can-1.00.a
++      - xlnx,canfd-1.0
++      - xlnx,canfd-2.0
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++    maxItems: 2
++
++  clock-names:
++    maxItems: 2
++
++  power-domains:
++    maxItems: 1
++
++  tx-fifo-depth:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Tx fifo depth (Zynq, Axi CAN).
++
++  rx-fifo-depth:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Rx fifo depth (Zynq, Axi CAN, CAN FD in sequential Rx mode)
++
++  tx-mailbox-count:
++    $ref: "/schemas/types.yaml#/definitions/uint32"
++    description: CAN Tx mailbox buffer count (CAN FD)
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++unevaluatedProperties: false
++
++allOf:
++  - $ref: can-controller.yaml#
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,zynq-can-1.0
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: pclk
++      required:
++        - tx-fifo-depth
++        - rx-fifo-depth
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,axi-can-1.00.a
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: s_axi_aclk
++      required:
++        - tx-fifo-depth
++        - rx-fifo-depth
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - xlnx,canfd-1.0
++              - xlnx,canfd-2.0
++
++    then:
++      properties:
++        clock-names:
++          items:
++            - const: can_clk
++            - const: s_axi_aclk
++      required:
++        - tx-mailbox-count
++        - rx-fifo-depth
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    can@e0008000 {
++        compatible = "xlnx,zynq-can-1.0";
++        reg = <0xe0008000 0x1000>;
++        clocks = <&clkc 19>, <&clkc 36>;
++        clock-names = "can_clk", "pclk";
++        interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
++        interrupt-parent = <&intc>;
++        tx-fifo-depth = <0x40>;
++        rx-fifo-depth = <0x40>;
++    };
++
++  - |
++    can@40000000 {
++        compatible = "xlnx,axi-can-1.00.a";
++        reg = <0x40000000 0x10000>;
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk", "s_axi_aclk";
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-fifo-depth = <0x40>;
++        rx-fifo-depth = <0x40>;
++    };
++
++  - |
++    can@40000000 {
++        compatible = "xlnx,canfd-1.0";
++        reg = <0x40000000 0x2000>;
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk", "s_axi_aclk";
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-mailbox-count = <0x20>;
++        rx-fifo-depth = <0x20>;
++    };
++
++  - |
++    can@ff060000 {
++        compatible = "xlnx,canfd-2.0";
++        reg = <0xff060000 0x6000>;
++        clocks = <&clkc 0>, <&clkc 1>;
++        clock-names = "can_clk", "s_axi_aclk";
++        interrupt-parent = <&intc>;
++        interrupts = <GIC_SPI 59 IRQ_TYPE_EDGE_RISING>;
++        tx-mailbox-count = <0x20>;
++        rx-fifo-depth = <0x40>;
++    };
+diff --git a/Documentation/devicetree/bindings/net/can/xilinx_can.txt b/Documentation/devicetree/bindings/net/can/xilinx_can.txt
+deleted file mode 100644
+index 100cc40b8510..000000000000
+--- a/Documentation/devicetree/bindings/net/can/xilinx_can.txt
++++ /dev/null
+@@ -1,61 +0,0 @@
+-Xilinx Axi CAN/Zynq CANPS controller Device Tree Bindings
+----------------------------------------------------------
+-
+-Required properties:
+-- compatible		: Should be:
+-			  - "xlnx,zynq-can-1.0" for Zynq CAN controllers
+-			  - "xlnx,axi-can-1.00.a" for Axi CAN controllers
+-			  - "xlnx,canfd-1.0" for CAN FD controllers
+-			  - "xlnx,canfd-2.0" for CAN FD 2.0 controllers
+-- reg			: Physical base address and size of the controller
+-			  registers map.
+-- interrupts		: Property with a value describing the interrupt
+-			  number.
+-- clock-names		: List of input clock names
+-			  - "can_clk", "pclk" (For CANPS),
+-			  - "can_clk", "s_axi_aclk" (For AXI CAN and CAN FD).
+-			  (See clock bindings for details).
+-- clocks		: Clock phandles (see clock bindings for details).
+-- tx-fifo-depth		: Can Tx fifo depth (Zynq, Axi CAN).
+-- rx-fifo-depth		: Can Rx fifo depth (Zynq, Axi CAN, CAN FD in
+-                          sequential Rx mode).
+-- tx-mailbox-count	: Can Tx mailbox buffer count (CAN FD).
+-- rx-mailbox-count	: Can Rx mailbox buffer count (CAN FD in mailbox Rx
+-			  mode).
+-
+-
+-Example:
+-
+-For Zynq CANPS Dts file:
+-	zynq_can_0: can@e0008000 {
+-			compatible = "xlnx,zynq-can-1.0";
+-			clocks = <&clkc 19>, <&clkc 36>;
+-			clock-names = "can_clk", "pclk";
+-			reg = <0xe0008000 0x1000>;
+-			interrupts = <0 28 4>;
+-			interrupt-parent = <&intc>;
+-			tx-fifo-depth = <0x40>;
+-			rx-fifo-depth = <0x40>;
+-		};
+-For Axi CAN Dts file:
+-	axi_can_0: axi-can@40000000 {
+-			compatible = "xlnx,axi-can-1.00.a";
+-			clocks = <&clkc 0>, <&clkc 1>;
+-			clock-names = "can_clk","s_axi_aclk" ;
+-			reg = <0x40000000 0x10000>;
+-			interrupt-parent = <&intc>;
+-			interrupts = <0 59 1>;
+-			tx-fifo-depth = <0x40>;
+-			rx-fifo-depth = <0x40>;
+-		};
+-For CAN FD Dts file:
+-	canfd_0: canfd@40000000 {
+-			compatible = "xlnx,canfd-1.0";
+-			clocks = <&clkc 0>, <&clkc 1>;
+-			clock-names = "can_clk", "s_axi_aclk";
+-			reg = <0x40000000 0x2000>;
+-			interrupt-parent = <&intc>;
+-			interrupts = <0 59 1>;
+-			tx-mailbox-count = <0x20>;
+-			rx-fifo-depth = <0x20>;
+-		};
+-- 
+2.17.1
 
-> + The reason I want to keep it xen specific at the moment as we had some
-> plan to extended the device-id usage in the spec which hasn't progressed
-> a bit(I must admit that before you ask), and this addition should not be
-> obstruct that future development. If we align with what we define xen
-> specific as part of $subject work, we can always define generic binding
-> in the future and slowly make the other obsolete over the time.
-
-IIUC you have some plans to provide device_id support to the device-tree
-bindings from your side. Maybe we can discuss some of your plans here
-and we can come up with the generic device-id binding?
-So I will have something to base on in Xen.
-
-Best regards,
-Oleksii.
-
->=20
-> > This property is used by Xen hypervisor, which works as trusted Agent, =
-to
-> > set permissions for the devices, passed-through to the Guest Domains,
-> > which are non-trusted Agents. Trusted and non-trusted Agent terms descr=
-ibed
-> > in Section 4.1.1 [0].
-> >=20
-> > [0] https://urldefense.com/v3/__https://developer.arm.com/documentation=
-/den0056/latest__;!!GF_29dbcQIUBPA!kOUan6_nwTf375KaLzZxwHSYqYp1ptLUolUEoK-t=
-3Wb4gsN3ajUC0qQBh6TdAMXQYrn8$ [developer[.]arm[.]com]
-> >=20
-> > Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> > ---
-> >  .../bindings/firmware/xen,scmi-devid.yaml     | 42 +++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/firmware/xen,scmi=
--devid.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/firmware/xen,scmi-devid.=
-yaml b/Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml
-> > new file mode 100644
-> > index 000000000000..49dc9951b54d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/firmware/xen,scmi-devid.yaml
-> > @@ -0,0 +1,42 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright 2022 EPAM Systems.
-> > +%YAML 1.2
-> > +---
-> > +$id: https://urldefense.com/v3/__http://devicetree.org/schemas/firmwar=
-e/xen,scmi-devid.yaml*__;Iw!!GF_29dbcQIUBPA!kOUan6_nwTf375KaLzZxwHSYqYp1ptL=
-UolUEoK-t3Wb4gsN3ajUC0qQBh6TdAPJC8yo3$ [devicetree[.]org]
-> > +$schema: https://urldefense.com/v3/__http://devicetree.org/meta-schema=
-s/core.yaml*__;Iw!!GF_29dbcQIUBPA!kOUan6_nwTf375KaLzZxwHSYqYp1ptLUolUEoK-t3=
-Wb4gsN3ajUC0qQBh6TdADgb5MTo$ [devicetree[.]org]
-> > +
-> > +title: Xen SCMI (System Control and Management Interface) Device ID bi=
-nding
-> > +
-> > +maintainers:
-> > +  - Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> > +
-> > +select: true
-> > +
-> > +description: |
-> > +  SCMI device_id property is intended to set the device id, needed to =
-manage
-> > +  the device permissions via SCMI protocol in the firmware. The device=
-_id
-> > +  should match device ids, defined in the firmware so the device permi=
-ssions
-> > +  can be requested by sending BASE_SET_DEVICE_PERMISSIONS (see 4.2.2.1=
-0 of [0]).
-> > +
-> > +  This property is used by Xen hypervisor to set the device permission=
-s for
-> > +  the Guest Domains. Where Xen is trusted Agent and Guest Domains are
-> > +  non-trusted Agents.
-> > +
-> > +  [0] https://urldefense.com/v3/__https://developer.arm.com/documentat=
-ion/den0056/latest__;!!GF_29dbcQIUBPA!kOUan6_nwTf375KaLzZxwHSYqYp1ptLUolUEo=
-K-t3Wb4gsN3ajUC0qQBh6TdAMXQYrn8$ [developer[.]arm[.]com]
-> > +
-> > +properties:
-> > +  xen,scmi-devid:
-> > +    description: Identifier of the device, matching device id, defined=
- in
-> > +      the firmware.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    ohci1: usb@ee0a0000 {
-> > +        /* ... */
-> > +        reg =3D <0xee0a0000 0x100>;
-> > +        xen,scmi-devid =3D <11>;
->=20
-> This will cause validation errors unless xen,scmi-devid is listed or=20
-> this schema is referenced in every possible device schema. That=20
-> doesn't scale, but we don't really have a solution to that. For some=20
-> common properties, the tools will add certain properties. If we=20
-> come up with something common, we'll need to add it. Or we may=20
-> need to come up with something more data driven where certain schemas=20
-> are automatically added.
->=20
-> Rob
->=20
-> > +        clocks =3D <&scmi_clock 4>;
-> > +    };
-> > --=20
-> > 2.27.0
-> > =
