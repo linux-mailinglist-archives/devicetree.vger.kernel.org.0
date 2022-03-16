@@ -2,186 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8BBB4DB169
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:27:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4A74DB193
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:35:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236635AbiCPN2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 09:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50332 "EHLO
+        id S244037AbiCPNg1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 09:36:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238803AbiCPN2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:28:44 -0400
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5237D60074;
-        Wed, 16 Mar 2022 06:27:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647437250; x=1678973250;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=H3eR4ffkE3oVB+3S4NOOn5kmmmYiIAis+JFyVC1vbpw=;
-  b=P3Ws47T2bKBbSeRULSuEwPm3kMr5/uapAOAwGnDUx6K45ZzQR2m29ZmO
-   Y2KYswG8xbyKrFkOQFeaa+8ouLCwkQN/U2s94OtIihyj/8qz7MQMnENOt
-   87P7ADIa6i0M5Zv6esN+/lOKJQXuvlIeGIIVvOIVXUvXJxHmvAv5L+2zw
-   ldmP/l5XRfzii5nfuGLUtu+eRUrUwTmk7/Qhvnok0i35rQtcwWou6hRIm
-   nOvnabEWlo5KxUbPsnjVu6mrlj1vszH4V3bJIa+TV9Ij4ehhfKnioNx+k
-   O4mQa7PDB8SKV8oochnU+2gmHaQ2KE+EookRcDk9MVLgGBzyLmDa8vus/
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256311786"
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; 
-   d="scan'208";a="256311786"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 06:27:30 -0700
-X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; 
-   d="scan'208";a="516331411"
-Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 06:27:25 -0700
-Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
-        by paasikivi.fi.intel.com (Postfix) with SMTP id 2EEEA20090;
-        Wed, 16 Mar 2022 15:27:23 +0200 (EET)
-Date:   Wed, 16 Mar 2022 15:27:23 +0200
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v3 5/9] media: sunxi: Add support for the A31 MIPI CSI-2
- controller
-Message-ID: <YjHluwVnbPyHo1kp@paasikivi.fi.intel.com>
-References: <20220302220739.144303-1-paul.kocialkowski@bootlin.com>
- <20220302220739.144303-6-paul.kocialkowski@bootlin.com>
+        with ESMTP id S241579AbiCPNg1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:36:27 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F3BB47054
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:35:13 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id l2so4426616ybe.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:35:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=WNRIm2snhOLrjHDrRT45Al18e6yX+6IjtBw2hvIFtuc=;
+        b=bl6xXHfUk0jza37f3JJNngv7+hb+rNkTVteG8qFGpuWSZHFNpW4/ck2144lMbppgke
+         VedQEh+UgY27QEqhYUahKxZl39G0PAUbDtvPwRPCvG2MDO02K9a0KFdCt+8/lRSGUOHd
+         lzT7xMJd3npkRtbQq5icH4pCvllCLjPtlpTzw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=WNRIm2snhOLrjHDrRT45Al18e6yX+6IjtBw2hvIFtuc=;
+        b=HM9FL0pw/S2XKNyWDwAS4x5z0hQki5sLrpnqdtucynGxmTOQtlnYd+ATFCVt5pm8Gc
+         y3lazZ6jZX3ssn7rgRTu5l/4ssSu12cFxiuH3oVxo7R+H2iAcQVM2ux+Vsd1sUakerfw
+         Oo7A4cLLrNBMNsw9NMPjsqEhAScV+DGzfnE8oX/4oJSMpplKBi8nVwN5VHSt4BuO/iwa
+         kSqg7DkV0Dqxz1Di5m8CaZvT0PFrCEFHLzFq8z+W4kS2SiJU50gx9D6VXwVLe+P0F826
+         K+K8dLBm0VyrJdtxX7H6VRL1zRc8ctmS6fVfTgMhixzV1010XCxWRbs9cJXz3dzh091M
+         +6Pg==
+X-Gm-Message-State: AOAM532CTEiBGUZ7TDAWkaXp+sbqM+33JA5DQoDXNU1RLNCjkJ6TfkbY
+        pn+8ngdt859XDdp3QieumCXhTbM8wMwizKDmSMNyvg==
+X-Google-Smtp-Source: ABdhPJzBoD2Jj2tGf6FiQyu4qnE17Z74AigshCqdfSdH9Nn6dOvJw3Guj90WJtvPBJPDHtGui5i1uCXGBcxMlWg7L7k=
+X-Received: by 2002:a25:3403:0:b0:628:a2e4:ae8a with SMTP id
+ b3-20020a253403000000b00628a2e4ae8amr27494313yba.219.1647437712360; Wed, 16
+ Mar 2022 06:35:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220302220739.144303-6-paul.kocialkowski@bootlin.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-19-granquet@baylibre.com>
+In-Reply-To: <20220218145437.18563-19-granquet@baylibre.com>
+From:   Chen-Yu Tsai <wenst@chromium.org>
+Date:   Wed, 16 Mar 2022 21:35:01 +0800
+Message-ID: <CAGXv+5GfiVhK1cvgjnnxHxHnL7rQnUyQJD93d9NHNmT+txfgcg@mail.gmail.com>
+Subject: Re: [PATCH v8 18/19] drm/mediatek: change the aux retries times when
+ receiving AUX_DEFER
+To:     Guillaume Ranquet <granquet@baylibre.com>
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, matthias.bgg@gmail.com,
+        chunfeng.yun@mediatek.com, kishon@ti.com, vkoul@kernel.org,
+        deller@gmx.de, ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        angelogioacchino.delregno@collabora.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul,
+On Fri, Feb 18, 2022 at 11:15 PM Guillaume Ranquet
+<granquet@baylibre.com> wrote:
+>
+> From: Jitao Shi <jitao.shi@mediatek.com>
+>
+> DP 1.4a Section 2.8.7.1.5.6.1:
+> A DP Source device shall retry at least seven times upon receiving
+> AUX_DEFER before giving up the AUX transaction.
+>
+> Aux should retry to send msg whether how many bytes.
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
-Thanks for the set.
-
-On Wed, Mar 02, 2022 at 11:07:35PM +0100, Paul Kocialkowski wrote:
-...
-> +static int sun6i_mipi_csi2_s_stream(struct v4l2_subdev *subdev, int on)
-> +{
-> +	struct sun6i_mipi_csi2_device *csi2_dev = v4l2_get_subdevdata(subdev);
-> +	struct v4l2_subdev *source_subdev = csi2_dev->bridge.source_subdev;
-> +	union phy_configure_opts dphy_opts = { 0 };
-> +	struct phy_configure_opts_mipi_dphy *dphy_cfg = &dphy_opts.mipi_dphy;
-> +	struct v4l2_mbus_framefmt *mbus_format = &csi2_dev->bridge.mbus_format;
-> +	const struct sun6i_mipi_csi2_format *format;
-> +	struct phy *dphy = csi2_dev->dphy;
-> +	struct device *dev = csi2_dev->dev;
-> +	struct v4l2_ctrl *ctrl;
-> +	unsigned int lanes_count =
-> +		csi2_dev->bridge.endpoint.bus.mipi_csi2.num_data_lanes;
-> +	unsigned long pixel_rate;
-> +	/* Initialize to 0 to use both in disable label (ret != 0) and off. */
-> +	int ret = 0;
-> +
-> +	if (!source_subdev)
-> +		return -ENODEV;
-> +
-> +	if (!on) {
-> +		v4l2_subdev_call(source_subdev, video, s_stream, 0);
-> +		goto disable;
-> +	}
-> +
-> +	/* Runtime PM */
-> +
-> +	ret = pm_runtime_resume_and_get(dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Sensor Pixel Rate */
-> +
-> +	ctrl = v4l2_ctrl_find(source_subdev->ctrl_handler, V4L2_CID_PIXEL_RATE);
-> +	if (!ctrl) {
-> +		dev_err(dev, "missing sensor pixel rate\n");
-> +		ret = -ENODEV;
-> +		goto error_pm;
-> +	}
-> +
-> +	pixel_rate = (unsigned long)v4l2_ctrl_g_ctrl_int64(ctrl);
-> +	if (!pixel_rate) {
-> +		dev_err(dev, "missing (zero) sensor pixel rate\n");
-> +		ret = -ENODEV;
-> +		goto error_pm;
-> +	}
-> +
-> +	/* D-PHY */
-> +
-> +	if (!lanes_count) {
-
-I first thought this check could be moved to the beginning, but it's also
-redundant. v4l2_fwnode_endpoint_parse() will check the configuration is
-valid, i.e. the number of lanes is not zero.
-
-But should you add checks to make sure the hardware supports what has been
-configured? I'd do that right after parsing the endpoint.
-
-And you only seem to be using the number of data lanes, nothing more. So
-I'd store that, instead of the entire parsed v4l2_fwnode_endpoint.
-
-The same applies to patch 8.
-
-I think these could be done on top of this set after it is merged. Up to
-you.
-
-...
-
-> +static int
-> +sun6i_mipi_csi2_bridge_source_setup(struct sun6i_mipi_csi2_device *csi2_dev)
-> +{
-> +	struct v4l2_async_notifier *notifier = &csi2_dev->bridge.notifier;
-> +	struct v4l2_fwnode_endpoint *endpoint = &csi2_dev->bridge.endpoint;
-> +	struct v4l2_async_subdev *subdev_async;
-> +	struct fwnode_handle *handle;
-> +	struct device *dev = csi2_dev->dev;
-> +	int ret;
-> +
-> +	handle = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev), 0, 0,
-> +						 FWNODE_GRAPH_ENDPOINT_NEXT);
-> +	if (!handle)
-> +		return -ENODEV;
-> +
-> +	endpoint->bus_type = V4L2_MBUS_CSI2_DPHY;
-> +
-> +	ret = v4l2_fwnode_endpoint_parse(handle, endpoint);
-> +	if (ret)
-> +		goto complete;
-> +
-> +	subdev_async = v4l2_async_nf_add_fwnode_remote(notifier, handle,
-> +		struct v4l2_async_subdev);
-> +	if (IS_ERR(subdev_async))
-> +		ret = PTR_ERR(subdev_async);
-> +
-> +complete:
-> +	fwnode_handle_put(handle);
-> +
-> +	return ret;
-> +}
-
--- 
-Kind regards,
-
-Sakari Ailus
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
