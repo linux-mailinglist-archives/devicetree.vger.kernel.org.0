@@ -2,82 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4354DABC5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 08:25:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 45FA64DABEF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 08:40:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345209AbiCPH0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 03:26:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45468 "EHLO
+        id S1353860AbiCPHlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 03:41:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244318AbiCPH0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 03:26:21 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1706B5F8E0
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:25:05 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id a1so238217wrh.10
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=8BgdaLCDN6ytbgA7o8PQn3N09wAKTlqYsotJMbZ94HQ=;
-        b=t7PLX2bnFJvh2OuH8ldQ3pGj0uGpLjvI9yGGDUiqTDd7SSumcM4cnuTcNRyMpaRwAC
-         h5HtFuQ/ZdMrdt2qM+73TPfgoqxj+IcVeFIA256djzYWu7ghKi5saQi0lFK3vl71MPD1
-         02oa4G8StCr3dhefjZqhhiTuzY/JBONjGDmZTPnsxwlf2yb1U/mztbaxUu2ndWHRXc7q
-         +WWXFgf4jFI/4r3oUahqOe+JpxT03Ep9hmPGg3S83ztNt8A2YPQqgPIjE09lYpOjIBT9
-         4GMdGjAX1+hIFKtm0KnIyuYypZghIOV5P6DTbMmIVJ5HufNysqVkMaEI/nklElepRLn4
-         Edaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=8BgdaLCDN6ytbgA7o8PQn3N09wAKTlqYsotJMbZ94HQ=;
-        b=q3WBRyCxTjvsglgNiRPoQDssAyYwil+/V6jqcRDt/Lh8bwt37PgTCJhn+ebiJpPLrc
-         V4C+Tvd+9/9sQATP4UIZx3ccnSsczv5Z/xNPleYPo9FFegKiGYO3aWb5ajGPM+PJbo0c
-         V9alBIH82zAJh83c/McjRAbqp7yep26CQGlgsTSrqCl0fSNe61LhNpCyXy3Ti1W8tlq5
-         6k98szz4uuJP8owHNIj4tQHqsiWczI/ToiIhnaH+DshXjpu1+3O9Eutlsvaw2CIRk5kq
-         6rl0GUVN84EX8QGTEMfaVJtgkbzFLOimV2QbIsZG0tkHyoR8a5t9rlii9ZDxXrRfz36z
-         yHJA==
-X-Gm-Message-State: AOAM530OnYQKvBjd4iM7RoN/GqnpQaAmoN//pIUjdziYG97JYzPDFy+V
-        iqoN60fvTKQX09MOwMqMc7iiIQ==
-X-Google-Smtp-Source: ABdhPJwUBkwggjNof9CJhQ+Bfj+6ZOtK4GoDq5/024E6T6MIY1EyUUZpVIGGx2JSQ6fwq8YH99lWww==
-X-Received: by 2002:adf:e38f:0:b0:1f0:3383:77d9 with SMTP id e15-20020adfe38f000000b001f0338377d9mr22651010wrm.599.1647415504002;
-        Wed, 16 Mar 2022 00:25:04 -0700 (PDT)
-Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
-        by smtp.gmail.com with ESMTPSA id p14-20020a5d59ae000000b00203dcc87d39sm1559468wrr.54.2022.03.16.00.25.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Mar 2022 00:25:03 -0700 (PDT)
-Date:   Wed, 16 Mar 2022 07:25:01 +0000
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Benson Leung <bleung@chromium.org>,
-        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>
-Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
-Message-ID: <YjGQzeIz7kGPOV1H@google.com>
-References: <20220314232214.4183078-1-swboyd@chromium.org>
- <20220314232214.4183078-2-swboyd@chromium.org>
- <e7f9466e-03c9-7754-0dc6-a04823d1047a@canonical.com>
- <YjB0JOKysPpg2KGF@google.com>
- <9ec3c26a-3b85-4bea-5a5b-de9ac570cfca@canonical.com>
- <YjB46Sq3IwvgR8MB@google.com>
- <CAE-0n51uDh2Cf_wGpAVH1t=T0A1eTT=+KU3WMtxtyPL3kLDAdA@mail.gmail.com>
- <YjC1OLsB8/JXLEzF@google.com>
- <CAE-0n511YyyfXoCOKpzm3ca0-sE9_wpby31XDu-eGQts=-kV2Q@mail.gmail.com>
+        with ESMTP id S1354264AbiCPHlY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 03:41:24 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2903A60A9B
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:40:10 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nUOGJ-0003j1-OH; Wed, 16 Mar 2022 08:40:03 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nUOGH-0007Ye-1L; Wed, 16 Mar 2022 08:40:01 +0100
+Date:   Wed, 16 Mar 2022 08:40:01 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>
+Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
+Message-ID: <20220316074001.GP405@pengutronix.de>
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-23-s.hauer@pengutronix.de>
+ <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAE-0n511YyyfXoCOKpzm3ca0-sE9_wpby31XDu-eGQts=-kV2Q@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:35:30 up 95 days, 16:21, 82 users,  load average: 0.45, 0.47,
+ 0.26
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,46 +64,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Mar 2022, Stephen Boyd wrote:
-
-> Quoting Lee Jones (2022-03-15 08:48:08)
-> > On Tue, 15 Mar 2022, Stephen Boyd wrote:
-> >
-> > > Quoting Lee Jones (2022-03-15 04:30:49)
-> > > > It's tough to say from what I was sent above.
-> > > >
-> > > > But yes, sounds like it.
-> > > >
-> > > > We do not want any device 'functionality' in MFD ideally.
-> > > >
-> > >
-> > > I put it next to the existing cros-ec binding. The existing binding is
-> > > there because of historical reasons as far as I know. Otherwise it
-> > > didn't seem MFD related so I didn't Cc mfd maintainer/list. New file
-> > > additions don't usually conflict with anything and this is in the
-> > > bindings directory so the driver side maintainer would be picking up the
-> > > binding.
-> >
-> > That's not how it works unfortunately.
-> >
-> > This file is located in the MFD bindings directory, so I would be
-> > picking it up (if it ends up staying here).
+On Tue, Mar 15, 2022 at 02:46:35PM +0800, Andy Yan wrote:
+> Hi Sascha:
 > 
-> The way it works is arbitrary 
+> On 3/11/22 16:33, Sascha Hauer wrote:
+> > From: Andy Yan <andy.yan@rock-chips.com>
+> > 
+> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
+> > It replaces the VOP unit found in the older Rockchip SoCs.
+> > 
+> > This driver has been derived from the downstream Rockchip Kernel and
+> > heavily modified:
+> > 
+> > - All nonstandard DRM properties have been removed
+> > - dropped struct vop2_plane_state and pass around less data between
+> >    functions
+> > - Dropped all DRM_FORMAT_* not known on upstream
+> > - rework register access to get rid of excessively used macros
+> > - Drop all waiting for framesyncs
+> > 
+> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+> > board. Overlay support is tested with the modetest utility. AFBC support
+> > on the cluster windows is tested with weston-simple-dmabuf-egl on
+> > weston using the (yet to be upstreamed) panfrost driver support.
+> 
+> Do we need some modification to test AFBC by weston-simple-dma-egl ?
 
-Correct.
+By default weston-simple-dma-egl uses DRM_FORMAT_XRGB8888 which in the
+panfrost driver ends up as PIPE_FORMAT_B8G8R8_UNORM and
+panfrost_afbc_format() returns PIPE_FORMAT_NONE for that. Change the
+format to DRM_FORMAT_ABGR8888 using weston-simple-dma-egl -f 0x34324241.
+This ends up as PIPE_FORMAT_R8G8B8A8_UNORM in panfrost_afbc_format()
+which is a supported format.
 
-> and up to maintainer's choice.
+> 
+> I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
+> 
+> After launch weston, I run weston-simple-dmabuf-egl, but from the output
+> 
+> of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0, which
+> is
+> 
+> a non-AFBC window.
+> 
+> Do i need to modify the vop2 driver to set one Cluster window as primary
+> plane?
 
-Which *should* be reflected in MAINTAINERS and by extension
-get_maintainer.pl.  As is the case here.  :)
+I never used a Cluster window as primary plane.
 
-> I'll move it out of the mfd directory :)
-
-That does sound like a good solution, thanks Stephen.
+Sascha
 
 -- 
-Lee Jones [李琼斯]
-Principal Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
