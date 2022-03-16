@@ -2,111 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CDB84DB13B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:21:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E41084DB165
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:26:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356075AbiCPNWM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 09:22:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56022 "EHLO
+        id S1348882AbiCPN2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 09:28:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356335AbiCPNWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:22:02 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BB8C674CF;
-        Wed, 16 Mar 2022 06:20:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id ECE3EB81B35;
-        Wed, 16 Mar 2022 13:20:13 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 84EA1C340F0;
-        Wed, 16 Mar 2022 13:20:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647436812;
-        bh=tbcOFjyGFmBEwOjIh+3jseYE1fvFZySauTJiPWeHSxQ=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=Gum5FAn1JMTLcenLuYd4xxPKwYN/TcLuars1ooFUTgakM/hpQeodftoHNBLqYRDP/
-         r4x9h0/sJC5MHmJInTBtUpjs0iMHG/moQHxyv4RbEYnucVidanSQVkSn++BT611/Bu
-         okPYd0KVL3soFDhwrHGgC6kaojRznvmTqVssOsdSqV6UTMBShUJYpUpVQqbGrQtGZb
-         UHfpJQmYMkjp3P4Yt7XCoB/ts5RbLgVRXn5tKFeAmfY/H386ao84G/HtZ3/+NOzNJK
-         luKf7p7YOdtAIjhjvnvWzJ2/KDDhciOQeJobgB8IOcyaRWR+eJMzR8EuyjnwChMFI8
-         g46+zgsaItBUQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 60947EAC09C;
-        Wed, 16 Mar 2022 13:20:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S1356390AbiCPN15 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:27:57 -0400
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 078345FF2E;
+        Wed, 16 Mar 2022 06:26:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1647437203; x=1678973203;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=vnRswGehRJLFAaBCzvBCJdjOnc3qj7r4WnbNFLMazzs=;
+  b=bLsjJb77BDQAz8l4zvmsDoGWXO2wyOzRjtM+EjqJDhMcW/wZ80J5iO1G
+   rpO6ca7jQfR4ztX+PJHiBOwmuTq2KzuSMpNsz4cF/qZNiGHjl84H7K3z/
+   XuxvpUrshvf43G7Kt1ZBmNfPiLKB51pUYs84rb5587bJv28QXnqwFIxg2
+   nWvhElsTCk+O/fDJJGcX3vkDsuhIeHubgcWdOHUeVfXvlX3tdlRxRtNvD
+   4boyTXbJ5Mdn/aSYIo3IOu1Weu9YXpmC9IIbVe4Gp+aPFPiexo1dy7UX2
+   P5NaGN69CidL7a3bl+Ea7LrGWBcq0r1YIe4Jg552XhapjAyQf3DyAa/Ty
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="256311559"
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; 
+   d="scan'208";a="256311559"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 06:26:41 -0700
+X-IronPort-AV: E=Sophos;i="5.90,186,1643702400"; 
+   d="scan'208";a="634975950"
+Received: from punajuuri.fi.intel.com (HELO paasikivi.fi.intel.com) ([10.237.72.43])
+  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 06:26:36 -0700
+Received: from paasikivi.fi.intel.com (localhost [127.0.0.1])
+        by paasikivi.fi.intel.com (Postfix) with SMTP id A50C620090;
+        Wed, 16 Mar 2022 15:26:34 +0200 (EET)
+Date:   Wed, 16 Mar 2022 15:26:34 +0200
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        Yong Deng <yong.deng@magewell.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 7/9] dt-bindings: media: Add Allwinner A83T MIPI CSI-2
+ bindings documentation
+Message-ID: <YjHlisNfdobeAta7@paasikivi.fi.intel.com>
+References: <20220302220739.144303-1-paul.kocialkowski@bootlin.com>
+ <20220302220739.144303-8-paul.kocialkowski@bootlin.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v13 0/7] MediaTek Ethernet Patches on MT8195
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <164743681238.18574.8037993673780755676.git-patchwork-notify@kernel.org>
-Date:   Wed, 16 Mar 2022 13:20:12 +0000
-References: <20220314075713.29140-1-biao.huang@mediatek.com>
-In-Reply-To: <20220314075713.29140-1-biao.huang@mediatek.com>
-To:     Biao Huang <biao.huang@mediatek.com>
-Cc:     davem@davemloft.net, kuba@kernel.org, robh+dt@kernel.org,
-        angelogioacchino.delregno@collabora.com, matthias.bgg@gmail.com,
-        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
-        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        srv_heupstream@mediatek.com, macpaul.lin@mediatek.com,
-        dkirjanov@suse.de
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220302220739.144303-8-paul.kocialkowski@bootlin.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi Paul,
 
-This series was applied to netdev/net-next.git (master)
-by David S. Miller <davem@davemloft.net>:
+Thanks for the patch.
 
-On Mon, 14 Mar 2022 15:57:06 +0800 you wrote:
-> Changes in v13:
-> 1. add reviewed-by in "net: dt-bindings: dwmac: add support for mt8195"
->    as Rob's comments.
-> 2. drop num_clks defined in mediatek_dwmac_plat_data struct in "stmmac:
->    dwmac-mediatek: Reuse more common features" as Angelo's comments.
+On Wed, Mar 02, 2022 at 11:07:37PM +0100, Paul Kocialkowski wrote:
+> This introduces YAML bindings documentation for the Allwinner A83T
+> MIPI CSI-2 controller.
 > 
-> Changes in v12:
-> 1. add a new patch "stmmac: dwmac-mediatek: re-arrange clock setting" to
->    this series, to simplify clock handling in driver, which benefits to
->    binding file mediatek-dwmac.yaml.
-> 2. modify dt-binding description in patch "net: dt-bindings: dwmac: add
->    support for mt8195" as Rob's comments in v10 series, put mac_cg to the
->    end of clock list.
-> 3. there are small changes in patch "stmmac: dwmac-mediatek: add support
->    for mt8195", @AngeloGioacchino, please review it kindly.
+> Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 138 ++++++++++++++++++
+>  1 file changed, 138 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
 > 
-> [...]
+> diff --git a/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
+> new file mode 100644
+> index 000000000000..75121b402435
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi-csi2.yaml
+> @@ -0,0 +1,138 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/allwinner,sun8i-a83t-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner A83T MIPI CSI-2 Device Tree Bindings
+> +
+> +maintainers:
+> +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: allwinner,sun8i-a83t-mipi-csi2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Bus Clock
+> +      - description: Module Clock
+> +      - description: MIPI-specific Clock
+> +      - description: Misc CSI Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: bus
+> +      - const: mod
+> +      - const: mipi
+> +      - const: misc
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: Input port, connect to a MIPI CSI-2 sensor
+> +
+> +        properties:
+> +          reg:
+> +            const: 0
+> +
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
 
-Here is the summary with links:
-  - [net-next,v13,1/7] stmmac: dwmac-mediatek: add platform level clocks management
-    https://git.kernel.org/netdev/net-next/c/3186bdad97d5
-  - [net-next,v13,2/7] stmmac: dwmac-mediatek: Reuse more common features
-    https://git.kernel.org/netdev/net-next/c/a71e67b21081
-  - [net-next,v13,3/7] stmmac: dwmac-mediatek: re-arrange clock setting
-    https://git.kernel.org/netdev/net-next/c/4fe3075fa699
-  - [net-next,v13,4/7] arm64: dts: mt2712: update ethernet device node
-    https://git.kernel.org/netdev/net-next/c/79e1177809f2
-  - [net-next,v13,5/7] net: dt-bindings: dwmac: Convert mediatek-dwmac to DT schema
-    https://git.kernel.org/netdev/net-next/c/150b6adda6b1
-  - [net-next,v13,6/7] stmmac: dwmac-mediatek: add support for mt8195
-    https://git.kernel.org/netdev/net-next/c/f2d356a6ab71
-  - [net-next,v13,7/7] net: dt-bindings: dwmac: add support for mt8195
-    https://git.kernel.org/netdev/net-next/c/ee410d510032
+Does the hardware support lane reordering? If not, the property should be
+omitted here.
 
-You are awesome, thank you!
+I can also remove the three lines here while applying the patches.
+
+> +
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +            required:
+> +              - data-lanes
+> +
+> +        additionalProperties: false
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        description: Output port, connect to a CSI controller
+> +
+> +        properties:
+> +          reg:
+> +            const: 1
+> +
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +        additionalProperties: false
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
+> +    #include <dt-bindings/reset/sun8i-a83t-ccu.h>
+> +
+> +    mipi_csi2: csi@1cb1000 {
+> +        compatible = "allwinner,sun8i-a83t-mipi-csi2";
+> +        reg = <0x01cb1000 0x1000>;
+> +        interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&ccu CLK_BUS_CSI>,
+> +                 <&ccu CLK_CSI_SCLK>,
+> +                 <&ccu CLK_MIPI_CSI>,
+> +                 <&ccu CLK_CSI_MISC>;
+> +        clock-names = "bus", "mod", "mipi", "misc";
+> +        resets = <&ccu RST_BUS_CSI>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            mipi_csi2_in: port@0 {
+> +                reg = <0>;
+> +
+> +                mipi_csi2_in_ov8865: endpoint {
+> +                    data-lanes = <1 2 3 4>;
+> +
+> +                    remote-endpoint = <&ov8865_out_mipi_csi2>;
+> +                };
+> +            };
+> +
+> +            mipi_csi2_out: port@1 {
+> +                reg = <1>;
+> +
+> +                mipi_csi2_out_csi: endpoint {
+> +                    remote-endpoint = <&csi_in_mipi_csi2>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Kind regards,
 
-
+Sakari Ailus
