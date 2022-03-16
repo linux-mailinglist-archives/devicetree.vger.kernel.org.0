@@ -2,56 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A6A4DACD7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 09:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 952BE4DAD41
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 10:13:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354634AbiCPIvM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 04:51:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47922 "EHLO
+        id S231482AbiCPJOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 05:14:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1351817AbiCPIvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 04:51:08 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 456A764BED;
-        Wed, 16 Mar 2022 01:49:55 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id 8E38B1F42733
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647420594;
-        bh=tB66TbykoyRuCQTUG/BUm2gTEb/zfXeS1QShvZrZ3cI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=l2KY2+et+JM2EnehlF7yfh95/xSJPPuKCNqM/xv645c16tLUeTYamXldQSlTtLAvU
-         wYIN4rsjnhZzKivS5TxpaFSpUfVN/ZwxNzEU/Dx1ql2IECazOa08zyEiwvv01dnIw3
-         cXExk3h7CqAd+0QbodnNAVtNs5xcFZj0RjXBHE24RUIbVPE2oUqd62UuZ+3Ne9t2/g
-         PEW8xv3C+gKUNQqjm7Hsp1FcG+F4poCz7K+Xyfihb+juAya2nuoU5WQ9rUncH2iBsj
-         S2bRfbY9shy8YfLRGO/bGNUbr304a/Jo4KmDbcKRCFCcCWa2wwUQegz5CyI71bNEFs
-         70P5mzh/6xWTw==
-Message-ID: <6d599c20-0331-d19b-5d20-27a3d3e63533@collabora.com>
-Date:   Wed, 16 Mar 2022 09:49:51 +0100
+        with ESMTP id S1344868AbiCPJOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 05:14:16 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC27CCF
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 02:12:57 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nUPiC-0006To-24; Wed, 16 Mar 2022 10:12:56 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nUPi9-0005kX-PB; Wed, 16 Mar 2022 10:12:53 +0100
+Date:   Wed, 16 Mar 2022 10:12:53 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
+Cc:     "elaine.zhang" <zhangqing@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v8 09/24] drm/rockchip: dw_hdmi: Add support for niu clk
+Message-ID: <20220316091253.GQ405@pengutronix.de>
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-10-s.hauer@pengutronix.de>
+ <4712e128-8a14-e361-0819-911dc3453372@collabora.com>
+ <20220314081834.GK405@pengutronix.de>
+ <96e3682c-51ff-6af2-ca07-6ea1b952dd70@collabora.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v1 0/4] dt-bindings: pinctrl: mt8192: Add missing wrapping
- node and properties
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     kernel@collabora.com, Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <20220315211936.442708-1-nfraprado@collabora.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220315211936.442708-1-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <96e3682c-51ff-6af2-ca07-6ea1b952dd70@collabora.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:40:05 up 95 days, 16:25, 82 users,  load average: 0.18, 0.25,
+ 0.22
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,40 +68,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 15/03/22 22:19, Nícolas F. R. A. Prado ha scritto:
+On Mon, Mar 14, 2022 at 08:54:27PM +0300, Dmitry Osipenko wrote:
+> On 3/14/22 11:18, Sascha Hauer wrote:
+> > On Sun, Mar 13, 2022 at 12:07:56AM +0300, Dmitry Osipenko wrote:
+> >> On 3/11/22 11:33, Sascha Hauer wrote:
+> >>> The rk3568 HDMI has an additional clock that needs to be enabled for the
+> >>> HDMI controller to work. This clock is not needed for the HDMI
+> >>> controller itself, but to make the SoC internal bus logic work. From the
+> >>> reference manual:
+> >>>
+> >>>> 2.8.6 NIU Clock gating reliance
+> >>>>
+> >>>> A part of niu clocks have a dependence on another niu clock in order to
+> >>>> sharing the internal bus. When these clocks are in use, another niu
+> >>>> clock must be opened, and cannot be gated.  These clocks and the special
+> >>>> clock on which they are relied are as following:
+> >>>>
+> >>>> Clocks which have dependency     The clock which can not be gated
+> >>>> -----------------------------------------------------------------
+> >>>> ...
+> >>>> pclk_vo_niu, hclk_vo_s_niu       hclk_vo_niu
+> >>>> ...
+> >>> The clock framework does not support turning on a clock whenever another
+> >>> clock is turned on, so this patch adds support for the dependent clock
+> >>> to the HDMI driver. We call it "NIU", which is for "Native Interface
+> >>> Unit"
+> >>
+> >> This still doesn't make sense to me. You're saying that "pclk_vo_niu,
+> >> hclk_vo_s_niu" depend on "hclk_vo_niu", but HDMI doesn't use pclk_vo, it
+> >> uses pclk_hdmi.
+> > 
+> > pclk_hdmi_host is a child clock of pclk_vo:
+> > 
+> >      aclk_vo                  2        2        0   300000000          0     0  50000         Y
+> >         aclk_hdcp             0        0        0   300000000          0     0  50000         N
+> >         pclk_vo               2        3        0    75000000          0     0  50000         Y
+> >            pclk_edp_ctrl      0        0        0    75000000          0     0  50000         N
+> >            pclk_dsitx_1       0        0        0    75000000          0     0  50000         N
+> >            pclk_dsitx_0       1        2        0    75000000          0     0  50000         Y
+> >            pclk_hdmi_host     1        2        0    75000000          0     0  50000         Y
+> >            pclk_hdcp          0        0        0    75000000          0     0  50000         N
+> >         hclk_vo               2        5        0   150000000          0     0  50000         Y
+> >            hclk_hdcp          0        0        0   150000000          0     0  50000         N
+> >            hclk_vop           0        2        0   150000000          0     0  50000         N
 > 
-> This series adds the wrapping node for pinmux nodes that was missing in
-> the mt8192-pinctrl dt-binding as well as a couple other missing
-> properties.
+> It was unclear that the pclk_hdmi is the child of pclk_vo by looking at
+> the clk driver's code, thank you!
 > 
-> 
-> Nícolas F. R. A. Prado (4):
->    dt-bindings: pinctrl: mt8192: Add wrapping node for pin configurations
->    dt-bindings: pinctrl: mt8192: Add mediatek,drive-strength-adv property
->    dt-bindings: pinctrl: mt8192: Add mediatek,pull-up-adv property
->    dt-bindings: pinctrl: mt8192: Add gpio-line-names property
-> 
->   .../bindings/pinctrl/pinctrl-mt8192.yaml      | 155 +++++++++++-------
->   1 file changed, 98 insertions(+), 57 deletions(-)
-> 
+> Won't be better if the implicit clk dependency would be handled
+> internally by the RK clk driver?
 
-Hello maintainers,
-adding context to this series.
+I have considered handling something like coupled clocks in the clock
+framework, but I have not yet considered handling this internally in the
+Rockchip clock driver.
 
-We are in the process of upstreaming mt8192-asurada device trees and during
-the cleanup process and internal peer-review of those, we have found and fixed
-those issues on the dt-bindings for pinctrl-mt8192 with this patch series.
+I just had a quick look at the driver. While it sounds like an easy task
+to enable gate A whenever gate B is enabled I haven't found a good way to
+integrate that into the clk driver. It seems to me that it's not easier
+to implement in the clk driver than it is to implement it in the clk
+framework where it could be used by others as well.
 
-Before submitting the series that introduces the device-trees for those machines
-we need some more things in mt8192.dtsi, which are in the process of being
-upstreamed by MediaTek (currently at v3 [1] - that needs small changes, but we
-expect v4 to be finally ok).
+> For example, by making the common gate
+> shared/refcounted. Have you considered this variant? Then we won't need
+> to change the DT bindings.
 
-For this reason, we are submitting dt-bindings fixes now, as to have a ready
-ground before submitting the aforementioned device-trees (for which, we anyway
-need to wait a little, as just mentioned).
+For the DT bindings it is just an additional clock. Should we have a
+better way to handle that case in the future we could simply ignore the
+additional clock. I wouldn't bother too much about this.
 
-[1]: https://lore.kernel.org/all/20220304130809.12924-1-allen-kh.cheng@mediatek.com/
+Sascha
 
-Cheers,
-Angelo
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
