@@ -2,165 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BADB84DA968
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 05:52:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AA264DA97A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 06:05:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236877AbiCPExu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 00:53:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51920 "EHLO
+        id S1353564AbiCPFGy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 01:06:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236687AbiCPExu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 00:53:50 -0400
-Received: from esa.hc3962-90.iphmx.com (esa.hc3962-90.iphmx.com [216.71.140.77])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8229D5F8CB;
-        Tue, 15 Mar 2022 21:52:35 -0700 (PDT)
+        with ESMTP id S235942AbiCPFGy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 01:06:54 -0400
+Received: from alexa-out-sd-02.qualcomm.com (alexa-out-sd-02.qualcomm.com [199.106.114.39])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC49746663
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 22:05:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qccesdkim1;
-  t=1647406355; x=1648011155;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=k1b7p39rkG8X7ICFTJr/zZVOiHiD72wP4A717MOIr4Y=;
-  b=bkMI0Ma/Z0Tb5Eu2yj95LJZa2uuV8QZ8YWIfc9ZtY0zFty3NhWoVLL2B
-   gW/7BB5UhH5m6NaNUt0iQLvYWAMFh2ij3RvoqK0ICZNm9UDWq8ng0Rsen
-   onaIeSjMIjFJIsgHsgy2Q5RX+on+Zg4n3oscwhxKXmrfDRPwBEbU+0aGh
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647407140; x=1678943140;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=ZLhvDT6RWpH9ePgLaw6P1j0KTrfRXSsfYzZ5rGzeatU=;
+  b=WA1XwvxJtKQdHk5EG8meVTMtmElwd8F9mDOhn7y/w215FCA+fERwa+Fb
+   afrNQek9t0wGQAbe4BvkIW6VA1+xcvyzoniRKr6OUwYEhqZeXF9r2hsKX
+   /sE3dQvMvjWQG+s2BJE8qSU43Rd+k7ImN3lM49fh4TBHfHZZsW1F8ju0E
    w=;
-Received: from mail-dm6nam08lp2043.outbound.protection.outlook.com (HELO NAM04-DM6-obe.outbound.protection.outlook.com) ([104.47.73.43])
-  by ob1.hc3962-90.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2022 04:52:33 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D/V8neulaoqgbI41/lwIMPvS+6rZIiI24cClgLS9TvMzf2/UuBrhqxbL5UimdYU0yrrQ6ik4iOarn9YJnYeisJLAHdeHRwsNtaQ124xLz7yLEH8k4G8YhBu0lKyA8I7spe5Qx4oGig0KfKlIqIXNvZK1NFXwYjHse12nhVtnFMI9WHomm7dTmUTSzLIqQ4tgzmm0KYAVuGTYI45TKqvtDdz1pOdGRxadHyTABWfbdbdeqwOiIm7NEdBj4DDcs+pF0678hA1ugGHI+72pux8v6jWvvrCEhkzkDkIjwvkkDGqGIkw6zOL2Sbo3JdRvD2ZDK+udn3dtrR5AIT+3Lm1JKw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k1b7p39rkG8X7ICFTJr/zZVOiHiD72wP4A717MOIr4Y=;
- b=OFTMzyrR7GuPjY99d6rLIqLJ7lsdqyzwLqq1xT9+ptYLXIqr+sU1nEYm3T/2ZWAG7KftWWDK7X3mUaasqAxq7PIRO6ItQ4NqKsQgupmRn1XMj8Ys04CLphyAIx5m3ev1OvuNVn2cEivXiviUTjguHmjq0eERFqYkchJdHUfM1ApjxiBAw4LcQK/LXhdQoaQdl/gXPkiakT2zOyF+x/h7CKPIX1c1IGQlQA03B+10JH8mEXwzHm6kCWDzw2NSJWpq2v9qJ1KtRZWLFWU/tI221DvcAkal5Uacz0BusExgQKRga8QwwY1xf2tONgsEQ2RIIs1a0T1+34Ge16f95ayPEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=quicinc.com; dmarc=pass action=none header.from=quicinc.com;
- dkim=pass header.d=quicinc.com; arc=none
-Received: from BL0PR02MB4564.namprd02.prod.outlook.com (2603:10b6:208:4d::13)
- by SA0PR02MB7500.namprd02.prod.outlook.com (2603:10b6:806:e9::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.14; Wed, 16 Mar
- 2022 04:52:31 +0000
-Received: from BL0PR02MB4564.namprd02.prod.outlook.com
- ([fe80::9c32:a1d2:b88b:466d]) by BL0PR02MB4564.namprd02.prod.outlook.com
- ([fe80::9c32:a1d2:b88b:466d%6]) with mapi id 15.20.5061.029; Wed, 16 Mar 2022
- 04:52:31 +0000
-From:   "Vijaya Krishna Nivarthi (Temp) (QUIC)" <quic_vnivarth@quicinc.com>
-To:     "Vijaya Krishna Nivarthi (Temp) (QUIC)" <quic_vnivarth@quicinc.com>,
-        Doug Anderson <dianders@chromium.org>
-CC:     Andy Gross <agross@kernel.org>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Mukesh Savaliya <msavaliy@qti.qualcomm.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Dilip Kammath <dkammath@qti.qualcomm.com>
-Subject: RE: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
- bias-disable for sc7280-idp
-Thread-Topic: [PATCH] arm64: dts: qcom: sc7280: Configure cts sleep pinctrl to
- bias-disable for sc7280-idp
-Thread-Index: AQHYIaNir99tB67bpEut/O2NV51De6ysZZ+AgAMmebCAB6PVkIAKbUjQ
-Date:   Wed, 16 Mar 2022 04:52:30 +0000
-Message-ID: <BL0PR02MB456419577460FFDE351AE7B7FA119@BL0PR02MB4564.namprd02.prod.outlook.com>
-References: <1644843828-20464-1-git-send-email-quic_vnivarth@quicinc.com>
- <CAD=FV=XtkXganjG=ddgaq4-p+cAK1c4jqG=8Ux_xxdUrPpXhVA@mail.gmail.com>
- <BL0PR02MB456421F83B9C88139514399EFA059@BL0PR02MB4564.namprd02.prod.outlook.com>
- <BYAPR02MB45650334FEF776E0C6CBFF1AFA0A9@BYAPR02MB4565.namprd02.prod.outlook.com>
-In-Reply-To: <BYAPR02MB45650334FEF776E0C6CBFF1AFA0A9@BYAPR02MB4565.namprd02.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=quicinc.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f60e852e-98a3-4746-80b0-08da0708c748
-x-ms-traffictypediagnostic: SA0PR02MB7500:EE_
-x-ld-processed: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d,ExtAddr
-x-microsoft-antispam-prvs: <SA0PR02MB7500D109A9B21FE3B109D9E786119@SA0PR02MB7500.namprd02.prod.outlook.com>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: h4rVvKnx/eY9P6EjT6kt+IPxFyRZIdOvqhhj1mcP3xZaYu6EEPssw5JOYGqMg4Ch38lzI1oWv/cpLF8dQGrs5T2tFIm46LTFth+LHLRaXxjoyX8H6aYDue43PL41OvvFOWzT7Fa4x8fOi+LWYc9IBi72A1lZ5kS0Td9iC0bDmUfTxyJMEKqekfRMQ6zbh4cmaoDAUvAYPCSV1YRo2oHd7puZG9Qy9U3l3n9nUAwNCjCfEDUrfeMy+dqdjYKKCtyWmtlJeiEd9v/kfj7N05AnnAWHW4dMtN7mHg0I+Kw5ovrQfBQJiqLcLhlHPGz/PrT4Oa1dMbDFQpve4G3CQRiwq7NTI7lGap9IRpBmDszMM1Dsam4DXVqvG+df06Zvuq2kRG4ebTRwVNCU0ZMbdYKsaN2Sw4GtSc/XB9PrcZRJHsRycXaCBgBFbet3hUNtDFkkvyluuz/FLMpnG4IhcBT9dBHAxX+RN7W3pfD+fIABpTs9gWnXq5LDssdYyFmyPE2UOmSNy1+ZH+iVx7V3dQNOXNqtnlx153ezDbHDkCbk6F2AlRwMPFITCKJj5xW0zP0X/edgW09YyCKsmoThDBg/KoK4+QDO4CIQhYjBYZlXXYkfaAtcdr2wKycbDx3rdJdOjywMpNySCcTAcqSRYoK6LHZv8F8Q8E9QtE65bZI1tnZA5k9VW3EgZ2jmCW2K1dCkTkoMSNhopuEtuSLVMICySA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL0PR02MB4564.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(8936002)(4744005)(52536014)(86362001)(5660300002)(38100700002)(107886003)(55016003)(122000001)(26005)(186003)(110136005)(83380400001)(9686003)(7696005)(6506007)(53546011)(38070700005)(66946007)(508600001)(66446008)(66476007)(66556008)(76116006)(64756008)(8676002)(4326008)(54906003)(316002)(71200400001)(2906002)(33656002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SWdIbEdnMU96WC9BSHkxQUZwSTlNNHBRckpRanRydG9hRCtzYlhITlo0RVVY?=
- =?utf-8?B?bnNnUVczejlOTHFDMG1VREtvakFIb0xJK2kxbDZodGdrZ1dwVVRPZTFhZDRM?=
- =?utf-8?B?NFJyblNjT0NFZ2NsWU43WFVvTXh1cTJoUW81YmVDVFBtZVdFSDk5cWxScHZH?=
- =?utf-8?B?dDZEOGxFSlZKTEFxL2YrVG1jS1lzNHhSaGIyQS9RNW8zUHVhM2EyVlFmbWIx?=
- =?utf-8?B?UUNkZHk4Yjh6R3cxckV4SnlXWlA4RmRwajlUYjhIUFNxNENJVnJFUGxLMmhh?=
- =?utf-8?B?NkV1bnpzKzBJM0lWQlN0Nk5uV3hxR3RuTmZQR2dSZitmTkNBbnFiUGoxaWgy?=
- =?utf-8?B?Yy85NURicENUMkJMUXdMKzB6VEpJVWVHUU8wdElHYVp6b3RtTTRwdk5hM1ZS?=
- =?utf-8?B?aHJjdnF5dUwva0xVTnFKWThyQ0d5ZjdhMjcvU1IrYk1abWFYOE9hMmVINStB?=
- =?utf-8?B?eEFzR2tyUVFXUFFHUlRvSTdrekxuQXkvaDBNdnlRVnc4R0tGb20yTmJ1Z0M1?=
- =?utf-8?B?YUIxVS81MERBN0JpRFNkd1M1RHo1aldQV0dFTTh2SDFtRFk4MHIvQ1J6VThJ?=
- =?utf-8?B?MWtWa0t0eFd5YVFRbkVtMm5PdDlBZWF1d3hBWnYvT0UyUVBDRU5tWHdld3RZ?=
- =?utf-8?B?V09ZSkNvaWRSSDFxa0wzZVpUYUpCSEdoKzBLbnNuRGpCMFNTVUVOcHowMEFV?=
- =?utf-8?B?OUVjWVpXREw3dWZmYldmclpOOWFyZ1dENmIzbldzbVZCUWVNbWIvckw1d0Nm?=
- =?utf-8?B?OU1FYUJFeFQ2c0g1ZWw0aW1WcmJFcWdtSjFGWHpvdXpGVERuNFEyZGNYRDZ4?=
- =?utf-8?B?L0VuS2FId04vbkgwY29XKzJ0aVVPeVAwVFZGdjFSRlh5aDhBVGRsOFo3NGVD?=
- =?utf-8?B?NXYyL1RwT2JWYkh6eEViT1lkMFdYZmZlVVYwaXpONHF0TUxNaGd1SkltbmVj?=
- =?utf-8?B?dlFNd1FYVnh5Vk5TZFJRK0lDSGZXeUxQcTNsQUFCUzdyR0pUMkRpUUFsOUJS?=
- =?utf-8?B?RnI1SC9yOTdyUzB1UnVzZ0s2THlyRHpyaTBib2NyOUNCL29Ddmd6NE5vd09C?=
- =?utf-8?B?bXViVXB2WkJaeWs1anByTVJ1UGdVeUF0WFpObHE0amlIcENJdHcrYUVYUjlu?=
- =?utf-8?B?N3kyTEw5OVpUSkNiVENCdE43REF0c3lmSTVPZnpzVEZ2TWlQUGxKcncxY1dn?=
- =?utf-8?B?WVAyN2xjUmdjNnZqSkpzV2JUcHlhbVg2VjdOdUc2NndNWTZlUW1MOE0xcGdz?=
- =?utf-8?B?Q3B1Q1RYNE5OeHgvdVI2bGxTUEZITVB4aEdLZ01nSGdlNUpybjFJMXVmRGFj?=
- =?utf-8?B?Qlp6K3lZcml1Sm5GcmhoZjhZMEdtUVZ6cTQ2RzJWaGI0OGFHUW9pTE5hWk40?=
- =?utf-8?B?UmJ2dHB2OVp4VVluZEMzWTd0NGZwM1QzOGdpR1N1Zzk2aWdCb3dYTGhrV1Bi?=
- =?utf-8?B?Zm0zYlhLN2cxcHZkRWZ3aWlQOXBLeHI2QXhNOXc5WWlYZG1PKyt1Y3NKQWhX?=
- =?utf-8?B?Zk56Q2hKeWRVcDBsNU1rdU1CQVk2cEl2MHMxSWV0cmE2ejVrTExseFZHVUpj?=
- =?utf-8?B?eTZLWU5SZXdCVjZ6bmsyM0F2cVlCdmNTaTd5NlJqU0xVanRuWjNXV09WMEUv?=
- =?utf-8?B?NkUvNXdwaDc5TWJGT2hJeGFwSzdMRnVPaGwxcENiZm95cVY4cGtBbmlIeUtp?=
- =?utf-8?B?eDdsZnA1TXVLT1VVZjRpQkZMaEFRUkJxMmRxdzEwa2NMUmY1NXFQai9JWXAv?=
- =?utf-8?B?eWZxbUdIeXBPMFN3R0NmTTI4RFY4MUdqMFEwQVBlRjgyL0g2U2JTd2FIT3NM?=
- =?utf-8?B?MWVBTnB4SFBVNUpILzREWWFQZFR4U2dFb2xrRmlvblNYckpwMnNMSUVGUDk5?=
- =?utf-8?B?Mk1VcWwzdDRMNnQ1d20xT0oyNENaTmtuTVhXVnZmcXQ3eXM4Qjhpb1lCOW5w?=
- =?utf-8?Q?ln3b/XzAXWjJMYrH5ur6G82n61xc9am1?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from unknown (HELO ironmsg-SD-alpha.qualcomm.com) ([10.53.140.30])
+  by alexa-out-sd-02.qualcomm.com with ESMTP; 15 Mar 2022 22:05:40 -0700
+X-QCInternal: smtphost
+Received: from nasanex01c.na.qualcomm.com ([10.47.97.222])
+  by ironmsg-SD-alpha.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2022 22:05:40 -0700
+Received: from nalasex01a.na.qualcomm.com (10.47.209.196) by
+ nasanex01c.na.qualcomm.com (10.47.97.222) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.15; Tue, 15 Mar 2022 22:05:39 -0700
+Received: from [10.110.69.79] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Tue, 15 Mar
+ 2022 22:05:38 -0700
+Message-ID: <2f283c1e-adad-97c5-cc7c-2f0cf4f67150@quicinc.com>
+Date:   Tue, 15 Mar 2022 22:05:30 -0700
 MIME-Version: 1.0
-X-OriginatorOrg: quicinc.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR02MB4564.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f60e852e-98a3-4746-80b0-08da0708c748
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2022 04:52:30.9178
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 98e9ba89-e1a1-4e38-9007-8bdabc25de1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: uo12WbJVMc3Qht2gwAof5fsMWcgdbUA2brCS1cbZTxMFvemCPeyRafUtomNRs2ElSwWumX7cQTSOUmVvEBjJ/26qbmZJ/t3xUaUFzgJIXg0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR02MB7500
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.1
+Subject: Re: [PATCH 3/5] pinctrl: pinctrl-aspeed-g6: add FWQSPI function-group
+Content-Language: en-US
+To:     Andrew Jeffery <andrew@aj.id.au>, Joel Stanley <joel@jms.id.au>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Jamie Iles <quic_jiles@quicinc.com>,
+        Graeme Gregory <quic_ggregory@quicinc.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        Johnny Huang <johnny_huang@aspeedtech.com>
+References: <20220308003745.3930607-1-quic_jaehyoo@quicinc.com>
+ <20220308003745.3930607-4-quic_jaehyoo@quicinc.com>
+ <700af02b-a220-495f-861a-af10f30b482a@www.fastmail.com>
+From:   Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+In-Reply-To: <700af02b-a220-495f-861a-af10f30b482a@www.fastmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGVzdCByZWFkaW5ncyBoYXZlIHNob3duIHNvbWUgZGVncmFkYXRpb24gd2l0aCBiaWFzLWJ1cy1o
-b2xkIGNvbXBhcmVkIHRvIGJpYXMtZGlzYWJsZSB3aGVuIGRldmljZSBpcyBwb3dlcmVkIHVwIGFu
-ZCBCVCBpcyBvZmYuDQpXZSBhcmUgZG91YmxlIGNoZWNraW5nIHdpdGggdGVhbS4NCg0KDQotLS0t
-LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogVmlqYXlhIEtyaXNobmEgTml2YXJ0aGkgKFRl
-bXApIA0KU2VudDogV2VkbmVzZGF5LCBNYXJjaCA5LCAyMDIyIDc6MDIgUE0NClRvOiBWaWpheWEg
-S3Jpc2huYSBOaXZhcnRoaSAoVGVtcCkgKFFVSUMpIDxxdWljX3ZuaXZhcnRoQHF1aWNpbmMuY29t
-PjsgJ0RvdWcgQW5kZXJzb24nIDxkaWFuZGVyc0BjaHJvbWl1bS5vcmc+DQpDYzogJ0FuZHkgR3Jv
-c3MnIDxhZ3Jvc3NAa2VybmVsLm9yZz47ICdiam9ybi5hbmRlcnNzb25AbGluYXJvLm9yZycgPGJq
-b3JuLmFuZGVyc3NvbkBsaW5hcm8ub3JnPjsgJ1JvYiBIZXJyaW5nJyA8cm9iaCtkdEBrZXJuZWwu
-b3JnPjsgJ2xpbnV4LWFybS1tc20nIDxsaW51eC1hcm0tbXNtQHZnZXIua2VybmVsLm9yZz47ICdv
-cGVuIGxpc3Q6T1BFTiBGSVJNV0FSRSBBTkQgRkxBVFRFTkVEIERFVklDRSBUUkVFIEJJTkRJTkdT
-JyA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+OyAnTEtNTCcgPGxpbnV4LWtlcm5lbEB2Z2Vy
-Lmtlcm5lbC5vcmc+OyBNdWtlc2ggU2F2YWxpeWEgPG1zYXZhbGl5QHF0aS5xdWFsY29tbS5jb20+
-OyAnTWF0dGhpYXMgS2FlaGxja2UnIDxta2FAY2hyb21pdW0ub3JnPjsgJ1N0ZXBoZW4gQm95ZCcg
-PHN3Ym95ZEBjaHJvbWl1bS5vcmc+OyBEaWxpcCBLYW1tYXRoIDxka2FtbWF0aEBxdGkucXVhbGNv
-bW0uY29tPg0KU3ViamVjdDogUkU6IFtQQVRDSF0gYXJtNjQ6IGR0czogcWNvbTogc2M3MjgwOiBD
-b25maWd1cmUgY3RzIHNsZWVwIHBpbmN0cmwgdG8gYmlhcy1kaXNhYmxlIGZvciBzYzcyODAtaWRw
-DQoNCldlIGFyZSB0ZXN0aW5nIHBvd2VyIHJlYWRpbmdzIHdpdGggYmlhcy1idXMtaG9sZCBjaGFu
-Z2UuDQpXaWxsIHVwZGF0ZSBwcm9ncmVzcy4NCg0KDQo=
+Hi Andrew,
+
+On 3/15/2022 8:33 PM, Andrew Jeffery wrote:
+> 
+> 
+> On Tue, 8 Mar 2022, at 11:07, Jae Hyun Yoo wrote:
+>> From: Johnny Huang <johnny_huang@aspeedtech.com>
+>>
+>> Add FWSPIDQ2 (AE12) and FWSPIDQ3 (AF12) function-group to support
+>> AST2600 FW SPI quad mode. These pins can be used with dedicated FW
+>> SPI pins - FWSPICS0# (AB14), FWSPICK (AF13), FWSPIMOSI (AC14)
+>> and FWSPIMISO (AB13).
+>>
+>> Signed-off-by: Johnny Huang <johnny_huang@aspeedtech.com>
+>> Signed-off-by: Jae Hyun Yoo <quic_jaehyoo@quicinc.com>
+>> ---
+>>   drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c | 11 +++++++++--
+>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>> b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>> index 54064714d73f..80838dc54b3a 100644
+>> --- a/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>> +++ b/drivers/pinctrl/aspeed/pinctrl-aspeed-g6.c
+>> @@ -1236,12 +1236,17 @@ FUNC_GROUP_DECL(SALT8, AA12);
+>>   FUNC_GROUP_DECL(WDTRST4, AA12);
+>>
+>>   #define AE12 196
+>> +SIG_EXPR_LIST_DECL_SESG(AE12, FWSPIQ2, FWQSPI, SIG_DESC_SET(SCU438, 4));
+>>   SIG_EXPR_LIST_DECL_SESG(AE12, GPIOY4, GPIOY4);
+>> -PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, GPIOY4));
+>> +PIN_DECL_(AE12, SIG_EXPR_LIST_PTR(AE12, FWSPIQ2),
+>> +	  SIG_EXPR_LIST_PTR(AE12, GPIOY4));
+>>
+>>   #define AF12 197
+>> +SIG_EXPR_LIST_DECL_SESG(AF12, FWSPIQ3, FWQSPI, SIG_DESC_SET(SCU438, 5));
+>>   SIG_EXPR_LIST_DECL_SESG(AF12, GPIOY5, GPIOY5);
+>> -PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, GPIOY5));
+>> +PIN_DECL_(AF12, SIG_EXPR_LIST_PTR(AF12, FWSPIQ3),
+>> +	  SIG_EXPR_LIST_PTR(AF12, GPIOY5));
+>> +FUNC_GROUP_DECL(FWQSPI, AE12, AF12);
+> 
+> The idea behind the quad group was not to define a function for it
+> specifically, but to re-use the FWSPID function and select the specific
+> group associated with the specific style of SPI bus you desire. This
+> way you'd have a pinctrl node like:
+> 
+> pinctrl_fwqspi_default = {
+>      function = "FWSPID";
+>      group = "FWQSPI";
+> };
+> 
+> (note the lack of 'Q' in the function name)
+> 
+> Maybe that's an abuse of groups, but I don't see a need for the
+> function name to match the group name here, we're still doing SPI.
+> 
+> This can be seen in the DTS fix that Joel sent (disregarding the mixed
+> voltage pins problem).
+> 
+> Thoughts?
+
+As you said, FWSPID function in existing code is defined as two groups.
+
+GROUP_DECL(FWSPID, Y1, Y2, Y3, Y4);
+GROUP_DECL(FWQSPID, Y1, Y2, Y3, Y4, AE12, AF12);
+
+In case of the FWSPID group, it defines Y1, Y2, Y3 and Y4 pin pads as
+FWSPI18 pins which can be multiplexed with eMMC so pinctrl driver sets
+SCU500[3] when we select this group. Also, if we select FWQSPID group,
+it additionally set AE12 and AF12 pin pads as FWSPIDQ2 and FWSPIDQ3 but
+these two pins are actually part of FWSPI function group that are
+exposed as dedicated pins on AST2600 SoC.
+
+Joel's patch can fix below pin mux setting error since there was a bug
+in aspeed-g6-pinctrl.dtsi.
+
+[    0.742963] aspeed-g6-pinctrl 1e6e2000.syscon:pinctrl: invalid 
+function FWQSPID in map table
+
+But it doesn't fix an improper group selection in pinctrl-aspeed-g6
+driver.
+
+As we saw above, SCU500[3] bit will be set even when we select FWQSPID
+group, and it's described in datasheets like below.
+
+SCU500[3]
+   Boot from debug SPI (OTPSTRAP[2])
+   0: Disable (default)
+   1: Enable
+   Enable this bit will set CPU to boot from SPI that is attached on pins
+   FWSPI18*. This strap will not work when secure boot or boot from Uart5
+   is enabled. This bit is for verification and testing only. Please
+   don’t enable the OTPSTRAP[2] and protect it by setting OTPCFG30[2]=1
+   and OTPCFG28[2]=1 if there are security concerns.
+
+So if we set this bit once, BMC boot path will be immediately switched
+to FWSPI18 pins when we don't enable secure boot, and it breaks BMC
+booting. I observed this issue in my board and AST2600 EVB too.
+
+It's not just interface voltage level issue but also boot failure issue
+if a board uses dedicated FWSPI pins (AB14, AF13, AC14, AB13).
+
+To fix the issue, this commit removes FWQSPID group from FWSPID
+function, and adds FWQSPI function and group to enable just AE12 and
+AF12 as FWSPIDQ2 and FWSPIDQ3 to use them with FWSPICS#, FWSPICK,
+FWSPIMOSI and FWSPIMISO pins.
+
+Thanks,
+
+-Jae
+
+> Andrew
+> 
+>>
+>>   #define AC12 198
+>>   SSSF_PIN_DECL(AC12, GPIOY6, FWSPIABR, SIG_DESC_SET(SCU438, 6));
+>> @@ -1911,6 +1916,7 @@ static const struct aspeed_pin_group
+>> aspeed_g6_groups[] = {
+>>   	ASPEED_PINCTRL_GROUP(FSI2),
+>>   	ASPEED_PINCTRL_GROUP(FWSPIABR),
+>>   	ASPEED_PINCTRL_GROUP(FWSPID),
+>> +	ASPEED_PINCTRL_GROUP(FWQSPI),
+>>   	ASPEED_PINCTRL_GROUP(FWSPIWP),
+>>   	ASPEED_PINCTRL_GROUP(GPIT0),
+>>   	ASPEED_PINCTRL_GROUP(GPIT1),
+>> @@ -2152,6 +2158,7 @@ static const struct aspeed_pin_function
+>> aspeed_g6_functions[] = {
+>>   	ASPEED_PINCTRL_FUNC(FSI2),
+>>   	ASPEED_PINCTRL_FUNC(FWSPIABR),
+>>   	ASPEED_PINCTRL_FUNC(FWSPID),
+>> +	ASPEED_PINCTRL_FUNC(FWQSPI),
+>>   	ASPEED_PINCTRL_FUNC(FWSPIWP),
+>>   	ASPEED_PINCTRL_FUNC(GPIT0),
+>>   	ASPEED_PINCTRL_FUNC(GPIT1),
+>> -- 
+>> 2.25.1
