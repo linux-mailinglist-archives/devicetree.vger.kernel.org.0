@@ -2,210 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD2E4DAC49
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 09:16:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C17694DAC5E
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 09:23:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1354435AbiCPIRg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 04:17:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57528 "EHLO
+        id S238004AbiCPIZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 04:25:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354450AbiCPIRe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 04:17:34 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 375C26350B
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 01:16:20 -0700 (PDT)
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
+        with ESMTP id S1354509AbiCPIZE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 04:25:04 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AEDBDF49
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 01:23:49 -0700 (PDT)
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 6589D3F607
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 08:16:12 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 523E63F043
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 08:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647418572;
-        bh=MPP2peXAA3sSbTNdS1NtkojPuLHHg3FJD83sCKdYWoE=;
+        s=20210705; t=1647419028;
+        bh=e/AyH+eSm9JJq0EMKXs0iqv4SiUNyVLwcorNLctNODk=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=n+EqUgrfa2TThRwcFdHWJ5OIyEbBETka2osFapH8s2llTEJ/eeCatxvOKdR9cbHVi
-         ciOXA3en5bC2n/yPhFewxcosF/efOSrqLl1vvr8uiYqa8x3eDEZy71hysfnvtAqXZ7
-         SbfWLdQJ4vOM1kZXY1Qcxzyg6RCr+ILQU5hZqHD6R6iu8ZnAa3zWJzntXJ8J2yCzXN
-         9lF2zSD7fYY3Yux+wBkE/aAWjs5YuIVEXbBVjghdMd1He+UgH5DnTbAr9zW+McxxIl
-         vkqPqJTmQr8bObTTv1iLooq8zuy0yD1K+ko6LehiClnHydCrOCV9E2KJ1m88iTzA3B
-         gLxNRBTVGn2Jg==
-Received: by mail-ed1-f69.google.com with SMTP id f2-20020a50d542000000b00418ed3d95d8so226345edj.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 01:16:12 -0700 (PDT)
+        b=eaS5JUAvXWO4siS/hF+lovbPrJvfvYuYS+kxD0Bvz+7v2geOxnTSW9VBA0+S+FUdF
+         9oeB6i8Xhn5bFu6er7IrO2yLiXwirBx4mT8eyhGpnwIvzpVRFfOLNtDEXJDAX2opIa
+         Zi8oParKqZKuZUNiv85Hcglz2lpP1bUZ91YheyT5ePIeEBHS+XiIuz+MhH/ECtmbW2
+         yqhix/f6D8yJhFI0YyOI+KcfEvk0PNJqtBNlCjZsLAaPmdc4aeTElYcon1c75dsdvs
+         ildWr0vv1oHcJsDS5CFSVmGctigernhu3HFwyn8Ky7608lt9EDnjc/n1OG2rQfk+Id
+         9UraqWTJ7VaOw==
+Received: by mail-ed1-f72.google.com with SMTP id b71-20020a509f4d000000b00418d658e9d1so864488edf.19
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 01:23:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=MPP2peXAA3sSbTNdS1NtkojPuLHHg3FJD83sCKdYWoE=;
-        b=onOKm7O4LxYjRGOw4xlrF7EDC62UbOQhueBISOCirfH+wLnbX6WHM2LbAmHdO0ZvHF
-         hBa4PA+w7sWzZqDxSeF8XroaWoxl97LNq9xs+Ti/zPnavEtL14AM/BLQSMIjFOBBbqAq
-         xkX4Kxz4jb2HKGuYiZp2isbqhGcC3EkQa/ABqM+YTFBi5tqJ0MtuSyQ/uTIpgyg8BoPl
-         /IIxOSYCa2FIvovzPE1GxPKwdNERv8CAG/3oi1fpM5sMqLnwfWCcjKuWkvtUw56kIqw/
-         A8LmG7zQRgKweR+LZ6AGIgRm+cdtXNHmH7BpGCySsb23UTT/3ggTMHdS5VvFrB0GSFTI
-         OKmA==
-X-Gm-Message-State: AOAM5336rD+zTgfsk2Gf8M5bGd86XRkaz75EUKi2zD85v7j5yG+vpEh2
-        +XM03rFdxOw3qpwL795uYdDqJhwiqc9CJ+JYPRuzxCBxok4e3IWcjqKecTCPZYOFiaWyNh2rfAT
-        7j64zQmwC6z5Xzxbrzy0iZkVNOqJPlYruxCO5QWQ=
-X-Received: by 2002:a17:907:e89:b0:6db:af1f:5e22 with SMTP id ho9-20020a1709070e8900b006dbaf1f5e22mr19251332ejc.649.1647418571644;
-        Wed, 16 Mar 2022 01:16:11 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwO82uWEU4kXWXDV9bDxQh+hp9Cak9giSEC2eqNZStF3HL+6E/RrH+BYGRGkx4L8Lb4Zgu7Jg==
-X-Received: by 2002:a17:907:e89:b0:6db:af1f:5e22 with SMTP id ho9-20020a1709070e8900b006dbaf1f5e22mr19251301ejc.649.1647418571335;
-        Wed, 16 Mar 2022 01:16:11 -0700 (PDT)
+        bh=e/AyH+eSm9JJq0EMKXs0iqv4SiUNyVLwcorNLctNODk=;
+        b=tVvIy4JsZys3Y5DW4YBOpFX9KelPmCmIXXhudLG6LJKgRdXf/lxb36TSbYo0HNjYQU
+         7bIummrwm3aS6tVYb1ee3ECJu1skXaDqzKjZO7FJOMWNjUIisMfdCjzq6sKELDezs8tj
+         cC0YSzsZW6ry6/7hDp7Gj7g6R7eJFEGG974uxyPPsGf6SJpOGCTeA+2eY3RlBTsu6p3x
+         v+HIHCFjnVLXkTUdaizB/B5gmnmX/NvQpK2we9kBkDTH/62/2tfdSQ2j1bgNFWh0HnB8
+         I8i+MqRPHefR1jb1w2E4oINV/cgzhzjC//e3plPHdOknMQKEK41gX/SipUMwUcGeJGe4
+         Etvg==
+X-Gm-Message-State: AOAM531I/1lktN3upw90t811W0P0Emj7PFB0/YQqpMkgImSDW1MgrnnL
+        Yec56br8eKgNPqjZq6+lgpAbLNYYFKjQG/fI3B8Id0d1e+CUwC0Ujpp6yDkpHPeVRKC/IqRJkwK
+        MhzdMxbBes+YuhwVbGPI+yIz6UE1pgJfOeORqkoo=
+X-Received: by 2002:a05:6402:221b:b0:418:eb30:47ff with SMTP id cq27-20020a056402221b00b00418eb3047ffmr971814edb.68.1647419028011;
+        Wed, 16 Mar 2022 01:23:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxXRJ2sxr1qa3Bn1UHN+BhsIianpdP+sELsNQc0NOKzWCLlZEItJaFvmiepEfFL2WU9WcOh2g==
+X-Received: by 2002:a05:6402:221b:b0:418:eb30:47ff with SMTP id cq27-20020a056402221b00b00418eb3047ffmr971796edb.68.1647419027800;
+        Wed, 16 Mar 2022 01:23:47 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id l9-20020a170906078900b006dac5f336f8sm556466ejc.124.2022.03.16.01.16.09
+        by smtp.googlemail.com with ESMTPSA id r29-20020a50c01d000000b00415fb0dc793sm613738edb.47.2022.03.16.01.23.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Mar 2022 01:16:10 -0700 (PDT)
-Message-ID: <cb0af80e-3e5a-fbd9-cd8b-7b252ebe33fe@canonical.com>
-Date:   Wed, 16 Mar 2022 09:16:09 +0100
+        Wed, 16 Mar 2022 01:23:47 -0700 (PDT)
+Message-ID: <deed2e82-0d93-38d9-f7a2-4137fa0180e6@canonical.com>
+Date:   Wed, 16 Mar 2022 09:23:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings for
- AC5
+Subject: Re: [PATCH net-next] dt-bindings: net: convert sff,sfp to dtschema
 Content-Language: en-US
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     "davem@davemloft.net" <davem@davemloft.net>,
+        "kuba@kernel.org" <kuba@kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
- <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
- <4e6df448-5562-8f50-6f46-91acb279bc1a@canonical.com>
- <7e73bba0-8b54-772c-2e94-8fca4e4e3294@alliedtelesis.co.nz>
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20220315123315.233963-1-ioana.ciornei@nxp.com>
+ <6f4f2e6f-3aee-3424-43bc-c60ef7c0218c@canonical.com>
+ <20220315190733.lal7c2xkaez6fz2v@skbuf>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <7e73bba0-8b54-772c-2e94-8fca4e4e3294@alliedtelesis.co.nz>
+In-Reply-To: <20220315190733.lal7c2xkaez6fz2v@skbuf>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/03/2022 22:12, Chris Packham wrote:
-> (trimmed cc list to the arm, pinctrl and dt people)
-> 
-> On 15/03/22 23:46, Krzysztof Kozlowski wrote:
->> On 14/03/2022 22:31, Chris Packham wrote:
->>> Add JSON schema for marvell,ac5-pinctrl present on the Marvell 98DX2530
->>> SoC.
+On 15/03/2022 20:07, Ioana Ciornei wrote:
+> On Tue, Mar 15, 2022 at 07:21:59PM +0100, Krzysztof Kozlowski wrote:
+>> On 15/03/2022 13:33, Ioana Ciornei wrote:
+>>> Convert the sff,sfp.txt bindings to the DT schema format.
 >>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 >>> ---
->>>
->>> Notes:
->>>      Changes in v2:
->>>      - Remove syscon and simple-mfd compatibles
->>>
->>>   .../bindings/pinctrl/marvell,ac5-pinctrl.yaml | 70 +++++++++++++++++++
->>>   1 file changed, 70 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>> new file mode 100644
->>> index 000000000000..65af1d5f5fe0
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>> @@ -0,0 +1,70 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://scanmail.trustwave.com/?c=20988&d=vu6w4lGvpbdx5x7Y5wSGMQ_aPa00Bnj19ce8eGP0QA&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fpinctrl%2fmarvell%2cac5-pinctrl%2eyaml%23
->>> +$schema: http://scanmail.trustwave.com/?c=20988&d=vu6w4lGvpbdx5x7Y5wSGMQ_aPa00Bnj19cPrfjTyTg&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
->>> +
->>> +title: Marvell AC5 pin controller
->>> +
+> 
+> (..)
+> 
 >>> +maintainers:
->>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> +
->>> +description:
->>> +  Bindings for Marvell's AC5 memory-mapped pin controller.
+>>> +  - Russell King <linux@armlinux.org.uk>
 >>> +
 >>> +properties:
 >>> +  compatible:
->>> +    const: marvell,ac5-pinctrl
+>>> +    enum:
+>>> +      - sff,sfp  # for SFP modules
+>>> +      - sff,sff  # for soldered down SFF modules
+>>> +
+>>> +  i2c-bus:
+>>
+>> Thanks for the conversion.
+>>
+>> You need here a type because this does not look like standard property.
+> 
+> Ok.
+> 
+>>
+>>> +    description:
+>>> +      phandle of an I2C bus controller for the SFP two wire serial
+>>> +
+>>> +  maximum-power-milliwatt:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      Maximum module power consumption Specifies the maximum power consumption
+>>> +      allowable by a module in the slot, in milli-Watts. Presently, modules can
+>>> +      be up to 1W, 1.5W or 2W.
 >>> +
 >>> +patternProperties:
->>> +  '-pins$':
->>> +    type: object
->>> +    $ref: pinmux-node.yaml#
+>>> +  "mod-def0-gpio(s)?":
+>>
+>> This should be just "mod-def0-gpios", no need for pattern. The same in
+>> all other places.
+>>
+> 
+> The GPIO subsystem accepts both suffixes: "gpio" and "gpios", see
+> gpio_suffixes[]. If I just use "mod-def0-gpios" multiple DT files will
+> fail the check because they are using the "gpio" suffix.
+> 
+> Why isn't this pattern acceptable?
+
+Because original bindings required gpios, so DTS are wrong, and the
+pattern makes it difficult to grep and read such simple property.
+
+The DTSes which do not follow bindings should be corrected.
+
+> 
 >>> +
->>> +    properties:
->>> +      marvell,function:
->>> +        $ref: "/schemas/types.yaml#/definitions/string"
->>> +        description:
->>> +          Indicates the function to select.
->>> +        enum: [ gpio, i2c0, i2c1, nand, sdio, spi0, spi1, uart0, uart1, uart2, uart3 ]
->>> +
->>> +      marvell,pins:
->>> +        $ref: /schemas/types.yaml#/definitions/string-array
->>> +        description:
->>> +          Array of MPP pins to be used for the given function.
->>> +        minItems: 1
->>> +        items:
->>> +          enum: [ mpp0, mpp1, mpp2, mpp3, mpp4, mpp5, mpp6, mpp7, mpp8, mpp9,
->>> +                  mpp10, mpp11, mpp12, mpp13, mpp14, mpp15, mpp16, mpp17, mpp18, mpp19,
->>> +                  mpp20, mpp21, mpp22, mpp23, mpp24, mpp25, mpp26, mpp27, mpp28, mpp29,
->>> +                  mpp30, mpp31, mpp32, mpp33, mpp34, mpp35, mpp36, mpp37, mpp38, mpp39,
->>> +                  mpp40, mpp41, mpp42, mpp43, mpp44, mpp45 ]
->>> +
->>> +allOf:
->>> +  - $ref: "pinctrl.yaml#"
+>>> +  "rate-select1-gpio(s)?":
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      GPIO phandle and a specifier of the Tx Signaling Rate Select (AKA RS1)
+>>> +      output gpio signal (SFP+ only), low - low Tx rate, high - high Tx rate. Must
+>>> +      not be present for SFF modules
+>>
+>> This and other cases should have a "allOf: if: ...." with a
+>> "rate-select1-gpios: false", to disallow this property on SFF modules.
+>>
+> 
+> Ok, didn't know that's possible.
+> 
 >>> +
 >>> +required:
 >>> +  - compatible
+>>> +  - i2c-bus
 >>> +
 >>> +additionalProperties: false
 >>> +
 >>> +examples:
->>> +  - |
->>> +    system-controller@80020100 {
->>> +      compatible = "syscon", "simple-mfd";
->>> +      reg = <0x80020000 0x20>;
->> This is unusual. Usually the pinctrl should be a device @80020100, not
->> child of syscon node. Why do you need it? In v1 you mentioned that
->> vendor sources do like this, but it's not correct to copy wrong DTS. :)
+>>> +  - | # Direct serdes to SFP connection
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>> +
+>>> +    sfp_eth3: sfp-eth3 {
+>>
+>> Generic node name please, so maybe "transceiver"? or just "sfp"?
+>>
 > 
-> The vendor dts has this
+> Ok, I can do just "sfp".
 > 
->          pinctrl0: pinctrl@80020100 {
->              compatible = "marvell,ac5-pinctrl",
->                       "syscon", "simple-mfd";
->              reg = <0 0x80020100 0 0x20>;
->              i2c_mpps: i2c-mpps {
->                  marvell,pins = "mpp26", "mpp27";
->                  marvell,function = "i2c0-opt";
->              };
->       };
+>>> +      compatible = "sff,sfp";
+>>> +      i2c-bus = <&sfp_1g_i2c>;
+>>> +      los-gpios = <&cpm_gpio2 22 GPIO_ACTIVE_HIGH>;
+>>> +      mod-def0-gpios = <&cpm_gpio2 21 GPIO_ACTIVE_LOW>;
+>>> +      maximum-power-milliwatt = <1000>;
+>>> +      pinctrl-names = "default";
+>>> +      pinctrl-0 = <&cpm_sfp_1g_pins &cps_sfp_1g_pins>;
+>>> +      tx-disable-gpios = <&cps_gpio1 24 GPIO_ACTIVE_HIGH>;
+>>> +      tx-fault-gpios = <&cpm_gpio2 19 GPIO_ACTIVE_HIGH>;
+>>> +    };
+>>> +
+>>> +    cps_emac3 {
+>>
+>> This is not related, so please remove.
 > 
-> Rob pointed out that "syscon", "simple-mfd" don't belong. I went looking 
-> and found marvell,armada-7k-pinctrl which has the pinctrl as a child of 
-> a syscon node and what you see in v2 is the result.
-> 
-> I probably went a bit too far off the deep end and should have just 
-> dropped the "syscon", "simple-mfd" compatibles. I even wrote that 
-> version but decided to add some gold plating before I submitted it.
+> It's related since it shows a generic usage pattern of the sfp node.
+> I wouldn't just remove it since it's just adds context to the example
+> not doing any harm.
 
-More or less it is explained in
-Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt why
-armada-7k uses it that way. The pinctrl is part of system registers
-which apparently has to be shared with others (on shared SFR range).
+Usage (consumer) is not related to these bindings. The bindings for this
+phy/mac should show the usage of sfp, but not the provider bindings.
 
-It depends on your case, your SFR ranges for pinctrl and other blocks.
+The bindings of each clock provider do not contain examples for clock
+consumer. Same for regulator, pinctrl, power domains, interconnect and
+every other component. It would be a lot of code duplication to include
+consumers in each provider. Instead, we out the example of consumer in
+the consumer bindings.
 
+The harm is - duplicated code and one more example which can be done
+wrong (like here node name not conforming to DT spec).
+
+If you insist to keep it, please share why these bindings are special,
+different than all other bindings I mentioned above.
+
+> 
+>>
+>>> +      phy-names = "comphy";
+>>> +      phys = <&cps_comphy5 0>;
+>>> +      sfp = <&sfp_eth3>;
+>>> +    };
+>>> +
+>>> +  - | # Serdes to PHY to SFP connection
+>>> +    #include <dt-bindings/gpio/gpio.h>
+>>
+>> Are you sure it works fine? Double define?
+> 
+> You mean that I added a second example? I don't understand the question.
+
+You have second same include so you will have doubled defines. Usually
+it was an error...
 
 Best regards,
 Krzysztof
