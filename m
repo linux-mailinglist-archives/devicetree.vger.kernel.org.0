@@ -2,171 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E6124DA7E5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 03:25:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 412EB4DA8A6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 03:52:02 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238085AbiCPC03 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 22:26:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52952 "EHLO
+        id S1353353AbiCPCxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 22:53:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54950 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237405AbiCPC02 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 22:26:28 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73E924F0A;
-        Tue, 15 Mar 2022 19:25:14 -0700 (PDT)
-X-UUID: ef7dc8dcbffc42f08972bc2395417310-20220316
-X-UUID: ef7dc8dcbffc42f08972bc2395417310-20220316
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 995455425; Wed, 16 Mar 2022 10:25:09 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 16 Mar 2022 10:25:08 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 16 Mar
- 2022 10:25:06 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Mar 2022 10:25:06 +0800
-Message-ID: <00a1b51452d0a8fcdd9807845580678f6739e974.camel@mediatek.com>
-Subject: Re: [PATCH v13 1/6] soc: mediatek: mutex: add common interface to
- accommodate multiple modules operationg MUTEX
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S244717AbiCPCxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 22:53:01 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A2CF5D5D3
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 19:51:48 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id i11so25800plr.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 19:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=AYHjzsyjRmUc4OJ6wH8zfYo7ibjgR1tXCd77sc7RSAg=;
+        b=heKvuWgQr5VoHoQl4h09u4O/8GGphb7ssh8IqJxyD98rdVexqrbAfvjuWmUO+TzJhW
+         vo61dtbQBe1ziAwtwjYKInKObl0XRwSK81elk3LnXWSDGENZY0MywgWBdWbnCH/8YWna
+         sRpPiwn+n6k5Pi+1r0Tx5K5gHG1IrBU7XFL7SSKhnZFem+mXx9BTvVQpeoCrGoxGyybq
+         S7/Lw10eQyay9N9Q8Y3Xrv9hnliUWcgo1FgjaizxzB6a4NRb+e6rL5U8JzRlAldi27FT
+         gAZ48IsbrqMxGmqtaKiB/AWahUKFMzvSknBsf+ueWUUDw6deCXvl0e/X5Qde8i4eaPIW
+         gKjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=AYHjzsyjRmUc4OJ6wH8zfYo7ibjgR1tXCd77sc7RSAg=;
+        b=fXC78+CSzaLydkxNFPVBCsX+TBHgMFrngt26IObSfb/OWdirBLeYermW/kzU8JCoiN
+         9piIMT76WQqXSL9GOiTQIhP7Yr6JfJGtnGCBN7hkmDyjaad7Btig9aqz0s94MFaINLSK
+         myA9t2Io/N3Ou3fpWkxz5rhuQK7TQocNwiPGbn4AGaVw6k1YQ9sAja2qnSK4RoM1E7Db
+         Luj4fWcN2YO4hE1X+sEtzoVzP712ZyQiEV8H+O+oGDseG3o6Cb2WD6rNjlF4iV77SqQC
+         vk5jmLNBhKgzZBDNPGEs4jTcfk8Rx0ZRHjvQlIP/cSBQgGIHOHzNvjQbcaQcX2Nv/AQG
+         BwqA==
+X-Gm-Message-State: AOAM531S6omlS3gfuEnJZ75zRqzV3nvs/LyGkKkXvCJ7gjSRIdZO7ZIE
+        t/Yu6NsQgIv+s9W80j1sZ++MTA==
+X-Google-Smtp-Source: ABdhPJywnuIpV4rpwTvcBK1Ts8mfgkpqjlL3K+BiNlxFqZuhiF0aqHb13KjDHMleqMwblr0gLsLkdA==
+X-Received: by 2002:a17:902:c745:b0:153:b0e:8586 with SMTP id q5-20020a170902c74500b001530b0e8586mr31175866plq.9.1647399107340;
+        Tue, 15 Mar 2022 19:51:47 -0700 (PDT)
+Received: from google.com (223.103.125.34.bc.googleusercontent.com. [34.125.103.223])
+        by smtp.gmail.com with ESMTPSA id i11-20020a056a00004b00b004f6907b2cd3sm530269pfk.122.2022.03.15.19.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Mar 2022 19:51:47 -0700 (PDT)
+Date:   Wed, 16 Mar 2022 02:51:42 +0000
+From:   Chun-Tse Shao <ctshao@google.com>
+To:     Masahiro Yamada <masahiroy@kernel.org>
+Cc:     Nick Desaulniers <ndesaulniers@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Nicolas Schier <nicolas@fjasle.eu>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Jernej Skrabec" <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        <tfiga@chromium.org>, <drinkcat@chromium.org>,
-        <pihsun@chromium.org>, <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
-        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Wed, 16 Mar 2022 10:25:06 +0800
-In-Reply-To: <20220315061031.21642-2-moudy.ho@mediatek.com>
-References: <20220315061031.21642-1-moudy.ho@mediatek.com>
-         <20220315061031.21642-2-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Michal Marek <michal.lkml@markovi.net>,
+        David Howells <dhowells@redhat.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        keyrings@vger.kernel.org, DTML <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4] config: Allow kernel installation packaging to
+ override pkg-config
+Message-ID: <YjFQvhv7I6w8xjbK@google.com>
+References: <20220306223016.2239094-1-ctshao@google.com>
+ <CAKwvOdnmtRYnSx3VvG=PEnzpzWa8f=0bn1xDymjER5EShS2tmw@mail.gmail.com>
+ <YiaMJCHOOuujHwiK@google.com>
+ <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAK7LNAS-=Fne6fyiqzQ6DwNLOdF-HAY9Libn10uyV9GmQQMUKQ@mail.gmail.com>
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Moudy:
+Tue, Mar 08, 2022 at 01:01:45PM +0900, Masahiro Yamada wrote:
+> On Tue, Mar 8, 2022 at 7:50 AM Chun-Tse Shao <ctshao@google.com> wrote:
+> >
+> > On Mon, Mar 07, 2022 at 10:17:17AM -0800, Nick Desaulniers wrote:
+> > > On Sun, Mar 6, 2022 at 2:39 PM Chun-Tse Shao <ctshao@google.com> wrote:
+> > > >
+> > > > Add HOSTPKG_CONFIG to allow tooling that builds the kernel to override
+> > > > what pkg-config and parameters are used.
+> > >
+> > > Sorry, kind a late thought here for v4, but we don't seem to prefix
+> > > many other host side tools with HOST_, i.e. LEX, YACC, AWK, PERL,
+> > > PYTHON3, etc.  Maybe just having the variable identifier be simply
+> > > PKGCONFIG rather than HOSTPKG_CONFIG then put it at the end of the
+> > > list in the top level Makefile after ZSTD (i.e. the list of host
+> > > tools)?  There's HOST_ prefixes when there's more than one tool
+> > > involved (i.e. host compiler vs target compiler), but I suspect
+> > > there's no such distinction for the existing uses of pkg-config?
+> > >
+> > Thanks for your suggestion, Nick! Yes I think it makes sense with PKGCONFIG
+> > instead of HOSTPKG_CONFIG since there is only one tool involved. I will
+> > work on it and submit a new patch.
+> >
+>
+> Please hold on.
+>
+> I was also wondering what to do with the "HOST" prefix.
+>
+> Libraries are usually arch-dependent.
+> (in other words, pkg-config should return different library paths
+> for $(CC) and $(HOSTCC) )
+>
+> You already understood this, so you added "HOST" prefix.
+>
+>
+> Please let me take time for further discussion.
+> I will come back to this when I get some time.
+>
+>
 
-On Tue, 2022-03-15 at 14:10 +0800, Moudy Ho wrote:
-> In order to allow multiple modules to operate MUTEX hardware through
-> a common interfrace, a flexible index "mtk_mutex_table_index" needs
-> to
-> be added to replace original component ID so that like DDP and MDP
-> can add their own MUTEX table settings independently.
-> 
-> In addition, 4 generic interface "mtk_mutex_set_mod",
-> "mtk_mutex_set_sof",
-> "mtk_mutex_clear_mod" and "mtk_mutex_clear_sof" have been added,
-> which is
-> expected to replace the "mtk_mutex_add_comp" and
-> "mtk_mutex_remove_comp"
-> pair originally dedicated to DDP in the future.
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-mutex.c       | 122
-> +++++++++++++++++++++++++
->  include/linux/soc/mediatek/mtk-mutex.h |  33 +++++++
->  2 files changed, 155 insertions(+)
-> 
+Hi Mashiro,
 
-[snip]
+I was wondering if you were able to look more into this.
 
-> 
-> diff --git a/include/linux/soc/mediatek/mtk-mutex.h
-> b/include/linux/soc/mediatek/mtk-mutex.h
-> index 6fe4ffbde290..c8355bb0e6d6 100644
-> --- a/include/linux/soc/mediatek/mtk-mutex.h
-> +++ b/include/linux/soc/mediatek/mtk-mutex.h
-> @@ -10,14 +10,47 @@ struct regmap;
->  struct device;
->  struct mtk_mutex;
->  
-> +enum mtk_mutex_table_index {
-> +	MUTEX_TABLE_IDX_NONE = 0,	/* Invalid engine */
+Thank you!
 
-Useless, so remove this.
+-CT
 
-> +
-> +	/* MDP table index */
-> +	MUTEX_TABLE_IDX_MDP_RDMA0,
-> +	MUTEX_TABLE_IDX_MDP_RSZ0,
-> +	MUTEX_TABLE_IDX_MDP_RSZ1,
-> +	MUTEX_TABLE_IDX_MDP_TDSHP0,
-> +	MUTEX_TABLE_IDX_MDP_WROT0,
-> +	MUTEX_TABLE_IDX_MDP_WDMA,
-> +	MUTEX_TABLE_IDX_MDP_AAL0,
-> +	MUTEX_TABLE_IDX_MDP_CCORR0,
-> +
-> +	/* DDP table index */
-> +	MUTEX_TABLE_IDX_DDP_DSI0,
-> +	MUTEX_TABLE_IDX_DDP_DSI1,
-> +	MUTEX_TABLE_IDX_DDP_DSI2,
-> +	MUTEX_TABLE_IDX_DDP_DSI3,
-> +	MUTEX_TABLE_IDX_DDP_DPI0,
-> +	MUTEX_TABLE_IDX_DDP_DPI1,
-> +	MUTEX_TABLE_IDX_DDP_DP_INTF0,
-> +	MUTEX_TABLE_IDX_DDP_DP_INTF1,
-
-If this patch would support DDP, add all DDP index. If this patch does
-not support DDP, remove these.
-
-Regards,
-CK
-
-> +
-> +	MUTEX_TABLE_IDX_MAX		/* ALWAYS keep at the end */
-> +};
-> +
->  struct mtk_mutex *mtk_mutex_get(struct device *dev);
->  int mtk_mutex_prepare(struct mtk_mutex *mutex);
->  void mtk_mutex_add_comp(struct mtk_mutex *mutex,
->  			enum mtk_ddp_comp_id id);
-> +void mtk_mutex_set_mod(struct mtk_mutex *mutex,
-> +		       enum mtk_mutex_table_index idx);
-> +void mtk_mutex_set_sof(struct mtk_mutex *mutex,
-> +		       enum mtk_mutex_table_index idx);
->  void mtk_mutex_enable(struct mtk_mutex *mutex);
->  void mtk_mutex_disable(struct mtk_mutex *mutex);
->  void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
->  			   enum mtk_ddp_comp_id id);
-> +void mtk_mutex_clear_mod(struct mtk_mutex *mutex,
-> +			 enum mtk_mutex_table_index idx);
-> +void mtk_mutex_clear_sof(struct mtk_mutex *mutex);
->  void mtk_mutex_unprepare(struct mtk_mutex *mutex);
->  void mtk_mutex_put(struct mtk_mutex *mutex);
->  void mtk_mutex_acquire(struct mtk_mutex *mutex);
-
+> In the meantime,
+>   a8a5cd8b472ca20e5b8fa649c43b3756867322f8
+> as reference info if you have not seen it.
+>
+>
+> How many distros support something like
+> "aarch64-linux-gnu-pkg-config"  ?
+>
+> Ubuntu 18.04 and 20.04 seem to support it.
+> I do not know for others.
+>
+>
+>
+>
+>
+> --
+> Best Regards
+>
+> Masahiro Yamada
