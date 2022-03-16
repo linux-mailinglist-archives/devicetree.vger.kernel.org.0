@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBFA34DBA3F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 22:39:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EE5F4DBB36
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 00:41:52 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356305AbiCPVkU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 17:40:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38200 "EHLO
+        id S230130AbiCPXnE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 19:43:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1358163AbiCPVkP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 17:40:15 -0400
-Received: from mail-io1-xd35.google.com (mail-io1-xd35.google.com [IPv6:2607:f8b0:4864:20::d35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF1F638199
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 14:38:59 -0700 (PDT)
-Received: by mail-io1-xd35.google.com with SMTP id q11so3940045iod.6
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 14:38:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0ni6qEV23bpfC9gZ85rViHqPr1Fe02W50huWIxyNEUM=;
-        b=YDoHhjkzfqfaghn9OIA7SaV0d87Xf0IXGRdp5t0bNzOvxtgPauU4faPlIhH0d+HjBY
-         qjATOau7I2cTNJjphGROqb3gQ4m4ZF2vXvPZRRoAKX1Ufzs9lt80l571VZE34FI8o1WF
-         /dl4B6dB5zSAGy60rVz9BmVZ+JqUZHX+QmzNA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0ni6qEV23bpfC9gZ85rViHqPr1Fe02W50huWIxyNEUM=;
-        b=ehx2Q1HyPPThFCIcqP+H28NYMCJM46Z/tSpzb9wk6ZOmsk7r682FS2zcHuWNsNkagN
-         XWTu7UgnbflEmnza8uYUMUrTHHUoeWliUwVquZzz+NkTi4EqtTC5fRljPO20jWu19yDY
-         3xJOFgwuQVtKcqAjd+G959x1m79d1JlzmOkZxeLgOBAMU376wMazzvZmxZGDwi+hQmIM
-         Y2XBKfDwZdm3GmQf4AEaCRg2JGjNH7D44eGjdirZrRh6Kv2SooXD29Sbg3nDY7EmN5De
-         lcG8RecZoNsq7O96MDpxlZaBfAG/D90Z1+cw+5dO7HTBF4VjmFTduYDVUMQXCbIQ9ZET
-         e4tA==
-X-Gm-Message-State: AOAM531sDtPBlrfsQzfzR2Avwm+bsCG2OgmwuzruhedjjNHCVjMln6P1
-        8v4EYlw31nH/VHqxErHuSkmrwde2r/Zr1nxaVg6olw==
-X-Google-Smtp-Source: ABdhPJyDNC+rz9Gv3wfYl4tEz5JX5mPK5as58m8jtyXLL2S5aD32zTRUm4SgHmvgoX+uYCux/ML3AEi6m7CLCXhVYGQ=
-X-Received: by 2002:a6b:6f0c:0:b0:648:ea2d:41fe with SMTP id
- k12-20020a6b6f0c000000b00648ea2d41femr847996ioc.63.1647466739121; Wed, 16 Mar
- 2022 14:38:59 -0700 (PDT)
+        with ESMTP id S1351478AbiCPXnD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 19:43:03 -0400
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B64741A834
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 16:41:46 -0700 (PDT)
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id EC0252C082B;
+        Wed, 16 Mar 2022 23:41:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1647474103;
+        bh=q1zQy4dxcm7f5Y+SuIYAFb4zrm2UtZwA5QnElXfnssg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=lwCfTRJVGRYQ4N5kgwDk4maKz/MRd9eR++E8TYa+XPlhA8PATYKtZ+qYFpsFiymrN
+         qjq3/tHCgoLFnPqW8rlyYm68COcbwDs8si/Y3WeZlqac4RHfJA8SV52GGapz0FGEe5
+         QqOAcpBee8VgYqbXCmFzVV77uyYD0FTfdVeZFUSYTImOrIr2y2UbWhP4uhvXK2h6vQ
+         Pm0gbFeNl76wVUgUl1OsaJxXTi1A7pNEaQAwsRx1Zj1yUlom/lBJcuQ6g2J4kPu065
+         jVK6jFUYCAYe6x9VdwBvsfC/7luOy98X67HtimZ9EBMv0NZ9LHqN6JMroBVYcdHjIK
+         tnumnhCFufnfg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+        id <B623275b70000>; Thu, 17 Mar 2022 12:41:43 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+        by pat.atlnz.lc (Postfix) with ESMTP id BA03E13EE36;
+        Thu, 17 Mar 2022 12:41:43 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+        id 452AA2A2679; Thu, 17 Mar 2022 12:41:41 +1300 (NZDT)
+From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
+To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH 0/2] hwmon: (adt7475) pin configuration
+Date:   Thu, 17 Mar 2022 12:41:32 +1300
+Message-Id: <20220316234134.290492-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-References: <20220315173042.1325858-1-gwendal@chromium.org>
- <20220315173042.1325858-2-gwendal@chromium.org> <CAE-0n51+Vyco+drQzF79bE06_UTKHHc3J5Q1wMvxEntqEBpyug@mail.gmail.com>
-In-Reply-To: <CAE-0n51+Vyco+drQzF79bE06_UTKHHc3J5Q1wMvxEntqEBpyug@mail.gmail.com>
-From:   Gwendal Grignou <gwendal@chromium.org>
-Date:   Wed, 16 Mar 2022 14:38:48 -0700
-Message-ID: <CAPUE2uuRG-aQ1_bHxJts+5bsGeZDrFXqCOfoFXPTdCyfv7CwKA@mail.gmail.com>
-Subject: Re: [PATCH 1/7] iio: sx9324: Fix register field spelling
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     jic23@kernel.org, robh+dt@kernel.org, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=_3ioNcgKDktiekeMNxwA:9
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 11:19 AM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Gwendal Grignou (2022-03-15 10:30:36)
-> > Field for PROX_CTRL4 should contain PROX_CTRL4.
-> >
-> > Signed-off-by: Gwendal Grignou <gwendal@chromium.org>
->
-> Any Fixes tag? It's a typo though so not really a big deal.
-Fixes: 4c18a890dff8d ("iio:proximity:sx9324: Add SX9324 support")
->
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+This series adds support for configuring the ADT7475 based on the
+hardware description provided. The ADT7475 driver has always supported
+detecting the configuration. This adds support for configuring the chip
+based on the hardware design.
+
+Chris Packham (2):
+  dt-bindings: hwmon: Document adt7475 pin-function properties
+  hwmon: (adt7475) Add support for pin configuration
+
+ .../devicetree/bindings/hwmon/adt7475.yaml    | 22 +++++
+ drivers/hwmon/adt7475.c                       | 95 +++++++++++++++++++
+ 2 files changed, 117 insertions(+)
+
+--=20
+2.35.1
+
