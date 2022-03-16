@@ -2,100 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E72164DADF0
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 10:55:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 66F3A4DAE0A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 11:05:48 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355054AbiCPJ4X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 05:56:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39870 "EHLO
+        id S1350398AbiCPKG6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 06:06:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355048AbiCPJ4P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 05:56:15 -0400
-Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D3F046B1B;
-        Wed, 16 Mar 2022 02:54:57 -0700 (PDT)
-Received: by mail-pf1-x433.google.com with SMTP id s11so3289721pfu.13;
-        Wed, 16 Mar 2022 02:54:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=sSsdnbeFBGRpAHEWScvJp+8IqsMrONhOglatDZMGi28=;
-        b=DfFTiQfqkJ+JM7CvK9dJwjCu7rirFCJeUv7VHYndMvlHDQjnm5aCtsyvR1b1C5Jnd6
-         38AmWZXPahEZgCFCdqmiRDMaUIgl9KzaewRuqhEh9uuHnw/0LYqmRNmK/fv4yV8/yqGM
-         QOnXrNX5bejZ5sXn4HntfJctIIMDnrnrv+fFcQ/6SOhDlWIw0YKbZFIicN1EyVnWin9O
-         yluELGNNFKynQ6mrkXjg4mYsRUL+grzMSei0gNgdVZHsxzPrtv6Sv+JUSm1FEyNgKksM
-         tbkti8RWvyT7Zy++3CzTIFzLJdJb/ErTpTFsMGOO30/nLrcR/CTEYJ4UhEjAysSWVmCz
-         DazA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=sSsdnbeFBGRpAHEWScvJp+8IqsMrONhOglatDZMGi28=;
-        b=FRajm1ge9ht9B45tzhMzvIoaEQBQi/slCebm6D9iHIuPRYPNLB7a1H7NQdBvOHYTGE
-         HmXWMWBuoUrD5nZYahYRrQDpfe+5SUYMk+jx3llvgqaNMwMuGn3CxuKQ45cwKRLCSzjP
-         BlRO/CDAbRDPvFHCZ5dxSigjikdtoZNd7iuVmY4fnyOhzSWfyZp3TnEbNTM6d75KnPUM
-         gHXYZHVvihoUFXUQhSMUUjT6IoM06l22qSqKmlkqjfSar12P1JsFmmnKV/Vng5POHaAC
-         tV1ZfuZWtdsaGrIIQae6rmnWIVJgpCjUa12pCVdByZdEkPm/RaxKfA/xfpE1lHJQGyTh
-         O2kg==
-X-Gm-Message-State: AOAM530NOA33b/aqwXN7UiB23VDw8uweQ9uoECYQOoCJfmJITMTOHrqK
-        AkGtuxUy4Wa5sfZ0jH5mx6w=
-X-Google-Smtp-Source: ABdhPJyDCctCLEh3Xon/NQ2FnvCPoNDq0IZjmtHGxKdpGMSs3wCa80O68QSAJ8XuCfhwXaW2V3UpRA==
-X-Received: by 2002:a63:4d5a:0:b0:381:eef7:33f8 with SMTP id n26-20020a634d5a000000b00381eef733f8mr1143310pgl.193.1647424496523;
-        Wed, 16 Mar 2022 02:54:56 -0700 (PDT)
-Received: from localhost.localdomain ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id a22-20020a056a000c9600b004f7b8b3a44csm2567070pfv.29.2022.03.16.02.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Mar 2022 02:54:56 -0700 (PDT)
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Marc Zyngier <marc.zyngier@arm.com>,
+        with ESMTP id S235316AbiCPKG5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 06:06:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096DB5C37C;
+        Wed, 16 Mar 2022 03:05:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A06E4615F8;
+        Wed, 16 Mar 2022 10:05:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BFCFC340EE;
+        Wed, 16 Mar 2022 10:05:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647425143;
+        bh=zKJPHjun5nBqwzTTmq/N/LMPB2nzyAWegrAXc+qVF0M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kN8cpNPT4vs5VXkZskRi0mmjeIwCS4+dZkTfn37TtvY3RqRwfXE9aZpkhk0wBUM0x
+         BllXvB9QzEHL5MxmRuJQOowJqIy0v+4E+jVPhMtuFaihYY97SuNqSpUplytlkGmcrY
+         pvoUJqI3D3/ReYCHKdxK/sE+FdkI2nDld0QJGQWYhjsapAX/p9/ciRWCwHWw9iVgAZ
+         67FvBo7WbcH3QDN7p4Hkr/n6iVUIvzLtm/CSjXi2tZojgn3CyD2I3MDFg57niUhakS
+         IOVCBUFgYxUoFF89liwbmYVgQ2I1hcF5h26oI50LSC9e1wMfCbn4nMG1zmLbZ1tpy4
+         grCCptcdUOvyw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nUQXE-00EspX-HG; Wed, 16 Mar 2022 10:05:40 +0000
+Date:   Wed, 16 Mar 2022 10:05:40 +0000
+Message-ID: <87a6dqyzyj.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Marc Zyngier <marc.zyngier@arm.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Marc Zyngier <maz@kernel.org>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
-Subject: [PATCH 3/3] clocksource: arch_timer: Add arm,cortex-a7/15-timer in of_match list
-Date:   Wed, 16 Mar 2022 15:24:32 +0530
-Message-Id: <20220316095433.20225-4-singh.kuldeep87k@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220316095433.20225-1-singh.kuldeep87k@gmail.com>
+Subject: Re: [PATCH 3/3] clocksource: arch_timer: Add arm,cortex-a7/15-timer in of_match list
+In-Reply-To: <20220316095433.20225-4-singh.kuldeep87k@gmail.com>
 References: <20220316095433.20225-1-singh.kuldeep87k@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        <20220316095433.20225-4-singh.kuldeep87k@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: singh.kuldeep87k@gmail.com, marc.zyngier@arm.com, mark.rutland@arm.com, daniel.lezcano@linaro.org, tglx@linutronix.de, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Few platforms such as Renesas RZ/N1D, Calxeda, Alpine etc. are using
-arm,cortex-a15-timer and arm,cortex-a7-timer entries in conjugation with
-arm,armv7-timer which are not currently defined in driver file. Add
-these entries in arch_timer_of_match list to bring them in use.
+Hi Kuldeep,
 
-Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
----
- drivers/clocksource/arm_arch_timer.c | 2 ++
- 1 file changed, 2 insertions(+)
+On Wed, 16 Mar 2022 09:54:32 +0000,
+Kuldeep Singh <singh.kuldeep87k@gmail.com> wrote:
+> 
+> Few platforms such as Renesas RZ/N1D, Calxeda, Alpine etc. are using
+> arm,cortex-a15-timer and arm,cortex-a7-timer entries in conjugation with
+> arm,armv7-timer which are not currently defined in driver file. Add
+> these entries in arch_timer_of_match list to bring them in use.
 
-diff --git a/drivers/clocksource/arm_arch_timer.c b/drivers/clocksource/arm_arch_timer.c
-index 1ecd52f903b8..805e60c09916 100644
---- a/drivers/clocksource/arm_arch_timer.c
-+++ b/drivers/clocksource/arm_arch_timer.c
-@@ -1266,6 +1266,8 @@ static int __init arch_timer_mem_register(void __iomem *base, unsigned int irq)
- static const struct of_device_id arch_timer_of_match[] __initconst = {
- 	{ .compatible   = "arm,armv7-timer",    },
- 	{ .compatible   = "arm,armv8-timer",    },
-+	{ .compatible   = "arm,cortex-a7-timer",    },
-+	{ .compatible   = "arm,cortex-a15-timer",    },
- 	{},
- };
- 
+"arm,armv7-timer" already acts as a catch all (and is mandatory
+anyway), and there is no difference in handling as a result of this.
+
+So what is this fixing?
+
+Thanks,
+
+	M.
+
 -- 
-2.25.1
-
+Without deviation from the norm, progress is not possible.
