@@ -2,120 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45FA64DABEF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 08:40:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA714DAC00
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 08:45:49 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1353860AbiCPHlZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 03:41:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48996 "EHLO
+        id S1354310AbiCPHrB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 03:47:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1354264AbiCPHlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 03:41:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2903A60A9B
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:40:10 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nUOGJ-0003j1-OH; Wed, 16 Mar 2022 08:40:03 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nUOGH-0007Ye-1L; Wed, 16 Mar 2022 08:40:01 +0100
-Date:   Wed, 16 Mar 2022 08:40:01 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Andy Yan <andy.yan@rock-chips.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Sandy Huang <hjc@rock-chips.com>,
-        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
-        Peter Geis <pgwipeout@gmail.com>
-Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
-Message-ID: <20220316074001.GP405@pengutronix.de>
-References: <20220311083323.887372-1-s.hauer@pengutronix.de>
- <20220311083323.887372-23-s.hauer@pengutronix.de>
- <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
+        with ESMTP id S1354308AbiCPHq7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 03:46:59 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2071.outbound.protection.outlook.com [40.107.93.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2CC760CC3;
+        Wed, 16 Mar 2022 00:45:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kjvl2ao0vDZHom6uqPAxNbXxzxAHTKQKyZum1o9QKKqOb7D8o/UNnKN7rBC291Y0JMMEvHNCYOpcRs3mCrhIcceKyuMnjpQIAMY8iyHlPz9FUufdACxMXaNkDuPdyslvabmCTvPCHCrNFWWWTNP2s+1Z3dmthLz8HsqV0B29ONnpCPZH7hwo56VZMDDDDWSO3z0ka/JcHr/RXO9DPffW/SZ8EeCp2sxWo9bIrYUGP7+YuCKO1zNJJAFTIDWxI8rU1jTC5PtJ+iDXOIk3+/igUmlxuCTWvYt/GNO8mvL+DZ00v2EUABUr5ch1fic1Wlk+nqlqD67qXtD+t217U6BesQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ythqLgrW2Ul7K76G/bx1DBEEJlvUNQatj2V/KqFPcJM=;
+ b=Ka8aVHtccK5BJnOjDo7aAdaWdNV0VHsHfkCBZ7fbbxClXBPDZ0aewL0Bk84Jd608VdV6R3DC5+4P9HySFzX1AYKhnt61bgTobHGsSkeQI7nt/PY+rsjCqyBhXKP04jCPpmRBxp+LrfmZYfiSZeCI6GI4/OuOQz+KGrUe9hY9LXzLmAR1RKYCXTe3I1JXnyN+NnqyYtoUsv+yzKYLEYlz2x5Ct/mJEUDMQ1cbnKknazkIMdRuZpDj9c/s8bJ1FNJp3MjNbcqyGmrEw4qa5OYjUghzajfDwNXQwyrN70uKLROFEK6euRyhcsV8HIwABlyAiSzG91mrFINPlLDcD+z5hw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.234) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ythqLgrW2Ul7K76G/bx1DBEEJlvUNQatj2V/KqFPcJM=;
+ b=VBEN/ONoPrYUFNdEXI0K8VnD7NEkBEsCHiHi3cTeQKDH4+0Dywft9hbAIyjCz92mH1QSZBPImHjcanIiCohsNLbX9UH3jxbau64e+/zlNJncCKR4Urd9A6jHftUR2LVlDLSV4c44jGaZlQwyGGxwr+CrMamz16u2/f/MRl1M2UddWS+0yf1oLLdDpqMBRWbQR240s7BthTm+SrL+16G4KnqgUXYx2BMTu3ywp+u6cS1UK5N7SelRXtNAC72yfNSqnef/1nGN+Wq5OKzi2tOGpDtR8ITOaPbYWKqUTj8AlkfTk9QWOdJ47cMQDKJcezxBQF/PCpQhPi+0Z7OTsGHVLA==
+Received: from DM5PR21CA0042.namprd21.prod.outlook.com (2603:10b6:3:ed::28) by
+ PH7PR12MB5595.namprd12.prod.outlook.com (2603:10b6:510:135::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5061.22; Wed, 16 Mar
+ 2022 07:45:42 +0000
+Received: from DM6NAM11FT010.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:3:ed:cafe::95) by DM5PR21CA0042.outlook.office365.com
+ (2603:10b6:3:ed::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5102.6 via Frontend
+ Transport; Wed, 16 Mar 2022 07:45:42 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.234; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.234) by
+ DM6NAM11FT010.mail.protection.outlook.com (10.13.172.222) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5081.14 via Frontend Transport; Wed, 16 Mar 2022 07:45:42 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by DRHQMAIL101.nvidia.com
+ (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 16 Mar
+ 2022 07:45:41 +0000
+Received: from [10.41.21.79] (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 16 Mar
+ 2022 00:45:38 -0700
+Message-ID: <e1d484b5-b755-e406-8711-62f3756759f3@nvidia.com>
+Date:   Wed, 16 Mar 2022 13:15:35 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:35:30 up 95 days, 16:21, 82 users,  load average: 0.45, 0.47,
- 0.26
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [Patch v3 3/9] dt-bindings: arm: tegra: Add NVIDIA Tegra194
+ axi2apb binding
+Content-Language: en-US
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh@kernel.org>
+CC:     linux-tegra <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Jon Hunter <jonathanh@nvidia.com>,
+        <kbuild-all@lists.01.org>, <bbasu@nvidia.com>, <vsethi@nvidia.com>,
+        <jsequeira@nvidia.com>, Thierry Reding <treding@nvidia.com>,
+        Sumit Gupta <sumitg@nvidia.com>
+References: <20211221125117.6545-1-sumitg@nvidia.com>
+ <20211221125117.6545-4-sumitg@nvidia.com>
+ <YcNv7xm19sFTlfjW@robh.at.kernel.org>
+ <226fd57c-2631-ec7a-fc48-d6547d557681@nvidia.com>
+ <CAL_Jsq+=hGG-cMwvM0sKFW=Rwa56=fqS379jL4ZjSyDKOia-RA@mail.gmail.com>
+ <YhY1Hhgz/O724oYL@orome>
+From:   Sumit Gupta <sumitg@nvidia.com>
+In-Reply-To: <YhY1Hhgz/O724oYL@orome>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail202.nvidia.com (10.129.68.7) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 35bc7e8a-8848-483a-dcb7-08da0720f931
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5595:EE_
+X-Microsoft-Antispam-PRVS: <PH7PR12MB55950C26106E767C78BDFD2EB9119@PH7PR12MB5595.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4a32jAN7RlzXpocnQN8LMZuykuaV8FzyTgCJ3xODLQ9ZrJqLNgeUQOzZvBLcexOKorGUeC6DQD8xZUxDsM10l7lp3YEM3kcKn9GqQPliprlZ6y7icx2rr6E2C3pPLJiriihZytEUdHxlit6j7fO8NaS+AxuWdRvaI3vhBOH9cTd2EQzZzhzejfa8XvNh2I2xo7qsW0FuKEXUYUFkapHMJ7vOI4QH9pIBqErmR4UqWuP1p7RTQdwXL+ONFyFOeg1jG65FIorCVf/+1aS1YJ57baP+HS8k8XA5Kw+3R3IaBSRfTbfS3kbLIZ18TuepOSTnf9u46Yf8H1lPRBTlIKf7hvnJ5XcIr5BTwjT3T1SCSk+YjjJfZts0BEOfrHq173GuJ005IF1auugD0T2AUYvQ9WJcMYw9yuRCORWMCR9JZlqMdCe0/lxSvvjrvzbpLPAML6EDhJ6mWpSPStyURzIDL3f0VTpJyfqb8yKwarSmKZJW/ObFRyNd3BG0ksmhNVKNQAxeiT1yoKLhxzRaHecb1npUEZW7LnOr2sFpZlpiLWso3MXH4HQDSAj2wUrl5ZkaBdGpW+OWdepZHoc4p9hFXMV9Uj8Q6KX3oHkn9c4VBk54jgyOepg27SVkiENf/lcwi0376zfCYgsM9GYjDP0RVydAMo68DCdKwuxMBCzkPvy6pT8WVTTDKhxozp3H0vmvorz81b3A6CGWyB9QxD4gpECCerItzRhikSM+P9UsYvKRx+Wl35tt7j6DTs3E26YLjdmr/TY8Y78ELN4LgEzQqj1ywdrXYo9zJQ453QNvBcgf1Ks8sRJx7+purQ/km6RRhtZik9m7LlOv1WmuuvzkOtToe9bE7gIg4UBtolMUjseWNOk7AI0F/Xo5RznEA+ft
+X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(36840700001)(46966006)(40470700004)(316002)(8676002)(16576012)(36756003)(110136005)(2906002)(54906003)(70206006)(70586007)(4326008)(6666004)(5660300002)(8936002)(508600001)(31686004)(356005)(336012)(26005)(81166007)(426003)(186003)(2616005)(16526019)(107886003)(47076005)(86362001)(31696002)(36860700001)(82310400004)(40460700003)(36900700001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2022 07:45:42.6082
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 35bc7e8a-8848-483a-dcb7-08da0720f931
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT010.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5595
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Mar 15, 2022 at 02:46:35PM +0800, Andy Yan wrote:
-> Hi Sascha:
-> 
-> On 3/11/22 16:33, Sascha Hauer wrote:
-> > From: Andy Yan <andy.yan@rock-chips.com>
-> > 
-> > The VOP2 unit is found on Rockchip SoCs beginning with rk3566/rk3568.
-> > It replaces the VOP unit found in the older Rockchip SoCs.
-> > 
-> > This driver has been derived from the downstream Rockchip Kernel and
-> > heavily modified:
-> > 
-> > - All nonstandard DRM properties have been removed
-> > - dropped struct vop2_plane_state and pass around less data between
-> >    functions
-> > - Dropped all DRM_FORMAT_* not known on upstream
-> > - rework register access to get rid of excessively used macros
-> > - Drop all waiting for framesyncs
-> > 
-> > The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
-> > board. Overlay support is tested with the modetest utility. AFBC support
-> > on the cluster windows is tested with weston-simple-dmabuf-egl on
-> > weston using the (yet to be upstreamed) panfrost driver support.
-> 
-> Do we need some modification to test AFBC by weston-simple-dma-egl ?
 
-By default weston-simple-dma-egl uses DRM_FORMAT_XRGB8888 which in the
-panfrost driver ends up as PIPE_FORMAT_B8G8R8_UNORM and
-panfrost_afbc_format() returns PIPE_FORMAT_NONE for that. Change the
-format to DRM_FORMAT_ABGR8888 using weston-simple-dma-egl -f 0x34324241.
-This ends up as PIPE_FORMAT_R8G8B8A8_UNORM in panfrost_afbc_format()
-which is a supported format.
 
+>>>>> Add device-tree binding documentation to represent the axi2apb bridges
+>>>>> used by Control Backbone (CBB) 1.0 in Tegra194 SOC. All errors for APB
+>>>>> slaves are reported as slave error because APB bas single bit to report
+>>>>> error. So, CBB driver needs to further check error status registers of
+>>>>> all the axi2apb bridges to find error type.
+>>>>>
+>>>>> Signed-off-by: Sumit Gupta<sumitg@nvidia.com>
+>>>>> Signed-off-by: Thierry Reding<treding@nvidia.com>
+>>>>> ---
+>>>>>    .../arm/tegra/nvidia,tegra194-axi2apb.yaml    | 40 +++++++++++++++++++
+>>>>>    1 file changed, 40 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..788a13f8aa93
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra194-axi2apb.yaml
+>>>>> @@ -0,0 +1,40 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id:"http://devicetree.org/schemas/arm/tegra/nvidia,tegra194-axi2apb.yaml#"
+>>>>> +$schema:"http://devicetree.org/meta-schemas/core.yaml#"
+>>>>> +
+>>>>> +title: NVIDIA Tegra194 AXI2APB bridge
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Sumit Gupta<sumitg@nvidia.com>
+>>>>> +
+>>>>> +properties:
+>>>>> +  $nodename:
+>>>>> +    pattern: "^axi2apb@([0-9a-f]+)$"
+>>>>> +
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - nvidia,tegra194-axi2apb
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 6
+>>>>> +    description: Physical base address and length of registers for all bridges
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +  - reg
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    axi2apb: axi2apb@2390000 {
+>>>> As axi2apb appears to be a bus, then all the child nodes (APB devices)
+>>>> should be under this node.
+>>> axi2apb is a bridge which coverts an AXI to APB interface and not a bus.
+>> A bus and bridge node are pretty much one and the same in DT
+>> representation. A PCI host bridge has a PCI bus beneath it for
+>> example.
+> Sorry for taking so long to reply, this fell through the cracks.
 > 
-> I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
+> These aren't really bridges as such. CBB (which we call /bus@0 in DT) is
+> a sort of large container for all IP. Within that there are various shim
+> layers that connect these "legacy" interfaces to CBB. I suppose you
+> could call them bridges, but it's a bit of a stretch. From a software
+> point of view there is no observable translation happening. The only
+> reason why we need this is for improved error reporting.
 > 
-> After launch weston, I run weston-simple-dmabuf-egl, but from the output
+> The TRM also doesn't make a distinction between the various bridges. The
+> devices are all just mapped into a single address space via the CBB.
 > 
-> of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0, which
-> is
+> My understanding is that this is also gone in newer chips, so matters
+> become a bit simpler there.
 > 
-> a non-AFBC window.
+> Reorganizing /bus@0 into multiple bridges and busses would be a lot of
+> churn and likely confuse people that want to correlate what's in the TRM
+> to what's in DT, so I don't think it's worth it.
 > 
-> Do i need to modify the vop2 driver to set one Cluster window as primary
-> plane?
+> For newer chips we may want to keep this in mind so we structure the DT
+> more accurately from the beginning, though as I said, things have been
+> simplified a bit, so this may not be an issue anymore.
+> 
+> Thierry
 
-I never used a Cluster window as primary plane.
+Hi Thierry,
+Thank you for answering the concern.
 
-Sascha
+Hi Rob,
+Can you please ACK to help queue the patch series for next.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Regards,
+Sumit
