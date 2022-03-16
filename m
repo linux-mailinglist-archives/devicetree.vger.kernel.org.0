@@ -2,61 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F6484DAADF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 07:52:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4354DABC5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 08:25:10 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229757AbiCPGxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 02:53:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57784 "EHLO
+        id S1345209AbiCPH0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 03:26:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244314AbiCPGxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 02:53:47 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 290EB5AED7
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 23:52:33 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nUNVs-0006dA-FP; Wed, 16 Mar 2022 07:52:04 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nUNVo-000zbf-Sq; Wed, 16 Mar 2022 07:51:59 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1nUNVm-009UG4-Qs; Wed, 16 Mar 2022 07:51:58 +0100
-Date:   Wed, 16 Mar 2022 07:51:55 +0100
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-Cc:     mail@conchuod.ie, sboyd@kernel.org, lewis.hanly@microchip.com,
-        daire.mcnamara@microchip.com, ivan.griffin@microchip.com,
-        Atish Patra <atishp@rivosinc.com>, conor.dooley@microchip.com,
-        linus.walleij@linaro.org, brgl@bgdev.pl, robh+dt@kernel.org,
-        jassisinghbrar@gmail.com, thierry.reding@gmail.com,
-        lee.jones@linaro.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, geert@linux-m68k.org,
-        krzysztof.kozlowski@canonical.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v7 00/11] Update the Icicle Kit device tree
-Message-ID: <20220316065155.tuuq2k4d5dczwtq2@pengutronix.de>
-References: <c94f9c0a-6dbe-c1f4-daff-e4d29f3ace02@conchuod.ie>
- <mhng-bb42ad9f-5772-4749-97e1-9f6c511654f6@palmer-mbp2014>
+        with ESMTP id S244318AbiCPH0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 03:26:21 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1706B5F8E0
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:25:05 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id a1so238217wrh.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 00:25:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=8BgdaLCDN6ytbgA7o8PQn3N09wAKTlqYsotJMbZ94HQ=;
+        b=t7PLX2bnFJvh2OuH8ldQ3pGj0uGpLjvI9yGGDUiqTDd7SSumcM4cnuTcNRyMpaRwAC
+         h5HtFuQ/ZdMrdt2qM+73TPfgoqxj+IcVeFIA256djzYWu7ghKi5saQi0lFK3vl71MPD1
+         02oa4G8StCr3dhefjZqhhiTuzY/JBONjGDmZTPnsxwlf2yb1U/mztbaxUu2ndWHRXc7q
+         +WWXFgf4jFI/4r3oUahqOe+JpxT03Ep9hmPGg3S83ztNt8A2YPQqgPIjE09lYpOjIBT9
+         4GMdGjAX1+hIFKtm0KnIyuYypZghIOV5P6DTbMmIVJ5HufNysqVkMaEI/nklElepRLn4
+         Edaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=8BgdaLCDN6ytbgA7o8PQn3N09wAKTlqYsotJMbZ94HQ=;
+        b=q3WBRyCxTjvsglgNiRPoQDssAyYwil+/V6jqcRDt/Lh8bwt37PgTCJhn+ebiJpPLrc
+         V4C+Tvd+9/9sQATP4UIZx3ccnSsczv5Z/xNPleYPo9FFegKiGYO3aWb5ajGPM+PJbo0c
+         V9alBIH82zAJh83c/McjRAbqp7yep26CQGlgsTSrqCl0fSNe61LhNpCyXy3Ti1W8tlq5
+         6k98szz4uuJP8owHNIj4tQHqsiWczI/ToiIhnaH+DshXjpu1+3O9Eutlsvaw2CIRk5kq
+         6rl0GUVN84EX8QGTEMfaVJtgkbzFLOimV2QbIsZG0tkHyoR8a5t9rlii9ZDxXrRfz36z
+         yHJA==
+X-Gm-Message-State: AOAM530OnYQKvBjd4iM7RoN/GqnpQaAmoN//pIUjdziYG97JYzPDFy+V
+        iqoN60fvTKQX09MOwMqMc7iiIQ==
+X-Google-Smtp-Source: ABdhPJwUBkwggjNof9CJhQ+Bfj+6ZOtK4GoDq5/024E6T6MIY1EyUUZpVIGGx2JSQ6fwq8YH99lWww==
+X-Received: by 2002:adf:e38f:0:b0:1f0:3383:77d9 with SMTP id e15-20020adfe38f000000b001f0338377d9mr22651010wrm.599.1647415504002;
+        Wed, 16 Mar 2022 00:25:04 -0700 (PDT)
+Received: from google.com (cpc155339-bagu17-2-0-cust87.1-3.cable.virginm.net. [86.27.177.88])
+        by smtp.gmail.com with ESMTPSA id p14-20020a5d59ae000000b00203dcc87d39sm1559468wrr.54.2022.03.16.00.25.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Mar 2022 00:25:03 -0700 (PDT)
+Date:   Wed, 16 Mar 2022 07:25:01 +0000
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Benson Leung <bleung@chromium.org>,
+        linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Guenter Roeck <groeck@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Craig Hesling <hesling@chromium.org>,
+        Tom Hughes <tomhughes@chromium.org>,
+        Alexandru M Stan <amstan@chromium.org>
+Subject: Re: [PATCH 1/2] dt-bindings: mfd: Add ChromeOS fingerprint binding
+Message-ID: <YjGQzeIz7kGPOV1H@google.com>
+References: <20220314232214.4183078-1-swboyd@chromium.org>
+ <20220314232214.4183078-2-swboyd@chromium.org>
+ <e7f9466e-03c9-7754-0dc6-a04823d1047a@canonical.com>
+ <YjB0JOKysPpg2KGF@google.com>
+ <9ec3c26a-3b85-4bea-5a5b-de9ac570cfca@canonical.com>
+ <YjB46Sq3IwvgR8MB@google.com>
+ <CAE-0n51uDh2Cf_wGpAVH1t=T0A1eTT=+KU3WMtxtyPL3kLDAdA@mail.gmail.com>
+ <YjC1OLsB8/JXLEzF@google.com>
+ <CAE-0n511YyyfXoCOKpzm3ca0-sE9_wpby31XDu-eGQts=-kV2Q@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="bkpwvtdvshkxkizn"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <mhng-bb42ad9f-5772-4749-97e1-9f6c511654f6@palmer-mbp2014>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAE-0n511YyyfXoCOKpzm3ca0-sE9_wpby31XDu-eGQts=-kV2Q@mail.gmail.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,56 +86,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 15 Mar 2022, Stephen Boyd wrote:
 
---bkpwvtdvshkxkizn
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Quoting Lee Jones (2022-03-15 08:48:08)
+> > On Tue, 15 Mar 2022, Stephen Boyd wrote:
+> >
+> > > Quoting Lee Jones (2022-03-15 04:30:49)
+> > > > It's tough to say from what I was sent above.
+> > > >
+> > > > But yes, sounds like it.
+> > > >
+> > > > We do not want any device 'functionality' in MFD ideally.
+> > > >
+> > >
+> > > I put it next to the existing cros-ec binding. The existing binding is
+> > > there because of historical reasons as far as I know. Otherwise it
+> > > didn't seem MFD related so I didn't Cc mfd maintainer/list. New file
+> > > additions don't usually conflict with anything and this is in the
+> > > bindings directory so the driver side maintainer would be picking up the
+> > > binding.
+> >
+> > That's not how it works unfortunately.
+> >
+> > This file is located in the MFD bindings directory, so I would be
+> > picking it up (if it ends up staying here).
+> 
+> The way it works is arbitrary 
 
-On Wed, Mar 09, 2022 at 11:07:03PM -0800, Palmer Dabbelt wrote:
-> On Wed, 23 Feb 2022 12:48:16 PST (-0800), mail@conchuod.ie wrote:
-> > dt-bindings should be set now, so if you're still happy to take the
-> > series via riscv, that'd be great. i2c, spi & usb patches ended going
-> > via the sub-system trees (and have been dropped from the series), in
-> > case those generate warnings for you.
->=20
-> Something went off the rails in email land and #0 and #2 didn't end up in=
- my
-> patch queue but the rest did.  Luckily enough made it through that it did=
-n't
-> get lost, and lore's pretty great so this sort of thing isn't that big of=
- a
-> deal these days.  That said, email is a bit of a black box so figured I'd
-> give you a heads up.
+Correct.
 
-One of the patches in next now is
-df77f7735786ece2fcd8875b036a511ffcadfab6. It would be great if you could
-fix your patch application setup to not mangle names. Here it's
+> and up to maintainer's choice.
 
-	Acked-by: Uwe Kleine-K=3DF6nig <u.kleine-koenig@pengutronix.de>
+Which *should* be reflected in MAINTAINERS and by extension
+get_maintainer.pl.  As is the case here.  :)
 
-where my =F6 was recorded as =3DF6. :-\
+> I'll move it out of the mfd directory :)
 
-Best regards
-Uwe
+That does sound like a good solution, thanks Stephen.
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---bkpwvtdvshkxkizn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAmIxiQgACgkQwfwUeK3K
-7AnaOAf+KYzjoQhzMwQBCvuk5Nuy19InDXSbXr3hGJaP1HavbuLPFGVesC/ny0hy
-pYoeu3A8RpcK8VCbPnl3E8baLLrWlzzPEjbPzb0hrbGvu79Bkiire4nM9GmnCBKa
-uYWdxrbt8s4NRrvHmeqf3IAaXe3N2T98KWSjklHsqD10/S/QEBNphY6G9mcXi0Aj
-28imRZDsWhU2uTpe4UpbEXAq+GP3MzII3K3+gEtJmsRADPmkVcZlHVPzeABY9PWh
-TIEcWRwydEsaMDxUpl4tEv+lWTt3DpRp65cMC6ElJk7lWVIpIAQYLUYjhoQSIYsP
-XP549wvifCmIMBHY/C7IBeHUgwjl6w==
-=t8CP
------END PGP SIGNATURE-----
-
---bkpwvtdvshkxkizn--
+-- 
+Lee Jones [李琼斯]
+Principal Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
