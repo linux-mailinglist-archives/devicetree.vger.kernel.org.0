@@ -2,143 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5B74DB644
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 17:36:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 07C954DB660
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 17:43:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234162AbiCPQhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 12:37:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41068 "EHLO
+        id S1348524AbiCPQoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 12:44:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231220AbiCPQhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 12:37:12 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D2CE66FAC
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 09:35:58 -0700 (PDT)
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 604923F1A4
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 16:35:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647448556;
-        bh=FN6zG2dC0IqxltRJmG+dxaBsreyz6dzWc1lR1WuSTgg=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=EXydiQQbRtbmfMfMQaI24mFiiKVIecDk25GD8YISiz/sjs4ejGWYTOB645EeJqNb0
-         JDDl991h5VwVeaI7V9xr0x/Uw94pMtVtWuIZfA9q06ylbKypRCuRbqUw2N6/3/sAVm
-         6wMNo4kjudyw7B99mMndPmYbMeHcTb50giJ4Pz78lLNvOVigAQ48QAc9jVolRMEiUO
-         y+FsSWIbPlKa1t1xDqHoCj4WPfDxguGvsLKBbRaeh9mmp4I2STAsJQ6dybgBqGH5rg
-         dUWnwwRmadX7JuQA6JwQDMqrmLlRVRG/HBwltz4dnTF+2oGu8c53DnZ05Nd/hhWlNr
-         ke5GxqbZp5M6Q==
-Received: by mail-wm1-f70.google.com with SMTP id q189-20020a1c43c6000000b003898de01de4so905850wma.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 09:35:56 -0700 (PDT)
+        with ESMTP id S1355976AbiCPQoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 12:44:12 -0400
+Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5481DA19A;
+        Wed, 16 Mar 2022 09:42:57 -0700 (PDT)
+Received: by mail-pl1-x635.google.com with SMTP id n2so2261510plf.4;
+        Wed, 16 Mar 2022 09:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=BW2d8Dyp2cExpWVtXoA7gtuiOGkjmYFfLPkZZvWUWuE=;
+        b=KTPQ3uR8oeOAQeb5ExlWZJScxO5hlkacl9opU8+ox5Jddua98cFnBMapXDGeqN7AkN
+         /j4abslLcK+1h1QI8EqWclCxcmHVY0VE8vFQJjy3dbM8ihSDevc9bLzIJbhAVHUzCfvX
+         iD0ZW0Mt7qxvC64oowDzxsc22nMuPkrEIEf32pk/yj4DQEVw9oWcp/5niCeuejTEGEH3
+         /Vi9J1E7nYZXK7tB9OVb/oDQqBr913EvSUfMpBT8x5fNq5upmuH4T8dO6ZoSnUiHkGzy
+         FBiF6kWlU72k/jM0uVJLy89jT95HvLBO8VnM8p0WfYggGfXytUdIVrDYXLrGh8qD6mTf
+         oCQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=FN6zG2dC0IqxltRJmG+dxaBsreyz6dzWc1lR1WuSTgg=;
-        b=Nu/7GPOVJ/AConA/mqm134vJ2epPTP1ANyF8Cfjc5f9ZVHbEWQNRDGKLgaPU5Seoyj
-         PQDduABOQbYn44TB5+JxlB320wsJva/hn6lZJAytz4VSvj1vhVz8rAqj2BGKJTW6hXfS
-         0vGyK6GuFh2VTuuPZuSlMCQB7uoETndJMX9YJrwHOm1q1PeZ9UGbaeMcohfIXz0TI23C
-         /MhYm0amEJYLc19MSUpVu/eiRc6IqaXWF8U0WLjspnDl9HbUpSG7/a10x7/44tREBXBg
-         VNj1UUFzopxpRluK6hv/AGxALLfOwrRcz198Lbtr19Wkz2OoGzo2ImTfW7VYul5lACfu
-         xiiA==
-X-Gm-Message-State: AOAM532GNyAPGSeyaUdp6pm83AnZzsCwNrDRDmG2xR3iZOUkep46sqx+
-        7UsYpYSsl0sbZ4Te2YrZInzFrz6f1FjWeGXO5MVVsbLu6Netn8AqFd5FApYeJB+3oyN2aN608Dx
-        8o70id7T5LaJ9dMTtQyfL2XOR4Uu6m+vnNm6rnOg=
-X-Received: by 2002:adf:e2cb:0:b0:203:7564:1076 with SMTP id d11-20020adfe2cb000000b0020375641076mr600091wrj.199.1647448556134;
-        Wed, 16 Mar 2022 09:35:56 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxVzUE71PYe2vyYegyHpKm8lEtDhuWhcP+csFOqL5Hf16cQSLcM9FjV7jTjqEvHk2m5Hgibhw==
-X-Received: by 2002:adf:e2cb:0:b0:203:7564:1076 with SMTP id d11-20020adfe2cb000000b0020375641076mr600080wrj.199.1647448555945;
-        Wed, 16 Mar 2022 09:35:55 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id bg20-20020a05600c3c9400b0037fa5c422c8sm6156246wmb.48.2022.03.16.09.35.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Mar 2022 09:35:55 -0700 (PDT)
-Message-ID: <2f48ac79-23fa-85ea-c4e2-d03cc2a2b5ac@canonical.com>
-Date:   Wed, 16 Mar 2022 17:35:53 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=BW2d8Dyp2cExpWVtXoA7gtuiOGkjmYFfLPkZZvWUWuE=;
+        b=SLU9ZCdkz88367MptDP3V2M7kPDi1j3QdXOO+wAC2M7ZQx6cJWgyxS/gBwTMWh5n9f
+         6W3VLJqvpgMd/bCEdZDM9xiZ6DxFg8iK3TSQZjZ8OFg+wYZUqgvOjWuku0DlfHlhUtZE
+         D2DVfojaleSdpfg5oJ6i0krzL12fAAdhVRUjbYWo4UPwRRXfQ1BOxhEVRCI10h+2IcvI
+         zN9eTMywVMe8G2D83m4ixLduP7YktW2yG3nYAtzryNKm5a6oABwWQewH2Dhb+kxSovls
+         Kq73EtHacgzfB8xmcgZdv0qG8mHYsWFsSzXNrU9ca9srhJLUCkiIBcAV3fu7BZ+wGs3N
+         TW3w==
+X-Gm-Message-State: AOAM532a5DIy+YaNAmTRfEY2sRf59l6ughuMwyGU437qeBpKTW95QPzv
+        IRoiTh5hsEjR0FYjQPQ/sIy9aqdxLick7kHLx04=
+X-Google-Smtp-Source: ABdhPJxnKoIl7zAlULOj1fpixYM20e2JbUK5BjJshGSKsdnWuYUurDE8vJC0f1qon7v4/DPLgFKc5Ioa6Hmgzs6ZUs0=
+X-Received: by 2002:a17:902:f686:b0:151:d866:f657 with SMTP id
+ l6-20020a170902f68600b00151d866f657mr534723plg.112.1647448976845; Wed, 16 Mar
+ 2022 09:42:56 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v12 4/9] dt-bindings: iio: adc: document qcom-spmi-rradc
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Cc:     sumit.semwal@linaro.org, amit.pundir@linaro.org,
-        john.stultz@linaro.org, Rob Herring <robh@kernel.org>
-References: <20220316142313.92371-1-caleb.connolly@linaro.org>
- <20220316142313.92371-5-caleb.connolly@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220316142313.92371-5-caleb.connolly@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20220316151327.564214-1-nfraprado@collabora.com> <20220316151327.564214-7-nfraprado@collabora.com>
+In-Reply-To: <20220316151327.564214-7-nfraprado@collabora.com>
+From:   Maya Matuszczyk <maccraft123mc@gmail.com>
+Date:   Wed, 16 Mar 2022 17:42:20 +0100
+Message-ID: <CAO_Mup+XApZBaSQLqBBxBPY5U1kOoRNwcWBhoaS+p_gCPx3XCg@mail.gmail.com>
+Subject: Re: [PATCH v1 06/10] arm64: dts: mediatek: asurada: Add keyboard
+ mapping for the top row
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2022 15:23, Caleb Connolly wrote:
-> Add dt-binding docs for the Qualcomm SPMI RRADC found in PMICs like
-> PMI8998 and PMI8994
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+=C5=9Br., 16 mar 2022 o 16:26 N=C3=ADcolas F. R. A. Prado
+<nfraprado@collabora.com> napisa=C5=82(a):
+>
+> Chromebooks' embedded keyboards differ from standard layouts for the
+> top row in that they have shortcuts in place of the standard function
+> keys. Map these keys to achieve the functionality that is pictured on
+> the printouts.
+>
+> Signed-off-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
 > ---
->  .../bindings/iio/adc/qcom,spmi-rradc.yaml     | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
-> new file mode 100644
-> index 000000000000..11d47c46a48d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-rradc.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/qcom,spmi-rradc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>
+>  .../boot/dts/mediatek/mt8192-asurada.dtsi     | 29 +++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm6=
+4/boot/dts/mediatek/mt8192-asurada.dtsi
+> index bd2730ab6266..1d1a4b9a989a 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> @@ -525,3 +525,32 @@ &uart0 {
+>
+>  #include <arm/cros-ec-keyboard.dtsi>
+>  #include <arm/cros-ec-sbs.dtsi>
 > +
-> +title: Qualcomm's SPMI PMIC Round Robin ADC
+> +&keyboard_controller {
+> +       function-row-physmap =3D <
+> +               MATRIX_KEY(0x00, 0x02, 0)       /* T1 */
+> +               MATRIX_KEY(0x03, 0x02, 0)       /* T2 */
+> +               MATRIX_KEY(0x02, 0x02, 0)       /* T3 */
+> +               MATRIX_KEY(0x01, 0x02, 0)       /* T4 */
+> +               MATRIX_KEY(0x03, 0x04, 0)       /* T5 */
+> +               MATRIX_KEY(0x02, 0x04, 0)       /* T6 */
+> +               MATRIX_KEY(0x01, 0x04, 0)       /* T7 */
+> +               MATRIX_KEY(0x02, 0x09, 0)       /* T8 */
+> +               MATRIX_KEY(0x01, 0x09, 0)       /* T9 */
+> +               MATRIX_KEY(0x00, 0x04, 0)       /* T10 */
+> +       >;
+> +       linux,keymap =3D <
+> +               MATRIX_KEY(0x00, 0x02, KEY_BACK)
+> +               MATRIX_KEY(0x03, 0x02, KEY_REFRESH)
+> +               MATRIX_KEY(0x02, 0x02, KEY_ZOOM)
+> +               MATRIX_KEY(0x01, 0x02, KEY_SCALE)
+> +               MATRIX_KEY(0x03, 0x04, KEY_SYSRQ)
+> +               MATRIX_KEY(0x02, 0x04, KEY_BRIGHTNESSDOWN)
+> +               MATRIX_KEY(0x01, 0x04, KEY_BRIGHTNESSUP)
+> +               MATRIX_KEY(0x02, 0x09, KEY_MUTE)
+> +               MATRIX_KEY(0x01, 0x09, KEY_VOLUMEDOWN)
+> +               MATRIX_KEY(0x00, 0x04, KEY_VOLUMEUP)
 > +
-> +maintainers:
-> +  - Caleb Connolly <caleb.connolly@linaro.org>
-> +
-> +description: |
-> +  The Qualcomm SPMI Round Robin ADC (RRADC) provides interface to clients to read the
-> +  voltage, current and temperature for supported peripherals such as the battery thermistor
-> +  die temperature, charger temperature, USB and DC input voltage / current and battery ID
-> +  resistor.
-
-Please wrap at 80. It's still in the coding style and there is no
-readability increase by using 100. Same goes to other descriptions here.
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,pmi8998-rradc
-> +      - qcom,pm660-rradc
-> +
-> +  reg:
-> +    description: rradc base address and length in the SPMI PMIC register map
-
-Obvious description, remove it.
+> +               CROS_STD_MAIN_KEYMAP
+> +       >;
+> +};
+> --
+> 2.35.1
+>
+I'm honestly a bit confused about function of this.
+Does this change the reported key codes via evdev interface?
+Or is this just a hint to userspace? If yes, would libinput report
+key presses as F-keys or the custom function keys?
+Would users be able to use the usual key combination to switch
+between TTYs?
+Would programs requiring F-keys still work?
 
 Best regards,
-Krzysztof
+Maya Matuszczyk
+
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
