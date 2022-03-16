@@ -2,172 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C3894DA6B5
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 01:10:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D8024DA6F6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 01:39:19 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1352750AbiCPALi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 20:11:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49628 "EHLO
+        id S1343884AbiCPAkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 20:40:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352746AbiCPALi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 20:11:38 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AA935D5FF;
-        Tue, 15 Mar 2022 17:10:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647389425; x=1678925425;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=pMWxEWmxHHX9naqSDiuc2Bhsw44WtfdV77oMDvXnZWs=;
-  b=VowDZA6/J/VLnPuOYgSLMyIXHDMnS0sTjnkfhnQiNeOi6Z8Nmg0fJuTa
-   lpMSmZ3EsBDvX8/ATUcFfepzpMw2qvzpcuvIGjyfqyZcSQTFAdFj9C6mJ
-   9SCD7mEn1vkKBfVTOLr3Zs+LwxV0B1Q8aUPihARpGFJDYund/chQawk/N
-   Ni0/8dfEWWWeZpjXxevDYm1Tngz0askRFLwwzIgTFObvDbkL+4IuZklol
-   4W6/OmDd3KrSb5EVqVK4XSxK7IqLOMNc0cX0s2RoU7JmJWG1D90eJW7Y7
-   HbitT+8bGTdxmAu+97aIvkjZBRvjLRJ3y9/0lqxKduMupCe9INa8YYW73
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10286"; a="319668773"
-X-IronPort-AV: E=Sophos;i="5.90,185,1643702400"; 
-   d="scan'208";a="319668773"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Mar 2022 17:10:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,185,1643702400"; 
-   d="scan'208";a="512811510"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga002.jf.intel.com with ESMTP; 15 Mar 2022 17:10:21 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nUHF6-000Bfm-Qj; Wed, 16 Mar 2022 00:10:20 +0000
-Date:   Wed, 16 Mar 2022 08:09:32 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Vinod Polimera <quic_vpolimer@quicinc.com>,
-        dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        Vinod Polimera <quic_vpolimer@quicinc.com>,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        dmitry.baryshkov@linaro.org, dianders@chromium.org,
-        quic_kalyant@quicinc.com
-Subject: Re: [PATCH v5] drm/msm/disp/dpu1: add inline rotation support for
- sc7280 target
-Message-ID: <202203160707.7oltHMuz-lkp@intel.com>
-References: <1647338841-24485-1-git-send-email-quic_vpolimer@quicinc.com>
+        with ESMTP id S231308AbiCPAkG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 20:40:06 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D73B31203;
+        Tue, 15 Mar 2022 17:38:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA8661476;
+        Tue, 15 Mar 2022 17:38:52 -0700 (PDT)
+Received: from [10.57.42.204] (unknown [10.57.42.204])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5AA973F73D;
+        Tue, 15 Mar 2022 17:38:50 -0700 (PDT)
+Message-ID: <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
+Date:   Wed, 16 Mar 2022 00:38:43 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1647338841-24485-1-git-send-email-quic_vpolimer@quicinc.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+Content-Language: en-GB
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vinod,
+On 2022-02-25 21:09, Heiner Kallweit wrote:
+> This series adds support for the Titanmec TM1628 7 segment display
+> controller. It's based on previous RFC work from Andreas Färber.
+> The RFC version placed the driver in the LED subsystem, but this was
+> NAK'ed by the LED maintainer. Therefore I moved the driver to
+> /drivers/auxdisplay what seems most reasonable to me.
+> 
+> Further changes to the RFC version:
+> - Driver can be built also w/o LED class support, for displays that
+>    don't have any symbols to be exposed as LED's.
+> - Simplified the code and rewrote a lot of it.
+> - Driver is now kind of a MVP, but functionality should be sufficient
+>    for most use cases.
+> - Use the existing 7 segment support in uapi/linux/map_to_7segment.h
+>    as suggested by Geert Uytterhoeven.
+> 
+> Note: There's a number of chips from other manufacturers that are
+>        almost identical, e.g. FD628, SM1628. Only difference I saw so
+>        far is that they partially support other display modes.
+>        TM1628: 6x12, 7x11
+>        SM1628C: 4x13, 5x12, 6x11, 7x10
+>        For typical displays on devices using these chips this
+>        difference shouldn't matter.
+> 
+> Successfully tested on a TX3 Mini TV box that has an SM1628C and a
+> display with 4 digits and 7 symbols.
 
-Thank you for the patch! Perhaps something to improve:
+FWIW I gave this a go on my Beelink A1, which has an AiP1618 and a clock 
+display which would mapped like so:
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on drm-intel/for-linux-next drm-tip/drm-tip drm-exynos/exynos-drm-next next-20220315]
-[cannot apply to tegra-drm/drm/tegra/for-next v5.17-rc8]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+	titanmec,segment-mapping = /bits/ 8 <1 2 3 13 12 5 4>;
+	titanmec,grid = /bits/ 8 <5 4 2 1>;
 
-url:    https://github.com/0day-ci/linux/commits/Vinod-Polimera/drm-msm-disp-dpu1-add-inline-rotation-support-for-sc7280-target/20220315-180939
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-config: riscv-randconfig-r033-20220313 (https://download.01.org/0day-ci/archive/20220316/202203160707.7oltHMuz-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project a6b2f50fb47da3baeee10b1906da6e30ac5d26ec)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/4bb118c6c8461459d9ebce2ccbb07b6096a1a202
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Vinod-Polimera/drm-msm-disp-dpu1-add-inline-rotation-support-for-sc7280-target/20220315-180939
-        git checkout 4bb118c6c8461459d9ebce2ccbb07b6096a1a202
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/gpu/drm/msm/
+(grid 3 segment 2 is used for a colon in the middle)
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
+If I bodge around the lack of support for non-contiguous grids, it does 
+otherwise work fairly well, other than being 6-segment displays because 
+it needs to be in display mode 1 to drive SEG13 rather than GRID6. I 
+wonder if we could be a bit cleverer about picking a display mode based 
+on the grid/segment numbers used?
 
-All warnings (new ones prefixed by >>):
+I also have a couple of those TM1638 breakout boards with 8 digits, 8 
+single LEDs and 8 buttons that I might have a go with too. Have you 
+given any thought to how the DT binding might support inputs as well? 
+(The best time to be future-proof is before it's merged...)
 
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:686:39: warning: unused variable 'msm8998_vig_sblk_0' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_0 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:688:39: warning: unused variable 'msm8998_vig_sblk_1' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_1 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:690:39: warning: unused variable 'msm8998_vig_sblk_2' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_2 =
-                                         ^
->> drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c:692:39: warning: unused variable 'msm8998_vig_sblk_3' [-Wunused-const-variable]
-   static const struct dpu_sspp_sub_blks msm8998_vig_sblk_3 =
-                                         ^
-   4 warnings generated.
+Cheers,
+Robin.
 
-
-vim +/msm8998_vig_sblk_0 +686 drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
-
-5334087ee7438f Loic Poulain               2022-02-14  647  
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  648  /*************************************************************
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  649   * SSPP sub blocks config
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  650   *************************************************************/
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  651  
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  652  /* SSPP common configuration */
-4bb118c6c84614 Vinod Polimera             2022-03-15  653  #define _VIG_SBLK(num, sdma_pri, qseed_ver, rot_cfg) \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  654  	{ \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  655  	.maxdwnscale = MAX_DOWNSCALE_RATIO, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  656  	.maxupscale = MAX_UPSCALE_RATIO, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  657  	.smart_dma_priority = sdma_pri, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  658  	.src_blk = {.name = STRCAT("sspp_src_", num), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  659  		.id = DPU_SSPP_SRC, .base = 0x00, .len = 0x150,}, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  660  	.scaler_blk = {.name = STRCAT("sspp_scaler", num), \
-b75ab05a34792f Shubhashree Dhar           2019-11-27  661  		.id = qseed_ver, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  662  		.base = 0xa00, .len = 0xa0,}, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  663  	.csc_blk = {.name = STRCAT("sspp_csc", num), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  664  		.id = DPU_SSPP_CSC_10BIT, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  665  		.base = 0x1a00, .len = 0x100,}, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  666  	.format_list = plane_formats_yuv, \
-e6b63a7bb6cd9c Fritz Koenig               2018-12-11  667  	.num_formats = ARRAY_SIZE(plane_formats_yuv), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  668  	.virt_format_list = plane_formats, \
-e6b63a7bb6cd9c Fritz Koenig               2018-12-11  669  	.virt_num_formats = ARRAY_SIZE(plane_formats), \
-4bb118c6c84614 Vinod Polimera             2022-03-15  670  	.rotation_cfg = rot_cfg, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  671  	}
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  672  
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  673  #define _DMA_SBLK(num, sdma_pri) \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  674  	{ \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  675  	.maxdwnscale = SSPP_UNITY_SCALE, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  676  	.maxupscale = SSPP_UNITY_SCALE, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  677  	.smart_dma_priority = sdma_pri, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  678  	.src_blk = {.name = STRCAT("sspp_src_", num), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  679  		.id = DPU_SSPP_SRC, .base = 0x00, .len = 0x150,}, \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  680  	.format_list = plane_formats, \
-e6b63a7bb6cd9c Fritz Koenig               2018-12-11  681  	.num_formats = ARRAY_SIZE(plane_formats), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  682  	.virt_format_list = plane_formats, \
-e6b63a7bb6cd9c Fritz Koenig               2018-12-11  683  	.virt_num_formats = ARRAY_SIZE(plane_formats), \
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  684  	}
-25fdd5933e4c0f Jeykumar Sankaran          2018-06-27  685  
-94391a14fc2738 AngeloGioacchino Del Regno 2022-01-13 @686  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_0 =
-4bb118c6c84614 Vinod Polimera             2022-03-15  687  				_VIG_SBLK("0", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc2738 AngeloGioacchino Del Regno 2022-01-13 @688  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_1 =
-4bb118c6c84614 Vinod Polimera             2022-03-15  689  				_VIG_SBLK("1", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc2738 AngeloGioacchino Del Regno 2022-01-13 @690  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_2 =
-4bb118c6c84614 Vinod Polimera             2022-03-15  691  				_VIG_SBLK("2", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-94391a14fc2738 AngeloGioacchino Del Regno 2022-01-13 @692  static const struct dpu_sspp_sub_blks msm8998_vig_sblk_3 =
-4bb118c6c84614 Vinod Polimera             2022-03-15  693  				_VIG_SBLK("3", 0, DPU_SSPP_SCALER_QSEED3, NULL);
-4bb118c6c84614 Vinod Polimera             2022-03-15  694  
-
----
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+> v2:
+> - (re-)add Andreas' SoB to two patches
+> - fix YAML issues
+> - include ctype.h explicitly
+> - add info message in probe()
+> 
+> v3:
+> - remove patch 1 because it has been applied via the SPI tree already
+> - fix remaining YAML issues in patch 2
+> - follow Miguel's suggestion on usage of Co-Developed-by
+> 
+> v4:
+> - add patch for MAINTAINERS entry
+> - incorporate Miguel's review comments
+> - Replace Co-Developed-by with Co-developed-by (checkpatch)
+> v5:
+> - add vendor prefix to driver-specific dt properties
+> 
+> Andreas Färber (1):
+>    dt-bindings: vendor-prefixes: Add Titan Micro Electronics
+> 
+> Heiner Kallweit (5):
+>    dt-bindings: auxdisplay: Add Titan Micro Electronics TM1628
+>    docs: ABI: document tm1628 attribute display-text
+>    auxdisplay: add support for Titanmec TM1628 7 segment display
+>      controller
+>    arm64: dts: meson-gxl-s905w-tx3-mini: add support for the 7 segment
+>      display
+>    MAINTAINERS: Add entry for tm1628 auxdisplay driver
+> 
+>   .../testing/sysfs-devices-auxdisplay-tm1628   |   7 +
+>   .../bindings/auxdisplay/titanmec,tm1628.yaml  |  92 +++++
+>   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>   MAINTAINERS                                   |   7 +
+>   .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  |  59 +++
+>   drivers/auxdisplay/Kconfig                    |  11 +
+>   drivers/auxdisplay/Makefile                   |   1 +
+>   drivers/auxdisplay/tm1628.c                   | 376 ++++++++++++++++++
+>   8 files changed, 555 insertions(+)
+>   create mode 100644 Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
+>   create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
+>   create mode 100644 drivers/auxdisplay/tm1628.c
+> 
