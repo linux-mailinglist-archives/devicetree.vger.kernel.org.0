@@ -2,151 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 91E974DAF26
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 12:52:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 73B464DAF3F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 12:56:00 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355475AbiCPLxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 07:53:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37740 "EHLO
+        id S1355474AbiCPL5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 07:57:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48560 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245564AbiCPLxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 07:53:24 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E61AD60053;
-        Wed, 16 Mar 2022 04:52:05 -0700 (PDT)
-X-UUID: eb430d05534749dcb4e57eba631638cb-20220316
-X-UUID: eb430d05534749dcb4e57eba631638cb-20220316
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 931263068; Wed, 16 Mar 2022 19:51:59 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Wed, 16 Mar 2022 19:51:57 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 16 Mar 2022 19:51:57 +0800
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     <chunkuang.hu@kernel.org>, <matthias.bgg@gmail.com>,
-        <robh+dt@kernel.org>
-CC:     <krzysztof.kozlowski@canonical.com>, <p.zabel@pengutronix.de>,
-        <airlied@linux.ie>, <daniel@ffwll.ch>, <jassisinghbrar@gmail.com>,
-        <fparent@baylibre.com>, <yongqiang.niu@mediatek.com>,
-        <hsinyi@chromium.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Rex-BC Chen <rex-bc.chen@mediatek.com>
-Subject: [PATCH V8 5/5] drm/mediatek: add display support for MT8186
-Date:   Wed, 16 Mar 2022 19:51:55 +0800
-Message-ID: <20220316115155.17834-6-rex-bc.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220316115155.17834-1-rex-bc.chen@mediatek.com>
-References: <20220316115155.17834-1-rex-bc.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY autolearn=ham
+        with ESMTP id S1348872AbiCPL5L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 07:57:11 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 72539369F2;
+        Wed, 16 Mar 2022 04:55:57 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,186,1643641200"; 
+   d="scan'208";a="113695414"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Mar 2022 20:55:56 +0900
+Received: from localhost.localdomain (unknown [10.226.92.179])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2812E40078CD;
+        Wed, 16 Mar 2022 20:55:53 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v6 0/3] Add support for RZ/G2L VSPD
+Date:   Wed, 16 Mar 2022 11:55:48 +0000
+Message-Id: <20220316115551.29222-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+The RZ/G2L VSPD provides a single VSPD instance. It has the following
+sub modules MAU, CTU, RPF, DPR, LUT, BRS, WPF and LIF.
 
-Add mmsys driver data and compatible for MT8186 in mtk_drm_drv.c.
+The VSPD block on RZ/G2L does not have a version register, so added a
+new compatible string "renesas,rzg2l-vsp2" with a data pointer containing
+the info structure. Also the reset line is shared with the DU module.
 
-Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
----
- drivers/gpu/drm/mediatek/mtk_drm_drv.c | 33 ++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+v5->v6:
+ * Rebased to media_staging and updated commit header
+ * Removed LCDC reference clock description from bindings
+ * Changed the clock name from du.0->aclk from bindings
+ * Added Rb tag from Laurent for reset patch
+ * Added forward declaration for struct reset_control
+ * Updated vsp1_device_get() with changes suggested by Laurent
+ * Updated error message for reset_control_get form ctrl->control.
+ * Removed the extra tab from rzg2l_vsp2_device_info
+ * Changed the function vsp1_lookup->vsp1_lookup_info and
+   all info match related code moved here.
+ * Add VI6_IP_VERSION_VSP and VI6_IP_VERSION_VSP_SW macros to
+   distinguish HW & SW IP_VSP_Version.
+ * Used 0x80 for RZG2L VSPD model and SoC identification
+ * Updated Switch() for LIF0 buffer attribute handling.
+v4->v5:
+ * Fixed typo VI6_IP_VERSION_MODEL_MASK->VI6_IP_VERSION_MASK
+ * To be consistent with other SoC's, introduced VI6_IP_VERSION_SOC_G2L
+   for SoC identification for RZ/G2L SoC's.
+v3->v4:
+ * Restored error check for pm_runtime_resume_and_get and calls
+   assert() in case of failure.
+ * Added Rb tag from Geert
+ * Add switch() for LIF0 buffer attribute handling for RZ/G2L and V3M SoC's
+v2->v3:
+ * Added Rb tags from Krzysztof and Philipp
+ * If reset_control_deassert() failed, return ret directly.
+ * Fixed version comparison in vsp1_lookup()
+v1->v2:
+ * Used reference counted reset handle to perform deassert/assert
+ * Changed the compatible from vsp2-rzg2l->rzg2l-vsp2
+ * Added standalone device info for rzg2l-vsp2.
+ * Added vsp1_lookup helper function.
+ * Updated comments for LIF0 buffer attribute register
+ * Used last ID for rzg2l-vsp2.
+RFC->v1:
+ * Added reset support as separate patch
+ * Moved rstc just after the bus_master field in struct vsp1_device
+ * Used data pointer containing info structure to retrieve version information
+ * Updated commit description
+ * Changed compatible from vsp2-r9a07g044->vsp2-rzg2l
+ * Defined the clocks
+ * Clock max Items is based on SoC Compatible string
 
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 247c6ff277ef..c5f88295b434 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -158,6 +158,24 @@ static const enum mtk_ddp_comp_id mt8183_mtk_ddp_ext[] = {
- 	DDP_COMPONENT_DPI0,
- };
- 
-+static const enum mtk_ddp_comp_id mt8186_mtk_ddp_main[] = {
-+	DDP_COMPONENT_OVL0,
-+	DDP_COMPONENT_RDMA0,
-+	DDP_COMPONENT_COLOR0,
-+	DDP_COMPONENT_CCORR,
-+	DDP_COMPONENT_AAL0,
-+	DDP_COMPONENT_GAMMA,
-+	DDP_COMPONENT_POSTMASK0,
-+	DDP_COMPONENT_DITHER,
-+	DDP_COMPONENT_DSI0,
-+};
-+
-+static const enum mtk_ddp_comp_id mt8186_mtk_ddp_ext[] = {
-+	DDP_COMPONENT_OVL_2L0,
-+	DDP_COMPONENT_RDMA1,
-+	DDP_COMPONENT_DPI0,
-+};
-+
- static const enum mtk_ddp_comp_id mt8192_mtk_ddp_main[] = {
- 	DDP_COMPONENT_OVL0,
- 	DDP_COMPONENT_OVL_2L0,
-@@ -221,6 +239,13 @@ static const struct mtk_mmsys_driver_data mt8183_mmsys_driver_data = {
- 	.ext_len = ARRAY_SIZE(mt8183_mtk_ddp_ext),
- };
- 
-+static const struct mtk_mmsys_driver_data mt8186_mmsys_driver_data = {
-+	.main_path = mt8186_mtk_ddp_main,
-+	.main_len = ARRAY_SIZE(mt8186_mtk_ddp_main),
-+	.ext_path = mt8186_mtk_ddp_ext,
-+	.ext_len = ARRAY_SIZE(mt8186_mtk_ddp_ext),
-+};
-+
- static const struct mtk_mmsys_driver_data mt8192_mmsys_driver_data = {
- 	.main_path = mt8192_mtk_ddp_main,
- 	.main_len = ARRAY_SIZE(mt8192_mtk_ddp_main),
-@@ -461,6 +486,8 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8183-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
-+	{ .compatible = "mediatek,mt8186-disp-mutex",
-+	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8192-disp-mutex",
- 	  .data = (void *)MTK_DISP_MUTEX },
- 	{ .compatible = "mediatek,mt8173-disp-od",
-@@ -509,12 +536,16 @@ static const struct of_device_id mtk_ddp_comp_dt_ids[] = {
- 	  .data = (void *)MTK_DPI },
- 	{ .compatible = "mediatek,mt8183-dpi",
- 	  .data = (void *)MTK_DPI },
-+	{ .compatible = "mediatek,mt8186-dpi",
-+	  .data = (void *)MTK_DPI },
- 	{ .compatible = "mediatek,mt2701-dsi",
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8173-dsi",
- 	  .data = (void *)MTK_DSI },
- 	{ .compatible = "mediatek,mt8183-dsi",
- 	  .data = (void *)MTK_DSI },
-+	{ .compatible = "mediatek,mt8186-dsi",
-+	  .data = (void *)MTK_DSI },
- 	{ }
- };
- 
-@@ -531,6 +562,8 @@ static const struct of_device_id mtk_drm_of_ids[] = {
- 	  .data = &mt8173_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8183-mmsys",
- 	  .data = &mt8183_mmsys_driver_data},
-+	{ .compatible = "mediatek,mt8186-mmsys",
-+	  .data = &mt8186_mmsys_driver_data},
- 	{ .compatible = "mediatek,mt8192-mmsys",
- 	  .data = &mt8192_mmsys_driver_data},
- 	{ }
+RFC:
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-21-biju.das.jz@bp.renesas.com/
+ * https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-20-biju.das.jz@bp.renesas.com/
+
+Biju Das (3):
+  media: dt-bindings: media: renesas,vsp1: Document RZ/{G2L,V2L} VSPD
+    bindings
+  media: renesas: vsp1: Add support to deassert/assert reset line
+  media: renesas: vsp1: Add support for RZ/G2L VSPD
+
+ .../bindings/media/renesas,vsp1.yaml          | 52 +++++++++----
+ drivers/media/platform/renesas/vsp1/vsp1.h    |  2 +
+ .../media/platform/renesas/vsp1/vsp1_drv.c    | 75 +++++++++++++++----
+ .../media/platform/renesas/vsp1/vsp1_lif.c    | 18 +++--
+ .../media/platform/renesas/vsp1/vsp1_regs.h   |  8 ++
+ 5 files changed, 121 insertions(+), 34 deletions(-)
+
 -- 
-2.18.0
+2.17.1
 
