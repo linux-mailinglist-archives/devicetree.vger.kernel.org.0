@@ -2,64 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BD234DB80E
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 19:43:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2F54DB81C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 19:47:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235282AbiCPSof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 14:44:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54540 "EHLO
+        id S232356AbiCPStH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 14:49:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230031AbiCPSof (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 14:44:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AB561A399;
-        Wed, 16 Mar 2022 11:43:19 -0700 (PDT)
+        with ESMTP id S232577AbiCPStG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 14:49:06 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21265B22;
+        Wed, 16 Mar 2022 11:47:51 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D032F618D8;
-        Wed, 16 Mar 2022 18:43:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38E17C340EC;
-        Wed, 16 Mar 2022 18:43:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B0531618C2;
+        Wed, 16 Mar 2022 18:47:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14B89C340E9;
+        Wed, 16 Mar 2022 18:47:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647456198;
-        bh=zxan7oI6HzOes/8slMJMg07NkfXBKCEK3oWvQY50vIg=;
+        s=k20201202; t=1647456470;
+        bh=UIXihu+RklUZQJ6pZ8YxpEeMjAIIgN/pkkuvXhq1O0A=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=C9KOGm8o1BSR2ScxflZfIXFzZOrl2eL0qH8oPxxjwwivLvJ0h8vE3DRfCpCfgP2eq
-         Up6lRopzhd8iHOmU9ihT4WR3g2W0GeGxBAAHEdxVXI8CGOWCGY0ZxW6SY95msAAxKt
-         1I2NtJfaUSGcmPcEq0QRoeXZ+VJXxf21Z2AVBAZ8Jnqy69MYpC0HPCMonbmM4F8KTn
-         LFbzgPYzcCe+7mdMgXJdrF0YdAqRHmlCsdkXOAIfxY+gE68832FCajMnjpTs4ZZZEv
-         J3s3+96qSSdgB16FZBzn8wfJdosSfZVfvmjTRpovw2KDzKgN609J8895GoSFnIvyfI
-         ffPZs0MW6N4fA==
+        b=HwbCKbGG/8+Jcj5hlh68OM9RO1B+UbkayqHLPTT3rHaP/QJG/YkB45gnDqAq1ba9N
+         tTMpm4q4kRe12sZLpBpk4tpWn/xVeU1m4XekMcZGM5L2CmzVZAF/5aeR+rQBO1f8Gm
+         hrgghJ0zskb7CDASU2B90QlVCH0d6CK9K9pBKqKzX9iGkKWNBRVRdBLMpSB1EF1HEB
+         6fDObYpCN5kb23x7RJihe+qqZNM9+wVGo30lG1yzEFmY1w3AXKDOhSnZp7wJ/IZOc+
+         Wm48+PlX1ftE/IYFZas5R4HSRN0C7zKkfXRic3U60jWmGGbz41HgYuWbN4Xf6yn7HY
+         u0AmDqGtL7Snw==
 Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
         by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
         (Exim 4.94.2)
         (envelope-from <maz@kernel.org>)
-        id 1nUYc7-00EzhB-TM; Wed, 16 Mar 2022 18:43:15 +0000
-Date:   Wed, 16 Mar 2022 18:43:15 +0000
-Message-ID: <87zglpybzw.wl-maz@kernel.org>
+        id 1nUYgV-00Ezk3-Km; Wed, 16 Mar 2022 18:47:47 +0000
+Date:   Wed, 16 Mar 2022 18:47:47 +0000
+Message-ID: <87y219ybsc.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
 To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] clocksource: arch_timer: Add arm,cortex-a7/15-timer in of_match list
-In-Reply-To: <20220316174108.GB21737@9a2d8922b8f1>
+Cc:     Mark Rutland <mark.rutland@arm.com>, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] Fix dtbs warnings for arch timer
+In-Reply-To: <20220316172051.GA21737@9a2d8922b8f1>
 References: <20220316095433.20225-1-singh.kuldeep87k@gmail.com>
-        <20220316095433.20225-4-singh.kuldeep87k@gmail.com>
-        <f54b0647-12ad-5861-8b8b-5d4233bb9bd2@canonical.com>
-        <20220316174108.GB21737@9a2d8922b8f1>
+        <5521012e957efa3c4afe2de996a1b5ac@kernel.org>
+        <20220316172051.GA21737@9a2d8922b8f1>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
  (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
 MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
 Content-Type: text/plain; charset=US-ASCII
 X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: singh.kuldeep87k@gmail.com, krzysztof.kozlowski@canonical.com, marc.zyngier@arm.com, mark.rutland@arm.com, daniel.lezcano@linaro.org, tglx@linutronix.de, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+X-SA-Exim-Rcpt-To: singh.kuldeep87k@gmail.com, mark.rutland@arm.com, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
@@ -72,60 +66,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Mar 2022 17:41:08 +0000,
+On Wed, 16 Mar 2022 17:20:51 +0000,
 Kuldeep Singh <singh.kuldeep87k@gmail.com> wrote:
 > 
-> On Wed, Mar 16, 2022 at 05:30:26PM +0100, Krzysztof Kozlowski wrote:
-> > On 16/03/2022 10:54, Kuldeep Singh wrote:
-> > > Few platforms such as Renesas RZ/N1D, Calxeda, Alpine etc. are using
-> > > arm,cortex-a15-timer and arm,cortex-a7-timer entries in conjugation with
-> > > arm,armv7-timer which are not currently defined in driver file. Add
-> > > these entries in arch_timer_of_match list to bring them in use.
+> On Wed, Mar 16, 2022 at 11:27:10AM +0000, Marc Zyngier wrote:
+> > On 2022-03-16 09:54, Kuldeep Singh wrote:
+> > > This patchset is an attempt to resolve 'make dtbs_check' warning for
+> > > arch timer.
 > > > 
+> > > Patch 1 is done in preparation for following patches which defines
+> > > compatibles order in more clear way.
+> > > Patch 2 documents arm,cortex-a7-timer entry in bindings similar to an
+> > > existing entry arm,cortex-a15-timer.
+> > > Patch 3 adds above 2 properties in of_match list to bring them in
+> > > use.
+> > > 
+> > > Please note, this patchset is based on
+> > > git://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git, master
+> > > 
+> > > Kuldeep Singh (3):
+> > >   dt-bindings: timer: Rearrange compatible entries of arch timer
+> > >   dt-bindings: timer: Document arm,cortex-a7-timer for arch timer
+> > >   clocksource: arch_timer: Add arm,cortex-a7/15-timer in of_match list
+> > > 
+> > >  .../devicetree/bindings/timer/arm,arch_timer.yaml   | 13 +++++--------
+> > >  drivers/clocksource/arm_arch_timer.c                |  2 ++
+> > >  2 files changed, 7 insertions(+), 8 deletions(-)
 > > 
-> > This looks wrong (also Marc pointed this out) and rationale is not
-> > sufficient. Why do you need these compatibles in the driver?
+> > Please use my @kernel.org address exclusively. My @arm.com
+> > address stopped working over two years ago, and the MAINTAINERS
+> > file shows the right addresses.
 > 
-> Hi Krzysztof and Marc,
+> Hi Marc,
 > 
-> I find myself in trouble whenever dealing with compatible entries and
-> had 2 options when I stumble this issue.
-> 	1. Remove unused compatible
+> I have tocmd and cccmd set in my gitconfig and it generated mail
+> addresses automatically so I assume it is correct.
+> tocmd ="`pwd`/scripts/get_maintainer.pl --nogit --nogit-fallback --norolestats --nol"
+> 
+> It seems your arm mail address got configured from binding file and not
+> from MAINTAINERS.
 
-That'd be silly.
-
-> 	2. Add required compatible to binding and driver
-
-To the binding, yes. But to the driver?
-
-> My past experience and advise from other developer says not to remove an
-> existing compatible. And also I found "arm,cortex-a15-timer" in binding
-> which was again not documented and was present in DT. This prompted me
-> to go for second option and make necessary additions in binding and
-> driver following current entries.
-
-The "arm,cortex-a15-timer" compatible is documentation, and only
-that. If, one day, we find a bug in this implementation, we could work
-around it in the driver thanks to the separate compatible (although in
-this case, we'd have much better way of doing that).
-
-> As per your perspective, current configuration isn't apt which means
-> "arm,cortex-a15-timer" is a stub and is wrongly present in binding.
-
-That's not what I said. This compatible string is perfectly fine, and
-accurately describe the HW. The driver doesn't need to know about the
-fine details of the implementation, and is perfectly happy with the
-current state of things.
-
-Think of it as an instance of a class. The driver doesn't need to know
-the instance, only that it is a certain class.
-
-> I also observed many other DTs have compatibles which are not present in
-> driver. What is an ideal idealogy behind such cases?
-
-I think I've made myself clear above.
-
-Thanks,
+It is a bug in get_maintainer.pl. You'll have to manually apply the
+.mailmap transformation.
 
 	M.
 
