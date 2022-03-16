@@ -2,386 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F91F4DB0C2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:12:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2799A4DB096
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:11:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356153AbiCPNOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 09:14:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40956 "EHLO
+        id S1353611AbiCPNMk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 09:12:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356136AbiCPNNy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:13:54 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19F5E66C80;
-        Wed, 16 Mar 2022 06:12:28 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22GAFxGW001886;
-        Wed, 16 Mar 2022 14:12:17 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=selector1;
- bh=sJ1oIyVC/AnxmiVrqN8MoR+Qt7gRUBhnVNSOUHrRRO0=;
- b=ciDuNV8S7y2hCg8/J6L3tlA5hHw+7SDtffXDmux/S0mlNfM4MXstEg83G1ETQKFXfgio
- vacQQmva92+bdqxI2rpTO6+b30RLMalnQcJ5KVIoJAKKgq/7Dzboj2MyDKOwkBESom6P
- qflpfE1kKQfsF1h7nPMtT7ukR9lhSobf2aIqbCdEBlQoV4hDotUyt7QfttcceAGXjFoQ
- KXols+6hTOnOkbXHZA+7EFSsCH7YyKCLgbn/kT3dcVCW0RZ8Eig/OyIFFFWVh/Mu06yW
- GOv85QxXdf/gv81YOHX9C76E2XJD/2jur5AXPOELXROgEsOUiyE+Mx/8bhDpjGjATFCg bQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3ethxu2hpf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 16 Mar 2022 14:12:17 +0100
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1B7C410002A;
-        Wed, 16 Mar 2022 14:12:17 +0100 (CET)
-Received: from Webmail-eu.st.com (sfhdag2node2.st.com [10.75.127.5])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 12E6921FE9F;
-        Wed, 16 Mar 2022 14:12:17 +0100 (CET)
-Received: from localhost (10.75.127.48) by SFHDAG2NODE2.st.com (10.75.127.5)
- with Microsoft SMTP Server (TLS) id 15.0.1497.26; Wed, 16 Mar 2022 14:12:16
- +0100
-From:   <gabriel.fernandez@foss.st.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC:     <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH RESEND v3 13/13] ARM: dts: stm32: add RCC on STM32MP13x SoC family
-Date:   Wed, 16 Mar 2022 14:10:00 +0100
-Message-ID: <20220316131000.9874-14-gabriel.fernandez@foss.st.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20220316131000.9874-1-gabriel.fernandez@foss.st.com>
-References: <20220316131000.9874-1-gabriel.fernandez@foss.st.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG2NODE2.st.com
- (10.75.127.5)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-16_05,2022-03-15_01,2022-02-23_01
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S1356118AbiCPNMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:12:35 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EB64966AD9;
+        Wed, 16 Mar 2022 06:11:06 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.90,186,1643641200"; 
+   d="scan'208";a="113700574"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Mar 2022 22:11:06 +0900
+Received: from localhost.localdomain (unknown [10.226.92.179])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 61180429C365;
+        Wed, 16 Mar 2022 22:11:03 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/7] Add RZ/G2L Display support
+Date:   Wed, 16 Mar 2022 13:10:53 +0000
+Message-Id: <20220316131100.30685-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+RZ/G2L LCD controller composed of Frame compression Processor(FCPVD),
+Video signal processor (VSPD) and Display unit(DU). The output of LCDC is
+connected to Display parallel interface and MIPI link video interface.
 
-Enables Reset and Clocks Controller on STM32MP13
+This patch series aims to add basic display support on RZ/G2L SMARC EVK
+platform. The output from DSI is connected to ADV7535.
 
-Signed-off-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
----
- arch/arm/boot/dts/stm32mp131.dtsi  | 107 +++++++++++------------------
- arch/arm/boot/dts/stm32mp133.dtsi  |   4 +-
- arch/arm/boot/dts/stm32mp13xf.dtsi |   3 +-
- 3 files changed, 46 insertions(+), 68 deletions(-)
+The DU controller is similar to R-Car as it is connected to VSPD,
+so reusing most of R-Car code with new CRTC driver specific to
+RZ/G2L
 
-diff --git a/arch/arm/boot/dts/stm32mp131.dtsi b/arch/arm/boot/dts/stm32mp131.dtsi
-index 78eac53224d4..d7300b00ec19 100644
---- a/arch/arm/boot/dts/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/stm32mp131.dtsi
-@@ -4,6 +4,8 @@
-  * Author: Alexandre Torgue <alexandre.torgue@foss.st.com> for STMicroelectronics.
-  */
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/clock/stm32mp13-clks.h>
-+#include <dt-bindings/reset/stm32mp13-resets.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -64,54 +66,8 @@ scmi_reset: protocol@16 {
- 			};
- 		};
- 	};
--	clocks {
--		clk_axi: clk-axi {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <266500000>;
--		};
--
--		clk_hse: clk-hse {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <24000000>;
--		};
--
--		clk_hsi: clk-hsi {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <64000000>;
--		};
--
--		clk_lsi: clk-lsi {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <32000>;
--		};
--
--		clk_pclk3: clk-pclk3 {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <104438965>;
--		};
- 
--		clk_pclk4: clk-pclk4 {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <133250000>;
--		};
--
--		clk_pll4_p: clk-pll4_p {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <50000000>;
--		};
--
--		clk_pll4_r: clk-pll4_r {
--			#clock-cells = <0>;
--			compatible = "fixed-clock";
--			clock-frequency = <99000000>;
--		};
-+	clocks {
- 	};
- 
- 	intc: interrupt-controller@a0021000 {
-@@ -148,7 +104,8 @@ uart4: serial@40010000 {
- 			compatible = "st,stm32h7-uart";
- 			reg = <0x40010000 0x400>;
- 			interrupts = <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk_hsi>;
-+			clocks = <&rcc UART4_K>;
-+			resets = <&rcc UART4_R>;
- 			status = "disabled";
- 		};
- 
-@@ -163,7 +120,8 @@ dma1: dma-controller@48000000 {
- 				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk_pclk4>;
-+			clocks = <&rcc DMA1>;
-+			resets = <&rcc DMA1_R>;
- 			#dma-cells = <4>;
- 			st,mem2mem;
- 			dma-requests = <8>;
-@@ -180,7 +138,8 @@ dma2: dma-controller@48001000 {
- 				     <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk_pclk4>;
-+			clocks = <&rcc DMA2>;
-+			resets = <&rcc DMA2_R>;
- 			#dma-cells = <4>;
- 			st,mem2mem;
- 			dma-requests = <8>;
-@@ -189,13 +148,29 @@ dma2: dma-controller@48001000 {
- 		dmamux1: dma-router@48002000 {
- 			compatible = "st,stm32h7-dmamux";
- 			reg = <0x48002000 0x40>;
--			clocks = <&clk_pclk4>;
-+			clocks = <&rcc DMAMUX1>;
-+			resets = <&rcc DMAMUX1_R>;
- 			#dma-cells = <3>;
- 			dma-masters = <&dma1 &dma2>;
- 			dma-requests = <128>;
- 			dma-channels = <16>;
- 		};
- 
-+		rcc: rcc@50000000 {
-+			compatible = "st,stm32mp13-rcc", "syscon";
-+			reg = <0x50000000 0x1000>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+
-+			clock-names = "hse", "hsi", "csi", "lse", "lsi";
-+
-+			clocks = <&scmi_clk CK_SCMI_HSE>,
-+				 <&scmi_clk CK_SCMI_HSI>,
-+				 <&scmi_clk CK_SCMI_CSI>,
-+				 <&scmi_clk CK_SCMI_LSE>,
-+				 <&scmi_clk CK_SCMI_LSI>;
-+		};
-+
- 		exti: interrupt-controller@5000d000 {
- 			compatible = "st,stm32mp13-exti", "syscon";
- 			interrupt-controller;
-@@ -206,14 +181,14 @@ exti: interrupt-controller@5000d000 {
- 		syscfg: syscon@50020000 {
- 			compatible = "st,stm32mp157-syscfg", "syscon";
- 			reg = <0x50020000 0x400>;
--			clocks = <&clk_pclk3>;
-+			clocks = <&rcc SYSCFG>;
- 		};
- 
- 		mdma: dma-controller@58000000 {
- 			compatible = "st,stm32h7-mdma";
- 			reg = <0x58000000 0x1000>;
- 			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk_pclk4>;
-+			clocks = <&rcc MDMA>;
- 			#dma-cells = <5>;
- 			dma-channels = <32>;
- 			dma-requests = <48>;
-@@ -225,8 +200,9 @@ sdmmc1: mmc@58005000 {
- 			reg = <0x58005000 0x1000>, <0x58006000 0x1000>;
- 			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "cmd_irq";
--			clocks = <&clk_pll4_p>;
-+			clocks = <&rcc SDMMC1_K>;
- 			clock-names = "apb_pclk";
-+			resets = <&rcc SDMMC1_R>;
- 			cap-sd-highspeed;
- 			cap-mmc-highspeed;
- 			max-frequency = <130000000>;
-@@ -239,8 +215,9 @@ sdmmc2: mmc@58007000 {
- 			reg = <0x58007000 0x1000>, <0x58008000 0x1000>;
- 			interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "cmd_irq";
--			clocks = <&clk_pll4_p>;
-+			clocks = <&rcc SDMMC2_K>;
- 			clock-names = "apb_pclk";
-+			resets = <&rcc SDMMC2_R>;
- 			cap-sd-highspeed;
- 			cap-mmc-highspeed;
- 			max-frequency = <130000000>;
-@@ -250,7 +227,7 @@ sdmmc2: mmc@58007000 {
- 		iwdg2: watchdog@5a002000 {
- 			compatible = "st,stm32mp1-iwdg";
- 			reg = <0x5a002000 0x400>;
--			clocks = <&clk_pclk4>, <&clk_lsi>;
-+			clocks = <&rcc IWDG2>, <&scmi_clk CK_SCMI_LSI>;
- 			clock-names = "pclk", "lsi";
- 			status = "disabled";
- 		};
-@@ -289,7 +266,7 @@ gpioa: gpio@50002000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x0 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOA>;
- 				st,bank-name = "GPIOA";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 0 16>;
-@@ -301,7 +278,7 @@ gpiob: gpio@50003000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x1000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOB>;
- 				st,bank-name = "GPIOB";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 16 16>;
-@@ -313,7 +290,7 @@ gpioc: gpio@50004000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x2000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOC>;
- 				st,bank-name = "GPIOC";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 32 16>;
-@@ -325,7 +302,7 @@ gpiod: gpio@50005000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x3000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOD>;
- 				st,bank-name = "GPIOD";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 48 16>;
-@@ -337,7 +314,7 @@ gpioe: gpio@50006000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x4000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOE>;
- 				st,bank-name = "GPIOE";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 64 16>;
-@@ -349,7 +326,7 @@ gpiof: gpio@50007000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x5000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOF>;
- 				st,bank-name = "GPIOF";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 80 16>;
-@@ -361,7 +338,7 @@ gpiog: gpio@50008000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x6000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOG>;
- 				st,bank-name = "GPIOG";
- 				ngpios = <16>;
- 				gpio-ranges = <&pinctrl 0 96 16>;
-@@ -373,7 +350,7 @@ gpioh: gpio@50009000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x7000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOH>;
- 				st,bank-name = "GPIOH";
- 				ngpios = <15>;
- 				gpio-ranges = <&pinctrl 0 112 15>;
-@@ -385,7 +362,7 @@ gpioi: gpio@5000a000 {
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 				reg = <0x8000 0x400>;
--				clocks = <&clk_pclk4>;
-+				clocks = <&rcc GPIOI>;
- 				st,bank-name = "GPIOI";
- 				ngpios = <8>;
- 				gpio-ranges = <&pinctrl 0 128 8>;
-diff --git a/arch/arm/boot/dts/stm32mp133.dtsi b/arch/arm/boot/dts/stm32mp133.dtsi
-index 0fb1386257cf..531c263c9f46 100644
---- a/arch/arm/boot/dts/stm32mp133.dtsi
-+++ b/arch/arm/boot/dts/stm32mp133.dtsi
-@@ -15,7 +15,7 @@ m_can1: can@4400e000 {
- 			interrupts = <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
--			clocks = <&clk_hse>, <&clk_pll4_r>;
-+			clocks = <&scmi_clk CK_SCMI_HSE>, <&rcc FDCAN_K>;
- 			clock-names = "hclk", "cclk";
- 			bosch,mram-cfg = <0x0 0 0 32 0 0 2 2>;
- 			status = "disabled";
-@@ -28,7 +28,7 @@ m_can2: can@4400f000 {
- 			interrupts = <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "int0", "int1";
--			clocks = <&clk_hse>, <&clk_pll4_r>;
-+			clocks = <&scmi_clk CK_SCMI_HSE>, <&rcc FDCAN_K>;
- 			clock-names = "hclk", "cclk";
- 			bosch,mram-cfg = <0x1400 0 0 32 0 0 2 2>;
- 			status = "disabled";
-diff --git a/arch/arm/boot/dts/stm32mp13xf.dtsi b/arch/arm/boot/dts/stm32mp13xf.dtsi
-index fa6889e30591..4d00e7592882 100644
---- a/arch/arm/boot/dts/stm32mp13xf.dtsi
-+++ b/arch/arm/boot/dts/stm32mp13xf.dtsi
-@@ -10,7 +10,8 @@ cryp: crypto@54002000 {
- 			compatible = "st,stm32mp1-cryp";
- 			reg = <0x54002000 0x400>;
- 			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&clk_axi>;
-+			clocks = <&rcc CRYP1>;
-+			resets = <&rcc CRYP1_R>;
- 			status = "disabled";
- 		};
- 	};
+v1->v2:
+ * Based on [1], all references to 'rzg2l_lcdc' replaced with 'rzg2l_du'
+ * Updated commit description for bindings
+ * Removed LCDC references from bindings
+ * Changed clock name from du.0->aclk from bindings
+ * Changed reset name from du.0->du from bindings
+ * Replaced crtc_helper_funcs->rcar_crtc_helper_funcs
+ * Updated macro DRM_RZG2L_LCDC->DRM_RZG2L_DU
+ * Replaced rzg2l-lcdc-drm->rzg2l-du-drm
+ * Added forward declaration for struct reset_control
+
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220312084205.31462-2-biju.das.jz@bp.renesas.com/
+
+RFC->v1:
+ * Changed  minItems->maxItems for renesas,vsps.
+ * Added RZ/G2L LCDC driver with special handling for CRTC reusing
+   most of RCar DU code
+ * Fixed the comments for num_rpf from rpf's->RPFs/ and vsp->VSP.
+RFC:
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-18-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-12-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-13-biju.das.jz@bp.renesas.com/
+ https://patchwork.kernel.org/project/linux-renesas-soc/patch/20220112174612.10773-19-biju.das.jz@bp.renesas.com/
+
+Biju Das (7):
+  dt-bindings: display: renesas,du: Document r9a07g044l bindings
+  drm: rcar-du: Add num_rpf to struct rcar_du_device_info
+  drm: rcar-du: Add max_width and max_height to struct
+    rcar_du_device_info
+  drm: rcar-du: Move rcar_du_output_name() to rcar_du_common.c
+  drm: rcar-du: Factorise rcar_du_{atomic_check,modeset_init}
+  drm: rcar-du: Factorise
+    rcar_du_vsp{complete,enable,plane_atomic_check}
+  drm: rcar-du: Add RZ/G2L DU Support
+
+ .../bindings/display/renesas,du.yaml          |  54 ++
+ drivers/gpu/drm/rcar-du/Kconfig               |  18 +-
+ drivers/gpu/drm/rcar-du/Makefile              |  13 +
+ drivers/gpu/drm/rcar-du/rcar_du_common.c      |  30 +
+ drivers/gpu/drm/rcar-du/rcar_du_crtc.h        |   8 +
+ drivers/gpu/drm/rcar-du/rcar_du_drv.c         | 100 ++-
+ drivers/gpu/drm/rcar-du/rcar_du_drv.h         |  31 +
+ drivers/gpu/drm/rcar-du/rcar_du_kms.c         |  23 +-
+ drivers/gpu/drm/rcar-du/rcar_du_plane.h       |  12 +
+ drivers/gpu/drm/rcar-du/rcar_du_vsp.c         |  18 +-
+ drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c       | 705 ++++++++++++++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_drv.c        | 221 ++++++
+ drivers/gpu/drm/rcar-du/rzg2l_du_plane.c      |  82 ++
+ drivers/gpu/drm/rcar-du/rzg2l_du_regs.h       |  64 ++
+ 14 files changed, 1334 insertions(+), 45 deletions(-)
+ create mode 100644 drivers/gpu/drm/rcar-du/rcar_du_common.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_crtc.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_drv.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_plane.c
+ create mode 100644 drivers/gpu/drm/rcar-du/rzg2l_du_regs.h
+
 -- 
-2.25.1
+2.17.1
 
