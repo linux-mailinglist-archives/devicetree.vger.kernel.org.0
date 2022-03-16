@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A36DF4DB071
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:10:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB0374DB06D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:09:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356030AbiCPNLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 09:11:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35066 "EHLO
+        id S1353891AbiCPNLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 09:11:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356041AbiCPNLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:11:11 -0400
+        with ESMTP id S1356027AbiCPNLB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 09:11:01 -0400
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B22B517D0
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:09:54 -0700 (PDT)
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com [209.85.218.69])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B15E50E25
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:09:46 -0700 (PDT)
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com [209.85.218.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id EACD93F612
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 13:09:50 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 92B333F618
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 13:09:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647436190;
-        bh=hMpVGD6o3TsybJH5wrGEkbZ3q6M86lmXlzkdgti+gZM=;
-        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
-        b=dDa+7L1Ly5+7/gn9IfwNyCMz6rBhNHpKBeabgLdZHmWRNSrvX4kAny/98mH3n183L
-         Tasy7kzAhRBOEP39pEuruKSfpxoTkYYGKIElwLOYR8F921oJ2ZWJKp5yApbwhQW8LQ
-         OFYlBx41G9WKz3wDKquxOKAXfnP4iq4Cn8lpAWue1RcSoi3LBuQb4zuTKBbzKaR1EZ
-         kG+fWYghNH+K7YYwEkddvv1Et6hrn20fEdQcFHFnEv59GMpGDcKwAzYt9Vi2f7CrUN
-         NmIcjSRl8XmtE8FW0TKBlF2SSUhhYrT8ImBu/4V8Xe4P45b/R3Ggq/t93NSEIGqZRp
-         fCxwyxl4axg5Q==
-Received: by mail-ej1-f69.google.com with SMTP id q22-20020a1709064cd600b006db14922f93so1144164ejt.7
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:09:50 -0700 (PDT)
+        s=20210705; t=1647436181;
+        bh=6buNgqXKuTIK0OEEUZmjCOdqOJvc51crYNUQ2Eoq2ss=;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+         MIME-Version;
+        b=N/FxSAMf+cNXQ95/j+n/w8yp92uP3zfseD3ScclcpWU8EUKFwB+WO9nq+hMuJNoYl
+         TfRw2Gfv25UUnmJe2SQJmf3KffVc7Q9kEcHyR6DNZicImue20LG6u8hZymIidSHQTk
+         2M1AXmoDDZ7VtXFlHPetU4/DIx7C/FBT7LCCf+JpqliO+82SYCG8vTob3msKtDC9AQ
+         cA6+l4KBFeQEmg5Fys/JkfvGkTY9eWnJtUDVEqI8QXaDI635Nk+ZUN6TZKaKxQyKU3
+         CvSrfAYLLM8p/Vd4cEYmnptmK+uXzrKJfp+O0ODO9e4hjx6aUanL1dBT94ka+c1jO4
+         k8nx3SML5LvTg==
+Received: by mail-ej1-f71.google.com with SMTP id qf24-20020a1709077f1800b006ce8c140d3dso1124301ejc.18
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 06:09:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=hMpVGD6o3TsybJH5wrGEkbZ3q6M86lmXlzkdgti+gZM=;
-        b=OvBLHrj/i/ziGxtWgNiXYOvxse8CqI8K9E7ksNmFAVOcS/c/qAumTimc1aQ6WsLw6X
-         XSBNnhEKECtVfyU4uJQolivTI6NYMuNR/cjqCADAFOoAwoMOT3ddKaEVB94IBHsV+Q3c
-         XzC7IP8bJev4TjWI/boX+j+UbCOKFIkuhFb2Hf0EoDLRsYBy1QtTPmmv3xQfSN+4jHYN
-         ecVD2+4LxRlqOiVJ42AMikpgT4wasljVxiUTF8ZS6AvzNyli4LAV7RGWVAL9w0Qfk0NC
-         ecrl2niimUevX/YImgCpaz1AkiToibfzvAF+pxH9O+lZhYNHQPFG7Uh1IjCPuUa+gyr2
-         Nyww==
-X-Gm-Message-State: AOAM530qJZjcyPpt1xOqEqaEptNp626Ac4eld2a60eoLACmLiAnzcUMe
-        Fbq0XwM53pMwdlnoSAGrz+U/ZBYcCE1n0UjkwsrKc1Y5QskrorepMht2wWCm9lFvlg0FGixb3Et
-        hMghB9d2igU8stAHn4HQEC7Cc9X74PKXa4YOV+J8=
-X-Received: by 2002:a17:906:dc8c:b0:6df:831e:76d4 with SMTP id cs12-20020a170906dc8c00b006df831e76d4mr1659346ejc.139.1647436177721;
-        Wed, 16 Mar 2022 06:09:37 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzFY00Fte9yceTYtdcLIDEMUngEA7Vv2XIZrc94QHM+xHDidA3EN1sRimJG9UK5kh8CSQEOXQ==
-X-Received: by 2002:a17:906:dc8c:b0:6df:831e:76d4 with SMTP id cs12-20020a170906dc8c00b006df831e76d4mr1659302ejc.139.1647436177483;
-        Wed, 16 Mar 2022 06:09:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6buNgqXKuTIK0OEEUZmjCOdqOJvc51crYNUQ2Eoq2ss=;
+        b=Uhz4Wqi7b6C3XhbmIjxRkl8DQTIZ7Iztc3/uPiz1faQcMPRVpkCuMwD47sw+zSjMhY
+         FohxJetec4XQ05rYhme5rZ+brWAH0Jd5rjdwC0689LWlRbghBGlXGsjDjNO32U1Mo1/s
+         NeCR5hrU1BOSS20jXofMXmLDy/J9jEBHK9LPLxGeMZwjHrB43mTOyRmVfId5zC+l32W2
+         j4L3HhUsvz24BbXc85drnsnR3IdwJSWKLGcoe0g1ubcH/EnD0dTKtqfHX7nKCNnZmBn5
+         /99jz1Xr/HEtxFcveUI+0SsnYqt6dfpIsJitwCghstWvHf9B0+suTm1ZYGWVaBu0jzuy
+         J/uQ==
+X-Gm-Message-State: AOAM531n1VLLP5P3Rt5ml5kl6modPStJAElinnBmGMcbpcZeh4VG2viN
+        Lf0oyvCKzZxgEDINFfoWWmC0m3sj2whg3dyhK/2Bk6DHVU2g1qGyANQXBbnTkIBvA80jZ0/n+xR
+        Vn/6qtTUARpqudfuR9+CADGsVucU/ZI1jIgK8avA=
+X-Received: by 2002:aa7:cc0a:0:b0:413:a674:7d33 with SMTP id q10-20020aa7cc0a000000b00413a6747d33mr29723849edt.369.1647436180048;
+        Wed, 16 Mar 2022 06:09:40 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyim8NETeRi+Zvp+kpoVLjCmRXFOsByWKIpY1XFTnmnuldn3SdJfreUnBA33hXos4Aihh+D3w==
+X-Received: by 2002:aa7:cc0a:0:b0:413:a674:7d33 with SMTP id q10-20020aa7cc0a000000b00413a6747d33mr29723811edt.369.1647436179759;
+        Wed, 16 Mar 2022 06:09:39 -0700 (PDT)
 Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id mp33-20020a1709071b2100b006db6dea7f9dsm861597ejc.168.2022.03.16.06.09.35
+        by smtp.gmail.com with ESMTPSA id mp33-20020a1709071b2100b006db6dea7f9dsm861597ejc.168.2022.03.16.06.09.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Mar 2022 06:09:36 -0700 (PDT)
+        Wed, 16 Mar 2022 06:09:38 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Manivannan Sadhasivam <mani@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
@@ -81,15 +82,17 @@ To:     Manivannan Sadhasivam <mani@kernel.org>,
         linux-tegra@vger.kernel.org, linux-gpio@vger.kernel.org
 Cc:     Ioana Ciornei <ioana.ciornei@nxp.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 1/2] dt-bindings: gpio: pca95xx: drop useless consumer example
-Date:   Wed, 16 Mar 2022 14:08:57 +0100
-Message-Id: <20220316130858.93455-1-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 2/2] dt-bindings: clock: drop useless consumer example
+Date:   Wed, 16 Mar 2022 14:08:58 +0100
+Message-Id: <20220316130858.93455-2-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
+In-Reply-To: <20220316130858.93455-1-krzysztof.kozlowski@canonical.com>
+References: <20220316130858.93455-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,28 +105,297 @@ useless and duplication of code.  Remove the example code for consumer
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml | 8 --------
- 1 file changed, 8 deletions(-)
+ .../bindings/clock/bitmain,bm1880-clk.yaml           | 12 ------------
+ .../devicetree/bindings/clock/idt,versaclock5.yaml   |  7 -------
+ .../devicetree/bindings/clock/imx1-clock.yaml        |  9 ---------
+ .../devicetree/bindings/clock/imx21-clock.yaml       |  9 ---------
+ .../devicetree/bindings/clock/imx23-clock.yaml       |  9 ---------
+ .../devicetree/bindings/clock/imx25-clock.yaml       |  8 --------
+ .../devicetree/bindings/clock/imx27-clock.yaml       |  9 ---------
+ .../devicetree/bindings/clock/imx28-clock.yaml       |  9 ---------
+ .../devicetree/bindings/clock/imx31-clock.yaml       |  8 --------
+ .../devicetree/bindings/clock/imx35-clock.yaml       |  8 --------
+ .../devicetree/bindings/clock/imx7ulp-pcc-clock.yaml | 11 -----------
+ .../devicetree/bindings/clock/imx7ulp-scg-clock.yaml | 11 -----------
+ .../devicetree/bindings/clock/imx8qxp-lpcg.yaml      | 11 -----------
+ .../devicetree/bindings/clock/imxrt1050-clock.yaml   |  8 --------
+ .../bindings/clock/nvidia,tegra124-car.yaml          |  7 -------
+ .../bindings/clock/nvidia,tegra20-car.yaml           |  7 -------
+ 16 files changed, 143 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-index b6a6e742b66d..dc0fc8fc4839 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-@@ -190,14 +190,6 @@ examples:
-                               "chg-status+red", "green", "blue", "en-esata",
-                               "fault1", "p26", "p27";
-         };
--
--        ts3a227@3b {
--            compatible = "ti,ts3a227e";
--            reg = <0x3b>;
--            interrupt-parent = <&gpio99>;
--            interrupts = <14 IRQ_TYPE_EDGE_RISING>;
--            ti,micbias = <0>; /* 2.1V */
--        };
+diff --git a/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
+index 228c9313df53..f0f9392470a6 100644
+--- a/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
+@@ -61,16 +61,4 @@ examples:
+         #clock-cells = <1>;
      };
  
-   - |
+-  # Example UART controller node that consumes clock generated by the clock controller:
+-  - |
+-    uart0: serial@58018000 {
+-         compatible = "snps,dw-apb-uart";
+-         reg = <0x58018000 0x2000>;
+-         clocks = <&clk 45>, <&clk 46>;
+-         clock-names = "baudclk", "apb_pclk";
+-         interrupts = <0 9 4>;
+-         reg-shift = <2>;
+-         reg-io-width = <4>;
+-    };
+-
+ ...
+diff --git a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+index ffd6ae0eed64..be66f1e8b547 100644
+--- a/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
++++ b/Documentation/devicetree/bindings/clock/idt,versaclock5.yaml
+@@ -191,11 +191,4 @@ examples:
+         };
+     };
+ 
+-    /* Consumer referencing the 5P49V5923 pin OUT1 */
+-    consumer {
+-        /* ... */
+-        clocks = <&vc5 1>;
+-        /* ... */
+-    };
+-
+ ...
+diff --git a/Documentation/devicetree/bindings/clock/imx1-clock.yaml b/Documentation/devicetree/bindings/clock/imx1-clock.yaml
+index f4833a29b79e..56f524780b1a 100644
+--- a/Documentation/devicetree/bindings/clock/imx1-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx1-clock.yaml
+@@ -40,12 +40,3 @@ examples:
+         compatible = "fsl,imx1-ccm";
+         reg = <0x0021b000 0x1000>;
+     };
+-
+-    pwm@208000 {
+-        #pwm-cells = <2>;
+-        compatible = "fsl,imx1-pwm";
+-        reg = <0x00208000 0x1000>;
+-        interrupts = <34>;
+-        clocks = <&clks IMX1_CLK_DUMMY>, <&clks IMX1_CLK_PER1>;
+-        clock-names = "ipg", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx21-clock.yaml b/Documentation/devicetree/bindings/clock/imx21-clock.yaml
+index 518ad9a4733c..e2d50544700a 100644
+--- a/Documentation/devicetree/bindings/clock/imx21-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx21-clock.yaml
+@@ -40,12 +40,3 @@ examples:
+         reg = <0x10027000 0x800>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@1000a000 {
+-        compatible = "fsl,imx21-uart";
+-        reg = <0x1000a000 0x1000>;
+-        interrupts = <20>;
+-        clocks = <&clks IMX21_CLK_UART1_IPG_GATE>,
+-                 <&clks IMX21_CLK_PER1>;
+-        clock-names = "ipg", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx23-clock.yaml b/Documentation/devicetree/bindings/clock/imx23-clock.yaml
+index 5e296a00e14f..7e890ab9c77d 100644
+--- a/Documentation/devicetree/bindings/clock/imx23-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx23-clock.yaml
+@@ -83,12 +83,3 @@ examples:
+         reg = <0x80040000 0x2000>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@8006c000 {
+-        compatible = "fsl,imx23-auart";
+-        reg = <0x8006c000 0x2000>;
+-        interrupts = <24>;
+-        clocks = <&clks 32>;
+-        dmas = <&dma_apbx 6>, <&dma_apbx 7>;
+-        dma-names = "rx", "tx";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx25-clock.yaml b/Documentation/devicetree/bindings/clock/imx25-clock.yaml
+index 2a2b10778e72..1792e138984b 100644
+--- a/Documentation/devicetree/bindings/clock/imx25-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx25-clock.yaml
+@@ -176,11 +176,3 @@ examples:
+         interrupts = <31>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@43f90000 {
+-        compatible = "fsl,imx25-uart", "fsl,imx21-uart";
+-        reg = <0x43f90000 0x4000>;
+-        interrupts = <45>;
+-        clocks = <&clks 79>, <&clks 50>;
+-        clock-names = "ipg", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx27-clock.yaml b/Documentation/devicetree/bindings/clock/imx27-clock.yaml
+index 160268f24487..99925aa22a4c 100644
+--- a/Documentation/devicetree/bindings/clock/imx27-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx27-clock.yaml
+@@ -44,12 +44,3 @@ examples:
+         interrupts = <31>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@1000a000 {
+-        compatible = "fsl,imx27-uart", "fsl,imx21-uart";
+-        reg = <0x1000a000 0x1000>;
+-        interrupts = <20>;
+-        clocks = <&clks IMX27_CLK_UART1_IPG_GATE>,
+-                 <&clks IMX27_CLK_PER1_GATE>;
+-        clock-names = "ipg", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx28-clock.yaml b/Documentation/devicetree/bindings/clock/imx28-clock.yaml
+index f831b780f951..a542d680b1ca 100644
+--- a/Documentation/devicetree/bindings/clock/imx28-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx28-clock.yaml
+@@ -106,12 +106,3 @@ examples:
+         reg = <0x80040000 0x2000>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@8006a000 {
+-        compatible = "fsl,imx28-auart";
+-        reg = <0x8006a000 0x2000>;
+-        interrupts = <112>;
+-        dmas = <&dma_apbx 8>, <&dma_apbx 9>;
+-        dma-names = "rx", "tx";
+-        clocks = <&clks 45>;
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx31-clock.yaml b/Documentation/devicetree/bindings/clock/imx31-clock.yaml
+index d2336261c922..168c8ada5e81 100644
+--- a/Documentation/devicetree/bindings/clock/imx31-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx31-clock.yaml
+@@ -110,11 +110,3 @@ examples:
+         interrupts = <31>, <53>;
+         #clock-cells = <1>;
+     };
+-
+-    serial@43f90000 {
+-        compatible = "fsl,imx31-uart", "fsl,imx21-uart";
+-        reg = <0x43f90000 0x4000>;
+-        interrupts = <45>;
+-        clocks = <&clks 10>, <&clks 30>;
+-        clock-names = "ipg", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx35-clock.yaml b/Documentation/devicetree/bindings/clock/imx35-clock.yaml
+index 3e20ccaf8131..6415bb6a8d04 100644
+--- a/Documentation/devicetree/bindings/clock/imx35-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx35-clock.yaml
+@@ -129,11 +129,3 @@ examples:
+         interrupts = <31>;
+         #clock-cells = <1>;
+     };
+-
+-    mmc@53fb4000 {
+-        compatible = "fsl,imx35-esdhc";
+-        reg = <0x53fb4000 0x4000>;
+-        interrupts = <7>;
+-        clocks = <&clks 9>, <&clks 8>, <&clks 43>;
+-        clock-names = "ipg", "ahb", "per";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx7ulp-pcc-clock.yaml b/Documentation/devicetree/bindings/clock/imx7ulp-pcc-clock.yaml
+index 7caf5cee9199..739c3378f8c8 100644
+--- a/Documentation/devicetree/bindings/clock/imx7ulp-pcc-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx7ulp-pcc-clock.yaml
+@@ -108,14 +108,3 @@ examples:
+                        "upll", "sosc_bus_clk", "firc_bus_clk",
+                        "rosc", "spll_bus_clk";
+     };
+-
+-    mmc@40380000 {
+-        compatible = "fsl,imx7ulp-usdhc";
+-        reg = <0x40380000 0x10000>;
+-        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+-        clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
+-                 <&scg1 IMX7ULP_CLK_NIC1_DIV>,
+-                 <&pcc2 IMX7ULP_CLK_USDHC1>;
+-        clock-names ="ipg", "ahb", "per";
+-        bus-width = <4>;
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx7ulp-scg-clock.yaml b/Documentation/devicetree/bindings/clock/imx7ulp-scg-clock.yaml
+index ee8efb4ed599..d06344d7e34f 100644
+--- a/Documentation/devicetree/bindings/clock/imx7ulp-scg-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx7ulp-scg-clock.yaml
+@@ -86,14 +86,3 @@ examples:
+                       "firc", "upll";
+         #clock-cells = <1>;
+     };
+-
+-    mmc@40380000 {
+-        compatible = "fsl,imx7ulp-usdhc";
+-        reg = <0x40380000 0x10000>;
+-        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+-        clocks = <&scg1 IMX7ULP_CLK_NIC1_BUS_DIV>,
+-                 <&scg1 IMX7ULP_CLK_NIC1_DIV>,
+-                 <&pcc2 IMX7ULP_CLK_USDHC1>;
+-        clock-names ="ipg", "ahb", "per";
+-        bus-width = <4>;
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+index 0f6fe365ebf3..cb80105b3c70 100644
+--- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
++++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.yaml
+@@ -101,14 +101,3 @@ examples:
+                              "sdhc0_lpcg_ahb_clk";
+         power-domains = <&pd IMX_SC_R_SDHC_0>;
+     };
+-
+-    mmc@5b010000 {
+-        compatible = "fsl,imx8qxp-usdhc", "fsl,imx7d-usdhc";
+-        interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
+-        reg = <0x5b010000 0x10000>;
+-        clocks = <&sdhc0_lpcg IMX_LPCG_CLK_4>,
+-                 <&sdhc0_lpcg IMX_LPCG_CLK_5>,
+-                 <&sdhc0_lpcg IMX_LPCG_CLK_0>;
+-        clock-names = "ipg", "ahb", "per";
+-        power-domains = <&pd IMX_SC_R_SDHC_0>;
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml b/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+index 35fd08c143f4..03fc5c1a2939 100644
+--- a/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imxrt1050-clock.yaml
+@@ -57,11 +57,3 @@ examples:
+         clock-names = "osc";
+         #clock-cells = <1>;
+     };
+-
+-    lpuart1: serial@40184000 {
+-        compatible = "fsl,imxrt1050-lpuart";
+-        reg = <0x40184000 0x4000>;
+-        interrupts = <20>;
+-        clocks = <&clks IMXRT1050_CLK_LPUART1>;
+-        clock-names = "ipg";
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+index ec7ab1483652..1b2181f6d440 100644
+--- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
++++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-car.yaml
+@@ -106,10 +106,3 @@ examples:
+         #clock-cells = <1>;
+         #reset-cells = <1>;
+     };
+-
+-    usb-controller@c5004000 {
+-        compatible = "nvidia,tegra20-ehci";
+-        reg = <0xc5004000 0x4000>;
+-        clocks = <&car TEGRA124_CLK_USB2>;
+-        resets = <&car TEGRA124_CLK_USB2>;
+-    };
+diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+index f832abb7f11a..bee2dd4b29bf 100644
+--- a/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
++++ b/Documentation/devicetree/bindings/clock/nvidia,tegra20-car.yaml
+@@ -97,10 +97,3 @@ examples:
+             power-domains = <&domain>;
+         };
+     };
+-
+-    usb-controller@c5004000 {
+-        compatible = "nvidia,tegra20-ehci";
+-        reg = <0xc5004000 0x4000>;
+-        clocks = <&car TEGRA20_CLK_USB2>;
+-        resets = <&car TEGRA20_CLK_USB2>;
+-    };
 -- 
 2.32.0
 
