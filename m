@@ -2,144 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 952BE4DAD41
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 10:13:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 521664DAD61
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 10:25:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbiCPJOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 05:14:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60936 "EHLO
+        id S1353461AbiCPJ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 05:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344868AbiCPJOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 05:14:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FC27CCF
-        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 02:12:57 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nUPiC-0006To-24; Wed, 16 Mar 2022 10:12:56 +0100
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1nUPi9-0005kX-PB; Wed, 16 Mar 2022 10:12:53 +0100
-Date:   Wed, 16 Mar 2022 10:12:53 +0100
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Dmitry Osipenko <dmitry.osipenko@collabora.com>
-Cc:     "elaine.zhang" <zhangqing@rock-chips.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v8 09/24] drm/rockchip: dw_hdmi: Add support for niu clk
-Message-ID: <20220316091253.GQ405@pengutronix.de>
-References: <20220311083323.887372-1-s.hauer@pengutronix.de>
- <20220311083323.887372-10-s.hauer@pengutronix.de>
- <4712e128-8a14-e361-0819-911dc3453372@collabora.com>
- <20220314081834.GK405@pengutronix.de>
- <96e3682c-51ff-6af2-ca07-6ea1b952dd70@collabora.com>
+        with ESMTP id S237322AbiCPJ04 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 05:26:56 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2052.outbound.protection.outlook.com [40.107.220.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68BF62A3A;
+        Wed, 16 Mar 2022 02:25:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=nSldX50CXwISBH3l33aSOly+QEyXe+K/gKuzoKI8tGPGyCxRa6qHsxzf3vq33naeanwyjnCbtIsba3Ow8TK3pUT3wkjI5sEybB9cbI4X2trkhde5nCMFaag/+2P+fbUXxZaL64sNgH11ybpyTlEATVEQuXOsphc8o9K0lO0kji6E/47oNLFWiFW/EjcHRuoh5RNLLCgBk+xatZITF99vSQ6k2qyMA/rpZS17U308OpLbzRnq0PbW6EUaV+JY7aZ2PC8Ku7n8S5a0jcMQjHQv6PHQMDnuoSg0YNs/H5HKu1ySfizDOom92gw4IjqdKLHvOLbFks34eBjah45BiiqIFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t9819Vieiv0F7qnkfckksy302AFgdLh9p5SeJxv9vhU=;
+ b=F0p2EKcNoPTkP1sqnnkQ7t/PDEWDFpk4/t33/VuL/8U/HK6artDh2yFQnNP5w/xVrFNrpuKaNYibrXkJKuCEswFwEtgjaH1qrXptx9U5M0BGgh4AcpTuQekvLJH8JWubv2OvH2lxI6WUAQ5nun/vtMiSY+jIkJcIcR0wsU3E7cWcPUfs5wzVjHM+fB59ZB4w4fQ00h3IVfzm2GPD54HDI++V7Bd0V0+PR6NU+s4N3Kj6LaflJoKRnoJ5WxR+cffi+PYUgMif+3tZtMEjztFzLQXpCoi/x4Q7w/AyVU7QARK7rJ4ysjd6zG67XfD8W6R1jLkq0FYf6rTMpG1EaH23nQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 12.22.5.235) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=t9819Vieiv0F7qnkfckksy302AFgdLh9p5SeJxv9vhU=;
+ b=WEaGOUtBrLcw4j63HAoTIRsXaepqaY5Z+Ql4IDDI5Xcw1NzyJAEf8/ALKd14JfYsvJT36h8j4jlDtlv0QtY/6C+C46Ke99MSeGHES+WBgZUqR1+1m4o0iKPPQXgTCtH0fy/LtKTe5lJPlwdwemZb7ga6UQfQyjzg78HxoeoCtCt1bsNk9anY1NX3e+RVlVISxI1VceUOHX7f/oZJ/8CQ9eByXyDyo1ZokIhUN0O53RidJoC6cQg3btqYofJxqb+ARq4txRWkFkULrorlHIsXA5VsuQCB8jemvRfUMoiHyxadzgKxRSqN/P0O8GZgREHDcS+pjeigZclnydZJfMIrZQ==
+Received: from DM6PR17CA0024.namprd17.prod.outlook.com (2603:10b6:5:1b3::37)
+ by BL0PR12MB4898.namprd12.prod.outlook.com (2603:10b6:208:1c7::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Wed, 16 Mar
+ 2022 09:25:41 +0000
+Received: from DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:5:1b3:cafe::2d) by DM6PR17CA0024.outlook.office365.com
+ (2603:10b6:5:1b3::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.14 via Frontend
+ Transport; Wed, 16 Mar 2022 09:25:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.235)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 12.22.5.235 as permitted sender) receiver=protection.outlook.com;
+ client-ip=12.22.5.235; helo=mail.nvidia.com;
+Received: from mail.nvidia.com (12.22.5.235) by
+ DM6NAM11FT006.mail.protection.outlook.com (10.13.173.104) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.5081.14 via Frontend Transport; Wed, 16 Mar 2022 09:25:41 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 16 Mar
+ 2022 09:25:40 +0000
+Received: from rnnvmail202.nvidia.com (10.129.68.7) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 16 Mar
+ 2022 02:25:39 -0700
+Received: from amhetre.nvidia.com (10.127.8.9) by mail.nvidia.com
+ (10.129.68.7) with Microsoft SMTP Server id 15.2.986.22 via Frontend
+ Transport; Wed, 16 Mar 2022 02:25:36 -0700
+From:   Ashish Mhetre <amhetre@nvidia.com>
+To:     <krzysztof.kozlowski@canonical.com>, <robh+dt@kernel.org>,
+        <thierry.reding@gmail.com>, <digetx@gmail.com>,
+        <jonathanh@nvidia.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+CC:     <vdumpa@nvidia.com>, <Snikam@nvidia.com>, <amhetre@nvidia.com>
+Subject: [Patch v5 0/4] memory: tegra: Add MC channels and error logging
+Date:   Wed, 16 Mar 2022 14:55:21 +0530
+Message-ID: <20220316092525.4554-1-amhetre@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <96e3682c-51ff-6af2-ca07-6ea1b952dd70@collabora.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:40:05 up 95 days, 16:25, 82 users,  load average: 0.18, 0.25,
- 0.22
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3dfebe50-ab93-4850-9532-08da072ef0a1
+X-MS-TrafficTypeDiagnostic: BL0PR12MB4898:EE_
+X-Microsoft-Antispam-PRVS: <BL0PR12MB48988D1D4B3D207D5C131EB6CA119@BL0PR12MB4898.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Va9XPFJKcgGq/0x1qG+2fD4zdkhv802UGazZmgpJJeTW6VkKpRFyr08ix93HZ6/+izbxaBLxHL574+gAU3OpQMI/yYzCcy4TCDjSDl9wLaYm/QCBT0jg2CWkS18OlZTfRY8pC2nH7wuSQgCGrl4h05byZ7GCin1x+VKvjvNBrmaIpf5rNEekJSLUqPgw83XGXmCFt57N7YcQhq2zkQz6Sgg63fkbV3alwdINghBbqm0LZA6jnWK2XokqBVgYq1sov1aoQiVqugI/bIrS8vR+wQEN2LEXaZVrF8YVmgy/n0Jg35SJ/sZCrz8omqBbdEbSlreIb5KxJc90Rq1450O/euYAx2n0QEocoL/lqyBpK4lzPow7nhJ0J85w3IsduhCZeIaJbIUA8/FxP3Cy/PBbxrEbGeYRxa32ZRmU6laagWUwzTwioV0SrCxAl5FSMuFKOWjadnsOvUmBLElYDs0ZpJQvWLUjqSkQuNVf+mYCyioh7xTP3BHz3DJMxSF5T0+GvoC4zSo75nUAz5WTADWNiUgInOA17M0IRquNFQv3cGPSNFEt04pFoaHCkMhAtDWipjHTPf2cSz+OZM4S88NXnG3wfHLIyFCm5nBus3b6JbrMVDk0+J8+3gRJleCm7i8hWxehJN7cnxGQvWOW1WX7KPefepAdFufw7VMc7ze480G5Y7COSJZGfJ7h7Zipc9VFX5403h8m3Ruj36sDvDk+uQ==
+X-Forefront-Antispam-Report: CIP:12.22.5.235;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(40470700004)(46966006)(36840700001)(8936002)(36860700001)(86362001)(2906002)(40460700003)(81166007)(356005)(82310400004)(5660300002)(316002)(7696005)(1076003)(186003)(107886003)(2616005)(508600001)(54906003)(26005)(6666004)(36756003)(110136005)(83380400001)(47076005)(70206006)(4326008)(8676002)(336012)(426003)(70586007)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2022 09:25:41.2107
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3dfebe50-ab93-4850-9532-08da072ef0a1
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.235];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT006.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4898
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 14, 2022 at 08:54:27PM +0300, Dmitry Osipenko wrote:
-> On 3/14/22 11:18, Sascha Hauer wrote:
-> > On Sun, Mar 13, 2022 at 12:07:56AM +0300, Dmitry Osipenko wrote:
-> >> On 3/11/22 11:33, Sascha Hauer wrote:
-> >>> The rk3568 HDMI has an additional clock that needs to be enabled for the
-> >>> HDMI controller to work. This clock is not needed for the HDMI
-> >>> controller itself, but to make the SoC internal bus logic work. From the
-> >>> reference manual:
-> >>>
-> >>>> 2.8.6 NIU Clock gating reliance
-> >>>>
-> >>>> A part of niu clocks have a dependence on another niu clock in order to
-> >>>> sharing the internal bus. When these clocks are in use, another niu
-> >>>> clock must be opened, and cannot be gated.  These clocks and the special
-> >>>> clock on which they are relied are as following:
-> >>>>
-> >>>> Clocks which have dependency     The clock which can not be gated
-> >>>> -----------------------------------------------------------------
-> >>>> ...
-> >>>> pclk_vo_niu, hclk_vo_s_niu       hclk_vo_niu
-> >>>> ...
-> >>> The clock framework does not support turning on a clock whenever another
-> >>> clock is turned on, so this patch adds support for the dependent clock
-> >>> to the HDMI driver. We call it "NIU", which is for "Native Interface
-> >>> Unit"
-> >>
-> >> This still doesn't make sense to me. You're saying that "pclk_vo_niu,
-> >> hclk_vo_s_niu" depend on "hclk_vo_niu", but HDMI doesn't use pclk_vo, it
-> >> uses pclk_hdmi.
-> > 
-> > pclk_hdmi_host is a child clock of pclk_vo:
-> > 
-> >      aclk_vo                  2        2        0   300000000          0     0  50000         Y
-> >         aclk_hdcp             0        0        0   300000000          0     0  50000         N
-> >         pclk_vo               2        3        0    75000000          0     0  50000         Y
-> >            pclk_edp_ctrl      0        0        0    75000000          0     0  50000         N
-> >            pclk_dsitx_1       0        0        0    75000000          0     0  50000         N
-> >            pclk_dsitx_0       1        2        0    75000000          0     0  50000         Y
-> >            pclk_hdmi_host     1        2        0    75000000          0     0  50000         Y
-> >            pclk_hdcp          0        0        0    75000000          0     0  50000         N
-> >         hclk_vo               2        5        0   150000000          0     0  50000         Y
-> >            hclk_hdcp          0        0        0   150000000          0     0  50000         N
-> >            hclk_vop           0        2        0   150000000          0     0  50000         N
-> 
-> It was unclear that the pclk_hdmi is the child of pclk_vo by looking at
-> the clk driver's code, thank you!
-> 
-> Won't be better if the implicit clk dependency would be handled
-> internally by the RK clk driver?
+From tegra186 onward, memory controllers support multiple channels.
+Add memory controller channels in device tree and add support to map
+address spaces of these channels in tegra MC driver.
+When memory controller interrupt occurs, registers from these channels
+are required to be read in order to get error information.
+Add error logging support from tegra186 onward for memory controller
+interrupts.
 
-I have considered handling something like coupled clocks in the clock
-framework, but I have not yet considered handling this internally in the
-Rockchip clock driver.
+Ashish Mhetre (4):
+  memory: tegra: Add memory controller channels support
+  memory: tegra: Add MC error logging on tegra186 onward
+  dt-bindings: memory: Update reg maxitems for tegra186
+  arm64: tegra: Add memory controller channels
 
-I just had a quick look at the driver. While it sounds like an easy task
-to enable gate A whenever gate B is enabled I haven't found a good way to
-integrate that into the clk driver. It seems to me that it's not easier
-to implement in the clk driver than it is to implement it in the clk
-framework where it could be used by others as well.
+---
+Changes in v5:
+- Updated patch sequence such that driver patches are before DT patches
+- Fixed DT ABI break from v4
+- Fixed smatch bug
+- Updated description in DT binding documentation
+- Updated variable names
 
-> For example, by making the common gate
-> shared/refcounted. Have you considered this variant? Then we won't need
-> to change the DT bindings.
+Changes in v4:
+- Added memory controller channels support
+- Added newlines after every break statement of all switch cases
+- Fixed compile error with W=1 build
+- Fixed the interrupt mask bit logic
 
-For the DT bindings it is just an additional clock. Should we have a
-better way to handle that case in the future we could simply ignore the
-additional clock. I wouldn't bother too much about this.
+Changes in v3:
+- Removed unnecessary ifdefs
+- Grouped newly added MC registers with existing MC registers
+- Removed unnecessary initialization of variables
+- Updated code to use newly added field 'has_addr_hi_reg' instead of ifdefs
 
-Sascha
+Changes in v2:
+- Updated patch subject and commit message
+- Removed separate irq handlers
+- Updated tegra30_mc_handle_irq to be used for tegra186 onwards as well
+
+ .../nvidia,tegra186-mc.yaml                   |  16 ++-
+ arch/arm64/boot/dts/nvidia/tegra186.dtsi      |   7 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      |  21 +++-
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  21 +++-
+ drivers/memory/tegra/mc.c                     | 114 +++++++++++++++---
+ drivers/memory/tegra/mc.h                     |  37 +++++-
+ drivers/memory/tegra/tegra186.c               |  87 +++++++++++++
+ drivers/memory/tegra/tegra194.c               |  44 +++++++
+ drivers/memory/tegra/tegra234.c               |  59 +++++++++
+ include/soc/tegra/mc.h                        |  11 ++
+ 10 files changed, 389 insertions(+), 28 deletions(-)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
