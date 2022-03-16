@@ -2,150 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D8024DA6F6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 01:39:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F5174DA748
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 02:14:46 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343884AbiCPAkH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 20:40:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46240 "EHLO
+        id S1349544AbiCPBP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 21:15:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231308AbiCPAkG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 20:40:06 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3D73B31203;
-        Tue, 15 Mar 2022 17:38:53 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA8661476;
-        Tue, 15 Mar 2022 17:38:52 -0700 (PDT)
-Received: from [10.57.42.204] (unknown [10.57.42.204])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5AA973F73D;
-        Tue, 15 Mar 2022 17:38:50 -0700 (PDT)
-Message-ID: <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
-Date:   Wed, 16 Mar 2022 00:38:43 +0000
+        with ESMTP id S239951AbiCPBPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 21:15:55 -0400
+Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E2A12AFA
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 18:14:41 -0700 (PDT)
+Received: from [172.16.12.141] (unknown [58.22.7.114])
+        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id 20987AC02AF;
+        Wed, 16 Mar 2022 09:14:35 +0800 (CST)
+Message-ID: <baaf0a2e-72ee-1e6a-a99f-a68e8371d844@rock-chips.com>
+Date:   Wed, 16 Mar 2022 09:14:34 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-Content-Language: en-GB
-To:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
+Content-Language: en-US
+To:     Daniel Stone <daniel@fooishbar.org>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-23-s.hauer@pengutronix.de>
+ <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
+ <CAPj87rM4StzGMqPfK=j5p0-mY2=ENZnZWx9QDL_jo8SzNTXWTQ@mail.gmail.com>
+From:   Andy Yan <andy.yan@rock-chips.com>
+In-Reply-To: <CAPj87rM4StzGMqPfK=j5p0-mY2=ENZnZWx9QDL_jo8SzNTXWTQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
+        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUJOHxpWGR4eGkMZGU
+        waQh5CVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktDSUNVS1kG
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NyI6Lio5Nj5RTi41DRhNNBM3
+        OhVPCjpVSlVKTU9MSEJISUxOTEtLVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
+        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT05ISDcG
+X-HM-Tid: 0a7f904a7e25b039kuuu20987ac02af
+X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-02-25 21:09, Heiner Kallweit wrote:
-> This series adds support for the Titanmec TM1628 7 segment display
-> controller. It's based on previous RFC work from Andreas Färber.
-> The RFC version placed the driver in the LED subsystem, but this was
-> NAK'ed by the LED maintainer. Therefore I moved the driver to
-> /drivers/auxdisplay what seems most reasonable to me.
-> 
-> Further changes to the RFC version:
-> - Driver can be built also w/o LED class support, for displays that
->    don't have any symbols to be exposed as LED's.
-> - Simplified the code and rewrote a lot of it.
-> - Driver is now kind of a MVP, but functionality should be sufficient
->    for most use cases.
-> - Use the existing 7 segment support in uapi/linux/map_to_7segment.h
->    as suggested by Geert Uytterhoeven.
-> 
-> Note: There's a number of chips from other manufacturers that are
->        almost identical, e.g. FD628, SM1628. Only difference I saw so
->        far is that they partially support other display modes.
->        TM1628: 6x12, 7x11
->        SM1628C: 4x13, 5x12, 6x11, 7x10
->        For typical displays on devices using these chips this
->        difference shouldn't matter.
-> 
-> Successfully tested on a TX3 Mini TV box that has an SM1628C and a
-> display with 4 digits and 7 symbols.
+Hi Daniel:
 
-FWIW I gave this a go on my Beelink A1, which has an AiP1618 and a clock 
-display which would mapped like so:
+On 3/15/22 20:43, Daniel Stone wrote:
+> Hi Andy,
+>
+> On Tue, 15 Mar 2022 at 06:46, Andy Yan <andy.yan@rock-chips.com> wrote:
+>> On 3/11/22 16:33, Sascha Hauer wrote:
+>>> The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
+>>> board. Overlay support is tested with the modetest utility. AFBC support
+>>> on the cluster windows is tested with weston-simple-dmabuf-egl on
+>>> weston using the (yet to be upstreamed) panfrost driver support.
+>> Do we need some modification to test AFBC by weston-simple-dma-egl ?
+>>
+>> I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
+>>
+>> After launch weston, I run weston-simple-dmabuf-egl, but from the output
+>>
+>> of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0,
+>> which is
+>>
+>> a non-AFBC window.
+>>
+>> Do i need to modify the vop2 driver to set one Cluster window as primary
+>> plane?
+> Are you using the open-source Panfrost driver, or the proprietary Arm
+> DDK? The DDK was previously using some non-standard modifier tokens
+> which have since been corrected upstream.
 
-	titanmec,segment-mapping = /bits/ 8 <1 2 3 13 12 5 4>;
-	titanmec,grid = /bits/ 8 <5 4 2 1>;
 
-(grid 3 segment 2 is used for a colon in the middle)
+I use mesa 21.3.5 with open-source Panfrost driver enabled.
 
-If I bodge around the lack of support for non-contiguous grids, it does 
-otherwise work fairly well, other than being 6-segment displays because 
-it needs to be in display mode 1 to drive SEG13 rather than GRID6. I 
-wonder if we could be a bit cleverer about picking a display mode based 
-on the grid/segment numbers used?
+When I modify Sascha's vop2 driver, set a Cluster windows as primary plane,
 
-I also have a couple of those TM1638 breakout boards with 8 digits, 8 
-single LEDs and 8 buttons that I might have a go with too. Have you 
-given any thought to how the DT binding might support inputs as well? 
-(The best time to be future-proof is before it's merged...)
+Then launch weston,  vop2 report POST_BUF_EMPTY irq err.
 
-Cheers,
-Robin.
+ From the log I can see many "panfrost fde60000.gpu: js fault, js=0, 
+status=DATA_INVALID_FAULT" [0]
 
-> v2:
-> - (re-)add Andreas' SoB to two patches
-> - fix YAML issues
-> - include ctype.h explicitly
-> - add info message in probe()
-> 
-> v3:
-> - remove patch 1 because it has been applied via the SPI tree already
-> - fix remaining YAML issues in patch 2
-> - follow Miguel's suggestion on usage of Co-Developed-by
-> 
-> v4:
-> - add patch for MAINTAINERS entry
-> - incorporate Miguel's review comments
-> - Replace Co-Developed-by with Co-developed-by (checkpatch)
-> v5:
-> - add vendor prefix to driver-specific dt properties
-> 
-> Andreas Färber (1):
->    dt-bindings: vendor-prefixes: Add Titan Micro Electronics
-> 
-> Heiner Kallweit (5):
->    dt-bindings: auxdisplay: Add Titan Micro Electronics TM1628
->    docs: ABI: document tm1628 attribute display-text
->    auxdisplay: add support for Titanmec TM1628 7 segment display
->      controller
->    arm64: dts: meson-gxl-s905w-tx3-mini: add support for the 7 segment
->      display
->    MAINTAINERS: Add entry for tm1628 auxdisplay driver
-> 
->   .../testing/sysfs-devices-auxdisplay-tm1628   |   7 +
->   .../bindings/auxdisplay/titanmec,tm1628.yaml  |  92 +++++
->   .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->   MAINTAINERS                                   |   7 +
->   .../dts/amlogic/meson-gxl-s905w-tx3-mini.dts  |  59 +++
->   drivers/auxdisplay/Kconfig                    |  11 +
->   drivers/auxdisplay/Makefile                   |   1 +
->   drivers/auxdisplay/tm1628.c                   | 376 ++++++++++++++++++
->   8 files changed, 555 insertions(+)
->   create mode 100644 Documentation/ABI/testing/sysfs-devices-auxdisplay-tm1628
->   create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm1628.yaml
->   create mode 100644 drivers/auxdisplay/tm1628.c
-> 
+I check the register configuration of Cluster window, there is no 
+obvious error.
+
+I event run a ovltest[1] written by myself feed a AFBC RGB data to 
+Cluster0.  it can display ok.
+
+It seems that the basic afbc configuration of vop2 is right, but 
+something is wrong with Panfrost?
+
+[0]https://pastebin.com/ydZkSz1f
+
+[1]https://gitee.com/andyshrk/drm/tree/master/tests/ovltest
+
+>
+> You can see from running `weston-debug drm-backend` (if you start
+> Weston with `--debug`) the output as it tries to put client surfaces
+> on to overlay planes, and why it can or cannot.
+>
+> For Weston's own composited output (used when it cannot place client
+> surfaces on to planes), it will just use whatever the KMS driver
+> declares as the primary plane. Weston does not have any logic to say
+> 'oh, this plane is AFBC and AFBC is better, so I will use this as my
+> primary plane': we just follow what the kernel tells us.
+>
+> Cheers,
+> Daniel
