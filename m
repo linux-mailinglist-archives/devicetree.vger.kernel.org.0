@@ -2,268 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B5A74DB212
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 14:59:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AFF74DB217
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 15:01:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1356394AbiCPOA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 10:00:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50734 "EHLO
+        id S233184AbiCPOC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 10:02:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1356395AbiCPOAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 10:00:19 -0400
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2073.outbound.protection.outlook.com [40.107.93.73])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8800443F1;
-        Wed, 16 Mar 2022 06:59:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=iKh5jG+khcYfwkZqDM0NWMe6TlG16KK2Vv3RciOIZ+LyZfMZ4QZl9HEsh8E4N8UMKJM7FDbNvQ0XjxPerso/oBNObZ0SIWFCJaWpvsiQScZhQrUQlwUYyu64O+uS2yf1ExhbfR+2pRyety+6BgXsbqa6wajr6Htv2JSML1DPtYJZSKY+H8atOnQGSnrOFXIgU22H63AdV5GS8z0ohOETK2Dg/uyFdEZn2OnyUMm33HBkMIEC7B3jx34CVSLqZeslU5QXRL0xtUerBrPYYRoEeQ4aTsoffC3rP4qgEq7tWpqF/hFAU1afK7PWy22vqiEDJqL5OSKfLcQ/Xv/voju17w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tjGna8v4bnh52VWGQIdvcj8kzLJ8QGi0ODbLx6zVlTY=;
- b=JGnjrL5dvvzeLKvoS4qJ+oJ8NCvice+vKS0Wm8qFS0bzGp7a9CjOet8slWiFFmGfbN2MYaw1PjJCO9Zq1KitpVMB1nM8huE/i2/Z+xXjCZm3dvfT8YRZw94N4MMzAyDsX8PskkBWA6l9bNFFd6+N5yVTE6nG6vett1fbbYZZMzJH22CZvfxJ9MwiB367rR3Y+8i29YI9e6Y7WeNmkxnmSp9gfTB3t+h58luxFZ3bWufCJNLZN3Jm6Dp84vNBlIVNF6mjpY6WOEV7021UOZfRe/3RC/BbdRorWhi95b+gYfsNWzhFSplDR0pWVm7o/5oQfua2brO3NWcQcXN968+hYg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 12.22.5.234) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tjGna8v4bnh52VWGQIdvcj8kzLJ8QGi0ODbLx6zVlTY=;
- b=cFPoZjFIC24WVPDefknk+0yVMuPfj1yYuCNqW20q+7gJERh+Df2pCjR++D6RLvbBeRazMTfp/gzzPZ1NhP2v4KjLQv4aiJnTx29DLAe1n6qwxTyBzK3Gnq2Iq+DzteUMnejk1SaWsC4894adR2QxAObyjgCIZ1FNozL9iE9sICXLqhVK4rQenQg1FstlwuPMNvdvHUcszc7Y6/BXSUfmrej4dfWRcUJgBEi/DKCvMkg1U43AHrmfBw7toi0UgEn6s22J757qm5lnn942lMlm/kdWVxlWf1DSeyhAYNvipnB9ARMvl75M17mkcq/bKV5sf+qeo2S6+s34yfAlXlNtNg==
-Received: from DM5PR13CA0055.namprd13.prod.outlook.com (2603:10b6:3:117::17)
- by DM4PR12MB5119.namprd12.prod.outlook.com (2603:10b6:5:392::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Wed, 16 Mar
- 2022 13:59:01 +0000
-Received: from DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
- (2603:10b6:3:117:cafe::bb) by DM5PR13CA0055.outlook.office365.com
- (2603:10b6:3:117::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.7 via Frontend
- Transport; Wed, 16 Mar 2022 13:59:01 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 12.22.5.234)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 12.22.5.234 as permitted sender) receiver=protection.outlook.com;
- client-ip=12.22.5.234; helo=mail.nvidia.com;
-Received: from mail.nvidia.com (12.22.5.234) by
- DM6NAM11FT011.mail.protection.outlook.com (10.13.172.108) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.5081.14 via Frontend Transport; Wed, 16 Mar 2022 13:59:00 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by DRHQMAIL101.nvidia.com
- (10.27.9.10) with Microsoft SMTP Server (TLS) id 15.0.1497.32; Wed, 16 Mar
- 2022 13:59:00 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.22; Wed, 16 Mar
- 2022 06:58:58 -0700
-Received: from sumitg-l4t.nvidia.com (10.127.8.10) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.986.22 via Frontend
- Transport; Wed, 16 Mar 2022 06:58:54 -0700
-From:   Sumit Gupta <sumitg@nvidia.com>
-To:     <rafael@kernel.org>, <viresh.kumar@linaro.org>,
-        <robh+dt@kernel.org>, <krzk+dt@kernel.org>, <treding@nvidia.com>,
-        <jonathanh@nvidia.com>, <linux-pm@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <ksitaraman@nvidia.com>, <sanjayc@nvidia.com>, <bbasu@nvidia.com>,
-        <sumitg@nvidia.com>
-Subject: [Patch v1 3/3] cpufreq: tegra194: Add support for Tegra234
-Date:   Wed, 16 Mar 2022 19:28:31 +0530
-Message-ID: <20220316135831.900-4-sumitg@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20220316135831.900-1-sumitg@nvidia.com>
-References: <20220316135831.900-1-sumitg@nvidia.com>
-X-NVConfidentiality: public
+        with ESMTP id S240745AbiCPOC1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 10:02:27 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7212866CB3
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 07:01:13 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dmitry.osipenko)
+        with ESMTPSA id 738BD1F416FE
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1647439272;
+        bh=b7DxzgX/+W8/AlqSmL1OfcChj9C1UYGvNw0Y8aIj/FQ=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=fCKGKbRAVYs0MG7CZtAtS8/QMk9OkfCYqW7Nep5s5JeK12xXfIQULQCA2LQtqma2f
+         /ZfcFA4ErV0IFpPOQ61LbI3O/raH6ulrtcdBPyGJ/dbR75AZ/Jv7Of+wlzZWHSXgM4
+         42z0n5pwHx7b1G6lzsxwgQdWybtLKCYORlubbwlX62FcnHCL5S43wZ/pAadngdAshk
+         z08gQ61mePQTRMmjVg37ItinBe6fiYSWUOJAm78aV5YboswShSYv/AaRYuYN613L2a
+         2zssDvgUHeZE54XLUtq1oHZdIrtJjBC8uaUKLx7Ve6lOmh1K5jsnOxaEN7L7E4XSYH
+         r/Dcb7c/CsA9g==
+Message-ID: <d14345fe-c1be-73c0-825c-61d0b6471cc2@collabora.com>
+Date:   Wed, 16 Mar 2022 17:01:08 +0300
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 2c32d092-4ddc-432a-5f5f-08da07551f92
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5119:EE_
-X-Microsoft-Antispam-PRVS: <DM4PR12MB5119244F844BAF3276052DF4B9119@DM4PR12MB5119.namprd12.prod.outlook.com>
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 3YvcD0gnT0WDBRAr94Os74WsaNdpud3yyQABynJIrQwbyDFW+TQ5umS+nXwUAEFW15pZ8lt5lCqxlK9b5hughOSlfwlnJLuqT7yQ5Ii+2nEd9lLPYc1iXS4EOmv9a1/yBZDLKPTnaRbfPr3wiDMWJtpXgjCLHJYfdexNw3COhm1sMr9miicO315IVSd0ktXzMUl3QZSbXiGE/r0LdBmFDSC1nVfSnL00+q25USVolDWhr2NecbH5wnvti0zfry9rFPHlU168NUi8uPXWO878O3pvTvmkhoL53RcHHWJ3h+sjhoq3L2aeMpRL+8JKQfpfp5hrrTyKjEXmActiNyh+sWW7QlNT1cGzXow8e29+TgiAzDZ+0JFCsLPdFlX6Qq0YW/m5r1tZSHod+qZ+ttKNqw4iubNW1qk3FNmnmwhamBY7BYTITF+pVUcEEOZA+Vqj0ZoPgyB2DTlrPG5IEKAfljtAcxbIsj6AOZ1FbEVaRkWwNHC7A+y+phdHfTMNDThUNtFl+orOW4IUMeQHiWdvtSK9rNhaQiQih4u7XZ3faigkg9ghiujxkXkpqwkCAviqE5+WNgeSZ4Ex888MB6Ip3qO9unvak/wmFEHV3PnY+38lVMHOMPJ6QiESXZBq/74/vAlMyTAVHH+6MqKj5ClCe5G9t4MBl3/c3xnhh58iyYYLc7VPiBbqlruxHvemE1FO6YqEAQPjUotsCgEzisXYDF4u93PmZsx3Tzd9kpJuZPE=
-X-Forefront-Antispam-Report: CIP:12.22.5.234;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:mail.nvidia.com;PTR:InfoNoRecords;CAT:NONE;SFS:(13230001)(4636009)(40470700004)(36840700001)(46966006)(2616005)(86362001)(110136005)(426003)(336012)(82310400004)(5660300002)(40460700003)(8936002)(107886003)(1076003)(54906003)(186003)(81166007)(921005)(356005)(4326008)(508600001)(26005)(70206006)(8676002)(70586007)(6666004)(316002)(7696005)(2906002)(83380400001)(36756003)(36860700001)(47076005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2022 13:59:00.8553
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2c32d092-4ddc-432a-5f5f-08da07551f92
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[12.22.5.234];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT011.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5119
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.2
+Subject: Re: [PATCH v8 09/24] drm/rockchip: dw_hdmi: Add support for niu clk
+Content-Language: en-US
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Cc:     "elaine.zhang" <zhangqing@rock-chips.com>,
+        devicetree@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Sandy Huang <hjc@rock-chips.com>,
+        linux-rockchip@lists.infradead.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Andy Yan <andy.yan@rock-chips.com>,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-10-s.hauer@pengutronix.de>
+ <4712e128-8a14-e361-0819-911dc3453372@collabora.com>
+ <20220314081834.GK405@pengutronix.de>
+ <96e3682c-51ff-6af2-ca07-6ea1b952dd70@collabora.com>
+ <20220316091253.GQ405@pengutronix.de>
+ <4c04da9c-f9c9-7375-df1a-4661807549dd@collabora.com>
+ <e65975a4-7d5f-1fb3-a031-2bb61de7f6a5@arm.com>
+From:   Dmitry Osipenko <dmitry.osipenko@collabora.com>
+In-Reply-To: <e65975a4-7d5f-1fb3-a031-2bb61de7f6a5@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds driver support for Tegra234 cpufreq.
-Tegra234 has per core MMIO registers instead of system registers for
-cpu frequency requests and to read the counters for re-constructing
-the cpu frequency. Also, MPIDR affinity info in Tegra234 is different
-from Tegra194.
-Added ops hooks  and soc data for Tegra234. This will help to easily
-add variants of Tegra234 and future SoC's which use similar logic to
-{get|set} the cpu frequency.
+On 3/16/22 16:55, Robin Murphy wrote:
+>> To me that NIU quirk should be internal to the clk h/w module, so it
+>> doesn't feel nice to mix the clk h/w description with the HDMI h/w
+>> description.
+>>
+>> On the other hand, making clk driver to handle this case indeed will
+>> take some effort as I see now. For example, clk driver of NVIDIA Tegra
+>> has concept of shared gates, but bringing it to the RK clk driver will
+>> be quite messy.
+> 
+> From a quick look, it seems like it could be straightforward
+> conceptually at least. Presumably: subclass clk_gate_ops to
+> enable/disable a required clock before enabling/disabling normally, have
+> rockchip_clk_register_branch() resolve an optional required clock and
+> pick gate_ops as appropriate, then the rest is basically just
+> boilerplate for describing the dependencies in the first place. However
+> I'd agree that in practical implementation terms it does look even
+> simpler and cleaner for the clk_hw abstraction to provide the
+> appropriate ops and resolution itself.
+> 
+>> Alright, let's work around the clk limitation like you're suggesting. I
+>> agree that it shouldn't really be a problem to deprecate the extra clock
+>> later on.
+> 
+> If there's a realistic chance that someone will actually work on a
+> proper coupled/dependent/whatever clock abstraction before the rest of
+> RK3588 is supported well enough for mainline users to start really
+> caring about power efficiency, then arguably the simplest and cleanest
+> workaround would be the other option that Elaine mentioned, of just
+> marking hclk_vo as critical for now. If it's likely to turn into a
+> "nothing's as permanent as a temporary fix" situation, though, then the
+> DT binding has less functional impact, even if it does leave us
+> developers with baggage down the line.
 
-Signed-off-by: Sumit Gupta <sumitg@nvidia.com>
----
- drivers/cpufreq/tegra194-cpufreq.c | 104 +++++++++++++++++++++++++++++
- 1 file changed, 104 insertions(+)
-
-diff --git a/drivers/cpufreq/tegra194-cpufreq.c b/drivers/cpufreq/tegra194-cpufreq.c
-index 2d59b2bd0e1d..6b944d00c35a 100644
---- a/drivers/cpufreq/tegra194-cpufreq.c
-+++ b/drivers/cpufreq/tegra194-cpufreq.c
-@@ -24,6 +24,17 @@
- #define CPUFREQ_TBL_STEP_HZ     (50 * KHZ * KHZ)
- #define MAX_CNT                 ~0U
- 
-+#define NDIV_MASK              0x1FF
-+
-+#define CORE_OFFSET(cpu)			(cpu * 8)
-+#define CMU_CLKS_BASE				0x2000
-+#define SCRATCH_FREQ_CORE_REG(data, cpu)	(data->regs + CMU_CLKS_BASE + CORE_OFFSET(cpu))
-+
-+#define MMCRAB_CLUSTER_BASE(cl)			(0x30000 + (cl * 0x10000))
-+#define CLUSTER_ACTMON_BASE(data, cl) \
-+			(data->regs + (MMCRAB_CLUSTER_BASE(cl) + data->soc->actmon_cntr_base))
-+#define CORE_ACTMON_CNTR_REG(data, cl, cpu)	(CLUSTER_ACTMON_BASE(data, cl) + CORE_OFFSET(cpu))
-+
- /* cpufreq transisition latency */
- #define TEGRA_CPUFREQ_TRANSITION_LATENCY (300 * 1000) /* unit in nanoseconds */
- 
-@@ -56,6 +67,7 @@ struct tegra_cpufreq_ops {
- struct tegra_cpufreq_soc {
- 	struct tegra_cpufreq_ops *ops;
- 	int maxcpus_per_cluster;
-+	phys_addr_t actmon_cntr_base;
- };
- 
- struct tegra194_cpufreq_data {
-@@ -72,6 +84,90 @@ static void tegra_get_cpu_mpidr(void *mpidr)
- 	*((u64 *)mpidr) = read_cpuid_mpidr() & MPIDR_HWID_BITMASK;
- }
- 
-+static void tegra234_get_cpu_cluster_id(u32 cpu, u32 *cpuid, u32 *clusterid)
-+{
-+	u64 mpidr;
-+
-+	smp_call_function_single(cpu, tegra_get_cpu_mpidr, &mpidr, true);
-+
-+	if (cpuid)
-+		*cpuid = MPIDR_AFFINITY_LEVEL(mpidr, 1);
-+	if (clusterid)
-+		*clusterid = MPIDR_AFFINITY_LEVEL(mpidr, 2);
-+}
-+
-+static int tegra234_get_cpu_ndiv(u32 cpu, u32 cpuid, u32 clusterid, u64 *ndiv)
-+{
-+	struct tegra194_cpufreq_data *data = cpufreq_get_driver_data();
-+	void __iomem *freq_core_reg;
-+	u64 mpidr_id;
-+
-+	/* use physical id to get address of per core frequency register */
-+	mpidr_id = (clusterid * data->soc->maxcpus_per_cluster) + cpuid;
-+	freq_core_reg = SCRATCH_FREQ_CORE_REG(data, mpidr_id);
-+
-+	*ndiv = readl(freq_core_reg) & NDIV_MASK;
-+
-+	return 0;
-+}
-+
-+static void tegra234_set_cpu_ndiv(struct cpufreq_policy *policy, u64 ndiv)
-+{
-+	struct tegra194_cpufreq_data *data = cpufreq_get_driver_data();
-+	void __iomem *freq_core_reg;
-+	u32 cpu, cpuid, clusterid;
-+	u64 mpidr_id;
-+
-+	for_each_cpu_and(cpu, policy->cpus, cpu_online_mask) {
-+		data->soc->ops->get_cpu_cluster_id(cpu, &cpuid, &clusterid);
-+
-+		/* use physical id to get address of per core frequency register */
-+		mpidr_id = (clusterid * data->soc->maxcpus_per_cluster) + cpuid;
-+		freq_core_reg = SCRATCH_FREQ_CORE_REG(data, mpidr_id);
-+
-+		writel(ndiv, freq_core_reg);
-+	}
-+}
-+
-+/*
-+ * This register provides access to two counter values with a single
-+ * 64-bit read. The counter values are used to determine the average
-+ * actual frequency a core has run at over a period of time.
-+ *     [63:32] PLLP counter: Counts at fixed frequency (408 MHz)
-+ *     [31:0] Core clock counter: Counts on every core clock cycle
-+ */
-+static void tegra234_read_counters(struct tegra_cpu_ctr *c)
-+{
-+	struct tegra194_cpufreq_data *data = cpufreq_get_driver_data();
-+	void __iomem *actmon_reg;
-+	u32 cpuid, clusterid;
-+	u64 val;
-+
-+	data->soc->ops->get_cpu_cluster_id(c->cpu, &cpuid, &clusterid);
-+	actmon_reg = CORE_ACTMON_CNTR_REG(data, clusterid, cpuid);
-+
-+	val = readq(actmon_reg);
-+	c->last_refclk_cnt = upper_32_bits(val);
-+	c->last_coreclk_cnt = lower_32_bits(val);
-+	udelay(US_DELAY);
-+	val = readq(actmon_reg);
-+	c->refclk_cnt = upper_32_bits(val);
-+	c->coreclk_cnt = lower_32_bits(val);
-+}
-+
-+static struct tegra_cpufreq_ops tegra234_cpufreq_ops = {
-+	.read_counters = tegra234_read_counters,
-+	.get_cpu_cluster_id = tegra234_get_cpu_cluster_id,
-+	.get_cpu_ndiv = tegra234_get_cpu_ndiv,
-+	.set_cpu_ndiv = tegra234_set_cpu_ndiv,
-+};
-+
-+const struct tegra_cpufreq_soc tegra234_cpufreq_soc = {
-+	.ops = &tegra234_cpufreq_ops,
-+	.actmon_cntr_base = 0x9000,
-+	.maxcpus_per_cluster = 4,
-+};
-+
- static void tegra194_get_cpu_cluster_id(u32 cpu, u32 *cpuid, u32 *clusterid)
- {
- 	u64 mpidr;
-@@ -442,6 +538,13 @@ static int tegra194_cpufreq_probe(struct platform_device *pdev)
- 	if (!data->tables)
- 		return -ENOMEM;
- 
-+	if (of_device_is_compatible(pdev->dev.of_node, "nvidia,tegra234-ccplex-cluster")) {
-+		/* mmio registers are used for frequency request and re-construction */
-+		data->regs = devm_platform_ioremap_resource(pdev, 0);
-+		if (IS_ERR(data->regs))
-+			return PTR_ERR(data->regs);
-+	}
-+
- 	platform_set_drvdata(pdev, data);
- 
- 	bpmp = tegra_bpmp_get(&pdev->dev);
-@@ -486,6 +589,7 @@ static int tegra194_cpufreq_remove(struct platform_device *pdev)
- 
- static const struct of_device_id tegra194_cpufreq_of_match[] = {
- 	{ .compatible = "nvidia,tegra194-ccplex", .data = &tegra194_cpufreq_soc },
-+	{ .compatible = "nvidia,tegra234-ccplex-cluster", .data = &tegra234_cpufreq_soc },
- 	{ /* sentinel */ }
- };
- 
--- 
-2.17.1
-
+I missed that suggestion about marking hclk_vo as critical. That's a
+good idea, I like it.
