@@ -2,169 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A0DF4DAEE8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 12:30:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D72454DAF1A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 12:50:05 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355338AbiCPLbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 07:31:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49748 "EHLO
+        id S1344696AbiCPLvQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 07:51:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1355310AbiCPLbX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 07:31:23 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9462DEE;
-        Wed, 16 Mar 2022 04:30:08 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S239920AbiCPLvP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 07:51:15 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCC7C5C356;
+        Wed, 16 Mar 2022 04:50:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 5064B8215E;
-        Wed, 16 Mar 2022 12:30:06 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1647430206;
-        bh=ZPmDR/Ynm3MLHvvDU+ZfVFYFYJBie/n9Ctm1/4lxxj4=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ouSSk/bkojmLcK/tJHPl8xoXEELuIL11fSE3zW/+vM/7aVYSVtiTFlKAMmQRXXZEQ
-         t6HXQ3B1R+5yNVaSaRuhbE/kT+S1E2ALW8ZEiONxS/6IQU8e3/O2/MKlUr57yIogV3
-         xaKT0XN1l+T6URRJUoaqmwLpx4DrLxa7q9kvTcELoLbw+7FTBFe4KDJJ0BW/tfCNjC
-         LEQpaUJhLn3Iubb8abQ0rNzk3ctIDSRhKzMy8/fEXOWfKBNnFO6JPMFgDTnIPTb+mB
-         ZXsyDDWqd9/wi6hrCd0zBW/+7JnCIiwyOS5J94ClIB9E6OTqkcMA98SC1ARPzDGkBP
-         X4U4MLyPvi+cw==
-Message-ID: <51ca4586-5bcf-923d-43f9-7bf0b8dcb79d@denx.de>
-Date:   Wed, 16 Mar 2022 12:30:05 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.2
-Subject: Re: [PATCH 2/3] clk: Introduce 'critical-clocks' property
-Content-Language: en-US
-To:     Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20220215084412.8090-1-marex@denx.de>
- <20220215084412.8090-2-marex@denx.de>
- <20220217222328.7F7B3C340E8@smtp.kernel.org>
- <77c85470-5378-8c8b-8e5f-d57c83773ed6@denx.de>
- <4f1b946d-ee82-bd0e-c51e-100c23b87fdf@denx.de>
- <20220312050419.2AB91C340EE@smtp.kernel.org>
- <00479d7f-1124-de8b-d125-40f8139331f1@denx.de>
- <20220315235220.B005FC340E8@smtp.kernel.org>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <20220315235220.B005FC340E8@smtp.kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.5 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        by ams.source.kernel.org (Postfix) with ESMTPS id 685ADB81AB2;
+        Wed, 16 Mar 2022 11:49:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF20EC340E9;
+        Wed, 16 Mar 2022 11:49:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647431398;
+        bh=Dy7fTBaxbV+Qx8X5DFZPL2kucR4BKaU/vcqCGalKej0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=azas4dOY1rvH2almcoYuEGlAsHKA4/zY9MfE8nf7nU0u9IXM4FO3yXLzmc1e+Bbcv
+         KfwRucbt30KeYxPGJiNRJqdIPwxTpk2OzZbaY2rOkvvQmLl5/krxOwwetqr4BzGTVO
+         8rsr0/0mxQ32mP6WRjw/KUk+ga+wCFn+Xsty4DHss8a7obYkndg92aX4kgOV5N9Tmf
+         PmIzk7Rp7UBe9vtidTXeA/f6LqtB8AmgW4jaqZSNpaJzDfd3DtmAidMjA0GVsgue5m
+         hsoNcRn3PcD+mGAvEy4POCGXJ5+GtWpq4mMGasl21FePnxOTtwBawNJsS8WBpE7Os5
+         2WjlziMgt8fiA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nUSA7-00Ety2-LA; Wed, 16 Mar 2022 11:49:55 +0000
+Date:   Wed, 16 Mar 2022 11:49:55 +0000
+Message-ID: <878rtayv4s.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc:     huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org,
+        davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch,
+        gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com,
+        adrian.hunter@intel.com, thomas.petazzoni@bootlin.com,
+        kostap@marvell.com, robert.marko@sartura.hr,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 7/8] arm64: dts: marvell: Add Armada 98DX2530 SoC and RD-AC5X board
+In-Reply-To: <20220314213143.2404162-8-chris.packham@alliedtelesis.co.nz>
+References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+        <20220314213143.2404162-8-chris.packham@alliedtelesis.co.nz>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: chris.packham@alliedtelesis.co.nz, huziji@marvell.com, ulf.hansson@linaro.org, robh+dt@kernel.org, davem@davemloft.net, kuba@kernel.org, linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, adrian.hunter@intel.com, thomas.petazzoni@bootlin.com, kostap@marvell.com, robert.marko@sartura.hr, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/16/22 00:52, Stephen Boyd wrote:
-> Quoting Marek Vasut (2022-03-12 02:26:17)
->> On 3/12/22 06:04, Stephen Boyd wrote:
->>> Quoting Marek Vasut (2022-03-09 12:54:35)
->>>> On 2/21/22 01:58, Marek Vasut wrote:
->>>>> On 2/17/22 23:23, Stephen Boyd wrote:
->>>>>
->>>>>> I see that there isn't any more 'clock-critical' in the kernel's dts so
->>>>>> I wonder if we would be able to get rid of that function or at least
->>>>>> hollow it out and see if anyone complains. Either way, what is the
->>>>>> actual problem trying to be solved? If the crystal oscillator isn't used
->>>>>> anywhere in the kernel why are we registering it with the clk framework?
->>>>>
->>>>> The problem is the other way around -- the SoC clock IPs often have a
->>>>> couple of general purpose clock routed to various SoC IO pins, those
->>>>> clock can be used for any purpose, and those are already registered with
->>>>> kernel clock framework. Some devices save on BoM and use those general
->>>>> purpose clock to supply clock networks which are otherwise not
->>>>> interacting with the kernel, like some CPLD for example. Since from the
->>>>> kernel point of view, those clock are unused, the kernel can turn those
->>>>> clock OFF and that will make the entire device fail.
->>>>>
->>>>> So this critical-clocks property permits marking clock which must not
->>>>> ever be turned OFF accordingly.
->>>>
->>>> How can we proceed here ?
->>>
->>> Why are we registering the clks with the framework on device that are
->>> saving on BoM and using them outside of the kernel. What is the use of
->>> kernel memory for struct clk_core that aren't ever used?
->>
->> Those clock may be used to supply a device in DT on another hardware
->> using the same SoC.
->>
->> Take e.g. this random git grep result:
->>
->> arch/arm/boot/dts/imx7d-remarkable2.dts
->> / {
->>     wifi_pwrseq {
->>       ...
->>       clocks = <&clks IMX7D_CLKO2_ROOT_DIV>;
->>       ...
->>     };
->> };
->>
->> This IMX7D_CLKO2_ROOT_DIV is one such general purpose clock output. In
->> the aforementioned case, it is used to supply 32 kHz clock to a WiFi
->> chip, i.e. it has a consumer in DT. These clock are registered by the
->> platform clock driver:
->>
->> drivers/clk/imx/clk-imx7d.c
->>
->> But those clock can also be used to supply e.g. CPLD which has no other
->> connection to the SoC but the clock. That is where it needs this
->> critical-clocks property. Because then there is no consumer in DT. So
->> the kernel will now think the clock are not used and will turn them off
->> after boot, thus e.g. crashing such platform.
->>
->> So in the later case, the DT would contain the following to avoid the crash:
->> &clks {
->>     critical-clocks = <IMX7D_CLKO2_ROOT_DIV>;
->> };
+On Mon, 14 Mar 2022 21:31:42 +0000,
+Chris Packham <chris.packham@alliedtelesis.co.nz> wrote:
 > 
-> Got it. Why, in the latter case, would we register the clk with the clk
-> framework?
-
-Because those clock may be both critical and have other consumers which 
-can be fully described in DT, i.e. a combination of the two 
-aforementioned use cases.
-
-The CLK_IS_CRITICAL flag does not imply the clock can only supply single 
-device, rather the CLK_IS_CRITICAL flag indicates the clock must not 
-ever be turned off. The clock can still supply multiple devices, some of 
-them described in DT, some of them not.
-
-If you were to unregister the clock from clock framework if they are 
-critical, you wouldn't be able to handle the aforementioned use case.
-
-> I can see that they're "critical" in the sense that there's
-> no consumer node in DT and we want to make sure that nothing turns it
-> off.
-
-There may be other consumers in DT, we _only_ want to make sure the 
-clock are never turned off, ever.
-
-The "no consumers in DT" and "never turn clock off" are orthogonal.
-
-> But it's also wasteful to even register the clk with the kernel
-> because no device is using it. It feels like we need a property like
-> 'clock-dont-register' which is very simiilar to 'protected-clocks'.
-> There's already a binding for 'protected-clocks' so maybe that should be
-> reused and the definition of what the property means can be flexible to
-> handle the various use cases. The cases would be first this one here
-> where a clock doesn't matter because nobody uses it and second how it is
-> used on qualcomm SoCs where they have blocked access to certain clk
-> registers in the firmware so that the system crashes if we try to
-> read/write those clk registers.
+> The 98DX2530 SoC is the Control and Management CPU integrated into
+> the Marvell 98DX25xx and 98DX35xx series of switch chip (internally
+> referred to as AlleyCat5 and AlleyCat5X).
 > 
-> The dt-binding can be reworded as "the OS shouldn't use these clks" and
-> then the implementation can skip registering those clks with the
-> framework.
+> These files have been taken from the Marvell SDK and lightly cleaned
+> up with the License and copyright retained.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+> 
+> Notes:
+>     The Marvell SDK has a number of new compatible strings. I've brought
+>     through some of the drivers or where possible used an in-tree
+>     alternative (e.g. there is SDK code for a ac5-gpio but the existing
+>     marvell,armada-8k-gpio seems to cover what is needed if you use an
+>     appropriate binding). I expect that there will a new series of patches
+>     when I get some different hardware (or additions to this series
+>     depending on if/when it lands).
+>     
+>     Changes in v2:
+>     - Make pinctrl a child node of a syscon node
+>     - Use marvell,armada-8k-gpio instead of orion-gpio
+>     - Remove nand peripheral. The Marvell SDK does have some changes for the
+>       ac5-nand-controller but I currently lack hardware with NAND fitted so
+>       I can't test it right now. I've therefore chosen to omit the node and
+>       not attempted to bring in the driver or binding.
+>     - Remove pcie peripheral. Again there are changes in the SDK and I have
+>       no way of testing them.
+>     - Remove prestera node.
+>     - Remove "marvell,ac5-ehci" compatible from USB node as
+>       "marvell,orion-ehci" is sufficient
+>     - Remove watchdog node. There is a buggy driver for the ac5 watchdog in
+>       the SDK but it needs some work so I've dropped the node for now.
+> 
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  .../boot/dts/marvell/armada-98dx2530.dtsi     | 343 ++++++++++++++++++
+>  arch/arm64/boot/dts/marvell/rd-ac5x.dts       |  62 ++++
+>  3 files changed, 406 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+>  create mode 100644 arch/arm64/boot/dts/marvell/rd-ac5x.dts
+> 
+> diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
+> index 1c794cdcb8e6..3905dee558b4 100644
+> --- a/arch/arm64/boot/dts/marvell/Makefile
+> +++ b/arch/arm64/boot/dts/marvell/Makefile
+> @@ -24,3 +24,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db-B.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-A.dtb
+>  dtb-$(CONFIG_ARCH_MVEBU) += cn9130-crb-B.dtb
+> +dtb-$(CONFIG_ARCH_MVEBU) += rd-ac5x.dtb
+> diff --git a/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+> new file mode 100644
+> index 000000000000..ebe464b9ebd2
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/marvell/armada-98dx2530.dtsi
+> @@ -0,0 +1,343 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Device Tree For AC5.
+> + *
+> + * Copyright (C) 2021 Marvell
+> + *
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	model = "Marvell AC5 SoC";
+> +	compatible = "marvell,ac5", "marvell,armada3700";
 
-See above, I don't think not registering the critical clock is the right 
-approach.
+Are you sure about this compatibility with 3700? If so, why not reuse
+the existing file? But the rest of the file tends to show that the SoC
+is somehow different (the PPIs are all over the place -- someone got
+pointlessly creative here...). I'd really drop this string.
+
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +		spiflash0 = &spiflash0;
+> +		gpio0 = &gpio0;
+> +		gpio1 = &gpio1;
+> +		ethernet0 = &eth0;
+> +		ethernet1 = &eth1;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-0.2";
+> +		method = "smc";
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 8 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 10 IRQ_TYPE_LEVEL_HIGH>,
+> +				 <GIC_PPI 7 IRQ_TYPE_LEVEL_HIGH>;
+
+If you have an A55, you're missing an interrupt for the EL2 virtual
+timer.
+
+> +		clock-frequency = <25000000>;
+
+Please drop this. The firmware should do the right thing, and if not,
+that's an opportunity to fix it.
+
+> +	};
+> +
+
+[...]
+
+> +	gic: interrupt-controller@80600000 {
+> +		compatible = "arm,gic-v3";
+> +		#interrupt-cells = <3>;
+> +		interrupt-controller;
+> +		/*#redistributor-regions = <1>;*/
+> +		redistributor-stride = <0x0 0x20000>;	// 128kB stride
+
+Please drop these two lines. They are totally pointless as they are
+only expressing the default values.
+
+> +		reg = <0x0 0x80600000 0x0 0x10000>, /* GICD */
+> +			  <0x0 0x80660000 0x0 0x40000>; /* GICR */
+> +		interrupts = <GIC_PPI 6 IRQ_TYPE_LEVEL_HIGH>;
+> +	};
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
