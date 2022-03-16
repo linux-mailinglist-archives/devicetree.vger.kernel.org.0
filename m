@@ -2,122 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5174DA748
-	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 02:14:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A37EB4DA79A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Mar 2022 02:53:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1349544AbiCPBP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Mar 2022 21:15:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55960 "EHLO
+        id S1353031AbiCPBzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Mar 2022 21:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239951AbiCPBPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 21:15:55 -0400
-Received: from mail-m121144.qiye.163.com (mail-m121144.qiye.163.com [115.236.121.144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E2A12AFA
-        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 18:14:41 -0700 (PDT)
-Received: from [172.16.12.141] (unknown [58.22.7.114])
-        by mail-m121144.qiye.163.com (Hmail) with ESMTPA id 20987AC02AF;
-        Wed, 16 Mar 2022 09:14:35 +0800 (CST)
-Message-ID: <baaf0a2e-72ee-1e6a-a99f-a68e8371d844@rock-chips.com>
-Date:   Wed, 16 Mar 2022 09:14:34 +0800
+        with ESMTP id S1353026AbiCPBzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Mar 2022 21:55:01 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DDB633E89
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 18:53:47 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id bu29so1541628lfb.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Mar 2022 18:53:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/w6g4UFapgjJyWigEntfY4YR+4uWCSZSSrQixa3u6+g=;
+        b=NOuO/gH2k2r8FqAWGTSFu3/K2RelH8l1bUKZJrYmiVaqA+UTjEqKY666OVXfT8d219
+         2YlKjBcEbW9rsLFaO+lVQexhLzkDhDnQGUhQ6bY4urMhIT5FyhNYWPgdC5OvZaiN9swo
+         /zne3iP33JmXYXygB8OBviNrskeEf2CIACj4MnvcwOiNM9JiuDaFHLDOnvuVC7Hg/n7i
+         XrNztpYGFUn6I7YMjneJT3ad4ZI8dzWyZuSAkx4zMcPbHYeRU8K1Y6jjkkV7xw0ze/KC
+         +eMZ95j3B3AybgLC9l3crRekrK+Y0eIwj3PxUJeA1TEud6ZXDuDCRYdWKXyGdbPpzgL8
+         W0WQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/w6g4UFapgjJyWigEntfY4YR+4uWCSZSSrQixa3u6+g=;
+        b=SioE/n0bVkGMdtl1Xbctx8GlVZPAa6qoYjob/cx8nC1tvdxIWOY+IQVpiD43RMb9JR
+         T+2EJQC/4vMfHTYYE4JPMNOCYVkkwPhxvgiBdjYroK37hOaBm+3Kew+oM6uOa2sTkBiB
+         Qx7GI4NiCk6OUFRo21xHoOuJvQoFV2NmvZakjF2V/AZWhuV/2kjd5aspA7eaaFgHFt1P
+         sAwiQWNM3ZW7cM+TWtbY5dXbp+P8Mt5E9qtt8mHPHN5PQ3ftrInRQGOudxScAzRSQlqk
+         Zhhk92oK65NtDil94topA8JuRnFMg25c/j03tEo3EauGkHCq2QzT53GLeOeDb0gEH4uP
+         W2mw==
+X-Gm-Message-State: AOAM5305AITQxN1xxVRkgygrIaoCMzVcn8cFOA0hRDcRvI869DQcq2sw
+        jvTk4iFAj5lVA/YfdJBwSLePQyy8xOfzUk5ixEjuKV3mQ/I=
+X-Google-Smtp-Source: ABdhPJwJrWMGPCVAe9Kdw4+yO4dxhyREg9HzABowyT5uPfqBiphteSCarJzNDqam5BVctAGvnqC08Kzr648dwxePEXc=
+X-Received: by 2002:a05:6512:1510:b0:445:cbc3:a51f with SMTP id
+ bq16-20020a056512151000b00445cbc3a51fmr18924746lfb.116.1647395625908; Tue, 15
+ Mar 2022 18:53:45 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
-Content-Language: en-US
-To:     Daniel Stone <daniel@fooishbar.org>
-Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-        Sandy Huang <hjc@rock-chips.com>,
-        linux-rockchip@lists.infradead.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Peter Geis <pgwipeout@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20220311083323.887372-1-s.hauer@pengutronix.de>
- <20220311083323.887372-23-s.hauer@pengutronix.de>
- <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
- <CAPj87rM4StzGMqPfK=j5p0-mY2=ENZnZWx9QDL_jo8SzNTXWTQ@mail.gmail.com>
-From:   Andy Yan <andy.yan@rock-chips.com>
-In-Reply-To: <CAPj87rM4StzGMqPfK=j5p0-mY2=ENZnZWx9QDL_jo8SzNTXWTQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUtXWQgPGg8OCBgUHx5ZQUlOS1dZCBgUCR5ZQVlLVUtZV1
-        kWDxoPAgseWUFZKDYvK1lXWShZQUlKS0tKN1dZLVlBSVdZDwkaFQgSH1lBWUJOHxpWGR4eGkMZGU
-        waQh5CVRMBExYaEhckFA4PWVdZFhoPEhUdFFlBWU9LSFVKSktDSUNVS1kG
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6NyI6Lio5Nj5RTi41DRhNNBM3
-        OhVPCjpVSlVKTU9MSEJISUxOTEtLVTMWGhIXVRoVHwJVAhoVOwkUGBBWGBMSCwhVGBQWRVlXWRIL
-        WUFZTkNVSUlVTFVKSk9ZV1kIAVlBT05ISDcG
-X-HM-Tid: 0a7f904a7e25b039kuuu20987ac02af
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_SORBS_WEB,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <cover.1646388139.git.zong.li@sifive.com> <db92d209fa700f7da8bc8028083476fcc138d80e.1646388139.git.zong.li@sifive.com>
+ <20220315225459.73F2DC340E8@smtp.kernel.org> <20220315225652.CDAD1C340E8@smtp.kernel.org>
+In-Reply-To: <20220315225652.CDAD1C340E8@smtp.kernel.org>
+From:   Zong Li <zong.li@sifive.com>
+Date:   Wed, 16 Mar 2022 09:53:36 +0800
+Message-ID: <CANXhq0oAsxqL2PxkB8eOu_8L10pX_oWgwPH5y4edq5tw6ObWiQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] riscv: dts: Change the macro name of prci in each
+ device node
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Lee Jones <lee.jones@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel:
-
-On 3/15/22 20:43, Daniel Stone wrote:
-> Hi Andy,
+On Wed, Mar 16, 2022 at 6:56 AM Stephen Boyd <sboyd@kernel.org> wrote:
 >
-> On Tue, 15 Mar 2022 at 06:46, Andy Yan <andy.yan@rock-chips.com> wrote:
->> On 3/11/22 16:33, Sascha Hauer wrote:
->>> The driver is tested with HDMI and MIPI-DSI display on a RK3568-EVB
->>> board. Overlay support is tested with the modetest utility. AFBC support
->>> on the cluster windows is tested with weston-simple-dmabuf-egl on
->>> weston using the (yet to be upstreamed) panfrost driver support.
->> Do we need some modification to test AFBC by weston-simple-dma-egl ?
->>
->> I have a buildroot system with weston-10.0.9 and mesa 21.3.5.
->>
->> After launch weston, I run weston-simple-dmabuf-egl, but from the output
->>
->> of sys/kernel/debug/dri/0/state, the weston is still use Smart0-win0,
->> which is
->>
->> a non-AFBC window.
->>
->> Do i need to modify the vop2 driver to set one Cluster window as primary
->> plane?
-> Are you using the open-source Panfrost driver, or the proprietary Arm
-> DDK? The DDK was previously using some non-standard modifier tokens
-> which have since been corrected upstream.
-
-
-I use mesa 21.3.5 with open-source Panfrost driver enabled.
-
-When I modify Sascha's vop2 driver, set a Cluster windows as primary plane,
-
-Then launch weston,  vop2 report POST_BUF_EMPTY irq err.
-
- From the log I can see many "panfrost fde60000.gpu: js fault, js=0, 
-status=DATA_INVALID_FAULT" [0]
-
-I check the register configuration of Cluster window, there is no 
-obvious error.
-
-I event run a ovltest[1] written by myself feed a AFBC RGB data to 
-Cluster0.  it can display ok.
-
-It seems that the basic afbc configuration of vop2 is right, but 
-something is wrong with Panfrost?
-
-[0]https://pastebin.com/ydZkSz1f
-
-[1]https://gitee.com/andyshrk/drm/tree/master/tests/ovltest
-
+> Quoting Stephen Boyd (2022-03-15 15:54:57)
+> > Quoting Zong Li (2022-03-04 02:03:19)
+> > > We currently change the macro name for fu540 and fu740 by adding the
+> > > prefix respectively, these marcos are referenced by some device nodes,
+> > > they should be modified as well.
+> > >
+> > > Signed-off-by: Zong Li <zong.li@sifive.com>
+> > > Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > > ---
+> >
+> > Cool. So it looks like I can take the clk patches and not this one and
+> > it should be OK?
 >
-> You can see from running `weston-debug drm-backend` (if you start
-> Weston with `--debug`) the output as it tries to put client surfaces
-> on to overlay planes, and why it can or cannot.
->
-> For Weston's own composited output (used when it cannot place client
-> surfaces on to planes), it will just use whatever the KMS driver
-> declares as the primary plane. Weston does not have any logic to say
-> 'oh, this plane is AFBC and AFBC is better, so I will use this as my
-> primary plane': we just follow what the kernel tells us.
->
-> Cheers,
-> Daniel
+> To speed things up I can take the whole pile. Thanks for fixing the
+> bisection problem.
+
+I appreciate that you are willing to pick them up. Many thanks.
