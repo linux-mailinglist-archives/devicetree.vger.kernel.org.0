@@ -2,215 +2,538 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7CE4DCACD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:09:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 5475F4DCB0B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:14:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233690AbiCQQKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 12:10:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49800 "EHLO
+        id S236478AbiCQQPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 12:15:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230243AbiCQQK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:10:29 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02BDE9C88;
-        Thu, 17 Mar 2022 09:09:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1647533352;
-  x=1679069352;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GCK73NAHwWh0xTIrNJAiZh4vvH5OIpID7Fc8LsMvkc0=;
-  b=kYTiOh/hoSrid38RuazzBbBQP+Tpg4augX7V9U5IlobLkATf8oTMd7Oj
-   6Po3Pj9I+yctKZ6MaI8Yz36r09QUxf6c8UeCXK6gh52zHMpOuQDALQSAZ
-   Sw6+FwTOarocYJfBH4bZTYoNvmLhNcrvAQY0KnrUuAYSNAWiPcrIiBtXe
-   ELlk4LsKK+J3hWhAnP1aR9F8dBVo8uZmLawvqRoL2SDSi/3SRfEqDLMPa
-   z/99gsIabP8A5UhKTTmcvpmbafVgTTsFa0iEriU7pvNzFAaFwGlktV/eQ
-   3tgSZ2Qr5dc8V2qvfjT58ezkPsIDQQGlPaPHKy66IfnYjaQDNVpw2Af4m
-   A==;
-Date:   Thu, 17 Mar 2022 17:09:08 +0100
-From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
-To:     Brendan Higgins <brendanhiggins@google.com>
-CC:     Dmitry Vyukov <dvyukov@google.com>,
-        Kees Cook <keescook@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
-        "shuah@kernel.org" <shuah@kernel.org>,
-        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [RFC v1 00/10] roadtest: a driver testing framework
-Message-ID: <20220317160908.GA20347@axis.com>
-References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
- <CAFd5g45zwSNr-_PSbtGn1MiQgombSBTCjXOG-cvcQW8xQQUo+Q@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CAFd5g45zwSNr-_PSbtGn1MiQgombSBTCjXOG-cvcQW8xQQUo+Q@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S236416AbiCQQO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:14:56 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA0CB82F5;
+        Thu, 17 Mar 2022 09:13:37 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 32F55B81F13;
+        Thu, 17 Mar 2022 16:13:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CB3C340EF;
+        Thu, 17 Mar 2022 16:13:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647533614;
+        bh=Tu536cqcac0KGT+JP/suBXBn5PgT7OIv4s/Ep1zRlfI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=PL2n33nFCHRlp91VmYYeTGcnVs3kP6gU7VHuu95tS5GRglXyKgdSgk4rrNBSLObT3
+         fj2oF4cdz2ueA0rRNEw2dGv7VZ08fIYQ7SvsEn7V3LcEhfBu/JUrqguAXKCXp9H7AJ
+         F1rHRIcsKMh8th7DBDlulW3ZWKjdZy3VTOYQGEjt0K9u75cVzweLqpnCipP1AtsoiN
+         lRhqm6goPvUH0WNKZ6ehxniR3aG3hJB4gSUJ95xejCqT4xSjrVUSItKo2e6j1r6Pkc
+         5ihr+5iLz8wSw0ol3VPv0BSZtiTfxxH3ugUEcr2FO4W/yaHDzstIS/hsWJbAe7i/Xl
+         /myMW9A4PUXaw==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nUskm-00FEW8-2j; Thu, 17 Mar 2022 16:13:32 +0000
+Date:   Thu, 17 Mar 2022 16:13:31 +0000
+Message-ID: <87pmmky2tw.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH v4 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+In-Reply-To: <20220317012404.8069-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220317012404.8069-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220317012404.8069-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl, geert+renesas@glider.be, p.zabel@pengutronix.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, prabhakar.csengg@gmail.com, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Mar 14, 2022 at 11:24:59PM +0100, Brendan Higgins wrote:
-> +Kees Cook - I imagine you have already seen this, but I figured you
-> would be interested because of your recent work on the KUnit UAPI and
-> the mocking discussions.
-> +Dmitry Vyukov - This made me think of the syzkaller/KUnit experiments
-> we did a couple of years back - this would probably work a bit better.
+On Thu, 17 Mar 2022 01:24:01 +0000,
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
 > 
-> On Fri, Mar 11, 2022 at 11:24 AM Vincent Whitchurch
-> <vincent.whitchurch@axis.com> wrote:
-> >
-> > This patchset proposes roadtest, a device-driver testing framework.  Drivers
-> > are tested under User Mode Linux (UML) and interact with mocked/modelled
-> > hardware.  The tests and hardware models are written in Python, the former
-> > using Python's built-in unittest framework.
+> Add a driver for the Renesas RZ/G2L Interrupt Controller.
 > 
-> Wow! This sounds awesome! I was hoping to get some kind of hardware
-> modeling with KUnit eventually. I did some experiments, but this looks
-> way more mature.
-
-Thank you for the comments!
-
-> > Drivers are tested via their userspace interfaces.  The hardware models allow
-> > tests to inject values into registers and assert that drivers control the
-> > hardware in the right way and react as expected to stimuli.
+> This supports external pins being used as interrupts. It supports
+> one line for NMI, 8 external pins and 32 GPIO pins (out of 123)
+> to be used as IRQ lines.
 > 
-> I already took a look at the documentation patch - I'll comment there
-> more in detail, but I like the hardware modelling and device tree
-> code; it seems very usable.
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+>  drivers/irqchip/Kconfig             |   8 +
+>  drivers/irqchip/Makefile            |   1 +
+>  drivers/irqchip/irq-renesas-rzg2l.c | 462 ++++++++++++++++++++++++++++
+>  3 files changed, 471 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-renesas-rzg2l.c
 > 
-> > Roadtest is meant to be used for relatively simple drivers, such as the ones
-> > part of the IIO, regulator and RTC subsystems.
-> 
-> Obviously for an initial version going after simple stuff makes sense,
-> but I would hope there is applicability to any driver stack
-> eventually.
+> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+> index 7038957f4a77..afc5999f4955 100644
+> --- a/drivers/irqchip/Kconfig
+> +++ b/drivers/irqchip/Kconfig
+> @@ -242,6 +242,14 @@ config RENESAS_RZA1_IRQC
+>  	  Enable support for the Renesas RZ/A1 Interrupt Controller, to use up
+>  	  to 8 external interrupts with configurable sense select.
+>  
+> +config RENESAS_RZG2L_IRQC
+> +	bool "Renesas RZ/G2L (and alike SoC) IRQC support" if COMPILE_TEST
+> +	select GENERIC_IRQ_CHIP
+> +	select IRQ_DOMAIN_HIERARCHY
+> +	help
+> +	  Enable support for the Renesas RZ/G2L (and alike SoC) Interrupt Controller
+> +	  for external devices.
+> +
+>  config SL28CPLD_INTC
+>  	bool "Kontron sl28cpld IRQ controller"
+>  	depends on MFD_SL28CPLD=y || COMPILE_TEST
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index c1f611cbfbf8..b536e514a7c9 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -51,6 +51,7 @@ obj-$(CONFIG_RDA_INTC)			+= irq-rda-intc.o
+>  obj-$(CONFIG_RENESAS_INTC_IRQPIN)	+= irq-renesas-intc-irqpin.o
+>  obj-$(CONFIG_RENESAS_IRQC)		+= irq-renesas-irqc.o
+>  obj-$(CONFIG_RENESAS_RZA1_IRQC)		+= irq-renesas-rza1.o
+> +obj-$(CONFIG_RENESAS_RZG2L_IRQC)	+= irq-renesas-rzg2l.o
+>  obj-$(CONFIG_VERSATILE_FPGA_IRQ)	+= irq-versatile-fpga.o
+>  obj-$(CONFIG_ARCH_NSPIRE)		+= irq-zevio.o
+>  obj-$(CONFIG_ARCH_VT8500)		+= irq-vt8500.o
+> diff --git a/drivers/irqchip/irq-renesas-rzg2l.c b/drivers/irqchip/irq-renesas-rzg2l.c
+> new file mode 100644
+> index 000000000000..be9741e88bd7
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-renesas-rzg2l.c
+> @@ -0,0 +1,462 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Renesas RZ/G2L IRQC Driver
+> + *
+> + * Copyright (C) 2022 Renesas Electronics Corporation.
+> + *
+> + * Author: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/of_address.h>
+> +#include <linux/reset.h>
+> +#include <linux/spinlock.h>
+> +
+> +#define IRQC_IRQ_START			1
+> +#define IRQC_IRQ_COUNT			8
+> +#define IRQC_TINT_START			9
+> +#define IRQC_TINT_COUNT			32
+> +#define IRQC_NUM_IRQ			41
+> +
+> +#define ISCR				0x10
+> +#define IITSR				0x14
+> +#define TSCR				0x20
+> +#define TITSR0				0x24
+> +#define TITSR1				0x28
+> +#define TITSR0_MAX_INT			16
+> +#define TITSEL_WIDTH			0x2
+> +#define TSSR(n)				(0x30 + ((n) * 4))
+> +#define TIEN				BIT(7)
+> +#define TSSEL_SHIFT(n)			(8 * (n))
+> +#define TSSEL_MASK			GENMASK(7, 0)
+> +#define IRQ_MASK			0x3
+> +
+> +#define TSSR_OFFSET(n)			((n) % 4)
+> +#define TSSR_INDEX(n)			((n) / 4)
+> +
+> +#define TITSR_TITSEL_EDGE_RISING	0
+> +#define TITSR_TITSEL_EDGE_FALLING	1
+> +#define TITSR_TITSEL_LEVEL_HIGH		2
+> +#define TITSR_TITSEL_LEVEL_LOW		3
+> +
+> +#define IITSR_IITSEL(n, sense)		((sense) << ((n) * 2))
+> +#define IITSR_IITSEL_LEVEL_LOW		0
+> +#define IITSR_IITSEL_EDGE_FALLING	1
+> +#define IITSR_IITSEL_EDGE_RISING	2
+> +#define IITSR_IITSEL_EDGE_BOTH		3
+> +#define IITSR_IITSEL_MASK(n)		IITSR_IITSEL((n), 3)
+> +
+> +#define TINT_EXTRACT_HWIRQ(x)		((x) & ~GENMASK(31, 16))
+> +#define TINT_EXTRACT_GPIOINT(x)		((x) >> 16)
+> +
+> +struct rzg2l_irqc_priv {
+> +	void __iomem *base;
+> +	struct of_phandle_args map[IRQC_NUM_IRQ];
+> +	raw_spinlock_t lock;
+> +};
+> +
+> +struct rzg2l_irqc_chip_data {
+> +	int tint;
+> +};
+> +
+> +static struct rzg2l_irqc_priv *irq_data_to_priv(struct irq_data *data)
+> +{
+> +	return data->domain->host_data;
+> +}
+> +
+> +static void rzg2l_irq_eoi(struct irq_data *d)
+> +{
+> +	struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +	unsigned int hw_irq = irqd_to_hwirq(d) - IRQC_IRQ_START;
+> +	u16 bit = BIT(hw_irq);
+> +	unsigned long flags;
+> +	u32 reg;
+> +
+> +	raw_spin_lock_irqsave(&priv->lock, flags);
 
-Yes, there is no inherent restriction to only simple hardware, but these
-kinds of subsystem are the ones where it's easier to apply the framework
-since there's simply less stuff to model/mock in the hardware.
+Why the irqsave flavour? Is there any case where EOI isn't performed
+in a context that has interrupts already disabled?
 
-Supporting different busses also requires some work in the framework and
-potentially some new drivers.  For I2C we use virtio-i2c but there's no
-ready-made virtio-spi for example.  For MMIO (PCI / platform drivers), I
-did some basic experiments with UML's virtio-mmio in the early stages of
-writing this framework.
+> +	reg = readl_relaxed(priv->base + ISCR);
+> +	if (reg & bit)
+> +		writel_relaxed(GENMASK(IRQC_IRQ_COUNT - 1, 0) & ~bit,
+> +			       priv->base + ISCR);
+> +	raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	irq_chip_eoi_parent(d);
+> +}
+> +
+> +static void rzg2l_tint_eoi(struct irq_data *d)
+> +{
+> +	struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +	unsigned int hw_irq = irqd_to_hwirq(d);
+> +	u32 bit = BIT(hw_irq - IRQC_TINT_START);
+> +	unsigned long flags;
+> +	u32 reg;
+> +
+> +	raw_spin_lock_irqsave(&priv->lock, flags);
+> +	reg = readl_relaxed(priv->base + TSCR);
+> +	if (reg & bit)
+> +		writel_relaxed(GENMASK(IRQC_TINT_COUNT - 1, 0) & ~bit,
+> +			       priv->base + TSCR);
+> +	raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	irq_chip_eoi_parent(d);
+> +}
+> +
+> +static void rzg2l_irqc_eoi(struct irq_data *d)
+> +{
+> +	unsigned int hw_irq = irqd_to_hwirq(d);
+> +
+> +	if (hw_irq >= IRQC_IRQ_START && hw_irq <= IRQC_IRQ_COUNT)
+> +		return rzg2l_irq_eoi(d);
 
-> > = How does this relate to kselftests?
-> >
-> > Tests in kselftests also test kernel code using the userspace interfaces, but
-> > that's about what's common between the frameworks.  kselftests has other goals
-> > and does not provide any kind of mechanism for hardware mocking.
-> 
-> I had a question that after thinking about it; I think I know the
-> answer, so I am going to ask the question anyway and attempt to answer
-> it myself:
-> 
-> I agree in regard to mocking, but why not use kselftest for driving
-> tests that check drivers from userspace? I believe there are other
-> kselftest tests implemented in Python, why can't you just run your
-> tests inside of kselftest?
-> 
-> Now, I believe the answer to this question is that you need to control
-> spinning up your own kernel to run inside your test harness because
-> you need to control the environment that the kernel runs in - is this
-> correct?
+return function_returning_void()? No, please.
 
-Yes, that is correct.  For example, the devicetree stuff requires that
-the kernel be booted with the devicetree.  For the other tests also it's
-simpler to have a controlled environment without being affected by other
-stuff going on on the host.  And generally it's of course easier if the
-kernel which is inevitably going to crash and burn due to buggy drivers
-isn't the one powering your workstation.
+> +	else if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_TINT_COUNT)
+> +		return rzg2l_tint_eoi(d);
 
-Also, there is no currently way to use virtio drivers such as virtio-i2c
-and virtio-gpio (which roadtest uses) with the virtio device side
-implemented in userspace on the same system, so that would have also
-required a fair bit of work to get running.
+Move the locking and the call to irq_chip_eoi_parent() here, as there
+is no need to duplicate any of this.
 
-(On a side note, I've wondered why kselftest doesn't provide a standard
-way to run all the tests under kvm or something similar with all the
-correct configs.  For example, the kernels I work with are on embedded
-systems and I rarely recompile my host kernel, and I assume that there
-are plenty of others in the same situation.)
+> +}
+> +
+> +static void rzg2l_irqc_irq_disable(struct irq_data *d)
+> +{
+> +	unsigned int hw_irq = irqd_to_hwirq(d);
+> +
+> +	if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_TINT_COUNT) {
+> +		struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +		u32 offset = hw_irq - IRQC_TINT_START;
+> +		u32 tssr_offset = TSSR_OFFSET(offset);
+> +		u8 tssr_index = TSSR_INDEX(offset);
+> +		unsigned long flags;
+> +		u32 reg;
+> +
+> +		raw_spin_lock_irqsave(&priv->lock, flags);
+> +		reg = readl_relaxed(priv->base + TSSR(tssr_index));
+> +		reg &= ~(TSSEL_MASK << tssr_offset);
+> +		writel_relaxed(reg, priv->base + TSSR(tssr_index));
+> +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	}
+> +	irq_chip_disable_parent(d);
+> +}
+> +
+> +static void rzg2l_irqc_irq_enable(struct irq_data *d)
+> +{
+> +	unsigned int hw_irq = irqd_to_hwirq(d);
+> +
+> +	if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_TINT_COUNT) {
+> +		struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +		struct rzg2l_irqc_chip_data *chip_data = d->chip_data;
+> +		u32 offset = hw_irq - IRQC_TINT_START;
+> +		u32 tssr_offset = TSSR_OFFSET(offset);
+> +		u8 tssr_index = TSSR_INDEX(offset);
+> +		unsigned long flags;
+> +		u32 reg;
+> +
+> +		raw_spin_lock_irqsave(&priv->lock, flags);
+> +		reg = readl_relaxed(priv->base + TSSR(tssr_index));
+> +		reg |= (TIEN | chip_data->tint) << TSSEL_SHIFT(tssr_offset);
+> +		writel_relaxed(reg, priv->base + TSSR(tssr_index));
+> +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	}
+> +	irq_chip_enable_parent(d);
+> +}
+> +
+> +static int rzg2l_irq_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	unsigned int hw_irq = irqd_to_hwirq(d) - IRQC_IRQ_START;
+> +	struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +	unsigned long flags;
+> +	u16 sense, tmp;
+> +
+> +	switch (type & IRQ_TYPE_SENSE_MASK) {
+> +	case IRQ_TYPE_LEVEL_LOW:
+> +		sense = IITSR_IITSEL_LEVEL_LOW;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		sense = IITSR_IITSEL_EDGE_FALLING;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		sense = IITSR_IITSEL_EDGE_RISING;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_BOTH:
+> +		sense = IITSR_IITSEL_EDGE_BOTH;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	raw_spin_lock_irqsave(&priv->lock, flags);
 
-> > = How does this relate to kunit?
-> >
-> > Kunit is for unit testing of functions in kernel code, and is not meant for
-> > testing kernel code via userspace interfaces.  It could in theory be used to
-> > test some of the simple drivers too, but that would require (1) a large amount
-> > of mocking code in various kernel frameworks, and, more importantly, (2)
-> > refactoring of the drivers to be tested.
-> 
-> I mostly agree, but I think there is something that is missing here:
-> so roadtest seems to depend on having a user interface to test a
-> driver - for a simple smoke test on a simple driver without a big
-> driver stack on top, that makes sense, but what about testing error
-> paths or a platform driver buried beneath a deep driver stack? I think
-> there is potential for a powerful combination using KUnit to test the
-> low level kernel API and using roadtest to mock the hardware
-> environment and provide configuration.
+This already happens in an irq disabled context.
 
-Yes, that could be useful.  I have previously written some kunit tests
-for some experimental memory management code which required different
-devicetree reserved-memory nodes and arm64 (no hardware mocking) to run,
-and I ran them by having a shell script which ran QEMU several times
-with appropriate -append kunit.filter_glob=foo and -dtb options and
-post-processing the logs with kunit.py.
+> +	tmp = readl_relaxed(priv->base + IITSR);
+> +	tmp &= ~IITSR_IITSEL_MASK(hw_irq);
+> +	tmp |= IITSR_IITSEL(hw_irq, sense);
+> +	writel_relaxed(tmp, priv->base + IITSR);
+> +	raw_spin_unlock_irqrestore(&priv->lock, flags);
 
-> I am imagining that we could have an in-kernel KUnit/roadtest API that
-> we can use to have an in-kernel test request changes to the
-> environment for creating error cases and the like that can be
-> validated by KUnit test cases.
-> 
-> Going even further, I wonder if we could run kselftests inside of
-> roadtest since roadtest allows us to change the environment on the
-> fly.
+What about the parent irqchip? If this is a hierarchical setup, it
+definitely should be told.
 
-Sounds interesting, but I would likely need to see concrete examples to
-understand what kind of environment we'd want to change from within the
-kernel.
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_tint_set_edge(struct irq_data *d, unsigned int type)
+> +{
+> +	struct rzg2l_irqc_priv *priv = irq_data_to_priv(d);
+> +	unsigned int hwirq = irqd_to_hwirq(d);
+> +	u32 titseln = hwirq - IRQC_TINT_START;
+> +	unsigned long flags;
+> +	u32 offset;
+> +	u8 sense;
+> +	u32 reg;
+> +
+> +	switch (type & IRQ_TYPE_SENSE_MASK) {
+> +	case IRQ_TYPE_EDGE_RISING:
+> +		sense = TITSR_TITSEL_EDGE_RISING;
+> +		break;
+> +
+> +	case IRQ_TYPE_EDGE_FALLING:
+> +		sense = TITSR_TITSEL_EDGE_FALLING;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (titseln < TITSR0_MAX_INT) {
+> +		offset = TITSR0;
+> +	} else {
+> +		titseln /= TITSEL_WIDTH;
+> +		offset  = TITSR1;
+> +	}
+> +
+> +	raw_spin_lock_irqsave(&priv->lock, flags);
+> +	reg = readl_relaxed(priv->base + offset);
+> +	reg &= ~(IRQ_MASK << (titseln * TITSEL_WIDTH));
+> +	reg |= sense << (titseln * TITSEL_WIDTH);
+> +	writel_relaxed(reg, priv->base + offset);
+> +	raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int rzg2l_irqc_set_type(struct irq_data *d, unsigned int type)
+> +{
+> +	unsigned int hw_irq = irqd_to_hwirq(d);
+> +
+> +	if (hw_irq >= IRQC_IRQ_START && hw_irq <= IRQC_IRQ_COUNT)
+> +		return rzg2l_irq_set_type(d, type);
+> +	else if (hw_irq >= IRQC_TINT_START && hw_irq <= IRQC_TINT_COUNT)
+> +		return rzg2l_tint_set_edge(d, type);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static struct irq_chip irqc_chip = {
+> +	.name			= "rzg2l-irqc",
+> +	.irq_eoi		= rzg2l_irqc_eoi,
+> +	.irq_mask		= irq_chip_mask_parent,
+> +	.irq_unmask		= irq_chip_unmask_parent,
+> +	.irq_disable		= rzg2l_irqc_irq_disable,
+> +	.irq_enable		= rzg2l_irqc_irq_enable,
 
-> > This can be contrasted with roadtest which works with mostly unmodified drivers
-> > and which mocks the hardware at the lowest level without having to change
-> > kernel frameworks.
-> 
-> I think that is both potentially an advantage and a disadvantage.
-> 
-> The advantage is that your test is very general; roadtests would
-> likely be portable across kernel versions.
-> 
-> The disadvantage is that you don't get as much code introspection: I
-> imagine roadtest is not as good as testing error paths for example.
-> 
-> I also think that having to change code to make it more testable is
-> often an advantage as much as a disadvantage.
+So this looks a bit odd. irq_mask only calls the parent and does nothing
+locally, while irq_disable does something locally and calls into the
+parent. If the parent is a GIC, this is turned into a mask (GIC has no
+notion of disabled).
 
-Yes, that's true, but I highlighted the unmodified drivers bit because
-(1) the process of refactoring drivers which don't have tests to make
-them testable in itself carries it with a risk of breaking stuff, and
-(2) and there are simply so many existing drivers that it's very
-unlikely that most of them get refactored, but it should be relatively
-easy to, for example, add a regression test for a specific bug fix with
-roadtest.
+If that's the flow you expect, good. But please check this is the case.
 
-> 
-> Still, I think that is a good set of tradeoffs for roadtest to make
-> when set against KUnit and kselftest since roadtest seems to fit in
-> where kselftest and KUnit are weak.
+> +	.irq_get_irqchip_state	= irq_chip_get_parent_state,
+> +	.irq_set_irqchip_state	= irq_chip_set_parent_state,
+> +	.irq_retrigger		= irq_chip_retrigger_hierarchy,
+> +	.irq_set_type		= rzg2l_irqc_set_type,
+> +	.flags			= IRQCHIP_MASK_ON_SUSPEND |
+> +				  IRQCHIP_SET_TYPE_MASKED |
+> +				  IRQCHIP_SKIP_SET_WAKE,
+> +};
+> +
+> +static int rzg2l_irqc_alloc(struct irq_domain *domain, unsigned int virq,
+> +			    unsigned int nr_irqs, void *arg)
+> +{
+> +	struct rzg2l_irqc_priv *priv = domain->host_data;
+> +	struct rzg2l_irqc_chip_data *chip_data = NULL;
+> +	struct irq_fwspec spec;
+> +	irq_hw_number_t hwirq;
+> +	int tint = -EINVAL;
+> +	unsigned int type;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	ret = irq_domain_translate_twocell(domain, arg, &hwirq, &type);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * For TINIT interrupts ie where pinctrl driver is child of irqc domain
+> +	 * the hwirq and TINT are encoded in fwspec->param[0].
+> +	 * hwirq for TINIT range from 9-40, hwirq is embedded 0-15 bits and TINT
+> +	 * from 16-31 bits. TINIT from the pinctrl driver needs to be programmed
+> +	 * in IRQC registers to enable a given gpio pin as interrupt.
+> +	 */
+> +	if (hwirq > IRQC_IRQ_COUNT) {
+> +		tint = TINT_EXTRACT_GPIOINT(hwirq);
+> +		hwirq = TINT_EXTRACT_HWIRQ(hwirq);
+> +	}
+> +
+> +	if (hwirq > (IRQC_NUM_IRQ - 1))
+> +		return -EINVAL;
+> +
+> +	if (tint != -EINVAL && (hwirq < IRQC_TINT_START || hwirq > (IRQC_NUM_IRQ - 1)))
+> +		return -EINVAL;
+> +
+> +	chip_data = kzalloc(sizeof(*chip_data), GFP_KERNEL);
+> +	if (!chip_data)
+> +		return -ENOMEM;
+> +	chip_data->tint = tint;
+> +
+> +	ret = irq_domain_set_hwirq_and_chip(domain, virq, hwirq, &irqc_chip,
+> +					    chip_data);
+> +	if (ret) {
+> +		kfree(chip_data);
+> +		return ret;
+> +	}
+> +
+> +	spec.fwnode = domain->parent->fwnode;
+> +	spec.param_count = priv->map[hwirq].args_count;
+> +	for (i = 0; i < spec.param_count; i++)
+> +		spec.param[i] = priv->map[hwirq].args[i];
+> +
+> +	ret = irq_domain_alloc_irqs_parent(domain, virq, nr_irqs, &spec);
+> +	if (ret)
+> +		kfree(chip_data);
+> +
+> +	return ret;
+> +}
+> +
+> +static void rzg2l_irqc_domain_free(struct irq_domain *domain, unsigned int virq,
+> +				   unsigned int nr_irqs)
+> +{
+> +	struct irq_data *d;
+> +
+> +	d = irq_domain_get_irq_data(domain, virq);
+> +	if (d) {
+> +		struct rzg2l_irqc_chip_data *chip_data = d->chip_data;
+> +
+> +		kfree(chip_data);
+> +	}
+> +	irq_domain_free_irqs_common(domain, virq, nr_irqs);
+> +}
+> +
+> +static const struct irq_domain_ops rzg2l_irqc_domain_ops = {
+> +	.alloc = rzg2l_irqc_alloc,
+> +	.free = rzg2l_irqc_domain_free,
+> +	.translate = irq_domain_translate_twocell,
+> +};
+> +
+> +static int rzg2l_irqc_parse_map(struct rzg2l_irqc_priv *priv,
+> +				struct device_node *np,
+> +				struct device_node *parent)
+> +{
+> +	unsigned int len, j;
+> +	const __be32 *range;
+> +
+> +	range = of_get_property(np, "interrupts", &len);
+> +	if (!range)
+> +		return -EINVAL;
+> +
+> +	for (len /= sizeof(*range), j = 0; len >= 3; len -= 3) {
+> +		if (j >= IRQC_NUM_IRQ)
+> +			return -EINVAL;
+> +
+> +		priv->map[j].args[0] = be32_to_cpu(*range++);
+> +		priv->map[j].args[1] = be32_to_cpu(*range++);
+> +		priv->map[j].args[2] = be32_to_cpu(*range++);
+> +		priv->map[j].args_count = 3;
+> +		j++;
+> +	}
+
+I'm confused. Why do you have to invent a new interrupt parser? What
+is wrong with of_irq_parse_one() populating the of_phandle_args array?
+I expected to see something like:
+
+static void rzg2l_irqc_parse_map(struct rzg2l_irqc_priv *priv,
+				 struct device_node *np)
+{
+	int i;
+
+	for (i = 0; i < IRQC_NUM_IRQ; i++)
+		of_irq_parse_one(np, i, &priv->map[i]);
+}
+
+and that's it.
+
+Thanks,
+
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
