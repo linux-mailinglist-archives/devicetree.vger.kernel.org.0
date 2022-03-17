@@ -2,88 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B982D4DC80C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 14:57:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 089A84DC857
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 15:06:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234691AbiCQN7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 09:59:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45740 "EHLO
+        id S234909AbiCQOHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 10:07:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234213AbiCQN7K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 09:59:10 -0400
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16A5A1DEC1A;
-        Thu, 17 Mar 2022 06:57:52 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id 7-20020a05600c228700b00385fd860f49so3245492wmf.0;
-        Thu, 17 Mar 2022 06:57:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=fxzfqzF9DUDWUAdXbkQl96dvUawwfyjYl3PBDi2W2sU=;
-        b=QG/p5YA5f8ewtIbEJlELmgp9J7rADLS8j0XmeE241UeM3DWbqZF3E4gDN+gvI0H5EI
-         zn5WtmM4DLXh4+VKjQhQ9fcpr/ZYWbRha8mVgH+6M5ceAev7/89rMR3kCMJwppLXXd5p
-         Bi2ZFHHlpC4XtqaFSjb5Ksu7RvAI+uuPFU+emXvuYBE781Qf43ZB34iA5t5bymOmpaWI
-         Vea4F/BA8yah5TAPYjzS1lrxc2Eai/T7iLzoejsqc0syx1vSjG61ukAIMT4QT6gp1AFE
-         8rFM+ehajjZzqpXrwh/G1D+YjaULX3FSrnxtcBghxF6hw3gvCA2+g1k3za1KWMpASCXb
-         kZxw==
-X-Gm-Message-State: AOAM533AE13otzMyRQQ89seeNf3lhTTlILyPb7+X8MVRpIBxKjuAEn6P
-        10lhsvOzfgYWBNk8PQ09li5xnlGKjbY=
-X-Google-Smtp-Source: ABdhPJxxIf/mU2jqy/1NcnS05LTtUL/fITE7auGEjuzFTa5v2l9Oy+4Dijc5WoQ0bWflwi36K8yX0w==
-X-Received: by 2002:a1c:7303:0:b0:37c:9270:2ff4 with SMTP id d3-20020a1c7303000000b0037c92702ff4mr4030655wmb.99.1647525470536;
-        Thu, 17 Mar 2022 06:57:50 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id p125-20020a1c2983000000b00389cc36a3bfsm7884258wmp.6.2022.03.17.06.57.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 06:57:49 -0700 (PDT)
-Message-ID: <39debba5-3536-2423-5ac6-9fd66836d736@kernel.org>
-Date:   Thu, 17 Mar 2022 14:57:48 +0100
+        with ESMTP id S233413AbiCQOHY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 10:07:24 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B525122232;
+        Thu, 17 Mar 2022 07:06:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1647525961; x=1679061961;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=WyIgvspQhf/CWwmJmV9DuJtBRSa+lu1xsA1u/xKmtYk=;
+  b=pXvtN12X59gfFlhaAj2KO2b8Sd2XA+Apjjg+eX9aqYU8ELKTjToHnnr5
+   pBCk0vhZQFJTI+Ol0xzRZBY9QqYtIVVydqCdbgRWmfCcTi7+OAezTepPo
+   +Yc5XX3jdCvStvCBSbPrCBMqKFjpX2EsKP38mAh+tnVmweR8c2tC2QJGX
+   FannnVKZpKvcDu3nfAneEk2KJz9fZqBF7av2FngrZMiwZPPJZciJp9hh/
+   8Y3HB+QGasq+L957YF0M4weh9kQctOZ6VXT6pvAv8UR+0UmvyTIFDeYUC
+   uzeCTRSKDDYQeKoVbfWUa3fTQvwIxbkj6xmq/LIC5Sv/zTK6CBg9J4EyJ
+   Q==;
+X-IronPort-AV: E=Sophos;i="5.90,188,1643698800"; 
+   d="scan'208";a="157263183"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 17 Mar 2022 07:06:00 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Thu, 17 Mar 2022 07:06:00 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Thu, 17 Mar 2022 07:06:00 -0700
+Date:   Thu, 17 Mar 2022 15:05:59 +0100
+From:   "Allan W. Nielsen" <allan.nielsen@microchip.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     <patchwork-bot+netdevbpf@kernel.org>,
+        <Divya.Koppera@microchip.com>, <UNGLinuxDriver@microchip.com>,
+        <andrew@lunn.ch>, <davem@davemloft.net>,
+        <devicetree@vger.kernel.org>, <hkallweit1@gmail.com>,
+        <kuba@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux@armlinux.org.uk>, <madhuri.sripada@microchip.com>,
+        <manohar.puri@microchip.com>, <netdev@vger.kernel.org>,
+        <richardcochran@gmail.com>, <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
+Message-ID: <20220317140559.f52cuvw6gswyrfn6@den-dk-m31684h>
+References: <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
+ <20220317121650.934899-1-michael@walle.cc>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: Add bindings doc for Sunplus SoC
- SP7021 PWM Driver
-Content-Language: en-US
-To:     Hammer Hsieh <hammerh0314@gmail.com>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     wells.lu@sunplus.com, hammer.hsieh@sunplus.com
-References: <1647237097-29172-1-git-send-email-hammerh0314@gmail.com>
- <1647237097-29172-2-git-send-email-hammerh0314@gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <1647237097-29172-2-git-send-email-hammerh0314@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220317121650.934899-1-michael@walle.cc>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/03/2022 06:51, Hammer Hsieh wrote:
-> Add bindings doc for Sunplus SoC SP7021 PWM Driver
+Hi,
+
+On Thu, Mar 17, 2022 at 01:16:50PM +0100, Michael Walle wrote:
+> From: patchwork-bot+netdevbpf@kernel.org
+> > Here is the summary with links:
+> >   - [net-next,1/3] net: phy: micrel: Fix concurrent register access
+> >     https://git.kernel.org/netdev/net-next/c/4488f6b61480
+> >   - [net-next,2/3] dt-bindings: net: micrel: Configure latency values and timestamping check for LAN8814 phy
+> >     https://git.kernel.org/netdev/net-next/c/2358dd3fd325
+> >   - [net-next,3/3] net: phy: micrel: 1588 support for LAN8814 phy
+> >     https://git.kernel.org/netdev/net-next/c/ece19502834d
 > 
-> Signed-off-by: Hammer Hsieh <hammerh0314@gmail.com>
-> ---
-> Changes in v3:
->  - Addressed all comments from Krzysztof Kozlowski.
-> 
->  .../bindings/pwm/sunplus,sp7021-pwm.yaml           | 42 ++++++++++++++++++++++
->  MAINTAINERS                                        |  5 +++
->  2 files changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/sunplus,sp7021-pwm.yaml
-> 
+> I'm almost afraid to ask.. but will this series be reverted (or
+> the device tree bindings patch)? There were quite a few remarks, even
+> about the naming of the properties. So, will it be part of the next
+> kernel release or will it be reverted?
+Thanks for bringing this up - was about to ask myself.
 
+Not sure what is the normal procedure here.
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+If not reverted, we can do a patch to remove the dt-bindings (and also
+the code in the driver using them). Also, a few other minor comments was
+given and we can fix those.
 
+The elefant in the room is the 'lan8814_latencies' structure containing
+the default latency values in the driver, which Richard is unhappy with.
 
-Best regards,
-Krzysztof
+Russell indicated that he prefere having these numbers in the driver
+rather than hiding them in firmware (lan8814 does not have firmware, so
+not an option).
+
+Andrew sugegsted adding additional APIs to let ptp4l control if
+time-stamps should be calibrated in HW/Kernel or in userspace. Likely
+something like that can be done - but I did not get the impression that
+this is what Richard would like to see either.
+
+Also, I would like drivers to come with default latency numbers which
+are good enough for most (and the rest will need to calibrate and
+compensate further using the hooks and handles in userspace).
+
+What would you like to see - believe you will also be a user of this?
+
+-- 
+/Allan
