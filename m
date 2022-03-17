@@ -2,32 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C56C4DC8B5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 15:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2118E4DC8C1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 15:27:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230189AbiCQO0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 10:26:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60804 "EHLO
+        id S235096AbiCQO3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 10:29:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41060 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235068AbiCQO0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 10:26:21 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B672185463;
-        Thu, 17 Mar 2022 07:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=mVofJu7F0KFyAXf7VtVchEN8qlIRqXJCebogLkRenfM=; b=sRmYEEvQzbaWpKijO9VMvwzsLt
-        bDvU7NfkXMdvbCf38TaeXauuh+29cZwwYQNhTUemdqKBRyVcJtkHnOfFts9r3FWKjk9JdM5/5B81i
-        b2zM2L4DOwCsG4nLN8PDEEQ9t/L6TdhMAIsZI90oG4QdZLzQvYw441QzH33t4/roDz/k=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1nUr3k-00BQJC-VX; Thu, 17 Mar 2022 15:25:00 +0100
-Date:   Thu, 17 Mar 2022 15:25:00 +0100
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+        with ESMTP id S235095AbiCQO3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 10:29:04 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF3920035B
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 07:27:48 -0700 (PDT)
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 2C2F83F325
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 14:27:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647527259;
+        bh=XT6vpCcggmBHdZMgmBcnWI+odMRKjzM5F/MBrP0ojdw=;
+        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+         In-Reply-To:Content-Type;
+        b=DZ3JGJM8c2ypyL/DLlySTsd3aWFkw9Fyo3R+leqDe3d+UQoRlFi5+6q7vtFPcjrhw
+         iVj1N7FD+ICpWMG9flq71mfLLArO+goGHczxCMKaJ1EecljdZJqwRTw2XY8JrQt/q+
+         pUfTzUTax+tY7X4UuW87MTTEmd7RW4ECu7R+yE1OEK6ejbfK05yb3mxcritBNu13xX
+         xv8L6gnUQilZMPyE1PhNDwWdWG3fyBW26g1Wxw3LK7TAomelZq+1iu6bs0hL1c5edu
+         Kr4dlvVuDOglF6ITDcSpntZFyVYAN1qM2tghAWm+7iTRCEIaaQEqBn335GjYIoAwLB
+         pm7KyKtoZWZrA==
+Received: by mail-wm1-f71.google.com with SMTP id k26-20020a05600c0b5a00b0038c6c41159bso2177254wmr.0
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 07:27:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=XT6vpCcggmBHdZMgmBcnWI+odMRKjzM5F/MBrP0ojdw=;
+        b=YbOIaFfZ58pZk/uSiC5xfBmZ24N4ZxWhoddazK2WQDv8EgNQa1UMKofdf3LZJL+aWz
+         8P0DgDs8NTFx8iz1tWv4DFwuaw9Rc4gtk2VivubeJqKroeJm4Z3+NE175vtZLxIO+NAZ
+         cFOyLcFVa+CZx0CZBLlKpxpm2oR9gJ3+tZrNMw68o+6jO5PUzlHMGLmJMAL34kw3KqfJ
+         36DXJVKZ1sRsoZ5Ve6Mvc4E5Ck2CMyt7TQrk7EpP1yvLqivffT3fLV/MR0YNs0EHkwhG
+         9a2i2aq7mRmn3+f5yPNm29DNq6Tc9SdwHjUgYbYKl7Li9Vf63slhQECTn8bPQ1JfqSLR
+         RmuA==
+X-Gm-Message-State: AOAM533QoGKAsJttW9ZgWUOn4yf/YMbUn/NVLFlnI5W4JsfGnFUriEKz
+        eYxwHCJOoqyvHiuhHyyH+p4C3h3JjKDdkJUsKaHNxXpf70LcTC01S6SYlKO8sgakYABdX48jSZr
+        oLxWc9jLq9WdBqNAyb8QiNU7nYZBBi0mRU7/e/vQ=
+X-Received: by 2002:a5d:6da5:0:b0:1f1:f968:1a62 with SMTP id u5-20020a5d6da5000000b001f1f9681a62mr4417226wrs.227.1647527258417;
+        Thu, 17 Mar 2022 07:27:38 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxlM6gjdeCd3PkCLJvzS4KHMc2/6IvEHZls0h7G3l5Er9P2s7TAMJ5CKYryRFQwToudopNmIA==
+X-Received: by 2002:a5d:6da5:0:b0:1f1:f968:1a62 with SMTP id u5-20020a5d6da5000000b001f1f9681a62mr4417208wrs.227.1647527258241;
+        Thu, 17 Mar 2022 07:27:38 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id i15-20020adffdcf000000b00203efad1d89sm1259833wrs.9.2022.03.17.07.27.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Mar 2022 07:27:37 -0700 (PDT)
+Message-ID: <f130deed-1c12-7cd2-fb5f-b58a7991b4c9@canonical.com>
+Date:   Thu, 17 Mar 2022 15:27:36 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH] dt-bindings: irqchip: mrvl,intc: refresh maintainers
+Content-Language: en-US
+To:     Andrew Lunn <andrew@lunn.ch>
 Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -35,32 +72,37 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Gregory Clement <gregory.clement@bootlin.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: irqchip: mrvl,intc: refresh maintainers
-Message-ID: <YjNEvKTrLXv3/9nL@lunn.ch>
 References: <20220317120252.451669-1-krzysztof.kozlowski@canonical.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220317120252.451669-1-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+ <YjNEvKTrLXv3/9nL@lunn.ch>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+In-Reply-To: <YjNEvKTrLXv3/9nL@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 01:02:52PM +0100, Krzysztof Kozlowski wrote:
-> Jason's email bounces and his address was dropped from maintainers in
-> commit 509920aee72a ("MAINTAINERS: Move Jason Cooper to CREDITS"), so
-> drop him here too.  Switch other maintainers from IRQCHIP subsystem
-> maintainers to Marvell Orion platform maintainers because its a bigger
-> chance they know the hardware.
+On 17/03/2022 15:25, Andrew Lunn wrote:
+> On Thu, Mar 17, 2022 at 01:02:52PM +0100, Krzysztof Kozlowski wrote:
+>> Jason's email bounces and his address was dropped from maintainers in
+>> commit 509920aee72a ("MAINTAINERS: Move Jason Cooper to CREDITS"), so
+>> drop him here too.  Switch other maintainers from IRQCHIP subsystem
+>> maintainers to Marvell Orion platform maintainers because its a bigger
+>> chance they know the hardware.
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+> Sebastian has not contributed for a long time. So i suggest you only
+> add Gregory and myself.
 
-Sebastian has not contributed for a long time. So i suggest you only
-add Gregory and myself.
+Sure.
 
-   Andrew
+
+Best regards,
+Krzysztof
