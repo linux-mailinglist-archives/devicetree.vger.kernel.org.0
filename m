@@ -2,54 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B99404DCEFF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 20:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DDC4DCF0D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 20:54:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229737AbiCQTsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 15:48:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59434 "EHLO
+        id S229496AbiCQTz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 15:55:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40714 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbiCQTsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 15:48:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C25F24373E;
-        Thu, 17 Mar 2022 12:47:23 -0700 (PDT)
+        with ESMTP id S229630AbiCQTz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 15:55:57 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A203188A0F;
+        Thu, 17 Mar 2022 12:54:38 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A771F618E3;
-        Thu, 17 Mar 2022 19:47:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0947EC340E9;
-        Thu, 17 Mar 2022 19:47:21 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DF853618F2;
+        Thu, 17 Mar 2022 19:54:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FFF7C340E9;
+        Thu, 17 Mar 2022 19:54:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647546442;
-        bh=8O4xojYXJ2O3v1mIxSIElqegPelL1l70GLiAdhxHFp8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Rmu3sp6XO5V4kWS5PcgJND2BvL8Zt+ZoZ/h6/YTsa+Gsi0WP0VcCeafoeVI9xysMJ
-         3Fk+E4MkYkXAwPq0/dqnpnJz2ZNW8d4H0fzj4VXImoNH7r6ooHGxGFooyXBlPvUCfl
-         Cd9SbHehrGuLEkkeAtWreQ5kY+7NGagrsfsJ1MVdShXOeMvQ/Xnya4ULh0qo6GebZk
-         zy/ZMWD3O9HXaGMeh2qJl6Id4LbsNkuL2gHE4tj9iaRJ3Gzgs2N0DhYDYmtKMRpPoV
-         PRYoSS+vnkfhdghGIqbwqarAmP9hQSXKAe7AEsXXbgNKMfjsmHDtRIlDnDOAYjp09K
-         T6rxMLrZvALmw==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20220311114229.32504-3-chun-jie.chen@mediatek.com>
-References: <20220311114229.32504-1-chun-jie.chen@mediatek.com> <20220311114229.32504-3-chun-jie.chen@mediatek.com>
-Subject: Re: [PATCH v3 02/15] clk: mediatek: Add MT8186 mcusys clock support
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>
-To:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 17 Mar 2022 12:47:20 -0700
-User-Agent: alot/0.10
-Message-Id: <20220317194722.0947EC340E9@smtp.kernel.org>
+        s=k20201202; t=1647546877;
+        bh=5hffbwsJCKcVChBEOg9xhWcvocoqaI4B/ouojGPSnrE=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RxiHc14Zqm22aG9h2QsH8B1KyDqMNIxQAWh7qozUoaDyGZybMVlaajZhcTagUs4BI
+         cqZpS2taU21pOd4f1ZeMvqg1quZaByxuLi/ekn+LfBJ11LfJX8stjRvTsUU79L/K05
+         goeVTAzqAVZnQ3Vtxa2FQu06QkDEKMoFRJFk6n6HjUjqda/c/OUV1a3zUlSdHxz/JS
+         1Pqa8+ohcjkATUF8szIEVzbjxV+fnETQ0eOYa4CZ7RnZRESyeKZOphcO44KhshBJsi
+         1O4K7p3rCY1rE6+KloP9x0ZQbAxxOkecQi/q1AGrgajPjk3hov2K4cay8bUTFCbh51
+         cO2Lld/mTkZcA==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=wait-a-minute.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nUwCg-00FHTs-QI; Thu, 17 Mar 2022 19:54:34 +0000
+Date:   Thu, 17 Mar 2022 19:54:34 +0000
+Message-ID: <87h77wxslh.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: Remove arch timer clocks property
+In-Reply-To: <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
+References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
+        <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: singh.kuldeep87k@gmail.com, robh+dt@kernel.org, joel@jms.id.au, andrew@aj.id.au, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -60,28 +67,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Chun-Jie Chen (2022-03-11 03:42:16)
-> diff --git a/drivers/clk/mediatek/clk-mt8186-mcu.c b/drivers/clk/mediatek=
-/clk-mt8186-mcu.c
-> new file mode 100644
-> index 000000000000..6d82c5de16c1
-> --- /dev/null
-> +++ b/drivers/clk/mediatek/clk-mt8186-mcu.c
-> @@ -0,0 +1,106 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +//
-> +// Copyright (c) 2022 MediaTek Inc.
-> +// Author: Chun-Jie Chen <chun-jie.chen@mediatek.com>
-> +
-> +#include "clk-mtk.h"
-> +
-> +#include <dt-bindings/clock/mt8186-clk.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/platform_device.h>
+On Thu, 17 Mar 2022 19:15:26 +0000,
+Kuldeep Singh <singh.kuldeep87k@gmail.com> wrote:
+> 
+> Arch timer either require clock-frequency property or doesn't need to
+> specify clock at all in DT. In general, frequency can be determined
+> internally and in case of brokern firmwares, need to extend
+> clock-frequency to pass info to driver.
 
-Order should be
+A clock frequency and a clock are not the same thing.
 
-	<linux/*>
-	<dt-bindings/*>
+> 
+> Aspeed BMC is the platform which defines clocks property, an invalid
+> entry which can be safely removed.
 
-	"local.h"
+Safely removed? Says who? Have you tested this change?
+
+> 
+> Moreover, clocks also matches incorrectly with the regex pattern.
+> Remove this entry altogether to fix it.
+> 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+
+NAK. That's not a reason to randomly butcher things.
+
+	M.
+
+> 
+> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
+> ---
+>  arch/arm/boot/dts/aspeed-g6.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index c32e87fad4dc..d5ef9aceb632 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -64,7 +64,6 @@ timer {
+>  			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+>  			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>,
+>  			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(2) | IRQ_TYPE_LEVEL_LOW)>;
+> -		clocks = <&syscon ASPEED_CLK_HPLL>;
+>  		arm,cpu-registers-not-fw-configured;
+>  		always-on;
+>  	};
+> -- 
+> 2.25.1
+> 
+> 
+
+-- 
+Without deviation from the norm, progress is not possible.
