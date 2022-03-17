@@ -2,107 +2,253 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 203EF4DBD56
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 04:04:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 696A14DBD73
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 04:19:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1355662AbiCQDFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Mar 2022 23:05:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33298 "EHLO
+        id S231719AbiCQDUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Mar 2022 23:20:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1352630AbiCQDFf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 23:05:35 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF89020F72;
-        Wed, 16 Mar 2022 20:04:16 -0700 (PDT)
-X-UUID: 553e777eda3341d88cf12e717ce87d86-20220317
-X-UUID: 553e777eda3341d88cf12e717ce87d86-20220317
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <johnson.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1932598311; Thu, 17 Mar 2022 11:04:08 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Mar 2022 11:04:07 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Mar 2022 11:04:07 +0800
-From:   Johnson Wang <johnson.wang@mediatek.com>
-To:     <broonie@kernel.org>, <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        with ESMTP id S230274AbiCQDUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Mar 2022 23:20:24 -0400
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AD1121836;
+        Wed, 16 Mar 2022 20:19:07 -0700 (PDT)
+Received: from dggpemm500022.china.huawei.com (unknown [172.30.72.54])
+        by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4KJsgL0RVnzcb6B;
+        Thu, 17 Mar 2022 11:14:06 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500022.china.huawei.com (7.185.36.162) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 17 Mar 2022 11:19:05 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 17 Mar 2022 11:19:04 +0800
+Subject: Re: [PATCH v21 3/5] arm64: kdump: reimplement crashkernel=X
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Johnson Wang <johnson.wang@mediatek.com>
-Subject: [PATCH v2 2/2] dt-bindings: regulator: Add BUCK and LDO document for MT6358 and MT6366
-Date:   Thu, 17 Mar 2022 11:04:02 +0800
-Message-ID: <20220317030402.24894-3-johnson.wang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20220317030402.24894-1-johnson.wang@mediatek.com>
-References: <20220317030402.24894-1-johnson.wang@mediatek.com>
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <20220227030717.1464-4-thunder.leizhen@huawei.com>
+ <YjHUAi0xrUy+qk/L@MiWiFi-R3L-srv>
+ <7d7a3e70-6a46-b722-ef48-7206a47185dd@huawei.com>
+ <YjKeuFGtjI7944uy@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <05a96786-cfe8-029f-f29a-60fb94129f91@huawei.com>
+Date:   Thu, 17 Mar 2022 11:19:03 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <YjKeuFGtjI7944uy@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems706-chm.china.huawei.com (10.3.19.183) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add buck_vcore_sshub and ldo_vsram_others_sshub
-regulators to binding document for MT6358 and MT6366.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Mark Brown <broonie@kernel.org>
-Signed-off-by: Johnson Wang <johnson.wang@mediatek.com>
----
- .../bindings/regulator/mt6358-regulator.txt   | 22 ++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-index 9a90a92f2d7e..7034cdca54e0 100644
---- a/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-+++ b/Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
-@@ -8,14 +8,14 @@ Documentation/devicetree/bindings/regulator/regulator.txt.
- 
- The valid names for regulators are::
- BUCK:
--  buck_vdram1, buck_vcore, buck_vpa, buck_vproc11, buck_vproc12, buck_vgpu,
--  buck_vs2, buck_vmodem, buck_vs1
-+  buck_vdram1, buck_vcore, buck_vcore_sshub, buck_vpa, buck_vproc11,
-+  buck_vproc12, buck_vgpu, buck_vs2, buck_vmodem, buck_vs1
- LDO:
-   ldo_vdram2, ldo_vsim1, ldo_vibr, ldo_vrf12, ldo_vio18, ldo_vusb, ldo_vcamio,
-   ldo_vcamd, ldo_vcn18, ldo_vfe28, ldo_vsram_proc11, ldo_vcn28, ldo_vsram_others,
--  ldo_vsram_gpu, ldo_vxo22, ldo_vefuse, ldo_vaux18, ldo_vmch, ldo_vbif28,
--  ldo_vsram_proc12, ldo_vcama1, ldo_vemc, ldo_vio28, ldo_va12, ldo_vrf18,
--  ldo_vcn33_bt, ldo_vcn33_wifi, ldo_vcama2, ldo_vmc, ldo_vldo28, ldo_vaud28,
-+  ldo_vsram_others_sshub, ldo_vsram_gpu, ldo_vxo22, ldo_vefuse, ldo_vaux18,
-+  ldo_vmch, ldo_vbif28, ldo_vsram_proc12, ldo_vcama1, ldo_vemc, ldo_vio28, ldo_va12,
-+  ldo_vrf18, ldo_vcn33_bt, ldo_vcn33_wifi, ldo_vcama2, ldo_vmc, ldo_vldo28, ldo_vaud28,
-   ldo_vsim2
- 
- Example:
-@@ -354,5 +354,17 @@ Example:
- 				regulator-max-microvolt = <3100000>;
- 				regulator-enable-ramp-delay = <540>;
- 			};
-+
-+			mt6358_vcore_sshub_reg: buck_vcore_sshub {
-+				regulator-name = "vcore_sshub";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+			};
-+
-+			mt6358_vsram_others_sshub_reg: ldo_vsram_others_sshub {
-+				regulator-name = "vsram_others_sshub";
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1293750>;
-+			};
- 		};
- 	};
+On 2022/3/17 10:36, Baoquan He wrote:
+> On 03/16/22 at 09:11pm, Leizhen (ThunderTown) wrote:
+>>
+>>
+>> On 2022/3/16 20:11, Baoquan He wrote:
+>>> On 02/27/22 at 11:07am, Zhen Lei wrote:
+> ...... 
+> 
+>>> Hi leizhen,
+>>>
+>>> I made change on reserve_crashkenrel(), inline comment may be slow.
+>>> Please check and consider if they can be taken.
+>>
+>> That's great. Thank you very much.
+>>
+>>>
+>>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+>>> index 30ae6638ff54..f96351da1e3e 100644
+>>> --- a/arch/arm64/mm/init.c
+>>> +++ b/arch/arm64/mm/init.c
+>>> @@ -109,38 +109,43 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+>>>   * This function reserves memory area given in "crashkernel=" kernel command
+>>>   * line parameter. The memory reserved is used by dump capture kernel when
+>>>   * primary kernel is crashing.
+>>> + *
+>>> + * NOTE: Reservation of crashkernel,low is special since its existence
+>>> + * is not independent, need rely on the existence of crashkernel,high.
+>>> + * Hence there are different cases for crashkernel,low reservation:
+> 
+> Considering to update the 3rd line as below:
+> 
+>  * NOTE: Reservation of crashkernel,low is special since its existence
+>  * is not independent, need rely on the existence of crashkernel,high.
+>  * Here, four cases of crashkernel,low reservation are summarized: 
+
+OK. How about change "crashkernel,low" to "crashkernel low memory"?
+"crashkernel=Y,low", "crashkernel=,low" and "crashkernel,low" are very similar,
+may dazzle the reader.
+
+> 
+>>> + * 1) crashkernel=Y,low is specified explicitly, crashkernel,low takes Y;
+>>> + * 2) crashkernel=,low is not given, while crashkernel=,high is specified,
+>>> + *    take the default crashkernel,low value;
+>>> + * 3) crashkernel=X is specified, while fallback to get a memory region
+>>> + *    in high memory, take the default crashkernel,low value;
+>>> + * 4) crashkernel='invalid value',low is specified, failed the whole
+>>> + *    crashkernel reservation and bail out.
+>>>   */
+>>>  static void __init reserve_crashkernel(void)
+>>>  {
+>>>  	unsigned long long crash_base, crash_size;
+>>>  	unsigned long long crash_low_size;
+>>>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>>> -	int ret;
+>>>  	bool fixed_base, high = false;
+>>>  	char *cmdline = boot_command_line;
+>>> +	int ret;
+>>>  
+>>>  	/* crashkernel=X[@offset] */
+>>>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+>>>  				&crash_size, &crash_base);
+>>>  	if (ret || !crash_size) {
+>>> -		/* crashkernel=X,high */
+>>>  		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+>>>  		if (ret || !crash_size)
+>>>  			return;
+>>>  
+>>> -		/* crashkernel=Y,low */
+>>>  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
+>>>  		if (ret == -ENOENT)
+>>> -			/*
+>>> -			 * crashkernel=Y,low is not specified explicitly, use
+>>> -			 * default size automatically.
+>>> -			 */
+>>> +			/* case #2 of crashkernel,low reservation */
+>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>  		else if (ret)
+>>> -			/* crashkernel=Y,low is specified but Y is invalid */
+>>> +			/* case #4 of crashkernel,low reservation */
+>>>  			return;
+>>>  
+>>> -		/* Mark crashkernel=X,high is specified */
+>>>  		high = true;
+>>>  		crash_max = CRASH_ADDR_HIGH_MAX;
+>>>  	}
+>>> @@ -148,7 +153,6 @@ static void __init reserve_crashkernel(void)
+>>>  	fixed_base = !!crash_base;
+>>>  	crash_size = PAGE_ALIGN(crash_size);
+>>>  
+>>> -	/* User specifies base address explicitly. */
+>>>  	if (fixed_base)
+>>>  		crash_max = crash_base + crash_size;
+>>>  
+>>> @@ -172,11 +176,7 @@ static void __init reserve_crashkernel(void)
+>>>  	}
+>>>  
+>>>  	if (crash_base >= SZ_4G) {
+>>> -		/*
+>>> -		 * For case crashkernel=X, low memory is not enough and fall
+>>> -		 * back to reserve specified size of memory above 4G, try to
+>>> -		 * allocate minimum required memory below 4G again.
+>>> -		 */
+>>> +		/* case #3 of crashkernel,low reservation */
+>>>  		if (!high)
+>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>  
+>>>
+>>>>  
+>>>> -	/* Current arm64 boot protocol requires 2MB alignment */
+>>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+>>>> +retry:
+>>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>>>>  					       crash_base, crash_max);
+>>>>  	if (!crash_base) {
+>>>> +		/*
+>>>> +		 * Attempt to fully allocate low memory failed, fall back
+>>>> +		 * to high memory, the minimum required low memory will be
+>>>> +		 * reserved later.
+>>>> +		 */
+>>>> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+>>>> +			crash_max = CRASH_ADDR_HIGH_MAX;
+>>>> +			goto retry;
+>>>> +		}
+>>>> +
+>>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>>>>  			crash_size);
+>>>>  		return;
+>>>>  	}
+>>>>  
+>>>> +	if (crash_base >= SZ_4G) {
+>>>> +		/*
+>>>> +		 * For case crashkernel=X, low memory is not enough and fall
+>>>> +		 * back to reserve specified size of memory above 4G, try to
+>>>> +		 * allocate minimum required memory below 4G again.
+>>>> +		 */
+>>>> +		if (!high)
+>>>> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>> +
+>>>> +		if (reserve_crashkernel_low(crash_low_size)) {
+>>>> +			memblock_phys_free(crash_base, crash_size);
+>>>> +			return;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>>>>  
+>>>> @@ -107,6 +194,9 @@ static void __init reserve_crashkernel(void)
+>>>>  	 * map. Inform kmemleak so that it won't try to access it.
+>>>>  	 */
+>>>>  	kmemleak_ignore_phys(crash_base);
+>>>> +	if (crashk_low_res.end)
+>>>> +		kmemleak_ignore_phys(crashk_low_res.start);
+>>>> +
+>>>>  	crashk_res.start = crash_base;
+>>>>  	crashk_res.end = crash_base + crash_size - 1;
+>>>>  	insert_resource(&iomem_resource, &crashk_res);
+>>>> -- 
+>>>> 2.25.1
+>>>>
+>>>
+>>> .
+>>>
+>>
+>> -- 
+>> Regards,
+>>   Zhen Lei
+>>
+> 
+> .
+> 
+
 -- 
-2.18.0
-
+Regards,
+  Zhen Lei
