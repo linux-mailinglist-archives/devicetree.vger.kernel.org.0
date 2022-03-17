@@ -2,171 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FD8C4DC2EC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 10:34:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1264DC325
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 10:44:25 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230183AbiCQJfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 05:35:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56042 "EHLO
+        id S232132AbiCQJpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 05:45:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231987AbiCQJfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 05:35:51 -0400
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3634D16C084;
-        Thu, 17 Mar 2022 02:34:35 -0700 (PDT)
-Received: by mail-wr1-f54.google.com with SMTP id x15so6438334wru.13;
-        Thu, 17 Mar 2022 02:34:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=sWJXxumggqkeiId/uryaGdIFQhUjPzM/H86XSQncuv4=;
-        b=AN8qKPkU6ZQe4xpdx8+vHNLtlO3e7RbO/eMGndOcXUkNhjBtAUKKz9qxmvgW60C7hT
-         YE5p/R9LxEBFKZ9jrQnpZ60M6Np/QhXflkj0SV+GMlMVOOp1NoWEX9xguiNCkofW6HcS
-         6iG5cloJd3opm1g1ICC5brJUeAbCfHhygPRMEE7V0qiJiS44GV9zCaAAcePj77hgxh+p
-         XQ6M8av4htb3zh3OL7bPw/hvi1Nwilzgk8NTx+EW8qlVRb565ctLZV4AAUBnrdiank6+
-         GLJIeq2/vy/4ty/8HT+3NpRoemXVYbuWCeabPKa/lUizJEhWPAuZlwUhHwF9uoCkiMCX
-         Cbrw==
-X-Gm-Message-State: AOAM531Ee1fp+JSj5jjGnBeZgqE/Rh5dWsa7oEQhq43dK6jSqsvZ70QR
-        0FuHkGE4mmTmTe6bWmRB9tQ=
-X-Google-Smtp-Source: ABdhPJxHOdLhJhlAVBYo1oJlNZ4aWgDo2Hdsjm7E0SRhNq6Y4fIHNktuOUpzgNYnKItKDquR0sUcWw==
-X-Received: by 2002:adf:8003:0:b0:1f1:d81b:d752 with SMTP id 3-20020adf8003000000b001f1d81bd752mr3108143wrk.429.1647509673521;
-        Thu, 17 Mar 2022 02:34:33 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id u11-20020a056000038b00b00203e5c9aa09sm2723905wrf.27.2022.03.17.02.34.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 02:34:33 -0700 (PDT)
-Message-ID: <3828e37f-f8e0-8473-537c-8e47cd5df8c6@kernel.org>
-Date:   Thu, 17 Mar 2022 10:34:31 +0100
+        with ESMTP id S232131AbiCQJpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 05:45:30 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 060BD197AF3;
+        Thu, 17 Mar 2022 02:44:13 -0700 (PDT)
+X-UUID: 67d16cc1e9444f90b9cc772c0ef77b8d-20220317
+X-UUID: 67d16cc1e9444f90b9cc772c0ef77b8d-20220317
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 303202656; Thu, 17 Mar 2022 17:44:08 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Mar 2022 17:44:06 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Mar
+ 2022 17:44:06 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Mar 2022 17:44:04 +0800
+Message-ID: <85717fa0b71f26431e4ca5de794e79c32c503552.camel@mediatek.com>
+Subject: Re: [PATCH V4 4/6] spi: mediatek: add spi memory support for ipm
+ design
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "Mark Brown" <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Date:   Thu, 17 Mar 2022 17:44:04 +0800
+In-Reply-To: <b6394c1a-28ee-f4bb-434f-afd311893fb8@collabora.com>
+References: <20220315032411.2826-1-leilk.liu@mediatek.com>
+         <20220315032411.2826-5-leilk.liu@mediatek.com>
+         <b237c1fe-9ddd-0a2e-ecf2-05bfb984c5dd@collabora.com>
+         <602f93f020967789eff49e2fd821d1b03f5b009f.camel@mediatek.com>
+         <b6394c1a-28ee-f4bb-434f-afd311893fb8@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: chrome: Add ChromeOS fingerprint
- binding
-Content-Language: en-US
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Benson Leung <bleung@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>
-References: <20220317005814.2496302-1-swboyd@chromium.org>
- <20220317005814.2496302-2-swboyd@chromium.org>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220317005814.2496302-2-swboyd@chromium.org>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2022 01:58, Stephen Boyd wrote:
-> Add a binding to describe the fingerprint processor found on Chromebooks
-> with a fingerprint sensor.
+On Thu, 2022-03-17 at 10:33 +0100, AngeloGioacchino Del Regno wrote:
+> Il 17/03/22 10:27, Leilk Liu ha scritto:
+> > On Tue, 2022-03-15 at 10:31 +0100, AngeloGioacchino Del Regno
+> > wrote:
+> > > Il 15/03/22 04:24, Leilk Liu ha scritto:
+> > > > this patch add the support of spi-mem for ipm design.
+> > > > 
+> > > > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
+> > > > ---
+> > > >    drivers/spi/spi-mt65xx.c | 349
+> > > > ++++++++++++++++++++++++++++++++++++++-
+> > > >    1 file changed, 348 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-
+> > > > mt65xx.c
+> > > > index 1a0b3208dfca..8958c3fa4fea 100644
+> > > > --- a/drivers/spi/spi-mt65xx.c
+> > > > +++ b/drivers/spi/spi-mt65xx.c
+> > > 
+> > > ...snip...
+> > > 
+> > > > +
+> > > > +static void of_mtk_spi_parse_dt(struct spi_master *master,
+> > > > struct
+> > > > device_node *nc)
+> > > > +{
+> > > > +	struct mtk_spi *mdata = spi_master_get_devdata(master);
+> > > > +	u32 value;
+> > > > +
+> > > > +	if (!of_property_read_u32(nc, "spi-tx-bus-width",
+> > > > &value)) {
+> > > 
+> > > Hello Leilk,
+> > > 
+> > > thanks for considering my advice about "spi-{tx,rx}-bus-width",
+> > > but
+> > > there's
+> > > something that you have misunderstood about it.
+> > > 
+> > > Simply, you don't need this function at all. Whatever you are
+> > > doing
+> > > here is
+> > > already being performed in the Linux SPI framework: at the end of
+> > > the
+> > > probe
+> > > function, this driver is calling the (legacy)
+> > > devm_spi_register_master(),
+> > > which calls devm_spi_register_controller().
+> > > 
+> > > In drivers/spi/spi.c, function spi_register_controller(), will in
+> > > turn call
+> > > of_register_spi_devices(ctlr) -> of_register_spi_device(ctlr,
+> > > nc)...
+> > > that
+> > > will end up finally calling function of_spi_parse_dt(ctlr, spi,
+> > > nc).
+> > > 
+> > > The last mentioned function already contains the logic and setup
+> > > to
+> > > check
+> > > devicetree properties "spi-tx-bus-width" and "spi-rx-bus-width"
+> > > (and
+> > > some
+> > > others, as well).
+> > > 
+> > > This means that spi-mt65xx.c already probed these even before
+> > > your
+> > > IPM
+> > > implementation, hence ***function of_mtk_spi_parse_dt() is not
+> > > needed***.
+> > > 
+> > > Simply drop it and don't check for these properties: that's
+> > > already
+> > > done.
+> > > 
+> > > 
+> > > Regards,
+> > > Angelo
+> > > 
+> > 
+> > Hi Angelo,
+> > 
+> > Thanks for your advice.
+> > 
+> > There are two spi controllor on MT7986. One supports single/dual
+> > mode,
+> > the other supports quad mode. Both of them can support spi memory
+> > framework(one's tx/rx bus width is 1/2, the other one's tx/rx bus
+> > width
+> > is 1/2/4).
+> > 
+> > Can I use of_mtk_spi_parse_dt() to parse the information? What's
+> > your
+> > suggestion?
+> > 
+> > Thanks!
+> > 
 > 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Guenter Roeck <groeck@chromium.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Craig Hesling <hesling@chromium.org>
-> Cc: Tom Hughes <tomhughes@chromium.org>
-> Cc: Alexandru M Stan <amstan@chromium.org>
-> Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  .../bindings/chrome/google,cros-ec-fp.yaml    | 85 +++++++++++++++++++
->  1 file changed, 85 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+> As I've already said, this does NOT require any devicetree handling
+> in
+> spi-mt65xx.c, as setting the right mode_bits is already handled in
+> drivers/spi/spi.c - please follow the explaination that I have given
+> before to fully understand the situation.
 > 
-> diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-> new file mode 100644
-> index 000000000000..ba4212e6b583
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+> Regards,
+> Angelo
+> 
+OK, I'll fix it, thanks.
 
-Hm, so chrome starts to be its own subsystem? I see USB connector
-bindings are already there, instead of usb directory.
+> 
+> > 
+> > > > +		switch (value) {
+> > > > +		case 1:
+> > > > +			break;
+> > > > +		case 2:
+> > > > +			master->mode_bits |= SPI_TX_DUAL;
+> > > > +			break;
+> > > > +		case 4:
+> > > > +			master->mode_bits |= SPI_TX_QUAD;
+> > > > +			break;
+> > > > +		default:
+> > > > +			dev_warn(mdata->dev,
+> > > > +				 "spi-tx-bus-width %d not
+> > > > supported\n",
+> > > > +				value);
+> > > > +			break;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > > +	if (!of_property_read_u32(nc, "spi-rx-bus-width",
+> > > > &value)) {
+> > > > +		switch (value) {
+> > > > +		case 1:
 
-Is there anything special about Chrome that it is equal to subsystem or
-architecture? Once second file ends up there, this will encourage more
-of such patterns.
-
-> @@ -0,0 +1,85 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS Embedded Fingerprint Controller
-> +
-> +description:
-> +  Google's ChromeOS embedded fingerprint controller is a device which
-> +  implements fingerprint functionality such as unlocking a Chromebook
-> +  without typing a password.
-> +
-> +maintainers:
-> +  - Tom Hughes <tomhughes@chromium.org>
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-fp
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    maximum: 3000000
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios: true
-> +  boot0-gpios:
-> +    maxItems: 1
-> +    description: Assert for bootloader mode.
-> +
-> +  vdd-supply: true
-> +
-> +  google,cros-ec-spi-pre-delay:
-
-Use proper unit suffix, so "-us". No need for type then.
-
-
-> +    description:
-> +      This property specifies the delay in usecs between the
-> +      assertion of the CS and the first clock pulse.
-> +    allOf:
-
-No need for allOf. Just put default/minimum directly.
-
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - default: 0
-> +      - minimum: 0
-> +
-> +  google,cros-ec-spi-msg-delay:
-> +    description:
-> +      This property specifies the delay in usecs between messages.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - default: 0
-> +      - minimum: 0
-
-Same here (proper suffix + allOf).
-
-
-
-Best regards,
-Krzysztof
