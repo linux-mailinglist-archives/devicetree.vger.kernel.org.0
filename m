@@ -2,189 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C411B4DCB45
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:25:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7CE4DCACD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:09:16 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236517AbiCQQ0r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 12:26:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38750 "EHLO
+        id S233690AbiCQQKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 12:10:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236518AbiCQQ0q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:26:46 -0400
-X-Greylist: delayed 1130 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Mar 2022 09:25:28 PDT
-Received: from mx0c-0054df01.pphosted.com (mx0c-0054df01.pphosted.com [67.231.159.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E83C74BA
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 09:25:27 -0700 (PDT)
-Received: from pps.filterd (m0208999.ppops.net [127.0.0.1])
-        by mx0c-0054df01.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22HA0Xb2020692;
-        Thu, 17 Mar 2022 12:06:19 -0400
-Received: from can01-qb1-obe.outbound.protection.outlook.com (mail-qb1can01lp2055.outbound.protection.outlook.com [104.47.60.55])
-        by mx0c-0054df01.pphosted.com (PPS) with ESMTPS id 3et64ktkt1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 17 Mar 2022 12:06:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BOjXzy3o1YBqCYE3zupVDQR3OLUyufXt2tIC3vF92O85udZ1DSjRwH2zgBbOnmS1g2yoKjCz+LX1PS1rtfMzajg6IIOMyOuxRlQnqVJ96fQNZdK1E5JkMR7uyu1osJcEn8x5vqnpJ+uxoKE7Yi3zhoMN5wsJfhDhPZTjsZB1saj95oQ/KySRLj2pkX1jBjj6b7tsRwUSAUf3gxy1zd5p9HF5F82gaPQXpg2j063CHyxKq7jMA+tt07CUPwPKqc/oXUiZ0+8aNN6vHU3MWkq8QqYXGMPdPghF33q79IcnfSBB5q8fsOVLqRjTTnqqS4xvCYdsY1Rzuiq40dpEH6OoHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qskhwHCNrhn30P4FIrDYw1+jAzPcEU06bdnxZ7MtZpo=;
- b=Rz6ecE8c1m7RQU5O/tRv3dl9vJWMTHoELuq5qjecv1g4X/zAZlf+8ZyXI0xjfyhV4+eBYvY0XtWSJws68PRcaZ8TTupJO2TahJDpeXB6lMYA6fi0UUm7PmuafWGn5+oS3S0WHsfQ6o4nlOob5oQzBQnJ8sRBhtBfpCokrbvUoeKGkhUMQH8fN/cksmWQCrudUOaeog7JXsPjsvrqCi3Vovbb1Rh+JTL2c9OuR/Y+62ofpP+SToaV5EAUEJ1OBUO9jkMzNbz1BoxBf+yPO6f7/knm5p3u/ZypoO6arYFz+kUAJztBiQkIVfRmf7FB5f9sN3zDtTYSJii191FQaMo56A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=calian.com; dmarc=pass action=none header.from=calian.com;
- dkim=pass header.d=calian.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=calian.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qskhwHCNrhn30P4FIrDYw1+jAzPcEU06bdnxZ7MtZpo=;
- b=mlPxmxqIkYu6+amsY43vmMyz50bGQE1ebjKjrUx26XR5nok7NFjgdaOiYhsv/QFmWJKv5NbUkKqdQusmG5KxzDe3r83lCNCVvkr6K4Y7oLDG1xE6Y8mIl3QGT6LJIBaPrXIvy8kDmncTbd10N7VXAAH1pL74VmQgM5jOCvUHvuA=
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:b01:6a::19)
- by YQXPR01MB6090.CANPRD01.PROD.OUTLOOK.COM (2603:10b6:c01:3f::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.5081.15; Thu, 17 Mar
- 2022 16:06:17 +0000
-Received: from YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::e8a8:1158:905f:8230]) by YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
- ([fe80::e8a8:1158:905f:8230%7]) with mapi id 15.20.5061.024; Thu, 17 Mar 2022
- 16:06:17 +0000
-From:   Robert Hancock <robert.hancock@calian.com>
-To:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
+        with ESMTP id S230243AbiCQQK3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:10:29 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D02BDE9C88;
+        Thu, 17 Mar 2022 09:09:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1647533352;
+  x=1679069352;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=GCK73NAHwWh0xTIrNJAiZh4vvH5OIpID7Fc8LsMvkc0=;
+  b=kYTiOh/hoSrid38RuazzBbBQP+Tpg4augX7V9U5IlobLkATf8oTMd7Oj
+   6Po3Pj9I+yctKZ6MaI8Yz36r09QUxf6c8UeCXK6gh52zHMpOuQDALQSAZ
+   Sw6+FwTOarocYJfBH4bZTYoNvmLhNcrvAQY0KnrUuAYSNAWiPcrIiBtXe
+   ELlk4LsKK+J3hWhAnP1aR9F8dBVo8uZmLawvqRoL2SDSi/3SRfEqDLMPa
+   z/99gsIabP8A5UhKTTmcvpmbafVgTTsFa0iEriU7pvNzFAaFwGlktV/eQ
+   3tgSZ2Qr5dc8V2qvfjT58ezkPsIDQQGlPaPHKy66IfnYjaQDNVpw2Af4m
+   A==;
+Date:   Thu, 17 Mar 2022 17:09:08 +0100
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Brendan Higgins <brendanhiggins@google.com>
+CC:     Dmitry Vyukov <dvyukov@google.com>,
+        Kees Cook <keescook@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        kernel <kernel@axis.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "radhey.shyam.pandey@xilinx.com" <radhey.shyam.pandey@xilinx.com>,
-        "michal.simek@xilinx.com" <michal.simek@xilinx.com>,
-        "kuba@kernel.org" <kuba@kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "andy.chiu@sifive.com" <andy.chiu@sifive.com>,
-        "davem@davemloft.net" <davem@davemloft.net>
-CC:     "greentime.hu@sifive.com" <greentime.hu@sifive.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: xilinx_axienet: add pcs-handle
- attribute
-Thread-Topic: [PATCH v2 1/2] dt-bindings: net: xilinx_axienet: add pcs-handle
- attribute
-Thread-Index: AQHYOeBenngk9+RYokmqKO+eu5OSmKzDWH+AgABlnAA=
-Date:   Thu, 17 Mar 2022 16:06:17 +0000
-Message-ID: <27534eccd05cd035773c1a4f1ea55fe6bd4a3f48.camel@calian.com>
-References: <20220317091926.86765-1-andy.chiu@sifive.com>
-         <CABgGipUd67TSoPz3eeKf2kXzzwy8NWJMkGYtkikdcBKiaJd8Bg@mail.gmail.com>
-In-Reply-To: <CABgGipUd67TSoPz3eeKf2kXzzwy8NWJMkGYtkikdcBKiaJd8Bg@mail.gmail.com>
-Accept-Language: en-CA, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: Evolution 3.28.5 (3.28.5-18.el8) 
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 374f8dd0-54f5-4f37-8efb-08da08301192
-x-ms-traffictypediagnostic: YQXPR01MB6090:EE_
-x-microsoft-antispam-prvs: <YQXPR01MB60908311BD1D73E2A46C8EA0EC129@YQXPR01MB6090.CANPRD01.PROD.OUTLOOK.COM>
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bF3F0BeP0VOH0F+fg9jiaUvJ6WqXe1Qg+Zc7hQao4QiwwVnJWTIPzSBYG+8rvntpX20JqyNsmkE3i6DK8ggX/EEeogd5+zW8xtenhKfZ2kRBJKhS0Jany7LsMMAcCq/PYRPtGSH8g8ftel/2i7K/rWMCdBbgreVf8cRmDyRUnxFxLqVDF6qS2XjKbsxZ+GXx5JWBmICIX2sDLx1h5mTnSXVcf4Pm7PXxODC1XC98Zm3WjJj7CsxCBZHvGJFMA547dClKixpMJaC9QVpzWDYvUBfGH/cYTThyMIHl0dtI7yAAhhKCwtGuX/qwy4aSHmzmZH/pJiIhNazWPBQEuvRsSOx/NFXADA5X0mZ9383IfICb6GSuzMYVMVs3y6H7h8Mou33K+KwzFXn/LoXG+bLd2aqQXb+SvEoe5zc3UvEsoL6cwZb7VBoJ8hcUX7skaoxEdRupTphcsEQ4oJ+1vPbbW3DA0b7t2cpTFcLUXMVrUYfw76y20C43MkSm+Nkjqp5rRV1BwVtBM97zsp21FAMotROMnByfplU7k8o+LPgDoDfoo05A+kgbkUyIwE/Hr/tlxyaRRwKEMZQvKeMPDxAoqaZO/OQVL5cRQz1M6/wAxNEEGjWokOT7dKi8RPbj6K7kd9VZ7sEpHvJExgRQcDbRvkF08jn8J+mUlI9L2KGJ1zcM2NDriqaVQLVme0wKuHx+Zpn1jsQsbk5KOGHkZT+jMiGnt2Gpd/a9vtHF3ydLkd/yqiOs8xVIk2bKlzk442xUXkAyw+DA60n9IiLDF2iM28MsipzGr9gmXsJIICvybbwArPcmMSm5bGo8xcEg5q17+VOzKVs2j6sg8SE6lv9RmtqKZSB+gK4X7HHGnAEBy7E=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(76116006)(2906002)(508600001)(8676002)(64756008)(66446008)(66476007)(66556008)(66946007)(110136005)(71200400001)(6486002)(15974865002)(86362001)(36756003)(6506007)(53546011)(2616005)(6512007)(91956017)(316002)(83380400001)(4326008)(26005)(186003)(122000001)(38100700002)(38070700005)(8936002)(7416002)(5660300002)(44832011)(99106002)(18886075002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SGR4SVJVUnJVQlJUWDBSNmRsbmtENzQvSTEvdmJqa2h0cVA5Z21lM3BVVEFF?=
- =?utf-8?B?bG5xZEdVc2NmbCt6OTFIRXNHOWRNRE12QS9reDhITFc3Skk4Y0dNODB6YTd6?=
- =?utf-8?B?M0hibnBqRm8vb2ZPdUQweVBDdWdlVjQ0azFUQ1dQc0pzY2J0MVUwRnBPbDdp?=
- =?utf-8?B?Nk1vM0w5MEI1cUhta0p0bGtrbngxOEc2bXVEd25VVVdsQmpPMTNsODVCbGZN?=
- =?utf-8?B?L2VzT2t6NTVGczVuaFRVUHZWenNGbWxPWll6djFmcG8yY3Q4Qkhja1QzQnpn?=
- =?utf-8?B?S0RtUk5MT20vYkdzVmU0bjI2QkYrK0JNSDYrYVlIRkpXQndtZGVwUGo0STIr?=
- =?utf-8?B?UUNtdVk2ZllCSXYwUm1LR0tHQUJ5MnM2SzcwQmttazdQZzRWZzJOS1RXcXRS?=
- =?utf-8?B?dE4zL2V1OXlLdnNzblp0R0wwTUNVUy9kN3RVbEg4YytqVFc2UlJIR2VHRmJW?=
- =?utf-8?B?NmpodzFVd295a2xaZXVyVDRrNDF1cEJiVXVKNXMrOUdaUG9oRTA0LzdFRjJ1?=
- =?utf-8?B?UHJRVWpGL2FCK3I0UWFKS21zR0FMdGJDNlZqSkFhbmJCK3RpTHBvcDUydEU4?=
- =?utf-8?B?S0Y3TEY3Q1M2WURKRnhDN3h6RzRmZWVpUkg5cERnbW9iT0Nwc3NrMEx0UTVD?=
- =?utf-8?B?U1VOZnZSSXRWbHdWTmxnenJTVDdxKzBGeGs0NWwwZlR5MVRMay9CQU04K3hQ?=
- =?utf-8?B?MGx0Kzl4c0dPNGl5bVhuZElpY0VwdVh3SVB3dlVGRzZIOEpUaGE4eVN6Q0ZK?=
- =?utf-8?B?cU43VnZudzI0T2g1RVgzeitmUlRaeHB5ZkE3N2N6cDlhYUNYZWdCZzhPU2p0?=
- =?utf-8?B?UDZmYWNrUUQ0TFRQSi9RMlNzUno1UnNobUpvZHFSMUJnUjNOMWRmZkZKa2NR?=
- =?utf-8?B?d2h3VGFHcWp2OE5icWk5b25xQUJ6OExPR09uMkdYR1hUcWxOZTNkSFRSMWwz?=
- =?utf-8?B?T0xpaFZXS3JsdnFLZEtDR1BnTm1nZm5LM2lqZGlJdFJqcUo5elF2QVlZUWN4?=
- =?utf-8?B?d2ZmTGdzTmxiRU5SUUhNai9LU3plT0xYdW9RVE82YWdhNEZYMGxaWHhYTjZq?=
- =?utf-8?B?L05wNzhFdEQvRlQ2eWhJTlU2Tkd1QzFDQXM4ZloydGo4TW9hZ1U4LzNhamda?=
- =?utf-8?B?U3Rld3RhMjhWK1BEd3VmNDhmUXBrWUZFR3J4cUlIUWpCeVhnVHY4T3VEZlJm?=
- =?utf-8?B?cUx3SkllVFEybzhseVpxK1VOTVZCWmNWRHhSNU4wM1NsUEx4VEVYMUJ2L1Qw?=
- =?utf-8?B?T1pmZzRIVzBPdU5zTld2QUF0L0ZRczZVSUF3d3BmL3prODBFVlE0MUlUdFVK?=
- =?utf-8?B?cTB3aTVZaHI5cGVmc0pIVmhxTmxXYWJHekxBT1VJNDluSGZ6UEZ4TkVCT0lG?=
- =?utf-8?B?OEJnSUlLQVI0bkVlZHV4ZzQ5ODA3ekVxeG10ZkVsb1RsMkloc0pJQkxQUlhH?=
- =?utf-8?B?b0JMTTg0WjV0alNaMjlZWGx4Q3ZybVNRTnZEREdMUUhFTXhFdDBzeHlhcThs?=
- =?utf-8?B?a0U4VlhuQUpiRXEvM1hlL2g3TGdJZDlsYSttaEVoR1FhSGYvOXRsaFF0alBU?=
- =?utf-8?B?RXcwRmRhaXFsTklxMzlOLzNVdTNnVlo1Q2pLaGEvTEVjTnRhbnBYZEo1ODRU?=
- =?utf-8?B?U0M5VDhwZE4wNGNITkg3SzBGYWZJY3c2MDJKbHZRSnVsUVpCSUtJMlJDZnhO?=
- =?utf-8?B?N2pxSnRYOTNBdk5KKzZBeTZYd2xXb3N4MGJ1U2V6eTA4eFM3YnU5K2RoeUtS?=
- =?utf-8?B?OHlVNzRBUE1qVFNjbXJGLzlQSTFaNy9EdUpjd0ptUDU2eEk3cFc1U1B5QWpt?=
- =?utf-8?B?OWN3em5TUU1WN0dJRUVTb20wSW44VkFDQUtsWVBqM1hpaG9hSXpuVzdqOCtE?=
- =?utf-8?B?bGdpMWtnNjQ4MDhYOUlpRjNWTWNZWmxmelprTm5MN0V3REg0cnBWOUc1N2xp?=
- =?utf-8?B?ME5yRW9nN2QzaGZjb3JMNkFJQXlQUHI2RXZ3NjlUd2wvS2phT1RMYzFDblR6?=
- =?utf-8?Q?M8Xd3rnxTX9uZhb/txhHYkqzPl0byc=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2C2D0CA15734534C929CDFE8B1BCD785@CANPRD01.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
+        "shuah@kernel.org" <shuah@kernel.org>,
+        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "corbet@lwn.net" <corbet@lwn.net>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
+Subject: Re: [RFC v1 00/10] roadtest: a driver testing framework
+Message-ID: <20220317160908.GA20347@axis.com>
+References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
+ <CAFd5g45zwSNr-_PSbtGn1MiQgombSBTCjXOG-cvcQW8xQQUo+Q@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: calian.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: YT3PR01MB6274.CANPRD01.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 374f8dd0-54f5-4f37-8efb-08da08301192
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2022 16:06:17.1679
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 23b57807-562f-49ad-92c4-3bb0f07a1fdf
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tgGsN+N4u0p24GcvaVlphVk1DQpFyjxK/H1QS2UaihMHT2lQ7y24hLWsNwrOrgLqaiIjD+lmkTc1//vSwIHKfy3GRFrzv8nS3ZOr2wn+NtU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: YQXPR01MB6090
-X-Proofpoint-GUID: 7H46MEhM_I-oYzbEjbfn5iYGzMt3BcQB
-X-Proofpoint-ORIG-GUID: 7H46MEhM_I-oYzbEjbfn5iYGzMt3BcQB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.850,Hydra:6.0.425,FMLib:17.11.64.514
- definitions=2022-03-17_06,2022-03-15_01,2022-02-23_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 phishscore=0
- priorityscore=1501 spamscore=0 adultscore=0 bulkscore=0 impostorscore=0
- mlxscore=0 lowpriorityscore=0 mlxlogscore=999 suspectscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2202240000 definitions=main-2203170092
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <CAFd5g45zwSNr-_PSbtGn1MiQgombSBTCjXOG-cvcQW8xQQUo+Q@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIyLTAzLTE3IGF0IDE4OjAyICswODAwLCBBbmR5IENoaXUgd3JvdGU6DQo+IGxv
-b3AgaW46IHJhZGhleS5zaHlhbS5wYW5kZXlAeGlsaW54LmNvbQ0KPiANCj4gDQo+IE9uIFRodSwg
-TWFyIDE3LCAyMDIyIGF0IDU6MjEgUE0gQW5keSBDaGl1IDxhbmR5LmNoaXVAc2lmaXZlLmNvbT4g
-d3JvdGU6DQo+ID4gRG9jdW1lbnQgdGhlIG5ldyBwY3MtaGFuZGxlIGF0dHJpYnV0ZSB0byBzdXBw
-b3J0IGNvbm5lY3RpbmcgdG8gYW4NCj4gPiBleHRlcm5hbCBQSFkgaW4gU0dNSUkgb3IgMTAwMEJh
-c2UtWCBtb2RlcyB0aHJvdWdoIHRoZSBpbnRlcm5hbCBQQ1MvUE1BDQo+ID4gUEhZLg0KPiA+IA0K
-PiA+IFNpZ25lZC1vZmYtYnk6IEFuZHkgQ2hpdSA8YW5keS5jaGl1QHNpZml2ZS5jb20+DQo+ID4g
-UmV2aWV3ZWQtYnk6IEdyZWVudGltZSBIdSA8Z3JlZW50aW1lLmh1QHNpZml2ZS5jb20+DQo+ID4g
-LS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9uZXQveGlsaW54X2F4
-aWVuZXQudHh0IHwgNSArKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNSBpbnNlcnRpb25zKCsp
-DQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy9uZXQveGlsaW54X2F4aWVuZXQudHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3MvbmV0L3hpbGlueF9heGllbmV0LnR4dA0KPiA+IGluZGV4IGI4ZTQ4OTRiYzYzNC4u
-MmE5YTNhOTBlYjYzIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
-aW5kaW5ncy9uZXQveGlsaW54X2F4aWVuZXQudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL25ldC94aWxpbnhfYXhpZW5ldC50eHQNCj4gPiBAQCAtNjgsNiAr
-NjgsMTEgQEAgT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiAgICAgICAgICAgICAgICAgICByZXF1
-aXJlZCB0aHJvdWdoIHRoZSBjb3JlJ3MgTURJTyBpbnRlcmZhY2UgKGkuZS4gYWx3YXlzLA0KPiA+
-ICAgICAgICAgICAgICAgICAgIHVubGVzcyB0aGUgUEhZIGlzIGFjY2Vzc2VkIHRocm91Z2ggYSBk
-aWZmZXJlbnQgYnVzKS4NCj4gPiANCj4gPiArIC0gcGNzLWhhbmRsZTogICAgICAgICAgIFBoYW5k
-bGUgdG8gdGhlIGludGVybmFsIFBDUy9QTUEgUEhZLCBpZiBhIGZpeGVkDQo+ID4gZXh0ZXJuYWwg
-UEhZDQo+ID4gKyAgICAgICAgICAgICAgICAgaXMgdGllZCB0byBpdCBpbiBTR01JSSBvciAxMDAw
-QmFzZS1YIG1vZGVzLiBUaGlzIGlzIG5vdA0KPiA+ICsgICAgICAgICAgICAgICAgIHJlcXVpcmVk
-IGZvciBTRlAgY29ubmVjdGlvbi4gVGhlIGRyaXZlciB3b3VsZCB1c2UgcGh5LQ0KPiA+IGhhbmRs
-ZQ0KPiA+ICsgICAgICAgICAgICAgICAgIHRvIHJlZmVyZW5jZSB0aGUgUENTL1BNQSBQSFkgaW4g
-c3VjaCBjYXNlLg0KPiA+ICsNCg0KSSB3b3VsZCBzYXkgcGNzLWhhbmRsZSBzaG91bGQgYmUgcHJl
-ZmVyYWJseSB1c2VkIHRvIHBvaW50IHRvIHRoZSBQQ1MvUE1BIGluIGFsbA0KY2FzZXMuIHBoeS1o
-YW5kbGUgc2hvdWxkIGJlIHVzZWQgZm9yIGEgZml4ZWQgUEhZIGRvd25zdHJlYW0gb2YgdGhlIFBD
-Uy9QTUEgaWYNCm9uZSBleGlzdHMgLSB1c2luZyB0aGF0IGZvciB0aGUgUENTL1BNQSB3b3VsZCBi
-ZSBqdXN0IGZvciBiYWNrd2FyZA0KY29tcGF0aWJpbGl0eSB3aXRoIG9sZCBkZXZpY2UgdHJlZXMu
-DQoNCk1pZ2h0IHdhbnQgYSBjb21tZW50IGFzIHN1Y2ggaW4gdGhlIGNvZGUgYXMgd2VsbCwgd2hl
-cmUgaXQgaXMgcmV0cmlldmluZyBwaHktDQpoYW5kbGUgZm9yIHRoZSBQQ1MgYW5kIHBjcy1oYW5k
-bGUgaXMgbm90IHByZXNlbnQuDQoNCj4gPiAgRXhhbXBsZToNCj4gPiAgICAgICAgIGF4aV9ldGhl
-cm5ldF9ldGg6IGV0aGVybmV0QDQwYzAwMDAwIHsNCj4gPiAgICAgICAgICAgICAgICAgY29tcGF0
-aWJsZSA9ICJ4bG54LGF4aS1ldGhlcm5ldC0xLjAwLmEiOw0KPiA+IC0tDQo+ID4gMi4zNC4xDQo+
-ID4gDQotLSANClJvYmVydCBIYW5jb2NrDQpTZW5pb3IgSGFyZHdhcmUgRGVzaWduZXIsIENhbGlh
-biBBZHZhbmNlZCBUZWNobm9sb2dpZXMNCnd3dy5jYWxpYW4uY29tDQo=
+On Mon, Mar 14, 2022 at 11:24:59PM +0100, Brendan Higgins wrote:
+> +Kees Cook - I imagine you have already seen this, but I figured you
+> would be interested because of your recent work on the KUnit UAPI and
+> the mocking discussions.
+> +Dmitry Vyukov - This made me think of the syzkaller/KUnit experiments
+> we did a couple of years back - this would probably work a bit better.
+> 
+> On Fri, Mar 11, 2022 at 11:24 AM Vincent Whitchurch
+> <vincent.whitchurch@axis.com> wrote:
+> >
+> > This patchset proposes roadtest, a device-driver testing framework.  Drivers
+> > are tested under User Mode Linux (UML) and interact with mocked/modelled
+> > hardware.  The tests and hardware models are written in Python, the former
+> > using Python's built-in unittest framework.
+> 
+> Wow! This sounds awesome! I was hoping to get some kind of hardware
+> modeling with KUnit eventually. I did some experiments, but this looks
+> way more mature.
+
+Thank you for the comments!
+
+> > Drivers are tested via their userspace interfaces.  The hardware models allow
+> > tests to inject values into registers and assert that drivers control the
+> > hardware in the right way and react as expected to stimuli.
+> 
+> I already took a look at the documentation patch - I'll comment there
+> more in detail, but I like the hardware modelling and device tree
+> code; it seems very usable.
+> 
+> > Roadtest is meant to be used for relatively simple drivers, such as the ones
+> > part of the IIO, regulator and RTC subsystems.
+> 
+> Obviously for an initial version going after simple stuff makes sense,
+> but I would hope there is applicability to any driver stack
+> eventually.
+
+Yes, there is no inherent restriction to only simple hardware, but these
+kinds of subsystem are the ones where it's easier to apply the framework
+since there's simply less stuff to model/mock in the hardware.
+
+Supporting different busses also requires some work in the framework and
+potentially some new drivers.  For I2C we use virtio-i2c but there's no
+ready-made virtio-spi for example.  For MMIO (PCI / platform drivers), I
+did some basic experiments with UML's virtio-mmio in the early stages of
+writing this framework.
+
+> > = How does this relate to kselftests?
+> >
+> > Tests in kselftests also test kernel code using the userspace interfaces, but
+> > that's about what's common between the frameworks.  kselftests has other goals
+> > and does not provide any kind of mechanism for hardware mocking.
+> 
+> I had a question that after thinking about it; I think I know the
+> answer, so I am going to ask the question anyway and attempt to answer
+> it myself:
+> 
+> I agree in regard to mocking, but why not use kselftest for driving
+> tests that check drivers from userspace? I believe there are other
+> kselftest tests implemented in Python, why can't you just run your
+> tests inside of kselftest?
+> 
+> Now, I believe the answer to this question is that you need to control
+> spinning up your own kernel to run inside your test harness because
+> you need to control the environment that the kernel runs in - is this
+> correct?
+
+Yes, that is correct.  For example, the devicetree stuff requires that
+the kernel be booted with the devicetree.  For the other tests also it's
+simpler to have a controlled environment without being affected by other
+stuff going on on the host.  And generally it's of course easier if the
+kernel which is inevitably going to crash and burn due to buggy drivers
+isn't the one powering your workstation.
+
+Also, there is no currently way to use virtio drivers such as virtio-i2c
+and virtio-gpio (which roadtest uses) with the virtio device side
+implemented in userspace on the same system, so that would have also
+required a fair bit of work to get running.
+
+(On a side note, I've wondered why kselftest doesn't provide a standard
+way to run all the tests under kvm or something similar with all the
+correct configs.  For example, the kernels I work with are on embedded
+systems and I rarely recompile my host kernel, and I assume that there
+are plenty of others in the same situation.)
+
+> > = How does this relate to kunit?
+> >
+> > Kunit is for unit testing of functions in kernel code, and is not meant for
+> > testing kernel code via userspace interfaces.  It could in theory be used to
+> > test some of the simple drivers too, but that would require (1) a large amount
+> > of mocking code in various kernel frameworks, and, more importantly, (2)
+> > refactoring of the drivers to be tested.
+> 
+> I mostly agree, but I think there is something that is missing here:
+> so roadtest seems to depend on having a user interface to test a
+> driver - for a simple smoke test on a simple driver without a big
+> driver stack on top, that makes sense, but what about testing error
+> paths or a platform driver buried beneath a deep driver stack? I think
+> there is potential for a powerful combination using KUnit to test the
+> low level kernel API and using roadtest to mock the hardware
+> environment and provide configuration.
+
+Yes, that could be useful.  I have previously written some kunit tests
+for some experimental memory management code which required different
+devicetree reserved-memory nodes and arm64 (no hardware mocking) to run,
+and I ran them by having a shell script which ran QEMU several times
+with appropriate -append kunit.filter_glob=foo and -dtb options and
+post-processing the logs with kunit.py.
+
+> I am imagining that we could have an in-kernel KUnit/roadtest API that
+> we can use to have an in-kernel test request changes to the
+> environment for creating error cases and the like that can be
+> validated by KUnit test cases.
+> 
+> Going even further, I wonder if we could run kselftests inside of
+> roadtest since roadtest allows us to change the environment on the
+> fly.
+
+Sounds interesting, but I would likely need to see concrete examples to
+understand what kind of environment we'd want to change from within the
+kernel.
+
+> > This can be contrasted with roadtest which works with mostly unmodified drivers
+> > and which mocks the hardware at the lowest level without having to change
+> > kernel frameworks.
+> 
+> I think that is both potentially an advantage and a disadvantage.
+> 
+> The advantage is that your test is very general; roadtests would
+> likely be portable across kernel versions.
+> 
+> The disadvantage is that you don't get as much code introspection: I
+> imagine roadtest is not as good as testing error paths for example.
+> 
+> I also think that having to change code to make it more testable is
+> often an advantage as much as a disadvantage.
+
+Yes, that's true, but I highlighted the unmodified drivers bit because
+(1) the process of refactoring drivers which don't have tests to make
+them testable in itself carries it with a risk of breaking stuff, and
+(2) and there are simply so many existing drivers that it's very
+unlikely that most of them get refactored, but it should be relatively
+easy to, for example, add a regression test for a specific bug fix with
+roadtest.
+
+> 
+> Still, I think that is a good set of tradeoffs for roadtest to make
+> when set against KUnit and kselftest since roadtest seems to fit in
+> where kselftest and KUnit are weak.
