@@ -2,379 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 266994DC070
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:49:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 831F04DC0BE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 09:13:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229489AbiCQHuf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 03:50:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39410 "EHLO
+        id S230498AbiCQIOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 04:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiCQHud (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:50:33 -0400
-Received: from mail-yw1-x112f.google.com (mail-yw1-x112f.google.com [IPv6:2607:f8b0:4864:20::112f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 162BCD3723
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:49:17 -0700 (PDT)
-Received: by mail-yw1-x112f.google.com with SMTP id 00721157ae682-2e5969bdf31so48658247b3.8
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CxhKs33qKz6suXNHm1jB53sEskKF4ehz7UKKwX7WH2I=;
-        b=UroNxQQhcYn985C7c6vcxusQLfDBM+C2CO8CHxjLA1nsurUzi5xOkQ7eU0yGHUax4/
-         Zy/odR/jxAAvMnxTnlVJnOkBko5/+fR9X6OdcfRtBTLNYcMcpR/tb0e8mjLnEJv1w1Un
-         qtl9toarqI6xoRpuz4tdrN/DmsMVvdwHDnMBo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CxhKs33qKz6suXNHm1jB53sEskKF4ehz7UKKwX7WH2I=;
-        b=MEEhcUKvJ2N+FZsbVAF4BN+NMC9+gm95vq6ttGnbVf+jFp+w8uDTjvEeFY8LeN6TvX
-         cmycGVmTv5Ggh9Q2BHzg/zCiukuLTJ9ZDI/DhqPcBIr5e63AQ3wefdJXtxL9iplbOKNo
-         9+8VBUTli3rASnzgiLvHS8/EhdThwpPdfYEypx5xKggc75WHF/QT++uQXhFrN/cvF8ww
-         3I7ECh4uM6GH9BvaipZsKhgLAx1tTNcej2N8H61NlAzeyXJ+8ogryVtXnXdRIQiOrqhH
-         i/52gCVDSHIUYzLs2BXM/JcWB+Lp9itge3Vdr8AbCIS75DWnwqJUgFpXlH8olhZYHKrp
-         8IrQ==
-X-Gm-Message-State: AOAM531CqUrBoqKoAB3G6C1sA1tHEbrJM9CAqXnF7L/RsgMqGl5mFaDT
-        RZ0FOzqMFH62j6BWj960611+QHQ/z6DRbR8+W/MLuw==
-X-Google-Smtp-Source: ABdhPJygD5+S+JgKaE9mUCzyufJmjkB9OUVTcyUSN6SZ1eaIaWsdz/JRaHZmaWs9B4adB/ypoNHHUdsFjVRMQD2gXbs=
-X-Received: by 2002:a0d:e297:0:b0:2e5:9bbc:2455 with SMTP id
- l145-20020a0de297000000b002e59bbc2455mr4377377ywe.21.1647503356026; Thu, 17
- Mar 2022 00:49:16 -0700 (PDT)
+        with ESMTP id S230504AbiCQIOa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 04:14:30 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19831342CB;
+        Thu, 17 Mar 2022 01:13:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1647504791; x=1679040791;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=XfM++llsVg7AzR19XcfpPkISpAk7yp2WcnUrhhsvXJ0=;
+  b=Q9AYe2/sH/+ggaN2vMFuqprLxnOvnWHwVNe3Xlw7Bp3DrFeIwaoRkuOT
+   reAWLed9pvIh1FMB2efpJ4Xiccutfhk5lnBLNH00LxgWs0CfKxB0vQLZN
+   lbZYQZ1hQszAdkbRM2tO3YJ3AW01ZDqdZiRsPwKWHHpxwU8BjhNS6w3ML
+   LHejTYSs/5VIK+s/YX+49uMjzrp1Zh1/MOjaYTRGwi8NSYemkEEtMEgU/
+   3b5rLIYDs7qshcquxX5XrWPgP22WdKLNH3sIoUpoNSk3qLar6GpNESuhr
+   Zi3/kVR7QxC9gvnE1CWU4V+eFZeoWhG+mQczDhnSFGmZ2vEJmgVBiYBo0
+   g==;
+X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="244266190"
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; 
+   d="scan'208";a="244266190"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2022 01:13:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; 
+   d="scan'208";a="498748509"
+Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
+  by orsmga003.jf.intel.com with ESMTP; 17 Mar 2022 01:13:05 -0700
+Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
+        (envelope-from <lkp@intel.com>)
+        id 1nUlFo-000DU7-HL; Thu, 17 Mar 2022 08:13:04 +0000
+Date:   Thu, 17 Mar 2022 16:13:00 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
+        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
+        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
+        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
+        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        ctcchien@nuvoton.com
+Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
+        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v5 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+Message-ID: <202203171641.zYjMuQjO-lkp@intel.com>
+References: <20220317015854.18864-4-ctcchien@nuvoton.com>
 MIME-Version: 1.0
-References: <20220311133527.5914-1-jianjun.wang@mediatek.com> <20220311133527.5914-2-jianjun.wang@mediatek.com>
-In-Reply-To: <20220311133527.5914-2-jianjun.wang@mediatek.com>
-From:   Chen-Yu Tsai <wenst@chromium.org>
-Date:   Thu, 17 Mar 2022 15:49:05 +0800
-Message-ID: <CAGXv+5GxML3Ga5ampXdLBpPr52C99OiJXg65qn2p_spzP4dhPw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] phy: mediatek: Add PCIe PHY driver
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rex-bc.chen@mediatek.com, Randy.Wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220317015854.18864-4-ctcchien@nuvoton.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 11, 2022 at 9:46 PM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
->
-> Add PCIe GEN3 PHY driver support on MediaTek chipsets.
->
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> ---
->  drivers/phy/mediatek/Kconfig        |  11 ++
->  drivers/phy/mediatek/Makefile       |   1 +
->  drivers/phy/mediatek/phy-mtk-pcie.c | 198 ++++++++++++++++++++++++++++
->  3 files changed, 210 insertions(+)
->  create mode 100644 drivers/phy/mediatek/phy-mtk-pcie.c
->
-> diff --git a/drivers/phy/mediatek/Kconfig b/drivers/phy/mediatek/Kconfig
-> index 55f8e6c048ab..387ed1b3f2cc 100644
-> --- a/drivers/phy/mediatek/Kconfig
-> +++ b/drivers/phy/mediatek/Kconfig
-> @@ -55,3 +55,14 @@ config PHY_MTK_MIPI_DSI
->         select GENERIC_PHY
->         help
->           Support MIPI DSI for Mediatek SoCs.
-> +
-> +config PHY_MTK_PCIE
-> +       tristate "MediaTek PCIe-PHY Driver"
-> +       depends on ARCH_MEDIATEK || COMPILE_TEST
-> +       depends on OF
-> +       select GENERIC_PHY
-> +       help
-> +         Say 'Y' here to add support for MediaTek PCIe PHY driver.
-> +         This driver create the basic PHY instance and provides initialize
-> +         callback for PCIe GEN3 port, it supports software efuse
-> +         initialization.
-> diff --git a/drivers/phy/mediatek/Makefile b/drivers/phy/mediatek/Makefile
-> index ace660fbed3a..788c13147f63 100644
-> --- a/drivers/phy/mediatek/Makefile
-> +++ b/drivers/phy/mediatek/Makefile
-> @@ -6,6 +6,7 @@
->  obj-$(CONFIG_PHY_MTK_TPHY)             += phy-mtk-tphy.o
->  obj-$(CONFIG_PHY_MTK_UFS)              += phy-mtk-ufs.o
->  obj-$(CONFIG_PHY_MTK_XSPHY)            += phy-mtk-xsphy.o
-> +obj-$(CONFIG_PHY_MTK_PCIE)             += phy-mtk-pcie.o
->
->  phy-mtk-hdmi-drv-y                     := phy-mtk-hdmi.o
->  phy-mtk-hdmi-drv-y                     += phy-mtk-hdmi-mt2701.o
-> diff --git a/drivers/phy/mediatek/phy-mtk-pcie.c b/drivers/phy/mediatek/phy-mtk-pcie.c
-> new file mode 100644
-> index 000000000000..45a67d9171f6
-> --- /dev/null
-> +++ b/drivers/phy/mediatek/phy-mtk-pcie.c
-> @@ -0,0 +1,198 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2022 MediaTek Inc.
-> + * Author: Jianjun Wang <jianjun.wang@mediatek.com>
-> + */
-> +
+Hi Medad,
 
-Please include linux/bits.h for GENMASK().
+Thank you for the patch! Perhaps something to improve:
 
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
+[auto build test WARNING on ras/edac-for-next]
+[also build test WARNING on robh/for-next v5.17-rc8 next-20220316]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch]
 
-You don't need these two headers.
+url:    https://github.com/0day-ci/linux/commits/Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220317-100014
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git edac-for-next
+config: riscv-randconfig-r033-20220317 (https://download.01.org/0day-ci/archive/20220317/202203171641.zYjMuQjO-lkp@intel.com/config)
+compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project a6ec1e3d798f8eab43fb3a91028c6ab04e115fcb)
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # install riscv cross compiling tool for clang build
+        # apt-get install binutils-riscv64-linux-gnu
+        # https://github.com/0day-ci/linux/commit/94dbdfede018043818636c4c749ba374a45eaba1
+        git remote add linux-review https://github.com/0day-ci/linux
+        git fetch --no-tags linux-review Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220317-100014
+        git checkout 94dbdfede018043818636c4c749ba374a45eaba1
+        # save the config file to linux build tree
+        mkdir build_dir
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/edac/
 
-You could include linux/compiler_types.h for definition of __iomem.
+If you fix the issue, kindly add following tag as appropriate
+Reported-by: kernel test robot <lkp@intel.com>
 
-> +#include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
+All warnings (new ones prefixed by >>):
 
-> +#include <linux/of_address.h>
-> +#include <linux/of_device.h>
-
-Nor do you need these two.
-
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-
-Please include linux/slab.h for kmalloc() and friends.
-
-> +
-> +#include "phy-mtk-io.h"
-> +
-> +#define PEXTP_ANA_GLB_00_REG           0x9000
-> +#define PEXTP_ANA_LN0_TX_REG           0xA004
-> +#define PEXTP_ANA_LN0_RX_REG           0xA03C
-> +#define PEXTP_ANA_LN1_TX_REG           0xA104
-> +#define PEXTP_ANA_LN1_RX_REG           0xA13c
-> +
-> +/* PEXTP_GLB_00_RG[28:24] Internal Resistor Selection of TX Bias Current */
-> +#define EFUSE_GLB_INTR_SEL             GENMASK(28, 24)
-> +#define EFUSE_GLB_INTR_VAL(x)          ((0x1f & (x)) << 24)
-> +
-> +/* PEXTP_ANA_LN_RX_RG[3:0] LN0 RX impedance selection */
-> +#define EFUSE_LN_RX_SEL                        GENMASK(3, 0)
-> +#define EFUSE_LN_RX_VAL(x)             (0xf & (x))
-> +
-> +/* PEXTP_ANA_LN_TX_RG[5:2] LN0 TX PMOS impedance selection */
-> +#define EFUSE_LN_TX_PMOS_SEL           GENMASK(5, 2)
-> +#define EFUSE_LN_TX_PMOS_VAL(x)                ((0xf & (x)) << 2)
-> +
-> +/* PEXTP_ANA_LN_TX_RG[11:8] LN0 TX NMOS impedance selection */
-> +#define EFUSE_LN_TX_NMOS_SEL           GENMASK(11, 8)
-> +#define EFUSE_LN_TX_NMOS_VAL(x)                ((0xf & (x)) << 8)
-
-Register definitions look good. I matched them to the datasheet.
-
-> +struct mtk_pcie_phy {
-> +       struct device *dev;
-> +       struct phy *phy;
-> +       void __iomem *sif_base;
-> +};
-> +
-> +static int mtk_pcie_phy_init(struct phy *phy)
-> +{
-> +       struct mtk_pcie_phy *pcie_phy = phy_get_drvdata(phy);
-> +       struct device *dev = pcie_phy->dev;
-> +       bool nvmem_enabled;
-> +       u32 glb_intr, tx_pmos, tx_nmos, rx_data;
-> +       int ret;
-> +
-> +       nvmem_enabled = device_property_read_bool(dev, "nvmem-cells");
-> +       if (!nvmem_enabled)
-> +               return 0;
-> +
-> +       /* Set efuse value for lane0 */
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "tx_ln0_pmos", &tx_pmos);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read tx_ln0_pmos\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "tx_ln0_nmos", &tx_nmos);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read tx_ln0_nmos\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "rx_ln0", &rx_data);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read rx_ln0\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       /* Don't wipe the old data if there is no data in efuse cell */
-> +       if (!(tx_pmos || tx_nmos || rx_data)) {
-> +               dev_warn(dev, "%s: No efuse data found, but dts enable it\n",
-> +                        __func__);
-> +               return 0;
-> +       }
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN0_TX_REG,
-> +                           EFUSE_LN_TX_PMOS_SEL,
-> +                           EFUSE_LN_TX_PMOS_VAL(tx_pmos));
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN0_TX_REG,
-> +                           EFUSE_LN_TX_NMOS_SEL,
-> +                           EFUSE_LN_TX_NMOS_VAL(tx_nmos));
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN0_RX_REG,
-> +                           EFUSE_LN_RX_SEL, EFUSE_LN_RX_VAL(rx_data));
-> +
-> +       /* Set global data */
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "glb_intr", &glb_intr);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read glb_intr\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_GLB_00_REG,
-> +                           EFUSE_GLB_INTR_SEL, EFUSE_GLB_INTR_VAL(glb_intr));
-> +
-> +       /*
-> +        * Set efuse value for lane1, only available for the platform which
-> +        * supports two lane.
-> +        */
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "tx_ln1_pmos", &tx_pmos);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read tx_ln1_pmos, efuse value not support for lane 1\n",
-> +                       __func__);
-> +               return 0;
-> +       }
-> +
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "tx_ln1_nmos", &tx_nmos);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read tx_ln1_pmos\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       ret = nvmem_cell_read_variable_le_u32(dev, "rx_ln1", &rx_data);
-> +       if (ret) {
-> +               dev_err(dev, "%s: Failed to read rx_ln1\n", __func__);
-> +               return ret;
-> +       }
-> +
-> +       if (!(tx_pmos || tx_nmos || rx_data))
-> +               return 0;
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN1_TX_REG,
-> +                           EFUSE_LN_TX_PMOS_SEL,
-> +                           EFUSE_LN_TX_PMOS_VAL(tx_pmos));
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN1_TX_REG,
-> +                           EFUSE_LN_TX_NMOS_SEL,
-> +                           EFUSE_LN_TX_NMOS_VAL(tx_nmos));
-> +
-> +       mtk_phy_update_bits(pcie_phy->sif_base + PEXTP_ANA_LN1_RX_REG,
-> +                           EFUSE_LN_RX_SEL, EFUSE_LN_RX_VAL(rx_data));
-> +
-> +       return 0;
-> +}
-> +
-> +static const struct phy_ops mtk_pcie_phy_ops = {
-> +       .init   = mtk_pcie_phy_init,
-
-This function doesn't look like it is enabling any resources, and there
-is no .exit counterpart. You could simply call this in the probe function.
-
-Or maybe the hardware settings get reset during suspend, and you want the
-settings reinitialized when the consumer calls phy_init() again? This
-design limitation and decision should be noted in a comment.
+   In file included from drivers/edac/npcm_edac.c:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:464:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __raw_readb(PCI_IOBASE + addr);
+                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:477:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+                                                     ^
+   In file included from drivers/edac/npcm_edac.c:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:490:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+                                                           ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+                                                     ^
+   In file included from drivers/edac/npcm_edac.c:8:
+   In file included from include/linux/interrupt.h:11:
+   In file included from include/linux/hardirq.h:11:
+   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
+   In file included from include/asm-generic/hardirq.h:17:
+   In file included from include/linux/irq.h:20:
+   In file included from include/linux/io.h:13:
+   In file included from arch/riscv/include/asm/io.h:136:
+   include/asm-generic/io.h:501:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writeb(value, PCI_IOBASE + addr);
+                               ~~~~~~~~~~ ^
+   include/asm-generic/io.h:511:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:521:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+                                                         ~~~~~~~~~~ ^
+   include/asm-generic/io.h:1024:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+           return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
+                                                     ~~~~~~~~~~ ^
+>> drivers/edac/npcm_edac.c:370:6: warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
+           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
+               ^                                             ~
+   drivers/edac/npcm_edac.c:370:6: note: add parentheses after the '!' to evaluate the bitwise operator first
+           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
+               ^
+                (                                                                                )
+   drivers/edac/npcm_edac.c:370:6: note: add parentheses around left hand side expression to silence this warning
+           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
+               ^
+               (                                            )
+>> drivers/edac/npcm_edac.c:579:6: warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
+           u32 ecc_en = readl(reg + npcm_chip->ecc_ctl_en_reg);
+               ^
+   9 warnings generated.
 
 
-Also, it is better to do the NVMEM readout at probe time, so if
-nvmem_cell_read_* returns -EPROBE_DEFER, you get proper probe
-sequencing.
+vim +370 drivers/edac/npcm_edac.c
 
-Consumers likely won't be expecting -EPROBE_DEFER from phy_init().
+   352	
+   353	static ssize_t forced_ecc_error_store(struct device *dev,
+   354					      struct device_attribute *mattr,
+   355					      const char *data, size_t count)
+   356	{
+   357		struct mem_ctl_info *mci = to_mci(dev);
+   358		struct priv_data *priv = mci->pvt_info;
+   359		const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
+   360		int	args_cnt;
+   361		int	ret;
+   362		char	**args;
+   363		u32	regval;
+   364		u8	bit_no;
+   365	
+   366		/* Split string buffer into separate parameters */
+   367		args = argv_split(GFP_KERNEL, data, &args_cnt);
+   368	
+   369		/* Check ecc enabled */
+ > 370		if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
+   371			return count;
+   372	
+   373		/* Check no write operation pending to controller*/
+   374		while (readl(priv->reg + npcm_chip->ddr_ctl_controller_busy_reg) &
+   375				CTL_CONTROLLER_BUSY_FLAG) {
+   376			usleep_range(1000, 10000);
+   377		}
+   378	
+   379		/* Write appropriate syndrome to xor_check_bit*/
+   380		if (!strcmp(args[0], "CE") && args_cnt == 3) {
+   381			ret = kstrtou8(args[2], 0, &bit_no);
+   382			if (ret)
+   383				return ret;
+   384			if (!strcmp(args[1], "checkcode")) {
+   385				if (bit_no > 7) {
+   386					edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for checkcode must be 0~7\n");
+   387					return count;
+   388				}
+   389				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   390				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
+   391					(check_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
+   392				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   393			} else if (!strcmp(args[1], "data")) {
+   394				if (bit_no > 63) {
+   395					edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for data must be 0~63\n");
+   396					return count;
+   397				}
+   398				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   399				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
+   400						 (data_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
+   401				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   402			}
+   403			/* Enable the ECC writeback_en for corrected error */
+   404			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   405			writel((regval | NPCM_ECC_CTL_AUTO_WRITEBACK_EN),
+   406			       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   407		} else if (!strcmp(args[0], "UE")) {
+   408			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   409			regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
+   410					 (ECC_DOUBLE_MULTI_ERR_SYND << XOR_CHECK_BIT_SPLIT_WIDTH);
+   411			writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   412		}
+   413	
+   414		/* Assert fwc */
+   415		writel((NPCM_ECC_CTL_FORCE_WC | readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg)),
+   416		       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
+   417	
+   418		return count;
+   419	}
+   420	
 
-> +       .owner  = THIS_MODULE,
-> +};
-> +
-> +static int mtk_pcie_phy_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev = &pdev->dev;
-> +       struct phy_provider *provider;
-> +       struct mtk_pcie_phy *pcie_phy;
-> +
-> +       pcie_phy = devm_kzalloc(dev, sizeof(*pcie_phy), GFP_KERNEL);
-> +       if (!pcie_phy)
-> +               return -ENOMEM;
-> +
-> +       pcie_phy->dev = dev;
-> +
-> +       pcie_phy->sif_base = devm_platform_ioremap_resource_byname(pdev, "sif");
-> +       if (IS_ERR(pcie_phy->sif_base)) {
-> +               dev_err(dev, "%s: Failed to map phy-sif base\n", __func__);
-> +               return PTR_ERR(pcie_phy->sif_base);
-
-Use "return dev_err_probe(...)".
-
-> +       }
-> +
-> +       pcie_phy->phy = devm_phy_create(dev, dev->of_node, &mtk_pcie_phy_ops);
-> +       if (IS_ERR(pcie_phy->phy)) {
-> +               dev_err(dev, "%s: Failed to create PCIe phy\n", __func__);
-> +               return PTR_ERR(pcie_phy->phy);
-
-Same here.
-
-> +       }
-> +
-> +       phy_set_drvdata(pcie_phy->phy, pcie_phy);
-> +
-> +       provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +       return PTR_ERR_OR_ZERO(provider);
-
-No error message if it fails?
-
-Also, small nit: many prefer not to use PTR_ERR_OR_ZERO, as it adds a line
-that needs to be changed if the core needs to be extended.
-
-> +}
-> +
-> +static const struct of_device_id mtk_pcie_phy_of_match[] = {
-> +       { .compatible = "mediatek,pcie-phy" },
-
-As mentioned for the binding patch, use a SoC specific compatible string.
-
-
-Regards
-ChenYu
-
-
-> +       { },
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_pcie_phy_of_match);
-> +
-> +static struct platform_driver mtk_pcie_phy_driver = {
-> +       .probe  = mtk_pcie_phy_probe,
-> +       .driver = {
-> +               .name = "mtk-pcie-phy",
-> +               .of_match_table = mtk_pcie_phy_of_match,
-> +       },
-> +};
-> +module_platform_driver(mtk_pcie_phy_driver);
-> +
-> +MODULE_DESCRIPTION("MediaTek PCIe PHY driver");
-> +MODULE_AUTHOR("Jianjun Wang <jianjun.wang@mediatek.com>");
-> +MODULE_LICENSE("GPL v2");
-> --
-> 2.18.0
->
->
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+---
+0-DAY CI Kernel Test Service
+https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
