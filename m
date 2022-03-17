@@ -2,246 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 831F04DC0BE
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 09:13:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 65E2D4DC0E9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 09:22:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230498AbiCQIOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 04:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44288 "EHLO
+        id S229700AbiCQIX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 04:23:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56912 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbiCQIOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 04:14:30 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B19831342CB;
-        Thu, 17 Mar 2022 01:13:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1647504791; x=1679040791;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XfM++llsVg7AzR19XcfpPkISpAk7yp2WcnUrhhsvXJ0=;
-  b=Q9AYe2/sH/+ggaN2vMFuqprLxnOvnWHwVNe3Xlw7Bp3DrFeIwaoRkuOT
-   reAWLed9pvIh1FMB2efpJ4Xiccutfhk5lnBLNH00LxgWs0CfKxB0vQLZN
-   lbZYQZ1hQszAdkbRM2tO3YJ3AW01ZDqdZiRsPwKWHHpxwU8BjhNS6w3ML
-   LHejTYSs/5VIK+s/YX+49uMjzrp1Zh1/MOjaYTRGwi8NSYemkEEtMEgU/
-   3b5rLIYDs7qshcquxX5XrWPgP22WdKLNH3sIoUpoNSk3qLar6GpNESuhr
-   Zi3/kVR7QxC9gvnE1CWU4V+eFZeoWhG+mQczDhnSFGmZ2vEJmgVBiYBo0
-   g==;
-X-IronPort-AV: E=McAfee;i="6200,9189,10288"; a="244266190"
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; 
-   d="scan'208";a="244266190"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2022 01:13:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.90,188,1643702400"; 
-   d="scan'208";a="498748509"
-Received: from lkp-server02.sh.intel.com (HELO 89b41b6ae01c) ([10.239.97.151])
-  by orsmga003.jf.intel.com with ESMTP; 17 Mar 2022 01:13:05 -0700
-Received: from kbuild by 89b41b6ae01c with local (Exim 4.92)
-        (envelope-from <lkp@intel.com>)
-        id 1nUlFo-000DU7-HL; Thu, 17 Mar 2022 08:13:04 +0000
-Date:   Thu, 17 Mar 2022 16:13:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
-        james.morse@arm.com, tony.luck@intel.com, mchehab@kernel.org,
-        bp@alien8.de, robh+dt@kernel.org, benjaminfair@google.com,
-        yuenn@google.com, venture@google.com, KWLIU@nuvoton.com,
-        YSCHU@nuvoton.com, JJLIU0@nuvoton.com, KFTING@nuvoton.com,
-        avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        ctcchien@nuvoton.com
-Cc:     llvm@lists.linux.dev, kbuild-all@lists.01.org,
-        linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v5 3/3] EDAC: nuvoton: Add NPCM memory controller driver
-Message-ID: <202203171641.zYjMuQjO-lkp@intel.com>
-References: <20220317015854.18864-4-ctcchien@nuvoton.com>
+        with ESMTP id S229690AbiCQIX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 04:23:58 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41DAC1C64A3;
+        Thu, 17 Mar 2022 01:22:41 -0700 (PDT)
+X-UUID: d7b9917ac22e40a6933a7fed8d9c3227-20220317
+X-UUID: d7b9917ac22e40a6933a7fed8d9c3227-20220317
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <irui.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1592486316; Thu, 17 Mar 2022 16:22:35 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Mar 2022 16:22:34 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Mar 2022 16:22:32 +0800
+From:   Irui Wang <irui.wang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        Yong Wu <yong.wu@mediatek.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>
+CC:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v3, 00/10] Enable two H264 encoder core on MT8195
+Date:   Thu, 17 Mar 2022 16:22:20 +0800
+Message-ID: <20220317082230.23622-1-irui.wang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20220317015854.18864-4-ctcchien@nuvoton.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Medad,
+MT8195 has two H264 encoder cores, they have their own power-domains,
+clocks, interrupts, register base. The two H264 encoder cores can work
+together to achieve higher performance, it's a core mode called
+frame-racing, one core has 4K@30fps performance, two cores can achieve
+4K@60fps.
+The two encoder core encoding process looks like this:
 
-Thank you for the patch! Perhaps something to improve:
+    VENC Core0: frm#0....frm#2....frm#4....
+    VENC Core1: ..frm#1....frm#3....frm#5....
 
-[auto build test WARNING on ras/edac-for-next]
-[also build test WARNING on robh/for-next v5.17-rc8 next-20220316]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch]
+This series of patches are used to enable the two H264 encoder cores,
+encoding process will be changed:
+As-Is: Synchronous
+V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> wait encoder IRQ -->
+encoding done with result --> job_finish
+V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> wait encoder IRQ -->
+encoding done with result --> job_finish
+...
 
-url:    https://github.com/0day-ci/linux/commits/Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220317-100014
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/ras/ras.git edac-for-next
-config: riscv-randconfig-r033-20220317 (https://download.01.org/0day-ci/archive/20220317/202203171641.zYjMuQjO-lkp@intel.com/config)
-compiler: clang version 15.0.0 (https://github.com/llvm/llvm-project a6ec1e3d798f8eab43fb3a91028c6ab04e115fcb)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # install riscv cross compiling tool for clang build
-        # apt-get install binutils-riscv64-linux-gnu
-        # https://github.com/0day-ci/linux/commit/94dbdfede018043818636c4c749ba374a45eaba1
-        git remote add linux-review https://github.com/0day-ci/linux
-        git fetch --no-tags linux-review Medad-CChien/EDAC-nuvoton-Add-nuvoton-NPCM-memory-controller-driver/20220317-100014
-        git checkout 94dbdfede018043818636c4c749ba374a45eaba1
-        # save the config file to linux build tree
-        mkdir build_dir
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=riscv SHELL=/bin/bash drivers/edac/
+To-Be: Asynchronous
+V4L2_VIDIOC_QBUF#0 --> device_run(triger encoder) --> job_finish
+..V4l2_VIDIOC_QBUF#1 --> device_run(triger encoder) --> job_finish
+(venc core0 may encode done here, done the encoding result to client)
+V4L2_VIDIOC_QBUF#2 --> device_run(triger encoder) --> job_finish.
 
-If you fix the issue, kindly add following tag as appropriate
-Reported-by: kernel test robot <lkp@intel.com>
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/edac/npcm_edac.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:464:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __raw_readb(PCI_IOBASE + addr);
-                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:477:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
-   #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
-                                                     ^
-   In file included from drivers/edac/npcm_edac.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:490:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-                                                           ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
-   #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
-                                                     ^
-   In file included from drivers/edac/npcm_edac.c:8:
-   In file included from include/linux/interrupt.h:11:
-   In file included from include/linux/hardirq.h:11:
-   In file included from ./arch/riscv/include/generated/asm/hardirq.h:1:
-   In file included from include/asm-generic/hardirq.h:17:
-   In file included from include/linux/irq.h:20:
-   In file included from include/linux/io.h:13:
-   In file included from arch/riscv/include/asm/io.h:136:
-   include/asm-generic/io.h:501:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writeb(value, PCI_IOBASE + addr);
-                               ~~~~~~~~~~ ^
-   include/asm-generic/io.h:511:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:521:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-                                                         ~~~~~~~~~~ ^
-   include/asm-generic/io.h:1024:55: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-           return (port > MMIO_UPPER_LIMIT) ? NULL : PCI_IOBASE + port;
-                                                     ~~~~~~~~~~ ^
->> drivers/edac/npcm_edac.c:370:6: warning: logical not is only applied to the left hand side of this bitwise operator [-Wlogical-not-parentheses]
-           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
-               ^                                             ~
-   drivers/edac/npcm_edac.c:370:6: note: add parentheses after the '!' to evaluate the bitwise operator first
-           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
-               ^
-                (                                                                                )
-   drivers/edac/npcm_edac.c:370:6: note: add parentheses around left hand side expression to silence this warning
-           if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
-               ^
-               (                                            )
->> drivers/edac/npcm_edac.c:579:6: warning: mixing declarations and code is a C99 extension [-Wdeclaration-after-statement]
-           u32 ecc_en = readl(reg + npcm_chip->ecc_ctl_en_reg);
-               ^
-   9 warnings generated.
-
-
-vim +370 drivers/edac/npcm_edac.c
-
-   352	
-   353	static ssize_t forced_ecc_error_store(struct device *dev,
-   354					      struct device_attribute *mattr,
-   355					      const char *data, size_t count)
-   356	{
-   357		struct mem_ctl_info *mci = to_mci(dev);
-   358		struct priv_data *priv = mci->pvt_info;
-   359		const struct npcm_edac_platform_data *npcm_chip = priv->npcm_chip;
-   360		int	args_cnt;
-   361		int	ret;
-   362		char	**args;
-   363		u32	regval;
-   364		u8	bit_no;
-   365	
-   366		/* Split string buffer into separate parameters */
-   367		args = argv_split(GFP_KERNEL, data, &args_cnt);
-   368	
-   369		/* Check ecc enabled */
- > 370		if (!readl(priv->reg + npcm_chip->ecc_ctl_en_reg) & npcm_chip->ecc_ctl_ecc_enable_mask)
-   371			return count;
-   372	
-   373		/* Check no write operation pending to controller*/
-   374		while (readl(priv->reg + npcm_chip->ddr_ctl_controller_busy_reg) &
-   375				CTL_CONTROLLER_BUSY_FLAG) {
-   376			usleep_range(1000, 10000);
-   377		}
-   378	
-   379		/* Write appropriate syndrome to xor_check_bit*/
-   380		if (!strcmp(args[0], "CE") && args_cnt == 3) {
-   381			ret = kstrtou8(args[2], 0, &bit_no);
-   382			if (ret)
-   383				return ret;
-   384			if (!strcmp(args[1], "checkcode")) {
-   385				if (bit_no > 7) {
-   386					edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for checkcode must be 0~7\n");
-   387					return count;
-   388				}
-   389				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   390				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   391					(check_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-   392				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   393			} else if (!strcmp(args[1], "data")) {
-   394				if (bit_no > 63) {
-   395					edac_printk(KERN_INFO, NPCM_EDAC_MOD_NAME, "bit_no for data must be 0~63\n");
-   396					return count;
-   397				}
-   398				regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   399				regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   400						 (data_synd[bit_no] << XOR_CHECK_BIT_SPLIT_WIDTH);
-   401				writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   402			}
-   403			/* Enable the ECC writeback_en for corrected error */
-   404			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   405			writel((regval | NPCM_ECC_CTL_AUTO_WRITEBACK_EN),
-   406			       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   407		} else if (!strcmp(args[0], "UE")) {
-   408			regval = readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   409			regval = (regval & ~(NPCM_ECC_CTL_XOR_BITS_MASK)) |
-   410					 (ECC_DOUBLE_MULTI_ERR_SYND << XOR_CHECK_BIT_SPLIT_WIDTH);
-   411			writel(regval, priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   412		}
-   413	
-   414		/* Assert fwc */
-   415		writel((NPCM_ECC_CTL_FORCE_WC | readl(priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg)),
-   416		       priv->reg + npcm_chip->ecc_ctl_xor_check_bits_reg);
-   417	
-   418		return count;
-   419	}
-   420	
+There is no "wait encoder IRQ" synchronous call during frame-racing mode
+encoding process, it can full use the two encoder cores to achieve higher
+performance.
 
 ---
-0-DAY CI Kernel Test Service
-https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
+This series patches dependent on:
+media_stage tree:
+[1]
+https://git.linuxtv.org/media_stage.git/commit/?id=b3627647f9ea7473d10fb08a95fd7c4133a17ca4
+
+mt8192 decoder:
+[2] https://patchwork.kernel.org/project/linux-mediatek/list/?series=616991
+
+patch3 new venc dt-bindings included files
+[3] MM IOMMU binding:
+https://patchwork.kernel.org/project/linux-mediatek/patch/20220217113453.13658-2-yong.wu@mediatek.com/
+
+[4] MT8195 power domain:
+https://patchwork.kernel.org/project/linux-mediatek/list/?series=580579
+
+changes compared with v2:
+- update venc core dt-bindings, add two new properties for current usage.
+- parse venc multi_core mode from device tree.
+- rebase to the newer linux media stage.
+
+changes compared with v1:
+- of_platform_populate was used in place of the component framework.
+- new yaml file for venc cores.
+- some modifications for patch v1's review comments.
+---
+
+Irui Wang (10):
+  media: mtk-vcodec: Use core type to indicate h264 and vp8 enc
+  media: mtk-vcodec: export encoder functions
+  dt-bindings: media: mtk-vcodec: Adds encoder cores dt-bindings for
+    mt8195
+  media: mtk-vcodec: Enable venc dual core usage
+  media: mtk-vcodec: mtk-vcodec: Rewrite venc power manage interface
+  media: mtk-vcodec: Add venc power on/off interface
+  media: mtk-vcodec: Rewrite venc clock interface
+  media: mtk-vcodec: Add more extra processing for venc_multi_core mode
+  media: mtk-vcodec: Add venc_multi_core mode encode process
+  media: mtk-vcodec: Done encode result to client
+
+ .../media/mediatek,vcodec-encoder-core.yaml   | 181 +++++++++++++++
+ .../media/mediatek,vcodec-encoder.yaml        |   1 -
+ drivers/media/platform/mtk-vcodec/Makefile    |   4 +-
+ .../platform/mtk-vcodec/mtk_vcodec_drv.h      |  36 ++-
+ .../platform/mtk-vcodec/mtk_vcodec_enc.c      | 113 +++++++---
+ .../platform/mtk-vcodec/mtk_vcodec_enc.h      |   7 +-
+ .../platform/mtk-vcodec/mtk_vcodec_enc_core.c | 169 ++++++++++++++
+ .../platform/mtk-vcodec/mtk_vcodec_enc_core.h |  36 +++
+ .../platform/mtk-vcodec/mtk_vcodec_enc_drv.c  | 107 +++++----
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.c   | 183 +++++++++++++--
+ .../platform/mtk-vcodec/mtk_vcodec_enc_pm.h   |  11 +-
+ .../platform/mtk-vcodec/mtk_vcodec_util.c     |  19 ++
+ .../platform/mtk-vcodec/mtk_vcodec_util.h     |   5 +
+ .../platform/mtk-vcodec/venc/venc_h264_if.c   | 212 +++++++++++++++---
+ .../platform/mtk-vcodec/venc/venc_vp8_if.c    |   3 +-
+ .../media/platform/mtk-vcodec/venc_drv_if.c   |  79 +++++--
+ .../media/platform/mtk-vcodec/venc_drv_if.h   |   7 +
+ .../media/platform/mtk-vcodec/venc_vpu_if.c   |  11 +-
+ .../media/platform/mtk-vcodec/venc_vpu_if.h   |   3 +-
+ 19 files changed, 1026 insertions(+), 161 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,vcodec-encoder-core.yaml
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_core.c
+ create mode 100644 drivers/media/platform/mtk-vcodec/mtk_vcodec_enc_core.h
+
+-- 
+2.18.0
+
