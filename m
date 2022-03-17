@@ -2,46 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB7584DBDDC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 05:55:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id C27E64DBE6A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 06:34:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbiCQErp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 00:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55114 "EHLO
+        id S229448AbiCQFfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 01:35:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbiCQEro (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 00:47:44 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E03D2A27D0;
-        Wed, 16 Mar 2022 21:39:07 -0700 (PDT)
-X-UUID: a0f16e058f184ebab77a56d51986dac9-20220317
-X-UUID: a0f16e058f184ebab77a56d51986dac9-20220317
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
-        (envelope-from <trevor.wu@mediatek.com>)
+        with ESMTP id S229474AbiCQFfd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 01:35:33 -0400
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E2123C077;
+        Wed, 16 Mar 2022 22:03:26 -0700 (PDT)
+X-UUID: 27f09bafc99445cc815384fc067381c1-20220317
+X-UUID: 27f09bafc99445cc815384fc067381c1-20220317
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
         (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 315387681; Thu, 17 Mar 2022 12:17:31 +0800
+        with ESMTP id 1492094900; Thu, 17 Mar 2022 11:39:09 +0800
 Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 17 Mar 2022 12:17:30 +0800
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Mar 2022 11:39:07 +0800
 Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Mar 2022 12:17:30 +0800
-Message-ID: <946a35efc1983c8f941f2350d4f9e0245dcbf95a.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/5] ASoC: mediatek: mt8195: merge machine driver
-From:   Trevor Wu <trevor.wu@mediatek.com>
-To:     Tzung-Bi Shih <tzungbi@kernel.org>
-CC:     <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>, <devicetree@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <yc.hung@mediatek.com>,
-        <aaronyu@google.com>, <linux-arm-kernel@lists.infradead.org>,
-        <angelogioacchino.delregno@collabora.com>
-Date:   Thu, 17 Mar 2022 12:17:30 +0800
-In-Reply-To: <YjKby/RYpMtcxeUm@google.com>
-References: <20220316060139.6211-1-trevor.wu@mediatek.com>
-         <20220316060139.6211-2-trevor.wu@mediatek.com>
-         <YjKby/RYpMtcxeUm@google.com>
+ Transport; Thu, 17 Mar 2022 11:39:07 +0800
+Message-ID: <e5b33e4be119c3dc425b9d2810df4556240861c3.camel@mediatek.com>
+Subject: Re: [PATCH v13 6/6] soc: mediatek: mutex: add functions that
+ operate registers by CMDQ
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Moudy Ho <moudy.ho@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        "Jernej Skrabec" <jernej.skrabec@siol.net>
+CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Landley <rob@landley.net>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        "Alexandre Courbot" <acourbot@chromium.org>, <tfiga@chromium.org>,
+        <drinkcat@chromium.org>, <pihsun@chromium.org>,
+        <hsinyi@google.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Maoguang Meng <maoguang.meng@mediatek.com>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
+        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
+        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Date:   Thu, 17 Mar 2022 11:39:07 +0800
+In-Reply-To: <20220315061031.21642-7-moudy.ho@mediatek.com>
+References: <20220315061031.21642-1-moudy.ho@mediatek.com>
+         <20220315061031.21642-7-moudy.ho@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
@@ -56,212 +75,167 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2022-03-17 at 10:24 +0800, Tzung-Bi Shih wrote:
-> Hi,
-> I didn't review too many details because I found the patch is not
-> easy to
-> review.  Please consider to not reorder symbols if it can.  If it is
-> still
-> hard to generate reasonable chunks or the reorders are necessary, it
-> could
-> put some refactor patches prior to the "merge".
+Hi, Moudy:
 
-Hi Tzung-Bi,
+On Tue, 2022-03-15 at 14:10 +0800, Moudy Ho wrote:
+> Due to hardware limitations, MDP3 is necessary to enable MUTEX in
+> each frame for SOF triggering and cooperate with CMDQ control to
+> reduce the amount of interrupts generated(also, reduce frame
+> latency).
+> 
+> In response to the above situation, a new interface
+> "mtk_mutex_enable_by_cmdq" has been added to achieve the purpose.
+> 
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-mutex.c       | 42
+> +++++++++++++++++++++++++-
+>  include/linux/soc/mediatek/mtk-mutex.h |  2 ++
+>  2 files changed, 43 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c
+> b/drivers/soc/mediatek/mtk-mutex.c
+> index 88fb4fc8f216..0d85111cfbe2 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -7,10 +7,16 @@
+>  #include <linux/iopoll.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_address.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regmap.h>
+>  #include <linux/soc/mediatek/mtk-mmsys.h>
+>  #include <linux/soc/mediatek/mtk-mutex.h>
+> +#include <linux/soc/mediatek/mtk-cmdq.h>
+> +
+> +#define MTK_MUTEX_ENABLE			BIT(0)
 
-Thanks for your suggestion.
-Originally, I try to delete the old machine drivers and create a new
-one, so the layout is reordered and some functions are copied from
-mt8195-mt6359-rt1011-rt5682.c. But the git patch becomes a diff with
-mt8195-mt6359-rt1019-rt5682.c.
+This is not related to cmdq. Separate this to another patch and apply
+to mtk_mutex_enable() also.
 
-I can split the one into two patches in v3, one is "merge" and another
-one is "revise".
-I hope it can make the review easier.
+> +#define MTK_MUTEX_MOD_MASK			0x07FFFFFF
 
-> 
-> On Wed, Mar 16, 2022 at 02:01:35PM +0800, Trevor Wu wrote:
-> > diff --git a/sound/soc/mediatek/mt8195/mt8195-mt6359-rt1019-
-> > rt5682.c b/sound/soc/mediatek/mt8195/mt8195-mt6359.c
-> 
-> [...]
-> >  #include <linux/input.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of_device.h>
-> >  #include <linux/pm_runtime.h>
-> >  #include <sound/jack.h>
-> >  #include <sound/pcm_params.h>
-> >  #include <sound/rt5682.h>
-> > -#include <sound/sof.h>
-> 
-> Why does it remove the header?
-It seems that the header is redundant, because the driver works on my
-platform.
-But I will double confirm it.
+Useless, remove.
 
-> 
-> > +struct mt8195_mt6359_priv {
-> > +	struct snd_soc_jack headset_jack;
-> > +	struct snd_soc_jack dp_jack;
-> > +	struct snd_soc_jack hdmi_jack;
-> > +	struct clk *i2so1_mclk;
-> > +};
-> > +
-> > +struct mt8195_card_data {
-> > +	const char *name;
-> > +	unsigned long quirk;
-> > +};
-> > +
-> > +struct sof_conn_stream {
-> > +	const char *normal_link;
-> > +	const char *sof_link;
-> > +	const char *sof_dma;
-> > +	int stream_dir;
-> > +};
-> 
-> [...]
-> > -struct sof_conn_stream {
-> > -	const char *normal_link;
-> > -	const char *sof_link;
-> > -	const char *sof_dma;
-> > -	int stream_dir;
-> > -};
-> > -
-> > -struct mt8195_mt6359_rt1019_rt5682_priv {
-> > -	struct snd_soc_jack headset_jack;
-> > -	struct snd_soc_jack dp_jack;
-> > -	struct snd_soc_jack hdmi_jack;
-> > -	struct clk *i2so1_mclk;
-> > -};
-> 
-> The effective operation here: rename from
-> mt8195_mt6359_rt1019_rt5682_priv
-> to mt8195_mt6359_priv.  However, it somehow reorders the code.  As a
-> result,
-> the change looks like more complicated than just a "merge" operation.
-> 
-> > -static const struct snd_soc_dapm_route
-> > mt8195_mt6359_rt1019_rt5682_routes[] = {
-> > -	/* speaker */
-> > -	{ "Speakers", NULL, "Speaker" },
-> > +static const struct snd_kcontrol_new mt8195_mt6359_controls[] = {
-> > +	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
-> > +	SOC_DAPM_PIN_SWITCH("Headset Mic"),
-> > +};
-> > +
-> > +static const struct snd_soc_dapm_route mt8195_mt6359_routes[] = {
-> >  	/* headset */
-> >  	{ "Headphone Jack", NULL, "HPOL" },
-> >  	{ "Headphone Jack", NULL, "HPOR" },
-> > @@ -80,55 +94,31 @@ static const struct snd_soc_dapm_route
-> > mt8195_mt6359_rt1019_rt5682_routes[] = {
-> >  	{"I021", NULL, SOF_DMA_DL3},
-> >  };
-> >  
-> > -static const struct snd_kcontrol_new
-> > mt8195_mt6359_rt1019_rt5682_controls[] = {
-> > -	SOC_DAPM_PIN_SWITCH("Speakers"),
-> > -	SOC_DAPM_PIN_SWITCH("Headphone Jack"),
-> > -	SOC_DAPM_PIN_SWITCH("Headset Mic"),
-> > +static const struct snd_soc_dapm_widget
-> > mt8195_dual_speaker_widgets[] = {
-> > +	SND_SOC_DAPM_SPK("Left Speaker", NULL),
-> > +	SND_SOC_DAPM_SPK("Right Speaker", NULL),
-> >  };
-> >  
-> > -static int mt8195_rt5682_etdm_hw_params(struct snd_pcm_substream
-> > *substream,
-> > -					struct snd_pcm_hw_params
-> > *params)
-> > -{
-> 
-> [...]
-> > +static const struct snd_kcontrol_new
-> > mt8195_dual_speaker_controls[] = {
-> > +	SOC_DAPM_PIN_SWITCH("Left Speaker"),
-> > +	SOC_DAPM_PIN_SWITCH("Right Speaker"),
-> > +};
-> 
-> Ditto.  I would expect it only renames and adds something.  However,
-> if you
-> look at the block and the following, it looks like changed a lot.
-> 
-> > @@ -143,20 +133,20 @@ static int
-> > mt8195_mt6359_mtkaif_calibration(struct snd_soc_pcm_runtime *rtd)
-> >  	struct mtk_base_afe *afe =
-> > snd_soc_component_get_drvdata(cmpnt_afe);
-> >  	struct mt8195_afe_private *afe_priv = afe->platform_priv;
-> >  	struct mtkaif_param *param = &afe_priv->mtkaif_params;
-> > -	int phase;
-> > -	unsigned int monitor;
-> > -	int mtkaif_calibration_num_phase;
-> > +	int chosen_phase_1, chosen_phase_2, chosen_phase_3;
-> > +	int prev_cycle_1, prev_cycle_2, prev_cycle_3;
-> >  	int test_done_1, test_done_2, test_done_3;
-> >  	int cycle_1, cycle_2, cycle_3;
-> > -	int prev_cycle_1, prev_cycle_2, prev_cycle_3;
-> > -	int chosen_phase_1, chosen_phase_2, chosen_phase_3;
-> > -	int counter;
-> > -	bool mtkaif_calibration_ok;
-> >  	int mtkaif_chosen_phase[MT8195_MTKAIF_MISO_NUM];
-> >  	int mtkaif_phase_cycle[MT8195_MTKAIF_MISO_NUM];
-> > +	int mtkaif_calibration_num_phase;
-> > +	bool mtkaif_calibration_ok;
-> > +	unsigned int monitor;
-> > +	int counter;
-> > +	int phase;
-> >  	int i;
-> 
-> The reorder of variable declaration is irrelevant to the patch.  Drop
-> them.
-> If it has good reason to do so, send another patch for the purpose.
+> +#define MTK_MUTEX_SOF_MASK			0x00000007
 
-This function is copied from mt8195-mt6359-rt1011-rt5682.c, because
-this is the latest version of mt8195_mt6359_mtkaif_calibration().
-The reordering is suggested by the reviewer.
+Ditto.
+
+>  
+>  #define MT2701_MUTEX0_MOD0			0x2c
+>  #define MT2701_MUTEX0_SOF0			0x30
+> @@ -167,6 +173,7 @@ struct mtk_mutex_data {
+>  	const unsigned int mutex_sof_reg;
+>  	const unsigned long long *mutex_table_mod;
+>  	const bool no_clk;
+> +	const bool has_gce_client_reg;
+>  };
+>  
+>  struct mtk_mutex_ctx {
+> @@ -175,6 +182,8 @@ struct mtk_mutex_ctx {
+>  	void __iomem			*regs;
+>  	struct mtk_mutex		mutex[10];
+>  	const struct mtk_mutex_data	*data;
+> +	phys_addr_t			addr;
+> +	struct cmdq_client_reg		cmdq_reg;
+>  };
+>  
+>  static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
+> @@ -357,6 +366,7 @@ static const struct mtk_mutex_data
+> mt8183_mutex_driver_data = {
+>  	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
+>  	.mutex_table_mod = mt8183_mutex_table_mod,
+>  	.no_clk = true,
+> +	.has_gce_client_reg = true,
+>  };
+>  
+>  static const struct mtk_mutex_data mt8186_mutex_driver_data = {
+> @@ -639,6 +649,22 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
+>  }
+>  EXPORT_SYMBOL_GPL(mtk_mutex_enable);
+>  
+> +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
+> +			      struct cmdq_pkt *pkt)
+> +{
+> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
+> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
+> mtk_mutex_ctx,
+> +						 mutex[mutex->id]);
+> +
+> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+> +
+> +	cmdq_pkt_write_mask(pkt, mtx->cmdq_reg.subsys,
+> +			    mtx->aaddr + DISP_REG_MUTEX_EN(mutex->id),
+> +			    MTK_MUTEX_ENABLE, MTK_MUTEX_ENABLE);
+
+#else
+/* show some error message here */
 
 
-> 
-> > @@ -513,7 +446,7 @@ static int mt8195_playback_startup(struct
-> > snd_pcm_substream *substream)
-> >  	return 0;
-> >  }
-> >  
-> > -static const struct snd_soc_ops mt8195_playback_ops = {
-> > +const struct snd_soc_ops mt8195_playback_ops = {
-> >  	.startup = mt8195_playback_startup,
-> 
-> Why does it remove the `static`?
+> +#endif
+> +}
+> +EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
+> +
+>  void mtk_mutex_disable(struct mtk_mutex *mutex)
+>  {
+>  	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
+> mtk_mutex_ctx,
+> @@ -677,7 +703,7 @@ static int mtk_mutex_probe(struct platform_device
+> *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+>  	struct mtk_mutex_ctx *mtx;
+> -	struct resource *regs;
+> +	struct resource *regs, addr;
+>  	int i;
+>  
+>  	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
+> @@ -698,6 +724,20 @@ static int mtk_mutex_probe(struct
+> platform_device *pdev)
+>  		}
+>  	}
+>  
+> +	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
+> +		mtx->addr = 0L;
+> +	else
+> +		mtx->addr = addr.start;
+> +
+> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
+> +	if (mtx->data->has_gce_client_reg) {
 
-Sorry, I will add it in v3.
+In current upstreamed mt8183.dtsi [1], mutex device node has no
+mediatek,gce-client-reg property and display maybe work (?). So I think
+this should be backward-compatible.
 
-> 
-> > +static int mt8195_mt6359_dev_probe(struct platform_device *pdev)
-> >  {
-> 
-> [...]
-> > +	match = of_match_device(pdev->dev.driver->of_match_table,
-> > &pdev->dev);
-> > +	if (!match || !match->data)
-> > +		return -EINVAL;
-> > +
-> > +	card_data = (struct mt8195_card_data *)match->data;
-> 
-> Use of_device_get_match_data().
+[1] 
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/mediatek/mt8183.dtsi?h=v5.17-rc8#n1510
 
-OK.
+Regards,
+CK
 
-> 
-> > -static const struct dev_pm_ops mt8195_mt6359_rt1019_rt5682_pm_ops
-> > = {
-> > +const struct dev_pm_ops mt8195_mt6359_pm_ops = {
-> >  	.poweroff = snd_soc_poweroff,
-> >  	.restore = snd_soc_resume,
-> >  };
-> 
-> Why does it remove the `static`?
-
-I will add it in v3.
-
-Thanks,
-Trevor
+> +		if (cmdq_dev_get_client_reg(dev, &mtx->cmdq_reg, 0)) {
+> +			dev_err(dev, "No mediatek,gce-client-reg!\n");
+> +			return ret;
+> +		}
+> +	}
+> +#endif
+> +
+>  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	mtx->regs = devm_ioremap_resource(dev, regs);
+>  	if (IS_ERR(mtx->regs)) {
+> diff --git a/include/linux/soc/mediatek/mtk-mutex.h
+> b/include/linux/soc/mediatek/mtk-mutex.h
+> index c8355bb0e6d6..18a4b1dc3773 100644
+> --- a/include/linux/soc/mediatek/mtk-mutex.h
+> +++ b/include/linux/soc/mediatek/mtk-mutex.h
+> @@ -45,6 +45,8 @@ void mtk_mutex_set_mod(struct mtk_mutex *mutex,
+>  void mtk_mutex_set_sof(struct mtk_mutex *mutex,
+>  		       enum mtk_mutex_table_index idx);
+>  void mtk_mutex_enable(struct mtk_mutex *mutex);
+> +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
+> +			      struct cmdq_pkt *pkt);
+>  void mtk_mutex_disable(struct mtk_mutex *mutex);
+>  void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
+>  			   enum mtk_ddp_comp_id id);
 
