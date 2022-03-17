@@ -2,113 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1BAB4DC9E8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 16:27:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 164734DCA87
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 16:51:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232356AbiCQP2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 11:28:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45074 "EHLO
+        id S236168AbiCQPvH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 11:51:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236118AbiCQP2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 11:28:07 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F4F3207A21;
-        Thu, 17 Mar 2022 08:26:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id B64971F456E5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647530793;
-        bh=N6sXIB4tZHSfu8sioVrrbQ2OzG4ay+Ac+T6fW/1wOmU=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Ck7jNYDoW55MF0tjfj7BuIKgrrmpqUFpDYY1QcPjVGl4/oVildblK97n/EmMonvhb
-         lY+u5o/+FEmYPE3wi7xLB7rP9WjMmD6dxJXWELrcKYRC/zcNJafijuydRAL4HRplr8
-         0FEPbainA9LPc25cFFtwHbEpJ2zy9iMTbA4Lq4oQny3gqjHBcIQ9sWd5kUw/sCr4qn
-         dhTWO1vKV+glkPZpWTEAceMoj4CuzDucRVAyAm7usmdL4y5+2QWQ7y3iVAUXbyW289
-         Q3iST7QADd2x3be9BERrRUM39Mlrk0T8YrvMotACcW/7YxgnOIlEWsuRRJXVZxnA3X
-         KVyZreAtIlgbA==
-Message-ID: <7e898858-510a-dae6-2ef4-1cb8b1a42b21@collabora.com>
-Date:   Thu, 17 Mar 2022 16:26:29 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v12 2/3] dts: arm64: mt8183: add Mediatek MDP3 nodes
-Content-Language: en-US
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Jernej Skrabec <jernej.skrabec@siol.net>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Alexandre Courbot <acourbot@chromium.org>, tfiga@chromium.org,
-        drinkcat@chromium.org, pihsun@chromium.org, hsinyi@google.com,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        menghui.lin@mediatek.com, sj.huang@mediatek.com,
-        allen-kh.cheng@mediatek.com, randy.wu@mediatek.com,
-        jason-jh.lin@mediatek.com, roy-cw.yeh@mediatek.com,
-        river.cheng@mediatek.com, srv_heupstream@mediatek.com,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220317145605.25782-1-moudy.ho@mediatek.com>
- <20220317145605.25782-3-moudy.ho@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220317145605.25782-3-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S235062AbiCQPvG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 11:51:06 -0400
+Received: from alexa-out.qualcomm.com (alexa-out.qualcomm.com [129.46.98.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C28849A990;
+        Thu, 17 Mar 2022 08:49:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647532190; x=1679068190;
+  h=from:to:cc:subject:date:message-id;
+  bh=dQspgOQe8R6aBy50ayGKKroELAHAvWCjWGvNGhlXm0k=;
+  b=QESZiVK7Yl6GRoF4NVzcLffpYlPfLn0Rl2qlTpiWRQUjUeZ3sL6+atKM
+   sQS6gs5tMedWdBnxUhDeTgo6WtOgAIE7R129FCiLPkAc4wgowSskKhEsk
+   HlfUxkVAoeh4I8nx8pdWGC2yIMJ1W991lomgqTHHBAuQI9Dxoua3qTMYr
+   E=;
+Received: from ironmsg07-lv.qualcomm.com ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 17 Mar 2022 08:49:49 -0700
+X-QCInternal: smtphost
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by ironmsg07-lv.qualcomm.com with ESMTP/TLS/AES256-SHA; 17 Mar 2022 08:49:47 -0700
+X-QCInternal: smtphost
+Received: from c-sbhanu-linux.qualcomm.com ([10.242.50.201])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 17 Mar 2022 21:19:28 +0530
+Received: by c-sbhanu-linux.qualcomm.com (Postfix, from userid 2344807)
+        id 87B7B4CAF; Thu, 17 Mar 2022 21:19:27 +0530 (IST)
+From:   Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+To:     ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org
+Cc:     quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sartgarg@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_sayalil@quicinc.com,
+        Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
+Subject: [PATCH V3 0/2] Add reset entries for SDCC controllers
+Date:   Thu, 17 Mar 2022 21:19:23 +0530
+Message-Id: <1647532165-6302-1-git-send-email-quic_c_sbhanu@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+X-Spam-Status: No, score=-4.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 17/03/22 15:56, Moudy Ho ha scritto:
-> Add device nodes for Media Data Path 3 (MDP3) modules.
-> 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 108 ++++++++++++++++++++++-
->   1 file changed, 107 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> index fc6ac2a46324..eaa6dac7768b 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> @@ -1389,6 +1389,79 @@
->   			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
->   		};
->   
-> +		mdp3_rdma0: mdp3_rdma0@14001000 {
+Changes since V2:
+	- Updated commit subject and comments in dtsi file.
+	- Added resets entry in sdhci-msm dt-bindings.
 
-Hello Moudy,
+Changes since V1:
+	- Updated commit message, subject and comments in dtsi file as
+	  suggested by Krzysztof Kozlowski.
 
-I know, this is already at v12 and I'm truly sorry for noticing this only now,
-but that's a bit critical to solve: you can't use underscores in node names (but
-you can do it in phandles).
+Shaik Sajida Bhanu (2):
+  dt-bindings: mmc: sdhci-msm: Add gcc resets strings
+  arm64: dts: qcom: sc7280: Add reset entries for SDCC controllers
 
-Example:
+ Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 4 ++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi                | 8 ++++++++
+ 2 files changed, 12 insertions(+)
 
-mdp3_rdma0: mdp3_rdma0@14001000 <-- THIS IS WRONG
-
-mdp3_rdma0: mdp3-rdma0@14001000 <--- THIS IS OK
-
-of course, that's the same also for mdp3-rsz0@..... and the others.
-
-Please fix this both here and in the yaml bindings in patch 1/3!
-
-Sorry again,
-Angelo
-
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
