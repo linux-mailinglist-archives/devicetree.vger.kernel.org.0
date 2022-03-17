@@ -2,74 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 989734DC5A3
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:17:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B99684DC5C4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:25:41 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230208AbiCQMSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 08:18:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34498 "EHLO
+        id S233539AbiCQM0z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 08:26:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49620 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230109AbiCQMSQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:18:16 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667491E0168;
-        Thu, 17 Mar 2022 05:16:59 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S231142AbiCQM0z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:26:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E5431CABF0;
+        Thu, 17 Mar 2022 05:25:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id E09242223A;
-        Thu, 17 Mar 2022 13:16:55 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647519417;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=nYMhHPhImbGmncfZA0BDCxrEi2EzUvhWOv6MK8y6l3g=;
-        b=ZsJxUVXxkDrneOP9jtEYdAsDE7Z77AsQg6cSR9lhil0PcmpwxymOzeGT1kOLW1RTjp69l9
-        47VLUBTM9FouGOxSlb4y9us4tSiLxg9C0h37k7SDAQ3pPZOEZ68CPnvXn1Z7U79VIRTV7n
-        9XuX3ZzRRBtmBKT2uw1Ti6ZrD38mJ+I=
-From:   Michael Walle <michael@walle.cc>
-To:     patchwork-bot+netdevbpf@kernel.org
-Cc:     Divya.Koppera@microchip.com, UNGLinuxDriver@microchip.com,
-        andrew@lunn.ch, davem@davemloft.net, devicetree@vger.kernel.org,
-        hkallweit1@gmail.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, linux@armlinux.org.uk,
-        madhuri.sripada@microchip.com, manohar.puri@microchip.com,
-        netdev@vger.kernel.org, richardcochran@gmail.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH net-next 0/3] Add support for 1588 in LAN8814
-Date:   Thu, 17 Mar 2022 13:16:50 +0100
-Message-Id: <20220317121650.934899-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
-References: <164639821168.27302.1826304809342359025.git-patchwork-notify@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AEE9660FA0;
+        Thu, 17 Mar 2022 12:25:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F0D0C340E9;
+        Thu, 17 Mar 2022 12:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647519938;
+        bh=djIfn2o+hfPfTL+TBFE+wa1DHVPc7L9QaL2b4KZ+Go4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SVyv/45fN9euf1qljHRkVZdQnC7QHDarrkC5FM7JJevRVaDbtl3wJ5seadk51dUMW
+         mJCEnhixKm+ghlzRE+TetlEiAKVZTvSX15+W7EJAgBeflXvbICENrLNsipkbRXq+Nk
+         9xBwZVJhi6WxEt7tJvT22yLWrrLa+1SAZHRkkSq+K3V/qDwRHVWWzPcAX68elVVNYZ
+         IUV+1wH89uBPQ+j6yqJgMS9UrwzQLZnNJNDjvTROJUgHg2MyE+E4enDApGj69TvvAP
+         TUOVu7d2J9xoiTX+iQnaG/gxGKjGbPz/C+dDnSzzqaS9Ekdf4Wyjvjoc7LaC+l9Ht1
+         jhS5XJy/NV5YQ==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nUpCB-00FAni-JM; Thu, 17 Mar 2022 12:25:35 +0000
+Date:   Thu, 17 Mar 2022 12:25:35 +0000
+Message-ID: <87r170ydds.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH] of/platform: Drop static setup of IRQ resource from DT core
+In-Reply-To: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20220316200633.28974-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.mahadev-lad.rj@bp.renesas.com, robh+dt@kernel.org, frowand.list@gmail.com, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, prabhakar.csengg@gmail.com, linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: patchwork-bot+netdevbpf@kernel.org
+On Wed, 16 Mar 2022 20:06:33 +0000,
+Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> 
+> Now that all the DT drivers have switched to platform_get_irq() we can now
+> safely drop the static setup of IRQ resource from DT core code.
+> 
+> With the above change hierarchical setup of irq domains is no longer
+> bypassed and thus allowing hierarchical interrupt domains to describe
+> interrupts using "interrupts" DT property.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Hi All,
+> 
+> Sending this as RFC as couple of more drivers need to hit -rc yet with
+> the platform_get_irq() change while that is in progress I wanted to get
+> some feedback on this patch.
+> 
+> Cheers,
+> Prabhakar
+> ---
+>  drivers/of/platform.c | 14 +++++---------
+>  1 file changed, 5 insertions(+), 9 deletions(-)
+> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 793350028906..6890f7fe556f 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -114,35 +114,31 @@ struct platform_device *of_device_alloc(struct device_node *np,
+>  				  struct device *parent)
+>  {
+>  	struct platform_device *dev;
+> -	int rc, i, num_reg = 0, num_irq;
+> +	int rc, i, num_reg = 0;
+>  	struct resource *res, temp_res;
+>  
+>  	dev = platform_device_alloc("", PLATFORM_DEVID_NONE);
+>  	if (!dev)
+>  		return NULL;
+>  
+> -	/* count the io and irq resources */
+> +	/* count the io resources */
+>  	while (of_address_to_resource(np, num_reg, &temp_res) == 0)
+>  		num_reg++;
+> -	num_irq = of_irq_count(np);
+>  
+>  	/* Populate the resource table */
+> -	if (num_irq || num_reg) {
+> -		res = kcalloc(num_irq + num_reg, sizeof(*res), GFP_KERNEL);
+> +	if (num_reg) {
+> +		res = kcalloc(num_reg, sizeof(*res), GFP_KERNEL);
+>  		if (!res) {
+>  			platform_device_put(dev);
+>  			return NULL;
+>  		}
+>  
+> -		dev->num_resources = num_reg + num_irq;
+> +		dev->num_resources = num_reg;
+>  		dev->resource = res;
+>  		for (i = 0; i < num_reg; i++, res++) {
+>  			rc = of_address_to_resource(np, i, res);
+>  			WARN_ON(rc);
+>  		}
+> -		if (of_irq_to_resource_table(np, res, num_irq) != num_irq)
+> -			pr_debug("not all legacy IRQ resources mapped for %pOFn\n",
+> -				 np);
+>  	}
+>  
+>  	dev->dev.of_node = of_node_get(np);
 
-> Here is the summary with links:
->   - [net-next,1/3] net: phy: micrel: Fix concurrent register access
->     https://git.kernel.org/netdev/net-next/c/4488f6b61480
->   - [net-next,2/3] dt-bindings: net: micrel: Configure latency values and timestamping check for LAN8814 phy
->     https://git.kernel.org/netdev/net-next/c/2358dd3fd325
->   - [net-next,3/3] net: phy: micrel: 1588 support for LAN8814 phy
->     https://git.kernel.org/netdev/net-next/c/ece19502834d
+I think this definitely goes in the right direction by not eagerly
+populating resources without a driver actually needing it. If anything
+breaks, that should be seen as an opportunity to fix the users of this
+misfeature. I booted a couple of boxes with this patch, and nothing
+caught fire, so:
 
-I'm almost afraid to ask.. but will this series be reverted (or
-the device tree bindings patch)? There were quite a few remarks, even
-about the naming of the properties. So, will it be part of the next
-kernel release or will it be reverted?
+Acked-by: Marc Zyngier <maz@kernel.org>
+Tested-by: Marc Zyngier <maz@kernel.org>
 
--michael
+	M.
+
+-- 
+Without deviation from the norm, progress is not possible.
