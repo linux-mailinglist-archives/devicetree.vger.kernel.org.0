@@ -2,49 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA50A4DCF48
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 21:25:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id D84354DCFF1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 22:11:15 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229646AbiCQU0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 16:26:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34878 "EHLO
+        id S230074AbiCQVLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 17:11:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229595AbiCQU0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 16:26:36 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D6DA114CD08;
-        Thu, 17 Mar 2022 13:25:19 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 941081FB;
-        Thu, 17 Mar 2022 13:25:19 -0700 (PDT)
-Received: from [10.57.43.230] (unknown [10.57.43.230])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7FC503F766;
-        Thu, 17 Mar 2022 13:25:17 -0700 (PDT)
-Message-ID: <558f0c92-c499-daca-e1ad-2b16137f8c06@arm.com>
-Date:   Thu, 17 Mar 2022 20:25:12 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
-Subject: Re: [PATCH v2 2/3] dt-bindings: timer: Document arm, cortex-a7-timer
- in arch timer
-Content-Language: en-GB
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
+        with ESMTP id S229989AbiCQVLr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 17:11:47 -0400
+Received: from mail-pl1-x632.google.com (mail-pl1-x632.google.com [IPv6:2607:f8b0:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 611E6FDE3F;
+        Thu, 17 Mar 2022 14:10:30 -0700 (PDT)
+Received: by mail-pl1-x632.google.com with SMTP id z3so5481366plg.8;
+        Thu, 17 Mar 2022 14:10:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=5119qc3EtEQdDi8mG4lL3e8ynwtRHGtpJfUH9ad79BM=;
+        b=cLbT42cpQNWZwjJlG1HnfdtUY2sEaO3MFC70NXE52i6GLZibAK6Lc+lPwcNb8Ix9pl
+         KERlUCP/9Nu8tzePGfDRvKLgtyQpV9zbLKOP3MmzlIBK9OaRMaBz31mVX/VzB0K4+nEQ
+         nvXspkRLxRJg5R3ZB2ih+tf0A9N34hPWap1kgA99fyVmUNOK/X7LkBFR81em8dCeb0om
+         sdTaSTkk+0RIHwCQ7IDD3jDo4xa86MYRSCSwbYhAp2QWnirLfqKmhEgmwpa80PDQBZRl
+         FjpOb12nlrmX0h9IV+bjY6i6u4jq69yZDk3XP4+M3sHvjwIcNg7KcB5b5zs1ukiJ5IVf
+         tXSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=5119qc3EtEQdDi8mG4lL3e8ynwtRHGtpJfUH9ad79BM=;
+        b=OmWw7R2rWGKffukMTY1LJMV3WbIh2CIC7o8IiIcKEYik+5oAp7ZpU4t7VGGIqK2OXC
+         KIDyQmIxdn+6KtCCNyxL01Jn2jcQu0jQFdJ2c8vZb+xAxiuFUtnJISH28ze0DgM+bEW1
+         NwYtytOmUraEdJSguZ3F1CyttOOFJQJcbR31cyFk9QHkLy46l0MhDJfiwBL08ytVrX6h
+         YiToJBOl/5HkOcESDi8i2GQBVmYi/5+tVRM+3kxBPPMV0TV2Rtf60/evhgFhlPibLyCN
+         5pvgSbv5qCktX5YFaYjw8xjZf4KiPseVKFPrQOaCZHF7WuT8qizKEL/ICE8AesXrp1Sb
+         CEsg==
+X-Gm-Message-State: AOAM5301YJOuKCQPGKKfFxRCgVW7jWg4E3o9t1fAF+/Xn51fRD8tO9Kg
+        Ch6TimgoZq01Q8NbExKZ/17HFKrGreU=
+X-Google-Smtp-Source: ABdhPJxXmdglkWtd/gJOeOPGrLtSGqZac2mfJTMtH5m81DtDv/2NIUQ7qhi00BvFz4PDEuRQCWqbZA==
+X-Received: by 2002:a17:90b:2242:b0:1c6:80e3:71b6 with SMTP id hk2-20020a17090b224200b001c680e371b6mr6024596pjb.152.1647551429768;
+        Thu, 17 Mar 2022 14:10:29 -0700 (PDT)
+Received: from 9a2d8922b8f1 ([122.161.51.18])
+        by smtp.gmail.com with ESMTPSA id m11-20020a17090a3f8b00b001bc299e0aefsm10187305pjc.56.2022.03.17.14.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Mar 2022 14:10:29 -0700 (PDT)
+Date:   Fri, 18 Mar 2022 02:40:24 +0530
+From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: Remove arch timer clocks
+ property
+Message-ID: <20220317211024.GA99538@9a2d8922b8f1>
 References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
- <20220317191527.96237-3-singh.kuldeep87k@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <20220317191527.96237-3-singh.kuldeep87k@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+ <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
+ <87h77wxslh.wl-maz@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87h77wxslh.wl-maz@kernel.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -52,49 +74,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2022-03-17 19:15, Kuldeep Singh wrote:
-> Renesas RZ/N1D platform uses compatible "arm,cortex-a7-timer" in
-> conjugation with "arm,armv7-timer". Since, initial entry is not
-> documented, it start raising dtbs_check warnings.
+On Thu, Mar 17, 2022 at 07:54:34PM +0000, Marc Zyngier wrote:
+> On Thu, 17 Mar 2022 19:15:26 +0000,
+> Kuldeep Singh <singh.kuldeep87k@gmail.com> wrote:
+> > 
+> > Arch timer either require clock-frequency property or doesn't need to
+> > specify clock at all in DT. In general, frequency can be determined
+> > internally and in case of brokern firmwares, need to extend
+> > clock-frequency to pass info to driver.
 > 
-> ['arm,cortex-a7-timer', 'arm,armv7-timer'] is too long
-> 'arm,cortex-a7-timer' is not one of ['arm,armv7-timer', 'arm,armv8-timer']
-> 'arm,cortex-a7-timer' is not one of ['arm,cortex-a15-timer']
+> A clock frequency and a clock are not the same thing.
+
+Yes Marc, That's what I have mentioned in commit description.
+
+Driver uses "clock-frequency" property only and doesn't take inputs from
+"clocks" property. So, any platform should refrain from defining such
+entity at first place in DT. Binding also says the same i.e pass info
+via "clock-frequency" property and no mention of "clocks".
+
 > 
-> Document this compatible to address it. The motivation to add this
-> change is taken from an already existing entry "arm,cortex-a15-timer".
-> Please note, this will not hurt any arch timer users.
-
-Eh, if it's never been documented or supported, I say just get rid of 
-it. The arch timer interface is by definition part of a CPU, and we can 
-tell what the CPU is by reading its ID registers. Indeed that's how the 
-driver handles the non-zero number of CPU-specific errata that already 
-exist - we don't need compatibles for that.
-
-In some ways it might have been nice to have *SoC-specific* compatibles 
-given the difficulty some integrators seem to have had in wiring up a 
-stable count *to* the interface, but it's not like they could be 
-magically added to already-deployed DTs after a bug is discovered, and 
-nor could we have mandated them from day 1 just in case and subsequently 
-maintained a binding that is just an ever-growing list of every SoC. Oh 
-well.
-
-Robin.
-
-> Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> ---
->   Documentation/devicetree/bindings/timer/arm,arch_timer.yaml | 1 +
->   1 file changed, 1 insertion(+)
+> > 
+> > Aspeed BMC is the platform which defines clocks property, an invalid
+> > entry which can be safely removed.
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> index ba2910f0a7b2..ea390e5df71d 100644
-> --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> @@ -26,6 +26,7 @@ properties:
->             - arm,armv8-timer
->         - items:
->             - enum:
-> +              - arm,cortex-a7-timer
->                 - arm,cortex-a15-timer
->             - const: arm,armv7-timer
->   
+> Safely removed? Says who? Have you tested this change?
+
+Since "clocks" is never read by driver and driver incorporates
+"clock-frequency" which was certainly not defined here, I believe this
+reasoning is sufficient for my clause. As it's safe to remove an entry
+which was never used.
+
+Please note, it's just Aspeed BMC which had "clocks" defined, other
+platforms which require input from DT have extended "clock-frequency"
+property like I mentioned before.
+
+I don't possess this platform physically,and did successfull compile
+time testing. I have initally copied few Aspeed folks, they can help in
+reviewing and confirming this.
+
+> 
+> > 
+> > Moreover, clocks also matches incorrectly with the regex pattern.
+> > Remove this entry altogether to fix it.
+> > 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> NAK. That's not a reason to randomly butcher things.
+
+I hope I explained my reasons above.
+
+- Kuldeep
