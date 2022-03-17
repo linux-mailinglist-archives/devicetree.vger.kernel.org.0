@@ -2,187 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 352FD4DC581
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:07:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E46DA4DC58B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:08:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231928AbiCQMIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 08:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48328 "EHLO
+        id S233442AbiCQMKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 08:10:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229898AbiCQMIQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:08:16 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D06ED1D4C13;
-        Thu, 17 Mar 2022 05:06:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1647518763;
-        bh=FvAOnwGgm6mSzo4GWwbSbtaPsT3+hToFjrf6jLKI3b8=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=Mrd5vzWfzAzg7upBL2NOum5ESRYqII4I7LB5+xCbu7zbeJY72xXm/4wnCf2Vdv7yp
-         8RnGN798Lzhv2zIEvf8XnzN1IQAaTbHHnYWyH/BP90OEBQqNNN4lFVowp+PC5VaZVN
-         qVmFcKpo7juvb+9R9dWAkzyIQoH7TPf/QiFA1uUs=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.194.160]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MfHEP-1o19yD3EMd-00gssK; Thu, 17
- Mar 2022 13:06:02 +0100
-Date:   Thu, 17 Mar 2022 13:05:54 +0100
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        with ESMTP id S233378AbiCQMKH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:10:07 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67CF012CC14
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 05:08:51 -0700 (PDT)
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 4C98D3F1B7
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 12:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+        s=20210705; t=1647518929;
+        bh=X7QhYmDIEsiW2YaB7ul9V/GC60Wb8/S3oj320pLtdF0=;
+        h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+        b=JTR7nwW0C0bnJ1DDrB4AclY0TXg3uza7Ltblo19iQm7kKXCjcQBVc2UOcEv1eqO5J
+         3YfjBqNb2yzMBZ05zjQ+UcUonqPtPQaoMl+uqB7bajexuCUwkDrhg4kvzpiJtIIwPP
+         AO10nRWrlIpNd4nJOlYzdt73hmoBJTk39dDYYsKck8W2Qxy+9r6E6P0vNThGhOWBke
+         1dxNn5igoLHKgot8P4RJ5LeTcMrO3X3NzIibZD3U4X4sC6Ve5JRlSn3U8efhstE8fv
+         yBK9wO0oxmn8Rb/+49jFVPRYfUoi6sA4kyV4S2ZzbNXH78O4m17N7YbjTA3gR9RhD7
+         3odqtrEE2eDng==
+Received: by mail-wm1-f72.google.com with SMTP id 26-20020a05600c22da00b00388307f3503so2043140wmg.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 05:08:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=X7QhYmDIEsiW2YaB7ul9V/GC60Wb8/S3oj320pLtdF0=;
+        b=MvgEVJ0B4e5MLvqoZZQ/XNmsRY3RqNRblXXnkbA+9L9W1R/5YDLtfyOHQvYeG7lE29
+         Qr+Z4H8gqAzuBDVuytZIOlWtv2maN8TssFE5lNgdZqdp1pNEGxtDopgWwEPyZ4W70B/U
+         E5Vs0mpqt2CR1QPJ75S9Ju+KeIfg8z6ZTyst+CuJoK01qDlCZTMOwOl51lVD3dKmH3C1
+         EJnkVAOjHv5RNhD/3VSTjyIvEWvQ+okhL1JVLt2TejGTiT6XCrVlb946Rk1CnkOzR41e
+         2Uy5hu0difJPtHkbrgM27SQURbDF8RhrgHlevr/W/6NK2Jgd8jFnU/Wn7jB4/IpEYLDv
+         X2tg==
+X-Gm-Message-State: AOAM532gjnzb5y5OpceAPnNGY4EYzsD/whbbFPr47eSv4Fgw/27J4Sa8
+        m6YS0c+yULQ358t6zpWJUeAGWHtf2LxkUPDhnrK6KeniODia2m8pWgyuCAj6HMlgkQNZY5cmBHb
+        WnIGpRuLhtdnicRRWe/KWDCr29ITQ7KdPmfGG1LE=
+X-Received: by 2002:a05:600c:3595:b0:38b:42fd:fe2f with SMTP id p21-20020a05600c359500b0038b42fdfe2fmr3620771wmq.76.1647518928549;
+        Thu, 17 Mar 2022 05:08:48 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJz3/TN6BuIOGImoXaaSmmnMpZDC8v2dSDLcP6OOk9tKoxZIzgO1qTsE0hvhz9F2woPEm1mIkQ==
+X-Received: by 2002:a05:600c:3595:b0:38b:42fd:fe2f with SMTP id p21-20020a05600c359500b0038b42fdfe2fmr3620753wmq.76.1647518928330;
+        Thu, 17 Mar 2022 05:08:48 -0700 (PDT)
+Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.gmail.com with ESMTPSA id g1-20020a1c4e01000000b003899c8053e1sm5091748wmh.41.2022.03.17.05.08.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Mar 2022 05:08:47 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Michael Walle <michael@walle.cc>,
-        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Paul Burton <paulburton@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, linux-oxnas@groups.io
-Subject: Re: [PATCH 14/18] dt-bindings: irqchip: nuvoton,wpcm450-aic: include
- generic schema
-Message-ID: <YjMkIkaMD4aXW4p3@latitude>
-References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
- <20220317115705.450427-13-krzysztof.kozlowski@canonical.com>
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Subject: [PATCH] dt-bindings: irqchip: ti,sci: drop Lokesh Vutla
+Date:   Thu, 17 Mar 2022 13:08:45 +0100
+Message-Id: <20220317120845.452813-1-krzysztof.kozlowski@canonical.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="6We2K2LccY5TYmIH"
-Content-Disposition: inline
-In-Reply-To: <20220317115705.450427-13-krzysztof.kozlowski@canonical.com>
-X-Provags-ID: V03:K1:HgL/c7y20/2o06wU7DUbHTGm2dtdKvONyD2DCEUDcT19aKB9dp/
- 4YFswLqVeUacbJfuaUDINBhpX8w3EAd6v+d4BzRlu0XisSUP17PNuWg/7WN/pvmXHwcLhw9
- f4fq2mw5u+m5ub1UFpJm0YNLy237jEHwhPjQxCZUJ3KWdkHY3PtDNxdr4n9t/F25/ik6h9M
- JcWSfb1x/nlLhWFmAaahQ==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Q+LaKt2UmKs=:OOCnDGzegq7M4POFDUWR4b
- M7csAE3emHW6sJoi+gtTJIMwzgN+Ow+9Nt4CL/4QdsUnbrvl6FfU09hizYzSvEbtmPklO99ap
- SjjPAHFGB6621T7B55di6QPcgLDFQUXK3tw+a2zeB00U9ijpUWWAlrd+KvzKhu9QnpACnatEn
- e0InZ2dITD8ae/tJ3bxreUEbEysNjf/WeUnmbz3Q7olzEIaiKh8qN0uJxjfBUXDjXqiCWTspP
- KxK8nEUG9hXMbI3oQ7wNwalMarGKFDlCwAFodPp0eAGNlNAU8J/Ee4d9wYAVFxTjwNKOgSpsn
- 3FUpyE7Uh2bRsibCBetlUjV20Ps/9Fq25jBodwt+QiEgDCq68M0T/HBprD/j08dCu7tgj5OOW
- +iBcP8m9X8CP2UYG7gXOKTCqVf5HFI99GAJ6DrvnVOlVaI5udZfWY485qmUZhZ5iBYipb1vAh
- 2Vj+8UdkO8A+w3TzocjW9InzwT0NdkCQpVZDjjwDbmpU53zIpct7/TZAwWr7/2D9sIp/SraMM
- rqAUQbPBEQFKsFNxDwRDifg4x4V+S/e7d0vaqIJGHY0FmEN8kQSpSU62mXfjapbft3OfaK3B9
- k6wxO0MXZYzYKONEPWvVU/IBPPIKxDoWMEyaMvb4V2zWoQlQbzOUZqQBLCBdKLLEmxu2xhYuj
- lcedH/Z8K/h8ctpENTCkzJmPmRNFWgNHvLE9fjwYF/w3ANCm76XdAEjQPPYZaLceFg2exs/Kc
- VMU7W4zqdO9hbpQkyFVecUgjvQJfvQghIk32+Hi1xlwgrK+37ne91k1/tnHfrMLZGQkg1650Q
- SmoN4Y7j9Uz/mbTROEqvASzxjOayimJMBQDKCHhkaM0/rW/PJwsabtmYH5YOyeXnHCnHyn18t
- ARwSlMVdGg6djVHg8TnK85kyvqjGSQ7xSfLTkQJ5gdqRbUlASCJt9p49BAAF3bWgTj/4eHMZJ
- p4qnimyKYT1jcZmZtmc32m/MmClphx33oBtSPt1Ux/MI6PSyiLbK8oC061wAUbgfLXpqWbhI/
- 1IHaDPvocdBDAUmVTrMgzWsGRJvhvaWU2GzwTcWKppO5gQb81i56C0EZKylcDKUuGCXQzVCkV
- qWMwg/tfQIUG8I=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Emails to Lokesh Vutla bounce ("550 Invalid recipient"), so add Nishanth
+Menon as maintainer (TI Keystone maintainer).
 
---6We2K2LccY5TYmIH
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+---
+ .../devicetree/bindings/interrupt-controller/ti,sci-inta.yaml   | 2 +-
+ .../devicetree/bindings/interrupt-controller/ti,sci-intr.yaml   | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-On Thu, Mar 17, 2022 at 12:57:01PM +0100, Krzysztof Kozlowski wrote:
-> Include generic interrupt-controller.yaml schema, which enforces node
-> naming and other generic properties.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-> ---
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+index 935a61504aa0..f2148212ed3a 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Texas Instruments K3 Interrupt Aggregator
+ 
+ maintainers:
+-  - Lokesh Vutla <lokeshvutla@ti.com>
++  - Nishanth Menon <nm@ti.com>
+ 
+ allOf:
+   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
+index 0d35a5e21a64..9b6b0e0dcf7e 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Texas Instruments K3 Interrupt Router
+ 
+ maintainers:
+-  - Lokesh Vutla <lokeshvutla@ti.com>
++  - Nishanth Menon <nm@ti.com>
+ 
+ allOf:
+   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
+-- 
+2.32.0
 
-Reviewed-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-
->  .../bindings/interrupt-controller/nuvoton,wpcm450-aic.yaml | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/nuvot=
-on,wpcm450-aic.yaml b/Documentation/devicetree/bindings/interrupt-controlle=
-r/nuvoton,wpcm450-aic.yaml
-> index 9ce6804bdb99..285c20de0962 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/nuvoton,wpcm=
-450-aic.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/nuvoton,wpcm=
-450-aic.yaml
-> @@ -9,6 +9,9 @@ title: Nuvoton WPCM450 Advanced Interrupt Controller bind=
-ings
->  maintainers:
->    - Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> =20
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
->  properties:
->    '#interrupt-cells':
->      const: 2
-> @@ -21,14 +24,14 @@ properties:
->    reg:
->      maxItems: 1
-> =20
-> -additionalProperties: false
-> -
->  required:
->    - '#interrupt-cells'
->    - compatible
->    - reg
->    - interrupt-controller
-> =20
-> +unevaluatedProperties: false
-> +
->  examples:
->    - |
->      aic: interrupt-controller@b8002000 {
-> --=20
-> 2.32.0
->=20
-
---6We2K2LccY5TYmIH
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmIzJAAACgkQCDBEmo7z
-X9uWABAAyCJBDe/oJqNtFTHpiAaREvkhvc/p2FA+LYL7rx1AakR0loGpsK2LPJKZ
-zyaXqwnn/eM43JdcpN8IiOu4hcrpBZ3IYwvdbBbCyvhTruAxgCYyeVCzYTiaDvl1
-viiR1Nrne+v9WIV5+6wQzU3SCXIIZFHR8NTDoYjIwQm+Kk/0iIgp31Fir5/1Gxne
-qkFkHNxsTyuV+lhXPPxR4Ckws+DBAhSAoD7Z93Fz3Wxe8dvwSqCm9bdrRwBI3FoN
-PMsK68P8HY8UjfJaShm1YCmiHAVVXCuVtPhv8t5qYk9QRRnwR9PMmsWBZUWJ5/X3
-PVc+U61swOpCcjekpEqCaANNOIj5gGegG7TyOfFKMvjQg007dOXkrVneZY6LWct7
-bBz9YqPvobcqXgQ65kY3hZN31F7NbK1NqEN1Y6uuEPzWBh63rSQusXuOMXYqIg2W
-gX43E6GEAfZODJErtwXdF2GQOnaK0VcnHHVzn2xO7n2ygXXtgh5Ty7t/wAAV34Li
-cUeL3a5B0drHBT4SHGGGyDGtgar4gfoUQuMWipQo3in/puaUPwK0ZdpEHxRuy5lJ
-B1OlCMRiBAm4TeGr3uAo5xEnCagPAYOQnX5YuGF4LXgWKtBNvrbMekA8MtNg2jTz
-nsyloA9vu5b6xYWcBOych0jIGJqubGCUmTLG5/AYXoAZfWTm8Js=
-=eXJh
------END PGP SIGNATURE-----
-
---6We2K2LccY5TYmIH--
