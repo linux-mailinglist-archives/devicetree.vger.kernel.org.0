@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A9B4DC38D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 11:04:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D1A04DC3A3
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 11:08:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232315AbiCQKFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 06:05:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45694 "EHLO
+        id S231373AbiCQKJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 06:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230027AbiCQKFt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 06:05:49 -0400
-Received: from mail-ot1-x334.google.com (mail-ot1-x334.google.com [IPv6:2607:f8b0:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 188E9C12CE
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 03:04:34 -0700 (PDT)
-Received: by mail-ot1-x334.google.com with SMTP id t8-20020a0568301e2800b005b235a56f2dso3168047otr.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 03:04:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=u9nUpgzxfAbZV4T52RCZIvcr/DfDTjQKuSh0K5ZGlvE=;
-        b=abPaoLiZdx3ecilJzTIn3NriIeqU+n/NqrMMgfuAwsp+ri8WrFq8OtBBEY+LuRvFIU
-         voR/ua3F9ZYY5VmnR3McaCXrcsKN30qy7R+Kw4sBRq7t8/3Lo9E0B0GgD0Xe3Vxi/1CN
-         Mma+OzbtzI+lWUv0QShxiANMoG5lgyn4GG8SY3q44pUZfCJ/oPKL0gnRmhZ+DEpCgBrB
-         /2iz0p3/WQ9dBW7p6T4LwBhGfvTn9hu1ZvuGN6MrE/LBTD5Z/LPMapmRDpDarZKOrhet
-         3QHOM3Qy7S9QAkfSuyQ61AcknUoVLr1JhXUVDYYHNbD0UVpv9/LrZUvXXUKNzwCzCPGL
-         Q/Qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=u9nUpgzxfAbZV4T52RCZIvcr/DfDTjQKuSh0K5ZGlvE=;
-        b=FYGM3pk8JDFKvzkr6m7/2NShSmU42xr9c3CRb6DPCleQCuZADzhRqMXs4doQogn4qX
-         Adn41xb5syyYg7ujT8drHrtLZTflZT+z81B+KVWqYCyn79PPPHygZbT78MLLBqnQXY+r
-         0V+mJKJPKWLLncoHC1GhrzpnGkHwqJvt8+/YgJF7vjNvlt7JV/xx2SgnF4gUWqUVbodx
-         PC5J4DVmEqEWqUnh99VjHd5A6YI5iShUFZ/EdiF20i3zTbbcNTdloPgwvlIqKmG1yOkI
-         oY/ve+LPKCIXL+MSRRgeapib2puXdNX5S0YVGab7QogJvKB0k65+BMeFR4Xpquu4BhwX
-         o7zg==
-X-Gm-Message-State: AOAM531iSEcn2LpenRFatAc7BJtuKVGLKybmiE2dpCv+i3HAVyr0iZRq
-        //cli37ZVtKvRgTs3dDB0s84N/nCUY0u2TrG8wsVTQ==
-X-Google-Smtp-Source: ABdhPJzwfFzBhrRDqvgE0InBEBQROYhXvwuPi4voMAzEwABwx5FappeX8bR+bfRME3eYybKak2lxfWoQMRjHCMjQOTE=
-X-Received: by 2002:a05:6830:1b78:b0:5c9:48b3:8ab with SMTP id
- d24-20020a0568301b7800b005c948b308abmr1288721ote.235.1647511473444; Thu, 17
- Mar 2022 03:04:33 -0700 (PDT)
+        with ESMTP id S230012AbiCQKJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 06:09:46 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9792B82ED;
+        Thu, 17 Mar 2022 03:08:29 -0700 (PDT)
+X-UUID: 4182831d0f9847d58821cb8565e1458d-20220317
+X-UUID: 4182831d0f9847d58821cb8565e1458d-20220317
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <axe.yang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 108028781; Thu, 17 Mar 2022 18:08:24 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 17 Mar 2022 18:08:22 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 17 Mar 2022 18:08:20 +0800
+From:   Axe Yang <axe.yang@mediatek.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adrian Hunter <adrian.hunter@intel.com>
+CC:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Satya Tangirala <satyat@google.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Axe Yang <axe.yang@mediatek.com>, Lucas Stach <dev@lynxeye.de>,
+        Eric Biggers <ebiggers@google.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kiwoong Kim <kwmad.kim@samsung.com>,
+        Yue Hu <huyue2@yulong.com>, Tian Tao <tiantao6@hisilicon.com>,
+        <angelogioacchino.delregno@collabora.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v7 0/3] mmc: mediatek: add support for SDIO async IRQ
+Date:   Thu, 17 Mar 2022 18:08:15 +0800
+Message-ID: <20220317100818.24908-1-axe.yang@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20220317091926.86765-1-andy.chiu@sifive.com>
-In-Reply-To: <20220317091926.86765-1-andy.chiu@sifive.com>
-From:   Andy Chiu <andy.chiu@sifive.com>
-Date:   Thu, 17 Mar 2022 18:02:35 +0800
-Message-ID: <CABgGipUd67TSoPz3eeKf2kXzzwy8NWJMkGYtkikdcBKiaJd8Bg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: xilinx_axienet: add pcs-handle attribute
-To:     davem@davemloft.net, kuba@kernel.org, michal.simek@xilinx.com,
-        linux@armlinux.org.uk, Robert Hancock <robert.hancock@calian.com>,
-        andrew@lunn.ch, netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        radhey.shyam.pandey@xilinx.com
-Cc:     Greentime Hu <greentime.hu@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,37 +64,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-loop in: radhey.shyam.pandey@xilinx.com
+Change in v7:
+- add device_init_wakeup() to register SDIO host as wakeup source
+
+Change in v6:
+- abandon cap-sdio-async-irq flag, use wakeup-source flag instead
+- extend interrupts and pinctrls in mediatek mmc host controller DT documents
+- add mmc_card_enable_async_irq() to access enable_async_irq flag
+- simplify wakeup irq implementation with dedicate wake up irq related interface
+
+Change in v5:
+- resort variables to reversed xmas tree order
+- restore old copyright year range and add current year back
+
+Change in v4:
+- add MMC_CAP2_SDIO_ASYNC_IRQ judge before lookup eint pinctrl
+- replace spin_lock_irqsave() variant with spin_lock() in eint irq handler
+
+Changes in v3:
+- correct abbreviations with capital letters in commit message
+- replace copyright year with 2022 in mtk-sd.c
+- remove unnessary pointer casting
+- adjust variable order to reversed xmas tree
+- remove a redundant blank line
+- refine if statement, following standard pattern
+
+Change in v2:
+- change flag name from 'cap-sdio-async-int' to 'cap-sdio-async-irq'
+- change corresponding macro names from xxx_INT to xxx_IRQ
+- resort new member in msdc_host structure
+- refine function msdc_request_dat1_eint_irq()
+- rename msdc_{suspend,resume} function names, add suffix '_noirq'
+- add MMC_CAP2_NO_SDIO judgement before parse eint related pin setting
+
+Axe Yang (3):
+  dt-bindings: mmc: mtk-sd: extend interrupts and pinctrls properties
+  mmc: core: Add support for SDIO wakeup interrupt
+  mmc: mediatek: add support for SDIO eint wakup IRQ
+
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |  24 ++++-
+ drivers/mmc/core/sdio.c                       |  17 +++
+ drivers/mmc/host/mtk-sd.c                     | 100 ++++++++++++++++--
+ include/linux/mmc/card.h                      |   8 +-
+ include/linux/mmc/sdio.h                      |   5 +
+ 5 files changed, 144 insertions(+), 10 deletions(-)
+
+-- 
+2.25.1
 
 
-On Thu, Mar 17, 2022 at 5:21 PM Andy Chiu <andy.chiu@sifive.com> wrote:
->
-> Document the new pcs-handle attribute to support connecting to an
-> external PHY in SGMII or 1000Base-X modes through the internal PCS/PMA
-> PHY.
->
-> Signed-off-by: Andy Chiu <andy.chiu@sifive.com>
-> Reviewed-by: Greentime Hu <greentime.hu@sifive.com>
-> ---
->  Documentation/devicetree/bindings/net/xilinx_axienet.txt | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/net/xilinx_axienet.txt b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> index b8e4894bc634..2a9a3a90eb63 100644
-> --- a/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> +++ b/Documentation/devicetree/bindings/net/xilinx_axienet.txt
-> @@ -68,6 +68,11 @@ Optional properties:
->                   required through the core's MDIO interface (i.e. always,
->                   unless the PHY is accessed through a different bus).
->
-> + - pcs-handle:           Phandle to the internal PCS/PMA PHY, if a fixed external PHY
-> +                 is tied to it in SGMII or 1000Base-X modes. This is not
-> +                 required for SFP connection. The driver would use phy-handle
-> +                 to reference the PCS/PMA PHY in such case.
-> +
->  Example:
->         axi_ethernet_eth: ethernet@40c00000 {
->                 compatible = "xlnx,axi-ethernet-1.00.a";
-> --
-> 2.34.1
->
