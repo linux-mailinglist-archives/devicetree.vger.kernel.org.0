@@ -2,105 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0352C4DC010
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:20:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A3F34DC01B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:27:07 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230178AbiCQHV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 03:21:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58816 "EHLO
+        id S230220AbiCQH2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 03:28:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229842AbiCQHV1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:21:27 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C883B19ABF6
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:20:11 -0700 (PDT)
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com [209.85.128.70])
+        with ESMTP id S230216AbiCQH17 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:27:59 -0400
+Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE55C1C16DE
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:26:40 -0700 (PDT)
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 1BB923F4BE
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 07:20:10 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id ECF8A3F602
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 07:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647501610;
-        bh=RoUeA1wG24c/Crhww+WUj9NHBvCMvLhd7U/GxxINFtE=;
+        s=20210705; t=1647501997;
+        bh=ghNz7R4BGfeSRpf4QcIYnWTSvV5jI5ENR9wPPc5DGEw=;
         h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
          In-Reply-To:Content-Type;
-        b=SDm02lvzUMt5lFUMgW+A8XoiRTu9ByN3FDnVjoT85z23qH2KEnHOTjLx4t6cplL6Q
-         NNVWabaVAqxCnbISzBgz1d7Wj8uJkubR4iYOxeJKgW0XK0ovtswDRH0Xnz2dQtArDO
-         t7HP57bhUQjFwA2O4LFmBtkIAGhUO7CNQO4XT+eXhKeRbHbwjstLki5sJjKSFdE900
-         V28kt6bZQJSVWRtBtx/mOC6hzZqFjYKPkVyo82QeHhHeJUHYNqIHGKUT0auEuLVu+n
-         3SIpc0tQUVUIq61Ef5fiBLDhRJT+HMQALTqiOT1bA4Fk7gOiSsRff0HaDZQCG05n8p
-         bnXGITrEvh3Rg==
-Received: by mail-wm1-f70.google.com with SMTP id a26-20020a7bc1da000000b003857205ec7cso1804893wmj.2
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:20:10 -0700 (PDT)
+        b=D6hMMPtho+Q1KIKx7adXE4EIZassueyz+XFtkeV6tc6Qnw0rJKR9iRWjGJdl8iWHg
+         N766DWkJYEFMbvAvnwokTW7pIH4dC5ffv3/YIqzOvgIDHMvXHRZSeUBL3Xdzgj0VKX
+         jzi/0elzfyVESukJOn0QQTA3mn6/d9mqHQL5rqSfYNNkNXBAfMBA52kqUCjDGkzgOv
+         GPU5qwQH47BATIai5PFJ3yL85POOWiavxeTQEQ/d6/MIxYtbvrJmxhdtHG4hzqPkaK
+         MiO3Kxp5hdn9o5TSJ7gHYQFGq9fq6k95EPC/0cDKFJCZhERu4zdVgSxuvnK2fkL2xr
+         jGMLE9jZgUwNg==
+Received: by mail-wm1-f72.google.com with SMTP id o10-20020a1c4d0a000000b0038c6e5fcbaeso1512001wmh.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=RoUeA1wG24c/Crhww+WUj9NHBvCMvLhd7U/GxxINFtE=;
-        b=xymAAV5sfsms4rt3gq4bTMvbSEyMpX0RmR3Nw7LExM6DKYf+jUod0v1tY0LsKgwAd3
-         7EtAip9Jjq1eoEd9JlVHvKMhDEmXMD5J657DCrKZm4n1AIL0dA33e8x0zfre8/7d+v3L
-         SfVABo9m2/3ui3LHq11FajxzqUDj/aQI1Ht1uuxOVdLB5AItBkdUrnlPgOosr1Y02Uu9
-         eHsVvuaCVu38jBUoJXSyv1qm/YAVdQ7EkgWhBhV42aUy3CPwym1qZqeFv9sOmqEOpYSh
-         qBtuqHCB/tNtuOivjl0TES7T8dPQW05eBFvUaXxLwY5CTLPMMA2q/klVK/Rzrni6ZaAx
-         GBzw==
-X-Gm-Message-State: AOAM532lVf0xs0I2+4tNaq3XUN5s8ia3ScnWpp8ig2rbp3Vf1zx82V9i
-        KK1sc9HsVor3raum8HmnoRn12U6h/zekGnOYOSpj+3XUDGAjb5nkR/CN1dD2LLloWtv464JaxrC
-        UrMS93F+qWohddKd/oRcoQIHnzvj7f0peEO9HNYU=
-X-Received: by 2002:a5d:5512:0:b0:1ef:5f08:29fb with SMTP id b18-20020a5d5512000000b001ef5f0829fbmr2757893wrv.653.1647501609583;
-        Thu, 17 Mar 2022 00:20:09 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzHbCVoeUsHyZ8wNSet5MR49AAhKrHaURXBuhyPImzMsALzcMVNd+fUfq5fTlEsXD2dGW/xxQ==
-X-Received: by 2002:a5d:5512:0:b0:1ef:5f08:29fb with SMTP id b18-20020a5d5512000000b001ef5f0829fbmr2757858wrv.653.1647501609413;
-        Thu, 17 Mar 2022 00:20:09 -0700 (PDT)
+        bh=ghNz7R4BGfeSRpf4QcIYnWTSvV5jI5ENR9wPPc5DGEw=;
+        b=EOuHnHxfqLkO070YUVV+6o5cyQVxlpbY6aWVYNzfhmQcIKGgWJ5/NwBtP6PDBl0eEu
+         F/64j5uIjZwV+hZBY/p1AOhh1MWL13Crq69vcrezCY3mSL7/UeF+0WoaCeI1ynYbVEdf
+         mYH+HpvcCURre5UWZnACBVpZeUPZUkYx0EFxYwtvwE/Hz1FX6ratmI9+lSe9GB0CutBX
+         6cKYKkDkG79pjFn1tr+ZvHcTrAOAIuymx2LqMegUQPBedMSqiqOA7HwbFMYovRa6Mxbm
+         bn8yKwsd3koxeajYet0oD95xGMjpDo/Uj1b6bQSnvA9Gkj5uWQ/Y8btd4W8h0vos2jFp
+         k5vA==
+X-Gm-Message-State: AOAM533n+sTJ6Pn9ACyJqa0mUismPi4vlDu3ihehqsML0oJsHjGWDv8s
+        M+ihhd6GyoTpcdVEjV3fxlzRmUDzemeT4mnm6M6hvdMrK91SKo/wW3hnvHrOUPok8z8m/sB7pbr
+        OJHvexBTyN33lkZesGnwpD6YxqD0P9l0RgqCIhMg=
+X-Received: by 2002:a5d:6182:0:b0:203:ecfb:6d5e with SMTP id j2-20020a5d6182000000b00203ecfb6d5emr826497wru.555.1647501997313;
+        Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyXUvFXzXTNB1+s0MST5P6b3GxTO5cqxsPLl8NjBFb0wBvzAZuUPRWZ20My4isFC+iYaqWujw==
+X-Received: by 2002:a5d:6182:0:b0:203:ecfb:6d5e with SMTP id j2-20020a5d6182000000b00203ecfb6d5emr826481wru.555.1647501997039;
+        Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id p4-20020a05600c358400b00389f61bce7csm5108647wmq.32.2022.03.17.00.20.08
+        by smtp.googlemail.com with ESMTPSA id k17-20020a05600c1c9100b00386bb6e9c50sm10966353wms.45.2022.03.17.00.26.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 00:20:08 -0700 (PDT)
-Message-ID: <e4c85b2d-8546-1740-9f83-d4cf985949d1@canonical.com>
-Date:   Thu, 17 Mar 2022 08:20:07 +0100
+        Thu, 17 Mar 2022 00:26:36 -0700 (PDT)
+Message-ID: <4b1f4772-35f9-3e21-6429-b64c7427144a@canonical.com>
+Date:   Thu, 17 Mar 2022 08:26:35 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH V9 1/5] dt-bindings: display: mediatek: add aal binding
- for MT8183
+Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings for
+ AC5
 Content-Language: en-US
-To:     Rex-BC Chen <rex-bc.chen@mediatek.com>, chunkuang.hu@kernel.org,
-        matthias.bgg@gmail.com, robh+dt@kernel.org
-Cc:     p.zabel@pengutronix.de, airlied@linux.ie, daniel@ffwll.ch,
-        jassisinghbrar@gmail.com, fparent@baylibre.com,
-        yongqiang.niu@mediatek.com, hsinyi@chromium.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20220317051831.7107-1-rex-bc.chen@mediatek.com>
- <20220317051831.7107-2-rex-bc.chen@mediatek.com>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
+ <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
+ <4e6df448-5562-8f50-6f46-91acb279bc1a@canonical.com>
+ <7e73bba0-8b54-772c-2e94-8fca4e4e3294@alliedtelesis.co.nz>
+ <cb0af80e-3e5a-fbd9-cd8b-7b252ebe33fe@canonical.com>
+ <6d902e7d-b71f-9dcd-9175-cc706e3d60cc@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <20220317051831.7107-2-rex-bc.chen@mediatek.com>
+In-Reply-To: <6d902e7d-b71f-9dcd-9175-cc706e3d60cc@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
         RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2022 06:18, Rex-BC Chen wrote:
-> Add aal binding for MT8183.
+On 16/03/2022 21:21, Chris Packham wrote:
 > 
-> Signed-off-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
-> ---
->  .../devicetree/bindings/display/mediatek/mediatek,aal.yaml   | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+> On 16/03/22 21:16, Krzysztof Kozlowski wrote:
+>> On 15/03/2022 22:12, Chris Packham wrote:
+>>> (trimmed cc list to the arm, pinctrl and dt people)
+>>>
+>>> On 15/03/22 23:46, Krzysztof Kozlowski wrote:
+>>>> On 14/03/2022 22:31, Chris Packham wrote:
+>>>>> Add JSON schema for marvell,ac5-pinctrl present on the Marvell 98DX2530
+>>>>> SoC.
+>>>>>
+>>>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>>>> ---
+>>>>>
+>>>>> Notes:
+>>>>>       Changes in v2:
+>>>>>       - Remove syscon and simple-mfd compatibles
+>>>>>
+>>>>>    .../bindings/pinctrl/marvell,ac5-pinctrl.yaml | 70 +++++++++++++++++++
+>>>>>    1 file changed, 70 insertions(+)
+>>>>>    create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..65af1d5f5fe0
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
+>>>>> @@ -0,0 +1,70 @@
+>>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://scanmail.trustwave.com/?c=20988&d=1pyx4kv4KTrTfE5fXNs54mLZmOgk87Uim6CXu-YC1w&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fpinctrl%2fmarvell%2cac5-pinctrl%2eyaml%23
+>>>>> +$schema: http://scanmail.trustwave.com/?c=20988&d=1pyx4kv4KTrTfE5fXNs54mLZmOgk87Uim6TAvbEE2Q&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
+>>>>> +
+>>>>> +title: Marvell AC5 pin controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>>>> +
+>>>>> +description:
+>>>>> +  Bindings for Marvell's AC5 memory-mapped pin controller.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: marvell,ac5-pinctrl
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  '-pins$':
+>>>>> +    type: object
+>>>>> +    $ref: pinmux-node.yaml#
+>>>>> +
+>>>>> +    properties:
+>>>>> +      marvell,function:
+>>>>> +        $ref: "/schemas/types.yaml#/definitions/string"
+>>>>> +        description:
+>>>>> +          Indicates the function to select.
+>>>>> +        enum: [ gpio, i2c0, i2c1, nand, sdio, spi0, spi1, uart0, uart1, uart2, uart3 ]
+>>>>> +
+>>>>> +      marvell,pins:
+>>>>> +        $ref: /schemas/types.yaml#/definitions/string-array
+>>>>> +        description:
+>>>>> +          Array of MPP pins to be used for the given function.
+>>>>> +        minItems: 1
+>>>>> +        items:
+>>>>> +          enum: [ mpp0, mpp1, mpp2, mpp3, mpp4, mpp5, mpp6, mpp7, mpp8, mpp9,
+>>>>> +                  mpp10, mpp11, mpp12, mpp13, mpp14, mpp15, mpp16, mpp17, mpp18, mpp19,
+>>>>> +                  mpp20, mpp21, mpp22, mpp23, mpp24, mpp25, mpp26, mpp27, mpp28, mpp29,
+>>>>> +                  mpp30, mpp31, mpp32, mpp33, mpp34, mpp35, mpp36, mpp37, mpp38, mpp39,
+>>>>> +                  mpp40, mpp41, mpp42, mpp43, mpp44, mpp45 ]
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: "pinctrl.yaml#"
+>>>>> +
+>>>>> +required:
+>>>>> +  - compatible
+>>>>> +
+>>>>> +additionalProperties: false
+>>>>> +
+>>>>> +examples:
+>>>>> +  - |
+>>>>> +    system-controller@80020100 {
+>>>>> +      compatible = "syscon", "simple-mfd";
+>>>>> +      reg = <0x80020000 0x20>;
+>>>> This is unusual. Usually the pinctrl should be a device @80020100, not
+>>>> child of syscon node. Why do you need it? In v1 you mentioned that
+>>>> vendor sources do like this, but it's not correct to copy wrong DTS. :)
+>>> The vendor dts has this
+>>>
+>>>           pinctrl0: pinctrl@80020100 {
+>>>               compatible = "marvell,ac5-pinctrl",
+>>>                        "syscon", "simple-mfd";
+>>>               reg = <0 0x80020100 0 0x20>;
+>>>               i2c_mpps: i2c-mpps {
+>>>                   marvell,pins = "mpp26", "mpp27";
+>>>                   marvell,function = "i2c0-opt";
+>>>               };
+>>>        };
+>>>
+>>> Rob pointed out that "syscon", "simple-mfd" don't belong. I went looking
+>>> and found marvell,armada-7k-pinctrl which has the pinctrl as a child of
+>>> a syscon node and what you see in v2 is the result.
+>>>
+>>> I probably went a bit too far off the deep end and should have just
+>>> dropped the "syscon", "simple-mfd" compatibles. I even wrote that
+>>> version but decided to add some gold plating before I submitted it.
+>> More or less it is explained in
+>> Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt why
+>> armada-7k uses it that way. The pinctrl is part of system registers
+>> which apparently has to be shared with others (on shared SFR range).
+>>
+>> It depends on your case, your SFR ranges for pinctrl and other blocks.
+>>
+> I can tell you that without a syscon node in the mix somewhere the 
+> driver will fail to load. And when I switch to 
+> mvebu_pinctrl_simple_mmio_probe() the driver loads but then kernel 
+> panics when something tries to use one of the pin functions.
 > 
+> So I think the syscon is needed. I just need to come up with a better 
+> justification than "because it's needed".
 
+What do you mean "driver fails to load"? You control the driver, don't
+you? You wrote it? If you write a driver which is not compatible with
+bindings, it won't work obviously, so after changing bindings you need
+to revisit the driver.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+There is no need for syscon because driver "fails to load". You need to
+fix your driver. Currently the driver code is definitely not a proper
+platform driver.
+
+Different question is whether something else requires here syscon
+because it accesses these registers but this requires knowledge of
+architecture and other components.
 
 
 Best regards,
