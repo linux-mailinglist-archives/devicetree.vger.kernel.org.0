@@ -2,199 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 823C64DC29F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 10:27:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 94C534DC2BB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 10:31:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229480AbiCQJ2p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 05:28:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53624 "EHLO
+        id S231875AbiCQJdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 05:33:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229457AbiCQJ2o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 05:28:44 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438451D4C0B;
-        Thu, 17 Mar 2022 02:27:25 -0700 (PDT)
-X-UUID: d1ba9e9be6124dc793fbad94c5fc3cae-20220317
-X-UUID: d1ba9e9be6124dc793fbad94c5fc3cae-20220317
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <leilk.liu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1914048782; Thu, 17 Mar 2022 17:27:23 +0800
-Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.2.792.3;
- Thu, 17 Mar 2022 17:27:21 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Mar
- 2022 17:27:21 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Mar 2022 17:27:20 +0800
-Message-ID: <602f93f020967789eff49e2fd821d1b03f5b009f.camel@mediatek.com>
-Subject: Re: [PATCH V4 4/6] spi: mediatek: add spi memory support for ipm
- design
-From:   Leilk Liu <leilk.liu@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "Mark Brown" <broonie@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+        with ESMTP id S231872AbiCQJdG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 05:33:06 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84A0D1D4C29;
+        Thu, 17 Mar 2022 02:31:50 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22H5Kw4t025823;
+        Thu, 17 Mar 2022 04:31:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=+1Spm++uXSWjxqTxhnFXit10wfkaW+dD/q6ScBEsMgI=;
+ b=Zt0Tys2Yx4cotdJNlZ/r3kRO00Ni9H59EKpYQHdn/1Zb9/M4X2AuIPHlSlbgzxc40rf4
+ KVYDAKPy9/UNB0GXZx51gCI5udcV5X+nVJpeozh9XT0flFde+S09Nw1wutaJlxOnoV+b
+ 9DVZF/slXHKnRdnuOef2qaLHhykpV3S2FMopI0JX/R4QhfgWc4QQUHJWhvbdPvSqmOvz
+ w7G2IMHEBO5oApexBcGIFnEgfDeE25znbFG2DcbHbRCWeOAc0GzjdZplsrUZynmDmyE5
+ Yu3cGZfX77TFHDab+IDD+seaFR8pZVs09BnBZrOZZVYAN0YF8mN2GbNkSFfhK3ZC1dy1 wg== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3et5yp475e-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Thu, 17 Mar 2022 04:31:31 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Thu, 17 Mar
+ 2022 09:31:29 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Thu, 17 Mar 2022 09:31:29 +0000
+Received: from aryzen.ad.cirrus.com (unknown [198.61.64.95])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 8DD957C;
+        Thu, 17 Mar 2022 09:31:29 +0000 (UTC)
+From:   Lucas Tanure <tanureal@opensource.cirrus.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+CC:     <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
-Date:   Thu, 17 Mar 2022 17:27:20 +0800
-In-Reply-To: <b237c1fe-9ddd-0a2e-ecf2-05bfb984c5dd@collabora.com>
-References: <20220315032411.2826-1-leilk.liu@mediatek.com>
-         <20220315032411.2826-5-leilk.liu@mediatek.com>
-         <b237c1fe-9ddd-0a2e-ecf2-05bfb984c5dd@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Lucas Tanure <tanureal@opensource.cirrus.com>
+Subject: [PATCH v4 00/16] Support external boost at CS35l41 ASoC driver
+Date:   Thu, 17 Mar 2022 09:31:04 +0000
+Message-ID: <20220317093120.168534-1-tanureal@opensource.cirrus.com>
+X-Mailer: git-send-email 2.35.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-ORIG-GUID: 2c5yPmNcZ4Zid1lPjl9jqO_edeLTrjGT
+X-Proofpoint-GUID: 2c5yPmNcZ4Zid1lPjl9jqO_edeLTrjGT
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2022-03-15 at 10:31 +0100, AngeloGioacchino Del Regno wrote:
-> Il 15/03/22 04:24, Leilk Liu ha scritto:
-> > this patch add the support of spi-mem for ipm design.
-> > 
-> > Signed-off-by: Leilk Liu <leilk.liu@mediatek.com>
-> > ---
-> >   drivers/spi/spi-mt65xx.c | 349
-> > ++++++++++++++++++++++++++++++++++++++-
-> >   1 file changed, 348 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/spi/spi-mt65xx.c b/drivers/spi/spi-mt65xx.c
-> > index 1a0b3208dfca..8958c3fa4fea 100644
-> > --- a/drivers/spi/spi-mt65xx.c
-> > +++ b/drivers/spi/spi-mt65xx.c
-> 
-> ...snip...
-> 
-> > +
-> > +static void of_mtk_spi_parse_dt(struct spi_master *master, struct
-> > device_node *nc)
-> > +{
-> > +	struct mtk_spi *mdata = spi_master_get_devdata(master);
-> > +	u32 value;
-> > +
-> > +	if (!of_property_read_u32(nc, "spi-tx-bus-width", &value)) {
-> 
-> Hello Leilk,
-> 
-> thanks for considering my advice about "spi-{tx,rx}-bus-width", but
-> there's
-> something that you have misunderstood about it.
-> 
-> Simply, you don't need this function at all. Whatever you are doing
-> here is
-> already being performed in the Linux SPI framework: at the end of the
-> probe
-> function, this driver is calling the (legacy)
-> devm_spi_register_master(),
-> which calls devm_spi_register_controller().
-> 
-> In drivers/spi/spi.c, function spi_register_controller(), will in
-> turn call
-> of_register_spi_devices(ctlr) -> of_register_spi_device(ctlr, nc)...
-> that
-> will end up finally calling function of_spi_parse_dt(ctlr, spi, nc).
-> 
-> The last mentioned function already contains the logic and setup to
-> check
-> devicetree properties "spi-tx-bus-width" and "spi-rx-bus-width" (and
-> some
-> others, as well).
-> 
-> This means that spi-mt65xx.c already probed these even before your
-> IPM
-> implementation, hence ***function of_mtk_spi_parse_dt() is not
-> needed***.
-> 
-> Simply drop it and don't check for these properties: that's already
-> done.
-> 
-> 
-> Regards,
-> Angelo
-> 
-Hi Angelo,
+Move the support for CS35L41 external boost to its shared library
+for ASoC use.
+This move resulted in cs35l41_hda_reg_sequence being removed,
+and its steps were broken down into regmap writes or functions
+from the library. And hardware configuration struct was unified
+for its use in the shared lib.
+While at it, some minor bugs were found and fixed it.
 
-Thanks for your advice.
+v4 changelog:
+ - Separated GPIO 1 and 2 function enums
 
-There are two spi controllor on MT7986. One supports single/dual mode,
-the other supports quad mode. Both of them can support spi memory
-framework(one's tx/rx bus width is 1/2, the other one's tx/rx bus width
-is 1/2/4). 
+v3 changelog:
+ - Remove patches already accepted
+ - Improved logic in documentation patch
+ - Documentation patch goes before its code
+ - Fixed missing Signed-off-by
+ - Fixed subject for HDA patches
 
-Can I use of_mtk_spi_parse_dt() to parse the information? What's your
-suggestion?
+v2 changelog:
+ - Instead of removing the log, playback actions will log the last regmap access.
+ - Documentation patch with the correct subject line and fixed bug reported by Rob Herring on the
+ provided example.
 
-Thanks!
+Previous versions:
+ v1: https://lkml.org/lkml/2022/3/3/759
+ v2: https://lkml.org/lkml/2022/3/4/743
+ v3: https://lkml.org/lkml/2022/3/8/975
 
+David Rhodes (1):
+  ASoC: dt-bindings: cs35l41: Document CS35l41 External Boost
 
-> > +		switch (value) {
-> > +		case 1:
-> > +			break;
-> > +		case 2:
-> > +			master->mode_bits |= SPI_TX_DUAL;
-> > +			break;
-> > +		case 4:
-> > +			master->mode_bits |= SPI_TX_QUAD;
-> > +			break;
-> > +		default:
-> > +			dev_warn(mdata->dev,
-> > +				 "spi-tx-bus-width %d not supported\n",
-> > +				value);
-> > +			break;
-> > +		}
-> > +	}
-> > +
-> > +	if (!of_property_read_u32(nc, "spi-rx-bus-width", &value)) {
-> > +		switch (value) {
-> > +		case 1:
-> > +			break;
-> > +		case 2:
-> > +			master->mode_bits |= SPI_RX_DUAL;
-> > +			break;
-> > +		case 4:
-> > +			master->mode_bits |= SPI_RX_QUAD;
-> > +			break;
-> > +		case 8:
-> > +			master->mode_bits |= SPI_RX_OCTAL;
-> > +			break;
-> > +		default:
-> > +			dev_warn(mdata->dev,
-> > +				 "spi-rx-bus-width %d not supported\n",
-> > +				value);
-> > +			break;
-> > +		}
-> > +	}
-> > +}
-> > +
-> >   static int mtk_spi_probe(struct platform_device *pdev)
-> >   {
-> >   	struct spi_master *master;
-> > @@ -830,6 +1170,13 @@ static int mtk_spi_probe(struct
-> > platform_device *pdev)
-> >   	if (mdata->dev_comp->ipm_design)
-> >   		master->mode_bits |= SPI_LOOP;
-> >   
-> > +	if (mdata->dev_comp->ipm_design) {
-> > +		mdata->dev = &pdev->dev;
-> > +		master->mem_ops = &mtk_spi_mem_ops;
-> > +		of_mtk_spi_parse_dt(master, pdev->dev.of_node);
-> > +		init_completion(&mdata->spimem_done);
-> > +	}
-> > +
-> >   	if (mdata->dev_comp->need_pad_sel) {
-> >   		mdata->pad_num = of_property_count_u32_elems(
-> >   			pdev->dev.of_node,
+Lucas Tanure (15):
+  sound: cs35l41: Unify hardware configuration
+  sound: cs35l41: Check hw_config before using it
+  sound: cs35l41: Move cs35l41_gpio_config to shared lib
+  ALSA: hda: cs35l41: Fix I2S params comments
+  ALSA: hda: cs35l41: Always configure the DAI
+  ALSA: hda: cs35l41: Add Boost type flag
+  hda: cs35l41: Put the device into safe mode for external boost
+  hda: cs35l41: Mute the device before shutdown
+  sound: cs35l41: Enable Internal Boost in shared lib
+  ALSA: hda: cs35l41: Move boost config to initialization code
+  ALSA: hda: cs35l41: Remove cs35l41_hda_reg_sequence struct
+  ALSA: hda: cs35l41: Reorganize log for playback actions
+  ALSA: hda: cs35l41: Handle all external boost setups the same way
+  ALSA: hda: cs35l41: Move external boost handling to lib for ASoC use
+  ASoC: cs35l41: Support external boost
+
+ .../bindings/sound/cirrus,cs35l41.yaml        |  44 ++-
+ include/sound/cs35l41.h                       |  59 +++-
+ sound/pci/hda/cs35l41_hda.c                   | 295 ++++++------------
+ sound/pci/hda/cs35l41_hda.h                   |  27 +-
+ sound/soc/codecs/cs35l41-i2c.c                |   4 +-
+ sound/soc/codecs/cs35l41-lib.c                | 190 ++++++++++-
+ sound/soc/codecs/cs35l41-spi.c                |   4 +-
+ sound/soc/codecs/cs35l41.c                    | 166 +++++-----
+ sound/soc/codecs/cs35l41.h                    |   5 +-
+ 9 files changed, 443 insertions(+), 351 deletions(-)
+
+-- 
+2.35.1
 
