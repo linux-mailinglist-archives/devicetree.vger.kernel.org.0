@@ -2,93 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E2954DC686
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:54:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F2114DC69A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:54:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232187AbiCQMy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 08:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37214 "EHLO
+        id S233955AbiCQMy6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 08:54:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234099AbiCQMwe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:52:34 -0400
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36011F1610;
-        Thu, 17 Mar 2022 05:50:03 -0700 (PDT)
-X-UUID: f5aa5bbfc3644e8b9cee734ed2988ae6-20220317
-X-UUID: f5aa5bbfc3644e8b9cee734ed2988ae6-20220317
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
-        (envelope-from <rex-bc.chen@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1145659024; Thu, 17 Mar 2022 20:49:58 +0800
-Received: from mtkcas10.mediatek.inc (172.21.101.39) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.792.15; Thu, 17 Mar 2022 20:49:56 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas10.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Mar 2022 20:49:56 +0800
-Message-ID: <87120a97d4316b6ea7c6aea9cf0cd7c95c4813cd.camel@mediatek.com>
-Subject: Re: [PATCH v1, 1/1] drm/mediatek: fixup crtc event null pointer
- issue
-From:   Rex-BC Chen <rex-bc.chen@mediatek.com>
-To:     Yongqiang Niu <yongqiang.niu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        "Dennis YC Hsieh" <dennis-yc.hsieh@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Thu, 17 Mar 2022 20:49:56 +0800
-In-Reply-To: <20220314074239.28507-2-yongqiang.niu@mediatek.com>
-References: <20220314074239.28507-1-yongqiang.niu@mediatek.com>
-         <20220314074239.28507-2-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        with ESMTP id S234293AbiCQMxB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:53:01 -0400
+Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78FF51FAA0B;
+        Thu, 17 Mar 2022 05:50:47 -0700 (PDT)
+Received: from [127.0.0.1] (pd95ca587.dip0.t-ipconnect.de [217.92.165.135])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id C17BE1EC063F;
+        Thu, 17 Mar 2022 13:50:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1647521442;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=EY+OVlK3FNjPeuxT1E19uUsmlLA7v3Vf0nxQLY63VP8=;
+        b=QMbTN2lzFuaJF5Ls5pbKgje3WyjB6xCyDSeGcHyA/A65kzY3q58KzvglWSOzq/ZQ6851av
+        pQKmCvSgjj6ZEKSEns6SZpuEOouk2AzEOLxqtxxYFbt9V9X+Jc2ZNnW1uSqOArBuptgc1U
+        pdM+HDeptKw1t7S5XFAjwrY6lp/QIEk=
+Date:   Thu, 17 Mar 2022 12:50:38 +0000
+From:   Boris Petkov <bp@alien8.de>
+To:     Medad CChien <medadyoung@gmail.com>, rric@kernel.org,
+        james.morse@arm.com, YSCHU@nuvoton.com, mchehab@kernel.org,
+        tony.luck@intel.com, benjaminfair@google.com, venture@google.com,
+        KWLIU@nuvoton.com, robh+dt@kernel.org, JJLIU0@nuvoton.com,
+        KFTING@nuvoton.com, avifishman70@gmail.com, yuenn@google.com,
+        tali.perry1@gmail.com, tmaimon77@gmail.com, ctcchien@nuvoton.com
+CC:     linux-edac@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v5 3/3] EDAC: nuvoton: Add NPCM memory controller driver
+User-Agent: K-9 Mail for Android
+In-Reply-To: <20220317015854.18864-4-ctcchien@nuvoton.com>
+References: <20220317015854.18864-1-ctcchien@nuvoton.com> <20220317015854.18864-4-ctcchien@nuvoton.com>
+Message-ID: <37361667-C932-4139-B649-52DE029BDEE5@alien8.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2022-03-14 at 15:42 +0800, Yongqiang Niu wrote:
-> if crtc event is null pointer, do not send vblank event
-> 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_drm_crtc.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> index d661edf7e0fe..265fed446628 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
-> @@ -92,6 +92,9 @@ static void mtk_drm_crtc_finish_page_flip(struct
-> mtk_drm_crtc *mtk_crtc)
->  	struct drm_crtc *crtc = &mtk_crtc->base;
->  	unsigned long flags;
->  
-> +	if (!mtk_crtc->event)
-> +		return;
-> +
+On March 17, 2022 1:58:54 AM UTC, Medad CChien <medadyoung@gmail=2Ecom> wro=
+te:
+>Add support for Nuvoton NPCM SoC=2E
+>
+>Signed-off-by: Medad CChien <ctcchien@nuvoton=2Ecom>
+>Reported-by: kernel test robot <lkp@intel=2Ecom>
 
-Reviewed-by: Rex-BC Chen <rex-bc.chen@mediatek.com>
+What exactly has the robot reported here?
 
->  	spin_lock_irqsave(&crtc->dev->event_lock, flags);
->  	drm_crtc_send_vblank_event(crtc, mtk_crtc->event);
->  	drm_crtc_vblank_put(crtc);
+>---
+> drivers/edac/Kconfig     |   9 +
+> drivers/edac/Makefile    |   1 +
+> drivers/edac/npcm_edac=2Ec | 710 +++++++++++++++++++++++++++++++++++++++
+> 3 files changed, 720 insertions(+)
+> create mode 100644 drivers/edac/npcm_edac=2Ec
 
+I don't see a MAINTAINERS file entry so that people can Cc you on bugs=2E =
+See the other EDAC drivers for an example=2E=20
+
+--=20
+Sent from a small device: formatting sux and brevity is inevitable=2E 
