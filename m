@@ -2,139 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADC544DC9B5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 16:16:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A60BE4DC9E7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 16:27:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235700AbiCQPRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 11:17:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42036 "EHLO
+        id S230293AbiCQP2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 11:28:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235684AbiCQPRq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 11:17:46 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83D69133674
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 08:16:30 -0700 (PDT)
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com [209.85.128.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 835DD3F325
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:16:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647530188;
-        bh=SfVY8hBTeV5QQndiPv96NqW12VeOymyYrpsKvO+Iim4=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=EiCnM2XCISDbf4XJdqxDZjg7rCw/6Jjv9tifwb0fxYpBBcnHRzr3dZ7SJEsM0GH3z
-         1tyxFhSifE+5GORvcrDPqSr20Fwu+IRMrkbLuiyV4bKgZWXI7eoJ68SLofB7HFsmAO
-         eTZB7c3H8EjsGPYv+fn4CfwJGDwtJ7xkrMUB6vYQ0IpAF5L2f7q6rtHyd4Asp9sdz2
-         K0g1O9WPU0LWOdAPvta3VbwpAdUBmqEDjDtFnpmJrUBCTaZ1uvygJJ/MYEZsZ56KPS
-         GpIMcx5h9NEYraWdUVuu3scHDrzd2pRqyLc53KyWCHRYZL3ZptPiC4lsRBArm2X8W7
-         4SCioxE18TJEQ==
-Received: by mail-wm1-f69.google.com with SMTP id c19-20020a05600c0ad300b00385bb3db625so4406343wmr.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 08:16:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=SfVY8hBTeV5QQndiPv96NqW12VeOymyYrpsKvO+Iim4=;
-        b=SS4n6yPzAw8rjyDLgC3LsZ4ELWeov78jt/sV8uEnUM/Eti8kKt5ggSIosFP4pILvgK
-         fOA+SJ3lUeUCNYPuoF1fclg7Jv2zRdb3jxAZGS0E052Azc8JfxTBoODNlMU7gXm0cia/
-         lHaraWAfCaA29bDqPIv5LAcH+0QV92ZNJS6OI4T85dKPDXea7UNFdk++9gB5PUnOIfu4
-         S6N+BKqCvI/BqSKactRr8bkUZbcgR3QMBPFJocat+3vnWMhQfjxvk7uQ9j2fYHHNlSI5
-         rasja9oBDQNVSXu9fZDNIvfuTxRW15Cy666+WzVRz5HFM7Vt/cq5drqiqWrc9iernVKy
-         AXVQ==
-X-Gm-Message-State: AOAM533DXP8lUHVCsm5kizD4UqrR1aKGm8weIiX+amOrbVTvsxFmicSY
-        lCuGpkOWRbu8zvnS3eQkwCOpfCz34reWvTgJ5p4QFUyl/uqwU175RzvqHgrYs6/NrCyyRDLUA7j
-        KTVL71DpvS/7VITOsVn46m1AseoSuqMA1asN+wBY=
-X-Received: by 2002:a05:600c:42d6:b0:389:868e:8638 with SMTP id j22-20020a05600c42d600b00389868e8638mr12466705wme.178.1647530186996;
-        Thu, 17 Mar 2022 08:16:26 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzzh994ZACGJIGGTR33UaTb+Ql5s8q357d3PN1fjyohVWd1lsnaDb3M6I5RQtPefhwooPdvAg==
-X-Received: by 2002:a05:600c:42d6:b0:389:868e:8638 with SMTP id j22-20020a05600c42d600b00389868e8638mr12466692wme.178.1647530186807;
-        Thu, 17 Mar 2022 08:16:26 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id r12-20020a5d6c6c000000b00203ec2b1255sm1820380wrz.60.2022.03.17.08.16.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 08:16:26 -0700 (PDT)
-Message-ID: <9143a2b5-8d53-9767-ea3c-d2b3555333f2@canonical.com>
-Date:   Thu, 17 Mar 2022 16:16:24 +0100
-MIME-Version: 1.0
+        with ESMTP id S236130AbiCQP2I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 11:28:08 -0400
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2077.outbound.protection.outlook.com [40.107.220.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86376208241;
+        Thu, 17 Mar 2022 08:26:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=l4NkN8J8gQwm0kymE2Ju/1Qpcm6hgUwXhSchJCc9INZBOOJVBjp5H+5zjcWjktALJ54wwZSheZ3GAfI91mseWDSftNPYD+pMRliR5ot359R7Z55HK+A0gYxl4KAEIHrA/tBIMZwAAPcyun3UbqAXU3p9sGJlBsZni0euOYW2SERlK+KG18C+xXCjy5wy3G+jwU6f5Q9DMWirNxGdOkq6a8sJzLuEqtUNMyAUDs1eAGnGliB4RSsocVngUDeIEzgnnAqCswgsJd2Sz6mA7QIu/f+EAiqVHNbQuYoKqwRIqSSIBZEdIgFkMEKndl0TWiT/IVn8PiCALM7hfGQh5YB8gQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GP/E54fVj4G87Oh7Kxy9WgZ/LQCDunggvy2pJOwYN9g=;
+ b=Ab61hzbJHj9OkLpU+UtmC2/Y9vGTatjP9gsz6TvCO7D/1C42bSBkKaRmg7iF5XUwIl+pZsa2/A1MSia+YM61iRajhuq4LAS0CrONiTyWV3prjvYDBavVRJFNL6r4s1VKAJAo63yq/WLO1SRrPBuNixrNh6d63TXDuhh4ZaUajqnAg4Iicjr1EtF5ickTNl+a+4NQ9NCTcMw4gltCnhB5mtIEfUldUmVh+h3/uurbuzlzdLS9fyeT6qKtbVMVB2O4aq1zL0Rm5L1FpYv4McWsq3BK3Tt7c+5Ndzfl1x0JXgzqiYZaDLVe+Q66ErsMzHZ8ieiTWHQTaiXKT/IF9dXyBw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GP/E54fVj4G87Oh7Kxy9WgZ/LQCDunggvy2pJOwYN9g=;
+ b=Ma6AhPZbAxI9R4sCp+Y7P1GX9QEfvDCyqVmd6HRHpR5O/IL49/if9cM3d8didw45jiOd/7NnrtAIZs1Kt8PRObcmn6fHu/L+ccJ7EmZ0dofMv6bvhokhtaSVzNc7Wnd+BfTnUjkQPlYUbLo1hKxC+tY47X6Yto1jYjyqnOGx05G8gWryvUqhkiIOdmmeKABgp8w6fjpPgStGN8sFTkuDoiqNvyH0bt9n0PuZl96csH6eTE6auN+cgM8AdFnnNFdJFm5k0LvskBkPAH0BQgnNA8TM5N4txdeFj4t/H7enZCOndsDogB5drxh0acN9Yk1VrQhpEfY4sxHB1H5ud8dKLw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com (2603:10b6:5:35e::8) by
+ MWHPR12MB1312.namprd12.prod.outlook.com (2603:10b6:300:11::9) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5081.15; Thu, 17 Mar 2022 15:26:36 +0000
+Received: from CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::88c:baca:7f34:fba7]) by CO6PR12MB5444.namprd12.prod.outlook.com
+ ([fe80::88c:baca:7f34:fba7%5]) with mapi id 15.20.5061.032; Thu, 17 Mar 2022
+ 15:26:35 +0000
+Message-ID: <7032fbfb-8899-d00b-a7fa-811e19d38ce2@nvidia.com>
+Date:   Thu, 17 Mar 2022 15:26:28 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings for
- AC5
+Subject: Re: [PATCH 2/3] spi: tegra210-quad: Add wait polling support
 Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        Ashish Singhal <ashishsingha@nvidia.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        Laxman Dewangan <ldewangan@nvidia.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
- <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
- <4e6df448-5562-8f50-6f46-91acb279bc1a@canonical.com>
- <7e73bba0-8b54-772c-2e94-8fca4e4e3294@alliedtelesis.co.nz>
- <cb0af80e-3e5a-fbd9-cd8b-7b252ebe33fe@canonical.com>
- <6d902e7d-b71f-9dcd-9175-cc706e3d60cc@alliedtelesis.co.nz>
- <4b1f4772-35f9-3e21-6429-b64c7427144a@canonical.com>
- <YjNCSENOP8EyWArw@lunn.ch>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <YjNCSENOP8EyWArw@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220317012006.15080-1-kyarlagadda@nvidia.com>
+ <20220317012006.15080-3-kyarlagadda@nvidia.com>
+ <391736bc-84c2-ec8b-9f04-614365953da3@nvidia.com>
+ <DM4PR12MB57692EB17ABCA36E0515412EC3129@DM4PR12MB5769.namprd12.prod.outlook.com>
+ <edcae0c1-a576-1560-5ecb-9dcf08d8ead3@nvidia.com>
+In-Reply-To: <edcae0c1-a576-1560-5ecb-9dcf08d8ead3@nvidia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR3P281CA0022.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::10) To CO6PR12MB5444.namprd12.prod.outlook.com
+ (2603:10b6:5:35e::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 65f99f77-5357-4f16-45c3-08da082a85ef
+X-MS-TrafficTypeDiagnostic: MWHPR12MB1312:EE_
+X-Microsoft-Antispam-PRVS: <MWHPR12MB131262A3FE6E549927DD005ED9129@MWHPR12MB1312.namprd12.prod.outlook.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RyZpD/dSp1T66RmbnvE+48uqjYnJcKqeCwIrmjgxboMbIyA64Qkj7uWze3b4mapN2ai00r7ogW4pfylYxg/m7htQImUg7em19YNLPF7JG1UGIzjN1lF6VKkuGEHu7gEvzsNGHW4kKjfYkhSL8fETDH17m11LgyOub331TlrdQeIQ7ZPDH2T9L+MTaBev1aQCeRkBrY/qVGHvQoqdrYfs4c1is1wvqhWzfXoT5wEF2Y5nr9eviQxCLC/Z0TD7GPp3dNNwD7J7a3XW+anqtIQ5hUfKB21LsLkoiCTbP0T+SWKOxe+oO1BFznNVlIB/bSG1IM73jWi6KpDPNYp3vWJwuWPaMOPdnKHSIDR2AXfnVwTjwUO/zF9LqCVqXcrCfTvBYvoUFpPFPBSNmqpHnGZ9ozJs1FY8eiOaezLAflUSS4W6wEidNL7qKWzeo3eRW5sWtWfchbruaJEMG5YKSEr59iqPQujYysQ2+WfLLRSNw7RQRSEO+CWfGjwu9Stfn+mk3aNi05MEkxv9WhwF6utC96KzFslavElvhp+jZiocroEXUSKcqCEMR5J/kfrLqCUNDsuH3Es4JjtlSFy/jjmP02leS+p1kAQyQH8H487I9MswxCl1bRHrJWRbUnkEHKlHXGEecwaO5YhRp9Wx8hrSdLLXAgG2n78NXDKX+gZO9T4KaQtecyvvc6LrOg3I6zBJ977Md692wN2K52/gWEa0qmKb8wA+RYAG7Sk+DxYy2cQgSU4dPIwS6/4OCSSWumcj
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO6PR12MB5444.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(2616005)(26005)(316002)(2906002)(66476007)(66946007)(66556008)(8676002)(36756003)(6636002)(186003)(110136005)(54906003)(31686004)(86362001)(31696002)(4326008)(508600001)(6666004)(83380400001)(6506007)(53546011)(55236004)(8936002)(6486002)(6512007)(5660300002)(38100700002)(43740500002)(45980500001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eFhKeC8zWFFqYm1QdjZsUXUvZ2R6TjV1OGpDNzJtbXJHR2NwOFh0bmFuMVoy?=
+ =?utf-8?B?M29hNE5jazZ2YjdpYTBhVDIxYlpoUVh0M3NBcFZzTHdPOFQ5dnJBTXpOZDhM?=
+ =?utf-8?B?ZUVTckZ2MlkrSHpoWk1yU1BDWmlZU3VMQVZWNnpVMEJoQWYwZklWUWlIaUhj?=
+ =?utf-8?B?SUo3T2xqdlJRRm54VFROd3MwYnk2M1VKL3NFaWNKS3Q2NE1KNGkwNlRuci9s?=
+ =?utf-8?B?YWhJOFpjUjVzbVJjYTd1VWFDMll2Sm1IRkFxWUh1K0R1dldubUI5ZVlkUVlR?=
+ =?utf-8?B?NEE0OEwwZW5qakxlelA5OHZSamh1Y3BTNC9ucTFxRUoyWHdHbGhXV2NrUzFt?=
+ =?utf-8?B?ZW5iQUNORW1OeXNsU0UzTGc2dGFhSEl3QzhxblJ2bHpScGp1cjVnMHVBT0d3?=
+ =?utf-8?B?TnFrN043UmJOaUFrRm85T254Ri9Uc2t6RE9QTFR6TTMvdHEwUHh2VEFmYUZP?=
+ =?utf-8?B?T0orb0ljL2tCeFN6b1VZMGJLUHR4azY2a0k3Qk9MN09GZFRQREZsVHBCbmpE?=
+ =?utf-8?B?MGRkdjU3M1BVOWxBbFlWb2VYeG5sdGt0ZXNlU0kvb3BrRmdVQXBTVFl0Mlhs?=
+ =?utf-8?B?OEF2bHlWNTlCL1Jsb0dVN0pXc1N4UnNiYUFIKzV0L1BjL1phcDZ5RFprTXVU?=
+ =?utf-8?B?bnpYYnRXdjR2ZUNUeG9rLzBUTUxOWmpOMlRzRURCQ28rd3lqUnQ2d0RreHNH?=
+ =?utf-8?B?dkpTN1NNclBGbW1CSUE5NUFOSUMwODFKMjVTcnNXYkJHWktTK2xhK1c3UGVh?=
+ =?utf-8?B?RHY2OXFrYVJodGNFZTdHNi9IalJtbzRPbEV3N3A1VUtFOEMybkU5TTErQndT?=
+ =?utf-8?B?VzNuSlM4V3FzYTg3aHNvQWJ4MDFqcndiZG1PUmVWb2pRWUNQelo0MmUyeHhC?=
+ =?utf-8?B?RU9wRHhmUTNUc3NOMTlVRkYrMnRHVE5sZmNHYzNDSWhuOUFkOWE3M0FvSTA1?=
+ =?utf-8?B?TGpVMDNxSWpyb1pFT1Q1V2h5VmVQQVFUUWZMbEU5dm5tdVFJbXllWldpYmtQ?=
+ =?utf-8?B?bituQTlybGFPa2xmS25PSmFTYUs4UE5SYk43ZDZ0SlAvdUF4aDZXdjlEQVRM?=
+ =?utf-8?B?aW9leExTUnZtS1AwUXJBTTVsaTkxTTBKQmIvSkF3dUMyVU5DcENtdUw5aWpL?=
+ =?utf-8?B?VEN3bUVva0czd0hHWktENDh2T3E0VmkvRGtXdzhWT1N2NlMyNEJHbkJoaVdh?=
+ =?utf-8?B?Vm51b2ZyWXIralBiS2x1d2NBTGp5NzN3R29aSlhRVTBLOWhsZFNpTmJUMlMv?=
+ =?utf-8?B?SGVuQ1FlbDVueFVoOEYzRXZkWFNBRFc5cDFJbWZzUzFnK2toNXFyRm5icjhO?=
+ =?utf-8?B?bGE1OFg4MGJFWmwvMyszbUtJWFE5MFA2U0EybFVXcDBiRzhPbjhOcWliQ2xN?=
+ =?utf-8?B?SjdnSXYxTjVHVDdQNzc2Z1RCOFc4ZlM4dXMwTnl4UXdHWUVPcUx0cnFiZmRF?=
+ =?utf-8?B?UWhWMVF2ZUZSeUJ4NjFvWlRFb0E1bzN4VzFMU0xmczYyMWIxdTFwUysvZloy?=
+ =?utf-8?B?aVl1SEZNb3dicmlvQ2RqdG85endDTnJWQ2wvaUdwcE5lbENwOXpMQjJSVTRQ?=
+ =?utf-8?B?NnZsZkdGbE5vK2h6MlZ5UDBSdDFvNWtBeHNERVZGMGlTNU5wVk9QbGp2WVV4?=
+ =?utf-8?B?RHhIaldKckhxUjBZRjByTkU1RVJiZ3VIZURRbGJtQXB2TjV4U29xUnJGTjFP?=
+ =?utf-8?B?OFRKbFdwZzB3cSs1K1ZwNnk2bmFvaWpqRlIrbll4Yy9nMDM2UTg2UllodVN4?=
+ =?utf-8?B?VUVrWFdmNFlVRUVoSnY1aTdXR25yTFA4em5FeEdES3VaZThUbUVQcVdhRy9K?=
+ =?utf-8?B?K0VCTmp1V29hOHhxY3UvYmo4UEh0UDd2S0ZuOVdWRE1oSUxVcUM0OHd5Z09J?=
+ =?utf-8?B?Sk9lRk9tSHBJNHI5UXNLVzdrQmRodEJ3L05obk9DRFVCZ2trYkR3aG9tY0ha?=
+ =?utf-8?B?YmhMMnRFalliYWd3OHNxeFRtNU1kZjlMekI3TFovZWIxN2RMUVUyL2JWSTJS?=
+ =?utf-8?B?b1RvZ0JRbW9BPT0=?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65f99f77-5357-4f16-45c3-08da082a85ef
+X-MS-Exchange-CrossTenant-AuthSource: CO6PR12MB5444.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2022 15:26:35.8170
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9DKqFmTKinnAKnmyWzYCDm5TEaU+cAT5bdQrvUv6/6LC7+Gne8LY4QugkPDvoDBEK3TQCcHP0uFAnHs9os7ChQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR12MB1312
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2022 15:14, Andrew Lunn wrote:
->> What do you mean "driver fails to load"? You control the driver, don't
->> you?
-> 
-> It is a thin wrapper around the mvebu driver, which does all the real
-> work. So no, Chris does not really control what the core of the driver
-> does.
 
-This this design still require a pinctrl to be a child of some node?
+On 17/03/2022 09:44, Jon Hunter wrote:
+> 
+> On 17/03/2022 09:02, Krishna Yarlagadda wrote:
+>>> -----Original Message-----
+>>> From: Jonathan Hunter <jonathanh@nvidia.com>
+>>> Sent: 17 March 2022 14:25
+>>> To: Krishna Yarlagadda <kyarlagadda@nvidia.com>; broonie@kernel.org; 
+>>> thierry.reding@gmail.com; linux-spi@vger.kernel.org; linux-
+>>> tegra@vger.kernel.org; Ashish Singhal <ashishsingha@nvidia.com>
+>>> Cc: Sowjanya Komatineni <skomatineni@nvidia.com>; Laxman Dewangan 
+>>> <ldewangan@nvidia.com>; robh+dt@kernel.org;
+>>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org
+>>> Subject: Re: [PATCH 2/3] spi: tegra210-quad: Add wait polling support
+>>>
+>>>
+>>> On 17/03/2022 01:20, Krishna Yarlagadda wrote:
+>>>> Controller can poll for wait state inserted by TPM device and
+>>>> handle it.
+>>>>
+>>>> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
+>>>> ---
+>>>>    drivers/spi/spi-tegra210-quad.c | 31 +++++++++++++++++++++++++++++++
+>>>>    1 file changed, 31 insertions(+)
+>>>>
+>>>> diff --git a/drivers/spi/spi-tegra210-quad.c 
+>>>> b/drivers/spi/spi-tegra210-quad.c
+>>>> index a2e225e8f7f0..ecf171bfcdce 100644
+>>>> --- a/drivers/spi/spi-tegra210-quad.c
+>>>> +++ b/drivers/spi/spi-tegra210-quad.c
+>>>> @@ -142,6 +142,7 @@
+>>>>
+>>>>    #define QSPI_GLOBAL_CONFIG            0X1a4
+>>>>    #define QSPI_CMB_SEQ_EN                BIT(0)
+>>>> +#define QSPI_TPM_WAIT_POLL_EN            BIT(1)
+>>>>
+>>>>    #define QSPI_CMB_SEQ_ADDR            0x1a8
+>>>>    #define QSPI_ADDRESS_VALUE_SET(X)        (((x) & 0xFFFF) << 0)
+>>>> @@ -165,11 +166,13 @@ struct tegra_qspi_soc_data {
+>>>>        bool has_dma;
+>>>>        bool cmb_xfer_capable;
+>>>>        bool cs_count;
+>>>> +    bool has_wait_polling;
+>>>>    };
+>>>>
+>>>>    struct tegra_qspi_client_data {
+>>>>        int tx_clk_tap_delay;
+>>>>        int rx_clk_tap_delay;
+>>>> +    bool wait_polling;
+>>>>    };
+>>>>
+>>>>    struct tegra_qspi {
+>>>> @@ -833,6 +836,11 @@ static u32 tegra_qspi_setup_transfer_one(struct 
+>>>> spi_device *spi, struct spi_tran
+>>>>            else
+>>>>                command1 |= QSPI_CONTROL_MODE_0;
+>>>>
+>>>> +        if (tqspi->soc_data->cmb_xfer_capable)
+>>>> +            command1 &= ~QSPI_CS_SW_HW;
+>>>> +        else
+>>>> +            command1 |= QSPI_CS_SW_HW;
+>>>> +
+>>>>            if (spi->mode & SPI_CS_HIGH)
+>>>>                command1 |= QSPI_CS_SW_VAL;
+>>>>            else
+>>>> @@ -917,6 +925,7 @@ static int tegra_qspi_start_transfer_one(struct 
+>>>> spi_device *spi,
+>>>>
+>>>>    static struct tegra_qspi_client_data 
+>>>> *tegra_qspi_parse_cdata_dt(struct spi_device *spi)
+>>>>    {
+>>>> +    struct tegra_qspi *tqspi = spi_master_get_devdata(spi->master);
+>>>>        struct tegra_qspi_client_data *cdata;
+>>>>
+>>>>        cdata = devm_kzalloc(&spi->dev, sizeof(*cdata), GFP_KERNEL);
+>>>> @@ -927,6 +936,11 @@ static struct tegra_qspi_client_data 
+>>>> *tegra_qspi_parse_cdata_dt(struct spi_devic
+>>>>                     &cdata->tx_clk_tap_delay);
+>>>>        device_property_read_u32(&spi->dev, "nvidia,rx-clk-tap-delay",
+>>>>                     &cdata->rx_clk_tap_delay);
+>>>> +    if (tqspi->soc_data->has_wait_polling)
+>>>> +        cdata->wait_polling = device_property_read_bool
+>>>> +                    (&spi->dev,
+>>>> +                     "nvidia,wait-polling");
+>>>> +
+>>>
+>>>
+>>> This looks odd. Why do we need this device-tree property if it is
+>>> already specified in the SoC data?
+>> Soc data specifies chip is capable of wait-polling.
+>> Wait polling still has to be selected on slave devices that can 
+>> support it.
+>> I will add one line description for the properties in next version.
+> 
+> 
+> I can't say I am familiar with this, but it seems that the ideal 
+> solution would be able to detect if this needs to be enabled depending 
+> on the device connected. Is that not possible?
 
-> 
-> The existing binding documentation says:
-> 
->     * Marvell Armada 37xx SoC pin and gpio controller
-> 
->     Each Armada 37xx SoC come with two pin and gpio controller one for
->     the south bridge and the other for the north bridge.
-> 
->     Inside this set of register the gpio latch allows exposing some
->     configuration of the SoC and especially the clock frequency of the
->     xtal. Hence, this node is a represent as syscon allowing sharing
->     the register between multiple hardware block.
-> 
-> 
-> So the syscon is there to allow the clock driver to share the register
-> space.
+Also, given that Grace supports 4 chip-selects per device, how does this 
+work if there is TPM connected to one chip-select and something else 
+connected to another?
 
+Jon
 
-This makes sense. Solution here would be to add syscon compatible to
-pinctrl node. This parent simple-mfd+syscon node looks like a workaround
-to share some registers in a highly flexible way. However isn't it
-better to have more obvious owner of the register space (e.g. pinctrl)?
-IOW, if there is only one child of syscon+simple-mfd node, why not
-getting rid of it and making pinctrl owner of this address space? It's
-also simpler code.
-
-
-Best regards,
-Krzysztof
+-- 
+nvpublic
