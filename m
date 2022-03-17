@@ -2,977 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 131874DC756
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 14:14:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 241974DC7DA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 14:50:26 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234061AbiCQNPY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 09:15:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36932 "EHLO
+        id S234540AbiCQNvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 09:51:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231713AbiCQNPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 09:15:24 -0400
-Received: from mail-qk1-x730.google.com (mail-qk1-x730.google.com [IPv6:2607:f8b0:4864:20::730])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE4E12F174;
-        Thu, 17 Mar 2022 06:14:06 -0700 (PDT)
-Received: by mail-qk1-x730.google.com with SMTP id g8so4278058qke.2;
-        Thu, 17 Mar 2022 06:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=sender:date:from:to:cc:subject:message-id:reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=eWle4zbRf1n3H9JH+hlY46qvlaTRjOJL9WeucImHHOg=;
-        b=nQ9VUi9sYyhAlmOegG+gL9U+A+k4L0h3YbQdoECtJViy3ucmZmKvZbk1M0lo+zElvW
-         P9QSK1XhNmYuYVYGUa4pn2HOk/+sPmEIyA8nJj1ORGBwTzypv/YjSfxjqBBv6jn1eNeG
-         89VNacmyZlqb1Uypy/SZJdjFDbtbS6s0lYo93muJrNmZ3/2jvRBimBDe0cievdvHo+Z8
-         3xD6agc2lgghKoxsnMGk5BQTXecQgdNI+v1T7rxp+u0WV0oQrU5/puPU1EwhqTDoG1So
-         Tb1r1r0sN/GtE8Oz4B01M5OFORYzkn6/F7euKMNyobLT1mwrOVYUzoP29R3AHyy5Qqa+
-         2pKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :reply-to:references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to;
-        bh=eWle4zbRf1n3H9JH+hlY46qvlaTRjOJL9WeucImHHOg=;
-        b=cegaNeIe8HYH/+OwPhqAZhHBkOscUUbSduR5pfLOdgCBnwLd+9DHmEBjtMDDgQNtNF
-         fkFTOcgqNd49cX72yr3OsPEd3DJAluNI2Om7vWsBEpNXmuu5d1GzJiR9JBdkUwVCm6jj
-         bEQs/OmiqaxLrwOKgHJJIX3dAwirWqtWqH5F6MhstVWW1VgUKNGcEM2+AHr0EigTh5Rs
-         iWNlllxk/c7qFJ+ugdxUGWR9/Eyk8BizVzhHlt8INqZJbvxpJE2KIaykkUbird5LcKXM
-         RsLSTxtFMUZrYjrwG3Wh4yhOefd/Fe47lchlTtgm+J8ooPkdhNXp6+ME/jqmGfmlOGg7
-         O03w==
-X-Gm-Message-State: AOAM530myNUzFXgXhKqrIVPygAYa0PHCIC7PIl51WiSxXKNt87XGCr+N
-        lO+1bWs6GK2ePM7SjHUesQ==
-X-Google-Smtp-Source: ABdhPJyjMKdRe3h0gF9p5mD85cMhaUnlFewNeqxPQzyz5DcwwNrVVLR63pDXDdHBePDcGgad/48sdA==
-X-Received: by 2002:a05:620a:271d:b0:67d:bb5f:8a7d with SMTP id b29-20020a05620a271d00b0067dbb5f8a7dmr2684691qkp.154.1647522844635;
-        Thu, 17 Mar 2022 06:14:04 -0700 (PDT)
-Received: from serve.minyard.net (serve.minyard.net. [2001:470:b8f6:1b::1])
-        by smtp.gmail.com with ESMTPSA id j67-20020a37b946000000b0067b221281dbsm2445827qkf.99.2022.03.17.06.13.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 06:13:59 -0700 (PDT)
-Sender: Corey Minyard <tcminyard@gmail.com>
-Received: from minyard.net (unknown [IPv6:2001:470:b8f6:1b:797c:2e79:7998:93c9])
-        by serve.minyard.net (Postfix) with ESMTPSA id 43EEA180004;
-        Thu, 17 Mar 2022 13:13:57 +0000 (UTC)
-Date:   Thu, 17 Mar 2022 08:13:56 -0500
-From:   Corey Minyard <minyard@acm.org>
-To:     Quan Nguyen <quan@os.amperecomputing.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Brendan Higgins <brendanhiggins@google.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        openipmi-developer@lists.sourceforge.net,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Open Source Submission <patches@amperecomputing.com>,
-        Phong Vo <phong@os.amperecomputing.com>,
-        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
-Subject: Re: [PATCH v6 1/4] ipmi: ssif_bmc: Add SSIF BMC driver
-Message-ID: <20220317131356.GC3457@minyard.net>
-Reply-To: minyard@acm.org
-References: <20220310114119.13736-1-quan@os.amperecomputing.com>
- <20220310114119.13736-2-quan@os.amperecomputing.com>
- <20220311011942.GX3457@minyard.net>
- <569f50d5-8f13-280e-b944-6e26d95dc50b@os.amperecomputing.com>
+        with ESMTP id S233676AbiCQNvi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 09:51:38 -0400
+Received: from gateway33.websitewelcome.com (gateway33.websitewelcome.com [192.185.145.9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197D5E9C99
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 06:50:18 -0700 (PDT)
+Received: from cm10.websitewelcome.com (cm10.websitewelcome.com [100.42.49.4])
+        by gateway33.websitewelcome.com (Postfix) with ESMTP id A8C4460ACB6
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 08:28:55 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id UqBTnuieIRnrrUqBTnO8Jf; Thu, 17 Mar 2022 08:28:55 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=ZWlDpJ1jKpFqrvBTDx/wTo26QSvpgwcabfkWM+NH5jc=; b=R+oy9LMWd0I1peoGYqliO/5hmz
+        wQqYKKAVATe4jzNwfnXWcwcUxsK0iayujfDu1DhAGbkcKuxcxG3BcuxhoF2Ldd6DhJAsI1nHogiiR
+        ELc5oE2J0AeM4kDEOB9RPoZ2seXSgtglbrfhqJIZJ64KuzGW2ThqK9OJAgeOyXfTMrQWszVUlrT5r
+        ID3MpjXQetLxRMQDbS3PXtxw+5ialhhJvcaaWGzYhXJ95GUW47CsxYQGkyv0fZAUHJemZuYLRIl9j
+        2f9s731PyYBEL8MXToAMGABS1V+9PXMPixVTFMKDpebGr+TGNe8wUDmA5ZnR2apweiycHaieGTyLQ
+        HWsKB0Vg==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54312)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nUqBT-003zon-5m; Thu, 17 Mar 2022 13:28:55 +0000
+Message-ID: <6aabb517-c46e-bcf8-c93d-b6fa1fe8eb3a@roeck-us.net>
+Date:   Thu, 17 Mar 2022 06:28:53 -0700
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <569f50d5-8f13-280e-b944-6e26d95dc50b@os.amperecomputing.com>
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Content-Language: en-US
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        jdelvare@suse.com, robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220316234134.290492-1-chris.packham@alliedtelesis.co.nz>
+ <20220316234134.290492-3-chris.packham@alliedtelesis.co.nz>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 2/2] hwmon: (adt7475) Add support for pin configuration
+In-Reply-To: <20220316234134.290492-3-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nUqBT-003zon-5m
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54312
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 2
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-snip...
-> > > +
-> > > +static void response_timeout(struct timer_list *t)
-> > > +{
-> > > +	struct ssif_bmc_ctx *ssif_bmc = from_timer(ssif_bmc, t, response_timer);
-> > > +	unsigned long flags;
-> > > +
-> > 
-> > Is there a possible race here?  The timeout can happen at the same time
-> > as a received message, will something bad happen if that's the case?
-> > 
+On 3/16/22 16:41, Chris Packham wrote:
+> The adt7473, adt7475, adt7476 and adt7490 have pins that can be used for
+> different functions. On the adt7473 and  adt7475 this is pins 5 and 9.
+> On the adt7476 and adt7490 this is pins 10 and 14.
 > 
-> Thanks Corey,
-> I think I need extra comment here.
+> The first pin can either be PWM2(default) or SMBALERT#. The second pin
+> can be TACH4(default), THERM#, SMBALERT# or GPIO.
 > 
-> The purpose of this timeout is to make sure ssif_bmc will recover from busy
-> state in case the upper stack does not provide the response.
-> Hence, the response timeout is set as 500ms, twice the time of max
-> Request-to-Response in spec as the code below. Should it be longer?
-
-That's not what I was asking.  I know what the timer is for.  But what
-happens if the response comes in at the same time this timer goes off?
-What will keep the data from getting messed up?
-
+> The adt7475 driver has always been able to detect the configuration if
+> it had been done by an earlier boot stage. Add support for configuring
+> the pins based on the hardware description in the device tree.
 > 
-> As per spec, the max Request-to-Respose would not exceed 250ms.
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>   drivers/hwmon/adt7475.c | 95 +++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 95 insertions(+)
 > 
-> I put the comment in ssif_bmc.h as below:
-> >> +/*
-> >> + * IPMI 2.0 Spec, section 12.7 SSIF Timing,
-> >> + * Request-to-Response Time is T6max(250ms) - T1max(20ms) - 3ms = 227ms
-> >> + * Recover ssif_bmc from busy state if it takes upto 500ms
-> >> + */
-> >> +#define RESPONSE_TIMEOUT			500 /* ms */
-> 
-> 
-> > > +	spin_lock_irqsave(&ssif_bmc->lock, flags);
-> > > +
-> > > +	/* Recover ssif_bmc from busy */
-> > > +	ssif_bmc->busy = false;
-> > > +	del_timer(&ssif_bmc->response_timer);
-> > 
-> > You don't need to delete the timer, it's in the timeout.
-> > 
-> 
-> Will remove this redundant code in next version
-> 
-> > > +	ssif_bmc->response_timer_inited = false;
-> > > +
-> > > +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> > > +}
-> > > +
-> > > +/* Called with ssif_bmc->lock held. */
-> > > +static void handle_request(struct ssif_bmc_ctx *ssif_bmc)
-> > > +{
-> > > +	/* set ssif_bmc to busy waiting for response */
-> > > +	ssif_bmc->busy = true;
-> > > +
-> > > +	/* Request message is available to process */
-> > > +	ssif_bmc->request_available = true;
-> > > +
-> > > +	/* Clean old response buffer */
-> > > +	memset(&ssif_bmc->response, 0, sizeof(struct ssif_msg));
-> > > +
-> > > +	/* This is the new READ request.*/
-> > > +	wake_up_all(&ssif_bmc->wait_queue);
-> > > +
-> > > +	/* Armed timer to recover slave from busy state in case of no response */
-> > > +	if (!ssif_bmc->response_timer_inited) {
-> > > +		timer_setup(&ssif_bmc->response_timer, response_timeout, 0);
-> > > +		ssif_bmc->response_timer_inited = true;
-> > > +	}
-> > > +	mod_timer(&ssif_bmc->response_timer, jiffies + msecs_to_jiffies(RESPONSE_TIMEOUT));
-> > > +}
-> > > +
-> > > +static void set_multipart_response_buffer(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	u8 response_len = 0;
-> > > +	int idx = 0;
-> > > +	u8 data_len;
-> > > +
-> > > +	data_len = ssif_bmc->response.len;
-> > > +	switch (ssif_bmc->smbus_cmd) {
-> > > +	case SSIF_IPMI_MULTIPART_READ_START:
-> > > +		/*
-> > > +		 * Read Start length is 32 bytes.
-> > > +		 * Read Start transfer first 30 bytes of IPMI response
-> > > +		 * and 2 special code 0x00, 0x01.
-> > > +		 */
-> > > +		*val = MAX_PAYLOAD_PER_TRANSACTION;
-> > > +		ssif_bmc->remain_len = data_len - MAX_IPMI_DATA_PER_START_TRANSACTION;
-> > > +		ssif_bmc->block_num = 0;
-> > 
-> > Do you need to validate the data length before using this?
-> > This applies for lots of places through here.
-> > 
-> 
-> set_multipart_response_buffer() is called only when ->is_singlepart_read is
-> false, which is determined by the below code under the *_write()
-> 
-> ssif_bmc->is_singlepart_read = (ssif_msg_len(&msg) <=
-> MAX_PAYLOAD_PER_TRANSACTION + 1);
-> 
-> So, I think the len is validated and could be use in this functions.
+> diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
+> index 9d5b019651f2..ad5e5a7a844b 100644
+> --- a/drivers/hwmon/adt7475.c
+> +++ b/drivers/hwmon/adt7475.c
+> @@ -112,6 +112,8 @@
+>   #define CONFIG3_THERM		0x02
+>   
+>   #define CONFIG4_PINFUNC		0x03
+> +#define CONFIG4_THERM		0x01
+> +#define CONFIG4_SMBALERT	0x02
+>   #define CONFIG4_MAXDUTY		0x08
+>   #define CONFIG4_ATTN_IN10	0x30
+>   #define CONFIG4_ATTN_IN43	0xC0
+> @@ -1460,6 +1462,95 @@ static int adt7475_update_limits(struct i2c_client *client)
+>   	return 0;
+>   }
+>   
+> +static int load_pin10_config(const struct i2c_client *client, const char *propname)
+> +{
 
-Ah, I had things backwards.  "Read" here is when you are writing to
-the other side.  I understand now.
+A better function name would probably be load_config3() or similar.
 
-> 
-> > > +
-> > > +		ssif_bmc->response_buf[idx++] = 0x00; /* Start Flag */
-> > > +		ssif_bmc->response_buf[idx++] = 0x01; /* Start Flag */
-> > > +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.netfn_lun;
-> > > +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.cmd;
-> > > +		ssif_bmc->response_buf[idx++] = ssif_bmc->response.payload[0];
-> > > +
-> > > +		response_len = MAX_PAYLOAD_PER_TRANSACTION - idx;
-> > > +
-> > > +		memcpy(&ssif_bmc->response_buf[idx], &ssif_bmc->response.payload[1],
-> > > +		       response_len);
-> > > +		break;
-> > > +
-> > > +	case SSIF_IPMI_MULTIPART_READ_MIDDLE:
-> > > +		/*
-> > > +		 * IPMI READ Middle or READ End messages can carry up to 31 bytes
-> > > +		 * IPMI data plus block number byte.
-> > > +		 */
-> > > +		if (ssif_bmc->remain_len < MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION) {
-> > > +			/*
-> > > +			 * This is READ End message
-> > > +			 *  Return length is the remaining response data length
-> > > +			 *  plus block number
-> > > +			 *  Block number 0xFF is to indicate this is last message
-> > > +			 *
-> > > +			 */
-> > > +			*val = ssif_bmc->remain_len + 1;
-> > > +			ssif_bmc->block_num = 0xFF;
-> > > +			ssif_bmc->response_buf[idx++] = ssif_bmc->block_num;
-> > > +			response_len = ssif_bmc->remain_len;
-> > > +			/* Clean the buffer */
-> > > +			memset(&ssif_bmc->response_buf[idx], 0, MAX_PAYLOAD_PER_TRANSACTION - idx);
-> > > +		} else {
-> > > +			/*
-> > > +			 * This is READ Middle message
-> > > +			 *  Response length is the maximum SMBUS transfer length
-> > > +			 *  Block number byte is incremented
-> > > +			 * Return length is maximum SMBUS transfer length
-> > > +			 */
-> > > +			*val = MAX_PAYLOAD_PER_TRANSACTION;
-> > > +			ssif_bmc->remain_len -= MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION;
-> > > +			response_len = MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION;
-> > > +			ssif_bmc->response_buf[idx++] = ssif_bmc->block_num;
-> > > +			ssif_bmc->block_num++;
-> > > +		}
-> > > +
-> > > +		memcpy(&ssif_bmc->response_buf[idx],
-> > > +		       ssif_bmc->response.payload + 1 + ssif_bmc->nbytes_processed,
-> > > +		       response_len);
-> > > +		break;
-> > > +
-> > > +	default:
-> > > +		/* Do not expect to go to this case */
-> > > +		dev_err(&ssif_bmc->client->dev,
-> > > +			"%s: Unexpected SMBus command 0x%x\n",
-> > > +			__func__, ssif_bmc->smbus_cmd);
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	ssif_bmc->nbytes_processed += response_len;
-> > > +}
-> > > +
-> > > +/* Process the IPMI response that will be read by master */
-> > > +static void handle_read_processed(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	u8 *buf;
-> > > +	u8 pec_len, addr, len;
-> > > +	u8 pec = 0;
-> > > +
-> > > +	pec_len = ssif_bmc->pec_support ? 1 : 0;
-> > > +	/* PEC - Start Read Address */
-> > > +	addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> > > +	pec = i2c_smbus_pec(pec, &addr, 1);
-> > > +	/* PEC - SSIF Command */
-> > > +	pec = i2c_smbus_pec(pec, &ssif_bmc->smbus_cmd, 1);
-> > > +	/* PEC - Restart Write Address */
-> > > +	addr = addr | 0x01;
-> > > +	pec = i2c_smbus_pec(pec, &addr, 1);
-> > > +
-> > > +	if (ssif_bmc->is_singlepart_read) {
-> > > +		/* Single-part Read processing */
-> > > +		buf = (u8 *)&ssif_bmc->response;
-> > > +
-> > > +		if (ssif_bmc->response.len && ssif_bmc->msg_idx < ssif_bmc->response.len) {
-> > > +			ssif_bmc->msg_idx++;
-> > > +			*val = buf[ssif_bmc->msg_idx];
-> > > +		} else if (ssif_bmc->response.len && ssif_bmc->msg_idx == ssif_bmc->response.len) {
-> > > +			ssif_bmc->msg_idx++;
-> > > +			*val = i2c_smbus_pec(pec, buf, ssif_msg_len(&ssif_bmc->response));
-> > > +		} else {
-> > 
-> > I thought for a second that this was wrong, but I think it's correct.
-> > Supply zero if you don't have data.
-> > 
-> > > +			*val = 0;
-> > > +		}
-> > > +		/* Invalidate response buffer to denote it is sent */
-> > > +		if (ssif_bmc->msg_idx + 1 >= (ssif_msg_len(&ssif_bmc->response) + pec_len))
-> > > +			complete_response(ssif_bmc);
-> > > +	} else {
-> > > +		/* Multi-part Read processing */
-> > 
-> > You don't check the length here like you did above.  I think that's
-> > required.
-> > 
-> 
-> As per my explanation above, the ->is_singlepart_read is determined by
-> testing the length, so it is validated as I assumed.
-> 
-> > > +		switch (ssif_bmc->smbus_cmd) {
-> > > +		case SSIF_IPMI_MULTIPART_READ_START:
-> > > +		case SSIF_IPMI_MULTIPART_READ_MIDDLE:
-> > > +			buf = (u8 *)&ssif_bmc->response_buf;
-> > > +			*val = buf[ssif_bmc->msg_idx];
-> > > +			ssif_bmc->msg_idx++;
-> > > +			break;
-> > > +		default:
-> > > +			/* Do not expect to go to this case */
-> > > +			dev_err(&ssif_bmc->client->dev,
-> > > +				"%s: Unexpected SMBus command 0x%x\n",
-> > > +				__func__, ssif_bmc->smbus_cmd);
-> > > +			break;
-> > > +		}
-> > > +
-> > > +		len = (ssif_bmc->block_num == 0xFF) ?
-> > > +		       ssif_bmc->remain_len + 1 : MAX_PAYLOAD_PER_TRANSACTION;
-> > > +		if (ssif_bmc->msg_idx == (len + 1)) {
-> > > +			pec = i2c_smbus_pec(pec, &len, 1);
-> > > +			*val = i2c_smbus_pec(pec, ssif_bmc->response_buf, len);
-> > > +		}
-> > > +		/* Invalidate response buffer to denote last response is sent */
-> > > +		if (ssif_bmc->block_num == 0xFF &&
-> > > +		    ssif_bmc->msg_idx > (ssif_bmc->remain_len + pec_len)) {
-> > > +			complete_response(ssif_bmc);
-> > > +		}
-> > > +	}
-> > > +}
-> > > +
-> > > +static void handle_write_received(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	u8 *buf = (u8 *)&ssif_bmc->request;
-> > > +
-> > > +	if (ssif_bmc->msg_idx >= sizeof(struct ssif_msg))
-> > > +		return;
+> +	const char *function;
+> +	u8 config3;
+> +	int err;
+> +
+> +	err = of_property_read_string(client->dev.of_node, propname, &function);
+> +	if (!err) {
+> +		config3 = adt7475_read(REG_CONFIG3);
 
-I don't think this check is valid.  I believe the msg_idx only covers
-the current message, but ssif_msg is a full multi-part message.  It
-covers the single-part message, I think but not the multi-part ones.
-Also, abort the operation and log on bad data.
+error check missing (I see the driver is notorious for that, but that is not
+a reason to keep doing it).
 
-> > > +
-> > > +	switch (ssif_bmc->smbus_cmd) {
-> > > +	case SSIF_IPMI_SINGLEPART_WRITE:
-> > > +		buf[ssif_bmc->msg_idx - 1] = *val;
-> > > +		ssif_bmc->msg_idx++;
-> > > +
-> > > +		break;
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_START:
-> > > +		if (ssif_bmc->msg_idx == 1)
-> > > +			ssif_bmc->request.len = 0;
-> > > +
-> > > +		fallthrough;
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_MIDDLE:
-> > > +		/* The len should always be 32 */
-> > > +		if (ssif_bmc->msg_idx == 1 && *val != MAX_PAYLOAD_PER_TRANSACTION)
-> > > +			dev_warn(&ssif_bmc->client->dev,
-> > > +				 "Warn: Invalid Multipart Write len");
+> +
+> +		if (!strcmp("pwm2", function))
+> +			config3 &= ~CONFIG3_SMBALERT;
+> +		else if (!strcmp("smbalert#", function))
+> +			config3 |= CONFIG3_SMBALERT;
+> +		else
+> +			return -EINVAL;
+> +
+> +		return i2c_smbus_write_byte_data(client, REG_CONFIG3, config3);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int load_pin14_config(const struct i2c_client *client, const char *propname)
+> +{
 
-You should abort the operation here.  Don't deliver obviously bad data.
-Same in the code just below.
+load_config4() ?
 
-This will require that you add a message aborted type of state to just
-ignore everything that comes in until the full sequence ends or a new
-message starts.
+> +	const char *function;
+> +	u8 config4;
+> +	int err;
+> +
+> +	err = of_property_read_string(client->dev.of_node, propname, &function);
+> +	if (!err) {
+> +		config4 = adt7475_read(REG_CONFIG4);
 
-> > > +
-> > > +		fallthrough;
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_END:
-> > > +		/* Multi-part write, 2nd byte received is length */
-> > > +		if (ssif_bmc->msg_idx == 1) {
-> > > +			if (*val > MAX_PAYLOAD_PER_TRANSACTION)
-> > > +				dev_warn(&ssif_bmc->client->dev,
-> > > +					 "Warn: Invalid Multipart Write End len");
-> > > +
-> > > +			ssif_bmc->request.len += *val;
-> > > +			ssif_bmc->recv_len = *val;
-> > > +
-> > > +			/* request len should never exceeded 255 bytes */
-> > > +			if (ssif_bmc->request.len > 255)
-> > > +				dev_warn(&ssif_bmc->client->dev,
-> > > +					 "Warn: Invalid request len");
-> > > +
-> > > +		} else {
-> > 
-> > You check msg_idx above, but I'm not sure that check will cover this
-> > operation.
-> > 
-> That check is to make sure the length (*val) must always be strictly 32
-> bytes in case of MULTIPART_WRITE_START/MIDDLE. And this check allows the
-> length is up to 32 bytes in MULTIPART_WRITE_END.
+error check
 
-Now that I have read and write straight, this is where the previous
-comments apply.
+> +		config4 &= ~CONFIG4_PINFUNC;
+> +
+> +		if (!strcmp("tach4", function))
+> +			;
+> +		else if (!strcmp("therm#", function))
+> +			config4 |= CONFIG4_THERM;
+> +		else if (!strcmp("smbalert#", function))
+> +			config4 |= CONFIG4_SMBALERT;
+> +		else if (!strcmp("gpio", function))
+> +			config4 |= CONFIG4_PINFUNC;
+> +		else
+> +			return -EINVAL;
+> +
+> +		return i2c_smbus_write_byte_data(client, REG_CONFIG4, config4);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int load_config(const struct i2c_client *client, int chip)
+> +{
+> +	int err;
+> +	const char *conf_prop1, *conf_prop2;
 
-You are trusting the the length sent by the remote end in the second
-byte is correct, but there is no guarantee of this.  The remote end can
-send as many bytes as it likes.  You need to check that you don't
-overflow buf here and that it actually sends the number of bytes that it
-said it was going to send to avoid underflow.
+conf_ prefix is unnecessary.
 
-> 
-> > > +			buf[ssif_bmc->msg_idx - 1 +
-> > > +			    ssif_bmc->request.len - ssif_bmc->recv_len]	= *val;
+> +
+> +	switch (chip) {
+> +	case adt7473:
+> +	case adt7475:
+> +		conf_prop1 = "adi,pin5-function";
+> +		conf_prop2 = "adi,pin9-function";
+> +		break;
+> +	case adt7476:
+> +	case adt7490:
+> +		conf_prop1 = "adi,pin10-function";
+> +		conf_prop2 = "adi,pin14-function";
+> +		break;
+> +	default:
+> +		return -EINVAL;
 
-This computation is fairly complicated and hard to understand.
-Calculations like this are asking for trouble.
+It doesn't seem right to return -EINVAL here.
 
-It would be easier to understand had request.len be the current length
-of what is in request.payload and increment it on every incoming byte.
-Then request.len could be used to add data to the buffer, like
+> +	}
+> +
+> +	if (chip != adt7476 && chip != adt7490)
+> +		return 0;
+> +
 
-	if (ssif_bmc->request.len >= sizeof(ssif_bmc->payload))
-		error...
-	ssif_bmc->payload[ssif_bmc->request.len++] = *val;
+Why not check this first, and what is the point of assigning values to
+conf_prop1 and conf_prop2 for the other chips in the case statement above
+only to return 0 here ? It would be much simpler to drop the other chips
+from the case statement and have default: return 0.
 
-If you renamed msg_idx to curr_recv_idx and recv_len to curr_recv_len,
-it would be more clear that these are related and operate on the current
-incoming message.
+> +	err = load_pin10_config(client, conf_prop1);
+> +	if (err) {
+> +		dev_err(&client->dev, "failed to configure PIN10\n");
 
-It would also be nice to get rid of the casts from ssif_msg to a buffer
-array and just index directly into request.payload[].
+The messages are misleading. This isn't always pin 10/14.
 
-In thinking about this further, I have a few more observations...
+> +		return err;
+> +	}
+> +
+> +	err = load_pin14_config(client, conf_prop2);
+> +	if (err) {
+> +		dev_err(&client->dev, "failed to configure PIN14\n");
+> +		return err;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>   static int set_property_bit(const struct i2c_client *client, char *property,
+>   			    u8 *config, u8 bit_index)
+>   {
+> @@ -1585,6 +1676,10 @@ static int adt7475_probe(struct i2c_client *client)
+>   		revision = adt7475_read(REG_DEVID2) & 0x07;
+>   	}
+>   
+> +	ret = load_config(client, chip);
+> +	if (ret)
+> +		return ret;
+> +
+>   	config3 = adt7475_read(REG_CONFIG3);
+>   	/* Pin PWM2 may alternatively be used for ALERT output */
+>   	if (!(config3 & CONFIG3_SMBALERT))
 
-There is no need to have the netfn and cmd in ssif_msg.  They are just
-the first and second bytes of the message.  You don't care what they
-are in this code.
-
-Why do you deliver the length as part of the message to the user?  The
-length is returned by the system call.  You have all these +1 and -1
-things around the message length, which is error-prone.  Removing the
-length from the message would get rid of all of that.  And using packed
-structures is generally not the best, anyway.
-
-The PEC calculations remove one byte from the maximum message length.
-Since they are not included in the length byte, it's kind of unnatural
-to do this the way you are doing it.  Instead, it might be best to say
-if you receive a byte and curr_recv_idx == curr_recv_len, process it
-as PEC.  That way the PEC never hits the buffer.
-
-There is no need for msg_idx, or cur_recv_idx, to be size_t.
-
-I need to look at this some more, but I'll need to see the rewrite.
-
--corey
-
-> > > +		}
-> > > +
-> > > +		ssif_bmc->msg_idx++;
-> > > +
-> > > +		break;
-> > > +	default:
-> > > +		/* Do not expect to go to this case */
-> > > +		dev_err(&ssif_bmc->client->dev,
-> > > +			"%s: Unexpected SMBus command 0x%x\n",
-> > > +			__func__, ssif_bmc->smbus_cmd);
-> > > +		break;
-> > > +	}
-> > > +}
-> > > +
-> > > +static bool validate_request(struct ssif_bmc_ctx *ssif_bmc)
-> > > +{
-> > > +	u8 rpec = 0, cpec = 0;
-> > > +	bool ret = true;
-> > > +	u8 addr, index;
-> > > +	u8 *buf;
-> > > +
-> > 
-> > Is there any length validation for using buf below?  It looks like you
-> > are accessing without checking length, but maybe I missed something.
-> > 
-> 
-> Yes, there is length testing for each part before using buf to calculate PEC
-> as in the "if" below.
-> 
-> > > +	buf = (u8 *)&ssif_bmc->request;
-> > > +	switch (ssif_bmc->smbus_cmd) {
-> > > +	case SSIF_IPMI_SINGLEPART_WRITE:
-> > > +		if ((ssif_bmc->msg_idx - 1) == ssif_msg_len(&ssif_bmc->request)) {
-> > > +			/* PEC is not included */
-> > > +			ssif_bmc->pec_support = false;
-> > > +			ret = true;
-> > > +			goto exit;
-> > > +		}
-> > > +
-> > > +		if ((ssif_bmc->msg_idx - 1) != (ssif_msg_len(&ssif_bmc->request) + 1)) {
-> > > +			dev_err(&ssif_bmc->client->dev, "Error: Unexpected length received %d\n",
-> > > +				ssif_msg_len(&ssif_bmc->request));
-> > > +			ret = false;
-> > > +			goto exit;
-> > > +		}
-> > > +
-> > > +		/* PEC is included */
-> > > +		ssif_bmc->pec_support = true;
-> > > +		rpec = buf[ssif_bmc->msg_idx - 2];
-> > > +		addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> > > +		cpec = i2c_smbus_pec(cpec, &addr, 1);
-> > > +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->smbus_cmd, 1);
-> > > +		cpec = i2c_smbus_pec(cpec, buf, ssif_msg_len(&ssif_bmc->request));
-> > > +		if (rpec != cpec) {
-> > > +			dev_err(&ssif_bmc->client->dev, "Bad PEC 0x%02x vs. 0x%02x\n", rpec, cpec);
-> > > +			ret = false;
-> > > +		}
-> > > +
-> > > +		break;
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_START:
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_MIDDLE:
-> > > +	case SSIF_IPMI_MULTIPART_WRITE_END:
-> > > +		index = ssif_bmc->request.len - ssif_bmc->recv_len;
-> > > +		if ((ssif_bmc->msg_idx - 1 + index) == ssif_msg_len(&ssif_bmc->request)) {
-> > > +			/* PEC is not included */
-> > > +			ssif_bmc->pec_support = false;
-> > > +			ret = true;
-> > > +			goto exit;
-> > > +		}
-> > > +
-> > > +		if ((ssif_bmc->msg_idx - 1 + index) != (ssif_msg_len(&ssif_bmc->request) + 1)) {
-> > > +			dev_err(&ssif_bmc->client->dev, "Error: Unexpected length received %d\n",
-> > > +				ssif_msg_len(&ssif_bmc->request));
-> > > +			ret = false;
-> > > +			goto exit;
-> > > +		}
-> > > +
-> > > +		/* PEC is included */
-> > > +		ssif_bmc->pec_support = true;
-> > > +		rpec = buf[ssif_bmc->msg_idx - 2 + index];
-> > > +		addr = GET_8BIT_ADDR(ssif_bmc->client->addr);
-> > > +		cpec = i2c_smbus_pec(cpec, &addr, 1);
-> > > +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->smbus_cmd, 1);
-> > > +		cpec = i2c_smbus_pec(cpec, &ssif_bmc->recv_len, 1);
-> > 
-> > Just curious, I'm not sure the client side PEC in the Linux driver has
-> > ever been validated.  Have you tested both sides?
-> > 
-> 
-> Yes, we found that request from host has an extra byte for PEC and that is
-> why we added PEC support.
-> 
-> > > +		/* As SMBus specification does not allow the length
-> > > +		 * (byte count) in the Write-Block protocol to be zero.
-> > > +		 * Therefore, it is illegal to have the last Middle
-> > > +		 * transaction in the sequence carry 32-byte and have
-> > > +		 * a length of ‘0’ in the End transaction.
-> > > +		 * But some users may try to use this way and we should
-> > > +		 * prevent ssif_bmc driver broken in this case.
-> > > +		 */
-> > > +		if (ssif_bmc->recv_len != 0)
-> > > +			cpec = i2c_smbus_pec(cpec, buf + 1 + index, ssif_bmc->recv_len);
-> > > +
-> > > +		if (rpec != cpec) {
-> > > +			dev_err(&ssif_bmc->client->dev, "Bad PEC 0x%02x vs. 0x%02x\n", rpec, cpec);
-> > > +			ret = false;
-> > > +		}
-> > > +
-> > > +		break;
-> > > +	default:
-> > > +		/* Do not expect to go to this case */
-> > > +		dev_err(&ssif_bmc->client->dev, "%s: Unexpected SMBus command 0x%x\n",
-> > > +			__func__, ssif_bmc->smbus_cmd);
-> > > +		ret = false;
-> > > +		break;
-> > > +	}
-> > > +
-> > > +exit:
-> > > +	return ret;
-> > > +}
-> > > +
-> > 
-> > Just a nit, more a general coding style comment.  It's almost always a
-> > bad idea to put a negative (unsupported) into a check function.  You
-> > often end up with something like:
-> > 
-> > 	if (!unsupported_smbus_cmd(c))....
-> > 
-> > which looks a little strange.  Double negatives can make it hard to
-> > follow and lead to mistakes.  This one isn't too bad, but sometimes it
-> > can be.  It's better to do:
-> > 
-> > 	if (supported_smbus_cmd(c))....
-> > or
-> > 	if (!supported_smbus_cmd(c))....
-> > 
-> > 
-> 
-> Thanks, Corey. I'll try to refactor this part in next version.
-> 
-> > > +static bool unsupported_smbus_cmd(u8 cmd)
-> > > +{
-> > > +	if (cmd == SSIF_IPMI_SINGLEPART_READ ||
-> > > +	    cmd == SSIF_IPMI_SINGLEPART_WRITE ||
-> > > +	    cmd == SSIF_IPMI_MULTIPART_WRITE_START ||
-> > > +	    cmd == SSIF_IPMI_MULTIPART_WRITE_MIDDLE ||
-> > > +	    cmd == SSIF_IPMI_MULTIPART_WRITE_END ||
-> > > +	    cmd == SSIF_IPMI_MULTIPART_READ_START ||
-> > > +	    cmd == SSIF_IPMI_MULTIPART_READ_MIDDLE)
-> > > +		return false;
-> > > +
-> > > +	return true;
-> > > +}
-> > > +
-> > > +static void process_smbus_cmd(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	/* SMBUS command can vary (single or multi-part) */
-> > > +	ssif_bmc->smbus_cmd = *val;
-> > > +	ssif_bmc->msg_idx++;
-> > > +
-> > > +	if (unsupported_smbus_cmd(*val))
-> > > +		dev_warn(&ssif_bmc->client->dev, "Warn: Unknown SMBus command");
-> > > +
-> > > +	if (*val == SSIF_IPMI_SINGLEPART_WRITE ||
-> > > +	    *val == SSIF_IPMI_MULTIPART_WRITE_START) {
-> > > +		/*
-> > > +		 * The response maybe not come in-time, causing host SSIF driver
-> > > +		 * to timeout and resend a new request. In such case check for
-> > > +		 * pending response and clear it
-> > > +		 */
-> > > +		if (ssif_bmc->response_in_progress)
-> > > +			complete_response(ssif_bmc);
-> > > +	}
-> > > +}
-> > > +
-> > > +static void on_read_requested_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	if (ssif_bmc->state == SSIF_READY ||
-> > > +	    ssif_bmc->state == SSIF_START ||
-> > > +	    ssif_bmc->state == SSIF_REQ_RECVING ||
-> > > +	    ssif_bmc->state == SSIF_RES_SENDING) {
-> > > +		ssif_bmc->state = SSIF_BAD_SMBUS;
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s unexpected READ REQUESTED in state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +
-> > > +	} else if (ssif_bmc->state == SSIF_SMBUS_CMD) {
-> > > +		ssif_bmc->state = SSIF_RES_SENDING;
-> > > +	}
-> > > +
-> > > +	ssif_bmc->msg_idx = 0;
-> > > +	if (ssif_bmc->is_singlepart_read)
-> > > +		*val = ssif_bmc->response.len;
-> > > +	else
-> > > +		set_multipart_response_buffer(ssif_bmc, val);
-> > > +}
-> > > +
-> > > +static void on_read_processed_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	if (ssif_bmc->state == SSIF_READY ||
-> > > +	    ssif_bmc->state == SSIF_START ||
-> > > +	    ssif_bmc->state == SSIF_REQ_RECVING ||
-> > > +	    ssif_bmc->state == SSIF_SMBUS_CMD) {
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s unexpected READ PROCESSED in state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +		ssif_bmc->state = SSIF_BAD_SMBUS;
-> > > +	}
-> > > +
-> > > +	handle_read_processed(ssif_bmc, val);
-> > > +}
-> > > +
-> > > +static void on_write_requested_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	ssif_bmc->msg_idx = 0;
-> > > +
-> > > +	if (ssif_bmc->state == SSIF_READY || ssif_bmc->state == SSIF_SMBUS_CMD) {
-> > > +		ssif_bmc->state = SSIF_START;
-> > > +
-> > > +	} else if (ssif_bmc->state == SSIF_START ||
-> > > +		   ssif_bmc->state == SSIF_REQ_RECVING ||
-> > > +		   ssif_bmc->state == SSIF_RES_SENDING) {
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s unexpected WRITE REQUEST in state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +		ssif_bmc->state = SSIF_BAD_SMBUS;
-> > > +	}
-> > > +}
-> > > +
-> > > +static void on_write_received_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	if (ssif_bmc->state == SSIF_READY || ssif_bmc->state == SSIF_RES_SENDING) {
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s unexpected WRITE RECEIVED in state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +		ssif_bmc->state = SSIF_BAD_SMBUS;
-> > > +	} else if (ssif_bmc->state == SSIF_START) {
-> > > +		ssif_bmc->state = SSIF_SMBUS_CMD;
-> > > +	} else if (ssif_bmc->state == SSIF_SMBUS_CMD) {
-> > > +		ssif_bmc->state = SSIF_REQ_RECVING;
-> > > +	}
-> > > +
-> > > +	/* This is response sending state */
-> > > +	if (ssif_bmc->state == SSIF_REQ_RECVING)
-> > > +		handle_write_received(ssif_bmc, val);
-> > > +	else if (ssif_bmc->state == SSIF_SMBUS_CMD)
-> > > +		process_smbus_cmd(ssif_bmc, val);
-> > > +}
-> > > +
-> > > +static void on_stop_event(struct ssif_bmc_ctx *ssif_bmc, u8 *val)
-> > > +{
-> > > +	if (ssif_bmc->state == SSIF_READY ||
-> > > +	    ssif_bmc->state == SSIF_START ||
-> > > +	    ssif_bmc->state == SSIF_SMBUS_CMD) {
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s unexpected SLAVE STOP in state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +
-> > > +	} else if (ssif_bmc->state == SSIF_BAD_SMBUS) {
-> > > +		dev_warn(&ssif_bmc->client->dev,
-> > > +			 "Warn: %s received SLAVE STOP from bad state=%s\n",
-> > > +			 __func__, state_to_string(ssif_bmc->state));
-> > > +
-> > > +	} else if (ssif_bmc->state == SSIF_REQ_RECVING) {
-> > > +		/* A BMC that receives an invalid request drop the data for the write
-> > > +		 * transaction and any further transactions (read or write) until
-> > > +		 * the next valid read or write Start transaction is received
-> > > +		 */
-> > > +		if (!validate_request(ssif_bmc))
-> > > +			dev_err(&ssif_bmc->client->dev, "Error: invalid pec\n");
-> > > +		else if (ssif_bmc->smbus_cmd == SSIF_IPMI_SINGLEPART_WRITE ||
-> > > +			 ssif_bmc->smbus_cmd == SSIF_IPMI_MULTIPART_WRITE_END)
-> > > +			handle_request(ssif_bmc);
-> > > +	}
-> > > +
-> > > +	ssif_bmc->state = SSIF_READY;
-> > > +	/* Reset message index */
-> > > +	ssif_bmc->msg_idx = 0;
-> > > +}
-> > > +
-> > > +/*
-> > > + * Callback function to handle I2C slave events
-> > > + */
-> > > +static int ssif_bmc_cb(struct i2c_client *client, enum i2c_slave_event event, u8 *val)
-> > > +{
-> > > +	unsigned long flags;
-> > > +	struct ssif_bmc_ctx *ssif_bmc = i2c_get_clientdata(client);
-> > > +	int ret = 0;
-> > > +
-> > > +	spin_lock_irqsave(&ssif_bmc->lock, flags);
-> > > +
-> > > +	switch (event) {
-> > > +	case I2C_SLAVE_READ_REQUESTED:
-> > > +		on_read_requested_event(ssif_bmc, val);
-> > > +		break;
-> > > +
-> > > +	case I2C_SLAVE_WRITE_REQUESTED:
-> > > +		on_write_requested_event(ssif_bmc, val);
-> > > +		break;
-> > > +
-> > > +	case I2C_SLAVE_READ_PROCESSED:
-> > > +		on_read_processed_event(ssif_bmc, val);
-> > > +		break;
-> > > +
-> > > +	case I2C_SLAVE_WRITE_RECEIVED:
-> > > +		on_write_received_event(ssif_bmc, val);
-> > > +		break;
-> > > +
-> > > +	case I2C_SLAVE_STOP:
-> > > +		on_stop_event(ssif_bmc, val);
-> > > +		break;
-> > > +
-> > > +	default:
-> > > +		dev_warn(&ssif_bmc->client->dev, "Warn: Unknown i2c slave event\n");
-> > > +		break;
-> > > +	}
-> > > +
-> > > +	if (ssif_bmc->busy)
-> > > +		ret = -EBUSY;
-> > > +
-> > > +	spin_unlock_irqrestore(&ssif_bmc->lock, flags);
-> > > +
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int ssif_bmc_probe(struct i2c_client *client, const struct i2c_device_id *id)
-> > > +{
-> > > +	struct ssif_bmc_ctx *ssif_bmc;
-> > > +	int ret;
-> > > +
-> > > +	ssif_bmc = devm_kzalloc(&client->dev, sizeof(*ssif_bmc), GFP_KERNEL);
-> > > +	if (!ssif_bmc)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	spin_lock_init(&ssif_bmc->lock);
-> > > +
-> > > +	init_waitqueue_head(&ssif_bmc->wait_queue);
-> > > +	ssif_bmc->request_available = false;
-> > > +	ssif_bmc->response_in_progress = false;
-> > > +	ssif_bmc->busy = false;
-> > > +	ssif_bmc->response_timer_inited = false;
-> > > +
-> > > +	/* Register misc device interface */
-> > > +	ssif_bmc->miscdev.minor = MISC_DYNAMIC_MINOR;
-> > > +	ssif_bmc->miscdev.name = DEVICE_NAME;
-> > > +	ssif_bmc->miscdev.fops = &ssif_bmc_fops;
-> > > +	ssif_bmc->miscdev.parent = &client->dev;
-> > > +	ret = misc_register(&ssif_bmc->miscdev);
-> > > +	if (ret)
-> > > +		goto out;
-> > > +
-> > > +	ssif_bmc->client = client;
-> > > +	ssif_bmc->client->flags |= I2C_CLIENT_SLAVE;
-> > > +
-> > > +	/* Register I2C slave */
-> > > +	i2c_set_clientdata(client, ssif_bmc);
-> > > +	ret = i2c_slave_register(client, ssif_bmc_cb);
-> > > +	if (ret) {
-> > > +		misc_deregister(&ssif_bmc->miscdev);
-> > > +		goto out;
-> > > +	}
-> > > +
-> > > +	return 0;
-> > > +out:
-> > > +	devm_kfree(&client->dev, ssif_bmc);
-> > > +	return ret;
-> > > +}
-> > > +
-> > > +static int ssif_bmc_remove(struct i2c_client *client)
-> > > +{
-> > > +	struct ssif_bmc_ctx *ssif_bmc = i2c_get_clientdata(client);
-> > > +
-> > > +	i2c_slave_unregister(client);
-> > > +	misc_deregister(&ssif_bmc->miscdev);
-> > > +
-> > > +	return 0;
-> > > +}
-> > > +
-> > > +static const struct of_device_id ssif_bmc_match[] = {
-> > > +	{ .compatible = "ampere,ssif-bmc" },
-> > > +	{ },
-> > > +};
-> > > +
-> > > +static const struct i2c_device_id ssif_bmc_id[] = {
-> > > +	{ DEVICE_NAME, 0 },
-> > > +	{ },
-> > > +};
-> > > +
-> > > +MODULE_DEVICE_TABLE(i2c, ssif_bmc_id);
-> > > +
-> > > +static struct i2c_driver ssif_bmc_driver = {
-> > > +	.driver         = {
-> > > +		.name           = DEVICE_NAME,
-> > > +		.of_match_table = ssif_bmc_match,
-> > > +	},
-> > > +	.probe          = ssif_bmc_probe,
-> > > +	.remove         = ssif_bmc_remove,
-> > > +	.id_table       = ssif_bmc_id,
-> > > +};
-> > > +
-> > > +module_i2c_driver(ssif_bmc_driver);
-> > > +
-> > > +MODULE_AUTHOR("Quan Nguyen <quan@os.amperecomputing.com>");
-> > > +MODULE_AUTHOR("Chuong Tran <chuong@os.amperecomputing.com>");
-> > > +MODULE_DESCRIPTION("Linux device driver of the BMC IPMI SSIF interface.");
-> > > +MODULE_LICENSE("GPL");
-> > > diff --git a/drivers/char/ipmi/ssif_bmc.h b/drivers/char/ipmi/ssif_bmc.h
-> > > new file mode 100644
-> > > index 000000000000..9a26f3c252cc
-> > > --- /dev/null
-> > > +++ b/drivers/char/ipmi/ssif_bmc.h
-> > > @@ -0,0 +1,102 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0+ */
-> > > +/*
-> > > + * The driver for BMC side of SSIF interface
-> > > + *
-> > > + * Copyright (c) 2022, Ampere Computing LLC
-> > > + *
-> > > + */
-> > > +#ifndef __SSIF_BMC_H__
-> > > +#define __SSIF_BMC_H__
-> > > +
-> > > +#define DEVICE_NAME				"ipmi-ssif-host"
-> > > +
-> > > +#define GET_8BIT_ADDR(addr_7bit)		(((addr_7bit) << 1) & 0xff)
-> > > +
-> > > +/* A standard SMBus Transaction is limited to 32 data bytes */
-> > > +#define MAX_PAYLOAD_PER_TRANSACTION		32
-> > > +
-> > > +#define MAX_IPMI_DATA_PER_START_TRANSACTION	30
-> > > +#define MAX_IPMI_DATA_PER_MIDDLE_TRANSACTION	31
-> > > +
-> > > +#define SSIF_IPMI_SINGLEPART_WRITE		0x2
-> > > +#define SSIF_IPMI_SINGLEPART_READ		0x3
-> > > +#define SSIF_IPMI_MULTIPART_WRITE_START		0x6
-> > > +#define SSIF_IPMI_MULTIPART_WRITE_MIDDLE	0x7
-> > > +#define SSIF_IPMI_MULTIPART_WRITE_END		0x8
-> > > +#define SSIF_IPMI_MULTIPART_READ_START		0x3
-> > > +#define SSIF_IPMI_MULTIPART_READ_MIDDLE		0x9
-> > > +
-> > > +#define MSG_PAYLOAD_LEN_MAX			252
-> > > +/*
-> > > + * IPMI 2.0 Spec, section 12.7 SSIF Timing,
-> > > + * Request-to-Response Time is T6max(250ms) - T1max(20ms) - 3ms = 227ms
-> > > + * Recover ssif_bmc from busy state if it takes upto 500ms
-> > > + */
-> > > +#define RESPONSE_TIMEOUT			500 /* ms */
-> > > +
-> > > +struct ssif_msg {
-> > > +	u8 len;
-> > > +	u8 netfn_lun;
-> > > +	u8 cmd;
-> > > +	u8 payload[MSG_PAYLOAD_LEN_MAX];
-> > > +} __packed;
-> > > +
-> > > +static inline u32 ssif_msg_len(struct ssif_msg *ssif_msg)
-> > > +{
-> > > +	return ssif_msg->len + 1;
-> > > +}
-> > > +
-> > > +/*
-> > > + * SSIF internal states:
-> > > + *   SSIF_READY         0x00 : Ready state
-> > > + *   SSIF_START         0x01 : Start smbus transaction
-> > > + *   SSIF_SMBUS_CMD     0x02 : Received SMBus command
-> > > + *   SSIF_REQ_RECVING   0x03 : Receiving request
-> > > + *   SSIF_RES_SENDING   0x04 : Sending response
-> > > + *   SSIF_BAD_SMBUS     0x05 : Bad SMbus transaction
-> > > + */
-> > > +enum ssif_state {
-> > > +	SSIF_READY,
-> > > +	SSIF_START,
-> > > +	SSIF_SMBUS_CMD,
-> > > +	SSIF_REQ_RECVING,
-> > > +	SSIF_RES_SENDING,
-> > > +	SSIF_BAD_SMBUS,
-> > > +	SSIF_STATE_MAX
-> > > +};
-> > > +
-> > > +struct ssif_bmc_ctx {
-> > > +	struct i2c_client	*client;
-> > > +	struct miscdevice	miscdev;
-> > > +	size_t			msg_idx;
-> > > +	bool			pec_support;
-> > > +	/* ssif bmc spinlock */
-> > > +	spinlock_t		lock;
-> > > +	wait_queue_head_t	wait_queue;
-> > > +	u8			running;
-> > > +	enum ssif_state		state;
-> > > +	u8			smbus_cmd;
-> > > +	/* Timeout waiting for response */
-> > > +	struct timer_list	response_timer;
-> > > +	bool                    response_timer_inited;
-> > > +	/* Flag to identify a Multi-part Read Transaction */
-> > > +	bool			is_singlepart_read;
-> > > +	u8			nbytes_processed;
-> > > +	u8			remain_len;
-> > > +	u8			recv_len;
-> > > +	/* Block Number of a Multi-part Read Transaction */
-> > > +	u8			block_num;
-> > > +	bool			request_available;
-> > > +	bool			response_in_progress;
-> > > +	bool			busy;
-> > > +	/* Response buffer for Multi-part Read Transaction */
-> > > +	u8			response_buf[MAX_PAYLOAD_PER_TRANSACTION];
-> > > +	struct ssif_msg		response;
-> > > +	struct ssif_msg		request;
-> > > +};
-> > > +
-> > > +static inline struct ssif_bmc_ctx *to_ssif_bmc(struct file *file)
-> > > +{
-> > > +	return container_of(file->private_data, struct ssif_bmc_ctx, miscdev);
-> > > +}
-> > > +#endif /* __SSIF_BMC_H__ */
-> > > -- 
-> > > 2.35.1
-> > > 
-> > > 
