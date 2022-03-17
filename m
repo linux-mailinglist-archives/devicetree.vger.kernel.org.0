@@ -2,170 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E22D4DD0D2
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 23:36:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A31C14DD0F7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 00:00:54 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbiCQWhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 18:37:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34994 "EHLO
+        id S229943AbiCQXCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 19:02:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229744AbiCQWhX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 18:37:23 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C62C26243B
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:36:06 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id m12so8251910edc.12
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:36:06 -0700 (PDT)
+        with ESMTP id S229900AbiCQXCJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 19:02:09 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB8E14CD2C
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 16:00:51 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id w12so11438006lfr.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 16:00:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pqrs.dk; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=HUL7G4oOlZT6ZcSm0IypZD6C9fq3wHaBrHnjH9uPtcY=;
-        b=bOpNBvfhoMLPtp0GDUuHsUff1/qKx7bzkXyoF5Zx6VrrBO7q8B/4cX0+mN+37dIlox
-         YDHDC3DUdzKD6KtoOLORcZI+L02IV30xfDP2fyJVAOFAvwEAfRdeBB0SLBTxlgcLr9SP
-         8GPEgGFswgaPIY1nVGh1/EI3Z6p8SGhW3wnGU=
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mSX5XIgPOxOnww4CSR+De8Pza4n5HUdUiMJxEJQrB3g=;
+        b=Q1I0OAkdlWp2ovUowkKLdVu5Tl2OF3/hoLP+Ms0FV58ym9H2/pNLXkYAmepbSzxYMv
+         hHxBJ0J9fqVyh6Od6b+vJMIf344dM1oAXiwugVQ77TtAElFs9AJsTXg0zcp/vCfJD7I0
+         7zfN/0iXhrUiGp1T1nGVtIRqQo3oq0eZ7eOgAETWKMOaeJTHsVxC5c91SKHlQjLr0JZs
+         2rXaDMrdPPQcWEstGktivxNdlWZAkHEm4Pw+Q4j+1SenDTDjdQ1c7BZ/rQa4GiFXVPNs
+         /zs0t/ebgyv/TQ6ifaoGmjSplVmif4QYgiuydL+ho4gnRQHObAQE8xONQk1TKYyPhw8+
+         hcPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=HUL7G4oOlZT6ZcSm0IypZD6C9fq3wHaBrHnjH9uPtcY=;
-        b=H9cMiEGE0669t9+z6Rn75TYIwnZdJd0Vz8EwCdsXhm4u1RDD3ZEoe0df92qOegh6rD
-         eDGrVMbLNKivBBk51ux+bhvGs31vo02HAE3WhWBKvWLLraIAMvYCQ/u3sSgPfyv9XrQ+
-         zxllzttMSYTSlKHqx9AIrlQUjYwRehglkT4SpnUdG918tq7q66FPbyBynr4ankp1sp1R
-         tUEQIGXJWAefksyhGBAN62vBCOlN28Yk5KpbVtg4jzWl100E4x5HvyFz0HqBVy4Xf0cw
-         F9IJ4Woyc8YfwYeUq1z3SgLo2L+3dYOd8FX6nnOUn134wmDexQW72lKsS1wA4csAZf/d
-         3Miw==
-X-Gm-Message-State: AOAM5331QR4Wx2r9rE7+9570nMeiAhCpV3CZMnTa/uFfAUR4zPIfZY6l
-        pMuZOfot2Hry9L6/VJGGRLdnAw==
-X-Google-Smtp-Source: ABdhPJydOD9qsL8/+g218ELmo+ZGkUSYcQYHwl3QeH92QppgAMEA4so62K4IOG1KKTFJ4W9Zx4CqFw==
-X-Received: by 2002:aa7:cb0f:0:b0:416:201f:c64d with SMTP id s15-20020aa7cb0f000000b00416201fc64dmr6798503edt.48.1647556565058;
-        Thu, 17 Mar 2022 15:36:05 -0700 (PDT)
-Received: from capella.. (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
-        by smtp.gmail.com with ESMTPSA id ec21-20020a170906b6d500b006d170a3444csm2893669ejb.164.2022.03.17.15.36.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mSX5XIgPOxOnww4CSR+De8Pza4n5HUdUiMJxEJQrB3g=;
+        b=8Em/XezlfD6CFJwHFLlKcqfKX7oF+Ba28NqK2E2Hfq9vwgwLYQWO3bxhSBjFv53k0Q
+         G65WeM1QXVZn9o9IjX0TMDCLamFqn1zUr8epzqjzx1bUb6WlgARE8dtDDku6maX3GVaD
+         NHkwl7fDjcLBIqsQdU/EkrM605wx7pFy8jaIhzbwUr1pjJP6lMatKZTDMQvgOZp/UELP
+         RQZZG9qpLX2kbk1jQFiSwKPVtZ3RRxNBgJfufUqegYMc/V7DxWbID8wwv9ibXcpLXPIB
+         FPp2Rk+A6jPJL0DLSMdn1TweVag7kFD4A0BQep5MkLKIBLaQbo7gbGwtFWfnC0CEm8NQ
+         42og==
+X-Gm-Message-State: AOAM5322rr4Ir62vC2SWvpm0KUwnBQ5Fy8F+hZfetLu1lLvs/Uq4ohi7
+        pTnKjiAC6EzqJXvSElnaxuWGpQ==
+X-Google-Smtp-Source: ABdhPJzQQjqeagfBYCPNZB0Tkvyhlfgd9tcMTINgyASzLqGQsXqA0aViXmo8vOh8EqWmc736dbfazg==
+X-Received: by 2002:a05:6512:1054:b0:448:9c69:c6d2 with SMTP id c20-20020a056512105400b004489c69c6d2mr4132649lfb.583.1647558049926;
+        Thu, 17 Mar 2022 16:00:49 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id 11-20020a2e154b000000b0024967cd674esm191876ljv.35.2022.03.17.16.00.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 15:36:04 -0700 (PDT)
-From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
-To:     Abel Vesa <abel.vesa@nxp.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] clk: imx8mn: add GPT support
-Date:   Thu, 17 Mar 2022 23:35:59 +0100
-Message-Id: <20220317223600.175894-2-alvin@pqrs.dk>
+        Thu, 17 Mar 2022 16:00:49 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Johan Hovold <johan@kernel.org>
+Cc:     linux-kernel@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 1/5 v2] dt-bindings: gnss: Rewrite common bindings in YAML
+Date:   Thu, 17 Mar 2022 23:58:40 +0100
+Message-Id: <20220317225844.1262643-1-linus.walleij@linaro.org>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220317223600.175894-1-alvin@pqrs.dk>
-References: <20220317223600.175894-1-alvin@pqrs.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alvin Šipraga <alsi@bang-olufsen.dk>
+This rewrites the text-based GNSS common bindings to use
+a YAML schema.
 
-Add support for the General Purpose Timer (GPT) clocks on the i.MX8MN.
-The i.MX8MN GPT IP block is the same as on the i.MX8MM, on which this
-patch is based.
-
-Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
+Cc: devicetree@vger.kernel.org
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-v1->v2: for reasons of consistency, change lines of the form:
-
-    static const char *const imx8mn_gpt...
-
-to
-
-    static const char * const imx8mn_gpt...
-
-and adjust the indentation accordingly.
+ChangeLog v1->v2:
+- Collected Krzysztof's review tag
+- No changes just resending
 ---
- drivers/clk/imx/clk-imx8mn.c | 38 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ .../devicetree/bindings/gnss/gnss-common.yaml | 55 +++++++++++++++++++
+ .../devicetree/bindings/gnss/gnss.txt         | 37 -------------
+ 2 files changed, 55 insertions(+), 37 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gnss/gnss-common.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gnss/gnss.txt
 
-diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
-index 92fcbab4f5be..fb058cb38c27 100644
---- a/drivers/clk/imx/clk-imx8mn.c
-+++ b/drivers/clk/imx/clk-imx8mn.c
-@@ -227,6 +227,30 @@ static const char * const imx8mn_pwm4_sels[] = {"osc_24m", "sys_pll2_100m", "sys
- 						"sys_pll1_40m", "sys_pll3_out", "clk_ext2",
- 						"sys_pll1_80m", "video_pll1_out", };
- 
-+static const char * const imx8mn_gpt1_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
+diff --git a/Documentation/devicetree/bindings/gnss/gnss-common.yaml b/Documentation/devicetree/bindings/gnss/gnss-common.yaml
+new file mode 100644
+index 000000000000..963b926e30a7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gnss/gnss-common.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gnss/gnss-common.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+static const char * const imx8mn_gpt2_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
++title: Common Properties for Global Navigation Satellite Systems (GNSS)
++  receiver devices
 +
-+static const char * const imx8mn_gpt3_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
++maintainers:
++  - Johan Hovold <johan@kernel.org>
 +
-+static const char * const imx8mn_gpt4_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
++description: |
++  This document defines device tree properties common to Global Navigation
++  Satellite System receivers.
 +
-+static const char * const imx8mn_gpt5_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
++properties:
++  $nodename:
++    pattern: "^gnss(@.*)?$"
 +
-+static const char * const imx8mn_gpt6_sels[] = {"osc_24m", "sys_pll2_100m", "sys_pll1_400m",
-+						"sys_pll1_40m", "video_pll1_out", "sys_pll1_80m",
-+						"audio_pll1_out", "clk_ext1", };
++  lna-supply:
++    description: A separate regulator supplying power for the Low Noise
++      Amplifier (LNA). This is an amplifier connected between the GNSS
++      device and the receiver antenna.
 +
- static const char * const imx8mn_wdog_sels[] = {"osc_24m", "sys_pll1_133m", "sys_pll1_160m",
- 						"vpu_pll_out", "sys_pll2_125m", "sys_pll3_out",
- 						"sys_pll1_80m", "sys_pll2_166m", };
-@@ -476,6 +500,12 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MN_CLK_PWM2] = imx8m_clk_hw_composite("pwm2", imx8mn_pwm2_sels, base + 0xb400);
- 	hws[IMX8MN_CLK_PWM3] = imx8m_clk_hw_composite("pwm3", imx8mn_pwm3_sels, base + 0xb480);
- 	hws[IMX8MN_CLK_PWM4] = imx8m_clk_hw_composite("pwm4", imx8mn_pwm4_sels, base + 0xb500);
-+	hws[IMX8MN_CLK_GPT1] = imx8m_clk_hw_composite("gpt1", imx8mn_gpt1_sels, base + 0xb580);
-+	hws[IMX8MN_CLK_GPT2] = imx8m_clk_hw_composite("gpt2", imx8mn_gpt2_sels, base + 0xb600);
-+	hws[IMX8MN_CLK_GPT3] = imx8m_clk_hw_composite("gpt3", imx8mn_gpt3_sels, base + 0xb680);
-+	hws[IMX8MN_CLK_GPT4] = imx8m_clk_hw_composite("gpt4", imx8mn_gpt4_sels, base + 0xb700);
-+	hws[IMX8MN_CLK_GPT5] = imx8m_clk_hw_composite("gpt5", imx8mn_gpt5_sels, base + 0xb780);
-+	hws[IMX8MN_CLK_GPT6] = imx8m_clk_hw_composite("gpt6", imx8mn_gpt6_sels, base + 0xb800);
- 	hws[IMX8MN_CLK_WDOG] = imx8m_clk_hw_composite("wdog", imx8mn_wdog_sels, base + 0xb900);
- 	hws[IMX8MN_CLK_WRCLK] = imx8m_clk_hw_composite("wrclk", imx8mn_wrclk_sels, base + 0xb980);
- 	hws[IMX8MN_CLK_CLKO1] = imx8m_clk_hw_composite("clko1", imx8mn_clko1_sels, base + 0xba00);
-@@ -501,6 +531,12 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MN_CLK_GPIO3_ROOT] = imx_clk_hw_gate4("gpio3_root_clk", "ipg_root", base + 0x40d0, 0);
- 	hws[IMX8MN_CLK_GPIO4_ROOT] = imx_clk_hw_gate4("gpio4_root_clk", "ipg_root", base + 0x40e0, 0);
- 	hws[IMX8MN_CLK_GPIO5_ROOT] = imx_clk_hw_gate4("gpio5_root_clk", "ipg_root", base + 0x40f0, 0);
-+	hws[IMX8MN_CLK_GPT1_ROOT] = imx_clk_hw_gate4("gpt1_root_clk", "gpt1", base + 0x4100, 0);
-+	hws[IMX8MN_CLK_GPT2_ROOT] = imx_clk_hw_gate4("gpt2_root_clk", "gpt2", base + 0x4110, 0);
-+	hws[IMX8MN_CLK_GPT3_ROOT] = imx_clk_hw_gate4("gpt3_root_clk", "gpt3", base + 0x4120, 0);
-+	hws[IMX8MN_CLK_GPT4_ROOT] = imx_clk_hw_gate4("gpt4_root_clk", "gpt4", base + 0x4130, 0);
-+	hws[IMX8MN_CLK_GPT5_ROOT] = imx_clk_hw_gate4("gpt5_root_clk", "gpt5", base + 0x4140, 0);
-+	hws[IMX8MN_CLK_GPT6_ROOT] = imx_clk_hw_gate4("gpt6_root_clk", "gpt6", base + 0x4150, 0);
- 	hws[IMX8MN_CLK_I2C1_ROOT] = imx_clk_hw_gate4("i2c1_root_clk", "i2c1", base + 0x4170, 0);
- 	hws[IMX8MN_CLK_I2C2_ROOT] = imx_clk_hw_gate4("i2c2_root_clk", "i2c2", base + 0x4180, 0);
- 	hws[IMX8MN_CLK_I2C3_ROOT] = imx_clk_hw_gate4("i2c3_root_clk", "i2c3", base + 0x4190, 0);
-@@ -549,6 +585,8 @@ static int imx8mn_clocks_probe(struct platform_device *pdev)
- 	hws[IMX8MN_CLK_SDMA3_ROOT] = imx_clk_hw_gate4("sdma3_clk", "ipg_audio_root", base + 0x45f0, 0);
- 	hws[IMX8MN_CLK_SAI7_ROOT] = imx_clk_hw_gate2_shared2("sai7_root_clk", "sai7", base + 0x4650, 0, &share_count_sai7);
- 
-+	hws[IMX8MN_CLK_GPT_3M] = imx_clk_hw_fixed_factor("gpt_3m", "osc_24m", 1, 8);
++  enable-gpios:
++    description: A GPIO line that will enable the GNSS receiver when
++      asserted. If this line is active low, the GPIO phandle should
++      consequently be tagged with the GPIO_ACTIVE_LOW flag so the operating
++      system can rely on asserting the line to enable the GNSS device.
++    maxItems: 1
 +
- 	hws[IMX8MN_CLK_DRAM_ALT_ROOT] = imx_clk_hw_fixed_factor("dram_alt_root", "dram_alt", 1, 4);
- 
- 	hws[IMX8MN_CLK_ARM] = imx_clk_hw_cpu("arm", "arm_a53_core",
++  timepulse-gpios:
++    description: When a timepulse is provided to the GNSS device using a
++      GPIO line, this is used.
++    maxItems: 1
++
++  current-speed:
++    description: The baudrate in bits per second of the device as it comes
++      online, current active speed.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
++additionalProperties: true
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    serial {
++      gnss {
++        compatible = "u-blox,neo-8";
++        vcc-supply = <&gnss_reg>;
++        timepulse-gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
++        current-speed = <4800>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/gnss/gnss.txt b/Documentation/devicetree/bindings/gnss/gnss.txt
+deleted file mode 100644
+index d6dc9c0d8249..000000000000
+--- a/Documentation/devicetree/bindings/gnss/gnss.txt
++++ /dev/null
+@@ -1,37 +0,0 @@
+-GNSS Receiver DT binding
+-
+-This documents the binding structure and common properties for GNSS receiver
+-devices.
+-
+-A GNSS receiver node is a node named "gnss" and typically resides on a serial
+-bus (e.g. UART, I2C or SPI).
+-
+-Please refer to the following documents for generic properties:
+-
+-	Documentation/devicetree/bindings/serial/serial.yaml
+-	Documentation/devicetree/bindings/spi/spi-bus.txt
+-
+-Required properties:
+-
+-- compatible	: A string reflecting the vendor and specific device the node
+-		  represents
+-
+-Optional properties:
+-- lna-supply	: Separate supply for an LNA
+-- enable-gpios	: GPIO used to enable the device
+-- timepulse-gpios	: Time pulse GPIO
+-
+-Example:
+-
+-serial@1234 {
+-	compatible = "ns16550a";
+-
+-	gnss {
+-		compatible = "u-blox,neo-8";
+-
+-		vcc-supply = <&gnss_reg>;
+-		timepulse-gpios = <&gpio0 16 GPIO_ACTIVE_HIGH>;
+-
+-		current-speed = <4800>;
+-	};
+-};
 -- 
 2.35.1
 
