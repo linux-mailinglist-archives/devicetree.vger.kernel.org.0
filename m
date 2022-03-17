@@ -2,234 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A3F34DC01B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:27:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FC164DC027
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:30:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230220AbiCQH2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 03:28:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56244 "EHLO
+        id S230217AbiCQHb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 03:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbiCQH17 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:27:59 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE55C1C16DE
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:26:40 -0700 (PDT)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id ECF8A3F602
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 07:26:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647501997;
-        bh=ghNz7R4BGfeSRpf4QcIYnWTSvV5jI5ENR9wPPc5DGEw=;
-        h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-         In-Reply-To:Content-Type;
-        b=D6hMMPtho+Q1KIKx7adXE4EIZassueyz+XFtkeV6tc6Qnw0rJKR9iRWjGJdl8iWHg
-         N766DWkJYEFMbvAvnwokTW7pIH4dC5ffv3/YIqzOvgIDHMvXHRZSeUBL3Xdzgj0VKX
-         jzi/0elzfyVESukJOn0QQTA3mn6/d9mqHQL5rqSfYNNkNXBAfMBA52kqUCjDGkzgOv
-         GPU5qwQH47BATIai5PFJ3yL85POOWiavxeTQEQ/d6/MIxYtbvrJmxhdtHG4hzqPkaK
-         MiO3Kxp5hdn9o5TSJ7gHYQFGq9fq6k95EPC/0cDKFJCZhERu4zdVgSxuvnK2fkL2xr
-         jGMLE9jZgUwNg==
-Received: by mail-wm1-f72.google.com with SMTP id o10-20020a1c4d0a000000b0038c6e5fcbaeso1512001wmh.9
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=ghNz7R4BGfeSRpf4QcIYnWTSvV5jI5ENR9wPPc5DGEw=;
-        b=EOuHnHxfqLkO070YUVV+6o5cyQVxlpbY6aWVYNzfhmQcIKGgWJ5/NwBtP6PDBl0eEu
-         F/64j5uIjZwV+hZBY/p1AOhh1MWL13Crq69vcrezCY3mSL7/UeF+0WoaCeI1ynYbVEdf
-         mYH+HpvcCURre5UWZnACBVpZeUPZUkYx0EFxYwtvwE/Hz1FX6ratmI9+lSe9GB0CutBX
-         6cKYKkDkG79pjFn1tr+ZvHcTrAOAIuymx2LqMegUQPBedMSqiqOA7HwbFMYovRa6Mxbm
-         bn8yKwsd3koxeajYet0oD95xGMjpDo/Uj1b6bQSnvA9Gkj5uWQ/Y8btd4W8h0vos2jFp
-         k5vA==
-X-Gm-Message-State: AOAM533n+sTJ6Pn9ACyJqa0mUismPi4vlDu3ihehqsML0oJsHjGWDv8s
-        M+ihhd6GyoTpcdVEjV3fxlzRmUDzemeT4mnm6M6hvdMrK91SKo/wW3hnvHrOUPok8z8m/sB7pbr
-        OJHvexBTyN33lkZesGnwpD6YxqD0P9l0RgqCIhMg=
-X-Received: by 2002:a5d:6182:0:b0:203:ecfb:6d5e with SMTP id j2-20020a5d6182000000b00203ecfb6d5emr826497wru.555.1647501997313;
-        Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJyXUvFXzXTNB1+s0MST5P6b3GxTO5cqxsPLl8NjBFb0wBvzAZuUPRWZ20My4isFC+iYaqWujw==
-X-Received: by 2002:a5d:6182:0:b0:203:ecfb:6d5e with SMTP id j2-20020a5d6182000000b00203ecfb6d5emr826481wru.555.1647501997039;
-        Thu, 17 Mar 2022 00:26:37 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id k17-20020a05600c1c9100b00386bb6e9c50sm10966353wms.45.2022.03.17.00.26.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 00:26:36 -0700 (PDT)
-Message-ID: <4b1f4772-35f9-3e21-6429-b64c7427144a@canonical.com>
-Date:   Thu, 17 Mar 2022 08:26:35 +0100
+        with ESMTP id S229447AbiCQHbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:31:24 -0400
+Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA8E1C16E5;
+        Thu, 17 Mar 2022 00:30:08 -0700 (PDT)
+Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.54])
+        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4KJzGJ6mJxz9sfZ;
+        Thu, 17 Mar 2022 15:26:16 +0800 (CST)
+Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
+ dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 17 Mar 2022 15:30:06 +0800
+Received: from [10.174.178.55] (10.174.178.55) by
+ dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.21; Thu, 17 Mar 2022 15:30:04 +0800
+Subject: Re: [PATCH v21 3/5] arm64: kdump: reimplement crashkernel=X
+To:     Baoquan He <bhe@redhat.com>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
+        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        <kexec@lists.infradead.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        "John Donnelly" <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <20220227030717.1464-4-thunder.leizhen@huawei.com>
+ <YjHUAi0xrUy+qk/L@MiWiFi-R3L-srv>
+ <7d7a3e70-6a46-b722-ef48-7206a47185dd@huawei.com>
+ <YjKeuFGtjI7944uy@MiWiFi-R3L-srv>
+ <05a96786-cfe8-029f-f29a-60fb94129f91@huawei.com>
+ <YjKvUz+dKRkyxUAd@MiWiFi-R3L-srv>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <eb26c623-6c7b-c3ba-acc8-654023ddd82b@huawei.com>
+Date:   Thu, 17 Mar 2022 15:30:04 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH v2 1/8] dt-bindings: pinctrl: mvebu: Document bindings for
- AC5
+In-Reply-To: <YjKvUz+dKRkyxUAd@MiWiFi-R3L-srv>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20220314213143.2404162-1-chris.packham@alliedtelesis.co.nz>
- <20220314213143.2404162-2-chris.packham@alliedtelesis.co.nz>
- <4e6df448-5562-8f50-6f46-91acb279bc1a@canonical.com>
- <7e73bba0-8b54-772c-2e94-8fca4e4e3294@alliedtelesis.co.nz>
- <cb0af80e-3e5a-fbd9-cd8b-7b252ebe33fe@canonical.com>
- <6d902e7d-b71f-9dcd-9175-cc706e3d60cc@alliedtelesis.co.nz>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-In-Reply-To: <6d902e7d-b71f-9dcd-9175-cc706e3d60cc@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.178.55]
+X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
+ dggpemm500006.china.huawei.com (7.185.36.236)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2022 21:21, Chris Packham wrote:
-> 
-> On 16/03/22 21:16, Krzysztof Kozlowski wrote:
->> On 15/03/2022 22:12, Chris Packham wrote:
->>> (trimmed cc list to the arm, pinctrl and dt people)
->>>
->>> On 15/03/22 23:46, Krzysztof Kozlowski wrote:
->>>> On 14/03/2022 22:31, Chris Packham wrote:
->>>>> Add JSON schema for marvell,ac5-pinctrl present on the Marvell 98DX2530
->>>>> SoC.
->>>>>
->>>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>>> ---
->>>>>
->>>>> Notes:
->>>>>       Changes in v2:
->>>>>       - Remove syscon and simple-mfd compatibles
->>>>>
->>>>>    .../bindings/pinctrl/marvell,ac5-pinctrl.yaml | 70 +++++++++++++++++++
->>>>>    1 file changed, 70 insertions(+)
->>>>>    create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..65af1d5f5fe0
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/pinctrl/marvell,ac5-pinctrl.yaml
->>>>> @@ -0,0 +1,70 @@
->>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://scanmail.trustwave.com/?c=20988&d=1pyx4kv4KTrTfE5fXNs54mLZmOgk87Uim6CXu-YC1w&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fpinctrl%2fmarvell%2cac5-pinctrl%2eyaml%23
->>>>> +$schema: http://scanmail.trustwave.com/?c=20988&d=1pyx4kv4KTrTfE5fXNs54mLZmOgk87Uim6TAvbEE2Q&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
->>>>> +
->>>>> +title: Marvell AC5 pin controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>>> +
->>>>> +description:
->>>>> +  Bindings for Marvell's AC5 memory-mapped pin controller.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    const: marvell,ac5-pinctrl
->>>>> +
->>>>> +patternProperties:
->>>>> +  '-pins$':
->>>>> +    type: object
->>>>> +    $ref: pinmux-node.yaml#
->>>>> +
->>>>> +    properties:
->>>>> +      marvell,function:
->>>>> +        $ref: "/schemas/types.yaml#/definitions/string"
->>>>> +        description:
->>>>> +          Indicates the function to select.
->>>>> +        enum: [ gpio, i2c0, i2c1, nand, sdio, spi0, spi1, uart0, uart1, uart2, uart3 ]
->>>>> +
->>>>> +      marvell,pins:
->>>>> +        $ref: /schemas/types.yaml#/definitions/string-array
->>>>> +        description:
->>>>> +          Array of MPP pins to be used for the given function.
->>>>> +        minItems: 1
->>>>> +        items:
->>>>> +          enum: [ mpp0, mpp1, mpp2, mpp3, mpp4, mpp5, mpp6, mpp7, mpp8, mpp9,
->>>>> +                  mpp10, mpp11, mpp12, mpp13, mpp14, mpp15, mpp16, mpp17, mpp18, mpp19,
->>>>> +                  mpp20, mpp21, mpp22, mpp23, mpp24, mpp25, mpp26, mpp27, mpp28, mpp29,
->>>>> +                  mpp30, mpp31, mpp32, mpp33, mpp34, mpp35, mpp36, mpp37, mpp38, mpp39,
->>>>> +                  mpp40, mpp41, mpp42, mpp43, mpp44, mpp45 ]
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: "pinctrl.yaml#"
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    system-controller@80020100 {
->>>>> +      compatible = "syscon", "simple-mfd";
->>>>> +      reg = <0x80020000 0x20>;
->>>> This is unusual. Usually the pinctrl should be a device @80020100, not
->>>> child of syscon node. Why do you need it? In v1 you mentioned that
->>>> vendor sources do like this, but it's not correct to copy wrong DTS. :)
->>> The vendor dts has this
->>>
->>>           pinctrl0: pinctrl@80020100 {
->>>               compatible = "marvell,ac5-pinctrl",
->>>                        "syscon", "simple-mfd";
->>>               reg = <0 0x80020100 0 0x20>;
->>>               i2c_mpps: i2c-mpps {
->>>                   marvell,pins = "mpp26", "mpp27";
->>>                   marvell,function = "i2c0-opt";
->>>               };
->>>        };
->>>
->>> Rob pointed out that "syscon", "simple-mfd" don't belong. I went looking
->>> and found marvell,armada-7k-pinctrl which has the pinctrl as a child of
->>> a syscon node and what you see in v2 is the result.
->>>
->>> I probably went a bit too far off the deep end and should have just
->>> dropped the "syscon", "simple-mfd" compatibles. I even wrote that
->>> version but decided to add some gold plating before I submitted it.
->> More or less it is explained in
->> Documentation/devicetree/bindings/arm/marvell/cp110-system-controller.txt why
->> armada-7k uses it that way. The pinctrl is part of system registers
->> which apparently has to be shared with others (on shared SFR range).
+
+
+On 2022/3/17 11:47, Baoquan He wrote:
+> On 03/17/22 at 11:19am, Leizhen (ThunderTown) wrote:
 >>
->> It depends on your case, your SFR ranges for pinctrl and other blocks.
 >>
-> I can tell you that without a syscon node in the mix somewhere the 
-> driver will fail to load. And when I switch to 
-> mvebu_pinctrl_simple_mmio_probe() the driver loads but then kernel 
-> panics when something tries to use one of the pin functions.
+>> On 2022/3/17 10:36, Baoquan He wrote:
+>>> On 03/16/22 at 09:11pm, Leizhen (ThunderTown) wrote:
+>>>>
+>>>>
+>>>> On 2022/3/16 20:11, Baoquan He wrote:
+>>>>> On 02/27/22 at 11:07am, Zhen Lei wrote:
+>>> ...... 
+>>>
+>>>>> Hi leizhen,
+>>>>>
+>>>>> I made change on reserve_crashkenrel(), inline comment may be slow.
+>>>>> Please check and consider if they can be taken.
+>>>>
+>>>> That's great. Thank you very much.
+>>>>
+>>>>>
+>>>>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+>>>>> index 30ae6638ff54..f96351da1e3e 100644
+>>>>> --- a/arch/arm64/mm/init.c
+>>>>> +++ b/arch/arm64/mm/init.c
+>>>>> @@ -109,38 +109,43 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+>>>>>   * This function reserves memory area given in "crashkernel=" kernel command
+>>>>>   * line parameter. The memory reserved is used by dump capture kernel when
+>>>>>   * primary kernel is crashing.
+>>>>> + *
+>>>>> + * NOTE: Reservation of crashkernel,low is special since its existence
+>>>>> + * is not independent, need rely on the existence of crashkernel,high.
+>>>>> + * Hence there are different cases for crashkernel,low reservation:
+>>>
+>>> Considering to update the 3rd line as below:
+>>>
+>>>  * NOTE: Reservation of crashkernel,low is special since its existence
+>>>  * is not independent, need rely on the existence of crashkernel,high.
+>>>  * Here, four cases of crashkernel,low reservation are summarized: 
+>>
+>> OK. How about change "crashkernel,low" to "crashkernel low memory"?
+>> "crashkernel=Y,low", "crashkernel=,low" and "crashkernel,low" are very similar,
+>> may dazzle the reader.
 > 
-> So I think the syscon is needed. I just need to come up with a better 
-> justification than "because it's needed".
+> Fine by me. 'crashkernel low memory' is formal, just make sentence a
+> little longer. Please take what you think fitter.
 
-What do you mean "driver fails to load"? You control the driver, don't
-you? You wrote it? If you write a driver which is not compatible with
-bindings, it won't work obviously, so after changing bindings you need
-to revisit the driver.
+OK, I will send v22 after v5.18-rc1.
 
-There is no need for syscon because driver "fails to load". You need to
-fix your driver. Currently the driver code is definitely not a proper
-platform driver.
+> 
+>>
+>>>
+>>>>> + * 1) crashkernel=Y,low is specified explicitly, crashkernel,low takes Y;
+>>>>> + * 2) crashkernel=,low is not given, while crashkernel=,high is specified,
+>>>>> + *    take the default crashkernel,low value;
+>>>>> + * 3) crashkernel=X is specified, while fallback to get a memory region
+>>>>> + *    in high memory, take the default crashkernel,low value;
+>>>>> + * 4) crashkernel='invalid value',low is specified, failed the whole
+>>>>> + *    crashkernel reservation and bail out.
+>>>>>   */
+>>>>>  static void __init reserve_crashkernel(void)
+>>>>>  {
+>>>>>  	unsigned long long crash_base, crash_size;
+>>>>>  	unsigned long long crash_low_size;
+>>>>>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+>>>>> -	int ret;
+>>>>>  	bool fixed_base, high = false;
+>>>>>  	char *cmdline = boot_command_line;
+>>>>> +	int ret;
+>>>>>  
+>>>>>  	/* crashkernel=X[@offset] */
+>>>>>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+>>>>>  				&crash_size, &crash_base);
+>>>>>  	if (ret || !crash_size) {
+>>>>> -		/* crashkernel=X,high */
+>>>>>  		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+>>>>>  		if (ret || !crash_size)
+>>>>>  			return;
+>>>>>  
+>>>>> -		/* crashkernel=Y,low */
+>>>>>  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
+>>>>>  		if (ret == -ENOENT)
+>>>>> -			/*
+>>>>> -			 * crashkernel=Y,low is not specified explicitly, use
+>>>>> -			 * default size automatically.
+>>>>> -			 */
+>>>>> +			/* case #2 of crashkernel,low reservation */
+>>>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>>>  		else if (ret)
+>>>>> -			/* crashkernel=Y,low is specified but Y is invalid */
+>>>>> +			/* case #4 of crashkernel,low reservation */
+>>>>>  			return;
+>>>>>  
+>>>>> -		/* Mark crashkernel=X,high is specified */
+>>>>>  		high = true;
+>>>>>  		crash_max = CRASH_ADDR_HIGH_MAX;
+>>>>>  	}
+>>>>> @@ -148,7 +153,6 @@ static void __init reserve_crashkernel(void)
+>>>>>  	fixed_base = !!crash_base;
+>>>>>  	crash_size = PAGE_ALIGN(crash_size);
+>>>>>  
+>>>>> -	/* User specifies base address explicitly. */
+>>>>>  	if (fixed_base)
+>>>>>  		crash_max = crash_base + crash_size;
+>>>>>  
+>>>>> @@ -172,11 +176,7 @@ static void __init reserve_crashkernel(void)
+>>>>>  	}
+>>>>>  
+>>>>>  	if (crash_base >= SZ_4G) {
+>>>>> -		/*
+>>>>> -		 * For case crashkernel=X, low memory is not enough and fall
+>>>>> -		 * back to reserve specified size of memory above 4G, try to
+>>>>> -		 * allocate minimum required memory below 4G again.
+>>>>> -		 */
+>>>>> +		/* case #3 of crashkernel,low reservation */
+>>>>>  		if (!high)
+>>>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>>>  
+>>>>>
+>>>>>>  
+>>>>>> -	/* Current arm64 boot protocol requires 2MB alignment */
+>>>>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+>>>>>> +retry:
+>>>>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+>>>>>>  					       crash_base, crash_max);
+>>>>>>  	if (!crash_base) {
+>>>>>> +		/*
+>>>>>> +		 * Attempt to fully allocate low memory failed, fall back
+>>>>>> +		 * to high memory, the minimum required low memory will be
+>>>>>> +		 * reserved later.
+>>>>>> +		 */
+>>>>>> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+>>>>>> +			crash_max = CRASH_ADDR_HIGH_MAX;
+>>>>>> +			goto retry;
+>>>>>> +		}
+>>>>>> +
+>>>>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+>>>>>>  			crash_size);
+>>>>>>  		return;
+>>>>>>  	}
+>>>>>>  
+>>>>>> +	if (crash_base >= SZ_4G) {
+>>>>>> +		/*
+>>>>>> +		 * For case crashkernel=X, low memory is not enough and fall
+>>>>>> +		 * back to reserve specified size of memory above 4G, try to
+>>>>>> +		 * allocate minimum required memory below 4G again.
+>>>>>> +		 */
+>>>>>> +		if (!high)
+>>>>>> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+>>>>>> +
+>>>>>> +		if (reserve_crashkernel_low(crash_low_size)) {
+>>>>>> +			memblock_phys_free(crash_base, crash_size);
+>>>>>> +			return;
+>>>>>> +		}
+>>>>>> +	}
+>>>>>> +
+>>>>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+>>>>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
+>>>>>>  
+>>>>>> @@ -107,6 +194,9 @@ static void __init reserve_crashkernel(void)
+>>>>>>  	 * map. Inform kmemleak so that it won't try to access it.
+>>>>>>  	 */
+>>>>>>  	kmemleak_ignore_phys(crash_base);
+>>>>>> +	if (crashk_low_res.end)
+>>>>>> +		kmemleak_ignore_phys(crashk_low_res.start);
+>>>>>> +
+>>>>>>  	crashk_res.start = crash_base;
+>>>>>>  	crashk_res.end = crash_base + crash_size - 1;
+>>>>>>  	insert_resource(&iomem_resource, &crashk_res);
+>>>>>> -- 
+>>>>>> 2.25.1
+>>>>>>
+>>>>>
+>>>>> .
+>>>>>
+>>>>
+>>>> -- 
+>>>> Regards,
+>>>>   Zhen Lei
+>>>>
+>>>
+>>> .
+>>>
+>>
+>> -- 
+>> Regards,
+>>   Zhen Lei
+>>
+> 
+> .
+> 
 
-Different question is whether something else requires here syscon
-because it accesses these registers but this requires knowledge of
-architecture and other components.
-
-
-Best regards,
-Krzysztof
+-- 
+Regards,
+  Zhen Lei
