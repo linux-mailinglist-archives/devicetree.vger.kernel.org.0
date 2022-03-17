@@ -2,139 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F794DD027
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 22:26:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B623C4DD02D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 22:28:31 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230242AbiCQV1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 17:27:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36260 "EHLO
+        id S230253AbiCQV3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 17:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbiCQV1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 17:27:44 -0400
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3B30E127E;
-        Thu, 17 Mar 2022 14:26:26 -0700 (PDT)
-Received: by mail-pj1-f43.google.com with SMTP id o6-20020a17090a9f8600b001c6562049d9so6640850pjp.3;
-        Thu, 17 Mar 2022 14:26:26 -0700 (PDT)
+        with ESMTP id S230195AbiCQV3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 17:29:45 -0400
+Received: from mail-oi1-x231.google.com (mail-oi1-x231.google.com [IPv6:2607:f8b0:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2CAA65B4
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 14:28:26 -0700 (PDT)
+Received: by mail-oi1-x231.google.com with SMTP id j83so7001399oih.6
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 14:28:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=O28KFB9Z1FTz+AymH1IN8bgHj7fL/zlAB/PUyRZgUJs=;
-        b=p46uwofeLg5Vu8lhhImWBLOdalf9R9c51tbeP4ZqSXmJbVrnjwLKBmGO9x6y741/9C
-         F1z3FT9GcfO3w8Uy5wgXkvY6Zwo2xF4zgYMtDHHrA2e3Tsx6H8wPajgjqunwWno7+obU
-         O6jsg/z1Bm5Zqn45iBnmqEX6OA1XWo7u0lsPGuH6iRhhTvHzeE2ZhCcy8SVHLf76esom
-         jC4E5SjBuceJocPckCw5BIzd3ZvDCUpxHgkpX8+G+QJVoz3BlD1LcuU1moF9RfTaOcXO
-         EkObbZW7qdIyoS1dWuTav1xwouqRxh6yOZ1vBaCw4wPeTtMpIuOCslctpNdt1fGceRqP
-         Q0kw==
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=UNSHY9stDEkYj4x5uGDPU+/xpghSYFwE9UEK93GK/gM=;
+        b=UJ6ChFrD90E+fyCqG323ewJ4CboNt0noYEGXnfAPEfX84YTjFpiHIqWLGryy+REnEl
+         m+BeB7MRpK2nOqB4s2Vd8hj6AzSxqmyqCSgGwWoDz4bynPsW6Kd44b2jxUBbqTKRdx5M
+         rGSwbd+IxqOivaCpFLd6L9XgHkiW067VR7wP4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=O28KFB9Z1FTz+AymH1IN8bgHj7fL/zlAB/PUyRZgUJs=;
-        b=1Zbw8PbbMsfRlZbFZJYq30NNsPA1/xsrHRAijo3POLNEeakSr29lEu+lTQyEquU72d
-         l6aAwgnBjDdHWcVS/zOyUk2BK7Fu8+IORtKCHLISRZM04rNjN0MOylKFr7Cv+8HDpPXp
-         Z3CsDCz9yyr5iENVabZjjdfUY00/BwC4C7o5XBymhs1asQPAjgXG4qzqKSi4usc3QGgf
-         eqatnONAdxukug2UCL21408S8tFQMSS//vk9o2WzivxeFINi9ApulD+kAGLS+r71mJOh
-         dqkicxyiOA4Tx8B96ykzgk3McYNuvLd2D7kEFAowiUWrPccxkjEDRbGNW3FqBJneIg3p
-         ykYA==
-X-Gm-Message-State: AOAM532r1jwS82VZxbd6Rnx8zt5XQMehQcEQokR2AxgUCxLdI66pZcK3
-        ikIl1Xa5inExEDdx6jJkykw=
-X-Google-Smtp-Source: ABdhPJwiI+1DF6j6F1CN5z+IyxD3suUX3qc9ceGaxuETSEpJcT/76Ll3c9nj5XiMyX7kuDZiR4jblg==
-X-Received: by 2002:a17:90b:3e8c:b0:1bf:4043:daa with SMTP id rj12-20020a17090b3e8c00b001bf40430daamr7630460pjb.233.1647552315163;
-        Thu, 17 Mar 2022 14:25:15 -0700 (PDT)
-Received: from 9a2d8922b8f1 ([122.161.51.18])
-        by smtp.gmail.com with ESMTPSA id k185-20020a6384c2000000b003821dcd9020sm1284016pgd.27.2022.03.17.14.25.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 14:25:14 -0700 (PDT)
-Date:   Fri, 18 Mar 2022 02:55:08 +0530
-From:   Kuldeep Singh <singh.kuldeep87k@gmail.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: timer: Document arm, cortex-a7-timer
- in arch timer
-Message-ID: <20220317212508.GB99538@9a2d8922b8f1>
-References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
- <20220317191527.96237-3-singh.kuldeep87k@gmail.com>
- <558f0c92-c499-daca-e1ad-2b16137f8c06@arm.com>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=UNSHY9stDEkYj4x5uGDPU+/xpghSYFwE9UEK93GK/gM=;
+        b=K+/6/t+mDhKxm7uPjOZmJoAx320QxoKDRrmSSCSuMXQe+kOLp2rO2NuPQ0Oc0Hv5kb
+         xaGkdEt1eh3gZQtIYJODPCscJ44VmZiDcADjA13TRmTbcq2C4Jhpmy72lErn/u93d6Ds
+         hNGDOdMC0EL1FM+W5CGWSIrJatVk99qcYyr7Iv12gqDmgU9cbkNwbjCF5kWMN+Q7GEaW
+         WzIxIGSNYp/6w0YUcPdl2LxUxx6TTKANPtztPMOqFU5NwT996Gb9OugYpU67+d/8TGl/
+         PPOtlk/ha7hPm1cNk65+hhXzkbPOXPVYCJgyK811X+CbOFQbOtkYh1c8fYHNKmNrDnZJ
+         ZYLg==
+X-Gm-Message-State: AOAM531EIiAxHhBmSVsVna+N82JM94ucY3zYvUiixiIoKWc59+0PWcGw
+        foz9oYOYQcPe5HReBcyf423GDrnvuU7RWyv1o8Rkqg==
+X-Google-Smtp-Source: ABdhPJyv2KBnd9epOKRH7UvrY9oWjNtBrVHvuV99b+9vkNMSlZzoiR1rQ+l7ignHhDoNDiXp1SY6ndIb2XVw3NaYJjs=
+X-Received: by 2002:aca:bd41:0:b0:2ec:ff42:814f with SMTP id
+ n62-20020acabd41000000b002ecff42814fmr3029465oif.63.1647552506394; Thu, 17
+ Mar 2022 14:28:26 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 17 Mar 2022 17:28:25 -0400
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <558f0c92-c499-daca-e1ad-2b16137f8c06@arm.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <1647452154-16361-4-git-send-email-quic_sbillaka@quicinc.com>
+References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com> <1647452154-16361-4-git-send-email-quic_sbillaka@quicinc.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 17 Mar 2022 17:28:25 -0400
+Message-ID: <CAE-0n51SCm2HJ4O-DPJy3zKLrbgn9EFQbYPkzJDyqNncnC=4mA@mail.gmail.com>
+Subject: Re: [PATCH v5 3/9] arm64: dts: qcom: sc7280: Enable backlight for eDP panel
+To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     robdclark@gmail.com, seanpaul@chromium.org,
+        quic_kalyant@quicinc.com, quic_abhinavk@quicinc.com,
+        dianders@chromium.org, quic_khsieh@quicinc.com, agross@kernel.org,
+        bjorn.andersson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        sean@poorly.run, airlied@linux.ie, daniel@ffwll.ch,
+        thierry.reding@gmail.com, sam@ravnborg.org,
+        dmitry.baryshkov@linaro.org, quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 08:25:12PM +0000, Robin Murphy wrote:
-> On 2022-03-17 19:15, Kuldeep Singh wrote:
-> > Renesas RZ/N1D platform uses compatible "arm,cortex-a7-timer" in
-> > conjugation with "arm,armv7-timer". Since, initial entry is not
-> > documented, it start raising dtbs_check warnings.
-> > 
-> > ['arm,cortex-a7-timer', 'arm,armv7-timer'] is too long
-> > 'arm,cortex-a7-timer' is not one of ['arm,armv7-timer', 'arm,armv8-timer']
-> > 'arm,cortex-a7-timer' is not one of ['arm,cortex-a15-timer']
-> > 
-> > Document this compatible to address it. The motivation to add this
-> > change is taken from an already existing entry "arm,cortex-a15-timer".
-> > Please note, this will not hurt any arch timer users.
-> 
-> Eh, if it's never been documented or supported, I say just get rid of it.
-> The arch timer interface is by definition part of a CPU, and we can tell
-> what the CPU is by reading its ID registers. Indeed that's how the driver
-> handles the non-zero number of CPU-specific errata that already exist - we
-> don't need compatibles for that.
-> 
-> In some ways it might have been nice to have *SoC-specific* compatibles
-> given the difficulty some integrators seem to have had in wiring up a stable
-> count *to* the interface, but it's not like they could be magically added to
-> already-deployed DTs after a bug is discovered, and nor could we have
-> mandated them from day 1 just in case and subsequently maintained a binding
-> that is just an ever-growing list of every SoC. Oh well.
+Quoting Sankeerth Billakanti (2022-03-16 10:35:48)
+> Enable backlight support for eDP panel on CRD platform for sc7280.
+>
+> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> ---
+>
+> Changes in v5:
+>   - Separate out backlight nodes
+>
+>  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sc7280-crd.dts b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> index 2df654e..16d1a5b 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc7280-crd.dts
+> @@ -37,6 +37,15 @@
+>                 pinctrl-0 = <&edp_panel_power>;
+>         };
+>
+> +       edp_backlight: edp-backlight {
 
-Robin, A similar discussion was already done on v1 thread. Please see
-below for details:
-https://lore.kernel.org/linux-devicetree/20220317065925.GA9158@9a2d8922b8f1/
-https://lore.kernel.org/linux-devicetree/726bde76-d792-febf-d364-6eedeb748c3b@canonical.com/
+Does this also move to qcard.dtsi? Why can't this be combined with the
+previous patch?
 
-And final outcome of discussion turns out to add this compatible string.
+> +               compatible = "pwm-backlight";
+> +
+> +               power-supply = <&vreg_edp_bp>;
+> +               pwms = <&pm8350c_pwm 3 65535>;
+> +
+> +               enable-gpios = <&pm8350c_gpios 7 GPIO_ACTIVE_HIGH>;
+> +       };
+> +
+>         vreg_edp_bp: vreg-edp-bp-regulator {
+>                 compatible = "regulator-fixed";
+>                 regulator-name = "vreg_edp_bp";
+> @@ -123,7 +132,9 @@ ap_ts_pen_1v8: &i2c13 {
+>                 edp_panel: edp-panel {
+>                         compatible = "edp-panel";
+>
+> +                       backlight = <&edp_backlight>;
+>                         power-supply = <&edp_3v3_regulator>;
+> +
 
-I see people with different set of perspective in regard to whether keep
-compatible string or not. We should have some sort of evidences to
-support claims so that next time when similar situation arises, we'll be
-aware beforehand how to proceed.
+Nitpick: Remove this newline from this hunk and put it in when
+power-supply is introduced.
 
-- Kuldeep
-> 
-> Robin.
-> 
-> > Signed-off-by: Kuldeep Singh <singh.kuldeep87k@gmail.com>
-> > ---
-> >   Documentation/devicetree/bindings/timer/arm,arch_timer.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > index ba2910f0a7b2..ea390e5df71d 100644
-> > --- a/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > +++ b/Documentation/devicetree/bindings/timer/arm,arch_timer.yaml
-> > @@ -26,6 +26,7 @@ properties:
-> >             - arm,armv8-timer
-> >         - items:
-> >             - enum:
-> > +              - arm,cortex-a7-timer
-> >                 - arm,cortex-a15-timer
-> >             - const: arm,armv7-timer
+>                         ports {
+>                                 #address-cells = <1>;
+>                                 #size-cells = <0>;
+> @@ -172,6 +183,13 @@ ap_ts_pen_1v8: &i2c13 {
+>         };
+>  };
+>
+> +&pm8350c_pwm {
+> +       status = "okay";
+> +
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&edp_bl_pwm>;
+
+I see the pinctrl is used now but it would be easier to review this
+patch if the pinctrl was in this patch.
