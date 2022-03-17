@@ -2,185 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C87E64DC53C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 12:59:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 578AC4DC555
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 13:00:22 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233269AbiCQL7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 07:59:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34442 "EHLO
+        id S233264AbiCQMBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 08:01:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233240AbiCQL70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 07:59:26 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F2117154F
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:58:06 -0700 (PDT)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 7605F3F7DE
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 11:57:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647518279;
-        bh=Se1x08TIKnomHmbPOsCcljQ9abxNVpGR1lbzQcpKc/g=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=Dxgybu7hED8H5IgeSJhSD4u1saho5mSrdSNg7LLcFNPae4BmN+xmVo8266vJ2asvm
-         FJPDvckR1UVq0Ku1dBCpUVuPdwMRFxTnHOdajw7Ryv7q9mlyw1uFSHN6AI8BKxwueQ
-         FN8vJ1BeJ64xuSl6ENaQeSH8nkpBUcoUSpJPxTvmIT+ADEVSMZDx0OduE59pDMd786
-         m8LEkYccaPhn5l3lQlbjg19J8O453rIdY/WMo/i8AHg8p2Jx7FzgoUQuLC+Ht2oZ64
-         mQXBPc5x17kCF47CubOXIcX05hEA7eYwfp26VsDztt+kaQLqSC+ZI4dLy/4YvvzyCw
-         88HmbFWscmm/g==
-Received: by mail-wm1-f72.google.com with SMTP id 12-20020a05600c24cc00b0038c6caa95f7so2000418wmu.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:59 -0700 (PDT)
+        with ESMTP id S233268AbiCQMBf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 08:01:35 -0400
+Received: from mail-yb1-xb2a.google.com (mail-yb1-xb2a.google.com [IPv6:2607:f8b0:4864:20::b2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01BAB170DA8;
+        Thu, 17 Mar 2022 05:00:18 -0700 (PDT)
+Received: by mail-yb1-xb2a.google.com with SMTP id o5so9796159ybe.2;
+        Thu, 17 Mar 2022 05:00:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w7umAd0HdQF/0Y/dcMA5O7GL9fe1/Zuc2dVyyldUlgw=;
+        b=gfZ92XehhNSgAL1i916bWJTKe1a1eeZ0rlq0AUvo23EAZz9KwhhgS3njKZeyzpk/Ey
+         vTOdsvqySgrQd5J7nGndrNwNTMBUFcDBdFy95ZNtJtmbvCqyIP3eCgp71S4WMHHHlKla
+         PslTZh1Zwt9t6sxKrVidMy/kfisuV8rOpMCOMDYR2H63sr1PebYkdvyvYEIJpbnQMFJO
+         SPm3dzu23FG1oGpcQbO+1RXRins5MimoZHVlIiGYnapBq2drmDJNN3xojvP/IoYMJYaX
+         rm+ekHq39HFlWjNztSMKB/g0q6VJjEpG6Ay5DLhe/94K4yGtlGTCX/Y7NmM8JP9ui7mj
+         IK1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Se1x08TIKnomHmbPOsCcljQ9abxNVpGR1lbzQcpKc/g=;
-        b=l6I+qG5XLHwx/uGoNu7HNWILqS1On/v0gpKYpw0B7Z4w8EPc1qD+KAq/GqoNoVvI9X
-         ry02Kd1sG+LwQagXWPOqcjvzj03/2Odk8XXFfk0IeNuBAJvofuqNQ2PIk89vCuFaDy9q
-         DwJtsoOzJAV4Sh5BzXLW79Gw0Iwzop/4oRL87fNOEkmevJzecxxcFWGWyG8uknooIvhY
-         aeto86cCDswGtXp/L+rYnGkfY1+M4VHPp/xJ6G2yW1HZ94OURwbLUeYEGtPoOMiATQOQ
-         WcHBHzP4sBLdkPM1ogZPE5cq7cCkPEhuXvw/eMEvZddRfLRxXoW/g0R2AHGOUaXa00HD
-         2sgg==
-X-Gm-Message-State: AOAM532DruyTv81zwl0WPmqWpJC2PG8RbBEs9a+bDctfgVEsRs6hhwMk
-        nm0FJj4R9FJUKHw7yWiOWTrYuG1tfwlS0qgr4dcCUFOAnpaniNdZA9gI4UTimj+WAVk4ea6ofI5
-        ddMHmxfJAerfrBOwiuk55Z14BFZJjAOAWTCPxQtE=
-X-Received: by 2002:a1c:7312:0:b0:38c:6f75:ab28 with SMTP id d18-20020a1c7312000000b0038c6f75ab28mr5970869wmb.19.1647518276636;
-        Thu, 17 Mar 2022 04:57:56 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxzGz1twNJ92VnBy+RepCLy4U1K/Q67OukVWGeTcahnkhBl7wcOvPZo8IwHXQJMuUSC1th66Q==
-X-Received: by 2002:a1c:7312:0:b0:38c:6f75:ab28 with SMTP id d18-20020a1c7312000000b0038c6f75ab28mr5970841wmb.19.1647518276425;
-        Thu, 17 Mar 2022 04:57:56 -0700 (PDT)
-Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r65-20020a1c4444000000b0038c48dd23b9sm5824900wma.5.2022.03.17.04.57.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 04:57:56 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Michael Walle <michael@walle.cc>,
-        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
-        Daniel Palmer <daniel@thingy.jp>,
-        =?UTF-8?q?Jonathan=20Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Paul Burton <paulburton@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, linux-oxnas@groups.io
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 18/18] dt-bindings: irqchip: ti: include generic schema
-Date:   Thu, 17 Mar 2022 12:57:05 +0100
-Message-Id: <20220317115705.450427-17-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
-References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w7umAd0HdQF/0Y/dcMA5O7GL9fe1/Zuc2dVyyldUlgw=;
+        b=QqM0Vxe7js/qI0kerPxlPNEFJmN67u1pSCN5ZGopQ6BsgA4deYmKLRPzQGWMYlWo3Z
+         BqWWNg3i4nru4v4/V8CAIZwG8Z5rnhIw78s05pCZ4F2N609hplAsbjo9mXtjY7OP9Fus
+         gNRJRJ6jvicMVHwwqjApRsVvNRqHa6YH//o473xLbU94a8vkB3Kj3I8dZPa2UDjASBj1
+         Lom0r42FgAXNzlnpqYHXEnzfU83qNNj381TkWmuZcnRhCpClhkpWeDv1iQLnywPENqAE
+         GBBSMbmv791D3SL4O4bzOrvfz0oQDZveD2Ik5HwprGMRqAxsrhlJWQPWT2o7kxIjvPma
+         I6kw==
+X-Gm-Message-State: AOAM533lxqVcF7MV0XjA+6KUuccwClyAvPmfsEtlvBdtPLfyp0Dd/ZtS
+        WqYiJxzm5YgSHgxHh3ehdwmdyBE6iiqwm9FPVrg=
+X-Google-Smtp-Source: ABdhPJwYmzfiLbLPvbajfh4qpduHNmcl11o8Nfezb4d7zLMfNtasZCOtvIKOiNO97c1p13rWPLnTSu6EhzR8seFgAYs=
+X-Received: by 2002:a25:8812:0:b0:633:7bd8:16ff with SMTP id
+ c18-20020a258812000000b006337bd816ffmr4357088ybl.645.1647518418131; Thu, 17
+ Mar 2022 05:00:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220317012404.8069-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAHp75Vc+uSNF4L0WCfCyadOqJ6szXS3Ct5BmEUbeQ_aKg1zjWg@mail.gmail.com> <87wngtx79f.wl-maz@kernel.org>
+In-Reply-To: <87wngtx79f.wl-maz@kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Thu, 17 Mar 2022 11:59:52 +0000
+Message-ID: <CA+V-a8uBrau7-0x95O750nPeckz=vdhK2RJtFZ2rfiQhEtrdwA@mail.gmail.com>
+Subject: Re: [RFC PATCH v4 0/5] Renesas RZ/G2L IRQC support
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Include generic interrupt-controller.yaml and msi-controller.yaml
-schema, which enforces node naming and other generic properties.
-The schema requires now proper naming of node.
+Hi Marc,
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- .../bindings/interrupt-controller/ti,pruss-intc.yaml         | 5 ++++-
- .../bindings/interrupt-controller/ti,sci-inta.yaml           | 1 +
- .../bindings/interrupt-controller/ti,sci-intr.yaml           | 3 ++-
- 3 files changed, 7 insertions(+), 2 deletions(-)
+On Thu, Mar 17, 2022 at 9:23 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On Thu, 17 Mar 2022 08:46:14 +0000,
+> Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> >
+> > On Thu, Mar 17, 2022 at 5:43 AM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > >
+> > > Hi All,
+> > >
+> > > The RZ/G2L Interrupt Controller is a front-end for the GIC found on
+> > > Renesas RZ/G2L SoC's with below pins:
+> > > - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+> > > - GPIO pins used as external interrupt input pins out of GPIOINT0-122 a
+> > >   maximum of only 32 can be mapped to 32 GIC SPI interrupts,
+> > > - NMI edge select.
+> > >
+> > What I want to know now is whether it is going to collide with Marc's
+> > series about GPIO IRQ chip constification?
+>
+> Probably, but the current scheme will still be alive for some time
+> (you'll need a couple of cycles to sort out all the drivers).
+>
+Ouch, thanks for letting me know. BTW there are a couple of changes to
+GPIO core which you have to review (this was missed in the previous
+version).
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-index 65523d9459d8..983d10da4463 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.yaml
-@@ -32,6 +32,9 @@ description: |
-   This interrupt-controller node should be defined as a child node of the
-   corresponding PRUSS node. The node should be named "interrupt-controller".
- 
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
- properties:
-   $nodename:
-     pattern: "^interrupt-controller@[0-9a-f]+$"
-@@ -106,7 +109,7 @@ required:
-   - interrupt-controller
-   - "#interrupt-cells"
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
-index 88c46e61732e..935a61504aa0 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-inta.yaml
-@@ -11,6 +11,7 @@ maintainers:
- 
- allOf:
-   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-+  - $ref: msi-controller.yaml#
- 
- description: |
-   The Interrupt Aggregator (INTA) provides a centralized machine
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
-index e12aee42b126..0d35a5e21a64 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ti,sci-intr.yaml
-@@ -11,6 +11,7 @@ maintainers:
- 
- allOf:
-   - $ref: /schemas/arm/keystone/ti,k3-sci-common.yaml#
-+  - $ref: /schemas/interrupt-controller.yaml#
- 
- description: |
-   The Interrupt Router (INTR) module provides a mechanism to mux M
-@@ -92,7 +93,7 @@ unevaluatedProperties: false
- 
- examples:
-   - |
--    main_gpio_intr: interrupt-controller0 {
-+    main_gpio_intr: interrupt-controller {
-         compatible = "ti,sci-intr";
-         ti,intr-trigger-type = <1>;
-         interrupt-controller;
--- 
-2.32.0
+Cheers,
+Prabhakar
 
+> Worse case, this can be fixed at merge time.
+>
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
