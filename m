@@ -2,249 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 241974DC7DA
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 14:50:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 605D54DC7AC
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 14:34:43 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234540AbiCQNvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 09:51:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57416 "EHLO
+        id S234615AbiCQNf5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 09:35:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233676AbiCQNvi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 09:51:38 -0400
-Received: from gateway33.websitewelcome.com (gateway33.websitewelcome.com [192.185.145.9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 197D5E9C99
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 06:50:18 -0700 (PDT)
-Received: from cm10.websitewelcome.com (cm10.websitewelcome.com [100.42.49.4])
-        by gateway33.websitewelcome.com (Postfix) with ESMTP id A8C4460ACB6
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 08:28:55 -0500 (CDT)
-Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
-        by cmsmtp with SMTP
-        id UqBTnuieIRnrrUqBTnO8Jf; Thu, 17 Mar 2022 08:28:55 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=ZWlDpJ1jKpFqrvBTDx/wTo26QSvpgwcabfkWM+NH5jc=; b=R+oy9LMWd0I1peoGYqliO/5hmz
-        wQqYKKAVATe4jzNwfnXWcwcUxsK0iayujfDu1DhAGbkcKuxcxG3BcuxhoF2Ldd6DhJAsI1nHogiiR
-        ELc5oE2J0AeM4kDEOB9RPoZ2seXSgtglbrfhqJIZJ64KuzGW2ThqK9OJAgeOyXfTMrQWszVUlrT5r
-        ID3MpjXQetLxRMQDbS3PXtxw+5ialhhJvcaaWGzYhXJ95GUW47CsxYQGkyv0fZAUHJemZuYLRIl9j
-        2f9s731PyYBEL8MXToAMGABS1V+9PXMPixVTFMKDpebGr+TGNe8wUDmA5ZnR2apweiycHaieGTyLQ
-        HWsKB0Vg==;
-Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54312)
-        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <linux@roeck-us.net>)
-        id 1nUqBT-003zon-5m; Thu, 17 Mar 2022 13:28:55 +0000
-Message-ID: <6aabb517-c46e-bcf8-c93d-b6fa1fe8eb3a@roeck-us.net>
-Date:   Thu, 17 Mar 2022 06:28:53 -0700
+        with ESMTP id S234616AbiCQNf4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 09:35:56 -0400
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA5511D8327;
+        Thu, 17 Mar 2022 06:34:39 -0700 (PDT)
+Received: by mail-wr1-f45.google.com with SMTP id u16so6396582wru.4;
+        Thu, 17 Mar 2022 06:34:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
+         :subject:content-language:to:cc:references:in-reply-to
+         :content-transfer-encoding;
+        bh=tiddZtdatCAOBeWoKQ39T3OINXD+ANIwjKxCq8gFVyg=;
+        b=r5Xue6WFoXurEsZZDzrwuYYHerUIraIHaA8RcD1K2dwTdrJR/ys9oxo8JnZUeiowya
+         /JKKn+N2g9pdGaVg+WXJFfuGBd9hqyxWORyB+eIw+TkEMv58C2IK+43ibfqKc5ZNdOdQ
+         rslf09TaabA/6ht9ox4jWORmdh71/MDAsvzzxx5SUsW7srpNBvBlvoHlW8x+yoUGy20k
+         DdIhJH17iUKZvgiz9q0Imu+GT5JuMLZjIOGTnAb6bUaKQxwqnXgImUEC5tHpyhjdpDu8
+         QwbC9TkJFV+i3bsCSwB8b/El6XBcQ3tr5AavmNxLVAeoamTzNLkBj58mMDw+CiaATA26
+         dacQ==
+X-Gm-Message-State: AOAM530YHZkbfpsp45xK7mSYZoZvp3oXxlegV0dkvQb5cq51ZK/iZ/Ub
+        gAC7oJwDfj/oMudRHyNv5js=
+X-Google-Smtp-Source: ABdhPJwAnfd4irGcCYcMc4ioXDUc5jApZtA3VHsE3K+y3gDHzFM/81yNXsSr4TkmhdNbWlYAtnsHIg==
+X-Received: by 2002:adf:9123:0:b0:1ef:9b6d:60c1 with SMTP id j32-20020adf9123000000b001ef9b6d60c1mr4030511wrj.169.1647524078009;
+        Thu, 17 Mar 2022 06:34:38 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id f11-20020a7bcc0b000000b0037e0c362b6dsm4314005wmh.31.2022.03.17.06.34.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Mar 2022 06:34:35 -0700 (PDT)
+Message-ID: <e26ab4e4-6774-e292-8fcb-c86b33af048a@kernel.org>
+Date:   Thu, 17 Mar 2022 14:34:33 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RFC PATCH v4 1/5] dt-bindings: interrupt-controller: Add Renesas
+ RZ/G2L Interrupt Controller
 Content-Language: en-US
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        jdelvare@suse.com, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220316234134.290492-1-chris.packham@alliedtelesis.co.nz>
- <20220316234134.290492-3-chris.packham@alliedtelesis.co.nz>
-From:   Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH 2/2] hwmon: (adt7475) Add support for pin configuration
-In-Reply-To: <20220316234134.290492-3-chris.packham@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+References: <20220317012404.8069-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220317012404.8069-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <971850ad-96af-2abb-f4bf-ba6188e2d732@kernel.org>
+ <CA+V-a8t+=dVsofAT=Qk-v3hvJ7_zGNNLoj_EQK8hUGptnQROhQ@mail.gmail.com>
+In-Reply-To: <CA+V-a8t+=dVsofAT=Qk-v3hvJ7_zGNNLoj_EQK8hUGptnQROhQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - roeck-us.net
-X-BWhitelist: no
-X-Source-IP: 108.223.40.66
-X-Source-L: No
-X-Exim-ID: 1nUqBT-003zon-5m
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54312
-X-Source-Auth: linux@roeck-us.net
-X-Email-Count: 2
-X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
-X-Local-Domain: yes
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 3/16/22 16:41, Chris Packham wrote:
-> The adt7473, adt7475, adt7476 and adt7490 have pins that can be used for
-> different functions. On the adt7473 and  adt7475 this is pins 5 and 9.
-> On the adt7476 and adt7490 this is pins 10 and 14.
+On 17/03/2022 12:55, Lad, Prabhakar wrote:
+> Hi Krzysztof,
 > 
-> The first pin can either be PWM2(default) or SMBALERT#. The second pin
-> can be TACH4(default), THERM#, SMBALERT# or GPIO.
+> Thank you for the review.
 > 
-> The adt7475 driver has always been able to detect the configuration if
-> it had been done by an earlier boot stage. Add support for configuring
-> the pins based on the hardware description in the device tree.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
->   drivers/hwmon/adt7475.c | 95 +++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 95 insertions(+)
-> 
-> diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
-> index 9d5b019651f2..ad5e5a7a844b 100644
-> --- a/drivers/hwmon/adt7475.c
-> +++ b/drivers/hwmon/adt7475.c
-> @@ -112,6 +112,8 @@
->   #define CONFIG3_THERM		0x02
->   
->   #define CONFIG4_PINFUNC		0x03
-> +#define CONFIG4_THERM		0x01
-> +#define CONFIG4_SMBALERT	0x02
->   #define CONFIG4_MAXDUTY		0x08
->   #define CONFIG4_ATTN_IN10	0x30
->   #define CONFIG4_ATTN_IN43	0xC0
-> @@ -1460,6 +1462,95 @@ static int adt7475_update_limits(struct i2c_client *client)
->   	return 0;
->   }
->   
-> +static int load_pin10_config(const struct i2c_client *client, const char *propname)
-> +{
+> On Thu, Mar 17, 2022 at 9:44 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 17/03/2022 02:24, Lad Prabhakar wrote:
+>>> Add DT bindings for the Renesas RZ/G2L Interrupt Controller.
+>>>
+>>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>> ---
+>>>  .../renesas,rzg2l-irqc.yaml                   | 131 ++++++++++++++++++
+>>>  1 file changed, 131 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+>>> new file mode 100644
+>>> index 000000000000..a14492ec9235
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,rzg2l-irqc.yaml
+>>> @@ -0,0 +1,131 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/interrupt-controller/renesas,rzg2l-irqc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Renesas RZ/G2L (and alike SoC's) Interrupt Controller (IA55)
+>>> +
+>>> +maintainers:
+>>> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>>> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+>>> +
+>>> +description: |
+>>> +  IA55 performs various interrupt controls including synchronization for the external
+>>> +  interrupts of NMI, IRQ, and GPIOINT and the interrupts of the built-in peripheral
+>>> +  interrupts output by each IP. And it notifies the interrupt to the GIC
+>>> +    - IRQ sense select for 8 external interrupts, mapped to 8 GIC SPI interrupts
+>>> +    - GPIO pins used as external interrupt input pins, mapped to 32 GIC SPI interrupts
+>>> +    - NMI edge select (NMI is not treated as NMI exception and supports fall edge and
+>>> +      stand-up edge detection interrupts)
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/interrupt-controller.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - renesas,r9a07g044-irqc    # RZ/G2L
+>>> +      - const: renesas,rzg2l-irqc
+>>> +
+>>> +  '#interrupt-cells':
+>>> +    const: 2
+>>> +
+>>> +  '#address-cells':
+>>> +    const: 0
+>>> +
+>>> +  interrupt-controller: true
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1> +
+>>> +  interrupts:
+>>> +    maxItems: 41
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 2
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: clk
+>>> +      - const: pclk
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>> +  resets:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - '#interrupt-cells'
+>>> +  - '#address-cells'
+>>> +  - interrupt-controller
+>>> +  - reg
+>>> +  - interrupts
+>>> +  - clocks
+>>> +  - clock-names
+>>> +  - power-domains
+>>> +  - resets
+>>> +
+>>> +additionalProperties: false
+>>
+>> This should be rather unevaluatedProperties and remove
+>> interrupt-controller:true from properties.
+>>
+> Ok will do.
 
-A better function name would probably be load_config3() or similar.
+After some tests it seems interrupt-controller:true is required in
+properties, so only change unevaluatedProperties.
 
-> +	const char *function;
-> +	u8 config3;
-> +	int err;
-> +
-> +	err = of_property_read_string(client->dev.of_node, propname, &function);
-> +	if (!err) {
-> +		config3 = adt7475_read(REG_CONFIG3);
 
-error check missing (I see the driver is notorious for that, but that is not
-a reason to keep doing it).
-
-> +
-> +		if (!strcmp("pwm2", function))
-> +			config3 &= ~CONFIG3_SMBALERT;
-> +		else if (!strcmp("smbalert#", function))
-> +			config3 |= CONFIG3_SMBALERT;
-> +		else
-> +			return -EINVAL;
-> +
-> +		return i2c_smbus_write_byte_data(client, REG_CONFIG3, config3);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int load_pin14_config(const struct i2c_client *client, const char *propname)
-> +{
-
-load_config4() ?
-
-> +	const char *function;
-> +	u8 config4;
-> +	int err;
-> +
-> +	err = of_property_read_string(client->dev.of_node, propname, &function);
-> +	if (!err) {
-> +		config4 = adt7475_read(REG_CONFIG4);
-
-error check
-
-> +		config4 &= ~CONFIG4_PINFUNC;
-> +
-> +		if (!strcmp("tach4", function))
-> +			;
-> +		else if (!strcmp("therm#", function))
-> +			config4 |= CONFIG4_THERM;
-> +		else if (!strcmp("smbalert#", function))
-> +			config4 |= CONFIG4_SMBALERT;
-> +		else if (!strcmp("gpio", function))
-> +			config4 |= CONFIG4_PINFUNC;
-> +		else
-> +			return -EINVAL;
-> +
-> +		return i2c_smbus_write_byte_data(client, REG_CONFIG4, config4);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int load_config(const struct i2c_client *client, int chip)
-> +{
-> +	int err;
-> +	const char *conf_prop1, *conf_prop2;
-
-conf_ prefix is unnecessary.
-
-> +
-> +	switch (chip) {
-> +	case adt7473:
-> +	case adt7475:
-> +		conf_prop1 = "adi,pin5-function";
-> +		conf_prop2 = "adi,pin9-function";
-> +		break;
-> +	case adt7476:
-> +	case adt7490:
-> +		conf_prop1 = "adi,pin10-function";
-> +		conf_prop2 = "adi,pin14-function";
-> +		break;
-> +	default:
-> +		return -EINVAL;
-
-It doesn't seem right to return -EINVAL here.
-
-> +	}
-> +
-> +	if (chip != adt7476 && chip != adt7490)
-> +		return 0;
-> +
-
-Why not check this first, and what is the point of assigning values to
-conf_prop1 and conf_prop2 for the other chips in the case statement above
-only to return 0 here ? It would be much simpler to drop the other chips
-from the case statement and have default: return 0.
-
-> +	err = load_pin10_config(client, conf_prop1);
-> +	if (err) {
-> +		dev_err(&client->dev, "failed to configure PIN10\n");
-
-The messages are misleading. This isn't always pin 10/14.
-
-> +		return err;
-> +	}
-> +
-> +	err = load_pin14_config(client, conf_prop2);
-> +	if (err) {
-> +		dev_err(&client->dev, "failed to configure PIN14\n");
-> +		return err;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->   static int set_property_bit(const struct i2c_client *client, char *property,
->   			    u8 *config, u8 bit_index)
->   {
-> @@ -1585,6 +1676,10 @@ static int adt7475_probe(struct i2c_client *client)
->   		revision = adt7475_read(REG_DEVID2) & 0x07;
->   	}
->   
-> +	ret = load_config(client, chip);
-> +	if (ret)
-> +		return ret;
-> +
->   	config3 = adt7475_read(REG_CONFIG3);
->   	/* Pin PWM2 may alternatively be used for ALERT output */
->   	if (!(config3 & CONFIG3_SMBALERT))
-
+Best regards,
+Krzysztof
