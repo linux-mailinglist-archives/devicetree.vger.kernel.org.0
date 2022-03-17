@@ -2,46 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 87DBF4DCE57
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 20:02:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE004DCE6B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 20:03:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237796AbiCQTCp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 15:02:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
+        id S237873AbiCQTEj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 15:04:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237777AbiCQTCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 15:02:44 -0400
-Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED58B1E8CE4;
-        Thu, 17 Mar 2022 12:01:27 -0700 (PDT)
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9E321202DB6;
-        Thu, 17 Mar 2022 20:01:26 +0100 (CET)
-Received: from smtp.na-rdc02.nxp.com (usphx01srsp001v.us-phx01.nxp.com [134.27.49.11])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5DDDD202DAA;
-        Thu, 17 Mar 2022 20:01:26 +0100 (CET)
-Received: from right.am.freescale.net (right.am.freescale.net [10.81.116.145])
-        by usphx01srsp001v.us-phx01.nxp.com (Postfix) with ESMTP id 19C754030F;
-        Thu, 17 Mar 2022 12:01:25 -0700 (MST)
-From:   Li Yang <leoyang.li@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Sandeep Malik <sandeep.malik@nxp.com>,
-        Priyanka Jain <priyanka.jain@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 6/6] arm64: dts: ls208x: remove NXP Erratum A008585 from LS2088A.
-Date:   Thu, 17 Mar 2022 14:01:09 -0500
-Message-Id: <20220317190109.3742-6-leoyang.li@nxp.com>
-X-Mailer: git-send-email 2.25.1.377.g2d2118b
-In-Reply-To: <20220317190109.3742-1-leoyang.li@nxp.com>
-References: <20220317190109.3742-1-leoyang.li@nxp.com>
+        with ESMTP id S237843AbiCQTE3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 15:04:29 -0400
+Received: from mail-ot1-x333.google.com (mail-ot1-x333.google.com [IPv6:2607:f8b0:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28522DE909
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 12:03:10 -0700 (PDT)
+Received: by mail-ot1-x333.google.com with SMTP id 17-20020a9d0611000000b005b251571643so4144432otn.2
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 12:03:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=y9n1grNnQGZ9V3E7Nxt7rAxrPIpeE9mWBbzipD+kNUA=;
+        b=C7OnQb7Ft6JJPMdNGPZU9f+Wh0vGuYeVv/0t90gB4v421kaEXNNNtfDZWN4n8OmVWa
+         b+5oZBrvYR2b1xTYVchDi3Qp3Lwn4xSe7Q5peils3J/LpgCY7X/HD0EPR1zP0KCF5VAH
+         mBJrSfBYHiSM8V5MiL5qFc2EdaNBx3kXf+/AI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=y9n1grNnQGZ9V3E7Nxt7rAxrPIpeE9mWBbzipD+kNUA=;
+        b=t/h6RQaw+GLxmLKMKhriGRrFNQcDosReNFDk9hgMrIAa0rdo5/FFrW8w//60UCE3Qs
+         WpXKP7XNw5Prl0QIYAfHb9lahwDYrl/2N6MUJchmUdH/N6D6eEIq6DriKlnj9Qj0fkDH
+         ftH7jW8uaNwubjUHjGbnvMgMXpEHyp+dOAHK88Q82feC64/yEitmrQUHPZxTimH7tCf3
+         0QAOPYHKSeICuh6lKU55yzSqfXDdkBQfTXIwRXuSXoNcniLg3pyxYSgXzQrpXgm3FXXU
+         oWPBWnn8VJiwo4q0gHwvoVTtEISy6WTolPqjfVT5KWyYGMsYe3zvKmtnCLuMZhDSU9fK
+         gWAw==
+X-Gm-Message-State: AOAM530LEusQSj5ygZQ8r+6DMPpln6YDuJXVvzqDEQC1nX6hcEgEx4gt
+        J63Gcc39QCwatLOB32YBa7Ii7BhbCuTgc0qNo8Jg+w==
+X-Google-Smtp-Source: ABdhPJytOdff/w0bAttaJWRW5uWOemWMvKHa31a3cxQsk0bZ+BPxIRWDn+fJdy6QN7bH+7iqufTKVKEUYt3bAiwkgok=
+X-Received: by 2002:a9d:b85:0:b0:5cb:3eeb:d188 with SMTP id
+ 5-20020a9d0b85000000b005cb3eebd188mr871324oth.77.1647543790201; Thu, 17 Mar
+ 2022 12:03:10 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 17 Mar 2022 15:03:09 -0400
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20220316172814.v1.3.Iad21bd53f3ac14956b8dbbf3825fc7ab29abdf97@changeid>
+References: <20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8fee008a8477b7b0e@changeid>
+ <20220316172814.v1.3.Iad21bd53f3ac14956b8dbbf3825fc7ab29abdf97@changeid>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Thu, 17 Mar 2022 15:03:09 -0400
+Message-ID: <CAE-0n50pk=5WNZ7XTo5bCs-_--MxP+JaiNrSMH7oiDjUUVTppA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/4] arm64: dts: qcom: sc7280: herobrine: disable some
+ regulators by default
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -49,51 +71,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pankaj Bansal <pankaj.bansal@nxp.com>
+Quoting Matthias Kaehlcke (2022-03-16 17:28:19)
+> Not all herobrine boards have a world facing camera or a fingerprint
+> sensor, disable the regulators that feed these devices by default and
+> only enable them for the boards that use them.
+>
+> Similarly the audio configuration can vary between boards, not all
+> boards have the regulator pp3300_codec, disable it by default.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-NXP Erratum A008585 affects A57 core cluster used in LS2085rev1.
-However this problem has been fixed in A72 core cluster used in LS2088.
-Therefore remove the erratum from LS2088A. Keeping it only in LS2085.
+This seems complicated. Maybe we should introduce some sort of mixin dts
+file for fingerprint and world facing camera and audio type so that
+boards can pick and choose what they want. Either way, that can come
+later when we get there.
 
-Signed-off-by: Pankaj Bansal <pankaj.bansal@nxp.com>
-Reviewed-by: Sandeep Malik <sandeep.malik@nxp.com>
-Acked-by: Priyanka Jain <priyanka.jain@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi | 4 ++++
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 3 +--
- 2 files changed, 5 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-index 6f6667b70028..a2cadf757148 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls2080a.dtsi
-@@ -150,3 +150,7 @@ &pcie4 {
- 	ranges = <0x81000000 0x0 0x00000000 0x16 0x00010000 0x0 0x00010000   /* downstream I/O */
- 		  0x82000000 0x0 0x40000000 0x16 0x40000000 0x0 0x40000000>; /* non-prefetchable memory */
- };
-+
-+&timer {
-+	fsl,erratum-a008585;
-+};
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 3cb9c21d2775..d823d54a01a5 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -239,13 +239,12 @@ map0 {
- 		};
- 	};
- 
--	timer {
-+	timer: timer {
- 		compatible = "arm,armv8-timer";
- 		interrupts = <1 13 4>, /* Physical Secure PPI, active-low */
- 			     <1 14 4>, /* Physical Non-Secure PPI, active-low */
- 			     <1 11 4>, /* Virtual PPI, active-low */
- 			     <1 10 4>; /* Hypervisor PPI, active-low */
--		fsl,erratum-a008585;
- 	};
- 
- 	pmu {
--- 
-2.25.1
-
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
