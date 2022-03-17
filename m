@@ -2,274 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FC164DC027
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:30:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B794DC066
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 08:45:37 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbiCQHb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 03:31:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37536 "EHLO
+        id S229724AbiCQHqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 03:46:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbiCQHbY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:31:24 -0400
-Received: from szxga03-in.huawei.com (szxga03-in.huawei.com [45.249.212.189])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5CA8E1C16E5;
-        Thu, 17 Mar 2022 00:30:08 -0700 (PDT)
-Received: from dggpemm500023.china.huawei.com (unknown [172.30.72.54])
-        by szxga03-in.huawei.com (SkyGuard) with ESMTP id 4KJzGJ6mJxz9sfZ;
-        Thu, 17 Mar 2022 15:26:16 +0800 (CST)
-Received: from dggpemm500006.china.huawei.com (7.185.36.236) by
- dggpemm500023.china.huawei.com (7.185.36.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Thu, 17 Mar 2022 15:30:06 +0800
-Received: from [10.174.178.55] (10.174.178.55) by
- dggpemm500006.china.huawei.com (7.185.36.236) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2308.21; Thu, 17 Mar 2022 15:30:04 +0800
-Subject: Re: [PATCH v21 3/5] arm64: kdump: reimplement crashkernel=X
-To:     Baoquan He <bhe@redhat.com>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-        <x86@kernel.org>, "H . Peter Anvin" <hpa@zytor.com>,
-        <linux-kernel@vger.kernel.org>, Dave Young <dyoung@redhat.com>,
-        Vivek Goyal <vgoyal@redhat.com>,
-        Eric Biederman <ebiederm@xmission.com>,
-        <kexec@lists.infradead.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        <devicetree@vger.kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
-        <linux-doc@vger.kernel.org>, Randy Dunlap <rdunlap@infradead.org>,
-        Feng Zhou <zhoufeng.zf@bytedance.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Chen Zhou <dingguo.cz@antgroup.com>,
-        "John Donnelly" <John.p.donnelly@oracle.com>,
-        Dave Kleikamp <dave.kleikamp@oracle.com>
-References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
- <20220227030717.1464-4-thunder.leizhen@huawei.com>
- <YjHUAi0xrUy+qk/L@MiWiFi-R3L-srv>
- <7d7a3e70-6a46-b722-ef48-7206a47185dd@huawei.com>
- <YjKeuFGtjI7944uy@MiWiFi-R3L-srv>
- <05a96786-cfe8-029f-f29a-60fb94129f91@huawei.com>
- <YjKvUz+dKRkyxUAd@MiWiFi-R3L-srv>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <eb26c623-6c7b-c3ba-acc8-654023ddd82b@huawei.com>
-Date:   Thu, 17 Mar 2022 15:30:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <YjKvUz+dKRkyxUAd@MiWiFi-R3L-srv>
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229447AbiCQHqu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 03:46:50 -0400
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2106.outbound.protection.outlook.com [40.107.94.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0299ABF01A;
+        Thu, 17 Mar 2022 00:45:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Pabr0xoDhvoyEgGT/UYFTo6g57SF9btUbXbYygXh5tN+JTgDCtcD6Ip495D8P4f5bwiL1KawcI2fZtuJDJ4mR0zBImn10yxPWqvL41P6IJZVRs4Cz4o1rLdDcr3Rfd5KQaIRHrvxTPFFcB9JdvZ7mH8csVC/mG7amrxGEq8EpYwCtxByVSG0RA95aMi3KzDWkMDukFfKlFwOmSIWX9P5EwyccgPFTCp8HVBw33inQoznKb5MkqVeFWNvT/nkGo3nDFODPLWq3/Zcxm12jy0RnKgcfl7Aip2aTO/VSz0nfQ4yUIeVOFy9LTiwTwR86Ct+QwDmQCMPSpYM7PNMWFp9JA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2TT1BbLE0dKSi7i9LFluVaG481IREHPR0NXb6VkIQSA=;
+ b=iBeSpOTdB6lBK5Ea/OQrPNt4LG7sEWGL9oc8+djr2BbMAxKwQNY5S0aHse7QYXpHjaB2znWjvb7MJKYMVYKC1fCKeOaCKD0cEGFJ1Wf+iBuZMzaBLiQsGGlOSNIKN6g1sUTU8nLyq9k0l+p8aNOzTOvcmsYMWo2e+pivfBcqNsCXVlb8bByHjxV53XlWWYrTNInjNsYziTjPvEEj8Zy14jDbcRik4Pf21nvJ+OzPUAw20llEHDgoOEG+QAmzpwHN8V+g+emdx8mQeF0BtKpS3mtOlCXV1QcWQQeGSxfScCVEkSDSB4Bpzi4GLi8ydwKwQ88ZJYL7+MNnH2/yWPZR7w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2TT1BbLE0dKSi7i9LFluVaG481IREHPR0NXb6VkIQSA=;
+ b=DAmTDZp/yzni0PijX7J7JACoFoTEnkNSYARHkI5Rnj0CHnSk+PmLPppGdkpNIb3WzNY2Pxw9nAs2Eb+0jitRJZYB3hLn/HvsUzP7CF0riZB/PJaU/DdOOy2KDR3F2uibNiSm9ehK+hn0SWCAHnXCPVnNqCglvWAcL9vD63LR+5c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from SJ0PR01MB7282.prod.exchangelabs.com (2603:10b6:a03:3f2::24) by
+ DM6PR01MB4283.prod.exchangelabs.com (2603:10b6:5:1d::27) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.5061.26; Thu, 17 Mar 2022 07:45:32 +0000
+Received: from SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6]) by SJ0PR01MB7282.prod.exchangelabs.com
+ ([fe80::cd24:39ed:7042:46d6%8]) with mapi id 15.20.5081.017; Thu, 17 Mar 2022
+ 07:45:32 +0000
+Message-ID: <db5a879e-5e2f-24f0-c0fb-4971679a45cb@os.amperecomputing.com>
+Date:   Thu, 17 Mar 2022 14:45:19 +0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:91.0)
+ Gecko/20100101 Thunderbird/91.6.0
+Subject: Re: [PATCH v6 3/4] ipmi: ssif_bmc: Return -EFAULT if copy_from_user()
+ fails
 Content-Language: en-US
+To:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Wolfram Sang <wsa@kernel.org>, Corey Minyard <minyard@acm.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Brendan Higgins <brendanhiggins@google.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        openipmi-developer@lists.sourceforge.net,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
+        Open Source Submission <patches@amperecomputing.com>,
+        Phong Vo <phong@os.amperecomputing.com>,
+        "Thang Q . Nguyen" <thang@os.amperecomputing.com>
+References: <20220310114119.13736-1-quan@os.amperecomputing.com>
+ <20220310114119.13736-4-quan@os.amperecomputing.com>
+ <YirzJj/BBUQTbKS3@ninjato>
+From:   Quan Nguyen <quan@os.amperecomputing.com>
+In-Reply-To: <YirzJj/BBUQTbKS3@ninjato>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.178.55]
-X-ClientProxiedBy: dggems701-chm.china.huawei.com (10.3.19.178) To
- dggpemm500006.china.huawei.com (7.185.36.236)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-ClientProxiedBy: HK2PR02CA0157.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::17) To SJ0PR01MB7282.prod.exchangelabs.com
+ (2603:10b6:a03:3f2::24)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 63223b2b-a7e6-4583-7619-08da07ea1c97
+X-MS-TrafficTypeDiagnostic: DM6PR01MB4283:EE_
+X-Microsoft-Antispam-PRVS: <DM6PR01MB4283C132FAD0E0D67D14D2F7F2129@DM6PR01MB4283.prod.exchangelabs.com>
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: +V0CdS9yUxLg2Dqc5BgXYGbS/LcPrbLY4LpUt76yocRgcg1XU0tVAGqRM4/93qeyPaIpepXolGDaxtAZvNDNDo4+CBtEy4Hs0E7KLscwLqj2fkp+v1M4k2c5f9Z/24cV9M6Y6NzS6LBm7JpuewXncnp0pvoOp16Bq18h34kPJVir9agv1Gavh+4tYf8JdxsCFzRMTR3GVmrZhmNWKHVMhhHV1XtpsVJXl8x8ZBfPQmVVkVjecAagWLkigPo+ngmSA9ARajgRJSInTz5d7HXN2g3O0+a3KBTs9gZMtAMJV00P2eWN//irR2IGpzn4prfjIEU4Sx/jvgDwr6TBOA+QJNoKpetuFBnlE42MXJgHUF63KfJkPmWg2dm3YptA/pMoxD9AatI4nQrnS4qIrH1qt3wmtVEt9NKzOB8Ba8IRRwQWSAkEwHM5NmKrF2MJQso0c15IvHdD0N0IRuoUckXHRWQsz6olgyPjcLR69DpAI22t3UQTP3Llzj0sqltHFQPm1yA6AIGFsjrztJcMYdipwBODcaS8KPEjO+673QF+MIJvsjVni5X855yQLr/e5fbPEXA24aSTfZ3CI99Z/MtMKiIUZ9uq+ooRhCquT34HUM+R9cdbE2nZ+g4Qw3Krs/sjCQ2OgwaC2pbQJw8DzHatp8qrGfu4f0lDlHNsXLVaYNZ+2ZAK6ZJou3u3I2715ylqYX9S6NPWRlp0HzLUa/PSRRnbx6zIvEyNrvP1jaRPr7/4MvleJVXW4xfE+mEWhn/T
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ0PR01MB7282.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230001)(4636009)(366004)(6666004)(8936002)(38100700002)(38350700002)(921005)(66476007)(66946007)(66556008)(86362001)(31696002)(53546011)(6506007)(55236004)(8676002)(6636002)(316002)(52116002)(508600001)(6486002)(6512007)(110136005)(7416002)(2906002)(186003)(26005)(31686004)(5660300002)(2616005)(83380400001)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N21CV2NwWVZTbGZQNDBGeFJ4SFBHOFNMSnZsczFJaktMdkZiamxoMlBNK2p3?=
+ =?utf-8?B?UXpyaU1rZ1g0Z1RWUDhZbnZaL1RaRUcrQVU5ZVFTYzZhb3ZOd3IxQTY3SVRB?=
+ =?utf-8?B?Q0t5RkhCTGl0akFRS0lkY3VUeVNVUnBNN2FIRzU2dmMweDVhR3B0c0gwc0FW?=
+ =?utf-8?B?cUpOQjVMd3FTUTNaaTdmanZPZnVtMjA2Z2dyTENrbWd2MWVJbThHVlVYeGJH?=
+ =?utf-8?B?MktudDRGL0MyZ1FkVm1jZEVyajVRV2h1UmZISGpmVU55NXBnYW1tYkFlbGU1?=
+ =?utf-8?B?d0F6dCtWL01WK0VUQTBFd3Z4ZnBvenRQeFZRVmNOVjV0TEh4TXJnaS9IaXRw?=
+ =?utf-8?B?VjV6c3BOQzhQNmdGT3orOS9OazgvcDhZTDdENHBhT004UGFBOURlL3pSZlVl?=
+ =?utf-8?B?b3JiZDZZVHh0N1Z1T3I1M0R6OEZGcFcxVkhHZVR3aWtlNzRsSG1MaVMxYitS?=
+ =?utf-8?B?Yi9QZVRhWDJEU0c1d21zY2hMS1ZWVWFTTTA0UXl6Ym5vbUc1L0Q3WW9McVEr?=
+ =?utf-8?B?YVJnemg3N0xNcjFkV1hQa3VrUkh6TnhwQVg0dyt4aWdXNklVaDdCOXNzVTVP?=
+ =?utf-8?B?cjM1cjR5Nlk4OUowUDBMMm1jWFd6Z0ttcmp3RVdJYk9tQmJWUzA1YWxobmpj?=
+ =?utf-8?B?QVRVczVJbmdURi80MkxjSUNZaXk3U0MveGtjM3Jxa2g2Qm5kWUFwN0l0Z0dx?=
+ =?utf-8?B?N3dRMkxoRFl2WW1VZ29CMVgrNjNlczhXek0wcG9ZKzk1b0RqOG5CUzBzd3VZ?=
+ =?utf-8?B?c3RRQ2xNVENYUUVab1FBN0hyNTMzRm9ybXQ4NDNRaDc5ZkpGOEtCM0Y0M0R0?=
+ =?utf-8?B?YTFaYThhekNCcUhYTWtaVDgyNEsxd3pxei9NVXpweUNSTnNaeVBDTVVldGhr?=
+ =?utf-8?B?OU1iNGZVMFJuQm8wN1lCOUdkYW8rY3RZTkthK294dW9zQitTcHBqMmQrVFJ6?=
+ =?utf-8?B?MTlHelk0andCVVZjeENGRWMyMy9HQzVDMThsOVdSeHRmN05xMFl0NWxybVVB?=
+ =?utf-8?B?WHZtaUdNQVVYNkFmcWU3QnpodEFNOURrV0hCWWJFT3Z0ajFwY2t0YkFQcjh4?=
+ =?utf-8?B?YUUzUWkweis0dFg0ZUtSUzFnMnc1OGppdDNiWjBEMW1MWjBVN3ZnbFRoTjdP?=
+ =?utf-8?B?aU4xbHZNYXhCRXpkZzgvbW1oVUxETW55a2haaTNBbU13S2xVTWlKZzNpQ3gz?=
+ =?utf-8?B?d1ZSZlVhS1p0bTFFcWZOVlBkc0ExYXNjRGlubllKemc3WDhINDRXZzRUY2Ru?=
+ =?utf-8?B?SVJpSjZvalVPOXR0UytNbHdiMnFHd3FjUUp5SURadFp4TEFTTW1NeTczcjBH?=
+ =?utf-8?B?ZHIzblZtbUNuQmUwajFteUdGSW9NNFV1RStnS0FhRWk3ZmUraW9KQ0lwbHJa?=
+ =?utf-8?B?Q0M2SDR4clNXNjkxdndpT0VsdnY2WU1oWUZsS0xvMlJUTUlIWE9JbklNMXM4?=
+ =?utf-8?B?eWxsYlRmaHVycWRnRDd3WDRZdzNwNG9qZTFSb1picmQ4VWFmTzNacHNYYS9R?=
+ =?utf-8?B?bVJTL2JGZUtUdFVlbjlQMi8walBxUWVvRzIzVGdCT0hBNHBURGtqdlVOWDVB?=
+ =?utf-8?B?aWV4ckdwSkFZQnE1dCtReGV6QS9vMkJ0cVluNTVNbU9UTVNuZjIwOEpmdW9z?=
+ =?utf-8?B?VEFBMlZlanJDczRSTUhOVkdsc1AxM01UMWY0UjJtbGJvUW9qd0VIdDkyTVlN?=
+ =?utf-8?B?NEtJK2FHRU43L0tzQjdPMzRTaW9wSk5kS1k2aEI4THE1aGNOM2syZHlVY1lp?=
+ =?utf-8?B?RWM5THNDYTNXZjhGejZmbVo0YUVaZWs0R1VBaStSQWNKd1AzVldzZ0dTbUJS?=
+ =?utf-8?B?NzBPS2lrTFloWHk0UG1jODlRcGlPUnMwMFJXVW0wVTh5aWNpSGgvUnRWRWc4?=
+ =?utf-8?B?YjI5cU9xaGtRV04zWURac1VyQVVJUlhtdmEwV3NJdXBGUXlYVmRGaXFTQ0VV?=
+ =?utf-8?B?eDAvNmgrbjdCYjAvM1QyR29RRk5KTUNlWWwwVklQSVBvUVlDekxoWUtHa3Fo?=
+ =?utf-8?Q?OsDK9NnnmoCTcfQO9IJjGRbq77Fi+8=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 63223b2b-a7e6-4583-7619-08da07ea1c97
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR01MB7282.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2022 07:45:32.3692
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F62kzhaywn6eBDU5aMgP2qM4ZxNsHEaaLtYu1cMzxJXl1dm3+9qtDfjZuHM6XpV4n6m0tCj9eGrhhUpbAJz+6GzFK4sR25WjTxcHuqnEVhs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR01MB4283
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Added Dan as I have missed Dan's email address in the first place.
+My apologize,
+- Quan
 
-
-On 2022/3/17 11:47, Baoquan He wrote:
-> On 03/17/22 at 11:19am, Leizhen (ThunderTown) wrote:
+On 11/03/2022 13:58, Wolfram Sang wrote:
+> On Thu, Mar 10, 2022 at 06:41:18PM +0700, Quan Nguyen wrote:
+>> From: Dan Carpenter <dan.carpenter@oracle.com>
 >>
+>> The copy_from_user() function returns the number of bytes remaining to
+>> be copied but we should return -EFAULT here.
 >>
->> On 2022/3/17 10:36, Baoquan He wrote:
->>> On 03/16/22 at 09:11pm, Leizhen (ThunderTown) wrote:
->>>>
->>>>
->>>> On 2022/3/16 20:11, Baoquan He wrote:
->>>>> On 02/27/22 at 11:07am, Zhen Lei wrote:
->>> ...... 
->>>
->>>>> Hi leizhen,
->>>>>
->>>>> I made change on reserve_crashkenrel(), inline comment may be slow.
->>>>> Please check and consider if they can be taken.
->>>>
->>>> That's great. Thank you very much.
->>>>
->>>>>
->>>>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
->>>>> index 30ae6638ff54..f96351da1e3e 100644
->>>>> --- a/arch/arm64/mm/init.c
->>>>> +++ b/arch/arm64/mm/init.c
->>>>> @@ -109,38 +109,43 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
->>>>>   * This function reserves memory area given in "crashkernel=" kernel command
->>>>>   * line parameter. The memory reserved is used by dump capture kernel when
->>>>>   * primary kernel is crashing.
->>>>> + *
->>>>> + * NOTE: Reservation of crashkernel,low is special since its existence
->>>>> + * is not independent, need rely on the existence of crashkernel,high.
->>>>> + * Hence there are different cases for crashkernel,low reservation:
->>>
->>> Considering to update the 3rd line as below:
->>>
->>>  * NOTE: Reservation of crashkernel,low is special since its existence
->>>  * is not independent, need rely on the existence of crashkernel,high.
->>>  * Here, four cases of crashkernel,low reservation are summarized: 
->>
->> OK. How about change "crashkernel,low" to "crashkernel low memory"?
->> "crashkernel=Y,low", "crashkernel=,low" and "crashkernel,low" are very similar,
->> may dazzle the reader.
+>> Fixes: 501c25b59508 ("ipmi: ssif_bmc: Add SSIF BMC driver")
+>> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+>> Signed-off-by: Corey Minyard <cminyard@mvista.com>
+>> Signed-off-by: Quan Nguyen <quan@os.amperecomputing.com>
 > 
-> Fine by me. 'crashkernel low memory' is formal, just make sentence a
-> little longer. Please take what you think fitter.
-
-OK, I will send v22 after v5.18-rc1.
-
+> It is nice that you want to keep this patch seperate to give Dan
+> credits, but I still think it should be merged into patch 1, so the
+> initial driver is as flawless as it can be. You could give Dan still
+> credits by mentioning him in the commit message IMO. Dan, would you be
+> fine with this?
 > 
+>> v6:
+>>    + New add in v6, thanks Dan for the patch     [Dan]
 >>
->>>
->>>>> + * 1) crashkernel=Y,low is specified explicitly, crashkernel,low takes Y;
->>>>> + * 2) crashkernel=,low is not given, while crashkernel=,high is specified,
->>>>> + *    take the default crashkernel,low value;
->>>>> + * 3) crashkernel=X is specified, while fallback to get a memory region
->>>>> + *    in high memory, take the default crashkernel,low value;
->>>>> + * 4) crashkernel='invalid value',low is specified, failed the whole
->>>>> + *    crashkernel reservation and bail out.
->>>>>   */
->>>>>  static void __init reserve_crashkernel(void)
->>>>>  {
->>>>>  	unsigned long long crash_base, crash_size;
->>>>>  	unsigned long long crash_low_size;
->>>>>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
->>>>> -	int ret;
->>>>>  	bool fixed_base, high = false;
->>>>>  	char *cmdline = boot_command_line;
->>>>> +	int ret;
->>>>>  
->>>>>  	/* crashkernel=X[@offset] */
->>>>>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
->>>>>  				&crash_size, &crash_base);
->>>>>  	if (ret || !crash_size) {
->>>>> -		/* crashkernel=X,high */
->>>>>  		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
->>>>>  		if (ret || !crash_size)
->>>>>  			return;
->>>>>  
->>>>> -		/* crashkernel=Y,low */
->>>>>  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
->>>>>  		if (ret == -ENOENT)
->>>>> -			/*
->>>>> -			 * crashkernel=Y,low is not specified explicitly, use
->>>>> -			 * default size automatically.
->>>>> -			 */
->>>>> +			/* case #2 of crashkernel,low reservation */
->>>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
->>>>>  		else if (ret)
->>>>> -			/* crashkernel=Y,low is specified but Y is invalid */
->>>>> +			/* case #4 of crashkernel,low reservation */
->>>>>  			return;
->>>>>  
->>>>> -		/* Mark crashkernel=X,high is specified */
->>>>>  		high = true;
->>>>>  		crash_max = CRASH_ADDR_HIGH_MAX;
->>>>>  	}
->>>>> @@ -148,7 +153,6 @@ static void __init reserve_crashkernel(void)
->>>>>  	fixed_base = !!crash_base;
->>>>>  	crash_size = PAGE_ALIGN(crash_size);
->>>>>  
->>>>> -	/* User specifies base address explicitly. */
->>>>>  	if (fixed_base)
->>>>>  		crash_max = crash_base + crash_size;
->>>>>  
->>>>> @@ -172,11 +176,7 @@ static void __init reserve_crashkernel(void)
->>>>>  	}
->>>>>  
->>>>>  	if (crash_base >= SZ_4G) {
->>>>> -		/*
->>>>> -		 * For case crashkernel=X, low memory is not enough and fall
->>>>> -		 * back to reserve specified size of memory above 4G, try to
->>>>> -		 * allocate minimum required memory below 4G again.
->>>>> -		 */
->>>>> +		/* case #3 of crashkernel,low reservation */
->>>>>  		if (!high)
->>>>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
->>>>>  
->>>>>
->>>>>>  
->>>>>> -	/* Current arm64 boot protocol requires 2MB alignment */
->>>>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
->>>>>> +retry:
->>>>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
->>>>>>  					       crash_base, crash_max);
->>>>>>  	if (!crash_base) {
->>>>>> +		/*
->>>>>> +		 * Attempt to fully allocate low memory failed, fall back
->>>>>> +		 * to high memory, the minimum required low memory will be
->>>>>> +		 * reserved later.
->>>>>> +		 */
->>>>>> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
->>>>>> +			crash_max = CRASH_ADDR_HIGH_MAX;
->>>>>> +			goto retry;
->>>>>> +		}
->>>>>> +
->>>>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
->>>>>>  			crash_size);
->>>>>>  		return;
->>>>>>  	}
->>>>>>  
->>>>>> +	if (crash_base >= SZ_4G) {
->>>>>> +		/*
->>>>>> +		 * For case crashkernel=X, low memory is not enough and fall
->>>>>> +		 * back to reserve specified size of memory above 4G, try to
->>>>>> +		 * allocate minimum required memory below 4G again.
->>>>>> +		 */
->>>>>> +		if (!high)
->>>>>> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
->>>>>> +
->>>>>> +		if (reserve_crashkernel_low(crash_low_size)) {
->>>>>> +			memblock_phys_free(crash_base, crash_size);
->>>>>> +			return;
->>>>>> +		}
->>>>>> +	}
->>>>>> +
->>>>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
->>>>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
->>>>>>  
->>>>>> @@ -107,6 +194,9 @@ static void __init reserve_crashkernel(void)
->>>>>>  	 * map. Inform kmemleak so that it won't try to access it.
->>>>>>  	 */
->>>>>>  	kmemleak_ignore_phys(crash_base);
->>>>>> +	if (crashk_low_res.end)
->>>>>> +		kmemleak_ignore_phys(crashk_low_res.start);
->>>>>> +
->>>>>>  	crashk_res.start = crash_base;
->>>>>>  	crashk_res.end = crash_base + crash_size - 1;
->>>>>>  	insert_resource(&iomem_resource, &crashk_res);
->>>>>> -- 
->>>>>> 2.25.1
->>>>>>
->>>>>
->>>>> .
->>>>>
->>>>
->>>> -- 
->>>> Regards,
->>>>   Zhen Lei
->>>>
->>>
->>> .
->>>
+>>   drivers/char/ipmi/ssif_bmc.c | 5 ++---
+>>   1 file changed, 2 insertions(+), 3 deletions(-)
 >>
+>> diff --git a/drivers/char/ipmi/ssif_bmc.c b/drivers/char/ipmi/ssif_bmc.c
+>> index 62db97773654..91ac2cae756e 100644
+>> --- a/drivers/char/ipmi/ssif_bmc.c
+>> +++ b/drivers/char/ipmi/ssif_bmc.c
+>> @@ -87,9 +87,8 @@ static ssize_t ssif_bmc_write(struct file *file, const char __user *buf, size_t
+>>   	if (count > sizeof(struct ssif_msg))
+>>   		return -EINVAL;
+>>   
+>> -	ret = copy_from_user(&msg, buf, count);
+>> -	if (ret)
+>> -		return ret;
+>> +	if (copy_from_user(&msg, buf, count))
+>> +		return -EFAULT;
+>>   
+>>   	if (!msg.len || count < ssif_msg_len(&msg))
+>>   		return -EINVAL;
 >> -- 
->> Regards,
->>   Zhen Lei
+>> 2.35.1
 >>
-> 
-> .
-> 
-
--- 
-Regards,
-  Zhen Lei
