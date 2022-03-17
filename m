@@ -2,173 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CA344DC3DC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 11:19:22 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B12B44DC3E4
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 11:23:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232532AbiCQKUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 06:20:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45648 "EHLO
+        id S230006AbiCQKYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 06:24:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232530AbiCQKUe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 06:20:34 -0400
-Received: from mail-io1-xd2f.google.com (mail-io1-xd2f.google.com [IPv6:2607:f8b0:4864:20::d2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE910E72B1
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 03:19:17 -0700 (PDT)
-Received: by mail-io1-xd2f.google.com with SMTP id h63so5289114iof.12
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 03:19:17 -0700 (PDT)
+        with ESMTP id S231407AbiCQKYl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 06:24:41 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23D013E0CB;
+        Thu, 17 Mar 2022 03:23:24 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id s29so8148807lfb.13;
+        Thu, 17 Mar 2022 03:23:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20210112.gappssmtp.com; s=20210112;
+        d=gmail.com; s=20210112;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n6iauwsK21Ks+eaRsgF1KeKTsBm/xpjROn2Egsfn7rk=;
-        b=BtkGQvlL8IiX7Af3L9wZ73uGGfUoeWkZqZLD/lucGZokmkXOOy8OjDYxOLE4psUs9O
-         T1MtVaDxvBGzA3zrwBhgIGXnwvyftGG3IvQB/r6blP7uCGzhKoM7CinSpkVyi18E7lx6
-         PJO+fu8JJnL7VLKIO7ZzZdD9ZHmK0lcIAwfhmE2EoFbGLYfVAVMOHyJEjAoS4/OnCgSO
-         quL1+ycGUxzCrr9M3ZBiPsx3glvBTJDaL39xvFsTjZZxFJlrTL0L9BFLIwH3vblEbx2L
-         yHsqkAE+PAyUj24GdsV2gkmgOpnVwGUfpQGgrBPKxpMuQgp4KazHDnNupD5OAf1C4IdH
-         kumA==
+         :cc:content-transfer-encoding;
+        bh=q997/aim32qAN844XtyF1EgVZGYQu0iTF+26V6EakWA=;
+        b=dCYZRbOJJduJbzFTmXHHEDdLPUTx6ttR6pFI89o//ywj4hPEtjACrI+j95gZRrm/UQ
+         nyZ07FdMf0uNwL05rvb/qgTcwvRK71SEP+LCmH1J1NH7n6n4yw1CkF6JDptYFqg2oXIU
+         gQqfoYUIpeMhm2jO2eWRHnV3PIBUq4cYAyqJuZz6HEok/dPZttjRj62Vuuo4W4XkcKZh
+         bf4s5hNRBwWB5/tPBBozYMxxfhE/zx8Uh8ousphxZ9sTaYsMI2BLZy2Q0RTSjFG3uaxQ
+         7WwwLbJvygjQqaej6K7B/v4QAxvJMWiSNKWi5gl7sTt0dy264mY0QaxOfm2FlPQsEl/r
+         9KfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n6iauwsK21Ks+eaRsgF1KeKTsBm/xpjROn2Egsfn7rk=;
-        b=6/0SgWWAo3jomEMyZ+Bl+nrKTSBpllgiAjBGDy/XAic5R3djOwsMupw6SR4VtMcsAF
-         pR1dgy9GLd6EEFRvrliWsmtD2wOWur9OThfi14rTgHpHxw+W5Af18RdMPyP0oLKMDv+E
-         JgKDZSn4tN04NcCxUcM6HZaLFThhUF2EOCutSv7pySiREmhN0GcjNFBXtND8x9MBuCwF
-         gThwdihYtNCRXSjQ41G4neFdfhCuVIi6dCLK0/F/dVdrJEnVfFxQ2fcWboL+riEl861/
-         IiriVcicYWBb10dc6+7tDjmbEvp0wxHjXN+3iEhRRrSaBUOFx3PZK8jjwqAPNLwwEwE4
-         gzaw==
-X-Gm-Message-State: AOAM530vrmxrjDlSd0M57eSfYwioLOewktQYGA9h+wviS9qWjVg76w14
-        FX70NV6CVvMfC++9hX72afHmLxSDTl08vmb7hRVHJA==
-X-Google-Smtp-Source: ABdhPJwQ2P9JinBva619F3p7zagggJVYhqCv0EesuF+pPCUxY163Xe5b0no+EBuFuKNrGdTuZaE7Z702loWBZ6Jd3bc=
-X-Received: by 2002:a02:6383:0:b0:314:d9da:13b2 with SMTP id
- j125-20020a026383000000b00314d9da13b2mr1598984jac.99.1647512357201; Thu, 17
- Mar 2022 03:19:17 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=q997/aim32qAN844XtyF1EgVZGYQu0iTF+26V6EakWA=;
+        b=VlmuMT6tYhvKOTUxJLaEp3ZUstC4+/yxrjmx5gIa/VAAEYTveTN+nRN1Ji3gGIswnF
+         G6g9dSU5F+re5jFBY38JZXoMqAEeEazb3gVZlwkxW8n5+0dGM0vtQRT2riRhhKgkwFWN
+         Rp1QOl3VXcL1qYXc8umbECirgJXvuGiSsVVDcgKATdsg4lwEJsD7vjauxKKkYNBpHRhw
+         rDBd6o5XsOWU5/je28k0+GKJxMXgIqJ6ppQIsuJtx0J/B4DRi+nCcTF8cZavcZiUD9UP
+         n9TVHRgsx+STdGMVqcWOWeiMWuryepJmHad4IdC0+i02/l+LhvbwKgCMkgBbRQLQt7Oj
+         9DYw==
+X-Gm-Message-State: AOAM530azvhtsbkbsa8i1NPBrJV6ZxpIg64dCXMWTe+07HivNLr4ctZS
+        owVnSoB6uEibyX8obU/5/qQe6w7g8eOA2JNpo40=
+X-Google-Smtp-Source: ABdhPJx6Yw5sqc3oHgOC+M1OOphrf/GwfLoaeL01BvrlD7R30s1AwRtOdfgYh4FrjRTymS/KC7T98VTRHMz7/o96Mo4=
+X-Received: by 2002:a05:6512:2256:b0:449:f79a:e762 with SMTP id
+ i22-20020a056512225600b00449f79ae762mr1357073lfu.261.1647512602353; Thu, 17
+ Mar 2022 03:23:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20220131133049.77780-1-robert.marko@sartura.hr>
- <20220131133049.77780-6-robert.marko@sartura.hr> <Yh8vJNc4D6rA68au@google.com>
- <Yh/kFzNuvbwA2qeE@robh.at.kernel.org> <CA+HBbNHComN9kgFp1Xr4mdedwYjDMbSUkw+6_KAe8+O4hrtvKQ@mail.gmail.com>
- <YiKI5LDWaxvlc9m5@robh.at.kernel.org>
-In-Reply-To: <YiKI5LDWaxvlc9m5@robh.at.kernel.org>
-From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Thu, 17 Mar 2022 11:19:06 +0100
-Message-ID: <CA+HBbNG4KfoO8wyQghubjqVvL5ocyxqa+CKjqkn0iXfA9duY_w@mail.gmail.com>
-Subject: Re: [PATCH v10 5/6] dt-bindings: mfd: Add Delta TN48M CPLD drivers bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>, brgl@bgdev.pl,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        skhan@linuxfoundation.org, Luka Perkov <luka.perkov@sartura.hr>
+References: <1647235924-15572-1-git-send-email-vincent.sunplus@gmail.com>
+ <1647235924-15572-3-git-send-email-vincent.sunplus@gmail.com> <7d560277-95e2-070c-e603-30f00dea7f51@canonical.com>
+In-Reply-To: <7d560277-95e2-070c-e603-30f00dea7f51@canonical.com>
+From:   =?UTF-8?B?5pa96YyV6bS7?= <vincent.sunplus@gmail.com>
+Date:   Thu, 17 Mar 2022 18:24:33 +0800
+Message-ID: <CAPvp3RhOs5y2XBYEdY31f5rc9yP5o-x_2KB2=umhL7VdvGXYTw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/2] dt-bindings: usb: Add bindings doc for Sunplus USB
+ HOST OHCI driver
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, stern@rowland.harvard.edu,
+        p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, wells.lu@sunplus.com
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 4, 2022 at 10:47 PM Rob Herring <robh@kernel.org> wrote:
+Hi, Krzysztof
+
+Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com> =E6=96=BC 2022=E5=
+=B9=B43=E6=9C=8815=E6=97=A5
+=E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=8812:42=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> On Thu, Mar 03, 2022 at 01:41:13PM +0100, Robert Marko wrote:
-> > On Wed, Mar 2, 2022 at 10:39 PM Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Wed, Mar 02, 2022 at 08:47:32AM +0000, Lee Jones wrote:
-> > > > On Mon, 31 Jan 2022, Robert Marko wrote:
-> > > >
-> > > > > Add binding documents for the Delta TN48M CPLD drivers.
-> > > > >
-> > > > > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-> > > >
-> > > > This is missing a DT review.
-> > >
-> > > How about this one[1]?
-> > >
-> > > Rob
-> > >
-> > > [1] https://lore.kernel.org/all/20210719225906.GA2769608@robh.at.kernel.org/
+> On 14/03/2022 06:32, Vincent Shih wrote:
+> > Add bindings doc for Sunplus USB HOST OHCI driver
 > >
-> > Hi Rob,
-> > Thanks for reaching out.
+> > Signed-off-by: Vincent Shih <vincent.sunplus@gmail.com>
+> > ---
+> >  .../bindings/usb/sunplus,sp7021-usb-ohci.yaml      | 69 ++++++++++++++=
+++++++++
+> >  MAINTAINERS                                        |  1 +
+> >  2 files changed, 70 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/sunplus,sp702=
+1-usb-ohci.yaml
 > >
-> > As you can see the bindings have evolved since v6,
-> > GPIO driver now only uses 2 distinct compatibles.
+> > diff --git a/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-o=
+hci.yaml b/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ohci.ya=
+ml
+> > new file mode 100644
+> > index 0000000..7583b68
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/sunplus,sp7021-usb-ohci.yam=
+l
+> > @@ -0,0 +1,69 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright (C) Sunplus Co., Ltd. 2021
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/sunplus,sp7021-usb-ohci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
 >
-> Fundamentally, it hasn't really changed.
+> Looks good. Few minor nitpicks:
 >
-> There's 2 main issues. First, I don't see the need for any child nodes.
-> This would be sufficient:
+> > +title: Sunplus SP7021 OHCI Controller Device Tree Bindings
 >
-> cpld@41 {
->     compatible = "delta,tn48m-cpld";
->     reg = <0x41>;
->     #reset-cells = <1>;
->     #gpio-cells = <2>;
->     gpio-controller;
-> };
+> Remove "Device Tree Bindings" words here. Title is about hardware.
 >
-> You only need child nodes if the sub-blocks have their own resources or
-> are widely reused in different configurations.
+
+Yes, I will remove it.
+
+> > +
+> > +allOf:
+> > +  - $ref: usb-hcd.yaml#
 >
-> The 2nd issue is whether GPIOs are even GPIOs at all. I don't recall
-> that Linus ever agreed.
->
-> Both issues kind of boil down to is there even more that 1 variation of
-> this h/w where you have differing connections? AFAICT, Delta tn48m is a
-> pretty specific device and I would guess something implemented in a CPLD
-> is likely to change on every board design. At least that's my experience
-> with 'board level logic'.
+> Put entire "allOf:" just before "properties:".
 
-Hi Rob, sorry for the late reply.
-
-Having one node was the route I went in v1, but that was rejected as
-it would mean
-having an MFD driver that just registers the sub-drivers.
-That is what the simple-mfd-i2c driver was designed to get rid of and
-inherit the regmap
-from the parent.
-For this to work, subnodes are required as we need to match on compatibles.
-
-Using subnodes for GPIO-s also gets rid of hardcoding the register
-layout in the driver per board,
-as Delta chose to use a weird register layout in which the GPIO
-registers have completely random offsets.
-The layout is even weirder in the TN4810M which uses the same CPLD but
-expanded and is easily
-supportable in the same driver in the current form.
-My goal and the requirement from the community was to make the GPIO
-driver as simple as possible
-and extendable so that boards like TN4810M can be easily added.
-
-Also, the Kontron SL28CPLD does pretty much the same in regards to DT
-as well as other things.
-https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/tree/Documentation/devicetree/bindings/mfd/kontron,sl28cpld.yaml?h=v5.16.15
-
-It uses the same logic with different compatibles for GPIO to be able
-to inform the kernel of the certain
-bank capabilities.
-I mean, using one compatible would be possible by using a boolean
-property for example that tells you
-that its output capable as well.
-
-Regards,
-Robert
+Yes, I will modify it.
 
 >
-> Rob
+> > +
+> > +maintainers:
+> > +  - Vincent Shih <vincent.sunplus@gmail.com>
+> > +
+> > +description:
+> > +  Sunplus SP7021 USB HOST IP is a USB2.0 Host Controller. It supports =
+both
+> > +  Enhanced Host Controller Interface (EHCI) and Open Host Controller I=
+nterface
+> > +  (OHCI).
+> > +
+> > +  It supports 32-bits address bus and 64bit data bus interface, compli=
+ant
+> > +  to AMBA AXI interface for data transfer.
+> > +
+> > +  It supports 32-bits address and data bus interface, compliant to AMB=
+A
+> > +  AHB interface for register configurations.
+> > +
+> > +  It supports 32-bits address and data bus interface, compliant to AMB=
+A
+> > +  AXI interface for register alternative configurations.
+> > +
+> > +  The UTM Interface block generates PHY control signals, compliant to
+> > +  USB2.0 Transceiver Macrocell Interface Specification Revision 1.0.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: sunplus,sp7021-usb-ohci
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+>
+> You might need here phys. Are you sure you do not need to configure the
+> phy for OHCI? You should not assume it would be configured by other drive=
+r.
+>
 
+Yes, OHCI driver does not need to configure phy according to the
+suggestion of our RD.
+The default status of phy after power-on is good enough for OHCI.
 
+> Best regards,
+> Krzysztof
 
--- 
-Robert Marko
-Staff Embedded Linux Engineer
-Sartura Ltd.
-Lendavska ulica 16a
-10000 Zagreb, Croatia
-Email: robert.marko@sartura.hr
-Web: www.sartura.hr
+Thanks for your review.
