@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A189A4DC545
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 12:59:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CAC44DC53A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 12:59:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233276AbiCQMAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 08:00:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35264 "EHLO
+        id S233408AbiCQL7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 07:59:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233272AbiCQL70 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 07:59:26 -0400
-Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D957170DAF
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:58:04 -0700 (PDT)
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com [209.85.208.70])
+        with ESMTP id S233269AbiCQL7Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 07:59:25 -0400
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F28081704EE
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:58:02 -0700 (PDT)
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 819AB3F60E
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 11:58:03 +0000 (UTC)
+        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id CABD43F20A
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 11:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647518283;
-        bh=LNamuvhrzviKyHuQ4L0rCxs+G11+opr3Fg5u/5wPXa8=;
+        s=20210705; t=1647518276;
+        bh=KFmifwXJp5W4UT7dzRYgwV6FTL9sctX1thCEx5C+nkM=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=lJlTqjQGK3frrGP4pCucsve2WbpHqn8FUTC6mykdWg2ludE9MuTRg7EC9jDn8gKs8
-         aWK2kNtCPtlaSJil36txqdRWV4B4HSAw33OJfBKjCcPSN9ROV7adnLNa8n8bSVJay6
-         OoLyS9Hz4vM6z+FAWAbX23vVJ7mQ84AgvksvI5thUjXwJPcYlrZboqTdVtamsWirYC
-         xxYnULrTX9Q3VqU54sO/h9JsNCstEK330DUVhPtug8T33iZbkNFXAIZffg26Cp5Xtl
-         QsrmkBav4fpyMld21uE9//X0d8u5cH4SMa7EIad3v0KELD3IuBqD1DEeyocC3lT9My
-         Sb8+joyzpJ0Jg==
-Received: by mail-ed1-f70.google.com with SMTP id cm27-20020a0564020c9b00b004137effc24bso2989293edb.10
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:58:03 -0700 (PDT)
+        b=uAZySwa+94JUOmbeRBa83DQ1M8Uv4aSCzoloaoS5A+WbsuddyeIi+uQ0/BSxVBegi
+         0sXeiDZBmv5dd+rh4FQn2ERuZ11TcE6eiX86V2ytjv9NhgjfOoUyVtb7m+r+h4VJ9J
+         vReHmRFs/adn2At51s/L1iVYvy3TfHbUVxwJ10CwEFcLx8whasThu8T12WNVfjcR8n
+         SG49/LT0E5swjqg0h1ILtGMN/tifJtLoH5Zmz8tLpWatfBXnmH3QMXW/xKtT2y0Drh
+         bUMyTWAvCc3tSKMAb0lQq5k+Y+MRHl8lxLQlj/eb4mwVvhrS/LqqxzNteBYzCoOGoQ
+         /g/vNQTfHJGaQ==
+Received: by mail-wm1-f71.google.com with SMTP id n62-20020a1ca441000000b0038124c99ebcso1548017wme.9
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=LNamuvhrzviKyHuQ4L0rCxs+G11+opr3Fg5u/5wPXa8=;
-        b=b0Pr19x1tEfvU7COwI+Y/59ULAHN1t5BU5Z/bTPAgtPXpXexHLLyJ46yk664QOWOw+
-         cNgHIlvml0pzq2POLjZ7Lb2lZ8i73ecLMpLP6gS7R72n8Zvhw+HVPXTzWbGvollpLzw+
-         jIQMfBp/1VmG0MVloCbzrm0CWOFLqKFC7Bq7P1KZYpzGhW70N+zKcrbAo8Ax/LaO1Uxa
-         zbA8kSeCB5HmjDCcYGb7Rnrp1vMdqM5cmo1sbEUaIoeqZEcgZCzYM6AjnYR1jWhLzXom
-         pJvKdp6F1I+hkdpumTNJY+UZYsjjKGkpbdE5aoh8L78FE5I4pLYy4qkLQ20VskHb138O
-         eUjw==
-X-Gm-Message-State: AOAM532vsD23nmGn1mtdymp7SbNYpBZYYVxjJNN6fgBAzoBf7VBZxD+P
-        7hOrHVYTYtc+wK7xETH2t7FN/hzwkwc+85fM+vJEacEq7VBVZ3uq98YGleuR3XLOr2kwigvv4UX
-        fFHaQpuG69+NYdiEro0JAWxqVL+mZ3cjsrj1z9Hs=
-X-Received: by 2002:adf:ee06:0:b0:203:d69f:ee6a with SMTP id y6-20020adfee06000000b00203d69fee6amr3573315wrn.376.1647518272278;
-        Thu, 17 Mar 2022 04:57:52 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxmlGAG4WbY9Y9ECnGHhG7nICuH9qeB/Pd7q3rLG8W4tmsHHiqlovZiXlafy2xr1sXRMtPxDw==
-X-Received: by 2002:adf:ee06:0:b0:203:d69f:ee6a with SMTP id y6-20020adfee06000000b00203d69fee6amr3573270wrn.376.1647518272033;
-        Thu, 17 Mar 2022 04:57:52 -0700 (PDT)
+        bh=KFmifwXJp5W4UT7dzRYgwV6FTL9sctX1thCEx5C+nkM=;
+        b=fQ+9IGH9cS7bahfVr0gTT4Xf1TW3OAJwqYvQlpxtjOsgm27OfDaYzxqI1MhXqxFROG
+         nLVPhhX1dJh5sEINuNxt1lfBXRhMedQo21pMQl8flYtkbVv1knpoT97syOyJfPLoYVDn
+         La2HqIJfTul/Vc8e4XyhsKmRF7g3ixOG1iii1k178gmkkIFDNgIyvpIHQEC54eUphfew
+         mKCk77cDj2spx6A/Dyd+Xu7mBR6q6r3z9tOhM+SkFQ0M2Y0XpZsu6qqhHOPEz+tRZUOG
+         ZM3eykCZu/dJsXoGYpefZGslbuNlMYD+n6paBcTQjm0GssM5Jrsi/3Mcc1NmzggcGzc3
+         OsTQ==
+X-Gm-Message-State: AOAM530hkGhcuuT7om0BbL2GNsv4XmrXBLyq39DSNGnUenXxPnlNw0AY
+        U0IqcSezu+V/fNJc8fdhGD81l0kmX9zyZDphWWnsafF1ky2+62XjC0cYIH1ed7ZvieP6BYhURBj
+        TLuin3cEj0EoOmEMFVYv7g0LrL2uSNpX1QDuC8DU=
+X-Received: by 2002:a05:6000:15c1:b0:1f0:73d6:b716 with SMTP id y1-20020a05600015c100b001f073d6b716mr3663297wry.293.1647518274486;
+        Thu, 17 Mar 2022 04:57:54 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJwQvKKHcnhZqthCpzLO2USNLVXIsLYfJdNKGccVKarN3fEhfI5+MqhVsRHbxfF78ndbEuW0XA==
+X-Received: by 2002:a05:6000:15c1:b0:1f0:73d6:b716 with SMTP id y1-20020a05600015c100b001f073d6b716mr3663274wry.293.1647518274258;
+        Thu, 17 Mar 2022 04:57:54 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r65-20020a1c4444000000b0038c48dd23b9sm5824900wma.5.2022.03.17.04.57.49
+        by smtp.gmail.com with ESMTPSA id r65-20020a1c4444000000b0038c48dd23b9sm5824900wma.5.2022.03.17.04.57.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 04:57:51 -0700 (PDT)
+        Thu, 17 Mar 2022 04:57:53 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
@@ -96,9 +96,9 @@ To:     Thomas Gleixner <tglx@linutronix.de>,
         linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
         linux-riscv@lists.infradead.org, linux-oxnas@groups.io
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 16/18] dt-bindings: irqchip: renesas: include generic schema
-Date:   Thu, 17 Mar 2022 12:57:03 +0100
-Message-Id: <20220317115705.450427-15-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 17/18] dt-bindings: irqchip: sifive: include generic schema
+Date:   Thu, 17 Mar 2022 12:57:04 +0100
+Message-Id: <20220317115705.450427-16-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
 References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
@@ -106,7 +106,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -119,66 +119,26 @@ naming and other generic properties.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../renesas,intc-irqpin.yaml                  | 28 ++++++++++---------
- .../interrupt-controller/renesas,irqc.yaml    |  5 +++-
- 2 files changed, 19 insertions(+), 14 deletions(-)
+ .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml     | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-index f4aae56c6469..2a55581e0f4f 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,intc-irqpin.yaml
-@@ -65,19 +65,21 @@ required:
-   - '#interrupt-cells'
-   - interrupts
- 
--if:
--  properties:
--    compatible:
--      contains:
--        enum:
--          - renesas,intc-irqpin-r8a7740
--          - renesas,intc-irqpin-sh73a0
--then:
--  required:
--    - clocks
--    - power-domains
--
--additionalProperties: false
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,intc-irqpin-r8a7740
-+              - renesas,intc-irqpin-sh73a0
-+    then:
-+      required:
-+        - clocks
-+        - power-domains
-+
-+unevaluatedProperties: false
- 
- examples:
-   - |
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-index 620f01775e42..ab827bd8590f 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-@@ -9,6 +9,9 @@ title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
- maintainers:
-   - Geert Uytterhoeven <geert+renesas@glider.be>
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+index 27092c6a86c4..e3c08cff89d2 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
+@@ -44,6 +44,9 @@ maintainers:
+   - Paul Walmsley  <paul.walmsley@sifive.com>
+   - Palmer Dabbelt <palmer@dabbelt.com>
  
 +allOf:
 +  - $ref: /schemas/interrupt-controller.yaml#
 +
  properties:
    compatible:
-     items:
-@@ -70,7 +73,7 @@ required:
-   - interrupts
-   - clocks
+     oneOf:
+@@ -91,7 +94,7 @@ required:
+   - interrupts-extended
+   - riscv,ndev
  
 -additionalProperties: false
 +unevaluatedProperties: false
