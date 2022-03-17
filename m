@@ -2,240 +2,266 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C27E64DBE6A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 06:34:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EEA84DBF14
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 07:14:03 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbiCQFfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 01:35:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
+        id S229694AbiCQGPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 02:15:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229474AbiCQFfd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 01:35:33 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94E2123C077;
-        Wed, 16 Mar 2022 22:03:26 -0700 (PDT)
-X-UUID: 27f09bafc99445cc815384fc067381c1-20220317
-X-UUID: 27f09bafc99445cc815384fc067381c1-20220317
-Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1492094900; Thu, 17 Mar 2022 11:39:09 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 17 Mar 2022 11:39:07 +0800
-Received: from mtksdccf07 (172.21.84.99) by mtkcas11.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 17 Mar 2022 11:39:07 +0800
-Message-ID: <e5b33e4be119c3dc425b9d2810df4556240861c3.camel@mediatek.com>
-Subject: Re: [PATCH v13 6/6] soc: mediatek: mutex: add functions that
- operate registers by CMDQ
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Moudy Ho <moudy.ho@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        with ESMTP id S229595AbiCQGPL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 02:15:11 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 7125121F773
+        for <devicetree@vger.kernel.org>; Wed, 16 Mar 2022 23:01:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1647496878;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=sFQFpL3PGKwla/2hgDhEwqT8DB92GbCW96PCZBbK68s=;
+        b=UhOg0i03CslIB+HqONNOhgv347gPfOSBcaOq/1LlcLXBMIyZ3r/yNCQxmZOgKLJiqPzJwb
+        yB2AV8UbnH0bMFmV9Vnjfa8haYgKOz4JAYh5/8mq75c83VcoenyfumKjtEg9qByo4XVP2a
+        aPCykIzQZl3PjBlVx3Z7QNwokI9UuVo=
+Received: from mimecast-mx02.redhat.com (mimecast-mx02.redhat.com
+ [66.187.233.88]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-151-BIsiiIozPOuhklban8P0Kg-1; Wed, 16 Mar 2022 23:47:37 -0400
+X-MC-Unique: BIsiiIozPOuhklban8P0Kg-1
+Received: from smtp.corp.redhat.com (int-mx07.intmail.prod.int.rdu2.redhat.com [10.11.54.7])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mimecast-mx02.redhat.com (Postfix) with ESMTPS id F134C802C16;
+        Thu, 17 Mar 2022 03:47:35 +0000 (UTC)
+Received: from localhost (ovpn-13-190.pek2.redhat.com [10.72.13.190])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id F046E1427B21;
+        Thu, 17 Mar 2022 03:47:34 +0000 (UTC)
+Date:   Thu, 17 Mar 2022 11:47:31 +0800
+From:   Baoquan He <bhe@redhat.com>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+        x86@kernel.org, "H . Peter Anvin" <hpa@zytor.com>,
+        linux-kernel@vger.kernel.org, Dave Young <dyoung@redhat.com>,
+        Vivek Goyal <vgoyal@redhat.com>,
+        Eric Biederman <ebiederm@xmission.com>,
+        kexec@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        "Jernej Skrabec" <jernej.skrabec@siol.net>
-CC:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Landley <rob@landley.net>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Alexandre Courbot" <acourbot@chromium.org>, <tfiga@chromium.org>,
-        <drinkcat@chromium.org>, <pihsun@chromium.org>,
-        <hsinyi@google.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Maoguang Meng <maoguang.meng@mediatek.com>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
-        <menghui.lin@mediatek.com>, <sj.huang@mediatek.com>,
-        <allen-kh.cheng@mediatek.com>, <randy.wu@mediatek.com>,
-        <jason-jh.lin@mediatek.com>, <roy-cw.yeh@mediatek.com>,
-        <river.cheng@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>
-Date:   Thu, 17 Mar 2022 11:39:07 +0800
-In-Reply-To: <20220315061031.21642-7-moudy.ho@mediatek.com>
-References: <20220315061031.21642-1-moudy.ho@mediatek.com>
-         <20220315061031.21642-7-moudy.ho@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        linux-doc@vger.kernel.org, Randy Dunlap <rdunlap@infradead.org>,
+        Feng Zhou <zhoufeng.zf@bytedance.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Chen Zhou <dingguo.cz@antgroup.com>,
+        John Donnelly <John.p.donnelly@oracle.com>,
+        Dave Kleikamp <dave.kleikamp@oracle.com>
+Subject: Re: [PATCH v21 3/5] arm64: kdump: reimplement crashkernel=X
+Message-ID: <YjKvUz+dKRkyxUAd@MiWiFi-R3L-srv>
+References: <20220227030717.1464-1-thunder.leizhen@huawei.com>
+ <20220227030717.1464-4-thunder.leizhen@huawei.com>
+ <YjHUAi0xrUy+qk/L@MiWiFi-R3L-srv>
+ <7d7a3e70-6a46-b722-ef48-7206a47185dd@huawei.com>
+ <YjKeuFGtjI7944uy@MiWiFi-R3L-srv>
+ <05a96786-cfe8-029f-f29a-60fb94129f91@huawei.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <05a96786-cfe8-029f-f29a-60fb94129f91@huawei.com>
+X-Scanned-By: MIMEDefang 2.85 on 10.11.54.7
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Moudy:
-
-On Tue, 2022-03-15 at 14:10 +0800, Moudy Ho wrote:
-> Due to hardware limitations, MDP3 is necessary to enable MUTEX in
-> each frame for SOF triggering and cooperate with CMDQ control to
-> reduce the amount of interrupts generated(also, reduce frame
-> latency).
+On 03/17/22 at 11:19am, Leizhen (ThunderTown) wrote:
 > 
-> In response to the above situation, a new interface
-> "mtk_mutex_enable_by_cmdq" has been added to achieve the purpose.
 > 
-> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-mutex.c       | 42
-> +++++++++++++++++++++++++-
->  include/linux/soc/mediatek/mtk-mutex.h |  2 ++
->  2 files changed, 43 insertions(+), 1 deletion(-)
+> On 2022/3/17 10:36, Baoquan He wrote:
+> > On 03/16/22 at 09:11pm, Leizhen (ThunderTown) wrote:
+> >>
+> >>
+> >> On 2022/3/16 20:11, Baoquan He wrote:
+> >>> On 02/27/22 at 11:07am, Zhen Lei wrote:
+> > ...... 
+> > 
+> >>> Hi leizhen,
+> >>>
+> >>> I made change on reserve_crashkenrel(), inline comment may be slow.
+> >>> Please check and consider if they can be taken.
+> >>
+> >> That's great. Thank you very much.
+> >>
+> >>>
+> >>> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> >>> index 30ae6638ff54..f96351da1e3e 100644
+> >>> --- a/arch/arm64/mm/init.c
+> >>> +++ b/arch/arm64/mm/init.c
+> >>> @@ -109,38 +109,43 @@ static int __init reserve_crashkernel_low(unsigned long long low_size)
+> >>>   * This function reserves memory area given in "crashkernel=" kernel command
+> >>>   * line parameter. The memory reserved is used by dump capture kernel when
+> >>>   * primary kernel is crashing.
+> >>> + *
+> >>> + * NOTE: Reservation of crashkernel,low is special since its existence
+> >>> + * is not independent, need rely on the existence of crashkernel,high.
+> >>> + * Hence there are different cases for crashkernel,low reservation:
+> > 
+> > Considering to update the 3rd line as below:
+> > 
+> >  * NOTE: Reservation of crashkernel,low is special since its existence
+> >  * is not independent, need rely on the existence of crashkernel,high.
+> >  * Here, four cases of crashkernel,low reservation are summarized: 
 > 
-> diff --git a/drivers/soc/mediatek/mtk-mutex.c
-> b/drivers/soc/mediatek/mtk-mutex.c
-> index 88fb4fc8f216..0d85111cfbe2 100644
-> --- a/drivers/soc/mediatek/mtk-mutex.c
-> +++ b/drivers/soc/mediatek/mtk-mutex.c
-> @@ -7,10 +7,16 @@
->  #include <linux/iopoll.h>
->  #include <linux/module.h>
->  #include <linux/of_device.h>
-> +#include <linux/of_address.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/soc/mediatek/mtk-mmsys.h>
->  #include <linux/soc/mediatek/mtk-mutex.h>
-> +#include <linux/soc/mediatek/mtk-cmdq.h>
-> +
-> +#define MTK_MUTEX_ENABLE			BIT(0)
+> OK. How about change "crashkernel,low" to "crashkernel low memory"?
+> "crashkernel=Y,low", "crashkernel=,low" and "crashkernel,low" are very similar,
+> may dazzle the reader.
 
-This is not related to cmdq. Separate this to another patch and apply
-to mtk_mutex_enable() also.
+Fine by me. 'crashkernel low memory' is formal, just make sentence a
+little longer. Please take what you think fitter.
 
-> +#define MTK_MUTEX_MOD_MASK			0x07FFFFFF
-
-Useless, remove.
-
-> +#define MTK_MUTEX_SOF_MASK			0x00000007
-
-Ditto.
-
->  
->  #define MT2701_MUTEX0_MOD0			0x2c
->  #define MT2701_MUTEX0_SOF0			0x30
-> @@ -167,6 +173,7 @@ struct mtk_mutex_data {
->  	const unsigned int mutex_sof_reg;
->  	const unsigned long long *mutex_table_mod;
->  	const bool no_clk;
-> +	const bool has_gce_client_reg;
->  };
->  
->  struct mtk_mutex_ctx {
-> @@ -175,6 +182,8 @@ struct mtk_mutex_ctx {
->  	void __iomem			*regs;
->  	struct mtk_mutex		mutex[10];
->  	const struct mtk_mutex_data	*data;
-> +	phys_addr_t			addr;
-> +	struct cmdq_client_reg		cmdq_reg;
->  };
->  
->  static const unsigned int mt2701_mutex_mod[DDP_COMPONENT_ID_MAX] = {
-> @@ -357,6 +366,7 @@ static const struct mtk_mutex_data
-> mt8183_mutex_driver_data = {
->  	.mutex_sof_reg = MT8183_MUTEX0_SOF0,
->  	.mutex_table_mod = mt8183_mutex_table_mod,
->  	.no_clk = true,
-> +	.has_gce_client_reg = true,
->  };
->  
->  static const struct mtk_mutex_data mt8186_mutex_driver_data = {
-> @@ -639,6 +649,22 @@ void mtk_mutex_enable(struct mtk_mutex *mutex)
->  }
->  EXPORT_SYMBOL_GPL(mtk_mutex_enable);
->  
-> +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-> +			      struct cmdq_pkt *pkt)
-> +{
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> mtk_mutex_ctx,
-> +						 mutex[mutex->id]);
-> +
-> +	WARN_ON(&mtx->mutex[mutex->id] != mutex);
-> +
-> +	cmdq_pkt_write_mask(pkt, mtx->cmdq_reg.subsys,
-> +			    mtx->aaddr + DISP_REG_MUTEX_EN(mutex->id),
-> +			    MTK_MUTEX_ENABLE, MTK_MUTEX_ENABLE);
-
-#else
-/* show some error message here */
-
-
-> +#endif
-> +}
-> +EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
-> +
->  void mtk_mutex_disable(struct mtk_mutex *mutex)
->  {
->  	struct mtk_mutex_ctx *mtx = container_of(mutex, struct
-> mtk_mutex_ctx,
-> @@ -677,7 +703,7 @@ static int mtk_mutex_probe(struct platform_device
-> *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct mtk_mutex_ctx *mtx;
-> -	struct resource *regs;
-> +	struct resource *regs, addr;
->  	int i;
->  
->  	mtx = devm_kzalloc(dev, sizeof(*mtx), GFP_KERNEL);
-> @@ -698,6 +724,20 @@ static int mtk_mutex_probe(struct
-> platform_device *pdev)
->  		}
->  	}
->  
-> +	if (of_address_to_resource(dev->of_node, 0, &addr) < 0)
-> +		mtx->addr = 0L;
-> +	else
-> +		mtx->addr = addr.start;
-> +
-> +#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-> +	if (mtx->data->has_gce_client_reg) {
-
-In current upstreamed mt8183.dtsi [1], mutex device node has no
-mediatek,gce-client-reg property and display maybe work (?). So I think
-this should be backward-compatible.
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/mediatek/mt8183.dtsi?h=v5.17-rc8#n1510
-
-Regards,
-CK
-
-> +		if (cmdq_dev_get_client_reg(dev, &mtx->cmdq_reg, 0)) {
-> +			dev_err(dev, "No mediatek,gce-client-reg!\n");
-> +			return ret;
-> +		}
-> +	}
-> +#endif
-> +
->  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->  	mtx->regs = devm_ioremap_resource(dev, regs);
->  	if (IS_ERR(mtx->regs)) {
-> diff --git a/include/linux/soc/mediatek/mtk-mutex.h
-> b/include/linux/soc/mediatek/mtk-mutex.h
-> index c8355bb0e6d6..18a4b1dc3773 100644
-> --- a/include/linux/soc/mediatek/mtk-mutex.h
-> +++ b/include/linux/soc/mediatek/mtk-mutex.h
-> @@ -45,6 +45,8 @@ void mtk_mutex_set_mod(struct mtk_mutex *mutex,
->  void mtk_mutex_set_sof(struct mtk_mutex *mutex,
->  		       enum mtk_mutex_table_index idx);
->  void mtk_mutex_enable(struct mtk_mutex *mutex);
-> +void mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex,
-> +			      struct cmdq_pkt *pkt);
->  void mtk_mutex_disable(struct mtk_mutex *mutex);
->  void mtk_mutex_remove_comp(struct mtk_mutex *mutex,
->  			   enum mtk_ddp_comp_id id);
+> 
+> > 
+> >>> + * 1) crashkernel=Y,low is specified explicitly, crashkernel,low takes Y;
+> >>> + * 2) crashkernel=,low is not given, while crashkernel=,high is specified,
+> >>> + *    take the default crashkernel,low value;
+> >>> + * 3) crashkernel=X is specified, while fallback to get a memory region
+> >>> + *    in high memory, take the default crashkernel,low value;
+> >>> + * 4) crashkernel='invalid value',low is specified, failed the whole
+> >>> + *    crashkernel reservation and bail out.
+> >>>   */
+> >>>  static void __init reserve_crashkernel(void)
+> >>>  {
+> >>>  	unsigned long long crash_base, crash_size;
+> >>>  	unsigned long long crash_low_size;
+> >>>  	unsigned long long crash_max = CRASH_ADDR_LOW_MAX;
+> >>> -	int ret;
+> >>>  	bool fixed_base, high = false;
+> >>>  	char *cmdline = boot_command_line;
+> >>> +	int ret;
+> >>>  
+> >>>  	/* crashkernel=X[@offset] */
+> >>>  	ret = parse_crashkernel(cmdline, memblock_phys_mem_size(),
+> >>>  				&crash_size, &crash_base);
+> >>>  	if (ret || !crash_size) {
+> >>> -		/* crashkernel=X,high */
+> >>>  		ret = parse_crashkernel_high(cmdline, 0, &crash_size, &crash_base);
+> >>>  		if (ret || !crash_size)
+> >>>  			return;
+> >>>  
+> >>> -		/* crashkernel=Y,low */
+> >>>  		ret = parse_crashkernel_low(cmdline, 0, &crash_low_size, &crash_base);
+> >>>  		if (ret == -ENOENT)
+> >>> -			/*
+> >>> -			 * crashkernel=Y,low is not specified explicitly, use
+> >>> -			 * default size automatically.
+> >>> -			 */
+> >>> +			/* case #2 of crashkernel,low reservation */
+> >>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+> >>>  		else if (ret)
+> >>> -			/* crashkernel=Y,low is specified but Y is invalid */
+> >>> +			/* case #4 of crashkernel,low reservation */
+> >>>  			return;
+> >>>  
+> >>> -		/* Mark crashkernel=X,high is specified */
+> >>>  		high = true;
+> >>>  		crash_max = CRASH_ADDR_HIGH_MAX;
+> >>>  	}
+> >>> @@ -148,7 +153,6 @@ static void __init reserve_crashkernel(void)
+> >>>  	fixed_base = !!crash_base;
+> >>>  	crash_size = PAGE_ALIGN(crash_size);
+> >>>  
+> >>> -	/* User specifies base address explicitly. */
+> >>>  	if (fixed_base)
+> >>>  		crash_max = crash_base + crash_size;
+> >>>  
+> >>> @@ -172,11 +176,7 @@ static void __init reserve_crashkernel(void)
+> >>>  	}
+> >>>  
+> >>>  	if (crash_base >= SZ_4G) {
+> >>> -		/*
+> >>> -		 * For case crashkernel=X, low memory is not enough and fall
+> >>> -		 * back to reserve specified size of memory above 4G, try to
+> >>> -		 * allocate minimum required memory below 4G again.
+> >>> -		 */
+> >>> +		/* case #3 of crashkernel,low reservation */
+> >>>  		if (!high)
+> >>>  			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+> >>>  
+> >>>
+> >>>>  
+> >>>> -	/* Current arm64 boot protocol requires 2MB alignment */
+> >>>> -	crash_base = memblock_phys_alloc_range(crash_size, SZ_2M,
+> >>>> +retry:
+> >>>> +	crash_base = memblock_phys_alloc_range(crash_size, CRASH_ALIGN,
+> >>>>  					       crash_base, crash_max);
+> >>>>  	if (!crash_base) {
+> >>>> +		/*
+> >>>> +		 * Attempt to fully allocate low memory failed, fall back
+> >>>> +		 * to high memory, the minimum required low memory will be
+> >>>> +		 * reserved later.
+> >>>> +		 */
+> >>>> +		if (!fixed_base && (crash_max == CRASH_ADDR_LOW_MAX)) {
+> >>>> +			crash_max = CRASH_ADDR_HIGH_MAX;
+> >>>> +			goto retry;
+> >>>> +		}
+> >>>> +
+> >>>>  		pr_warn("cannot allocate crashkernel (size:0x%llx)\n",
+> >>>>  			crash_size);
+> >>>>  		return;
+> >>>>  	}
+> >>>>  
+> >>>> +	if (crash_base >= SZ_4G) {
+> >>>> +		/*
+> >>>> +		 * For case crashkernel=X, low memory is not enough and fall
+> >>>> +		 * back to reserve specified size of memory above 4G, try to
+> >>>> +		 * allocate minimum required memory below 4G again.
+> >>>> +		 */
+> >>>> +		if (!high)
+> >>>> +			crash_low_size = DEFAULT_CRASH_KERNEL_LOW_SIZE;
+> >>>> +
+> >>>> +		if (reserve_crashkernel_low(crash_low_size)) {
+> >>>> +			memblock_phys_free(crash_base, crash_size);
+> >>>> +			return;
+> >>>> +		}
+> >>>> +	}
+> >>>> +
+> >>>>  	pr_info("crashkernel reserved: 0x%016llx - 0x%016llx (%lld MB)\n",
+> >>>>  		crash_base, crash_base + crash_size, crash_size >> 20);
+> >>>>  
+> >>>> @@ -107,6 +194,9 @@ static void __init reserve_crashkernel(void)
+> >>>>  	 * map. Inform kmemleak so that it won't try to access it.
+> >>>>  	 */
+> >>>>  	kmemleak_ignore_phys(crash_base);
+> >>>> +	if (crashk_low_res.end)
+> >>>> +		kmemleak_ignore_phys(crashk_low_res.start);
+> >>>> +
+> >>>>  	crashk_res.start = crash_base;
+> >>>>  	crashk_res.end = crash_base + crash_size - 1;
+> >>>>  	insert_resource(&iomem_resource, &crashk_res);
+> >>>> -- 
+> >>>> 2.25.1
+> >>>>
+> >>>
+> >>> .
+> >>>
+> >>
+> >> -- 
+> >> Regards,
+> >>   Zhen Lei
+> >>
+> > 
+> > .
+> > 
+> 
+> -- 
+> Regards,
+>   Zhen Lei
+> 
 
