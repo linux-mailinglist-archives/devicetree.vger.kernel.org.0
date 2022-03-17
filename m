@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9C834DC536
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 12:59:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F1D4DC52C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 12:58:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbiCQL71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 07:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35264 "EHLO
+        id S233113AbiCQL7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 07:59:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233299AbiCQL7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 07:59:13 -0400
+        with ESMTP id S233304AbiCQL7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 07:59:15 -0400
 Received: from smtp-relay-internal-0.canonical.com (smtp-relay-internal-0.canonical.com [185.125.188.122])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2C6D141D92
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:54 -0700 (PDT)
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F40A16CE48
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:56 -0700 (PDT)
+Received: from mail-lj1-f198.google.com (mail-lj1-f198.google.com [209.85.208.198])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id D33A73F62A
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 11:57:52 +0000 (UTC)
+        by smtp-relay-internal-0.canonical.com (Postfix) with ESMTPS id 374363FCA3
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 11:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647518272;
-        bh=upn41SGXInxzeh9yeucVbbgZI6J+Vh9tnHYXNDkdf7c=;
+        s=20210705; t=1647518275;
+        bh=AiHDlYAYl7vWuI/w9+Je6flygausyauwLZYAswD6HM8=;
         h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
          MIME-Version;
-        b=TwZZXYEe9Z4PRrzSZPkLtyo8bvCVAJf6e06zzQ9N4z1ev/U2JsmChlvjqZnC/e115
-         9wUzJliGKudJturBVpyXtAPvAbCGZwCJdJz5Ce9Ib6CkfxJ1yQZRlYJ6IfI8imc5z0
-         eVvMq7RtrmA8UJ6JcOGKx+bvpZ9IL9XI9nFPUB9FMJQF+thWAjawZyI/n4cMEPnxDb
-         t8xtYsltClqQ/V3she0uXpbcflEWQFQ4EdCuXfQDOz4Eei4JRqM9CBbSvTTpw7NHIy
-         PEOUnNMREKL3Gi31PGwWJ5IkXrJyn/mRCHHNslHNMOCawbimFAJcUzqWEZ67sEgcqu
-         yULW5DkA2aiFw==
-Received: by mail-wm1-f72.google.com with SMTP id m34-20020a05600c3b2200b0038115c73361so1548954wms.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:52 -0700 (PDT)
+        b=KwhLc4y73Mf4HtCDdMvC6jw0ZN/G2+tRBUitJ/D+jnQ55NF5F8p/zdpGcwr3VjvFN
+         Kqb46C4Io25YIr9U47FMw2+3pMXGfVTRHma8dpIoV7VqoTl980u7YJV2OF7QNE6MvS
+         rLwDcMYMDM437EEmP2Yqehe7mvxXwbSFWrY+Ur9SNdBIJRi8ZbhMe9MCwZoUsfYLZ+
+         ekrvz8TuH99YoRQFYVwCJWzq7ofgsx07iGJFq3Us5WTVMuOvrlkC9KR1G1GFgUtQ5r
+         6BYpxBV/dW2MbUwJjbCEXS2MoIZJt3B6TAMtlJ1G1CXeGo6Fgc+HvfcUa+/Uy5s/Fu
+         BcGgOqJ4UxOqw==
+Received: by mail-lj1-f198.google.com with SMTP id h18-20020a2e3a12000000b00247e2a0e909so1989944lja.7
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 04:57:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=upn41SGXInxzeh9yeucVbbgZI6J+Vh9tnHYXNDkdf7c=;
-        b=igo1eLy7l12j44wi55+ZbR6yOrWpn38F+KEXz+InSw1rS862jkPExViXLFeYa6s9G/
-         U4rETMsszqdJzcjuESQRFv590/Cp9kxMZP5cnABE4CMKyQ9bqyLXFfSh9ZN9qqsL+e1r
-         nhlfUycSqN/sX3v1fpyqt3xAh/DRcXD3JNR1ZvE40CLVoVh7HjofNHTXIhMvjxO0MVne
-         Li3KmX++kb0PtVa22aXq+o/PJ2rt46OTj2pX8oUmytjfmdrUCSl4pFnT00MZYXhc03Hk
-         KC2QHo29NnXfSQeMFp6jyhH6oZrFdq9oNLm+FSXwdHwL/J9Fpc/64ZxpOwd5o7kIT17B
-         SdaQ==
-X-Gm-Message-State: AOAM531OX9b1s2ZXC+VPjLs0kpZMEvlzt38582DWKj4UAbtEkjpH2LYl
-        Ifu3VLNzfY+d6rbQh0Ww5nhbdEKKU/evVCM2oKmsD+iWnp6NZnFS0gi4XYWKwOSzmBC3WrYVYDt
-        AiW4oeA9T+yjG9gFYn8zpAMfAFKJnSLtGC774k+0=
-X-Received: by 2002:a05:600c:4e12:b0:38b:b715:18a6 with SMTP id b18-20020a05600c4e1200b0038bb71518a6mr3598845wmq.17.1647518261203;
-        Thu, 17 Mar 2022 04:57:41 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwaJnwGCDWCgNxVBPz8602WsRzPCQWkTc7stpH5PT+AGMHTpue3CNd76a9vbasK9iibDzPBWw==
-X-Received: by 2002:a05:600c:4e12:b0:38b:b715:18a6 with SMTP id b18-20020a05600c4e1200b0038bb71518a6mr3598815wmq.17.1647518260943;
-        Thu, 17 Mar 2022 04:57:40 -0700 (PDT)
+        bh=AiHDlYAYl7vWuI/w9+Je6flygausyauwLZYAswD6HM8=;
+        b=x3K4McfaKw8/bGQQ4/hwAQkMBwjri2KcQNw4zGY2FzJt7HTdBYfgUOIwio9QQbWTZs
+         bOCDo1ez7BOMHl3ZUQmKWl2oNvjhV6tx1Rq70rKBetBiCJav3tfHe7jMaf34ajmBF1u4
+         Bwj4WQbC2Ft3qGsDUK100YoKpF+yECzlfxRhSpYyzfI0pApM/FtQdd7kTcFKUHfNhpFp
+         631faDU2ig4Dnkgd2kXHmos60QSfI6f6kE2rLqxa5to+u3P2gM4FOzepWWcIwPdTj83i
+         9dfroGN36kbomiqsV21taevYET3otOs7NYPUFpWtohFkzwfDinzKCt5mPjfA1Hdwq3Ek
+         smlg==
+X-Gm-Message-State: AOAM533HF/R6vOvBwEhbCpfnwLpnA6QtL6vIsykcJST8GWqBR4dBWdfZ
+        8VV+R/onTuOSK/Q/htlTKFSMh45dzffA33jHuCW/CDvaS3o7QxR+CF3NyEXMBPFHerSKGCb2AYC
+        yGHaD+ZlkA37Og73x/cF+ih10y3wWQp3cs56JXoo=
+X-Received: by 2002:adf:9123:0:b0:1ef:9b6d:60c1 with SMTP id j32-20020adf9123000000b001ef9b6d60c1mr3679216wrj.169.1647518264128;
+        Thu, 17 Mar 2022 04:57:44 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJy83F7kPkAkGVyjO+KTdOeUdR+4CCrIBL1sfHo6WvsJ744fdOezCreCsgf4wqag4r59ItpL0g==
+X-Received: by 2002:adf:9123:0:b0:1ef:9b6d:60c1 with SMTP id j32-20020adf9123000000b001ef9b6d60c1mr3679179wrj.169.1647518263842;
+        Thu, 17 Mar 2022 04:57:43 -0700 (PDT)
 Received: from krzk-bin.. (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id r65-20020a1c4444000000b0038c48dd23b9sm5824900wma.5.2022.03.17.04.57.38
+        by smtp.gmail.com with ESMTPSA id r65-20020a1c4444000000b0038c48dd23b9sm5824900wma.5.2022.03.17.04.57.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 04:57:40 -0700 (PDT)
+        Thu, 17 Mar 2022 04:57:43 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 To:     Thomas Gleixner <tglx@linutronix.de>,
         Marc Zyngier <maz@kernel.org>,
@@ -96,9 +96,9 @@ To:     Thomas Gleixner <tglx@linutronix.de>,
         linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
         linux-riscv@lists.infradead.org, linux-oxnas@groups.io
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 12/18] dt-bindings: irqchip: mstar,mst-intc: include generic schema
-Date:   Thu, 17 Mar 2022 12:56:59 +0100
-Message-Id: <20220317115705.450427-11-krzysztof.kozlowski@canonical.com>
+Subject: [PATCH 13/18] dt-bindings: irqchip: mti,gic: include generic schema
+Date:   Thu, 17 Mar 2022 12:57:00 +0100
+Message-Id: <20220317115705.450427-12-krzysztof.kozlowski@canonical.com>
 X-Mailer: git-send-email 2.32.0
 In-Reply-To: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
 References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
@@ -119,32 +119,32 @@ naming and other generic properties.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 ---
- .../bindings/interrupt-controller/mstar,mst-intc.yaml        | 5 ++++-
+ .../devicetree/bindings/interrupt-controller/mti,gic.yaml    | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/mstar,mst-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/mstar,mst-intc.yaml
-index bbf0f26cd008..7cae52490ff5 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/mstar,mst-intc.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/mstar,mst-intc.yaml
-@@ -16,6 +16,9 @@ description: |+
-   The HW block exposes a number of interrupt controllers, each
-   can support up to 64 interrupts.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml b/Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
+index 91bb3c2307a7..d29c2a924acd 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/mti,gic.yaml
+@@ -16,6 +16,9 @@ description: |
+   interrupts which can be used as IPIs. The GIC also includes a free-running
+   global timer, per-CPU count/compare timers, and a watchdog.
  
 +allOf:
 +  - $ref: /schemas/interrupt-controller.yaml#
 +
  properties:
    compatible:
-     const: mstar,mst-intc
-@@ -49,7 +52,7 @@ required:
-   - reg
-   - mstar,irqs-map-range
+     const: mti,gic
+@@ -95,7 +98,7 @@ properties:
+ 
+     additionalProperties: false
  
 -additionalProperties: false
 +unevaluatedProperties: false
  
- examples:
-   - |
+ required:
+   - compatible
 -- 
 2.32.0
 
