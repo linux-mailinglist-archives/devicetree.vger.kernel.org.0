@@ -2,290 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC7B94DCB21
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:21:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id DC36A4DCB29
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 17:24:06 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236252AbiCQQWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 12:22:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
+        id S236474AbiCQQZV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 12:25:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233264AbiCQQWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:22:30 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::224])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B6D215900;
-        Thu, 17 Mar 2022 09:21:12 -0700 (PDT)
-Received: (Authenticated sender: paul.kocialkowski@bootlin.com)
-        by mail.gandi.net (Postfix) with ESMTPSA id 01AC0E000E;
-        Thu, 17 Mar 2022 16:21:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1647534070;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=p+cYBkfFFvELqWc9QhQrIx+yztmy6I4JHGArTu/5pHI=;
-        b=DTjpkPO+Rd8PPKRBmDgIFf8CocPlPj+9wu7TQwKkH/W0cTGtcxwD+qkLdZ4vVrrK5894tJ
-        qjWmm6zNPvtp7WuOoZYPoAABdrfPmfdjfZP5alH9VGaORL5zNcW1tO/qyUMSX6N9AfWvHb
-        9FtpA38vZpWNVGuIAL8VAY/jdqsLRy9GRiOiezU+eavHdCHz2CqFaHFQfKAU0Qa3D5f8Xl
-        ef2mEmAUL09Sfh6bPrDXj7UogiwjaJWP1CmTH1wXKu32D4wRi1/kLzHE7rWzx9Dm32lTYK
-        W0DPmtj0k73bDzoXYiEafY2Qh/JG7P24sh+DGhwDqUxrQlAK6mlG4BGScugF8A==
-Date:   Thu, 17 Mar 2022 17:21:07 +0100
-From:   Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        Yong Deng <yong.deng@magewell.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        with ESMTP id S231488AbiCQQZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 12:25:21 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 66B28BB90C
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 09:24:04 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1FE841424;
+        Thu, 17 Mar 2022 09:24:04 -0700 (PDT)
+Received: from donnerap.arm.com (donnerap.cambridge.arm.com [10.1.196.172])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5C86B3F7B4;
+        Thu, 17 Mar 2022 09:24:02 -0700 (PDT)
+From:   Andre Przywara <andre.przywara@arm.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 7/9] dt-bindings: media: Add Allwinner A83T MIPI CSI-2
- bindings documentation
-Message-ID: <YjNf827KuySLowK1@aptenodytes>
-References: <20220302220739.144303-1-paul.kocialkowski@bootlin.com>
- <20220302220739.144303-8-paul.kocialkowski@bootlin.com>
- <YjHlisNfdobeAta7@paasikivi.fi.intel.com>
+        Samuel Holland <samuel@sholland.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mesih Kilinc <mesihkilinc@gmail.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Jesse Taube <mr.bossman075@gmail.com>,
+        Giulio Benetti <giulio.benetti@benettiengineering.com>,
+        George Hilliard <thirtythreeforty@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-sunxi@lists.linux.dev
+Subject: [PATCH v2 00/12] ARM: suniv: dts: update Allwinner F1C100
+Date:   Thu, 17 Mar 2022 16:23:37 +0000
+Message-Id: <20220317162349.739636-1-andre.przywara@arm.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="iiX+RlDO9qayM+ej"
-Content-Disposition: inline
-In-Reply-To: <YjHlisNfdobeAta7@paasikivi.fi.intel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---iiX+RlDO9qayM+ej
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+an update to the F1C100 DT update series. I dropped the defconfig
+patches for now, there is more to them than it seems, and they warrant a
+separate series and discussion. Also I dropped the MMC binding patch
+(v1 07/14), since Ulf already applied that.
+Other than that this tries to clarify the watchdog clock situation in a
+new patch (02/12), and fixes some smaller issues, as pointed out by
+Samuel (many thanks for that!).
 
-Hi Sakari,
+----------
 
-On Wed 16 Mar 22, 15:26, Sakari Ailus wrote:
-> Hi Paul,
->=20
-> Thanks for the patch.
+The Allwinner F1C100 SoC didn't see much love since its initial merge in
+2018: the originally submitted .dts files were very basic, and didn't
+cover such simple peripherals as MMC and SPI.
+On top of that the watchdog compatible string was wrong, leading to a
+non-functional watchdog and reset functionality.
 
-And thanks for the review!
+This series aims to fix that, after the series MMC and SPI work, and
+make dtbs_check comes back clean.
+This was tested with mounting a filesystem on /dev/mmcblk0 on a
+LicheePi Nano, also with accessing the SPI flash through /dev/mtdblock
+and mtd_debug. Reboot and watchdog now also work.
 
-> On Wed, Mar 02, 2022 at 11:07:37PM +0100, Paul Kocialkowski wrote:
-> > This introduces YAML bindings documentation for the Allwinner A83T
-> > MIPI CSI-2 controller.
-> >=20
-> > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../media/allwinner,sun8i-a83t-mipi-csi2.yaml | 138 ++++++++++++++++++
-> >  1 file changed, 138 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,s=
-un8i-a83t-mipi-csi2.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun8i-a8=
-3t-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/allwinner,sun8i=
--a83t-mipi-csi2.yaml
-> > new file mode 100644
-> > index 000000000000..75121b402435
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun8i-a83t-mipi=
--csi2.yaml
-> > @@ -0,0 +1,138 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/allwinner,sun8i-a83t-mipi-csi=
-2.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A83T MIPI CSI-2 Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: allwinner,sun8i-a83t-mipi-csi2
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus Clock
-> > +      - description: Module Clock
-> > +      - description: MIPI-specific Clock
-> > +      - description: Misc CSI Clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +      - const: mipi
-> > +      - const: misc
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: Input port, connect to a MIPI CSI-2 sensor
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 0
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +            properties:
-> > +              clock-lanes:
-> > +                maxItems: 1
->=20
-> Does the hardware support lane reordering? If not, the property should be
-> omitted here.
+Mainline U-Boot recently gained F1C100 support, and those DT updates are
+needed there as well to get full MMC and SPI access.
 
-I'm not sure what this relates to. Is it about inverting the clock lane with
-a data lane? I'm a bit confused about logical vs physical lane in the conte=
-xt
-of MIPI CSI-2.
+The series is structured as follows:
+- Patches 01/12 and 03/12 fix the watchdog, which allows to properly
+  reboot the system.
+- Patches 04-07 fix some shortcomings of the existing DT files, to make
+  them DT binding compliant.
+- Patches 08-09 are Jesse's recent MMC patches, with the comments from
+  the last version addressed [1].
+- Patches 10-12 add SPI support, to enable access to the SPI flash on
+  the LicheePi Nano board.
 
-The controller has dedicated pins for the clock and data lanes and supports
-filtering packets based on virtual channel or data type.
+Cheers,
+Andre
 
-Are the clock-lanes and data-lanes only relevant for reordering?
-IIRC they are also necessary to get the lanes count in the driver.
+Changelog v1 ... v2:
+- drop multi_v5_defconfig patches (v1 13/14 and 14/14)
+- drop MMC bindings patch (v1 07/14): already applied
+- dt-binding: move watchdog compatible string among the others
+- dt-binding: new patch to clarify watchdog clock source
+- dtsi: add missing @0 to cpu node
+- add Acks and R-b's
+- dtsi: fix ordering of SPI nodes (plus typo in commit message)
 
-> I can also remove the three lines here while applying the patches.
+Changelog for the MMC patches [1]:
+- bindings doc: extend commit message
+- .dtsi: extend commit message, re-order mmc0_pins node, add
+  drive-strength
+- .dts: extend commit message, add alias, regulator and disable-wp
 
-I think this series will need another iteration anyway, so let's wait.
+[1] https://lore.kernel.org/linux-arm-kernel/20220130220325.1983918-1-Mr.Bossman075@gmail.com/
+[2] https://lore.kernel.org/linux-usb/20200331170219.267732-1-thirtythreeforty@gmail.com/
 
-Paul
+Andre Przywara (9):
+  dt-bindings: watchdog: sunxi: fix F1C100s compatible
+  dt-bindings: watchdog: sunxi: clarify clock support
+  ARM: dts: suniv: F1C100: fix watchdog compatible
+  dt-bindings: arm: sunxi: document LicheePi Nano name
+  ARM: dts: suniv: F1C100: fix CPU node
+  ARM: dts: suniv: F1C100: fix timer node
+  dt-bindings: spi: sunxi: document F1C100 controllers
+  ARM: dts: suniv: F1C100: add SPI support
+  ARM: dts: suniv: licheepi-nano: add SPI flash
 
-> > +
-> > +              data-lanes:
-> > +                minItems: 1
-> > +                maxItems: 4
-> > +
-> > +            required:
-> > +              - data-lanes
-> > +
-> > +        additionalProperties: false
-> > +
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > +        description: Output port, connect to a CSI controller
-> > +
-> > +        properties:
-> > +          reg:
-> > +            const: 1
-> > +
-> > +          endpoint:
-> > +            $ref: video-interfaces.yaml#
-> > +            unevaluatedProperties: false
-> > +
-> > +        additionalProperties: false
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +  - ports
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
-> > +    #include <dt-bindings/reset/sun8i-a83t-ccu.h>
-> > +
-> > +    mipi_csi2: csi@1cb1000 {
-> > +        compatible =3D "allwinner,sun8i-a83t-mipi-csi2";
-> > +        reg =3D <0x01cb1000 0x1000>;
-> > +        interrupts =3D <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
-> > +        clocks =3D <&ccu CLK_BUS_CSI>,
-> > +                 <&ccu CLK_CSI_SCLK>,
-> > +                 <&ccu CLK_MIPI_CSI>,
-> > +                 <&ccu CLK_CSI_MISC>;
-> > +        clock-names =3D "bus", "mod", "mipi", "misc";
-> > +        resets =3D <&ccu RST_BUS_CSI>;
-> > +
-> > +        ports {
-> > +            #address-cells =3D <1>;
-> > +            #size-cells =3D <0>;
-> > +
-> > +            mipi_csi2_in: port@0 {
-> > +                reg =3D <0>;
-> > +
-> > +                mipi_csi2_in_ov8865: endpoint {
-> > +                    data-lanes =3D <1 2 3 4>;
-> > +
-> > +                    remote-endpoint =3D <&ov8865_out_mipi_csi2>;
-> > +                };
-> > +            };
-> > +
-> > +            mipi_csi2_out: port@1 {
-> > +                reg =3D <1>;
-> > +
-> > +                mipi_csi2_out_csi: endpoint {
-> > +                    remote-endpoint =3D <&csi_in_mipi_csi2>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
->=20
-> --=20
-> Kind regards,
->=20
-> Sakari Ailus
+Jesse Taube (3):
+  ARM: dts: suniv: F1C100: add clock and reset macros
+  ARM: dts: suniv: F1C100: add MMC controllers
+  ARM: dts: suniv: licheepi-nano: add microSD card
 
---=20
-Paul Kocialkowski, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../bindings/spi/allwinner,sun6i-a31-spi.yaml |   1 +
+ .../watchdog/allwinner,sun4i-a10-wdt.yaml     |  24 ++--
+ .../boot/dts/suniv-f1c100s-licheepi-nano.dts  |  31 ++++++
+ arch/arm/boot/dts/suniv-f1c100s.dtsi          | 104 ++++++++++++++++--
+ 5 files changed, 140 insertions(+), 25 deletions(-)
 
---iiX+RlDO9qayM+ej
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.25.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEJZpWjZeIetVBefti3cLmz3+fv9EFAmIzX/MACgkQ3cLmz3+f
-v9E+pQf+IeGzh1lXPZrMZDTECUlOPK5l/zgJtpRtE5Gd7qzKbZm59v2L4YYnaBzC
-uT+MIgMHxJtyX90UobiXOilMW/yxilQFh/i00T4HMXEZ+VFxY6wVVUZt0/yZM33n
-U3EqJqMWT/cb14jgNFBi9jEX7Y08cRih1u8JZxnDBDnq/1KZL/csvquJ2Ljwczw0
-cMOQ+1L8liSsQiq7AlorcZLuFSLttMlbIZg+E2u9FNSBKcoF1iUpsDhSggXEVvs9
-rVxpT+YhxM6hNls7XR3LyeE7KdAfdcub5JFhUiq7oTJxQK+K6/0IWv8qBrq35k3u
-qcCt2yH9UO9dmAyhBky+qbS06yaJjA==
-=IJLv
------END PGP SIGNATURE-----
-
---iiX+RlDO9qayM+ej--
