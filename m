@@ -2,180 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CCD14DD063
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 22:49:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BDB5B4DD0AB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 23:24:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230385AbiCQVui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 17:50:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52290 "EHLO
+        id S229693AbiCQWZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 18:25:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230349AbiCQVuh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 17:50:37 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D90A7A99F;
-        Thu, 17 Mar 2022 14:49:19 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id r10so9265558wrp.3;
-        Thu, 17 Mar 2022 14:49:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:content-language:to:cc
-         :references:from:subject:in-reply-to:content-transfer-encoding;
-        bh=JXgwUv3v5D0fNnLgd4LktJrygnlNSpO2SFDyowKvJBc=;
-        b=L4M3aNeFTBhljqC63W8UdBt3ArHtCmxtpMnHG9XBZS4/vhZdp5fWUxulJSP7HkJhD2
-         1jjk/RKg8eUAV2M1MFAQhYBEQAcQ7U/rd0JTIMmXXPs7sNGLFztw+6Eh0mXAxbNemWd7
-         UBU77ZTzvw11unbZApqINXA/GGzRBJ/TyYltTi7Vx6t8VaVZRdLY8eoCEgdFF3pq1xOW
-         E+unDmcxcrqWF3/IPjBk98EriuoaBIe7Ga1xz0FarFQ2HTmPbACHAlITX/UFDV7L/sqC
-         UCfmmKvTEmI4XXotGFeffvoprkT4RDmBx7NapaioQHckKhNN/8dfmsYElLQ1+Azft+gt
-         nbkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent
-         :content-language:to:cc:references:from:subject:in-reply-to
-         :content-transfer-encoding;
-        bh=JXgwUv3v5D0fNnLgd4LktJrygnlNSpO2SFDyowKvJBc=;
-        b=jnT7TM3CPjBUCQVo1mQo1poZF7x6MP10rLv/qbWOO7ONduzj456UJsRIHY7sWMjd3a
-         QBUylHeuTuy2pkmLHe28h5F9HTKis7y8JyMBbLfvykwFgpguOrZ4Qa+iorSzIKxVGlFa
-         MBpu+bIisQKk7TY90fmzJA7EhitaObnERyTWGBcTVda9Zwoj4stF2QnUbb4HnkAxsZwr
-         jA/Pqmj86hUpXAFz1DVdQuUD0uj+GPP/YALLXVb1llPw0nnll64HH+UlRfADGtypxTR3
-         Gy8olcP7rnMRQYFdPvC8NL9N7katRZU5QtcrJ0sbUomC9lSO0FMCHkSMSdI1quBzmN1C
-         /oNQ==
-X-Gm-Message-State: AOAM531lTk569MP45F1Uz8XAK2XuhqdV5EFMcDyG4Db/kOmj/9TSErPZ
-        nkAv4RG/9JZ0QUVgAM8WEIiJLAa3pNo=
-X-Google-Smtp-Source: ABdhPJznx632WvFxaqb8yflLyhf6kA//k1q6bVXc6ZNqxGH7xDitPUOU1Q2r5XVUYBj/MyiD9xXVqg==
-X-Received: by 2002:adf:e34c:0:b0:1ed:c3fc:2dcf with SMTP id n12-20020adfe34c000000b001edc3fc2dcfmr5804993wrj.430.1647553757589;
-        Thu, 17 Mar 2022 14:49:17 -0700 (PDT)
-Received: from ?IPV6:2a01:c22:7a2b:e900:a8b8:ece6:31f7:15f4? (dynamic-2a01-0c22-7a2b-e900-a8b8-ece6-31f7-15f4.c22.pool.telefonica.de. [2a01:c22:7a2b:e900:a8b8:ece6:31f7:15f4])
-        by smtp.googlemail.com with ESMTPSA id k18-20020a5d6d52000000b00203da94cf01sm4945246wri.14.2022.03.17.14.49.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 14:49:16 -0700 (PDT)
-Message-ID: <953246ad-282b-c182-cbf6-3caa28979dbc@gmail.com>
-Date:   Thu, 17 Mar 2022 22:49:13 +0100
+        with ESMTP id S229623AbiCQWZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 18:25:48 -0400
+X-Greylist: delayed 1399 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Thu, 17 Mar 2022 15:24:30 PDT
+Received: from gateway20.websitewelcome.com (gateway20.websitewelcome.com [192.185.53.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 091E9223202
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:24:29 -0700 (PDT)
+Received: from cm10.websitewelcome.com (cm10.websitewelcome.com [100.42.49.4])
+        by gateway20.websitewelcome.com (Postfix) with ESMTP id D18C4400C82C2
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:01:09 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id UyBBn8ortRnrrUyBBnbUN0; Thu, 17 Mar 2022 17:01:09 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=G8PPz3EEXerG6wcqjyGRnyJnAFhn2RgK8hinJVsi3pM=; b=uaiaHXcGBrTw3r48iBpIHB3z8Y
+        jUiNXzO8DCvvwLRyqjh4Gj636gajTuYecScIHnIqGiXzzhF8XHitjyGwn0YxjbKzeU/6SrIusEom7
+        0E0r675MJEnCzRyUNHm9A4/c5Mt8ROAdhIm0qyM619fGozd6yRbXiAGwUnpwbl8MLYFxq2OyWJKm7
+        9mF5L3/t7Y7WUr492ZY/8xLV2ljg3zvMku3aSWMuZf7SbVE6Y2vtjy1NoOD06WSw3tikjrehEyiYM
+        pV7UEp61jllsqXo05CBfAYemP0MeeyJ+bOgjKoJGlGOfNzEAoBbIjuVMPnYJCoQ+6oWdCZtAgJPmQ
+        w+ARFqCw==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54316)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nUyBB-000tNv-9X; Thu, 17 Mar 2022 22:01:09 +0000
+Message-ID: <cbc028bd-8b4f-5cc1-3bcf-a195ae7cebd9@roeck-us.net>
+Date:   Thu, 17 Mar 2022 15:01:07 -0700
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.7.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH 2/2] hwmon: (adt7475) Add support for pin configuration
 Content-Language: en-US
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
-        Miguel Ojeda <ojeda@kernel.org>
-Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
- <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
- <84739af1-cbb8-e957-6e30-4121ed0a3517@gmail.com>
- <132a5a99-6dbf-12d4-723b-2a327f23d24e@arm.com>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
- segment display controller
-In-Reply-To: <132a5a99-6dbf-12d4-723b-2a327f23d24e@arm.com>
-Content-Type: text/plain; charset=UTF-8
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20220316234134.290492-1-chris.packham@alliedtelesis.co.nz>
+ <20220316234134.290492-3-chris.packham@alliedtelesis.co.nz>
+ <6aabb517-c46e-bcf8-c93d-b6fa1fe8eb3a@roeck-us.net>
+ <52a6f788-cba7-9823-76db-523e2e8c1f2e@alliedtelesis.co.nz>
+From:   Guenter Roeck <linux@roeck-us.net>
+In-Reply-To: <52a6f788-cba7-9823-76db-523e2e8c1f2e@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nUyBB-000tNv-9X
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54316
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 2
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17.03.2022 21:08, Robin Murphy wrote:
-> On 2022-03-16 21:19, Heiner Kallweit wrote:
->> On 16.03.2022 01:38, Robin Murphy wrote:
->>> On 2022-02-25 21:09, Heiner Kallweit wrote:
->>>> This series adds support for the Titanmec TM1628 7 segment display
->>>> controller. It's based on previous RFC work from Andreas Färber.
->>>> The RFC version placed the driver in the LED subsystem, but this was
->>>> NAK'ed by the LED maintainer. Therefore I moved the driver to
->>>> /drivers/auxdisplay what seems most reasonable to me.
->>>>
->>>> Further changes to the RFC version:
->>>> - Driver can be built also w/o LED class support, for displays that
->>>>     don't have any symbols to be exposed as LED's.
->>>> - Simplified the code and rewrote a lot of it.
->>>> - Driver is now kind of a MVP, but functionality should be sufficient
->>>>     for most use cases.
->>>> - Use the existing 7 segment support in uapi/linux/map_to_7segment.h
->>>>     as suggested by Geert Uytterhoeven.
->>>>
->>>> Note: There's a number of chips from other manufacturers that are
->>>>         almost identical, e.g. FD628, SM1628. Only difference I saw so
->>>>         far is that they partially support other display modes.
->>>>         TM1628: 6x12, 7x11
->>>>         SM1628C: 4x13, 5x12, 6x11, 7x10
->>>>         For typical displays on devices using these chips this
->>>>         difference shouldn't matter.
->>>>
->>>> Successfully tested on a TX3 Mini TV box that has an SM1628C and a
->>>> display with 4 digits and 7 symbols.
+On 3/17/22 14:35, Chris Packham wrote:
+> 
+> On 18/03/22 02:28, Guenter Roeck wrote:
+>> On 3/16/22 16:41, Chris Packham wrote:
+>>> The adt7473, adt7475, adt7476 and adt7490 have pins that can be used for
+>>> different functions. On the adt7473 and  adt7475 this is pins 5 and 9.
+>>> On the adt7476 and adt7490 this is pins 10 and 14.
 >>>
->>> FWIW I gave this a go on my Beelink A1, which has an AiP1618 and a clock display which would mapped like so:
+>>> The first pin can either be PWM2(default) or SMBALERT#. The second pin
+>>> can be TACH4(default), THERM#, SMBALERT# or GPIO.
 >>>
->>>      titanmec,segment-mapping = /bits/ 8 <1 2 3 13 12 5 4>;
->>>      titanmec,grid = /bits/ 8 <5 4 2 1>;
+>>> The adt7475 driver has always been able to detect the configuration if
+>>> it had been done by an earlier boot stage. Add support for configuring
+>>> the pins based on the hardware description in the device tree.
 >>>
->>> (grid 3 segment 2 is used for a colon in the middle)
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> ---
+>>>    drivers/hwmon/adt7475.c | 95 +++++++++++++++++++++++++++++++++++++++++
+>>>    1 file changed, 95 insertions(+)
 >>>
->>> If I bodge around the lack of support for non-contiguous grids, it does otherwise work fairly well, other than being 6-segment displays because it needs to be in display mode 1 to drive SEG13 rather than GRID6. I wonder if we could be a bit cleverer about picking a display mode based on the grid/segment numbers used?
->>>
->> Definitely this could be one future extension. It could also consider that there's a number of more or less
->> identical chips from other vendors that differ primarily in the supported display modes.
+>>> diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
+>>> index 9d5b019651f2..ad5e5a7a844b 100644
+>>> --- a/drivers/hwmon/adt7475.c
+>>> +++ b/drivers/hwmon/adt7475.c
+>>> @@ -112,6 +112,8 @@
+>>>    #define CONFIG3_THERM        0x02
+>>>      #define CONFIG4_PINFUNC        0x03
+>>> +#define CONFIG4_THERM        0x01
+>>> +#define CONFIG4_SMBALERT    0x02
+>>>    #define CONFIG4_MAXDUTY        0x08
+>>>    #define CONFIG4_ATTN_IN10    0x30
+>>>    #define CONFIG4_ATTN_IN43    0xC0
+>>> @@ -1460,6 +1462,95 @@ static int adt7475_update_limits(struct
+>>> i2c_client *client)
+>>>        return 0;
+>>>    }
+>>>    +static int load_pin10_config(const struct i2c_client *client,
+>>> const char *propname)
+>>> +{
 >>
->>> I also have a couple of those TM1638 breakout boards with 8 digits, 8 single LEDs and 8 buttons that I might have a go with too. Have you given any thought to how the DT binding might support inputs as well? (The best time to be future-proof is before it's merged...)
->>>
->> With regards to inputs at least I have no plans because I have no hw supporting input.
+>> A better function name would probably be load_config3() or similar.
 > 
-> FWIW, if you've got a board with exposed GPIO/SPI headers, searching "TM1638" on ebay/aliexpress/etc. should find the cheapo breakout boards. I believe they're quite popular with the Arduino crowd, so I expect that may well carry over to the Raspberry Pi crowd once they get wind of a kernel driver that can be driven by DT overlays.
+> Yep that'd be a better name.
 > 
->> Since the first attempts to support this LED driver hw two years have been passed w/o any tangible (mainline) result.
->> Therefore I want to keep the initial version a MVP. Wanting to have too many features in an initial version
->> may result in longer discussions until maintainer or I give up.
+>>
+>>> +    const char *function;
+>>> +    u8 config3;
+>>> +    int err;
+>>> +
+>>> +    err = of_property_read_string(client->dev.of_node, propname,
+>>> &function);
+>>> +    if (!err) {
+>>> +        config3 = adt7475_read(REG_CONFIG3);
+>>
+>> error check missing (I see the driver is notorious for that, but that
+>> is not
+>> a reason to keep doing it).
 > 
-> Unfortunately the principle is that DT bindings describe the device, not whatever the current level of Linux driver support for it might be. Perhaps I'm a little sensitised since I'm currently feeling the pain of extending a decade-old binding with functionality that was overlooked at the time, and not breaking compatibility is now rather awkward.
+> Ikegami-san and Dan did to some good work to address some of that. The
+> probe function is still quite careless.
 > 
-> I'm not suggesting that there needs to be any support implemented in the driver, just to be certain that we're not painting ourselves into a corner with the binding.
+> I'll see what I can do to make sure my additions don't make it worse.
+>>
+>>> +
+>>> +        if (!strcmp("pwm2", function))
+>>> +            config3 &= ~CONFIG3_SMBALERT;
+>>> +        else if (!strcmp("smbalert#", function))
+>>> +            config3 |= CONFIG3_SMBALERT;
+>>> +        else
+>>> +            return -EINVAL;
+>>> +
+>>> +        return i2c_smbus_write_byte_data(client, REG_CONFIG3, config3);
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int load_pin14_config(const struct i2c_client *client, const
+>>> char *propname)
+>>> +{
+>>
+>> load_config4() ?
+>>
+>>> +    const char *function;
+>>> +    u8 config4;
+>>> +    int err;
+>>> +
+>>> +    err = of_property_read_string(client->dev.of_node, propname,
+>>> &function);
+>>> +    if (!err) {
+>>> +        config4 = adt7475_read(REG_CONFIG4);
+>>
+>> error check
+>>
+>>> +        config4 &= ~CONFIG4_PINFUNC;
+>>> +
+>>> +        if (!strcmp("tach4", function))
+>>> +            ;
+>>> +        else if (!strcmp("therm#", function))
+>>> +            config4 |= CONFIG4_THERM;
+>>> +        else if (!strcmp("smbalert#", function))
+>>> +            config4 |= CONFIG4_SMBALERT;
+>>> +        else if (!strcmp("gpio", function))
+>>> +            config4 |= CONFIG4_PINFUNC;
+>>> +        else
+>>> +            return -EINVAL;
+>>> +
+>>> +        return i2c_smbus_write_byte_data(client, REG_CONFIG4, config4);
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>> +static int load_config(const struct i2c_client *client, int chip)
+>>> +{
+>>> +    int err;
+>>> +    const char *conf_prop1, *conf_prop2;
+>>
+>> conf_ prefix is unnecessary.
+>>
+>>> +
+>>> +    switch (chip) {
+>>> +    case adt7473:
+>>> +    case adt7475:
+>>> +        conf_prop1 = "adi,pin5-function";
+>>> +        conf_prop2 = "adi,pin9-function";
+>>> +        break;
+>>> +    case adt7476:
+>>> +    case adt7490:
+>>> +        conf_prop1 = "adi,pin10-function";
+>>> +        conf_prop2 = "adi,pin14-function";
+>>> +        break;
+>>> +    default:
+>>> +        return -EINVAL;
+>>
+>> It doesn't seem right to return -EINVAL here.
+>>
+> Have you got a better suggestion? I was trying to avoid someone
+> specifying compatible = "adi,adt7476" with "adi,pin5-function". Is your
+> concern that I should use -ENODEV or that I should just pick more
+> generic names for the configurable pins (naming things is hard).
 > 
->> Important is that user space interface / DT bindings are flexible enough so that future extensions don't have to break
->> existing users. And I think that's the case.
-> 
-> May I ask what you have in mind? I figure that inputs would most likely want to be described individually, similarly to the gpio-keys binding, which would lend itself to having them as child nodes, except that doesn't fit with the current scheme of child nodes having to be LEDs addressed by (grid,segment). I suppose there is a possible escape hatch of abusing unused addresses, e.g. saying a node at address (0,n) is input n rather than an LED segment, but that seems pretty horrid (and I'm not sure how well schema could validate it). Or possibly pretending to also be a GPIO controller to reference from a separate gpio-keys node, but again that seems ugly and more like something to only do if there's no other option.
+> Or perhaps just dev_warn() and return 0?
 > 
 
-Not being an expert in OF stuff I'm just focused on getting support for the hw I own.
-I tried to do this in the most simple and generic way so that others can follow-up
-and add additional functionality.
+If you use "enum chips" as function parameter you should not need
+a default: case. Otherwise -EINVAL is fine _if_ the code below is
+removed. I didn't understand what you wanted to accomplish by
+returning 0 for known (but unsupported) devices but -EINVAL for
+non-existing ones.
 
+Guenter
 
-> IMO it would be cleanest just to have an extra level of hierarchy, e.g.:
-> 
-> 
->     led-controller@0 {
->         compatible = "titanmec,tm1628";
->         ...
-> 
->         leds {
->             #address-cells = <2>;
->             #size-cells = <0>;
-> 
->             alarm@5,4 {
->                 ...
->             };
->         };
->     };
-> 
-> That way there's clearly almost no risk of breakage if an additional "inputs" node with its own children turns up later. Plus it should also be a trivial change to the current driver, compared to having to implement trick special cases or whole other APIs down the line - of course bindings should not be designed expressly for ease of driver implementation, but if they do work out that way it's usually a good sign :)
-> 
-> Thanks,
-> Robin.
+>>> +    }
+>>> +
+>>> +    if (chip != adt7476 && chip != adt7490)
+>>> +        return 0;
+>>> +
+>>
+>> Why not check this first, and what is the point of assigning values to
+>> conf_prop1 and conf_prop2 for the other chips in the case statement above
+>> only to return 0 here ? It would be much simpler to drop the other chips
+>> from the case statement and have default: return 0.
+>>
+> Sorry that is old. I initially was under the impression that only these
+> 2 had configurable pins but then I read the other datasheets more closely.
+>>> +    err = load_pin10_config(client, conf_prop1);
+>>> +    if (err) {
+>>> +        dev_err(&client->dev, "failed to configure PIN10\n");
+>>
+>> The messages are misleading. This isn't always pin 10/14.
+>>
+> Now I've got the prop names I can use that instead.
+>>> +        return err;
+>>> +    }
+>>> +
+>>> +    err = load_pin14_config(client, conf_prop2);
+>>> +    if (err) {
+>>> +        dev_err(&client->dev, "failed to configure PIN14\n");
+>>> +        return err;
+>>> +    }
+>>> +
+>>> +    return 0;
+>>> +}
+>>> +
+>>>    static int set_property_bit(const struct i2c_client *client, char
+>>> *property,
+>>>                    u8 *config, u8 bit_index)
+>>>    {
+>>> @@ -1585,6 +1676,10 @@ static int adt7475_probe(struct i2c_client
+>>> *client)
+>>>            revision = adt7475_read(REG_DEVID2) & 0x07;
+>>>        }
+>>>    +    ret = load_config(client, chip);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>>        config3 = adt7475_read(REG_CONFIG3);
+>>>        /* Pin PWM2 may alternatively be used for ALERT output */
+>>>        if (!(config3 & CONFIG3_SMBALERT))
+>>
 
-Heiner
