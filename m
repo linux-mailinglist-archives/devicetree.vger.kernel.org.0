@@ -2,104 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B353C4DD0C4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 23:31:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6955D4DD0D1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Mar 2022 23:36:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229820AbiCQWcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 18:32:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42854 "EHLO
+        id S229441AbiCQWhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 18:37:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229835AbiCQWcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 18:32:21 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93F14180078
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:31:01 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 0FB442C0C23;
-        Thu, 17 Mar 2022 22:31:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1647556260;
-        bh=5yzcYUXA1wnj+z0MDGmniYGpzv7rc9CIlYccVyLXRjE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=bl2yLBAlym2GIxAbqdK9FeXyK0q7GXittuf5QdUPpLQ/qOq9rdV9au0y/vaaQGrGL
-         oKy1rOUlWBDgTqJA8/rTYi7oLWH0N1iddQhHBcDsTuLeinNYeYK+zSEazkQKVmbkz2
-         nbitzFPdylzq1d0hn23FlZeDSBylLasZ9HLtEgdwpPbSm/q1N/jPAkoMU5B5zcYbkg
-         ePm6LXfSuXCmIPrCVOoEkgiTAq2KvfmvE/LN2+t+r3p5mB7ZcMsbt/k5SQsqw0yy7L
-         o5fpkZ9zP2ZYbAU2TKgKVReBYS5RoPscaAe+rc9vRtTBqLNlrWnyyJc8qlIvYD6cUN
-         33VDvC3RFKmOw==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B6233b6a30003>; Fri, 18 Mar 2022 11:30:59 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id A769E13EE8E;
-        Fri, 18 Mar 2022 11:30:59 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id A8E0A2A2679; Fri, 18 Mar 2022 11:30:56 +1300 (NZDT)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v2 3/3] hwmon: (adt7475) Use enum chips when loading attenuator settings
-Date:   Fri, 18 Mar 2022 11:30:50 +1300
-Message-Id: <20220317223051.1227110-4-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S229706AbiCQWhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 18:37:22 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECCE1262401
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:36:04 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id ja24so8257361ejc.11
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 15:36:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=pqrs.dk; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4wQ3zFfpd7aREXFgNk3LcUxheQc887/bs/gFwojIv5w=;
+        b=bbmP/CH9YWdv5RN9DFGh3+DhWMX5vZKzWLaRzuRD69bBJbMDfp3A5+DuNauUlcKFN2
+         xkDNTW2xf0JiXSzNzquWotsdP8NztbCh2MNuzkvg/ldIla36tA4Fhlk1dicLucSMoggz
+         fhhxLvFurR5XjwRk+ZEYOxN3DdaI1BBOxsJ88=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4wQ3zFfpd7aREXFgNk3LcUxheQc887/bs/gFwojIv5w=;
+        b=5SEwUIx6v6JAQrGxyvy6Ak9p3xO7Nuf7RweC7plAtFVagxlmYVTRfdpwRDLhUU/m2X
+         dv4f/m9oR6rW1Kj0XSTnTvQX5aL440LGeAn9Bql35X6cSSp+c0uTz/+RnzT3O5ZRiOJ5
+         y53FeTJ/JuraXqQ98Kwbv/OdfS8Je7FFySNehkdMxf2nGE/WHfQEEm1ytoKG/SkkNl6B
+         s1ToXMrQ+Q3AP6E00PWOvxNldGbMXx3zx51yOgLoQET3UfIxgUqjj1IemCWz3oD/wH7T
+         vYS8UqvT4jTsjFwgBm6x3XwZfLUUOBTJ5PTgrq1K4gH/ImhWfTAu1U05g9AGrkYJZwfH
+         Zk8g==
+X-Gm-Message-State: AOAM5318xT1XrFMoRe5DkxzQ4vahW3jqeP7IrfvWnO4/hWdHVWK3JJ0F
+        zHFMiPft88EEuNk2vRFGG2JaWw==
+X-Google-Smtp-Source: ABdhPJwvcUtOkBafEEKnF/3EG0RSqIIckpy4W7SlIRZOyBnbssw7to5m/58/k2mkz+ZAdb5WP6KPNQ==
+X-Received: by 2002:a17:907:2d10:b0:6db:e3f7:2cb2 with SMTP id gs16-20020a1709072d1000b006dbe3f72cb2mr6473181ejc.491.1647556563328;
+        Thu, 17 Mar 2022 15:36:03 -0700 (PDT)
+Received: from capella.. (80.71.142.18.ipv4.parknet.dk. [80.71.142.18])
+        by smtp.gmail.com with ESMTPSA id ec21-20020a170906b6d500b006d170a3444csm2893669ejb.164.2022.03.17.15.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Mar 2022 15:36:02 -0700 (PDT)
+From:   =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alvin@pqrs.dk>
+To:     Abel Vesa <abel.vesa@nxp.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 1/2] dt-bindings: imx: add clock bindings for i.MX8MN GPT
+Date:   Thu, 17 Mar 2022 23:35:58 +0100
+Message-Id: <20220317223600.175894-1-alvin@pqrs.dk>
 X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220317223051.1227110-1-chris.packham@alliedtelesis.co.nz>
-References: <20220317223051.1227110-1-chris.packham@alliedtelesis.co.nz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=Cfh2G4jl c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=o8Y5sQTvuykA:10 a=1utJVCOB_o5uIfT7QvUA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Simplify load_attenuators() by making use of enum chips instead of int.
+From: Alvin Šipraga <alsi@bang-olufsen.dk>
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+The i.MX8MN has a General Purpose Timer (GPT) just like the i.MX8MM,
+which already has such bindings. Add the relevant bindings for the Nano
+SoC too.
+
+Signed-off-by: Alvin Šipraga <alsi@bang-olufsen.dk>
 ---
+v1->v2: no changes
+---
+ include/dt-bindings/clock/imx8mn-clock.h | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
-Notes:
-    Changes in v2:
-    - New
-
- drivers/hwmon/adt7475.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/hwmon/adt7475.c b/drivers/hwmon/adt7475.c
-index 6de501de41b2..ebe4a85eb62e 100644
---- a/drivers/hwmon/adt7475.c
-+++ b/drivers/hwmon/adt7475.c
-@@ -1569,7 +1569,7 @@ static int set_property_bit(const struct i2c_client=
- *client, char *property,
- 	return ret;
- }
-=20
--static int load_attenuators(const struct i2c_client *client, int chip,
-+static int load_attenuators(const struct i2c_client *client, enum chips =
-chip,
- 			    struct adt7475_data *data)
- {
- 	int ret;
-@@ -1588,7 +1588,7 @@ static int load_attenuators(const struct i2c_client=
- *client, int chip,
- 						data->config4);
- 		if (ret < 0)
- 			return ret;
--	} else if (chip =3D=3D adt7473 || chip =3D=3D adt7475) {
-+	} else {
- 		set_property_bit(client, "adi,bypass-attenuator-in1",
- 				 &data->config2, 5);
-=20
---=20
+diff --git a/include/dt-bindings/clock/imx8mn-clock.h b/include/dt-bindings/clock/imx8mn-clock.h
+index 01e8bab1d767..07b8a282c268 100644
+--- a/include/dt-bindings/clock/imx8mn-clock.h
++++ b/include/dt-bindings/clock/imx8mn-clock.h
+@@ -243,6 +243,20 @@
+ 
+ #define IMX8MN_CLK_M7_CORE			221
+ 
+-#define IMX8MN_CLK_END				222
++#define IMX8MN_CLK_GPT_3M			222
++#define IMX8MN_CLK_GPT1				223
++#define IMX8MN_CLK_GPT1_ROOT			224
++#define IMX8MN_CLK_GPT2				225
++#define IMX8MN_CLK_GPT2_ROOT			226
++#define IMX8MN_CLK_GPT3				227
++#define IMX8MN_CLK_GPT3_ROOT			228
++#define IMX8MN_CLK_GPT4				229
++#define IMX8MN_CLK_GPT4_ROOT			230
++#define IMX8MN_CLK_GPT5				231
++#define IMX8MN_CLK_GPT5_ROOT			232
++#define IMX8MN_CLK_GPT6				233
++#define IMX8MN_CLK_GPT6_ROOT			234
++
++#define IMX8MN_CLK_END				235
+ 
+ #endif
+-- 
 2.35.1
 
