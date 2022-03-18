@@ -2,235 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B79E4DE247
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:17:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BC49E4DE25F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:25:59 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235542AbiCRUSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 16:18:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
+        id S240602AbiCRU1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 16:27:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235506AbiCRUSU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:18:20 -0400
-Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E02DE2F09EC
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 13:17:00 -0700 (PDT)
-Received: by mail-ot1-x32a.google.com with SMTP id x8-20020a9d6288000000b005b22c373759so6282884otk.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 13:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
-         :subject:to:cc;
-        bh=8tlcYNpepdm22QA3Lct8SGtvDtAuqT6l+yuSa0ZQBdU=;
-        b=kmAE+PWKLmMMOioiuldX7Avv+MTex0WOK+WL61BN1rwSZWKSmDbZ05d79+oV58GQkK
-         sUagG8aQqGWp60xoZZ2FuXeqeDqVRRzoJZJ6jGA2rent4uXBZs4WLVz17kKnSkGF4RIi
-         y4v5PPoVmWKOVs9nGj25JlJHFV5D1Zip3Nd1E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from
-         :user-agent:date:message-id:subject:to:cc;
-        bh=8tlcYNpepdm22QA3Lct8SGtvDtAuqT6l+yuSa0ZQBdU=;
-        b=OV0t4TEWMxghz+OgrDzIi9vG/dBhF7cwJLI6FkvTJODAH9NJtGNa33jb0beO/p72qp
-         iL/jDkq60du8YSXB3S10J1S9MjyYYoNtdL07RJeOEgQq5EU1oJZhXBNf21ofxRFfFQhQ
-         VmjlS7R2CSk3auOQ9KrzsLbGcYgv1VN72upGH6oPhi3yX0EPg3NPfwOCfwnX4HhAglwh
-         ovcspJtVa1kK6/1MqwvLfQkZ4riu8/S+3mIucznzwe0rgvUGasspcPgdM3Ye5IKKJs+J
-         OpXnP+o36JSprQYy5Gt98pAesqMSzPQpvOJQPh5xB0GXsxYo+G/6876eaEntwp8+i8DV
-         nbjg==
-X-Gm-Message-State: AOAM53107YuPKDm647fFsS3CS+AkrhAMHkgT0KwzDsyhRk5WGR8m+30Y
-        jF4e3n2JrPMTy7D4018+jKWOQHJ+1dJaloe/I42NXQ==
-X-Google-Smtp-Source: ABdhPJwijT7fYkKE3KtZ9zZndfySXiygtZ4IoqRyxDGO65XURBz78vQHVuBq4cEGNrcjzKsfJyluEZ7Y5EkR7kYPOF0=
-X-Received: by 2002:a9d:b85:0:b0:5cb:3eeb:d188 with SMTP id
- 5-20020a9d0b85000000b005cb3eebd188mr2546954oth.77.1647634619985; Fri, 18 Mar
- 2022 13:16:59 -0700 (PDT)
-Received: from 753933720722 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 18 Mar 2022 13:16:59 -0700
+        with ESMTP id S235038AbiCRU1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:27:14 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A13E28AC5C;
+        Fri, 18 Mar 2022 13:25:54 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 4249822239;
+        Fri, 18 Mar 2022 21:25:52 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647635152;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=CjYRXqLQZoAevpessURi47tpYDs5HOjG6CCvnj8Lq/A=;
+        b=UGDvv1muvDVuBFBFxe+oKlWyNQbWK8xcz1dbOZi7U6a0lqz+5N7oR4WgV5CO9SK6QTXFee
+        jNnl7id9IaKKts1wqH7fBGYCytK4PBXmg3UKJ2bwRnRvyASU1lc6rQt86cC0FZPpbx0gux
+        eY6P8V1Q77ZTIPx136VDfFr3Z99pomo=
+From:   Michael Walle <michael@walle.cc>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/8] pinctrl: ocelot: convert to YAML format
+Date:   Fri, 18 Mar 2022 21:25:39 +0100
+Message-Id: <20220318202547.1650687-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
-References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
- <1647452154-16361-7-git-send-email-quic_sbillaka@quicinc.com>
- <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com> <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.10
-Date:   Fri, 18 Mar 2022 13:16:59 -0700
-Message-ID: <CAE-0n53U=bqPTGtPx2Ho5axtO6EL6WtOtmFisxSufC6OZERV1Q@mail.gmail.com>
-Subject: Re: [PATCH v5 6/9] drm/msm/dp: wait for hpd high before any sink interaction
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Doug Anderson (2022-03-18 09:24:17)
-> Hi,
->
-> On Thu, Mar 17, 2022 at 6:19 PM Stephen Boyd <swboyd@chromium.org> wrote:
-> >
-> > Quoting Sankeerth Billakanti (2022-03-16 10:35:51)
-> > >         The source device should ensure the sink is ready before
-> > > proceeding to read the sink capability or performing any aux transactions.
-> > > The sink will indicate its readiness by asserting the HPD line.
-> > >
-> > >         The eDP sink requires power from the source and its HPD line will
-> > > be asserted only after the panel is powered on. The panel power will be
-> > > enabled from the panel-edp driver.
-> > >
-> > >         The controller driver needs to wait for the hpd line to be asserted
-> > > by the sink.
-> > >
-> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> > > ---
-> > >  drivers/gpu/drm/msm/dp/dp_aux.c     |  6 ++++++
-> > >  drivers/gpu/drm/msm/dp/dp_catalog.c | 23 +++++++++++++++++++++++
-> > >  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
-> > >  drivers/gpu/drm/msm/dp/dp_reg.h     |  7 ++++++-
-> > >  4 files changed, 36 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
-> > > index 6d36f63..2ddc303 100644
-> > > --- a/drivers/gpu/drm/msm/dp/dp_aux.c
-> > > +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
-> > > @@ -337,6 +337,12 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
-> > >                 goto exit;
-> > >         }
-> > >
-> > > +       ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
-> >
-> > Why are we making aux transactions when hpd isn't asserted? Can we only
-> > register the aux device once we know that state is "connected"? I'm
-> > concerned that we're going to be possibly polling the connected bit up
-> > to some amount of time (0x0003FFFF usecs?) for each aux transfer when
-> > that doesn't make any sense to keep checking. We should be able to check
-> > it once, register aux, and then when disconnect happens we can
-> > unregister aux.
->
-> This is for eDP and, unless someone wants to redesign it again, is
-> just how it works.
->
-> Specifically:
->
-> 1. On eDP you _always_ report "connected". This is because when an eDP
-> panel is turned off (but still there) you actually have no way to
-> detect it--you just have to assume it's there. And thus you _always_
-> register the AUX bus.
+Convert the pinctrl ocelot binding to the new YAML format. Pin
+configuration nodes should have a "-pins" postfix. But unfortunately,
+there are many device trees which don't follow this. First rename
+all these nodes and then convert the binding to the YAML format so
+that the validation will pass.
 
-Is reporting "connected" the same as HPD being asserted in the case of
-eDP? I can understand wanting to report "connected", because as you say,
-the panel is always connected; there aren't dongles or cables involved.
-But the state of the HPD pin is changing at runtime, and eDP supports
-irq_hpd pulses from what I recall, for "link management".
+Because there were no maintainers before and there is none in
+MAINTAINERS I added Alexandre Belloni and Lars Povlsen, juding by
+the commits - to the binding as maintainers. Please tell me if you
+disagree.
 
-I think this device requires the status bit in the hardware to say it is
-"connected" before aux transactions are guaranteed to work. Presumably
-the HPD pin could go be asserted at the SoC's pad and there could be
-some time still where the hardware status bit hasn't flipped over to
-"connected" yet and thus aux transactions are going to fail. Can qcom
-confirm this?
+changes since v1:
+ - drop "Device Tree Binding" from the title of the binding
+ - describe reg properties and provide minItems and set it differently
+   depending on the compatible string
+ - skip interrupt description
+ - move required section after patternProperties
 
->
-> 2. When we are asked to read the EDID that happens _before_ the normal
-> prepare/enable steps. The way that this should work is that the
-> request travels down to the panel. The panel turns itself on (waiting
-> for any hardcoded delays it knows about) and then initiates an AUX
-> transaction. The AUX transaction is in charge of waiting for HPD.
+Michael Walle (8):
+  MIPS: mscc: jaguar2: fix pinctrl nodes
+  MIPS: mscc: ocelot: fix MIIM1 pinctrl node name
+  MIPS: mscc: ocelot: fix PHY interrupt pinctrl node name
+  MIPS: mscc: ocelot: fix load/save GPIO pinctrl name
+  MIPS: mscc: serval: fix pinctrl node names
+  arm64: dts: sparx5: fix pinctrl node names
+  ARM: dts: lan9662-pcb8291: fix pinctrl node name
+  dt-bindings: pinctrl: convert ocelot-pinctrl to YAML format
 
-Are we talking about generic_edp_panel_probe()? Why doesn't that poll
-hpd gpio like panel_edp_prepare_once() does? Are there any links to
-discussions about this I can read? Pushing hpd state checking into aux
-transactions looks like the wrong direction. Also, as I said up above I
-am concerned that even checking the GPIO won't work and we need some way
-to ask the bridge if HPD is asserted or not and then fallback to the
-GPIO method if the display phy/controller doesn't have support to check
-HPD internally. Something on top of DRM_BRIDGE_OP_HPD?
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 ++++++++++++++++++
+ arch/arm/boot/dts/lan966x-pcb8291.dts         |   2 +-
+ .../dts/microchip/sparx5_pcb134_board.dtsi    |  26 ++---
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |   6 +-
+ arch/mips/boot/dts/mscc/ocelot.dtsi           |   4 +-
+ arch/mips/boot/dts/mscc/ocelot_pcb120.dts     |   6 +-
+ arch/mips/boot/dts/mscc/serval_common.dtsi    |  14 +--
+ 11 files changed, 152 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
 
->
->
-> For the DP case this should not cause any significant overhead, right?
-> HPD should always be asserted so this is basically just one extra IO
-> read confirming that HPD is asserted which should be almost nothing...
-> You're just about to do a whole bunch of IO reads/writes in order to
-> program the AUX transaction anyway.
+-- 
+2.30.2
 
-In the DP case the dongle/cable can be disconnected in the middle of aux
-transactions. If that happens we could be waiting a while in this
-transfer function to timeout looking for the status bit. The driver
-already gets an "unplug" irq when the cable is disconnected though so it
-would be better to figure out a way to stop the aux transactions quickly
-when that happens without having to read the hardware and poll the bit
-that we already know is doomed to timeout. I think apple dongles throw
-this logic for a loop though because the HDMI cable can be disconnected
-from the dongle and then we don't see an "unplug" irq, just the number
-of sinks becomes 0. Maybe there's an irq_hpd event, not sure.
-
->
->
-> > > +       if (ret) {
-> > > +               DRM_DEBUG_DP("DP sink not ready for aux transactions\n");
-> > > +               goto exit;
-> > > +       }
-> > > +
-> > >         dp_aux_update_offset_and_segment(aux, msg);
-> > >         dp_aux_transfer_helper(aux, msg, true);
-> > >
-> > > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > > index fac815f..2c3b0f7 100644
-> > > --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > > @@ -242,6 +242,29 @@ void dp_catalog_aux_update_cfg(struct dp_catalog *dp_catalog)
-> > >         phy_calibrate(phy);
-> > >  }
-> > >
-> > > +int dp_catalog_aux_wait_for_hpd_connect_state(struct dp_catalog *dp_catalog)
-> > > +{
-> > > +       u32 state, hpd_en, timeout;
-> > > +       struct dp_catalog_private *catalog = container_of(dp_catalog,
-> > > +                               struct dp_catalog_private, dp_catalog);
-> > > +
-> > > +       hpd_en = dp_read_aux(catalog, REG_DP_DP_HPD_CTRL) &
-> > > +                                       DP_DP_HPD_CTRL_HPD_EN;
-> >
-> > Use two lines
-> >
-> >         hpd_en = dp_read_aux();
-> >         hpd_en &= DP_DP_HPD_CTRL_HPD_EN;
-> >
-> > > +
-> > > +       /* no-hpd case */
-> > > +       if (!hpd_en)
-> > > +               return 0;
->
-> I guess reading from hardware is fine, but I would have expected the
-> driver to simply know whether HPD is used or not. Don't need to read
-> it from hardware, do we? It's not like it's changing from minute to
-> minute--this is something known at probe time.
-
-Are you saying that HPD is always asserted? That doesn't sound right.
-My understanding is that HPD will be asserted after the panel is powered
-up. Before that HPD is deasserted. Similarly, when we power down the
-panel, HPD will be deasserted. I guess DRM wants to assume that an eDP
-panel is always connected? That sounds like it might be OK as long as
-userspace doesn't use "connected" to know that it's OK to do things like
-read/write aux or push pixels to the panel when HPD is deasserted.
