@@ -2,195 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 011E84DE230
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:13:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B79E4DE247
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:17:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240532AbiCRUO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 16:14:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39198 "EHLO
+        id S235542AbiCRUSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 16:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239948AbiCRUO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:14:58 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE1DE19C5BF;
-        Fri, 18 Mar 2022 13:13:37 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 29670223F0;
-        Fri, 18 Mar 2022 21:13:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647634416;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/DLo4n9LcEDq3m+ys72xRNV4+0sMmookIoTiaSxWb4Y=;
-        b=HzaHDuVAE8+iwwhaowp63U1TPFyre7RwmpUi4gQjsQp30EUulJxZ0AooOJhxb2BVQKzPYR
-        rs6vJYVvu1aZWwJgm06g8yTg21Efc+zq1kNhnuO3/PvHfc7C5JUkNsbi1uYS/P4jwc5loz
-        RE2dUUCqtB2dXk0DUW/h/QqXDa0dPJQ=
-From:   Michael Walle <michael@walle.cc>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Horatiu Vultur <horatiu.vultur@microchip.com>,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH net-next v3 3/3] net: mdio: mscc-miim: add lan966x internal phy reset support
-Date:   Fri, 18 Mar 2022 21:13:24 +0100
-Message-Id: <20220318201324.1647416-4-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220318201324.1647416-1-michael@walle.cc>
-References: <20220318201324.1647416-1-michael@walle.cc>
+        with ESMTP id S235506AbiCRUSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:18:20 -0400
+Received: from mail-ot1-x32a.google.com (mail-ot1-x32a.google.com [IPv6:2607:f8b0:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E02DE2F09EC
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 13:17:00 -0700 (PDT)
+Received: by mail-ot1-x32a.google.com with SMTP id x8-20020a9d6288000000b005b22c373759so6282884otk.8
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 13:17:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:in-reply-to:references:from:user-agent:date:message-id
+         :subject:to:cc;
+        bh=8tlcYNpepdm22QA3Lct8SGtvDtAuqT6l+yuSa0ZQBdU=;
+        b=kmAE+PWKLmMMOioiuldX7Avv+MTex0WOK+WL61BN1rwSZWKSmDbZ05d79+oV58GQkK
+         sUagG8aQqGWp60xoZZ2FuXeqeDqVRRzoJZJ6jGA2rent4uXBZs4WLVz17kKnSkGF4RIi
+         y4v5PPoVmWKOVs9nGj25JlJHFV5D1Zip3Nd1E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from
+         :user-agent:date:message-id:subject:to:cc;
+        bh=8tlcYNpepdm22QA3Lct8SGtvDtAuqT6l+yuSa0ZQBdU=;
+        b=OV0t4TEWMxghz+OgrDzIi9vG/dBhF7cwJLI6FkvTJODAH9NJtGNa33jb0beO/p72qp
+         iL/jDkq60du8YSXB3S10J1S9MjyYYoNtdL07RJeOEgQq5EU1oJZhXBNf21ofxRFfFQhQ
+         VmjlS7R2CSk3auOQ9KrzsLbGcYgv1VN72upGH6oPhi3yX0EPg3NPfwOCfwnX4HhAglwh
+         ovcspJtVa1kK6/1MqwvLfQkZ4riu8/S+3mIucznzwe0rgvUGasspcPgdM3Ye5IKKJs+J
+         OpXnP+o36JSprQYy5Gt98pAesqMSzPQpvOJQPh5xB0GXsxYo+G/6876eaEntwp8+i8DV
+         nbjg==
+X-Gm-Message-State: AOAM53107YuPKDm647fFsS3CS+AkrhAMHkgT0KwzDsyhRk5WGR8m+30Y
+        jF4e3n2JrPMTy7D4018+jKWOQHJ+1dJaloe/I42NXQ==
+X-Google-Smtp-Source: ABdhPJwijT7fYkKE3KtZ9zZndfySXiygtZ4IoqRyxDGO65XURBz78vQHVuBq4cEGNrcjzKsfJyluEZ7Y5EkR7kYPOF0=
+X-Received: by 2002:a9d:b85:0:b0:5cb:3eeb:d188 with SMTP id
+ 5-20020a9d0b85000000b005cb3eebd188mr2546954oth.77.1647634619985; Fri, 18 Mar
+ 2022 13:16:59 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 18 Mar 2022 13:16:59 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
+References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1647452154-16361-7-git-send-email-quic_sbillaka@quicinc.com>
+ <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com> <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date:   Fri, 18 Mar 2022 13:16:59 -0700
+Message-ID: <CAE-0n53U=bqPTGtPx2Ho5axtO6EL6WtOtmFisxSufC6OZERV1Q@mail.gmail.com>
+Subject: Re: [PATCH v5 6/9] drm/msm/dp: wait for hpd high before any sink interaction
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        devicetree@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LAN966x has two internal PHYs which are in reset by default. The
-driver already supported the internal PHYs of the SparX-5. Now add
-support for the LAN966x, too. Add a new compatible to distinguish them.
+Quoting Doug Anderson (2022-03-18 09:24:17)
+> Hi,
+>
+> On Thu, Mar 17, 2022 at 6:19 PM Stephen Boyd <swboyd@chromium.org> wrote:
+> >
+> > Quoting Sankeerth Billakanti (2022-03-16 10:35:51)
+> > >         The source device should ensure the sink is ready before
+> > > proceeding to read the sink capability or performing any aux transactions.
+> > > The sink will indicate its readiness by asserting the HPD line.
+> > >
+> > >         The eDP sink requires power from the source and its HPD line will
+> > > be asserted only after the panel is powered on. The panel power will be
+> > > enabled from the panel-edp driver.
+> > >
+> > >         The controller driver needs to wait for the hpd line to be asserted
+> > > by the sink.
+> > >
+> > > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> > > ---
+> > >  drivers/gpu/drm/msm/dp/dp_aux.c     |  6 ++++++
+> > >  drivers/gpu/drm/msm/dp/dp_catalog.c | 23 +++++++++++++++++++++++
+> > >  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
+> > >  drivers/gpu/drm/msm/dp/dp_reg.h     |  7 ++++++-
+> > >  4 files changed, 36 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
+> > > index 6d36f63..2ddc303 100644
+> > > --- a/drivers/gpu/drm/msm/dp/dp_aux.c
+> > > +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
+> > > @@ -337,6 +337,12 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
+> > >                 goto exit;
+> > >         }
+> > >
+> > > +       ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
+> >
+> > Why are we making aux transactions when hpd isn't asserted? Can we only
+> > register the aux device once we know that state is "connected"? I'm
+> > concerned that we're going to be possibly polling the connected bit up
+> > to some amount of time (0x0003FFFF usecs?) for each aux transfer when
+> > that doesn't make any sense to keep checking. We should be able to check
+> > it once, register aux, and then when disconnect happens we can
+> > unregister aux.
+>
+> This is for eDP and, unless someone wants to redesign it again, is
+> just how it works.
+>
+> Specifically:
+>
+> 1. On eDP you _always_ report "connected". This is because when an eDP
+> panel is turned off (but still there) you actually have no way to
+> detect it--you just have to assume it's there. And thus you _always_
+> register the AUX bus.
 
-The LAN966x has additional control bits in this register, thus convert
-the regmap_write() to regmap_update_bits() to leave the remaining bits
-untouched. This doesn't change anything for the SparX-5 SoC, because
-there, the register consists only of reset bits.
+Is reporting "connected" the same as HPD being asserted in the case of
+eDP? I can understand wanting to report "connected", because as you say,
+the panel is always connected; there aren't dongles or cables involved.
+But the state of the HPD pin is changing at runtime, and eDP supports
+irq_hpd pulses from what I recall, for "link management".
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- drivers/net/mdio/mdio-mscc-miim.c | 67 ++++++++++++++++++++++---------
- 1 file changed, 49 insertions(+), 18 deletions(-)
+I think this device requires the status bit in the hardware to say it is
+"connected" before aux transactions are guaranteed to work. Presumably
+the HPD pin could go be asserted at the SoC's pad and there could be
+some time still where the hardware status bit hasn't flipped over to
+"connected" yet and thus aux transactions are going to fail. Can qcom
+confirm this?
 
-diff --git a/drivers/net/mdio/mdio-mscc-miim.c b/drivers/net/mdio/mdio-mscc-miim.c
-index 2f77bf75288d..c483ba67c21f 100644
---- a/drivers/net/mdio/mdio-mscc-miim.c
-+++ b/drivers/net/mdio/mdio-mscc-miim.c
-@@ -15,6 +15,7 @@
- #include <linux/of_mdio.h>
- #include <linux/phy.h>
- #include <linux/platform_device.h>
-+#include <linux/property.h>
- #include <linux/regmap.h>
- 
- #define MSCC_MIIM_REG_STATUS		0x0
-@@ -36,11 +37,19 @@
- #define		PHY_CFG_PHY_RESET	(BIT(5) | BIT(6) | BIT(7) | BIT(8))
- #define MSCC_PHY_REG_PHY_STATUS	0x4
- 
-+#define LAN966X_CUPHY_COMMON_CFG	0x0
-+#define		CUPHY_COMMON_CFG_RESET_N	BIT(0)
-+
-+struct mscc_miim_info {
-+	unsigned int phy_reset_offset;
-+	unsigned int phy_reset_bits;
-+};
-+
- struct mscc_miim_dev {
- 	struct regmap *regs;
- 	int mii_status_offset;
- 	struct regmap *phy_regs;
--	int phy_reset_offset;
-+	const struct mscc_miim_info *info;
- };
- 
- /* When high resolution timers aren't built-in: we can't use usleep_range() as
-@@ -157,27 +166,29 @@ static int mscc_miim_write(struct mii_bus *bus, int mii_id,
- static int mscc_miim_reset(struct mii_bus *bus)
- {
- 	struct mscc_miim_dev *miim = bus->priv;
--	int offset = miim->phy_reset_offset;
--	int reset_bits = PHY_CFG_PHY_ENA | PHY_CFG_PHY_COMMON_RESET |
--			 PHY_CFG_PHY_RESET;
-+	unsigned int offset, bits;
- 	int ret;
- 
--	if (miim->phy_regs) {
--		ret = regmap_write(miim->phy_regs, offset, 0);
--		if (ret < 0) {
--			WARN_ONCE(1, "mscc reset set error %d\n", ret);
--			return ret;
--		}
-+	if (!miim->phy_regs)
-+		return 0;
- 
--		ret = regmap_write(miim->phy_regs, offset, reset_bits);
--		if (ret < 0) {
--			WARN_ONCE(1, "mscc reset clear error %d\n", ret);
--			return ret;
--		}
-+	offset = miim->info->phy_reset_offset;
-+	bits = miim->info->phy_reset_bits;
-+
-+	ret = regmap_update_bits(miim->phy_regs, offset, bits, 0);
-+	if (ret < 0) {
-+		WARN_ONCE(1, "mscc reset set error %d\n", ret);
-+		return ret;
-+	}
- 
--		mdelay(500);
-+	ret = regmap_update_bits(miim->phy_regs, offset, bits, bits);
-+	if (ret < 0) {
-+		WARN_ONCE(1, "mscc reset clear error %d\n", ret);
-+		return ret;
- 	}
- 
-+	mdelay(500);
-+
- 	return 0;
- }
- 
-@@ -272,7 +283,10 @@ static int mscc_miim_probe(struct platform_device *pdev)
- 
- 	miim = bus->priv;
- 	miim->phy_regs = phy_regmap;
--	miim->phy_reset_offset = MSCC_PHY_REG_PHY_CFG;
-+
-+	miim->info = device_get_match_data(&pdev->dev);
-+	if (!miim->info)
-+		return -EINVAL;
- 
- 	ret = of_mdiobus_register(bus, pdev->dev.of_node);
- 	if (ret < 0) {
-@@ -294,8 +308,25 @@ static int mscc_miim_remove(struct platform_device *pdev)
- 	return 0;
- }
- 
-+static const struct mscc_miim_info mscc_ocelot_miim_info = {
-+	.phy_reset_offset = MSCC_PHY_REG_PHY_CFG,
-+	.phy_reset_bits = PHY_CFG_PHY_ENA | PHY_CFG_PHY_COMMON_RESET |
-+			  PHY_CFG_PHY_RESET,
-+};
-+
-+static const struct mscc_miim_info microchip_lan966x_miim_info = {
-+	.phy_reset_offset = LAN966X_CUPHY_COMMON_CFG,
-+	.phy_reset_bits = CUPHY_COMMON_CFG_RESET_N,
-+};
-+
- static const struct of_device_id mscc_miim_match[] = {
--	{ .compatible = "mscc,ocelot-miim" },
-+	{
-+		.compatible = "mscc,ocelot-miim",
-+		.data = &mscc_ocelot_miim_info
-+	}, {
-+		.compatible = "microchip,lan966x-miim",
-+		.data = &microchip_lan966x_miim_info
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, mscc_miim_match);
--- 
-2.30.2
+>
+> 2. When we are asked to read the EDID that happens _before_ the normal
+> prepare/enable steps. The way that this should work is that the
+> request travels down to the panel. The panel turns itself on (waiting
+> for any hardcoded delays it knows about) and then initiates an AUX
+> transaction. The AUX transaction is in charge of waiting for HPD.
 
+Are we talking about generic_edp_panel_probe()? Why doesn't that poll
+hpd gpio like panel_edp_prepare_once() does? Are there any links to
+discussions about this I can read? Pushing hpd state checking into aux
+transactions looks like the wrong direction. Also, as I said up above I
+am concerned that even checking the GPIO won't work and we need some way
+to ask the bridge if HPD is asserted or not and then fallback to the
+GPIO method if the display phy/controller doesn't have support to check
+HPD internally. Something on top of DRM_BRIDGE_OP_HPD?
+
+>
+>
+> For the DP case this should not cause any significant overhead, right?
+> HPD should always be asserted so this is basically just one extra IO
+> read confirming that HPD is asserted which should be almost nothing...
+> You're just about to do a whole bunch of IO reads/writes in order to
+> program the AUX transaction anyway.
+
+In the DP case the dongle/cable can be disconnected in the middle of aux
+transactions. If that happens we could be waiting a while in this
+transfer function to timeout looking for the status bit. The driver
+already gets an "unplug" irq when the cable is disconnected though so it
+would be better to figure out a way to stop the aux transactions quickly
+when that happens without having to read the hardware and poll the bit
+that we already know is doomed to timeout. I think apple dongles throw
+this logic for a loop though because the HDMI cable can be disconnected
+from the dongle and then we don't see an "unplug" irq, just the number
+of sinks becomes 0. Maybe there's an irq_hpd event, not sure.
+
+>
+>
+> > > +       if (ret) {
+> > > +               DRM_DEBUG_DP("DP sink not ready for aux transactions\n");
+> > > +               goto exit;
+> > > +       }
+> > > +
+> > >         dp_aux_update_offset_and_segment(aux, msg);
+> > >         dp_aux_transfer_helper(aux, msg, true);
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > > index fac815f..2c3b0f7 100644
+> > > --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > > @@ -242,6 +242,29 @@ void dp_catalog_aux_update_cfg(struct dp_catalog *dp_catalog)
+> > >         phy_calibrate(phy);
+> > >  }
+> > >
+> > > +int dp_catalog_aux_wait_for_hpd_connect_state(struct dp_catalog *dp_catalog)
+> > > +{
+> > > +       u32 state, hpd_en, timeout;
+> > > +       struct dp_catalog_private *catalog = container_of(dp_catalog,
+> > > +                               struct dp_catalog_private, dp_catalog);
+> > > +
+> > > +       hpd_en = dp_read_aux(catalog, REG_DP_DP_HPD_CTRL) &
+> > > +                                       DP_DP_HPD_CTRL_HPD_EN;
+> >
+> > Use two lines
+> >
+> >         hpd_en = dp_read_aux();
+> >         hpd_en &= DP_DP_HPD_CTRL_HPD_EN;
+> >
+> > > +
+> > > +       /* no-hpd case */
+> > > +       if (!hpd_en)
+> > > +               return 0;
+>
+> I guess reading from hardware is fine, but I would have expected the
+> driver to simply know whether HPD is used or not. Don't need to read
+> it from hardware, do we? It's not like it's changing from minute to
+> minute--this is something known at probe time.
+
+Are you saying that HPD is always asserted? That doesn't sound right.
+My understanding is that HPD will be asserted after the panel is powered
+up. Before that HPD is deasserted. Similarly, when we power down the
+panel, HPD will be deasserted. I guess DRM wants to assume that an eDP
+panel is always connected? That sounds like it might be OK as long as
+userspace doesn't use "connected" to know that it's OK to do things like
+read/write aux or push pixels to the panel when HPD is deasserted.
