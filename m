@@ -2,149 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 547AC4DD8C4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 12:12:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A1CE4DD8C8
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 12:14:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234829AbiCRLNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 07:13:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55552 "EHLO
+        id S235678AbiCRLP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 07:15:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32964 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235663AbiCRLNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 07:13:25 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7955204A9C;
-        Fri, 18 Mar 2022 04:12:05 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: kholk11)
-        with ESMTPSA id EC5731F45E88
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1647601924;
-        bh=AHxx3HJHAKwRLhKmfPdNJCDcWqUZd1j6fsxx13RQRng=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=HEExNe5UWQ76Ygt60cSdS31pkD7ajX866F5AmAGrVnXXYwyjwxbMfT44MRwUDQ1Bh
-         xbVwZaokRZeURHfPgYLH6bIrSRTNw6NSq1JOLFsk5osbSZ1bucY39Fo4fp7jzM9WPx
-         vRswXbqTWG16/gjhA+6B4J5tQih8IRBlY6Aw4PhHUHB0OlfXhihT8GrZpbuAahao9E
-         2Naiv2CG+nxtokyODO4iMenBTdtpyciTJE40g9VJk3QxiaVdpOf74ViuS0xyKY0SvL
-         Kn4SpwR8QQhZhnUsXBsB0rjg00ahdRJqOTpuKOdxfjsOdV4eqpKi+HYBwVS2nXrlz9
-         RQfP3nB6NEi2w==
-Message-ID: <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
-Date:   Fri, 18 Mar 2022 12:12:01 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.1
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: Add YAML schema for
- PCIe PHY
-Content-Language: en-US
-To:     Jianjun Wang <jianjun.wang@mediatek.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        with ESMTP id S235663AbiCRLPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 07:15:55 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 836B313CA08;
+        Fri, 18 Mar 2022 04:14:37 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22I6jtN9030764;
+        Fri, 18 Mar 2022 06:13:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=25OExqpRdtn99nR8I4gVZwjSpyan9DNBBpY46fEeqiQ=;
+ b=S+2bIs5FqkOiES9fM2wNuUR2Dwg5SwZFG/0fpdzjpcZZMAV7vSh8U1YC5J2jm5zduRKu
+ nytU/4O2yGEZP/HU2CQSV5HHszwdYVEPPvAKR6w/kUDR4Kp/OaQSk2KP8V5jgHtZ7unr
+ eAoLxNMWXfvUvpUrrPNCym5AGJ2zuOc04tYVDrIus/+fN+Myae96RfYQYGr6XU4N3DoF
+ lfteGLvaXDDjBlIXGH4jePOsYOM3IDs83CHLTHAvaZW2S/PF15bmkwXW05UbIgkfSkem
+ V7Gxdj2t9f7eFbMXOwhMoXG2Rxs8Pa9bpaPGBdhErkz5Itv1hJo7UuptFbS1OG1t1OK9 aA== 
+Received: from ediex01.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3et642e4kg-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 18 Mar 2022 06:13:45 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 18 Mar
+ 2022 11:13:43 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Fri, 18 Mar 2022 11:13:43 +0000
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 628E1B16;
+        Fri, 18 Mar 2022 11:13:42 +0000 (UTC)
+Date:   Fri, 18 Mar 2022 11:13:42 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lucas Tanure <tanureal@opensource.cirrus.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
-        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
-        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
-References: <20220318095417.2016-1-jianjun.wang@mediatek.com>
- <20220318095417.2016-2-jianjun.wang@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20220318095417.2016-2-jianjun.wang@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
-        autolearn=ham autolearn_force=no version=3.4.6
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, <alsa-devel@alsa-project.org>,
+        <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        David Rhodes <drhodes@opensource.cirrus.com>
+Subject: Re: [PATCH v4 15/16] ASoC: dt-bindings: cs35l41: Document CS35l41
+ External Boost
+Message-ID: <20220318111342.GM38351@ediswmail.ad.cirrus.com>
+References: <20220317093120.168534-1-tanureal@opensource.cirrus.com>
+ <20220317093120.168534-16-tanureal@opensource.cirrus.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20220317093120.168534-16-tanureal@opensource.cirrus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-GUID: LEjEClKsQaTzOVIhsvz5BHsnT2E_ifs8
+X-Proofpoint-ORIG-GUID: LEjEClKsQaTzOVIhsvz5BHsnT2E_ifs8
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 18/03/22 10:54, Jianjun Wang ha scritto:
-> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
+On Thu, Mar 17, 2022 at 09:31:19AM +0000, Lucas Tanure wrote:
+> From: David Rhodes <drhodes@opensource.cirrus.com>
 > 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Document internal and external boost feature for ASoC CS35L41.
+> For internal boost the following properties are required:
+> - cirrus,boost-peak-milliamp
+> - cirrus,boost-ind-nanohenry
+> - cirrus,boost-cap-microfarad
+> 
+> For external boost, the GPIO1 must be configured as output,
+> so the following properties are required:
+> - cirrus,gpio1-src-select = <1>
+> - cirrus,gpio1-output-enable
+> 
+> Signed-off-by: David Rhodes <drhodes@opensource.cirrus.com>
+> Signed-off-by: Lucas Tanure <tanureal@opensource.cirrus.com>
 > ---
->   .../bindings/phy/mediatek,pcie-phy.yaml       | 75 +++++++++++++++++++
->   1 file changed, 75 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> new file mode 100644
-> index 000000000000..868bf976568b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> @@ -0,0 +1,75 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek PCIe PHY
-> +
-> +maintainers:
-> +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> +
-> +description: |
-> +  The PCIe PHY supports physical layer functionality for PCIe Gen3 port.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8195-pcie-phy
 
-Since I don't expect this driver to be only for MT8195, but to be extended to
-support some more future MediaTek SoCs and, depending on the number of differences
-in the possible future Gen4 PHYs, even different gen's, I propose to add a generic
-compatible as const.
+Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 
-So you'll have something like:
-
-- enum:
-     - mediatek,mt8195-pcie-phy
-- const: mediatek,pcie-gen3-phy
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-
-..snip..
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    phy@11e80000 {
-> +        compatible = "mediatek,mt8195-pcie-phy";
-
-... which would reflect here as
-
-compatible = "mediatek,mt8195-pcie-phy", "mediatek,pcie-gen3-phy"
-
-> +        #phy-cells = <0>;
-> +        reg = <0x11e80000 0x10000>;
-> +        reg-names = "sif";
-> +        nvmem-cells = <&pciephy_glb_intr>,
-> +                      <&pciephy_tx_ln0_pmos>,
-> +                      <&pciephy_tx_ln0_nmos>,
-> +                      <&pciephy_rx_ln0>,
-> +                      <&pciephy_tx_ln1_pmos>,
-> +                      <&pciephy_tx_ln1_nmos>,
-> +                      <&pciephy_rx_ln1>;
-> +        nvmem-cell-names = "glb_intr", "tx_ln0_pmos",
-> +                           "tx_ln0_nmos", "rx_ln0",
-> +                           "tx_ln1_pmos", "tx_ln1_nmos",
-> +                           "rx_ln1";
-> +        power-domains = <&spm 2>;
-> +    };
-
-
-Regards,
-Angelo
+Thanks,
+Charles
