@@ -2,83 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA894DD6C6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B49414DD6CA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:04:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234171AbiCRJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 05:04:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
+        id S234183AbiCRJFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 05:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233059AbiCRJEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:04:55 -0400
-Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D0F165BA7
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:03:36 -0700 (PDT)
-Received: by mail-pl1-x643.google.com with SMTP id h5so6511320plf.7
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:03:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=odQm7JC7x6Af6z1xpDrwW1/gihmZD1Kc4UPnG+M8gbk=;
-        b=Eadxx9IjG5BtCfRNZOsVfpiUvgX+GSL8Aib5ZyUV9lgIHPkzS++xIEPd8SQvD7dr4O
-         lRMCKC3+HcqKnSO+owRwtnjwu+Szmu/11TRJ3PrQzIq5zE1TNLmIreTHFWMS5JFJw8+O
-         paZrWzVmW1F4FOVuOGfDieu2E/8E8KMDToCKA=
+        with ESMTP id S232797AbiCRJFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:05:36 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8C5F917F3D1
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:04:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1647594257;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2CCWw6tr10nuZiS724je/fzeaONphOekjWae3Q49P/M=;
+        b=Ya1rFDZtGeJc6w6Nd/Xy8dX8x0yEH3UsZhsjeu6UEhf72DKQHdOWfBw7II6x74OH8YXM/o
+        +lQ6xKZyiExFea/63QVfeB1etVpU6EsWnjHCVbb17yeaXmoSEGDWzCos4gQFydnfWMCWmQ
+        vQqmCeLcBw7RkYNCJUzWu5pjn2qilA8=
+Received: from mail-ed1-f71.google.com (mail-ed1-f71.google.com
+ [209.85.208.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-133--gzgT1haM9udA_Ip_7M3ig-1; Fri, 18 Mar 2022 05:04:16 -0400
+X-MC-Unique: -gzgT1haM9udA_Ip_7M3ig-1
+Received: by mail-ed1-f71.google.com with SMTP id w8-20020a50d788000000b00418e6810364so4500726edi.13
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:04:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=odQm7JC7x6Af6z1xpDrwW1/gihmZD1Kc4UPnG+M8gbk=;
-        b=KR2gW7kgEuTfukV9tE6F2Nfi1Db8g/hhsd61ITxulheSr9f4LK0iMQr+t3674b+apD
-         2bPkzoen+bQ23ynETtHlXDDjFnkuEbDmfHmCyD3LmoJQN+x1dTWUCyaEghigS3qL5u1W
-         dN5+EAC7xsBEcfCJ503LG8gK2B39n7e9W56+e5G6xkggW2tSwvCDqHzUvtCECYA/rglh
-         fWKogrKJHYwAba5D7iwN7pU3zR7SeAI9OJ3B7A9ZVGbgXqmboqrGIH2E0xo3H0aYWSHU
-         5++ZRyFfvZ4W58BGHOxPMUfYNSKp5Efy7awUZFOZG17hLG8kGO6KtVst2CmXp8obFaZM
-         JPBA==
-X-Gm-Message-State: AOAM530+YAsvV7mK570gxi0JYMJFeRxUCThDyywqr0CGNSwKsVs9fi6e
-        kght3c+a88zZhnN+xgqdy6uuyiaXCTzrvSi5Gp8EFg==
-X-Google-Smtp-Source: ABdhPJypgGRBlo6a3uR28YkQzfvVWixDNkdtCp94bBE7F/dwhU59fOqpvNDP+GJghMH+n/vIuAJsfN6r7kejo1jOdfM=
-X-Received: by 2002:a17:90b:4c08:b0:1c6:40e4:776c with SMTP id
- na8-20020a17090b4c0800b001c640e4776cmr9989598pjb.237.1647594215955; Fri, 18
- Mar 2022 02:03:35 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=2CCWw6tr10nuZiS724je/fzeaONphOekjWae3Q49P/M=;
+        b=zwqk7+ymonvgr8xwpDXB5GXfJ1yYCBmtKfRtsAAeU4oACTOkXg4jm5zsGUx+0Di2EU
+         HOLJHjyaiVvPNem4YPAc+/CxfU/5hXeqO9nSa6Kc3WDRFenCogmWHLPzJGvZdxFgWDPv
+         GmpwBndOKMZrgHfVQuqpC5Rr2wtokyXSOxmuUGzpXqEJ+zfPEMDKrrqhmhsuCXLK5uF4
+         Zc3oysv8VRLZj5wFK+11Ou8Jf48k9wMsox8i5BI9X+x0w7db6vGLjnRJFc14Giw62PdX
+         NafFBJBteiQLW/7jig9/FqZ2+xK73sPutUBGTc0pltoZEPPV3zas13GLhhHxvI8ufqpZ
+         JYqA==
+X-Gm-Message-State: AOAM531Xz07ycB34zmKoczf02kcoGAEkYmkYh7RmzR6JAGNjTLfJym5k
+        WnT4Aii4FwElwjKBuDcpVo1gVMB8EEo8Lw9krY1dGAWCmCpL8MwpfHrcfmNViRtVeUF9o3CDCXD
+        v0zZhwtbpCDUyJPrZc9H5Yw==
+X-Received: by 2002:a17:906:4fd2:b0:6db:21ba:e434 with SMTP id i18-20020a1709064fd200b006db21bae434mr8298110ejw.714.1647594254899;
+        Fri, 18 Mar 2022 02:04:14 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJxrdZ7+l7FFwp7l8isRVHJ+HMF8wuWgWxqvQzVeYBfcWA79JoZ1mgOYyn+CpNFjGKoKnrLqgw==
+X-Received: by 2002:a17:906:4fd2:b0:6db:21ba:e434 with SMTP id i18-20020a1709064fd200b006db21bae434mr8298097ejw.714.1647594254667;
+        Fri, 18 Mar 2022 02:04:14 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c1e:bf00:cdb2:2781:c55:5db0? (2001-1c00-0c1e-bf00-cdb2-2781-0c55-5db0.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:cdb2:2781:c55:5db0])
+        by smtp.gmail.com with ESMTPSA id gt34-20020a1709072da200b006df6bb3db69sm3501939ejc.158.2022.03.18.02.04.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Mar 2022 02:04:14 -0700 (PDT)
+Message-ID: <fcb5ac4e-d4d1-43fb-c41f-8b9078e07bb5@redhat.com>
+Date:   Fri, 18 Mar 2022 10:04:13 +0100
 MIME-Version: 1.0
-References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-18-granquet@baylibre.com>
-In-Reply-To: <20220218145437.18563-18-granquet@baylibre.com>
-From:   Wei-Shun Chang <weishunc@chromium.org>
-Date:   Fri, 18 Mar 2022 17:03:24 +0800
-Message-ID: <CAPrDo5ht246dgPJmJBx7Xc6e1kqdw54C1eDDqMA347ZwRtAO7w@mail.gmail.com>
-Subject: Re: [PATCH v8 17/19] drm/mediatek: add hpd debounce
-To:     Guillaume Ranquet <granquet@baylibre.com>
-Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-        tzimmermann@suse.de, matthias.bgg@gmail.com,
-        chunfeng.yun@mediatek.com, kishon@ti.com, vkoul@kernel.org,
-        deller@gmx.de, ck.hu@mediatek.com, jitao.shi@mediatek.com,
-        angelogioacchino.delregno@collabora.com,
-        dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 2/4] power: supply: max17042_battery: use ModelCfg refresh
+ on max17055
+Content-Language: en-US
+To:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
+Cc:     Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220318001048.20922-1-sebastian.krzyszkowiak@puri.sm>
+ <20220318001048.20922-3-sebastian.krzyszkowiak@puri.sm>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <20220318001048.20922-3-sebastian.krzyszkowiak@puri.sm>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Mar 18, 2022 at 4:49 PM Guillaume Ranquet <granquet@baylibre.com> wrote:
->
-> From: Jitao Shi <jitao.shi@mediatek.com>
->
-> Implement the DP HDP debounce described in DP 1.4a 3.3.
->
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
+Hi,
 
-Agree with Rex. The code is fine but I suggest including Rex's info in
-the commit message for clarity.
+On 3/18/22 01:10, Sebastian Krzyszkowiak wrote:
+> Unlike other models, max17055 doesn't require cell characterization
+> data and operates on smaller amount of input variables (DesignCap,
+> VEmpty, IChgTerm and ModelCfg). Input data can already be filled in
+> by max17042_override_por_values, however model refresh bit has to be
+> set after adjusting input variables in order to make them apply.
+> 
+> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+> ---
+>  drivers/power/supply/max17042_battery.c | 73 +++++++++++++++----------
+>  include/linux/power/max17042_battery.h  |  3 +
+>  2 files changed, 48 insertions(+), 28 deletions(-)
+> 
+> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
+> index c019d6c52363..c39250349a1d 100644
+> --- a/drivers/power/supply/max17042_battery.c
+> +++ b/drivers/power/supply/max17042_battery.c
+> @@ -806,6 +806,13 @@ static inline void max17042_override_por_values(struct max17042_chip *chip)
+>  	    (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055)) {
+>  		max17042_override_por(map, MAX17047_V_empty, config->vempty);
+>  	}
+> +
+> +	if (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055) {
+> +		max17042_override_por(map, MAX17055_ModelCfg, config->model_cfg);
+> +		// VChg is 1 by default, so allow it to be set to 0
+> +		regmap_update_bits(map, MAX17055_ModelCfg,
+> +				MAX17055_MODELCFG_VCHG_BIT, config->model_cfg);
+> +	}
+>  }
+>  
+>  static int max17042_init_chip(struct max17042_chip *chip)
+> @@ -814,44 +821,54 @@ static int max17042_init_chip(struct max17042_chip *chip)
+>  	int ret;
+>  
+>  	max17042_override_por_values(chip);
+> +
+> +	if (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055) {
+> +		regmap_write_bits(map, MAX17055_ModelCfg,
+> +				  MAX17055_MODELCFG_REFRESH_BIT, MAX17055_MODELCFG_REFRESH_BIT);
+> +	}
+> +
+
+This can be folded into the if (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055) {}
+which you add to max17042_override_por_values() above.
+
+
+>  	/* After Power up, the MAX17042 requires 500mS in order
+>  	 * to perform signal debouncing and initial SOC reporting
+>  	 */
+>  	msleep(500);
+>  
+> -	/* Initialize configuration */
+> -	max17042_write_config_regs(chip);
+> -
+> -	/* write cell characterization data */
+> -	ret = max17042_init_model(chip);
+> -	if (ret) {
+> -		dev_err(&chip->client->dev, "%s init failed\n",
+> -			__func__);
+> -		return -EIO;
+> -	}
+> +	if ((chip->chip_type == MAXIM_DEVICE_TYPE_MAX17042) ||
+> +	    (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17047) ||
+> +	    (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17050)) {
+> +		/* Initialize configuration */
+> +		max17042_write_config_regs(chip);
+> +
+> +		/* write cell characterization data */
+> +		ret = max17042_init_model(chip);
+> +		if (ret) {
+> +			dev_err(&chip->client->dev, "%s init failed\n",
+> +				__func__);
+> +			return -EIO;
+> +		}
+>  
+> -	ret = max17042_verify_model_lock(chip);
+> -	if (ret) {
+> -		dev_err(&chip->client->dev, "%s lock verify failed\n",
+> -			__func__);
+> -		return -EIO;
+> -	}
+> -	/* write custom parameters */
+> -	max17042_write_custom_regs(chip);
+> +		ret = max17042_verify_model_lock(chip);
+> +		if (ret) {
+> +			dev_err(&chip->client->dev, "%s lock verify failed\n",
+> +				__func__);
+> +			return -EIO;
+> +		}
+> +		/* write custom parameters */
+> +		max17042_write_custom_regs(chip);
+>  
+> -	/* update capacity params */
+> -	max17042_update_capacity_regs(chip);
+> +		/* update capacity params */
+> +		max17042_update_capacity_regs(chip);
+>  
+> -	/* delay must be atleast 350mS to allow VFSOC
+> -	 * to be calculated from the new configuration
+> -	 */
+> -	msleep(350);
+> +		/* delay must be at least 350mS to allow VFSOC
+> +		 * to be calculated from the new configuration
+> +		 */
+> +		msleep(350);
+>  
+> -	/* reset vfsoc0 reg */
+> -	max17042_reset_vfsoc0_reg(chip);
+> +		/* reset vfsoc0 reg */
+> +		max17042_reset_vfsoc0_reg(chip);
+>  
+> -	/* load new capacity params */
+> -	max17042_load_new_capacity_params(chip);
+> +		/* load new capacity params */
+> +		max17042_load_new_capacity_params(chip);
+> +	}
+>  
+>  	/* Init complete, Clear the POR bit */
+>  	regmap_update_bits(map, MAX17042_STATUS, STATUS_POR_BIT, 0x0);
+> diff --git a/include/linux/power/max17042_battery.h b/include/linux/power/max17042_battery.h
+> index c417abd2ab70..6943921cab5e 100644
+> --- a/include/linux/power/max17042_battery.h
+> +++ b/include/linux/power/max17042_battery.h
+> @@ -23,6 +23,8 @@
+>  
+>  #define MAX17042_CHARACTERIZATION_DATA_SIZE 48
+>  
+> +#define MAX17055_MODELCFG_REFRESH_BIT	BIT(15)
+> +
+>  enum max17042_register {
+>  	MAX17042_STATUS		= 0x00,
+>  	MAX17042_VALRT_Th	= 0x01,
+> @@ -208,6 +210,7 @@ struct max17042_config_data {
+>  	u16	full_soc_thresh;	/* 0x13 */
+>  	u16	design_cap;	/* 0x18 */
+>  	u16	ichgt_term;	/* 0x1E */
+> +	u16	model_cfg;	/* 0xDB */
+>  
+>  	/* MG3 config */
+>  	u16	at_rate;	/* 0x04 */
+
+Regards,
+
+Hans
+
