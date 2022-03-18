@@ -2,120 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 168554DE289
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:29:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 435274DE2A6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:40:12 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238537AbiCRUaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 16:30:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
+        id S240712AbiCRUl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 16:41:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233115AbiCRUaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:30:19 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498212BB36E;
-        Fri, 18 Mar 2022 13:29:00 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id B600AB82559;
-        Fri, 18 Mar 2022 20:28:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94384C340E8;
-        Fri, 18 Mar 2022 20:28:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647635337;
-        bh=Mg/DyLpcoxRXJnmL4DUhCt5Wg1OShxiLk/qxnj2wARA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qcrEi+YdaZwD1LkkwvJbiFVB+9lOkfbIrNDN6upq13gtU6y3N3FKhPMgLamto7jYG
-         xevwKfDWxbCUhQuAa3QAwWnOjaG8yVvWyuA+GAHiyEUVAAR1KeloVnhmy1OBfrxsba
-         7DstZKquDsuEW4eAaW7S34jtvSd/phliNh6M4TzULd4RZN7ErmCqGMP7a2UsmNlwaU
-         QOH7DnffubMCsRRYwofHsKDWg6yAxisponWINosXlaAgg8Pldz8i+Abjj7nxTZHsdj
-         W7l5owFFElt0kmu5gnulb+Lss6IGMmF+Q1rsKwuei9aiOop3RK/2FjGu81ShwfedCE
-         aSvgZxi4MmCwA==
-Date:   Fri, 18 Mar 2022 21:28:50 +0100
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Tyrone Ting <warp5tw@gmail.com>
-Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
-        venture@google.com, yuenn@google.com, benjaminfair@google.com,
-        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
-        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
-        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
-        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
-        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
-        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
-        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
-        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 01/11] arm: dts: add new property for NPCM i2c module
-Message-ID: <YjTrgia/VX6rBT1r@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
-        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski@canonical.com, yangyicong@hisilicon.com,
-        semen.protsenko@linaro.org, jie.deng@intel.com, sven@svenpeter.dev,
-        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
-        olof@lixom.net, andriy.shevchenko@linux.intel.com,
-        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
-        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
-        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20220303083141.8742-1-warp5tw@gmail.com>
- <20220303083141.8742-2-warp5tw@gmail.com>
+        with ESMTP id S240499AbiCRUl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:41:27 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D566122BDC;
+        Fri, 18 Mar 2022 13:40:07 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id v35so17800502ybi.10;
+        Fri, 18 Mar 2022 13:40:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vVp1w9NSmxaFeYurA8RKxT/i3A6lZfLYPbCAR6Ix1v0=;
+        b=Fxm0IYClQ7mZTdGPutUhNB+CcRqg2eAXb4Xrt8BiZlgOp61krOQGkOtPDOhyF25tFB
+         h9uVxt3DtI0l7RPfkUMBfociPLwcv8v82aWtqjxodZVc39L5KTz52+0jYJCWgNC2rynx
+         QSPEsSDqgvsUezpR368TyL3KkqZApW0xUreL4P5GqkYFkIrxzM7gm9xu4+VEhBWFFCjA
+         gOf9VtS3xcDn2dqESKrO3JQRayt/tp1eeYpb1NPw0kqlaS+Gm8jGxSJZo1+B7uxk3jQI
+         mxsdY/jMfIcY6QtTMhAJVOL/H1uxJUMN09p65818HGfoz1oLLWfyaBMvmHN3h9GB44yG
+         w1Jw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vVp1w9NSmxaFeYurA8RKxT/i3A6lZfLYPbCAR6Ix1v0=;
+        b=ELc0cH4A86IB41b1nMwml2KQ854FeG3Fp2XOAXa1kX9ljpMd1KVGau0Go4P0cL7gaY
+         P8aKw+MaX+g5aX6CA7o0f7e/5gwB3J/Y9yzjKV41VTJlJJx9mWLuXG4tX6o/KkcfH7DC
+         If8uE80eZ+94aSJrpSO6scZZUr5qOoXnDAQ3sBWqlSNeHuMGvxAAmNxNF2+J9rG3ifQy
+         uf490wFh2v88pieKd4m1Mj5cLjKGusBCr2NFPe0PTqbxRrMPiRLhc1GtmMQLYmIZWiDG
+         Ynz7idck/Oopk40GdpRZ0+TXy+jyWJIyBzb4kI9i74o4cvDquOL2VAzp/kdNE5ZunYxl
+         Vfug==
+X-Gm-Message-State: AOAM530Gj84vC8pVIoQ816PjIdlpfeCGhMBOJvHbRKuasUkInHGct49F
+        J8tpzUeMiauwtMH74fo4XiNpX+T/HruDEctzc5E=
+X-Google-Smtp-Source: ABdhPJww4JQScKFu65C+KZ/IY6mSJq4LNtDfEpDasGeaPwhtLJa0KbZioNUXf5I2xtaeR4leOrldqHNuqGTROpqOS2U=
+X-Received: by 2002:a25:3bd4:0:b0:633:6772:5ac1 with SMTP id
+ i203-20020a253bd4000000b0063367725ac1mr11490111yba.431.1647636007056; Fri, 18
+ Mar 2022 13:40:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5z/A5pCunj4GhFoV"
-Content-Disposition: inline
-In-Reply-To: <20220303083141.8742-2-warp5tw@gmail.com>
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20220121010543.31385-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20220121010543.31385-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <YgGfjMttGecxcuv+@robh.at.kernel.org>
+In-Reply-To: <YgGfjMttGecxcuv+@robh.at.kernel.org>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Fri, 18 Mar 2022 20:39:40 +0000
+Message-ID: <CA+V-a8v8y4MmZ8O_Nbii3wjmNv2sEcDMuXz4pgNkROrjQqMSLQ@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 2/4] media: dt-bindings: media: Document RZ/G2L CRU
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
---5z/A5pCunj4GhFoV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you for the review.
 
-On Thu, Mar 03, 2022 at 04:31:31PM +0800, Tyrone Ting wrote:
-> From: Tyrone Ting <kfting@nuvoton.com>
->=20
-> Add nuvoton,sys-mgr property for controlling NPCM gcr register.
->=20
-> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
-> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
+On Mon, Feb 7, 2022 at 10:39 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Jan 21, 2022 at 01:05:41AM +0000, Lad Prabhakar wrote:
+> > Document the CRU block found on Renesas RZ/G2L SoC's.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v1->v2
+> > * Dropped CSI
+> > ---
+> >  .../bindings/media/renesas,rzg2l-cru.yaml     | 152 ++++++++++++++++++
+> >  1 file changed, 152 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > new file mode 100644
+> > index 000000000000..a03fc6ef0117
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/renesas,rzg2l-cru.yaml
+> > @@ -0,0 +1,152 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (C) 2022 Renesas Electronics Corp.
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/media/renesas,rzg2l-cru.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/G2L Camera Data Receiving Unit (CRU)
+> > +
+> > +maintainers:
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > +
+> > +description:
+> > +  The RZ/G2L Camera Data Receiving Unit (CRU) device provides video input
+> > +  capabilities for the Renesas RZ/G2L family of devices.
+> > +
+> > +  Depending on the instance the Image Processing input is connected to
+> > +  external SoC pins or to a CSI-2 receiver.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+>
+> Don't need oneOf when there is only 1 entry.
+>
+There are two more SoC's to be added as soon this patch series get
+merged, so to keep the changes minimal later I will keep oneOf here.
 
-There are some comments about this series, so I am expecting a v4
-somewhen. However, I already want to state that I usually don't take DTS
-patches. So, I guess the path forward is that Rob needs to ack the patch
-which is now patch 2. Once he does this and I apply it, you can take this
-DTS patch via arm-soc. Sounds good?
+> > +          - enum:
+> > +              - renesas,r9a07g044-cru     # RZ/G2{L,LC}
+> > +          - const: renesas,rzg2l-cru
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 3
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: image_conv
+> > +      - const: image_conv_err
+> > +      - const: axi_mst_err
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: CRU Main clock
+> > +      - description: CPU Register access clock
+> > +      - description: CRU image transfer clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: vclk
+> > +      - const: pclk
+> > +      - const: aclk
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  resets:
+> > +    items:
+> > +      - description: CRU_PRESETN reset terminal
+> > +      - description: CRU_ARESETN reset terminal
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: presetn
+> > +      - const: aresetn
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
+> > +        description:
+> > +          Input port node, single endpoint describing a parallel input source.
+> > +
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: video-interfaces.yaml#
+> > +            unevaluatedProperties: false
+> > +
+> > +            properties:
+> > +              hsync-active: true
+> > +              vsync-active: true
+> > +              bus-width: true
+> > +              data-shift: true
+> > +
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Output port node, describing the RZ/G2L Image Processing module
+> > +          connected the CSI-2 receiver
+>
+> > +
+> > +        properties:
+> > +          endpoint@0:
+> > +            $ref: /schemas/graph.yaml#/properties/endpoint
+> > +            description: Endpoint connected to CSI2.
+> > +
+> > +        anyOf:
+> > +          - required:
+> > +              - endpoint@0
+>
+> You can drop all the endpoint stuff. Just 'endpoint' should be valid as
+> well for example. The graph schema covers all that.
+>
+Will do.
 
-
---5z/A5pCunj4GhFoV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmI0634ACgkQFA3kzBSg
-Kbbklg//Sv2r47FQFg3Yk8MUTB0RS4+pUNIlJHLR548TGl2isIIXUFQ5AY4FrLUB
-Vlb41WvFoHVDizEZDtXz1ciqXJrPr6957AX6VpLPw0TiAjEDjWYBxSrmhNgdCzcx
-eWSPlSz8D+aGN3X9CKc75S3UCXLAGlTufnlc2Er9raOEUvBsXf4vXv3US4jkoE1S
-UC1igte3GDhoK+SnsQh4dAenTUseAcxkJAYZRDZ0Ll/il2Q4P1ZZqndqGIstUA1R
-jyVZk8lmB7P8mGhHTdpJlMq33wPHsOx+R5TO+UO9HPGbqso8rNAsDp/50wjrVJQT
-saSFrwyrE66gZQVYuikWKW6Ais7XClwj047rlAZ2aFxbCvCiBlu/dLWNr//9++Md
-cOcmTP6VCyZveEdEZoY1oHQRRawlIQMoVpiYtELn7Q3Vv//2zcImdkrFoC+5bcf6
-/5YwgRSirN6Ih7KaWO1zlGlIf7BV8GmeiDfa1AllahJO1qgqsSZSpeWmWKZ/APnw
-trP6iFDftFsBFFKooYtdnwdUTU6eX2KBOwn3OddOoNHmYfN/tiUc3t51OF5Vg8Dp
-+8ZXkmHmVkGpxq0lEKRRtsBlQAeZxLapSrwvrNY8pf0Nn3aveX7HpN4x7nkEShZZ
-h5yEAUVfSOcAZVj48/7exExVlMPK5CoCpUQfpuHRR+S0WHQdYEQ=
-=yg2W
------END PGP SIGNATURE-----
-
---5z/A5pCunj4GhFoV--
+Cheers,
+Prabhakar
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - resets
+> > +  - reset-names
+> > +  - power-domains
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  # Device node example with CSI-2
+> > +  - |
+> > +    #include <dt-bindings/clock/r9a07g044-cpg.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    cru: video@10830000 {
+> > +            compatible = "renesas,r9a07g044-cru", "renesas,rzg2l-cru";
+> > +            reg = <0x10830000 0x400>;
+> > +            interrupts = <GIC_SPI 167 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "image_conv", "image_conv_err", "axi_mst_err";
+> > +            clocks = <&cpg CPG_MOD R9A07G044_CRU_VCLK>,
+> > +                     <&cpg CPG_MOD R9A07G044_CRU_PCLK>,
+> > +                     <&cpg CPG_MOD R9A07G044_CRU_ACLK>;
+> > +            clock-names = "vclk", "pclk", "aclk";
+> > +            power-domains = <&cpg>;
+> > +            resets = <&cpg R9A07G044_CRU_PRESETN>,
+> > +                     <&cpg R9A07G044_CRU_ARESETN>;
+> > +            reset-names = "presetn", "aresetn";
+> > +
+> > +            ports {
+> > +                    #address-cells = <1>;
+> > +                    #size-cells = <0>;
+> > +
+> > +                    port@1 {
+> > +                            #address-cells = <1>;
+> > +                            #size-cells = <0>;
+> > +
+> > +                            reg = <1>;
+> > +
+> > +                            crucsi2: endpoint@0 {
+> > +                                    reg = <0>;
+> > +                                    remote-endpoint= <&csi2cru>;
+> > +                            };
+> > +                    };
+> > +            };
+> > +    };
+> > --
+> > 2.17.1
+> >
+> >
