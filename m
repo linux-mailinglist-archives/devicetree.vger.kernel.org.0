@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29C834DDAB5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 14:40:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 08F5E4DDAC4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 14:44:13 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235080AbiCRNlx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 09:41:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
+        id S233898AbiCRNp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 09:45:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234389AbiCRNlx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 09:41:53 -0400
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36725C74B1;
-        Fri, 18 Mar 2022 06:40:33 -0700 (PDT)
-Received: by mail-lf1-f44.google.com with SMTP id p15so3427696lfk.8;
-        Fri, 18 Mar 2022 06:40:33 -0700 (PDT)
+        with ESMTP id S236771AbiCRNp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 09:45:28 -0400
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA57474610;
+        Fri, 18 Mar 2022 06:44:09 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id bt26so14184817lfb.3;
+        Fri, 18 Mar 2022 06:44:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=iuWM94KXc3sHuEczLPPtyGXuhzAg1rDstlM1ADE7s3M=;
-        b=XlWmW0sIAGbP6Xu+GrZaDkjSLuw0lzLyjAwInxWiKrngPGbK/6NpXJX02sgn4qHXv+
-         sIQApvxEnfo7iK+QMcHQlh2LURBnhAv8/JKYyfBqMkriUfDXLGC2vPLpNtZj+7Doh0pb
-         rBamfd6bNMkOoQrrjkCjcHTGbXSwRJF+Hv8xzmeMIe92iP8rxU01Q1BDNqHxk9hVpVSt
-         INelI/M8Y3WUgYBLWEnM17gAbDa7NWg9opxm4TaHACBoPSBhJ6S36SNOwwh/NOqcwg8w
-         kqphkjqsqfInUFSFJ1Hhi2RE3rCE5m+ymKsmekBHJsmbleL+qKcFEWtjXBN/Qcn/soo7
-         CHuA==
-X-Gm-Message-State: AOAM532EWECyTeBzNxBYXml9T4KrMorQHmpLbdsFmyFvpFS6Hm7awYFd
-        ti4iboXV9tEifL58RU90qoY=
-X-Google-Smtp-Source: ABdhPJzRWA/Ob0RieST3cFH09R5YU4a/GPnX/2Z2nYswG93mdyAF6PWgwC9uMegY4oc7gHWoPDs9oQ==
-X-Received: by 2002:ac2:5389:0:b0:448:90e8:b166 with SMTP id g9-20020ac25389000000b0044890e8b166mr6031739lfh.121.1647610831557;
-        Fri, 18 Mar 2022 06:40:31 -0700 (PDT)
+        bh=+13Af56+e0RqW04Edcq76EyluIRDM9JaL8dIazHbckc=;
+        b=sHP870PsI5Ncc0fJSlnvanQBunixb5WaRMDKSoCvpCd7ShpwxBJ3hLL/nQHwgTX/6v
+         98bbtamJ2z9WjB5X5pfxoImIXbtgmNYXZYonElZFaGkyR7u7KqZmxTGCE/kpGL7CyAGC
+         RX+tuB+Edt0VmX1uW897ATr5CU+w5pZ5MJtkbVBef869cLnpuDBKiYIckIY+G+W7ADxM
+         GkkGRfiJYB+Kh2wtT/zgjko3X6c4LecZCFtZjQfsS3aE5Fytl+DWvkAfb4BDISbGls2q
+         FAt3Zyz2+fOlyVjRKj2yoP8DaVtK4k6iuy3RazzPkzp2AD4kMJ8e9Z9nOxvSr8WUrEQT
+         ij4w==
+X-Gm-Message-State: AOAM533k+XW0sNliYf27LuwxMdwpfCi44kluLwBapzKMCfPreif61XoV
+        DR7yvOsvRhPofcH+w2h7ygc=
+X-Google-Smtp-Source: ABdhPJxBG0gMB7P6i31hX6URblEoIk15XK26/WiOk2L5XQrQkklk9dI2CS32ZTycPzHM2+9Bp954qg==
+X-Received: by 2002:a05:6512:2613:b0:448:5164:689d with SMTP id bt19-20020a056512261300b004485164689dmr6030983lfb.526.1647611048126;
+        Fri, 18 Mar 2022 06:44:08 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id q26-20020ac24a7a000000b004437f641a32sm854157lfp.15.2022.03.18.06.40.30
+        by smtp.googlemail.com with ESMTPSA id y23-20020a2e95d7000000b00247e4e386aasm965319ljh.121.2022.03.18.06.44.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 06:40:31 -0700 (PDT)
-Message-ID: <d4d69acd-72d3-dfe1-9a11-d6590d2d90d8@kernel.org>
-Date:   Fri, 18 Mar 2022 14:40:29 +0100
+        Fri, 18 Mar 2022 06:44:07 -0700 (PDT)
+Message-ID: <ad56b5bc-a9d4-b584-3c04-7c47995381f1@kernel.org>
+Date:   Fri, 18 Mar 2022 14:44:05 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH] dt-bindings: virtio: mmio: add optional virtio,wakeup
+Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: Remove arch timer clocks
  property
 Content-Language: en-US
-To:     Minghao Xue <quic_mingxue@quicinc.com>,
-        Jean-Philippe Brucker <jean-philippe@linaro.org>
-Cc:     mst@redhat.com, jasowang@redhat.com, quic_ztu@quicinc.com,
-        robh+dt@kernel.org, virtualization@lists.linux-foundation.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <1646733156-19333-1-git-send-email-quic_mingxue@quicinc.com>
- <20220317063515.GA30789@mingxue-gv.qualcomm.com> <YjMJ32SFXTLCuaRY@myrica>
- <20220318021052.GA16300@mingxue-gv.qualcomm.com>
+To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
+ <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220318021052.GA16300@mingxue-gv.qualcomm.com>
+In-Reply-To: <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -68,18 +68,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2022 03:10, Minghao Xue wrote:
-> Hi Jean and folks,
-> This is just an optional flag which could be used on an embedded system.
-> For example, if we want to use an virtio-input device as a virtual power
-> key to wake up the virtual machine, we can set this flag in the device
-> tree.
-> Currently, virio-mmio driver does not implement suspend/resume
-> callback(maybe no need). So we want to check this flag and call
-> enable_irq_wake()  accordingly in vm_find_vqs().
+On 17/03/2022 20:15, Kuldeep Singh wrote:
+> 
+> Moreover, clocks also matches incorrectly with the regex pattern.
+> Remove this entry altogether to fix it.
+> 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-There is a generic wakeup-source property. How is this one different
-that you need a separate one?
+Except of ongoing discussion, this paragraph is incorrect.  There is no
+incorrect match of regex pattern. The field is simply not documented in
+the bindings (not allowed by bindings). This paragraph is actually
+confusing and misleading.
 
 
 Best regards,
