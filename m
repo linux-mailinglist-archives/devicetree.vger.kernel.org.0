@@ -2,85 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EA724DD2F8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 03:14:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 6058E4DD345
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 03:50:45 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231745AbiCRCPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 22:15:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33236 "EHLO
+        id S231979AbiCRCwA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 22:52:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231755AbiCRCPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 22:15:44 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 763FD160C20;
-        Thu, 17 Mar 2022 19:14:23 -0700 (PDT)
-Received: from apollo.. (unknown [IPv6:2a02:810b:4340:43bf:4685:ff:fe12:5967])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id CDB552223A;
-        Fri, 18 Mar 2022 03:14:20 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647569661;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=UjGNQPmkrb8JUzaM0myQifPCqXhpbLHTYcIXuersAbA=;
-        b=DahUYz3A8og3n8gjP1Z9+Th1OHtBIa0rcplJIT3MVxM8y9ul6xKi/XngxXtMzYohS+gAV/
-        YLFwHFGeqSqA0L+4kK1Z8qqy9IpOxlYL3zjAGLRSWpjzDkftSlJ95Q3+6t2njdP86nIXh9
-        4Z0NWP3rvzpbDd4QD/0ARKgdJ7BTvtk=
-From:   Michael Walle <michael@walle.cc>
-To:     horatiu.vultur@microchip.com
-Cc:     UNGLinuxDriver@microchip.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        robh+dt@kernel.org, Michael Walle <michael@walle.cc>
-Subject: Re: [PATCH net-next 1/5] dt-bindings: net: lan966x: Extend with FDMA interrupt
-Date:   Fri, 18 Mar 2022 03:14:13 +0100
-Message-Id: <20220318021413.25810-1-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220317185159.1661469-2-horatiu.vultur@microchip.com>
-References: <20220317185159.1661469-2-horatiu.vultur@microchip.com>
+        with ESMTP id S231976AbiCRCwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 22:52:00 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F1041B2C40;
+        Thu, 17 Mar 2022 19:50:38 -0700 (PDT)
+X-UUID: bd334e8d1d944aa2b58ac19f33fddce0-20220318
+X-UUID: bd334e8d1d944aa2b58ac19f33fddce0-20220318
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <leilk.liu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 972289217; Fri, 18 Mar 2022 10:50:30 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 18 Mar 2022 10:50:29 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 18 Mar 2022 10:50:29 +0800
+From:   Leilk Liu <leilk.liu@mediatek.com>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-spi@vger.kernel.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH V5 0/3] spi: mediatek: add single/quad mode support
+Date:   Fri, 18 Mar 2022 10:50:24 +0800
+Message-ID: <20220318025027.31281-1-leilk.liu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Extend dt-bindings for lan966x with FDMA interrupt. This is generated
-> when receiving a frame or when a frame was transmitted. The interrupt
-> needs to be enable for each frame.
-> 
-> Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
-> ---
->  .../devicetree/bindings/net/microchip,lan966x-switch.yaml       | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-> index 13812768b923..14e0bae5965f 100644
-> --- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-> +++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
-> @@ -39,6 +39,7 @@ properties:
->        - description: frame dma based extraction
->        - description: analyzer interrupt
->        - description: ptp interrupt
-> +      - description: fdma interrupt
->  
->    interrupt-names:
->      minItems: 1
-> @@ -47,6 +48,7 @@ properties:
->        - const: fdma
->        - const: ana
->        - const: ptp
-> +      - const: fdma
+This series of patches are based on spi for-next, and provide 3 patches to support MT7986.
 
-This interrupt is already described (three lines above), no?
+V5:
+ 1. remove 3 patches that already applied.
+ 2. use devm_clk_get_optional.
+ 3. remove of_mtk_spi_parse_dt()
 
--michael
+v4:
+ 1. fix Rob comment in v3;
+ 2. use "mediatek,mt7986-spi-ipm","mediatek,spi-ipm"
+
+v3:
+ 1. add Rob Acked-by in "dt-bindings: spi: Add compatible for MT7986 with single mode";
+ 2. add a fix patch "spi: mediatek: support tick_delay without enhance_timing";
+ 3. fix Angelogioacchino comments;
+ 4. use mt7986 instead of ipm in dt-binding.
+
+v2:
+ 1. rebase this series on spi for-next.
+ 2. fix Rob and Krzysztof comments in v1.
+
+Leilk Liu (3):
+  spi: mediatek: add spi memory support for ipm design
+  dt-bindings: spi: support hclk
+  spi: mediatek: support hclk
+
+ .../bindings/spi/mediatek,spi-mt65xx.yaml     |   4 +
+ drivers/spi/spi-mt65xx.c                      | 387 +++++++++++++++++-
+ 2 files changed, 374 insertions(+), 17 deletions(-)
+
+--
+2.25.1
+
+
