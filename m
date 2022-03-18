@@ -2,221 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BDB14DDED2
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 17:25:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A38684DDEFA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 17:30:20 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239217AbiCRQ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 12:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33606 "EHLO
+        id S239269AbiCRQb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 12:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239069AbiCRQ0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 12:26:49 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6A160FE7
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:35 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id x34so9693122ede.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=vJ9L0V5osggSMXilV0NUxdZ3YODQ2c0ZIQihzHn4ios=;
-        b=L11FSvmMxR/S/6J58hseaebFIGaY1w0GQZO0yjGrp1k0/LWn77MPX3oLnVkjnLa5VR
-         LTHnw3hZDmkoqVvtsOmvrvAv1apNvoCA4XOtpR8yn3emgjHbyE24KjF+ugN0bagp+Sau
-         pFEAfzk+AtQzHPGhS9ydM1oyairTwvQlgkBS4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vJ9L0V5osggSMXilV0NUxdZ3YODQ2c0ZIQihzHn4ios=;
-        b=D5bRyiT2c3DB4iQrC6QPdPqFp+oA40nEs1dmvICFGaioppt29EPkeNJoDXZu2qmuD8
-         dx7Z4qKZjLOIjTzUDCFbmL+jfqVsNrW74UrA+NNBXeJ4I1ERqC0F4O7cdXL5yHFPDgBK
-         zsybiSwR2tJ0vRYMNLT7zdAaOOa3T6QR5E7t3tMjZxh6964fyiTECoKMcfs4rwJhGhAx
-         EuJvu2xmqzUfjXUYIBTLKucJko33+yYaPPoTFWqWvX2Vt2ubMiDz7Dm9p+ef7B+9pHt3
-         SG+rYxgY2nkGvQtItQbjGu5t8FYTvu6uhiW2wMUpY3SSm+IcjAm3rEhXeHPHVkzr9aRY
-         tfHQ==
-X-Gm-Message-State: AOAM530FElEL5AwkvkGvT+JduEGwKHTKgyRUuTbbzXwkDfXPB0F6AvO3
-        Pf8bT7ToNTaAoLjQfrpIbVHTOxiytf6rIrKSXAI=
-X-Google-Smtp-Source: ABdhPJwMaraK73oCEz5zXKPmgEDhMoQCNCu+zPddVqZpFppScPEyEDXHHrAsTEPY8wEtirXWwzXWiQ==
-X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr10274384edi.154.1647620673387;
-        Fri, 18 Mar 2022 09:24:33 -0700 (PDT)
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
-        by smtp.gmail.com with ESMTPSA id gl2-20020a170906e0c200b006a767d52373sm3849962ejb.182.2022.03.18.09.24.32
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 09:24:32 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id t11so12422289wrm.5
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:32 -0700 (PDT)
-X-Received: by 2002:a5d:4491:0:b0:203:f63a:e89b with SMTP id
- j17-20020a5d4491000000b00203f63ae89bmr3246004wrq.342.1647620671999; Fri, 18
- Mar 2022 09:24:31 -0700 (PDT)
+        with ESMTP id S239210AbiCRQbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 12:31:15 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E8B195302;
+        Fri, 18 Mar 2022 09:29:53 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.1.2/8.16.1.2) with ESMTP id 22I7cSw0022149;
+        Fri, 18 Mar 2022 11:29:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=bZOlEfRg8T9t1B79/9gI2BtOG0E7AxmmrAD8lfrQVfY=;
+ b=cxK65f2/uAOtvEX3R8Rj+f4it+rm1WasLXI5OQ8Nj2ndlwpHKYqHZQ26BJb8/ghDOZ+g
+ rSQuQeTFdH84eYj7FxUDatE3iw8Aj+IZEc/DWhi8iyPCanlmIKyt40qxD54W/PRuxwlm
+ afEOLkDx6J0d++Iar4W+sVSxPTUSLWQ9v9Mb+m0tiVn4KVSblQwIJKsjaQRYqYnhQt/9
+ ofI+Ixpa45WnFRUfGKBX0Nn25xp2jX0i/jp7tjth0rCUS9f1h1geHx2unuOSBpNJm49V
+ xee1/+MrY8Wj9YdWpr4lig4/Zvd+dmPvJ3gPaRAbv954jjoqvEuiPmz6t76PLq9UZARA sA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3et642efpx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Fri, 18 Mar 2022 11:29:46 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 18 Mar
+ 2022 16:29:44 +0000
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.2375.18 via Frontend
+ Transport; Fri, 18 Mar 2022 16:29:44 +0000
+Received: from debianA11184.ad.cirrus.com (debianA11184.ad.cirrus.com [198.90.251.45])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 450F37C;
+        Fri, 18 Mar 2022 16:29:44 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <patches@opensource.cirrus.com>
+Subject: [PATCH 0/5] ASoC: Add a driver for the Cirrus Logic CS35L45 Smart Amplifier
+Date:   Fri, 18 Mar 2022 16:29:38 +0000
+Message-ID: <20220318162943.1578102-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
- <1647452154-16361-7-git-send-email-quic_sbillaka@quicinc.com> <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com>
-In-Reply-To: <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 18 Mar 2022 09:24:17 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
-Message-ID: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
-Subject: Re: [PATCH v5 6/9] drm/msm/dp: wait for hpd high before any sink interaction
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: D_bFfSzULB-QA3qo-yHPCgAOR5Wto9Mw
+X-Proofpoint-ORIG-GUID: D_bFfSzULB-QA3qo-yHPCgAOR5Wto9Mw
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This adds basic audio support for the Cirrus Logic CS35L45 amplifier.
 
-On Thu, Mar 17, 2022 at 6:19 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Sankeerth Billakanti (2022-03-16 10:35:51)
-> >         The source device should ensure the sink is ready before
-> > proceeding to read the sink capability or performing any aux transactions.
-> > The sink will indicate its readiness by asserting the HPD line.
-> >
-> >         The eDP sink requires power from the source and its HPD line will
-> > be asserted only after the panel is powered on. The panel power will be
-> > enabled from the panel-edp driver.
-> >
-> >         The controller driver needs to wait for the hpd line to be asserted
-> > by the sink.
-> >
-> > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> > ---
-> >  drivers/gpu/drm/msm/dp/dp_aux.c     |  6 ++++++
-> >  drivers/gpu/drm/msm/dp/dp_catalog.c | 23 +++++++++++++++++++++++
-> >  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
-> >  drivers/gpu/drm/msm/dp/dp_reg.h     |  7 ++++++-
-> >  4 files changed, 36 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
-> > index 6d36f63..2ddc303 100644
-> > --- a/drivers/gpu/drm/msm/dp/dp_aux.c
-> > +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
-> > @@ -337,6 +337,12 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
-> >                 goto exit;
-> >         }
-> >
-> > +       ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
->
-> Why are we making aux transactions when hpd isn't asserted? Can we only
-> register the aux device once we know that state is "connected"? I'm
-> concerned that we're going to be possibly polling the connected bit up
-> to some amount of time (0x0003FFFF usecs?) for each aux transfer when
-> that doesn't make any sense to keep checking. We should be able to check
-> it once, register aux, and then when disconnect happens we can
-> unregister aux.
+The first two patches add two generic helpers to ASoC, and patch 3 is
+a kunit test for patch 2.
 
-This is for eDP and, unless someone wants to redesign it again, is
-just how it works.
+James Schulman (1):
+  ASoC: cs35l45: Add driver for Cirrus Logic CS35L45 Smart Amp
 
-Specifically:
+Richard Fitzgerald (4):
+  ASoC: soc.h: Add SOC_SINGLE_S_TLV() macro
+  ASoC: soc-utils: Add helper to calculate BCLK from TDM info
+  ASoC: soc-utils: Add kunit test for snd_soc_tdm_params_to_bclk()
+  ASoC: dt-bindings: cs35l45: Cirrus Logic CS35L45 Smart Amp
 
-1. On eDP you _always_ report "connected". This is because when an eDP
-panel is turned off (but still there) you actually have no way to
-detect it--you just have to assume it's there. And thus you _always_
-register the AUX bus.
+ .../bindings/sound/cirrus,cs35l45.yaml        |  75 ++
+ MAINTAINERS                                   |   2 +
+ include/dt-bindings/sound/cs35l45.h           |  20 +
+ include/sound/soc.h                           |   4 +
+ sound/soc/Kconfig                             |   9 +-
+ sound/soc/Makefile                            |   5 +
+ sound/soc/codecs/Kconfig                      |  30 +
+ sound/soc/codecs/Makefile                     |   8 +
+ sound/soc/codecs/cs35l45-i2c.c                |  73 ++
+ sound/soc/codecs/cs35l45-spi.c                |  72 ++
+ sound/soc/codecs/cs35l45-tables.c             | 202 +++++
+ sound/soc/codecs/cs35l45.c                    | 689 ++++++++++++++++++
+ sound/soc/codecs/cs35l45.h                    | 213 ++++++
+ sound/soc/soc-utils-test.c                    | 186 +++++
+ sound/soc/soc-utils.c                         |  45 ++
+ 15 files changed, 1632 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs35l45.yaml
+ create mode 100644 include/dt-bindings/sound/cs35l45.h
+ create mode 100644 sound/soc/codecs/cs35l45-i2c.c
+ create mode 100644 sound/soc/codecs/cs35l45-spi.c
+ create mode 100644 sound/soc/codecs/cs35l45-tables.c
+ create mode 100644 sound/soc/codecs/cs35l45.c
+ create mode 100644 sound/soc/codecs/cs35l45.h
+ create mode 100644 sound/soc/soc-utils-test.c
 
-2. When we are asked to read the EDID that happens _before_ the normal
-prepare/enable steps. The way that this should work is that the
-request travels down to the panel. The panel turns itself on (waiting
-for any hardcoded delays it knows about) and then initiates an AUX
-transaction. The AUX transaction is in charge of waiting for HPD.
+-- 
+2.30.2
 
-
-For the DP case this should not cause any significant overhead, right?
-HPD should always be asserted so this is basically just one extra IO
-read confirming that HPD is asserted which should be almost nothing...
-You're just about to do a whole bunch of IO reads/writes in order to
-program the AUX transaction anyway.
-
-
-> > +       if (ret) {
-> > +               DRM_DEBUG_DP("DP sink not ready for aux transactions\n");
-> > +               goto exit;
-> > +       }
-> > +
-> >         dp_aux_update_offset_and_segment(aux, msg);
-> >         dp_aux_transfer_helper(aux, msg, true);
-> >
-> > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > index fac815f..2c3b0f7 100644
-> > --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
-> > @@ -242,6 +242,29 @@ void dp_catalog_aux_update_cfg(struct dp_catalog *dp_catalog)
-> >         phy_calibrate(phy);
-> >  }
-> >
-> > +int dp_catalog_aux_wait_for_hpd_connect_state(struct dp_catalog *dp_catalog)
-> > +{
-> > +       u32 state, hpd_en, timeout;
-> > +       struct dp_catalog_private *catalog = container_of(dp_catalog,
-> > +                               struct dp_catalog_private, dp_catalog);
-> > +
-> > +       hpd_en = dp_read_aux(catalog, REG_DP_DP_HPD_CTRL) &
-> > +                                       DP_DP_HPD_CTRL_HPD_EN;
->
-> Use two lines
->
->         hpd_en = dp_read_aux();
->         hpd_en &= DP_DP_HPD_CTRL_HPD_EN;
->
-> > +
-> > +       /* no-hpd case */
-> > +       if (!hpd_en)
-> > +               return 0;
-
-I guess reading from hardware is fine, but I would have expected the
-driver to simply know whether HPD is used or not. Don't need to read
-it from hardware, do we? It's not like it's changing from minute to
-minute--this is something known at probe time.
-
-
-> > +       /* Poll for HPD connected status */
-> > +       timeout = dp_read_aux(catalog, REG_DP_DP_HPD_EVENT_TIME_0) &
-> > +                                       DP_HPD_CONNECT_TIME_MASK;
-> > +
-> > +       return readl_poll_timeout(catalog->io->dp_controller.aux.base +
-> > +                               REG_DP_DP_HPD_INT_STATUS,
-> > +                               state, state & DP_DP_HPD_STATE_STATUS_CONNECTED,
-> > +                               2000, timeout);
-
-The timeout that comes from hardware is really stored in microseconds?
-That's the units of the value passed to readl_poll_timeout(), right?
-Looking at your #defines, that means that your max value here is
-0x3fff which is 16383 microseconds or ~16 ms. That doesn't seem like
-nearly a long enough timeout to wait for a panel to power itself up.
-
-Also: I'm not sure why exactly you're using the timeout in the
-register here. Isn't the time you need to wait more about how long an
-eDP panel might conceivably need to power itself on? Most eDP panels
-I've seen have max delays of ~200 ms. I'd probably just wait 500 ms to
-be on the safe side.
-
--Doug
