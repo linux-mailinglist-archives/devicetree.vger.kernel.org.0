@@ -2,159 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC8084DD655
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:40:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A2AFD4DD65A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233366AbiCRImC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 04:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32808 "EHLO
+        id S233849AbiCRInn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 04:43:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39440 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233881AbiCRImB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:42:01 -0400
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AC517C412;
-        Fri, 18 Mar 2022 01:40:41 -0700 (PDT)
-Received: by mail-lf1-f46.google.com with SMTP id p6so5797139lfh.1;
-        Fri, 18 Mar 2022 01:40:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=x+aZsSUA8MQf/8QzgnABXBDq4WnY5Owhm5CoPJ80F7g=;
-        b=rJ3HldNqM/0pOtfNWGam+zcNph+gB7N5l0i0tz8VZhwjl8TREYRCFctMjV83GG8Yfz
-         s/CZMua9xIeL3/7IUNS/zvrJHQ5fxMiSfKaDCda8ww1Ib5nm+FL/zriNLjePM5usgfjJ
-         TRY6vO/MXUwPdcZTcy+UoEWy6QbjU2fgqXZBN6c13RIWfLQTwqVru0RT4PfGs/F7MmRI
-         xldA0FoGSF3hul37rfOHRkqIR0hqm8CyL6q6qPalT7cVPdj39eRB5yQwtwIm8uLsSLxo
-         5wo4CdX42R3Sd2hIIuId4BjU/x2RSTuJBKBxF//UkpM+0n9K5mQMocaDLGA4/YPiu7wi
-         TvLw==
-X-Gm-Message-State: AOAM531CJWrV8G+DUUfaGd5p6MytEO47v48S4FxElMKbk3I2YBqRS5Z3
-        5W50BjId6AdPwWPayu93wt0=
-X-Google-Smtp-Source: ABdhPJx7het/ER7SMI1T3LzCDB2G6vbr12KVLeWnqK0CSFgjlBYzApaS2EZB1CbIacc4hryCrLsDWg==
-X-Received: by 2002:a05:6512:3192:b0:448:6ef9:12f2 with SMTP id i18-20020a056512319200b004486ef912f2mr5280424lfe.483.1647592839934;
-        Fri, 18 Mar 2022 01:40:39 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id i24-20020a2e8658000000b0024806af7079sm840430ljj.43.2022.03.18.01.40.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 01:40:39 -0700 (PDT)
-Message-ID: <354ec362-0883-ccfe-9e19-7897318e5e08@kernel.org>
-Date:   Fri, 18 Mar 2022 09:40:36 +0100
+        with ESMTP id S233845AbiCRInn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:43:43 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 55B7C17B880;
+        Fri, 18 Mar 2022 01:42:24 -0700 (PDT)
+Received: from uucp (helo=alpha)
+        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
+        id 1nV8Bh-0005A4-00; Fri, 18 Mar 2022 09:42:21 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id A495DC2E3B; Fri, 18 Mar 2022 09:42:07 +0100 (CET)
+Date:   Fri, 18 Mar 2022 09:42:07 +0100
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] MIPS: ingenic: correct unit node address
+Message-ID: <20220318084207.GA6652@alpha.franken.de>
+References: <20220317115259.448868-1-krzysztof.kozlowski@canonical.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 4/4] power: supply: max17042_battery: read battery
- properties from device tree
-Content-Language: en-US
-To:     Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
-Cc:     Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220318001048.20922-1-sebastian.krzyszkowiak@puri.sm>
- <20220318001048.20922-5-sebastian.krzyszkowiak@puri.sm>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220318001048.20922-5-sebastian.krzyszkowiak@puri.sm>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220317115259.448868-1-krzysztof.kozlowski@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2022 01:10, Sebastian Krzyszkowiak wrote:
-> So far configuring the gauge was only possible using platform data,
-> with no way to provide the configuration on device tree-based platforms.
+On Thu, Mar 17, 2022 at 12:52:59PM +0100, Krzysztof Kozlowski wrote:
+> Unit node addresses should not have leading 0x:
 > 
-> Change that by looking up the configuration values from monitored-battery
-> property. This is especially useful on models implementing ModelGauge m5 EZ
-> algorithm, such as MAX17055, as all the required configuration can be
-> derived from a "simple-battery" DT node there.
+>   Warning (unit_address_format): /nemc@13410000/efuse@d0/eth-mac-addr@0x22: unit name should not have leading "0x"
 > 
-> In order to be able to access power supply framework in get_of_pdata,
-> move devm_power_supply_register earlier in max17042_probe.
-> 
-> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->  drivers/power/supply/max17042_battery.c | 50 +++++++++++++++++++------
->  include/linux/power/max17042_battery.h  |  1 +
->  2 files changed, 40 insertions(+), 11 deletions(-)
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
-> index c39250349a1d..4c33565802d5 100644
-> --- a/drivers/power/supply/max17042_battery.c
-> +++ b/drivers/power/supply/max17042_battery.c
-> @@ -937,7 +937,9 @@ max17042_get_of_pdata(struct max17042_chip *chip)
->  	struct device *dev = &chip->client->dev;
->  	struct device_node *np = dev->of_node;
->  	u32 prop;
-> +	u64 data64;
->  	struct max17042_platform_data *pdata;
-> +	struct power_supply_battery_info *info;
+> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> index 3f9ea47a10cd..b998301f179c 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> @@ -510,7 +510,7 @@ efuse: efuse@d0 {
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
 >  
->  	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
->  	if (!pdata)
-> @@ -961,6 +963,32 @@ max17042_get_of_pdata(struct max17042_chip *chip)
->  	if (of_property_read_s32(np, "maxim,over-volt", &pdata->vmax))
->  		pdata->vmax = INT_MAX;
->  
-> +	if (pdata->enable_current_sense &&
-> +	    power_supply_get_battery_info(chip->battery, &info) == 0) {
-> +		pdata->config_data = devm_kzalloc(dev, sizeof(*pdata->config_data), GFP_KERNEL);
-> +		if (!pdata->config_data)
-> +			return NULL;
-> +
-> +		if (info->charge_full_design_uah != -EINVAL) {
-> +			data64 = (u64)info->charge_full_design_uah * pdata->r_sns;
-> +			do_div(data64, MAX17042_CAPACITY_LSB);
-> +			pdata->config_data->design_cap = (u16)data64;
-> +			pdata->enable_por_init = true;
-> +		}
-> +		if (info->charge_term_current_ua != -EINVAL) {
-> +			data64 = (u64)info->charge_term_current_ua * pdata->r_sns;
-> +			do_div(data64, MAX17042_CURRENT_LSB);
-> +			pdata->config_data->ichgt_term = (u16)data64;
-> +			pdata->enable_por_init = true;
-> +		}
-> +		if (chip->chip_type == MAXIM_DEVICE_TYPE_MAX17055) {
-> +			if (info->voltage_max_design_uv > 4250000) {
-> +				pdata->config_data->model_cfg = MAX17055_MODELCFG_VCHG_BIT;
-> +				pdata->enable_por_init = true;
-> +			}
-> +		}
-> +	}
-> +
->  	return pdata;
->  }
->  #endif
-> @@ -1092,16 +1120,23 @@ static int max17042_probe(struct i2c_client *client,
->  		return -EINVAL;
->  	}
->  
-> +	i2c_set_clientdata(client, chip);
-> +	psy_cfg.drv_data = chip;
-> +	psy_cfg.of_node = dev->of_node;
-> +
-> +	chip->battery = devm_power_supply_register(&client->dev, max17042_desc,
-> +						   &psy_cfg);
-> +	if (IS_ERR(chip->battery)) {
-> +		dev_err(&client->dev, "failed: power supply register\n");
-> +		return PTR_ERR(chip->battery);
-> +	}
+> -			eth0_addr: eth-mac-addr@0x22 {
+> +			eth0_addr: eth-mac-addr@22 {
+>  				reg = <0x22 0x6>;
+>  			};
+>  		};
+> -- 
+> 2.32.0
 
-I don't think it is correct. You register power supply, thus making it
-available for system, before configuring most of the data. For short
-time the chip might report to the system bogus results and events.
+applied to mips-next.
 
-Instead I think you should split it into two parts - init which happens
-before registering power supply and after.
+Thomas.
 
-
-Best regards,
-Krzysztof
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
