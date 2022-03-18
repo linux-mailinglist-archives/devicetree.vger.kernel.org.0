@@ -2,112 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 339184DDBD1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 15:40:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 14B714DDBDB
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 15:43:39 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237036AbiCROl4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 10:41:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42744 "EHLO
+        id S237397AbiCROoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 10:44:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233816AbiCROlz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 10:41:55 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F33E0995
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 07:40:37 -0700 (PDT)
-Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com [209.85.167.69])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 17E203F1A4
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 14:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647614436;
-        bh=gDon0BP3FzcU+qjKqb9PY/sKgV2QZa/bB8WMrT1T2lk=;
-        h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-         Content-Type:In-Reply-To;
-        b=qjUTY41ZlzutsyDwOztCBPwiNbFZxN2DtsaKZ3P2QNWTfVEeSyPHcc3OHq1oFmHQr
-         zMZQNk8k3SBkuMhaJmSiUGJOebSonWWDFg9GDt2zefyfHrgdMbk148FF3OeSMDjXGb
-         9tjsmtZzjMFMpg+HvMzJX2NAp4rR6ZwwJjssf4fE9TVDks7A33JpjhXwqvydbPfyT0
-         hjy/5p4ufNpoJsrOBdSrViOQDXvQYZqV8gsFR5UUK4HyJ8GgM6YUmykSZ+x55fVI1Q
-         EafMeDnC993jg9/hckcqjFcJukClc8L+3UBKPcgKd689FdJfLrmjd6HjjDGAMPRNsV
-         118WMJohzh48A==
-Received: by mail-lf1-f69.google.com with SMTP id m13-20020a19520d000000b00443423ff116so2644359lfb.11
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 07:40:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=gDon0BP3FzcU+qjKqb9PY/sKgV2QZa/bB8WMrT1T2lk=;
-        b=K/g2UySd8MbUwWJqCJVYn43CSWYvTprzAoUrm9yxrpK9NcYN5RbFpmmRBW1mY//kO0
-         cs7uNatY9rdokCYSPR5R7ejZ2W2S0DzW2W/w1L1sWADGmXIzU9uehl/VZWy/WmPwZNEf
-         JRtNucqQJTU1U4mpngqgzP8RZnYghgyYb+Wb/33kuE2F+gjoIym0GWmcxQ+4SncRHJIL
-         U/yu4YWY9JJJjYW0GX7RyO/8tIGCNnV71Tk/ytPieyBF7GbF402aTIWNQ82bV0cCPgwZ
-         JyjVetS22VNyvNbjPv3cSE15IuXG3OWjgJ+5lZVazUvvwlZHNlCvX1xMltxl4bg+Uof/
-         HSKA==
-X-Gm-Message-State: AOAM532K6NzZdgyH+0oN1k4JKarZIwbuuQsvR7bj5wivlkQ/93zvtZQN
-        WBEmDVGYiA07yxDMoXqXXrp/EcJB6uttY5QN4L/5YJCCyb5gQFBGYGUnin16bAjnmiEauBJaSbN
-        UpYNCmJ7K06Sqg/Qo6kfY88ZXYgKOUGuot/QgSrU=
-X-Received: by 2002:a05:6512:2610:b0:448:27fc:a6ab with SMTP id bt16-20020a056512261000b0044827fca6abmr6165529lfb.117.1647614435307;
-        Fri, 18 Mar 2022 07:40:35 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJzge1+OMU6oDjlVzk/K5ztKRa1o5Wtl86/+yFtWC5zCXPcuXzvKr5+rXPtTdCr+kyJEgBjKCw==
-X-Received: by 2002:a05:6512:2610:b0:448:27fc:a6ab with SMTP id bt16-20020a056512261000b0044827fca6abmr6165518lfb.117.1647614435027;
-        Fri, 18 Mar 2022 07:40:35 -0700 (PDT)
-Received: from krzk-bin (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id p41-20020a05651213a900b00443fac7d6ffsm876979lfa.108.2022.03.18.07.40.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Mar 2022 07:40:34 -0700 (PDT)
-Date:   Fri, 18 Mar 2022 15:40:31 +0100
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     hminas@synopsys.com, gregkh@linuxfoundation.org,
-        robh+dt@kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: usb: dwc2: add compatible
- "intel,socfpga-agilex-hsotg"
-Message-ID: <20220318144031.ap75e5sjk5fa6ghv@krzk-bin>
-References: <20220125161821.1951906-1-dinguyen@kernel.org>
+        with ESMTP id S237395AbiCROoy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 10:44:54 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2472E575F;
+        Fri, 18 Mar 2022 07:43:33 -0700 (PDT)
+X-UUID: 0aada1f8ccfa40db85dcd4a18f53bb02-20220318
+X-UUID: 0aada1f8ccfa40db85dcd4a18f53bb02-20220318
+Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 207238101; Fri, 18 Mar 2022 22:43:18 +0800
+Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 18 Mar 2022 22:43:16 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
+ (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 18 Mar
+ 2022 22:43:16 +0800
+Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 18 Mar 2022 22:43:15 +0800
+Message-ID: <27fecdcdeca7dac46f14b7a83ce49c0f8dc3e7e5.camel@mediatek.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: Add YAML schema for
+ PCIe PHY
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Vinod Koul" <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
+        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
+        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
+        <jian.yang@mediatek.com>
+Date:   Fri, 18 Mar 2022 22:43:15 +0800
+In-Reply-To: <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
+References: <20220318095417.2016-1-jianjun.wang@mediatek.com>
+         <20220318095417.2016-2-jianjun.wang@mediatek.com>
+         <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
+         <319cf016-55fb-dcd4-9157-ad795c8e68ff@kernel.org>
+         <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20220125161821.1951906-1-dinguyen@kernel.org>
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jan 25, 2022 at 10:18:19AM -0600, Dinh Nguyen wrote:
-> Add the compatible "intel,socfpga-agilex-hsotg" to the DWC2
-> implementation, because the Agilex DWC2 implementation does not support
-> clock gating.
+On Fri, 2022-03-18 at 14:56 +0100, AngeloGioacchino Del Regno wrote:
+> Il 18/03/22 14:51, Krzysztof Kozlowski ha scritto:
+> > On 18/03/2022 12:12, AngeloGioacchino Del Regno wrote:
+> > > Il 18/03/22 10:54, Jianjun Wang ha scritto:
+> > > > Add YAML schema documentation for PCIe PHY on MediaTek
+> > > > chipsets.
+> > > > 
+> > > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > > > ---
+> > > >    .../bindings/phy/mediatek,pcie-phy.yaml       | 75
+> > > > +++++++++++++++++++
+> > > >    1 file changed, 75 insertions(+)
+> > > >    create mode 100644
+> > > > Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> > > > 
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> > > > b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..868bf976568b
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-
+> > > > phy.yaml
+> > > > @@ -0,0 +1,75 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: MediaTek PCIe PHY
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jianjun Wang <jianjun.wang@mediatek.com>
+> > > > +
+> > > > +description: |
+> > > > +  The PCIe PHY supports physical layer functionality for PCIe
+> > > > Gen3 port.
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: mediatek,mt8195-pcie-phy
+> > > 
+> > > Since I don't expect this driver to be only for MT8195, but to be
+> > > extended to
+> > > support some more future MediaTek SoCs and, depending on the
+> > > number of differences
+> > > in the possible future Gen4 PHYs, even different gen's, I propose
+> > > to add a generic
+> > > compatible as const.
+> > > 
+> > > So you'll have something like:
+> > > 
+> > > - enum:
+> > >       - mediatek,mt8195-pcie-phy
+> > > - const: mediatek,pcie-gen3-phy
+> > 
+> > I am not sure if this is a good idea. How sure are you that there
+> > will
+> > be no different PCIe Gen3 PHY not compatible with this one?
+> > 
+> > 
 > 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> ---
->  Documentation/devicetree/bindings/usb/dwc2.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Thanks for pointing that out, I have underestimated this option.
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> index f00867ebc147..481aaa09f3f2 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
-> @@ -53,6 +53,7 @@ properties:
->            - const: st,stm32mp15-hsotg
->            - const: snps,dwc2
->        - const: samsung,s3c6400-hsotg
-> +      - const: intel,socfpga-agilex-hsotg
+> Perhaps Jianjun may be more informed about whether my proposal is
+> valid or not.
 
-This is confusing and wrong. Now the intel,socfpga-agilex-hsotg is
-mentioned twice - with and without snps,dwc2. The DTS change in this
-patchset added usage with snps,dwc2. The commit msg says it's
-different, but is the difference incompatible?
+Many thanks for the suggestions.
 
-Please clarify the AgileX HSOTG - is it compatible with snps,dwc2 or
-not? Based on this the patch might need to be reverted (or changed).
+Currently, we only have this PCIe Gen3 PHY, and I don't think we are
+planning other PCIe Gen3 PHYs with different software interfaces, even
+in the next generation, we want to make sure it has a similar interface
+to this generation, so I prefer to add a generic ones to support more
+SoCs that need this driver.
 
-Best regards,
-Krzysztof
+Thanks.
+
+> 
+> Cheers,
+> Angelo
+> 
+> > Best regards,
+> > Krzysztof
+> 
+> 
 
