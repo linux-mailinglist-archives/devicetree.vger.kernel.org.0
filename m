@@ -2,83 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B58344DDEDE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 17:25:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BDB14DDED2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 17:25:53 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232194AbiCRQZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 12:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40450 "EHLO
+        id S239217AbiCRQ05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 12:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33606 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239039AbiCRQZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 12:25:25 -0400
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB4FA2F24C5
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:21:28 -0700 (PDT)
-Received: from mail-lj1-f197.google.com (mail-lj1-f197.google.com [209.85.208.197])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id D804C3F1E8
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 16:21:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-        s=20210705; t=1647620486;
-        bh=2W0HN5RRkNZ3VABX+Cwv7ixmrYLder+VG35wSKi/d+A=;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-         MIME-Version;
-        b=nH0HR9aJrCmvmMX5Ho9jW/f4aTPPR+eZiQ1dglYZpsYMpaEThGfjoYpaTN6kGq1fp
-         pe7rxJbovYZYqkWNlcdQTCtNBumEklOnhtbbfYZIcZR5aj4uvHlUDxtIHa7TSDvF4L
-         Oz7LqoHmYdmJtsHZ7BWWKbGdAhzRuKBnDd+buYLjygMGarfV2VltO4NpfLD9VKbRqa
-         nS1ixRVPLs2Z6CNjkFOMQZMT8FClTPjDTE0joOK9RyQCAPoEF8XHKo+jQjfBgm89x8
-         q37mYSPaFa/I9kgEfOaxUkXuTvGOKUYFNuNaYRy2go+iLOrVX9eDD+7t62xkUDNn7o
-         5Rg9CRFqpNDTA==
-Received: by mail-lj1-f197.google.com with SMTP id h21-20020a05651c125500b002464536cf4eso3602555ljh.23
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:21:26 -0700 (PDT)
+        with ESMTP id S239069AbiCRQ0t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 12:26:49 -0400
+Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF6A160FE7
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:35 -0700 (PDT)
+Received: by mail-ed1-x52a.google.com with SMTP id x34so9693122ede.8
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vJ9L0V5osggSMXilV0NUxdZ3YODQ2c0ZIQihzHn4ios=;
+        b=L11FSvmMxR/S/6J58hseaebFIGaY1w0GQZO0yjGrp1k0/LWn77MPX3oLnVkjnLa5VR
+         LTHnw3hZDmkoqVvtsOmvrvAv1apNvoCA4XOtpR8yn3emgjHbyE24KjF+ugN0bagp+Sau
+         pFEAfzk+AtQzHPGhS9ydM1oyairTwvQlgkBS4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=2W0HN5RRkNZ3VABX+Cwv7ixmrYLder+VG35wSKi/d+A=;
-        b=yLxluf4XLCqQoEwrdC2yDnSCEanTPZ7nAWNwjDEET7/9Q5jjPuWD2K6lhyN88pJ1nT
-         HaIn2mnBuQvMvaEFKNXjLEWO6Xe3wOGmyKbL5TL812LOiHXtn7WHk0R9jiV94Np3v15Q
-         NaQMCsoXhSbNTwAzBt23/8tN+BEyFUo9iktIXxzJjGyPWPNTQSk9XJNzkL0DVhiENk1o
-         SMEyGyqFbn8phm+NXXb2sKXC9R0K/HyqaibKnG7mB4s9h6EmdFsx5Mgk0EkWGWF8/Vd2
-         +kYIg3ND/R6Sk5dsecfyc6dAP2gmjxiG/hwh5vWLUU2LvTQePa29ezJ8PQ3w1I2HiJRQ
-         34wA==
-X-Gm-Message-State: AOAM531SBk7A8ssgs7vvgkVal8QpRul+A5DdPrgrxWNYuUotQid4coq2
-        qcO/+7MrgZP1NwqBILWRzOftjMuJ9eWSYgHK5de/qFpr5S0YwDoK8V3gSp+w17Xhu97kWmEslZr
-        UX3FQvAroKBS4c1i1oV4qKlyGH82q9726Hiie2IM=
-X-Received: by 2002:ac2:44a5:0:b0:448:27fb:f11b with SMTP id c5-20020ac244a5000000b0044827fbf11bmr6761053lfm.72.1647620485592;
-        Fri, 18 Mar 2022 09:21:25 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJxxYnFRtdU22BR20+/ugHHxzULrSzy0BJHNZ4eqdyKUJs4Bzk00wOL775ew90uRhXAX1YOExQ==
-X-Received: by 2002:ac2:44a5:0:b0:448:27fb:f11b with SMTP id c5-20020ac244a5000000b0044827fbf11bmr6761036lfm.72.1647620485407;
-        Fri, 18 Mar 2022 09:21:25 -0700 (PDT)
-Received: from localhost.localdomain (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.gmail.com with ESMTPSA id h5-20020a197005000000b00448287d1275sm906913lfc.298.2022.03.18.09.21.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Mar 2022 09:21:24 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-To:     Green Wan <green.wan@sifive.com>, Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Alexandre Ghiti <alexandre.ghiti@canonical.com>,
-        Palmer Debbelt <palmer@sifive.com>, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Subject: [PATCH 2/2] riscv: dts: sifive: fu540-c000: align dma node name with dtschema
-Date:   Fri, 18 Mar 2022 17:20:44 +0100
-Message-Id: <20220318162044.169350-2-krzysztof.kozlowski@canonical.com>
-X-Mailer: git-send-email 2.32.0
-In-Reply-To: <20220318162044.169350-1-krzysztof.kozlowski@canonical.com>
-References: <20220318162044.169350-1-krzysztof.kozlowski@canonical.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vJ9L0V5osggSMXilV0NUxdZ3YODQ2c0ZIQihzHn4ios=;
+        b=D5bRyiT2c3DB4iQrC6QPdPqFp+oA40nEs1dmvICFGaioppt29EPkeNJoDXZu2qmuD8
+         dx7Z4qKZjLOIjTzUDCFbmL+jfqVsNrW74UrA+NNBXeJ4I1ERqC0F4O7cdXL5yHFPDgBK
+         zsybiSwR2tJ0vRYMNLT7zdAaOOa3T6QR5E7t3tMjZxh6964fyiTECoKMcfs4rwJhGhAx
+         EuJvu2xmqzUfjXUYIBTLKucJko33+yYaPPoTFWqWvX2Vt2ubMiDz7Dm9p+ef7B+9pHt3
+         SG+rYxgY2nkGvQtItQbjGu5t8FYTvu6uhiW2wMUpY3SSm+IcjAm3rEhXeHPHVkzr9aRY
+         tfHQ==
+X-Gm-Message-State: AOAM530FElEL5AwkvkGvT+JduEGwKHTKgyRUuTbbzXwkDfXPB0F6AvO3
+        Pf8bT7ToNTaAoLjQfrpIbVHTOxiytf6rIrKSXAI=
+X-Google-Smtp-Source: ABdhPJwMaraK73oCEz5zXKPmgEDhMoQCNCu+zPddVqZpFppScPEyEDXHHrAsTEPY8wEtirXWwzXWiQ==
+X-Received: by 2002:a50:d711:0:b0:410:a51a:77c5 with SMTP id t17-20020a50d711000000b00410a51a77c5mr10274384edi.154.1647620673387;
+        Fri, 18 Mar 2022 09:24:33 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com. [209.85.221.46])
+        by smtp.gmail.com with ESMTPSA id gl2-20020a170906e0c200b006a767d52373sm3849962ejb.182.2022.03.18.09.24.32
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Mar 2022 09:24:32 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id t11so12422289wrm.5
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 09:24:32 -0700 (PDT)
+X-Received: by 2002:a5d:4491:0:b0:203:f63a:e89b with SMTP id
+ j17-20020a5d4491000000b00203f63ae89bmr3246004wrq.342.1647620671999; Fri, 18
+ Mar 2022 09:24:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com>
+ <1647452154-16361-7-git-send-email-quic_sbillaka@quicinc.com> <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com>
+In-Reply-To: <CAE-0n520pQKM7mFSE_00ER+F9RKUPrN+y4U8fmsxi7FoFMyOrA@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 18 Mar 2022 09:24:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
+Message-ID: <CAD=FV=UWF8K9JPJXFSGMRK-HmCi+2jM3aN6Uy7hyDSu1_azF+w@mail.gmail.com>
+Subject: Re: [PATCH v5 6/9] drm/msm/dp: wait for hpd high before any sink interaction
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        quic_kalyant <quic_kalyant@quicinc.com>,
+        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        quic_vproddut@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -87,28 +91,132 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes dtbs_check warnings like:
+Hi,
 
-  dma@3000000: $nodename:0: 'dma@3000000' does not match '^dma-controller(@.*)?$'
+On Thu, Mar 17, 2022 at 6:19 PM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Sankeerth Billakanti (2022-03-16 10:35:51)
+> >         The source device should ensure the sink is ready before
+> > proceeding to read the sink capability or performing any aux transactions.
+> > The sink will indicate its readiness by asserting the HPD line.
+> >
+> >         The eDP sink requires power from the source and its HPD line will
+> > be asserted only after the panel is powered on. The panel power will be
+> > enabled from the panel-edp driver.
+> >
+> >         The controller driver needs to wait for the hpd line to be asserted
+> > by the sink.
+> >
+> > Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
+> > ---
+> >  drivers/gpu/drm/msm/dp/dp_aux.c     |  6 ++++++
+> >  drivers/gpu/drm/msm/dp/dp_catalog.c | 23 +++++++++++++++++++++++
+> >  drivers/gpu/drm/msm/dp/dp_catalog.h |  1 +
+> >  drivers/gpu/drm/msm/dp/dp_reg.h     |  7 ++++++-
+> >  4 files changed, 36 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_aux.c b/drivers/gpu/drm/msm/dp/dp_aux.c
+> > index 6d36f63..2ddc303 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_aux.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_aux.c
+> > @@ -337,6 +337,12 @@ static ssize_t dp_aux_transfer(struct drm_dp_aux *dp_aux,
+> >                 goto exit;
+> >         }
+> >
+> > +       ret = dp_catalog_aux_wait_for_hpd_connect_state(aux->catalog);
+>
+> Why are we making aux transactions when hpd isn't asserted? Can we only
+> register the aux device once we know that state is "connected"? I'm
+> concerned that we're going to be possibly polling the connected bit up
+> to some amount of time (0x0003FFFF usecs?) for each aux transfer when
+> that doesn't make any sense to keep checking. We should be able to check
+> it once, register aux, and then when disconnect happens we can
+> unregister aux.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This is for eDP and, unless someone wants to redesign it again, is
+just how it works.
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 3eef52b1a59b..fd93fdadd28c 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -167,7 +167,7 @@ uart0: serial@10010000 {
- 			clocks = <&prci PRCI_CLK_TLCLK>;
- 			status = "disabled";
- 		};
--		dma: dma@3000000 {
-+		dma: dma-controller@3000000 {
- 			compatible = "sifive,fu540-c000-pdma";
- 			reg = <0x0 0x3000000 0x0 0x8000>;
- 			interrupt-parent = <&plic0>;
--- 
-2.32.0
+Specifically:
 
+1. On eDP you _always_ report "connected". This is because when an eDP
+panel is turned off (but still there) you actually have no way to
+detect it--you just have to assume it's there. And thus you _always_
+register the AUX bus.
+
+2. When we are asked to read the EDID that happens _before_ the normal
+prepare/enable steps. The way that this should work is that the
+request travels down to the panel. The panel turns itself on (waiting
+for any hardcoded delays it knows about) and then initiates an AUX
+transaction. The AUX transaction is in charge of waiting for HPD.
+
+
+For the DP case this should not cause any significant overhead, right?
+HPD should always be asserted so this is basically just one extra IO
+read confirming that HPD is asserted which should be almost nothing...
+You're just about to do a whole bunch of IO reads/writes in order to
+program the AUX transaction anyway.
+
+
+> > +       if (ret) {
+> > +               DRM_DEBUG_DP("DP sink not ready for aux transactions\n");
+> > +               goto exit;
+> > +       }
+> > +
+> >         dp_aux_update_offset_and_segment(aux, msg);
+> >         dp_aux_transfer_helper(aux, msg, true);
+> >
+> > diff --git a/drivers/gpu/drm/msm/dp/dp_catalog.c b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > index fac815f..2c3b0f7 100644
+> > --- a/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > +++ b/drivers/gpu/drm/msm/dp/dp_catalog.c
+> > @@ -242,6 +242,29 @@ void dp_catalog_aux_update_cfg(struct dp_catalog *dp_catalog)
+> >         phy_calibrate(phy);
+> >  }
+> >
+> > +int dp_catalog_aux_wait_for_hpd_connect_state(struct dp_catalog *dp_catalog)
+> > +{
+> > +       u32 state, hpd_en, timeout;
+> > +       struct dp_catalog_private *catalog = container_of(dp_catalog,
+> > +                               struct dp_catalog_private, dp_catalog);
+> > +
+> > +       hpd_en = dp_read_aux(catalog, REG_DP_DP_HPD_CTRL) &
+> > +                                       DP_DP_HPD_CTRL_HPD_EN;
+>
+> Use two lines
+>
+>         hpd_en = dp_read_aux();
+>         hpd_en &= DP_DP_HPD_CTRL_HPD_EN;
+>
+> > +
+> > +       /* no-hpd case */
+> > +       if (!hpd_en)
+> > +               return 0;
+
+I guess reading from hardware is fine, but I would have expected the
+driver to simply know whether HPD is used or not. Don't need to read
+it from hardware, do we? It's not like it's changing from minute to
+minute--this is something known at probe time.
+
+
+> > +       /* Poll for HPD connected status */
+> > +       timeout = dp_read_aux(catalog, REG_DP_DP_HPD_EVENT_TIME_0) &
+> > +                                       DP_HPD_CONNECT_TIME_MASK;
+> > +
+> > +       return readl_poll_timeout(catalog->io->dp_controller.aux.base +
+> > +                               REG_DP_DP_HPD_INT_STATUS,
+> > +                               state, state & DP_DP_HPD_STATE_STATUS_CONNECTED,
+> > +                               2000, timeout);
+
+The timeout that comes from hardware is really stored in microseconds?
+That's the units of the value passed to readl_poll_timeout(), right?
+Looking at your #defines, that means that your max value here is
+0x3fff which is 16383 microseconds or ~16 ms. That doesn't seem like
+nearly a long enough timeout to wait for a panel to power itself up.
+
+Also: I'm not sure why exactly you're using the timeout in the
+register here. Isn't the time you need to wait more about how long an
+eDP panel might conceivably need to power itself on? Most eDP panels
+I've seen have max delays of ~200 ms. I'd probably just wait 500 ms to
+be on the safe side.
+
+-Doug
