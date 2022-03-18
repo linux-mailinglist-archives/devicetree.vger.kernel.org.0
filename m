@@ -2,767 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 038174DD65E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:44:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2184DD668
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:46:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233889AbiCRIpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 04:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43762 "EHLO
+        id S231599AbiCRIsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 04:48:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233845AbiCRIp3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:45:29 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9897DFFB9
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 01:44:08 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id bg31-20020a05600c3c9f00b00381590dbb33so4439238wmb.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 01:44:08 -0700 (PDT)
+        with ESMTP id S233968AbiCRIsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:48:00 -0400
+Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8CC2BAE49;
+        Fri, 18 Mar 2022 01:46:41 -0700 (PDT)
+Received: by mail-qt1-x835.google.com with SMTP id 10so6351551qtz.11;
+        Fri, 18 Mar 2022 01:46:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=AEOzpJ57o7tkuOG8Ffj3AdMkNncqE/DQJCWMeb+lHtI=;
-        b=3AfWQjde8fzuHKQrbOrhW8Q9+O1CCdJNi6/L5XZJZkKbYQFIQy76Fyv/qvY0f+y1gM
-         X857unWG262MiHNurOIgrs7eb6J8z3Yr854O0ASv6dKRHs83V22nA0kBTGeJ/HHdun/s
-         /x28n6QxTPvLg7yPtyZq3vN7++LrrC3tCPduHFjtBLDz4Z6p4aOY+F2vLvRH/Fv58mmQ
-         4hxK5hZCmhlqW6R+gH+QhjLwdBQ54MZ0V1UrE4JvVn2HA/Ke0oGDoJoXzrCqHeXaimGP
-         d5AiAlijGlij2u7pwUQbcpgXWsXxCz3rx7ISEehq1v/JmAqL3T7Q/Ct/P2pEDNCWRe9M
-         SqTg==
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HX28KG1ETTyJqfzKGPZZd77iKDoX+t1pmuXVdkh9BBc=;
+        b=Z5aK/m5hJp461lI1t0YTLkryZtCz8/3HW4RW38wNu7h2EGUqR5UuMrj7IZGKTu0qKc
+         xqozWfz6HUk279WPyFj16B30DdNahbNTYWsIbBSEex9sA3PsaUSBV+ktq32E+IVv++KN
+         JVM+hWttBMY+pzT/KNggcxpvmXVD20QHebxdo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=AEOzpJ57o7tkuOG8Ffj3AdMkNncqE/DQJCWMeb+lHtI=;
-        b=j34fgjqY3rajeDUgIRbbGTzbWbfv7qrNDMmdq+GsjEN/9D2n0aeo5u4h7AcjmqAf81
-         H5KJ9578Y1gmU0BeBQe9orFHZE5VqIjYfnUSeCKQIUW+gwxaOTmM/vXKFiKh+AHGYha4
-         XbACy92iEhsftMXKgKksV1G0558KXlarOliDUgpWb+pgcW1hVIiJegMKsz3sl/nTOwOY
-         sNiaXdpzojYRj5E2uxK4IDEj6OsIAE7RSQn2TYlrYJypMImhBI6BwgmxTE3Ynxr42wog
-         RH2wTaIIqB31hzyGOf83nvzn3MkZQdjTNxZCkyGAH2cFe+EktywxuoAEYVInJxdHuXLc
-         Wr4g==
-X-Gm-Message-State: AOAM530mA9s75iN764ZCaNdRrIpXSfVcwkLvWJw3rJxVJX1Fe2Mp9g9M
-        BTHBhHx/O0FuI9AAaH/1vrwvhw==
-X-Google-Smtp-Source: ABdhPJz16fbx4E80Hjok4FSMWtEGdEtoG/s3m18nUn8giTHqLg0R0otDHKo4vHfagSeayxKsHKcaaA==
-X-Received: by 2002:a05:600c:4e8b:b0:38c:73d4:adb5 with SMTP id f11-20020a05600c4e8b00b0038c73d4adb5mr7460835wmq.34.1647593047197;
-        Fri, 18 Mar 2022 01:44:07 -0700 (PDT)
-Received: from [192.168.1.10] (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
-        by smtp.gmail.com with ESMTPSA id n65-20020a1c2744000000b003862bfb509bsm10247889wmn.46.2022.03.18.01.44.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 01:44:06 -0700 (PDT)
-Message-ID: <c1a4a361-ff08-13be-394f-493618668e1c@baylibre.com>
-Date:   Fri, 18 Mar 2022 09:44:05 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HX28KG1ETTyJqfzKGPZZd77iKDoX+t1pmuXVdkh9BBc=;
+        b=iqkB9EPr+kS3dKXJLVr7vm0IDmZZbsrzgOMgHWezCBb9dAvQmXnU4A7C354OA7j4N9
+         ETHmjP7Plh9R0op4m3toeQ8uE+TLDSplPCHeEILZNfv84YvdjiNi3Hn5pQbqijTY0eLK
+         HMV41Mhym5wH7BkpXX16jjzA1f6yro+9hX/qRYZTaw5a4jDq0hq9lymF1Sp/BQoI5YYB
+         UvnbVusRt5UDgkcRdS4CrVCnINlbGb7eHpCMJOREs1LT29dm6HUHD60+e8LOI3NcEMYG
+         16hAQn76lmn5DK3UVTzFFColrCMqBb6HKazZzJnDSD3IrrVrlwZmZ2wprtMNe3uF8HzT
+         LImA==
+X-Gm-Message-State: AOAM533sSLEksIw52iNg/vDwWrdRimZDvZCJ98LS5ehY3tdDtKjR19+N
+        i8oa7Y7Pf6qiZrRA+N5PKukhY0HSO3yxpQUhgFw=
+X-Google-Smtp-Source: ABdhPJwbpE/yU8SuU3bVcc+6HfWkUhrdPIgYdcuCEFhWvubB6MvFcV8t9gzlh4c9xyYxHO1Eosyq9q6syDlj8eCbRI4=
+X-Received: by 2002:a05:622a:14c8:b0:2e1:d626:66ea with SMTP id
+ u8-20020a05622a14c800b002e1d62666eamr6640121qtx.58.1647593200510; Fri, 18 Mar
+ 2022 01:46:40 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 3/3] drm: bridge: it66121: Add audio support
-Content-Language: en-US
-To:     Nicolas Belin <nbelin@baylibre.com>, andrzej.hajda@intel.com,
-        robert.foss@linaro.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com,
-        "Andy . Hsieh" <Andy.Hsieh@mediatek.com>
-References: <20220316135733.173950-1-nbelin@baylibre.com>
- <20220316135733.173950-4-nbelin@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220316135733.173950-4-nbelin@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <SG2PR06MB2315A7BAE2F1B384CDADB57FE6139@SG2PR06MB2315.apcprd06.prod.outlook.com>
+In-Reply-To: <SG2PR06MB2315A7BAE2F1B384CDADB57FE6139@SG2PR06MB2315.apcprd06.prod.outlook.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Fri, 18 Mar 2022 08:46:28 +0000
+Message-ID: <CACPK8XdYHb-PgVVQuTtMBokxu4GTObG7nCohm4dosK9XWzE9ow@mail.gmail.com>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: ast2600-evb: Enable RX delay for MAC0/MAC1
+To:     Howard Chiu <howard_chiu@aspeedtech.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "andrew@aj.id.au" <andrew@aj.id.au>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Troy Lee <troy_lee@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2022 14:57, Nicolas Belin wrote:
-> Adding the audio support on the HDMI bridge for I2S only.
-> 
-> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
-> Signed-off-by: Andy.Hsieh <Andy.Hsieh@mediatek.com>
+Hi Howard,
+
+On Fri, 18 Mar 2022 at 08:09, Howard Chiu <howard_chiu@aspeedtech.com> wrote:
+>
+> Since mac0/1 and mac2/3 are physically located on different die,
+> they have different properties by nature, which is mac0/1 has smaller delay step.
+>
+> The property 'phy-mode' on ast2600 mac0 and mac1 is recommended to set to 'rgmii-rxid'
+> which enables the RX interface delay from the PHY chip.
+> Refer page 45 of SDK User Guide v08.00
+> https://github.com/AspeedTech-BMC/openbmc/releases/download/v08.00/SDK_User_Guide_v08.00.pdf
+>
+> Set mac delay according to the mactest result.
+
+This bit confused me. How does the rxid relate to the mac delay
+numbers? Which device and code is responsible for using them?
+
+>
+> Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
 > ---
->   drivers/gpu/drm/bridge/ite-it66121.c | 627 +++++++++++++++++++++++++++
->   1 file changed, 627 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index 64912b770086..514989676d07 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -27,6 +27,8 @@
->   #include <drm/drm_print.h>
->   #include <drm/drm_probe_helper.h>
->   
-> +#include <sound/hdmi-codec.h>
-> +
->   #define IT66121_VENDOR_ID0_REG			0x00
->   #define IT66121_VENDOR_ID1_REG			0x01
->   #define IT66121_DEVICE_ID0_REG			0x02
-> @@ -155,6 +157,9 @@
->   #define IT66121_AV_MUTE_ON			BIT(0)
->   #define IT66121_AV_MUTE_BLUESCR			BIT(1)
->   
-> +#define IT66121_PKT_CTS_CTRL_REG		0xC5
-> +#define IT66121_PKT_CTS_CTRL_SEL		BIT(1)
-> +
->   #define IT66121_PKT_GEN_CTRL_REG		0xC6
->   #define IT66121_PKT_GEN_CTRL_ON			BIT(0)
->   #define IT66121_PKT_GEN_CTRL_RPT		BIT(1)
-> @@ -202,6 +207,89 @@
->   #define IT66121_EDID_SLEEP_US			20000
->   #define IT66121_EDID_TIMEOUT_US			200000
->   #define IT66121_EDID_FIFO_SIZE			32
-> +
-> +#define IT66121_CLK_CTRL0_REG			0x58
-> +#define IT66121_CLK_CTRL0_AUTO_OVER_SAMPLING	BIT(4)
-> +#define IT66121_CLK_CTRL0_EXT_MCLK_MASK		GENMASK(3, 2)
-> +#define IT66121_CLK_CTRL0_EXT_MCLK_128FS	(0 << 2)
-> +#define IT66121_CLK_CTRL0_EXT_MCLK_256FS	BIT(2)
-> +#define IT66121_CLK_CTRL0_EXT_MCLK_512FS	(2 << 2)
-> +#define IT66121_CLK_CTRL0_EXT_MCLK_1024FS	(3 << 2)
-> +#define IT66121_CLK_CTRL0_AUTO_IPCLK		BIT(0)
-> +#define IT66121_CLK_STATUS1_REG			0x5E
-> +#define IT66121_CLK_STATUS2_REG			0x5F
-> +
-> +#define IT66121_AUD_CTRL0_REG			0xE0
-> +#define IT66121_AUD_SWL				(3 << 6)
-> +#define IT66121_AUD_16BIT			(0 << 6)
-> +#define IT66121_AUD_18BIT			BIT(6)
-> +#define IT66121_AUD_20BIT			(2 << 6)
-> +#define IT66121_AUD_24BIT			(3 << 6)
-> +#define IT66121_AUD_SPDIFTC			BIT(5)
-> +#define IT66121_AUD_SPDIF			BIT(4)
-> +#define IT66121_AUD_I2S				(0 << 4)
-> +#define IT66121_AUD_EN_I2S3			BIT(3)
-> +#define IT66121_AUD_EN_I2S2			BIT(2)
-> +#define IT66121_AUD_EN_I2S1			BIT(1)
-> +#define IT66121_AUD_EN_I2S0			BIT(0)
-> +#define IT66121_AUD_CTRL0_AUD_SEL		BIT(4)
-> +
-> +#define IT66121_AUD_CTRL1_REG			0xE1
-> +#define IT66121_AUD_FIFOMAP_REG			0xE2
-> +#define IT66121_AUD_CTRL3_REG			0xE3
-> +#define IT66121_AUD_SRCVALID_FLAT_REG		0xE4
-> +#define IT66121_AUD_FLAT_SRC0			BIT(4)
-> +#define IT66121_AUD_FLAT_SRC1			BIT(5)
-> +#define IT66121_AUD_FLAT_SRC2			BIT(6)
-> +#define IT66121_AUD_FLAT_SRC3			BIT(7)
-> +#define IT66121_AUD_HDAUDIO_REG			0xE5
-> +
-> +#define IT66121_AUD_PKT_CTS0_REG		0x130
-> +#define IT66121_AUD_PKT_CTS1_REG		0x131
-> +#define IT66121_AUD_PKT_CTS2_REG		0x132
-> +#define IT66121_AUD_PKT_N0_REG			0x133
-> +#define IT66121_AUD_PKT_N1_REG			0x134
-> +#define IT66121_AUD_PKT_N2_REG			0x135
-> +
-> +#define IT66121_AUD_CHST_MODE_REG		0x191
-> +#define IT66121_AUD_CHST_CAT_REG		0x192
-> +#define IT66121_AUD_CHST_SRCNUM_REG		0x193
-> +#define IT66121_AUD_CHST_CHTNUM_REG		0x194
-> +#define IT66121_AUD_CHST_CA_FS_REG		0x198
-> +#define IT66121_AUD_CHST_OFS_WL_REG		0x199
-> +
-> +#define IT66121_AUD_PKT_CTS_CNT0_REG		0x1A0
-> +#define IT66121_AUD_PKT_CTS_CNT1_REG		0x1A1
-> +#define IT66121_AUD_PKT_CTS_CNT2_REG		0x1A2
-> +
-> +#define IT66121_AUD_FS_22P05K			0x4
-> +#define IT66121_AUD_FS_44P1K			0x0
-> +#define IT66121_AUD_FS_88P2K			0x8
-> +#define IT66121_AUD_FS_176P4K			0xC
-> +#define IT66121_AUD_FS_24K			0x6
-> +#define IT66121_AUD_FS_48K			0x2
-> +#define IT66121_AUD_FS_96K			0xA
-> +#define IT66121_AUD_FS_192K			0xE
-> +#define IT66121_AUD_FS_768K			0x9
-> +#define IT66121_AUD_FS_32K			0x3
-> +#define IT66121_AUD_FS_OTHER			0x1
-> +
-> +#define IT66121_AUD_SWL_21BIT			0xD
-> +#define IT66121_AUD_SWL_24BIT			0xB
-> +#define IT66121_AUD_SWL_23BIT			0x9
-> +#define IT66121_AUD_SWL_22BIT			0x5
-> +#define IT66121_AUD_SWL_20BIT			0x3
-> +#define IT66121_AUD_SWL_17BIT			0xC
-> +#define IT66121_AUD_SWL_19BIT			0x8
-> +#define IT66121_AUD_SWL_18BIT			0x4
-> +#define IT66121_AUD_SWL_16BIT			0x2
-> +#define IT66121_AUD_SWL_NOT_INDICATED		0x0
-> +
-> +#define IT66121_VENDOR_ID0			0x54
-> +#define IT66121_VENDOR_ID1			0x49
-> +#define IT66121_DEVICE_ID0			0x12
-> +#define IT66121_DEVICE_ID1			0x06
-> +#define IT66121_DEVICE_MASK			0x0F
->   #define IT66121_AFE_CLK_HIGH			80000 /* Khz */
->   
->   struct it66121_ctx {
-> @@ -216,6 +304,13 @@ struct it66121_ctx {
->   	u32 bus_width;
->   	struct mutex lock; /* Protects fields below and device registers */
->   	struct hdmi_avi_infoframe hdmi_avi_infoframe;
-> +	struct {
-> +		struct platform_device *pdev;
-> +		u8 ch_enable;
-> +		u8 fs;
-> +		u8 swl;
-> +		bool auto_cts;
-> +	} audio;
->   };
->   
->   static const struct regmap_range_cfg it66121_regmap_banks[] = {
-> @@ -886,6 +981,536 @@ static irqreturn_t it66121_irq_threaded_handler(int irq, void *dev_id)
->   	return IRQ_HANDLED;
->   }
->   
-> +static int it661221_set_chstat(struct it66121_ctx *ctx, u8 iec60958_chstat[])
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CHST_MODE_REG, iec60958_chstat[0] & 0x7C);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CHST_CAT_REG, iec60958_chstat[1]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CHST_SRCNUM_REG, iec60958_chstat[2] & 0x0F);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CHST_CHTNUM_REG,
-> +			   (iec60958_chstat[2] >> 4) & 0x0F);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CHST_CA_FS_REG, iec60958_chstat[3]);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(ctx->regmap, IT66121_AUD_CHST_OFS_WL_REG, iec60958_chstat[4]);
-> +}
-> +
-> +static int it661221_set_lpcm_audio(struct it66121_ctx *ctx, u8 audio_src_num, u8 audio_swl)
-> +{
-> +	int ret;
-> +	unsigned int audio_enable = 0;
-> +	unsigned int audio_format = 0;
-> +
-> +	switch (audio_swl) {
-> +	case 16:
-> +		audio_enable |= IT66121_AUD_16BIT;
-> +		break;
-> +	case 18:
-> +		audio_enable |= IT66121_AUD_18BIT;
-> +		break;
-> +	case 20:
-> +		audio_enable |= IT66121_AUD_20BIT;
-> +		break;
-> +	case 24:
-> +	default:
-> +		audio_enable |= IT66121_AUD_24BIT;
-> +		break;
-> +	}
-> +
-> +	audio_format |= 0x40;
-> +	switch (audio_src_num) {
-> +	case 4:
-> +		audio_enable |= IT66121_AUD_EN_I2S3 | IT66121_AUD_EN_I2S2 |
-> +				IT66121_AUD_EN_I2S1 | IT66121_AUD_EN_I2S0;
-> +		break;
-> +	case 3:
-> +		audio_enable |= IT66121_AUD_EN_I2S2 | IT66121_AUD_EN_I2S1 |
-> +				IT66121_AUD_EN_I2S0;
-> +		break;
-> +	case 2:
-> +		audio_enable |= IT66121_AUD_EN_I2S1 | IT66121_AUD_EN_I2S0;
-> +		break;
-> +	case 1:
-> +	default:
-> +		audio_format &= ~0x40;
-> +		audio_enable |= IT66121_AUD_EN_I2S0;
-> +		break;
-> +	}
-> +
-> +	audio_format |= 0x01;
-> +	ctx->audio.ch_enable = audio_enable;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CTRL0_REG, audio_enable & 0xF0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CTRL1_REG, audio_format);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_FIFOMAP_REG, 0xE4);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_CTRL3_REG, 0x00);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_SRCVALID_FLAT_REG, 0x00);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(ctx->regmap, IT66121_AUD_HDAUDIO_REG, 0x00);
-> +}
-> +
-> +static int it661221_set_ncts(struct it66121_ctx *ctx, u8 fs)
-> +{
-> +	int ret;
-> +	unsigned int n;
-> +
-> +	switch (fs) {
-> +	case IT66121_AUD_FS_32K:
-> +		n = 4096;
-> +		break;
-> +	case IT66121_AUD_FS_44P1K:
-> +		n = 6272;
-> +		break;
-> +	case IT66121_AUD_FS_48K:
-> +		n = 6144;
-> +		break;
-> +	case IT66121_AUD_FS_88P2K:
-> +		n = 12544;
-> +		break;
-> +	case IT66121_AUD_FS_96K:
-> +		n = 12288;
-> +		break;
-> +	case IT66121_AUD_FS_176P4K:
-> +		n = 25088;
-> +		break;
-> +	case IT66121_AUD_FS_192K:
-> +		n = 24576;
-> +		break;
-> +	case IT66121_AUD_FS_768K:
-> +		n = 24576;
-> +		break;
-> +	default:
-> +		n = 6144;
-> +		break;
-> +	}
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_PKT_N0_REG, (u8)((n) & 0xFF));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_PKT_N1_REG, (u8)((n >> 8) & 0xFF));
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, IT66121_AUD_PKT_N2_REG, (u8)((n >> 16) & 0xF));
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (ctx->audio.auto_cts) {
-> +		u8 loop_cnt = 255;
-> +		u8 cts_stable_cnt = 0;
-> +		unsigned int sum_cts = 0;
-> +		unsigned int cts = 0;
-> +		unsigned int last_cts = 0;
-> +		unsigned int diff;
-> +		unsigned int val;
-> +
-> +		while (loop_cnt--) {
-> +			msleep(30);
-> +			regmap_read(ctx->regmap, IT66121_AUD_PKT_CTS_CNT2_REG, &val);
-> +			cts = val << 12;
-> +			regmap_read(ctx->regmap, IT66121_AUD_PKT_CTS_CNT1_REG, &val);
-> +			cts |= val << 4;
-> +			regmap_read(ctx->regmap, IT66121_AUD_PKT_CTS_CNT0_REG, &val);
-> +			cts |= val >> 4;
-> +			if (cts == 0) {
-> +				continue;
-> +			} else {
-> +				if (last_cts > cts)
-> +					diff = last_cts - cts;
-> +				else
-> +					diff = cts - last_cts;
-> +				last_cts = cts;
-> +				if (diff < 5) {
-> +					cts_stable_cnt++;
-> +					sum_cts += cts;
-> +				} else {
-> +					cts_stable_cnt = 0;
-> +					sum_cts = 0;
-> +					continue;
-> +				}
-> +
-> +				if (cts_stable_cnt >= 32) {
-> +					last_cts = (sum_cts >> 5);
-> +					break;
-> +				}
-> +			}
-> +		}
-> +
-> +		regmap_write(ctx->regmap, IT66121_AUD_PKT_CTS0_REG, (u8)((last_cts) & 0xFF));
-> +		regmap_write(ctx->regmap, IT66121_AUD_PKT_CTS1_REG, (u8)((last_cts >> 8) & 0xFF));
-> +		regmap_write(ctx->regmap, IT66121_AUD_PKT_CTS2_REG, (u8)((last_cts >> 16) & 0x0F));
-> +	}
-> +
-> +	ret = regmap_write(ctx->regmap, 0xF8, 0xC3);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_write(ctx->regmap, 0xF8, 0xA5);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (ctx->audio.auto_cts) {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_PKT_CTS_CTRL_REG,
-> +					IT66121_PKT_CTS_CTRL_SEL,
-> +					1);
-> +	} else {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_PKT_CTS_CTRL_REG,
-> +					IT66121_PKT_CTS_CTRL_SEL,
-> +					0);
-> +	}
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_write(ctx->regmap, 0xF8, 0xFF);
-> +}
-> +
-> +static int it661221_audio_output_enable(struct it66121_ctx *ctx, bool enable)
-> +{
-> +	int ret;
-> +
-> +	if (enable) {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_SW_RST_REG,
-> +					IT66121_SW_RST_AUD | IT66121_SW_RST_AREF,
-> +					0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_AUD_CTRL0_REG,
-> +					IT66121_AUD_EN_I2S3 | IT66121_AUD_EN_I2S2 |
-> +					IT66121_AUD_EN_I2S1 | IT66121_AUD_EN_I2S0,
-> +					ctx->audio.ch_enable);
-> +	} else {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_AUD_CTRL0_REG,
-> +					IT66121_AUD_EN_I2S3 | IT66121_AUD_EN_I2S2 |
-> +					IT66121_AUD_EN_I2S1 | IT66121_AUD_EN_I2S0,
-> +					ctx->audio.ch_enable & 0xF0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_SW_RST_REG,
-> +					IT66121_SW_RST_AUD | IT66121_SW_RST_AREF,
-> +					IT66121_SW_RST_AUD | IT66121_SW_RST_AREF);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int it661221_audio_ch_enable(struct it66121_ctx *ctx, bool enable)
-> +{
-> +	int ret;
-> +
-> +	if (enable) {
-> +		ret = regmap_write(ctx->regmap, IT66121_AUD_SRCVALID_FLAT_REG, 0);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = regmap_write(ctx->regmap, IT66121_AUD_CTRL0_REG, ctx->audio.ch_enable);
-> +	} else {
-> +		ret = regmap_write(ctx->regmap, IT66121_AUD_CTRL0_REG, ctx->audio.ch_enable & 0xF0);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int it66121_audio_hw_params(struct device *dev, void *data,
-> +				   struct hdmi_codec_daifmt *daifmt,
-> +				   struct hdmi_codec_params *params)
-> +{
-> +	u8 fs;
-> +	u8 swl;
-> +	int ret;
-> +	struct it66121_ctx *ctx = dev_get_drvdata(dev);
-> +	static u8 iec60958_chstat[5];
-> +	unsigned int channels = params->channels;
-> +	unsigned int sample_rate = params->sample_rate;
-> +	unsigned int sample_width = params->sample_width;
-> +
-> +	mutex_lock(&ctx->lock);
-> +	dev_dbg(dev, "%s: %u, %u, %u, %u\n", __func__,
-> +		daifmt->fmt, sample_rate, sample_width, channels);
-> +
-> +	switch (daifmt->fmt) {
-> +	case HDMI_I2S:
-> +		dev_dbg(dev, "Using HDMI I2S\n");
-> +		break;
-> +	default:
-> +		dev_err(dev, "Invalid or unsupported DAI format %d\n", daifmt->fmt);
-> +		ret = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	// Set audio clock recovery (N/CTS)
-> +	ret = regmap_write(ctx->regmap, IT66121_CLK_CTRL0_REG,
-> +			   IT66121_CLK_CTRL0_AUTO_OVER_SAMPLING |
-> +			   IT66121_CLK_CTRL0_EXT_MCLK_256FS |
-> +			   IT66121_CLK_CTRL0_AUTO_IPCLK);
-> +	if (ret)
-> +		goto out;
-> +
-> +	ret = regmap_write_bits(ctx->regmap, IT66121_AUD_CTRL0_REG,
-> +				IT66121_AUD_CTRL0_AUD_SEL, 0); // remove spdif selection
-> +	if (ret)
-> +		goto out;
-> +
-> +	switch (sample_rate) {
-> +	case 44100L:
-> +		fs = IT66121_AUD_FS_44P1K;
-> +		break;
-> +	case 88200L:
-> +		fs = IT66121_AUD_FS_88P2K;
-> +		break;
-> +	case 176400L:
-> +		fs = IT66121_AUD_FS_176P4K;
-> +		break;
-> +	case 32000L:
-> +		fs = IT66121_AUD_FS_32K;
-> +		break;
-> +	case 48000L:
-> +		fs = IT66121_AUD_FS_48K;
-> +		break;
-> +	case 96000L:
-> +		fs = IT66121_AUD_FS_96K;
-> +		break;
-> +	case 192000L:
-> +		fs = IT66121_AUD_FS_192K;
-> +		break;
-> +	case 768000L:
-> +		fs = IT66121_AUD_FS_768K;
-> +		break;
-> +	default:
-> +		fs = IT66121_AUD_FS_48K;
-> +		break;
-> +	}
-> +
-> +	ctx->audio.fs = fs;
-> +	ret = it661221_set_ncts(ctx, fs);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set N/CTS: %d\n", ret);
-> +		goto out;
-> +	}
-> +
-> +	// Set audio format register (except audio channel enable)
-> +	ret = it661221_set_lpcm_audio(ctx, (channels + 1) / 2, sample_width);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set LPCM audio: %d\n", ret);
-> +		goto out;
-> +	}
-> +
-> +	// Set audio channel status
-> +	iec60958_chstat[0] = 0;
-> +	if ((channels + 1) / 2 == 1)
-> +		iec60958_chstat[0] |= 0x1;
-> +	iec60958_chstat[0] &= ~(1 << 1);
-> +	iec60958_chstat[1] = 0;
-> +	iec60958_chstat[2] = (channels + 1) / 2;
-> +	iec60958_chstat[2] |= (channels << 4) & 0xF0;
-> +	iec60958_chstat[3] = fs;
-> +
-> +	switch (sample_width) {
-> +	case 21L:
-> +		swl = IT66121_AUD_SWL_21BIT;
-> +		break;
-> +	case 24L:
-> +		swl = IT66121_AUD_SWL_24BIT;
-> +		break;
-> +	case 23L:
-> +		swl = IT66121_AUD_SWL_23BIT;
-> +		break;
-> +	case 22L:
-> +		swl = IT66121_AUD_SWL_22BIT;
-> +		break;
-> +	case 20L:
-> +		swl = IT66121_AUD_SWL_20BIT;
-> +		break;
-> +	case 17L:
-> +		swl = IT66121_AUD_SWL_17BIT;
-> +		break;
-> +	case 19L:
-> +		swl = IT66121_AUD_SWL_19BIT;
-> +		break;
-> +	case 18L:
-> +		swl = IT66121_AUD_SWL_18BIT;
-> +		break;
-> +	case 16L:
-> +		swl = IT66121_AUD_SWL_16BIT;
-> +		break;
-> +	default:
-> +		swl = IT66121_AUD_SWL_NOT_INDICATED;
-> +		break;
-> +	}
-> +
-> +	iec60958_chstat[4] = (((~fs) << 4) & 0xF0) | swl;
-> +	ret = it661221_set_chstat(ctx, iec60958_chstat);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to set channel status: %d\n", ret);
-> +		goto out;
-> +	}
-> +
-> +	// Enable audio channel enable while input clock stable (if SPDIF).
-> +	ret = it661221_audio_ch_enable(ctx, true);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to enable audio channel: %d\n", ret);
-> +		goto out;
-> +	}
-> +
-> +	ret = regmap_write_bits(ctx->regmap, IT66121_INT_MASK1_REG,
-> +				IT66121_INT_MASK1_AUD_OVF,
-> +				0);
-> +	if (ret)
-> +		goto out;
-> +
-> +	dev_dbg(dev, "HDMI audio enabled.\n");
-> +out:
-> +	mutex_unlock(&ctx->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int it66121_audio_startup(struct device *dev, void *data)
-> +{
-> +	int ret;
-> +	struct it66121_ctx *ctx = dev_get_drvdata(dev);
-> +
-> +	dev_dbg(dev, "%s\n", __func__);
-> +
-> +	mutex_lock(&ctx->lock);
-> +	ret = it661221_audio_output_enable(ctx, true);
-> +	if (ret)
-> +		dev_err(dev, "Failed to enable audio output: %d\n", ret);
-> +
-> +	mutex_unlock(&ctx->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static void it66121_audio_shutdown(struct device *dev, void *data)
-> +{
-> +	int ret;
-> +	struct it66121_ctx *ctx = dev_get_drvdata(dev);
-> +
-> +	dev_dbg(dev, "%s\n", __func__);
-> +
-> +	mutex_lock(&ctx->lock);
-> +	ret = it661221_audio_output_enable(ctx, false);
-> +	if (ret)
-> +		dev_err(dev, "Failed to disable audio output: %d\n", ret);
-> +
-> +	mutex_unlock(&ctx->lock);
-> +}
-> +
-> +static int it66121_audio_mute(struct device *dev, void *data,
-> +			      bool enable, int direction)
-> +{
-> +	int ret;
-> +	struct it66121_ctx *ctx = dev_get_drvdata(dev);
-> +
-> +	dev_dbg(dev, "%s: enable=%s, direction=%d\n",
-> +		__func__, enable ? "true" : "false", direction);
-> +
-> +	mutex_lock(&ctx->lock);
-> +
-> +	if (enable) {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_AUD_SRCVALID_FLAT_REG,
-> +					IT66121_AUD_FLAT_SRC0 | IT66121_AUD_FLAT_SRC1 |
-> +					IT66121_AUD_FLAT_SRC2 | IT66121_AUD_FLAT_SRC3,
-> +					IT66121_AUD_FLAT_SRC0 | IT66121_AUD_FLAT_SRC1 |
-> +					IT66121_AUD_FLAT_SRC2 | IT66121_AUD_FLAT_SRC3);
-> +	} else {
-> +		ret = regmap_write_bits(ctx->regmap, IT66121_AUD_SRCVALID_FLAT_REG,
-> +					IT66121_AUD_FLAT_SRC0 | IT66121_AUD_FLAT_SRC1 |
-> +					IT66121_AUD_FLAT_SRC2 | IT66121_AUD_FLAT_SRC3,
-> +					0);
-> +	}
-> +
-> +	mutex_unlock(&ctx->lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int it66121_audio_get_eld(struct device *dev, void *data,
-> +				 u8 *buf, size_t len)
-> +{
-> +	struct it66121_ctx *ctx = dev_get_drvdata(dev);
-> +
-> +	mutex_lock(&ctx->lock);
-> +
-> +	memcpy(buf, ctx->connector->eld,
-> +	       min(sizeof(ctx->connector->eld), len));
-> +
-> +	mutex_unlock(&ctx->lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct hdmi_codec_ops it66121_audio_codec_ops = {
-> +	.hw_params = it66121_audio_hw_params,
-> +	.audio_startup = it66121_audio_startup,
-> +	.audio_shutdown = it66121_audio_shutdown,
-> +	.mute_stream = it66121_audio_mute,
-> +	.get_eld = it66121_audio_get_eld,
-> +	.no_capture_mute = 1,
+>  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 19 +++++++++++++++++--
+>  1 file changed, 17 insertions(+), 2 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> index b7eb552640cb..db16ba307e97 100644
+> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
+> @@ -103,7 +103,7 @@ ethphy3: ethernet-phy@0 {
+>  &mac0 {
+>         status = "okay";
+>
+> -       phy-mode = "rgmii";
+> +       phy-mode = "rgmii-rxid";
+>         phy-handle = <&ethphy0>;
+>
+>         pinctrl-names = "default";
+> @@ -114,7 +114,7 @@ &mac0 {
+>  &mac1 {
+>         status = "okay";
+>
+> -       phy-mode = "rgmii";
+> +       phy-mode = "rgmii-rxid";
+>         phy-handle = <&ethphy1>;
+>
+>         pinctrl-names = "default";
+> @@ -141,6 +141,21 @@ &mac3 {
+>         pinctrl-0 = <&pinctrl_rgmii4_default>;
+>  };
+>
+> +&syscon {
+> +       mac0-clk-delay = <0x10 0x0a
+> +                         0x10 0x10
+> +                         0x10 0x10>;
+
+These properties aren't supported by the mainline kernel. Do you have
+some code coming for that support?
+
+> +       mac1-clk-delay = <0x10 0x0a
+> +                         0x10 0x10
+> +                         0x10 0x10>;
+> +       mac2-clk-delay = <0x08 0x04
+> +                         0x08 0x04
+> +                         0x08 0x04>;
+> +       mac3-clk-delay = <0x08 0x04
+> +                         0x08 0x04
+> +                         0x08 0x04>;
 > +};
 > +
-> +static int it66121_audio_codec_init(struct it66121_ctx *ctx, struct device *dev)
-> +{
-> +	struct hdmi_codec_pdata codec_data = {
-> +		.ops = &it66121_audio_codec_ops,
-> +		.i2s = 1, /* Only i2s support for now */
-> +		.spdif = 0,
-> +		.max_i2s_channels = 8,
-> +	};
-> +
-> +	dev_dbg(dev, "%s\n", __func__);
-> +
-> +	if (!of_property_read_bool(dev->of_node, "#sound-dai-cells")) {
-> +		dev_info(dev, "No \"#sound-dai-cells\", no audio\n");
-> +		return 0;
-> +	}
-> +
-> +	ctx->audio.pdev = platform_device_register_data(dev,
-> +							HDMI_CODEC_DRV_NAME,
-> +							PLATFORM_DEVID_AUTO,
-> +							&codec_data,
-> +							sizeof(codec_data));
-> +
-> +	if (IS_ERR(ctx->audio.pdev)) {
-> +		dev_err(dev, "Failed to initialize HDMI audio codec: %d\n",
-> +			PTR_ERR_OR_ZERO(ctx->audio.pdev));
-> +	}
-> +
-> +	return PTR_ERR_OR_ZERO(ctx->audio.pdev);
-> +}
-> +
->   static int it66121_probe(struct i2c_client *client,
->   			 const struct i2c_device_id *id)
->   {
-> @@ -991,6 +1616,8 @@ static int it66121_probe(struct i2c_client *client,
->   		return ret;
->   	}
->   
-> +	it66121_audio_codec_init(ctx, dev);
-> +
->   	drm_bridge_add(&ctx->bridge);
->   
->   	dev_info(ctx->dev, "IT66121 revision %d probed\n", revision_id);
-
-Looks good to me, it follows programming sequence described in [1].
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-
-[1] https://rockchip.fr/radxa/IT66121_Programming_Guide.v1.05.pdf
+>  &emmc_controller {
+>         status = "okay";
+>  };
+> --
+> 2.25.1
+>
