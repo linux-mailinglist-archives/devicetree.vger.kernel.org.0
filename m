@@ -2,63 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14B714DDBDB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 15:43:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F16AB4DDBEA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 15:46:18 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237397AbiCROoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 10:44:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53884 "EHLO
+        id S237444AbiCROrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 10:47:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S237395AbiCROoy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 10:44:54 -0400
+        with ESMTP id S237451AbiCROrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 10:47:10 -0400
 Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2472E575F;
-        Fri, 18 Mar 2022 07:43:33 -0700 (PDT)
-X-UUID: 0aada1f8ccfa40db85dcd4a18f53bb02-20220318
-X-UUID: 0aada1f8ccfa40db85dcd4a18f53bb02-20220318
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw02.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 207238101; Fri, 18 Mar 2022 22:43:18 +0800
-Received: from mtkexhb02.mediatek.inc (172.21.101.103) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 18 Mar 2022 22:43:16 +0800
-Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb02.mediatek.inc
- (172.21.101.103) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 18 Mar
- 2022 22:43:16 +0800
-Received: from mhfsdcap04 (10.17.3.154) by mtkcas11.mediatek.inc
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AA44105051;
+        Fri, 18 Mar 2022 07:45:50 -0700 (PDT)
+X-UUID: 6d9d66b40ec9407480ccc2333a9d64d4-20220318
+X-UUID: 6d9d66b40ec9407480ccc2333a9d64d4-20220318
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <allen-kh.cheng@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1521379821; Fri, 18 Mar 2022 22:45:41 +0800
+Received: from mtkexhb01.mediatek.inc (172.21.101.102) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Fri, 18 Mar 2022 22:45:40 +0800
+Received: from mtkcas11.mediatek.inc (172.21.101.40) by mtkexhb01.mediatek.inc
+ (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 18 Mar
+ 2022 22:45:40 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas11.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 18 Mar 2022 22:43:15 +0800
-Message-ID: <27fecdcdeca7dac46f14b7a83ce49c0f8dc3e7e5.camel@mediatek.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: Add YAML schema for
- PCIe PHY
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "Vinod Koul" <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chen-Yu Tsai <wenst@chromium.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
+ Transport; Fri, 18 Mar 2022 22:45:39 +0800
+From:   Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+CC:     <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-mediatek@lists.infradead.org>,
-        <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <rex-bc.chen@mediatek.com>,
-        <randy.wu@mediatek.com>, <jieyy.yang@mediatek.com>,
-        <chuanjia.liu@mediatek.com>, <qizhong.cheng@mediatek.com>,
-        <jian.yang@mediatek.com>
-Date:   Fri, 18 Mar 2022 22:43:15 +0800
-In-Reply-To: <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
-References: <20220318095417.2016-1-jianjun.wang@mediatek.com>
-         <20220318095417.2016-2-jianjun.wang@mediatek.com>
-         <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
-         <319cf016-55fb-dcd4-9157-ad795c8e68ff@kernel.org>
-         <e0adbb4d-aa87-49ea-d79f-11c5f4fc4bdd@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.2 
+        "Chen-Yu Tsai" <wenst@chromium.org>,
+        Ryder Lee <ryder.lee@kernel.org>,
+        Hui Liu <hui.liu@mediatek.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>
+Subject: [PATCH v4 00/22] Add driver nodes for MT8192 SoC 
+Date:   Fri, 18 Mar 2022 22:45:12 +0800
+Message-ID: <20220318144534.17996-1-allen-kh.cheng@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-MTK:  N
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY
@@ -69,90 +60,75 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-03-18 at 14:56 +0100, AngeloGioacchino Del Regno wrote:
-> Il 18/03/22 14:51, Krzysztof Kozlowski ha scritto:
-> > On 18/03/2022 12:12, AngeloGioacchino Del Regno wrote:
-> > > Il 18/03/22 10:54, Jianjun Wang ha scritto:
-> > > > Add YAML schema documentation for PCIe PHY on MediaTek
-> > > > chipsets.
-> > > > 
-> > > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > > > ---
-> > > >    .../bindings/phy/mediatek,pcie-phy.yaml       | 75
-> > > > +++++++++++++++++++
-> > > >    1 file changed, 75 insertions(+)
-> > > >    create mode 100644
-> > > > Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> > > > 
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> > > > b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..868bf976568b
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-
-> > > > phy.yaml
-> > > > @@ -0,0 +1,75 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: MediaTek PCIe PHY
-> > > > +
-> > > > +maintainers:
-> > > > +  - Jianjun Wang <jianjun.wang@mediatek.com>
-> > > > +
-> > > > +description: |
-> > > > +  The PCIe PHY supports physical layer functionality for PCIe
-> > > > Gen3 port.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    const: mediatek,mt8195-pcie-phy
-> > > 
-> > > Since I don't expect this driver to be only for MT8195, but to be
-> > > extended to
-> > > support some more future MediaTek SoCs and, depending on the
-> > > number of differences
-> > > in the possible future Gen4 PHYs, even different gen's, I propose
-> > > to add a generic
-> > > compatible as const.
-> > > 
-> > > So you'll have something like:
-> > > 
-> > > - enum:
-> > >       - mediatek,mt8195-pcie-phy
-> > > - const: mediatek,pcie-gen3-phy
-> > 
-> > I am not sure if this is a good idea. How sure are you that there
-> > will
-> > be no different PCIe Gen3 PHY not compatible with this one?
-> > 
-> > 
-> 
-> Thanks for pointing that out, I have underestimated this option.
-> 
-> Perhaps Jianjun may be more informed about whether my proposal is
-> valid or not.
+Add driver nodes for MT8192 SoC and this series are based on tag: next-20220318, linux-next/master.
 
-Many thanks for the suggestions.
+The current mmsys dt-binding,
+Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml, doesn't define mboxes or mediatek,gce-client-reg.
+Need to reference the below link
+https://urldefense.com/v3/__https://lore.kernel.org/all/20220126071932.32615-2-jason-jh.lin@mediatek.com/__;!!CTRNKA9wMg0ARbw!zNfQkN-YYjiqPCd5m9DsLhrQDymgEZJoY4oSl24nC3R95P0gIXEmNjyJMhjQZXkWX7mZPa5QS7KIMlGXMbDjDA1_2A$ 
 
-Currently, we only have this PCIe Gen3 PHY, and I don't think we are
-planning other PCIe Gen3 PHYs with different software interfaces, even
-in the next generation, we want to make sure it has a similar interface
-to this generation, so I prefer to add a generic ones to support more
-SoCs that need this driver.
+changes since v3:
+- add patch: add the mmsys reset bit to reset the dsi0
+- dsi0: use mmsys for reset controller support
+- mmc: reorder clocks as specified in the dt-bindings
+- vcodec: use ranges for regs of subnodes
 
-Thanks.
+changes since v2:
+- rebase on next-20220304
+- remove power domains controller patch from series (already in linux-next)
+- scp: fix indentation
+- t-phy: change node name from usb-phy to t-phy and set ranges address
+- usb: change node name from xhci to usb and add disabled status
+- audsys: syscon: add increasing the address range's length info in commit message
+- infracfg_rst: add simple-mfd info in commit message
+- nor_flash: add Fixes tag d0a197a0d064a in  commit message
+- efuse: use lower case characters
+- mmc: use single line for reg
+- mipi_tx: change node name from mipi-dphy to dsi-phy, drop clock-names and add disabled status
+- m4u and smi: fixing the formatting of the mediatek,larbs properties and remove smi-id property
+- H264 venc: fix indentation, remove '0x' prefix for node address
+- vcodec lat and core: use '-' instead of '_' in the node name, fix indentation and
+  set mtk-vcodec-lat and mtk-vcodec-core as subnodes of vcodec-dec
+- dpi: add disabled status
+- display: appended "mediatek,mt8183-disp-aal" for ccorr
+- dsi: fix indentation and add disabled status
+- gce info: add drivers' CMDQ support inn commit message
+- pwm: add disabled status
+- i2c aliases: move the aliases at the board level.
 
-> 
-> Cheers,
-> Angelo
-> 
-> > Best regards,
-> > Krzysztof
-> 
-> 
+changes since v1:
+- add usb-phy node for xhci node
+- move infracfg_rst patch in front of PCIe patch
+- add display nodes, i2c aliases and pwm node.
+
+Allen-KH Cheng (22):
+  arm64: dts: mt8192: Add pwrap node
+  arm64: dts: mt8192: Add spmi node
+  arm64: dts: mt8192: Add gce node
+  arm64: dts: mt8192: Add SCP node
+  arm64: dts: mt8192: Add usb-phy node
+  arm64: dts: mt8192: Add xhci node
+  arm64: dts: mt8192: Add audio-related nodes
+  arm64: dts: mt8192: Add infracfg_rst node
+  arm64: dts: mt8192: Add PCIe node
+  arm64: dts: mt8192: Fix nor_flash status disable typo
+  arm64: dts: mt8192: Add efuse node
+  arm64: dts: mt8192: Add mmc device nodes
+  arm64: dts: mt8192: Add mipi_tx node
+  arm64: dts: mt8192: Add m4u and smi nodes
+  arm64: dts: mt8192: Add H264 venc device node
+  arm64: dts: mt8192: Add vcodec lat and core nodes
+  arm64: dts: mt8192: Add dpi node
+  arm64: dts: mt8192: Add display nodes
+  arm64: dts: mt8192: Add the mmsys reset bit to reset the dsi0
+  arm64: dts: mt8192: Add dsi node
+  arm64: dts: mt8192: Add gce info for display nodes
+  arm64: dts: mt8192: Add pwm node
+
+ arch/arm64/boot/dts/mediatek/mt8192.dtsi  | 783 +++++++++++++++++++++-
+ include/dt-bindings/reset/mt8192-resets.h |   3 +
+ 2 files changed, 775 insertions(+), 11 deletions(-)
+
+-- 
+2.18.0
 
