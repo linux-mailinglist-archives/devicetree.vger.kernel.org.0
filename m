@@ -2,167 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED75D4DD291
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 02:55:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A484DD2D5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 03:11:08 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231614AbiCRB4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 21:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43150 "EHLO
+        id S231693AbiCRCMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 22:12:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbiCRB4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 21:56:12 -0400
-Received: from mail-pg1-x529.google.com (mail-pg1-x529.google.com [IPv6:2607:f8b0:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC33E21C717
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 18:54:54 -0700 (PDT)
-Received: by mail-pg1-x529.google.com with SMTP id c2so4018600pga.10
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 18:54:54 -0700 (PDT)
+        with ESMTP id S230202AbiCRCMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 22:12:23 -0400
+Received: from alexa-out-sd-01.qualcomm.com (alexa-out-sd-01.qualcomm.com [199.106.114.38])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BEA2B5AFE;
+        Thu, 17 Mar 2022 19:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=U+oN2PkESqB41nkMUnSgEXHs7aUpmXvqHqu6nMf9ygI=;
-        b=e9WddNIUJiPhK0Y81FA/RAxuWrUeVracIXuSi3Py1u61KIblEyW1HbOKaisIMnBTi8
-         TDwzciOOyCOYx0UUy/P3oZnZ7JJRHI6lzJskdLBCaZK0+h7qSdeVxqLbgaNpoQELVCkU
-         0zwHRWxvBUzUMAQFsx6V+6ZI0gsKLXAUjhI7g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=U+oN2PkESqB41nkMUnSgEXHs7aUpmXvqHqu6nMf9ygI=;
-        b=gQTJFzulAJmPFHONDSJzncFV1OlQ/yBP6uVN8es5VIFzvwDnvIjMvKD0PWRlkKNH+H
-         aq6nwJeFIL3ujY8H0rX3vHp2NFVQaE4v87NQuViamMIhtOYkaiAieZUFRtD+CMxvrggF
-         JTphV9GnNkUCp5DGtJY2M0C/z5hPYYceBOTRlzKdNowqeElphh/b+Rce9BQfXhtBmeyX
-         lm30sRat8N+Tpyt3ni7iOVO6v3t6Zk/dsfbwb47akG9l2r7LM3Vf8BIiaot7/frduK0V
-         X+t7hIqN5G1YnUsk99nExI720abHpXm4wcd8CTkMaEgD+b+Z1HJefJEaY8nYvcMaY1Fk
-         DF4g==
-X-Gm-Message-State: AOAM532ZNRBs2Dlv64/SVFfpjTnbyr+bGAH80WEcHHjTH1++/y4sWEI2
-        Juydrr2UMz8Xs5oJbjMZ0fSHRg==
-X-Google-Smtp-Source: ABdhPJw+tLB09E1yBm6TENEEbz+loQSPysQXCshfbFNSGsjCJDorbQbkjCs89FjWuc0TJkwWng5j9Q==
-X-Received: by 2002:a65:45c8:0:b0:380:352e:825b with SMTP id m8-20020a6545c8000000b00380352e825bmr5937245pgr.509.1647568494348;
-        Thu, 17 Mar 2022 18:54:54 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:201:49cf:7701:359e:b28f])
-        by smtp.gmail.com with ESMTPSA id u10-20020a056a00124a00b004f783abfa0esm8050201pfi.28.2022.03.17.18.54.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Mar 2022 18:54:53 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Benson Leung <bleung@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, chrome-platform@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Guenter Roeck <groeck@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Craig Hesling <hesling@chromium.org>,
-        Tom Hughes <tomhughes@chromium.org>,
-        Alexandru M Stan <amstan@chromium.org>,
-        Tzung-Bi Shih <tzungbi@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v3 1/3] dt-bindings: chrome: Add ChromeOS fingerprint binding
-Date:   Thu, 17 Mar 2022 18:54:48 -0700
-Message-Id: <20220318015451.2869388-2-swboyd@chromium.org>
-X-Mailer: git-send-email 2.35.1.894.gb6a874cedc-goog
-In-Reply-To: <20220318015451.2869388-1-swboyd@chromium.org>
-References: <20220318015451.2869388-1-swboyd@chromium.org>
+  d=quicinc.com; i=@quicinc.com; q=dns/txt; s=qcdkim;
+  t=1647569464; x=1679105464;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oRaStKNDaOu3TSmH3+8cEhhm6JxyDKCuF64VgE2rLZs=;
+  b=swUyz+CPYMrm1jqKjJ9+Vb6s8KvzPqglVYdTNEGVEOZ2zfIXZO/SwVjU
+   1v3fn8AiM5OFw38VS3XW81s7YNNiHVL34wBq+AhMZzHAoCZ4yazHw1WYH
+   x+QowEriSwrvKOTRk4xNOA7mG2tUgkF9H2qMUsqbciM9RK0hYO6jZrbeA
+   k=;
+Received: from unknown (HELO ironmsg02-sd.qualcomm.com) ([10.53.140.142])
+  by alexa-out-sd-01.qualcomm.com with ESMTP; 17 Mar 2022 19:11:03 -0700
+X-QCInternal: smtphost
+Received: from unknown (HELO nasanex01a.na.qualcomm.com) ([10.52.223.231])
+  by ironmsg02-sd.qualcomm.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Mar 2022 19:10:57 -0700
+Received: from mingxue-gv.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.22; Thu, 17 Mar 2022 19:10:55 -0700
+Date:   Fri, 18 Mar 2022 10:10:52 +0800
+From:   Minghao Xue <quic_mingxue@quicinc.com>
+To:     Jean-Philippe Brucker <jean-philippe@linaro.org>
+CC:     <mst@redhat.com>, <jasowang@redhat.com>, <quic_ztu@quicinc.com>,
+        <robh+dt@kernel.org>, <virtualization@lists.linux-foundation.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: virtio: mmio: add optional virtio,wakeup
+ property
+Message-ID: <20220318021052.GA16300@mingxue-gv.qualcomm.com>
+References: <1646733156-19333-1-git-send-email-quic_mingxue@quicinc.com>
+ <20220317063515.GA30789@mingxue-gv.qualcomm.com>
+ <YjMJ32SFXTLCuaRY@myrica>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <YjMJ32SFXTLCuaRY@myrica>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding to describe the fingerprint processor found on Chromebooks
-with a fingerprint sensor.
+Hi Jean and folks,
+This is just an optional flag which could be used on an embedded system.
+For example, if we want to use an virtio-input device as a virtual power
+key to wake up the virtual machine, we can set this flag in the device
+tree.
+Currently, virio-mmio driver does not implement suspend/resume
+callback(maybe no need). So we want to check this flag and call
+enable_irq_wake()  accordingly in vm_find_vqs().
 
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Guenter Roeck <groeck@chromium.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Craig Hesling <hesling@chromium.org>
-Cc: Tom Hughes <tomhughes@chromium.org>
-Cc: Alexandru M Stan <amstan@chromium.org>
-Cc: Tzung-Bi Shih <tzungbi@kernel.org>
-Cc: Matthias Kaehlcke <mka@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- .../bindings/chrome/google,cros-ec-fp.yaml    | 66 +++++++++++++++++++
- 1 file changed, 66 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
+Regards,
+Minghao
 
-diff --git a/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-new file mode 100644
-index 000000000000..b7fbaaa94d65
---- /dev/null
-+++ b/Documentation/devicetree/bindings/chrome/google,cros-ec-fp.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/chrome/google,cros-ec-fp.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ChromeOS Embedded Fingerprint Controller
-+
-+description:
-+  Google's ChromeOS embedded fingerprint controller is a device which
-+  implements fingerprint functionality such as unlocking a Chromebook
-+  without typing a password.
-+
-+maintainers:
-+  - Tom Hughes <tomhughes@chromium.org>
-+
-+properties:
-+  compatible:
-+    const: google,cros-ec-fp
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 3000000
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios: true
-+  boot0-gpios:
-+    maxItems: 1
-+    description: Assert for bootloader mode.
-+
-+  vdd-supply: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - reset-gpios
-+  - boot0-gpios
-+  - vdd-supply
-+  - spi-max-frequency
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+      #address-cells = <0x1>;
-+      #size-cells = <0x0>;
-+      ec@0 {
-+        compatible = "google,cros-ec-fp";
-+        reg = <0>;
-+        interrupt-parent = <&gpio_controller>;
-+        interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
-+        spi-max-frequency = <3000000>;
-+        reset-gpios = <&gpio_controller 5 GPIO_ACTIVE_LOW>;
-+        boot0-gpios = <&gpio_controller 10 GPIO_ACTIVE_HIGH>;
-+        vdd-supply = <&pp3300_fp_mcu>;
-+      };
-+    };
-+...
--- 
-https://chromeos.dev
-
+On Thu, Mar 17, 2022 at 10:13:51AM +0000, Jean-Philippe Brucker wrote:
+> Hi Minghao,
+> 
+> On Thu, Mar 17, 2022 at 02:35:15PM +0800, Minghao Xue wrote:
+> > Hi Jean,
+> > 
+> > Do you have any comment on this change? And do you consider to accpet
+> > this commit? Looking forward to your reply.
+> 
+> Please send device-tree patches to devicetree@vger.kernel.org with the
+> maintainer "Rob Herring <robh+dt@kernel.org>" on Cc. Add the virtio list
+> virtualization@lists.linux-foundation.org for anything related to virtio.
+> (You can find that by running "scripts/get_maintainer.pl <your patch>")
+> 
+> Regarding the patch itself it's outside my expertise, but I feel like
+> there should be more generic mechanism to solve this problem, and firmware
+> might not need to be involved if this is not describing a property of the
+> platform. Plenty of drivers outside virtio deal with IRQ lines as wakeup
+> source and I don't see similar properties in other device tree nodes, how
+> do they do it?  It looks like a lot of drivers call enable_irq_wake() in
+> their suspend() callback, so could we do the same for virtio-mmio?
+> 
+> Thanks,
+> Jean
+> 
+> > 
+> > Regards,
+> > Minghao
+> > 
+> > On Tue, Mar 08, 2022 at 05:52:36PM +0800, Minghao Xue wrote:
+> > > Some systems want to set the interrupt of virtio_mmio device
+> > > as a wakeup source. On such systems, we'll use the existence
+> > > of the "virtio,wakeup" property as a signal of requirement.
+> > > 
+> > > Signed-off-by: Minghao Xue <quic_mingxue@quicinc.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/virtio/mmio.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/virtio/mmio.yaml b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > > index 4b7a027..a5fe02a 100644
+> > > --- a/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > > +++ b/Documentation/devicetree/bindings/virtio/mmio.yaml
+> > > @@ -31,6 +31,10 @@ properties:
+> > >      description: Required for devices making accesses thru an IOMMU.
+> > >      maxItems: 1
+> > >  
+> > > +  virtio,wakeup:
+> > > +    type: boolean
+> > > +    description: Required for setting irq of a virtio_mmio device as wakeup source.
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > -- 
+> > > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> > > a Linux Foundation Collaborative Project
+> > > 
