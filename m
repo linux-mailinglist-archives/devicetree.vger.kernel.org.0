@@ -2,59 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F5E4DDAC4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 14:44:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 274DD4DDAF0
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 14:51:42 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233898AbiCRNp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 09:45:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
+        id S234782AbiCRNw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 09:52:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236771AbiCRNp2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 09:45:28 -0400
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA57474610;
-        Fri, 18 Mar 2022 06:44:09 -0700 (PDT)
-Received: by mail-lf1-f43.google.com with SMTP id bt26so14184817lfb.3;
-        Fri, 18 Mar 2022 06:44:09 -0700 (PDT)
+        with ESMTP id S233947AbiCRNw6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 09:52:58 -0400
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13B914003;
+        Fri, 18 Mar 2022 06:51:39 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id w27so14214540lfa.5;
+        Fri, 18 Mar 2022 06:51:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
          :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=+13Af56+e0RqW04Edcq76EyluIRDM9JaL8dIazHbckc=;
-        b=sHP870PsI5Ncc0fJSlnvanQBunixb5WaRMDKSoCvpCd7ShpwxBJ3hLL/nQHwgTX/6v
-         98bbtamJ2z9WjB5X5pfxoImIXbtgmNYXZYonElZFaGkyR7u7KqZmxTGCE/kpGL7CyAGC
-         RX+tuB+Edt0VmX1uW897ATr5CU+w5pZ5MJtkbVBef869cLnpuDBKiYIckIY+G+W7ADxM
-         GkkGRfiJYB+Kh2wtT/zgjko3X6c4LecZCFtZjQfsS3aE5Fytl+DWvkAfb4BDISbGls2q
-         FAt3Zyz2+fOlyVjRKj2yoP8DaVtK4k6iuy3RazzPkzp2AD4kMJ8e9Z9nOxvSr8WUrEQT
-         ij4w==
-X-Gm-Message-State: AOAM533k+XW0sNliYf27LuwxMdwpfCi44kluLwBapzKMCfPreif61XoV
-        DR7yvOsvRhPofcH+w2h7ygc=
-X-Google-Smtp-Source: ABdhPJxBG0gMB7P6i31hX6URblEoIk15XK26/WiOk2L5XQrQkklk9dI2CS32ZTycPzHM2+9Bp954qg==
-X-Received: by 2002:a05:6512:2613:b0:448:5164:689d with SMTP id bt19-20020a056512261300b004485164689dmr6030983lfb.526.1647611048126;
-        Fri, 18 Mar 2022 06:44:08 -0700 (PDT)
+        bh=b9OLIL3FU7iqHaTzdpvx9tQ2K5mp7MDYbZXYpsTAN0g=;
+        b=6sPVF8feYiio5yO03/5gLoyx7CmPsUvcUiO0etZ/0n4kqZ/6HjCpaiamBzuyXc8LBg
+         kQSfgZ0eXeqjujkFepLgGGY1WrpSNgmJD11H0ZsT08M5s5efoHgaEUbDz+3eakYUB1DL
+         9TFSfjsncKneAsEVrKJKzit0NTrXWtvirjAZex59ZQkIwbRysx6aO6aSKO8aaOlEYZwp
+         xyCWfIfn4PswklpvHzMv4nrZxDRwX4TG/Qg65W0VBJSkvPbcM/kloJlWgLqHCP98GjPG
+         DqBtl3CKYG0HYZFBz9R03foZxtJ8CY6oxRFnRaAm/R0TOhGOaVBznDGVv2eUDIHiDQHB
+         4fpQ==
+X-Gm-Message-State: AOAM532Ba6OaPlatfJR9ElgxYBD/q55rtQHu2fb58rEo9i+cWIUvi4q4
+        RPxRuZ/uYdbNAHQsOD12Ni4=
+X-Google-Smtp-Source: ABdhPJx7X5h60uL0s5bvwhRfCRBZftSK7GqJvL9XYD9AW6eJxvInfetEBomo2GlVtSq5cQ5G2u2Xag==
+X-Received: by 2002:a05:6512:1513:b0:448:39c0:def0 with SMTP id bq19-20020a056512151300b0044839c0def0mr5961595lfb.469.1647611497912;
+        Fri, 18 Mar 2022 06:51:37 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id y23-20020a2e95d7000000b00247e4e386aasm965319ljh.121.2022.03.18.06.44.06
+        by smtp.googlemail.com with ESMTPSA id l26-20020a2e701a000000b002463f024de9sm967013ljc.110.2022.03.18.06.51.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 06:44:07 -0700 (PDT)
-Message-ID: <ad56b5bc-a9d4-b584-3c04-7c47995381f1@kernel.org>
-Date:   Fri, 18 Mar 2022 14:44:05 +0100
+        Fri, 18 Mar 2022 06:51:37 -0700 (PDT)
+Message-ID: <319cf016-55fb-dcd4-9157-ad795c8e68ff@kernel.org>
+Date:   Fri, 18 Mar 2022 14:51:34 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH v2 3/3] ARM: dts: aspeed: Remove arch timer clocks
- property
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: mediatek: Add YAML schema for
+ PCIe PHY
 Content-Language: en-US
-To:     Kuldeep Singh <singh.kuldeep87k@gmail.com>,
-        Marc Zyngier <maz@kernel.org>,
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-References: <20220317191527.96237-1-singh.kuldeep87k@gmail.com>
- <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chen-Yu Tsai <wenst@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        rex-bc.chen@mediatek.com, randy.wu@mediatek.com,
+        jieyy.yang@mediatek.com, chuanjia.liu@mediatek.com,
+        qizhong.cheng@mediatek.com, jian.yang@mediatek.com
+References: <20220318095417.2016-1-jianjun.wang@mediatek.com>
+ <20220318095417.2016-2-jianjun.wang@mediatek.com>
+ <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220317191527.96237-4-singh.kuldeep87k@gmail.com>
+In-Reply-To: <2e0989c3-7132-6091-5c9e-5dc8d9af22e8@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
@@ -68,16 +78,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2022 20:15, Kuldeep Singh wrote:
+On 18/03/2022 12:12, AngeloGioacchino Del Regno wrote:
+> Il 18/03/22 10:54, Jianjun Wang ha scritto:
+>> Add YAML schema documentation for PCIe PHY on MediaTek chipsets.
+>>
+>> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+>> ---
+>>   .../bindings/phy/mediatek,pcie-phy.yaml       | 75 +++++++++++++++++++
+>>   1 file changed, 75 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+>> new file mode 100644
+>> index 000000000000..868bf976568b
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/mediatek,pcie-phy.yaml
+>> @@ -0,0 +1,75 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/mediatek,pcie-phy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek PCIe PHY
+>> +
+>> +maintainers:
+>> +  - Jianjun Wang <jianjun.wang@mediatek.com>
+>> +
+>> +description: |
+>> +  The PCIe PHY supports physical layer functionality for PCIe Gen3 port.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,mt8195-pcie-phy
 > 
-> Moreover, clocks also matches incorrectly with the regex pattern.
-> Remove this entry altogether to fix it.
-> 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+> Since I don't expect this driver to be only for MT8195, but to be extended to
+> support some more future MediaTek SoCs and, depending on the number of differences
+> in the possible future Gen4 PHYs, even different gen's, I propose to add a generic
+> compatible as const.
+> 
+> So you'll have something like:
+> 
+> - enum:
+>      - mediatek,mt8195-pcie-phy
+> - const: mediatek,pcie-gen3-phy
 
-Except of ongoing discussion, this paragraph is incorrect.  There is no
-incorrect match of regex pattern. The field is simply not documented in
-the bindings (not allowed by bindings). This paragraph is actually
-confusing and misleading.
+I am not sure if this is a good idea. How sure are you that there will
+be no different PCIe Gen3 PHY not compatible with this one?
 
 
 Best regards,
