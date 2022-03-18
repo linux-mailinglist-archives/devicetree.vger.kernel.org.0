@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33F194DDFBF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 18:21:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B174DE034
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 18:44:36 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239568AbiCRRW1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 13:22:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52072 "EHLO
+        id S239520AbiCRRpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 13:45:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S239552AbiCRRW1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 13:22:27 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B48719BE4B
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 10:21:08 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a8so18305921ejc.8
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 10:21:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PCoJVU7mrdRYYKIeNxpHu40jIUtYCc2ytq8sJtJQeGU=;
-        b=G/3LRJiL3DqJDP4WBNy8s7yyrZw6nESOCNsC2Nwpxwkyj67SgiTW1sew1I9mDZ9rmq
-         5LXuoS1QxtJ748Oyjmt7XCguWrg/XLVqNtIkCzWgSXsqWI6/amBXVbX/UMrghLTYUU7X
-         trR4fIkpdHtHmSusLVFyY7k9PVKpBF1ayFw4E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PCoJVU7mrdRYYKIeNxpHu40jIUtYCc2ytq8sJtJQeGU=;
-        b=vZuA61RMc3Rq1FfVQAZ7/rj37FNqnAGM0uijuTaO7Pw/DSiS9QDvE9dwyXYhVai6pu
-         4BVDJGENK37u4LwxtwAlk8Qg8ZG+3wtFhTkDdW10puvOLqdW6onWWIly4+twxz+17tEu
-         03lGEOPq0LADmhmjGHgWakwJwoW3GemttEsl0dcB8rRo+mk5oleHMYupIzaWSfBmwrfP
-         PZsiR8U8Tqw3x9NPqL3c1DTReYm/H8a7uf3nWzj3ui92KzIBTdTyZ5G4j2TvtPioKceH
-         1+AvVrY6KG4Hh4PmTNJXGuUIdPE+C9GiZ7EAduvW8eBQgkjiU6iqEjGrLFZ2s1NbECuY
-         QB+w==
-X-Gm-Message-State: AOAM533Cgw18HcVEkETkhTTsbCZ7pR2XA5fSWRUQnF7urjZ+ADQ/Db0i
-        606Gv18jIr6dFlu4ReOz0kHBUexFf+GnJLBnxBE=
-X-Google-Smtp-Source: ABdhPJzlQ45jCMCmyr6AqI0Iz4ex7EjlSTRjaCtQKX1419Gfgk/okgT3nmnlCriGHbaT5kcH+YXM+g==
-X-Received: by 2002:a17:906:be1:b0:6ce:c3c8:b4b6 with SMTP id z1-20020a1709060be100b006cec3c8b4b6mr9806489ejg.617.1647624066408;
-        Fri, 18 Mar 2022 10:21:06 -0700 (PDT)
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com. [209.85.221.44])
-        by smtp.gmail.com with ESMTPSA id u5-20020aa7d985000000b004024027e7dasm4217121eds.28.2022.03.18.10.21.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 10:21:05 -0700 (PDT)
-Received: by mail-wr1-f44.google.com with SMTP id j18so2979364wrd.6
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 10:21:05 -0700 (PDT)
-X-Received: by 2002:adf:fc47:0:b0:203:dda1:4311 with SMTP id
- e7-20020adffc47000000b00203dda14311mr9062480wrs.301.1647624064675; Fri, 18
- Mar 2022 10:21:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <1647452154-16361-1-git-send-email-quic_sbillaka@quicinc.com> <1647452154-16361-3-git-send-email-quic_sbillaka@quicinc.com>
-In-Reply-To: <1647452154-16361-3-git-send-email-quic_sbillaka@quicinc.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 18 Mar 2022 10:20:51 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XM1njMY63SCC3yNoA9Uvu+_3xLGkC5OWoLjR-0KnmhWg@mail.gmail.com>
-Message-ID: <CAD=FV=XM1njMY63SCC3yNoA9Uvu+_3xLGkC5OWoLjR-0KnmhWg@mail.gmail.com>
-Subject: Re: [PATCH v5 2/9] arm64: dts: qcom: sc7280: Add support for eDP
- panel on CRD
-To:     Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
+        with ESMTP id S238668AbiCRRpv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 13:45:51 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E7E1FAA3E;
+        Fri, 18 Mar 2022 10:44:31 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ams.source.kernel.org (Postfix) with ESMTPS id 42F9BB824B1;
+        Fri, 18 Mar 2022 17:44:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE635C340E8;
+        Fri, 18 Mar 2022 17:44:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647625469;
+        bh=Yel17+YGUIPsFPXXcsUfkRlEDGY7ldlZnUFhHc3cQPw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=sOKaWg8DMVhBONoscKdx8z/Nuue8RGTH0Yue+H5spIiJtuvaGZ6SoPBfHh4EPUd2M
+         WTr6kba6yQdG9bI1zT9ERS5pqHz419ctvoV0JLBb+HhFVRpayObI8EJWLlRqXdYRRd
+         sDkRA27zCjPxzEU7sOqf4nzMvd0M9MVWIg4ceDaWgaPPJDnIxmeLbGBh69OEbBc2/O
+         XEk0LkpNmuZ9LHCZCDe8AAVH3CT63gNe2NTpdvDZeB5IHLfmO9IMtarS7IyI3Ta25i
+         +ACWlfobCRAIBowxC1BuBFgAtSCIP+NiFv65xf2Y/+IfOHO4BA0X27VcVMU1WghWjN
+         OCbicGD50y9Yg==
+Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
+        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <maz@kernel.org>)
+        id 1nVGeI-00FVvX-H7; Fri, 18 Mar 2022 17:44:26 +0000
+Date:   Fri, 18 Mar 2022 17:44:25 +0000
+Message-ID: <87mthnxiiu.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         LKML <linux-kernel@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        quic_kalyant <quic_kalyant@quicinc.com>,
-        quic_abhinavk@quicinc.com, quic_khsieh@quicinc.com,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, krzk+dt@kernel.org,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        quic_vproddut@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Subject: Re: [RFC PATCH v4 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
+In-Reply-To: <CA+V-a8uw9wwnA=_n+1MUtUhdwCdMFNb22HOq0R3yEeqsfTJLBQ@mail.gmail.com>
+References: <20220317012404.8069-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <20220317012404.8069-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        <87pmmky2tw.wl-maz@kernel.org>
+        <CA+V-a8uw9wwnA=_n+1MUtUhdwCdMFNb22HOq0R3yEeqsfTJLBQ@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
+ (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-SA-Exim-Connect-IP: 185.219.108.64
+X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl, geert+renesas@glider.be, p.zabel@pengutronix.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -90,72 +78,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, 18 Mar 2022 14:59:41 +0000,
+"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
+> 
+> Hi Marc,
+> 
+> Thank you for the review.
+> 
+> On Thu, Mar 17, 2022 at 4:13 PM Marc Zyngier <maz@kernel.org> wrote:
+> >
+> > On Thu, 17 Mar 2022 01:24:01 +0000,
+> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > >
+> > > +static struct irq_chip irqc_chip = {
+> > > +     .name                   = "rzg2l-irqc",
+> > > +     .irq_eoi                = rzg2l_irqc_eoi,
+> > > +     .irq_mask               = irq_chip_mask_parent,
+> > > +     .irq_unmask             = irq_chip_unmask_parent,
+> > > +     .irq_disable            = rzg2l_irqc_irq_disable,
+> > > +     .irq_enable             = rzg2l_irqc_irq_enable,
+> >
+> > So this looks a bit odd. irq_mask only calls the parent and does nothing
+> > locally, while irq_disable does something locally and calls into the
+> > parent. If the parent is a GIC, this is turned into a mask (GIC has no
+> > notion of disabled).
+> >
+> My understanding for enable callback is one time call during irq setup
+> and for the disable callback it will be called during irq shutdown.
+> During enable/disable callback we config the required registers.
+> For mask callback this will be called when an interrupt occurs and for
+> unmask we want to re-enable the interrupt. Since there are no specific
+> registers to mask/unmask on RZ/G2L the callbacks point to
+> irq_chip_mask_parent/irq_chip_unmask_parent.
+> 
+> I could move all the code from enable/disable callbacks to mask/unmask
+> callbacks and drop setting irq_enable/irq_disable completely. Please
+> let me know what should be the correct approach.
 
-On Wed, Mar 16, 2022 at 10:36 AM Sankeerth Billakanti
-<quic_sbillaka@quicinc.com> wrote:
->
-> Enable support for eDP interface via aux_bus on CRD platform.
->
-> Signed-off-by: Sankeerth Billakanti <quic_sbillaka@quicinc.com>
-> ---
->
-> Changes in v5:
->   - Change the order of patches
->   - Remove the backlight nodes
->   - Remove the bias setting
->   - Fix compilation issue
->   - Model VREG_EDP_BP for backlight power
->
-> Changes in v4:
->   - Create new patch for name changes
->   - Remove output-low
->
-> Changes in v3:
->   - Sort the nodes alphabetically
->   - Use - instead of _ as node names
->   - Place the backlight and panel nodes under root
->   - Change the name of edp_out to mdss_edp_out
->   - Change the names of regulator nodes
->   - Delete unused properties in the board file
->
->
-> Changes in v2:
->   - Sort node references alphabetically
->   - Improve readability
->   - Move the pwm pinctrl to pwm node
->   - Move the regulators to root
->   - Define backlight power
->   - Remove dummy regulator node
->   - Cleanup pinctrl definitions
->
->  arch/arm64/boot/dts/qcom/sc7280-crd.dts | 93 +++++++++++++++++++++++++++++++++
->  1 file changed, 93 insertions(+)
+I'm OK with your current setup, but I just wanted to check that this
+was your understanding as well.
 
-At a high level, I'd expect your patch to be based upon Matthias's
-series, AKA the 4 patches from:
+	M.
 
-https://lore.kernel.org/r/20220316172814.v1.1.I2deda8f2cd6adfbb525a97d8fee008a8477b7b0e@changeid/
-
-I'll leave it up to you about whether you care to support eDP on the
-old CRD1/2 or just on CRD3. Personally I'd think CRD3 would be enough.
-
-Then, I'd expect your patch to mostly incorporate
-<https://crrev.com/c/3379844>, though that patch was written before
-aux-bus support so the panel would need to go in a different place.
-
-Stephen already gave some comments and basing on Matthias's patches
-will be a pretty big change, so I probably won't comment lots more.
-
-
-> +&mdss_edp {
-> +       status = "okay";
-> +
-> +       data-lanes = <0 1 2 3>;
-> +       vdda-1p2-supply = <&vreg_l6b_1p2>;
-> +       vdda-0p9-supply = <&vreg_l10c_0p8>;
-> +
-> +       aux-bus {
-> +               edp_panel: edp-panel {
-
-As Stephen pointed out, it should be called "panel".
+-- 
+Without deviation from the norm, progress is not possible.
