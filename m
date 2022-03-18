@@ -2,242 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 604BD4DE274
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:26:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 168554DE289
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:29:33 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235038AbiCRU1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 16:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57554 "EHLO
+        id S238537AbiCRUaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 16:30:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240621AbiCRU1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:27:18 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99207292D8B;
-        Fri, 18 Mar 2022 13:25:58 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        with ESMTP id S233115AbiCRUaT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:30:19 -0400
+Received: from ams.source.kernel.org (ams.source.kernel.org [IPv6:2604:1380:4601:e00::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 498212BB36E;
+        Fri, 18 Mar 2022 13:29:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 5DAAF22456;
-        Fri, 18 Mar 2022 21:25:56 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647635156;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=IlaTPnDIry/t6Ma6a3lvt0vS+8wpaCkfPyydo5MaPGU=;
-        b=nZKZksq6r/WnrYPgXffmURUNdGpgkaf8X6OPsBQ3//uoruich5aBS8xY33z2aV05Aq+BYR
-        Y5fFCcrmMQFRMT3MlVljAtYDm4Dc1XOANDZTz0grlBwyFLAqGE5Ye5uVhO6dfvxdh8vkQn
-        sq/Cp2XRarXbmlfhhWXxLwe7a505gZc=
-From:   Michael Walle <michael@walle.cc>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Quentin Schulz <quentin.schulz@bootlin.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v2 8/8] dt-bindings: pinctrl: convert ocelot-pinctrl to YAML format
-Date:   Fri, 18 Mar 2022 21:25:47 +0100
-Message-Id: <20220318202547.1650687-9-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220318202547.1650687-1-michael@walle.cc>
-References: <20220318202547.1650687-1-michael@walle.cc>
+        by ams.source.kernel.org (Postfix) with ESMTPS id B600AB82559;
+        Fri, 18 Mar 2022 20:28:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94384C340E8;
+        Fri, 18 Mar 2022 20:28:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1647635337;
+        bh=Mg/DyLpcoxRXJnmL4DUhCt5Wg1OShxiLk/qxnj2wARA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qcrEi+YdaZwD1LkkwvJbiFVB+9lOkfbIrNDN6upq13gtU6y3N3FKhPMgLamto7jYG
+         xevwKfDWxbCUhQuAa3QAwWnOjaG8yVvWyuA+GAHiyEUVAAR1KeloVnhmy1OBfrxsba
+         7DstZKquDsuEW4eAaW7S34jtvSd/phliNh6M4TzULd4RZN7ErmCqGMP7a2UsmNlwaU
+         QOH7DnffubMCsRRYwofHsKDWg6yAxisponWINosXlaAgg8Pldz8i+Abjj7nxTZHsdj
+         W7l5owFFElt0kmu5gnulb+Lss6IGMmF+Q1rsKwuei9aiOop3RK/2FjGu81ShwfedCE
+         aSvgZxi4MmCwA==
+Date:   Fri, 18 Mar 2022 21:28:50 +0100
+From:   Wolfram Sang <wsa@kernel.org>
+To:     Tyrone Ting <warp5tw@gmail.com>
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        robh+dt@kernel.org, krzysztof.kozlowski@canonical.com,
+        yangyicong@hisilicon.com, semen.protsenko@linaro.org,
+        jie.deng@intel.com, sven@svenpeter.dev, bence98@sch.bme.hu,
+        lukas.bulwahn@gmail.com, arnd@arndb.de, olof@lixom.net,
+        andriy.shevchenko@linux.intel.com, tali.perry@nuvoton.com,
+        Avi.Fishman@nuvoton.com, tomer.maimon@nuvoton.com,
+        KWLIU@nuvoton.com, JJLIU0@nuvoton.com, kfting@nuvoton.com,
+        openbmc@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] arm: dts: add new property for NPCM i2c module
+Message-ID: <YjTrgia/VX6rBT1r@shikoro>
+Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
+        Tyrone Ting <warp5tw@gmail.com>, avifishman70@gmail.com,
+        tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+        yuenn@google.com, benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski@canonical.com, yangyicong@hisilicon.com,
+        semen.protsenko@linaro.org, jie.deng@intel.com, sven@svenpeter.dev,
+        bence98@sch.bme.hu, lukas.bulwahn@gmail.com, arnd@arndb.de,
+        olof@lixom.net, andriy.shevchenko@linux.intel.com,
+        tali.perry@nuvoton.com, Avi.Fishman@nuvoton.com,
+        tomer.maimon@nuvoton.com, KWLIU@nuvoton.com, JJLIU0@nuvoton.com,
+        kfting@nuvoton.com, openbmc@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220303083141.8742-1-warp5tw@gmail.com>
+ <20220303083141.8742-2-warp5tw@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="5z/A5pCunj4GhFoV"
+Content-Disposition: inline
+In-Reply-To: <20220303083141.8742-2-warp5tw@gmail.com>
+X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ocelot-pinctrl device tree binding to the new YAML format.
 
-Signed-off-by: Michael Walle <michael@walle.cc>
----
- .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
- .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 ++++++++++++++++++
- 2 files changed, 108 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+--5z/A5pCunj4GhFoV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-deleted file mode 100644
-index 5d84fd299ccf..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Microsemi Ocelot pin controller Device Tree Bindings
------------------------------------------------------
--
--Required properties:
-- - compatible		: Should be "mscc,ocelot-pinctrl",
--			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
--			  "mscc,luton-pinctrl", "mscc,serval-pinctrl",
--			  "microchip,lan966x-pinctrl" or "mscc,servalt-pinctrl"
-- - reg			: Address and length of the register set for the device
-- - gpio-controller	: Indicates this device is a GPIO controller
-- - #gpio-cells		: Must be 2.
--			  The first cell is the pin number and the
--			  second cell specifies GPIO flags, as defined in
--			  <dt-bindings/gpio/gpio.h>.
-- - gpio-ranges		: Range of pins managed by the GPIO controller.
--
--
--The ocelot-pinctrl driver uses the generic pin multiplexing and generic pin
--configuration documented in pinctrl-bindings.txt.
--
--The following generic properties are supported:
-- - function
-- - pins
--
--Example:
--	gpio: pinctrl@71070034 {
--		compatible = "mscc,ocelot-pinctrl";
--		reg = <0x71070034 0x28>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-ranges = <&gpio 0 0 22>;
--
--		uart_pins: uart-pins {
--				pins = "GPIO_6", "GPIO_7";
--				function = "uart";
--		};
--
--		uart2_pins: uart2-pins {
--				pins = "GPIO_12", "GPIO_13";
--				function = "uart2";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-new file mode 100644
-index 000000000000..7149a6655623
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microsemi Ocelot pin controller
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Lars Povlsen <lars.povlsen@microchip.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,lan966x-pinctrl
-+      - microchip,sparx5-pinctrl
-+      - mscc,jaguar2-pinctrl
-+      - mscc,luton-pinctrl
-+      - mscc,ocelot-pinctrl
-+      - mscc,serval-pinctrl
-+      - mscc,servalt-pinctrl
-+
-+  reg:
-+    items:
-+      - description: Base address
-+      - description: Extended pin configuration registers
-+    minItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+patternProperties:
-+  '-pins$':
-+    type: object
-+    allOf:
-+      - $ref: "pinmux-node.yaml"
-+      - $ref: "pincfg-node.yaml"
-+
-+    properties:
-+      function: true
-+      pins: true
-+      output-high: true
-+      output-low: true
-+      drive-strength: true
-+
-+    required:
-+      - function
-+      - pins
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,lan966x-pinctrl
-+              - microchip,sparx5-pinctrl
-+    then:
-+      properties:
-+        reg:
-+          minItems: 2
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    gpio: pinctrl@71070034 {
-+        compatible = "mscc,ocelot-pinctrl";
-+        reg = <0x71070034 0x28>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&gpio 0 0 22>;
-+
-+        uart_pins: uart-pins {
-+            pins = "GPIO_6", "GPIO_7";
-+            function = "uart";
-+        };
-+
-+        uart2_pins: uart2-pins {
-+            pins = "GPIO_12", "GPIO_13";
-+            function = "uart2";
-+        };
-+    };
-+
-+...
--- 
-2.30.2
+On Thu, Mar 03, 2022 at 04:31:31PM +0800, Tyrone Ting wrote:
+> From: Tyrone Ting <kfting@nuvoton.com>
+>=20
+> Add nuvoton,sys-mgr property for controlling NPCM gcr register.
+>=20
+> Signed-off-by: Tyrone Ting <kfting@nuvoton.com>
+> Signed-off-by: Tali Perry <tali.perry1@gmail.com>
 
+There are some comments about this series, so I am expecting a v4
+somewhen. However, I already want to state that I usually don't take DTS
+patches. So, I guess the path forward is that Rob needs to ack the patch
+which is now patch 2. Once he does this and I apply it, you can take this
+DTS patch via arm-soc. Sounds good?
+
+
+--5z/A5pCunj4GhFoV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmI0634ACgkQFA3kzBSg
+Kbbklg//Sv2r47FQFg3Yk8MUTB0RS4+pUNIlJHLR548TGl2isIIXUFQ5AY4FrLUB
+Vlb41WvFoHVDizEZDtXz1ciqXJrPr6957AX6VpLPw0TiAjEDjWYBxSrmhNgdCzcx
+eWSPlSz8D+aGN3X9CKc75S3UCXLAGlTufnlc2Er9raOEUvBsXf4vXv3US4jkoE1S
+UC1igte3GDhoK+SnsQh4dAenTUseAcxkJAYZRDZ0Ll/il2Q4P1ZZqndqGIstUA1R
+jyVZk8lmB7P8mGhHTdpJlMq33wPHsOx+R5TO+UO9HPGbqso8rNAsDp/50wjrVJQT
+saSFrwyrE66gZQVYuikWKW6Ais7XClwj047rlAZ2aFxbCvCiBlu/dLWNr//9++Md
+cOcmTP6VCyZveEdEZoY1oHQRRawlIQMoVpiYtELn7Q3Vv//2zcImdkrFoC+5bcf6
+/5YwgRSirN6Ih7KaWO1zlGlIf7BV8GmeiDfa1AllahJO1qgqsSZSpeWmWKZ/APnw
+trP6iFDftFsBFFKooYtdnwdUTU6eX2KBOwn3OddOoNHmYfN/tiUc3t51OF5Vg8Dp
++8ZXkmHmVkGpxq0lEKRRtsBlQAeZxLapSrwvrNY8pf0Nn3aveX7HpN4x7nkEShZZ
+h5yEAUVfSOcAZVj48/7exExVlMPK5CoCpUQfpuHRR+S0WHQdYEQ=
+=yg2W
+-----END PGP SIGNATURE-----
+
+--5z/A5pCunj4GhFoV--
