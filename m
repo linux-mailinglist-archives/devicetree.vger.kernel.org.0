@@ -2,147 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 035364DD59B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 08:53:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E104DD593
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 08:52:04 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231195AbiCRHx6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 03:53:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60732 "EHLO
+        id S233342AbiCRHxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 03:53:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231319AbiCRHx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 03:53:57 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E232C80AE;
-        Fri, 18 Mar 2022 00:52:39 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id qa43so15325230ejc.12;
-        Fri, 18 Mar 2022 00:52:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20210112;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=A3PDqBaBritnZnP7hEtDx3b+3Mek9k1rJJXE3rj2Zy4=;
-        b=ZhK7KU7qoYASv+l399eftSrF3wUXJ5oaN/qiNPQfLwsgtl9bq6qAPmuIwnb6gPn0ZB
-         Qka724KGz5X2BfT0CpVuVLiUFF6ErQL4S44sSA2EAHDb58EiOtR+X0JhcrDOIOXDr7gZ
-         24X0jJU6Yly36s/6hxxD/++HUaP3eTkFSPpOuS6E98ndLpNpbRxSjVUp4DiS19ZWMUMu
-         GEZLON/wlJbHOJMBnDmO0miYuxztYiWcHQnwY9dXE4YRoHuXNZcfcHE6q90S0W4vd2s/
-         E5402c4bkMQiR9GoAj6vmeD+s0x6iiyOSxfREREz7Q0DFX+fA5A5h/8+7LQmFhYyPip0
-         XHFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=A3PDqBaBritnZnP7hEtDx3b+3Mek9k1rJJXE3rj2Zy4=;
-        b=HTbPdfVxetH/hc+154Zin+tBBX0PxOFfOrIXQJ58YaEU2nu4quEdl5tTkVZQDW/+LA
-         mmVy1EBPGdSO64opkZOfJ5FwnU78ry6OGrA38S1zDq0d7YAYjbOfwXwHsgil6KT/dx/K
-         QmFKuf5TDj151sWQGsah6ieqpppif7WZCHblXgBnzN4UscQ2lZT8TbmcWhIEULrpAgPv
-         SElhUmzRcNbPsYG7dvepsISCcKG09pMtfC+nFsTyGo0em3/MKvffIkinAwTaXsdu5F43
-         pH/cGGI/cwzlTmElQLzFOaX4w5YGDSoR8javkRvFMffdcfIi43RkINf8GWHowXlKONak
-         I8ag==
-X-Gm-Message-State: AOAM5308zdxQJxXrsRotPhMg5DLdo9dLYGDWlZ58lW1TfFYd0ynVYEWF
-        mUxKCpHpca4hoMFQRXL7jlU=
-X-Google-Smtp-Source: ABdhPJxVj9syTlN4gCx31UjIIGZaW675Iq81FFnD2LS0OTRzGHNcwcEKjUsDvxcdNAmVAaJyTmZAmA==
-X-Received: by 2002:a17:906:4fd2:b0:6db:21ba:e434 with SMTP id i18-20020a1709064fd200b006db21bae434mr8090239ejw.714.1647589957791;
-        Fri, 18 Mar 2022 00:52:37 -0700 (PDT)
-Received: from ubuntu2004 ([188.24.153.122])
-        by smtp.gmail.com with ESMTPSA id qw7-20020a1709066a0700b006dfa04dc2a4sm1534847ejc.56.2022.03.18.00.52.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Mar 2022 00:52:36 -0700 (PDT)
-Date:   Fri, 18 Mar 2022 09:52:30 +0200
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Michael Walle <michael@walle.cc>,
-        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
-        Daniel Palmer <daniel@thingy.jp>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Paul Burton <paulburton@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Birger Koblitz <mail@birger-koblitz.de>,
-        Bert Vermeulen <bert@biot.com>,
-        John Crispin <john@phrozen.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Sagar Kadam <sagar.kadam@sifive.com>,
-        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
-        linux-riscv@lists.infradead.org, linux-oxnas@groups.io
-Subject: Re: [PATCH 04/18] dt-bindings: irqchip: actions,owl-sirq: include
- generic schema
-Message-ID: <20220318075230.GA15068@ubuntu2004>
-References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
- <20220317115705.450427-3-krzysztof.kozlowski@canonical.com>
+        with ESMTP id S233351AbiCRHxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 03:53:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7911B2C80AF;
+        Fri, 18 Mar 2022 00:51:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1647589914; x=1679125914;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=X6SwbwpiUB+B3bXRicDk7uV202lxEtcW7TukX+QpKN8=;
+  b=DqVM/hjZYvKAY5Iu+BILlRatyRjbaUmqOUdDuNfd3gI0QY+yc4+sYUbk
+   +6gUKboC2vrWOvEXp9ERrfP0TWHttJGaz93D7QTSkTvOxPg6F4RBFDRbc
+   KGcG4MGG6W0GkWgUFI7YG/kGzb5oUtFaymD1ZGjVjV7U6ZmW/hMF5rqJZ
+   YyQZNx7+CaBLJSAmOOGBRWY1LptMFXPcBUGWmzkVlL6cJh81asEkVSoF4
+   /J0yisW2tFu83F63HL+cd6fmd0MpK7eQWrBTBJdJlCI1L+7G6l0+meloV
+   FrtNDSXC/6cHL6tK+qcMtw9V9MIc4m3jTO/g21UUFgcX1fAG/glsh8Q/h
+   w==;
+X-IronPort-AV: E=Sophos;i="5.90,191,1643698800"; 
+   d="scan'208";a="157361859"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 18 Mar 2022 00:51:53 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.17; Fri, 18 Mar 2022 00:51:53 -0700
+Received: from localhost (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2375.17 via Frontend
+ Transport; Fri, 18 Mar 2022 00:51:52 -0700
+Date:   Fri, 18 Mar 2022 08:54:50 +0100
+From:   Horatiu Vultur <horatiu.vultur@microchip.com>
+To:     Michael Walle <michael@walle.cc>
+CC:     <UNGLinuxDriver@microchip.com>, <davem@davemloft.net>,
+        <devicetree@vger.kernel.org>, <kuba@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <robh+dt@kernel.org>
+Subject: Re: [PATCH net-next 1/5] dt-bindings: net: lan966x: Extend with FDMA
+ interrupt
+Message-ID: <20220318075450.rvofpoc3m22g7jpj@soft-dev3-1.localhost>
+References: <20220317185159.1661469-2-horatiu.vultur@microchip.com>
+ <20220318021413.25810-1-michael@walle.cc>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20220317115705.450427-3-krzysztof.kozlowski@canonical.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20220318021413.25810-1-michael@walle.cc>
+X-Spam-Status: No, score=-5.9 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE,
+        T_SPF_PERMERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Mar 17, 2022 at 12:56:51PM +0100, Krzysztof Kozlowski wrote:
-> Include generic interrupt-controller.yaml schema, which enforces node
-> naming and other generic properties.
+The 03/18/2022 03:14, Michael Walle wrote:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
-
-Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-
-Thanks.
-
-> ---
->  .../bindings/interrupt-controller/actions,owl-sirq.yaml      | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+> > Extend dt-bindings for lan966x with FDMA interrupt. This is generated
+> > when receiving a frame or when a frame was transmitted. The interrupt
+> > needs to be enable for each frame.
+> >
+> > Signed-off-by: Horatiu Vultur <horatiu.vultur@microchip.com>
+> > ---
+> >  .../devicetree/bindings/net/microchip,lan966x-switch.yaml       | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > index 13812768b923..14e0bae5965f 100644
+> > --- a/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > +++ b/Documentation/devicetree/bindings/net/microchip,lan966x-switch.yaml
+> > @@ -39,6 +39,7 @@ properties:
+> >        - description: frame dma based extraction
+> >        - description: analyzer interrupt
+> >        - description: ptp interrupt
+> > +      - description: fdma interrupt
+> >
+> >    interrupt-names:
+> >      minItems: 1
+> > @@ -47,6 +48,7 @@ properties:
+> >        - const: fdma
+> >        - const: ana
+> >        - const: ptp
+> > +      - const: fdma
 > 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
-> index 5da333c644c9..c058810cf475 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
-> @@ -14,6 +14,9 @@ description: |
->    This interrupt controller is found in the Actions Semi Owl SoCs (S500, S700
->    and S900) and provides support for handling up to 3 external interrupt lines.
->  
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
->  properties:
->    compatible:
->      enum:
-> @@ -46,7 +49,7 @@ required:
->    - '#interrupt-cells'
->    - 'interrupts'
->  
-> -additionalProperties: false
-> +unevaluatedProperties: false
->  
->  examples:
->    - |
-> -- 
-> 2.32.0
+> This interrupt is already described (three lines above), no?
+
+Yes you are right.
+So I will drop this patch in the next version.
+
 > 
+> -michael
+
+-- 
+/Horatiu
