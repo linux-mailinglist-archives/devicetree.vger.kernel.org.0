@@ -2,117 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F1E44DD63D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:34:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7973C4DD646
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:37:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233687AbiCRIfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 04:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38574 "EHLO
+        id S233764AbiCRIia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 04:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231201AbiCRIfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:35:41 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 618B519BFDE
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 01:34:22 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id q20so4448212wmq.1
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 01:34:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20210112.gappssmtp.com; s=20210112;
-        h=message-id:date:mime-version:user-agent:subject:content-language:to
-         :cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=JBS5kufLWoBh6jQkmIuGyN5TkwDV0dVUAqqIzxduWmI=;
-        b=C2N9K5pfOPn/jknROvQpydIUdZhtPhgfzwtrdxtOqMriMgwmN9SOB0q2DoKREemaPT
-         TmgFRoaDNpM5mX8cYICfo4xIavieRqMs9XzIqr7WZ8clUs4S7jlUnll8qhWo7yr91dXO
-         zw1hNdAfijoFQZ6/ADo9cyiCR/3v9vQli9xaS4ShNCIygqVNhEoTHwWY291JHeMFK/Eu
-         BfSBEvyGvsO7WVTDdvR0Jez+kU0n6Ce55MtxzLdMozvdDgLBocXfMAGOQVhVtmpbUpv6
-         iHchIFSmE2FVAXoAYH2TZ2EuPxmm5C8FnGlmkkX4lAfv5rJsdC3PiBuXE2gf/pa2H4jG
-         Rz1g==
+        with ESMTP id S233811AbiCRIiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:38:25 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2FEB2B3310;
+        Fri, 18 Mar 2022 01:37:06 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id i4so6344697qti.7;
+        Fri, 18 Mar 2022 01:37:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:organization:in-reply-to
-         :content-transfer-encoding;
-        bh=JBS5kufLWoBh6jQkmIuGyN5TkwDV0dVUAqqIzxduWmI=;
-        b=SgBGYp3a857j72Jq6E1YIVPv3cHMfllCFnXSK7C654hz6q1EV8efqB+uddadYeOOZf
-         UyE3qoPtGv0X2lheyr30q7mzHcpduOtMlugG+5KuJxhXatSuvMrg/L4zbei0ql4h/vvI
-         IbB78CTnctDV+2JVZm8A0uJvQXgGbCGyKa+NoUTzATA2EyfEbIe2d2NMNdMQDSPDbVA+
-         AHRG6lYl7x73ysDR40GnEdssSeid0huAW35neX4hGr7Bn154AEW7U+tKsc6/g8MP7XaG
-         L5G2kS41ur+C/rL4c6710r6cgpPTRXkNn5rRnbbWGULhG3IBXY9gDUJAcfCAYjXnxjME
-         FPyA==
-X-Gm-Message-State: AOAM5300/uk5YNcljJnysK8DHqApzGfVrF7Zd7EjDD/d7yTOTZJtR51i
-        t1PqoBpX0j8l+meWnX61bpry3g==
-X-Google-Smtp-Source: ABdhPJwdJb/+m+x3Q5ZCtXIp+6h80maidNey0nwW4zOpf/79eRHvrlLepalIv2+SeV8SZlK+2CGezw==
-X-Received: by 2002:a7b:c3d5:0:b0:389:a49f:c7e6 with SMTP id t21-20020a7bc3d5000000b00389a49fc7e6mr14808995wmj.99.1647592460780;
-        Fri, 18 Mar 2022 01:34:20 -0700 (PDT)
-Received: from [192.168.1.10] (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
-        by smtp.gmail.com with ESMTPSA id d15-20020a056000186f00b0020384249361sm6603079wri.104.2022.03.18.01.34.19
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RaaWAx7vW0Ep0uWBl4c9esdINjzMdVYjy0G5NfgIiGQ=;
+        b=UvY09vcYf5uurAMxHf+en9hSW5W/SExEflAIihMMNrQgrPtq3SaMpBtfyAY8fcLC6v
+         WvmzxVFULUVFmzwa43Y9plKsjeQPOvgpGdeHOtKKeZ0T0xhYkK858xXDXsG4uwy3jsQy
+         HYbR3xy2KVMRQRYKMC9D8ofaREZriqGeFXtGl48SASF2xVl/Fd7NjKqUtKDVikU0M6Bg
+         Cn7PKB6LKK28TYUPtERAFEUZ6S7OLq5Y1EEQ/EcfQI1OzlEQAOBfoCZwZTLA+YDYMkqk
+         F4JY/s5TcJ5uaStSNskxRCOdK9aATStM9MvXKTu5i09Q9k9fXbXgOOCN5JwrHcgdcozU
+         JmFw==
+X-Gm-Message-State: AOAM530i4yC7fsy7ZZHipPsUEiwUyj7ggBqtc1J/qzb+NVxzJC0FXw+7
+        FPNzlLdf5WVBUYA4SK14f/N336i8O9p6fwuv
+X-Google-Smtp-Source: ABdhPJxb2enurGJdO1HL0t8pspJ3Qs9S29D9PoPpOm1IEWYu5olppjZet2cTw6gmbwbk/Z1ih/ergQ==
+X-Received: by 2002:ac8:5bc4:0:b0:2e1:c841:361d with SMTP id b4-20020ac85bc4000000b002e1c841361dmr6671499qtb.208.1647592625867;
+        Fri, 18 Mar 2022 01:37:05 -0700 (PDT)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id x5-20020ae9e645000000b0067b122fae88sm3625726qkl.2.2022.03.18.01.37.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 01:34:20 -0700 (PDT)
-Message-ID: <ae37bbcc-14b9-8024-c10f-7a71bd90ff0e@baylibre.com>
-Date:   Fri, 18 Mar 2022 09:34:19 +0100
+        Fri, 18 Mar 2022 01:37:05 -0700 (PDT)
+Received: by mail-yb1-f182.google.com with SMTP id j2so14750332ybu.0;
+        Fri, 18 Mar 2022 01:37:05 -0700 (PDT)
+X-Received: by 2002:a25:4fc4:0:b0:633:25c8:7d9 with SMTP id
+ d187-20020a254fc4000000b0063325c807d9mr9310864ybb.506.1647592615316; Fri, 18
+ Mar 2022 01:36:55 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [PATCH 2/3] drm: bridge: it66121: Fix the register page length
-Content-Language: en-US
-To:     Nicolas Belin <nbelin@baylibre.com>, andrzej.hajda@intel.com,
-        robert.foss@linaro.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com
-References: <20220316135733.173950-1-nbelin@baylibre.com>
- <20220316135733.173950-3-nbelin@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Organization: Baylibre
-In-Reply-To: <20220316135733.173950-3-nbelin@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com> <20220317115705.450427-15-krzysztof.kozlowski@canonical.com>
+In-Reply-To: <20220317115705.450427-15-krzysztof.kozlowski@canonical.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Mar 2022 09:36:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV-oDgiUNhW1hX6n6z3hQhVY7v6WQa9PjnF3wnEC7NTHg@mail.gmail.com>
+Message-ID: <CAMuHMdV-oDgiUNhW1hX6n6z3hQhVY7v6WQa9PjnF3wnEC7NTHg@mail.gmail.com>
+Subject: Re: [PATCH 16/18] dt-bindings: irqchip: renesas: include generic schema
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Linus Walleij <linusw@kernel.org>,
+        Imre Kaloz <kaloz@openwrt.org>,
+        Krzysztof Halasa <khalasa@piap.pl>,
+        Michael Walle <michael@walle.cc>,
+        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
+        Daniel Palmer <daniel@thingy.jp>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Nishanth Menon <nm@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Paul Burton <paulburton@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Birger Koblitz <mail@birger-koblitz.de>,
+        Bert Vermeulen <bert@biot.com>,
+        John Crispin <john@phrozen.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Sagar Kadam <sagar.kadam@sifive.com>,
+        Suman Anna <s-anna@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-actions@lists.infradead.org, openbmc@lists.ozlabs.org,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        linux-oxnas@groups.io
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2022 14:57, Nicolas Belin wrote:
-> Set the register page length or window length to
-> 0x100 according to the documentation.
-> 
-> Fixes: 988156dc2fc9 ("drm: bridge: add it66121 driver")
-> Signed-off-by: Nicolas Belin <nbelin@baylibre.com>
-> ---
->   drivers/gpu/drm/bridge/ite-it66121.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/ite-it66121.c b/drivers/gpu/drm/bridge/ite-it66121.c
-> index 06b59b422c69..64912b770086 100644
-> --- a/drivers/gpu/drm/bridge/ite-it66121.c
-> +++ b/drivers/gpu/drm/bridge/ite-it66121.c
-> @@ -227,7 +227,7 @@ static const struct regmap_range_cfg it66121_regmap_banks[] = {
->   		.selector_mask = 0x1,
->   		.selector_shift = 0,
->   		.window_start = 0x00,
-> -		.window_len = 0x130,
-> +		.window_len = 0x100,
->   	},
->   };
->   
+On Thu, Mar 17, 2022 at 12:58 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@canonical.com> wrote:
+> Include generic interrupt-controller.yaml schema, which enforces node
+> naming and other generic properties.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 
-The documentation we have access to at [1] is confusing:
-Reg00 ~ Reg2F are accessible in any register bank.
-Reg30~ RegFF are accessible in register bank0
-Reg130~ Reg1BF are accessible in register bank1. These are HDMI packet registers.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-But indeed it means:
-- Reg00 ~ Reg2F: are always accessible, whether bank0 or bank1 is set
-- Reg30~ RegFF: only when bank0 is set
-- Reg130~ Reg1BF: only when bank0 is set at Reg30~ RegF range
+Gr{oetje,eeting}s,
 
-So 0x100 is the right window_len here.
+                        Geert
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-[1] https://rockchip.fr/radxa/IT66121_Register_List_Release_V1.0.pdf
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
