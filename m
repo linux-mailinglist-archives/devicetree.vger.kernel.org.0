@@ -2,168 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 285084DE220
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:09:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A26694DE22A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 21:13:28 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239449AbiCRUKu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 16:10:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50930 "EHLO
+        id S238367AbiCRUOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 16:14:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229792AbiCRUKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:10:49 -0400
-Received: from sipsolutions.net (s3.sipsolutions.net [IPv6:2a01:4f8:191:4433::2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FBB523D76C;
-        Fri, 18 Mar 2022 13:09:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sipsolutions.net; s=mail; h=Content-Transfer-Encoding:MIME-Version:
-        Content-Type:References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:Resent-To:
-        Resent-Cc:Resent-Message-ID; bh=O6uGUdoW6Lxm5JY3J83NMEK8xoTghOZASOlRneAdaZw=;
-        t=1647634168; x=1648843768; b=bQEwG1o/Vm4jlHUDF+ToofOnblLQp81bKySVJxlmbEbsTGn
-        4gvHkbTR8d8B3MxOztQno0siDPdV5gVSqAWK19RmH5esSBx41VpshuQQbAes/L7fDsZlG1FvbE+yW
-        km60nvngaxquE56d8CoLT9Pz71P0SHxF7cXiH4ITdhHSWhsZSluCGW/IxL43NADxXMySUK7FKMBCM
-        ZSiZ5bR3aU9bPSnXeY0LgBzU2MZoKNjydhmBzZEJnWDyXfp+xRxlh13U0E6fFejC/ZBY37KCpiV3f
-        exQi9IIl6VfLm+FroqGiypZHdOmoKjTfJbasmlV02WZMhDWilEIZixke0stAAqSA==;
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.95)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1nVIuF-00F0HF-AC;
-        Fri, 18 Mar 2022 21:09:03 +0100
-Message-ID: <1e61b0f21794e67fb4e87dc41fab90829d3c7cd6.camel@sipsolutions.net>
-Subject: Re: [RFC v1 07/10] iio: light: opt3001: add roadtest
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        Brendan Higgins <brendanhiggins@google.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel <kernel@axis.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-um@lists.infradead.org" <linux-um@lists.infradead.org>,
-        "shuah@kernel.org" <shuah@kernel.org>,
-        "linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Date:   Fri, 18 Mar 2022 21:09:02 +0100
-In-Reply-To: <20220318154927.GA32172@axis.com>
-References: <20220311162445.346685-1-vincent.whitchurch@axis.com>
-         <20220311162445.346685-8-vincent.whitchurch@axis.com>
-         <CAFd5g47O2PbqaUZRoioRROtywTm=6t7cVgHqO7qc0ZGewQk16A@mail.gmail.com>
-         <20220318154927.GA32172@axis.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.42.4 (3.42.4-1.fc35) 
+        with ESMTP id S235797AbiCRUOo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 16:14:44 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 49C30FDE0F;
+        Fri, 18 Mar 2022 13:13:23 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 42B6B1515;
+        Fri, 18 Mar 2022 13:13:23 -0700 (PDT)
+Received: from [10.57.43.230] (unknown [10.57.43.230])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C696C3F766;
+        Fri, 18 Mar 2022 13:13:20 -0700 (PDT)
+Message-ID: <4c999827-0c13-8628-9322-51d68dfcad5c@arm.com>
+Date:   Fri, 18 Mar 2022 20:13:15 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-malware-bazaar: not-scanned
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:91.0) Gecko/20100101
+ Thunderbird/91.7.0
+Subject: Re: [PATCH v5 0/6] auxdisplay: Add support for the Titanmec TM1628 7
+ segment display controller
+Content-Language: en-GB
+To:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Miguel Ojeda <ojeda@kernel.org>
+Cc:     "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+References: <90668779-b53d-b3e7-5327-af11ff4a1d18@gmail.com>
+ <8d138801-5447-5e88-25d2-3eb13d294530@arm.com>
+ <84739af1-cbb8-e957-6e30-4121ed0a3517@gmail.com>
+ <132a5a99-6dbf-12d4-723b-2a327f23d24e@arm.com>
+ <953246ad-282b-c182-cbf6-3caa28979dbc@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <953246ad-282b-c182-cbf6-3caa28979dbc@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_HI,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2022-03-18 at 16:49 +0100, Vincent Whitchurch wrote:
+On 2022-03-17 21:49, Heiner Kallweit wrote:
+> On 17.03.2022 21:08, Robin Murphy wrote:
+>> On 2022-03-16 21:19, Heiner Kallweit wrote:
+>>> On 16.03.2022 01:38, Robin Murphy wrote:
+>>>> On 2022-02-25 21:09, Heiner Kallweit wrote:
+>>>>> This series adds support for the Titanmec TM1628 7 segment display
+>>>>> controller. It's based on previous RFC work from Andreas Färber.
+>>>>> The RFC version placed the driver in the LED subsystem, but this was
+>>>>> NAK'ed by the LED maintainer. Therefore I moved the driver to
+>>>>> /drivers/auxdisplay what seems most reasonable to me.
+>>>>>
+>>>>> Further changes to the RFC version:
+>>>>> - Driver can be built also w/o LED class support, for displays that
+>>>>>      don't have any symbols to be exposed as LED's.
+>>>>> - Simplified the code and rewrote a lot of it.
+>>>>> - Driver is now kind of a MVP, but functionality should be sufficient
+>>>>>      for most use cases.
+>>>>> - Use the existing 7 segment support in uapi/linux/map_to_7segment.h
+>>>>>      as suggested by Geert Uytterhoeven.
+>>>>>
+>>>>> Note: There's a number of chips from other manufacturers that are
+>>>>>          almost identical, e.g. FD628, SM1628. Only difference I saw so
+>>>>>          far is that they partially support other display modes.
+>>>>>          TM1628: 6x12, 7x11
+>>>>>          SM1628C: 4x13, 5x12, 6x11, 7x10
+>>>>>          For typical displays on devices using these chips this
+>>>>>          difference shouldn't matter.
+>>>>>
+>>>>> Successfully tested on a TX3 Mini TV box that has an SM1628C and a
+>>>>> display with 4 digits and 7 symbols.
+>>>>
+>>>> FWIW I gave this a go on my Beelink A1, which has an AiP1618 and a clock display which would mapped like so:
+>>>>
+>>>>       titanmec,segment-mapping = /bits/ 8 <1 2 3 13 12 5 4>;
+>>>>       titanmec,grid = /bits/ 8 <5 4 2 1>;
+>>>>
+>>>> (grid 3 segment 2 is used for a colon in the middle)
+>>>>
+>>>> If I bodge around the lack of support for non-contiguous grids, it does otherwise work fairly well, other than being 6-segment displays because it needs to be in display mode 1 to drive SEG13 rather than GRID6. I wonder if we could be a bit cleverer about picking a display mode based on the grid/segment numbers used?
+>>>>
+>>> Definitely this could be one future extension. It could also consider that there's a number of more or less
+>>> identical chips from other vendors that differ primarily in the supported display modes.
+>>>
+>>>> I also have a couple of those TM1638 breakout boards with 8 digits, 8 single LEDs and 8 buttons that I might have a go with too. Have you given any thought to how the DT binding might support inputs as well? (The best time to be future-proof is before it's merged...)
+>>>>
+>>> With regards to inputs at least I have no plans because I have no hw supporting input.
+>>
+>> FWIW, if you've got a board with exposed GPIO/SPI headers, searching "TM1638" on ebay/aliexpress/etc. should find the cheapo breakout boards. I believe they're quite popular with the Arduino crowd, so I expect that may well carry over to the Raspberry Pi crowd once they get wind of a kernel driver that can be driven by DT overlays.
+>>
+>>> Since the first attempts to support this LED driver hw two years have been passed w/o any tangible (mainline) result.
+>>> Therefore I want to keep the initial version a MVP. Wanting to have too many features in an initial version
+>>> may result in longer discussions until maintainer or I give up.
+>>
+>> Unfortunately the principle is that DT bindings describe the device, not whatever the current level of Linux driver support for it might be. Perhaps I'm a little sensitised since I'm currently feeling the pain of extending a decade-old binding with functionality that was overlooked at the time, and not breaking compatibility is now rather awkward.
+>>
+>> I'm not suggesting that there needs to be any support implemented in the driver, just to be certain that we're not painting ourselves into a corner with the binding.
+>>
+>>> Important is that user space interface / DT bindings are flexible enough so that future extensions don't have to break
+>>> existing users. And I think that's the case.
+>>
+>> May I ask what you have in mind? I figure that inputs would most likely want to be described individually, similarly to the gpio-keys binding, which would lend itself to having them as child nodes, except that doesn't fit with the current scheme of child nodes having to be LEDs addressed by (grid,segment). I suppose there is a possible escape hatch of abusing unused addresses, e.g. saying a node at address (0,n) is input n rather than an LED segment, but that seems pretty horrid (and I'm not sure how well schema could validate it). Or possibly pretending to also be a GPIO controller to reference from a separate gpio-keys node, but again that seems ugly and more like something to only do if there's no other option.
+>>
 > 
-> It should be possible, but upstream QEMU doesn't have everything that we
-> need so some work is needed there.  Also, of course work is need to
-> provide user space for running the tests and communicating between the
-> virtual machine and the backend:
+> Not being an expert in OF stuff I'm just focused on getting support for the hw I own.
+> I tried to do this in the most simple and generic way so that others can follow-up
+> and add additional functionality.
+
+Sure, I appreciate that, and what I'm saying is that while what we 
+currently have is pleasantly simple, I think it's actually a little 
+*too* simple and not generic enough to extend easily. I'm more than 
+happy to send patches adding the functionality I'm interested in to the 
+driver once it's merged, but I can't make significant changes to the 
+binding at that point and break it for early adopters. But let me go 
+make proper review comments on the patch rather than confusing 
+meta-review here...
+
+Thanks,
+Robin.
+
 > 
-> - We need user space, so build scripts would need to be provided to
->   cross-compile busybox and Python (and whatever libraries it needs) for
->   the target architecture.
-
-You could possibly use some nix recipes for all of this, but that's a
-fairly arcane thing (we use it, but ...)
-
-> - We also use UML's hostfs feature to make things transparent to the
->   user and to avoid having to set up things like networking for
->   communication between the host and the backend.  I think QEMU's 9pfs
->   support can be used as a rootfs too but it's not something I've
->   personally tested.
-
-That works just fine, yes. We used to do exactly this in the wireless
-test suite before we switched to UML, but the switch to UML was due to
-the "time-travel" feature.
-
-https://w1.fi/cgit/hostap/tree/tests/hwsim/vm
-
-has support for both UML and qemu/kvm.
-
-> - We use virtio-i2c and virtio-gpio and use virtio-uml which uses the
->   vhost-user API to communicate from UML to the backend.  The latest
->   version of QEMU has support for vhost-user-i2c, but vhost-user-gpio
->   doesn't seem to have been merged yet, so work is needed on the QEMU
->   side.  This will also be true for other buses in the future, if they
->   are implemented with new virtio devices.
 > 
-> - For MMIO, UML has virtio-mmio which allows implementing any PCIe
->   device (and by extension any platform device) outside of UML, but last
->   I checked, upstream QEMU did not have something similar.
-
-I think you have this a bit fuzzy.
-
-The virtio_uml[.c] you speak of is the "bus" driver for virtio in UML.
-Obviously, qemu has support for virtio, so you don't need those bits.
-
-Now, virtio_uml is actually the virtio (bus) driver inside the kernel,
-like you'd have virtio-mmio/virtio-pci in qemu. However, virtio_uml
-doesn't implement the devices in the hypervisor, where most qemu devices
-are implemented, but uses vhost-user to run the device implementation in
-a separate userspace. [1]
-
-Now we're talking about vhost-user to talk to the device, and qemu
-supports this as well, in fact the vhost-user spec is part of qemu:
-https://git.qemu.org/?p=qemu.git;a=blob;f=docs/system/devices/vhost-user.rst;h=86128114fa3788a73679f0af38e141021087c828;hb=1d60bb4b14601e38ed17384277aa4c30c57925d3
-https://www.qemu.org/docs/master/interop/vhost-user.html
-
-The docs on how to use it are here:
-https://www.qemu.org/docs/master/system/devices/vhost-user.html
-
-So once you have a device implementation (regardless of whether it's for
-use with any of the virtio-i2c, arch/um/drivers/virt-pci.c, virtio-gpio,
-virtio-net, ... drivers) you can actually connect it to virtual machines
-running as UML or in qemu.
-
-(Actually, that's not strictly true today since it's
-arch/um/drivers/virt-pci.c and I didn't get a proper device ID assigned
-etc since it was for experimentation, I guess if we make this more
-commonly used then we should move it to drivers/pci/controller/virtio-
-pci.c and actually specify it in the OASIS virtio spec., at the very
-least it'd have to be possible to compile this and lib/logic_iomem.c on
-x86, but that's possible. Anyway I think PCI(e) is probably low on your
-list of things ...)
-
->  - Also, some paths in this driver needs a modification to be tested
->    under roadtest.  It uses wait_event_timeout() with a fixed value, but
->    we cannot guarantee that this constraint is met in the test
->    environment since it depends on things like CPU load on the host.
+>> IMO it would be cleanest just to have an extra level of hierarchy, e.g.:
+>>
+>>
+>>      led-controller@0 {
+>>          compatible = "titanmec,tm1628";
+>>          ...
+>>
+>>          leds {
+>>              #address-cells = <2>;
+>>              #size-cells = <0>;
+>>
+>>              alarm@5,4 {
+>>                  ...
+>>              };
+>>          };
+>>      };
+>>
+>> That way there's clearly almost no risk of breakage if an additional "inputs" node with its own children turns up later. Plus it should also be a trivial change to the current driver, compared to having to implement trick special cases or whole other APIs down the line - of course bindings should not be designed expressly for ease of driver implementation, but if they do work out that way it's usually a good sign :)
+>>
+>> Thanks,
+>> Robin.
 > 
->    (Also, we use UML's "time travel" feature which essentially
->    fast-forwards through idle time, so the constraint can never be met
->    in practice.)
-
-Wohoo! This makes me very happy, finally somebody else who uses it :-)
-
-
-
-[1] As an aside, you might be interested in usfstl (which you can find
-at https://github.com/linux-test-project/usfstl) which is one way you
-could implement the device side - though the focus here is on making a
-device implementation easy while under "time-travel" mode.
-
-If you ever want to use time-travel with multiple machines or actually
-with virtio devices, it also contains the necessary controller program
-to glue the entire simulation together. We use this very successfully to
-test the (real but compiled for x86) wifi firmware for iwlwifi together
-with the real driver actually seeing a PCIe device in UML, under time-
-travel :)
-
-johannes
+> Heiner
