@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 523C24DD1C2
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA514DD1C3
 	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 01:14:23 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230499AbiCRAOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Mar 2022 20:14:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52618 "EHLO
+        id S230504AbiCRAOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Mar 2022 20:14:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230508AbiCRAOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 20:14:22 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F1515DABB
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:13:02 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id pv16so14103872ejb.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:13:02 -0700 (PDT)
+        with ESMTP id S230527AbiCRAO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Mar 2022 20:14:29 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA5B199525
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:13:11 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id qx21so13931167ejb.13
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:13:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ivABL/zW17W3xsGsFU4NNFD2vIhj9kJM89ziwsXeP4A=;
-        b=I6jh5qUUAfPbuFRo6X1vzR4jyxk+Jwj+tM+hcWGcNJ80NKQdHD3dt4WyBUnPLaQ43u
-         fY4hRGaRDpfdxsttq4ka6QQ3hsN/FLOiF/BWyTy1eAv5/n1k20hVkDNHY/wy2ucHyIUT
-         LyPuzoXHOq8/3MYayGZMQIPpAv4JbHhGQwbek=
+        bh=d1Z8nI+f/X46wuhlEeKlYiI7DuyLSgelQdOIPC94sVc=;
+        b=dq9FFRkofEvY/IQ16q22b9/GAC3XOlX/hWO2uBaym9wfsa21t2RqyXXsmcT4+ouP96
+         sP5cckwa32YJttSDlHHjJtcORahNzuY8gpmwhPkulTeNBPqbWSAOutMIuIyMEvN2fd/q
+         cw6DsfvWgKS9sZLyHWDTyO4TD4lLr/+JK5JXY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ivABL/zW17W3xsGsFU4NNFD2vIhj9kJM89ziwsXeP4A=;
-        b=etVeGeHIoD0Kikl9o0z1/L0tyahc8VIk1RnFsKl2TCJ15fTILKwR+0Ubl6z41cmRru
-         9h+T+7BiN51/UDBDn9BgEt0GQCPF0RfZS+XIJRxfpZZ7kyASnCNLdMgG9SOZ3u5sYX6x
-         V3X8nzPoSnJQ3EmDCGv1eBLmpcdPRc5PpTz+dPv3WvKDicmJj9MxepZnT534suR609u2
-         AoRQHey2/oj8XU/1ac5d5gNreQzp7GUknXVKNOp2HokvK7QPltjvm2+IswxRcmH4Jkps
-         +hOh74Pj9/prCWv8tE6DEdhmriC+UIWOEYh1z3HmkESA2oRIvjZaCe05RuUZ1qF62Gz/
-         bJtA==
-X-Gm-Message-State: AOAM531OkYs0m5Aj5O5XH72MrQrU44/o+njjxSNmu0A24762ZVniQWGQ
-        DiIB5TIOdH7fWhhpoZ6ubEvH5O3ZSHGMJ7ZBOHI=
-X-Google-Smtp-Source: ABdhPJx+uhuaG90ohH7CZY6j8E5p8I1TJ4F0Rk8eZtdFwyCUtOz8dYWzglZdYkU5a6h5sTLYWHISJw==
-X-Received: by 2002:a17:906:3583:b0:6d1:c07:fac0 with SMTP id o3-20020a170906358300b006d10c07fac0mr6606426ejb.749.1647562381065;
-        Thu, 17 Mar 2022 17:13:01 -0700 (PDT)
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com. [209.85.128.44])
-        by smtp.gmail.com with ESMTPSA id di6-20020a170906730600b006df8831ec5asm2203310ejc.114.2022.03.17.17.12.59
+        bh=d1Z8nI+f/X46wuhlEeKlYiI7DuyLSgelQdOIPC94sVc=;
+        b=ZJP5voOd4GTAY5U7zsYeKsCDAEh2uQ/By0yqtRh/r4/a+FMbNxw/104wRo/olFPP6E
+         Gsq9U8Nv+Hs43UkZv0humUlcjEXDERD81W31SoRl9kmLQZTzX6BeOe+GcQNTG/CO25Mu
+         hbHrvcN+U7/503dLofvcpSUmqkIccXp1wQ8OUwwptJPooXkGHEXk4JNxKWeClTY1HCLH
+         FFN2ZeDNhIcNSmcWrJwg6syuhDaO5u6ces1H76HZFaw0WPrtoRgPO1oQor8wqcB+kda6
+         Kg54yTT6eJX4MCcBt7ESmfHO95a4mZbKxAZ0F0hwSbAFU4r6F6Mwyl9FVtUu+EVTAcgM
+         m7iQ==
+X-Gm-Message-State: AOAM5300JEMuAAwkJV01qO7KTelqV4wBDD7PceljObmA2L9SDx6l+iE8
+        11BkHuW02FHa9A84iRyNO21GLhRmgBDiMyru2PY=
+X-Google-Smtp-Source: ABdhPJyouteXnE8T8phE7C506NrrmQbkhNYV9HEAcpj5n5sSP7k/jHR4PGbyZ6Lzr9wNs11jW/+pTg==
+X-Received: by 2002:a17:907:9482:b0:6da:a24e:e767 with SMTP id dm2-20020a170907948200b006daa24ee767mr6560176ejc.479.1647562390153;
+        Thu, 17 Mar 2022 17:13:10 -0700 (PDT)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
+        by smtp.gmail.com with ESMTPSA id i14-20020a50cfce000000b00415b0730921sm3481250edk.42.2022.03.17.17.13.09
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Mar 2022 17:13:00 -0700 (PDT)
-Received: by mail-wm1-f44.google.com with SMTP id r190-20020a1c2bc7000000b0038a1013241dso4051380wmr.1
-        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:12:59 -0700 (PDT)
-X-Received: by 2002:a05:600c:3c8a:b0:389:cf43:eaf6 with SMTP id
- bg10-20020a05600c3c8a00b00389cf43eaf6mr5932331wmb.199.1647562379575; Thu, 17
- Mar 2022 17:12:59 -0700 (PDT)
+        Thu, 17 Mar 2022 17:13:09 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id p9so9600329wra.12
+        for <devicetree@vger.kernel.org>; Thu, 17 Mar 2022 17:13:09 -0700 (PDT)
+X-Received: by 2002:a5d:53c6:0:b0:203:ee27:12ff with SMTP id
+ a6-20020a5d53c6000000b00203ee2712ffmr3723782wrw.422.1647562388738; Thu, 17
+ Mar 2022 17:13:08 -0700 (PDT)
 MIME-Version: 1.0
-References: <1647269217-14064-1-git-send-email-quic_vpolimer@quicinc.com> <1647269217-14064-5-git-send-email-quic_vpolimer@quicinc.com>
-In-Reply-To: <1647269217-14064-5-git-send-email-quic_vpolimer@quicinc.com>
+References: <1647269217-14064-1-git-send-email-quic_vpolimer@quicinc.com> <1647269217-14064-6-git-send-email-quic_vpolimer@quicinc.com>
+In-Reply-To: <1647269217-14064-6-git-send-email-quic_vpolimer@quicinc.com>
 From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 17 Mar 2022 17:12:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VQV-2LTmVEPuJJYUhTpBT15A1fKAsRbZgpni8rGNNFsw@mail.gmail.com>
-Message-ID: <CAD=FV=VQV-2LTmVEPuJJYUhTpBT15A1fKAsRbZgpni8rGNNFsw@mail.gmail.com>
-Subject: Re: [PATCH v6 4/5] arm64: dts: qcom: sdm845: remove
+Date:   Thu, 17 Mar 2022 17:12:54 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=U6VfmGMYk6PeJa6y6P1-FsbKVjzD4tVGxnqMdEVY9n8Q@mail.gmail.com>
+Message-ID: <CAD=FV=U6VfmGMYk6PeJa6y6P1-FsbKVjzD4tVGxnqMdEVY9n8Q@mail.gmail.com>
+Subject: Re: [PATCH v6 5/5] arm64: dts: qcom: sm8250: remove
  assigned-clock-rate property for mdp clk
 To:     Vinod Polimera <quic_vpolimer@quicinc.com>
 Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
@@ -71,7 +71,7 @@ Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,7 +93,7 @@ On Mon, Mar 14, 2022 at 7:47 AM Vinod Polimera
 > Signed-off-by: Vinod Polimera <quic_vpolimer@quicinc.com>
 > Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 > ---
->  arch/arm64/boot/dts/qcom/sdm845.dtsi | 9 ++-------
+>  arch/arm64/boot/dts/qcom/sm8250.dtsi | 9 ++-------
 >  1 file changed, 2 insertions(+), 7 deletions(-)
 
 Similar comments to patch #2 about the commit message, but otherwise:
