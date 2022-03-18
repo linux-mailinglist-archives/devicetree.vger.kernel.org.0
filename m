@@ -2,144 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2184DD668
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:46:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F19964DD688
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 09:52:14 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231599AbiCRIsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 04:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53170 "EHLO
+        id S233979AbiCRIxb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 04:53:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233968AbiCRIsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:48:00 -0400
-Received: from mail-qt1-x835.google.com (mail-qt1-x835.google.com [IPv6:2607:f8b0:4864:20::835])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D8CC2BAE49;
-        Fri, 18 Mar 2022 01:46:41 -0700 (PDT)
-Received: by mail-qt1-x835.google.com with SMTP id 10so6351551qtz.11;
-        Fri, 18 Mar 2022 01:46:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HX28KG1ETTyJqfzKGPZZd77iKDoX+t1pmuXVdkh9BBc=;
-        b=Z5aK/m5hJp461lI1t0YTLkryZtCz8/3HW4RW38wNu7h2EGUqR5UuMrj7IZGKTu0qKc
-         xqozWfz6HUk279WPyFj16B30DdNahbNTYWsIbBSEex9sA3PsaUSBV+ktq32E+IVv++KN
-         JVM+hWttBMY+pzT/KNggcxpvmXVD20QHebxdo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HX28KG1ETTyJqfzKGPZZd77iKDoX+t1pmuXVdkh9BBc=;
-        b=iqkB9EPr+kS3dKXJLVr7vm0IDmZZbsrzgOMgHWezCBb9dAvQmXnU4A7C354OA7j4N9
-         ETHmjP7Plh9R0op4m3toeQ8uE+TLDSplPCHeEILZNfv84YvdjiNi3Hn5pQbqijTY0eLK
-         HMV41Mhym5wH7BkpXX16jjzA1f6yro+9hX/qRYZTaw5a4jDq0hq9lymF1Sp/BQoI5YYB
-         UvnbVusRt5UDgkcRdS4CrVCnINlbGb7eHpCMJOREs1LT29dm6HUHD60+e8LOI3NcEMYG
-         16hAQn76lmn5DK3UVTzFFColrCMqBb6HKazZzJnDSD3IrrVrlwZmZ2wprtMNe3uF8HzT
-         LImA==
-X-Gm-Message-State: AOAM533sSLEksIw52iNg/vDwWrdRimZDvZCJ98LS5ehY3tdDtKjR19+N
-        i8oa7Y7Pf6qiZrRA+N5PKukhY0HSO3yxpQUhgFw=
-X-Google-Smtp-Source: ABdhPJwbpE/yU8SuU3bVcc+6HfWkUhrdPIgYdcuCEFhWvubB6MvFcV8t9gzlh4c9xyYxHO1Eosyq9q6syDlj8eCbRI4=
-X-Received: by 2002:a05:622a:14c8:b0:2e1:d626:66ea with SMTP id
- u8-20020a05622a14c800b002e1d62666eamr6640121qtx.58.1647593200510; Fri, 18 Mar
- 2022 01:46:40 -0700 (PDT)
+        with ESMTP id S233953AbiCRIxa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 04:53:30 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 101841A8FC4
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 01:52:11 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nV8L5-0005HN-Tp; Fri, 18 Mar 2022 09:52:03 +0100
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1nV8L2-0004Z8-MF; Fri, 18 Mar 2022 09:52:00 +0100
+Date:   Fri, 18 Mar 2022 09:52:00 +0100
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Andy Yan <andy.yan@rock-chips.com>
+Cc:     dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Sandy Huang <hjc@rock-chips.com>,
+        Heiko =?iso-8859-15?Q?St=FCbner?= <heiko@sntech.de>,
+        Peter Geis <pgwipeout@gmail.com>,
+        Daniel Stone <daniel@fooishbar.org>
+Subject: Re: [PATCH v8 22/24] drm: rockchip: Add VOP2 driver
+Message-ID: <20220318085200.GB12181@pengutronix.de>
+References: <20220311083323.887372-1-s.hauer@pengutronix.de>
+ <20220311083323.887372-23-s.hauer@pengutronix.de>
+ <9ec29d9b-8197-98fb-c612-5c842e4212c4@rock-chips.com>
+ <20220316074001.GP405@pengutronix.de>
+ <f9d57503-1ac6-61c6-5fda-1a78b6e7270a@rock-chips.com>
+ <e6ab5ce2-4177-9e45-a50f-9ea3abb08800@rock-chips.com>
 MIME-Version: 1.0
-References: <SG2PR06MB2315A7BAE2F1B384CDADB57FE6139@SG2PR06MB2315.apcprd06.prod.outlook.com>
-In-Reply-To: <SG2PR06MB2315A7BAE2F1B384CDADB57FE6139@SG2PR06MB2315.apcprd06.prod.outlook.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 18 Mar 2022 08:46:28 +0000
-Message-ID: <CACPK8XdYHb-PgVVQuTtMBokxu4GTObG7nCohm4dosK9XWzE9ow@mail.gmail.com>
-Subject: Re: [PATCH v1] ARM: dts: aspeed: ast2600-evb: Enable RX delay for MAC0/MAC1
-To:     Howard Chiu <howard_chiu@aspeedtech.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "andrew@aj.id.au" <andrew@aj.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Troy Lee <troy_lee@aspeedtech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=iso-8859-15
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e6ab5ce2-4177-9e45-a50f-9ea3abb08800@rock-chips.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:48:51 up 97 days, 17:34, 77 users,  load average: 0.74, 0.24,
+ 0.12
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Howard,
+Hi Andy,
 
-On Fri, 18 Mar 2022 at 08:09, Howard Chiu <howard_chiu@aspeedtech.com> wrote:
->
-> Since mac0/1 and mac2/3 are physically located on different die,
-> they have different properties by nature, which is mac0/1 has smaller delay step.
->
-> The property 'phy-mode' on ast2600 mac0 and mac1 is recommended to set to 'rgmii-rxid'
-> which enables the RX interface delay from the PHY chip.
-> Refer page 45 of SDK User Guide v08.00
-> https://github.com/AspeedTech-BMC/openbmc/releases/download/v08.00/SDK_User_Guide_v08.00.pdf
->
-> Set mac delay according to the mactest result.
+On Thu, Mar 17, 2022 at 03:23:12PM +0800, Andy Yan wrote:
+>    I found a obvious  error in 0x604(OVERLAY_LAYER_SEL) register, the
+>    configuration value
+> 
+>    is 0x54763513.
+> 
+>    I am not sure if you know clearly about this register:
+> 
+>    Every four bits of this register select a Window(Cluster0,Cluster1,
+>    Esmart0, Esmart1, Smart0. Smart1)
+> 
+>    for layer0 to layer 5 from bottom to top.
+> 
+>    0: Cluster0
+> 
+>    1: Cluster1:
+> 
+>    2: Esmart0
+> 
+>    3: Smart0
+> 
+>    6: Esmart1
+> 
+>    7: Smart1
+> 
+>    And one window can only be selected by one layer at a time.
+> 
+>    So when I change this register to 0x54762513, the square draw by
+>    weston-simple-dmabuf-egl appeared on the top of the weston background on
+>    screen.
 
-This bit confused me. How does the rxid relate to the mac delay
-numbers? Which device and code is responsible for using them?
+I can reproduce this here. It seems I have only tested overlays with two
+active VPs. With only one active VP I see the same behaviour as you do.
 
->
-> Signed-off-by: Howard Chiu <howard_chiu@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-ast2600-evb.dts | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/aspeed-ast2600-evb.dts b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> index b7eb552640cb..db16ba307e97 100644
-> --- a/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> +++ b/arch/arm/boot/dts/aspeed-ast2600-evb.dts
-> @@ -103,7 +103,7 @@ ethphy3: ethernet-phy@0 {
->  &mac0 {
->         status = "okay";
->
-> -       phy-mode = "rgmii";
-> +       phy-mode = "rgmii-rxid";
->         phy-handle = <&ethphy0>;
->
->         pinctrl-names = "default";
-> @@ -114,7 +114,7 @@ &mac0 {
->  &mac1 {
->         status = "okay";
->
-> -       phy-mode = "rgmii";
-> +       phy-mode = "rgmii-rxid";
->         phy-handle = <&ethphy1>;
->
->         pinctrl-names = "default";
-> @@ -141,6 +141,21 @@ &mac3 {
->         pinctrl-0 = <&pinctrl_rgmii4_default>;
->  };
->
-> +&syscon {
-> +       mac0-clk-delay = <0x10 0x0a
-> +                         0x10 0x10
-> +                         0x10 0x10>;
+The following patch fixes this, will include that in the next round.
 
-These properties aren't supported by the mainline kernel. Do you have
-some code coming for that support?
+Sascha
 
-> +       mac1-clk-delay = <0x10 0x0a
-> +                         0x10 0x10
-> +                         0x10 0x10>;
-> +       mac2-clk-delay = <0x08 0x04
-> +                         0x08 0x04
-> +                         0x08 0x04>;
-> +       mac3-clk-delay = <0x08 0x04
-> +                         0x08 0x04
-> +                         0x08 0x04>;
-> +};
-> +
->  &emmc_controller {
->         status = "okay";
->  };
-> --
-> 2.25.1
->
+------------------------------8<-------------------------------
+From d07036753bd1496fa8a49c31eff004e927ce412b Mon Sep 17 00:00:00 2001
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Date: Fri, 18 Mar 2022 09:47:53 +0100
+Subject: [PATCH] fixup! drm: rockchip: Add VOP2 driver
+
+---
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 81ff79eddb8a0..71bc8c11b8bcf 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -1941,7 +1941,7 @@ static void vop2_setup_layer_mixer(struct vop2_video_port *vp)
+ 	}
+ 
+ 	/* configure unused layers to 0x5 (reserved) */
+-	for (; nlayer < 3; nlayer++) {
++	for (; nlayer < vp->nlayers; nlayer++) {
+ 		layer_sel &= ~RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, 0x7);
+ 		layer_sel |= RK3568_OVL_LAYER_SEL__LAYER(nlayer + ofs, 5);
+ 	}
+-- 
+2.30.2
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
