@@ -2,62 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA7CE4DD723
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:34:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3546B4DD760
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:51:38 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232593AbiCRJfW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 05:35:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
+        id S234506AbiCRJwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 05:52:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232087AbiCRJfV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:35:21 -0400
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E34453EAB8;
-        Fri, 18 Mar 2022 02:34:02 -0700 (PDT)
-Received: by mail-lf1-f43.google.com with SMTP id w12so13172632lfr.9;
-        Fri, 18 Mar 2022 02:34:02 -0700 (PDT)
+        with ESMTP id S234683AbiCRJwu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:52:50 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 966C1274290
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:51:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1647597090;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=NGB6HPT5rAmAO3WbhoeyotRrqi0pcOCpS5xA0jIJ1zA=;
+        b=YyNu76CL0bHpAxdil/DbTMHNYXEBfiafkNvs7mN49v4KIK4lOm/HsCwkaxhNlGHGm7ca/T
+        3Uwi0x/vuf5gYUhgdycCZt2lF1G+Bit+npZ5mf8sN+t/woLJT5pU9rpgBkCevYFkSt1+t0
+        QHvEfxm6akodastf0kb6nx5aCfyrJUE=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ us-mta-615-HdFobAa1OZ-eOimng-E3yA-1; Fri, 18 Mar 2022 05:51:29 -0400
+X-MC-Unique: HdFobAa1OZ-eOimng-E3yA-1
+Received: by mail-ej1-f71.google.com with SMTP id qf24-20020a1709077f1800b006ce8c140d3dso4282242ejc.18
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:51:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=lKlHbqIy06Ai/ILupuRuVIb8OQFBL4S3BVKPW1zPqok=;
-        b=6NcH0lgUPqNdc3/iyFBnVJN0Zt1YwUaAnvfxHjuGDr923YNbjfW0x5qPoESMw0WCSt
-         OzklHKD2H6Fov+rgEVoRVBRKV6Npm2518t+XCOFj8mojBElNQrqLQAe5DMH4MXL6j/YO
-         cbcxxk/9Mltiy6Rm+lZCWBE4E04xfnxPffKkBuQ6paUe8soo/9/G3qsxktqrWNWduhHi
-         VTlPa+sGdqkdgP/e76n6gXnLQT4QOt3g10wM6AmOUU0rdSYCXl/feTRInmadvWYPI766
-         peL/hV/CCI4Dt997/dlRamqqE3gQeeS2DsCJbLHn8OIbNkVi0wAh8Ew2pOI0KnVwa2K5
-         ifqQ==
-X-Gm-Message-State: AOAM531ktfOW0Xb0Z1JJpHZq9Ic6q1NPiTvNZLcmDdYtCMuZNZJ3Je5u
-        DZWec9FkiPKqEt1RLdKRFMw=
-X-Google-Smtp-Source: ABdhPJxsx+3czltj2ewV/qub1jNboUK9LxWZJRrSSt+5gHyCLkDGlg9/N94c5NyOBmBT4FKI7/DYxw==
-X-Received: by 2002:a05:6512:260b:b0:444:18:fce5 with SMTP id bt11-20020a056512260b00b004440018fce5mr5450631lfb.119.1647596041179;
-        Fri, 18 Mar 2022 02:34:01 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id w27-20020ac2599b000000b004481e254f08sm763354lfn.240.2022.03.18.02.33.59
+        bh=NGB6HPT5rAmAO3WbhoeyotRrqi0pcOCpS5xA0jIJ1zA=;
+        b=Rzz0r9gvwRr22BzM44IohyoG07nbzjHSyhJ22cHwQK5vZfhkdrdb9aAoJ1HdcmeDHb
+         /wEy3SI5VDFZ/ERHMQx+Z+TfXMCLD9Og+lXWW8Q3T9sQQSqW2t+98BX1wuIn3LDgXg+2
+         HYXWfjrX3pNH3WJ0beUv+hvPO+EDhLKlqH31c20pJjs74bLMvKOhqp2VGrpnFimOCO1m
+         9hXUnDZpfvJW0rW+uOJV2FcBbKc+18L/PCDet4mqz5HpS2ckI1c+f8tYl7Myaag0Q/2q
+         C+ugoQURDnYjnmGCWgIsRmU0OVYp2iFQy4imNEm8PVlckke3ZxLynF/h8UsKbdw3Zn3p
+         9Q3Q==
+X-Gm-Message-State: AOAM533Iye83UZIKYIc8NJ4B/i0M4GVuAOj3pxGuwabokiaq2Fc/xvnM
+        1AUHMZPMDOajEVJv9al0GsCxabttxOOvQ6DdUr7eubf5EsPXo2gFbaTMT4H0qYEwnsgQzrUCmxb
+        vD1V+qy/ezjXXxjtgk4buVg==
+X-Received: by 2002:a05:6402:42c9:b0:418:ac44:3418 with SMTP id i9-20020a05640242c900b00418ac443418mr8700242edc.97.1647597087907;
+        Fri, 18 Mar 2022 02:51:27 -0700 (PDT)
+X-Google-Smtp-Source: ABdhPJyZUtM7mltIUf3tUly3Wx+fHxk9qwFI2nHz3mjK6RYWVMuOLN0eZzBI7KdnhM4DP8slAHZPjQ==
+X-Received: by 2002:a05:6402:42c9:b0:418:ac44:3418 with SMTP id i9-20020a05640242c900b00418ac443418mr8700229edc.97.1647597087717;
+        Fri, 18 Mar 2022 02:51:27 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c1e:bf00:cdb2:2781:c55:5db0? (2001-1c00-0c1e-bf00-cdb2-2781-0c55-5db0.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:cdb2:2781:c55:5db0])
+        by smtp.gmail.com with ESMTPSA id g11-20020a170906538b00b006ae38eb0561sm3532795ejo.195.2022.03.18.02.51.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 02:34:00 -0700 (PDT)
-Message-ID: <0a8c7661-806e-f403-8903-b6c1b4e3e23b@kernel.org>
-Date:   Fri, 18 Mar 2022 10:33:59 +0100
+        Fri, 18 Mar 2022 02:51:27 -0700 (PDT)
+Message-ID: <1c4a7088-bcef-ca5c-ff3e-efd1049dc402@redhat.com>
+Date:   Fri, 18 Mar 2022 10:51:26 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH 5/5 v2] dt-bindings: gnss: Rewrite Mediatek bindings in
- YAML
+ Thunderbird/91.4.0
+Subject: Re: [PATCH 1/4] power: supply: max17042_battery: Add unit conversion
+ macros
 Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Johan Hovold <johan@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220317225844.1262643-1-linus.walleij@linaro.org>
- <20220317225844.1262643-5-linus.walleij@linaro.org>
-In-Reply-To: <20220317225844.1262643-5-linus.walleij@linaro.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
+Cc:     Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20220318001048.20922-1-sebastian.krzyszkowiak@puri.sm>
+ <20220318001048.20922-2-sebastian.krzyszkowiak@puri.sm>
+ <97d88728-4e73-0820-07e7-199377ebff2a@kernel.org>
+ <3c890d11-75c6-8370-5659-a78b1a9baea2@redhat.com>
+ <f15c415a-ad08-ae4f-c79c-574964ab9cb0@kernel.org>
+From:   Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <f15c415a-ad08-ae4f-c79c-574964ab9cb0@kernel.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,111 +89,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/03/2022 23:58, Linus Walleij wrote:
-> This rewrites the Mediatek GNSS bindings in YAML.
+Hi,
+
+On 3/18/22 10:06, Krzysztof Kozlowski wrote:
+> On 18/03/2022 10:00, Hans de Goede wrote:
+>> Hi,
+>>
+>> On 3/18/22 09:16, Krzysztof Kozlowski wrote:
+>>> On 18/03/2022 01:10, Sebastian Krzyszkowiak wrote:
+>>>> Instead of sprinkling the code with magic numbers, put the unit
+>>>> definitions used by the gauge into a set of macros. Macros are
+>>>> used instead of simple defines in order to not require floating
+>>>> point operations for divisions.
+>>>>
+>>>> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
+>>>> ---
+>>>>  drivers/power/supply/max17042_battery.c | 40 +++++++++++++++----------
+>>>>  1 file changed, 24 insertions(+), 16 deletions(-)
+>>>>
+>>>> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
+>>>> index ab031bbfbe78..c019d6c52363 100644
+>>>> --- a/drivers/power/supply/max17042_battery.c
+>>>> +++ b/drivers/power/supply/max17042_battery.c
+>>>> @@ -51,6 +51,15 @@
+>>>>  
+>>>>  #define MAX17042_VMAX_TOLERANCE		50 /* 50 mV */
+>>>>  
+>>>> +#define MAX17042_CURRENT_LSB		1562500ll /* µV */
+>>>
+>>> Is this really long long? The usage in max17042_get_status() is with int
+>>> operand and result.
+>>
+>> The "ll" is part of the original code which these macros replace,
+>> dropping the "ll" is IMHO out of scope for this patch, it would
+>> clearly break the only change 1 thing per patch/commit rule.
 > 
-> Cc: devicetree@vger.kernel.org
-> Cc: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v1->v2:
-> - New patch since Krzysztof pointed out there is really just
->   one more binding to convert, so why not.
-> ---
->  .../devicetree/bindings/gnss/mediatek.txt     | 35 ------------
->  .../devicetree/bindings/gnss/mediatek.yaml    | 54 +++++++++++++++++++
->  2 files changed, 54 insertions(+), 35 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gnss/mediatek.txt
->  create mode 100644 Documentation/devicetree/bindings/gnss/mediatek.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.txt b/Documentation/devicetree/bindings/gnss/mediatek.txt
-> deleted file mode 100644
-> index 80cb802813c5..000000000000
-> --- a/Documentation/devicetree/bindings/gnss/mediatek.txt
-> +++ /dev/null
-> @@ -1,35 +0,0 @@
-> -Mediatek-based GNSS Receiver DT binding
-> -
-> -Mediatek chipsets are used in GNSS-receiver modules produced by several
-> -vendors and can use a UART interface.
-> -
-> -Please see Documentation/devicetree/bindings/gnss/gnss.txt for generic
-> -properties.
-> -
-> -Required properties:
-> -
-> -- compatible	: Must be
-> -
-> -			"globaltop,pa6h"
-> -
-> -- vcc-supply	: Main voltage regulator (pin name: VCC)
-> -
-> -Optional properties:
-> -
-> -- current-speed		: Default UART baud rate
-> -- gnss-fix-gpios	: GPIO used to determine device position fix state
-> -			  (pin name: FIX, 3D_FIX)
+> Not in max17042_get_status(). The usage there is without ll. Three other
+> places use it in 64-bit context (result is 64-bit), so there indeed. But
+> in max17042_get_status() this is now different.
 
-What happened with this property? It looks not used, but still I am not
-sure we should remove it.
+Ah, good catch and there is a reason why it is not a ll there, a divide
+is done on it, which is now a 64 bit divide which will break on 32 bit
+builds...
 
-> -- reset-gpios		: GPIO used to reset the device (pin name: RESET, NRESET)
-> -- timepulse-gpios	: Time pulse GPIO (pin name: PPS1, 1PPS)
-> -- vbackup-supply	: Backup voltage regulator (pin name: VBAT, VBACKUP)
-> -
-> -Example:
-> -
-> -serial@1234 {
-> -	compatible = "ns16550a";
-> -
-> -	gnss {
-> -		compatible = "globaltop,pa6h";
-> -		vcc-supply = <&vcc_3v3>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/gnss/mediatek.yaml b/Documentation/devicetree/bindings/gnss/mediatek.yaml
-> new file mode 100644
-> index 000000000000..273732225c1f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gnss/mediatek.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/gnss/mediatek.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek GNSS Receiver Device Tree Bindings
-> +
-> +allOf:
-> +  - $ref: gnss-common.yaml#
-> +
-> +maintainers:
-> +  - Johan Hovold <johan@kernel.org>
-> +
-> +description:
-> +  Mediatek chipsets are used in GNSS-receiver modules produced by several
-> +  vendors and can use a UART interface.
-> +
-> +properties:
-> +  compatible:
-> +    const: globaltop,pa6h
-> +
-> +  vcc-supply:
-> +    description:
-> +      Main voltage regulator, pin name VCC.
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: An optional reset line, with names such as RESET or NRESET.
-> +      If the line is active low it should be flagged with GPIO_ACTIVE_LOW.
-> +
-> +  timepulse-gpios:
-> +    description: Comes with pin names such as PPS1 or 1PPS.
+Note that e.g. this existing block:
 
-This should not be needed here (same as patch #3). While changing it,
-move also "allOf" just before properties.
+        case POWER_SUPPLY_PROP_CURRENT_NOW:
+                if (chip->pdata->enable_current_sense) {
+                        ret = regmap_read(map, MAX17042_Current, &data);
+                        if (ret < 0)
+                                return ret;
+
+                        data64 = sign_extend64(data, 15) * 1562500ll;
+                        val->intval = div_s64(data64, chip->pdata->r_sns);
+                } else {
+                        return -EINVAL;
+                }
+                break;
+
+Solves this by using the div_s64 helper. So the code in max17042_get_status()
+needs to be fixed to do the same.
+
+The "ll" is necessary because 32768 * 1562500 = 51200000000 which does not
+fit in a 32 bit integer.
+
+So fixing max17042_get_status() to use sign_extend64 + div_s64 fixes
+a potential bug there and as such that really should be done in
+a separate preparation patch with a Cc stable.
+
+Regards,
+
+Hans
 
 
-Best regards,
-Krzysztof
+
+
