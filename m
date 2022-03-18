@@ -2,75 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20B174DE034
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 18:44:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 36CB94DE140
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 19:40:58 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S239520AbiCRRpv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 13:45:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47478 "EHLO
+        id S240231AbiCRSmI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 14:42:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238668AbiCRRpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 13:45:51 -0400
-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3E7E1FAA3E;
-        Fri, 18 Mar 2022 10:44:31 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ams.source.kernel.org (Postfix) with ESMTPS id 42F9BB824B1;
-        Fri, 18 Mar 2022 17:44:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE635C340E8;
-        Fri, 18 Mar 2022 17:44:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1647625469;
-        bh=Yel17+YGUIPsFPXXcsUfkRlEDGY7ldlZnUFhHc3cQPw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=sOKaWg8DMVhBONoscKdx8z/Nuue8RGTH0Yue+H5spIiJtuvaGZ6SoPBfHh4EPUd2M
-         WTr6kba6yQdG9bI1zT9ERS5pqHz419ctvoV0JLBb+HhFVRpayObI8EJWLlRqXdYRRd
-         sDkRA27zCjPxzEU7sOqf4nzMvd0M9MVWIg4ceDaWgaPPJDnIxmeLbGBh69OEbBc2/O
-         XEk0LkpNmuZ9LHCZCDe8AAVH3CT63gNe2NTpdvDZeB5IHLfmO9IMtarS7IyI3Ta25i
-         +ACWlfobCRAIBowxC1BuBFgAtSCIP+NiFv65xf2Y/+IfOHO4BA0X27VcVMU1WghWjN
-         OCbicGD50y9Yg==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=why.misterjones.org)
-        by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <maz@kernel.org>)
-        id 1nVGeI-00FVvX-H7; Fri, 18 Mar 2022 17:44:26 +0000
-Date:   Fri, 18 Mar 2022 17:44:25 +0000
-Message-ID: <87mthnxiiu.wl-maz@kernel.org>
-From:   Marc Zyngier <maz@kernel.org>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S240240AbiCRSmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 14:42:06 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB8371D41B3
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 11:40:47 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id d7so12833383wrb.7
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 11:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVqxXsnsA1LY8cZh5HtidQZ6OjQlcer9+l/ndoFCZzY=;
+        b=0GPHb7LYcRvV0cYr619kgGkNXh29aZ1bBS0X1XqBJg22GVMGqMop/Fmcw2gghkOpLI
+         TH/jF2MknNS+B7o+jM3fb31Yo/4amEjdUwNBwk6EwZxK4vP7a85oGidUknXa3fJrTk/N
+         oSOlY4bYnplz7A11froxUMvRPhprEFwnN3F86raLG/Weq+cgRvZfTyCQprFm+rBApJCz
+         SlbdZjwh7/y2bn2qlGW8+B4BdIvsZpj9qMtGugd4vQ1RIxIU7pbFhElFAe7r2OwNadgc
+         VN+gIgADqpI2L5zSE+49UxIRfq50gAMqTWWITfBLv0MnFZjfMgFAcnn4mgbqSeSVgY2+
+         Heug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=zVqxXsnsA1LY8cZh5HtidQZ6OjQlcer9+l/ndoFCZzY=;
+        b=zlmAlE6u4FJyChH9iQVFevwk4YbkepcUp7nCv55YmThiYaZqcrs1fMuwlqE6PVxi3U
+         GA61OIKBvjCuO27Ii0nVQ3M6HEREhMnLHEXvuFBOWGAXvJmWudmAGRLDWz1v2F8AmHYP
+         L5sAJc1ik/24KeY5knt9t1JALH2FhYyKfMDJXGyij9RKazivRxHbEi/8vj56swp8ef/w
+         EKZn0mH0ca97vEy7pAkS5JNHxBmiKo8o5vHvp9IBfZiaNp2pJZ9ienQlNVoLNEIU3aIh
+         odmXYXr3erWf3e79yYx3kHCy9D4wgwxxYHbVnmP2ohS6F4QfF01rDYK2r52hvRc26Ibr
+         UK0w==
+X-Gm-Message-State: AOAM531SB0T6VF/sqPnCJpqQQTtJ0h4iAARO5frfR/EUdgLXdg+PkNHt
+        Iskpgtr0smwqshf7OmIoOxyYC1kxRNjv8Q==
+X-Google-Smtp-Source: ABdhPJywc4UWZRd2+eQ+ys6dqt33WizzTPKOjPNdHSD5dskGiUT2AQqDpKCVX60LsFEPTMhbHNqHyg==
+X-Received: by 2002:a05:6402:5173:b0:415:f1e2:8d53 with SMTP id d19-20020a056402517300b00415f1e28d53mr10822200ede.95.1647628225727;
+        Fri, 18 Mar 2022 11:30:25 -0700 (PDT)
+Received: from otso.arnhem.chello.nl (a246182.upc-a.chello.nl. [62.163.246.182])
+        by smtp.gmail.com with ESMTPSA id y8-20020a50eb08000000b00418b114469csm4567551edp.52.2022.03.18.11.30.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Mar 2022 11:30:25 -0700 (PDT)
+From:   Luca Weiss <luca.weiss@fairphone.com>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Andy Gross <agross@kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Subject: Re: [RFC PATCH v4 2/5] irqchip: Add RZ/G2L IA55 Interrupt Controller driver
-In-Reply-To: <CA+V-a8uw9wwnA=_n+1MUtUhdwCdMFNb22HOq0R3yEeqsfTJLBQ@mail.gmail.com>
-References: <20220317012404.8069-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <20220317012404.8069-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-        <87pmmky2tw.wl-maz@kernel.org>
-        <CA+V-a8uw9wwnA=_n+1MUtUhdwCdMFNb22HOq0R3yEeqsfTJLBQ@mail.gmail.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/27.1
- (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: prabhakar.csengg@gmail.com, prabhakar.mahadev-lad.rj@bp.renesas.com, tglx@linutronix.de, robh+dt@kernel.org, linus.walleij@linaro.org, brgl@bgdev.pl, geert+renesas@glider.be, p.zabel@pengutronix.de, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, biju.das.jz@bp.renesas.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
-X-Spam-Status: No, score=-8.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-scsi@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH 0/6] UFS support on SM6350 & FP4
+Date:   Fri, 18 Mar 2022 19:29:58 +0100
+Message-Id: <20220318183004.858707-1-luca.weiss@fairphone.com>
+X-Mailer: git-send-email 2.35.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,47 +79,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Mar 2022 14:59:41 +0000,
-"Lad, Prabhakar" <prabhakar.csengg@gmail.com> wrote:
-> 
-> Hi Marc,
-> 
-> Thank you for the review.
-> 
-> On Thu, Mar 17, 2022 at 4:13 PM Marc Zyngier <maz@kernel.org> wrote:
-> >
-> > On Thu, 17 Mar 2022 01:24:01 +0000,
-> > Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > >
-> > > +static struct irq_chip irqc_chip = {
-> > > +     .name                   = "rzg2l-irqc",
-> > > +     .irq_eoi                = rzg2l_irqc_eoi,
-> > > +     .irq_mask               = irq_chip_mask_parent,
-> > > +     .irq_unmask             = irq_chip_unmask_parent,
-> > > +     .irq_disable            = rzg2l_irqc_irq_disable,
-> > > +     .irq_enable             = rzg2l_irqc_irq_enable,
-> >
-> > So this looks a bit odd. irq_mask only calls the parent and does nothing
-> > locally, while irq_disable does something locally and calls into the
-> > parent. If the parent is a GIC, this is turned into a mask (GIC has no
-> > notion of disabled).
-> >
-> My understanding for enable callback is one time call during irq setup
-> and for the disable callback it will be called during irq shutdown.
-> During enable/disable callback we config the required registers.
-> For mask callback this will be called when an interrupt occurs and for
-> unmask we want to re-enable the interrupt. Since there are no specific
-> registers to mask/unmask on RZ/G2L the callbacks point to
-> irq_chip_mask_parent/irq_chip_unmask_parent.
-> 
-> I could move all the code from enable/disable callbacks to mask/unmask
-> callbacks and drop setting irq_enable/irq_disable completely. Please
-> let me know what should be the correct approach.
+This series adds support for UFS on SM6350 which is used for internal
+storage.
 
-I'm OK with your current setup, but I just wanted to check that this
-was your understanding as well.
+Luca Weiss (6):
+  scsi: ufs: dt-bindings: Add SM6350 compatible string
+  dt-bindings: phy: qcom,qmp: Add SM6350 UFS PHY bindings
+  phy: qcom-qmp: Add SM6350 UFS PHY support
+  pinctrl: qcom: sm6350: fix order of UFS & SDC pins
+  arm64: dts: qcom: sm6350: Add UFS nodes
+  arm64: dts: qcom: sm7225-fairphone-fp4: Enable UFS
 
-	M.
+ .../devicetree/bindings/phy/qcom,qmp-phy.yaml |  1 +
+ .../devicetree/bindings/ufs/qcom,ufs.yaml     |  1 +
+ arch/arm64/boot/dts/qcom/sm6350.dtsi          | 79 +++++++++++++++++++
+ .../boot/dts/qcom/sm7225-fairphone-fp4.dts    | 18 +++++
+ drivers/phy/qualcomm/phy-qcom-qmp.c           |  3 +
+ drivers/pinctrl/qcom/pinctrl-sm6350.c         | 16 ++--
+ 6 files changed, 110 insertions(+), 8 deletions(-)
 
 -- 
-Without deviation from the norm, progress is not possible.
+2.35.1
+
