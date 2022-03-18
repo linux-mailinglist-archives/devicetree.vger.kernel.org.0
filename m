@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F8DD4DD9E1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 13:41:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1914DD9E5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 13:42:29 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236385AbiCRMnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 08:43:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38182 "EHLO
+        id S236368AbiCRMnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 08:43:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236387AbiCRMmt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 08:42:49 -0400
-Received: from mail-sz.amlogic.com (mail-sz.amlogic.com [211.162.65.117])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D4F92E35A0;
-        Fri, 18 Mar 2022 05:41:30 -0700 (PDT)
-Received: from droid11-sz.amlogic.com (10.28.8.21) by mail-sz.amlogic.com
- (10.28.11.5) with Microsoft SMTP Server id 15.1.2176.2; Fri, 18 Mar 2022
- 20:41:29 +0800
-From:   Liang Yang <liang.yang@amlogic.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        <linux-mtd@lists.infradead.org>
-CC:     Liang Yang <liang.yang@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        XianWei Zhao <xianwei.zhao@amlogic.com>,
-        Kelvin Zhang <kelvin.zhang@amlogic.com>,
-        BiChao Zheng <bichao.zheng@amlogic.com>,
-        YongHui Yu <yonghui.yu@amlogic.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v3 1/2] mtd: rawnand: meson: discard the common MMC sub clock framework
-Date:   Fri, 18 Mar 2022 20:41:19 +0800
-Message-ID: <20220318124121.26117-2-liang.yang@amlogic.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20220318124121.26117-1-liang.yang@amlogic.com>
-References: <20220318124121.26117-1-liang.yang@amlogic.com>
+        with ESMTP id S236364AbiCRMno (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 08:43:44 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DEC42E35A6;
+        Fri, 18 Mar 2022 05:42:25 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 7CA1022239;
+        Fri, 18 Mar 2022 13:42:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647607344;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=2gI1By7d7pZODcR9Jrg5KJt0BGb720XzrAnoqlGIfr4=;
+        b=QvJUD4udt719Hh1uXXCDZXR4omi2XirBDFQ9PiSYxnxL6ALD9y/ey8k1tkzwj/W0o2GB6d
+        Vp7YevDYqptBt/awTEiOdtosRJMbCW9XSbE84+4Ca7V8Rb177Upw7r6RP/um3ZEacNhcXo
+        uVWeJKqzLAtsTeimAWBctdJxfx231Uw=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.28.8.21]
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 18 Mar 2022 13:42:23 +0100
+From:   Michael Walle <michael@walle.cc>
+To:     Horatiu Vultur <horatiu.vultur@microchip.com>
+Cc:     UNGLinuxDriver@microchip.com, davem@davemloft.net,
+        devicetree@vger.kernel.org, kuba@kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH net-next 0/5] net: lan966x: Add support for FDMA
+In-Reply-To: <20220318121033.vklrsnxspg2f66dp@soft-dev3-1.localhost>
+References: <20220317185159.1661469-1-horatiu.vultur@microchip.com>
+ <20220318110731.27794-1-michael@walle.cc>
+ <20220318121033.vklrsnxspg2f66dp@soft-dev3-1.localhost>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <d05af3a88ef1bd846f0b9c6f548e2c45@walle.cc>
+X-Sender: michael@walle.cc
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -56,230 +58,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-EMMC and NAND have the same clock control register named 'SD_EMMC_CLOCK' which is
-defined in EMMC port internally. bit0~5 of 'SD_EMMC_CLOCK' is the divider and
-bit6~7 is the mux for fix pll and xtal.A common MMC and NAND sub-clock has been
-implemented and can be used by the eMMC and NAND controller (which are mutually
-exclusive anyway). Let's use this new clock.
+Am 2022-03-18 13:10, schrieb Horatiu Vultur:
+> The 03/18/2022 12:07, Michael Walle wrote:
+>> > Currently when injecting or extracting a frame from CPU, the frame
+>> > is given to the HW each word at a time. There is another way to
+>> > inject/extract frames from CPU using FDMA(Frame Direct Memory Access).
+>> > In this way the entire frame is given to the HW. This improves both
+>> > RX and TX bitrate.
+>> 
+>> I wanted to test this. ping and such works fine and I'm also
+>> seeing fdma interrupts.
+> 
+> Thanks for testing this also on your board.
+> 
+>> But as soon as I try iperf3 I get a skb_panic
+>> (due to frame size?). Hope that splash below helps.
+> 
+> I have not seen this issue. But it looks like it is a problem that 
+> there
+> is no more space to add the FCS.
+> Can you tell me how you run iperf3 so I can also try it?
 
-Signed-off-by: Liang Yang <liang.yang@amlogic.com>
----
- drivers/mtd/nand/raw/meson_nand.c | 101 ++++++++++++++++--------------
- 1 file changed, 53 insertions(+), 48 deletions(-)
+oh, I forgot to include the commandline.
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index ac3be92872d0..257ffc8a41ab 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -10,6 +10,7 @@
- #include <linux/dma-mapping.h>
- #include <linux/interrupt.h>
- #include <linux/clk.h>
-+#include <linux/clk-provider.h>
- #include <linux/mtd/rawnand.h>
- #include <linux/mtd/mtd.h>
- #include <linux/mfd/syscon.h>
-@@ -19,6 +20,7 @@
- #include <linux/iopoll.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
-+#include <linux/of_address.h>
- #include <linux/sched/task_stack.h>
- 
- #define NFC_REG_CMD		0x00
-@@ -104,6 +106,9 @@
- 
- #define PER_INFO_BYTE		8
- 
-+#define CLK_DIV_SHIFT		0
-+#define CLK_DIV_WIDTH		6
-+
- struct meson_nfc_nand_chip {
- 	struct list_head node;
- 	struct nand_chip nand;
-@@ -151,15 +156,15 @@ struct meson_nfc {
- 	struct nand_controller controller;
- 	struct clk *core_clk;
- 	struct clk *device_clk;
--	struct clk *phase_tx;
--	struct clk *phase_rx;
-+	struct clk *nand_clk;
-+	struct clk_divider nand_divider;
- 
- 	unsigned long clk_rate;
- 	u32 bus_timing;
- 
- 	struct device *dev;
- 	void __iomem *reg_base;
--	struct regmap *reg_clk;
-+	void __iomem *sd_emmc_clock;
- 	struct completion completion;
- 	struct list_head chips;
- 	const struct meson_nfc_data *data;
-@@ -235,7 +240,7 @@ static void meson_nfc_select_chip(struct nand_chip *nand, int chip)
- 	nfc->timing.tbers_max = meson_chip->tbers_max;
- 
- 	if (nfc->clk_rate != meson_chip->clk_rate) {
--		ret = clk_set_rate(nfc->device_clk, meson_chip->clk_rate);
-+		ret = clk_set_rate(nfc->nand_clk, meson_chip->clk_rate);
- 		if (ret) {
- 			dev_err(nfc->dev, "failed to set clock rate\n");
- 			return;
-@@ -406,7 +411,6 @@ static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
- 	cmd = NFC_CMD_RB | NFC_CMD_RB_INT
- 		| nfc->param.chip_select | nfc->timing.tbers_max;
- 	writel(cmd, nfc->reg_base + NFC_REG_CMD);
--
- 	ret = wait_for_completion_timeout(&nfc->completion,
- 					  msecs_to_jiffies(timeout_ms));
- 	if (ret == 0)
-@@ -985,9 +989,11 @@ static const struct mtd_ooblayout_ops meson_ooblayout_ops = {
- 	.free = meson_ooblayout_free,
- };
- 
-+struct clk_parent_data nfc_divider_parent_data[1];
- static int meson_nfc_clk_init(struct meson_nfc *nfc)
- {
- 	int ret;
-+	struct clk_init_data init = {0};
- 
- 	/* request core clock */
- 	nfc->core_clk = devm_clk_get(nfc->dev, "core");
-@@ -1002,21 +1008,26 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
- 		return PTR_ERR(nfc->device_clk);
- 	}
- 
--	nfc->phase_tx = devm_clk_get(nfc->dev, "tx");
--	if (IS_ERR(nfc->phase_tx)) {
--		dev_err(nfc->dev, "failed to get TX clk\n");
--		return PTR_ERR(nfc->phase_tx);
--	}
--
--	nfc->phase_rx = devm_clk_get(nfc->dev, "rx");
--	if (IS_ERR(nfc->phase_rx)) {
--		dev_err(nfc->dev, "failed to get RX clk\n");
--		return PTR_ERR(nfc->phase_rx);
--	}
-+	init.name = devm_kstrdup(nfc->dev, "nfc#div", GFP_KERNEL);
-+	init.ops = &clk_divider_ops;
-+	nfc_divider_parent_data[0].fw_name = "device";
-+	init.parent_data = nfc_divider_parent_data;
-+	init.num_parents = 1;
-+	nfc->nand_divider.reg = nfc->sd_emmc_clock;
-+	nfc->nand_divider.shift = CLK_DIV_SHIFT;
-+	nfc->nand_divider.width = CLK_DIV_WIDTH;
-+	nfc->nand_divider.hw.init = &init;
-+	nfc->nand_divider.flags = CLK_DIVIDER_ONE_BASED |
-+				  CLK_DIVIDER_ROUND_CLOSEST |
-+				  CLK_DIVIDER_ALLOW_ZERO;
-+
-+	nfc->nand_clk = devm_clk_register(nfc->dev, &nfc->nand_divider.hw);
-+	if (IS_ERR(nfc->nand_clk))
-+		return PTR_ERR(nfc->nand_clk);
- 
- 	/* init SD_EMMC_CLOCK to sane defaults w/min clock rate */
--	regmap_update_bits(nfc->reg_clk,
--			   0, CLK_SELECT_NAND, CLK_SELECT_NAND);
-+	writel(CLK_SELECT_NAND | readl(nfc->sd_emmc_clock),
-+	       nfc->sd_emmc_clock);
- 
- 	ret = clk_prepare_enable(nfc->core_clk);
- 	if (ret) {
-@@ -1030,29 +1041,21 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
- 		goto err_device_clk;
- 	}
- 
--	ret = clk_prepare_enable(nfc->phase_tx);
--	if (ret) {
--		dev_err(nfc->dev, "failed to enable TX clock\n");
--		goto err_phase_tx;
--	}
--
--	ret = clk_prepare_enable(nfc->phase_rx);
-+	ret = clk_prepare_enable(nfc->nand_clk);
- 	if (ret) {
--		dev_err(nfc->dev, "failed to enable RX clock\n");
--		goto err_phase_rx;
-+		dev_err(nfc->dev, "pre enable NFC divider fail\n");
-+		goto err_nand_clk;
- 	}
- 
--	ret = clk_set_rate(nfc->device_clk, 24000000);
-+	ret = clk_set_rate(nfc->nand_clk, 24000000);
- 	if (ret)
--		goto err_disable_rx;
-+		goto err_disable_clk;
- 
- 	return 0;
- 
--err_disable_rx:
--	clk_disable_unprepare(nfc->phase_rx);
--err_phase_rx:
--	clk_disable_unprepare(nfc->phase_tx);
--err_phase_tx:
-+err_disable_clk:
-+	clk_disable_unprepare(nfc->nand_clk);
-+err_nand_clk:
- 	clk_disable_unprepare(nfc->device_clk);
- err_device_clk:
- 	clk_disable_unprepare(nfc->core_clk);
-@@ -1061,8 +1064,7 @@ static int meson_nfc_clk_init(struct meson_nfc *nfc)
- 
- static void meson_nfc_disable_clk(struct meson_nfc *nfc)
- {
--	clk_disable_unprepare(nfc->phase_rx);
--	clk_disable_unprepare(nfc->phase_tx);
-+	clk_disable_unprepare(nfc->nand_clk);
- 	clk_disable_unprepare(nfc->device_clk);
- 	clk_disable_unprepare(nfc->core_clk);
- }
-@@ -1373,9 +1375,10 @@ MODULE_DEVICE_TABLE(of, meson_nfc_id_table);
- static int meson_nfc_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct device_node *node = dev->of_node;
- 	struct meson_nfc *nfc;
--	struct resource *res;
--	int ret, irq;
-+	struct resource res;
-+	int ret, irq, i;
- 
- 	nfc = devm_kzalloc(dev, sizeof(*nfc), GFP_KERNEL);
- 	if (!nfc)
-@@ -1388,21 +1391,23 @@ static int meson_nfc_probe(struct platform_device *pdev)
- 	nand_controller_init(&nfc->controller);
- 	INIT_LIST_HEAD(&nfc->chips);
- 	init_completion(&nfc->completion);
--
- 	nfc->dev = dev;
- 
--	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
--	nfc->reg_base = devm_ioremap_resource(dev, res);
-+	i = of_property_match_string(node, "reg-names", "nfc");
-+	if (of_address_to_resource(node, i, &res))
-+		return -ENOENT;
-+
-+	nfc->reg_base = devm_ioremap_resource(dev, &res);
- 	if (IS_ERR(nfc->reg_base))
- 		return PTR_ERR(nfc->reg_base);
- 
--	nfc->reg_clk =
--		syscon_regmap_lookup_by_phandle(dev->of_node,
--						"amlogic,mmc-syscon");
--	if (IS_ERR(nfc->reg_clk)) {
--		dev_err(dev, "Failed to lookup clock base\n");
--		return PTR_ERR(nfc->reg_clk);
--	}
-+	i = of_property_match_string(node, "reg-names", "emmc");
-+	if (of_address_to_resource(node, i, &res))
-+		return -ENOENT;
-+
-+	nfc->sd_emmc_clock = devm_ioremap_resource(dev, &res);
-+	if (IS_ERR(nfc->sd_emmc_clock))
-+		return PTR_ERR(nfc->sd_emmc_clock);
- 
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
--- 
-2.34.1
+# on the remote computer
+$ iperf3 --version
+iperf 3.6 (cJSON 1.5.2)
+Linux eddie01 4.19.0-18-686-pae #1 SMP Debian 4.19.208-1 (2021-09-29) 
+i686
+Optional features available: CPU affinity setting, IPv6 flow label, 
+SCTP, TCP congestion algorithm setting, sendfile / zerocopy, socket 
+pacing, authentication
+$ iperf3 -s
 
+# on the board
+$ iperf3 --version
+iperf 3.10.1 (cJSON 1.7.13)
+Linux buildroot 5.17.0-rc8-next-20220316-00058-gc6cb0628f2a6-dirty #385 
+SMP Fri Mar 18 13:34:26 CET 2022 armv7l
+Optional features available: CPU affinity setting, IPv6 flow label, TCP 
+congestion algorithm setting, sendfile / zerocopy, socket pacing, bind 
+to device, support IPv4 don't fragment
+$ iperf3 -c eddie01
+
+> Also I have a small diff that might fix the issue:
+> ---
+> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
+> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
+> @@ -534,6 +534,8 @@ int lan966x_fdma_xmit(struct sk_buff *skb, __be32
+> *ifh, struct net_device *dev)
+>         struct lan966x_tx_dcb *next_dcb, *dcb;
+>         struct lan966x_tx *tx = &lan966x->tx;
+>         struct lan966x_db *next_db;
+> +       int needed_headroom;
+> +       int needed_tailroom;
+>         dma_addr_t dma_addr;
+>         int next_to_use;
+>         int err;
+> @@ -554,10 +556,11 @@ int lan966x_fdma_xmit(struct sk_buff *skb,
+> __be32 *ifh, struct net_device *dev)
+> 
+>         /* skb processing */
+>         skb_tx_timestamp(skb);
+
+btw. skb_tx_timestamp() should be as close to the handover
+of the frame to the hardware as possible, no?
+
+> -       if (skb_headroom(skb) < IFH_LEN * sizeof(u32)) {
+> -               err = pskb_expand_head(skb,
+> -                                      IFH_LEN * sizeof(u32) -
+> skb_headroom(skb),
+> -                                      0, GFP_ATOMIC);
+> +       needed_headroom = max_t(int, IFH_LEN * sizeof(u32) -
+> skb_headroom(skb), 0);
+> +       needed_tailroom = max_t(int, ETH_FCS_LEN - skb_tailroom(skb), 
+> 0);
+> +       if (needed_headroom || needed_tailroom) {
+> +               err = pskb_expand_head(skb, needed_headroom, 
+> needed_tailroom,
+> +                                      GFP_ATOMIC);
+>                 if (unlikely(err)) {
+>                         dev->stats.tx_dropped++;
+>                         err = NETDEV_TX_OK;
+
+Indeed this will fix the issue:
+
+# iperf3 -c eddie01
+Connecting to host eddie01, port 5201
+[  5] local 10.0.1.143 port 55342 connected to 10.0.1.42 port 5201
+[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+[  5]   0.00-1.01   sec  43.8 MBytes   364 Mbits/sec    0    245 KBytes
+[  5]   1.01-2.02   sec  43.8 MBytes   364 Mbits/sec    0    246 KBytes
+[  5]   2.02-3.03   sec  43.8 MBytes   364 Mbits/sec    0    259 KBytes
+
+# iperf3 -R -c eddie01
+Connecting to host eddie01, port 5201
+Reverse mode, remote host eddie01 is sending
+[  5] local 10.0.1.143 port 55346 connected to 10.0.1.42 port 5201
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-1.00   sec  28.6 MBytes   240 Mbits/sec
+[  5]   1.00-2.00   sec  28.9 MBytes   242 Mbits/sec
+[  5]   2.00-3.00   sec  28.7 MBytes   241 Mbits/sec
+
+-michael
