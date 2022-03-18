@@ -2,137 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85EB44DD6BD
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:01:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EA894DD6C6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 10:03:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234149AbiCRJCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 05:02:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52934 "EHLO
+        id S234171AbiCRJE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 05:04:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232588AbiCRJCV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:02:21 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 512B61F83FD
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:01:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1647594062;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=R9vj4kn+OCOdsFlfKFDqgJw0bLwF2E8LWLm3AjC+7KU=;
-        b=fCGrP4nuDKCMVvVNKKDnM5p7H4F4MOmTR5r8A7cUf7LeOWtlLl3Wjp2aNbl/H3ST/J4Rb1
-        QYqANhID1E+qIgTG3pC9D1MnuwQwDU3OlVEmSwH32kim1CZLnpVJ6fw/XyyTazVF/g9hH/
-        jN99HJoYaD6Vr3JyeA6vQSnpBcGlAi8=
-Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
- [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- us-mta-619-qi4-CDWjOiKF6zsx-QkBsw-1; Fri, 18 Mar 2022 05:01:01 -0400
-X-MC-Unique: qi4-CDWjOiKF6zsx-QkBsw-1
-Received: by mail-ej1-f72.google.com with SMTP id zd21-20020a17090698d500b006df778721f7so4207736ejb.3
-        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:01:01 -0700 (PDT)
+        with ESMTP id S233059AbiCRJEz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 05:04:55 -0400
+Received: from mail-pl1-x643.google.com (mail-pl1-x643.google.com [IPv6:2607:f8b0:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D0F165BA7
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:03:36 -0700 (PDT)
+Received: by mail-pl1-x643.google.com with SMTP id h5so6511320plf.7
+        for <devicetree@vger.kernel.org>; Fri, 18 Mar 2022 02:03:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=odQm7JC7x6Af6z1xpDrwW1/gihmZD1Kc4UPnG+M8gbk=;
+        b=Eadxx9IjG5BtCfRNZOsVfpiUvgX+GSL8Aib5ZyUV9lgIHPkzS++xIEPd8SQvD7dr4O
+         lRMCKC3+HcqKnSO+owRwtnjwu+Szmu/11TRJ3PrQzIq5zE1TNLmIreTHFWMS5JFJw8+O
+         paZrWzVmW1F4FOVuOGfDieu2E/8E8KMDToCKA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=R9vj4kn+OCOdsFlfKFDqgJw0bLwF2E8LWLm3AjC+7KU=;
-        b=RRihk9SZUhuDnUEImJ4nE1MRoMsyo6+92ryRyb9+WZSTUw3ZqI7l2fThdS1I67JcDm
-         7LR0hsXe+epj1ZLSeeEF5YJg8k42PhvmbA6OerW7mOIr1HwfQX0ZjJWuLsqFwh8lfIas
-         rhjKWRrK7Txo86fqv0JtcEiADzUVrXzdxwE6xwvCelqRSL6WCHsSB4q8QYRlLqzIhj5J
-         wZvoW/FFQKPVF1/5Yd8rrNV7EO40bcGKqYDtQlBiEemiE60Uuh2yInmsmfmrMiLLrwHt
-         BITNCfxbVCV85MfsJNBkB6vDiiMCsn1kM4htW1/Z/IoWF7pmgR79hhGSnAGvwyxFGLhW
-         xigg==
-X-Gm-Message-State: AOAM5312Qx7Kq8ZZYgf+HXKni/eUKaDQlh/OPlk7sgU4fSIHDkcF26ML
-        FGDhashCtYrCrU5Z86D7btk165+j/E3QivBPoWPFqcjGv9My0x85jg7HiNeNfKSAUWPWVbAzYny
-        jbMjB9smPQuaW1nh4PtBCqg==
-X-Received: by 2002:a05:6402:2711:b0:416:6442:76dc with SMTP id y17-20020a056402271100b00416644276dcmr8666820edd.314.1647594060061;
-        Fri, 18 Mar 2022 02:01:00 -0700 (PDT)
-X-Google-Smtp-Source: ABdhPJwQV3U1yHxHRJKifRnvpPhtZiu6ruvQHw0HDBh7W+OqqVtC+9x8xj7Yqu8km6BslQKfEAx9Ag==
-X-Received: by 2002:a05:6402:2711:b0:416:6442:76dc with SMTP id y17-20020a056402271100b00416644276dcmr8666809edd.314.1647594059891;
-        Fri, 18 Mar 2022 02:00:59 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c1e:bf00:cdb2:2781:c55:5db0? (2001-1c00-0c1e-bf00-cdb2-2781-0c55-5db0.cable.dynamic.v6.ziggo.nl. [2001:1c00:c1e:bf00:cdb2:2781:c55:5db0])
-        by smtp.gmail.com with ESMTPSA id f2-20020a170906738200b006df69629a3dsm3485121ejl.28.2022.03.18.02.00.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Mar 2022 02:00:59 -0700 (PDT)
-Message-ID: <3c890d11-75c6-8370-5659-a78b1a9baea2@redhat.com>
-Date:   Fri, 18 Mar 2022 10:00:58 +0100
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=odQm7JC7x6Af6z1xpDrwW1/gihmZD1Kc4UPnG+M8gbk=;
+        b=KR2gW7kgEuTfukV9tE6F2Nfi1Db8g/hhsd61ITxulheSr9f4LK0iMQr+t3674b+apD
+         2bPkzoen+bQ23ynETtHlXDDjFnkuEbDmfHmCyD3LmoJQN+x1dTWUCyaEghigS3qL5u1W
+         dN5+EAC7xsBEcfCJ503LG8gK2B39n7e9W56+e5G6xkggW2tSwvCDqHzUvtCECYA/rglh
+         fWKogrKJHYwAba5D7iwN7pU3zR7SeAI9OJ3B7A9ZVGbgXqmboqrGIH2E0xo3H0aYWSHU
+         5++ZRyFfvZ4W58BGHOxPMUfYNSKp5Efy7awUZFOZG17hLG8kGO6KtVst2CmXp8obFaZM
+         JPBA==
+X-Gm-Message-State: AOAM530+YAsvV7mK570gxi0JYMJFeRxUCThDyywqr0CGNSwKsVs9fi6e
+        kght3c+a88zZhnN+xgqdy6uuyiaXCTzrvSi5Gp8EFg==
+X-Google-Smtp-Source: ABdhPJypgGRBlo6a3uR28YkQzfvVWixDNkdtCp94bBE7F/dwhU59fOqpvNDP+GJghMH+n/vIuAJsfN6r7kejo1jOdfM=
+X-Received: by 2002:a17:90b:4c08:b0:1c6:40e4:776c with SMTP id
+ na8-20020a17090b4c0800b001c640e4776cmr9989598pjb.237.1647594215955; Fri, 18
+ Mar 2022 02:03:35 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.4.0
-Subject: Re: [PATCH 1/4] power: supply: max17042_battery: Add unit conversion
- macros
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Sebastian Reichel <sre@kernel.org>, linux-pm@vger.kernel.org
-Cc:     Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20220318001048.20922-1-sebastian.krzyszkowiak@puri.sm>
- <20220318001048.20922-2-sebastian.krzyszkowiak@puri.sm>
- <97d88728-4e73-0820-07e7-199377ebff2a@kernel.org>
-From:   Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <97d88728-4e73-0820-07e7-199377ebff2a@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20220218145437.18563-1-granquet@baylibre.com> <20220218145437.18563-18-granquet@baylibre.com>
+In-Reply-To: <20220218145437.18563-18-granquet@baylibre.com>
+From:   Wei-Shun Chang <weishunc@chromium.org>
+Date:   Fri, 18 Mar 2022 17:03:24 +0800
+Message-ID: <CAPrDo5ht246dgPJmJBx7Xc6e1kqdw54C1eDDqMA347ZwRtAO7w@mail.gmail.com>
+Subject: Re: [PATCH v8 17/19] drm/mediatek: add hpd debounce
+To:     Guillaume Ranquet <granquet@baylibre.com>
+Cc:     chunkuang.hu@kernel.org, p.zabel@pengutronix.de, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        tzimmermann@suse.de, matthias.bgg@gmail.com,
+        chunfeng.yun@mediatek.com, kishon@ti.com, vkoul@kernel.org,
+        deller@gmx.de, ck.hu@mediatek.com, jitao.shi@mediatek.com,
+        angelogioacchino.delregno@collabora.com,
+        dri-devel@lists.freedesktop.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-phy@lists.infradead.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Mar 18, 2022 at 4:49 PM Guillaume Ranquet <granquet@baylibre.com> wrote:
+>
+> From: Jitao Shi <jitao.shi@mediatek.com>
+>
+> Implement the DP HDP debounce described in DP 1.4a 3.3.
+>
+> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> Signed-off-by: Guillaume Ranquet <granquet@baylibre.com>
 
-On 3/18/22 09:16, Krzysztof Kozlowski wrote:
-> On 18/03/2022 01:10, Sebastian Krzyszkowiak wrote:
->> Instead of sprinkling the code with magic numbers, put the unit
->> definitions used by the gauge into a set of macros. Macros are
->> used instead of simple defines in order to not require floating
->> point operations for divisions.
->>
->> Signed-off-by: Sebastian Krzyszkowiak <sebastian.krzyszkowiak@puri.sm>
->> ---
->>  drivers/power/supply/max17042_battery.c | 40 +++++++++++++++----------
->>  1 file changed, 24 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/power/supply/max17042_battery.c b/drivers/power/supply/max17042_battery.c
->> index ab031bbfbe78..c019d6c52363 100644
->> --- a/drivers/power/supply/max17042_battery.c
->> +++ b/drivers/power/supply/max17042_battery.c
->> @@ -51,6 +51,15 @@
->>  
->>  #define MAX17042_VMAX_TOLERANCE		50 /* 50 mV */
->>  
->> +#define MAX17042_CURRENT_LSB		1562500ll /* µV */
-> 
-> Is this really long long? The usage in max17042_get_status() is with int
-> operand and result.
-
-The "ll" is part of the original code which these macros replace,
-dropping the "ll" is IMHO out of scope for this patch, it would
-clearly break the only change 1 thing per patch/commit rule.
-
->> +#define MAX17042_CURRENT_RSENSE(x)	(x * MAX17042_CURRENT_LSB) /* µV */
->> +#define MAX17042_CAPACITY_LSB		5000000ll /* µVh */
->> +#define MAX17042_CAPACITY_RSENSE(x)	(x * MAX17042_CAPACITY_LSB) /* µVh */
->> +#define MAX17042_TIME(x)		(x * 5625 / 1000) /* s */
->> +#define MAX17042_VOLTAGE(x)		(x * 625 / 8) /* µV */
->> +#define MAX17042_RESISTANCE(x)		(x / 4096) /* Ω */
->> +#define MAX17042_TEMPERATURE(x)		(x / 256) /* °C */
-> 
-> Please enclose the "x" in (), in each macro
-
-Ack, right I should have spotted that in my own review.
-
-Regards,
-
-Hans
-
-
-
+Agree with Rex. The code is fine but I suggest including Rex's info in
+the commit message for clarity.
