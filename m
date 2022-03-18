@@ -2,55 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB1914DD9E5
-	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 13:42:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 50A554DD9F5
+	for <lists+devicetree@lfdr.de>; Fri, 18 Mar 2022 13:50:40 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S236368AbiCRMnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Mar 2022 08:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39102 "EHLO
+        id S236415AbiCRMv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Mar 2022 08:51:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236364AbiCRMno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 08:43:44 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DEC42E35A6;
-        Fri, 18 Mar 2022 05:42:25 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 7CA1022239;
-        Fri, 18 Mar 2022 13:42:23 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647607344;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=2gI1By7d7pZODcR9Jrg5KJt0BGb720XzrAnoqlGIfr4=;
-        b=QvJUD4udt719Hh1uXXCDZXR4omi2XirBDFQ9PiSYxnxL6ALD9y/ey8k1tkzwj/W0o2GB6d
-        Vp7YevDYqptBt/awTEiOdtosRJMbCW9XSbE84+4Ca7V8Rb177Upw7r6RP/um3ZEacNhcXo
-        uVWeJKqzLAtsTeimAWBctdJxfx231Uw=
+        with ESMTP id S230008AbiCRMvz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Mar 2022 08:51:55 -0400
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA5481ED063;
+        Fri, 18 Mar 2022 05:50:36 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id w27so13947724lfa.5;
+        Fri, 18 Mar 2022 05:50:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
+         :content-transfer-encoding;
+        bh=OJu/+DhwQ4TG5+tIH51Zo9ItsMV5oal9aAoPrsbEoi8=;
+        b=ivXnSLtpOGaIMauHdRM7eGDHaDKj4RnX9Y5YODQ/G2BpToJJ/iSCriA4Z73IjGOUFW
+         CkaTD2E7qVV6Ws4S3b1s5UIoYQdp3D88wgpeUuoSQHSeby/wn3rX8mB5wnKlluOFL/Iy
+         vQOECIiWHAGdNJVmiWaFxXaURFd4Mkfu6Sg4RRCH1n/RUlh47A4Gc+M8z3gCsRIBBr2B
+         fPMEcMNv1504zycsJa/kRtGAIqU/9GSoVI2N9kILL8W+lQLkgh/3xe0LPCscU4QQCQNl
+         lxnCC0ohEio6ttxL4LpB+uC4b/K3EGaD66qQoSbiyZyB7UT+DJ4mARz2LQgymBrnrOE8
+         zelQ==
+X-Gm-Message-State: AOAM533etmiwV4+u5ehRl8XNCzQ05+3NpZGaIFAdZpFm2miXeLRwcNFy
+        CzzbQAZ7L2dyYuefQLXvl68=
+X-Google-Smtp-Source: ABdhPJyBkRrx7Z0uNMyc5zszBSpP9QRiZv8MKDpJewRS/0i0lodNGcX5PhVl8kjtJW8JfRMm+lnuWg==
+X-Received: by 2002:a05:6512:3981:b0:448:40e5:cf90 with SMTP id j1-20020a056512398100b0044840e5cf90mr5632455lfu.656.1647607834839;
+        Fri, 18 Mar 2022 05:50:34 -0700 (PDT)
+Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
+        by smtp.googlemail.com with ESMTPSA id v21-20020a2e2f15000000b002456e6cdab2sm944860ljv.93.2022.03.18.05.50.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Mar 2022 05:50:34 -0700 (PDT)
+Message-ID: <cd976ef0-767b-8cf0-8635-28aeaa6542a3@kernel.org>
+Date:   Fri, 18 Mar 2022 13:50:31 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.5.0
+Subject: Re: [PATCH V3 1/2] dt-bindings: mmc: sdhci-msm: Add gcc resets
+ strings
+Content-Language: en-US
+To:     Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>,
+        ulf.hansson@linaro.org, robh+dt@kernel.org, krzk+dt@kernel.org,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org
+Cc:     quic_rampraka@quicinc.com, quic_pragalla@quicinc.com,
+        quic_sartgarg@quicinc.com, quic_nitirawa@quicinc.com,
+        quic_sayalil@quicinc.com
+References: <1647532165-6302-1-git-send-email-quic_c_sbhanu@quicinc.com>
+ <1647532165-6302-2-git-send-email-quic_c_sbhanu@quicinc.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <1647532165-6302-2-git-send-email-quic_c_sbhanu@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Date:   Fri, 18 Mar 2022 13:42:23 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Horatiu Vultur <horatiu.vultur@microchip.com>
-Cc:     UNGLinuxDriver@microchip.com, davem@davemloft.net,
-        devicetree@vger.kernel.org, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        robh+dt@kernel.org
-Subject: Re: [PATCH net-next 0/5] net: lan966x: Add support for FDMA
-In-Reply-To: <20220318121033.vklrsnxspg2f66dp@soft-dev3-1.localhost>
-References: <20220317185159.1661469-1-horatiu.vultur@microchip.com>
- <20220318110731.27794-1-michael@walle.cc>
- <20220318121033.vklrsnxspg2f66dp@soft-dev3-1.localhost>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <d05af3a88ef1bd846f0b9c6f548e2c45@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,106 +70,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2022-03-18 13:10, schrieb Horatiu Vultur:
-> The 03/18/2022 12:07, Michael Walle wrote:
->> > Currently when injecting or extracting a frame from CPU, the frame
->> > is given to the HW each word at a time. There is another way to
->> > inject/extract frames from CPU using FDMA(Frame Direct Memory Access).
->> > In this way the entire frame is given to the HW. This improves both
->> > RX and TX bitrate.
->> 
->> I wanted to test this. ping and such works fine and I'm also
->> seeing fdma interrupts.
+On 17/03/2022 16:49, Shaik Sajida Bhanu wrote:
+> Add gcc hardware reset supported strings for qcom-sdhci controller.
 > 
-> Thanks for testing this also on your board.
-> 
->> But as soon as I try iperf3 I get a skb_panic
->> (due to frame size?). Hope that splash below helps.
-> 
-> I have not seen this issue. But it looks like it is a problem that 
-> there
-> is no more space to add the FCS.
-> Can you tell me how you run iperf3 so I can also try it?
-
-oh, I forgot to include the commandline.
-
-# on the remote computer
-$ iperf3 --version
-iperf 3.6 (cJSON 1.5.2)
-Linux eddie01 4.19.0-18-686-pae #1 SMP Debian 4.19.208-1 (2021-09-29) 
-i686
-Optional features available: CPU affinity setting, IPv6 flow label, 
-SCTP, TCP congestion algorithm setting, sendfile / zerocopy, socket 
-pacing, authentication
-$ iperf3 -s
-
-# on the board
-$ iperf3 --version
-iperf 3.10.1 (cJSON 1.7.13)
-Linux buildroot 5.17.0-rc8-next-20220316-00058-gc6cb0628f2a6-dirty #385 
-SMP Fri Mar 18 13:34:26 CET 2022 armv7l
-Optional features available: CPU affinity setting, IPv6 flow label, TCP 
-congestion algorithm setting, sendfile / zerocopy, socket pacing, bind 
-to device, support IPv4 don't fragment
-$ iperf3 -c eddie01
-
-> Also I have a small diff that might fix the issue:
+> Signed-off-by: Shaik Sajida Bhanu <quic_c_sbhanu@quicinc.com>
 > ---
-> --- a/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
-> +++ b/drivers/net/ethernet/microchip/lan966x/lan966x_fdma.c
-> @@ -534,6 +534,8 @@ int lan966x_fdma_xmit(struct sk_buff *skb, __be32
-> *ifh, struct net_device *dev)
->         struct lan966x_tx_dcb *next_dcb, *dcb;
->         struct lan966x_tx *tx = &lan966x->tx;
->         struct lan966x_db *next_db;
-> +       int needed_headroom;
-> +       int needed_tailroom;
->         dma_addr_t dma_addr;
->         int next_to_use;
->         int err;
-> @@ -554,10 +556,11 @@ int lan966x_fdma_xmit(struct sk_buff *skb,
-> __be32 *ifh, struct net_device *dev)
+>  Documentation/devicetree/bindings/mmc/sdhci-msm.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
->         /* skb processing */
->         skb_tx_timestamp(skb);
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> index 6216ed7..f180111 100644
+> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.txt
+> @@ -62,6 +62,10 @@ Required properties:
+>  - qcom,dll-config: Chipset and Platform specific value. Use this field to
+>  	specify the DLL_CONFIG register value as per Hardware Programming Guide.
+>  
+> +- resets: Phandle and reset specifier for the device's reset.
+> +- reset-names: List of reset signal name strings sorted in the same order as
+> +	       the resets property.
 
-btw. skb_tx_timestamp() should be as close to the handover
-of the frame to the hardware as possible, no?
+Please list the actual names used in reset-names.
 
-> -       if (skb_headroom(skb) < IFH_LEN * sizeof(u32)) {
-> -               err = pskb_expand_head(skb,
-> -                                      IFH_LEN * sizeof(u32) -
-> skb_headroom(skb),
-> -                                      0, GFP_ATOMIC);
-> +       needed_headroom = max_t(int, IFH_LEN * sizeof(u32) -
-> skb_headroom(skb), 0);
-> +       needed_tailroom = max_t(int, ETH_FCS_LEN - skb_tailroom(skb), 
-> 0);
-> +       if (needed_headroom || needed_tailroom) {
-> +               err = pskb_expand_head(skb, needed_headroom, 
-> needed_tailroom,
-> +                                      GFP_ATOMIC);
->                 if (unlikely(err)) {
->                         dev->stats.tx_dropped++;
->                         err = NETDEV_TX_OK;
 
-Indeed this will fix the issue:
-
-# iperf3 -c eddie01
-Connecting to host eddie01, port 5201
-[  5] local 10.0.1.143 port 55342 connected to 10.0.1.42 port 5201
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.01   sec  43.8 MBytes   364 Mbits/sec    0    245 KBytes
-[  5]   1.01-2.02   sec  43.8 MBytes   364 Mbits/sec    0    246 KBytes
-[  5]   2.02-3.03   sec  43.8 MBytes   364 Mbits/sec    0    259 KBytes
-
-# iperf3 -R -c eddie01
-Connecting to host eddie01, port 5201
-Reverse mode, remote host eddie01 is sending
-[  5] local 10.0.1.143 port 55346 connected to 10.0.1.42 port 5201
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec  28.6 MBytes   240 Mbits/sec
-[  5]   1.00-2.00   sec  28.9 MBytes   242 Mbits/sec
-[  5]   2.00-3.00   sec  28.7 MBytes   241 Mbits/sec
-
--michael
+Best regards,
+Krzysztof
