@@ -2,109 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D28FE4DE7A2
-	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 12:38:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id F022F4DE7A8
+	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 12:41:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242807AbiCSLjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 07:39:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
+        id S242851AbiCSLmz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 07:42:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231818AbiCSLjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 07:39:39 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71AE586E16;
-        Sat, 19 Mar 2022 04:38:17 -0700 (PDT)
-Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 094082223B;
-        Sat, 19 Mar 2022 12:38:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647689895;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zmfB9xFrYldmqq1FLPQ4/Iztnp51kdC7eGjZLGK9R9I=;
-        b=nK72s+a+CriFy2uCBz7cVC/oV2dJ7STsg5K6+FvOMXhbU9OHAvyFezhKJEonlNukjIE/At
-        iOXENIVw/Ky8/ukxJLQk4qnF9236PXkZDjyKrMEr+u4yWjrEg/Q+8XVa+s9iLb4n4DtONH
-        11Plc7zM79jDmEgGlak5dmfX2BOKI3A=
+        with ESMTP id S242841AbiCSLmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 07:42:51 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E36114DD9;
+        Sat, 19 Mar 2022 04:41:25 -0700 (PDT)
+X-UUID: 577617f00714400d84ef945d5a6fd7ac-20220319
+X-UUID: 577617f00714400d84ef945d5a6fd7ac-20220319
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
+        (envelope-from <jiaxin.yu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 65843724; Sat, 19 Mar 2022 19:41:18 +0800
+Received: from mtkcas10.mediatek.inc (172.21.101.39) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.792.15; Sat, 19 Mar 2022 19:41:17 +0800
+Received: from localhost.localdomain (10.17.3.154) by mtkcas10.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sat, 19 Mar 2022 19:41:16 +0800
+From:   Jiaxin Yu <jiaxin.yu@mediatek.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>, <tzungbi@google.com>
+CC:     <angelogioacchino.delregno@collabora.com>, <aaronyu@google.com>,
+        <matthias.bgg@gmail.com>, <trevor.wu@mediatek.com>,
+        <linmq006@gmail.com>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>
+Subject: [v5 0/4] ASoC: mediatek: mt8192: support rt1015p_rt5682s
+Date:   Sat, 19 Mar 2022 19:41:07 +0800
+Message-ID: <20220319114111.11496-1-jiaxin.yu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Sat, 19 Mar 2022 12:38:14 +0100
-From:   Michael Walle <michael@walle.cc>
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Quentin Schulz <quentin.schulz@bootlin.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 7/8] ARM: dts: lan9662-pcb8291: fix pinctrl node name
-In-Reply-To: <cf2a6d1a-bf98-e382-2623-e44e5979ca29@gmail.com>
-References: <20220318202547.1650687-1-michael@walle.cc>
- <20220318202547.1650687-8-michael@walle.cc>
- <cf2a6d1a-bf98-e382-2623-e44e5979ca29@gmail.com>
-User-Agent: Roundcube Webmail/1.4.13
-Message-ID: <e7467fe3a8dae5f5af84d595a0c4ab16@walle.cc>
-X-Sender: michael@walle.cc
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-MTK:  N
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
+        RDNS_NONE,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,
+        UNPARSEABLE_RELAY autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+The series reuses mt8192-mt6359-rt10150rt5682.c for supporting machine
+driver with rt1015p speaker amplifier and rt5682s headset codec.
 
-Am 2022-03-19 09:24, schrieb Sergei Shtylyov:
-> Hello!
-> 
-> On 3/18/22 11:25 PM, Michael Walle wrote:
-> 
->> The pinctrl device tree binding will be converted to YAML format. All
->> the pin nodes should end with "-pins". Fix them.
-> 
->    It does end with "pins" already, right?
+Changes form v4:
+  - split a large patch into three small patches for easy reviewing
+  - correct coding style
 
-It ends with "_pins". Please note the underscore.
+Changes from v3:
+  - fix build error: too many arguments for format
+    [-Werror-format-extra-args]
 
->> Fixes: 290deaa10c50 ("ARM: dts: add DT for lan966 SoC and 2-port board 
->> pcb8291")
->> Signed-off-by: Michael Walle <michael@walle.cc>
->> ---
->>  arch/arm/boot/dts/lan966x-pcb8291.dts | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm/boot/dts/lan966x-pcb8291.dts 
->> b/arch/arm/boot/dts/lan966x-pcb8291.dts
->> index 3281af90ac6d..3c7e3a7d6f14 100644
->> --- a/arch/arm/boot/dts/lan966x-pcb8291.dts
->> +++ b/arch/arm/boot/dts/lan966x-pcb8291.dts
->> @@ -35,7 +35,7 @@ fc3_b_pins: fcb3-spi-pins {
->>  		function = "fc3_b";
->>  	};
->> 
->> -	can0_b_pins:  can0_b_pins {
->> +	can0_b_pins:  can0-b-pins {
-> 
->    Mhm, I can't even see what is changed here... :-/
+Changes from v2:
+  - fix build warnings such as "data argument not used by format string"
 
-The name of the node, s/_/-/
+Changes from v1:
+  - uses the snd_soc_of_get_dai_link_codecs to complete the
+  configuration of dai_link's codecs
+  - uses definitions to simplifies card name and compatible name
 
--michael
+Jiaxin Yu (4):
+  ASoC: dt-bindings: mt8192-mt6359: add new compatible and new
+    properties
+  ASoC: mediatek: mt8192: refactor for I2S3 DAI link of speaker
+  ASoC: mediatek: mt8192: refactor for I2S8/I2S9 DAI links of headset
+  ASoC: mediatek: mt8192: support rt1015p_rt5682s
+
+ .../sound/mt8192-mt6359-rt1015-rt5682.yaml    |  29 +++
+ sound/soc/mediatek/Kconfig                    |   1 +
+ .../mt8192/mt8192-mt6359-rt1015-rt5682.c      | 201 +++++++++++-------
+ 3 files changed, 153 insertions(+), 78 deletions(-)
+
+-- 
+2.18.0
+
