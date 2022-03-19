@@ -2,66 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86E994DE8C1
-	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 15:43:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DDB34DE8F0
+	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 16:10:27 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243336AbiCSOoe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 10:44:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53190 "EHLO
+        id S243413AbiCSPLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 11:11:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41530 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243320AbiCSOod (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 10:44:33 -0400
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34BFD56404;
-        Sat, 19 Mar 2022 07:43:06 -0700 (PDT)
-Received: by mail-ej1-f53.google.com with SMTP id j15so7935753eje.9;
-        Sat, 19 Mar 2022 07:43:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=2K9xNCSfVRll95LKjtA+ZFFUY//W/i74AdYYFDO0Wk0=;
-        b=AiIrSOcsrfAHBCkCkOSD7wAhliFozhtU663cz02TIItyq0InpaQPiQOGrrl2XfE23V
-         6n+CkBOz0Vk3rav1mAB4kHJ8Mc/YuXLuNJnChrH9LNSQsRvZWXwbSv78biwX7+ddxGP0
-         ws4dQONs5UMCdF3ycByGSPkPLpxCNmQm2FqRlGWgRCknMwT+Ipu1HKrB/rEVUMi1i5qU
-         +mNs1zKqnRvr6bejpONCf33lBePNa0e3jd0/6Xk6nvi6y+ZwFLkWn5iBk71wTNAOoJMW
-         HKRV4Ta4gjnMXaXwL03mk2QdMeIcmlPubV+SNwYawmex2aYIZm8L4hFTsqb9e9MHxcsj
-         a1qg==
-X-Gm-Message-State: AOAM533tZxnJyyJH3AQZwISKTtczhRtlDtoGwGzqTsEoZ/jFi/hd4/mS
-        8X5ngO34d+xQTJLITBdWf9g=
-X-Google-Smtp-Source: ABdhPJwf2WsjjkOa2ZXEEMQnBghWTfKPAvRrU3+MpBTnX3RYXyomUtJRvdRhLl0FpNQmH3AjtSaa7Q==
-X-Received: by 2002:a17:907:7254:b0:6db:ad8f:27b4 with SMTP id ds20-20020a170907725400b006dbad8f27b4mr13488747ejc.599.1647700984696;
-        Sat, 19 Mar 2022 07:43:04 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id m12-20020a17090677cc00b006df85d9a924sm4329478ejn.217.2022.03.19.07.43.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Mar 2022 07:43:04 -0700 (PDT)
-Message-ID: <c88ed4b5-2e44-c3fd-ff2b-b4bee1354765@kernel.org>
-Date:   Sat, 19 Mar 2022 15:43:02 +0100
+        with ESMTP id S243415AbiCSPLm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 11:11:42 -0400
+X-Greylist: delayed 1317 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 19 Mar 2022 08:10:21 PDT
+Received: from gateway24.websitewelcome.com (gateway24.websitewelcome.com [192.185.51.253])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C2C853E3D
+        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 08:10:21 -0700 (PDT)
+Received: from cm14.websitewelcome.com (cm14.websitewelcome.com [100.42.49.7])
+        by gateway24.websitewelcome.com (Postfix) with ESMTP id 105751A55
+        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 09:48:21 -0500 (CDT)
+Received: from 162-215-252-75.unifiedlayer.com ([208.91.199.152])
+        by cmsmtp with SMTP
+        id VaNQnmC21HnotVaNRnu9Yc; Sat, 19 Mar 2022 09:48:21 -0500
+X-Authority-Reason: nr=8
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=roeck-us.net; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:Subject:From:References:Cc:To:MIME-Version:Date:Message-ID:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=xAPnHyisEBlf12nKzoY8EKe+L0PL5+6puEZB3ZDCOZU=; b=4mS90JFxF/87wPGGEIimTb7bFp
+        klXjGFs9jxjHTkq7L2wPjaQy2wID/9QUnizJl1LCnOpmvUeh9xaD9uM3ZIjX1bR0aZWUGqeJWU9E4
+        0x1J5J0j6529gkF4FnuOpwnfUQG5wIcWDcTvCrYuvqN5Lbuqpq1/sKo0nzJtqBionZx6weZBEYWpx
+        rDYayTySgpA3AyRukvsIapZ8d1Kgt55s4JR+WIOJBC23eGQ88nkm8M/RjURiXcbxEOhCLYC5nN1/9
+        +efwLSb8Z2Oj5wraHA1V1togcbw54r0EkNxW5kLMMYU7sI9OF+4gzXcJVZbONpXPpLluk2PChcRxp
+        j/FkEhEQ==;
+Received: from 108-223-40-66.lightspeed.sntcca.sbcglobal.net ([108.223.40.66]:54330)
+        by bh-25.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@roeck-us.net>)
+        id 1nVaNP-001v1r-UN; Sat, 19 Mar 2022 14:48:20 +0000
+Message-ID: <7792b3b6-e196-c3c7-5875-9eb4da488a95@roeck-us.net>
+Date:   Sat, 19 Mar 2022 07:48:17 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm6350: Add UFS nodes
 Content-Language: en-US
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        linux-arm-msm@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Alistair Francis <alistair23@gmail.com>
+Cc:     Alistair Francis <alistair@alistair23.me>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20220318183004.858707-1-luca.weiss@fairphone.com>
- <20220318183004.858707-6-luca.weiss@fairphone.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220318183004.858707-6-luca.weiss@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
+        Sascha Hauer <kernel@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Amit Kucheria <amitk@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+References: <20220124121009.108649-1-alistair@alistair23.me>
+ <20220124121009.108649-3-alistair@alistair23.me>
+ <CAMuHMdVNgVQzjrdybbnfCEr+G5Q4ztjRCC29RF9HwGnhKkPn3Q@mail.gmail.com>
+ <CAKmqyKOnezw8_dDY-c69F77KVxmb-C3t=N3H23GurKbrxWDAgg@mail.gmail.com>
+ <CAMuHMdVy4E1pX+VLLq_05FX4pM+BPZycQgn68ArGh2s8qL24=w@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH v18 2/8] mfd: simple-mfd-i2c: Add a Kconfig name
+In-Reply-To: <CAMuHMdVy4E1pX+VLLq_05FX4pM+BPZycQgn68ArGh2s8qL24=w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - bh-25.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - roeck-us.net
+X-BWhitelist: no
+X-Source-IP: 108.223.40.66
+X-Source-L: No
+X-Exim-ID: 1nVaNP-001v1r-UN
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: 108-223-40-66.lightspeed.sntcca.sbcglobal.net [108.223.40.66]:54330
+X-Source-Auth: linux@roeck-us.net
+X-Email-Count: 9
+X-Source-Cap: cm9lY2s7YWN0aXZzdG07YmgtMjUud2ViaG9zdGJveC5uZXQ=
+X-Local-Domain: yes
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_SOFTFAIL,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,61 +101,95 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/03/2022 19:30, Luca Weiss wrote:
-> Add the necessary nodes for UFS and its PHY.
+On 3/19/22 02:28, Geert Uytterhoeven wrote:
+> Hi Alistair,
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm6350.dtsi | 79 ++++++++++++++++++++++++++++
->  1 file changed, 79 insertions(+)
+> On Sat, Mar 19, 2022 at 3:36 AM Alistair Francis <alistair23@gmail.com> wrote:
+>> On Tue, Mar 8, 2022 at 8:53 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+>>> Thanks for your patch, which is now commit bae5a4acef67db88
+>>> ("mfd: simple-mfd-i2c: Add a Kconfig name") in mfd/for-mfd-next.
+>>>
+>>> On Mon, Jan 24, 2022 at 1:24 PM Alistair Francis <alistair@alistair23.me> wrote:
+>>>> Add a Kconfig name to the "Simple Multi-Functional Device support (I2C)"
+>>>> device so that it can be enabled via menuconfig.
+>>>
+>>> Which still does not explain why this would be needed...
+>>>
+>>>> Signed-off-by: Alistair Francis <alistair@alistair23.me>
+>>>> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+>>>
+>>>> --- a/drivers/mfd/Kconfig
+>>>> +++ b/drivers/mfd/Kconfig
+>>>> @@ -1188,7 +1188,7 @@ config MFD_SI476X_CORE
+>>>>            module will be called si476x-core.
+>>>>
+>>>>   config MFD_SIMPLE_MFD_I2C
+>>>> -       tristate
+>>>> +       tristate "Simple Multi-Functional Device support (I2C)"
+>>>>          depends on I2C
+>>>>          select MFD_CORE
+>>>>          select REGMAP_I2C
+>>>
+>>> The help text states:
+>>>
+>>> | This driver creates a single register map with the intention for it
+>>> | to be shared by all sub-devices.
+>>>
+>>> Yes, that's what MFD does?
+>>>
+>>> | Once the register map has been successfully initialised, any
+>>> | sub-devices represented by child nodes in Device Tree will be
+>>> | subsequently registered.
+>>>
+>>> OK...?
+>>>
+>>> Still, no clue about what this driver really does, and why and when
+>>> it would be needed.
+>>>
+>>> There is one driver symbol that selects MFD_SIMPLE_MFD_I2C.
+>>> There are no driver symbols that depend on this symbol.
+>>>
+>>> If you have a driver in the pipeline that can make use of this,
+>>> can't it just select MFD_SIMPLE_MFD_I2C, so the symbol itself can
+>>> stay invisible?
+>>
+>> My patch "mfd: simple-mfd-i2c: Enable support for the silergy,sy7636a"
+>> allows using this driver for the silergy,sy7636a MFD. So it's nice to
+>> be able to enable and disable it as required.
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> index d7c9edff19f7..c5c93b6bcd2a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> @@ -541,6 +541,85 @@ uart2: serial@98c000 {
->  			};
->  		};
->  
-> +		ufs_mem_hc: ufshc@1d84000 {
+> So after that patch, enabling MFD_SIMPLE_MFD_I2C will enable
+> support for an ever-growing random bunch of devices, none of which
+> is described in the help text?
+> To me, ghat doesn't look like the way to go forward...
+> 
 
-Generic node name, so ufs.
+I am probably missing something. Why not something like the following ?
 
-> +			compatible = "qcom,sm6350-ufshc", "qcom,ufshc",
-> +				     "jedec,ufs-2.0";
-> +			reg = <0 0x01d84000 0 0x3000>,
-> +			      <0 0x01d90000 0 0x8000>;
-> +			reg-names = "std", "ice";
-> +			interrupts = <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> +			phys = <&ufs_mem_phy_lanes>;
-> +			phy-names = "ufsphy";
-> +			lanes-per-direction = <2>;
-> +			#reset-cells = <1>;
-> +			resets = <&gcc GCC_UFS_PHY_BCR>;
-> +			reset-names = "rst";
-> +
-> +			power-domains = <&gcc UFS_PHY_GDSC>;
-> +
-> +			iommus = <&apps_smmu 0x80 0x0>;
-> +
-> +			clock-names =
+config MFD_SY7636A
+         tristate "Silergy SY7636A voltage regulator"
+         depends on I2C
+         select MFD_SIMPLE_MFD_I2C
+         help
+           Enable support for Silergy SY7636A voltage regulator.
 
-Drop unneeded blank line, start just after '=' and align next elements
-with it.
-
-> +				"core_clk",
-> +				"bus_aggr_clk",
-> +				"iface_clk",
-> +				"core_clk_unipro",
-> +				"core_clk_ice",
-> +				"ref_clk",
-> +				"tx_lane0_sync_clk",
-> +				"rx_lane0_sync_clk",
-> +				"rx_lane1_sync_clk";
-> +			clocks =
-
-The same.
+           To enable support for building sub-devices as modules,
+           choose M here.
 
 
-Best regards,
-Krzysztof
+This would be quite similar to MFD_SL28CPLD which essentially does
+the same (and, unless I am missing something, doesn't have its own
+driver either). Sub-devices would then depend on MFD_SY7636A.
+
+Guenter
+
+> Gr{oetje,eeting}s,
+> 
+>                          Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                  -- Linus Torvalds
+
