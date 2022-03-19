@@ -2,97 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6924D4DE891
-	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 15:37:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id A53D44DE89A
+	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 15:38:50 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230157AbiCSOjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 10:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35080 "EHLO
+        id S243205AbiCSOkI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 10:40:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37636 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243188AbiCSOjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 10:39:15 -0400
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFEF31706A;
-        Sat, 19 Mar 2022 07:37:53 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id w4so13275680edc.7;
-        Sat, 19 Mar 2022 07:37:53 -0700 (PDT)
+        with ESMTP id S243230AbiCSOkH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 10:40:07 -0400
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C12E78D6B5;
+        Sat, 19 Mar 2022 07:38:43 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id r22so1947917ejs.11;
+        Sat, 19 Mar 2022 07:38:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:from
-         :subject:content-language:to:cc:references:in-reply-to
+        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
+         :content-language:to:cc:references:from:in-reply-to
          :content-transfer-encoding;
-        bh=gH+r24fAOpSiIXUxUgbqmc3qpzbLfZoMAp2lb+50FuA=;
-        b=avhp066WuJmb92QOLRCFk2g9Cefe7kON8y7lITRbCFXqB695bceR7DmQaRoOb63rjS
-         /4me/u4q9mckMbzq1KKl3dZQ8kMs+pNtE8ilQhlz4ROe1j+XUTI44OAsM5eJMOmYvNhs
-         /ULqqOK4U07diKrtxdAW71vnIGxLUV0ai9YfKnG45mUxCyXRcTHpAqV0OUnR4iDlaXKM
-         JrS7VnksulsUKK2v+gJYotkj3L0Gs1OZSs1ix/OXtsFHkb/FYr32UNNA2Nib91Pzsc6Z
-         +RHg9W7K8KYmgjSX5aowSQkpkyqadutS14C71/FwEu0IQXKb2erdvSnZ+bk/zpYBd9HT
-         /OJg==
-X-Gm-Message-State: AOAM533jtO6eolELPb02BQhPe5MZVMdk0vePCC90+LFwKz9ZkihXGW6v
-        j6ZS8HMTMa0hZdhOJAF86JQ=
-X-Google-Smtp-Source: ABdhPJw3AzPtLQ+UjmKGVdKdQ4/84l1LKMcvSVPBB31aH0LaT4n0AZsECARqUGXu1wKRakT9dELALw==
-X-Received: by 2002:aa7:d6ca:0:b0:419:2804:d094 with SMTP id x10-20020aa7d6ca000000b004192804d094mr1757895edr.388.1647700672159;
-        Sat, 19 Mar 2022 07:37:52 -0700 (PDT)
+        bh=YiSvu3h2MURJ52kikYps/FHyIHlianDqoRFaAApITKM=;
+        b=j6xeKKl8VK0NBU5pvkFbOE7v5RrA05hCjkOUdLVD87KMcr6HPAxN+JJ4v4FU52D9rg
+         rufVDymxJImYqUw+GW372OSqhzNJEmEEtfBdJaxgxRRN2e+TaefzOG5zcgV6NvZi5wr1
+         KEyAg/EtudGaRVBQ2mXKa6Jfot5DPzDjzo7ecHjxn1wpNdSvmQ2zMVYe8RiO1q1cvMUh
+         BeQW4sLjmRGOWCgrtNwnWhOuoW+Aqb4Fcpo++OHPeXkDlUc2RkSxJ8xFM5D53FWqCqhN
+         6B8gT/nshUnB+K/Tx+bMC88WQQSMoFgh+mdCFAM66ORidi0KNYNFR05Eb9dNSmElO/mu
+         VzMw==
+X-Gm-Message-State: AOAM533a0zQkKXuV+liRn2bttNbkjjhqLuF8kZUzh4O3Hfj95w4aQxYB
+        Er9KMM/I5ZllU9hMUEoMEcg=
+X-Google-Smtp-Source: ABdhPJxy7389KsjdEcoBs8HFFkzqqnLzY5jKJNB7r2IHGvyjvSoasFsmc5rxbFJwLesRSh+gR9lAnA==
+X-Received: by 2002:a17:907:7d93:b0:6da:8f57:68fa with SMTP id oz19-20020a1709077d9300b006da8f5768famr13695553ejc.42.1647700722186;
+        Sat, 19 Mar 2022 07:38:42 -0700 (PDT)
 Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id z21-20020a1709063a1500b006da6436819dsm4882063eje.173.2022.03.19.07.37.50
+        by smtp.googlemail.com with ESMTPSA id l12-20020a056402028c00b00418f7fc4bd8sm4198032edv.91.2022.03.19.07.38.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Mar 2022 07:37:51 -0700 (PDT)
-Message-ID: <6729d4cd-45df-f554-708b-d353dc522cdf@kernel.org>
-Date:   Sat, 19 Mar 2022 15:37:50 +0100
+        Sat, 19 Mar 2022 07:38:41 -0700 (PDT)
+Message-ID: <cc6a0a89-a096-e954-b245-1857e9f94c4e@kernel.org>
+Date:   Sat, 19 Mar 2022 15:38:40 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] arm64: dts: imx8mp: add ddr controller node to support
- EDAC on imx8mp
+Subject: Re: [PATCH 1/6] scsi: ufs: dt-bindings: Add SM6350 compatible string
 Content-Language: en-US
-To:     Sherry Sun <sherry.sun@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20220318113526.15986-1-sherry.sun@nxp.com>
- <57e516d4-68aa-44a6-4ea2-a7fdd4d9ed95@kernel.org>
- <AS8PR04MB8404817B9ECE889A19A2186692149@AS8PR04MB8404.eurprd04.prod.outlook.com>
-In-Reply-To: <AS8PR04MB8404817B9ECE889A19A2186692149@AS8PR04MB8404.eurprd04.prod.outlook.com>
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        linux-arm-msm@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20220318183004.858707-1-luca.weiss@fairphone.com>
+ <20220318183004.858707-2-luca.weiss@fairphone.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+In-Reply-To: <20220318183004.858707-2-luca.weiss@fairphone.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
         FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/03/2022 10:53, Sherry Sun wrote:
-> Hi Krzysztof,
+On 18/03/2022 19:29, Luca Weiss wrote:
+> Document the compatible for the UFS found on SM6350.
 > 
->> Subject: Re: [PATCH] arm64: dts: imx8mp: add ddr controller node to support
->> EDAC on imx8mp
->>
->> On 18/03/2022 12:35, Sherry Sun wrote:
->>> i.MX8MP use synopsys V3.70a ddr controller IP, so add edac support for
->>> i.MX8MP based on "snps,ddrc-3.80a" synopsys edac driver.
->>
->> One more point - I think it might be worth to add dedicated compatible for
->> v3.70, as it is clearly a different version (with fallback to v3.80a).
-> 
-> Thanks for the review, I have check the V3.70a and V3.80a Synopsys ddr controller databook, there is no difference for the inline ECC part.
-> So do you think we still need to add a new compatible for V3.70a even the EDAC driver operation is totally same with V3.80a?
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
+>  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Thanks for checking. In such case you don't have to add the compatible.
-It still might be beneficial in case there is some difference in
-hardware, but looks like not required.
+
+Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 
 Best regards,
