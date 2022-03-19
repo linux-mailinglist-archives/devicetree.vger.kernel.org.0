@@ -2,168 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D06EA4DEA19
-	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 19:29:57 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C2F44DEACB
+	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 21:47:01 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S243900AbiCSSbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 14:31:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59598 "EHLO
+        id S244172AbiCSUsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 16:48:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243903AbiCSSbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 14:31:15 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BFCB3702D
-        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 11:29:53 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id h13so13709421ede.5
-        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 11:29:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair;
-        h=mime-version:content-transfer-encoding:date:message-id:from:to:cc
-         :subject:references:in-reply-to;
-        bh=buKp/c8UvzHPIAhRI7uXCYLONDKNZjnQ6ELqJjK7HuA=;
-        b=k4nyBk88e6efJTjIm7EZ0GLZbtg/Onpo4+WFLft/j94NiAxeTzmwE1iruDGx6+mmCu
-         JtsjzOM8sWpaaJwTpwuYUA/xsDqSTBMmdF7C8CS3/eKWOoAUUCZd1dKlQuyNXjg2vUfd
-         GNjZXrz6e7ZxGQ9zOG75KLBqN3VfW0iOcHkUGnUot++W+3cG1nbub/zBeoC+bSuIT2is
-         qhifnXLc+GXdQfGaF5B0iG4YoNynLZGIwRVXiYtZHRHH8pY/T01JyBbyS2+pIwHZEWVs
-         E1tJWHzopRgkTTwym4ZYzNGyW8Q7eSf4wp4fDzHZM/cQLbXlAwDIpXp1gJxuH2TDbXMQ
-         GnhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:mime-version:content-transfer-encoding:date
-         :message-id:from:to:cc:subject:references:in-reply-to;
-        bh=buKp/c8UvzHPIAhRI7uXCYLONDKNZjnQ6ELqJjK7HuA=;
-        b=jlcQW0cPZDV83YzINveWB0QDmetABvvKd4CP+61gUGI2Eaan+ZFnRJ2UdzsFMh5T9E
-         jwf05b4xWueeSvAAk3MBRBuneDjlEBpu3srktpV8lO1pCkuJMuw3MGZUu6EJX5Hd1FPj
-         SpkoO9v3owJeW/Quc3dM4IhDxiSCI6bfoHLNd8V0sz/9zfDK2ccEBuGzibAJGnC9FhqZ
-         s//bSo3iQn1QAeT5dOZQRpyAo5/x8kiBf25KkI+HBZMlKc1odObS+ZDrXj4b890ta8s3
-         EQTaKXFVV07qkKofRCmx81+CDeK9U9yAFdOdF04XUs19mSxcuylGvYF6dkS27piDD7LN
-         wIZQ==
-X-Gm-Message-State: AOAM532E+HridhJ6D9NX36bN8SF2rOe8bvbp5vcSpXCVUaQ1siHznK49
-        Z8zasbqBHCoPhEq81b9r4anlww==
-X-Google-Smtp-Source: ABdhPJwjUdqRL9meDgsEI/c6J8JDxqnmewgyL9kvXOXz29w8UM8JNz+OMI2GClNroTMk12KuO2svAQ==
-X-Received: by 2002:a05:6402:289d:b0:419:437:ef4f with SMTP id eg29-20020a056402289d00b004190437ef4fmr11131838edb.110.1647714591776;
-        Sat, 19 Mar 2022 11:29:51 -0700 (PDT)
-Received: from localhost (a246182.upc-a.chello.nl. [62.163.246.182])
-        by smtp.gmail.com with ESMTPSA id hg8-20020a1709072cc800b006d6e469fbf0sm5008422ejc.134.2022.03.19.11.29.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Mar 2022 11:29:51 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Sat, 19 Mar 2022 19:29:50 +0100
-Message-Id: <CIO22P1JZY5F.1BYJF4HT2OOUW@otso>
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Krzysztof Kozlowski" <krzk@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-Cc:     <~postmarketos/upstreaming@lists.sr.ht>,
-        <phone-devel@vger.kernel.org>, "Andy Gross" <agross@kernel.org>,
-        "Bjorn Andersson" <bjorn.andersson@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/6] arm64: dts: qcom: sm6350: Add UFS nodes
-References: <20220318183004.858707-1-luca.weiss@fairphone.com>
- <20220318183004.858707-6-luca.weiss@fairphone.com>
- <c88ed4b5-2e44-c3fd-ff2b-b4bee1354765@kernel.org>
-In-Reply-To: <c88ed4b5-2e44-c3fd-ff2b-b4bee1354765@kernel.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S233213AbiCSUsS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 16:48:18 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [176.9.125.105])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2175B25F659;
+        Sat, 19 Mar 2022 13:46:56 -0700 (PDT)
+Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 57BCE2223B;
+        Sat, 19 Mar 2022 21:46:51 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1647722814;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=YMrcuTT0rgA+lIv6Wyluo34FsA5qWN9Ip9lq9GLriBo=;
+        b=mzrWsPuuIcXCBtDrf2rUodRCMJ89OQKTXXbXwe26NkTIXtIz+k0kVlHx6pILsnMGn5zSlx
+        qZJ9Ck3xxwAaqUfxtgfg7rEu5eCWWjVEZPiedC5YgsnCJXvF7d14c/JB3S5wW8f+p9Qntx
+        8iJXbTNIMjJQwd/xr9suZhNMgLqXuT8=
+From:   Michael Walle <michael@walle.cc>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Paul Burton <paulburton@kernel.org>,
+        Quentin Schulz <quentin.schulz@bootlin.com>,
+        Antoine Tenart <atenart@kernel.org>,
+        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v3 0/6] pinctrl: ocelot: convert to YAML format
+Date:   Sat, 19 Mar 2022 21:46:22 +0100
+Message-Id: <20220319204628.1759635-1-michael@walle.cc>
+X-Mailer: git-send-email 2.30.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Convert the pinctrl ocelot binding to the new YAML format. Pin
+configuration nodes should have a "-pins" postfix. But unfortunately,
+there are many device trees which don't follow this. First rename
+all these nodes and then convert the binding to the YAML format so
+that the validation will pass.
 
-On Sat Mar 19, 2022 at 3:43 PM CET, Krzysztof Kozlowski wrote:
-> On 18/03/2022 19:30, Luca Weiss wrote:
-> > Add the necessary nodes for UFS and its PHY.
-> >=20
-> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sm6350.dtsi | 79 ++++++++++++++++++++++++++++
-> >  1 file changed, 79 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6350.dtsi b/arch/arm64/boot/dts=
-/qcom/sm6350.dtsi
-> > index d7c9edff19f7..c5c93b6bcd2a 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6350.dtsi
-> > @@ -541,6 +541,85 @@ uart2: serial@98c000 {
-> >  			};
-> >  		};
-> > =20
-> > +		ufs_mem_hc: ufshc@1d84000 {
->
-> Generic node name, so ufs.
+Because there were no maintainers before and there is none in
+MAINTAINERS I added Alexandre Belloni and Lars Povlsen, juding by
+the commits - to the binding as maintainers. Please tell me if you
+disagree.
 
-With the node name changes UFS doesn't probe anymore.
+changes since v2:
+ - drop Fixes tag (and any "fix" or similar)
+ - one patch per SoC
+ - document difference between original txt and yaml binging in the
+   commit message
 
-[    1.893762] ufshcd-qcom 1d84000.ufs: ufshcd_variant_hba_init: variant qc=
-om init failed err -19
-[    1.902674] ufshcd-qcom 1d84000.ufs: Initialization failed
-[    1.908391] ufshcd-qcom 1d84000.ufs: ufshcd_pltfrm_init() failed -19
+changes since v1:
+ - drop "Device Tree Binding" from the title of the binding
+ - describe reg properties and provide minItems and set it differently
+   depending on the compatible string
+ - skip interrupt description
+ - move required section after patternProperties
 
-I didn't debug this in detail but it's likely from the
-androidboot.bootdevice=3D1d84000.ufshc parameter in cmdline that
-ufs-qcom.c uses to fail probe with -ENODEV for all UFS other than the
-selected one. Not sure why this behavior exists in mainline (didn't look
-into this either).
+Michael Walle (6):
+  MIPS: mscc: jaguar2: rename pinctrl nodes
+  MIPS: mscc: ocelot: rename pinctrl nodes
+  MIPS: mscc: serval: rename pinctrl nodes
+  arm64: dts: sparx5: rename pinctrl nodes
+  ARM: dts: lan966x: rename pinctrl nodes
+  dt-bindings: pinctrl: convert ocelot-pinctrl to YAML format
 
-This cmdline parameter (among many others) is added by the stock
-bootloader and as far as I know there's no way to turn that off.
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
+ .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 ++++++++++++++++++
+ arch/arm/boot/dts/lan966x-pcb8291.dts         |   2 +-
+ .../dts/microchip/sparx5_pcb134_board.dtsi    |  26 ++---
+ .../dts/microchip/sparx5_pcb135_board.dtsi    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb110.dts    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb111.dts    |  10 +-
+ arch/mips/boot/dts/mscc/jaguar2_pcb118.dts    |   6 +-
+ arch/mips/boot/dts/mscc/ocelot.dtsi           |   4 +-
+ arch/mips/boot/dts/mscc/ocelot_pcb120.dts     |   6 +-
+ arch/mips/boot/dts/mscc/serval_common.dtsi    |  14 +--
+ 11 files changed, 152 insertions(+), 86 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
 
-
->
-> > +			compatible =3D "qcom,sm6350-ufshc", "qcom,ufshc",
-> > +				     "jedec,ufs-2.0";
-> > +			reg =3D <0 0x01d84000 0 0x3000>,
-> > +			      <0 0x01d90000 0 0x8000>;
-> > +			reg-names =3D "std", "ice";
-> > +			interrupts =3D <GIC_SPI 265 IRQ_TYPE_LEVEL_HIGH>;
-> > +			phys =3D <&ufs_mem_phy_lanes>;
-> > +			phy-names =3D "ufsphy";
-> > +			lanes-per-direction =3D <2>;
-> > +			#reset-cells =3D <1>;
-> > +			resets =3D <&gcc GCC_UFS_PHY_BCR>;
-> > +			reset-names =3D "rst";
-> > +
-> > +			power-domains =3D <&gcc UFS_PHY_GDSC>;
-> > +
-> > +			iommus =3D <&apps_smmu 0x80 0x0>;
-> > +
-> > +			clock-names =3D
->
-> Drop unneeded blank line, start just after '=3D' and align next elements
-> with it.
-
-Sure.
-
->
-> > +				"core_clk",
-> > +				"bus_aggr_clk",
-> > +				"iface_clk",
-> > +				"core_clk_unipro",
-> > +				"core_clk_ice",
-> > +				"ref_clk",
-> > +				"tx_lane0_sync_clk",
-> > +				"rx_lane0_sync_clk",
-> > +				"rx_lane1_sync_clk";
-> > +			clocks =3D
->
-> The same.
-
-Sure. I also adjusted the clock name/order to match the bindings (thanks
-for spotting the problems there!)
-
-Regards
-Luca
-
->
->
-> Best regards,
-> Krzysztof
+-- 
+2.30.2
 
