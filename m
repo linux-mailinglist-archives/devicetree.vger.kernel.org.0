@@ -2,249 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 650584DEAE4
-	for <lists+devicetree@lfdr.de>; Sat, 19 Mar 2022 21:47:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 70E4A4E18EE
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 00:00:55 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244211AbiCSUsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 16:48:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49752 "EHLO
+        id S244330AbiCSXCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 19:02:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244205AbiCSUsY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 16:48:24 -0400
-Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F199C264F54;
-        Sat, 19 Mar 2022 13:47:01 -0700 (PDT)
-Received: from mwalle01.kontron.local. (unknown [213.135.10.150])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by ssl.serverraum.org (Postfix) with ESMTPSA id 8D2E422450;
-        Sat, 19 Mar 2022 21:46:59 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
-        t=1647722819;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=xEf5Qdy2CZeKPC3PR1yIdltyKRL+/rUuvVCQ5taspNg=;
-        b=EC8mOIwEdpG6mVzMc3/1mn5D5CdVRIZ1Ze3UZVxGWgMNVJK67buWy9yGT17eWNxZYKiS2l
-        7I5/7LwSjZXNmHhR2jGwqwiO3tBG4hL3BtovkBlHMELZnv5zS2OaCLz9XbrEfPMxSfS2FJ
-        pdU8ajepRCBPPpwRpmSlrKC5yt5xUSo=
-From:   Michael Walle <michael@walle.cc>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        Steen Hegelund <Steen.Hegelund@microchip.com>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Paul Burton <paulburton@kernel.org>,
-        Quentin Schulz <quentin.schulz@bootlin.com>,
-        Antoine Tenart <atenart@kernel.org>,
-        Kavyasree Kotagiri <kavyasree.kotagiri@microchip.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        UNGLinuxDriver@microchip.com, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
-        Michael Walle <michael@walle.cc>
-Subject: [PATCH v3 6/6] dt-bindings: pinctrl: convert ocelot-pinctrl to YAML format
-Date:   Sat, 19 Mar 2022 21:46:28 +0100
-Message-Id: <20220319204628.1759635-7-michael@walle.cc>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20220319204628.1759635-1-michael@walle.cc>
-References: <20220319204628.1759635-1-michael@walle.cc>
+        with ESMTP id S234512AbiCSXCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 19:02:13 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696661A9C82
+        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 16:00:51 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id r22so15610907ljd.4
+        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 16:00:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=AARNq9b7uefyRLB+o0FCtvKm0ndHX8dczFClr8d1mZ4=;
+        b=YvNJxUQ5cpSBlQtASLuPapLHgjOBLqF+sgKIco+gnHVv1+sFEpgf+vb6rHTNDoqyQp
+         eU5Qh9XU2vCAIngqift6/WY1V14YxDCHujDe/gcDDQGhoFrjsD6AtSGUs4Mc/9F7fra8
+         VKouTrUIwvGgV5FFkfMqO9nL6F+tPu/SX9p8P/UQlUM3A9lTpv8rV0CeDfA8E916WGpT
+         mqq5BoCwC9odrzEJ6aY2GnEfkmA0P3jq9wDTdOSu0ZXSQckoP2E1H0jA74juXEdDyTih
+         kBAF+DjGTUQb9NYS31PPcuB+DnouAGP/O3X7nQoV93Urf12CDbnHnBChyMPr9F4n9nnR
+         E/rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=AARNq9b7uefyRLB+o0FCtvKm0ndHX8dczFClr8d1mZ4=;
+        b=YYjTnPC/gwIOxMMIeF5D2kd7xqsMeNDtJ/E4GS7hfnYT22KuM8NgkuyVXXxnDz7sMz
+         jEZYokAn2o06SZyykYQyCIS23Kt6iogAxnnu/4lFhsN+luqfz2S1rxnm40ILL3zsgFck
+         Qb66k8/yBYnQdusASRy/DvYskQG1mKIFCEekLNitge4wI1WEBVz5y5rK+b7o/7Afascw
+         JXECA1sL1iK2i92jl8+WYLx/unFgYGL8EUbRS2zDfVGTGMN7LPtdNH5daFey7+S9bF9+
+         TaHdZrXKBBEcdK9wKHp07qvKdbyi65H0BUv5Jr7/SgVyheIaK3GQ1fUmLIJUqqdQ9oGh
+         isUg==
+X-Gm-Message-State: AOAM531PdD5ytl6pETLgoeBXIyAuZtNzKexustdGSEm0oTkR4ZoIv2in
+        OPKg6RVtzdSW8MRD0XlDbr4i4Q==
+X-Google-Smtp-Source: ABdhPJxVwGt92K1FWdvMNBQUZFJD2nUjowak37iXB4/zQ91QZocrPLuaaB6GVfBNRVfaftmwb72A4g==
+X-Received: by 2002:a05:651c:1a24:b0:249:80b9:626a with SMTP id by36-20020a05651c1a2400b0024980b9626amr727357ljb.130.1647730849664;
+        Sat, 19 Mar 2022 16:00:49 -0700 (PDT)
+Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
+        by smtp.gmail.com with ESMTPSA id z5-20020a196505000000b0044a12b953f9sm581520lfb.45.2022.03.19.16.00.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Mar 2022 16:00:49 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/5 v2] dt-bindings: clock: u8500: Add clkout clock bindings
+Date:   Sat, 19 Mar 2022 23:51:52 +0100
+Message-Id: <20220319225156.1451636-2-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.35.1
+In-Reply-To: <20220319225156.1451636-1-linus.walleij@linaro.org>
+References: <20220319225156.1451636-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the ocelot-pinctrl device tree binding to the new YAML format.
+This adds device tree bindings for the externally routed clocks
+CLKOUT1 and CLKOUT2 clocks found in the DB8500.
 
-Additionally to the original binding documentation, add interrupt
-properties which are optional and already used on several SoCs like
-SparX-5, Luton, Ocelot and LAN966x but were not documented before.
-
-Also, on the sparx5 and the lan966x SoCs there are two items for the
-reg property.
-
-Signed-off-by: Michael Walle <michael@walle.cc>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- .../bindings/pinctrl/mscc,ocelot-pinctrl.txt  |  42 -------
- .../bindings/pinctrl/mscc,ocelot-pinctrl.yaml | 108 ++++++++++++++++++
- 2 files changed, 108 insertions(+), 42 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
- create mode 100644 Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
+ChangeLog v1->v2:
+- Push the description of the clock-cells down under the clock-cells
+  subnode.
+- Add an example, as this was missing and requested.
+---
+ .../bindings/clock/stericsson,u8500-clks.yaml | 57 +++++++++++++++++++
+ include/dt-bindings/clock/ste-db8500-clkout.h | 17 ++++++
+ 2 files changed, 74 insertions(+)
+ create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-deleted file mode 100644
-index 5d84fd299ccf..000000000000
---- a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Microsemi Ocelot pin controller Device Tree Bindings
------------------------------------------------------
--
--Required properties:
-- - compatible		: Should be "mscc,ocelot-pinctrl",
--			  "mscc,jaguar2-pinctrl", "microchip,sparx5-pinctrl",
--			  "mscc,luton-pinctrl", "mscc,serval-pinctrl",
--			  "microchip,lan966x-pinctrl" or "mscc,servalt-pinctrl"
-- - reg			: Address and length of the register set for the device
-- - gpio-controller	: Indicates this device is a GPIO controller
-- - #gpio-cells		: Must be 2.
--			  The first cell is the pin number and the
--			  second cell specifies GPIO flags, as defined in
--			  <dt-bindings/gpio/gpio.h>.
-- - gpio-ranges		: Range of pins managed by the GPIO controller.
--
--
--The ocelot-pinctrl driver uses the generic pin multiplexing and generic pin
--configuration documented in pinctrl-bindings.txt.
--
--The following generic properties are supported:
-- - function
-- - pins
--
--Example:
--	gpio: pinctrl@71070034 {
--		compatible = "mscc,ocelot-pinctrl";
--		reg = <0x71070034 0x28>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-ranges = <&gpio 0 0 22>;
--
--		uart_pins: uart-pins {
--				pins = "GPIO_6", "GPIO_7";
--				function = "uart";
--		};
--
--		uart2_pins: uart2-pins {
--				pins = "GPIO_12", "GPIO_13";
--				function = "uart2";
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-new file mode 100644
-index 000000000000..7149a6655623
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/mscc,ocelot-pinctrl.yaml
-@@ -0,0 +1,108 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/mscc,ocelot-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microsemi Ocelot pin controller
-+
-+maintainers:
-+  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-+  - Lars Povlsen <lars.povlsen@microchip.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - microchip,lan966x-pinctrl
-+      - microchip,sparx5-pinctrl
-+      - mscc,jaguar2-pinctrl
-+      - mscc,luton-pinctrl
-+      - mscc,ocelot-pinctrl
-+      - mscc,serval-pinctrl
-+      - mscc,servalt-pinctrl
-+
-+  reg:
-+    items:
-+      - description: Base address
-+      - description: Extended pin configuration registers
-+    minItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-ranges: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  "#interrupt-cells":
-+    const: 2
-+
-+patternProperties:
-+  '-pins$':
+diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+index 9bc95a308477..2150307219a0 100644
+--- a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
++++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
+@@ -109,6 +109,25 @@ properties:
+ 
+     additionalProperties: false
+ 
++  clkout-clock:
++    description: A subnode with three clock cells for externally routed clocks,
++      output clocks. These are two PRCMU-internal clocks that can be divided and
++      muxed out on the pads of the DB8500 SoC.
 +    type: object
-+    allOf:
-+      - $ref: "pinmux-node.yaml"
-+      - $ref: "pincfg-node.yaml"
 +
 +    properties:
-+      function: true
-+      pins: true
-+      output-high: true
-+      output-low: true
-+      drive-strength: true
-+
-+    required:
-+      - function
-+      - pins
++      '#clock-cells':
++        description:
++          The first cell indicates which output clock we are using,
++          possible values are 0 (CLKOUT1) and 1 (CLKOUT2).
++          The second cell indicates which clock we want to use as source,
++          possible values are 0 thru 7, see the defines for the different
++          source clocks.
++          The third cell is a divider, legal values are 1 thru 63.
++        const: 3
 +
 +    additionalProperties: false
 +
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+allOf:
-+  - $ref: "pinctrl.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - microchip,lan966x-pinctrl
-+              - microchip,sparx5-pinctrl
-+    then:
-+      properties:
-+        reg:
-+          minItems: 2
-+
-+additionalProperties: false
+ required:
+   - compatible
+   - reg
+@@ -119,3 +138,41 @@ required:
+   - smp-twd-clock
+ 
+ additionalProperties: false
 +
 +examples:
 +  - |
-+    gpio: pinctrl@71070034 {
-+        compatible = "mscc,ocelot-pinctrl";
-+        reg = <0x71070034 0x28>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        gpio-ranges = <&gpio 0 0 22>;
++    #include <dt-bindings/clock/ste-db8500-clkout.h>
++    clocks@8012 {
++      compatible = "stericsson,u8500-clks";
++      reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
++            <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
++            <0xa03cf000 0x1000>;
 +
-+        uart_pins: uart-pins {
-+            pins = "GPIO_6", "GPIO_7";
-+            function = "uart";
-+        };
++      prcmu_clk: prcmu-clock {
++        #clock-cells = <1>;
++      };
 +
-+        uart2_pins: uart2-pins {
-+            pins = "GPIO_12", "GPIO_13";
-+            function = "uart2";
-+        };
++      prcc_pclk: prcc-periph-clock {
++        #clock-cells = <2>;
++      };
++
++      prcc_kclk: prcc-kernel-clock {
++        #clock-cells = <2>;
++      };
++
++      prcc_reset: prcc-reset-controller {
++        #reset-cells = <2>;
++      };
++
++      rtc_clk: rtc32k-clock {
++        #clock-cells = <0>;
++      };
++
++      smp_twd_clk: smp-twd-clock {
++        #clock-cells = <0>;
++      };
++
++      clkout_clk: clkout-clock {
++        #clock-cells = <3>;
++      };
 +    };
+diff --git a/include/dt-bindings/clock/ste-db8500-clkout.h b/include/dt-bindings/clock/ste-db8500-clkout.h
+new file mode 100644
+index 000000000000..ca07cb2bd1bc
+--- /dev/null
++++ b/include/dt-bindings/clock/ste-db8500-clkout.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef __STE_CLK_DB8500_CLKOUT_H__
++#define __STE_CLK_DB8500_CLKOUT_H__
 +
-+...
++#define DB8500_CLKOUT_1			0
++#define DB8500_CLKOUT_2			1
++
++#define DB8500_CLKOUT_SRC_CLK38M	0
++#define DB8500_CLKOUT_SRC_ACLK		1
++#define DB8500_CLKOUT_SRC_SYSCLK	2
++#define DB8500_CLKOUT_SRC_LCDCLK	3
++#define DB8500_CLKOUT_SRC_SDMMCCLK	4
++#define DB8500_CLKOUT_SRC_TVCLK		5
++#define DB8500_CLKOUT_SRC_TIMCLK	6
++#define DB8500_CLKOUT_SRC_CLK009	7
++
++#endif
 -- 
-2.30.2
+2.35.1
 
