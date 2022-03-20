@@ -2,187 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E4A4E18EE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 00:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 82DBC4E192A
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 01:41:51 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244330AbiCSXCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Mar 2022 19:02:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43274 "EHLO
+        id S244462AbiCTAnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Mar 2022 20:43:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234512AbiCSXCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 19:02:13 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 696661A9C82
-        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 16:00:51 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id r22so15610907ljd.4
-        for <devicetree@vger.kernel.org>; Sat, 19 Mar 2022 16:00:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=AARNq9b7uefyRLB+o0FCtvKm0ndHX8dczFClr8d1mZ4=;
-        b=YvNJxUQ5cpSBlQtASLuPapLHgjOBLqF+sgKIco+gnHVv1+sFEpgf+vb6rHTNDoqyQp
-         eU5Qh9XU2vCAIngqift6/WY1V14YxDCHujDe/gcDDQGhoFrjsD6AtSGUs4Mc/9F7fra8
-         VKouTrUIwvGgV5FFkfMqO9nL6F+tPu/SX9p8P/UQlUM3A9lTpv8rV0CeDfA8E916WGpT
-         mqq5BoCwC9odrzEJ6aY2GnEfkmA0P3jq9wDTdOSu0ZXSQckoP2E1H0jA74juXEdDyTih
-         kBAF+DjGTUQb9NYS31PPcuB+DnouAGP/O3X7nQoV93Urf12CDbnHnBChyMPr9F4n9nnR
-         E/rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20210112;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=AARNq9b7uefyRLB+o0FCtvKm0ndHX8dczFClr8d1mZ4=;
-        b=YYjTnPC/gwIOxMMIeF5D2kd7xqsMeNDtJ/E4GS7hfnYT22KuM8NgkuyVXXxnDz7sMz
-         jEZYokAn2o06SZyykYQyCIS23Kt6iogAxnnu/4lFhsN+luqfz2S1rxnm40ILL3zsgFck
-         Qb66k8/yBYnQdusASRy/DvYskQG1mKIFCEekLNitge4wI1WEBVz5y5rK+b7o/7Afascw
-         JXECA1sL1iK2i92jl8+WYLx/unFgYGL8EUbRS2zDfVGTGMN7LPtdNH5daFey7+S9bF9+
-         TaHdZrXKBBEcdK9wKHp07qvKdbyi65H0BUv5Jr7/SgVyheIaK3GQ1fUmLIJUqqdQ9oGh
-         isUg==
-X-Gm-Message-State: AOAM531PdD5ytl6pETLgoeBXIyAuZtNzKexustdGSEm0oTkR4ZoIv2in
-        OPKg6RVtzdSW8MRD0XlDbr4i4Q==
-X-Google-Smtp-Source: ABdhPJxVwGt92K1FWdvMNBQUZFJD2nUjowak37iXB4/zQ91QZocrPLuaaB6GVfBNRVfaftmwb72A4g==
-X-Received: by 2002:a05:651c:1a24:b0:249:80b9:626a with SMTP id by36-20020a05651c1a2400b0024980b9626amr727357ljb.130.1647730849664;
-        Sat, 19 Mar 2022 16:00:49 -0700 (PDT)
-Received: from localhost.localdomain (c-fdcc225c.014-348-6c756e10.bbcust.telenor.se. [92.34.204.253])
-        by smtp.gmail.com with ESMTPSA id z5-20020a196505000000b0044a12b953f9sm581520lfb.45.2022.03.19.16.00.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Mar 2022 16:00:49 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-clk@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        with ESMTP id S236078AbiCTAnK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Mar 2022 20:43:10 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [185.16.172.187])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A233234060;
+        Sat, 19 Mar 2022 17:41:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=JpMju6MwC4+pRriGxkXm9qJS6b6I3/IuPafCT8ynlIQ=; b=xGaFuiGJN8LffXxx89zmkfYeK2
+        +4J/moAYt9KJ+zTJWVDe1zcMwb/oiy2L68CHZIl46LrPPOkBWux/Ll4arg4rKX66rXcKXVLSw0qQh
+        KK51nQxZcL/1YW9RVv+WD46Yrjqzx6tO2KEAescXkHkSsgpONMJ5ADf+rJQSNDEJJ7Eo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1nVjdT-00BlTR-09; Sun, 20 Mar 2022 01:41:31 +0100
+Date:   Sun, 20 Mar 2022 01:41:30 +0100
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
+Cc:     netdev@vger.kernel.org, olteanv@gmail.com, robh+dt@kernel.org,
+        UNGLinuxDriver@microchip.com, woojung.huh@microchip.com,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, davem@davemloft.net,
+        kuba@kernel.org, linux-kernel@vger.kernel.org,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com,
         devicetree@vger.kernel.org
-Subject: [PATCH 1/5 v2] dt-bindings: clock: u8500: Add clkout clock bindings
-Date:   Sat, 19 Mar 2022 23:51:52 +0100
-Message-Id: <20220319225156.1451636-2-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20220319225156.1451636-1-linus.walleij@linaro.org>
-References: <20220319225156.1451636-1-linus.walleij@linaro.org>
+Subject: Re: [PATCH v9 net-next 02/11] dt-bindings: net: add mdio property
+Message-ID: <YjZ4Oj5G2Ii0vNaB@lunn.ch>
+References: <20220318085540.281721-1-prasanna.vengateshan@microchip.com>
+ <20220318085540.281721-3-prasanna.vengateshan@microchip.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220318085540.281721-3-prasanna.vengateshan@microchip.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds device tree bindings for the externally routed clocks
-CLKOUT1 and CLKOUT2 clocks found in the DB8500.
+On Fri, Mar 18, 2022 at 02:25:31PM +0530, Prasanna Vengateshan wrote:
+> mdio bus is applicable to any switch hence it is added as per the below request,
+> https://lore.kernel.org/netdev/1300f84832ef1c43ecb9edb311fb817e3aab5420.camel@microchip.com/
+> 
+> Signed-off-by: Prasanna Vengateshan <prasanna.vengateshan@microchip.com>
 
-Cc: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Push the description of the clock-cells down under the clock-cells
-  subnode.
-- Add an example, as this was missing and requested.
----
- .../bindings/clock/stericsson,u8500-clks.yaml | 57 +++++++++++++++++++
- include/dt-bindings/clock/ste-db8500-clkout.h | 17 ++++++
- 2 files changed, 74 insertions(+)
- create mode 100644 include/dt-bindings/clock/ste-db8500-clkout.h
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-diff --git a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
-index 9bc95a308477..2150307219a0 100644
---- a/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
-+++ b/Documentation/devicetree/bindings/clock/stericsson,u8500-clks.yaml
-@@ -109,6 +109,25 @@ properties:
- 
-     additionalProperties: false
- 
-+  clkout-clock:
-+    description: A subnode with three clock cells for externally routed clocks,
-+      output clocks. These are two PRCMU-internal clocks that can be divided and
-+      muxed out on the pads of the DB8500 SoC.
-+    type: object
-+
-+    properties:
-+      '#clock-cells':
-+        description:
-+          The first cell indicates which output clock we are using,
-+          possible values are 0 (CLKOUT1) and 1 (CLKOUT2).
-+          The second cell indicates which clock we want to use as source,
-+          possible values are 0 thru 7, see the defines for the different
-+          source clocks.
-+          The third cell is a divider, legal values are 1 thru 63.
-+        const: 3
-+
-+    additionalProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -119,3 +138,41 @@ required:
-   - smp-twd-clock
- 
- additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/ste-db8500-clkout.h>
-+    clocks@8012 {
-+      compatible = "stericsson,u8500-clks";
-+      reg = <0x8012f000 0x1000>, <0x8011f000 0x1000>,
-+            <0x8000f000 0x1000>, <0xa03ff000 0x1000>,
-+            <0xa03cf000 0x1000>;
-+
-+      prcmu_clk: prcmu-clock {
-+        #clock-cells = <1>;
-+      };
-+
-+      prcc_pclk: prcc-periph-clock {
-+        #clock-cells = <2>;
-+      };
-+
-+      prcc_kclk: prcc-kernel-clock {
-+        #clock-cells = <2>;
-+      };
-+
-+      prcc_reset: prcc-reset-controller {
-+        #reset-cells = <2>;
-+      };
-+
-+      rtc_clk: rtc32k-clock {
-+        #clock-cells = <0>;
-+      };
-+
-+      smp_twd_clk: smp-twd-clock {
-+        #clock-cells = <0>;
-+      };
-+
-+      clkout_clk: clkout-clock {
-+        #clock-cells = <3>;
-+      };
-+    };
-diff --git a/include/dt-bindings/clock/ste-db8500-clkout.h b/include/dt-bindings/clock/ste-db8500-clkout.h
-new file mode 100644
-index 000000000000..ca07cb2bd1bc
---- /dev/null
-+++ b/include/dt-bindings/clock/ste-db8500-clkout.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef __STE_CLK_DB8500_CLKOUT_H__
-+#define __STE_CLK_DB8500_CLKOUT_H__
-+
-+#define DB8500_CLKOUT_1			0
-+#define DB8500_CLKOUT_2			1
-+
-+#define DB8500_CLKOUT_SRC_CLK38M	0
-+#define DB8500_CLKOUT_SRC_ACLK		1
-+#define DB8500_CLKOUT_SRC_SYSCLK	2
-+#define DB8500_CLKOUT_SRC_LCDCLK	3
-+#define DB8500_CLKOUT_SRC_SDMMCCLK	4
-+#define DB8500_CLKOUT_SRC_TVCLK		5
-+#define DB8500_CLKOUT_SRC_TIMCLK	6
-+#define DB8500_CLKOUT_SRC_CLK009	7
-+
-+#endif
--- 
-2.35.1
-
+    Andrew
