@@ -2,149 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9732C4E1BA8
-	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 13:32:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTP id 909D04E1BB0
+	for <lists+devicetree@lfdr.de>; Sun, 20 Mar 2022 13:39:35 +0100 (CET)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245073AbiCTMdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Mar 2022 08:33:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44188 "EHLO
+        id S245087AbiCTMk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Mar 2022 08:40:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S238798AbiCTMdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 08:33:21 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A69C0129261;
-        Sun, 20 Mar 2022 05:31:58 -0700 (PDT)
-Received: by mail-ej1-f54.google.com with SMTP id qa43so24969627ejc.12;
-        Sun, 20 Mar 2022 05:31:58 -0700 (PDT)
+        with ESMTP id S245084AbiCTMk4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Mar 2022 08:40:56 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA2C56419
+        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 05:39:33 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id o64so13703347oib.7
+        for <devicetree@vger.kernel.org>; Sun, 20 Mar 2022 05:39:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vanguardiasur-com-ar.20210112.gappssmtp.com; s=20210112;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=VXZQ9cDhHIRkiRYLKMsYJJMv5OJo8ExgGi/KH8XAfZc=;
+        b=oNRh+7kdfH0XJdH7+TkgJ1N1Mt+B6Zdqf5Ip5o7qkmevPOzfXLHD8LkkDpz0ixkRIF
+         3vIjZBvVzlbcXbe5BclnNubn3Pn+HXPEc1anB27w6/TnbPNB3yWG3Aka3DmQzi4eNjRY
+         5Zp9Lcnj3TDQhGXXRTu0b2iN7UVDkm7kQRWrKuv2z2+wtGu5hqL+r9wR2vL1ihlPe1MZ
+         h3zO+nRUUR8kY5gwo1QqNdZqphH1yysr6z2XT/gUwrMlR0TH5kvK2ojSj1GXw8FgBCU+
+         1Rox6yg3eLIM4Mt095ObKwlhu4VrgciFOR74MM5+oBKw5hwpgVAEGYCQf0V3JL52yQlM
+         6Tvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20210112;
-        h=x-gm-message-state:message-id:date:mime-version:user-agent:subject
-         :content-language:to:cc:references:from:in-reply-to
-         :content-transfer-encoding;
-        bh=BFYdZiXw/eFAD7943y4ojts/SbsmJ5s3mAERW9ZqUmQ=;
-        b=QZLd442qQphlgnccaXawAAEP1mfGMogBwq+y+ZcMlJPeRDOCwgSNOT24oCgyX2OYOg
-         tVXplIIzz0ZuYOuF7k1lUwHmCdKtRi5Ya3l+iH+V8CPTjaSUT7rEgD0bEVIMTUnxZVWv
-         u2ZGoDFMDVSiCNTCW99tPW+VUzAy/VMNtH6KhMrKshF5AV1KHqebKn7pDA00hXOV+NMX
-         47E1m0eSrwsIv5kcmFbAdbey5UZ/DMOKqdAtG0vgVHb8CnocFbLQrJSxLFz1ytqF/pRb
-         8q6ing/uD+DrqqzLutKvxwvvOddIbII3UVQE791KFW/qr0kvR8TVuo/ZmN78hN4PEnbz
-         +LFg==
-X-Gm-Message-State: AOAM530oj91FnmLm4SsmRMK5b2UujLJUmA5KjqVEdHQrd9ylLCtWQaMQ
-        7oboyjNr/Iz0LrlwOOA68/Y=
-X-Google-Smtp-Source: ABdhPJzMwY0jdWTIGYQCaWFHvskjGM1PR9I4ncwINQ3+Tzx86M77tiIlPiHBh5BsD8pwZD30GVmQ6A==
-X-Received: by 2002:a17:907:86a3:b0:6da:870c:af44 with SMTP id qa35-20020a17090786a300b006da870caf44mr16234430ejc.445.1647779517155;
-        Sun, 20 Mar 2022 05:31:57 -0700 (PDT)
-Received: from [192.168.0.17] (78-11-189-27.static.ip.netia.com.pl. [78.11.189.27])
-        by smtp.googlemail.com with ESMTPSA id f6-20020a0564021e8600b00412ae7fda95sm6781002edf.44.2022.03.20.05.31.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 20 Mar 2022 05:31:56 -0700 (PDT)
-Message-ID: <81aa7be7-0bfa-05e6-624a-393e6810dc61@kernel.org>
-Date:   Sun, 20 Mar 2022 13:31:53 +0100
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=VXZQ9cDhHIRkiRYLKMsYJJMv5OJo8ExgGi/KH8XAfZc=;
+        b=uesqD8G/uF1fUcHyb/GuTcv2hGAxXNgDP7gCyr3duqLuewbuhdHmZvL5iABZEvx+WZ
+         XFcGd01HCJlPLD1qiyIbhXvKyHY/0zE6W00nkDC6fQoibmQepnDGdZdf7Qe7YyoVm0HW
+         RssPcc3OG3uXLMTBIxpWLFSZC4NXMjg7mxySJpUOoouTJxvxsLMhf0E4yXXD/08dd2PH
+         hBMqTuIhAJzlz/p6nftc6zkAqDLy2gdLFHkBECPBv3sLwVJFSqACKkUAnllUwVoHZ3oa
+         Uw4hYb8EknZxSgqgJmbb/lJ40bLv8LfWCTA3IZZKoCUXAoI7oiPr3aQXoL6cp5feSKNf
+         PXOw==
+X-Gm-Message-State: AOAM530R4KpMS98ZRerOmMTPHMdBggoi3hYbRFzOGDHRJ7q75dKhsoUH
+        wlafb433eiGHp58GDnUhfFtrtg==
+X-Google-Smtp-Source: ABdhPJxZsRRfxgsibtCeV2kzOvAi8AUF3QtWGNroi4KM85J3+ZnZqUkCW7njnF8sqpLhanofO6L/xA==
+X-Received: by 2002:aca:ad15:0:b0:2da:692e:fe97 with SMTP id w21-20020acaad15000000b002da692efe97mr11772950oie.26.1647779972622;
+        Sun, 20 Mar 2022 05:39:32 -0700 (PDT)
+Received: from eze-laptop ([186.122.18.6])
+        by smtp.gmail.com with ESMTPSA id v24-20020a9d5a18000000b005ad458facbdsm6329043oth.27.2022.03.20.05.39.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Mar 2022 05:39:32 -0700 (PDT)
+Date:   Sun, 20 Mar 2022 09:39:26 -0300
+From:   Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+To:     Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+Cc:     linux-media@vger.kernel.org, Linux-rockchip@lists.infradead.org,
+        devicetree@vger.kernel.org, heiko@sntech.de, hverkuil@xs4all.nl
+Subject: Re: [PATCH v2 3/3] dt-bindings: media: rockchip-vpu: Add RK3568
+ compatible
+Message-ID: <YjcgflUuQlFbVM/1@eze-laptop>
+References: <20220214212955.1178947-1-piotr.oniszczuk@gmail.com>
+ <20220214212955.1178947-3-piotr.oniszczuk@gmail.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.5.0
-Subject: Re: [Patch v5 1/4] memory: tegra: Add memory controller channels
- support
-Content-Language: en-US
-To:     Ashish Mhetre <amhetre@nvidia.com>, robh+dt@kernel.org,
-        thierry.reding@gmail.com, digetx@gmail.com, jonathanh@nvidia.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Cc:     vdumpa@nvidia.com, Snikam@nvidia.com
-References: <20220316092525.4554-1-amhetre@nvidia.com>
- <20220316092525.4554-2-amhetre@nvidia.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <20220316092525.4554-2-amhetre@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        NICE_REPLY_A,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20220214212955.1178947-3-piotr.oniszczuk@gmail.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/03/2022 10:25, Ashish Mhetre wrote:
-> From tegra186 onwards, memory controller support multiple channels.
-> Add support for mapping address spaces of these channels.
-> Make sure that number of channels are as expected on each SOC.
-> During error interrupts from memory controller, appropriate registers
-> from these channels need to be accessed for logging error info.
+Hi Piotr,
+
+On Mon, Feb 14, 2022 at 10:29:55PM +0100, Piotr Oniszczuk wrote:
+> From: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
 > 
-> Signed-off-by: Ashish Mhetre <amhetre@nvidia.com>
+> RK356x has Hantro G1 video decoder capable to decode MPEG2/H.264/VP8
+> video formats.
+> 
+> This patch adds RK3568 compatible in rockchip-vpu dt-bindings.
+> 
+> Tested on [1] with FFmpeg v4l2_request code taken from [2]
+> with MPEG2, H.642 and VP8 samples with results [3].
+> 
+> [1] https://github.com/warpme/minimyth2
+> [2] https://github.com/LibreELEC/LibreELEC.tv/blob/master/packages/multimedia/ffmpeg/patches/v4l2-request/ffmpeg-001-v4l2-request.patch
+> [3] https://github.com/warpme/minimyth2/blob/master/video-test-summary.txt
+> 
+> Signed-off-by: Piotr Oniszczuk <piotr.oniszczuk@gmail.com>
+
+Reviewed-by: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+
+This dt-binding change looks trivial, so I guess it's fine
+taking it directly via the media tree?
+
+Thanks,
+Ezequiel
+
 > ---
->  drivers/memory/tegra/mc.c       |  6 ++++
->  drivers/memory/tegra/tegra186.c | 52 +++++++++++++++++++++++++++++++++
->  drivers/memory/tegra/tegra194.c |  1 +
->  drivers/memory/tegra/tegra234.c |  1 +
->  include/soc/tegra/mc.h          |  7 +++++
->  5 files changed, 67 insertions(+)
+>  Documentation/devicetree/bindings/media/rockchip-vpu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/memory/tegra/mc.c b/drivers/memory/tegra/mc.c
-> index bf3abb6d8354..3cda1d9ad32a 100644
-> --- a/drivers/memory/tegra/mc.c
-> +++ b/drivers/memory/tegra/mc.c
-> @@ -749,6 +749,12 @@ static int tegra_mc_probe(struct platform_device *pdev)
->  	if (IS_ERR(mc->regs))
->  		return PTR_ERR(mc->regs);
->  
-> +	if (mc->soc->ops && mc->soc->ops->map_regs) {
-> +		err = mc->soc->ops->map_regs(mc, pdev);
-> +		if (err < 0)
-> +			return err;
-> +	}
-> +
->  	mc->debugfs.root = debugfs_create_dir("mc", NULL);
->  
->  	if (mc->soc->ops && mc->soc->ops->probe) {
-> diff --git a/drivers/memory/tegra/tegra186.c b/drivers/memory/tegra/tegra186.c
-> index 3d153881abc1..a8a45e6ff1f1 100644
-> --- a/drivers/memory/tegra/tegra186.c
-> +++ b/drivers/memory/tegra/tegra186.c
-> @@ -139,11 +139,62 @@ static int tegra186_mc_probe_device(struct tegra_mc *mc, struct device *dev)
->  	return 0;
->  }
->  
-> +static int tegra186_mc_map_regs(struct tegra_mc *mc,
-> +				struct platform_device *pdev)
-> +{
-> +	struct device_node *np = pdev->dev.parent->of_node;
-> +	int num_dt_channels, reg_cells = 0;
-> +	struct resource *res;
-> +	int i, ret;
-> +	u32 val;
-> +
-> +	ret = of_property_read_u32(np, "#address-cells", &val);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "missing #address-cells property\n");
-> +		return ret;
-> +	}
-> +
-> +	reg_cells = val;
-> +
-> +	ret = of_property_read_u32(np, "#size-cells", &val);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "missing #size-cells property\n");
-> +		return ret;
-> +	}
-> +
-> +	reg_cells += val;
-> +
-> +	num_dt_channels = of_property_count_elems_of_size(pdev->dev.of_node, "reg",
-> +							  reg_cells * sizeof(u32));
-> +	/*
-> +	 * On tegra186 onwards, memory controller support multiple channels.
-> +	 * Apart from regular memory controller channels, there is one broadcast
-> +	 * channel and one for stream-id registers.
-> +	 */
-> +	if (num_dt_channels < mc->soc->num_channels + 2) {
-> +		dev_warn(&pdev->dev, "MC channels are missing, please update\n");
-
-How did you address our previous comments about ABI break? I really do
-not see it.
-
-Best regards,
-Krzysztof
+> diff --git a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> index bacb60a34989..6cc4d3e5a61d 100644
+> --- a/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> +++ b/Documentation/devicetree/bindings/media/rockchip-vpu.yaml
+> @@ -23,6 +23,7 @@ properties:
+>            - rockchip,rk3328-vpu
+>            - rockchip,rk3399-vpu
+>            - rockchip,px30-vpu
+> +          - rockchip,rk3568-vpu
+>        - items:
+>            - const: rockchip,rk3188-vpu
+>            - const: rockchip,rk3066-vpu
+> -- 
+> 2.29.2
+> 
